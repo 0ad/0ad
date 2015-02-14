@@ -172,7 +172,7 @@ struct OvlAllocator	// POD
 	void Shutdown()
 	{
 		if(extant != 0)
-			debug_printf(L"waio: OvlAllocator::Shutdown with extant=%d\n", extant);
+			debug_printf("waio: OvlAllocator::Shutdown with extant=%d\n", extant);
 
 		InterlockedFlushSList(&freelist);
 
@@ -462,7 +462,7 @@ Status waio_Preallocate(int fd, off_t size)
 		if(GetLastError() == ERROR_DISK_FULL)
 			SetLastError(0);
 		else
-			debug_printf(L"waio_Preallocate(%lld) failed: %d\n", size, GetLastError());
+			debug_printf("waio_Preallocate(%lld) failed: %d\n", size, GetLastError());
 		return ERR::FAIL;	// NOWARN (either out of disk space, or error was printed)
 	}
 

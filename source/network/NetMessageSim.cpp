@@ -176,7 +176,7 @@ size_t CSimulationMessage::GetSerializedLength() const
 
 CStr CSimulationMessage::ToString() const
 {
-	std::string source = utf8_from_wstring(m_ScriptInterface->ToString(const_cast<JS::PersistentRootedValue*>(&m_Data)));
+	std::string source = m_ScriptInterface->ToString(const_cast<JS::PersistentRootedValue*>(&m_Data));
 
 	std::stringstream stream;
 	stream << "CSimulationMessage { m_Client: " << m_Client << ", m_Player: " << m_Player << ", m_Turn: " << m_Turn << ", m_Data: " << source << " }";
@@ -223,7 +223,7 @@ size_t CGameSetupMessage::GetSerializedLength() const
 
 CStr CGameSetupMessage::ToString() const
 {
-	std::string source = utf8_from_wstring(m_ScriptInterface.ToString(const_cast<JS::PersistentRootedValue*>(&m_Data)));
+	std::string source = m_ScriptInterface.ToString(const_cast<JS::PersistentRootedValue*>(&m_Data));
 
 	std::stringstream stream;
 	stream << "CGameSetupMessage { m_Data: " << source << " }";

@@ -128,7 +128,7 @@ void CommandProc::Merge()
 	{
 		const char* a = (*prev)->GetType();
 		const char* b = (*m_CurrentCommand)->GetType();
-		debug_printf(L"[incompatible: %hs -> %hs]\n", a, b);
+		debug_printf("[incompatible: %s -> %s]\n", a, b);
 		debug_warn(L"Merge illogic: incompatible command");
 		return;
 	}

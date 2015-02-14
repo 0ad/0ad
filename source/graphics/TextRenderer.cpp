@@ -108,7 +108,7 @@ void CTextRenderer::PrintfAdvance(const wchar_t* fmt, ...)
 	va_end(args);
 
 	if (ret < 0)
-		debug_printf(L"CTextRenderer::Printf vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
+		debug_printf("CTextRenderer::Printf vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
 
 	PutAdvance(buf);
 }
@@ -124,7 +124,7 @@ void CTextRenderer::PrintfAt(float x, float y, const wchar_t* fmt, ...)
 	va_end(args);
 
 	if (ret < 0)
-		debug_printf(L"CTextRenderer::PrintfAt vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
+		debug_printf("CTextRenderer::PrintfAt vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
 
 	Put(x, y, buf);
 }

@@ -74,9 +74,9 @@ static const size_t MAX_TAGS = 20;
 static u32 tags[MAX_TAGS];
 static size_t num_tags;
 
-void debug_filter_add(const wchar_t* tag)
+void debug_filter_add(const char* tag)
 {
-	const u32 hash = fnv_hash(tag, wcslen(tag)*sizeof(tag[0]));
+	const u32 hash = fnv_hash(tag, strlen(tag)*sizeof(tag[0]));
 
 	// make sure it isn't already in the list
 	for(size_t i = 0; i < MAX_TAGS; i++)
@@ -93,9 +93,9 @@ void debug_filter_add(const wchar_t* tag)
 	tags[num_tags++] = hash;
 }
 
-void debug_filter_remove(const wchar_t* tag)
+void debug_filter_remove(const char* tag)
 {
-	const u32 hash = fnv_hash(tag, wcslen(tag)*sizeof(tag[0]));
+	const u32 hash = fnv_hash(tag, strlen(tag)*sizeof(tag[0]));
 
 	for(size_t i = 0; i < MAX_TAGS; i++)
 	{
@@ -116,7 +116,7 @@ void debug_filter_clear()
 	std::fill(tags, tags+MAX_TAGS, 0);
 }
 
-bool debug_filter_allows(const wchar_t* text)
+bool debug_filter_allows(const char* text)
 {
 	size_t i;
 	for(i = 0; ; i++)
@@ -139,19 +139,24 @@ bool debug_filter_allows(const wchar_t* text)
 }
 
 #undef debug_printf	// allowing #defining it out
-void debug_printf(const wchar_t* fmt, ...)
+void debug_printf(const char* fmt, ...)
 {
-	wchar_t buf[16384];
-	
+	char buf[16384];
+
 	va_list ap;
 	va_start(ap, fmt);
-	const int numChars = vswprintf_s(buf, ARRAY_SIZE(buf), fmt, ap);
-	if(numChars < 0)
-		debug_break();	// poor man's assert - avoid infinite loop because ENSURE also uses debug_printf
+	const int numChars = vsprintf_s(buf, ARRAY_SIZE(buf), fmt, ap);
+	if (numChars < 0)
+		debug_break();  // poor man's assert - avoid infinite loop because ENSURE also uses debug_printf
 	va_end(ap);
 
-	if(debug_filter_allows(buf))
-		debug_puts(buf);
+	debug_puts_filtered(buf);
+}
+
+void debug_puts_filtered(const char* text)
+{
+	if(debug_filter_allows(text))
+		debug_puts(text);
 }
 
 
@@ -460,7 +465,7 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 	const wchar_t* filename = path_name_only(pathname);
 
 	// display in output window; double-click will navigate to error location.
-	debug_printf(L"%ls(%d): %ls\n", filename, line, description);
+	debug_printf("%s(%d): %s\n", utf8_from_wstring(filename).c_str(), line, utf8_from_wstring(description).c_str());
 
 	ErrorMessageMem emm;
 	const wchar_t* text = debug_BuildErrorMessage(description, filename, line, func, context, lastFuncToSkip, &emm);

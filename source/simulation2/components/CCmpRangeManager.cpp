@@ -649,17 +649,17 @@ public:
 		{
 			for (size_t i = 0; i < oldPlayerCounts.size(); ++i)
 			{
-				debug_printf(L"%d: ", (int)i);
+				debug_printf("%d: ", (int)i);
 				for (size_t j = 0; j < oldPlayerCounts[i].size(); ++j)
-					debug_printf(L"%d ", oldPlayerCounts[i][j]);
-				debug_printf(L"\n");
+					debug_printf("%d ", oldPlayerCounts[i][j]);
+				debug_printf("\n");
 			}
 			for (size_t i = 0; i < m_LosPlayerCounts.size(); ++i)
 			{
-				debug_printf(L"%d: ", (int)i);
+				debug_printf("%d: ", (int)i);
 				for (size_t j = 0; j < m_LosPlayerCounts[i].size(); ++j)
-					debug_printf(L"%d ", m_LosPlayerCounts[i][j]);
-				debug_printf(L"\n");
+					debug_printf("%d ", m_LosPlayerCounts[i][j]);
+				debug_printf("\n");
 			}
 			debug_warn(L"inconsistent player counts");
 		}

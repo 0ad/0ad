@@ -372,7 +372,7 @@ static size_t ChooseCacheSize()
 	// always provide at least this much to ensure correct operation
 	cache = std::max(cache, (ssize_t)64);
 
-	debug_printf(L"Cache: %d (total: %d) MiB\n", (int)cache, (int)total);
+	debug_printf("Cache: %d (total: %d) MiB\n", (int)cache, (int)total);
 	return size_t(cache)*MiB;
 }
 
@@ -847,7 +847,7 @@ void EarlyInit()
 
 	debug_SetThreadName("main");
 	// add all debug_printf "tags" that we are interested in:
-	debug_filter_add(L"TIMER");
+	debug_filter_add("TIMER");
 
 	timer_LatchStartTime();
 
@@ -865,7 +865,7 @@ void EarlyInit()
 #if MUST_INIT_X11
 	int status = XInitThreads();
 	if (status == 0)
-		debug_printf(L"Error enabling thread-safety via XInitThreads\n");
+		debug_printf("Error enabling thread-safety via XInitThreads\n");
 #endif
 
 	// Initialise the low-quality rand function

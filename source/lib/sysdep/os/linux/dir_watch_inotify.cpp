@@ -156,13 +156,13 @@ static void* inotify_event_loop(void*)
 			else if(errno == EBADF)
 			{
 				// probably just lost the connection to inotify - kill the thread
-				debug_printf(L"inotify_event_loop: Invalid file descriptor inotifyfd=%d\n", inotifyfd);
+				debug_printf("inotify_event_loop: Invalid file descriptor inotifyfd=%d\n", inotifyfd);
 				return NULL;
 			}
 			else
 			{
 				// oops
-				debug_printf(L"inotify_event_loop: select error errno=%d\n", errno);
+				debug_printf("inotify_event_loop: select error errno=%d\n", errno);
 				return NULL;
 			}
 			errno = 0;
@@ -261,7 +261,7 @@ Status dir_watch_Poll(DirWatchNotifications& notifications)
 		}
 		else
 		{
-			debug_printf(L"dir_watch_Poll: Notification with invalid watch descriptor wd=%d\n", polled_notifications[i].wd);
+			debug_printf("dir_watch_Poll: Notification with invalid watch descriptor wd=%d\n", polled_notifications[i].wd);
 		}
 	}
 

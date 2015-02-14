@@ -49,9 +49,9 @@ static const UINT PERIOD_MS = 2;
 class CounterTGT : public ICounter
 {
 public:
-	virtual const wchar_t* Name() const
+	virtual const char* Name() const
 	{
-		return L"TGT";
+		return "TGT";
 	}
 
 	Status Activate()

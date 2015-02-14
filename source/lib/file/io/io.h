@@ -269,7 +269,7 @@ static inline Status Run(const Operation& op, const Parameters& p = Parameters()
 	COMPILER_FENCE;
 	const double t1 = timer_Time();
 	const off_t totalSize = p.blockSize? numBlocks*p.blockSize : op.size;
-	debug_printf(L"IO: %.2f MB/s (%.2f)\n", totalSize/(t1-t0)/1e6, (t1-t0)*1e3);
+	debug_printf("IO: %.2f MB/s (%.2f)\n", totalSize/(t1-t0)/1e6, (t1-t0)*1e3);
 #endif
 
 	return INFO::OK;

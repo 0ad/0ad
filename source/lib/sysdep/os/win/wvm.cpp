@@ -138,12 +138,12 @@ void DumpStatistics()
 		return;
 
 	const size_t largePageRatio = totalCommits? largePageCommits*100/totalCommits : 0;
-	debug_printf(L"%d commits (%d, i.e. %d%% of them via large pages)\n", totalCommits, largePageCommits, largePageRatio);
+	debug_printf("%d commits (%d, i.e. %d%% of them via large pages)\n", totalCommits, largePageCommits, largePageRatio);
 	if(processorsWithNoCommits != 0)
-		debug_printf(L"  processors with no commits: %x\n", processorsWithNoCommits);
+		debug_printf("  processors with no commits: %x\n", processorsWithNoCommits);
 
 	if(numa_NumNodes() > 1)
-		debug_printf(L"NUMA factor: %.2f\n", numa_Factor());
+		debug_printf("NUMA factor: %.2f\n", numa_Factor());
 }
 
 
@@ -242,7 +242,7 @@ static void* AllocateLargeOrSmallPages(uintptr_t address, size_t size, DWORD all
 	{
 		MEMORY_BASIC_INFORMATION mbi = {0};
 		(void)VirtualQuery(LPCVOID(address), &mbi, sizeof(mbi));	// return value is #bytes written in mbi
-		debug_printf(L"Allocation failed: base=%p allocBase=%p allocProt=%d size=%d state=%d prot=%d type=%d\n", mbi.BaseAddress, mbi.AllocationBase, mbi.AllocationProtect, mbi.RegionSize, mbi.State, mbi.Protect, mbi.Type);
+		debug_printf("Allocation failed: base=%p allocBase=%p allocProt=%d size=%d state=%d prot=%d type=%d\n", mbi.BaseAddress, mbi.AllocationBase, mbi.AllocationProtect, mbi.RegionSize, mbi.State, mbi.Protect, mbi.Type);
 	}
 
 	return 0;
@@ -293,7 +293,7 @@ CACHE_ALIGNED(struct AddressRangeDescriptor)	// POD
 		base = (intptr_t)AllocateLargeOrSmallPages(0, totalSize, MEM_RESERVE);
 		if(!base)
 		{
-			debug_printf(L"AllocateLargeOrSmallPages of %lld failed\n", (u64)totalSize);
+			debug_printf("AllocateLargeOrSmallPages of %lld failed\n", (u64)totalSize);
 			DEBUG_DISPLAY_ERROR(ErrorString());
 			return ERR::NO_MEM;	// NOWARN (error string is more helpful)
 		}
@@ -411,7 +411,7 @@ void ReleaseAddressSpace(void* p, size_t UNUSED(size))
 		d->Free();
 	else
 	{
-		debug_printf(L"No AddressRangeDescriptor contains %P\n", p);
+		debug_printf("No AddressRangeDescriptor contains %P\n", p);
 		ENSURE(0);
 	}
 }
@@ -502,7 +502,7 @@ static LONG CALLBACK VectoredHandler(const PEXCEPTION_POINTERS ep)
 	bool ok = d->Commit(alignedAddress);
 	if(!ok)
 	{
-		debug_printf(L"VectoredHandler: Commit(0x%p) failed; address=0x%p\n", alignedAddress, address);
+		debug_printf("VectoredHandler: Commit(0x%p) failed; address=0x%p\n", alignedAddress, address);
 		ENSURE(0);
 		return EXCEPTION_CONTINUE_SEARCH;
 	}

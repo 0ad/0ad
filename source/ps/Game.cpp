@@ -246,7 +246,7 @@ PSRETURN CGame::ReallyStartGame()
 	if (g_NetClient)
 		g_NetClient->LoadFinished();
 
-	debug_printf(L"GAME STARTED, ALL INIT COMPLETE\n");
+	debug_printf("GAME STARTED, ALL INIT COMPLETE\n");
 
 	// The call tree we've built for pregame probably isn't useful in-game.
 	if (CProfileManager::IsInitialised())

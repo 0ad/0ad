@@ -101,8 +101,8 @@ class TestWdbgSym : public CxxTest::TestSuite
 		wchar_t chars[] = { 'w','c','h','a','r','s',0 };
 		wchar_t many_wchars[1024]; memset(many_wchars, 'a', sizeof(many_wchars));
 
-		debug_printf(L"\n(dumping stack frames may result in access violations...)\n");
-		debug_printf(L"  locals: %.0d %.0c %.0c %.0g %.0g %.0d %.0d\n", ints[0], chars[0], many_wchars[0], large_array_of_large_structs[0].d1, small_array_of_large_structs[0].d1, large_array_of_small_structs[0].i1, small_array_of_small_structs[0].i1);
+		debug_printf("\n(dumping stack frames may result in access violations...)\n");
+		debug_printf("  locals: %.0d %.0c %.0c %.0g %.0g %.0d %.0d\n", ints[0], chars[0], many_wchars[0], large_array_of_large_structs[0].d1, small_array_of_large_structs[0].d1, large_array_of_small_structs[0].i1, small_array_of_small_structs[0].i1);
 
 		// note: we don't want any kind of dialog to be raised, because
 		// this test now always runs. therefore, just make sure a decent
@@ -120,7 +120,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 #endif
 		debug_FreeErrorMessage(&emm);
 
-		debug_printf(L"(done dumping stack frames)\n");
+		debug_printf("(done dumping stack frames)\n");
 	}
 
 	// also used by test_stl as an element type
@@ -254,17 +254,17 @@ class TestWdbgSym : public CxxTest::TestSuite
 		static HDC s_hdc = (HDC)0xff0;
 
 #if 0	// output only needed when debugging
-		debug_printf(L"\nTEST_ADDRS\n");
-		debug_printf(L"p_int     addr=%p val=%d\n", &p_int, p_int);
-		debug_printf(L"p_double  addr=%p val=%g\n", &p_double, p_double);
-		debug_printf(L"p_pchar   addr=%p val=%hs\n", &p_pchar, p_pchar);
-		debug_printf(L"p_uintptr addr=%p val=%lu\n", &p_uintptr, p_uintptr);
+		debug_printf("\nTEST_ADDRS\n");
+		debug_printf("p_int     addr=%p val=%d\n", &p_int, p_int);
+		debug_printf("p_double  addr=%p val=%g\n", &p_double, p_double);
+		debug_printf("p_pchar   addr=%p val=%s\n", &p_pchar, p_pchar);
+		debug_printf("p_uintptr addr=%p val=%lu\n", &p_uintptr, p_uintptr);
 
-		debug_printf(L"l_uint    addr=%p val=%u\n", &l_uint, l_uint);
-		debug_printf(L"l_wchars  addr=%p val=%ls\n", &l_wchars, l_wchars);
-		debug_printf(L"l_enum    addr=%p val=%d\n", &l_enum, l_enum);
-		debug_printf(L"l_u8s     addr=%p val=%d\n", &l_u8s, l_u8s);
-		debug_printf(L"l_funcptr addr=%p val=%p\n", &l_funcptr, l_funcptr);
+		debug_printf("l_uint    addr=%p val=%u\n", &l_uint, l_uint);
+		debug_printf("l_wchars  addr=%p val=%s\n", &l_wchars, utf8_from_wstring(l_wchars));
+		debug_printf("l_enum    addr=%p val=%d\n", &l_enum, l_enum);
+		debug_printf("l_u8s     addr=%p val=%d\n", &l_u8s, l_u8s);
+		debug_printf("l_funcptr addr=%p val=%p\n", &l_funcptr, l_funcptr);
 #else
 		UNUSED2(p_uintptr);
 		UNUSED2(p_pchar);

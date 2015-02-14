@@ -178,7 +178,7 @@ void CReplayPlayer::Replay(bool serializationtest)
 		else if (type == "turn")
 		{
 			*m_Stream >> turn >> turnLength;
-			debug_printf(L"Turn %u (%u)... ", turn, turnLength);
+			debug_printf("Turn %u (%u)... ", turn, turnLength);
 		}
 		else if (type == "cmd")
 		{
@@ -208,9 +208,9 @@ void CReplayPlayer::Replay(bool serializationtest)
 				ENSURE(ok);
 				std::string hexHash = Hexify(hash);
 				if (hexHash == replayHash)
-					debug_printf(L"hash ok (%hs)", hexHash.c_str());
+					debug_printf("hash ok (%s)", hexHash.c_str());
 				else
-					debug_printf(L"HASH MISMATCH (%hs != %hs)", hexHash.c_str(), replayHash.c_str());
+					debug_printf("HASH MISMATCH (%s != %s)", hexHash.c_str(), replayHash.c_str());
 			}
 		}
 		else if (type == "end")
@@ -228,9 +228,9 @@ void CReplayPlayer::Replay(bool serializationtest)
 //			std::string hash;
 //			bool ok = game.GetSimulation2()->ComputeStateHash(hash, true);
 //			ENSURE(ok);
-//			debug_printf(L"%hs", Hexify(hash).c_str());
+//			debug_printf("%s", Hexify(hash).c_str());
 
-			debug_printf(L"\n");
+			debug_printf("\n");
 
 			g_Profiler.Frame();
 
@@ -242,7 +242,7 @@ void CReplayPlayer::Replay(bool serializationtest)
 		}
 		else
 		{
-			debug_printf(L"Unrecognised replay token %hs\n", type.c_str());
+			debug_printf("Unrecognised replay token %s\n", type.c_str());
 		}
 	}
 
@@ -251,7 +251,7 @@ void CReplayPlayer::Replay(bool serializationtest)
 	std::string hash;
 	bool ok = game.GetSimulation2()->ComputeStateHash(hash, false);
 	ENSURE(ok);
-	debug_printf(L"# Final state: %hs\n", Hexify(hash).c_str());
+	debug_printf("# Final state: %s\n", Hexify(hash).c_str());
 
 	timer_DisplayClientTotals();
 

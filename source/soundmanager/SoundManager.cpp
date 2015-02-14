@@ -338,7 +338,7 @@ Status CSoundManager::AlcInit()
 	const char* dev_name = (const char*)alcGetString(m_Device, ALC_DEVICE_SPECIFIER);
 
 	if (err == ALC_NO_ERROR && m_Device && m_Context)
-		debug_printf(L"Sound: AlcInit success, using %hs\n", dev_name);
+		debug_printf("Sound: AlcInit success, using %s\n", dev_name);
 	else
 	{
 		LOGERROR("Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%s err=%x\n", (void *)m_Device, (void *)m_Context, dev_name, err);

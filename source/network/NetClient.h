@@ -140,7 +140,7 @@ public:
 	 * Return a concatenation of all messages in the GUI queue,
 	 * for test cases to easily verify the queue contents.
 	 */
-	std::wstring TestReadGuiMessages();
+	std::string TestReadGuiMessages();
 
 	/**
 	 * Get the script interface associated with this network client,

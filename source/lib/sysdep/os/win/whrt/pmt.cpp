@@ -47,9 +47,9 @@ public:
 	{
 	}
 
-	virtual const wchar_t* Name() const
+	virtual const char* Name() const
 	{
-		return L"PMT";
+		return "PMT";
 	}
 
 	Status Activate()

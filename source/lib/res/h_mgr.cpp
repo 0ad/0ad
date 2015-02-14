@@ -258,7 +258,7 @@ static Status h_data_tag_type(const Handle h, const H_Type type, HDATA*& hd)
 	// h_alloc makes sure type isn't 0, so no need to check that here.
 	if(hd->type != type)
 	{
-		debug_printf(L"h_mgr: expected type %ls, got %ls\n", hd->type->name, type->name);
+		debug_printf("h_mgr: expected type %s, got %s\n", utf8_from_wstring(hd->type->name).c_str(), utf8_from_wstring(type->name).c_str());
 		WARN_RETURN(ERR::H_TYPE_MISMATCH);
 	}
 
@@ -565,12 +565,12 @@ static void h_free_hd(HDATA* hd)
 
 #ifndef NDEBUG
 	// to_string is slow for some handles, so avoid calling it if unnecessary
-	if(debug_filter_allows(L"H_MGR|"))
+	if(debug_filter_allows("H_MGR|"))
 	{
 		wchar_t buf[H_STRING_LEN];
 		if(vtbl->to_string(hd->user, buf) < 0)
 			wcscpy_s(buf, ARRAY_SIZE(buf), L"(error)");
-		debug_printf(L"H_MGR| free %ls %ls accesses=%lu %ls\n", hd->type->name, hd->pathname.string().c_str(), (unsigned long)hd->num_derefs, buf);
+		debug_printf("H_MGR| free %s %s accesses=%lu %s\n", utf8_from_wstring(hd->type->name).c_str(), hd->pathname.string8().c_str(), (unsigned long)hd->num_derefs, utf8_from_wstring(buf).c_str());
 	}
 #endif
 
@@ -761,7 +761,7 @@ static Status Init()
 
 static void Shutdown()
 {
-	debug_printf(L"H_MGR| shutdown. any handle frees after this are leaks!\n");
+	debug_printf("H_MGR| shutdown. any handle frees after this are leaks!\n");
 	// objects that store handles to other objects are destroyed before their
 	// children, so the subsequent forced destruction of the child here will
 	// raise a double-free warning unless we ignore it. (#860, #915, #920)

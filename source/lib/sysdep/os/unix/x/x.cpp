@@ -33,6 +33,7 @@
 #if HAVE_X
 
 #include "lib/debug.h"
+#include "lib/utf8.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/cursor.h"
 
@@ -127,16 +128,16 @@ static bool get_wminfo(SDL_SysWMinfo& wminfo)
 
 	if(ret == -1)
 	{
-		debug_printf(L"SDL_GetWMInfo failed\n");
+		debug_printf("SDL_GetWMInfo failed\n");
 		return false;
 	}
 	if(ret == 0)
 	{
-		debug_printf(L"SDL_GetWMInfo is not implemented on this platform\n");
+		debug_printf("SDL_GetWMInfo is not implemented on this platform\n");
 		return false;
 	}
 
-	debug_printf(L"SDL_GetWMInfo returned an unknown value: %d\n", ret);
+	debug_printf("SDL_GetWMInfo returned an unknown value: %d\n", ret);
 	return false;
 }
 
@@ -213,7 +214,7 @@ wchar_t *sys_clipboard_get()
 			&len, &bytes_left,
 			&data);
 		if(result != Success)
-			debug_printf(L"clipboard_get: result: %d type:%lu len:%lu format:%d bytes_left:%lu\n", 
+			debug_printf("clipboard_get: result: %d type:%lu len:%lu format:%d bytes_left:%lu\n", 
 				result, type, len, format, bytes_left);
 		if(result == Success && bytes_left > 0)
 		{
@@ -224,8 +225,8 @@ wchar_t *sys_clipboard_get()
 			
 			if(result == Success)
 			{
-				debug_printf(L"clipboard_get: XGetWindowProperty succeeded, returning data\n");
-				debug_printf(L"clipboard_get: data was: \"%hs\", type was %lu, XA_STRING atom is %lu\n", data, type, XA_STRING);
+				debug_printf("clipboard_get: XGetWindowProperty succeeded, returning data\n");
+				debug_printf("clipboard_get: data was: \"%s\", type was %lu, XA_STRING atom is %lu\n", (char *)data, type, XA_STRING);
 				
 				if(type == XA_STRING) //Latin-1: Just copy into low byte of wchar_t
 				{
@@ -238,7 +239,7 @@ wchar_t *sys_clipboard_get()
 			}
 			else
 			{
-				debug_printf(L"clipboard_get: XGetWindowProperty failed!\n");
+				debug_printf("clipboard_get: XGetWindowProperty failed!\n");
 				return NULL;
 			}
 		}
@@ -374,7 +375,7 @@ Status sys_clipboard_set(const wchar_t *str)
 {
 	ONCE(x11_clipboard_init());
 
-	debug_printf(L"sys_clipboard_set: %ls\n", str);
+	debug_printf("sys_clipboard_set: %s\n", utf8_from_wstring(str).c_str());
 
 	if(selection_data)
 	{
@@ -429,7 +430,7 @@ static XcursorPixel cursor_pixel_to_x11_format(const XcursorPixel& bgra_pixel)
 
 Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor)
 {
-	debug_printf(L"sys_cursor_create: using Xcursor to create %d x %d cursor\n", w, h);
+	debug_printf("sys_cursor_create: using Xcursor to create %d x %d cursor\n", w, h);
 	XcursorImage* image = XcursorImageCreate(w, h);
 	if(!image)
 		WARN_RETURN(ERR::FAIL);

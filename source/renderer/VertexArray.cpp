@@ -224,7 +224,7 @@ void VertexArray::Layout()
 	
 	m_Stride = 0;
 	
-	//debug_printf(L"Layouting VertexArray\n");
+	//debug_printf("Layouting VertexArray\n");
 	
 	for (ssize_t idx = m_Attributes.size()-1; idx >= 0; --idx)
 	{
@@ -262,13 +262,13 @@ void VertexArray::Layout()
 		if (m_Target == GL_ARRAY_BUFFER)
 			m_Stride = Align<4>(m_Stride);
 
-		//debug_printf(L"%i: offset: %u\n", idx, attr->offset);
+		//debug_printf("%i: offset: %u\n", idx, attr->offset);
 	}
 	
 	if (m_Target == GL_ARRAY_BUFFER)
 		m_Stride = RoundStride(m_Stride);
 	
-	//debug_printf(L"Stride: %u\n", m_Stride);
+	//debug_printf("Stride: %u\n", m_Stride);
 	
 	if (m_Stride)
 		m_BackingStore = (char*)rtl_AllocateAligned(m_Stride * m_NumVertices, 16);

@@ -79,7 +79,7 @@ void udbg_launch_debugger()
 	else if (ret > 0)
 	{
 		// Parent (original) fork:
-		debug_printf(L"Sleeping until debugger attaches.\nPlease wait.\n");
+		debug_printf("Sleeping until debugger attaches.\nPlease wait.\n");
 		sleep(DEBUGGER_WAIT);
 	}
 	else // fork error, ret == -1
@@ -92,25 +92,16 @@ void udbg_launch_debugger()
 
 #include <android/log.h>
 
-void debug_puts(const wchar_t* text)
+void debug_puts(const char* text)
 {
-	// The Android logger doesn't like "%ls" format strings, so convert
-	// the message to UTF-8 before outputting
-	Status err;
-	std::string str = utf8_from_wstring(text, &err);
-	__android_log_print(ANDROID_LOG_WARN, "pyrogenesis", "%s", str.c_str());
+	__android_log_print(ANDROID_LOG_WARN, "pyrogenesis", "%s", text);
 }
 
 #else
 
-void debug_puts(const wchar_t* text)
+void debug_puts(const char* text)
 {
-	// printf doesn't like %ls strings that contain non-ASCII characters
-	// (it tends to print nothing and return an error), so convert to
-	// UTF-8 before outputting
-	Status err;
-	std::string str = utf8_from_wstring(text, &err);
-	printf("%s", str.c_str());
+	printf("%s", text);
 	fflush(stdout);
 }
 

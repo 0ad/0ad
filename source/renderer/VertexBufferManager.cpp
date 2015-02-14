@@ -63,12 +63,12 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 	typedef std::list<CVertexBuffer*>::iterator Iter;
 
 #if DUMP_VB_STATS
-	debug_printf(L"\n============================\n# allocate vsize=%d nverts=%d\n\n", vertexSize, numVertices);
+	debug_printf("\n============================\n# allocate vsize=%d nverts=%d\n\n", vertexSize, numVertices);
 	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter) {
 		CVertexBuffer* buffer = *iter;
 		if (buffer->CompatibleVertexType(vertexSize, usage, target))
 		{
-			debug_printf(L"%p\n", buffer);
+			debug_printf("%p\n", buffer);
 			buffer->DumpStatus();
 		}
 	}
@@ -102,7 +102,7 @@ void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk)
 {
 	ENSURE(chunk);
 #if DUMP_VB_STATS
-	debug_printf(L"\n============================\n# release %p nverts=%d\n\n", chunk, chunk->m_Count);
+	debug_printf("\n============================\n# release %p nverts=%d\n\n", chunk, chunk->m_Count);
 #endif
 	chunk->m_Owner->Release(chunk);
 }

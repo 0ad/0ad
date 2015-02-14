@@ -92,9 +92,9 @@ bool debug_IsStackPointer(void* p)
 }
 
 
-void debug_puts(const wchar_t* text)
+void debug_puts(const char* text)
 {
-	OutputDebugStringW(text);
+	OutputDebugStringW(wstring_from_utf8(text).c_str());
 }
 
 
@@ -106,7 +106,7 @@ void wdbg_printf(const wchar_t* fmt, ...)
 	wvsprintfW(buf, fmt, ap);	// (return value doesn't indicate whether truncation occurred)
 	va_end(ap);
 
-	debug_puts(buf);
+	OutputDebugStringW(buf);
 }
 
 

@@ -612,7 +612,7 @@ void SetCameraTarget(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float x, fl
 // Useful for testing the crashlog/stack trace code.
 int Crash(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	debug_printf(L"Crashing at user's request.\n");
+	debug_printf("Crashing at user's request.\n");
 	return *(volatile int*)0;
 }
 
@@ -628,7 +628,7 @@ void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
 	double time = timer_Time();
 	JS_GC(pCxPrivate->pScriptInterface->GetJSRuntime());
 	time = timer_Time() - time;
-	g_Console->InsertMessage(L"Garbage collection completed in: %f", time);
+	g_Console->InsertMessage(fmt::sprintf("Garbage collection completed in: %f", time));
 }
 
 void DumpSimState(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))

@@ -491,12 +491,12 @@ static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 			return false;
 		if((attributes.LargePage != 0) != (pageSize == largePageSize))
 		{
-			debug_printf(L"NUMA: is not a large page\n");
+			debug_printf("NUMA: is not a large page\n");
 			return false;
 		}
 		if(attributes.Node != node)
 		{
-			debug_printf(L"NUMA: allocated from remote node\n");
+			debug_printf("NUMA: allocated from remote node\n");
 			return false;
 		}
 	}

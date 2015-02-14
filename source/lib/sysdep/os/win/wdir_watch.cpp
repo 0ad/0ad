@@ -119,7 +119,7 @@ public:
 			{
 				// (this could conceivably happen if a kernel debugger
 				// hangs the system during the wait duration.)
-				debug_printf(L"WARNING: IO may still be pending; to avoid memory corruption, we won't free the buffer.\n");
+				debug_printf("WARNING: IO may still be pending; to avoid memory corruption, we won't free the buffer.\n");
 				DEBUG_WARN_ERR(ERR::TIMED_OUT);
 				// intentionally leak m_data and m_ovl!
 			}
