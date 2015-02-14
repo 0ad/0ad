@@ -5,24 +5,6 @@
     <Pierce>6</Pierce>
     <Crush>20</Crush>
   </Armour>
-  <Attack>
-    <Melee>
-      <Hack>17.5</Hack>
-      <Pierce>0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-      <PreferredClasses datatype="tokens">Organic</PreferredClasses>
-    </Melee>
-    <Charge>
-      <Hack>50.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <MinRange>0.0</MinRange>
-      <PreferredClasses datatype="tokens">Organic</PreferredClasses>
-    </Charge>
-  </Attack>
   <Cost>
     <BuildTime>13</BuildTime>
     <Resources>
