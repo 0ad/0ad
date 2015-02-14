@@ -51,6 +51,7 @@ DEFINE_INTERFACE_METHOD_0("ExploreTerritories", void, ICmpRangeManager, ExploreT
 DEFINE_INTERFACE_METHOD_2("SetLosRevealAll", void, ICmpRangeManager, SetLosRevealAll, player_id_t, bool)
 DEFINE_INTERFACE_METHOD_1("GetLosRevealAll", bool, ICmpRangeManager, GetLosRevealAll, player_id_t)
 DEFINE_INTERFACE_METHOD_5("GetElevationAdaptedRange", entity_pos_t, ICmpRangeManager, GetElevationAdaptedRange, CFixedVector3D, CFixedVector3D, entity_pos_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_2("ActivateScriptedVisibility", void, ICmpRangeManager, ActivateScriptedVisibility, entity_id_t, bool)
 DEFINE_INTERFACE_METHOD_2("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, player_id_t)
 DEFINE_INTERFACE_METHOD_1("RequestVisibilityUpdate", void, ICmpRangeManager, RequestVisibilityUpdate, entity_id_t)
 DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)

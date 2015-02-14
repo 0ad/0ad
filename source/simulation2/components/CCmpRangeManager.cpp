@@ -174,7 +174,7 @@ static std::map<entity_id_t, EntityParabolicRangeOutline> ParabolicRangesOutline
  */
 struct EntityData
 {
-	EntityData() : visibilities(0), retainInFog(0), owner(-1), inWorld(0), flags(1) { }
+	EntityData() : visibilities(0), retainInFog(0), owner(-1), inWorld(0), flags(1), scriptedVisibility(0) { }
 	entity_pos_t x, z;
 	entity_pos_t visionRange;
 	u32 visibilities; // 2-bit visibility, per player
@@ -182,9 +182,10 @@ struct EntityData
 	i8 owner;
 	u8 inWorld; // boolean
 	u8 flags; // See GetEntityFlagMask
+	u8 scriptedVisibility; // boolean, see ComputeLosVisibility
 };
 
-cassert(sizeof(EntityData) == 20);
+cassert(sizeof(EntityData) == 24);
 
 /**
  * Serialization helper template for Query
@@ -1415,6 +1416,13 @@ public:
 			return CLosQuerier(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 	}
 
+	virtual void ActivateScriptedVisibility(entity_id_t ent, bool status)
+	{
+		EntityMap<EntityData>::iterator it = m_EntityData.find(ent);
+		if (it != m_EntityData.end())
+			it->second.scriptedVisibility = status ? 1 : 0;
+	}
+
 	ELosVisibility ComputeLosVisibility(CEntityHandle ent, player_id_t player)
 	{
 		// Entities not with positions in the world are never visible
@@ -1445,10 +1453,15 @@ public:
 		// Get visible regions
 		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 
-		// Ask the Visibility component about special situations
 		CmpPtr<ICmpVisibility> cmpVisibility(ent);
-		if (cmpVisibility && cmpVisibility->IsActivated())
-			return cmpVisibility->GetVisibility(player, los.IsVisible(i, j), los.IsExplored(i, j));
+
+		// Possibly ask the scripted Visibility component
+		EntityMap<EntityData>::iterator it = m_EntityData.find(ent.GetId());
+		if (it != m_EntityData.end())
+		{
+			if (it->second.scriptedVisibility == 1 && cmpVisibility)
+				return cmpVisibility->GetVisibility(player, los.IsVisible(i, j), los.IsExplored(i, j));
+		}
 
 		// Else, default behavior
 
@@ -1464,8 +1477,17 @@ public:
 			return VIS_HIDDEN;
 
 		// Invisible if the 'retain in fog' flag is not set, and in a non-visible explored region
-		if (!(cmpVisibility && cmpVisibility->GetRetainInFog()))
-			return VIS_HIDDEN;
+		// Try using the 'retainInFog' flag in m_EntityData to save a script call
+		if (it != m_EntityData.end())
+		{
+			if (it->second.retainInFog != 1)
+				return VIS_HIDDEN;
+		}
+		else
+		{
+			if (!(cmpVisibility && cmpVisibility->GetRetainInFog()))
+				return VIS_HIDDEN;
+		}
 
 		if (cmpMirage)
 			return VIS_FOGGED;
