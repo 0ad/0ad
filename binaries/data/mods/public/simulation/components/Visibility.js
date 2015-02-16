@@ -21,6 +21,8 @@ Visibility.prototype.Init = function()
 	this.alwaysVisible = this.template.AlwaysVisible == "true";
 	this.preview = this.template.Preview == "true";
 
+	this.activated = false;
+
 	if (this.preview)
 		this.SetActivated(true);
 };
@@ -32,6 +34,18 @@ Visibility.prototype.SetActivated = function(status)
 {
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	cmpRangeManager.ActivateScriptedVisibility(this.entity, status);
+
+	this.activated = status;
+};
+
+/**
+ * This function is a fallback for some entities whose visibility status
+ * cannot be cached by the range manager (especially local entities like previews).
+ * Calling the scripts is expensive, so only call it if really needed.
+ */
+Visibility.prototype.IsActivated = function()
+{
+	return this.activated;
 };
 
 /**

@@ -1462,6 +1462,11 @@ public:
 			if (it->second.scriptedVisibility == 1 && cmpVisibility)
 				return cmpVisibility->GetVisibility(player, los.IsVisible(i, j), los.IsExplored(i, j));
 		}
+		else
+		{
+			if (cmpVisibility && cmpVisibility->IsActivated())
+				return cmpVisibility->GetVisibility(player, los.IsVisible(i, j), los.IsExplored(i, j));
+		}
 
 		// Else, default behavior
 

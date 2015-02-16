@@ -30,6 +30,11 @@ class CCmpVisibilityScripted : public ICmpVisibility
 public:
 	DEFAULT_SCRIPT_WRAPPER(VisibilityScripted)
 
+	virtual bool IsActivated()
+	{
+		return m_Script.Call<bool>("IsActivated");
+	}
+
 	virtual ICmpRangeManager::ELosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored)
 	{
 		int visibility = m_Script.Call<int, player_id_t, bool, bool>("GetVisibility", player, isVisible, isExplored);

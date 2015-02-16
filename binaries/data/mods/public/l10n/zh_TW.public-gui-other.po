@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 15:24+0000\n"
-"Last-Translator: ryat <mj0011@yopmail.com>\n"
+"PO-Revision-Date: 2015-02-13 10:23+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +67,7 @@ msgstr "正在開啟頁面"
 #: gui/common/functions_global_object.js:79
 #, javascript-format
 msgid "FPS: %(fps)s"
-msgstr "FPS： %(fps)s"
+msgstr "FPS：%(fps)s"
 
 #: gui/common/functions_utility.js:187
 msgid "mm:ss"
@@ -331,12 +331,12 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:33 gui/common/tooltips.js:91
 #: gui/common/tooltips.js:122
 msgid "Hack"
-msgstr "砍"
+msgstr "劈砍"
 
 #: gui/common/tooltips.js:38 gui/common/tooltips.js:97
 #: gui/common/tooltips.js:127
 msgid "Pierce"
-msgstr "刺穿"
+msgstr "穿刺"
 
 #: gui/common/tooltips.js:43 gui/common/tooltips.js:103
 #: gui/common/tooltips.js:132
@@ -411,11 +411,11 @@ msgstr "遠程攻擊："
 
 #: gui/common/tooltips.js:145
 msgid "Attack:"
-msgstr "攻擊:"
+msgstr "攻擊："
 
 #: gui/common/tooltips.js:155
 msgid "Interval:"
-msgstr "間隔:"
+msgstr "間隔："
 
 #: gui/common/tooltips.js:157 gui/common/tooltips.js:411
 msgid "Rate:"
@@ -480,11 +480,11 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:357
 msgid "Population Bonus:"
-msgstr "人口獎勵"
+msgstr "人口獎勵："
 
 #: gui/common/tooltips.js:375
 msgid "Insufficient resources:"
-msgstr "不足資源："
+msgstr "資源不足："
 
 #: gui/common/tooltips.js:383
 msgid "Speed:"
@@ -544,7 +544,7 @@ msgstr "無"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr "<invalid>"
+msgstr "<無效>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
@@ -581,7 +581,7 @@ msgstr "視窗模式"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr "在新視窗中開啟0 A.D."
+msgstr "在新視窗中開啟 0 A.D."
 
 #: gui/options/options.js:10
 msgid "Background Pause"
@@ -649,7 +649,7 @@ msgstr "偏好 GLSL"
 
 #: gui/options/options.js:20
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr "使用 OpenGL 2.0著色器(建議)"
+msgstr "使用 OpenGL 2.0 著色器 (建議)"
 
 #: gui/options/options.js:21
 msgid "Post Processing"
@@ -657,7 +657,7 @@ msgstr "後處理"
 
 #: gui/options/options.js:21
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr "使用螢幕空間後處理過濾器(HDR、Bloom、DOF 等)"
+msgstr "使用螢幕空間後處理過濾器 (HDR、Bloom、DOF 等)"
 
 #: gui/options/options.js:22
 msgid "Shadows"
@@ -681,7 +681,7 @@ msgstr "顯示天空"
 
 #: gui/options/options.js:24
 msgid "Render Sky"
-msgstr "渲染天空"
+msgstr "算繪天空"
 
 #: gui/options/options.js:25
 msgid "Smooth LOS"
@@ -709,13 +709,13 @@ msgstr "柔和陰影"
 
 #: gui/options/options.js:28
 msgid "Fast & Ugly Water"
-msgstr "快速&醜陋的水面"
+msgstr "快速且粗糙的水面"
 
 #: gui/options/options.js:28
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr "盡可能使用最低的設定值來渲染水面。這與其他設定值無關。"
+msgstr "盡可能使用最低的設定值來算繪水面。這與其他設定值無關。"
 
 #: gui/options/options.js:29
 msgid "HQ Water Effects"
@@ -725,7 +725,7 @@ msgstr "高品質水面效果"
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr "使用較高品質的水面效果，渲染靠近岸邊的波浪、海岸波浪、以及船跡。"
+msgstr "使用較高品質的水面效果，算繪靠近岸邊的波浪、海岸波浪、以及船跡。"
 
 #: gui/options/options.js:30
 msgid "Real Water Depth"
@@ -733,7 +733,7 @@ msgstr "真實水深"
 
 #: gui/options/options.js:30
 msgid "Use actual water depth in rendering calculations"
-msgstr "使用真實水深來進行渲染計算"
+msgstr "使用真實水深進行算繪"
 
 #: gui/options/options.js:31
 msgid "Water Reflections"
@@ -1119,13 +1119,13 @@ msgstr "素食\n比率"
 
 #: gui/summary/layout.js:121
 msgid "Feminisation"
-msgstr "女性化"
+msgstr "女性\n比率"
 
 #: gui/summary/layout.js:122
 msgid ""
 "Kill / Death\n"
 "ratio"
-msgstr "擊殺 / 死亡\n比率"
+msgstr "擊殺 / 被殺\n比例"
 
 #: gui/summary/layout.js:123
 msgid ""
@@ -1332,7 +1332,7 @@ msgstr "加入遊戲"
 
 #: gui/pregame/mainmenu.xml:(caption):284
 msgid "Host Game"
-msgstr "創建遊戲"
+msgstr "主創遊戲"
 
 #: gui/pregame/mainmenu.xml:(caption):299
 msgid "Game Lobby"
@@ -1604,7 +1604,7 @@ msgstr "- 建設攻城武器和訓練民兵。"
 
 #: gui/text/tips/army_camp.txt:8
 msgid "- Slowly heal up to 40 garrisoned units."
-msgstr "- 緩慢的醫治多達40個駐軍單位。"
+msgstr "- 緩慢醫治多達 40 個駐軍單位。"
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -1840,7 +1840,7 @@ msgstr "- 建造在中立領土可以獲得更大的偵查範圍。"
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr "- 便宜，80木頭。"
+msgstr "- 便宜，80 木頭。"
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
@@ -1898,7 +1898,7 @@ msgstr "- 所有波斯人的建築物均 +25% 強度。"
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr "- 但建造時間+20%做為代價。"
+msgstr "- 但建造時間 +20% 做為代價。"
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
@@ -1938,7 +1938,7 @@ msgstr "- 最重型的標準戰船。下列文明可建造：羅馬、迦太基�
 msgid ""
 "- Garrison up to 50 units for tons of firepower, including ballistas and "
 "scorpions."
-msgstr "- 駐守50個單位來提供密集的火力，包含弩砲及蠍型弩。"
+msgstr "- 駐守 50 個單位來提供密集的火力，包含弩砲及蠍型弩。"
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships."
@@ -1976,7 +1976,7 @@ msgstr "- 獨立的塔樓，可提供大範圍的防禦。"
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr "- 它們通常是耗費100木頭及100石頭。伊比利人的防禦塔需耗費300石頭(因為它們更加強壯)。"
+msgstr "- 它們通常是耗費 100 木頭及 100 石頭。伊比利人的防禦塔需耗費 300 石頭 (因為更加堅固)。"
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
@@ -2038,7 +2038,7 @@ msgstr "- 一個希臘人的特殊起始建築物。"
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr "- +10人口上限。"
+msgstr "- +10 人口上限。"
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only enabled in some game modes."
@@ -2163,7 +2163,7 @@ msgstr "- 魯斯塔尼亞部落的伊比利英雄。"
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr "- 至少參加了7次在西元前147年至139年對羅馬的「魯斯塔尼亞戰爭」。"
+msgstr "- 至少參加了 7 次在西元前147年至139年對羅馬的「魯斯塔尼亞戰爭」。"
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
@@ -2207,7 +2207,7 @@ msgstr "- 一種海洋資源。"
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr "- 2000食物。"
+msgstr "- 2000 食物。"
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
