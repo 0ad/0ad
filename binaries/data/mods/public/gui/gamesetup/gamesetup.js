@@ -715,13 +715,44 @@ function loadGameAttributes()
 	var mapName = attrs.map || "";
 	var mapSettings = attrs.settings;
 
+	g_GameAttributes = attrs;
+
 	// Assign new seeds and match id
-	attrs.matchID = Engine.GetMatchID();
+	g_GameAttributes.matchID = Engine.GetMatchID();
 	mapSettings.Seed = Math.floor(Math.random() * 65536);
 	mapSettings.AISeed = Math.floor(Math.random() * 65536);
 
-	// TODO: Check new attributes for being semantically correct.
-	g_GameAttributes = attrs;
+	// Ensure that cheats are enabled in singleplayer
+	if (!g_IsNetworked) 
+		mapSettings.CheatsEnabled = true; 
+
+	var aiCodes = [ ai.id for each (ai in g_AIs) ];
+	var civListCodes = [ civ.Code for each (civ in g_CivData) if (civ.SelectableInGameSetup !== false) ];
+	civListCodes.push("random");
+
+	var playerData = mapSettings.PlayerData;
+
+	// Validate player civs
+	if (playerData)
+	{
+		for (var i = 0; i < playerData.length; ++i)
+		{
+			if (civListCodes.indexOf(playerData[i].Civ) < 0)
+				playerData[i].Civ = "random";
+		}
+	}
+
+	// Refresh probably obsoleted/incomplete map data.
+	var newMapData = loadMapData(mapName);
+	if (newMapData && newMapData.settings)
+	{
+		for (var prop in newMapData.settings)
+			mapSettings[prop] = newMapData.settings[prop];
+
+		// Set player data
+		if (playerData)
+			mapSettings.PlayerData = playerData;
+	}
 
 	var mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilterSelection.selected = mapFilterSelection.list_data.indexOf(attrs.mapFilter);
