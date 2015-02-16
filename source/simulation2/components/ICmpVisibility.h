@@ -35,6 +35,13 @@
 class ICmpVisibility : public IComponent
 {
 public:
+	/**
+	 * This function is a fallback for some entities whose visibility status
+	 * cannot be cached by the range manager (especially local entities like previews).
+	 * Calling the scripts is expensive, so only call it if really needed.
+	 */
+	virtual bool IsActivated() = 0;
+
 	virtual ICmpRangeManager::ELosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored) = 0;
 
 	virtual bool GetRetainInFog() = 0;
