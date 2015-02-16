@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-08 22:08+0100\n"
-"PO-Revision-Date: 2015-02-10 08:01+0000\n"
+"PO-Revision-Date: 2015-02-16 10:03+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -127,7 +127,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "要設定多人遊戲，其中有一個玩家必須選擇「創建遊戲」選項。遊戲使用 UDP 埠 20595，所以主持人必須調整他們的 NAT/防火牆/或是其他東西以允許此埠。此時，其他玩家就可以選擇「加入遊戲」以連線至主持人的 IP 位址。"
+msgstr "要設定多人遊戲，其中有一個玩家必須選擇「主創遊戲」選項。遊戲使用 UDP 埠 20595，所以主持人必須調整他們的 NAT/防火牆/或是其他東西以允許此埠。此時，其他玩家就可以選擇「加入遊戲」以連線至主持人的 IP 位址。"
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -336,7 +336,7 @@ msgstr "Shift + 右鍵點擊: 改變移動/建設/採集/等 順序"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shift + 左鍵點擊 訓練單位時: 加入五個單位"
+msgstr "在訓練單位時 Shift + 左鍵點擊：加入五個單位到佇列中"
 
 #: gui/manual/intro.txt:76
 msgid ""
@@ -525,7 +525,7 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr "作為一個自由，開放源碼的遊戲，我們缺乏足夠的資源來測試廣泛系統，但是我們想提供最優質的體驗給最多的玩家。當您啟用自動反饋時，我們可以收到能夠幫助我們理解應該加強支持的硬體數據，並找出我們應該解決的效能問題。"
+msgstr "作為一個自由，開放源碼的遊戲，我們缺乏足夠的資源而無法廣泛測試各種系統，但是我們想盡可能提供最優質的體驗給更多玩家。當您啟用自動反饋時，我們會收到相關數據來幫助我們瞭解應該專注支援的硬體類型，並找出我們應該解決的效能問題。"
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
@@ -542,25 +542,25 @@ msgstr "• 隨機使用者 ID (在 Windows 中儲存在 %APPDATA%\\0ad\\config\
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "•遊戲版本和基本組建設定 (優化模式，CPU架構，時間戳，編譯器版本)。"
+msgstr "• 遊戲版本和基本組建設定 (優化模式、CPU 架構、時間戳記、編譯器版本)。"
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr "• 硬體細節: OS 版本, 顯示卡驅動程式版本, OpenGL 能力, 螢幕尺寸, CPU 細節, RAM 大小."
+msgstr "• 硬體細節：OS 版本、顯示卡驅動程式版本、OpenGL 能力、螢幕尺寸、CPU 細節、RAM 大小。"
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr "• 效能細節: 開始競賽幾秒後或改變顯示設定後的快照"
+msgstr "• 效能細節：開始競賽幾秒後或改變顯示設定後的計時資料快照記錄。"
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr "每次運行遊戲的資料只有幾Kb，所以頻寬使用率是最低的。"
+msgstr "每次運行遊戲的資料只有幾 Kb，所以頻寬使用量很低。"
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -569,4 +569,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "我們會將提交的數據，儲存在我們的伺服器上，並發布非可辨識用戶的統計數據細節，以幫助其他有類似問題的遊戲開發者。我們會儲存提交數據的IP地址，以幫助檢測濫用服務者，但不會發布它。已發布的數據可以在 http://feedback.wildfiregames.com/ 找到。"
+msgstr "我們會將提交的數據儲存在我們的伺服器上，並公佈不可辨識用戶的統計數據細節，以幫助其他有類似問題的遊戲開發者。我們會儲存提交數據的 IP 地址，以幫助檢測服務濫用者，但不會公佈。公佈的數據可以在 http://feedback.wildfiregames.com/ 找到。"

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-26 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-02-13 10:52+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -187,7 +187,7 @@ msgstr "在城市階段解鎖"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "將您騎兵的座騎裝備上盔甲。所有騎兵+1劈砍盔甲等級。"
+msgstr "將您騎兵的座騎裝備上盔甲。所有騎兵 +1 劈砍盔甲等級。"
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -199,7 +199,7 @@ msgstr "以整塊的鐵打造而成的全身甲，鐵是古人所知最難加工
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "所有英雄+2劈砍盔甲等級和+2穿刺盔甲等級，但+50金屬耗費。"
+msgstr "所有英雄 +2 劈砍盔甲等級和 +2 穿刺盔甲等級，但 +50 金屬耗費。"
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -305,7 +305,7 @@ msgstr "使用青銅薄片強化的盔甲。"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "魚鱗铠甲"
+msgstr "魚鱗鎧甲"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -355,7 +355,7 @@ msgstr "Aspidiskè"
 msgid ""
 "The best shields have reinforcements either on the corners (Roman scutum) or"
 " around the rim (Greek aspis)."
-msgstr "在轉角處加固(羅馬塔盾)或是在邊緣加固(希臘盾牌)的最好的盾牌。"
+msgstr "在轉角處加固 (羅馬塔盾) 或是在邊緣加固 (希臘盾牌) 的最好的盾牌。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
@@ -419,7 +419,7 @@ msgstr "銀製盾牌"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
 msgid "Argyraspides"
-msgstr "银盾军"
+msgstr "銀盾軍"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -435,17 +435,17 @@ msgstr "船體鉛殼"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr "亞麻繩支撐了整個船體。"
+msgstr "底層強化結構環抱了整個船體。"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr "亞麻繩支撐了整個船體。所有船隻的所有傷害類型皆 +2 盔甲等級。"
+msgstr "底層結構環抱了整個船體。所有船隻的所有傷害類型皆 +2 盔甲等級。"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr "亞麻繩底層加固"
+msgstr "底層強化結構"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -672,7 +672,7 @@ msgstr "+20% 遠距離步兵攻擊力。"
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr "遠距離非正規軍步兵"
+msgstr "非正規遠距離步兵"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.spart
@@ -700,7 +700,7 @@ msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr "遠距離步兵大師"
+msgstr "遠距離步兵奧義"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -841,11 +841,11 @@ msgstr "飼養家畜的食物。"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
-msgstr "家畜飼養時間 -25% ( 綿羊、山羊、牛等 ) 。"
+msgstr "家畜飼養時間 -25% (綿羊、山羊、牛等)。"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
-msgstr "蓄牧"
+msgstr "畜牧"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
@@ -855,7 +855,7 @@ msgstr "增加所有資源的載運容量。"
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr "工人使用籃子。所有資源的載運容量 +5。"
+msgstr "工人會用籃子。所有資源的載運容量 +5。"
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -863,7 +863,7 @@ msgstr "籃子"
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr "工人使用馬車。所有資源的載運容量 +10。"
+msgstr "工人會用馬車。所有資源的載運容量 +10。"
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -871,7 +871,7 @@ msgstr "馬車"
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
-msgstr "工人使用獨輪車。所有資源的載運容量 +5。"
+msgstr "工人會用獨輪車。所有資源的載運容量 +5。"
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -1529,7 +1529,7 @@ msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
 " the fulcrum action of the throwing arm mid-throw, increasing speed and "
 "range of the javelin."
-msgstr "標槍皮帶(希臘人又將其稱為 loops 或 bronkhos)增加了標槍的速度及範圍。"
+msgstr "標槍皮帶 (希臘人又將其稱為 loops 或 bronkhos) 增加了標槍的速度及範圍。"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
@@ -1715,7 +1715,7 @@ msgstr "顯著增加碼頭中的船隻的整組建造速度。"
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
-msgstr "碼頭獲得整組建造速度獎勵。"
+msgstr "碼頭獲得整組建造加速獎勵。"
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
@@ -2226,7 +2226,7 @@ msgstr "斯巴達人從小就被編入團隊進行訓練，以成為最好的戰
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "矛兵生命值+25％，但訓練時間+10％。"
+msgstr "矛兵生命值 +25％，但訓練時間 +10％。"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2384,7 +2384,7 @@ msgstr "波斯人從薩第斯到蘇薩建造了驚人的1677英哩長的皇家�
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid "All Persian structures +25% health, but also +20% build time."
-msgstr "所有波斯建築物 +25%生命值，但也 +20% 建造時間。"
+msgstr "所有波斯建築物 +25% 生命值，但也 +20% 建造時間。"
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2515,7 +2515,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "現已滅絕的 Nisian 品種的馬曾是古代身型最大且最強大的一種馬。後來在塞琉古及波斯，不論是騎士或是座騎都備受稱讚，並隨著時間的推進穿上了更厚重的盔甲。"
+msgstr "現已滅絕的尼西馬品種曾是古代身型最大且最勇健的一種馬。後來在塞琉古及波斯，不論是騎士或是座騎都備受稱讚，並隨著時間的推進穿上了更厚重的盔甲。"
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
@@ -2523,7 +2523,7 @@ msgstr "所有騎兵 +20% 生命值。"
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"
-msgstr "Nisean戰馬"
+msgstr "尼西戰馬"
 
 #: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
 msgid "Nisioi"
@@ -2563,7 +2563,7 @@ msgstr "銀盾兵，或稱 Argyraspidai，是馬其頓軍隊中的精銳重裝�
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "attack, health, and armor."
-msgstr "升級精英盾兵為有著更強大的攻擊力、更多的生命值、以及更好的盔甲的銀盾兵。"
+msgstr "升級精英盾兵為有著更強大的攻擊力、更多的生命值、以及更好盔甲的銀盾兵。"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014
+# GunChleoc, 2014-2015
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-02-14 15:11+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,28 +361,28 @@ msgstr ", "
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(time)s %(second)s"
-msgstr ""
+msgstr "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:413
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "diog"
+msgstr[1] "dhiog"
+msgstr[2] "diogan"
+msgstr[3] "diog"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
-msgstr ""
+msgstr "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:63
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "saighead"
+msgstr[1] "shaighead"
+msgstr[2] "saighdean"
+msgstr[3] "saighead"
 
 #: gui/common/tooltips.js:65
 #, javascript-format
@@ -526,17 +526,17 @@ msgstr "%(label)s %(speeds)s"
 #: gui/common/tooltips.js:410
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
-msgstr ""
+msgstr "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:400
 msgid "Heal:"
-msgstr ""
+msgstr "Slànachadh:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
 #: gui/common/tooltips.js:403
 msgid "HP"
-msgstr ""
+msgstr "PB"
 
 #: gui/common/tooltips.js:425
 #, javascript-format
@@ -655,7 +655,7 @@ msgstr "Sàbhail roghainnean a’ mhaids"
 #: gui/options/options.js:16
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr ""
+msgstr "Sàbhail roghainnean a’ mhaids ach an gabh iad aiseag gu luath nuair a nì mi òstadh air geama eile"
 
 #: gui/options/options.js:20
 msgid "Prefer GLSL"
@@ -1039,7 +1039,7 @@ msgstr "Dùin"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr ""
+msgstr "Ionadan sìobhalta"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
@@ -1129,7 +1129,7 @@ msgstr "Teachd a-steach"
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr ""
+msgstr "Co-mheas nan\nglasraichear"
 
 #: gui/summary/layout.js:121
 msgid "Feminisation"
@@ -1299,7 +1299,7 @@ msgstr "Staid: $status."
 
 #: gui/pregame/mainmenu.xml:528
 msgid "Alpha XVIII: Rhododactylos"
-msgstr ""
+msgstr "Alpha XVIII: Rhododactylos"
 
 #: gui/pregame/mainmenu.xml:530
 msgid ""
@@ -1321,7 +1321,7 @@ msgstr "Na cuir fiosrachadh a-null"
 
 #: gui/pregame/mainmenu.xml:(caption):173
 msgid "Structure Tree"
-msgstr ""
+msgstr "Craobh nan sìobhaltas"
 
 #: gui/pregame/mainmenu.xml:(caption):190
 msgid "History"
@@ -1414,7 +1414,7 @@ msgstr "Fosgail an leabhar-mìneachaidh aig 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):174
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "Seall craobh dhe na sìobhaltasan aig 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):191
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -1472,7 +1472,7 @@ msgstr "Tagh na tuilleadain a bu toil leat cleachdadh."
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr ""
+msgstr "Ionnsaich mar a chluicheas tu, siubhail craobhan nan teicneolasan agus ionnsaich mun eachdraidh air cùlaibh nan sìobhaltasan."
 
 #: gui/pregame/mainmenu.xml:(tooltip):461
 msgid "Challenge the computer player to a single player match."
@@ -1526,7 +1526,7 @@ msgstr "Tuairisgeul:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "Fàilte ort!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -1534,7 +1534,7 @@ msgstr "Seall an teachdaireachd seo a-rithist"
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Duilgheadasan as aithne dhuinn (lìon)"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"
@@ -1571,7 +1571,7 @@ msgstr "Lean air adhart"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]Tapadh leat airson 0 A.D. Empires Ascendant a stàladh!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -1581,21 +1581,21 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr ""
+msgstr "[icon=\"constructionIcon\"]Tha an geama seo ’ga phrògramachadh fhathast. Tha feartan a dhìth 's bugaichean ann."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid "[imgleft=\"iconLag\"]The game runs slowly when many units are moving."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"] Thig dàil air a' gheama nuair a bhios mòran aonadan a' gluasad."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid "[imgleft=\"iconMap\"]Large maps can cause problems."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Faodaidh mapaichean mòra duilgheadasan adhbharachadh."
 
 #: gui/splashscreen/splashscreen.txt:12
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "[imgleft=\"iconFormation\"]Tha sinn ag obair air na cumaidhean fhathast, ach ’s urrainn dhut an cur ri chèile no sgaradh mar a thogras tu."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

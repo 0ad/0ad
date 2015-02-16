@@ -5,7 +5,7 @@
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
 # Cirro Yuan, 2013
-# Jeff Huang <s8321414@gmail.com>, 2013-2014
+# Jeff Huang <s8321414@gmail.com>, 2013-2015
 # kevinhykuo <kevinhykuo1994@gmail.com>, 2014
 # Po-Chun Huang <aphroteus@gmail.com>, 2014
 # ryat <mj0011@yopmail.com>, 2015
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 15:24+0000\n"
-"Last-Translator: ryat <mj0011@yopmail.com>\n"
+"PO-Revision-Date: 2015-02-16 09:50+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,7 @@ msgstr "確認"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "您確定要離開嗎? 這將會造成其他玩家斷線。"
+msgstr "您確定要離開嗎？這將會造成其他玩家斷線。"
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -74,7 +74,7 @@ msgstr "您確定要退出？"
 
 #: gui/session/menu.js:169
 msgid "I will return"
-msgstr "我馬上回來"
+msgstr "我會回來"
 
 #: gui/session/menu.js:169
 msgid "I resign"
@@ -82,7 +82,7 @@ msgstr "我要退出"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr "您真的要退出嗎?或是待會兒回來?"
+msgstr "您是想要退出？還是會很快回來？"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
@@ -574,12 +574,12 @@ msgstr "Shift-左鍵點擊"
 #: gui/session/selection_panels_helpers.js:123
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr "%(action)s 培訓 %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s 訓練 %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:130
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr "%(action)s 培訓 %(number)s (%(fullBatch)s)."
+msgstr "%(action)s 訓練 %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:137
 #, javascript-format
@@ -985,7 +985,7 @@ msgstr "選單"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVIII : Rhododactylos"
-msgstr "ALPHA XVIII : 玫瑰手指"
+msgstr "ALPHA 拾捌：玫瑰指"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"
