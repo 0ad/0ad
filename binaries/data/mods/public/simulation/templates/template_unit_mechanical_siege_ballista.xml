@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
   <Armour>
-    <Hack>2</Hack>
-    <Pierce>30</Pierce>
+    <Hack>1</Hack>
+    <Pierce>35</Pierce>
     <Crush>1</Crush>
   </Armour>
   <Attack>
@@ -31,7 +31,7 @@
     <Height>2.0</Height>
   </Footprint>
   <Health>
-    <Max>200</Max>
+    <Max>100</Max>
   </Health>
   <Identity>
     <GenericName>Bolt Shooter</GenericName>
