@@ -69,6 +69,7 @@ Trigger.prototype.StartAnEnemyWave = function()
 		cmd.type = "attack-walk";
 		cmd.entities = attackers[origin];
 		cmd.queued = true;
+		cmd.targetClasses = undefined;
 		// send the attack-walk command
 		ProcessCommand(0, cmd);
 	}
