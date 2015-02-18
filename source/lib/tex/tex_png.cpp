@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -219,6 +219,14 @@ size_t TexCodecPng::hdr_size(const u8* UNUSED(file)) const
 	return 0;	// libpng returns decoded image data; no header
 }
 
+static void user_warning_fn(png_structp UNUSED(png_ptr), png_const_charp warning_msg)
+{
+	// Suppress this warning because it's useless and occurs on a large number of files
+	// see http://trac.wildfiregames.com/ticket/2184
+	if (strcmp(warning_msg, "iCCP: known incorrect sRGB profile") == 0)
+		return;
+	debug_printf("libpng warning: %s\n", warning_msg);
+}
 
 TIMER_ADD_CLIENT(tc_png_decode);
 
@@ -229,8 +237,9 @@ TIMER_ACCRUE(tc_png_decode);
 
 	png_infop info_ptr = 0;
 
-	// allocate PNG structures; use default stderr and longjmp error handlers
-	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+	// allocate PNG structures; use default stderr and longjmp error handler, use custom
+	// warning handler to filter out useless messages
+	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, user_warning_fn);
 	if(!png_ptr)
 		WARN_RETURN(ERR::FAIL);
 	info_ptr = png_create_info_struct(png_ptr);

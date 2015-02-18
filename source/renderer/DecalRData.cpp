@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,6 +44,10 @@ CDecalRData::CDecalRData(CModelDecal* decal, CSimulation2* simulation)
 	m_Position.type = GL_FLOAT;
 	m_Position.elems = 3;
 	m_Array.AddAttribute(&m_Position);
+
+	m_Normal.type = GL_FLOAT;
+	m_Normal.elems = 3;
+	m_Array.AddAttribute(&m_Normal);
 
 	m_DiffuseColor.type = GL_UNSIGNED_BYTE;
 	m_DiffuseColor.elems = 4;
@@ -161,6 +165,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 				}
 
 				shader->VertexPointer(3, GL_FLOAT, stride, base + decal->m_Position.offset);
+				shader->NormalPointer(GL_FLOAT, stride, base + decal->m_Normal.offset);
 				shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + decal->m_DiffuseColor.offset);
 				shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + decal->m_UV.offset);
 
@@ -207,6 +212,7 @@ void CDecalRData::BuildArrays()
 	m_Array.SetNumVertices((i1-i0+1)*(j1-j0+1));
 	m_Array.Layout();
 	VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
+	VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
 	VertexArrayIterator<SColor4ub> DiffuseColor = m_DiffuseColor.GetIterator<SColor4ub>();
 	VertexArrayIterator<float[2]> UV = m_UV.GetIterator<float[2]>();
 
@@ -228,6 +234,9 @@ void CDecalRData::BuildArrays()
 
 			CVector3D normal;
 			m_Decal->m_Terrain->CalcNormal(i, j, normal);
+			*Normal = normal;
+			Normal++;
+
 			*DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 			++DiffuseColor;
 
