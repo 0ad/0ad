@@ -521,6 +521,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// Need to make sure the canvas is realised, so that its context is valid
 	// this solves the "invalid drawable" error
 	Show(true);
+	Raise();
 #endif
 #ifdef __WXGTK__
 	// TODO: wxSafeYield causes issues on wxOSX 2.9, is it necessary?
@@ -528,6 +529,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 #endif
 
 	// Send setup messages to game engine:
+
+	POST_MESSAGE(InitSDL, ());
 
 	POST_MESSAGE(SetCanvas, (static_cast<wxGLCanvas*>(canvas),
 		canvas->GetClientSize().GetWidth(), canvas->GetClientSize().GetHeight()));

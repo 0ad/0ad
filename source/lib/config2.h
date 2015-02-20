@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -54,20 +54,6 @@
 // bit of extra time.
 #ifndef CONFIG2_CACHE_READ_ONLY
 #define CONFIG2_CACHE_READ_ONLY 1
-#endif
-
-// enable the wsdl emulator in Windows builds.
-//
-// NOTE: the official SDL distribution has two problems on Windows:
-// - it specifies "/defaultlib:msvcrt.lib". this is troublesome because
-//   multiple heaps are active; errors result when allocated blocks are
-//   (for reasons unknown) passed to a different heap to be freed.
-//   one workaround is to add "/nodefaultlib:msvcrt.lib" to the linker
-//   command line in debug configurations.
-// - it doesn't support color hardware mouse cursors and clashes with
-//   cursor.cpp's efforts by resetting the mouse cursor after movement.
-#ifndef CONFIG2_WSDL
-# define CONFIG2_WSDL 1
 #endif
 
 #ifndef CONFIG2_FILE_ENABLE_AIO

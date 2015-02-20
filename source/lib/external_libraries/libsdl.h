@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -28,11 +28,6 @@
 #define INCLUDED_SDL
 
 #include "lib/external_libraries/libsdl_fwd.h"
-#include "lib/config2.h"	// CONFIG2_WSDL
-
-#if OS_WIN && CONFIG2_WSDL
-# include "lib/sysdep/os/win/wsdl.h"
-#else
 
 # include "SDL.h"
 # include "SDL_thread.h"
@@ -52,8 +47,6 @@
 #   pragma comment(lib, "SDLmain")
 #  endif
 # endif
-
-#endif
 
 // complete definition of our forward-declared SDL_Event (see sdl_fwd.h)
 struct SDL_Event_
