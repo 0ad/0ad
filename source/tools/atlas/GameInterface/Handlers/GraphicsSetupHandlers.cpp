@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,11 +62,10 @@ MESSAGEHANDLER(Init)
 	g_VideoMode.InitNonSDL();
 }
 
-MESSAGEHANDLER(InitGraphics)
+MESSAGEHANDLER(InitSDL)
 {
 	UNUSED2(msg);
 
-#if OS_UNIX || (OS_WIN && !CONFIG2_WSDL)
 	// When using GLX (Linux), SDL has to load the GL library to find
 	// glXGetProcAddressARB before it can load any extensions.
 	// When running in Atlas, we skip the SDL video initialisation code
@@ -80,7 +79,11 @@ MESSAGEHANDLER(InitGraphics)
 	SDL_InitSubSystem(SDL_INIT_VIDEO);
 	SDL_GL_LoadLibrary(NULL); // NULL = use default
 	// (it shouldn't hurt if this is called multiple times, I think)
-#endif
+}
+
+MESSAGEHANDLER(InitGraphics)
+{
+	UNUSED2(msg);
 
 	ogl_Init();
 

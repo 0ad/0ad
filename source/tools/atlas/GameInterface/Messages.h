@@ -32,6 +32,9 @@
 // Initialise some engine code. Must be called before anything else.
 MESSAGE(Init, );
 
+// Initialise SDL-related code. Must be called before SetCanvas and InitGraphics.
+MESSAGE(InitSDL, );
+
 // Initialise graphics-related code. Must be called after the first SetCanvas,
 // and before much else.
 MESSAGE(InitGraphics, );
