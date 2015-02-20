@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,7 +27,6 @@
 #include "precompiled.h"
 #include "lib/sysdep/gfx.h"
 
-#define WSDL_NO_KEYSYM
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 
