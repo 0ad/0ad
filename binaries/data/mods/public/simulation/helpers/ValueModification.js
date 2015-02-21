@@ -9,7 +9,7 @@ function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 
 	let cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 	if (!cmpAuraManager)
-	    return value;
+		return value;
 	return cmpAuraManager.ApplyModifications(tech_type, value, entity);
 }
 

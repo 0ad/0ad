@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,7 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_ValueModification);
+		componentManager.SubscribeToMessageType(MT_Deserialized);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Vision)
@@ -73,19 +74,22 @@ public:
 		case MT_ValueModification:
 		{
 			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
-			if (msgData.component == L"Vision")
-			{
-				CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
-				entity_pos_t newRange = cmpValueModificationManager->ApplyModifications(L"Vision/Range", m_BaseRange, GetEntityId());
-				if (newRange != m_Range)
-				{
-					// Update our vision range and broadcast message
-					entity_pos_t oldRange = m_Range;
-					m_Range = newRange;
-					CMessageVisionRangeChanged msg(GetEntityId(), oldRange, newRange);
-					GetSimContext().GetComponentManager().BroadcastMessage(msg);
-				}
-			}
+			if (msgData.component != L"Vision")
+				break;
+		}
+		// fall-through
+		case MT_Deserialized:
+		{
+			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+			entity_pos_t newRange = cmpValueModificationManager->ApplyModifications(L"Vision/Range", m_BaseRange, GetEntityId());
+			if (newRange == m_Range)
+				break;
+
+			// Update our vision range and broadcast message
+			entity_pos_t oldRange = m_Range;
+			m_Range = newRange;
+			CMessageVisionRangeChanged msg(GetEntityId(), oldRange, newRange);
+			GetSimContext().GetComponentManager().BroadcastMessage(msg);
 			break;
 		}
 		}

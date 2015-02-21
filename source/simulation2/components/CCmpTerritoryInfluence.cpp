@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -102,8 +102,10 @@ public:
 	virtual u32 GetRadius()
 	{
 		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
-		u32 newRadius = cmpValueModificationManager->ApplyModifications(L"TerritoryInfluence/Radius", m_Radius, GetEntityId());
+		if (!cmpValueModificationManager)
+			return m_Radius;
 
+		u32 newRadius = cmpValueModificationManager->ApplyModifications(L"TerritoryInfluence/Radius", m_Radius, GetEntityId());
 		return newRadius;
 	}
 };
