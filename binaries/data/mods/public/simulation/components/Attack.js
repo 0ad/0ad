@@ -513,7 +513,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		var cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 		var id = cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
 
-		var playerId = Engine.QueryInterface(this.entity, IID_Ownership).GetOwner()
+		var playerId = Engine.QueryInterface(this.entity, IID_Ownership).GetOwner();
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
  		cmpTimer.SetTimeout(this.entity, IID_Attack, "MissileHit", timeToTarget*1000, {"type": type, "target": target, "position": realTargetPosition, "direction": missileDirection, "projectileId": id, "playerId":playerId});
 	}
