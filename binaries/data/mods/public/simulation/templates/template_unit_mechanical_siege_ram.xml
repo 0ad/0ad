@@ -2,7 +2,7 @@
 <Entity parent="template_unit_mechanical_siege">
   <Armour>
     <Hack>1</Hack>
-    <Pierce>40</Pierce>
+    <Pierce>50</Pierce>
     <Crush>10</Crush>
   </Armour>
   <Attack>
@@ -40,7 +40,7 @@
     <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>150</Max>
+    <Max>250</Max>
   </Health>
   <Identity>
     <GenericName>Battering Ram</GenericName>
