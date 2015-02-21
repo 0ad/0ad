@@ -413,6 +413,7 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 
 	ogl_WarnIfError();
 
+	pglActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glDepthMask(0);
@@ -496,6 +497,7 @@ void OverlayRenderer::RenderQuadOverlays()
 
 	ogl_WarnIfError();
 
+	pglActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glDepthMask(0);
@@ -582,6 +584,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderForegroundOverlays for GLES
 #else
+	pglActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glDisable(GL_DEPTH_TEST);
