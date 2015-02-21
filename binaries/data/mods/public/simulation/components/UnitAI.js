@@ -4917,7 +4917,7 @@ UnitAI.prototype.LeaveFoundation = function(target)
 	// ignore this new request so we don't end up being too indecisive
 	// to ever actually move anywhere
 	// Ignore also the request if we are packing
-	if (this.order && (this.order.type == "LeaveFoundation" || this.IsPacking()))
+	if (this.order && (this.order.type == "LeaveFoundation" || (this.order.type == "Flee" && this.order.data.target == target) || this.IsPacking()))
 		return;
 
 	this.PushOrderFront("LeaveFoundation", { "target": target, "force": true });
