@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -118,6 +118,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
 		componentManager.SubscribeToMessageType(MT_PathResult);
 		componentManager.SubscribeToMessageType(MT_ValueModification);
+		componentManager.SubscribeToMessageType(MT_Deserialized);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(UnitMotion)
@@ -418,8 +419,13 @@ public:
 			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg); 
 			if (msgData.component != L"UnitMotion")
 				break;
-
-			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSimContext(), SYSTEM_ENTITY);
+		}
+		// fall-through
+		case MT_Deserialized:
+		{
+			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+			if (!cmpValueModificationManager)
+				break;
 
 			fixed newWalkSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/WalkSpeed", m_OriginalWalkSpeed, GetEntityId());
 			fixed newRunSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/Run/Speed", m_OriginalRunSpeed, GetEntityId());
@@ -432,6 +438,7 @@ public:
 
 			m_WalkSpeed = newWalkSpeed;
 			m_RunSpeed = newRunSpeed;
+			break;
 		}
 		}
 	}

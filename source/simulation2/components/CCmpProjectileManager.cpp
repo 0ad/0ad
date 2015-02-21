@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -176,7 +176,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 		// If the actor was actually loaded, complain that it doesn't have a projectile
 		if (!cmpSourceVisual->GetActorShortName().empty())
 			LOGERROR("Unit with actor '%s' launched a projectile but has no actor on 'projectile' attachpoint", utf8_from_wstring(cmpSourceVisual->GetActorShortName()));
-		return 0;
+		return currentId;
 	}
 
 	Projectile projectile;
@@ -191,7 +191,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 		// If there's no explicit launch point, take a guess based on the entity position
 		CmpPtr<ICmpPosition> sourcePos(GetSimContext(), source);
 		if (!sourcePos)
-			return 0;
+			return currentId;
 		projectile.origin = sourcePos->GetPosition();
 		projectile.origin.Y += 3.f;
 	}
@@ -199,7 +199,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 	std::set<CStr> selections;
 	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, m_ActorSeed++, selections);
 	if (!projectile.unit) // The error will have already been logged
-		return 0;
+		return currentId;
 
 	projectile.pos = projectile.origin;
 	CVector3D offset(targetPoint);

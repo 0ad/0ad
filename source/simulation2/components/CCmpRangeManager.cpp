@@ -328,6 +328,7 @@ public:
 	// Cache for visibility tracking (not serialized)
 	i32 m_LosTilesPerSide;
 	bool m_GlobalVisibilityUpdate;
+	std::vector<u8> m_GlobalPlayerVisibilityUpdate;
 	std::vector<u16> m_DirtyVisibility;
 	std::vector<std::set<entity_id_t> > m_LosTiles;
 	// List of entities that must be updated, regardless of the status of their tile
@@ -717,6 +718,8 @@ public:
 		m_LosTiles.clear();
 		m_LosTiles.resize(m_LosTilesPerSide*m_LosTilesPerSide);
 		m_GlobalVisibilityUpdate = true;
+		m_GlobalPlayerVisibilityUpdate.clear();
+		m_GlobalPlayerVisibilityUpdate.resize(MAX_LOS_PLAYER_ID);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
@@ -1604,7 +1607,7 @@ public:
 		{
 			for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
 			{
-				if (IsVisibilityDirty(m_DirtyVisibility[n], player) || m_GlobalVisibilityUpdate)
+				if (IsVisibilityDirty(m_DirtyVisibility[n], player) || m_GlobalPlayerVisibilityUpdate[player-1] == 1 || m_GlobalVisibilityUpdate)
 				{
 					for (auto& ent : m_LosTiles[n])
 						UpdateVisibility(ent, player);
@@ -1612,6 +1615,8 @@ public:
 			}
 			m_DirtyVisibility[n] = 0;
 		}
+
+		std::fill(m_GlobalPlayerVisibilityUpdate.begin(), m_GlobalPlayerVisibilityUpdate.end(), 0);
 
 		// Don't bother updating modified entities if the update was global
 		if (!m_GlobalVisibilityUpdate)
@@ -1696,7 +1701,12 @@ public:
 	virtual void SetSharedLos(player_id_t player, std::vector<player_id_t> players)
 	{
 		m_SharedLosMasks[player] = CalcSharedLosMask(players);
+
+		u16 oldMask = m_SharedDirtyVisibilityMasks[player];
 		m_SharedDirtyVisibilityMasks[player] = CalcSharedDirtyVisibilityMask(players);
+
+		if (oldMask != m_SharedDirtyVisibilityMasks[player] && player <= m_GlobalPlayerVisibilityUpdate.size())
+			m_GlobalPlayerVisibilityUpdate[player-1] = 1;
 	}
 
 	virtual u32 GetSharedLosMask(player_id_t player)
