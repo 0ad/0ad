@@ -6,13 +6,14 @@
 # azayrahmad <azayrahmad@gmail.com>, 2014
 # Gregori, 2014
 # Joshua C <jrandiny2@gmail.com>, 2014
+# Samuel Christo Randiny <srandiny@gmail.com>, 2015
 # Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-26 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-02-18 13:51+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -548,7 +549,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr ""
+msgstr "+20% serangan prajurit berkuda jarak dekat."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
@@ -576,7 +577,7 @@ msgstr "Latihan meningkatkan serangan jauh"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr ""
+msgstr "+20% serangan prajurit berkuda jarak jauh."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
@@ -585,7 +586,7 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr ""
+msgstr "Lengkapi prajurit berkuda jarak jauh anda dengan senjata lebih baik. +20% serangan prajurit berkuda jarak jauh."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -624,7 +625,7 @@ msgstr "Seringkali prajurit membawa senjata tambahan untuk dipakai ketika senjat
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr ""
+msgstr "+20% serangan infanteri jarak dekat."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
@@ -667,7 +668,7 @@ msgstr "Pelatihan menambah kerusakan unit infanteri jarak jauh."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr ""
+msgstr "+20% serangan infanteri jarak jauh."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
@@ -708,7 +709,7 @@ msgstr "Semangat tempur penting untuk kemenangan."
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Inspire your troops with higher pay. All soldiers +25% attack."
-msgstr ""
+msgstr "Menyemangati prajurit dengan tambahan gaji. Semua serangan prajurit +25%."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -779,7 +780,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr ""
+msgstr "Menambahkan jarak maksimum menara penjagaan menjadi 8 meter."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -879,11 +880,11 @@ msgstr "Gerobak"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
-msgstr ""
+msgstr "Nutrisi ekstra untuk pertanian."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr ""
+msgstr "Pekerja +25% tingkat pertanian."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -922,7 +923,7 @@ msgstr "Menambah tingkat pengumpulan kayu dari pohon."
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% lumbering rate for trees."
-msgstr ""
+msgstr "Pekerja +15% tingkat perkayuan untuk pohon."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -964,7 +965,7 @@ msgstr "Helot"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "+15% stone gathering rate."
-msgstr ""
+msgstr "+15% tingkat pengumpulan batu."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -1029,7 +1030,7 @@ msgstr "Andrapodon"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "+15% metal gathering rate."
-msgstr ""
+msgstr "+15% tingkat pengumpulan logam."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1471,7 +1472,7 @@ msgstr "Kebun rumah bermacam-macam dari daerah berpagar sederhana hingga daerah 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population cap bonus."
-msgstr ""
+msgstr "Rumah +20% bonus batas populasi."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -1514,11 +1515,11 @@ msgstr "Insulae"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr ""
+msgstr "Keajaiban menarik lebih banyak orang ke peradaban anda."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr ""
+msgstr "+50 batas populasi maksimum."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"

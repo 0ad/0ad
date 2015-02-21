@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
-# Joshua C <jrandiny2@gmail.com>, 2014
+# Joshua C <jrandiny2@gmail.com>, 2014-2015
 # Joshua C <jrandiny2@gmail.com>, 2014
 # Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 # Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-02-06 09:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-02-18 11:51+0000\n"
+"Last-Translator: Joshua C <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +60,7 @@ msgstr "Registrasi tidak diterima"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
-msgstr ""
+msgstr "Permintaan registrasi buruk"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
@@ -72,7 +72,7 @@ msgstr "Registrasi dibutuhkan"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "Permintaan registrasi tak terduga"
 
 #: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
@@ -84,11 +84,11 @@ msgstr "Masalah tidak dikenal dalam registrasi"
 
 #: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "Subtype tak dikenali (lihat logs)"
 
 #: lobby/XmppClient.cpp:982
 msgid "Bad request"
-msgstr ""
+msgstr "Permintaan buruk"
 
 #: lobby/XmppClient.cpp:983
 msgid "Player name already in use"
@@ -104,7 +104,7 @@ msgstr "Dilarang"
 
 #: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "Penerima atau server hilang"
 
 #: lobby/XmppClient.cpp:987
 msgid "Internal server error"
@@ -116,7 +116,7 @@ msgstr "Barang tidak ditemukan"
 
 #: lobby/XmppClient.cpp:989
 msgid "Jid malformed"
-msgstr ""
+msgstr "Jid salah format"
 
 #: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
@@ -140,11 +140,11 @@ msgstr "Pembayaran diperlukan"
 
 #: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "Penerima tak tersedia"
 
 #: lobby/XmppClient.cpp:996
 msgid "Redirect"
-msgstr ""
+msgstr "Dialihkan"
 
 #: lobby/XmppClient.cpp:998
 msgid "Remote server not found"
@@ -164,7 +164,7 @@ msgstr "Servis tidak tersedia"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
-msgstr ""
+msgstr "Dibutuhkan Subskripsi"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
@@ -172,7 +172,7 @@ msgstr "Kondisi yang tak dapat didefinisikan"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
-msgstr ""
+msgstr "Permintaan tak terduga"
 
 #: lobby/XmppClient.cpp:1005
 msgid "Unknown sender"
@@ -185,9 +185,9 @@ msgstr "Error yang tak dapat didefinisikan"
 #: ps/SavedGame.cpp:131
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "Menyimpan permainan ke '%s'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Gambar layar disimpan ke '%s'"
