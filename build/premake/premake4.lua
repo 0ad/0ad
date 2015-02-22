@@ -341,6 +341,13 @@ function project_set_build_flags()
 			if _OPTIONS["macosx-bundle"] then
 				defines { "BUNDLE_IDENTIFIER=" .. _OPTIONS["macosx-bundle"] }
 			end
+
+			-- On OS X, force using libc++ since it has better C++11 support,
+			-- now required by the game
+			if os.is("macosx") then
+				buildoptions { "-stdlib=libc++" }
+				linkoptions { "-stdlib=libc++" }
+			end
 		end
 
 		buildoptions {

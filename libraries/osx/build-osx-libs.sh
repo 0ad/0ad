@@ -87,11 +87,14 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
   # and CRT version, and use it to set the macosx_version_min linker flag
   LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
 fi
+# Force using libc++ since it has better C++11 support required by the game
+# but pre-Mavericks still use libstdc++ by default
+# Also enable c++0x for consistency with the game build
 C_FLAGS="$C_FLAGS -arch $ARCH -fvisibility=hidden"
-LDFLAGS="$LDFLAGS -arch $ARCH"
+LDFLAGS="$LDFLAGS -arch $ARCH -stdlib=libc++"
 
 CFLAGS="$CFLAGS $C_FLAGS"
-CXXFLAGS="$CXXFLAGS $C_FLAGS"
+CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++0x"
 OBJCFLAGS="$OBJCFLAGS $C_FLAGS"
 OBJCXXFLAGS="$OBJCXXFLAGS $C_FLAGS"
 
@@ -359,7 +362,8 @@ then
     CONF_OPTS="$CONF_OPTS --with-macosx-version-min=$MIN_OSX_VERSION"
   fi
   # patch to fix wxWidgets build on Yosemite (fixed upstream, see http://trac.wxwidgets.org/ticket/16329 )
-  (patch -p0 -d.. -i../../patches/wxwidgets-webkit-fix.diff && ../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
+  # Force libc++ in CPPFLAGS as well, since CXXFLAGS isn't enough here
+  (patch -p0 -d.. -i../../patches/wxwidgets-webkit-fix.diff && ../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" CPPFLAGS="-stdlib=libc++" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
   touch .already-built
