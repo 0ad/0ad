@@ -1,4 +1,4 @@
-/* Copyright (c) 2011 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -442,7 +442,7 @@ static Status InitStructures()
 		if(header->id == 127)	// end
 			break;
 		if(header->length < sizeof(Header))
-			WARN_RETURN(ERR::_3);
+			return ERR::_3; // NOWARN (happens on some unknown BIOS, see http://trac.wildfiregames.com/ticket/2985)
 
 		const Header* next;
 		const Strings strings = ExtractStrings(header, (const char*)end, next);

@@ -16,3 +16,4 @@ plus some patches (see patches/):
   cmake-noqt4.patch (removes unused dependency on Qt4, fixes build on systems without Qt)
   arm-fix.patch (from NVTT SVN r1173 - fixes ARM build)
   issue188.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=188)
+  clang-cpp11-error.patch (fixes build error on OS X Yosemite with clang, libc++ and c++11)

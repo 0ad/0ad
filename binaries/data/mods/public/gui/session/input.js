@@ -1570,8 +1570,9 @@ function performGroup(action, groupId)
 
 		if (action == "snap" && toSelect.length)
 		{
-			var position = GetEntityState(toSelect[0]).position;
-			if (position)
+			let entState = GetEntityState(toSelect[0]);
+			let position = entState.position;
+			if (position && entState.visibility != "hidden")
 				Engine.CameraMoveTo(position.x, position.z);
 		}
 		break;

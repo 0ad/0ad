@@ -510,6 +510,7 @@ public:
 		// Setup texture environment
 		if (m_Defines.GetInt("MINIMAP_BASE"))
 		{
+			pglActiveTextureARB(GL_TEXTURE0);
 			glEnable(GL_TEXTURE_2D);
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -517,6 +518,7 @@ public:
 		}
 		else if (m_Defines.GetInt("MINIMAP_LOS"))
 		{
+			pglActiveTextureARB(GL_TEXTURE0);
 			glEnable(GL_TEXTURE_2D);
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
@@ -529,6 +531,7 @@ public:
 		}
 		else if (m_Defines.GetInt("MINIMAP_POINT"))
 		{
+			pglActiveTextureARB(GL_TEXTURE0);
 			glDisable(GL_TEXTURE_2D);
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glEnableClientState(GL_COLOR_ARRAY);
@@ -545,6 +548,7 @@ public:
 		// Reset texture environment
 		if (m_Defines.GetInt("MINIMAP_POINT"))
 		{
+			pglActiveTextureARB(GL_TEXTURE0);
 			glEnable(GL_TEXTURE_2D);
 			glDisableClientState(GL_VERTEX_ARRAY);
 			glDisableClientState(GL_COLOR_ARRAY);
