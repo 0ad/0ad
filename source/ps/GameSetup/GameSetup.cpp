@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -663,6 +663,14 @@ static void InitSDL()
 
 #if !SDL_VERSION_ATLEAST(2, 0, 0)
 	SDL_EnableUNICODE(1);
+#endif
+
+#if OS_MACOSX && SDL_VERSION_ATLEAST(2, 0, 0)
+	// Some Mac mice only have one button, so they can't right-click
+	// but SDL2 can emulate that with Ctrl+Click
+	bool macMouse = false;
+	CFG_GET_VAL("macmouse", macMouse);
+	SDL_SetHint(SDL_HINT_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK, macMouse ? "1" : "0");
 #endif
 }
 
