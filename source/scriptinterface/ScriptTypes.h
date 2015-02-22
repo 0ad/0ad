@@ -51,6 +51,7 @@
 # pragma clang diagnostic ignored "-Wuninitialized"
 # pragma clang diagnostic ignored "-Wc++11-extensions"
 # pragma clang diagnostic ignored "-Wignored-qualifiers"
+# pragma clang diagnostic ignored "-Wmismatched-tags"
 // Ugly hack to deal with macro redefinitions from libc++
 # ifdef nullptr
 #  undef nullptr
