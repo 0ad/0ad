@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -133,8 +133,11 @@ void AtlasViewActor::SetParam(const std::wstring& name, bool value)
 		m_ActorViewer->SetWalkEnabled(value);
 	else if (name == L"ground")
 		m_ActorViewer->SetGroundEnabled(value);
-	else if (name == L"water")
-		m_ActorViewer->SetWaterEnabled(value);
+	// TODO: this causes corruption of WaterManager's global state
+	//	which should be asociated with terrain or simulation instead
+	//	see http://trac.wildfiregames.com/ticket/2692
+	//else if (name == L"water")
+		//m_ActorViewer->SetWaterEnabled(value);
 	else if (name == L"shadows")
 		m_ActorViewer->SetShadowsEnabled(value);
 	else if (name == L"stats")
