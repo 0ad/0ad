@@ -390,7 +390,10 @@ ObjectBottomBar::ObjectBottomBar(
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerWireframe,   _("Wireframe")),      _("Toggle wireframe / solid rendering")), wxSizerFlags().Expand());
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerMove,        _("Move")),           _("Toggle movement along ground when playing walk/run animations")), wxSizerFlags().Expand());
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerGround,      _("Ground")),         _("Toggle the ground plane")), wxSizerFlags().Expand());
-		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerWater,       _("Water")),          _("Toggle the water plane")), wxSizerFlags().Expand());
+		// TODO: disabled until http://trac.wildfiregames.com/ticket/2692 is fixed
+		wxButton* waterButton = new wxButton(m_ViewerPanel, ID_ViewerWater, _("Water"));
+		waterButton->Enable(false);
+		viewerButtonsLeft->Add(Tooltipped(waterButton, _("Toggle the water plane")), wxSizerFlags().Expand());
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerShadows,     _("Shadows")),        _("Toggle shadow rendering")), wxSizerFlags().Expand());
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerPolyCount,   _("Poly count")),     _("Toggle polygon-count statistics - turn off ground and shadows for more useful data")), wxSizerFlags().Expand());
 
