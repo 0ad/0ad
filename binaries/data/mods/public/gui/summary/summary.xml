@@ -13,19 +13,16 @@
 	<script file="gui/summary/layout.js"/>
 	<script file="gui/summary/summary.js"/>
 
-	<object type="image"
-		style="ModernWindow"
-		size="0 0 100% 100%"
-	>
+	<object type="image" style="ModernWindow">
 		<object style="TitleText" type="text" size="50%-128 4 50%+128 36">
 			<translatableAttribute id="caption">Summary</translatableAttribute>
 		</object>
 
-		<object type="image" sprite="ForegroundBody" size="20 24 100%-20 80">
+		<object size="20 26 100%-20 92">
 
 			<object name="summaryText"
 				type="text"
-				size="50 6 100%-50 100%-20"
+				size="50 16 100%-50 100%-16"
 				font="sans-bold-18"
 				textcolor="255 255 255"
 				text_align="left"
@@ -34,17 +31,17 @@
 
 			<object name="timeElapsed"
 				type="text"
-				size="100%-200 8 100%-10 100%-20"
-				font="sans-16"
+				size="50 16 100%-50 100%-16"
+				font="sans-bold-18"
 				textcolor="255 255 255"
-				text_align="center"
+				text_align="right"
 				text_valign="center"
 			/>
 
 			<object name="mapName"
 				type="text"
-				size="50 20 100%-50 100%-4"
-				font="sans-bold-16"
+				size="50 16 100%-50 100%-16"
+				font="sans-bold-18"
 				textcolor="255 255 255"
 				text_align="center"
 				text_valign="center"
@@ -97,7 +94,7 @@
 			</object>
 		</object>
 
-		<object name="generalPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-58">
+		<object name="generalPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-54">
 			<object size="0 0 100% 100%-50">
 				<object name="playerNameHeading" type="text" style="ModernLeftTabLabelText">
 					<translatableAttribute id="caption">Player name</translatableAttribute>
@@ -153,10 +150,10 @@
 			</object>
 		</object>
 
-		<object type="button" style="StoneButton" size="100%-164 100%-52 100%-24 100%-24">
+		<object type="button" style="ModernButtonRed" size="100%-160 100%-48 100%-20 100%-20">
 			<translatableAttribute id="caption">Continue</translatableAttribute>
 			<action on="Press"><![CDATA[
-				if(!Engine.HasXmppClient())
+				if (!Engine.HasXmppClient())
 				{
 					Engine.SwitchGuiPage("page_pregame.xml");
 				}
