@@ -144,6 +144,12 @@ public:
 	void Resize();
 
 	/**
+	 * ReloadWaterNormalTextures: Reload the normal textures so that changing
+	 * water type in Atlas will actually do the right thing.
+	 */
+	void ReloadWaterNormalTextures();
+
+	/**
 	 * UnloadWaterTextures: Free any loaded water textures and reset the internal state
 	 * so that another call to LoadWaterTextures will begin progressive loading.
 	 */

@@ -103,7 +103,11 @@ void SetSettings(const sEnvironmentSettings& s)
 	wm->m_Waviness = s.waterwaviness;
 	wm->m_Murkiness = s.watermurkiness;
 	wm->m_WindAngle = s.windangle;
-	wm->m_WaterType = *s.watertype;
+	if (wm->m_WaterType != *s.watertype)
+	{
+		wm->m_WaterType = *s.watertype;
+		wm->ReloadWaterNormalTextures();
+	}
 	
 #define COLOUR(A, B) B = CColor(A->r/255.f, A->g/255.f, A->b/255.f, 1.f)
 	COLOUR(s.watercolour, wm->m_WaterColor);
