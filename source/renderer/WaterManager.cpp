@@ -387,7 +387,7 @@ void WaterManager::Resize()
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-# This is for Atlas. TODO: this copies code from init, should reuse it.
+// This is for Atlas. TODO: this copies code from init, should reuse it.
 void WaterManager::ReloadWaterNormalTextures()
 {
 	wchar_t pathname[PATH_MAX];
