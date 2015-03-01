@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Houssem Mhamdi <houss.sword@gmail.com>, 2014
+# Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # salama <salamacast@yahoo.com>, 2014
-# صفا الفليج <safaalfulaij@hotmail.com>, 2014
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 17:11+0000\n"
+"PO-Revision-Date: 2015-03-01 13:52+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -52,21 +53,21 @@ msgstr "أيّ"
 #: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
 #: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
 msgid "N/A"
-msgstr ""
+msgstr "غ/م"
 
 #: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:284 gui/lobby/lobby.js:312
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:444
 msgid "Busy"
@@ -105,12 +106,12 @@ msgstr "عنوان اللعبة '%(ip)s' هذا لا يبدو صالحًا."
 #: gui/lobby/lobby.js:643
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "انضمّ %(nick)s."
+msgstr "لقد انضمّ %(nick)s."
 
 #: gui/lobby/lobby.js:652
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr "غادر %(nick)s."
+msgstr "لقد غادر %(nick)s."
 
 #: gui/lobby/lobby.js:659
 #, javascript-format
@@ -171,7 +172,7 @@ msgstr "HH:mm"
 #: gui/lobby/lobby.js:950
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:953
@@ -277,7 +278,7 @@ msgstr "معدل الفوز:"
 
 #: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
 msgid "Leaderboard"
-msgstr "لوحة المتصدّرون"
+msgstr "لوحة الصّدارة"
 
 #: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):279
 msgid "User Profile Lookup"
@@ -405,7 +406,7 @@ msgstr "ألغِ"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "شروط خدمة ردهة اللاعبين لـ\"0.A.D الامبراطوريات المسيطرة\""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -415,7 +416,7 @@ msgstr "التّعاريف:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* الخدمة هي ردهة اللاعبين لـ\"0.A.D الامبراطوريات المسيطرة\"  التي تقدمها: (Wildfire Games (WFG."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -503,7 +504,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "شروط استعمال ردهة اللاعبين لـ\"0.A.D الامبراطوريات المسيطرة\""
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
