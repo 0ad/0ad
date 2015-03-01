@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -288,6 +288,12 @@ void CModelParticleEmitter::InvalidatePosition()
 
 void CModelParticleEmitter::SetTransform(const CMatrix3D& transform)
 {
+	if (m_Transform == transform)
+		return;
+
 	m_Emitter->SetPosition(transform.GetTranslation());
 	m_Emitter->SetRotation(transform.GetRotation());
+
+	// call base class to set transform on this object
+	CRenderableObject::SetTransform(transform);
 }
