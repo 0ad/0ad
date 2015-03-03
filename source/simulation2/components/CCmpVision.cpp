@@ -76,11 +76,11 @@ public:
 			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
 			if (msgData.component != L"Vision")
 				break;
-		}
-		// fall-through
-		case MT_Deserialized:
-		{
+
 			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+			if (!cmpValueModificationManager)
+				break;
+
 			entity_pos_t newRange = cmpValueModificationManager->ApplyModifications(L"Vision/Range", m_BaseRange, GetEntityId());
 			if (newRange == m_Range)
 				break;
@@ -90,6 +90,13 @@ public:
 			m_Range = newRange;
 			CMessageVisionRangeChanged msg(GetEntityId(), oldRange, newRange);
 			GetSimContext().GetComponentManager().BroadcastMessage(msg);
+			break;
+		}
+		case MT_Deserialized:
+		{
+			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+			if (cmpValueModificationManager)
+				m_Range = cmpValueModificationManager->ApplyModifications(L"Vision/Range", m_BaseRange, GetEntityId());
 			break;
 		}
 		}
