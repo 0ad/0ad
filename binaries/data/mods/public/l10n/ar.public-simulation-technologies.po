@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Abdul-Rahman Sawalma <abdulrahman1123@gmail.com>, 2015
 # Molham Haddad <inactive+Molham@transifex.com>, 2014
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-26 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-02-28 17:52+0000\n"
+"Last-Translator: Abdul-Rahman Sawalma <abdulrahman1123@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr "درع معدنيّ لوجه الحصان."
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr ""
+msgstr "زود أسرجة الخيالة بدرع. كل الخيالة يحصلون على +1 لمستوى ممانعة ومستوى اختراق الدرع."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -110,7 +111,7 @@ msgstr "صفيحة حماية لرأس الحصان- يوناني"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
-msgstr ""
+msgstr "درع معدني لجسم الحصان"
 
 #: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
@@ -210,26 +211,26 @@ msgstr "درع حديدي للبطل "
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidi̱ró Panoplía"
-msgstr ""
+msgstr "Sidi̱ró Panoplía"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
-msgstr ""
+msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr ""
+msgstr "درع كتاني أو جلدي مبطن لجنود المشاة"
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr ""
+msgstr "لكل المشاة زيادة +1 لمستوى ممانعة الدروع واختراقها."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr ""
+msgstr "درع مبطن للجسم"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
@@ -258,17 +259,17 @@ msgstr ""
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.iber
 msgid "Spolas"
-msgstr ""
+msgstr "Spolas"
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr ""
+msgstr "درع كتاني مصفح لجسم جنود المشاة."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr ""
+msgstr "درع كتاني مصفح للجسم."
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
@@ -289,21 +290,21 @@ msgstr ""
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
-msgstr ""
+msgstr "Linothorakes"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr ""
+msgstr "كل جنود المشاة يحصلون على +1 لمستوى ممانعة الدرع."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
-msgstr ""
+msgstr "درع الجسم يُعَزّز بحراشف برونزية"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr ""
+msgstr "درع حرشفي للجسم."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -314,15 +315,15 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr ""
+msgstr "درع للجسم مصمم كلياً من البرونز. لا يُجهز بمثل هذه الدروع سوى أفضل الجنود، وذلك لأنها كانت غالية جداً، ويأخذ صنعها وقتاً طويلاً"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr ""
+msgstr "يزداد مستوى ممانعة الدروع للأبطال +2، ولكن يكلف +10 من المعدن."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
-msgstr ""
+msgstr "درع للجسم برونزيُّ الصِّدار."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
 msgid "Lorica Musculata"
@@ -330,15 +331,15 @@ msgstr "Lorica Musculata"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
-msgstr ""
+msgstr "تركيب الخشب الرقائقي للتروس الكبيرة."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr ""
+msgstr "يحصل رمّاحو جنود المشاة على +2 لمستوى اختراق الدروع."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
-msgstr ""
+msgstr "تركيب تروس ذات خشب رقائقي. "
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
@@ -347,21 +348,21 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
 msgid "Aspidiskè"
-msgstr ""
+msgstr "Aspidiskè"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
 msgid ""
 "The best shields have reinforcements either on the corners (Roman scutum) or"
 " around the rim (Greek aspis)."
-msgstr ""
+msgstr "أفضل التروس تُدَعَّم إما من الزوايا (التروس الرومانية) أو حول الحواف (التروس اليونانية). "
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr ""
+msgstr "يحصل رمّاحو جنود المشاة على +1 لمستوى اختراق الدرع."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
-msgstr ""
+msgstr "ترس مدعم."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
@@ -370,19 +371,19 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
 msgid "Aspides"
-msgstr ""
+msgstr "تروس يونانية."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
-msgstr ""
+msgstr "جلد برونزي مطروق على وجه الترس."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr ""
+msgstr "يحصل رماحو جنود المشاة على +1 لمستوى اختراق الدروع."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
-msgstr ""
+msgstr "طلاء للترس بالبرونز."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
@@ -390,25 +391,25 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
 msgid "Chalkaspides"
-msgstr ""
+msgstr "Chalkaspides"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Chrysaspides"
-msgstr ""
+msgstr "Chrysaspides"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr ""
+msgstr "التروس المطلية بالفضة لا يحصل عليها إلا أكثر الجنود شهرة، كما في الكتيبة المشهورة 'التروس الفضية' في جيش الإسكندر العظيم."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr ""
+msgstr "يحصل الأبطال على +2 لمستوى اختراق الدرع، ولكن يكلف +10 من المعدن."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
-msgstr ""
+msgstr "تروس فضية"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
@@ -417,46 +418,46 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
 msgid "Argyraspides"
-msgstr ""
+msgstr "Argyraspides"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr ""
+msgstr "الإكساء بالرصاص يحمي هيكل السفينة."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "الإكساء بالرصاص يحمي هيكل السفينة. +2 زيادة في مستوى كل أنواع دروع السفن."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr ""
+msgstr "إكساء الهيكل بالرصاص"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr ""
+msgstr "تقوم الـhypozomata بإسناد بنية السفينة."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr ""
+msgstr "تقوم الـhypozomata بإسناد بنية السفينة. +2 زيادة في مستوى كل أنواع دروع السفن."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr ""
+msgstr "تقوية الأساس بالـhypozomata."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
-msgstr ""
+msgstr "حزم التدعيم الخشبية لهياكل السفن."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "حزم التدعيم الخشبية لهياكل السفن. +2 زيادة في مستوى كل أنواع دروع السفن."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
-msgstr ""
+msgstr "هيكل مدعم."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
@@ -467,32 +468,32 @@ msgstr ""
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr ""
+msgstr "يزال قفله في مستوى القرية."
 
 #: simulation/data/technologies/armor_trade_convoys.jsondescription
 msgid "Increases defensive capability of traders."
-msgstr ""
+msgstr "يزيد من المقدرة الدفاعية للتجار"
 
 #: simulation/data/technologies/armor_trade_convoys.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr ""
+msgstr "يحصل التجار على +2 لمستوى ممانعة ومستوى اختراق الدروع."
 
 #: simulation/data/technologies/armor_trade_convoys.jsongenericName
 msgid "Trade convoys"
-msgstr ""
+msgstr "قوافل تجارية"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr ""
+msgstr "رمح طويل صنع خصيصاً  للخيالة."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr ""
+msgstr "جهز خيالة الاشتباك بأسلحة أفضل. يحصل خيالة الاشتباك على +2 لممانعة الهجوم."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
-msgstr ""
+msgstr "رمح الخيالة"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.spart
@@ -530,7 +531,7 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.hele
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
-msgstr ""
+msgstr "Xyston"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
@@ -538,65 +539,65 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
 msgid "Hasta"
-msgstr ""
+msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr ""
+msgstr "التدريب يزيد من الهجوم بالاشتباك."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr ""
+msgstr "+20% لهجوم خيالة الاشتباك."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
-msgstr ""
+msgstr "أغلق تدريب خيالة المعركة."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
 msgid "Replaces bronze weapons with iron."
-msgstr ""
+msgstr "يستبدل أسلحة البرونز بالحديد."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr ""
+msgstr "جهز خيالة الاشتباك لديك بأسلحة أفضل. +20% لهجوم خيالة الاشتباك."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
 #: simulation/data/technologies/attack_infantry_melee_02.jsongenericName
 msgid "Iron Weapons"
-msgstr ""
+msgstr "أسلحة حديدية"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr ""
+msgstr "التدريب يزيد من الهجوم ذي المدى."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr ""
+msgstr "+20% لهجوم خيالة القتال ذي المدى."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr ""
+msgstr "تدريب خيالة المعركة المقاتلين عن مدى."
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr ""
+msgstr "جهز خيالة القتال عن مدى بأسلحة أفضل. +20% لهجوم خيالة القتال ذي المدى."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
-msgstr ""
+msgstr "تملك وحدات الحراسة شجاعة غير معتادة وبسالة في المعركة."
 
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr ""
+msgstr "تملك وحدات الحراسة جرأة غير مسبوقة وبسالة في المعركة. يحصل الأبطال على +2 للهجوم."
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
-msgstr ""
+msgstr "بطولة"
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.ptol
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
@@ -605,11 +606,11 @@ msgstr ""
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.hele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
 msgid "Andreia"
-msgstr ""
+msgstr "Andreia"
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
 msgid "Fortitudo"
-msgstr ""
+msgstr "Fortitudo"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsondescription
 #: simulation/data/technologies/melee_inf_sidearms.jsondescription
@@ -622,7 +623,7 @@ msgstr "غالبا قد يحمل المشاة سلاحا ثانويا بالإض
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr ""
+msgstr "+20% لهجوم مشاة الاشتباك "
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
@@ -653,24 +654,24 @@ msgstr "Pugio"
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr ""
+msgstr "استخدام الحديد بدلاً من البرونز أعطى الأسلحة قوة أكبر"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr ""
+msgstr "التدريب يزيد من الضرر الناتج عن وحدات المشاة ذوي المدى."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr ""
+msgstr "+20% لهجوم المشاة ذوي المدى."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr ""
+msgstr "المشاة ذوو المدى غير النظاميون."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.spart
@@ -698,19 +699,19 @@ msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "الفئة الرئيسية للمشاة ذوي المدى."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
-msgstr ""
+msgstr "إرادة القتال حاسمة للنصر."
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Inspire your troops with higher pay. All soldiers +25% attack."
-msgstr ""
+msgstr "ألهم قواتك بمرتب أعلى. كل الجنود يحصلون على +25% للهجوم."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
-msgstr ""
+msgstr "إرادة القتال."
 
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
@@ -719,7 +720,7 @@ msgstr ""
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.hele
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
 msgid "Dynamis"
-msgstr ""
+msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""

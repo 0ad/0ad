@@ -5,6 +5,7 @@
 # Translators:
 # Majid Al-Dharrab, 2014
 # mustapha ali abdulkarim <baghdadhost@gmail.com>, 2014
+# Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # slimkhan, 2014
 # Tux-Tn <sarhanaissi@gmail.com>, 2013
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-26 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-01 15:41+0000\n"
+"Last-Translator: Rayan <nitro361@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr "سيُعطَّل الذّكاء الاصطناعيّ لهذا اللاع
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "تشكيل حر"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -209,12 +210,12 @@ msgstr "آسفون، لا وصف متوفّر."
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(number)s"
+msgstr[1] "%(number)s"
+msgstr[2] "%(number)s"
+msgstr[3] "%(number)s لاعبين"
+msgstr[4] "%(number)s لاعباً"
+msgstr[5] "%(number)s لاعبين"
 
 #: gui/gamesetup/gamesetup.js:1383
 msgid "Loading..."
@@ -338,7 +339,7 @@ msgstr "أعجوبة"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "ابنِ العجائب لكي تفوز"
 
 #: gui/loading/loading.js:51
 #, javascript-format
@@ -673,7 +674,7 @@ msgstr "\"الغرور يؤدّي إلى تدمير الذّات.\" - إيسوب
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr ""
+msgstr "\"ابطئ وإدرس تفُز في السباق.\"-إيسوب"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
@@ -688,7 +689,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
-msgstr ""
+msgstr "\"الاتحاد يعطي القوة.\"- إيسوب \"الحزمة من العصي\""
 
 #: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
@@ -698,7 +699,7 @@ msgstr ""
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr ""
+msgstr "\"الاسبارطيون لا يسألون عن عدد، بل مكان الاعداء.\"- أجيس الثاني من إسبرطة"
 
 #: gui/text/quotes.txt:26
 msgid ""
@@ -805,7 +806,7 @@ msgstr "\"أنا أعتبر الإنسان الّذي يتغلّب على رغب
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
-msgstr ""
+msgstr "\"أحرفنا هي نتاج تصرفاتنا.\"- أرسطو"
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
