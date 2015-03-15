@@ -3,17 +3,19 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Abdul-Rahman Sawalma <abdulrahman1123@gmail.com>, 2015
 # Dar Games <dar@bonah.org>, 2015
 # Houssem Mhamdi <houss.sword@gmail.com>, 2014
 # Rayan <nitro361@gmail.com>, 2015
 # Rayan <nitro361@gmail.com>, 2015
 # salama <salamacast@yahoo.com>, 2015
+# صفا الفليج <safaalfulaij@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-03-01 21:00+0000\n"
-"Last-Translator: Rayan <nitro361@gmail.com>\n"
+"PO-Revision-Date: 2015-03-12 20:13+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +76,7 @@ msgstr "تعالج الوحدات القريبة بنسبة: 1 ن،ص/ثانية
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr "طاقم المسعفين، يجمع حتى 20 وحدة ليعالجهم بسرعة (3 ن،ص لكل ثانية)"
+msgstr "درب المسعفين. حصّن حتى 20 وحدة لمعالجتهم بسرعة (3 ن.ص لكل ثانية). طوّر الشفاء والتحسينات الدينية."
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -271,7 +273,7 @@ msgstr "سفارة"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr "درِّب الأبطال، والخارقين، وأسلحة الحصار، وطوِّر تحسينات لأسلحة الحصار. يسع: 20."
+msgstr "درِّب الأبطال، والخارقين، وأسلحة الحصار، وطوِّر تحسينات لأسلحة الحصار. التحصين: 20."
 
 #: simulation/templates/template_structure_military_fortress.xml:57
 msgid "City"
@@ -860,16 +862,16 @@ msgstr "معبد بعل آمون"
 #: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
-msgstr "حصن چاليّ"
+msgstr "حصن غاليّ"
 
 #: simulation/templates/structures/celt_fortress_g.xml:12
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "درِّب خارقين وأبطال چاليين، وأنشئ مدقات حصار."
+msgstr "درِّب خارقين وأبطال غاليين، وأنشئ مدقات حصار."
 
 #: simulation/templates/structures/celt_outpost.xml:5
 msgid "Celtic Outpost"
-msgstr "برج كتلي"
+msgstr "برج كلتي"
 
 #: simulation/templates/structures/celt_slope_tower.xml:9
 #: simulation/templates/structures/celt_slope_wall.xml:9
@@ -882,7 +884,7 @@ msgstr "بوابة"
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
-msgstr "برج چاليّ"
+msgstr "برج غاليّ"
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
@@ -960,7 +962,7 @@ msgstr "إتشي"
 
 #: simulation/templates/structures/iber_market.xml:12
 msgid "Arruga"
-msgstr ""
+msgstr "Arruga"
 
 #: simulation/templates/structures/iber_monument.xml:37
 msgid "Revered Monument"
@@ -968,13 +970,13 @@ msgstr "النصب المعظم"
 
 #: simulation/templates/structures/iber_monument.xml:38
 msgid "Gur Oroigarri"
-msgstr ""
+msgstr "Gur Oroigarri"
 
 #: simulation/templates/structures/iber_monument.xml:40
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
-msgstr ""
+msgstr "كل الوحدات في مجال بصر هذا النصب ستقاتل بشدة. مدى التأثير: 50 متراً."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -998,17 +1000,17 @@ msgstr "زابال هورما"
 
 #: simulation/templates/structures/iber_wall_gate.xml:9
 msgid "Biko Sarbide"
-msgstr ""
+msgstr "Biko Sarbide"
 
 #: simulation/templates/structures/iber_wonder.xml:17
 msgid "Cancho Roano"
-msgstr ""
+msgstr "Cancho Roano"
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "درب الأبطال "
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
@@ -1035,7 +1037,7 @@ msgstr ""
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
-msgstr ""
+msgstr "ورشة حصار"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
@@ -1071,7 +1073,7 @@ msgstr "ناوكاستاناكا"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:21
 msgid "Elephant Stables"
-msgstr ""
+msgstr "اصطبلات الفيلة"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:22
 msgid "Vāraṇaśālā"
@@ -1083,11 +1085,11 @@ msgstr "درِّب وحدات فيلة."
 
 #: simulation/templates/structures/maur_farmstead.xml:12
 msgid "Kantu"
-msgstr ""
+msgstr "كانتو"
 
 #: simulation/templates/structures/maur_field.xml:5
 msgid "Kshetra"
-msgstr ""
+msgstr "كشيترا"
 
 #: simulation/templates/structures/maur_fortress.xml:5
 msgid "Durg"
@@ -1156,7 +1158,7 @@ msgstr ""
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
-msgstr ""
+msgstr "مخيّم المرتزقة (مصريّ)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"

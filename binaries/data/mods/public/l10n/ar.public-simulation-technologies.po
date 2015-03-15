@@ -5,13 +5,14 @@
 # Translators:
 # Abdul-Rahman Sawalma <abdulrahman1123@gmail.com>, 2015
 # Molham Haddad <inactive+Molham@transifex.com>, 2014
-# صفا الفليج <safaalfulaij@hotmail.com>, 2014
+# Rayan <nitro361@gmail.com>, 2015
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-02-28 17:52+0000\n"
-"Last-Translator: Abdul-Rahman Sawalma <abdulrahman1123@gmail.com>\n"
+"PO-Revision-Date: 2015-03-13 07:00+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -726,15 +727,15 @@ msgstr "Dynamis"
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr ""
+msgstr "تقنيات العمل السري الصلب تعطي شفرات السيف علامات مميزة وجميلة. ليس ذلك فحسب، ولكن صلابة الفولاذ هو شيء لا مثيل له."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+2 attack for all sword units."
-msgstr ""
+msgstr "+2 هجوم لجميع وحدات السيف."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
-msgstr ""
+msgstr "عمل صلب"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
@@ -758,19 +759,19 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_crenellations.jsongenericName
 msgid "Crenellations"
-msgstr ""
+msgstr "كرينوليشنس"
 
 #: simulation/data/technologies/attack_tower_defense.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
+msgstr "تعزز الأسس في الاعداد للهجوم"
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armour level of the defense tower by 2 levels."
-msgstr ""
+msgstr "تزيد مستوى درع برج الدّفاع مستويين."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
-msgstr ""
+msgstr "أسس متيِنة"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -778,11 +779,11 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr ""
+msgstr "تزيد مدى برج الدّفاع الأقصى 8 أمتار."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"
-msgstr ""
+msgstr "مطلقي الاسهم"
 
 #: simulation/data/technologies/attack_tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -812,7 +813,7 @@ msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr ""
+msgstr "استخدام مواد الأنقاض ينقص التّكاليف وزمن بناء الأسوار."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
@@ -858,7 +859,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
-msgstr ""
+msgstr "سلال"
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
@@ -866,7 +867,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
-msgstr ""
+msgstr "عربات تجرّها الخيول"
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -916,7 +917,7 @@ msgstr ""
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
 msgid "Increases wood gathering rates for trees."
-msgstr ""
+msgstr "تزيد معدّلات جمع خشب الأشجار."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
@@ -1074,7 +1075,7 @@ msgstr ""
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
-msgstr ""
+msgstr "مدى الشفاء"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.hele
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
@@ -1085,14 +1086,14 @@ msgstr ""
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr ""
+msgstr "مدى الشفاء 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.hele
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akademia"
-msgstr ""
+msgstr "أكاديمية"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -1106,18 +1107,18 @@ msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr ""
+msgstr "معدل الشفاء"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.hele
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
 msgid "Sphagia"
-msgstr ""
+msgstr "سفاچيا"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr ""
+msgstr "معدل الشفاء 2"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.hele
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
@@ -1162,7 +1163,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr ""
+msgstr "النول"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
@@ -1174,7 +1175,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
-msgstr ""
+msgstr "معالج ساحة المعركة"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
@@ -1202,7 +1203,7 @@ msgstr ""
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
-msgstr ""
+msgstr "رأس حربة حديدي"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
@@ -1220,7 +1221,7 @@ msgstr ""
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
-msgstr ""
+msgstr "أبطال ضد. غير الغير متفرغين"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
@@ -1284,7 +1285,7 @@ msgstr ""
 
 #: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
 msgid "Cost vs. Armor"
-msgstr ""
+msgstr "كلفة ضد. درع"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
@@ -1298,7 +1299,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr ""
+msgstr "طُور المدينة"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1342,7 +1343,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_britons.jsongenericName
 msgid "City Phase - Britons"
-msgstr ""
+msgstr "طور المدينة - البريطانيّون"
 
 #: simulation/data/technologies/phase_city_gauls.jsontooltip
 msgid ""
@@ -1352,7 +1353,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
 msgid "City Phase - Gauls"
-msgstr ""
+msgstr "طور المدينة - الغاليّون"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1374,7 +1375,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr ""
+msgstr "طُور البلدة"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1418,7 +1419,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr ""
+msgstr "طور القرية"
 
 #: simulation/data/technologies/pop_civic_01.jsondescription
 msgid ""
@@ -1433,11 +1434,11 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
-msgstr ""
+msgstr "قاعة الطعام"
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
 msgid "Tholos"
-msgstr ""
+msgstr "ثولوس"
 
 #: simulation/data/technologies/pop_civic_02.jsondescription
 msgid ""
@@ -1451,15 +1452,15 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
-msgstr ""
+msgstr "مجلس عام"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.rome
 msgid "Comitium"
-msgstr ""
+msgstr "جمعية"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
 msgid "Ekklesia"
-msgstr ""
+msgstr "إكليزيا"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1474,7 +1475,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
-msgstr ""
+msgstr "حديقة المنزل"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
@@ -1491,12 +1492,12 @@ msgstr ""
 #: simulation/data/technologies/pop_wonder.jsonspecificName.mace
 #: simulation/data/technologies/pop_wonder.jsonspecificName.rome
 msgid "Peristyle"
-msgstr ""
+msgstr "بهو معمد"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 #: simulation/data/technologies/pop_wonder.jsonspecificName.pers
 msgid "Paradise"
-msgstr ""
+msgstr "جنة على الأرض"
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1505,11 +1506,11 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
-msgstr ""
+msgstr "عزبات"
 
 #: simulation/data/technologies/pop_house_02.jsonspecificName.rome
 msgid "Insulae"
-msgstr ""
+msgstr "الجزر"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
@@ -1554,27 +1555,27 @@ msgstr ""
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
-msgstr ""
+msgstr "زيادة الدرع على أسلحة الحصار"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
-msgstr ""
+msgstr "زيادة مستوى الدرع +2 لجميع اسلحة الحصار."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
-msgstr ""
+msgstr "درع مصفح"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency"
-msgstr ""
+msgstr "تقنية متطورة تحسن كفائة الحصار"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
-msgstr ""
+msgstr "ضرر سحق +25% لجميع أسلحة الحصار."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
-msgstr ""
+msgstr "حصار متطور"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy"
@@ -1967,7 +1968,7 @@ msgstr ""
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
+msgstr "أنشأ القرطاجيون عدة مراكز تجارية كمستعمرات، وفي النهاية حققوا السيادة على 300 مدينة وبلدة في شمال أفريقيا وحدها."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
@@ -2387,7 +2388,7 @@ msgstr ""
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
-msgstr ""
+msgstr "العمارة الفارسيّة"
 
 #: simulation/data/technologies/persians/special_archery_tradition.jsondescription
 msgid ""
@@ -2485,7 +2486,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr ""
+msgstr "بدءاً بالإسكندر، أسس الملوك الهيلينستيون مدناً عدة في كافة أنحاء مستعمراتهم، حيث اندمجت الثقافة والفن الإغريقي مع العادات المحلية لتنشأ بذلك الحضارة الهيلينستية مزيجاً من عناصر عدة."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and double default arrows."

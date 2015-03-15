@@ -9,13 +9,14 @@
 # Igor Kustov, 2014
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # webslavic <webslavic@yahoo.com>, 2014
+# Woratiklis, 2015
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 17:21+0000\n"
-"Last-Translator: grin.sv <grin.sv@gmail.com>\n"
+"PO-Revision-Date: 2015-03-14 17:04+0000\n"
+"Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,7 @@ msgstr "Открывающая страница"
 #: gui/common/functions_global_object.js:79
 #, javascript-format
 msgid "FPS: %(fps)s"
-msgstr "Частота кадров: %(fps)s"
+msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:187
 msgid "mm:ss"
@@ -774,7 +775,7 @@ msgstr "Отбрасывать тени на воде"
 
 #: gui/options/options.js:34
 msgid "VSync"
-msgstr "Вертикальная кадровая синхронизация"
+msgstr "Вертикальная синхронизация"
 
 #: gui/options/options.js:34
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"

@@ -5,14 +5,14 @@
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014-2015
 # Fqn Kdgzd <furqonklondigizoid@gundamfan.com>, 2014
-# Joshua C <jrandiny2@gmail.com>, 2014
+# Joshua C <jrandiny2@gmail.com>, 2014-2015
 # Samuel Christo Randiny <srandiny@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2015-02-12 14:00+0000\n"
-"Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
+"PO-Revision-Date: 2015-03-12 07:03+0000\n"
+"Last-Translator: Joshua C <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,17 +37,17 @@ msgstr "Skenario"
 #: gui/lobby/lobby.js:27
 msgctxt "map size"
 msgid "Any"
-msgstr "Semua"
+msgstr "Apa saja"
 
 #: gui/lobby/lobby.js:35
 msgctxt "player number"
 msgid "Any"
-msgstr "Semua"
+msgstr "Apa saja"
 
 #: gui/lobby/lobby.js:39
 msgctxt "map"
 msgid "Any"
-msgstr "Semua"
+msgstr "Apa saja"
 
 #: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
 #: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
@@ -95,12 +95,12 @@ msgstr "Peta yang dipilih secara acak."
 
 #: gui/lobby/lobby.js:537
 msgid "Sorry, no description available."
-msgstr "Maaf, tidak ada deskripsi"
+msgstr "Maaf, tidak ada deskripsi tersedia."
 
 #: gui/lobby/lobby.js:565
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "Alamat '%(ip)s' permainan ini tidak sah."
+msgstr "Alamat permainan ini '%(ip)s' sepertinya tidak sah."
 
 #: gui/lobby/lobby.js:643
 #, javascript-format
@@ -110,7 +110,7 @@ msgstr "%(nick)s telah bergabung."
 #: gui/lobby/lobby.js:652
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr "%(nick)s telah keluar."
+msgstr "%(nick)s telah pergi."
 
 #: gui/lobby/lobby.js:659
 #, javascript-format
@@ -164,7 +164,7 @@ msgstr "== %(message)s"
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:947
 msgid "HH:mm"
-msgstr "JJ:mm"
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
@@ -181,7 +181,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1003
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr "Mohon tidak spam. Anda telah diblokir selama 30 detik."
+msgstr "Mohon untuk tidak menigirim spam. Anda telah diblokir selama 30 detik."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -209,15 +209,15 @@ msgstr "Mohon masukkan kata sandi anda lagi"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr "Password tidak sesuai"
+msgstr "Kata sandi tidak sama"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr "Mohon membaca Persyaratan Layanan"
+msgstr "Tolong baca Persyaratan Layanan"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr "Mohon membaca Persyaratan Penggunaan"
+msgstr "Tolong baca Persyaratan Penggunaan"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
@@ -241,7 +241,7 @@ msgstr "Hubungkan"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
-msgstr "Persyaratan Pelayanan"
+msgstr "Persyaratan Layanan"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
@@ -405,7 +405,7 @@ msgstr "Batal"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr "Persyaratan Pelayanan Lobi Main Bersama 0 A.D. Empires Ascendant "
+msgstr "Persyaratan Layanan Lobi Main Bersama 0 A.D. Empires Ascendant "
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -415,11 +415,11 @@ msgstr "Definisi:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr "\"Layanan\" yang dimaksud adalah Lobi Main Bersama 0 A.D. Empires Ascendant dipersembahkan oleh Wildfire Games (WFG)."
+msgstr "* \"Layanan\" yang dimaksud adalah Lobi Main Bersama 0 A.D. Empires Ascendant diberikan oleh Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr " * \"Anda\" adalah pengguna layanan."
+msgstr " * \"Anda\" adalah pengguna layanan ini."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
@@ -437,7 +437,7 @@ msgstr " * \"Moderasi\" merujuk pada proses menegakkan aturan penggunaan."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr "Menggunakan layanan ini berarti anda setuju untuk:"
+msgstr "Dengan menggunakan layanan ini berarti anda setuju untuk:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."

@@ -3,16 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# catopsi, 2015
+# LOUKAS SKOUROLIAKOS, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
-# malvanos <malvanos@gmail.com>, 2014
+# Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2015
+# malvanos <malvanos@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2015-01-06 09:50+0000\n"
-"Last-Translator: catopsi\n"
+"PO-Revision-Date: 2015-03-14 08:56+0000\n"
+"Last-Translator: malvanos <malvanos@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +101,7 @@ msgstr "Δυστυχώς, δεν υπάρχει περιγραφή."
 #: gui/lobby/lobby.js:565
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Η διέυθυνση του παιχνιδιού  '%(ip)s' δέν φαίνεται να είναι έγκυρη."
 
 #: gui/lobby/lobby.js:643
 #, javascript-format
@@ -120,12 +121,12 @@ msgstr "Μη έγκυρο ψευδώνυμο: %(nick)s"
 #: gui/lobby/lobby.js:666
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "Ο χρήστης %(oldnick)s είναι τώρα γνωστός/ή ώς %(newnick)s."
 
 #: gui/lobby/lobby.js:823
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr ""
+msgstr "Λυπούμαστε,η εντολή '%(cmd)s' δέν υποστηρίζεται."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:903
@@ -225,7 +226,7 @@ msgstr "Παρακαλώ συμφωνείστε με τους Όρους Χρή�
 
 #: gui/lobby/prelobby.js:195
 msgid "Registered"
-msgstr ""
+msgstr "Εγγεγραμένο."
 
 #: gui/lobby/prelobby.js:205
 msgid "Disconnected"
@@ -253,11 +254,11 @@ msgstr "Λόμπι πολλαπλών παικτών."
 
 #: gui/lobby/lobby.xml:(caption):45 gui/lobby/lobby.xml:(caption):296
 msgid "Current Rank:"
-msgstr ""
+msgstr "Τρέχουσα Βαθμίδα:"
 
 #: gui/lobby/lobby.xml:(caption):49 gui/lobby/lobby.xml:(caption):300
 msgid "Highest Rating:"
-msgstr ""
+msgstr "Υψηλότερη Βαθμολογία:"
 
 #: gui/lobby/lobby.xml:(caption):53 gui/lobby/lobby.xml:(caption):304
 msgid "Total Games:"
@@ -273,7 +274,7 @@ msgstr "Ηττες:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):316
 msgid "Win Rate:"
-msgstr ""
+msgstr "Αναλογία Νίκης:"
 
 #: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
 msgid "Leaderboard"
@@ -281,7 +282,7 @@ msgstr "Πίνακας κατάταξης"
 
 #: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):279
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "Αναζήτηση προφίλ χρήστη"
 
 #: gui/lobby/lobby.xml:(caption):111
 msgid "Map Type:"
@@ -330,7 +331,7 @@ msgstr "Δείτε προφίλ:"
 
 #: gui/lobby/lobby.xml:(caption):321
 msgid "Player not found."
-msgstr ""
+msgstr "Παίχτης δέν βρέθηκε."
 
 #: gui/lobby/lobby.xml:(heading):25
 msgid "Status"
@@ -415,7 +416,7 @@ msgstr "Ορισμοί:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* Η \"υπηρεσία\" είναι το Multiplayer Λόμπι του 0 A.D. Empires Ascendant που παρέχεται από την Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -423,17 +424,17 @@ msgstr "*\"Εσείς\" είστε ο χρήστης της υπηρεσίασ."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* «Εμείς» είναι το σύνολο όλων μελών της Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* «Αξιολόγηση» αναφέρεται στη διαδικασία της ανάλυσης διαφόρων στατιστικών στοιχείων χρήσης για το σκοπό της δημιουργίας μίας ενιαίας και συνολικής βαθμολογίας."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"Επίβλεψη\" αναφέρεται στη διαδικασία εφαρμογής των πολιτικών χρήσης."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
@@ -441,13 +442,13 @@ msgstr "Χρησιμοποιώντας την υπηρεσία συμφωνεί�
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Ακολουθέιτε όλες τις πολιτικές χρήσης."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Αφήστε αναγνωρίσιμα στατιστικά στοιχεία των χρηστών να συγκεντρώνονται για τους σκοπούς της αξιολόγησης,  των προφίλ των χρηστών, καθώς και στατιστικά κοινοτήτων."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
@@ -455,43 +456,43 @@ msgstr "Διατηρούμε επίσης το δικαίωμα να:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. Επίβλεψη της υπηρεσίας."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Διορισμός άλλων για επίβλεψη της υπηρεσίας."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. Αναστολή ή διακοπή της υπηρεσίας ανά πάσα στιγμή, με ή χωρίς προηγούμενη ανακοίνωση."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Αλλαγή της υπηρεσίας ανά πάσα στιγμή, με ή χωρίς ανακοίνωση."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Διαγραφή οποιαδήποτε και όλα τα δεδομένα των υπηρεσιών ανά πάσα στιγμή με ή χωρίς ανακοίνωση."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Συλλέγει κάποια ή το σύνολο των αναγνωρίσιμων στατιστικών στοιχείων του χρήστη ανά πάσα στιγμή χωρίς την συγκατάθεση για:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "α. Ιδιωτική ανάλυση από μέλη της ομάδας της Wildfire Games (WFG) και των συνεργατών τους."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "β. Ανώνυμα δημοσιοποίηση των μελών της ομάδας Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -499,7 +500,7 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Αλλαγή αυτού του εγγράφου με οποιονδήποτε τρόπο, ανά πάσα στιγμή, με την προϋπόθεση ότι ο χρήστης της υπηρεσίας έχει λάβει επαρκή προειδοποίηση για την αλλαγή αυτή (ο ορισμός της κατάλληλης ανακοίνωσης θα καθοριστεί από μια ομάδα μελών της Wildfire Games (WFG))."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
@@ -509,23 +510,23 @@ msgstr "0 Α.D. Empires Ascendant Πολλοί Παίκτες Λόμπι - Όρ�
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "* «Προσποίηση» αναφέρεται στην πράξη με την οποία προσπαθείτε να εκμεταλλευτείτε την ταυτότητα του άλλου για τους δικούς σας σκοπούς."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "«Spam» αναφέρεται σε άσχετα ή ακατάλληλα μηνύματα που αποστέλλονται σε μεγάλο αριθμό παραληπτών."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* «Αξιολόγηση» αναφέρεται στη συνολική βαθμολογία ανά χρήστη."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* «Βαθμολογούμενα παιχνίδια\" αναφέρεται σε παιχνίδια στα οποία οι στατιστικές αξιολόγησης παρακολουθούνται."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -535,30 +536,30 @@ msgstr "Συμφωνείτε να:"
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Δημιουργήσετε μόνο ένα λογαριασμό, ανά μοναδικό χρήστη στην υπηρεσία, εκτός αν σας επιτραπεί από ένα μέλος της ομάδας Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Δεν δημοσιεύσετε βλάσφημο δηλώσεις, αγενής χιούμορ, πορνογραφικό περιεχόμενο, ή ρατσιστικά σχόλια στην υπηρεσία."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Δεν υποβιβάζετε σκόπιμα την αξία των άλλων χρηστών της υπηρεσίας. "
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. Δεν χρησιμοποιείτε την υπηρεσία για την προώθηση συγκεκριμένων αγαθών, υπηρεσιών ή προϊόντων. "
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Μήν υποδύεστε άλλους χρήστες της υπηρεσίας."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. Μην αποστέλλετε άσχετα ή ακατάλληλα μηνύματα σε μεγάλο αριθμό παραληπτών."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -566,13 +567,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. Μην επιχειρήσετε να ρυθμίσετε τεχνητά την βαθμολογία οποιαδήποτε χρήστη ή οποιοδήποτε από τα στατιστικά στοιχεία που επηρεάζουν αυτό. (Παραδείγματα αυτού είναι, αλλά δεν περιορίζονται σε αυτά: εξαπάτησης σε βαθμολογούμενα παιχνίδια, εφαρμογή αντίστροφης μηχανικής της υπηρεσίας, και εκμετάλλευση άλλων χρηστών της υπηρεσίας.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Αφήστε τον εαυτό σας να αφαιρεθεί από την υπηρεσία,  αν οποιαδήποτε  στιγμή ο συντονιστής θεωρεί ότι η συμπεριφορά σας δεν είναι σύμφωνη με τους κανόνες αυτούς."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -580,4 +581,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Αλλαγή αυτού του εγγράφου με οποιονδήποτε τρόπο, ανά πάσα στιγμή, με την προϋπόθεση ότι ο χρήστης της υπηρεσίας έχει λάβει επαρκή προειδοποίηση για την αλλαγή αυτή (ο ορισμός της κατάλληλης ανακοίνωσης θα καθοριστεί από μια ομάδα μελών της Wildfire Games (WFG))."

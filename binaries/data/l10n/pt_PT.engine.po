@@ -3,16 +3,18 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# alfalb.as, 2015
 # André Rodrigues, 2013
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2014
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2013-2014
+# Pedro matias <pmsm1100@gmail.com>, 2015
 # Sérgio Marques <smarquespt@gmail.com>, 2013,2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-02-06 09:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-03 18:51+0000\n"
+"Last-Translator: alfalb.as\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +46,7 @@ msgstr "Textos longos"
 
 #: lobby/XmppClient.cpp:221
 msgid "Authentication failed"
-msgstr "Falha de autenticação"
+msgstr "Não foi possível autenticar"
 
 #: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
@@ -84,7 +86,7 @@ msgstr "Erro deesconhecido de registo"
 
 #: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
-msgstr "subtipo desconhecido (consulte os logs)"
+msgstr "subtipo desconhecido (consulte os registos)"
 
 #: lobby/XmppClient.cpp:982
 msgid "Bad request"
@@ -92,7 +94,7 @@ msgstr "Pedido errado"
 
 #: lobby/XmppClient.cpp:983
 msgid "Player name already in use"
-msgstr "Este nome de jogador já está a ser utilizado"
+msgstr "Este nome de jogador já está em uso"
 
 #: lobby/XmppClient.cpp:984
 msgid "Feature not implemented"
@@ -152,7 +154,7 @@ msgstr "Servidor remoto não encontrado"
 
 #: lobby/XmppClient.cpp:999
 msgid "Remote server timeout"
-msgstr "Tempo limite expirado"
+msgstr "Tempo expirado do servidor remoto"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
@@ -164,7 +166,7 @@ msgstr "Serviço indisponível"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
-msgstr "Requer subscrição"
+msgstr "Subscrição Obrigatória"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
@@ -185,9 +187,9 @@ msgstr "Erro indefinido"
 #: ps/SavedGame.cpp:131
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "Jogo guardado em '%s'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Captura de ecrã guardada em '%s'"

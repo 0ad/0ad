@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# caniro <carlod_39@yahoo.cl>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-14 18:30+0000\n"
+"Last-Translator: caniro <carlod_39@yahoo.cl>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/projects/p/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,11 +58,11 @@ msgstr "Historia de los %(civilization)s"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "Abriendo %(url)s\nen tu navegador por predeterminado. Por favor espera...."
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr ""
+msgstr "Abriendo pagina"
 
 #: gui/common/functions_global_object.js:79
 #, javascript-format
@@ -318,7 +319,7 @@ msgstr ""
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
 msgid "(None)"
-msgstr ""
+msgstr "(Ninguno)"
 
 #: gui/common/tooltips.js:31 gui/common/tooltips.js:36
 #: gui/common/tooltips.js:41 gui/common/tooltips.js:120
@@ -541,7 +542,7 @@ msgstr ""
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
@@ -594,7 +595,7 @@ msgstr "Pausas partidas de un solo jugador si la ventana pierde el foco"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Desactivar pantalla de bienvenida"
 
 #: gui/options/options.js:11
 msgid ""
@@ -1173,7 +1174,7 @@ msgstr "Idioma"
 #: gui/locale/locale.xml:(caption):17
 #: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr ""
+msgstr "Idioma:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special variant preferences that the user wants to see in their
@@ -1181,7 +1182,7 @@ msgstr ""
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "Lugar:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
@@ -1192,12 +1193,12 @@ msgstr "Cancelar"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzado"
 
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
-msgstr ""
+msgstr "Aceptar"
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -1270,7 +1271,7 @@ msgstr "¡Ayuda a mejorar 0 A.D!"
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "Usted automáticamente nos puede enviar comentarios anónimos que nos ayudará a corregir los errores, y mejorar el rendimiento y la compatibilidad."
+msgstr "Usted automáticamente nos puede enviar informes anónimos que nos ayudará a corregir los errores, y mejorar el rendimiento y la compatibilidad."
 
 #: gui/pregame/mainmenu.xml:103
 msgid "Thank you for helping improve 0 A.D.!"
@@ -1278,7 +1279,7 @@ msgstr "¡Gracias por ayudarnos a mejorar 0 A.D!"
 
 #: gui/pregame/mainmenu.xml:105
 msgid "Anonymous feedback is currently enabled."
-msgstr "Actualmente el feedback esta habilitado"
+msgstr "El envío de informes anónimos esta activado."
 
 #: gui/pregame/mainmenu.xml:107
 msgid "Status: $status."
@@ -1300,11 +1301,11 @@ msgstr "Involúcrese en play0ad.com"
 
 #: gui/pregame/mainmenu.xml:(caption):81
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Activar Informes"
 
 #: gui/pregame/mainmenu.xml:(caption):112
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Desactivar Informes"
 
 #: gui/pregame/mainmenu.xml:(caption):173
 msgid "Structure Tree"
@@ -1349,7 +1350,7 @@ msgstr "Editor de Escenarios"
 
 #: gui/pregame/mainmenu.xml:(caption):375
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Pantalla de bienvenida"
 
 #: gui/pregame/mainmenu.xml:(caption):390
 msgid "Mod Selection"
@@ -1377,7 +1378,7 @@ msgstr "Salir"
 
 #: gui/pregame/mainmenu.xml:(caption):542
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "¡Ayudarnos con la traducción!"
 
 #: gui/pregame/mainmenu.xml:(caption):554
 msgid "Website"
@@ -1397,7 +1398,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/mainmenu.xml:(tooltip):157
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Abre el manual del juego 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):174
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -1475,11 +1476,11 @@ msgstr "Opciones del juego y herramientas de diseño de escenarios"
 
 #: gui/pregame/mainmenu.xml:(tooltip):506
 msgid "Exits the game."
-msgstr ""
+msgstr "Salir del juego"
 
 #: gui/pregame/mainmenu.xml:(tooltip):543
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Pulsa para abrir la pagina de traducción de 0 A.D. en tu navegador."
 
 #: gui/pregame/mainmenu.xml:(tooltip):555
 msgid "Click to open play0ad.com in your web browser."
@@ -1493,7 +1494,7 @@ msgstr "Pulsa para abrir la conversación IRC de 0 A.D en en tu navegador. (#0ad
 
 #: gui/pregame/mainmenu.xml:(tooltip):579
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Pulsa para visitar el Trac de 0 A.D. para informar de un fallo, caída o error"
 
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
@@ -1513,7 +1514,7 @@ msgstr "Descripcción:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "¡Bienvenido!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"

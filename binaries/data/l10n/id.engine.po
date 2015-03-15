@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-02-18 11:51+0000\n"
+"PO-Revision-Date: 2015-03-12 07:03+0000\n"
 "Last-Translator: Joshua C <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -44,11 +44,11 @@ msgstr "Tulisan panjang"
 
 #: lobby/XmppClient.cpp:221
 msgid "Authentication failed"
-msgstr "Autentifikasi gagal"
+msgstr "Autentikasi gagal"
 
 #: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
-msgstr "Registrasi tidak diterima"
+msgstr "Registrasi tidak dapat diterima"
 
 #: lobby/XmppClient.cpp:456
 msgid "Registration conflict"
@@ -56,7 +56,7 @@ msgstr "Registrasi bermasalah"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
-msgstr "Registrasi tidak diterima"
+msgstr "Registrasi tidak diotorisasi"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
@@ -64,7 +64,7 @@ msgstr "Permintaan registrasi buruk"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
-msgstr "Pendaftaran dilarang."
+msgstr "Registrasi dilarang"
 
 #: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:997
 msgid "Registration required"
@@ -120,7 +120,7 @@ msgstr "Jid salah format"
 
 #: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
-msgstr "Tidak Diterima"
+msgstr "Tidak dapat diterima"
 
 #: lobby/XmppClient.cpp:991
 msgid "Not allowed"
@@ -128,7 +128,7 @@ msgstr "Tidak diizinkan"
 
 #: lobby/XmppClient.cpp:992
 msgid "Not authorized"
-msgstr "Tidak diterima"
+msgstr "Tidak diotorisasi"
 
 #: lobby/XmppClient.cpp:993
 msgid "Not modified"
@@ -148,7 +148,7 @@ msgstr "Dialihkan"
 
 #: lobby/XmppClient.cpp:998
 msgid "Remote server not found"
-msgstr "Server pengendali tidak ditemukan"
+msgstr "Server tidak ditemukan"
 
 #: lobby/XmppClient.cpp:999
 msgid "Remote server timeout"
@@ -156,7 +156,7 @@ msgstr "Waktu server pengendali habis"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
-msgstr "Batasan sumber daya"
+msgstr "Melebihi sumber daya yang tersedia"
 
 #: lobby/XmppClient.cpp:1001
 msgid "Service unavailable"
@@ -185,9 +185,9 @@ msgstr "Error yang tak dapat didefinisikan"
 #: ps/SavedGame.cpp:131
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Menyimpan permainan ke '%s'"
+msgstr "Permainan disimpan ke '%s'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Gambar layar disimpan ke '%s'"
+msgstr "Tangkapan layar disimpan ke '%s'"

@@ -3,23 +3,24 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# catopsi, 2015
+# LOUKAS SKOUROLIAKOS, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Chris Vl <chrisvl97@gmail.com>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
 # Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2014-2015
 # malvanos <malvanos@gmail.com>, 2014
 # Menelaos Vergis <menelaosvergis@gmail.com>, 2014
-# Nick Mantas <nmantas@aol.com>, 2014
+# Nick Mantas <inactive+nickthegreek@transifex.com>, 2014
 # ridergr <ridergr@gmail.com>, 2015
 # Thanasis Mousiolis <thanasism@yahoo.com>, 2014
 # Traumflut <sophiareg95@gmail.com>, 2014
+# Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-02-26 03:19+0000\n"
-"Last-Translator: Dimitrios Kekakos <mitsoskekakos@gmail.com>\n"
+"PO-Revision-Date: 2015-03-15 02:14+0000\n"
+"Last-Translator: Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr "Αστική Δομή"
+msgstr "Αστικής δομής"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
@@ -42,7 +43,7 @@ msgstr "Aστικό Κέντρο"
 #: simulation/templates/template_structure_civic_civil_centre.xml:66
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Χτίσε για να αποκτήσεις μεγάλες εκτάσεις περιοχής. Εκπαίδευσε πολίτες. Φρουρά: 20."
+msgstr "Χτίσε για να αποκτήσεις μεγάλες εκτάσεις περιοχής. Εκπαίδευσε πολίτες. Οχυρώνει: 20 μονάδες."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
@@ -74,13 +75,13 @@ msgstr "Αύρα Θεραπείας"
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Θεραπεύει τις γύρο μονάδες 1 ΗP ανά δευτερόλεπτο"
+msgstr "Θεραπεύει τις κοντινές μονάδες ανά 1 HP το δευτερόλεπτο"
 
 #: simulation/templates/template_structure_civic_temple.xml:43
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr "Εκπαιδεύστε θεραπευτές. Χωράει μέχρι και 20 μονάδες για να τις θεραπεύσει με γρήγορο ρυθμό(3 HP το δευτερόλεπτο). Αναβάθμησε θεραπευτικές και θρησκευτικές βελτιώσεις "
+msgstr "Εκπαιδεύστε θεραπευτές. Οχυρώνει μέχρι και 20 μονάδες για να τις θεραπεύσει με γρήγορο ρυθμό(3 HP το δευτερόλεπτο). Eρεύνησε θεραπευτικές και θρησκευτικές αναβαθμίσεις."
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -91,7 +92,7 @@ msgstr "Εκπαιδεύστε θεραπευτές. Χωράει μέχρι κ�
 #: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
-msgstr "Κωμόπολη"
+msgstr "Πόλη"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
@@ -129,7 +130,7 @@ msgstr "Κατασκεύασε σε ουδέτερες και φιλικές π�
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
 msgid "Outpost"
-msgstr "Προφυλακή"
+msgstr "Φυλάκιο"
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
@@ -138,7 +139,7 @@ msgstr "Πέτρινο τείχος"
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Οχύρωση με χαράκωμα της πόλης για μια θαραλλέα υπεράσπιση."
+msgstr "Οχύρωσε την πόλη για μια θαραλλέα υπεράσπιση."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:27
 msgid "City Gate"
@@ -147,7 +148,7 @@ msgstr "Πύλη της Πόλης"
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Επιτρέπει σε μονάδες την πρόσβαση διαμέσου του τείχους της πόλης. Μπορεί να κλειδωθεί για να αποτρέψει την πρόσβαση."
+msgstr "Επιτρέπει στις μονάδες να εισέλθουν μέσα στα τείχη της πόλης. Μπορεί να κλειδωθεί για να αποτρέψει την πρόσβαση."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
@@ -157,7 +158,7 @@ msgstr " Τείχος Προστασίας"
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr "Οι μονάδες στα τείχη έχουν 3 επιπλέον επίπεδα Πανοπλίας"
+msgstr "Οι μονάδες στα τείχη έχουν 3 επιπλέον επίπεδα Άμυνας."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -169,11 +170,11 @@ msgstr "Μετάτρεψε τα Πέτρινα Τείχη σε Πύλη Πόλη
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:49
 msgid "Wall Turret"
-msgstr "Πύργος Τείχους"
+msgstr "Πυργίσκος Τείχους"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Εκτοξεύει βέλη. Φρούρησε, για να υπερασπιστείς ένα τείχος της πόλης έναντι επιτεθέμενων."
+msgstr "Εκτοξεύει βέλη. Οχύρωσε, για να υπερασπιστείς ένα τείχος της πόλης έναντι των επιτεθέμενων."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -190,7 +191,7 @@ msgstr "Οικονομικό"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:22
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Σημείο απόθεσης για ξυλεία, πέτρα και μέταλο. Ερεύνησε βελτιώσεις συλλογής αυτών των υλικών."
+msgstr "Σημείο απόθεσης για τροφή. Ερεύνησε για βελτιώσεις του τρόπου συλλογής της τροφής."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:24
 #: simulation/templates/template_structure_economic_farmstead.xml:21
@@ -239,7 +240,7 @@ msgstr "Στρατιωτική"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Εκπαίδευσε πολίτες-στρατιώτες. Ερεύνησε βελτιώσεις της εκπαίδευσης. Φρουρά: 10"
+msgstr "Εκπαίδευσε πολίτες-στρατιώτες. Ερεύνησε βελτιώσεις της εκπαίδευσης. Οχύρωση: 10 μονάδες"
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -248,7 +249,7 @@ msgstr "Στρατώνες"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr "Ανακαλύψτε βελτιώσεις για τα όπλα και τις πανοπλίες"
+msgstr "Ερεύνησε για αναβαθμίσεις όπλων και τις πανοπλιών."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -277,7 +278,7 @@ msgstr "Πρεσβεία"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr "Εκπαίδευσε ήρωες και πρωταθλητές και κατασκεύασε πολιορκητικές μηχανές. Ανακάλυψε βελτιώσεις για τις πολιορκητικές μηχανές. Φρουρά: 20."
+msgstr "Εκπαίδευσε ήρωες, πρωταθλητές και κατασκεύασε πολιορκητικές μηχανές. Ερεύνησε για αναβαθμίσεις των πολιορκητικών μηχανών. Οχύρωση: 20 μονάδες."
 
 #: simulation/templates/template_structure_military_fortress.xml:57
 msgid "City"
@@ -301,7 +302,7 @@ msgstr "Πόρος"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Ανέθρεψε κοπάδια ζώων για τροφή. Βάλε τα οικόσιτα ζώα εδώ για να έχεις μία μικρή αλλά σταθερή ροή τροφής ή άλλα μπόνους (Δεν έχει προστεθεί ακόμα)"
+msgstr "Ανέθρεψε κοπάδια ζώων για τροφή. Τοποθέτησε τα οικόσιτα ζώα εδώ για να έχεις μία μικρή αλλά σταθερή ροή τροφής ή άλλα πλεονεκτήματα (Δεν έχει προστεθεί ακόμα)."
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
@@ -443,7 +444,7 @@ msgstr "Εμπόριο"
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr "Ελληνική Προφυλακή."
+msgstr "Ελληνικό φυλάκιο"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
@@ -1393,7 +1394,7 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr ""
+msgstr "Φτηνά παρόμοια με στρατώνα κτήρια τα οποία μπορούν να χτιστούν και σε ουδέτερη περιοχή, αλλά δεν δίνει επιρροή περιοχής.\n- Εκπαίδευσε Μισθοφόρους\n- Ελάχιστη απόσταση από άλλους στρατιωτικούς οικισμούς: 100 μέτρα"
 
 #: simulation/templates/structures/ptol_military_colony.xml:8
 #: simulation/templates/structures/sele_military_colony.xml:8
@@ -1415,7 +1416,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Αυτό είναι το κτίριο επέκτασης των Πτολεμαίων, παρόμοιο με Αστικά Κέντρα άλλων φατριών. Είναι πιο αδύναμο και δίνει μικρότερη επιρροή περιοχής, αλλά είναι φθηνότερο και χτίζεται γρηγορότερα.\n- Εκπαιδεύει άποικους-στρατιώτες διαφόρων εθνικοτήτων .\n- Ελάχιστη απόσταση από τις άλλες Στρατιωτικές Αποικίες: 120 μέτρα."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1492,7 +1493,7 @@ msgstr "Βίλα"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
-msgstr ""
+msgstr "Ager"
 
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
@@ -1508,7 +1509,7 @@ msgstr "Η αγορά"
 
 #: simulation/templates/structures/rome_outpost.xml:5
 msgid "Vigilarium"
-msgstr ""
+msgstr "Vigilarium"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:31
 msgid "Siege Wall Gate"
@@ -1516,7 +1517,7 @@ msgstr "Πύλη Πολιορκητικού Τείχους"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:32
 msgid "Porta Circummunitionis"
-msgstr ""
+msgstr "Porta Circummunitionis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:51
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
@@ -1529,14 +1530,14 @@ msgstr "Πολιορκητικό Τείχος"
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 msgid "Murus Circummunitionis"
-msgstr ""
+msgstr "Murus Circummunitionis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:57
 #: simulation/templates/structures/rome_siege_wall_medium.xml:51
 #: simulation/templates/structures/rome_siege_wall_short.xml:38
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr ""
+msgstr "Ένα ξύλινο τείχος εκ πασσάλων που χτίζεται σε εχθρικές και σε ουδέτερες περιοχές"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:58
 msgid "Convert Siege Wall into Siege Wall Gate"
@@ -1548,11 +1549,11 @@ msgstr "Πολιορκητικό Τείχος Πύργου"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
-msgstr ""
+msgstr "Turris Circummunitionis"
 
 #: simulation/templates/structures/rome_storehouse.xml:5
 msgid "Receptaculum"
-msgstr ""
+msgstr "Receptaculum"
 
 #: simulation/templates/structures/rome_temple.xml:9
 msgid "Aedes"
@@ -1582,7 +1583,7 @@ msgstr "Τέμενος Εστίας"
 msgid ""
 "Build this temple to greatly increase the loyalty of your buildings and "
 "female-citizens (helps prevent their capture)."
-msgstr ""
+msgstr "Χτίσε αυτόν το ναό για να αυξήσεις κατά πολύ την πίστη των κτιρίων σας και των θηλυκών-πολιτών σας (βοηθά στην αποφυγή της αιχμαλώτησής τους)."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1602,7 +1603,7 @@ msgstr "Ένα προσωρινό καταφύγιο για στρατιώτες
 #: simulation/templates/structures/rome_wall_short.xml:13
 #: simulation/templates/structures/rome_wallset_stone.xml:5
 msgid "Moenia"
-msgstr ""
+msgstr "Moenia"
 
 #: simulation/templates/structures/rome_wall_gate.xml:9
 msgid "Porta"
@@ -1618,7 +1619,7 @@ msgstr "Τοίχοισμα Λατρέσιου"
 
 #: simulation/templates/structures/rome_wonder.xml:17
 msgid "Aedes Iovis Optimi Maximi"
-msgstr ""
+msgstr "Aedes Iovis Optimi Maximi"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
