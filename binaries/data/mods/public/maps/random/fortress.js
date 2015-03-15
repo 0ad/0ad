@@ -175,7 +175,7 @@ for (var i=0; i < numPlayers; i++)
 	}
 	
 	// Place custom fortress
-	if (civ == "brit" || civ == "celt" || civ == "gaul" || civ == "iber")
+	if (civ == "brit" || civ == "gaul" || civ == "iber")
 	{
 		var wall = ["gate", "tower", "wallLong",
 			"cornerIn", "wallLong", "barracks", "tower", "wallLong", "tower", "house", "wallLong",

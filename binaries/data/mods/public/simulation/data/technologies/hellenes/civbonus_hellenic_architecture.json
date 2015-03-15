@@ -2,7 +2,7 @@
 	"genericName": "Hellenic Architecture",
 	"autoResearch": true,
 	"description": "The Greeks used stone construction from early Mycenaean times.",
-	"requirements": {"any": [{"civ": "hele"},{"civ": "athen"},{"civ": "mace"},{"civ": "spart"},{"civ": "theb"}]},
+	"requirements": {"any": [{"civ": "athen"},{"civ": "mace"},{"civ": "spart"}]},
 	"modifications": [
 		{"value": "Health/Max", "multiply": 1.1},
 		{"value": "Cost/BuildTime", "multiply": 1.1}

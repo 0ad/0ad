@@ -40,11 +40,11 @@
   "Name": "Ships Demo",
   "PlayerData": [
     {
-      "Civ": "hele"
+      "Civ": "athen"
     },
     {
       "AI": "",
-      "Civ": "hele"
+      "Civ": "athen"
     }
   ],
   "RevealMap": false
@@ -70,61 +70,61 @@
 			<Orientation y="0.06308"/>
 		</Entity>
 		<Entity uid="15">
-			<Template>units/hele_ship_bireme</Template>
+			<Template>units/athen_ship_bireme</Template>
 			<Player>1</Player>
 			<Position x="476.02503" z="219.328"/>
 			<Orientation y="-0.04754"/>
 		</Entity>
 		<Entity uid="16">
-			<Template>units/hele_ship_trireme</Template>
+			<Template>units/athen_ship_trireme</Template>
 			<Player>1</Player>
 			<Position x="504.155" z="215.21683"/>
 			<Orientation y="-0.05802"/>
 		</Entity>
 		<Entity uid="18">
-			<Template>units/hele_ship_merchant</Template>
+			<Template>units/athen_ship_merchant</Template>
 			<Player>1</Player>
 			<Position x="449.73887" z="224.0693"/>
 			<Orientation y="-0.14995"/>
 		</Entity>
 		<Entity uid="19">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="431.68952" z="229.94391"/>
 			<Orientation y="-0.07242"/>
 		</Entity>
 		<Entity uid="23">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>2</Player>
 			<Position x="851.08533" z="565.38135"/>
 			<Orientation y="-2.9915"/>
 		</Entity>
 		<Entity uid="24">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>2</Player>
 			<Position x="215.3224" z="579.32837"/>
 			<Orientation y="2.84787"/>
 		</Entity>
 		<Entity uid="25">
-			<Template>units/hele_ship_merchant</Template>
+			<Template>units/athen_ship_merchant</Template>
 			<Player>2</Player>
 			<Position x="564.40119" z="570.3401"/>
 			<Orientation y="-3.11121"/>
 		</Entity>
 		<Entity uid="26">
-			<Template>units/hele_ship_merchant</Template>
+			<Template>units/athen_ship_merchant</Template>
 			<Player>2</Player>
 			<Position x="783.40027" z="570.21924"/>
 			<Orientation y="-3.08236"/>
 		</Entity>
 		<Entity uid="27">
-			<Template>units/hele_ship_trireme</Template>
+			<Template>units/athen_ship_trireme</Template>
 			<Player>2</Player>
 			<Position x="436.29468" z="578.99036"/>
 			<Orientation y="3.11654"/>
 		</Entity>
 		<Entity uid="28">
-			<Template>units/hele_ship_bireme</Template>
+			<Template>units/athen_ship_bireme</Template>
 			<Player>2</Player>
 			<Position x="621.5608" z="580.42377"/>
 			<Orientation y="-3.06238"/>
@@ -154,7 +154,7 @@
 			<Orientation y="3.06443"/>
 		</Entity>
 		<Entity uid="33">
-			<Template>units/celt_ship_trireme</Template>
+			<Template>units/gaul_ship_trireme</Template>
 			<Player>1</Player>
 			<Position x="575.07416" z="220.04925"/>
 			<Orientation y="-0.04952"/>
@@ -166,13 +166,13 @@
 			<Orientation y="-0.0106"/>
 		</Entity>
 		<Entity uid="36">
-			<Template>units/celt_ship_merchant</Template>
+			<Template>units/gaul_ship_merchant</Template>
 			<Player>1</Player>
 			<Position x="550.01886" z="226.13765"/>
 			<Orientation y="-0.06652"/>
 		</Entity>
 		<Entity uid="37">
-			<Template>units/celt_ship_fishing</Template>
+			<Template>units/gaul_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="525.74158" z="229.36063"/>
 			<Orientation y="-0.09922"/>

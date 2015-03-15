@@ -31,19 +31,19 @@
 	<ScriptSettings><![CDATA[
 {
   "Name": "Barcania",
-  "Description": "A wild and wooded isle, full of forests, gold, and mystery...  mountains, seas, and thick forests make for a very dynamic and fast-paced 3-player map with lots of potential for skirmishing and guerilla warfare as well as tough defensive fighting or aggressive maneuvers. 1 Celt player, 2 Hellenic players.",
+  "Description": "A wild and wooded isle, full of forests, gold, and mystery...  mountains, seas, and thick forests make for a very dynamic and fast-paced 3-player map with lots of potential for skirmishing and guerilla warfare as well as tough defensive fighting or aggressive maneuvers.",
   "Keywords": [
     "hidden"
   ],
   "PlayerData": [
     {
-      "Civ": "celt"
+		"Name":"Player 1"
     },
     {
-      "Civ": "hele"
+		"Name":"Player 2"
     },
     {
-      "Civ": "hele"
+		"Name":"Player 3"
     }
   ],
   "CircularMap": true
@@ -5787,163 +5787,163 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="967">
-			<Template>structures/celt_civil_centre</Template>
+			<Template>skirmish/structures/default_civil_centre</Template>
 			<Player>1</Player>
 			<Position x="171.47651" z="315.37598"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="968">
-			<Template>structures/hele_civil_centre</Template>
+			<Template>skirmish/structures/default_civil_centre</Template>
 			<Player>2</Player>
 			<Position x="554.32502" z="101.70438"/>
 			<Orientation y="1.52556"/>
 		</Entity>
 		<Entity uid="969">
-			<Template>structures/hele_civil_centre</Template>
+			<Template>skirmish/structures/default_civil_centre</Template>
 			<Player>3</Player>
 			<Position x="574.80274" z="792.94623"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="970">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="595.09754" z="783.94996"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="971">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="591.9911" z="780.94623"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="972">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="588.30335" z="775.36542"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="973">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="583.44361" z="769.80573"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="974">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="589.98584" z="768.13819"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="975">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="593.29444" z="773.02967"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="976">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="595.55866" z="776.8454"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="977">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="585.43995" z="110.21589"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="978">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="579.98902" z="106.5425"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="979">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="580.28284" z="99.09533"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="980">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="584.08393" z="94.41083"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="981">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="588.60425" z="95.89203"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="982">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="591.03187" z="102.37676"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="983">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="590.50312" z="109.39116"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="984">
-			<Template>units/celt_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="209.04038" z="337.07279"/>
 			<Orientation y="-2.03518"/>
 		</Entity>
 		<Entity uid="985">
-			<Template>units/celt_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="200.63967" z="328.20105"/>
 			<Orientation y="-2.89873"/>
 		</Entity>
 		<Entity uid="986">
-			<Template>units/celt_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="194.44196" z="290.58619"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="987">
-			<Template>units/celt_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="202.6516" z="280.38587"/>
 			<Orientation y="1.43902"/>
 		</Entity>
 		<Entity uid="988">
-			<Template>units/celt_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="219.66514" z="304.1772"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="989">
-			<Template>units/celt_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="174.85602" z="346.32938"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="990">
-			<Template>units/celt_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="137.56022" z="289.878"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="991">
-			<Template>units/celt_infantry_javelinist_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>1</Player>
 			<Position x="188.46171" z="302.994"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="992">
-			<Template>units/hele_infantry_archer_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>2</Player>
 			<Position x="572.26667" z="137.01841"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="993">
-			<Template>units/hele_infantry_javelinist_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>3</Player>
 			<Position x="603.89496" z="783.58411"/>
 			<Orientation y="2.35621"/>

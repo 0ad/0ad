@@ -1246,20 +1246,10 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 	{
 		// try to build fortresses
 		var fortressType = "structures/{civ}_fortress";
-		if (gameState.civ() === "celt")
-		{
-			if (Math.random() > 0.5)
-				fortressType = "structures/{civ}_fortress_b";
-			else
-				fortressType = "structures/{civ}_fortress_g";
-		}
 		if (queues.defenseBuilding.length() == 0 && this.canBuild(gameState, fortressType))
 		{
-			if (gameState.civ() !== "celt")
-				var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress"), true);
-			else
-				var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_b"), true)
-					+ gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_g"), true);
+			var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_b"), true)
+				+ gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_g"), true);
 			if (gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime)
 			{
 				this.fortressStartTime = gameState.ai.elapsedTime;
@@ -1269,11 +1259,8 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 
 		// let's add a siege building plan to the current attack plan if there is none currently.
 		var numSiegeBuilder = 0;
-		if (gameState.civ() !== "celt" && gameState.civ() !== "mace" && gameState.civ() !== "maur")
+		if (gameState.civ() !== "mace" && gameState.civ() !== "maur")
 			numSiegeBuilder += gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true);
-		if (gameState.civ() === "celt")
-			numSiegeBuilder += (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress_b"), true)
-				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress_g"), true));
 		if (gameState.civ() === "mace" || gameState.civ() === "maur" || gameState.civ() === "rome")
 			numSiegeBuilder += gameState.countEntitiesByType(this.bAdvanced[0], true);
 		if (numSiegeBuilder > 0)

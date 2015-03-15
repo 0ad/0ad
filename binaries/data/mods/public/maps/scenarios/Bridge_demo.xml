@@ -39,7 +39,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "athen",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -50,7 +50,7 @@
     },
     {
       "AI": "",
-      "Civ": "celt",
+      "Civ": "gaul",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -21394,13 +21394,13 @@
 			<Orientation y="1.84865"/>
 		</Entity>
 		<Entity uid="4513">
-			<Template>units/celt_support_female_citizen</Template>
+			<Template>units/gaul_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="108.67644" z="123.14678"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4529">
-			<Template>structures/celt_civil_centre</Template>
+			<Template>structures/gaul_civil_centre</Template>
 			<Player>2</Player>
 			<Position x="103.36625" z="146.67057"/>
 			<Orientation y="-2.35462"/>
@@ -22237,43 +22237,43 @@
 			<Orientation y="-0.79319"/>
 		</Entity>
 		<Entity uid="4753">
-			<Template>units/hele_infantry_spearman_e</Template>
+			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="521.76893" z="462.53141"/>
 			<Orientation y="-1.7173"/>
 		</Entity>
 		<Entity uid="4756">
-			<Template>units/hele_infantry_spearman_e</Template>
+			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="512.45014" z="460.50287"/>
 			<Orientation y="-1.76986"/>
 		</Entity>
 		<Entity uid="4761">
-			<Template>units/hele_infantry_spearman_b</Template>
+			<Template>units/athen_infantry_spearman_b</Template>
 			<Player>1</Player>
 			<Position x="512.4383" z="465.52298"/>
 			<Orientation y="-1.7767"/>
 		</Entity>
 		<Entity uid="4764">
-			<Template>units/hele_infantry_spearman_b</Template>
+			<Template>units/athen_infantry_spearman_b</Template>
 			<Player>1</Player>
 			<Position x="527.36036" z="464.03846"/>
 			<Orientation y="-1.82261"/>
 		</Entity>
 		<Entity uid="4765">
-			<Template>units/hele_champion_ranged_polis</Template>
+			<Template>units/athen_champion_ranged</Template>
 			<Player>1</Player>
 			<Position x="532.72901" z="466.09537"/>
 			<Orientation y="-1.57486"/>
 		</Entity>
 		<Entity uid="4770">
-			<Template>units/hele_hero_leonidas</Template>
+			<Template>units/spart_hero_leonidas</Template>
 			<Player>1</Player>
 			<Position x="517.69819" z="465.94925"/>
 			<Orientation y="-1.67417"/>
 		</Entity>
 		<Entity uid="4779">
-			<Template>units/celt_infantry_spearman_e</Template>
+			<Template>units/gaul_infantry_spearman_e</Template>
 			<Player>2</Player>
 			<Position x="283.57975" z="508.20722"/>
 			<Orientation y="1.79245"/>

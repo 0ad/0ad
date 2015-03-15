@@ -22,17 +22,14 @@ var baseConfig = {
 			"default" : [ "structures/{civ}_barracks" ]
 		},
 		"advanced" : {
-			"hele" : [ "structures/{civ}_gymnasion", "structures/{civ}_fortress" ],
 			"cart" : [ "structures/{civ}_fortress", "structures/{civ}_embassy_celtic",
 					"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
-			"celt" : [ "structures/{civ}_kennel", "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ],
 			"iber" : [ "structures/{civ}_fortress" ],
 			"pers" : [ "structures/{civ}_fortress", "structures/{civ}_stables", "structures/{civ}_apadana" ],
 			"rome" : [ "structures/{civ}_army_camp", "structures/{civ}_fortress" ]
 		},
 		"fort" : {
 			"default" : [ "structures/{civ}_fortress" ],
-			"celt" : [ "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ]
 		}
 	},
 

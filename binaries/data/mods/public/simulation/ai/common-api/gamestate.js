@@ -149,8 +149,6 @@ m.GameState.prototype.cityPhase = function()
 {
 	if (this.playerData.civ == "athen")
 		return "phase_city_athen";
-	else if (this.playerData.civ == "celt")
-		return "phase_city_gauls";
 	return "phase_city_generic";
 };
 

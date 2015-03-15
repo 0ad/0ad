@@ -3,7 +3,6 @@
 	"genericName": "Quilted Body Armor",
 	"specificName": {
 		"generic": "Spolas",
-		"hele": "Spolas",
 		"mace": "Spolas",
 		"spart": "Spolas",
 		"athen": "Spolas",
@@ -12,13 +11,12 @@
 		"cart": "Spolas",
 		"iber": "Spolas",
 		"maur": "Spolas",
-		"celt": "Spolas",
 		"brit": "Spolas",
 		"gaul": "Spolas"
 	},
 	"description": "Quilted linen or leather body armor for infantrymen.",
 	"cost": {"food": 0, "wood": 50, "stone": 0, "metal": 0},
-	"requirements": {"any": [{"tech": "phase_town"},{"civ": "celt"},{"civ": "brit"},{"civ": "gaul"}]},
+	"requirements": {"any": [{"tech": "phase_town"},{"civ": "brit"},{"civ": "gaul"}]},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_leather.png",
 	"researchTime": 40,

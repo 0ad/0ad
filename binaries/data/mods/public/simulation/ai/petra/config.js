@@ -58,7 +58,6 @@ m.Config = function(difficulty)
 			"cart" : [ "structures/{civ}_embassy_celtic",
 				"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
 			"gaul" : [ "structures/{civ}_tavern" ],
-			"hele" : [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion", "structures/{civ}_theatron" ],
 			"iber" : [ "structures/{civ}_monument" ],
 			"mace" : [ "structures/{civ}_siege_workshop", "structures/{civ}_library", "structures/{civ}_theatron" ],
 			"maur" : [ "structures/{civ}_elephant_stables" ],

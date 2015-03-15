@@ -2,17 +2,15 @@
 	"pair": "pair_cav_01",
 	"genericName": "Chamfron",
 	"specificName": {
-		"hele": "Prometoopidion",
 		"mace": "Prometoopidion",
 		"spart": "Prometoopidion",
 		"athen": "Prometoopidion",
 		"sele": "Prometoopidion",
-		"ptol": "Prometoopidion",
-		"theb": "Prometoopidion"
+		"ptol": "Prometoopidion"
 	},
 	"description": "Metal armor for a horse's face.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 200},
-	"requirements": {"any": [{"tech": "phase_town"},{"civ": "celt"},{"civ": "brit"},{"civ": "gaul"}]},
+	"requirements": {"any": [{"tech": "phase_town"},{"civ": "brit"},{"civ": "gaul"}]},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_plates_cavalry.png",
 	"researchTime": 40,

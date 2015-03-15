@@ -139,7 +139,7 @@ AddMock(100, IID_StatisticsTracker, {
 
 AddMock(101, IID_Player, {
 	GetName: function() { return "Player 2"; },
-	GetCiv: function() { return "celt"; },
+	GetCiv: function() { return "mace"; },
 	GetColour: function() { return { r: 1, g: 0, b: 0, a: 1}; },
 	GetPopulationCount: function() { return 40; },
 	GetPopulationLimit: function() { return 30; },
@@ -259,7 +259,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 		},
 		{
 			name: "Player 2",
-			civ: "celt",
+			civ: "mace",
 			colour: { r:1, g:0, b:0, a:1 },
 			popCount: 40,
 			popLimit: 30,
@@ -353,7 +353,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 		},
 		{
 			name: "Player 2",
-			civ: "celt",
+			civ: "mace",
 			colour: { r:1, g:0, b:0, a:1 },
 			popCount: 40,
 			popLimit: 30,
