@@ -20,11 +20,12 @@
     <Civ>gaia</Civ>
     <SpecificName>Hut</SpecificName>
     <History>This is a small round Celtic hut.</History>
-	<Tooltip>Add +2 to Population Cap.</Tooltip>
+    <Tooltip>Add +2 to Population Cap.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="7.0" depth="7.0"/>
   </Obstruction>
+  <ProductionQueue disable=""/>
   <StatusBars>
     <HeightOffset>7.0</HeightOffset>
   </StatusBars>
