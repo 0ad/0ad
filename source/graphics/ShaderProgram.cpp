@@ -26,8 +26,8 @@
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Overlay.h"
 #include "ps/PreprocessorWrapper.h"
+#include "ps/Shapes.h"
 
 #if !CONFIG2_GLES
 

@@ -41,7 +41,7 @@ GUI Core, stuff that the whole GUI uses
 
 // I would like to just forward declare CSize, but it doesn't
 //  seem to be defined anywhere in the predefined header.
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 
 #include "ps/CStr.h"
 

@@ -21,8 +21,8 @@
 
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
-#include "ps/Overlay.h"
 #include "ps/Profile.h"
+#include "ps/Shapes.h"
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPlayer.h"

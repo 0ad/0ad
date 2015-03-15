@@ -17,8 +17,8 @@
 
 #include "lib/self_test.h"
 
-#include "ps/Overlay.h"
 #include "ps/CLogger.h"
+#include "ps/Shapes.h"
 
 class TestCColor : public CxxTest::TestSuite 
 {

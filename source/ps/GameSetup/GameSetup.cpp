@@ -66,7 +66,6 @@
 #include "ps/Joystick.h"
 #include "ps/Loader.h"
 #include "ps/Mod.h"
-#include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Profiler2.h"

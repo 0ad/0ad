@@ -21,8 +21,8 @@
 #include "graphics/ShaderTechnique.h"
 #include "graphics/Texture.h"
 #include "lib/res/handle.h"
-#include "ps/Overlay.h"
 #include "ps/CStr.h"
+#include "ps/Shapes.h"
 #include <vector>
 
 struct SGUIImageEffects;

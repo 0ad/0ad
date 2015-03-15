@@ -27,7 +27,7 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 #include "ps/XML/XeroXMB.h"
 #include "ps/XML/Xeromyces.h"
 

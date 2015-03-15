@@ -42,7 +42,6 @@ A GUI Sprite
 //--------------------------------------------------------
 #include "GUIbase.h"
 
-#include "ps/Overlay.h"
 #include "lib/res/graphics/ogl_tex.h"
 
 //--------------------------------------------------------

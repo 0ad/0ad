@@ -25,7 +25,6 @@
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"
-#include "ps/Overlay.h"
 #include "renderer/Renderer.h"
 
 #if !CONFIG2_GLES

@@ -38,7 +38,6 @@
 #include "graphics/Terrain.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
-#include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
 

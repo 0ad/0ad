@@ -22,7 +22,7 @@
 #include "graphics/Texture.h"
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 #include "simulation2/helpers/Player.h"
 
 class CMaterial

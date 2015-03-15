@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,16 +16,18 @@
  */
 
 /*
-Overlay.h
+Shapes.h
 
 --Overview--
 
-	Class representing 2D screen overlays; includes functionality for overlay
-	position, color, texture and borders.
+	Classes mostly useful for representing 2D screen overlays;
+	includes functionality for overlay position, color, texture and borders.
+
+	CColor is used more widely for various game systems.
 */
 
-#ifndef INCLUDED_OVERLAY
-#define INCLUDED_OVERLAY
+#ifndef INCLUDED_SHAPES
+#define INCLUDED_SHAPES
 
 #include "graphics/SColor.h"
 
@@ -235,4 +237,4 @@ public:
 };
 
 
-#endif
+#endif // INCLUDED_SHAPES

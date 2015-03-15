@@ -18,7 +18,6 @@
 #ifndef INCLUDED_SILHOUETTERENDERER
 #define INCLUDED_SILHOUETTERENDERER
 
-#include "ps/Overlay.h"
 #include "graphics/Overlay.h"
 #include "maths/BoundingBoxAligned.h"
 

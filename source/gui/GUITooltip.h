@@ -22,7 +22,7 @@ class IGUIObject;
 class CGUI;
 
 #include "ps/CStr.h"
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 
 class GUITooltip
 {
