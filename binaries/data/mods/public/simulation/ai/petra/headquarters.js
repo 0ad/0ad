@@ -1248,8 +1248,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		var fortressType = "structures/{civ}_fortress";
 		if (queues.defenseBuilding.length() == 0 && this.canBuild(gameState, fortressType))
 		{
-			var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_b"), true)
-				+ gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_g"), true);
+			var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress"), true);
 			if (gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime)
 			{
 				this.fortressStartTime = gameState.ai.elapsedTime;
