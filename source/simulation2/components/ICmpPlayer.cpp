@@ -23,7 +23,7 @@
 #include "simulation2/system/InterfaceScripted.h"
 #include "simulation2/scripting/ScriptComponent.h"
 
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 
 BEGIN_INTERFACE_WRAPPER(Player)
 END_INTERFACE_WRAPPER(Player)

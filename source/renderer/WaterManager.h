@@ -26,7 +26,7 @@
 #include "lib/ogl.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector2D.h"
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 #include "renderer/VertexBufferManager.h"
 
 class CSimulation2;

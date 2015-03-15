@@ -28,10 +28,20 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 	
 	if (placementType == "shore")
 	{
-		var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction")
-			| gameState.getPassabilityClassMask("building-shore")
-			| gameState.getPassabilityClassMask("default");
-
+		if (passabilityMap.cellSize == 4)
+		{
+			var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction")
+				| gameState.getPassabilityClassMask("building-shore")
+				| gameState.getPassabilityClassMask("default");
+			var obstructionDefault = gameState.getPassabilityClassMask("default");
+		}
+		else // new pathFinder branch
+		{
+			var obstructionMask = gameState.getPassabilityClassMask("default-no-clearance")
+				| gameState.getPassabilityClassMask("building-shore")
+				| gameState.getPassabilityClassMask("default-terrain-only");
+			var obstructionDefault = gameState.getPassabilityClassMask("default-terrain-only");
+		}
 		var okay = false;
 		for (var x = 0; x < passabilityMap.width; ++x)
 		{
@@ -48,7 +58,7 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 					obstructionTiles[i] = 0;
 					continue;
 				}
-				if ((passabilityMap.data[i] & (gameState.getPassabilityClassMask("building-shore") | gameState.getPassabilityClassMask("default"))))
+				if ((passabilityMap.data[i] & (gameState.getPassabilityClassMask("building-shore") | obstructionDefault)))
 				{
 					obstructionTiles[i] = 0;
 					continue;
@@ -64,10 +74,10 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 					var index3 = x + stuff[0]*3 + (y+stuff[1]*3)*passabilityMap.width;
 					var index4 = x + stuff[0]*4 + (y+stuff[1]*4)*passabilityMap.width;
 					
-					if ((passabilityMap.data[index] & gameState.getPassabilityClassMask("default")) && gameState.ai.accessibility.getRegionSizei(index,true) > 500)
-						if ((passabilityMap.data[index2] & gameState.getPassabilityClassMask("default")) && gameState.ai.accessibility.getRegionSizei(index2,true) > 500)
-							if ((passabilityMap.data[index3] & gameState.getPassabilityClassMask("default")) && gameState.ai.accessibility.getRegionSizei(index3,true) > 500)
-								if ((passabilityMap.data[index4] & gameState.getPassabilityClassMask("default")) && gameState.ai.accessibility.getRegionSizei(index4,true) > 500)
+					if ((passabilityMap.data[index] & obstructionDefault) && gameState.ai.accessibility.getRegionSizei(index,true) > 500)
+						if ((passabilityMap.data[index2] & obstructionDefault) && gameState.ai.accessibility.getRegionSizei(index2,true) > 500)
+							if ((passabilityMap.data[index3] & obstructionDefault) && gameState.ai.accessibility.getRegionSizei(index3,true) > 500)
+								if ((passabilityMap.data[index4] & obstructionDefault) && gameState.ai.accessibility.getRegionSizei(index4,true) > 500)
 								{
 									if (available < 2)
 										available++;
@@ -93,8 +103,12 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 	else
 	{
 		var playerID = PlayerID;
-		var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction")
-			| gameState.getPassabilityClassMask("building-land");
+		if (passabilityMap.cellSize == 4)
+			var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction")
+				| gameState.getPassabilityClassMask("building-land");
+		else  // new pathFinder branch
+			var obstructionMask = gameState.getPassabilityClassMask("default-no-clearance")
+				| gameState.getPassabilityClassMask("building-land");
 		
 		for (var i = 0; i < passabilityMap.data.length; ++i)
 		{
@@ -160,7 +174,10 @@ m.createBorderMap = function(gameState)
 	var width = map.width;
 	var border = Math.round(80 / map.cellSize);
 	var passabilityMap = gameState.sharedScript.passabilityMap;
-	var obstructionLandMask = gameState.getPassabilityClassMask("default");
+	if (passabilityMap.cellSize == 4)
+		var obstructionLandMask = gameState.getPassabilityClassMask("default");
+	else  // new pathFinder branch
+		var obstructionLandMask = gameState.getPassabilityClassMask("default-no-clearance");
 	var obstructionWaterMask = gameState.getPassabilityClassMask("ship");
 	if (gameState.ai.circularMap)
 	{

@@ -55,7 +55,6 @@ CGUI
 #include "ps/Filesystem.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
-#include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/XML/Xeromyces.h"

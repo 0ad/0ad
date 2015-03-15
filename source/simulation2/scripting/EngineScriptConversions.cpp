@@ -24,7 +24,7 @@
 #include "maths/FixedVector2D.h"
 #include "maths/FixedVector3D.h"
 #include "ps/CLogger.h"
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 #include "ps/utf16string.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/system/IComponent.h"

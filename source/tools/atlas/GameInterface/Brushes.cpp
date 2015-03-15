@@ -19,8 +19,8 @@
 
 #include "Brushes.h"
 
-#include "ps/Overlay.h"
 #include "ps/Game.h"
+#include "ps/Shapes.h"
 #include "ps/World.h"
 #include "graphics/Terrain.h"
 #include "lib/ogl.h"

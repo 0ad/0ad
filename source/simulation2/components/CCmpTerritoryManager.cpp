@@ -26,7 +26,6 @@
 #include "graphics/TerritoryBoundary.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
-#include "ps/Overlay.h"
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 #include "renderer/TerrainOverlay.h"

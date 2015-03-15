@@ -20,7 +20,7 @@
 
 #include "maths/BoundingBoxOriented.h"
 #include "graphics/RenderableObject.h"
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 #include "simulation2/helpers/Player.h"
 
 class CModel;

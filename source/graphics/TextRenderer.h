@@ -21,7 +21,7 @@
 #include "graphics/ShaderProgramPtr.h"
 #include "maths/Matrix3D.h"
 #include "ps/CStrIntern.h"
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 
 class CFont;
 

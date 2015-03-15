@@ -38,7 +38,6 @@ GUI util
 //--------------------------------------------------------
 #include "GUIbase.h"
 // TODO Gee: New
-#include "ps/Overlay.h"
 #include "CGUI.h"
 #include "CGUISprite.h"
 #include "IGUIObject.h"

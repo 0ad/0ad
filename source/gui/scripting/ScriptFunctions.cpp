@@ -47,7 +47,6 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/Hotkey.h"
-#include "ps/Overlay.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/SavedGame.h"

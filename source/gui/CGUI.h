@@ -42,7 +42,7 @@ CGUI
 #include "GUIbase.h"
 #include "scriptinterface/ScriptInterface.h"
 
-#include "ps/Overlay.h" // CPos and CRect
+#include "ps/Shapes.h"
 
 #include "lib/input.h"
 

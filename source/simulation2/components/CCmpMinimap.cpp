@@ -25,7 +25,7 @@
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/MessageTypes.h"
 
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 
 class CCmpMinimap : public ICmpMinimap
 {

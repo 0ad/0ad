@@ -19,7 +19,6 @@
 #define INCLUDED_TIMEMANAGER
 
 #include "graphics/Texture.h"
-#include "ps/Overlay.h"
 #include "maths/Matrix3D.h"
 #include "lib/ogl.h"
 

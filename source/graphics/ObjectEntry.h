@@ -31,7 +31,7 @@ struct SPropPoint;
 
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 
 #include "graphics/ObjectBase.h"
 

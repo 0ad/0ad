@@ -21,7 +21,7 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 
-#include "ps/Overlay.h"
+#include "ps/Shapes.h"
 
 BEGIN_INTERFACE_WRAPPER(Selectable)
 DEFINE_INTERFACE_METHOD_2("SetSelectionHighlight", void, ICmpSelectable, SetSelectionHighlight, CColor, bool)

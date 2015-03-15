@@ -116,6 +116,10 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	if (cmpRangeManager)
 		ret.circularMap = cmpRangeManager.GetLosCircular();
 
+	var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
+	if (cmpTerrain)
+		ret.mapSize = 4 * cmpTerrain.GetTilesPerSide();
+
 	// Add timeElapsed
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	ret.timeElapsed = cmpTimer.GetTime();

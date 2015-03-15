@@ -28,7 +28,6 @@
 #include "graphics/Material.h"
 #include "graphics/MeshManager.h"
 #include "graphics/ModelAbstract.h"
-#include "ps/Overlay.h"
 
 struct SPropPoint;
 class CObjectEntry;

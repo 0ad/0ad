@@ -25,11 +25,6 @@ m.SharedScript = function(settings)
 	this._entityCollectionsName = new Map();
 	this._entityCollectionsByDynProp = {};
 	this._entityCollectionsUID = 0;
-	
-	// size of the map  
-	// TODO should be set in settings, for the time being recompute it assuming the passability cell size   
-	this.sizeMap = undefined;
-	this.passabilityCell = 4;
 
 	// A few notes about these maps. They're updated by checking for "create" and "destroy" events for all resources
 	// TODO: change the map when the resource amounts change for at least stone and metal mines.
@@ -150,14 +145,18 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.playersData = state.players;
 	this.timeElapsed = state.timeElapsed;
 	this.circularMap = state.circularMap;
+	this.mapSize = state.mapSize;
 	this.gameType = state.gameType;
 	this.barterPrices = state.barterPrices;
 
 	this.passabilityMap = state.passabilityMap;
-	this.passabilityMap.cellSize = this.passabilityCell;
-	this.sizeMap = this.passabilityMap.width * this.passabilityMap.cellSize;
+	if (this.mapSize % this.passabilityMap.width != 0)
+		 error("AI shared component inconsistent sizes: map=" + this.mapSize + " while passability=" +  this.passabilityMap.width);
+	this.passabilityMap.cellSize = this.mapSize / this.passabilityMap.width;
 	this.territoryMap = state.territoryMap;
-	this.territoryMap.cellSize = this.sizeMap / this.territoryMap.width;
+	if (this.mapSize % this.territoryMap.width != 0)
+		 error("AI shared component inconsistent sizes: map=" + this.mapSize + " while territory=" +  this.territoryMap.width);
+	this.territoryMap.cellSize = this.mapSize / this.territoryMap.width;
 
 /*
 	var landPassMap = new Uint8Array(this.passabilityMap.data.length);
@@ -227,9 +226,9 @@ m.SharedScript.prototype.onUpdate = function(state)
 	this.barterPrices = state.barterPrices;
 
 	this.passabilityMap = state.passabilityMap;
-	this.passabilityMap.cellSize = this.sizeMap / this.passabilityMap.width;
+	this.passabilityMap.cellSize = this.mapSize / this.passabilityMap.width;
 	this.territoryMap = state.territoryMap;
-	this.territoryMap.cellSize = this.sizeMap / this.territoryMap.width;
+	this.territoryMap.cellSize = this.mapSize / this.territoryMap.width;
 	
 	for (var i in this.gameState)
 		this.gameState[i].update(this,state);
