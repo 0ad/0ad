@@ -27,18 +27,27 @@ m.aStarPath = function(gameState, onWater, disregardEntities, targetTerritory)
 	else
 		this.waterPathfinder = false;
 
-	var pathObstruction = gameState.sharedScript.passabilityClasses["pathfinderObstruction"];
+
 	var passMap = gameState.sharedScript.passabilityMap;
 	var terrMap = gameState.sharedScript.territoryMap;
-
+	var ratio = terrMap.cellSize / passMap.cellSize;
+	if (passMap.cellSize == 4)
+		var pathObstruction = gameState.sharedScript.passabilityClasses["pathfinderObstruction"];
+	else // new pathFinder branch
+		var pathObstruction = gameState.sharedScript.passabilityClasses["default-no-clearance"];
 
 	this.widthMap = new Uint8Array(this.map.length);
 	for (var i = 0; i < this.map.length; ++i)
 	{
+		let ix = i % passMap.width;
+		let iz = Math.floor(i / passMap.width);
+		ix = Math.floor(ix / ratio);
+		iz = Math.floor(iz / ratio);
+		let j = ix + iz*terrMap.width;
 		if (this.map[i] == 0)
 			this.widthMap[i] = 0;
-		else if (!disregardEntities &&  (((terrMap.data[i] & 0x3F) !== gameState.ai.player && (terrMap.data[i] & 0x3F) !== 0
-			&& (terrMap.data[i] & 0x3F) !== targetTerritory) || (passMap.data[i] & pathObstruction)))
+		else if (!disregardEntities &&  (((terrMap.data[j] & 0x3F) !== gameState.ai.player && (terrMap.data[j] & 0x3F) !== 0
+			&& (terrMap.data[j] & 0x3F) !== targetTerritory) || (passMap.data[i] & pathObstruction)))
 			this.widthMap[i] = 1;	// we try to avoid enemy territory and pathfinder obstructions.
 		else if (!disregardEntities && this.map[i] == 30)
 			this.widthMap[i] = 0;

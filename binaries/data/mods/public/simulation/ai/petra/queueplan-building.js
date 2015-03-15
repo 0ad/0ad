@@ -335,9 +335,11 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	else
 		var secondBest = [x,z];
 
-	// default angle = 3*Math.PI/4;	
+	var territorypos = placement.gamePosToMapPos([x,z]);
+	var territoryIndex = territorypos[0] + territorypos[1]*placement.width;
+	// default angle = 3*Math.PI/4;
 	return { "x": x, "z": z, "angle": 3*Math.PI/4, "xx": secondBest[0], "zz": secondBest[1],
-		"base": gameState.ai.HQ.basesMap.map[bestIdx] };
+		"base": gameState.ai.HQ.basesMap.map[territoryIndex] };
 };
 
 /**
