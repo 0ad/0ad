@@ -260,7 +260,7 @@ void OverlayRenderer::PrepareForRendering()
 	PROFILE3("prepare overlays");
 
 	// This is where we should do something like sort the overlays by
-	// colour/sprite/etc for more efficient rendering
+	// color/sprite/etc for more efficient rendering
 
 	for (size_t i = 0; i < m->texlines.size(); ++i)
 	{

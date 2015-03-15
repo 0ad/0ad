@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>stormy</SkySet>
-		<SunColour r="0.956863" g="0.929412" b="0.721569"/>
+		<SunColor r="0.956863" g="0.929412" b="0.721569"/>
 		<SunElevation angle="0.506214"/>
 		<SunRotation angle="-0.693359"/>
-		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.337255" g="0.411765" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0</FogFactor>
 			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>19.9</Height>
 				<Shininess>1.70898</Shininess>
 				<Waviness>4.0</Waviness>
@@ -56,7 +56,7 @@
     {
       "AI": "",
       "Civ": "iber",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -73,7 +73,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

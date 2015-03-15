@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.847059" g="0.792157" b="0.592157"/>
+		<SunColor r="0.847059" g="0.792157" b="0.592157"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.374291"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.447059" g="0.509804" b="0.54902"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00135742</FogFactor>
 			<FogThickness>0.0498047</FogThickness>
-			<FogColour r="0.882353" g="0.87451" b="0.8"/>
+			<FogColor r="0.882353" g="0.87451" b="0.8"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0.564706" g="0.513726" b="0.419608"/>
+				<Color r="0.564706" g="0.513726" b="0.419608"/>
 				<Height>21.823</Height>
 				<Shininess>250</Shininess>
 				<Waviness>4.0</Waviness>
@@ -54,7 +54,7 @@
     {
       "AI": "",
       "Civ": "maur",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -71,7 +71,7 @@
     {
       "AI": "",
       "Civ": "pers",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

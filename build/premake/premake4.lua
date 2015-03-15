@@ -1104,7 +1104,7 @@ function setup_atlas_projects()
 		"ActorEditor",
 		"CustomControls/Buttons",
 		"CustomControls/Canvas",
-		"CustomControls/ColourDialog",
+		"CustomControls/ColorDialog",
 		"CustomControls/DraggableListCtrl",
 		"CustomControls/EditableListCtrl",
 		"CustomControls/FileHistory",

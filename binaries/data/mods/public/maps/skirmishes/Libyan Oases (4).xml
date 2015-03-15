@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
+		<SunColor r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.650408"/>
-		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00288086</FogFactor>
 			<FogThickness>0.313477</FogThickness>
-			<FogColour r="0.858824" g="0.803922" b="0.611765"/>
+			<FogColor r="0.858824" g="0.803922" b="0.611765"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>clap</Type>
-				<Colour r="0.482353" g="0.584314" b="0.811765"/>
+				<Color r="0.482353" g="0.584314" b="0.811765"/>
 				<Height>20.6689</Height>
 				<Shininess>51.0254</Shininess>
 				<Waviness>1.0</Waviness>
@@ -49,7 +49,7 @@
   "Name": "Libyan Oases (4)",
   "PlayerData": [
     {
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -63,7 +63,7 @@
       }
     },
     {
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -77,7 +77,7 @@
       }
     },
     {
-      "Colour": {
+      "Color": {
         "b": 5,
         "g": 165,
         "r": 50
@@ -91,7 +91,7 @@
       }
     },
     {
-      "Colour": {
+      "Color": {
         "b": 199,
         "g": 54,
         "r": 134

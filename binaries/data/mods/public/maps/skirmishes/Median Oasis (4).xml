@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunset</SkySet>
-		<SunColour r="1" g="0.67451" b="0.384314"/>
+		<SunColor r="1" g="0.67451" b="0.384314"/>
 		<SunElevation angle="0.392699"/>
 		<SunRotation angle="-2.89403"/>
-		<TerrainAmbientColour r="0.211765" g="0.266667" b="0.392157"/>
-		<UnitsAmbientColour r="0.301961" g="0.376471" b="0.482353"/>
+		<TerrainAmbientColor r="0.211765" g="0.266667" b="0.392157"/>
+		<UnitsAmbientColor r="0.301961" g="0.376471" b="0.482353"/>
 		<Fog>
 			<FogFactor>0.00350586</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.866667" g="0.737255" b="0.466667"/>
+			<FogColor r="0.866667" g="0.737255" b="0.466667"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.282353" g="0.258824" b="0.203922"/>
+				<Color r="0.282353" g="0.258824" b="0.203922"/>
 				<Height>18.2557</Height>
 				<Shininess>29.2969</Shininess>
 				<Waviness>2.0</Waviness>
@@ -49,7 +49,7 @@
   "Name": "Median Oasis (4)",
   "PlayerData": [
     {
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -57,7 +57,7 @@
       "Name": "Player 1"
     },
     {
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -65,7 +65,7 @@
       "Name": "Player 2"
     },
     {
-      "Colour": {
+      "Color": {
         "b": 33,
         "g": 107,
         "r": 40
@@ -73,7 +73,7 @@
       "Name": "Player 3"
     },
     {
-      "Colour": {
+      "Color": {
         "b": 191,
         "g": 163,
         "r": 64

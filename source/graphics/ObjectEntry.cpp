@@ -73,7 +73,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		str << variation.color;
 		int r, g, b;
 		if (! (str >> r >> g >> b)) // Any trailing data is ignored
-			LOGERROR("Actor '%s' has invalid RGB colour '%s'", utf8_from_wstring(m_Base->m_ShortName), variation.color);
+			LOGERROR("Actor '%s' has invalid RGB color '%s'", utf8_from_wstring(m_Base->m_ShortName), variation.color);
 		else
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}

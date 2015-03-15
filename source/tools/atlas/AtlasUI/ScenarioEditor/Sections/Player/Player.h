@@ -54,7 +54,7 @@ struct PlayerPageControls
 
 	wxTextCtrl* name;
 	wxChoice* civ;
-	wxButton* colour;
+	wxButton* color;
 	wxSpinCtrl* food;
 	wxSpinCtrl* wood;
 	wxSpinCtrl* stone;

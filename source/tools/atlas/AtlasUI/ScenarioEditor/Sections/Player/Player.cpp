@@ -20,7 +20,7 @@
 #include "Player.h"
 
 #include "AtlasObject/AtlasObject.h"
-#include "CustomControls/ColourDialog/ColourDialog.h"
+#include "CustomControls/ColorDialog/ColorDialog.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 
 #include "wx/choicebk.h"
@@ -33,11 +33,11 @@ enum
 	ID_PlayerMetal,
 	ID_PlayerStone,
 	ID_PlayerPop,
-	ID_PlayerColour,
+	ID_PlayerColor,
 
 	ID_DefaultName,
 	ID_DefaultCiv,
-	ID_DefaultColour,
+	ID_DefaultColor,
 	ID_DefaultAI,
 	ID_DefaultFood,
 	ID_DefaultWood,
@@ -130,12 +130,12 @@ public:
 			gridSizer->Add(civChoice, wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
 			m_Controls.civ = civChoice;
 
-			wxButton* colourButton = new wxButton(this, ID_PlayerColour);
-			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultColour, colourButton), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
-			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Colour")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-			gridSizer->Add(Tooltipped(colourButton,
-				_("Set player colour")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
-			m_Controls.colour = colourButton;
+			wxButton* colorButton = new wxButton(this, ID_PlayerColor);
+			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultColor, colorButton), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Color")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			gridSizer->Add(Tooltipped(colorButton,
+				_("Set player color")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
+			m_Controls.color = colorButton;
 
 			wxChoice* aiChoice = new wxChoice(this, wxID_ANY);
 			gridSizer->Add(new DefaultCheckbox(this, ID_DefaultAI, aiChoice), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
@@ -287,14 +287,14 @@ public:
 	}
 
 private:
-	void OnColour(wxCommandEvent& evt)
+	void OnColor(wxCommandEvent& evt)
 	{
-		// Show colour dialog
-		ColourDialog colourDlg(this, _T("Scenario Editor/PlayerColour"), m_Controls.colour->GetBackgroundColour());
+		// Show color dialog
+		ColorDialog colorDlg(this, _T("Scenario Editor/PlayerColor"), m_Controls.color->GetBackgroundColour());
 
-		if (colourDlg.ShowModal() == wxID_OK)
+		if (colorDlg.ShowModal() == wxID_OK)
 		{
-			m_Controls.colour->SetBackgroundColour(colourDlg.GetColourData().GetColour());
+			m_Controls.color->SetBackgroundColour(colorDlg.GetColourData().GetColour());
 			
 			// Pass event on to next handler
 			evt.Skip();
@@ -335,7 +335,7 @@ private:
 };
 
 BEGIN_EVENT_TABLE(PlayerNotebookPage, wxPanel)
-	EVT_BUTTON(ID_PlayerColour, PlayerNotebookPage::OnColour)
+	EVT_BUTTON(ID_PlayerColor, PlayerNotebookPage::OnColor)
 	EVT_BUTTON(ID_CameraSet, PlayerNotebookPage::OnCameraSet)
 	EVT_BUTTON(ID_CameraView, PlayerNotebookPage::OnCameraView)
 	EVT_BUTTON(ID_CameraClear, PlayerNotebookPage::OnCameraClear)
@@ -443,13 +443,13 @@ private:
 		}
 	}
 
-	void OnPlayerColour(wxCommandEvent& WXUNUSED(evt))
+	void OnPlayerColor(wxCommandEvent& WXUNUSED(evt))
 	{
 		if (!m_InGUIUpdate)
 		{
 			SendToEngine();
 
-			// Update player settings, to show new colour
+			// Update player settings, to show new color
 			POST_MESSAGE(LoadPlayerSettings, (false));
 		}
 	}
@@ -535,7 +535,7 @@ private:
 };
 
 BEGIN_EVENT_TABLE(PlayerSettingsControl, wxPanel)
-	EVT_BUTTON(ID_PlayerColour, PlayerSettingsControl::OnPlayerColour)
+	EVT_BUTTON(ID_PlayerColor, PlayerSettingsControl::OnPlayerColor)
 	EVT_BUTTON(ID_CameraSet, PlayerSettingsControl::OnEdit)
 	EVT_BUTTON(ID_CameraClear, PlayerSettingsControl::OnEdit)
 	EVT_CHECKBOX(wxID_ANY, PlayerSettingsControl::OnEdit)
@@ -723,15 +723,15 @@ void PlayerSettingsControl::ReadFromEngine()
 		}
 		wxDynamicCast(FindWindowById(ID_DefaultCiv, controls.page), DefaultCheckbox)->SetValue(defined);
 
-		// colour
-		wxColour colour;
-		AtObj clrObj = *player["Colour"];
+		// color
+		wxColor color;
+		AtObj clrObj = *player["Color"];
 		defined = clrObj.defined();
 		if (!defined)
-			clrObj = *playerDefs["Colour"];
-		colour = wxColor((*clrObj["r"]).getInt(), (*clrObj["g"]).getInt(), (*clrObj["b"]).getInt());
-		controls.colour->SetBackgroundColour(colour);
-		wxDynamicCast(FindWindowById(ID_DefaultColour, controls.page), DefaultCheckbox)->SetValue(defined);
+			clrObj = *playerDefs["Color"];
+		color = wxColor((*clrObj["r"]).getInt(), (*clrObj["g"]).getInt(), (*clrObj["b"]).getInt());
+		controls.color->SetBackgroundColour(color);
+		wxDynamicCast(FindWindowById(ID_DefaultColor, controls.page), DefaultCheckbox)->SetValue(defined);
 
 		// player type
 		wxString aiID;
@@ -866,15 +866,15 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 			player.set("Civ", str->GetData());
 		}
 
-		// colour
-		if (controls.colour->IsEnabled())
+		// color
+		if (controls.color->IsEnabled())
 		{
-			wxColour colour = controls.colour->GetBackgroundColour();
+			wxColor color = controls.color->GetBackgroundColour();
 			AtObj clrObj;
-			clrObj.setInt("r", (int)colour.Red());
-			clrObj.setInt("g", (int)colour.Green());
-			clrObj.setInt("b", (int)colour.Blue());
-			player.set("Colour", clrObj);
+			clrObj.setInt("r", (int)color.Red());
+			clrObj.setInt("g", (int)color.Green());
+			clrObj.setInt("b", (int)color.Blue());
+			player.set("Color", clrObj);
 		}
 
 		// player type

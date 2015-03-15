@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.847059" g="0.792157" b="0.592157"/>
+		<SunColor r="0.847059" g="0.792157" b="0.592157"/>
 		<SunElevation angle="0.923456"/>
 		<SunRotation angle="-1.86532"/>
-		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
-		<UnitsAmbientColour r="0.509804" g="0.47451" b="0.4"/>
+		<TerrainAmbientColor r="0.329412" g="0.419608" b="0.501961"/>
+		<UnitsAmbientColor r="0.509804" g="0.47451" b="0.4"/>
 		<Fog>
 			<FogFactor>0.00232422</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.866667" g="0.776471" b="0.486275"/>
+			<FogColor r="0.866667" g="0.776471" b="0.486275"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0" g="0.501961" b="0.74902"/>
+				<Color r="0" g="0.501961" b="0.74902"/>
 				<Height>19.9</Height>
 				<Shininess>187.5</Shininess>
 				<Waviness>4.0</Waviness>
@@ -59,7 +59,7 @@
     {
       "AI": "",
       "Civ": "rome",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -76,7 +76,7 @@
     {
       "AI": "",
       "Civ": "cart",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46

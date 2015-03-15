@@ -237,7 +237,7 @@ public:
 	 * average of the whole texture).
 	 * Returns 0 if the texture has no mipmaps.
 	 */
-	u32 GetBaseColour() const;
+	u32 GetBaseColor() const;
 
 	/**
 	 * Returns total number of bytes uploaded for this texture.
@@ -287,7 +287,7 @@ private:
 	const CTextureProperties m_Properties;
 
 	Handle m_Handle;
-	u32 m_BaseColour;
+	u32 m_BaseColor;
 
 	enum {
 		UNLOADED, // loading has not started

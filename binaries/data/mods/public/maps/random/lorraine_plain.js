@@ -511,7 +511,7 @@ createObjectGroups(group, 0,
 
 // Set environment
 setSkySet("cirrus");
-setWaterColour(0.443,0.412,0.322);
+setWaterColor(0.443,0.412,0.322);
 setWaterTint(0.647,0.82,0.949);
 setWaterWaviness(3.0);
 setWaterType("lake");

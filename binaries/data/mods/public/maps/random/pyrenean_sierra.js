@@ -784,18 +784,18 @@ setSunRotation(randFloat(0, TWO_PI));
 //var rt = randInt(1,6);
 //if (rt==1){
 //	setSkySet("stormy");
-//	setSunColour(0.36,0.38,0.45);
-//	setTerrainAmbientColour(0.52,0.575,0.6);
-//	setUnitsAmbientColour(0.52,0.575,0.6);
+//	setSunColor(0.36,0.38,0.45);
+//	setTerrainAmbientColor(0.52,0.575,0.6);
+//	setUnitsAmbientColor(0.52,0.575,0.6);
 //	setSunElevation(PI/7);
 	
 //	setWaterTint(0.1, 0.1, 0.2);				// muddy brown
 //} else {
 	setSkySet("cumulus");
-	setSunColour(0.73,0.73,0.65);
-	setTerrainAmbientColour(0.45,0.45,0.50);
-	setUnitsAmbientColour(0.4,0.4,0.4);
-	setWaterColour(0.114, 0.192, 0.463);
+	setSunColor(0.73,0.73,0.65);
+	setTerrainAmbientColor(0.45,0.45,0.50);
+	setUnitsAmbientColor(0.4,0.4,0.4);
+	setWaterColor(0.114, 0.192, 0.463);
 	setWaterTint(0.255, 0.361, 0.651);
 	setWaterWaviness(3.0);
 setWaterType("ocean");

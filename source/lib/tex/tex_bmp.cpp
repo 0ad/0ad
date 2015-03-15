@@ -94,7 +94,7 @@ size_t TexCodecBmp::hdr_size(const u8* file) const
 }
 
 
-// requirements: uncompressed, direct colour, bottom up
+// requirements: uncompressed, direct color, bottom up
 Status TexCodecBmp::decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t) const
 {
 	const BmpHeader* hdr = (const BmpHeader*)data;

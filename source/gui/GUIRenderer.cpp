@@ -79,7 +79,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		//     "stretched:filename.ext" - stretched image
 		//     "stretched:grayscale:filename.ext" - stretched grayscale image
 		//     "cropped:(0.5, 0.25)"    - stretch this ratio (x,y) of the top left of the image
-		//     "colour:r g b a"         - solid colour
+		//     "color:r g b a"         - solid color
 		//
 		// and if so, try to create it as a new sprite.
 		if (SpriteName.substr(0, 10) == "stretched:")
@@ -136,15 +136,15 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			it = Sprites.find(SpriteName);
 			ENSURE(it != Sprites.end()); // The insertion above shouldn't fail
 		}
-		else if (SpriteName.substr(0, 7) == "colour:")
+		else if (SpriteName.substr(0, 6) == "color:")
 		{
-			CStrW value = wstring_from_utf8(SpriteName.substr(7));
+			CStrW value = wstring_from_utf8(SpriteName.substr(6));
 			CColor color;
 
-			// Check colour is valid
+			// Check color is valid
 			if (!GUI<CColor>::ParseString(value, color))
 			{
-				LOGERROR("GUI: Error parsing sprite 'colour' (\"%s\")", utf8_from_wstring(value));
+				LOGERROR("GUI: Error parsing sprite 'color' (\"%s\")", utf8_from_wstring(value));
 				return;
 			}
 

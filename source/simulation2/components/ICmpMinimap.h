@@ -31,7 +31,7 @@ public:
 	/**
 	 * Get the data for rendering this entity on the minimap.
 	 * If it should not be drawn, returns false; otherwise the arguments are set
-	 * to the colour and world position.
+	 * to the color and world position.
 	 */
 	virtual bool GetRenderData(u8& r, u8& g, u8& b, entity_pos_t& x, entity_pos_t& z) = 0;
 

@@ -147,11 +147,11 @@ public:
 	 */
 	CBoundingBoxAligned GetVertexesBound(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1);
 
-	// get the base colour for the terrain (typically pure white - other colours
+	// get the base color for the terrain (typically pure white - other colors
 	// will interact badly with LOS - but used by the Actor Viewer tool)
-	SColor4ub GetBaseColour() const { return m_BaseColour; }
-	// set the base colour for the terrain
-	void SetBaseColour(SColor4ub colour) { m_BaseColour = colour; }
+	SColor4ub GetBaseColor() const { return m_BaseColor; }
+	// set the base color for the terrain
+	void SetBaseColor(SColor4ub color) { m_BaseColor = color; }
 
 	const CHeightMipmap& GetHeightMipmap() const { return m_HeightMipmap; }
 
@@ -169,8 +169,8 @@ private:
 	CPatch*	m_Patches;
 	// 16-bit heightmap data
 	u16* m_Heightmap;
-	// base colour (usually white)
-	SColor4ub m_BaseColour;
+	// base color (usually white)
+	SColor4ub m_BaseColor;
 	// heightmap mipmap
 	CHeightMipmap m_HeightMipmap;
 };

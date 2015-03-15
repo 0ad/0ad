@@ -412,8 +412,8 @@ for (var i = 0; i < types.length; ++i)
 setSkySet("sunny");
 setSunElevation(PI / 8);
 setSunRotation(randFloat(0, TWO_PI));
-setSunColour(0.746, 0.718, 0.539);	
-setWaterColour(0.292, 0.347, 0.691);		
+setSunColor(0.746, 0.718, 0.539);	
+setWaterColor(0.292, 0.347, 0.691);		
 setWaterTint(0.550, 0.543, 0.437);				
 setWaterMurkiness(0.83);
 

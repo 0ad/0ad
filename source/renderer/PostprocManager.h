@@ -28,8 +28,8 @@ private:
 	// Two framebuffers, that we flip between at each shader pass.
 	GLuint m_PingFbo, m_PongFbo;
 	
-	// Unique colour textures for the framebuffers.
-	GLuint m_ColourTex1, m_ColourTex2;
+	// Unique color textures for the framebuffers.
+	GLuint m_ColorTex1, m_ColorTex2;
 	
 	// The framebuffers share a depth/stencil texture.
 	GLuint m_DepthTex;
@@ -99,7 +99,7 @@ public:
 	// Sets the current effect.
 	void SetPostEffect(CStrW name);
 
-	// Clears the two colour buffers and depth buffer, and redirects all rendering
+	// Clears the two color buffers and depth buffer, and redirects all rendering
 	// to our textures instead of directly to the system framebuffer.
 	// @note CPostprocManager must be initialized first
 	void CaptureRenderOutput();

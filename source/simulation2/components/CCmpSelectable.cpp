@@ -264,7 +264,7 @@ private:
 	bool m_Selected;
 	/// Current selection overlay color. Alpha component is subject to fading.
 	CColor m_Color;
-	/// Whether the selectable's player colour has been cached for rendering.
+	/// Whether the selectable's player color has been cached for rendering.
 	bool m_Cached;
 	/// Minimum value for current selection overlay alpha.
 	float m_AlphaMin;
@@ -338,7 +338,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 
 		// Update the highlight color, while keeping the current alpha target value intact
 		// (i.e. baseline + delta), so that any ongoing fades simply continue with the new color.
-		CColor color = cmpPlayer->GetColour();
+		CColor color = cmpPlayer->GetColor();
 		SetSelectionHighlight(CColor(color.r, color.g, color.b, m_FadeBaselineAlpha + m_FadeDeltaAlpha), m_Selected);
 
 		InvalidateStaticOverlay();
@@ -600,7 +600,7 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 				if (owner == INVALID_PLAYER)
 					return;
 
-				// Try to initialize m_Color to the owning player's colour.
+				// Try to initialize m_Color to the owning player's color.
 				CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
 				if (!cmpPlayerManager)
 					return;
@@ -609,7 +609,7 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 				if (!cmpPlayer)
 					return;
 
-				color = cmpPlayer->GetColour();
+				color = cmpPlayer->GetColor();
 			}
 			color.a = m_FadeBaselineAlpha + m_FadeDeltaAlpha;
 

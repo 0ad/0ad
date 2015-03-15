@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunColor r="0.74902" g="0.74902" b="0.74902"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.000996094</FogFactor>
 			<FogThickness>0.141602</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0.329412" g="0.419608" b="0.501961"/>
+				<Color r="0.329412" g="0.419608" b="0.501961"/>
 				<Height>37.0361</Height>
 				<Waviness>3.0</Waviness>
 				<Murkiness>0.608398</Murkiness>

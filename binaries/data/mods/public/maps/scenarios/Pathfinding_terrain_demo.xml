@@ -4,15 +4,15 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>default</SkySet>
-		<SunColour r="1" g="1" b="1"/>
+		<SunColor r="1" g="1" b="1"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785398"/>
-		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.313726" g="0.376471" b="0.521569"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>19.3049</Height>
 				<Shininess>150</Shininess>
 				<Waviness>4.0</Waviness>

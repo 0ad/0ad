@@ -611,7 +611,7 @@ var commands = {
 		{
 			var cmpVisual = Engine.QueryInterface(ent, IID_Visual)
 			if (cmpVisual)
-				cmpVisual.SetShadingColour(cmd.rgb[0], cmd.rgb[1], cmd.rgb[2], 0) // alpha isn't used so just send 0
+				cmpVisual.SetShadingColor(cmd.rgb[0], cmd.rgb[1], cmd.rgb[2], 0) // alpha isn't used so just send 0
 		}
 	},
 

@@ -113,7 +113,7 @@ Trigger.prototype.InitGame = function()
 	}*/
 	
 	// Make gaia black
-	TriggerHelper.GetPlayerComponent(0).SetColour(0, 0, 0);
+	TriggerHelper.GetPlayerComponent(0).SetColor(0, 0, 0);
 	
 	// Place the treasures
 	this.PlaceTreasures();

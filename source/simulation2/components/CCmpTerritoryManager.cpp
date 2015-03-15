@@ -639,7 +639,7 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 		CColor color(1, 0, 1, 1);
 		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(boundaries[i].owner));
 		if (cmpPlayer)
-			color = cmpPlayer->GetColour();
+			color = cmpPlayer->GetColor();
 
 		m_BoundaryLines.push_back(SBoundaryLine());
 		m_BoundaryLines.back().connected = boundaries[i].connected;

@@ -408,7 +408,7 @@ extern Status ogl_tex_get_uploaded_size(Handle ht, size_t* size);
 
 /**
  * Retrieve ARGB value of 1x1 mipmap level of the texture,
- * i.e. the average colour of the whole texture.
+ * i.e. the average color of the whole texture.
  *
  * @param ht Texture handle
  * @param p will be filled with ARGB value (or 0 if texture does not have mipmaps)
@@ -416,7 +416,7 @@ extern Status ogl_tex_get_uploaded_size(Handle ht, size_t* size);
  *
  * Must be called before uploading (raises a warning if called afterwards).
  */
-extern Status ogl_tex_get_average_colour(Handle ht, u32* p);
+extern Status ogl_tex_get_average_color(Handle ht, u32* p);
 
 
 //

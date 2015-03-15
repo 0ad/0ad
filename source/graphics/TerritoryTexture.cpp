@@ -183,7 +183,7 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 		CColor color(1, 0, 1, 1);
 		CmpPtr<ICmpPlayer> cmpPlayer(m_Simulation, cmpPlayerManager->GetPlayerByID(p));
 		if (cmpPlayer)
-			color = cmpPlayer->GetColour();
+			color = cmpPlayer->GetColor();
 		colors.push_back(color);
 	}
 

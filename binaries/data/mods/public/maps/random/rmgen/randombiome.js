@@ -63,8 +63,8 @@ function randomizeBiome()
 	setSunRotation(randFloat(0, TWO_PI));
 	setSunElevation(randFloat(PI/ 6, PI / 3));
 
-	setUnitsAmbientColour(0.57, 0.58, 0.55);
-	setTerrainAmbientColour(0.447059, 0.509804, 0.54902);
+	setUnitsAmbientColor(0.57, 0.58, 0.55);
+	setTerrainAmbientColor(0.447059, 0.509804, 0.54902);
 	
 	biomeID = randInt(1,8);
 	//temperate
@@ -72,7 +72,7 @@ function randomizeBiome()
 		
 		// temperate ocean blue, a bit too deep and saturated perhaps but it looks nicer.
 		// this assumes ocean settings, maps that aren't oceans should reset.
-		setWaterColour(0.114, 0.192, 0.463);
+		setWaterColor(0.114, 0.192, 0.463);
 		setWaterTint(0.255, 0.361, 0.651);
 		setWaterWaviness(5.5);
 		setWaterMurkiness(0.83);
@@ -175,10 +175,10 @@ function randomizeBiome()
 	//snowy
 	else if (biomeID == 2)
 	{
-		setSunColour(0.550, 0.601, 0.644);				// a little darker
+		setSunColor(0.550, 0.601, 0.644);				// a little darker
 		// Water is a semi-deep blue, fairly wavy, fairly murky for an ocean.
 		// this assumes ocean settings, maps that aren't oceans should reset.
-		setWaterColour(0.067, 0.212, 0.361);
+		setWaterColor(0.067, 0.212, 0.361);
 		setWaterTint(0.4, 0.486, 0.765);
 		setWaterWaviness(5.5);
 		setWaterMurkiness(0.83);
@@ -233,10 +233,10 @@ function randomizeBiome()
 	//desert
 	else if (biomeID == 3)
 	{
-		setSunColour(0.733, 0.746, 0.574);	
+		setSunColor(0.733, 0.746, 0.574);	
 
 		// Went for a very clear, slightly blue-ish water in this case, basically no waves.
-		setWaterColour(0, 0.227, 0.843);
+		setWaterColor(0, 0.227, 0.843);
 		setWaterTint(0, 0.545, 0.859);
 		setWaterWaviness(1);
 		setWaterMurkiness(0.22);
@@ -313,7 +313,7 @@ function randomizeBiome()
 	{
 		// simulates an alpine lake, fairly deep.
 		// this is not intended for a clear running river, or even an ocean.
-		setWaterColour(0.0, 0.047, 0.286);				// dark majestic blue
+		setWaterColor(0.0, 0.047, 0.286);				// dark majestic blue
 		setWaterTint(0.471, 0.776, 0.863);				// light blue
 		setWaterMurkiness(0.82);
 		setWaterWaviness(2);
@@ -372,7 +372,7 @@ function randomizeBiome()
 	else if (biomeID == 5)
 	{
 		// Guess what, this is based on the colors of the mediterranean sea.
-		setWaterColour(0.024,0.212,0.024);
+		setWaterColor(0.024,0.212,0.024);
 		setWaterTint(0.133, 0.725,0.855);
 		setWaterWaviness(3);
 		setWaterMurkiness(0.8);
@@ -467,7 +467,7 @@ function randomizeBiome()
 	else if (biomeID == 6)
 	{
 		// Using the Malawi as a reference, in parts where it's not too murky from a river nearby.
-		setWaterColour(0.055,0.176,0.431);
+		setWaterColor(0.055,0.176,0.431);
 		setWaterTint(0.227,0.749,0.549);
 		setWaterWaviness(1.5);
 		setWaterMurkiness(0.77);
@@ -542,8 +542,8 @@ function randomizeBiome()
 	{
 		
 		// Bora-Bora ish. Quite transparent, not wavy.
-		// Mostly for shallow maps. Maps where the water level goes deeper should use a much darker Water Colour to simulate deep water holes.
-		setWaterColour(0.584,0.824,0.929);
+		// Mostly for shallow maps. Maps where the water level goes deeper should use a much darker Water Color to simulate deep water holes.
+		setWaterColor(0.584,0.824,0.929);
 		setWaterTint(0.569,0.965,0.945);
 		setWaterWaviness(1.5);
 		setWaterMurkiness(0.35);
@@ -604,7 +604,7 @@ function randomizeBiome()
 			
 		// basically temperate with a reddish twist in the reflection and the tint. Also less wavy.
 		// this assumes ocean settings, maps that aren't oceans should reset.
-		setWaterColour(0.157, 0.149, 0.443);
+		setWaterColor(0.157, 0.149, 0.443);
 		setWaterTint(0.443,0.42,0.824);
 		setWaterWaviness(2.5);
 		setWaterMurkiness(0.83);

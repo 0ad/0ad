@@ -56,7 +56,7 @@ static Status sys_cursor_create_common(int w, int h, void* bgra_img, void* mask_
 	// CreateBitmap; bpp/format must be checked against those of the DC.
 	// this is the simplest way and we don't care about slight performance
 	// differences because this is typically only called once.
-	HBITMAP hbmColour = CreateBitmap(w, h, 1, 32, bgra_img);
+	HBITMAP hbmColor = CreateBitmap(w, h, 1, 32, bgra_img);
 
 	// CreateIconIndirect doesn't access this; we just need to pass
 	// an empty bitmap.
@@ -69,12 +69,12 @@ static Status sys_cursor_create_common(int w, int h, void* bgra_img, void* mask_
 	ii.xHotspot = (DWORD)hx;
 	ii.yHotspot = (DWORD)hy;
 	ii.hbmMask  = hbmMask;
-	ii.hbmColor = hbmColour;
+	ii.hbmColor = hbmColor;
 	HICON hIcon = CreateIconIndirect(&ii);
 
 	// CreateIconIndirect makes copies, so we no longer need these.
 	DeleteObject(hbmMask);
-	DeleteObject(hbmColour);
+	DeleteObject(hbmColor);
 
 	if(!wutil_IsValidHandle(hIcon))
 		WARN_RETURN(ERR::FAIL);

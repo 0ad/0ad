@@ -231,7 +231,7 @@ MESSAGEHANDLER(ImportHeightmap)
 		{
 			int offset = y * mapLineSkip + x * bytesPP;
 			
-			// pick colour channel with highest value
+			// pick color channel with highest value
 			u16 value = std::max(mapdata[offset+bytesPP*2], std::max(mapdata[offset], mapdata[offset+bytesPP]));
 			
 			heightmap[(terrainSize-y-1) * hmSize + x] = clamp(value * 256, 0, 65535);

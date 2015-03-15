@@ -308,7 +308,7 @@ void CConsole::DrawCursor(CTextRenderer& textRenderer)
 		// Cursor character is chosen to be an underscore
 		textRenderer.Put(0.0f, 0.0f, L"_");
 
-		// Revert to the standard text colour
+		// Revert to the standard text color
 		textRenderer.Color(1.0f, 1.0f, 1.0f);
 	}
 }

@@ -104,8 +104,8 @@ static const entity_pos_t CHECK_TARGET_MOVEMENT_AT_MAX_DIST = entity_pos_t::From
  */
 static const fixed CHECK_TARGET_MOVEMENT_MIN_COS = fixed::FromInt(866)/1000;
 
-static const CColor OVERLAY_COLOUR_LONG_PATH(1, 1, 1, 1);
-static const CColor OVERLAY_COLOUR_SHORT_PATH(1, 0, 0, 1);
+static const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
+static const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
 
 static const entity_pos_t g_GoalDelta = entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/4; // for extending the goal outwards/inwards a little bit
 
@@ -1791,8 +1791,8 @@ void CCmpUnitMotion::RenderSubmit(SceneCollector& collector)
 	if (!m_DebugOverlayEnabled)
 		return;
 
-	RenderPath(m_LongPath, m_DebugOverlayLongPathLines, OVERLAY_COLOUR_LONG_PATH);
-	RenderPath(m_ShortPath, m_DebugOverlayShortPathLines, OVERLAY_COLOUR_SHORT_PATH);
+	RenderPath(m_LongPath, m_DebugOverlayLongPathLines, OVERLAY_COLOR_LONG_PATH);
+	RenderPath(m_ShortPath, m_DebugOverlayShortPathLines, OVERLAY_COLOR_SHORT_PATH);
 
 	for (size_t i = 0; i < m_DebugOverlayLongPathLines.size(); ++i)
 		collector.Submit(&m_DebugOverlayLongPathLines[i]);

@@ -443,9 +443,9 @@ for (var i = 0; i < types.length; ++i)
 }
 
 if (!random_season)
-	setTerrainAmbientColour(0.329412, 0.419608, 0.501961);
+	setTerrainAmbientColor(0.329412, 0.419608, 0.501961);
 
-setSunColour(1.0, 0.796, 0.374);	
+setSunColor(1.0, 0.796, 0.374);	
 setSunElevation(PI / 6);
 setSunRotation(-1.86532);
 

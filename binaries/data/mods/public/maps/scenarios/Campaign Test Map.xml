@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.909804" g="0.87451" b="0.666667"/>
+		<SunColor r="0.909804" g="0.87451" b="0.666667"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.73892"/>
-		<TerrainAmbientColour r="0.282353" g="0.337255" b="0.486275"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColor r="0.282353" g="0.337255" b="0.486275"/>
+		<UnitsAmbientColor r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
 			<FogFactor>0.00100586</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="1" g="1" b="1"/>
+			<FogColor r="1" g="1" b="1"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>22.2426</Height>
 				<Shininess>2.92969</Shininess>
 				<Waviness>5.0</Waviness>
@@ -53,7 +53,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -82,7 +82,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 0,
         "g": 128,
         "r": 255
@@ -111,7 +111,7 @@
     {
       "AI": "",
       "Civ": "mace",
-      "Colour": {
+      "Color": {
         "b": 5,
         "g": 165,
         "r": 50
@@ -128,7 +128,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 0,
         "g": 255,
         "r": 255
@@ -145,7 +145,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 255,
         "g": 255,
         "r": 0
@@ -162,7 +162,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 80,
         "r": 160
@@ -179,7 +179,7 @@
     {
       "AI": "",
       "Civ": "spart",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -190,7 +190,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 64,
         "g": 64,
         "r": 64

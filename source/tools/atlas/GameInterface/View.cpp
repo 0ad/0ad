@@ -51,7 +51,7 @@ void AtlasView::SetParam(const std::wstring& UNUSED(name), bool UNUSED(value))
 {
 }
 
-void AtlasView::SetParam(const std::wstring& UNUSED(name), const AtlasMessage::Colour& UNUSED(value))
+void AtlasView::SetParam(const std::wstring& UNUSED(name), const AtlasMessage::Color& UNUSED(value))
 {
 }
 
@@ -154,11 +154,11 @@ void AtlasViewActor::SetParam(const std::wstring& name, int value)
 		m_ActorViewer->SetPropPointsMode(value);
 }
 
-void AtlasViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colour& value)
+void AtlasViewActor::SetParam(const std::wstring& name, const AtlasMessage::Color& value)
 {
 	if (name == L"background")
 	{
-		m_ActorViewer->SetBackgroundColour(SColor4ub(value.r, value.g, value.b, 255));
+		m_ActorViewer->SetBackgroundColor(SColor4ub(value.r, value.g, value.b, 255));
 	}
 }
 

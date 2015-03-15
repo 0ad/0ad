@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.866667" g="0.776471" b="0.490196"/>
+		<SunColor r="0.866667" g="0.776471" b="0.490196"/>
 		<SunElevation angle="0.908117"/>
 		<SunRotation angle="-0.693359"/>
-		<TerrainAmbientColour r="0.333333" g="0.423529" b="0.501961"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.333333" g="0.423529" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00117187</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0.141176" g="0.321569" b="0.619608"/>
+				<Color r="0.141176" g="0.321569" b="0.619608"/>
 				<Height>19</Height>
 				<Waviness>3.3</Waviness>
 				<Murkiness>0.470703</Murkiness>
@@ -52,7 +52,7 @@
   "PlayerData": [
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 80,
         "r": 80
@@ -62,7 +62,7 @@
     },
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -72,7 +72,7 @@
     },
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 5,
         "g": 165,
         "r": 50
@@ -82,7 +82,7 @@
     },
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 75,
         "g": 230,
         "r": 230
@@ -92,7 +92,7 @@
     },
     {
       "Civ": "gaul",
-      "Colour": {
+      "Color": {
         "b": 170,
         "g": 170,
         "r": 50
@@ -102,7 +102,7 @@
     },
     {
       "Civ": "gaul",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 80,
         "r": 160
@@ -112,7 +112,7 @@
     },
     {
       "Civ": "gaul",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 120,
         "r": 235
@@ -122,7 +122,7 @@
     },
     {
       "Civ": "gaul",
-      "Colour": {
+      "Color": {
         "b": 64,
         "g": 64,
         "r": 64

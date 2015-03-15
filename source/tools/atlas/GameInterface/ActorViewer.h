@@ -37,7 +37,7 @@ public:
 	entity_id_t GetEntity();
 	void SetActor(const CStrW& id, const CStrW& animation, player_id_t playerID);
 	void UnloadObjects();
-	void SetBackgroundColour(const SColor4ub& colour);
+	void SetBackgroundColor(const SColor4ub& color);
 	void SetWalkEnabled(bool enabled);
 	void SetGroundEnabled(bool enabled);
 	void SetWaterEnabled(bool enabled);

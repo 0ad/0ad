@@ -5,15 +5,15 @@ var g_Map;
 
 var g_Environment = {
 	SkySet: "default",
-	SunColour: {r: 0.749020, g: 0.749020, b: 0.749020, a: 0},
+	SunColor: {r: 0.749020, g: 0.749020, b: 0.749020, a: 0},
 	SunElevation: 0.785398,
 	SunRotation: 5.49779,
-	TerrainAmbientColour: {r: 0.501961, g: 0.501961, b: 0.501961, a: 0},
-	UnitsAmbientColour: {r: 0.501961, g: 0.501961, b: 0.501961, a: 0},
+	TerrainAmbientColor: {r: 0.501961, g: 0.501961, b: 0.501961, a: 0},
+	UnitsAmbientColor: {r: 0.501961, g: 0.501961, b: 0.501961, a: 0},
 	Water: {
 		WaterBody: {
 			Type: "ocean",
-			Colour: {r: 0.3, g: 0.35, b: 0.7, a: 0},
+			Color: {r: 0.3, g: 0.35, b: 0.7, a: 0},
 			Tint: {r: 0.28, g: 0.3, b: 0.59, a: 0},
 			Height: 5,
 			Waviness: 8,

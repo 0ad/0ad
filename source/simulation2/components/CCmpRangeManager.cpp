@@ -1236,10 +1236,10 @@ public:
 	{
 		if (!m_DebugOverlayEnabled)
 			return;
-		static CColor disabledRingColour(1, 0, 0, 1);	// red
-		static CColor enabledRingColour(0, 1, 0, 1);	// green
-		static CColor subdivColour(0, 0, 1, 1);			// blue
-		static CColor rayColour(1, 1, 0, 0.2f);
+		static CColor disabledRingColor(1, 0, 0, 1);	// red
+		static CColor enabledRingColor(0, 1, 0, 1);	// green
+		static CColor subdivColor(0, 0, 1, 1);			// blue
+		static CColor rayColor(1, 1, 0, 0.2f);
 
 		if (m_DebugOverlayDirty)
 		{
@@ -1258,7 +1258,7 @@ public:
 				if (!q.parabolic)
 				{
 					m_DebugOverlayLines.push_back(SOverlayLine());
-					m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColour : disabledRingColour);
+					m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColor : disabledRingColor);
 					SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToFloat(), q.maxRange.ToFloat(), m_DebugOverlayLines.back(), true);
 				}
 				else
@@ -1304,7 +1304,7 @@ public:
 						ParabolicRangesOutlines[q.source.GetId()] = e;
 					}
 
-					CColor thiscolor = q.enabled ? enabledRingColour : disabledRingColour;
+					CColor thiscolor = q.enabled ? enabledRingColor : disabledRingColor;
 
 					// draw the outline (piece by piece)
 					for (size_t i = 3; i < coords.size(); i += 2)
@@ -1341,7 +1341,7 @@ public:
 					coords.push_back(targetPos.Y.ToFloat());
 
 					m_DebugOverlayLines.push_back(SOverlayLine());
-					m_DebugOverlayLines.back().m_Color = rayColour;
+					m_DebugOverlayLines.back().m_Color = rayColor;
 					SimRender::ConstructLineOnGround(GetSimContext(), coords, m_DebugOverlayLines.back(), true);
 				}
 			}
@@ -1355,7 +1355,7 @@ public:
 				for (int y = 0; y < height; ++y)
 				{
 					m_DebugOverlayLines.push_back(SOverlayLine());
-					m_DebugOverlayLines.back().m_Color = subdivColour;
+					m_DebugOverlayLines.back().m_Color = subdivColor;
 
 					float xpos = x*divSize + divSize/2;
 					float zpos = y*divSize + divSize/2;

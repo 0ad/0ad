@@ -666,10 +666,10 @@ void CModel::SetPlayerID(player_id_t id)
 		it->m_Model->SetPlayerID(id);
 }
 
-void CModel::SetShadingColor(const CColor& colour)
+void CModel::SetShadingColor(const CColor& color)
 {
-	CModelAbstract::SetShadingColor(colour);
+	CModelAbstract::SetShadingColor(color);
 
 	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)
-		it->m_Model->SetShadingColor(colour);
+		it->m_Model->SetShadingColor(color);
 }

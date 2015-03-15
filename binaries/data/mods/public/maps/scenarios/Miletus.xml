@@ -4,15 +4,15 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.858824" g="0.803922" b="0.666667"/>
+		<SunColor r="0.858824" g="0.803922" b="0.666667"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="0.374291"/>
-		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.337255" g="0.403922" b="0.466667"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>18.1508</Height>
 				<Shininess>1.95313</Shininess>
 				<Waviness>5.0</Waviness>
@@ -40,7 +40,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -70,7 +70,7 @@
     {
       "AI": "",
       "Civ": "rome",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

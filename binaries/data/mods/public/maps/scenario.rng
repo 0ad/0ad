@@ -9,7 +9,7 @@
     <a:documentation/>
     <ref name="Scenario"/>
   </start>
-  <define name="colour_rgb">
+  <define name="color_rgb">
     <a:documentation/>
     <!-- Defines # -->
     <a:documentation/>
@@ -32,7 +32,7 @@
       </data>
     </attribute>
   </define>
-  <define name="suncolour_rgb">
+  <define name="suncolor_rgb">
     <!-- RGB can be > 1 due to overbrightness -->
     <attribute name="r">
       <data type="decimal">
@@ -95,8 +95,8 @@
             <element name="SkySet">
               <text/>
             </element>
-            <element name="SunColour">
-              <ref name="suncolour_rgb"/>
+            <element name="SunColor">
+              <ref name="suncolor_rgb"/>
             </element>
             <element name="SunElevation">
               <ref name="angle"/>
@@ -104,11 +104,11 @@
             <element name="SunRotation">
               <ref name="angle"/>
             </element>
-            <element name="TerrainAmbientColour">
-              <ref name="colour_rgb"/>
+            <element name="TerrainAmbientColor">
+              <ref name="color_rgb"/>
             </element>
-            <element name="UnitsAmbientColour">
-              <ref name="colour_rgb"/>
+            <element name="UnitsAmbientColor">
+              <ref name="color_rgb"/>
             </element>
             <optional>
               <element name="Fog">
@@ -125,8 +125,8 @@
                     </data>
                     <!-- TODO: what is the max? -->
                   </element>
-                  <element name="FogColour">
-                    <ref name="colour_rgb"/>
+                  <element name="FogColor">
+                    <ref name="color_rgb"/>
                   </element>
                 </interleave>
               </element>
@@ -138,8 +138,8 @@
                     <text/>
                   </element>
                   <!-- Not implemented -->
-                  <element name="Colour">
-                    <ref name="colour_rgb"/>
+                  <element name="Color">
+                    <ref name="color_rgb"/>
                   </element>
                   <element name="Height">
                     <data type="decimal"/>
@@ -157,10 +157,10 @@
                     <data type="decimal"/>
                   </element>
                   <element name="Tint">
-                    <ref name="colour_rgb"/>
+                    <ref name="color_rgb"/>
                   </element>
                   <element name="ReflectionTint">
-                    <ref name="colour_rgb"/>
+                    <ref name="color_rgb"/>
                   </element>
                   <element name="ReflectionTintStrength">
                     <data type="decimal"/>

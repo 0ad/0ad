@@ -603,8 +603,8 @@ createObjectGroups(
 
 // Set environment
 setSkySet("sunny");
-setSunColour(0.711, 0.746, 0.574);	
-setWaterColour(0.541,0.506,0.416);
+setSunColor(0.711, 0.746, 0.574);	
+setWaterColor(0.541,0.506,0.416);
 setWaterTint(0.694,0.592,0.522);
 setWaterMurkiness(1);
 setWaterWaviness(3.0);

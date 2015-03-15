@@ -64,7 +64,7 @@ AddMock(SYSTEM_ENTITY, IID_Timer, {
 AddMock(100, IID_Player, {
 	GetName: function() { return "Player 1"; },
 	GetCiv: function() { return "gaia"; },
-	GetColour: function() { return { r: 1, g: 1, b: 1, a: 1}; },
+	GetColor: function() { return { r: 1, g: 1, b: 1, a: 1}; },
 	GetPopulationCount: function() { return 10; },
 	GetPopulationLimit: function() { return 20; },
 	GetMaxPopulation: function() { return 200; },
@@ -140,7 +140,7 @@ AddMock(100, IID_StatisticsTracker, {
 AddMock(101, IID_Player, {
 	GetName: function() { return "Player 2"; },
 	GetCiv: function() { return "mace"; },
-	GetColour: function() { return { r: 1, g: 0, b: 0, a: 1}; },
+	GetColor: function() { return { r: 1, g: 0, b: 0, a: 1}; },
 	GetPopulationCount: function() { return 40; },
 	GetPopulationLimit: function() { return 30; },
 	GetMaxPopulation: function() { return 300; },
@@ -221,7 +221,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 		{
 			name: "Player 1",
 			civ: "gaia",
-			colour: { r:1, g:1, b:1, a:1 },
+			color: { r:1, g:1, b:1, a:1 },
 			popCount: 10,
 			popLimit: 20,
 			popMax: 200,
@@ -260,7 +260,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 		{
 			name: "Player 2",
 			civ: "mace",
-			colour: { r:1, g:0, b:0, a:1 },
+			color: { r:1, g:0, b:0, a:1 },
 			popCount: 40,
 			popLimit: 30,
 			popMax: 300,
@@ -308,7 +308,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 		{
 			name: "Player 1",
 			civ: "gaia",
-			colour: { r:1, g:1, b:1, a:1 },
+			color: { r:1, g:1, b:1, a:1 },
 			popCount: 10,
 			popLimit: 20,
 			popMax: 200,
@@ -354,7 +354,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 		{
 			name: "Player 2",
 			civ: "mace",
-			colour: { r:1, g:0, b:0, a:1 },
+			color: { r:1, g:0, b:0, a:1 },
 			popCount: 40,
 			popLimit: 30,
 			popMax: 300,

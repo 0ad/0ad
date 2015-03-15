@@ -48,7 +48,7 @@ public:
 
 	virtual void SetParam(const std::wstring& name, bool value);
 	virtual void SetParam(const std::wstring& name, int value);
-	virtual void SetParam(const std::wstring& name, const AtlasMessage::Colour& value);
+	virtual void SetParam(const std::wstring& name, const AtlasMessage::Color& value);
 	virtual void SetParam(const std::wstring& name, const std::wstring& value);
 
 	// These always return a valid (not NULL) object
@@ -139,7 +139,7 @@ public:
 
 	virtual void SetParam(const std::wstring& name, bool value);
 	virtual void SetParam(const std::wstring& name, int value);
-	virtual void SetParam(const std::wstring& name, const AtlasMessage::Colour& value);
+	virtual void SetParam(const std::wstring& name, const AtlasMessage::Color& value);
 
 	void SetSpeedMultiplier(float speedMultiplier);
 	ActorViewer& GetActorViewer();

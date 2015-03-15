@@ -39,7 +39,7 @@ const BUILDING_ANlE = -PI/4;
 // Other styles may be present as well but besides the civ styles only 'palisades' includes all wall element types (yet)
 
 // The next argument is always the index of the player that owns the wall.
-// 0 is Gaia, 1 is Player 1 (default colour blue), 2 is Player 2 (default colour red), ...
+// 0 is Gaia, 1 is Player 1 (default color blue), 2 is Player 2 (default color red), ...
 
 // The next argument is an angle defining the orientation of the wall
 // placeLinearWall does not need an angle since it's defined by startX/Y and targetX/Y
@@ -77,7 +77,7 @@ for (var styleIndex = 0; styleIndex < wallStyleList.length; styleIndex++)
 	var style = wallStyleList[styleIndex]; // // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
 	var orientation = styleIndex * PI/64; // Orientation of the first wall element. 0 means 'outside' or 'front' is right (positive X, like object placement)
 	// That means the wall will be build towards top (positive Y) if no corners are used
-	var playerId = 0; // Owner of the wall (like in placeObject). 0 is Gaia, 1 is Player 1 (default colour blue), ...
+	var playerId = 0; // Owner of the wall (like in placeObject). 0 is Gaia, 1 is Player 1 (default color blue), ...
 	placeWall(startX, startY, wall, style, playerId, orientation); // Actually placing the wall
 }
 actualX = distToMapBorder; // Reset actualX
@@ -93,7 +93,7 @@ for (var styleIndex = 0; styleIndex < wallStyleList.length; styleIndex++)
 	var centerY = actualY + fortressRadius; // Y coordinate of the center of the fortress
 	var type = 'tiny'; // Default fortress types are like map sizes: 'tiny', 'small', 'medium', 'large', 'veryLarge', 'giant'
 	var style = wallStyleList[styleIndex]; // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
-	var playerId = 0; // Owner of the wall. 0 is Gaia, 1 is Player 1 (default colour blue), ...
+	var playerId = 0; // Owner of the wall. 0 is Gaia, 1 is Player 1 (default color blue), ...
 	var orientation = styleIndex * PI/32; // Where the 'main entrance' of the fortress should face (like in placeObject). All fortresses walls should start with an entrance
 	placeFortress(centerX, centerY, type, style, playerId, orientation); // Actually placing the fortress
 	placeObject(centerX, centerY, 'other/obelisk', 0, 0*PI); // Place visual marker to see the center of the fortress

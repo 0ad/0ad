@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>stratus</SkySet>
-		<SunColour r="1.12423" g="0.925837" b="0.3527"/>
+		<SunColor r="1.12423" g="0.925837" b="0.3527"/>
 		<SunElevation angle="0.469398"/>
 		<SunRotation angle="0.736311"/>
-		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.329412" g="0.419608" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.0025</FogFactor>
 			<FogThickness>0.00195313</FogThickness>
-			<FogColour r="0.866667" g="0.776471" b="0.486275"/>
+			<FogColor r="0.866667" g="0.776471" b="0.486275"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.34902" g="0.294118" b="0.239216"/>
+				<Color r="0.34902" g="0.294118" b="0.239216"/>
 				<Tint r="0.866667" g="0.776471" b="0.486275"/>
 				<Height>26.3344</Height>
 				<Waviness>3.99414</Waviness>

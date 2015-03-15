@@ -253,7 +253,7 @@ void CLOSTexture::ConstructTexture(int unit)
 
 	glGenTextures(1, &m_Texture);
 
-	// Initialise texture with SoD colour, for the areas we don't
+	// Initialise texture with SoD color, for the areas we don't
 	// overwrite with glTexSubImage2D later
 	u8* texData = new u8[m_TextureSize * m_TextureSize * 4];
 	memset(texData, 0x00, m_TextureSize * m_TextureSize * 4);

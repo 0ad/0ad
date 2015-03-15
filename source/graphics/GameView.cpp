@@ -481,7 +481,7 @@ void CGameView::BeginFrame()
 
 	CheckLightEnv();
 
-	m->Game->CachePlayerColours();
+	m->Game->CachePlayerColors();
 }
 
 void CGameView::Render()

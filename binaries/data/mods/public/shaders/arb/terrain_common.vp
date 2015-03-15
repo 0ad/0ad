@@ -24,7 +24,7 @@ DP4 result.position.w, state.matrix.mvp.row[3], position;
 // Diffuse factor is precomputed in vertex attribute
 // Scale diffuse to allow overbrightness (since result.color will be clamped to [0, 1])
 MUL lighting, vertex.color, 0.5;
-// Apply light colour
+// Apply light color
 MUL result.color, lighting, sunColor;
 
 //// Texture coordinates:

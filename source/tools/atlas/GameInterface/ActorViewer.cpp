@@ -440,10 +440,10 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation, player_id_
 	m.CurrentUnitAnim = animation;
 }
 
-void ActorViewer::SetBackgroundColour(const SColor4ub& colour)
+void ActorViewer::SetBackgroundColor(const SColor4ub& color)
 {
-	m.Background = colour;
-	m.Terrain.SetBaseColour(colour);
+	m.Background = color;
+	m.Terrain.SetBaseColor(color);
 }
 
 void ActorViewer::SetWalkEnabled(bool enabled)    { m.WalkEnabled = enabled; }

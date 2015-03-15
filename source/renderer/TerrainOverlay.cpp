@@ -180,12 +180,12 @@ void TerrainOverlay::RenderBeforeWater()
 #endif
 }
 
-void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden)
+void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden)
 {
-	RenderTile(colour, draw_hidden, m_i, m_j);
+	RenderTile(color, draw_hidden, m_i, m_j);
 }
 
-void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden, ssize_t i, ssize_t j)
+void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i, ssize_t j)
 {
 	// TODO: if this is unpleasantly slow, make it much more efficient
 	// (e.g. buffering data and making a single draw call? or at least
@@ -210,7 +210,7 @@ void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden, ssize_t 
 
 	CVector3D pos;
 	glBegin(GL_TRIANGLES);
-		glColor4fv(colour.FloatArray());
+		glColor4fv(color.FloatArray());
 		if (m_Terrain->GetTriangulationDir(i, j))
 		{
 			m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
@@ -236,12 +236,12 @@ void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden, ssize_t 
 #endif
 }
 
-void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden)
+void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool draw_hidden)
 {
-	RenderTileOutline(colour, line_width, draw_hidden, m_i, m_j);
+	RenderTileOutline(color, line_width, draw_hidden, m_i, m_j);
 }
 
-void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden, ssize_t i, ssize_t j)
+void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool draw_hidden, ssize_t i, ssize_t j)
 {
 	if (draw_hidden)
 	{
@@ -265,7 +265,7 @@ void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, boo
 
 	CVector3D pos;
 	glBegin(GL_QUADS);
-		glColor4fv(colour.FloatArray());
+		glColor4fv(color.FloatArray());
 		m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
 		m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
 		m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());

@@ -326,7 +326,7 @@ public:
 	{
 		m_ScrolledPanel = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
 		m_ScrolledPanel->SetScrollRate(0, 10);
-		m_ScrolledPanel->SetBackgroundColour(wxColour(255, 255, 255));
+		m_ScrolledPanel->SetBackgroundColour(wxColor(255, 255, 255));
 
 		wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 		sizer->Add(m_ScrolledPanel, wxSizerFlags().Proportion(1).Expand());
@@ -420,7 +420,7 @@ public:
 		if (m_LastTerrainSelection)
 			m_LastTerrainSelection->SetBackgroundColour(wxNullColour);
 
-		button->SetBackgroundColour(wxColour(255, 255, 0));
+		button->SetBackgroundColour(wxColor(255, 255, 0));
 		m_LastTerrainSelection = button;
 
 		// Slight hack: Default to Paint mode because that's probably what the user wanted
@@ -449,7 +449,7 @@ private:
 	wxString m_Name;
 	wxScrolledWindow* m_ScrolledPanel;
 	wxGridSizer* m_ItemSizer;
-	wxButton* m_LastTerrainSelection; // button that was last selected, so we can undo its colouring
+	wxButton* m_LastTerrainSelection; // button that was last selected, so we can undo its coloring
 
 	DECLARE_EVENT_TABLE();
 };

@@ -55,10 +55,10 @@ public:
 	std::vector<CObjectBase::Samp> m_Samplers;
 	// model name
 	VfsPath m_ModelName;
-	// colour (used when doing alpha-channel colouring, but not doing player-colour)
+	// color (used when doing alpha-channel coloring, but not doing player-color)
 	CColor m_Color;
-		// (probable TODO: make colour a per-model thing, rather than per-objectEntry,
-		// so we can have lots of colour variations without wasting memory on
+		// (probable TODO: make color a per-model thing, rather than per-objectEntry,
+		// so we can have lots of color variations without wasting memory on
 		// lots of objectEntries)
 
 	std::wstring m_ProjectileModelName;

@@ -337,7 +337,7 @@ struct Tex
 	 *
 	 * @return ARGB value (or 0 if texture does not have mipmaps)
 	 **/
-	u32 get_average_colour() const;
+	u32 get_average_color() const;
 
 	/**
 	 * return total byte size of the image pixels. (including mipmaps!)

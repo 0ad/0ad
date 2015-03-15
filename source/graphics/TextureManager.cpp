@@ -199,8 +199,8 @@ public:
 		size_t flags = 0;
 		(void)ogl_tex_get_format(h, &flags, NULL);
 
-		// Initialise base colour from the texture
-		(void)ogl_tex_get_average_colour(h, &texture->m_BaseColour);
+		// Initialise base color from the texture
+		(void)ogl_tex_get_average_color(h, &texture->m_BaseColor);
 
 		// Set GL upload properties
 		(void)ogl_tex_set_wrap(h, texture->m_Properties.m_WrapS, texture->m_Properties.m_WrapT);
@@ -526,7 +526,7 @@ private:
 };
 
 CTexture::CTexture(Handle handle, const CTextureProperties& props, CTextureManagerImpl* textureManager) :
-	m_Handle(handle), m_BaseColour(0), m_State(UNLOADED), m_Properties(props), m_TextureManager(textureManager)
+	m_Handle(handle), m_BaseColor(0), m_State(UNLOADED), m_Properties(props), m_TextureManager(textureManager)
 {
 	// Add a reference to the handle (it might be shared by multiple CTextures
 	// so we can't take ownership of it)
@@ -623,9 +623,9 @@ bool CTexture::HasAlpha() const
 	return (flags & TEX_ALPHA) != 0;
 }
 
-u32 CTexture::GetBaseColour() const
+u32 CTexture::GetBaseColor() const
 {
-	return m_BaseColour;
+	return m_BaseColor;
 }
 
 size_t CTexture::GetUploadedSize() const

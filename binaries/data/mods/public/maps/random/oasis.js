@@ -431,16 +431,16 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 }
 
 setSkySet("sunny");
-setSunColour(0.914,0.827,0.639);
+setSunColor(0.914,0.827,0.639);
 setSunRotation(PI/3);
 setSunElevation(0.5);
-setWaterColour(0, 0.227, 0.843);
+setWaterColor(0, 0.227, 0.843);
 setWaterTint(0, 0.545, 0.859);
 setWaterWaviness(1.0);
 setWaterType("clap");
 setWaterMurkiness(0.5);
-setTerrainAmbientColour(0.45, 0.5, 0.6);
-setUnitsAmbientColour(0.501961, 0.501961, 0.501961);
+setTerrainAmbientColor(0.45, 0.5, 0.6);
+setUnitsAmbientColor(0.501961, 0.501961, 0.501961);
 
 // Export map data
 

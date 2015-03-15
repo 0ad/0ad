@@ -4,15 +4,15 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.921569" g="0.831373" b="0.737255"/>
+		<SunColor r="0.921569" g="0.831373" b="0.737255"/>
 		<SunElevation angle="0.665748"/>
 		<SunRotation angle="-0.478602"/>
-		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColour r="0.4" g="0.431373" b="0.466667"/>
+		<TerrainAmbientColor r="0.337255" g="0.411765" b="0.501961"/>
+		<UnitsAmbientColor r="0.4" g="0.431373" b="0.466667"/>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>19.3049</Height>
 				<Shininess>150</Shininess>
 				<Waviness>4.0</Waviness>
@@ -40,7 +40,7 @@
   "PlayerData": [
     {
       "Civ": "rome",
-      "Colour": {
+      "Color": {
         "b": 39,
         "g": 39,
         "r": 131
@@ -56,7 +56,7 @@
     },
     {
       "Civ": "rome",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -72,7 +72,7 @@
     },
     {
       "Civ": "gaul",
-      "Colour": {
+      "Color": {
         "b": 5,
         "g": 165,
         "r": 50
@@ -82,7 +82,7 @@
     },
     {
       "Civ": "gaul",
-      "Colour": {
+      "Color": {
         "b": 75,
         "g": 230,
         "r": 230

@@ -283,9 +283,9 @@ function openDiplomacy()
 		size.bottom = rowsize*i;
 		row.size = size;
 
-		// Set background colour
+		// Set background color
 		let playerColor = rgbToGuiColor(g_Players[i].color);
-		row.sprite = "colour: "+playerColor + " 32";
+		row.sprite = "color: "+playerColor + " 32";
 
 		Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + g_Players[i].name + "[/color]";
 		Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[g_Players[i].civ].Name;

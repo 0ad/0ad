@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunColor r="0.74902" g="0.74902" b="0.74902"/>
 		<SunElevation angle="1.11674"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.537255" g="0.529412" b="0.529412"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.537255" g="0.529412" b="0.529412"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0</FogFactor>
 			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0" g="0" b="0"/>
+				<Color r="0" g="0" b="0"/>
 				<Height>36.5115</Height>
 				<Shininess>150</Shininess>
 				<Waviness>0.8</Waviness>
@@ -53,7 +53,7 @@
     {
       "AI": "",
       "Civ": "maur",
-      "Colour": {
+      "Color": {
         "b": 51,
         "g": 133,
         "r": 45
@@ -80,7 +80,7 @@
     {
       "AI": "",
       "Civ": "maur",
-      "Colour": {
+      "Color": {
         "b": 175,
         "g": 64,
         "r": 42

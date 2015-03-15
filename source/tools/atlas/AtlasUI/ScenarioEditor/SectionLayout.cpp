@@ -51,7 +51,7 @@ public:
 	void SetSelectedAppearance(bool selected)
 	{
 		if (selected)
-			SetBackgroundColour(wxColour(0xee, 0xcc, 0x55));
+			SetBackgroundColour(wxColor(0xee, 0xcc, 0x55));
 		else
 			SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE));
 	}

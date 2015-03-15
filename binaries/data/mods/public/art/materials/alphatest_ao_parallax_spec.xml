@@ -22,10 +22,10 @@
     <!--define name="USE_NORMAL_MAP" value="1"/-->
     
     <!-- REQUIRES: Actor must provide a texture named "specTex", where the RGB channels
-		   provide a specular colour multiplier. 
+		   provide a specular color multiplier. 
 		   Material must provide a uniform definition for "specularPower" that controls
 		   the glossiness of the effect.
-	 COMMENT: The intensity of the colour controls the specular amount, so black pixels have
+	 COMMENT: The intensity of the color controls the specular amount, so black pixels have
 		  no specularity. 
 	 COMPATIBILITY: This effect is incompatible with the old "USE_SPECULAR" effect.
 	 EFFICIENCY: This is a relatively inexpensive effect that should run easily on most hardware. -->
@@ -34,7 +34,7 @@
     <!-- REQUIRES: That "USE_SPECULAR_MAP" is enabled and a texture named "specTex" is provided by the Actor.
 		   The Alpha channel of the texture defines the amount of self-illumination, with 
 		   transparency being no self-illumination.
-	 COMMENT: Full self-illumination means the screen colour of a pixel is equal to its baseTex value.
+	 COMMENT: Full self-illumination means the screen color of a pixel is equal to its baseTex value.
 	 EFFICIENCY: This is a very cheap effect, however it also requires the calculation of specular. -->
     <!--define name="USE_SELF_LIGHT" value="1"/-->
     

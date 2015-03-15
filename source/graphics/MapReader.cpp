@@ -595,15 +595,15 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(lightingmodel);
 	EL(posteffect);
 	EL(skyset);
-	EL(suncolour);
+	EL(suncolor);
 	EL(sunelevation);
 	EL(sunrotation);
-	EL(terrainambientcolour);
-	EL(unitsambientcolour);
+	EL(terrainambientcolor);
+	EL(unitsambientcolor);
 	EL(water);
 	EL(waterbody);
 	EL(type);
-	EL(colour);
+	EL(color);
 	EL(tint);
 	EL(height);
 	EL(shininess);	// for compatibility
@@ -613,7 +613,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(reflectiontint);	// for compatibility
 	EL(reflectiontintstrength);	// for compatibility
 	EL(fog);
-	EL(fogcolour);
+	EL(fogcolor);
 	EL(fogfactor);
 	EL(fogthickness);
 	EL(postproc);
@@ -640,7 +640,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 			if (m_MapReader.pSkyMan)
 				m_MapReader.pSkyMan->SetSkySet(element.GetText().FromUTF8());
 		}
-		else if (element_name == el_suncolour)
+		else if (element_name == el_suncolor)
 		{
 			m_MapReader.m_LightEnv.m_SunColor = RGBColor(
 				attrs.GetNamedItem(at_r).ToFloat(),
@@ -655,14 +655,14 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 		{
 			m_MapReader.m_LightEnv.m_Rotation = attrs.GetNamedItem(at_angle).ToFloat();
 		}
-		else if (element_name == el_terrainambientcolour)
+		else if (element_name == el_terrainambientcolor)
 		{
 			m_MapReader.m_LightEnv.m_TerrainAmbientColor = RGBColor(
 				attrs.GetNamedItem(at_r).ToFloat(),
 				attrs.GetNamedItem(at_g).ToFloat(),
 				attrs.GetNamedItem(at_b).ToFloat());
 		}
-		else if (element_name == el_unitsambientcolour)
+		else if (element_name == el_unitsambientcolor)
 		{
 			m_MapReader.m_LightEnv.m_UnitsAmbientColor = RGBColor(
 				attrs.GetNamedItem(at_r).ToFloat(),
@@ -674,7 +674,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 			XERO_ITER_EL(element, fog)
 			{
 				int element_name = fog.GetNodeName();
-				if (element_name == el_fogcolour)
+				if (element_name == el_fogcolor)
 				{
 					XMBAttributeList attrs = fog.GetAttributes();
 					m_MapReader.m_LightEnv.m_FogColor = RGBColor(
@@ -752,7 +752,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					{
 						// deprecated.
 					}
-#define READ_COLOUR(el, out) \
+#define READ_COLOR(el, out) \
 					else if (element_name == el) \
 					{ \
 						XMBAttributeList attrs = waterelement.GetAttributes(); \
@@ -769,14 +769,14 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 						out = waterelement.GetText().ToFloat(); \
 					} \
 
-					READ_COLOUR(el_colour, m_MapReader.pWaterMan->m_WaterColor)
-					READ_COLOUR(el_tint, m_MapReader.pWaterMan->m_WaterTint)
+					READ_COLOR(el_color, m_MapReader.pWaterMan->m_WaterColor)
+					READ_COLOR(el_tint, m_MapReader.pWaterMan->m_WaterTint)
 					READ_FLOAT(el_waviness, m_MapReader.pWaterMan->m_Waviness)
 					READ_FLOAT(el_murkiness, m_MapReader.pWaterMan->m_Murkiness)
 					READ_FLOAT(el_windangle, m_MapReader.pWaterMan->m_WindAngle)
 
 #undef READ_FLOAT
-#undef READ_COLOUR
+#undef READ_COLOR
 
 					else
 						debug_warn(L"Invalid map XML data");
@@ -1488,18 +1488,18 @@ int CMapReader::ParseEnvironment()
 		pSkyMan->SetSkySet(skySet);
 
 	CColor sunColor;
-	GET_ENVIRONMENT_PROPERTY(envObj, SunColour, sunColor)
+	GET_ENVIRONMENT_PROPERTY(envObj, SunColor, sunColor)
 	m_LightEnv.m_SunColor = RGBColor(sunColor.r, sunColor.g, sunColor.b);
 
 	GET_ENVIRONMENT_PROPERTY(envObj, SunElevation, m_LightEnv.m_Elevation)
 	GET_ENVIRONMENT_PROPERTY(envObj, SunRotation, m_LightEnv.m_Rotation)
 	
 	CColor terrainAmbientColor;
-	GET_ENVIRONMENT_PROPERTY(envObj, TerrainAmbientColour, terrainAmbientColor)
+	GET_ENVIRONMENT_PROPERTY(envObj, TerrainAmbientColor, terrainAmbientColor)
 	m_LightEnv.m_TerrainAmbientColor = RGBColor(terrainAmbientColor.r, terrainAmbientColor.g, terrainAmbientColor.b);
 
 	CColor unitsAmbientColor;
-	GET_ENVIRONMENT_PROPERTY(envObj, UnitsAmbientColour, unitsAmbientColor)
+	GET_ENVIRONMENT_PROPERTY(envObj, UnitsAmbientColor, unitsAmbientColor)
 	m_LightEnv.m_UnitsAmbientColor = RGBColor(unitsAmbientColor.r, unitsAmbientColor.g, unitsAmbientColor.b);
 
 	// Water properties
@@ -1523,7 +1523,7 @@ int CMapReader::ParseEnvironment()
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj, Type, pWaterMan->m_WaterType)
 		if (pWaterMan->m_WaterType == L"default")
 			pWaterMan->m_WaterType = L"ocean";
-		GET_ENVIRONMENT_PROPERTY(waterBodyObj, Colour, pWaterMan->m_WaterColor)
+		GET_ENVIRONMENT_PROPERTY(waterBodyObj, Color, pWaterMan->m_WaterColor)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj, Tint, pWaterMan->m_WaterTint)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj, Waviness, pWaterMan->m_Waviness)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj, Murkiness, pWaterMan->m_Murkiness)

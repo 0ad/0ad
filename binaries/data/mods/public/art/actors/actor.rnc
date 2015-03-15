@@ -29,7 +29,7 @@ element actor {
             element particles {
                 attribute file { text }
             }? &
-            element colour { list {
+            element color { list {
                 xsd:nonNegativeInteger, # R
                 xsd:nonNegativeInteger, # G
                 xsd:nonNegativeInteger # B

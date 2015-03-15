@@ -63,7 +63,7 @@ MESSAGE(SetViewParamI,
 MESSAGE(SetViewParamC,
 		((int, view)) // eRenderView
 		((std::wstring, name))
-		((Colour, value))
+		((Color, value))
 		);
 MESSAGE(SetViewParamS,
 		((int, view)) // eRenderView
@@ -447,15 +447,15 @@ struct sEnvironmentSettings
 	Shareable<float> watermurkiness; // range ???
 	Shareable<float> windangle;
 
-	Shareable<Colour> watercolour;
-	Shareable<Colour> watertint;
+	Shareable<Color> watercolor;
+	Shareable<Color> watertint;
 
 	Shareable<float> sunrotation; // range -pi..+pi
 	Shareable<float> sunelevation; // range -pi/2 .. +pi/2
 
-	// emulate 'HDR' by allowing overly bright suncolour. this is
-	// multiplied on to suncolour after converting to float
-	// (struct Colour stores as normal u8, 0..255)
+	// emulate 'HDR' by allowing overly bright suncolor. this is
+	// multiplied on to suncolor after converting to float
+	// (struct Color stores as normal u8, 0..255)
 	Shareable<float> sunoverbrightness; // range 1..3
 
 	// support different lighting models ("old" for the version compatible with old scenarios,
@@ -464,10 +464,10 @@ struct sEnvironmentSettings
 
 	Shareable<std::wstring> skyset;
 
-	Shareable<Colour> suncolour;
-	Shareable<Colour> terraincolour;
-	Shareable<Colour> unitcolour;
-	Shareable<Colour> fogcolour;
+	Shareable<Color> suncolor;
+	Shareable<Color> terraincolor;
+	Shareable<Color> unitcolor;
+	Shareable<Color> fogcolor;
 	
 	Shareable<float> fogfactor;
 	Shareable<float> fogmax;

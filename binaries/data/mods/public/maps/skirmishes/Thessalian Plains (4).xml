@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.956863" g="0.858824" b="0.537255"/>
+		<SunColor r="0.956863" g="0.858824" b="0.537255"/>
 		<SunElevation angle="0.539961"/>
 		<SunRotation angle="-0.613592"/>
-		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColour r="0.439216" g="0.466667" b="0.509804"/>
+		<TerrainAmbientColor r="0.337255" g="0.411765" b="0.501961"/>
+		<UnitsAmbientColor r="0.439216" g="0.466667" b="0.509804"/>
 		<Fog>
 			<FogFactor>0.000996094</FogFactor>
 			<FogThickness>0.101563</FogThickness>
-			<FogColour r="0.882353" g="0.839216" b="0.701961"/>
+			<FogColor r="0.882353" g="0.839216" b="0.701961"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.443137" g="0.521569" b="0.556863"/>
+				<Color r="0.443137" g="0.521569" b="0.556863"/>
 				<Height>19.3049</Height>
 				<Waviness>4.0</Waviness>
 				<Murkiness>0.59082</Murkiness>

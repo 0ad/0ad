@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>dark</SkySet>
-		<SunColour r="0.412972" g="0.90103" b="1.19668"/>
+		<SunColor r="0.412972" g="0.90103" b="1.19668"/>
 		<SunElevation angle="0.13499"/>
 		<SunRotation angle="-2.50346"/>
-		<TerrainAmbientColour r="0.254902" g="0.313726" b="0.447059"/>
-		<UnitsAmbientColour r="0.286275" g="0.337255" b="0.486275"/>
+		<TerrainAmbientColor r="0.254902" g="0.313726" b="0.447059"/>
+		<UnitsAmbientColor r="0.286275" g="0.337255" b="0.486275"/>
 		<Fog>
 			<FogFactor>0.00396484</FogFactor>
 			<FogThickness>0.250977</FogThickness>
-			<FogColour r="0.333333" g="0.423529" b="0.501961"/>
+			<FogColor r="0.333333" g="0.423529" b="0.501961"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.211765" g="0.247059" b="0.501961"/>
+				<Color r="0.211765" g="0.247059" b="0.501961"/>
 				<Height>20.0394</Height>
 				<Shininess>229.004</Shininess>
 				<Waviness>3.0</Waviness>
@@ -49,7 +49,7 @@
   "Name": "Greek Acropolis Night (2)",
   "PlayerData": [
     {
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -57,7 +57,7 @@
       "Name": "Player 1"
     },
     {
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

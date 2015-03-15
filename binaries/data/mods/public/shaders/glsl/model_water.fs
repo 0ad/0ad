@@ -135,9 +135,9 @@ void main()
 	float fresShadow = fresnel;
 #endif
 	
-	vec3 colour = mix(refrColor + 0.3*specular, reflColor + specular, fresShadow);
+	vec3 color = mix(refrColor + 0.3*specular, reflColor + specular, fresShadow);
 
-	gl_FragColor.rgb = colour * losMod;
+	gl_FragColor.rgb = color * losMod;
 
 
 	//gl_FragColor.rgb = mix(refrColor + 0.3*specular, reflColor + specular, fresnel) * losMod;

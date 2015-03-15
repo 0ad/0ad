@@ -4,15 +4,15 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="0.784314" g="0.764706" b="0.682353"/>
+		<SunColor r="0.784314" g="0.764706" b="0.682353"/>
 		<SunElevation angle="0.908117"/>
 		<SunRotation angle="-0.693359"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.447059" g="0.509804" b="0.54902"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0.145098" g="0.321569" b="0.619608"/>
+				<Color r="0.145098" g="0.321569" b="0.619608"/>
 				<Height>19</Height>
 				<Shininess>158</Shininess>
 				<Waviness>3.3</Waviness>
@@ -42,7 +42,7 @@
   "PlayerData": [
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 80,
         "r": 80
@@ -52,7 +52,7 @@
     },
     {
       "Civ": "gaul",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
