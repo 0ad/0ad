@@ -34,16 +34,16 @@ varying vec2 v_los;
   varying vec2 v_tex2;
 #endif
 
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
+#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX
   varying vec4 v_normal;
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX_MAP)
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX)
     varying vec4 v_tangent;
     //varying vec3 v_bitangent;
   #endif
   #if USE_SPECULAR || USE_SPECULAR_MAP
     varying vec3 v_half;
   #endif
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX_MAP
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX
     varying vec3 v_eyeVec;
   #endif
 #endif
@@ -88,7 +88,7 @@ void main()
     vec4 position = instancingTransform * vec4(p, 1.0);
     mat3 normalMatrix = mat3(instancingTransform[0].xyz, instancingTransform[1].xyz, instancingTransform[2].xyz);
     vec3 normal = normalMatrix * normalize(n);
-    #if (USE_NORMAL_MAP || USE_PARALLAX_MAP)
+    #if (USE_NORMAL_MAP || USE_PARALLAX)
       vec3 tangent = normalMatrix * a_tangent.xyz;
     #endif
   #else
@@ -96,7 +96,7 @@ void main()
     vec4 position = instancingTransform * vec4(a_vertex, 1.0);
     mat3 normalMatrix = mat3(instancingTransform[0].xyz, instancingTransform[1].xyz, instancingTransform[2].xyz);
     vec3 normal = normalMatrix * a_normal;
-    #if (USE_NORMAL_MAP || USE_PARALLAX_MAP)
+    #if (USE_NORMAL_MAP || USE_PARALLAX)
       vec3 tangent = normalMatrix * a_tangent.xyz;
     #endif
   #else
@@ -142,10 +142,10 @@ void main()
 
   gl_Position = transform * position;
 
-  #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
+  #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX
     v_normal.xyz = normal;
 
-    #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX_MAP)
+    #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX)
       v_tangent.xyz = tangent;
       vec3 bitangent = cross(v_normal.xyz, v_tangent.xyz) * a_tangent.w;
       v_normal.w = bitangent.x;
@@ -153,13 +153,13 @@ void main()
       v_lighting.w = bitangent.z;
     #endif
 
-    #if USE_SPECULAR || USE_SPECULAR_MAP || USE_PARALLAX_MAP
+    #if USE_SPECULAR || USE_SPECULAR_MAP || USE_PARALLAX
       vec3 eyeVec = cameraPos.xyz - position.xyz;
       #if USE_SPECULAR || USE_SPECULAR_MAP     
         vec3 sunVec = -sunDir;
         v_half = normalize(sunVec + normalize(eyeVec));
       #endif
-      #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX_MAP
+      #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX
         v_eyeVec = eyeVec;
       #endif
     #endif

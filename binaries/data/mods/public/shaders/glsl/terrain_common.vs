@@ -34,16 +34,13 @@ varying vec2 v_blend;
 
 varying vec3 v_normal;
 
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
-  #if USE_NORMAL_MAP || USE_PARALLAX_MAP
+#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP
+  #if USE_NORMAL_MAP
     varying vec4 v_tangent;
     varying vec3 v_bitangent;
   #endif
   #if USE_SPECULAR || USE_SPECULAR_MAP
     varying vec3 v_half;
-  #endif
-  #if USE_PARALLAX_MAP
-    varying vec3 v_eyeVec;
   #endif
 #endif
 
@@ -102,22 +99,19 @@ void main()
   
   v_normal = a_normal;
 
-  #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP || USE_TRIPLANAR
-    #if USE_NORMAL_MAP || USE_PARALLAX_MAP
+  #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_TRIPLANAR
+    #if USE_NORMAL_MAP
       vec3 t = vec3(1.0, 0.0, 0.0);
       t = normalize(t - v_normal * dot(v_normal, t));
       v_tangent = vec4(t, -1.0);
       v_bitangent = cross(v_normal, t);
     #endif
 
-    #if USE_SPECULAR || USE_SPECULAR_MAP || USE_PARALLAX_MAP
+    #if USE_SPECULAR || USE_SPECULAR_MAP
       vec3 eyeVec = cameraPos.xyz - position.xyz;
       #if USE_SPECULAR || USE_SPECULAR_MAP
         vec3 sunVec = -sunDir;
         v_half = normalize(sunVec + normalize(eyeVec));
-      #endif
-      #if USE_PARALLAX_MAP
-        v_eyeVec = eyeVec;
       #endif
     #endif
   #endif
