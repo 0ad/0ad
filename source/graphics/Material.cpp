@@ -60,6 +60,13 @@ void CMaterial::AddRenderQuery(const char* key)
 	m_RenderQueries.Add(key);
 }
 
+void CMaterial::AddRequiredSampler(const CStr& samplerName)
+{
+	CStrIntern string(samplerName);
+	m_RequiredSamplers.push_back(string);
+}
+
+
 // Set up m_CombinedShaderDefines so that index i contains m_ShaderDefines, plus
 // the extra defines from m_ConditionalDefines[j] for all j where bit j is set in i.
 // This lets GetShaderDefines() cheaply return the defines for any combination of conditions.

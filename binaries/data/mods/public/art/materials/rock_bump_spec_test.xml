@@ -16,7 +16,6 @@
     <!-- REQUIRES: Actor must provide a texture named "normTex", where the RGB channels
 		   are a normal map corresponding to XYZ normals.
 	 EFFICIENCY: This is a relatively inexpensive effect that should run easily on most hardware. -->
-    <define name="USE_NORMAL_MAP" value="1"/>
     
     <!-- REQUIRES: Actor must provide a texture named "specTex", where the RGB channels
 		   provide a specular colour multiplier. 
@@ -26,7 +25,6 @@
 		  no specularity. 
 	 COMPATIBILITY: This effect is incompatible with the old "USE_SPECULAR" effect.
 	 EFFICIENCY: This is a relatively inexpensive effect that should run easily on most hardware. -->
-    <define name="USE_SPECULAR_MAP" value="1"/>
     
     <!-- REQUIRES: That "USE_SPECULAR_MAP" is enabled and a texture named "specTex" is provided by the Actor.
 		   The Alpha channel of the texture defines the amount of self-illumination, with 
@@ -46,4 +44,8 @@
 	 Third value: Parallax scale.
 	 Fourth value: AO amount. -->
     <uniform name="effectSettings" value="5.0 50.0 0.0075 0.85"/>
+	
+	<required_texture name="baseTex"/>
+	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
+	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>
 </material>

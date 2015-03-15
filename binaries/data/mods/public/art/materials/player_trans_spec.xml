@@ -3,7 +3,6 @@
     <shader effect="model"/>
     <alternative material="player_trans.xml" quality="1"/>
     <define name="USE_PLAYERCOLOR" value="1"/>
-    <define name="USE_SPECULAR_MAP" value="1"/>
     <!-- <define name="USE_SELF_LIGHT" value="1"/> -->
 
     <!-- Settings for effects above:
@@ -12,4 +11,8 @@
 	 Third value: Parallax scale.
 	 Fourth value: AO amount. -->
     <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
+	
+	<required_texture name="baseTex"/>
+	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+
 </material>

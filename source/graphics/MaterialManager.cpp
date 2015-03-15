@@ -58,9 +58,11 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	EL(shader);
 	EL(uniform);
 	EL(renderquery);
+	EL(required_texture);
 	EL(conditional_define);
 	AT(effect);
 	AT(if);
+	AT(define);
 	AT(quality);
 	AT(material);
 	AT(name);
@@ -179,6 +181,12 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 		else if (token == el_renderquery)
 		{
 			material.AddRenderQuery(attrs.GetNamedItem(at_name).c_str());
+		}
+		else if (token == el_required_texture)
+		{
+			material.AddRequiredSampler(attrs.GetNamedItem(at_name));
+			if (!attrs.GetNamedItem(at_define).empty())
+				material.AddShaderDefine(CStrIntern(attrs.GetNamedItem(at_define)), str_1);
 		}
 	}
 

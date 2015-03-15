@@ -86,5 +86,10 @@
         <attribute name="name"/>
       </element>
     </zeroOrMore>
+	<zeroOrMore>
+		<element name="required_texture">
+			<attribute name="name"/>
+		</element>
+	</zeroOrMore>
   </interleave>
 </element>
