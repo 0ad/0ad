@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Rayan <nitro361@gmail.com>, 2015
+# Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-03-01 16:10+0000\n"
+"PO-Revision-Date: 2015-03-14 06:24+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +90,7 @@ msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:189
 msgid "HH:mm:ss"
-msgstr "HH:mm:ss"
+msgstr ""
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -636,36 +637,36 @@ msgstr "تظهر تلميحات مفصلة عن وحدات للتدريب في �
 
 #: gui/options/options.js:13
 msgid "FPS Overlay"
-msgstr "اقصى اط/ث"
+msgstr "اظهر اط/ث"
 
 #: gui/options/options.js:13
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "أظهر الإطارات في الثانية في الركن العلوي الأيمن"
 
 #: gui/options/options.js:14
 msgid "Realtime Overlay"
-msgstr ""
+msgstr "أظهر الوقت الفعلي"
 
 #: gui/options/options.js:14
 msgid "Show current system time in top right corner."
-msgstr ""
+msgstr "أظهر وقت النظام في الركن العلوي الأيمن"
 
 #: gui/options/options.js:15
 msgid "Gametime Overlay"
-msgstr ""
+msgstr "أظهر وقت اللعب"
 
 #: gui/options/options.js:15
 msgid "Show current simulation time in top right corner."
-msgstr ""
+msgstr "أظهر وقت المحاكاة في الركن العلوي الأيمن"
 
 #: gui/options/options.js:16
 msgid "Persist match settings"
-msgstr ""
+msgstr "إعدادات مواصلة المباراة"
 
 #: gui/options/options.js:16
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr ""
+msgstr "حفظ واستعادة اعدادات المبارة لستخدامها عند إستضافة لعبة اخرى"
 
 #: gui/options/options.js:20
 msgid "Prefer GLSL"
@@ -681,7 +682,7 @@ msgstr "بعد التعديل"
 
 #: gui/options/options.js:21
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr "استخدم مسح-الشاشة بعد تعديل التصفيات (HDR، سطوع، تركيز، الخ)"
+msgstr "استخدم مسح-الشاشة بعد تعديل التصفيات (HDR، سطوع، تركيز، الخ) \"تراجع\""
 
 #: gui/options/options.js:22
 msgid "Shadows"
@@ -709,15 +710,15 @@ msgstr "صيّر السّماء"
 
 #: gui/options/options.js:25
 msgid "Smooth LOS"
-msgstr ""
+msgstr "تنعيم خط الافق"
 
 #: gui/options/options.js:25
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr ""
+msgstr "رفع الظلام والضباب بسلاسة"
 
 #: gui/options/options.js:26
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "ظل الوحدات"
 
 #: gui/options/options.js:26
 msgid "Show outlines of units behind buildings"
@@ -729,27 +730,27 @@ msgstr "تصفية الضلال"
 
 #: gui/options/options.js:27
 msgid "Smooth shadows"
-msgstr ""
+msgstr "تنعيم الظلال"
 
 #: gui/options/options.js:28
 msgid "Fast & Ugly Water"
-msgstr ""
+msgstr "ماء سريع وقبيح"
 
 #: gui/options/options.js:28
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr ""
+msgstr "استعمال ادنى الاعدادات لعرض الماء، وهذا يجعل من الإعدادات الأخرى ليس لها صلة."
 
 #: gui/options/options.js:29
 msgid "HQ Water Effects"
-msgstr ""
+msgstr "تأثيرات الماء"
 
 #: gui/options/options.js:29
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "استعمل تأثيرات عالية الجودة للماء، مما يجعل الامواج لها زبد ومسارات سفن."
 
 #: gui/options/options.js:30
 msgid "Real Water Depth"
@@ -777,11 +778,11 @@ msgstr "استخدم خريطة انكسار ضوء حقيقيّ للماء بل
 
 #: gui/options/options.js:33
 msgid "Shadows on Water"
-msgstr ""
+msgstr "ظلال على المياه"
 
 #: gui/options/options.js:33
 msgid "Cast shadows on water"
-msgstr ""
+msgstr "يلقي الظلال على المياه"
 
 #: gui/options/options.js:34
 msgid "VSync"
@@ -793,43 +794,43 @@ msgstr "شغّل المزامنة العموديّة لإصلاح تمزّق ا�
 
 #: gui/options/options.js:38
 msgid "Master Gain"
-msgstr ""
+msgstr "الصوت الاساسي"
 
 #: gui/options/options.js:38
 msgid "Master audio gain"
-msgstr ""
+msgstr "الأصوات الاساسية"
 
 #: gui/options/options.js:39
 msgid "Music Gain"
-msgstr ""
+msgstr "صوت الموسيقى"
 
 #: gui/options/options.js:39
 msgid "In game music gain"
-msgstr ""
+msgstr "أصوات الموسيقى باللعبة"
 
 #: gui/options/options.js:40
 msgid "Ambient Gain"
-msgstr ""
+msgstr "الأصوات المحيطة"
 
 #: gui/options/options.js:40
 msgid "In game ambient sound gain"
-msgstr ""
+msgstr "الأصوات المحيطة باللعبة"
 
 #: gui/options/options.js:41
 msgid "Action Gain"
-msgstr ""
+msgstr "اصوات الاحداث"
 
 #: gui/options/options.js:41
 msgid "In game unit action sound gain"
-msgstr ""
+msgstr "اصوات نشاطات الوحدات في اللعبة"
 
 #: gui/options/options.js:42
 msgid "UI Gain"
-msgstr ""
+msgstr "صوت الواجهة"
 
 #: gui/options/options.js:42
 msgid "UI sound gain"
-msgstr ""
+msgstr "اصوات الواجهة"
 
 #: gui/options/options.js:46
 msgid "Chat Backlog"
@@ -837,7 +838,7 @@ msgstr "سجلّ المحادثة"
 
 #: gui/options/options.js:46
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr ""
+msgstr "عدد من رسائل تسجيل العودة تحمل عند تسجيل الدخول للردهة"
 
 #: gui/options/options.js:47
 msgid "Chat Timestamp"
@@ -845,7 +846,7 @@ msgstr "ختم المحادثة الزمنيّ"
 
 #: gui/options/options.js:47
 msgid "Show time that messages are posted in the lobby chat"
-msgstr ""
+msgstr "عرض وقت ارسال الرسائل في دردشة الردهة"
 
 #: gui/pregame/mainmenu.js:78
 msgid "disabled"
@@ -1037,7 +1038,7 @@ msgstr "الاقتصاديّة"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
-msgstr ""
+msgstr "البؤر الاستيطانية"
 
 #: gui/summary/layout.js:26
 msgid "Military"
@@ -1045,15 +1046,15 @@ msgstr "العسكريّة"
 
 #: gui/summary/layout.js:27
 msgid "Fortresses"
-msgstr ""
+msgstr "الحصون"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr ""
+msgstr "مراكز البلدية"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
-msgstr ""
+msgstr "عجائب"
 
 #: gui/summary/layout.js:32
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
@@ -1077,7 +1078,7 @@ msgstr "مقاتل"
 
 #: gui/summary/layout.js:55
 msgid "Navy"
-msgstr ""
+msgstr "أسطول"
 
 #: gui/summary/layout.js:58
 msgid "Units Statistics (Trained / Lost / Killed)"
@@ -1139,27 +1140,27 @@ msgstr "دخل التجارة"
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr ""
+msgstr "النسبة\nالنباتية"
 
 #: gui/summary/layout.js:121
 msgid "Feminisation"
-msgstr ""
+msgstr "تأنيث"
 
 #: gui/summary/layout.js:122
 msgid ""
 "Kill / Death\n"
 "ratio"
-msgstr ""
+msgstr "نسبة\nالقتل/الموت"
 
 #: gui/summary/layout.js:123
 msgid ""
 "Map\n"
 "exploration"
-msgstr ""
+msgstr "استكشاف\nالخريطة"
 
 #: gui/summary/layout.js:255
 msgid "Team total"
-msgstr ""
+msgstr "مجموع الفريق"
 
 #: gui/summary/summary.js:139
 msgid "Scenario"
@@ -1309,7 +1310,7 @@ msgstr "الحالة: $status."
 
 #: gui/pregame/mainmenu.xml:528
 msgid "Alpha XVIII: Rhododactylos"
-msgstr ""
+msgstr "الالفا الثامة عشر: رهودوداكتيلوس"
 
 #: gui/pregame/mainmenu.xml:530
 msgid ""
@@ -1331,7 +1332,7 @@ msgstr "عطّل التّغذية الاسترجاعيّة"
 
 #: gui/pregame/mainmenu.xml:(caption):173
 msgid "Structure Tree"
-msgstr ""
+msgstr "هيكل شجرة"
 
 #: gui/pregame/mainmenu.xml:(caption):190
 msgid "History"
@@ -1376,7 +1377,7 @@ msgstr "شاشة التّرحيب"
 
 #: gui/pregame/mainmenu.xml:(caption):390
 msgid "Mod Selection"
-msgstr ""
+msgstr "اختيار تعديل"
 
 #: gui/pregame/mainmenu.xml:(caption):445
 msgid "Learn To Play"
@@ -1424,7 +1425,7 @@ msgstr "افتح كُتيِّب لعبة 0 ب.م."
 
 #: gui/pregame/mainmenu.xml:(tooltip):174
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "رؤية شجرة الشعوب المميزة في 0.A.D"
 
 #: gui/pregame/mainmenu.xml:(tooltip):191
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -1438,7 +1439,7 @@ msgstr "انقر هنا لبدء لعبة لاعب واحد جديدة."
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr "عِش التّاريخ عبر الحملات العسكريّة التاريخيّة. [لم تُنجز بعد]"
+msgstr "عِش التّاريخ عبر الحملات العسكريّة التاريخيّة. \\[لم تُنجز بعد]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):247
 msgid "Click here to load a saved game."
@@ -1476,13 +1477,13 @@ msgstr "أظهر شاشة التّرحيب. مفيدٌ إن أخفيتها با�
 
 #: gui/pregame/mainmenu.xml:(tooltip):391
 msgid "Select mods to use."
-msgstr ""
+msgstr "اختر تعديل لتستعمل"
 
 #: gui/pregame/mainmenu.xml:(tooltip):446
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr ""
+msgstr "تعلم كيف تلعب، اكتشف الاشجار التكنولوجية، وتواريخ الشعوب"
 
 #: gui/pregame/mainmenu.xml:(tooltip):461
 msgid "Challenge the computer player to a single player match."
@@ -1536,7 +1537,7 @@ msgstr "الوصف:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "اهلاً وسهلاً!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -1544,7 +1545,7 @@ msgstr "أظهر هذه الرّسالة مستقبلًا"
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "المشاكل المعروفة (ويب)"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"
@@ -1581,11 +1582,11 @@ msgstr "تابع"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] شكراً لتثبيت 0.A.D: الإمبراطوريات المسيطرة!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
@@ -1605,7 +1606,7 @@ msgstr "[imgleft=\"iconMap\"]قد تسبّب الخرائط الكبيرة مش�
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "[imgleft=\"iconFormation\"]التّشكيلات عمل جارٍ، لكن ما زال يمكنك التّبديل بين تفعيلها وتعطيلها كما تحبّ."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -1620,15 +1621,15 @@ msgstr "- ابنِ في أيّ مكان على الخريطة، حتّى في إ
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
-msgstr ""
+msgstr "-تخسر صحتك في مناطق المحايدين والاعداء."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "-بناء اسلحة الحصار وتطوير المجندين."
 
 #: gui/text/tips/army_camp.txt:8
 msgid "- Slowly heal up to 40 garrisoned units."
-msgstr ""
+msgstr "- تسعف حتّى 40 وحدة محميّة ببطء."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -1856,23 +1857,23 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "البؤر الاستيطانية"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "- ابنيها في المناطق المحايدة لاستكشاف مساحة كبيرة."
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr ""
+msgstr "- رخيص، بـ80 خشب"
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr ""
+msgstr "تبنى بسرعة، لكنها ضعيفة"
 
 #: gui/text/tips/outposts.txt:8
 msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr ""
+msgstr "تفقد الصحة أثناء وجودها في المنطقة المحايدة، ولكن هي تُصلح"
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -2231,7 +2232,7 @@ msgstr "- مورد محيطيّ."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "- 2000 غذاء."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."

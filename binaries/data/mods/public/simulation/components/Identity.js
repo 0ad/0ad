@@ -3,12 +3,12 @@ function Identity() {}
 Identity.prototype.Schema =
 	"<a:help>Specifies various names and values associated with the unit type, typically for GUI display to users.</a:help>" +
 	"<a:example>" +
-		"<Civ>hele</Civ>" +
-		"<GenericName>Infantry Spearman</GenericName>" +
-		"<SpecificName>Hoplite</SpecificName>" +
-		"<Icon>units/hele_infantry_spearman.png</Icon>" +
+		"<Civ>athen</Civ>" +
+		"<GenericName>Athenian Hoplite</GenericName>" +
+		"<SpecificName>Hoplī́tēs Athēnaïkós</SpecificName>" +
+		"<Icon>units/athen_infantry_spearman.png</Icon>" +
 	"</a:example>" +
-	"<element name='Civ' a:help='Civilisation that this unit is primarily associated with, typically a 4-letter code. Choices include: gaia (world objects), cart (Carthaginians), celt (Celts), hele (Hellenes), iber (Iberians), pers (Persians), rome (Romans)'>" +
+	"<element name='Civ' a:help='Civilisation that this unit is primarily associated with, typically a 4-letter code. Choices include: gaia (world objects), athen (Athenians), brit (Britons), cart (Carthaginians), gaul (Gauls), iber (Iberians), mace (Macedonians), pers (Persians), ptol (Ptolemies), rome (Romans), sele (Seleucids), spart (Spartans)'>" +
 		"<text/>" +
 	"</element>" +
 	"<element name='GenericName' a:help='Generic English-language name for this class of unit'>" +

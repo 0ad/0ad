@@ -39,7 +39,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "athen",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -107,7 +107,7 @@
 			<Orientation y="-2.32988"/>
 		</Entity>
 		<Entity uid="15">
-			<Template>structures/hele_civil_centre</Template>
+			<Template>structures/athen_civil_centre</Template>
 			<Player>1</Player>
 			<Position x="221.48003" z="248.74674"/>
 			<Orientation y="2.35621"/>
@@ -257,25 +257,25 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="65">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="313.99878" z="106.94742"/>
 			<Orientation y="1.60703"/>
 		</Entity>
 		<Entity uid="66">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="339.35697" z="162.01983"/>
 			<Orientation y="2.40772"/>
 		</Entity>
 		<Entity uid="67">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="343.68882" z="166.46813"/>
 			<Orientation y="2.39055"/>
 		</Entity>
 		<Entity uid="68">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="313.93851" z="113.20711"/>
 			<Orientation y="1.76275"/>
@@ -1763,49 +1763,49 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="340">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="78.68792" z="430.25928"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="341">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="89.75951" z="433.54935"/>
 			<Orientation y="3.12113"/>
 		</Entity>
 		<Entity uid="343">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="96.16446" z="448.5672"/>
 			<Orientation y="1.93224"/>
 		</Entity>
 		<Entity uid="344">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="129.92458" z="457.09577"/>
 			<Orientation y="-0.62937"/>
 		</Entity>
 		<Entity uid="347">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/athen_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="125.52878" z="453.59147"/>
 			<Orientation y="-0.65941"/>
 		</Entity>
 		<Entity uid="348">
-			<Template>structures/hele_dock</Template>
+			<Template>structures/athen_dock</Template>
 			<Player>1</Player>
 			<Position x="129.82836" z="452.27125"/>
 			<Orientation y="-0.641"/>
 		</Entity>
 		<Entity uid="349">
-			<Template>structures/hele_dock</Template>
+			<Template>structures/athen_dock</Template>
 			<Player>1</Player>
 			<Position x="337.87977" z="167.43519"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="350">
-			<Template>structures/hele_dock</Template>
+			<Template>structures/athen_dock</Template>
 			<Player>1</Player>
 			<Position x="309.74686" z="110.4787"/>
 			<Orientation y="1.68105"/>
@@ -1848,168 +1848,168 @@
 			<Orientation y="-2.43496"/>
 		</Entity>
 		<Entity uid="366">
-			<Template>structures/hele_temple</Template>
+			<Template>structures/athen_temple</Template>
 			<Player>1</Player>
 			<Position x="381.4319" z="393.19236"/>
 			<Orientation y="-2.4247"/>
 		</Entity>
 		<Entity uid="367">
-			<Template>structures/hele_temple</Template>
+			<Template>structures/athen_temple</Template>
 			<Player>1</Player>
 			<Position x="403.00736" z="372.68033"/>
 			<Orientation y="-2.37703"/>
 		</Entity>
 		<Entity uid="369">
-			<Template>structures/hele_temple</Template>
+			<Template>structures/athen_temple</Template>
 			<Player>1</Player>
 			<Position x="343.34324" z="309.42219"/>
 			<Orientation y="0.77427"/>
 		</Entity>
 		<Entity uid="385">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="88.05324" z="355.6208"/>
 			<Orientation y="-1.83333"/>
 			<Obstruction group="408"/>
 		</Entity>
 		<Entity uid="386">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="97.19506" z="330.2305"/>
 			<Orientation y="-2.02245"/>
 			<Obstruction group="407" group2="408"/>
 		</Entity>
 		<Entity uid="387">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="108.8316" z="305.60505"/>
 			<Orientation y="-2.02468"/>
 			<Obstruction group="407"/>
 		</Entity>
 		<Entity uid="388">
-			<Template>structures/hele_wall_gate</Template>
+			<Template>structures/athen_wall_gate</Template>
 			<Player>1</Player>
 			<Position x="119.11757" z="278.73725"/>
 			<Orientation y="-1.88987"/>
 		</Entity>
 		<Entity uid="389">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="129.19886" z="252.23505"/>
 			<Orientation y="-2.00577"/>
 			<Obstruction group="406"/>
 		</Entity>
 		<Entity uid="390">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="140.1839" z="227.48037"/>
 			<Orientation y="-2.045"/>
 			<Obstruction group="405" group2="406"/>
 		</Entity>
 		<Entity uid="391">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="154.02756" z="203.12046"/>
 			<Orientation y="-2.17086"/>
 			<Obstruction group="405"/>
 		</Entity>
 		<Entity uid="392">
-			<Template>structures/hele_wall_gate</Template>
+			<Template>structures/athen_wall_gate</Template>
 			<Player>1</Player>
 			<Position x="170.52096" z="178.82493"/>
 			<Orientation y="-2.19143"/>
 		</Entity>
 		<Entity uid="393">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="189.46093" z="156.40963"/>
 			<Orientation y="-2.38155"/>
 			<Obstruction group="404"/>
 		</Entity>
 		<Entity uid="394">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="210.08765" z="138.2883"/>
 			<Orientation y="-2.47277"/>
 			<Obstruction group="403" group2="404"/>
 		</Entity>
 		<Entity uid="395">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="231.77189" z="121.92678"/>
 			<Orientation y="-2.55973"/>
 			<Obstruction group="403"/>
 		</Entity>
 		<Entity uid="397">
-			<Template>structures/hele_wall_gate</Template>
+			<Template>structures/athen_wall_gate</Template>
 			<Player>1</Player>
 			<Position x="258.34913" z="109.5331"/>
 			<Orientation y="-2.79352"/>
 		</Entity>
 		<Entity uid="398">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="286.5651" z="100.93021"/>
 			<Orientation y="-2.90026"/>
 			<Obstruction group="399"/>
 		</Entity>
 		<Entity uid="399">
-			<Template>structures/hele_wall_tower</Template>
+			<Template>structures/athen_wall_tower</Template>
 			<Player>1</Player>
 			<Position x="297.03394" z="98.3595"/>
 			<Orientation y="-2.98395"/>
 		</Entity>
 		<Entity uid="400">
-			<Template>structures/hele_wall_gate</Template>
+			<Template>structures/athen_wall_gate</Template>
 			<Player>1</Player>
 			<Position x="80.24045" z="381.29145"/>
 			<Orientation y="-1.86008"/>
 		</Entity>
 		<Entity uid="401">
-			<Template>structures/hele_wall_medium</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="71.46808" z="409.0763"/>
 			<Orientation y="-1.83523"/>
 			<Obstruction group="402"/>
 		</Entity>
 		<Entity uid="402">
-			<Template>structures/hele_wall_tower</Template>
+			<Template>structures/athen_wall_tower</Template>
 			<Player>1</Player>
 			<Position x="67.53586" z="423.0477"/>
 			<Orientation y="-1.79796"/>
 		</Entity>
 		<Entity uid="403">
-			<Template>structures/hele_wall_tower</Template>
+			<Template>structures/athen_wall_tower</Template>
 			<Player>1</Player>
 			<Position x="219.73098" z="129.57929"/>
 			<Orientation y="-2.46506"/>
 		</Entity>
 		<Entity uid="404">
-			<Template>structures/hele_wall_tower</Template>
+			<Template>structures/athen_wall_tower</Template>
 			<Player>1</Player>
 			<Position x="198.67359" z="147.03997"/>
 			<Orientation y="-2.39408"/>
 		</Entity>
 		<Entity uid="405">
-			<Template>structures/hele_wall_tower</Template>
+			<Template>structures/athen_wall_tower</Template>
 			<Player>1</Player>
 			<Position x="145.98894" z="214.40061"/>
 			<Orientation y="-2.10462"/>
 		</Entity>
 		<Entity uid="406">
-			<Template>structures/hele_wall_tower</Template>
+			<Template>structures/athen_wall_tower</Template>
 			<Player>1</Player>
 			<Position x="133.15261" z="240.50725"/>
 			<Orientation y="-2.01339"/>
 		</Entity>
 		<Entity uid="407">
-			<Template>structures/hele_wall_tower</Template>
+			<Template>structures/athen_wall_tower</Template>
 			<Player>1</Player>
 			<Position x="102.0681" z="319.03296"/>
 			<Orientation y="-2.0135"/>
 		</Entity>
 		<Entity uid="408">
-			<Template>structures/hele_wall_tower</Template>
+			<Template>structures/athen_wall_tower</Template>
 			<Player>1</Player>
 			<Position x="90.78463" z="342.8017"/>
 			<Orientation y="-1.97165"/>
@@ -2027,139 +2027,139 @@
 			<Orientation y="2.13936"/>
 		</Entity>
 		<Entity uid="444">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="226.94291" z="223.62903"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="445">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="229.88494" z="227.09919"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="446">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="233.62517" z="231.14275"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="447">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="236.26621" z="234.83996"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="448">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="239.8227" z="238.99088"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="449">
-			<Template>units/hele_support_female_citizen</Template>
+			<Template>units/athen_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="244.00495" z="243.07711"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="450">
-			<Template>units/hele_infantry_spearman_e</Template>
+			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="215.25173" z="223.5607"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="451">
-			<Template>units/hele_infantry_spearman_e</Template>
+			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="213.18368" z="222.08136"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="452">
-			<Template>units/hele_infantry_spearman_e</Template>
+			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="210.90885" z="220.58223"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="453">
-			<Template>units/hele_infantry_spearman_b</Template>
+			<Template>units/athen_infantry_spearman_b</Template>
 			<Player>1</Player>
 			<Position x="208.56626" z="219.00513"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="456">
-			<Template>units/hele_infantry_spearman_a</Template>
+			<Template>units/athen_infantry_spearman_a</Template>
 			<Player>1</Player>
 			<Position x="203.29609" z="215.02785"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="461">
-			<Template>units/hele_infantry_archer_b</Template>
+			<Template>units/athen_infantry_archer_b</Template>
 			<Player>1</Player>
 			<Position x="205.77401" z="225.15702"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="462">
-			<Template>units/hele_infantry_archer_a</Template>
+			<Template>units/athen_infantry_archer_a</Template>
 			<Player>1</Player>
 			<Position x="199.74018" z="220.3263"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="465">
-			<Template>units/hele_infantry_archer_e</Template>
+			<Template>units/athen_infantry_archer_e</Template>
 			<Player>1</Player>
 			<Position x="207.90168" z="226.22664"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="466">
-			<Template>units/hele_infantry_archer_e</Template>
+			<Template>units/athen_infantry_archer_e</Template>
 			<Player>1</Player>
 			<Position x="209.29848" z="227.46726"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="467">
-			<Template>units/hele_infantry_archer_e</Template>
+			<Template>units/athen_infantry_archer_e</Template>
 			<Player>1</Player>
 			<Position x="211.02697" z="229.19568"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="469">
-			<Template>units/hele_infantry_javelinist_b</Template>
+			<Template>units/athen_infantry_javelinist_b</Template>
 			<Player>1</Player>
 			<Position x="188.12703" z="208.36316"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="470">
-			<Template>units/hele_infantry_javelinist_b</Template>
+			<Template>units/athen_infantry_javelinist_b</Template>
 			<Player>1</Player>
 			<Position x="189.37447" z="209.44892"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="471">
-			<Template>units/hele_infantry_javelinist_e</Template>
+			<Template>units/athen_infantry_javelinist_e</Template>
 			<Player>1</Player>
 			<Position x="191.49611" z="210.25925"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="472">
-			<Template>units/hele_infantry_javelinist_e</Template>
+			<Template>units/athen_infantry_javelinist_e</Template>
 			<Player>1</Player>
 			<Position x="193.22074" z="210.63831"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="473">
-			<Template>units/hele_infantry_javelinist_e</Template>
+			<Template>units/athen_infantry_javelinist_e</Template>
 			<Player>1</Player>
 			<Position x="194.45702" z="212.18313"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="475">
-			<Template>units/hele_infantry_javelinist_a</Template>
+			<Template>units/athen_infantry_javelinist_a</Template>
 			<Player>1</Player>
 			<Position x="183.05208" z="205.23212"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="476">
-			<Template>units/hele_infantry_javelinist_a</Template>
+			<Template>units/athen_infantry_javelinist_a</Template>
 			<Player>1</Player>
 			<Position x="184.50623" z="206.26728"/>
 			<Orientation y="2.35621"/>
@@ -2885,13 +2885,13 @@
 			<Orientation y="-0.0714"/>
 		</Entity>
 		<Entity uid="630">
-			<Template>structures/hele_theatron</Template>
+			<Template>structures/athen_theatron</Template>
 			<Player>1</Player>
 			<Position x="241.83031" z="333.793"/>
 			<Orientation y="0.96265"/>
 		</Entity>
 		<Entity uid="631">
-			<Template>structures/hele_temple</Template>
+			<Template>structures/athen_temple</Template>
 			<Player>1</Player>
 			<Position x="263.69471" z="252.12467"/>
 			<Orientation y="-2.36956"/>
@@ -6638,19 +6638,19 @@
 			<Orientation y="0.49166"/>
 		</Entity>
 		<Entity uid="1395">
-			<Template>structures/hele_prytaneion</Template>
+			<Template>structures/athen_prytaneion</Template>
 			<Player>1</Player>
 			<Position x="209.13964" z="296.71506"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1396">
-			<Template>structures/hele_defense_tower</Template>
+			<Template>structures/athen_defense_tower</Template>
 			<Player>1</Player>
 			<Position x="122.42179" z="419.35407"/>
 			<Orientation y="2.74119"/>
 		</Entity>
 		<Entity uid="1397">
-			<Template>structures/hele_storehouse</Template>
+			<Template>structures/athen_storehouse</Template>
 			<Player>1</Player>
 			<Position x="172.0235" z="419.26978"/>
 			<Orientation y="2.35621"/>
@@ -6668,13 +6668,13 @@
 			<Orientation y="1.51554"/>
 		</Entity>
 		<Entity uid="1401">
-			<Template>structures/hele_defense_tower</Template>
+			<Template>structures/athen_defense_tower</Template>
 			<Player>1</Player>
 			<Position x="296.49451" z="122.10045"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1402">
-			<Template>structures/hele_fortress</Template>
+			<Template>structures/athen_fortress</Template>
 			<Player>1</Player>
 			<Position x="98.88323" z="397.69077"/>
 			<Orientation y="2.35621"/>

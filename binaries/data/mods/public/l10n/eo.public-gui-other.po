@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Joop Kiefte <ikojba@gmail.com>, 2014
+# Michael Moroni <michael.moroni@openmailbox.org>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-07 12:22+0000\n"
+"Last-Translator: Michael Moroni <michael.moroni@openmailbox.org>\n"
 "Language-Team: Esperanto (http://www.transifex.com/projects/p/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,262 +26,262 @@ msgstr "Ludmaniero de %(civilization)s"
 #: gui/civinfo/civinfo.js:107
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pluso de civilizo"
+msgstr[1] "Plusoj de civilizo"
 
 #: gui/civinfo/civinfo.js:112
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pluso de skipo"
+msgstr[1] "Plusoj de skipo"
 
 #: gui/civinfo/civinfo.js:121
 msgid "Special Technologies"
-msgstr ""
+msgstr "Specialaj teknologioj"
 
 #: gui/civinfo/civinfo.js:130
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Speciala konstruaĵo"
+msgstr[1] "Specialaj konstruaĵoj"
 
 #: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
 msgid "Heroes"
-msgstr ""
+msgstr "Herooj"
 
 #: gui/civinfo/civinfo.js:153
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Kronologio de la %(civilization)s"
 
 #: gui/common/functions_global_object.js:74
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "Malfermado de %(url)s\n en apriora retumilo. Bonvole atendu..."
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr ""
+msgstr "Malfermado de paĝo"
 
 #: gui/common/functions_global_object.js:79
 #, javascript-format
 msgid "FPS: %(fps)s"
-msgstr ""
+msgstr "Kadroj sekunde: %(fps)s"
 
 #: gui/common/functions_utility.js:187
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:189
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
-msgstr ""
+msgstr "Ŝargado ĉesigita "
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "dd-MM-yyyy HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
 msgid "\\[%(date)s]"
-msgstr ""
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:4
 msgctxt "firstWord"
 msgid "Food"
-msgstr ""
+msgstr "Manĝaĵo"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:6
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "Viando"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:8
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "Metalo"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:10
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Erco"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:12
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "Roko"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:14
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruinoj"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:16
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "Ŝtono"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:18
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr ""
+msgstr "Trezoro"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:20
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "Arbo"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:22
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "Ligno"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:24
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "Frukto"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:26
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "Greno"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:28
 msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
+msgstr "Fiŝo"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:32
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Manĝaĵo"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:34
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "Viando"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:36
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metalo"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:38
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "Erco"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:40
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "Roko"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:42
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruinoj"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:44
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Ŝtono"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:46
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr ""
+msgstr "Trezoro"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:48
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "Arbo"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:50
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Ligno"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:52
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "Frukto"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:54
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "Greno"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:56
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr ""
+msgstr "Fiŝo"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
@@ -301,7 +302,7 @@ msgstr ""
 #: gui/common/network.js:10
 #, javascript-format
 msgid "[Invalid value %(id)s]"
-msgstr ""
+msgstr "[nevalida valoro %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -310,7 +311,7 @@ msgstr ""
 #: gui/common/network.js:19
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Kialo: %(reason)s."
 
 #: gui/common/network.js:20
 msgid "Disconnected"
@@ -319,14 +320,14 @@ msgstr ""
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
 msgid "(None)"
-msgstr ""
+msgstr "(nenio)"
 
 #: gui/common/tooltips.js:31 gui/common/tooltips.js:36
 #: gui/common/tooltips.js:41 gui/common/tooltips.js:120
 #: gui/common/tooltips.js:125 gui/common/tooltips.js:130
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:33 gui/common/tooltips.js:91
 #: gui/common/tooltips.js:122
@@ -348,23 +349,23 @@ msgstr ""
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:416
 #: gui/common/tooltips.js:469
 msgid ", "
-msgstr ""
+msgstr "'"
 
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(time)s %(second)s"
-msgstr ""
+msgstr "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:413
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "sekundo"
+msgstr[1] "sekundoj"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
-msgstr ""
+msgstr "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:63
 msgid "arrow"
@@ -375,7 +376,7 @@ msgstr[1] ""
 #: gui/common/tooltips.js:65
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
-msgstr ""
+msgstr "%(arrowString)s/%(timeString)s"
 
 #: gui/common/tooltips.js:80
 msgid "Armor:"
@@ -385,19 +386,19 @@ msgstr ""
 #: gui/common/tooltips.js:166
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/common/tooltips.js:89 gui/common/tooltips.js:95
 #: gui/common/tooltips.js:101
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:98
 #: gui/common/tooltips.js:104
 #, javascript-format
 msgid "(%(armorPercentage)s)"
-msgstr ""
+msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:140
 msgid "Charge Attack:"
@@ -413,11 +414,11 @@ msgstr ""
 
 #: gui/common/tooltips.js:145
 msgid "Attack:"
-msgstr ""
+msgstr "Atako:"
 
 #: gui/common/tooltips.js:155
 msgid "Interval:"
-msgstr ""
+msgstr "Intervalo:"
 
 #: gui/common/tooltips.js:157 gui/common/tooltips.js:411
 msgid "Rate:"
@@ -434,21 +435,21 @@ msgstr ""
 
 #: gui/common/tooltips.js:186 gui/common/tooltips.js:408
 msgid "meters"
-msgstr ""
+msgstr "metrojn"
 
 #: gui/common/tooltips.js:189
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:199
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
 #: gui/common/tooltips.js:249 gui/common/tooltips.js:250
 #: gui/common/tooltips.js:251 gui/common/tooltips.js:252
@@ -456,65 +457,65 @@ msgstr ""
 #: gui/common/tooltips.js:370
 #, javascript-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
 #: gui/common/tooltips.js:308
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s je %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:339
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "Muroj:  %(costs)s"
 
 #: gui/common/tooltips.js:340
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "Turoj:  %(costs)s"
 
 #: gui/common/tooltips.js:356
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
-msgstr ""
+msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:357
 msgid "Population Bonus:"
-msgstr ""
+msgstr "Pluso de loĝantaro:"
 
 #: gui/common/tooltips.js:375
 msgid "Insufficient resources:"
-msgstr ""
+msgstr "Nesufiĉaj rimedoj:"
 
 #: gui/common/tooltips.js:383
 msgid "Speed:"
-msgstr ""
+msgstr "Rapideco:"
 
 #: gui/common/tooltips.js:386 gui/common/tooltips.js:388
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:386
 msgid "Walk"
-msgstr ""
+msgstr "Piediri"
 
 #: gui/common/tooltips.js:388
 msgid "Run"
-msgstr ""
+msgstr "Kuri"
 
 #: gui/common/tooltips.js:390
 #, javascript-format
 msgid "%(label)s %(speeds)s"
-msgstr ""
+msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:399 gui/common/tooltips.js:405
 #: gui/common/tooltips.js:410
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
-msgstr ""
+msgstr "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:400
 msgid "Heal:"
@@ -529,15 +530,15 @@ msgstr ""
 #: gui/common/tooltips.js:425
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
-msgstr ""
+msgstr "%(specificName)s (%(genericName)s)"
 
 #: gui/common/tooltips.js:435
 msgid "???"
-msgstr ""
+msgstr "???"
 
 #: gui/common/tooltips.js:465
 msgid "Classes:"
-msgstr ""
+msgstr "Klasoj:"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -546,7 +547,7 @@ msgstr "Neniu"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<nevalida>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
@@ -567,27 +568,27 @@ msgstr "Bone"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
-msgstr ""
+msgstr "Reprovi"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Ignore"
-msgstr ""
+msgstr "Ignori"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Abort"
-msgstr ""
+msgstr "Ĉesigi"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "Fenestrigita reĝimo"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "Startigi 0 A.D. fenestrigite"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
-msgstr ""
+msgstr "Fona paŭzo"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
@@ -831,16 +832,16 @@ msgstr "malŝaltita"
 
 #: gui/pregame/mainmenu.js:81
 msgid "connecting to server"
-msgstr "konektiĝas al la servilo"
+msgstr "konektiĝado al la servilo"
 
 #: gui/pregame/mainmenu.js:86
 #, javascript-format
 msgid "uploading (%f%%)"
-msgstr "alŝutiĝas (%f%%)"
+msgstr "alŝutado (%f%%)"
 
 #: gui/pregame/mainmenu.js:93
 msgid "upload succeeded"
-msgstr "alŝuto sukcesa"
+msgstr "alŝutado sukcesite"
 
 #: gui/pregame/mainmenu.js:95
 #, javascript-format
@@ -871,7 +872,7 @@ msgstr ""
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Bonvolu premi \"Legi pli\" por pliaj informoj aŭ \"Bone\" por pluiri."
+msgstr "Bonvole premu \"Legu pli\" por pliaj informoj aŭ \"Bone\" por daŭrigi."
 
 #: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
@@ -879,20 +880,20 @@ msgstr "AVERTO!"
 
 #: gui/pregame/mainmenu.js:158
 msgid "Read More"
-msgstr "Legi pli"
+msgstr "Legu pli"
 
 #: gui/pregame/mainmenu.js:251
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Konstruo: %(buildDate)s (%(revision)s)"
+msgstr "Versio: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Ĉu vi certas ke vi volas eliri de 0 A.D.?"
+msgstr "Ĉu vi certe volas eliri de 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
-msgstr ""
+msgstr "Konfirmo"
 
 #: gui/pregame/mainmenu.js:292
 msgid ""
@@ -902,7 +903,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:292
 msgid "Error"
-msgstr ""
+msgstr "Eraro"
 
 #: gui/pregame/mainmenu.js:297
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
@@ -911,15 +912,15 @@ msgstr ""
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
 #: gui/pregame/mainmenu.xml:(caption):116
 msgid "Technical Details"
-msgstr ""
+msgstr "Teknikaj detaloj"
 
 #: gui/pregame/mainmenu.js:307 gui/pregame/mainmenu.xml:(caption):156
 msgid "Manual"
-msgstr ""
+msgstr "Manlibro"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
-msgstr ""
+msgstr "Neniu konservita ludo trovata"
 
 #: gui/savedgames/load.js:48
 msgid "This saved game may not be compatible:"
@@ -951,67 +952,67 @@ msgstr ""
 
 #: gui/savedgames/load.js:73
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "Ĉu vi ankoraŭ volas daŭrigi?"
 
 #: gui/savedgames/load.js:74
 msgid "Warning"
-msgstr ""
+msgstr "Averto"
 
 #: gui/savedgames/load.js:110 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr ""
+msgstr "La konservita ludo estos permane forigita. Ĉu vi certas?"
 
 #: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "DELETE"
-msgstr ""
+msgstr "FORIGI"
 
 #: gui/savedgames/save.js:61
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr ""
+msgstr "La konservita ludo estos permane anstataŭigita. Ĉu vi certas?"
 
 #: gui/savedgames/save.js:61
 msgid "OVERWRITE SAVE"
-msgstr ""
+msgstr "ANSTATAŬIGI KONSERVON"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
 #: gui/summary/summary.xml:(caption):103
 msgid "Player name"
-msgstr ""
+msgstr "Nomo de ludanto"
 
 #: gui/summary/layout.js:5
 msgid "Economy score"
-msgstr ""
+msgstr "Poentaro pri ekonomio"
 
 #: gui/summary/layout.js:6
 msgid "Military score"
-msgstr ""
+msgstr "Poentaro pri armeado"
 
 #: gui/summary/layout.js:7
 msgid "Exploration score"
-msgstr ""
+msgstr "Poentaro pri eksplorado"
 
 #: gui/summary/layout.js:8
 msgid "Total score"
-msgstr ""
+msgstr "Suma poentaro"
 
 #: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:78
 msgid "Total"
-msgstr ""
+msgstr "Sumo"
 
 #: gui/summary/layout.js:23
 msgid "Houses"
-msgstr ""
+msgstr "Domoj"
 
 #: gui/summary/layout.js:24
 msgid "Economic"
-msgstr ""
+msgstr "Ekonomia"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
@@ -1019,7 +1020,7 @@ msgstr ""
 
 #: gui/summary/layout.js:26
 msgid "Military"
-msgstr ""
+msgstr "Armeo"
 
 #: gui/summary/layout.js:27
 msgid "Fortresses"
@@ -1027,7 +1028,7 @@ msgstr ""
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr ""
+msgstr "Urbaj centroj"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
@@ -1043,11 +1044,11 @@ msgstr ""
 
 #: gui/summary/layout.js:51
 msgid "Worker"
-msgstr ""
+msgstr "Laboristoj"
 
 #: gui/summary/layout.js:52
 msgid "Cavalry"
-msgstr "Ĉevala"
+msgstr "Kavalerio"
 
 #: gui/summary/layout.js:53
 msgid "Champion"
@@ -1063,19 +1064,19 @@ msgstr ""
 
 #: gui/summary/layout.js:74
 msgid "Food"
-msgstr ""
+msgstr "Manĝaĵo"
 
 #: gui/summary/layout.js:75
 msgid "Wood"
-msgstr ""
+msgstr "Ligno"
 
 #: gui/summary/layout.js:76
 msgid "Stone"
-msgstr ""
+msgstr "Ŝtono"
 
 #: gui/summary/layout.js:77
 msgid "Metal"
-msgstr ""
+msgstr "Metalo"
 
 #: gui/summary/layout.js:79
 msgid "Treasures collected"
@@ -1151,7 +1152,7 @@ msgstr ""
 #: gui/summary/summary.js:162
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -1163,18 +1164,18 @@ msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):118
 msgid "Close"
-msgstr ""
+msgstr "Fermi"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
 #: gui/pregame/mainmenu.xml:(caption):346
 msgid "Language"
-msgstr ""
+msgstr "Lingvo"
 
 #: gui/locale/locale.xml:(caption):17
 #: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr ""
+msgstr "Lingvo:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special variant preferences that the user wants to see in their
@@ -1182,14 +1183,14 @@ msgstr ""
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "Lokaĵaro:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
 #: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
 #: gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
-msgstr ""
+msgstr "Nuligi"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -1198,15 +1199,15 @@ msgstr ""
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
-msgstr ""
+msgstr "Akcepti"
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "Lando:"
 
 #: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr ""
+msgstr "Skripto:"
 
 #: gui/locale/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
@@ -1214,7 +1215,7 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:(caption):48
 msgid "Keywords (unused):"
-msgstr ""
+msgstr "Ŝlosilvortoj (neuzataj):"
 
 #: gui/locale/locale_advanced.xml:(caption):55
 msgid "Resulting locale:"
@@ -1226,7 +1227,7 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:(caption):70
 msgid "Auto detect"
-msgstr ""
+msgstr "Aŭtomate detekti"
 
 #: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
@@ -1237,15 +1238,15 @@ msgstr ""
 #: gui/locale/locale_advanced.xml:(tooltip):44
 #: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Ankoraŭ nerealigite."
 
 #: gui/options/options.xml:(caption):18
 msgid "Game Options"
-msgstr ""
+msgstr "Opcioj pri ludo"
 
 #: gui/options/options.xml:(caption):22
 msgid "General"
-msgstr ""
+msgstr "Ĝenerala"
 
 #: gui/options/options.xml:(caption):34
 msgid "Graphics Settings"
@@ -1253,7 +1254,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):46
 msgid "Sound Settings"
-msgstr ""
+msgstr "Agordoj pri sono"
 
 #: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
@@ -1261,7 +1262,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
 msgid "Save"
-msgstr ""
+msgstr "Konservi"
 
 #: gui/pregame/mainmenu.xml:75
 msgid "Help improve 0 A.D.!"
@@ -1279,7 +1280,7 @@ msgstr "Dankon pro via pliboniga helpo al 0 A.D.!"
 
 #: gui/pregame/mainmenu.xml:105
 msgid "Anonymous feedback is currently enabled."
-msgstr "Sennomaj retrokuploj aktiviĝis."
+msgstr "Sennomaj retrokuploj estas aktuale enŝaltitaj."
 
 #: gui/pregame/mainmenu.xml:107
 msgid "Status: $status."
@@ -1287,13 +1288,13 @@ msgstr "Stato: $status."
 
 #: gui/pregame/mainmenu.xml:528
 msgid "Alpha XVIII: Rhododactylos"
-msgstr ""
+msgstr "Alfo XVIII: Rododaktilo"
 
 #: gui/pregame/mainmenu.xml:530
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "AVERTO: Ĉi tio estas frua disvolviĝa versio de la ludo. Multaj ebloj ankoraŭ ne aldoniĝis."
+msgstr "AVERTO: Tio estas frua evoluiganta versio de la ludo. Multaj trajtoj ankoraŭ ne estas aldonitaj."
 
 #: gui/pregame/mainmenu.xml:532
 msgid "Get involved at: play0ad.com"
@@ -1301,11 +1302,11 @@ msgstr "Ekkunlaboru je: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:(caption):81
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Enŝalti retrokuplojn"
 
 #: gui/pregame/mainmenu.xml:(caption):112
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Malŝalti retrokuplojn"
 
 #: gui/pregame/mainmenu.xml:(caption):173
 msgid "Structure Tree"
@@ -1350,7 +1351,7 @@ msgstr "Scenarredaktilo"
 
 #: gui/pregame/mainmenu.xml:(caption):375
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Bonvena ekrano"
 
 #: gui/pregame/mainmenu.xml:(caption):390
 msgid "Mod Selection"
@@ -1378,7 +1379,7 @@ msgstr "Eliri"
 
 #: gui/pregame/mainmenu.xml:(caption):542
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Helpu per tradukado!"
 
 #: gui/pregame/mainmenu.xml:(caption):554
 msgid "Website"
@@ -1398,7 +1399,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/mainmenu.xml:(tooltip):157
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Malfermi la manlibron pri 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):174
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -1410,7 +1411,7 @@ msgstr "Lernu pri la multaj civilizacioj disponeblaj en 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):216
 msgid "Click here to start a new single player game."
-msgstr "Klaku ĉi tie por komenci novan unuludantan ludon."
+msgstr "Alklaku ĉi tie por komenci novan unuludantan ludon."
 
 #: gui/pregame/mainmenu.xml:(tooltip):230
 msgid ""
@@ -1420,7 +1421,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):247
 msgid "Click here to load a saved game."
-msgstr "Klaku ĉi tie por ŝargi konservitan ludon."
+msgstr "Alklaku ĉi tie por ŝargi konservitan ludon."
 
 #: gui/pregame/mainmenu.xml:(tooltip):270
 msgid "Joining an existing multiplayer game."
@@ -1428,7 +1429,7 @@ msgstr "Aliĝu al ekzistanta plurludanta ludo."
 
 #: gui/pregame/mainmenu.xml:(tooltip):285
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "Gastigi plurludantan ludon.\\n\\nNecesas ke pordo 20595 estu malfermita."
+msgstr "Gastigi plurludantan ludon.\\n\\nNecesas, ke pordo 20595 estu malfermita."
 
 #: gui/pregame/mainmenu.xml:(tooltip):300
 msgid "Launch the multiplayer lobby."
@@ -1498,43 +1499,43 @@ msgstr ""
 
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
-msgstr ""
+msgstr "Forigi"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
-msgstr ""
+msgstr "Ŝargi"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
-msgstr ""
+msgstr "Ŝargi ludon"
 
 #: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
-msgstr ""
+msgstr "Priskribo:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "Bonvenon!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Montri ĉi tiun mesaĝon onte"
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Konataj problemoj (interreto)"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"
-msgstr ""
+msgstr "Resumo"
 
 #: gui/summary/summary.xml:(caption):61
 msgid "Score"
-msgstr ""
+msgstr "Poentaro"
 
 #: gui/summary/summary.xml:(caption):68
 msgid "Buildings"
-msgstr ""
+msgstr "Konstruaĵoj"
 
 #: gui/summary/summary.xml:(caption):75
 msgid "Units"
@@ -1542,19 +1543,19 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):82
 msgid "Resources"
-msgstr ""
+msgstr "Rimedoj"
 
 #: gui/summary/summary.xml:(caption):89
 msgid "Market"
-msgstr ""
+msgstr "Bazaro"
 
 #: gui/summary/summary.xml:(caption):96
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Pluraĵoj"
 
 #: gui/summary/summary.xml:(caption):157
 msgid "Continue"
-msgstr ""
+msgstr "Daŭrigi"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -1563,7 +1564,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""

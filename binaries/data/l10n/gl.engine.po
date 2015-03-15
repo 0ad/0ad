@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2013-2014
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-02-06 09:11+0000\n"
+"PO-Revision-Date: 2015-03-02 07:40+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -161,7 +162,7 @@ msgstr "O servizo non está dispoñíbel"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
-msgstr ""
+msgstr "É necesario subscribirse"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
@@ -182,9 +183,9 @@ msgstr "Erro indefinido"
 #: ps/SavedGame.cpp:131
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "A partida gardouse en «%s»."
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "A captura gardouse en «%s»."

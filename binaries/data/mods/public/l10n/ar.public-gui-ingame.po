@@ -5,6 +5,7 @@
 # Translators:
 # Majid Al-Dharrab, 2014
 # mustapha ali abdulkarim <baghdadhost@gmail.com>, 2014
+# Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # salama <salamacast@yahoo.com>, 2014
 # slimkhan, 2014
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 09:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-05 05:19+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,12 +124,12 @@ msgstr "ليس هناك تجّار أراضي."
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(numberOfLandTraders)s لا خاملين"
+msgstr[1] "%(numberOfLandTraders)s خامل"
+msgstr[2] "%(numberOfLandTraders)s خاملان"
+msgstr[3] "%(numberOfLandTraders)s خاملين"
+msgstr[4] "%(numberOfLandTraders)s خامل"
+msgstr[5] "%(numberOfLandTraders)s خاملين"
 
 #: gui/session/menu.js:475
 #, javascript-format
@@ -145,12 +146,12 @@ msgstr[5] "هناك %(numberTrading)s تاجر أراضي يتاجرون"
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(numberGarrisoned)s -لايوجد اشخاص على متن السفينة التجارية"
+msgstr[1] "%(numberGarrisoned)s -شخص واحد على متن السفينة التجارية"
+msgstr[2] "%(numberGarrisoned)s -شخصان على متن السفينة التجارية"
+msgstr[3] "%(numberGarrisoned)s أشخاص على متن السفينة التجارية"
+msgstr[4] "%(numberGarrisoned)s شخص على متن السفينة التجارية"
+msgstr[5] "%(numberGarrisoned)s أشخاص على متن السفينة التجارية"
 
 #: gui/session/menu.js:481
 #, javascript-format
@@ -181,12 +182,12 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(numberGarrisoned)s -هنالك لا تجار أرضي على متن السفينة التجارية"
+msgstr[1] "%(numberGarrisoned)s -هنالك تاجر أرضي واحد على متن السفينة التجارية"
+msgstr[2] "%(numberGarrisoned)s -تاجري أرضي على متن السفينة التجارية"
+msgstr[3] "هنالك %(numberGarrisoned)s تجار أرضي على متن السفينة التجارية"
+msgstr[4] "هنالك %(numberGarrisoned)s تاجر أرضي على متن السفينة التجارية"
+msgstr[5] "هنالك %(numberGarrisoned)s تجار أرضي على متن السفينة التجارية"
 
 #: gui/session/menu.js:519
 #, javascript-format
@@ -202,23 +203,23 @@ msgstr "%(openingGarrisonedString)s."
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(numberOfLandTraders)s-لا يوجد تاجر أرضي خامل"
+msgstr[1] "%(numberOfLandTraders)s-تاجر أرضي خامل"
+msgstr[2] "%(numberOfLandTraders)s-تاجرين أرضيان خاملان"
+msgstr[3] "يوجد %(numberOfLandTraders)s تجار أرضيين"
+msgstr[4] "يوجد %(numberOfLandTraders)s تاجر أرضي"
+msgstr[5] "يوجد %(numberOfLandTraders)s تجار أرضيين"
 
 #: gui/session/menu.js:536 gui/session/menu.js:578
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(inactiveString)s-ليس هنالك"
+msgstr[1] "هنالك %(inactiveString)s"
+msgstr[2] "هنالك %(inactiveString)s"
+msgstr[3] "هنالك %(inactiveString)s"
+msgstr[4] "هنالك %(inactiveString)s"
+msgstr[5] "هنالك %(inactiveString)s"
 
 #: gui/session/menu.js:548
 msgid "There are no merchant ships."
@@ -228,34 +229,34 @@ msgstr "لا توجد سفن تجارية"
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(numberOfShipTraders)s لا يوجد"
+msgstr[1] "%(numberOfShipTraders)s خاملة"
+msgstr[2] "%(numberOfShipTraders)s خاملتان"
+msgstr[3] "%(numberOfShipTraders)s خاملة"
+msgstr[4] "%(numberOfShipTraders)s خاملة"
+msgstr[5] "%(numberOfShipTraders)s خاملة"
 
 #: gui/session/menu.js:558
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(numberTrading)s-لا تجار في السفينة"
+msgstr[1] "%(numberTrading)s-تاجر في السفينة"
+msgstr[2] "%(numberTrading)s-تاجران في السفينة"
+msgstr[3] "هنالك %(numberTrading)s تجار في السفينة"
+msgstr[4] "هنالك %(numberTrading)s تاجر في السفينة"
+msgstr[5] "هنالك %(numberTrading)s تجار في السفينة"
 
 #: gui/session/menu.js:577
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(numberOfShipTraders)s-لاتوجد سفن تجارية خاملة"
+msgstr[1] "%(numberOfShipTraders)s-سفينة تجارية خاملة"
+msgstr[2] "%(numberOfShipTraders)s-سفينتين تجاريتان خاملتان"
+msgstr[3] "%(numberOfShipTraders)s-سفن تجارية خاملة"
+msgstr[4] "%(numberOfShipTraders)s-سفن تجارية خاملة"
+msgstr[5] "%(numberOfShipTraders)s-سفن تجارية خاملة"
 
 #: gui/session/menu.js:656 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -274,7 +275,7 @@ msgstr "أغلقت غطاء المطور."
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "جزية %(resourceAmount)s %(resourceType)s الى %(playerName)s. اضغط Shift للجزية %(greaterAmount)s."
 
 #: gui/session/messages.js:207
 #, javascript-format
@@ -361,7 +362,7 @@ msgstr "أصبح %(player)s محايدًا معك."
 #: gui/session/messages.js:480
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/session/messages.js:488
 #, javascript-format
@@ -424,7 +425,7 @@ msgstr "%(genericName)s — محزوم"
 #: gui/session/selection_details.js:44
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "%(player)s \\[بلاإتصال]"
 
 #: gui/session/selection_details.js:50
 #, javascript-format
@@ -468,14 +469,14 @@ msgstr "ال%(resource)s:"
 #: gui/session/selection_details.js:164
 #, javascript-format
 msgid "Gain: %(amount)s"
-msgstr ""
+msgstr "كسب: %(amount)s"
 
 #: gui/session/selection_details.js:173
 #, javascript-format
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr ""
+msgstr "عدد عمال البناء.\nعمل الاخرين لهذه المؤسسة يسرع الانشاء بواسطة: %(numb)s%%"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
@@ -560,12 +561,12 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "باقي: %(number)s للإنتهاء"
+msgstr[1] "باقي: %(number)s للإنتهاء"
+msgstr[2] "باقي: %(number)s للإنتهاء"
+msgstr[3] "باقي: %(number)s للإنتهاء"
+msgstr[4] "باقي: %(number)s للإنتهاء"
+msgstr[5] "باقي: %(number)s للإنتهاء"
 
 #: gui/session/selection_panels.js:986 gui/session/session.js:621
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
@@ -605,7 +606,7 @@ msgstr "العدد الحالي: %(count)s، الحد: %(limit)s."
 #: gui/session/selection_panels_helpers.js:76
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s يزيد الحد مع %(change)s."
 
 #: gui/session/selection_panels_helpers.js:78
 #, javascript-format
@@ -699,7 +700,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr ""
+msgstr "ملاحظة: وضع الوقت الاعوج هو خيار المطور، وليس المقصود للاستخدام على مدى فترات طويلة من الزمن، استخدامه بشكل غير صحيح قد يسبب للعبة النفاد الذاكرة أو تعطل."
 
 #: gui/session/session.js:888
 msgid "Time warp mode"
@@ -713,7 +714,7 @@ msgstr "متجر التّجّار الأصل."
 #: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
 #, javascript-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "كسب: %(gain)s"
 
 #: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
@@ -743,7 +744,7 @@ msgstr "انقر باليمين لإنشاء مسلك افتراضيّ للتّ�
 #: gui/session/unit_actions.js:533
 #, javascript-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "الكسب المتوقع: %(gain)s"
 
 #: gui/session/unit_actions.js:655
 msgid "Unload All"
@@ -1031,11 +1032,11 @@ msgstr "اختر سرعة اللعبة"
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
-msgstr ""
+msgstr "قائمة"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVIII : Rhododactylos"
-msgstr ""
+msgstr "الالفا الثامة عشر: روهديداكتيلوس"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

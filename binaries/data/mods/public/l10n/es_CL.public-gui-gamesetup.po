@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Alexm7 <alex-m7@hotmail.com>, 2014
+# caniro <carlod_39@yahoo.cl>, 2015
 # ozsylink <ozylink01@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-26 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-14 18:45+0000\n"
+"Last-Translator: caniro <carlod_39@yahoo.cl>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/projects/p/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:10
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
@@ -31,12 +32,12 @@ msgstr "La IA estará deshabilitado para este jugador."
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "Muy fácil"
+msgstr "Caja de arena"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Muy Fácil"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -67,12 +68,12 @@ msgstr "Ilimitado"
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Muy Bajos"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Bajos"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
@@ -82,17 +83,17 @@ msgstr "Medio"
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Altos"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Muy Altos"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Extremadamente Alto"
 
 #: gui/gamesetup/gamesetup.js:106
 msgid "Return to the main menu."
@@ -137,7 +138,7 @@ msgstr "Todos los Mapas"
 #: gui/gamesetup/gamesetup.js:367
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: gui/gamesetup/gamesetup.js:590 gui/gamesetup/gamesetup.js:1397
 msgctxt "civilization"
@@ -151,7 +152,7 @@ msgstr "Tú"
 #: gui/gamesetup/gamesetup.js:1053
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
@@ -160,12 +161,12 @@ msgstr "Tamaño del Mapa:"
 #: gui/gamesetup/gamesetup.js:1203 gui/gamesetup/gamesetup.js:1262
 #: gui/gamesetup/gamesetup.xml:(caption):313
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Revelar Mapa:"
 
 #: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1263
 #: gui/gamesetup/gamesetup.xml:(caption):323
 msgid "Explored Map:"
-msgstr ""
+msgstr "Explorar Mapa:"
 
 #: gui/gamesetup/gamesetup.js:1208 gui/gamesetup/gamesetup.js:1267
 #: gui/gamesetup/gamesetup.js:1347 gui/gamesetup/gamesetup.xml:(caption):283
@@ -205,12 +206,12 @@ msgstr "Lo sentimos, no hay una descripción disponible"
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s jugador."
+msgstr[1] "%(number)s jugadores."
 
 #: gui/gamesetup/gamesetup.js:1383
 msgid "Loading..."
-msgstr ""
+msgstr "Cargando..."
 
 #: gui/gamesetup/gamesetup.js:1496
 #, javascript-format
@@ -225,7 +226,7 @@ msgstr "Sin asignar"
 #: gui/gamesetup/gamesetup.js:1712
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1689
 #, javascript-format
@@ -259,40 +260,40 @@ msgstr "* %(username)s no esta listo."
 
 #: gui/gamesetup/gamesetup.js:1712
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Los ajustes del juego han cambiado"
 
 #: gui/gamesetup/gamesetup.js:1737
 msgid "I'm not ready"
-msgstr ""
+msgstr "No estoy listo"
 
 #: gui/gamesetup/gamesetup.js:1738
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "No esta listo para jugar"
 
 #: gui/gamesetup/gamesetup.js:1743 gui/gamesetup/gamesetup.js:1819
 msgid "I'm ready!"
-msgstr ""
+msgstr "¡Estoy listo!"
 
 #: gui/gamesetup/gamesetup.js:1744
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "¡Esta listo para jugar!"
 
 #: gui/gamesetup/gamesetup.js:1820
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Acepta la configuración actual y ¡esta listo para jugar!"
 
 #: gui/gamesetup/gamesetup.js:1939
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s's game"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Conectando al servidor"
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, javascript-format
@@ -301,11 +302,11 @@ msgstr "Mensaje completo: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "Registrando con el servidor"
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "El juego ha sido iniciado, reconectando..."
 
 #: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
@@ -314,33 +315,33 @@ msgstr "El nombre del juego ya existe."
 #: gui/gamesetup/gamesetup_mp.js:249
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "Juego de %(playername)s"
 
 #: gui/gamesetup/victory_conditions/conquest.js:6
 msgid "Conquest"
-msgstr ""
+msgstr "Conquista"
 
 #: gui/gamesetup/victory_conditions/conquest.js:7
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Derrota a todos los oponentes"
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
-msgstr ""
+msgstr "Maravilla"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "Construye una maravilla para ganar"
 
 #: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Cargando “%(map)s”"
 
 #: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Generando “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):13
 msgid "AI Configuration"
@@ -348,11 +349,11 @@ msgstr "Configuración de la IA"
 
 #: gui/aiconfig/aiconfig.xml:(caption):18
 msgid "AI Player:"
-msgstr ""
+msgstr "Jugador IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):26
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "Dificultad de la IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):36
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
@@ -406,7 +407,7 @@ msgstr "Seleccionar Mapa:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):109
 msgid "Number of Players:"
-msgstr ""
+msgstr "Numero de Jugadores"
 
 #: gui/gamesetup/gamesetup.xml:(caption):192
 msgid "Send"
@@ -443,7 +444,7 @@ msgstr "Trucos:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):353
 msgid "Rated Game:"
-msgstr ""
+msgstr "Calificación del Juego:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):56
 msgid "View civilization info"
@@ -513,13 +514,13 @@ msgstr "Seleccionar los recursos de partida del juego."
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):317
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Indica si se revela el mapa (ver todo).  "
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):327
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Indica si se explora el mapa (mapa completo mostrando animales y construcciones solo de la Gaia)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):337
 msgid "Toggle locked teams."
@@ -531,7 +532,7 @@ msgstr "Activa o desactiva los trucos."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):357
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Indica si esta partida va ha ser considerada para la clasificación."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):370
 msgid "Close more game options window"

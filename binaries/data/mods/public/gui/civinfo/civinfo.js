@@ -5,38 +5,23 @@ function init(settings)
 	initCivNameList();
 }
 
-// Sort by culture, then by code equals culture and then by name ignoring case
-function sortByCultureAndName(a, b)
-{
-	if (a.culture < b.culture)
-		return -1;
-	if (a.culture > b.culture)
-		return 1;
-
-	// Same culture
-	// First code == culture
-	if (a.code == a.culture)
-		return -1;
-	if (b.code == b.culture)
-		return 1;
-
-	// Then alphabetically by name (ignoring case)
-	return sortNameIgnoreCase(a, b);
-}
-
 // Initialize the dropdown containing all the available civs
 function initCivNameList()
 {
 	// Cache map data
 	g_CivData = loadCivData();
 
-	var civList = [ { "name": civ.Name, "culture": civ.Culture, "code": civ.Code } for each (civ in g_CivData) ];
+	var civList = [
+		{ "name": civ.Name, "code": civ.Code }
+		for each (civ in g_CivData)
+			if (civ.SelectableInGameSetup !== false)
+	];
 
 	// Alphabetically sort the list, ignoring case
-	civList.sort(sortByCultureAndName);
+	civList.sort(sortNameIgnoreCase);
 
 	// Indent sub-factions
-	var civListNames = [ ((civ.code == civ.culture)?"":"   ")+civ.name for each (civ in civList) ];
+	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
 	// Set civ control

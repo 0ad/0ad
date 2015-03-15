@@ -95,10 +95,7 @@ function Cheat(input)
 			special = {"athen":"athen"};
 		}
 		else if (!cmpTechnologyManager.IsTechnologyResearched("phase_city"))
-		{
 			phaseToGo = "city";
-			special = {"athen":"athen", "celt": Math.round(Math.random()) == 0 ? "britons":"gauls"};
-		}
 		else
 			return;
 

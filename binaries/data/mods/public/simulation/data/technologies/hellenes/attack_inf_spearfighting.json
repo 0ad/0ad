@@ -1,15 +1,13 @@
 {
 	"genericName": "Infantry Spear Fighting",
 	"specificName": {
-		"hele": "Doratismos",
 		"mace": "Doratismos",
 		"spart": "Doratismos",
-		"athen": "Doratismos",
-		"theb": "Doratismos"
+		"athen": "Doratismos"
 	},
 	"description": "Spear fighting training increases damage of infantry spear units.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 100},
-	"requirements": {"all": [{"tech": "phase_city"}, {"any": [{"civ": "hele"},{"civ": "athen"},{"civ": "mace"},{"civ": "spart"},{"civ": "theb"}]}]},
+	"requirements": {"all": [{"tech": "phase_city"}, {"any": [{"civ": "athen"},{"civ": "mace"},{"civ": "spart"}]}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "spear.png",
 	"researchTime": 40,

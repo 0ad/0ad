@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:05+0000\n"
+"PO-Revision-Date: 2015-03-02 07:41+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -353,24 +353,24 @@ msgstr ", "
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(time)s %(second)s"
-msgstr ""
+msgstr "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:413
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "segundo"
+msgstr[1] "segundos"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
-msgstr ""
+msgstr "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:63
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "frecha"
+msgstr[1] "frechas"
 
 #: gui/common/tooltips.js:65
 #, javascript-format
@@ -426,7 +426,7 @@ msgstr "ritmo:"
 #: gui/common/tooltips.js:174
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
 #: gui/common/tooltips.js:184 gui/common/tooltips.js:406
 msgid "Range:"
@@ -441,14 +441,14 @@ msgstr "metros"
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:199
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
 #: gui/common/tooltips.js:249 gui/common/tooltips.js:250
 #: gui/common/tooltips.js:251 gui/common/tooltips.js:252
@@ -514,17 +514,17 @@ msgstr "%(label)s %(speeds)s."
 #: gui/common/tooltips.js:410
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
-msgstr ""
+msgstr "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:400
 msgid "Heal:"
-msgstr ""
+msgstr "Sandación:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
 #: gui/common/tooltips.js:403
 msgid "HP"
-msgstr ""
+msgstr "Vida"
 
 #: gui/common/tooltips.js:425
 #, javascript-format
@@ -638,12 +638,12 @@ msgstr "Mostrar o tempo que leva durado a partida na esquina superior dereita."
 
 #: gui/options/options.js:16
 msgid "Persist match settings"
-msgstr ""
+msgstr "Manter a configuración da partida."
 
 #: gui/options/options.js:16
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr ""
+msgstr "Gardar e restaurar a configuración da partida para poder recuperalas rapidamente á hora de configurar unha nova partida."
 
 #: gui/options/options.js:20
 msgid "Prefer GLSL"
@@ -906,7 +906,7 @@ msgstr "Erro"
 
 #: gui/pregame/mainmenu.js:297
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Acceder á sala de espera para partidas de varios xogadores (desactivado ao compilar o xogo)."
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
 #: gui/pregame/mainmenu.xml:(caption):116
@@ -1027,7 +1027,7 @@ msgstr "Fortalezas"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr ""
+msgstr "Centros cívicos"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
@@ -1117,7 +1117,7 @@ msgstr "Ingresos por comercio"
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr ""
+msgstr "Proporción\nde vexetais"
 
 #: gui/summary/layout.js:121
 msgid "Feminisation"
@@ -1127,13 +1127,13 @@ msgstr "Poboación feminina"
 msgid ""
 "Kill / Death\n"
 "ratio"
-msgstr ""
+msgstr "Baixas\ninimigas / propias"
 
 #: gui/summary/layout.js:123
 msgid ""
 "Map\n"
 "exploration"
-msgstr ""
+msgstr "Exploración\ndo mapa"
 
 #: gui/summary/layout.js:255
 msgid "Team total"
@@ -1287,7 +1287,7 @@ msgstr "Estado: $status."
 
 #: gui/pregame/mainmenu.xml:528
 msgid "Alpha XVIII: Rhododactylos"
-msgstr ""
+msgstr "Alfa XVIII: Rododáctila"
 
 #: gui/pregame/mainmenu.xml:530
 msgid ""
@@ -1309,7 +1309,7 @@ msgstr "Desactivar o envío"
 
 #: gui/pregame/mainmenu.xml:(caption):173
 msgid "Structure Tree"
-msgstr ""
+msgstr "Árbore de estruturas"
 
 #: gui/pregame/mainmenu.xml:(caption):190
 msgid "History"
@@ -1402,7 +1402,7 @@ msgstr "Abrir o manual de 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):174
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "Ver a árbore de estruturas das civilizacións do 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):191
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -1416,7 +1416,7 @@ msgstr "Prema para xogar unha partida contra a intelixencia artificial."
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr ""
+msgstr "Revive a historia a través de campañas militares (esta funcionalidade aínda non está dispoñíbel)."
 
 #: gui/pregame/mainmenu.xml:(tooltip):247
 msgid "Click here to load a saved game."
@@ -1460,7 +1460,7 @@ msgstr "Seleccione modificacións para usar."
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr ""
+msgstr "Aprende a xogar, e descubre as árbores de tecnoloxía e maila historia das civilización."
 
 #: gui/pregame/mainmenu.xml:(tooltip):461
 msgid "Challenge the computer player to a single player match."
@@ -1514,7 +1514,7 @@ msgstr "Descrición:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "Benvido!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -1522,7 +1522,7 @@ msgstr "Mostrar esta mensaxe no futuro."
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Problemas coñecidos (web)"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"
@@ -1559,7 +1559,7 @@ msgstr "Continuar"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]  Grazas por instalar «0 A.D. Empires Ascendant»!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -1569,21 +1569,21 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr ""
+msgstr "[icon=\"constructionIcon\"] Este xogo aínda está en desenvolvemento. Faltan funcionalidades e existen erros."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid "[imgleft=\"iconLag\"]The game runs slowly when many units are moving."
-msgstr ""
+msgstr "[icon=\"iconLag\"]  O xogo ralentízase cando hai moitas unidades movéndose ao mesmo tempo."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid "[imgleft=\"iconMap\"]Large maps can cause problems."
-msgstr ""
+msgstr "[icon=\"iconMap\"]  Os mapas grandes poden dar problemas."
 
 #: gui/splashscreen/splashscreen.txt:12
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "[imgleft=\"iconFormation\"] As formacións aínda non están acabadas, pero podes activalas ou desactivalas cando queiras."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

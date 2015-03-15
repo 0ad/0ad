@@ -5,13 +5,14 @@
 # Translators:
 # Mosaab Alzoubi <moceap@hotmail.com>, 2013
 # mustapha ali abdulkarim <baghdadhost@gmail.com>, 2014
+# Rayan <nitro361@gmail.com>, 2015
 # Suhail Alkowaileet <xsoh.k7@gmail.com>, 2013
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-03-01 14:01+0000\n"
+"PO-Revision-Date: 2015-03-05 05:19+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +57,7 @@ msgstr "التّسجيل تعارض"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
-msgstr ""
+msgstr "التسجيل ليس مخوّل"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
@@ -104,7 +105,7 @@ msgstr "محظور"
 
 #: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "المستلم أوالسيرفر غير موجود"
 
 #: lobby/XmppClient.cpp:987
 msgid "Internal server error"
@@ -128,7 +129,7 @@ msgstr "غير مسموح"
 
 #: lobby/XmppClient.cpp:992
 msgid "Not authorized"
-msgstr ""
+msgstr "غير مخوّل"
 
 #: lobby/XmppClient.cpp:993
 msgid "Not modified"
@@ -136,11 +137,11 @@ msgstr "غير معدّل"
 
 #: lobby/XmppClient.cpp:994
 msgid "Payment required"
-msgstr ""
+msgstr "دفع المطلوب"
 
 #: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "المستلم غير متاح"
 
 #: lobby/XmppClient.cpp:996
 msgid "Redirect"
@@ -156,7 +157,7 @@ msgstr "انتهت مهلة الخادوم البعيد"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
-msgstr ""
+msgstr "القيود على الموارد"
 
 #: lobby/XmppClient.cpp:1001
 msgid "Service unavailable"
