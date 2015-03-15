@@ -98,6 +98,8 @@ m.TransportPlan.prototype.countFreeSlots = function()
 
 m.TransportPlan.prototype.countFreeSlotsOnShip = function(ship)
 {
+	if (ship.hitpoints() < ship.garrisonEjectHealth() * ship.maxHitpoints())
+		return 0;
 	var occupied = ship.garrisoned().length
 		+ this.units.filter(API3.Filters.byMetadata(PlayerID, "onBoard", ship.id())).length;
 	return (ship.garrisonMax() - occupied);

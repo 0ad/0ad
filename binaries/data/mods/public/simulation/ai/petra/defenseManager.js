@@ -134,9 +134,18 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 		if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
 			return;
 
-		// TODO do not bother with animals for the time being
+		// keep animals attacking us or our allies
 		if (ent.hasClass("Animal"))
-			return;
+		{
+			if (!ent.unitAIState() || ent.unitAIState().split(".")[1] !== "COMBAT")
+				return;
+			let orders = ent.unitAIOrderData();
+			if (!orders || !orders.length || !orders[0]["target"])
+				return;
+			let target = gameState.getEntityById(orders[0]["target"]);
+			if (!target || !gameState.isPlayerAlly(target.owner()))
+				return;
+		}
 
 		// TODO what to do for ships ?
 		if (ent.hasClass("Ship") || ent.hasClass("Trader"))
@@ -362,6 +371,8 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 {
 	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
 		return;
+	if (target.hitpoints() < target.garrisonEjectHealth() * target.maxHitpoints())
+		return;
 	var attackTypes = target.attackTypes();
 	if (!attackTypes || attackTypes.indexOf("Ranged") === -1)
 		return;
@@ -407,6 +418,8 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 			return;
 		if (garrisonManager.numberOfGarrisonedUnits(ent) >= ent.garrisonMax())
 			return;
+		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
+			return;
 		var entAccess = ent.getMetadata(PlayerID, "access");
 		if (!entAccess)
 		{
@@ -438,6 +451,8 @@ m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 		if (!MatchesClassList(ent.garrisonableClasses(), unit.classes()))
 			return;
 		if (garrisonManager.numberOfGarrisonedUnits(ent) >= ent.garrisonMax())
+			return;
+		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
 			return;
 		var entAccess = ent.getMetadata(PlayerID, "access");
 		if (!entAccess)

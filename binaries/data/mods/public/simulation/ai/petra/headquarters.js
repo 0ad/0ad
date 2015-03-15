@@ -1463,7 +1463,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				nearestAnchor.stopProduction(item.id);
 		}
 	}
-	var autogarrison = (numGarrisoned < nearestAnchor.garrisonMax());
+	var autogarrison = (numGarrisoned < nearestAnchor.garrisonMax() && nearestAnchor.hitpoints() > nearestAnchor.garrisonEjectHealth() * nearestAnchor.maxHitpoints());
 	var rangedWanted = (Math.random() > 0.5 && autogarrison);
 
 	var total = gameState.getResources();

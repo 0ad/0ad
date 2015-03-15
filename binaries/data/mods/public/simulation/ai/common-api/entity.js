@@ -401,6 +401,12 @@ m.Template = m.Class({
 		return this.get("GarrisonHolder/Max");
 	},
 
+	garrisonEjectHealth: function() {
+		if (!this.get("GarrisonHolder"))
+			return undefined;
+		return this.get("GarrisonHolder/EjectHealth");
+	},
+
 	getDefaultArrow: function() {
 		if (!this.get("BuildingAI"))
 			return undefined;
@@ -590,15 +596,15 @@ m.Entity = m.Class({
 		return this._entity.idle;
 	},
 
-	unitAIState: function() { if (this._entity.unitAIState) return this._entity.unitAIState; return undefined; },
-	unitAIOrderData: function() { return this._entity.unitAIOrderData; },
+	unitAIState: function() { return ((this._entity.unitAIState !== undefined) ? this._entity.unitAIState : undefined); },
+	unitAIOrderData: function() { return ((this._entity.unitAIOrderData !== undefined) ? this._entity.unitAIOrderData : undefined); },
 
-	hitpoints: function() { if (this._entity.hitpoints !== undefined) return this._entity.hitpoints; return undefined; },
+	hitpoints: function() { return ((this._entity.hitpoints !== undefined) ? this._entity.hitpoints : undefined); },
 	isHurt: function() { return (this.hitpoints() < this.maxHitpoints()); },
 	healthLevel: function() { return (this.hitpoints() / this.maxHitpoints()); },
 	needsHeal: function() { return this.isHurt() && this.isHealable(); },
 	needsRepair: function() { return this.isHurt() && this.isRepairable(); },
-	decaying: function() { if (this._entity.decaying !== undefined) return this._entity.decaying; return undefined; },
+	decaying: function() { return ((this._entity.decaying !== undefined) ? this._entity.decaying : undefined); },
 
 	/**
 	 * Returns the current training queue state, of the form
