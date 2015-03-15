@@ -240,7 +240,7 @@ for (var i = 0; i < numIslands; ++i)
 	if (!landAreaLen)
 		break;
 	
-	chosenPoint = landAreas[randInt(0, landAreaLen)];
+	chosenPoint = landAreas[randInt(landAreaLen)];
 	
 	// create big islands
 	placer = new ChainPlacer(floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(8, 14)), floor(scaleByMapSize(25, 60)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(30,70));
@@ -256,16 +256,16 @@ for (var i = 0; i < numIslands; ++i)
 		avoidClasses(clLand, 3, clPlayer, 3),
 		1, 1
 	);
-	if (newIsland !== undefined)
+	if (newIsland && newIsland.length)
 	{
-		var temp = []
-		for (var j = 0; j < landAreaLen; ++j)
+		var n = 0;
+		for (var j = 0; j < lakeAreaLen; ++j)
 		{
-			var x = landAreas[j][0], z = landAreas[j][1];
-			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
-					temp.push([x, z]);
+			var x = lakeAreas[j][0], z = lakeAreas[j][1];
+			if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
+				lakeAreas[n++] = lakeAreas[j];
 		}
-		landAreas = temp;
+		lakeAreas.length = n;
 	}
 }
 

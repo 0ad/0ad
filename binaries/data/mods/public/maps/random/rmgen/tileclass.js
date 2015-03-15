@@ -136,19 +136,21 @@ TileClass.prototype.countInRadius = function(cx, cy, radius, returnMembers)
 		}
 		else // Simply check the tiles one by one to find the number
 		{
-			var xmax = cx + radius;
-			for (var x = cx-radius; x <= xmax; x++)
+			var dy = (iy - cy);
+			var xmin = Math.floor(cx - radius);
+			var xmax = Math.ceil(cx + radius);
+			xmin = (xmin >= 0) ? xmin : 0;
+			xmax = ( xmax < size) ? xmax : size - 1;
+			for (var ix = xmin; ix <= xmax; ++ix)
 			{
-				var ix = Math.floor(x);
 				var dx = (ix - cx);
-				var dy = (iy - cy);
 				if (dx*dx + dy*dy <= radius2)
+				{
 					if (this.inclusionCount[ix] && this.inclusionCount[ix][iy] && this.inclusionCount[ix][iy] > 0)
-					{
 						members += 1;
-					}
 					else
 						nonMembers += 1;
+				}
 			}
 		}
 	}
