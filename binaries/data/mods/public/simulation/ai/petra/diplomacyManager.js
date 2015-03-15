@@ -11,14 +11,18 @@ m.DiplomacyManager = function(Config)
 {
 	this.Config = Config;
 	this.nextTributeUpdate = -1;
+	this.nextTributeRequest = new Map();
+	this.nextTributeRequest.set("all", 240);
 };
 
 // Check if any allied needs help (tribute) and sent it if we have enough resource
+// or ask for a tribute if we are in need and one ally can help
 m.DiplomacyManager.prototype.tributes = function(gameState)
 {
 	this.nextTributeUpdate = gameState.ai.elapsedTime + 30;
 	var totalResources = gameState.getResources();
 	var availableResources = gameState.ai.queueManager.getAvailableResources(gameState);
+	var mostNeeded = undefined;
 	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
 	{
 		if (i === PlayerID || !gameState.isPlayerAlly(i))
@@ -38,6 +42,27 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 			{
 				tribute[res] = 100;
 				toSend = true;
+			}
+			else if (this.Config.chat && availableResources[res] == 0 && allyResources[res] > totalResources[res] + 600)
+			{
+				if (gameState.ai.elapsedTime < this.nextTributeRequest.get("all"))
+					continue;
+				if (this.nextTributeRequest.has(res) && gameState.ai.elapsedTime < this.nextTributeRequest.get(res))
+					continue;
+				if (!mostNeeded)
+					mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
+				for (let k = 0; k < 2; ++k)
+				{
+					if (mostNeeded[k].type == res && mostNeeded[k].wanted > 0) 
+					{
+						this.nextTributeRequest.set("all", gameState.ai.elapsedTime + 60);
+						this.nextTributeRequest.set(res, gameState.ai.elapsedTime + 240);
+						m.chatRequestTribute(gameState, res);
+						if (this.Config.debug > 1)
+							API3.warn("Tribute on " + res + " requested to player " + i);
+						break;
+					}
+				}
 			}
 		}
 		if (!toSend)
@@ -94,12 +119,13 @@ m.DiplomacyManager.prototype.update = function(gameState, events)
 
 m.DiplomacyManager.prototype.Serialize = function()
 {
-	return { "nextTributeUpdate": this.nextTributeUpdate };
+	return { "nextTributeUpdate": this.nextTributeUpdate, "nextTributeRequest": this.nextTributeRequest };
 };
 
 m.DiplomacyManager.prototype.Deserialize = function(data)
 {
 	this.nextTributeUpdate = data.nextTributeUpdate;
+	this.nextTributeRequest = data.nextTributeRequest;
 };
 
 return m;
