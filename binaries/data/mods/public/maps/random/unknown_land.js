@@ -1119,7 +1119,7 @@ else if (md == 8) //lakes
 		if (!lakeAreaLen)
 			break;
 		
-		chosenPoint = lakeAreas[randInt(0, lakeAreaLen)];
+		chosenPoint = lakeAreas[randInt(lakeAreaLen)];
 
 		placer = new ChainPlacer(1, floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(40, 180)), 0.7, chosenPoint[0], chosenPoint[1]);
 		terrainPainter = new LayeredPainter(
@@ -1133,19 +1133,18 @@ else if (md == 8) //lakes
 			avoidClasses(clPlayer, 20, clWater, 8),
 			1, 1
 		);
-		
-		if (newLake !== undefined)
+
+		if (newLake && newLake.length)
 		{
-			var temp = []
+			var n = 0;
 			for (var j = 0; j < lakeAreaLen; ++j)
 			{
 				var x = lakeAreas[j][0], z = lakeAreas[j][1];
 				if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
-						temp.push([x, z]);
+					lakeAreas[n++] = lakeAreas[j];
 			}
-			lakeAreas = temp;
-		}
-		
+			lakeAreas.length = n;
+		}		
 	}
 }
 //********************************************************************************************************

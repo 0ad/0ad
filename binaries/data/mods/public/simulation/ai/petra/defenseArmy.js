@@ -31,8 +31,8 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 		if (!eEnt || !eEnt.position())	// probably can't happen.
 			continue;
 
-		if (eEnt.unitAIOrderData().length && eEnt.unitAIOrderData()[0]["target"] &&
-			eEnt.unitAIOrderData()[0]["target"] == entID)
+		if (eEnt.unitAIOrderData() && eEnt.unitAIOrderData().length && 
+			eEnt.unitAIOrderData()[0]["target"] && eEnt.unitAIOrderData()[0]["target"] == entID)
 		{   // being attacked  >>> target the unit
 			idMin = id;
 			break;

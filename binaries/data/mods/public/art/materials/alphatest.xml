@@ -3,4 +3,6 @@
     <shader effect="model_transparent"/>
     <define name="USE_TRANSPARENT" value="1"/>
     <define name="USE_ALPHATEST" value="1"/>
+	<required_texture name="baseTex"/>
+
 </material>

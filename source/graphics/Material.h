@@ -31,7 +31,8 @@ public:
 	
 	struct TextureSampler
 	{
-		TextureSampler(CStr &n, CTexturePtr t) : Name(n), Sampler(t) {}
+		TextureSampler(const CStr &n, CTexturePtr t) : Name(n), Sampler(t) {}
+		TextureSampler(const CStrIntern &n, CTexturePtr t) : Name(n), Sampler(t) {}
 		
 		CStrIntern Name;
 		CTexturePtr Sampler;
@@ -74,6 +75,9 @@ public:
 	void AddRenderQuery(const char* key);
 	const CShaderRenderQueries& GetRenderQueries() const { return m_RenderQueries; }
 
+	void AddRequiredSampler(const CStr& samplerName);
+	const std::vector<CStrIntern>& GetRequiredSampler() const { return m_RequiredSamplers; }
+
 	// Must be called after all AddShaderDefine and AddConditionalDefine
 	void RecomputeCombinedShaderDefines();
 
@@ -84,6 +88,7 @@ private:
 	CTexturePtr m_DiffuseTexture;
 	
 	SamplersVector m_Samplers;
+	std::vector<CStrIntern> m_RequiredSamplers;
 	
 	CStrIntern m_ShaderEffect;
 	CShaderDefines m_ShaderDefines;

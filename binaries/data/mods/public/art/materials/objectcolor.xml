@@ -2,4 +2,6 @@
 <material>
     <shader effect="model"/>
     <define name="USE_OBJECTCOLOR" value="1"/>
+	
+	<required_texture name="baseTex"/>
 </material>

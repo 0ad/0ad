@@ -164,7 +164,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 								if (se.Name == at_file)
 									samp.m_SamplerFile = VfsPath("art/textures/skins") / se.Value.FromUTF8();
 								else if (se.Name == at_name)
-									samp.m_SamplerName = se.Value;
+									samp.m_SamplerName = CStrIntern(se.Value);
 							}
 							currentVariant->m_Samplers.push_back(samp);
 						}
@@ -459,9 +459,9 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 		
 		// Same for samplers, though perhaps not strictly necessary:
 		for (std::vector<CObjectBase::Samp>::iterator it = var.m_Samplers.begin(); it != var.m_Samplers.end(); ++it)
-			variation.samplers.erase(it->m_SamplerName);
+			variation.samplers.erase(it->m_SamplerName.string());
 		for (std::vector<CObjectBase::Samp>::iterator it = var.m_Samplers.begin(); it != var.m_Samplers.end(); ++it)
-			variation.samplers.insert(make_pair(it->m_SamplerName, *it));
+			variation.samplers.insert(make_pair(it->m_SamplerName.string(), *it));
 	}
 
 	return variation;

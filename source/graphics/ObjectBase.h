@@ -28,6 +28,7 @@ class CObjectManager;
 #include <boost/unordered_set.hpp>
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
+#include "ps/CStrIntern.h"
 
 #include <boost/random/mersenne_twister.hpp>
 
@@ -70,7 +71,7 @@ public:
 	struct Samp
 	{
 		// identifier name of sampler in GLSL shaders
-		CStr m_SamplerName;
+		CStrIntern m_SamplerName;
 		// path to load from
 		VfsPath m_SamplerFile;
 	};

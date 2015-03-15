@@ -585,15 +585,6 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 	
 	var edges = [[x, z]]
 	var circles = [];
-	var pointHeights = []
-	for (var ix = sx; ix <= lx; ++ix)
-	{
-		pointHeights.push([]);
-		for (var iz = sz; iz <= lz; ++iz)
-		{
-			pointHeights.push(g_Map.getHeight(ix, iz));
-		}
-	}
 	
 	for (var i = 0; i < numCircles; ++i)
 	{

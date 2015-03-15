@@ -47,20 +47,20 @@ varying vec2 v_los;
   uniform vec3 specularColor;
 #endif
 
-#if USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP || USE_AO
+#if USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX || USE_AO
   uniform vec4 effectSettings;
 #endif
 
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
+#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX
   varying vec4 v_normal;
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX_MAP)
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX)
     varying vec4 v_tangent;
     //varying vec3 v_bitangent;
   #endif
   #if USE_SPECULAR || USE_SPECULAR_MAP
     varying vec3 v_half;
   #endif
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX_MAP
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX
     varying vec3 v_eyeVec;
   #endif
 #endif
@@ -113,84 +113,45 @@ void main()
 {
   vec2 coord = v_tex;
 
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_PARALLAX_MAP || USE_NORMAL_MAP)
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_PARALLAX || USE_NORMAL_MAP)
     vec3 bitangent = vec3(v_normal.w, v_tangent.w, v_lighting.w);
     mat3 tbn = mat3(v_tangent.xyz, bitangent, v_normal.xyz);
   #endif
 
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX_MAP
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX
   {
     float h = texture2D(normTex, coord).a;
 
     vec3 eyeDir = normalize(v_eyeVec * tbn);
     float dist = length(v_eyeVec);
 
-    float s;
     vec2 move;
     float height = 1.0;
     float scale = effectSettings.z;
-      
-    scale = (scale * (float(PARALLAX_DIST_MAX) - dist)) / float(PARALLAX_DIST_MAX);
+	  
+    int iter = int(min(30, 70.0/dist));
+	
+	if (iter > 0.01)
+	{
+		float s = 1.0/iter;
+		float t = s;
+		move = vec2(-eyeDir.x, eyeDir.y) * scale / (eyeDir.z * iter);
+		vec2 nil = vec2(0.0);
 
-    float iter = 8.0;
-    #if USE_HQ_PARALLAX
-      iter = 16.0;
-      #if USE_VHQ_PARALLAX
-        iter = 24.0;
-      #endif
-    #endif
-
-    s = 1.0 / iter;
-    float t = s;
-    move = vec2(-eyeDir.x, eyeDir.y) * scale / (eyeDir.z * iter);
-    vec2 nil = vec2(0.0);
-
-    #define PARALLAX_ITER {\
-      height -= t;\
-      t = (h < height) ? s : 0.0;\
-      vec2 temp = (h < height) ? move : nil;\
-      coord += temp;\
-      h = texture2D(normTex, coord).a;\
-    }
-
-    // 8 iterations of parallax 
-    PARALLAX_ITER
-    PARALLAX_ITER
-    PARALLAX_ITER
-    PARALLAX_ITER
-    PARALLAX_ITER
-    PARALLAX_ITER
-    PARALLAX_ITER
-    PARALLAX_ITER
-
-    // an additional 8 iterations for the HQ parallax
-    #if USE_HQ_PARALLAX
-      PARALLAX_ITER
-      PARALLAX_ITER
-      PARALLAX_ITER
-      PARALLAX_ITER
-      PARALLAX_ITER
-      PARALLAX_ITER
-      PARALLAX_ITER
-      PARALLAX_ITER
-
-      #if USE_VHQ_PARALLAX
-        PARALLAX_ITER
-        PARALLAX_ITER
-        PARALLAX_ITER
-        PARALLAX_ITER
-        PARALLAX_ITER
-        PARALLAX_ITER
-        PARALLAX_ITER
-        PARALLAX_ITER
-      #endif      
-    #endif
-    
-    // Move back to where we collided with the surface.  
-    // This assumes the surface is linear between the sample point before we 
-    // intersect the surface and after we intersect the surface
-    float hp = texture2D(normTex, coord - move).a;
-    coord -= move * ((h - height) / (s + h - hp)); 
+		for (int i = 0; i < iter; ++i) {
+		  height -= t;
+		  t = (h < height) ? s : 0.0;
+		  vec2 temp = (h < height) ? move : nil;
+		  coord += temp;
+		  h = texture2D(normTex, coord).a;
+		}
+		  
+		// Move back to where we collided with the surface.  
+		// This assumes the surface is linear between the sample point before we 
+		// intersect the surface and after we intersect the surface
+		float hp = texture2D(normTex, coord - move).a;
+		coord -= move * ((h - height) / (s + h - hp));
+	}
   }
   #endif
 

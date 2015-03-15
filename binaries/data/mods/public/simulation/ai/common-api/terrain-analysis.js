@@ -250,9 +250,10 @@ m.copyPrototype(m.Accessibility, m.TerrainAnalysis);
 m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 {
 	this.Map(rawState, "passability", terrainAnalyser.map);
-	this.landPassMap = new Uint8Array(terrainAnalyser.length);
-	this.navalPassMap = new Uint8Array(terrainAnalyser.length);
+	this.landPassMap = new Uint16Array(terrainAnalyser.length);
+	this.navalPassMap = new Uint16Array(terrainAnalyser.length);
 
+	this.maxRegions = 65535;
 	this.regionSize = [];
 	this.regionType = []; // "inaccessible", "land" or "water";
 	// ID of the region associated with an array of region IDs.
@@ -555,6 +556,14 @@ m.Accessibility.prototype.getRegionSizei = function(index, onWater) {
 // TODO: take big zones of impassable trees into account?
 m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 {
+	if (value > this.maxRegions)
+	{
+		error("AI accessibility map: too many regions.");
+		this.landPassMap[startIndex] = 1;
+		this.navalPassMap[startIndex] = 1;
+		return false;
+	}
+
 	if ((!onWater && this.landPassMap[startIndex] !== 0) || (onWater && this.navalPassMap[startIndex] !== 0) )
 		return false;	// already painted.
 
@@ -590,8 +599,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 	}
 	var w = this.width;
 	var h = this.height;
-		
-	var x = 0;
+
 	var y = 0;
 	// Get x and y from index
 	var IndexArray = [startIndex];
@@ -606,7 +614,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		do {
 			--y;
 			loop = false;
-			var index = +newIndex + w*y;
+			var index = newIndex + w*y;
 			if (index < 0)
 				break;
 			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200)
@@ -619,9 +627,8 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		++y;
 		var reachLeft = false;
 		var reachRight = false;
-		loop = true;
 		do {
-			var index = +newIndex + w*y;
+			var index = newIndex + w*y;
 			
 			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200)
 			{
@@ -680,7 +687,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 					reachRight = false;
 			}
 			++y;
-		} while (index/w < w-1)	// should actually break
+		} while (index/w < h-1)	// should actually break
 	}
 	return true;
 };

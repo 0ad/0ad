@@ -93,7 +93,9 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 			else
 				var range = 80;
 			var enemiesAround = gameState.getEnemyEntities().toEntityArray().some(function(ent) {
-				if (!ent.position() || ent.owner() === 0)
+				if (!ent.position())
+					return false;
+				if (ent.owner() === 0 && (!ent.unitAIState() || ent.unitAIState().split(".")[1] !== "COMBAT"))
 					return false;
 				var dist = API3.SquareVectorDistance(ent.position(), holder.position());
 				if (dist < range*range)

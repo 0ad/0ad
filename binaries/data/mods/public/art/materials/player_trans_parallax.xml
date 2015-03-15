@@ -4,10 +4,7 @@
     <alternative material="player_trans.xml" quality="8"/>
     <define name="USE_PLAYERCOLOR" value="1"/>
 
-    <conditional_define name="USE_PARALLAX_MAP" value="1" type="draw_range" conf="PARALLAX_DIST"/>
-    <conditional_define name="USE_HQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_HQ_DIST"/>
-    <conditional_define name="USE_VHQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_VHQ_DIST"/>
-    <define name="USE_NORMAL_MAP" value="1"/>
+    <define name="USE_PARALLAX" value="1"/>
 
     <!--<define name="USE_SPECULAR_MAP" value="1"/>
     <define name="USE_SELF_LIGHT" value="1"/>-->
@@ -20,4 +17,8 @@
 	 Third value: Parallax scale. 
 	 Fourth value: AO amount. -->
     <uniform name="effectSettings" value="1.0 50.0 0.0075 0.75"/>
+	
+	<required_texture name="baseTex"/>
+	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
+
 </material>

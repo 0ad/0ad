@@ -335,8 +335,9 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	// default template
 	var template = gameState.applyCiv("units/{civ}_support_female_citizen");
 
+	let femaleRatio = (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.femaleRatio, 0.2) : this.femaleRatio);
 	// Choose whether we want soldiers instead.
-	if ((numFemales+numQueuedF) > 8 && (numFemales+numQueuedF)/numTotal > this.femaleRatio)
+	if ((numFemales+numQueuedF) > 8 && (numFemales+numQueuedF)/numTotal > femaleRatio)
 	{
 		if (numTotal < 45)
 			var requirements = [ ["cost", 1], ["speed", 0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]];
@@ -1074,7 +1075,7 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 	queues.economicBuilding.addItem(plan);
 };
 
-// Build a farmstead to go to town phase faster and prepare for research. Only really active on higher diff mode.
+// Build a farmstead
 m.HQ.prototype.buildFarmstead = function(gameState, queues)
 {
 	// Only build one farmstead for the time being ("DropsiteFood" does not refer to CCs)
@@ -1248,8 +1249,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		var fortressType = "structures/{civ}_fortress";
 		if (queues.defenseBuilding.length() == 0 && this.canBuild(gameState, fortressType))
 		{
-			var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_b"), true)
-				+ gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_g"), true);
+			var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress"), true);
 			if (gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime)
 			{
 				this.fortressStartTime = gameState.ai.elapsedTime;
@@ -1463,7 +1463,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				nearestAnchor.stopProduction(item.id);
 		}
 	}
-	var autogarrison = (numGarrisoned < nearestAnchor.garrisonMax());
+	var autogarrison = (numGarrisoned < nearestAnchor.garrisonMax() && nearestAnchor.hitpoints() > nearestAnchor.garrisonEjectHealth() * nearestAnchor.maxHitpoints());
 	var rangedWanted = (Math.random() > 0.5 && autogarrison);
 
 	var total = gameState.getResources();

@@ -1081,8 +1081,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	var self = this;
 
 	// we are transporting our units, let's wait
-	// TODO retaliate if attacked while waiting for the rest of the units
-	// and instead of state "arrived", made a state "walking" with a new path
+	// TODO instead of state "arrived", made a state "walking" with a new path
 	if (this.state === "transporting")
 	{
 		var done = true;
@@ -1301,12 +1300,16 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				}
 				else
 				{	// if units are attacked, abandon their target (if it was a structure or a support) and retaliate
+					// also if our unit is attacking a range unit and the attacker is a melee unit, retaliate
 					var orderData = ourUnit.unitAIOrderData();
 					if (orderData.length !== 0 && orderData[0]["target"])
 					{
 						var target = gameState.getEntityById(orderData[0]["target"]);
 						if (target && !target.hasClass("Structure") && !target.hasClass("Support"))
-							continue;
+						{
+							if (!target.hasClass("Ranged") || !attacker.hasClass("Melee"))
+								continue;
+						}
 					}
 					ourUnit.attack(attacker.id());
 					ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);

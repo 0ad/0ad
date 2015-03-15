@@ -48,22 +48,19 @@ varying vec2 v_blend;
   uniform vec3 specularColor;
 #endif
 
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP || USE_AO
+#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_AO
   uniform vec4 effectSettings;
 #endif
 
 varying vec3 v_normal;
 
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
-  #if USE_NORMAL_MAP || USE_PARALLAX_MAP
+#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP
+  #if USE_NORMAL_MAP
     varying vec4 v_tangent;
     varying vec3 v_bitangent;
   #endif
   #if USE_SPECULAR || USE_SPECULAR_MAP
     varying vec3 v_half;
-  #endif
-  #if USE_PARALLAX_MAP
-    varying vec3 v_eyeVec;
   #endif
 #endif
 

@@ -4,4 +4,5 @@
     <define name="USE_TRIPLANAR" value="1"/>
     
     <uniform name="effectSettings" value="1.0 15.0 0.0 0.0"/>
+	<required_texture name="baseTex"/>
 </material>

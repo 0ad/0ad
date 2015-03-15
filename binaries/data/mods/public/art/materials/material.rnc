@@ -20,13 +20,6 @@ element material {
         attribute name { text },
         attribute value { text }
     }* &
-    element conditional_define {
-        attribute name { text },
-        attribute value { text },
-        attribute type { text },
-        (attribute conf { text }
-         | ( attribute min { xsd:float }?, attribute max { xsd:float }? ))
-    }* &
     element uniform {
         attribute name { text },
         attribute value { list { # X Y Z W
@@ -39,4 +32,7 @@ element material {
     element renderquery {
         attribute name { text }
     }*
+	element required_texture {
+		attribute name { text }
+	}*
 }

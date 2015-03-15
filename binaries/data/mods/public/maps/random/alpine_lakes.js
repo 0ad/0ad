@@ -155,8 +155,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
-	ix = round(fx);
-	iz = round(fz);
+	var ix = round(fx);
+	var iz = round(fz);
 	addToClass(ix, iz, clPlayer);
 	addToClass(ix+5, iz, clPlayer);
 	addToClass(ix, iz+5, clPlayer);
@@ -256,6 +256,8 @@ RMS.SetProgress(20);
 log("Creating hills...");
 createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(10, 40) * numPlayers, floor(scaleByMapSize(40, 60)), floor(scaleByMapSize(4, 5)), floor(scaleByMapSize(7, 15)), floor(scaleByMapSize(5, 15)));
 
+RMS.SetProgress(30);
+
 var lakeAreas = [];
 var playerConstraint = new AvoidTileClassConstraint(clPlayer, 20);
 var waterConstraint = new AvoidTileClassConstraint(clWater, 8);
@@ -278,7 +280,7 @@ for (var i = 0; i < numLakes; ++i)
 	if (!lakeAreaLen)
 		break;
 	
-	chosenPoint = lakeAreas[randInt(0, lakeAreaLen)];
+	chosenPoint = lakeAreas[randInt(lakeAreaLen)];
 
 	placer = new ChainPlacer(1, floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(40, 180)), 0.7, chosenPoint[0], chosenPoint[1]);
 	var terrainPainter = new LayeredPainter(
@@ -292,17 +294,17 @@ for (var i = 0; i < numLakes; ++i)
 		avoidClasses(clPlayer, 20, clWater, 8),
 		1, 1
 	);
-	
-	if (newLake !== undefined)
+
+	if (newLake && newLake.length)
 	{
-		var temp = []
+		var n = 0;
 		for (var j = 0; j < lakeAreaLen; ++j)
 		{
 			var x = lakeAreas[j][0], z = lakeAreas[j][1];
 			if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
-					temp.push([x, z]);
+				lakeAreas[n++] = lakeAreas[j];
 		}
-		lakeAreas = temp;
+		lakeAreas.length = n;
 	}
 	
 }

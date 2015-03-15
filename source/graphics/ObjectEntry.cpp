@@ -136,19 +136,26 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		LOGERROR("Actor '%s' has no textures.", utf8_from_wstring(m_Base->m_ShortName));
 	}
 	
-	std::vector<CObjectBase::Samp>::iterator samp;
-	for (samp = m_Samplers.begin(); samp != m_Samplers.end(); ++samp)
+	for (const auto& samp : m_Samplers)
 	{
-		CTextureProperties textureProps(samp->m_SamplerFile);
+		CTextureProperties textureProps(samp.m_SamplerFile);
 		textureProps.SetWrap(GL_CLAMP_TO_EDGE);
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 		// if we've loaded this model we're probably going to render it soon, so prefetch its texture. 
 		// All textures are prefetched even in the fixed pipeline, including the normal maps etc.
 		// TODO: Should check which renderpath is selected and only preload the necessary textures.
 		texture->Prefetch(); 
-		model->GetMaterial().AddSampler(CMaterial::TextureSampler(samp->m_SamplerName, texture));
+		model->GetMaterial().AddSampler(CMaterial::TextureSampler(samp.m_SamplerName, texture));
 	}
 
+	const std::vector<CStrIntern>& requiredSamplers = model->GetMaterial().GetRequiredSampler();
+	for (const auto& requSampName : requiredSamplers)
+	{
+		if (std::find_if(m_Samplers.begin(), m_Samplers.end(),
+						 [&](CObjectBase::Samp sampler) { return sampler.m_SamplerName == requSampName; }) == m_Samplers.end())
+			LOGERROR("Actor %s: required texture sampler %s not found (material %s)", utf8_from_wstring(m_Base->m_ShortName), requSampName.string().c_str(), m_Base->m_Material.string8().c_str());
+	}
+	
 	// calculate initial object space bounds, based on vertex positions
 	model->CalcStaticObjectBounds();
 
