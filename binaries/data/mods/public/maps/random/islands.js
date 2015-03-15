@@ -259,13 +259,13 @@ for (var i = 0; i < numIslands; ++i)
 	if (newIsland && newIsland.length)
 	{
 		var n = 0;
-		for (var j = 0; j < lakeAreaLen; ++j)
+		for (var j = 0; j < landAreaLen; ++j)
 		{
-			var x = lakeAreas[j][0], z = lakeAreas[j][1];
+			var x = landAreas[j][0], z = landAreas[j][1];
 			if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
-				lakeAreas[n++] = lakeAreas[j];
+				landAreas[n++] = landAreas[j];
 		}
-		lakeAreas.length = n;
+		landAreas.length = n;
 	}
 }
 
