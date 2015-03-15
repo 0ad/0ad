@@ -225,7 +225,9 @@ AIInterface.prototype.OnGlobalValueModification = function(msg)
 				continue;
 			// "item" now contains the unmodified template value for this.
 			var newValue = ApplyValueModificationsToEntity(value, +item, ent);
-			newValue = typeof(newValue) === "Number" ? Math.round(newValue) : newValue;
+			// Apply the same roundings as in the components
+			if (value === "Health/Max" || value === "Player/MaxPopulation")
+				newValue = Math.round(newValue);
 			if(item != newValue)
 			{
 				if (!this.changedEntityTemplateInfo[ent])

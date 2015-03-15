@@ -593,10 +593,8 @@ m.Entity = m.Class({
 	unitAIState: function() { if (this._entity.unitAIState) return this._entity.unitAIState; return undefined; },
 	unitAIOrderData: function() { return this._entity.unitAIOrderData; },
 
-	// TODO  understand why we have sometimes rounding problems with maxHitpoints ? making wrongly isHurt=true
-	// problem seems to be with hele civs (i.e. spart)
 	hitpoints: function() { if (this._entity.hitpoints !== undefined) return this._entity.hitpoints; return undefined; },
-	isHurt: function() { return (this.hitpoints() + 1) < this.maxHitpoints(); },
+	isHurt: function() { return (this.hitpoints() < this.maxHitpoints()); },
 	healthLevel: function() { return (this.hitpoints() / this.maxHitpoints()); },
 	needsHeal: function() { return this.isHurt() && this.isHealable(); },
 	needsRepair: function() { return this.isHurt() && this.isRepairable(); },
