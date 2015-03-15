@@ -4,8 +4,8 @@
     <Range>12</Range>
     <HP>5</HP>
     <Rate>2000</Rate>
-    <UnhealableClasses datatype="tokens">Animal</UnhealableClasses>
-    <HealableClasses datatype="tokens">Organic</HealableClasses>
+    <UnhealableClasses datatype="tokens"/>
+    <HealableClasses datatype="tokens">Human</HealableClasses>
   </Heal>
   <Cost>
     <Resources>
