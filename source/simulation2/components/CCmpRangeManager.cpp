@@ -41,7 +41,6 @@
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
-#include "lib/ps_stl.h"
 
 #define LOS_TILES_RATIO 8
 #define DEBUG_RANGE_MANAGER_BOUNDS 0
