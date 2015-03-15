@@ -316,7 +316,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 };
 
 // If our defense structures are attacked, garrison soldiers inside when possible
-// and if a support unit is attacked and has less than 45% health, garrison it inside the nearest cc
+// and if a support unit is attacked and has less than 55% health, garrison it inside the nearest healing structure
 // and if a ranged siege unit (not used for defense) is attacked, garrison it in the nearest fortress
 m.DefenseManager.prototype.checkEvents = function(gameState, events)
 {
@@ -329,7 +329,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
 
-		if (target.hasClass("Support") && target.healthLevel() < 0.45 && !target.getMetadata(PlayerID, "transport")
+		if (target.hasClass("Support") && target.healthLevel() < 0.55 && !target.getMetadata(PlayerID, "transport")
 			&& target.getMetadata(PlayerID, "plan") !== -2 && target.getMetadata(PlayerID, "plan") !== -3)
 		{
 			this.garrisonUnitForHealing(gameState, target);

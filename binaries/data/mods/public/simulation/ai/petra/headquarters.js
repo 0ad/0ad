@@ -335,8 +335,9 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	// default template
 	var template = gameState.applyCiv("units/{civ}_support_female_citizen");
 
+	let femaleRatio = (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.femaleRatio, 0.2) : this.femaleRatio);
 	// Choose whether we want soldiers instead.
-	if ((numFemales+numQueuedF) > 8 && (numFemales+numQueuedF)/numTotal > this.femaleRatio)
+	if ((numFemales+numQueuedF) > 8 && (numFemales+numQueuedF)/numTotal > femaleRatio)
 	{
 		if (numTotal < 45)
 			var requirements = [ ["cost", 1], ["speed", 0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]];
@@ -1074,7 +1075,7 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 	queues.economicBuilding.addItem(plan);
 };
 
-// Build a farmstead to go to town phase faster and prepare for research. Only really active on higher diff mode.
+// Build a farmstead
 m.HQ.prototype.buildFarmstead = function(gameState, queues)
 {
 	// Only build one farmstead for the time being ("DropsiteFood" does not refer to CCs)
