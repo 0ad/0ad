@@ -65,6 +65,16 @@ function displaySingle(entState, template)
 		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 
+		if (entState.foundation && entState.visibility == "visible" && entState.foundation.numBuilders !== 0)
+		{
+			// logic comes from Foundation component.
+			var speed = Math.pow(entState.foundation.numBuilders, 0.7);
+			var timeLeft = (1.0 - entState.foundation.progress / 100.0) * template.cost.time;
+			Engine.GetGUIObjectByName("health").tooltip = sprintf(translate("This foundation will be completed in %(numb)s seconds."), { numb : Math.ceil(timeLeft/speed) });
+		}
+		else
+			Engine.GetGUIObjectByName("health").tooltip = "";
+
 		Engine.GetGUIObjectByName("healthStats").caption = sprintf(translate("%(hitpoints)s / %(maxHitpoints)s"), {
 			hitpoints: Math.ceil(entState.hitpoints),
 			maxHitpoints: entState.maxHitpoints
@@ -170,7 +180,16 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Number of builders.\nTasking another to this foundation would speed construction up by %(numb)s%%"), { numb : Math.round((Math.pow((entState.foundation.numBuilders+1)/entState.foundation.numBuilders, 0.7) - 1.0)*100) });
+		if (entState.foundation.numBuilders !== 0)
+		{
+			var speedup = Math.pow((entState.foundation.numBuilders+1)/entState.foundation.numBuilders, 0.7);
+			var timeLeft = (1.0 - entState.foundation.progress / 100.0) * template.cost.time;
+			Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Number of builders.\nTasking another to this foundation would speed construction up by %(numb)s seconds."), { numb : Math.ceil(timeLeft - timeLeft/speedup) });
+		}
+		else
+		{
+			Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = translate("Number of builders.");
+		}
 	}
 	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints) && entState.visibility == "visible")
 	{

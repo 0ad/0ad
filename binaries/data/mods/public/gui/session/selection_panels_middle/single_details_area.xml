@@ -12,7 +12,7 @@
 			<translatableAttribute id="tooltip">Health:</translatableAttribute>
 		</object>
 		<object size="0 0 100% 16" name="healthStats" type="text" style="StatsTextRight" ghost="true"/>
-		<object size="1 16 100% 23" name="health" type="image">
+		<object size="1 16 100% 23" name="health" type="image" tooltip_style="sessionToolTip">
 			<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 			<object type="image" sprite="healthBackground" ghost="true"/>
 			<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
