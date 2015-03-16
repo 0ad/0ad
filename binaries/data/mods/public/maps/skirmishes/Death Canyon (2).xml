@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="0.819608" g="0.764706" b="0.639216"/>
+		<SunColor r="0.819608" g="0.764706" b="0.639216"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.575758"/>
-		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColour r="0.458824" g="0.439216" b="0.384314"/>
+		<TerrainAmbientColor r="0.337255" g="0.411765" b="0.501961"/>
+		<UnitsAmbientColor r="0.458824" g="0.439216" b="0.384314"/>
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
 			<FogThickness>0.450195</FogThickness>
-			<FogColour r="0.776471" g="0.74902" b="0.576471"/>
+			<FogColor r="0.776471" g="0.74902" b="0.576471"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.54902" g="0.537255" b="0.439216"/>
+				<Color r="0.54902" g="0.537255" b="0.439216"/>
 				<Height>17.6262</Height>
 				<Shininess>150</Shininess>
 				<Waviness>3.0</Waviness>
@@ -49,7 +49,7 @@
   "Name": "Death Canyon (2)",
   "PlayerData": [
     {
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -57,7 +57,7 @@
       "Name": "Player 1"
     },
     {
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

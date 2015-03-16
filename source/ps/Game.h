@@ -93,14 +93,14 @@ public:
 	void SetPlayerID(int playerID);
 
 	/**
-	 * Retrieving player colours from scripts is slow, so this updates an
-	 * internal cache of all players' colours.
+	 * Retrieving player colors from scripts is slow, so this updates an
+	 * internal cache of all players' colors.
 	 * Call this just before rendering, so it will always have the latest
-	 * colours.
+	 * colors.
 	 */
-	void CachePlayerColours();
+	void CachePlayerColors();
 
-	CColor GetPlayerColour(int player) const;
+	CColor GetPlayerColor(int player) const;
 
 	/**
 	 * Get m_GameStarted.
@@ -166,7 +166,7 @@ private:
 	void RegisterInit(const JS::HandleValue attribs, const std::string& savedState);
 	IReplayLogger* m_ReplayLogger;
 
-	std::vector<CColor> m_PlayerColours;
+	std::vector<CColor> m_PlayerColors;
 
 	int LoadInitialState();
 	std::string m_InitialSavedState; // valid between RegisterInit and LoadInitialState

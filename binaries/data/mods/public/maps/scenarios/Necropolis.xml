@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.839216" g="0.819608" b="0.67451"/>
+		<SunColor r="0.839216" g="0.819608" b="0.67451"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.582913"/>
-		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.301961" g="0.364706" b="0.529412"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0</FogFactor>
 			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.898039"/>
+			<FogColor r="0.8" g="0.8" b="0.898039"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.333333" g="0.423529" b="0.501961"/>
+				<Color r="0.333333" g="0.423529" b="0.501961"/>
 				<Height>19.3049</Height>
 				<Waviness>3.0</Waviness>
 				<Murkiness>0.686523</Murkiness>
@@ -50,7 +50,7 @@
   "PlayerData": [
     {
       "Civ": "spart",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -66,7 +66,7 @@
     },
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -82,7 +82,7 @@
     },
     {
       "Civ": "mace",
-      "Colour": {
+      "Color": {
         "b": 5,
         "g": 165,
         "r": 50
@@ -98,7 +98,7 @@
     },
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 75,
         "g": 230,
         "r": 230

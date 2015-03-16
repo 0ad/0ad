@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>default</SkySet>
-		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunColor r="0.74902" g="0.74902" b="0.74902"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00136719</FogFactor>
 			<FogThickness>0.205078</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.286275" g="0.27451" b="0.0901961"/>
+				<Color r="0.286275" g="0.27451" b="0.0901961"/>
 				<Height>19.2</Height>
 				<Shininess>39.5508</Shininess>
 				<Waviness>4.0</Waviness>
@@ -53,7 +53,7 @@
     {
       "AI": "",
       "Civ": "spart",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -70,7 +70,7 @@
     {
       "AI": "tutorial-ai",
       "Civ": "cart",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

@@ -53,7 +53,7 @@ DP3 lighting, normal, -sunDir;
 MAX lighting, 0.0, lighting;
 // Scale diffuse to allow overbrightness (since result.color will be clamped to [0, 1])
 MUL lighting, lighting, 0.5;
-// Apply light colour
+// Apply light color
 MUL result.color, lighting, sunColor;
 
 #if USE_SPECULAR

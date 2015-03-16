@@ -670,8 +670,8 @@ createObjectGroupsByAreas(group, 0,
 );
 
 
-setTerrainAmbientColour(0.44,0.51,0.56);
-setUnitsAmbientColour(0.44,0.51,0.56);
+setTerrainAmbientColor(0.44,0.51,0.56);
+setUnitsAmbientColor(0.44,0.51,0.56);
 
 // Export map data
 ExportMap();

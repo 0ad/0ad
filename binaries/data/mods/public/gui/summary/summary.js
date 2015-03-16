@@ -11,11 +11,11 @@ const PLAYER_BOX_Y_SIZE = 30;
 const PLAYER_BOX_GAP = 2;
 // alpha for player box
 const PLAYER_BOX_ALPHA = " 32";
-// alpha for player colour box
-const PLAYER_COLOUR_BOX_ALPHA = " 255";
+// alpha for player color box
+const PLAYER_COLOR_BOX_ALPHA = " 255";
 // yStart value for spacing teams boxes (and noTeamsBox)
 const TEAMS_BOX_Y_START = 65;
-// colours used for units and buildings
+// colors used for units and buildings
 const TRAINED_COLOR = '[color="201 255 200"]';
 const LOST_COLOR = '[color="255 213 213"]';
 const KILLED_COLOR = '[color="196 198 255"]';
@@ -24,7 +24,7 @@ const BUILDINGS_TYPES = [ "total", "House", "Economic", "Outpost", "Military", "
 const UNITS_TYPES = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Ship" ];
 const RESOURCES_TYPES = [ "food", "wood", "stone", "metal" ];
 
-// colours used for gathered and traded resources
+// colors used for gathered and traded resources
 const INCOME_COLOR = '[color="201 255 200"]';
 const OUTCOME_COLOR = '[color="255 213 213"]';
 
@@ -88,32 +88,32 @@ function updatePanelData(panelInfo)
 		var positionObject = playerBoxesCounts[playerState.team+1] - 1;
 		var rowPlayer = "playerBox[" + positionObject + "]";
 		var playerNameColumn = "playerName[" + positionObject + "]";
-		var playerColourBoxColumn = "playerColourBox[" + positionObject + "]";
+		var playerColorBoxColumn = "playerColorBox[" + positionObject + "]";
 		var playerCivicBoxColumn = "civIcon[" + positionObject + "]";
 		var playerCounterValue = "valueData[" + positionObject + "]";
 		if (playerState.team != -1)
 		{
 			rowPlayer = "playerBoxt[" + playerState.team + "][" + positionObject + "]";
 			playerNameColumn = "playerNamet[" + playerState.team + "][" + positionObject + "]";
-			playerColourBoxColumn = "playerColourBoxt[" + playerState.team + "][" + positionObject + "]";
+			playerColorBoxColumn = "playerColorBoxt[" + playerState.team + "][" + positionObject + "]";
 			playerCivicBoxColumn = "civIcont[" + playerState.team + "][" + positionObject + "]";
 			playerCounterValue = "valueDataTeam[" + playerState.team + "][" + positionObject + "]";
 		}
 
-		var colourString = "colour: "
-				+ Math.floor(playerState.colour.r * 255) + " "
-				+ Math.floor(playerState.colour.g * 255) + " "
-				+ Math.floor(playerState.colour.b * 255);
+		var colorString = "color: "
+				+ Math.floor(playerState.color.r * 255) + " "
+				+ Math.floor(playerState.color.g * 255) + " "
+				+ Math.floor(playerState.color.b * 255);
 
 		var rowPlayerObject = Engine.GetGUIObjectByName(rowPlayer);
 		rowPlayerObject.hidden = false;
-		rowPlayerObject.sprite = colourString + PLAYER_BOX_ALPHA;
+		rowPlayerObject.sprite = colorString + PLAYER_BOX_ALPHA;
 		var boxSize = rowPlayerObject.size;
 		boxSize.right = rowPlayerObjectWidth;
 		rowPlayerObject.size = boxSize;
 
-		var playerColourBox = Engine.GetGUIObjectByName(playerColourBoxColumn);
-		playerColourBox.sprite = colourString + PLAYER_COLOUR_BOX_ALPHA;
+		var playerColorBox = Engine.GetGUIObjectByName(playerColorBoxColumn);
+		playerColorBox.sprite = colorString + PLAYER_COLOR_BOX_ALPHA;
 
 		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.players[i+1].name;
 

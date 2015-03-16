@@ -1403,15 +1403,15 @@ function onGameAttributesChange()
 		var pCivText = Engine.GetGUIObjectByName("playerCivText["+i+"]");
 		var pTeam = Engine.GetGUIObjectByName("playerTeam["+i+"]");
 		var pTeamText = Engine.GetGUIObjectByName("playerTeamText["+i+"]");
-		var pColor = Engine.GetGUIObjectByName("playerColour["+i+"]");
+		var pColor = Engine.GetGUIObjectByName("playerColor["+i+"]");
 
 		// Player data / defaults
 		var pData = mapSettings.PlayerData ? mapSettings.PlayerData[i] : {};
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[i] : {};
 
 		// Common to all game types
-		var color = rgbToGuiColor(getSetting(pData, pDefs, "Colour"));
-		pColor.sprite = "colour:" + color + " 100";
+		var color = rgbToGuiColor(getSetting(pData, pDefs, "Color"));
+		pColor.sprite = "color:" + color + " 100";
 		pName.caption = translate(getSetting(pData, pDefs, "Name"));
 
 		var team = getSetting(pData, pDefs, "Team");
@@ -1711,7 +1711,7 @@ function addChatMessage(msg)
 
 	if (msg.guid && g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != -1)
 	{
-		// Valid player who has been assigned - get player colour
+		// Valid player who has been assigned - get player color
 		var player = g_PlayerAssignments[msg.guid].player - 1;
 		var mapName = g_GameAttributes.map;
 		var mapData = loadMapData(mapName);
@@ -1719,7 +1719,7 @@ function addChatMessage(msg)
 		var pData = mapSettings.PlayerData ? mapSettings.PlayerData[player] : {};
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[player] : {};
 
-		color = rgbToGuiColor(getSetting(pData, pDefs, "Colour"));
+		color = rgbToGuiColor(getSetting(pData, pDefs, "Color"));
 	}
 
 	var formatted;

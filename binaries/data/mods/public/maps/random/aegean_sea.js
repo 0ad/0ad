@@ -448,8 +448,8 @@ createStragglerTrees(types, stayClasses(clIsland, 4));
 
 // Set environment
 setSkySet("cumulus");
-setSunColour(0.866667, 0.776471, 0.486275);	
-setWaterColour(0, 0.501961, 1);		
+setSunColor(0.866667, 0.776471, 0.486275);	
+setWaterColor(0, 0.501961, 1);		
 setWaterTint(0.501961, 1, 1);
 setWaterWaviness(4.0);
 setWaterType("ocean");

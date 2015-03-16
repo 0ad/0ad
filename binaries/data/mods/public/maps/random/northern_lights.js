@@ -406,10 +406,10 @@ createObjectGroups(group, 0,
 	25 * numPlayers, 60
 );
 
-setSunColour(0.6, 0.6, 0.6);	
+setSunColor(0.6, 0.6, 0.6);	
 setSunElevation(PI/ 6);
 
-setWaterColour(0.3, 0.347, 0.386);				// dark majestic blue
+setWaterColor(0.3, 0.347, 0.386);				// dark majestic blue
 setWaterTint(0.171, 0.236, 0.263);				// light blue
 setWaterMurkiness(0.82);
 setWaterWaviness(0.5);

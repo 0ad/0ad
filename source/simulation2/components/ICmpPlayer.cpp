@@ -33,9 +33,9 @@ class CCmpPlayerScripted : public ICmpPlayer
 public:
 	DEFAULT_SCRIPT_WRAPPER(PlayerScripted)
 
-	virtual CColor GetColour()
+	virtual CColor GetColor()
 	{
-		return m_Script.Call<CColor>("GetColour");
+		return m_Script.Call<CColor>("GetColor");
 	}
 
 	virtual std::wstring GetCiv()

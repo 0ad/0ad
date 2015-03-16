@@ -52,7 +52,7 @@ class MD5;
  *
  * 'normal' is 'true' or 'false'.
  *
- * 'alpha' is 'transparency' or 'player' (it determines whether the colour value of
+ * 'alpha' is 'transparency' or 'player' (it determines whether the color value of
  * 0-alpha pixels is significant or not).
  *
  * 'filter' is 'box', 'triangle' or 'kaiser'.

@@ -9,10 +9,10 @@ function setSkySet(set)
 	g_Environment.SkySet = set;
 }
 
-// Set sun colour RGB
-function setSunColour(r, g, b)
+// Set sun color RGB
+function setSunColor(r, g, b)
 {
-	g_Environment.SunColour = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.SunColor = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
 // Set sun elevation
@@ -27,26 +27,26 @@ function setSunRotation(r)
 	g_Environment.SunRotation = r;
 }
 
-// Set terrain ambient colour RGB (0-1)
-function setTerrainAmbientColour(r, g, b)
+// Set terrain ambient color RGB (0-1)
+function setTerrainAmbientColor(r, g, b)
 {
-	g_Environment.TerrainAmbientColour = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.TerrainAmbientColor = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
-// Set terrain ambient colour RGB (0-1)
-function setUnitsAmbientColour(r, g, b)
+// Set terrain ambient color RGB (0-1)
+function setUnitsAmbientColor(r, g, b)
 {
-	g_Environment.UnitsAmbientColour = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.UnitsAmbientColor = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
 ////////////////////////////////////////////////////////////////////////////
 // 	Water
 ////////////////////////////////////////////////////////////////////////////
 			
-// Set water colour RGB (0,1)
-function setWaterColour(r, g, b)
+// Set water color RGB (0,1)
+function setWaterColor(r, g, b)
 {
-	g_Environment.Water.WaterBody.Colour = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.Water.WaterBody.Color = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
 // Set water tint RGB (0,1)

@@ -4,15 +4,15 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.854902" g="0.811765" b="0.682353"/>
+		<SunColor r="0.854902" g="0.811765" b="0.682353"/>
 		<SunElevation angle="0.825282"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColour r="0.521569" g="0.521569" b="0.521569"/>
+		<TerrainAmbientColor r="0.337255" g="0.411765" b="0.501961"/>
+		<UnitsAmbientColor r="0.521569" g="0.521569" b="0.521569"/>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>18.2557</Height>
 				<Shininess>150</Shininess>
 				<Waviness>1.0</Waviness>
@@ -35,7 +35,7 @@
   "PlayerData": [
     {
       "Civ": "cart",
-      "Colour": {
+      "Color": {
         "b": 192,
         "g": 128,
         "r": 0
@@ -45,7 +45,7 @@
     },
     {
       "Civ": "iber",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -55,7 +55,7 @@
     },
     {
       "Civ": "spart",
-      "Colour": {
+      "Color": {
         "b": 5,
         "g": 165,
         "r": 50
@@ -65,7 +65,7 @@
     },
     {
       "Civ": "pers",
-      "Colour": {
+      "Color": {
         "b": 159,
         "g": 26,
         "r": 96

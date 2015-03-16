@@ -503,15 +503,15 @@ for (var i = 0; i < types.length; ++i)
 
 // Set environment
 setSkySet("sunny");
-setSunColour(0.917, 0.828, 0.734);
-setWaterColour(0.263,0.314,0.631);
+setSunColor(0.917, 0.828, 0.734);
+setWaterColor(0.263,0.314,0.631);
 setWaterTint(0.133, 0.725,0.855);
 setWaterWaviness(2.0);
 setWaterType("ocean");
 setWaterMurkiness(0.8);
 
-setTerrainAmbientColour(0.57, 0.58, 0.55);
-setUnitsAmbientColour(0.447059, 0.509804, 0.54902);
+setTerrainAmbientColor(0.57, 0.58, 0.55);
+setUnitsAmbientColor(0.447059, 0.509804, 0.54902);
 
 setSunElevation(0.671884);
 setSunRotation(-0.582913);

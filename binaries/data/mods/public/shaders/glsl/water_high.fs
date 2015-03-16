@@ -13,7 +13,7 @@ uniform sampler2D losMap;
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
 uniform vec3 color;				// color of the water
 uniform vec3 tint;				// Tint for refraction (used to simulate particles in water)
-uniform float murkiness;		// Amount of tint to blend in with the refracted colour
+uniform float murkiness;		// Amount of tint to blend in with the refracted color
 
 uniform float windAngle;
 varying vec2 WindCosSin;
@@ -348,18 +348,18 @@ void main()
 	wavesFresnel = mix(1.0-fancyeffects.a,1.0,clamp(depth,0.0,1.0));
 #endif
 	
-	vec3 colour;
+	vec3 color;
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
 	float fresShadow = mix(fresnel, fresnel*shadow, 0.05 + murkiness*0.2);
-	colour = mix(refrColor, reflColor, fresShadow * wavesFresnel);
+	color = mix(refrColor, reflColor, fresShadow * wavesFresnel);
 #else
-	colour = mix(refrColor, reflColor, fresnel * wavesFresnel);
+	color = mix(refrColor, reflColor, fresnel * wavesFresnel);
 #endif
 	
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
-	colour += shadow*specular;
+	color += shadow*specular;
 #else
-	colour += specular;
+	color += specular;
 #endif
 	
 #if USE_FANCY_EFFECTS
@@ -378,9 +378,9 @@ void main()
 	float foam = FoamEffects.r * FoamEffects.a*0.4 + pow(foam1.x*(5.0+waviness),(2.6 - waviness/5.5));
 	foam *= ndotl;
 	
-	gl_FragColor.rgb = get_fog(colour) * losMod + foam * losMod;// + fancyeffects.a * losMod;
+	gl_FragColor.rgb = get_fog(color) * losMod + foam * losMod;// + fancyeffects.a * losMod;
 #else
-	gl_FragColor.rgb = get_fog(colour) * losMod;
+	gl_FragColor.rgb = get_fog(color) * losMod;
 #endif
 	
 #if !USE_REFRACTION

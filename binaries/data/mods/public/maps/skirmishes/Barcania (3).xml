@@ -4,15 +4,15 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.962339" g="0.892532" b="0.668153"/>
+		<SunColor r="0.962339" g="0.892532" b="0.668153"/>
 		<SunElevation angle="0.877437"/>
 		<SunRotation angle="3.03728"/>
-		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.505882"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.337255" g="0.411765" b="0.505882"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.501961" g="0.501961" b="0.501961"/>
+				<Color r="0.501961" g="0.501961" b="0.501961"/>
 				<Height>20.2492</Height>
 				<Shininess>50.7813</Shininess>
 				<Waviness>5.0</Waviness>
@@ -30,7 +30,7 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Barcania",
+  "Name": "Barcania (3)",
   "Description": "A wild and wooded isle, full of forests, gold, and mystery...  mountains, seas, and thick forests make for a very dynamic and fast-paced 3-player map with lots of potential for skirmishing and guerilla warfare as well as tough defensive fighting or aggressive maneuvers.",
   "Keywords": [
     "hidden"

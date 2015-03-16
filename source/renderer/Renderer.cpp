@@ -1331,7 +1331,7 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	// has to be done in a separate pass.
 	// First we render all occluders into depth, then render all units with
 	// inverted depth test so any behind an occluder will get drawn in a constant
-	// colour.
+	// color.
 
 	float silhouetteAlpha = 0.75f;
 
@@ -1382,7 +1382,7 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	else
 	{
 		// Since we can't sort, we'll use the stencil buffer to ensure we only draw
-		// a pixel once (using the colour of whatever model happens to be drawn first).
+		// a pixel once (using the color of whatever model happens to be drawn first).
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
 		pglBlendColorEXT(0, 0, 0, silhouetteAlpha);

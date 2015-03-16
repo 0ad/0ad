@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>stormy</SkySet>
-		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
+		<SunColor r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.439216" g="0.521569" b="0.611765"/>
+		<TerrainAmbientColor r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColor r="0.439216" g="0.521569" b="0.611765"/>
 		<Fog>
 			<FogFactor>0</FogFactor>
 			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.898039"/>
+			<FogColor r="0.8" g="0.8" b="0.898039"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>19.9</Height>
 				<Waviness>4.0</Waviness>
 				<Murkiness>0.947266</Murkiness>
@@ -48,7 +48,7 @@
   "PlayerData": [
     {
       "Civ": "gaul",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -58,7 +58,7 @@
     },
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -16470,61 +16470,61 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3377">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="137.2194" z="583.54969"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3378">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="136.1622" z="581.76038"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3379">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="134.71973" z="580.3125"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3380">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="133.25222" z="578.27088"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3381">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="131.77521" z="576.57837"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3382">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="129.5359" z="578.61963"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3383">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="131.35792" z="580.4178"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3384">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="132.81705" z="582.42298"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3385">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="133.95095" z="584.01716"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3386">
-			<Template>units/gaul_fanatic</Template>
+			<Template>units/gaul_champion_fanatic</Template>
 			<Player>1</Player>
 			<Position x="135.39594" z="585.9264"/>
 			<Orientation y="2.35621"/>

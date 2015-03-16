@@ -151,7 +151,7 @@ void CParticleEmitter::UpdateArrayData(int frameNumber)
 
 		SColor4ub color = m_Particles[i].color;
 
-		// Special case: If the blending depends on the source colour, not the source alpha,
+		// Special case: If the blending depends on the source color, not the source alpha,
 		// then pre-multiply by the alpha. (This is kind of a hack.)
 		if (m_Type->m_BlendFuncDst == GL_ONE_MINUS_SRC_COLOR)
 		{

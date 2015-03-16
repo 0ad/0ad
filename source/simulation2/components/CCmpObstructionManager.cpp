@@ -971,9 +971,9 @@ void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)
 	if (!m_DebugOverlayEnabled)
 		return;
 
-	CColor defaultColour(0, 0, 1, 1);
-	CColor movingColour(1, 0, 1, 1);
-	CColor boundsColour(1, 1, 0, 1);
+	CColor defaultColor(0, 0, 1, 1);
+	CColor movingColor(1, 0, 1, 1);
+	CColor boundsColor(1, 1, 0, 1);
 
 	// If the shapes have changed, then regenerate all the overlays
 	if (m_DebugOverlayDirty)
@@ -981,7 +981,7 @@ void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)
 		m_DebugOverlayLines.clear();
 
 		m_DebugOverlayLines.push_back(SOverlayLine());
-		m_DebugOverlayLines.back().m_Color = boundsColour;
+		m_DebugOverlayLines.back().m_Color = boundsColor;
 		SimRender::ConstructSquareOnGround(GetSimContext(),
 				(m_WorldX0+m_WorldX1).ToFloat()/2.f, (m_WorldZ0+m_WorldZ1).ToFloat()/2.f,
 				(m_WorldX1-m_WorldX0).ToFloat(), (m_WorldZ1-m_WorldZ0).ToFloat(),
@@ -990,14 +990,14 @@ void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)
 		for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 		{
 			m_DebugOverlayLines.push_back(SOverlayLine());
-			m_DebugOverlayLines.back().m_Color = ((it->second.flags & FLAG_MOVING) ? movingColour : defaultColour);
+			m_DebugOverlayLines.back().m_Color = ((it->second.flags & FLAG_MOVING) ? movingColor : defaultColor);
 			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.r.ToFloat()*2, it->second.r.ToFloat()*2, 0, m_DebugOverlayLines.back(), true);
 		}
 
 		for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 		{
 			m_DebugOverlayLines.push_back(SOverlayLine());
-			m_DebugOverlayLines.back().m_Color = defaultColour;
+			m_DebugOverlayLines.back().m_Color = defaultColor;
 			float a = atan2f(it->second.v.X.ToFloat(), it->second.v.Y.ToFloat());
 			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.hw.ToFloat()*2, it->second.hh.ToFloat()*2, a, m_DebugOverlayLines.back(), true);
 		}

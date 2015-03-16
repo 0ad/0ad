@@ -1039,13 +1039,13 @@ Status ogl_tex_get_uploaded_size(Handle ht, size_t* size)
 	return INFO::OK;
 }
 
-// retrieve colour of 1x1 mipmap level
-extern Status ogl_tex_get_average_colour(Handle ht, u32* p)
+// retrieve color of 1x1 mipmap level
+extern Status ogl_tex_get_average_color(Handle ht, u32* p)
 {
 	H_DEREF(ht, OglTex, ot);
 	warn_if_uploaded(ht, ot);
 
-	*p = ot->t.get_average_colour();
+	*p = ot->t.get_average_color();
 	return INFO::OK;
 }
 

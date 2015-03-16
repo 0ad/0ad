@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.866667" g="0.776471" b="0.486275"/>
+		<SunColor r="0.866667" g="0.776471" b="0.486275"/>
 		<SunElevation angle="0.671884"/>
 		<SunRotation angle="-0.582913"/>
-		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColor r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColor r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
 			<FogFactor>0.00203125</FogFactor>
 			<FogThickness>0.151367</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0.27451" g="0.341176" b="0.482353"/>
+				<Color r="0.27451" g="0.341176" b="0.482353"/>
 				<Height>33.0492</Height>
 				<Waviness>3.0</Waviness>
 				<Murkiness>0.628906</Murkiness>
@@ -55,7 +55,7 @@
   "Name": "Cycladic Archipelago (3)",
   "PlayerData": [
     {
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -63,7 +63,7 @@
       "Name": "Samos"
     },
     {
-      "Colour": {
+      "Color": {
         "b": 13,
         "g": 13,
         "r": 223
@@ -71,7 +71,7 @@
       "Name": "Lesbos"
     },
     {
-      "Colour": {
+      "Color": {
         "b": 64,
         "g": 255,
         "r": 0

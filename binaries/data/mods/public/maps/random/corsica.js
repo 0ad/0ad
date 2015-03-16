@@ -612,15 +612,15 @@ if (randFloat(0,1) > 0.5)
 	setSkySet("cumulus");
 else
 	setSkySet("sunny");
-setSunColour(0.8,0.66,0.48);
+setSunColor(0.8,0.66,0.48);
 setSunElevation(0.828932);
 if (!swap)
 	setSunRotation(6.3*PI/8);
 else
 	setSunRotation(2.3*PI/8);
-setTerrainAmbientColour(0.564706,0.543726,0.419608);
-setUnitsAmbientColour(0.53,0.55,0.45);
-setWaterColour(0.2,0.294,0.49);
+setTerrainAmbientColor(0.564706,0.543726,0.419608);
+setUnitsAmbientColor(0.53,0.55,0.45);
+setWaterColor(0.2,0.294,0.49);
 setWaterTint(0.208, 0.659, 0.925);
 setWaterMurkiness(0.72);
 setWaterWaviness(2.0);

@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.858824" g="0.803922" b="0.639216"/>
+		<SunColor r="0.858824" g="0.803922" b="0.639216"/>
 		<SunElevation angle="1.12287"/>
 		<SunRotation angle="-2.55254"/>
-		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.329412" g="0.419608" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.0015625</FogFactor>
 			<FogThickness>0.400391</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0" g="0.356863" b="0.713726"/>
+				<Color r="0" g="0.356863" b="0.713726"/>
 				<Height>33.0492</Height>
 				<Waviness>3.0</Waviness>
 				<Murkiness>0.643555</Murkiness>
@@ -55,7 +55,7 @@
   "PlayerData": [
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -64,7 +64,7 @@
     },
     {
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

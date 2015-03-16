@@ -154,7 +154,7 @@ public:
 	// get the model's player ID; initial default is INVALID_PLAYER
 	virtual player_id_t GetPlayerID() const { return m_PlayerID; }
 
-	virtual void SetShadingColor(const CColor& colour) { m_ShadingColor = colour; }
+	virtual void SetShadingColor(const CColor& color) { m_ShadingColor = color; }
 	virtual CColor GetShadingColor() const { return m_ShadingColor; }
 
 protected:

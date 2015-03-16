@@ -4,15 +4,15 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="0.940257" g="0.907016" b="0.69807"/>
+		<SunColor r="0.940257" g="0.907016" b="0.69807"/>
 		<SunElevation angle="0.779262"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
+		<TerrainAmbientColor r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColor r="0.447059" g="0.509804" b="0.552941"/>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>21.823</Height>
 				<Shininess>150</Shininess>
 				<Waviness>4.0</Waviness>
@@ -41,7 +41,7 @@
   "PlayerData": [
     {
       "Civ": "mace",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -51,7 +51,7 @@
     },
     {
       "Civ": "mace",
-      "Colour": {
+      "Color": {
         "b": 53,
         "g": 129,
         "r": 230
@@ -61,7 +61,7 @@
     },
     {
       "Civ": "pers",
-      "Colour": {
+      "Color": {
         "b": 128,
         "g": 128,
         "r": 0
@@ -71,7 +71,7 @@
     },
     {
       "Civ": "pers",
-      "Colour": {
+      "Color": {
         "b": 147,
         "g": 40,
         "r": 99

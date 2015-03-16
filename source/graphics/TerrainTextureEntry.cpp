@@ -174,7 +174,7 @@ CTerrainTextureEntry::~CTerrainTextureEntry()
 		(*it)->RemoveTerrain(this);
 }
 
-// BuildBaseColor: calculate the root colour of the texture, used for coloring minimap, and store
+// BuildBaseColor: calculate the root color of the texture, used for coloring minimap, and store
 // in m_BaseColor member
 void CTerrainTextureEntry::BuildBaseColor()
 {
@@ -186,10 +186,10 @@ void CTerrainTextureEntry::BuildBaseColor()
 		return;
 	}
 
-	// Use the texture colour if available
+	// Use the texture color if available
 	if (GetTexture()->TryLoad())
 	{
-		m_BaseColor = GetTexture()->GetBaseColour();
+		m_BaseColor = GetTexture()->GetBaseColor();
 		m_BaseColorValid = true;
 	}
 }

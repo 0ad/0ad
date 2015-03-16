@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>rain</SkySet>
-		<SunColour r="1.12397" g="0.91705" b="0.296278"/>
+		<SunColor r="1.12397" g="0.91705" b="0.296278"/>
 		<SunElevation angle="0.49701"/>
 		<SunRotation angle="0.632749"/>
-		<TerrainAmbientColour r="0.239216" g="0.294118" b="0.419608"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColor r="0.239216" g="0.294118" b="0.419608"/>
+		<UnitsAmbientColor r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
 			<FogFactor>0.00298828</FogFactor>
 			<FogThickness>0.00195313</FogThickness>
-			<FogColour r="0.74902" g="0.74902" b="0.74902"/>
+			<FogColor r="0.74902" g="0.74902" b="0.74902"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.34902" g="0.392157" b="0.447059"/>
+				<Color r="0.34902" g="0.392157" b="0.447059"/>
 				<Height>15.7377</Height>
 				<Waviness>1.8</Waviness>
 				<Murkiness>0.900391</Murkiness>
@@ -49,7 +49,7 @@
   "PlayerData": [
     {
       "Civ": "spart",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -59,7 +59,7 @@
     },
     {
       "Civ": "gaul",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

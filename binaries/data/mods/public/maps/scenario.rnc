@@ -9,12 +9,12 @@ start = Scenario
 ##
 # Defines #
 ##
-colour_rgb = 
+color_rgb = 
   attribute r { xsd:decimal { minInclusive = "0" maxInclusive = "1" } },
   attribute g { xsd:decimal { minInclusive = "0" maxInclusive = "1" } },
   attribute b { xsd:decimal { minInclusive = "0" maxInclusive = "1" } }
 
-suncolour_rgb =     # RGB can be > 1 due to overbrightness
+suncolor_rgb =     # RGB can be > 1 due to overbrightness
   attribute r { xsd:decimal { minInclusive = "0" } },
   attribute g { xsd:decimal { minInclusive = "0" } },
   attribute b { xsd:decimal { minInclusive = "0" } }
@@ -39,11 +39,11 @@ Scenario = element Scenario {
     element Environment {
         element LightingModel { text }? & # Deprecated
         element SkySet { text } &
-        element SunColour { suncolour_rgb } &
+        element SunColor { suncolor_rgb } &
         element SunElevation { angle } &
         element SunRotation { angle } &
-        element TerrainAmbientColour { colour_rgb } &
-        element UnitsAmbientColour { colour_rgb } &
+        element TerrainAmbientColor { color_rgb } &
+        element UnitsAmbientColor { color_rgb } &
         element Fog {
             element FogFactor {
                 xsd:decimal { minInclusive = "0" } # TODO: what is the max?
@@ -51,18 +51,18 @@ Scenario = element Scenario {
             element FogThickness {
                 xsd:decimal { minInclusive = "0" } # TODO: what is the max?
             } &
-            element FogColour { colour_rgb }
+            element FogColor { color_rgb }
         }? &
         element Water {
             element WaterBody {
                 element Type { text } & # Not implemented
-                element Colour { colour_rgb } &
+                element Color { color_rgb } &
                 element Height { xsd:decimal } &
                 element Shininess { xsd:decimal }? & # Deprecated
                 element Waviness { xsd:decimal } &
                 element Murkiness { xsd:decimal } &
-                element Tint { colour_rgb } &
-                element ReflectionTint { colour_rgb } &
+                element Tint { color_rgb } &
+                element ReflectionTint { color_rgb } &
                 element ReflectionTintStrength { xsd:decimal }
             }
         } &

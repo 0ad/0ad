@@ -49,32 +49,32 @@ void FieldEditCtrl_Text::StartEdit(wxWindow* parent, wxRect rect, long row, int 
 
 //////////////////////////////////////////////////////////////////////////
 
-void FieldEditCtrl_Colour::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), long row, int col)
+void FieldEditCtrl_Color::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), long row, int col)
 {
 	EditableListCtrl* editCtrl = (EditableListCtrl*)parent;
-	wxColour oldColour;
-	wxString oldColourStr (editCtrl->GetCellObject(row, col));
+	wxColor oldColor;
+	wxString oldColorStr (editCtrl->GetCellObject(row, col));
 
-	// Parse the "r g b" colour string (and ignore leading/trailing junk)
+	// Parse the "r g b" color string (and ignore leading/trailing junk)
 	wxRegEx re (_T("([0-9]+) ([0-9]+) ([0-9]+)")); // don't use \d, since that requires wxRE_ADVANCED
 	wxASSERT(re.IsValid());
-	if (re.Matches(oldColourStr))
+	if (re.Matches(oldColorStr))
 	{
 		wxASSERT(re.GetMatchCount() == 4); // 1 for matched string, +3 for captured groups
 		long r, g, b;
-		re.GetMatch(oldColourStr, 1).ToLong(&r);
-		re.GetMatch(oldColourStr, 2).ToLong(&g);
-		re.GetMatch(oldColourStr, 3).ToLong(&b);
-		oldColour = wxColour(r, g, b);
+		re.GetMatch(oldColorStr, 1).ToLong(&r);
+		re.GetMatch(oldColorStr, 2).ToLong(&g);
+		re.GetMatch(oldColorStr, 3).ToLong(&b);
+		oldColor = wxColor(r, g, b);
 	}
 
-	wxColour newColour = wxGetColourFromUser(parent, oldColour);
+	wxColor newColor = wxGetColourFromUser(parent, oldColor);
 
-	if (newColour.IsOk()) // test whether the user cancelled the selection
+	if (newColor.IsOk()) // test whether the user cancelled the selection
 	{
-		wxString newColourStr = wxString::Format(_T("%d %d %d"), newColour.Red(), newColour.Green(), newColour.Blue());
+		wxString newColorStr = wxString::Format(_T("%d %d %d"), newColor.Red(), newColor.Green(), newColor.Blue());
 		AtlasWindowCommandProc::GetFromParentFrame(editCtrl)->Submit(
-			new EditCommand_Text(editCtrl, row, col, newColourStr)
+			new EditCommand_Text(editCtrl, row, col, newColorStr)
 		);
 	}
 }

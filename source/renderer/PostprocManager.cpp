@@ -37,7 +37,7 @@
 #if !CONFIG2_GLES
 
 CPostprocManager::CPostprocManager()
-	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"), m_ColourTex1(0), m_ColourTex2(0), 
+	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"), m_ColorTex1(0), m_ColorTex2(0), 
 	  m_DepthTex(0), m_BloomFbo(0), m_BlurTex2a(0), m_BlurTex2b(0), m_BlurTex4a(0), m_BlurTex4b(0),
 	  m_BlurTex8a(0), m_BlurTex8b(0), m_WhichBuffer(true)
 {
@@ -58,10 +58,10 @@ void CPostprocManager::Cleanup()
 	if (m_BloomFbo) pglDeleteFramebuffersEXT(1, &m_BloomFbo);
 	m_PingFbo = m_PongFbo = m_BloomFbo = 0;
 
-	if (m_ColourTex1) glDeleteTextures(1, &m_ColourTex1);
-	if (m_ColourTex2) glDeleteTextures(1, &m_ColourTex2);
+	if (m_ColorTex1) glDeleteTextures(1, &m_ColorTex1);
+	if (m_ColorTex2) glDeleteTextures(1, &m_ColorTex2);
 	if (m_DepthTex) glDeleteTextures(1, &m_DepthTex);
-	m_ColourTex1 = m_ColourTex2 = m_DepthTex = 0;
+	m_ColorTex1 = m_ColorTex2 = m_DepthTex = 0;
 
 	if (m_BlurTex2a) glDeleteTextures(1, &m_BlurTex2a);
 	if (m_BlurTex2b) glDeleteTextures(1, &m_BlurTex2b);
@@ -112,8 +112,8 @@ void CPostprocManager::RecreateBuffers()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
 	// Two fullscreen ping-pong textures. 
-	GEN_BUFFER_RGBA(m_ColourTex1, m_Width, m_Height);
-	GEN_BUFFER_RGBA(m_ColourTex2, m_Width, m_Height);
+	GEN_BUFFER_RGBA(m_ColorTex1, m_Width, m_Height);
+	GEN_BUFFER_RGBA(m_ColorTex2, m_Width, m_Height);
 	
 	// Textures for several blur sizes. It would be possible to reuse
 	// m_BlurTex2b, thus avoiding the need for m_BlurTex4b and m_BlurTex8b, though given
@@ -151,7 +151,7 @@ void CPostprocManager::RecreateBuffers()
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-							   GL_TEXTURE_2D, m_ColourTex1, 0);
+							   GL_TEXTURE_2D, m_ColorTex1, 0);
 
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
 							   GL_TEXTURE_2D, m_DepthTex, 0);
@@ -166,7 +166,7 @@ void CPostprocManager::RecreateBuffers()
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-							   GL_TEXTURE_2D, m_ColourTex2, 0);
+							   GL_TEXTURE_2D, m_ColorTex2, 0);
 
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
 							   GL_TEXTURE_2D, m_DepthTex, 0);
@@ -347,7 +347,7 @@ void CPostprocManager::ApplyBlur()
 		ApplyBlurGauss(tex2, temptex, width, height); 
 	
 	// We do the same thing for each scale, incrementally adding more and more blur.
-	SCALE_AND_BLUR(m_WhichBuffer ? m_ColourTex1 : m_ColourTex2, m_BlurTex2a, m_BlurTex2b);
+	SCALE_AND_BLUR(m_WhichBuffer ? m_ColorTex1 : m_ColorTex2, m_BlurTex2a, m_BlurTex2b);
 	SCALE_AND_BLUR(m_BlurTex2a, m_BlurTex4a, m_BlurTex4b);
 	SCALE_AND_BLUR(m_BlurTex4a, m_BlurTex8a, m_BlurTex8b);
 	
@@ -418,9 +418,9 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	// We also bind a bunch of other textures and parameters, but since
 	// this only happens once per frame the overhead is negligible.
 	if (m_WhichBuffer)
-		shader->BindTexture(str_renderedTex, m_ColourTex1);
+		shader->BindTexture(str_renderedTex, m_ColorTex1);
 	else
-		shader->BindTexture(str_renderedTex, m_ColourTex2);
+		shader->BindTexture(str_renderedTex, m_ColorTex2);
 	
 	shader->BindTexture(str_depthTex, m_DepthTex);
 	

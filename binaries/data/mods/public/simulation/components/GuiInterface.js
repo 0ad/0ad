@@ -83,7 +83,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var playerData = {
 			"name": cmpPlayer.GetName(),
 			"civ": cmpPlayer.GetCiv(),
-			"colour": cmpPlayer.GetColour(),
+			"color": cmpPlayer.GetColor(),
 			"popCount": cmpPlayer.GetPopulationCount(),
 			"popLimit": cmpPlayer.GetPopulationLimit(),
 			"popMax": cmpPlayer.GetMaxPopulation(),
@@ -819,7 +819,7 @@ GuiInterface.prototype.GetAllBuildableEntities = function(player, cmd)
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var playerColours = {}; // cache of owner -> colour map
+	var playerColors = {}; // cache of owner -> color map
 	
 	for each (var ent in cmd.entities)
 	{
@@ -827,23 +827,23 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		if (!cmpSelectable)
 			continue;
 
-		// Find the entity's owner's colour:
+		// Find the entity's owner's color:
 		var owner = -1;
 		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpOwnership)
 			owner = cmpOwnership.GetOwner();
 
-		var colour = playerColours[owner];
-		if (!colour)
+		var color = playerColors[owner];
+		if (!color)
 		{
-			colour = {"r":1, "g":1, "b":1};
+			color = {"r":1, "g":1, "b":1};
 			var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(owner), IID_Player);
 			if (cmpPlayer)
-				colour = cmpPlayer.GetColour();
-			playerColours[owner] = colour;
+				color = cmpPlayer.GetColor();
+			playerColors[owner] = color;
 		}
 
-		cmpSelectable.SetSelectionHighlight({"r":colour.r, "g":colour.g, "b":colour.b, "a":cmd.alpha}, cmd.selected);
+		cmpSelectable.SetSelectionHighlight({"r":color.r, "g":color.g, "b":color.b, "a":cmd.alpha}, cmd.selected);
 	}
 };
 
@@ -1007,9 +1007,9 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 				cmpVisual.SetActorSeed(cmd.actorSeed);
 
 			if (!result.success)
-				cmpVisual.SetShadingColour(1.4, 0.4, 0.4, 1);
+				cmpVisual.SetShadingColor(1.4, 0.4, 0.4, 1);
 			else
-				cmpVisual.SetShadingColour(1, 1, 1, 1);
+				cmpVisual.SetShadingColor(1, 1, 1, 1);
 		}
 	}
 
@@ -1514,9 +1514,9 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		if (cmpVisual)
 		{
 			if (!allPiecesValid || !canAfford)
-				cmpVisual.SetShadingColour(1.4, 0.4, 0.4, 1);
+				cmpVisual.SetShadingColor(1.4, 0.4, 0.4, 1);
 			else
-				cmpVisual.SetShadingColour(1, 1, 1, 1);
+				cmpVisual.SetShadingColor(1, 1, 1, 1);
 		}
 
 		entPool.numUsed++;

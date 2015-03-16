@@ -82,7 +82,7 @@ function fadeColorTick(name)
 	
 	// set new color
 	var rgb = data.rgb;
-	overlay.sprite="colour: " + rgb.r + " " + rgb.g + " " + rgb.b + " " + rgb.o;
+	overlay.sprite="color: " + rgb.r + " " + rgb.g + " " + rgb.b + " " + rgb.o;
 
 	// recusive call, if duration is positive
 	if (!data.stopFade && (data.justStopAtExternCall || data.duration - (data.tickInterval * data.tickCounter) > 0))

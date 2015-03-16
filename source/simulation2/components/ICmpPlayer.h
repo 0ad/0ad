@@ -31,7 +31,7 @@ class CFixedVector3D;
 class ICmpPlayer : public IComponent
 {
 public:
-	virtual CColor GetColour() = 0;
+	virtual CColor GetColor() = 0;
 	virtual std::wstring GetCiv() = 0;
 	virtual CFixedVector3D GetStartingCameraPos() = 0;
 	virtual CFixedVector3D GetStartingCameraRot() = 0;

@@ -122,7 +122,7 @@ struct SGUIImage
 	 */
 	GLint			m_WrapMode;
 
-	// Visual effects (e.g. colour modulation)
+	// Visual effects (e.g. color modulation)
 	SGUIImageEffects* m_Effects;
 
 	// Color

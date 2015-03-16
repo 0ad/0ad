@@ -108,7 +108,7 @@ protected:
 
 	bool IsRowBlank(int n);
 
-	wxListItemAttr m_ListItemAttr[2]; // standard+alternate colours
+	wxListItemAttr m_ListItemAttr[2]; // standard+alternate colors
 
 	DECLARE_EVENT_TABLE();
 };

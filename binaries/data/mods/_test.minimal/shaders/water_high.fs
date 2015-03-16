@@ -9,7 +9,7 @@ uniform float shininess;		// Blinn-Phong specular strength
 uniform float specularStrength;	// Scaling for specular reflection (specular color is (this,this,this))
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
 uniform vec3 tint;				// Tint for refraction (used to simulate particles in water)
-uniform float murkiness;		// Amount of tint to blend in with the refracted colour
+uniform float murkiness;		// Amount of tint to blend in with the refracted color
 uniform float fullDepth;		// Depth at which to use full murkiness (shallower water will be clearer)
 uniform vec3 reflectionTint;	// Tint for reflection (used for really muddy water)
 uniform float reflectionTintStrength;	// Strength of reflection tint (how much of it to mix in)

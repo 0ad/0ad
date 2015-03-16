@@ -41,9 +41,9 @@ public:
 
 	// Template state:
 
-	bool m_UsePlayerColour;
+	bool m_UsePlayerColor;
 
-	u8 m_R, m_G, m_B; // static template state if m_UsePlayerColour false; dynamic state if true
+	u8 m_R, m_G, m_B; // static template state if m_UsePlayerColor false; dynamic state if true
 
 	// Dynamic state:
 
@@ -72,7 +72,7 @@ public:
 				"</choice>"
 			"</element>"
 			"<optional>"
-				"<element name='Colour'>"
+				"<element name='Color'>"
 					"<attribute name='r'>"
 						"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
 					"</attribute>"
@@ -92,18 +92,18 @@ public:
 		m_IsPinging = false;
 		m_PingEndTime = 0.0;
 
-		const CParamNode& colour = paramNode.GetChild("Colour");
-		if (colour.IsOk())
+		const CParamNode& color = paramNode.GetChild("Color");
+		if (color.IsOk())
 		{
-			m_UsePlayerColour = false;
-			m_R = (u8)colour.GetChild("@r").ToInt();
-			m_G = (u8)colour.GetChild("@g").ToInt();
-			m_B = (u8)colour.GetChild("@b").ToInt();
+			m_UsePlayerColor = false;
+			m_R = (u8)color.GetChild("@r").ToInt();
+			m_G = (u8)color.GetChild("@g").ToInt();
+			m_B = (u8)color.GetChild("@b").ToInt();
 		}
 		else
 		{
-			m_UsePlayerColour = true;
-			// Choose a bogus colour which will get replaced once we have an owner
+			m_UsePlayerColor = true;
+			// Choose a bogus color which will get replaced once we have an owner
 			m_R = 255;
 			m_G = 0;
 			m_B = 255;
@@ -117,7 +117,7 @@ public:
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
-		if (m_UsePlayerColour)
+		if (m_UsePlayerColor)
 		{
 			serialize.NumberU8_Unbounded("r", m_R);
 			serialize.NumberU8_Unbounded("g", m_G);
@@ -168,26 +168,26 @@ public:
 		}
 		case MT_OwnershipChanged:
 		{
-			if (!m_UsePlayerColour)
+			if (!m_UsePlayerColor)
 				break;
 
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 
-			// If there's no new owner (e.g. the unit is dying) then don't try updating the colour
+			// If there's no new owner (e.g. the unit is dying) then don't try updating the color
 			if (msgData.to == -1)
 				break;
 
-			// Find the new player's colour
+			// Find the new player's color
 			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
 			if (!cmpPlayerManager)
 				break;
 			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(msgData.to));
 			if (!cmpPlayer)
 				break;
-			CColor colour = cmpPlayer->GetColour();
-			m_R = (u8)(colour.r*255.0);
-			m_G = (u8)(colour.g*255.0);
-			m_B = (u8)(colour.b*255.0);
+			CColor color = cmpPlayer->GetColor();
+			m_R = (u8)(color.r*255.0);
+			m_G = (u8)(color.g*255.0);
+			m_B = (u8)(color.b*255.0);
 			// TODO: probably should avoid using floating-point here
 
 			break;

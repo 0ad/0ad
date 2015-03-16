@@ -11,7 +11,7 @@
         <animation file="quadraped/horse_attack_b.psa" name="attack_melee" speed="150"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
       </animations>
-      <colour>0 0 0</colour>
+      <color>0 0 0</color>
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/macedonians/pyrrhus_r.xml" attachpoint="rider"/>

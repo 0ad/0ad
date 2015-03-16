@@ -42,7 +42,7 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////
 
-class FieldEditCtrl_Colour : public FieldEditCtrl
+class FieldEditCtrl_Color : public FieldEditCtrl
 {
 protected:
 	void StartEdit(wxWindow* parent, wxRect rect, long row, int col);

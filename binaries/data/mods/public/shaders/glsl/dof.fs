@@ -28,7 +28,7 @@ float linearizeDepth(float depth)
 
 void main(void)
 {
-	vec3 colour = texture2D(renderedTex, v_tex).rgb;
+	vec3 color = texture2D(renderedTex, v_tex).rgb;
 
 	vec3 blur2 = texture2D(blurTex2, v_tex).rgb;
 	vec3 blur4 = texture2D(blurTex4, v_tex).rgb;
@@ -51,12 +51,12 @@ void main(void)
 
 	amount = clamp(amount / (lMidDepth * BLUR_FOV), 0.0, 1.0);
 
-	colour = (amount >= 0.0 && amount < 0.25) ? mix(colour, blur2, (amount - 0.0) / (0.25)) : colour;
-	colour = (amount >= 0.25 && amount < 0.50) ? mix(blur2, blur4, (amount - 0.25) / (0.25)) : colour;
-	colour = (amount >= 0.50 && amount < 0.75) ? mix(blur4, blur8, (amount - 0.50) / (0.25)) : colour;
-	colour = (amount >= 0.75 && amount <= 1.00) ? blur8 : colour;
+	color = (amount >= 0.0 && amount < 0.25) ? mix(color, blur2, (amount - 0.0) / (0.25)) : color;
+	color = (amount >= 0.25 && amount < 0.50) ? mix(blur2, blur4, (amount - 0.25) / (0.25)) : color;
+	color = (amount >= 0.50 && amount < 0.75) ? mix(blur4, blur8, (amount - 0.50) / (0.25)) : color;
+	color = (amount >= 0.75 && amount <= 1.00) ? blur8 : color;
 
-	gl_FragColor.rgb = colour;
+	gl_FragColor.rgb = color;
 	gl_FragColor.a = 1.0;
 }
 

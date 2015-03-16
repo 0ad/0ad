@@ -117,5 +117,5 @@ void ShaderRenderModifier::PrepareModel(const CShaderProgramPtr& shader, CModel*
 		shader->Uniform(m_BindingShadingColor, model->GetShadingColor());
 
 	if (m_BindingPlayerColor.Active())
-		shader->Uniform(m_BindingPlayerColor, g_Game->GetPlayerColour(model->GetPlayerID()));
+		shader->Uniform(m_BindingPlayerColor, g_Game->GetPlayerColor(model->GetPlayerID()));
 }

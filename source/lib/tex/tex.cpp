@@ -637,8 +637,8 @@ u8* Tex::get_data()
 	return p + m_Ofs;
 }
 
-// returns colour of 1x1 mipmap level
-u32 Tex::get_average_colour() const
+// returns color of 1x1 mipmap level
+u32 Tex::get_average_color() const
 {
 	// require mipmaps
 	if(!(m_Flags & TEX_MIPMAPS))

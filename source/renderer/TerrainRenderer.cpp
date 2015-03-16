@@ -281,7 +281,7 @@ void TerrainRenderer::RenderTerrain(int cullGroup)
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
 	pglClientActiveTextureARB(GL_TEXTURE0);
-	glEnableClientState(GL_COLOR_ARRAY); // diffuse lighting colours
+	glEnableClientState(GL_COLOR_ARRAY); // diffuse lighting colors
 
 	// The vertex color is scaled by 0.5 to permit overbrightness without clamping.
 	// We therefore need to draw clamp((texture*lighting)*2.0), where 'texture'

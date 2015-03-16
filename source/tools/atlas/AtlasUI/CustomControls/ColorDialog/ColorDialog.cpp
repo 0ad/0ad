@@ -20,14 +20,14 @@
 #include "wx/regex.h"
 #include "wx/config.h"
 
-#include "ColourDialog.h"
+#include "ColorDialog.h"
 
-ColourDialog::ColourDialog(wxWindow* parent, const wxString& customColourConfigPath, const wxColour& defaultColour)
-: wxColourDialog(parent), m_ConfigPath(customColourConfigPath)
+ColorDialog::ColorDialog(wxWindow* parent, const wxString& customColorConfigPath, const wxColor& defaultColor)
+: wxColourDialog(parent), m_ConfigPath(customColorConfigPath)
 {
-	GetColourData().SetColour(defaultColour);
+	GetColourData().SetColour(defaultColor);
 
-	// Load custom colours from the config database
+	// Load custom colors from the config database
 
 	wxRegEx re (_T("([0-9]+) ([0-9]+) ([0-9]+)"), wxRE_EXTENDED);
 
@@ -36,26 +36,26 @@ ColourDialog::ColourDialog(wxWindow* parent, const wxString& customColourConfigP
 	{
 		for (int i = 0; i < 16; ++i)
 		{
-			wxString customColour;
-			if (cfg->Read(wxString::Format(_T("%s%d"), m_ConfigPath.c_str(), i), &customColour)
-				&& re.Matches(customColour))
+			wxString customColor;
+			if (cfg->Read(wxString::Format(_T("%s%d"), m_ConfigPath.c_str(), i), &customColor)
+				&& re.Matches(customColor))
 			{
 				long r, g, b;
-				re.GetMatch(customColour, 1).ToLong(&r);
-				re.GetMatch(customColour, 2).ToLong(&g);
-				re.GetMatch(customColour, 3).ToLong(&b);
-				GetColourData().SetCustomColour(i, wxColour(r, g, b));
+				re.GetMatch(customColor, 1).ToLong(&r);
+				re.GetMatch(customColor, 2).ToLong(&g);
+				re.GetMatch(customColor, 3).ToLong(&b);
+				GetColourData().SetCustomColour(i, wxColor(r, g, b));
 			}
 		}
 	}
 }
 
-int ColourDialog::ShowModal()
+int ColorDialog::ShowModal()
 {
 	int ret = wxColourDialog::ShowModal();
 	if (ret == wxID_OK)
 	{
-		// Save all the custom colours back into the config database
+		// Save all the custom colors back into the config database
 
 		wxConfigBase* cfg = wxConfigBase::Get(false);
 		if (cfg)
@@ -63,12 +63,12 @@ int ColourDialog::ShowModal()
 			for (int i = 0; i < 16; ++i)
 			{
 				wxString name = wxString::Format(_T("%s%d"), m_ConfigPath.c_str(), i);
-				wxColour colour = GetColourData().GetCustomColour(i);
+				wxColor color = GetColourData().GetCustomColour(i);
 
-				if (colour.IsOk())
+				if (color.IsOk())
 				{
-					wxString customColour = wxString::Format(_T("%d %d %d"), colour.Red(), colour.Green(), colour.Blue());
-					cfg->Write(name, customColour);
+					wxString customColor = wxString::Format(_T("%d %d %d"), color.Red(), color.Green(), color.Blue());
+					cfg->Write(name, customColor);
 				}
 			}
 		}

@@ -128,31 +128,31 @@ protected:
 	/**
 	 * Draw a filled quad on top of the current tile.
 	 *
-	 * @param colour  colour to draw. May be transparent (alpha &lt; 1)
+	 * @param color  color to draw. May be transparent (alpha &lt; 1)
 	 * @param draw_hidden  true if hidden tiles (i.e. those behind other tiles)
 	 * should be drawn
 	 */
-	void RenderTile(const CColor& colour, bool draw_hidden);
+	void RenderTile(const CColor& color, bool draw_hidden);
 
 	/**
 	 * Draw a filled quad on top of the given tile.
 	 */
-	void RenderTile(const CColor& colour, bool draw_hidden, ssize_t i, ssize_t j);
+	void RenderTile(const CColor& color, bool draw_hidden, ssize_t i, ssize_t j);
 
 	/**
 	 * Draw an outlined quad on top of the current tile.
 	 *
-	 * @param colour  colour to draw. May be transparent (alpha &lt; 1)
+	 * @param color  color to draw. May be transparent (alpha &lt; 1)
 	 * @param line_width  width of lines in pixels. 1 is a sensible value
 	 * @param draw_hidden  true if hidden tiles (i.e. those behind other tiles)
 	 * should be drawn
 	 */
-	void RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden);
+	void RenderTileOutline(const CColor& color, int line_width, bool draw_hidden);
 
 	/**
 	 * Draw an outlined quad on top of the given tile.
 	 */
-	void RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden, ssize_t i, ssize_t j);
+	void RenderTileOutline(const CColor& color, int line_width, bool draw_hidden, ssize_t i, ssize_t j);
 	
 private:
 	// Process all tiles

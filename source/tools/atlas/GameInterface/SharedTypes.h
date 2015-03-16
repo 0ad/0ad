@@ -66,21 +66,21 @@ struct Position
 SHAREABLE_STRUCT(Position);
 
 
-struct Colour
+struct Color
 {
-	Colour()
+	Color()
 		: r(255), g(0), b(255)
 	{
 	}
 
-	Colour(unsigned char r, unsigned char g, unsigned char b)
+	Color(unsigned char r, unsigned char g, unsigned char b)
 		: r(r), g(g), b(b)
 	{
 	}
 
 	unsigned char r, g, b;
 };
-SHAREABLE_STRUCT(Colour);
+SHAREABLE_STRUCT(Color);
 
 
 typedef unsigned int ObjectID;

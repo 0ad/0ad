@@ -130,7 +130,7 @@ public:
 	virtual void SetAnimationSyncOffset(fixed actiontime) = 0;
 
 	/**
-	 * Set the shading colour that will be modulated with the model's textures.
+	 * Set the shading color that will be modulated with the model's textures.
 	 * Default shading is (1, 1, 1, 1).
 	 * Alpha should probably be 1 else it's unlikely to work properly.
 	 * @param r red component, expected range [0, 1]
@@ -138,7 +138,7 @@ public:
 	 * @param b blue component, expected range [0, 1]
 	 * @param a alpha component, expected range [0, 1]
 	 */
-	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a) = 0;
+	virtual void SetShadingColor(fixed r, fixed g, fixed b, fixed a) = 0;
 
 	/**
 	 * Set an arbitrarily-named variable that the model may use to alter its appearance

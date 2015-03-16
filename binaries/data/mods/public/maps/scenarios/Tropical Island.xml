@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.882353" g="0.839216" b="0.701961"/>
+		<SunColor r="0.882353" g="0.839216" b="0.701961"/>
 		<SunElevation angle="0.825282"/>
 		<SunRotation angle="-0.877437"/>
-		<TerrainAmbientColour r="0.4" g="0.486275" b="0.6"/>
-		<UnitsAmbientColour r="0.560784" g="0.639216" b="0.713726"/>
+		<TerrainAmbientColor r="0.4" g="0.486275" b="0.6"/>
+		<UnitsAmbientColor r="0.560784" g="0.639216" b="0.713726"/>
 		<Fog>
 			<FogFactor>0.00135742</FogFactor>
 			<FogThickness>0.0498047</FogThickness>
-			<FogColour r="0.654902" g="0.729412" b="0.847059"/>
+			<FogColor r="0.654902" g="0.729412" b="0.847059"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Colour r="0.203922" g="0.254902" b="0.356863"/>
+				<Color r="0.203922" g="0.254902" b="0.356863"/>
 				<Height>29.1672</Height>
 				<Waviness>3.0</Waviness>
 				<Murkiness>0.485352</Murkiness>
@@ -50,7 +50,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -61,7 +61,7 @@
     {
       "AI": "",
       "Civ": "athen",
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

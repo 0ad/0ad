@@ -39,7 +39,7 @@ ToolButton::ToolButton
 {
 	// Explicitly set appearance, so that the button is always owner-drawn
 	// (by the wxButton code), rather than initially using the native
-	// (fixed colour) button appearance.
+	// (fixed color) button appearance.
 	SetSelectedAppearance(false);
 
 	RegisterToolButton(this, toolName);
@@ -58,7 +58,7 @@ void ToolButton::SetSelectedAppearance(bool selected)
 {
 	m_Selected = selected;
 	if (selected)
-		SetBackgroundColour(wxColour(0xee, 0xcc, 0x55));
+		SetBackgroundColour(wxColor(0xee, 0xcc, 0x55));
 	else
 		SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE));
 }
@@ -73,9 +73,9 @@ ToolButtonBar::ToolButtonBar(ToolManager& toolManager, wxWindow* parent, Section
 : wxToolBar(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, style)
 , m_ToolManager(toolManager), m_SectionLayout(sectionLayout), m_Id(baseID), m_Size(-1)
 {
-	/* "msw.remap: If 1 (the default), wxToolBar bitmap colours will be remapped
+	/* "msw.remap: If 1 (the default), wxToolBar bitmap colors will be remapped
 	   to the current theme's values. Set this to 0 to disable this functionality,
-	   for example if you're using more than 16 colours in your tool bitmaps." */
+	   for example if you're using more than 16 colors in your tool bitmaps." */
 	wxSystemOptions::SetOption(wxT("msw.remap"), 0); // (has global effect)
 }
 

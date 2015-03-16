@@ -82,8 +82,8 @@ function LoadPlayerSettings(settings, newPlayers)
 		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
 		cmpPlayer.SetName(getSetting(playerData, playerDefaults, i, "Name"));
 		cmpPlayer.SetCiv(getSetting(playerData, playerDefaults, i, "Civ"));
-		var colour = getSetting(playerData, playerDefaults, i, "Colour");
-		cmpPlayer.SetColour(colour.r, colour.g, colour.b);
+		var color = getSetting(playerData, playerDefaults, i, "Color");
+		cmpPlayer.SetColor(color.r, color.g, color.b);
 
 		// Special case for gaia
 		if (i == 0)

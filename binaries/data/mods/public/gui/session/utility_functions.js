@@ -21,10 +21,10 @@ function getPlayerData(playerAssignments)
 		var name = playerState.name;
 		var civ = playerState.civ;
 		var color = {
-		    "r": playerState.colour.r*255,
-		    "g": playerState.colour.g*255,
-		    "b": playerState.colour.b*255,
-		    "a": playerState.colour.a*255
+		    "r": playerState.color.r*255,
+		    "g": playerState.color.g*255,
+		    "b": playerState.color.b*255,
+		    "a": playerState.color.a*255
 		};
 
 		var player = {

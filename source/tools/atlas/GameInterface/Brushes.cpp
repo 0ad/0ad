@@ -56,7 +56,7 @@ public:
 	{
 		ssize_t i0, j0;
 		m_Brush->GetBottomLeft(i0, j0);
-		// Colour this tile based on the average of the surrounding vertices
+		// Color this tile based on the average of the surrounding vertices
 		float avg = (
 			m_Brush->Get(i-i0, j-j0)   + m_Brush->Get(i-i0+1, j-j0) +
 			m_Brush->Get(i-i0, j-j0+1) + m_Brush->Get(i-i0+1, j-j0+1)

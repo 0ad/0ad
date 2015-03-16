@@ -3,10 +3,10 @@
     <shader effect="model"/>
 
     <!-- REQUIRES: Actor must provide a texture named "specTex", where the RGB channels
-		   provide a specular colour multiplier. 
+		   provide a specular color multiplier. 
 		   Material must provide a uniform definition for "specularPower" that controls
 		   the glossiness of the effect.
-	 COMMENT: The intensity of the colour controls the specular amount, so black pixels have
+	 COMMENT: The intensity of the color controls the specular amount, so black pixels have
 		  no specularity. 
 	 COMPATIBILITY: This effect is incompatible with the old "USE_SPECULAR" effect.
 	 EFFICIENCY: This is a relatively inexpensive effect that should run easily on most hardware. -->

@@ -125,21 +125,21 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 	// read header and determine format
 	png_read_info(png_ptr, info_ptr);
 	png_uint_32 w, h;
-	int bit_depth, colour_type;
-	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &colour_type, 0, 0, 0);
+	int bit_depth, color_type;
+	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, 0, 0, 0);
 	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
 	const u32 bpp = (u32)(pitch/w * 8);
 
 	size_t flags = 0;
 	if(bpp == 32)
 		flags |= TEX_ALPHA;
-	if(colour_type == PNG_COLOR_TYPE_GRAY)
+	if(color_type == PNG_COLOR_TYPE_GRAY)
 		flags |= TEX_GREY;
 
 	// make sure format is acceptable
 	if(bit_depth != 8)
 		WARN_RETURN(ERR::TEX_NOT_8BIT_PRECISION);
-	if(colour_type & PNG_COLOR_MASK_PALETTE)
+	if(color_type & PNG_COLOR_MASK_PALETTE)
 		WARN_RETURN(ERR::TEX_INVALID_COLOR_TYPE);
 
 	const size_t img_size = pitch * h;
@@ -165,25 +165,25 @@ static Status png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, D
 	const png_uint_32 w = (png_uint_32)t->m_Width, h = (png_uint_32)t->m_Height;
 	const size_t pitch = w * t->m_Bpp / 8;
 
-	int colour_type;
+	int color_type;
 	switch(t->m_Flags & (TEX_GREY|TEX_ALPHA))
 	{
 	case TEX_GREY|TEX_ALPHA:
-		colour_type = PNG_COLOR_TYPE_GRAY_ALPHA;
+		color_type = PNG_COLOR_TYPE_GRAY_ALPHA;
 		break;
 	case TEX_GREY:
-		colour_type = PNG_COLOR_TYPE_GRAY;
+		color_type = PNG_COLOR_TYPE_GRAY;
 		break;
 	case TEX_ALPHA:
-		colour_type = PNG_COLOR_TYPE_RGB_ALPHA;
+		color_type = PNG_COLOR_TYPE_RGB_ALPHA;
 		break;
 	default:
-		colour_type = PNG_COLOR_TYPE_RGB;
+		color_type = PNG_COLOR_TYPE_RGB;
 		break;
 	}
 
 	png_set_write_fn(png_ptr, da, io_write, io_flush);
-	png_set_IHDR(png_ptr, info_ptr, w, h, 8, colour_type,
+	png_set_IHDR(png_ptr, info_ptr, w, h, 8, color_type,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
 	u8* data = t->get_data();

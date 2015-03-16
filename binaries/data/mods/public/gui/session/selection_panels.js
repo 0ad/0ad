@@ -228,7 +228,7 @@ g_SelectionPanels.Construction = {
 			data.button.enabled = false;
 			grayscale = "grayscale:";
 			data.affordableMask.hidden = false;
-			data.affordableMask.sprite = "colour: 0 0 0 127";
+			data.affordableMask.sprite = "color: 0 0 0 127";
 		}
 		else if (data.neededResources)
 		{
@@ -339,7 +339,7 @@ g_SelectionPanels.Garrison = {
 		var grayscale = "";
 		var ents = data.item.ents;
 		var entplayer = GetEntityState(ents[0]).player;
-		data.button.sprite = "colour: " + rgbToGuiColor(g_Players[entplayer].color);
+		data.button.sprite = "color: " + rgbToGuiColor(g_Players[entplayer].color);
 
 		var player = Engine.GetPlayerID();
 		if(player != data.unitEntState.player && !g_DevSettings.controlAll)
@@ -750,7 +750,7 @@ g_SelectionPanels.Research = {
 				button.enabled = false;
 				grayscale = "grayscale:";
 				data.affordableMask[i].hidden = false;
-				data.affordableMask[i].sprite = "colour: 0 0 0 127";
+				data.affordableMask[i].sprite = "color: 0 0 0 127";
 			}
 			else if (data.neededResources[i])
 			{

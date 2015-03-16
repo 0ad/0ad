@@ -50,11 +50,11 @@ sEnvironmentSettings GetSettings()
 	s.watermurkiness = wm->m_Murkiness;
 	s.windangle = wm->m_WindAngle;
 
-	// CColor colours
-#define COLOUR(A, B) A = Colour((int)(B.r*255), (int)(B.g*255), (int)(B.b*255))
-	COLOUR(s.watercolour, wm->m_WaterColor);
-	COLOUR(s.watertint, wm->m_WaterTint);
-#undef COLOUR
+	// CColor colors
+#define COLOR(A, B) A = Color((int)(B.r*255), (int)(B.g*255), (int)(B.b*255))
+	COLOR(s.watercolor, wm->m_WaterColor);
+	COLOR(s.watertint, wm->m_WaterTint);
+#undef COLOR
 
 	float sunrotation = g_LightEnv.GetRotation();
 	if (sunrotation > (float)M_PI)
@@ -74,8 +74,8 @@ sEnvironmentSettings GetSettings()
 	s.saturation = g_LightEnv.m_Saturation;
 	s.bloom = g_LightEnv.m_Bloom;
 
-	// RGBColor (CVector3D) colours
-#define COLOUR(A, B) A = Colour((int)(B.X*255), (int)(B.Y*255), (int)(B.Z*255))
+	// RGBColor (CVector3D) colors
+#define COLOR(A, B) A = Color((int)(B.X*255), (int)(B.Y*255), (int)(B.Z*255))
 	s.sunoverbrightness = MaxComponent(g_LightEnv.m_SunColor);
 	// clamp color to [0..1] before packing into u8 triplet
 	if(s.sunoverbrightness > 1.0f)
@@ -83,11 +83,11 @@ sEnvironmentSettings GetSettings()
 	// no component was above 1.0, so reset scale factor (don't want to darken)
 	else
 		s.sunoverbrightness = 1.0f;
-	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
-	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
-	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);
-	COLOUR(s.fogcolour, g_LightEnv.m_FogColor);
-#undef COLOUR
+	COLOR(s.suncolor, g_LightEnv.m_SunColor);
+	COLOR(s.terraincolor, g_LightEnv.m_TerrainAmbientColor);
+	COLOR(s.unitcolor, g_LightEnv.m_UnitsAmbientColor);
+	COLOR(s.fogcolor, g_LightEnv.m_FogColor);
+#undef COLOR
 
 	return s;
 }
@@ -109,10 +109,10 @@ void SetSettings(const sEnvironmentSettings& s)
 		wm->ReloadWaterNormalTextures();
 	}
 	
-#define COLOUR(A, B) B = CColor(A->r/255.f, A->g/255.f, A->b/255.f, 1.f)
-	COLOUR(s.watercolour, wm->m_WaterColor);
-	COLOUR(s.watertint, wm->m_WaterTint);
-#undef COLOUR
+#define COLOR(A, B) B = CColor(A->r/255.f, A->g/255.f, A->b/255.f, 1.f)
+	COLOR(s.watercolor, wm->m_WaterColor);
+	COLOR(s.watertint, wm->m_WaterTint);
+#undef COLOR
 
 	g_LightEnv.SetRotation(s.sunrotation);
 	g_LightEnv.SetElevation(s.sunelevation);
@@ -135,13 +135,13 @@ void SetSettings(const sEnvironmentSettings& s)
 	g_LightEnv.m_Saturation = s.saturation;
 	g_LightEnv.m_Bloom = s.bloom;
 
-#define COLOUR(A, B) B = RGBColor(A->r/255.f, A->g/255.f, A->b/255.f)
-	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
+#define COLOR(A, B) B = RGBColor(A->r/255.f, A->g/255.f, A->b/255.f)
+	COLOR(s.suncolor, g_LightEnv.m_SunColor);
 	g_LightEnv.m_SunColor *= s.sunoverbrightness;
-	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
-	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);
-	COLOUR(s.fogcolour, g_LightEnv.m_FogColor);
-#undef COLOUR
+	COLOR(s.terraincolor, g_LightEnv.m_TerrainAmbientColor);
+	COLOR(s.unitcolor, g_LightEnv.m_UnitsAmbientColor);
+	COLOR(s.fogcolor, g_LightEnv.m_FogColor);
+#undef COLOR
 }
 
 BEGIN_COMMAND(SetEnvironmentSettings)

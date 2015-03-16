@@ -8,7 +8,7 @@ Player.prototype.Init = function()
 	this.playerID = undefined;
 	this.name = undefined;	// define defaults elsewhere (supporting other languages)
 	this.civ = undefined;
-	this.colour = { "r": 0.0, "g": 0.0, "b": 0.0, "a": 1.0 };
+	this.color = { "r": 0.0, "g": 0.0, "b": 0.0, "a": 1.0 };
 	this.popUsed = 0; // population of units owned or trained by this player
 	this.popBonuses = 0; // sum of population bonuses of player's entities
 	this.maxPop = 300; // maximum population
@@ -77,14 +77,14 @@ Player.prototype.GetCiv = function()
 	return this.civ;
 };
 
-Player.prototype.SetColour = function(r, g, b)
+Player.prototype.SetColor = function(r, g, b)
 {
-	this.colour = { "r": r/255.0, "g": g/255.0, "b": b/255.0, "a": 1.0 };
+	this.color = { "r": r/255.0, "g": g/255.0, "b": b/255.0, "a": 1.0 };
 };
 
-Player.prototype.GetColour = function()
+Player.prototype.GetColor = function()
 {
-	return this.colour;
+	return this.color;
 };
 
 // Try reserving num population slots. Returns 0 on success or number of missing slots otherwise.

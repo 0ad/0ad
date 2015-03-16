@@ -208,7 +208,7 @@ function displaySingle(entState, template)
 	// Set Player details
 	Engine.GetGUIObjectByName("specific").caption = specificName;
 	Engine.GetGUIObjectByName("player").caption = playerName;
-	Engine.GetGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
+	Engine.GetGUIObjectByName("playerColorBackground").sprite = "color: " + playerColor;
 	
 	if (genericName)
 	{

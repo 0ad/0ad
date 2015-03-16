@@ -15,16 +15,16 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_COLOURDIALOG
-#define INCLUDED_COLOURDIALOG
+#ifndef INCLUDED_COLORDIALOG
+#define INCLUDED_COLORDIALOG
 
 #include <wx/colordlg.h>
 
-class ColourDialog : public wxColourDialog
+class ColorDialog : public wxColourDialog
 {
 public:
-	// Typical customColourConfigPath would be "Scenario Editor/LightingColour"
-	ColourDialog(wxWindow* parent, const wxString& customColourConfigPath, const wxColour& defaultColour);
+	// Typical customColorConfigPath would be "Scenario Editor/LightingColor"
+	ColorDialog(wxWindow* parent, const wxString& customColorConfigPath, const wxColor& defaultColor);
 
 	int ShowModal();
 
@@ -32,4 +32,4 @@ private:
 	wxString m_ConfigPath;
 };
 
-#endif // INCLUDED_COLOURDIALOG
+#endif // INCLUDED_COLORDIALOG

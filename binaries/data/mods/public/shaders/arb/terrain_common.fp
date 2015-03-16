@@ -26,7 +26,7 @@ TEMP color;
   SUB result.color.a, 1.0, tex.a;
 #endif
 
-// Load diffuse colour
+// Load diffuse color
 TEX color, fragment.texcoord[0], texture[0], 2D;
 
 #if DECAL

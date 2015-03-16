@@ -23,7 +23,7 @@
 #include "GameInterface/Messages.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "General/Observable.h"
-#include "CustomControls/ColourDialog/ColourDialog.h"
+#include "CustomControls/ColorDialog/ColorDialog.h"
 
 using AtlasMessage::Shareable;
 
@@ -133,14 +133,14 @@ END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
 
-class VariableColourBox : public wxPanel
+class VariableColorBox : public wxPanel
 {
 public:
-	VariableColourBox(wxWindow* parent, const wxString& label, Shareable<AtlasMessage::Colour>& colour)
+	VariableColorBox(wxWindow* parent, const wxString& label, Shareable<AtlasMessage::Color>& color)
 		: wxPanel(parent),
-		m_Colour(colour)
+		m_Color(color)
 	{
-		m_Conn = g_EnvironmentSettings.RegisterObserver(0, &VariableColourBox::OnSettingsChange, this);
+		m_Conn = g_EnvironmentSettings.RegisterObserver(0, &VariableColorBox::OnSettingsChange, this);
 
 		m_Sizer = new wxStaticBoxSizer(wxVERTICAL, this, label);
 		SetSizer(m_Sizer);
@@ -156,13 +156,13 @@ public:
 
 	void OnClick(wxCommandEvent& WXUNUSED(evt))
 	{
-		ColourDialog dlg (this, _T("Scenario Editor/LightingColour"),
-			wxColour(m_Colour->r, m_Colour->g, m_Colour->b));
+		ColorDialog dlg (this, _T("Scenario Editor/LightingColor"),
+			wxColor(m_Color->r, m_Color->g, m_Color->b));
 
 		if (dlg.ShowModal() == wxID_OK)
 		{
-			wxColour& c = dlg.GetColourData().GetColour();
-			m_Colour = AtlasMessage::Colour(c.Red(), c.Green(), c.Blue());
+			wxColor& c = dlg.GetColourData().GetColour();
+			m_Color = AtlasMessage::Color(c.Red(), c.Green(), c.Blue());
 			UpdateButton();
 
 			g_EnvironmentSettings.NotifyObserversExcept(m_Conn);
@@ -171,14 +171,14 @@ public:
 
 	void UpdateButton()
 	{
-		m_Button->SetBackgroundColour(wxColour(m_Colour->r, m_Colour->g, m_Colour->b));
-		m_Button->SetLabel(wxString::Format(_T("%02X %02X %02X"), m_Colour->r, m_Colour->g, m_Colour->b));
+		m_Button->SetBackgroundColour(wxColor(m_Color->r, m_Color->g, m_Color->b));
+		m_Button->SetLabel(wxString::Format(_T("%02X %02X %02X"), m_Color->r, m_Color->g, m_Color->b));
 
-		int y = 3*m_Colour->r + 6*m_Colour->g + 1*m_Colour->b;
+		int y = 3*m_Color->r + 6*m_Color->g + 1*m_Color->b;
 		if (y > 1280)
-			m_Button->SetForegroundColour(wxColour(0, 0, 0));
+			m_Button->SetForegroundColour(wxColor(0, 0, 0));
 		else
-			m_Button->SetForegroundColour(wxColour(255, 255, 255));
+			m_Button->SetForegroundColour(wxColor(255, 255, 255));
 	}
 
 
@@ -186,13 +186,13 @@ private:
 	ObservableScopedConnection m_Conn;
 	wxStaticBoxSizer* m_Sizer;
 	wxButton* m_Button;
-	Shareable<AtlasMessage::Colour>& m_Colour;
+	Shareable<AtlasMessage::Color>& m_Color;
 
 	DECLARE_EVENT_TABLE();
 };
 
-BEGIN_EVENT_TABLE(VariableColourBox, wxPanel)
-	EVT_BUTTON(wxID_ANY, VariableColourBox::OnClick)
+BEGIN_EVENT_TABLE(VariableColorBox, wxPanel)
+	EVT_BUTTON(wxID_ANY, VariableColorBox::OnClick)
 END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
@@ -222,8 +222,8 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water waviness"), g_EnvironmentSettings.waterwaviness, 0.f, 10.f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water murkiness"), g_EnvironmentSettings.watermurkiness, 0.f, 1.f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Wind angle"), g_EnvironmentSettings.windangle, -M_PIf, M_PIf), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableColourBox(scrolledWindow, _("Water colour"), g_EnvironmentSettings.watercolour), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableColourBox(scrolledWindow, _("Water tint"), g_EnvironmentSettings.watertint), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableColorBox(scrolledWindow, _("Water color"), g_EnvironmentSettings.watercolor), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableColorBox(scrolledWindow, _("Water tint"), g_EnvironmentSettings.watertint), wxSizerFlags().Expand());
 
 	std::vector<std::wstring> list;
 	list.push_back(L"ocean"); list.push_back(L"lake"); list.push_back(L"clap");
@@ -237,13 +237,13 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Sun elevation"), g_EnvironmentSettings.sunelevation, -M_PIf/2, M_PIf/2), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Sun overbrightness"), g_EnvironmentSettings.sunoverbrightness, 1.0f, 3.0f), wxSizerFlags().Expand());
 	sunSizer->Add(new LightControl(scrolledWindow, wxSize(150, 150), g_EnvironmentSettings));
-	sunSizer->Add(new VariableColourBox(scrolledWindow, _("Sun colour"), g_EnvironmentSettings.suncolour), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Sun color"), g_EnvironmentSettings.suncolor), wxSizerFlags().Expand());
 	sunSizer->Add(m_SkyList = new VariableListBox(scrolledWindow, _("Sky set"), g_EnvironmentSettings.skyset), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Fog Factor"), g_EnvironmentSettings.fogfactor, 0.0f, 0.01f), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Fog Thickness"), g_EnvironmentSettings.fogmax, 0.5f, 0.0f), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableColourBox(scrolledWindow, _("Fog colour"), g_EnvironmentSettings.fogcolour), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableColourBox(scrolledWindow, _("Terrain ambient colour"), g_EnvironmentSettings.terraincolour), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableColourBox(scrolledWindow, _("Object ambient colour"), g_EnvironmentSettings.unitcolour), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Fog color"), g_EnvironmentSettings.fogcolor), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Terrain ambient color"), g_EnvironmentSettings.terraincolor), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Object ambient color"), g_EnvironmentSettings.unitcolor), wxSizerFlags().Expand());
 	
 	wxSizer* postProcSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Post-processing settings"));
 	scrollSizer->Add(postProcSizer, wxSizerFlags().Expand().Border(wxTOP, 8));

@@ -37,8 +37,8 @@ EditableListCtrl::EditableListCtrl(wxWindow *parent,
 								   const wxString& name)
 	: wxListCtrl(parent, id, pos, size, style | wxLC_VIRTUAL, validator, name)
 {
-	m_ListItemAttr[0].SetBackgroundColour(wxColour(0xff, 0xff, 0xff));
-	m_ListItemAttr[1].SetBackgroundColour(wxColour(0xee, 0xee, 0xee));
+	m_ListItemAttr[0].SetBackgroundColour(wxColor(0xff, 0xff, 0xff));
+	m_ListItemAttr[1].SetBackgroundColour(wxColor(0xee, 0xee, 0xee));
 
 	wxASSERT_MSG(style & wxLC_REPORT, _T("EditableListCtrl must be LC_REPORT"));
 	UpdateDisplay();
@@ -277,7 +277,7 @@ wxListItemAttr* EditableListCtrl::OnGetItemAttr(long item) const
 	if (item >= (long)m_ListData.size())
 		return const_cast<wxListItemAttr*>(&m_ListItemAttr[0]);
 
-	// Make the background colours of rows alternate
+	// Make the background colors of rows alternate
 	else
 		return const_cast<wxListItemAttr*>(&m_ListItemAttr[item%2]);
 }

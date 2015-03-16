@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.15625" g="1.04743" b="0.720956"/>
+		<SunColor r="1.15625" g="1.04743" b="0.720956"/>
 		<SunElevation angle="0.444854"/>
 		<SunRotation angle="-1.86532"/>
-		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColor r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColor r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.784314" g="0.756863" b="0.666667"/>
+			<FogColor r="0.784314" g="0.756863" b="0.666667"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.54902" g="0.537255" b="0.439216"/>
+				<Color r="0.54902" g="0.537255" b="0.439216"/>
 				<Height>26.3344</Height>
 				<Shininess>8.54492</Shininess>
 				<Waviness>4.0</Waviness>
@@ -49,7 +49,7 @@
   "Name": "Team Oasis (2v2)",
   "PlayerData": [
     {
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -58,7 +58,7 @@
       "Team": 0
     },
     {
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150
@@ -67,7 +67,7 @@
       "Team": 1
     },
     {
-      "Colour": {
+      "Color": {
         "b": 47,
         "g": 187,
         "r": 0
@@ -76,7 +76,7 @@
       "Team": 0
     },
     {
-      "Colour": {
+      "Color": {
         "b": 75,
         "g": 230,
         "r": 230

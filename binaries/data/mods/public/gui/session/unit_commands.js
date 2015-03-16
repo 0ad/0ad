@@ -153,7 +153,7 @@ function resourcesToAlphaMask(neededResources)
 		totalCost += resource;
 	var alpha = 50 + Math.round(totalCost/10);
 	alpha = alpha > 125 ? 125 : alpha;
-	return "colour: 255 0 0 " + (alpha);
+	return "color: 255 0 0 " + (alpha);
 }
 
 /**

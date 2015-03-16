@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.87451" g="0.847059" b="0.647059"/>
+		<SunColor r="0.87451" g="0.847059" b="0.647059"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColor r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.0025</FogFactor>
 			<FogThickness>0.149414</FogThickness>
-			<FogColour r="0.847059" g="0.737255" b="0.482353"/>
+			<FogColor r="0.847059" g="0.737255" b="0.482353"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.741176" g="0.592157" b="0.27451"/>
+				<Color r="0.741176" g="0.592157" b="0.27451"/>
 				<Height>20.5639</Height>
 				<Shininess>150</Shininess>
 				<Waviness>1.0</Waviness>
@@ -51,7 +51,7 @@
   "PlayerData": [
     {
       "Civ": "rome",
-      "Colour": {
+      "Color": {
         "b": 14,
         "g": 14,
         "r": 177
@@ -67,7 +67,7 @@
     },
     {
       "Civ": "cart",
-      "Colour": {
+      "Color": {
         "b": 199,
         "g": 67,
         "r": 56
@@ -83,7 +83,7 @@
     },
     {
       "Civ": "pers",
-      "Colour": {
+      "Color": {
         "b": 5,
         "g": 165,
         "r": 50
@@ -99,7 +99,7 @@
     },
     {
       "Civ": "iber",
-      "Colour": {
+      "Color": {
         "b": 147,
         "g": 40,
         "r": 99

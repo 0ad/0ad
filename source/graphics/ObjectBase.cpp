@@ -63,7 +63,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	EL(mesh);
 	EL(texture);
 	EL(textures);
-	EL(colour);
+	EL(color);
 	EL(decal);
 	EL(particles);
 	AT(file);
@@ -190,7 +190,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 						// so remember the relevant particle file as a dependency for this actor
 						m_UsedFiles.insert(file);
 					}
-					else if (option_name == el_colour)
+					else if (option_name == el_color)
 					{
 						currentVariant->m_Color = option.GetText();
 					}

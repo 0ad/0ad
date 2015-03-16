@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="0.956863" g="0.858824" b="0.537255"/>
+		<SunColor r="0.956863" g="0.858824" b="0.537255"/>
 		<SunElevation angle="0.982273"/>
 		<SunRotation angle="-0.950547"/>
-		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
-		<UnitsAmbientColour r="0.458824" g="0.521569" b="0.537255"/>
+		<TerrainAmbientColor r="0.329412" g="0.419608" b="0.501961"/>
+		<UnitsAmbientColor r="0.458824" g="0.521569" b="0.537255"/>
 		<Fog>
 			<FogFactor>0.00199219</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColour r="0.866667" g="0.811765" b="0.666667"/>
+			<FogColor r="0.866667" g="0.811765" b="0.666667"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Colour r="0.501961" g="0.4" b="0.286275"/>
+				<Color r="0.501961" g="0.4" b="0.286275"/>
 				<Height>18.8853</Height>
 				<Shininess>150</Shininess>
 				<Waviness>2.5</Waviness>

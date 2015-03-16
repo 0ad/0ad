@@ -34,7 +34,7 @@
 
 enum TgaImgType
 {
-	TGA_TRUE_COLOUR = 2,	// uncompressed 24 or 32 bit direct RGB
+	TGA_TRUE_COLOR = 2,	// uncompressed 24 or 32 bit direct RGB
 	TGA_GREY        = 3		// uncompressed 8 bit direct greyscale
 };
 
@@ -47,9 +47,9 @@ enum TgaImgDesc
 typedef struct
 {
 	u8 img_id_len;			// 0 - no image identifier present
-	u8 colour_map_type;		// 0 - no colour map present
+	u8 color_map_type;		// 0 - no color map present
 	u8 img_type;			// see TgaImgType
-	u8 colour_map[5];		// unused
+	u8 color_map[5];		// unused
 
 	u16 x_origin;			// unused
 	u16 y_origin;			// unused
@@ -62,7 +62,7 @@ typedef struct
 }
 TgaHeader;
 
-// TGA file: header [img id] [colour map] image data
+// TGA file: header [img id] [color map] image data
 
 #pragma pack(pop)
 
@@ -79,14 +79,14 @@ bool TexCodecTga::is_hdr(const u8* file) const
 
 	// the first TGA header doesn't have a magic field;
 	// we can only check if the first 4 bytes are valid
-	// .. not direct colour
-	if(hdr->colour_map_type != 0)
+	// .. not direct color
+	if(hdr->color_map_type != 0)
 		return false;
-	// .. wrong colour type (not uncompressed greyscale or RGB)
-	if(hdr->img_type != TGA_TRUE_COLOUR && hdr->img_type != TGA_GREY)
+	// .. wrong color type (not uncompressed greyscale or RGB)
+	if(hdr->img_type != TGA_TRUE_COLOR && hdr->img_type != TGA_GREY)
 		return false;
 
-	// note: we can't check img_id_len or colour_map[0] - they are
+	// note: we can't check img_id_len or color_map[0] - they are
 	// undefined and may assume any value.
 
 	return true;
@@ -127,7 +127,7 @@ Status TexCodecTga::decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t) cons
 		flags |= TEX_ALPHA;
 	if(bpp == 8)
 		flags |= TEX_GREY;
-	if(type == TGA_TRUE_COLOUR)
+	if(type == TGA_TRUE_COLOR)
 		flags |= TEX_BGR;
 
 	// sanity checks
@@ -151,7 +151,7 @@ Status TexCodecTga::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 		img_desc |= TGA_TOP_DOWN;
 	if(t->m_Bpp == 32)
 		img_desc |= 8;	// size of alpha channel
-	TgaImgType img_type = (t->m_Flags & TEX_GREY)? TGA_GREY : TGA_TRUE_COLOUR;
+	TgaImgType img_type = (t->m_Flags & TEX_GREY)? TGA_GREY : TGA_TRUE_COLOR;
 
 	size_t transforms = t->m_Flags;
 	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
@@ -160,9 +160,9 @@ Status TexCodecTga::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 	const TgaHeader hdr =
 	{
 		0,				// no image identifier present
-		0,				// no colour map present
+		0,				// no color map present
 		(u8)img_type,
-		{0,0,0,0,0},	// unused (colour map)
+		{0,0,0,0,0},	// unused (color map)
 		0, 0,			// unused (origin)
 		(u16)t->m_Width,
 		(u16)t->m_Height,

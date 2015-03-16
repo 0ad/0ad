@@ -469,10 +469,10 @@ createObjectGroups(group, 0,
 	25 * numPlayers, 60
 );
 
-setSunColour(0.6, 0.6, 0.6);	
+setSunColor(0.6, 0.6, 0.6);	
 setSunElevation(PI/ 3);
 
-setWaterColour(0.524,0.734,0.839);
+setWaterColor(0.524,0.734,0.839);
 setWaterTint(0.369,0.765,0.745);
 setWaterWaviness(1.0);
 setWaterType("ocean");

@@ -423,7 +423,7 @@ function onTick()
 	// Animate menu
 	updateMenuPosition(tickLength);
 
-	// When training is blocked, flash population (alternates colour every 500msec)
+	// When training is blocked, flash population (alternates color every 500msec)
 	if (g_IsTrainingBlocked && (Date.now() % 1000) < 500)
 		Engine.GetGUIObjectByName("resourcePop").textcolor = POPULATION_ALERT_COLOR;
 	else

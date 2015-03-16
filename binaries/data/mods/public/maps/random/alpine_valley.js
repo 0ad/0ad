@@ -718,7 +718,7 @@ else if (random_terrain ==3){
 }
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
-setWaterColour(0.0, 0.047, 0.286);				// dark majestic blue
+setWaterColor(0.0, 0.047, 0.286);				// dark majestic blue
 setWaterTint(0.471, 0.776, 0.863);				// light blue
 setWaterMurkiness(0.72);
 setWaterWaviness(2.0);

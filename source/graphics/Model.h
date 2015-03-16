@@ -102,7 +102,7 @@ public:
 	// set the model's player ID, recursively through props
 	void SetPlayerID(player_id_t id);
 	// set the models mod color
-	virtual void SetShadingColor(const CColor& colour);
+	virtual void SetShadingColor(const CColor& color);
 	// get the model's material
 	CMaterial& GetMaterial() { return m_Material; }
 

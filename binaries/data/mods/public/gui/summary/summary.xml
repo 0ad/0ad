@@ -118,7 +118,7 @@
 					<object size="0 30 100% 100%">
 						<repeat count="8" var="n">
 							<object type="image" name="playerBoxt[i][n]" size="10 0 10 30" hidden="true">
-								<object name="playerColourBoxt[i][n]" type="image" size="10 4 30 24"/>
+								<object name="playerColorBoxt[i][n]" type="image" size="10 4 30 24"/>
 								<object name="playerNamet[i][n]" type="text"  size="40 2 208 100%" style="ModernLeftLabelText" />
 								<object name="civIcont[i][n]" type="image" size="208 0 240 32"  tooltip_style="sessionToolTip"/>
 								<repeat var="x" count="8">
@@ -140,7 +140,7 @@
 				<repeat count="8">
 					<object type="image" name="playerBox[n]" size="10 0 10 30" hidden="true">
 						<object type="image" sprite="ForegroundBox" size="10 4 34 28">
-							<object name="playerColourBox[n]" type="image" size="2 2 22 22"/>
+							<object name="playerColorBox[n]" type="image" size="2 2 22 22"/>
 						</object>
 						<object name="playerName[n]" type="text"  size="40 2 208 100%" style="ModernLeftLabelText"/>
 						<object name="civIcon[n]" type="image" size="208 0 240 32"  tooltip_style="sessionToolTip"/>

@@ -28,7 +28,7 @@ DEFINE_INTERFACE_METHOD_1("ResetMoveAnimation", void, ICmpVisual, ResetMoveAnima
 DEFINE_INTERFACE_METHOD_2("ReplaceMoveAnimation", void, ICmpVisual, ReplaceMoveAnimation, std::string, std::string)
 DEFINE_INTERFACE_METHOD_1("SetAnimationSyncRepeat", void, ICmpVisual, SetAnimationSyncRepeat, fixed)
 DEFINE_INTERFACE_METHOD_1("SetAnimationSyncOffset", void, ICmpVisual, SetAnimationSyncOffset, fixed)
-DEFINE_INTERFACE_METHOD_4("SetShadingColour", void, ICmpVisual, SetShadingColour, fixed, fixed, fixed, fixed)
+DEFINE_INTERFACE_METHOD_4("SetShadingColor", void, ICmpVisual, SetShadingColor, fixed, fixed, fixed, fixed)
 DEFINE_INTERFACE_METHOD_2("SetVariable", void, ICmpVisual, SetVariable, std::string, float)
 DEFINE_INTERFACE_METHOD_0("GetActorSeed", u32, ICmpVisual, GetActorSeed)
 DEFINE_INTERFACE_METHOD_1("SetActorSeed", void, ICmpVisual, SetActorSeed, u32)

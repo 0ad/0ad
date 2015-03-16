@@ -81,9 +81,9 @@ void CheckObstructionAndUpdateVisual(entity_id_t id)
 	if (cmpVisual)
 	{
 		if (!CheckEntityObstruction(id))
-			cmpVisual->SetShadingColour(fixed::FromDouble(1.4), fixed::FromDouble(0.4), fixed::FromDouble(0.4), fixed::FromDouble(1));
+			cmpVisual->SetShadingColor(fixed::FromDouble(1.4), fixed::FromDouble(0.4), fixed::FromDouble(0.4), fixed::FromDouble(1));
 		else
-			cmpVisual->SetShadingColour(fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1));
+			cmpVisual->SetShadingColor(fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1));
 	}
 }
 
@@ -127,7 +127,7 @@ typedef std::map<player_id_t, CColor> PlayerColorMap;
 // Helper function to find color of player owning the given entity,
 //	returns white if entity has no owner. Uses caching to avoid
 //	expensive script calls.
-static CColor GetOwnerPlayerColor(PlayerColorMap& colourMap, entity_id_t id)
+static CColor GetOwnerPlayerColor(PlayerColorMap& colorMap, entity_id_t id)
 {
 	// Default color - white
 	CColor color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -137,15 +137,15 @@ static CColor GetOwnerPlayerColor(PlayerColorMap& colourMap, entity_id_t id)
 	if (cmpOwnership)
 	{
 		player_id_t owner = cmpOwnership->GetOwner();
-		if (colourMap.find(owner) != colourMap.end())
-			return colourMap[owner];
+		if (colorMap.find(owner) != colorMap.end())
+			return colorMap[owner];
 		else
 		{
 			CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim, SYSTEM_ENTITY);
 			entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(owner);
 			CmpPtr<ICmpPlayer> cmpPlayer(sim, playerEnt);
 			if (cmpPlayer)
-				color = colourMap[owner] = cmpPlayer->GetColour();
+				color = colorMap[owner] = cmpPlayer->GetColor();
 		}
 	}
 	return color;
@@ -155,7 +155,7 @@ MESSAGEHANDLER(SetSelectionPreview)
 {
 	CSimulation2& sim = *g_Game->GetSimulation2();
 
-	// Cache player colours for performance
+	// Cache player colors for performance
 	PlayerColorMap playerColors;
 
 	// Clear old selection rings
@@ -720,7 +720,7 @@ MESSAGEHANDLER(ResetSelectionColor)
 	{
 		CmpPtr<ICmpVisual> cmpVisual(*g_Game->GetSimulation2(), g_Selection[i]);
 		if (cmpVisual)
-			cmpVisual->SetShadingColour(fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1));
+			cmpVisual->SetShadingColor(fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1));
 	}
 }
 

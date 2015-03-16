@@ -67,7 +67,7 @@ private:
 	bool m_IsFoundationActor;
 	CUnit* m_Unit;
 
-	fixed m_R, m_G, m_B; // shading colour
+	fixed m_R, m_G, m_B; // shading color
 
 	std::map<std::string, std::string> m_AnimOverride;
 
@@ -470,7 +470,7 @@ public:
 		}
 	}
 
-	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a)
+	virtual void SetShadingColor(fixed r, fixed g, fixed b, fixed a)
 	{
 		m_R = r;
 		m_G = g;

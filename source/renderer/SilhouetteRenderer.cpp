@@ -57,7 +57,7 @@ void SilhouetteRenderer::AddCaster(CModel* model)
 }
 
 /*
- * Silhouettes are the solid-coloured versions of units that are rendered when
+ * Silhouettes are the solid-colored versions of units that are rendered when
  * standing behind a building or terrain, so the player won't lose them.
  *
  * The rendering is done in CRenderer::RenderSilhouettes, by rendering the

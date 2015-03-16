@@ -161,13 +161,13 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 		case GUIST_CColor:
 			{
-				CColor colour;
-				GUI<CColor>::GetSetting(e, propName, colour);
+				CColor color;
+				GUI<CColor>::GetSetting(e, propName, color);
 				JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
 				vp.setObject(*obj);
 				JS::RootedValue c(cx);
 				// Attempt to minimise ugliness through macrosity
-				#define P(x) c = JS::NumberValue(colour.x); \
+				#define P(x) c = JS::NumberValue(color.x); \
 				if (c.isNull()) \
 					return false; \
 				JS_SetProperty(cx, obj, #x, c)
@@ -526,17 +526,17 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			}
 			else if (vp.isObject() && JS_InstanceOf(cx, vpObj, &JSI_GUIColor::JSI_class, NULL))
 			{
-				CColor colour;
+				CColor color;
 				JS::RootedObject (cx, &vp.toObject());
 				JS::RootedValue t(cx);
 				double s;
 				#define PROP(x) JS_GetProperty(cx, obj, #x, &t); \
 								s = t.toDouble(); \
-								colour.x = (float)s
+								color.x = (float)s
 				PROP(r); PROP(g); PROP(b); PROP(a);
 				#undef PROP
 
-				GUI<CColor>::SetSetting(e, propName, colour);
+				GUI<CColor>::SetSetting(e, propName, color);
 			}
 			else
 			{

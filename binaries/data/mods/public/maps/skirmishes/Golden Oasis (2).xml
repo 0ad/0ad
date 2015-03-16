@@ -3,20 +3,20 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="1.01581" g="0.944106" b="0.705092"/>
+		<SunColor r="1.01581" g="0.944106" b="0.705092"/>
 		<SunElevation angle="0.613592"/>
 		<SunRotation angle="-1.22718"/>
-		<TerrainAmbientColour r="0.364706" g="0.364706" b="0.294118"/>
-		<UnitsAmbientColour r="0.392157" g="0.356863" b="0.286275"/>
+		<TerrainAmbientColor r="0.364706" g="0.364706" b="0.294118"/>
+		<UnitsAmbientColor r="0.392157" g="0.356863" b="0.286275"/>
 		<Fog>
 			<FogFactor>0.00253906</FogFactor>
 			<FogThickness>0.149414</FogThickness>
-			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
+			<FogColor r="0.819608" g="0.74902" b="0.513726"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>clap</Type>
-				<Colour r="0.501961" g="0.501961" b="0.247059"/>
+				<Color r="0.501961" g="0.501961" b="0.247059"/>
 				<Height>19.9</Height>
 				<Shininess>1.46484</Shininess>
 				<Waviness>1.0</Waviness>
@@ -55,7 +55,7 @@
   "Name": "Gold Oasis (2)",
   "PlayerData": [
     {
-      "Colour": {
+      "Color": {
         "b": 200,
         "g": 46,
         "r": 46
@@ -63,7 +63,7 @@
       "Name": "Player 1"
     },
     {
-      "Colour": {
+      "Color": {
         "b": 20,
         "g": 20,
         "r": 150

@@ -208,7 +208,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 			XML_Setting("SkySet", pSkyMan->GetSkySet());
 			{
-				XML_Element("SunColour");
+				XML_Element("SunColor");
 				XML_Attribute("r", pLightEnv->m_SunColor.X); // yes, it's X/Y/Z...
 				XML_Attribute("g", pLightEnv->m_SunColor.Y);
 				XML_Attribute("b", pLightEnv->m_SunColor.Z);
@@ -222,13 +222,13 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				XML_Attribute("angle", pLightEnv->m_Rotation);
 			}
 			{
-				XML_Element("TerrainAmbientColour");
+				XML_Element("TerrainAmbientColor");
 				XML_Attribute("r", pLightEnv->m_TerrainAmbientColor.X);
 				XML_Attribute("g", pLightEnv->m_TerrainAmbientColor.Y);
 				XML_Attribute("b", pLightEnv->m_TerrainAmbientColor.Z);
 			}
 			{
-				XML_Element("UnitsAmbientColour");
+				XML_Element("UnitsAmbientColor");
 				XML_Attribute("r", pLightEnv->m_UnitsAmbientColor.X);
 				XML_Attribute("g", pLightEnv->m_UnitsAmbientColor.Y);
 				XML_Attribute("b", pLightEnv->m_UnitsAmbientColor.Z);
@@ -238,7 +238,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				XML_Setting("FogFactor", pLightEnv->m_FogFactor);
 				XML_Setting("FogThickness", pLightEnv->m_FogMax);
 				{
-					XML_Element("FogColour");
+					XML_Element("FogColor");
 					XML_Attribute("r", pLightEnv->m_FogColor.X);
 					XML_Attribute("g", pLightEnv->m_FogColor.Y);
 					XML_Attribute("b", pLightEnv->m_FogColor.Z);
@@ -253,7 +253,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 					ENSURE(cmpWaterManager);
 					XML_Setting("Type", pWaterMan->m_WaterType);
 					{
-						XML_Element("Colour");
+						XML_Element("Color");
 						XML_Attribute("r", pWaterMan->m_WaterColor.r);
 						XML_Attribute("g", pWaterMan->m_WaterColor.g);
 						XML_Attribute("b", pWaterMan->m_WaterColor.b);
