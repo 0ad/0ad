@@ -125,22 +125,58 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 	// read header and determine format
 	png_read_info(png_ptr, info_ptr);
 	png_uint_32 w, h;
-	int bit_depth, color_type;
-	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, 0, 0, 0);
+	int bit_depth, color_type, interlace_type;
+	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, &interlace_type, 0, 0);
+	
+	// (The following is based on GdkPixbuf's PNG image loader)
+
+	// Convert the following images to 8-bit RGB/RGBA:
+	// * indexed colors
+	// * grayscale
+	// * transparency header
+	// * bit depth of 16 or less than 8
+	// * interlaced
+	if (color_type == PNG_COLOR_TYPE_PALETTE && bit_depth <= 8)
+		png_set_expand(png_ptr);
+	else if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
+		png_set_expand(png_ptr);
+	else if (bit_depth < 8)
+		png_set_expand(png_ptr);
+
+	if (bit_depth == 16)
+		png_set_strip_16(png_ptr);
+	if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
+		png_set_gray_to_rgb(png_ptr);
+	if (interlace_type != PNG_INTERLACE_NONE)
+		png_set_interlace_handling(png_ptr);
+
+	// Update info after transformations
+	png_read_update_info(png_ptr, info_ptr);
+	
+	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, &interlace_type, 0, 0);
+
+	// make sure format is acceptable:
+	// * non-zero dimensions
+	// * 8-bit depth
+	// * RGB or RGBA
+	// * 3 or 4 channels
+	if (w == 0 || h == 0)
+		WARN_RETURN(ERR::TEX_INVALID_SIZE);
+	if (bit_depth != 8)
+		WARN_RETURN(ERR::TEX_NOT_8BIT_PRECISION);
+	if (color_type != PNG_COLOR_TYPE_RGB && color_type != PNG_COLOR_TYPE_RGB_ALPHA)
+		WARN_RETURN(ERR::TEX_INVALID_COLOR_TYPE);
+	
+	const int channels = png_get_channels(png_ptr, info_ptr);
+	if (channels != 3 && channels != 4)
+		WARN_RETURN(ERR::TEX_FMT_INVALID);
+
 	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
-	const u32 bpp = (u32)(pitch/w * 8);
+	const u32 bpp = (u32)(pitch / w * 8);
 
 	size_t flags = 0;
-	if(bpp == 32)
+	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
 		flags |= TEX_ALPHA;
-	if(color_type == PNG_COLOR_TYPE_GRAY)
-		flags |= TEX_GREY;
-
-	// make sure format is acceptable
-	if(bit_depth != 8)
-		WARN_RETURN(ERR::TEX_NOT_8BIT_PRECISION);
-	if(color_type & PNG_COLOR_MASK_PALETTE)
-		WARN_RETURN(ERR::TEX_INVALID_COLOR_TYPE);
 
 	const size_t img_size = pitch * h;
 	shared_ptr<u8> data;

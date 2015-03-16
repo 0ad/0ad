@@ -48,7 +48,6 @@ do
   case $i in
     --without-nvtt ) without_nvtt=true; premake_args="${premake_args} --without-nvtt" ;;
     --with-system-nvtt ) with_system_nvtt=true; premake_args="${premake_args} --with-system-nvtt" ;;
-    --with-system-miniupnpc ) echo "NOTE: the --with-system-miniupnpc option is deprecated, system miniupnpc is now required"; echo ;;
     --with-system-mozjs31 ) with_system_mozjs31=true; premake_args="${premake_args} --with-system-mozjs31" ;;
     --enable-atlas ) enable_atlas=true ;;
     --disable-atlas ) enable_atlas=false ;;
