@@ -77,9 +77,9 @@
       "Resources": {
         "stone": 2500
       },
-      "DisabledTemplates": {
-        "structures/rome_civil_centre": true
-      },
+      "DisabledTemplates": [
+        "structures/rome_civil_centre"
+      ],
       "Team": 0
     },
     {
@@ -107,9 +107,9 @@
       },
       "Name": "Invasion Force",
       "PopulationLimit": 1,
-      "DisabledTemplates": {
-        "structures/iber_civil_centre": true
-      },
+      "DisabledTemplates": [
+        "structures/iber_civil_centre"
+      ],
       "Team": 1
     }
   ],

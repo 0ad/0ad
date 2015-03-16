@@ -81,7 +81,7 @@ Trigger.prototype.StartAnEnemyWave = function()
 		"translateMessage": true
 	});
 	cmpTrigger.DoAfterDelay(180000, "StartAnEnemyWave", {}); // The next wave will come in 3 minutes
-}
+};
 
 Trigger.prototype.InitGame = function()
 {
@@ -123,14 +123,14 @@ Trigger.prototype.InitGame = function()
  	{ 
 		var cmpPlayer = TriggerHelper.GetPlayerComponent(i); 
 		var civ = cmpPlayer.GetCiv(); 
-		var disabledTemplates = {} 
-		disabledTemplates["structures/" + civ + "_field"] = true; 
-		disabledTemplates["structures/" + civ + "_civil_centre"] = true; 
-		disabledTemplates["structures/" + civ + "_wallset_stone"] = true; 
-		disabledTemplates["other/wallset_palisade"] = true; 
-		cmpPlayer.SetDisabledTemplates(disabledTemplates); 
+		cmpPlayer.SetDisabledTemplates([
+			"structures/" + civ + "_field",
+			"structures/" + civ + "_civil_centre",
+			"structures/" + civ + "_wallset_stone",
+			"other/wallset_palisade"
+		]);
  	} 
-}
+};
 
 Trigger.prototype.PlaceTreasures = function()
 {
@@ -141,7 +141,7 @@ Trigger.prototype.PlaceTreasures = function()
 		TriggerHelper.SpawnUnits(point, template, 1, 0);
 	}
 	cmpTrigger.DoAfterDelay(4*60*1000, "PlaceTreasures", {}); //Place more treasures after 4 minutes
-}
+};
 
 Trigger.prototype.InitializeEnemyWaves = function()
 {
@@ -152,7 +152,7 @@ Trigger.prototype.InitializeEnemyWaves = function()
 		"translateMessage": true
 	});
 	cmpTrigger.DoAfterDelay(15*60*1000, "StartAnEnemyWave", {});
-}
+};
 
 Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 {
@@ -176,7 +176,7 @@ Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 		if (numPlayersStanding == 1)
 			TriggerHelper.SetPlayerWon(lastPlayerStanding);
 	}
-}
+};
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 cmpTrigger.playerCivicCenter = {};
