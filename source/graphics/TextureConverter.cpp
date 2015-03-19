@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -351,15 +351,6 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	}
 	else
 	{
-		// TODO: grayscale images will fail on some systems
-		// see http://trac.wildfiregames.com/ticket/1640
-		// (plain_transform doesn't know how to construct the alpha channel)
-		if (tex.m_Flags & TEX_GREY)
-		{
-			LOGERROR("Failed to convert grayscale texture \"%s\" - only RGB textures are currently supported", src.string8());
-			return false;
-		}
-
 		// Convert to uncompressed BGRA with no mipmaps
 		if (tex.transform_to((tex.m_Flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
 		{

@@ -132,7 +132,7 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 
 	// Convert the following images to 8-bit RGB/RGBA:
 	// * indexed colors
-	// * grayscale
+	// * grayscale with alpha
 	// * transparency header
 	// * bit depth of 16 or less than 8
 	// * interlaced
@@ -145,7 +145,7 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 
 	if (bit_depth == 16)
 		png_set_strip_16(png_ptr);
-	if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
+	if (color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
 		png_set_gray_to_rgb(png_ptr);
 	if (interlace_type != PNG_INTERLACE_NONE)
 		png_set_interlace_handling(png_ptr);
@@ -158,17 +158,17 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 	// make sure format is acceptable:
 	// * non-zero dimensions
 	// * 8-bit depth
-	// * RGB or RGBA
-	// * 3 or 4 channels
+	// * RGB, RGBA, or grayscale
+	// * 1, 3 or 4 channels
 	if (w == 0 || h == 0)
 		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 	if (bit_depth != 8)
 		WARN_RETURN(ERR::TEX_NOT_8BIT_PRECISION);
-	if (color_type != PNG_COLOR_TYPE_RGB && color_type != PNG_COLOR_TYPE_RGB_ALPHA)
+	if (!(color_type == PNG_COLOR_TYPE_RGB || color_type == PNG_COLOR_TYPE_RGB_ALPHA || color_type == PNG_COLOR_TYPE_GRAY))
 		WARN_RETURN(ERR::TEX_INVALID_COLOR_TYPE);
 	
 	const int channels = png_get_channels(png_ptr, info_ptr);
-	if (channels != 3 && channels != 4)
+	if (!(channels == 3 || channels == 4 || channels == 1))
 		WARN_RETURN(ERR::TEX_FMT_INVALID);
 
 	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
@@ -177,6 +177,8 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 	size_t flags = 0;
 	if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
 		flags |= TEX_ALPHA;
+	if (color_type == PNG_COLOR_TYPE_GRAY)
+		flags |= TEX_GREY;
 
 	const size_t img_size = pitch * h;
 	shared_ptr<u8> data;
