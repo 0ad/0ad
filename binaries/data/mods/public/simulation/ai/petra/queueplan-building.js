@@ -138,8 +138,6 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": pos[2] };
 			else if (!template.hasClass("Fortress") || gameState.civ() === "mace" || gameState.civ() === "maur" ||
 				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true)
-				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress_b"), true)
-				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress_g"), true)
 				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_army_camp"), true) > 0)
 				// if this fortress is our first siege unit builder, just try the standard placement as we want siege units
 				return false;
