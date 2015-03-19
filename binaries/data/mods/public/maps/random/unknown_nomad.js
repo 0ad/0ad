@@ -579,8 +579,10 @@ else if (md == 5) //rivers and lake
 				setHeight(ix, iz, 3);
 		}
 	}
-	var mdd1 = randInt(1,2);
-	if (mdd1 == 1) //lake
+
+	var mdd1 = randInt(1,3);
+
+	if (mdd1 < 3) //lake
 	{
 		var fx = fractionToTiles(0.5);
 		var fz = fractionToTiles(0.5);
@@ -602,7 +604,7 @@ else if (md == 5) //rivers and lake
 		createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
 	}
 
-	if (randInt(1,2) == 1) //rivers
+	if (mdd1 > 1) //rivers
 	{
 		//create rivers
 		log ("Creating rivers...");
@@ -645,7 +647,7 @@ else if (md == 5) //rivers and lake
 		createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
 	}
 	
-	if ((randInt(1,3) == 1)&&(mdd1 == 1))//island
+	if (randInt(1,3) == 1 && mdd1 < 3)//island
 	{
 		var placer = new ClumpPlacer(mapArea * 0.006 * lSize, 0.7, 0.1, 10, ix, iz);
 		var terrainPainter = new LayeredPainter(
