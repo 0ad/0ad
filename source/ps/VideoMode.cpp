@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -159,11 +159,8 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	Uint32 flags = SDL_OPENGL;
 	if (fullscreen)
 		flags |= SDL_FULLSCREEN;
-#if !OS_MACOSX
-	// TODO: Fix window resizing on OS X, see http://trac.wildfiregames.com/ticket/741
 	else
 		flags |= SDL_RESIZABLE;
-#endif
 
 	SDL_Surface* screen = SDL_SetVideoMode(w, h, bpp, flags);
 

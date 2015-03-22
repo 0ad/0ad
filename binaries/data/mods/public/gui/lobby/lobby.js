@@ -392,13 +392,13 @@ function updateGameList()
 		if(!filterGame(g))
 		{
 			// 'waiting' games are highlighted in orange, 'running' in red, and 'init' in green.
-			let name;
+			let name = escapeText(g.name);
 			if (g.state == 'init')
-				name = '[color="0 125 0"]' + g.name + '[/color]';
+				name = '[color="0 125 0"]' + name + '[/color]';
 			else if (g.state == 'waiting')
-				name = '[color="255 127 0"]' + g.name + '[/color]';
+				name = '[color="255 127 0"]' + name + '[/color]';
 			else
-				name = '[color="255 0 0"]' + g.name + '[/color]';
+				name = '[color="255 0 0"]' + name + '[/color]';
 			list_name.push(name);
 			list_ip.push(g.ip);
 			list_mapName.push(translate(g.niceMapName));

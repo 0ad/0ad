@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -155,12 +155,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		}
 		else if (hotkey == "togglefullscreen")
 		{
-#if !OS_MACOSX || SDL_VERSION_ATLEAST(2, 0, 0)
-			// Fullscreen toggling is broken on OS X w/ SDL 1.2, see http://trac.wildfiregames.com/ticket/741
 			g_VideoMode.ToggleFullscreen();
-#else
-			LOGWARNING("Toggling fullscreen and resizing are disabled on OS X due to a known bug. Please use the config file to change display settings.");
-#endif
 			return IN_HANDLED;
 		}
 		else if (hotkey == "profile2.toggle")
