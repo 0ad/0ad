@@ -262,7 +262,7 @@ for (var i = 0; i < numIslands; ++i)
 		for (var j = 0; j < landAreaLen; ++j)
 		{
 			var x = landAreas[j][0], z = landAreas[j][1];
-			if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
+			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
 				landAreas[n++] = landAreas[j];
 		}
 		landAreas.length = n;
