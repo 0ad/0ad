@@ -88,6 +88,7 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 			this.navalRegions[sea] = true;
 
 		// if garrisoned units inside, ungarrison them except if a ship in which case we will make a transport 
+		// when a construction will start (see createTransportIfNeeded)
 		if (ent.isGarrisonHolder() && ent.garrisoned().length && !ent.hasClass("Ship"))
 			for (let id of ent.garrisoned())
 				ent.unload(id);

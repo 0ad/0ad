@@ -407,12 +407,11 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
  * create a transport from a garrisoned ship to a land location
  * needed at start game when starting with a garrisoned ship
  */
-m.NavalManager.prototype.createTransportIfNeeded = function(gameState, fromPos, toPos)
+m.NavalManager.prototype.createTransportIfNeeded = function(gameState, fromPos, toPos, toAccess)
 {
 	let fromAccess = gameState.ai.accessibility.getAccessValue(fromPos);
 	if (fromAccess !== 1)
 		return;
-	let toAccess = gameState.ai.accessibility.getAccessValue(toPos);
 	if (toAccess < 2)
 		return;
 

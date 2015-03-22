@@ -294,7 +294,6 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	// The AI will currently not build a CC if it wouldn't connect with an existing CC.
 
 	var obstructions = m.createObstructionMap(gameState, this.accessIndex, template);
-	obstructions.expandInfluences();
 	
 	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse"))).toEntityArray();
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
@@ -303,15 +302,15 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	var bestVal = undefined;
 	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
-	var territoryMap = gameState.sharedScript.territoryMap;
+	var territoryMap = gameState.ai.HQ.territoryMap;
 	var width = territoryMap.width;
 	var cellSize = territoryMap.cellSize;
 
 	for (var p = 0; p < this.territoryIndices.length; ++p)
 	{
 		var j = this.territoryIndices[p];
-		var i = API3.getMaxMapIndex(j, territoryMap, obstructions);
-		if (obstructions.map[i] <= radius)  // check room around
+		var i = territoryMap.getNonObstructedTile(j, radius, obstructions);
+		if (i < 0)  // no room around
 			continue;
 
 		// we add 3 times the needed resource and once the other two (not food)
@@ -384,7 +383,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		if (bestVal !== undefined && total < bestVal)
 			continue;
 		bestVal = total;
-		bestIdx = j;
+		bestIdx = i;
 	}
 
 	if (this.Config.debug > 2)
@@ -392,9 +391,9 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 
 	if (bestVal <= 0)
 		return {"quality": bestVal, "pos": [0, 0]};
-	var i = API3.getMaxMapIndex(bestIdx, territoryMap, obstructions);
-	var x = ((i % obstructions.width) + 0.5) * obstructions.cellSize;
-	var z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
+
+	var x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
+	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 	return {"quality": bestVal, "pos": [x, z]};
 };
 

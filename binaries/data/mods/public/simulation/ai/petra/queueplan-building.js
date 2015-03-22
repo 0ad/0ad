@@ -71,22 +71,23 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		this.metadata.base = pos.base;
 
 	if (pos.access)
-		this.metadata.access = pos.access;   // needed for Docks for the position is on water
+		this.metadata.access = pos.access;   // needed for Docks whose position is on water
 	else
 		this.metadata.access = gameState.ai.accessibility.getAccessValue([pos.x, pos.z]);
 
 	if (this.template.buildCategory() === "Dock")
 	{
-		// try to place it a bit inside the land if possible
-		let cosang = Math.cos(pos.angle);
-		let sinang = Math.sin(pos.angle);
-		if (this.template.get("Obstruction") && this.template.get("Obstruction/Static"))
-			var radius = (+this.template.get("Obstruction/Static/@depth"))/2;
-		else
-			var radius = 0;
-		for (let step = 0; step < radius; step += 4)
-			builders[0].construct(this.type, pos.x+step*sinang, pos.z+step*cosang,
-					pos.angle, this.metadata);
+		// adjust a bit the position if needed
+		// TODO we would need groundLevel and waterLevel to do it properly
+		let cosa = Math.cos(pos.angle);
+		let sina = Math.sin(pos.angle);
+		let shiftMax = gameState.ai.HQ.territoryMap.cellSize;
+		for (let shift = 0; shift <= shiftMax; shift += 2)
+		{
+			builders[0].construct(this.type, pos.x-shift*sina, pos.z-shift*cosa, pos.angle, this.metadata);
+			if (shift > 0)
+				builders[0].construct(this.type, pos.x+shift*sina, pos.z+shift*cosa, pos.angle, this.metadata);
+		}
 	}
 	else if (pos.x == pos.xx && pos.z == pos.zz)
 		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
@@ -99,9 +100,9 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	this.onStart(gameState);
 	Engine.ProfileStop();
 
-	// TODO should have a ConstructionStarted event in case the construct order fails
+	// TODO should have a ConstructionStarted even in case the construct order fails
 	if (this.metadata && this.metadata.proximity)
-		gameState.ai.HQ.navalManager.createTransportIfNeeded(gameState, this.metadata.proximity, [pos.x, pos.z]);
+		gameState.ai.HQ.navalManager.createTransportIfNeeded(gameState, this.metadata.proximity, [pos.x, pos.z], this.metadata.access);
 };
 
 // TODO for dock, we should allow building them outside territory, and we should check that we are along the right sea
@@ -156,13 +157,6 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				return false;
 		}
 	}
-
-	// First, find all tiles that are far enough away from obstructions:
-
-	var obstructions = m.createObstructionMap(gameState, 0, template);
-	obstructions.expandInfluences();
-
-	//obstructions.dumpIm(template.buildCategory() + "_obstructions.png");
 
 	// Compute each tile's closeness to friendly structures:
 
@@ -291,11 +285,15 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			}
 		}
 	}
-	
-	// Find target building's approximate obstruction radius, and expand by a bit to make sure we're not too close, this
-	// allows room for units to walk between buildings.
+
+	// Find the best non-obstructed:	
+	// Find target building's approximate obstruction radius, and expand by a bit to make sure we're not too close,
+	// this allows room for units to walk between buildings.
 	// note: not for houses and dropsites who ought to be closer to either each other or a resource.
 	// also not for fields who can be stacked quite a bit
+
+	var obstructions = m.createObstructionMap(gameState, 0, template);
+	//obstructions.dumpIm(template.buildCategory() + "_obstructions.png");
 
 	var radius = 0;
 	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_siege_workshop")
@@ -306,7 +304,6 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	else
 		radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
-	// Find the best non-obstructed
 	if (template.hasClass("House") && !alreadyHasHouses)
 	{
 		// try to get some space to place several houses first
@@ -327,17 +324,35 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 	var x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
 	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
+	var xx = x;
+	var zz = z;
 
 	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
-		var secondBest = obstructions.findLowestNeighbor(x,z);
-	else
-		var secondBest = [x,z];
+	{
+		if (obstructions.cellSize != 4)  // new pathFinder branch
+		{
+			let secondBest = obstructions.findNearestObstructed(bestIdx, radius);
+			if (secondBest >= 0)
+			{
+				x = ((secondBest % obstructions.width) + 0.5) * obstructions.cellSize;
+				z = (Math.floor(secondBest / obstructions.width) + 0.5) * obstructions.cellSize;
+				xx = x;
+				zz = z;
+			}
+		}
+		else
+		{
+			obstructions.expandInfluences();
+			let secondBest = obstructions.findLowestNeighbor(x,z);
+			xx = secondBest[0];
+			zz = secondBest[1];
+		}
+	}
 
-	var territorypos = placement.gamePosToMapPos([x,z]);
-	var territoryIndex = territorypos[0] + territorypos[1]*placement.width;
+	let territorypos = placement.gamePosToMapPos([x,z]);
+	let territoryIndex = territorypos[0] + territorypos[1]*placement.width;
 	// default angle = 3*Math.PI/4;
-	return { "x": x, "z": z, "angle": 3*Math.PI/4, "xx": secondBest[0], "zz": secondBest[1],
-		"base": gameState.ai.HQ.basesMap.map[territoryIndex] };
+	return { "x": x, "z": z, "angle": 3*Math.PI/4, "xx": xx, "zz": zz, "base": gameState.ai.HQ.basesMap.map[territoryIndex] };
 };
 
 /**
@@ -348,14 +363,16 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 {
 	var template = this.template;
 
-	var cellSize = gameState.cellSize; // size of each tile
 	var territoryMap = gameState.ai.HQ.territoryMap;
 
 	var obstructions = m.createObstructionMap(gameState, 0, template);
 	//obstructions.dumpIm(template.buildCategory() + "_obstructions.png");
 
 	var bestIdx = undefined;
-	var bestVal = 0;
+	var bestJdx = undefined;
+	var bestAngle = undefined;
+	var bestLand = undefined;
+	var bestVal = -1;
 	var landPassMap = gameState.ai.accessibility.landPassMap;
 	var navalPassMap = gameState.ai.accessibility.navalPassMap;
 
@@ -366,69 +383,98 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	if (this.metadata.proximity)
 		proxyAccess = gameState.ai.accessibility.getAccessValue(this.metadata.proximity);
 
+	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+
+	var halfSize = 0;    // used for dock angle
+	var halfDepth = 0;   // used by checkPlacement
+	var halfWidth = 0;   // used by checkPlacement
+	if (template.get("Footprint/Square"))
+	{
+		halfSize = Math.max(+template.get("Footprint/Square/@depth"), +template.get("Footprint/Square/@width")) / 2;
+		halfDepth = +template.get("Footprint/Square/@depth") / 2;
+		halfWidth = +template.get("Footprint/Square/@width") / 2;
+	}
+	else if (template.get("Footprint/Circle"))
+	{
+		halfSize = +template.get("Footprint/Circle/@radius");
+		halfDepth = halfSize;
+		halfWidth = halfSize;
+	}
+
+	var maxres = 10;
 	for (let j = 0; j < territoryMap.length; ++j)
 	{
-		if (obstructions.map[j] <= 0)
+		var i = territoryMap.getNonObstructedTile(j, radius, obstructions);
+		if (i < 0)
+			continue;
+
+		var landAccess = this.getLandAccess(gameState, i, radius+1, obstructions.width);
+		if (landAccess.size == 0)
 			continue;
 		if (this.metadata)
 		{
-			if (this.metadata.land && this.metadata.land.indexOf(landPassMap[j]) === -1)
+			if (this.metadata.land && !landAccess.has(+this.metadata.land))
 				continue;
-			if (this.metadata.sea && navalPassMap[j] !== this.metadata.sea)
+			if (this.metadata.sea && navalPassMap[i] != +this.metadata.sea)
 				continue;
-			if (nbShips === 0 && proxyAccess && proxyAccess > 1 && landPassMap[j] !== proxyAccess)
+			if (nbShips === 0 && proxyAccess && proxyAccess > 1 && !landAccess.has(proxyAccess))
 				continue;
 		}
-		let tileOwner = territoryMap.getOwnerIndex(j);
-		if (tileOwner !== 0 && gameState.isPlayerEnemy(tileOwner))
-			continue;
 
+		var res = Math.min(maxres, this.getResourcesAround(gameState, j, 80));
+
+		var dist;
 		if (this.metadata.proximity)
 		{
 			// if proximity is given, we look for the nearest point
-			let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
-			let dist = API3.SquareVectorDistance(this.metadata.proximity, pos);
-			if (bestIdx !== undefined && dist > bestVal)
-				continue;
-			bestVal = dist;
-			bestIdx = j;
+			var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+			dist = API3.SquareVectorDistance(this.metadata.proximity, pos);
+			dist = Math.sqrt(dist) + 15 * (maxres - res);
 		}
 		else
 		{
 			// if not in our (or allied) territory, we do not want it too far to be able to defend it
-			let nearby = m.getFrontierProximity(gameState, j);
-			if (nearby > 4)
+			dist = m.getFrontierProximity(gameState, j);
+			if (dist > 4)
 				continue;
-			bestVal = 1;
-			bestIdx = j;
+			dist = dist + 0.4 * (maxres - res)
 		}
+		if (bestIdx !== undefined && dist > bestVal)
+			continue;
+
+		var x = ((i % obstructions.width) + 0.5) * obstructions.cellSize;
+		var z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
+		var angle = this.getDockAngle(gameState, x, z, halfSize);
+		if (angle === false)
+			continue;
+		var land = this.checkDockPlacement(gameState, x, z, halfDepth, halfWidth, angle);
+		if (land < 2 || !gameState.ai.HQ.landRegions[land])
+			continue;
+		if (this.metadata.proximity && gameState.ai.accessibility.regionSize[land] < 4000)
+			continue;
+
+		bestVal = dist;
+		bestIdx = i;
+		bestJdx = j;
+		bestAngle = angle;
+		bestLand = land;
 	}
 
-	if (bestVal <= 0)
+	if (bestVal < 0)
 		return false;
 
-	var x = ((bestIdx % territoryMap.width) + 0.5) * cellSize;
-	var z = (Math.floor(bestIdx / territoryMap.width) + 0.5) * cellSize;
-
-	// Needed for dock placement whose position will be changed
-	var access = gameState.ai.accessibility.getAccessValue([x, z]);
-
-	// for Dock placement, we need to improve the position of the building as the position given here
-	// is only the position on the shore, while the need the position of the center of the building
-	// We also need to find the angle of the building
-	var angle = this.getDockAngle(gameState, x, z);
-	if (angle === false)
-		return false;
+	var x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
+	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 
 	// Assign this dock to a base
-	var baseIndex = gameState.ai.HQ.basesMap.map[bestIdx];
+	var baseIndex = gameState.ai.HQ.basesMap.map[bestJdx];
 	if (!baseIndex)
 	{
 		for (let base of gameState.ai.HQ.baseManagers)
 		{
 			if (!base.anchor || !base.anchor.position())
 				continue;
-			if (base.accessIndex !== access)
+			if (base.accessIndex !== bestLand)
 				continue;
 			baseIndex = base.ID;
 			break;
@@ -442,32 +488,28 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		}
 	}
 
-	return { "x": x, "z": z, "angle": angle, "xx": x, "zz": z, "base": baseIndex, "access": access };
+	return { "x": x, "z": z, "angle": bestAngle, "xx": x, "zz": z, "base": baseIndex, "access": bestLand };
 };
 
-// Algorithm taken from the function GetDockAngle in helpers/Commands.js
-m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z)
+// Algorithm taken from the function GetDockAngle in simulation/helpers/Commands.js
+m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 {
-	var radius = this.template.obstructionRadius();
-	if (!radius)
-		return false;
-
 	var pos = gameState.ai.accessibility.gamePosToMapPos([x, z]);
 	var j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 	var seaRef = gameState.ai.accessibility.navalPassMap[j];
+	if (seaRef < 2)
+		return false;
 	const numPoints = 16;
-	for (var dist = 0; dist < 2; ++dist)
+	for (var dist = 0; dist < 4; ++dist)
 	{
 		var waterPoints = [];
 		for (var i = 0; i < numPoints; ++i)
 		{
-			var angle = (i/numPoints)*2*Math.PI;
-			var pos = [ x - (2+dist)*radius*Math.sin(angle), z + (2+dist)*radius*Math.cos(angle)];
-			var pos = gameState.ai.accessibility.gamePosToMapPos(pos);
-			var j = pos[0] + pos[1]*gameState.ai.accessibility.width;
-			var seaAccess = gameState.ai.accessibility.navalPassMap[j];
-			var landAccess = gameState.ai.accessibility.landPassMap[j];
-			if (seaAccess == seaRef && landAccess < 2)
+			let angle = (i/numPoints)*2*Math.PI;
+			pos = [x - (1+dist)*size*Math.sin(angle), z + (1+dist)*size*Math.cos(angle)];
+			pos = gameState.ai.accessibility.gamePosToMapPos(pos);
+			let j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+			if (gameState.ai.accessibility.navalPassMap[j] == seaRef)
 				waterPoints.push(i);
 		}
 		var length = waterPoints.length;
@@ -502,6 +544,126 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z)
 			return -((waterPoints[start] + consec[start]/2) % numPoints)/numPoints*2*Math.PI;
 	}
 	return false;
+};
+
+// Algorithm taken from checkPlacement in simulation/components/BuildRestriction.js
+// to determine the special dock requirements
+m.ConstructionPlan.prototype.checkDockPlacement = function(gameState, x, z, halfDepth, halfWidth, angle)
+{
+	let sz = halfDepth * Math.sin(angle);
+	let cz = halfDepth * Math.cos(angle);
+	// center back position
+	let pos = gameState.ai.accessibility.gamePosToMapPos([x - sz, z - cz]);
+	let j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+	let ret = gameState.ai.accessibility.landPassMap[j];
+	if (ret < 2)
+		return 0;
+	// center front position
+	pos = gameState.ai.accessibility.gamePosToMapPos([x + sz, z + cz]);
+	j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+	if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
+		return 0;
+	// additional constraints compared to BuildRestriction.js to assure we have enough place to build
+	let sw = halfWidth * Math.cos(angle) * 3 / 4;
+	let cw = halfWidth * Math.sin(angle) * 3 / 4;
+	pos = gameState.ai.accessibility.gamePosToMapPos([x - sz + sw, z - cz - cw]);
+	j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+	if (gameState.ai.accessibility.landPassMap[j] != ret)
+		return 0;
+	pos = gameState.ai.accessibility.gamePosToMapPos([x - sz - sw, z - cz + cw]);
+	j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+	if (gameState.ai.accessibility.landPassMap[j] != ret)
+		return 0;
+	return ret;
+};
+
+// get the list of all the land access from this position
+m.ConstructionPlan.prototype.getLandAccess = function(gameState, i, radius, w)
+{
+	var access = new Set();
+	var landPassMap = gameState.ai.accessibility.landPassMap;
+	var kx = i % w;
+	var ky = Math.floor(i / w);
+	var land;
+	for (let dy = 0; dy <= radius; ++dy)
+	{
+		let dxmax = radius - dy;
+		let xp = kx + (ky + dy)*w;
+		let xm = kx + (ky - dy)*w;
+		for (let dx = -dxmax; dx <= dxmax; ++dx)
+		{
+			if (kx + dx < 0 || kx + dx >= w)
+				continue;
+			if (ky + dy >= 0 && ky + dy < w)
+			{
+				land = landPassMap[xp + dx];
+				if (land > 1 && !access.has(land))
+					access.add(land);
+			}
+			if (ky - dy >= 0 && ky - dy < w)
+			{
+				land = landPassMap[xm + dx];
+				if (land > 1 && !access.has(land))
+					access.add(land);
+			}
+		}
+	}
+	return access;
+};
+
+// get the sum of the resources (except food) around, inside a given radius
+// resources have a weight (1 if dist=0 and 0 if dist=size) doubled for wood
+m.ConstructionPlan.prototype.getResourcesAround = function(gameState, i, radius)
+{
+	let resourceMaps = gameState.sharedScript.resourceMaps;
+	let w = resourceMaps["wood"].width;
+	let cellSize = resourceMaps["wood"].cellSize;
+	let size = Math.floor(radius / cellSize);
+	let ix = i % w;
+	let iy = Math.floor(i / w);
+	let total = 0;
+	let nbcell = 0;
+	for (let k in resourceMaps)
+	{
+		if (k === "food")
+			continue;
+		let weigh0 = (k === "wood") ? 2 : 1;
+		for (let dy = 0; dy <= size; ++dy)
+		{
+			let dxmax = size - dy;
+			let ky = iy + dy;
+			if (ky >= 0 && ky < w)
+			{
+				for (let dx = -dxmax; dx <= dxmax; ++dx)
+				{
+					let kx = ix + dx;
+					if (kx < 0 || kx >= w)
+						continue;
+					let ddx = (dx > 0) ? dx : -dx;
+					let weight = weigh0 * (dxmax - ddx) / size;
+					total += weight * resourceMaps[k].map[kx + w * ky];
+					nbcell += weight;
+				}
+			}
+			if (dy == 0)
+				continue;
+			ky = iy - dy;
+			if (ky  >= 0 && ky < w)
+			{
+				for (let dx = -dxmax; dx <= dxmax; ++dx)
+				{
+					let kx = ix + dx;
+					if (kx < 0 || kx >= w)
+						continue;
+					let ddx = (dx > 0) ? dx : -dx;
+					let weight = weigh0 * (dxmax - ddx) / size;
+					total += weight * resourceMaps[k].map[kx + w * ky];
+					nbcell += weight;
+				}
+			}
+		}
+	}
+	return (nbcell ? (total / nbcell) : 0);
 };
 
 m.ConstructionPlan.prototype.Serialize = function()

@@ -388,7 +388,7 @@ m.Map.prototype.add = function(map)
 	}
 };
 
-m.Map.prototype.findBestTile = function(radius, obstructionTiles)
+m.Map.prototype.findBestTile = function(radius, obstruction)
 {
 	// Find the best non-obstructed tile
 	let bestIdx = 0;
@@ -398,8 +398,8 @@ m.Map.prototype.findBestTile = function(radius, obstructionTiles)
 		let v = this.map[i];
 		if (v > bestVal)
 		{
-			var j = API3.getMaxMapIndex(i, this, obstructionTiles);
-			if (obstructionTiles.map[j] <= radius)
+			let j = this.getNonObstructedTile(i, radius, obstruction);
+			if (j < 0)
 				continue;
 			bestVal = v;
 			bestIdx = j;
@@ -407,6 +407,94 @@ m.Map.prototype.findBestTile = function(radius, obstructionTiles)
 	}
 	
 	return [bestIdx, bestVal];
+};
+
+// return any non obstructed (small) tile inside the (big) tile i from obstruction map
+m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
+{
+	let ratio = this.cellSize / obstruction.cellSize;
+	let ix = (i % this.width) * ratio;
+	let iy = Math.floor(i / this.width) * ratio;
+	let w = obstruction.width;
+	for (let kx = ix; kx < ix + ratio; ++kx)
+	{
+		if (kx < radius || kx >= w - radius)
+			continue;
+		for (let ky = iy; ky < iy + ratio; ++ky)
+		{
+			if (ky < radius || ky >= w - radius)
+				continue;
+			if (obstruction.isObstructedTile(kx, ky, radius))
+				continue;
+			return (kx + ky*w);
+		}
+	}
+	return -1;
+};
+
+// return true is the area centered on tile kx-ky and with radius is obstructed
+m.Map.prototype.isObstructedTile = function(kx, ky, radius)
+{
+	let w = this.width;
+	if (kx < radius || kx >= w - radius || ky < radius || ky >= w - radius || this.map[kx+ky*w] == 0)
+		return true;
+	for (let dy = 0; dy <= radius; ++dy)
+	{
+		let dxmax = radius - dy;
+		let xp = kx + (ky + dy)*w;
+		let xm = kx + (ky - dy)*w;
+		for (let dx = -dxmax; dx <= dxmax; ++dx)
+			if (this.map[xp + dx] == 0 || this.map[xm + dx] == 0)
+				return true;
+	}
+	return false;
+};
+
+// returns the nearest obstructed point
+// TODO check that the landpassmap index is the same
+m.Map.prototype.findNearestObstructed = function(i, radius)
+{
+	var w = this.width;
+	var ix = i % w;
+	var iy = Math.floor(i / w);
+	var n = (this.cellSize > 8) ? 1 : Math.floor(8 / this.cellSize);
+	for (let i = 1; i <= n; ++i)
+	{
+		let kx = ix - i;
+		let ky = iy + i;
+		for (let j = 1; j <= 8*i; ++j)
+		{
+			if (this.isObstructedTile(kx, ky, radius))
+			{
+				let akx = Math.abs(kx-ix);
+				let aky = Math.abs(ky-iy);
+				if (akx >= aky)
+				{
+					if (kx > ix)
+						--kx;
+					else
+						++kx;
+				}
+				if (aky >= akx)
+				{
+					if (ky > iy)
+						--ky;
+					else
+						++ky;
+				}
+				return (kx + w*ky);
+			}
+			if (j <= 2*i+1)
+				++kx;
+			else if (j <= 4*i+1)
+				--ky;
+			else if (j < 6*i+1)
+				--kx;
+			else
+				++ky;
+		}
+	}
+	return -1;
 };
 
 // returns the point with the lowest (but still > radius) point in the immediate vicinity
