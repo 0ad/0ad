@@ -104,14 +104,10 @@ function init(attribs)
 
 	// Init the Cancel Button caption and tooltip
 	var cancelButton = Engine.GetGUIObjectByName("cancelGame");
-	if(!Engine.HasXmppClient())
-	{
+	if (!Engine.HasXmppClient())
 		cancelButton.tooltip = translate("Return to the main menu.");
-	}
 	else
-	{
 		cancelButton.tooltip = translate("Return to the lobby.");
-	}
 }
 
 // Called after the map data is loaded and cached
@@ -128,7 +124,7 @@ function initMain()
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = initPlayerDefaults();
 	g_DefaultPlayerData.shift();
-	for (var i = 0; i < g_DefaultPlayerData.length; i++)
+	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
 		g_DefaultPlayerData[i].Civ = "random";
 
 	g_GameSpeeds = initGameSpeeds();
@@ -153,8 +149,6 @@ function initMain()
 	mapFilters.list = getFilterNames();
 	mapFilters.list_data = getFilterIds();
 	g_GameAttributes.mapFilter = "default";
-
-
 
 	// Setup controls for host only
 	if (g_IsController)
@@ -433,7 +427,7 @@ function handleNetMessage(message)
 		// Find and report all joinings/leavings
 		for (var host in message.hosts)
 		{
-			if (! g_PlayerAssignments[host])
+			if (!g_PlayerAssignments[host])
 			{
 				// If we have extra player slots and we are the controller, give the player an ID.
 				if (g_IsController && message.hosts[host].player === -1 && g_AssignedCount < g_GameAttributes.settings.PlayerData.length)
@@ -445,7 +439,7 @@ function handleNetMessage(message)
 
 		for (var host in g_PlayerAssignments)
 		{
-			if (! message.hosts[host])
+			if (!message.hosts[host])
 			{
 				addChatMessage({ "type": "disconnect", "guid": host });
 				if (g_PlayerAssignments[host].player != -1)
@@ -501,13 +495,11 @@ function handleNetMessage(message)
 	}
 }
 
-// Get display name from map data.
 function getMapDisplayName(map)
 {
 	var mapData = loadMapData(map);
-
 	if (!mapData || !mapData.settings || !mapData.settings.Name)
-	{	// Give some msg that map format is unsupported
+	{
 		log("Map data missing in scenario '"+map+"' - likely unsupported format");
 		return map;
 	}
@@ -515,15 +507,11 @@ function getMapDisplayName(map)
 	return mapData.settings.Name;
 }
 
-// Get display name from map data
 function getMapPreview(map)
 {
 	var mapData = loadMapData(map);
-
 	if (!mapData || !mapData.settings || !mapData.settings.Preview)
-	{	// Give some msg that map format is unsupported
 		return "nopreview.png";
-	}
 
 	return mapData.settings.Preview;
 }
@@ -778,8 +766,6 @@ function cancelSetup()
 			Engine.SendUnregisterGame();
 	}
 }
-
-var lastXmppClientPoll = Date.now();
 
 function onTick()
 {
@@ -1543,7 +1529,6 @@ function updatePlayerList()
 		assignBoxText.caption = hostNameList[selection];
 
 		if (g_IsController)
-		{
 			assignBox.onselectionchange = function() {
 				if (g_IsInGuiUpdate)
 					return;
@@ -1574,7 +1559,6 @@ function updatePlayerList()
 					updatePlayerList();
 				updateReadyUI();
 			};
-		}
 	}
 
 	g_IsInGuiUpdate = false;
@@ -1744,7 +1728,7 @@ function updateReadyUI()
 		}
 	}
 	// AIs are always ready.
-	for (var playerid = 0; playerid < MAX_PLAYERS; playerid++)
+	for (var playerid = 0; playerid < MAX_PLAYERS; ++playerid)
 	{		
 		if (!g_GameAttributes.settings.PlayerData[playerid])
 			continue;
@@ -1802,19 +1786,18 @@ function resetReadyData()
 // Add a new map list filter
 function addFilter(id, name, filterFunc)
 {
-	if (filterFunc instanceof Object)
-	{	// Basic validity test
-		var newFilter = {};
-		newFilter.id = id;
-		newFilter.name = name;
-		newFilter.filter = filterFunc;
-
-		g_MapFilters.push(newFilter);
-	}
-	else
+	if (!filterFunc instanceof Object)
 	{
 		error(sprintf("Invalid map filter: %(name)s", { name: name }));
+		return;
 	}
+
+	var newFilter = {};
+	newFilter.id = id;
+	newFilter.name = name;
+	newFilter.filter = filterFunc;
+
+	g_MapFilters.push(newFilter);
 }
 
 // Get array of map filter IDs
