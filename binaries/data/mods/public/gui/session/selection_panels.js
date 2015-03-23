@@ -37,6 +37,10 @@
  * These are used to set various parts of content.
  */
 
+/* cache some formation info */
+var g_availableFormations = new Map();   // available formations per player
+var g_formationsInfo = new Map();
+
 var g_SelectionPanels = {};
 
 // BARTER
@@ -258,11 +262,15 @@ g_SelectionPanels.Formation = {
 	{
 		if (!hasClass(unitEntState, "Unit") || hasClass(unitEntState, "Animal"))
 			return [];
-		return Engine.GuiInterfaceCall("GetAvailableFormations");
+		if (!g_availableFormations.has(unitEntState.player))
+			g_availableFormations.set(unitEntState.player, Engine.GuiInterfaceCall("GetAvailableFormations", unitEntState.player));
+		return g_availableFormations.get(unitEntState.player);
 	},
 	"addData": function(data)
 	{
-		data.formationInfo = Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", {"templateName": data.item});
+		if (!g_formationsInfo.has(data.item))
+			g_formationsInfo.set(data.item, Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", {"templateName": data.item}));
+		data.formationInfo = g_formationsInfo.get(data.item);
 		data.formationOk = canMoveSelectionIntoFormation(data.item);
 		data.formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
 			"ents": data.selection,
@@ -366,9 +374,9 @@ g_SelectionPanels.Gate = {
 		var longWallTypes = {};
 		var walls = [];
 		var gates = [];
-		for (var i in selection)
+		for (var ent of selection)
 		{
-			var state = GetEntityState(selection[i]);
+			var state = GetEntityState(ent);
 			if (hasClass(state, "LongWall") && !state.gate && !longWallTypes[state.template])
 			{
 				var gateTemplate = getWallGateTemplate(state.id);
@@ -801,11 +809,10 @@ g_SelectionPanels.Selection = {
 		data.name = getEntityNames(data.template);
 
 		var ents = g_Selection.groups.getEntsByName(data.item)
-		
 		data.count = ents.length;
-		for (var i in ents)
+		for (var ent of ents)
 		{
-			var state = GetEntityState(ents[i]);
+			var state = GetEntityState(ent);
 
 			if (state.resourceCarrying && state.resourceCarrying.length !== 0)
 			{
