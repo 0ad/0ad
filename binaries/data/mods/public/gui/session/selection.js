@@ -433,7 +433,7 @@ EntitySelection.prototype.SetMotionDebugOverlay = function(enabled)
 EntitySelection.prototype.onChange = function()
 {
 	this.dirty = true;
-	if (this == g_Selection)
+	if (this.isSelection)
 		onSelectionChange();
 }
 
@@ -442,6 +442,7 @@ EntitySelection.prototype.onChange = function()
  */
 
 var g_Selection = new EntitySelection();
+g_Selection.isSelection = true;
 
 var g_canMoveIntoFormation = {};
 var g_allBuildableEntities = undefined;

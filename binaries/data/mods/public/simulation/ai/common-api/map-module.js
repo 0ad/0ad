@@ -393,17 +393,15 @@ m.Map.prototype.findBestTile = function(radius, obstruction)
 	// Find the best non-obstructed tile
 	let bestIdx = 0;
 	let bestVal = -1;
-	for (let i = 0; i < this.length; ++i)
+	for (let j = 0; j < this.length; ++j)
 	{
-		let v = this.map[i];
-		if (v > bestVal)
-		{
-			let j = this.getNonObstructedTile(i, radius, obstruction);
-			if (j < 0)
-				continue;
-			bestVal = v;
-			bestIdx = j;
-		}
+		if (this.map[j] <= bestVal)
+			continue;
+		let i = this.getNonObstructedTile(j, radius, obstruction);
+		if (i < 0)
+			continue;
+		bestVal = this.map[j];
+		bestIdx = i;
 	}
 	
 	return [bestIdx, bestVal];

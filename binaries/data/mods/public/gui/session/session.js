@@ -381,7 +381,6 @@ function restoreSavedGameData(data)
 }
 
 var lastTickTime = new Date;
-var lastXmppClientPoll = Date.now();
 
 /**
  * Called every frame.

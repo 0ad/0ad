@@ -740,10 +740,10 @@ GuiInterface.prototype.GetNextNotification = function()
 		return false;
 };
 
-GuiInterface.prototype.GetAvailableFormations = function(player, data)
+GuiInterface.prototype.GetAvailableFormations = function(player, wantedPlayer)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(wantedPlayer), IID_Player);
 	return cmpPlayer.GetFormations();
 };
 

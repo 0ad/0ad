@@ -315,23 +315,23 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 
 		// we add 3 times the needed resource and once the other two (not food)
 		var total = 0;
-		for (var i in gameState.sharedScript.resourceMaps)
+		for (var res in gameState.sharedScript.resourceMaps)
 		{
-			if (i === "food")
+			if (res === "food")
 				continue;
-			total += gameState.sharedScript.resourceMaps[i].map[j];
-			if (i === resource)
-				total += 2*gameState.sharedScript.resourceMaps[i].map[j];
+			total += gameState.sharedScript.resourceMaps[res].map[j];
+			if (res === resource)
+				total += 2*gameState.sharedScript.resourceMaps[res].map[j];
 		}
 
 		total = 0.7*total;   // Just a normalisation factor as the locateMap is limited to 255
 
 		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
-		for (var i in this.dropsites)
+		for (var id in this.dropsites)
 		{
-			if (!gameState.getEntityById(i))
+			if (!gameState.getEntityById(id))
 				continue;
-			var dpPos = gameState.getEntityById(i).position();
+			var dpPos = gameState.getEntityById(id).position();
 			if (!dpPos)
 				continue;
 			var dist = API3.SquareVectorDistance(dpPos, pos);
