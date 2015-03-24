@@ -77,7 +77,7 @@ DictionaryManager::get_dictionary()
 {
   if (current_dict)
   {
-    return *current_dict; 
+    return *current_dict;
   }
   else
   {
@@ -100,7 +100,7 @@ DictionaryManager::get_dictionary(const Language& language)
   //log_debug << "...normalized as \"" << lang << "\"" << std::endl;
   assert(language);
 
-  Dictionaries::iterator i = dictionaries.find(language); 
+  Dictionaries::iterator i = dictionaries.find(language);
   if (i != dictionaries.end())
   {
     return *i->second;
@@ -124,7 +124,8 @@ DictionaryManager::get_dictionary(const Language& language)
         // check if filename matches requested language
         if (has_suffix(*filename, ".po"))
         { // ignore anything that isn't a .po file
-          Language po_language = Language::from_env(filename->substr(0, filename->size()-3));
+
+            Language po_language = Language::from_env(convertFilename2Language(*filename));
 
           if (!po_language)
           {
@@ -133,7 +134,7 @@ DictionaryManager::get_dictionary(const Language& language)
           else
           {
             int score = Language::match(language, po_language);
-                          
+
             if (score > best_score)
             {
               best_score = score;
@@ -142,11 +143,11 @@ DictionaryManager::get_dictionary(const Language& language)
           }
         }
       }
-              
+
       if (!best_filename.empty())
       {
         std::string pofile = *p + "/" + best_filename;
-        try 
+        try
         {
           std::unique_ptr<std::istream> in = filesystem->open_file(pofile);
           if (!in.get())
@@ -158,7 +159,7 @@ DictionaryManager::get_dictionary(const Language& language)
             POParser::parse(pofile, *in, *dict);
           }
         }
-        catch(std::exception& e) 
+        catch(std::exception& e)
         {
           log_error << "error: failure parsing: " << pofile << std::endl;
           log_error << e.what() << "" << std::endl;
@@ -166,6 +167,11 @@ DictionaryManager::get_dictionary(const Language& language)
       }
     }
 
+    if (language.get_country().size() > 0)
+    {
+        printf("Adding language fallback %s\n", language.get_language().c_str());
+        dict->addFallback( &get_dictionary(Language::from_spec(language.get_language())) );
+    }
     return *dict;
   }
 }
@@ -181,7 +187,7 @@ DictionaryManager::get_languages()
 
     for(std::vector<std::string>::iterator file = files.begin(); file != files.end(); ++file)
     {
-      if (has_suffix(*file, ".po")) 
+      if (has_suffix(*file, ".po"))
       {
         languages.insert(Language::from_env(file->substr(0, file->size()-3)));
       }
@@ -238,7 +244,43 @@ DictionaryManager::set_filesystem(std::unique_ptr<FileSystem> filesystem_)
 {
   filesystem = std::move(filesystem_);
 }
+// ----------------------------------------------------------------------------
+/** This function converts a .po filename (e.g. zh_TW.po) into a language
+ *  specification (zh_TW). On case insensitive file systems (think windows)
+ *  the filename and therefore the country specification is lower case
+ *  (zh_tw). It Converts the lower case characters of the country back to
+ *  upper case, otherwise tinygettext does not identify the country
+ *  correctly.
+ */
+std::string DictionaryManager::convertFilename2Language(const std::string &s_in) const
+{
+    std::string s;
+    if(s_in.substr(s_in.size()-3, 3)==".po")
+        s = s_in.substr(0, s_in.size()-3);
+    else
+        s = s_in;
+
+    bool underscore_found = false;
+    for(unsigned int i=0; i<s.size(); i++)
+    {
+        if(underscore_found)
+        {
+            // If we get a non-alphanumerical character/
+            // we are done (en_GB.UTF-8) - only convert
+            // the 'gb' part ... if we ever get this kind
+            // of filename.
+            if(!::isalpha(s[i]))
+                break;
+            s[i] = static_cast<char>(::toupper(s[i]));
+        }
+        else
+            underscore_found = s[i]=='_';
+    }
+    return s;
+}   // convertFilename2Language
+
 
 } // namespace tinygettext
+
 
 /* EOF */

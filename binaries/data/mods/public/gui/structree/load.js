@@ -111,7 +111,7 @@ function loadStructure(templateName)
 	{
 		structure.wallset = {};
 		// Note: Assume wall segments of all lengths have the same armor
-		structure.armour = loadStructure(structure.wallSet.templates["long"]).armour;
+		structure.armour = loadStructure(structure.wallSet.templates.long).armour;
 
 		let health;
 
@@ -168,7 +168,7 @@ function loadTechnology(techName)
 			switch (op)
 			{
 			case "tech":
-				tech.reqs.generic = [ req ];
+				tech.reqs.generic = req;
 				break;
 
 			case "civ":
@@ -190,8 +190,11 @@ function loadTechnology(techName)
 				break;
 
 			case "all":
-				for (let r of req[0])
-					tech.reqs[r] = req[1];
+				if (req[0].length < 1)
+					tech.reqs.generic = req[1];
+				else
+					for (let r of req[0])
+						tech.reqs[r] = req[1];
 				break;
 			}
 		}
@@ -242,9 +245,13 @@ function calcReqs(op, val)
 	switch (op)
 	{
 	case "civ":
-	case "tech":
 		// nothing needs doing
 		break;
+
+	case "tech":
+		if (depath(val).slice(0,4) === "pair")
+			return loadTechnologyPair(val).techs;
+		return [ val ];
 
 	case "all":
 	case "any":
@@ -263,7 +270,7 @@ function calcReqs(op, val)
 					break;
 
 				case "tech":
-					t.push(r);
+					t = t.concat(r);
 					break;
 
 				case "any":
@@ -328,6 +335,11 @@ function unravelPhases(techs)
 			phaseList.splice(myPhasePos, 0, reqPhase);
 		else if (myPhasePos < 0 && reqPhasePos > -1)
 			phaseList.splice(reqPhasePos+1, 0, myPhase);
+		else if (reqPhasePos > myPhasePos)
+		{
+			phaseList.splice(reqPhasePos+1, 0, myPhase);
+			phaseList.splice(myPhasePos, 1);
+		}
 	}
 	return phaseList;
 }

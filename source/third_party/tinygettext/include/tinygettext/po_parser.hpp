@@ -42,7 +42,7 @@ private:
   std::string current_line;
 
   IConv conv;
-  
+
   POParser(const std::string& filename, std::istream& in_, Dictionary& dict_, bool use_fuzzy = true);
   ~POParser();
 
@@ -53,7 +53,11 @@ private:
   void get_string_line(std::ostringstream& str, size_t skip);
   bool is_empty_line();
   bool prefix(const char* );
+#ifdef _WIN32
   void error(const std::string& msg);
+#else
+  void error(const std::string& msg) __attribute__((__noreturn__));
+#endif
   void warning(const std::string& msg);
 
 public:

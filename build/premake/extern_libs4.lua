@@ -342,12 +342,14 @@ extern_lib_defs = {
 			if os.is("windows") then
 				add_default_include_paths("iconv")
 				defines { "HAVE_ICONV_CONST" }
+				defines { "ICONV_CONST=const" }
 				defines { "LIBICONV_STATIC" }
 			elseif os.is("macosx") then
 				add_default_include_paths("iconv")
 				defines { "LIBICONV_STATIC" }
 			elseif os.getversion().description == "FreeBSD" then
 				defines { "HAVE_ICONV_CONST" }
+				defines { "ICONV_CONST=const" }
 			end
 		end,
 		link_settings = function()

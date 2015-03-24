@@ -170,12 +170,15 @@ function selectCiv(civCode)
 			}
 			else if (g_SelectedCiv in g_ParsedData.techs[prod].reqs)
 			{
-				if (g_ParsedData.techs[prod].reqs[g_SelectedCiv].length > 0)
-					phase = g_ParsedData.techs[prod].reqs[g_SelectedCiv][0];
+				for (let req of g_ParsedData.techs[prod].reqs[g_SelectedCiv])
+					if (depath(req).slice(0,5) === "phase")
+						phase = req;
 			}
 			else if ("generic" in g_ParsedData.techs[prod].reqs)
 			{
-				phase = g_ParsedData.techs[prod].reqs.generic[0];
+				for (let req of g_ParsedData.techs[prod].reqs.generic)
+					if (depath(req).slice(0,5) === "phase")
+						phase = req;
 			}
 
 			if (depath(phase).slice(0,5) !== "phase")
