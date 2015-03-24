@@ -45,7 +45,7 @@ private:
 
   std::string charset;
   bool        use_fuzzy;
-  
+
   Language    current_language;
   Dictionary* current_dict;
 
@@ -86,6 +86,7 @@ public:
   std::set<Language> get_languages();
 
   void set_filesystem(std::unique_ptr<FileSystem> filesystem);
+  std::string convertFilename2Language(const std::string &s_in) const;
 
 private:
   DictionaryManager (const DictionaryManager&);

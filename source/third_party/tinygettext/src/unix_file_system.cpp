@@ -59,7 +59,7 @@ UnixFileSystem::open_directory(const std::string& pathname)
     return files;
   }
 }
-  
+
 std::unique_ptr<std::istream>
 UnixFileSystem::open_file(const std::string& filename)
 {

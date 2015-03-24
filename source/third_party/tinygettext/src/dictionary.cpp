@@ -23,12 +23,14 @@
 #include "tinygettext/dictionary.hpp"
 
 namespace tinygettext {
-
+
 Dictionary::Dictionary(const std::string& charset_) :
   entries(),
   ctxt_entries(),
   charset(charset_),
-  plural_forms()
+  plural_forms(),
+  m_has_fallback(false),
+  m_fallback()
 {
 }
 
@@ -70,12 +72,13 @@ Dictionary::translate_plural(const Entries& dict, const std::string& msgid, cons
   {
     unsigned int n = 0;
     n = plural_forms.get_plural(count);
-   	if(n >= msgstrs.size())
+    if (n >= msgstrs.size())
     {
       log_error << "Plural translation not available (and not set to empty): '" << msgid << "'" << std::endl;
       log_error << "Missing plural form: " << n << std::endl;
       return msgid;
-   	}
+    }
+
     if (!msgstrs[n].empty())
       return msgstrs[n];
     else
@@ -115,8 +118,10 @@ Dictionary::translate(const Entries& dict, const std::string& msgid)
   else
   {
     log_info << "Couldn't translate: " << msgid << std::endl;
-    return msgid;
-  } 
+
+    if (m_has_fallback) return m_fallback->translate(msgid);
+    else return msgid;
+  }
 }
 
 std::string
@@ -135,7 +140,7 @@ Dictionary::translate_ctxt(const std::string& msgctxt, const std::string& msgid)
 }
 
 std::string
-Dictionary::translate_ctxt_plural(const std::string& msgctxt, 
+Dictionary::translate_ctxt_plural(const std::string& msgctxt,
                                   const std::string& msgid, const std::string& msgidplural, int num)
 {
   CtxtEntries::iterator i = ctxt_entries.find(msgctxt);
@@ -152,7 +157,7 @@ Dictionary::translate_ctxt_plural(const std::string& msgctxt,
       return msgid;
   }
 }
-
+
 void
 Dictionary::add_translation(const std::string& msgid, const std::string& ,
                             const std::vector<std::string>& msgstrs)
@@ -172,14 +177,14 @@ Dictionary::add_translation(const std::string& msgid, const std::string& msgstr)
   }
   else if (vec[0] != msgstr)
   {
-    log_warning << "collision in add_translation: '" 
+    log_warning << "collision in add_translation: '"
                 << msgid << "' -> '" << msgstr << "' vs '" << vec[0] << "'" << std::endl;
     vec[0] = msgstr;
   }
 }
 
 void
-Dictionary::add_translation(const std::string& msgctxt, 
+Dictionary::add_translation(const std::string& msgctxt,
                             const std::string& msgid, const std::string& msgid_plural,
                             const std::vector<std::string>& msgstrs)
 {
@@ -209,7 +214,7 @@ Dictionary::add_translation(const std::string& msgctxt, const std::string& msgid
     vec[0] = msgstr;
   }
 }
-
+
 } // namespace tinygettext
 
 /* EOF */

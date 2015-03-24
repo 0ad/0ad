@@ -39,7 +39,7 @@ public:
   {}
 
   PluralForms(unsigned int nplural_, PluralFunc plural_)
-    : nplural(nplural_), 
+    : nplural(nplural_),
       plural(plural_)
   {}
 
@@ -49,13 +49,13 @@ public:
   bool operator==(const PluralForms& other) { return nplural == other.nplural && plural == other.plural; }
   bool operator!=(const PluralForms& other) { return !(*this == other); }
 
-  operator bool() const {
-    return plural;
+  explicit operator bool() const {
+    return plural != NULL;
   }
 };
 
 } // namespace tinygettext
 
-#endif 
+#endif
 
 /* EOF */

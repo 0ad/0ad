@@ -22,9 +22,10 @@
 #include <assert.h>
 #include <unordered_map>
 #include <vector>
+#include <algorithm>
 
 namespace tinygettext {
-
+
 struct LanguageSpec {
   /** Language code: "de", "en", ... */
   const char* language;
@@ -38,7 +39,7 @@ struct LanguageSpec {
   /** Language name: "German", "English", "French", ... */
   const char* name;
 };
-
+
 /** Language Definitions */
 //*{
 static const LanguageSpec languages[] = {
@@ -213,7 +214,7 @@ static const LanguageSpec languages[] = {
   { "pl", "PL", 0, "Polish (Poland)"             },
   { "ps", 0,    0, "Pashto"                      },
   { "pt", 0,    0, "Portuguese"                  },
-  { "pt", "BR", 0, "Brazilian"                   },
+  { "pt", "BR", 0, "Portuguese (Brazil)"         },
   { "pt", "PT", 0, "Portuguese (Portugal)"       },
   { "qu", 0,    0, "Quechua"                     },
   { "rm", 0,    0, "Rhaeto-Romance"              },
@@ -283,7 +284,7 @@ static const LanguageSpec languages[] = {
   { NULL, 0,    0, NULL                          }
 };
 //*}
-
+
 std::string
 resolve_language_alias(const std::string& name)
 {
@@ -352,7 +353,7 @@ resolve_language_alias(const std::string& name)
     name_lowercase[i] = static_cast<char>(tolower(name[i]));
 
   Aliases::iterator i = language_aliases.find(name_lowercase);
-  if (i != language_aliases.end()) 
+  if (i != language_aliases.end())
   {
     return i->second;
   }
@@ -361,19 +362,20 @@ resolve_language_alias(const std::string& name)
     return name;
   }
 }
-
+
 Language
 Language::from_spec(const std::string& language, const std::string& country, const std::string& modifier)
 {
-  static std::unordered_map<std::string, std::vector<const LanguageSpec*> > language_map;
+  typedef std::unordered_map<std::string, std::vector<const LanguageSpec*> > LanguageSpecMap;
+  static LanguageSpecMap language_map;
 
   if (language_map.empty())
   { // Init language_map
     for(int i = 0; languages[i].language != NULL; ++i)
       language_map[languages[i].language].push_back(&languages[i]);
   }
-  
-  std::unordered_map<std::string, std::vector<const LanguageSpec*> >::iterator i = language_map.find(language);
+
+  LanguageSpecMap::iterator i = language_map.find(language);
   if (i != language_map.end())
   {
     std::vector<const LanguageSpec*>& lst = i->second;
@@ -383,7 +385,7 @@ Language::from_spec(const std::string& language, const std::string& country, con
     tmpspec.country  = country.c_str();
     tmpspec.modifier = modifier.c_str();
     Language tmplang(&tmpspec);
-      
+
     const LanguageSpec* best_match = 0;
     int best_match_score = 0;
     for(std::vector<const LanguageSpec*>::iterator j = lst.begin(); j != lst.end(); ++j)
@@ -445,7 +447,7 @@ Language::from_env(const std::string& env)
 
   return from_spec(language, country, modifier);
 }
-
+
 Language::Language(const LanguageSpec* language_spec_)
   : language_spec(language_spec_)
 {
@@ -471,7 +473,7 @@ Language::match(const Language& lhs, const Language& rhs)
       { 7, 6, 3 }, // country wildcard
       { 4, 2, 1 }, // country miss
     };
-  
+
     int c;
     if (lhs.get_country() == rhs.get_country())
       c = 0;
@@ -479,7 +481,7 @@ Language::match(const Language& lhs, const Language& rhs)
       c = 1;
     else
       c = 2;
-  
+
     int m;
     if (lhs.get_modifier() == rhs.get_modifier())
       m = 0;
@@ -565,7 +567,7 @@ Language::operator!=(const Language& rhs) const
 {
   return language_spec != rhs.language_spec;
 }
-
+
 } // namespace tinygettext
 
 /* EOF */

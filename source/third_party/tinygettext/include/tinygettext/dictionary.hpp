@@ -44,6 +44,9 @@ private:
   std::string translate(const Entries& dict, const std::string& msgid);
   std::string translate_plural(const Entries& dict, const std::string& msgid, const std::string& msgidplural, int num);
 
+  bool m_has_fallback;
+  Dictionary* m_fallback;
+
 public:
   /** Constructs a dictionary converting to the specified \a charset (default UTF-8) */
   Dictionary(const std::string& charset = "UTF-8");
@@ -80,7 +83,7 @@ public:
       translate(). */
   void add_translation(const std::string& msgid, const std::string& msgid_plural,
                        const std::vector<std::string>& msgstrs);
-  void add_translation(const std::string& msgctxt, 
+  void add_translation(const std::string& msgctxt,
                        const std::string& msgid, const std::string& msgid_plural,
                        const std::vector<std::string>& msgstrs);
 
@@ -92,7 +95,7 @@ public:
   /** Iterate over all messages, Func is of type:
       void func(const std::string& msgid, const std::vector<std::string>& msgstrs) */
   template<class Func>
-  Func foreach(Func func) 
+  Func foreach(Func func)
   {
     for(Entries::iterator i = entries.begin(); i != entries.end(); ++i)
     {
@@ -101,10 +104,16 @@ public:
     return func;
   }
 
+  void addFallback(Dictionary* fallback)
+  {
+      m_has_fallback = true;
+      m_fallback = fallback;
+  }
+
   /** Iterate over all messages with a context, Func is of type:
       void func(const std::string& ctxt, const std::string& msgid, const std::vector<std::string>& msgstrs) */
   template<class Func>
-  Func foreach_ctxt(Func func) 
+  Func foreach_ctxt(Func func)
   {
     for(CtxtEntries::iterator i = ctxt_entries.begin(); i != ctxt_entries.end(); ++i)
     {
@@ -115,6 +124,10 @@ public:
     }
     return func;
   }
+
+private:
+  Dictionary(const Dictionary&) = delete;
+  Dictionary& operator=(const Dictionary&) = delete;
 };
 
 } // namespace tinygettext
