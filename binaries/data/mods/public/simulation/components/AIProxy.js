@@ -74,18 +74,29 @@ AIProxy.prototype.GetRepresentation = function()
 
 AIProxy.prototype.NotifyChange = function()
 {
+	if (this.needsFullGet)
+	{
+		// not yet notified, be sure that the owner is set before doing so
+		// as the Create event is sent only on first ownership changed
+		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+		if (!cmpOwnership || cmpOwnership.GetOwner() < 0)
+			return false;
+	}
+
 	if (!this.changes)
 	{
 		this.changes = {};
 		this.cmpAIInterface.ChangedEntity(this.entity);
 	}
+	return true;
 };
 
 // AI representation-updating event handlers:
 
 AIProxy.prototype.OnPositionChanged = function(msg)
 {
-	this.NotifyChange();
+	if (!this.NotifyChange())
+		return;
 
 	if (msg.inWorld)
 		this.changes.position = [msg.x, msg.z];
@@ -95,43 +106,44 @@ AIProxy.prototype.OnPositionChanged = function(msg)
 
 AIProxy.prototype.OnHealthChanged = function(msg)
 {
-	this.NotifyChange();
-
+	if (!this.NotifyChange())
+		return;
 	this.changes.hitpoints = msg.to;
 };
 
 AIProxy.prototype.OnUnitIdleChanged = function(msg)
 {
-	this.NotifyChange();
-
+	if (!this.NotifyChange())
+		return;
 	this.changes.idle = msg.idle;
 };
 
 AIProxy.prototype.OnUnitAIStateChanged = function(msg)
 {
-	this.NotifyChange();
-
+	if (!this.NotifyChange())
+		return;
 	this.changes.unitAIState = msg.to;
 };
 
 AIProxy.prototype.OnUnitAIOrderDataChanged = function(msg)
 {
-	this.NotifyChange();
-
+	if (!this.NotifyChange())
+		return;
 	this.changes.unitAIOrderData = msg.to;
 };
 
 AIProxy.prototype.OnProductionQueueChanged = function(msg)
 {
-	this.NotifyChange();
-
+	if (!this.NotifyChange())
+		return;
 	var cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
 	this.changes.trainingQueue = cmpProductionQueue.GetQueue();
 };
 
 AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
 {
-	this.NotifyChange();
+	if (!this.NotifyChange())
+		return;
 	
 	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	this.changes.garrisoned = cmpGarrisonHolder.GetEntities();
@@ -148,37 +160,43 @@ AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
 
 AIProxy.prototype.OnResourceSupplyChanged = function(msg)
 {
-	this.NotifyChange();
+	if (!this.NotifyChange())
+		return;
 	this.changes.resourceSupplyAmount = msg.to;
 };
 
 AIProxy.prototype.OnResourceSupplyGatherersChanged = function(msg)
 {
-	this.NotifyChange();
+	if (!this.NotifyChange())
+		return;
 	this.changes.resourceSupplyGatherers = msg.to;
 };
 
 AIProxy.prototype.OnResourceCarryingChanged = function(msg)
 {
-	this.NotifyChange();
+	if (!this.NotifyChange())
+		return;
 	this.changes.resourceCarrying = msg.to;
 };
 
 AIProxy.prototype.OnFoundationProgressChanged = function(msg)
 {
-	this.NotifyChange();
+	if (!this.NotifyChange())
+		return;
 	this.changes.foundationProgress = msg.to;
 };
 
 AIProxy.prototype.OnFoundationBuildersChanged = function(msg)
 {
-	this.NotifyChange();
+	if (!this.NotifyChange())
+		return;
 	this.changes.foundationBuilders = msg.to;
 };
 
 AIProxy.prototype.OnTerritoryDecayChanged = function(msg)
 {
-	this.NotifyChange();
+	if (!this.NotifyChange())
+		return;
 	this.changes.decaying = msg.to;
 };
 
@@ -299,6 +317,7 @@ AIProxy.prototype.OnOwnershipChanged = function(msg)
 	} else if (msg.to === -1)
 	{
 		this.cmpAIInterface.PushEvent("Destroy", {"entity" : msg.entity});
+		this.needsFullGet = true;
 		return;
 	}
 	

@@ -736,6 +736,11 @@ function loadGameAttributes()
 		startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
 	}
 
+	if (attrs.gameSpeed)
+	{
+		var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
+		gameSpeedBox.selected = g_GameSpeeds.speeds.indexOf(attrs.gameSpeed);
+	}
 	g_IsInGuiUpdate = false;
 
 	onGameAttributesChange();
@@ -1145,6 +1150,7 @@ function onGameAttributesChange()
 	var populationCapText = Engine.GetGUIObjectByName("populationCapText");
 	var startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
 	var gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
+	var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
 
 	// We have to check for undefined on these properties as not all maps define them.
 	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
@@ -1162,6 +1168,7 @@ function onGameAttributesChange()
 	else
 		enableRatingText.caption = "Unknown";
 	gameSpeedText.caption = g_GameSpeeds.names[speedIdx];
+	gameSpeedBox.selected = speedIdx;
 	populationCap.selected = (mapSettings.PopulationCap !== undefined && POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
 	populationCapText.caption = POPULATION_CAP[populationCap.selected];
 	startingResources.selected = (mapSettings.StartingResources !== undefined && STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) != -1 ? STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) : STARTING_RESOURCES_DEFAULTIDX);
