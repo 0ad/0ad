@@ -25,6 +25,16 @@ function LoadMapSettings(settings)
 			cmpRangeManager.SetLosRevealAll(-1, true);
 	}
 
+	if (settings.DisableTreasures)
+	{
+		for (let ent of Engine.GetEntitiesWithInterface(IID_ResourceSupply))
+		{
+			let cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
+			if (cmpResourceSupply.GetType().generic == "treasure")
+				Engine.DestroyEntity(ent);
+		}
+	}
+
 	if (settings.CircularMap)
 	{
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);

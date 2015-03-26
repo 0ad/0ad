@@ -240,6 +240,10 @@ function initMain()
 			updateGameAttributes();
 		};
 
+		Engine.GetGUIObjectByName("disableTreasures").onPress = function() {
+			g_GameAttributes.settings.DisableTreasures = this.checked;
+			updateGameAttributes();
+		};
 
 		Engine.GetGUIObjectByName("lockTeams").onPress = function() {
 			g_GameAttributes.settings.LockTeams = this.checked;
@@ -1130,6 +1134,7 @@ function onGameAttributesChange()
 	var numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
 	var revealMap = Engine.GetGUIObjectByName("revealMap");
 	var exploreMap = Engine.GetGUIObjectByName("exploreMap");
+	var disableTreasures = Engine.GetGUIObjectByName("disableTreasures");
 	var victoryCondition = Engine.GetGUIObjectByName("victoryCondition");
 	var lockTeams = Engine.GetGUIObjectByName("lockTeams");
 	var mapSize = Engine.GetGUIObjectByName("mapSize");
@@ -1143,6 +1148,7 @@ function onGameAttributesChange()
 	var mapSizeText = Engine.GetGUIObjectByName("mapSizeText");
 	var revealMapText = Engine.GetGUIObjectByName("revealMapText");
 	var exploreMapText = Engine.GetGUIObjectByName("exploreMapText");
+	var disableTreasuresText = Engine.GetGUIObjectByName("disableTreasuresText");
 	var victoryConditionText = Engine.GetGUIObjectByName("victoryConditionText");
 	var lockTeamsText = Engine.GetGUIObjectByName("lockTeamsText");
 	var enableCheatsText = Engine.GetGUIObjectByName("enableCheatsText");
@@ -1193,6 +1199,7 @@ function onGameAttributesChange()
 		updateDisplay(mapSize, mapSizeText, g_IsController);
 		updateDisplay(revealMap, revealMapText, g_IsController);
 		updateDisplay(exploreMap, exploreMapText, g_IsController);
+		updateDisplay(disableTreasures, disableTreasuresText, g_IsController);
 		updateDisplay(victoryCondition, victoryConditionText, g_IsController);
 		updateDisplay(lockTeams, lockTeamsText, g_IsController);
 		updateDisplay(populationCap, populationCapText, g_IsController);
@@ -1205,6 +1212,7 @@ function onGameAttributesChange()
 			mapSize.selected = sizeIdx;
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
+			disableTreasures.checked = (mapSettings.DisableTreasures ? true : false);
 			victoryCondition.selected = victoryIdx;
 			lockTeams.checked = (mapSettings.LockTeams ? true : false);
 		}
@@ -1215,6 +1223,7 @@ function onGameAttributesChange()
 			mapSizeText.caption = g_MapSizes.names[sizeIdx];
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExporeMap ? translate("Yes") : translate("No"));
+			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
 			victoryConditionText.caption = victories.text[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
@@ -1232,6 +1241,7 @@ function onGameAttributesChange()
 
 		updateDisplay(revealMap, revealMapText, g_IsController);
 		updateDisplay(exploreMap, exploreMapText, g_IsController);
+		updateDisplay(disableTreasures, disableTreasuresText, g_IsController);
 		updateDisplay(victoryCondition, victoryConditionText, g_IsController);
 		updateDisplay(lockTeams, lockTeamsText, g_IsController);
 		updateDisplay(populationCap, populationCapText, g_IsController);
@@ -1242,6 +1252,7 @@ function onGameAttributesChange()
 			//Host
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
 			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
+			disableTreasures.checked = (mapSettings.DisableTreasures ? true : false);
 			victoryCondition.selected = victoryIdx;
 			lockTeams.checked = (mapSettings.LockTeams ? true : false);
 		}
@@ -1250,6 +1261,7 @@ function onGameAttributesChange()
 			// Client
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
+			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
 			victoryConditionText.caption = victories.text[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
@@ -1263,6 +1275,7 @@ function onGameAttributesChange()
 		mapSize.hidden = true;
 		revealMap.hidden = true;
 		exploreMap.hidden = true;
+		disableTreasures.hidden = true;
 		victoryCondition.hidden = true;
 		lockTeams.hidden = true;
 		numPlayersText.hidden = false;
@@ -1270,6 +1283,7 @@ function onGameAttributesChange()
 		mapSizeDesc.hidden = true;
 		revealMapText.hidden = false;
 		exploreMapText.hidden = false;
+		disableTreasuresText.hidden = false;
 		victoryConditionText.hidden = false;
 		lockTeamsText.hidden = false;
 		populationCap.hidden = true;
@@ -1281,6 +1295,7 @@ function onGameAttributesChange()
 		mapSizeText.caption = translate("Default");
 		revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 		exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
+		disableTreasuresText.caption = translate("No");
 		victoryConditionText.caption = victories.text[victoryIdx];
 		lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		Engine.GetGUIObjectByName("populationCap").selected = POPULATION_CAP_DEFAULTIDX;
