@@ -30,6 +30,7 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 	//	we will use the correct values to refund partial construction costs
 	var cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
 	this.costs = cmpCost.GetResourceCosts();
+	this.progress = 0;
 
 	this.initialised = true;
 };
@@ -56,7 +57,10 @@ Foundation.prototype.GetBuildProgress = function()
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health)
 	var hitpoints = cmpHealth.GetHitpoints();
 	var maxHitpoints = cmpHealth.GetMaxHitpoints();
-	
+	// Remember our max progress for partial refund in case of destruction
+	if (this.initialised)
+		this.progress = Math.max(this.progress, hitpoints / maxHitpoints);
+
 	return (hitpoints / maxHitpoints);
 };
 
@@ -96,7 +100,7 @@ Foundation.prototype.OnDestroy = function()
 
 	for (var r in this.costs)
 	{
-		var scaled = Math.floor(this.costs[r] * (1.0 - this.GetBuildProgress()));
+		var scaled = Math.floor(this.costs[r] * (1.0 - this.progress));
 		if (scaled)
 		{
 			cmpPlayer.AddResource(r, scaled);
