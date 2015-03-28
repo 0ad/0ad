@@ -270,7 +270,7 @@
 
 			<!-- More Options -->
 			<object hidden="true" name="moreOptionsFade" type="image" z="60" sprite="ModernFade"/>
-			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-175 50%+200 50%+180" z="70" hidden="true">
+			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-195 50%+200 50%+190" z="70" hidden="true">
 				<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 					<translatableAttribute id="caption">More Options</translatableAttribute>
 				</object>
@@ -331,11 +331,21 @@
 					</object>
 					<object name="exploreMapText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
 					<object name="exploreMap" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip">
-						<translatableAttribute id="tooltip" comment="Make sure to differentiate between the revealed map and explored map options!">Toggle explored map (see gaia and buildings).</translatableAttribute>
+						<translatableAttribute id="tooltip" comment="Make sure to differentiate between the revealed map and explored map options!">Toggle explored map (see initial map).</translatableAttribute>
 					</object>
 				</object>
 
 				<object size="14 218 94% 246">
+					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
+						<translatableAttribute id="caption">Disable Treasures:</translatableAttribute>
+					</object>
+					<object name="disableTreasuresText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
+					<object name="disableTreasures" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip">
+						<translatableAttribute id="tooltip">Disable all treasures on the map.</translatableAttribute>
+					</object>
+				</object>
+
+				<object size="14 248 94% 276">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Teams Locked:</translatableAttribute>
 					</object>
@@ -345,7 +355,7 @@
 					</object>
 				</object>
 
-				<object name="optionCheats" size="14 248 94% 276" hidden="true">
+				<object name="optionCheats" size="14 278 94% 306" hidden="true">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Cheats:</translatableAttribute>
 					</object>
@@ -355,7 +365,7 @@
 					</object>
 				</object>
 
-				<object name="optionRating" size="14 278 94% 306" hidden="true">
+				<object name="optionRating" size="14 308 94% 336" hidden="true">
 					<object size="0 0 40% 28" hidden="false" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Rated Game:</translatableAttribute>
 					</object>
