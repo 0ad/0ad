@@ -301,6 +301,9 @@ m.Army.prototype.checkEvents = function (gameState, events)
 	{
 		if (this.foeEntities.indexOf(msg.entity) !== -1)
 		{
+			let ent = gameState.getEntityById(msg.newentity);
+			if (ent && ent.templateName().indexOf("resource|") !== -1)  // corpse of animal killed
+				continue;
 			var idx = this.foeEntities.indexOf(msg.entity);
 			this.foeEntities[idx] = msg.newentity;
 			this.assignedAgainst[msg.newentity] = this.assignedAgainst[msg.entity];

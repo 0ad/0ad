@@ -16,22 +16,25 @@ m.Template = m.Class({
 	get: function(string)
 	{
 		var value = this._template;
-		if (this._auraTemplateModif && this._auraTemplateModif.has(string))		{
+		if (this._auraTemplateModif && this._auraTemplateModif.has(string))
 			return this._auraTemplateModif.get(string);
-		} else if (this._techModif && this._techModif.has(string)) {
+		else if (this._techModif && this._techModif.has(string))
 			return this._techModif.get(string);
-		} else {
+		else
+		{
 			if (!this._tpCache.has(string))
 			{
 				var args = string.split("/");
-				for (var i = 0; i < args.length; ++i)
-					if (value[args[i]])
-						value = value[args[i]];
+				for (let arg of args)
+				{
+					if (value[arg])
+						value = value[arg];
 					else
 					{
 						value = undefined;
 						break;
 					}
+				}
 				this._tpCache.set(string, value);
 			}
 			return this._tpCache.get(string);

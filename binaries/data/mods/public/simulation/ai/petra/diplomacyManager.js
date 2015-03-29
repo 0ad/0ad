@@ -55,7 +55,7 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 				{
 					if (mostNeeded[k].type == res && mostNeeded[k].wanted > 0) 
 					{
-						this.nextTributeRequest.set("all", gameState.ai.elapsedTime + 60);
+						this.nextTributeRequest.set("all", gameState.ai.elapsedTime + 90);
 						this.nextTributeRequest.set(res, gameState.ai.elapsedTime + 240);
 						m.chatRequestTribute(gameState, res);
 						if (this.Config.debug > 1)
