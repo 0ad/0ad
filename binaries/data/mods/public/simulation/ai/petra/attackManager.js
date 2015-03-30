@@ -17,6 +17,7 @@ m.AttackManager = function(Config)
 	this.debugTime = 0;
 	this.maxRushes = 0;
 	this.rushSize = [];
+	this.currentEnemyPlayer = undefined; // enemy player we are currently targeting
 };
 
 // More initialisation for stuff that needs the gameState
@@ -268,6 +269,127 @@ m.AttackManager.prototype.getAttackInPreparation = function(type)
 	return this.upcomingAttacks[type][0];
 };
 
+/**
+ * determine which player should be attacked:
+ * - when called when starting the attack, attack.targetPlayer is undefined
+ */
+m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
+{
+	var enemyPlayer = undefined;
+
+	// first check if there is a preferred enemy based on our victory conditions
+	if (gameState.getGameType() === "wonder")
+	{
+		var moreAdvanced = undefined;
+		var enemyWonder = undefined;
+		var wonders = gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder"));
+		for (let wonder of wonders.values())
+		{
+			let progress = wonder.foundationProgress();
+			if (progress === undefined)
+				return wonder.owner();
+			if (enemyWonder && moreAdvanced > progress)
+				continue;
+			enemyWonder = wonder;
+			moreAdvanced = progress;
+		}
+		if (enemyWonder)
+		{
+			enemyPlayer = enemyWonder.owner();
+			if (attack.targetPlayer === undefined)
+				this.currentEnemyPlayer = enemyPlayer;
+			return enemyPlayer;
+		}
+	}
+
+	// No rush if enemy too well defended (i.e. iberians) 
+	var veto = {};
+	if (attack.type === "Rush")
+	{
+		for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
+		{
+			if (!gameState.isPlayerEnemy(i))
+				continue;
+			let enemyDefense = 0;
+			for (let ent of gameState.getEnemyStructures(i).values())
+				if (ent.hasClass("Tower") || ent.hasClass("Fortress"))
+					enemyDefense++;
+			if (enemyDefense > 6)
+				veto[i] = true;
+		}
+	} 
+
+	// then if not a huge attack, continue attacking our previous target as long as it has some entities, 
+	// otherwise target the most accessible one
+	if (attack.type !== "HugeAttack")
+	{
+		if (attack.targetPlayer === undefined && this.currentEnemyPlayer !== undefined
+			&& gameState.getEnemyEntities(this.currentEnemyPlayer) > 0)
+			return this.currentEnemyPlayer;
+
+		let distmin = undefined;
+		let ccmin = undefined;
+		let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
+		for (let ourcc of ccEnts.values())
+		{
+			if (ourcc.owner() !== PlayerID)
+				continue;
+			let ourPos = ourcc.position();
+			let access = gameState.ai.accessibility.getAccessValue(ourPos);
+			for (let enemycc of ccEnts.values())
+			{
+				if (veto[enemycc.owner()])
+					continue;
+				if (!gameState.isPlayerEnemy(enemycc.owner()))
+					continue;
+				let enemyPos = enemycc.position();
+				if (access !== gameState.ai.accessibility.getAccessValue(enemyPos))
+					continue;
+				let dist = API3.SquareVectorDistance(ourPos, enemyPos);
+				if (distmin && dist > distmin)
+					continue;
+				ccmin = enemycc;
+				distmin = dist;
+			}
+		}
+		if (ccmin)
+		{
+			enemyPlayer = ccmin.owner();
+			if (attack.targetPlayer === undefined)
+				this.currentEnemyPlayer = enemyPlayer;
+			return enemyPlayer;
+		}
+	}
+
+	// then let's target our strongest enemy (basically counting enemies units)
+	// with priority to enemies with civ center
+	var max = 0;
+	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
+	{
+		if (veto[i])
+			continue;
+		if (!gameState.isPlayerEnemy(i))
+			continue;
+		let enemyCount = 0;
+		let enemyCivCentre = false;
+		for (let ent of gameState.getEnemyEntities(i).values())
+		{
+			enemyCount++;
+			if (ent.hasClass("CivCentre"))
+				enemyCivCentre = true;
+		}
+		if (enemyCivCentre)
+			enemyCount += 500;
+		if (enemyCount < max)
+			continue;
+		max = enemyCount;
+		enemyPlayer = i;
+	}
+	if (attack.targetPlayer === undefined)
+		this.currentEnemyPlayer = enemyPlayer;
+	return enemyPlayer;
+};
+
 m.AttackManager.prototype.Serialize = function()
 {
 	let properties = {
@@ -277,7 +399,8 @@ m.AttackManager.prototype.Serialize = function()
 		"raidNumber": this.raidNumber,
 		"debugTime": this.debugTime,
 		"maxRushes": this.maxRushes,
-		"rushSize": this.rushSize
+		"rushSize": this.rushSize,
+		"currentEnemyPlayer": this.currentEnemyPlayer
 	};
 
 	let upcomingAttacks = {};

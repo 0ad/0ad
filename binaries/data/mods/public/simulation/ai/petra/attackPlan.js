@@ -26,7 +26,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	{
 		this.target = undefined;
 		this.targetPos = undefined;
-		this.targetPlayer = this.getEnemyPlayer(gameState);
+		this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
 	}
 
 	if (this.targetPlayer === undefined)
@@ -219,67 +219,6 @@ m.AttackPlan.prototype.setPaused = function(boolValue)
 	this.paused = boolValue;
 };
 
-m.AttackPlan.prototype.getEnemyPlayer = function(gameState)
-{
-	var enemyPlayer = undefined;
-
-	// first check if there is a preferred enemy based on our victory conditions
-	if (gameState.getGameType() === "wonder")
-	{
-		var moreAdvanced = undefined;
-		var enemyWonder = undefined;
-		var wonders = gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder"));
-		for (var wonder of wonders.values())
-		{
-			var progress = wonder.foundationProgress();
-			if (progress === undefined)
-				return wonder.owner();
-			if (enemyWonder && moreAdvanced > progress)
-				continue;
-			enemyWonder = wonder;
-			moreAdvanced = progress;
-		}
-		if (enemyWonder)
-			return enemyWonder.owner();
-	}
-
-	// then let's find our prefered target enemy, basically counting our enemies units
-	// with priority to enemies with civ center
-	var enemyCount = {};
-	var enemyDefense = {};
-	var enemyCivCentre = {};
-	for (var i = 1; i < gameState.sharedScript.playersData.length; ++i)
-	{
-		enemyCount[i] = 0;
-		enemyDefense[i] = 0;
-		enemyCivCentre[i] = false;
-	}
-	gameState.getEnemyEntities().forEach(function(ent) { 
-		if (ent.owner() == 0)
-			return;
-		enemyCount[ent.owner()]++;
-		if (ent.hasClass("Tower") || ent.hasClass("Fortress"))
-			enemyDefense[ent.owner()]++;
-		if (ent.hasClass("CivCentre"))
-			enemyCivCentre[ent.owner()] = true;
-	});
-	var max = 0;
-	for (var i in enemyCount)
-	{
-		if (this.type === "Rush" && enemyDefense[i] > 6)  // No rush if enemy too well defended (iberians)
-			continue;
-		var count = enemyCount[i];
-		if (enemyCivCentre[i])
-			count += 500;
-		if (count > max)
-		{
-			enemyPlayer = +i;
-			max = count;
-		}
-	}
-	return enemyPlayer;
-};
-
 // Returns true if the attack can be executed at the current time
 // Basically it checks we have enough units.
 m.AttackPlan.prototype.canStart = function(gameState)
@@ -393,9 +332,9 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 		this.target = this.getNearestTarget(gameState, this.rallyPoint);
 		if (!this.target)
 		{
-			var oldTargetPlayer = this.targetPlayer;
+			let oldTargetPlayer = this.targetPlayer;
 			// may-be all our previous enemey targets have been destroyed ?
-			this.targetPlayer = this.getEnemyPlayer(gameState);
+			this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
 			if (this.Config.debug > 1)
 				API3.warn(" === no more target for enemy player " + oldTargetPlayer + " let us switch against player " + this.targetPlayer);
 			this.target = this.getNearestTarget(gameState, this.rallyPoint);
@@ -1648,7 +1587,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				// If not, let's look for another enemy
 				if (!this.target)
 				{
-					this.targetPlayer = this.getEnemyPlayer(gameState);
+					this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
 					if (this.targetPlayer)
 						this.target = this.getNearestTarget(gameState, this.position, true);
 				}
