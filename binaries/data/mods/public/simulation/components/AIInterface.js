@@ -52,7 +52,6 @@ AIInterface.prototype.Serialize = function()
 
 AIInterface.prototype.Deserialize = function(data)
 {
-	warn(uneval(data));
 	for (var key in data)
 	{
 		if (!data.hasOwnProperty(key))

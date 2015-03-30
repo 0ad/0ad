@@ -164,7 +164,7 @@ function LoadPlayerSettings(settings, newPlayers)
 			cmpPlayer.SetLockTeams(true);
 		}
 
-	// Disable the AIIinterface when AI players are present
+	// Disable the AIIinterface when no AI players are present
 	if (playerData && !playerData.some(function(v) { return v && v.AI ? true : false; }))
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface).Disable();
 }
