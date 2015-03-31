@@ -22,9 +22,9 @@ class CMapIO
 {
 public:
 	// current file version given to saved maps 
-	enum { FILE_VERSION = 5 };
+	enum { FILE_VERSION = 6 };
 	// supported file read version - file with version less than this will be reject
-	enum { FILE_READ_VERSION = 5 };
+	enum { FILE_READ_VERSION = 6 };
 
 #pragma pack(push, 1)
 	// description of a tile for I/O purposes

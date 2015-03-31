@@ -533,7 +533,7 @@ function rectangularSmoothToHeight(center, dx, dy, targetHeight, strength, heigh
 ////////////////
 
 // Set target min and max height depending on map size to make average steepness about the same on all map sizes
-var heightRange = {'min': MIN_HEIGHT * (g_Map.size + 512) / 1024, 'max': MAX_HEIGHT * (g_Map.size + 512) / 1024, 'avg': ((MIN_HEIGHT * (g_Map.size + 512) / 1024)+(MAX_HEIGHT * (g_Map.size + 512) / 1024))/2};
+var heightRange = {'min': MIN_HEIGHT * (g_Map.size + 512) / 8192, 'max': MAX_HEIGHT * (g_Map.size + 512) / 8192, 'avg': (MIN_HEIGHT * (g_Map.size + 512) +MAX_HEIGHT * (g_Map.size + 512))/16384};
 
 // Set average water coverage
 var averageWaterCoverage = 1/5; // NOTE: Since erosion is not predictable actual water coverage might vary much with the same values
