@@ -123,7 +123,7 @@ function getHeightErrosionedReliefmap(reliefmap, strength)
 //////////
 
 // Set target min and max height depending on map size to make average stepness the same on all map sizes
-var heightRange = {"min": MIN_HEIGHT * mapSize / 512, "max": MAX_HEIGHT * mapSize / 512};
+var heightRange = {"min": MIN_HEIGHT * mapSize / 8192, "max": MAX_HEIGHT * mapSize / 8192};
 
 // Set average water coverage
 var averageWaterCoverage = 1/3; // NOTE: Since errosion is not predictable actual water coverage might differ much with the same value

@@ -132,7 +132,7 @@ public:
 		SetVertex(terrain, 1, 0, 65535);
 		SetVertex(terrain, 1, 1, 65535);
 
-		const double maxDelta = 0.003;
+		const double maxDelta = 0.024;
 
 		int p = 255;
 		for (int zi = 0; zi < p; ++zi)

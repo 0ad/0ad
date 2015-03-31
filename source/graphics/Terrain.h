@@ -40,7 +40,7 @@ class CBoundingBoxAligned;
 const ssize_t TERRAIN_TILE_SIZE = 4;
 
 /// number of u16 height units per metre
-const ssize_t HEIGHT_UNITS_PER_METRE = 732; // == approx int(256.0f/0.35f)
+const ssize_t HEIGHT_UNITS_PER_METRE = 92;
 
 /// metres per u16 height unit
 const float HEIGHT_SCALE = 1.f / HEIGHT_UNITS_PER_METRE;
