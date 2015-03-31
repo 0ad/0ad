@@ -22,13 +22,10 @@ BuildingAI.prototype.MAX_PREFERENCE_BONUS = 2;
  */
 BuildingAI.prototype.Init = function()
 {
-	if (this.GetDefaultArrowCount() > 0 || this.GetGarrisonArrowMultiplier() > 0)
-	{
-		this.currentRound = 0;
-		//Arrows left to fire
-		this.arrowsLeft = 0;
-		this.targetUnits = [];
-	}
+	this.currentRound = 0;
+	//Arrows left to fire
+	this.arrowsLeft = 0;
+	this.targetUnits = [];
 };
 
 BuildingAI.prototype.OnOwnershipChanged = function(msg)
@@ -36,23 +33,19 @@ BuildingAI.prototype.OnOwnershipChanged = function(msg)
 	// Remove current targets, to prevent them from being added twice
 	this.targetUnits = [];
 
-	if (msg.to != -1)
-		this.SetupRangeQuery(msg.to);
-
-	// Non-Gaia buildings should attack certain Gaia units.
-	if (msg.to != 0 || this.gaiaUnitsQuery)
-		this.SetupGaiaRangeQuery(msg.to);
+	this.SetupRangeQuery();
+	this.SetupGaiaRangeQuery();
 };
 
 BuildingAI.prototype.OnDiplomacyChanged = function(msg)
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
-	{
-		// Remove maybe now allied/neutral units
-		this.targetUnits = [];
-		this.SetupRangeQuery(msg.player);
-	}
+	if (!IsOwnedByPlayer(msg.player, this.entity))
+		return;
+
+	// Remove maybe now allied/neutral units
+	this.targetUnits = [];
+	this.SetupRangeQuery();
+	this.SetupGaiaRangeQuery();
 };
 
 /**
@@ -76,9 +69,22 @@ BuildingAI.prototype.OnDestroy = function()
 };
 
 /**
+ * React on Attack value modifications, as it might influence the range
+ */
+BuildingAI.prototype.OnValueModification = function(msg)
+{
+	if (msg.component != "Attack")
+		return;
+
+	this.targetUnits = [];
+	this.SetupRangeQuery();
+	this.SetupGaiaRangeQuery();
+};
+
+/**
  * Setup the Range Query to detect units coming in & out of range
  */
-BuildingAI.prototype.SetupRangeQuery = function(owner)
+BuildingAI.prototype.SetupRangeQuery = function()
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
@@ -91,9 +97,13 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
 		cmpRangeManager.DestroyActiveQuery(this.enemyUnitsQuery);
 		this.enemyUnitsQuery = undefined;
 	}
+
 	var players = [];
 
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer)
+		return;
+
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
 
 	for (var i = 1; i < numPlayers; ++i)
@@ -112,11 +122,7 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
 // This should be called whenever our ownership changes.
 BuildingAI.prototype.SetupGaiaRangeQuery = function()
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	var owner = cmpOwnership.GetOwner();
-
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return;
@@ -127,11 +133,8 @@ BuildingAI.prototype.SetupGaiaRangeQuery = function()
 		this.gaiaUnitsQuery = undefined;
 	}
 
-	if (owner == -1)
-		return;
-
-	var cmpPlayer = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
-	if (!cmpPlayer.IsEnemy(0))
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer || !cmpPlayer.IsEnemy(0))
 		return;
 
 	var range = cmpAttack.GetRange(attackType);
@@ -239,13 +242,13 @@ BuildingAI.prototype.FireArrows = function()
 {
 	if (!this.targetUnits.length)
 	{
-		if (this.timer)
-		{
-			// stop the timer
-			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-			cmpTimer.CancelTimer(this.timer);
-			this.timer = undefined;
-		}
+		if (!this.timer)
+			return;
+
+		// stop the timer
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.timer);
+		this.timer = undefined;
 		return;
 	}
 

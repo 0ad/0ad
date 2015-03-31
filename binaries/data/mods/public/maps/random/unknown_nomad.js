@@ -1318,7 +1318,7 @@ for (var i = 0; i < numPlayers; i++)
 }
 
 
-for (var i = 0; i < numPlayers; i++)
+for (var i = 0; i < numPlayers; ++i)
 {
 	var id = playerIDs[i];
 	log("Creating units for player " + id + "...");
@@ -1328,9 +1328,13 @@ for (var i = 0; i < numPlayers; i++)
 	var iz = playerZ[i];
 	var civEntities = getStartingEntities(id-1);
 	var angle = randFloat(0, TWO_PI);
-	for (var j = 1; j < 4; ++j)
+	for (var j = 0; j < civEntities.length; ++j)
 	{
-		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
+		// TODO: Make an rmlib function to get only non-structure starting entities and loop over those 
+		if (civEntities[j].Template.endsWith("civil_centre"))
+			continue;
+		
+		var count = civEntities[j].Count || 1;
 		var jx = ix + 2 * cos(angle);
 		var jz = iz + 2 * sin(angle);
 		var kAngle = randFloat(0, TWO_PI);

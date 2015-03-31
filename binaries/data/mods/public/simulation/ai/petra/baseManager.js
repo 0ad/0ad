@@ -782,9 +782,9 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		var maxTotalBuilders = Math.ceil(workers.length * 0.2);
 		var targetNB = 2;
-		if (target.hasClass("House") || target.hasClass("Market") || target.hasClass("DropsiteWood"))
+		if (target.hasClass("House") || target.hasClass("DropsiteWood"))
 			targetNB = 3;
-		else if (target.hasClass("Barracks") || target.hasClass("Tower"))
+		else if (target.hasClass("Barracks") || target.hasClass("Tower") || target.hasClass("Market"))
 			targetNB = 4;
 		else if (target.hasClass("Fortress"))
 			targetNB = 7;

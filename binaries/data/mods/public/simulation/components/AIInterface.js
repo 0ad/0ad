@@ -33,6 +33,50 @@ AIInterface.prototype.Init = function()
 	this.changedTemplateInfo = {};
 	// this is for auras and is EntityID->{StringForTheValue, ActualValue}
 	this.changedEntityTemplateInfo = {};
+	this.enabled = true;
+};
+
+AIInterface.prototype.Serialize = function()
+{
+	var state = {};
+	for (var key in this)
+	{
+		if (!this.hasOwnProperty(key))
+			continue;
+		if (typeof this[key] == "function")
+			continue;
+		state[key] = this[key];
+	}
+	return state;
+};
+
+AIInterface.prototype.Deserialize = function(data)
+{
+	for (var key in data)
+	{
+		if (!data.hasOwnProperty(key))
+			continue;
+		this[key] = data[key];
+	}
+	if (!this.enabled)
+		this.Disable();
+}
+
+/**
+ * Disable all registering functions for this component
+ * Gets called in case no AI players are present to save resources
+ */
+AIInterface.prototype.Disable = function()
+{
+	this.enabled = false;
+	var nop = function(){};
+	this.ChangedEntity = nop;
+	this.PushEvent = nop;
+	this.OnGlobalPlayerDefeated = nop;
+	this.OnGlobalEntityRenamed = nop;
+	this.OnGlobalTributeExchanged = nop;
+	this.OnTemplateModification = nop;
+	this.OnValueModification = nop;
 };
 
 AIInterface.prototype.GetNonEntityRepresentation = function()

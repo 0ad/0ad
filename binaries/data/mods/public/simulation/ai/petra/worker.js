@@ -540,8 +540,9 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 40)
 			return;
 
+		var canFlee = (!supply.hasClass("Domestic") && supply.templateName().indexOf("resource|") == -1);
 		// Only cavalry and range units should hunt fleeing animals 
-		if (!supply.hasClass("Domestic") && !isCavalry && !isRanged)
+		if (canFlee && !isCavalry && !isRanged)
 			return;
 
 		// quickscope accessbility check
@@ -567,7 +568,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (dropsiteDist > 35000)
 			return;
 		// Only cavalry should hunt far from dropsite (specially for non domestic animals which flee)
-		if (!isCavalry && (dropsiteDist > 10000 || ((dropsiteDist > 7000 || territoryOwner == 0 ) && !supply.hasClass("Domestic"))))
+		if (!isCavalry && (dropsiteDist > 12000 || ((dropsiteDist > 7000 || territoryOwner == 0 ) && canFlee)))
 			return;
 
 		if (dist < nearestSupplyDist)

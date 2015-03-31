@@ -163,6 +163,10 @@ function LoadPlayerSettings(settings, newPlayers)
 			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
 			cmpPlayer.SetLockTeams(true);
 		}
+
+	// Disable the AIIinterface when no AI players are present
+	if (playerData && !playerData.some(function(v) { return v && v.AI ? true : false; }))
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface).Disable();
 }
 
 // Get a setting if it exists or return default
@@ -183,7 +187,7 @@ function getSetting(settings, defaults, idx, property)
  * that owns the given entity.
  * iid is typically IID_Player.
  */
-function QueryOwnerInterface(ent, iid)
+function QueryOwnerInterface(ent, iid = IID_Player)
 {
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 
@@ -207,7 +211,7 @@ function QueryOwnerInterface(ent, iid)
  * with the given ID number.
  * iid is typically IID_Player.
  */
-function QueryPlayerIDInterface(id, iid)
+function QueryPlayerIDInterface(id, iid = IID_Player)
 {
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 
