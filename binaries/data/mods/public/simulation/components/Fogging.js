@@ -154,7 +154,7 @@ Fogging.prototype.ForceMiraging = function(player)
 
 Fogging.prototype.IsMiraged = function(player)
 {
-	if (player >= this.mirages.length)
+	if (player < 0 || player >= this.mirages.length)
 		return false;
 
 	return this.miraged[player];
@@ -162,7 +162,7 @@ Fogging.prototype.IsMiraged = function(player)
 
 Fogging.prototype.GetMirage = function(player)
 {
-	if (player >= this.mirages.length)
+	if (player < 0 || player >= this.mirages.length)
 		return INVALID_ENTITY;
 
 	return this.mirages[player];
@@ -170,7 +170,7 @@ Fogging.prototype.GetMirage = function(player)
 
 Fogging.prototype.WasSeen = function(player)
 {
-	if (player >= this.seen.length)
+	if (player < 0 || player >= this.seen.length)
 		return false;
 
 	return this.seen[player];
@@ -202,7 +202,7 @@ Fogging.prototype.OnOwnershipChanged = function(msg)
 
 Fogging.prototype.OnVisibilityChanged = function(msg)
 {
-	if (msg.player >= this.mirages.length)
+	if (msg.player < 0 || msg.player >= this.mirages.length)
 		return;
 
 	if (msg.newVisibility == VIS_VISIBLE)
