@@ -7,7 +7,7 @@ function loadCivData(playableOnly = false)
 {
 	// Load all JSON files containing civ data
 	var civData = {};
-	var civFiles = Engine.BuildDirEntList("civs/", "*.json", false);
+	var civFiles = Engine.BuildDirEntList("simulation/data/civs/", "*.json", false);
 
 	for each (var filename in civFiles)
 	{

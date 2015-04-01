@@ -1167,7 +1167,7 @@ JS::Value CComponentManager::Script_ReadJSONFile(ScriptInterface::CxPrivate* pCx
 
 JS::Value CComponentManager::Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName)
 {
-	return ReadJSONFile(pCxPrivate, L"civs", fileName);
+	return ReadJSONFile(pCxPrivate, L"simulation/data/civs", fileName);
 }
 
 JS::Value CComponentManager::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, std::wstring fileName)

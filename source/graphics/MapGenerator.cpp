@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -189,7 +189,7 @@ void CMapGeneratorWorker::MaybeGC(ScriptInterface::CxPrivate* pCxPrivate)
 
 std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	VfsPath path(L"civs/");
+	VfsPath path(L"simulation/data/civs/");
 	VfsPaths pathnames;
 
 	std::vector<std::string> data;
