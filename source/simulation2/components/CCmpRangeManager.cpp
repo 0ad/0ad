@@ -1703,7 +1703,7 @@ public:
 		u16 oldMask = m_SharedDirtyVisibilityMasks[player];
 		m_SharedDirtyVisibilityMasks[player] = CalcSharedDirtyVisibilityMask(players);
 
-		if (oldMask != m_SharedDirtyVisibilityMasks[player] && player <= m_GlobalPlayerVisibilityUpdate.size())
+		if (oldMask != m_SharedDirtyVisibilityMasks[player] && (size_t)player <= m_GlobalPlayerVisibilityUpdate.size())
 			m_GlobalPlayerVisibilityUpdate[player-1] = 1;
 	}
 
