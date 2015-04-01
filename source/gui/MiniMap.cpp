@@ -267,10 +267,8 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 void CMiniMap::DrawViewRect(CMatrix3D transform)
 {
 	// Compute the camera frustum intersected with a fixed-height plane.
-	// TODO: Currently we hard-code the height, so this'll be dodgy when maps aren't the
-	// expected height - how can we make it better without the view rect wobbling in
-	// size while the player scrolls?
-	float h = 16384.f * HEIGHT_SCALE;
+	// Use the water height as a fixed base height, which should be the lowest we can go
+	float h = g_Renderer.GetWaterManager()->m_WaterHeight;
 	const float width = m_CachedActualSize.GetWidth();
 	const float height = m_CachedActualSize.GetHeight();
 	const float invTileMapSize = 1.0f / float(TERRAIN_TILE_SIZE * m_MapSize);
