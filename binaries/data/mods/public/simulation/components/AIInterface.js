@@ -191,94 +191,103 @@ AIInterface.prototype.OnGlobalTributeExchanged = function(msg)
 // it's not incredibly fast but it's not incredibly slow.
 AIInterface.prototype.OnTemplateModification = function(msg)
 {
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	if (!this.templates)
-		this.templates = cmpTemplateManager.FindAllTemplates(false);
-
-	for each (var value in msg.valueNames)
 	{
-		for (var o = 0; o < this.templates.length; ++o)
+		this.templates = cmpTemplateManager.FindAllTemplates(false);
+		for (let i = 0; i < this.templates.length; ++i)
 		{
-			var tmp = this.templates[o];
-			var template = cmpTemplateManager.GetTemplateWithoutValidation(this.templates[o]);
 			// remove templates that we obviously don't care about.
-			if (!template || !template.Identity || ! template.Identity.Civ)
+			if (this.templates[i].indexOf("skirmish/") == 0)
+				this.templates.splice(i--,1);
+			else
 			{
-				this.templates.splice(o--,1);
-				continue;
+				let template = cmpTemplateManager.GetTemplateWithoutValidation(this.templates[i]);
+				if (!template || !template.Identity || !template.Identity.Civ)
+					this.templates.splice(i--,1);
 			}
+		}
+	}
 
+	for (let name of this.templates)
+	{
+		let template = cmpTemplateManager.GetTemplateWithoutValidation(name);
+
+		for (let valName of msg.valueNames)
+		{
 			// let's get the base template value.
-			var strings = value.split("/");
-			var item = template;
-			var ended = true;
-			for (var i = 0; i < strings.length; ++i)
+			let strings = valName.split("/");
+			let item = template;
+			let ended = true;
+			for (let str of strings)
 			{
-				if (item !== undefined && item[strings[i]] !== undefined)
-					item = item[strings[i]];
+				if (item !== undefined && item[str] !== undefined)
+					item = item[str];
 				else
 					ended = false;
 			}
 			if (!ended)
 				continue;
 			// item now contains the template value for this.
-			
-			// check for numerals, they need to be handled properly
-			item = !isNaN(+item) ? +item : item;
-			var newValue = ApplyValueModificationsToTemplate(value, item, msg.player, template);
-			// round the value to 5th decimal or so.
-			newValue = !isNaN(+newValue) ? (Math.abs((+newValue) - Math.round(+newValue)) < 0.0001 ? Math.round(+newValue) : +newValue) : newValue;
+			let oldValue = +item;
+			let newValue = ApplyValueModificationsToTemplate(valName, oldValue, msg.player, template);
+			// Apply the same roundings as in the components
+			if (valName === "Health/Max" || valName === "Player/MaxPopulation")
+				newValue = Math.round(newValue);
 
-			if(item != newValue)
-			{
-				if (!this.changedTemplateInfo[msg.player])
-					this.changedTemplateInfo[msg.player] = {};
-				if (!this.changedTemplateInfo[msg.player][this.templates[o]])
-					this.changedTemplateInfo[msg.player][this.templates[o]] = [ { "variable" : value, "value" : newValue} ];
-				else
-					this.changedTemplateInfo[msg.player][this.templates[o]].push({ "variable" : value, "value" : newValue });
-			}
+			// TODO in some cases, we can have two opposite changes which bring us to the old value,
+			// and we should keep it. But how to distinguish it ?
+			if(newValue != oldValue)
+				continue;
+			if (!this.changedTemplateInfo[msg.player])
+				this.changedTemplateInfo[msg.player] = {};
+			if (!this.changedTemplateInfo[msg.player][name])
+				this.changedTemplateInfo[msg.player][name] = [{"variable": valName, "value": newValue}];
+			else
+				this.changedTemplateInfo[msg.player][name].push({"variable": valName, "value": newValue});
 		}
 	}
 };
 
 AIInterface.prototype.OnGlobalValueModification = function(msg)
 {
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	for each (var ent in msg.entities)
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	for (let ent of msg.entities)
 	{
-		var templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
+		let templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
 		// if there's no template name, the unit is probably killed, ignore it.
 		if (!templateName || !templateName.length)
 			continue;
-		var template = cmpTemplateManager.GetTemplateWithoutValidation(templateName);
-		for each (var value in msg.valueNames)
+		let template = cmpTemplateManager.GetTemplateWithoutValidation(templateName);
+		for (let valName of msg.valueNames)
 		{
 			// let's get the base template value.
-			var strings = value.split("/");
-			var item = template;
-			var ended = true;
-			for (var i = 0; i < strings.length; ++i)
+			let strings = valName.split("/");
+			let item = template;
+			let ended = true;
+			for (let str of strings)
 			{
-				if (item !== undefined && item[strings[i]] !== undefined)
-					item = item[strings[i]];
+				if (item !== undefined && item[str] !== undefined)
+					item = item[str];
 				else
 					ended = false;
 			}
 			if (!ended)
 				continue;
 			// "item" now contains the unmodified template value for this.
-			var newValue = ApplyValueModificationsToEntity(value, +item, ent);
+			let oldValue = +item;
+			let newValue = ApplyValueModificationsToEntity(valName, oldValue, ent);
 			// Apply the same roundings as in the components
-			if (value === "Health/Max" || value === "Player/MaxPopulation")
+			if (valName === "Health/Max" || valName === "Player/MaxPopulation")
 				newValue = Math.round(newValue);
-			if(item != newValue)
-			{
-				if (!this.changedEntityTemplateInfo[ent])
-					this.changedEntityTemplateInfo[ent] = [{ "variable" : value, "value" : newValue }];
-				else
-					this.changedEntityTemplateInfo[ent].push({ "variable" : value, "value" : newValue });
-			}
+			// TODO in some cases, we can have two opposite changes which bring us to the old value,
+			// and we should keep it. But how to distinguish it ?
+			if (newValue == oldValue)
+				continue;
+			if (!this.changedEntityTemplateInfo[ent])
+				this.changedEntityTemplateInfo[ent] = [{"variable": valName, "value": newValue}];
+			else
+				this.changedEntityTemplateInfo[ent].push({"variable": valName, "value": newValue});
 		}
 	}
 };
