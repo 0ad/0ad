@@ -1331,7 +1331,7 @@ for (var i = 0; i < numPlayers; ++i)
 	for (var j = 0; j < civEntities.length; ++j)
 	{
 		// TODO: Make an rmlib function to get only non-structure starting entities and loop over those 
-		if (civEntities[j].Template.endsWith("civil_centre"))
+		if (!civEntities[j].Template.startsWith("units/"))
 			continue;
 		
 		var count = civEntities[j].Count || 1;
