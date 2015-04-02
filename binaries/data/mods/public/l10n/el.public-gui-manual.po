@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# catopsi, 2015
+# LOUKAS SKOUROLIAKOS, 2015
+# LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2014
-# Nick Mantas <nmantas@aol.com>, 2014
+# Nick Mantas <inactive+nickthegreek@transifex.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-08 22:08+0100\n"
-"PO-Revision-Date: 2015-02-09 09:46+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-26 15:33+0000\n"
+"Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,7 +140,7 @@ msgstr "[font=\"sans-bold-16\"]Ρύθμιση παιχνιδίου"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Για παιχνίδια με πολλούς παίκτες, μόνο ο οικοδεσπότης του παιχνιδιού μπορεί να αλλάξει της επιλογές ρύθμισης του παιχνιδιού."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -150,7 +151,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr ""
+msgstr "Κατ 'αρχάς, επιλέξτε αν θέλετε να παίξετε σε ένα τυχαίο χάρτη (δημιουργείται αυτόματα από ένα τυχαίο σενάριο χάρτη) ή ένα σενάριο (που δημιουργήθηκε από έναν σχεδιαστή χάρτη). Σενάρια μπορεί να φιλτραριστεί για να εμφανίζει μόνο μερικούς χάρτες. Οι προεπιλεγμένες χάρτες φαίνονται αμέσως, αλλά έθιμο χάρτες συχνά δεν είναι τόσο επιλέξτε \"Όλοι οι χάρτες\" για να δείτε μια λίστα με όλους τους διαθέσιμους χάρτες. Στη συνέχεια, επιλέξτε ένα χάρτη για να παίξετε. Οι \"Χάρτες Επίδειξης\" έχουν σχεδιαστεί για τη δοκιμή ιδιαίτερων χαρακτηριστικών του παιχνιδιού και είναι πιθανόν να μην είναι γενικά χρήσιμο."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -228,13 +229,13 @@ msgstr "[font=\"sans-14\"]Διπλό αριστερό κλικ\\[στην μον
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr ""
+msgstr "Τριπλό αριστερό κλικ \\[σε μία μονάδα]: Επιλέγει όλες τις μονάδες του ίδιου είδους στην οθόνη "
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + Διπλό αριστερό κλικ [σε μία μονάδα]: Επιλέγει όλες τις μονάδες του ίδιου είδους και του ίδιου βαθμού σε ολόκληρο τον χάρτη(ακόμα και αν είναι διαφορετική βαθμίδα)"
 
 #: gui/manual/intro.txt:52
 msgid ""
@@ -260,7 +261,7 @@ msgstr "F12: Εμφάνιση/απόκρυψη χρονομετρητή"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Κελινει ολα τα παράθυρα(ομιλία,μενού)  ή απομακρύνει τις επιλεγμένες μονάδες"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -326,7 +327,7 @@ msgstr "Z, X, C, V, B, N, M: Ελέγχοντας τα κτήρια εκπαίδ
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Τροποποίηση ενέργεια ποντικιού"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
@@ -371,22 +372,22 @@ msgstr "Ctrl + Δεξί κλικ με μονάδες επιλεγμένες:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "Αν ο κέρσορας είναι πάνω από ένα φιλικό κτήριο: Ταμπούρωμα"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
+msgstr "Διαφορετικά: Επίθεση κίνηση (από προεπιλογή όλες οι μονάδες του εχθρού και των δομών κατά μήκος του τρόπου στοχευμένες, χρησιμοποιήστε τα πλήκτρα Ctrl + Q + δεξί κλικ για να στοχεύσετε μόνο μονάδες)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Επικαλύψεις"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Απόκρυψη εμφάνιση του GUI"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -410,31 +411,31 @@ msgstr "Alt + Z: Ενεργοποίηση/Απενεργοποίηση του ο
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Χειρισμός κάμερας"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W or \\[up]:Μετακίνηση οθόνης προς τα πάνω"
 
 #: gui/manual/intro.txt:94
 msgid "S or \\[down]: Pan screen down"
-msgstr ""
+msgstr "S ή \\[κάτω]: Μετακίνηση οθόνης προς τα κάτω"
 
 #: gui/manual/intro.txt:95
 msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgstr "Α ή \\  [αριστερά]: Μετακίνηση οθόνης προς τα αριστερά"
 
 #: gui/manual/intro.txt:96
 msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgstr "D ή \\[δεξιά]: Μετακίνηση οθόνης προς τα δεξιά"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W ή \\[πάνω]: Περιστροφή κάμερα προς τα πάνω"
 
 #: gui/manual/intro.txt:98
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S ή \\[κάτω]: Περιστροφή κάμερα προς τα κάτω"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
@@ -491,7 +492,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Κατα τη διάρκεια τοποθέτησης κτηρίου"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
@@ -509,7 +510,7 @@ msgstr "Αριστερό κλικ και σέρνεις: Περστροφή κτ
 
 #: gui/manual/intro.txt:117
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"] Οταν φορτώνει ένα αποθηκευμένο παιχνίδι."
 
 #: gui/manual/intro.txt:118
 msgid ""
@@ -527,7 +528,7 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr ""
+msgstr "Ως ένα δωρεάν, ανοικτού κώδικα παιχνίδι, δεν έχουμε τους πόρους για να δοκιμαστεί σε ένα ευρύ φάσμα των συστημάτων, αλλά θέλουμε να παρέχουμε την καλύτερη ποιότητα εμπειρία για οσο το δυνατόν περισσότερους παράγοντες. Όταν ενεργοποιείτε την αυτόματη ανατροφοδότηση, θα σας στείλουμε τα στοιχεία για να μας βοηθήσει να κατανοήσουμε το υλικό θα πρέπει να επικεντρωθεί στη στήριξη, καθώς και για τον εντοπισμό προβλημάτων απόδοσης θα πρέπει να διορθώσουμε."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"

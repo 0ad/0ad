@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-09 19:17+0100\n"
-"PO-Revision-Date: 2015-03-02 07:41+0000\n"
+"POT-Creation-Date: 2015-03-15 05:21+0100\n"
+"PO-Revision-Date: 2015-03-21 04:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -495,11 +495,11 @@ msgstr "Unha demostración de código e métodos de colocación de murallas en m
 msgid "Wall Demo"
 msgstr "Mostra de murallas"
 
-#: maps/random/survivalofthefittest_triggers.js:79
+#: maps/random/survivalofthefittest_triggers.js:80
 msgid "An enemy wave is attacking!"
 msgstr "Atácanos unha vaga de inimigos!"
 
-#: maps/random/survivalofthefittest_triggers.js:150
+#: maps/random/survivalofthefittest_triggers.js:151
 msgid "The first wave will start in 15 minutes!"
 msgstr "A primeira vaga comezará en 15 minutos!"
 
@@ -588,6 +588,7 @@ msgstr "Primavera en Arcadia, Grecia. As chuvias propias da estación encharcaro
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[0].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:41
@@ -655,6 +656,7 @@ msgstr "Xogador 1"
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:41
@@ -771,19 +773,6 @@ msgstr "Vergunis"
 #: maps/scenarios/Azure Coast.xml:Name:41
 msgid "Azure Coast 1"
 msgstr "Costa azul celeste 1"
-
-#: maps/scenarios/Barcania.xml:Name:31
-msgid "Barcania"
-msgstr "Barcania"
-
-#: maps/scenarios/Barcania.xml:Description:31
-msgid ""
-"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
-"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
-"with lots of potential for skirmishing and guerilla warfare as well as tough"
-" defensive fighting or aggressive maneuvers. 1 Celt player, 2 Hellenic "
-"players."
-msgstr "Unha illa salvaxe e repleta de vexetación, ouro, e misterio… montañas, mares, e densos bosques converten este nun mapa de tres xogadores dinámico e rápido, cun gran potencial para escaramuzas e tácticas de guerrilla, así como loita defensiva ou manobras agresivas. Permite 1 xogador celta e 2 xogadores helenos."
 
 #: maps/scenarios/Battle for the Tiber.xml:Description:31
 msgid ""
@@ -917,7 +906,8 @@ msgstr "Forza de invasión"
 #: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
+#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Barcania
+#: (3).xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Gallic Fields
@@ -1681,6 +1671,18 @@ msgstr "As terras de Bactria (onde hoxe se asenta Afganistán), aos pes das mont
 #: maps/skirmishes/Bactria (2).xml:Name:42
 msgid "Bactria (2)"
 msgstr "Bactria (2)"
+
+#: maps/skirmishes/Barcania (3).xml:Name:31
+msgid "Barcania"
+msgstr "Barcania"
+
+#: maps/skirmishes/Barcania (3).xml:Description:31
+msgid ""
+"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
+"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
+"with lots of potential for skirmishing and guerilla warfare as well as tough"
+" defensive fighting or aggressive maneuvers."
+msgstr "Unha illa salvaxe e repleta de vexetación, ouro, e misterio… montañas, mares, e densos bosques converten este nun mapa de tres xogadores dinámico e rápido, cun gran potencial para escaramuzas e tácticas de guerrilla, así como loita defensiva ou manobras agresivas."
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""

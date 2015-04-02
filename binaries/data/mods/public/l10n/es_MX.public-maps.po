@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Alfonso <pfmprogresivo@gmail.com>, 2015
 # Edgar Carballo <karvayoEdgar@gmail.com>, 2015
 # Luis Gear <ancestro@outlook.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-09 19:17+0100\n"
-"PO-Revision-Date: 2015-02-27 18:01+0000\n"
-"Last-Translator: Luis Gear <ancestro@outlook.com>\n"
+"POT-Creation-Date: 2015-03-15 05:21+0100\n"
+"PO-Revision-Date: 2015-03-21 23:43+0000\n"
+"Last-Translator: Alfonso <pfmprogresivo@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/projects/p/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,11 +49,11 @@ msgstr "Valle Alpino"
 msgid ""
 "An indefensible open land with little wood and stone, representing the "
 "central basin of Asia Minor."
-msgstr ""
+msgstr "Una tierra abierta indefendible con poca madera y piedra, que representa la cuenca central de Asia Menor. "
 
 #: maps/random/anatolian_plateau.jsonsettings.Name
 msgid "Anatolian Plateau"
-msgstr ""
+msgstr "Meseta de Anatolia"
 
 #: maps/random/archipelago.jsonsettings.Description
 msgid ""
@@ -69,17 +70,17 @@ msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian  Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
-msgstr ""
+msgstr "Cada jugador comienza en la profundidad del bosque.\n\nLas Ardenas es una región de extensos bosques, colinas y crestas formadas dentro de la cordillera Givetiense Ardenas, sobre todo en la actual Bélgica y Luxemburgo. La región tomó su nombre de la antigua Silva, un inmenso bosque en la época romana llamada Arduenna Silva."
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
-msgstr ""
+msgstr "Bosque Ardenas"
 
 #: maps/random/atlas_mountains.jsonsettings.Description
 msgid ""
 "A rugged land with small room for buildings with scarce wood. Represents the"
 " mountain range in the north-west africa."
-msgstr ""
+msgstr "Una tierra agreste con pequeño espacio para edificar y con escasa madera. Representa la cordillera en el noroeste de África."
 
 #: maps/random/atlas_mountains.jsonsettings.Name
 msgid "Atlas Mountains"
@@ -156,7 +157,7 @@ msgstr ""
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
-msgstr ""
+msgstr "Un profundo bosque oscuro en Germania."
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
@@ -496,11 +497,11 @@ msgstr ""
 msgid "Wall Demo"
 msgstr ""
 
-#: maps/random/survivalofthefittest_triggers.js:79
+#: maps/random/survivalofthefittest_triggers.js:80
 msgid "An enemy wave is attacking!"
 msgstr ""
 
-#: maps/random/survivalofthefittest_triggers.js:150
+#: maps/random/survivalofthefittest_triggers.js:151
 msgid "The first wave will start in 15 minutes!"
 msgstr ""
 
@@ -589,6 +590,7 @@ msgstr ""
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[0].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:41
@@ -656,6 +658,7 @@ msgstr "Jugador 1"
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:41
@@ -771,19 +774,6 @@ msgstr ""
 
 #: maps/scenarios/Azure Coast.xml:Name:41
 msgid "Azure Coast 1"
-msgstr ""
-
-#: maps/scenarios/Barcania.xml:Name:31
-msgid "Barcania"
-msgstr ""
-
-#: maps/scenarios/Barcania.xml:Description:31
-msgid ""
-"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
-"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
-"with lots of potential for skirmishing and guerilla warfare as well as tough"
-" defensive fighting or aggressive maneuvers. 1 Celt player, 2 Hellenic "
-"players."
 msgstr ""
 
 #: maps/scenarios/Battle for the Tiber.xml:Description:31
@@ -918,7 +908,8 @@ msgstr ""
 #: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
+#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Barcania
+#: (3).xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Gallic Fields
@@ -1681,6 +1672,18 @@ msgstr ""
 
 #: maps/skirmishes/Bactria (2).xml:Name:42
 msgid "Bactria (2)"
+msgstr ""
+
+#: maps/skirmishes/Barcania (3).xml:Name:31
+msgid "Barcania"
+msgstr ""
+
+#: maps/skirmishes/Barcania (3).xml:Description:31
+msgid ""
+"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
+"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
+"with lots of potential for skirmishing and guerilla warfare as well as tough"
+" defensive fighting or aggressive maneuvers."
 msgstr ""
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41

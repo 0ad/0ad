@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-03-14 17:39+0000\n"
+"PO-Revision-Date: 2015-03-24 12:45+0000\n"
 "Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr "Вы желаете сдаться или вскоре вернётес�
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
-msgstr "Удалить все выбранное?"
+msgstr "Уничтожить всё что выбрано?"
 
 #: gui/session/menu.js:189 gui/session/unit_actions.js:676
 msgid "Delete"
@@ -123,16 +123,16 @@ msgstr "Удалить"
 #: gui/session/menu.js:293
 msgctxt "team"
 msgid "None"
-msgstr "Пусто"
+msgstr "Нет"
 
 #: gui/session/menu.js:296 gui/session/messages.js:627
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
-msgstr "Союзник"
+msgstr "Друг"
 
 #: gui/session/menu.js:296 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
-msgstr "Нейтральный"
+msgstr "Нейтрал"
 
 #: gui/session/menu.js:296 gui/session/messages.js:637
 #: gui/session/diplomacy_window.xml:(tooltip):36
@@ -425,7 +425,7 @@ msgstr "%(genericName)s — Запаковано"
 #: gui/session/selection_details.js:44
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr "\\[OFFLINE] %(player)s"
+msgstr "\\[НЕ В СЕТИ] %(player)s"
 
 #: gui/session/selection_details.js:50
 #, javascript-format
@@ -493,7 +493,7 @@ msgstr "Классы:"
 
 #: gui/session/selection_details.js:295
 msgid "Hitpoints:"
-msgstr "Очков жизни:"
+msgstr "Очки жизни:"
 
 #: gui/session/selection_details.js:296 gui/session/session.js:622
 #, javascript-format
@@ -593,7 +593,7 @@ msgstr "Защищающийся"
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Standground"
-msgstr "На месте"
+msgstr "Удерживать позицию"
 
 #: gui/session/selection_panels_helpers.js:70
 #, javascript-format
@@ -622,17 +622,17 @@ msgstr "Shift-клик"
 #: gui/session/selection_panels_helpers.js:123
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr "%(action)s тренировать %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s обучить %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:130
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr "%(action)s тренировать %(number)s (%(fullBatch)s)."
+msgstr "%(action)s обучить %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:137
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr "%(action)s тренировать %(number)s."
+msgstr "%(action)s обучить %(number)s."
 
 #: gui/session/session.js:19
 msgid "You"
@@ -660,7 +660,7 @@ msgstr "Вы потерпели поражение..."
 
 #: gui/session/session.js:327
 msgid "You have abandoned the game."
-msgstr "Вы забросили игру."
+msgstr "Вы покинули игру."
 
 #: gui/session/session.js:471
 msgid "OK"
@@ -753,11 +753,11 @@ msgstr "Вы не можете разрушить объект закрытый 
 
 #: gui/session/unit_actions.js:699
 msgid "Stop"
-msgstr "Стоп"
+msgstr "Остановить"
 
 #: gui/session/unit_actions.js:717
 msgid "Garrison"
-msgstr "Защищать"
+msgstr "Оборонять"
 
 #: gui/session/unit_actions.js:738
 msgid "Unload"
@@ -765,7 +765,7 @@ msgstr "Вывести"
 
 #: gui/session/unit_actions.js:754
 msgid "Repair"
-msgstr "Ремонт"
+msgstr "Ремонтировать"
 
 #: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
@@ -777,11 +777,11 @@ msgstr "Вернуть к работе"
 
 #: gui/session/unit_actions.js:810
 msgid "Guard"
-msgstr "Охрана"
+msgstr "Охранять"
 
 #: gui/session/unit_actions.js:827
 msgid "Remove guard"
-msgstr "Убрать охрану"
+msgstr "Перестать охранять"
 
 #: gui/session/unit_actions.js:843
 msgid "Select trading goods"
@@ -789,7 +789,7 @@ msgstr "Выбрать товары"
 
 #: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
-msgstr "Увеличьте степень тревоги для защиты большего числа юнитов."
+msgstr "Повысить уровень тревоги для защиты большего числа юнитов"
 
 #: gui/session/unit_actions.js:862
 msgid "Raise an alert!"
@@ -833,7 +833,7 @@ msgstr "Цивилизация"
 
 #: gui/session/diplomacy_window.xml:(caption):24
 msgid "Theirs"
-msgstr "Их"
+msgstr "Кто"
 
 #: gui/session/diplomacy_window.xml:(caption):27
 msgid "A"
@@ -930,7 +930,7 @@ msgstr "Выдвинуть выделеных юнитов"
 
 #: gui/session/session.xml:(caption):171
 msgid "Game Paused"
-msgstr "Игра приостановлена"
+msgstr "Игра на паузе"
 
 #: gui/session/session.xml:(caption):174
 msgid "Click to Resume Game"
@@ -942,7 +942,7 @@ msgstr "Отмена"
 
 #: gui/session/session.xml:(caption):210
 msgid "Team Only"
-msgstr "Только Командная"
+msgstr "Для команды"
 
 #: gui/session/session.xml:(caption):214
 msgid "Send"
@@ -999,7 +999,7 @@ msgstr "Выносливость:"
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):53
 #: gui/session/session_objects/hero_icon.xml:(tooltip):9
 msgid "Attack and Armor"
-msgstr "Атака и Броня"
+msgstr "Атака и Защита"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):68
 msgid "Experience"
@@ -1011,7 +1011,7 @@ msgstr "Рейтинг"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr "Очередь продукции"
+msgstr "Очередь производства"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):8
 msgid ""
@@ -1041,11 +1041,11 @@ msgstr "Пища"
 
 #: gui/session/top_panel/resource_metal.xml:(tooltip):3
 msgid "Metal"
-msgstr "Метал"
+msgstr "Металл"
 
 #: gui/session/top_panel/resource_population.xml:(tooltip):3
 msgid "Population (current / limit)"
-msgstr "Население (текущее / лимит)"
+msgstr "Население (текущее / предел)"
 
 #: gui/session/top_panel/resource_stone.xml:(tooltip):3
 msgid "Stone"
@@ -1053,4 +1053,4 @@ msgstr "Камень"
 
 #: gui/session/top_panel/resource_wood.xml:(tooltip):3
 msgid "Wood"
-msgstr "Дерево"
+msgstr "Древесина"

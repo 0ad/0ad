@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Henrik Hovrud <henrik.h@online.no>, 2015
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014-2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
 # Lene Raastad <lene.raastad.lr@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-26 23:11+0000\n"
+"Last-Translator: Henrik Hovrud <henrik.h@online.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,38 +20,38 @@ msgstr ""
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s spill"
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Siviliasjonsbonus"
 msgstr[1] "Sivilisasjonsbonuser"
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Lagbonus"
 msgstr[1] "Lagbonuser"
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr "Spesielle Teknologier"
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Spesialbygning"
 msgstr[1] "Spesielle bygninger"
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr "Helter"
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Historien om  %(civilization)s"
@@ -302,8 +303,8 @@ msgstr "Spillet har allerede startet"
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
-msgstr "[Ugyldig verdi %(id)s]"
+msgid "\\[Invalid value %(id)s]"
+msgstr ""
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -360,8 +361,8 @@ msgstr ""
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:413
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "sekund"
+msgstr[1] "sekunder"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
@@ -371,8 +372,8 @@ msgstr ""
 #: gui/common/tooltips.js:63
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pil"
+msgstr[1] "piler"
 
 #: gui/common/tooltips.js:65
 #, javascript-format
@@ -384,7 +385,8 @@ msgid "Armor:"
 msgstr "Rustning:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -645,7 +647,7 @@ msgstr ""
 #: gui/options/options.js:16
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr ""
+msgstr "Lagre og gjenopprett kamp-innstillinger for hurtig å kunne bruke de samme innstillingene igjen senere"
 
 #: gui/options/options.js:20
 msgid "Prefer GLSL"
@@ -949,7 +951,7 @@ msgstr "Denne mod-en kreves for at dette skal fungere: \"%(requiredMod)s\" "
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr ""
+msgstr "Den trenger modifikasjonen \"%(requiredMod)s\", mens du nå bruker \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:73
 msgid "Do you still want to proceed?"
@@ -980,6 +982,34 @@ msgstr "Lagret spill vil bli overskrevet, er du sikker?"
 #: gui/savedgames/save.js:61
 msgid "OVERWRITE SAVE"
 msgstr "OVERSKRIV LAGRET"
+
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr ""
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr ""
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "Helse:"
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr ""
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr ""
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
+msgstr ""
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
@@ -1164,6 +1194,7 @@ msgid "Civilization Selection"
 msgstr "Siviliasjons Valg"
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "Lukk"
 
@@ -1310,6 +1341,7 @@ msgid "Disable Feedback"
 msgstr "Skru av tilbakemeldinger"
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr ""
 
@@ -1516,7 +1548,7 @@ msgstr "Beskrivelse:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "Velkommen!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -1524,7 +1556,11 @@ msgstr "Vis denne meldingen igjen"
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Kjente problemer (internett)"
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
+msgstr "Sivilisasjon:"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"
@@ -1886,7 +1922,7 @@ msgstr "Bygninger konstrueres raskere i nærheten av han. "
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr ""
+msgstr "- Templer er billigere så lenge han er i live"
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -2018,7 +2054,7 @@ msgstr ""
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for a 2x attack bonus."
-msgstr ""
+msgstr "- Brukes mot kavaleri for en 2x angreps-bonus."
 
 #: gui/text/tips/spearmen.txt:6
 msgid ""
@@ -2122,7 +2158,7 @@ msgstr ""
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr ""
+msgstr "- Skip konstrueres raskere så lenge han er i live"
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."

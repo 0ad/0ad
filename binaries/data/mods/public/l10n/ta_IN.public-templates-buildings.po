@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-02-09 10:02+0000\n"
+"POT-Creation-Date: 2015-03-15 05:21+0100\n"
+"PO-Revision-Date: 2015-03-15 10:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/projects/p/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,6 @@ msgstr ""
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
 msgstr "நகரம்"
@@ -310,7 +309,6 @@ msgstr ""
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
-#: simulation/templates/structures/celt_kennel.xml:32
 msgid "Special Building"
 msgstr ""
 
@@ -329,7 +327,6 @@ msgid ""
 msgstr ""
 
 #: simulation/templates/structures/athen_barracks.xml:18
-#: simulation/templates/structures/hele_barracks.xml:20
 #: simulation/templates/structures/mace_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 msgid "Stratēgeîon"
@@ -341,7 +338,6 @@ msgid "Khalkeîon"
 msgstr ""
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
-#: simulation/templates/structures/hele_civil_centre.xml:12
 #: simulation/templates/structures/mace_civil_centre.xml:8
 #: simulation/templates/structures/sele_civil_centre.xml:8
 #: simulation/templates/structures/spart_civil_centre.xml:8
@@ -349,7 +345,6 @@ msgid "Agorā́"
 msgstr ""
 
 #: simulation/templates/structures/athen_corral.xml:12
-#: simulation/templates/structures/hele_corral.xml:16
 #: simulation/templates/structures/mace_corral.xml:12
 #: simulation/templates/structures/sele_corral.xml:12
 #: simulation/templates/structures/spart_corral.xml:12
@@ -357,7 +352,6 @@ msgid "Épaulos"
 msgstr ""
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
-#: simulation/templates/structures/hele_defense_tower.xml:15
 #: simulation/templates/structures/mace_defense_tower.xml:9
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
@@ -365,14 +359,12 @@ msgid "Pyrgíon"
 msgstr ""
 
 #: simulation/templates/structures/athen_dock.xml:12
-#: simulation/templates/structures/hele_dock.xml:16
 #: simulation/templates/structures/mace_dock.xml:12
 #: simulation/templates/structures/spart_dock.xml:12
 msgid "Limḗn"
 msgstr ""
 
 #: simulation/templates/structures/athen_farmstead.xml:12
-#: simulation/templates/structures/hele_farmstead.xml:16
 #: simulation/templates/structures/mace_farmstead.xml:12
 #: simulation/templates/structures/sele_farmstead.xml:12
 #: simulation/templates/structures/spart_farmstead.xml:12
@@ -380,7 +372,6 @@ msgid "Sītobólion"
 msgstr ""
 
 #: simulation/templates/structures/athen_field.xml:5
-#: simulation/templates/structures/hele_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
 #: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
@@ -392,29 +383,24 @@ msgid "Epiteíchisma"
 msgstr ""
 
 #: simulation/templates/structures/athen_fortress.xml:10
-#: simulation/templates/structures/hele_fortress.xml:16
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
 msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
-#: simulation/templates/structures/hele_gymnasion.xml:21
 msgid "Gymnasium"
 msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
-#: simulation/templates/structures/hele_gymnasion.xml:22
 msgid "Gymnásieon"
 msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:22
-#: simulation/templates/structures/hele_gymnasion.xml:23
 msgid "Train champion units."
 msgstr ""
 
 #: simulation/templates/structures/athen_house.xml:18
-#: simulation/templates/structures/hele_house.xml:18
 #: simulation/templates/structures/mace_house.xml:18
 #: simulation/templates/structures/sele_house.xml:18
 #: simulation/templates/structures/spart_house.xml:18
@@ -422,7 +408,6 @@ msgid "Oîkos"
 msgstr ""
 
 #: simulation/templates/structures/athen_market.xml:5
-#: simulation/templates/structures/hele_market.xml:11
 #: simulation/templates/structures/mace_market.xml:5
 #: simulation/templates/structures/sele_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
@@ -430,19 +415,16 @@ msgid "Empórion"
 msgstr ""
 
 #: simulation/templates/structures/athen_outpost.xml:5
-#: simulation/templates/structures/hele_outpost.xml:5
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
 msgstr ""
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
-#: simulation/templates/structures/hele_prytaneion.xml:21
 msgid "Council Chamber"
 msgstr ""
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
-#: simulation/templates/structures/hele_prytaneion.xml:22
 msgid "Prytaneîon"
 msgstr ""
 
@@ -451,7 +433,6 @@ msgid "Train heroes. Research special technologies."
 msgstr ""
 
 #: simulation/templates/structures/athen_storehouse.xml:5
-#: simulation/templates/structures/hele_storehouse.xml:11
 #: simulation/templates/structures/mace_storehouse.xml:5
 #: simulation/templates/structures/sele_storehouse.xml:5
 #: simulation/templates/structures/spart_storehouse.xml:5
@@ -459,12 +440,10 @@ msgid "Apothḗkē"
 msgstr ""
 
 #: simulation/templates/structures/athen_temple.xml:9
-#: simulation/templates/structures/hele_temple.xml:15
 msgid "Neṓs"
 msgstr ""
 
 #: simulation/templates/structures/athen_theatron.xml:32
-#: simulation/templates/structures/hele_theatron.xml:32
 #: simulation/templates/structures/mace_theatron.xml:32
 #: simulation/templates/structures/spart_theatron.xml:32
 #: simulation/templates/structures/theb_theatron.xml:32
@@ -472,7 +451,6 @@ msgid "Greek Theater"
 msgstr ""
 
 #: simulation/templates/structures/athen_theatron.xml:33
-#: simulation/templates/structures/hele_theatron.xml:33
 #: simulation/templates/structures/mace_theatron.xml:33
 #: simulation/templates/structures/spart_theatron.xml:33
 #: simulation/templates/structures/theb_theatron.xml:33
@@ -480,7 +458,6 @@ msgid "Théātron"
 msgstr ""
 
 #: simulation/templates/structures/athen_theatron.xml:35
-#: simulation/templates/structures/hele_theatron.xml:35
 #: simulation/templates/structures/mace_theatron.xml:35
 #: simulation/templates/structures/spart_theatron.xml:35
 #: simulation/templates/structures/theb_theatron.xml:35
@@ -490,7 +467,6 @@ msgid ""
 msgstr ""
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
-#: simulation/templates/structures/hele_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
 #: simulation/templates/structures/sele_wall_gate.xml:9
 #: simulation/templates/structures/spart_wall_gate.xml:9
@@ -501,10 +477,6 @@ msgstr ""
 #: simulation/templates/structures/athen_wall_medium.xml:10
 #: simulation/templates/structures/athen_wall_short.xml:10
 #: simulation/templates/structures/athen_wallset_stone.xml:5
-#: simulation/templates/structures/hele_wall_long.xml:10
-#: simulation/templates/structures/hele_wall_medium.xml:13
-#: simulation/templates/structures/hele_wall_short.xml:10
-#: simulation/templates/structures/hele_wallset_stone.xml:5
 #: simulation/templates/structures/mace_wall_long.xml:10
 #: simulation/templates/structures/mace_wall_medium.xml:10
 #: simulation/templates/structures/mace_wall_short.xml:10
@@ -521,7 +493,6 @@ msgid "Teîkhos"
 msgstr ""
 
 #: simulation/templates/structures/athen_wall_tower.xml:9
-#: simulation/templates/structures/hele_wall_tower.xml:9
 #: simulation/templates/structures/mace_wall_tower.xml:9
 #: simulation/templates/structures/sele_wall_tower.xml:9
 #: simulation/templates/structures/spart_wall_tower.xml:9
@@ -529,14 +500,12 @@ msgid "Pýrgos"
 msgstr ""
 
 #: simulation/templates/structures/athen_wonder.xml:17
-#: simulation/templates/structures/hele_wonder.xml:17
 #: simulation/templates/structures/mace_wonder.xml:17
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid "Neṓs Parthenos"
 msgstr ""
 
 #: simulation/templates/structures/athen_wonder.xml:19
-#: simulation/templates/structures/hele_wonder.xml:19
 #: simulation/templates/structures/mace_wonder.xml:19
 #: simulation/templates/structures/spart_wonder.xml:19
 msgid ""
@@ -545,25 +514,21 @@ msgid ""
 msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
-#: simulation/templates/structures/celt_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
 msgstr ""
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
-#: simulation/templates/structures/celt_blacksmith.xml:8
 #: simulation/templates/structures/gaul_blacksmith.xml:8
 msgid "Amoridas"
 msgstr ""
 
 #: simulation/templates/structures/brit_civil_centre.xml:9
-#: simulation/templates/structures/celt_civil_centre.xml:9
 #: simulation/templates/structures/gaul_civil_centre.xml:9
 msgid "Caer"
 msgstr ""
 
 #: simulation/templates/structures/brit_corral.xml:9
-#: simulation/templates/structures/celt_corral.xml:9
 #: simulation/templates/structures/gaul_corral.xml:9
 msgid "Cavalidos"
 msgstr ""
@@ -578,60 +543,49 @@ msgstr ""
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
-#: simulation/templates/structures/celt_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
 msgstr ""
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_wall_tower.xml:11
-#: simulation/templates/structures/celt_defense_tower.xml:9
-#: simulation/templates/structures/celt_wall_tower.xml:11
 #: simulation/templates/structures/gaul_defense_tower.xml:9
 #: simulation/templates/structures/gaul_wall_tower.xml:11
 msgid "Tyrau"
 msgstr ""
 
 #: simulation/templates/structures/brit_farmstead.xml:8
-#: simulation/templates/structures/celt_farmstead.xml:8
 #: simulation/templates/structures/gaul_farmstead.xml:12
 msgid "Ffermdy"
 msgstr ""
 
 #: simulation/templates/structures/brit_field.xml:5
-#: simulation/templates/structures/celt_field.xml:5
 #: simulation/templates/structures/gaul_field.xml:5
 msgid "Varmo"
 msgstr ""
 
 #: simulation/templates/structures/brit_fortress.xml:21
-#: simulation/templates/structures/celt_fortress_b.xml:21
 msgid "Brythonic Broch"
 msgstr ""
 
 #: simulation/templates/structures/brit_fortress.xml:22
-#: simulation/templates/structures/celt_fortress_b.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
 msgstr ""
 
 #: simulation/templates/structures/brit_house.xml:9
-#: simulation/templates/structures/celt_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
 msgid "Annedd"
 msgstr ""
 
 #: simulation/templates/structures/brit_kennel.xml:33
-#: simulation/templates/structures/celt_kennel.xml:33
 msgid "Kennel"
 msgstr ""
 
 #: simulation/templates/structures/brit_kennel.xml:35
-#: simulation/templates/structures/celt_kennel.xml:35
 msgid "Train Celtic war dogs."
 msgstr ""
 
 #: simulation/templates/structures/brit_market.xml:15
-#: simulation/templates/structures/celt_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
 msgid "Marchnaty"
 msgstr ""
@@ -666,13 +620,11 @@ msgid "Increase nearby farming output +25%."
 msgstr ""
 
 #: simulation/templates/structures/brit_storehouse.xml:8
-#: simulation/templates/structures/celt_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
 msgid "Ystordy"
 msgstr ""
 
 #: simulation/templates/structures/brit_temple.xml:19
-#: simulation/templates/structures/celt_temple.xml:19
 #: simulation/templates/structures/gaul_temple.xml:19
 msgid "Addoldy"
 msgstr ""
@@ -685,11 +637,6 @@ msgstr ""
 #: simulation/templates/structures/brit_wall_medium.xml:26
 #: simulation/templates/structures/brit_wall_short.xml:13
 #: simulation/templates/structures/brit_wallset_stone.xml:5
-#: simulation/templates/structures/celt_wall.xml:9
-#: simulation/templates/structures/celt_wall_long.xml:29
-#: simulation/templates/structures/celt_wall_medium.xml:26
-#: simulation/templates/structures/celt_wall_short.xml:13
-#: simulation/templates/structures/celt_wallset_stone.xml:5
 #: simulation/templates/structures/gaul_wall_long.xml:29
 #: simulation/templates/structures/gaul_wall_medium.xml:26
 #: simulation/templates/structures/gaul_wall_short.xml:13
@@ -698,13 +645,11 @@ msgid "Gwarchglawdd"
 msgstr ""
 
 #: simulation/templates/structures/brit_wall_tower.xml:13
-#: simulation/templates/structures/celt_wall_tower.xml:13
 #: simulation/templates/structures/gaul_wall_tower.xml:13
 msgid "Does not shoot or garrison."
 msgstr ""
 
 #: simulation/templates/structures/brit_wonder.xml:9
-#: simulation/templates/structures/celt_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
 msgid "Stonehenge"
 msgstr ""
@@ -854,27 +799,12 @@ msgstr ""
 msgid "Temple of Ba'al Hammon"
 msgstr ""
 
-#: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
 msgstr ""
 
-#: simulation/templates/structures/celt_fortress_g.xml:12
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr ""
-
-#: simulation/templates/structures/celt_outpost.xml:5
-msgid "Celtic Outpost"
-msgstr ""
-
-#: simulation/templates/structures/celt_slope_tower.xml:9
-#: simulation/templates/structures/celt_slope_wall.xml:9
-msgid "Earthworks"
-msgstr ""
-
-#: simulation/templates/structures/celt_wall_gate.xml:16
-msgid "Gate"
 msgstr ""
 
 #: simulation/templates/structures/gaul_outpost.xml:5
@@ -895,23 +825,6 @@ msgstr ""
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
-msgstr ""
-
-#: simulation/templates/structures/hele_blacksmith.xml:11
-#: simulation/templates/structures/mace_blacksmith.xml:5
-#: simulation/templates/structures/sele_blacksmith.xml:5
-msgid "Sidirourgeíon"
-msgstr ""
-
-#: simulation/templates/structures/hele_fortress.xml:15
-#: simulation/templates/structures/mace_fortress.xml:15
-#: simulation/templates/structures/spart_fortress.xml:9
-msgid "Teíchisma"
-msgstr ""
-
-#: simulation/templates/structures/hele_prytaneion.xml:23
-#: simulation/templates/structures/spart_gerousia.xml:23
-msgid "Train heroes."
 msgstr ""
 
 #: simulation/templates/structures/iber_barracks.xml:11
@@ -999,6 +912,16 @@ msgstr ""
 
 #: simulation/templates/structures/iber_wonder.xml:17
 msgid "Cancho Roano"
+msgstr ""
+
+#: simulation/templates/structures/mace_blacksmith.xml:5
+#: simulation/templates/structures/sele_blacksmith.xml:5
+msgid "Sidirourgeíon"
+msgstr ""
+
+#: simulation/templates/structures/mace_fortress.xml:15
+#: simulation/templates/structures/spart_fortress.xml:9
+msgid "Teíchisma"
 msgstr ""
 
 #: simulation/templates/structures/mace_fortress.xml:16
@@ -1386,22 +1309,22 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:8
-#: simulation/templates/structures/sele_military_colony.xml:8
+#: simulation/templates/structures/ptol_military_colony.xml:24
+#: simulation/templates/structures/sele_military_colony.xml:24
 msgid "Colony"
 msgstr "குடியிருப்பு"
 
-#: simulation/templates/structures/ptol_military_colony.xml:30
-#: simulation/templates/structures/sele_military_colony.xml:30
+#: simulation/templates/structures/ptol_military_colony.xml:46
+#: simulation/templates/structures/sele_military_colony.xml:46
 msgid "Military Colony"
 msgstr "ராணுவ குடியிருப்பு"
 
-#: simulation/templates/structures/ptol_military_colony.xml:31
-#: simulation/templates/structures/sele_military_colony.xml:31
+#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:47
 msgid "Klēroukhia"
 msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:34
+#: simulation/templates/structures/ptol_military_colony.xml:50
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1629,7 +1552,7 @@ msgid ""
 "for stout defense."
 msgstr ""
 
-#: simulation/templates/structures/sele_military_colony.xml:34
+#: simulation/templates/structures/sele_military_colony.xml:50
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1654,6 +1577,10 @@ msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerousia"
+msgstr ""
+
+#: simulation/templates/structures/spart_gerousia.xml:23
+msgid "Train heroes."
 msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:21

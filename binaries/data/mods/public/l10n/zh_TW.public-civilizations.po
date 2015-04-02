@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:56+0100\n"
-"PO-Revision-Date: 2015-02-13 10:52+0000\n"
-"Last-Translator: ryat <mj0011@yopmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-15 09:48+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,23 +42,19 @@ msgid ""
 msgstr "阿提卡的勞里厄姆的銀礦為最有名且昂貴的硬幣「雅典貓頭鷹」，提供了充足的原料。"
 
 #: civs/athen.jsonCivBonuses[1].Description
-#: civs/hele.jsonCivBonuses[1].Description
 #: civs/mace.jsonCivBonuses[2].Description
 #: civs/spart.jsonCivBonuses[2].Description
-#: civs/theb.jsonCivBonuses[2].Description
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
 msgstr "建造劇院以增加 +20% 所有建築的領土範圍。"
 
-#: civs/athen.jsonCivBonuses[1].Name civs/hele.jsonCivBonuses[1].Name
-#: civs/mace.jsonCivBonuses[2].Name civs/spart.jsonCivBonuses[2].Name
-#: civs/theb.jsonCivBonuses[2].Name
+#: civs/athen.jsonCivBonuses[1].Name civs/mace.jsonCivBonuses[2].Name
+#: civs/spart.jsonCivBonuses[2].Name
 msgid "Hellenization"
 msgstr "希臘化"
 
-#: civs/athen.jsonCivBonuses[1].History civs/hele.jsonCivBonuses[1].History
-#: civs/spart.jsonCivBonuses[2].History civs/theb.jsonCivBonuses[2].History
+#: civs/athen.jsonCivBonuses[1].History civs/spart.jsonCivBonuses[2].History
 msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
@@ -70,12 +66,10 @@ msgid "Ships construct 25% faster."
 msgstr "船的建造快 25％。"
 
 #: civs/athen.jsonTeamBonuses[0].Name
-#: civs/hele.jsonFactions[0].Technologies[1].Name
 msgid "Delian League"
 msgstr "提洛同盟"
 
 #: civs/athen.jsonTeamBonuses[0].History
-#: civs/hele.jsonFactions[0].Technologies[1].History
 msgid ""
 "Shortly after the great naval victories at Salamis and Mykale, the Greek "
 "city-states instituted the so-called Delian League in 478 B.C., whose "
@@ -84,7 +78,6 @@ msgid ""
 msgstr "在薩拉米斯及麥凱爾的海軍大勝利後不久，希臘城邦就在西元前 478 年成立所謂的提洛同盟，其目標是將波斯人驅離愛琴海地區。各個同盟城邦都貢獻了船艦或金錢，而雅典則貢獻了他們的整個海軍。"
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
-#: civs/hele.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
 msgstr "地米斯托克利"
 
@@ -100,7 +93,7 @@ msgstr "客蒙"
 msgid "Aristides"
 msgstr "阿里斯提德"
 
-#: civs/athen.jsonAINames[4] civs/hele.jsonFactions[0].Heroes[2].Name
+#: civs/athen.jsonAINames[4]
 msgid "Xenophon"
 msgstr "色諾芬"
 
@@ -177,7 +170,6 @@ msgid ""
 msgstr "玩家獲得命令裝備矛的單位進入方陣以提供更強的攻擊及防禦的能力。"
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
-#: civs/hele.jsonFactions[0].Technologies[0].Name
 #: civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
 msgstr "肉搏戰"
@@ -191,7 +183,6 @@ msgid ""
 msgstr "經典的方陣陣型是大約在西元前八世紀被發展出來的。由縱向八人、橫向八百人所組成。以許多的盾牌構成了盾牆，並有著滿滿的 8 呎長矛。"
 
 #: civs/athen.jsonFactions[0].Heroes[0].History
-#: civs/hele.jsonFactions[0].Heroes[0].History
 msgid ""
 "The general whom persuaded the Athenians to invest their income from silver "
 "mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
@@ -213,10 +204,6 @@ msgstr "伯里克里斯是西元前 5 世紀時，雅典最重要的政治家。
 #: civs/ptol.jsonFactions[0].Heroes[1].History
 #: civs/ptol.jsonFactions[0].Heroes[2].History
 #: civs/sele.jsonCivBonuses[0].History civs/sele.jsonStructures[1].History
-#: civs/theb.jsonFactions[0].Heroes[0].History
-#: civs/theb.jsonFactions[0].Heroes[1].History
-#: civs/theb.jsonFactions[0].Heroes[2].History
-#: civs/theb.jsonStructures[1].Special
 msgid "."
 msgstr "。"
 
@@ -224,29 +211,26 @@ msgstr "。"
 msgid "A Hellenic people of the Ionian tribe."
 msgstr "希臘愛奧尼亞部落的族民。"
 
-#: civs/athen.jsonStructures[0].Name civs/hele.jsonStructures[0].Name
-#: civs/mace.jsonStructures[0].Name civs/spart.jsonStructures[0].Name
-#: civs/theb.jsonStructures[0].Name
+#: civs/athen.jsonStructures[0].Name civs/mace.jsonStructures[0].Name
+#: civs/spart.jsonStructures[0].Name
 msgid "Theatron"
 msgstr "劇院"
 
 #: civs/athen.jsonStructures[0].Special civs/spart.jsonStructures[0].Special
-#: civs/theb.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
 msgstr "希臘化的文明獎勵。建造劇院以使所有建築物的領土影響範圍增加 25%。"
 
-#: civs/athen.jsonStructures[0].History civs/hele.jsonStructures[0].History
-#: civs/mace.jsonStructures[0].History civs/spart.jsonStructures[0].History
-#: civs/theb.jsonStructures[0].History
+#: civs/athen.jsonStructures[0].History civs/mace.jsonStructures[0].History
+#: civs/spart.jsonStructures[0].History
 msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
 msgstr "古希臘劇院是眾多戲劇家為大眾上演精彩戲劇的地方。像是埃斯庫羅斯和索福克勒斯等悲劇作家，以及其他有才華的劇作家上演各種喜劇。這些都有助於豐富希臘的文化。"
 
-#: civs/athen.jsonStructures[1].Name civs/hele.jsonStructures[1].Name
+#: civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
 msgstr "體育館"
 
@@ -255,13 +239,13 @@ msgid ""
 "Train champion units and research technologies pertaining to champion units."
 msgstr "訓練精英單位和研究有關精英單位的科技。"
 
-#: civs/athen.jsonStructures[1].History civs/hele.jsonStructures[1].History
+#: civs/athen.jsonStructures[1].History
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
 msgstr "在古希臘的城邦中，體育館是一個重要的設施，在那裡可以進行社交活動及體能訓練。"
 
-#: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
+#: civs/athen.jsonStructures[2].Name
 msgid "Prytaneion"
 msgstr "市政廳"
 
@@ -269,7 +253,7 @@ msgstr "市政廳"
 msgid "Train heroes and research technology pertaining to heroes."
 msgstr "訓練英雄單位和研究有關英雄單位的科技。"
 
-#: civs/athen.jsonStructures[2].History civs/hele.jsonStructures[2].History
+#: civs/athen.jsonStructures[2].History
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
@@ -284,72 +268,59 @@ msgid ""
 msgstr "作為西方文明的發源地，以及民主政治的誕生地，雅典是藝術、教育及哲學中心。雅典的戰士也非常強大，特別是在海上。巔峰時期，雅典統治了希臘大多數的領土數十年。"
 
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
-#: civs/celt.jsonFactions[0].Name
 msgid "Britons"
 msgstr "不列顛人"
 
 #: civs/brit.jsonCivBonuses[0].Description
-#: civs/celt.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
 msgstr "透過放牧和耕種來增加食物的收穫。"
 
-#: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
-#: civs/gaul.jsonCivBonuses[0].Name
+#: civs/brit.jsonCivBonuses[0].Name civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
 msgstr "Ardiosmanae"
 
-#: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
-#: civs/gaul.jsonCivBonuses[0].History
+#: civs/brit.jsonCivBonuses[0].History civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
 msgstr "展示塞爾特人的耕作方式。"
 
 #: civs/brit.jsonCivBonuses[1].Description
-#: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
 msgstr "德魯依略為增加其附近士兵的攻擊速度。"
 
-#: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
-#: civs/gaul.jsonCivBonuses[1].Name
+#: civs/brit.jsonCivBonuses[1].Name civs/gaul.jsonCivBonuses[1].Name
 msgid "Deas Celtica"
 msgstr "塞爾特人迪斯"
 
-#: civs/brit.jsonCivBonuses[1].History civs/celt.jsonCivBonuses[1].History
-#: civs/gaul.jsonCivBonuses[1].History
+#: civs/brit.jsonCivBonuses[1].History civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "塞爾特人的宗教信仰及德魯伊激發了他們的好戰心態。"
 
 #: civs/brit.jsonTeamBonuses[0].Description
-#: civs/celt.jsonTeamBonuses[0].Description
 #: civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
 msgstr "科技研發速度獎勵。"
 
-#: civs/brit.jsonTeamBonuses[0].Name civs/celt.jsonTeamBonuses[0].Name
-#: civs/gaul.jsonTeamBonuses[0].Name
+#: civs/brit.jsonTeamBonuses[0].Name civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druides"
 msgstr "德魯伊"
 
-#: civs/brit.jsonTeamBonuses[0].History civs/celt.jsonTeamBonuses[0].History
-#: civs/gaul.jsonTeamBonuses[0].History
+#: civs/brit.jsonTeamBonuses[0].History civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
 msgstr "塞爾特人的德魯伊保持著有組織的宗教，以便即使是在戰時也能推動科技進步。"
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
-#: civs/celt.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
 msgstr "Karatakos"
 
 #: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
-#: civs/celt.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
 msgstr "庫諾貝林諾斯"
 
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
-#: civs/celt.jsonFactions[0].Heroes[2].Name
 msgid "Boudicca"
 msgstr "布狄卡"
 
@@ -386,17 +357,14 @@ msgid "Vosenius"
 msgstr "Vosenius"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Description
-#: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
 msgstr "增加近戰士兵的攻擊力及移動速度。"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
-#: civs/celt.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
 msgstr "Sevili Dusios"
 
 #: civs/brit.jsonFactions[0].Technologies[0].History
-#: civs/celt.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
@@ -404,17 +372,14 @@ msgid ""
 msgstr "不列顛人開始透過紋身來在身上留下永久性的印記，或是在他們的身體塗上靛藍色的漆做為臨時標記，來震懾對手。"
 
 #: civs/brit.jsonFactions[0].Technologies[1].Description
-#: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
 msgstr "增加駐守在塔裡單位的高度獎勵。"
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
-#: civs/celt.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
 msgstr "Turos Maros"
 
 #: civs/brit.jsonFactions[0].Technologies[1].History
-#: civs/celt.jsonFactions[0].Technologies[1].History
 msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
@@ -422,7 +387,6 @@ msgid ""
 msgstr "「高塔」：許多塞爾特人的傳說中都有提到，是由強大的國王所建造的大型高塔，且一些非常大型的高塔遺蹟已經被發現了。"
 
 #: civs/brit.jsonFactions[0].Heroes[0].History
-#: civs/celt.jsonFactions[0].Heroes[0].History
 msgid ""
 "Caractacus, the Roman form, is a simple change from Karatakos, his actual "
 "name, which was printed on his many, many coins. Under this name he is "
@@ -477,7 +441,6 @@ msgid ""
 msgstr "庫諾貝利諾斯 (Kunobelinos) ，其名可能以拉丁語寫法邱諾貝林 (Cunobelin) 較為人熟知，曾是卡托瓦拉尼 (Catuvellauni) 的強大統治者。他被羅馬人稱作「不列顛之王」。他從卡姆樓墩倫姆 (Camulodunum)，也就是現今的高車士打 (Colchester)  開始擴張。他趁羅馬於條頓堡森林一役（即日爾曼尼亞之禍）被擊敗之時，藉機征服與羅馬為盟的鄰近部落：初來諾凡提斯 (Trinovantes)，而此時羅馬無力給予援助。庫諾貝利諾斯對羅馬的態度似乎漠不在乎，雖然在他的統治之下與羅馬人自由貿易，但卻幾無顧慮地征服與羅馬同盟的部落，還送三子阿得命你由斯 (Adminius) 以人質身份在羅馬高庭接受教育；阿得命你由斯為何對羅馬態度友善可能原由於此。後來庫諾貝利諾斯使其掌管座落在肯特 (Kent) 的坎塔希 (Cantaci)，此區域乃是羅馬在不列顛發揮影響與進行交易的主要地區。庫諾貝利諾斯精明地發現他最小的兒子與羅馬、高盧羅馬的掌權政治人物、貿易家友好，正好適合管理該地。然而，他其餘二位兒子卻對羅馬人毫無情感，當庫諾貝利諾斯一死，即位的土格丹姆諾斯 (Togdumnos) 便逮捕、處決或驅逐許多羅馬親近者，其中包括他的弟弟阿得命你由斯，並廢黜阿特雷巴特人 (Atrebates) 國王維利卡 (Verica)，後來國王懇求羅馬帝國看在兩國間的關係上協助收復失土 ─ 此即羅馬入侵之始。土格丹姆諾斯於與羅馬人的戰爭中死亡，後來由兄弟卡拉塔可斯繼位。說來諷刺，引起羅馬藉口入侵的導火線竟是因為三子親近羅馬。總結來看，庫諾貝利諾斯在位期間，是歷任不列顛國王之中最輝煌的一位。他征服了不列顛南半部絕大部分地區（他統治時期的錢幣流通地區遠及今日所知威爾斯的邊界）。他最初僅掌控由四個小部落構成的卡圖維勞尼邦聯 (Catuvellauni)，後來陸續征服大量土地，並被尊為「不列顛國王」。不列顛國王的稱號非常偉大，以致後來坎布里亞 (Cambria) 的部落還協助庫諾貝利諾斯的兒子對抗羅馬人及其不列顛同盟，甚至到後羅馬不列顛時期人民 (post-Roman Britons) 更推崇他為民族英雄；對於戰國征服者、國家統一者等的美好想望，是後羅馬不列顛時期或稱羅馬治不列顛時期人民 (Romano-British) 熱切期盼的。"
 
 #: civs/brit.jsonFactions[0].Heroes[2].History
-#: civs/celt.jsonFactions[0].Heroes[2].History
 msgid ""
 "Ammianus Marcellinus described how difficult it would be for a band of "
 "foreigners to deal with a Celt if he called in the help of his wife. For she"
@@ -775,184 +738,21 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "迦太基是個城邦，約位在今日的突尼西亞，曾是地中海西部強大的力量，在西元前三世紀征服現今的北非及西班牙。迦太基的水手在公海是強大的爭奪者，同時也精通海上貿易。他們在戰場上部署戰象以造成敵方的震懾，並像防禦城牆那麼強，他們從不毀約。"
 
-#: civs/celt.jsonName
-msgid "Celts"
-msgstr "塞爾特人"
-
-#: civs/celt.jsonFactions[0].Heroes[1].History
-msgid ""
-"Kunobelinos, perhaps better known by the latinized form of Cunobelin, was a "
-"powerful ruler centered in the territory around modern day Colchester. "
-"Ruling the Catuvellauni from Kamulodunon(better known as Camulodunum), he "
-"was a warrior king who conquered a neighboring tribe, the Trinovantes, and "
-"was referred to by the Romans as the King of the Britons. The Trinovantes, "
-"while having been Roman allies, were not able to call for Roman aide, as "
-"they were conquered shortly after the Roman's own disaster in Germania. "
-"Kunobelinos died of disease after subjugating the great majority of the "
-"southern half of Britain (his coins were being minted as far as the borders "
-"of what would become Wales). When he died, his son Togdumnos replaced him, "
-"who died in battle with the Romans, and was subsequently replaced by his "
-"brother, Karatakos. It is an irony that it was his third son that initially "
-"invited this Roman reprisal. Kunobelinos seems to have been indifferent to "
-"the Romans. He traded with them freely, but had few qualms subjugating known"
-" Roman allies, and even sent Adminius as a fosterling to be educated in "
-"Roman Gaul. This accounted for Adminius's friendships among the Romans, and "
-"he was given lordship over the Cantaci, who inhabited Kent, by his father. "
-"This area was the prime area of Roman influence and trade in Britain, and he"
-" shrewdly observed his youngest son's friendship with powerful Roman and "
-"Gallo-Roman politicians and traders would be of use administrating the "
-"region. His other sons though had no love for the Romans, and when "
-"Kunobelinos died, Togdumnos, now king, arrested, executed, or expelled "
-"numerous Roman sympathizers, including his own brother Adminius, and the "
-"deposed Atrebates king, Verica, who appealed to their connections in the "
-"Roman Empire for aide in recovering their lands. Kunobelinos in his own time"
-" though was possibly one of the greatest of all British kings. He conquered "
-"huge portions of land from originally ruling over only four minor tribes in "
-"a confederation, the Catuvellauni, and achieved recognition as king of "
-"Britain. This recognition was so great that tribes in Cambria even came to "
-"assist his sons against the Romans and their British allies, and Kunobelinos"
-" was held up by the post-Roman Britons as one of their great heroes; a "
-"conqueror and uniter of petty kingdoms, something the post-Roman Britons or "
-"Romano-British sorely needed."
-msgstr "庫諾貝利諾斯 (Kunobelinos) ，其名可能以拉丁語寫法邱諾貝林 (Cunobelin) 較為人熟知，曾是卡托瓦拉尼 (Catuvellauni) 的強大統治者。他被羅馬人稱作「不列顛之王」。他從卡姆樓墩倫姆 (Camulodunum)，也就是現今的高車士打 (Colchester)  開始擴張。他趁羅馬於條頓堡森林一役（即日爾曼尼亞之禍）被擊敗之時，藉機征服與羅馬為盟的鄰近部落：初來諾凡提斯 (Trinovantes)，而此時羅馬無力給予援助。庫諾貝利諾斯對羅馬的態度似乎漠不在乎，雖然在他的統治之下與羅馬人自由貿易，但卻幾無顧慮地征服與羅馬同盟的部落，還送三子阿得命你由斯 (Adminius) 以人質身份在羅馬高庭接受教育；阿得命你由斯為何對羅馬態度友善可能原由於此。後來庫諾貝利諾斯使其掌管座落在肯特 (Kent) 的坎塔希 (Cantaci)，此區域乃是羅馬在不列顛發揮影響與進行交易的主要地區。庫諾貝利諾斯精明地發現他最小的兒子與羅馬、高盧羅馬的掌權政治人物、貿易家友好，正好適合管理該地。然而，他其餘二位兒子卻對羅馬人毫無情感，當庫諾貝利諾斯一死，即位的土格丹姆諾斯 (Togdumnos) 便逮捕、處決或驅逐許多羅馬親近者，其中包括他的弟弟阿得命你由斯，並廢黜阿特雷巴特人 (Atrebates) 國王維利卡 (Verica)，後來國王懇求羅馬帝國看在兩國間的關係上協助收復失土 ─ 此即羅馬入侵之始。土格丹姆諾斯於與羅馬人的戰爭中死亡，後來由兄弟卡拉塔可斯繼位。說來諷刺，引起羅馬藉口入侵的導火線竟是因為三子親近羅馬。總結來看，庫諾貝利諾斯在位期間，是歷任不列顛國王之中最輝煌的一位。他征服了不列顛南半部絕大部分地區（他統治時期的錢幣流通地區遠及今日所知威爾斯的邊界）。他最初僅掌控由四個小部落構成的卡圖維勞尼邦聯 (Catuvellauni)，後來陸續征服大量土地，並被尊為「不列顛國王」。不列顛國王的稱號非常偉大，以致後來坎布里亞 (Cambria) 的部落還協助庫諾貝利諾斯的兒子對抗羅馬人及其不列顛同盟，甚至到後羅馬不列顛時期人民 (post-Roman Britons) 更推崇他為民族英雄；對於戰國征服者、國家統一者等的美好想望，是後羅馬不列顛時期或稱羅馬治不列顛時期人民 (Romano-British) 熱切期盼的。"
-
-#: civs/celt.jsonFactions[0].Description
-msgid "British Isles"
-msgstr "不列顛群島"
-
-#: civs/celt.jsonFactions[1].Technologies[0].Description
-msgid ""
-"A set amount of ore and food from every structure destroyed or captured "
-msgstr "每個摧毀或佔領的建築物都會給予一定量的食物及礦產資源"
-
-#: civs/celt.jsonFactions[1].Technologies[0].Name
-#: civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Uae Uictos"
-msgstr "Uae Uictos"
-
-#: civs/celt.jsonFactions[1].Technologies[0].History
-msgid ""
-"Means Woe to the Defeated  It was the words that the Gallic Leader, Brennos,"
-" spoke at the Capitol at Rome after they took their plunder."
-msgstr "被打敗就意味著災難，這是高盧領袖布倫努斯在攻佔並掠奪了羅馬後，在古羅馬的丘比特神殿說的。"
-
-#: civs/celt.jsonFactions[1].Technologies[1].Description
-#: civs/gaul.jsonFactions[0].Technologies[1].Description
-msgid "Gallic druids gain a small melee attack."
-msgstr "高盧的德魯伊增加些微的近戰攻擊力。"
-
-#: civs/celt.jsonFactions[1].Technologies[1].Name
-#: civs/gaul.jsonFactions[0].Technologies[1].Name
-msgid "Carnutes"
-msgstr "卡爾努特斯"
-
-#: civs/celt.jsonFactions[1].Technologies[1].History
-#: civs/gaul.jsonFactions[0].Technologies[1].History
-msgid ""
-"The Carnutes were druids from Aulercia. They fought when needed, and were "
-"largely responsible for turning back the Belgae incursions into Armorica and"
-" Aulercia."
-msgstr "卡努特斯是來自 Aulercia 的德魯伊。他們在需要時會義無反顧的戰鬥，並且是阻止貝爾蓋人對 Armorica 及 Aulercia 入侵的主要戰力。"
-
-#: civs/celt.jsonFactions[1].Heroes[0].History
-#: civs/gaul.jsonFactions[0].Heroes[0].History
-msgid ""
-"When celt armies met the enemy, before the battle would start, the celt "
-"leader would go to the first line and challenge the bravest of the enemy "
-"warriors to a single combat. The story of how Marcus Claudius Marcellus "
-"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a smallish army, Marcellus met a combined force "
-"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
-" the usual rush and terrifying cries, and their king, Britomartos, picking "
-"out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Britomartos was an outstanding figure "
-"not only for his size but also for his adornments; for he was resplendent in"
-" bright colors and his armor shone with gold and silver. This armor, thought"
-" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
-"pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Britomartos and strip him of his armor."
-msgstr "當塞爾特軍隊遇到敵人，在戰鬥開始前，塞爾特這一邊的領導人會到最前線與敵方最勇敢的戰士進行一對一的戰鬥。一個關於馬克盧斯如何在 Clastidium 一戰（西元前222年）殺死高盧的一個酋長的故事，就是這種事情的典型。以一個相當小的軍隊前進，馬克盧斯在 Clastidium 遇到了高盧的 Insubrian 及 Gaesatae。高盧軍隊以相當稀鬆平常的方式衝鋒及發出駭人的戰嚎，而他們的國王，Britomarto，因他的階級徽章而挑選出了馬克盧斯，並以他自己的方式挑戰並揮舞著長矛。Britomarto 是一位傑出的人物，不只是他身上的裝飾品，更是因為他的名聲；因為他曾經輝煌，而且他的盔甲上閃耀著黃金以及白銀。馬克盧斯心想這件盔甲會是一個給神的適當祭品，他衝向 Britomarto，刺穿他亮晃晃的胸甲，然後把他丟在地上。對馬克盧斯來說，殺了 Britomarto 並奪取他的盔甲是一件相當容易的事情。"
-
-#: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
-#: civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Britomartos"
-msgstr "Britomartos"
-
-#: civs/celt.jsonFactions[1].Heroes[1].History
-#: civs/gaul.jsonFactions[0].Heroes[1].History
-msgid ""
-"Brennus is the name which the Roman historians give to the famous leader of "
-"the Gauls who took Rome in the time of Camillus. According to Geoffrey of "
-"Monmouth, the cleric who wrote “History of the Kings of Britain”, Brennus "
-"and his brother Belinus invaded Gaul and sacked Rome in 390 B.C., 'proving' "
-"that Britons had conquered Rome, the greatest civilization in the world, "
-"long before Rome conquered the Britons. We know from many ancient sources "
-"which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennos (which was latinized to "
-"Brennus), but he and his invading horde were Gallic Senones, not British. In"
-" this episode several features of Geoffrey's editing method can be seen: he "
-"modified the historical Brennus/Brennos, created the brother Belinus, "
-"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
-"weak or foolish. His technique is both additive and subtractive. Like the "
-"tale of Trojan origin, the story of the sack of Rome is not pure "
-"fabrication; it is a creative rearrangement of the available facts, with "
-"details added as necessary. By virtue of their historical association, Beli "
-"and Bran are often muddled with the earlier brothers Belinus and Brennus "
-"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
-" in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr "布倫努斯是一個在羅馬的歷史學家眼中，與羅馬的卡米盧斯齊名的高盧領袖。根據編寫「不列顛國王史」的蒙茅斯的杰弗里牧師，布倫努斯和他的兄弟 Belinus 於西元前390年入侵高盧並戰勝羅馬，「證明」了不列顛人在羅馬，這個世界上最偉大的文明，征服不列顛前就已經征服了他們。我們可以從許多比杰弗里更早的來源中知道，羅馬的確被戰勝了，但是在西元前387年而非390年，並且是由一個名為 Brennos（拉丁名為 Brennus，即布倫努斯）的人主導突襲，但他入侵的部落為高盧的 Senones，而非不列顛。在這裡我們可以看到杰弗里的幾個編輯特點，他修改了歷史上的倫努斯／Brenno，並創造了他的兄弟 Belinus，借用了高盧的入侵，但省略了其中塞爾特人看似較脆弱或愚蠢的部份。他的手法同時有加分及扣分的效果。像是木馬原始的故事，以及羅馬戰敗的故事並不是純屬捏造，它們是真實故事的創意重組，並添加了一些必要的細節。因為他們的歷史關聯，Beli 及 Bran 經常會與在西元前390年，在北不列顛爭權奪利的較早期的兄弟 Belinus 及布倫努斯（Dunvallo Molmutius 的兒子）混淆在一起，並被視為舊塞爾特傳統的神。"
-
-#: civs/celt.jsonFactions[1].Heroes[1].Name civs/gaul.jsonAINames[1]
-#: civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennos"
-msgstr "布倫努斯"
-
-#: civs/celt.jsonFactions[1].Heroes[2].History
-#: civs/gaul.jsonFactions[0].Heroes[2].History
-msgid ""
-"Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni "
-"tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against "
-"the invading Romans under Julius Caesar, his actions during the revolt are "
-"remembered to this day. Vercingetorix was probably born near his tribes "
-"capital (Gergovia). From what little info we have Vercingetorix was probably"
-" born in 72 B.C., his father was Celtius and we don't know who his mother "
-"was. Because we only know of him from Roman sources we don't know much about"
-" Vercingetorix as a child or young man, except that perhaps he was probably "
-"very high spirited and probably gained some renown in deeds."
-msgstr "維欽托利（高盧語：Ver-Rix Cingetos）是高盧（現今的法國）阿維爾尼人的部落首領。從西元前52年開始，他領導高盧人民試圖將入侵的凱撒及其軍隊趕出高盧，他在起義期間的勇猛行為至今仍會被記得。維欽托利可能是在他部落的重要都市（Gergovia）附近出生的。從極少量的資訊中，我們可以猜測維欽托利生於西元前72年，他的父親是 Celtius，但我們並不知道他的母親是誰。因為我們只能從羅馬的記載中得知他的相關資訊，所以我們並不知道他幼年或少年時期發生的事情，只知道他可能有崇高的精神及關於他名聲的一些事蹟。"
-
-#: civs/celt.jsonFactions[1].Heroes[2].Name civs/gaul.jsonAINames[2]
-#: civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Uerkingetorix"
-msgstr "Uerkingetorix"
-
-#: civs/celt.jsonFactions[1].Name civs/gaul.jsonName
-#: civs/gaul.jsonFactions[0].Name
+#: civs/gaul.jsonName civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "高盧人"
 
-#: civs/celt.jsonFactions[1].Description
-msgid "Mainland Europe"
-msgstr "歐洲大陸"
+#: civs/gaul.jsonAINames[0] civs/gaul.jsonFactions[0].Heroes[0].Name
+msgid "Britomartos"
+msgstr "Britomartos"
 
-#: civs/celt.jsonStructures[0].Name civs/gaul.jsonStructures[0].Name
-msgid "Melonas"
-msgstr "Melonas"
+#: civs/gaul.jsonAINames[1] civs/gaul.jsonFactions[0].Heroes[1].Name
+msgid "Brennos"
+msgstr "布倫努斯"
 
-#: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
-msgid "The Celts developed the first rotary flour mill."
-msgstr "塞爾特人研發出了第一臺旋轉式磨粉機。"
-
-#: civs/celt.jsonHistory
-msgid ""
-"At its peak (around 200 B.C.), the massive Celtic Empire spanned from Spain "
-"to Romania and Northern Italy to Scotland; although it wasn't a true empire "
-"because the Celtic people were not united by any form of government, but "
-"only in language and various social aspects. Their lack of any cohesion was "
-"probably the largest contributing factor to their ultimate submission to "
-"Rome by 100 A.D. The other contributing factors were their lack of armor and"
-" their inability to counter the mighty legions and siege weapons of Rome."
-msgstr "在其顛峰時期（大約在西元前200年），巨大的塞爾特帝國橫跨西班牙到羅馬尼亞，以及北義大利到蘇格蘭；雖然它並不是一個真正的帝國，因為塞爾特人並沒有被任何形式的政府所統一，而僅僅只有在語言及其他社會層面相同。他們缺乏凝聚力可能是導致最終於西元100年時屈服於羅馬人的主要原因，其他原因則是他們缺乏裝甲，無力對抗羅馬強大的軍團及攻城武器。"
+#: civs/gaul.jsonAINames[2] civs/gaul.jsonFactions[0].Heroes[2].Name
+msgid "Uerkingetorix"
+msgstr "Uerkingetorix"
 
 #: civs/gaul.jsonAINames[3]
 msgid "Divico"
@@ -983,15 +783,96 @@ msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "每個摧毀或佔領的建築物都會給予一定量的金屬及食物。"
 
+#: civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Uae Uictos"
+msgstr "Uae Uictos"
+
 #: civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
 " spoke at the Capitol at Rome after they took their plunder."
 msgstr "被打敗就意味著災難，這是高盧領袖布倫努斯在攻佔並掠奪了羅馬後，在古羅馬的丘比特神殿說的。"
 
+#: civs/gaul.jsonFactions[0].Technologies[1].Description
+msgid "Gallic druids gain a small melee attack."
+msgstr "高盧的德魯伊增加些微的近戰攻擊力。"
+
+#: civs/gaul.jsonFactions[0].Technologies[1].Name
+msgid "Carnutes"
+msgstr "卡爾努特斯"
+
+#: civs/gaul.jsonFactions[0].Technologies[1].History
+msgid ""
+"The Carnutes were druids from Aulercia. They fought when needed, and were "
+"largely responsible for turning back the Belgae incursions into Armorica and"
+" Aulercia."
+msgstr "卡努特斯是來自 Aulercia 的德魯伊。他們在需要時會義無反顧的戰鬥，並且是阻止貝爾蓋人對 Armorica 及 Aulercia 入侵的主要戰力。"
+
+#: civs/gaul.jsonFactions[0].Heroes[0].History
+msgid ""
+"When celt armies met the enemy, before the battle would start, the celt "
+"leader would go to the first line and challenge the bravest of the enemy "
+"warriors to a single combat. The story of how Marcus Claudius Marcellus "
+"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
+"encounters. Advancing with a smallish army, Marcellus met a combined force "
+"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
+" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"out Marcellus by means of his badges of rank, made for him, shouting a "
+"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"not only for his size but also for his adornments; for he was resplendent in"
+" bright colors and his armor shone with gold and silver. This armor, thought"
+" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
+"pierced his bright breastplate and cast him to the ground. It was an easy "
+"task to kill Britomartos and strip him of his armor."
+msgstr "當塞爾特軍隊遇到敵人，在戰鬥開始前，塞爾特這一邊的領導人會到最前線與敵方最勇敢的戰士進行一對一的戰鬥。一個關於馬克盧斯如何在 Clastidium 一戰（西元前222年）殺死高盧的一個酋長的故事，就是這種事情的典型。以一個相當小的軍隊前進，馬克盧斯在 Clastidium 遇到了高盧的 Insubrian 及 Gaesatae。高盧軍隊以相當稀鬆平常的方式衝鋒及發出駭人的戰嚎，而他們的國王，Britomarto，因他的階級徽章而挑選出了馬克盧斯，並以他自己的方式挑戰並揮舞著長矛。Britomarto 是一位傑出的人物，不只是他身上的裝飾品，更是因為他的名聲；因為他曾經輝煌，而且他的盔甲上閃耀著黃金以及白銀。馬克盧斯心想這件盔甲會是一個給神的適當祭品，他衝向 Britomarto，刺穿他亮晃晃的胸甲，然後把他丟在地上。對馬克盧斯來說，殺了 Britomarto 並奪取他的盔甲是一件相當容易的事情。"
+
+#: civs/gaul.jsonFactions[0].Heroes[1].History
+msgid ""
+"Brennus is the name which the Roman historians give to the famous leader of "
+"the Gauls who took Rome in the time of Camillus. According to Geoffrey of "
+"Monmouth, the cleric who wrote “History of the Kings of Britain”, Brennus "
+"and his brother Belinus invaded Gaul and sacked Rome in 390 B.C., 'proving' "
+"that Britons had conquered Rome, the greatest civilization in the world, "
+"long before Rome conquered the Britons. We know from many ancient sources "
+"which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
+"that the raid was led by a man named Brennos (which was latinized to "
+"Brennus), but he and his invading horde were Gallic Senones, not British. In"
+" this episode several features of Geoffrey's editing method can be seen: he "
+"modified the historical Brennus/Brennos, created the brother Belinus, "
+"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
+"weak or foolish. His technique is both additive and subtractive. Like the "
+"tale of Trojan origin, the story of the sack of Rome is not pure "
+"fabrication; it is a creative rearrangement of the available facts, with "
+"details added as necessary. By virtue of their historical association, Beli "
+"and Bran are often muddled with the earlier brothers Belinus and Brennus "
+"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
+" in around 390 B.C., and were regarded as gods in old Celtic tradition."
+msgstr "布倫努斯是一個在羅馬的歷史學家眼中，與羅馬的卡米盧斯齊名的高盧領袖。根據編寫「不列顛國王史」的蒙茅斯的杰弗里牧師，布倫努斯和他的兄弟 Belinus 於西元前390年入侵高盧並戰勝羅馬，「證明」了不列顛人在羅馬，這個世界上最偉大的文明，征服不列顛前就已經征服了他們。我們可以從許多比杰弗里更早的來源中知道，羅馬的確被戰勝了，但是在西元前387年而非390年，並且是由一個名為 Brennos（拉丁名為 Brennus，即布倫努斯）的人主導突襲，但他入侵的部落為高盧的 Senones，而非不列顛。在這裡我們可以看到杰弗里的幾個編輯特點，他修改了歷史上的倫努斯／Brenno，並創造了他的兄弟 Belinus，借用了高盧的入侵，但省略了其中塞爾特人看似較脆弱或愚蠢的部份。他的手法同時有加分及扣分的效果。像是木馬原始的故事，以及羅馬戰敗的故事並不是純屬捏造，它們是真實故事的創意重組，並添加了一些必要的細節。因為他們的歷史關聯，Beli 及 Bran 經常會與在西元前390年，在北不列顛爭權奪利的較早期的兄弟 Belinus 及布倫努斯（Dunvallo Molmutius 的兒子）混淆在一起，並被視為舊塞爾特傳統的神。"
+
+#: civs/gaul.jsonFactions[0].Heroes[2].History
+msgid ""
+"Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni "
+"tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against "
+"the invading Romans under Julius Caesar, his actions during the revolt are "
+"remembered to this day. Vercingetorix was probably born near his tribes "
+"capital (Gergovia). From what little info we have Vercingetorix was probably"
+" born in 72 B.C., his father was Celtius and we don't know who his mother "
+"was. Because we only know of him from Roman sources we don't know much about"
+" Vercingetorix as a child or young man, except that perhaps he was probably "
+"very high spirited and probably gained some renown in deeds."
+msgstr "維欽托利（高盧語：Ver-Rix Cingetos）是高盧（現今的法國）阿維爾尼人的部落首領。從西元前52年開始，他領導高盧人民試圖將入侵的凱撒及其軍隊趕出高盧，他在起義期間的勇猛行為至今仍會被記得。維欽托利可能是在他部落的重要都市（Gergovia）附近出生的。從極少量的資訊中，我們可以猜測維欽托利生於西元前72年，他的父親是 Celtius，但我們並不知道他的母親是誰。因為我們只能從羅馬的記載中得知他的相關資訊，所以我們並不知道他幼年或少年時期發生的事情，只知道他可能有崇高的精神及關於他名聲的一些事蹟。"
+
 #: civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "歐洲大陸的塞爾特人。"
+
+#: civs/gaul.jsonStructures[0].Name
+msgid "Melonas"
+msgstr "Melonas"
+
+#: civs/gaul.jsonStructures[0].History
+msgid "The Celts developed the first rotary flour mill."
+msgstr "塞爾特人研發出了第一臺旋轉式磨粉機。"
 
 #: civs/gaul.jsonHistory
 msgid ""
@@ -1001,203 +882,6 @@ msgid ""
 "infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
 "of conquest and Rome's authoritarian rule."
 msgstr "高盧人是歐洲大陸的塞爾特部落。由德魯伊中類似於祭司的階級所主導，他們有著先進的金屬加工技術、農業、貿易、甚至是道路工程，是一個相當先進的文明。有著重裝步兵及騎兵，高盧的戰士英勇的抵抗凱撒大帝的征服及羅馬的專制統治。"
-
-#: civs/hele.jsonName
-msgid "Hellenes"
-msgstr "希臘人"
-
-#: civs/hele.jsonCivBonuses[0].Description
-msgid "10-15% cheaper technologies."
-msgstr "科技研發費用減少 10-15%。"
-
-#: civs/hele.jsonCivBonuses[0].Name
-msgid "Oikoumene"
-msgstr "Oikoumene"
-
-#: civs/hele.jsonCivBonuses[0].History
-msgid ""
-"The Hellenes envisioned themselves as comprising the civilized world "
-"(oikoumene), surrounded by more or less developed barbarians. Many "
-"foreigners also considered them men of higher stature."
-msgstr "希臘人認為文明世界 (oikoumene) 由他們自身所構成，四周被發展程度或高或低的蠻族包圍。許多異族人也視他們為身材較高大的人。"
-
-#: civs/hele.jsonTeamBonuses[0].Description
-msgid "All units and allied units have increased LOS. ~ 10%"
-msgstr "所有單位與盟友單位增加 10% 的視野"
-
-#: civs/hele.jsonTeamBonuses[0].Name
-msgid "Oracle at Delphi"
-msgstr "德爾斐的神諭"
-
-#: civs/hele.jsonTeamBonuses[0].History
-msgid ""
-"The sacred Oracle of Apollo at Delphi was among the most highly cherished "
-"sanctuaries by Hellenes and foreigners alike. The Lydian king Croesus, for "
-"example, consulted the advice of the god before going to war with Cyrus the "
-"Great of Persia."
-msgstr "位於德爾菲 (Delphi) 的阿波羅神諭 (Oracle of Apollo)，被希臘人及外國人一致認為是最備受珍視的聖潔之地。舉例來說，利底亞  (Lydian) 國王克羅伊斯 (Croesus)，在與波斯的居魯士二世 (Cyrus the Great) 開戰前曾在這裡探尋神的旨意。"
-
-#: civs/hele.jsonFactions[0].Technologies[0].Description
-msgid "The player gains the Phalanx formation."
-msgstr "玩家獲得方陣。"
-
-#: civs/hele.jsonFactions[0].Technologies[0].History
-msgid ""
-"The classical phalanx formation was developed about VIII century B.C. It was"
-" eight men deep and over two hundred men wide, and used overlapping shields "
-"and combined pushing power. 'Othismos' refers to the point in a phalanx "
-"battle where both sides try to shove each other out of formation, attempting"
-" to breaking up the enemy lines and routing them."
-msgstr "古典的方陣約在西元前八世紀發展成形。它的縱深有八個人，而寬則是兩百人，士兵們重疊他們的盾牌並將所有向前推動的力量結合起來。「Othismos」是「肉搏」，是指方陣戰鬥中雙方衝撞對方的方陣的時間點，此時雙方都在嘗試突破對方的防線，以為繼續前進鋪路。"
-
-#: civs/hele.jsonFactions[0].Technologies[1].Description
-msgid "Triremes are 20% cheaper and build 20% faster."
-msgstr "三列槳戰船建造花費便宜 20%，且建造速度快 20%。"
-
-#: civs/hele.jsonFactions[0].Heroes[1].History
-msgid ""
-"The king of Sparta, whom fought and died at the battle of Thermopylae in 480"
-" B.C. He successfully blocked the way of the huge Persian army through the "
-"narrow passage with his 7000 men, until Xerxes was made aware of a secret "
-"unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
-" his troops, choosing to stay behind with 300 hand-picked hoplites and win "
-"time for the others to withdraw."
-msgstr "斯巴達的國王，於西元前 480 年在溫泉關 (Thermopylae) 戰役中戰死。他成功以 7000 名的兵力，將數量遠遠超過他們的波斯軍隊阻擋在溫泉關的狹窄通道之外，但後來波斯國王薛西斯一世 (Xerxes) 找到一條通往斯巴達軍隊後方的秘密通道。列奧尼達 (Leonidas) 在發現敵軍繞道背後之時，只留下親手挑選的 300 名重裝步兵作後盾，並讓剩下的軍人返鄉；留下的軍隊奮戰直到最後一刻以爭取其他人撤退的時間。"
-
-#: civs/hele.jsonFactions[0].Heroes[1].Name civs/spart.jsonAINames[0]
-msgid "Leonidas"
-msgstr "列奧尼達"
-
-#: civs/hele.jsonFactions[0].Heroes[2].History
-msgid ""
-"Xenophon (c. 430-355 B.C.) was a Greek soldier and (later) historian who was"
-" born in Athens of an oligarch family and was a student of Socrates during "
-"his youth. In 401 B. C., Xenophon joined an army of Greek mercenaries lead "
-"by Clearchus and four other generals who were aiding Cyrus the Younger in "
-"his military campaign against his brother, King Artaxerxes II. After Persian"
-" treachery killed the leaders of the mercenary force, Xenophon was elected "
-"one of the 5 new generals to lead the army. After a trek of over 1,500 "
-"kilometers and 1 1/2 years, Xenophon finally helped lead his men home, "
-"fighting dozens of battles and skirmishes along the way."
-msgstr "色諾芬（約於西元前430-355年）曾是希臘士兵及（後來成為了）歷史學家。他出生在雅典的一個寡頭家庭，年輕時曾是蘇格拉底的學生。西元前401年，色諾芬加入由克里巧斯與其他四名將領所帶領的僱傭軍，當時克里巧斯等人正在協助小居魯士對抗他的兄長，國王阿爾塔薛西斯二世。在波斯狡詐的殺死了這支僱傭軍的領導人後，色諾芬被選為新的五將軍之一來領導這支部隊。經過 1500 公里及一年半的長途跋涉後，一路上大大小小的戰鬥與游擊戰，色諾芬終究帶著他的人回到了家鄉。"
-
-#: civs/hele.jsonFactions[0].Name
-msgid "Poleis"
-msgstr "城邦"
-
-#: civs/hele.jsonFactions[0].Description
-msgid "Greek City-states"
-msgstr "希臘城邦"
-
-#: civs/hele.jsonFactions[1].Technologies[0].Description
-msgid "The player gains the Syntagma formation."
-msgstr "玩家獲得了馬其頓方陣。"
-
-#: civs/hele.jsonFactions[1].Technologies[0].Name
-#: civs/mace.jsonFactions[0].Technologies[0].Name
-#: civs/sele.jsonCivBonuses[1].Name
-msgid "Military Reforms"
-msgstr "軍事改良"
-
-#: civs/hele.jsonFactions[1].Technologies[0].History
-msgid ""
-"Once coming to the throne, Philip II set about reforming the ragtag "
-"Macedonian army into a fearsome professional force. One such reform is the "
-"SYNTAGMA formation, derived from the oblique battle front developed by the "
-"Theban commander Epaminondas. The phalanx, consisting of 256 men, is "
-"arranged in the following way 16 men in width and 16 in depth."
-msgstr "在腓力二世登上王位後，便著手將馬其頓原先的烏合之眾，整頓為一支令人心生畏懼的正規軍。其中一項改革為馬其頓方陣，在由底比斯指揮官伊巴密濃達 (Epaminodas) 所發展出來的底比斯斜線方陣的基礎上進行改進。每個方陣包含了 256 個人，由寬 16 人、縱深 16 人所組成。"
-
-#: civs/hele.jsonFactions[1].Technologies[1].Description
-msgid "Civic Centers have double Health."
-msgstr "城鎮中心有雙倍的生命值。"
-
-#: civs/hele.jsonFactions[1].Technologies[1].Name
-#: civs/mace.jsonFactions[0].Technologies[2].Name
-#: civs/ptol.jsonFactions[0].Technologies[0].Name
-#: civs/sele.jsonFactions[0].Technologies[0].Name
-msgid "Hellenistic Metropolises"
-msgstr "希臘風格的大都市"
-
-#: civs/hele.jsonFactions[1].Technologies[1].History
-#: civs/mace.jsonFactions[0].Technologies[2].History
-#: civs/ptol.jsonFactions[0].Technologies[0].History
-#: civs/sele.jsonFactions[0].Technologies[0].History
-msgid ""
-"Beginning with Alexander, the Hellenistic monarchs founded many cities "
-"throughout their empires, where Greek culture and art blended with local "
-"customs to create the motley Hellenistic civilization."
-msgstr "自亞歷山大大帝 (Alexandar) 開始，希臘的文化逐漸變為整個帝國的基礎，其中希臘文化及藝術與當地的風俗混合創造了形形色色的希臘化文明。"
-
-#: civs/hele.jsonFactions[1].Heroes[0].History
-#: civs/mace.jsonFactions[0].Heroes[0].History
-msgid ""
-"The king of Macedonia (359-336 B.C.), he carried out vast monetary and "
-"military reforms in order to make his kingdom the most powerful force in the"
-" Greek world. Greatly enlarged the size of Macedonia by conquering much of "
-"Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign "
-"against Persia."
-msgstr "馬其頓國王 (西元前 359 至 336 年)。他進行了龐大的貨幣及軍事改革，此舉讓他的王國成為了希臘最強的帝國。透過征服色雷斯及希臘，大大的擴展了帝國的領土。但當他正計畫著對波斯開戰時，在馬其頓的首都 Aegae 被謀殺。"
-
-#: civs/hele.jsonFactions[1].Heroes[0].Name civs/mace.jsonAINames[1]
-msgid "Philip II"
-msgstr "腓力二世"
-
-#: civs/hele.jsonFactions[1].Heroes[1].History
-#: civs/mace.jsonFactions[0].Heroes[1].History
-msgid ""
-"The most powerful hero of them all - son of Philip II, king of Macedonia "
-"(336-323 B.C.). After conquering the rest of the Thracians and quelling the "
-"unrest of the Greeks, Alexander embarked on a world-conquest march. "
-"Defeating the Persian forces at Granicus (334 B.C.), Issus (333 B.C.) and "
-"Gaugamela (331 B.C.), he became master of the Persian Empire. Entering "
-"India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
-"made him halt. Died in Babylon at the age of 33 while planning a campaign "
-"against Arabia."
-msgstr "歷任國王中最強盛的英雄 - 腓力二世之子，馬其頓國王 (西元前 336-323 年)。在征服剩餘的色雷斯人，及鎮壓希臘的動盪後，他踏上征服世界的征途。在格拉尼庫斯河戰役中打敗了波斯軍隊 (西元前 334 年)、伊蘇斯戰役 (西元前 333 年) 以及高加米拉戰役 (西元前 331 年) 後，他成為波斯帝國的統治者。他進軍印度，在希達斯皮斯河戰役 (西元前 326 年) 中擊敗了波羅斯 (Porus) 國王，但迫於軍隊疲而停止了東征之途。在計畫攻打阿拉伯時，於巴比倫逝世，享年 33 歲。"
-
-#: civs/hele.jsonFactions[1].Heroes[1].Name civs/mace.jsonAINames[0]
-#: civs/mace.jsonFactions[0].Heroes[1].Name
-msgid "Alexander the Great"
-msgstr "亞歷山大大帝"
-
-#: civs/hele.jsonFactions[1].Heroes[2].History
-#: civs/mace.jsonFactions[0].Heroes[2].History
-msgid ""
-"One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was "
-"renowned as one of the bravest and most able successors of Alexander. As the"
-" son of Antigonus I Monophthalmus, he fought and won many important battles "
-"early on and was proclaimed king, along with his father, in 306 B.C. Losing "
-"his Asian possessions after the battle of Ipsos, he later won the Macedonian"
-" throne. Fearing lest they should be overpowered by Demetrios, the other "
-"Diadochi united against him and defeated him."
-msgstr "亞歷山大大帝繼業者之一，後任馬其頓國王 (西元前294-288年)。德米特里 (Demetrios) 被認為是最勇敢及亞歷山大大帝的最可能繼承人之一。是安提柯一世 (獨眼) 的兒子，他在很年輕的時候就贏得了很多戰役，並在西元前 306 年與他父親同時是國王。在伊普蘇斯戰役後，他失去了他的亞洲領土，但後來贏得了馬其頓的王位。其他繼業者害怕被他俘虜，便聯合起來對抗並擊敗他。"
-
-#: civs/hele.jsonFactions[1].Heroes[2].Name
-msgid "Demetrios Poliorcetes"
-msgstr "圍城者，德米特里一世"
-
-#: civs/hele.jsonFactions[1].Name
-msgid "Macedonia"
-msgstr "馬其頓"
-
-#: civs/hele.jsonFactions[1].Description
-msgid "Kingdom bordering Greek city-states"
-msgstr "與希臘城邦接壤的王國"
-
-#: civs/hele.jsonHistory
-msgid ""
-"The Hellenes were a people famous today for their architecture, fighting "
-"ability, and culture. The Hellenic peoples of the Dorian, Ionian, and "
-"Aeolian tribes swept into modern day Greece from 3000 B.C. to around 1100 "
-"B.C. in successive waves that eventually supplanted the previously "
-"established cultures of Mycenae and Minoan Crete. They were most active "
-"during the period of colonization that took place in the 7th and 6th "
-"centuries B.C., the Greco-Persian Wars (499-449 B.C.), the Peloponnesian War"
-" (431-404 B.C.), and the conquests of Alexander the Great (4th Century "
-"B.C.). Their civilization would endure until their final absorption by Rome "
-"in 146 B.C."
-msgstr "古希臘人以他們的建築、戰鬥能力、以及文化，聞名於現代。多利安、愛奧尼亞及伊奧尼亞等部落的希臘人從西元前3000年至西元前1100年間一波波的湧入現今的希臘領土，最後取代了邁錫尼及米諾斯等文明。他們在西元前7世紀及西元前6世紀時的殖民時期、波希戰爭（西元前499 - 449年）時期、伯羅奔尼撒戰爭（西元前431 - 404年）時期，及亞歷山大大帝東征（西元前4世紀）時期極其活躍。他們的文明一直持續到西元前146年才被羅馬人所吸收。"
 
 #: civs/iber.jsonName
 msgid "Iberians"
@@ -1454,6 +1138,14 @@ msgid ""
 "rule."
 msgstr "馬其頓人及繼業者(專指亞歷山大大帝死後他的繼業者和繼業者的兒子)的鑄幣技術非常高超。在繼業者的貨幣中，極其頻繁的描述他們自己才是亞歷山大大帝的正統繼承者，以使他們的統治合法化。"
 
+#: civs/mace.jsonAINames[0] civs/mace.jsonFactions[0].Heroes[1].Name
+msgid "Alexander the Great"
+msgstr "亞歷山大大帝"
+
+#: civs/mace.jsonAINames[1]
+msgid "Philip II"
+msgstr "腓力二世"
+
 #: civs/mace.jsonAINames[2]
 msgid "Antipater"
 msgstr "安提帕特"
@@ -1506,6 +1198,11 @@ msgid ""
 "constructed)."
 msgstr "之後每建造一個軍營，可以免費獲得 5 個免費的(隨機的)馬其頓軍事單位。盟友也會受益於此(每建造一個軍營，就可以免費獲得其文明 5 個免費的軍事單位)。"
 
+#: civs/mace.jsonFactions[0].Technologies[0].Name
+#: civs/sele.jsonCivBonuses[1].Name
+msgid "Military Reforms"
+msgstr "軍事改良"
+
 #: civs/mace.jsonFactions[0].Technologies[0].History
 msgid ""
 "When Philip II came to the Macedonian throne he began a total reorganization"
@@ -1537,9 +1234,56 @@ msgstr "於印度接近了他長征的末了時，亞歷山大大帝賜予皇家
 msgid "Civic Centers have double Health and double default arrows."
 msgstr "城鎮中心有雙倍的生命值與雙倍於預設值的射出箭矢。"
 
+#: civs/mace.jsonFactions[0].Technologies[2].Name
+#: civs/ptol.jsonFactions[0].Technologies[0].Name
+#: civs/sele.jsonFactions[0].Technologies[0].Name
+msgid "Hellenistic Metropolises"
+msgstr "希臘風格的大都市"
+
+#: civs/mace.jsonFactions[0].Technologies[2].History
+#: civs/ptol.jsonFactions[0].Technologies[0].History
+#: civs/sele.jsonFactions[0].Technologies[0].History
+msgid ""
+"Beginning with Alexander, the Hellenistic monarchs founded many cities "
+"throughout their empires, where Greek culture and art blended with local "
+"customs to create the motley Hellenistic civilization."
+msgstr "自亞歷山大大帝 (Alexandar) 開始，希臘的文化逐漸變為整個帝國的基礎，其中希臘文化及藝術與當地的風俗混合創造了形形色色的希臘化文明。"
+
+#: civs/mace.jsonFactions[0].Heroes[0].History
+msgid ""
+"The king of Macedonia (359-336 B.C.), he carried out vast monetary and "
+"military reforms in order to make his kingdom the most powerful force in the"
+" Greek world. Greatly enlarged the size of Macedonia by conquering much of "
+"Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign "
+"against Persia."
+msgstr "馬其頓國王 (西元前 359 至 336 年)。他進行了龐大的貨幣及軍事改革，此舉讓他的王國成為了希臘最強的帝國。透過征服色雷斯及希臘，大大的擴展了帝國的領土。但當他正計畫著對波斯開戰時，在馬其頓的首都 Aegae 被謀殺。"
+
 #: civs/mace.jsonFactions[0].Heroes[0].Name
 msgid "Philip II of Macedon"
 msgstr "馬其頓王國的腓力二世"
+
+#: civs/mace.jsonFactions[0].Heroes[1].History
+msgid ""
+"The most powerful hero of them all - son of Philip II, king of Macedonia "
+"(336-323 B.C.). After conquering the rest of the Thracians and quelling the "
+"unrest of the Greeks, Alexander embarked on a world-conquest march. "
+"Defeating the Persian forces at Granicus (334 B.C.), Issus (333 B.C.) and "
+"Gaugamela (331 B.C.), he became master of the Persian Empire. Entering "
+"India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
+"made him halt. Died in Babylon at the age of 33 while planning a campaign "
+"against Arabia."
+msgstr "歷任國王中最強盛的英雄 - 腓力二世之子，馬其頓國王 (西元前 336-323 年)。在征服剩餘的色雷斯人，及鎮壓希臘的動盪後，他踏上征服世界的征途。在格拉尼庫斯河戰役中打敗了波斯軍隊 (西元前 334 年)、伊蘇斯戰役 (西元前 333 年) 以及高加米拉戰役 (西元前 331 年) 後，他成為波斯帝國的統治者。他進軍印度，在希達斯皮斯河戰役 (西元前 326 年) 中擊敗了波羅斯 (Porus) 國王，但迫於軍隊疲而停止了東征之途。在計畫攻打阿拉伯時，於巴比倫逝世，享年 33 歲。"
+
+#: civs/mace.jsonFactions[0].Heroes[2].History
+msgid ""
+"One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was "
+"renowned as one of the bravest and most able successors of Alexander. As the"
+" son of Antigonus I Monophthalmus, he fought and won many important battles "
+"early on and was proclaimed king, along with his father, in 306 B.C. Losing "
+"his Asian possessions after the battle of Ipsos, he later won the Macedonian"
+" throne. Fearing lest they should be overpowered by Demetrios, the other "
+"Diadochi united against him and defeated him."
+msgstr "亞歷山大大帝繼業者之一，後任馬其頓國王 (西元前294-288年)。德米特里 (Demetrios) 被認為是最勇敢及亞歷山大大帝的最可能繼承人之一。是安提柯一世 (獨眼) 的兒子，他在很年輕的時候就贏得了很多戰役，並在西元前 306 年與他父親同時是國王。在伊普蘇斯戰役後，他失去了他的亞洲領土，但後來贏得了馬其頓的王位。其他繼業者害怕被他俘虜，便聯合起來對抗並擊敗他。"
 
 #: civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
@@ -1574,7 +1318,7 @@ msgid ""
 "Hellenistic culture."
 msgstr "亞歷山大大帝在他的新帝國裡建造了很多圖書館。這些圖書館成為了學習的中心，一個全新的融合文化：古希臘文化。"
 
-#: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
+#: civs/mace.jsonStructures[2].Name
 msgid "Siege Workshop"
 msgstr "攻城武器製造所"
 
@@ -2045,15 +1789,6 @@ msgid "Nile Delta"
 msgstr "尼羅河三角洲"
 
 #: civs/ptol.jsonCivBonuses[1].History civs/ptol.jsonCivBonuses[2].History
-#: civs/theb.jsonCivBonuses[0].Description civs/theb.jsonCivBonuses[0].History
-#: civs/theb.jsonCivBonuses[1].Description civs/theb.jsonCivBonuses[1].History
-#: civs/theb.jsonTeamBonuses[0].Description
-#: civs/theb.jsonTeamBonuses[0].History
-#: civs/theb.jsonFactions[0].Technologies[0].Description
-#: civs/theb.jsonFactions[0].Technologies[0].Name
-#: civs/theb.jsonFactions[0].Technologies[0].History
-#: civs/theb.jsonFactions[0].Technologies[1].Description
-#: civs/theb.jsonFactions[0].Technologies[1].History
 msgid "Unknown."
 msgstr "未知。"
 
@@ -2788,6 +2523,10 @@ msgid ""
 "Lacedaemonians and their allies.'"
 msgstr "斯巴達以各種不同的方式控制著伯羅奔尼撒半島。以斯巴達為領導者的這種鬆散的邦聯，後來被史學家稱為伯羅奔尼撒同盟，但在古代被稱為「拉科尼亞人與他們的盟友」。"
 
+#: civs/spart.jsonAINames[0]
+msgid "Leonidas"
+msgstr "列奧尼達"
+
 #: civs/spart.jsonAINames[1]
 msgid "Dienekes"
 msgstr "狄耶涅克斯"
@@ -2940,88 +2679,3 @@ msgid ""
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
 msgstr "斯巴達是在古希臘一個相當傑出的城邦，大約從西元前 650 年開始就是希臘當地陸上軍事的主導力量。其文化醉心於軍事訓練，追求精益求精，所以男孩從七歲開始就要接受嚴格的訓練。由於其有強大的軍事力量，斯巴達在波希戰爭時帶領著希臘聯軍戰勝敵人，爾後在伯羅奔尼撒戰爭中付出巨大的代價後戰勝雅典。"
-
-#: civs/theb.jsonName civs/theb.jsonFactions[0].Name
-msgid "Thebans"
-msgstr "底比斯人"
-
-#: civs/theb.jsonCivBonuses[0].Name
-msgid "Oblique Order"
-msgstr "斜線方陣"
-
-#: civs/theb.jsonCivBonuses[1].Name
-#: civs/theb.jsonFactions[0].Technologies[1].Name
-msgid "Unknown"
-msgstr "未知"
-
-#: civs/theb.jsonTeamBonuses[0].Name
-msgid "Boeotian Confederacy"
-msgstr "古希臘皮奧夏聯盟"
-
-#: civs/theb.jsonAINames[0] civs/theb.jsonFactions[0].Heroes[0].Name
-msgid "Epaminondas"
-msgstr "伊巴密濃達"
-
-#: civs/theb.jsonAINames[1] civs/theb.jsonFactions[0].Heroes[1].Name
-msgid "Pelopidas"
-msgstr "佩洛皮達斯"
-
-#: civs/theb.jsonAINames[2] civs/theb.jsonFactions[0].Heroes[2].Name
-msgid "Gorgidas"
-msgstr "戈爾吉達斯"
-
-#: civs/theb.jsonAINames[3]
-msgid "Calydnus"
-msgstr "卡呂德努斯"
-
-#: civs/theb.jsonAINames[4]
-msgid "Ogyges"
-msgstr "俄古革斯"
-
-#: civs/theb.jsonAINames[5]
-msgid "Cadmus"
-msgstr "卡德摩斯"
-
-#: civs/theb.jsonAINames[6]
-msgid "Pentheus"
-msgstr "彭透斯"
-
-#: civs/theb.jsonAINames[7]
-msgid "Polydorus"
-msgstr "波里德諾斯"
-
-#: civs/theb.jsonAINames[8]
-msgid "Nycteus"
-msgstr "倪克透斯"
-
-#: civs/theb.jsonAINames[9]
-msgid "Lycus"
-msgstr "呂庫斯"
-
-#: civs/theb.jsonAINames[10]
-msgid "Labdacus"
-msgstr "拉布達庫斯"
-
-#: civs/theb.jsonFactions[0].Description
-msgid ""
-"The great power of Central Greece and leader of the Boeotian confederacy."
-msgstr "希臘中部的大國及皮奧夏聯盟的領導者。"
-
-#: civs/theb.jsonStructures[1].History
-msgid ""
-"At the siege of the Athenian fortress at Delium, the Thebans employed what "
-"may be deemed the first recorded use of a flame thrower in warfare."
-msgstr "在圍攻位於代里恩的雅典要塞時，底比斯人是第一個被記載在戰爭中使用火燄噴射器的民族。"
-
-#: civs/theb.jsonHistory
-msgid ""
-"The great power of Central Greece and leader of the Boeotian confederacy, "
-"Thebes is a force to be reckoned with. It is a major rival of ancient "
-"Athens, and sided with the Persians during the 480 BC invasion under Xerxes."
-" Theban forces ended the power of Sparta at the Battle of Leuctra in 371 BC "
-"under the command of Epaminondas. The Sacred Band of Thebes (an elite "
-"military unit) famously fell at the battle of Chaeronea in 338 BC against "
-"Philip II and Alexander the Great. Prior to its destruction by Alexander in "
-"335 BC, Thebes was a major force in Greek history, and was the most dominant"
-" city-state at the time of the Macedonian conquest of Greece."
-msgstr "希臘中部及皮奧夏聯盟領導者的強大力量，底比斯一股不可忽視的力量。它是古雅典的主要對手，在西元前 480 年，薛西斯的入侵中與波斯人同一陣線。底比斯的軍隊在伊巴密濃達的指揮之下於西元前 371 年的留克特拉戰役中打敗了斯巴達人。底比斯神聖軍團（一個精銳單位）最有名的失敗是在西元前 338 年的喀羅尼亞戰役中被腓力二世及亞歷山大大帝擊敗。並於西元前 335 年由亞歷山大大帝毀滅了整個底比斯。底比斯是希臘的歷史上一個強大的力量，並在馬其頓征服希臘時為最主要的城邦。"

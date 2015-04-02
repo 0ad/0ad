@@ -41,6 +41,7 @@
 # v00d00911 <agroworker@mail.ru>, 2014
 # Vladislav <swsh0t@gmail.com>, 2013
 # webslavic <webslavic@yahoo.com>, 2014
+# Woratiklis, 2015
 # Yegor <revolver45@inbox.ru>, 2014
 # zake1313 <mihfay@gmail.com>, 2014
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
@@ -51,8 +52,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-03-02 19:11+0000\n"
-"Last-Translator: utyf05 <utyf05@gmail.com>\n"
+"PO-Revision-Date: 2015-03-22 10:32+0000\n"
+"Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:10
 msgctxt "ai"
 msgid "None"
-msgstr "Пусто"
+msgstr "Нет"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
@@ -179,7 +180,7 @@ msgstr "Все карты"
 #: gui/gamesetup/gamesetup.js:367
 msgctxt "team"
 msgid "None"
-msgstr "Пусто"
+msgstr "Нет"
 
 #: gui/gamesetup/gamesetup.js:590 gui/gamesetup/gamesetup.js:1397
 msgctxt "civilization"
@@ -202,12 +203,12 @@ msgstr "Размер карты:"
 #: gui/gamesetup/gamesetup.js:1203 gui/gamesetup/gamesetup.js:1262
 #: gui/gamesetup/gamesetup.xml:(caption):313
 msgid "Revealed Map:"
-msgstr "Раскрыто карты:"
+msgstr "Карта открыта:"
 
 #: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1263
 #: gui/gamesetup/gamesetup.xml:(caption):323
 msgid "Explored Map:"
-msgstr "Исследовано карты:"
+msgstr "Карта разведана:"
 
 #: gui/gamesetup/gamesetup.js:1208 gui/gamesetup/gamesetup.js:1267
 #: gui/gamesetup/gamesetup.js:1347 gui/gamesetup/gamesetup.xml:(caption):283
@@ -249,7 +250,7 @@ msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s Игрок"
 msgstr[1] "%(number)s Игроки"
-msgstr[2] "%(number)s Игроки"
+msgstr[2] "игроков %(number)s."
 
 #: gui/gamesetup/gamesetup.js:1383
 msgid "Loading..."
@@ -326,7 +327,7 @@ msgstr "Выберите если принимаете текущие устан
 
 #: gui/gamesetup/gamesetup.js:1939
 msgid "None"
-msgstr "Пусто"
+msgstr "Нет"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
@@ -369,11 +370,11 @@ msgstr "Поражение всех оппонентов"
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
-msgstr "Чудо света"
+msgstr "Чудо"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr "Построить чудо света для победы"
+msgstr "Постройте чудо для победы"
 
 #: gui/loading/loading.js:51
 #, javascript-format

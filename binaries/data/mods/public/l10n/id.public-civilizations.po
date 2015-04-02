@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:56+0100\n"
-"PO-Revision-Date: 2015-03-03 18:11+0000\n"
-"Last-Translator: constantius damar wicaksono <constantiusdamar@gmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-15 09:48+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,23 +46,19 @@ msgid ""
 msgstr "Pertambangan di Laureion, Attica menyediakan Athena dengan limpahan perak yang dibuat menjadi koin yang terkenal dan berharga tinggi, Burung Hantu Athena"
 
 #: civs/athen.jsonCivBonuses[1].Description
-#: civs/hele.jsonCivBonuses[1].Description
 #: civs/mace.jsonCivBonuses[2].Description
 #: civs/spart.jsonCivBonuses[2].Description
-#: civs/theb.jsonCivBonuses[2].Description
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
 msgstr "Membangun Theatron meningkatkan pengaruh wilayah seluruh bangunan sebanyak +20%"
 
-#: civs/athen.jsonCivBonuses[1].Name civs/hele.jsonCivBonuses[1].Name
-#: civs/mace.jsonCivBonuses[2].Name civs/spart.jsonCivBonuses[2].Name
-#: civs/theb.jsonCivBonuses[2].Name
+#: civs/athen.jsonCivBonuses[1].Name civs/mace.jsonCivBonuses[2].Name
+#: civs/spart.jsonCivBonuses[2].Name
 msgid "Hellenization"
 msgstr "Helenisasi"
 
-#: civs/athen.jsonCivBonuses[1].History civs/hele.jsonCivBonuses[1].History
-#: civs/spart.jsonCivBonuses[2].History civs/theb.jsonCivBonuses[2].History
+#: civs/athen.jsonCivBonuses[1].History civs/spart.jsonCivBonuses[2].History
 msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
@@ -74,12 +70,10 @@ msgid "Ships construct 25% faster."
 msgstr "Kapal dibuat 25% lebih cepat."
 
 #: civs/athen.jsonTeamBonuses[0].Name
-#: civs/hele.jsonFactions[0].Technologies[1].Name
 msgid "Delian League"
 msgstr "Liga Delos"
 
 #: civs/athen.jsonTeamBonuses[0].History
-#: civs/hele.jsonFactions[0].Technologies[1].History
 msgid ""
 "Shortly after the great naval victories at Salamis and Mykale, the Greek "
 "city-states instituted the so-called Delian League in 478 B.C., whose "
@@ -88,7 +82,6 @@ msgid ""
 msgstr "Tak lama setelah kemenangan kelautan di Salamis dan Mykale, Negara-kota Yunani membentuk Liga Delos pada 478 SM yang bertujuan untuk menekan Persia keluar dari daerah Aegea. Negara sekutu menyumbang kapal dan uang, sementara rakyat Athena menawarken keseluruhan angkatan lautnya."
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
-#: civs/hele.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
 msgstr "Themistokles"
 
@@ -104,7 +97,7 @@ msgstr "Kimon"
 msgid "Aristides"
 msgstr "Aristides"
 
-#: civs/athen.jsonAINames[4] civs/hele.jsonFactions[0].Heroes[2].Name
+#: civs/athen.jsonAINames[4]
 msgid "Xenophon"
 msgstr "Xenophon"
 
@@ -181,7 +174,6 @@ msgid ""
 msgstr "Pemain memperoleh kemampuan menyusun pasukan penombak dalam formasi phalanx, meningkatkan serangan dan pertahanan."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
-#: civs/hele.jsonFactions[0].Technologies[0].Name
 #: civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
 msgstr "Othismos"
@@ -195,7 +187,6 @@ msgid ""
 msgstr "Formasi phalanx klasik dikembangkan pada Abad ke-7 SM dengan panjang delapan orang dan lebar hingga delapan ratus orang. Prajurit di bagian dalam menumpukkan perisai mereka menjadi dinding perisai yang kokoh dan penuh dengan tombak sepanjang 8 kaki."
 
 #: civs/athen.jsonFactions[0].Heroes[0].History
-#: civs/hele.jsonFactions[0].Heroes[0].History
 msgid ""
 "The general whom persuaded the Athenians to invest their income from silver "
 "mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
@@ -217,10 +208,6 @@ msgstr "Perikles adalah politisi Athena terkemuka pada Abad ke-5 SM."
 #: civs/ptol.jsonFactions[0].Heroes[1].History
 #: civs/ptol.jsonFactions[0].Heroes[2].History
 #: civs/sele.jsonCivBonuses[0].History civs/sele.jsonStructures[1].History
-#: civs/theb.jsonFactions[0].Heroes[0].History
-#: civs/theb.jsonFactions[0].Heroes[1].History
-#: civs/theb.jsonFactions[0].Heroes[2].History
-#: civs/theb.jsonStructures[1].Special
 msgid "."
 msgstr "."
 
@@ -228,29 +215,26 @@ msgstr "."
 msgid "A Hellenic people of the Ionian tribe."
 msgstr "Bangsa Yunani dari suku Ionia."
 
-#: civs/athen.jsonStructures[0].Name civs/hele.jsonStructures[0].Name
-#: civs/mace.jsonStructures[0].Name civs/spart.jsonStructures[0].Name
-#: civs/theb.jsonStructures[0].Name
+#: civs/athen.jsonStructures[0].Name civs/mace.jsonStructures[0].Name
+#: civs/spart.jsonStructures[0].Name
 msgid "Theatron"
 msgstr "Theatron"
 
 #: civs/athen.jsonStructures[0].Special civs/spart.jsonStructures[0].Special
-#: civs/theb.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
 msgstr "Bonus bangsa Helenisasi. Membangun Theatron meningkatkan efek wilayah seluruh bangunan sebanyak 25%."
 
-#: civs/athen.jsonStructures[0].History civs/hele.jsonStructures[0].History
-#: civs/mace.jsonStructures[0].History civs/spart.jsonStructures[0].History
-#: civs/theb.jsonStructures[0].History
+#: civs/athen.jsonStructures[0].History civs/mace.jsonStructures[0].History
+#: civs/spart.jsonStructures[0].History
 msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
 msgstr "Teater Yunani adalah tempat tragedi abadi Aiskhilos, Sophokles dan dramawan berbakat dipanggungkan untuk menyenangkan rakyat. Drama tersebut berperan dalam memperkaya kebudayaan Yunani."
 
-#: civs/athen.jsonStructures[1].Name civs/hele.jsonStructures[1].Name
+#: civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
 msgstr "Gymnasion"
 
@@ -259,13 +243,13 @@ msgid ""
 "Train champion units and research technologies pertaining to champion units."
 msgstr "Melatih unit jawara dan meneliti teknologi terkait."
 
-#: civs/athen.jsonStructures[1].History civs/hele.jsonStructures[1].History
+#: civs/athen.jsonStructures[1].History
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
 msgstr "Gymnasion adalah tempat penting di kota Yunani dimana latihan fisik dilakukan dan kontak sosial dijalin."
 
-#: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
+#: civs/athen.jsonStructures[2].Name
 msgid "Prytaneion"
 msgstr "Prytaneion"
 
@@ -273,7 +257,7 @@ msgstr "Prytaneion"
 msgid "Train heroes and research technology pertaining to heroes."
 msgstr "Melatih pahlawan dan meneliti teknologi terkait."
 
-#: civs/athen.jsonStructures[2].History civs/hele.jsonStructures[2].History
+#: civs/athen.jsonStructures[2].History
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
@@ -288,72 +272,59 @@ msgid ""
 msgstr "Sebagai tempat kelahiran peradaban Barat dan demokrasi, Athena terkenal sebagai pusat kesenian, pembelajaran, dan filsafat. Rakyat Athena juga adalah pejuang yang kuat, terutama di laut. Pada puncaknya, Athena menguasai sebagian besar dunia Yunani selama beberapa dasawarsa."
 
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
-#: civs/celt.jsonFactions[0].Name
 msgid "Britons"
 msgstr "Briton"
 
 #: civs/brit.jsonCivBonuses[0].Description
-#: civs/celt.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
 msgstr "Memperkaya makanan hasil peternakan dan pertanian."
 
-#: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
-#: civs/gaul.jsonCivBonuses[0].Name
+#: civs/brit.jsonCivBonuses[0].Name civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
 msgstr "Ardiosmanae"
 
-#: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
-#: civs/gaul.jsonCivBonuses[0].History
+#: civs/brit.jsonCivBonuses[0].History civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
 msgstr "Melambangkan metode pertanian Kelt."
 
 #: civs/brit.jsonCivBonuses[1].Description
-#: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
 msgstr "Druid menambah sedikit tingkat serangan prajurit di sekitarnya."
 
-#: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
-#: civs/gaul.jsonCivBonuses[1].Name
+#: civs/brit.jsonCivBonuses[1].Name civs/gaul.jsonCivBonuses[1].Name
 msgid "Deas Celtica"
 msgstr "Deas Celtica"
 
-#: civs/brit.jsonCivBonuses[1].History civs/celt.jsonCivBonuses[1].History
-#: civs/gaul.jsonCivBonuses[1].History
+#: civs/brit.jsonCivBonuses[1].History civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Agama dan kependetaan Kelt menginspirasi pola pikir mereka yang gemar berperang."
 
 #: civs/brit.jsonTeamBonuses[0].Description
-#: civs/celt.jsonTeamBonuses[0].Description
 #: civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
 msgstr "Bonus kecepatan penelitian."
 
-#: civs/brit.jsonTeamBonuses[0].Name civs/celt.jsonTeamBonuses[0].Name
-#: civs/gaul.jsonTeamBonuses[0].Name
+#: civs/brit.jsonTeamBonuses[0].Name civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druides"
 msgstr "Druides"
 
-#: civs/brit.jsonTeamBonuses[0].History civs/celt.jsonTeamBonuses[0].History
-#: civs/gaul.jsonTeamBonuses[0].History
+#: civs/brit.jsonTeamBonuses[0].History civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
 msgstr "Druid Kelt menegakkan agama terorganisasi yang memajukan teknologi rakyat mereka bahkan pada masa perang."
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
-#: civs/celt.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
 msgstr "Karatakos"
 
 #: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
-#: civs/celt.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
 msgstr "Kunobelinos"
 
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
-#: civs/celt.jsonFactions[0].Heroes[2].Name
 msgid "Boudicca"
 msgstr "Boudicca"
 
@@ -390,17 +361,14 @@ msgid "Vosenius"
 msgstr "Vosenius"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Description
-#: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
 msgstr "Menambah tingkat serangan dan gerakan prajurit jarak dekat."
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
-#: civs/celt.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
 msgstr "Sevili Dusios"
 
 #: civs/brit.jsonFactions[0].Technologies[0].History
-#: civs/celt.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
@@ -408,17 +376,14 @@ msgid ""
 msgstr "Kaum Briton memiliki praktek membuat tanda permanen pada tubuh mereka dalam bentuk tato atau mengecat tubuh mereka dengan cat woad. Efeknya sangat menakutkan."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Description
-#: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
 msgstr "Meningkatkan bonus ketinggian pada unit yang berada dalam menara."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
-#: civs/celt.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
 msgstr "Turos Maros"
 
 #: civs/brit.jsonFactions[0].Technologies[1].History
-#: civs/celt.jsonFactions[0].Technologies[1].History
 msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
@@ -426,7 +391,6 @@ msgid ""
 msgstr "'Menara Agung'; legenda Kelt penuh cerita tentang menara tinggi besar yang dibangun raja-raja paling berkuasa dan masih merupakan menara-menara terbesar yang pernah ditemukan."
 
 #: civs/brit.jsonFactions[0].Heroes[0].History
-#: civs/celt.jsonFactions[0].Heroes[0].History
 msgid ""
 "Caractacus, the Roman form, is a simple change from Karatakos, his actual "
 "name, which was printed on his many, many coins. Under this name he is "
@@ -481,7 +445,6 @@ msgid ""
 msgstr "Kunobelinos (mungkin lebih dikenal dengan bentuk Latin dari Cunobelin) adalah seorang pemimpin adikuasa dari Catuvellauni. Dia disebut oleh Roma sebagai Raja orang Britania. Kekuasaannya di sekitar sekitar kota Kamulodunon (dikenal sebagai Camulodunum), saat ini Colchester. Kekalahan Romawi dalam pertempuran Hutan Teutoburg (Germania) memungkinkan Kunobelinos untuk menaklukkan suku tetangga, Trinovantes, yang merupakan sekutu Romawi dan tidak bisa menerima bantuan Romawi. Kunobelinos tampaknya telah acuh tak acuh terhadap Roma. Ia berdagang dengan mereka secara bebas, tetapi memiliki sedikit keraguan menaklukkan sekutu Romawi yang terkenal, dan bahkan mengirim anak bungsunya Adminius sebagai asuhan untuk dididik di Romawi Gallia. Hal ini menyumbang persahabatan Adminius di antara orang-orang Romawi. Adminius diberi kekuasaan atas Cantaci, yang didiami Kent, oleh ayahnya. Daerah ini adalah daerah utama pengaruh Romawi dan perdagangan di Britania, dan Kunobelinos cerdik mengamati persahabatan anak bungsunya dengan para politisi Romayi yang berpengaruh dan pedagang Gallia-Romawi akan digunakan pengadministrasian wilayah. Anak-anaknya yang lain meskipun tidak memiliki cinta untuk orang-orang Romawi. Ketika Kunobelinos meninggal akibat penyakit, ia digantikan oleh putranya Togdumnos, yang ditangkap, dieksekusi, atau diusir banyak simpatisan Romawi. Ini termasuk saudaranya sendiri Adminius, dan Atrebates raja terguling, Verica, yang memohon kepada koneksi mereka di Kekaisaran Romawi untuk membantu dalam memulihkan tanah mereka. Togdumnos tewas dalam pertempuran dengan orang-orang Romawi, dan kemudian digantikan oleh saudaranya, Karatakos. Ini adalah sebuah ironi bahwa itu adalah putra ketiganya yang awalnya mengundang tindakan balasan Romawi ini. Kunobelinos dalam waktu sendiri meskipun adalah mungkin salah satu yang terbesar dari semua raja Britania. Ia menaklukkan sebagian besar bagian selatan Inggris (koin nya pernah dicetak sejauh perbatasan apa yang kemudian menjadi Wales). Dia mulai berkuasa atas hanya empat suku kecil dalam konfederasi, yang Catuvellauni, dan akhirnya mencapai pengakuan sebagai raja Britania. Pengakuan ini begitu besar sehingga suku di Cambria bahkan datang untuk membantu anak-anaknya melawan Romawi dan sekutu Inggris mereka, dan Kunobelinos digelari oleh orang Britania pasca-Romawi sebagai salah satu pahlawan besar mereka; seorang penakluk dan pemersatu kerajaan kecil, sesuatu yang orang Britania pasca-Romawi atau Romano-Britania sangat dibutuhkan."
 
 #: civs/brit.jsonFactions[0].Heroes[2].History
-#: civs/celt.jsonFactions[0].Heroes[2].History
 msgid ""
 "Ammianus Marcellinus described how difficult it would be for a band of "
 "foreigners to deal with a Celt if he called in the help of his wife. For she"
@@ -779,184 +742,21 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "Kartago, kota-negara di daerah Tunisia, adalah kekuatan yang tangguh di Mediterania barat, pada akhirnya mengambil alih sebagian besar Afrika Utara dan Spanyol di abad ketiga SM. Para pelaut Kartago termasuk di antara pesaing sengit di laut lepas dan menguasai perdagangan laut. Mereka mengerahkan Gajah Perang Tinggi di medan perang dengan efek yang menakutkan, dan memiliki tembok pertahanan yang begitu kuatnya sehingga tidak pernah ditembus."
 
-#: civs/celt.jsonName
-msgid "Celts"
-msgstr "Kelt"
-
-#: civs/celt.jsonFactions[0].Heroes[1].History
-msgid ""
-"Kunobelinos, perhaps better known by the latinized form of Cunobelin, was a "
-"powerful ruler centered in the territory around modern day Colchester. "
-"Ruling the Catuvellauni from Kamulodunon(better known as Camulodunum), he "
-"was a warrior king who conquered a neighboring tribe, the Trinovantes, and "
-"was referred to by the Romans as the King of the Britons. The Trinovantes, "
-"while having been Roman allies, were not able to call for Roman aide, as "
-"they were conquered shortly after the Roman's own disaster in Germania. "
-"Kunobelinos died of disease after subjugating the great majority of the "
-"southern half of Britain (his coins were being minted as far as the borders "
-"of what would become Wales). When he died, his son Togdumnos replaced him, "
-"who died in battle with the Romans, and was subsequently replaced by his "
-"brother, Karatakos. It is an irony that it was his third son that initially "
-"invited this Roman reprisal. Kunobelinos seems to have been indifferent to "
-"the Romans. He traded with them freely, but had few qualms subjugating known"
-" Roman allies, and even sent Adminius as a fosterling to be educated in "
-"Roman Gaul. This accounted for Adminius's friendships among the Romans, and "
-"he was given lordship over the Cantaci, who inhabited Kent, by his father. "
-"This area was the prime area of Roman influence and trade in Britain, and he"
-" shrewdly observed his youngest son's friendship with powerful Roman and "
-"Gallo-Roman politicians and traders would be of use administrating the "
-"region. His other sons though had no love for the Romans, and when "
-"Kunobelinos died, Togdumnos, now king, arrested, executed, or expelled "
-"numerous Roman sympathizers, including his own brother Adminius, and the "
-"deposed Atrebates king, Verica, who appealed to their connections in the "
-"Roman Empire for aide in recovering their lands. Kunobelinos in his own time"
-" though was possibly one of the greatest of all British kings. He conquered "
-"huge portions of land from originally ruling over only four minor tribes in "
-"a confederation, the Catuvellauni, and achieved recognition as king of "
-"Britain. This recognition was so great that tribes in Cambria even came to "
-"assist his sons against the Romans and their British allies, and Kunobelinos"
-" was held up by the post-Roman Britons as one of their great heroes; a "
-"conqueror and uniter of petty kingdoms, something the post-Roman Britons or "
-"Romano-British sorely needed."
-msgstr "Kunobelinos, mungkin lebih dikenal oleh bentuk Latin dari Cunobelin, adalah penguasa yang kuat berpusat di wilayah sekitar Colchester. Menguasai Catuvellauni dari Kamulodunon (lebih dikenal sebagai Camulodunum), ia adalah seorang raja pejuang yang menaklukkan suku tetangga, Trinovantes, dan disebut oleh orang Romawi sebagai Raja Briton. Trinovantes, saat bersekutu dengan Romawi, tidak bisa meminta bantuan Romawi, karena mereka ditaklukkan tak lama setelah kegagalan Romawi di Germania. Kunobelinos meninggal karena penyakit setelah menundukkan sebagian besar bagian selatan Inggris (koinnya dicetak hingga ke perbatasan Wales). Ketika ia meninggal, anaknya Togdumnos menggantikannya, yang meninggal dalam pertempuran dengan Romawi, dan kemudian digantikan oleh saudaranya, Karatakos. Ironisnya putra ketiganya yang awalnya menginginkan pembalasan Romawi ini. Kunobelinos tampaknya tidak peduli terhadap Romawi. Ia berdagang dengan mereka secara bebas, tetapi memiliki beberapa keraguan menaklukkan sekutu Romawi, dan bahkan mengirim Adminius sebagai anak asuh untuk dididik di Romawi Galia. Hal ini membantu persahabatan Adminius di antara orang-orang Romawi, dan ia diberi kekuasaan atas Cantaci, yang menempati Kent, oleh ayahnya. Daerah ini adalah daerah utama pengaruh Romawi dan perdagangan di Inggris, dan ia dengan cerdik mengamati persahabatan anak bungsunya dengan politisi dan pedagang berkuasa Romawi dan Gallo-Romawi akan berguna dalam pengaturan daerah. Meski begitu, anak-anaknya yang lain tidak menyukai orang-orang Romawi, dan ketika Kunobelinos meninggal, Togdumnos, setelah menjadi raja, menangkap, mengeksekusi, atau mengusir banyak simpatisan Romawi, termasuk saudaranya sendiri Adminius, dan raja Atrebates yang digulingkan, Verica, yang memohon pada Kekaisaran Romawi untuk bantuan dalam memulihkan tanah mereka. Kunobelinos pada masanya mungkin salah satu yang terbesar dari semua raja Inggris. Dia menaklukkan bagian besar tanah dari yang semula memerintah hanya empat suku kecil dalam sebuah konfederasi, Catuvellauni, dan mendapat pengakuan sebagai raja Inggris. Pengakuan ini begitu besar sehingga suku di Cambria bahkan datang untuk membantu anak-anaknya melawan Romawi dan sekutu Inggris mereka, dan Kunobelinos diangkat oleh Briton Pasca-Romawi sebagai salah satu pahlawan besar mereka; penakluk dan pemersatu kerajaan kecil, sesuatu yang sangat dibutuhkan Briton Pasca-Romawi Britons atau Romano-British."
-
-#: civs/celt.jsonFactions[0].Description
-msgid "British Isles"
-msgstr "Kepulauan Inggris"
-
-#: civs/celt.jsonFactions[1].Technologies[0].Description
-msgid ""
-"A set amount of ore and food from every structure destroyed or captured "
-msgstr "Sejumlah tetap bijih dan makanan dari setiap bangunan yang dihancurkan atau ditangkap"
-
-#: civs/celt.jsonFactions[1].Technologies[0].Name
-#: civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Uae Uictos"
-msgstr "Uae Uictos"
-
-#: civs/celt.jsonFactions[1].Technologies[0].History
-msgid ""
-"Means Woe to the Defeated  It was the words that the Gallic Leader, Brennos,"
-" spoke at the Capitol at Rome after they took their plunder."
-msgstr "Berarti Celakalah yang Dikalahkan. Itu adalah kata-kata yang dikatakan Pemimpin Galia, Brennos, di Capitol Roma setelah mereka menjarah."
-
-#: civs/celt.jsonFactions[1].Technologies[1].Description
-#: civs/gaul.jsonFactions[0].Technologies[1].Description
-msgid "Gallic druids gain a small melee attack."
-msgstr "Druid Galia memperoleh tambahan kecil serangan jarak dekat."
-
-#: civs/celt.jsonFactions[1].Technologies[1].Name
-#: civs/gaul.jsonFactions[0].Technologies[1].Name
-msgid "Carnutes"
-msgstr "Carnutes"
-
-#: civs/celt.jsonFactions[1].Technologies[1].History
-#: civs/gaul.jsonFactions[0].Technologies[1].History
-msgid ""
-"The Carnutes were druids from Aulercia. They fought when needed, and were "
-"largely responsible for turning back the Belgae incursions into Armorica and"
-" Aulercia."
-msgstr "Carnutes adalah druid dari Aulercia. Mereka bertempur bila diperlukan, dan berperan dalam membalikkan serangan Belgae ke Armorica dan Aulercia."
-
-#: civs/celt.jsonFactions[1].Heroes[0].History
-#: civs/gaul.jsonFactions[0].Heroes[0].History
-msgid ""
-"When celt armies met the enemy, before the battle would start, the celt "
-"leader would go to the first line and challenge the bravest of the enemy "
-"warriors to a single combat. The story of how Marcus Claudius Marcellus "
-"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a smallish army, Marcellus met a combined force "
-"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
-" the usual rush and terrifying cries, and their king, Britomartos, picking "
-"out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Britomartos was an outstanding figure "
-"not only for his size but also for his adornments; for he was resplendent in"
-" bright colors and his armor shone with gold and silver. This armor, thought"
-" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
-"pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Britomartos and strip him of his armor."
-msgstr "Ketika pasukan Kelt bertemu musuh, sebelum pertempuran akan dimulai, pemimpin Kelt akan pergi ke baris pertama dan menantang yang paling berani dari prajurit musuh dalam pertarungan tunggal. Kisah tentang bagaimana Marcus Claudius Marcellus membunuh seorang pemimpin Galia di Clastidium (222 SM) adalah biasa dalam pertemuan semacam itu. Maju dengan pasukan agak kecil, Marcellus bertemu pasukan gabungan Insubrian Galia dan Gaesatae di Clastidium. Tentara Galia maju dengan serbuan dan teriakan menakutkan mereka, dan raja mereka, Britomartos, memilih Marcellus karena lencana pangkatnya, dibuat khusus untuknya, meneriakkan tantangan dan mengacungkan tombaknya. Britomartos adalah seorang tokoh yang luar biasa tidak hanya karena ukuran tubuhnya, tetapi juga karena perhiasannya; karena ia sangat gemilang dalam warna-warna cerah dan zirahnya berkilau dengan emas dan perak. Zirah ini, pikir Marcellus, akan menjadi persembahan yang cocok untuk para dewa. Dia menyerbu sang Galia, menusuk penutup dadanya yang cerah dan melemparkan dia ke tanah. Mudah sekali membunuh Britomartos dan melepaskan zirahnya."
-
-#: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
-#: civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Britomartos"
-msgstr "Britomartos"
-
-#: civs/celt.jsonFactions[1].Heroes[1].History
-#: civs/gaul.jsonFactions[0].Heroes[1].History
-msgid ""
-"Brennus is the name which the Roman historians give to the famous leader of "
-"the Gauls who took Rome in the time of Camillus. According to Geoffrey of "
-"Monmouth, the cleric who wrote “History of the Kings of Britain”, Brennus "
-"and his brother Belinus invaded Gaul and sacked Rome in 390 B.C., 'proving' "
-"that Britons had conquered Rome, the greatest civilization in the world, "
-"long before Rome conquered the Britons. We know from many ancient sources "
-"which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennos (which was latinized to "
-"Brennus), but he and his invading horde were Gallic Senones, not British. In"
-" this episode several features of Geoffrey's editing method can be seen: he "
-"modified the historical Brennus/Brennos, created the brother Belinus, "
-"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
-"weak or foolish. His technique is both additive and subtractive. Like the "
-"tale of Trojan origin, the story of the sack of Rome is not pure "
-"fabrication; it is a creative rearrangement of the available facts, with "
-"details added as necessary. By virtue of their historical association, Beli "
-"and Bran are often muddled with the earlier brothers Belinus and Brennus "
-"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
-" in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr "Brennus adalah nama yang diberikan sejarawan Romawi kepada pemimpin terkenal Galia yang merebut Roma pada zaman Camillus. Menurut Geoffrey dari Monmouth, pendeta yang menulis \"Sejarah Raja-Raja Inggris\", Brennus dan saudaranya Belinus menyerang Galia dan menjarah Roma pada 390 SM, 'membuktikan' bahwa orang Briton telah menaklukkan Roma, peradaban terbesar di dunia, lama sebelum Roma menaklukkan Briton. Kita tahu dari banyak sumber kuno sebelum Geoffrey bahwa Roma memang dijarah, tetapi pada 387 bukan 390, dan bahwa serangan itu dipimpin oleh seorang pria bernama Brennos (yang dilatinkan menjadi Brennus), tapi dia dan gerombolan penyerangnya adalah Galia Senones, bukan Briton. Dalam peristiwa ini beberapa metode suntingan Geoffrey daat dilihat: ia mengubah sejarah Brennus/Brennos, menciptakan saudaranya Belinus, meminjam serangan Galia, tapi menghilangkan bagian di mana Kelt tampak lemah atau bodoh. Tekniknya adalah penambahan dan pengurangan. Seperti kisah asal usul Troya, kisah penjarahan Roma tidak murni buatan; tetapi penataan ulang yang kreatif dari fakta yang ada, dengan rincian ditambahkan seperlunya. Berdasarkan hubungan sejarahnya, Beli dan Bran sering bercampur dengan saudara-saudara sebelumnya Belinus dan Brennus (anak-anak Dunvallo Molmutius) yang berebut kekuasaan di Britania utara pada sekitar 390 SM, dan dianggap sebagai dewa dalam tradisi Kelt tua."
-
-#: civs/celt.jsonFactions[1].Heroes[1].Name civs/gaul.jsonAINames[1]
-#: civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennos"
-msgstr "Brennos"
-
-#: civs/celt.jsonFactions[1].Heroes[2].History
-#: civs/gaul.jsonFactions[0].Heroes[2].History
-msgid ""
-"Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni "
-"tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against "
-"the invading Romans under Julius Caesar, his actions during the revolt are "
-"remembered to this day. Vercingetorix was probably born near his tribes "
-"capital (Gergovia). From what little info we have Vercingetorix was probably"
-" born in 72 B.C., his father was Celtius and we don't know who his mother "
-"was. Because we only know of him from Roman sources we don't know much about"
-" Vercingetorix as a child or young man, except that perhaps he was probably "
-"very high spirited and probably gained some renown in deeds."
-msgstr "Vercingetorix (Galia: Ver-Rix Cingetos) adalah kepala suku dari suku Arverni di Galia (Prancis masa kini). Sejak tahun 52 SM ia memimpin pemberontakan melawan serangan Romawi di bawah Julius Caesar, tindakannya selama pemberontakan diingat sampai hari ini. Vercingetorix mungkin lahir dekat ibukota sukunya (Gergovia). Dari sedikit info yang diperoleh, Vercingetorix mungkin lahir di 72 SM, ayahnya adalah Celtius dan tidak diketahui siapa ibunya. Karena dia diketahui hanya dari sumber Romawi, tidak banyak yang diketahui tentang Vercingetorix saat kecil atau muda, kecuali bahwa mungkin dia bersemangat tinggi dan mendapat nama dari perbuatannya."
-
-#: civs/celt.jsonFactions[1].Heroes[2].Name civs/gaul.jsonAINames[2]
-#: civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Uerkingetorix"
-msgstr "Uerkingetorix"
-
-#: civs/celt.jsonFactions[1].Name civs/gaul.jsonName
-#: civs/gaul.jsonFactions[0].Name
+#: civs/gaul.jsonName civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Galia"
 
-#: civs/celt.jsonFactions[1].Description
-msgid "Mainland Europe"
-msgstr "Daratan Eropa"
+#: civs/gaul.jsonAINames[0] civs/gaul.jsonFactions[0].Heroes[0].Name
+msgid "Britomartos"
+msgstr "Britomartos"
 
-#: civs/celt.jsonStructures[0].Name civs/gaul.jsonStructures[0].Name
-msgid "Melonas"
-msgstr "Melonas"
+#: civs/gaul.jsonAINames[1] civs/gaul.jsonFactions[0].Heroes[1].Name
+msgid "Brennos"
+msgstr "Brennos"
 
-#: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
-msgid "The Celts developed the first rotary flour mill."
-msgstr "Bangsa Kelt mengembangkan penggilingan tepung berputar pertama."
-
-#: civs/celt.jsonHistory
-msgid ""
-"At its peak (around 200 B.C.), the massive Celtic Empire spanned from Spain "
-"to Romania and Northern Italy to Scotland; although it wasn't a true empire "
-"because the Celtic people were not united by any form of government, but "
-"only in language and various social aspects. Their lack of any cohesion was "
-"probably the largest contributing factor to their ultimate submission to "
-"Rome by 100 A.D. The other contributing factors were their lack of armor and"
-" their inability to counter the mighty legions and siege weapons of Rome."
-msgstr "Pada puncaknya (sekitar 200 SM), Kekaisaran raksasa Kelt membentang dari Spanyol ke Rumania dan Italia Utara ke Skotlandia; meski tak bisa disebut kerajaan sebenarnya karena orang-orang Kelt tidak disatukan oleh bentuk pemerintahan, tetapi hanya dalam bahasa dan berbagai aspek sosial. Kurangnya keterpaduan apapun mungkin adalah faktor yang berkontribusi terbesar untuk penyerahan akhir mereka ke Roma pada 100 M. Faktor lain yang berpengaruh adalah kurangnya pertahanan dan ketidakmampuan mereka untuk melawan legiun perkasa dan senjata pengepungan Roma."
+#: civs/gaul.jsonAINames[2] civs/gaul.jsonFactions[0].Heroes[2].Name
+msgid "Uerkingetorix"
+msgstr "Uerkingetorix"
 
 #: civs/gaul.jsonAINames[3]
 msgid "Divico"
@@ -987,15 +787,96 @@ msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "Sejumlah tetap bijih dan makanan dari setiap bangunan yang dihancurkan atau ditangkap"
 
+#: civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Uae Uictos"
+msgstr "Uae Uictos"
+
 #: civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
 " spoke at the Capitol at Rome after they took their plunder."
 msgstr "Berarti Celakalah yang Dikalahkan. Itu adalah kata-kata yang dikatakan Pemimpin Galia, Brennos, di Capitol Roma setelah mereka menjarah."
 
+#: civs/gaul.jsonFactions[0].Technologies[1].Description
+msgid "Gallic druids gain a small melee attack."
+msgstr "Druid Galia memperoleh tambahan kecil serangan jarak dekat."
+
+#: civs/gaul.jsonFactions[0].Technologies[1].Name
+msgid "Carnutes"
+msgstr "Carnutes"
+
+#: civs/gaul.jsonFactions[0].Technologies[1].History
+msgid ""
+"The Carnutes were druids from Aulercia. They fought when needed, and were "
+"largely responsible for turning back the Belgae incursions into Armorica and"
+" Aulercia."
+msgstr "Carnutes adalah druid dari Aulercia. Mereka bertempur bila diperlukan, dan berperan dalam membalikkan serangan Belgae ke Armorica dan Aulercia."
+
+#: civs/gaul.jsonFactions[0].Heroes[0].History
+msgid ""
+"When celt armies met the enemy, before the battle would start, the celt "
+"leader would go to the first line and challenge the bravest of the enemy "
+"warriors to a single combat. The story of how Marcus Claudius Marcellus "
+"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
+"encounters. Advancing with a smallish army, Marcellus met a combined force "
+"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
+" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"out Marcellus by means of his badges of rank, made for him, shouting a "
+"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"not only for his size but also for his adornments; for he was resplendent in"
+" bright colors and his armor shone with gold and silver. This armor, thought"
+" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
+"pierced his bright breastplate and cast him to the ground. It was an easy "
+"task to kill Britomartos and strip him of his armor."
+msgstr "Ketika pasukan Kelt bertemu musuh, sebelum pertempuran akan dimulai, pemimpin Kelt akan pergi ke baris pertama dan menantang yang paling berani dari prajurit musuh dalam pertarungan tunggal. Kisah tentang bagaimana Marcus Claudius Marcellus membunuh seorang pemimpin Galia di Clastidium (222 SM) adalah biasa dalam pertemuan semacam itu. Maju dengan pasukan agak kecil, Marcellus bertemu pasukan gabungan Insubrian Galia dan Gaesatae di Clastidium. Tentara Galia maju dengan serbuan dan teriakan menakutkan mereka, dan raja mereka, Britomartos, memilih Marcellus karena lencana pangkatnya, dibuat khusus untuknya, meneriakkan tantangan dan mengacungkan tombaknya. Britomartos adalah seorang tokoh yang luar biasa tidak hanya karena ukuran tubuhnya, tetapi juga karena perhiasannya; karena ia sangat gemilang dalam warna-warna cerah dan zirahnya berkilau dengan emas dan perak. Zirah ini, pikir Marcellus, akan menjadi persembahan yang cocok untuk para dewa. Dia menyerbu sang Galia, menusuk penutup dadanya yang cerah dan melemparkan dia ke tanah. Mudah sekali membunuh Britomartos dan melepaskan zirahnya."
+
+#: civs/gaul.jsonFactions[0].Heroes[1].History
+msgid ""
+"Brennus is the name which the Roman historians give to the famous leader of "
+"the Gauls who took Rome in the time of Camillus. According to Geoffrey of "
+"Monmouth, the cleric who wrote “History of the Kings of Britain”, Brennus "
+"and his brother Belinus invaded Gaul and sacked Rome in 390 B.C., 'proving' "
+"that Britons had conquered Rome, the greatest civilization in the world, "
+"long before Rome conquered the Britons. We know from many ancient sources "
+"which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
+"that the raid was led by a man named Brennos (which was latinized to "
+"Brennus), but he and his invading horde were Gallic Senones, not British. In"
+" this episode several features of Geoffrey's editing method can be seen: he "
+"modified the historical Brennus/Brennos, created the brother Belinus, "
+"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
+"weak or foolish. His technique is both additive and subtractive. Like the "
+"tale of Trojan origin, the story of the sack of Rome is not pure "
+"fabrication; it is a creative rearrangement of the available facts, with "
+"details added as necessary. By virtue of their historical association, Beli "
+"and Bran are often muddled with the earlier brothers Belinus and Brennus "
+"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
+" in around 390 B.C., and were regarded as gods in old Celtic tradition."
+msgstr "Brennus adalah nama yang diberikan sejarawan Romawi kepada pemimpin terkenal Galia yang merebut Roma pada zaman Camillus. Menurut Geoffrey dari Monmouth, pendeta yang menulis \"Sejarah Raja-Raja Inggris\", Brennus dan saudaranya Belinus menyerang Galia dan menjarah Roma pada 390 SM, 'membuktikan' bahwa orang Briton telah menaklukkan Roma, peradaban terbesar di dunia, lama sebelum Roma menaklukkan Briton. Kita tahu dari banyak sumber kuno sebelum Geoffrey bahwa Roma memang dijarah, tetapi pada 387 bukan 390, dan bahwa serangan itu dipimpin oleh seorang pria bernama Brennos (yang dilatinkan menjadi Brennus), tapi dia dan gerombolan penyerangnya adalah Galia Senones, bukan Briton. Dalam peristiwa ini beberapa metode suntingan Geoffrey daat dilihat: ia mengubah sejarah Brennus/Brennos, menciptakan saudaranya Belinus, meminjam serangan Galia, tapi menghilangkan bagian di mana Kelt tampak lemah atau bodoh. Tekniknya adalah penambahan dan pengurangan. Seperti kisah asal usul Troya, kisah penjarahan Roma tidak murni buatan; tetapi penataan ulang yang kreatif dari fakta yang ada, dengan rincian ditambahkan seperlunya. Berdasarkan hubungan sejarahnya, Beli dan Bran sering bercampur dengan saudara-saudara sebelumnya Belinus dan Brennus (anak-anak Dunvallo Molmutius) yang berebut kekuasaan di Britania utara pada sekitar 390 SM, dan dianggap sebagai dewa dalam tradisi Kelt tua."
+
+#: civs/gaul.jsonFactions[0].Heroes[2].History
+msgid ""
+"Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni "
+"tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against "
+"the invading Romans under Julius Caesar, his actions during the revolt are "
+"remembered to this day. Vercingetorix was probably born near his tribes "
+"capital (Gergovia). From what little info we have Vercingetorix was probably"
+" born in 72 B.C., his father was Celtius and we don't know who his mother "
+"was. Because we only know of him from Roman sources we don't know much about"
+" Vercingetorix as a child or young man, except that perhaps he was probably "
+"very high spirited and probably gained some renown in deeds."
+msgstr "Vercingetorix (Galia: Ver-Rix Cingetos) adalah kepala suku dari suku Arverni di Galia (Prancis masa kini). Sejak tahun 52 SM ia memimpin pemberontakan melawan serangan Romawi di bawah Julius Caesar, tindakannya selama pemberontakan diingat sampai hari ini. Vercingetorix mungkin lahir dekat ibukota sukunya (Gergovia). Dari sedikit info yang diperoleh, Vercingetorix mungkin lahir di 72 SM, ayahnya adalah Celtius dan tidak diketahui siapa ibunya. Karena dia diketahui hanya dari sumber Romawi, tidak banyak yang diketahui tentang Vercingetorix saat kecil atau muda, kecuali bahwa mungkin dia bersemangat tinggi dan mendapat nama dari perbuatannya."
+
 #: civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "Bangsa Kelt di daratan Eropa."
+
+#: civs/gaul.jsonStructures[0].Name
+msgid "Melonas"
+msgstr "Melonas"
+
+#: civs/gaul.jsonStructures[0].History
+msgid "The Celts developed the first rotary flour mill."
+msgstr "Bangsa Kelt mengembangkan penggilingan tepung berputar pertama."
 
 #: civs/gaul.jsonHistory
 msgid ""
@@ -1005,203 +886,6 @@ msgid ""
 "infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
 "of conquest and Rome's authoritarian rule."
 msgstr "Galia adalah suku Kelt dari benua Eropa. Didominasi oleh kelas pendeta Druid, mereka menampilkan peradapan yang maju dalam pembuatan perkakas logam, pertanian, perdagangan dan bahkan pembuatan jalan. Dengan infanteri dan kavaleri berat, prajurit Galia gagah berani menolak misi penaklukan Caesar dan pemerintahan otoriter Roma."
-
-#: civs/hele.jsonName
-msgid "Hellenes"
-msgstr "Yunani"
-
-#: civs/hele.jsonCivBonuses[0].Description
-msgid "10-15% cheaper technologies."
-msgstr "Teknologi lebih murah 10-15%."
-
-#: civs/hele.jsonCivBonuses[0].Name
-msgid "Oikoumene"
-msgstr "Oikoumene"
-
-#: civs/hele.jsonCivBonuses[0].History
-msgid ""
-"The Hellenes envisioned themselves as comprising the civilized world "
-"(oikoumene), surrounded by more or less developed barbarians. Many "
-"foreigners also considered them men of higher stature."
-msgstr "Kaum Yunani membayangkan diri mereka sebagai orang dari dunia beradab (oikoumene), dikelilingi oleh yang kurang lebih adalah kaum barbar yang berkembang. Banyak orang luar juga menganggap mereka sebagai orang bertubuh tinggi."
-
-#: civs/hele.jsonTeamBonuses[0].Description
-msgid "All units and allied units have increased LOS. ~ 10%"
-msgstr "Semua unit sendiri dan sekutu memiliki jarak pandang lebih. ~10%"
-
-#: civs/hele.jsonTeamBonuses[0].Name
-msgid "Oracle at Delphi"
-msgstr "Orakel Delfi"
-
-#: civs/hele.jsonTeamBonuses[0].History
-msgid ""
-"The sacred Oracle of Apollo at Delphi was among the most highly cherished "
-"sanctuaries by Hellenes and foreigners alike. The Lydian king Croesus, for "
-"example, consulted the advice of the god before going to war with Cyrus the "
-"Great of Persia."
-msgstr "Oracle suci Apollo di Delfi adalah salah satu tempat suci yang sangat dihargai oleh kaum Yunani maupun orang luar. Raja Croesus dari Lidia, misalnya, meminta nasihat dewa sebelum pergi berperang dengan Koresh Agung dari Persia."
-
-#: civs/hele.jsonFactions[0].Technologies[0].Description
-msgid "The player gains the Phalanx formation."
-msgstr "Pemain memperoleh formasi Falang."
-
-#: civs/hele.jsonFactions[0].Technologies[0].History
-msgid ""
-"The classical phalanx formation was developed about VIII century B.C. It was"
-" eight men deep and over two hundred men wide, and used overlapping shields "
-"and combined pushing power. 'Othismos' refers to the point in a phalanx "
-"battle where both sides try to shove each other out of formation, attempting"
-" to breaking up the enemy lines and routing them."
-msgstr "Formasi phalanx klasik dikembangkan sekitar abad ketujuh SM dengan dalam delapan prajurit dan lebar lebih bdari dua ratus prajurit dan menggunakan tameng bertumpuk dan digabung dengan kekuatan menekan. 'Othismos' merujuk pada saat dalam pertempuran phalanx saat kedua sisi mencoba mendesak satu sama lain keluar dari formasi, mencoba merusak garis musuh dan membubarkan mereka."
-
-#: civs/hele.jsonFactions[0].Technologies[1].Description
-msgid "Triremes are 20% cheaper and build 20% faster."
-msgstr "Trireme 20% lebih murah dan dibangun 20% lebih cepat."
-
-#: civs/hele.jsonFactions[0].Heroes[1].History
-msgid ""
-"The king of Sparta, whom fought and died at the battle of Thermopylae in 480"
-" B.C. He successfully blocked the way of the huge Persian army through the "
-"narrow passage with his 7000 men, until Xerxes was made aware of a secret "
-"unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
-" his troops, choosing to stay behind with 300 hand-picked hoplites and win "
-"time for the others to withdraw."
-msgstr "Raja Sparta, yang berjuang dan mati di pertempuran Thermopylae pada tahun 480 SM. Dia sukses menghalangi jalan tentara Persia besar melalui lorong sempit dengan 7000 anak buahnya, sampai Xerxes diberitahu mengenai jalan rahasia. Menemukan musuh di belakangnya, Leonidas mengirim pulang sebagian besar pasukannya, memilih untuk tinggal di belakang dengan 300 hoplites pilihannya dan memenangkan waktu bagi yang lain untuk mundur."
-
-#: civs/hele.jsonFactions[0].Heroes[1].Name civs/spart.jsonAINames[0]
-msgid "Leonidas"
-msgstr "Leonidas"
-
-#: civs/hele.jsonFactions[0].Heroes[2].History
-msgid ""
-"Xenophon (c. 430-355 B.C.) was a Greek soldier and (later) historian who was"
-" born in Athens of an oligarch family and was a student of Socrates during "
-"his youth. In 401 B. C., Xenophon joined an army of Greek mercenaries lead "
-"by Clearchus and four other generals who were aiding Cyrus the Younger in "
-"his military campaign against his brother, King Artaxerxes II. After Persian"
-" treachery killed the leaders of the mercenary force, Xenophon was elected "
-"one of the 5 new generals to lead the army. After a trek of over 1,500 "
-"kilometers and 1 1/2 years, Xenophon finally helped lead his men home, "
-"fighting dozens of battles and skirmishes along the way."
-msgstr "Xenophon (sekitar 430-355 SM) adalah seorang prajurit Yunani dan (kemudian) sejarawan yang lahir di Athena dari keluarga oligarki dan murid Socrates selama masa mudanya. Pada 401 SM, Xenophon bergabung dengan tentara bayaran Yunani yang dipimpin oleh Clearchus dan empat jenderal lain yang membantu Koresh Muda dalam kampanye militer melawan saudaranya, Raja Artahsasta II. Setelah pengkhianatan Persia membunuh para pemimpin pasukan tentara bayaran, Xenophon terpilih salah satu dari 5 jenderal baru untuk memimpin tentara. Setelah perjalanan lebih dari 1.500 kilometer dan 1 1/2 tahun, Xenophon akhirnya membantu memimpin anak buahnya pulang, memerangi puluhan pertempuran dan bentrokan sepanjang jalan."
-
-#: civs/hele.jsonFactions[0].Name
-msgid "Poleis"
-msgstr "Poleis"
-
-#: civs/hele.jsonFactions[0].Description
-msgid "Greek City-states"
-msgstr "Negara-kota Yunani"
-
-#: civs/hele.jsonFactions[1].Technologies[0].Description
-msgid "The player gains the Syntagma formation."
-msgstr "Pemain memperoleh formasi Syntagma."
-
-#: civs/hele.jsonFactions[1].Technologies[0].Name
-#: civs/mace.jsonFactions[0].Technologies[0].Name
-#: civs/sele.jsonCivBonuses[1].Name
-msgid "Military Reforms"
-msgstr "Reformasi Militer"
-
-#: civs/hele.jsonFactions[1].Technologies[0].History
-msgid ""
-"Once coming to the throne, Philip II set about reforming the ragtag "
-"Macedonian army into a fearsome professional force. One such reform is the "
-"SYNTAGMA formation, derived from the oblique battle front developed by the "
-"Theban commander Epaminondas. The phalanx, consisting of 256 men, is "
-"arranged in the following way 16 men in width and 16 in depth."
-msgstr "Setelah naik takhta, Philip II mengadakan reformasi tentara Makedon menjadi kekuatan profesional yang menakutkan. Salah satu reformasi tersebut adalah pembentukan Syntagma, berasal dari barisan miring yang dikembangkan oleh komandan Thebes Epaminondas. Phalanx, yang terdiri dari 256 prajurit, diatur dengan cara sebagai berikut 16 orang lebar dan 16 kolom."
-
-#: civs/hele.jsonFactions[1].Technologies[1].Description
-msgid "Civic Centers have double Health."
-msgstr "Balai Kota memiliki Nyawa berganda."
-
-#: civs/hele.jsonFactions[1].Technologies[1].Name
-#: civs/mace.jsonFactions[0].Technologies[2].Name
-#: civs/ptol.jsonFactions[0].Technologies[0].Name
-#: civs/sele.jsonFactions[0].Technologies[0].Name
-msgid "Hellenistic Metropolises"
-msgstr "Metropolis Helenistik"
-
-#: civs/hele.jsonFactions[1].Technologies[1].History
-#: civs/mace.jsonFactions[0].Technologies[2].History
-#: civs/ptol.jsonFactions[0].Technologies[0].History
-#: civs/sele.jsonFactions[0].Technologies[0].History
-msgid ""
-"Beginning with Alexander, the Hellenistic monarchs founded many cities "
-"throughout their empires, where Greek culture and art blended with local "
-"customs to create the motley Hellenistic civilization."
-msgstr "Dimulai dari Iskandar, monarki Helenistik mendirikan banyak kota di seluruh kekaisarannya, dimana budaya dan seni Yunani bercampur dengan budaya lokal menjadi peradaban Helenistik yang beranekaragam."
-
-#: civs/hele.jsonFactions[1].Heroes[0].History
-#: civs/mace.jsonFactions[0].Heroes[0].History
-msgid ""
-"The king of Macedonia (359-336 B.C.), he carried out vast monetary and "
-"military reforms in order to make his kingdom the most powerful force in the"
-" Greek world. Greatly enlarged the size of Macedonia by conquering much of "
-"Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign "
-"against Persia."
-msgstr "Raja Makedonia (359-336 SM), ia melakukan reformasi keuangan dan militer yang luas untuk membuat kerajaannya menjadi kekuatan terhebat di dunia Yunani. Memperbesar luas Makedonia dengan menaklukkan sebagian besar Trakia dan mengalahkan Yunani. Dibunuh di Aegae ketika merencanakan operasi melawan Persia."
-
-#: civs/hele.jsonFactions[1].Heroes[0].Name civs/mace.jsonAINames[1]
-msgid "Philip II"
-msgstr "Philip II"
-
-#: civs/hele.jsonFactions[1].Heroes[1].History
-#: civs/mace.jsonFactions[0].Heroes[1].History
-msgid ""
-"The most powerful hero of them all - son of Philip II, king of Macedonia "
-"(336-323 B.C.). After conquering the rest of the Thracians and quelling the "
-"unrest of the Greeks, Alexander embarked on a world-conquest march. "
-"Defeating the Persian forces at Granicus (334 B.C.), Issus (333 B.C.) and "
-"Gaugamela (331 B.C.), he became master of the Persian Empire. Entering "
-"India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
-"made him halt. Died in Babylon at the age of 33 while planning a campaign "
-"against Arabia."
-msgstr ""
-
-#: civs/hele.jsonFactions[1].Heroes[1].Name civs/mace.jsonAINames[0]
-#: civs/mace.jsonFactions[0].Heroes[1].Name
-msgid "Alexander the Great"
-msgstr "Alexander the Great"
-
-#: civs/hele.jsonFactions[1].Heroes[2].History
-#: civs/mace.jsonFactions[0].Heroes[2].History
-msgid ""
-"One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was "
-"renowned as one of the bravest and most able successors of Alexander. As the"
-" son of Antigonus I Monophthalmus, he fought and won many important battles "
-"early on and was proclaimed king, along with his father, in 306 B.C. Losing "
-"his Asian possessions after the battle of Ipsos, he later won the Macedonian"
-" throne. Fearing lest they should be overpowered by Demetrios, the other "
-"Diadochi united against him and defeated him."
-msgstr ""
-
-#: civs/hele.jsonFactions[1].Heroes[2].Name
-msgid "Demetrios Poliorcetes"
-msgstr "Demetrios Poliorcetes"
-
-#: civs/hele.jsonFactions[1].Name
-msgid "Macedonia"
-msgstr "Makedonia"
-
-#: civs/hele.jsonFactions[1].Description
-msgid "Kingdom bordering Greek city-states"
-msgstr "Kerajaan berbatasan dengan negara-kota Yunani"
-
-#: civs/hele.jsonHistory
-msgid ""
-"The Hellenes were a people famous today for their architecture, fighting "
-"ability, and culture. The Hellenic peoples of the Dorian, Ionian, and "
-"Aeolian tribes swept into modern day Greece from 3000 B.C. to around 1100 "
-"B.C. in successive waves that eventually supplanted the previously "
-"established cultures of Mycenae and Minoan Crete. They were most active "
-"during the period of colonization that took place in the 7th and 6th "
-"centuries B.C., the Greco-Persian Wars (499-449 B.C.), the Peloponnesian War"
-" (431-404 B.C.), and the conquests of Alexander the Great (4th Century "
-"B.C.). Their civilization would endure until their final absorption by Rome "
-"in 146 B.C."
-msgstr ""
 
 #: civs/iber.jsonName
 msgid "Iberians"
@@ -1458,6 +1142,14 @@ msgid ""
 "rule."
 msgstr "Bangsa Makedon dan Diokhoi mencetak koin berkualitas tinggi. Pada mata uang mereka, khususnya Diadokhoi, mereka sering menampilkan dirinya sebagai penerus yang berhak atas Iskandar Agung, berusaha mengabsahkan kekuasaan mereka."
 
+#: civs/mace.jsonAINames[0] civs/mace.jsonFactions[0].Heroes[1].Name
+msgid "Alexander the Great"
+msgstr "Alexander the Great"
+
+#: civs/mace.jsonAINames[1]
+msgid "Philip II"
+msgstr "Philip II"
+
 #: civs/mace.jsonAINames[2]
 msgid "Antipater"
 msgstr "Antipater"
@@ -1510,6 +1202,11 @@ msgid ""
 "constructed)."
 msgstr "Setiap Barak baru akan memberikan 5 unit militer Makedon gratis (acak). Berlaku juga untuk Barak pemain sekutu (mereka menerima 5 unit gratis dari budaya mereka untuk setiap Barak baru)."
 
+#: civs/mace.jsonFactions[0].Technologies[0].Name
+#: civs/sele.jsonCivBonuses[1].Name
+msgid "Military Reforms"
+msgstr "Reformasi Militer"
+
 #: civs/mace.jsonFactions[0].Technologies[0].History
 msgid ""
 "When Philip II came to the Macedonian throne he began a total reorganization"
@@ -1541,9 +1238,56 @@ msgstr "Di India di ujung ekspedisi anabasisnya yang panjang, Iskandar menghadia
 msgid "Civic Centers have double Health and double default arrows."
 msgstr "Balai Kota memiliki Nyawa dan panah berganda."
 
+#: civs/mace.jsonFactions[0].Technologies[2].Name
+#: civs/ptol.jsonFactions[0].Technologies[0].Name
+#: civs/sele.jsonFactions[0].Technologies[0].Name
+msgid "Hellenistic Metropolises"
+msgstr "Metropolis Helenistik"
+
+#: civs/mace.jsonFactions[0].Technologies[2].History
+#: civs/ptol.jsonFactions[0].Technologies[0].History
+#: civs/sele.jsonFactions[0].Technologies[0].History
+msgid ""
+"Beginning with Alexander, the Hellenistic monarchs founded many cities "
+"throughout their empires, where Greek culture and art blended with local "
+"customs to create the motley Hellenistic civilization."
+msgstr "Dimulai dari Iskandar, monarki Helenistik mendirikan banyak kota di seluruh kekaisarannya, dimana budaya dan seni Yunani bercampur dengan budaya lokal menjadi peradaban Helenistik yang beranekaragam."
+
+#: civs/mace.jsonFactions[0].Heroes[0].History
+msgid ""
+"The king of Macedonia (359-336 B.C.), he carried out vast monetary and "
+"military reforms in order to make his kingdom the most powerful force in the"
+" Greek world. Greatly enlarged the size of Macedonia by conquering much of "
+"Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign "
+"against Persia."
+msgstr "Raja Makedonia (359-336 SM), ia melakukan reformasi keuangan dan militer yang luas untuk membuat kerajaannya menjadi kekuatan terhebat di dunia Yunani. Memperbesar luas Makedonia dengan menaklukkan sebagian besar Trakia dan mengalahkan Yunani. Dibunuh di Aegae ketika merencanakan operasi melawan Persia."
+
 #: civs/mace.jsonFactions[0].Heroes[0].Name
 msgid "Philip II of Macedon"
 msgstr "Philip II of Macedon"
+
+#: civs/mace.jsonFactions[0].Heroes[1].History
+msgid ""
+"The most powerful hero of them all - son of Philip II, king of Macedonia "
+"(336-323 B.C.). After conquering the rest of the Thracians and quelling the "
+"unrest of the Greeks, Alexander embarked on a world-conquest march. "
+"Defeating the Persian forces at Granicus (334 B.C.), Issus (333 B.C.) and "
+"Gaugamela (331 B.C.), he became master of the Persian Empire. Entering "
+"India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
+"made him halt. Died in Babylon at the age of 33 while planning a campaign "
+"against Arabia."
+msgstr ""
+
+#: civs/mace.jsonFactions[0].Heroes[2].History
+msgid ""
+"One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was "
+"renowned as one of the bravest and most able successors of Alexander. As the"
+" son of Antigonus I Monophthalmus, he fought and won many important battles "
+"early on and was proclaimed king, along with his father, in 306 B.C. Losing "
+"his Asian possessions after the battle of Ipsos, he later won the Macedonian"
+" throne. Fearing lest they should be overpowered by Demetrios, the other "
+"Diadochi united against him and defeated him."
+msgstr ""
 
 #: civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
@@ -1578,7 +1322,7 @@ msgid ""
 "Hellenistic culture."
 msgstr "Iskandar Agung mendirikan perpustakaan di seluruh kerajaan barunya. Perpustakaan ini menjadi pusat pembelajaran bagi budaya gabungan baru: budaya Helenistik."
 
-#: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
+#: civs/mace.jsonStructures[2].Name
 msgid "Siege Workshop"
 msgstr "Bengkel Kepung"
 
@@ -2049,15 +1793,6 @@ msgid "Nile Delta"
 msgstr "Delta Nil"
 
 #: civs/ptol.jsonCivBonuses[1].History civs/ptol.jsonCivBonuses[2].History
-#: civs/theb.jsonCivBonuses[0].Description civs/theb.jsonCivBonuses[0].History
-#: civs/theb.jsonCivBonuses[1].Description civs/theb.jsonCivBonuses[1].History
-#: civs/theb.jsonTeamBonuses[0].Description
-#: civs/theb.jsonTeamBonuses[0].History
-#: civs/theb.jsonFactions[0].Technologies[0].Description
-#: civs/theb.jsonFactions[0].Technologies[0].Name
-#: civs/theb.jsonFactions[0].Technologies[0].History
-#: civs/theb.jsonFactions[0].Technologies[1].Description
-#: civs/theb.jsonFactions[0].Technologies[1].History
 msgid "Unknown."
 msgstr "Tidak diketahui."
 
@@ -2792,6 +2527,10 @@ msgid ""
 "Lacedaemonians and their allies.'"
 msgstr ""
 
+#: civs/spart.jsonAINames[0]
+msgid "Leonidas"
+msgstr "Leonidas"
+
 #: civs/spart.jsonAINames[1]
 msgid "Dienekes"
 msgstr "Dienekes"
@@ -2944,88 +2683,3 @@ msgid ""
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
 msgstr "Sparta merupakan kota yang terkemuka pada zaman Yunani kuno, dan memiliki kekuatan militer yang dominan sekitar 650 B.C. Budaya sparta terobsesi pada pelatihan militer, dengan pelatihan intensif pada anak laki-laki dimulai pada usia 7 tahun. Karena kekuata militernya yang besar, Sparta memimpin koalisi pasukan Yunani selama perang Persia, dan memenangkan Athena pada perang Peloponnesian dengan pengorbanan yang besar. "
-
-#: civs/theb.jsonName civs/theb.jsonFactions[0].Name
-msgid "Thebans"
-msgstr "Bangsa Thebes"
-
-#: civs/theb.jsonCivBonuses[0].Name
-msgid "Oblique Order"
-msgstr "Susunan Miring"
-
-#: civs/theb.jsonCivBonuses[1].Name
-#: civs/theb.jsonFactions[0].Technologies[1].Name
-msgid "Unknown"
-msgstr "Tidak diketahui"
-
-#: civs/theb.jsonTeamBonuses[0].Name
-msgid "Boeotian Confederacy"
-msgstr "Perserikatan Boeotia"
-
-#: civs/theb.jsonAINames[0] civs/theb.jsonFactions[0].Heroes[0].Name
-msgid "Epaminondas"
-msgstr "Epaminondas"
-
-#: civs/theb.jsonAINames[1] civs/theb.jsonFactions[0].Heroes[1].Name
-msgid "Pelopidas"
-msgstr "Pelopidas"
-
-#: civs/theb.jsonAINames[2] civs/theb.jsonFactions[0].Heroes[2].Name
-msgid "Gorgidas"
-msgstr "Gorgidas"
-
-#: civs/theb.jsonAINames[3]
-msgid "Calydnus"
-msgstr "Calydnus"
-
-#: civs/theb.jsonAINames[4]
-msgid "Ogyges"
-msgstr "Ogyges"
-
-#: civs/theb.jsonAINames[5]
-msgid "Cadmus"
-msgstr "Cadmus"
-
-#: civs/theb.jsonAINames[6]
-msgid "Pentheus"
-msgstr "Pentheus"
-
-#: civs/theb.jsonAINames[7]
-msgid "Polydorus"
-msgstr "Polydorus"
-
-#: civs/theb.jsonAINames[8]
-msgid "Nycteus"
-msgstr "Nycteus"
-
-#: civs/theb.jsonAINames[9]
-msgid "Lycus"
-msgstr "Lycus"
-
-#: civs/theb.jsonAINames[10]
-msgid "Labdacus"
-msgstr "Labdacus"
-
-#: civs/theb.jsonFactions[0].Description
-msgid ""
-"The great power of Central Greece and leader of the Boeotian confederacy."
-msgstr "Kekuatan besar Yunani Tengah dan pemimpin perserikatan Boeotia."
-
-#: civs/theb.jsonStructures[1].History
-msgid ""
-"At the siege of the Athenian fortress at Delium, the Thebans employed what "
-"may be deemed the first recorded use of a flame thrower in warfare."
-msgstr "Pada pengepungan benteng Athena di Delos, bangsa Thebes menggunakan sesuatu yang dianggap sebagai penggunaan pertama pelempar api dalam peperangan."
-
-#: civs/theb.jsonHistory
-msgid ""
-"The great power of Central Greece and leader of the Boeotian confederacy, "
-"Thebes is a force to be reckoned with. It is a major rival of ancient "
-"Athens, and sided with the Persians during the 480 BC invasion under Xerxes."
-" Theban forces ended the power of Sparta at the Battle of Leuctra in 371 BC "
-"under the command of Epaminondas. The Sacred Band of Thebes (an elite "
-"military unit) famously fell at the battle of Chaeronea in 338 BC against "
-"Philip II and Alexander the Great. Prior to its destruction by Alexander in "
-"335 BC, Thebes was a major force in Greek history, and was the most dominant"
-" city-state at the time of the Macedonian conquest of Greece."
-msgstr "Kekuatan besar Yunani Tengah dan pemimpin perserikatan Boeotia, Thebes adalah pasukan yang mesti diperhitungkan. Ia adalah lawan utama Athena kuno, dan memihak pada Persia pada serangan 480 SM di bawah Xerxes. Pasukan Thebes mengakhiri kekuatan Sparta pada Pertempuran Leuktra pada 371 SM di bawah pimpinan Epaminondas. Pasukan Suci Thebes (unit militer elit) terkenal kalah pada pertempuran Chaeronea pada 338 BC melawan Philip II dan Iskandar Agung. Sebelum penghancurannya oleh Iskandar pada 335 SM, Thebes adalah pasukan utama dalam sejarah Yunani, dan negara-kota paling dominan pada masa penaklukan Yunani oleh Makedonia."

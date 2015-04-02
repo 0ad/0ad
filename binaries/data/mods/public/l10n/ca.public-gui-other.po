@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-03-14 13:29+0000\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-21 04:55+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -18,38 +18,38 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s"
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonificació de civilització"
 msgstr[1] "Bonificacions de civilització"
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonificació d'equip"
 msgstr[1] "Bonificacions d'equip"
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr "Tecnologies especials"
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Edifici especial"
 msgstr[1] "Edificis especials"
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr "Herois"
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s: la seva història"
@@ -301,8 +301,8 @@ msgstr "La partida ja ha començat"
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
-msgstr "[Valor invàlid %(id)s]"
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Valor invàlid %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -383,7 +383,8 @@ msgid "Armor:"
 msgstr "Armadura:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -980,6 +981,34 @@ msgstr "La partida desada es sobreescriurà permanentment, n'esteu segur?"
 msgid "OVERWRITE SAVE"
 msgstr "SOBREESCRIU LA PARTIDA DESADA"
 
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr "%(auralabel)s %(aurainfo)s"
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr "%(auraname)s:"
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "Salut:"
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr "%(resourceIcon)s %(rate)s"
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr "Velocitat de recollida:"
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
+msgstr "%(val1)s a %(val2)s"
+
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
 #: gui/summary/summary.xml:(caption):103
@@ -1163,6 +1192,7 @@ msgid "Civilization Selection"
 msgstr "Selecció de civilització"
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "Tanca"
 
@@ -1309,6 +1339,7 @@ msgid "Disable Feedback"
 msgstr "Desactiva els informes"
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr "Arbre d'estructures"
 
@@ -1524,6 +1555,10 @@ msgstr "Mostra aquest missatge en el futur"
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
 msgstr "Problemes coneguts (web)"
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
+msgstr "Civilització:"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"

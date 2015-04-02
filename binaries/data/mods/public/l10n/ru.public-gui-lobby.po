@@ -9,13 +9,14 @@
 # Igor Kustov, 2014
 # Ivan, 2014
 # v00d00911 <agroworker@mail.ru>, 2014
+# Woratiklis, 2015
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-26 04:51+0000\n"
-"Last-Translator: Christo Keller <christoniancoder@gmail.com>\n"
+"PO-Revision-Date: 2015-03-21 18:51+0000\n"
+"Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,11 +82,11 @@ msgstr "Далеко"
 
 #: gui/lobby/lobby.js:453
 msgid "Online"
-msgstr "Онлайн"
+msgstr "В сети"
 
 #: gui/lobby/lobby.js:457
 msgid "Offline"
-msgstr "Оффлайн"
+msgstr "Не в сети"
 
 #: gui/lobby/lobby.js:462
 msgctxt "lobby presence"
@@ -268,7 +269,7 @@ msgstr "Игр всего:"
 
 #: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):308
 msgid "Wins:"
-msgstr "Выигрыши:"
+msgstr "Победы:"
 
 #: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):312
 msgid "Losses:"

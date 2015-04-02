@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# linux_eki <ekiuusi@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-31 19:41+0000\n"
+"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,38 +17,38 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr "Erikois teknologiat"
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
-msgstr ""
+msgstr "Sankarit"
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr ""
@@ -61,7 +62,7 @@ msgstr ""
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr ""
+msgstr "Avataan sivua"
 
 #: gui/common/functions_global_object.js:79
 #, javascript-format
@@ -70,7 +71,7 @@ msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:187
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:189
 msgid "HH:mm:ss"
@@ -87,7 +88,7 @@ msgstr "vvvv-KK-pp TT:mm:ss"
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
 msgid "\\[%(date)s]"
-msgstr ""
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
@@ -283,37 +284,37 @@ msgstr "Kala"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
-msgstr ""
+msgstr "Tuntematon syy"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
-msgstr ""
+msgstr "Odottamaton sulkeutuminen"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
-msgstr ""
+msgstr "Väärä verkkoprotokollan versio"
 
 #: gui/common/network.js:9
 msgid "Game has already started"
-msgstr ""
+msgstr "Peli on jo alkanut"
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
-msgstr ""
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Invalid value %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "Yhteys palvelimeen menetetty."
 
 #: gui/common/network.js:19
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Syy: %(reason)s."
 
 #: gui/common/network.js:20
 msgid "Disconnected"
-msgstr ""
+msgstr "Yhteys katkaistu"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -352,24 +353,24 @@ msgstr ", "
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(time)s %(second)s"
-msgstr ""
+msgstr "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:413
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "sekuntti"
+msgstr[1] "sekuntteja"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
-msgstr ""
+msgstr "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:63
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nuoli"
+msgstr[1] "Nuolia"
 
 #: gui/common/tooltips.js:65
 #, javascript-format
@@ -381,7 +382,8 @@ msgid "Armor:"
 msgstr "Panssari:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -425,7 +427,7 @@ msgstr "Taso:"
 #: gui/common/tooltips.js:174
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
 #: gui/common/tooltips.js:184 gui/common/tooltips.js:406
 msgid "Range:"
@@ -440,14 +442,14 @@ msgstr "metrit"
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:199
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
 #: gui/common/tooltips.js:249 gui/common/tooltips.js:250
 #: gui/common/tooltips.js:251 gui/common/tooltips.js:252
@@ -513,7 +515,7 @@ msgstr "%(label)s %(speeds)s"
 #: gui/common/tooltips.js:410
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
-msgstr ""
+msgstr "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:400
 msgid "Heal:"
@@ -545,7 +547,7 @@ msgstr "Ei mitään"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
@@ -578,7 +580,7 @@ msgstr ""
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "Ikkunoitu"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
@@ -978,6 +980,34 @@ msgstr "Tallennettu peli päällekirjoitetaan pysyvästi, oletko varma? "
 msgid "OVERWRITE SAVE"
 msgstr "Päällekirjoita tallennus"
 
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr ""
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr ""
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "Terveys:"
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr ""
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr ""
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
+msgstr ""
+
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
 #: gui/summary/summary.xml:(caption):103
@@ -1161,6 +1191,7 @@ msgid "Civilization Selection"
 msgstr "Kansakunnan valinta"
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "Sulje"
 
@@ -1307,6 +1338,7 @@ msgid "Disable Feedback"
 msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr ""
 
@@ -1521,6 +1553,10 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
+msgstr ""
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
 msgstr ""
 
 #: gui/summary/summary.xml:(caption):21

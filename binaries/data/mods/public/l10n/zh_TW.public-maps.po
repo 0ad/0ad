@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-09 19:17+0100\n"
-"PO-Revision-Date: 2015-02-10 12:31+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:21+0100\n"
+"PO-Revision-Date: 2015-03-21 04:55+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -498,11 +498,11 @@ msgstr "一個在隨機地圖中放置城牆的方法/代碼實際示範。建�
 msgid "Wall Demo"
 msgstr "城牆展示"
 
-#: maps/random/survivalofthefittest_triggers.js:79
+#: maps/random/survivalofthefittest_triggers.js:80
 msgid "An enemy wave is attacking!"
 msgstr "有一波敵人來襲！"
 
-#: maps/random/survivalofthefittest_triggers.js:150
+#: maps/random/survivalofthefittest_triggers.js:151
 msgid "The first wave will start in 15 minutes!"
 msgstr "第一波攻擊將會在15分鐘後到來！"
 
@@ -591,6 +591,7 @@ msgstr "在希臘阿卡迪亞的春日時分。若春雨下的不夠，一年之
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[0].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:41
@@ -658,6 +659,7 @@ msgstr "玩家 1"
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:41
@@ -774,19 +776,6 @@ msgstr "Verguni"
 #: maps/scenarios/Azure Coast.xml:Name:41
 msgid "Azure Coast 1"
 msgstr "蔚藍海岸 1"
-
-#: maps/scenarios/Barcania.xml:Name:31
-msgid "Barcania"
-msgstr "巴坎尼亞"
-
-#: maps/scenarios/Barcania.xml:Description:31
-msgid ""
-"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
-"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
-"with lots of potential for skirmishing and guerilla warfare as well as tough"
-" defensive fighting or aggressive maneuvers. 1 Celt player, 2 Hellenic "
-"players."
-msgstr "一個未開發且樹木叢生的小島，佈滿了叢林、黃金、與些許的神祕感...山脈、海洋及密林造就了一個充滿活力且快節奏的 3 人地圖，潛藏著許多小規模戰鬥與游擊戰，甚或是困難的防禦性戰鬥或侵略性的部隊調動。1 個塞爾特玩家、2 個希臘玩家。"
 
 #: maps/scenarios/Battle for the Tiber.xml:Description:31
 msgid ""
@@ -920,7 +909,8 @@ msgstr "軍隊入侵"
 #: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
+#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Barcania
+#: (3).xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Gallic Fields
@@ -1684,6 +1674,18 @@ msgstr "在興都庫什山脈下的巴克特里亞（現今的阿富汗）是一
 #: maps/skirmishes/Bactria (2).xml:Name:42
 msgid "Bactria (2)"
 msgstr "巴克特里亞 (2)"
+
+#: maps/skirmishes/Barcania (3).xml:Name:31
+msgid "Barcania"
+msgstr "巴坎尼亞"
+
+#: maps/skirmishes/Barcania (3).xml:Description:31
+msgid ""
+"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
+"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
+"with lots of potential for skirmishing and guerilla warfare as well as tough"
+" defensive fighting or aggressive maneuvers."
+msgstr "一個未開發且樹木叢生的小島，佈滿了叢林、黃金、與些許的神祕感...山脈、海洋及密林造就了一個充滿活力且快節奏的 3 人地圖，潛藏著許多小規模戰鬥與游擊戰，甚或是困難的防禦性戰鬥或侵略性的部隊調動。"
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""

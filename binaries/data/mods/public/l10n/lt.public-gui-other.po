@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:05+0000\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-22 10:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -16,41 +16,41 @@ msgstr ""
 "Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr "Specialiosios technologijos"
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr "Herojai"
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr ""
@@ -302,7 +302,7 @@ msgstr ""
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
+msgid "\\[Invalid value %(id)s]"
 msgstr ""
 
 #: gui/common/network.js:19
@@ -386,7 +386,8 @@ msgid "Armor:"
 msgstr "Šarvai:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
@@ -983,6 +984,34 @@ msgstr ""
 msgid "OVERWRITE SAVE"
 msgstr ""
 
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr ""
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr ""
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "Gyvybės:"
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr ""
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr ""
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
+msgstr ""
+
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
 #: gui/summary/summary.xml:(caption):103
@@ -1166,6 +1195,7 @@ msgid "Civilization Selection"
 msgstr "Civilizacijos pasirinkimas"
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "Uždaryti"
 
@@ -1312,6 +1342,7 @@ msgid "Disable Feedback"
 msgstr "Išjungti atsiliepimus"
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr ""
 
@@ -1526,6 +1557,10 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
+msgstr ""
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
 msgstr ""
 
 #: gui/summary/summary.xml:(caption):21

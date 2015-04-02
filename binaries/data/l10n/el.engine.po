@@ -5,14 +5,14 @@
 # Translators:
 # LOUKAS SKOUROLIAKOS, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
-# malvanos <malvanos@gmail.com>, 2014
+# malvanos <malvanos@gmail.com>, 2014-2015
 # Stephanos C. Siopoulos, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-03-07 11:22+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"PO-Revision-Date: 2015-03-21 03:48+0000\n"
+"Last-Translator: malvanos <malvanos@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +60,7 @@ msgstr "Εγγραφή μή  εγκεκριμένη."
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
-msgstr ""
+msgstr "Ακατάλληλο αίτημα εγγραφής"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
@@ -72,7 +72,7 @@ msgstr "Απαιτείτε Εγγραφή."
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "Απροσδόκητη αίτηση εγγραφής"
 
 #: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
@@ -84,11 +84,11 @@ msgstr "Αγνωστο λάθος εγγραφής"
 
 #: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "άγνωστος υπότυπος (δείτε αρχείο καταγραφής)"
 
 #: lobby/XmppClient.cpp:982
 msgid "Bad request"
-msgstr ""
+msgstr "Ακατάλληλο αίτημα"
 
 #: lobby/XmppClient.cpp:983
 msgid "Player name already in use"
@@ -96,7 +96,7 @@ msgstr "Το όνομα παίκτη χρησιμοποιείται ήδη"
 
 #: lobby/XmppClient.cpp:984
 msgid "Feature not implemented"
-msgstr ""
+msgstr "Το χαρακτηριστικό δεν έχει υλοποιηθεί"
 
 #: lobby/XmppClient.cpp:985
 msgid "Forbidden"
@@ -104,11 +104,11 @@ msgstr "Απαγορευμένος"
 
 #: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "Ο παραλήπτης ή ο διακομιστής φύγει"
 
 #: lobby/XmppClient.cpp:987
 msgid "Internal server error"
-msgstr ""
+msgstr "Εσωτερικό σφάλμα διακομιστή"
 
 #: lobby/XmppClient.cpp:988
 msgid "Item not found"
@@ -116,7 +116,7 @@ msgstr "Το αντικείμενο δέν βρέθηκε"
 
 #: lobby/XmppClient.cpp:989
 msgid "Jid malformed"
-msgstr ""
+msgstr "Το JID δεν είναι στην σωστή μορφή του"
 
 #: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
@@ -140,7 +140,7 @@ msgstr "Απαιτείται πληρωμή"
 
 #: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "Παραλήπτης μη διαθέσιμος"
 
 #: lobby/XmppClient.cpp:996
 msgid "Redirect"
@@ -156,11 +156,11 @@ msgstr "Λήξη απόκρισης απομακρισμένου εξυπηρε�
 
 #: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
-msgstr ""
+msgstr "Περιορισμός πόρων"
 
 #: lobby/XmppClient.cpp:1001
 msgid "Service unavailable"
-msgstr ""
+msgstr "Υπηρεσία μη διαθέσιμη"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"

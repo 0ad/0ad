@@ -5,12 +5,13 @@
 # Translators:
 # Ghenadi Avricenco <gplushentr@gmx.us>, 2014
 # Swyter <Swyterzone@gmail.com>, 2014-2015
+# vega93 <arkadas_llisa@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-26 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:21+0100\n"
+"PO-Revision-Date: 2015-03-21 13:50+0000\n"
+"Last-Translator: vega93 <arkadas_llisa@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,20 +92,16 @@ msgstr "Chaflán protector"
 msgid "Unlocked in Town Phase."
 msgstr "Se desbloquea en la Fase intermedia."
 
+#: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
+#: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.theb
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.hele
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
+#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.sele
+#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.mace
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.theb
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.hele
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.mace
 msgid "Prometoopidion"
 msgstr "Prometoopidion"
 
@@ -207,7 +204,6 @@ msgstr "Armadura de hierro para héroes"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidi̱ró Panoplía"
 msgstr "Sidi̱ró Panoplía"
@@ -231,28 +227,24 @@ msgstr "Toda la infantería obtiene +1 nivel de protección contra daños por co
 msgid "Quilted Body Armor"
 msgstr "Armadura acolchada"
 
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.generic
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.hele
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.celt
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.iber
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.generic
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.hele
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.celt
+#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
@@ -276,7 +268,6 @@ msgstr "Armadura de lino laminado"
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.ptol
@@ -285,7 +276,6 @@ msgstr "Armadura de lino laminado"
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
@@ -340,12 +330,11 @@ msgstr "Los lanceros de infantería ganan +2 niveles de protección contra daño
 msgid "Plywood Shield Construction"
 msgstr "Construcción de escudos de madera"
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
 msgid "Aspidiskè"
 msgstr "Aspidiskè"
 
@@ -363,12 +352,11 @@ msgstr "Los lanceros de infantería consiguen +1 de protección contra daño de 
 msgid "Reinforced Shield"
 msgstr "Escudo reforzado"
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspides"
 msgstr "Áspides"
 
@@ -384,11 +372,10 @@ msgstr "Los lanceros de infantería consiguen +1 de protección contra daño de 
 msgid "Bronze Shield Facing"
 msgstr "Escudos bañados en bronce"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
 msgid "Chalkaspides"
 msgstr "Chalcáspidas"
 
@@ -410,12 +397,11 @@ msgstr "Todos los campeones obtienen +2 niveles de protección contra daño de p
 msgid "Silver Shields"
 msgstr "Escudos de plata"
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspides"
 msgstr "Argiráspides"
 
@@ -498,36 +484,26 @@ msgstr "Caballería con lanza"
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.spart
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.sele
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.theb
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.hele
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.theb
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.hele
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.mace
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.theb
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.hele
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.mace
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.theb
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.hele
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.mace
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.theb
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.hele
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
 msgstr "Xyston"
@@ -602,7 +578,6 @@ msgstr "Heroísmo"
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.hele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
 msgid "Andreia"
 msgstr "Andreia"
@@ -632,16 +607,12 @@ msgstr "Arma de bolsillo"
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.theb
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.hele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.mace
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.ptol
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.theb
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.hele
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
 msgid "Xíphos"
 msgstr "Xíphos"
@@ -672,27 +643,21 @@ msgstr "El ataque de la infantería de tiro a distancia se vuelve un +20% más d
 msgid "Ranged Infantry Irregulars"
 msgstr "Infantería irregular a distancia"
 
+#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
+#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.theb
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.hele
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
+#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
+#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.mace
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.theb
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.hele
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.mace
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.sele
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.sele
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.theb
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
 msgid "Átaktoi"
 msgstr "Átaktoi"
 
@@ -712,12 +677,11 @@ msgstr "Inspira a tus tropas con una generosa subida de sueldo. Proporciona +25%
 msgid "Will to fight"
 msgstr "Deseo de confrontación"
 
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.hele
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 msgid "Dynamis"
 msgstr "Dynamis"
 
@@ -800,7 +764,6 @@ msgstr "Centinelas"
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.spart
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.sele
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.athen
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.hele
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
 msgid "Nyktophylakes"
 msgstr "Nyktophylakes"
@@ -827,7 +790,7 @@ msgstr "Las avanzadas perduran el doble de tiempo en territorio neutral."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay -50% for Outposts."
-msgstr "Reduce un -50% el alcance de visión de los puestos avanzados."
+msgstr "Reduce un -50% el deterioro de los puestos avanzados."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -953,7 +916,6 @@ msgstr "Obliga a tus siervos a ayudar a tus trabajadores a extraer piedra. +15% 
 msgid "Serfs"
 msgstr "Siervos"
 
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.hele
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
@@ -972,7 +934,6 @@ msgstr "Sirvientes"
 msgid "Hire servants to help mine stone. No requirements."
 msgstr "Contrata sirvientes para ayudar en las minas de piedra. Sin requisitos."
 
-#: simulation/data/technologies/gather_mining_servants.jsonspecificName.hele
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
@@ -1018,7 +979,6 @@ msgstr "Compra esclavos para mejorar la explotación de piedra. +50% de ritmo de
 msgid "Slaves"
 msgstr "Esclavos"
 
-#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.hele
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
@@ -1075,7 +1035,6 @@ msgstr "Los sanadores amplían a +8 su distancia de sanación."
 msgid "Healing Range"
 msgstr "Distancia de sanación"
 
-#: simulation/data/technologies/heal_range.jsonspecificName.hele
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
 #: simulation/data/technologies/heal_range.jsonspecificName.athen
@@ -1086,7 +1045,6 @@ msgstr "Panteón olímpico"
 msgid "Healing Range 2"
 msgstr "Distancia de sanación 2"
 
-#: simulation/data/technologies/heal_range_2.jsonspecificName.hele
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
@@ -1107,7 +1065,6 @@ msgstr "Los sanadores amplían un +25% su velocidad de sanación."
 msgid "Healing Rate"
 msgstr "Velocidad de sanación"
 
-#: simulation/data/technologies/heal_rate.jsonspecificName.hele
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
@@ -1118,7 +1075,6 @@ msgstr "Sphagia"
 msgid "Healing Rate 2"
 msgstr "Velocidad de sanación 2"
 
-#: simulation/data/technologies/heal_rate_2.jsonspecificName.hele
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
@@ -1137,7 +1093,6 @@ msgstr "Los templos curan un +50% más rápido a las unidades guarnecidas."
 msgid "Divine Offerings"
 msgstr "Ofrendas divinas"
 
-#: simulation/data/technologies/heal_temple.jsonspecificName.hele
 #: simulation/data/technologies/heal_temple.jsonspecificName.mace
 #: simulation/data/technologies/heal_temple.jsonspecificName.spart
 msgid "Olympic Games"
@@ -1203,13 +1158,11 @@ msgstr "Todas las unidades con lanza consiguen +2 de daño por corte."
 msgid "Iron Spearheads"
 msgstr "Lanzas con cabeza de hierro"
 
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.theb
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.hele
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
 msgid "Siderénies Aichmés"
 msgstr "Siderénies Aichmés"
 
@@ -1314,44 +1267,16 @@ msgid ""
 msgstr "Avanza hacía la fase urbana, que desbloquea más estructuras y unidades. El radio de territorio de los centros urbanos incrementa un +50%. La bonificación ateniense de \"los búhos de plata\" añade un +10% extra a la velocidad de recolección del metal a todos los trabajadores."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_britons.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_gauls.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
 msgstr "Necesita cuatro estructuras de la Fase intermedia (exceptuando murallas y centros cívicos)"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.hele
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
 msgid "Megalopolis"
 msgstr "Megalópolis"
-
-#: simulation/data/technologies/phase_city_britons.jsondescription
-#: simulation/data/technologies/phase_city_gauls.jsondescription
-msgid "Advance from a bustling town to large city."
-msgstr "Avanzar desde una bulliciosa urbe a una gran ciudad."
-
-#: simulation/data/technologies/phase_city_britons.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks Brythonic structures and units. "
-"Territory radius for Civic Centers increased by another +50%"
-msgstr "Avanza hacía la fase urbana, que desbloquea más estructuras y unidades britanas. El radio de territorio de los centros urbanos se incrementa un +50%."
-
-#: simulation/data/technologies/phase_city_britons.jsongenericName
-msgid "City Phase - Britons"
-msgstr "Fase urbana - Britanos"
-
-#: simulation/data/technologies/phase_city_gauls.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks Gallic structures and units. Territory "
-"radius for Civilization Centers increased by another +50%"
-msgstr "Avanza hasta la fase urbana para desbloquear estructuras y unidades galas. El radio de territorio aumenta para los centros urbanos un +50% más."
-
-#: simulation/data/technologies/phase_city_gauls.jsongenericName
-msgid "City Phase - Gauls"
-msgstr "Fase urbana - Galos"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1364,10 +1289,6 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%"
 msgstr "Avanza hacía la fase urbana, que desbloquea más estructuras y unidades. El radio de territorio de los centros urbanos incrementa un +50%."
-
-#: simulation/data/technologies/phase_city_pair_celts.jsongenericName
-msgid "Britons vs. Gauls"
-msgstr "Britanos contra Galos"
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1396,10 +1317,8 @@ msgid ""
 msgstr "Necesita cinco estructuras de la Fase inicial (exceptuando empalizadas y huertos)"
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.hele
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.theb
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Komópolis"
 msgstr "Komópolis"
@@ -1479,14 +1398,12 @@ msgstr "Jardín hogareño"
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
 #: simulation/data/technologies/pop_house_01.jsonspecificName.sele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.athen
-#: simulation/data/technologies/pop_house_01.jsonspecificName.hele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.mace
 #: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 #: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
 #: simulation/data/technologies/pop_wonder.jsonspecificName.spart
 #: simulation/data/technologies/pop_wonder.jsonspecificName.sele
 #: simulation/data/technologies/pop_wonder.jsonspecificName.athen
-#: simulation/data/technologies/pop_wonder.jsonspecificName.hele
 #: simulation/data/technologies/pop_wonder.jsonspecificName.mace
 #: simulation/data/technologies/pop_wonder.jsonspecificName.rome
 msgid "Peristyle"
@@ -1540,9 +1457,7 @@ msgstr "Correa de jabalina"
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.spart
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.sele
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.theb
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.hele
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
 msgid "Ankyle"
 msgstr "Ankyle"
@@ -1733,7 +1648,6 @@ msgstr "Desbloquea la habilidad de reclutar campeones en el cuartel."
 msgid "Unlock Champion Units"
 msgstr "Desbloquear unidades campeonas"
 
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.hele
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
@@ -1756,7 +1670,6 @@ msgstr "Desbloquea la habilidad de reclutar mujeres desde las casas."
 msgid "Fertility Festival"
 msgstr "Festival de la fertilidad"
 
-#: simulation/data/technologies/unlock_females_house.jsonspecificName.hele
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
@@ -1798,7 +1711,6 @@ msgstr "Promover a todos tus ciudadanos-soldados de infantería al rango de Avan
 msgid "Advanced Citizen-Infantry"
 msgstr "Ciudadanos-soldado avanzados"
 
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.hele
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
@@ -1831,7 +1743,6 @@ msgstr "Mejora a todos tus ciudadanos-soldado de infantería al rango de Élite.
 msgid "Elite Citizen-Infantry"
 msgstr "Ciudadanos-soldado de élite"
 
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.hele
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
@@ -2188,10 +2099,8 @@ msgstr "Los lanceros mejoran en +2 su daño de corte."
 msgid "Infantry Spear Fighting"
 msgstr "Lucha con lanza"
 
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.theb
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismos"
 msgstr "Doratismos"
@@ -2289,10 +2198,8 @@ msgstr "La cultura helena es muy influyente. +20% de efecto territorial para tod
 msgid "Hellenization"
 msgstr "Helenización"
 
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.athen
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.theb
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
 msgid "Exellinismós"
 msgstr "Exellinismós"

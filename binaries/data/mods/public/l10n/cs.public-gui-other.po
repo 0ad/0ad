@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-25 19:41+0000\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-24 18:31+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -18,41 +18,41 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s hra"
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Civilizační přídavek"
 msgstr[1] "Civilizační přídavky"
 msgstr[2] "Civilizačních přídavků"
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Týmový přídavek"
 msgstr[1] "Týmové přídavky"
 msgstr[2] "Týmových přídavků"
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr "Zvláštní technologie"
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Zvláštní budova"
 msgstr[1] "Zvláštní budovy"
 msgstr[2] "Zvláštních budov"
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr "Hrdinové"
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Historie %(civilization)s"
@@ -304,8 +304,8 @@ msgstr "Hra již byla spuštěna"
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
-msgstr "[Neplatná hodnota %(id)s]"
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Neplatná hodnota %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -388,7 +388,8 @@ msgid "Armor:"
 msgstr "Brnění:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -530,7 +531,7 @@ msgstr "Léčit:"
 #. action)
 #: gui/common/tooltips.js:403
 msgid "HP"
-msgstr ""
+msgstr "HP"
 
 #: gui/common/tooltips.js:425
 #, javascript-format
@@ -985,6 +986,34 @@ msgstr "Uložená hra bude trvale přepsána. Opravdu to chcete?"
 msgid "OVERWRITE SAVE"
 msgstr "PŘEPSAT ULOŽENÍ"
 
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr "%(auralabel)s %(aurainfo)s"
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr "%(auraname)s:"
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "Zdraví:"
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr "%(resourceIcon)s %(rate)s"
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr "Rychlost sbírání:"
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
+msgstr "%(val1)s do %(val2)s"
+
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
 #: gui/summary/summary.xml:(caption):103
@@ -1168,6 +1197,7 @@ msgid "Civilization Selection"
 msgstr "Výběr civilizace"
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "Zavřít"
 
@@ -1314,6 +1344,7 @@ msgid "Disable Feedback"
 msgstr "Zakázat zpětnou vazbu"
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr "Strom staveb"
 
@@ -1529,6 +1560,10 @@ msgstr "Zobrazit tuto zprávu i později"
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
 msgstr "Známé problémy (web)"
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
+msgstr "Civilizace:"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:09+0100\n"
-"PO-Revision-Date: 2015-03-14 17:22+0000\n"
+"POT-Creation-Date: 2015-03-15 05:21+0100\n"
+"PO-Revision-Date: 2015-03-21 23:43+0000\n"
 "Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -33,11 +33,11 @@ msgstr "Кустарник"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
-msgstr "Ягоды"
+msgstr "Ягодник"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:10
 msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Собирайте фрукты с этих кустов чтобы накопить пищу."
+msgstr "Собирайте плоды с этих кустов чтобы накопить пищу."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
@@ -118,7 +118,7 @@ msgstr "Сокровище, которое может быть быстро со
 
 #: simulation/templates/template_structure.xml:49
 msgid "Structure"
-msgstr "Здание"
+msgstr "Строение"
 
 #: simulation/templates/template_unit.xml:38
 msgid "Unit"
@@ -221,7 +221,7 @@ msgstr "Ряд открыт"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
-msgstr "Пусто"
+msgstr "Нет"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
@@ -339,7 +339,7 @@ msgstr "Газель"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 msgid "Giraffe (Adult)"
-msgstr "Жираф (Взрослый)"
+msgstr "Жираф"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffe (Juvenile)"
@@ -427,7 +427,7 @@ msgstr "Полукустарник"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
-msgstr "Фураж"
+msgstr "Сбор пищи"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
@@ -648,18 +648,6 @@ msgstr "Тофет"
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Обучает врачей и кавалеристов священного отряда."
 
-#: simulation/templates/other/celt_homestead.xml:22
-msgid "Homestead"
-msgstr "Усадьба"
-
-#: simulation/templates/other/celt_homestead.xml:23
-msgid "Caer"
-msgstr "Каер"
-
-#: simulation/templates/other/celt_homestead.xml:25
-msgid "A Celtic homestead."
-msgstr "Кельтская усадьба."
-
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
 msgstr "Хижина"
@@ -742,7 +730,7 @@ msgstr "Стоа"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:31
 msgid "Hellenic Royal Stoa"
-msgstr "Греческая царская стоа"
+msgstr "Эллинская царская стоа"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:33
 msgid "Add +10 to Population Cap. Recruit special units."
@@ -750,7 +738,7 @@ msgstr "Добавляет +10 к населению. Обучает особе�
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr "Греческая стоа"
+msgstr "Эллинская стоа"
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
@@ -792,19 +780,19 @@ msgstr "Край частокола"
 msgid "Wooden Wall End"
 msgstr "Край деревянной стены"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:32
-msgid "Palisade Fort"
-msgstr "Форт из частокола"
-
 #: simulation/templates/other/palisades_rocks_fort.xml:33
+msgid "Palisade Fort"
+msgstr "Укрепление из частокола"
+
+#: simulation/templates/other/palisades_rocks_fort.xml:34
 msgid "Wooden Tower"
 msgstr "Деревянная башня"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:37
+#: simulation/templates/other/palisades_rocks_fort.xml:38
 msgid "Village"
 msgstr "Деревня"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:37
+#: simulation/templates/other/palisades_rocks_fort.xml:38
 msgid "DefenseTower"
 msgstr "Оборонительная башня"
 
@@ -960,10 +948,6 @@ msgstr "Прямоугольный Стол"
 msgid "Square Table"
 msgstr "Квадратный стол"
 
-#: simulation/templates/other/temp_hele_super_infantry_p.xml:5
-msgid "Spartiate with Xiphos"
-msgstr "Спартанец с ксифосом"
-
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
 msgstr "Недостроенный греческий храм"
@@ -990,7 +974,6 @@ msgid "Marker"
 msgstr "Указатель"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/hele_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
@@ -999,14 +982,13 @@ msgstr "Литобол"
 
 #: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/hele_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
 msgid "Oxybelḗs"
-msgstr "Оксибел"
+msgstr "Оксибелес"
 
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
-#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:28
+#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:29
 msgid "Ballista"
 msgstr "Баллиста"
 

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-14 15:11+0000\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-21 04:55+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -19,12 +19,12 @@ msgstr ""
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Cluiche %(civilization)s"
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Buannachd an t-sìobhaltais"
@@ -32,7 +32,7 @@ msgstr[1] "Buannachdan an t-sìobhaltais"
 msgstr[2] "Buannachdan an t-sìobhaltais"
 msgstr[3] "Buannachdan an t-sìobhaltais"
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Buannachd an sgioba"
@@ -40,11 +40,11 @@ msgstr[1] "Buannachdan an sgioba"
 msgstr[2] "Buannachdan an sgioba"
 msgstr[3] "Buannachdan an sgioba"
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr "Teicneolasan sònraichte"
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Togalach sònraichte"
@@ -52,11 +52,11 @@ msgstr[1] "Togalaichean sònraichte"
 msgstr[2] "Togalaichean sònraichte"
 msgstr[3] "Togalaichean sònraichte"
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr "Curaidhean"
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "An eachdraidh aig %(civilization)s"
@@ -308,8 +308,8 @@ msgstr "Chaidh an geama a thòiseachadh mar-thà"
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
-msgstr "[Luach mì-dhligheach %(id)s]"
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Luach mì-dhligheach %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -394,7 +394,8 @@ msgid "Armor:"
 msgstr "Armachd:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -991,6 +992,34 @@ msgstr "Thèid sgrìobhadh thairis air geama air a shàbhaladh gu buan, a bheil 
 msgid "OVERWRITE SAVE"
 msgstr "SGRÌOBH THAIRIS AIR AN T‑SÀBHALADH"
 
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr "%(auralabel)s %(aurainfo)s"
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr "%(auraname)s:"
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "Slàinte:"
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr "%(resourceIcon)s %(rate)s"
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr "Reat a’ chruinneachaidh:"
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
+msgstr "%(val1)s gu %(val2)s"
+
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
 #: gui/summary/summary.xml:(caption):103
@@ -1174,6 +1203,7 @@ msgid "Civilization Selection"
 msgstr "Tagh sìobhaltasan"
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "Dùin"
 
@@ -1320,6 +1350,7 @@ msgid "Disable Feedback"
 msgstr "Na cuir fiosrachadh a-null"
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr "Craobh nan sìobhaltas"
 
@@ -1535,6 +1566,10 @@ msgstr "Seall an teachdaireachd seo a-rithist"
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
 msgstr "Duilgheadasan as aithne dhuinn (lìon)"
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
+msgstr "Sìobhaltas:"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"
