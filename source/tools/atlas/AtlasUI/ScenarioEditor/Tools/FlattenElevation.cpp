@@ -106,7 +106,7 @@ public:
 
 		void OnTick(FlattenElevation* obj, float dt)
 		{
-			POST_COMMAND(FlattenElevation, (obj->m_Pos, dt*4096.f*g_Brush_Elevation.GetStrength()));
+			POST_COMMAND(FlattenElevation, (obj->m_Pos, dt*g_Brush_Elevation.STRENGTH_MULTIPLIER*g_Brush_Elevation.GetStrength()));
 			obj->m_Pos = Position::Unchanged();
 		}
 	}

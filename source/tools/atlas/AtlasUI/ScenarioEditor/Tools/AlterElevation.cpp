@@ -113,7 +113,7 @@ public:
 
 		void OnTick(AlterElevation* obj, float dt)
 		{
-			POST_COMMAND(AlterElevation, (obj->m_Pos, dt*4096.f*GetDirection()*g_Brush_Elevation.GetStrength()));
+			POST_COMMAND(AlterElevation, (obj->m_Pos, dt*g_Brush_Elevation.STRENGTH_MULTIPLIER*GetDirection()*g_Brush_Elevation.GetStrength()));
 			obj->m_Pos = Position::Unchanged();
 		}
 
