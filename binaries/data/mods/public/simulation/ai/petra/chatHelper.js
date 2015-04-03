@@ -33,7 +33,7 @@ m.chatRequestTribute = function(gameState, resource)
 	if (proba < 0.5)
 		var message = "/team " + markForTranslation("I am in need of %(resource)s, can you help? I will make it up to you.");
 	else
-		var message = "/team " + markForTranslation("I would particate more efficiently in our common war effort if you could provide me some %(resource)s.");
+		var message = "/team " + markForTranslation("I would participate more efficiently in our common war effort if you could provide me some %(resource)s.");
 
 	var chat = { "type": "aichat", "message": message, "translateMessage": true, "translateParameters": ["resource"], "parameters": { "resource": resource } };
 	Engine.PostCommand(PlayerID, chat);
