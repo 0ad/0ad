@@ -10,9 +10,9 @@
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/spart_infantry_spearman_b
-      units/spart_infantry_javelinist_b
-      units/spart_cavalry_javelinist_b
+      units/{civ}_infantry_spearman_b
+      units/{civ}_infantry_javelinist_b
+      units/{civ}_cavalry_javelinist_b
     </Entities>
   </ProductionQueue>
   <VisualActor>

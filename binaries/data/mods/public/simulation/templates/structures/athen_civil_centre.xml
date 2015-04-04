@@ -10,9 +10,9 @@
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/athen_infantry_spearman_b
-      units/athen_infantry_slinger_b
-      units/athen_cavalry_javelinist_b
+      units/{civ}_infantry_spearman_b
+      units/{civ}_infantry_slinger_b
+      units/{civ}_cavalry_javelinist_b
     </Entities>
     <Technologies datatype="tokens">
       -phase_town_generic

@@ -10,9 +10,9 @@
   </Health>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/iber_infantry_swordsman_b
-      units/iber_infantry_javelinist_b
-      units/iber_cavalry_javelinist_b
+      units/{civ}_infantry_swordsman_b
+      units/{civ}_infantry_javelinist_b
+      units/{civ}_cavalry_javelinist_b
     </Entities>
   </ProductionQueue>
   <VisualActor>
