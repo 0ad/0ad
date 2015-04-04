@@ -67,10 +67,6 @@ ProductionQueue.prototype.Init = function()
 	this.spawnNotified = false;
 	
 	this.alertRaiser = undefined;
-
-	// ATLAS HACK
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	cmpTimer.SetTimeout(this.entity, IID_ProductionQueue, "CalculateEntitiesList", 1, {});
 };
 
 ProductionQueue.prototype.PutUnderAlert = function(raiser)
@@ -96,33 +92,33 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 	this.entitiesList = [];
 	if (!this.template.Entities)
 		return;
-
+	
 	var string = this.template.Entities._string;
 	if (!string)
 		return;
-
+	
 	// Replace the "{civ}" codes with this entity's civ ID
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var cmpPlayer = QueryOwnerInterface(this.entity);
-	if (!cmpPlayer)
-		return;
-
-	var entitiesList = string.replace(/\{civ\}/g, cmpPlayer.GetCiv()).split(/\s+/);
-
-	// filter out disabled and invalid entities
+	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	if (cmpIdentity)
+		string = string.replace(/\{civ\}/g, cmpIdentity.GetCiv());
+	
+	var entitiesList = string.split(/\s+/);
+	
+	// Remove disabled entities
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	var disabledEntities = cmpPlayer.GetDisabledTemplates();
-	entitiesList = entitiesList.filter(function(v)
-		{
-			return !disabledEntities[v] && cmpTemplateManager.TemplateExists(v);
-		});
-
+	
+	for (var i = entitiesList.length - 1; i >= 0; --i)
+		if (disabledEntities[entitiesList[i]])
+			entitiesList.splice(i, 1);
+	
 	// check if some templates need to show their advanced or elite version
 	var upgradeTemplate = function(templateName)
 	{
 		var template = cmpTemplateManager.GetTemplate(templateName);
 		while (template && template.Promotion !== undefined)
 		{
-			var requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, cmpPlayer.GetPlayerID(), template);
+			var requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, playerID, template);
 			if (requiredXp > 0)
 				break;
 			templateName = template.Promotion.Entity;
@@ -131,12 +127,15 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 		return templateName;
 	};
 
-	for (let templateName of entitiesList)
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var playerID = cmpPlayer.GetPlayerID();
+	for each (var templateName in entitiesList)
 		this.entitiesList.push(upgradeTemplate(templateName));
-
-	for (let item of this.queue)
+	for each (var item in this.queue)
+	{
 		if (item.unitTemplate)
 			item.unitTemplate = upgradeTemplate(item.unitTemplate);
+	}
 };
 
 /*
@@ -155,16 +154,13 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	if (!cmpTechnologyManager)
 		return [];
 	
-	var cmpPlayer = QueryOwnerInterface(this.entity);
-	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	if (!cmpPlayer || !cmpIdentity || cmpPlayer.GetCiv() != cmpIdentity.GetCiv())
-		return [];
-
 	var techs = string.split(/\s+/);
 	var techList = [];
 	var superseded = {}; // Stores the tech which supersedes the key
 
-	var disabledTechnologies = cmpPlayer.GetDisabledTechnologies();
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	if (cmpPlayer)
+		var disabledTechnologies = cmpPlayer.GetDisabledTechnologies();
 	
 	// Add any top level technologies to an array which corresponds to the displayed icons
 	// Also store what a technology is superceded by in the superceded object {"tech1":"techWhichSupercedesTech1", ...}
