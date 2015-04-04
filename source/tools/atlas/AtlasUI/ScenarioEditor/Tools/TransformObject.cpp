@@ -213,6 +213,8 @@ public:
 			POST_MESSAGE(ObjectPreview, (_T(""), GetScenarioEditor().GetObjectSettings().GetSettings(), Position(), false, Position(), 0, 0, true));
 		else
 		{
+			ScenarioEditor::GetCommandProc().FinaliseLastCommand();
+
 			//Create new Objects and delete preview objects
 			POST_MESSAGE(ObjectPreviewToEntity, ());
 
