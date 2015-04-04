@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-02-21 13:31+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"POT-Creation-Date: 2015-03-15 05:21+0100\n"
+"PO-Revision-Date: 2015-03-15 09:18+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,20 +90,16 @@ msgstr "馬面（ばめん）"
 msgid "Unlocked in Town Phase."
 msgstr "町の段階から利用可能。"
 
+#: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
+#: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.theb
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.hele
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
+#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.sele
+#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.mace
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.theb
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.hele
-#: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.mace
 msgid "Prometoopidion"
 msgstr "Prometoopidion"
 
@@ -206,7 +202,6 @@ msgstr "鉄製英雄鎧"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidi̱ró Panoplía"
 msgstr "Sidi̱ró Panoplía"
@@ -230,28 +225,24 @@ msgstr "すべての歩兵の打撃および貫通装甲レベルを1上げま�
 msgid "Quilted Body Armor"
 msgstr "キルト加工胴鎧"
 
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.generic
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.hele
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.celt
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.iber
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.generic
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.hele
-#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.celt
+#: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
@@ -275,7 +266,6 @@ msgstr "積層リネン胴鎧"
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.ptol
@@ -284,7 +274,6 @@ msgstr "積層リネン胴鎧"
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
@@ -339,12 +328,11 @@ msgstr "槍歩兵の貫通装甲レベルを 2上げます。"
 msgid "Plywood Shield Construction"
 msgstr "合板製の盾"
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
 msgid "Aspidiskè"
 msgstr "Aspidiskè"
 
@@ -362,12 +350,11 @@ msgstr "槍歩兵の貫通装甲レベルを 1上げます。"
 msgid "Reinforced Shield"
 msgstr "盾の補強"
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspides"
 msgstr "Aspides"
 
@@ -383,11 +370,10 @@ msgstr "槍歩兵の貫通装甲レベルを1上げます。"
 msgid "Bronze Shield Facing"
 msgstr "盾の青銅仕上げ"
 
+#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
 msgid "Chalkaspides"
 msgstr "Chalkaspides"
 
@@ -409,12 +395,11 @@ msgstr "チャンピオンの貫通装甲レベルが2上がりますが、金�
 msgid "Silver Shields"
 msgstr "銀の盾"
 
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.hele
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
+#: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspides"
 msgstr "Argyraspides"
 
@@ -497,36 +482,26 @@ msgstr "騎兵用ランス"
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.spart
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.sele
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.theb
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.hele
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.theb
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.hele
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.mace
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.theb
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.hele
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.mace
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.theb
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.hele
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.mace
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.theb
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.hele
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
 msgstr "Xyston"
@@ -601,7 +576,6 @@ msgstr "英雄性"
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.hele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
 msgid "Andreia"
 msgstr "Andreia"
@@ -631,16 +605,12 @@ msgstr "携帯武器"
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.theb
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.hele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.mace
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.ptol
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.theb
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
-#: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.hele
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
 msgid "Xíphos"
 msgstr "Xíphos"
@@ -671,27 +641,21 @@ msgstr "歩兵の遠隔攻撃力が20%増加します。"
 msgid "Ranged Infantry Irregulars"
 msgstr "不正規遠隔攻撃歩兵"
 
+#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
+#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.theb
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.hele
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
+#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
+#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.mace
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.theb
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.hele
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.mace
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.sele
+#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.sele
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.theb
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
-#: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
 msgid "Átaktoi"
 msgstr "Átaktoi"
 
@@ -711,12 +675,11 @@ msgstr "高い報酬を与えて兵士たちの戦意を高揚させます。す
 msgid "Will to fight"
 msgstr "戦意"
 
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.hele
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 msgid "Dynamis"
 msgstr "Dynamis"
 
@@ -799,7 +762,6 @@ msgstr "歩哨"
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.spart
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.sele
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.athen
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.hele
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
 msgid "Nyktophylakes"
 msgstr "Nyktophylakes"
@@ -952,7 +914,6 @@ msgstr "農奴に強制で労働者の採掘を手伝わせます。採石効率
 msgid "Serfs"
 msgstr "農奴"
 
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.hele
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
@@ -971,7 +932,6 @@ msgstr "使用人"
 msgid "Hire servants to help mine stone. No requirements."
 msgstr "使用人を雇って石材採掘を手伝わせます。開始時から可能です。"
 
-#: simulation/data/technologies/gather_mining_servants.jsonspecificName.hele
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
@@ -1017,7 +977,6 @@ msgstr "奴隷を買い労働者の石材採掘を手伝わせます。採石効
 msgid "Slaves"
 msgstr "奴隷"
 
-#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.hele
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
@@ -1074,7 +1033,6 @@ msgstr "治療者の治療半径が8増えます。"
 msgid "Healing Range"
 msgstr "治療半径"
 
-#: simulation/data/technologies/heal_range.jsonspecificName.hele
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
 #: simulation/data/technologies/heal_range.jsonspecificName.athen
@@ -1085,7 +1043,6 @@ msgstr "Olympic Pantheon"
 msgid "Healing Range 2"
 msgstr "治療半径 2"
 
-#: simulation/data/technologies/heal_range_2.jsonspecificName.hele
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
@@ -1106,7 +1063,6 @@ msgstr "治療者の治療速度が25%速まります。"
 msgid "Healing Rate"
 msgstr "治療速度"
 
-#: simulation/data/technologies/heal_rate.jsonspecificName.hele
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
@@ -1117,7 +1073,6 @@ msgstr "Sphagia"
 msgid "Healing Rate 2"
 msgstr "治療速度 2"
 
-#: simulation/data/technologies/heal_rate_2.jsonspecificName.hele
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
@@ -1136,7 +1091,6 @@ msgstr "神殿の駐屯者の治療速度が50%増加します。"
 msgid "Divine Offerings"
 msgstr "神への奉納品"
 
-#: simulation/data/technologies/heal_temple.jsonspecificName.hele
 #: simulation/data/technologies/heal_temple.jsonspecificName.mace
 #: simulation/data/technologies/heal_temple.jsonspecificName.spart
 msgid "Olympic Games"
@@ -1202,13 +1156,11 @@ msgstr "すべての槍ユニットが打撃攻撃 +2。"
 msgid "Iron Spearheads"
 msgstr "鉄の槍頭"
 
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.theb
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
-#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.hele
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
+#: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
 msgid "Siderénies Aichmés"
 msgstr "Siderénies Aichmés"
 
@@ -1313,44 +1265,16 @@ msgid ""
 msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。「フクロウ銀貨」文明ボーナスによって、全労働者の金属採掘速度がさらに10%上昇します。"
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_britons.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_gauls.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
 msgstr "新たに4つの町の段階の建物（壁と町の中心は除く）が必要です。"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.hele
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
 msgid "Megalopolis"
 msgstr "Megalopolis"
-
-#: simulation/data/technologies/phase_city_britons.jsondescription
-#: simulation/data/technologies/phase_city_gauls.jsondescription
-msgid "Advance from a bustling town to large city."
-msgstr "活気ある町から、大都市へ発展します。"
-
-#: simulation/data/technologies/phase_city_britons.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks Brythonic structures and units. "
-"Territory radius for Civic Centers increased by another +50%"
-msgstr "都市の段階へ進むとブリトン固有の建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。"
-
-#: simulation/data/technologies/phase_city_britons.jsongenericName
-msgid "City Phase - Britons"
-msgstr "都市の段階 - ブリトン"
-
-#: simulation/data/technologies/phase_city_gauls.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks Gallic structures and units. Territory "
-"radius for Civilization Centers increased by another +50%"
-msgstr "都市の段階へ進むとガリア固有の建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。"
-
-#: simulation/data/technologies/phase_city_gauls.jsongenericName
-msgid "City Phase - Gauls"
-msgstr "都市の段階 - ガリア"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1363,10 +1287,6 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%"
 msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。"
-
-#: simulation/data/technologies/phase_city_pair_celts.jsongenericName
-msgid "Britons vs. Gauls"
-msgstr "ブリトン 対 ガリア"
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1395,10 +1315,8 @@ msgid ""
 msgstr "村の段階の建物が5棟必要です（柵と畑を除く）。"
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.hele
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.theb
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Komópolis"
 msgstr "Komópolis"
@@ -1478,14 +1396,12 @@ msgstr "ホーム・ガーデン"
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
 #: simulation/data/technologies/pop_house_01.jsonspecificName.sele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.athen
-#: simulation/data/technologies/pop_house_01.jsonspecificName.hele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.mace
 #: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 #: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
 #: simulation/data/technologies/pop_wonder.jsonspecificName.spart
 #: simulation/data/technologies/pop_wonder.jsonspecificName.sele
 #: simulation/data/technologies/pop_wonder.jsonspecificName.athen
-#: simulation/data/technologies/pop_wonder.jsonspecificName.hele
 #: simulation/data/technologies/pop_wonder.jsonspecificName.mace
 #: simulation/data/technologies/pop_wonder.jsonspecificName.rome
 msgid "Peristyle"
@@ -1539,9 +1455,7 @@ msgstr "投槍ひも"
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.spart
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.sele
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.theb
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
-#: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.hele
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
 msgid "Ankyle"
 msgstr "Ankyle"
@@ -1732,7 +1646,6 @@ msgstr "兵営でチャンピオンを養成できるようになります。"
 msgid "Unlock Champion Units"
 msgstr "チャンピオンユニットの解禁"
 
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.hele
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
@@ -1755,7 +1668,6 @@ msgstr "家で女性を養成できるようになります。"
 msgid "Fertility Festival"
 msgstr "赤飯祝い"
 
-#: simulation/data/technologies/unlock_females_house.jsonspecificName.hele
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
@@ -1797,7 +1709,6 @@ msgstr "すべての市民兵士の歩兵を上級ランクに昇進させます
 msgid "Advanced Citizen-Infantry"
 msgstr "上級市民歩兵"
 
-#: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.hele
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
@@ -1830,7 +1741,6 @@ msgstr "すべての市民兵士の歩兵を精鋭ランクに昇進させます
 msgid "Elite Citizen-Infantry"
 msgstr "精鋭市民歩兵"
 
-#: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.hele
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
@@ -2187,10 +2097,8 @@ msgstr "槍兵の打撃攻撃力が2増加します。"
 msgid "Infantry Spear Fighting"
 msgstr "槍術"
 
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
-#: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.theb
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
 msgid "Doratismos"
 msgstr "Doratismos"
@@ -2288,10 +2196,8 @@ msgstr "ヘレニズム文化は強い影響力を及ぼします。すべての
 msgid "Hellenization"
 msgstr "ギリシア化"
 
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.athen
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.theb
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
 msgid "Exellinismós"
 msgstr "Exellinismós"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -847,7 +847,7 @@ std::vector<std::string> CSimulation2::GetRMSData()
 
 std::vector<std::string> CSimulation2::GetCivData()
 {
-	return GetJSONData(L"civs/");
+	return GetJSONData(L"simulation/data/civs/");
 }
 
 static std::string ReadJSON(const VfsPath& path)

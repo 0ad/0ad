@@ -3,12 +3,16 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# liulitchi <xingzuo88@qq.com>, 2014
+# loms126 <loms126@126.com>, 2014
+# rentt777 <35974380@qq.com>, 2013
+# 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-02-06 08:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-21 12:51+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/0ad/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,169 +25,169 @@ msgstr ""
 #: gui/scripting/ScriptFunctions.cpp:767
 #, c-format
 msgid "%s (custom build)"
-msgstr ""
+msgstr "%s (自定义生成)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
 #: gui/scripting/ScriptFunctions.cpp:772
 #, c-format
 msgid "%s (%ls)"
-msgstr ""
+msgstr "%s (%ls)"
 
 #: gui/scripting/ScriptFunctions.cpp:793
 msgid "custom build"
-msgstr ""
+msgstr "自定义生成"
 
 #: i18n/L10n.cpp:276
 msgid "Long strings"
-msgstr ""
+msgstr "长字符串"
 
 #: lobby/XmppClient.cpp:221
 msgid "Authentication failed"
-msgstr ""
+msgstr "验证失败"
 
 #: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
-msgstr ""
+msgstr "注册名不接受"
 
 #: lobby/XmppClient.cpp:456
 msgid "Registration conflict"
-msgstr ""
+msgstr "注册名冲突"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
-msgstr ""
+msgstr "注册未授权"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
-msgstr ""
+msgstr "注册名未允许"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
-msgstr ""
+msgstr "注册名被禁止"
 
 #: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:997
 msgid "Registration required"
-msgstr ""
+msgstr "允许注册"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "未允许注册"
 
 #: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
-msgstr ""
+msgstr "不允许注册"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unknown error"
-msgstr ""
+msgstr "注册出现未知错误"
 
 #: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "未知子类型（见日志）"
 
 #: lobby/XmppClient.cpp:982
 msgid "Bad request"
-msgstr ""
+msgstr "非法请求"
 
 #: lobby/XmppClient.cpp:983
 msgid "Player name already in use"
-msgstr ""
+msgstr "用户名已被占用"
 
 #: lobby/XmppClient.cpp:984
 msgid "Feature not implemented"
-msgstr ""
+msgstr "功能未实现"
 
 #: lobby/XmppClient.cpp:985
 msgid "Forbidden"
-msgstr ""
+msgstr "禁止"
 
 #: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "收件人或服务器消失"
 
 #: lobby/XmppClient.cpp:987
 msgid "Internal server error"
-msgstr ""
+msgstr "内部服务器错误"
 
 #: lobby/XmppClient.cpp:988
 msgid "Item not found"
-msgstr ""
+msgstr "项目未找到"
 
 #: lobby/XmppClient.cpp:989
 msgid "Jid malformed"
-msgstr ""
+msgstr "异常"
 
 #: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
-msgstr ""
+msgstr "不接受"
 
 #: lobby/XmppClient.cpp:991
 msgid "Not allowed"
-msgstr ""
+msgstr "不允许"
 
 #: lobby/XmppClient.cpp:992
 msgid "Not authorized"
-msgstr ""
+msgstr "未授权"
 
 #: lobby/XmppClient.cpp:993
 msgid "Not modified"
-msgstr ""
+msgstr "未修改"
 
 #: lobby/XmppClient.cpp:994
 msgid "Payment required"
-msgstr ""
+msgstr "需要付款"
 
 #: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "非法收件人"
 
 #: lobby/XmppClient.cpp:996
 msgid "Redirect"
-msgstr ""
+msgstr "重新定向"
 
 #: lobby/XmppClient.cpp:998
 msgid "Remote server not found"
-msgstr ""
+msgstr "未找到远程服务器"
 
 #: lobby/XmppClient.cpp:999
 msgid "Remote server timeout"
-msgstr ""
+msgstr "远程服务器超时"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
-msgstr ""
+msgstr "资源被约束"
 
 #: lobby/XmppClient.cpp:1001
 msgid "Service unavailable"
-msgstr ""
+msgstr "服务器不可用"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
-msgstr ""
+msgstr "允许订阅"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
-msgstr ""
+msgstr "未定义状态"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
-msgstr ""
+msgstr "非法请求"
 
 #: lobby/XmppClient.cpp:1005
 msgid "Unknown sender"
-msgstr ""
+msgstr "未知发件人"
 
 #: lobby/XmppClient.cpp:1007
 msgid "Error undefined"
-msgstr ""
+msgstr "未知错误"
 
 #: ps/SavedGame.cpp:131
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "游戏保存为 '%s'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "截图保存到 '%s'"

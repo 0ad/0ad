@@ -282,7 +282,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 
 	for (let evt of TrainingEvents)
 	{	// Apply metadata stored in training queues
-		for each (let entId in evt.entities)
+		for (let entId of evt.entities)
 			for (let key in evt.metadata)
 				this.setMetadata(evt.owner, this._entities.get(entId), key, evt.metadata[key])
 	}
@@ -357,7 +357,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			continue;	// dead, presumably.
 		var changes = state.changedEntityTemplateInfo[id];
 		let entity = this._entities.get(+id);
-		for each (var change in changes)
+		for (let change of changes)
 			entity._auraTemplateModif.set(change.variable, change.value);
 	}
 	Engine.ProfileStop();
@@ -375,7 +375,7 @@ m.SharedScript.prototype.ApplyTemplatesDelta = function(state)
 			var changes = playerDiff[template];
 			if (!this._techModifications[player][template])
 				this._techModifications[player][template] = new Map();
-			for each (var change in changes)
+			for (let change of changes)
 				this._techModifications[player][template].set(change.variable, change.value);
 		}
 	}
@@ -386,7 +386,7 @@ m.SharedScript.prototype.registerUpdatingEntityCollection = function(entCollecti
 {
 	entCollection.setUID(this._entityCollectionsUID);
 	this._entityCollections.set(this._entityCollectionsUID, entCollection);
-	for each (var prop in entCollection.dynamicProperties())
+	for (let prop of entCollection.dynamicProperties())
 	{
 		if (!this._entityCollectionsByDynProp[prop])
 			this._entityCollectionsByDynProp[prop] = new Map();
@@ -402,7 +402,7 @@ m.SharedScript.prototype.removeUpdatingEntityCollection = function(entCollection
 	if (this._entityCollections.has(uid))
 		this._entityCollections.delete(uid);
 
-	for each (let prop in entCollection.dynamicProperties())
+	for (let prop of entCollection.dynamicProperties())
 		if (this._entityCollectionsByDynProp[prop].has(uid))
 			this._entityCollectionsByDynProp[prop].delete(uid);
 };

@@ -71,45 +71,35 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			var attack = this.upcomingAttacks[attackType][i];
 			attack.checkEvents(gameState, events);
 
-			// okay so we'll get the support plan
-			if (!attack.isStarted())
+			if (attack.isStarted())
+				API3.warn("Petra problem in attackManager: attack in preparation has already started ???");
+
+			var updateStep = attack.updatePreparation(gameState);
+			// now we're gonna check if the preparation time is over
+			if (updateStep === 1 || attack.isPaused() )
 			{
-				var updateStep = attack.updatePreparation(gameState, events);
-					
-				// now we're gonna check if the preparation time is over
-				if (updateStep === 1 || attack.isPaused() )
-				{
-					// just chillin'
-				}
-				else if (updateStep === 0 || updateStep === 3)
-				{
-					if (this.Config.debug > 1)
-						API3.warn("Attack Manager: " + attack.getType() + " plan " + attack.getName() + " aborted.");
-					attack.Abort(gameState, this);
-					this.upcomingAttacks[attackType].splice(i--,1);
-				}
-				else if (updateStep === 2)
-				{
-					if (attack.StartAttack(gameState,this))
-					{
-						if (this.Config.debug > 1)
-							API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
-						if (this.Config.chat)
-							m.chatLaunchAttack(gameState, attack.targetPlayer);
-						this.startedAttacks[attackType].push(attack);
-					}
-					else
-						attack.Abort(gameState, this);
-					this.upcomingAttacks[attackType].splice(i--,1);
-				}
+				// just chillin'
 			}
-			else
+			else if (updateStep === 0 || updateStep === 3)
 			{
 				if (this.Config.debug > 1)
-					API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
-				if (this.Config.chat)
-					m.chatLaunchAttack(gameState, attack.targetPlayer);
-				this.startedAttacks[attackType].push(attack);
+					API3.warn("Attack Manager: " + attack.getType() + " plan " + attack.getName() + " aborted.");
+				attack.Abort(gameState);
+				this.upcomingAttacks[attackType].splice(i--,1);
+			}
+			else if (updateStep === 2)
+			{
+				if (attack.StartAttack(gameState))
+				{
+					if (this.Config.debug > 1)
+						API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
+					if (this.Config.chat)
+						m.chatLaunchAttack(gameState, attack.targetPlayer);
+					this.startedAttacks[attackType].push(attack);
+//					Engine.PostCommand(PlayerID, {"type": "aievent", "from": PlayerID, "action": "attack", "target": attack.targetPlayer});
+				}
+				else
+					attack.Abort(gameState);
 				this.upcomingAttacks[attackType].splice(i--,1);
 			}
 		}

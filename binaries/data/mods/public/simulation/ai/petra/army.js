@@ -136,10 +136,8 @@ m.Army.prototype.removeFoe = function (gameState, enemyId, enemyEntity)
 		return false;
 	var ent = enemyEntity === undefined ? gameState.getEntityById(enemyId) : enemyEntity;
 	if (ent === undefined)
-	{
-		warn("Trying to remove a non-existing enemy entity, crashing for stacktrace");
-		xgzrg();
-	}	
+		error("Trying to remove a non-existing enemy entity, crashing for stacktrace\n" + (new Error()).stack);
+
 	this.foeEntities.splice(idx, 1);
 	this.evaluateStrength(ent, false, true);
 	ent.setMetadata(PlayerID, "PartOfArmy", undefined);

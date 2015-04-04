@@ -5,7 +5,9 @@
 # Translators:
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Ellen Roels, 2015
+# Evert Van Petegem <inactive+evertvp@transifex.com>, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
+# Mark Lemmens <the_white_eagle@telenet.be>, 2015
 # Max Klaversma <maxklaversma@gmail.com>, 2014
 # niektb <niektb95@gmail.com>, 2015
 # Ruben De Smet <ruben.de.smet@telenet.be>, 2015
@@ -13,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-16 19:03+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-21 18:51+0000\n"
+"Last-Translator: Mark Lemmens <the_white_eagle@telenet.be>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,38 +25,38 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Spelverloop voor de %(civilization)s"
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Beschavingsbonus"
 msgstr[1] "Beschavingsbonussen"
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Teambonus"
 msgstr[1] "Teambonussen"
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr "Speciale technologieën"
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Speciaal Gebouw"
 msgstr[1] "Speciale Gebouwen"
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr "Helden"
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Geschiedenis van de %(civilization)s"
@@ -306,8 +308,8 @@ msgstr "Het spel is al begonnen"
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
-msgstr "[Onbekende waarde %(id)s]"
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Ongeldige waarde %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -388,7 +390,8 @@ msgid "Armor:"
 msgstr "Bewapening:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -985,6 +988,34 @@ msgstr "Opgeslagen spel zal permanent overschreven worden, ben je zeker?"
 msgid "OVERWRITE SAVE"
 msgstr "OVERSCHRIJF OPGESLAGEN SPEL"
 
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr ""
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr ""
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "Gezondheid:"
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr ""
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr ""
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
+msgstr "%(val1)s tot %(val2)s"
+
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
 #: gui/summary/summary.xml:(caption):103
@@ -1168,6 +1199,7 @@ msgid "Civilization Selection"
 msgstr "Selecteer beschaving"
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "Sluiten"
 
@@ -1314,6 +1346,7 @@ msgid "Disable Feedback"
 msgstr "Feedback uitschakelen"
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr "Gebouwenboom"
 
@@ -1529,6 +1562,10 @@ msgstr "Toon dit bericht ook in de toekomst."
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
 msgstr "Gekende problemen (web)"
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
+msgstr "Beschaving"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"

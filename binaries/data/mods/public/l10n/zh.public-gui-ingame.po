@@ -6,24 +6,29 @@
 # rentt777 <35974380@qq.com>, 2014
 # hyln9 <hyln9@live.cn>, 2014
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
+# liulitchi <xingzuo88@qq.com>, 2014
 # loms126 <loms126@126.com>, 2014
 # loms126 <loms126@126.com>, 2014
 # relaxbsd <relaxbsd@gmail.com>, 2014
+# rentt777 <35974380@qq.com>, 2014
 # samrmrf, 2013
 # simsilver <yihuanlingjian@gmail.com>, 2014
+# wuxb <wuxb45@gmail.com>, 2014
 # wuxb <wuxb45@gmail.com>, 2014
 # xingtong, 2013
 # liulitchi <xingzuo88@qq.com>, 2014
 # yhcvb <yhcvb@126.com>, 2014
+# yhcvb <yhcvb@126.com>, 2014
 # yukisola <yolandaapply@gmail.com>, 2014
 # zodiac8765 <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
+# 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 09:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-22 10:32+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +79,7 @@ msgstr "确认"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "你确定要退出吗？离开将会和其他玩家断开连接"
+msgstr "您确定要退出吗？离开将会和其他玩家断开连接"
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -117,7 +122,7 @@ msgstr "中立"
 #: gui/session/menu.js:296 gui/session/messages.js:637
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
-msgstr "敌人"
+msgstr "敌对"
 
 #: gui/session/menu.js:354
 msgid "x"
@@ -149,22 +154,22 @@ msgstr[0] "商船共有%(numberGarrisoned)s 守卫"
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, %(garrisonedString)s, 和 %(inactiveString)s."
+msgstr "%(openingTradingString)s, %(garrisonedString)s, 和 %(inactiveString)s。"
 
 #: gui/session/menu.js:489
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s, 和 %(garrisonedString)s."
+msgstr "%(openingTradingString)s, 和 %(garrisonedString)s。"
 
 #: gui/session/menu.js:499 gui/session/menu.js:561
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, 和 %(inactiveString)s."
+msgstr "%(openingTradingString)s, 和 %(inactiveString)s。"
 
 #: gui/session/menu.js:506 gui/session/menu.js:568
 #, javascript-format
 msgid "%(openingTradingString)s."
-msgstr "%(openingTradingString)s."
+msgstr "%(openingTradingString)s。"
 
 #: gui/session/menu.js:516
 #, javascript-format
@@ -179,12 +184,12 @@ msgstr[0] "共有 %(numberGarrisoned)s 陆商驻守于商船。"
 #: gui/session/menu.js:519
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingGarrisonedString)s, 和 %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s, 和 %(inactiveString)s。"
 
 #: gui/session/menu.js:526
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
-msgstr "%(openingGarrisonedString)s."
+msgstr "%(openingGarrisonedString)s。"
 
 #: gui/session/menu.js:535
 #, javascript-format
@@ -200,7 +205,7 @@ msgstr[0] "有 %(inactiveString)s."
 
 #: gui/session/menu.js:548
 msgid "There are no merchant ships."
-msgstr "没有商船"
+msgstr "没有商船。"
 
 #: gui/session/menu.js:554
 #, javascript-format
@@ -246,27 +251,27 @@ msgstr "网络信息: %(message)s"
 
 #: gui/session/messages.js:220
 msgid "Waiting for other players to connect..."
-msgstr "等待玩家连接……"
+msgstr "等待其他玩家连接……"
 
 #: gui/session/messages.js:224
 msgid "Synchronising gameplay with other players..."
-msgstr "同步游戏"
+msgstr "与其他玩家同步游戏..."
 
 #: gui/session/messages.js:232
 msgid "Connected to the server."
-msgstr "连接服务器"
+msgstr "连接服务器。"
 
 #: gui/session/messages.js:236
 msgid "Connection to the server has been authenticated."
-msgstr "已建立与服务器的连接"
+msgstr "已建立与服务器的认证连接。"
 
 #: gui/session/messages.js:241
 msgid "Connection to the server has been lost."
-msgstr "与服务器失去连接"
+msgstr "与服务器失去连接。"
 
 #: gui/session/messages.js:241
 msgid "The game has ended."
-msgstr "游戏结束"
+msgstr "游戏结束。"
 
 #: gui/session/messages.js:426
 msgid "Unknown player"
@@ -275,61 +280,61 @@ msgstr "未知玩家"
 #: gui/session/messages.js:434
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr "%(player)s加入了游戏"
+msgstr "%(player)s 加入了游戏。"
 
 #: gui/session/messages.js:437
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr "%(player)s离开了游戏"
+msgstr "%(player)s 离开了游戏。"
 
 #: gui/session/messages.js:442
 msgid "You have been defeated."
-msgstr "战败"
+msgstr "您已战败。"
 
 #: gui/session/messages.js:444
 #, javascript-format
 msgid "%(player)s has been defeated."
-msgstr "%(player)s战败"
+msgstr "%(player)s 战败。"
 
 #: gui/session/messages.js:452
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "你已与%(player)s结盟。"
+msgstr "你已与 %(player)s 结盟。"
 
 #: gui/session/messages.js:454
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr "你已向%(player)s宣战"
+msgstr "你已向 %(player)s 宣战。"
 
 #: gui/session/messages.js:456
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "你已与%(player)s和解。"
+msgstr "你已与 %(player)s 和解。"
 
 #: gui/session/messages.js:462
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s已与你结盟。"
+msgstr "%(player)s 已与你结盟。"
 
 #: gui/session/messages.js:464
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "%(player)s已向你宣战。"
+msgstr "%(player)s 已向你宣战。"
 
 #: gui/session/messages.js:466
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s已与你和解。"
+msgstr "%(player)s 已与你和解。"
 
 #: gui/session/messages.js:480
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/session/messages.js:488
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr "%(previousAmounts)s和%(lastAmount)s"
+msgstr "%(previousAmounts)s 和 %(lastAmount)s"
 
 #: gui/session/messages.js:489 gui/session/utility_functions.js:137
 #: gui/session/utility_functions.js:142
@@ -339,12 +344,12 @@ msgstr "，"
 #: gui/session/messages.js:494
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s给你%(amounts)s."
+msgstr "%(player)s 给你 %(amounts)s。"
 
 #: gui/session/messages.js:504
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr "-- 您正被 %(attacker)s 攻击!"
+msgstr "您正被 %(attacker)s 攻击!"
 
 #: gui/session/messages.js:529
 #, javascript-format
@@ -382,12 +387,12 @@ msgstr "私人的"
 #: gui/session/selection_details.js:32
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr "已解压%(genericName)s"
+msgstr "已解压 %(genericName)s"
 
 #: gui/session/selection_details.js:44
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[离线] %(player)s"
 
 #: gui/session/selection_details.js:50
 #, javascript-format
@@ -438,7 +443,7 @@ msgstr "获得：%(amount)s"
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr ""
+msgstr "建造工人数量。\n指派其他工人到此地基以加速建造 %(numb)s%%"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
@@ -523,7 +528,7 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] "剩余: %(number)s ."
+msgstr[0] "剩余: %(number)s 。"
 
 #: gui/session/selection_panels.js:986 gui/session/session.js:621
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
@@ -600,27 +605,27 @@ msgstr "您"
 
 #: gui/session/session.js:170
 msgid "Gaia"
-msgstr "环境"
+msgstr "Gaia"
 
 #: gui/session/session.js:308 gui/session/session.js:324
 msgid "You have left the game."
-msgstr "你已经离开了游戏"
+msgstr "您已经离开了游戏。"
 
 #: gui/session/session.js:315
 msgid "You have been disconnected."
-msgstr "连接已断开"
+msgstr "连接已断开。"
 
 #: gui/session/session.js:317
 msgid "You have won the battle!"
-msgstr "你已胜出！"
+msgstr "您已胜出！"
 
 #: gui/session/session.js:319
 msgid "You have been defeated..."
-msgstr "你已战败……"
+msgstr "您已战败……"
 
 #: gui/session/session.js:327
 msgid "You have abandoned the game."
-msgstr "放弃了游戏"
+msgstr "您放弃了游戏。"
 
 #: gui/session/session.js:471
 msgid "OK"
@@ -628,7 +633,7 @@ msgstr "确定"
 
 #: gui/session/session.js:473
 msgid "Press OK to continue"
-msgstr "点解OK继续"
+msgstr "点击 确定 继续"
 
 #: gui/session/session.js:479
 msgid "Do you want to quit?"
@@ -665,7 +670,7 @@ msgstr "时空隧道模式"
 
 #: gui/session/unit_actions.js:300
 msgid "Origin trade market."
-msgstr "出发贸易市场."
+msgstr "出发贸易市场。"
 
 #: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
 #: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
@@ -675,11 +680,11 @@ msgstr "获得：%(gain)s"
 
 #: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr "右键单击另外一个市场，把其设为目的贸易市场"
+msgstr "右键单击另外一个市场，把其设为目的贸易市场。"
 
 #: gui/session/unit_actions.js:309
 msgid "Destination trade market."
-msgstr "目的贸易市场."
+msgstr "目的贸易市场。"
 
 #: gui/session/unit_actions.js:314
 msgid "Right-click to set as origin trade market"
@@ -771,12 +776,12 @@ msgstr "%(gain)s (%(player)s)"
 
 #: gui/session/utility_functions.js:133
 msgid "you"
-msgstr "你"
+msgstr "您"
 
 #: gui/session/utility_functions.js:139 gui/session/utility_functions.js:144
 #, javascript-format
 msgid "player %(name)s"
-msgstr "玩家%(name)s"
+msgstr "玩家 %(name)s"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -942,7 +947,7 @@ msgstr "是或否？"
 
 #: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
 msgid "Exchange resources:"
-msgstr "交换资源"
+msgstr "交换资源："
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
 msgid "Hitpoints"
@@ -993,7 +998,7 @@ msgstr "菜单"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVIII : Rhododactylos"
-msgstr ""
+msgstr "内测版 18 : 代号 Rhododactylos"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

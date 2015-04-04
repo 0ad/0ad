@@ -33,6 +33,8 @@ public:
 	Brush();
 	~Brush();
 
+	const float STRENGTH_MULTIPLIER = 1024.f;
+
 	int GetWidth() const;
 	int GetHeight() const;
 	std::vector<float> GetData() const;

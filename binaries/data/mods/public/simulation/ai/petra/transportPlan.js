@@ -371,7 +371,7 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 	var posmin = destination;
 	var width = gameState.getMap().width;
 	var cell = gameState.cellSize;
-	for each (var i in gameState.ai.HQ.navalManager.landingZones[landIndex][seaIndex])
+	for (var i of gameState.ai.HQ.navalManager.landingZones[landIndex][seaIndex])
 	{
 		var pos = [i%width+0.5, Math.floor(i/width)+0.5];
 		pos = [cell*pos[0], cell*pos[1]];

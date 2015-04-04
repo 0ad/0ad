@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-04-01 15:51+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/0ad/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,35 +17,35 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] ""
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] ""
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] ""
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr ""
@@ -101,182 +102,182 @@ msgstr ""
 #: gui/common/l10n.js:4
 msgctxt "firstWord"
 msgid "Food"
-msgstr ""
+msgstr "食物"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:6
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "肉类"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:8
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "金矿"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:10
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "矿石"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:12
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "岩石"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:14
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "废墟"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:16
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "石头"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:18
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr ""
+msgstr "珍宝"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:20
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "树"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:22
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "木材"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:24
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "水果"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:26
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "粮食"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:28
 msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
+msgstr "鱼"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:32
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "食物"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:34
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "肉"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:36
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "金矿"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:38
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "矿石"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:40
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "岩石"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:42
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "废墟"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:44
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "石头"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:46
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr ""
+msgstr "珍宝"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:48
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "树"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:50
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "木材"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:52
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "水果"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:54
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "粮食"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:56
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr ""
+msgstr "鱼"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
@@ -296,7 +297,7 @@ msgstr ""
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
+msgid "\\[Invalid value %(id)s]"
 msgstr ""
 
 #: gui/common/network.js:19
@@ -344,7 +345,7 @@ msgstr ""
 #: gui/common/tooltips.js:390 gui/common/tooltips.js:416
 #: gui/common/tooltips.js:469
 msgid ", "
-msgstr ""
+msgstr "，"
 
 #: gui/common/tooltips.js:52
 #, javascript-format
@@ -376,7 +377,8 @@ msgid "Armor:"
 msgstr ""
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
@@ -531,7 +533,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:465
 msgid "Classes:"
-msgstr ""
+msgstr "类型："
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -557,7 +559,7 @@ msgstr "否"
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "OK"
-msgstr ""
+msgstr "确定"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
@@ -878,7 +880,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:251
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr ""
+msgstr "创建: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -886,7 +888,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
-msgstr ""
+msgstr "确认"
 
 #: gui/pregame/mainmenu.js:292
 msgid ""
@@ -909,7 +911,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:307 gui/pregame/mainmenu.xml:(caption):156
 msgid "Manual"
-msgstr ""
+msgstr "手册"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -971,6 +973,34 @@ msgstr ""
 
 #: gui/savedgames/save.js:61
 msgid "OVERWRITE SAVE"
+msgstr ""
+
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr ""
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr ""
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "生命值："
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr ""
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr ""
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
 msgstr ""
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
@@ -1057,19 +1087,19 @@ msgstr ""
 
 #: gui/summary/layout.js:74
 msgid "Food"
-msgstr ""
+msgstr "食物"
 
 #: gui/summary/layout.js:75
 msgid "Wood"
-msgstr ""
+msgstr "木材"
 
 #: gui/summary/layout.js:76
 msgid "Stone"
-msgstr ""
+msgstr "石头"
 
 #: gui/summary/layout.js:77
 msgid "Metal"
-msgstr ""
+msgstr "金矿"
 
 #: gui/summary/layout.js:79
 msgid "Treasures collected"
@@ -1135,7 +1165,7 @@ msgstr ""
 
 #: gui/summary/summary.js:139
 msgid "Scenario"
-msgstr ""
+msgstr "场景"
 
 #: gui/summary/summary.js:141
 #, javascript-format
@@ -1156,6 +1186,7 @@ msgid "Civilization Selection"
 msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "关闭"
 
@@ -1255,7 +1286,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: gui/pregame/mainmenu.xml:75
 msgid "Help improve 0 A.D.!"
@@ -1302,6 +1333,7 @@ msgid "Disable Feedback"
 msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr ""
 
@@ -1336,7 +1368,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):329
 msgid "Options"
-msgstr ""
+msgstr "选择"
 
 #: gui/pregame/mainmenu.xml:(caption):362
 msgid "Scenario Editor"
@@ -1360,7 +1392,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):475
 msgid "Multiplayer"
-msgstr ""
+msgstr "多人对战"
 
 #: gui/pregame/mainmenu.xml:(caption):490
 msgid "Tools & Options"
@@ -1368,7 +1400,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):505
 msgid "Exit"
-msgstr ""
+msgstr "退出"
 
 #: gui/pregame/mainmenu.xml:(caption):542
 msgid "Help with the Translation!"
@@ -1376,11 +1408,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):554
 msgid "Website"
-msgstr ""
+msgstr "官网"
 
 #: gui/pregame/mainmenu.xml:(caption):566
 msgid "Chat"
-msgstr ""
+msgstr "聊天"
 
 #: gui/pregame/mainmenu.xml:(caption):578
 msgid "Report a Bug"
@@ -1492,7 +1524,7 @@ msgstr ""
 
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -1516,6 +1548,10 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
+msgstr ""
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
 msgstr ""
 
 #: gui/summary/summary.xml:(caption):21

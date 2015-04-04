@@ -3,18 +3,20 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adrian Budasz <adrianbudasz@gmail.com>, 2014
+# Adrian Budasz <adrianbudasz@gmail.com>, 2014-2015
+# Annunnaky <doublemiu@gmail.com>, 2015
 # Leszek S, 2014
 # miragae <miragae@gmail.com>, 2014-2015
 # rabusek <rabusek@gmail.com>, 2014
+# Rafał <rafix1989@interia.pl>, 2015
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # slodki12341 <slodki1234@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-26 17:02+0000\n"
+"Last-Translator: Rafał <rafix1989@interia.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,41 +24,41 @@ msgstr ""
 "Language: pl\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Rozgrywka %(civilization)s"
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Premia cywilizacyjna"
 msgstr[1] "Premie cywilizacyjne"
 msgstr[2] "Premie cywilizacyjne"
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Premia drużynowa"
 msgstr[1] "Premie drużynowe"
 msgstr[2] "Premie drużynowe"
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr "Technologie specjalne"
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Budynek specjalny"
 msgstr[1] "Budynki specjalne"
 msgstr[2] "Budynki specjalne"
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr "Bohaterowie"
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Historia %(civilization)s"
@@ -308,8 +310,8 @@ msgstr "Gra już się rozpoczęła"
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
-msgstr "[Nieprawidłowa wartość %(id)s]"
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Błędna wartość %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -361,26 +363,26 @@ msgstr ", "
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(time)s %(second)s"
-msgstr ""
+msgstr "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:413
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "sekunda"
+msgstr[1] "sekund"
+msgstr[2] "sekundy"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
-msgstr ""
+msgstr "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:63
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "strzała"
+msgstr[1] "strzał"
+msgstr[2] "strzały"
 
 #: gui/common/tooltips.js:65
 #, javascript-format
@@ -392,7 +394,8 @@ msgid "Armor:"
 msgstr "Pancerz:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -528,13 +531,13 @@ msgstr ""
 
 #: gui/common/tooltips.js:400
 msgid "Heal:"
-msgstr ""
+msgstr "Ulecz:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
 #: gui/common/tooltips.js:403
 msgid "HP"
-msgstr ""
+msgstr "PZ"
 
 #: gui/common/tooltips.js:425
 #, javascript-format
@@ -989,6 +992,34 @@ msgstr "Zapisane stany gry zostaną nadpisane, jesteś pewien?"
 msgid "OVERWRITE SAVE"
 msgstr "NADPISANIE GRY"
 
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr ""
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr ""
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "Zdrowie:"
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr ""
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr ""
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
+msgstr ""
+
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
 #: gui/summary/summary.xml:(caption):103
@@ -1172,6 +1203,7 @@ msgid "Civilization Selection"
 msgstr "Wybór cywilizacji"
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "Wyjdź"
 
@@ -1318,6 +1350,7 @@ msgid "Disable Feedback"
 msgstr "Wyłącz wsparcie"
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr ""
 
@@ -1524,7 +1557,7 @@ msgstr "Opis:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "Witaj!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -1532,7 +1565,11 @@ msgstr "Pokazuj tę wiadomość w przyszłości"
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Znane problemy (strona internetowa)"
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
+msgstr "Cywilizacja:"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"
@@ -1569,7 +1606,7 @@ msgstr "Kontynuuj"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Dziękujemy za instalację 0 A.D Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -1579,15 +1616,15 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"] Ta gra jest wciąż w fazie rozwoju. Brak niektórych funkcjonaloności oraz może zawierać błędy."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid "[imgleft=\"iconLag\"]The game runs slowly when many units are moving."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"] Gra działa powoli gdy wiele jednostek znajduje się w ruchu."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid "[imgleft=\"iconMap\"]Large maps can cause problems."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]  Duże mapy mogą sprawiać problemy."
 
 #: gui/splashscreen/splashscreen.txt:12
 msgid ""

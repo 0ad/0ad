@@ -5,13 +5,14 @@
 # Translators:
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # juanda097 <juanda097@openmailbox.org>, 2014-2015
+# Pedro Almendros González <pedro.al94@gmail.com>, 2015
 # Swyter <Swyterzone@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 14:00+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:20+0100\n"
+"PO-Revision-Date: 2015-03-28 19:01+0000\n"
+"Last-Translator: Pedro Almendros González <pedro.al94@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,38 +20,38 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Los %(civilization)s en el juego"
 
-#: gui/civinfo/civinfo.js:107
+#: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonificación de civilización"
 msgstr[1] "Bonificaciones de civilización"
 
-#: gui/civinfo/civinfo.js:112
+#: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonificación de equipo"
 msgstr[1] "Bonificaciones de equipo"
 
-#: gui/civinfo/civinfo.js:121
+#: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
 msgstr "Tecnologías especiales"
 
-#: gui/civinfo/civinfo.js:130
+#: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Edificio especial"
 msgstr[1] "Edificios especiales"
 
-#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr "Héroes"
 
-#: gui/civinfo/civinfo.js:153
+#: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Historia de los %(civilization)s"
@@ -128,7 +129,7 @@ msgstr "Metal"
 #: gui/common/l10n.js:10
 msgctxt "firstWord"
 msgid "Ore"
-msgstr "Mineral"
+msgstr "Mena"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -302,8 +303,8 @@ msgstr "El juego ya ha comenzado"
 
 #: gui/common/network.js:10
 #, javascript-format
-msgid "[Invalid value %(id)s]"
-msgstr "[Valor erróneo %(id)s]"
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Valor erróneo  %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -384,7 +385,8 @@ msgid "Armor:"
 msgstr "Protección:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166
+#: gui/common/tooltips.js:166 gui/structree/draw.js:266
+#: gui/structree/draw.js:291
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -981,6 +983,34 @@ msgstr "La partida será sobrescrita. ¿Seguro que quieres guardar?"
 msgid "OVERWRITE SAVE"
 msgstr "SOBREESCRIBIR PARTIDA"
 
+#: gui/structree/draw.js:258
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr "%(auralabel)s %(aurainfo)s"
+
+#: gui/structree/draw.js:259
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr "%(auraname)s:"
+
+#: gui/structree/draw.js:267
+msgid "Health:"
+msgstr "Salud:"
+
+#: gui/structree/draw.js:286
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr "%(resourceIcon)s %(rate)s"
+
+#: gui/structree/draw.js:292
+msgid "Gather Rates:"
+msgstr "Datos globales"
+
+#: gui/structree/load.js:143
+#, javascript-format
+msgid "%(val1)s to %(val2)s"
+msgstr "de %(val1)s a %(val2)s"
+
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
 #: gui/summary/summary.xml:(caption):103
@@ -1164,6 +1194,7 @@ msgid "Civilization Selection"
 msgstr "Selección de civilización"
 
 #: gui/civinfo/civinfo.xml:(caption):118
+#: gui/structree/structree.xml:(caption):89
 msgid "Close"
 msgstr "Cerrar"
 
@@ -1310,6 +1341,7 @@ msgid "Disable Feedback"
 msgstr "Desactivar informes"
 
 #: gui/pregame/mainmenu.xml:(caption):173
+#: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr "Árbol de estructuras"
 
@@ -1525,6 +1557,10 @@ msgstr "Mostrar este mensaje en el futuro"
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
 msgstr "Problemas conocidos (web)"
+
+#: gui/structree/structree.xml:(caption):29
+msgid "Civilization:"
+msgstr "Civilización"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"

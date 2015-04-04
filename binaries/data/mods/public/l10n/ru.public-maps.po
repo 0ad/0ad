@@ -5,6 +5,7 @@
 # Translators:
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Christo Keller <christoniancoder@gmail.com>, 2014
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014
 # grin.sv <grin.sv@gmail.com>, 2015
 # webslavic <webslavic@yahoo.com>, 2014
@@ -12,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-09 19:17+0100\n"
-"PO-Revision-Date: 2015-03-14 17:39+0000\n"
+"POT-Creation-Date: 2015-03-15 05:21+0100\n"
+"PO-Revision-Date: 2015-03-29 21:16+0000\n"
 "Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +35,7 @@ msgstr "Эгейское море"
 msgid ""
 "High Alpine mountains surrounding deep valleys strung with mountain streams "
 "and finger-like lakes."
-msgstr "Высокие альпийские горы окружающие долины с горными реками и вытянутыми озёрами."
+msgstr "Высокие альпийские горы, окружающие долины с горными реками и вытянутыми озёрами."
 
 #: maps/random/alpine_lakes.jsonsettings.Name
 msgid "Alpine Lakes"
@@ -156,7 +157,7 @@ msgstr "Каждый игрок начинает на острове.\n\nЦик�
 
 #: maps/random/cycladic_archipelago.jsonsettings.Name
 msgid "Cycladic Archipelago"
-msgstr "Цикладские острова"
+msgstr "Кикладские острова"
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
@@ -164,7 +165,7 @@ msgstr "Густой труднопроходимый лес в древней �
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
-msgstr "Чаща"
+msgstr "Дремучий лес"
 
 #: maps/random/english_channel.jsonsettings.Description
 msgid ""
@@ -201,7 +202,7 @@ msgstr "Игроки начинают в берегах Средиземного
 
 #: maps/random/guadalquivir_river.jsonsettings.Name
 msgid "Guadalquivir River"
-msgstr "Река Гуадалькивир"
+msgstr "Река Гвадалквивир"
 
 #: maps/random/gulf_of_bothnia.jsonsettings.Description
 msgid ""
@@ -277,7 +278,7 @@ msgstr "Обычная карта без водной части."
 
 #: maps/random/mainland.jsonsettings.Name
 msgid "Mainland"
-msgstr "Континент"
+msgstr "Материк"
 
 #: maps/random/migration.jsonsettings.Description
 msgid ""
@@ -288,7 +289,7 @@ msgstr "Игроки начинают на малых островах в вос
 #: maps/random/migration.jsonsettings.Name
 #: maps/scenarios/Migration.xml:Name:31
 msgid "Migration"
-msgstr "Миграция"
+msgstr "Переселенцы"
 
 #: maps/random/neareastern_badlands.jsonsettings.Description
 msgid ""
@@ -476,7 +477,7 @@ msgid ""
 "The unknown... Players start with only some citizen soldiers and females. "
 "[color=\"red\"]Warning: The starting resources should be set at least at "
 "Medium.[/color]"
-msgstr "Неизвестно... Игроки начинают только с несколькими городскими солдатами и женщинами. [color=\"red\"]Внимание: Исходные ресурсы должны быть установлены как минимум на среднее значение.[/color]"
+msgstr "Неизвестно... Игроки начинают только с несколькими горожан-солдатами и женщинами. [color=\"red\"]Внимание: Исходные ресурсы должны быть установлены как минимум на среднее значение.[/color]"
 
 #: maps/random/unknown_nomad.jsonsettings.Name
 msgid "Unknown Nomad"
@@ -500,11 +501,11 @@ msgstr "Демонстрация методов / кода размещения 
 msgid "Wall Demo"
 msgstr "Стена, демо"
 
-#: maps/random/survivalofthefittest_triggers.js:79
+#: maps/random/survivalofthefittest_triggers.js:80
 msgid "An enemy wave is attacking!"
 msgstr "Волна вражеской атаки!"
 
-#: maps/random/survivalofthefittest_triggers.js:150
+#: maps/random/survivalofthefittest_triggers.js:151
 msgid "The first wave will start in 15 minutes!"
 msgstr "Первая волна начнётся через 15 минут!"
 
@@ -593,6 +594,7 @@ msgstr "Весна в Аркадии, в Греции. Весенние дожд
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[0].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:41
@@ -660,6 +662,7 @@ msgstr "Игрок 1"
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:41
@@ -776,19 +779,6 @@ msgstr "Вергуни"
 #: maps/scenarios/Azure Coast.xml:Name:41
 msgid "Azure Coast 1"
 msgstr "Лазурный берег 1"
-
-#: maps/scenarios/Barcania.xml:Name:31
-msgid "Barcania"
-msgstr "Баркания"
-
-#: maps/scenarios/Barcania.xml:Description:31
-msgid ""
-"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
-"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
-"with lots of potential for skirmishing and guerilla warfare as well as tough"
-" defensive fighting or aggressive maneuvers. 1 Celt player, 2 Hellenic "
-"players."
-msgstr "Дикий и лесистый остров, полный лесов, золота, и тайн… Горы, моря, и  густые леса делают для очень динамичной и быстро развивающейся карте для 3-х игроков с большим потенциалом для стычек и партизанской войны, а также жесткий оборонительных боях или агрессивных маневров. 1 кельтский игрок, 2 греческих игрока."
 
 #: maps/scenarios/Battle for the Tiber.xml:Description:31
 msgid ""
@@ -922,7 +912,8 @@ msgstr "Сила захвата"
 #: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
+#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Barcania
+#: (3).xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Gallic Fields
@@ -1271,7 +1262,7 @@ msgstr "Римский контрабандист "
 
 #: maps/scenarios/Sandbox - Britons.xml:Name:41
 msgid "Sandbox - The Britons"
-msgstr "Песочница - британцы"
+msgstr "Песочница - Бритты"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:Description:41
 msgid "Explore the Carthaginian Buildings and Units."
@@ -1289,11 +1280,11 @@ msgstr "Крипы"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:Name:41
 msgid "Sandbox - The Carthaginians"
-msgstr "Песочница - карфагенцы"
+msgstr "Песочница - Карфагеняне"
 
 #: maps/scenarios/Sandbox - Gauls.xml:Name:41
 msgid "Sandbox - The Gauls"
-msgstr "Песочница - галлы"
+msgstr "Песочница - Галлы"
 
 #: maps/scenarios/Sandbox - Iberians.xml:Description:42
 msgid "A demo map for the Iberians."
@@ -1342,7 +1333,7 @@ msgstr "Ахемениды"
 
 #: maps/scenarios/Sandbox - Persians.xml:Name:41
 msgid "Sandbox - The Persians"
-msgstr "Песочница - персы"
+msgstr "Песочница - Персы"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:Description:41
 msgid ""
@@ -1687,12 +1678,24 @@ msgstr "Бесплодные и богатые минералами земли �
 msgid "Bactria (2)"
 msgstr "Бактрия (2)"
 
+#: maps/skirmishes/Barcania (3).xml:Name:31
+msgid "Barcania"
+msgstr "Баркания"
+
+#: maps/skirmishes/Barcania (3).xml:Description:31
+msgid ""
+"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
+"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
+"with lots of potential for skirmishing and guerilla warfare as well as tough"
+" defensive fighting or aggressive maneuvers."
+msgstr "Дикий и зеленый остров, полный лесов, золота, и тайн… Горы, моря, и густые леса способствуют очень динамичной и быстро развивающейся карте для 3-х игроков с большим потенциалом для стычек и партизанской войны, а также жестких оборонительных боев или агрессивных маневров."
+
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
-msgstr "Два игрока лицом к лицу разделенные большим болотом где-то в низменностях Рейна.\n\nДревесина в избытке, но металл и камень сложно найти и добыть. Охота и фуражировка обильные."
+msgstr "Два игрока лицом к лицу разделённые большим болотом где-то в низменностях Рейна.\n\nДревесина в избытке, но металл и камень сложно найти и добыть. Охота и сбор в изобилии."
 
 #: maps/skirmishes/Belgian Bog (2).xml:Name:41
 msgid "Belgian Bog (2)"
@@ -1734,7 +1737,7 @@ msgstr "\"Маленький остров\" - набор карт в Эгейс�
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:Name:42
 msgid "Cycladic Archipelago (2)"
-msgstr "Цикладские острова (2)"
+msgstr "Кикладские острова (2)"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:Description:41
 msgid ""
@@ -1757,7 +1760,7 @@ msgstr "Делос"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:Name:41
 msgid "Cycladic Archipelago (3)"
-msgstr "Цикладские острова (3)"
+msgstr "Кикладские острова (3)"
 
 #: maps/skirmishes/Death Canyon (2).xml:Description:42
 msgid ""

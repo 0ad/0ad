@@ -5,12 +5,13 @@
 # Translators:
 # Mysterelee <8161525@qq.com>, 2014
 # liulitchi <xingzuo88@qq.com>, 2014
+# 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-09 19:17+0100\n"
-"PO-Revision-Date: 2015-02-10 09:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-03-15 05:21+0100\n"
+"PO-Revision-Date: 2015-03-21 04:55+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -496,11 +497,11 @@ msgstr "一个对在随机地图中城墙布置方法的演示。建议选择大
 msgid "Wall Demo"
 msgstr "城墙演示"
 
-#: maps/random/survivalofthefittest_triggers.js:79
+#: maps/random/survivalofthefittest_triggers.js:80
 msgid "An enemy wave is attacking!"
 msgstr "有一波敌人来袭！"
 
-#: maps/random/survivalofthefittest_triggers.js:150
+#: maps/random/survivalofthefittest_triggers.js:151
 msgid "The first wave will start in 15 minutes!"
 msgstr "第一波攻击将会在15分钟后到来！"
 
@@ -530,7 +531,7 @@ msgstr "赶在您的敌人前收集宝藏！可以让您更轻鬆的获胜！"
 
 #: maps/scenarios/treasure_islands.js:37
 msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr ""
+msgstr "您敌人的金库被填的满满的，您输了！"
 
 #: maps/scenarios/treasure_islands.js:42
 msgid "Your treasury is filled to the brim, you are victorious!"
@@ -589,6 +590,7 @@ msgstr "在希腊阿卡迪亚的春日时分。若春雨下的不够，一年之
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[0].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:41
@@ -656,6 +658,7 @@ msgstr "玩家1"
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:31
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:41
@@ -698,7 +701,7 @@ msgstr "玩家2"
 
 #: maps/scenarios/Arcadia.xml:Name:41
 msgid "Arcadia"
-msgstr ""
+msgstr "阿卡狄亚"
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41
@@ -772,19 +775,6 @@ msgstr "Verguni"
 #: maps/scenarios/Azure Coast.xml:Name:41
 msgid "Azure Coast 1"
 msgstr "蔚蓝海岸1"
-
-#: maps/scenarios/Barcania.xml:Name:31
-msgid "Barcania"
-msgstr "巴卡尼亚"
-
-#: maps/scenarios/Barcania.xml:Description:31
-msgid ""
-"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
-"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
-"with lots of potential for skirmishing and guerilla warfare as well as tough"
-" defensive fighting or aggressive maneuvers. 1 Celt player, 2 Hellenic "
-"players."
-msgstr "一个未开发且树木丛生的小岛，布满了丛林、黄金、与些许的神祕感...山脉、海洋及密林造就了一个充满活力且快节奏的 3 人地图，潜藏著许多小规模战斗与游击战，甚或是困难的防御性战斗或侵略性的部队调动。1 个塞尔特玩家、2 个希腊玩家。"
 
 #: maps/scenarios/Battle for the Tiber.xml:Description:31
 msgid ""
@@ -918,7 +908,8 @@ msgstr "入侵力量"
 #: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
+#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Barcania
+#: (3).xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Gallic Fields
@@ -1682,6 +1673,18 @@ msgstr "在兴都库什山脉下的巴克特里亚(现今的阿富汗)是一处�
 #: maps/skirmishes/Bactria (2).xml:Name:42
 msgid "Bactria (2)"
 msgstr "巴克特里亚 (2)"
+
+#: maps/skirmishes/Barcania (3).xml:Name:31
+msgid "Barcania"
+msgstr "巴卡尼亚"
+
+#: maps/skirmishes/Barcania (3).xml:Description:31
+msgid ""
+"A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
+"seas, and thick forests make for a very dynamic and fast-paced 3-player map "
+"with lots of potential for skirmishing and guerilla warfare as well as tough"
+" defensive fighting or aggressive maneuvers."
+msgstr ""
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""

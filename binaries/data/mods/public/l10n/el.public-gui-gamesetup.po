@@ -4,21 +4,24 @@
 # 
 # Translators:
 # Adrian Pappas <pappasadrian@gmail.com>, 2013
-# catopsi, 2015
+# LOUKAS SKOUROLIAKOS, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # crippledmoon <domas392@in.gr>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
+# LOUKAS SKOUROLIAKOS, 2015
+# malvanos <malvanos@gmail.com>, 2015
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <savoritiasshadow@gmail.com>, 2014
 # XTos <christos.kyratzis@gmail.com>, 2014
 # Yiannis Fistikis <jfistikis@mailinator.com>, 2013
 # ZedRyder <zedryder@gmail.com>, 2014
+# Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-26 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-03-27 17:54+0000\n"
+"Last-Translator: malvanos <malvanos@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -267,7 +270,7 @@ msgstr "* %(username)s δεν είναι έτοιμος."
 
 #: gui/gamesetup/gamesetup.js:1712
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Οι ρυθμίσεις του παιχνιδιού έχουν αλλάξει"
 
 #: gui/gamesetup/gamesetup.js:1737
 msgid "I'm not ready"
@@ -287,7 +290,7 @@ msgstr "Πείτε είστε έτοιμοι να παίξετε."
 
 #: gui/gamesetup/gamesetup.js:1820
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Πείτε οτι δέχεστε τις παρόντες ρυθμίσεις και ειστε ετοιμοι να παίξετε."
 
 #: gui/gamesetup/gamesetup.js:1939
 msgid "None"
@@ -296,7 +299,7 @@ msgstr "Κανένα"
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "Παιχνίδι του %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
@@ -309,11 +312,11 @@ msgstr "Μήνυμα διαδικτύου: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "Εγγραφή με τον διακομιστή ..."
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Το παιχνίδι έχει ήδη ξεκινήσει , επανασύνδεση ..."
 
 #: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
@@ -322,7 +325,7 @@ msgstr "Το όνομα παιχνιδιού είναι ήδη σε χρήση."
 #: gui/gamesetup/gamesetup_mp.js:249
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "Το παιχνίδι του/ων %(playername)s"
 
 #: gui/gamesetup/victory_conditions/conquest.js:6
 msgid "Conquest"
@@ -338,7 +341,7 @@ msgstr "Θαύμα"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "Κατασκεύασε ένα κτήριο-θαύμα για να κερδίσεις"
 
 #: gui/loading/loading.js:51
 #, javascript-format
@@ -348,7 +351,7 @@ msgstr "Φόρτωση \"%(map)s\"..."
 #: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Δημιουργία “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):13
 msgid "AI Configuration"
@@ -356,11 +359,11 @@ msgstr "Ρύθμιση παραμέτρων AI"
 
 #: gui/aiconfig/aiconfig.xml:(caption):18
 msgid "AI Player:"
-msgstr "ΝΤ παίκτη:"
+msgstr "AI παίκτη:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):26
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "Δυσκολία ΑΙ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):36
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
@@ -451,7 +454,7 @@ msgstr "Ζαβολιές:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):353
 msgid "Rated Game:"
-msgstr ""
+msgstr "Βαθμολογημένο παιχνίδι:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):56
 msgid "View civilization info"
@@ -521,13 +524,13 @@ msgstr "Επιλογή των διαθέσιμων πόρων κατά την έ
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):317
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Εναλλαγή σε φανερωμένο χάρτη (δείτε τα πάντα)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):327
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Εναλλαγή σε εξερευνημένο χάρτη (Δές την Γή και τα κτήρια)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):337
 msgid "Toggle locked teams."
@@ -591,7 +594,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "\"Να είσαι παρά να φαίνεσαι.\" - Αισχύλος, \"Επτά επί Θήβας\""
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -603,7 +606,7 @@ msgstr "\"Δεν είναι ο όρκος που μας κάνει να πιστ
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "\"Κατά κάποιο τρόπο αυτό είναι η αρρώστια του τυραννικού καθεστώτος: να μην εμπιστεύεται ούτε τους φίλους του\"  - Αισχύλος, \"Προμηθεύς Δεσμώτης\""
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
@@ -647,7 +650,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
-msgstr ""
+msgstr "\"Είναι εύκολο να είναι κανείς γενναίος απο απόσταση\"-Αίσωπος"
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
@@ -721,7 +724,7 @@ msgstr "\"Αν δεν ήμουν ο Αλέξανδρος, εύχομαι να ή
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
-msgstr ""
+msgstr "\"Δεν κλέβω τη νίκη\" -- Μέγας Αλέξανδρος"
 
 #: gui/text/quotes.txt:30
 msgid ""
@@ -744,7 +747,7 @@ msgstr ""
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"Ο έρωτας και το φαγητό με κάνουν να συνηδητοποιώ την θνησημότητά μου\"-Μέγας Αλέξανδρος"
 
 #: gui/text/quotes.txt:34
 msgid ""
@@ -925,7 +928,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Ο χειρότερος κυρίαρχος είναι αυτός που δέν μπορεί να  κυριαρχήσει τον εαυτό του\" - Cato ο γηραιότερος"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -975,7 +978,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Ο χρόνος επουλώνει όλες τις πληγές\"- Μάρκους Τούλιους Σίτσερο"
 
 #: gui/text/quotes.txt:77
 msgid ""
@@ -1453,7 +1456,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr ""
+msgstr "\"μήν σκεφτείς να κάνεις κάτι που δέν πρέπει να γίνει\"-Πυθαγόρας"
 
 #: gui/text/quotes.txt:168
 msgid ""
