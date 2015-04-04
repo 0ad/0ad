@@ -60,7 +60,7 @@ AIInterface.prototype.Deserialize = function(data)
 	}
 	if (!this.enabled)
 		this.Disable();
-}
+};
 
 /**
  * Disable all registering functions for this component
@@ -198,7 +198,7 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 		for (let i = 0; i < this.templates.length; ++i)
 		{
 			// remove templates that we obviously don't care about.
-			if (this.templates[i].indexOf("skirmish/") == 0)
+			if (this.templates[i].startsWith("skirmish/"))
 				this.templates.splice(i--,1);
 			else
 			{

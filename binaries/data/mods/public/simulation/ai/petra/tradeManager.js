@@ -533,7 +533,13 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 			API3.warn("turn " + gameState.ai.playedTurn + "we could have a first route with gain "
 				+ marketPos[3]);
 	}
-	queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_market"));
+
+	if (!this.tradeRoute)
+		gameState.ai.queueManager.changePriority("economicBuilding", 2*this.Config.priorities.economicBuilding);
+	let plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
+	if (!this.tradeRoute)
+		plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", gameState.ai.Config.priorities.economicBuilding); };
+	queues.economicBuilding.addItem(plan);
 };
 
 m.TradeManager.prototype.isNewMarketWorth = function(expectedGain)
