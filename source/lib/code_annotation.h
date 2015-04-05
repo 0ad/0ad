@@ -314,15 +314,15 @@ switch(x % 2)
 // number of array elements
 //
 
-// (function taking a reference to an array and returning a pointer to
-// an array of characters. it's only declared and never defined; we just
-// need it to determine n, the size of the array that was passed.)
-template<typename T, size_t n> char (*ArraySizeDeducer(T (&)[n]))[n];
-
 // (although requiring C++, this method is much better than the standard
 // sizeof(name) / sizeof(name[0]) because it doesn't compile when a
 // pointer is passed, which can easily happen under maintenance.)
-#define ARRAY_SIZE(name) (sizeof(*ArraySizeDeducer(name)))
+template<typename T, size_t n>
+constexpr size_t ArraySize(T (&)[n]) noexcept
+{
+	return n;
+}
+#define ARRAY_SIZE(name) ArraySize(name)
 
 
 // C99-style __func__
