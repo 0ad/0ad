@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/mace_infantry_spearman_a">
+<Entity parent="units/sele_infantry_pikeman_a">
   <Armour>
     <Hack>10</Hack>
     <Pierce>8</Pierce>
@@ -18,6 +18,8 @@
   </Health>
   <Identity>
     <Rank>Elite</Rank>
+	<GenericName>Gold Shield Pikeman</GenericName>
+    <SpecificName>Chrysaspides</SpecificName>
   </Identity>
   <Promotion disable=""/>
   <ResourceGatherer>
@@ -30,6 +32,6 @@
     </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/macedonians/infantry_spearman_e.xml</Actor>
+    <Actor>units/seleucids/infantry_spearman_e.xml</Actor>
   </VisualActor>
 </Entity>
