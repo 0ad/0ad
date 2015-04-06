@@ -85,6 +85,7 @@ namespace glooxwrapper
 {
 	class Client;
 	class DataForm;
+	class DelayedDelivery;
 	class Disco;
 	class IQ;
 	class JID;
@@ -406,6 +407,16 @@ namespace glooxwrapper
 		void disconnect();
 	};
 
+	class GLOOXWRAPPER_API DelayedDelivery
+	{
+		NONCOPYABLE(DelayedDelivery);
+	private:
+		const gloox::DelayedDelivery* m_Wrapped;
+	public:
+		DelayedDelivery(const gloox::DelayedDelivery* wrapped);
+		const string stamp() const;
+	};
+
 	class GLOOXWRAPPER_API Disco
 	{
 		NONCOPYABLE(Disco);
@@ -480,6 +491,7 @@ namespace glooxwrapper
 		string body() const;
 		string subject(const string& lang = "default") const;
 		string thread() const;
+		const glooxwrapper::DelayedDelivery* when() const;
 	};
 
 	class GLOOXWRAPPER_API MUCRoom

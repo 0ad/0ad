@@ -10,6 +10,7 @@ const g_mapTypesText = [translateWithContext("map", "Skirmish"), translateWithCo
 const g_mapTypes = ["skirmish", "random", "scenario"];
 var g_userRating = ""; // Rating of user, defaults to Unrated
 var g_modPrefix = "@";
+var g_joined = false;
 // Block spammers for 30 seconds.
 var SPAM_BLOCK_LENGTH = 30;
 
@@ -613,11 +614,11 @@ function onTick()
 		{
 		case "mucmessage": // For room messages
 			var from = escapeText(message.from);
-			addChatMessage({ "from": from, "text": text });
+			addChatMessage({ "from": from, "text": text, "datetime": message.datetime});
 			break;
 		case "message": // For private messages
 			var from = escapeText(message.from);
-			addChatMessage({ "from": from, "text": text });
+			addChatMessage({ "from": from, "text": text, "datetime": message.datetime});
 			break;
 		case "muc":
 			var nick = message.text;
@@ -635,15 +636,21 @@ function onTick()
 				{
 					// We just joined, we need to get the full player list
 					[playerList, presenceList, nickList, ratingList] = updatePlayerList();
+					// Don't display any joins until our join request bounces back
+					// Our join message should be the last one as we just got added to the stack
+					g_joined = true;
 					break;
 				}
-				var [name, status, rating] = formatPlayerListEntry(nick, presence, "-");
-				playerList.push(name);
-				presenceList.push(status);
-				nickList.push(nick);
-				ratingList.push(String(rating));
-				Engine.SendGetRatingList();
-				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { nick: nick }), "key": g_specialKey });
+				else if (g_joined)
+				{
+					var [name, status, rating] = formatPlayerListEntry(nick, presence, "-");
+					playerList.push(name);
+					presenceList.push(status);
+					nickList.push(nick);
+					ratingList.push(String(rating));
+					Engine.SendGetRatingList();
+					addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { nick: nick }), "key": g_specialKey });
+				}
 				break;
 			case "leave":
 				if (nickIndex == -1) // Left, but not present (TODO: warn about this?)
@@ -819,19 +826,22 @@ function addChatMessage(msg)
 	if (!msg.color)
 		msg.color = null;
 	if (!msg.key)
-		msg.key = null;	
+		msg.key = null;
+	if (!msg.datetime)
+		msg.datetime = null;
 
 	// Highlight local user's nick
 	if (msg.text.indexOf(g_Name) != -1 && g_Name != msg.from)
 		msg.text = msg.text.replace(new RegExp('\\b' + '\\' + g_Name + '\\b', "g"), colorPlayerName(g_Name));
 
-	// Run spam test
-	updateSpamMonitor(msg.from);
+	// Run spam test if it's not a historical message
+	if (!msg.datetime)
+		updateSpamMonitor(msg.from);
 	if (isSpam(msg.text, msg.from))
 		return;
 
 	// Format Text
-	var formatted = ircFormat(msg.text, msg.from, msg.color, msg.key);
+	var formatted = ircFormat(msg.text, msg.from, msg.color, msg.key, msg.datetime);
 
 	// If there is text, add it to the chat box.
 	if (formatted)
@@ -856,9 +866,10 @@ function ircSplit(string)
  * @param from Sender of the message.
  * @param color Optional color of sender.
  * @param key Key to verify join/leave messages with. TODO: Remove this, it only provides synthetic security.
+ * @param datetime Current date and time of message, only used for historical messages
  * @return Formatted text.
  */
-function ircFormat(text, from, color, key)
+function ircFormat(text, from, color, key, datetime)
 {
 	// Generate and apply color to uncolored names,
 	if (!color && from)
@@ -912,8 +923,18 @@ function ircFormat(text, from, color, key)
 	// Build time header if enabled
 	if (g_timestamp)
 	{
-		// Time for optional time header
-		var time = new Date(Date.now());
+
+		var time;
+		if (datetime)
+		{
+			var parserDate = datetime.split("T")[0].split("-");
+			var parserTime = datetime.split("T")[1].split(":");
+			// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format of datetime
+			// Date takes Year, Month, Day, Hour, Minute, Second
+			time = new Date(Date.UTC(parserDate[0], parserDate[1], parserDate[2], parserTime[0], parserTime[1], parserTime[2].split("Z")[0]));
+		}
+		else
+			time = new Date(Date.now());
 
 		// Translation: Time as shown in the multiplayer lobby (when you enable it in the options page).
 		// For a list of symbols that you can use, see:
