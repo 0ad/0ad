@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/cart_infantry_swordsman_2_b">
+<Entity parent="units/cart_infantry_swordsman_ital_b">
   <Armour>
     <Hack>5</Hack>
     <Pierce>2</Pierce>
@@ -20,7 +20,7 @@
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
-    <Entity>units/cart_infantry_swordsman_2_e</Entity>
+    <Entity>units/cart_infantry_swordsman_ital_e</Entity>
   </Promotion>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>

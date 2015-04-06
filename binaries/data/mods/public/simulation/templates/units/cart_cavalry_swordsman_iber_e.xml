@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/cart_cavalry_spearman_a">
+<Entity parent="units/cart_cavalry_swordsman_iber_a">
   <Armour>
     <Hack>6</Hack>
-    <Pierce>4</Pierce>
-    <Crush>5</Crush>
+    <Pierce>5</Pierce>
+    <Crush>6</Crush>
   </Armour>
-    <Attack>
+  <Attack>
     <Melee>
-      <Hack>6</Hack>
-      <Pierce>11.5</Pierce>
+      <Hack>23.5</Hack>
     </Melee>
     <Charge>
-      <Hack>14.0</Hack>
-      <Pierce>26.0</Pierce>
+      <Hack>38.0</Hack>
     </Charge>
   </Attack>
   <Health>
@@ -27,11 +25,8 @@
   </ResourceGatherer>
   <UnitMotion>
     <WalkSpeed>15.5</WalkSpeed>
-    <Run>
-      <Speed>24.0</Speed>
-    </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/carthaginians/cavalry_spearman_e.xml</Actor>
+    <Actor>units/carthaginians/cavalry_swordsman_e.xml</Actor>
   </VisualActor>
 </Entity>
