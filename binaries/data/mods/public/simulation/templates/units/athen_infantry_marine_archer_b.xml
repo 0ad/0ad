@@ -16,7 +16,7 @@
   </Cost>
   <Identity>
     <Civ>athen</Civ>
-	<SelectionGroupName>units/mace_infantry_archer_b</SelectionGroupName>
+	<SelectionGroupName>units/mace_infantry_marine_archer_b</SelectionGroupName>
     <Classes datatype="tokens">Mercenary</Classes>
     <GenericName>Cretan Mercenary Archer</GenericName>
     <SpecificName>Toxótēs Krētikós</SpecificName>
@@ -25,7 +25,7 @@
 	<RequiredTechnology>hellenes/special_iphicratean_reforms</RequiredTechnology>
   </Identity>
   <Promotion>
-    <Entity>units/athen_infantry_archer_a</Entity>
+    <Entity>units/athen_infantry_marine_archer_a</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/macedonians/infantry_archer_b.xml</Actor>
