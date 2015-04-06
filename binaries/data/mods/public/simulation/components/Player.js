@@ -69,7 +69,14 @@ Player.prototype.GetName = function()
 
 Player.prototype.SetCiv = function(civcode)
 {
+	var oldCiv = this.civ;
 	this.civ = civcode;
+	// Normally, the civ is only set once
+	// But in Atlas, the map designers can change civs at any time
+	var playerID = this.GetPlayerID();
+	if (oldCiv == undefined || playerID == undefined)
+		return; // not initialised
+	Engine.BroadcastMessage(MT_CivChanged, {"player": playerID, "from": oldCiv, "to": civcode});
 };
 
 Player.prototype.GetCiv = function()
