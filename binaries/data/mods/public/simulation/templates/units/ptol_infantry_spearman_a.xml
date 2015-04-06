@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/sele_infantry_spearman_2_b">
+<Entity parent="units/ptol_infantry_spearman_b">
   <Armour>
     <Hack>3</Hack>
     <Pierce>5</Pierce>
@@ -22,7 +22,7 @@
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
-    <Entity>units/sele_infantry_spearman_2_e</Entity>
+    <Entity>units/ptol_infantry_spearman_e</Entity>
   </Promotion>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
@@ -34,6 +34,6 @@
     </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/seleucids/thureophoros_a.xml</Actor>
+    <Actor>units/ptolemies/infantry_spearman_2_a.xml</Actor>
   </VisualActor>
 </Entity>
