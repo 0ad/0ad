@@ -36,16 +36,17 @@ function Cheat(input)
 		cmpPlayer.SetMaxPopulation(500);
 		break;
 	case "convertunit":
-		for each (var ent in input.selected)
+		for (let ent of input.selected)
 		{
-			var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-			cmpOwnership.SetOwner(cmpPlayer.GetPlayerID());
+			let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+			if (cmpOwnership)
+				cmpOwnership.SetOwner(cmpPlayer.GetPlayerID());
 		}
 		break;
 	case "killunits":
-		for each (var ent in input.selected)
+		for (let ent of input.selected)
 		{
-			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
+			let cmpHealth = Engine.QueryInterface(ent, IID_Health);
 			if (cmpHealth)
 				cmpHealth.Kill();
 			else
@@ -71,8 +72,8 @@ function Cheat(input)
 			cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "You need to select a building that trains units."});
 			return;
 		}
-		for (var i = 0; i < input.parameter; i++)
-			cmpProductionQueue.SpawnUnits (input.templates[i%(input.templates.length)],1, null);
+		for (let i = 0; i < input.parameter; ++i)
+			cmpProductionQueue.SpawnUnits(input.templates[i % input.templates.length], 1, null);
 		break;
 	case "fastactions":
 		cmpPlayer.SetCheatTimeMultiplier((cmpPlayer.GetCheatTimeMultiplier() == 1) ? 0.01 : 1);
