@@ -476,8 +476,8 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 {
 	if (queues.ships.length() > 0)
 		return;
-	if (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_dock"), true) +
-		gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_super_dock"), true) === 0)
+	if (gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt()).length +
+		gameState.getOwnEntitiesByClass("Shipyard", true).filter(API3.Filters.isBuilt()).length === 0)
 		return;
 	// check if we have enough transport ships per region.
 	for (var sea = 0; sea < this.seaShips.length; ++sea)

@@ -916,7 +916,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket 
 	if (expectedGain < 3 ||
-		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnStructures().filter(API3.Filters.byClass("BarterMarket")).length > 0)))
+		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).length > 0)))
 		return false;
 
 	var x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
@@ -1047,8 +1047,8 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 {
 	// at least one market (which have the same queue) should be build before any temple
 	if (gameState.currentPhase() < 3 || queues.economicBuilding.countQueuedUnits() != 0
-		|| gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_temple"), true) != 0
-		|| gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market"), true) == 0)
+		|| gameState.getOwnEntitiesByClass("Temple", true).length != 0
+		|| gameState.getOwnEntitiesByClass("BarterMarket", true).length == 0)
 		return;
 	if (!this.canBuild(gameState, "structures/{civ}_temple"))
 		return;
@@ -1059,7 +1059,7 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 {
 	if (gameState.getPopulation() < this.Config.Economy.popForMarket ||
 		queues.economicBuilding.countQueuedUnitsWithClass("BarterMarket") != 0 ||
-		gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market"), true) != 0)
+		gameState.getOwnEntitiesByClass("BarterMarket", true).length != 0)
 		return;
 	if (!this.canBuild(gameState, "structures/{civ}_market"))
 		return;
@@ -1073,12 +1073,12 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 m.HQ.prototype.buildFarmstead = function(gameState, queues)
 {
 	// Only build one farmstead for the time being ("DropsiteFood" does not refer to CCs)
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_farmstead"), true) > 0)
+	if (gameState.getOwnEntitiesByClass("Farmstead", true).length > 0)
 		return;
 	// Wait to have at least one dropsite and house before the farmstead
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_storehouse"), true) == 0)
+	if (gameState.getOwnEntitiesByClass("Storehouse", true).length == 0)
 		return;
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_house"), true) == 0)
+	if (gameState.getOwnEntitiesByClass("House", true).length == 0)
 		return;
 	if (queues.economicBuilding.countQueuedUnitsWithClass("DropsiteFood") > 0)
 		return;
@@ -1243,7 +1243,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		var fortressType = "structures/{civ}_fortress";
 		if (queues.defenseBuilding.length() == 0 && this.canBuild(gameState, fortressType))
 		{
-			var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress"), true);
+			var numFortresses = gameState.getOwnEntitiesByClass("Fortress", true).length;
 			if (gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime)
 			{
 				this.fortressStartTime = gameState.ai.elapsedTime;
@@ -1254,7 +1254,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		// let's add a siege building plan to the current attack plan if there is none currently.
 		var numSiegeBuilder = 0;
 		if (gameState.civ() !== "mace" && gameState.civ() !== "maur")
-			numSiegeBuilder += gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true);
+			numSiegeBuilder += gameState.getOwnEntitiesByClass("Fortress", true).filter(API3.Filters.isBuilt()).length;
 		if (gameState.civ() === "mace" || gameState.civ() === "maur" || gameState.civ() === "rome")
 			numSiegeBuilder += gameState.countEntitiesByType(this.bAdvanced[0], true);
 		if (numSiegeBuilder > 0)
@@ -1276,7 +1276,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		|| !this.canBuild(gameState, "structures/{civ}_defense_tower"))
 		return;	
 
-	var numTowers = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_defense_tower"), true);
+	var numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).length;
 	if (gameState.ai.elapsedTime > (1 + 0.10*numTowers)*this.towerLapseTime + this.towerStartTime)
 	{
 		this.towerStartTime = gameState.ai.elapsedTime;
@@ -1289,10 +1289,10 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 {
 	if (gameState.getPopulation() < this.Config.Military.popForBlacksmith 
 		|| queues.militaryBuilding.length() != 0
-		|| gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_blacksmith"), true) > 0)
+		|| gameState.getOwnEntitiesByClass("Blacksmith", true).length > 0)
 		return;
 	// build a market before the blacksmith
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market"), true) == 0)
+	if (gameState.getOwnEntitiesByClass("BarterMarket", true).length == 0)
 		return;
 
 	if (this.canBuild(gameState, "structures/{civ}_blacksmith"))
@@ -1305,7 +1305,7 @@ m.HQ.prototype.buildWonder = function(gameState, queues)
 		return;
 	if (gameState.ai.queues["wonder"] && gameState.ai.queues["wonder"].length() > 0)
 		return;
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_wonder"), true) > 0)
+	if (gameState.getOwnEntitiesByClass("Wonder", true).length > 0)
 		return;
 
 	if (!gameState.ai.queues["wonder"])
@@ -1321,7 +1321,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 {
 	if (this.canBuild(gameState, "structures/{civ}_barracks") && queues.militaryBuilding.length() == 0)
 	{
-		var barrackNb = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_barracks"), true);
+		var barrackNb = gameState.getOwnEntitiesByClass("Barracks", true).length;
 		// first barracks.
 		if (barrackNb == 0 && (gameState.getPopulation() > this.Config.Military.popForBarracks1 ||
 			(this.econState == "townPhasing" && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)))

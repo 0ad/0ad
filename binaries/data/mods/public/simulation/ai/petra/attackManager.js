@@ -127,7 +127,8 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 
 	// creating plans after updating because an aborted plan might be reused in that case.
 
-	if (this.rushNumber < this.maxRushes && gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_barracks"), true) >= 1)
+	var barracksNb = gameState.getOwnEntitiesByClass("Barracks", true).filter(API3.Filters.isBuilt()).length;
+	if (this.rushNumber < this.maxRushes && barracksNb >= 1)
 	{
 		if (this.upcomingAttacks["Rush"].length === 0)
 		{
@@ -148,8 +149,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 	else if (this.upcomingAttacks["Attack"].length === 0 && this.upcomingAttacks["HugeAttack"].length === 0
 		&& (this.startedAttacks["Attack"].length + this.startedAttacks["HugeAttack"].length < Math.round(gameState.getPopulationMax()/100)))
 	{
-		if ((gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_barracks"), true) >= 1
-				&& (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase())))
+		if ((barracksNb >= 1 && (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase())))
 			|| !gameState.ai.HQ.baseManagers[1])	// if we have no base ... nothing else to do than attack
 		{
 			if (this.attackNumber < 2 || this.startedAttacks["HugeAttack"].length > 0)

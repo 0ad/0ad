@@ -162,6 +162,13 @@ m.Filters = {
 		},
 		"dynamicProperties": []};
 	},
+
+	isBuilt: function(){
+		return {"func": function(ent){
+			return ent.foundationProgress() === undefined;
+		},
+		"dynamicProperties": []};
+	},
 	
 	byDistance: function(startPoint, dist){
 		return {"func": function(ent){

@@ -197,7 +197,7 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 // only once per turn because the info doesn't update between a turn and fixing isn't worth it.
 m.TradeManager.prototype.performBarter = function(gameState)
 {
-	var barterers = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("BarterMarket"), API3.Filters.not(API3.Filters.isFoundation()))).toEntityArray();
+	var barterers = gameState.getOwnEntitiesByClass("BarterMarket", true).filter(API3.Filters.isBuilt()).toEntityArray();
 	if (barterers.length === 0)
 		return false;
 

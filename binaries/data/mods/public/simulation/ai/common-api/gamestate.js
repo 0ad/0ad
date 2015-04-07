@@ -437,7 +437,22 @@ m.GameState.prototype.getOwnEntitiesByType = function(type, maintain){
 	if (maintain === true)
 		return this.updatingCollection("type-" + type, filter, this.getOwnEntities());
 	return this.getOwnEntities().filter(filter);
+};
 
+m.GameState.prototype.getOwnEntitiesByClass = function(cls, maintain)
+{
+	var filter = m.Filters.byClass(cls);
+	if (maintain)
+		return this.updatingCollection("class-" + cls, filter, this.getOwnEntities());
+	return this.getOwnEntities().filter(filter);
+};
+
+m.GameState.prototype.getOwnFoundationsByClass = function(cls, maintain)
+{
+	var filter = m.Filters.byClass(cls);
+	if (maintain)
+		return this.updatingCollection("foundations-class-" + cls, filter, this.getOwnFoundations());
+	return this.getOwnFoundations().filter(filter);
 };
 
 m.GameState.prototype.getOwnTrainingFacilities = function(){

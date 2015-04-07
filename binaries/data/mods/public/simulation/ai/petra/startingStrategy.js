@@ -446,7 +446,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 
 	// immediatly build a wood dropsite if possible.
 	var template = gameState.applyCiv("structures/{civ}_storehouse");
-	if (gameState.countEntitiesAndQueuedByType(template, true) === 0 && this.canBuild(gameState, template))
+	if (gameState.getOwnEntitiesByClass("Storehouse", true).length === 0 && this.canBuild(gameState, template))
 	{
 		let newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
 		if (newDP.quality > 40)

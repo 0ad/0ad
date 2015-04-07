@@ -611,7 +611,7 @@ m.Worker.prototype.startFishing = function(gameState)
 
 	var entPosition = this.ent.position();
 	var fisherSea = this.ent.getMetadata(PlayerID, "sea");
-	var docks = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("Dock"), API3.Filters.not(API3.Filters.isFoundation())));
+	var docks = gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt());
 
 	var nearestDropsiteDist = function(supply) {
 		var distMin = 1000000;
@@ -684,7 +684,7 @@ m.Worker.prototype.startFishing = function(gameState)
 
 m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 {
-	var ownFields = gameState.getOwnEntitiesByType(gameState.applyCiv("structures/{civ}_field"), true).filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
+	var ownFields = gameState.getOwnEntitiesByClass("Field", true).filter(API3.Filters.isBuilt()).filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
 	var bestFarmEnt = false;
 	var bestFarmDist = 10000000;
 
