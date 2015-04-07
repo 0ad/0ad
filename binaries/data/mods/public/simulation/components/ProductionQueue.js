@@ -107,10 +107,9 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 
 	// filter out disabled and invalid entities
 	var disabledEntities = cmpPlayer.GetDisabledTemplates();
-	entitiesList = entitiesList.filter(function(v)
-		{
-			return !disabledEntities[v] && cmpTemplateManager.TemplateExists(v);
-		});
+	entitiesList = entitiesList.filter(
+		function(v) { return !disabledEntities[v] && cmpTemplateManager.TemplateExists(v); }
+	);
 
 	// check if some templates need to show their advanced or elite version
 	var upgradeTemplate = function(templateName)
