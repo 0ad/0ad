@@ -53,7 +53,7 @@ AuraManager.prototype.ApplyBonus = function(value, ent, data, key)
 		this.modificationsCache.get(value).get(ent).multiply *= data.multiply;
 
 	if (data.add)
-		this.modificationsCache.get(value).get(ent).add *= data.add;
+		this.modificationsCache.get(value).get(ent).add += data.add;
 
 	// post message to the entity to notify it about the change
 	Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
