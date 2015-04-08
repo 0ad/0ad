@@ -460,7 +460,7 @@ m.GameState.prototype.getOwnTrainingFacilities = function(){
 };
 
 m.GameState.prototype.getOwnResearchFacilities = function(){
-	return this.updatingGlobalCollection("" + this.player + "-research-facilities", m.Filters.byResearchAvailable(), this.getOwnEntities());
+	return this.updatingGlobalCollection("" + this.player + "-research-facilities", m.Filters.byResearchAvailable(this.playerData.civ), this.getOwnEntities());
 };
 
 
@@ -565,11 +565,12 @@ m.GameState.prototype.getFishableSupplies = function(){
 m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 {
 	var allTrainable = [];
+	var civ = this.playerData.civ;
 	this.getOwnStructures().forEach(function(ent) {
-		var trainable = ent.trainableEntities();
+		var trainable = ent.trainableEntities(civ);
 		if (!trainable)
 			return;
-		for (var unit of trainable)
+		for (let unit of trainable)
 			if (allTrainable.indexOf(unit) === -1)
 				allTrainable.push(unit);
 	});
@@ -580,7 +581,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 	{
 		let template = this.getTemplate(trainable);
 
-		if (!template.available(this))
+		if (!template || !template.available(this))
 			continue;
 		if (this.isDisabledTemplates(trainable))
 			continue;
@@ -620,9 +621,10 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 // If there are pairs, both techs are returned.
 m.GameState.prototype.findAvailableTech = function()
 {	
-	let allResearchable = [];
+	var allResearchable = [];
+	var civ = this.playerData.civ;
 	this.getOwnEntities().forEach(function(ent) {
-		let searchable = ent.researchableTechs();
+		let searchable = ent.researchableTechs(civ);
 		if (!searchable)
 			return;
 		for (let tech of searchable)
@@ -650,13 +652,13 @@ m.GameState.prototype.findAvailableTech = function()
 };
 
 /**
- * Find buildings that are capable of training said template.
- * Getting the best is up to the AI.
+ * Find buildings that are capable of training that template.
  */
 m.GameState.prototype.findTrainers = function(template)
 {	
+	var civ = this.playerData.civ;
 	return this.getOwnTrainingFacilities().filter(function(ent) {
-		let trainable = ent.trainableEntities();
+		let trainable = ent.trainableEntities(civ);
 		if (!trainable || trainable.indexOf(template) == -1)
 			return false;
 		return true;
@@ -685,9 +687,10 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 
 	var template = this.getTemplate(templateName);
 	var self = this;
+	var civ = this.playerData.civ;
 	
 	return this.getOwnResearchFacilities().filter(function(ent) {
-		var techs = ent.researchableTechs();
+		var techs = ent.researchableTechs(civ);
 		for (let tech of techs)
 		{
 			let thisTemp = self.getTemplate(tech);

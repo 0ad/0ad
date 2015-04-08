@@ -139,9 +139,10 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	}
 	if (!landIndex)
 	{
+		var civ = gameState.civ();
 		for (let ent of gameState.getOwnEntities().values())
 		{
-			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities()))
+			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities(civ)))
 				continue;
 			let land = accessibility.getAccessValue(ent.position());
 			if (land > 1)

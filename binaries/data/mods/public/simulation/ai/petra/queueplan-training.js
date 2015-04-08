@@ -45,7 +45,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 				metadata[key] = this.metadata[key];
 		var trainer = gameState.getEntityById(this.metadata.trainer);
 		if (trainer)
-			trainer.train(this.type, this.number, metadata, this.promotedTypes(gameState));
+			trainer.train(gameState.civ(), this.type, this.number, metadata, this.promotedTypes(gameState));
 		this.onStart(gameState);
 		return;
 	}
@@ -104,7 +104,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 		});
 		if (this.metadata && this.metadata.base !== undefined && this.metadata.base == 0)
 			this.metadata.base = trainers[0].getMetadata(PlayerID, "base");
-		trainers[0].train(this.type, this.number, this.metadata, this.promotedTypes(gameState));
+		trainers[0].train(gameState.civ(), this.type, this.number, this.metadata, this.promotedTypes(gameState));
 	}
 	else if (gameState.ai.Config.debug > 1)
 		warn(" no trainers for this queue " + this.type);

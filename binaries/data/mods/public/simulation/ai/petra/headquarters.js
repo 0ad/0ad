@@ -1408,6 +1408,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	if (gameState.ai.queues.emergency.countQueuedUnits() !== 0)
 		return false;
 
+	var civ = gameState.civ();
 	// find nearest base anchor
 	var distcut = 20000;
 	var nearestAnchor = undefined;
@@ -1422,7 +1423,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				continue;
 			if (base.anchor.getMetadata(PlayerID, "access") !== access)
 				continue;
-			if (!base.anchor.trainableEntities())	// base still in construction
+			if (!base.anchor.trainableEntities(civ))	// base still in construction
 				continue;
 			let queue = base.anchor._entity.trainingQueue
 			if (queue)
@@ -1462,7 +1463,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 
 	var total = gameState.getResources();
 	var templateFound = undefined;
-	var trainables = nearestAnchor.trainableEntities();
+	var trainables = nearestAnchor.trainableEntities(civ);
 	var garrisonArrowClasses = nearestAnchor.getGarrisonArrowClasses();
 	for (let trainable of trainables)
 	{

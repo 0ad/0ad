@@ -329,15 +329,16 @@ m.Template = m.Class({
 		return templates; // TODO: map to Entity?
 	},
 
-	trainableEntities: function() {
+	trainableEntities: function(civ) {
 		if (!this.get("ProductionQueue/Entities/_string"))
 			return undefined;
-		var civ = this.civ();
 		var templates = this.get("ProductionQueue/Entities/_string").replace(/\{civ\}/g, civ).split(/\s+/);
 		return templates;
 	},
 
-	researchableTechs: function() {
+	researchableTechs: function(civ) {
+		if (this.civ() !== civ)     // techs can only be researched in structure from the player civ
+			return undefined;
 		if (!this.get("ProductionQueue/Technologies/_string"))
 			return undefined;
 		var templates = this.get("ProductionQueue/Technologies/_string").split(/\s+/);
@@ -865,9 +866,9 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	train: function(type, count, metadata, promotedTypes)
+	train: function(civ, type, count, metadata, promotedTypes)
 	{
-		var trainable = this.trainableEntities();
+		var trainable = this.trainableEntities(civ);
 		if (!trainable)
 		{
 			error("Called train("+type+", "+count+") on non-training entity "+this);

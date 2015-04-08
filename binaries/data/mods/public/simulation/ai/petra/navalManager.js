@@ -637,9 +637,10 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 // goal can be either attack (choose ship with best arrowCount) or transport (choose ship with best capacity)
 m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 {
+	var civ = gameState.civ();
 	var trainableShips = [];
 	gameState.getOwnTrainingFacilities().filter(API3.Filters.byMetadata(PlayerID, "sea", sea)).forEach(function(ent) {
-		var trainables = ent.trainableEntities();
+		var trainables = ent.trainableEntities(civ);
 		for (var trainable of trainables)
 		{
 			if (gameState.isDisabledTemplates(trainable))

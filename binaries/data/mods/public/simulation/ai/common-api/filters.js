@@ -115,9 +115,9 @@ m.Filters = {
 		}, 
 		"dynamicProperties": ['trainingQueue']};
 	},
-	byResearchAvailable: function(){
+	byResearchAvailable: function(civ){
 		return {"func" : function(ent){
-			return ent.researchableTechs() !== undefined;
+			return ent.researchableTechs(civ) !== undefined;
 		},
 		"dynamicProperties": []};
 	},
