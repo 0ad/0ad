@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -33,7 +33,7 @@ namespace gloox
    *
    * XEP Version: 2.0
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.6
    */
   class GLOOX_API LastActivity : public IqHandler
@@ -46,7 +46,7 @@ namespace gloox
        * XEP-Version: 2.0 (@xep{0012})
        * XEP-Version: 0.1 (@xep{0256})
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class GLOOX_API Query : public StanzaExtension

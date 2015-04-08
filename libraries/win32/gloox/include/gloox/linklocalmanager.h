@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2012-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2012-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -161,7 +161,7 @@ namespace gloox
      * @see @c linklocal_example.cpp in @c src/examples/ for a (very) simple implementation of a bot
      * handling both incoming and outgoing connections.
      *
-     * @author Jakob Schroeter <js@camaya.net>
+     * @author Jakob Schröter <js@camaya.net>
      * @since 1.0.x
      */
     class GLOOX_API Manager

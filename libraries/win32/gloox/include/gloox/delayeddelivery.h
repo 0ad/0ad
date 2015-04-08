@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2006-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2006-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -32,7 +32,7 @@ namespace gloox
    * It understands both XEP formats for input, but any output will conform to @xep{0203}.
    *
    * XEP Version: 0.1
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.9
    */
   class GLOOX_API DelayedDelivery : public StanzaExtension

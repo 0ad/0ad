@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -86,7 +86,7 @@ namespace gloox
    *
    * Check @c tests/register_test.cpp for an example.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.2
    */
   class GLOOX_API Registration : public IqHandler
@@ -119,7 +119,7 @@ namespace gloox
       /**
        * @brief A wrapping class for the @xep{0077} &lt;query&gt; element.
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class Query : public StanzaExtension

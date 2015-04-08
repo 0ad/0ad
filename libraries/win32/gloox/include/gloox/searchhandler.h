@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2006-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2006-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -27,7 +27,7 @@ namespace gloox
    * Holds all the possible fields a server may require for searching according
    * to Section 7, @xep{0055}.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 1.0
    */
   class SearchFieldStruct
@@ -138,7 +138,7 @@ namespace gloox
    *
    * A class implementing this interface can receive the result of a Jabber Search.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.8.5
    */
   class GLOOX_API SearchHandler

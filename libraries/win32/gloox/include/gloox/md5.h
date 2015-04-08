@@ -63,7 +63,7 @@ namespace gloox
    * This is an implementation of the Message Digest Algorithm as decribed in RFC 1321.
    * The original code has been taken from an implementation by L. Peter Deutsch.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.9
    */
   class GLOOX_API MD5

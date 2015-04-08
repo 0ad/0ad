@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2007-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -25,7 +25,7 @@ namespace gloox
   /**
    * @brief An abstraction of a subscription stanza.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 1.0
    */
   class GLOOX_API Subscription : public Stanza

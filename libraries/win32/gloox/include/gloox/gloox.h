@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -361,7 +361,7 @@
 /**
  * @brief The namespace for the gloox library.
  *
- * @author Jakob Schroeter <js@camaya.net>
+ * @author Jakob Schröter <js@camaya.net>
  * @since 0.3
  */
 namespace gloox
@@ -605,6 +605,9 @@ namespace gloox
 
   /** Use of Cryptographic Hash Functions in XMPP namespace (@xep{0300}) */
   GLOOX_API extern const std::string XMLNS_HASHES;
+
+  /** IO Data (@xep 0244) */
+  GLOOX_API extern const std::string XMLNS_IODATA;
 
   /** Supported stream version (major). */
   GLOOX_API extern const std::string XMPP_STREAM_VERSION_MAJOR;

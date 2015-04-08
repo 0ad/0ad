@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2004-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -32,7 +32,7 @@ namespace gloox
   /**
    * @brief This class implements @xep{0049} (Private XML Storage).
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    */
   class GLOOX_API PrivateXML : public IqHandler
   {
@@ -84,7 +84,7 @@ namespace gloox
       /**
        * @brief An implementation of the Private XML Storage protocol as StanzaExtension.
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class Query : public StanzaExtension
