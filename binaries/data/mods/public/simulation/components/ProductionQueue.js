@@ -92,33 +92,32 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 	this.entitiesList = [];
 	if (!this.template.Entities)
 		return;
-	
+
 	var string = this.template.Entities._string;
 	if (!string)
 		return;
-	
+
 	// Replace the "{civ}" codes with this entity's civ ID
-	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	if (cmpIdentity)
-		string = string.replace(/\{civ\}/g, cmpIdentity.GetCiv());
-	
-	var entitiesList = string.split(/\s+/);
-	
-	// Remove disabled entities
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer)
+		return;
+
+	var entitiesList = string.replace(/\{civ\}/g, cmpPlayer.GetCiv()).split(/\s+/);
+
+	// filter out disabled and invalid entities
 	var disabledEntities = cmpPlayer.GetDisabledTemplates();
-	
-	for (var i = entitiesList.length - 1; i >= 0; --i)
-		if (disabledEntities[entitiesList[i]])
-			entitiesList.splice(i, 1);
-	
+	entitiesList = entitiesList.filter(
+		function(v) { return !disabledEntities[v] && cmpTemplateManager.TemplateExists(v); }
+	);
+
 	// check if some templates need to show their advanced or elite version
 	var upgradeTemplate = function(templateName)
 	{
 		var template = cmpTemplateManager.GetTemplate(templateName);
 		while (template && template.Promotion !== undefined)
 		{
-			var requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, playerID, template);
+			var requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, cmpPlayer.GetPlayerID(), template);
 			if (requiredXp > 0)
 				break;
 			templateName = template.Promotion.Entity;
@@ -127,15 +126,12 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 		return templateName;
 	};
 
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var playerID = cmpPlayer.GetPlayerID();
-	for each (var templateName in entitiesList)
+	for (let templateName of entitiesList)
 		this.entitiesList.push(upgradeTemplate(templateName));
-	for each (var item in this.queue)
-	{
+
+	for (let item of this.queue)
 		if (item.unitTemplate)
 			item.unitTemplate = upgradeTemplate(item.unitTemplate);
-	}
 };
 
 /*
@@ -154,13 +150,16 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	if (!cmpTechnologyManager)
 		return [];
 	
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	if (!cmpPlayer || !cmpIdentity || cmpPlayer.GetCiv() != cmpIdentity.GetCiv())
+		return [];
+
 	var techs = string.split(/\s+/);
 	var techList = [];
 	var superseded = {}; // Stores the tech which supersedes the key
 
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	if (cmpPlayer)
-		var disabledTechnologies = cmpPlayer.GetDisabledTechnologies();
+	var disabledTechnologies = cmpPlayer.GetDisabledTechnologies();
 	
 	// Add any top level technologies to an array which corresponds to the displayed icons
 	// Also store what a technology is superceded by in the superceded object {"tech1":"techWhichSupercedesTech1", ...}
@@ -237,7 +236,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 	// TODO: there should probably be a limit on the number of queued batches
 	// TODO: there should be a way for the GUI to determine whether it's going
 	// to be possible to add a batch (based on resource costs and length limits)
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	var cmpPlayer = QueryOwnerInterface(this.entity);
 
 	if (this.queue.length < MAX_QUEUE_SIZE)
 	{
@@ -314,7 +313,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			var template = cmpTechTempMan.GetTemplate(templateName);
 			if (!template)
 				return;
-			var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+			var cmpPlayer = QueryOwnerInterface(this.entity);
 			var time = template.researchTime * cmpPlayer.GetCheatTimeMultiplier();
 
 			var cost = {};
@@ -391,7 +390,7 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 
 		// Now we've found the item to remove
 		
-		var cmpPlayer = QueryPlayerIDInterface(item.player, IID_Player);
+		var cmpPlayer = QueryPlayerIDInterface(item.player);
 
 		// Update entity count in the EntityLimits component
 		if (item.unitTemplate)
@@ -479,7 +478,7 @@ ProductionQueue.prototype.ResetQueue = function()
  */
 ProductionQueue.prototype.GetBatchTime = function(batchSize)
 {
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	var cmpPlayer = QueryOwnerInterface(this.entity);
 
 	var batchTimeModifier = ApplyValueModificationsToEntity("ProductionQueue/BatchTimeModifier", +this.template.BatchTimeModifier, this.entity);
 
@@ -492,7 +491,7 @@ ProductionQueue.prototype.OnOwnershipChanged = function(msg)
 	if (msg.from != -1)
 	{
 		// Unset flag that previous owner's training may be blocked
-		var cmpPlayer = QueryPlayerIDInterface(msg.from, IID_Player);
+		var cmpPlayer = QueryPlayerIDInterface(msg.from);
 		if (cmpPlayer && this.queue.length > 0)
 			cmpPlayer.UnBlockTraining();
 	}
@@ -505,6 +504,11 @@ ProductionQueue.prototype.OnOwnershipChanged = function(msg)
 	// created from it. Also it means we don't have to worry about
 	// updating the reserved pop slots.)
 	this.ResetQueue();
+};
+
+ProductionQueue.prototype.OnCivChanged = function()
+{
+	this.CalculateEntitiesList();
 };
 
 ProductionQueue.prototype.OnDestroy = function()
@@ -651,7 +655,7 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 	// until we've used up all the time (so that we work accurately
 	// with items that take fractions of a second)
 	var time = g_ProgressInterval;
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	var cmpPlayer = QueryOwnerInterface(this.entity);
 
 	while (time > 0 && this.queue.length)
 	{
@@ -729,7 +733,7 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 				
 				if (!this.spawnNotified)
 				{
-					var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+					var cmpPlayer = QueryOwnerInterface(this.entity);
 					var notification = {"players": [cmpPlayer.GetPlayerID()], "message": "Can't find free space to spawn trained units" };
 					var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 					cmpGUIInterface.PushNotification(notification);

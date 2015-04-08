@@ -166,6 +166,7 @@ m.dumpEntity = function(ent)
 		+ " state " + ent.unitAIState());
 	API3.warn(" base " + ent.getMetadata(PlayerID, "base") + " >>> role " + ent.getMetadata(PlayerID, "role")
 		+ " subrole " + ent.getMetadata(PlayerID, "subrole"));
+	API3.warn(" health " + ent.hitpoints() + " healthMax " + ent.maxHitpoints());
 	API3.warn(" garrisoning " + ent.getMetadata(PlayerID, "garrisoning") + " garrisonHolder " + ent.getMetadata(PlayerID, "garrisonHolder")
 		+ " plan " + ent.getMetadata(PlayerID, "plan")	+ " transport " + ent.getMetadata(PlayerID, "transport")
 		+ " gather-type " + ent.getMetadata(PlayerID, "gather-type") + " target-foundation " + ent.getMetadata(PlayerID, "target-foundation")

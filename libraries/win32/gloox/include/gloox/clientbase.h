@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -70,7 +70,7 @@ namespace gloox
    * It manages connection establishing, authentication, filter registration and invocation.
    * You should normally use Client for client connections and Component for component connections.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.3
    */
   class GLOOX_API ClientBase : public TagHandler, public ConnectionDataHandler,
@@ -927,7 +927,7 @@ namespace gloox
       /**
        * @brief This is an implementation of an XMPP Ping (@xep{0199}).
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class Ping : public StanzaExtension

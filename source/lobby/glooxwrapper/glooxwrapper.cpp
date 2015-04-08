@@ -383,6 +383,17 @@ void glooxwrapper::Client::setPresence(gloox::Presence::PresenceType pres, int p
 }
 
 
+glooxwrapper::DelayedDelivery::DelayedDelivery(const gloox::DelayedDelivery* wrapped)
+{
+	m_Wrapped = wrapped;
+}
+
+const glooxwrapper::string glooxwrapper::DelayedDelivery::stamp() const
+{
+	return m_Wrapped->stamp();
+}
+
+
 glooxwrapper::Disco::Disco(gloox::Disco* wrapped)
 {
 	m_Wrapped = wrapped;
@@ -511,6 +522,14 @@ glooxwrapper::string glooxwrapper::Message::subject(const string& lang) const
 glooxwrapper::string glooxwrapper::Message::thread() const
 {
 	return m_Wrapped->thread();
+}
+
+const glooxwrapper::DelayedDelivery* glooxwrapper::Message::when() const
+{
+	const gloox::DelayedDelivery* wrapped = m_Wrapped->when();
+	if (wrapped == 0)
+		return 0;
+	return new glooxwrapper::DelayedDelivery(wrapped);
 }
 
 

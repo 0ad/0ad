@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/ptol_infantry_pikeman_a">
+  <Armour>
+    <Hack>10</Hack>
+    <Pierce>8</Pierce>
+    <Crush>7</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>5</Hack>
+    </Melee>
+    <Charge>
+      <Hack>14.0</Hack>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>140</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>7</WalkSpeed>
+    <Run>
+      <Speed>11.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/ptolemies/infantry_spearman_e.xml</Actor>
+  </VisualActor>
+</Entity>

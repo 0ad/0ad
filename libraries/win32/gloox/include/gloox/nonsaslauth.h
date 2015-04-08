@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -33,7 +33,7 @@ namespace gloox
    * You should not need to use this class manually.
    *
    * XEP Version: 2.3
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.3
    */
   class GLOOX_API NonSaslAuth : public IqHandler
@@ -70,7 +70,7 @@ namespace gloox
       /**
        * @brief An abstraction of an IQ extension used for Non-SASL authentication (@xep{0078}).
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class Query : public StanzaExtension

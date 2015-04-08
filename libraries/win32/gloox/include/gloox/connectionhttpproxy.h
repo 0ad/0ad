@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2004-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -47,7 +47,7 @@ namespace gloox
    * The reason why ConnectionHTTPProxy doesn't manage its own ConnectionTCPClient is that it allows it
    * to be used with other transports (like IPv6 or chained SOCKS5/HTTP proxies).
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.9
    */
   class GLOOX_API ConnectionHTTPProxy : public ConnectionBase, public ConnectionDataHandler

@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2013-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2013-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -33,7 +33,7 @@ namespace gloox
    * 
    * XEP-Version: 0.5
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @author Fernando Sanchez
    * @since 1.0.5
    */
@@ -71,25 +71,25 @@ namespace gloox
        */
       const DelayedDelivery* when() const { return m_delay; }
 
-      // reimplemented from Stanza
+      // reimplemented from StanzaExtension
       virtual Stanza* embeddedStanza() const { return m_stanza; }
       
-      // reimplemented from Stanza
+      // reimplemented from StanzaExtension
       virtual Tag* embeddedTag() const { return m_tag; }
       
-      // reimplemented from Stanza
+      // reimplemented from StanzaExtension
       virtual Tag* tag() const;
 
-      // reimplemented from Stanza
+      // reimplemented from StanzaExtension
       const std::string& filterString() const;
       
-      // reimplemented from Stanza
+      // reimplemented from StanzaExtension
       StanzaExtension* newInstance( const Tag* tag ) const
       {
         return new Forward( tag );
       }
 
-      // reimplemented from Stanza
+      // reimplemented from StanzaExtension
       StanzaExtension* clone() const;
 
     private:

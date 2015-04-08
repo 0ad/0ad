@@ -10,12 +10,12 @@
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/sele_infantry_spearman_2_b
-      units/sele_infantry_javelinist_b
-      units/sele_cavalry_javelinist
-      units/sele_hero_seleucus_victor
-      units/sele_hero_antiochus_great
-      units/sele_hero_antiochus_righteous
+      units/{civ}_infantry_spearman_b
+      units/{civ}_infantry_javelinist_b
+      units/{civ}_cavalry_javelinist
+      units/{civ}_hero_seleucus_victor
+      units/{civ}_hero_antiochus_great
+      units/{civ}_hero_antiochus_righteous
     </Entities>
   </ProductionQueue>
   <VisualActor>

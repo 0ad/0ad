@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_melee_spearman">
+  <Cost>
+    <Resources>
+      <food>75</food>
+	  <wood>50</wood>
+	  <metal>25</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>cart</Civ>
+    <SelectionGroupName>units/cart_cavalry_spearman_ital_b</SelectionGroupName>
+    <GenericName>Italic Cavalry</GenericName>
+    <SpecificName>Ḥayyāl Romaḥ Raḫūv</SpecificName>
+    <Classes datatype="tokens">Italian Mercenary</Classes>
+    <History>The Italian allies of Carthage included the various Samnite tribes of the interior hill-country and Italiote Greek colonies along the Southern coast. They provided a much-needed and high-quality cavalry contingent for Hannibal's army.</History>
+    <Icon>units/cart_cavalry_spearman.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/cart_cavalry_spearman_ital_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/carthaginians/cavalry_spearman_b.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2004-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -40,7 +40,7 @@ namespace gloox
    * announce special features of your client, or its version, or...
    *
    * XEP version: 2.2
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    */
   class GLOOX_API Disco : public IqHandler
   {
@@ -59,7 +59,7 @@ namespace gloox
        * @brief An abstraction of a Disco Info element (from Service Discovery, @xep{0030})
        * as a StanzaExtension.
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class GLOOX_API Info : public StanzaExtension
@@ -190,7 +190,7 @@ namespace gloox
       /**
        * @brief An abstraction of a Disco identity (Service Discovery, @xep{0030}).
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class GLOOX_API Identity
@@ -269,7 +269,7 @@ namespace gloox
        * @brief An abstraction of a Disco query element (from Service Discovery, @xep{0030})
        * in the disco#items namespace, implemented as a StanzaExtension.
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class GLOOX_API Items : public StanzaExtension
@@ -346,7 +346,7 @@ namespace gloox
       /**
        * @brief An abstraction of a Disco item (Service Discovery, @xep{0030}).
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class GLOOX_API Item

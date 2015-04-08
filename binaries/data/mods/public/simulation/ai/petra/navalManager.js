@@ -476,8 +476,8 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 {
 	if (queues.ships.length() > 0)
 		return;
-	if (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_dock"), true) +
-		gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_super_dock"), true) === 0)
+	if (gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt()).length +
+		gameState.getOwnEntitiesByClass("Shipyard", true).filter(API3.Filters.isBuilt()).length === 0)
 		return;
 	// check if we have enough transport ships per region.
 	for (var sea = 0; sea < this.seaShips.length; ++sea)
@@ -637,9 +637,10 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 // goal can be either attack (choose ship with best arrowCount) or transport (choose ship with best capacity)
 m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 {
+	var civ = gameState.civ();
 	var trainableShips = [];
 	gameState.getOwnTrainingFacilities().filter(API3.Filters.byMetadata(PlayerID, "sea", sea)).forEach(function(ent) {
-		var trainables = ent.trainableEntities();
+		var trainables = ent.trainableEntities(civ);
 		for (var trainable of trainables)
 		{
 			if (gameState.isDisabledTemplates(trainable))

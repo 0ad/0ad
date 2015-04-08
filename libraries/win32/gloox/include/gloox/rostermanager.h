@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2004-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -41,7 +41,7 @@ namespace gloox
    * initiated by other resources may overwrite changed values.
    * Additionally, @xep{0083} (Nested Roster Groups) is implemented herein.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.3
    */
    class GLOOX_API RosterManager : public IqHandler, public PresenceHandler, public SubscriptionHandler,
@@ -197,7 +197,7 @@ namespace gloox
       /**
        * @brief An implementation of StanzaExtension that helps in roster management.
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class Query : public StanzaExtension

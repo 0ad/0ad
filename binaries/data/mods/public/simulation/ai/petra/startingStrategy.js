@@ -139,9 +139,10 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	}
 	if (!landIndex)
 	{
+		var civ = gameState.civ();
 		for (let ent of gameState.getOwnEntities().values())
 		{
-			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities()))
+			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities(civ)))
 				continue;
 			let land = accessibility.getAccessValue(ent.position());
 			if (land > 1)
@@ -446,7 +447,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 
 	// immediatly build a wood dropsite if possible.
 	var template = gameState.applyCiv("structures/{civ}_storehouse");
-	if (gameState.countEntitiesAndQueuedByType(template, true) === 0 && this.canBuild(gameState, template))
+	if (gameState.getOwnEntitiesByClass("Storehouse", true).length === 0 && this.canBuild(gameState, template))
 	{
 		let newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
 		if (newDP.quality > 40)

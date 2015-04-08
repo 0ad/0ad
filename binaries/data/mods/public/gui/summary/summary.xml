@@ -7,6 +7,7 @@
 -->
 
 <objects>
+	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_civinfo.js"/>
 	<script file="gui/common/functions_utility.js"/>
 	<script file="gui/summary/counters.js"/>
@@ -17,15 +18,15 @@
 		style="ModernWindow"
 		size="0 0 100% 100%"
 	>
-		<object style="TitleText" type="text" size="50%-128 4 50%+128 36">
+		<object style="ModernLabelText" type="text" size="50%-128 4 50%+128 36">
 			<translatableAttribute id="caption">Summary</translatableAttribute>
 		</object>
 
-		<object type="image" sprite="ForegroundBody" size="20 24 100%-20 80">
+		<object size="20 26 100%-20 92">
 
 			<object name="summaryText"
 				type="text"
-				size="50 6 100%-50 100%-20"
+				size="50 16 100%-50 100%-16"
 				font="sans-bold-18"
 				textcolor="255 255 255"
 				text_align="left"
@@ -34,17 +35,17 @@
 
 			<object name="timeElapsed"
 				type="text"
-				size="100%-200 8 100%-10 100%-20"
-				font="sans-16"
+				size="50 16 100%-50 100%-16"
+				font="sans-bold-18"
 				textcolor="255 255 255"
-				text_align="center"
+				text_align="right"
 				text_valign="center"
 			/>
 
 			<object name="mapName"
 				type="text"
-				size="50 20 100%-50 100%-4"
-				font="sans-bold-16"
+				size="50 16 100%-50 100%-16"
+				font="sans-bold-18"
 				textcolor="255 255 255"
 				text_align="center"
 				text_valign="center"
@@ -57,47 +58,47 @@
 
 		<object name="scorePanelButton" type="button" sprite="ForegroundTab" size="20 92 136 120">
 			<action on="Press">selectPanel(0);</action>
-			<object type="text" style="TitleText" ghost="true">
+			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Score</translatableAttribute>
 			</object>
 		</object>
 
 		<object name="buildingsPanelButton" type="button" sprite="BackgroundTab" size="142 92 260 120">
 			<action on="Press">selectPanel(1);</action>
-			<object type="text" style="TitleText" ghost="true">
+			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Buildings</translatableAttribute>
 			</object>
 		</object>
 
 		<object name="unitsPanelButton" type="button" sprite="BackgroundTab" size="266 92 384 120">
 			<action on="Press">selectPanel(2);</action>
-			<object type="text" style="TitleText" ghost="true">
+			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Units</translatableAttribute>
 			</object>
 		</object>
 
 		<object name="resourcesPanelButton" type="button" sprite="BackgroundTab" size="390 92 508 120">
 			<action on="Press">selectPanel(3);</action>
-			<object type="text" style="TitleText" ghost="true">
+			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Resources</translatableAttribute>
 			</object>
 		</object>
 
 		<object name="marketPanelButton" type="button" sprite="BackgroundTab" size="514 92 632 120">
 			<action on="Press">selectPanel(4);</action>
-			<object type="text" style="TitleText" ghost="true">
+			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Market</translatableAttribute>
 			</object>
 		</object>
 
 		<object name="miscPanelButton" type="button" sprite="BackgroundTab" size="638 92 756 120">
 			<action on="Press">selectPanel(5);</action>
-			<object type="text" style="TitleText" ghost="true">
+			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Miscellaneous</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="generalPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-58">
+		<object name="generalPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-54">
 			<object size="0 0 100% 100%-50">
 				<object name="playerNameHeading" type="text" style="ModernLeftTabLabelText">
 					<translatableAttribute id="caption">Player name</translatableAttribute>
@@ -143,7 +144,7 @@
 							<object name="playerColorBox[n]" type="image" size="2 2 22 22"/>
 						</object>
 						<object name="playerName[n]" type="text"  size="40 2 208 100%" style="ModernLeftLabelText"/>
-						<object name="civIcon[n]" type="image" size="208 0 240 32"  tooltip_style="sessionToolTip"/>
+						<object name="civIcon[n]" type="image" size="208 0 240 32"/>
 						<repeat var="x" count="8">
 							<object name="valueData[n][x]" type="text" style="ModernTabLabelText">
 							</object>
@@ -153,10 +154,10 @@
 			</object>
 		</object>
 
-		<object type="button" style="StoneButton" size="100%-164 100%-52 100%-24 100%-24">
+		<object type="button" style="ModernButtonRed" size="100%-160 100%-48 100%-20 100%-20">
 			<translatableAttribute id="caption">Continue</translatableAttribute>
 			<action on="Press"><![CDATA[
-				if(!Engine.HasXmppClient())
+				if (!Engine.HasXmppClient())
 				{
 					Engine.SwitchGuiPage("page_pregame.xml");
 				}

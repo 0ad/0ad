@@ -115,9 +115,9 @@ m.Filters = {
 		}, 
 		"dynamicProperties": ['trainingQueue']};
 	},
-	byResearchAvailable: function(){
+	byResearchAvailable: function(civ){
 		return {"func" : function(ent){
-			return ent.researchableTechs() !== undefined;
+			return ent.researchableTechs(civ) !== undefined;
 		},
 		"dynamicProperties": []};
 	},
@@ -159,6 +159,13 @@ m.Filters = {
 	isFoundation: function(){
 		return {"func": function(ent){
 			return ent.foundationProgress() !== undefined;
+		},
+		"dynamicProperties": []};
+	},
+
+	isBuilt: function(){
+		return {"func": function(ent){
+			return ent.foundationProgress() === undefined;
 		},
 		"dynamicProperties": []};
 	},

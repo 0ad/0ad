@@ -615,7 +615,9 @@ void XmppClient::GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHan
 		scriptInterface.SetProperty(ret, "message", message.message);
 	if (!message.data.empty())
 		scriptInterface.SetProperty(ret, "data", message.data);
-	
+	if (!message.datetime.empty())
+		scriptInterface.SetProperty(ret, "datetime", message.datetime);
+
 	m_GuiMessageQueue.pop_front();
 }
 
@@ -648,6 +650,9 @@ void XmppClient::handleMUCMessage(glooxwrapper::MUCRoom*, const glooxwrapper::Me
 	message.type = L"mucmessage";
 	message.from = wstring_from_utf8(msg.from().resource().to_string());
 	message.text = wstring_from_utf8(msg.body().to_string());
+	if (msg.when())
+		// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format
+		message.datetime = msg.when()->stamp().to_string();
 	PushGuiMessage(message);
 }
 
@@ -662,6 +667,9 @@ void XmppClient::handleMessage(const glooxwrapper::Message& msg, glooxwrapper::M
 	GUIMessage message;
 	message.from = wstring_from_utf8(msg.from().username().to_string());
 	message.message = wstring_from_utf8(msg.body().to_string());
+	if (msg.when())
+		//See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format
+		message.datetime = msg.when()->stamp().to_string();
 	PushGuiMessage(message);
 }
 

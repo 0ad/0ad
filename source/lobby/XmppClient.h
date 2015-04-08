@@ -131,6 +131,7 @@ public:
 		std::wstring data;
 		std::wstring from;
 		std::wstring message;
+		std::string datetime;
 	};
 	void GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void SendMUCMessage(const std::string& message);

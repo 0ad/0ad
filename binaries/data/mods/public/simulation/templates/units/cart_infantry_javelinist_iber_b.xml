@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_javelinist">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/cart_super_dock
+      structures/cart_embassy_celtic
+      structures/cart_embassy_iberian
+      structures/cart_embassy_italiote
+      structures/{civ}_wonder
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <food>25</food>
+	  <wood>50</wood>
+	  <metal>25</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>cart</Civ>
+    <SelectionGroupName>units/cart_infantry_javelinist_iber_b</SelectionGroupName>
+    <GenericName>Iberian Mercenary Skirmisher</GenericName>
+    <SpecificName>Sǝḫīr Kidōn</SpecificName>
+    <Classes datatype="tokens">Iberian Mercenary</Classes>
+    <History>While Iberians had often served as mercenaries in earlier times, after Carthage's conquest of Spain they were often called up as levies. After the Celts they were considered the most expendable of all the troops in the Carthaginian army, used to dull the force of a charging formation. Armed with a javelin that could have a bundle of burning grass attached at the end for torching buildings, the Iberians could also wear light breastplates called pectorals in addition to their distinctive sinew caps.</History>
+    <Icon>units/cart_infantry_javelinist.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/cart_infantry_javelinist_iber_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/carthaginians/infantry_javelinist_b.xml</Actor>
+  </VisualActor>
+</Entity>

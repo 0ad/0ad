@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2006-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2006-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -89,6 +89,8 @@ namespace gloox
     ExtAttention,                   /**< An extension dealing with Attention (@xep{0224}). */
     ExtForward,                     /**< An extension dealing with Stanza Forwarding (@xep{0297}). */
     ExtCarbons,                     /**< An extension dealing with Message Carbons (@xep{0280}). */
+    ExtIOData,                      /**< An extension dealing with IO Data (@xep{0244}) (though the IOData extension
+                                     * is not actually used as/meant to be a StanzaExtension. */
     ExtUser                         /**< User-supplied extensions must use IDs above this. Do
                                      * not hard-code ExtUser's value anywhere, it is subject
                                      * to change. */
@@ -174,7 +176,7 @@ namespace gloox
    * must be reimplemented. The output Tag should -- like the input Tag -- be embeddable
    * into the respective stanza.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.9
    */
   class GLOOX_API StanzaExtension

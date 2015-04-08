@@ -10,9 +10,9 @@
   </Health>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/cart_infantry_spearman_b
-      units/cart_infantry_archer_b
-      units/cart_cavalry_javelinist_b
+      units/{civ}_infantry_spearman_b
+      units/{civ}_infantry_archer_b
+      units/{civ}_cavalry_javelinist_b
     </Entities>
     <Technologies datatype="tokens">
       carthaginians/special_colonisation

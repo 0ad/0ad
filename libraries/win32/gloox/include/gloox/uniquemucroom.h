@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2007-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -28,7 +28,7 @@ namespace gloox
    * to be used when converting one-to-one chats to multi-user chats.
    *
    * XEP version: 1.21
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.9
    */
   class GLOOX_API UniqueMUCRoom : public InstantMUCRoom
@@ -62,7 +62,7 @@ namespace gloox
       /**
        * @brief A stanza extension wrapping MUC's &lt;unique&gt; element.
        *
-       * @author Jakob Schroeter <js@camaya.net>
+       * @author Jakob Schröter <js@camaya.net>
        * @since 1.0
        */
       class Unique : public StanzaExtension

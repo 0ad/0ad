@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2006-2014 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2006-2015 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -32,7 +32,7 @@ namespace gloox
    * used when manipulating the lists of members, admins, owners, etc.
    * of a room.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 1.0
    */
   class MUCListItem
@@ -170,7 +170,7 @@ namespace gloox
   /**
    * @brief An abstract interface that can be implemented for MUC room configuration.
    *
-   * @author Jakob Schroeter <js@camaya.net>
+   * @author Jakob Schröter <js@camaya.net>
    * @since 0.9
    */
   class GLOOX_API MUCRoomConfigHandler
