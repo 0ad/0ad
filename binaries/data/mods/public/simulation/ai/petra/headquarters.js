@@ -1470,7 +1470,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 		if (gameState.isDisabledTemplates(trainable))
 			continue;
 		let template = gameState.getTemplate(trainable);
-		if (!template.hasClass("Infantry") || !template.hasClass("CitizenSoldier"))
+		if (!template || !template.hasClass("Infantry") || !template.hasClass("CitizenSoldier"))
 			continue;
 		if (autogarrison && !MatchesClassList(garrisonArrowClasses, template.classes()))
 			continue;
