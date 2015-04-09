@@ -36,8 +36,8 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/athen_champion_infantry
-      units/athen_champion_ranged
+      units/{civ}_champion_infantry
+      units/{civ}_champion_ranged
     </Entities>
   </ProductionQueue>
   <VisualActor>

@@ -40,10 +40,10 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/spart_hero_leonidas
-      units/spart_hero_brasidas
-      units/spart_hero_agis
-      units/spart_champion_infantry_spear
+      units/{civ}_hero_leonidas
+      units/{civ}_hero_brasidas
+      units/{civ}_hero_agis
+      units/{civ}_champion_infantry_spear
     </Entities>
     <Technologies datatype="tokens">
       hellenes/spartans_agoge

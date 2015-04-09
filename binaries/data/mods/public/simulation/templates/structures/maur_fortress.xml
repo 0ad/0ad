@@ -8,12 +8,18 @@
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/maur_hero_chanakya
-      units/maur_hero_maurya
-      units/maur_hero_ashoka
-      units/maur_champion_infantry
-      units/maur_champion_maiden
-      units/maur_champion_chariot
+      units/{civ}_hero_chanakya
+      units/{civ}_hero_maurya
+      units/{civ}_hero_ashoka
+      units/{civ}_champion_infantry
+      units/{civ}_champion_maiden
+      units/{civ}_champion_chariot
+      -units/{civ}_mechanical_siege_ballista_packed
+      -units/{civ}_mechanical_siege_scorpio_packed
+      -units/{civ}_mechanical_siege_oxybeles_packed
+      -units/{civ}_mechanical_siege_lithobolos_packed
+      -units/{civ}_mechanical_siege_ram
+      -units/{civ}_mechanical_siege_tower
     </Entities>
     <Technologies datatype="tokens">
       attack_soldiers_will

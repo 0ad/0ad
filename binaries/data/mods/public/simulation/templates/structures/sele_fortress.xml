@@ -15,13 +15,11 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/sele_champion_infantry_pikeman
-      units/sele_champion_chariot
-      units/sele_champion_infantry_swordsman
-      units/sele_champion_cavalry	
-      units/sele_champion_elephant
-      units/sele_mechanical_siege_lithobolos_packed
-      units/sele_mechanical_siege_tower
+      units/{civ}_champion_infantry_pikeman
+      units/{civ}_champion_chariot
+      units/{civ}_champion_infantry_swordsman
+      units/{civ}_champion_cavalry	
+      units/{civ}_champion_elephant
     </Entities>
     <Technologies datatype="tokens">
       successors/pair_unlock_champions
