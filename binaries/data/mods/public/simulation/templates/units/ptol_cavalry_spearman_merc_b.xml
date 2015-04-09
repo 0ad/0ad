@@ -2,7 +2,7 @@
 <Entity parent="template_unit_cavalry_melee_spearman">
   <Identity>
     <Civ>ptol</Civ>
-    <SelectionGroupName>units/ptol_cavalry_spearman_b</SelectionGroupName>
+    <SelectionGroupName>units/ptol_cavalry_spearman_merc_b</SelectionGroupName>
     <GenericName>Macedonian Settler Cavalry</GenericName>
     <SpecificName>Hippeus Makedonikós</SpecificName>
     <History>?</History>
@@ -10,7 +10,7 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>
-    <Entity>units/ptol_cavalry_spearman_a</Entity>
+    <Entity>units/ptol_cavalry_spearman_merc_a</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/ptolemies/cavalry_spearman_b.xml</Actor>

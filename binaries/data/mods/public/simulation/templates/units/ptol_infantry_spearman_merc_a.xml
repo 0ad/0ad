@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/ptol_infantry_spearman_b">
+<Entity parent="units/ptol_infantry_spearman_merc_b">
   <Armour>
     <Hack>3</Hack>
     <Pierce>5</Pierce>
@@ -22,7 +22,7 @@
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
-    <Entity>units/ptol_infantry_spearman_e</Entity>
+    <Entity>units/ptol_infantry_spearman_merc_e</Entity>
   </Promotion>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
