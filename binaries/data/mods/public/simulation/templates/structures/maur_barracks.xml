@@ -14,14 +14,9 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/maur_infantry_spearman_b
-      units/maur_infantry_swordsman_b
-      units/maur_infantry_archer_b
-	  units/maur_champion_infantry_barracks
-	  units/maur_champion_maiden_barracks
-      units/maur_cavalry_swordsman_b
-      units/maur_cavalry_javelinist_b
-	  units/maur_champion_chariot_barracks
+	  units/{civ}_champion_infantry_barracks
+	  units/{civ}_champion_maiden_barracks
+	  units/{civ}_champion_chariot_barracks
     </Entities>
     <Technologies datatype="tokens">
 	  mauryans/special_archery_tradition
