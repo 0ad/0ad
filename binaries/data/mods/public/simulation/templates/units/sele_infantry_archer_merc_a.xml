@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/sele_infantry_archer_b">
+<Entity parent="units/sele_infantry_archer_merc_b">
   <Armour>
     <Hack>2</Hack>
     <Pierce>2</Pierce>
@@ -18,7 +18,7 @@
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
-    <Entity>units/sele_infantry_archer_e</Entity>
+    <Entity>units/sele_infantry_archer_merc_e</Entity>
   </Promotion>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>

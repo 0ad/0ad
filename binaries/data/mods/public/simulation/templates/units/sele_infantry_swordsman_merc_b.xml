@@ -9,7 +9,7 @@
   </Builder>
   <Identity>
     <Civ>sele</Civ>
-	<SelectionGroupName>units/sele_infantry_swordsman_b</SelectionGroupName>
+	<SelectionGroupName>units/sele_infantry_swordsman_merc_b</SelectionGroupName>
 	<GenericName>Thracian Mercenary Swordsman</GenericName>
     <SpecificName>Rhomphaiaphoros Thrakikós</SpecificName>
     <Icon>units/sele_infantry_swordsman.png</Icon>
@@ -18,7 +18,7 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>
-    <Entity>units/sele_infantry_swordsman_a</Entity>
+    <Entity>units/sele_infantry_swordsman_merc_a</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/seleucids/infantry_swordsman_b.xml</Actor>

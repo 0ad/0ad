@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/sele_cavalry_spearman_b">
+<Entity parent="units/sele_cavalry_spearman_merc_b">
   <Armour>
     <Hack>5</Hack>
     <Pierce>3</Pierce>
@@ -22,7 +22,7 @@
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
-    <Entity>units/sele_cavalry_spearman_e</Entity>
+    <Entity>units/sele_cavalry_spearman_merc_e</Entity>
   </Promotion>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>

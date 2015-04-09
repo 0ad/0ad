@@ -2,7 +2,7 @@
 <Entity parent="template_unit_cavalry_melee_spearman">
   <Identity>
     <Civ>sele</Civ>
-    <SelectionGroupName>units/sele_cavalry_spearman_b</SelectionGroupName>
+    <SelectionGroupName>units/sele_cavalry_spearman_merc_b</SelectionGroupName>
     <GenericName>Companion Cavalry</GenericName>
     <SpecificName>Hippos Hetairike</SpecificName>
     <History>There were two guard cavalry regiments, each 1,000 strong. These were the Agema (the 'Guards') and the Hetairoi ('Companions'). The Hetairoi were recruited from the younger generation of military settlers and acted as the standing guard cavalry unit of the army, serving in peace and in war. However it seems that writers referred to them by several names other than just the 'companions'; the basilike ile ('royal squadron' or 'regia ala' according to Livy), and the hippos hetairike ('horse companions'). Their full title may well have been the 'royal ala of the companions'.</History>
@@ -10,7 +10,7 @@
     <Icon>units/mace_cavalry_spearman.png</Icon>
   </Identity>
   <Promotion>
-    <Entity>units/sele_cavalry_spearman_a</Entity>
+    <Entity>units/sele_cavalry_spearman_merc_a</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/macedonians/cavalry_spearman_b.xml</Actor>
