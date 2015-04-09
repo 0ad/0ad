@@ -646,7 +646,7 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 			if (gameState.isDisabledTemplates(trainable))
 				continue;
 			var template = gameState.getTemplate(trainable);
-			if (template.hasClass("Ship") && trainableShips.indexOf(trainable) === -1)
+			if (template && template.hasClass("Ship") && trainableShips.indexOf(trainable) === -1)
 				trainableShips.push(trainable);
 		}
 	});
