@@ -34,12 +34,11 @@
   </Sound>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/brit_hero_boudicca
-      units/brit_hero_caratacos
-      units/brit_hero_cunobelin
-      units/brit_champion_cavalry
-      units/brit_champion_infantry
-      units/brit_mechanical_siege_ram
+      units/{civ}_hero_boudicca
+      units/{civ}_hero_caratacos
+      units/{civ}_hero_cunobelin
+      units/{civ}_champion_cavalry
+      units/{civ}_champion_infantry
     </Entities>
     <Technologies datatype="tokens">
       siege_attack

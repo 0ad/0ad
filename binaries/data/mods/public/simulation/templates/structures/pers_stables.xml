@@ -30,10 +30,12 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/pers_cavalry_spearman_b
-      units/pers_cavalry_swordsman_b
-      units/pers_cavalry_javelinist_b
-      units/pers_cavalry_archer_b
+	  -units/{civ}_infantry_spearman_b
+	  -units/{civ}_infantry_pikeman_b
+      -units/{civ}_infantry_swordsman_b
+      -units/{civ}_infantry_javelinist_b
+      -units/{civ}_infantry_slinger_b
+      -units/{civ}_infantry_archer_b
     </Entities>
     <Technologies datatype="tokens">
 	  -training_conscription

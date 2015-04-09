@@ -18,12 +18,11 @@
   </Sound>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/gaul_hero_brennus
-      units/gaul_hero_britomartus
-      units/gaul_hero_vercingetorix
-      units/gaul_champion_cavalry
-      units/gaul_champion_infantry
-      units/gaul_mechanical_siege_ram
+      units/{civ}_hero_brennus
+      units/{civ}_hero_britomartus
+      units/{civ}_hero_vercingetorix
+      units/{civ}_champion_cavalry
+      units/{civ}_champion_infantry
     </Entities>
     <Technologies datatype="tokens">
       siege_attack

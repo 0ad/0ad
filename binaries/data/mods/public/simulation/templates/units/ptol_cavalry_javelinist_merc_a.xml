@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/sele_infantry_archer_b">
+<Entity parent="units/ptol_cavalry_javelinist_merc_b">
   <Armour>
-    <Hack>2</Hack>
+    <Hack>4</Hack>
     <Pierce>2</Pierce>
     <Crush>4</Crush>
   </Armour>
   <Attack>
     <Ranged>
+      <MaxRange>44</MaxRange>
       <Spread>1.3</Spread>
-      <MaxRange>54.0</MaxRange>
     </Ranged>
   </Attack>
   <Health>
-    <Max>95</Max>
+    <Max>150</Max>
   </Health>
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
-    <Entity>units/sele_infantry_archer_e</Entity>
+    <Entity>units/ptol_cavalry_javelinist_merc_e</Entity>
   </Promotion>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
-  <Stamina>
-    <Max>700</Max>
-  </Stamina>
   <VisualActor>
-    <Actor>units/macedonians/infantry_archer_a.xml</Actor>
+    <Actor>units/macedonians/cavalry_javelinist_a.xml</Actor>
   </VisualActor>
 </Entity>

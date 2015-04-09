@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/ptol_cavalry_spearman_b">
+<Entity parent="units/sele_cavalry_spearman_merc_b">
   <Armour>
     <Hack>5</Hack>
     <Pierce>3</Pierce>
@@ -22,7 +22,7 @@
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
-    <Entity>units/ptol_cavalry_spearman_e</Entity>
+    <Entity>units/sele_cavalry_spearman_merc_e</Entity>
   </Promotion>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
@@ -34,6 +34,6 @@
     </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/ptolemies/cavalry_spearman_a.xml</Actor>
+    <Actor>units/macedonians/cavalry_spearman_a.xml</Actor>
   </VisualActor>
 </Entity>

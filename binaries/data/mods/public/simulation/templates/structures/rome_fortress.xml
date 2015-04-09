@@ -7,14 +7,11 @@
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/rome_hero_marcellus
-      units/rome_hero_maximus
-      units/rome_hero_scipio
-      units/rome_champion_infantry
-      units/rome_champion_cavalry
-      units/rome_mechanical_siege_ballista_packed
-      units/rome_mechanical_siege_scorpio_packed
-      units/rome_mechanical_siege_ram
+      units/{civ}_hero_marcellus
+      units/{civ}_hero_maximus
+      units/{civ}_hero_scipio
+      units/{civ}_champion_infantry
+      units/{civ}_champion_cavalry
     </Entities>
     <Technologies datatype="tokens">
       siege_attack

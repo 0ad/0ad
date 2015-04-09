@@ -9,7 +9,7 @@
   </Cost>
   <Identity>
     <Civ>ptol</Civ>
-	<SelectionGroupName>units/mace_cavalry_javelinist_b</SelectionGroupName>
+	<SelectionGroupName>units/mace_cavalry_javelinist_merc_b</SelectionGroupName>
 	<GenericName>Tarantine Settler Cavalry</GenericName>
     <SpecificName>Hippeus Tarantinos</SpecificName>
     <History>?</History>
@@ -17,7 +17,7 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>
-    <Entity>units/ptol_cavalry_javelinist_a</Entity>
+    <Entity>units/ptol_cavalry_javelinist_merc_a</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/macedonians/cavalry_javelinist_b.xml</Actor>

@@ -44,9 +44,9 @@ Train War Elephants and Kardakes mercenaries.</Tooltip>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/pers_kardakes_hoplite
-      units/pers_kardakes_skirmisher
-      units/pers_champion_elephant
+      units/{civ}_kardakes_hoplite
+      units/{civ}_kardakes_skirmisher
+      units/{civ}_champion_elephant
     </Entities>
   </ProductionQueue>
   <VisualActor>

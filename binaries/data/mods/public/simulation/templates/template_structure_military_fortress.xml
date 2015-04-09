@@ -74,6 +74,14 @@
   </Obstruction>
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}_mechanical_siege_ballista_packed
+      units/{civ}_mechanical_siege_scorpio_packed
+      units/{civ}_mechanical_siege_oxybeles_packed
+      units/{civ}_mechanical_siege_lithobolos_packed
+      units/{civ}_mechanical_siege_ram
+      units/{civ}_mechanical_siege_tower
+    </Entities>
     <Technologies datatype="tokens">
       attack_soldiers_will
     </Technologies>

@@ -20,8 +20,8 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/cart_champion_infantry
-      units/cart_champion_cavalry
+      units/{civ}_champion_infantry
+      units/{civ}_champion_cavalry
     </Entities>
   </ProductionQueue>
   <VisualActor>
