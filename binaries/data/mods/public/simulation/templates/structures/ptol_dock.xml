@@ -17,10 +17,8 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/ptol_ship_bireme
-      units/ptol_ship_trireme
-      units/ptol_ship_quinquereme
-      units/ptol_champion_juggernaut
+      units/{civ}_ship_quinquereme
+      units/{civ}_champion_juggernaut
     </Entities>
   </ProductionQueue>
   <VisualActor>

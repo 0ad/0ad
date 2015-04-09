@@ -64,9 +64,9 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/cart_ship_bireme
-      units/cart_ship_trireme
-      units/cart_ship_quinquereme
+      units/{civ}_ship_bireme
+      units/{civ}_ship_trireme
+      units/{civ}_ship_quinquereme
     </Entities>
     <Technologies datatype="tokens">
 	  carthaginians/training_phoenician_naval_architects
