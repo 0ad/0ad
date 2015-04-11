@@ -1663,21 +1663,21 @@ m.AttackPlan.prototype.removeUnit = function(ent, update)
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)
 {
-	if (this.target)
+	let renameEvents = events["EntityRenamed"];
+	for (let evt of renameEvents)
 	{
-		let renameEvents = events["EntityRenamed"];
-		for (let evt of renameEvents)
+		if (this.target && this.target.id() == evt.entity)
 		{
-			if (this.target.id() == evt.entity)
-			{
-				this.target = gameState.getEntityById(evt.newentity);
-				if (this.target)
-					this.targetPos = this.target.position();
-				else
-					this.targetPos = undefined;
-			}
+			this.target = gameState.getEntityById(evt.newentity);
+			if (this.target)
+				this.targetPos = this.target.position();
 		}
 	}
+
+	let captureEvents = events["OwnershipChanged"];
+	for (let evt of captureEvents)
+		if (this.target && this.target.id() == evt.entity && gameState.isPlayerAlly(evt.to))
+			this.target = undefined;
 
 	if (this.state === "unexecuted")
 		return;
