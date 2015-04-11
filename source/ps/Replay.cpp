@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -122,7 +122,7 @@ void CReplayPlayer::Load(const std::string& path)
 	ENSURE(m_Stream->good());
 }
 
-void CReplayPlayer::Replay(bool serializationtest)
+void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 {
 	ENSURE(m_Stream);
 
@@ -139,6 +139,8 @@ void CReplayPlayer::Replay(bool serializationtest)
 	g_Game = &game;
 	if (serializationtest)
 		game.GetSimulation2()->EnableSerializationTest();
+	if (ooslog)
+		game.GetSimulation2()->EnableOOSLog();
 		
 	JSContext* cx = game.GetSimulation2()->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
