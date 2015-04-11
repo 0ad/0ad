@@ -17,7 +17,8 @@ AIInterface.prototype.EventNames = [
 	"OwnershipChanged",
 	"Garrison",
 	"UnGarrison",
-	"TributeExchanged"
+	"TributeExchanged",
+	"AttackRequest"
 ];
 
 AIInterface.prototype.Init = function()
