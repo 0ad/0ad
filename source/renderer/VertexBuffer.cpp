@@ -286,7 +286,7 @@ u8* CVertexBuffer::Bind()
 
 				// Unmap might fail on e.g. resolution switches, so just try again
 				// and hope it will eventually succeed
-				debug_printf("glUnmapBuffer failed, trying again...");
+				debug_printf("glUnmapBuffer failed, trying again...\n");
 			}
 
 			// Anything we just uploaded is clean; anything else is dirty

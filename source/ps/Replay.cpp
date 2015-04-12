@@ -180,7 +180,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 		else if (type == "turn")
 		{
 			*m_Stream >> turn >> turnLength;
-			debug_printf("Turn %u (%u)... ", turn, turnLength);
+			debug_printf("Turn %u (%u)...\n", turn, turnLength);
 		}
 		else if (type == "cmd")
 		{
@@ -210,9 +210,9 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 				ENSURE(ok);
 				std::string hexHash = Hexify(hash);
 				if (hexHash == replayHash)
-					debug_printf("hash ok (%s)", hexHash.c_str());
+					debug_printf("hash ok (%s)\n", hexHash.c_str());
 				else
-					debug_printf("HASH MISMATCH (%s != %s)", hexHash.c_str(), replayHash.c_str());
+					debug_printf("HASH MISMATCH (%s != %s)\n", hexHash.c_str(), replayHash.c_str());
 			}
 		}
 		else if (type == "end")
@@ -230,9 +230,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 //			std::string hash;
 //			bool ok = game.GetSimulation2()->ComputeStateHash(hash, true);
 //			ENSURE(ok);
-//			debug_printf("%s", Hexify(hash).c_str());
-
-			debug_printf("\n");
+//			debug_printf("%s\n", Hexify(hash).c_str());
 
 			g_Profiler.Frame();
 

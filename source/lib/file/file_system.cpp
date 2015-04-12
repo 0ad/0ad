@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -153,7 +153,7 @@ Status CreateDirectories(const OsPath& path, mode_t mode)
 	errno = 0;
 	if(wmkdir(path, mode) != 0)
 	{
-		debug_printf("CreateDirectories: failed to mkdir %s (mode %d)", path.string8().c_str(), mode);
+		debug_printf("CreateDirectories: failed to mkdir %s (mode %d)\n", path.string8().c_str(), mode);
 		WARN_RETURN(StatusFromErrno());
 	}
 
