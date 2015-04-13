@@ -124,11 +124,20 @@ m.TrainingPlan.prototype.promotedTypes = function(gameState)
 	var types = [];
 	var promotion = this.template.promotion();
 	var previous;
+	var template;
 	while (promotion)
 	{
 		types.push(promotion);
 		previous = promotion;
-		promotion = gameState.getTemplate(promotion).promotion();
+		template = gameState.getTemplate(promotion);
+		if (!template)
+		{
+			if (gameState.ai.Config.debug > 0)
+				API3.warn(" promotion template " + promotion + " is not found");
+			promotion = undefined;
+			break;
+		}
+		promotion = template.promotion();
 		if (previous === promotion)
 		{
 			if (gameState.ai.Config.debug > 0)
