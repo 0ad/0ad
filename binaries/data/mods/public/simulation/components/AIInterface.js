@@ -238,7 +238,7 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 
 			// TODO in some cases, we can have two opposite changes which bring us to the old value,
 			// and we should keep it. But how to distinguish it ?
-			if(newValue != oldValue)
+			if(newValue == oldValue)
 				continue;
 			if (!this.changedTemplateInfo[msg.player])
 				this.changedTemplateInfo[msg.player] = {};
