@@ -32,7 +32,6 @@
 #include "simulation2/components/ICmpVision.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/helpers/Render.h"
-#include "simulation2/helpers/Spatial.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
@@ -172,10 +171,11 @@ static std::map<entity_id_t, EntityParabolicRangeOutline> ParabolicRangesOutline
  */
 struct EntityData
 {
-	EntityData() : visibilities(0), retainInFog(0), owner(-1), inWorld(0), flags(1), scriptedVisibility(0) { }
+	EntityData() : visibilities(0), size(0), retainInFog(0), owner(-1), inWorld(0), flags(1), scriptedVisibility(0) { }
 	entity_pos_t x, z;
 	entity_pos_t visionRange;
 	u32 visibilities; // 2-bit visibility, per player
+	u32 size;
 	u8 retainInFog; // boolean
 	i8 owner;
 	u8 inWorld; // boolean
@@ -183,7 +183,7 @@ struct EntityData
 	u8 scriptedVisibility; // boolean, see ComputeLosVisibility
 };
 
-cassert(sizeof(EntityData) == 24);
+cassert(sizeof(EntityData) == 28);
 
 /**
  * Serialization helper template for Query
@@ -236,6 +236,7 @@ struct SerializeEntityData
 		serialize.NumberFixed_Unbounded("z", value.z);
 		serialize.NumberFixed_Unbounded("vision", value.visionRange);
 		serialize.NumberU32_Unbounded("visibilities", value.visibilities);
+		serialize.NumberU32_Unbounded("size", value.size);
 		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
 		serialize.NumberI8_Unbounded("owner", value.owner);
 		serialize.NumberU8("in world", value.inWorld, 0, 1);
@@ -314,7 +315,7 @@ public:
 	std::map<tag_t, Query> m_Queries;
 	EntityMap<EntityData> m_EntityData;
 
-	SpatialSubdivision m_Subdivision; // spatial index of m_EntityData
+	FastSpatialSubdivision m_Subdivision; // spatial index of m_EntityData
 
 	// LOS state:
 	static const player_id_t MAX_LOS_PLAYER_ID = 16;
@@ -461,6 +462,11 @@ public:
 			if (cmpVisibility)
 				entdata.retainInFog = (cmpVisibility->GetRetainInFog() ? 1 : 0);
 
+			// Store the size
+			CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
+			if (cmpObstruction)
+				entdata.size = cmpObstruction->GetSize().ToInt_RoundToInfinity();
+
 			// Remember this entity
 			m_EntityData.insert(ent, entdata);
 			break;
@@ -482,7 +488,7 @@ public:
 				{
 					CFixedVector2D from(it->second.x, it->second.z);
 					CFixedVector2D to(msgData.x, msgData.z);
-					m_Subdivision.Move(ent, from, to);
+					m_Subdivision.Move(ent, from, to, it->second.size);
 					LosMove(it->second.owner, it->second.visionRange, from, to);
 					i32 oldLosTile = PosToLosTilesHelper(it->second.x, it->second.z);
 					i32 newLosTile = PosToLosTilesHelper(msgData.x, msgData.z);
@@ -495,7 +501,7 @@ public:
 				else
 				{
 					CFixedVector2D to(msgData.x, msgData.z);
-					m_Subdivision.Add(ent, to);
+					m_Subdivision.Add(ent, to, it->second.size);
 					LosAdd(it->second.owner, it->second.visionRange, to);
 					AddToTile(PosToLosTilesHelper(msgData.x, msgData.z), ent);
 				}
@@ -509,7 +515,7 @@ public:
 				if (it->second.inWorld)
 				{
 					CFixedVector2D from(it->second.x, it->second.z);
-					m_Subdivision.Remove(ent, from);
+					m_Subdivision.Remove(ent, from, it->second.size);
 					LosRemove(it->second.owner, it->second.visionRange, from);
 					RemoveFromTile(PosToLosTilesHelper(it->second.x, it->second.z), ent);
 				}
@@ -559,7 +565,7 @@ public:
 
 			if (it->second.inWorld)
 			{
-				m_Subdivision.Remove(ent, CFixedVector2D(it->second.x, it->second.z));
+				m_Subdivision.Remove(ent, CFixedVector2D(it->second.x, it->second.z), it->second.size);
 				RemoveFromTile(PosToLosTilesHelper(it->second.x, it->second.z), ent);
 			}
 
@@ -640,7 +646,7 @@ public:
 
 		std::vector<std::vector<u16> > oldPlayerCounts = m_LosPlayerCounts;
 		std::vector<u32> oldStateRevealed = m_LosStateRevealed;
-		SpatialSubdivision oldSubdivision = m_Subdivision;
+		FastSpatialSubdivision oldSubdivision = m_Subdivision;
 		std::vector<std::set<entity_id_t> > oldLosTiles = m_LosTiles;
 
 		ResetDerivedData(true);
@@ -671,9 +677,9 @@ public:
 			debug_warn(L"inconsistent los tiles");
 	}
 
-	SpatialSubdivision* GetSubdivision()
+	FastSpatialSubdivision* GetSubdivision()
 	{
-		return & m_Subdivision;
+		return &m_Subdivision;
 	}
 
 	// Reinitialise subdivisions and LOS data, based on entity data
@@ -744,14 +750,12 @@ public:
 
 	void ResetSubdivisions(entity_pos_t x1, entity_pos_t z1)
 	{
-		// Use 8x8 tile subdivisions
-		// (TODO: find the optimal number instead of blindly guessing)
-		m_Subdivision.Reset(x1, z1, entity_pos_t::FromInt(8*TERRAIN_TILE_SIZE));
+		m_Subdivision.Reset(x1, z1);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
 			if (it->second.inWorld)
-				m_Subdivision.Add(it->first, CFixedVector2D(it->second.x, it->second.z));
+				m_Subdivision.Add(it->first, CFixedVector2D(it->second.x, it->second.z), it->second.size);
 		}
 	}
 
@@ -1347,12 +1351,11 @@ public:
 			}
 
 			// render subdivision grid
-			float divSize = m_Subdivision.GetDivisionSize().ToFloat();
-			int width = m_Subdivision.GetWidth();
-			int height = m_Subdivision.GetHeight();
-			for (int x = 0; x < width; ++x)
+			float divSize = m_Subdivision.GetDivisionSize();
+			int size = m_Subdivision.GetWidth();
+			for (int x = 0; x < size; ++x)
 			{
-				for (int y = 0; y < height; ++y)
+				for (int y = 0; y < size; ++y)
 				{
 					m_DebugOverlayLines.push_back(SOverlayLine());
 					m_DebugOverlayLines.back().m_Color = subdivColor;

@@ -28,7 +28,6 @@
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpVisual.h"
 #include "simulation2/components/ICmpUnitRenderer.h"
-#include "simulation2/helpers/Spatial.h"
 #include "ps/CLogger.h"
 #include "ps/Profiler2.h"
 
