@@ -52,6 +52,8 @@ public:
 	 */
 	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) = 0;
 
+	virtual entity_pos_t GetSize() = 0;
+
 	virtual entity_pos_t GetUnitRadius() = 0;
 
 	virtual bool IsControlPersistent() = 0;

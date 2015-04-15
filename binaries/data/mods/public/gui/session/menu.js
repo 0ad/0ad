@@ -301,6 +301,7 @@ function openDiplomacy()
 			// Hide the unused/unselectable options
 			for each (let a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
 				Engine.GetGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
+			Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]").hidden = true;
 			continue;
 		}
 
@@ -340,6 +341,14 @@ function openDiplomacy()
 			button.hidden = false;
 			button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
 		}
+
+		// Attack Request
+		let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
+		button.hidden = !(g_Players[i].isEnemy[we]);
+		button.tooltip = translate("request for your allies to attack this enemy");
+		button.onpress = (function(i, we){ return function() {
+			Engine.PostNetworkCommand({"type": "attack-request", "source": we, "target": i});
+		} })(i, we);
 
 		// Skip our own teams on teams locked
 		if (g_Players[we].teamsLocked && g_Players[we].team != -1 && g_Players[we].team == g_Players[i].team)

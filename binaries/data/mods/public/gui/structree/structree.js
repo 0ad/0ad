@@ -197,11 +197,9 @@ function selectCiv(civCode)
 		let newProdUnits = {};
 		for (let prod of structInfo.production.units)
 		{
-			if (!(prod in g_ParsedData.units))
-			{
-				error(prod+" doesn't exist! ("+structCode+")");
+			if (!g_ParsedData.units[prod])
 				continue;
-			}
+
 			let unit = g_ParsedData.units[prod];
 			let phase = "";
 

@@ -825,6 +825,11 @@ void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath
 	g_VFS->CreateFile(path, buf.Data(), buf.Size());
 }
 
+bool TemplateExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName)
+{
+	return g_GUI->TemplateExists(templateName);
+}
+
 CParamNode GetTemplate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName)
 {
 	return g_GUI->GetTemplate(templateName);
@@ -991,6 +996,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &ReadJSONFile>("ReadJSONFile");
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &WriteJSONFile>("WriteJSONFile");
+	scriptInterface.RegisterFunction<bool, std::string, &TemplateExists>("TemplateExists");
 	scriptInterface.RegisterFunction<CParamNode, std::string, &GetTemplate>("GetTemplate");
 
 	// User report functions

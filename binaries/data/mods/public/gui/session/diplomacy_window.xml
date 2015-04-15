@@ -65,6 +65,10 @@
 				<object name="diplomacyPlayerTributeMetal[n]" size="100%-50 0 100%-30 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 					<object name="diplomacyPlayerTributeMetalImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/metal.png" ghost="true"/>
 				</object>
+
+				<object name="diplomacyAttackRequest[n]" size="100%-20 0 100% 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
+					<object name="diplomacyAttackRequestImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/attack-request.png" ghost="true"/>
+				</object>
 			</object>
 		</repeat>
 	</object>

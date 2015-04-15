@@ -402,6 +402,11 @@ void CGUIManager::UpdateResolution()
 		it->gui->UpdateResolution();
 }
 
+bool CGUIManager::TemplateExists(const std::string& templateName)
+{
+	return m_TemplateLoader.TemplateExists(templateName);
+}
+
 const CParamNode& CGUIManager::GetTemplate(const std::string& templateName)
 {
 	const CParamNode& templateRoot = m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");

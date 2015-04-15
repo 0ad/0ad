@@ -1105,12 +1105,11 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 				return false;
 			if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 				return false;
-			var HouseNb = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"), true);
-
-			var freeSlots = 0;
-			// TODO how to modify with tech
+			var HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
+			// TODO popBonus may have different values if we can ever capture foundations from another civ
+			// and take into account other structures than houses
 			var popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
-			freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
+			var freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
 			if (gameState.ai.HQ.saveResources)
 				return (freeSlots <= 10);
 			else if (gameState.getPopulation() > 55)
@@ -1153,10 +1152,9 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	//    - if no room to build, try to improve with technology
 	//    - otherwise increase temporarily the priority of houses
 	var house = gameState.applyCiv("structures/{civ}_house");
-	var HouseNb = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"), true);
-	var freeSlots = 0;
+	var HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
 	var popBonus = gameState.getTemplate(house).getPopulationBonus();
-	freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
+	var freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
 	if (freeSlots < 5)
 	{
 		if (this.stopBuilding.has(house))
@@ -1218,9 +1216,9 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 {
 	if (this.numActiveBase() > 0 && gameState.currentPhase() == 1 && !gameState.isResearching(gameState.townPhase()))
 		return false;
-	var template = (this.numActiveBase() > 0) ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
-	if (gameState.countFoundationsByType(template, true) > 0 || queues.civilCentre.length() > 0)
+	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length > 0 || queues.civilCentre.length() > 0)
 		return false;
+	var template = (this.numActiveBase() > 0) ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
 	if (!this.canBuild(gameState, template))
 		return false;
 

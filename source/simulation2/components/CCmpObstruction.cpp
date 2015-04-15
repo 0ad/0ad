@@ -470,9 +470,7 @@ public:
 			pos = cmpPosition->GetPreviousPosition2D();
 		else
 			pos = cmpPosition->GetPosition2D();
-		if (m_Type == STATIC)
-			out = cmpObstructionManager->GetStaticShapeObstruction(pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
-		else if (m_Type == UNIT)
+		if (m_Type == UNIT)
 			out = cmpObstructionManager->GetUnitShapeObstruction(pos.X, pos.Y, m_Size0);
 		else
 			out = cmpObstructionManager->GetStaticShapeObstruction(pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
@@ -485,6 +483,14 @@ public:
 			return m_Size0;
 		else
 			return entity_pos_t::Zero();
+	}
+
+	virtual entity_pos_t GetSize()
+	{
+		if (m_Type == UNIT)
+			return m_Size0;
+		else
+			return CFixedVector2D(m_Size0 / 2, m_Size1 / 2).Length();
 	}
 
 	virtual bool IsControlPersistent()

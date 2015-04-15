@@ -294,8 +294,8 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	// The AI will currently not build a CC if it wouldn't connect with an existing CC.
 
 	var obstructions = m.createObstructionMap(gameState, this.accessIndex, template);
-	
-	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse"))).toEntityArray();
+
+	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).toEntityArray();
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 
 	var bestIdx = undefined;
@@ -430,18 +430,18 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{
 				var count = this.getResourceLevel(gameState, type);  // TODO animals are not accounted, may-be we should
-				var numFarms = gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_field"), true);
-				var numFound = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_field"), true);
+				var numFarms = gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length;  // including foundations
 				var numQueue = queues.field.countQueuedUnits();
 
 				// TODO  if not yet farms, add a check on time used/lost and build farmstead if needed
-				if (numFarms + numFound + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
+				if (numFarms + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
 				{
 					if (count < 600)
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 				}
 				else
 				{
+					let numFound = gameState.getOwnFoundations().filter(API3.Filters.byClass("Field")).length;
 					let goal = this.Config.Economy.provisionFields;
 					if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace)
 						goal = Math.max(goal-1, 1);
@@ -450,7 +450,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				}
 			}
 		}
-		else if (queues.dropsites.length() == 0 && gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_storehouse"), true) == 0)
+		else if (queues.dropsites.length() == 0 && gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).length == 0)
 		{
 			if (gameState.ai.playedTurn > this.gatherers[type].nextCheck)
 			{
@@ -471,7 +471,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 						var newDP = this.findBestDropsiteLocation(gameState, type);
 						if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
 							queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID }, newDP.pos));
-						else if (gameState.countFoundationsByType(gameState.ai.HQ.bBase[0], true) == 0 && queues.civilCentre.length() == 0)
+						else if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length == 0 && queues.civilCentre.length() == 0)
 						{
 							// No good dropsite, try to build a new base if no base already planned,
 							// and if not possible, be less strict on dropsite quality

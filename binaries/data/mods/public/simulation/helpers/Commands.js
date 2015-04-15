@@ -644,6 +644,28 @@ var commands = {
 			}
 		}
 	},
+
+	"attack-request": function(player, cmd, data)
+	{
+		// Send a chat message to human players
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		if (cmpGuiInterface)
+		{
+			var notification = {
+				"type": "aichat",
+				"players": [player],
+				"message": "/allies " + markForTranslation("Attack against %(_player_)s requested."),
+				"translateParameters": ["_player_"],
+				"parameters": {"_player_": cmd.target}
+			};
+			cmpGuiInterface.PushNotification(notification);
+		}
+		// And send an attackRequest event to the AIs
+		let cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+		if (cmpAIInterface)
+			cmpAIInterface.PushEvent("AttackRequest", cmd);
+	},
+
 	"dialog-answer": function(player, cmd, data)
 	{
 		// Currently nothing. Triggers can read it anyway, and send this

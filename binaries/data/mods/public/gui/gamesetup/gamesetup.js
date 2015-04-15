@@ -745,6 +745,16 @@ function loadGameAttributes()
 		var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
 		gameSpeedBox.selected = g_GameSpeeds.speeds.indexOf(attrs.gameSpeed);
 	}
+
+	if (!Engine.HasXmppClient())
+	{
+		g_GameAttributes.settings.RatingEnabled = false;
+		Engine.SetRankedGame(false);
+		Engine.GetGUIObjectByName("enableRating").checked = false;
+		Engine.GetGUIObjectByName("enableCheats").enabled = true;
+		Engine.GetGUIObjectByName("lockTeams").enabled = true;
+	}
+
 	g_IsInGuiUpdate = false;
 
 	onGameAttributesChange();
@@ -1170,6 +1180,8 @@ function onGameAttributesChange()
 		enableRating.checked = mapSettings.RatingEnabled;
 		Engine.SetRankedGame(enableRating.checked);
 		enableRatingText.caption = (enableRating.checked ? translate("Yes") : translate("No"));
+		enableCheats.enabled = !enableRating.checked;
+		lockTeams.enabled = !enableRating.checked;
 	}
 	else
 		enableRatingText.caption = "Unknown";

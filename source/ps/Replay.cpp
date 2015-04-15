@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -122,7 +122,7 @@ void CReplayPlayer::Load(const std::string& path)
 	ENSURE(m_Stream->good());
 }
 
-void CReplayPlayer::Replay(bool serializationtest)
+void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 {
 	ENSURE(m_Stream);
 
@@ -139,6 +139,8 @@ void CReplayPlayer::Replay(bool serializationtest)
 	g_Game = &game;
 	if (serializationtest)
 		game.GetSimulation2()->EnableSerializationTest();
+	if (ooslog)
+		game.GetSimulation2()->EnableOOSLog();
 		
 	JSContext* cx = game.GetSimulation2()->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
@@ -178,7 +180,7 @@ void CReplayPlayer::Replay(bool serializationtest)
 		else if (type == "turn")
 		{
 			*m_Stream >> turn >> turnLength;
-			debug_printf("Turn %u (%u)... ", turn, turnLength);
+			debug_printf("Turn %u (%u)...\n", turn, turnLength);
 		}
 		else if (type == "cmd")
 		{
@@ -208,9 +210,9 @@ void CReplayPlayer::Replay(bool serializationtest)
 				ENSURE(ok);
 				std::string hexHash = Hexify(hash);
 				if (hexHash == replayHash)
-					debug_printf("hash ok (%s)", hexHash.c_str());
+					debug_printf("hash ok (%s)\n", hexHash.c_str());
 				else
-					debug_printf("HASH MISMATCH (%s != %s)", hexHash.c_str(), replayHash.c_str());
+					debug_printf("HASH MISMATCH (%s != %s)\n", hexHash.c_str(), replayHash.c_str());
 			}
 		}
 		else if (type == "end")
@@ -228,9 +230,7 @@ void CReplayPlayer::Replay(bool serializationtest)
 //			std::string hash;
 //			bool ok = game.GetSimulation2()->ComputeStateHash(hash, true);
 //			ENSURE(ok);
-//			debug_printf("%s", Hexify(hash).c_str());
-
-			debug_printf("\n");
+//			debug_printf("%s\n", Hexify(hash).c_str());
 
 			g_Profiler.Frame();
 

@@ -57,6 +57,14 @@ var g_NotificationsTypes =
 		{
 			message["translateParameters"] = notification["translateParameters"];
 			message["parameters"] = notification["parameters"];
+			// special case for formatting of player names which are transmitted as _player_num
+			for (let param in message["parameters"])
+			{
+				if (!param.startsWith("_player_"))
+					continue;
+				let colorName = getUsernameAndColor(+message["parameters"][param]);
+				message["parameters"][param] = "[color=\"" + colorName[1] + "\"]" + colorName[0] + "[/color]";
+			}
 		}
 		var guid = findGuidForPlayerID(g_PlayerAssignments, player);
 		if (guid == undefined)

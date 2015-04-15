@@ -266,6 +266,16 @@ m.AttackPlan.prototype.mustStart = function(gameState)
 	return false;
 };
 
+m.AttackPlan.prototype.forceStart = function()
+{
+	for (let unitCat in this.unitStat)
+	{
+		let Unit = this.unitStat[unitCat];
+		Unit["targetSize"] = 0;
+		Unit["minSize"] = 0;
+	}
+};
+
 // Adds a build order. If resetQueue is true, this will reset the queue.
 m.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, resetQueue)
 {
@@ -465,7 +475,12 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 	if (this.type === "Raid")
 		this.maxCompletingTurn = gameState.ai.playedTurn + 20;
 	else
+	{
 		this.maxCompletingTurn = gameState.ai.playedTurn + 60;
+		// warn our allies so that they can help if possible
+		if (!this.requested)
+			Engine.PostCommand(PlayerID, {"type": "attack-request", "source": PlayerID, "target": this.targetPlayer});
+	}
 
 	var rallyPoint = this.rallyPoint;
 	var rallyIndex = gameState.ai.accessibility.getAccessValue(rallyPoint);
@@ -1487,10 +1502,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					if (!ent.hasClass("Ranged"))
 					{
 						let targetClasses = {"attack": targetClassesSiege.attack, "avoid": ["Ship"], "vetoEntities": veto};
-						ent.attackMove(self.targetPos[0], self.targetPos[1], targetClasses);
+						ent.attackMove(this.targetPos[0], this.targetPos[1], targetClasses);
 					}
 					else
-						ent.attackMove(self.targetPos[0], self.targetPos[1], targetClassesSiege);
+						ent.attackMove(this.targetPos[0], this.targetPos[1], targetClassesSiege);
 				}
 			}
 			else
@@ -1539,7 +1554,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					var rand = Math.floor(Math.random() * mUnit.length * 0.1);
 					ent.attack(mUnit[rand].id());
 				}
-				else if (API3.SquareVectorDistance(self.targetPos, ent.position()) > 2500 )
+				else if (API3.SquareVectorDistance(this.targetPos, ent.position()) > 2500 )
 				{
 					let targetClasses = targetClassesUnit;
 					if (maybeUpdate && ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING")	// we may be blocked by walls, attack everything
@@ -1551,7 +1566,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					}
 					else if (!ent.hasClass("Ranged") && !ent.hasClass("Ship"))
 						targetClasses = {"attack": targetClassesUnit.attack, "avoid": targetClassesUnit.avoid.concat("Ship"), "vetoEntities": veto};
-					ent.attackMove(self.targetPos[0], self.targetPos[1], targetClasses);
+					ent.attackMove(this.targetPos[0], this.targetPos[1], targetClasses);
 				}
 				else
 				{
@@ -1663,21 +1678,21 @@ m.AttackPlan.prototype.removeUnit = function(ent, update)
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)
 {
-	if (this.target)
+	let renameEvents = events["EntityRenamed"];
+	for (let evt of renameEvents)
 	{
-		let renameEvents = events["EntityRenamed"];
-		for (let evt of renameEvents)
+		if (this.target && this.target.id() == evt.entity)
 		{
-			if (this.target.id() == evt.entity)
-			{
-				this.target = gameState.getEntityById(evt.newentity);
-				if (this.target)
-					this.targetPos = this.target.position();
-				else
-					this.targetPos = undefined;
-			}
+			this.target = gameState.getEntityById(evt.newentity);
+			if (this.target)
+				this.targetPos = this.target.position();
 		}
 	}
+
+	let captureEvents = events["OwnershipChanged"];
+	for (let evt of captureEvents)
+		if (this.target && this.target.id() == evt.entity && gameState.isPlayerAlly(evt.to))
+			this.target = undefined;
 
 	if (this.state === "unexecuted")
 		return;

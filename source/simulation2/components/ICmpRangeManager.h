@@ -77,7 +77,7 @@ public:
 	 * Access the spatial subdivision kept by the range manager.
 	 * @return pointer to spatial subdivision structure.
 	 */
-	virtual SpatialSubdivision* GetSubdivision() = 0;
+	virtual FastSpatialSubdivision* GetSubdivision() = 0;
 
 	/**
 	 * Set the bounds of the world.

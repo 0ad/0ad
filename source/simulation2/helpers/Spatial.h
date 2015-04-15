@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,8 +32,6 @@
  * Move/Remove are called with the same coordinates originally passed
  * to Add (since this class doesn't remember which divisions an item
  * occupies).
- *
- * (TODO: maybe an adaptive quadtree would be better than fixed sizes?)
  */
 class SpatialSubdivision
 {
@@ -66,7 +64,6 @@ class SpatialSubdivision
 	uint32_t m_DivisionsW;
 	uint32_t m_DivisionsH;
 
-	friend struct SerializeSubDivisionGrid;
 	friend struct SerializeSpatialSubdivision;
 
 public:
@@ -343,6 +340,233 @@ struct SerializeSpatialSubdivision
 		value.Create(count);
 		for (size_t i = 0; i < count; ++i)
 			SerializeVector<SerializeU32_Unbounded>()(serialize, "subdiv items", value.m_Divisions[i].items);
+	}
+};
+
+
+/**
+ * A basic square subdivision scheme for finding entities in range
+ * More efficient than SpatialSubdivision, but a bit less precise 
+ * (so the querier will get more entities to perform tests on).
+ *
+ * Items are stored in vectors in fixed-size divisions.
+ *
+ * Items have a size (min/max values of their axis-aligned bounding box).
+ * If that size is higher than a subdivision's size, they're stored in the "general" vector
+ * This means that if too many objects have a size that's big, it'll end up being slow
+ * We want subdivisions to be as small as possible yet contain as many items as possible.
+ *
+ * It is the caller's responsibility to ensure items are only added once, aren't removed 
+ * unless they've been added, etc, and that Move/Remove are called with the same coordinates
+ * originally passed to Add (since this class doesn't remember which divisions an item
+ * occupies).
+ *
+ * TODO: If a unit size were to change, it would need to be updated (that doesn't happen for now)
+ */
+class FastSpatialSubdivision
+{
+private:
+	static const int SUBDIVISION_SIZE = 20; // bigger than most buildings and entities
+
+	std::vector<entity_id_t> m_OverSizedData;
+	std::vector<entity_id_t>* m_SpatialDivisionsData;	// fixed size array of subdivisions
+	size_t m_ArrayWidth; // number of columns in m_SpatialDivisionsData
+
+	inline size_t Index(fixed position)
+	{
+		return Clamp((position / SUBDIVISION_SIZE).ToInt_RoundToZero(), 0, (int)m_ArrayWidth-1);
+	}
+
+	inline size_t SubdivisionIdx(CFixedVector2D position)
+	{
+		return Index(position.X) + Index(position.Y)*m_ArrayWidth;
+	}
+
+	/**
+	 * Efficiently erase from a vector by swapping with the last element and popping it.
+	 * Returns true if the element was found and erased, else returns false.
+	 */
+	bool EraseFrom(std::vector<entity_id_t>& vector, entity_id_t item)
+	{
+		auto it = std::find(vector.begin(), vector.end(), item);
+		if (it == vector.end())
+			return false;
+
+		if ((int)vector.size() > 1)
+			*it = vector.back();
+		vector.pop_back();
+		return true;
+	}
+
+public:
+	FastSpatialSubdivision() : 
+		m_SpatialDivisionsData(NULL), m_ArrayWidth(0) 
+	{
+	}
+
+	FastSpatialSubdivision(const FastSpatialSubdivision& other) : 
+		m_SpatialDivisionsData(NULL), m_ArrayWidth(0)
+	{
+		Reset(other.m_ArrayWidth);
+		std::copy(&other.m_SpatialDivisionsData[0], &other.m_SpatialDivisionsData[m_ArrayWidth*m_ArrayWidth], m_SpatialDivisionsData);
+	}
+
+	~FastSpatialSubdivision()
+	{
+		if (m_SpatialDivisionsData)
+			delete[] m_SpatialDivisionsData;
+	}
+
+	void Reset(size_t arrayWidth)
+	{
+		if (m_SpatialDivisionsData)
+			SAFE_ARRAY_DELETE(m_SpatialDivisionsData);
+
+		m_ArrayWidth = arrayWidth;
+		m_SpatialDivisionsData = new std::vector<entity_id_t>[m_ArrayWidth*m_ArrayWidth];
+		m_OverSizedData.clear();
+	}
+
+	void Reset(fixed w, fixed h)
+	{
+		Reset(std::max(Index(w), Index(h)) + 1);
+	}
+
+	FastSpatialSubdivision& operator=(const FastSpatialSubdivision& other)
+	{
+		if (this != &other)
+		{
+			Reset(other.m_ArrayWidth);
+			std::copy(&other.m_SpatialDivisionsData[0], &other.m_SpatialDivisionsData[m_ArrayWidth*m_ArrayWidth], m_SpatialDivisionsData);
+		}
+		return *this;
+	}
+
+	bool operator==(const FastSpatialSubdivision& other)
+	{
+		if (m_ArrayWidth != other.m_ArrayWidth)
+			return false;
+		if (m_OverSizedData != other.m_OverSizedData)
+			return false;
+		for (size_t idx = 0; idx < m_ArrayWidth*m_ArrayWidth; ++idx)
+			if (m_SpatialDivisionsData[idx] != other.m_SpatialDivisionsData[idx])
+				return false;
+		return true;
+	}
+
+	inline bool operator!=(const FastSpatialSubdivision& rhs)
+	{
+		return !(*this == rhs);
+	}
+
+	/**
+	 * Add an item.
+	 */
+	void Add(entity_id_t item, CFixedVector2D position, u32 size)
+	{
+		if (size > SUBDIVISION_SIZE)
+		{
+			if (std::find(m_OverSizedData.begin(), m_OverSizedData.end(), item) == m_OverSizedData.end())
+				m_OverSizedData.push_back(item);
+		}
+		else 
+		{
+			std::vector<entity_id_t>& subdivision = m_SpatialDivisionsData[SubdivisionIdx(position)];
+			if (std::find(subdivision.begin(), subdivision.end(), item) == subdivision.end())
+				subdivision.push_back(item);
+		}
+	}
+
+	/**
+	 * Remove an item.
+	 * Position must be where we expect to find it, or we won't find it.
+	 */
+	void Remove(entity_id_t item, CFixedVector2D position, u32 size)
+	{
+		if (size > SUBDIVISION_SIZE)
+			EraseFrom(m_OverSizedData, item);
+		else 
+		{
+			std::vector<entity_id_t>& subdivision = m_SpatialDivisionsData[SubdivisionIdx(position)];
+			EraseFrom(subdivision, item);
+		}
+	}
+
+	/**
+	 * Equivalent to Remove() then Add(), but slightly faster.
+	 * In particular for big objects nothing needs to be done.
+	 */
+	void Move(entity_id_t item, CFixedVector2D oldPosition, CFixedVector2D newPosition, u32 size)
+	{		
+		if (size > SUBDIVISION_SIZE)
+			return;
+		if (SubdivisionIdx(newPosition) == SubdivisionIdx(oldPosition))
+			return;
+
+		std::vector<entity_id_t>& oldSubdivision = m_SpatialDivisionsData[SubdivisionIdx(oldPosition)];
+		if (EraseFrom(oldSubdivision, item))
+		{
+			std::vector<entity_id_t>& newSubdivision = m_SpatialDivisionsData[SubdivisionIdx(newPosition)];
+			newSubdivision.push_back(item);
+		}
+	}
+
+	/**
+	 * Returns a sorted list of items that are either in the square or close to it.
+	 * It's the responsibility of the querier to do proper distance checking.
+	 */
+	void GetInRange(std::vector<entity_id_t>& out, CFixedVector2D posMin, CFixedVector2D posMax)
+	{
+		size_t minX = Index(posMin.X);
+		size_t minY = Index(posMin.Y);
+		size_t maxX = Index(posMax.X) + 1;
+		size_t maxY = Index(posMax.Y) + 1;
+
+		// Now expand the subdivisions by one so we make sure we've got all elements potentially in range.
+		// Also make sure min >= 0 and max <= width
+		minX = minX > 0 ? minX-1 : 0;
+		minY = minY > 0 ? minY-1 : 0;
+		maxX = maxX < m_ArrayWidth ? maxX+1 : m_ArrayWidth;
+		maxY = maxY < m_ArrayWidth ? maxY+1 : m_ArrayWidth;
+
+		ENSURE(out.empty() && "GetInRange: out is not clean");
+
+		// Add oversized items, they can be anywhere
+		out.insert(out.end(), m_OverSizedData.begin(), m_OverSizedData.end());
+
+		for (size_t Y = minY; Y < maxY; ++Y)
+		{
+			for (size_t X = minX; X < maxX; ++X)
+			{
+				std::vector<entity_id_t>& subdivision = m_SpatialDivisionsData[X + Y*m_ArrayWidth];
+				if (!subdivision.empty())
+					out.insert(out.end(), subdivision.begin(), subdivision.end());
+			}
+		}
+
+		std::sort(out.begin(), out.end());
+	}
+
+	/**
+	 * Returns a sorted list of items that are either in the circle or close to it.
+	 * It's the responsibility of the querier to do proper distance checking.
+	 */
+	void GetNear(std::vector<entity_id_t>& out, CFixedVector2D pos, entity_pos_t range)
+	{
+		// Because the subdivision size is rather big wrt typical ranges, 
+		// this square over-approximation is hopefully not too bad.
+		CFixedVector2D r(range, range);
+		GetInRange(out, pos - r, pos + r);
+	}
+
+	size_t GetDivisionSize() const
+	{
+		return SUBDIVISION_SIZE;
+	}
+
+	size_t GetWidth() const 
+	{ 
+		return m_ArrayWidth; 
 	}
 };
 
