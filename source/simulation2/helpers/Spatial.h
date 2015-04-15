@@ -374,7 +374,7 @@ private:
 
 	inline size_t Index(fixed position)
 	{
-		return (position / SUBDIVISION_SIZE).ToInt_RoundToZero();
+		return Clamp((position / SUBDIVISION_SIZE).ToInt_RoundToZero(), 0, (int)m_ArrayWidth-1);
 	}
 
 	inline size_t SubdivisionIdx(CFixedVector2D position)
