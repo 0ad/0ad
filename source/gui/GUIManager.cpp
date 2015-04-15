@@ -402,10 +402,13 @@ void CGUIManager::UpdateResolution()
 		it->gui->UpdateResolution();
 }
 
+bool CGUIManager::TemplateExists(const std::string& templateName)
+{
+	return m_TemplateLoader.TemplateExists(templateName);
+}
+
 const CParamNode& CGUIManager::GetTemplate(const std::string& templateName)
 {
-	if (!m_TemplateLoader.TemplateExists(templateName))
-		return NULL;
 	const CParamNode& templateRoot = m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
 	if (!templateRoot.IsOk())
 		LOGERROR("Invalid template found for '%s'", templateName.c_str());

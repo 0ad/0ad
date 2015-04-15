@@ -141,6 +141,11 @@ public:
 	void RestoreSavedGameData(std::string jsonData);
 
 	/**
+	 * Check if a template with this name exists
+	 */
+	bool TemplateExists(const std::string& templateName);
+
+	/**
 	 * Retrieve the requested template, used for displaying faction specificities.
 	 */
 	const CParamNode& GetTemplate(const std::string& templateName);

@@ -37,9 +37,9 @@ function getGatherRates(templateName)
 
 function loadUnit(templateName)
 {
-	var template = loadTemplate(templateName);
-	if (!template)
+	if (!Engine.TemplateExists(templateName))
 		return null;
+	var template = loadTemplate(templateName);
 
 	var unit = GetTemplateDataHelper(template);
 	unit.phase = false;
