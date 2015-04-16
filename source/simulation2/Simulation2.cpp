@@ -103,7 +103,7 @@ public:
 
 	static bool LoadDefaultScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts);
 	static bool LoadScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts, const VfsPath& path);
-	static bool LoadTriggerScripts(CComponentManager& componentManager, JS::HandleValue mapSettings);
+	static bool LoadTriggerScripts(CComponentManager& componentManager, JS::HandleValue mapSettings, std::set<VfsPath>* loadedScripts);
 	Status ReloadChangedFile(const VfsPath& path);
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path)
@@ -199,7 +199,7 @@ bool CSimulation2Impl::LoadScripts(CComponentManager& componentManager, std::set
 	return ok;
 }
 
-bool CSimulation2Impl::LoadTriggerScripts(CComponentManager& componentManager, JS::HandleValue mapSettings)
+bool CSimulation2Impl::LoadTriggerScripts(CComponentManager& componentManager, JS::HandleValue mapSettings, std::set<VfsPath>* loadedScripts)
 {
 	bool ok = true;
 	if (componentManager.GetScriptInterface().HasProperty(mapSettings, "TriggerScripts"))
@@ -209,6 +209,8 @@ bool CSimulation2Impl::LoadTriggerScripts(CComponentManager& componentManager, J
 		for (u32 i = 0; i < scriptNames.size(); ++i)
 		{
 			std::string scriptName = "maps/" + scriptNames[i];
+			if (loadedScripts)
+				loadedScripts->insert(scriptName);
 			LOGMESSAGE("Loading trigger script '%s'", scriptName.c_str());
 			if (!componentManager.LoadScript(scriptName.data()))
 				ok = false;
@@ -371,7 +373,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			JS::RootedValue mapSettingsCloned(cx2, 
 				secondaryComponentManager.GetScriptInterface().CloneValueFromOtherContext(
 					scriptInterface, m_MapSettings));
-			ENSURE(LoadTriggerScripts(secondaryComponentManager, mapSettingsCloned));
+			ENSURE(LoadTriggerScripts(secondaryComponentManager, mapSettingsCloned, &m_LoadedScripts));
 		}
 
 		// Load the map into the secondary simulation
@@ -766,7 +768,7 @@ void CSimulation2::LoadMapSettings()
 		GetScriptInterface().LoadScript(L"map startup script", m->m_StartupScript);
 
 	// Load the trigger scripts after we have loaded the simulation and the map.
-	m->LoadTriggerScripts(m->m_ComponentManager, m->m_MapSettings);
+	m->LoadTriggerScripts(m->m_ComponentManager, m->m_MapSettings, &m->m_LoadedScripts);
 }
 
 int CSimulation2::ProgressiveLoad()
