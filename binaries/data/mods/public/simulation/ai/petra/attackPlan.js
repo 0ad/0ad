@@ -112,9 +112,6 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		this.unitStat["Hero"]                = { "priority": 1, "minSize": 0, "targetSize":  1, "batchSize": 1, "classes": ["Hero"],
 			"interests": [ ["strength",2], ["cost",1] ] };
 		this.neededShips = 5;
-		// change the targetSize according to max population
-		for (var unitCat in this.unitStat)
-			this.unitStat[unitCat]["targetSize"] = Math.round(this.Config.popScaling * this.unitStat[unitCat]["targetSize"]);
 	}
 	else
 	{
@@ -139,10 +136,18 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		priority *= 0.8;
 		variation *= 0.8;
 	}
-	for (var cat in this.unitStat)
+	for (let cat in this.unitStat)
 	{
 		this.unitStat[cat]["targetSize"] = Math.round(variation * this.unitStat[cat]["targetSize"]);
 		this.unitStat[cat]["minSize"] = Math.min(this.unitStat[cat]["minSize"], this.unitStat[cat]["targetSize"]);
+	}
+
+	// change the sizes according to max population
+	this.neededShips = Math.ceil(this.Config.popScaling * this.neededShips);
+	for (let cat in this.unitStat)
+	{
+		this.unitStat[cat]["targetSize"] = Math.round(this.Config.popScaling * this.unitStat[cat]["targetSize"]);
+		this.unitStat[cat]["minSize"] = Math.floor(this.Config.popScaling * this.unitStat[cat]["minSize"]);
 	}
 
 	// TODO: there should probably be one queue per type of training building
@@ -219,7 +224,7 @@ m.AttackPlan.prototype.setPaused = function(boolValue)
 
 // Returns true if the attack can be executed at the current time
 // Basically it checks we have enough units.
-m.AttackPlan.prototype.canStart = function(gameState)
+m.AttackPlan.prototype.canStart = function()
 {	
 	if (!this.canBuildUnits)
 		return true;
@@ -233,7 +238,7 @@ m.AttackPlan.prototype.canStart = function(gameState)
 	return true;
 };
 
-m.AttackPlan.prototype.mustStart = function(gameState)
+m.AttackPlan.prototype.mustStart = function()
 {
 	if (this.isPaused() || this.path === undefined)
 		return false;
@@ -259,8 +264,7 @@ m.AttackPlan.prototype.mustStart = function(gameState)
 		return true;
 	if (MinReachedEverywhere)
 	{
-		if ((gameState.getPopulationMax() - gameState.getPopulation() < 10) ||
-			(this.type === "Raid" && this.target && this.target.foundationProgress() && this.target.foundationProgress() > 60))
+		if (this.type === "Raid" && this.target && this.target.foundationProgress() && this.target.foundationProgress() > 60)
 			return true;
 	}
 	return false;
@@ -310,6 +314,7 @@ m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 		stat["targetSize"] = 1;
 	else if (this.Config.difficulty < 3)
 		stat["targetSize"] = 2;
+        stat["targetSize"] = Math.round(this.Config.popScaling * stat["targetSize"]);
 	this.addBuildOrder(gameState, "Siege", stat, true);
 	return true;
 };
@@ -424,9 +429,12 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		this.reassignCavUnit(gameState);    // reassign some cav (if any) to fasten raid preparations
 
 	// special case: if we've reached max pop, and we can start the plan, start it.
-	if (gameState.getPopulationMax() - gameState.getPopulation() < 10)
+	if (gameState.getPopulationMax() - gameState.getPopulation() < 5)
 	{
-		if (this.canStart())
+		let lengthMin = 16;
+		if (gameState.getPopulationMax() < 300)
+			lengthMin -= Math.floor(8 * (300 - gameState.getPopulationMax()) / 300);
+		if (this.canStart() || this.unitCollection.length > lengthMin)
 		{
 			this.queue.empty();
 			this.queueChamp.empty();
@@ -449,7 +457,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			return 0;
 	    }
 	}
-	else if (this.mustStart(gameState) && (gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0))
+	else if (this.mustStart() && gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) > 0)
 	{
 		// keep on while the units finish being trained, then we'll start
 		this.queue.empty();
@@ -457,7 +465,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		this.queueSiege.empty();
 		return 1;
 	}
-	else if (!this.mustStart(gameState))
+	else if (!this.mustStart())
 	{
 		if (this.canBuildUnits)
 		{
@@ -470,7 +478,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		return 1;
 	}
 
-	// if we're here, it means we must start (and have no units in training left).
+	// if we're here, it means we must start
 	this.state = "completing";
 	if (this.type === "Raid")
 		this.maxCompletingTurn = gameState.ai.playedTurn + 20;
@@ -1647,13 +1655,13 @@ m.AttackPlan.prototype.Abort = function(gameState)
 		// If the attack was started, and we are on the same land as the rallyPoint, go back there
 		var rallyPoint = this.rallyPoint;
 		var withdrawal = (this.isStarted() && !this.overseas);
-		var self = this;
-		this.unitCollection.forEach(function(ent) {
+		for (let ent of this.unitCollection.values())
+		{
 			ent.stopMoving();
 			if (withdrawal)
 				ent.move(rallyPoint[0], rallyPoint[1]);
-			self.removeUnit(ent);
-		});
+			this.removeUnit(ent);
+		}
 	}
 
 	for (let unitCat in this.unitStat)
@@ -1693,22 +1701,6 @@ m.AttackPlan.prototype.checkEvents = function(gameState, events)
 	for (let evt of captureEvents)
 		if (this.target && this.target.id() == evt.entity && gameState.isPlayerAlly(evt.to))
 			this.target = undefined;
-
-	if (this.state === "unexecuted")
-		return;
-
-	var TrainingEvents = events["TrainingFinished"];
-	for (let evt of TrainingEvents)
-	{
-		for (let id of evt.entities)
-		{
-			let ent = gameState.getEntityById(id);
-			if (!ent || ent.getMetadata(PlayerID, "plan") === undefined)
-				continue;
-			if (ent.getMetadata(PlayerID, "plan") === this.name)
-				ent.setMetadata(PlayerID, "plan", -1);
-		}
-	}
 };
 
 m.AttackPlan.prototype.waitingForTransport = function()

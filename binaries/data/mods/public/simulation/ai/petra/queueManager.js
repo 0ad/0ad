@@ -467,18 +467,19 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 		});
 	});
 
+	var workersMin = Math.min(Math.max(12, 24 * this.Config.popScaling), this.Config.Economy.popForTown);
 	for (let q in this.queues)
 	{
 		let toBePaused = false;
 		if (gameState.ai.HQ.numActiveBase() === 0)
 			toBePaused = (q !== "dock" && q !== "civilCentre");
-		else if (numWorkers < 8)
+		else if (numWorkers < workersMin / 3)
 			toBePaused = (q !== "citizenSoldier" && q !== "villager" && q !== "emergency");
-		else if (numWorkers < 16)
+		else if (numWorkers < workersMin * 2 / 3)
 			toBePaused = (q === "civilCentre" || q === "economicBuilding"
 				|| q === "militaryBuilding" || q === "defenseBuilding"
 				|| q === "majorTech" || q === "minorTech" || q.indexOf("plan_") !== -1);
-		else if (numWorkers < 24)
+		else if (numWorkers < workersMin)
 			toBePaused = (q === "civilCentre" || q === "defenseBuilding"
 				|| q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1);
 
@@ -492,7 +493,7 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 			queue.paused = false;
 
 		// And reduce the batch sizes of attack queues
-		if (q.indexOf("plan_") != -1 && numWorkers < 24 && queue.queue[0])
+		if (q.indexOf("plan_") != -1 && numWorkers < workersMin && queue.queue[0])
 		{
 			queue.queue[0].number = 1;
 			if (queue.queue[1])

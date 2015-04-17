@@ -215,7 +215,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		}
 	}
 	else if (unexecutedAttacks["Attack"] === 0 && unexecutedAttacks["HugeAttack"] === 0
-		&& (this.startedAttacks["Attack"].length + this.startedAttacks["HugeAttack"].length < Math.round(gameState.getPopulationMax()/100)))
+		&& (this.startedAttacks["Attack"].length + this.startedAttacks["HugeAttack"].length < Math.min(2, 1 + Math.round(gameState.getPopulationMax()/100))))
 	{
 		if ((barracksNb >= 1 && (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase())))
 			|| !gameState.ai.HQ.baseManagers[1])	// if we have no base ... nothing else to do than attack
