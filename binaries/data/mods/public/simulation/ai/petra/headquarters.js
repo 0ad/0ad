@@ -127,7 +127,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		{
 			// Okay so let's try to create a new base around this.
 			let newbase = new m.BaseManager(gameState, this.Config);
-			newbase.init(gameState, true);
+			newbase.init(gameState, "unconstructed");
 			newbase.setAnchor(gameState, ent);
 			this.baseManagers.push(newbase);
 			// Let's get a few units from other bases there to build this.
@@ -193,6 +193,29 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			}
 			else if (ent.hasTerritoryInfluence())
 				this.updateTerritories(gameState);
+		}
+	}
+
+	let captureEvents = events["OwnershipChanged"];
+	for (let evt of captureEvents)
+	{
+		if (evt.to !== PlayerID)
+			continue;
+		let ent = gameState.getEntityById(evt.entity);
+		if (!ent)
+			continue;
+		if (ent.position())
+			ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(ent.position()));
+		if (ent.hasClass("CivCentre"))   // build a new base around it
+		{
+			let newbase = new m.BaseManager(gameState, this.Config);
+			if (ent.foundationProgress() !== undefined)
+				newbase.init(gameState, "unconstructed");
+			else
+				newbase.init(gameState, "captured");
+			newbase.setAnchor(gameState, ent);
+			this.baseManagers.push(newbase);
+			newbase.assignEntity(gameState, ent);
 		}
 	}
 
