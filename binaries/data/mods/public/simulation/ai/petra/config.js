@@ -22,9 +22,11 @@ m.Config = function(difficulty)
 	};
 	this.Economy = {
 		"popForTown" : 40,	// How many units we want before aging to town.
+		"workForCity" : 80,   // How many workers we want before aging to city.
 		"cityPhase" : 840,	// time to start trying to reach city phase
 		"popForMarket" : 50,
 		"popForDock" : 25,
+		"targetNumWorkers" : 40, // dummy, will be changed later
 		"targetNumTraders" : 5, // Target number of traders
 		"targetNumFishers" : 1, // Target number of fishers per sea
 		"femaleRatio" : 0.5, // fraction of females among the workforce
@@ -118,23 +120,13 @@ m.Config.prototype.setConfig = function(gameState)
 	// changing settings based on difficulty or personality
 	if (this.difficulty < 2)
 	{
-		this.Military.popForBarracks1 = 60;
-		this.Military.popForBarracks2 = 300;
-		this.Military.popForBlacksmith = 300;
-
 		this.Economy.cityPhase = 240000;
-		this.Economy.popForMarket = 200;
 		this.Economy.femaleRatio = 0.7;
 		this.Economy.provisionFields = 1;
 	}
 	else if (this.difficulty < 3)
 	{
-		this.Military.popForBarracks1 = 35;
-		this.Military.popForBarracks2 = 150;
-		this.Military.popForBlacksmith = 150;
-
 		this.Economy.cityPhase = 1800;
-		this.Economy.popForMarket = 80;
 		this.Economy.femaleRatio = 0.6;
 		this.Economy.provisionFields = 1;
 	}
@@ -153,10 +145,28 @@ m.Config.prototype.setConfig = function(gameState)
 		}
 	}
 
+	let maxPop = gameState.getPopulationMax();
+	if (this.difficulty < 2)
+		this.Economy.targetNumWorkers = Math.max(1, Math.min(40, maxPop));
+	else if (this.difficulty < 3)
+		this.Economy.targetNumWorkers = Math.max(1, Math.min(60, Math.floor(maxPop/2)));
+	else
+		this.Economy.targetNumWorkers = Math.max(1, Math.min(120, Math.floor(maxPop/3)));
 	this.Economy.targetNumTraders = 2 + this.difficulty;
 
-	if (gameState.getPopulationMax() < 300)
-		this.popScaling = Math.sqrt(gameState.getPopulationMax() / 300);
+
+	if (maxPop < 300)
+	{
+		this.popScaling = Math.sqrt(maxPop / 300);
+		this.Military.popForBarracks1 =  Math.min(Math.max(Math.floor(this.Military.popForBarracks1 * this.popScaling), 12), Math.floor(maxPop/5));
+		this.Military.popForBarracks2 =  Math.min(Math.max(Math.floor(this.Military.popForBarracks2 * this.popScaling), 45), Math.floor(maxPop*2/3));
+		this.Military.popForBlacksmith =  Math.min(Math.max(Math.floor(this.Military.popForBlacksmith * this.popScaling), 30), Math.floor(maxPop/2));
+		this.Economy.popForTown =  Math.min(Math.max(Math.floor(this.Economy.popForTown * this.popScaling), 25), Math.floor(maxPop/2));
+		this.Economy.workForCity =  Math.min(Math.max(Math.floor(this.Economy.workForCity * this.popScaling), 50), Math.floor(maxPop*2/3));
+		this.Economy.popForMarket =  Math.min(Math.max(Math.floor(this.Economy.popForMarket * this.popScaling), 25), Math.floor(maxPop/2));
+		this.Economy.targetNumTraders = Math.round(this.Economy.targetNumTraders * this.popScaling);
+	}
+	this.Economy.targetNumWorkers = Math.max(this.Economy.targetNumWorkers, this.Economy.popForTown);
 
 	if (this.debug < 2)
 		return;

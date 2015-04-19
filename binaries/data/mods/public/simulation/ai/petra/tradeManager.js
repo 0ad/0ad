@@ -11,7 +11,7 @@ m.TradeManager = function(Config)
 	this.tradeRoute = undefined;
 	this.potentialTradeRoute = undefined;
 	this.routeProspection = false;
-	this.targetNumTraders = Math.round(this.Config.popScaling * this.Config.Economy.targetNumTraders);
+	this.targetNumTraders = this.Config.Economy.targetNumTraders;
 	this.warnedAllies = {};
 };
 

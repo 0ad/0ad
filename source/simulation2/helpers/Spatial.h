@@ -429,7 +429,9 @@ public:
 
 	void Reset(fixed w, fixed h)
 	{
-		Reset(std::max(Index(w), Index(h)) + 1);
+		ENSURE(w >= fixed::Zero() && h >= fixed::Zero());
+		size_t arrayWidth = std::max((w / SUBDIVISION_SIZE).ToInt_RoundToZero(), (h / SUBDIVISION_SIZE).ToInt_RoundToZero()) + 1;
+		Reset(arrayWidth);
 	}
 
 	FastSpatialSubdivision& operator=(const FastSpatialSubdivision& other)

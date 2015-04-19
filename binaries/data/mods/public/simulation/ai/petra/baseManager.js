@@ -34,11 +34,11 @@ m.BaseManager = function(gameState, Config)
 	this.territoryIndices = [];
 };
 
-m.BaseManager.prototype.init = function(gameState, unconstructed)
+m.BaseManager.prototype.init = function(gameState, state)
 {
-	if (unconstructed !== undefined)
-		this.constructing = unconstructed;
-	else
+	if (state == "unconstructed")
+		this.constructing = true;
+	else if (state != "captured")
 		this.neededDefenders = 0;
 	this.workerObject = new m.Worker(this);
 	// entitycollections

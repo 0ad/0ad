@@ -26,7 +26,8 @@ m.HQ = function(Config)
 	this.currentRates = { "food": 0, "wood": 0, "stone":0, "metal": 0 };
 	this.lastFailedGather = { "wood": undefined, "stone": undefined, "metal": undefined }; 
 
-	// this means we'll have about a big third of women, and thus we can maximize resource gathering rates.
+	// workers configuration
+	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
 	this.femaleRatio = this.Config.Economy.femaleRatio;
 
 	this.lastTerritoryUpdate = -1;
@@ -62,13 +63,6 @@ m.HQ.prototype.init = function(gameState, queues)
 	// try to determine if we have a water map
 	this.navalMap = false;
 	this.navalRegions = {};
-
-	if (this.Config.difficulty < 2)
-		this.targetNumWorkers = Math.max(1, Math.min(40, Math.floor(gameState.getPopulationMax())));
-	else if (this.Config.difficulty < 3)
-		this.targetNumWorkers = Math.max(1, Math.min(60, Math.floor(gameState.getPopulationMax()/2)));
-	else
-		this.targetNumWorkers = Math.max(1, Math.min(120, Math.floor(gameState.getPopulationMax()/3)));
 
 	this.treasures = gameState.getEntities().filter(function (ent) {
 		var type = ent.resourceSupplyType();
@@ -133,7 +127,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		{
 			// Okay so let's try to create a new base around this.
 			let newbase = new m.BaseManager(gameState, this.Config);
-			newbase.init(gameState, true);
+			newbase.init(gameState, "unconstructed");
 			newbase.setAnchor(gameState, ent);
 			this.baseManagers.push(newbase);
 			// Let's get a few units from other bases there to build this.
@@ -202,6 +196,29 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
+	let captureEvents = events["OwnershipChanged"];
+	for (let evt of captureEvents)
+	{
+		if (evt.to !== PlayerID)
+			continue;
+		let ent = gameState.getEntityById(evt.entity);
+		if (!ent)
+			continue;
+		if (ent.position())
+			ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(ent.position()));
+		if (ent.hasClass("CivCentre"))   // build a new base around it
+		{
+			let newbase = new m.BaseManager(gameState, this.Config);
+			if (ent.foundationProgress() !== undefined)
+				newbase.init(gameState, "unconstructed");
+			else
+				newbase.init(gameState, "captured");
+			newbase.setAnchor(gameState, ent);
+			this.baseManagers.push(newbase);
+			newbase.assignEntity(gameState, ent);
+		}
+	}
+
 	// deal with the different rally points of training units: the rally point is set when the training starts
 	// for the time being, only autogarrison is used
 
@@ -247,10 +264,10 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			// Check if this unit is no more needed in its attack plan
 			// (happen when the training ends after the attack is started or aborted)
 			let plan = ent.getMetadata(PlayerID, "plan");
-			if (plan != undefined && plan >= 0)
+			if (plan !== undefined && plan >= 0)
 			{
 				let attack = this.attackManager.getPlan(plan);
-				if (!attack || attack.isStarted())
+				if (!attack || attack.state !== "unexecuted")
 					ent.setMetadata(PlayerID, "plan", -1);
 			}
 		}
@@ -287,7 +304,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	var numWorkers = 0;
 	gameState.getOwnUnits().forEach (function (ent) {
 		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") == undefined)
-			numWorkers++;
+			++numWorkers;
 	});
 	var numInTraining = 0;
 	gameState.getOwnTrainingFacilities().forEach(function(ent) {
@@ -1498,7 +1515,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				break;
 		}
 	}
-	var metadata = { "role": "worker", "base": nearestAnchor.getMetadata(PlayerID, "base"), "trainer": nearestAnchor.id() };
+	var metadata = { "role": "worker", "base": nearestAnchor.getMetadata(PlayerID, "base"), "plan": -1, "trainer": nearestAnchor.id() };
 	if (autogarrison)
 		metadata.garrisonType = "protection";
 	gameState.ai.queues.emergency.addItem(new m.TrainingPlan(gameState, templateFound[0], metadata, 1, 1));
@@ -1813,13 +1830,13 @@ m.HQ.prototype.Serialize = function()
 		"currentRates": this.currentRates,
 		"lastFailedGather": this.lastFailedGather,
 		"femaleRatio": this.femaleRatio,
+		"targetNumWorkers": this.targetNumWorkers,
 		"lastTerritoryUpdate": this.lastTerritoryUpdate,
 		"stopBuilding": this.stopBuilding,
 		"towerStartTime": this.towerStartTime,
 		"towerLapseTime": this.towerLapseTime,
 		"fortressStartTime": this.fortressStartTime,
 		"fortressLapseTime": this.fortressLapseTime,
-		"targetNumWorkers": this.targetNumWorkers,
 		"bBase": this.bBase,
 		"bAdvanced": this.bAdvanced,
 		"saveResources": this.saveResources,

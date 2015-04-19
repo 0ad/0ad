@@ -42,7 +42,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 		queues.majorTech.addItem(plan);
 	}
 	else if (gameState.canResearch(cityPhase,true) && gameState.ai.elapsedTime > this.Config.Economy.cityPhase
-			&& gameState.getOwnEntitiesByRole("worker", true).length > 80
+			&& gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workForCity
 			&& gameState.findResearchers(cityPhase, true).length != 0
 			&& queues.civilCentre.length() === 0)
 	{
