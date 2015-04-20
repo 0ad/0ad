@@ -220,12 +220,12 @@ function init(initData, hotloadData)
 		Engine.GetGUIObjectByName("menuExitButton").enabled = false;
 
 	if (hotloadData)
-	{
 		g_Selection.selected = hotloadData.selection;
-	}
+
 	// Starting for the first time:
 	initMusic();
-	if (!g_IsObserver){
+	if (!g_IsObserver)
+	{
 		var civMusic = g_CivData[g_Players[Engine.GetPlayerID()].civ].Music;
 		global.music.storeTracks(civMusic);
 	}
@@ -247,7 +247,8 @@ function init(initData, hotloadData)
 function selectViewPlayer(playerID)
 {
 	Engine.SetPlayerID(playerID);
-	if (playerID > 0) {
+	if (playerID > 0)
+	{
 		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
 		Engine.GetGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[playerID].civ].Name;
 	}

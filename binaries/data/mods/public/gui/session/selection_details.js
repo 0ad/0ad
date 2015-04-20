@@ -309,9 +309,9 @@ function displayMultiple(selection, template)
 	var capturePoints = (new Array(9)).fill(0);
 	var playerID = 0;
 
-	for (var i = 0; i < selection.length; i++)
+	for (let i = 0; i < selection.length; i++)
 	{
-		var entState = GetEntityState(selection[i])
+		let entState = GetEntityState(selection[i])
 		if (!entState)
 			continue;
 		playerID = entState.player; // trust that all selected entities have the same owner
@@ -358,7 +358,7 @@ function displayMultiple(selection, template)
 		}
 
 		let size = 0;
-		for (let i in entState.capturePoints)
+		for (let i in capturePoints)
 			if (i != playerID)
 				size = setCaptureBarPart(i, size);
 
