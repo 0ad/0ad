@@ -148,6 +148,16 @@ Pack.prototype.PackProgress = function(data, lateness)
 		var cmpNewOwnership = Engine.QueryInterface(newEntity, IID_Ownership);
 		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
 
+		// rescale capture points
+		var cmpCapturable = Engine.QueryInterface(this.entity, IID_Capturable);
+		var cmpNewCapturable = Engine.QueryInterface(newEntity, IID_Capturable);
+		if (cmpCapturable && cmpNewCapturable)
+		{
+			let scale = cmpCapturable.GetMaxCapturePoints() / cmpNewCapturable.GetMaxCapturePoints();
+			let newCp = cmpCapturable.GetCapturePoints().map(function (v) { return v / scale; });
+			cmpNewCapturable.SetCapturePoints(newCp);
+		}
+
 		// Maintain current health level
 		var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 		var cmpNewHealth = Engine.QueryInterface(newEntity, IID_Health);

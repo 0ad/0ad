@@ -33,12 +33,13 @@
 		<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
 	</object>
 
-	<!-- Stamina bar -->
-	<object size="15 0 22 100%" type="image" name="staminaMultiple" tooltip_style="sessionToolTipBold">
-		<translatableAttribute id="tooltip">Stamina</translatableAttribute>
+	<!-- Capture bar -->
+	<object size="15 0 22 100%" type="image" name="captureMultiple" tooltip_style="sessionToolTipBold">
+		<translatableAttribute id="tooltip">Capture points</translatableAttribute>
 		<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
-		<object type="image" sprite="staminaBackground" ghost="true"/>
-		<object type="image" sprite="staminaForeground" ghost="true" name="staminaBarMultiple"/>
+		<repeat count="9">
+			<object type="image" sprite="playerColorBackground" ghost="true" name="captureBarMultiple[n]" hidden="true"/>
+		</repeat>
 		<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
 	</object>
 	</object>

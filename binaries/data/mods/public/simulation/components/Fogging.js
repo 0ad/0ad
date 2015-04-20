@@ -125,6 +125,13 @@ Fogging.prototype.LoadMirage = function(player)
 			cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints())
 		);
 
+	var cmpCapturable = Engine.QueryInterface(this.entity, IID_Capturable);
+	if (cmpCapturable)
+		cmpMirage.CopyCapturable(
+			cmpCapturable.GetCapturePoints(),
+			cmpCapturable.GetMaxCapturePoints()
+		);
+
 	var cmpResourceSupply = Engine.QueryInterface(this.entity, IID_ResourceSupply);
 	if (cmpResourceSupply)
 		cmpMirage.CopyResourceSupply(

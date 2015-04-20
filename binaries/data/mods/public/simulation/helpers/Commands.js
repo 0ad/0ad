@@ -349,8 +349,18 @@ var commands = {
 
 	"delete-entities": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
+			// don't allow to delete entities who are half-captured
+			var cmpCapturable = Engine.QueryInterface(ent, IID_Capturable);
+			if (cmpCapturable)
+			{
+				var capturePoints = cmpCapturable.GetCapturePoints();
+				var maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
+				if (capturePoints[player] < maxCapturePoints / 2)
+					return;
+			}
+			// either kill or delete the entity
 			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
 			if (cmpHealth)
 			{

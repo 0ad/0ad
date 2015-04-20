@@ -20,16 +20,17 @@
 		</object>
 		</object>
 
-		<!-- Stamina bar -->
-		<object size="88 28 100% 52" name="staminaSection">
-		<object size="0 0 100% 16" name="staminaLabel" type="text" style="StatsTextLeft" ghost="true">
-			<translatableAttribute id="tooltip">Stamina:</translatableAttribute>
+		<!-- Capture bar -->
+		<object size="88 28 100% 52" name="captureSection">
+		<object size="0 0 100% 16" name="captureLabel" type="text" style="StatsTextLeft" ghost="true">
+			<translatableAttribute id="tooltip">Capture points:</translatableAttribute>
 		</object>
-		<object size="0 0 100% 16" name="staminaStats" type="text" style="StatsTextRight" ghost="true"/>
-		<object size="1 16 100% 23" name="stamina" type="image">
+		<object size="0 0 100% 16" name="captureStats" type="text" style="StatsTextRight" ghost="true"/>
+		<object size="1 16 100% 23" name="capture" type="image">
 			<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
-			<object type="image" sprite="staminaBackground" ghost="true"/>
-			<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
+			<repeat count="9">
+				<object type="image" sprite="playerColorBackground" ghost="true" name="captureBar[n]" hidden="true"/>
+			</repeat>
 			<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
 		</object>
 		</object>

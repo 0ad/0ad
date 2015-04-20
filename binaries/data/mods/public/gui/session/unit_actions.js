@@ -99,9 +99,7 @@ var unitActions =
 		{
 			if (!entState.attack || !targetState.hitpoints)
 				return false;
-			if (playerCheck(entState, targetState, ["Neutral", "Enemy"]))
-				return {"possible": Engine.GuiInterfaceCall("CanAttack", {"entity": entState.id, "target": targetState.id})};
-			return false;
+			return {"possible": Engine.GuiInterfaceCall("CanAttack", {"entity": entState.id, "target": targetState.id})};
 		},
 		"hotkeyActionCheck": function(target)
 		{
@@ -671,6 +669,13 @@ var g_EntityCommands =
 					"tooltip": translate("You cannot destroy this entity because it is in the fog-of-war"),
 					"icon": "kill_small.png"
 				};
+
+			if (entState.capturePoints && entState.capturePoints[entState.player] < entState.maxCapturePoints / 2)
+				return {
+					"tooltip": translate("You cannot destroy this entity as you own less than half the capture points"),
+					"icon": "kill_small.png"
+				};
+					
 
 			return {
 				"tooltip": translate("Delete"),

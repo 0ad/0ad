@@ -1,7 +1,7 @@
 function TerritoryDecay() {}
 
 TerritoryDecay.prototype.Schema =
-	"<element name='HealthDecayRate' a:help='Decay rate in hitpoints per second'>" +
+	"<element name='DecayRate' a:help='Decay rate in hitpoints per second'>" +
 		"<data type='positiveInteger'/>" +
 	"</element>";
 
@@ -33,8 +33,6 @@ TerritoryDecay.prototype.IsConnected = function()
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
 	if (tileOwner != cmpOwnership.GetOwner())
 		return false;
-	// TODO: this should probably use the same territory restriction
-	// logic as BuildRestrictions, to handle allies etc
 
 	return cmpTerritoryManager.IsConnected(pos.x, pos.y);
 };
@@ -64,7 +62,7 @@ TerritoryDecay.prototype.UpdateDecayState = function()
 	if (connected)
 		var decaying = false;
 	else
-		var decaying = (Math.round(ApplyValueModificationsToEntity("TerritoryDecay/HealthDecayRate", +this.template.HealthDecayRate, this.entity)) > 0);
+		var decaying = (Math.round(ApplyValueModificationsToEntity("TerritoryDecay/DecayRate", +this.template.DecayRate, this.entity)) > 0);
 	if (decaying === this.decaying)
 		return;
 	this.decaying = decaying;
@@ -88,13 +86,17 @@ TerritoryDecay.prototype.OnOwnershipChanged = function(msg)
 
 TerritoryDecay.prototype.Decay = function()
 {
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	if (!cmpHealth)
+	var cmpCapturable = Engine.QueryInterface(this.entity, IID_Capturable);
+	if (!cmpCapturable)
 		return; // error
 
-	var decayRate = ApplyValueModificationsToEntity("TerritoryDecay/HealthDecayRate", +this.template.HealthDecayRate, this.entity);
+	var decayRate = ApplyValueModificationsToEntity(
+		"TerritoryDecay/DecayRate",
+		+this.template.DecayRate,
+		this.entity);
 
-	cmpHealth.Reduce(Math.round(decayRate));
+	// Reduce capture points in favour of Gaia
+	cmpCapturable.Reduce(decayRate, 0);
 };
 
 Engine.RegisterComponentType(IID_TerritoryDecay, "TerritoryDecay", TerritoryDecay);

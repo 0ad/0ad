@@ -111,6 +111,13 @@ AIProxy.prototype.OnHealthChanged = function(msg)
 	this.changes.hitpoints = msg.to;
 };
 
+AIProxy.prototype.OnCapturePointsChanged = function(msg)
+{
+	if (!this.NotifyChange())
+		return;
+	this.changes.capturePoints = msg.capturePoints;
+};
+
 AIProxy.prototype.OnUnitIdleChanged = function(msg)
 {
 	if (!this.NotifyChange())
