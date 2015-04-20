@@ -196,7 +196,10 @@ Capturable.prototype.OnOwnershipChanged = function(msg)
 {
 	this.startRegenTimer();
 
-	if (msg.from != -1)
+	// if the new owner has no capture points, it means that either
+	// * it's being initialised now, or
+	// * it changed ownership for a different reason (defeat, atlas, ...)
+	if (this.cp[msg.to])
 		return;
 
 	// initialise the capture points when created
