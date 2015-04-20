@@ -7,7 +7,7 @@
 	"icon": "handcart_empty.png",
 	"researchTime": 40,
 	"tooltip": "Entrenched Camps and Siege Walls decay 50% slower.",
-	"modifications": [{"value": "TerritoryDecay/HealthDecayRate", "multiply": 0.5}],
+	"modifications": [{"value": "TerritoryDecay/DecayRate", "multiply": 0.5}],
 	"affects": ["ArmyCamp", "SiegeWall"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

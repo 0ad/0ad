@@ -3,6 +3,7 @@ Engine.LoadComponentScript("interfaces/AlertRaiser.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Barter.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
+Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/EndGameManager.js");
 Engine.LoadComponentScript("interfaces/EntityLimits.js");

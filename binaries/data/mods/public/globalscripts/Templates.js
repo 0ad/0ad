@@ -90,18 +90,28 @@ function GetTemplateDataHelper(template, player)
 
 	if (template.Attack)
 	{
-		ret.attack = {};
-		for (var type in template.Attack)
+		let getAttackStat = function(type, stat)
 		{
-			ret.attack[type] = {
-				"hack": func("Attack/"+type+"/Hack", +(template.Attack[type].Hack || 0), player, template),
-				"pierce": func("Attack/"+type+"/Pierce", +(template.Attack[type].Pierce || 0), player, template),
-				"crush": func("Attack/"+type+"/Crush", +(template.Attack[type].Crush || 0), player, template),
-				"minRange": func("Attack/"+type+"/MinRange", +(template.Attack[type].MinRange || 0), player, template),
-				"maxRange": func("Attack/"+type+"/MaxRange", +template.Attack[type].MaxRange, player, template),
-				"elevationBonus": func("Attack/"+type+"/ElevationBonus", +(template.Attack[type].ElevationBonus || 0), player, template),
-				"repeatTime": +(template.Attack[type].RepeatTime || 0),
-			};
+			return func("Attack/"+type+"/"+stat, +(template.Attack[type][stat] || 0), player, template);
+		};
+
+		ret.attack = {};
+		for (let type in template.Attack)
+		{
+			if (type == "Capture")
+				ret.attack.Capture = {
+					"value": getAttackStat(type,"Value"),
+				};
+			else
+				ret.attack[type] = {
+					"hack": getAttackStat(type, "Hack"),
+					"pierce": getAttackStat(type, "Pierce"),
+					"crush": getAttackStat(type, "Crush"),
+					"minRange": getAttackStat(type, "MinRange"),
+					"maxRange": getAttackStat(type, "MaxRange"),
+					"elevationBonus": getAttackStat(type, "ElevationBonus"),
+				};
+			ret.attack[type].repeatTime = +(template.Attack[type].RepeatTime || 0);
 		}
 	}
 

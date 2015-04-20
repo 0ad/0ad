@@ -5559,20 +5559,25 @@ UnitAI.prototype.CanAttack = function(target, forceResponse)
 		return false;
 
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership)
+	if (!cmpOwnership || cmpOwnership.GetOwner() < 0)
 		return false;
+	var owner = cmpOwnership.GetOwner();
 
 	// Verify that the target is an attackable resource supply like a domestic animal
 	// or that it isn't owned by an ally of this entity's player or is responding to
 	// an attack.
-	var owner = cmpOwnership.GetOwner();
-	if (!this.MustKillGatherTarget(target)
-	    && !(IsOwnedByEnemyOfPlayer(owner, target)
-	         || IsOwnedByNeutralOfPlayer(owner, target)
-	         || (forceResponse && !IsOwnedByPlayer(owner, target))))
-		return false;
+	if (this.MustKillGatherTarget(target))
+		return true;
 
-	return true;
+	var cmpCapturable = Engine.QueryInterface(target, IID_Capturable);
+	if (cmpCapturable && cmpCapturable.CanCapture(owner) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
+		return true;
+
+	if (IsOwnedByEnemyOfPlayer(owner, target) || IsOwnedByNeutralOfPlayer(owner, target))
+		return true;
+	if (forceResponse && !IsOwnedByPlayer(owner, target))
+		return true;
+	return false;
 };
 
 UnitAI.prototype.CanGarrison = function(target)

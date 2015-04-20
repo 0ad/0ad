@@ -267,6 +267,18 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.needsRepair = cmpMirage.NeedsRepair();
 	}
 
+	var cmpCapturable = Engine.QueryInterface(ent, IID_Capturable);
+	if (cmpCapturable)
+	{
+		ret.capturePoints = cmpCapturable.GetCapturePoints();
+		ret.maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
+	}
+	if (cmpMirage && cmpMirage.Capturable())
+	{
+		ret.capturePoints = cmpMirage.GetCapturePoints();
+		ret.maxCapturePoints = cmpMirage.GetMaxCapturePoints();
+	}
+
 	var cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
 	if (cmpBuilder)
 		ret.builder = true;
@@ -1701,8 +1713,22 @@ GuiInterface.prototype.CanAttack = function(player, data)
 	var cmpAttack = Engine.QueryInterface(data.entity, IID_Attack);
 	if (!cmpAttack)
 		return false;
+	var cmpEntityPlayer = QueryOwnerInterface(data.entity, IID_Player);
+	var cmpTargetPlayer = QueryOwnerInterface(data.target, IID_Player);
+	if (!cmpEntityPlayer || !cmpTargetPlayer)
+		return false;
 
-	return cmpAttack.CanAttack(data.target);
+
+	// if the owner is an enemy, it's up to the attack component to decide
+	if (!cmpEntityPlayer.IsAlly(cmpTargetPlayer.GetPlayerID()))
+		return cmpAttack.CanAttack(data.target);
+
+	// if the owner is an ally, we could still want to capture some capture points back
+	var cmpCapturable = Engine.QueryInterface(data.target, IID_Capturable);
+	if (cmpCapturable && cmpCapturable.CanCapture(cmpEntityPlayer.GetPlayerID()) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
+		return cmpAttack.CanAttack(data.target);
+
+	return false;
 };
 
 /*

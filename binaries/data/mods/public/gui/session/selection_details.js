@@ -58,6 +58,7 @@ function displaySingle(entState, template)
 	}
 
 	// Hitpoints
+	Engine.GetGUIObjectByName("healthSection").hidden = !entState.hitpoints;
 	if (entState.hitpoints)
 	{
 		var unitHealthBar = Engine.GetGUIObjectByName("healthBar");
@@ -79,21 +80,44 @@ function displaySingle(entState, template)
 			hitpoints: Math.ceil(entState.hitpoints),
 			maxHitpoints: entState.maxHitpoints
 		});
-		Engine.GetGUIObjectByName("healthSection").hidden = false;
 	}
-	else
+
+	// CapturePoints
+	Engine.GetGUIObjectByName("captureSection").hidden = !entState.capturePoints;
+	if (entState.capturePoints)
 	{
-		Engine.GetGUIObjectByName("healthSection").hidden = true;
+		let setCaptureBarPart = function(playerID, startSize)
+		{
+			var unitCaptureBar = Engine.GetGUIObjectByName("captureBar["+playerID+"]");
+			var sizeObj = unitCaptureBar.size;
+			sizeObj.rleft = startSize;
+
+			var size = 100*Math.max(0, Math.min(1, entState.capturePoints[playerID] / entState.maxCapturePoints));
+			sizeObj.rright = startSize + size;
+			unitCaptureBar.size = sizeObj;
+			unitCaptureBar.sprite = "color: " + rgbToGuiColor(g_Players[playerID].color, 128);
+			unitCaptureBar.hidden=false;
+			return startSize + size;
+		}
+
+		// first handle the owner's points, to keep those points on the left for clarity
+		let size = setCaptureBarPart(entState.player, 0);
+
+		for (let i in entState.capturePoints)
+			if (i != entState.player)
+				size = setCaptureBarPart(i, size);
+
+
+		Engine.GetGUIObjectByName("captureStats").caption = sprintf(translate("%(capturePoints)s / %(maxCapturePoints)s"), {
+			capturePoints: Math.ceil(entState.capturePoints[entState.player]),
+			maxCapturePoints: entState.maxCapturePoints
+		});
 	}
 
 	// TODO: Stamina
-	var player = Engine.GetPlayerID();
-	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
-		Engine.GetGUIObjectByName("staminaSection").hidden = false;
-	else
-		Engine.GetGUIObjectByName("staminaSection").hidden = true;
 
 	// Experience
+	Engine.GetGUIObjectByName("experience").hidden = !entState.promotion;
 	if (entState.promotion)
 	{
 		var experienceBar = Engine.GetGUIObjectByName("experienceBar");
@@ -112,14 +136,10 @@ function displaySingle(entState, template)
 				experience: "[font=\"sans-bold-13\"]" + translate("Experience:") + "[/font]",
 				current: Math.floor(entState.promotion.curr)
 			});
-		Engine.GetGUIObjectByName("experience").hidden = false;
-	}
-	else
-	{
-		Engine.GetGUIObjectByName("experience").hidden = true;
 	}
 
 	// Resource stats
+	Engine.GetGUIObjectByName("resourceSection").hidden = !entState.resourceSupply;
 	if (entState.resourceSupply)
 	{
 		var resources = entState.resourceSupply.isInfinite ? translate("∞") :  // Infinity symbol
@@ -136,15 +156,10 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("resourceStats").caption = resources;
 
 		if (entState.hitpoints)
-			Engine.GetGUIObjectByName("resourceSection").size = Engine.GetGUIObjectByName("staminaSection").size;
+			Engine.GetGUIObjectByName("resourceSection").size = Engine.GetGUIObjectByName("captureSection").size;
 		else
 			Engine.GetGUIObjectByName("resourceSection").size = Engine.GetGUIObjectByName("healthSection").size;
 
-		Engine.GetGUIObjectByName("resourceSection").hidden = false;
-	}
-	else
-	{
-		Engine.GetGUIObjectByName("resourceSection").hidden = true;
 	}
 
 	// Resource carrying
@@ -290,20 +305,29 @@ function displayMultiple(selection, template)
 {
 	var averageHealth = 0;
 	var maxHealth = 0;
+	var maxCapturePoints = 0;
+	var capturePoints = (new Array(9)).fill(0);
+	var playerID = 0;
 
 	for (var i = 0; i < selection.length; i++)
 	{
 		var entState = GetEntityState(selection[i])
-		if (entState)
+		if (!entState)
+			continue;
+		playerID = entState.player; // trust that all selected entities have the same owner
+		if (entState.hitpoints)
 		{
-			if (entState.hitpoints)
-			{
-				averageHealth += entState.hitpoints;
-				maxHealth += entState.maxHitpoints;
-			}
+			averageHealth += entState.hitpoints;
+			maxHealth += entState.maxHitpoints;
+		}
+		if (entState.capturePoints)
+		{
+			maxCapturePoints += entState.maxCapturePoints;
+			capturePoints = entState.capturePoints.map(function(v, i) { return v + capturePoints[i]; });
 		}
 	}
 
+	Engine.GetGUIObjectByName("healthMultiple").hidden = averageHealth <= 0;
 	if (averageHealth > 0)
 	{
 		var unitHealthBar = Engine.GetGUIObjectByName("healthBarMultiple");
@@ -313,13 +337,37 @@ function displayMultiple(selection, template)
 
 		var hitpointsLabel = "[font=\"sans-bold-13\"]" + translate("Hitpoints:") + "[/font]"
 		var hitpoints = sprintf(translate("%(label)s %(current)s / %(max)s"), { label: hitpointsLabel, current: averageHealth, max: maxHealth });
-		var healthMultiple = Engine.GetGUIObjectByName("healthMultiple");
-		healthMultiple.tooltip = hitpoints;
-		healthMultiple.hidden = false;
+		Engine.GetGUIObjectByName("healthMultiple").tooltip = hitpoints;
 	}
-	else
+
+	Engine.GetGUIObjectByName("captureMultiple").hidden = maxCapturePoints <= 0;
+	if (maxCapturePoints > 0)
 	{
-		Engine.GetGUIObjectByName("healthMultiple").hidden = true;
+		let setCaptureBarPart = function(playerID, startSize)
+		{
+			var unitCaptureBar = Engine.GetGUIObjectByName("captureBarMultiple["+playerID+"]");
+			var sizeObj = unitCaptureBar.size;
+			sizeObj.rtop = startSize;
+
+			var size = 100*Math.max(0, Math.min(1, capturePoints[playerID] / maxCapturePoints));
+			sizeObj.rbottom = startSize + size;
+			unitCaptureBar.size = sizeObj;
+			unitCaptureBar.sprite = "color: " + rgbToGuiColor(g_Players[playerID].color, 128);
+			unitCaptureBar.hidden=false;
+			return startSize + size;
+		}
+
+		let size = 0;
+		for (let i in entState.capturePoints)
+			if (i != playerID)
+				size = setCaptureBarPart(i, size);
+
+		// last handle the owner's points, to keep those points on the bottom for clarity
+		setCaptureBarPart(playerID, size);
+
+		var capturePointsLabel = "[font=\"sans-bold-13\"]" + translate("Capture points:") + "[/font]"
+		var capturePointsTooltip = sprintf(translate("%(label)s %(current)s / %(max)s"), { label: capturePointsLabel, current: Math.ceil(capturePoints[playerID]), max: Math.ceil(maxCapturePoints) });
+		Engine.GetGUIObjectByName("captureMultiple").tooltip = capturePointsTooltip;
 	}
 	
 	// TODO: Stamina

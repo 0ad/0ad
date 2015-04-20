@@ -166,12 +166,16 @@ function initGameSpeeds()
 // ====================================================================
 
 // Convert integer color values to string (for use in GUI objects)
-function rgbToGuiColor(color)
+function rgbToGuiColor(color, alpha)
 {
+	var ret;
 	if (color && ("r" in color) && ("g" in color) && ("b" in color))
-		return color.r + " " + color.g + " " + color.b;
-
-	return "0 0 0";
+		ret = color.r + " " + color.g + " " + color.b;
+	else
+		ret = "0 0 0";
+	if (alpha)
+		ret += " " + alpha;
+	return ret;
 }
 
 // ====================================================================

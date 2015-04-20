@@ -140,6 +140,7 @@ function getAttackTypeLabel(type)
 	if (type === "Charge") return translate("Charge Attack:");
 	if (type === "Melee") return translate("Melee Attack:");
 	if (type === "Ranged") return translate("Ranged Attack:");
+	if (type === "Capture") return translate("Capture Attack:");
 
 	warn(sprintf("Internationalization: Unexpected attack type found with code ‘%(attackType)s’. This attack type must be internationalized.", { attackType: type }));
 	return translate("Attack:");
@@ -169,6 +170,15 @@ function getAttackTooltip(template)
 		});
 
 		var attackLabel = txtFormats.header[0] + getAttackTypeLabel(type) + txtFormats.header[1];
+		if (type == "Capture")
+		{
+			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rate)s"), {
+				attackLabel: attackLabel,
+				details: template.attack[type].value,
+				rate: rate
+			}));
+			continue;
+		}
 		if (type != "Ranged")
 		{
 			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rate)s"), {
@@ -206,7 +216,7 @@ function getAttackTooltip(template)
 			}));
 	}
 
-	return attacks.join(translate(", "));
+	return attacks.join("\n");
 }
 
 /**

@@ -21,6 +21,10 @@ Mirage.prototype.Init = function()
 	this.hitpoints = null;
 	this.needsRepair = null;
 
+	this.capturable = false;
+	this.capturePoints = [];
+	this.maxCapturePoints = 0;
+
 	this.resourceSupply = false;
 	this.maxAmount = null;
 	this.amount = null;
@@ -92,6 +96,30 @@ Mirage.prototype.GetHitpoints = function()
 Mirage.prototype.NeedsRepair = function()
 {
 	return this.needsRepair;
+};
+
+// Capture data
+
+Mirage.prototype.CopyCapturable = function(capturePoints, maxCapturePoints)
+{
+	this.capturable = true;
+	this.capturePoints = capturePoints;
+	this.maxCapturePoints = maxCapturePoints;
+};
+
+Mirage.prototype.Capturable = function()
+{
+	return this.capturable;
+};
+
+Mirage.prototype.GetMaxCapturePoints = function()
+{
+	return this.maxCapturePoints;
+};
+
+Mirage.prototype.GetCapturePoints = function()
+{
+	return this.capturePoints;
 };
 
 // ResourceSupply data
