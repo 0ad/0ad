@@ -181,9 +181,7 @@ void CGUIString::GenerateTextCall(const CGUI *pGUI,
 					Feedback.m_TextCalls.push_back(TextCall);
 				}
 				break;
-			default:
-				LOGERROR("Encountered unexpected tag applied to text");
-				break;
+			NODEFAULT;
 			}
 		}
 		else if (_to > _from && !Feedback.m_NewLine)
