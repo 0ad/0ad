@@ -572,8 +572,9 @@ Attack.prototype.PerformAttack = function(type, target)
 		if (!cmpCapturable || !cmpCapturable.CanCapture(owner))
 			return;
 		
-		var strength = this.GetAttackStrengths("Capture").value;
-		cmpCapturable.Reduce(strength * multiplier, owner);
+		var strength = this.GetAttackStrengths("Capture").value * multiplier;
+		if(cmpCapturable.Reduce(strength, owner))
+			Engine.PostMessage(target, MT_Attacked, {"attacker":this.entity, "target":target, "type":type, "damage":strength});
 	}
 	else
 	{
