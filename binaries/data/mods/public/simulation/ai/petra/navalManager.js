@@ -323,6 +323,17 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			});
 		}
 	}
+
+	let captureEvents = events["OwnershipChanged"];
+	for (let evt of captureEvents)
+	{
+		if (evt.to === PlayerID)
+		{
+			let ent = gameState.getEntityById(evt.entity);
+			if (ent && ent.hasClass("Dock"))
+				this.setDockIndex(gameState, ent);
+		}
+	}
 };
 
 
