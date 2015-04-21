@@ -897,7 +897,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					return;
 				}
 
-				this.PushOrderFront("Attack", { "target": msg.data.target, "hunting": true });
+				this.PushOrderFront("Attack", { "target": msg.data.target, "hunting": true, "allowCapture": false });
 				return;
 			}
 
@@ -1163,6 +1163,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"Timer": function(msg) {
 					var target = this.order.data.target;
+					var allowCapture = this.order.data.allowCapture;
 					// Check if we are already in range, otherwise walk there
 					if (!this.CheckTargetAttackRange(target, target))
 					{
@@ -1171,7 +1172,7 @@ UnitAI.prototype.UnitFsmSpec = {
 							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 							var range = cmpAttack.GetRange(target);
 							this.FinishOrder();
-							this.PushOrderFront("Attack", { "target": target, "force": false });
+							this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": allowCapture });
 							return;
 						}
 						this.FinishOrder();
@@ -1380,7 +1381,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			// target the unit
 			if (this.CheckTargetVisible(msg.data.attacker))
-				this.PushOrderFront("Attack", { "target": msg.data.attacker, "force": false });
+				this.PushOrderFront("Attack", { "target": msg.data.attacker, "force": false, "allowCapture": true });
 			else
 			{
 				var cmpPosition = Engine.QueryInterface(msg.data.attacker, IID_Position);
@@ -5355,7 +5356,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 					if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
 						continue;
 				}
-				this.PushOrderFront("Attack", { "target": targ, "force": true });
+				this.PushOrderFront("Attack", { "target": targ, "force": true, "allowCapture": true });
 				return true;
 			}
 		}
@@ -5381,7 +5382,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 			if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
 				continue;
 		}
-		this.PushOrderFront("Attack", { "target": targ, "force": true });
+		this.PushOrderFront("Attack", { "target": targ, "force": true, "allowCapture": true });
 		return true;
 	}
 	return false;
