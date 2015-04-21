@@ -583,7 +583,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				return;
 			}
 
-			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": false, "hunting": true });
+			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": false, "hunting": true, "allowCapture": false });
 			return;
 		}
 
