@@ -416,7 +416,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 		// Work out how to attack the given target
-		var type = this.GetBestAttackAgainst(this.order.data.target);
+		var type = this.GetBestAttackAgainst(this.order.data.target, this.order.data.allowCapture);
 		if (!type)
 		{
 			// Oops, we can't attack at all
@@ -559,7 +559,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		if (this.MustKillGatherTarget(this.order.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
-			if (!this.GetBestAttackAgainst(this.order.data.target))
+			if (!this.GetBestAttackAgainst(this.order.data.target, false))
 			{
 				// Oops, we can't attack at all - give up
 				// TODO: should do something so the player knows why this failed
@@ -822,6 +822,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"Order.Attack": function(msg) {
 			var target = msg.data.target;
+			var allowCapture = msg.data.allowCapture;
 			var cmpTargetUnitAI = Engine.QueryInterface(target, IID_UnitAI);
 			if (cmpTargetUnitAI && cmpTargetUnitAI.IsFormationMember())
 				target = cmpTargetUnitAI.GetFormationController();
@@ -841,7 +842,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.FinishOrder();
 				return;
 			}
-			this.CallMemberFunction("Attack", [target, false]);
+			this.CallMemberFunction("Attack", [target, false, allowCapture]);
 			if (cmpAttack.CanAttackAsFormation())
 				this.SetNextState("COMBAT.ATTACKING");
 			else
@@ -1127,7 +1128,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"MoveCompleted": function(msg) {
 					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-					this.CallMemberFunction("Attack", [this.order.data.target, false]);
+					this.CallMemberFunction("Attack", [this.order.data.target, false, this.order.data.allowCapture]);
 					if (cmpAttack.CanAttackAsFormation())
 						this.SetNextState("COMBAT.ATTACKING");
 					else
@@ -4451,12 +4452,12 @@ UnitAI.prototype.GetBestAttack = function()
 	return cmpAttack.GetBestAttack();
 };
 
-UnitAI.prototype.GetBestAttackAgainst = function(target)
+UnitAI.prototype.GetBestAttackAgainst = function(target, allowCapture)
 {
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return undefined;
-	return cmpAttack.GetBestAttackAgainst(target);
+	return cmpAttack.GetBestAttackAgainst(target, allowCapture);
 };
 
 UnitAI.prototype.GetAttackBonus = function(type, target)
@@ -4478,7 +4479,7 @@ UnitAI.prototype.AttackVisibleEntity = function(ents, forceResponse)
 	{
 		if (this.CanAttack(target, forceResponse))
 		{
-			this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse });
+			this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse, "allowCapture": true });
 			return true;
 		}
 	}
@@ -4494,11 +4495,11 @@ UnitAI.prototype.AttackEntityInZone = function(ents, forceResponse)
 {
 	for each (var target in ents)
 	{
-		var type = this.GetBestAttackAgainst(target);
+		var type = this.GetBestAttackAgainst(target, true);
 		if (this.CanAttack(target, forceResponse) && this.CheckTargetDistanceFromHeldPosition(target, IID_Attack, type)
 		    && (this.GetStance().respondChaseBeyondVision || this.CheckTargetIsInVisionRange(target)))
 		{
-			this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse });
+			this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse, "allowCapture": true });
 			return true;
 		}
 	}
@@ -4926,7 +4927,7 @@ UnitAI.prototype.LeaveFoundation = function(target)
 /**
  * Adds attack order to the queue, forced by the player.
  */
-UnitAI.prototype.Attack = function(target, queued)
+UnitAI.prototype.Attack = function(target, queued, allowCapture)
 {
 	if (!this.CanAttack(target))
 	{
@@ -4938,8 +4939,7 @@ UnitAI.prototype.Attack = function(target, queued)
 			this.WalkToTarget(target, queued);
 		return;
 	}
-
-	this.AddOrder("Attack", { "target": target, "force": true }, queued);
+	this.AddOrder("Attack", { "target": target, "force": true, "allowCapture": allowCapture}, queued);
 };
 
 /**

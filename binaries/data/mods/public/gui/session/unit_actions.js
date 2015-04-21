@@ -87,11 +87,34 @@ var unitActions =
 		"specificness": 30,
 	},
 
-	"attack": 
+	"capture": 
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued});
+			Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "allowCapture": true, "queued": queued});
+			Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
+			return true;
+		},
+		"getActionInfo": function(entState, targetState)
+		{
+			if (!entState.attack || !targetState.hitpoints)
+				return false;
+			return {"possible": Engine.GuiInterfaceCall("CanCapture", {"entity": entState.id, "target": targetState.id})};
+		},
+		"actionCheck": function(target)
+		{
+			if (getActionInfo("capture", target).possible) // TODO find better cursor
+				return {"type": "capture", "cursor": "action-attack", "target": target};
+			return false;
+		},
+		"specificness": 9,
+	},
+
+	"attack":
+	{
+		"execute": function(target, action, selection, queued)
+		{
+			Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued, "allowCapture": false});
 			Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
 			return true;
 		},
