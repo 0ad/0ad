@@ -64,7 +64,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	// priority of the queues we'll create.
 	var priority = 70;
 
-	// priority is relative. If all are 0, the only relevant criteria is "currentsize/targetsize".
+	// unitStat priority is relative. If all are 0, the only relevant criteria is "currentsize/targetsize".
 	// if not, this is a "bonus". The higher the priority, the faster this unit will get built.
 	// Should really be clamped to [0.1-1.5] (assuming 1 is default/the norm)
 	// Eg: if all are priority 1, and the siege is 0.5, the siege units will get built
@@ -470,6 +470,16 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		if (this.canBuildUnits)
 		{
 			// We still have time left to recruit units and do stuffs.
+			if (!this.unitStat["Siege"])
+			{
+				var numSiegeBuilder = 0;
+				if (gameState.civ() !== "mace" && gameState.civ() !== "maur")
+					numSiegeBuilder += gameState.getOwnEntitiesByClass("Fortress", true).filter(API3.Filters.isBuilt()).length;
+				if (gameState.civ() === "mace" || gameState.civ() === "maur" || gameState.civ() === "rome")
+					numSiegeBuilder += gameState.countEntitiesByType(this.bAdvanced[0], true);
+				if (numSiegeBuilder > 0)
+					this.addSiegeUnits(gameState);
+			}
 			this.trainMoreUnits(gameState);
 			// may happen if we have no more training facilities and build orders are canceled
 			if (this.buildOrder.length == 0)
@@ -1385,9 +1395,16 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress", "StoneWall"], "vetoEntities": veto};
 		}
 		if (this.target.hasClass("Structure"))
-			targetClassesSiege = {"attack": ["Structure"], "vetoEntities": veto};
+			targetClassesSiege = {"attack": ["Structure"], "avoid": [], "vetoEntities": veto};
 		else
-			targetClassesSiege = {"attack": ["Unit", "Structure"], "vetoEntities": veto};
+			targetClassesSiege = {"attack": ["Unit", "Structure"], "avoid": [], "vetoEntities": veto};
+
+		// do not loose time destroying buildings which do not help enemy's defense and can be easily captured later
+		if (this.target.getDefaultArrow() || this.target.getArrowMultiplier())
+		{
+			targetClassesUnit.avoid = targetClassesUnit.avoid.concat("House", "Storehouse", "Farmstead", "Field", "Blacksmith");
+			targetClassesSiege.avoid = targetClassesSiege.avoid.concat("House", "Storehouse", "Farmstead", "Field", "Blacksmith");
+		}
 
 		if (this.unitCollUpdateArray === undefined || this.unitCollUpdateArray.length == 0)
 			this.unitCollUpdateArray = this.unitCollection.toIdArray();
@@ -1509,7 +1526,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				{
 					if (!ent.hasClass("Ranged"))
 					{
-						let targetClasses = {"attack": targetClassesSiege.attack, "avoid": ["Ship"], "vetoEntities": veto};
+						let targetClasses = {"attack": targetClassesSiege.attack, "avoid": targetClassesSiege.avoid.concat("Ship"), "vetoEntities": veto};
 						ent.attackMove(this.targetPos[0], this.targetPos[1], targetClasses);
 					}
 					else

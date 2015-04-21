@@ -289,6 +289,9 @@ m.HQ.prototype.OnCityPhase = function(gameState)
 	if (this.Config.difficulty > 2 && this.femaleRatio > 0.3)
 		this.femaleRatio = 0.3;
 
+	// increase the priority of defense buildings to free this queue for our first fortress
+	gameState.ai.queueManager.changePriority("defenseBuilding", 2*this.Config.priorities.defenseBuilding);
+
 	this.phaseStarted = 3;
 };
 
@@ -1249,50 +1252,34 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 // Deals with building fortresses and towers along our border with enemies.
 m.HQ.prototype.buildDefenses = function(gameState, queues)
 {
-	if (this.saveResources)
+	if (this.saveResources || queues.defenseBuilding.length() !== 0)
 		return;
 
 	if (gameState.currentPhase() > 2 || gameState.isResearching(gameState.cityPhase()))
 	{
 		// try to build fortresses
-		var fortressType = "structures/{civ}_fortress";
-		if (queues.defenseBuilding.length() == 0 && this.canBuild(gameState, fortressType))
+		if (this.canBuild(gameState, "structures/{civ}_fortress"))
 		{
-			var numFortresses = gameState.getOwnEntitiesByClass("Fortress", true).length;
-			if (gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime)
+			let numFortresses = gameState.getOwnEntitiesByClass("Fortress", true).length;
+			if ((numFortresses == 0 || gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime)
+				&& gameState.getOwnFoundationsByClass("Fortress").length < 2)
 			{
 				this.fortressStartTime = gameState.ai.elapsedTime;
-				queues.defenseBuilding.addItem(new m.ConstructionPlan(gameState, fortressType));
+				if (numFortresses == 0)
+					gameState.ai.queueManager.changePriority("defenseBuilding", 2*this.Config.priorities.defenseBuilding);
+				let plan = new m.ConstructionPlan(gameState, "structures/{civ}_fortress");
+				plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("defenseBuilding", gameState.ai.Config.priorities.defenseBuilding); };
+				queues.defenseBuilding.addItem(plan);
 			}
-		}
-
-		// let's add a siege building plan to the current attack plan if there is none currently.
-		var numSiegeBuilder = 0;
-		if (gameState.civ() !== "mace" && gameState.civ() !== "maur")
-			numSiegeBuilder += gameState.getOwnEntitiesByClass("Fortress", true).filter(API3.Filters.isBuilt()).length;
-		if (gameState.civ() === "mace" || gameState.civ() === "maur" || gameState.civ() === "rome")
-			numSiegeBuilder += gameState.countEntitiesByType(this.bAdvanced[0], true);
-		if (numSiegeBuilder > 0)
-		{
-			var attack = undefined;
-			// There can only be one upcoming attack
-			if (this.attackManager.upcomingAttacks["Attack"].length != 0)
-				attack = this.attackManager.upcomingAttacks["Attack"][0];
-			else if (this.attackManager.upcomingAttacks["HugeAttack"].length != 0)
-				attack = this.attackManager.upcomingAttacks["HugeAttack"][0];
-
-			if (attack && !attack.unitStat["Siege"])
-				attack.addSiegeUnits(gameState);
 		}
 	}
 
-	if (gameState.currentPhase() < 2 
-		|| queues.defenseBuilding.length() != 0
-		|| !this.canBuild(gameState, "structures/{civ}_defense_tower"))
+	if (gameState.currentPhase() < 2 || !this.canBuild(gameState, "structures/{civ}_defense_tower"))
 		return;	
 
-	var numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).length;
-	if (gameState.ai.elapsedTime > (1 + 0.10*numTowers)*this.towerLapseTime + this.towerStartTime)
+	let numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).length;
+	if ((numTowers == 0 || gameState.ai.elapsedTime > (1 + 0.10*numTowers)*this.towerLapseTime + this.towerStartTime)
+		&& gameState.getOwnFoundationsByClass("DefenseTower").length < 3)
 	{
 		this.towerStartTime = gameState.ai.elapsedTime;
 		queues.defenseBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower"));
