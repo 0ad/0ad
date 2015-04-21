@@ -476,7 +476,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 				if (gameState.civ() !== "mace" && gameState.civ() !== "maur")
 					numSiegeBuilder += gameState.getOwnEntitiesByClass("Fortress", true).filter(API3.Filters.isBuilt()).length;
 				if (gameState.civ() === "mace" || gameState.civ() === "maur" || gameState.civ() === "rome")
-					numSiegeBuilder += gameState.countEntitiesByType(this.bAdvanced[0], true);
+					numSiegeBuilder += gameState.countEntitiesByType(gameState.ai.HQ.bAdvanced[0], true);
 				if (numSiegeBuilder > 0)
 					this.addSiegeUnits(gameState);
 			}
