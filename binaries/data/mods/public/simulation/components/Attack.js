@@ -238,10 +238,6 @@ Attack.prototype.GetRestrictedClasses = function(type)
 
 Attack.prototype.CanAttack = function(target)
 {
-	var cmpArmour = Engine.QueryInterface(target, IID_DamageReceiver);
-	if (!cmpArmour)
-		return false;
-
 	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 		return true;

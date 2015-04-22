@@ -122,6 +122,8 @@ Mirage.prototype.GetCapturePoints = function()
 	return this.capturePoints;
 };
 
+Mirage.prototype.CanCapture = Capturable.prototype.CanCapture;
+
 // ResourceSupply data
 
 Mirage.prototype.CopyResourceSupply = function(maxAmount, amount, type, isInfinite)

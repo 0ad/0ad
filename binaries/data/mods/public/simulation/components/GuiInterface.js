@@ -1714,9 +1714,15 @@ GuiInterface.prototype.CanCapture = function(player, data)
 	if (!cmpAttack)
 		return false;
 
-	var cmpPlayer = QueryOwnerInterface(data.entity);
-	var cmpCapturable = Engine.QueryInterface(data.target, IID_Capturable);
-	if (cmpCapturable && cmpCapturable.CanCapture(cmpPlayer.GetPlayerID()) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
+	var owner = QueryOwnerInterface(data.entity).GetPlayerID();
+
+	var cmp = Engine.QueryInterface(data.target, IID_Mirage);
+	if (cmp && !cmp.Capturable())
+		return false
+	else if (!cmp)
+		var cmp = Engine.QueryInterface(data.target, IID_Capturable);
+
+	if (cmp && cmp.CanCapture(owner) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
 		return cmpAttack.CanAttack(data.target);
 
 	return false;
