@@ -103,8 +103,8 @@ var unitActions =
 		},
 		"actionCheck": function(target)
 		{
-			if (getActionInfo("capture", target).possible) // TODO find better cursor
-				return {"type": "capture", "cursor": "action-attack", "target": target};
+			if (getActionInfo("capture", target).possible)
+				return {"type": "capture", "cursor": "action-capture", "target": target};
 			return false;
 		},
 		"specificness": 9,
