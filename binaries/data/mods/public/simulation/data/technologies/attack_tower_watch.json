@@ -14,7 +14,7 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "helmet_corinthian_bronze.png",
 	"researchTime": 40,
-	"tooltip": "Post sentries to double the number of default arrows in ungarrisoned Towers.",
+	"tooltip": "Post sentries to add one arrow to towers.",
 	"modifications": [{"value": "BuildingAI/DefaultArrowCount", "add": 1.0}],
 	"affects": ["Defensive Tower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
