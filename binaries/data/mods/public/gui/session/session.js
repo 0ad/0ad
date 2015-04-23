@@ -624,7 +624,8 @@ function updateHero()
 		tooltip += "\n" + getAttackTooltip(heroState);
 
 	tooltip += "\n" + getArmorTooltip(heroState.armour);
-	tooltip += "\n" + template.tooltip;
+	if (template.tooltip)
+		tooltip += "\n" + template.tooltip;
 
 	heroButton.tooltip = tooltip;
 	

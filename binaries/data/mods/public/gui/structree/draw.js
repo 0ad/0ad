@@ -254,13 +254,7 @@ function assembleTooltip(template)
 		txt += '\n' + txtFormats.body[0] +  translate(template.tooltip) + txtFormats.body[1];
 
 	if (template.auras)
-		for (let aura in template.auras)
-			txt += '\n' + sprintf(translate("%(auralabel)s %(aurainfo)s"), {
-				auralabel: txtFormats.header[0] + sprintf(translate("%(auraname)s:"), {
-						auraname: translate(aura)
-					}) + txtFormats.header[1],
-				aurainfo: txtFormats.body[0] + translate(template.auras[aura]) + txtFormats.body[1]
-			});
+		txt += getAurasTooltip(template);
 
 	if (template.health)
 		txt += '\n' + sprintf(translate("%(label)s %(details)s"), {

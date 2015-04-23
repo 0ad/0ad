@@ -426,6 +426,21 @@ function getHealerTooltip(template)
 	return healer.join(translate(", "));
 }
 
+function getAurasTooltip(template)
+{
+	if (!template.auras)
+		return "";
+
+	var txt = "";
+	for (let aura in template.auras)
+		txt += '\n' + sprintf(translate("%(auralabel)s %(aurainfo)s"), {
+			auralabel: txtFormats.header[0] + sprintf(translate("%(auraname)s:"), {
+				auraname: translate(aura)
+			}) + txtFormats.header[1],
+		aurainfo: txtFormats.body[0] + translate(template.auras[aura]) + txtFormats.body[1]
+		});
+	return txt;
+}
 
 function getEntityNames(template)
 {

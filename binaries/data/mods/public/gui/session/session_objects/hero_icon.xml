@@ -6,7 +6,6 @@
 >
 	<object name="unitHeroButton" size="0 0 50 50" type="button" style="iconButton" 
 		tooltip_style="sessionToolTip">
-		<translatableAttribute id="tooltip">Attack and Armor</translatableAttribute>
 		<object name="unitHeroImage" size="5 5 100%-5 100%-5" type="image" ghost="true"/>
 		<object name="heroHitOverlay" hidden="true" type="image" ghost="true" size="5 5 100%-5 100%-5"/> 
 	</object>

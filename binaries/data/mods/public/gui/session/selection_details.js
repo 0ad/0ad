@@ -26,7 +26,7 @@ function displaySingle(entState, template)
 {
 	// Get general unit and player data
 	var specificName = template.name.specific;
-	var genericName = template.name.generic != template.name.specific ? template.name.generic : "";
+	var genericName = template.name.generic;
 	// If packed, add that to the generic name (reduces template clutter)
 	if (genericName && template.pack && template.pack.state == "packed")
 		genericName = sprintf(translate("%(genericName)s — Packed"), { genericName: genericName });
@@ -40,9 +40,7 @@ function displaySingle(entState, template)
 
 	// Indicate disconnected players by prefixing their name
 	if (g_Players[entState.player].offline)
-	{
 		playerName = sprintf(translate("\\[OFFLINE] %(player)s"), { player: playerName });
-	}
 
 	// Rank
 	if (entState.identity && entState.identity.rank && entState.identity.classes)
@@ -71,7 +69,8 @@ function displaySingle(entState, template)
 			// logic comes from Foundation component.
 			var speed = Math.pow(entState.foundation.numBuilders, 0.7);
 			var timeLeft = (1.0 - entState.foundation.progress / 100.0) * template.cost.time;
-			Engine.GetGUIObjectByName("health").tooltip = sprintf(translate("This foundation will be completed in %(numb)s seconds."), { numb : Math.ceil(timeLeft/speed) });
+			var timeToCompletion = Math.ceil(timeLeft/speed);
+			Engine.GetGUIObjectByName("health").tooltip = sprintf(translatePlural("This foundation will be completed in %(seconds)s second.", "This foundation will be completed in %(seconds)s seconds.", timeToCompletion), { "seconds": timeToCompletion });
 		}
 		else
 			Engine.GetGUIObjectByName("health").tooltip = "";
@@ -86,8 +85,7 @@ function displaySingle(entState, template)
 	Engine.GetGUIObjectByName("captureSection").hidden = !entState.capturePoints;
 	if (entState.capturePoints)
 	{
-		let setCaptureBarPart = function(playerID, startSize)
-		{
+		let setCaptureBarPart = function(playerID, startSize) {
 			var unitCaptureBar = Engine.GetGUIObjectByName("captureBar["+playerID+"]");
 			var sizeObj = unitCaptureBar.size;
 			sizeObj.rleft = startSize;
@@ -98,7 +96,7 @@ function displaySingle(entState, template)
 			unitCaptureBar.sprite = "color: " + rgbToGuiColor(g_Players[playerID].color, 128);
 			unitCaptureBar.hidden=false;
 			return startSize + size;
-		}
+		};
 
 		// first handle the owner's points, to keep those points on the left for clarity
 		let size = setCaptureBarPart(entState.player, 0);
@@ -106,7 +104,6 @@ function displaySingle(entState, template)
 		for (let i in entState.capturePoints)
 			if (i != entState.player)
 				size = setCaptureBarPart(i, size);
-
 
 		Engine.GetGUIObjectByName("captureStats").caption = sprintf(translate("%(capturePoints)s / %(maxCapturePoints)s"), {
 			capturePoints: Math.ceil(entState.capturePoints[entState.player]),
@@ -159,7 +156,6 @@ function displaySingle(entState, template)
 			Engine.GetGUIObjectByName("resourceSection").size = Engine.GetGUIObjectByName("captureSection").size;
 		else
 			Engine.GetGUIObjectByName("resourceSection").size = Engine.GetGUIObjectByName("healthSection").size;
-
 	}
 
 	// Resource carrying
@@ -199,12 +195,11 @@ function displaySingle(entState, template)
 		{
 			var speedup = Math.pow((entState.foundation.numBuilders+1)/entState.foundation.numBuilders, 0.7);
 			var timeLeft = (1.0 - entState.foundation.progress / 100.0) * template.cost.time;
-			Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Number of builders.\nTasking another to this foundation would speed construction up by %(numb)s seconds."), { numb : Math.ceil(timeLeft - timeLeft/speedup) });
+			var timeSpeedup = Math.ceil(timeLeft - timeLeft/speedup);
+			Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translatePlural("Number of builders.\nTasking another to this foundation would speed construction up by %(speedup)s second.", "Number of builders.\nTasking another to this foundation would speed construction up by %(speedup)s seconds.", timeSpeedup), { "speedup": timeSpeedup });
 		}
 		else
-		{
 			Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = translate("Number of builders.");
-		}
 	}
 	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints) && entState.visibility == "visible")
 	{
@@ -225,15 +220,10 @@ function displaySingle(entState, template)
 	Engine.GetGUIObjectByName("player").caption = playerName;
 	Engine.GetGUIObjectByName("playerColorBackground").sprite = "color: " + playerColor;
 	
-	if (genericName)
-	{
+	if (genericName !== specificName)
 		Engine.GetGUIObjectByName("generic").caption = sprintf(translate("(%(genericName)s)"), { genericName: genericName });
-	}
 	else
-	{
 		Engine.GetGUIObjectByName("generic").caption = "";
-
-	}
 
 	if ("gaia" != playerState.civ)
 	{
@@ -248,14 +238,10 @@ function displaySingle(entState, template)
 
 	// Icon image
 	if (template.icon)
-	{
 		Engine.GetGUIObjectByName("icon").sprite = "stretched:session/portraits/" + template.icon;
-	}
 	else
-	{
 		// TODO: we should require all entities to have icons, so this case never occurs
 		Engine.GetGUIObjectByName("icon").sprite = "bkFillBlack";
-	}
 
 	var armorString = getArmorTooltip(entState.armour);
 
@@ -281,14 +267,7 @@ function displaySingle(entState, template)
 	}
 
 	if (template.auras)
-	{
-		for (var auraName in template.auras)
-		{
-			iconTooltip += "\n[font=\"sans-bold-13\"]" + translate(auraName) + "[/font]";
-			if (template.auras[auraName])
-				iconTooltip += ": " + translate(template.auras[auraName]);
-		}
-	}
+		iconTooltip += getAurasTooltip(template);
 
 	if (template.tooltip)
 		iconTooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
