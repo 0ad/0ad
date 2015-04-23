@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2015-03-06 17:27+0000\n"
-"Last-Translator: Rayan <nitro361@gmail.com>\n"
+"PO-Revision-Date: 2015-04-15 07:31+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +59,7 @@ msgstr "غ/م"
 #: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr "%(nick)s (%(rating)s)"
+msgstr "%(nick)s ‏(%(rating)s)"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 #, javascript-format
@@ -93,7 +93,7 @@ msgstr "مجهول"
 
 #: gui/lobby/lobby.js:511
 msgid "A randomly selected map."
-msgstr "خريطة مُحدَّدة عشوائيًّا."
+msgstr "خريطة محدّدة عشوائيًّا."
 
 #: gui/lobby/lobby.js:537
 msgid "Sorry, no description available."
@@ -139,7 +139,7 @@ msgstr "* %(sender)s"
 #: gui/lobby/lobby.js:905
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr "%(sender)s %(action)s"
+msgstr "%(sender)s ‏%(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:909 gui/lobby/lobby.js:920 gui/lobby/lobby.js:933
@@ -151,7 +151,7 @@ msgstr "<%(sender)s>"
 #: gui/lobby/lobby.js:911 gui/lobby/lobby.js:922 gui/lobby/lobby.js:935
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr "%(sender)s %(message)s"
+msgstr "%(sender)s ‏%(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:916
@@ -195,7 +195,7 @@ msgstr "يسجّل..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr "فضلًا أدخِل اسم المستخدم"
+msgstr "فضلًا أدخل اسم المستخدم"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
@@ -203,11 +203,11 @@ msgstr "لا يمكن لأسماء المستخدمين احتواء [، أو ]�
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr "فضلًا أدخِل كلمة المرور"
+msgstr "فضلًا أدخل كلمة المرور"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr "فضلًا أدخِل كلمة المرور ثانيةً"
+msgstr "فضلًا أدخِل كلمة المرور مجدّدًا"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -275,7 +275,7 @@ msgstr "الخسائر:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):316
 msgid "Win Rate:"
-msgstr "معدل الفوز:"
+msgstr "معدّل الفوز:"
 
 #: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
 msgid "Leaderboard"
@@ -324,11 +324,11 @@ msgstr "حدّث"
 
 #: gui/lobby/lobby.xml:(caption):282
 msgid "Enter username:"
-msgstr "أدخِل اسم المستخدم:"
+msgstr "أدخل اسم المستخدم:"
 
 #: gui/lobby/lobby.xml:(caption):288
 msgid "View Profile"
-msgstr "مشاهدة الملفّ الشخصيّ"
+msgstr "اعرض الملفّ الشخصيّ"
 
 #: gui/lobby/lobby.xml:(caption):321
 msgid "Player not found."
@@ -345,7 +345,7 @@ msgstr "الاسم"
 
 #: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):257
 msgid "Rating"
-msgstr "التقييم"
+msgstr "التّقييم"
 
 #: gui/lobby/lobby.xml:(heading):179
 msgid "Map Name"
@@ -359,7 +359,7 @@ msgstr "الحجم"
 #: gui/lobby/lobby.xml:(heading):185
 msgctxt "map"
 msgid "Type"
-msgstr "النوع"
+msgstr "النّوع"
 
 #: gui/lobby/lobby.xml:(heading):188
 msgid "Players"
@@ -395,7 +395,7 @@ msgstr "سجّل"
 
 #: gui/lobby/prelobby.xml:(caption):73
 msgid "Password again:"
-msgstr "كلمة المرور ثانيةً:"
+msgstr "كلمة المرور مجدّدًا:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
@@ -449,7 +449,7 @@ msgstr " 1. اتّباع كلّ سياسات الاستخدام."
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr " 2. السماح بجمع إحصائيّات تعريف المستخدم لأغراض التقييم، ملفات المستخدمين الشخصيّة وإحصائيّات المجتمع."
+msgstr " 2. السّماح بجمع إحصائيّات تعريف المستخدم لأغراض التّقييم، وملفّات المستخدمين الشّخصيّة وإحصائيّات المجتمع."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
@@ -511,7 +511,7 @@ msgstr "شروط استعمال ردهة اللاعبين لـ\"0.A.D الامب
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr " * \"الانتحال\" يعود إلى إجراء محاولتك لاستغلال معرّف آخر لمصالحك الخاصّة."
+msgstr " * \"الانتحال\" يشير إلى إجراء محاولتك لاستغلال معرّف آخر لمصالحك الخاصّة."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
@@ -574,7 +574,7 @@ msgstr "7. عدم محاولة ضبط مصطنع أي مستخدم لتقييم 
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr " 8. السماح لنفسك بأن تُزال من الخدمة في أيّ وقت يرى فيه المدير أنّ سلوكك ليس متناسقًا مع هذه القوانين."
+msgstr " 8. السّماح لنفسك بأن تُزال من الخدمة في أيّ وقت يرى فيه المدير أنّ سلوكك ليس متناسقًا مع هذه القوانين."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""

@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Adrian Pappas <pappasadrian@gmail.com>, 2013
-# Chris Vl <chrisvl97@gmail.com>, 2014
+# Chris Vl <inactive+chrisvl97@transifex.com>, 2014
 # crippledmoon <domas392@in.gr>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
 # Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2015
@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-26 03:22+0000\n"
-"Last-Translator: Dimitrios Kekakos <mitsoskekakos@gmail.com>\n"
+"POT-Creation-Date: 2015-04-02 02:49+0200\n"
+"PO-Revision-Date: 2015-04-02 09:53+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,12 +52,12 @@ msgid "Resume"
 msgstr "Συνέχεια"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:476 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ναι"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:476 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Όχι"
 
@@ -401,139 +401,148 @@ msgstr "[ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ] %(player)s"
 msgid "%(rank)s Rank"
 msgstr "%(rank)s Βαθμίδα"
 
-#: gui/session/selection_details.js:68
+#: gui/session/selection_details.js:73
+#, javascript-format
+msgid "This foundation will be completed in %(numb)s seconds."
+msgstr ""
+
+#: gui/session/selection_details.js:78
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:95
+#: gui/session/selection_details.js:105
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:96 gui/session/selection_details.js:102
+#: gui/session/selection_details.js:106 gui/session/selection_details.js:112
 msgid "Experience:"
 msgstr "Εμπειρία:"
 
-#: gui/session/selection_details.js:101
+#: gui/session/selection_details.js:111
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:115
+#: gui/session/selection_details.js:125
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:116 gui/session/selection_details.js:149
-#: gui/session/selection_details.js:180
+#: gui/session/selection_details.js:126 gui/session/selection_details.js:159
+#: gui/session/selection_details.js:199
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:125
+#: gui/session/selection_details.js:135
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:164
+#: gui/session/selection_details.js:174
 #, javascript-format
 msgid "Gain: %(amount)s"
 msgstr "Όφελος: %(amount)s"
 
-#: gui/session/selection_details.js:173
+#: gui/session/selection_details.js:187
 #, javascript-format
 msgid ""
 "Number of builders.\n"
-"Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr "Αριθμός χτιστών.\nΠροσθέτοντας ακόμα έναν σ'αυτή την οικοδομή θα επιτάχυνε τη κατασκευή κατά %(numb)s%%"
+"Tasking another to this foundation would speed construction up by %(numb)s seconds."
+msgstr ""
 
-#: gui/session/selection_details.js:181
+#: gui/session/selection_details.js:191
+msgid "Number of builders."
+msgstr ""
+
+#: gui/session/selection_details.js:200
 msgid "Current/max gatherers"
 msgstr "Τρέχων/Μέγιστος συλλεκτών"
 
-#: gui/session/selection_details.js:196
+#: gui/session/selection_details.js:215
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:242
+#: gui/session/selection_details.js:261
 msgid "Classes:"
 msgstr "Τάξεις:"
 
-#: gui/session/selection_details.js:295
+#: gui/session/selection_details.js:314
 msgid "Hitpoints:"
 msgstr "Πόντοι πληγμάτων:"
 
-#: gui/session/selection_details.js:296 gui/session/session.js:622
+#: gui/session/selection_details.js:315 gui/session/session.js:621
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_panels.js:87
+#: gui/session/selection_panels.js:91
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Αγόρασε %(resource)s"
 
-#: gui/session/selection_panels.js:88
+#: gui/session/selection_panels.js:92
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Πούλησε %(resource)s"
 
-#: gui/session/selection_panels.js:216 gui/session/selection_panels.js:998
+#: gui/session/selection_panels.js:220 gui/session/selection_panels.js:1005
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Απαιτείται η τεχνολογία %(technology)s"
 
-#: gui/session/selection_panels.js:329
+#: gui/session/selection_panels.js:337
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Ξεφόρτωμα %(name)s"
 
-#: gui/session/selection_panels.js:330
+#: gui/session/selection_panels.js:338
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Μονό-κλικ για να να ξεφορτώθει 1. Shift-κλικ για να ξεφορτώθουν πάντες αυτού του τύπου."
 
-#: gui/session/selection_panels.js:397
+#: gui/session/selection_panels.js:405
 msgid "Lock Gate"
 msgstr "Κλείδωμα Πύλης"
 
-#: gui/session/selection_panels.js:403
+#: gui/session/selection_panels.js:411
 msgid "Unlock Gate"
 msgstr "Ξεκλείδωμα Πύλης"
 
-#: gui/session/selection_panels.js:508
+#: gui/session/selection_panels.js:516
 msgid "Pack"
 msgstr "Πακετάρισμα"
 
-#: gui/session/selection_panels.js:510
+#: gui/session/selection_panels.js:518
 msgid "Unpack"
 msgstr "Άνοιγμα πακέτου"
 
-#: gui/session/selection_panels.js:512
+#: gui/session/selection_panels.js:520
 msgid "Cancel Packing"
 msgstr "Ακύρωση πακεταρίσματος "
 
-#: gui/session/selection_panels.js:514
+#: gui/session/selection_panels.js:522
 msgid "Cancel Unpacking"
 msgstr "Ακύρωση ξεπακεταρίσματος "
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:595
 msgid "Insufficient population capacity:"
 msgstr "Aνεπαρκής χωρητικότητα πληθυσμού:"
 
-#: gui/session/selection_panels.js:588
+#: gui/session/selection_panels.js:596
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:707
+#: gui/session/selection_panels.js:715
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Απομένει: %(number)s να χτιστεί."
 msgstr[1] "Απομένουν: %(number)s να χτιστούν."
 
-#: gui/session/selection_panels.js:986 gui/session/session.js:621
+#: gui/session/selection_panels.js:993 gui/session/session.js:620
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Υγεία:"
@@ -630,44 +639,44 @@ msgstr "Ηττηθήκατε..."
 msgid "You have abandoned the game."
 msgstr "Εγκαταλείψατε το παιχνίδι."
 
-#: gui/session/session.js:471
+#: gui/session/session.js:470
 msgid "OK"
 msgstr "ΟΚ"
 
-#: gui/session/session.js:473
+#: gui/session/session.js:472
 msgid "Press OK to continue"
 msgstr "Πατήστε ΟΚ για να συνεχίσετε"
 
-#: gui/session/session.js:479
+#: gui/session/session.js:478
 msgid "Do you want to quit?"
 msgstr "Θέλετε να αποχωρήσετε;"
 
-#: gui/session/session.js:485
+#: gui/session/session.js:484
 msgid "DEFEATED!"
 msgstr "ΗΤΤΗΘΗΚΑΤΕ!"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:492
 msgid "VICTORIOUS!"
 msgstr "ΕΙΣΤΕ ΝΙΚΗΤΗΣ!"
 
-#: gui/session/session.js:781
+#: gui/session/session.js:780
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/session/session.js:883
+#: gui/session/session.js:882
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Έκδοση: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:888
+#: gui/session/session.js:887
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Σημείωση: Η λειτουργία χρονική δίνη είναι μια επιλογή προγραμματισμού, και δεν προορίζεται για χρήση σε μεγάλες χρονικές περιόδους. Χρησιμοποιώντας τη λάθος μπορεί να προκαλέσει το παιχνίδι να ξεμείνει από μνήμη ή να κρασάρει."
 
-#: gui/session/session.js:888
+#: gui/session/session.js:887
 msgid "Time warp mode"
 msgstr "Λειτουργία στρέβλωσης του χρόνου"
 

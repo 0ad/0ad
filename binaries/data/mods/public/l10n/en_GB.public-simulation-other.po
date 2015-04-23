@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:09+0100\n"
-"PO-Revision-Date: 2015-02-09 19:51+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"POT-Creation-Date: 2015-04-02 02:50+0200\n"
+"PO-Revision-Date: 2015-04-13 01:12+0000\n"
+"Last-Translator: Laurene Albrand\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,14 +38,26 @@ msgstr "Here is a gift for %(name)s, make a good use of it."
 msgid "I see you are in a bad situation %(name)s, I hope this will help."
 msgstr "I see you are in a bad situation %(name)s, I hope this will help."
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:34
+#, javascript-format
+msgid "I am in need of %(resource)s, can you help? I will make it up to you."
+msgstr "I am in need of %(resource)s, can you help? I will make it up to you."
+
+#: simulation/ai/petra/chatHelper.js:36
+#, javascript-format
+msgid ""
+"I would particate more efficiently in our common war effort if you could "
+"provide me some %(resource)s."
+msgstr "I would particate more efficiently in our common war effort if you could provide me some %(resource)s."
+
+#: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid ""
 "I have set up a new route with %(name)s. Trading will be profitable for all "
 "of us."
 msgstr "I have set up a new route with %(name)s. Trading will be profitable for all of us."
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:49
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(name)s. Take your share of the profits"
@@ -200,13 +213,13 @@ msgid ""
 "Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
 " initially but later in the game it is best to maximize efficiency as you "
 "are able to train more citizen soldiers."
-msgstr ""
+msgstr "Move 3 women from wood and 3 from stone to farming. Women are cheap to train initially but later in the game it is best to maximise efficiency as you are able to train more citizen soldiers."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
 "The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr ""
+msgstr "The slingers that you queued earlier should gather stone once they are trained."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
@@ -219,7 +232,7 @@ msgstr "Next queue a batch of slingers."
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:183
 msgid ""
 "Send some of the stone miners to mine metal, getting ready for the next age."
-msgstr ""
+msgstr "Send some of the stone miners to mine metal, getting ready for the next age."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:193
 msgid "Start researching Phase 2."
@@ -234,7 +247,7 @@ msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
-msgstr ""
+msgstr "When you have advanced, use a single citizen soldier to place a barracks foundation. Then use the rest of the non food or house building female citizens to construct it."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
@@ -256,13 +269,13 @@ msgstr "This is the end of the walkthrough. This should give you a good idea of 
 msgid ""
 "At this point you should be able to fully use both training facilities, keep"
 " putting units into economic work, to keep growing faster and faster."
-msgstr ""
+msgstr "At this point you should be able to fully use both training facilities, keep putting units into economic work, to keep growing faster and faster."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:228
 msgid ""
 "From this point you have a good base to build an army and wipe out the "
 "opposition."
-msgstr ""
+msgstr "From this point you have a good base to build an army and wipe out the opposition."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
@@ -284,76 +297,76 @@ msgstr " - Use all of your resources, stockpiled resources are waste, having too
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
-msgstr ""
+msgstr " - Use the right units for the right task, female citizens gather food, cavalry hunt, citizen soldiers do the rest."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
 " - Don't be afraid to swap units from one resource to another, see point 2. "
 "Make sure they deposit what they are carrying first though."
-msgstr ""
+msgstr " - Don't be afraid to swap units from one resource to another, see point 2. Make sure they deposit what they are carrying first though."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible, it "
 "is the only training building until town phase."
-msgstr ""
+msgstr " - Build enough houses, your CC should be kept busy as much as possible, it is the only training building until town phase."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
-msgstr ""
+msgstr " - Female citizens are cheap, so you can build more of them and gather more resources."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
 " - Don't get carried away on the last point or you will get raided and have "
 "no defense."
-msgstr ""
+msgstr " - Don't get carried away on the last point or you will get raided and have no defence."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:273
 msgid ""
 "Each map is different, so you will need to play slightly differently on "
 "each. This should give an outline for a high resource map."
-msgstr ""
+msgstr "Each map is different, so you will need to play slightly differently on each. This should give an outline for a high resource map."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:4
 msgid ""
 "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
 "Right-click on a berry bush nearby to make the unit collect food. Female "
 "citizens gather food faster than other units."
-msgstr ""
+msgstr "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then Right-click on a berry bush nearby to make the unit collect food. Female citizens gather food faster than other units."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr ""
+msgstr "Select the citizen-soldier, right-click on a tree near the Civil Center to begin collecting wood. Citizen-soldiers gather wood faster than female citizens."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
 "Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
 "in the row) once to begin training 5 Hoplites."
-msgstr ""
+msgstr "Select the Civil Centre building, and shift-click on the Hoplite icon (2nd in the row) once to begin training 5 Hoplites."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:15
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
-msgstr ""
+msgstr "Select the two idle female citizens and build a house nearby by selecting the house icon. Place the house by left-clicking on a piece of land."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:21
 msgid ""
 "Select the newly trained Hoplites and assign them to build a storehouse "
 "beside some nearby trees. They will begin to gather wood when it's "
 "constructed."
-msgstr ""
+msgstr "Select the newly trained Hoplites and assign them to build a storehouse beside some nearby trees. They will begin to gather wood when it's constructed."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:27
 msgid ""
 "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
 "in the row) in the Civil Center."
-msgstr ""
+msgstr "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd in the row) in the Civil Centre."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:33
 msgid ""
@@ -366,34 +379,34 @@ msgid ""
 "Once the farmstead is constructed, its builders will automatically begin "
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
-msgstr ""
+msgstr "Once the farmstead is constructed, its builders will automatically begin gathering food if there is any nearby. Select the builders and instead make them construct a field beside the farmstead."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:45
 msgid ""
 "The field's builders will now automatically begin collecting food from the "
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
-msgstr ""
+msgstr "The field's builders will now automatically begin collecting food from the field. Using the newly created group of skirmishers, get them to build another house nearby."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:51
 msgid ""
 "Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
 "selected right click on a tree nearby. Units from the Civil Center will now "
 "automatically gather wood."
-msgstr ""
+msgstr "Train 5 Hoplites from the Civil Centre. Select the Civil Centre and with it selected right click on a tree nearby. Units from the Civil Centre will now automatically gather wood."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:57
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
-msgstr ""
+msgstr "Order the idle Skirmishers to build an outpost to the north east at the edge of your territory.  This will be the fifth Village Phase structure that you have built, allowing you to advance to the Town Phase."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:63
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr ""
+msgstr "Select the Civil Centre again and advance to Town Phase by clicking on the 'II' icon. This will allow Town Phase buildings to be constructed."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
@@ -405,35 +418,35 @@ msgstr "Start building 5 female citizens in the Civil Center and set its rally p
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
-msgstr ""
+msgstr "Build a Barracks nearby. Whenever your population limit is reached, build an extra house using any available builder units."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:80
 msgid ""
 "Prepare for an attack by an enemy player. Build more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
-msgstr ""
+msgstr "Prepare for an attack by an enemy player. Build more soldiers using the Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:86
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
-msgstr ""
+msgstr "Build a Blacksmith and research the Infantry Training technology (sword icon) to improve infantry hack attack."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr ""
+msgstr "The enemy is coming. Build more soldiers to fight off the enemies."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:99
 msgid ""
 "The enemy's attack has been defeated. Now build a market and temple while "
 "assigning new units to gather any required resources."
-msgstr ""
+msgstr "The enemy's attack has been defeated. Now build a market and temple while assigning new units to gather any required resources."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:104
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr ""
+msgstr "Now that City Phase requirements have been reached, select your Civil Centre and advance to City Phase."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
@@ -446,7 +459,7 @@ msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civil Center on the map. Female citizens should continue to "
 "gather resources."
-msgstr ""
+msgstr "Stop all your soldiers gathering resources and instead task small groups to find the enemy Civil Centre on the map. Female citizens should continue to gather resources."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:122
 msgid ""
@@ -748,7 +761,7 @@ msgid ""
 "Started as a fork of Aegis bot, Petra is the most stable AI available. It "
 "supports naval maps and is generally more challenging. Please report issues "
 "to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Started as a fork of Aegis bot, Petra is the most stable AI available. It supports naval maps and is generally more challenging. Please report issues to Wildfire Games (see the link in the main menu)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
@@ -758,4 +771,4 @@ msgstr "Tutorial AI"
 msgid ""
 "The Tutorial AI should only be used on the \"Introductory Tutorial\" "
 "scenario."
-msgstr ""
+msgstr "The Tutorial AI should only be used on the \"Introductory Tutorial\" scenario."

@@ -4,6 +4,7 @@
 # 
 # Translators:
 # ubuntuki <aleverzurumlu@gmail.com>, 2014
+# Cem Aktas <cemwstone@gmail.com>, 2015
 # coolland <coolland10@gmail.com>, 2014
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # Rıza Han Yılmaz <rzhnylmz@hotmail.com>, 2014
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-15 09:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-04-21 20:24+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,7 +109,7 @@ msgstr "Kılıçlı Süvari"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:21
 msgid "Ranged Cavalry"
-msgstr "Sıralı Süvari"
+msgstr "Menzilli Silahlı Süvari"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -121,7 +122,7 @@ msgstr "Sıralı Süvari"
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
 msgid "Ranged"
-msgstr "Sıralı"
+msgstr "Menzilli"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -135,7 +136,7 @@ msgstr "Okçu"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 msgid "Cavalry Archer"
-msgstr "Süvari Okçusu"
+msgstr "Okçu Süvari"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:22
@@ -151,31 +152,31 @@ msgstr "Avcı Süvari"
 
 #: simulation/templates/template_unit_champion.xml:4
 msgid "Champion Unit"
-msgstr "Mükemmel Birim"
+msgstr "Şampiyon Birim"
 
 #: simulation/templates/template_unit_champion.xml:6
 msgid "Champion"
-msgstr "Mükemmel"
+msgstr "Şampiyon"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:26
 msgid "Champion Cavalry"
-msgstr "Mükemmel Süvari"
+msgstr "Şampiyon Süvari"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer."
-msgstr "Mükemmel Süvari Okçu"
+msgstr "Şampiyon Okçu Süvari"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 msgid "Champion Cavalry Skirmisher"
-msgstr "Mükemmel Avcı Süvari"
+msgstr "Şampiyon Avcı Süvari"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
-msgstr "Mükemmel Süvari Mızrakçı"
+msgstr "Şampiyon Mızraklı Süvari"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:37
 msgid "Champion Cavalry Swordsman"
-msgstr "Mükemmel Kılıçlı Süvari"
+msgstr "Şampiyon Kılıçlı Süvari"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
@@ -196,25 +197,25 @@ msgstr "Piyade"
 
 #: simulation/templates/template_unit_champion_infantry.xml:22
 msgid "Champion Infantry"
-msgstr "Mükemmel Piyade"
+msgstr "Şampiyon Piyade"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
-msgstr "Mükemmel Okçu"
+msgstr "Şampiyon Okçu"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:27
 msgid "Champion Skirmisher"
-msgstr "Mükemmel Avcı"
+msgstr "Şampiyon Avcı"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
-msgstr "Kargı"
+msgstr "Teber"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:46
 msgid "Champion Pikeman"
-msgstr "Mükemmel Mızraklı"
+msgstr "Şampiyon Teberci"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:48
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:46
@@ -223,19 +224,19 @@ msgstr "Mükemmel Mızraklı"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:38
 msgid "Counters: 3x vs. Cavalry."
-msgstr "Karşı koyanlar: 3x'e karşı Süvari."
+msgstr "Karşılaşmalar: 3x'e karşı Süvari."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 msgid "Champion Spearman"
-msgstr "Mükemmel Mızrakçı"
+msgstr "Şampiyon Mızrakçı"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:34
 msgid "Champion Swordsman"
-msgstr "Mükemmel Kılıçlı"
+msgstr "Şampiyon Kılıçlı"
 
 #: simulation/templates/template_unit_champion_ranged.xml:4
 msgid "Champion Ranged"
-msgstr "Mükemmel Sıralı"
+msgstr "Şampiyonl Menzil Silahlı"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
@@ -245,7 +246,7 @@ msgstr "Süper Kuşatma"
 #: simulation/templates/template_unit_mechanical.xml:14
 #: simulation/templates/template_unit_mechanical.xml:13
 msgid "Mechanical"
-msgstr "Makine"
+msgstr "Mekanik"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical_siege.xml:12
@@ -267,7 +268,7 @@ msgstr "Yapılara saldırılamaz."
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
-msgstr "Direy"
+msgstr "Fauna"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
@@ -317,7 +318,7 @@ msgstr "Kahraman Avcı"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 msgid "Hero Pikeman"
-msgstr "Kahraman mızrakçı"
+msgstr "Kahraman Teberci"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 msgid "Hero Spearman"
@@ -333,7 +334,7 @@ msgstr "Yakın Dövüş Piyadesi"
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
-msgstr "Mızraklı Adam"
+msgstr "Teberci"
 
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spearman"
@@ -353,7 +354,7 @@ msgstr "Sapan"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:28
 msgid "Slinger"
-msgstr "Kalkanlı"
+msgstr "Sapancı"
 
 #: simulation/templates/template_unit_mechanical_ship.xml:33
 #: simulation/templates/template_unit_mechanical_ship.xml:32
@@ -382,7 +383,7 @@ msgstr "Balıkçı Kayığı"
 msgid ""
 "Fish the waters for Food. Garrison a support or infantry unit inside to "
 "boost fishing rate."
-msgstr "Sudaki balıklar Gıda için iyidir. Garnizon desteği veya piyade birimlerindeki balıkcılık oranını arttırın."
+msgstr "Sudaki balıkları gıda için yakala. Balık tutma oranını arttırmak içine destek veya piyade birimi yerleştirin."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -400,7 +401,7 @@ msgstr "Ağır Savaş Gemisi"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
-msgstr "Garnizonlar ile Atış Yapılarak Atış Gücü Arttırılır."
+msgstr "Menzilli ateş gücünü arttırmak içine içine mancınıklar yerleştir."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -408,7 +409,7 @@ msgstr "Orta Savaş gemisi"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
-msgstr "Cıvata Atıcısı"
+msgstr "Kuşatma Arbalesti"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Siege Catapult"
@@ -416,7 +417,7 @@ msgstr "Kuşatma Mancınığı"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:45
 msgid "Causes splash damage."
-msgstr "Hasar oluşturma etkisi."
+msgstr "Sıçralamalı hasara neden olur."
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:46
 msgid "Battering Ram"
@@ -429,7 +430,7 @@ msgstr "Kuşatma Kulesi"
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr "Garnizon 20 piyadeye kadar ok sayısını 0 dan 10 a kadar arttırabilir."
+msgstr "İçine yerleştirilen 20 'ye kadar piyade ok sayısını 0 ila 10 arası arttırır."
 
 #: simulation/templates/template_unit_support.xml:11
 msgid "Support"
@@ -449,13 +450,13 @@ msgstr "Kadın Vatandaş"
 
 #: simulation/templates/template_unit_support_healer.xml:20
 msgid "Healer"
-msgstr "Tabib"
+msgstr "Şifacı"
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid ""
 "Classes: Support Healer.\n"
 "Heal units."
-msgstr "Sınıflar: Destek Şifacı.\nBirimleri iyileşmek."
+msgstr "Sınıflar: Destek Şifacı.\nBirimleri iyileştirir."
 
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
@@ -465,7 +466,7 @@ msgstr "Köle"
 msgid ""
 "Classes: Support Worker Slave.\n"
 "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Sınıflar: Destek İşçi Kölesi.\nToplayıcılıkla devam eden bir ömür. Madencilik ve kerestecilik ikramiyelidir."
+msgstr "Sınıflar: Destek İşçi Köle.\nKısa ömürlü toplayıcı. Madencilik ve kerestecilik daha verimlidir."
 
 #: simulation/templates/template_unit_support_trader.xml:15
 msgid "Trader"
@@ -475,7 +476,7 @@ msgstr "Tüccar"
 msgid ""
 "Classes: Support Trader.\n"
 "Trade resources between your own markets and those of your allies."
-msgstr "Sınıflar: Destek Tüccarı.\nTicaret kaynaklarI Kendi pazarları ve müttefikleri arasındadır."
+msgstr "Sınıflar: Destek Tüccar.\nKendi ve müttefik pazarların arasında ticaret yapar."
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:20
@@ -571,7 +572,7 @@ msgstr "Sınıflar: Destek Tüccarı.\nTicaret kaynaklarI Kendi pazarları ve m�
 #: simulation/templates/units/spart_support_healer_a.xml:11
 msgctxt "Rank"
 msgid "Advanced"
-msgstr "İleri"
+msgstr "Gelişmiş"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 msgid "Pródromos"
@@ -909,12 +910,12 @@ msgstr "Delamokludda"
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:12
 msgid "Champion Army"
-msgstr "Mükemmel Ordu"
+msgstr "Şampiyon Ordu"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "+5 Attack and +25% Speed for Champion Units."
-msgstr "Mükemmel Birimler için +5 Saldırı ve +25% daha fazla hız."
+msgstr "Şampiyon Birimler için +5 Saldırı ve +25% daha fazla hız."
 
 #: simulation/templates/units/brit_hero_boudicca.xml:23
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:18
@@ -1060,7 +1061,7 @@ msgstr "İberyalı Ağır Süvari"
 #: simulation/templates/units/cart_champion_cavalry.xml:5
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:5
 msgid "Sacred Band Cavalry"
-msgstr "Kutsal Süvari Takımı"
+msgstr "Elit Süvari Takımı"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:6
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:6
@@ -1077,7 +1078,7 @@ msgstr "Pil Malḥamit"
 
 #: simulation/templates/units/cart_champion_infantry.xml:5
 msgid "Sacred Band Infantry"
-msgstr "Kutsal Piyade Takımı"
+msgstr "Elit Piyade Takımı"
 
 #: simulation/templates/units/cart_champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
@@ -1085,7 +1086,7 @@ msgstr "Kutsal Ba'al Takımı"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
-msgstr "Kutsal Mızraklı Takımı"
+msgstr "Elit Teberci Takımı"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
@@ -1319,7 +1320,7 @@ msgstr "Leial Zalduneria"
 msgid ""
 "Classes: Champion Ranged Cavalry Skirmisher.\n"
 "Special: Flaming javelins. Good vs. Buildings."
-msgstr "Sınıflar: Mükemmel Sıralı Süvari Avcılar.\nÖzel: Alevli cirit, İyi vs. Yapılar."
+msgstr "Sınıflar: Şampiyon Menzilli Süvari Avcılar.\nÖzel: Alevli cirit, Binalara karşı kullanışlı."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1401,7 +1402,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
-msgstr "OdrysYALI çatışma Süvarisi"
+msgstr "Odrysyalı Avcı Süvarisi"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Hippakontistès Odrysón"
@@ -1482,7 +1483,7 @@ msgstr "Dēmḗtrios Poliorkḗtēs"
 
 #: simulation/templates/units/mace_hero_philip.xml:12
 msgid "+5 Attack for Champion Units."
-msgstr "Mükemmel Birimler için +5 Saldırı."
+msgstr "Şampiyon Birimler için +5 Saldırı."
 
 #: simulation/templates/units/mace_hero_philip.xml:17
 msgid "Philip II of Macedon"
@@ -1598,7 +1599,7 @@ msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
 msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
-msgstr "Sınıflar: Mükemmel Sıralı Süvari Arabası Okcu. Hasar Önleme Maliyeti."
+msgstr "Sınıflar: Şampiyon Menzilli Süvari Arabası Okcu. Saldırı anında birliklere fazladan verilen zararı indirger."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1619,7 +1620,7 @@ msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_infantry.xml:20
 msgid "Classes: Champion Melee Infantry Swordsman."
-msgstr "Sınıflar: Mükemmel Yakın dövüş Piyade Kılıçlı."
+msgstr "Sınıflar: Şampiyon Yakın Dövüş Piyade Kılıçlı."
 
 #: simulation/templates/units/maur_champion_maiden.xml:5
 msgid "Maiden Guard"
@@ -1781,7 +1782,7 @@ msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid "Classes: Mercenary Melee Infantry Swordsman."
-msgstr "Sınıflar: Ücretli Yakın Dövüş Kılıçlı Piyadesi."
+msgstr "Sınıflar: Paralı Asker Yakın Dövüş Piyade Kılıçlı."
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1807,7 +1808,7 @@ msgstr "Babiruviya Ratha"
 msgid ""
 "Classes: Ranged Cavalry Chariot Archer.\n"
 "Causes trample damage to enemy units."
-msgstr "Sınıflar: Uzaktan Süvari Arabası Okçu.\nDüşman birimlerine ezilme hasarı verir."
+msgstr "Sınıflar: Menzilli Süvari Arabası Okçu.\nSaldırı anında düşmana fazladan zarar verir."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -1900,7 +1901,7 @@ msgid ""
 "Hero Scythe Chariot Archer.\n"
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr "Kahraman Okcu Tırpan Savaş arabası.\nKahraman Güç: \"Ticaret İmparatorluğu.\" Yaşam boyunca kârlı ticareti arttırır (TBD).\nSıralı saldırı 2x vs. mızrakcı. Sıralı saldırı 1.5x vs. Kılıçlı."
+msgstr "Kahraman Okcu Tırpan Savaş Arabası.\nKahraman Güç: \"İmparatorluğun Tüccarı.\" Yaşam boyunca kârlı ticareti arttırır (TBD).\nMenzilli saldırı 2x vs. mızrakcı. Menzilli saldırı 1.5x vs. Kılıçlı."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2039,7 +2040,7 @@ msgstr "Mutsābiq Gamal Nabatu"
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:11
 #: simulation/templates/units/sele_cavalry_archer_b.xml:11
 msgid "Classes: Ranged Cavalry Camel Archer."
-msgstr "Sınıflar: Sıralı Süvari Okcu Deve."
+msgstr "Sınıflar: Menziili Süvari Deve Okcu."
 
 #: simulation/templates/units/ptol_cavalry_javelinist_b.xml:13
 msgid "Tarantine Settler Cavalry"
@@ -2133,7 +2134,7 @@ msgstr "Rafya Güç"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
 msgid "Egyptian Pikemen have 40% greater health during his lifetime."
-msgstr "Mısırlı Mızraklılar yaşamları boyunca sağlığa %40 etkiederler. "
+msgstr "Mısırlı Teberci yaşamı boyunca %40 daha sağlıklıdır."
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:16
 msgid "Ptolemy IV \"Father Loving\""
@@ -2153,7 +2154,7 @@ msgstr "Kousít Misthophóros Toxóti̱s"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:28
 msgid "Classes: Ranged Mercenary Infantry Archer Worker."
-msgstr "Sınıflar: Menzilli Ücretli Okçu Piyade."
+msgstr "Sınıflar: Menzilli Paralı Asker Okçu Piyade."
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:14
 msgid "Mercenary Thureos Skirmisher"
@@ -2173,7 +2174,7 @@ msgstr "Ebraïkós Sphendonistes"
 
 #: simulation/templates/units/ptol_infantry_spearman_2_b.xml:21
 msgid "Mercenary Thureos Spearman"
-msgstr "Paralı Thureos Mızrakcı"
+msgstr "Paralı Thureos Mızrakçı"
 
 #: simulation/templates/units/ptol_infantry_spearman_2_b.xml:22
 msgid "Thureophóros Misthophóros"
@@ -2181,7 +2182,7 @@ msgstr "Thureophóros Misthophóros"
 
 #: simulation/templates/units/ptol_infantry_spearman_b.xml:14
 msgid "Egyptian Pikeman"
-msgstr "Mısır mızraklısı"
+msgstr "Mısırlı Teberci"
 
 #: simulation/templates/units/ptol_infantry_spearman_b.xml:15
 msgid "Makhimos Phalangites"
@@ -2309,7 +2310,7 @@ msgstr "Veles"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:14
 msgid "Veteran Spearman"
-msgstr "Kıdemli Mızraklı"
+msgstr "Kıdemli Mızrakçı"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:15
 msgid "Triarius"
@@ -2415,21 +2416,21 @@ msgstr "(Gladyatör Avcı)"
 msgid ""
 "Mercenary skirmisher.\n"
 "Bonus vs. Archers and Spearmen."
-msgstr "Paralı mızraklı.\nİkramiyeler vs. Okcu ve Mıcrakcılar."
+msgstr "Paralı Avcı.\nOkçu ve Mıcrakcılara karşı dayanıklı."
 
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
-msgstr "Mızrakcı Samnitler"
+msgstr "Samnite Mızrakçı"
 
 #: simulation/templates/units/samnite_spearman.xml:6
 msgid "(Samnite Spearman)"
-msgstr "(Mızrakcı Samnitler)"
+msgstr "(Samnite Mızrakçı)"
 
 #: simulation/templates/units/samnite_spearman.xml:7
 msgid ""
 "Mercenary spearman.\n"
 "Bonus vs. All Cavalry Units."
-msgstr "Paralı mızraklı.\nBonus vs. Tüm Süvari Birimleri."
+msgstr "Paralı Mızrakçı.\nTüm Süvari Birimlerine karşı dayanıklı."
 
 #: simulation/templates/units/samnite_swordsman.xml:6
 msgid "(Samnite Swordsman)"
@@ -2439,7 +2440,7 @@ msgstr "(Kılıçlı Samnitler)"
 msgid ""
 "Mercenary swordsman.\n"
 "Bonus vs. All Spear Units."
-msgstr "Paralı mızraklı.\nİkramiye vs. Tüm Mızrakcı Birimleri."
+msgstr "Paralı Kılıçlı.\nTüm Mızrakçı Birimleri karşı dayanlıklı."
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
@@ -2483,7 +2484,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_chariot.xml:14
 msgid "Classes: Champion Ranged Cavalry Chariot Archer."
-msgstr "Sınıflar: Mükemmel Sıralı Süvari Arabası Okcu."
+msgstr "Sınıflar: Şampiyon Sıralı Süvari Arabası Okcu."
 
 #: simulation/templates/units/sele_champion_elephant.xml:5
 msgid "Armored War Elephant"
@@ -2495,7 +2496,7 @@ msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:5
 msgid "Silver Shield Pikeman"
-msgstr "Gümüş Kalkanlı Mızraklı Adam"
+msgstr "Gümüş Kalkanlı Teberci"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Phalangitès Argyraspis"
@@ -2577,7 +2578,7 @@ msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele_infantry_spearman_2_b.xml:13
 msgid "Militia Thureos Spearman"
-msgstr "Milis Thureos Spearman"
+msgstr "Milis Thureos Mızrakçı"
 
 #: simulation/templates/units/sele_infantry_spearman_2_b.xml:14
 msgid "Thureophóros Politès"
@@ -2585,7 +2586,7 @@ msgstr "Thureophóros Politès"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:13
 msgid "Bronze Shield Pikeman"
-msgstr "Bronz Kalkanlı Mızrakcı"
+msgstr "Bronz Kalkanlı Teberci"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:14
 msgid "Chalkaspides"
@@ -2593,7 +2594,7 @@ msgstr "Chalkaspides"
 
 #: simulation/templates/units/sele_infantry_spearman_e.xml:21
 msgid "Gold Shield Pikeman"
-msgstr "Altın Kalkanlı Mızraklı Adam"
+msgstr "Altın Kalkanlı Teberci"
 
 #: simulation/templates/units/sele_infantry_spearman_e.xml:22
 msgid "Chrysaspides"
@@ -2601,7 +2602,7 @@ msgstr "Chrysaspides"
 
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:17
 msgid "Classes: Mercenary Citizen Melee Infantry Swordsman."
-msgstr "Sınıflar: Paralı Mükemmel Yakın Dövüşçü Vatandaş Kılıçlı Piyade."
+msgstr "Sınıflar: Paralı Asker Şampiyon Yakın Dövüşçü Vatandaş Piyade Kılıçlı."
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
@@ -2637,7 +2638,7 @@ msgstr "Hippeús Symmakhikós"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:5
 msgid "Spartan Pikeman"
-msgstr "Spartalı Mızraklısı"
+msgstr "Spartalı Teberci"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:6
 msgid "Phalangites Spartiatis"
@@ -2653,7 +2654,7 @@ msgstr "Spartiā́tes"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:7
 msgid "Classes: Champion Melee Infantry Spearman."
-msgstr "Sınıflar: Mükemmel Yakın döğüş Piyade Mızraklı."
+msgstr "Sınıflar: Şampiyon Yakın Döğüş Piyade Mızrakçı."
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:15
 msgid "Skiritai Commando"
@@ -2675,7 +2676,7 @@ msgstr "Agis"
 msgid ""
 "No hero aura. Has 2x health of other infantry heroes. Basically a very tough"
 " hoplite."
-msgstr "Kahraman gücü yok. Diğer kahraman piyadelerden 2x sağlığa sahiptir. Esasen çok sert ağır piyede."
+msgstr "Kahraman gücü yok. Diğer kahraman piyadelerden 2x sağlığa sahiptir. Esasen çok dayanıklı piyade."
 
 #: simulation/templates/units/spart_hero_brasidas.xml:14
 msgid "Helot Reforms"
@@ -2725,7 +2726,7 @@ msgstr "Hoplī́tēs Perioïkós"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:25
 msgid "Spartan Woman"
-msgstr "Spartalı Kadın"
+msgstr "Spartalı Kadın Vatandaş"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:26
 msgid "Spartiā̂tis"
@@ -2733,7 +2734,7 @@ msgstr "Spartiā̂tis"
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Perioikos"
-msgstr "Émporos Perioikos"
+msgstr "Spartalı Tüccar"
 
 #: simulation/templates/units/theb_champion_spearman.xml:5
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
@@ -2756,7 +2757,7 @@ msgstr "Melanochitones"
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:22
 msgid "Fire Raiser"
-msgstr "Kundakcı"
+msgstr "Kuşatma Kundakcı"
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:23
 msgid "Pyrobolos"
@@ -2768,7 +2769,7 @@ msgstr "Hieros Lochos Hoplites"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Champion Spearman."
-msgstr "Mükemmel Mızraklı"
+msgstr "Şampiyon Mızrakçı"
 
 #: simulation/templates/units/thrace_black_cloak.xml:19
 msgid "Thracian Black Cloak"
@@ -2780,8 +2781,8 @@ msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid "Classes: Mercenary Champion Melee Infantry Swordsman."
-msgstr "Sınıflar: Paralı Mükemmel Yakın Dövüşçü Kılıçlı Piyade."
+msgstr "Sınıflar: Paralı Asker Şampiyon Yakın Dövüşçü Piyade Kılıçlı."
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"
-msgstr "Sandal"
+msgstr "Viking Gemisi"

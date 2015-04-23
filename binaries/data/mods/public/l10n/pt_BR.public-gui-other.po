@@ -7,6 +7,7 @@
 # Ernan, 2015
 # Sturm <gravador202@yahoo.com.br>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014
+# no and no <nicolasmaia@tutanota.com>, 2015
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Raphael Mendonça, 2014
 # Thiago Perrotta <thiagoperrotta95@gmail.com>, 2015
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-22 10:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-04-03 05:36+0000\n"
+"Last-Translator: no and no <nicolasmaia@tutanota.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -307,7 +308,7 @@ msgstr "O jogo já começou"
 #: gui/common/network.js:10
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "[Valor inválido %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -989,12 +990,12 @@ msgstr "SOBRESCREVER JOGO SALVO"
 #: gui/structree/draw.js:258
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/structree/draw.js:259
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/structree/draw.js:267
 msgid "Health:"
@@ -1003,16 +1004,16 @@ msgstr "Saúde:"
 #: gui/structree/draw.js:286
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:292
 msgid "Gather Rates:"
-msgstr ""
+msgstr "Taxa de Colheita:"
 
 #: gui/structree/load.js:143
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr ""
+msgstr "%(val1)s a %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
@@ -1563,7 +1564,7 @@ msgstr "Questões conhecidas (web)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr ""
+msgstr "Civilização"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"

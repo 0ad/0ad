@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# necrotico31 <necrotico31@gmail.com>, 2015
 # Tomislav Kaučić, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-04-14 19:11+0000\n"
+"Last-Translator: necrotico31 <necrotico31@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/projects/p/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,21 +50,21 @@ msgstr "Bilo koji"
 #: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
 #: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
 msgid "N/A"
-msgstr ""
+msgstr "Nije moguće"
 
 #: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:284 gui/lobby/lobby.js:312
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:444
 msgid "Busy"
@@ -128,25 +129,25 @@ msgstr "Naredba '%(cmd)s' nije podržana."
 #: gui/lobby/lobby.js:903
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:905
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:909 gui/lobby/lobby.js:920 gui/lobby/lobby.js:933
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:911 gui/lobby/lobby.js:922 gui/lobby/lobby.js:935
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:916
@@ -168,13 +169,13 @@ msgstr "HH:mm"
 #: gui/lobby/lobby.js:950
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:953
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1003
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -222,11 +223,11 @@ msgstr "Molimo Vas da pristanete na Uvjete Usluge i Uvjete Korištenja."
 
 #: gui/lobby/prelobby.js:195
 msgid "Registered"
-msgstr ""
+msgstr "Prijavljen"
 
 #: gui/lobby/prelobby.js:205
 msgid "Disconnected"
-msgstr ""
+msgstr "Veza Izgubljena"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -250,27 +251,27 @@ msgstr "Multiplayer Lobi"
 
 #: gui/lobby/lobby.xml:(caption):45 gui/lobby/lobby.xml:(caption):296
 msgid "Current Rank:"
-msgstr ""
+msgstr "Trenutni Poredak:"
 
 #: gui/lobby/lobby.xml:(caption):49 gui/lobby/lobby.xml:(caption):300
 msgid "Highest Rating:"
-msgstr ""
+msgstr "Najveći Poredak:"
 
 #: gui/lobby/lobby.xml:(caption):53 gui/lobby/lobby.xml:(caption):304
 msgid "Total Games:"
-msgstr ""
+msgstr "Ukupno Odigrano:"
 
 #: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):308
 msgid "Wins:"
-msgstr ""
+msgstr "Pobjede:"
 
 #: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):312
 msgid "Losses:"
-msgstr ""
+msgstr "Porazi:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):316
 msgid "Win Rate:"
-msgstr ""
+msgstr "Postotak Pobjeda:"
 
 #: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
 msgid "Leaderboard"
@@ -278,7 +279,7 @@ msgstr "Tablica vodećih"
 
 #: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):279
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "Potraži Korisnički profil"
 
 #: gui/lobby/lobby.xml:(caption):111
 msgid "Map Type:"
@@ -319,15 +320,15 @@ msgstr "Ažuriranje"
 
 #: gui/lobby/lobby.xml:(caption):282
 msgid "Enter username:"
-msgstr ""
+msgstr "Unesite korisničko ime"
 
 #: gui/lobby/lobby.xml:(caption):288
 msgid "View Profile"
-msgstr ""
+msgstr "Pogledaj Profil"
 
 #: gui/lobby/lobby.xml:(caption):321
 msgid "Player not found."
-msgstr ""
+msgstr "Igrač nije pronađen."
 
 #: gui/lobby/lobby.xml:(heading):25
 msgid "Status"
@@ -426,11 +427,11 @@ msgstr "\"Mi\" smo svi članovi tima Wildfire Games (WFG)."
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "\"Ocjenjivanje\" govori o procesu analiziranja raznih korisničkih statistika s ciljem stvaranja jedinstvenog sveobuhvatnog rezultata."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "\"uređivanje\" se odnosi na proces provođenja korisničkih pravila."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
@@ -506,7 +507,7 @@ msgstr "Uvjeti korištenja 0 A.D. Empires Ascendant Multiplayer"
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "\"Lažno Predstavljanje\" se odnosi na akcije u kojima pokušavate iskoristit tuđi indetitet u vlastitu korist."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
@@ -522,7 +523,7 @@ msgstr "\"Ocjenjivanje\" se odnosi na sveukupni rezulat svakog korisnika."
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "\"Rankirana Igra\" se odnosi na igre u kojima se prate promjenje u vašim rank statistikama."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -563,13 +564,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7.Da nećete pokušati mjenjati ili utjecati na bilo koji faktor igre (Par primjera: Varanje u rankiranim partijama, raditi bili kakav obrnuti inženjering usluga te da nećete utjecati niti ostetiti bilo kojeg korisnika usluge u svoju korist.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Prihvaćate da vas se ukloni iz koristenja usluge, ako u bilo kojem trenutku moderator utvrdi da ste prekršili bilo koje od gore navedenih pravila."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -577,4 +578,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Promijenimo ovaj dokument na bilo koji način način; u bilo koje vrijeme; pod uvjetom da je korisniku usluge  dana prikladna obavijest o promjeni ( Po definiciji adekvatna obavjest će biti odobrena od strane komisije članova Wildfire Games(WFG))."

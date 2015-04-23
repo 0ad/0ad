@@ -5,7 +5,7 @@
 # Translators:
 # Adrian Budasz <adrianbudasz@gmail.com>, 2014-2015
 # Annunnaky <doublemiu@gmail.com>, 2015
-# Leszek S, 2014
+# Leszek S, 2014-2015
 # miragae <miragae@gmail.com>, 2014-2015
 # rabusek <rabusek@gmail.com>, 2014
 # Rafał <rafix1989@interia.pl>, 2015
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-26 17:02+0000\n"
-"Last-Translator: Rafał <rafix1989@interia.pl>\n"
+"PO-Revision-Date: 2015-04-08 09:48+0000\n"
+"Last-Translator: Leszek S\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -527,7 +527,7 @@ msgstr "%(label)s %(speeds)s"
 #: gui/common/tooltips.js:410
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
-msgstr ""
+msgstr "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:400
 msgid "Heal:"
@@ -656,7 +656,7 @@ msgstr "Zapamiętaj ustawienia rozgrywki"
 #: gui/options/options.js:16
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr ""
+msgstr "Zapisz i przywróć ustawienia rozgrywki, aby szybko hostować kolejną grę"
 
 #: gui/options/options.js:20
 msgid "Prefer GLSL"
@@ -995,12 +995,12 @@ msgstr "NADPISANIE GRY"
 #: gui/structree/draw.js:258
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/structree/draw.js:259
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/structree/draw.js:267
 msgid "Health:"
@@ -1009,7 +1009,7 @@ msgstr "Zdrowie:"
 #: gui/structree/draw.js:286
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:292
 msgid "Gather Rates:"
@@ -1018,7 +1018,7 @@ msgstr ""
 #: gui/structree/load.js:143
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr ""
+msgstr "%(val1)s do %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
@@ -1068,7 +1068,7 @@ msgstr "Fortece"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr ""
+msgstr "Centra osady"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
@@ -1158,7 +1158,7 @@ msgstr "Dochód z handlu"
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr ""
+msgstr "Wegetarianizm"
 
 #: gui/summary/layout.js:121
 msgid "Feminisation"
@@ -1168,13 +1168,13 @@ msgstr "Feminizacja"
 msgid ""
 "Kill / Death\n"
 "ratio"
-msgstr ""
+msgstr "Stosunek liczby zabitych do utraconych"
 
 #: gui/summary/layout.js:123
 msgid ""
 "Map\n"
 "exploration"
-msgstr ""
+msgstr "Odkrycie mapy"
 
 #: gui/summary/layout.js:255
 msgid "Team total"
@@ -1352,7 +1352,7 @@ msgstr "Wyłącz wsparcie"
 #: gui/pregame/mainmenu.xml:(caption):173
 #: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
-msgstr ""
+msgstr "Struktura drzewa"
 
 #: gui/pregame/mainmenu.xml:(caption):190
 msgid "History"
@@ -1445,7 +1445,7 @@ msgstr "Otwórz instrukcję do 0 A.D"
 
 #: gui/pregame/mainmenu.xml:(tooltip):174
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "Wyświetl strukturę drzewa cywilizacji występujących w 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):191
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -1503,7 +1503,7 @@ msgstr "Wybierz mod-y do użycia."
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr ""
+msgstr "Naucz się jak grać, poznaj drzewa technologiczne i historię poszczególnych cywilizacji."
 
 #: gui/pregame/mainmenu.xml:(tooltip):461
 msgid "Challenge the computer player to a single player match."
