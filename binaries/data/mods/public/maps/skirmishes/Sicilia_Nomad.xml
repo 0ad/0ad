@@ -35,7 +35,7 @@
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "The large Mediterranean island of Sicily is open for conquest.\n[color=\"orange\"]Tip: docks are useful dropsite when no territory[/color]",
+  "Description": "The large Mediterranean island of Sicily is open for conquest.\n[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
@@ -43,7 +43,6 @@
   "Preview": "sicilia.png",
   "PlayerData": [
     {
-      "Civ": "cart",
       "Name": "Player 1",
       "Resources": {
         "food": 300,
@@ -66,7 +65,6 @@
     },
     {
       "Name": "Player 2",
-      "Civ": "rome",
       "Resources": {
         "food": 300,
         "metal": 460,
@@ -15604,224 +15602,224 @@
 			<Orientation y="-0.66736"/>
 		</Entity>
 		<Entity uid="3429">
-			<Template>units/cart_infantry_spearman_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="0.38752"/>
 			<Actor seed="30878"/>
 		</Entity>
 		<Entity uid="3430">
-			<Template>units/cart_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-2.29285"/>
 			<Actor seed="29970"/>
 		</Entity>
 		<Entity uid="3431">
-			<Template>units/cart_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-1.95498"/>
 			<Actor seed="65531"/>
 		</Entity>
 		<Entity uid="3432">
-			<Template>units/cart_infantry_spearman_b</Template>
+			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="30316"/>
 		</Entity>
 		<Entity uid="3433">
-			<Template>units/cart_infantry_spearman_b</Template>
+			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="24350"/>
 		</Entity>
 		<Entity uid="3434">
-			<Template>units/cart_ship_merchant</Template>
+			<Template>skirmish/units/default_ship_trireme</Template>
 			<Player>1</Player>
 			<Position x="639" z="43"/>
 			<Orientation y="5.35621"/>
 			<Actor seed="61012"/>
 		</Entity>
 		<Entity uid="3435">
-			<Template>units/cart_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-2.44031"/>
 			<Actor seed="14482"/>
 		</Entity>
 		<Entity uid="3436">
-			<Template>units/cart_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-2.29285"/>
 			<Actor seed="29970"/>
 		</Entity>
 		<Entity uid="3437">
-			<Template>units/cart_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-1.95498"/>
 			<Actor seed="65531"/>
 		</Entity>
 		<Entity uid="3438">
-			<Template>units/cart_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-2.19091"/>
 			<Actor seed="31862"/>
 		</Entity>
 		<Entity uid="3439">
-			<Template>units/cart_infantry_spearman_b</Template>
+			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="30316"/>
 		</Entity>
 		<Entity uid="3440">
-			<Template>units/cart_infantry_spearman_b</Template>
+			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="24350"/>
 		</Entity>
 		<Entity uid="3441">
-			<Template>units/cart_infantry_javelinist_iber_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="0.71087"/>
 			<Actor seed="54226"/>
 		</Entity>
 		<Entity uid="3442">
-			<Template>units/cart_infantry_javelinist_iber_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="0.38752"/>
 			<Actor seed="30878"/>
 		</Entity>
 		<Entity uid="3443">
-			<Template>units/cart_cavalry_javelinist_b</Template>
+			<Template>skirmish/units/default_cavalry</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-0.78243"/>
 			<Actor seed="59986"/>
 		</Entity>
 		<Entity uid="3444">
-			<Template>units/cart_infantry_javelinist_iber_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>1</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-0.84786"/>
 			<Actor seed="50330"/>
 		</Entity>
 		<Entity uid="3445">
-			<Template>units/rome_ship_merchant</Template>
+			<Template>skirmish/units/default_ship_trireme</Template>
 			<Player>2</Player>
 			<Position x="652" z="951"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="25760"/>
 		</Entity>
 		<Entity uid="3446">
-			<Template>units/rome_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-2.27785"/>
 			<Actor seed="56560"/>
 		</Entity>
 		<Entity uid="3447">
-			<Template>units/rome_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-2.02057"/>
 			<Actor seed="2626"/>
 		</Entity>
 		<Entity uid="3448">
-			<Template>units/rome_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-2.42576"/>
 			<Actor seed="16886"/>
 		</Entity>
 		<Entity uid="3449">
-			<Template>units/rome_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-1.98488"/>
 			<Actor seed="39100"/>
 		</Entity>
 		<Entity uid="3450">
-			<Template>units/rome_infantry_spearman_b</Template>
+			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46754"/>
 		</Entity>
 		<Entity uid="3451">
-			<Template>units/rome_infantry_spearman_b</Template>
+			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46426"/>
 		</Entity>
 		<Entity uid="3452">
-			<Template>units/rome_infantry_javelinist_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="0.81855"/>
 			<Actor seed="33700"/>
 		</Entity>
 		<Entity uid="3453">
-			<Template>units/rome_infantry_javelinist_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="0.59694"/>
 			<Actor seed="56164"/>
 		</Entity>
 		<Entity uid="3454">
-			<Template>units/rome_cavalry_javelinist_b</Template>
+			<Template>skirmish/units/default_cavalry</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-0.86196"/>
 			<Actor seed="42046"/>
 		</Entity>
 		<Entity uid="3455">
-			<Template>units/rome_infantry_javelinist_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-0.82946"/>
 			<Actor seed="15866"/>
 		</Entity>
 		<Entity uid="3456">
-			<Template>units/rome_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-2.27785"/>
 			<Actor seed="56560"/>
 		</Entity>
 		<Entity uid="3457">
-			<Template>units/rome_support_female_citizen</Template>
+			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="-2.02057"/>
 			<Actor seed="2626"/>
 		</Entity>
 		<Entity uid="3458">
-			<Template>units/rome_infantry_javelinist_b</Template>
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="0.59694"/>
 			<Actor seed="56164"/>
 		</Entity>
 		<Entity uid="3459">
-			<Template>units/rome_infantry_spearman_b</Template>
+			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46754"/>
 		</Entity>
 		<Entity uid="3460">
-			<Template>units/rome_infantry_spearman_b</Template>
+			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>2</Player>
 			<Position x="0" z="0"/>
 			<Orientation y="2.35621"/>
