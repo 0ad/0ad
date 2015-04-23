@@ -322,7 +322,7 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 		}
 	}
 
-	// if one market is destroyed or built, we may have to look for a better route
+	// if one market is destroyed or built (i.e. its foundation is destroyed), we should look for a better route
 	let destroyEvents = events["Destroy"];
 	for (let evt of destroyEvents)
 	{
@@ -331,13 +331,21 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 		let ent = evt.entityObj;
 		if (!ent || !ent.hasClass("Market") || !gameState.isPlayerAlly(ent.owner()))
 			continue;
-		if (this.Config.debug > 1)
-		{
-			if (evt.SuccessfulFoundation)
-				API3.warn("new market build ... checking routes");
-			else
-				API3.warn("one market (or foundation) has been destroyed ... checking routes");
-		}
+		this.routeProspection = true;
+		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_market");
+		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_dock");
+		return true;
+	}
+
+	// same thing for captured markets
+	let capturedEvents = events["OwnershipChanged"];
+	for (let evt of capturedEvents)
+	{
+		if (!gameState.isPlayerAlly(evt.from) && !gameState.isPlayerAlly(evt.to))
+			continue;
+		let ent = gameState.getEntityById(evt.entity);
+		if (!ent || !ent.hasClass("Market"))
+			continue;
 		this.routeProspection = true;
 		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_market");
 		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_dock");

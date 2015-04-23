@@ -87,11 +87,34 @@ var unitActions =
 		"specificness": 30,
 	},
 
-	"attack": 
+	"capture": 
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued});
+			Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "allowCapture": true, "queued": queued});
+			Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
+			return true;
+		},
+		"getActionInfo": function(entState, targetState)
+		{
+			if (!entState.attack || !targetState.hitpoints)
+				return false;
+			return {"possible": Engine.GuiInterfaceCall("CanCapture", {"entity": entState.id, "target": targetState.id})};
+		},
+		"actionCheck": function(target)
+		{
+			if (getActionInfo("capture", target).possible)
+				return {"type": "capture", "cursor": "action-capture", "target": target};
+			return false;
+		},
+		"specificness": 9,
+	},
+
+	"attack":
+	{
+		"execute": function(target, action, selection, queued)
+		{
+			Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued, "allowCapture": false});
 			Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
 			return true;
 		},
@@ -199,7 +222,7 @@ var unitActions =
 				return false;
 			if (getActionInfo("repair", target).possible)
 				return {"type": "repair", "cursor": "action-repair", "target": target};
-			return {"type": "none", "cursor": "action-repair-disabled", "target": undefined};
+			return {"type": "none", "cursor": "action-repair-disabled", "target": null};
 		},
 		"actionCheck": function(target)
 		{
@@ -272,7 +295,7 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "setup-trade-route", "entities": selection, "target": action.target, "source": undefined, "route": undefined, "queued": queued});
+			Engine.PostNetworkCommand({"type": "setup-trade-route", "entities": selection, "target": action.target, "source": null, "route": null, "queued": queued});
 			Engine.GuiInterfaceCall("PlaySound", { "name": "order_trade", "entity": selection[0] });
 			return true;
 		},
@@ -367,7 +390,7 @@ var unitActions =
 			var actionInfo =  getActionInfo("garrison", target);
 			if (actionInfo.possible)
 				return {"type": "garrison", "cursor": "action-garrison", "tooltip": actionInfo.tooltip, "target": target};
-			return {"type": "none", "cursor": "action-garrison-disabled", "target": undefined};
+			return {"type": "none", "cursor": "action-garrison-disabled", "target": null};
 		},
 		"hotkeyActionCheck": function(target)
 		{
@@ -405,7 +428,7 @@ var unitActions =
 				return false;
 			if (getActionInfo("guard", target).possible)
 				return {"type": "guard", "cursor": "action-guard", "target": target};
-			return {"type": "none", "cursor": "action-guard-disabled", "target": undefined};
+			return {"type": "none", "cursor": "action-guard-disabled", "target": null};
 		},
 		"hotkeyActionCheck": function(target)
 		{

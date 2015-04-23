@@ -144,9 +144,11 @@ var commands = {
 			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
 		}
 
+		if (cmd.allowCapture == null)
+			cmd.allowCapture = true;
 		// See UnitAI.CanAttack for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
-			cmpUnitAI.Attack(cmd.target, cmd.queued);
+			cmpUnitAI.Attack(cmd.target, cmd.queued, cmd.allowCapture);
 		});
 	},
 

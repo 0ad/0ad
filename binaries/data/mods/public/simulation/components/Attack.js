@@ -238,10 +238,6 @@ Attack.prototype.GetRestrictedClasses = function(type)
 
 Attack.prototype.CanAttack = function(target)
 {
-	var cmpArmour = Engine.QueryInterface(target, IID_DamageReceiver);
-	if (!cmpArmour)
-		return false;
-
 	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 		return true;
@@ -322,7 +318,7 @@ Attack.prototype.GetBestAttack = function()
 	return this.GetAttackTypes().pop();
 };
 
-Attack.prototype.GetBestAttackAgainst = function(target)
+Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 {
 	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
@@ -351,7 +347,7 @@ Attack.prototype.GetBestAttackAgainst = function(target)
 	{
 		var cmpCapturable = Engine.QueryInterface(target, IID_Capturable);
 		var cmpPlayer = QueryOwnerInterface(this.entity);
-		if (cmpPlayer && cmpCapturable && cmpCapturable.CanCapture(cmpPlayer.GetPlayerID()))
+		if (allowCapture && cmpPlayer && cmpCapturable && cmpCapturable.CanCapture(cmpPlayer.GetPlayerID()))
 			return "Capture";
 		// not captureable, so remove this attack
 		types.splice(captureIndex, 1);
@@ -572,8 +568,9 @@ Attack.prototype.PerformAttack = function(type, target)
 		if (!cmpCapturable || !cmpCapturable.CanCapture(owner))
 			return;
 		
-		var strength = this.GetAttackStrengths("Capture").value;
-		cmpCapturable.Reduce(strength * multiplier, owner);
+		var strength = this.GetAttackStrengths("Capture").value * multiplier;
+		if(cmpCapturable.Reduce(strength, owner))
+			Engine.PostMessage(target, MT_Attacked, {"attacker":this.entity, "target":target, "type":type, "damage":strength});
 	}
 	else
 	{

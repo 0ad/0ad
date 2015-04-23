@@ -1708,6 +1708,26 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 	return result;
 };
 
+GuiInterface.prototype.CanCapture = function(player, data)
+{
+	var cmpAttack = Engine.QueryInterface(data.entity, IID_Attack);
+	if (!cmpAttack)
+		return false;
+
+	var owner = QueryOwnerInterface(data.entity).GetPlayerID();
+
+	var cmp = Engine.QueryInterface(data.target, IID_Mirage);
+	if (cmp && !cmp.Capturable())
+		return false
+	else if (!cmp)
+		var cmp = Engine.QueryInterface(data.target, IID_Capturable);
+
+	if (cmp && cmp.CanCapture(owner) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
+		return cmpAttack.CanAttack(data.target);
+
+	return false;
+};
+
 GuiInterface.prototype.CanAttack = function(player, data)
 {
 	var cmpAttack = Engine.QueryInterface(data.entity, IID_Attack);
@@ -1718,16 +1738,9 @@ GuiInterface.prototype.CanAttack = function(player, data)
 	if (!cmpEntityPlayer || !cmpTargetPlayer)
 		return false;
 
-
 	// if the owner is an enemy, it's up to the attack component to decide
 	if (!cmpEntityPlayer.IsAlly(cmpTargetPlayer.GetPlayerID()))
 		return cmpAttack.CanAttack(data.target);
-
-	// if the owner is an ally, we could still want to capture some capture points back
-	var cmpCapturable = Engine.QueryInterface(data.target, IID_Capturable);
-	if (cmpCapturable && cmpCapturable.CanCapture(cmpEntityPlayer.GetPlayerID()) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
-		return cmpAttack.CanAttack(data.target);
-
 	return false;
 };
 
@@ -1871,6 +1884,7 @@ var exposedFunctions = {
 	"FindIdleUnits": 1,
 	"GetTradingRouteGain": 1,
 	"GetTradingDetails": 1,
+	"CanCapture": 1,
 	"CanAttack": 1,
 	"GetBatchTime": 1,
 

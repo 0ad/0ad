@@ -1018,8 +1018,14 @@ function launchGame()
 	saveGameAttributes();
 
 	if (g_GameAttributes.map == "random")
+	{
+		let victoryScriptsSelected = g_GameAttributes.settings.VictoryScripts;
+		let gameTypeSelected = g_GameAttributes.settings.GameType;
 		selectMap(Engine.GetGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
 			(Engine.GetGUIObjectByName("mapSelection").list.length - 1)) + 1]);
+		g_GameAttributes.settings.VictoryScripts = victoryScriptsSelected;
+		g_GameAttributes.settings.GameType = gameTypeSelected;
+	}
 	if (!g_GameAttributes.settings.TriggerScripts)
 		g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts;
 	else

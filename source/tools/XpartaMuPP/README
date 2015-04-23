@@ -1,85 +1,86 @@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@ Install ejabberd and the erlang compiler @@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# apt-get install ejabberd erlang-dev make
+Introduction
+============
+Some commands assume some apt-get based distribution. `lobby.wildfiregames.com` should be replaced by your own domain name (or localhost) in all commands below.
 
-Configure it
-# dpkg-reconfigure ejabberd 
-set the domain name (e.g. localhost if you installed it on your development computer)
-and a login / password
 
-You should now be able to connect to this XMPP server using a normal XMPP client (e.g. Empathy).
+Install ejabberd and the erlang compiler
+========================================
+    # apt-get install ejabberd erlang-dev make
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@ Installation of the custom XMPP module @@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Configure it:
+    # dpkg-reconfigure ejabberd 
+Set the domain name (e.g. localhost if you installed it on your development computer) and add an admin user.
+
+You should now be able to connect to this XMPP server using a normal XMPP client.
+
+Installation of the custom XMPP module
+======================================
 Go to its source directory
-$ cd source/tools/XpartaMuPP
+    $ cd source/tools/XpartaMuPP
 
-Edit mod_ipstamp.erl to set the domain on which is run the ejabberd server. (e.g. localhost)
-# -define (Domain, <server domain>).
+Edit `mod_ipstamp.erl` to set the domain (e.g. localhost) on which the ejabberd server is run.
+    # -define (Domain, <server domain>).
 
 Build and install it
-$ make
-# make install
+    $ make
+    # make install
 
-Tell ejabberd that you want it to load the module
-In /etc/ejabberd/ejabberd.cfg, add {mod_ipstamp, []}
-in the Modules list "Modules enabled in all ejabberd virtual hosts"
+We want ejabberd to load the module, so add the following to the `modules` section in`/etc/ejabberd/ejabberd.cfg`:
+    {mod_ipstamp, []}
 
 Restart ejabberd
-# service ejabberd restart
+    # service ejabberd restart
 
-If something goes wrong, read /var/log/ejabberd/ejabberd.log
+If something goes wrong, read `/var/log/ejabberd/ejabberd.log`
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@ Ejabberd administration @@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-Go http://localhost:5280/admin and connect 
-(the login looks like login@domain (e.g. adminjabber@localhost))
+Ejabberd configuration
+======================
+A web administration inteface is avaliable at http://localhost:5280/admin. Use the admin user credentials (full JID (user@domain)) to log in. Changing settings there is also possible, but some those might not persist on restart.
 
-In "Access rules" check that "register" is set to "[{allow,all}]"
+The rest of this section should be done by editing `/etc/ejabberd/ejabberd.cfg`.
 
-You can see the list of registered / connected users in
-"Virtual Hosts" >> domain name >> "users"
+We want to allow users to create accounts using the game so allow in-band registration:
+    {access, register, [{allow, all}]}.
 
-You must manually add a new user for XpartaMuPP.
-Enter a login (use "wfgbot" since that's what clients expect) 
-and password, then press "Add user"
+You can see the list of registered using:
+    # ejabberdctl registered_users lobby.wildfiregames.com
 
-Alternative - Command line :
-Edit /etc/ejabberd.ejabberd.cfg and change {register, [{deny,all}]} to {register, [{allow,all}]}.
-Register wfgbot : # ejabberdctl register wfgbot <domain> <wfgbot password>
+XpartaMuPP needs a user to function, so create one using:
+    # ejabberdctl register wfgbot lobby.wildfiregames.com hunter2
 
-Create an ACL that includes the bot (name it ipbots, since that's what the ipstamp module expects)
+The bot also needs to be able to get the IPs of users hosting a match, which is what the ipstamp module does.
+Create an ACL for the bot (or bots):
+    {acl, bots, {user, "wfgbot", "lobby.wildfiregames.com"}}.
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@ Run XpartaMuPP - XMPP Multiplayer Game Manager @@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Add an access rule (name it `ipbots` since that it was the module expects:
+    {access, ipbots, [{allow, bots}]}.
+
+MUC room setup
+==============
+To enable the bot to send the game list to players it needs the JIDs of the players, so the room should be configured as such. In case that you want to host multiple lobby rooms adding an ACL for MUC admins to which the bots are added, which is used for `access_admin` in the `mod_muc` configuration would be advisable.
+
+Run XpartaMuPP - XMPP Multiplayer Game Manager
+==============================================
 You need to have python 3 and SleekXmpp installed
-$ sudo apt-get install python3 python3-sleekxmpp
+    $ sudo apt-get install python3 python3-sleekxmpp
 
 If you would like to run the leaderboard database,
-$ sudo apt-get install python3-sqlalchemy
+    $ sudo apt-get install python3-sqlalchemy
 
 Then execute the following command to setup the database.
-$ python3 ./source/tools/XpartaMuPP/LobbyRanking.py
+    $ python3 LobbyRanking.py
 
 Execute the following command to run the bot with default options
-$ python3 ./source/tools/XpartaMuPP/XpartaMuPP.py
-
+    $ python3 XpartaMuPP.py
 or rather a similar command to run a properly configured program
-$ python3 ./source/tools/XpartaMuPP/XpartaMuPP.py --domain localhost --login wfgbot --password XXXXXX --nickname WFGbot --room arena
+    $ python3 XpartaMuPP.py --domain localhost --login wfgbot --password XXXXXX --nickname WFGbot --room arena
 
-Run python3 ./source/tools/XpartaMuPP/XpartaMuPP.py --help for the full list of options
+Run `python3 XpartaMuPP.py --help` for the full list of options
 
 If everything is fine you should see something along these lines in your console
-<<<<
-INFO     Negotiating TLS
-INFO     Using SSL version: 3
-INFO     Node set to: wfgbot@lobby.wildfiregames.com/CC
-INFO     XpartaMuPP started
-<<<<
+    INFO     Negotiating TLS
+    INFO     Using SSL version: 3
+    INFO     Node set to: wfgbot@lobby.wildfiregames.com/CC
+    INFO     XpartaMuPP started
 
 Congratulations, you are running XpartaMuPP - the 0ad Multiplayer Game Manager.
-

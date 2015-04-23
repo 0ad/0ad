@@ -110,19 +110,22 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				this.removeDropsite(gameState, ent);
 			if (evt.metadata[PlayerID]["baseAnchor"] && evt.metadata[PlayerID]["baseAnchor"] === true)
-			{
-				// sounds like we lost our anchor. Let's reaffect our units and buildings
-				this.anchor = undefined;
-				this.anchorId = undefined;
-				this.neededDefenders = 0;
-				let bestbase = m.getBestBase(ent, gameState);
-				this.newbaseID = bestbase.ID;
-				for (let entity of this.units.values())
-					bestbase.assignEntity(gameState, entity);
-				for (let entity of this.buildings.values())
-					bestbase.assignEntity(gameState, entity);
-			}
+				this.anchorLost(gameState, ent);
 		}
+	}
+
+	let captureEvents = events["OwnershipChanged"];
+	for (let evt of captureEvents)
+	{
+		if (evt.from !== PlayerID)
+			continue;
+		let ent = gameState.getEntityById(evt.entity);
+		if (!ent || ent.getMetadata(PlayerID, "base") !== this.ID)
+			continue;
+		if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
+			this.removeDropsite(gameState, ent);
+		if (ent.getMetadata(PlayerID, "baseAnchor") === true)
+			this.anchorLost(gameState, ent);
 	}
 
 	for (var evt of cFinishedEvents)
@@ -161,6 +164,20 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 		this.anchorId = evt.newentity;
 		this.anchor = gameState.getEntityById(evt.newentity);
 	}
+};
+
+/* we lost our anchor. Let's reaffect our units and buildings */
+m.BaseManager.prototype.anchorLost = function (gameState, ent)
+{
+	this.anchor = undefined;
+	this.anchorId = undefined;
+	this.neededDefenders = 0;
+	let bestbase = m.getBestBase(ent, gameState);
+	this.newbaseID = bestbase.ID;
+	for (let entity of this.units.values())
+		bestbase.assignEntity(gameState, entity);
+	for (let entity of this.buildings.values())
+		bestbase.assignEntity(gameState, entity);
 };
 
 /**
