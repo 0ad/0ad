@@ -100,7 +100,7 @@ Foundation.prototype.OnDestroy = function()
 
 	for (var r in this.costs)
 	{
-		var scaled = Math.floor(this.costs[r] * (1.0 - this.progress));
+		var scaled = Math.ceil(this.costs[r] * (1.0 - this.progress));
 		if (scaled)
 		{
 			cmpPlayer.AddResource(r, scaled);
