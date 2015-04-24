@@ -19,7 +19,7 @@ m.HQ = function(Config)
 	this.Config = Config;
 	
 	this.econState = "growth";	// existing values: growth, townPhasing.
-	this.phaseStarted = undefined;
+	this.currentPhase = undefined;
 
 	// cache the rates.
 	this.wantedRates = { "food": 0, "wood": 0, "stone":0, "metal": 0 };
@@ -71,6 +71,7 @@ m.HQ.prototype.init = function(gameState, queues)
 		return false;
 	});
 	this.treasures.registerUpdates();
+	this.currentPhase = gameState.currentPhase();
 };
 
 /**
@@ -279,8 +280,9 @@ m.HQ.prototype.OnTownPhase = function(gameState)
 {
 	if (this.Config.difficulty > 2 && this.femaleRatio > 0.4)
 		this.femaleRatio = 0.4;
-
-	this.phaseStarted = 2;
+		
+	var phaseName = gameState.getTemplate(gameState.townPhase()).name(); 
+	m.chatNewPhase(gameState, phaseName, true); 
 };
 
 // Called by the "city phase" research plan once it's started
@@ -291,8 +293,9 @@ m.HQ.prototype.OnCityPhase = function(gameState)
 
 	// increase the priority of defense buildings to free this queue for our first fortress
 	gameState.ai.queueManager.changePriority("defenseBuilding", 2*this.Config.priorities.defenseBuilding);
-
-	this.phaseStarted = 3;
+	
+	var phaseName = gameState.getTemplate(gameState.cityPhase()).name();   
+	m.chatNewPhase(gameState, phaseName, true); 
 };
 
 // This code trains females and citizen workers, trying to keep close to a ratio of females/CS
@@ -1739,9 +1742,16 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	this.researchManager.checkPhase(gameState, queues);
 
 	// TODO find a better way to update
-	if (this.phaseStarted && gameState.currentPhase() == this.phaseStarted)
+	if (this.currentPhase != gameState.currentPhase())
 	{
-		this.phaseStarted = undefined;
+		this.currentPhase = gameState.currentPhase();
+		let phaseName = "Unknown Phase";
+		if (this.currentPhase == 2)
+			phaseName = gameState.getTemplate(gameState.townPhase()).name(); 
+		else if (this.currentPhase == 3)
+			phaseName = gameState.getTemplate(gameState.cityPhase()).name();
+			
+		m.chatNewPhase(gameState, phaseName, false); 
 		this.updateTerritories(gameState);
 	}
 	else if (gameState.ai.playedTurn - this.lastTerritoryUpdate > 100)
@@ -1812,7 +1822,7 @@ m.HQ.prototype.Serialize = function()
 {
 	let properties = {
 		"econState": this.econState,
-		"phaseStarted": this.phaseStarted,
+		"currentPhase": this.currentPhase,
 		"wantedRates": this.wantedRates,
 		"currentRates": this.currentRates,
 		"lastFailedGather": this.lastFailedGather,

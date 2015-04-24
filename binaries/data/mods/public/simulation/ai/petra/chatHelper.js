@@ -106,5 +106,23 @@ m.chatNewTradeRoute = function(gameState, player)
 	Engine.PostCommand(PlayerID, chat);
 };
 
+m.chatNewPhase = function(gameState, phase, started)
+{
+	if (started)
+		var message = "/allies " + markForTranslation("I am advancing to the %(phase)s.");
+	else
+		var message = "/allies " + markForTranslation("I have reached the %(phase)s.");
+	
+	var chat = {
+		"type": "aichat",
+		"message": message,
+		"translateMessage": true,
+		"translateParameters": ["phase"],
+		"parameters": { "phase": phase }
+	};
+	Engine.PostCommand(PlayerID, chat);
+};
+
+
 return m;
 }(PETRA);
