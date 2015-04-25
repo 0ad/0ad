@@ -195,8 +195,6 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			else if (ent.hasTerritoryInfluence())
 				this.updateTerritories(gameState);
 		}
-		else    // TODO should be reassigned later if a better base is captured
-			m.getBestBase(ent, gameState).assignEntity(gameState, ent);
 	}
 
 	let captureEvents = events["OwnershipChanged"];
@@ -223,7 +221,8 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		}
 		else
 		{
-			// TODO affect it to the nearest base
+			// TODO should be reassigned later if a better base is captured
+			m.getBestBase(ent, gameState).assignEntity(gameState, ent);
 			if (ent.hasTerritoryInfluence())
 				this.updateTerritories(gameState);
 		}
