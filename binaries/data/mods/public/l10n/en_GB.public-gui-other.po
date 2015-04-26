@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-22 10:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-04-13 01:12+0000\n"
+"Last-Translator: Laurene Albrand\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -301,7 +302,7 @@ msgstr "Game has already started"
 #: gui/common/network.js:10
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Invalid value %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -644,7 +645,7 @@ msgstr "Persist match settings"
 #: gui/options/options.js:16
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr ""
+msgstr "Save and restore match settings for quick reuse when hosting another game"
 
 #: gui/options/options.js:20
 msgid "Prefer GLSL"
@@ -983,12 +984,12 @@ msgstr "OVERWRITE SAVE"
 #: gui/structree/draw.js:258
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/structree/draw.js:259
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/structree/draw.js:267
 msgid "Health:"
@@ -997,16 +998,16 @@ msgstr "Health:"
 #: gui/structree/draw.js:286
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:292
 msgid "Gather Rates:"
-msgstr ""
+msgstr "Gather Rates:"
 
 #: gui/structree/load.js:143
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr ""
+msgstr "%(val1)s to %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
@@ -1317,7 +1318,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:528
 msgid "Alpha XVIII: Rhododactylos"
-msgstr ""
+msgstr "Alpha XVIII: Rhododactylos"
 
 #: gui/pregame/mainmenu.xml:530
 msgid ""
@@ -1557,7 +1558,7 @@ msgstr "Known Issues (web)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr ""
+msgstr "Civilisation:"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"
@@ -1949,17 +1950,17 @@ msgstr "PIKEMEN"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "- Heavily armoured and slow. Low attack."
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry for a 4x attack bonus or against other melee infantry"
 " to pin them them in place."
-msgstr ""
+msgstr "- Used against cavalry for a 4x attack bonus or against other melee infantry to pin them in place."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr ""
+msgstr "- Available to: Macedonians, Seleucids, and Ptolemies."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
@@ -2035,7 +2036,7 @@ msgstr "- Champion Infantry available to the Spartans faction."
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "- Use them to slaughter enemy cavalry or as a shock force to support your regular infantry."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
@@ -2047,11 +2048,11 @@ msgstr "SPEARMEN"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "- The basic melee infantry for every faction in the game."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for a 2x attack bonus."
-msgstr ""
+msgstr "- Used against cavalry for a 2x attack bonus."
 
 #: gui/text/tips/spearmen.txt:6
 msgid ""

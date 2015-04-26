@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:09+0100\n"
-"PO-Revision-Date: 2015-02-11 15:21+0000\n"
+"POT-Creation-Date: 2015-04-02 02:50+0200\n"
+"PO-Revision-Date: 2015-04-02 11:26+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -39,14 +39,26 @@ msgstr "He aquí un regalo para %(name)s, utilízalo sabiamente."
 msgid "I see you are in a bad situation %(name)s, I hope this will help."
 msgstr "Veo que estás en una mala situación %(name)s, espero que esto te pueda ayudar."
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:34
+#, javascript-format
+msgid "I am in need of %(resource)s, can you help? I will make it up to you."
+msgstr "Necesito algo de %(resource)s. Ayúdame, te lo devolveré con creces."
+
+#: simulation/ai/petra/chatHelper.js:36
+#, javascript-format
+msgid ""
+"I would particate more efficiently in our common war effort if you could "
+"provide me some %(resource)s."
+msgstr "Si me pudieras suministrar algo de %(resource)s podría participar en nuestros esfuerzos bélicos de forma más decisiva."
+
+#: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid ""
 "I have set up a new route with %(name)s. Trading will be profitable for all "
 "of us."
 msgstr "He establecido una nueva ruta comercial con %(name)s. El negocio será rentable para todos nosotros."
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:49
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(name)s. Take your share of the profits"

@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2015
-# Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2014
+# Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2014-2015
 # Marco tom Suden, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2015
 # silure <silure@openmailbox.org>, 2014
@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:09+0100\n"
-"PO-Revision-Date: 2015-02-12 13:33+0000\n"
+"POT-Creation-Date: 2015-04-02 02:50+0200\n"
+"PO-Revision-Date: 2015-04-21 08:57+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -42,14 +42,26 @@ msgstr "Voici un cadeau pour %(name)s, faites-en bon usage."
 msgid "I see you are in a bad situation %(name)s, I hope this will help."
 msgstr "Je vois que vous êtes dans une mauvaise situation %(name)s, j'espère que ceci aidera."
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:34
+#, javascript-format
+msgid "I am in need of %(resource)s, can you help? I will make it up to you."
+msgstr "J'ai besoin de %(resource)s, pouvez-vous m'aider ? Je vous le revaudrai."
+
+#: simulation/ai/petra/chatHelper.js:36
+#, javascript-format
+msgid ""
+"I would particate more efficiently in our common war effort if you could "
+"provide me some %(resource)s."
+msgstr "Je participerais plus efficacement à notre effort de guerre commun si vous pouviez m'envoyer %(resource)s."
+
+#: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid ""
 "I have set up a new route with %(name)s. Trading will be profitable for all "
 "of us."
 msgstr "J'ai mis en place une nouvelle route avec %(name)s. Le commerce nous sera profitable à tous."
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:49
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(name)s. Take your share of the profits"

@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-03-22 10:32+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
+"POT-Creation-Date: 2015-04-02 02:49+0200\n"
+"PO-Revision-Date: 2015-04-02 09:53+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/0ad/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,12 +54,12 @@ msgid "Resume"
 msgstr "继续游戏"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:476 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "是"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:476 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "否"
 
@@ -394,138 +394,147 @@ msgstr "\\[离线] %(player)s"
 msgid "%(rank)s Rank"
 msgstr "%(rank)s 排名"
 
-#: gui/session/selection_details.js:68
+#: gui/session/selection_details.js:73
+#, javascript-format
+msgid "This foundation will be completed in %(numb)s seconds."
+msgstr ""
+
+#: gui/session/selection_details.js:78
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:95
+#: gui/session/selection_details.js:105
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:96 gui/session/selection_details.js:102
+#: gui/session/selection_details.js:106 gui/session/selection_details.js:112
 msgid "Experience:"
 msgstr "经验："
 
-#: gui/session/selection_details.js:101
+#: gui/session/selection_details.js:111
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:115
+#: gui/session/selection_details.js:125
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:116 gui/session/selection_details.js:149
-#: gui/session/selection_details.js:180
+#: gui/session/selection_details.js:126 gui/session/selection_details.js:159
+#: gui/session/selection_details.js:199
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:125
+#: gui/session/selection_details.js:135
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:164
+#: gui/session/selection_details.js:174
 #, javascript-format
 msgid "Gain: %(amount)s"
 msgstr "获得：%(amount)s"
 
-#: gui/session/selection_details.js:173
+#: gui/session/selection_details.js:187
 #, javascript-format
 msgid ""
 "Number of builders.\n"
-"Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr "建造工人数量。\n指派其他工人到此地基以加速建造 %(numb)s%%"
+"Tasking another to this foundation would speed construction up by %(numb)s seconds."
+msgstr ""
 
-#: gui/session/selection_details.js:181
+#: gui/session/selection_details.js:191
+msgid "Number of builders."
+msgstr ""
+
+#: gui/session/selection_details.js:200
 msgid "Current/max gatherers"
 msgstr "现有/最大 采集者"
 
-#: gui/session/selection_details.js:196
+#: gui/session/selection_details.js:215
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:242
+#: gui/session/selection_details.js:261
 msgid "Classes:"
 msgstr "类型："
 
-#: gui/session/selection_details.js:295
+#: gui/session/selection_details.js:314
 msgid "Hitpoints:"
 msgstr "生命值:"
 
-#: gui/session/selection_details.js:296 gui/session/session.js:622
+#: gui/session/selection_details.js:315 gui/session/session.js:621
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_panels.js:87
+#: gui/session/selection_panels.js:91
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "购买 %(resource)s"
 
-#: gui/session/selection_panels.js:88
+#: gui/session/selection_panels.js:92
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "出售 %(resource)s"
 
-#: gui/session/selection_panels.js:216 gui/session/selection_panels.js:998
+#: gui/session/selection_panels.js:220 gui/session/selection_panels.js:1005
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
 
-#: gui/session/selection_panels.js:329
+#: gui/session/selection_panels.js:337
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "卸下%(name)s"
 
-#: gui/session/selection_panels.js:330
+#: gui/session/selection_panels.js:338
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "单击 撤销 1。Shift+单击 撤销该类所有单位。"
 
-#: gui/session/selection_panels.js:397
+#: gui/session/selection_panels.js:405
 msgid "Lock Gate"
 msgstr "关闭大门"
 
-#: gui/session/selection_panels.js:403
+#: gui/session/selection_panels.js:411
 msgid "Unlock Gate"
 msgstr "打开大门"
 
-#: gui/session/selection_panels.js:508
+#: gui/session/selection_panels.js:516
 msgid "Pack"
 msgstr "打包"
 
-#: gui/session/selection_panels.js:510
+#: gui/session/selection_panels.js:518
 msgid "Unpack"
 msgstr "解压"
 
-#: gui/session/selection_panels.js:512
+#: gui/session/selection_panels.js:520
 msgid "Cancel Packing"
 msgstr "取消打包"
 
-#: gui/session/selection_panels.js:514
+#: gui/session/selection_panels.js:522
 msgid "Cancel Unpacking"
 msgstr "取消展开"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:595
 msgid "Insufficient population capacity:"
 msgstr "人口容量不足"
 
-#: gui/session/selection_panels.js:588
+#: gui/session/selection_panels.js:596
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:707
+#: gui/session/selection_panels.js:715
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩余: %(number)s 。"
 
-#: gui/session/selection_panels.js:986 gui/session/session.js:621
+#: gui/session/selection_panels.js:993 gui/session/session.js:620
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "生命值："
@@ -622,44 +631,44 @@ msgstr "您已战败……"
 msgid "You have abandoned the game."
 msgstr "您放弃了游戏。"
 
-#: gui/session/session.js:471
+#: gui/session/session.js:470
 msgid "OK"
 msgstr "确定"
 
-#: gui/session/session.js:473
+#: gui/session/session.js:472
 msgid "Press OK to continue"
 msgstr "点击 确定 继续"
 
-#: gui/session/session.js:479
+#: gui/session/session.js:478
 msgid "Do you want to quit?"
 msgstr "要退出吗？"
 
-#: gui/session/session.js:485
+#: gui/session/session.js:484
 msgid "DEFEATED!"
 msgstr "战败！"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:492
 msgid "VICTORIOUS!"
 msgstr "胜利！"
 
-#: gui/session/session.js:781
+#: gui/session/session.js:780
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/session/session.js:883
+#: gui/session/session.js:882
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "创建: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:888
+#: gui/session/session.js:887
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "注意： 时空隧道模式是开发者选项，不适用于长时间开启。不恰当的使用可能导致内存不足或程序崩溃。"
 
-#: gui/session/session.js:888
+#: gui/session/session.js:887
 msgid "Time warp mode"
 msgstr "时空隧道模式"
 

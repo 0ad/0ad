@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-04-02 02:50+0200\n"
-"PO-Revision-Date: 2015-04-02 02:50+0200\n"
+"POT-Creation-Date: 2015-04-23 21:06+0200\n"
+"PO-Revision-Date: 2015-04-23 21:06+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -621,7 +621,6 @@ msgstr ""
 #: maps/scenarios/Sandbox - Gauls.xml:PlayerData[0].Name:41
 #: maps/scenarios/Sandbox - Iberians.xml:PlayerData[0].Name:42
 #: maps/scenarios/Sandbox - Romans.xml:PlayerData[0].Name:42
-#: maps/scenarios/Sicilia_Nomad.xml:PlayerData[0].Name:35
 #: maps/scenarios/Siwa Oasis.xml:PlayerData[0].Name:31
 #: maps/scenarios/The Massacre of Delphi.xml:PlayerData[0].Name:41
 #: maps/scenarios/Treasure Islands.xml:PlayerData[0].Name:41
@@ -663,6 +662,7 @@ msgstr ""
 #: maps/skirmishes/Sahel (4).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Savanna River.xml:PlayerData[0].Name:42
 #: maps/skirmishes/Sicilia (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
 #: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:41
@@ -690,7 +690,6 @@ msgstr ""
 #: maps/scenarios/Sandbox - Gauls.xml:PlayerData[1].Name:41
 #: maps/scenarios/Sandbox - Iberians.xml:PlayerData[1].Name:42
 #: maps/scenarios/Sandbox - Romans.xml:PlayerData[1].Name:42
-#: maps/scenarios/Sicilia_Nomad.xml:PlayerData[1].Name:35
 #: maps/scenarios/Siwa Oasis.xml:PlayerData[1].Name:31
 #: maps/scenarios/The Massacre of Delphi.xml:PlayerData[1].Name:41
 #: maps/scenarios/Treasure Islands.xml:PlayerData[1].Name:41
@@ -731,6 +730,7 @@ msgstr ""
 #: maps/skirmishes/Sahel (4).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Savanna River.xml:PlayerData[1].Name:42
 #: maps/skirmishes/Sicilia (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
 #: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:41
@@ -1501,16 +1501,6 @@ msgstr ""
 msgid "Ship Formations"
 msgstr ""
 
-#: maps/scenarios/Sicilia_Nomad.xml:Description:35
-msgid ""
-"The large Mediterranean island of Sicily is open for conquest.\n"
-"[color=\"orange\"]Tip: docks are useful dropsite when no territory[/color]"
-msgstr ""
-
-#: maps/scenarios/Sicilia_Nomad.xml:Name:35
-msgid "Sicilia Nomad (2)"
-msgstr ""
-
 #: maps/scenarios/Siwa Oasis.xml:Description:31
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of "
@@ -2110,6 +2100,17 @@ msgstr ""
 
 #: maps/skirmishes/Sicilia (2).xml:Name:41
 msgid "Sicilia (2)"
+msgstr ""
+
+#: maps/skirmishes/Sicilia_Nomad.xml:Description:35
+msgid ""
+"The large Mediterranean island of Sicily is open for conquest.\n"
+"[color=\"orange\"]Tip: docks are useful dropsite when you have no territory "
+"yet.[/color]"
+msgstr ""
+
+#: maps/skirmishes/Sicilia_Nomad.xml:Name:35
+msgid "Sicilia Nomad (2)"
 msgstr ""
 
 #: maps/skirmishes/Siwa Oasis (2).xml:Description:40

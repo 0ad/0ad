@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-28 19:01+0000\n"
-"Last-Translator: Pedro Almendros González <pedro.al94@gmail.com>\n"
+"PO-Revision-Date: 2015-04-20 18:45+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,7 +129,7 @@ msgstr "Metal"
 #: gui/common/l10n.js:10
 msgctxt "firstWord"
 msgid "Ore"
-msgstr "Mena"
+msgstr "Mineral"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -1004,12 +1004,12 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:292
 msgid "Gather Rates:"
-msgstr "Datos globales"
+msgstr "Tasas de recolección:"
 
 #: gui/structree/load.js:143
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr "de %(val1)s a %(val2)s"
+msgstr "%(val1)s a %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
@@ -1560,7 +1560,7 @@ msgstr "Problemas conocidos (web)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr "Civilización"
+msgstr "Civilización:"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"

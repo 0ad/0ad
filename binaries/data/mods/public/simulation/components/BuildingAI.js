@@ -190,10 +190,19 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 		}
 	}
 
-	if (!this.targetUnits.length || this.timer)
+	if (this.targetUnits.length)
+		this.StartTimer();
+};
+
+BuildingAI.prototype.StartTimer = function()
+{
+	if (this.timer)
 		return;
 
-	// units entered the range, prepare to shoot
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
+		return;
+
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	var attackTimers = cmpAttack.GetTimers(attackType);
 	this.timer = cmpTimer.SetInterval(this.entity, IID_BuildingAI, "FireArrows", attackTimers.prepare, attackTimers.repeat / roundCount, null);
@@ -235,12 +244,19 @@ BuildingAI.prototype.GetArrowCount = function()
 	return count;
 };
 
+BuildingAI.prototype.SetUnitAITarget = function(ent)
+{
+	this.unitAITarget = ent;
+	if (ent)
+		this.StartTimer();
+};
+
 /**
  * Fires arrows. Called 'roundCount' times every 'RepeatTime' seconds when there are units in the range
  */
 BuildingAI.prototype.FireArrows = function()
 {
-	if (!this.targetUnits.length)
+	if (!this.targetUnits.length && !this.unitAITarget)
 	{
 		if (!this.timer)
 			return;
@@ -287,20 +303,30 @@ BuildingAI.prototype.FireArrows = function()
 		this.currentRound++;
 		return;
 	}
+
+	// add targets to a weighted list, to allow preferences
 	var targets = new WeightedList();
-	for (var i = 0; i < this.targetUnits.length; i++)
+	var maxPreferenceBonus = this.MAX_PREFERENCE_BONUS;
+	var addTarget = function(target)
 	{
-		var target = this.targetUnits[i];
 		var preference = cmpAttack.GetPreference(target);
 		var weight = 1;
 		if (preference !== null && preference !== undefined)
 		{
 			// Lower preference scores indicate a higher preference so they
 			// should result in a higher weight.
-			weight = 1 + this.MAX_PREFERENCE_BONUS / (1 + preference);
+			weight = 1 + maxPreferenceBonus / (1 + preference);
 		}
 		targets.push(target, weight);
-	}
+
+	};
+	// add the unit ai target separately, as the UnitMotion and RangeManager
+	// implementations differ
+	if (this.unitAITarget && this.targetUnits.indexOf(this.unitAITarget) == -1)
+		addTarget(this.unitAITarget);
+	for (let target of this.targetUnits)
+		addTarget(target);
+
 	for (var i = 0;i < arrowsToFire;i++)
 	{
 		var selectedIndex = targets.randomIndex();

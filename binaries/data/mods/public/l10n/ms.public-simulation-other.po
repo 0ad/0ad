@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:09+0100\n"
-"PO-Revision-Date: 2015-03-06 10:33+0000\n"
+"POT-Creation-Date: 2015-04-02 02:50+0200\n"
+"PO-Revision-Date: 2015-04-18 04:42+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/projects/p/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -37,14 +37,26 @@ msgstr "Ini adalah hadiah untuk %(name)s, guna dengan sebaik yang mungkin."
 msgid "I see you are in a bad situation %(name)s, I hope this will help."
 msgstr "Saya lihat anda dalam keadaan terhimpit, %(name)s, diharap ini dapat membantu anda."
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:34
+#, javascript-format
+msgid "I am in need of %(resource)s, can you help? I will make it up to you."
+msgstr "ISaya memerlukan %(resource)s, boleh anda bantu saya?"
+
+#: simulation/ai/petra/chatHelper.js:36
+#, javascript-format
+msgid ""
+"I would particate more efficiently in our common war effort if you could "
+"provide me some %(resource)s."
+msgstr "Saya akan menyertai perperangan dengan anda jika anda memberi sedikit %(resource)s."
+
+#: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid ""
 "I have set up a new route with %(name)s. Trading will be profitable for all "
 "of us."
 msgstr "Saya telah bina satu laluan dagangan baharu dengan %(name)s. Perdagangan akan menjadi lebih menguntungkan buat kita semua."
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:49
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(name)s. Take your share of the profits"
@@ -66,7 +78,7 @@ msgstr "Mari kita mulakan, mula-mula latih seramai (shift klik) 5 orang warga pe
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr "Sudah siap, arah warga perempuan anda mengutip beri, pasukan berkuda anda memburu ayam dan warga askar anda mengutip kayu."
+msgstr "Sudah siap, arah warga perempuan anda mengutip buah beri, pasukan berkuda anda memburu ayam dan warga askar anda pula mengutip kayu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
@@ -328,7 +340,7 @@ msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr "Pilih warga-askar, klik-kanan pada pokok berhampiran Pusat Sivik untuk mula mengumpul kayu. Warga-askar mengumpul kayu lebih pantas berbanding warga perempuan."
+msgstr "Pilih askar-rakyat, klik-kanan pada pokok berhampiran Pusat Sivik untuk mula mengumpul kayu. Warga-askar mengumpul kayu lebih pantas berbanding warga perempuan."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
@@ -417,7 +429,7 @@ msgstr "Bersedia menerima serangan dari pihak musuh. Latih lagi askar menggunaka
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
-msgstr "Bina Bengkel Tempa dan buat penyelidikan Teknologi Latihan Infantri (ikon pedang) untuk mempertingkatkan kuasa serangan infantri."
+msgstr "Bina Bengkel Tempa dan kaji Teknologi Latihan Infantri (ikon pedang) untuk mempertingkatkan kuasa serangan infantri."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."

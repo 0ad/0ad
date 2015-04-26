@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-14 14:41+0000\n"
+"POT-Creation-Date: 2015-04-02 02:49+0200\n"
+"PO-Revision-Date: 2015-04-02 12:23+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -43,12 +43,12 @@ msgid "Resume"
 msgstr "Lean air adhart"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:476 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Tha"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:476 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Chan eil"
 
@@ -410,132 +410,141 @@ msgstr "\\[FAR LOIDHNE] %(player)s"
 msgid "%(rank)s Rank"
 msgstr "Rang %(rank)s"
 
-#: gui/session/selection_details.js:68
+#: gui/session/selection_details.js:73
+#, javascript-format
+msgid "This foundation will be completed in %(numb)s seconds."
+msgstr "Thèid am fonndas seo a choileanadh an ceann %(numb)s diog(an)."
+
+#: gui/session/selection_details.js:78
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:95
+#: gui/session/selection_details.js:105
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:96 gui/session/selection_details.js:102
+#: gui/session/selection_details.js:106 gui/session/selection_details.js:112
 msgid "Experience:"
 msgstr "Eòlas:"
 
-#: gui/session/selection_details.js:101
+#: gui/session/selection_details.js:111
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:115
+#: gui/session/selection_details.js:125
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:116 gui/session/selection_details.js:149
-#: gui/session/selection_details.js:180
+#: gui/session/selection_details.js:126 gui/session/selection_details.js:159
+#: gui/session/selection_details.js:199
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:125
+#: gui/session/selection_details.js:135
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:164
+#: gui/session/selection_details.js:174
 #, javascript-format
 msgid "Gain: %(amount)s"
 msgstr "Buannachd: %(amount)s"
 
-#: gui/session/selection_details.js:173
+#: gui/session/selection_details.js:187
 #, javascript-format
 msgid ""
 "Number of builders.\n"
-"Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr "Àireamh de luchd-togail\nMa chuireas tu fear eile ris a' bhonn seo, thèid a thogail nas luaithe le %(numb)s%%"
+"Tasking another to this foundation would speed construction up by %(numb)s seconds."
+msgstr "Àireamh de luchd-togail.\nMa chuireas tu neach-obrach a bharrachd ris an fhonndas seo, thèid a thogail nas luaithe le %(numb)s diog(an)."
 
-#: gui/session/selection_details.js:181
+#: gui/session/selection_details.js:191
+msgid "Number of builders."
+msgstr "Àireamh de luchd-togail."
+
+#: gui/session/selection_details.js:200
 msgid "Current/max gatherers"
 msgstr "Cruinnichean an-dràsta/as motha"
 
-#: gui/session/selection_details.js:196
+#: gui/session/selection_details.js:215
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:242
+#: gui/session/selection_details.js:261
 msgid "Classes:"
 msgstr "Clasaichean:"
 
-#: gui/session/selection_details.js:295
+#: gui/session/selection_details.js:314
 msgid "Hitpoints:"
 msgstr "Puingean-slàinte:"
 
-#: gui/session/selection_details.js:296 gui/session/session.js:622
+#: gui/session/selection_details.js:315 gui/session/session.js:621
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_panels.js:87
+#: gui/session/selection_panels.js:91
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Ceannaich %(resource)s"
 
-#: gui/session/selection_panels.js:88
+#: gui/session/selection_panels.js:92
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Reic %(resource)s"
 
-#: gui/session/selection_panels.js:216 gui/session/selection_panels.js:998
+#: gui/session/selection_panels.js:220 gui/session/selection_panels.js:1005
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Tha %(technology)s a dhìth"
 
-#: gui/session/selection_panels.js:329
+#: gui/session/selection_panels.js:337
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "A-mach le %(name)s"
 
-#: gui/session/selection_panels.js:330
+#: gui/session/selection_panels.js:338
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Briog aon turas ach an tig 1 dhiubh a-mach. Shift-bhriog ach an tig gach saighdear dhen t-seòrsa seo a-mach."
 
-#: gui/session/selection_panels.js:397
+#: gui/session/selection_panels.js:405
 msgid "Lock Gate"
 msgstr "Glais an geata"
 
-#: gui/session/selection_panels.js:403
+#: gui/session/selection_panels.js:411
 msgid "Unlock Gate"
 msgstr "Neo-ghlais an geata"
 
-#: gui/session/selection_panels.js:508
+#: gui/session/selection_panels.js:516
 msgid "Pack"
 msgstr "Paisg"
 
-#: gui/session/selection_panels.js:510
+#: gui/session/selection_panels.js:518
 msgid "Unpack"
 msgstr "Neo-phaisg"
 
-#: gui/session/selection_panels.js:512
+#: gui/session/selection_panels.js:520
 msgid "Cancel Packing"
 msgstr "Sguir dhen phasgadh"
 
-#: gui/session/selection_panels.js:514
+#: gui/session/selection_panels.js:522
 msgid "Cancel Unpacking"
 msgstr "Sguir dhen neo-phasgadh"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:595
 msgid "Insufficient population capacity:"
 msgstr "Chan eil àiteachan-fuirich gu leòr airson an t‑sluaigh:"
 
-#: gui/session/selection_panels.js:588
+#: gui/session/selection_panels.js:596
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:707
+#: gui/session/selection_panels.js:715
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
@@ -544,7 +553,7 @@ msgstr[1] "Air fhàgail: %(number)s ri thogail."
 msgstr[2] "Air fhàgail: %(number)s ri an togail."
 msgstr[3] "Air fhàgail: %(number)s ri thogail."
 
-#: gui/session/selection_panels.js:986 gui/session/session.js:621
+#: gui/session/selection_panels.js:993 gui/session/session.js:620
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Slàinte:"
@@ -641,44 +650,44 @@ msgstr "Chaidh ruaig a chur ort..."
 msgid "You have abandoned the game."
 msgstr "Dh'fhàg thu an geama."
 
-#: gui/session/session.js:471
+#: gui/session/session.js:470
 msgid "OK"
 msgstr "Ceart ma-thà"
 
-#: gui/session/session.js:473
+#: gui/session/session.js:472
 msgid "Press OK to continue"
 msgstr "Briog air \"Ceart ma-thà\" gus leantainn air adhart"
 
-#: gui/session/session.js:479
+#: gui/session/session.js:478
 msgid "Do you want to quit?"
 msgstr "A bheil thu airson fàgail?"
 
-#: gui/session/session.js:485
+#: gui/session/session.js:484
 msgid "DEFEATED!"
 msgstr "RUAIG!"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:492
 msgid "VICTORIOUS!"
 msgstr "BUAIDH!"
 
-#: gui/session/session.js:781
+#: gui/session/session.js:780
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/session/session.js:883
+#: gui/session/session.js:882
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Togail: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:888
+#: gui/session/session.js:887
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "An aire: 's e modh nan leasaichear a tha sa mhodh dlùthadh an ama is cha bu chòir dhut a chleachdadh fad ùine mòire. Mur cleachd thu mar bu chòir e, dh'fhaoidte gum falbh an cuimhne air a' gheama no gun tuislich e."
 
-#: gui/session/session.js:888
+#: gui/session/session.js:887
 msgid "Time warp mode"
 msgstr "Modh dlùthadh an ama"
 

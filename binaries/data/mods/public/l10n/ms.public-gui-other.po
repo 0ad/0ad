@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-22 10:32+0000\n"
+"PO-Revision-Date: 2015-04-18 04:42+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/projects/p/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -464,7 +464,7 @@ msgstr "%(resourceIcon)s %(minimum)s ke %(resourceIcon)s %(maximum)s"
 #: gui/common/tooltips.js:339
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr "Dinding:  %(costs)s"
+msgstr "Tembok:  %(costs)s"
 
 #: gui/common/tooltips.js:340
 #, javascript-format
@@ -987,7 +987,7 @@ msgstr "%(auraname)s:"
 
 #: gui/structree/draw.js:267
 msgid "Health:"
-msgstr "Kesihatan:"
+msgstr "Hayat:"
 
 #: gui/structree/draw.js:286
 #, javascript-format
@@ -1628,7 +1628,7 @@ msgstr "- Bina di mana sahaja di atas peta, walaupun di dalam wilayah musuh. Ses
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
-msgstr "- Hilang kesihatan bila berada di dalam kawasan neutral atau musuh."
+msgstr "- Hilang hayat bila berada di dalam wilayah neutral atau musuh."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
@@ -1650,7 +1650,7 @@ msgstr "- Latih semua warga-askar. Sesetengah puak boleh membuka latihan pahlawa
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr "- Penyelidikan teknologi unik ketenteraan bagi setiap puak."
+msgstr "- Kaji teknologi unik ketenteraan bagi setiap puak."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
@@ -1668,15 +1668,15 @@ msgstr "TUKANG BESI"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr "- Penyelidikan struktur untuk semu puak."
+msgstr "- Struktur kajian untuk semua puak."
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr "- Penyelidikan tatar senjata dan perisai untuk unit anda."
+msgstr "- Kaji tatar senjata dan perisai untuk unit anda."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid "- Garrison a citizen-soldier inside to research faster."
-msgstr "- Garison warga-askar di dalam untuk penyeledikan lebih pantas."
+msgstr "- Garison warga-askar di dalam untuk kajian lebih pantas."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -1828,7 +1828,7 @@ msgstr "PENGUMPULAN SUMBER"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr "- Guna Warga-Askar dan Warga Perempuan menghimpun sumber."
+msgstr "- Guna Askar-Rakyat dan Warga Perempuan menghimpun sumber."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
@@ -1836,13 +1836,13 @@ msgstr "- Warga Perempuan adalah bonus dengan Pertanian dan Pengumpulan Makanan.
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
-msgstr "- Warga-Aksar adalah bonus dengan Perlombongan."
+msgstr "- Aksar-Rakyat adalah bonus dengan Perlombongan."
 
 #: gui/text/tips/gathering.txt:8
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr "- Lebih tinggi tahap Warga-Askar (Mahir, Elit), lebih baik ia bertempur, tetapi kurang efisyen bila membuat kerja pengumpulan sumber."
+msgstr "- Lebih tinggi tahap Askar-Rakyat (Mahir, Elit), lebih baik ia bertempur, tetapi kurang efisyen bila membuat kerja pengumpulan sumber."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -1880,11 +1880,11 @@ msgstr "- Ia dapat dibina dengan  cepat, tetapi strukturnya lemah."
 
 #: gui/text/tips/outposts.txt:8
 msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr "- Hilang nilai kesihatan ketika berada di dalam kawasan Neutral, tetapi boleh dibaiki."
+msgstr "- Kehilangan hayat ketika berada di dalam wilayah Neutral, tetapi boleh dipulihkan."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr "TEMBOK PALISADE"
+msgstr "TEMBOK PANCANG"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
@@ -2092,7 +2092,7 @@ msgstr "- Rumah simpanan murah untuk sumber bukan makanan (kayu, batu, logam)."
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- Penyelidikan teknologi untuk mempertingkatkan keupayaan mengumpul warga anda."
+msgstr "- Kaji teknologi untuk mempertingkatkan keupayaan mengumpul warga anda."
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
@@ -2128,7 +2128,7 @@ msgstr "- Rekrut Bomoh untuk merawat tentera anda di medan perang."
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- Menyelidik penyembuhan, pemujaan beragama, dan teknologi budaya."
+msgstr "- Kaji teknologi penyembuhan, pemujaan beragama, dan budaya."
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."

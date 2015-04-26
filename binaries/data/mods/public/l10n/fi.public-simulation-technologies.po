@@ -4,12 +4,13 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014
+# Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:21+0100\n"
-"PO-Revision-Date: 2015-03-15 09:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-04-21 16:52+0000\n"
+"Last-Translator: Olavi Tuomaala <olatuo1955@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -186,7 +187,7 @@ msgstr ""
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr ""
+msgstr "Kokonaan raudasta tehty panssari, kovimmasta antiikin ajalla tunnetusta työstettävästä metallista."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
@@ -213,7 +214,7 @@ msgstr "Lorica Ferrea"
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr ""
+msgstr "Topattu palttina- tai nahkapanssari jalkaväelle."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
@@ -223,7 +224,7 @@ msgstr ""
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr ""
+msgstr "Topattu panssari"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
@@ -253,12 +254,12 @@ msgstr "Spolas"
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr ""
+msgstr "Kerrostettu palttinapanssari jalkaväelle"
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr ""
+msgstr "Kerrostettu palttinapanssari"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
@@ -287,7 +288,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
-msgstr ""
+msgstr "Pronssisuomuilla vahvistettu panssari"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
@@ -302,7 +303,7 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr ""
+msgstr "Kokonaan pronssista valmistettu panssari. Vain parhaat sotilaat saivat sellaisen, koska se kallis ja hidas valmistaa."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
@@ -318,7 +319,7 @@ msgstr "Lorica Musculata"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
-msgstr ""
+msgstr "Ristikkorakenne suuria suojuksia varten"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
@@ -405,7 +406,7 @@ msgstr "Argyraspides"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr ""
+msgstr "Lyijypäällyste suojaa laivan runkoa."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
@@ -413,7 +414,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr ""
+msgstr "Rungon lyijysuojaus"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
@@ -455,7 +456,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_trade_convoys.jsondescription
 msgid "Increases defensive capability of traders."
-msgstr ""
+msgstr "Lisää kauppiaitten puolustuskykyä."
 
 #: simulation/data/technologies/armor_trade_convoys.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
@@ -467,7 +468,7 @@ msgstr "Kauppasaattue"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr ""
+msgstr "Ertyisesti ratsuväelle tehty pitkä keihäs."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
@@ -476,7 +477,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
-msgstr ""
+msgstr "Ratsuväen peitsi"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.spart
@@ -516,11 +517,11 @@ msgstr ""
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr ""
+msgstr "Koulutus lisää lähitaistelukykyä."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr ""
+msgstr "+20% ratsuväen lähitaistelukykyyn."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
@@ -529,7 +530,7 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
 msgid "Replaces bronze weapons with iron."
-msgstr ""
+msgstr "Korvaa pronssiaseet rautaisilla."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
@@ -540,7 +541,7 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
 #: simulation/data/technologies/attack_infantry_melee_02.jsongenericName
 msgid "Iron Weapons"
-msgstr ""
+msgstr "Aseet raudasta"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
@@ -622,7 +623,7 @@ msgstr "Pugio"
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr ""
+msgstr "Raudan käyttö pronssin sijasta teki aseista tehokkaampia."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
@@ -703,7 +704,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
-msgstr ""
+msgstr "Toledon teräs"
 
 #: simulation/data/technologies/attack_tower_crenellations.jsondescription
 msgid ""
@@ -739,7 +740,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr ""
+msgstr "Lisää puolustustornin enimmäisetäisyyttä 8 metrillä."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"

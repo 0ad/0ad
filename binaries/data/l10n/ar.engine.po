@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-03-05 05:19+0000\n"
+"PO-Revision-Date: 2015-04-15 07:37+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "%s (بناء مخصّص)"
 #: gui/scripting/ScriptFunctions.cpp:772
 #, c-format
 msgid "%s (%ls)"
-msgstr "%s (%ls)"
+msgstr "%s ‏(%ls)"
 
 #: gui/scripting/ScriptFunctions.cpp:793
 msgid "custom build"
@@ -97,7 +97,7 @@ msgstr "اسم اللاعب مستخدم بالفعل"
 
 #: lobby/XmppClient.cpp:984
 msgid "Feature not implemented"
-msgstr "لم تُنجَز الميزة"
+msgstr "لم تُنجز الميزة"
 
 #: lobby/XmppClient.cpp:985
 msgid "Forbidden"
@@ -105,7 +105,7 @@ msgstr "محظور"
 
 #: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
-msgstr "المستلم أوالسيرفر غير موجود"
+msgstr "اختفى المستلم أو الخادوم"
 
 #: lobby/XmppClient.cpp:987
 msgid "Internal server error"
@@ -141,7 +141,7 @@ msgstr "دفع المطلوب"
 
 #: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
-msgstr "المستلم غير متاح"
+msgstr "المستلم غير متوفّر"
 
 #: lobby/XmppClient.cpp:996
 msgid "Redirect"
@@ -173,11 +173,11 @@ msgstr "شرط غير معرّف"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
-msgstr "طلب غير متوقٌع"
+msgstr "طلب غير متوقّع"
 
 #: lobby/XmppClient.cpp:1005
 msgid "Unknown sender"
-msgstr "مُرسِل مجهول"
+msgstr "مرسِل مجهول"
 
 #: lobby/XmppClient.cpp:1007
 msgid "Error undefined"

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014
 # Woratiklis, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-03-15 05:21+0100\n"
-"PO-Revision-Date: 2015-03-21 23:43+0000\n"
+"POT-Creation-Date: 2015-04-02 02:50+0200\n"
+"PO-Revision-Date: 2015-04-07 03:30+0000\n"
 "Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +25,7 @@ msgstr "Гея"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
-msgstr "Основная флора"
+msgstr "Обычная растительность"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
@@ -37,7 +38,7 @@ msgstr "Ягодник"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:10
 msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Собирайте плоды с этих кустов чтобы накопить пищу."
+msgstr "Собирайте плоды с этих кустов, чтобы накопить пищу."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
@@ -53,7 +54,7 @@ msgstr "Основная геология"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
-msgstr "Минерал"
+msgstr "Руда"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Metal Mine"
@@ -61,7 +62,7 @@ msgstr "Рудник"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "Минеральный залежи обеспечивают доступ к редким формам драгоценного металла."
+msgstr "Залежи руды обеспечивают доступ к редким формам драгоценного металла."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -73,7 +74,7 @@ msgstr "Каменоломня"
 
 #: simulation/templates/template_gaia_geo_rock.xml:6
 msgid "Mine these to provide Stone building material."
-msgstr "Рудник обеспечивает строительным камнем"
+msgstr "Рудник обеспечивает строительным камнем."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
@@ -281,7 +282,7 @@ msgstr "Верблюд"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Chicken"
-msgstr "Цыпленок"
+msgstr "Курица"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
@@ -309,7 +310,7 @@ msgstr "Африканский слонёнок"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:46
 msgid "Asian Elephant"
-msgstr "Азиатский слон"
+msgstr "Индийский слон"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:33
 msgid "North African Elephant"
@@ -327,7 +328,7 @@ msgstr "Собирайте пищу из этих богатых океанск�
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
-msgstr "Рыба тилапия"
+msgstr "Тилапия"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
@@ -560,7 +561,7 @@ msgstr "Статуи птолемеев"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
 msgid "Roman Statues"
-msgstr "Римская статуя"
+msgstr "Римские статуи"
 
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:10
 #: simulation/templates/gaia/special_treasure_food_bin.xml:10
@@ -712,8 +713,8 @@ msgid "Naos Parthenos"
 msgstr "Наос Парфенос"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:32
-msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Обучает целителей. Быстро исцеляет гарнизон до 30 единиц"
+msgid "Garrison up to 30 units to heal them at a quick rate."
+msgstr "Разместите до 30 юнитов внутри для быстрого восстановления их здоровья."
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"

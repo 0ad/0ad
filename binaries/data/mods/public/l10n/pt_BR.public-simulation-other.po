@@ -7,15 +7,16 @@
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014
 # Nicolas Frasson <nicfrasson@gmail.com>, 2014
+# no and no <nicolasmaia@tutanota.com>, 2015
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Raphael Mendonça, 2014
 # Thiago Perrotta <thiagoperrotta95@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:09+0100\n"
-"PO-Revision-Date: 2015-02-14 18:50+0000\n"
-"Last-Translator: Thiago Perrotta <thiagoperrotta95@gmail.com>\n"
+"POT-Creation-Date: 2015-04-02 02:50+0200\n"
+"PO-Revision-Date: 2015-04-03 05:36+0000\n"
+"Last-Translator: no and no <nicolasmaia@tutanota.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,14 +44,26 @@ msgstr "Aqui está um presente para %(name)s, faça bom use dele."
 msgid "I see you are in a bad situation %(name)s, I hope this will help."
 msgstr "Eu vejo que você está em uma situação ruim %(name)s, eu espero que isto ajude."
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:34
+#, javascript-format
+msgid "I am in need of %(resource)s, can you help? I will make it up to you."
+msgstr "Preciso de %(resource)s, pode me ajudar? Vou lhe recompensar."
+
+#: simulation/ai/petra/chatHelper.js:36
+#, javascript-format
+msgid ""
+"I would particate more efficiently in our common war effort if you could "
+"provide me some %(resource)s."
+msgstr "Eu participaria mais eficientemente no nosso esforço de guerra conjunto se você pudesse me prover com %(resource)s."
+
+#: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid ""
 "I have set up a new route with %(name)s. Trading will be profitable for all "
 "of us."
 msgstr "Eu estabeleci uma nova rota com %(name)s. O comércio vai ser lucrativo para todos nós."
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:49
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(name)s. Take your share of the profits"

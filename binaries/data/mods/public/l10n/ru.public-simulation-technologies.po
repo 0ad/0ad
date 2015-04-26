@@ -5,6 +5,7 @@
 # Translators:
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Christo Keller <christoniancoder@gmail.com>, 2014
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014
 # dr&mx <dronmax@gmail.com>, 2014
 # grin.sv <grin.sv@gmail.com>, 2015
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:21+0100\n"
-"PO-Revision-Date: 2015-03-29 21:16+0000\n"
-"Last-Translator: Woratiklis\n"
+"PO-Revision-Date: 2015-04-09 13:53+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +40,7 @@ msgstr "Металлический доспех на голове лошади -
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "Экипируйте свою конницу бронёй. Вся кавалерия получает +1 к защите от рубящего и колющего ударов."
+msgstr "Экипируйте свою конницу бронёй. Все кавалерийские юниты получают +1 к защите от рубящих и колющих ударов."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -192,19 +193,19 @@ msgstr "Станет доступным на этапе большого гор�
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Экипируйте свою конницу бронёй. Вся конница получает +1 к защите от рубящего удара."
+msgstr "Экипируйте свою конницу бронёй. Вся конница получает +1 к защите от рубящих ударов."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr "Нательная защита полностью изготовленная из железа, самого тяжелообрабатываемого металла древности."
+msgstr "Нательная защита, полностью изготовленная из железа, самого труднообрабатываемого металла древности."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "Все герои получают +2 к защите от рубящего и колющего ударов, но за дополнительные +50 металла к стоимости."
+msgstr "Все герои получают +2 к защите от рубящих и колющих ударов, но за дополнительные +50 металла к стоимости."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -230,7 +231,7 @@ msgstr "Стёганая или кожаная броня пехотинца."
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Вся пехота получает +1 к защите от рубящего и колющего ударов."
+msgstr "Вся пехота получает +1 к защите от рубящих и колющих ударов."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
@@ -295,11 +296,11 @@ msgstr "Линотракс"
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr "Вся пехота получает +1 к защите от рубящего удара."
+msgstr "Вся пехота получает +1 к защите от рубящих ударов."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
-msgstr "Доспех усиленный бронзовыми пластинами."
+msgstr "Доспех, усиленный бронзовыми пластинами."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
@@ -314,11 +315,11 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "Нательная защита полностью изготовленная из бронзы. Только лучшие воины могли экипироваться такими доспехами из-за высокой цены и трудоёмкости изготовления."
+msgstr "Нательная защита, полностью изготовленная из бронзы. Только лучшие воины могли экипироваться такими доспехами из-за их высокой цены и трудоёмкости изготовления."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "Чемпионы получают +2 к защите от рубящего удара за дополнительные +10 металла к стоимости."
+msgstr "Чемпионы получают +2 к защите от рубящих ударов за дополнительные +10 металла к стоимости."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -334,7 +335,7 @@ msgstr "Большие фанерные щиты."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Пешие копейщики получают +2 к защите от колющего удара."
+msgstr "Пешие копейщики получают +2 к защите от колющих ударов."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -356,7 +357,7 @@ msgstr "Улучшенные щиты имеют усиление по угла�
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr "Пешие копейщики получают +1 к защите от колющего удара."
+msgstr "Пешие копейщики получают +1 к защите от колющих ударов."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -376,7 +377,7 @@ msgstr "Бронзовая оковка лицевой части щита."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Пешие копейщики получают +1 к защите от колющего удара."
+msgstr "Пешие копейщики получают +1 к защите от колющих ударов."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
@@ -397,11 +398,11 @@ msgstr "Хрисаспиды"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr "Только самые знаменитые воины имели щиты покрытые серебром, например знаменитый полк \"Серебряные щиты\" в войске Александра Великого."
+msgstr "Только самые знаменитые воины имели щиты, покрытые серебром, например знаменитый полк \"Серебряные щиты\" в войске Александра Великого."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "Чемпионы получают +2 к защите от колющего удара за дополнительные +10 металла к стоимости."
+msgstr "Чемпионы получают +2 к защите от колющих ударов за дополнительные +10 металла к стоимости."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -479,12 +480,12 @@ msgstr "Торговые караваны"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr "Длинное копьё изготовленное специально для кавалерии."
+msgstr "Длинное копьё, изготовленное специально для кавалерии."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Вооружите конницу улучшенным оружием ближнего боя. Конница в ближнем бою получает +2 к рубящему урону."
+msgstr "Вооружите конницу улучшенным оружием ближнего боя. Конница в ближнем бою получает +2 к урону рубящим оружием."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -634,7 +635,7 @@ msgstr "Пугио"
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr "Использованные железа вместо бронзы у оружия, даёт дополнительную силу атаки."
+msgstr "Использование железа вместо бронзы даёт дополнительную силу атаки."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
@@ -699,7 +700,7 @@ msgstr "Динамис"
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "Секреты кузнечной обработки дают лезвиям мечей характерные и красивые узоры. Но не только их - твёрдость стали не имеет себе равных."
+msgstr "Секреты кузнечной обработки придают лезвиям мечей характерные и красивые узоры. Но не только их - твёрдость такой стали не имеет себе равных."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+2 attack for all sword units."
@@ -812,7 +813,7 @@ msgstr "Разведение скота для пищи."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
-msgstr "Время разведения скота уменьшается на -25% (овцы, козы, коровы и др.)"
+msgstr "Время разведения скота (овцы, козы, коровы и др.) уменьшается на -25%."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -866,7 +867,7 @@ msgstr "Орудие для вспахивания земли с помощью 
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr "Дайте вашим рабочим железные плуги. Повышается на +15% скорость выращивания."
+msgstr "Предоставьте своим рабочим железные плуги. Скорость выращивания повышается на +15%."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -1025,7 +1026,7 @@ msgstr "Юниты охраняющие бараки лечатся постоя
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in barracks."
-msgstr "Юниты, при нахождении в бараках, выздоравливают с течением времени."
+msgstr "При нахождении в бараках юниты восстанавливают здоровье со временем."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1034,16 +1035,16 @@ msgstr "Жилищные условия"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing range of all healers."
-msgstr "Увеличивается дальность радиус целителями."
+msgstr "Увеличивается радиус исцеления всех целителей."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +8 Healing Range."
-msgstr "Целители получают +8 к радиусу лечения."
+msgstr "Целители получают +8 к радиусу исцеления."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
-msgstr "Радиус лечения"
+msgstr "Радиус исцеления"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
@@ -1053,7 +1054,7 @@ msgstr "Олимпийский пантеон"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr "Радиус лечения 2"
+msgstr "Радиус исцеления 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
@@ -1064,16 +1065,16 @@ msgstr "Академия"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr "Увеличивает скорость лечения целителями."
+msgstr "Увеличивает скорость исцеления целителей."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr "Целители получают +25% к скорости лечения."
+msgstr "Целители получают +25% к скорости исцеления."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr "Скорость лечения"
+msgstr "Скорость исцеления"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
@@ -1083,7 +1084,7 @@ msgstr "Сфактерия"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr "Скорость лечения 2"
+msgstr "Скорость исцеления 2"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
@@ -1093,11 +1094,11 @@ msgstr "Клятва Гиппократа"
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr "Юниты охраняющие храм вылечиваются быстрее."
+msgstr "Расположенные в храме юниты восстанавливают здоровье быстрее."
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
-msgstr "Храмы повышают на +50% скорость лечения гарнизона."
+msgstr "Храмы повышают на +50% скорость восстановления здоровья размещенных внутри юнитов."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
@@ -1318,7 +1319,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
-msgstr "Перейди на этап небольшого города открывающий новые строения и юнитов. Влияние на территорию у городского центра увеличивается на +30%. \"Серебряные совы\" дают прирост +10% к скорости добычи металлов."
+msgstr "Перейди на этап небольшого города, открывающий новые строения и юнитов. Влияние на территорию у городского центра увеличивается на +30%. \"Серебряные совы\" дают прирост +10% к скорости добычи металлов."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1342,7 +1343,7 @@ msgstr "Расширение из деревни до небольшого го�
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%"
-msgstr "Перейти к этапу небольшого города в котором доступны новые постройки и юниты. Влияние городского центра на территории увеличено на +30%."
+msgstr "Перейти к этапу небольшого города, в котором доступны новые постройки и юниты. Влияние городского центра на территории увеличено на +30%."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2362,7 +2363,7 @@ msgstr "Время обучения всей пехоты снижается н�
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
-msgstr "Римляне были мастера в военной логистике."
+msgstr "Римляне были мастерами военной логистики."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
@@ -2401,7 +2402,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr "Начиная с Александра эллинские монархи основали много городов за время существования империи в которых греческая культура и искусство смешались с местными обычаями создавая пёструю эллинскую цивилизацию."
+msgstr "Начиная с Александра, эллинские монархи основали много городов за время существования империи, в которых греческая культура и искусство смешались с местными обычаями, создавая пёструю эллинскую цивилизацию."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and double default arrows."
@@ -2409,7 +2410,7 @@ msgstr "Городские центры получают +100% жизнеспо�
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
-msgstr "Эллинистический Метрополис"
+msgstr "Эллинистическая метрополия"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
 msgid ""

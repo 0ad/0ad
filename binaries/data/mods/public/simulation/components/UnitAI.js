@@ -1796,9 +1796,16 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.resyncAnimation = (prepare != this.attackTimers.prepare) ? true : false;
 
 					this.FaceTowardsTarget(this.order.data.target);
+
+					var cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
+					if (cmpBuildingAI)
+						cmpBuildingAI.SetUnitAITarget(this.order.data.target);
 				},
 
 				"leave": function() {
+					var cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
+					if (cmpBuildingAI)
+						cmpBuildingAI.SetUnitAITarget(0);
 					this.StopTimer();
 				},
 
@@ -2663,7 +2670,14 @@ UnitAI.prototype.UnitFsmSpec = {
 				// We finished building it.
 				// Switch to the next order (if any)
 				if (this.FinishOrder())
+				{
+					if (this.CanReturnResource(msg.data.newentity, true)) 
+					{ 
+						this.SetGathererAnimationOverride(true); 
+						this.PushOrderFront("ReturnResource", { "target": msg.data.newentity, "force": false }); 
+					}
 					return;
+				}
 
 				// No remaining orders - pick a useful default behaviour
 
@@ -2676,6 +2690,11 @@ UnitAI.prototype.UnitFsmSpec = {
 				// the build command should start gathering from it
 				if ((oldData.force || oldData.autoharvest) && this.CanGather(msg.data.newentity))
 				{
+					if (this.CanReturnResource(msg.data.newentity, true)) 
+					{ 
+						this.SetGathererAnimationOverride(true); 
+						this.PushOrder("ReturnResource", { "target": msg.data.newentity, "force": false }); 
+					}
 					this.PerformGather(msg.data.newentity, true, false);
 					return;
 				}

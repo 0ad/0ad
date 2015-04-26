@@ -98,7 +98,7 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 
 	for (var i in this.events)
 	{
-		if (i == "AIMetadata" || i == "RangeUpdate")   // not used inside petra
+		if (i == "AIMetadata")   // not used inside petra
 			continue;
 		if(this.savedEvents[i] !== undefined)
 			this.savedEvents[i] = this.savedEvents[i].concat(this.events[i]);

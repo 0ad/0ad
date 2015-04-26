@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-12 00:57+0100\n"
-"PO-Revision-Date: 2015-02-12 10:36+0000\n"
+"POT-Creation-Date: 2015-04-02 02:49+0200\n"
+"PO-Revision-Date: 2015-04-20 18:52+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -45,12 +45,12 @@ msgid "Resume"
 msgstr "Continua"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:476 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Si"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:476 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "No"
 
@@ -394,139 +394,148 @@ msgstr "\\[DESCONNECTAT] %(player)s"
 msgid "%(rank)s Rank"
 msgstr "%(rank)s Rang"
 
-#: gui/session/selection_details.js:68
+#: gui/session/selection_details.js:73
+#, javascript-format
+msgid "This foundation will be completed in %(numb)s seconds."
+msgstr "Aquests fonaments es completaran en %(numb)s segons."
+
+#: gui/session/selection_details.js:78
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:95
+#: gui/session/selection_details.js:105
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:96 gui/session/selection_details.js:102
+#: gui/session/selection_details.js:106 gui/session/selection_details.js:112
 msgid "Experience:"
 msgstr "Experiència:"
 
-#: gui/session/selection_details.js:101
+#: gui/session/selection_details.js:111
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:115
+#: gui/session/selection_details.js:125
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:116 gui/session/selection_details.js:149
-#: gui/session/selection_details.js:180
+#: gui/session/selection_details.js:126 gui/session/selection_details.js:159
+#: gui/session/selection_details.js:199
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:125
+#: gui/session/selection_details.js:135
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:164
+#: gui/session/selection_details.js:174
 #, javascript-format
 msgid "Gain: %(amount)s"
 msgstr "Millora: %(amount)s"
 
-#: gui/session/selection_details.js:173
+#: gui/session/selection_details.js:187
 #, javascript-format
 msgid ""
 "Number of builders.\n"
-"Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr "Nombre de constructors.\nAssignar-ne un altre a aquests fonaments acceleraria la construcció un %(numb)s%%"
+"Tasking another to this foundation would speed construction up by %(numb)s seconds."
+msgstr "Nombre de constructors.\nAssignar-ne un altre a aquests fonaments acceleraria la construcció %(numb)s segons."
 
-#: gui/session/selection_details.js:181
+#: gui/session/selection_details.js:191
+msgid "Number of builders."
+msgstr "Nombre de constructors."
+
+#: gui/session/selection_details.js:200
 msgid "Current/max gatherers"
 msgstr "Treballadors actius/màxims"
 
-#: gui/session/selection_details.js:196
+#: gui/session/selection_details.js:215
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:242
+#: gui/session/selection_details.js:261
 msgid "Classes:"
 msgstr "Classes:"
 
-#: gui/session/selection_details.js:295
+#: gui/session/selection_details.js:314
 msgid "Hitpoints:"
 msgstr "Punts de salut:"
 
-#: gui/session/selection_details.js:296 gui/session/session.js:622
+#: gui/session/selection_details.js:315 gui/session/session.js:621
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_panels.js:87
+#: gui/session/selection_panels.js:91
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Compra %(resource)s"
 
-#: gui/session/selection_panels.js:88
+#: gui/session/selection_panels.js:92
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Ven %(resource)s"
 
-#: gui/session/selection_panels.js:216 gui/session/selection_panels.js:998
+#: gui/session/selection_panels.js:220 gui/session/selection_panels.js:1005
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Necessita %(technology)s"
 
-#: gui/session/selection_panels.js:329
+#: gui/session/selection_panels.js:337
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Expulsa %(name)s"
 
-#: gui/session/selection_panels.js:330
+#: gui/session/selection_panels.js:338
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Feu clic per expulsar-ne 1. Maj + clic per expulsar tots els d'aquest tipus."
 
-#: gui/session/selection_panels.js:397
+#: gui/session/selection_panels.js:405
 msgid "Lock Gate"
 msgstr "Tanca la porta"
 
-#: gui/session/selection_panels.js:403
+#: gui/session/selection_panels.js:411
 msgid "Unlock Gate"
 msgstr "Obre la porta"
 
-#: gui/session/selection_panels.js:508
+#: gui/session/selection_panels.js:516
 msgid "Pack"
 msgstr "Desmunta"
 
-#: gui/session/selection_panels.js:510
+#: gui/session/selection_panels.js:518
 msgid "Unpack"
 msgstr "Munta"
 
-#: gui/session/selection_panels.js:512
+#: gui/session/selection_panels.js:520
 msgid "Cancel Packing"
 msgstr "Cancel·la el desmuntatge"
 
-#: gui/session/selection_panels.js:514
+#: gui/session/selection_panels.js:522
 msgid "Cancel Unpacking"
 msgstr "Cancel·la el muntatge"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:595
 msgid "Insufficient population capacity:"
 msgstr "La capacitat de població és insuficient:"
 
-#: gui/session/selection_panels.js:588
+#: gui/session/selection_panels.js:596
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:707
+#: gui/session/selection_panels.js:715
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "En falta %(number)s per construir."
 msgstr[1] "En falten %(number)s per construir."
 
-#: gui/session/selection_panels.js:986 gui/session/session.js:621
+#: gui/session/selection_panels.js:993 gui/session/session.js:620
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Salut:"
@@ -623,44 +632,44 @@ msgstr "Heu estat vençut..."
 msgid "You have abandoned the game."
 msgstr "Heu abandonat el joc."
 
-#: gui/session/session.js:471
+#: gui/session/session.js:470
 msgid "OK"
 msgstr "D'acord"
 
-#: gui/session/session.js:473
+#: gui/session/session.js:472
 msgid "Press OK to continue"
 msgstr "Premeu \"D'acord\" per continuar"
 
-#: gui/session/session.js:479
+#: gui/session/session.js:478
 msgid "Do you want to quit?"
 msgstr "Voleu sortir?"
 
-#: gui/session/session.js:485
+#: gui/session/session.js:484
 msgid "DEFEATED!"
 msgstr "DERROTAT!"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:492
 msgid "VICTORIOUS!"
 msgstr "VICTORIÓS!"
 
-#: gui/session/session.js:781
+#: gui/session/session.js:780
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/session/session.js:883
+#: gui/session/session.js:882
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versió: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:888
+#: gui/session/session.js:887
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Nota: el mode de distorsió temporal és una opció per a desenvolupadors, i no està destinat a un ús prolongat. Un ús incorrecte pot provocar que el joc es quedi sense memòria o es pengi."
 
-#: gui/session/session.js:888
+#: gui/session/session.js:887
 msgid "Time warp mode"
 msgstr "Mode de distorsió temporal"
 

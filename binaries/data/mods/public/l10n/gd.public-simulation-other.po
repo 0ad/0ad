@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:09+0100\n"
-"PO-Revision-Date: 2015-02-14 14:51+0000\n"
+"POT-Creation-Date: 2015-04-02 02:50+0200\n"
+"PO-Revision-Date: 2015-04-02 12:23+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -39,14 +39,26 @@ msgstr "Seo tìodhlac do %(name)s, faigh deagh chleachdadh às."
 msgid "I see you are in a bad situation %(name)s, I hope this will help."
 msgstr "%(name)s, mhothaich mi gu bheil thu ann an droch staing ’s tha mi ’n dòchas gum bi seo feumail dhut."
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:34
+#, javascript-format
+msgid "I am in need of %(resource)s, can you help? I will make it up to you."
+msgstr "Tha %(resource)s a dhìth orm, an urrainn dhut cuideachadh? Bhithinn-sa fada 'nad chomain."
+
+#: simulation/ai/petra/chatHelper.js:36
+#, javascript-format
+msgid ""
+"I would particate more efficiently in our common war effort if you could "
+"provide me some %(resource)s."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid ""
 "I have set up a new route with %(name)s. Trading will be profitable for all "
 "of us."
 msgstr "Tha mi air slighe-mhalairt le %(name)s a stèidheachadh. Gheibh sinn uile prothaid às a’ mhalart."
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:49
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(name)s. Take your share of the profits"

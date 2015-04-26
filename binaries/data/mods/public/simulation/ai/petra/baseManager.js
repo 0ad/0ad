@@ -178,6 +178,7 @@ m.BaseManager.prototype.anchorLost = function (gameState, ent)
 		bestbase.assignEntity(gameState, entity);
 	for (let entity of this.buildings.values())
 		bestbase.assignEntity(gameState, entity);
+	gameState.ai.HQ.updateTerritories(gameState);
 };
 
 /**
