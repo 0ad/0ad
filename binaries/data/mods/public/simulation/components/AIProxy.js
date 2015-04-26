@@ -302,6 +302,10 @@ AIProxy.prototype.GetFullRepresentation = function()
 	if (cmpTerritoryDecay)
 		ret.decaying = cmpTerritoryDecay.IsDecaying();
 
+	var cmpCapturable = Engine.QueryInterface(this.entity, IID_Capturable);
+	if (cmpCapturable)
+		ret.capturePoints = cmpCapturable.GetCapturePoints();
+
 	return ret;
 };
 
@@ -338,15 +342,6 @@ AIProxy.prototype.OnAttacked = function(msg)
 {
 	this.cmpAIInterface.PushEvent("Attacked", msg);
 };
-
-/*
- Deactivated for actually not really being practical for most uses.
- AIProxy.prototype.OnRangeUpdate = function(msg)
-{
-	msg.owner = this.owner;
-	this.cmpAIInterface.PushEvent("RangeUpdate", msg);
-	warn(uneval(msg));
-};*/
 
 AIProxy.prototype.OnConstructionFinished = function(msg)
 {

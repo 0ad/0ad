@@ -7,7 +7,6 @@ AIInterface.prototype.EventNames = [
 	"Create",
 	"Destroy",
 	"Attacked",
-	"RangeUpdate",
 	"ConstructionFinished",
 	"TrainingStarted",
 	"TrainingFinished",
