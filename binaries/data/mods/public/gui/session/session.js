@@ -285,7 +285,9 @@ function resignGame(leaveGameAfterResign)
 		"type": "defeat-player",
 		"playerId": Engine.GetPlayerID()
 	});
-
+	
+	Engine.GetGUIObjectByName("menuResignButton").enabled = false;
+	
 	global.music.setState(global.music.states.DEFEAT);
 	
 	// Resume the game if not resigning.
