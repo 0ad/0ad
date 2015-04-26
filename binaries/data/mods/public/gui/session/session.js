@@ -711,6 +711,8 @@ function updatePlayerDisplay()
 	Engine.GetGUIObjectByName("resourceStone").caption = Math.floor(playerState.resourceCounts.stone);
 	Engine.GetGUIObjectByName("resourceMetal").caption = Math.floor(playerState.resourceCounts.metal);
 	Engine.GetGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
+	Engine.GetGUIObjectByName("population").tooltip = translate("Population (current / limit)") + "\n" +
+					sprintf(translate("Maximum population: %(popCap)s"), { "popCap": playerState.popMax });
 
 	g_IsTrainingBlocked = playerState.trainingBlocked;
 }
