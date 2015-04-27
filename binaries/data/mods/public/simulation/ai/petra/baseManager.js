@@ -313,11 +313,11 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 
 	var obstructions = m.createObstructionMap(gameState, this.accessIndex, template);
 
-	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).toEntityArray();
-	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+	var dpEnts = gameState.getOwnEntitiesByClass("Storehouse", true).toEntityArray();
+	var ccEnts = gameState.getOwnEntitiesByClass("CivCentre", true).toEntityArray();
 
 	var bestIdx = undefined;
-	var bestVal = undefined;
+	var bestVal = 0;
 	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
 	var territoryMap = gameState.ai.HQ.territoryMap;
@@ -343,28 +343,12 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		}
 
 		total = 0.7*total;   // Just a normalisation factor as the locateMap is limited to 255
-
-		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
-		for (var id in this.dropsites)
-		{
-			if (!gameState.getEntityById(id))
-				continue;
-			var dpPos = gameState.getEntityById(id).position();
-			if (!dpPos)
-				continue;
-			var dist = API3.SquareVectorDistance(dpPos, pos);
-			if (dist < 3600)
-			{
-				total = 0;
-				break;
-			}
-			else if (dist < 6400)
-				total /= 2;
-		}
-		if (total == 0)
+		if (total <= bestVal)
 			continue;
 
-		for (let dp of DPFoundations)
+		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+
+		for (let dp of dpEnts)
 		{
 			let dpPos = dp.position();
 			if (!dpPos)
@@ -378,15 +362,15 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 			else if (dist < 6400)
 				total /= 2;
 		}
-		if (total == 0)
+		if (total <= bestVal)
 			continue;
 
-		for (var cc of ccEnts)
+		for (let cc of ccEnts)
 		{
-			var ccPos = cc.position();
+			let ccPos = cc.position();
 			if (!ccPos)
 				continue;
-			var dist = API3.SquareVectorDistance(ccPos, pos);
+			let dist = API3.SquareVectorDistance(ccPos, pos);
 			if (dist < 3600)
 			{
 				total = 0;
@@ -395,11 +379,9 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 			else if (dist < 6400)
 				total /= 2;
 		}
-		if (total == 0)
+		if (total <= bestVal)
 			continue;
 
-		if (bestVal !== undefined && total < bestVal)
-			continue;
 		bestVal = total;
 		bestIdx = i;
 	}

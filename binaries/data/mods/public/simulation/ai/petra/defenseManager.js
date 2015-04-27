@@ -373,13 +373,16 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 		return;
 	if (target.hitpoints() < target.garrisonEjectHealth() * target.maxHitpoints())
 		return;
-	var attackTypes = target.attackTypes();
-	if (!attackTypes || attackTypes.indexOf("Ranged") === -1)
-		return;
-	var dist = API3.SquareVectorDistance(attacker.position(), target.position());
-	var range = target.attackRange("Ranged").max;
-	if (dist >= range*range)
-		return;
+	if (attacker)
+	{
+		let attackTypes = target.attackTypes();
+		if (!attackTypes || attackTypes.indexOf("Ranged") === -1)
+			return;
+		let dist = API3.SquareVectorDistance(attacker.position(), target.position());
+		let range = target.attackRange("Ranged").max;
+		if (dist >= range*range)
+			return;
+	}
 	var index = gameState.ai.accessibility.getAccessValue(target.position());
 	var garrisonManager = gameState.ai.HQ.garrisonManager;
 	var garrisonArrowClasses = target.getGarrisonArrowClasses();

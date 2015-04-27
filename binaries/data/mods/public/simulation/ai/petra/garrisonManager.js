@@ -22,11 +22,12 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 			continue;
 
 		var holder = gameState.getEntityById(id);
-		if (!holder)    // this holder was certainly destroyed. Let's remove it
+		if (!holder || holder.owner() !== PlayerID)
 		{
-			for (var entId of this.holders[id])
+			// this holder was certainly destroyed or captured. Let's remove it
+			for (let entId of this.holders[id])
 			{
-				var ent = gameState.getEntityById(entId);
+				let ent = gameState.getEntityById(entId);
 				if (ent && ent.getMetadata(PlayerID, "garrisonHolder") == +id)
 				{
 					this.leaveGarrison(ent);
