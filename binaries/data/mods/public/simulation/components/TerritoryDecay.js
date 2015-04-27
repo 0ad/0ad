@@ -7,7 +7,6 @@ TerritoryDecay.prototype.Schema =
 
 TerritoryDecay.prototype.Init = function()
 {
-	this.timer = undefined;
 	this.decaying = false;
 };
 
@@ -42,27 +41,20 @@ TerritoryDecay.prototype.IsDecaying = function()
 	return this.decaying;
 };
 
+TerritoryDecay.prototype.GetDecayRate = function()
+{
+	return ApplyValueModificationsToEntity(
+		"TerritoryDecay/DecayRate",
+		+this.template.DecayRate,
+		this.entity);
+};
+
 TerritoryDecay.prototype.UpdateDecayState = function()
 {
-	var connected = this.IsConnected();
-	if (!connected && !this.timer)
-	{
-		// Start decaying
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.timer = cmpTimer.SetInterval(this.entity, IID_TerritoryDecay, "Decay", 1000, 1000, {});
-	}
-	else if (connected && this.timer)
-	{
-		// Stop decaying
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.timer);
-		this.timer = undefined;
-	}
-
-	if (connected)
+	if (this.IsConnected())
 		var decaying = false;
 	else
-		var decaying = (Math.round(ApplyValueModificationsToEntity("TerritoryDecay/DecayRate", +this.template.DecayRate, this.entity)) > 0);
+		var decaying = this.GetDecayRate() != 0;
 	if (decaying === this.decaying)
 		return;
 	this.decaying = decaying;
@@ -82,21 +74,6 @@ TerritoryDecay.prototype.OnTerritoryPositionChanged = function(msg)
 TerritoryDecay.prototype.OnOwnershipChanged = function(msg)
 {
 	this.UpdateDecayState();
-};
-
-TerritoryDecay.prototype.Decay = function()
-{
-	var cmpCapturable = Engine.QueryInterface(this.entity, IID_Capturable);
-	if (!cmpCapturable)
-		return; // error
-
-	var decayRate = ApplyValueModificationsToEntity(
-		"TerritoryDecay/DecayRate",
-		+this.template.DecayRate,
-		this.entity);
-
-	// Reduce capture points in favour of Gaia
-	cmpCapturable.Reduce(decayRate, 0);
 };
 
 Engine.RegisterComponentType(IID_TerritoryDecay, "TerritoryDecay", TerritoryDecay);

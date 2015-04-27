@@ -16,7 +16,7 @@ Capturable.prototype.Init = function()
 	// Cache this value 
 	this.maxCp = +this.template.CapturePoints;
 	this.cp = [];
-	this.startRegenTimer();
+	this.StartRegenTimer();
 };
 
 //// Interface functions ////
@@ -32,6 +32,11 @@ Capturable.prototype.GetCapturePoints = function()
 Capturable.prototype.GetMaxCapturePoints = function()
 {
 	return this.maxCp;
+};
+
+Capturable.prototype.GetGarrisonRegenRate = function()
+{
+	return ApplyValueModificationsToEntity("Capturable/GarrisonRegenRate", +this.template.GarrisonRegenRate, this.entity);
 };
 
 /**
@@ -86,7 +91,7 @@ Capturable.prototype.Reduce = function(amount, playerID)
 	var takenCp = this.maxCp - this.cp.reduce(function(a, b) { return a + b; });
 	this.cp[playerID] += takenCp;
 
-	this.startRegenTimer();
+	this.StartRegenTimer();
 
 	Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp })
 
@@ -112,7 +117,7 @@ Capturable.prototype.CanCapture = function(playerID)
 	var cmpPlayerSource = QueryPlayerIDInterface(playerID);
 
 	if (!cmpPlayerSource)
-		warn(source + " has no player component defined on its owner ");
+		warn(playerID + " has no player component defined on its id");
 	var cp = this.GetCapturePoints()
 	var sourceEnemyCp = 0;
 	for (let i in this.GetCapturePoints())
@@ -128,14 +133,19 @@ Capturable.prototype.GetRegenRate = function()
 	var regenRate = +this.template.RegenRate;
 	regenRate = ApplyValueModificationsToEntity("Capturable/RegenRate", regenRate, this.entity);
 
-	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-	if (!cmpGarrisonHolder)
-		return regenRate;
+	var cmpTerritoryDecay = Engine.QueryInterface(this.entity, IID_TerritoryDecay);
+	if (cmpTerritoryDecay && cmpTerritoryDecay.IsDecaying())
+		var territoryDecayRate = cmpTerritoryDecay.GetDecayRate();
+	else
+		var territoryDecayRate = 0;
 
-	var garrisonRegenRate = +this.template.GarrisonRegenRate;
-	garrisonRegenRate = ApplyValueModificationsToEntity("Capturable/GarrisonRegenRate", garrisonRegenRate, this.entity);
-	var garrisonedUnits = cmpGarrisonHolder.GetEntities().length;
-	return regenRate + garrisonedUnits * garrisonRegenRate;
+	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+	if (cmpGarrisonHolder)
+		var garrisonRegenRate =  this.GetGarrisonRegenRate() * cmpGarrisonHolder.GetEntities().length;
+	else
+		var garrisonRegenRate  = 0;
+
+	return regenRate + garrisonRegenRate - territoryDecayRate;
 };
 
 Capturable.prototype.RegenCapturePoints = function()
@@ -144,7 +154,12 @@ Capturable.prototype.RegenCapturePoints = function()
 	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
 		return;
 
-	var takenCp = this.Reduce(this.GetRegenRate(), cmpOwnership.GetOwner())
+	var regenRate = this.GetRegenRate();
+	if (regenRate < 0)
+		var takenCp = this.Reduce(-regenRate, 0);
+	else
+		var takenCp = this.Reduce(regenRate, cmpOwnership.GetOwner())
+
 	if (takenCp > 0)
 		return;
 
@@ -160,7 +175,7 @@ Capturable.prototype.RegenCapturePoints = function()
  * rate is 0, or because it is fully regenerated),
  * the timer stops automatically after one execution.
  */
-Capturable.prototype.startRegenTimer = function()
+Capturable.prototype.StartRegenTimer = function()
 {
 	if (this.regenTimer)
 		return;
@@ -184,17 +199,23 @@ Capturable.prototype.OnValueModification = function(msg)
 	for (let i in this.cp)
 		this.cp[i] *= scale;
 	Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp });
-	this.startRegenTimer();
+	this.StartRegenTimer();
 };
 
 Capturable.prototype.OnGarrisonedUnitsChanged = function(msg)
 {
-	this.startRegenTimer();
+	this.StartRegenTimer();
+};
+
+Capturable.prototype.OnTerritoryDecayChanged = function(msg)
+{
+	if (msg.to)
+		this.StartRegenTimer();
 };
 
 Capturable.prototype.OnOwnershipChanged = function(msg)
 {
-	this.startRegenTimer();
+	this.StartRegenTimer();
 
 	// if the new owner has no capture points, it means that either
 	// * it's being initialised now, or
