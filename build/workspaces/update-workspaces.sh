@@ -66,7 +66,6 @@ cd "$(dirname $0)"
 # Now in build/workspaces/ (where we assume this script resides)
 
 if [ "`uname -s`" = "Darwin" ]; then
-  premake_args="${premake_args} --sdl2"
   # Set *_CONFIG variables on OS X, to override the path to e.g. sdl2-config
   export GLOOX_CONFIG=${GLOOX_CONFIG:="$(pwd)/../../libraries/osx/gloox/bin/gloox-config"}
   export ICU_CONFIG=${ICU_CONFIG:="$(pwd)/../../libraries/osx/icu/bin/icu-config"}
