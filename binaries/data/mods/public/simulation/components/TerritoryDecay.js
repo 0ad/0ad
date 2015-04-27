@@ -54,7 +54,7 @@ TerritoryDecay.prototype.UpdateDecayState = function()
 	if (this.IsConnected())
 		var decaying = false;
 	else
-		var decaying = this.GetDecayRate() != 0;
+		var decaying = this.GetDecayRate() > 0;
 	if (decaying === this.decaying)
 		return;
 	this.decaying = decaying;

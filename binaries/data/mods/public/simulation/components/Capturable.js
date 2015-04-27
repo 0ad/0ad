@@ -141,9 +141,9 @@ Capturable.prototype.GetRegenRate = function()
 
 	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	if (cmpGarrisonHolder)
-		var garrisonRegenRate =  this.GetGarrisonRegenRate() * cmpGarrisonHolder.GetEntities().length;
+		var garrisonRegenRate = this.GetGarrisonRegenRate() * cmpGarrisonHolder.GetEntities().length;
 	else
-		var garrisonRegenRate  = 0;
+		var garrisonRegenRate = 0;
 
 	return regenRate + garrisonRegenRate - territoryDecayRate;
 };
@@ -167,6 +167,7 @@ Capturable.prototype.RegenCapturePoints = function()
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	cmpTimer.CancelTimer(this.regenTimer);
 	this.regenTimer = 0;
+	Engine.PostMessage(this.entity, MT_CaptureRegenStateChanged, {"regenerating": false, "rate": 0});
 };
 
 /**
@@ -179,8 +180,14 @@ Capturable.prototype.StartRegenTimer = function()
 {
 	if (this.regenTimer)
 		return;
+
+	var rate = this.GetRegenRate();
+	if (rate == 0)
+		return;
+
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	this.regenTimer = cmpTimer.SetInterval(this.entity, IID_Capturable, "RegenCapturePoints", 1000, 1000, null);
+	Engine.PostMessage(this.entity, MT_CaptureRegenStateChanged, {"regenerating": true, "rate": rate});
 };
 
 //// Message Listeners ////
