@@ -32,6 +32,14 @@
 # include "SDL.h"
 # include "SDL_thread.h"
 
+#if SDL_VERSION_ATLEAST(2,0,0)
+# if !SDL_VERSION_ATLEAST(2,0,2)
+#  error You are using an old, untested libsdl2 release. It is \
+recommended to use libsdl2 >= 2.0.2. Alternatively, remove this \
+error message from this file, but remember you may encounter issues.
+# endif
+#endif
+
 // if the compiler doesn't support inlining, this header will pull
 // in static bswap routines. doesn't matter - modern compilers
 // will strip them if unused, and this is more convenient than

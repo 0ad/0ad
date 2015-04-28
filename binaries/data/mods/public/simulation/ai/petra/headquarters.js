@@ -1217,7 +1217,8 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 	if (queues.civilCentre.length() > 0)
 		return;
 	// first build one cc if all have been destroyed
-	if (this.numActiveBase() < 1)
+	let activeBases = this.numActiveBase();
+	if (activeBases == 0)
 	{
 		this.buildFirstBase(gameState);
 		return;
@@ -1231,14 +1232,11 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 		return;
 	}
 	// then expand if we have lots of units
-	var numUnits = 	gameState.getOwnUnits().length;
-	var popForBase = this.Config.Economy.popForTown + 20;
-	if (this.saveResources)
-		popForBase = this.Config.Economy.popForTown + 5;
-	if (Math.floor(numUnits/popForBase) >= gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).length)
+	let numUnits = gameState.getOwnUnits().length;
+	if (numUnits > activeBases * (70 + 15*(activeBases-1)) || (this.saveResources && numUnits > 50))
 	{
 		if (this.Config.debug > 2)
-			API3.warn("try to build a new base because of population " + numUnits + " for " + this.numActiveBase() + " CCs");
+			API3.warn("try to build a new base because of population " + numUnits + " for " + activeBases + " CCs");
 		this.buildNewBase(gameState, queues);
 	}
 };

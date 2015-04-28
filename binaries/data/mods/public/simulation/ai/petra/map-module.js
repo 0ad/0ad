@@ -170,8 +170,8 @@ m.createFrontierMap = function(gameState)
 
 	var map = new API3.Map(gameState.sharedScript, "territory");
 	var width = map.width;
-	var insideSmall = Math.round(40 / map.cellSize);
-	var insideLarge = Math.round(60 / map.cellSize);
+	var insideSmall = Math.round(45 / map.cellSize);
+	var insideLarge = Math.round(80 / map.cellSize);	// should be about the range of towers
 
 	for (var j = 0; j < territoryMap.length; ++j)
 	{
