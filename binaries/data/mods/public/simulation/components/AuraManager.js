@@ -5,36 +5,36 @@ AuraManager.prototype.Schema =
 
 AuraManager.prototype.Init = function()
 {
-	this.modificationsCache = new Map();
-	this.modifications = new Map();
-	this.templateModificationsCache = new Map();
-	this.templateModifications = new Map();
+	this.modificationsCache = {};
+	this.modifications = {};
+	this.templateModificationsCache = {};
+	this.templateModifications = {};
 };
 
 AuraManager.prototype.ensureExists = function(name, value, id, key, defaultData)
 {
 	var cacheName = name + "Cache";
-	var v = this[name].get(value);
+	var v = this[name][value];
 	if (!v)
 	{
-		v = new Map();
-		this[name].set(value, v);
-		this[cacheName].set(value, new Map());
+		v = {};
+		this[name][value] = v;
+		this[cacheName][value] = {};
 	}
 
-	var i = v.get(id);
+	var i = v[id];
 	if (!i)
 	{
-		i = new Map();
-		v.set(id, i);
-		this[cacheName].get(value).set(id, defaultData);
+		i = {};
+		v[id] = i;
+		this[cacheName][value][id] = defaultData;
 	}
 
-	var k = i.get(key);
+	var k = i[key];
 	if (!k)
 	{
 		k = [];
-		i.set(key, k);
+		i[key] = k;
 	}
 	return k;
 };
@@ -50,10 +50,10 @@ AuraManager.prototype.ApplyBonus = function(value, ent, data, key)
 
 	// first time added this aura
 	if (data.multiply)
-		this.modificationsCache.get(value).get(ent).multiply *= data.multiply;
+		this.modificationsCache[value][ent].multiply *= data.multiply;
 
 	if (data.add)
-		this.modificationsCache.get(value).get(ent).add += data.add;
+		this.modificationsCache[value][ent].add += data.add;
 
 	// post message to the entity to notify it about the change
 	Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
@@ -61,7 +61,7 @@ AuraManager.prototype.ApplyBonus = function(value, ent, data, key)
 
 AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data, key)
 {
-	var dataList = this.ensureExists("templateModifications", value, player, key, new Map());
+	var dataList = this.ensureExists("templateModifications", value, player, key, {});
 
 	dataList.push(data);
 
@@ -69,33 +69,30 @@ AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data
 		return;
 
 	// first time added this aura
-	for (let c of classes)
-	{
-		let cache = this.templateModificationsCache.get(value).get(player);
-		if (!cache.get(c))
-			cache.set(c, new Map());
+	let cache = this.templateModificationsCache[value][player];
+	if (!cache[classes])
+		cache[classes] = {};
 
-		if (!cache.get(c).get(key))
-			cache.get(c).set(key, { "add": 0, "multiply": 1});
+	if (!cache[classes][key])
+		cache[classes][key] = { "add": 0, "multiply": 1};
 
-		if (data.multiply)
-			cache.get(c).get(key).multiply *= data.multiply;
+	if (data.multiply)
+		cache[classes][key].multiply *= data.multiply;
 
-		if (data.add)
-			cache.get(c).get(key).add += data.add;
-	}
+	if (data.add)
+		cache[classes][key].add += data.add;
 	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": player, "component": value.split("/")[0], "valueNames": [value] });
 };
 
 AuraManager.prototype.RemoveBonus = function(value, ent, key)
 {
-	var v = this.modifications.get(value);
+	var v = this.modifications[value];
 	if (!v)
 		return;
-	var e = v.get(ent);
+	var e = v[ent];
 	if (!e)
 		return;
-	var dataList = e.get(key);
+	var dataList = e[key];
 	if (!dataList || !dataList.length)
 		return;
 
@@ -107,10 +104,10 @@ AuraManager.prototype.RemoveBonus = function(value, ent, key)
 
 	// out of last aura of this kind, remove modifications
 	if (data.add)
-		this.modificationsCache.get(value).get(ent).add -= data.add;
+		this.modificationsCache[value][ent].add -= data.add;
 
 	if (data.multiply)
-		this.modificationsCache.get(value).get(ent).multiply /= data.multiply;
+		this.modificationsCache[value][ent].multiply /= data.multiply;
 
 	// post message to the entity to notify it about the change
 	Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
@@ -118,13 +115,13 @@ AuraManager.prototype.RemoveBonus = function(value, ent, key)
 
 AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key)
 {
-	var v = this.templateModifications.get(value);
+	var v = this.templateModifications[value];
 	if (!v)
 		return;
-	var p = v.get(player);
+	var p = v[player];
 	if (!p)
 		return;
-	var dataList = p.get(key);
+	var dataList = p[key];
 	if (!dataList || !dataList.length)
 		return;
 
@@ -133,18 +130,18 @@ AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key
 	if (dataList.length > 0)
 		return;
 
-	for (let c of classes)
-		this.templateModificationsCache.get(value).get(player).get(c).delete(key);
+	this.templateModificationsCache[value][player][classes][key].multiply = 1;
+	this.templateModificationsCache[value][player][classes][key].add = 0;
 
 	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": player, "component": value.split("/")[0], "valueNames": [value] });
 };
 
 AuraManager.prototype.ApplyModifications = function(valueName, value, ent)
 {
-	var v = this.modificationsCache.get(valueName)
+	var v = this.modificationsCache[valueName];
 	if (!v)
 		return value;
-	var cache = v.get(ent);
+	var cache = v[ent];
 	if (!cache)
 		return value;
 
@@ -155,10 +152,12 @@ AuraManager.prototype.ApplyModifications = function(valueName, value, ent)
 
 AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, player, template)
 {
-	var v = this.templateModificationsCache.get(valueName)
+	if (valueName == "Attack/Melee/Hack")
+		warn(uneval(this.templateModificationsCache));
+	var v = this.templateModificationsCache[valueName];
 	if (!v)
 		return value;
-	var cache = v.get(player);
+	var cache = v[player];
 	if (!cache)
 		return value;
 
@@ -167,23 +166,26 @@ AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, pl
 	var classes = GetIdentityClasses(template.Identity);
 
 	var usedKeys = new Set();
-
-	for (let c in cache.keys())
+	var add = 0;
+	var multiply = 1;
+	for (let c in cache)
 	{
-		if (classes.indexOf(c) == -1)
+		if (!MatchesClassList(classes, c))
 			continue;
 
-		for (let key in cache.get(c).keys())
+		for (let key in cache[c])
 		{
 			// don't add an aura with the same key twice
 			if (usedKeys.has(key))
 				continue;
 
-			value *= cache.get(c).get(key).multiply;
-			value += cache.get(c).get(key).add;
+			multiply *= cache[c][key].multiply;
+			add += cache[c][key].add;
 			usedKeys.add(key);
 		}
 	}
+	value *= multiply;
+	value += add;
 	return value;
 };
 
