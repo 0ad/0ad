@@ -152,8 +152,6 @@ AuraManager.prototype.ApplyModifications = function(valueName, value, ent)
 
 AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, player, template)
 {
-	if (valueName == "Attack/Melee/Hack")
-		warn(uneval(this.templateModificationsCache));
 	var v = this.templateModificationsCache[valueName];
 	if (!v)
 		return value;
