@@ -12,10 +12,20 @@ var PETRA = function(m)
 m.GarrisonManager = function()
 {
 	this.holders = {};
+	this.decayingStructures = new Map();
 };
 
 m.GarrisonManager.prototype.update = function(gameState, queues)
 {
+	for (let [id, gmin] of this.decayingStructures.entries())
+	{
+		let ent = gameState.getEntityById(id);
+		if (!ent || ent.owner() !== PlayerID)
+			this.decayingStructures.delete(id);		
+		else if (this.numberOfGarrisonedUnits(ent) < gmin)
+			gameState.ai.HQ.defenseManager.garrisonRangedUnitsInside(gameState, ent, {"min": gmin, "type": "decay"});
+	}
+
 	for (var id in this.holders)
 	{
 		if (this.holders[id] === undefined)
@@ -191,6 +201,11 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 			if (enemiesAround && (ent.hasClass("Support") || MatchesClassList(holder.getGarrisonArrowClasses(), ent.classes())))
 				return true;
 			return false;
+		case 'decay':
+			if (this.decayingStructures.has(holder.id()))
+				return true;
+			else
+				return false;
 		default:
 			if (ent.getMetadata(PlayerID, "onBoard") === "onBoard")  // transport is not (yet ?) managed by garrisonManager 
 				return true;
@@ -208,14 +223,36 @@ m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
 	holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 };
 
+m.GarrisonManager.prototype.addDecayingStructure = function(gameState, entId)
+{
+	if (this.decayingStructures.has(entId))
+		return;
+	let ent = gameState.getEntityById(entId);
+	// keep only useful buildings for defense
+	if (!ent || (!ent.hasClass("Barracks") && !ent.getDefaultArrow() && !ent.getArrowMultiplier()))
+		return;
+	if (!ent.territoryDecayRate() || !ent.garrisonRegenRate())
+		return;
+	let gmin = Math.ceil((ent.territoryDecayRate() - ent.defaultRegenRate()) / ent.garrisonRegenRate());
+	this.decayingStructures.set(entId, gmin);
+};
+
+m.GarrisonManager.prototype.removeDecayingStructure = function(entId)
+{
+	if (!this.decayingStructures.has(entId))
+		return;
+	this.decayingStructures.delete(entId);
+};
+
 m.GarrisonManager.prototype.Serialize = function()
 {
-	return { "holders": this.holders };
+	return { "holders": this.holders, "decayingStructures": this.decayingStructures };
 };
 
 m.GarrisonManager.prototype.Deserialize = function(data)
 {
-	this.holders = data.holders;
+	for (let key in data)
+		this[key] = data[key];
 };
 
 return m;

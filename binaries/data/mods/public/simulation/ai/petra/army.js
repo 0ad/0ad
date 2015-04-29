@@ -110,8 +110,8 @@ m.Army.prototype.addFoe = function (gameState, enemyId, force)
 {
 	if (this.foeEntities.indexOf(enemyId) !== -1)
 		return false;
-	var ent = gameState.getEntityById(enemyId);
-	if (ent === undefined || ent.position() === undefined)
+	let ent = gameState.getEntityById(enemyId);
+	if (!ent || !ent.position())
 		return false;
 	
 	// check distance
@@ -131,22 +131,24 @@ m.Army.prototype.addFoe = function (gameState, enemyId, force)
 // TODO: when there is a technology update, we should probably recompute the strengths, or weird stuffs will happen.
 m.Army.prototype.removeFoe = function (gameState, enemyId, enemyEntity)
 {
-	var idx = this.foeEntities.indexOf(enemyId);
+	let idx = this.foeEntities.indexOf(enemyId);
 	if (idx === -1)
 		return false;
-	var ent = enemyEntity === undefined ? gameState.getEntityById(enemyId) : enemyEntity;
-	if (ent === undefined)
-		error("Trying to remove a non-existing enemy entity, crashing for stacktrace\n" + (new Error()).stack);
 
 	this.foeEntities.splice(idx, 1);
-	this.evaluateStrength(ent, false, true);
-	ent.setMetadata(PlayerID, "PartOfArmy", undefined);
 	
 	this.assignedAgainst[enemyId] = undefined;
-	for (var to in this.assignedTo)
+	for (let to in this.assignedTo)
 		if (this.assignedTo[to] == enemyId)
 			this.assignedTo[to] = undefined;
-	
+
+	let ent = (enemyEntity ? enemyEntity : gameState.getEntityById(enemyId));
+	if (ent)    // TODO recompute strength when no entities (could happen if capture+destroy)
+	{
+		this.evaluateStrength(ent, false, true);
+		ent.setMetadata(PlayerID, "PartOfArmy", undefined);
+	}
+
 	return true;
 };
 
@@ -157,9 +159,7 @@ m.Army.prototype.addOwn = function (gameState, id, force)
 	if (this.ownEntities.indexOf(id) !== -1)
 		return false;
 	var ent = gameState.getEntityById(id);
-	if (ent === undefined)
-		return false;
-	if(!ent.position() && !force)
+	if (!ent || (!ent.position() && !force))
 		return false;
 
 	this.ownEntities.push(id);
@@ -184,21 +184,8 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 	var idx = this.ownEntities.indexOf(id);
 	if (idx === -1)
 		return false;
-	var ent = Entity === undefined ? gameState.getEntityById(id) : Entity;
-	if (ent === undefined)
-	{
-		warn( id);
-		warn("Trying to remove a non-existing entity, crashing for stacktrace");
-		xgzrg();
-	}
 
 	this.ownEntities.splice(idx, 1);
-	this.evaluateStrength(ent, true, true);
-	ent.setMetadata(PlayerID, "PartOfArmy", undefined);
-	if (ent.getMetadata(PlayerID, "plan") === -2)
-		ent.setMetadata(PlayerID, "plan", -1);
-	else
-		ent.setMetadata(PlayerID, "plan", undefined);
 
 	if (this.assignedTo[id] !== 0)
 	{
@@ -208,27 +195,38 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 	}
 	this.assignedTo[id] = undefined;
 
-	var formerSubrole = ent.getMetadata(PlayerID, "formerSubrole");
-	if (formerSubrole !== undefined)
-		ent.setMetadata(PlayerID, "subrole", formerSubrole);
-	else
-		ent.setMetadata(PlayerID, "subrole", undefined);
-	ent.setMetadata(PlayerID, "formerSubrole", undefined);
-
-// TODO be sure that all units in the transport need the cancelation
-/*	if (!ent.position())	// this unit must still be in a transport plan ... try to cancel it
+	let ent = (Entity ? Entity :gameState.getEntityById(id));
+	if (ent)    // TODO recompute strength when no entities (could happen if capture+destroy)
 	{
-		var planID = ent.getMetadata(PlayerID, "transport");
-		// no plans must mean that the unit was in a ship which was destroyed, so do nothing
-		if (planID)
+		this.evaluateStrength(ent, true, true);
+		ent.setMetadata(PlayerID, "PartOfArmy", undefined);
+		if (ent.getMetadata(PlayerID, "plan") === -2)
+			ent.setMetadata(PlayerID, "plan", -1);
+		else
+			ent.setMetadata(PlayerID, "plan", undefined);
+
+		var formerSubrole = ent.getMetadata(PlayerID, "formerSubrole");
+		if (formerSubrole !== undefined)
+			ent.setMetadata(PlayerID, "subrole", formerSubrole);
+		else
+			ent.setMetadata(PlayerID, "subrole", undefined);
+		ent.setMetadata(PlayerID, "formerSubrole", undefined);
+
+		// TODO be sure that all units in the transport need the cancelation
+/*		if (!ent.position())	// this unit must still be in a transport plan ... try to cancel it
 		{
-			if (gameState.ai.Config.debug > 0)
-				warn("ent from army still in transport plan: plan " + planID + " canceled");
-			var plan = gameState.ai.HQ.navalManager.getPlan(planID);
-			if (plan && !plan.canceled)
-				plan.cancelTransport(gameState);
-		}
-	} */
+			var planID = ent.getMetadata(PlayerID, "transport");
+			// no plans must mean that the unit was in a ship which was destroyed, so do nothing
+			if (planID)
+			{
+				if (gameState.ai.Config.debug > 0)
+					warn("ent from army still in transport plan: plan " + planID + " canceled");
+				var plan = gameState.ai.HQ.navalManager.getPlan(planID);
+				if (plan && !plan.canceled)
+					plan.cancelTransport(gameState);
+			}
+		} */
+	}
 
 	return true;
 };
@@ -289,13 +287,13 @@ m.Army.prototype.checkEvents = function (gameState, events)
 {
 	var renameEvents = events["EntityRenamed"];   // take care of promoted and packed units
 	var destroyEvents = events["Destroy"];
-	var convEvents = events["OwnershipChanged"];
+	var captureEvents = events["OwnershipChanged"];
 	var garriEvents = events["Garrison"];
 
 	// Warning the metadata is already cloned in shared.js. Futhermore, changes should be done before destroyEvents
 	// otherwise it would remove the old entity from this army list
 	// TODO we should may-be reevaluate the strength
-	for (var msg of renameEvents)
+	for (let msg of renameEvents)
 	{
 		if (this.foeEntities.indexOf(msg.entity) !== -1)
 		{
@@ -326,29 +324,24 @@ m.Army.prototype.checkEvents = function (gameState, events)
 		}
 	}
 
-	for (var msg of destroyEvents)
-	{
-		if (msg.entityObj === undefined)
-			continue;
-		if (msg.entityObj._entity.owner === PlayerID)
-			this.removeOwn(gameState, msg.entity, msg.entityObj);
-		else
-			this.removeFoe(gameState, msg.entity, msg.entityObj);
-	}
-
-	for (var msg of garriEvents)
+	for (let msg of garriEvents)
 		this.removeFoe(gameState, msg.entity);
 
-	for (var msg of convEvents)
+	for (let msg of captureEvents)
 	{
-		if (msg.to === PlayerID)
-		{
-			// we have converted an enemy, let's assign it as a defender
-			if (this.removeFoe(gameState, msg.entity))
-				this.addOwn(gameState, msg.entity);
-		}
+		if (gameState.isPlayerAlly(msg.to))
+			this.removeFoe(gameState, msg.entity);
 		else if (msg.from === PlayerID)
-			this.removeOwn(gameState, msg.entity);	// TODO: add allies
+			this.removeOwn(gameState, msg.entity);
+	}
+
+	for (let msg of destroyEvents)
+	{
+		if (!msg.entityObj)
+			continue;
+		// we may have capture+destroy, so do not trust owner and check all possibilities
+		this.removeOwn(gameState, msg.entity, msg.entityObj);
+		this.removeFoe(gameState, msg.entity, msg.entityObj);
 	}
 };
 

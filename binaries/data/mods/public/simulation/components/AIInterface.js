@@ -16,6 +16,7 @@ AIInterface.prototype.EventNames = [
 	"OwnershipChanged",
 	"Garrison",
 	"UnGarrison",
+	"TerritoryDecayChanged",
 	"TributeExchanged",
 	"AttackRequest"
 ];

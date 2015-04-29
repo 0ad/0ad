@@ -532,6 +532,18 @@ m.Template = m.Class({
 			return -1;
 	},
 
+	territoryDecayRate: function() {
+		return (this.get("TerritoryDecay") ? this.get("TerritoryDecay/DecayRate") : 0);
+	},
+
+	defaultRegenRate: function() {
+		return (this.get("Capturable") ? this.get("Capturable/RegenRate") : 0);
+	},
+
+	garrisonRegenRate: function() {
+		return (this.get("Capturable") ? this.get("Capturable/GarrisonRegenRate") : 0);
+	},
+
 	visionRange: function() {
 		return this.get("Vision/Range");
 	}

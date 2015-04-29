@@ -363,4 +363,9 @@ AIProxy.prototype.OnAIMetadata = function(msg)
 	this.cmpAIInterface.PushEvent("AIMetadata", msg);
 };
 
+AIProxy.prototype.OnTerritoryDecayChanged = function(msg)
+{
+	this.cmpAIInterface.PushEvent("TerritoryDecayChanged", msg);
+};
+
 Engine.RegisterComponentType(IID_AIProxy, "AIProxy", AIProxy);
