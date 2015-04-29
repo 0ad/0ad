@@ -11,7 +11,7 @@ var PETRA = function(m)
 
 m.GarrisonManager = function()
 {
-	this.holders = {};
+	this.holders = new Map();
 	this.decayingStructures = new Map();
 };
 
@@ -26,29 +26,25 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 			gameState.ai.HQ.defenseManager.garrisonRangedUnitsInside(gameState, ent, {"min": gmin, "type": "decay"});
 	}
 
-	for (var id in this.holders)
+	for (let [id, list] of this.holders.entries())
 	{
-		if (this.holders[id] === undefined)
-			continue;
-
-		var holder = gameState.getEntityById(id);
+		let holder = gameState.getEntityById(id);
 		if (!holder || holder.owner() !== PlayerID)
 		{
 			// this holder was certainly destroyed or captured. Let's remove it
-			for (let entId of this.holders[id])
+			for (let entId of list)
 			{
 				let ent = gameState.getEntityById(entId);
-				if (ent && ent.getMetadata(PlayerID, "garrisonHolder") == +id)
+				if (ent && ent.getMetadata(PlayerID, "garrisonHolder") == id)
 				{
 					this.leaveGarrison(ent);
 					ent.stopMoving();
 				}
 			}
-			this.holders[id] = undefined;
+			this.holders.delete(id);
 			continue;
 		}
 
-		var list = this.holders[id];
 		// Update the list of garrisoned units
 		for (var j = 0; j < list.length; ++j)
 		{
@@ -73,7 +69,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 				}
 				if (ok)
 					continue;
-				if (ent.getMetadata(PlayerID, "garrisonHolder") == +id)
+				if (ent.getMetadata(PlayerID, "garrisonHolder") == id)
 				{
 					// The garrison order must have failed
 					this.leaveGarrison(ent);
@@ -125,7 +121,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 				var ent = gameState.getEntityById(list[j]);
 				if (this.keepGarrisoned(ent, holder, enemiesAround))
 					continue;
-				if (ent.getMetadata(PlayerID, "garrisonHolder") == +id)
+				if (ent.getMetadata(PlayerID, "garrisonHolder") == id)
 				{
 					this.leaveGarrison(ent);
 					ent.stopMoving();
@@ -133,7 +129,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 				list.splice(j--, 1);
 			}
 			if (this.numberOfGarrisonedUnits(holder) === 0)
-				this.holders[id] = undefined;
+				this.holders.delete(id);
 			else
 				holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 		}
@@ -143,10 +139,10 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 // TODO should add the units garrisoned inside garrisoned units
 m.GarrisonManager.prototype.numberOfGarrisonedUnits = function(holder)
 {
-	if (!this.holders[holder.id()])
+	if (!this.holders.has(holder.id()))
 		return holder.garrisoned().length;
 
-	return (holder.garrisoned().length + this.holders[holder.id()].length);
+	return (holder.garrisoned().length + this.holders.get(holder.id()).length);
 };
 
 // This is just a pre-garrison state, while the entity walk to the garrison holder
@@ -156,7 +152,7 @@ m.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 		return;
 
 	this.registerHolder(gameState, holder);
-	this.holders[holder.id()].push(ent.id());
+	this.holders.get(holder.id()).push(ent.id());
 
 	if (gameState.ai.Config.debug > 2)
 	{
@@ -217,9 +213,9 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 // Add this holder in the list managed by the garrisonManager
 m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
 {
-	if (this.holders[holder.id()])    // already registered
+	if (this.holders.has(holder.id()))    // already registered
 		return;
-	this.holders[holder.id()] = [];
+	this.holders.set(holder.id(), []);
 	holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 };
 
