@@ -19,6 +19,8 @@
 
 #include "TouchInput.h"
 
+#include <cinttypes>
+
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "lib/timer.h"
