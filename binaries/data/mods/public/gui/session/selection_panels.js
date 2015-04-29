@@ -173,6 +173,56 @@ g_SelectionPanels.Command = {
 	},
 };
 
+//ALLY COMMAND
+g_SelectionPanels.AllyCommand = {
+	"getMaxNumberOfItems": function()
+	{
+		return 2;
+	},
+	"getItems": function(unitEntState)
+	{
+		var commands = [];
+		for (var c in g_AllyEntityCommands)
+		{
+			var info = g_AllyEntityCommands[c].getInfo(unitEntState);
+			if (!info)
+				continue;
+			info.name = c;
+			commands.push(info);
+		}
+		return commands;
+	},
+	"setTooltip": function(data)
+	{
+		data.button.tooltip = data.item.tooltip;
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() { data.item.callback ? data.item.callback(data.item) : performAllyCommand(data.unitEntState.id, data.item.name); };
+	},
+	"conflictsWith": ["Command"],
+	"setCountDisplay": function(data)
+	{
+		data.countDisplay.caption = data.item.count || "";
+	},
+	"setGraphics": function(data)
+	{
+		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
+	},
+	"setPosition": function(data)
+	{
+		var size = data.button.size;
+		// count on square buttons, so size.bottom is the width too
+		var spacer = size.bottom + 1;
+		// relative to the center ( = 50%)
+		size.rleft = size.rright = 50;
+		// offset from the center calculation
+		size.left = (data.i - data.numberOfItems/2) * spacer;
+		size.right = size.left + size.bottom;
+		data.button.size = size;
+	},
+};
+
 // CONSTRUCTION
 g_SelectionPanels.Construction = {
 	"getMaxNumberOfItems": function()
@@ -1042,6 +1092,7 @@ var g_PanelsOrder = [
 
 	// UNIQUE PANES (importance doesn't matter)
 	"Command",
+	"AllyCommand",
 	"Queue",
 	"Selection",
 ];

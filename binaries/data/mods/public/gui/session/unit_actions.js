@@ -881,10 +881,10 @@ var g_EntityCommands =
 	"increase-alert-level": {
 		"getInfo": function(entState)
 		{
-			if(!entState.alertRaiser || !entState.alertRaiser.canIncreaseLevel)
+			if (!entState.alertRaiser || !entState.alertRaiser.canIncreaseLevel)
 				return false;
 
-			if(entState.alertRaiser.hasRaisedAlert)
+			if (entState.alertRaiser.hasRaisedAlert)
 				var tooltip = translate("Increase the alert level to protect more units");
 			else
 				var tooltip = translate("Raise an alert!");
@@ -902,7 +902,7 @@ var g_EntityCommands =
 	"alert-end": {
 		"getInfo": function(entState)
 		{
-			if(!entState.alertRaiser || !entState.alertRaiser.hasRaisedAlert)
+			if (!entState.alertRaiser || !entState.alertRaiser.hasRaisedAlert)
 				return false
 			return {
 				"tooltip": translate("End of alert."),
@@ -912,6 +912,43 @@ var g_EntityCommands =
 		"execute": function(entState)
 		{
 			endOfAlert();
+		},
+	},
+};
+
+var g_AllyEntityCommands =
+{
+	// Unload
+	"unload-all": {
+		"getInfo": function(entState)
+		{
+			if (!entState.garrisonHolder)
+				return false;
+			var selection = g_Selection.toList();
+			var count = 0;
+			for (var ent of selection)
+			{
+				var selectedEntState = GetEntityState(ent);
+				if (selectedEntState.garrisonHolder)
+				{	
+					var player = Engine.GetPlayerID();
+					for (var entity of selectedEntState.garrisonHolder.entities)
+					{
+						var state = GetEntityState(entity);
+						if (state.player == player)
+							count++;
+					}
+				}
+			}
+			return {
+				"tooltip": translate("Unload All"),
+				"icon": "garrison-out.png",
+				"count": count,
+			};
+		},
+		"execute": function(entState)
+		{
+			unloadAllByOwner();
 		},
 	},
 };

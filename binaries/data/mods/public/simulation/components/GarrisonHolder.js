@@ -475,6 +475,22 @@ GarrisonHolder.prototype.UnloadTemplate = function(extendedTemplate, all, forced
 };
 
 /**
+* Unload all units, that belong to certain player.
+*/
+GarrisonHolder.prototype.UnloadAllByOwner = function(owner, forced)
+{
+	var entities = [];
+	for (var entity of this.entities)
+	{
+		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+		if (cmpOwnership && cmpOwnership.GetOwner() == owner)
+			entities.push(entity);
+	}
+	
+	return this.PerformEject(entities, forced);
+};
+
+/**
  * Unload all units with same owner as the entity
  * and order them to move to the Rally Point
  * Returns true if all successful, false if not

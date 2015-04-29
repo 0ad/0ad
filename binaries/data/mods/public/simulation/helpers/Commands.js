@@ -499,10 +499,21 @@ var commands = {
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAllOwn())
-				notifyUnloadFailure(player, garrisonHolder)
+				notifyUnloadFailure(player, garrisonHolder);
 		}
 	},
-
+	
+	"unload-all-by-owner": function(player, cmd, data)
+	{
+		var entities = cmd.garrisonHolders;
+		for (var garrisonHolder of entities)
+		{
+			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
+			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAllByOwner(player))
+				notifyUnloadFailure(player, garrisonHolder);
+		}
+	},
+	
 	"unload-all": function(player, cmd, data)
 	{
 		var entities = FilterEntityList(cmd.garrisonHolders, player, data.controlAllUnits);
@@ -510,7 +521,7 @@ var commands = {
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAll())
-				notifyUnloadFailure(player, garrisonHolder)
+				notifyUnloadFailure(player, garrisonHolder);
 		}
 	},
 
