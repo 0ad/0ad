@@ -19,6 +19,8 @@
 
 #include "TouchInput.h"
 
+#include <cinttypes>
+
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "lib/timer.h"
@@ -267,7 +269,7 @@ InReaction CTouchInput::HandleEvent(const SDL_Event_* ev)
 	case SDL_FINGERMOTION:
 	{
 		// Map finger events onto the mouse, for basic testing
-		debug_printf("finger %s tid=%lld fid=%lld x=%f y=%f dx=%f dy=%f p=%f\n",
+		debug_printf("finger %s tid=%" PRId64 " fid=%" PRId64 " x=%f y=%f dx=%f dy=%f p=%f\n",
 			ev->ev.type == SDL_FINGERDOWN ? "down" :
 			ev->ev.type == SDL_FINGERUP ? "up" :
 			ev->ev.type == SDL_FINGERMOTION ? "motion" : "?",

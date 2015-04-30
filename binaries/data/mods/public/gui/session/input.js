@@ -1537,6 +1537,21 @@ function performCommand(entity, commandName)
 		g_EntityCommands[commandName].execute(entState);
 }
 
+// Performs the specified command for ally unit
+function performAllyCommand(entity, commandName)
+{
+	if (!entity)
+		return;
+	var entState = GetExtendedEntityState(entity);
+	var playerID = Engine.GetPlayerID();
+
+	if (!entState.player == playerID && !g_DevSettings.controlAll)
+		return;
+
+	if (g_AllyEntityCommands[commandName])
+		g_AllyEntityCommands[commandName].execute(entState);
+}
+
 // Performs the specified formation
 function performFormation(entity, formationTemplate)
 {
@@ -1800,6 +1815,15 @@ function unloadSelection()
 	}
 	if (parent)
 		Engine.PostNetworkCommand({"type": "unload", "entities":ents, "garrisonHolder": parent});
+}
+
+function unloadAllByOwner()
+{
+	var garrisonHolders = g_Selection.toList().filter(function(e) {
+		var state = GetEntityState(e);
+		return state && state.garrisonHolder;
+	});
+	Engine.PostNetworkCommand({"type": "unload-all-by-owner", "garrisonHolders": garrisonHolders});
 }
 
 function unloadAll()

@@ -58,7 +58,7 @@ TerritoryDecay.prototype.UpdateDecayState = function()
 	if (decaying === this.decaying)
 		return;
 	this.decaying = decaying;
-	Engine.PostMessage(this.entity, MT_TerritoryDecayChanged, { "to": decaying });
+	Engine.PostMessage(this.entity, MT_TerritoryDecayChanged, { "entity": this.entity, "to": decaying });
 };
 
 TerritoryDecay.prototype.OnTerritoriesChanged = function(msg)

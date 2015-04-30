@@ -352,8 +352,8 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 
 
 	// and same thing for captured markets
-	let capturedEvents = events["OwnershipChanged"];
-	for (let evt of capturedEvents)
+	let captureEvents = events["OwnershipChanged"];
+	for (let evt of captureEvents)
 	{
 		if (!gameState.isPlayerAlly(evt.from) && !gameState.isPlayerAlly(evt.to))
 			continue;

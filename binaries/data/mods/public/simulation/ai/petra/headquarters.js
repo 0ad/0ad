@@ -206,7 +206,30 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		if (!ent)
 			continue;
 		if (ent.position())
-			ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(ent.position()));
+		    ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(ent.position()));
+		if (ent.hasClass("Unit"))
+		{
+			m.getBestBase(ent, gameState).assignEntity(gameState, ent);
+			ent.setMetadata(PlayerID, "role", undefined);
+			ent.setMetadata(PlayerID, "subrole", undefined);
+			ent.setMetadata(PlayerID, "plan", undefined);
+			ent.setMetadata(PlayerID, "PartOfArmy", undefined);		    
+			if (ent.hasClass("Trader"))
+			{
+				ent.setMetadata(PlayerID, "role", "trader");
+				ent.setMetadata(PlayerID, "route", undefined);
+			}
+			if (ent.hasClass("Female") || ent.hasClass("CitizenSoldier"))
+			{
+				ent.setMetadata(PlayerID, "role", "worker");
+				ent.setMetadata(PlayerID, "subrole", "idle");
+			}
+			if (ent.hasClass("Ship"))
+				ent.setMetadata(PlayerID, "sea", gameState.ai.accessibility.getAccessValue(ent.position(), true));
+			if (!ent.hasClass("Support") && !ent.hasClass("Ship") &&  ent.attackTypes() !== undefined)
+				ent.setMetadata(PlayerID, "plan", -1);
+			continue;
+		}
 		if (ent.hasClass("CivCentre"))   // build a new base around it
 		{
 			let newbase = new m.BaseManager(gameState, this.Config);
@@ -225,6 +248,8 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			m.getBestBase(ent, gameState).assignEntity(gameState, ent);
 			if (ent.hasTerritoryInfluence())
 				this.updateTerritories(gameState);
+			if (ent.decaying && ent.isGarrisonHolder())
+				this.garrisonManager.addDecayingStructure(gameState, evt.entity);
 		}
 	}
 
@@ -280,6 +305,18 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 					ent.setMetadata(PlayerID, "plan", -1);
 			}
 		}
+	}
+
+	let TerritoryEvents = events["TerritoryDecayChanged"];
+	for (let evt of TerritoryEvents)
+	{
+		let ent = gameState.getEntityById(evt.entity);
+		if (!ent || !ent.isOwn(PlayerID) || ent.foundationProgress() !== undefined || !ent.isGarrisonHolder())
+			continue;
+		if (evt.to)
+			this.garrisonManager.addDecayingStructure(gameState, evt.entity);
+		else
+			this.garrisonManager.removeDecayingStructure(evt.entity);
 	}
 };
 

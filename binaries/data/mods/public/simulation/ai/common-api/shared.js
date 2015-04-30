@@ -442,6 +442,8 @@ m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
 		return true;
 	metadata[key] = undefined;
 	delete metadata[key];
+	this.updateEntityCollections('metadata', ent);    
+	this.updateEntityCollections('metadata.' + key, ent);
 	return true;
 };
 

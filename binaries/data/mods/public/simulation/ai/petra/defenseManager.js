@@ -363,22 +363,24 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 
 		if (target.isGarrisonHolder() && target.getArrowMultiplier())
-			this.garrisonRangedUnitsInside(gameState, target, attacker);
+			this.garrisonRangedUnitsInside(gameState, target, {"attacker": attacker});
 	}
 };
 
-m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, target, attacker)
+m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, target, data)
 {
-	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
+	let minGarrison = (data.min ? data.min : target.garrisonMax());
+	let typeGarrison = (data.type ? data.type : "protection");
+	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
 		return;
 	if (target.hitpoints() < target.garrisonEjectHealth() * target.maxHitpoints())
 		return;
-	if (attacker)
+	if (data.attacker)
 	{
 		let attackTypes = target.attackTypes();
 		if (!attackTypes || attackTypes.indexOf("Ranged") === -1)
 			return;
-		let dist = API3.SquareVectorDistance(attacker.position(), target.position());
+		let dist = API3.SquareVectorDistance(data.attacker.position(), target.position());
 		let range = target.attackRange("Ranged").max;
 		if (dist >= range*range)
 			return;
@@ -389,7 +391,7 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 	var units = gameState.getOwnUnits().filter(function (ent) { return MatchesClassList(garrisonArrowClasses, ent.classes()); }).filterNearest(target.position());
 	for (let ent of units.values())
 	{
-		if (garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
+		if (garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
 			break;
 		if (!ent.position())
 			continue;
@@ -405,7 +407,7 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 		}
 		if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
 			continue;
-		garrisonManager.garrison(gameState, ent, target, "protection");
+		garrisonManager.garrison(gameState, ent, target, typeGarrison);
 	}
 };
 
