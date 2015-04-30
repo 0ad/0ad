@@ -126,35 +126,46 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 	if (i === PlayerID || gameState.isPlayerAlly(i))
 		return;
 
-	var self = this;
-
 	// loop through enemy units
-	gameState.getEnemyUnits(i).forEach( function (ent) {
-		// first check: is this unit already part of an army.
+	for (let ent of gameState.getEnemyUnits(i).values())
+	{
 		if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
-			return;
+			continue;
 
 		// keep animals attacking us or our allies
 		if (ent.hasClass("Animal"))
 		{
 			if (!ent.unitAIState() || ent.unitAIState().split(".")[1] !== "COMBAT")
-				return;
+				continue;
 			let orders = ent.unitAIOrderData();
 			if (!orders || !orders.length || !orders[0]["target"])
-				return;
+				continue;
 			let target = gameState.getEntityById(orders[0]["target"]);
 			if (!target || !gameState.isPlayerAlly(target.owner()))
-				return;
+				continue;
 		}
 
 		// TODO what to do for ships ?
 		if (ent.hasClass("Ship") || ent.hasClass("Trader"))
-			return;
+			continue;
 
 		// check if unit is dangerous "a priori"
-		if (self.isDangerous(gameState, ent))
-			self.makeIntoArmy(gameState, ent.id());
-	});
+		if (this.isDangerous(gameState, ent))
+			this.makeIntoArmy(gameState, ent.id());
+	}
+
+	if ( i !== 0)
+		return;
+	// look for possible gaia buildings inside our territory (may happen when enemy resign or after structure decay)
+	for (let ent of gameState.getEnemyStructures(i).values())
+	{
+		if (!ent.position() || ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
+			continue;
+
+		let owner = this.territoryMap.getOwner(ent.position());;
+		if (owner === PlayerID)
+			this.makeIntoArmy(gameState, ent.id());
+	}
 };
 
 m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)

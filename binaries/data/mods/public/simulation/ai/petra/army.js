@@ -91,7 +91,11 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 // adds or remove the strength of the entity either to the enemy or to our units.
 m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 {
-	var entStrength = m.getMaxStrength(ent);
+	if (ent.hasClass("Structure"))
+		var entStrength = (ent.getDefaultArrow() ? 6*ent.getDefaultArrow() : 4);
+	else
+		var entStrength = m.getMaxStrength(ent);
+
 	if (remove)
 		entStrength *= -1;
 
@@ -99,8 +103,6 @@ m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 		this.ownStrength += entStrength;
 	else
 		this.foeStrength += entStrength;
-	
-	// todo: deal with specifics.
 };
 
 // add an entity to the enemy army
