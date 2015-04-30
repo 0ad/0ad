@@ -51,7 +51,7 @@
   </define>
   <define name="coord">
     <data type="string">
-      <param name="pattern">-?\d*\.?\d+(%([\+\-]\d*\.?\d+)?)?</param>
+      <param name="pattern">-?\d*\.?\d+%?([\+\-]\d*\.?\d+%?)*</param>
     </data>
   </define>
   <define name="clientarea">
