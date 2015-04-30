@@ -161,7 +161,8 @@ keep = element keep { text }
 repeat =
   element repeat {
     object+,
-    attribute count { text }
+    attribute count { xsd:nonNegativeInteger },
+    attribute var { text }?
   }
 translate = element translate { text }
 translatableAttribute =
