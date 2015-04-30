@@ -179,20 +179,13 @@ function updateTimeNotifications()
 	var playerID = Engine.GetPlayerID();
 	for (var n of notifications)
 	{
-		if (!n.players)
-		{
-			warn("notification has unknown player list. Text:\n"+n.message);
-			continue;
-		}
-		if (n.players.indexOf(playerID) == -1)
-			continue;
 		var message = n.message;
 		if (n.translateMessage)
 			message = translate(message);
 		var parameters = n.parameters || {};
 		if (n.translateParameters)
 			translateObjectKeys(parameters, n.translateParameters);
-		parameters.time = timeToString(n.time);
+		parameters.time = timeToString(n.endTime - g_SimState.timeElapsed);
 		notificationText += sprintf(message, parameters) + "\n";
 	}
 	Engine.GetGUIObjectByName("notificationText").caption = notificationText;

@@ -5,14 +5,20 @@ GuiInterface.prototype.Schema =
 
 GuiInterface.prototype.Serialize = function()
 {
-	// This component isn't network-synchronised so we mustn't serialise
-	// its non-deterministic data. Instead just return an empty object.
-	return {};
+	// This component isn't network-synchronised for the biggest part
+	// So most of the attributes shouldn't be serialized
+	// Return an object with a small selection of deterministic data
+	return {
+		"timeNotifications": this.timeNotifications,
+		"timeNotificationID": this.timeNotificationID
+	};
 };
 
-GuiInterface.prototype.Deserialize = function(obj)
+GuiInterface.prototype.Deserialize = function(data)
 {
 	this.Init();
+	this.timeNotifications = data.timeNotifications;
+	this.timeNotificationID = data.timeNotificationID;
 };
 
 GuiInterface.prototype.Init = function()
@@ -695,53 +701,43 @@ GuiInterface.prototype.GetNeededResources = function(player, amounts)
 	return cmpPlayer.GetNeededResources(amounts);
 };
 
-GuiInterface.prototype.AddTimeNotification = function(notification)
+/**
+ * Add a timed notification.
+ * Warning: timed notifacations are serialised
+ * (to also display them on saved games or after a rejoin)
+ * so they should allways be added and deleted in a deterministic way.
+ */
+GuiInterface.prototype.AddTimeNotification = function(notification, duration = 10000)
 {
-	var time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
-	notification.endTime = notification.duration + time;
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	notification.endTime = duration + cmpTimer.GetTime();
 	notification.id = ++this.timeNotificationID;
 	this.timeNotifications.push(notification);
 	this.timeNotifications.sort(function (n1, n2){return n2.endTime - n1.endTime});
+
+	cmpTimer.SetTimeout(this.entity, IID_GuiInterface, "DeleteTimeNotification", duration, this.timeNotificationID);
+
 	return this.timeNotificationID;
 };
 
 GuiInterface.prototype.DeleteTimeNotification = function(notificationID)
 {
-	for (var i in this.timeNotifications)
-	{
-		if (this.timeNotifications[i].id == notificationID)
-		{
-			this.timeNotifications.splice(i);
-			return;
-		}
-	}
+	this.timeNotifications = this.timeNotifications.filter(n => n.id != notificationID);
 };
 
 GuiInterface.prototype.GetTimeNotifications = function(playerID)
 {
 	var time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
-	var toDelete = [];
-	for (var n of this.timeNotifications)
-	{
-		n.time = n.endTime - time;
-		if (n.time < 0)
-			toDelete.push(n.id);
-	}
-	for (var id of toDelete)
-		this.DeleteTimeNotification(id);
-	return this.timeNotifications;
+	// filter on players and time, since the delete timer might be executed with a delay
+	return this.timeNotifications.filter(n => n.players.indexOf(playerID) != -1 && n.endTime > time);
 };
 
 GuiInterface.prototype.PushNotification = function(notification)
 {
 	if (!notification.type || notification.type == "text")
-	{
-		if (!notification.duration)
-			notification.duration = 10000;
 		this.AddTimeNotification(notification);
-		return;
-	}
-	this.notifications.push(notification);
+	else
+		this.notifications.push(notification);
 };
 
 GuiInterface.prototype.GetNextNotification = function()
