@@ -4,6 +4,6 @@ Engine.RegisterInterface("ResourceSupply");
 // sent whenever supply level changes.
 Engine.RegisterMessageType("ResourceSupplyChanged");
 
-// Message of the form { "to", [array of gatherers ID] },
+// Message of the form { "to": 10 },
 // sent whenever the number of gatherer changes
-Engine.RegisterMessageType("ResourceSupplyGatherersChanged");
+Engine.RegisterMessageType("ResourceSupplyNumGatherersChanged");

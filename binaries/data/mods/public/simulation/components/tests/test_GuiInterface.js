@@ -1,3 +1,4 @@
+Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/AlertRaiser.js");
 Engine.LoadComponentScript("interfaces/Auras.js");

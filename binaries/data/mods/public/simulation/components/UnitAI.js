@@ -1987,7 +1987,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					var cmpMirage = Engine.QueryInterface(this.gatheringTarget, IID_Mirage);
-					if ((!cmpMirage || !cmpMirage.ResourceSupply()) &&
+					if ((!cmpMirage || !cmpMirage.Mirages(IID_ResourceSupply)) &&
 					    (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity)))
 					{
 						// Save the current order's data in case we need it later
@@ -3903,15 +3903,8 @@ UnitAI.prototype.TargetIsAlive = function(ent)
 	if (cmpFormation)
 		return true;
 
-	var cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
-	if (cmpMirage)
-		return true;
-
-	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
-	if (!cmpHealth)
-		return false;
-
-	return (cmpHealth.GetHitpoints() != 0);
+	var cmpHealth = QueryMiragedInterface(ent, IID_Health);
+	return cmpHealth && cmpHealth.GetHitpoints() != 0;
 };
 
 /**
@@ -5019,12 +5012,9 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
 	// before we process the order then we still know what resource
 	// type to look for more of
 	var type;
-	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	var cmpMirage = Engine.QueryInterface(target, IID_Mirage);
+	var cmpResourceSupply = QueryMiragedInterface(target, IID_ResourceSupply);
 	if (cmpResourceSupply)
 		type = cmpResourceSupply.GetType();
-	else if (cmpMirage && cmpMirage.ResourceSupply())
-		type = cmpMirage.GetType();
 	else
 		error("CanGather allowed gathering from invalid entity");
 
@@ -5630,9 +5620,8 @@ UnitAI.prototype.CanGather = function(target)
 	if (this.IsTurret())
 		return false;
 	// The target must be a valid resource supply, or the mirage of one.
-	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	var cmpMirage = Engine.QueryInterface(target, IID_Mirage);
-	if (!cmpResourceSupply && !(cmpMirage && cmpMirage.ResourceSupply()))
+	var cmpResourceSupply = QueryMiragedInterface(target, IID_ResourceSupply);
+	if (!cmpResourceSupply)
 		return false;
 
 	// Formation controllers should always respond to commands

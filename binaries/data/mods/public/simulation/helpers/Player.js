@@ -223,6 +223,21 @@ function QueryPlayerIDInterface(id, iid = IID_Player)
 }
 
 /**
+ * Similar to Engine.QueryInterface but first checks if the entity
+ * mirages the interface.
+ */
+function QueryMiragedInterface(ent, iid)
+{
+	var cmp = Engine.QueryInterface(ent, IID_Mirage);
+	if (cmp && !cmp.Mirages(iid))
+		return null;
+	else if (!cmp)
+		cmp = Engine.QueryInterface(ent, iid);
+
+	return cmp;
+}
+
+/**
  * Returns true if the entity 'target' is owned by an ally of
  * the owner of 'entity'.
  */
@@ -379,6 +394,7 @@ function IsOwnedByEnemyOfPlayer(player, target)
 Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);
 Engine.RegisterGlobal("QueryOwnerInterface", QueryOwnerInterface);
 Engine.RegisterGlobal("QueryPlayerIDInterface", QueryPlayerIDInterface);
+Engine.RegisterGlobal("QueryMiragedInterface", QueryMiragedInterface);
 Engine.RegisterGlobal("IsOwnedByAllyOfEntity", IsOwnedByAllyOfEntity);
 Engine.RegisterGlobal("IsOwnedByMutualAllyOfEntity", IsOwnedByMutualAllyOfEntity);
 Engine.RegisterGlobal("IsOwnedByPlayer", IsOwnedByPlayer);

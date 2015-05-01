@@ -258,7 +258,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.rotation = cmpPosition.GetRotation();
 	}
 
-	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
+	var cmpHealth = QueryMiragedInterface(ent, IID_Health);
 	if (cmpHealth)
 	{
 		ret.hitpoints = Math.ceil(cmpHealth.GetHitpoints());
@@ -266,23 +266,12 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.needsRepair = cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints());
 		ret.needsHeal = !cmpHealth.IsUnhealable();
 	}
-	if (cmpMirage && cmpMirage.Health())
-	{
-		ret.hitpoints = cmpMirage.GetHitpoints();
-		ret.maxHitpoints = cmpMirage.GetMaxHitpoints();
-		ret.needsRepair = cmpMirage.NeedsRepair();
-	}
 
-	var cmpCapturable = Engine.QueryInterface(ent, IID_Capturable);
+	var cmpCapturable = QueryMiragedInterface(ent, IID_Capturable);
 	if (cmpCapturable)
 	{
 		ret.capturePoints = cmpCapturable.GetCapturePoints();
 		ret.maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
-	}
-	if (cmpMirage && cmpMirage.Capturable())
-	{
-		ret.capturePoints = cmpMirage.GetCapturePoints();
-		ret.maxCapturePoints = cmpMirage.GetMaxCapturePoints();
 	}
 
 	var cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
@@ -326,18 +315,12 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			ret.fogging = {"mirage": null};
 	}
 
-	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
+	var cmpFoundation = QueryMiragedInterface(ent, IID_Foundation);
 	if (cmpFoundation)
 	{
 		ret.foundation = {
 			"progress": cmpFoundation.GetBuildPercentage(),
 			"numBuilders": cmpFoundation.GetNumBuilders()
-		};
-	}
-	if (cmpMirage && cmpMirage.Foundation())
-	{
-		ret.foundation = {
-			"progress": cmpMirage.GetBuildPercentage()
 		};
 	}
 
@@ -523,7 +506,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 	if (cmpPosition && cmpPosition.GetTurretParent() != INVALID_ENTITY)
 		ret.turretParent = cmpPosition.GetTurretParent();
 
-	var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
+	var cmpResourceSupply = QueryMiragedInterface(ent, IID_ResourceSupply);
 	if (cmpResourceSupply)
 	{
 		ret.resourceSupply = {
@@ -533,16 +516,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			"type": cmpResourceSupply.GetType(),
 			"killBeforeGather": cmpResourceSupply.GetKillBeforeGather(),
 			"maxGatherers": cmpResourceSupply.GetMaxGatherers(),
-			"gatherers": cmpResourceSupply.GetGatherers()
-		};
-	}
-	if (cmpMirage && cmpMirage.ResourceSupply())
-	{
-		ret.resourceSupply = {
-			"max": cmpMirage.GetMaxAmount(),
-			"amount": cmpMirage.GetAmount(),
-			"type": cmpMirage.GetType(),
-			"isInfinite": cmpMirage.IsInfinite()
+			"numGatherers": cmpResourceSupply.GetNumGatherers()
 		};
 	}
 
@@ -1712,13 +1686,8 @@ GuiInterface.prototype.CanCapture = function(player, data)
 
 	var owner = QueryOwnerInterface(data.entity).GetPlayerID();
 
-	var cmp = Engine.QueryInterface(data.target, IID_Mirage);
-	if (cmp && !cmp.Capturable())
-		return false
-	else if (!cmp)
-		var cmp = Engine.QueryInterface(data.target, IID_Capturable);
-
-	if (cmp && cmp.CanCapture(owner) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
+	var cmpCapturable = QueryMiragedInterface(data.target, IID_Capturable);
+	if (cmpCapturable && cmpCapturable.CanCapture(owner) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
 		return cmpAttack.CanAttack(data.target);
 
 	return false;

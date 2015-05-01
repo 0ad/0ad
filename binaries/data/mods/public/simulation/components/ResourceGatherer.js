@@ -253,15 +253,11 @@ ResourceGatherer.prototype.PerformGather = function(target)
  */
 ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 {
-	let type;
-	let cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	let cmpMirage = Engine.QueryInterface(target, IID_Mirage);
-	if (cmpResourceSupply)
-		type = cmpResourceSupply.GetType();
-	else if (cmpMirage && cmpMirage.ResourceSupply())
-		type = cmpMirage.GetType();
-	else
+	let cmpResourceSupply = QueryMiragedInterface(target, IID_ResourceSupply);
+	if (!cmpResourceSupply)
 		return 0;
+
+	let type = cmpResourceSupply.GetType();
 
 	let rate = 0;
 	if (type.specific)
@@ -273,7 +269,7 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	let cheatMultiplier = cmpPlayer ? cmpPlayer.GetCheatTimeMultiplier() : 1;
 	rate = rate / cheatMultiplier;
 
-	if (cmpMirage)
+	if ("Mirages" in cmpResourceSupply)
 		return rate;
 
 	// Apply diminishing returns with more gatherers, for e.g. infinite farms. For most resources this has no effect. (GetDiminishingReturns will return null.)
@@ -294,11 +290,9 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	// The cosine function is an oscillating curve, normally between -1 and 1. Multiplying by 0.5 squishes that down to
 	// between -0.5 and 0.5. Adding 0.5 to that changes the range to 0 to 1. The diminishingReturns constant
 	// adjusts the period of the curve.
-	// Alternatively, just find scythetwirler (who came up with the math here) or alpha123 (who wrote the code) on IRC.
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	let diminishingReturns = cmpResourceSupply.GetDiminishingReturns();
 	if (diminishingReturns)
-		rate = (0.5 * Math.cos((cmpResourceSupply.GetGatherers().length - 1) * Math.PI / diminishingReturns) + 0.5) * rate;
+		rate = (0.5 * Math.cos((cmpResourceSupply.GetNumGatherers() - 1) * Math.PI / diminishingReturns) + 0.5) * rate;
 
 	return rate;
 };

@@ -172,11 +172,11 @@ AIProxy.prototype.OnResourceSupplyChanged = function(msg)
 	this.changes.resourceSupplyAmount = msg.to;
 };
 
-AIProxy.prototype.OnResourceSupplyGatherersChanged = function(msg)
+AIProxy.prototype.OnResourceSupplyNumGatherersChanged = function(msg)
 {
 	if (!this.NotifyChange())
 		return;
-	this.changes.resourceSupplyGatherers = msg.to;
+	this.changes.resourceSupplyNumGatherers = msg.to;
 };
 
 AIProxy.prototype.OnResourceCarryingChanged = function(msg)
@@ -281,7 +281,7 @@ AIProxy.prototype.GetFullRepresentation = function()
 	{
 		// Updated by OnResourceSupplyChanged
 		ret.resourceSupplyAmount = cmpResourceSupply.GetCurrentAmount();
-		ret.resourceSupplyNumGatherers = cmpResourceSupply.GetGatherers().length;
+		ret.resourceSupplyNumGatherers = cmpResourceSupply.GetNumGatherers();
 	}
 
 	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);

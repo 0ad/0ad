@@ -13,23 +13,26 @@ Mirage.prototype.Init = function()
 	this.player = null;
 	this.parent = INVALID_ENTITY;
 
-	this.foundation = false;
-	this.buildPercentage = null;
+	this.miragedIids = new Set();
 
-	this.health = false;
+	this.buildPercentage = 0;
+	this.numBuilders = 0;
+
 	this.maxHitpoints = null;
 	this.hitpoints = null;
-	this.needsRepair = null;
+	this.repairable = null;
+	this.unhealable = null;
 
-	this.capturable = false;
 	this.capturePoints = [];
 	this.maxCapturePoints = 0;
 
-	this.resourceSupply = false;
 	this.maxAmount = null;
 	this.amount = null;
 	this.type = null;
 	this.isInfinite = null;
+	this.killBeforeGather = null;
+	this.maxGatherers = null;
+	this.numGatherers = null;
 };
 
 Mirage.prototype.SetParent = function(ent)
@@ -47,118 +50,77 @@ Mirage.prototype.SetPlayer = function(player)
 	this.player = player;
 };
 
+Mirage.prototype.Mirages = function(iid)
+{
+	return this.miragedIids.has(iid);
+};
+
 // ============================
 // Parent entity data
 
 // Foundation data
 
-Mirage.prototype.CopyFoundation = function(buildPercentage)
+Mirage.prototype.CopyFoundation = function(cmpFoundation)
 {
-	this.foundation = true;
-	this.buildPercentage = buildPercentage;
+	this.miragedIids.add(IID_Foundation);
+	this.buildPercentage = cmpFoundation.GetBuildPercentage();
+	this.numBuilders = cmpFoundation.GetNumBuilders();
 };
 
-Mirage.prototype.Foundation = function()
-{
-	return this.foundation;
-};
-
-Mirage.prototype.GetBuildPercentage = function()
-{
-	return this.buildPercentage;
-};
+Mirage.prototype.GetBuildPercentage = function() { return this.buildPercentage; };
+Mirage.prototype.GetNumBuilders = function() { return this.numBuilders; };
 
 // Health data
 
-Mirage.prototype.CopyHealth = function(maxHitpoints, hitpoints, needsRepair)
+Mirage.prototype.CopyHealth = function(cmpHealth)
 {
-	this.health = true;
-	this.maxHitpoints = maxHitpoints;
-	this.hitpoints = Math.ceil(hitpoints);
-	this.needsRepair = needsRepair;
+	this.miragedIids.add(IID_Health);
+	this.maxHitpoints = cmpHealth.GetMaxHitpoints();
+	this.hitpoints = cmpHealth.GetHitpoints();
+	this.repairable = cmpHealth.IsRepairable();
+	this.unhealable = cmpHealth.IsUnhealable();
 };
 
-Mirage.prototype.Health = function()
-{
-	return this.health;
-};
-
-Mirage.prototype.GetMaxHitpoints = function()
-{
-	return this.maxHitpoints;
-};
-
-Mirage.prototype.GetHitpoints = function()
-{
-	return this.hitpoints;
-};
-
-Mirage.prototype.NeedsRepair = function()
-{
-	return this.needsRepair;
-};
+Mirage.prototype.GetMaxHitpoints = function() { return this.maxHitpoints; };
+Mirage.prototype.GetHitpoints = function() { return this.hitpoints; };
+Mirage.prototype.IsRepairable = function() { return this.repairable; };
+Mirage.prototype.IsUnhealable = function() { return this.unhealable; };
 
 // Capture data
 
-Mirage.prototype.CopyCapturable = function(capturePoints, maxCapturePoints)
+Mirage.prototype.CopyCapturable = function(cmpCapturable)
 {
-	this.capturable = true;
-	this.capturePoints = capturePoints;
-	this.maxCapturePoints = maxCapturePoints;
+	this.miragedIids.add(IID_Capturable);
+	this.capturePoints = cmpCapturable.GetCapturePoints();
+	this.maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
 };
 
-Mirage.prototype.Capturable = function()
-{
-	return this.capturable;
-};
-
-Mirage.prototype.GetMaxCapturePoints = function()
-{
-	return this.maxCapturePoints;
-};
-
-Mirage.prototype.GetCapturePoints = function()
-{
-	return this.capturePoints;
-};
+Mirage.prototype.GetMaxCapturePoints = function() { return this.maxCapturePoints; };
+Mirage.prototype.GetCapturePoints = function() { return this.capturePoints; };
 
 Mirage.prototype.CanCapture = Capturable.prototype.CanCapture;
 
 // ResourceSupply data
 
-Mirage.prototype.CopyResourceSupply = function(maxAmount, amount, type, isInfinite)
+Mirage.prototype.CopyResourceSupply = function(cmpResourceSupply)
 {
-	this.resourceSupply = true;
-	this.maxAmount = maxAmount;
-	this.amount = amount;
-	this.type = type;
-	this.isInfinite = isInfinite;
+	this.miragedIids.add(IID_ResourceSupply);
+	this.maxAmount = cmpResourceSupply.GetMaxAmount();
+	this.amount = cmpResourceSupply.GetCurrentAmount();
+	this.type = cmpResourceSupply.GetType();
+	this.isInfinite = cmpResourceSupply.IsInfinite();
+	this.killBeforeGather = cmpResourceSupply.GetKillBeforeGather();
+	this.maxGatherers = cmpResourceSupply.GetMaxGatherers();
+	this.numGatherers = cmpResourceSupply.GetNumGatherers();
 };
 
-Mirage.prototype.ResourceSupply = function()
-{
-	return this.resourceSupply;
-};
-
-Mirage.prototype.GetMaxAmount = function()
-{
-	return this.maxAmount;
-};
-
-Mirage.prototype.GetAmount = function()
-{
-	return this.amount;
-};
-
-Mirage.prototype.GetType = function()
-{
-	return this.type;
-};
-
-Mirage.prototype.IsInfinite = function()
-{
-	return this.isInfinite;
-};
+Mirage.prototype.GetMaxAmount = function() { return this.maxAmount; };
+Mirage.prototype.GetCurrentAmount = function() { return this.amount; };
+Mirage.prototype.GetType = function() { return this.type; };
+Mirage.prototype.IsInfinite = function() { return this.isInfinite; };
+Mirage.prototype.GetKillBeforeGather = function() { return this.killBeforeGather; };
+Mirage.prototype.GetMaxGatherers = function() { return this.maxGatherers; };
+Mirage.prototype.GetNumGatherers = function() { return this.numGatherers; };
 
 // ============================
 
