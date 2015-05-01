@@ -281,7 +281,7 @@ AIProxy.prototype.GetFullRepresentation = function()
 	{
 		// Updated by OnResourceSupplyChanged
 		ret.resourceSupplyAmount = cmpResourceSupply.GetCurrentAmount();
-		ret.resourceSupplyGatherers = cmpResourceSupply.GetGatherers();
+		ret.resourceSupplyNumGatherers = cmpResourceSupply.GetGatherers().length;
 	}
 
 	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);

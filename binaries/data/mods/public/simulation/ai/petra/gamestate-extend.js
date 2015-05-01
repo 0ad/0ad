@@ -9,7 +9,7 @@ m.IsSupplyFull = function(gamestate, supply)
 {
 	if (supply.isFull() === true)
 		return true;
-	var count = supply.resourceSupplyGatherers().length;
+	var count = supply.resourceSupplyNumGatherers();
 	if (gamestate.turnCache["ressourceGatherer"] && gamestate.turnCache["ressourceGatherer"][supply.id()])
 		count += gamestate.turnCache["ressourceGatherer"][supply.id()];
 	if (count >= supply.maxGatherers())

@@ -687,17 +687,17 @@ m.Entity = m.Class({
 		return this._entity.resourceSupplyAmount;
 	},
 
-	resourceSupplyGatherers: function()
+	resourceSupplyNumGatherers: function()
 	{
-		if (this._entity.resourceSupplyGatherers !== undefined)
-			return this._entity.resourceSupplyGatherers;
-		return [];
+		if (this._entity.resourceSupplyNumGatherers !== undefined)
+			return this._entity.resourceSupplyNumGatherers;
+		return undefined;
 	},
 
 	isFull: function()
 	{
-		if (this._entity.resourceSupplyGatherers !== undefined)
-			return (this.maxGatherers() === this._entity.resourceSupplyGatherers.length);
+		if (this._entity.resourceSupplyNumGatherers !== undefined)
+			return (this.maxGatherers() === this._entity.resourceSupplyNumGatherers);
 
 		return undefined;
 	},
