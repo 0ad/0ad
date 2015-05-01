@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,8 @@ enum
 	SCRIPT_TYPE_OBJECT_NUMBER = 12,		// standard Number class
 	SCRIPT_TYPE_OBJECT_STRING = 13,		// standard String class
 	SCRIPT_TYPE_OBJECT_BOOLEAN = 14,	// standard Boolean class
-	SCRIPT_TYPE_OBJECT_MAP = 15			// Map class
+	SCRIPT_TYPE_OBJECT_MAP = 15,		// Map class
+	SCRIPT_TYPE_OBJECT_SET = 16			// Set class
 };
 
 // ArrayBufferView subclasses (to avoid relying directly on the JSAPI enums)
