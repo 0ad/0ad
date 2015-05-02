@@ -115,31 +115,19 @@ Fogging.prototype.LoadMirage = function(player)
 	// Store valuable information into the mirage component (especially for the GUI)
 	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation);
 	if (cmpFoundation)
-		cmpMirage.CopyFoundation(cmpFoundation.GetBuildPercentage());
+		cmpMirage.CopyFoundation(cmpFoundation);
 
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (cmpHealth)
-		cmpMirage.CopyHealth(
-			cmpHealth.GetMaxHitpoints(), 
-			cmpHealth.GetHitpoints(), 
-			cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints())
-		);
+		cmpMirage.CopyHealth(cmpHealth);
 
 	var cmpCapturable = Engine.QueryInterface(this.entity, IID_Capturable);
 	if (cmpCapturable)
-		cmpMirage.CopyCapturable(
-			cmpCapturable.GetCapturePoints(),
-			cmpCapturable.GetMaxCapturePoints()
-		);
+		cmpMirage.CopyCapturable(cmpCapturable);
 
 	var cmpResourceSupply = Engine.QueryInterface(this.entity, IID_ResourceSupply);
 	if (cmpResourceSupply)
-		cmpMirage.CopyResourceSupply(
-			cmpResourceSupply.GetMaxAmount(), 
-			cmpResourceSupply.GetCurrentAmount(), 
-			cmpResourceSupply.GetType(), 
-			cmpResourceSupply.IsInfinite()
-		);
+		cmpMirage.CopyResourceSupply(cmpResourceSupply);
 
 	// Notify the GUI the entity has been replaced by a mirage, in case it is selected at this moment
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);

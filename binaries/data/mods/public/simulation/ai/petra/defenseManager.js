@@ -126,42 +126,53 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 	if (i === PlayerID || gameState.isPlayerAlly(i))
 		return;
 
-	var self = this;
-
 	// loop through enemy units
-	gameState.getEnemyUnits(i).forEach( function (ent) {
-		// first check: is this unit already part of an army.
+	for (let ent of gameState.getEnemyUnits(i).values())
+	{
 		if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
-			return;
+			continue;
 
 		// keep animals attacking us or our allies
 		if (ent.hasClass("Animal"))
 		{
 			if (!ent.unitAIState() || ent.unitAIState().split(".")[1] !== "COMBAT")
-				return;
+				continue;
 			let orders = ent.unitAIOrderData();
 			if (!orders || !orders.length || !orders[0]["target"])
-				return;
+				continue;
 			let target = gameState.getEntityById(orders[0]["target"]);
 			if (!target || !gameState.isPlayerAlly(target.owner()))
-				return;
+				continue;
 		}
 
 		// TODO what to do for ships ?
 		if (ent.hasClass("Ship") || ent.hasClass("Trader"))
-			return;
+			continue;
 
 		// check if unit is dangerous "a priori"
-		if (self.isDangerous(gameState, ent))
-			self.makeIntoArmy(gameState, ent.id());
-	});
+		if (this.isDangerous(gameState, ent))
+			this.makeIntoArmy(gameState, ent.id());
+	}
+
+	if (i !== 0 || this.armies.length > 1 || gameState.ai.HQ.numActiveBase() === 0)
+		return;
+	// look for possible gaia buildings inside our territory (may happen when enemy resign or after structure decay)
+	for (let ent of gameState.getEnemyStructures(i).values())
+	{
+		if (!ent.position() || ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
+			continue;
+
+		let owner = this.territoryMap.getOwner(ent.position());;
+		if (owner === PlayerID)
+			this.makeIntoArmy(gameState, ent.id());
+	}
 };
 
 m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 {
-	for (var o = 0; o < this.armies.length; ++o)
+	for (var i = 0; i < this.armies.length; ++i)
 	{
-		var army = this.armies[o];
+		var army = this.armies[i];
 		army.checkEvents(gameState, events);	// must be called every turn for all armies
 
 		// this returns a list of IDs: the units that broke away from the army for being too far.
@@ -173,32 +184,34 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 		if (army.getState(gameState) === 0)
 		{
 			army.clear(gameState);
-			this.armies.splice(o--,1);
+			this.armies.splice(i--,1);
 			continue;
 		}
 	}
-	// Check if we can't merge it with another.
-	for (var o = 0; o < this.armies.length; ++o)
+	// Check if we can't merge it with another
+	for (let i = 0; i < this.armies.length - 1; ++i)
 	{
-		var army = this.armies[o];
-		for (var p = o+1; p < this.armies.length; ++p)
+		let army = this.armies[i];
+	    	if (army.isCapturing(gameState))
+			continue;
+		for (let j = i+1; j < this.armies.length; ++j)
 		{
-			var otherArmy = this.armies[p];
-			if (API3.SquareVectorDistance(army.foePosition, otherArmy.foePosition) < this.armyMergeSize)
-			{
-				// no need to clear here.
-				army.merge(gameState, otherArmy);
-				this.armies.splice(p--,1);
-			}
+			let otherArmy = this.armies[j];
+			if (otherArmy.isCapturing(gameState) ||
+				API3.SquareVectorDistance(army.foePosition, otherArmy.foePosition) > this.armyMergeSize)
+				continue;
+			// no need to clear here.
+			army.merge(gameState, otherArmy);
+			this.armies.splice(j--,1);
 		}
 	}
 
 	if (gameState.ai.playedTurn % 5 !== 0)
 		return;
 	// Check if any army is no more dangerous (possibly because it has defeated us and destroyed our base)
-	for (var o = 0; o < this.armies.length; ++o)
+	for (var i = 0; i < this.armies.length; ++i)
 	{
-		var army = this.armies[o];
+		var army = this.armies[i];
 		army.recalculatePosition(gameState);
 		var owner = this.territoryMap.getOwner(army.foePosition);
 		if (gameState.isPlayerAlly(owner))
@@ -206,11 +219,12 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 		else if (owner !== 0)   // enemy army back in its territory
 		{
 			army.clear(gameState);
-			this.armies.splice(o--,1);
+			this.armies.splice(i--,1);
 			continue;
 		}
 
-		// army in neutral territory // TODO check smaller distance with all our buildings instead of only ccs with big distance
+		// army in neutral territory
+		// TODO check smaller distance with all our buildings instead of only ccs with big distance
 		var stillDangerous = false;
 		let bases = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
 	 	for (let base of bases.values())
@@ -230,7 +244,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 			continue;
 
 		army.clear(gameState);
-		this.armies.splice(o--,1);
+		this.armies.splice(i--,1);
 	}
 };
 
@@ -324,6 +338,18 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 	gameState.ai.HQ.trainEmergencyUnits(gameState, armiesPos);
 };
 
+m.DefenseManager.prototype.abortArmy = function(gameState, army)
+{
+	army.clear(gameState);
+	for (let i = 0; i < this.armies.length; ++i)
+	{
+		if (this.armies[i].ID !== army.ID)
+			continue;
+		this.armies.splice(i, 1);
+		break;
+	}
+};
+
 // If our defense structures are attacked, garrison soldiers inside when possible
 // and if a support unit is attacked and has less than 55% health, garrison it inside the nearest healing structure
 // and if a ranged siege unit (not used for defense) is attacked, garrison it in the nearest fortress
@@ -337,6 +363,13 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
+
+		if (target.getMetadata(PlayerID, "PartOfArmy") !== undefined)
+		{
+			let army = this.getArmy(target.getMetadata(PlayerID, "PartOfArmy"));
+			if (army.isCapturing(gameState))
+			    this.abortArmy(gameState, army);
+		}
 
 		if (target.hasClass("Support") && target.healthLevel() < 0.55 && !target.getMetadata(PlayerID, "transport")
 			&& target.getMetadata(PlayerID, "plan") !== -2 && target.getMetadata(PlayerID, "plan") !== -3)

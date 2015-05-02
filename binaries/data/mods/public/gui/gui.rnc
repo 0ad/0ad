@@ -15,7 +15,7 @@ bool = "true" | "false"
 align = "left" | "center" | "right"
 valign = "top" | "center" | "bottom"
 wrapmode = "repeat" | "mirrored_repeat" | "clamp_to_edge"
-coord = xsd:string { pattern = "-?\d*\.?\d+(%([\+\-]\d*\.?\d+)?)?" }
+coord = xsd:string { pattern = "-?\d*\.?\d+%?([\+\-]\d*\.?\d+%?)*" }
 clientarea = list { coord, coord, coord, coord }
 # color can be a name or "R G B A" format string
 rgba = list { xsd:integer { minInclusive = "0" maxInclusive = "255" },
@@ -161,7 +161,8 @@ keep = element keep { text }
 repeat =
   element repeat {
     object+,
-    attribute count { text }
+    attribute count { xsd:nonNegativeInteger },
+    attribute var { text }?
   }
 translate = element translate { text }
 translatableAttribute =

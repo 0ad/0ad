@@ -51,7 +51,7 @@
   </define>
   <define name="coord">
     <data type="string">
-      <param name="pattern">-?\d*\.?\d+(%([\+\-]\d*\.?\d+)?)?</param>
+      <param name="pattern">-?\d*\.?\d+%?([\+\-]\d*\.?\d+%?)*</param>
     </data>
   </define>
   <define name="clientarea">
@@ -511,7 +511,12 @@
       <oneOrMore>
         <ref name="object"/>
       </oneOrMore>
-      <attribute name="count"/>
+      <attribute name="count">
+        <data type="nonNegativeInteger"/>
+      </attribute>
+      <optional>
+        <attribute name="var"/>
+      </optional>
     </element>
   </define>
   <define name="translate">

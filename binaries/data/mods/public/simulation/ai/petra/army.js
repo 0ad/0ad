@@ -91,7 +91,11 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 // adds or remove the strength of the entity either to the enemy or to our units.
 m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 {
-	var entStrength = m.getMaxStrength(ent);
+	if (ent.hasClass("Structure"))
+		var entStrength = (ent.getDefaultArrow() ? 6*ent.getDefaultArrow() : 4);
+	else
+		var entStrength = m.getMaxStrength(ent);
+
 	if (remove)
 		entStrength *= -1;
 
@@ -99,8 +103,6 @@ m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 		this.ownStrength += entStrength;
 	else
 		this.foeStrength += entStrength;
-	
-	// todo: deal with specifics.
 };
 
 // add an entity to the enemy army
@@ -231,6 +233,15 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 	return true;
 };
 
+// Special army set to capture a gaia building
+m.Army.prototype.isCapturing = function (gameState)
+{
+	if (this.foeEntities.length != 1)
+	    return false;
+	let ent = gameState.getEntityById(this.foeEntities[0]);
+	return (ent && ent.hasClass("Structure"));
+};    
+
 // this one is "undefined entity" proof because it's called at odd times.
 // Orders a unit to attack an enemy.
 // overridden by specific army classes.
@@ -242,9 +253,9 @@ m.Army.prototype.assignUnit = function (gameState, entID)
 // assumes we already cleared dead units.
 m.Army.prototype.clear = function (gameState)
 {
-	while(this.foeEntities.length > 0)
+	while (this.foeEntities.length > 0)
 		this.removeFoe(gameState,this.foeEntities[0]);
-	while(this.ownEntities.length > 0)
+	while (this.ownEntities.length > 0)
 		this.removeOwn(gameState,this.ownEntities[0]);
 
 	this.assignedAgainst = {};
@@ -349,6 +360,9 @@ m.Army.prototype.checkEvents = function (gameState, events)
 // this only checks for breakaways.
 m.Army.prototype.onUpdate = function (gameState)
 {
+	if (this.isCapturing(gameState))
+		return [];
+
 	var breakaways = [];
 	// TODO: assign unassigned defenders, cleanup of a few things.
 	// perhaps occasional strength recomputation

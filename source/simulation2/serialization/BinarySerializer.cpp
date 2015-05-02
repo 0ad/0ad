@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -259,6 +259,31 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				}
 				
 				break;
+			}
+			else if (protokey == JSProto_Set)
+			{
+				// TODO: There's no C++ API (yet) to work with sets. This code relies on the internal 
+				// structure of the Iterator object returned by Set.values(). This is not ideal
+				// because the structure could change in the future.
+				// Change this code if SpiderMonkey gets such an API.
+				u32 setSize;
+				m_ScriptInterface.GetProperty(val, "size", setSize);
+
+				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_SET);
+				m_Serializer.NumberU32_Unbounded("set size", setSize);
+
+				JS::RootedValue valueIterator(cx);
+				m_ScriptInterface.CallFunction(val, "values", &valueIterator);
+				for (u32 i=0; i<setSize; ++i)
+				{
+					JS::RootedValue currentIterator(cx);
+					JS::RootedValue value(cx);
+					ENSURE(m_ScriptInterface.CallFunction(valueIterator, "next", &currentIterator));
+
+					m_ScriptInterface.GetProperty(currentIterator, "value", &value);
+
+					HandleScriptVal(value);
+				}
 			}
 			else
 			{

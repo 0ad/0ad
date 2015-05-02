@@ -17,15 +17,6 @@ m.GarrisonManager = function()
 
 m.GarrisonManager.prototype.update = function(gameState, queues)
 {
-	for (let [id, gmin] of this.decayingStructures.entries())
-	{
-		let ent = gameState.getEntityById(id);
-		if (!ent || ent.owner() !== PlayerID)
-			this.decayingStructures.delete(id);		
-		else if (this.numberOfGarrisonedUnits(ent) < gmin)
-			gameState.ai.HQ.defenseManager.garrisonRangedUnitsInside(gameState, ent, {"min": gmin, "type": "decay"});
-	}
-
 	for (let [id, list] of this.holders.entries())
 	{
 		let holder = gameState.getEntityById(id);
@@ -133,6 +124,17 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 			else
 				holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 		}
+	}
+
+	// Warning new garrison orders (as in the following lines) should be done after having updated the holders 
+	// (or TODO we should add a test that the garrison order is from a previous turn when updating)
+	for (let [id, gmin] of this.decayingStructures.entries())
+	{
+		let ent = gameState.getEntityById(id);
+		if (!ent || ent.owner() !== PlayerID)
+			this.decayingStructures.delete(id);		
+		else if (this.numberOfGarrisonedUnits(ent) < gmin)
+			gameState.ai.HQ.defenseManager.garrisonRangedUnitsInside(gameState, ent, {"min": gmin, "type": "decay"});
 	}
 };
 

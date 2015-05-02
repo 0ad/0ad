@@ -34,17 +34,15 @@ Trigger.prototype.CheckWonderVictory = function(data)
 	messages.otherMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("%(player)s will have won in %(time)s"),
 		"players": players,
-		"duration": time,
 		"parameters": {"player": cmpPlayer.GetName()},
 		"translateMessage": true,
 		"translateParameters": [],
-	});
+	}, time);
 	messages.ownMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("You will have won in %(time)s"),
 		"players": [data.to],
-		"duration": time,
 		"translateMessage": true,
-	});
+	}, time);
 	timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager, "MarkPlayerAsWon", time, data.to);
 
 	this.wonderVictoryTimers[ent] = timer;

@@ -78,8 +78,7 @@ m.Worker.prototype.update = function(ent, gameState)
 				if (supply && !supply.hasClass("Field") && !supply.hasClass("Animal")
 					&& supplyId !== this.ent.getMetadata(PlayerID, "supply"))
 				{
-					var nbGatherers = supply.resourceSupplyGatherers().length
-						+ m.GetTCGatherer(gameState, supplyId);
+					var nbGatherers = supply.resourceSupplyNumGatherers() + m.GetTCGatherer(gameState, supplyId);
 					if ((nbGatherers > 0 && supply.resourceSupplyAmount()/nbGatherers < 40))
 					{
 						m.RemoveTCGatherer(gameState, supplyId);
@@ -257,8 +256,7 @@ m.Worker.prototype.startGathering = function(gameState)
 			if (inaccessibleTime && gameState.ai.elapsedTime < inaccessibleTime)
 				continue;
 			// check if available resource is worth one additionnal gatherer (except for farms)
-			var nbGatherers = supplies[i].ent.resourceSupplyGatherers().length
-				+ m.GetTCGatherer(gameState, supplies[i].id);
+			var nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + m.GetTCGatherer(gameState, supplies[i].id);
 			if (supplies[i].ent.resourceSupplyType()["specific"] !== "grain"
 				&& nbGatherers > 0 && supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 40)
 				continue;
@@ -535,8 +533,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (m.IsSupplyFull(gameState, supply) === true)
 			return;
 		// check if available resource is worth one additionnal gatherer (except for farms)
-		var nbGatherers = supply.resourceSupplyGatherers().length
-			+ m.GetTCGatherer(gameState, supply.id());
+		var nbGatherers = supply.resourceSupplyNumGatherers() + m.GetTCGatherer(gameState, supply.id());
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 40)
 			return;
 
@@ -634,8 +631,7 @@ m.Worker.prototype.startFishing = function(gameState)
 		if (m.IsSupplyFull(gameState, supply) === true)
 			return;
 		// check if available resource is worth one additionnal gatherer (except for farms)
-		var nbGatherers = supply.resourceSupplyGatherers().length
-			+ m.GetTCGatherer(gameState, supply.id());
+		var nbGatherers = supply.resourceSupplyNumGatherers() + m.GetTCGatherer(gameState, supply.id());
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 40)
 			return;
 

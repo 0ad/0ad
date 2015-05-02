@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -414,6 +414,22 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		JS::RootedObject mapObj(cx, &mapVal.toObject());
 		AddScriptBackref(mapObj);
 		return mapVal;
+	}
+	case SCRIPT_TYPE_OBJECT_SET:
+	{
+		u32 setSize;
+		NumberU32_Unbounded("set size", setSize);
+		JS::RootedValue setVal(cx);
+		m_ScriptInterface.Eval("(new Set())", &setVal);
+
+		for (u32 i=0; i<setSize; ++i)
+		{
+			JS::RootedValue value(cx, ReadScriptVal("set value", JS::NullPtr()));
+			m_ScriptInterface.CallFunctionVoid(setVal, "add", value);
+		}
+		JS::RootedObject setObj(cx, &setVal.toObject());
+		AddScriptBackref(setObj);
+		return setVal;
 	}
 	default:
 		throw PSERROR_Deserialize_OutOfBounds();

@@ -101,23 +101,17 @@ StatusBars.prototype.RegenerateSprites = function()
 		yoffset -= height * 1.2;
 	};
 
-	var cmpMirage = Engine.QueryInterface(this.entity, IID_Mirage);
-
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 	if (cmpPack && cmpPack.IsPacking())
 		AddBar("pack", cmpPack.GetProgress());
 
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	var cmpHealth = QueryMiragedInterface(this.entity, IID_Health);
 	if (cmpHealth && cmpHealth.GetHitpoints() > 0)
 		AddBar("health", cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints());
-	else if (cmpMirage && cmpMirage.Health())
-		AddBar("health", cmpMirage.GetHitpoints() / cmpMirage.GetMaxHitpoints());
 
-	var cmpResourceSupply = Engine.QueryInterface(this.entity, IID_ResourceSupply);
+	var cmpResourceSupply = QueryMiragedInterface(this.entity, IID_ResourceSupply);
 	if (cmpResourceSupply)
 		AddBar("supply", cmpResourceSupply.IsInfinite() ? 1 : cmpResourceSupply.GetCurrentAmount() / cmpResourceSupply.GetMaxAmount());
-	else if (cmpMirage && cmpMirage.ResourceSupply())
-		AddBar("supply", cmpMirage.IsInfinite() ? 1 : cmpMirage.GetAmount() / cmpMirage.GetMaxAmount());
 
 	/*
 	// Rank icon disabled for now - see discussion around
