@@ -39,24 +39,26 @@ AuraManager.prototype.ensureExists = function(name, value, id, key, defaultData)
 	return k;
 };
 
-AuraManager.prototype.ApplyBonus = function(value, ent, data, key)
+AuraManager.prototype.ApplyBonus = function(value, ents, data, key)
 {
-	var dataList = this.ensureExists("modifications", value, ent, key, {"add":0, "multiply":1});
+	for (let ent of ents)
+	{
+		var dataList = this.ensureExists("modifications", value, ent, key, {"add":0, "multiply":1});
 
-	dataList.push(data);
+		dataList.push(data);
 
-	if (dataList.length > 1)
-		return;
+		if (dataList.length > 1)
+			continue;
 
-	// first time added this aura
-	if (data.multiply)
-		this.modificationsCache[value][ent].multiply *= data.multiply;
+		// first time added this aura
+		if (data.multiply)
+			this.modificationsCache[value][ent].multiply *= data.multiply;
 
-	if (data.add)
-		this.modificationsCache[value][ent].add += data.add;
-
-	// post message to the entity to notify it about the change
-	Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
+		if (data.add)
+			this.modificationsCache[value][ent].add += data.add;
+		// post message to the entity to notify it about the change
+		Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
+	}
 };
 
 AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data, key)
@@ -84,33 +86,35 @@ AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data
 	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": player, "component": value.split("/")[0], "valueNames": [value] });
 };
 
-AuraManager.prototype.RemoveBonus = function(value, ent, key)
+AuraManager.prototype.RemoveBonus = function(value, ents, key)
 {
-	var v = this.modifications[value];
-	if (!v)
-		return;
-	var e = v[ent];
-	if (!e)
-		return;
-	var dataList = e[key];
-	if (!dataList || !dataList.length)
-		return;
+	for (let ent of ents)
+	{
+		var v = this.modifications[value];
+		if (!v)
+			continue;
+		var e = v[ent];
+		if (!e)
+			continue;
+		var dataList = e[key];
+		if (!dataList || !dataList.length)
+			continue;
 
-	// get the applied data to remove again
-	var data = dataList.pop();
+		// get the applied data to remove again
+		var data = dataList.pop();
 
-	if (dataList.length > 0)
-		return;
+		if (dataList.length > 0)
+			continue;
 
-	// out of last aura of this kind, remove modifications
-	if (data.add)
-		this.modificationsCache[value][ent].add -= data.add;
+		// out of last aura of this kind, remove modifications
+		if (data.add)
+			this.modificationsCache[value][ent].add -= data.add;
 
-	if (data.multiply)
-		this.modificationsCache[value][ent].multiply /= data.multiply;
-
-	// post message to the entity to notify it about the change
-	Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
+		if (data.multiply)
+			this.modificationsCache[value][ent].multiply /= data.multiply;
+		// post message to the entity to notify it about the change
+		Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
+	}
 };
 
 AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key)

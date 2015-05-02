@@ -14,17 +14,21 @@ StatusBars.prototype.Schema =
 StatusBars.prototype.Init = function()
 {
 	this.enabled = false;
+	this.auraSources = {};
 };
 
-// Because this is enabled directly by the GUI and is not
-// network-synchronised (it only affects local rendering),
-// we disable serialization in order to prevent OOS errors
-StatusBars.prototype.Serialize = null;
-
-StatusBars.prototype.Deserialize = function()
+/**
+ * Don't serialise this.enabled since it's modified by the GUI
+ */
+StatusBars.prototype.Serialize = function()
 {
-	// Use default initialisation
+	return {"auraSources": this.auraSources};
+};
+
+StatusBars.prototype.Deserialize = function(data)
+{
 	this.Init();
+	this.auraSources = data.auraSources;
 };
 
 StatusBars.prototype.SetEnabled = function(enabled)
@@ -33,14 +37,26 @@ StatusBars.prototype.SetEnabled = function(enabled)
 	if (enabled == this.enabled)
 		return;
 
-	// Update the displayed sprites
-
 	this.enabled = enabled;
 
-	if (enabled)
-		this.RegenerateSprites();
+	// Update the displayed sprites
+	this.RegenerateSprites();
+};
+
+StatusBars.prototype.AddAuraSource = function(source, auraName)
+{
+	if (this.auraSources[source])
+		this.auraSources[source].push(auraName);
 	else
-		this.ResetSprites();
+		this.auraSources[source] = [auraName];
+	this.RegenerateSprites();
+};
+
+StatusBars.prototype.RemoveAuraSource = function(source, auraName)
+{
+	let names = this.auraSources[source];
+	names.splice(names.indexOf(auraName), 1);
+	this.RegenerateSprites();
 };
 
 StatusBars.prototype.OnHealthChanged = function(msg)
@@ -61,17 +77,58 @@ StatusBars.prototype.OnPackProgressUpdate = function(msg)
 		this.RegenerateSprites();
 };
 
-StatusBars.prototype.ResetSprites = function()
-{
-	var cmpOverlayRenderer = Engine.QueryInterface(this.entity, IID_OverlayRenderer);
-	cmpOverlayRenderer.Reset();
-};
-
 StatusBars.prototype.RegenerateSprites = function()
 {
-	var cmpOverlayRenderer = Engine.QueryInterface(this.entity, IID_OverlayRenderer);
+	let cmpOverlayRenderer = Engine.QueryInterface(this.entity, IID_OverlayRenderer);
 	cmpOverlayRenderer.Reset();
 
+	let yoffset = 0;
+	if (this.enabled)
+		yoffset = this.AddBars(cmpOverlayRenderer, yoffset);
+	yoffset = this.AddAuraIcons(cmpOverlayRenderer, yoffset);
+	return yoffset;
+};
+
+// Internal helper functions
+StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
+{
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let sources = cmpGuiInterface.GetEntitiesWithStatusBars().filter(e => this.auraSources[e] && this.auraSources[e].length);
+
+	if (!sources.length)
+		return yoffset;
+
+	let iconSet = new Set();
+	for (let ent of sources)
+	{
+		let cmpAuras = Engine.QueryInterface(ent, IID_Auras); 
+		if (!cmpAuras) // probably the ent just died 
+			continue; 
+		for (let name of this.auraSources[ent]) 
+			iconSet.add(cmpAuras.GetOverlayIcon(name)); 
+	}
+
+	// World-space offset from the unit's position
+	var offset = { "x": 0, "y": +this.template.HeightOffset, "z": 0 };
+
+	let iconSize = +this.template.BarWidth / 2; 
+	let xoffset = -iconSize * (iconSet.size - 1) * 0.6
+	for (let icon of iconSet) 
+	{ 
+		cmpOverlayRenderer.AddSprite( 
+			icon, 
+			{ "x": xoffset - iconSize/2, "y": yoffset }, 
+			{ "x": xoffset + iconSize/2, "y": yoffset + iconSize }, 
+			offset
+		); 
+		xoffset += iconSize * 1.2;
+	} 
+
+	return yoffset + iconSize + this.template.BarHeight / 2;
+};
+
+StatusBars.prototype.AddBars = function(cmpOverlayRenderer, yoffset)
+{
 	// Size of health bar (in world-space units)
 	var width = +this.template.BarWidth;
 	var height = +this.template.BarHeight;
@@ -79,26 +136,23 @@ StatusBars.prototype.RegenerateSprites = function()
 	// World-space offset from the unit's position
 	var offset = { "x": 0, "y": +this.template.HeightOffset, "z": 0 };
 
-	// Billboard offset of next bar
-	var yoffset = 0;
-
 	var AddBar = function(type, amount)
 	{
 		cmpOverlayRenderer.AddSprite(
 			"art/textures/ui/session/icons/"+type+"_bg.png",
-			{ "x": -width/2, "y": -height/2 + yoffset },
-			{ "x": width/2, "y": height/2 + yoffset },
+			{ "x": -width/2, "y":yoffset },
+			{ "x": width/2, "y": height + yoffset },
 			offset
 		);
 
 		cmpOverlayRenderer.AddSprite(
 			"art/textures/ui/session/icons/"+type+"_fg.png",
-			{ "x": -width/2, "y": -height/2 + yoffset },
-			{ "x": width*(amount - 0.5), "y": height/2 + yoffset },
+			{ "x": -width/2, "y": yoffset },
+			{ "x": width*(amount - 0.5), "y": height + yoffset },
 			offset
 		);
 
-		yoffset -= height * 1.2;
+		yoffset += height * 1.2;
 	};
 
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
@@ -113,6 +167,7 @@ StatusBars.prototype.RegenerateSprites = function()
 	if (cmpResourceSupply)
 		AddBar("supply", cmpResourceSupply.IsInfinite() ? 1 : cmpResourceSupply.GetCurrentAmount() / cmpResourceSupply.GetMaxAmount());
 
+	return yoffset;
 	/*
 	// Rank icon disabled for now - see discussion around
 	// http://www.wildfiregames.com/forum/index.php?s=&showtopic=13608&view=findpost&p=212154
