@@ -175,7 +175,7 @@
 					<action on="Press">
 						closeMenu();
 						<![CDATA[
-							Engine.PushGuiPage("page_structree.xml");
+							Engine.PushGuiPage("page_structree.xml", {});
 						]]>
 					</action>
 				</object>

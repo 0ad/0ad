@@ -186,9 +186,10 @@ function init(initData, hotloadData)
 	}
 	else
 	{
+		var civName =  g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
 		// TODO: Get a civ icon for gaia/observers.
 		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
-		Engine.GetGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
+		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {"civ": civName});
 	}
 
 	g_GameSpeeds = initGameSpeeds();
@@ -249,8 +250,9 @@ function selectViewPlayer(playerID)
 	Engine.SetPlayerID(playerID);
 	if (playerID > 0)
 	{
+		var civName = g_CivData[g_Players[playerID].civ].Name
 		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
-		Engine.GetGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[playerID].civ].Name;
+		Engine.GetGUIObjectByName("civIconOverlay").tooltip =  sprintf(translate("%(civ)s - Structure Tree"), {"civ": civName});
 	}
 }
 
