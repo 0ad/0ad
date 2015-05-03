@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -180,6 +180,12 @@ public:
 	
 	void SendReadyMessage(const int status);
 
+	/**
+	 * Call when the client has rejoined a running match and finished
+	 * the loading screen.
+	 */
+	void SendRejoinedMessage();
+
 private:
 	// Net message / FSM transition handlers
 	static bool OnConnect(void* context, CFsmEvent* event);
@@ -194,6 +200,7 @@ private:
 	static bool OnGameStart(void* context, CFsmEvent* event);
 	static bool OnJoinSyncStart(void* context, CFsmEvent* event);
 	static bool OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event);
+	static bool OnRejoined(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 
 	/**

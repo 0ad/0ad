@@ -111,6 +111,7 @@ function pollAndHandleNetworkClient()
 				Engine.SwitchGuiPage("page_loading.xml", {
 					"attribs": g_GameAttributes,
 					"isNetworked" : true,
+					"isRejoining" : g_IsRejoining,
 					"playerAssignments": g_PlayerAssignments
 				});
 				break;

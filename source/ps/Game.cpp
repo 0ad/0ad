@@ -235,6 +235,9 @@ PSRETURN CGame::ReallyStartGame()
 	if (CRenderer::IsInitialised())
 		Render();
 
+	if (g_NetClient)
+		g_NetClient->LoadFinished();
+
 	// Call the reallyStartGame GUI function, but only if it exists
 	if (g_GUI && g_GUI->HasPages())
 	{
@@ -242,9 +245,6 @@ PSRETURN CGame::ReallyStartGame()
 		if (g_GUI->GetActiveGUI()->GetScriptInterface()->HasProperty(global, "reallyStartGame"))
 			g_GUI->GetActiveGUI()->GetScriptInterface()->CallFunctionVoid(global, "reallyStartGame");
 	}
-
-	if (g_NetClient)
-		g_NetClient->LoadFinished();
 
 	debug_printf("GAME STARTED, ALL INIT COMPLETE\n");
 

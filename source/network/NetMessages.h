@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 
 #define PS_PROTOCOL_MAGIC				0x5073013f		// 'P', 's', 0x01, '?'
 #define PS_PROTOCOL_MAGIC_RESPONSE		0x50630121		// 'P', 'c', 0x01, '!'
-#define PS_PROTOCOL_VERSION				0x01010005		// Arbitrary protocol
+#define PS_PROTOCOL_VERSION				0x01010006		// Arbitrary protocol
 #define PS_DEFAULT_PORT					0x5073			// 'P', 's'
 
 // Defines the list of message types. The order of the list must not change.
@@ -56,6 +56,8 @@ enum NetMessageType
 	NMT_FILE_TRANSFER_ACK,
 
 	NMT_JOIN_SYNC_START,
+
+	NMT_REJOINED,
 
 	NMT_LOADED_GAME,
 	NMT_GAME_START,
@@ -153,6 +155,10 @@ START_NMT_CLASS_(FileTransferAck, NMT_FILE_TRANSFER_ACK)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(JoinSyncStart, NMT_JOIN_SYNC_START)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(Rejoined, NMT_REJOINED)
+	NMT_FIELD(CStr8, m_GUID)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(LoadedGame, NMT_LOADED_GAME)
