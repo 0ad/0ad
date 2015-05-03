@@ -607,7 +607,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 		shader = tech->GetShader();
 	}
 
-	float uvs[8] = { 0,0, 1,0, 1,1, 0,1 };
+	float uvs[8] = { 0,1, 1,1, 1,0, 0,0 };
 	
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(float)*2, &uvs[0]);
