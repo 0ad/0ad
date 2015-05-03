@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:50+0200\n"
-"PO-Revision-Date: 2015-04-08 17:22+0000\n"
+"PO-Revision-Date: 2015-04-24 04:01+0000\n"
 "Last-Translator: caniro <carlod_39@yahoo.cl>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/projects/p/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
@@ -20,27 +20,27 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid "I am launching an attack against %(name)s."
-msgstr ""
+msgstr "Estoy atacando a %(name)s."
 
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I have just sent an army against %(name)s."
-msgstr ""
+msgstr "Acabo de enviar un ejercito contra %(name)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid "Here is a gift for %(name)s, make a good use of it."
-msgstr ""
+msgstr "Esto es un regalo %(name)s, has un buen uso de el."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
 msgid "I see you are in a bad situation %(name)s, I hope this will help."
-msgstr ""
+msgstr "Veo que no estas muy bien %(name)s, Espero que esto te ayude."
 
 #: simulation/ai/petra/chatHelper.js:34
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr ""
+msgstr "Necesito %(resource)s, ¿me puedes ayudar? Voy a hacer la paz contigo."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
@@ -516,7 +516,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:191
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "enemigo"
 
 #: simulation/components/BuildRestrictions.js:197
 #, javascript-format
@@ -569,7 +569,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "enemigo"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -708,7 +708,7 @@ msgstr "Muy chico"
 
 #: simulation/data/map_sizes.jsonSizes[1].Name
 msgid "Small"
-msgstr ""
+msgstr "Chico"
 
 #: simulation/data/map_sizes.jsonSizes[1].LongName
 msgid "Small (2 players)"
@@ -732,7 +732,7 @@ msgstr "Normal (4 jugadores)"
 
 #: simulation/data/map_sizes.jsonSizes[4].Name
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #: simulation/data/map_sizes.jsonSizes[4].LongName
 msgid "Large (6 players)"
@@ -740,7 +740,7 @@ msgstr "Grande (6 jugadores)"
 
 #: simulation/data/map_sizes.jsonSizes[5].Name
 msgid "Very Large"
-msgstr ""
+msgstr "Muy grande"
 
 #: simulation/data/map_sizes.jsonSizes[5].LongName
 msgid "Very Large (8 players)"

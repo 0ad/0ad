@@ -8,12 +8,13 @@
 # Martins M <mednismartins@inbox.lv>, 2014
 # Martins M <mednismartins@inbox.lv>, 2014
 # Raija <raija.seikola@gmail.com>, 2014
+# Ukko Koknevics <TheZeus121@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-04-02 09:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-04-26 17:45+0000\n"
+"Last-Translator: Ukko Koknevics <TheZeus121@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/projects/p/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,46 +122,46 @@ msgstr "Nav sauszemes tirgotāju."
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(numberOfLandTraders)s neaktīvu"
+msgstr[1] "%(numberOfLandTraders)s neaktīvs"
+msgstr[2] "%(numberOfLandTraders)s neaktīvi"
 
 #: gui/session/menu.js:475
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ir %(numberTrading)s suazsemes tirgotāju, kas tirgojas"
+msgstr[1] "Ir %(numberTrading)s sauszemes tirgotājs, kas tirgojas."
+msgstr[2] "Ir %(numberTrading)s sauszemes tirgotāju, kas tirgojas."
 
 #: gui/session/menu.js:478
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(numberGarrisoned)s novietotu uz tirgotāja kuģa."
+msgstr[1] "%(numberGarrisoned)s novietots uz tirgotāja kuģa."
+msgstr[2] "%(numberGarrisoned)s novietoti uz tirgotāja kuģa."
 
 #: gui/session/menu.js:481
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, un %(inactiveString)s."
 
 #: gui/session/menu.js:489
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, un %(garrisonedString)s."
 
 #: gui/session/menu.js:499 gui/session/menu.js:561
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, un %(inactiveString)s."
 
 #: gui/session/menu.js:506 gui/session/menu.js:568
 #, javascript-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:516
 #, javascript-format
@@ -170,35 +171,35 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Uz tirgotāja kuģa ir novietoti %(numberGarrisoned)s sauszemes tirgotāju"
+msgstr[1] "Uz tirgotāja kuģa ir novietots %(numberGarrisoned)s sauszemes tirgotājs."
+msgstr[2] "Uz tirgotāja kuģa ir novietoti %(numberGarrisoned)s sauszemes tirgotāji."
 
 #: gui/session/menu.js:519
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, un %(inactiveString)s."
 
 #: gui/session/menu.js:526
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:535
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ir %(numberOfLandTraders)s neaktīvu sauszemes tirgotāju."
+msgstr[1] "Ir %(numberOfLandTraders)s neaktīvs sauszemes tirgotājs."
+msgstr[2] "Ir %(numberOfLandTraders)s neaktīvi sauszemes tirgotāji."
 
 #: gui/session/menu.js:536 gui/session/menu.js:578
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ir %(inactiveString)s."
+msgstr[1] "Ir %(inactiveString)s."
+msgstr[2] "Ir %(inactiveString)s."
 
 #: gui/session/menu.js:548
 msgid "There are no merchant ships."
@@ -208,25 +209,25 @@ msgstr "Nav tirgotāju kuģu."
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(numberOfShipTraders)s neaktīvu"
+msgstr[1] "%(numberOfShipTraders)s neaktīvs"
+msgstr[2] "%(numberOfShipTraders)s neaktīvi"
 
 #: gui/session/menu.js:558
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Pašlaik tirgojas %(numberTrading)s tirgotāju kuģu"
+msgstr[1] "Pašlaik tirgojas %(numberTrading)s tirgotāju kuģis"
+msgstr[2] "Pašlaik tirgojas %(numberTrading)s tirgotāju kuģi"
 
 #: gui/session/menu.js:577
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Pašlaik ir %(numberOfShipTraders)s neaktīvu tirgotāju kuģu."
+msgstr[1] "Pašlaik ir %(numberOfShipTraders)s neaktīvs tirgotāju kuģis."
+msgstr[2] "Pašlaik ir %(numberOfShipTraders)s neaktīvi tirgotāju kuģi."
 
 #: gui/session/menu.js:656 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -234,18 +235,18 @@ msgstr "Rokasgrāmata"
 
 #: gui/session/menu.js:667
 msgid "The Developer Overlay was opened."
-msgstr ""
+msgstr "Izstrādātāju pārklājs tika atvērts."
 
 #: gui/session/menu.js:669
 msgid "The Developer Overlay was closed."
-msgstr ""
+msgstr "Istrādātāju pārklājs tika aizvērts."
 
 #: gui/session/menu.js:685
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "Uzdāvini %(resourceAmount)s %(resourceType)s %(playerName)s. Turi SHIFT, lai uzdāvinātu %(greaterAmount)s"
 
 #: gui/session/messages.js:207
 #, javascript-format
@@ -332,7 +333,7 @@ msgstr "%(player)s tagad ir neitrālā pozīcijā pret Jums."
 #: gui/session/messages.js:480
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/session/messages.js:488
 #, javascript-format
@@ -347,7 +348,7 @@ msgstr ","
 #: gui/session/messages.js:494
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr ""
+msgstr "%(player)s nosūtīja jums %(amounts)s."
 
 #: gui/session/messages.js:504
 #, javascript-format
@@ -390,12 +391,12 @@ msgstr "Privāti"
 #: gui/session/selection_details.js:32
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s - Pakots"
 
 #: gui/session/selection_details.js:44
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[OFFLINE] %(player)s"
 
 #: gui/session/selection_details.js:50
 #, javascript-format

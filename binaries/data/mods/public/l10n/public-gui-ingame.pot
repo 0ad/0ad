@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-04-23 21:05+0200\n"
-"PO-Revision-Date: 2015-04-23 21:05+0200\n"
+"POT-Creation-Date: 2015-05-03 04:40+0200\n"
+"PO-Revision-Date: 2015-05-03 04:40+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,15 +14,15 @@ msgstr ""
 
 #: gui/session/input.js:152
 #, javascript-format
-msgid "Basic range: %(range)s"
+msgid "Basic range: %(range)s meters"
 msgstr ""
 
-#: gui/session/input.js:152
+#: gui/session/input.js:153
 #, javascript-format
-msgid "Average bonus range: %(range)s"
+msgid "Average bonus range: %(range)s meters"
 msgstr ""
 
-#: gui/session/input.js:731
+#: gui/session/input.js:732
 msgid "Cannot build wall here!"
 msgstr ""
 
@@ -35,12 +35,12 @@ msgid "Resume"
 msgstr ""
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:481 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr ""
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:477 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:481 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgctxt "team"
 msgid "None"
 msgstr ""
 
-#: gui/session/menu.js:296 gui/session/messages.js:635
+#: gui/session/menu.js:296 gui/session/messages.js:637
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr ""
@@ -95,7 +95,7 @@ msgstr ""
 msgid "Neutral"
 msgstr ""
 
-#: gui/session/menu.js:296 gui/session/messages.js:645
+#: gui/session/menu.js:296 gui/session/messages.js:647
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr ""
@@ -213,66 +213,71 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:665 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:677 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr ""
 
-#: gui/session/menu.js:676
+#: gui/session/menu.js:688
 msgid "The Developer Overlay was opened."
 msgstr ""
 
-#: gui/session/menu.js:678
+#: gui/session/menu.js:690
 msgid "The Developer Overlay was closed."
 msgstr ""
 
-#: gui/session/menu.js:694
+#: gui/session/menu.js:706
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr ""
 
-#: gui/session/messages.js:215
+#: gui/session/messages.js:208
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:228
+#: gui/session/messages.js:221
 msgid "Waiting for other players to connect..."
 msgstr ""
 
-#: gui/session/messages.js:232
+#: gui/session/messages.js:225
 msgid "Synchronising gameplay with other players..."
 msgstr ""
 
-#: gui/session/messages.js:240
+#: gui/session/messages.js:233
 msgid "Connected to the server."
 msgstr ""
 
-#: gui/session/messages.js:244
+#: gui/session/messages.js:237
 msgid "Connection to the server has been authenticated."
 msgstr ""
 
-#: gui/session/messages.js:249
+#: gui/session/messages.js:242
 msgid "Connection to the server has been lost."
 msgstr ""
 
-#: gui/session/messages.js:249
+#: gui/session/messages.js:242
 msgid "The game has ended."
 msgstr ""
 
-#: gui/session/messages.js:434
+#: gui/session/messages.js:431
 msgid "Unknown player"
+msgstr ""
+
+#: gui/session/messages.js:439
+#, javascript-format
+msgid "%(player)s is starting to rejoin the game."
 msgstr ""
 
 #: gui/session/messages.js:442
 #, javascript-format
-msgid "%(player)s has joined the game."
+msgid "%(player)s has left the game."
 msgstr ""
 
 #: gui/session/messages.js:445
 #, javascript-format
-msgid "%(player)s has left the game."
+msgid "%(player)s has rejoined the game."
 msgstr ""
 
 #: gui/session/messages.js:450
@@ -314,61 +319,61 @@ msgstr ""
 msgid "%(player)s is now neutral with you."
 msgstr ""
 
-#: gui/session/messages.js:488
+#: gui/session/messages.js:490
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr ""
 
-#: gui/session/messages.js:496
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr ""
 
-#: gui/session/messages.js:497 gui/session/utility_functions.js:137
+#: gui/session/messages.js:499 gui/session/utility_functions.js:137
 #: gui/session/utility_functions.js:142
 msgid ", "
 msgstr ""
 
-#: gui/session/messages.js:502
+#: gui/session/messages.js:504
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:512
+#: gui/session/messages.js:514
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:537
+#: gui/session/messages.js:539
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:545
+#: gui/session/messages.js:547
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:553 gui/session/messages.js:554
+#: gui/session/messages.js:555 gui/session/messages.js:556
 #, javascript-format
 msgid "<%(user)s>"
 msgstr ""
 
-#: gui/session/messages.js:557
+#: gui/session/messages.js:559
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:565
+#: gui/session/messages.js:567
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:625 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:627 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr ""
 
-#: gui/session/messages.js:667
+#: gui/session/messages.js:669
 msgid "Private"
 msgstr ""
 
@@ -473,7 +478,7 @@ msgid "Hitpoints:"
 msgstr ""
 
 #: gui/session/selection_details.js:318 gui/session/selection_details.js:348
-#: gui/session/session.js:622
+#: gui/session/session.js:626
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr ""
@@ -493,61 +498,61 @@ msgstr ""
 msgid "Sell %(resource)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:220 gui/session/selection_panels.js:1005
+#: gui/session/selection_panels.js:270 gui/session/selection_panels.js:1055
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:337
+#: gui/session/selection_panels.js:387
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:338
+#: gui/session/selection_panels.js:388
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr ""
 
-#: gui/session/selection_panels.js:405
+#: gui/session/selection_panels.js:455
 msgid "Lock Gate"
 msgstr ""
 
-#: gui/session/selection_panels.js:411
+#: gui/session/selection_panels.js:461
 msgid "Unlock Gate"
 msgstr ""
 
-#: gui/session/selection_panels.js:516
+#: gui/session/selection_panels.js:566
 msgid "Pack"
 msgstr ""
 
-#: gui/session/selection_panels.js:518
+#: gui/session/selection_panels.js:568
 msgid "Unpack"
 msgstr ""
 
-#: gui/session/selection_panels.js:520
+#: gui/session/selection_panels.js:570
 msgid "Cancel Packing"
 msgstr ""
 
-#: gui/session/selection_panels.js:522
+#: gui/session/selection_panels.js:572
 msgid "Cancel Unpacking"
 msgstr ""
 
-#: gui/session/selection_panels.js:595
+#: gui/session/selection_panels.js:645
 msgid "Insufficient population capacity:"
 msgstr ""
 
-#: gui/session/selection_panels.js:596
+#: gui/session/selection_panels.js:646
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:715
+#: gui/session/selection_panels.js:765
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/selection_panels.js:993 gui/session/session.js:621
+#: gui/session/selection_panels.js:1043 gui/session/session.js:625
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr ""
@@ -624,64 +629,78 @@ msgstr ""
 msgid "Gaia"
 msgstr ""
 
-#: gui/session/session.js:309 gui/session/session.js:325
+#: gui/session/session.js:192 gui/session/session.js:255
+#, javascript-format
+msgid "%(civ)s - Structure Tree"
+msgstr ""
+
+#: gui/session/session.js:313 gui/session/session.js:329
 msgid "You have left the game."
 msgstr ""
 
-#: gui/session/session.js:316
+#: gui/session/session.js:320
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/session/session.js:318
+#: gui/session/session.js:322
 msgid "You have won the battle!"
 msgstr ""
 
-#: gui/session/session.js:320
+#: gui/session/session.js:324
 msgid "You have been defeated..."
 msgstr ""
 
-#: gui/session/session.js:328
+#: gui/session/session.js:332
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/session/session.js:471
+#: gui/session/session.js:475
 msgid "OK"
 msgstr ""
 
-#: gui/session/session.js:473
+#: gui/session/session.js:477
 msgid "Press OK to continue"
 msgstr ""
 
-#: gui/session/session.js:479
+#: gui/session/session.js:483
 msgid "Do you want to quit?"
 msgstr ""
 
-#: gui/session/session.js:485
+#: gui/session/session.js:489
 msgid "DEFEATED!"
 msgstr ""
 
-#: gui/session/session.js:493
+#: gui/session/session.js:497
 msgid "VICTORIOUS!"
 msgstr ""
 
-#: gui/session/session.js:782
+#: gui/session/session.js:716
+msgid "Population (current / limit)"
+msgstr ""
+
+#: gui/session/session.js:717
+#, javascript-format
+msgid "Maximum population: %(popCap)s"
+msgstr ""
+
+#: gui/session/session.js:788
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr ""
 
-#: gui/session/session.js:884
+#: gui/session/session.js:890
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr ""
 
-#: gui/session/session.js:889
+#: gui/session/session.js:895
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr ""
 
-#: gui/session/session.js:889
+#: gui/session/session.js:895
 msgid "Time warp mode"
 msgstr ""
 
@@ -725,7 +744,7 @@ msgstr ""
 msgid "Expected gain: %(gain)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:676
+#: gui/session/unit_actions.js:676 gui/session/unit_actions.js:944
 msgid "Unload All"
 msgstr ""
 
@@ -859,7 +878,7 @@ msgstr ""
 msgid "Resign"
 msgstr ""
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):331
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):336
 msgid "Exit"
 msgstr ""
 
@@ -923,15 +942,15 @@ msgstr ""
 msgid "Click to Resume Game"
 msgstr ""
 
-#: gui/session/session.xml:(caption):204
+#: gui/session/session.xml:(caption):209
 msgid "Cancel"
 msgstr ""
 
-#: gui/session/session.xml:(caption):210
+#: gui/session/session.xml:(caption):215
 msgid "Team Only"
 msgstr ""
 
-#: gui/session/session.xml:(caption):214
+#: gui/session/session.xml:(caption):219
 msgid "Send"
 msgstr ""
 
@@ -1023,10 +1042,6 @@ msgstr ""
 
 #: gui/session/top_panel/resource_metal.xml:(tooltip):3
 msgid "Metal"
-msgstr ""
-
-#: gui/session/top_panel/resource_population.xml:(tooltip):3
-msgid "Population (current / limit)"
 msgstr ""
 
 #: gui/session/top_panel/resource_stone.xml:(tooltip):3
