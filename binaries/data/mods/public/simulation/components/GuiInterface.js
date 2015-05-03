@@ -32,6 +32,7 @@ GuiInterface.prototype.Init = function()
 	this.timeNotificationID = 1;
 	this.timeNotifications = [];
 	this.entsRallyPointsDisplayed = [];
+	this.entsWithAuraAndStatusBars = new Set();
 };
 
 /*
@@ -829,13 +830,43 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 	}
 };
 
+GuiInterface.prototype.GetEntitiesWithStatusBars = function()
+{
+	return [...this.entsWithAuraAndStatusBars];
+};
+
 GuiInterface.prototype.SetStatusBars = function(player, cmd)
 {
-	for each (var ent in cmd.entities)
+	let affectedEnts = new Set();
+	for (let ent of cmd.entities)
 	{
-		var cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
+		let cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
+		if (!cmpStatusBars)
+			continue;
+		cmpStatusBars.SetEnabled(cmd.enabled);
+
+		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		if (!cmpAuras)
+			continue;
+
+		for (let name of cmpAuras.GetAuraNames())
+		{
+			if (!cmpAuras.GetOverlayIcon(name))
+				continue;
+			for (let e of cmpAuras.GetAffectedEntities(name))
+				affectedEnts.add(e);
+			if (cmd.enabled)
+				this.entsWithAuraAndStatusBars.add(ent);
+			else
+				this.entsWithAuraAndStatusBars.delete(ent);
+		}
+	}
+
+	for (let ent of affectedEnts)
+	{
+		let cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars)
 		if (cmpStatusBars)
-			cmpStatusBars.SetEnabled(cmd.enabled);
+			cmpStatusBars.RegenerateSprites();
 	}
 };
 

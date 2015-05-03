@@ -5,12 +5,13 @@
 # Translators:
 # Ellen Roels, 2015
 # Max Klaversma <maxklaversma@gmail.com>, 2014
+# Sander Deryckere, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-08 22:08+0100\n"
-"PO-Revision-Date: 2015-02-09 20:31+0000\n"
-"Last-Translator: Ellen Roels\n"
+"PO-Revision-Date: 2015-05-02 17:20+0000\n"
+"Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -105,7 +106,7 @@ msgstr "[font=\"sans-bold-16\"]Modes"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr "[font=\"sans-14\"]Het main menu geeft toegang tot twee spelmodes:"
+msgstr "[font=\"sans-14\"]Het hoofdmenu geeft toegang tot twee spelmodes:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -114,7 +115,7 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Singleplayer[font=\"sans-14\"] — speel een zandbak spel tegen één of meerdere AI tegenstanders. De AI tegenstanders zijn onder ontwikkeling en kunnen dus af en toe niet up-to-date zijn met de nieuwe eigenschappen in het spel. "
+msgstr "• [font=\"sans-bold-14\"]Singleplayer[font=\"sans-14\"] — speel een zandbakspel tegen één of meerdere AI tegenstanders. De AI tegenstanders zijn onder ontwikkeling en kunnen dus af en toe niet up-to-date zijn met de nieuwe eigenschappen in het spel. "
 
 #: gui/manual/intro.txt:24
 msgid ""
@@ -293,12 +294,12 @@ msgstr "H: Stop (halt) de geselecteerde eenheden."
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr "Ctrl + 1 (en zo door tot Ctrl + 0): Creëer een controle groep 1 (tot 0) met de geselecteerde eenheden of gebouwen."
+msgstr "Ctrl + 1 (en zo door tot Ctrl + 0): Creëer een controlegroep 1 (tot 0) met de geselecteerde eenheden of gebouwen."
 
 #: gui/manual/intro.txt:66
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "1 (en zo door tot 0): Selecteer de eenheden/gebouwen in controle groep 1 (tot 0)"
+msgstr "1 (en zo door tot 0): Selecteer de eenheden/gebouwen in controlegroep 1 (tot 0)"
 
 #: gui/manual/intro.txt:67
 msgid ""
@@ -370,7 +371,7 @@ msgstr "Ctrl + rechtsklik met eenheden geselecteerd:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- Als de cursor op een geallieerd gebouw staat: garnizoen"
+msgstr "- Als de cursor op een geallieerd gebouw staat: beman"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -405,11 +406,11 @@ msgstr "Alt + S: (De)activeer de silhouetten (kan een kleine snelheidswinst geve
 
 #: gui/manual/intro.txt:90
 msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: Activeer/deactiveer de lucht"
+msgstr "Alt + Z: (De)activeer de lucht"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr "[font=\"sans-bold-14\"]Camera manipulatie"
+msgstr "[font=\"sans-bold-14\"]Cameramanipulatie"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
@@ -441,7 +442,7 @@ msgstr "Ctrl + A of \\[pijl links]: Roteer camera in wijzerzin rond het terrein"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr "Ctrl + D or [right]: Roteer camera in tegenwijzerzin rond het terrein"
+msgstr "Ctrl + D or \\[pijl rechts]: Roteer camera in tegenwijzerzin rond het terrein"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"

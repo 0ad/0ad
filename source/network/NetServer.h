@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -262,6 +262,7 @@ private:
 	static bool OnReady(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 	static bool OnJoinSyncingLoadedGame(void* context, CFsmEvent* event);
+	static bool OnRejoined(void* context, CFsmEvent* event);
 	static bool OnDisconnect(void* context, CFsmEvent* event);
 
 	void CheckGameLoadStatus(CNetServerSession* changedSession);

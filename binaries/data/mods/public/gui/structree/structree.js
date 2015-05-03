@@ -7,12 +7,12 @@ var g_ParsedData = {
 var g_Lists = {};
 var g_CivData = {};
 var g_SelectedCiv = "";
-
+var g_CallbackSet = false;
 
 /**
  * Initialize the dropdown containing all the available civs
  */
-function init()
+function init(data)
 {
 	g_CivData = loadCivData(true);
 
@@ -24,14 +24,21 @@ function init()
 	// Alphabetically sort the list, ignoring case
 	civList.sort(sortNameIgnoreCase);
 
-	var civListNames = [ civ.name for each (civ in civList) ];
-	var civListCodes = [ civ.code for each (civ in civList) ];
-
 	// Set civ control
 	var civSelection = Engine.GetGUIObjectByName("civSelection");
-	civSelection.list = civListNames;
-	civSelection.list_data = civListCodes;
-	civSelection.selected = 0;
+	civSelection.list = civList.map(c => c.name);
+	civSelection.list_data = civList.map(c => c.code);
+
+	if(data.civ)
+	{
+		civSelection.selected = civSelection.list_data.indexOf(data.civ);
+		selectCiv(data.civ);
+	}
+	else
+		civSelection.selected = 0;
+
+	if (data.callback)
+		g_CallbackSet = true;
 }
 
 function selectCiv(civCode)
@@ -247,4 +254,12 @@ function selectCiv(civCode)
 
 	// Draw tree
 	draw();
+}
+
+function closeStrucTree()
+{
+	if (g_CallbackSet)
+		Engine.PopGuiPageCB(0);
+	else
+		Engine.PopGuiPage();
 }

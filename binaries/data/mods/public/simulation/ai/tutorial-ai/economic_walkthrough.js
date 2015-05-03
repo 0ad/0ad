@@ -130,7 +130,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 260,
-				"instructions": markForTranslation("Queue another batch of 5 female citizens these are for wood.")
+				"instructions": markForTranslation("Queue another batch of 5 female citizens. These will gather wood.")
 			},
 			{
 				"trigger": "time",

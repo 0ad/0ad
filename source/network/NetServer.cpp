@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -593,6 +593,7 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnJoinSyncingLoadedGame, context);
 
+	session->AddTransition(NSS_INGAME, (uint)NMT_REJOINED, NSS_INGAME, (void*)&OnRejoined, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CHAT, NSS_INGAME, (void*)&OnChat, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_SIMULATION_COMMAND, NSS_INGAME, (void*)&OnInGame, context);
@@ -984,6 +985,23 @@ bool CNetServerWorker::OnJoinSyncingLoadedGame(void* context, CFsmEvent* event)
 	CLoadedGameMessage loaded;
 	loaded.m_CurrentTurn = readyTurn;
 	session->SendMessage(&loaded);
+
+	return true;
+}
+
+bool CNetServerWorker::OnRejoined(void* context, CFsmEvent* event)
+{
+	// A client has finished rejoining and the loading screen disappeared.
+	ENSURE(event->GetType() == (uint)NMT_REJOINED);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	CRejoinedMessage* message = (CRejoinedMessage*)event->GetParamRef();
+
+	message->m_GUID = session->GetGUID();
+
+	server.Broadcast(message);
 
 	return true;
 }

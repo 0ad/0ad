@@ -252,7 +252,7 @@ function handleNetMessage(message)
 		// Find and report all leavings
 		for (var host in g_PlayerAssignments)
 		{
-			if (! message.hosts[host])
+			if (!message.hosts[host])
 			{
 				// Tell the user about the disconnection
 				addChatMessage({ "type": "disconnect", "guid": host });
@@ -265,7 +265,7 @@ function handleNetMessage(message)
 		// Find and report all joinings
 		for (var host in message.hosts)
 		{
-			if (! g_PlayerAssignments[host])
+			if (!g_PlayerAssignments[host])
 			{
 				// Update the cached player data, so we can display the correct name
 				updatePlayerDataAdd(g_Players, host, message.hosts[host]);
@@ -293,6 +293,10 @@ function handleNetMessage(message)
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text, "translate": true });
 		break;
 
+	case "rejoined":
+		addChatMessage({ "type": "rejoined", "guid": message.guid});
+		break;
+		
 	// To prevent errors, ignore these message types that occur during autostart
 	case "gamesetup":
 	case "start":
@@ -432,10 +436,13 @@ function addChatMessage(msg, playerAssignments)
 	switch (msg.type)
 	{
 	case "connect":
-		formatted = sprintf(translate("%(player)s has joined the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s is starting to rejoin the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "disconnect":
 		formatted = sprintf(translate("%(player)s has left the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		break;
+	case "rejoined":
+		formatted = sprintf(translate("%(player)s has rejoined the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "defeat":
 		// In singleplayer, the local player is "You". "You has" is incorrect.
@@ -445,29 +452,31 @@ function addChatMessage(msg, playerAssignments)
 			formatted = sprintf(translate("%(player)s has been defeated."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "diplomacy":
-		var status = (msg.status == "ally" ? "allied" : (msg.status == "enemy" ? "at war" : "neutral"));
+		var message;
 		if (msg.player == Engine.GetPlayerID())
 		{
 			[username, playerColor] = getUsernameAndColor(msg.player1);
 			if (msg.status == "ally")
-				formatted = sprintf(translate("You are now allied with %(player)s."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+				message = translate("You are now allied with %(player)s.");
 			else if (msg.status == "enemy")
-				formatted = sprintf(translate("You are now at war with %(player)s."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+				message = translate("You are now at war with %(player)s.");
 			else // (msg.status == "neutral")
-				formatted = sprintf(translate("You are now neutral with %(player)s."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+				message = translate("You are now neutral with %(player)s.");
 		}
 		else if (msg.player1 == Engine.GetPlayerID())
 		{
 			[username, playerColor] = getUsernameAndColor(msg.player);
 			if (msg.status == "ally")
-				formatted = sprintf(translate("%(player)s is now allied with you."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+				message = translate("%(player)s is now allied with you.");
 			else if (msg.status == "enemy")
-				formatted = sprintf(translate("%(player)s is now at war with you."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+				message = translate("%(player)s is now at war with you.");
 			else // (msg.status == "neutral")
-				formatted = sprintf(translate("%(player)s is now neutral with you."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+				message = translate("%(player)s is now neutral with you.");
 		}
 		else // No need for other players to know of this.
 			return;
+
+		formatted = sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
 		break;
 	case "tribute":
 		if (msg.player != Engine.GetPlayerID()) 

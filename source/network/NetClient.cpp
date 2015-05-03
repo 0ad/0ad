@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -109,6 +109,7 @@ CNetClient::CNetClient(CGame* game) :
 	AddTransition(NCS_LOADING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_LOADING, (void*)&OnPlayerAssignment, context);
 	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, (void*)&OnLoadedGame, context);
 
+	AddTransition(NCS_INGAME, (uint)NMT_REJOINED, NCS_INGAME, (void*)&OnRejoined, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, (void*)&OnChat, context);
 	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, (void*)&OnPlayerAssignment, context);
@@ -284,6 +285,12 @@ void CNetClient::SendReadyMessage(const int status)
 	CReadyMessage readyStatus;
 	readyStatus.m_Status = status;
 	SendMessage(&readyStatus);
+}
+
+void CNetClient::SendRejoinedMessage()
+{
+	CRejoinedMessage rejoinedMessage;
+	SendMessage(&rejoinedMessage);
 }
 
 bool CNetClient::HandleMessage(CNetMessage* message)
@@ -580,6 +587,22 @@ bool CNetClient::OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event)
 
 	// Execute all the received commands for the latest turn
 	client->m_ClientTurnManager->UpdateFastForward();
+
+	return true;
+}
+
+bool CNetClient::OnRejoined(void *context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_REJOINED);
+
+	CNetClient* client = (CNetClient*)context;
+	JSContext* cx = client->GetScriptInterface().GetContext();
+
+	CRejoinedMessage* message = (CRejoinedMessage*)event->GetParamRef();
+	JS::RootedValue msg(cx);
+	client->GetScriptInterface().Eval("({'type':'rejoined'})", &msg);
+	client->GetScriptInterface().SetProperty(msg, "guid", std::string(message->m_GUID), false);
+	client->PushGuiMessage(msg);
 
 	return true;
 }

@@ -616,6 +616,18 @@ function toggleGameSpeed()
 	gameSpeed.hidden = !gameSpeed.hidden;
 }
 
+function openStrucTree()
+{
+	closeMenu();
+	closeOpenDialogs();
+	pauseGame();
+	var data = { // TODO add info about researched techs and unlocked entities
+		"civ" : g_Players[Engine.GetPlayerID()].civ,
+		"callback": "resumeGame",
+	};
+	Engine.PushGuiPage("page_structree.xml", data);
+}
+
 /**
  * Pause the game in single player mode.
  */

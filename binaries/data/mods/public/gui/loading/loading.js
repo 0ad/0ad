@@ -33,13 +33,11 @@ function init(data)
 		Engine.GetGUIObjectByName("tipImage").sprite = sprite? sprite : "";
 	}
 	else
-	{
 		error("Failed to find any matching tips for the loading screen.")
-	}
 
 	// janwas: main loop now sets progress / description, but that won't
 	// happen until the first timeslice completes, so set initial values.
-	var loadingMapName = Engine.GetGUIObjectByName ("loadingMapName");
+	var loadingMapName = Engine.GetGUIObjectByName("loadingMapName");
 
 	if (data)
 	{
@@ -48,15 +46,15 @@ function init(data)
 		{
 		case "skirmish":
 		case "scenario":
-			loadingMapName.caption = sprintf(translate("Loading “%(map)s”"), {map: mapName});
+			loadingMapName.caption = sprintf(translate("Loading “%(map)s”"), { "map": mapName });
 			break;
 
 		case "random":
-			loadingMapName.caption = sprintf(translate("Generating “%(map)s”"), {map: mapName});
+			loadingMapName.caption = sprintf(translate("Generating “%(map)s”"), { "map": mapName });
 			break;
 
 		default:
-			error(sprintf("Unknown map type: %(mapType)s", { mapType: data.attribs.mapType }));
+			error("Unknown map type: " + data.attribs.mapType);
 		}
 	}
 
@@ -68,49 +66,47 @@ function init(data)
 	Engine.GetGUIObjectByName("quoteText").caption = translate(quoteArray[getRandom(0, quoteArray.length-1)]);
 }
 
-// ====================================================================
 function displayProgress()
 {
 	// Make the progessbar finish a little early so that the user can actually see it finish
-	if (g_Progress < 100)
-	{
-		// Show 100 when it is really 99
-		var progress = g_Progress + 1;
+	if (g_Progress >= 100)
+		return;
 
-		Engine.GetGUIObjectByName("progressbar").caption = progress; // display current progress
-		Engine.GetGUIObjectByName("progressText").caption = progress + "%";
+	// Show 100 when it is really 99
+	var progress = g_Progress + 1;
 
-		// Displays detailed loading info rather than a percent
-		// Engine.GetGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
+	Engine.GetGUIObjectByName("progressbar").caption = progress; // display current progress
+	Engine.GetGUIObjectByName("progressText").caption = progress + "%";
 
-		// Keep curved right edge of progress bar in sync with the rest of the progress bar
-		var middle = Engine.GetGUIObjectByName("progressbar");
-		var rightSide = Engine.GetGUIObjectByName("progressbar_right");
+	// Displays detailed loading info rather than a percent
+	// Engine.GetGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
 
-		var middleLength = (middle.size.right - middle.size.left) - (END_PIECE_WIDTH / 2);
-		var increment = Math.round(progress * middleLength / 100);
+	// Keep curved right edge of progress bar in sync with the rest of the progress bar
+	var middle = Engine.GetGUIObjectByName("progressbar");
+	var rightSide = Engine.GetGUIObjectByName("progressbar_right");
 
-		var size = rightSide.size;
-		size.left = increment;
-		size.right = increment + END_PIECE_WIDTH;
-		rightSide.size = size;
-	}
+	var middleLength = (middle.size.right - middle.size.left) - (END_PIECE_WIDTH / 2);
+	var increment = Math.round(progress * middleLength / 100);
+
+	var size = rightSide.size;
+	size.left = increment;
+	size.right = increment + END_PIECE_WIDTH;
+	rightSide.size = size;
 }
 
-// ====================================================================
+/**
+ * This is a reserved function name that is executed by the engine when it is ready
+ * to start the game (i.e. loading progress has reached 100%).
+ */
 function reallyStartGame()
 {
-	// Stop the music
-//	if (global.curr_music)
-//		global.curr_music.fade(-1, 0.0, 5.0); // fade to 0 over 5 seconds
-
-
-	// This is a reserved function name that is executed by the engine when it is ready
-	// to start the game (i.e. loading progress has reached 100%).
-
 	// Switch GUI from loading screen to game session.
 	Engine.SwitchGuiPage("page_session.xml", g_Data);
 
 	// Restore default cursor.
 	Engine.SetCursor("arrow-default");
+	
+	// Notify the other clients that we have finished the loading screen
+	if (g_Data.isNetworked && g_Data.isRejoining)
+		Engine.SendNetworkRejoined();
 }

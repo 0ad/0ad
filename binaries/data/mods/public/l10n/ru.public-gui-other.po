@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014
 # dr&mx <dronmax@gmail.com>, 2014
 # grin.sv <grin.sv@gmail.com>, 2015
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-27 09:51+0000\n"
-"Last-Translator: Woratiklis\n"
+"PO-Revision-Date: 2015-04-25 23:15+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -316,7 +317,7 @@ msgstr "\\[Неверное значение %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
-msgstr "Подключение к серверу разорвано."
+msgstr "Соединение с сервером потеряно."
 
 #: gui/common/network.js:19
 #, javascript-format
@@ -325,7 +326,7 @@ msgstr "Причина: %(reason)s."
 
 #: gui/common/network.js:20
 msgid "Disconnected"
-msgstr "Соединение разорвано"
+msgstr "Соединение прервано"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -500,7 +501,7 @@ msgstr "Прирост населения:"
 
 #: gui/common/tooltips.js:375
 msgid "Insufficient resources:"
-msgstr "Недостаёт ресурсов:"
+msgstr "Недостаточно ресурсов:"
 
 #: gui/common/tooltips.js:383
 msgid "Speed:"
@@ -538,7 +539,7 @@ msgstr "Лечение:"
 #. action)
 #: gui/common/tooltips.js:403
 msgid "HP"
-msgstr "ХП"
+msgstr "ОЗ"
 
 #: gui/common/tooltips.js:425
 #, javascript-format
@@ -581,7 +582,7 @@ msgstr "OK"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
-msgstr "Повторить"
+msgstr "Попробовать снова"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Ignore"
@@ -609,13 +610,13 @@ msgstr "Когда окно неактивно ставить на паузу о
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr "Отключить окно приветствия"
+msgstr "Отключить экран приветствия"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr "Если отключить экран приветствия, можно потерять важные сообщения.\nВы сможете включить его используя главное меню."
+msgstr "Отключая экран приветствия, Вы рискуете пропустить важные сообщения.\nВы можете включить его, используя главное меню."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
@@ -624,7 +625,7 @@ msgstr "Подробные подсказки"
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr "Показывать полные описания для обучаемых юнитов в производящих их зданиях."
+msgstr "Показывать подробные подсказки для обучаемых юнитов в производящих их зданиях."
 
 #: gui/options/options.js:13
 msgid "FPS Overlay"
@@ -713,7 +714,7 @@ msgstr "Силуэты юнитов"
 
 #: gui/options/options.js:26
 msgid "Show outlines of units behind buildings"
-msgstr "Отображать контур юнитов сквозь здания"
+msgstr "Отображать контур юнитов, находящихся за зданиями."
 
 #: gui/options/options.js:27
 msgid "Shadow Filtering"
@@ -731,7 +732,7 @@ msgstr "Упрощённая вода"
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr "Использовать пониженные настройки для отображения воды. Делает остальные настройки бесполезными."
+msgstr "Использовать самые низкие настройки для отображения воды. Опция делает остальные настройки бесполезными."
 
 #: gui/options/options.js:29
 msgid "HQ Water Effects"

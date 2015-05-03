@@ -5,13 +5,13 @@
 # Translators:
 # EMMANUEL HOLDBROOK <cvvsell20@gmail.com>, 2015
 # iron4o <ironsmile@gmail.com>, 2013
-# yoreei <yoreei.grigorov@gmail.com>, 2014
+# yoreei <yoreei.grigorov@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-02-06 09:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-04-29 21:52+0000\n"
+"Last-Translator: yoreei <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +55,7 @@ msgstr "Регистрация на конфликти"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
-msgstr "Регистрацията не разрешава"
+msgstr "Регистрацията не упълномощена"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
@@ -75,7 +75,7 @@ msgstr "Регистрация неочаквано поискване"
 
 #: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
-msgstr "Регистрацията не оставя"
+msgstr "Регистрацията не е позволена"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unknown error"
@@ -111,82 +111,82 @@ msgstr "Вътрешна грешка на сървъра"
 
 #: lobby/XmppClient.cpp:988
 msgid "Item not found"
-msgstr ""
+msgstr "Обектът не е намерен"
 
 #: lobby/XmppClient.cpp:989
 msgid "Jid malformed"
-msgstr ""
+msgstr "Jid не е образуван правилно"
 
 #: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
-msgstr ""
+msgstr "Не е приемливо"
 
 #: lobby/XmppClient.cpp:991
 msgid "Not allowed"
-msgstr ""
+msgstr "Не е позволено"
 
 #: lobby/XmppClient.cpp:992
 msgid "Not authorized"
-msgstr ""
+msgstr "Не е упълномощено"
 
 #: lobby/XmppClient.cpp:993
 msgid "Not modified"
-msgstr ""
+msgstr "Не е модифицирано"
 
 #: lobby/XmppClient.cpp:994
 msgid "Payment required"
-msgstr ""
+msgstr "Нужно е плащане"
 
 #: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "Получателят не е достъпен"
 
 #: lobby/XmppClient.cpp:996
 msgid "Redirect"
-msgstr ""
+msgstr "Препращане"
 
 #: lobby/XmppClient.cpp:998
 msgid "Remote server not found"
-msgstr ""
+msgstr "Външен сървър не е намерен"
 
 #: lobby/XmppClient.cpp:999
 msgid "Remote server timeout"
-msgstr ""
+msgstr "Таймаут на външният сървър"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
-msgstr ""
+msgstr "Ограничение на ресурсите"
 
 #: lobby/XmppClient.cpp:1001
 msgid "Service unavailable"
-msgstr ""
+msgstr "Услугата е недостъпна"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
-msgstr ""
+msgstr "Нужно е абониране"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
-msgstr ""
+msgstr "Недефинирано състояние"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
-msgstr ""
+msgstr "Неочаквана заявка"
 
 #: lobby/XmppClient.cpp:1005
 msgid "Unknown sender"
-msgstr ""
+msgstr "Неизвестен изпращач"
 
 #: lobby/XmppClient.cpp:1007
 msgid "Error undefined"
-msgstr ""
+msgstr "Недефинирана грешка"
 
 #: ps/SavedGame.cpp:131
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "Игра запазена в „%s“"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Снимката е записана в  „%s“"

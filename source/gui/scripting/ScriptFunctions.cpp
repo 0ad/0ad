@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -393,6 +393,13 @@ void SendNetworkReady(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int messag
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendReadyMessage(message);
+}
+
+void SendNetworkRejoined(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	ENSURE(g_NetClient);
+
+	g_NetClient->SendRejoinedMessage();
 }
 
 JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
@@ -956,6 +963,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &ClearAllPlayerReady>("ClearAllPlayerReady");
 	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
 	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
+	scriptInterface.RegisterFunction<void, &SendNetworkRejoined>("SendNetworkRejoined");
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
 	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
 

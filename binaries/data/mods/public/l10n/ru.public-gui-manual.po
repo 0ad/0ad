@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-08 22:08+0100\n"
-"PO-Revision-Date: 2015-04-18 19:22+0000\n"
-"Last-Translator: dr&mx <dronmax@gmail.com>\n"
+"PO-Revision-Date: 2015-04-25 23:24+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +48,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Благодарим за установку 0 A.D.! Эта страница даст краткий обзор возможностей, доступных в альфа-версии игры."
+msgstr "Благодарим Вас за установку 0 A.D.! Эта страница даст краткий обзор возможностей, доступных в альфа-версии игры."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
@@ -62,7 +62,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Нажатие Alt + Enter позволяет переключаться между полноэкранным и оконным режимом. Оконный режим позволяет изменять размеры окна. Если игра работает слишком медленно, то может помочь изменение настроек в конфигурационном файле, в частности отключение эффектов водных поверхностей и теней. Файл binaries/data/config/default.cfg в директории с установленной игрой содержит инструкции по редактированию настроек."
+msgstr "[font=\"sans-14\"]Нажатие Alt + Enter позволяет переключаться между полноэкранным и оконным режимом. Оконный режим позволяет изменять размеры окна. Если игра работает слишком медленно, может помочь изменение настроек в конфигурационном файле, в частности отключение эффектов водных поверхностей и теней. Файл binaries/data/config/default.cfg в директории с установленной игрой содержит инструкции по редактированию настроек."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -74,7 +74,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"]Игрокам традиционных RTS игр, скорее всего, знакомы управление и игровой процесс. В настоящее время отсутствует множество возможностей и плохо сбалансирована статистика. Возможно, вы захотите дождаться бета-версии, чтобы качественно поиграть."
+msgstr "[font=\"sans-14\"]Игрокам традиционных RTS игр, скорее всего, знакомы управление и игровой процесс. В настоящее время отсутствует множество возможностей и плохо сбалансирована статистика. Возможно, Вы захотите дождаться выхода бета-версии, чтобы качественно поиграть."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -110,7 +110,7 @@ msgstr "[font=\"sans-bold-16\"]Режимы"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr "[font=\"sans-14\"]Главное меню даёт доступ к двум режимам игры:"
+msgstr "[font=\"sans-14\"]Главное меню предоставляет доступ к двум режимам игры:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -119,7 +119,7 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Одиночная игра[font=\"sans-bold-14\"] — игра в песочнице или против ИИ. ИИ находится на стадии разработки и не всегда в курсе новых игровых моментов, но вы можете поиграть против фактического противника, если нет возможности играть с человеком."
+msgstr "• [font=\"sans-bold-14\"]Одиночная игра[font=\"sans-bold-14\"] — игра в песочнице или против ИИ. ИИ находится на стадии разработки и не учитывает новые возможности в игре, но Вы можете поиграть против фактического противника, если нет возможности играть с человеком."
 
 #: gui/manual/intro.txt:24
 msgid ""
@@ -133,7 +133,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Чтобы создать многопользовательскую игру, выберите «Создать игру». Другие игроки должны «Присоединиться к игре» и ввести ваш IP-адрес. Игра использует UDP порт 20595, поэтому убедитесь, что он доступен из сети. Возможно вам потребуется настройка своего NAT/firewall и т.д."
+msgstr "Чтобы создать многопользовательскую игру, выберите «Создать игру». Другие игроки должны «Присоединиться к игре» и ввести Ваш IP-адрес. Игра использует UDP порт 20595, поэтому убедитесь, что он доступен из сети. Возможно Вам потребуется настройка своего NAT/firewall и т.д."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -154,7 +154,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr "Сначала выберите, хотите ли вы играть на случайно карте (создаются автоматически скриптом случайной карты) или на карте сценария (создаются дизайнерами карт). Сценарии могут быть отфильтрованы. Карты по-умолчанию показываются сразу, чтобы увидеть все остальные карты, выберите «Все карты». «Демонстрационные карты» созданы для тестирования отдельных игровых возможностей и не предназначены для обычного игрового процесса."
+msgstr "Сначала выберите, хотите ли Вы играть на случайной карте (создаются автоматически скриптом случайной карты) или на карте сценария (создаются дизайнерами карт). Сценарии могут быть отфильтрованы. Карты по умолчанию показываются сразу. Чтобы увидеть все остальные карты, выберите «Все карты». «Демонстрационные карты» созданы для тестирования отдельных игровых возможностей и не предназначены для обычного игрового процесса."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -164,7 +164,7 @@ msgid ""
 "are either a human player, an AI or no player at all (existing units will "
 "attack enemies that come into sight, but no new units will be created, nor "
 "will the units be sent to attack anyone)."
-msgstr "Настройки для случайных карт. Включают в себя количество игроков, размер карты и др. В сценариях можно задать для фракции игрока или включить ИИ. (Если игрок или ИИ не задан, то эта фракция не будет создавать подразделения и нападать на других, но при появлении в зоне видимости атакует ваших юнитов.)"
+msgstr "В заключение измените настройки. В случае игры на случайной карте можно указать количество игроков, размер карты и т.д. Для сценариев можно только выбрать, кто и за какую фракцию будет играть (от этого зависит позиция игрока на карте в начале игры). В качестве игрока может быть назначен человек, ИИ или вообще никто (в этом случае существующие юниты фракции будут атаковать врагов в поле зрения, но не будет создаваться новых юнитов для фракции, а также юниты не могут самостоятельно отправиться атаковать кого-либо)."
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -184,7 +184,7 @@ msgstr "[font=\"sans-14\"]Alt + F4    Закрыть игру без  подтв
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Enter     Переключиться между полноэкранным режимом и оконным"
+msgstr "Alt + Enter     Переключиться между полноэкранным и оконным режимами."
 
 #: gui/manual/intro.txt:41
 msgid "~ or F9: Show/hide console"
@@ -202,21 +202,21 @@ msgstr "F11     Включить/выключить профилировщик (
 
 #: gui/manual/intro.txt:44
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11     Сохранить текущий профиль в \"logs/profile.txt\""
+msgstr "Shift + F11     Сохранить текущий профиль в файл \"logs/profile.txt\""
 
 #: gui/manual/intro.txt:45
 msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2     Сделать скриншот (в формате.png, местоположение показано в верхнем левом углу GUI после того, как файл был сохранён и можно также заметить в консоли/логах, если вы пропустите его там)"
+msgstr "F2     Сделать скриншот (в формате PNG, местоположение будет показано в левом верхнем углу экрана после сохранения файла, а также продублировано в консоли/логах на тот случай, если Вы пропустите его)"
 
 #: gui/manual/intro.txt:46
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2     Сделать огромный скриншот (6400px*4800px, в формате .bmp, местоположение показано в верхнем левом углу GUI после того, как файл был сохранён и можно также заметить в консоли/логах, если вы пропустите его там)"
+msgstr "Shift + F2     Сделать огромный скриншот (6400px*4800px, в формате BMP, местоположение будет показано в левом верхнем углу экрана после сохранения файла, а также продублировано в консоли/логах, если Вы пропустите его)."
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
