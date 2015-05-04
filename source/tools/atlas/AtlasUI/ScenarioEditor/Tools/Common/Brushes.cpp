@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,8 @@
 Brush g_Brush_Elevation; // shared between several elevation-related tools; other tools have their own brushes
 
 static Brush* g_Brush_CurrentlyActive = NULL; // only one brush can be active at once
+
+const float Brush::STRENGTH_MULTIPLIER = 1024.f;
 
 Brush::Brush()
 : m_Shape(CIRCLE), m_Size(4), m_Strength(1.f), m_IsActive(false)
