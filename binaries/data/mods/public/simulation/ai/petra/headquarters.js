@@ -1761,22 +1761,9 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	if (this.Config.debug > 1)
 	{
 		gameState.getOwnUnits().forEach (function (ent) {
-			if (!ent.hasClass("CitizenSoldier") || ent.hasClass("Cavalry"))
-				return;
 			if (!ent.position())
 				return;
-			var idlePos = ent.getMetadata(PlayerID, "idlePos");
-			if (idlePos === undefined || idlePos[0] !== ent.position()[0] || idlePos[1] !== ent.position()[1])
-			{
-				ent.setMetadata(PlayerID, "idlePos", ent.position());
-				ent.setMetadata(PlayerID, "idleTim", gameState.ai.playedTurn);
-				return;
-			}
-			if (gameState.ai.playedTurn - ent.getMetadata(PlayerID, "idleTim") < 50)
-				return;
-			API3.warn(" unit idle since " + (gameState.ai.playedTurn-ent.getMetadata(PlayerID, "idleTim")) + " turns");
 			m.dumpEntity(ent);
-			ent.setMetadata(PlayerID, "idleTim", gameState.ai.playedTurn);
 		});
 	}
 

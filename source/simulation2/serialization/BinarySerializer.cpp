@@ -284,6 +284,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 					HandleScriptVal(value);
 				}
+
+				break;
 			}
 			else
 			{

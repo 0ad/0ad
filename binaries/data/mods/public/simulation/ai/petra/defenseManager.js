@@ -192,7 +192,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 	for (let i = 0; i < this.armies.length - 1; ++i)
 	{
 		let army = this.armies[i];
-	    	if (army.isCapturing(gameState))
+		if (army.isCapturing(gameState))
 			continue;
 		for (let j = i+1; j < this.armies.length; ++j)
 		{

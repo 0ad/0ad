@@ -91,20 +91,33 @@ m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 };
 
 // Techs to be searched for as soon as they are available
-m.ResearchManager.prototype.researchWantedTechs = function(techs)
+m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 {
+	var available = (gameState.currentPhase() == 1 ? gameState.ai.queueManager.getAvailableResources(gameState) : null);
+	var numWorkers = (gameState.currentPhase() == 1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0);
 	for (var tech of techs)
 	{
 		if (!tech[1]._template.modifications)
 			continue;
-		var template = tech[1]._template;
-		for (var i in template.modifications)
+		let template = tech[1]._template;
+		if (gameState.currentPhase() == 1)
 		{
-			if (template.modifications[i].value.indexOf("ResourceGatherer/Capacities") !== -1)
-				return tech[0];
+			let cost = template.cost;
+			let costMax = 0;
+			for (let res in cost)
+				costMax = Math.max(costMax, Math.max(cost[res]-available[res], 0));
+			if (10*numWorkers < costMax)
+				continue;
+		}
+		for (let i in template.modifications)
+		{
+			if (template.modifications[i].value === "ResourceGatherer/Rates/food.fruit")
+				return tech[0];		
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/food.grain")
 				return tech[0];
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/wood.tree")
+			    return tech[0];
+			else if (template.modifications[i].value.startsWith("ResourceGatherer/Capacities"))
 				return tech[0];
 			else if (template.modifications[i].value === "Attack/Ranged/MaxRange")
 				return tech[0];
@@ -114,15 +127,26 @@ m.ResearchManager.prototype.researchWantedTechs = function(techs)
 };
 
 // Techs to be searched for as soon as they are available, but only after phase 2
-m.ResearchManager.prototype.researchPreferredTechs = function(techs)
+m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 {
-	for (var tech of techs)
+	var available = (gameState.currentPhase() == 2 ? gameState.ai.queueManager.getAvailableResources(gameState) : null);
+	var numWorkers = (gameState.currentPhase() == 2 ? gameState.getOwnEntitiesByRole("worker", true).length : 0);
+	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)
 			continue;
-		var template = tech[1]._template;
-		for (var i in template.modifications)
+		let template = tech[1]._template;
+	    	if (gameState.currentPhase() == 2)
 		{
+			let cost = template.cost;
+			let costMax = 0;
+			for (let res in cost)
+				costMax = Math.max(costMax, Math.max(cost[res]-available[res], 0));
+			if (10*numWorkers < costMax)
+				continue;
+		}
+		for (let i in template.modifications)
+		{		
 			if (template.modifications[i].value === "ResourceGatherer/Rates/stone.rock")
 				return tech[0];
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/metal.ore")
@@ -138,14 +162,12 @@ m.ResearchManager.prototype.researchPreferredTechs = function(techs)
 
 m.ResearchManager.prototype.update = function(gameState, queues)
 {
-	this.checkPhase(gameState, queues);
-
-	if (queues.minorTech.length() !== 0 || gameState.ai.playedTurn % 4 !== 0)
+	if (queues.minorTech.length() > 0)
 		return;
 
 	var techs = gameState.findAvailableTech();
 
-	var techName = this.researchWantedTechs(techs);
+	var techName = this.researchWantedTechs(gameState, techs);
 	if (techName)
 	{
 		queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));
@@ -155,7 +177,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	if (gameState.currentPhase() < 2)
 		return;
 
-	var techName = this.researchPreferredTechs(techs);
+	var techName = this.researchPreferredTechs(gameState, techs);
 	if (techName)
 	{
 		queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));

@@ -117,8 +117,8 @@ StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
 	{ 
 		cmpOverlayRenderer.AddSprite( 
 			icon, 
-			{ "x": xoffset + iconSize/2, "y": yoffset + iconSize }, 
 			{ "x": xoffset - iconSize/2, "y": yoffset }, 
+			{ "x": xoffset + iconSize/2, "y": yoffset + iconSize }, 
 			offset
 		); 
 		xoffset += iconSize * 1.2;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -264,83 +264,7 @@ public:
 
 	// TODO: test exceptions more thoroughly
 
-	void test_script_basic()
-	{
-		ScriptInterface script("Test", "Test", g_ScriptRuntime);
-		JSContext* cx = script.GetContext();
-		JSAutoRequest rq(cx);
-		
-		JS::RootedValue obj(cx);
-		TS_ASSERT(script.Eval("({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})", &obj));
-
-		{
-			std::stringstream stream;
-			CDebugSerializer serialize(script, stream);
-			serialize.ScriptVal("script", &obj);
-			TS_ASSERT_STR_EQUALS(stream.str(),
-					"script: {\n"
-					"  \"x\": 123,\n"
-					"  \"y\": [\n"
-					"    1,\n"
-					"    1.5,\n"
-					"    \"2\",\n"
-					"    \"test\",\n"
-					"    null,\n"
-					"    null,\n"
-					"    true,\n"
-					"    false\n"
-					"  ]\n"
-					"}\n");
-		}
-
-		{
-			std::stringstream stream;
-			CStdSerializer serialize(script, stream);
-
-			serialize.ScriptVal("script", &obj);
-
-			TS_ASSERT_STREAM(stream, 119,
-					"\x03" // SCRIPT_TYPE_OBJECT
-					"\x02\0\0\0" // num props
-					"\x01\0\0\0" "x\0" // "x"
-					"\x05" // SCRIPT_TYPE_INT
-					"\x7b\0\0\0" // 123
-					"\x01\0\0\0" "y\0" // "y"
-					"\x02" // SCRIPT_TYPE_ARRAY
-					"\x08\0\0\0" // array length
-					"\x08\0\0\0" // num props
-					"\x01\0\0\0" "0\0" // "0"
-					"\x05" "\x01\0\0\0" // SCRIPT_TYPE_INT 1
-					"\x01\0\0\0" "1\0" // "1"
-					"\x06" "\0\0\0\0\0\0\xf8\x3f" // SCRIPT_TYPE_DOUBLE 1.5
-					"\x01\0\0\0" "2\0" // "2"
-					"\x04" "\x01\0\0\0" "2\0" // SCRIPT_TYPE_STRING "2"
-					"\x01\0\0\0" "3\0" // "3"
-					"\x04" "\x04\0\0\0" "t\0e\0s\0t\0" // SCRIPT_TYPE_STRING "test"
-					"\x01\0\0\0" "4\0" // "4"
-					"\x00" // SCRIPT_TYPE_VOID
-					"\x01\0\0\0" "5\0" // "5"
-					"\x01" // SCRIPT_TYPE_NULL
-					"\x01\0\0\0" "6\0" // "6"
-					"\x07" "\x01" // SCRIPT_TYPE_BOOLEAN true
-					"\x01\0\0\0" "7\0" // "7"
-					"\x07" "\x00" // SCRIPT_TYPE_BOOLEAN false
-			);
-
-			CStdDeserializer deserialize(script, stream);
-
-			JS::RootedValue newobj(cx);
-			deserialize.ScriptVal("script", &newobj);
-			TS_ASSERT(stream.good());
-			TS_ASSERT_EQUALS(stream.peek(), EOF);
-
-			std::string source;
-			TS_ASSERT(script.CallFunction(newobj, "toSource", source));
-			TS_ASSERT_STR_EQUALS(source, "({x:123, y:[1, 1.5, \"2\", \"test\", (void 0), null, true, false]})");
-		}
-	}
-
-	void helper_script_roundtrip(const char* msg, const char* input, const char* expected, size_t expstreamlen = 0, const char* expstream = NULL)
+	void helper_script_roundtrip(const char* msg, const char* input, const char* expected, size_t expstreamlen = 0, const char* expstream = NULL, const char* debug = NULL)
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
@@ -348,6 +272,14 @@ public:
 		
 		JS::RootedValue obj(cx);
 		TSM_ASSERT(msg, script.Eval(input, &obj));
+
+		if (debug)
+		{
+			std::stringstream dbgstream;
+			CDebugSerializer serialize(script, dbgstream);
+			serialize.ScriptVal("script", &obj);
+			TS_ASSERT_STR_EQUALS(dbgstream.str(), debug);
+		}
 
 		std::stringstream stream;
 		CStdSerializer serialize(script, stream);
@@ -369,6 +301,56 @@ public:
 		std::string source;
 		TSM_ASSERT(msg, script.CallFunction(newobj, "toSource", source));
 		TS_ASSERT_STR_EQUALS(source, expected);
+	}
+
+	void test_script_basic()
+	{
+		helper_script_roundtrip("Object",
+			"({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})",
+		/* expected: */
+			"({x:123, y:[1, 1.5, \"2\", \"test\", (void 0), null, true, false]})",
+		/* expected stream: */
+			119,
+			"\x03" // SCRIPT_TYPE_OBJECT
+			"\x02\0\0\0" // num props
+			"\x01\0\0\0" "x\0" // "x"
+			"\x05" // SCRIPT_TYPE_INT
+			"\x7b\0\0\0" // 123
+			"\x01\0\0\0" "y\0" // "y"
+			"\x02" // SCRIPT_TYPE_ARRAY
+			"\x08\0\0\0" // array length
+			"\x08\0\0\0" // num props
+			"\x01\0\0\0" "0\0" // "0"
+			"\x05" "\x01\0\0\0" // SCRIPT_TYPE_INT 1
+			"\x01\0\0\0" "1\0" // "1"
+			"\x06" "\0\0\0\0\0\0\xf8\x3f" // SCRIPT_TYPE_DOUBLE 1.5
+			"\x01\0\0\0" "2\0" // "2"
+			"\x04" "\x01\0\0\0" "2\0" // SCRIPT_TYPE_STRING "2"
+			"\x01\0\0\0" "3\0" // "3"
+			"\x04" "\x04\0\0\0" "t\0e\0s\0t\0" // SCRIPT_TYPE_STRING "test"
+			"\x01\0\0\0" "4\0" // "4"
+			"\x00" // SCRIPT_TYPE_VOID
+			"\x01\0\0\0" "5\0" // "5"
+			"\x01" // SCRIPT_TYPE_NULL
+			"\x01\0\0\0" "6\0" // "6"
+			"\x07" "\x01" // SCRIPT_TYPE_BOOLEAN true
+			"\x01\0\0\0" "7\0" // "7"
+			"\x07" "\x00", // SCRIPT_TYPE_BOOLEAN false
+		/* expected debug: */
+			"script: {\n"
+			"  \"x\": 123,\n"
+			"  \"y\": [\n"
+			"    1,\n"
+			"    1.5,\n"
+			"    \"2\",\n"
+			"    \"test\",\n"
+			"    null,\n"
+			"    null,\n"
+			"    true,\n"
+			"    false\n"
+			"  ]\n"
+			"}\n"
+		);
 	}
 
 	void test_script_unicode()
@@ -530,6 +512,70 @@ public:
 				"struct:[{0:-1, 1:-1, 2:-1, 3:-1}, {0:65535, 1:65535}, {0:-1, 1:-1}], "
 				"bytes:{0:255, 1:255, 2:255, 3:255, 4:255, 5:255, 6:255, 7:255, 8:255, 9:255, 10:255, 11:255, 12:255, 13:255, 14:255, 15:255}"
 			"})"
+		);
+	}
+
+	void test_script_map()
+	{
+		helper_script_roundtrip("Map - empty",
+			"(new Map())",
+		/* expected: */
+			"({})",
+		/* expected stream: */
+			5,
+			"\x0f" // SCRIPT_TYPE_MAP
+			"\x00\x00\x00\x00" // size
+		);
+
+		helper_script_roundtrip("Map with elements and property",
+			"var a = new Map(); a.set(12, 16); a.set(\"bar\", \"baz\"); a.foo = 27; a",
+		/* expected: */
+			"({})",
+		/* expected stream: */
+			37,
+			"\x0f" // SCRIPT_TYPE_MAP
+			"\x02\0\0\0" // size
+
+			"\x05" // SCRIPT_TYPE_INT
+			"\x0C\0\0\0" // 12
+			"\x05" // SCRIPT_TYPE_INT
+			"\x10\0\0\0" // 16
+
+			"\x04" // SCRIPT_TYPE_STRING
+			"\x03\0\0\0" "b\0a\0r\0" // "bar"
+			"\x04" // SCRIPT_TYPE_STRING
+			"\x03\0\0\0" "b\0a\0z\0" // "baz"
+			// NOTE: We drop properties on Maps when serializing
+		);
+	}
+
+	void test_script_set()
+	{
+		helper_script_roundtrip("Set - empty",
+			"(new Set())",
+		/* expected: */
+			"({})",
+		/* expected stream: */
+			5,
+			"\x10" // SCRIPT_TYPE_SET
+			"\x00\x00\x00\x00" // size
+		);
+
+		helper_script_roundtrip("Set with elements and property", 
+			"var a = new Set(); a.add(12); a.add(\"bar\"); a.foo = 27; a",
+		/* expected: */
+			"({})",
+		/* expected stream: */
+			21,
+			"\x10" // SCRIPT_TYPE_SET
+			"\x02\0\0\0" // size
+
+			"\x05" // SCRIPT_TYPE_INT
+			"\x0C\0\0\0" // 12
+
+			"\x04" // SCRIPT_TYPE_STRING
+			"\x03\0\0\0" "b\0a\0r\0" // "bar"
+			// NOTE: We drop properties on Sets when serializing
 		);
 	}
 
