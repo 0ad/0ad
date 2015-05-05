@@ -13,6 +13,7 @@ var options = {
 		[translate("FPS Overlay"), translate("Show frames per second in top right corner."), {"config":"overlay.fps"}, "boolean"],
 		[translate("Realtime Overlay"), translate("Show current system time in top right corner."), {"config":"overlay.realtime"}, "boolean"],
 		[translate("Gametime Overlay"), translate("Show current simulation time in top right corner."), {"config":"gui.session.timeelapsedcounter"}, "boolean"],
+		[translate("Ceasefire Time Overlay"), translate("Always show the remaining ceasefire time."), {"config":"gui.session.ceasefirecounter"}, "boolean"],
 		[translate("Persist match settings"), translate("Save and restore match settings for quick reuse when hosting another game"), {"config":"persistmatchsettings"}, "boolean"],
 	],
 	"graphicsSetting":

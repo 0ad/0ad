@@ -343,8 +343,9 @@ function openDiplomacy()
 		}
 
 		// Attack Request
+		var simState = GetSimState();
 		let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
-		button.hidden = !(g_Players[i].isEnemy[we]);
+		button.hidden = simState.ceasefireActive && !(g_Players[i].isEnemy[we]);
 		button.tooltip = translate("request for your allies to attack this enemy");
 		button.onpress = (function(i, we){ return function() {
 			Engine.PostNetworkCommand({"type": "attack-request", "source": we, "target": i});
@@ -362,7 +363,7 @@ function openDiplomacy()
 
 			button.caption = g_Players[we]["is"+setting][i] ? translate("x") : "";
 			button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting.toLowerCase()});
-			button.hidden = false;
+			button.hidden = simState.ceasefireActive;
 		}
 	}
 

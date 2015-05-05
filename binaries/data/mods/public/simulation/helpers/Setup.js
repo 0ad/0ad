@@ -61,6 +61,10 @@ function LoadMapSettings(settings)
 				cmpGarrisonHolder.initGarrison = settings.Garrison[holder];
 		}
 	}
+	
+	var cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);
+	if (settings.Ceasefire)
+		cmpCeasefireManager.StartCeasefire(settings.Ceasefire * 60 * 1000);
 }
 
 Engine.RegisterGlobal("LoadMapSettings", LoadMapSettings);

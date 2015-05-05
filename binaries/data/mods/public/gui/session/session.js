@@ -397,7 +397,6 @@ function onTick()
 	lastTickTime = now;
 
 	checkPlayerState();
-
 	while (true)
 	{
 		var message = Engine.PollNetworkClient();
@@ -539,6 +538,7 @@ function onSimulationUpdate()
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
 	updateTimeElapsedCounter();
+	updateCeasefireCounter();
 	updateTimeNotifications();
 	if (!g_IsObserver)
 		updateResearchDisplay();
@@ -778,6 +778,22 @@ function updateResearchDisplay()
 	// Hide unused buttons.
 	for (var i = numButtons; i < 10; ++i)
 		Engine.GetGUIObjectByName("researchStartedButton[" + i + "]").hidden = true;
+}
+
+function updateCeasefireCounter()
+{
+	var simState = GetSimState();
+    var isActive = simState.ceasefireActive; 
+	var remainingTimeString = timeToString(simState.ceasefireTimeRemaining);
+	
+	var ceasefireCounter = Engine.GetGUIObjectByName("ceasefireCounter");
+	var diplomacyCeasefireCounter = Engine.GetGUIObjectByName("diplomacyCeasefireCounter");
+	
+	ceasefireCounter.hidden = !isActive || Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") !== "true";
+	diplomacyCeasefireCounter.hidden = !isActive; 
+	
+	ceasefireCounter.caption = remainingTimeString;
+	diplomacyCeasefireCounter.caption = sprintf(translateWithContext("ceasefire", "Time remaining until ceasefire is over: %(time)s."), {"time": remainingTimeString});
 }
 
 function updateTimeElapsedCounter()
@@ -1044,6 +1060,8 @@ function reportGame(extendedSimState)
 	reportObject.civs = playerCivs;
 	reportObject.teams = teams;
 	reportObject.teamsLocked = String(teamsLocked);
+	reportObject.ceasefireActive = String(extendedSimState.ceasefireActive);
+	reportObject.ceasefireTimeRemaining = String(extendedSimState.ceasefireTimeRemaining);
 	reportObject.mapName = mapName;
 	reportObject.economyScore = playerStatistics.economyScore;
 	reportObject.militaryScore = playerStatistics.militaryScore;
