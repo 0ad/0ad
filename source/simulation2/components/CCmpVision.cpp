@@ -21,8 +21,8 @@
 #include "ICmpVision.h"
 
 #include "simulation2/MessageTypes.h"
-#include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPlayerManager.h"
+#include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpValueModificationManager.h"
 
 class CCmpVision : public ICmpVision
@@ -30,6 +30,7 @@ class CCmpVision : public ICmpVision
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_ValueModification);
 		componentManager.SubscribeToMessageType(MT_Deserialized);
 	}
@@ -39,18 +40,29 @@ public:
 	// Template state:
 
 	entity_pos_t m_Range, m_BaseRange;
+	bool m_RevealShore;
 
 	static std::string GetSchema()
 	{
 		return
 			"<element name='Range'>"
 				"<data type='nonNegativeInteger'/>"
-			"</element>";
+			"</element>"
+			"<optional>"
+				"<element name='RevealShore'>"
+					"<data type='boolean'/>"
+				"</element>"
+			"</optional>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
 	{
 		m_BaseRange = m_Range = paramNode.GetChild("Range").ToFixed();
+
+		if (paramNode.GetChild("RevealShore").IsOk())
+			m_RevealShore = paramNode.GetChild("RevealShore").ToBool();
+		else
+			m_RevealShore = false;
 	}
 
 	virtual void Deinit()
@@ -71,6 +83,20 @@ public:
 	{
 		switch (msg.GetType())
 		{
+		case MT_OwnershipChanged:
+		{
+			if (!m_RevealShore)
+				break;
+
+			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
+			if (msgData.entity != GetEntityId())
+				break;
+
+			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
+			cmpRangeManager->RevealShore(msgData.from, false);
+			cmpRangeManager->RevealShore(msgData.to, true);
+			break;
+		}
 		case MT_ValueModification:
 		{
 			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);

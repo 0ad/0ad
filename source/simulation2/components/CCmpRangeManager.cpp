@@ -1807,6 +1807,39 @@ public:
 		}
 	}
 
+	virtual void RevealShore(player_id_t p, bool enable)
+	{
+		if (p <= 0 || p > MAX_LOS_PLAYER_ID)
+			return;
+
+		// Maximum distance to the shore
+		const u16 maxdist = 10;
+
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+		const Grid<u16>& shoreGrid = cmpPathfinder->ComputeShoreGrid(true);
+		ENSURE(shoreGrid.m_W == m_TerrainVerticesPerSide-1 && shoreGrid.m_H == m_TerrainVerticesPerSide-1);
+
+		std::vector<u16>& counts = m_LosPlayerCounts.at(p);
+		ENSURE(!counts.empty());
+		u16* countsData = &counts[0];
+
+		for (u16 j = 0; j < shoreGrid.m_H; ++j)
+		{
+			for (u16 i = 0; i < shoreGrid.m_W; ++i)
+			{
+				u16 shoredist = shoreGrid.get(i, j);
+				if (shoredist > maxdist)
+					continue;
+
+				// Maybe we could be more clever and don't add dummy strips of one tile
+				if (enable)
+					LosAddStripHelper(p, i, i, j, countsData);
+				else
+					LosRemoveStripHelper(p, i, i, j, countsData);
+			}
+		}
+	}
+
 	/**
 	 * Returns whether the given vertex is outside the normal bounds of the world
 	 * (i.e. outside the range of a circular map)
@@ -1861,23 +1894,7 @@ public:
 					m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
 				}
 
-				// Mark the LoS tiles around the updated vertex
-				// 1: left-up, 2: right-up, 3: left-down, 4: right-down
-				int n1 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
-				int n2 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
-				int n3 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
-				int n4 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
-
-				u16 sharedDirtyVisibilityMask = m_SharedDirtyVisibilityMasks[owner];
-
-				if (j > 0 && i > 0)
-					m_DirtyVisibility[n1] |= sharedDirtyVisibilityMask;
-				if (n2 != n1 && j > 0 && i < m_TerrainVerticesPerSide)
-					m_DirtyVisibility[n2] |= sharedDirtyVisibilityMask;
-				if (n3 != n1 && j < m_TerrainVerticesPerSide && i > 0)
-					m_DirtyVisibility[n3] |= sharedDirtyVisibilityMask;
-				if (n4 != n1 && j < m_TerrainVerticesPerSide && i < m_TerrainVerticesPerSide)
-					m_DirtyVisibility[n4] |= sharedDirtyVisibilityMask;
+				MarkVisibilityDirtyAroundTile(owner, i, j);
 			}
 
 			ASSERT(counts[idx] < 65535);
@@ -1907,26 +1924,30 @@ public:
 				m_LosState[idx] &= ~(LOS_VISIBLE << (2*(owner-1)));
 
 				i32 i = i0 + idx - idx0;
-
-				// Mark the LoS tiles around the updated vertex
-				// 1: left-up, 2: right-up, 3: left-down, 4: right-down
-				int n1 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
-				int n2 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
-				int n3 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
-				int n4 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
-
-				u16 sharedDirtyVisibilityMask = m_SharedDirtyVisibilityMasks[owner];
-
-				if (j > 0 && i > 0)
-					m_DirtyVisibility[n1] |= sharedDirtyVisibilityMask;
-				if (n2 != n1 && j > 0 && i < m_TerrainVerticesPerSide)
-					m_DirtyVisibility[n2] |= sharedDirtyVisibilityMask;
-				if (n3 != n1 && j < m_TerrainVerticesPerSide && i > 0)
-					m_DirtyVisibility[n3] |= sharedDirtyVisibilityMask;
-				if (n4 != n1 && j < m_TerrainVerticesPerSide && i < m_TerrainVerticesPerSide)
-					m_DirtyVisibility[n4] |= sharedDirtyVisibilityMask;
+				MarkVisibilityDirtyAroundTile(owner, i, j);
 			}
 		}
+	}
+
+	inline void MarkVisibilityDirtyAroundTile(u8 owner, i32 i, i32 j)
+	{
+		// Mark the LoS tiles around the updated vertex
+		// 1: left-up, 2: right-up, 3: left-down, 4: right-down
+		int n1 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
+		int n2 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
+		int n3 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
+		int n4 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
+
+		u16 sharedDirtyVisibilityMask = m_SharedDirtyVisibilityMasks[owner];
+
+		if (j > 0 && i > 0)
+			m_DirtyVisibility[n1] |= sharedDirtyVisibilityMask;
+		if (n2 != n1 && j > 0 && i < m_TerrainVerticesPerSide)
+			m_DirtyVisibility[n2] |= sharedDirtyVisibilityMask;
+		if (n3 != n1 && j < m_TerrainVerticesPerSide && i > 0)
+			m_DirtyVisibility[n3] |= sharedDirtyVisibilityMask;
+		if (n4 != n1 && j < m_TerrainVerticesPerSide && i < m_TerrainVerticesPerSide)
+			m_DirtyVisibility[n4] |= sharedDirtyVisibilityMask;
 	}
 
 	/**

@@ -353,6 +353,14 @@ public:
 	virtual void ExploreTerritories() = 0;
 
 	/**
+	 * Reveal the shore for specified player p.
+	 * This works like for entities: if RevealShore is called multiple times with enabled, it
+	 * will be necessary to call it the same number of times with !enabled to make the shore
+	 * fall back into the FoW.
+	 */
+	virtual void RevealShore(player_id_t p, bool enable) = 0;
+
+	/**
 	 * Set whether the whole map should be made visible to the given player.
 	 * If player is -1, the map will be made visible to all players.
 	 */

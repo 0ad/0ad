@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,6 +95,11 @@ public:
 	virtual cost_class_t GetCostClass(const std::string& name) = 0;
 
 	virtual const Grid<u16>& GetPassabilityGrid() = 0;
+
+	/**
+	 * Get a grid representing the distance to the shore of the terrain tile.
+	 */
+	virtual Grid<u16> ComputeShoreGrid(bool expandOnWater = false) = 0;
 
 	/**
 	 * Compute a tile-based path from the given point to the goal, and return the set of waypoints.
