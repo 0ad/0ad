@@ -14,6 +14,10 @@ const POPULATION_CAP_DEFAULTIDX = 5;
 const STARTING_RESOURCES = [translateWithContext("startingResources", "Very Low"), translateWithContext("startingResources", "Low"), translateWithContext("startingResources", "Medium"), translateWithContext("startingResources", "High"), translateWithContext("startingResources", "Very High"), translateWithContext("startingResources", "Deathmatch")];
 const STARTING_RESOURCES_DATA = [100, 300, 500, 1000, 3000, 50000];
 const STARTING_RESOURCES_DEFAULTIDX = 1;
+// Translation: Ceasefire.
+const CEASEFIRE = [translateWithContext("ceasefire", "No ceasefire"), translateWithContext("ceasefire", "5 minutes"), translateWithContext("ceasefire", "10 minutes"), translateWithContext("ceasefire", "15 minutes"), translateWithContext("ceasefire", "20 minutes"), translateWithContext("ceasefire", "30 minutes"), translateWithContext("ceasefire", "45 minutes"), translateWithContext("ceasefire", "60 minutes")];
+const CEASEFIRE_DATA = [0, 5, 10, 15, 20, 30, 45, 60];
+const CEASEFIRE_DEFAULTIDX = 0;
 // Max number of players for any map
 const MAX_PLAYERS = 8;
 
@@ -201,6 +205,17 @@ function initMain()
 		startingResourcesL.onSelectionChange = function() {
 			if (this.selected != -1)
 				g_GameAttributes.settings.StartingResources = STARTING_RESOURCES_DATA[this.selected];
+
+			updateGameAttributes();
+		}
+
+		var ceasefireL = Engine.GetGUIObjectByName("ceasefire");
+		ceasefireL.list = CEASEFIRE;
+		ceasefireL.list_data = CEASEFIRE_DATA;
+		ceasefireL.selected = CEASEFIRE_DEFAULTIDX;
+		ceasefireL.onSelectionChange = function() {
+			if (this.selected != -1)
+				g_GameAttributes.settings.Ceasefire = CEASEFIRE_DATA[this.selected];
 
 			updateGameAttributes();
 		}
@@ -740,6 +755,12 @@ function loadGameAttributes()
 		startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
 	}
 
+	if (mapSettings.Ceasefire)
+	{
+		var ceasefireBox = Engine.GetGUIObjectByName("ceasefire");
+		ceasefireBox.selected = ceasefireBox.list_data.indexOf(mapSettings.Ceasefire);
+	}
+
 	if (attrs.gameSpeed)
 	{
 		var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
@@ -1143,6 +1164,12 @@ function onGameAttributesChange()
 			startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
 		}
 
+		if (mapSettings.Ceasefire)
+		{
+			var ceasefireBox = Engine.GetGUIObjectByName("ceasefire");
+			ceasefireBox.selected = ceasefireBox.list_data.indexOf(mapSettings.Ceasefire);
+		}
+
 		initMapNameList();
 	}
 
@@ -1158,6 +1185,7 @@ function onGameAttributesChange()
 	var enableRating = Engine.GetGUIObjectByName("enableRating");
 	var populationCap = Engine.GetGUIObjectByName("populationCap");
 	var startingResources = Engine.GetGUIObjectByName("startingResources");
+	var ceasefire = Engine.GetGUIObjectByName("ceasefire");
 
 	var numPlayersText= Engine.GetGUIObjectByName("numPlayersText");
 	var mapSizeDesc = Engine.GetGUIObjectByName("mapSizeDesc");
@@ -1171,6 +1199,7 @@ function onGameAttributesChange()
 	var enableRatingText = Engine.GetGUIObjectByName("enableRatingText");
 	var populationCapText = Engine.GetGUIObjectByName("populationCapText");
 	var startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
+	var ceasefireText = Engine.GetGUIObjectByName("ceasefireText");
 	var gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
 	var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
 
@@ -1197,6 +1226,8 @@ function onGameAttributesChange()
 	populationCapText.caption = POPULATION_CAP[populationCap.selected];
 	startingResources.selected = (mapSettings.StartingResources !== undefined && STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) != -1 ? STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) : STARTING_RESOURCES_DEFAULTIDX);
 	startingResourcesText.caption = STARTING_RESOURCES[startingResources.selected];
+	ceasefire.selected = (mapSettings.Ceasefire !== undefined && CEASEFIRE_DATA.indexOf(mapSettings.Ceasefire) != -1 ? CEASEFIRE_DATA.indexOf(mapSettings.Ceasefire) : CEASEFIRE_DEFAULTIDX);
+	ceasefireText.caption = CEASEFIRE[ceasefire.selected];
 
 	// Update map preview
 	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
@@ -1222,6 +1253,7 @@ function onGameAttributesChange()
 		updateDisplay(lockTeams, lockTeamsText, g_IsController);
 		updateDisplay(populationCap, populationCapText, g_IsController);
 		updateDisplay(startingResources, startingResourcesText, g_IsController);
+		updateDisplay(ceasefire, ceasefireText, g_IsController);
 
 		if (g_IsController)
 		{
@@ -1264,6 +1296,7 @@ function onGameAttributesChange()
 		updateDisplay(lockTeams, lockTeamsText, g_IsController);
 		updateDisplay(populationCap, populationCapText, g_IsController);
 		updateDisplay(startingResources, startingResourcesText, g_IsController);
+		updateDisplay(ceasefire, ceasefireText, g_IsController);
 
 		if (g_IsController)
 		{
@@ -1290,25 +1323,27 @@ function onGameAttributesChange()
 	case "scenario":
 		// For scenario just reflect settings for the current map
 		numPlayersSelection.hidden = true;
-		mapSize.hidden = true;
-		revealMap.hidden = true;
-		exploreMap.hidden = true;
-		disableTreasures.hidden = true;
-		victoryCondition.hidden = true;
-		lockTeams.hidden = true;
 		numPlayersText.hidden = false;
+		mapSize.hidden = true;
 		mapSizeText.hidden = true;
 		mapSizeDesc.hidden = true;
+		revealMap.hidden = true;
 		revealMapText.hidden = false;
+		exploreMap.hidden = true;
 		exploreMapText.hidden = false;
+		disableTreasures.hidden = true;
 		disableTreasuresText.hidden = false;
+		victoryCondition.hidden = true;
 		victoryConditionText.hidden = false;
+		lockTeams.hidden = true;
 		lockTeamsText.hidden = false;
-		populationCap.hidden = true;
-		populationCapText.hidden = false;
 		startingResources.hidden = true;
 		startingResourcesText.hidden = false;
-
+		populationCap.hidden = true;
+		populationCapText.hidden = false;
+		ceasefire.hidden = true;
+		ceasefireText.hidden = false;
+		
 		numPlayersText.caption = numPlayers;
 		mapSizeText.caption = translate("Default");
 		revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
@@ -1316,8 +1351,10 @@ function onGameAttributesChange()
 		disableTreasuresText.caption = translate("No");
 		victoryConditionText.caption = victories.text[victoryIdx];
 		lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
-		Engine.GetGUIObjectByName("populationCap").selected = POPULATION_CAP_DEFAULTIDX;
 
+		startingResourcesText.caption = translate("Determined by scenario");
+		populationCapText.caption = translate("Determined by scenario");
+		ceasefireText.caption = translate("Determined by scenario");
 		break;
 
 	default:

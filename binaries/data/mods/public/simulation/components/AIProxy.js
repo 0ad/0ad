@@ -34,20 +34,14 @@ AIProxy.prototype.Init = function()
 {
 	this.changes = null;
 	this.needsFullGet = true;
-	// cache some data across turns
-	this.owner = -1;
-	
 	this.cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
-
-	// Let the AIInterface know that we exist and that it should query us
-	this.NotifyChange();
 };
 
 AIProxy.prototype.Serialize = null; // we have no dynamic state to save
 
 AIProxy.prototype.Deserialize = function ()
 {
-	this.cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+	this.Init();
 };
 
 AIProxy.prototype.GetRepresentation = function()
@@ -55,14 +49,9 @@ AIProxy.prototype.GetRepresentation = function()
 	// Return the full representation the first time we're called
 	var ret;
 	if (this.needsFullGet)
-	{
 		ret = this.GetFullRepresentation();
-		this.needsFullGet = false;
-	}
 	else
-	{
 		ret = this.changes;
-	}
 
 	// Initialise changes to null instead of {}, to avoid memory allocations in the
 	// common case where there will be no changes; event handlers should each reset
@@ -211,6 +200,7 @@ AIProxy.prototype.OnTerritoryDecayChanged = function(msg)
 
 AIProxy.prototype.GetFullRepresentation = function()
 {
+	this.needsFullGet = false;
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 
 	var ret = {
@@ -247,8 +237,6 @@ AIProxy.prototype.GetFullRepresentation = function()
 	{
 		// Updated by OnOwnershipChanged
 		ret.owner = cmpOwnership.GetOwner();
-		if (!this.owner)
-			this.owner = ret.owner;
 	}
 
 	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
@@ -325,16 +313,15 @@ AIProxy.prototype.OnOwnershipChanged = function(msg)
 	{
 		this.cmpAIInterface.PushEvent("Create", {"entity" : msg.entity});
 		return;
-	} else if (msg.to === -1)
+	}
+	else if (msg.to === -1)
 	{
 		this.cmpAIInterface.PushEvent("Destroy", {"entity" : msg.entity});
 		this.needsFullGet = true;
 		return;
 	}
 	
-	this.owner = msg.to;
 	this.changes.owner = msg.to;
-	
 	this.cmpAIInterface.PushEvent("OwnershipChanged", msg);
 };
 

@@ -118,7 +118,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		};
 		ret.players.push(playerData);
 	}
-
+	
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (cmpRangeManager)
 		ret.circularMap = cmpRangeManager.GetLosCircular();
@@ -130,7 +130,15 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	// Add timeElapsed
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	ret.timeElapsed = cmpTimer.GetTime();
-
+	
+	// Add ceasefire info
+	var cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);
+	if (cmpCeasefireManager)
+	{
+		ret.ceasefireActive = cmpCeasefireManager.IsCeasefireActive();
+		ret.ceasefireTimeRemaining = cmpCeasefireManager.GetCeasefireStartedTime() + cmpCeasefireManager.GetCeasefireTime() - ret.timeElapsed;
+	}
+	
 	// Add the game type
 	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	ret.gameType = cmpEndGameManager.GetGameType();
@@ -687,6 +695,17 @@ GuiInterface.prototype.AddTimeNotification = function(notification, duration = 1
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	notification.endTime = duration + cmpTimer.GetTime();
 	notification.id = ++this.timeNotificationID;
+
+	// Let all players receive the notification by default
+	if (notification.players == undefined)
+	{
+		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		var numPlayers = cmpPlayerManager.GetNumPlayers();
+		notification.players = [];
+		for (var i = 1; i < numPlayers; i++)
+			notification.players.push(i);
+	}
+	
 	this.timeNotifications.push(notification);
 	this.timeNotifications.sort(function (n1, n2){return n2.endTime - n1.endTime});
 
@@ -1735,7 +1754,7 @@ GuiInterface.prototype.CanAttack = function(player, data)
 		return false;
 
 	// if the owner is an enemy, it's up to the attack component to decide
-	if (!cmpEntityPlayer.IsAlly(cmpTargetPlayer.GetPlayerID()))
+	if (cmpEntityPlayer.IsEnemy(cmpTargetPlayer.GetPlayerID()))
 		return cmpAttack.CanAttack(data.target);
 	return false;
 };

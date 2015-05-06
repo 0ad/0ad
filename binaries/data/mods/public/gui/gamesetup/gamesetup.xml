@@ -270,7 +270,7 @@
 
 			<!-- More Options -->
 			<object hidden="true" name="moreOptionsFade" type="image" z="60" sprite="ModernFade"/>
-			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-195 50%+200 50%+190" z="70" hidden="true">
+			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-195 50%+200 50%+220" z="70" hidden="true">
 				<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 					<translatableAttribute id="caption">More Options</translatableAttribute>
 				</object>
@@ -317,6 +317,16 @@
 
 				<object size="14 158 94% 186">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
+						<translatableAttribute id="caption">Ceasefire:</translatableAttribute>
+					</object>
+					<object name="ceasefireText" size="40% 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="ceasefire" size="40%+10 0 100% 28" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip">
+						<translatableAttribute id="tooltip">Set time where no attacks are possible.</translatableAttribute>
+					</object>
+				</object>
+
+				<object size="14 188 94% 216">
+					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption" comment="Make sure to differentiate between the revealed map and explored map options!">Revealed Map:</translatableAttribute>
 					</object>
 					<object name="revealMapText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
@@ -325,7 +335,7 @@
 					</object>
 				</object>
 
-				<object size="14 188 94% 216">
+				<object size="14 218 94% 246">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption" comment="Make sure to differentiate between the revealed map and explored map options!">Explored Map:</translatableAttribute>
 					</object>
@@ -335,7 +345,7 @@
 					</object>
 				</object>
 
-				<object size="14 218 94% 246">
+				<object size="14 248 94% 276">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Disable Treasures:</translatableAttribute>
 					</object>
@@ -345,7 +355,7 @@
 					</object>
 				</object>
 
-				<object size="14 248 94% 276">
+				<object size="14 278 94% 306">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Teams Locked:</translatableAttribute>
 					</object>
@@ -355,7 +365,7 @@
 					</object>
 				</object>
 
-				<object name="optionCheats" size="14 278 94% 306" hidden="true">
+				<object name="optionCheats" size="14 308 94% 336" hidden="true">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Cheats:</translatableAttribute>
 					</object>
@@ -365,7 +375,7 @@
 					</object>
 				</object>
 
-				<object name="optionRating" size="14 308 94% 336" hidden="true">
+				<object name="optionRating" size="14 338 94% 366" hidden="true">
 					<object size="0 0 40% 28" hidden="false" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Rated Game:</translatableAttribute>
 					</object>
@@ -380,7 +390,7 @@
 					name="hideMoreOptions"
 					type="button"
 					style="StoneButton"
-					size="50%-70 340 50%+70 366"
+					size="50%-70 370 50%+70 396"
 					tooltip_style="onscreenToolTip"
 				>
 					<translatableAttribute id="caption">OK</translatableAttribute>

@@ -69,7 +69,7 @@ Capturable.prototype.Reduce = function(amount, playerID)
 	if (cmpFogging)
 		cmpFogging.Activate();
 
-	var enemiesFilter = function(v, i) { return v > 0 && !cmpPlayerSource.IsAlly(i); };
+	var enemiesFilter = function(v, i) { return v > 0 && cmpPlayerSource.IsEnemy(i); };
 	var numberOfEnemies = this.cp.filter(enemiesFilter).length;
 
 	if (numberOfEnemies == 0)
@@ -79,7 +79,7 @@ Capturable.prototype.Reduce = function(amount, playerID)
 	var distributedAmount = amount / numberOfEnemies;
 	for (let i in this.cp)
 	{
-		if (cmpPlayerSource.IsAlly(i))
+		if (!cmpPlayerSource.IsEnemy(i))
 			continue;
 		if (this.cp[i] > distributedAmount)
 			this.cp[i] -= distributedAmount;
@@ -121,7 +121,7 @@ Capturable.prototype.CanCapture = function(playerID)
 	var cp = this.GetCapturePoints()
 	var sourceEnemyCp = 0;
 	for (let i in this.GetCapturePoints())
-		if (!cmpPlayerSource.IsAlly(i))
+		if (cmpPlayerSource.IsEnemy(i))
 			sourceEnemyCp += cp[i];
 	return sourceEnemyCp > 0;
 };

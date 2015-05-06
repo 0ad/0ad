@@ -772,12 +772,12 @@ from_config:
 
 		CNetHost::Deinitialize();
 
-		SAFE_DELETE(g_ScriptStatsTable);
-
 		// should be last, since the above use them
 		SAFE_DELETE(g_Logger);
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
+
+		SAFE_DELETE(g_ScriptStatsTable);
 	TIMER_END(L"shutdown misc");
 }
 

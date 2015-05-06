@@ -35,23 +35,14 @@ m.SharedScript = function(settings)
 	this.decreaseFactor = {'wood': 50.0, 'stone': 90.0, 'metal': 90.0, 'food': 40.0};
 };
 
-//Return a simple object (using no classes etc) that will be serialized
-//into saved games
-//TODO: that
+//Return a simple object (using no classes etc) that will be serialized into saved games
 m.SharedScript.prototype.Serialize = function()
 {
-	// serializing entities without using the class.
-	var entities = []; 
-	for (let ent of this._entities.values()) 
-		entities.push( ent._entity );
-
 	return {
-		"players" : this._players,
-		"templates" : this._templates,
-		"techTp" : this._techTemplates,
+		"players": this._players,
+		"techTp": this._techTemplates,
 		"techModifications": this._techModifications,
-		"metadata": this._entityMetadata,
-		"entities": entities
+		"metadata": this._entityMetadata
 	};
 };
 
@@ -60,15 +51,10 @@ m.SharedScript.prototype.Serialize = function()
 m.SharedScript.prototype.Deserialize = function(data)
 {
 	this._players = data.players;
-	this._templates = data.templates;
 	this._techTemplates = data.techTp;
 	this._techModifications = data.techModifications;
 	this._entityMetadata = data.metadata;
-	this._derivedTemplates = {};
-
-	this._entities = new Map();
-	for (let ent of data.entities)
-		this._entities.set(ent.id, new m.Entity(this, ent)); 
+	this._derivedTemplates = {}; 
 
 	this.isDeserialized = true;
 };
@@ -176,12 +162,10 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	Engine.DumpImage("ObstrctionMap.png", obstructionMap, this.passabilityMap.width, this.passabilityMap.height, 255);
 */
 
-	if (!deserialization)
-	{
-		this._entities = new Map();
-		for (var id in state.entities)
+	this._entities = new Map();
+	if (state.entities)
+		for (let id in state.entities)
 			this._entities.set(+id, new m.Entity(this, state.entities[id]));
-	}
 	// entity collection updated on create/destroy event.
 	this.entities = new m.EntityCollection(this, this._entities);
 	

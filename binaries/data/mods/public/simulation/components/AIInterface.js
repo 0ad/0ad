@@ -24,8 +24,8 @@ AIInterface.prototype.EventNames = [
 AIInterface.prototype.Init = function()
 {
 	this.events = {};
-	for each (var i in this.EventNames)
-		this.events[i] = [];
+	for (let name of this.EventNames)
+		this.events[name] = [];
 
 	this.changedEntities = {};
 
@@ -83,17 +83,17 @@ AIInterface.prototype.Disable = function()
 AIInterface.prototype.GetNonEntityRepresentation = function()
 {
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	
+
 	// Return the same game state as the GUI uses
 	var state = cmpGuiInterface.GetSimulationState(-1);
 	
 	// Add some extra AI-specific data
 	// add custom events and reset them for the next turn
 	state.events = {};
-	for each (var i in this.EventNames)
+	for (let name of this.EventNames)
 	{
-		state.events[i] = this.events[i];
-		this.events[i] = [];
+		state.events[name] = this.events[name];
+		this.events[name] = [];
 	}
 
 	return state;
@@ -129,19 +129,15 @@ AIInterface.prototype.GetFullRepresentation = function(flushEvents)
 	var state = this.GetNonEntityRepresentation();
 
 	if (flushEvents)
-		for each (var i in this.EventNames)
-			state.events[i] = [];
+		for (let name of this.EventNames)
+			state.events[name] = [];
 
 	// Add entity representations
 	Engine.ProfileStart("proxy representations");
 	state.entities = {};
 	// all entities are changed in the initial state.
-	for (var id in this.changedEntities)
-	{
-		var aiProxy = Engine.QueryInterface(+id, IID_AIProxy);
-		if (aiProxy)
-			state.entities[id] = aiProxy.GetFullRepresentation();
-	}
+	for (let id of Engine.GetEntitiesWithInterface(IID_AIProxy))
+		state.entities[id] = Engine.QueryInterface(id, IID_AIProxy).GetFullRepresentation();
 	Engine.ProfileStop();
 	
 	state.changedTemplateInfo = this.changedTemplateInfo;

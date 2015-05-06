@@ -123,7 +123,7 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 {
 	var nbPlayers = gameState.sharedScript.playersData.length;
 	var i = gameState.ai.playedTurn % nbPlayers;
-	if (i === PlayerID || gameState.isPlayerAlly(i))
+	if (i === PlayerID || !gameState.isPlayerEnemy(i))
 		return;
 
 	// loop through enemy units
@@ -214,7 +214,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 		var army = this.armies[i];
 		army.recalculatePosition(gameState);
 		var owner = this.territoryMap.getOwner(army.foePosition);
-		if (gameState.isPlayerAlly(owner))
+		if (!gameState.isPlayerEnemy(owner))
 			continue;
 		else if (owner !== 0)   // enemy army back in its territory
 		{

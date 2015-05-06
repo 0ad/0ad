@@ -135,14 +135,13 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
 	g_ScriptRuntime = ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime>(), runtimeSize, heapGrowthBytesGCTrigger);
 
-	CGame game(true);
-	g_Game = &game;
+	g_Game = new CGame(true);
 	if (serializationtest)
-		game.GetSimulation2()->EnableSerializationTest();
+		g_Game->GetSimulation2()->EnableSerializationTest();
 	if (ooslog)
-		game.GetSimulation2()->EnableOOSLog();
+		g_Game->GetSimulation2()->EnableOOSLog();
 		
-	JSContext* cx = game.GetSimulation2()->GetScriptInterface().GetContext();
+	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 
 	// Need some stuff for terrain movement costs:
@@ -167,14 +166,14 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 			std::string line;
 			std::getline(*m_Stream, line);
 			JS::RootedValue attribs(cx);
-			ENSURE(game.GetSimulation2()->GetScriptInterface().ParseJSON(line, &attribs));
+			ENSURE(g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &attribs));
 
-			game.StartGame(&attribs, "");
+			g_Game->StartGame(&attribs, "");
 
 			// TODO: Non progressive load can fail - need a decent way to handle this
 			LDR_NonprogressiveLoad();
 
-			PSRETURN ret = game.ReallyStartGame();
+			PSRETURN ret = g_Game->ReallyStartGame();
 			ENSURE(ret == PSRETURN_OK);
 		}
 		else if (type == "turn")
@@ -190,7 +189,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 			std::string line;
 			std::getline(*m_Stream, line);
 			JS::RootedValue data(cx);
-			game.GetSimulation2()->GetScriptInterface().ParseJSON(line, &data);
+			g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &data);
 
 			commands.emplace_back(SimulationCommand(player, cx, data));
 		}
@@ -206,7 +205,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 			if (turn % 100 == 0)
 			{
 				std::string hash;
-				bool ok = game.GetSimulation2()->ComputeStateHash(hash, quick);
+				bool ok = g_Game->GetSimulation2()->ComputeStateHash(hash, quick);
 				ENSURE(ok);
 				std::string hexHash = Hexify(hash);
 				if (hexHash == replayHash)
@@ -223,19 +222,19 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 				g_Profiler2.IncrementFrameNumber();
 				PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
 
-				game.GetSimulation2()->Update(turnLength, commands);
+				g_Game->GetSimulation2()->Update(turnLength, commands);
 				commands.clear();
 			}
 
 //			std::string hash;
-//			bool ok = game.GetSimulation2()->ComputeStateHash(hash, true);
+//			bool ok = g_Game->GetSimulation2()->ComputeStateHash(hash, true);
 //			ENSURE(ok);
 //			debug_printf("%s\n", Hexify(hash).c_str());
 
 			g_Profiler.Frame();
 
 //			if (turn % 1000 == 0)
-//				JS_GC(game.GetSimulation2()->GetScriptInterface().GetContext());
+//				JS_GC(g_Game->GetSimulation2()->GetScriptInterface().GetContext());
 
 			if (turn % 20 == 0)
 				g_ProfileViewer.SaveToFile();
@@ -249,7 +248,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	g_Profiler2.SaveToFile();
 
 	std::string hash;
-	bool ok = game.GetSimulation2()->ComputeStateHash(hash, false);
+	bool ok = g_Game->GetSimulation2()->ComputeStateHash(hash, false);
 	ENSURE(ok);
 	debug_printf("# Final state: %s\n", Hexify(hash).c_str());
 
@@ -264,6 +263,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 
 	delete &g_Profiler;
 	delete &g_ProfileViewer;
+	SAFE_DELETE(g_ScriptStatsTable);
 
-	g_Game = NULL;
+	SAFE_DELETE(g_Game);
 }
