@@ -70,7 +70,10 @@
     }
   ],
   "Preview": "belgian_bog_night.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "TriggerScripts": [
+    "scripts/disable_ptol_lighthouse.js"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>

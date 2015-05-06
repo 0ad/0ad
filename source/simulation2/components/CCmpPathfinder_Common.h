@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -241,6 +241,8 @@ public:
 	virtual cost_class_t GetCostClass(const std::string& name);
 
 	virtual const Grid<u16>& GetPassabilityGrid();
+
+	virtual Grid<u16> ComputeShoreGrid(bool expandOnWater = false);
 
 	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass, Path& ret);
 

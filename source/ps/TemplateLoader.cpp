@@ -512,7 +512,12 @@ void CTemplateLoader::CopyFoundationSubset(CParamNode& out, const CParamNode& in
 	// Foundations should be visible themselves in fog-of-war if their base template is,
 	// but shouldn't have any vision range
 	if (out.GetChild("Entity").GetChild("Vision").IsOk())
+	{
 		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range></Vision></Entity>");
+		// Foundations should not have special vision capabilities either
+		if (out.GetChild("Entity").GetChild("Vision").GetChild("RevealShore").IsOk())
+			CParamNode::LoadXMLString(out, "<Entity><Vision><RevealShore>false</RevealShore></Vision></Entity>");
+	}
 }
 
 void CTemplateLoader::CopyConstructionSubset(CParamNode& out, const CParamNode& in)

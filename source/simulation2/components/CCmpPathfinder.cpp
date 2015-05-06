@@ -306,6 +306,121 @@ const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
 	return *m_Grid;
 }
 
+Grid<u16> CCmpPathfinder::ComputeShoreGrid(bool expandOnWater)
+{
+	PROFILE3("ComputeShoreGrid");
+
+	CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
+
+	// TODO: these bits should come from ICmpTerrain
+	CTerrain& terrain = GetSimContext().GetTerrain();
+
+	// avoid integer overflow in intermediate calculation
+	const u16 shoreMax = 32767;
+
+	// First pass - find underwater tiles
+	Grid<bool> waterGrid(m_MapSize, m_MapSize);
+	for (u16 j = 0; j < m_MapSize; ++j)
+	{
+		for (u16 i = 0; i < m_MapSize; ++i)
+		{
+			fixed x, z;
+			TileCenter(i, j, x, z);
+
+			bool underWater = cmpWaterManager && (cmpWaterManager->GetWaterLevel(x, z) > terrain.GetExactGroundLevelFixed(x, z));
+			waterGrid.set(i, j, underWater);
+		}
+	}
+
+	// Second pass - find shore tiles
+	Grid<u16> shoreGrid(m_MapSize, m_MapSize);
+	for (u16 j = 0; j < m_MapSize; ++j)
+	{
+		for (u16 i = 0; i < m_MapSize; ++i)
+		{
+			// Find a land tile
+			if (!waterGrid.get(i, j))
+			{
+				// If it's bordered by water, it's a shore tile
+				if ((i > 0 && waterGrid.get(i-1, j)) || (i > 0 && j < m_MapSize-1 && waterGrid.get(i-1, j+1)) || (i > 0 && j > 0 && waterGrid.get(i-1, j-1))
+					|| (i < m_MapSize-1 && waterGrid.get(i+1, j)) || (i < m_MapSize-1 && j < m_MapSize-1 && waterGrid.get(i+1, j+1)) || (i < m_MapSize-1 && j > 0 && waterGrid.get(i+1, j-1))
+					|| (j > 0 && waterGrid.get(i, j-1)) || (j < m_MapSize-1 && waterGrid.get(i, j+1))
+					)
+					shoreGrid.set(i, j, 0);
+				else
+					shoreGrid.set(i, j, shoreMax);
+			}
+			// If we want to expand on water, we want water tiles not to be shore tiles
+			else if (expandOnWater)
+				shoreGrid.set(i, j, shoreMax);
+		}
+	}
+
+	// Expand influences to find shore distance
+	for (u16 y = 0; y < m_MapSize; ++y)
+	{
+		u16 min = shoreMax;
+		for (u16 x = 0; x < m_MapSize; ++x)
+		{
+			if (!waterGrid.get(x, y) || expandOnWater)
+			{
+				u16 g = shoreGrid.get(x, y);
+				if (g > min)
+					shoreGrid.set(x, y, min);
+				else if (g < min)
+					min = g;
+
+				++min;
+			}
+		}
+		for (u16 x = m_MapSize; x > 0; --x)
+		{
+			if (!waterGrid.get(x-1, y) || expandOnWater)
+			{
+				u16 g = shoreGrid.get(x - 1, y);
+				if (g > min)
+					shoreGrid.set(x - 1, y, min);
+				else if (g < min)
+					min = g;
+
+				++min;
+			}
+		}
+	}
+	for (u16 x = 0; x < m_MapSize; ++x)
+	{
+		u16 min = shoreMax;
+		for (u16 y = 0; y < m_MapSize; ++y)
+		{
+			if (!waterGrid.get(x, y) || expandOnWater)
+			{
+				u16 g = shoreGrid.get(x, y);
+				if (g > min)
+					shoreGrid.set(x, y, min);
+				else if (g < min)
+					min = g;
+
+				++min;
+			}
+		}
+		for (u16 y = m_MapSize; y > 0; --y)
+		{
+			if (!waterGrid.get(x, y-1) || expandOnWater)
+			{
+				u16 g = shoreGrid.get(x, y - 1);
+				if (g > min)
+					shoreGrid.set(x, y - 1, min);
+				else if (g < min)
+					min = g;
+
+				++min;
+			}
+		}
+	}
+
+	return shoreGrid;
+}
+
 void CCmpPathfinder::UpdateGrid()
 {
 	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
@@ -369,112 +484,10 @@ void CCmpPathfinder::UpdateGrid()
 		// Obstructions or terrain changed - we need to recompute passability
 		// TODO: only bother recomputing the region that has actually changed
 
+		Grid<u16> shoreGrid = ComputeShoreGrid();
+
 		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
-
-		// TOOD: these bits should come from ICmpTerrain
 		CTerrain& terrain = GetSimContext().GetTerrain();
-
-		// avoid integer overflow in intermediate calculation
-		const u16 shoreMax = 32767;
-		
-		// First pass - find underwater tiles
-		Grid<bool> waterGrid(m_MapSize, m_MapSize);
-		for (u16 j = 0; j < m_MapSize; ++j)
-		{
-			for (u16 i = 0; i < m_MapSize; ++i)
-			{
-				fixed x, z;
-				TileCenter(i, j, x, z);
-				
-				bool underWater = cmpWaterManager && (cmpWaterManager->GetWaterLevel(x, z) > terrain.GetExactGroundLevelFixed(x, z));
-				waterGrid.set(i, j, underWater);
-			}
-		}
-		// Second pass - find shore tiles
-		Grid<u16> shoreGrid(m_MapSize, m_MapSize);
-		for (u16 j = 0; j < m_MapSize; ++j)
-		{
-			for (u16 i = 0; i < m_MapSize; ++i)
-			{
-				// Find a land tile
-				if (!waterGrid.get(i, j))
-				{
-					if ((i > 0 && waterGrid.get(i-1, j)) || (i > 0 && j < m_MapSize-1 && waterGrid.get(i-1, j+1)) || (i > 0 && j > 0 && waterGrid.get(i-1, j-1))
-						|| (i < m_MapSize-1 && waterGrid.get(i+1, j)) || (i < m_MapSize-1 && j < m_MapSize-1 && waterGrid.get(i+1, j+1)) || (i < m_MapSize-1 && j > 0 && waterGrid.get(i+1, j-1))
-						|| (j > 0 && waterGrid.get(i, j-1)) || (j < m_MapSize-1 && waterGrid.get(i, j+1))
-						)
-					{	// If it's bordered by water, it's a shore tile
-						shoreGrid.set(i, j, 0);
-					}
-					else
-					{
-						shoreGrid.set(i, j, shoreMax);
-					}
-				}
-			}
-		}
-
-		// Expand influences on land to find shore distance
-		for (u16 y = 0; y < m_MapSize; ++y)
-		{
-			u16 min = shoreMax;
-			for (u16 x = 0; x < m_MapSize; ++x)
-			{
-				if (!waterGrid.get(x, y))
-				{
-					u16 g = shoreGrid.get(x, y);
-					if (g > min)
-						shoreGrid.set(x, y, min);
-					else if (g < min)
-						min = g;
-
-					++min;
-				}
-			}
-			for (u16 x = m_MapSize; x > 0; --x)
-			{
-				if (!waterGrid.get(x-1, y))
-				{
-					u16 g = shoreGrid.get(x-1, y);
-					if (g > min)
-						shoreGrid.set(x-1, y, min);
-					else if (g < min)
-						min = g;
-
-					++min;
-				}
-			}
-		}
-		for (u16 x = 0; x < m_MapSize; ++x)
-		{
-			u16 min = shoreMax;
-			for (u16 y = 0; y < m_MapSize; ++y)
-			{
-				if (!waterGrid.get(x, y))
-				{
-					u16 g = shoreGrid.get(x, y);
-					if (g > min)
-						shoreGrid.set(x, y, min);
-					else if (g < min)
-						min = g;
-
-					++min;
-				}
-			}
-			for (u16 y = m_MapSize; y > 0; --y)
-			{
-				if (!waterGrid.get(x, y-1))
-				{
-					u16 g = shoreGrid.get(x, y-1);
-					if (g > min)
-						shoreGrid.set(x, y-1, min);
-					else if (g < min)
-						min = g;
-
-					++min;
-				}
-			}
-		}
 
 		// Apply passability classes to terrain
 		for (u16 j = 0; j < m_MapSize; ++j)
