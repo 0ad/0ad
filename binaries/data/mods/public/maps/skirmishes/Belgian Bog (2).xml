@@ -42,6 +42,9 @@
 {
   "CircularMap": true,
   "Description": "Two players face off across a large bog somewhere in the Rhine lowlands.\n\nWood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful.",
+  "DisabledTemplates": [
+    "structures/ptol_lighthouse"
+  ],
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -55,10 +58,7 @@
     }
   ],
   "Preview": "belgian_bog.png",
-  "RevealMap": false,
-  "TriggerScripts": [
-    "scripts/disable_ptol_lighthouse.js"
-  ]
+  "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>

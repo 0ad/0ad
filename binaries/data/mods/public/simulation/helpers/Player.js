@@ -115,8 +115,13 @@ function LoadPlayerSettings(settings, newPlayers)
 		if (getSetting(playerData, playerDefaults, i, "DisabledTechnologies") !== undefined)
 			cmpPlayer.SetDisabledTechnologies(getSetting(playerData, playerDefaults, i, "DisabledTechnologies"));
 
+		let disabledTemplates = []; 
+		if (settings.DisabledTemplates !== undefined)
+			disabledTemplates = settings.DisabledTemplates;
 		if (getSetting(playerData, playerDefaults, i, "DisabledTemplates") !== undefined)
-			cmpPlayer.SetDisabledTemplates(getSetting(playerData, playerDefaults, i, "DisabledTemplates"));
+			disabledTemplates = disabledTemplates.concat(getSetting(playerData, playerDefaults, i, "DisabledTemplates"));
+		if (disabledTemplates.length)
+			cmpPlayer.SetDisabledTemplates(disabledTemplates);
 
 		// If diplomacy explicitly defined, use that; otherwise use teams
 		if (getSetting(playerData, playerDefaults, i, "Diplomacy") !== undefined)
