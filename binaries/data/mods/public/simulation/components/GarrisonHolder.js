@@ -414,7 +414,15 @@ GarrisonHolder.prototype.PerformEject = function(entities, forced)
 				ejectedEntities.push(entity);
 		}
 		else
+		{
 			success = false;
+			// If the garrisonHolder is a sinking ship, stop trying to eject entities when one fail
+			// to avoid using time when no shoreline around
+			var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+			var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+			if ((!cmpHealth || cmpHealth.GetHitpoints() == 0) && cmpIdentity && cmpIdentity.HasClass("Ship"))
+				break;
+		}
 	}
 
 	this.OrderWalkToRallyPoint(ejectedEntities);
