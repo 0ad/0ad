@@ -1,18 +1,5 @@
-var vc = {};
-
-vc.name = translate("Conquest");
-vc.description = translate("Defeat all opponents");
-
-/*
-NOT SUPPORTED YET
-vc.requirementsCheck = function(mapSettings)
-{
-	// nothing required
-	return true;
+g_VictoryConditions.conquest = {
+	"name" : translate("Conquest"),
+	"description" : translate("Defeat all opponents"),
+	"scripts" : ["scripts/ConquestCommon.js", "scripts/TriggerHelper.js", "scripts/Conquest.js"]
 };
-*/
-
-vc.scripts = ["scripts/Conquest.js"];
-
-g_VictoryConditions.conquest = vc;
-vc = null;

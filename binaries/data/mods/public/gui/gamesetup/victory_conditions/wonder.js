@@ -1,18 +1,5 @@
-var vc = {};
-
-vc.name = translate("Wonder");
-vc.description = translate("Build a wonder to win");
-
-/*
-NOT SUPPORTED YET
-vc.requirementsCheck = function(mapSettings)
-{
-	// nothing required
-	return true;
+g_VictoryConditions.wonder = {
+	"name" : translate("Wonder"),
+	"description" : translate("Build a wonder to win"),
+	"scripts" : ["scripts/ConquestCommon.js", "scripts/TriggerHelper.js", "scripts/Conquest.js", "scripts/WonderVictory.js"]
 };
-*/
-
-vc.scripts = ["scripts/Conquest.js", "scripts/WonderVictory.js"];
-
-g_VictoryConditions.wonder = vc;
-vc = null;
