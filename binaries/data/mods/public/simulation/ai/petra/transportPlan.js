@@ -370,7 +370,7 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 	var distmin = Math.min();
 	var posmin = destination;
 	var width = gameState.getMap().width;
-	var cell = gameState.cellSize;
+	var cell = gameState.getMap().cellSize;
 	for (var i of gameState.ai.HQ.navalManager.landingZones[landIndex][seaIndex])
 	{
 		var pos = [i%width+0.5, Math.floor(i/width)+0.5];
@@ -386,14 +386,18 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 		}
 		// require a small distance between all ships of the transport plan to avoid path finder problems
 		// this is also used when the ship is blocked and we want to find a new boarding point
-		for (var shipId in this.boardingPos)
+		for (let shipId in this.boardingPos)
 			if (this.boardingPos[shipId] !== undefined && API3.SquareVectorDistance(this.boardingPos[shipId], pos) < 225)
 				dist += 1000000;
 		if (dist > distmin)
 			continue;
 		distmin = dist;
-		posmin = pos
+		posmin = pos;
 	}
+	// We should always have either destination or the previous boardingPos defined
+	// so let's return this value if everything failed
+	if (!posmin && this.boardingPos[ship.id()])
+		posmin = this.boardingPos[ship.id()];
 	return posmin;
 };
 
