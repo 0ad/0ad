@@ -35,7 +35,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	
 	// get a starting rallyPoint ... will be improved later
 	var rallyPoint = undefined;
-	for (var base of gameState.ai.HQ.baseManagers)
+	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (!base.anchor || !base.anchor.position())
 			continue;
@@ -44,11 +44,13 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	}
 	if (!rallyPoint)	// no base ?  take the position of any of our entities
 	{
-		gameState.getOwnEntities().forEach(function (ent) {
-			if (rallyPoint || !ent.position())
-				return;
+		for (let ent of gameState.getOwnEntities().values())
+		{
+			if (!ent.position())
+				continue;
 			rallyPoint = ent.position();
-		});
+			break;
+		}
 		if (!rallyPoint)
 		{
 			this.failed = true;
@@ -1384,15 +1386,15 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		var targetClassesUnit;
 		var targetClassesSiege;
 		if (this.type === "Rush")
-			targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall", "Tower", "Fortress"], "vetoEntities": veto};
+			targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall", "Tower", "Fortress"], "vetoEntities": veto};
 		else
 		{
 			if (this.target.hasClass("Fortress"))
-				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall"], "vetoEntities": veto};
-			else if (this.target.hasClass("StoneWall"))
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall"], "vetoEntities": veto};
+			else if (this.target.hasClass("Palisade") || this.target.hasClass("StoneWall"))
 				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress"], "vetoEntities": veto};
 			else
-				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress", "StoneWall"], "vetoEntities": veto};
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall", "Fortress"], "vetoEntities": veto};
 		}
 		if (this.target.hasClass("Structure"))
 			targetClassesSiege = {"attack": ["Structure"], "avoid": [], "vetoEntities": veto};
@@ -1722,26 +1724,24 @@ m.AttackPlan.prototype.checkEvents = function(gameState, events)
 
 m.AttackPlan.prototype.waitingForTransport = function()
 {
-	var waiting = false;
-	this.unitCollection.forEach(function (ent) {
+	for (let ent of this.unitCollection.values())
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)
-			waiting = true;
-	});
-	return waiting;
+			return true;
+	return false;
 };
 
 m.AttackPlan.prototype.hasForceOrder = function(data, value)
 {
-	var forced = false;
-	this.unitCollection.forEach(function (ent) {
+	for (let ent of this.unitCollection.values())
+	{
 		if (data && +(ent.getMetadata(PlayerID, data)) !== value)
-			return;
-		var orders = ent.unitAIOrderData();
-		for (var order of orders)
+			continue;
+		let orders = ent.unitAIOrderData();
+		for (let order of orders)
 			if (order.force)
-				forced = true;
-	});
-	return forced;
+				return true;
+	}
+	return false;
 };
 
 m.AttackPlan.prototype.isSiegeUnit = function(gameState, ent)

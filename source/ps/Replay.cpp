@@ -140,9 +140,6 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 		g_Game->GetSimulation2()->EnableSerializationTest();
 	if (ooslog)
 		g_Game->GetSimulation2()->EnableOOSLog();
-		
-	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
 
 	// Need some stuff for terrain movement costs:
 	// (TODO: this ought to be independent of any graphics code)
@@ -156,6 +153,9 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	u32 turn = 0;
 	u32 turnLength = 0;
 
+	{
+	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
 	std::string type;
 	while ((*m_Stream >> type).good())
 	{
@@ -244,6 +244,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 			debug_printf("Unrecognised replay token %s\n", type.c_str());
 		}
 	}
+	}
 
 	g_Profiler2.SaveToFile();
 
@@ -251,8 +252,9 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	bool ok = g_Game->GetSimulation2()->ComputeStateHash(hash, false);
 	ENSURE(ok);
 	debug_printf("# Final state: %s\n", Hexify(hash).c_str());
-
 	timer_DisplayClientTotals();
+
+	SAFE_DELETE(g_Game);
 
 	// Must be explicitly destructed here to avoid callbacks from the JSAPI trying to use g_Profiler2 when
 	// it's already destructed.
@@ -264,6 +266,4 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	delete &g_Profiler;
 	delete &g_ProfileViewer;
 	SAFE_DELETE(g_ScriptStatsTable);
-
-	SAFE_DELETE(g_Game);
 }

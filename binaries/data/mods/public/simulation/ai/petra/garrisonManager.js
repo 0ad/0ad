@@ -20,7 +20,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 	for (let [id, list] of this.holders.entries())
 	{
 		let holder = gameState.getEntityById(id);
-		if (!holder || holder.owner() !== PlayerID)
+		if (!holder || !gameState.isPlayerAlly(holder.owner()))
 		{
 			// this holder was certainly destroyed or captured. Let's remove it
 			for (let entId of list)

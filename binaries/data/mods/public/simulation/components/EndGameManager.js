@@ -50,7 +50,7 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 		if (playerID == cmpPlayer.GetPlayerID() || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID))
 			cmpPlayer.SetState("won")
 		else
-			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i } );
+			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i, "skip": true } );
 	}
 
 	// Reveal the map to all players
@@ -62,5 +62,42 @@ EndGameManager.prototype.SetAlliedVictory = function(flag)
 {
 	this.alliedVictory = flag;
 };
+
+EndGameManager.prototype.OnGlobalPlayerDefeated = function(msg)
+{
+	if (msg.skip)
+		return;
+
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayers = [];
+
+	var allies = [];
+	var onlyAlliesLeft = true;
+
+	var numPlayers = cmpPlayerManager.GetNumPlayers(); 
+
+	for (var i = 1; i < numPlayers; ++i)
+	{
+		cmpPlayers[i] = QueryPlayerIDInterface(i);
+		if (cmpPlayers[i].GetState() != "active" || i == msg.playerId) 
+			return;
+
+		if (!allies.length || cmpPlayers[allies[0]].IsMutualAlly(i))
+			allies.push(i);
+		else
+			onlyAlliesLeft = false;
+	}
+
+	// check if there are winners, or the game needs to continue
+	if (!allies.length || !onlyAlliesLeft || !(this.alliedVictory || allies.length == 1))
+		return; 
+
+	for each (var p in allies)
+		cmpPlayers[p].SetState("won");
+
+	// Reveal the map to all players
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	cmpRangeManager.SetLosRevealAll(-1, true);
+}
 
 Engine.RegisterSystemComponentType(IID_EndGameManager, "EndGameManager", EndGameManager);

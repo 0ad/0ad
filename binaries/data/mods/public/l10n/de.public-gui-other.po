@@ -8,7 +8,7 @@
 # leper <leper@wildfiregames.com>, 2014-2015
 # Marco tom Suden, 2015
 # Maximilian <camellion@gmx.de>, 2014
-# qwertz, 2014
+# qwertz, 2014-2015
 # Raymond Vetter, 2014-2015
 # Xaver, 2015
 # Yves_G, 2015
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-21 04:55+0000\n"
+"PO-Revision-Date: 2015-05-09 17:44+0000\n"
 "Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -349,7 +349,7 @@ msgstr "Stich"
 #: gui/common/tooltips.js:43 gui/common/tooltips.js:103
 #: gui/common/tooltips.js:132
 msgid "Crush"
-msgstr "Stoß"
+msgstr "Schmetter"
 
 #: gui/common/tooltips.js:46 gui/common/tooltips.js:109
 #: gui/common/tooltips.js:135 gui/common/tooltips.js:209
@@ -472,7 +472,7 @@ msgstr "%(component)s %(cost)s"
 #: gui/common/tooltips.js:308
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr "%(resourceIcon)s %(minimum)s zu %(resourceIcon)s %(maximum)s"
+msgstr "%(resourceIcon)s %(minimum)s bis %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:339
 #, javascript-format
@@ -1799,7 +1799,7 @@ msgstr "FISCHEN"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr "- Reichen Ertrag durch Fischen auf See."
+msgstr "- Erwirtschafte reichen Ertrag durch Fischen."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."

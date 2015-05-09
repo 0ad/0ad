@@ -26,6 +26,7 @@
 # Patremus, 2014
 # Patrick Kohan <patrick.kohan@gmail.com>, 2014
 # pointhi, 2014
+# qwertz, 2015
 # raymond_de, 2014
 # Raymond Vetter, 2014
 # Raymond Vetter, 2014-2015
@@ -50,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-04-07 19:21+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"PO-Revision-Date: 2015-05-09 17:16+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,17 +181,17 @@ msgstr[1] "%(numberGarrisoned)s stationiert auf einem Handelsschiff"
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, %(garrisonedString)s, und %(inactiveString)s."
+msgstr "%(openingTradingString)s, %(garrisonedString)s und %(inactiveString)s."
 
 #: gui/session/menu.js:489
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s, und %(garrisonedString)s."
+msgstr "%(openingTradingString)s und %(garrisonedString)s."
 
 #: gui/session/menu.js:499 gui/session/menu.js:561
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, und %(inactiveString)s."
+msgstr "%(openingTradingString)s und %(inactiveString)s."
 
 #: gui/session/menu.js:506 gui/session/menu.js:568
 #, javascript-format
@@ -205,13 +206,13 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] "Es ist %(numberGarrisoned)s Überlandhändler stationiert auf einem Handelsschiff"
-msgstr[1] "Es sind %(numberGarrisoned)s Überlandhändler stationiert auf einem Handelsschiff"
+msgstr[0] "Es ist %(numberGarrisoned)s Händler auf einem Handelsschiff"
+msgstr[1] "Es sind %(numberGarrisoned)s Händler auf einem Handelsschiff"
 
 #: gui/session/menu.js:519
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingGarrisonedString)s, und %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s und %(inactiveString)s."
 
 #: gui/session/menu.js:526
 #, javascript-format
@@ -222,8 +223,8 @@ msgstr "%(openingGarrisonedString)s."
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] "%(numberOfLandTraders)s Überlandhändler inaktiv"
-msgstr[1] "%(numberOfLandTraders)s Überlandhändler inaktiv"
+msgstr[0] "%(numberOfLandTraders)s Händler inaktiv"
+msgstr[1] "%(numberOfLandTraders)s Händler inaktiv"
 
 #: gui/session/menu.js:536 gui/session/menu.js:578
 #, javascript-format
@@ -240,8 +241,8 @@ msgstr "Es gibt keine Handelsschiffe."
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] "%(numberOfShipTraders)s ist inaktiv"
-msgstr[1] "%(numberOfShipTraders)s sind inaktiv"
+msgstr[0] "%(numberOfShipTraders)s inaktiv"
+msgstr[1] "%(numberOfShipTraders)s inaktiv"
 
 #: gui/session/menu.js:558
 #, javascript-format
@@ -463,7 +464,7 @@ msgstr "∞"
 #: gui/session/selection_details.js:199
 #, javascript-format
 msgid "%(amount)s / %(max)s"
-msgstr "%(amount)s / %(max)s"
+msgstr "%(amount)s / %(max)s "
 
 #: gui/session/selection_details.js:135
 #, javascript-format
@@ -580,7 +581,7 @@ msgstr "Gesundheit:"
 #: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Violent"
-msgstr "Stürmisch"
+msgstr "Ungestüm"
 
 #: gui/session/selection_panels_helpers.js:42
 msgctxt "stance"
@@ -712,7 +713,7 @@ msgstr "Zeitreisemodus"
 
 #: gui/session/unit_actions.js:300
 msgid "Origin trade market."
-msgstr "Ursprungsmarkt."
+msgstr "Herkunftsmarkt."
 
 #: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
 #: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531

@@ -4,16 +4,17 @@
 # 
 # Translators:
 # Wuzzy <almikes@aol.com>, 2014
-# leper <leper@wildfiregames.com>, 2014
+# leper <leper@wildfiregames.com>, 2014-2015
 # MartinusMagnus <martinkleemann@web.de>, 2014
+# qwertz, 2015
 # Raymond Vetter, 2014-2015
 # Xaver, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:21+0100\n"
-"PO-Revision-Date: 2015-04-23 17:22+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"PO-Revision-Date: 2015-05-09 17:17+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr "Metallrüstung für den Pferdekopf."
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "Rüste die Pferde deiner Kavallerie mit einer Panzerung aus. Gesamte Kavallerie erhält +1 auf ihren Schutz gegen Hiebe und Dorchbohr-Schutz."
+msgstr "Rüste die Pferde deiner Kavallerie mit einer Panzerung aus, wodurch sie +1 auf ihren Hieb- und Stichschutz erhält."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -196,7 +197,7 @@ msgstr "Körperpanzer komplett aus Eisen geformt, das härteste bearbeitbare Met
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "Alle Helden +2 Hiebschutz und +2 Durchbohrschutz, aber auch +50 Metallkosten."
+msgstr "Alle Helden +2 Hiebschutz und +2 Stichschutz, aber auch +50 Metallkosten."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -217,12 +218,12 @@ msgstr "Lorica Ferrea"
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "Gesteppter Leinen- oder Lederpanzer für Infanterie."
+msgstr "Gestepptes Leinen- oder Lederwams für Infanterie."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Infanterie +1 Hiebschutz und Pierce Armor Level."
+msgstr "Infanterie +1 Hieb- und Stichschutz."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
@@ -295,7 +296,7 @@ msgstr "Mit Bronzeschuppen verstärkter Körperschutz."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "Schuppenrüstung"
+msgstr "Schuppenpanzer"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -306,7 +307,7 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "Körperpanzer komplett aus Bronze. Nur die besten Soldaten wurden mit einer solchen Körperpanzerung ausgestattet, denn diese war sehr teuer und zeitaufwendig in der Herstellung."
+msgstr "Bronzener Körperpanzer. Nur die besten Soldaten wurden mit einer solchen Rüstung ausgestattet, denn diese war in der Herstellung sehr teuer und zeitaufwendig. "
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
@@ -314,7 +315,7 @@ msgstr "Infanterie +2 Hiebschutz, aber auch +10 Metallkosten."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
-msgstr "Bronzekürass"
+msgstr "Bronzeharnisch"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
 msgid "Lorica Musculata"
@@ -330,7 +331,7 @@ msgstr "Speerkämpfer der Infanterie +2 Hiebschutz"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
-msgstr "Sperrholz-Schildkonstruktion"
+msgstr "Sperrholzschildbau"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
@@ -364,7 +365,7 @@ msgstr "Aspides"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
-msgstr "Ein Bronzebeschlag, der auf die Oberfläche des Schilds geschlagen ist."
+msgstr "Ein auf die Schildoberfläche gehämmerter Bronzebeschlag."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
@@ -372,7 +373,7 @@ msgstr "Speerkämpfer der Infanterie +1 Hiebschutz"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
-msgstr "Bronzeschildverkleidung"
+msgstr "Bronzeschildbeschlag"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
@@ -1126,7 +1127,7 @@ msgstr "Ermögliche Lebensregenerierung für deine Einheiten."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "Untätige Einheiten regenerieren sich im Laufe der Zeit allmählig."
+msgstr "Untätige Einheiten regenerieren sich im Laufe der Zeit."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -1222,7 +1223,7 @@ msgstr "Speerkampf vs. Plänkelei"
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "Infanterie Hieb Rüstung vs. Speerkämpfer Durchbohr Rüstung"
+msgstr "Infanterie Hiebschutz vs. Speerkämpfer Stichschutz"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1427,7 +1428,7 @@ msgstr "Herrensitze"
 
 #: simulation/data/technologies/pop_house_02.jsonspecificName.rome
 msgid "Insulae"
-msgstr "Mietskasernen"
+msgstr "Insulae"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
@@ -1482,7 +1483,7 @@ msgstr "Panzerung"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency"
-msgstr "Fortschrittliche Technologien zur Verbesserung der Belagerungseffizienz."
+msgstr "Fortschrittliche Technologien verbessern die Belagerungswaffeneffizienz."
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
@@ -1490,7 +1491,7 @@ msgstr "Alle Belagerungswaffen +25% Schmetterschaden."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
-msgstr "Fortgeschrittene Belagerungswaffen"
+msgstr "Fortschrittlichere Belagerungswaffen"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy"
@@ -1506,7 +1507,7 @@ msgstr "Bolzengenauigkeit"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege weapons require less metal resource"
-msgstr "Belagerungswaffen kosten weniger Metall"
+msgstr "Belagerungswaffen benötigen weniger Metall"
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege weapons cost 20% less metal"
@@ -1547,11 +1548,11 @@ msgstr "Züchte die schnellsten Pferde."
 #: simulation/data/technologies/speed_cavalry_01.jsontooltip
 #: simulation/data/technologies/speed_cavalry_02.jsontooltip
 msgid "+10% cavalry walk speed."
-msgstr "+10% Kavallerie Lauf-Geschwindigkeit."
+msgstr "+10% Kavalleriegeschwindigkeit."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr "Kavallerie Zucht"
+msgstr "Reittierzucht"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
@@ -1605,7 +1606,7 @@ msgstr "Alle Kavallerie braucht -20% Rekrutierungszeit, hat aber -10 Gesundheit.
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
 msgid "Levy Cavalry"
-msgstr "Kavallerie Training"
+msgstr "Kavalleriemusterung"
 
 #: simulation/data/technologies/training_levy_infantry.jsondescription
 #: simulation/data/technologies/persians/training_levy_infantry.jsondescription
@@ -1622,7 +1623,7 @@ msgstr "Infanterie -10% Ausbildungszeit, aber auch -5 Trefferpunkte. Ermöglicht
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
 msgid "Levy Infantry"
-msgstr "Einberufene Infanterie"
+msgstr "Infanteriemusterung"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
@@ -1696,7 +1697,7 @@ msgstr "Befördere alle Bürgerkavalleristen zum erweiterten Rang. Das erhöht i
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
-msgstr "Fortgeschrittene Bürgerkavallerie"
+msgstr "Fortschrittliche Bürgerkavallerie"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
@@ -1711,7 +1712,7 @@ msgstr "Befördert alle Bürger-Soldaten Kavalleristen zum erweiterten Rang. Das
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr "Fortgeschrittene Bürger-Infanterie"
+msgstr "Fortschrittliche Bürgerinfanterie"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
@@ -1922,12 +1923,12 @@ msgstr "Phönizische Schiffskonstrukteure"
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their train time decreased."
-msgstr "Keltische Söldner werden lansgamer ausgebildet."
+msgstr "Keltische Söldner werden schneller rekrutiert."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
 "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Verbünde dich mit keltischen Städten, um die Rekrutierungsdauer keltischer Söldner um -20% zu senken."
+msgstr "Verbünde dich mit keltischen Städten, um die Rekrutierungsdauer keltischer Söldner um 20% zu senken."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
@@ -1936,7 +1937,7 @@ msgstr "Keltische Allianz"
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
 "Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Unterwerfe gallische Stämme, um die Rekrutierungsdauer gallischer Söldner um -20% zu senken."
+msgstr "Unterwerfe gallische Stämme, um die Rekrutierungsdauer gallischer Söldner um 20% zu senken."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
@@ -1945,12 +1946,12 @@ msgstr "Gallische Hegemonie"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
 msgid "Iberian mercenaries have their train time decreased."
-msgstr "Iberische Söldner werden langsamer ausgebildet."
+msgstr "Iberische Söldner werden schneller rekrutiert."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
 msgid ""
 "Ally with Iberian towns to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Durch Verbünden mit iberischen Städten sinkt die Rekrutierungszeit um -20% für iberische Söldner."
+msgstr "Verbünde dich mit iberischen Städten um die Rekrutierungszeit für iberische Söldner um 20% zu senken."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
@@ -1959,11 +1960,11 @@ msgstr "Iberische Allianz"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Unterwirf Hispanien, um die Rekrutierzeit für spanische Händler um -20% zu senken."
+msgstr "Unterwerfe Hispanien, um die Rekrutierungsdauer iberischer Söldner um 20% zu senken."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
-msgstr "Spanische Hegemonie"
+msgstr "Iberische Hegemonie"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
@@ -2255,7 +2256,7 @@ msgstr "Holzwälle"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
-msgstr "Großkönigliche Einberufung"
+msgstr "Großkönigliche Musterung"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""

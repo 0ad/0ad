@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Jacob Carlsson <yejcob@gmail.com>, 2015
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-05-02 22:42+0000\n"
-"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"PO-Revision-Date: 2015-05-09 17:17+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr "%(civilization)s Gameplay"
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Civilisationsbonus"
-msgstr[1] "Civilisation-bonusar"
+msgstr[1] "Civilisations-bonusar"
 
 #: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
@@ -41,8 +42,8 @@ msgstr "Unik teknologi"
 #: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Special Byggnad"
+msgstr[1] "Special Byggnader"
 
 #: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
@@ -88,7 +89,7 @@ msgstr "YYYY-MM-dd HH:mm:ss"
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
 msgid "\\[%(date)s]"
-msgstr ""
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
@@ -112,7 +113,7 @@ msgstr "Mat"
 #: gui/common/l10n.js:6
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "Kött"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -126,7 +127,7 @@ msgstr "Metall"
 #: gui/common/l10n.js:10
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Malm"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -140,7 +141,7 @@ msgstr "Stenbumling"
 #: gui/common/l10n.js:14
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruiner"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -154,14 +155,14 @@ msgstr "Sten"
 #: gui/common/l10n.js:18
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr ""
+msgstr "Skatt"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:20
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "Träd"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -175,7 +176,7 @@ msgstr "Trä"
 #: gui/common/l10n.js:24
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "Frukt"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -203,7 +204,7 @@ msgstr "Mat"
 #: gui/common/l10n.js:34
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "Kött"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -217,7 +218,7 @@ msgstr "Metall"
 #: gui/common/l10n.js:38
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "Malm"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -231,7 +232,7 @@ msgstr "Stenbumling"
 #: gui/common/l10n.js:42
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruiner"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -245,14 +246,14 @@ msgstr "Sten"
 #: gui/common/l10n.js:46
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr ""
+msgstr "Skatt"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:48
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "Träd"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -266,7 +267,7 @@ msgstr "Trä"
 #: gui/common/l10n.js:52
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "Frukt"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -369,8 +370,8 @@ msgstr ""
 #: gui/common/tooltips.js:63
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pil"
+msgstr[1] "pilar"
 
 #: gui/common/tooltips.js:65
 #, javascript-format
@@ -435,7 +436,7 @@ msgstr "Räckvidd:"
 
 #: gui/common/tooltips.js:186 gui/common/tooltips.js:408
 msgid "meters"
-msgstr ""
+msgstr "meter"
 
 #: gui/common/tooltips.js:189
 #, javascript-format
@@ -525,7 +526,7 @@ msgstr ""
 #. action)
 #: gui/common/tooltips.js:403
 msgid "HP"
-msgstr ""
+msgstr "HP"
 
 #: gui/common/tooltips.js:425
 #, javascript-format
@@ -538,7 +539,7 @@ msgstr "???"
 
 #: gui/common/tooltips.js:465
 msgid "Classes:"
-msgstr ""
+msgstr "Klasser:"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -584,7 +585,7 @@ msgstr "Fönsterläge"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "Starta 0 A.D i ett fönster"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
@@ -1040,7 +1041,7 @@ msgstr ""
 
 #: gui/summary/layout.js:24
 msgid "Economic"
-msgstr ""
+msgstr "Ekonomi"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
@@ -1821,7 +1822,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
-msgstr ""
+msgstr "- Ger befolkningen en boost"
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
@@ -1999,7 +2000,7 @@ msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "- Trä tenderar att vara glest, men består av högavkastande Baobab träd."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -2244,7 +2245,7 @@ msgstr ""
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "- 2000 Mat."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."

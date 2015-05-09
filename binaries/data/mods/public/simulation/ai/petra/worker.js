@@ -79,7 +79,7 @@ m.Worker.prototype.update = function(ent, gameState)
 					&& supplyId !== this.ent.getMetadata(PlayerID, "supply"))
 				{
 					var nbGatherers = supply.resourceSupplyNumGatherers() + m.GetTCGatherer(gameState, supplyId);
-					if ((nbGatherers > 0 && supply.resourceSupplyAmount()/nbGatherers < 40))
+					if (nbGatherers > 0 && supply.resourceSupplyAmount()/nbGatherers < 40)
 					{
 						m.RemoveTCGatherer(gameState, supplyId);
 						this.startGathering(gameState);
@@ -89,9 +89,7 @@ m.Worker.prototype.update = function(ent, gameState)
 						var gatherType = this.ent.getMetadata(PlayerID, "gather-type");
 						var nearby = this.base.dropsiteSupplies[gatherType]["nearby"];
 						var isNearby = nearby.some(function(sup) {
-							if (sup.id === supplyId)
-								return true;
-							return false;
+							return (sup.id === supplyId);
 						});
 						if (nearby.length === 0 || isNearby)
 							this.ent.setMetadata(PlayerID, "supply", supplyId);

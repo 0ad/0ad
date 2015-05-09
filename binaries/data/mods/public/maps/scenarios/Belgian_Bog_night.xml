@@ -43,6 +43,9 @@
 {
   "CircularMap": true,
   "Description": "Two Celtic tribes face off across a large bog at night.",
+  "DisabledTemplates": [
+    "structures/ptol_lighthouse"
+  ],
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -70,10 +73,7 @@
     }
   ],
   "Preview": "belgian_bog_night.png",
-  "RevealMap": false,
-  "TriggerScripts": [
-    "scripts/disable_ptol_lighthouse.js"
-  ]
+  "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>

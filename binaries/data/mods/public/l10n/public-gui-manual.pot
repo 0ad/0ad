@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-02-08 22:08+0100\n"
-"PO-Revision-Date: 2015-02-08 22:08+0100\n"
+"POT-Creation-Date: 2015-05-09 23:50+0200\n"
+"PO-Revision-Date: 2015-05-09 23:50+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -347,167 +347,171 @@ msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr ""
 
 #: gui/manual/intro.txt:79
+msgid "I + Left Drag over units on map: Only select idle units"
+msgstr ""
+
+#: gui/manual/intro.txt:80
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr ""
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:81
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units "
 "created/ungarrisoned from that building."
 msgstr ""
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:82
 msgid "Ctrl + Right Click with units selected:"
 msgstr ""
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:83
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr ""
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:84
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr ""
 
-#: gui/manual/intro.txt:85
+#: gui/manual/intro.txt:86
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr ""
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr ""
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr ""
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr ""
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr ""
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid "Alt + Z: Toggle sky"
 msgstr ""
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:93
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr ""
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr ""
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "S or \\[down]: Pan screen down"
 msgstr ""
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "A or \\[left]: Pan screen left"
 msgstr ""
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "D or \\[right]: Pan screen right"
 msgstr ""
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:98
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr ""
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr ""
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
 msgstr ""
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid "R: Reset camera zoom/orientation"
 msgstr ""
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr ""
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr ""
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr ""
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to "
 "pan"
 msgstr ""
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr ""
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr ""
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr ""
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr ""
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:118
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr ""
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr ""
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr ""
 

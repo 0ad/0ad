@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ private:
 	{
 		NONCOPYABLE(CAIPlayer);
 	public:
-		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player, uint8_t difficulty,
+		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player, u8 difficulty,
 				shared_ptr<ScriptInterface> scriptInterface) :
 			m_Worker(worker), m_AIName(aiName), m_Player(player), m_Difficulty(difficulty), 
 			m_ScriptInterface(scriptInterface), m_Obj(scriptInterface->GetJSRuntime())
@@ -179,7 +179,7 @@ private:
 		CAIWorker& m_Worker;
 		std::wstring m_AIName;
 		player_id_t m_Player;
-		uint8_t m_Difficulty;
+		u8 m_Difficulty;
 		bool m_UseSharedComponent;
 		
 		// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
@@ -337,7 +337,7 @@ public:
 		tex_write(&t, filename);
 	}
 
-	void SetRNGSeed(uint32_t seed)
+	void SetRNGSeed(u32 seed)
 	{
 		m_RNG.seed(seed);
 	}
@@ -422,7 +422,7 @@ public:
 		return true;
 	}
 
-	bool AddPlayer(const std::wstring& aiName, player_id_t player, uint8_t difficulty)
+	bool AddPlayer(const std::wstring& aiName, player_id_t player, u8 difficulty)
 	{
 		shared_ptr<CAIPlayer> ai(new CAIPlayer(*this, aiName, player, difficulty, m_ScriptInterface));
 		if (!ai->Initialise())
@@ -558,14 +558,12 @@ public:
 	{
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		std::stringstream rngStream;
 		rngStream << m_RNG;
 		serializer.StringASCII("rng", rngStream.str(), 0, 32);
 
 		serializer.NumberU32_Unbounded("turn", m_TurnNum);
-
-		serializer.NumberU32_Unbounded("num ais", (u32)m_Players.size());
 
 		serializer.Bool("useSharedScript", m_HasSharedComponent);
 		if (m_HasSharedComponent)
@@ -606,11 +604,11 @@ public:
 		}
 	}
 
-	void Deserialize(std::istream& stream)
+	void Deserialize(std::istream& stream, u32 numAis)
 	{
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		ENSURE(m_CommandsComputed); // deserializing while we're still actively computing would be bad
 
 		CStdDeserializer deserializer(*m_ScriptInterface, stream);
@@ -626,13 +624,11 @@ public:
 
 		deserializer.NumberU32_Unbounded("turn", m_TurnNum);
 
-		uint32_t numAis;
-		deserializer.NumberU32_Unbounded("num ais", numAis);
-
 		deserializer.Bool("useSharedScript", m_HasSharedComponent);
-		TryLoadSharedComponent(false);
 		if (m_HasSharedComponent)
 		{
+			TryLoadSharedComponent(false);
+
 			JS::RootedValue sharedData(cx);
 			JS::RootedValue tmpSharedAIObj(cx, m_SharedAIObj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31
 			deserializer.ScriptVal("sharedData", &sharedData);
@@ -644,14 +640,14 @@ public:
 		{
 			std::wstring name;
 			player_id_t player;
-			uint8_t difficulty;
+			u8 difficulty;
 			deserializer.String("name", name, 1, 256);
 			deserializer.NumberI32_Unbounded("player", player);
 			deserializer.NumberU8_Unbounded("difficulty",difficulty);
 			if (!AddPlayer(name, player, difficulty))
 				throw PSERROR_Deserialize_ScriptError();
 
-			uint32_t numCommands;
+			u32 numCommands;
 			deserializer.NumberU32_Unbounded("num commands", numCommands);
 			m_Players.back()->m_Commands.reserve(numCommands);
 			for (size_t j = 0; j < numCommands; ++j)
@@ -841,6 +837,8 @@ public:
 
 	virtual void Serialize(ISerializer& serialize)
 	{
+		serialize.NumberU32_Unbounded("num ais", m_Worker.getPlayerSize());
+
 		// Because the AI worker uses its own ScriptInterface, we can't use the
 		// ISerializer (which was initialised with the simulation ScriptInterface)
 		// directly. So we'll just grab the ISerializer's stream and write to it
@@ -853,9 +851,12 @@ public:
 	{
 		Init(paramNode);
 
-		ForceLoadEntityTemplates();
+		u32 numAis;
+		deserialize.NumberU32_Unbounded("num ais", numAis);
+		if (numAis > 0)
+			ForceLoadEntityTemplates();
 
-		m_Worker.Deserialize(deserialize.GetStream());
+		m_Worker.Deserialize(deserialize.GetStream(), numAis);
 		
 		m_JustDeserialized = true;
 	}
@@ -883,7 +884,7 @@ public:
 		}
 	}
 
-	virtual void AddPlayer(std::wstring id, player_id_t player, uint8_t difficulty)
+	virtual void AddPlayer(std::wstring id, player_id_t player, u8 difficulty)
 	{
 		m_Worker.AddPlayer(id, player, difficulty);
 
@@ -895,7 +896,7 @@ public:
 			cmpRangeManager->SetLosRevealAll(player, true);
 	}
 	
-	virtual void SetRNGSeed(uint32_t seed)
+	virtual void SetRNGSeed(u32 seed)
 	{
 		m_Worker.SetRNGSeed(seed);
 	}

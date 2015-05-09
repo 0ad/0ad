@@ -27,7 +27,6 @@ Player.prototype.Init = function()
 	this.teamsLocked = false;
 	this.state = "active"; // game state - one of "active", "defeated", "won"
 	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including gaia and self)
-	this.conquestCriticalEntitiesCount = 0; // number of owned units with ConquestCritical class
 	this.formations = [];
 	this.startCam = undefined;
 	this.controlAllUnits = false;
@@ -337,11 +336,6 @@ Player.prototype.SetState = function(newState)
 	this.state = newState;
 };
 
-Player.prototype.GetConquestCriticalEntitiesCount = function()
-{
-	return this.conquestCriticalEntitiesCount;
-};
-
 Player.prototype.GetTeam = function()
 {
 	return this.team;
@@ -609,9 +603,6 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 
 	if (msg.from == this.playerID)
 	{
-		if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
-			this.conquestCriticalEntitiesCount--;
-
 		if (cmpCost)
 			this.popUsed -= cmpCost.GetPopCost();
 
@@ -625,9 +616,6 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 	}
 	if (msg.to == this.playerID)
 	{
-		if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
-			this.conquestCriticalEntitiesCount++;
-
 		if (cmpCost)
 			this.popUsed += cmpCost.GetPopCost();
 

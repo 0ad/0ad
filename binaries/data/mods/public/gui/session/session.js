@@ -170,27 +170,9 @@ function init(initData, hotloadData)
 	g_CivData["gaia"] = { "Code": "gaia", "Name": translate("Gaia") };
 
 	if (Engine.GetPlayerID() <= 0)
-	{
 		g_IsObserver = true;
-		// Hide stuff observers don't use.
-		Engine.GetGUIObjectByName("food").hidden = true;
-		Engine.GetGUIObjectByName("wood").hidden = true;
-		Engine.GetGUIObjectByName("stone").hidden = true;
-		Engine.GetGUIObjectByName("metal").hidden = true;
-		Engine.GetGUIObjectByName("population").hidden = true;
-		Engine.GetGUIObjectByName("diplomacyButton1").hidden = true;
-		Engine.GetGUIObjectByName("tradeButton1").hidden = true;
-		Engine.GetGUIObjectByName("menuResignButton").enabled = false;
-		Engine.GetGUIObjectByName("pauseButton").enabled = false;
-		Engine.GetGUIObjectByName("observerText").hidden = false;
-	}
-	else
-	{
-		var civName =  g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
-		// TODO: Get a civ icon for gaia/observers.
-		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
-		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {"civ": civName});
-	}
+
+	updateTopPanel();
 
 	g_GameSpeeds = initGameSpeeds();
 	g_CurrentSpeed = Engine.GetSimRate();
@@ -248,12 +230,35 @@ function init(initData, hotloadData)
 function selectViewPlayer(playerID)
 {
 	Engine.SetPlayerID(playerID);
-	if (playerID > 0)
+	updateTopPanel();
+}
+
+function updateTopPanel()
+{
+	var playerID = Engine.GetPlayerID();
+	var isPlayer =  playerID > 0;
+	if (isPlayer)
 	{
 		var civName = g_CivData[g_Players[playerID].civ].Name
 		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
-		Engine.GetGUIObjectByName("civIconOverlay").tooltip =  sprintf(translate("%(civ)s - Structure Tree"), {"civ": civName});
+		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {"civ": civName});
 	}
+	
+	// Hide stuff gaia/observers don't use.
+	Engine.GetGUIObjectByName("food").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("wood").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("stone").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("metal").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("civIcon").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("diplomacyButton1").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("tradeButton1").hidden = !isPlayer;
+	Engine.GetGUIObjectByName("observerText").hidden = playerID >= 0;
+
+	// Disable stuff observers shouldn't use
+	var isActive = isPlayer && GetSimState().players[playerID].state == "active";
+	Engine.GetGUIObjectByName("pauseButton").enabled = isActive || !g_IsNetworked;
+	Engine.GetGUIObjectByName("menuResignButton").enabled = isActive;
 }
 
 function reportPerformance(time)
@@ -288,7 +293,7 @@ function resignGame(leaveGameAfterResign)
 		"playerId": Engine.GetPlayerID()
 	});
 	
-	Engine.GetGUIObjectByName("menuResignButton").enabled = false;
+	updateTopPanel();
 	
 	global.music.setState(global.music.states.DEFEAT);
 	
@@ -458,9 +463,9 @@ function checkPlayerState()
 	if (playerState.state == "active")
 		return;
 
-	// We can't resign once the game is over.
-	Engine.GetGUIObjectByName("menuResignButton").enabled = false;
-
+	// Disable resign and pause buttons (we can't resign once the game is over)
+	updateTopPanel();
+	
 	// Make sure nothing is open to avoid stacking.
 	closeMenu();
 	closeOpenDialogs();
@@ -593,8 +598,7 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 
 function updateHero()
 {
-	var simState = GetSimState();
-	var playerState = simState.players[Engine.GetPlayerID()];
+	var playerState = GetSimState().players[Engine.GetPlayerID()];
 	var unitHeroPanel = Engine.GetGUIObjectByName("unitHeroPanel");
 	var heroButton = Engine.GetGUIObjectByName("unitHeroButton");
 
@@ -669,7 +673,6 @@ function updateGroups()
 
 function updateDebug()
 {
-	let simState = GetSimState();
 	let debug = Engine.GetGUIObjectByName("debug");
 
 	if (!Engine.GetGUIObjectByName("devDisplayState").checked)
@@ -680,7 +683,7 @@ function updateDebug()
 
 	debug.hidden = false;
 
-	let conciseSimState = deepcopy(simState);
+	let conciseSimState = deepcopy(GetSimState());
 	conciseSimState.players = "<<<omitted>>>";
 	let text = "simulation: " + uneval(conciseSimState);
 
@@ -703,8 +706,7 @@ function updateDebug()
 
 function updatePlayerDisplay()
 {
-	var simState = GetSimState();
-	var playerState = simState.players[Engine.GetPlayerID()];
+	var playerState = GetSimState().players[Engine.GetPlayerID()];
 	if (!playerState)
 		return;
 
