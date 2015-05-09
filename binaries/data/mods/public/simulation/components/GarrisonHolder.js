@@ -396,6 +396,8 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 /**
  * Ejects units and orders them to move to the Rally Point.
  * Returns true if successful, false if not
+ * If an ejection with a given obstruction radius has failed, we won't try anymore to eject
+ * entities with a bigger obstruction as that is compelled to also fail 
  */
 GarrisonHolder.prototype.PerformEject = function(entities, forced)
 {
@@ -404,8 +406,17 @@ GarrisonHolder.prototype.PerformEject = function(entities, forced)
 
 	var ejectedEntities = [];
 	var success = true;
-	for each (var entity in entities)
+	var failedRadius;
+	for (var entity of entities)
 	{
+		if (failedRadius !== undefined)
+		{
+			var cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
+			var radius = cmpObstruction ? cmpObstruction.GetUnitRadius() : 0;
+			if (radius >= failedRadius)
+				continue;
+		}
+
 		if (this.Eject(entity, forced))
 		{
 			var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
@@ -416,12 +427,13 @@ GarrisonHolder.prototype.PerformEject = function(entities, forced)
 		else
 		{
 			success = false;
-			// If the garrisonHolder is a sinking ship, stop trying to eject entities when one fail
-			// to avoid using time when no shoreline around
-			var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-			var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-			if ((!cmpHealth || cmpHealth.GetHitpoints() == 0) && cmpIdentity && cmpIdentity.HasClass("Ship"))
-				break;
+			if (failedRadius !== undefined)
+				failedRadius = Math.min(failedRadius, radius);
+			else
+			{
+				var cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
+				failedRadius = cmpObstruction ? cmpObstruction.GetUnitRadius() : 0;			
+			}
 		}
 	}
 
