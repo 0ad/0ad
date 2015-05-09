@@ -1386,15 +1386,15 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		var targetClassesUnit;
 		var targetClassesSiege;
 		if (this.type === "Rush")
-			targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall", "Tower", "Fortress"], "vetoEntities": veto};
+			targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall", "Tower", "Fortress"], "vetoEntities": veto};
 		else
 		{
 			if (this.target.hasClass("Fortress"))
-				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall"], "vetoEntities": veto};
-			else if (this.target.hasClass("StoneWall"))
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall"], "vetoEntities": veto};
+			else if (this.target.hasClass("Palisade") || this.target.hasClass("StoneWall"))
 				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress"], "vetoEntities": veto};
 			else
-				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress", "StoneWall"], "vetoEntities": veto};
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall", "Fortress"], "vetoEntities": veto};
 		}
 		if (this.target.hasClass("Structure"))
 			targetClassesSiege = {"attack": ["Structure"], "avoid": [], "vetoEntities": veto};
