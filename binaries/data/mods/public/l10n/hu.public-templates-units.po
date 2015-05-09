@@ -5,15 +5,17 @@
 # Translators:
 # Balázs Úr <urbalazs@gmail.com>, 2015
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
+# István Norbert Pétert <peter.norbert.istvan@gmail.com>, 2015
 # lkishalmi <lkishalmi@ovi.com>, 2014
 # Nagy András <asd0707@freemail.hu>, 2014
+# Robert Müller <mullerrobi93@gmail.com>, 2015
 # Tibor Buzási, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-04-01 22:12+0000\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"PO-Revision-Date: 2015-05-09 17:17+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,7 +151,7 @@ msgstr "Lovas csatár"
 
 #: simulation/templates/template_unit_champion.xml:4
 msgid "Champion Unit"
-msgstr "Bajnoki egység"
+msgstr "Bajnoki Egység"
 
 #: simulation/templates/template_unit_champion.xml:6
 msgid "Champion"
@@ -157,23 +159,23 @@ msgstr "Bajnok"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:26
 msgid "Champion Cavalry"
-msgstr "Bajnok lovasság"
+msgstr "Bajnok Lovas"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer."
-msgstr "Bajnok lovas íjász"
+msgstr "Bajnok Lovas Íjász"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 msgid "Champion Cavalry Skirmisher"
-msgstr "Bajnok lovas csatár"
+msgstr "Bajnok Lovas Csatár"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
-msgstr "Bajnok lovas lándzsás"
+msgstr "Bajnok Lovas Lándzsás"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:37
 msgid "Champion Cavalry Swordsman"
-msgstr "Bajnok kardos lovas"
+msgstr "Bajnok Kardos Lovas"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
@@ -194,21 +196,21 @@ msgstr "Gyalogság"
 
 #: simulation/templates/template_unit_champion_infantry.xml:22
 msgid "Champion Infantry"
-msgstr ""
+msgstr "Bajnok Gyalogság"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
-msgstr ""
+msgstr "Bajnok Íjász"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:27
 msgid "Champion Skirmisher"
-msgstr ""
+msgstr "Bajnok Csatár"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
-msgstr ""
+msgstr "Lándzsa"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:46
 msgid "Champion Pikeman"
@@ -257,7 +259,7 @@ msgstr "Eb"
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
-msgstr "Harci eb"
+msgstr "Harci Eb"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
@@ -287,15 +289,15 @@ msgstr "Hős"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Hero Cavalry"
-msgstr ""
+msgstr "Hős Lovas"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:26
 msgid "Hero Cavalry Archer"
-msgstr ""
+msgstr "Hős Lovas Íjász"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
 msgid "Hero Cavalry Skirmisher"
-msgstr ""
+msgstr "Hős Lovas Csatár"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
@@ -315,7 +317,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 msgid "Hero Pikeman"
-msgstr ""
+msgstr "Lándzsás Hős"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 msgid "Hero Spearman"
@@ -323,7 +325,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 msgid "Hero Swordsman"
-msgstr ""
+msgstr "Kardos Hős"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
@@ -331,7 +333,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
-msgstr ""
+msgstr "Lándzsás"
 
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spearman"
@@ -339,7 +341,7 @@ msgstr "Dárdás"
 
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:26
 msgid "Swordsman"
-msgstr ""
+msgstr "Kardforgató"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:27
 msgid "Skirmisher"
@@ -360,7 +362,7 @@ msgstr "Hajó"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
-msgstr ""
+msgstr "Könnyű Hadihajó"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
@@ -394,7 +396,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
-msgstr ""
+msgstr "Nehéz Hadihajó"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
@@ -402,7 +404,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
-msgstr ""
+msgstr "Közepes Hadihajó"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -410,7 +412,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Siege Catapult"
-msgstr ""
+msgstr "Ostrom Katapult"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:45
 msgid "Causes splash damage."
@@ -422,7 +424,7 @@ msgstr "Faltörő kos"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:52
 msgid "Siege Tower"
-msgstr ""
+msgstr "Ostrom torony"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid ""
@@ -453,7 +455,7 @@ msgstr "Gyógyító"
 msgid ""
 "Classes: Support Healer.\n"
 "Heal units."
-msgstr ""
+msgstr "Osztályok: Támogató Gyógyító.\nGyógyító egység"
 
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
@@ -1556,7 +1558,7 @@ msgstr "Macedóniai Nő"
 
 #: simulation/templates/units/mace_thorakites.xml:5
 msgid "Armored Swordsman"
-msgstr ""
+msgstr "Páncélozott kardforgató"
 
 #: simulation/templates/units/mace_thorakites.xml:6
 msgid "Thorakites"
@@ -1688,7 +1690,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
-msgstr ""
+msgstr "Hosszúíjász"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:14
 msgid "Dhanurdhar"

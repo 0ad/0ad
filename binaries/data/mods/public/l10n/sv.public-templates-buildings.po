@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Daniel Sandman <revoltism@gmail.com>, 2015
+# Jacob Carlsson <yejcob@gmail.com>, 2015
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 # Marco tom Suden, 2014
 # Simon Österberg <simon.osterberg@gmail.com>, 2015
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:21+0100\n"
-"PO-Revision-Date: 2015-05-02 20:42+0000\n"
-"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"PO-Revision-Date: 2015-05-09 17:16+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +42,7 @@ msgstr "Bygg för att förvärva stora landområden. Träna invånare. Garnisone
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
-msgstr ""
+msgstr "Medborgarcentrum"
 
 #: simulation/templates/template_structure_civic_house.xml:31
 msgid "Increase the population limit."
@@ -64,17 +65,17 @@ msgstr "Hus"
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "Helande Aura"
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "Läker alla enheter i närheten med 1 HP per sekund"
 
 #: simulation/templates/template_structure_civic_temple.xml:43
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "Träna helare. Förlägg upp till 20 enheter för att hela dem i snabb takt (3 HK per sekund). Forska om helande och religiösa förbättringar."
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -106,18 +107,18 @@ msgstr "Försvarstorn"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr ""
+msgstr "Skjuter pilar. Garrision för att ge extra skydd."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
 msgid "DefenseTower"
-msgstr ""
+msgstr "Försvarstorn"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly loses"
 " health while in neutral territory."
-msgstr ""
+msgstr "Bygg i neutrala och egna territorier för att scouta delar av kartan. Tappar sakta hälsa under vistelsen i neutrala territoriet."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -131,7 +132,7 @@ msgstr "Stenmur"
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr ""
+msgstr "Mur utanför din stad för ett kraftigt försvar."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:27
 msgid "City Gate"
@@ -158,7 +159,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "Konvertera Stenmur i Stadsport"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:49
 msgid "Wall Turret"
@@ -179,7 +180,7 @@ msgstr "Ekonomisk byggnad"
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr ""
+msgstr "Ekonomi"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:22
 msgid "Dropsite for the food resource. Research food gathering improvements."
@@ -600,7 +601,7 @@ msgstr "Brythonsk utpost"
 #: simulation/templates/structures/brit_rotarymill.xml:21
 #: simulation/templates/structures/gaul_rotarymill.xml:21
 msgid "Farming bonus"
-msgstr ""
+msgstr "Jordbruks bonus"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
@@ -958,7 +959,7 @@ msgstr ""
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
-msgstr ""
+msgstr "Belägrings Verkstad"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
@@ -1277,7 +1278,7 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_library.xml:16
 msgid "Bibliothí̱ki̱"
-msgstr ""
+msgstr "bibliotek"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-05-03 04:42+0200\n"
-"PO-Revision-Date: 2015-05-03 04:42+0200\n"
+"POT-Creation-Date: 2015-05-09 23:51+0200\n"
+"PO-Revision-Date: 2015-05-09 23:51+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -591,6 +591,15 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr ""
 
+#: simulation/components/CeasefireManager.js:125
+#, javascript-format
+msgid "You can attack in %(time)s"
+msgstr ""
+
+#: simulation/components/CeasefireManager.js:140
+msgid "You can attack now!"
+msgstr ""
+
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
@@ -606,42 +615,42 @@ msgstr ""
 msgid "%(category)s limit of %(limit)s reached"
 msgstr ""
 
-#: simulation/components/Player.js:40
+#: simulation/components/Player.js:39
 msgid "Food"
 msgstr ""
 
-#: simulation/components/Player.js:41
+#: simulation/components/Player.js:40
 msgid "Wood"
 msgstr ""
 
-#: simulation/components/Player.js:42
+#: simulation/components/Player.js:41
 msgid "Metal"
 msgstr ""
 
-#: simulation/components/Player.js:43
+#: simulation/components/Player.js:42
 msgid "Stone"
 msgstr ""
 
-#: simulation/components/Player.js:244
+#: simulation/components/Player.js:243
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr ""
 
-#: simulation/components/Player.js:246
+#: simulation/components/Player.js:245
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
 "(resourceAmount2)s %(resourceType2)s"
 msgstr ""
 
-#: simulation/components/Player.js:248
+#: simulation/components/Player.js:247
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
 "(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr ""
 
-#: simulation/components/Player.js:250
+#: simulation/components/Player.js:249
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"

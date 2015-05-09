@@ -14,14 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:50+0200\n"
-"PO-Revision-Date: 2015-04-19 15:21+0000\n"
-"Last-Translator: Woratiklis\n"
+"PO-Revision-Date: 2015-05-09 17:17+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
@@ -2058,7 +2058,7 @@ msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
 " provide much-needed boost in farming, but foraging and hunting are in short"
 " supply."
-msgstr "Оазис окруженный горами и пустыней. Сельскохозяйственный район возле воды обеспечивает необходимый рост земледелия, также имеется ограниченный запас зерновых и животных."
+msgstr "Оазис, окруженный горами и пустыней. Плодородная земля возле воды обеспечивает необходимый рост земледелия, однако возможности для сбора и охоты ограничены."
 
 #: maps/skirmishes/Team Oasis - 2v2.xml:Name:42
 msgid "Team Oasis (2v2)"
@@ -2080,7 +2080,7 @@ msgid ""
 "Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr "Четыре фракции осели на вершине крупных каменистых плато, или акрополей. \n\nРазведайте земли для поиска сокровищ и обеспечения новыми ресурсами."
+msgstr "Четыре фракции осели на вершине крупных каменистых плато, или акрополей. \n\nРазведайте земли в поисках сокровищ и новых ресурсов."
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:41
 msgid "Tuscan Acropolis (4)"
@@ -2101,7 +2101,7 @@ msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
-msgstr "Африканская саванна набитая битком животными для охоты, вблизи богатых месторождений минералов.  Период засухи надвигается и водяные ямы высыхают.\n\nЗаметка: Это очень маленькая «быстрая и яростная» карта. Иберийцы начинают без окружной стены."
+msgstr "Африканская саванна с многочисленными животными для охоты вблизи богатых месторождений минералов.  Период засухи надвигается и водяные ямы высыхают.\n\nЗаметка: Это очень маленькая «быстрая и яростная» карта. Иберийцы начинают без стен."
 
 #: maps/skirmishes/Watering Holes (4).xml:Name:42
 msgid "Watering Holes (4)"
@@ -2114,7 +2114,7 @@ msgid ""
 "Players start the match near the Persian Gulf in their own province with 1 free Temple. \n"
 "\n"
 "Access to untapped resources and territories can be found through the rugged hinterlands."
-msgstr "Горы ограничивают персидскую родину, охватывающую Парс, Сузиану и Медиану.\n\nИгроки начинают состязание возле Персидского залива в собственной провинции с 1-м бесплатным храмом.\n\nДоступ к неиспользованным ресурсам и территориям можно найти через скалистые внутренние районы."
+msgstr "Горы ограничивают родину персов, охватывающую Парс, Сузиану и Мидию.\n\nИгроки начинают возле Персидского залива в собственной провинции с 1-м бесплатным храмом.\n\nПроход к неиспользованным ресурсам и территориям пролегает через скалистые внутренние районы."
 
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:42
 msgid "Zagros Mountains (2)"

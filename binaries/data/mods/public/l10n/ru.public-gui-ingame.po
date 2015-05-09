@@ -43,14 +43,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-04-08 23:31+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2015-05-09 17:16+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: gui/session/input.js:152
 #, javascript-format
@@ -155,6 +155,7 @@ msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s бездействует"
 msgstr[1] "%(numberOfLandTraders)s бездействует"
 msgstr[2] "%(numberOfLandTraders)s бездействуют"
+msgstr[3] "%(numberOfLandTraders)s бездействуют"
 
 #: gui/session/menu.js:475
 #, javascript-format
@@ -163,6 +164,7 @@ msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s торговец занят"
 msgstr[1] "%(numberTrading)s торговцев занято"
 msgstr[2] "%(numberTrading)s торговцев занято"
+msgstr[3] "%(numberTrading)s торговцев занято"
 
 #: gui/session/menu.js:478
 #, javascript-format
@@ -171,6 +173,7 @@ msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s в гарнизоне торгового судна"
 msgstr[1] "%(numberGarrisoned)s в гарнизоне торгового судна"
 msgstr[2] "%(numberGarrisoned)s в гарнизоне торгового судна"
+msgstr[3] "%(numberGarrisoned)s в гарнизоне торгового судна"
 
 #: gui/session/menu.js:481
 #, javascript-format
@@ -204,6 +207,7 @@ msgid_plural ""
 msgstr[0] "%(numberGarrisoned)s торговец на торговом судне"
 msgstr[1] "%(numberGarrisoned)s торговцев на торговом судне"
 msgstr[2] "%(numberGarrisoned)s торговцев на торговом судне"
+msgstr[3] "%(numberGarrisoned)s торговцев на торговом судне"
 
 #: gui/session/menu.js:519
 #, javascript-format
@@ -222,6 +226,7 @@ msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s торговец бездействует"
 msgstr[1] "%(numberOfLandTraders)s торговцев бездействует"
 msgstr[2] "%(numberOfLandTraders)s торговцев бездействует"
+msgstr[3] "%(numberOfLandTraders)s торговцев бездействует"
 
 #: gui/session/menu.js:536 gui/session/menu.js:578
 #, javascript-format
@@ -230,6 +235,7 @@ msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Всего %(inactiveString)s."
 msgstr[1] "Всего %(inactiveString)s."
 msgstr[2] "Всего %(inactiveString)s."
+msgstr[3] "Всего %(inactiveString)s."
 
 #: gui/session/menu.js:548
 msgid "There are no merchant ships."
@@ -242,6 +248,7 @@ msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s бездействует"
 msgstr[1] "%(numberOfShipTraders)s бездействуют"
 msgstr[2] "%(numberOfShipTraders)s бездействуют"
+msgstr[3] "%(numberOfShipTraders)s бездействуют"
 
 #: gui/session/menu.js:558
 #, javascript-format
@@ -250,6 +257,7 @@ msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s торговый корабль занят"
 msgstr[1] "%(numberTrading)s торговых корабля занято"
 msgstr[2] "%(numberTrading)s торговых корабля занято"
+msgstr[3] "%(numberTrading)s торговых корабля занято"
 
 #: gui/session/menu.js:577
 #, javascript-format
@@ -258,6 +266,7 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s торговый корабль бездействует"
 msgstr[1] "%(numberOfShipTraders)s торговых корабля бездействует"
 msgstr[2] "%(numberOfShipTraders)s торговых кораблей бездействует"
+msgstr[3] "%(numberOfShipTraders)s торговых кораблей бездействует"
 
 #: gui/session/menu.js:656 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -574,6 +583,7 @@ msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Осталось построить %(number)s здание."
 msgstr[1] "Осталось построить %(number)s зданий."
 msgstr[2] "Осталось построить %(number)s зданий."
+msgstr[3] "Осталось построить %(number)s зданий."
 
 #: gui/session/selection_panels.js:993 gui/session/session.js:620
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12

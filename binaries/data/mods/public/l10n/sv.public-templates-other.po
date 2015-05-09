@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Jacob Carlsson <yejcob@gmail.com>, 2015
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:50+0200\n"
-"PO-Revision-Date: 2015-05-02 21:23+0000\n"
-"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"PO-Revision-Date: 2015-05-09 17:17+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
-msgstr ""
+msgstr "Träd"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
@@ -83,7 +84,7 @@ msgstr ""
 #: simulation/templates/gaia/special_ruins_column_doric.xml:9
 #: simulation/templates/other/unfinished_greek_temple.xml:9
 msgid "Ruins"
-msgstr ""
+msgstr "Ruiner"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
@@ -109,7 +110,7 @@ msgstr ""
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
 msgid "Treasure"
-msgstr ""
+msgstr "Skatt"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
@@ -117,11 +118,11 @@ msgstr ""
 
 #: simulation/templates/template_structure.xml:49
 msgid "Structure"
-msgstr ""
+msgstr "Byggnad"
 
 #: simulation/templates/template_unit.xml:38
 msgid "Unit"
-msgstr ""
+msgstr "Enhet"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
@@ -188,7 +189,7 @@ msgstr ""
 
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
-msgstr ""
+msgstr "4 Enheter krävs"
 
 #: simulation/templates/formations/box.xml:7
 msgid "Box"
@@ -204,7 +205,7 @@ msgstr ""
 
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
-msgstr ""
+msgstr "8 Enheter krävs"
 
 #: simulation/templates/formations/flank.xml:7
 msgid "Flank"
@@ -216,7 +217,7 @@ msgstr ""
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
-msgstr ""
+msgstr "Öppen Linje"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
@@ -276,11 +277,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
-msgstr ""
+msgstr "Kamel"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Chicken"
-msgstr ""
+msgstr "Kyckling"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
@@ -292,7 +293,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_deer.xml:5
 msgid "Deer"
-msgstr ""
+msgstr "Rådjur"
 
 #: simulation/templates/gaia/fauna_elephant.xml:13
 msgid "Elephant"
@@ -317,7 +318,7 @@ msgstr ""
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
 msgid "Tuna Fish"
-msgstr ""
+msgstr "Tonfisk"
 
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
@@ -346,15 +347,15 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_goat.xml:11
 msgid "Goat"
-msgstr ""
+msgstr "Get"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
 msgid "Horse"
-msgstr ""
+msgstr "Häst"
 
 #: simulation/templates/gaia/fauna_lion.xml:18
 msgid "Lion"
-msgstr ""
+msgstr "Lejon"
 
 #: simulation/templates/gaia/fauna_lioness.xml:18
 msgid "Lioness"
@@ -366,15 +367,15 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_peacock.xml:5
 msgid "Peacock"
-msgstr ""
+msgstr "Påfågel"
 
 #: simulation/templates/gaia/fauna_pig.xml:5
 msgid "Pig"
-msgstr ""
+msgstr "Gris"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
-msgstr ""
+msgstr "Kanin"
 
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Great White"
@@ -382,19 +383,19 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_shark.xml:15
 msgid "Shark"
-msgstr ""
+msgstr "Haj"
 
 #: simulation/templates/gaia/fauna_sheep.xml:11
 msgid "Sheep"
-msgstr ""
+msgstr "Får"
 
 #: simulation/templates/gaia/fauna_tiger.xml:18
 msgid "Tiger"
-msgstr ""
+msgstr "Tiger"
 
 #: simulation/templates/gaia/fauna_walrus.xml:23
 msgid "Walrus"
-msgstr ""
+msgstr "Valross"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:4
 msgid "Fin Whale"
@@ -410,7 +411,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_wolf.xml:18
 msgid "Wolf"
-msgstr ""
+msgstr "Varg"
 
 #: simulation/templates/gaia/fauna_wolf_snow.xml:18
 msgid "Snow Wolf"
@@ -430,7 +431,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
-msgstr ""
+msgstr "Druvor"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
@@ -472,7 +473,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
-msgstr ""
+msgstr "Dött träd"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
@@ -481,7 +482,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
-msgstr ""
+msgstr "Fikon"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:10
 msgid "Gather figs for Food."
@@ -494,23 +495,23 @@ msgstr ""
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
 msgid "Oak Tree"
-msgstr ""
+msgstr "Ek"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
-msgstr ""
+msgstr "Stor Ek"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
-msgstr ""
+msgstr "Oliv träd"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
-msgstr ""
+msgstr "Palm"
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr ""
+msgstr "Tropisk Palm"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
@@ -540,13 +541,13 @@ msgstr ""
 #: simulation/templates/gaia/special_ruins.xml:10
 #: simulation/templates/gaia/special_ruins_column_doric.xml:10
 msgid "Ancient Ruins"
-msgstr ""
+msgstr "Forntida ruiner"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
 msgid "Stone Ruins"
-msgstr ""
+msgstr "Sten Ruiner"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:10
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:10
@@ -559,7 +560,7 @@ msgstr ""
 
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
 msgid "Roman Statues"
-msgstr ""
+msgstr "Romersk Staty"
 
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:10
 #: simulation/templates/gaia/special_treasure_food_bin.xml:10
@@ -594,7 +595,7 @@ msgstr ""
 
 #: simulation/templates/gaia/special_treasure_metal.xml:10
 msgid "Secret Box"
-msgstr ""
+msgstr "Hemlig låda"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
@@ -606,7 +607,7 @@ msgstr ""
 
 #: simulation/templates/gaia/special_treasure_pegasus.xml:10
 msgid "Pegasus"
-msgstr ""
+msgstr "Pegasus"
 
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:9
 #: simulation/templates/gaia/special_treasure_stone.xml:10
@@ -628,12 +629,12 @@ msgstr ""
 #: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
 msgid "Bridge"
-msgstr ""
+msgstr "Bro"
 
 #: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
 msgid "Wooden Bridge"
-msgstr ""
+msgstr "Träbro"
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -793,7 +794,7 @@ msgstr "By"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:38
 msgid "DefenseTower"
-msgstr ""
+msgstr "Försvarstorn"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-05-03 04:40+0200\n"
-"PO-Revision-Date: 2015-05-03 04:40+0200\n"
+"POT-Creation-Date: 2015-05-09 23:50+0200\n"
+"PO-Revision-Date: 2015-05-09 23:50+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,12 +35,12 @@ msgid "Resume"
 msgstr ""
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:481 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr ""
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:481 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr ""
 
@@ -100,60 +100,60 @@ msgstr ""
 msgid "Enemy"
 msgstr ""
 
-#: gui/session/menu.js:348
+#: gui/session/menu.js:349
 msgid "request for your allies to attack this enemy"
 msgstr ""
 
-#: gui/session/menu.js:363
+#: gui/session/menu.js:364
 msgid "x"
 msgstr ""
 
-#: gui/session/menu.js:474
+#: gui/session/menu.js:475
 msgid "There are no land traders."
 msgstr ""
 
-#: gui/session/menu.js:480
+#: gui/session/menu.js:481
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:484
+#: gui/session/menu.js:485
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:487
+#: gui/session/menu.js:488
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:490
+#: gui/session/menu.js:491
 #, javascript-format
 msgid "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr ""
 
-#: gui/session/menu.js:498
+#: gui/session/menu.js:499
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr ""
 
-#: gui/session/menu.js:508 gui/session/menu.js:570
+#: gui/session/menu.js:509 gui/session/menu.js:571
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr ""
 
-#: gui/session/menu.js:515 gui/session/menu.js:577
+#: gui/session/menu.js:516 gui/session/menu.js:578
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr ""
 
-#: gui/session/menu.js:525
+#: gui/session/menu.js:526
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -164,68 +164,68 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:528
+#: gui/session/menu.js:529
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr ""
 
-#: gui/session/menu.js:535
+#: gui/session/menu.js:536
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr ""
 
-#: gui/session/menu.js:544
+#: gui/session/menu.js:545
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:545 gui/session/menu.js:587
+#: gui/session/menu.js:546 gui/session/menu.js:588
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:557
+#: gui/session/menu.js:558
 msgid "There are no merchant ships."
 msgstr ""
 
-#: gui/session/menu.js:563
+#: gui/session/menu.js:564
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:567
+#: gui/session/menu.js:568
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:586
+#: gui/session/menu.js:587
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:677 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr ""
 
-#: gui/session/menu.js:688
+#: gui/session/menu.js:689
 msgid "The Developer Overlay was opened."
 msgstr ""
 
-#: gui/session/menu.js:690
+#: gui/session/menu.js:691
 msgid "The Developer Overlay was closed."
 msgstr ""
 
-#: gui/session/menu.js:706
+#: gui/session/menu.js:707
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -478,7 +478,7 @@ msgid "Hitpoints:"
 msgstr ""
 
 #: gui/session/selection_details.js:318 gui/session/selection_details.js:348
-#: gui/session/session.js:626
+#: gui/session/session.js:630
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr ""
@@ -552,7 +552,7 @@ msgid_plural "Remaining: %(number)s to build."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/selection_panels.js:1043 gui/session/session.js:625
+#: gui/session/selection_panels.js:1043 gui/session/session.js:629
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr ""
@@ -629,78 +629,84 @@ msgstr ""
 msgid "Gaia"
 msgstr ""
 
-#: gui/session/session.js:192 gui/session/session.js:255
+#: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr ""
 
-#: gui/session/session.js:313 gui/session/session.js:329
+#: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
 msgstr ""
 
-#: gui/session/session.js:320
+#: gui/session/session.js:325
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/session/session.js:322
+#: gui/session/session.js:327
 msgid "You have won the battle!"
 msgstr ""
 
-#: gui/session/session.js:324
+#: gui/session/session.js:329
 msgid "You have been defeated..."
 msgstr ""
 
-#: gui/session/session.js:332
+#: gui/session/session.js:337
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/session/session.js:475
+#: gui/session/session.js:479
 msgid "OK"
 msgstr ""
 
-#: gui/session/session.js:477
+#: gui/session/session.js:481
 msgid "Press OK to continue"
 msgstr ""
 
-#: gui/session/session.js:483
+#: gui/session/session.js:487
 msgid "Do you want to quit?"
 msgstr ""
 
-#: gui/session/session.js:489
+#: gui/session/session.js:493
 msgid "DEFEATED!"
 msgstr ""
 
-#: gui/session/session.js:497
+#: gui/session/session.js:501
 msgid "VICTORIOUS!"
 msgstr ""
 
-#: gui/session/session.js:716
+#: gui/session/session.js:718
 msgid "Population (current / limit)"
 msgstr ""
 
-#: gui/session/session.js:717
+#: gui/session/session.js:719
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr ""
 
-#: gui/session/session.js:788
+#: gui/session/session.js:798
+#, javascript-format
+msgctxt "ceasefire"
+msgid "Time remaining until ceasefire is over: %(time)s."
+msgstr ""
+
+#: gui/session/session.js:806
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr ""
 
-#: gui/session/session.js:890
+#: gui/session/session.js:908
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr ""
 
-#: gui/session/session.js:895
+#: gui/session/session.js:913
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr ""
 
-#: gui/session/session.js:895
+#: gui/session/session.js:913
 msgid "Time warp mode"
 msgstr ""
 
@@ -857,7 +863,7 @@ msgstr ""
 msgid "Tribute"
 msgstr ""
 
-#: gui/session/diplomacy_window.xml:(caption):77
+#: gui/session/diplomacy_window.xml:(caption):79
 #: gui/session/trade_window.xml:(caption):47
 msgid "Close"
 msgstr ""
@@ -878,7 +884,7 @@ msgstr ""
 msgid "Resign"
 msgstr ""
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):336
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):341
 msgid "Exit"
 msgstr ""
 
@@ -934,23 +940,23 @@ msgstr ""
 msgid "Promote selected units"
 msgstr ""
 
-#: gui/session/session.xml:(caption):171
+#: gui/session/session.xml:(caption):176
 msgid "Game Paused"
 msgstr ""
 
-#: gui/session/session.xml:(caption):174
+#: gui/session/session.xml:(caption):179
 msgid "Click to Resume Game"
 msgstr ""
 
-#: gui/session/session.xml:(caption):209
+#: gui/session/session.xml:(caption):214
 msgid "Cancel"
 msgstr ""
 
-#: gui/session/session.xml:(caption):215
+#: gui/session/session.xml:(caption):220
 msgid "Team Only"
 msgstr ""
 
-#: gui/session/session.xml:(caption):219
+#: gui/session/session.xml:(caption):224
 msgid "Send"
 msgstr ""
 
