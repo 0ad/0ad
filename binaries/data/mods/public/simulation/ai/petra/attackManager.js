@@ -27,19 +27,19 @@ m.AttackManager.prototype.init = function(gameState)
 	this.outOfPlan.registerUpdates();
 };
 
-m.AttackManager.prototype.setRushes = function()
+m.AttackManager.prototype.setRushes = function(allowed)
 {
-	if (this.Config.personality.aggressive > 0.8)
+	if (this.Config.personality.aggressive > 0.8 && allowed > 2)
 	{
 		this.maxRushes = 3
 		this.rushSize = [ 16, 22, 28 ];
 	}
-	else if (this.Config.personality.aggressive > 0.6)
+	else if (this.Config.personality.aggressive > 0.6 && allowed > 1)
 	{
 		this.maxRushes = 2;
 		this.rushSize = [ 18, 28 ];
 	}
-	else if (this.Config.personality.aggressive > 0.3)
+	else if (this.Config.personality.aggressive > 0.3 && allowed > 0)
 	{
 		this.maxRushes = 1;
 		this.rushSize = [ 24 ];
@@ -83,6 +83,7 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 						continue;
 					}
 					attack.targetPos = attack.target.position();
+					attack.resetPath(gameState);
 				}
 				if (attack.targetPlayer && attack.targetPlayer === targetPlayer)
 					available += attack.unitCollection.length;

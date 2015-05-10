@@ -312,11 +312,10 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 			aMin = a;
 			distMin = dist;
 		}
-		if (aMin === undefined)
-		{
-			for (var a = 0; a < armiesNeeding.length; ++a)
-				API3.warn(" defense/armiesNeeding " + uneval(armiesNeeding[a]["need"]));
-		}
+
+		// if outside our territory (helping an ally or attacking a cc foundation), keep some troops in backup
+		if (i < 12 && this.territoryMap.getOwner(armiesNeeding[aMin]["army"].foePosition) !== PlayerID)
+			continue;
 
 		var str = m.getMaxStrength(ent);
 		armiesNeeding[aMin]["need"] -= str;

@@ -248,7 +248,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			m.getBestBase(ent, gameState).assignEntity(gameState, ent);
 			if (ent.hasTerritoryInfluence())
 				this.updateTerritories(gameState);
-			if (ent.decaying && ent.isGarrisonHolder())
+			if (ent.decaying() && ent.isGarrisonHolder())
 				this.garrisonManager.addDecayingStructure(gameState, evt.entity);
 		}
 	}

@@ -402,13 +402,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			}
 		}
 		// reset the path so that we recompute it for this new target
-		this.path = undefined;
-		if (!this.pathFinder)
-		{
-			this.pathFinder = new API3.aStarPath(gameState, false, false, this.targetPlayer);
-			this.pathWidth = 6;
-			this.pathSampling = 2;
-		}
+		this.resetPath(gameState);
 	}
 
 	// when we have a target, we path to it.
@@ -1701,6 +1695,18 @@ m.AttackPlan.prototype.removeUnit = function(ent, update)
 	ent.setMetadata(PlayerID, "plan", -1);
 	if (update)
 		this.unitCollection.updateEnt(ent);
+};
+
+// Reset the path so that it can be recomputed for a new target
+m.AttackPlan.prototype.resetPath = function(gameState)
+{
+	this.path = undefined;
+	if (!this.pathFinder)
+	{
+		this.pathFinder = new API3.aStarPath(gameState, false, false, this.targetPlayer);
+		this.pathWidth = 6;
+		this.pathSampling = 2;
+	}
 };
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)
