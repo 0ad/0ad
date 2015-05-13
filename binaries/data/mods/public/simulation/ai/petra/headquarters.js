@@ -1125,12 +1125,35 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 
 m.HQ.prototype.buildMarket = function(gameState, queues)
 {
-	if (gameState.getPopulation() < this.Config.Economy.popForMarket ||
-		queues.economicBuilding.countQueuedUnitsWithClass("BarterMarket") != 0 ||
-		gameState.getOwnEntitiesByClass("BarterMarket", true).length != 0)
+	if (gameState.getOwnEntitiesByClass("BarterMarket", true).length > 0 ||
+		!this.canBuild(gameState, "structures/{civ}_market"))
 		return;
-	if (!this.canBuild(gameState, "structures/{civ}_market"))
+
+	if (queues.economicBuilding.countQueuedUnitsWithClass("BarterMarket") > 0)
+	{
+		if (!this.navalMap && !queues.economicBuilding.paused)
+		{
+			// Put available resources in this market when not a naval map
+		;	let queueManager = gameState.ai.queueManager;
+			let cost = queues.economicBuilding.queue[0].getCost();
+			queueManager.setAccounts(gameState, cost, "economicBuilding");
+			if (!queueManager.accounts["economicBuilding"].canAfford(cost))
+			{
+				for (let p in queueManager.queues)
+				{
+					if (p === "economicBuilding")
+						continue;
+					queueManager.transferAccounts(cost, p, "economicBuilding");
+					if (queueManager.accounts["economicBuilding"].canAfford(cost))
+						break;
+				}
+			}
+		}
 		return;
+	}
+	if (gameState.getPopulation() < this.Config.Economy.popForMarket)
+		return;
+
 	gameState.ai.queueManager.changePriority("economicBuilding", 3*this.Config.priorities.economicBuilding);
 	var plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
 	plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", gameState.ai.Config.priorities.economicBuilding); };

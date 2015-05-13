@@ -28,7 +28,7 @@ m.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID)
 {
 	// Try to add it to an existing army.
 	for (let army of this.armies)
-		if (army.addFoe(gameState, entityID))
+		if (!army.isCapturing(gameState) && army.addFoe(gameState, entityID))
 			return;	// over
 
 	// Create a new army for it.
