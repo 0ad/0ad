@@ -689,12 +689,12 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 				}
 				if (!cc.ally)
 					continue;
-				if (dist < 30000)    // Reject if too near from an allied cc
+				if (dist < 40000)    // Reject if too near from an allied cc
 				{
 					norm = 0
 					break;
 				}
-				if (dist < 50000)   // Disfavor if quite near an allied cc
+				if (dist < 62000)   // Disfavor if quite near an allied cc
 					norm *= 0.5;
 				if (dist < minDist)
 					minDist = dist;
@@ -842,7 +842,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 			}
 			if (!cc.ally)
 				continue;
-			if (dist < 40000)    // Reject if quite near from ally cc
+			if (dist < 62000)    // Reject if quite near from ally cc
 			{
 				minDist = 0;
 				break;
@@ -1134,7 +1134,7 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 		if (!this.navalMap && !queues.economicBuilding.paused)
 		{
 			// Put available resources in this market when not a naval map
-		;	let queueManager = gameState.ai.queueManager;
+			let queueManager = gameState.ai.queueManager;
 			let cost = queues.economicBuilding.queue[0].getCost();
 			queueManager.setAccounts(gameState, cost, "economicBuilding");
 			if (!queueManager.accounts["economicBuilding"].canAfford(cost))
