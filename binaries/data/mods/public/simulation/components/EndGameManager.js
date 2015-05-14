@@ -80,7 +80,7 @@ EndGameManager.prototype.OnGlobalPlayerDefeated = function(msg)
 	{
 		cmpPlayers[i] = QueryPlayerIDInterface(i);
 		if (cmpPlayers[i].GetState() != "active" || i == msg.playerId) 
-			return;
+			continue;
 
 		if (!allies.length || cmpPlayers[allies[0]].IsMutualAlly(i))
 			allies.push(i);
@@ -89,7 +89,7 @@ EndGameManager.prototype.OnGlobalPlayerDefeated = function(msg)
 	}
 
 	// check if there are winners, or the game needs to continue
-	if (!allies.length || !onlyAlliesLeft || !(this.alliedVictory || allies.length == 1))
+	if (!allies.length || !onlyAlliesLeft || !this.alliedVictory)
 		return; 
 
 	for each (var p in allies)

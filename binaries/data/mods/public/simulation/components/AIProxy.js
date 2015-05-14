@@ -194,6 +194,7 @@ AIProxy.prototype.OnTerritoryDecayChanged = function(msg)
 	if (!this.NotifyChange())
 		return;
 	this.changes.decaying = msg.to;
+	this.cmpAIInterface.PushEvent("TerritoryDecayChanged", msg);
 };
 
 // TODO: event handlers for all the other things
@@ -348,11 +349,6 @@ AIProxy.prototype.OnTrainingFinished = function(msg)
 AIProxy.prototype.OnAIMetadata = function(msg)
 {
 	this.cmpAIInterface.PushEvent("AIMetadata", msg);
-};
-
-AIProxy.prototype.OnTerritoryDecayChanged = function(msg)
-{
-	this.cmpAIInterface.PushEvent("TerritoryDecayChanged", msg);
 };
 
 Engine.RegisterComponentType(IID_AIProxy, "AIProxy", AIProxy);

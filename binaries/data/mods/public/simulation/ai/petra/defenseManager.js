@@ -28,7 +28,7 @@ m.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID)
 {
 	// Try to add it to an existing army.
 	for (let army of this.armies)
-		if (army.addFoe(gameState, entityID))
+		if (!army.isCapturing(gameState) && army.addFoe(gameState, entityID))
 			return;	// over
 
 	// Create a new army for it.
@@ -123,7 +123,32 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 {
 	var nbPlayers = gameState.sharedScript.playersData.length;
 	var i = gameState.ai.playedTurn % nbPlayers;
-	if (i === PlayerID || !gameState.isPlayerEnemy(i))
+
+	if (i === PlayerID)
+	{
+		if (this.armies.length == 0)
+		{
+			// check if we can recover capture points from any of our notdecaying structures		
+			for (let ent of gameState.getOwnStructures().values())
+			{
+				if (ent.decaying())
+					continue;
+				let capture = ent.capturePoints();
+				if (capture === undefined)
+					continue;
+				let lost = 0;
+				for (let j = 0; j < capture.length; ++j)
+					if (gameState.isPlayerEnemy(j))
+						lost += capture[j];
+				if (lost < Math.ceil(0.2 * capture[i]))
+					continue;
+				this.makeIntoArmy(gameState, ent.id());
+				break;
+			}
+		}
+		return;
+	}
+	else if (!gameState.isPlayerEnemy(i))
 		return;
 
 	// loop through enemy units
@@ -312,11 +337,10 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 			aMin = a;
 			distMin = dist;
 		}
-		if (aMin === undefined)
-		{
-			for (var a = 0; a < armiesNeeding.length; ++a)
-				API3.warn(" defense/armiesNeeding " + uneval(armiesNeeding[a]["need"]));
-		}
+
+		// if outside our territory (helping an ally or attacking a cc foundation), keep some troops in backup
+		if (i < 12 && this.territoryMap.getOwner(armiesNeeding[aMin]["army"].foePosition) !== PlayerID)
+			continue;
 
 		var str = m.getMaxStrength(ent);
 		armiesNeeding[aMin]["need"] -= str;
@@ -368,7 +392,28 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		{
 			let army = this.getArmy(target.getMetadata(PlayerID, "PartOfArmy"));
 			if (army.isCapturing(gameState))
-			    this.abortArmy(gameState, army);
+			{
+				var abort = false;
+				// if one of the units trying to capture a structure is attacked,
+				// abort the army so that the unit can defend itself
+				if (army.ownEntities.indexOf(target.id()) != -1)
+					abort = true;
+				else if (army.foeEntities[0] == target.id() && target.owner() == PlayerID)
+				{
+					// else we may be trying to regain some capture point from one of our structure
+					abort = true;
+					let capture = target.capturePoints();
+					for (let j = 0; j < capture.length; ++j)
+					{
+						if (!gameState.isPlayerEnemy(j) || capture[j] == 0)
+							continue;
+						abort = false;
+						break;
+					}
+				}
+				if (abort)
+					this.abortArmy(gameState, army);
+			}
 		}
 
 		if (target.hasClass("Support") && target.healthLevel() < 0.55 && !target.getMetadata(PlayerID, "transport")

@@ -25,7 +25,7 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 	if (index >= 0)
 	{
 		entities.splice(index, 1);
-		if (!entities.length)
+		if (!entities.length && Engine.QueryInterface(this.conquestEntitiesByPlayer[msg.from].player, IID_Player).GetState() == "active")
 			Engine.PostMessage(this.conquestEntitiesByPlayer[msg.from].player, MT_PlayerDefeated, { "playerId": msg.from } );
 	}
 }

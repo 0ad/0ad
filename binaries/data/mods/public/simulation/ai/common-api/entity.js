@@ -621,6 +621,7 @@ m.Entity = m.Class({
 	needsHeal: function() { return this.isHurt() && this.isHealable(); },
 	needsRepair: function() { return this.isHurt() && this.isRepairable(); },
 	decaying: function() { return ((this._entity.decaying !== undefined) ? this._entity.decaying : undefined); },
+	capturePoints: function() {return ((this._entity.capturePoints !== undefined) ? this._entity.capturePoints : undefined); },
 
 	/**
 	 * Returns the current training queue state, of the form

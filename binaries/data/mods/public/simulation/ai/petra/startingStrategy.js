@@ -439,11 +439,14 @@ m.HQ.prototype.configFirstBase = function(gameState)
 		}
 	}
 	if (this.Config.debug > 1)
-		API3.warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
+		API3.warn("startingWood: " + startingWood + " (cut at 8500 for no rush and 6000 for saveResources)");
 	if (startingWood < 6000)
 		this.saveResources = true;
 	if (startingWood > 8500 && this.canBuildUnits)
-		this.attackManager.setRushes();
+	{
+		let allowed = Math.ceil((startingWood - 8500) / 3000);
+		this.attackManager.setRushes(allowed);
+	}
 
 	// immediatly build a wood dropsite if possible.
 	var template = gameState.applyCiv("structures/{civ}_storehouse");

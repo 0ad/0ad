@@ -90,16 +90,19 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 				var range = holder.attackRange("Ranged").max;
 			else
 				var range = 80;
-			var enemiesAround = gameState.getEnemyEntities().toEntityArray().some(function(ent) {
+			var enemiesAround = false;
+			for (let ent of gameState.getEnemyEntities().values())
+			{
 				if (!ent.position())
-					return false;
+					continue;
 				if (ent.owner() === 0 && (!ent.unitAIState() || ent.unitAIState().split(".")[1] !== "COMBAT"))
-					return false;
-				var dist = API3.SquareVectorDistance(ent.position(), holder.position());
-				if (dist < range*range)
-					return true;
-				return false;
-			});
+					continue;
+				let dist = API3.SquareVectorDistance(ent.position(), holder.position());
+				if (dist > range*range)
+					continue;
+				enemiesAround = true;
+				break;
+			}
 
 			for (var entId of holder.garrisoned())
 			{

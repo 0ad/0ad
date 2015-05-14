@@ -233,11 +233,12 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 	return true;
 };
 
-// Special army set to capture a gaia building
+// Special army set to capture a gaia building.
+// It must only contain one foe (the building to capture) and never be merged
 m.Army.prototype.isCapturing = function (gameState)
 {
 	if (this.foeEntities.length != 1)
-	    return false;
+		return false;
 	let ent = gameState.getEntityById(this.foeEntities[0]);
 	return (ent && ent.hasClass("Structure"));
 };    
