@@ -13,7 +13,7 @@
 			hotkey="selection.idleworker"
 		>
 			<translatableAttribute id="tooltip">Find idle worker</translatableAttribute>
-			<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
+			<action on="Press">findIdleUnit(["Female", "Trader", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
 			<action on="MouseEnter">Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle-highlight.png";</action>
 			<action on="MouseLeave">Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle.png";</action>
 			<action on="MouseLeftPress">Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle.png";</action>
