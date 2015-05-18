@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,9 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_SIM2_ENTITY
-#define INCLUDED_SIM2_ENTITY
-// (can't call it INCLUDED_ENTITY because that conflicts with simulation/Entity.h)
+#ifndef INCLUDED_ENTITY
+#define INCLUDED_ENTITY
 
 #include "lib/types.h"
 
@@ -80,7 +79,7 @@ struct SEntityComponentCache
 class CEntityHandle
 {
 public:
-	CEntityHandle() : m_Id(0), m_ComponentCache(NULL) { }
+	CEntityHandle() : m_Id(INVALID_ENTITY), m_ComponentCache(NULL) { }
 	CEntityHandle(entity_id_t id, SEntityComponentCache* componentCache)
 		: m_Id(id), m_ComponentCache(componentCache)
 	{
@@ -94,4 +93,4 @@ private:
 	SEntityComponentCache* m_ComponentCache;
 };
 
-#endif // INCLUDED_SIM2_ENTITY
+#endif // INCLUDED_ENTITY

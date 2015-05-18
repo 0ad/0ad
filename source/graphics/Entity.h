@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ENTITY
-#define INCLUDED_ENTITY
+#ifndef INCLUDED_RMS_ENTITY
+#define INCLUDED_RMS_ENTITY
 
 #include "maths/FixedVector3D.h"
 
@@ -29,6 +29,5 @@ struct Entity
 	CFixedVector3D position;
 	CFixedVector3D rotation;
 };
-
 
 #endif
