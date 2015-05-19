@@ -5583,9 +5583,9 @@ UnitAI.prototype.CanAttack = function(target, forceResponse)
 	if (cmpCapturable && cmpCapturable.CanCapture(owner) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
 		return true;
 
-	if (IsOwnedByEnemyOfPlayer(owner, target) || IsOwnedByNeutralOfPlayer(owner, target))
+	if (IsOwnedByEnemyOfPlayer(owner, target))
 		return true;
-	if (forceResponse && !IsOwnedByPlayer(owner, target))
+	if (forceResponse && !IsOwnedByAllyOfPlayer(owner, target))
 		return true;
 	return false;
 };
