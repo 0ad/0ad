@@ -119,7 +119,8 @@ var g_NotificationsTypes =
 		addChatMessage({
 			"type": "attack",
 			"player": player,
-			"attacker": notification.attacker
+			"attacker": notification.attacker,
+			"targetIsDomesticAnimal": notification.targetIsDomesticAnimal
 		});
 	},
 	"dialog": function(notification, player)
@@ -514,7 +515,13 @@ function addChatMessage(msg, playerAssignments)
 			return;
 
 		[username, playerColor] = getUsernameAndColor(msg.attacker);
-		formatted = sprintf(translate("You have been attacked by %(attacker)s!"), { attacker: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		// Since livestock can be attacked/gathered by other players,
+		// we display a more specific notification in this case to not confuse the player
+		if (msg.targetIsDomesticAnimal)
+			var message = translate("Your livestock have been attacked by %(attacker)s!");
+		else
+			var message = translate("You have been attacked by %(attacker)s!");
+		formatted = sprintf(message, { attacker: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "message":
 		// May have been hidden by the 'team' command.
