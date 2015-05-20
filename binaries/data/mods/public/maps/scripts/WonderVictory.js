@@ -10,7 +10,7 @@ Trigger.prototype.CheckWonderVictory = function(data)
 
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	// remove existing messages if any
+	// Remove existing messages if any
 	if (timer)
 	{
 		cmpTimer.CancelTimer(timer);
@@ -21,11 +21,12 @@ Trigger.prototype.CheckWonderVictory = function(data)
 	if (data.to <= 0)
 		return;
 
-	// create new messages, and start timer to register defeat.
+	// Create new messages, and start timer to register defeat.
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
 	var cmpPlayer = QueryOwnerInterface(ent, IID_Player);
-	var players = [];
+	// Add -1 to notify observers too
+	var players = [-1];
 	for (var i = 1; i < numPlayers; i++)
 		if (i != data.to)
 			players.push(i);
