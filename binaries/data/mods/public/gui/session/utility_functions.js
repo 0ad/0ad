@@ -134,18 +134,18 @@ function getTradingTooltip(gain)
 
 	var tooltip = sprintf(translate("%(gain)s (%(player)s)"), {
 		gain: gainString,
-		player: gain.traderOwner == playerID ? translate("You") : simState.players[gain.traderOwner].name
+		player: (!g_IsNetworked && gain.traderOwner == playerID) ? translate("You") : simState.players[gain.traderOwner].name
 	});
-
+	
 	if (gain.market1Gain && gain.market1Owner != gain.traderOwner)
 		tooltip += translate(", ") + sprintf(translate("%(gain)s (%(player)s)"), {
 			gain: gain.market1Gain,
-			player: gain.market1Owner == playerID ? translate("You") : simState.players[gain.market1Owner].name
+			player: (!g_IsNetworked && gain.market1Owner == playerID) ? translate("You") : simState.players[gain.market1Owner].name
 		});
 	if (gain.market2Gain && gain.market2Owner != gain.traderOwner)
 		tooltip += translate(", ") + sprintf(translate("%(gain)s (%(player)s)"), {
 			gain: gain.market2Gain,
-			player: gain.market2Owner == playerID ? translate("You") : simState.players[gain.market2Owner].name
+			player: (!g_IsNetworked && gain.market2Owner == playerID) ? translate("You") : simState.players[gain.market2Owner].name
 		});
 
 	return tooltip;
