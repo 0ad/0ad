@@ -138,29 +138,32 @@ var g_NotificationsTypes =
 // Notifications
 function handleNotifications()
 {
-	var notification = Engine.GuiInterfaceCall("GetNextNotification");
+	var notifications = Engine.GuiInterfaceCall("GetNotifications");
 
-	if (!notification)
-		return;
-	if (!notification.type)
+	for (var notification of notifications)
 	{
-		error("notification without type found.\n"+uneval(notification))
-		return;
+		if (!notification.type)
+		{
+			error("Notification without type found.\n"+uneval(notification))
+			continue;
+		}
+		
+		if (!notification.players)
+		{
+			error("Notification without players found.\n"+uneval(notification))
+			continue;
+		}
+		
+		var action = g_NotificationsTypes[notification.type];
+		if (!action)
+		{
+			error("Unknown notification type '" + notification.type + "' found.");
+			continue;
+		}
+		
+		for (var player of notification.players)
+			action(notification, player);
 	}
-	if (!notification.players)
-	{
-		error("notification without players found.\n"+uneval(notification))
-		return;
-	}
-	var action = g_NotificationsTypes[notification.type];
-	if (!action)
-	{
-		error("unknown notification type '" + notification.type + "' found.");
-		return;
-	}
-
-	for (var player of notification.players)
-		action(notification, player);
 }
 
 function updateDiplomacy()

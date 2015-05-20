@@ -733,12 +733,11 @@ GuiInterface.prototype.PushNotification = function(notification)
 		this.notifications.push(notification);
 };
 
-GuiInterface.prototype.GetNextNotification = function()
+GuiInterface.prototype.GetNotifications = function()
 {
-	if (this.notifications.length)
-		return this.notifications.pop();
-	else
-		return false;
+	var n = this.notifications;
+	this.notifications = [];
+	return n;
 };
 
 GuiInterface.prototype.GetAvailableFormations = function(player, wantedPlayer)
@@ -1876,7 +1875,7 @@ var exposedFunctions = {
 	"GetBattleState": 1,
 	"GetIncomingAttacks": 1,
 	"GetNeededResources": 1,
-	"GetNextNotification": 1,
+	"GetNotifications": 1,
 	"GetTimeNotifications": 1,
 
 	"GetAvailableFormations": 1,
