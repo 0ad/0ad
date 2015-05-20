@@ -122,6 +122,10 @@ function getRankIconSprite(entState)
  */
 function getTradingTooltip(gain)
 {
+
+	var playerID = Engine.GetPlayerID();
+	var simState = GetSimState();
+	
 	var gainString = gain.traderGain;
 	if (gain.market1Gain && gain.market1Owner == gain.traderOwner)
 		gainString += translate("+") + gain.market1Gain;
@@ -130,18 +134,18 @@ function getTradingTooltip(gain)
 
 	var tooltip = sprintf(translate("%(gain)s (%(player)s)"), {
 		gain: gainString,
-		player: translate("you")
+		player: gain.traderOwner == playerID ? translate("You") : simState.players[gain.traderOwner].name
 	});
 
 	if (gain.market1Gain && gain.market1Owner != gain.traderOwner)
 		tooltip += translate(", ") + sprintf(translate("%(gain)s (%(player)s)"), {
 			gain: gain.market1Gain,
-			player: sprintf(translate("player %(name)s"), { name: gain.market1Owner })
+			player: gain.market1Owner == playerID ? translate("You") : simState.players[gain.market1Owner].name
 		});
 	if (gain.market2Gain && gain.market2Owner != gain.traderOwner)
 		tooltip += translate(", ") + sprintf(translate("%(gain)s (%(player)s)"), {
 			gain: gain.market2Gain,
-			player: sprintf(translate("player %(name)s"), { name: gain.market2Owner })
+			player: gain.market2Owner == playerID ? translate("You") : simState.players[gain.market2Owner].name
 		});
 
 	return tooltip;
