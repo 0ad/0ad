@@ -696,16 +696,15 @@ GuiInterface.prototype.AddTimeNotification = function(notification, duration = 1
 	notification.endTime = duration + cmpTimer.GetTime();
 	notification.id = ++this.timeNotificationID;
 
-	// Let all players receive the notification by default
+	// Let all players and observers receive the notification by default
 	if (notification.players == undefined)
 	{
 		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 		var numPlayers = cmpPlayerManager.GetNumPlayers();
-		notification.players = [];
-		for (var i = 1; i < numPlayers; i++)
+		notification.players = [-1];
+		for (var i = 1; i < numPlayers; ++i)
 			notification.players.push(i);
 	}
-	
 	this.timeNotifications.push(notification);
 	this.timeNotifications.sort(function (n1, n2){return n2.endTime - n1.endTime});
 
