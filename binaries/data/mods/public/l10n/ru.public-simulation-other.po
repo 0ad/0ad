@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
-# dr&mx <dronmax@gmail.com>, 2014
+# dr&mx <dronmax@gmail.com>, 2014-2015
 # grin.sv <grin.sv@gmail.com>, 2015
 # Ivan, 2014
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
@@ -14,14 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:50+0200\n"
-"PO-Revision-Date: 2015-04-25 01:11+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2015-05-18 03:42+0000\n"
+"Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
@@ -131,7 +131,7 @@ msgstr "Отправьте одного солдата добывать каме
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
 msgid "Queue another 5 female citizens."
-msgstr "Добавьте в очередь еще 5 женщин."
+msgstr "Добавьте в очередь ещё 5 женщин."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
@@ -199,7 +199,7 @@ msgstr "Обучите ещё несколько пращников и отпр�
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens these are for wood."
-msgstr "Добавьте в очередь еще группу из 5 женщин, этих - для добычи дерева. "
+msgstr "Добавьте в очередь еще группу из 5 женщин, этих — для добычи дерева. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."

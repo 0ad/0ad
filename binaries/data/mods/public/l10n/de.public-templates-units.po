@@ -7,12 +7,13 @@
 # Leonard König <leonard.r.koenig@gmail.com>, 2015
 # leper <leper@wildfiregames.com>, 2014-2015
 # MartinusMagnus <martinkleemann@web.de>, 2014
+# qwertz, 2015
 # Raymond Vetter, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-05-09 17:17+0000\n"
+"PO-Revision-Date: 2015-05-18 23:11+0000\n"
 "Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -291,11 +292,11 @@ msgstr "Kavallerieheld"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:26
 msgid "Hero Cavalry Archer"
-msgstr "Held der berittenen Bogenschützen"
+msgstr "Berittener Bogenschützenheld"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
 msgid "Hero Cavalry Skirmisher"
-msgstr "Held der berittenen Plänkler"
+msgstr "Berittener Plänklerheld"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
@@ -311,11 +312,11 @@ msgstr "Bogenschützenheld"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 msgid "Hero Skirmisher"
-msgstr "Heldenplänkler"
+msgstr "Plänklerheld"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 msgid "Hero Pikeman"
-msgstr "Heldenpikenier"
+msgstr "Pikenierheld"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 msgid "Hero Spearman"
@@ -323,7 +324,7 @@ msgstr "Heldenspeerkämpfer"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 msgid "Hero Swordsman"
-msgstr "Heldenschwertkämpfer"
+msgstr "Schwertkämpferheld"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
@@ -691,7 +692,7 @@ msgstr "Epilektos"
 
 #: simulation/templates/units/athen_champion_marine.xml:5
 msgid "Athenian Marine"
-msgstr "Athenische Marine"
+msgstr "Athenischer Marinesoldat"
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Épibatēs Athēnaïkós"
@@ -735,7 +736,7 @@ msgstr "Erbauer Aura"
 
 #: simulation/templates/units/athen_hero_pericles.xml:12
 msgid "Buildings construct 15% faster within his vision."
-msgstr "Gebäude werden 15% schneller in seiner Sichtweite erbaut."
+msgstr "Gebäude werden in seiner Sichtweite 15% schneller erbaut."
 
 #: simulation/templates/units/athen_hero_pericles.xml:20
 msgid "Acropolis Aura"
@@ -763,11 +764,11 @@ msgstr "Wenn in einem Schiff stationiert, ist das Schiff +50% schneller."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:20
 msgid "Naval Architect Aura"
-msgstr "Naval Architect Aura"
+msgstr "Flottenkonstrukteur"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
 msgid "Ships are built +20% faster during his lifespan."
-msgstr "Schiffe werden +20% schneller während seiner Lebensdauer gebaut."
+msgstr "Schiffe werden während seiner Lebensdauer 20% schneller gebaut."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:26
 msgid "Themistocles"
@@ -907,7 +908,7 @@ msgstr "Delamokludda"
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:12
 msgid "Champion Army"
-msgstr "Champion Armee"
+msgstr "Gardearmee"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
@@ -948,7 +949,7 @@ msgstr "Lässt alle Einheiten 1 Trefferpunkt pro Sekunde regenerieren."
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:17
 msgid "Cunobelin"
-msgstr "Cunobelin"
+msgstr "Cunobelinus"
 
 #: simulation/templates/units/brit_infantry_javelinist_b.xml:13
 #: simulation/templates/units/gaul_infantry_javelinist_b.xml:15
@@ -1015,7 +1016,7 @@ msgstr "Keltin"
 #: simulation/templates/units/brit_support_healer_b.xml:6
 #: simulation/templates/units/gaul_support_healer_b.xml:6
 msgid "Druides"
-msgstr "Druiden"
+msgstr "Druide"
 
 #: simulation/templates/units/brit_support_trader.xml:9
 #: simulation/templates/units/gaul_support_trader.xml:9
@@ -1075,7 +1076,7 @@ msgstr "Pil Malḥamit"
 
 #: simulation/templates/units/cart_champion_infantry.xml:5
 msgid "Sacred Band Infantry"
-msgstr "Heilige Schar: Infanterie"
+msgstr "Infanterie der Heiligen Schar"
 
 #: simulation/templates/units/cart_champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"

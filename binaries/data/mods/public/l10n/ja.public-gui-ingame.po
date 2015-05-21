@@ -11,14 +11,15 @@
 # llen_llen, 2013
 # llen_llen, 2014
 # Mephisto Books <martin.route66.blues+transifex@gmail.com>, 2014
+# naoki yoshida <oimotanaka1122@gmail.com>, 2015
 # sgensum, 2014
 # UNJIRO <beer_nondakure@yahoo.co.jp>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-04-02 09:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-11 04:01+0000\n"
+"Last-Translator: naoki yoshida <oimotanaka1122@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,11 +43,11 @@ msgstr "ここに壁は建設できません"
 
 #: gui/session/menu.js:1 gui/session/menu.xml:(caption):64
 msgid "Pause"
-msgstr "休止"
+msgstr "一時停止"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr "再開"
+msgstr "再開する"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:476 gui/session/dialogs/yes_no.xml:(caption):19
@@ -392,7 +393,7 @@ msgstr "%(rank)sランク"
 #: gui/session/selection_details.js:73
 #, javascript-format
 msgid "This foundation will be completed in %(numb)s seconds."
-msgstr ""
+msgstr "この財団は %(numb)s秒に完成します。"
 
 #: gui/session/selection_details.js:78
 #, javascript-format
@@ -438,11 +439,11 @@ msgstr "増加: %(amount)s"
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s seconds."
-msgstr ""
+msgstr "建築者の数。\nタスクの割り当て :%(numb)s 秒のスピードアップをします。"
 
 #: gui/session/selection_details.js:191
 msgid "Number of builders."
-msgstr ""
+msgstr "建築者の数"
 
 #: gui/session/selection_details.js:200
 msgid "Current/max gatherers"

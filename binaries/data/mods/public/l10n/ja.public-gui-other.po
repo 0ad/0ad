@@ -5,12 +5,13 @@
 # Translators:
 # Kanetaka Suto, 2014-2015
 # llen_llen, 2014
+# naoki yoshida <oimotanaka1122@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-22 10:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-11 03:51+0000\n"
+"Last-Translator: naoki yoshida <oimotanaka1122@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -299,7 +300,7 @@ msgstr "ゲームはすでに始まっています"
 #: gui/common/network.js:10
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[%(id)s は無効な値]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
@@ -979,12 +980,12 @@ msgstr "上書き保存"
 #: gui/structree/draw.js:258
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/structree/draw.js:259
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/structree/draw.js:267
 msgid "Health:"
@@ -993,16 +994,16 @@ msgstr "耐久力："
 #: gui/structree/draw.js:286
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:292
 msgid "Gather Rates:"
-msgstr ""
+msgstr "ギャザラーレート:"
 
 #: gui/structree/load.js:143
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr ""
+msgstr "%(val1)s から %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
@@ -1385,7 +1386,7 @@ msgstr "MODの選択"
 
 #: gui/pregame/mainmenu.xml:(caption):445
 msgid "Learn To Play"
-msgstr "遊び方を学ぶ"
+msgstr "チュートリアル"
 
 #: gui/pregame/mainmenu.xml:(caption):460
 msgid "Single Player"
@@ -1553,7 +1554,7 @@ msgstr "既知の問題(ウェブ)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr ""
+msgstr "シヴィライゼーション:"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"

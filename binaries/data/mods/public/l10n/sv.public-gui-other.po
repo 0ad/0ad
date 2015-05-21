@@ -5,12 +5,13 @@
 # Translators:
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
+# Sam Johnsson <johnsson.sam@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-05-09 17:17+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2015-05-15 10:55+0000\n"
+"Last-Translator: Jacob Carlsson <yejcob@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,11 +60,11 @@ msgstr "Historia om %(civilization)s"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "Öppnar  %(url)s\ni standardwebbläsaren. Var god vänta..."
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr ""
+msgstr "Öppnar sidan"
 
 #: gui/common/functions_global_object.js:79
 #, javascript-format
@@ -76,7 +77,7 @@ msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:189
 msgid "HH:mm:ss"
-msgstr "TT:mm:ss"
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -84,7 +85,7 @@ msgstr "Laddning avbruten"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "YYYY-MM-dd HH:mm:ss"
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
@@ -183,7 +184,7 @@ msgstr "Frukt"
 #: gui/common/l10n.js:26
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "Säd"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -274,7 +275,7 @@ msgstr "Frukt"
 #: gui/common/l10n.js:54
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "Säd"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -359,8 +360,8 @@ msgstr ""
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:413
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "sekund"
+msgstr[1] "sekunder"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
@@ -979,7 +980,7 @@ msgstr "Det sparade spelet kommer att skrivas över permanent, är det säkert a
 
 #: gui/savedgames/save.js:61
 msgid "OVERWRITE SAVE"
-msgstr "OVERWRITE SAVE"
+msgstr "SKRIV ÖVER SPARNING"
 
 #: gui/structree/draw.js:258
 #, javascript-format

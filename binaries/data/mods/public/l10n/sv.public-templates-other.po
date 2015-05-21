@@ -5,12 +5,13 @@
 # Translators:
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
+# Sam Johnsson <johnsson.sam@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:50+0200\n"
-"PO-Revision-Date: 2015-05-09 17:17+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2015-05-18 06:35+0000\n"
+"Last-Translator: Jacob Carlsson <yejcob@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,11 +46,11 @@ msgstr "Träd"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
-msgstr ""
+msgstr "Hugga ner för att samla Trä"
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
-msgstr ""
+msgstr "Generisk Geologi"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
@@ -77,7 +78,7 @@ msgstr "Bryt sten här för att få byggnadsmaterialet Sten."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr ""
+msgstr "Allmäna ruiner"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
@@ -92,7 +93,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr ""
+msgstr "Allmän skatt"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -126,11 +127,11 @@ msgstr "Enhet"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
-msgstr ""
+msgstr "Alexander den stores arme"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great"
-msgstr ""
+msgstr "Alexander den stores arme"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 #: simulation/templates/campaigns/army_mace_standard.xml:21
@@ -209,7 +210,7 @@ msgstr "8 Enheter krävs"
 
 #: simulation/templates/formations/flank.xml:7
 msgid "Flank"
-msgstr ""
+msgstr "Flanken"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
@@ -269,11 +270,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
-msgstr ""
+msgstr "Björn"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
 msgid "Boar"
-msgstr ""
+msgstr "Vildsvin"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
@@ -289,7 +290,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
-msgstr ""
+msgstr "Nilkrokodil"
 
 #: simulation/templates/gaia/fauna_deer.xml:5
 msgid "Deer"
@@ -305,15 +306,15 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
-msgstr ""
+msgstr "Afrikansk elefant"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:46
 msgid "Asian Elephant"
-msgstr ""
+msgstr "Asiatisk elefant"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:33
 msgid "North African Elephant"
-msgstr ""
+msgstr "Nordafrikansk elefant"
 
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
@@ -339,11 +340,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 msgid "Giraffe (Adult)"
-msgstr ""
+msgstr "Giraff (Vuxen)"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffe (Juvenile)"
-msgstr ""
+msgstr "Giraff (Ung)"
 
 #: simulation/templates/gaia/fauna_goat.xml:11
 msgid "Goat"
@@ -415,11 +416,11 @@ msgstr "Varg"
 
 #: simulation/templates/gaia/fauna_wolf_snow.xml:18
 msgid "Snow Wolf"
-msgstr ""
+msgstr "Snövarg"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
-msgstr ""
+msgstr "Zebra"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
@@ -447,7 +448,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_apple.xml:8
 msgid "Apple Tree"
-msgstr ""
+msgstr "Äppelträd"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 msgid "Baobab"
@@ -569,7 +570,7 @@ msgstr "Romersk Staty"
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
 msgid "Food Treasure"
-msgstr ""
+msgstr "Matskatt"
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
@@ -650,7 +651,7 @@ msgstr ""
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
-msgstr ""
+msgstr "Hydda"
 
 #: simulation/templates/other/celt_hut.xml:23
 msgid "Add +2 to Population Cap."
@@ -670,7 +671,7 @@ msgstr ""
 #: simulation/templates/other/column_doric_fallen.xml:20
 #: simulation/templates/other/column_doric_fallen_b.xml:20
 msgid "Column"
-msgstr ""
+msgstr "Kolumn"
 
 #: simulation/templates/other/column_doric.xml:21
 msgid "Doric Column"
@@ -990,7 +991,7 @@ msgstr ""
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:29
 msgid "Ballista"
-msgstr ""
+msgstr "Ballista"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-09 23:50+0200\n"
+"POT-Creation-Date: 2015-05-22 00:47+0200\n"
+"PO-Revision-Date: 2015-05-22 00:47+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -86,7 +86,7 @@ msgctxt "team"
 msgid "None"
 msgstr ""
 
-#: gui/session/menu.js:296 gui/session/messages.js:637
+#: gui/session/menu.js:296 gui/session/messages.js:647
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr ""
@@ -95,7 +95,7 @@ msgstr ""
 msgid "Neutral"
 msgstr ""
 
-#: gui/session/menu.js:296 gui/session/messages.js:647
+#: gui/session/menu.js:296 gui/session/messages.js:657
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr ""
@@ -232,148 +232,153 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr ""
 
-#: gui/session/messages.js:208
+#: gui/session/messages.js:212
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:221
+#: gui/session/messages.js:225
 msgid "Waiting for other players to connect..."
 msgstr ""
 
-#: gui/session/messages.js:225
+#: gui/session/messages.js:229
 msgid "Synchronising gameplay with other players..."
 msgstr ""
 
-#: gui/session/messages.js:233
+#: gui/session/messages.js:237
 msgid "Connected to the server."
 msgstr ""
 
-#: gui/session/messages.js:237
+#: gui/session/messages.js:241
 msgid "Connection to the server has been authenticated."
 msgstr ""
 
-#: gui/session/messages.js:242
+#: gui/session/messages.js:246
 msgid "Connection to the server has been lost."
 msgstr ""
 
-#: gui/session/messages.js:242
+#: gui/session/messages.js:246
 msgid "The game has ended."
 msgstr ""
 
-#: gui/session/messages.js:431
+#: gui/session/messages.js:435
 msgid "Unknown player"
 msgstr ""
 
-#: gui/session/messages.js:439
+#: gui/session/messages.js:443
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr ""
 
-#: gui/session/messages.js:442
+#: gui/session/messages.js:446
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr ""
 
-#: gui/session/messages.js:445
+#: gui/session/messages.js:449
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr ""
 
-#: gui/session/messages.js:450
+#: gui/session/messages.js:454
 msgid "You have been defeated."
 msgstr ""
 
-#: gui/session/messages.js:452
+#: gui/session/messages.js:456
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr ""
 
-#: gui/session/messages.js:460
+#: gui/session/messages.js:464
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:462
+#: gui/session/messages.js:466
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:464
+#: gui/session/messages.js:468
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:470
+#: gui/session/messages.js:474
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr ""
 
-#: gui/session/messages.js:472
+#: gui/session/messages.js:476
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr ""
 
-#: gui/session/messages.js:474
+#: gui/session/messages.js:478
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr ""
 
-#: gui/session/messages.js:490
+#: gui/session/messages.js:494
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr ""
 
-#: gui/session/messages.js:498
+#: gui/session/messages.js:502
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr ""
 
-#: gui/session/messages.js:499 gui/session/utility_functions.js:137
-#: gui/session/utility_functions.js:142
+#: gui/session/messages.js:503 gui/session/utility_functions.js:141
+#: gui/session/utility_functions.js:146
 msgid ", "
 msgstr ""
 
-#: gui/session/messages.js:504
+#: gui/session/messages.js:508
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:514
+#: gui/session/messages.js:521
+#, javascript-format
+msgid "Your livestock have been attacked by %(attacker)s!"
+msgstr ""
+
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:539
+#: gui/session/messages.js:549
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:547
+#: gui/session/messages.js:557
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:555 gui/session/messages.js:556
+#: gui/session/messages.js:565 gui/session/messages.js:566
 #, javascript-format
 msgid "<%(user)s>"
 msgstr ""
 
-#: gui/session/messages.js:559
+#: gui/session/messages.js:569
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:567
+#: gui/session/messages.js:577
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:627 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:637 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr ""
 
-#: gui/session/messages.js:669
+#: gui/session/messages.js:679
 msgid "Private"
 msgstr ""
 
@@ -621,7 +626,8 @@ msgstr ""
 msgid "%(action)s to train %(number)s."
 msgstr ""
 
-#: gui/session/session.js:19
+#: gui/session/session.js:19 gui/session/utility_functions.js:137
+#: gui/session/utility_functions.js:143 gui/session/utility_functions.js:148
 msgid "You"
 msgstr ""
 
@@ -811,23 +817,14 @@ msgstr ""
 msgid "End of alert."
 msgstr ""
 
-#: gui/session/utility_functions.js:127 gui/session/utility_functions.js:129
+#: gui/session/utility_functions.js:131 gui/session/utility_functions.js:133
 msgid "+"
 msgstr ""
 
-#: gui/session/utility_functions.js:131 gui/session/utility_functions.js:137
-#: gui/session/utility_functions.js:142
+#: gui/session/utility_functions.js:135 gui/session/utility_functions.js:141
+#: gui/session/utility_functions.js:146
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
-msgstr ""
-
-#: gui/session/utility_functions.js:133
-msgid "you"
-msgstr ""
-
-#: gui/session/utility_functions.js:139 gui/session/utility_functions.js:144
-#, javascript-format
-msgid "player %(name)s"
 msgstr ""
 
 #: gui/session/diplomacy_window.xml:(caption):10

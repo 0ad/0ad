@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-05-09 17:16+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2015-05-15 11:02+0000\n"
+"Last-Translator: Jacob Carlsson <yejcob@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +61,7 @@ msgstr "Nej"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
-msgstr "Är du säger på att du vill ge upp?"
+msgstr "Är du säker på att du vill ge upp?"
 
 #: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
 msgid "Confirmation"
@@ -86,7 +86,7 @@ msgstr "Jag ger upp"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr "Vill du ge upp eller vill du återvända snart?"
+msgstr "Vill du ge upp eller kommer du att återvända snart?"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
@@ -197,8 +197,8 @@ msgstr[1] ""
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Det är %(inactiveString)s."
+msgstr[1] "Det är %(inactiveString)s."
 
 #: gui/session/menu.js:548
 msgid "There are no merchant ships."
@@ -208,8 +208,8 @@ msgstr "Det finns inga handelsskepp."
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s inaktiva"
+msgstr[1] "%(numberOfShipTraders)s inaktiva"
 
 #: gui/session/menu.js:558
 #, javascript-format
@@ -537,8 +537,8 @@ msgstr ""
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kvar att bygga: %(number)s"
+msgstr[1] "Kvar att bygga: %(number)s"
 
 #: gui/session/selection_panels.js:993 gui/session/session.js:620
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
@@ -672,11 +672,11 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Not: Time Warp Mod är ett utvecklaralternativ och är inte avsett att användas över längre perioder. Felaktig användning kan få spelet att förbruka för mycket minne och crasha."
+msgstr "Not: Time Warp Läge är ett utvecklaralternativ och är inte avsett att användas över längre perioder. Felaktig användning kan få spelet att förbruka för mycket minne och crasha."
 
 #: gui/session/session.js:887
 msgid "Time warp mode"
-msgstr "Time warp mode"
+msgstr "Time warp läge"
 
 #: gui/session/unit_actions.js:300
 msgid "Origin trade market."
@@ -1008,7 +1008,7 @@ msgstr "Meny"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVIII : Rhododactylos"
-msgstr ""
+msgstr "ALPHA XVIII : Rhododactylos"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"
