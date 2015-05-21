@@ -751,26 +751,23 @@ m.Entity = m.Class({
 
 	// TODO: visibility
 
-	move: function(x, z, queued) {
-		queued = queued || false;
+	move: function(x, z, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
 		return this;
 	},
 
-	moveToRange: function(x, z, min, max, queued) {
-		queued = queued || false;
+	moveToRange: function(x, z, min, max, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "walk-to-range", "entities": [this.id()], "x": x, "z": z, "min": min, "max": max, "queued": queued });
 		return this;
 	},
 
-	attackMove: function(x, z, targetClasses, queued) {
-		queued = queued || false;
+	attackMove: function(x, z, targetClasses, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "targetClasses": targetClasses, "queued": queued });
 		return this;
 	},
 
 	// violent, aggressive, defensive, passive, standground
-	setStance: function(stance,queued){
+	setStance: function(stance, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "stance", "entities": [this.id()], "name" : stance, "queued": queued });
 		return this;
 	},
@@ -794,8 +791,7 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	garrison: function(target, queued) {
-		queued = queued || false;
+	garrison: function(target, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "garrison", "entities": [this.id()], "target": target.id(),"queued": queued});
 		return this;
 	},
@@ -835,20 +831,17 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	gather: function(target, queued) {
-		queued = queued || false;
+	gather: function(target, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued});
 		return this;
 	},
 
-	repair: function(target, queued) {
-		queued = queued || false;
-		Engine.PostCommand(PlayerID,{"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": queued});
+	repair: function(target, autocontinue = false, queued = false) {
+		Engine.PostCommand(PlayerID,{"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": autocontinue, "queued": queued});
 		return this;
 	},
 
-	returnResources: function(target, queued) {
-		queued = queued || false;
+	returnResources: function(target, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued});
 		return this;
 	},
