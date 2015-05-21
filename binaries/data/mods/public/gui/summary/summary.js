@@ -138,7 +138,7 @@ function init(data)
 	// Map
 	var mapDisplayType = translate("Scenario");
 
-	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(translate("Time elapsed: %(time)s"), { time: timeToString(data.timeElapsed) });
+	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(translate("Game time elapsed: %(time)s"), { time: timeToString(data.timeElapsed) });
 
 	Engine.GetGUIObjectByName("summaryText").caption = data.gameResult;
 

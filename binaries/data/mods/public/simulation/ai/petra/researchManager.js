@@ -162,7 +162,7 @@ m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 
 m.ResearchManager.prototype.update = function(gameState, queues)
 {
-	if (queues.minorTech.length() > 0)
+	if (queues.minorTech.length() > 0 || queues.majorTech.length() > 0)
 		return;
 
 	var techs = gameState.findAvailableTech();

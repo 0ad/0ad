@@ -119,7 +119,8 @@ var g_NotificationsTypes =
 		addChatMessage({
 			"type": "attack",
 			"player": player,
-			"attacker": notification.attacker
+			"attacker": notification.attacker,
+			"targetIsDomesticAnimal": notification.targetIsDomesticAnimal
 		});
 	},
 	"dialog": function(notification, player)
@@ -138,29 +139,32 @@ var g_NotificationsTypes =
 // Notifications
 function handleNotifications()
 {
-	var notification = Engine.GuiInterfaceCall("GetNextNotification");
+	var notifications = Engine.GuiInterfaceCall("GetNotifications");
 
-	if (!notification)
-		return;
-	if (!notification.type)
+	for (var notification of notifications)
 	{
-		error("notification without type found.\n"+uneval(notification))
-		return;
+		if (!notification.type)
+		{
+			error("Notification without type found.\n"+uneval(notification))
+			continue;
+		}
+		
+		if (!notification.players)
+		{
+			error("Notification without players found.\n"+uneval(notification))
+			continue;
+		}
+		
+		var action = g_NotificationsTypes[notification.type];
+		if (!action)
+		{
+			error("Unknown notification type '" + notification.type + "' found.");
+			continue;
+		}
+		
+		for (var player of notification.players)
+			action(notification, player);
 	}
-	if (!notification.players)
-	{
-		error("notification without players found.\n"+uneval(notification))
-		return;
-	}
-	var action = g_NotificationsTypes[notification.type];
-	if (!action)
-	{
-		error("unknown notification type '" + notification.type + "' found.");
-		return;
-	}
-
-	for (var player of notification.players)
-		action(notification, player);
 }
 
 function updateDiplomacy()
@@ -511,7 +515,13 @@ function addChatMessage(msg, playerAssignments)
 			return;
 
 		[username, playerColor] = getUsernameAndColor(msg.attacker);
-		formatted = sprintf(translate("You have been attacked by %(attacker)s!"), { attacker: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		// Since livestock can be attacked/gathered by other players,
+		// we display a more specific notification in this case to not confuse the player
+		if (msg.targetIsDomesticAnimal)
+			var message = translate("Your livestock have been attacked by %(attacker)s!");
+		else
+			var message = translate("You have been attacked by %(attacker)s!");
+		formatted = sprintf(message, { attacker: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "message":
 		// May have been hidden by the 'team' command.

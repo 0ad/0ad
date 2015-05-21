@@ -696,16 +696,15 @@ GuiInterface.prototype.AddTimeNotification = function(notification, duration = 1
 	notification.endTime = duration + cmpTimer.GetTime();
 	notification.id = ++this.timeNotificationID;
 
-	// Let all players receive the notification by default
+	// Let all players and observers receive the notification by default
 	if (notification.players == undefined)
 	{
 		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 		var numPlayers = cmpPlayerManager.GetNumPlayers();
-		notification.players = [];
-		for (var i = 1; i < numPlayers; i++)
+		notification.players = [-1];
+		for (var i = 1; i < numPlayers; ++i)
 			notification.players.push(i);
 	}
-	
 	this.timeNotifications.push(notification);
 	this.timeNotifications.sort(function (n1, n2){return n2.endTime - n1.endTime});
 
@@ -734,12 +733,11 @@ GuiInterface.prototype.PushNotification = function(notification)
 		this.notifications.push(notification);
 };
 
-GuiInterface.prototype.GetNextNotification = function()
+GuiInterface.prototype.GetNotifications = function()
 {
-	if (this.notifications.length)
-		return this.notifications.pop();
-	else
-		return false;
+	var n = this.notifications;
+	this.notifications = [];
+	return n;
 };
 
 GuiInterface.prototype.GetAvailableFormations = function(player, wantedPlayer)
@@ -1877,7 +1875,7 @@ var exposedFunctions = {
 	"GetBattleState": 1,
 	"GetIncomingAttacks": 1,
 	"GetNeededResources": 1,
-	"GetNextNotification": 1,
+	"GetNotifications": 1,
 	"GetTimeNotifications": 1,
 
 	"GetAvailableFormations": 1,

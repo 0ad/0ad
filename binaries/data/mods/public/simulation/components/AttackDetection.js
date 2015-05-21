@@ -22,12 +22,21 @@ AttackDetection.prototype.Init = function()
 	this.suppressedList = [];
 };
 
+AttackDetection.prototype.ActivateTimer = function()
+{
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).SetTimeout(this.entity, IID_AttackDetection, "HandleTimeout", this.suppressionTime);
+};
+
 AttackDetection.prototype.AddSuppression = function(event)
 {
 	this.suppressedList.push(event);
+	this.ActivateTimer();
+};
 
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	cmpTimer.SetTimeout(this.entity, IID_AttackDetection, "HandleTimeout", this.suppressionTime);
+AttackDetection.prototype.UpdateSuppressionEvent = function(index, event)
+{
+	this.suppressedList[index] = event;
+	this.ActivateTimer();
 };
 
 //// Message handlers ////
@@ -53,32 +62,64 @@ AttackDetection.prototype.AttackAlert = function(target, attacker)
 	// Don't register attacks dealt by myself
 	if (cmpAttackerOwnership.GetOwner() == cmpPlayer.GetPlayerID())
 		return;
+		
+	// Since livestock can be attacked/gathered by other players
+	// and generally are not so valuable as other units/buildings,
+	// we have a lower priority notification for it, which can be
+	// overriden by a regular one.
+	var cmpTargetIdentity = Engine.QueryInterface(target, IID_Identity); 
+	var targetIsDomesticAnimal = cmpTargetIdentity && cmpTargetIdentity.HasClass("Animal") && cmpTargetIdentity.HasClass("Domestic");
 
 	var cmpPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
 		return;
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	var event = {target: target, position: cmpPosition.GetPosition(), time: cmpTimer.GetTime()};
+	var event = {
+		"target": target,
+		"position": cmpPosition.GetPosition(),
+		"time": Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime(),
+		"targetIsDomesticAnimal": targetIsDomesticAnimal
+	};
 
-	for (var i = 0; i < this.suppressedList.length; i++)
+	// If we already have a low priority livestock event in suppressed list,
+	// and now a more important target is attacked, we want to upgrade the
+	// suppressed event and send the new notification
+	var isPriorityIncreased = false;
+	for (var i = 0; i < this.suppressedList.length; ++i)
 	{
 		var element = this.suppressedList[i];
 
 		// If the new attack is within suppression distance of this element,
 		// then check if the element should be updated and return
 		var dist = SquaredDistance(element.position, event.position);
-		if (dist < this.suppressionRangeSquared)
-		{
-			if (dist < this.suppressionTransferRangeSquared)
-				element = event;
-			return;
-		}
+		if (dist >= this.suppressionRangeSquared)
+			continue;
+
+		isPriorityIncreased = element.targetIsDomesticAnimal && !targetIsDomesticAnimal;
+		var isPriorityDescreased = !element.targetIsDomesticAnimal && targetIsDomesticAnimal;
+
+		if (isPriorityIncreased
+		    || (!isPriorityDescreased && dist < this.suppressionTransferRangeSquared))
+			this.UpdateSuppressionEvent(i, event);
+
+		// If priority has increased, exit the loop to send the upgraded notification below
+		if (isPriorityIncreased)
+			break;
+
+		return;
 	}
 
-	this.AddSuppression(event);
+	// If priority has increased for an existing event, then we already have it
+	// in the suppression list
+	if (!isPriorityIncreased)
+		this.AddSuppression(event);
+
 	Engine.PostMessage(this.entity, MT_AttackDetected, { "player": cmpPlayer.GetPlayerID(), "event": event });
-	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({"type": "attack", "players": [cmpPlayer.GetPlayerID()], "attacker": cmpAttackerOwnership.GetOwner() });
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
+		"type": "attack",
+		"players": [cmpPlayer.GetPlayerID()],
+		"attacker": cmpAttackerOwnership.GetOwner(),
+		"targetIsDomesticAnimal": targetIsDomesticAnimal
+	});
 	PlaySound("attacked", target);
 };
 
@@ -91,7 +132,7 @@ AttackDetection.prototype.HandleTimeout = function()
 {
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	var now = cmpTimer.GetTime();
-	for (var i = 0; i < this.suppressedList.length; i++)
+	for (var i = 0; i < this.suppressedList.length; ++i)
 	{
 		var event = this.suppressedList[i];
 
@@ -99,7 +140,6 @@ AttackDetection.prototype.HandleTimeout = function()
 		if (now - event.time >= this.suppressionTime)
 		{
 			this.suppressedList.splice(i, 1);
-			i--;
 			return;
 		}
 	}
