@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:50+0200\n"
-"PO-Revision-Date: 2015-05-09 17:17+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2015-05-19 22:36+0000\n"
+"Last-Translator: qwertz\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -492,7 +492,7 @@ msgstr "%(name)s kann nicht auf einem anderen Gebäude oder einer Ressource geba
 #: simulation/components/BuildRestrictions.js:158
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr "%(name)s kann nicht auf ungültigem Land gebaut werden"
+msgstr "%(name)s kann nicht auf ungeeignetem Untergrund gebaut werden"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -532,7 +532,7 @@ msgstr "%(name)s kann nicht in %(territoryType)s Territorium gebaut werden. Gül
 #: simulation/components/BuildRestrictions.js:236
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "%(name)s muss an einer gültigen Küstenlinie gebaut werden"
+msgstr "%(name)s muss an einer geeigneten Küstenlinie gebaut werden"
 
 #: simulation/components/BuildRestrictions.js:260
 #, javascript-format
@@ -578,7 +578,7 @@ msgstr "Feindliches"
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr "%(category)s Bau Limit von %(limit)s erreicht"
+msgstr "%(category)s Baulimit von %(limit)s erreicht"
 
 #: simulation/components/EntityLimits.js:168
 #, javascript-format
@@ -639,19 +639,19 @@ msgstr "Die Produktionswarteschlange ist voll."
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.1x)"
-msgstr "Schildkröte (0.1×)"
+msgstr "Schildkröte (0,1×)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.25x)"
-msgstr "Langsam (0.25×)"
+msgstr "Langsam (0,25×)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Leisurely (0.5x)"
-msgstr "Gemächlich (0.5×)"
+msgstr "Gemächlich (0,5×)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Relaxed (0.75x)"
-msgstr "Entspannt (0.75×)"
+msgstr "Entspannt (0,75×)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Normal (1x)"

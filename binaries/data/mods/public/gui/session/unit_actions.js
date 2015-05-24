@@ -877,43 +877,6 @@ var g_EntityCommands =
 			toggleTrade();
 		},
 	},
-	// Raise alert
-	"increase-alert-level": {
-		"getInfo": function(entState)
-		{
-			if (!entState.alertRaiser || !entState.alertRaiser.canIncreaseLevel)
-				return false;
-
-			if (entState.alertRaiser.hasRaisedAlert)
-				var tooltip = translate("Increase the alert level to protect more units");
-			else
-				var tooltip = translate("Raise an alert!");
-			return {
-				"tooltip": tooltip,
-				"icon": "bell_level1.png"
-			};
-		},
-		"execute": function(entState)
-		{
-			increaseAlertLevel();
-		},
-	},
-	// End alert
-	"alert-end": {
-		"getInfo": function(entState)
-		{
-			if (!entState.alertRaiser || !entState.alertRaiser.hasRaisedAlert)
-				return false
-			return {
-				"tooltip": translate("End of alert."),
-				"icon": "bell_level0.png"
-			};
-		},
-		"execute": function(entState)
-		{
-			endOfAlert();
-		},
-	},
 };
 
 var g_AllyEntityCommands =

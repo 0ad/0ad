@@ -16,7 +16,7 @@
 # Cергей Исаченко <vortexius@gmail.com>, 2014
 # delpfine <delpfine2012@gmail.com>, 2014
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
-# dr&mx <dronmax@gmail.com>, 2014
+# dr&mx <dronmax@gmail.com>, 2014-2015
 # Eugene Kostrika <testiculi@yandex.ru>, 2013
 # grin.sv <grin.sv@gmail.com>, 2015
 # Igor <ggg2134@mail.ru>, 2013
@@ -43,8 +43,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-05-09 17:16+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2015-05-17 20:02+0000\n"
+"Last-Translator: dr&mx <dronmax@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -207,7 +207,7 @@ msgid_plural ""
 msgstr[0] "%(numberGarrisoned)s торговец на торговом судне"
 msgstr[1] "%(numberGarrisoned)s торговцев на торговом судне"
 msgstr[2] "%(numberGarrisoned)s торговцев на торговом судне"
-msgstr[3] "%(numberGarrisoned)s торговцев на торговом судне"
+msgstr[3] "%(numberGarrisoned)s — количество торговцев на торговом судне"
 
 #: gui/session/menu.js:519
 #, javascript-format
@@ -491,7 +491,7 @@ msgstr "Усиление: %(amount)s"
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s seconds."
-msgstr "Число строителей.\nОтправьте сюда еще строителя, чтобы ускорить постройку на %(numb)s секунд."
+msgstr "Число строителей.\nОтправив сюда еще одного строителя можно ускорить постройку на %(numb)s секунд."
 
 #: gui/session/selection_details.js:191
 msgid "Number of builders."

@@ -1846,9 +1846,8 @@ function backToWork()
 		var state = GetEntityState(e);
 		return (state && state.unitAI && state.unitAI.hasWorkOrders);
 	});
-	
+
 	Engine.PostNetworkCommand({"type": "back-to-work", "entities": workers});
-	
 }
 
 function removeGuard()
@@ -1858,7 +1857,7 @@ function removeGuard()
 		var state = GetEntityState(e);
 		return (state && state.unitAI && state.unitAI.isGuarding);
 	});
-	
+
 	Engine.PostNetworkCommand({"type": "remove-guard", "entities": entities});
 }
 
@@ -1868,8 +1867,8 @@ function increaseAlertLevel()
 		var state = GetEntityState(e);
 		return (state && state.alertRaiser && state.alertRaiser.canIncreaseLevel);
 	});
-	
-	Engine.PostNetworkCommand({"type": "increase-alert-level", "entities": entities});	
+
+	Engine.PostNetworkCommand({"type": "increase-alert-level", "entities": entities});
 }
 
 function endOfAlert()
@@ -1878,7 +1877,7 @@ function endOfAlert()
 		var state = GetEntityState(e);
 		return (state && state.alertRaiser && state.alertRaiser.hasRaisedAlert);
 	});
-	
+
 	Engine.PostNetworkCommand({"type": "alert-end", "entities": entities});
 }
 

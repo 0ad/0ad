@@ -437,16 +437,16 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				if (numFarms + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
 				{
 					if (count < 600)
-						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
+						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
 				}
 				else
 				{
 					let numFound = gameState.getOwnFoundations().filter(API3.Filters.byClass("Field")).length;
 					let goal = this.Config.Economy.provisionFields;
-					if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace)
+					if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace || count > 300)
 						goal = Math.max(goal-1, 1);
 					if (numFound + numQueue < goal)
-						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
+						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
 				}
 			}
 		}

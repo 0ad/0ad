@@ -8,17 +8,19 @@
 # Anders Persson <anders@utophia.se>, 2014
 # Daniel Sandman <revoltism@gmail.com>, 2013
 # Erik Johansson <erik@feneur.com>, 2013
+# Jacob Carlsson <yejcob@gmail.com>, 2015
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
 # Patrik Nilsson <asavartzeth@gmail.com>, 2014
+# Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
 # Ulrika <aurorauddeborg@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-04-02 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-19 08:35+0000\n"
+"Last-Translator: Jacob Carlsson <yejcob@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +61,7 @@ msgstr "Mellan"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr "Svårt"
+msgstr "Svår"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -132,7 +134,7 @@ msgstr "Standard"
 
 #: gui/gamesetup/gamesetup.js:143
 msgid "Naval Maps"
-msgstr "Sjökartort"
+msgstr "Sjökartor"
 
 #: gui/gamesetup/gamesetup.js:144
 msgid "Demo Maps"
@@ -187,14 +189,14 @@ msgstr "Väljer slumpmässigt en karta från listan"
 
 #: gui/gamesetup/gamesetup.js:1321
 msgid "Sorry, no description available."
-msgstr "Tyvärr finns ingen beskrivning tillgänglig."
+msgstr "Tyvärr finns det ingen beskrivning tillgänglig."
 
 #: gui/gamesetup/gamesetup.js:1324
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s spelare"
+msgstr[1] "%(number)s spelare."
 
 #: gui/gamesetup/gamesetup.js:1328 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
@@ -437,7 +439,7 @@ msgstr "Start-resurser:"
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Synlig karta:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -447,7 +449,7 @@ msgstr "Utforskad karta:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):340
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Inaktivera skatter:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Teams Locked:"
@@ -589,7 +591,7 @@ msgstr "Servernamn:"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
-msgstr ""
+msgstr "Dagens ordspråk: "
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"

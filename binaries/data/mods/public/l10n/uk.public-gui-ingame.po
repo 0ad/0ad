@@ -8,14 +8,15 @@
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
 # Dimaver <dimaver@ukr.net>, 2014
 # Victor Butko <victor.butko@gmail.com>, 2014
+# Yaroslav Yenkala <hyper-news@yandex.ru>, 2015
 # Сергій Дубик <dubyk@ukr.net>, 2014
 # Ярослав Смук <Smuk.Slavko@yandex.ua>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-04-02 09:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-11 09:51+0000\n"
+"Last-Translator: Yaroslav Yenkala <hyper-news@yandex.ru>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -407,7 +408,7 @@ msgstr "%(rank)s ранг"
 #: gui/session/selection_details.js:73
 #, javascript-format
 msgid "This foundation will be completed in %(numb)s seconds."
-msgstr ""
+msgstr "Будівництво буде зевершене через %(numb)s секунд"
 
 #: gui/session/selection_details.js:78
 #, javascript-format
@@ -453,11 +454,11 @@ msgstr "Підсилення: %(amount)s"
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s seconds."
-msgstr ""
+msgstr "Кількість будівельників.\nЗалучення інших в цю бригаду прискорить будівництво на %(numb)s секунд."
 
 #: gui/session/selection_details.js:191
 msgid "Number of builders."
-msgstr ""
+msgstr "Кількість будівельників"
 
 #: gui/session/selection_details.js:200
 msgid "Current/max gatherers"
@@ -1014,7 +1015,7 @@ msgstr "Меню"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVIII : Rhododactylos"
-msgstr ""
+msgstr "АЛЬФА 18: Рододактайлос"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

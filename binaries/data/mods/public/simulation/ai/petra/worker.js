@@ -124,7 +124,13 @@ m.Worker.prototype.update = function(ent, gameState)
 	else if (subrole === "builder")
 	{
 		if (this.ent.unitAIState().split(".")[1] === "REPAIR")
-				return;
+		{
+			// update our target in case UnitAI sent us to a different foundation because of autocontinue	
+			if (this.ent.unitAIOrderData()[0] && this.ent.unitAIOrderData()[0].target
+				&& this.ent.getMetadata(PlayerID, "target-foundation") !== this.ent.unitAIOrderData()[0].target)
+				this.ent.setMetadata(PlayerID, "target-foundation", this.ent.unitAIOrderData()[0].target);
+			return;
+		}
 		// okay so apparently we aren't working.
 		// Unless we've been explicitely told to keep our role, make us idle.
 		var target = gameState.getEntityById(this.ent.getMetadata(PlayerID, "target-foundation"));
@@ -146,7 +152,7 @@ m.Worker.prototype.update = function(ent, gameState)
 				target.setMetadata(PlayerID, "access", goalAccess);
 			}
 			if (access === goalAccess)
-				this.ent.repair(target);
+				this.ent.repair(target, target.hasClass("House"));  // autocontinue=true for houses
 			else
 				gameState.ai.HQ.navalManager.requireTransport(gameState, this.ent, access, goalAccess, target.position());
 		}
