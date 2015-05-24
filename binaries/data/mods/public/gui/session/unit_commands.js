@@ -1,5 +1,5 @@
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Construction": 0, "Command": 0, "AllyCommand": 0, "Stance": 0, "Gate": 0, "Pack": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Alert": 0, "Barter": 0, "Construction": 0, "Command": 0, "AllyCommand": 0, "Stance": 0, "Gate": 0, "Pack": 0};
 
 /**
  * Set the position of a panel object according to the index,

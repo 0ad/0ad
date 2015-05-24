@@ -43,6 +43,58 @@ var g_formationsInfo = new Map();
 
 var g_SelectionPanels = {};
 
+// ALERT
+g_SelectionPanels.Alert = {
+	"getMaxNumberOfItems": function()
+	{
+		return 2;
+	},
+	"getItems": function(unitEntState)
+	{
+		if (!unitEntState.alertRaiser)
+			return [];
+		return ["increase", "end"];
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() { 
+			if (data.item == "increase")
+				increaseAlertLevel();
+			else if (data.item == "end")
+				endOfAlert();
+		};
+	},
+	"setTooltip": function(data)
+	{
+		if (data.item == "increase")
+		{
+			if (data.unitEntState.alertRaiser.hasRaisedAlert)
+				data.button.tooltip = translate("Increase the alert level to protect more units");
+			else
+				data.button.tooltip = translate("Raise an alert!");
+		}
+		else if (data.item == "end")
+			data.button.tooltip = translate("End of alert.");
+	},
+	"setGraphics": function(data)
+	{
+		if (data.item == "increase")
+		{
+			data.button.hidden = !data.unitEntState.alertRaiser.canIncreaseLevel;
+			if (data.unitEntState.alertRaiser.hasRaisedAlert)
+				data.icon.sprite = "stretched:session/icons/bell_level2.png";
+			else
+				data.icon.sprite = "stretched:session/icons/bell_level1.png";
+		}
+		else if (data.item == "end")
+		{
+			data.button.hidden = !data.unitEntState.alertRaiser.hasRaisedAlert;
+			data.icon.sprite = "stretched:session/icons/bell_level0.png";
+		}
+		data.button.enabled = !data.button.hidden;
+	},
+};
+
 // BARTER
 g_SelectionPanels.Barter = {
 	"getMaxNumberOfItems": function()
@@ -1080,6 +1132,7 @@ var g_PanelsOrder = [
 	// LEFT PANE
 	"Barter", // must always be visible on markets
 	"Garrison", // more important than Formation, as you want to see the garrisoned units in ships
+	"Alert",
 	"Formation",
 	"Stance", // normal together with formation
 
