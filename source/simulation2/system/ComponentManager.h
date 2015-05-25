@@ -269,7 +269,8 @@ public:
 
 	IComponent* QueryInterface(entity_id_t ent, InterfaceId iid) const;
 
-	typedef std::vector<std::pair<entity_id_t, IComponent*> > InterfaceList;
+	typedef std::pair<entity_id_t, IComponent*> InterfacePair;
+	typedef std::vector<InterfacePair> InterfaceList;
 	typedef boost::unordered_map<entity_id_t, IComponent*> InterfaceListUnordered;
 
 	InterfaceList GetEntitiesWithInterface(InterfaceId iid) const;

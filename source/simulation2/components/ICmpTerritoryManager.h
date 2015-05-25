@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,6 +45,12 @@ public:
 	 * @return player ID of owner; 0 if neutral territory
 	 */
 	virtual player_id_t GetOwner(entity_pos_t x, entity_pos_t z) = 0;
+
+	/**
+	 * get the number of neighbour tiles for per player for the selected position
+	 * @return A list with the number of neighbour tiles per player
+	 */
+	virtual std::vector<u32> GetNeighbours(entity_pos_t x, entity_pos_t z, bool filterConnected) = 0;
 
 	/**
 	 * Get whether territory at given position is connected to a root object

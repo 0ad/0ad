@@ -33,26 +33,20 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(TerritoryInfluence)
 
-	i32 m_Cost;
 	bool m_Root;
-	u32 m_Weight;
+	u16 m_Weight;
 	u32 m_Radius;
 
 	static std::string GetSchema()
 	{
 		return
-			"<optional>"
-				"<element name='OverrideCost'>"
-					"<data type='nonNegativeInteger'>"
-						"<param name='maxInclusive'>255</param>"
-					"</data>"
-				"</element>"
-			"</optional>"
 			"<element name='Root'>"
 				"<data type='boolean'/>"
 			"</element>"
 			"<element name='Weight'>"
-				"<data type='nonNegativeInteger'/>"
+				"<data type='nonNegativeInteger'>"
+					"<param name='maxInclusive'>65536</param>" // Max value 2^16
+				"</data>"
 			"</element>"
 			"<element name='Radius'>"
 				"<data type='nonNegativeInteger'/>"
@@ -61,13 +55,8 @@ public:
 
 	virtual void Init(const CParamNode& paramNode)
 	{
-		if (paramNode.GetChild("OverrideCost").IsOk())
-			m_Cost = paramNode.GetChild("OverrideCost").ToInt();
-		else
-			m_Cost = -1;
-
 		m_Root = paramNode.GetChild("Root").ToBool();
-		m_Weight = paramNode.GetChild("Weight").ToInt();
+		m_Weight = (u16)paramNode.GetChild("Weight").ToInt();
 		m_Radius = paramNode.GetChild("Radius").ToInt();
 	}
 
@@ -84,17 +73,12 @@ public:
 		Init(paramNode);
 	}
 
-	virtual i32 GetCost()
-	{
-		return m_Cost;
-	}
-
 	virtual bool IsRoot()
 	{
 		return m_Root;
 	}
 
-	virtual u32 GetWeight()
+	virtual u16 GetWeight()
 	{
 		return m_Weight;
 	}

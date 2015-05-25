@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,5 +23,6 @@
 
 BEGIN_INTERFACE_WRAPPER(TerritoryManager)
 DEFINE_INTERFACE_METHOD_2("GetOwner", player_id_t, ICmpTerritoryManager, GetOwner, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_3("GetNeighbours", std::vector<u32>, ICmpTerritoryManager, GetNeighbours, entity_pos_t, entity_pos_t, bool)
 DEFINE_INTERFACE_METHOD_2("IsConnected", bool, ICmpTerritoryManager, IsConnected, entity_pos_t, entity_pos_t)
 END_INTERFACE_WRAPPER(TerritoryManager)
