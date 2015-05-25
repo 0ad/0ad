@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -197,7 +197,7 @@ protected:
 	T m_Impl;
 
 private:
-	std::auto_ptr<CBinarySerializerScriptImpl> m_ScriptImpl;
+	std::unique_ptr<CBinarySerializerScriptImpl> m_ScriptImpl;
 
 	CSerializerStreamBuf<T> m_RawStreamBuf;
 	std::ostream m_RawStream;

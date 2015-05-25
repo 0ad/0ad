@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Marián Mižik <marian@mizik.sk>, 2015
 # empy <martinplavala@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-23 16:12+0000\n"
+"Last-Translator: Marián Mižik <marian@mizik.sk>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +51,7 @@ msgstr "Ľubovoľná"
 #: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
 #: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
 msgid "N/A"
-msgstr ""
+msgstr "Nie je k dispozícií"
 
 #: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
@@ -223,7 +224,7 @@ msgstr "Prosím súhlaste so servisnými požiadavkami a podmienkami použitia"
 
 #: gui/lobby/prelobby.js:195
 msgid "Registered"
-msgstr ""
+msgstr "Zaregistrovaný"
 
 #: gui/lobby/prelobby.js:205
 msgid "Disconnected"
@@ -251,27 +252,27 @@ msgstr "Lobby hry viac hráčov"
 
 #: gui/lobby/lobby.xml:(caption):45 gui/lobby/lobby.xml:(caption):296
 msgid "Current Rank:"
-msgstr ""
+msgstr "Súčasná hodnosť:"
 
 #: gui/lobby/lobby.xml:(caption):49 gui/lobby/lobby.xml:(caption):300
 msgid "Highest Rating:"
-msgstr ""
+msgstr "Najvyššie dosiahnuté hodnotenie:"
 
 #: gui/lobby/lobby.xml:(caption):53 gui/lobby/lobby.xml:(caption):304
 msgid "Total Games:"
-msgstr ""
+msgstr "Celkovo hier:"
 
 #: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):308
 msgid "Wins:"
-msgstr ""
+msgstr "Výhier:"
 
 #: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):312
 msgid "Losses:"
-msgstr ""
+msgstr "Prehier:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):316
 msgid "Win Rate:"
-msgstr ""
+msgstr "Pomer víťazstiev:"
 
 #: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
 msgid "Leaderboard"
@@ -320,15 +321,15 @@ msgstr "Aktualizovať"
 
 #: gui/lobby/lobby.xml:(caption):282
 msgid "Enter username:"
-msgstr ""
+msgstr "Zadajte prihlasovacie meno:"
 
 #: gui/lobby/lobby.xml:(caption):288
 msgid "View Profile"
-msgstr ""
+msgstr "Prezrieť profil"
 
 #: gui/lobby/lobby.xml:(caption):321
 msgid "Player not found."
-msgstr ""
+msgstr "Hráč nebol nájdený."
 
 #: gui/lobby/lobby.xml:(heading):25
 msgid "Status"

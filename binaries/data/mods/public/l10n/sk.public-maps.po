@@ -5,6 +5,7 @@
 # Translators:
 # FrewCen <frewcen@gmail.com>, 2014
 # Levi Taule <levi.taule@gmail.com>, 2015
+# Marián Mižik <marian@mizik.sk>, 2015
 # empy <martinplavala@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Miroslav Remák <Unknown>, 2014
@@ -13,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-04-02 02:50+0200\n"
-"PO-Revision-Date: 2015-04-12 19:17+0000\n"
-"Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
+"POT-Creation-Date: 2015-04-23 21:06+0200\n"
+"PO-Revision-Date: 2015-05-23 16:21+0000\n"
+"Last-Translator: Marián Mižik <marian@mizik.sk>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -581,8 +582,7 @@ msgstr "Nastala jar v Arkádii, Grécku. Jarné dažde naplnili korytá potokov,
 #: Britons.xml:PlayerData[0].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[0].Name:41 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[0].Name:42 maps/scenarios/Sandbox -
-#: Romans.xml:PlayerData[0].Name:42
-#: maps/scenarios/Sicilia_Nomad.xml:PlayerData[0].Name:35 maps/scenarios/Siwa
+#: Romans.xml:PlayerData[0].Name:42 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[0].Name:31 maps/scenarios/The Massacre of
 #: Delphi.xml:PlayerData[0].Name:41 maps/scenarios/Treasure
 #: Islands.xml:PlayerData[0].Name:41 maps/scenarios/Tropical
@@ -623,11 +623,12 @@ msgstr "Nastala jar v Arkádii, Grécku. Jarné dažde naplnili korytá potokov,
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Sahel (4).xml:PlayerData[0].Name:42 maps/skirmishes/Savanna
 #: River.xml:PlayerData[0].Name:42 maps/skirmishes/Sicilia
-#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Siwa Oasis
-#: (2).xml:PlayerData[0].Name:40 maps/skirmishes/Sporades Islands
-#: (2).xml:PlayerData[0].Name:42 maps/skirmishes/Syria
-#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Team Oasis -
-#: 2v2.xml:PlayerData[0].Name:42 maps/skirmishes/Thessalian Plains
+#: (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
+#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:41 maps/skirmishes/Team
+#: Oasis - 2v2.xml:PlayerData[0].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Tuscan Acropolis
 #: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[0].Name:42 maps/skirmishes/Zagros Mountains
@@ -650,8 +651,7 @@ msgstr "Hráč 1"
 #: Britons.xml:PlayerData[1].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[1].Name:41 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[1].Name:42 maps/scenarios/Sandbox -
-#: Romans.xml:PlayerData[1].Name:42
-#: maps/scenarios/Sicilia_Nomad.xml:PlayerData[1].Name:35 maps/scenarios/Siwa
+#: Romans.xml:PlayerData[1].Name:42 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[1].Name:31 maps/scenarios/The Massacre of
 #: Delphi.xml:PlayerData[1].Name:41 maps/scenarios/Treasure
 #: Islands.xml:PlayerData[1].Name:41 maps/scenarios/Tropical
@@ -691,11 +691,12 @@ msgstr "Hráč 1"
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Sahel (4).xml:PlayerData[1].Name:42 maps/skirmishes/Savanna
 #: River.xml:PlayerData[1].Name:42 maps/skirmishes/Sicilia
-#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Siwa Oasis
-#: (2).xml:PlayerData[1].Name:40 maps/skirmishes/Sporades Islands
-#: (2).xml:PlayerData[1].Name:42 maps/skirmishes/Syria
-#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Team Oasis -
-#: 2v2.xml:PlayerData[1].Name:42 maps/skirmishes/Thessalian Plains
+#: (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
+#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:41 maps/skirmishes/Team
+#: Oasis - 2v2.xml:PlayerData[1].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Tuscan Acropolis
 #: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[1].Name:42 maps/skirmishes/Zagros Mountains
@@ -1450,16 +1451,6 @@ msgstr "Lode"
 msgid "Ship Formations"
 msgstr "Formácie lodí"
 
-#: maps/scenarios/Sicilia_Nomad.xml:Description:35
-msgid ""
-"The large Mediterranean island of Sicily is open for conquest.\n"
-"[color=\"orange\"]Tip: docks are useful dropsite when no territory[/color]"
-msgstr "Veľký stredomorský ostrov Sicília čaká na dobytie.\n[color=\"orange\"]Tip: prístavy sú užitočné na skladovanie pri žiadnom území[/color]"
-
-#: maps/scenarios/Sicilia_Nomad.xml:Name:35
-msgid "Sicilia Nomad (2)"
-msgstr ""
-
 #: maps/scenarios/Siwa Oasis.xml:Description:31
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
@@ -1664,7 +1655,7 @@ msgstr ""
 
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Name:40
 msgid "Alpine Mountains (3)"
-msgstr ""
+msgstr "Alpské hory (3)"
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
 msgid ""
@@ -1958,7 +1949,7 @@ msgstr ""
 
 #: maps/skirmishes/Northern Island (2).xml:Name:40
 msgid "Northern Island (2)"
-msgstr ""
+msgstr "Severný ostrov (2)"
 
 #: maps/skirmishes/Persian Highlands (4).xml:Description:42
 msgid ""
@@ -2018,6 +2009,16 @@ msgstr "Veľký stredomorský ostrov Sicília čaká na dobytie."
 #: maps/skirmishes/Sicilia (2).xml:Name:41
 msgid "Sicilia (2)"
 msgstr "Sicília (2)"
+
+#: maps/skirmishes/Sicilia_Nomad.xml:Description:35
+msgid ""
+"The large Mediterranean island of Sicily is open for conquest.\n"
+"[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]"
+msgstr ""
+
+#: maps/skirmishes/Sicilia_Nomad.xml:Name:35
+msgid "Sicilia Nomad (2)"
+msgstr ""
 
 #: maps/skirmishes/Siwa Oasis (2).xml:Description:40
 msgid ""

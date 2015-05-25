@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-15 10:08+0000\n"
+"POT-Creation-Date: 2015-05-22 00:48+0200\n"
+"PO-Revision-Date: 2015-05-23 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Telugu (http://www.transifex.com/projects/p/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -68,11 +68,11 @@ msgstr ""
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
-#: gui/common/functions_utility.js:187
+#: gui/common/functions_utility.js:191
 msgid "mm:ss"
 msgstr ""
 
-#: gui/common/functions_utility.js:189
+#: gui/common/functions_utility.js:193
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -343,9 +343,8 @@ msgid "Crush"
 msgstr ""
 
 #: gui/common/tooltips.js:46 gui/common/tooltips.js:109
-#: gui/common/tooltips.js:135 gui/common/tooltips.js:209
-#: gui/common/tooltips.js:390 gui/common/tooltips.js:416
-#: gui/common/tooltips.js:469
+#: gui/common/tooltips.js:135 gui/common/tooltips.js:400
+#: gui/common/tooltips.js:426 gui/common/tooltips.js:494
 msgid ", "
 msgstr ""
 
@@ -354,7 +353,7 @@ msgstr ""
 msgid "%(time)s %(second)s"
 msgstr ""
 
-#: gui/common/tooltips.js:54 gui/common/tooltips.js:413
+#: gui/common/tooltips.js:54 gui/common/tooltips.js:423
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] ""
@@ -381,8 +380,8 @@ msgid "Armor:"
 msgstr "కవచం:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:166 gui/structree/draw.js:266
-#: gui/structree/draw.js:291
+#: gui/common/tooltips.js:167 gui/structree/draw.js:260
+#: gui/structree/draw.js:285
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
@@ -411,131 +410,145 @@ msgstr ""
 msgid "Ranged Attack:"
 msgstr ""
 
-#: gui/common/tooltips.js:145
+#: gui/common/tooltips.js:143
+msgid "Capture Attack:"
+msgstr ""
+
+#: gui/common/tooltips.js:146
 msgid "Attack:"
 msgstr ""
 
-#: gui/common/tooltips.js:155
+#: gui/common/tooltips.js:156
 msgid "Interval:"
 msgstr ""
 
-#: gui/common/tooltips.js:157 gui/common/tooltips.js:411
+#: gui/common/tooltips.js:158 gui/common/tooltips.js:421
 msgid "Rate:"
 msgstr ""
 
-#: gui/common/tooltips.js:174
+#: gui/common/tooltips.js:175 gui/common/tooltips.js:184
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr ""
 
-#: gui/common/tooltips.js:184 gui/common/tooltips.js:406
+#: gui/common/tooltips.js:194 gui/common/tooltips.js:416
 msgid "Range:"
 msgstr "వ్యాప్తి:"
 
-#: gui/common/tooltips.js:186 gui/common/tooltips.js:408
+#: gui/common/tooltips.js:196 gui/common/tooltips.js:418
 msgid "meters"
 msgstr "మీటర్లు"
 
-#: gui/common/tooltips.js:189
+#: gui/common/tooltips.js:199
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
 "(%(relative)s), %(rate)s"
 msgstr ""
 
-#: gui/common/tooltips.js:199
+#: gui/common/tooltips.js:209
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
 "%(rate)s"
 msgstr ""
 
-#: gui/common/tooltips.js:249 gui/common/tooltips.js:250
-#: gui/common/tooltips.js:251 gui/common/tooltips.js:252
-#: gui/common/tooltips.js:253 gui/common/tooltips.js:254
-#: gui/common/tooltips.js:370
+#: gui/common/tooltips.js:259 gui/common/tooltips.js:260
+#: gui/common/tooltips.js:261 gui/common/tooltips.js:262
+#: gui/common/tooltips.js:263 gui/common/tooltips.js:264
+#: gui/common/tooltips.js:380
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:308
+#: gui/common/tooltips.js:318
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr ""
 
-#: gui/common/tooltips.js:339
+#: gui/common/tooltips.js:349
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr ""
 
-#: gui/common/tooltips.js:340
+#: gui/common/tooltips.js:350
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr ""
 
-#: gui/common/tooltips.js:356
+#: gui/common/tooltips.js:366
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:357
+#: gui/common/tooltips.js:367
 msgid "Population Bonus:"
 msgstr ""
 
-#: gui/common/tooltips.js:375
+#: gui/common/tooltips.js:385
 msgid "Insufficient resources:"
 msgstr ""
 
-#: gui/common/tooltips.js:383
+#: gui/common/tooltips.js:393
 msgid "Speed:"
 msgstr "వేగము:"
 
-#: gui/common/tooltips.js:386 gui/common/tooltips.js:388
+#: gui/common/tooltips.js:396 gui/common/tooltips.js:398
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr ""
 
-#: gui/common/tooltips.js:386
+#: gui/common/tooltips.js:396
 msgid "Walk"
 msgstr ""
 
-#: gui/common/tooltips.js:388
+#: gui/common/tooltips.js:398
 msgid "Run"
 msgstr "నడుపు"
 
-#: gui/common/tooltips.js:390
+#: gui/common/tooltips.js:400
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:399 gui/common/tooltips.js:405
-#: gui/common/tooltips.js:410
+#: gui/common/tooltips.js:409 gui/common/tooltips.js:415
+#: gui/common/tooltips.js:420
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgstr ""
 
-#: gui/common/tooltips.js:400
+#: gui/common/tooltips.js:410
 msgid "Heal:"
 msgstr ""
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
-#: gui/common/tooltips.js:403
+#: gui/common/tooltips.js:413
 msgid "HP"
 msgstr ""
 
-#: gui/common/tooltips.js:425
+#: gui/common/tooltips.js:436
+#, javascript-format
+msgid "%(auralabel)s %(aurainfo)s"
+msgstr ""
+
+#: gui/common/tooltips.js:437
+#, javascript-format
+msgid "%(auraname)s:"
+msgstr ""
+
+#: gui/common/tooltips.js:450
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr ""
 
-#: gui/common/tooltips.js:435
+#: gui/common/tooltips.js:460
 msgid "???"
 msgstr "???"
 
-#: gui/common/tooltips.js:465
+#: gui/common/tooltips.js:490
 msgid "Classes:"
 msgstr ""
 
@@ -637,191 +650,199 @@ msgid "Show current simulation time in top right corner."
 msgstr ""
 
 #: gui/options/options.js:16
-msgid "Persist match settings"
+msgid "Ceasefire Time Overlay"
 msgstr ""
 
 #: gui/options/options.js:16
+msgid "Always show the remaining ceasefire time."
+msgstr ""
+
+#: gui/options/options.js:17
+msgid "Persist match settings"
+msgstr ""
+
+#: gui/options/options.js:17
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Prefer GLSL"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Post Processing"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Shadows"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Enable shadows"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Particles"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Enable particles"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Show Sky"
 msgstr "ఆకాశాన్ని చూపించు"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Render Sky"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Smooth LOS"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr ""
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Unit Silhouettes"
 msgstr ""
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Show outlines of units behind buildings"
 msgstr ""
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Shadow Filtering"
 msgstr ""
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Smooth shadows"
 msgstr ""
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Fast & Ugly Water"
 msgstr ""
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "HQ Water Effects"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Real Water Depth"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Use actual water depth in rendering calculations"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Water Reflections"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Allow water to reflect a mirror image"
 msgstr ""
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Water Refraction"
 msgstr ""
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Use a real water refraction map and not transparency"
 msgstr ""
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Shadows on Water"
 msgstr ""
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Cast shadows on water"
 msgstr ""
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "VSync"
 msgstr ""
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "Master Gain"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "Master audio gain"
 msgstr ""
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "Music Gain"
 msgstr ""
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "In game music gain"
 msgstr ""
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Ambient Gain"
 msgstr ""
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "In game ambient sound gain"
 msgstr ""
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Action Gain"
 msgstr ""
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game unit action sound gain"
 msgstr ""
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "UI Gain"
 msgstr ""
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "UI sound gain"
 msgstr ""
 
-#: gui/options/options.js:46
+#: gui/options/options.js:47
 msgid "Chat Backlog"
 msgstr ""
 
-#: gui/options/options.js:46
+#: gui/options/options.js:47
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr ""
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Chat Timestamp"
 msgstr ""
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Show time that messages are posted in the lobby chat"
 msgstr ""
 
@@ -979,37 +1000,27 @@ msgstr ""
 msgid "OVERWRITE SAVE"
 msgstr ""
 
-#: gui/structree/draw.js:258
-#, javascript-format
-msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
-
-#: gui/structree/draw.js:259
-#, javascript-format
-msgid "%(auraname)s:"
-msgstr ""
-
-#: gui/structree/draw.js:267
+#: gui/structree/draw.js:261
 msgid "Health:"
 msgstr ""
 
-#: gui/structree/draw.js:286
+#: gui/structree/draw.js:280
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr ""
 
-#: gui/structree/draw.js:292
+#: gui/structree/draw.js:286
 msgid "Gather Rates:"
 msgstr ""
 
-#: gui/structree/load.js:143
+#: gui/structree/load.js:146
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr ""
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
-#: gui/summary/summary.xml:(caption):103
+#: gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "ఆటగాడి పేరు"
 
@@ -1173,7 +1184,7 @@ msgstr ""
 
 #: gui/summary/summary.js:141
 #, javascript-format
-msgid "Time elapsed: %(time)s"
+msgid "Game time elapsed: %(time)s"
 msgstr ""
 
 #: gui/summary/summary.js:162
@@ -1558,35 +1569,35 @@ msgstr ""
 msgid "Civilization:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):21
+#: gui/summary/summary.xml:(caption):22
 msgid "Summary"
 msgstr "సారాంశం"
 
-#: gui/summary/summary.xml:(caption):61
+#: gui/summary/summary.xml:(caption):62
 msgid "Score"
 msgstr "స్కోర్"
 
-#: gui/summary/summary.xml:(caption):68
+#: gui/summary/summary.xml:(caption):69
 msgid "Buildings"
 msgstr "భవంతులు"
 
-#: gui/summary/summary.xml:(caption):75
+#: gui/summary/summary.xml:(caption):76
 msgid "Units"
 msgstr "విభాగాలు"
 
-#: gui/summary/summary.xml:(caption):82
+#: gui/summary/summary.xml:(caption):83
 msgid "Resources"
 msgstr "వనరులు"
 
-#: gui/summary/summary.xml:(caption):89
+#: gui/summary/summary.xml:(caption):90
 msgid "Market"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):96
+#: gui/summary/summary.xml:(caption):97
 msgid "Miscellaneous"
 msgstr "ఇతరాలు"
 
-#: gui/summary/summary.xml:(caption):157
+#: gui/summary/summary.xml:(caption):158
 msgid "Continue"
 msgstr "కొనసాగించు"
 

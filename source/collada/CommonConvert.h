@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,8 +86,8 @@ public:
 
 private:
 	void ReadExtras(xmlNode* colladaNode);
-	std::auto_ptr<FCDocument> document;
-	std::auto_ptr<FCDExtra> extra;
+	std::unique_ptr<FCDocument> document;
+	std::unique_ptr<FCDExtra> extra;
 };
 
 /**

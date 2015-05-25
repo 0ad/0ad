@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-04-02 02:50+0200\n"
-"PO-Revision-Date: 2015-05-17 19:52+0000\n"
-"Last-Translator: dr&mx <dronmax@gmail.com>\n"
+"POT-Creation-Date: 2015-04-23 21:06+0200\n"
+"PO-Revision-Date: 2015-05-23 13:31+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -581,8 +581,7 @@ msgstr "Весна в Аркадии, в Греции. Весенние дожд
 #: Britons.xml:PlayerData[0].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[0].Name:41 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[0].Name:42 maps/scenarios/Sandbox -
-#: Romans.xml:PlayerData[0].Name:42
-#: maps/scenarios/Sicilia_Nomad.xml:PlayerData[0].Name:35 maps/scenarios/Siwa
+#: Romans.xml:PlayerData[0].Name:42 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[0].Name:31 maps/scenarios/The Massacre of
 #: Delphi.xml:PlayerData[0].Name:41 maps/scenarios/Treasure
 #: Islands.xml:PlayerData[0].Name:41 maps/scenarios/Tropical
@@ -623,11 +622,12 @@ msgstr "Весна в Аркадии, в Греции. Весенние дожд
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Sahel (4).xml:PlayerData[0].Name:42 maps/skirmishes/Savanna
 #: River.xml:PlayerData[0].Name:42 maps/skirmishes/Sicilia
-#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Siwa Oasis
-#: (2).xml:PlayerData[0].Name:40 maps/skirmishes/Sporades Islands
-#: (2).xml:PlayerData[0].Name:42 maps/skirmishes/Syria
-#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Team Oasis -
-#: 2v2.xml:PlayerData[0].Name:42 maps/skirmishes/Thessalian Plains
+#: (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
+#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:41 maps/skirmishes/Team
+#: Oasis - 2v2.xml:PlayerData[0].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Tuscan Acropolis
 #: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[0].Name:42 maps/skirmishes/Zagros Mountains
@@ -650,8 +650,7 @@ msgstr "Игрок 1"
 #: Britons.xml:PlayerData[1].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[1].Name:41 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[1].Name:42 maps/scenarios/Sandbox -
-#: Romans.xml:PlayerData[1].Name:42
-#: maps/scenarios/Sicilia_Nomad.xml:PlayerData[1].Name:35 maps/scenarios/Siwa
+#: Romans.xml:PlayerData[1].Name:42 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[1].Name:31 maps/scenarios/The Massacre of
 #: Delphi.xml:PlayerData[1].Name:41 maps/scenarios/Treasure
 #: Islands.xml:PlayerData[1].Name:41 maps/scenarios/Tropical
@@ -691,11 +690,12 @@ msgstr "Игрок 1"
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Sahel (4).xml:PlayerData[1].Name:42 maps/skirmishes/Savanna
 #: River.xml:PlayerData[1].Name:42 maps/skirmishes/Sicilia
-#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Siwa Oasis
-#: (2).xml:PlayerData[1].Name:40 maps/skirmishes/Sporades Islands
-#: (2).xml:PlayerData[1].Name:42 maps/skirmishes/Syria
-#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Team Oasis -
-#: 2v2.xml:PlayerData[1].Name:42 maps/skirmishes/Thessalian Plains
+#: (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
+#: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:41 maps/skirmishes/Team
+#: Oasis - 2v2.xml:PlayerData[1].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Tuscan Acropolis
 #: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[1].Name:42 maps/skirmishes/Zagros Mountains
@@ -1450,16 +1450,6 @@ msgstr "Корабли"
 msgid "Ship Formations"
 msgstr "Формации кораблей"
 
-#: maps/scenarios/Sicilia_Nomad.xml:Description:35
-msgid ""
-"The large Mediterranean island of Sicily is open for conquest.\n"
-"[color=\"orange\"]Tip: docks are useful dropsite when no territory[/color]"
-msgstr "Большой средиземноморский остров Сицилия открыт для завоевания.\n[color=\"orange\"]Совет: причалы могут быть полезны как точки сбора, когда не хватает территории[/color]"
-
-#: maps/scenarios/Sicilia_Nomad.xml:Name:35
-msgid "Sicilia Nomad (2)"
-msgstr "Сицилийский кочевник (2)"
-
 #: maps/scenarios/Siwa Oasis.xml:Description:31
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
@@ -2018,6 +2008,16 @@ msgstr "Большой средиземноморский остров Сици�
 #: maps/skirmishes/Sicilia (2).xml:Name:41
 msgid "Sicilia (2)"
 msgstr "Сицилия (2)"
+
+#: maps/skirmishes/Sicilia_Nomad.xml:Description:35
+msgid ""
+"The large Mediterranean island of Sicily is open for conquest.\n"
+"[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]"
+msgstr "Большой средиземноморский остров Сицилия открыт для завоевания.\n[color=\"orange\"]Подсказка: причалы можно использовать в качестве места высадки, если у Вас еще нет своей территории.[/color]"
+
+#: maps/skirmishes/Sicilia_Nomad.xml:Name:35
+msgid "Sicilia Nomad (2)"
+msgstr "Сицилийский кочевник (2)"
 
 #: maps/skirmishes/Siwa Oasis (2).xml:Description:40
 msgid ""

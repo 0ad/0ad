@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,7 +93,7 @@ public:
 	 */
 	static void LoadSkeletonDataFromXml(const char* xmlData, size_t xmlLength, std::string& xmlErrors);
 
-	std::auto_ptr<Skeleton_impl> m;
+	std::unique_ptr<Skeleton_impl> m;
 private:
 	Skeleton(Skeleton&);
 };

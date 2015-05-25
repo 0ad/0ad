@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -426,7 +426,7 @@ private:
 	
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 	// members have to be called before the runtime destructor.
-	std::auto_ptr<ScriptInterface_impl> m;
+	std::unique_ptr<ScriptInterface_impl> m;
 	
 	boost::rand48* m_rng;
 	std::map<std::string, CustomType> m_CustomObjectTypes;

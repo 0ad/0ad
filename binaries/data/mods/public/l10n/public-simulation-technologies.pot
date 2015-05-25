@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-04-23 21:06+0200\n"
-"PO-Revision-Date: 2015-04-23 21:06+0200\n"
+"POT-Creation-Date: 2015-05-25 03:32+0200\n"
+"PO-Revision-Date: 2015-05-25 03:32+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -95,7 +95,7 @@ msgstr ""
 #: simulation/data/technologies/armor_cav_chamfron.json:specificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.json:specificName.spart
 #: simulation/data/technologies/armor_cav_chamfron.json:specificName.athen
-msgid "Prometoopidion"
+msgid "Prometōpídion"
 msgstr ""
 
 #: simulation/data/technologies/armor_cav_02.json:description
@@ -198,7 +198,7 @@ msgstr ""
 #: simulation/data/technologies/armor_hero_01.json:specificName.sele
 #: simulation/data/technologies/armor_hero_01.json:specificName.athen
 #: simulation/data/technologies/armor_hero_01.json:specificName.mace
-msgid "Sidi̱ró Panoplía"
+msgid "Sidḗrea Panoplía"
 msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.json:specificName.rome
@@ -328,7 +328,7 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.json:specificName.athen
-msgid "Aspidiskè"
+msgid "Aspidískos"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:description
@@ -350,7 +350,7 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.json:specificName.athen
-msgid "Aspides"
+msgid "Aspís"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:description
@@ -369,11 +369,11 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.athen
-msgid "Chalkaspides"
+msgid "Khalkaspís"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:specificName.mace
-msgid "Chrysaspides"
+msgid "Khrysaspís"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:description
@@ -395,7 +395,7 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:specificName.athen
-msgid "Argyraspides"
+msgid "Argyraspís"
 msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.json:description
@@ -478,6 +478,29 @@ msgstr ""
 #: simulation/data/technologies/attack_cav_lance.json:specificName.sele
 #: simulation/data/technologies/attack_cav_lance.json:specificName.athen
 #: simulation/data/technologies/attack_cav_lance.json:specificName.mace
+msgid "Xystón"
+msgstr ""
+
+#: simulation/data/technologies/attack_cav_lance.json:specificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_01.json:specificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_02.json:specificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_01.json:specificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_02.json:specificName.rome
+msgid "Hasta"
+msgstr ""
+
+#: simulation/data/technologies/attack_cavalry_melee_01.json:description
+msgid "Training increases melee attack."
+msgstr ""
+
+#: simulation/data/technologies/attack_cavalry_melee_01.json:tooltip
+msgid "+20% melee cavalry attack."
+msgstr ""
+
+#: simulation/data/technologies/attack_cavalry_melee_01.json:genericName
+msgid "Close Combat Cavalry Training"
+msgstr ""
+
 #: simulation/data/technologies/attack_cavalry_melee_01.json:specificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.json:specificName.spart
 #: simulation/data/technologies/attack_cavalry_melee_01.json:specificName.sele
@@ -499,26 +522,6 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_02.json:specificName.athen
 #: simulation/data/technologies/attack_cavalry_ranged_02.json:specificName.mace
 msgid "Xyston"
-msgstr ""
-
-#: simulation/data/technologies/attack_cav_lance.json:specificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_01.json:specificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_02.json:specificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_01.json:specificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_02.json:specificName.rome
-msgid "Hasta"
-msgstr ""
-
-#: simulation/data/technologies/attack_cavalry_melee_01.json:description
-msgid "Training increases melee attack."
-msgstr ""
-
-#: simulation/data/technologies/attack_cavalry_melee_01.json:tooltip
-msgid "+20% melee cavalry attack."
-msgstr ""
-
-#: simulation/data/technologies/attack_cavalry_melee_01.json:genericName
-msgid "Close Combat Cavalry Training"
 msgstr ""
 
 #: simulation/data/technologies/attack_cavalry_melee_02.json:description
@@ -572,7 +575,7 @@ msgstr ""
 #: simulation/data/technologies/attack_champions_elite.json:specificName.sele
 #: simulation/data/technologies/attack_champions_elite.json:specificName.athen
 #: simulation/data/technologies/attack_champions_elite.json:specificName.mace
-msgid "Andreia"
+msgid "Andreía"
 msgstr ""
 
 #: simulation/data/technologies/attack_champions_elite.json:specificName.rome
@@ -675,7 +678,7 @@ msgstr ""
 #: simulation/data/technologies/attack_soldiers_will.json:specificName.mace
 #: simulation/data/technologies/attack_soldiers_will.json:specificName.spart
 #: simulation/data/technologies/attack_soldiers_will.json:specificName.athen
-msgid "Dynamis"
+msgid "Dýnamis"
 msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.json:description
@@ -757,7 +760,7 @@ msgstr ""
 #: simulation/data/technologies/attack_tower_watch.json:specificName.sele
 #: simulation/data/technologies/attack_tower_watch.json:specificName.athen
 #: simulation/data/technologies/attack_tower_watch.json:specificName.mace
-msgid "Nyktophylakes"
+msgid "Nyktophýlakes"
 msgstr ""
 
 #: simulation/data/technologies/attack_tower_watch.json:specificName.rome
@@ -911,7 +914,7 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_serfs.json:specificName.mace
 #: simulation/data/technologies/gather_mining_serfs.json:specificName.spart
 #: simulation/data/technologies/gather_mining_serfs.json:specificName.athen
-msgid "Heilotes"
+msgid "Heílōtes"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.json:tooltip
@@ -929,7 +932,7 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_servants.json:specificName.mace
 #: simulation/data/technologies/gather_mining_servants.json:specificName.spart
 #: simulation/data/technologies/gather_mining_servants.json:specificName.athen
-msgid "Douloi"
+msgid "Doûloi"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.json:description
@@ -974,7 +977,7 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_slaves.json:specificName.mace
 #: simulation/data/technologies/gather_mining_slaves.json:specificName.spart
 #: simulation/data/technologies/gather_mining_slaves.json:specificName.athen
-msgid "Andrapodon"
+msgid "Andrápoda"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.json:tooltip
@@ -1040,7 +1043,7 @@ msgstr ""
 #: simulation/data/technologies/heal_range_2.json:specificName.mace
 #: simulation/data/technologies/heal_range_2.json:specificName.spart
 #: simulation/data/technologies/heal_range_2.json:specificName.athen
-msgid "Akademia"
+msgid "Akadḗmeia"
 msgstr ""
 
 #: simulation/data/technologies/heal_rate.json:description
@@ -1060,7 +1063,7 @@ msgstr ""
 #: simulation/data/technologies/heal_rate.json:specificName.mace
 #: simulation/data/technologies/heal_rate.json:specificName.spart
 #: simulation/data/technologies/heal_rate.json:specificName.athen
-msgid "Sphagia"
+msgid "Sphágia"
 msgstr ""
 
 #: simulation/data/technologies/heal_rate_2.json:genericName
@@ -1155,7 +1158,7 @@ msgstr ""
 #: simulation/data/technologies/melee_inf_spearheads.json:specificName.mace
 #: simulation/data/technologies/melee_inf_spearheads.json:specificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.json:specificName.athen
-msgid "Siderénies Aichmés"
+msgid "Sidḗreai Aikhmaí"
 msgstr ""
 
 #: simulation/data/technologies/pair_cav_01.json:genericName
@@ -1267,7 +1270,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_generic.json:specificName.mace
 #: simulation/data/technologies/phase_city_generic.json:specificName.spart
 #: simulation/data/technologies/phase_city_generic.json:specificName.athen
-msgid "Megalopolis"
+msgid "Megalópolis"
 msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.json:description
@@ -1311,7 +1314,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.json:specificName.mace
 #: simulation/data/technologies/phase_town_generic.json:specificName.athen
 #: simulation/data/technologies/phase_town_generic.json:specificName.spart
-msgid "Komópolis"
+msgid "Kōmópolis"
 msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.json:description
@@ -1345,7 +1348,7 @@ msgid "Dining Hall"
 msgstr ""
 
 #: simulation/data/technologies/pop_civic_01.json:specificName.athen
-msgid "Tholos"
+msgid "Thólos"
 msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.json:description
@@ -1367,7 +1370,7 @@ msgid "Comitium"
 msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.json:specificName.athen
-msgid "Ekklesia"
+msgid "Ekklēsía"
 msgstr ""
 
 #: simulation/data/technologies/pop_house_01.json:description
@@ -1450,7 +1453,7 @@ msgstr ""
 #: simulation/data/technologies/ranged_inf_skirmishers.json:specificName.sele
 #: simulation/data/technologies/ranged_inf_skirmishers.json:specificName.athen
 #: simulation/data/technologies/ranged_inf_skirmishers.json:specificName.mace
-msgid "Ankyle"
+msgid "Himás"
 msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.json:specificName.rome
@@ -1640,7 +1643,7 @@ msgstr ""
 #: simulation/data/technologies/unlock_champion_units.json:specificName.mace
 #: simulation/data/technologies/unlock_champion_units.json:specificName.spart
 #: simulation/data/technologies/unlock_champion_units.json:specificName.athen
-msgid "Agèma"
+msgid "Ágēma"
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.json:specificName.rome
@@ -1662,7 +1665,7 @@ msgstr ""
 #: simulation/data/technologies/unlock_females_house.json:specificName.mace
 #: simulation/data/technologies/unlock_females_house.json:specificName.spart
 #: simulation/data/technologies/unlock_females_house.json:specificName.athen
-msgid "Thesmophoria"
+msgid "Thesmophória"
 msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.json:specificName.rome
@@ -1703,7 +1706,7 @@ msgstr ""
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.json:specificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.json:specificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.json:specificName.athen
-msgid "Metikoi"
+msgid "Zeugítai"
 msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.json:tooltip
@@ -1735,7 +1738,7 @@ msgstr ""
 #: simulation/data/technologies/upgrade_rank_elite_infantry.json:specificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.json:specificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.json:specificName.athen
-msgid "Zeugites"
+msgid "Pentakosiomédimnoi"
 msgstr ""
 
 #: simulation/data/technologies/vision_outpost.json:description
@@ -2086,7 +2089,7 @@ msgstr ""
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.json:specificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.json:specificName.spart
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.json:specificName.athen
-msgid "Doratismos"
+msgid "Doratismós"
 msgstr ""
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.json:description
@@ -2185,7 +2188,7 @@ msgstr ""
 #: simulation/data/technologies/hellenes/temp_special_hellenization.json:specificName.mace
 #: simulation/data/technologies/hellenes/temp_special_hellenization.json:specificName.athen
 #: simulation/data/technologies/hellenes/temp_special_hellenization.json:specificName.spart
-msgid "Exellinismós"
+msgid "Hellēnízein"
 msgstr ""
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.json:description

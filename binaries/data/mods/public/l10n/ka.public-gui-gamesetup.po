@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-04-02 09:54+0000\n"
+"POT-Creation-Date: 2015-05-09 23:50+0200\n"
+"PO-Revision-Date: 2015-05-23 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -93,177 +93,223 @@ msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "სასიკვდილო თამაში"
 
-#: gui/gamesetup/gamesetup.js:108
+#. Translation: Ceasefire.
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "No ceasefire"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "5 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "10 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "15 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "20 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "30 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "45 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "60 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
 msgstr "დაბრუნდი მთავარ მენიუში."
 
-#: gui/gamesetup/gamesetup.js:110
+#: gui/gamesetup/gamesetup.js:114
 msgid "Return to the lobby."
 msgstr "დაბრუნდი ვესტიბიულში"
 
-#: gui/gamesetup/gamesetup.js:138
+#: gui/gamesetup/gamesetup.js:142
 msgctxt "map"
 msgid "Skirmish"
 msgstr "შეტაკება"
 
-#: gui/gamesetup/gamesetup.js:138 gui/gamesetup/gamesetup.js:623
-#: gui/gamesetup/gamesetup.js:1313
+#: gui/gamesetup/gamesetup.js:142 gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:1368
 msgctxt "map"
 msgid "Random"
 msgstr "შემთხვევითი"
 
-#: gui/gamesetup/gamesetup.js:138
+#: gui/gamesetup/gamesetup.js:142
 msgid "Scenario"
 msgstr "სცენარი"
 
-#: gui/gamesetup/gamesetup.js:142 gui/gamesetup/gamesetup.js:1234
-#: gui/gamesetup/gamesetup.js:1295
+#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1284
+#: gui/gamesetup/gamesetup.js:1348
 msgid "Default"
 msgstr "საწყისი"
 
-#: gui/gamesetup/gamesetup.js:143
+#: gui/gamesetup/gamesetup.js:147
 msgid "Naval Maps"
 msgstr "საზღვაოსნო რუკები"
 
-#: gui/gamesetup/gamesetup.js:144
+#: gui/gamesetup/gamesetup.js:148
 msgid "Demo Maps"
 msgstr "სადემონსტრაციო რუკები"
 
-#: gui/gamesetup/gamesetup.js:145
+#: gui/gamesetup/gamesetup.js:149
 msgid "All Maps"
 msgstr "ყველა რუკა"
 
-#: gui/gamesetup/gamesetup.js:341
+#: gui/gamesetup/gamesetup.js:356
 msgctxt "team"
 msgid "None"
 msgstr "არცერთი"
 
-#: gui/gamesetup/gamesetup.js:557 gui/gamesetup/gamesetup.js:1378
+#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1433
 msgctxt "civilization"
 msgid "Random"
 msgstr "შემთხვევითი"
 
-#: gui/gamesetup/gamesetup.js:844 gui/gamesetup/gamesetup.js:978
+#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1009
 msgid "You"
 msgstr "შენ"
 
-#: gui/gamesetup/gamesetup.js:1061
+#: gui/gamesetup/gamesetup.js:1098
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1172
-#: gui/gamesetup/gamesetup.js:1224 gui/gamesetup/gamesetup.js:1225
-#: gui/gamesetup/gamesetup.js:1226 gui/gamesetup/gamesetup.js:1228
-#: gui/gamesetup/gamesetup.js:1262 gui/gamesetup/gamesetup.js:1263
-#: gui/gamesetup/gamesetup.js:1264 gui/gamesetup/gamesetup.js:1266
-#: gui/gamesetup/gamesetup.js:1296 gui/gamesetup/gamesetup.js:1297
-#: gui/gamesetup/gamesetup.js:1300
+#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
+#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
+#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
+#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
+#: gui/gamesetup/gamesetup.js:1353
 msgid "Yes"
 msgstr "დიახ"
 
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1172
-#: gui/gamesetup/gamesetup.js:1224 gui/gamesetup/gamesetup.js:1225
-#: gui/gamesetup/gamesetup.js:1226 gui/gamesetup/gamesetup.js:1228
-#: gui/gamesetup/gamesetup.js:1262 gui/gamesetup/gamesetup.js:1263
-#: gui/gamesetup/gamesetup.js:1264 gui/gamesetup/gamesetup.js:1266
-#: gui/gamesetup/gamesetup.js:1296 gui/gamesetup/gamesetup.js:1297
-#: gui/gamesetup/gamesetup.js:1298 gui/gamesetup/gamesetup.js:1300
+#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
+#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
+#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
+#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1353
 msgid "No"
 msgstr "არა"
 
-#: gui/gamesetup/gamesetup.js:1314
+#: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
+#: gui/gamesetup/gamesetup.js:1357
+msgid "Determined by scenario"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1369
 msgid "Randomly selects a map from the list"
 msgstr "სიიდან შემთხვევითად ნიშნავს რუკას"
 
-#: gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:1376
 msgid "Sorry, no description available."
 msgstr "ბოდიში, აღწერა არ არის ხელმისაწვდომი."
 
-#: gui/gamesetup/gamesetup.js:1324
+#: gui/gamesetup/gamesetup.js:1379
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] ""
 
-#: gui/gamesetup/gamesetup.js:1328 gui/gamesetup/gamesetup.xml:(caption):290
+#: gui/gamesetup/gamesetup.js:1383 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
 msgstr "გამარჯვების პირობა:"
 
-#: gui/gamesetup/gamesetup.js:1364
+#: gui/gamesetup/gamesetup.js:1419
 msgid "Loading..."
 msgstr "იტვირთება..."
 
-#: gui/gamesetup/gamesetup.js:1480
+#: gui/gamesetup/gamesetup.js:1535
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "ხი: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1485
+#: gui/gamesetup/gamesetup.js:1540
 msgid "Unassigned"
 msgstr "დაუნიშნავი"
 
-#: gui/gamesetup/gamesetup.js:1669 gui/gamesetup/gamesetup.js:1674
-#: gui/gamesetup/gamesetup.js:1692
+#: gui/gamesetup/gamesetup.js:1724 gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1747
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1669
+#: gui/gamesetup/gamesetup.js:1724
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s შემოერთდა"
 
-#: gui/gamesetup/gamesetup.js:1674
+#: gui/gamesetup/gamesetup.js:1729
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s გავიდა"
 
-#: gui/gamesetup/gamesetup.js:1679
+#: gui/gamesetup/gamesetup.js:1734
 #, javascript-format
 msgid "<%(username)s>"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1680
+#: gui/gamesetup/gamesetup.js:1735
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1686
+#: gui/gamesetup/gamesetup.js:1741
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s მზად არის!"
 
-#: gui/gamesetup/gamesetup.js:1688
+#: gui/gamesetup/gamesetup.js:1743
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s არ არის მზად."
 
-#: gui/gamesetup/gamesetup.js:1692
+#: gui/gamesetup/gamesetup.js:1747
 msgid "Game settings have been changed"
 msgstr "თამაშის გარემოცვები შეიცვალა"
 
-#: gui/gamesetup/gamesetup.js:1717
+#: gui/gamesetup/gamesetup.js:1772
 msgid "I'm not ready"
 msgstr "არ ვარ მზად"
 
-#: gui/gamesetup/gamesetup.js:1718
+#: gui/gamesetup/gamesetup.js:1773
 msgid "State that you are not ready to play."
 msgstr "მდგომარეობა, რომ შენ არ ხარ მზად თამაშისთვის."
 
-#: gui/gamesetup/gamesetup.js:1723 gui/gamesetup/gamesetup.js:1801
+#: gui/gamesetup/gamesetup.js:1778 gui/gamesetup/gamesetup.js:1856
 msgid "I'm ready!"
 msgstr "მზად ვარ!"
 
-#: gui/gamesetup/gamesetup.js:1724
+#: gui/gamesetup/gamesetup.js:1779
 msgid "State that you are ready to play!"
 msgstr "მდგომარეობა, რომ შენ მზად ხარ თამაშისთვის!"
 
-#: gui/gamesetup/gamesetup.js:1802
+#: gui/gamesetup/gamesetup.js:1857
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "მდგომარეობა, რომ თანახმა ხარ არსებული გარემოცვებით და მზად ხარ თამაშისთვის!"
 
-#: gui/gamesetup/gamesetup.js:1920
+#: gui/gamesetup/gamesetup.js:1975
 msgid "None"
 msgstr "არცერთი"
 
@@ -281,45 +327,61 @@ msgstr "მომსახურეს უკავშირდება..."
 msgid "Net message: %(message)s"
 msgstr "ქსელური შეტყობინება: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:136
+#: gui/gamesetup/gamesetup_mp.js:137
 msgid "Registering with server..."
 msgstr "მიმდინარეობს მომსახურესთან რეგისტრაცია..."
 
-#: gui/gamesetup/gamesetup_mp.js:142
+#: gui/gamesetup/gamesetup_mp.js:143
 msgid "Game has already started, rejoining..."
 msgstr "თამაში უკვე დაწყებულია, ვუერთდები..."
 
-#: gui/gamesetup/gamesetup_mp.js:188
+#: gui/gamesetup/gamesetup_mp.js:189
 msgid "Game name already in use."
 msgstr "თამაშის სახელი უკვე გამოყენებულია."
 
-#: gui/gamesetup/gamesetup_mp.js:249
+#: gui/gamesetup/gamesetup_mp.js:250
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s-ის თამაში"
 
-#: gui/gamesetup/victory_conditions/conquest.js:3
+#: gui/gamesetup/victory_conditions/conquest.js:2
 msgid "Conquest"
 msgstr "დაპყრობა"
 
-#: gui/gamesetup/victory_conditions/conquest.js:4
+#: gui/gamesetup/victory_conditions/conquest.js:3
 msgid "Defeat all opponents"
 msgstr "დაამარცხე ყველა მოწინააღმდეგე"
 
-#: gui/gamesetup/victory_conditions/wonder.js:3
+#: gui/gamesetup/victory_conditions/conquestStructures.js:2
+msgid "Conquest Structure"
+msgstr ""
+
+#: gui/gamesetup/victory_conditions/conquestStructures.js:3
+msgid "Destroy all structures of enemies"
+msgstr ""
+
+#: gui/gamesetup/victory_conditions/conquestUnits.js:2
+msgid "Conquest Units"
+msgstr ""
+
+#: gui/gamesetup/victory_conditions/conquestUnits.js:3
+msgid "Destroy all units of enemies"
+msgstr ""
+
+#: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
 msgstr "საოცრება"
 
-#: gui/gamesetup/victory_conditions/wonder.js:4
+#: gui/gamesetup/victory_conditions/wonder.js:3
 msgid "Build a wonder to win"
 msgstr "ააშენე საოცრება რომ მოიგო"
 
-#: gui/loading/loading.js:51
+#: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
 msgstr "იტვირთება \"%(map)s\""
 
-#: gui/loading/loading.js:55
+#: gui/loading/loading.js:53
 #, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "იქმნება \"%(map)s\""
@@ -342,7 +404,7 @@ msgid "Cancel"
 msgstr "მოშორება"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup.xml:(caption):386
+#: gui/gamesetup/gamesetup.xml:(caption):396
 msgid "OK"
 msgstr "კარგი"
 
@@ -423,31 +485,35 @@ msgstr "მოსახლეობის ზღვარი:"
 msgid "Starting Resources:"
 msgstr "საწყისი სახსრები:"
 
+#: gui/gamesetup/gamesetup.xml:(caption):320
+msgid "Ceasefire:"
+msgstr ""
+
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):320
+#: gui/gamesetup/gamesetup.xml:(caption):330
 msgid "Revealed Map:"
 msgstr "გამოჩენილი რუკა:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):330
+#: gui/gamesetup/gamesetup.xml:(caption):340
 msgid "Explored Map:"
 msgstr "დაზვერილი რუკა:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):340
+#: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):350
+#: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
 msgstr "ფიქსირებული ჯგუფები:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):360
+#: gui/gamesetup/gamesetup.xml:(caption):370
 msgid "Cheats:"
 msgstr "თაღლითობები:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):370
+#: gui/gamesetup/gamesetup.xml:(caption):380
 msgid "Rated Game:"
 msgstr "შეფასებული თამაში:"
 
@@ -515,35 +581,39 @@ msgstr "აირჩიე მოსახლეობის ზღვარი.
 msgid "Select the game's starting resources."
 msgstr "აირჩიე თამაშის საწყისი სახსრები."
 
+#: gui/gamesetup/gamesetup.xml:(tooltip):324
+msgid "Set time where no attacks are possible."
+msgstr ""
+
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):324
+#: gui/gamesetup/gamesetup.xml:(tooltip):334
 msgid "Toggle revealed map (see everything)."
 msgstr "გადაწონე გამოჩენილი რუკა (დაინახე ყველაფერი)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):334
+#: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Toggle explored map (see initial map)."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):344
+#: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):354
+#: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."
 msgstr "გადაწონე დახურული გუნდები."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):364
+#: gui/gamesetup/gamesetup.xml:(tooltip):374
 msgid "Toggle the usability of cheats."
 msgstr "გადაწონე თაღლითობების გამოყენებადობა."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):374
+#: gui/gamesetup/gamesetup.xml:(tooltip):384
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "გადაწონე თუ ეს თამაში იქნება შეფასებული მოწინავეების დაფაზე."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):387
+#: gui/gamesetup/gamesetup.xml:(tooltip):397
 msgid "Close more game options window"
 msgstr "დახურე მეტი თამაშის პარამეტრის ფანჯარა"
 

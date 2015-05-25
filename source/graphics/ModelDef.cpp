@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -270,7 +270,7 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 		throw PSERROR_File_InvalidVersion();
 	}
 
-	std::auto_ptr<CModelDef> mdef (new CModelDef());
+	std::unique_ptr<CModelDef> mdef (new CModelDef());
 	mdef->m_Name = name;
 
 	// now unpack everything 
