@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
-  <Footprint>
-    <Square width="64" depth="8"/>
-    <Height>9.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="64" depth="8"/>
-    <Active>true</Active>
-    <BlockMovement>false</BlockMovement>
-    <BlockPathfinding>false</BlockPathfinding>
-    <BlockFoundation>false</BlockFoundation>
-    <BlockConstruction>false</BlockConstruction>
-    <DisableBlockMovement>false</DisableBlockMovement>
-    <DisableBlockPathfinding>false</DisableBlockPathfinding>
-  </Obstruction>
+  <Capturable>
+    <CapturePoints>5</CapturePoints>
+    <RegenRate>0</RegenRate>
+    <GarrisonRegenRate>0</GarrisonRegenRate>
+  </Capturable>
   <Ownership/>
   <Position>
     <Altitude>0</Altitude>
@@ -30,16 +21,18 @@
       </Texture>
     </Overlay>
   </Selectable>
+  <TerritoryDecay>
+    <DecayRate>5</DecayRate>
+  </TerritoryDecay>
   <TerritoryInfluence>
-    <OverrideCost>0</OverrideCost>
     <Root>false</Root>
-    <Weight>0</Weight>
-    <Radius>0</Radius>
+    <Radius>32</Radius>
+    <Weight>30000</Weight>
   </TerritoryInfluence>
   <VisualActor>
     <SilhouetteDisplay>false</SilhouetteDisplay>
     <SilhouetteOccluder>true</SilhouetteOccluder>
-    <Actor>structures/hellenes/wall_medium.xml</Actor>
+    <Actor>props/special/common/waypoint_flag.xml</Actor>
     <VisibleInAtlasOnly>true</VisibleInAtlasOnly>
   </VisualActor>
 </Entity>

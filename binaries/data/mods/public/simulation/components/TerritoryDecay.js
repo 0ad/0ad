@@ -8,32 +8,39 @@ TerritoryDecay.prototype.Schema =
 TerritoryDecay.prototype.Init = function()
 {
 	this.decaying = false;
+	this.connectedNeighbours = [];
 };
 
 TerritoryDecay.prototype.IsConnected = function()
 {
+	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	this.connectedNeighbours.fill(0, 0, numPlayers);
+
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
 		return false;
 
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership)
-		return false;
+		return true; // something without ownership can't decay
 		
-	// Prevent special gaia buildings from decaying (e.g. fences, ruins)
-	if (cmpOwnership.GetOwner() == 0)
-		return true;
-
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-	if (!cmpTerritoryManager)
-		return false;
-
 	var pos = cmpPosition.GetPosition2D();
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
 	if (tileOwner != cmpOwnership.GetOwner())
+	{
+		this.connectedNeighbours[tileOwner] = 1;
 		return false;
+	}
 
-	return cmpTerritoryManager.IsConnected(pos.x, pos.y);
+	if (tileOwner == 0)
+		return true; // Gaia building on gaia ground -> don't decay
+
+	if (cmpTerritoryManager.IsConnected(pos.x, pos.y))
+		return true;
+
+	this.connectedNeighbours = cmpTerritoryManager.GetNeighbours(pos.x, pos.y, true);
+	return false;
 };
 
 TerritoryDecay.prototype.IsDecaying = function()
@@ -49,6 +56,15 @@ TerritoryDecay.prototype.GetDecayRate = function()
 		this.entity);
 };
 
+/**
+ * Get the number of connected bordering tiles to this region
+ * Only valid when this.IsDecaying()
+ */
+TerritoryDecay.prototype.GetConnectedNeighbours = function()
+{
+	return this.connectedNeighbours;
+};
+
 TerritoryDecay.prototype.UpdateDecayState = function()
 {
 	if (this.IsConnected())
@@ -58,7 +74,7 @@ TerritoryDecay.prototype.UpdateDecayState = function()
 	if (decaying === this.decaying)
 		return;
 	this.decaying = decaying;
-	Engine.PostMessage(this.entity, MT_TerritoryDecayChanged, { "entity": this.entity, "to": decaying });
+	Engine.PostMessage(this.entity, MT_TerritoryDecayChanged, { "entity": this.entity, "to": decaying, "rate": this.GetDecayRate() });
 };
 
 TerritoryDecay.prototype.OnTerritoriesChanged = function(msg)
@@ -73,7 +89,9 @@ TerritoryDecay.prototype.OnTerritoryPositionChanged = function(msg)
 
 TerritoryDecay.prototype.OnOwnershipChanged = function(msg)
 {
-	this.UpdateDecayState();
+	// if it influences the territory, wait until we get a TerritoriesChanged message
+	if (!Engine.QueryInterface(this.entity, IID_TerritoryInfluence))
+		this.UpdateDecayState();
 };
 
 Engine.RegisterComponentType(IID_TerritoryDecay, "TerritoryDecay", TerritoryDecay);

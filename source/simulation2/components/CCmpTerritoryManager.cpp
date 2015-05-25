@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,24 +25,19 @@
 #include "graphics/TextureManager.h"
 #include "graphics/TerritoryBoundary.h"
 #include "maths/MathUtil.h"
-#include "maths/Vector2D.h"
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 #include "renderer/TerrainOverlay.h"
 #include "simulation2/MessageTypes.h"
-#include "simulation2/components/ICmpObstruction.h"
-#include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
-#include "simulation2/components/ICmpSettlement.h"
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpTerritoryInfluence.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Grid.h"
-#include "simulation2/helpers/PriorityQueue.h"
 #include "simulation2/helpers/Render.h"
 
 class CCmpTerritoryManager;
@@ -207,10 +202,6 @@ public:
 	// ignore any others
 	void MakeDirtyIfRelevantEntity(entity_id_t ent)
 	{
-		CmpPtr<ICmpSettlement> cmpSettlement(GetSimContext(), ent);
-		if (cmpSettlement)
-			MakeDirty();
-
 		CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), ent);
 		if (cmpTerritoryInfluence)
 			MakeDirty();
@@ -224,6 +215,7 @@ public:
 	}
 
 	virtual player_id_t GetOwner(entity_pos_t x, entity_pos_t z);
+	virtual std::vector<u32> GetNeighbours(entity_pos_t x, entity_pos_t z, bool filterConnected);
 	virtual bool IsConnected(entity_pos_t x, entity_pos_t z);
 
 	// To support lazy updates of territory render data,
@@ -252,13 +244,6 @@ public:
 
 	void CalculateTerritories();
 
-	/**
-	 * Updates @p grid based on the obstruction shapes of all entities with
-	 * a TerritoryInfluence component. Grid cells are 0 if no influence,
-	 * or 1+c if the influence have cost c (assumed between 0 and 254).
-	 */
-	void RasteriseInfluences(CComponentManager::InterfaceList& infls, Grid<u8>& grid);
-
 	std::vector<STerritoryBoundary> ComputeBoundaries();
 
 	void UpdateBoundaryLines();
@@ -270,64 +255,51 @@ public:
 
 REGISTER_COMPONENT_TYPE(TerritoryManager)
 
-/*
-We compute the territory influence of an entity with a kind of best-first search,
-storing an 'open' list of tiles that have not yet been processed,
-then taking the highest-weight tile (closest to origin) and updating the weight
-of extending to each neighbour (based on radius-determining 'falloff' value,
-adjusted by terrain movement cost), and repeating until all tiles are processed.
-*/
-
-typedef PriorityQueueHeap<std::pair<u16, u16>, u32, std::greater<u32> > OpenQueue;
-
-static void ProcessNeighbour(u32 falloff, u16 i, u16 j, u32 pg, bool diagonal,
-		Grid<u32>& grid, OpenQueue& queue, const Grid<u8>& costGrid)
+// Tile data type, for easier accessing of coordinates
+struct Tile
 {
-	u32 dg = falloff * costGrid.get(i, j);
-	if (diagonal)
-		dg = (dg * 362) / 256;
+	Tile(u16 i, u16 j) : x(i), z(j) { }
+	u16 x, z;
+};
 
-	// Stop if new cost g=pg-dg is not better than previous value for that tile
-	// (arranged to avoid underflow if pg < dg)
-	if (pg <= grid.get(i, j) + dg)
-		return;
+// Floodfill templates that expand neighbours from a certain source onwards
+// (x, z) are the coordinates of the currently expanded tile
+// (nx, nz) are the coordinates of the current neighbour handled
+// The user of this floodfill should use "continue" on every neighbour that
+// shouldn't be expanded on its own. (without continue, an infinite loop will happen)
+# define FLOODFILL(i, j, code)\
+	do {\
+		const int NUM_NEIGHBOURS = 8;\
+		const int NEIGHBOURS_X[NUM_NEIGHBOURS] = {1,-1, 0, 0, 1,-1, 1,-1};\
+		const int NEIGHBOURS_Z[NUM_NEIGHBOURS] = {0, 0, 1,-1, 1,-1,-1, 1};\
+		std::queue<Tile> openTiles;\
+		openTiles.emplace(i, j);\
+		while (!openTiles.empty())\
+		{\
+			u16 x = openTiles.front().x;\
+			u16 z = openTiles.front().z;\
+			openTiles.pop();\
+			for (int n = 0; n < NUM_NEIGHBOURS; ++n)\
+			{\
+				u16 nx = x + NEIGHBOURS_X[n];\
+				u16 nz = z + NEIGHBOURS_Z[n];\
+				/* Check the bounds, underflow will cause the values to be big again */\
+				if (nx >= tilesW || nz >= tilesH)\
+					continue;\
+				code\
+				openTiles.emplace(nx, nz);\
+			}\
+		}\
+	}\
+	while (false)
 
-	u32 g = pg - dg; // cost to this tile = cost to predecessor - falloff from predecessor
-
-	grid.set(i, j, g);
-	OpenQueue::Item tile = { std::make_pair(i, j), g };
-	queue.push(tile);
-}
-
-static void FloodFill(Grid<u32>& grid, Grid<u8>& costGrid, OpenQueue& openTiles, u32 falloff)
+/**
+ * Compute the tile indexes on the grid nearest to a given point
+ */
+static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
 {
-	u16 tilesW = grid.m_W;
-	u16 tilesH = grid.m_H;
-
-	while (!openTiles.empty())
-	{
-		OpenQueue::Item tile = openTiles.pop();
-
-		// Process neighbours (if they're not off the edge of the map)
-		u16 x = tile.id.first;
-		u16 z = tile.id.second;
-		if (x > 0)
-			ProcessNeighbour(falloff, (u16)(x-1), z, tile.rank, false, grid, openTiles, costGrid);
-		if (x < tilesW-1)
-			ProcessNeighbour(falloff, (u16)(x+1), z, tile.rank, false, grid, openTiles, costGrid);
-		if (z > 0)
-			ProcessNeighbour(falloff, x, (u16)(z-1), tile.rank, false, grid, openTiles, costGrid);
-		if (z < tilesH-1)
-			ProcessNeighbour(falloff, x, (u16)(z+1), tile.rank, false, grid, openTiles, costGrid);
-		if (x > 0 && z > 0)
-			ProcessNeighbour(falloff, (u16)(x-1), (u16)(z-1), tile.rank, true, grid, openTiles, costGrid);
-		if (x > 0 && z < tilesH-1)
-			ProcessNeighbour(falloff, (u16)(x-1), (u16)(z+1), tile.rank, true, grid, openTiles, costGrid);
-		if (x < tilesW-1 && z > 0)
-			ProcessNeighbour(falloff, (u16)(x+1), (u16)(z-1), tile.rank, true, grid, openTiles, costGrid);
-		if (x < tilesW-1 && z < tilesH-1)
-			ProcessNeighbour(falloff, (u16)(x+1), (u16)(z+1), tile.rank, true, grid, openTiles, costGrid);
-	}
+	i = (u16)clamp((x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, w-1);
+	j = (u16)clamp((z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, h-1);
 }
 
 void CCmpTerritoryManager::CalculateTerritories()
@@ -344,254 +316,147 @@ void CCmpTerritoryManager::CalculateTerritories()
 	if (!cmpTerrain->IsLoaded())
 		return;
 
-	u16 tilesW = cmpTerrain->GetTilesPerSide();
-	u16 tilesH = cmpTerrain->GetTilesPerSide();
+	const u16 tilesW = cmpTerrain->GetTilesPerSide();
+	const u16 tilesH = tilesW;
 
 	m_Territories = new Grid<u8>(tilesW, tilesH);
-
-	// Compute terrain-passability-dependent costs per tile
-	Grid<u8> influenceGrid(tilesW, tilesH);
-
-	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-	ICmpPathfinder::pass_class_t passClassDefault = cmpPathfinder->GetPassabilityClass("default");
-	ICmpPathfinder::pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
-
-	const Grid<u16>& passGrid = cmpPathfinder->GetPassabilityGrid();
-	for (u16 j = 0; j < tilesH; ++j)
-	{
-		for (u16 i = 0; i < tilesW; ++i)
-		{
-			u16 g = passGrid.get(i, j);
-			u8 cost;
-			if (g & passClassUnrestricted)
-				cost = 255; // off the world; use maximum cost
-			else if (g & passClassDefault)
-				cost = m_ImpassableCost;
-			else
-				cost = 1;
-			influenceGrid.set(i, j, cost);
-		}
-	}
 
 	// Find all territory influence entities
 	CComponentManager::InterfaceList influences = GetSimContext().GetComponentManager().GetEntitiesWithInterface(IID_TerritoryInfluence);
 
-	// Allow influence entities to override the terrain costs
-	RasteriseInfluences(influences, influenceGrid);
-
 	// Split influence entities into per-player lists, ignoring any with invalid properties
 	std::map<player_id_t, std::vector<entity_id_t> > influenceEntities;
-	std::vector<entity_id_t> rootInfluenceEntities;
-	for (CComponentManager::InterfaceList::iterator it = influences.begin(); it != influences.end(); ++it)
+	for (const CComponentManager::InterfacePair& pair : influences)
 	{
-		// Ignore any with no weight or radius (to avoid divide-by-zero later)
-		ICmpTerritoryInfluence* cmpTerritoryInfluence = static_cast<ICmpTerritoryInfluence*>(it->second);
-		if (cmpTerritoryInfluence->GetWeight() == 0 || cmpTerritoryInfluence->GetRadius() == 0)
-			continue;
+		entity_id_t ent = pair.first;
 
-		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), it->first);
+		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), ent);
 		if (!cmpOwnership)
 			continue;
 
-		// Ignore Gaia and unassigned
+		// Ignore Gaia and unassigned or players we can't represent
 		player_id_t owner = cmpOwnership->GetOwner();
-		if (owner <= 0)
+		if (owner <= 0 || owner > TERRITORY_PLAYER_MASK)
 			continue;
 
-		// We only have so many bits to store tile ownership, so ignore unrepresentable players
-		if (owner > TERRITORY_PLAYER_MASK)
-			continue;
-
-		// Ignore if invalid position
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), it->first);
-		if (!cmpPosition || !cmpPosition->IsInWorld())
-			continue;
-
-		influenceEntities[owner].push_back(it->first);
-
-		if (cmpTerritoryInfluence->IsRoot())
-			rootInfluenceEntities.push_back(it->first);
+		influenceEntities[owner].push_back(ent);
 	}
 
-	// For each player, store the sum of influences on each tile
-	std::vector<std::pair<player_id_t, Grid<u32> > > playerGrids;
-	// TODO: this is a large waste of memory; we don't really need to store
-	// all the intermediate grids
+	// Store the overall best weight for comparison
+	Grid<u32> bestWeightGrid(tilesW, tilesH);
+	// store the root influences to mark territory as connected
+	std::vector<entity_id_t> rootInfluenceEntities;
 
-	for (std::map<player_id_t, std::vector<entity_id_t> >::iterator it = influenceEntities.begin(); it != influenceEntities.end(); ++it)
+	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+	if (!cmpPathfinder)
+		return;
+
+	ICmpPathfinder::pass_class_t passClassDefault = cmpPathfinder->GetPassabilityClass("default");
+	ICmpPathfinder::pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
+
+	const Grid<u16>& passibilityGrid = cmpPathfinder->GetPassabilityGrid();
+
+	for (const std::pair<player_id_t, std::vector<entity_id_t> >& pair : influenceEntities)
 	{
+		// entityGrid stores the weight for a single entity, and is reset per entity
+		Grid<u32> entityGrid(tilesW, tilesH);
+		// playerGrid stores the combined weight of all entities for this player
 		Grid<u32> playerGrid(tilesW, tilesH);
 
-		std::vector<entity_id_t>& ents = it->second;
-		for (std::vector<entity_id_t>::iterator eit = ents.begin(); eit != ents.end(); ++eit)
+		u8 owner = (u8)pair.first;
+		const std::vector<entity_id_t>& ents = pair.second;
+		// With 2^16 entities, we're safe against overflows as the weight is also limited to 2^16
+		ENSURE(ents.size() < 1 << 16); 
+		// Compute the influence map of the current entity, then add it to the player grid
+		for (entity_id_t ent : ents)
 		{
-			// Compute the influence map of the current entity, then add it to the player grid
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
+			if (!cmpPosition || !cmpPosition->IsInWorld())
+				continue;
 
-			Grid<u32> entityGrid(tilesW, tilesH);
-
-			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), *eit);
-			CFixedVector2D pos = cmpPosition->GetPosition2D();
-			u16 i = (u16)clamp((pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity(), 0, tilesW-1);
-			u16 j = (u16)clamp((pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity(), 0, tilesH-1);
-
-			CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), *eit);
+			CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), ent);
 			u32 weight = cmpTerritoryInfluence->GetWeight();
 			u32 radius = cmpTerritoryInfluence->GetRadius() / TERRAIN_TILE_SIZE;
-			u32 falloff = weight / radius; // earlier check for GetRadius() == 0 prevents divide-by-zero
+			if (weight == 0 || radius == 0)
+				continue;
+			u32 falloff = weight / radius;
 
-			// TODO: we should have some maximum value on weight, to avoid overflow
-			// when doing all the sums
+			CFixedVector2D pos = cmpPosition->GetPosition2D();
+			u16 i, j;
+			NearestTile(pos.X, pos.Y, i, j, tilesW, tilesH);
+
+			if (cmpTerritoryInfluence->IsRoot())
+				rootInfluenceEntities.push_back(ent);
 
 			// Initialise the tile under the entity
 			entityGrid.set(i, j, weight);
-			OpenQueue openTiles;
-			OpenQueue::Item tile = { std::make_pair((u16)i, (i16)j), weight };
-			openTiles.push(tile);
+			if (weight > bestWeightGrid.get(i, j))
+			{
+				bestWeightGrid.set(i, j, weight);
+				m_Territories->set(i, j, owner);
+			}
 
 			// Expand influences outwards
-			FloodFill(entityGrid, influenceGrid, openTiles, falloff);
+			FLOODFILL(i, j,
+				u32 dg = falloff;
+				// enlarge the falloff for unpassable tiles
+				u16 g = passibilityGrid.get(nx, nz);
+				if (g & passClassUnrestricted)
+					dg *= 255; // off the world; use maximum cost
+				else if (g & passClassDefault)
+					dg *= m_ImpassableCost;
 
-			// TODO: we should do a sparse grid and only add the non-zero regions, for performance
-			playerGrid.add(entityGrid);
-		}
+				// diagonal neighbour -> multiply with approx sqrt(2)
+				if (nx != x && nz != z)
+					dg = (dg * 362) / 256;
 
-		playerGrids.push_back(std::make_pair(it->first, playerGrid));
-	}
+				// Don't expand if new cost is not better than previous value for that tile
+				// (arranged to avoid underflow if entityGrid.get(x, z) < dg)
+				if (entityGrid.get(x, z) <= entityGrid.get(nx, nz) + dg)
+					continue;
 
-	// Set m_Territories to the player ID with the highest influence for each tile
-	for (u16 j = 0; j < tilesH; ++j)
-	{
-		for (u16 i = 0; i < tilesW; ++i)
-		{
-			u32 bestWeight = 0;
-			for (size_t k = 0; k < playerGrids.size(); ++k)
-			{
-				u32 w = playerGrids[k].second.get(i, j);
-				if (w > bestWeight)
+				// weight of this tile = weight of predecessor - falloff from predecessor
+				u32 newWeight = entityGrid.get(x, z) - dg;
+				u32 totalWeight = playerGrid.get(nx, nz) - entityGrid.get(nx, nz) + newWeight;
+				playerGrid.set(nx, nz, totalWeight);
+				entityGrid.set(nx, nz, newWeight);
+				// if this weight is better than the best thus far, set the owner
+				if (totalWeight > bestWeightGrid.get(nx, nz))
 				{
-					player_id_t id = playerGrids[k].first;
-					m_Territories->set(i, j, (u8)id);
-					bestWeight = w;
+					bestWeightGrid.set(nx, nz, totalWeight);
+					m_Territories->set(nx, nz, owner);
 				}
-			}
+			);
+
+			entityGrid.reset();
 		}
 	}
 
 	// Detect territories connected to a 'root' influence (typically a civ center)
 	// belonging to their player, and mark them with the connected flag
-	for (std::vector<entity_id_t>::iterator it = rootInfluenceEntities.begin(); it != rootInfluenceEntities.end(); ++it)
+	for (entity_id_t ent : rootInfluenceEntities)
 	{
 		// (These components must be valid else the entities wouldn't be added to this list)
-		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), *it);
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), *it);
+		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), ent);
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
-		u16 i = (u16)clamp((pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity(), 0, tilesW-1);
-		u16 j = (u16)clamp((pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity(), 0, tilesH-1);
+		u16 i, j;
+		NearestTile(pos.X, pos.Y, i, j, tilesW, tilesH);
 
 		u8 owner = (u8)cmpOwnership->GetOwner();
 
 		if (m_Territories->get(i, j) != owner)
 			continue;
 
-		// TODO: would be nice to refactor some of the many flood fill
-		// algorithms in this component
+		m_Territories->set(i, j, owner | TERRITORY_CONNECTED_MASK);
 
-		Grid<u8>& grid = *m_Territories;
-
-		u16 maxi = (u16)(grid.m_W-1);
-		u16 maxj = (u16)(grid.m_H-1);
-
-		std::vector<std::pair<u16, u16> > tileStack;
-
-#define MARK_AND_PUSH(i, j) STMT(grid.set(i, j, owner | TERRITORY_CONNECTED_MASK); tileStack.push_back(std::make_pair(i, j)); )
-
-		MARK_AND_PUSH(i, j);
-		while (!tileStack.empty())
-		{
-			int ti = tileStack.back().first;
-			int tj = tileStack.back().second;
-			tileStack.pop_back();
-
-			if (ti > 0 && grid.get(ti-1, tj) == owner)
-				MARK_AND_PUSH(ti-1, tj);
-			if (ti < maxi && grid.get(ti+1, tj) == owner)
-				MARK_AND_PUSH(ti+1, tj);
-			if (tj > 0 && grid.get(ti, tj-1) == owner)
-				MARK_AND_PUSH(ti, tj-1);
-			if (tj < maxj && grid.get(ti, tj+1) == owner)
-				MARK_AND_PUSH(ti, tj+1);
-
-			if (ti > 0 && tj > 0 && grid.get(ti-1, tj-1) == owner)
-				MARK_AND_PUSH(ti-1, tj-1);
-			if (ti > 0 && tj < maxj && grid.get(ti-1, tj+1) == owner)
-				MARK_AND_PUSH(ti-1, tj+1);
-			if (ti < maxi && tj > 0 && grid.get(ti+1, tj-1) == owner)
-				MARK_AND_PUSH(ti+1, tj-1);
-			if (ti < maxi && tj < maxj && grid.get(ti+1, tj+1) == owner)
-				MARK_AND_PUSH(ti+1, tj+1);
-		}
-
-#undef MARK_AND_PUSH
-	}
-}
-
-/**
- * Compute the tile indexes on the grid nearest to a given point
- */
-static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
-{
-	i = (u16)clamp((x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, w-1);
-	j = (u16)clamp((z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, h-1);
-}
-
-/**
- * Returns the position of the center of the given tile
- */
-static void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
-{
-	x = entity_pos_t::FromInt(i*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
-	z = entity_pos_t::FromInt(j*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
-}
-
-// TODO: would be nice not to duplicate those two functions from CCmpObstructionManager.cpp
-
-
-void CCmpTerritoryManager::RasteriseInfluences(CComponentManager::InterfaceList& infls, Grid<u8>& grid)
-{
-	for (CComponentManager::InterfaceList::iterator it = infls.begin(); it != infls.end(); ++it)
-	{
-		ICmpTerritoryInfluence* cmpTerritoryInfluence = static_cast<ICmpTerritoryInfluence*>(it->second);
-
-		i32 cost = cmpTerritoryInfluence->GetCost();
-		if (cost == -1)
-			continue;
-
-		CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), it->first);
-		if (!cmpObstruction)
-			continue;
-
-		ICmpObstructionManager::ObstructionSquare square;
-		if (!cmpObstruction->GetObstructionSquare(square))
-			continue;
-
-		CFixedVector2D halfSize(square.hw, square.hh);
-		CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(square.u, square.v, halfSize);
-
-		u16 i0, j0, i1, j1;
-		NearestTile(square.x - halfBound.X, square.z - halfBound.Y, i0, j0, grid.m_W, grid.m_H);
-		NearestTile(square.x + halfBound.X, square.z + halfBound.Y, i1, j1, grid.m_W, grid.m_H);
-		for (u16 j = j0; j <= j1; ++j)
-		{
-			for (u16 i = i0; i <= i1; ++i)
-			{
-				entity_pos_t x, z;
-				TileCenter(i, j, x, z);
-				if (Geometry::PointIsInSquare(CFixedVector2D(x - square.x, z - square.z), square.u, square.v, halfSize))
-					grid.set(i, j, (u8)cost);
-			}
-		}
-
+		FLOODFILL(i, j,
+			// Don't expand non-owner tiles, or tiles that already have a connected mask
+			if (m_Territories->get(nx, nz) != owner)
+				continue;
+			m_Territories->set(nx, nz, owner | TERRITORY_CONNECTED_MASK);
+		);
 	}
 }
 
@@ -722,6 +587,47 @@ player_id_t CCmpTerritoryManager::GetOwner(entity_pos_t x, entity_pos_t z)
 	return m_Territories->get(i, j) & TERRITORY_PLAYER_MASK;
 }
 
+std::vector<u32> CCmpTerritoryManager::GetNeighbours(entity_pos_t x, entity_pos_t z, bool filterConnected)
+{
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
+	if (!cmpPlayerManager)
+		return std::vector<u32>();
+
+	std::vector<u32> ret(cmpPlayerManager->GetNumPlayers(), 0);
+	CalculateTerritories();
+	if (!m_Territories)
+		return ret;
+
+	u16 i, j;
+	NearestTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
+
+	// calculate the neighbours
+	player_id_t thisOwner = m_Territories->get(i, j) & TERRITORY_PLAYER_MASK;
+
+	u16 tilesW = m_Territories->m_W;
+	u16 tilesH = m_Territories->m_H;
+
+	// use a flood-fill algorithm that fills up to the borders and remembers the owners
+	Grid<bool> markerGrid(tilesW, tilesH);
+	markerGrid.set(i, j, true);
+
+	FLOODFILL(i, j,
+		if (markerGrid.get(nx, nz))
+			continue;
+		// mark the tile as visited in any case
+		markerGrid.set(nx, nz, true);
+		int owner = m_Territories->get(nx, nz) & TERRITORY_PLAYER_MASK;
+		if (owner != thisOwner)
+		{
+			if (owner == 0 || !filterConnected || (m_Territories->get(nx, nz) & TERRITORY_CONNECTED_MASK) != 0)
+				ret[owner]++; // add player to the neighbour list when requested
+			continue; // don't expand non-owner tiles further
+		}
+	);
+
+	return ret;
+}
+
 bool CCmpTerritoryManager::IsConnected(entity_pos_t x, entity_pos_t z)
 {
 	u16 i, j;
@@ -762,3 +668,5 @@ void TerritoryOverlay::ProcessTile(ssize_t i, ssize_t j)
 	default: RenderTile(CColor(1, 1, 1, a), false); break;
 	}
 }
+
+#undef FOODFILL
