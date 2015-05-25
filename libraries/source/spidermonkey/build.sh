@@ -84,6 +84,10 @@ patch -p1 -i ../FixTraceLoggerFlushing.diff
 # It makes quite a big difference for performance.
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1046176
 patch -p1 -i ../FixForOfBailouts.diff
+
+# Fix build failures on GCC 5.1 and Clang 3.6
+patch -p1 -i ../FixBug1021171.diff
+patch -p1 -i ../FixBug1119228.diff
 cd ..
 
 # Clean up header files that may be left over by earlier versions of SpiderMonkey
