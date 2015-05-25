@@ -179,7 +179,7 @@
 //	void SaveStackFrameData(STACK_INFO stackInfo, uint nestingLevel);
 //	std::string StringifyCyclicJSON(jsval obj, bool indent);
 //
-//	std::auto_ptr<ThreadDebugger_impl> m;
+//	std::unique_ptr<ThreadDebugger_impl> m;
 //};
 //
 //#endif // INCLUDED_THREADDEBUGGER

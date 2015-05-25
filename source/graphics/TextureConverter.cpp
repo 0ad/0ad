@@ -124,7 +124,7 @@ CTextureConverter::SettingsFile* CTextureConverter::LoadSettings(const VfsPath& 
 		return NULL;
 	}
 
-	std::auto_ptr<SettingsFile> settings(new SettingsFile());
+	std::unique_ptr<SettingsFile> settings(new SettingsFile());
 
 	XERO_ITER_EL(root, child)
 	{
