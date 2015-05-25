@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-03-15 05:21+0100\n"
-"PO-Revision-Date: 2015-03-15 10:08+0000\n"
+"POT-Creation-Date: 2015-05-09 23:51+0200\n"
+"PO-Revision-Date: 2015-05-23 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -27,36 +27,36 @@ msgstr "Struttura Civile"
 msgid "Civic"
 msgstr "Civico"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:65
+#: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
 msgstr "Centro Cittadino"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:66
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Costruisci per acquisire ampie porzioni di territorio. Addestra cittadini. Guarnigione: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:74
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Centro Civico"
 
-#: simulation/templates/template_structure_civic_house.xml:31
+#: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
 msgstr "Aumenta il limite di popolazione."
 
-#: simulation/templates/template_structure_civic_house.xml:33
+#: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_economic_farmstead.xml:24
-#: simulation/templates/template_structure_economic_storehouse.xml:29
+#: simulation/templates/template_structure_economic_farmstead.xml:27
+#: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid "Village"
 msgstr "Villaggio"
 
+#: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_civic_house.xml:33
-#: simulation/templates/template_structure_civic_house.xml:30
 msgid "House"
 msgstr "Casa"
 
@@ -68,13 +68,13 @@ msgstr "Aura Curatrice"
 msgid "Heals nearby units at 1 HP per second."
 msgstr "Cura le unità vicine a 1 Punto Vita al secondo"
 
-#: simulation/templates/template_structure_civic_temple.xml:43
+#: simulation/templates/template_structure_civic_temple.xml:44
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
 msgstr "Addestra Guaritori. Presidia con 20 unità per curarle più velocemente (3 Punti Vita al secondo). Ricerca miglioramenti medici e religiosi."
 
-#: simulation/templates/template_structure_civic_temple.xml:44
+#: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:31
@@ -84,8 +84,8 @@ msgstr "Addestra Guaritori. Presidia con 20 unità per curarle più velocemente 
 msgid "Town"
 msgstr "Cittadina"
 
-#: simulation/templates/template_structure_civic_temple.xml:44
-#: simulation/templates/template_structure_civic_temple.xml:42
+#: simulation/templates/template_structure_civic_temple.xml:45
+#: simulation/templates/template_structure_civic_temple.xml:43
 msgid "Temple"
 msgstr "Tempio"
 
@@ -94,7 +94,7 @@ msgid "Defensive Structure"
 msgstr "Struttura Difensiva"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 msgid "Defensive"
 msgstr "Difensivo"
 
@@ -122,20 +122,20 @@ msgstr "Costruisci nei tuoi territori e in territori neutrali per esplorare aree
 msgid "Outpost"
 msgstr "Avamposto"
 
-#: simulation/templates/template_structure_defense_wall.xml:23
+#: simulation/templates/template_structure_defense_wall.xml:24
 msgid "Stone Wall"
 msgstr "Muro in Pietra"
 
-#: simulation/templates/template_structure_defense_wall.xml:24
+#: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Innalza mura intorno alla cittadina per difenderla."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:27
+#: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
 msgstr "Cancello Cittadino"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Consente l'accesso alla città. Può essere chiuso per impedire l'accesso."
@@ -158,11 +158,11 @@ msgstr "Segmenti lunghi di muro possono essere convertiti in cancelli."
 msgid "Convert Stone Wall into City Gate"
 msgstr "Converti Mura in Pietra in Portoni"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:49
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
 msgstr "Torretta Murale"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Lancia freccie. Presidia per difendere una città dagli attacchi."
 
@@ -179,12 +179,12 @@ msgstr "Struttura Economica"
 msgid "Economic"
 msgstr "Economici"
 
-#: simulation/templates/template_structure_economic_farmstead.xml:22
+#: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
 msgstr "Sito per le risorse alimentari. Ricerca miglioramenti per la raccolta alimentare."
 
+#: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
-#: simulation/templates/template_structure_economic_farmstead.xml:21
 msgid "Farmstead"
 msgstr "Fattoria"
 
@@ -200,14 +200,14 @@ msgstr "Crea unità commerciali per trattare con altri mercati. Barattare risors
 msgid "Market"
 msgstr "Mercato"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:22
+#: simulation/templates/template_structure_economic_storehouse.xml:25
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
 msgstr "Deposito per le risorse di legno, pietra e metallo. Ricerca migliorie per aumentare la raccolta di queste risorse."
 
-#: simulation/templates/template_structure_economic_storehouse.xml:29
-#: simulation/templates/template_structure_economic_storehouse.xml:21
+#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:24
 msgid "Storehouse"
 msgstr "Magazzino"
 
@@ -264,19 +264,19 @@ msgstr "Porto"
 msgid "Embassy"
 msgstr "Ambasciata"
 
-#: simulation/templates/template_structure_military_fortress.xml:55
+#: simulation/templates/template_structure_military_fortress.xml:58
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Addestra eroi, campioni e armi d'assedio. Ricerca migliorie per armi da assedio. Guarnigione: 20."
 
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 msgid "City"
 msgstr "Città"
 
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 #: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:54
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Fortress"
 msgstr "Fortezza"
 
@@ -299,12 +299,12 @@ msgstr "Alleva mandrie di animali per il cibo. Assegna qui gli animali domestici
 msgid "Corral"
 msgstr "Recinto"
 
+#: simulation/templates/template_structure_resource_field.xml:28
 #: simulation/templates/template_structure_resource_field.xml:27
-#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr "Campo"
 
-#: simulation/templates/template_structure_resource_field.xml:28
+#: simulation/templates/template_structure_resource_field.xml:29
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "Raccolta di verdure come cibo. Max raccoglitori: 5."
 
@@ -317,11 +317,11 @@ msgstr "Costruzioni Speciali"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Questo è un edificio speciale e unicamente per una particolare civiltà."
 
-#: simulation/templates/template_structure_wonder.xml:35
+#: simulation/templates/template_structure_wonder.xml:38
 msgid "Wonder"
 msgstr "Meraviglia"
 
-#: simulation/templates/template_structure_wonder.xml:36
+#: simulation/templates/template_structure_wonder.xml:39
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -605,18 +605,18 @@ msgstr "Bonus Agricoltura"
 msgid "Boosts nearby farming with +25%."
 msgstr "Incrementa le agricolture vicine di +25%."
 
-#: simulation/templates/structures/brit_rotarymill.xml:32
-#: simulation/templates/structures/gaul_rotarymill.xml:32
+#: simulation/templates/structures/brit_rotarymill.xml:33
+#: simulation/templates/structures/gaul_rotarymill.xml:33
 msgid "Rotary Mill"
 msgstr "Mulino a Rotazione"
 
-#: simulation/templates/structures/brit_rotarymill.xml:33
-#: simulation/templates/structures/gaul_rotarymill.xml:33
+#: simulation/templates/structures/brit_rotarymill.xml:34
+#: simulation/templates/structures/gaul_rotarymill.xml:34
 msgid "Melonas"
 msgstr "Melona"
 
-#: simulation/templates/structures/brit_rotarymill.xml:34
-#: simulation/templates/structures/gaul_rotarymill.xml:34
+#: simulation/templates/structures/brit_rotarymill.xml:35
+#: simulation/templates/structures/gaul_rotarymill.xml:35
 msgid "Increase nearby farming output +25%."
 msgstr "Incrementa le derrate delle agricolture vicine di +25%."
 
@@ -873,15 +873,15 @@ msgstr "Etxe"
 msgid "Arruga"
 msgstr "Arruga"
 
-#: simulation/templates/structures/iber_monument.xml:37
+#: simulation/templates/structures/iber_monument.xml:38
 msgid "Revered Monument"
 msgstr "Monumento Sacro"
 
-#: simulation/templates/structures/iber_monument.xml:38
+#: simulation/templates/structures/iber_monument.xml:39
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:40
+#: simulation/templates/structures/iber_monument.xml:41
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
@@ -1287,9 +1287,9 @@ msgstr "Faro"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
-"Build along the shore to reveal the shorelines over the entire map (Not "
-"implemented). Very large vision range: 180 meters."
-msgstr "Costruisci lungo la riva per rivelare le coste di tutta la mappa (Non implementato). Molto ampia la visuale: 180 metri."
+"Build along the shore to reveal the shorelines over the entire map. Very "
+"large vision range: 180 meters."
+msgstr ""
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"

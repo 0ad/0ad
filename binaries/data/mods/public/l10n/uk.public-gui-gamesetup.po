@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# AlexKR <alexkr.post@gmail.com>, 2015
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
@@ -11,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-04-02 02:49+0200\n"
-"PO-Revision-Date: 2015-04-02 09:54+0000\n"
+"POT-Creation-Date: 2015-05-09 23:50+0200\n"
+"PO-Revision-Date: 2015-05-23 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -97,94 +98,140 @@ msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "Битва на смерть"
 
-#: gui/gamesetup/gamesetup.js:108
+#. Translation: Ceasefire.
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "No ceasefire"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "5 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "10 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "15 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "20 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "30 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "45 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:18
+msgctxt "ceasefire"
+msgid "60 minutes"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
 msgstr "Повернутися до головного меню."
 
-#: gui/gamesetup/gamesetup.js:110
+#: gui/gamesetup/gamesetup.js:114
 msgid "Return to the lobby."
 msgstr "Повернутися до кімнати."
 
-#: gui/gamesetup/gamesetup.js:138
+#: gui/gamesetup/gamesetup.js:142
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Сутичка"
 
-#: gui/gamesetup/gamesetup.js:138 gui/gamesetup/gamesetup.js:623
-#: gui/gamesetup/gamesetup.js:1313
+#: gui/gamesetup/gamesetup.js:142 gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:1368
 msgctxt "map"
 msgid "Random"
 msgstr "Випадково"
 
-#: gui/gamesetup/gamesetup.js:138
+#: gui/gamesetup/gamesetup.js:142
 msgid "Scenario"
 msgstr "Сценарій"
 
-#: gui/gamesetup/gamesetup.js:142 gui/gamesetup/gamesetup.js:1234
-#: gui/gamesetup/gamesetup.js:1295
+#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1284
+#: gui/gamesetup/gamesetup.js:1348
 msgid "Default"
 msgstr "Заумовчуванням"
 
-#: gui/gamesetup/gamesetup.js:143
+#: gui/gamesetup/gamesetup.js:147
 msgid "Naval Maps"
 msgstr "Морські мапи"
 
-#: gui/gamesetup/gamesetup.js:144
+#: gui/gamesetup/gamesetup.js:148
 msgid "Demo Maps"
 msgstr "Демо мапи"
 
-#: gui/gamesetup/gamesetup.js:145
+#: gui/gamesetup/gamesetup.js:149
 msgid "All Maps"
 msgstr "Всі мапи"
 
-#: gui/gamesetup/gamesetup.js:341
+#: gui/gamesetup/gamesetup.js:356
 msgctxt "team"
 msgid "None"
 msgstr "Нема"
 
-#: gui/gamesetup/gamesetup.js:557 gui/gamesetup/gamesetup.js:1378
+#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1433
 msgctxt "civilization"
 msgid "Random"
 msgstr "Випадково"
 
-#: gui/gamesetup/gamesetup.js:844 gui/gamesetup/gamesetup.js:978
+#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1009
 msgid "You"
 msgstr "Ви"
 
-#: gui/gamesetup/gamesetup.js:1061
+#: gui/gamesetup/gamesetup.js:1098
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1172
-#: gui/gamesetup/gamesetup.js:1224 gui/gamesetup/gamesetup.js:1225
-#: gui/gamesetup/gamesetup.js:1226 gui/gamesetup/gamesetup.js:1228
-#: gui/gamesetup/gamesetup.js:1262 gui/gamesetup/gamesetup.js:1263
-#: gui/gamesetup/gamesetup.js:1264 gui/gamesetup/gamesetup.js:1266
-#: gui/gamesetup/gamesetup.js:1296 gui/gamesetup/gamesetup.js:1297
-#: gui/gamesetup/gamesetup.js:1300
+#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
+#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
+#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
+#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
+#: gui/gamesetup/gamesetup.js:1353
 msgid "Yes"
 msgstr "Так"
 
-#: gui/gamesetup/gamesetup.js:1167 gui/gamesetup/gamesetup.js:1172
-#: gui/gamesetup/gamesetup.js:1224 gui/gamesetup/gamesetup.js:1225
-#: gui/gamesetup/gamesetup.js:1226 gui/gamesetup/gamesetup.js:1228
-#: gui/gamesetup/gamesetup.js:1262 gui/gamesetup/gamesetup.js:1263
-#: gui/gamesetup/gamesetup.js:1264 gui/gamesetup/gamesetup.js:1266
-#: gui/gamesetup/gamesetup.js:1296 gui/gamesetup/gamesetup.js:1297
-#: gui/gamesetup/gamesetup.js:1298 gui/gamesetup/gamesetup.js:1300
+#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
+#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
+#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
+#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1353
 msgid "No"
 msgstr "Ні"
 
-#: gui/gamesetup/gamesetup.js:1314
+#: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
+#: gui/gamesetup/gamesetup.js:1357
+msgid "Determined by scenario"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1369
 msgid "Randomly selects a map from the list"
 msgstr "Вибрати випадкову мапу зі списку"
 
-#: gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:1376
 msgid "Sorry, no description available."
 msgstr "Вибачте, немає опису"
 
-#: gui/gamesetup/gamesetup.js:1324
+#: gui/gamesetup/gamesetup.js:1379
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -192,84 +239,84 @@ msgstr[0] "%(number)s гравець"
 msgstr[1] "%(number)s гравців"
 msgstr[2] "%(number)s гравці"
 
-#: gui/gamesetup/gamesetup.js:1328 gui/gamesetup/gamesetup.xml:(caption):290
+#: gui/gamesetup/gamesetup.js:1383 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
 msgstr "Умови перемоги:"
 
-#: gui/gamesetup/gamesetup.js:1364
+#: gui/gamesetup/gamesetup.js:1419
 msgid "Loading..."
 msgstr "Завантаження..."
 
-#: gui/gamesetup/gamesetup.js:1480
+#: gui/gamesetup/gamesetup.js:1535
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "ШІ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1485
+#: gui/gamesetup/gamesetup.js:1540
 msgid "Unassigned"
 msgstr "Непризначено"
 
-#: gui/gamesetup/gamesetup.js:1669 gui/gamesetup/gamesetup.js:1674
-#: gui/gamesetup/gamesetup.js:1692
+#: gui/gamesetup/gamesetup.js:1724 gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1747
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1669
+#: gui/gamesetup/gamesetup.js:1724
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s приєднався"
 
-#: gui/gamesetup/gamesetup.js:1674
+#: gui/gamesetup/gamesetup.js:1729
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s вийшов"
 
-#: gui/gamesetup/gamesetup.js:1679
+#: gui/gamesetup/gamesetup.js:1734
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1680
+#: gui/gamesetup/gamesetup.js:1735
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1686
+#: gui/gamesetup/gamesetup.js:1741
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s готовий!"
 
-#: gui/gamesetup/gamesetup.js:1688
+#: gui/gamesetup/gamesetup.js:1743
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s не готовий."
 
-#: gui/gamesetup/gamesetup.js:1692
+#: gui/gamesetup/gamesetup.js:1747
 msgid "Game settings have been changed"
 msgstr "Ігрові настройки були змінені"
 
-#: gui/gamesetup/gamesetup.js:1717
+#: gui/gamesetup/gamesetup.js:1772
 msgid "I'm not ready"
 msgstr "Я не готовий"
 
-#: gui/gamesetup/gamesetup.js:1718
+#: gui/gamesetup/gamesetup.js:1773
 msgid "State that you are not ready to play."
 msgstr "Виберіть якщо не готові грати"
 
-#: gui/gamesetup/gamesetup.js:1723 gui/gamesetup/gamesetup.js:1801
+#: gui/gamesetup/gamesetup.js:1778 gui/gamesetup/gamesetup.js:1856
 msgid "I'm ready!"
 msgstr "Я готовий!"
 
-#: gui/gamesetup/gamesetup.js:1724
+#: gui/gamesetup/gamesetup.js:1779
 msgid "State that you are ready to play!"
 msgstr "Виберіть якщо ви готові грати!"
 
-#: gui/gamesetup/gamesetup.js:1802
+#: gui/gamesetup/gamesetup.js:1857
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Виберіть якщо ви приймаєте поточні настройки та готові грати!"
 
-#: gui/gamesetup/gamesetup.js:1920
+#: gui/gamesetup/gamesetup.js:1975
 msgid "None"
 msgstr "Нема"
 
@@ -287,45 +334,61 @@ msgstr "Підключення до сервера..."
 msgid "Net message: %(message)s"
 msgstr "Net повідомлення: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:136
+#: gui/gamesetup/gamesetup_mp.js:137
 msgid "Registering with server..."
 msgstr "Реєстрація на сервері ..."
 
-#: gui/gamesetup/gamesetup_mp.js:142
+#: gui/gamesetup/gamesetup_mp.js:143
 msgid "Game has already started, rejoining..."
 msgstr "Гра вже запущена, перезайдіть..."
 
-#: gui/gamesetup/gamesetup_mp.js:188
+#: gui/gamesetup/gamesetup_mp.js:189
 msgid "Game name already in use."
 msgstr "Назва гри вже використовується."
 
-#: gui/gamesetup/gamesetup_mp.js:249
+#: gui/gamesetup/gamesetup_mp.js:250
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "гра гравця %(playername)s"
 
-#: gui/gamesetup/victory_conditions/conquest.js:3
+#: gui/gamesetup/victory_conditions/conquest.js:2
 msgid "Conquest"
 msgstr "Завоювання"
 
-#: gui/gamesetup/victory_conditions/conquest.js:4
+#: gui/gamesetup/victory_conditions/conquest.js:3
 msgid "Defeat all opponents"
 msgstr "Розтрощи всіх противників"
 
-#: gui/gamesetup/victory_conditions/wonder.js:3
+#: gui/gamesetup/victory_conditions/conquestStructures.js:2
+msgid "Conquest Structure"
+msgstr ""
+
+#: gui/gamesetup/victory_conditions/conquestStructures.js:3
+msgid "Destroy all structures of enemies"
+msgstr ""
+
+#: gui/gamesetup/victory_conditions/conquestUnits.js:2
+msgid "Conquest Units"
+msgstr ""
+
+#: gui/gamesetup/victory_conditions/conquestUnits.js:3
+msgid "Destroy all units of enemies"
+msgstr ""
+
+#: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
 msgstr "Диво світу"
 
-#: gui/gamesetup/victory_conditions/wonder.js:4
+#: gui/gamesetup/victory_conditions/wonder.js:3
 msgid "Build a wonder to win"
 msgstr "Побудувати диво світу для перемоги"
 
-#: gui/loading/loading.js:51
+#: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
 msgstr "Завантаження “%(map)s”"
 
-#: gui/loading/loading.js:55
+#: gui/loading/loading.js:53
 #, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "Генерація “%(map)s”"
@@ -348,7 +411,7 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup.xml:(caption):386
+#: gui/gamesetup/gamesetup.xml:(caption):396
 msgid "OK"
 msgstr "ОК"
 
@@ -429,31 +492,35 @@ msgstr "Ліміт населення:"
 msgid "Starting Resources:"
 msgstr "Початкові ресурси:"
 
+#: gui/gamesetup/gamesetup.xml:(caption):320
+msgid "Ceasefire:"
+msgstr ""
+
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):320
+#: gui/gamesetup/gamesetup.xml:(caption):330
 msgid "Revealed Map:"
 msgstr "Виявлено мапи:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):330
+#: gui/gamesetup/gamesetup.xml:(caption):340
 msgid "Explored Map:"
 msgstr "Розвідано мапи:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):340
+#: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):350
+#: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
 msgstr "Замкнені команди:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):360
+#: gui/gamesetup/gamesetup.xml:(caption):370
 msgid "Cheats:"
 msgstr "Коди:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):370
+#: gui/gamesetup/gamesetup.xml:(caption):380
 msgid "Rated Game:"
 msgstr "Оцінка гри:"
 
@@ -521,35 +588,39 @@ msgstr "Виберіть ліміт населення."
 msgid "Select the game's starting resources."
 msgstr "Виберіть початкові ресурси."
 
+#: gui/gamesetup/gamesetup.xml:(tooltip):324
+msgid "Set time where no attacks are possible."
+msgstr ""
+
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):324
+#: gui/gamesetup/gamesetup.xml:(tooltip):334
 msgid "Toggle revealed map (see everything)."
 msgstr "Перемкнути виявлену мапу (видно все)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):334
+#: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Toggle explored map (see initial map)."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):344
+#: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):354
+#: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."
 msgstr "Перемкнути замкнуті команди."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):364
+#: gui/gamesetup/gamesetup.xml:(tooltip):374
 msgid "Toggle the usability of cheats."
 msgstr "Перемкнути можливість використання кодів."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):374
+#: gui/gamesetup/gamesetup.xml:(tooltip):384
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Перемкнути, якщо гра буде оцінена для дошки пошани."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):387
+#: gui/gamesetup/gamesetup.xml:(tooltip):397
 msgid "Close more game options window"
 msgstr "Закрити вікно додаткових опцій"
 
@@ -725,7 +796,7 @@ msgstr ""
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"Якщо б я не був Александром, я хотів би бути Діогеном.\" - Александр Македонський"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
@@ -890,15 +961,15 @@ msgstr ""
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Прийшов, побачив, переміг.\" - Гай Юлій Цезар"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Люди охоче вірять у те, у що хочуть вірити.\" - Гай Юлій Цезар"
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr "\"Жереб кинуто\" - Гай Юлій Цезарь"
+msgstr "\"Жереб кинуто.\" - Гай Юлій Цезарь"
 
 #: gui/text/quotes.txt:61
 msgid ""
@@ -1177,11 +1248,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr ""
+msgstr "\"Не можна двічі увійти в одну й ту ж річку.\" - Геракліт"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
-msgstr ""
+msgstr "\"Характер - це доля.\" - Геракліт"
 
 #: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
@@ -1427,7 +1498,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
-msgstr ""
+msgstr "\"Сила - це близький сусід необхідності.\" - Піфагор"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"

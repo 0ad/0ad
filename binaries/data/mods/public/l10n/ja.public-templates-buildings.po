@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-03-15 05:21+0100\n"
-"PO-Revision-Date: 2015-05-11 02:40+0000\n"
-"Last-Translator: naoki yoshida <oimotanaka1122@gmail.com>\n"
+"POT-Creation-Date: 2015-05-09 23:51+0200\n"
+"PO-Revision-Date: 2015-05-23 08:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,36 +27,36 @@ msgstr "民生施設"
 msgid "Civic"
 msgstr "民生"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:65
+#: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
 msgstr "町の中心"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:66
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "広い領土を獲得するために建設します。市民を養成します。駐屯定員：20。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:74
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "町の中心"
 
-#: simulation/templates/template_structure_civic_house.xml:31
+#: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
 msgstr "人口上限を増加します。"
 
-#: simulation/templates/template_structure_civic_house.xml:33
+#: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_economic_farmstead.xml:24
-#: simulation/templates/template_structure_economic_storehouse.xml:29
+#: simulation/templates/template_structure_economic_farmstead.xml:27
+#: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid "Village"
 msgstr "村"
 
+#: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_civic_house.xml:33
-#: simulation/templates/template_structure_civic_house.xml:30
 msgid "House"
 msgstr "家"
 
@@ -68,13 +68,13 @@ msgstr "治療オーラ"
 msgid "Heals nearby units at 1 HP per second."
 msgstr "近辺のユニットの耐久力が毎秒1回復します。"
 
-#: simulation/templates/template_structure_civic_temple.xml:43
+#: simulation/templates/template_structure_civic_temple.xml:44
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
 msgstr "治療者を養成します。20ユニットまで駐屯させて、速く治療できます（3 HP毎秒）。治療と宗教の改良の研究をします。"
 
-#: simulation/templates/template_structure_civic_temple.xml:44
+#: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:31
@@ -84,8 +84,8 @@ msgstr "治療者を養成します。20ユニットまで駐屯させて、速�
 msgid "Town"
 msgstr "町"
 
-#: simulation/templates/template_structure_civic_temple.xml:44
-#: simulation/templates/template_structure_civic_temple.xml:42
+#: simulation/templates/template_structure_civic_temple.xml:45
+#: simulation/templates/template_structure_civic_temple.xml:43
 msgid "Temple"
 msgstr "神殿"
 
@@ -94,7 +94,7 @@ msgid "Defensive Structure"
 msgstr "防衛施設"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 msgid "Defensive"
 msgstr "防衛優先"
 
@@ -122,20 +122,20 @@ msgstr "自領内か中立地帯に建てて一帯を偵察します。中立地
 msgid "Outpost"
 msgstr "前哨地"
 
-#: simulation/templates/template_structure_defense_wall.xml:23
+#: simulation/templates/template_structure_defense_wall.xml:24
 msgid "Stone Wall"
 msgstr "石壁"
 
-#: simulation/templates/template_structure_defense_wall.xml:24
+#: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "町を囲んで守りを固めることができます。"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:27
+#: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
 msgstr "城門"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "ユニットが城壁を通り抜けられるようにします。門を閉じて通行を妨げることができます。"
@@ -158,11 +158,11 @@ msgstr "壁の長い区画は門に改築することができます。"
 msgid "Convert Stone Wall into City Gate"
 msgstr "石の壁を城門に改築"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:49
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
 msgstr "城壁のやぐら"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "矢を放ちます。攻撃者から町の壁を守るために駐屯します。"
 
@@ -179,12 +179,12 @@ msgstr "経済施設"
 msgid "Economic"
 msgstr "経済施設"
 
-#: simulation/templates/template_structure_economic_farmstead.xml:22
+#: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
 msgstr "食料の回収場所です。食料を効率的に採集するための研究が行えます。"
 
+#: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
-#: simulation/templates/template_structure_economic_farmstead.xml:21
 msgid "Farmstead"
 msgstr "納屋"
 
@@ -200,14 +200,14 @@ msgstr "商人ユニットを養成し、他の市場との間で交易します
 msgid "Market"
 msgstr "市場"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:22
+#: simulation/templates/template_structure_economic_storehouse.xml:25
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
 msgstr "木材、石材、金属の回収場所です。これらの資源を効率的に採集するための研究が行えます。"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:29
-#: simulation/templates/template_structure_economic_storehouse.xml:21
+#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:24
 msgid "Storehouse"
 msgstr "倉庫"
 
@@ -264,19 +264,19 @@ msgstr "港"
 msgid "Embassy"
 msgstr "大使館"
 
-#: simulation/templates/template_structure_military_fortress.xml:55
+#: simulation/templates/template_structure_military_fortress.xml:58
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "英雄、チャンピオンの養成と攻城兵器の建造をします。攻城兵器の改良を研究します。駐屯定員：20。"
 
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 msgid "City"
 msgstr "都市"
 
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 #: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:54
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Fortress"
 msgstr "要塞"
 
@@ -299,12 +299,12 @@ msgstr "食用の家畜を育てます。ここへ家畜を割り当てること
 msgid "Corral"
 msgstr "家畜小屋"
 
+#: simulation/templates/template_structure_resource_field.xml:28
 #: simulation/templates/template_structure_resource_field.xml:27
-#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr "畑"
 
-#: simulation/templates/template_structure_resource_field.xml:28
+#: simulation/templates/template_structure_resource_field.xml:29
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "農産物を収穫して食料にします。最大採集人数：5。"
 
@@ -317,11 +317,11 @@ msgstr "特有の建物"
 msgid "This is a special building unique to a particular civilization."
 msgstr "これは特定の文明に特有の建造物です。"
 
-#: simulation/templates/template_structure_wonder.xml:35
+#: simulation/templates/template_structure_wonder.xml:38
 msgid "Wonder"
 msgstr "象徴"
 
-#: simulation/templates/template_structure_wonder.xml:36
+#: simulation/templates/template_structure_wonder.xml:39
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -605,18 +605,18 @@ msgstr "農耕ボーナス"
 msgid "Boosts nearby farming with +25%."
 msgstr "付近の農耕効率を25%改善します。"
 
-#: simulation/templates/structures/brit_rotarymill.xml:32
-#: simulation/templates/structures/gaul_rotarymill.xml:32
+#: simulation/templates/structures/brit_rotarymill.xml:33
+#: simulation/templates/structures/gaul_rotarymill.xml:33
 msgid "Rotary Mill"
 msgstr "回転式製粉所"
 
-#: simulation/templates/structures/brit_rotarymill.xml:33
-#: simulation/templates/structures/gaul_rotarymill.xml:33
+#: simulation/templates/structures/brit_rotarymill.xml:34
+#: simulation/templates/structures/gaul_rotarymill.xml:34
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_rotarymill.xml:34
-#: simulation/templates/structures/gaul_rotarymill.xml:34
+#: simulation/templates/structures/brit_rotarymill.xml:35
+#: simulation/templates/structures/gaul_rotarymill.xml:35
 msgid "Increase nearby farming output +25%."
 msgstr "付近の農耕効率を25%改善します。"
 
@@ -873,15 +873,15 @@ msgstr "Etxe"
 msgid "Arruga"
 msgstr "Arruga"
 
-#: simulation/templates/structures/iber_monument.xml:37
+#: simulation/templates/structures/iber_monument.xml:38
 msgid "Revered Monument"
 msgstr "神像"
 
-#: simulation/templates/structures/iber_monument.xml:38
+#: simulation/templates/structures/iber_monument.xml:39
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:40
+#: simulation/templates/structures/iber_monument.xml:41
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
@@ -1287,9 +1287,9 @@ msgstr "Pharos"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
-"Build along the shore to reveal the shorelines over the entire map (Not "
-"implemented). Very large vision range: 180 meters."
-msgstr "海岸沿いに建設することで、全マップの海岸線が表示されます（未実装）。非常に見通しが長く、180メートルあります。"
+"Build along the shore to reveal the shorelines over the entire map. Very "
+"large vision range: 180 meters."
+msgstr ""
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"

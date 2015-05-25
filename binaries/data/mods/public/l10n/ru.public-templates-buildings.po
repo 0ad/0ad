@@ -15,15 +15,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-03-15 05:21+0100\n"
-"PO-Revision-Date: 2015-04-30 21:13+0000\n"
+"POT-Creation-Date: 2015-05-09 23:51+0200\n"
+"PO-Revision-Date: 2015-05-23 13:01+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
@@ -33,36 +33,36 @@ msgstr "Гражданское здание"
 msgid "Civic"
 msgstr "Гражданский"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:65
+#: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
 msgstr "Городской центр"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:66
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Стройте, чтобы получить больше участков территории. Позволяет обучать горожан. Гарнизон: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:74
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Городской Центр"
 
-#: simulation/templates/template_structure_civic_house.xml:31
+#: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
 msgstr "Дом увеличивает предел населения."
 
-#: simulation/templates/template_structure_civic_house.xml:33
+#: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_economic_farmstead.xml:24
-#: simulation/templates/template_structure_economic_storehouse.xml:29
+#: simulation/templates/template_structure_economic_farmstead.xml:27
+#: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid "Village"
 msgstr "Деревня"
 
+#: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_civic_house.xml:33
-#: simulation/templates/template_structure_civic_house.xml:30
 msgid "House"
 msgstr "Дом"
 
@@ -74,13 +74,13 @@ msgstr "Аура исцеления"
 msgid "Heals nearby units at 1 HP per second."
 msgstr "Исцеляет ближайших юнитов со скоростью 1 единица здоровья в секунду."
 
-#: simulation/templates/template_structure_civic_temple.xml:43
+#: simulation/templates/template_structure_civic_temple.xml:44
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
 msgstr "Позволяет обучать целителей и исследовать технологии лечения и религии. Можно разместить до 20 юнитов для быстрого лечения (3 пункта здоровья в секунду)."
 
-#: simulation/templates/template_structure_civic_temple.xml:44
+#: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:31
@@ -90,8 +90,8 @@ msgstr "Позволяет обучать целителей и исследов
 msgid "Town"
 msgstr "Город"
 
-#: simulation/templates/template_structure_civic_temple.xml:44
-#: simulation/templates/template_structure_civic_temple.xml:42
+#: simulation/templates/template_structure_civic_temple.xml:45
+#: simulation/templates/template_structure_civic_temple.xml:43
 msgid "Temple"
 msgstr "Храм"
 
@@ -100,7 +100,7 @@ msgid "Defensive Structure"
 msgstr "Защитное сооружение"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 msgid "Defensive"
 msgstr "Оборона"
 
@@ -128,20 +128,20 @@ msgstr "Возводится на нейтральной или собствен
 msgid "Outpost"
 msgstr "Застава"
 
-#: simulation/templates/template_structure_defense_wall.xml:23
+#: simulation/templates/template_structure_defense_wall.xml:24
 msgid "Stone Wall"
 msgstr "Каменная стена"
 
-#: simulation/templates/template_structure_defense_wall.xml:24
+#: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Окружите свой город стеной для надёжной защиты."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:27
+#: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
 msgstr "Городские ворота"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Позволяют юнитам проходить через городскую стену. Могут быть заперты для предотвращения доступа."
@@ -164,11 +164,11 @@ msgstr "Длинные участки стен могут быть переде�
 msgid "Convert Stone Wall into City Gate"
 msgstr "Преобразовать каменную стену в городские ворота"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:49
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
 msgstr "Сторожевая башня на стене"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Стреляет стрелами. Разместите гарнизон для защиты городских стен от нападающих."
 
@@ -185,12 +185,12 @@ msgstr "Хозяйственная постройка"
 msgid "Economic"
 msgstr "Хозяйство"
 
-#: simulation/templates/template_structure_economic_farmstead.xml:22
+#: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
 msgstr "Является местом сбора пищи. Позволяет исследовать улучшения по сбору пищи."
 
+#: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
-#: simulation/templates/template_structure_economic_farmstead.xml:21
 msgid "Farmstead"
 msgstr "Усадьба"
 
@@ -206,14 +206,14 @@ msgstr "Позволяет создавать торговцев для веде
 msgid "Market"
 msgstr "Рынок"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:22
+#: simulation/templates/template_structure_economic_storehouse.xml:25
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
 msgstr "Место сбора древесины, камней и металлов. Позволяет исследовать улучшения по добычи этих ресурсов."
 
-#: simulation/templates/template_structure_economic_storehouse.xml:29
-#: simulation/templates/template_structure_economic_storehouse.xml:21
+#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:24
 msgid "Storehouse"
 msgstr "Склад"
 
@@ -270,19 +270,19 @@ msgstr "Причал"
 msgid "Embassy"
 msgstr "Посольство"
 
-#: simulation/templates/template_structure_military_fortress.xml:55
+#: simulation/templates/template_structure_military_fortress.xml:58
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Позволяет обучать героев, чемпионов, строить осадные орудия. А также исследовать технологии осадного оружия. Гарнизон: 20."
 
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 msgid "City"
 msgstr "Город"
 
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 #: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:54
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Fortress"
 msgstr "Крепость"
 
@@ -305,12 +305,12 @@ msgstr "Позволяет разводить стадо животных для
 msgid "Corral"
 msgstr "Загон"
 
+#: simulation/templates/template_structure_resource_field.xml:28
 #: simulation/templates/template_structure_resource_field.xml:27
-#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr "Поле"
 
-#: simulation/templates/template_structure_resource_field.xml:28
+#: simulation/templates/template_structure_resource_field.xml:29
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "Позволяет выращивать овощи для еды. Максимальное количество сборщиков: 5."
 
@@ -323,11 +323,11 @@ msgstr "Особое строение"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Это особое строение, уникальное для каждой цивилизации."
 
-#: simulation/templates/template_structure_wonder.xml:35
+#: simulation/templates/template_structure_wonder.xml:38
 msgid "Wonder"
 msgstr "Чудо"
 
-#: simulation/templates/template_structure_wonder.xml:36
+#: simulation/templates/template_structure_wonder.xml:39
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -611,18 +611,18 @@ msgstr "Фермерский бонус"
 msgid "Boosts nearby farming with +25%."
 msgstr "Ускорение на +25% производства близлежащих хозяйств."
 
-#: simulation/templates/structures/brit_rotarymill.xml:32
-#: simulation/templates/structures/gaul_rotarymill.xml:32
+#: simulation/templates/structures/brit_rotarymill.xml:33
+#: simulation/templates/structures/gaul_rotarymill.xml:33
 msgid "Rotary Mill"
 msgstr "Роторные мельницы"
 
-#: simulation/templates/structures/brit_rotarymill.xml:33
-#: simulation/templates/structures/gaul_rotarymill.xml:33
+#: simulation/templates/structures/brit_rotarymill.xml:34
+#: simulation/templates/structures/gaul_rotarymill.xml:34
 msgid "Melonas"
 msgstr "Мелонас"
 
-#: simulation/templates/structures/brit_rotarymill.xml:34
-#: simulation/templates/structures/gaul_rotarymill.xml:34
+#: simulation/templates/structures/brit_rotarymill.xml:35
+#: simulation/templates/structures/gaul_rotarymill.xml:35
 msgid "Increase nearby farming output +25%."
 msgstr "Увеличивает на +25% производство близлежащих хозяйств."
 
@@ -879,15 +879,15 @@ msgstr "Эче"
 msgid "Arruga"
 msgstr "Арруга"
 
-#: simulation/templates/structures/iber_monument.xml:37
+#: simulation/templates/structures/iber_monument.xml:38
 msgid "Revered Monument"
 msgstr "Почитаемый монумент"
 
-#: simulation/templates/structures/iber_monument.xml:38
+#: simulation/templates/structures/iber_monument.xml:39
 msgid "Gur Oroigarri"
 msgstr "Гур Ороигарри"
 
-#: simulation/templates/structures/iber_monument.xml:40
+#: simulation/templates/structures/iber_monument.xml:41
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
@@ -1293,9 +1293,9 @@ msgstr "Фарос"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
-"Build along the shore to reveal the shorelines over the entire map (Not "
-"implemented). Very large vision range: 180 meters."
-msgstr "Постройте вдоль берега, чтобы выявить береговые линии по всей карте (не реализовано). Очень большой обзор: 180 метров."
+"Build along the shore to reveal the shorelines over the entire map. Very "
+"large vision range: 180 meters."
+msgstr "Постройте возле берега, чтобы видеть береговые линии по всей карте. Очень большая дальность обзора: 180 метров."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"

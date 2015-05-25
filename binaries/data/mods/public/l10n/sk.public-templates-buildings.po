@@ -5,6 +5,7 @@
 # Translators:
 # FrewCen <frewcen@gmail.com>, 2014
 # Levi Taule <levi.taule@gmail.com>, 2014-2015
+# Marián Mižik <marian@mizik.sk>, 2015
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Roman Beňo <romanko.sk@gmail.com>, 2014
@@ -12,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-03-15 05:21+0100\n"
-"PO-Revision-Date: 2015-04-12 19:17+0000\n"
-"Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
+"POT-Creation-Date: 2015-05-09 23:51+0200\n"
+"PO-Revision-Date: 2015-05-23 16:00+0000\n"
+"Last-Translator: Marián Mižik <marian@mizik.sk>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,36 +31,36 @@ msgstr "Občianska budova"
 msgid "Civic"
 msgstr "Občania"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:65
+#: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
 msgstr "Občianske centrum"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:66
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Postavením získate veľké časti územia. Umožňuje tréning občanov. Maximálna posádka: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:74
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Občianske centrum"
 
-#: simulation/templates/template_structure_civic_house.xml:31
+#: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
 msgstr "Zvyšuje populačný limit."
 
-#: simulation/templates/template_structure_civic_house.xml:33
+#: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_economic_farmstead.xml:24
-#: simulation/templates/template_structure_economic_storehouse.xml:29
+#: simulation/templates/template_structure_economic_farmstead.xml:27
+#: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid "Village"
 msgstr "Dedina"
 
+#: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_civic_house.xml:33
-#: simulation/templates/template_structure_civic_house.xml:30
 msgid "House"
 msgstr "Dom"
 
@@ -71,13 +72,13 @@ msgstr "Liečivá aura"
 msgid "Heals nearby units at 1 HP per second."
 msgstr "Lieči jednotky v okolí 1 život za sekundu."
 
-#: simulation/templates/template_structure_civic_temple.xml:43
+#: simulation/templates/template_structure_civic_temple.xml:44
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
 msgstr "Umožňuje tréning liečiteľov. Môžete tu umiestniť až 20 jednotiek, ktoré sa budú rýchlo liečiť (3 životy za sekundu). Umožňuje výskum vylepšení liečenia a náboženstva."
 
-#: simulation/templates/template_structure_civic_temple.xml:44
+#: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:31
@@ -87,8 +88,8 @@ msgstr "Umožňuje tréning liečiteľov. Môžete tu umiestniť až 20 jednotie
 msgid "Town"
 msgstr "Mesto"
 
-#: simulation/templates/template_structure_civic_temple.xml:44
-#: simulation/templates/template_structure_civic_temple.xml:42
+#: simulation/templates/template_structure_civic_temple.xml:45
+#: simulation/templates/template_structure_civic_temple.xml:43
 msgid "Temple"
 msgstr "Chrám"
 
@@ -97,7 +98,7 @@ msgid "Defensive Structure"
 msgstr "Obranná budova"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 msgid "Defensive"
 msgstr "Obranný"
 
@@ -125,20 +126,20 @@ msgstr "Postav na neutrálnom alebo vlastnom území pre preskúmanie oblastí m
 msgid "Outpost"
 msgstr "Rozhľadňa"
 
-#: simulation/templates/template_structure_defense_wall.xml:23
+#: simulation/templates/template_structure_defense_wall.xml:24
 msgid "Stone Wall"
 msgstr "Kamenná hradba"
 
-#: simulation/templates/template_structure_defense_wall.xml:24
+#: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Opevni svoje mesto hradbami pre pevnejšiu obranu."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:27
+#: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
 msgstr "Mestská brána"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Umožňiť prístup jednotkám do mesta cez hradby. Môže byť uzamknutá."
@@ -161,11 +162,11 @@ msgstr "Dlhšie úseky hradieb môžu byť prestavané na brány."
 msgid "Convert Stone Wall into City Gate"
 msgstr "Prestavať kamenné hradby na mestskú bránu"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:49
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
 msgstr "Veža na hradbách"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Strieľa šípy. Pošlite dnu jednotky na zlepšenie obrany hradieb pred nepriateľmi."
 
@@ -182,12 +183,12 @@ msgstr "Ekonomická budova"
 msgid "Economic"
 msgstr "Ekonomické"
 
-#: simulation/templates/template_structure_economic_farmstead.xml:22
+#: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
 msgstr "Zberné miesto jedla. Umožňuje výskum zlepšení zberu jedla."
 
+#: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
-#: simulation/templates/template_structure_economic_farmstead.xml:21
 msgid "Farmstead"
 msgstr "Statok"
 
@@ -203,14 +204,14 @@ msgstr "Vytvorte obchodníkov na obchodovanie medzi ostatnými trhmi. Umožňuje
 msgid "Market"
 msgstr "Trh"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:22
+#: simulation/templates/template_structure_economic_storehouse.xml:25
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
 msgstr "Zberné miesto dreva, kameňa a kovu. Umožňuje výskum zlepšení ťažby týchto surovín."
 
-#: simulation/templates/template_structure_economic_storehouse.xml:29
-#: simulation/templates/template_structure_economic_storehouse.xml:21
+#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:24
 msgid "Storehouse"
 msgstr "Skladisko"
 
@@ -267,19 +268,19 @@ msgstr "Prístav"
 msgid "Embassy"
 msgstr "Ambasáda"
 
-#: simulation/templates/template_structure_military_fortress.xml:55
+#: simulation/templates/template_structure_military_fortress.xml:58
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Trénuje hrdinov, šampiónov a obliehacie zbrane. Umožňuje výskum vylepšení obliehacích zbraní. Maximálna posádka: 20."
 
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 msgid "City"
 msgstr "Metropola"
 
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:60
 #: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:54
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Fortress"
 msgstr "Pevnosť"
 
@@ -302,12 +303,12 @@ msgstr "Chová zvieratá na mäso. Doneste sem domáce zvieratá a získate zdro
 msgid "Corral"
 msgstr "Ohrada pre dobytok"
 
+#: simulation/templates/template_structure_resource_field.xml:28
 #: simulation/templates/template_structure_resource_field.xml:27
-#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr "Pole"
 
-#: simulation/templates/template_structure_resource_field.xml:28
+#: simulation/templates/template_structure_resource_field.xml:29
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "Zbiera zeleninu na jedlo. Maximum zberačov: 5."
 
@@ -320,11 +321,11 @@ msgstr "Špeciálna budova"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Toto je špeciálna budova jedinečná pre príslušnú civilizáciu."
 
-#: simulation/templates/template_structure_wonder.xml:35
+#: simulation/templates/template_structure_wonder.xml:38
 msgid "Wonder"
 msgstr "Div sveta"
 
-#: simulation/templates/template_structure_wonder.xml:36
+#: simulation/templates/template_structure_wonder.xml:39
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -608,18 +609,18 @@ msgstr "Farmársky bonus"
 msgid "Boosts nearby farming with +25%."
 msgstr "Zrýchľuje okolité farmenie o +25%."
 
-#: simulation/templates/structures/brit_rotarymill.xml:32
-#: simulation/templates/structures/gaul_rotarymill.xml:32
+#: simulation/templates/structures/brit_rotarymill.xml:33
+#: simulation/templates/structures/gaul_rotarymill.xml:33
 msgid "Rotary Mill"
 msgstr "Otočný mlyn"
 
-#: simulation/templates/structures/brit_rotarymill.xml:33
-#: simulation/templates/structures/gaul_rotarymill.xml:33
+#: simulation/templates/structures/brit_rotarymill.xml:34
+#: simulation/templates/structures/gaul_rotarymill.xml:34
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_rotarymill.xml:34
-#: simulation/templates/structures/gaul_rotarymill.xml:34
+#: simulation/templates/structures/brit_rotarymill.xml:35
+#: simulation/templates/structures/gaul_rotarymill.xml:35
 msgid "Increase nearby farming output +25%."
 msgstr "Zvyšuje okolitú produkciu farmenia o +25%."
 
@@ -876,15 +877,15 @@ msgstr "Etxe"
 msgid "Arruga"
 msgstr "Arruga"
 
-#: simulation/templates/structures/iber_monument.xml:37
+#: simulation/templates/structures/iber_monument.xml:38
 msgid "Revered Monument"
 msgstr "Ctený pamätník"
 
-#: simulation/templates/structures/iber_monument.xml:38
+#: simulation/templates/structures/iber_monument.xml:39
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:40
+#: simulation/templates/structures/iber_monument.xml:41
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
@@ -1290,9 +1291,9 @@ msgstr "Pharos"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
-"Build along the shore to reveal the shorelines over the entire map (Not "
-"implemented). Very large vision range: 180 meters."
-msgstr "Stavaj budovy na pobreží pre odhalenie brehov cez celú mapu (Neimplementované). Veľmi veľká viditeľnosť: 180 metrov."
+"Build along the shore to reveal the shorelines over the entire map. Very "
+"large vision range: 180 meters."
+msgstr "Stavajte pozdĺž pobrežia, aby ste odhalili kontúry pobrežia okolo celej mapy. Veľmi veľká viditeľnosť: 180 metrov."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"

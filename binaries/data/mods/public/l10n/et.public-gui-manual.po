@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:08+0100\n"
-"PO-Revision-Date: 2015-02-09 09:46+0000\n"
+"POT-Creation-Date: 2015-05-09 23:50+0200\n"
+"PO-Revision-Date: 2015-05-23 08:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -353,168 +353,172 @@ msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt + vasaklohistus kaardil olevatel üksustel: valib vaid sõjaväeüksused"
 
 #: gui/manual/intro.txt:79
+msgid "I + Left Drag over units on map: Only select idle units"
+msgstr ""
+
+#: gui/manual/intro.txt:80
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl + vasak-klikk üksuse/grupi ikoonidel kui valitud on mitut tüüpi üksused: eemaldab need üksused valikust"
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:81
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "Parem-klikk kui valitud on hoone/hooned: seab sihtpunkti hoonest treenitud või hoonet varjendina kasutanud üksustele."
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:82
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + paremklikk kui on valitud üksused:"
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:83
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "- kui kursor on liitlase ehitisel: varjenda"
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:84
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "- muidu: ründav liikumine (liigutakse sihtpunkti, rünnates kõiki teele jäävaid vastase üksuseid ning ehitisi -- vaid üksuste ründamiseks saab kasutada Ctrl + Q + paremklikk)."
 
-#: gui/manual/intro.txt:85
+#: gui/manual/intro.txt:86
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Lisakihid"
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G: Näitab/peidab GUI"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D: peida/näita arendaja lisakihti (arendusseadeid)"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr "Alt + W: muuda karkassrežiimi (1x - karkassi lisakiht tekstuuriga mudelitel,  2x - tekstuuride koloreeritud karkass , 3x - pöördub tavapärasesse tekstuurirežiimi)"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr "Alt + S: Lülita üksuste siluettidde kasutamine (võib  mängu veidi kiirendada)"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: Lülita taeva kasutamine"
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:93
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Kaamera liigutamine"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W või \\[ülesnool]: Liiguta vaadet üles"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "S or \\[down]: Pan screen down"
 msgstr "S või \\[allanool]: Liiguta vaadet alla"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "A or \\[left]: Pan screen left"
 msgstr "A või \\[vasaknool]: Liiguta vaadet vasakule"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "D or \\[right]: Pan screen right"
 msgstr "D või \\[paremnool]: Liiguta vaadet paremale"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:98
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W või \\[ülesnool]: Pööra kaameravaadet ülespoole"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S või \\[allanool]: Pööra kaameravaadet allapoole"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A või \\[vasaknool]: Pööra kaameravaadet päripäeva"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D või \\[paremnool]: Pööra kaamerat vastupäeva"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Pööra kaameravaadet päripäeva"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: Pööra kaameravaadet vastupäeva"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + kerimine üles: Pööra kaameravaadet päripäeva"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + kerimine alla: Pööra kaameravaadet vastupäeva"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
 msgstr "F: Järgne valitud üksusele (jälgimise lõpetamiseks liigutada kaamerat)"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Algseadista kaamera suum/suund"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: suumi sisse (pidevaks suumimiseks hoida all)"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: suumi välja (pidevaks suumimiseks hoida all)"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: lülitu läbi erinevate karkassrežiimide"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
 msgstr "Keskmine hiireklahv või / (kaldkriips): Pööramiseks hoida all ning liigutada hiirt"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Hoone vundamendi paigutamisel"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: Pööra ehitist 15 kraadi vastupäeva"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: pööra hoonet 15 kraadi päripäeva"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Lohistamine vasaku hiireklahviga: pöörab hoonet hiirega (vundament asetatakse hiireklahvi vabastamisel)"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:118
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr ""
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr ""
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr ""
 
