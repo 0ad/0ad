@@ -40,6 +40,8 @@
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/Render.h"
 
+#include <queue>
+
 class CCmpTerritoryManager;
 
 class TerritoryOverlay : public TerrainOverlay
