@@ -45,7 +45,7 @@ public:
 			"</element>"
 			"<element name='Weight'>"
 				"<data type='nonNegativeInteger'>"
-					"<param name='maxInclusive'>65536</param>" // Max value 2^16
+					"<param name='maxInclusive'>65535</param>" // Max u16 value
 				"</data>"
 			"</element>"
 			"<element name='Radius'>"
