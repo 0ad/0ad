@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
+  <Identity>
+    <Gender>female</Gender>
+  </Identity>
   <Auras>
     <Aura1>
       <Type>range</Type>
@@ -74,15 +77,15 @@
   <Sound>
     <SoundGroups>
       <trained>interface/alarm/alarm_create_female.xml</trained>
-      <select>voice/hellenes/civ/female/civ_female_select.xml</select>
-      <order_walk>voice/hellenes/civ/female/civ_female_walk.xml</order_walk>
-      <order_attack>voice/hellenes/civ/female/civ_female_attack.xml</order_attack>
-      <order_build>voice/hellenes/civ/female/civ_female_build.xml</order_build>
-      <order_gather>voice/hellenes/civ/female/civ_female_gather_together.xml</order_gather>
-      <order_repair>voice/hellenes/civ/female/civ_female_repair.xml</order_repair>
-      <order_garrison>voice/hellenes/civ/female/civ_female_garrison.xml</order_garrison>
+      <select>voice/{lang}/civ/civ_{gender}_select.xml</select>
+      <order_walk>voice/{lang}/civ/civ_{gender}_walk.xml</order_walk>
+      <order_attack>voice/{lang}/civ/civ_{gender}_attack.xml</order_attack>
+      <order_build>voice/{lang}/civ/civ_{gender}_build.xml</order_build>
+      <order_gather>voice/{lang}/civ/civ_{gender}_gather.xml</order_gather>
+      <order_repair>voice/{lang}/civ/civ_{gender}_repair.xml</order_repair>
+      <order_garrison>voice/{lang}/civ/civ_{gender}_garrison.xml</order_garrison>
       <attack>attack/weapon/sword.xml</attack>
-      <death>actor/human/death/female_death.xml</death>
+      <death>actor/human/death/{gender}_death.xml</death>
       <build>resource/construction/con_wood.xml</build>
       <gather_fruit>resource/foraging/forage_leaves.xml</gather_fruit>
       <gather_grain>resource/farming/farm.xml</gather_grain>

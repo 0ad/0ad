@@ -20,16 +20,16 @@ Trade resources between your own markets and those of your allies.</Tooltip>
   </Identity>
   <Sound>
     <SoundGroups>
-      <select>voice/hellenes/civ/civ_male_select.xml</select>
-      <order_trade>voice/hellenes/civ/civ_male_ack.xml</order_trade>
-      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
-      <order_attack>voice/hellenes/civ/civ_male_attack.xml</order_attack>
-      <order_gather>voice/hellenes/civ/civ_male_ack.xml</order_gather>
-      <order_repair>voice/hellenes/civ/civ_male_ack.xml</order_repair>
+      <select>voice/{lang}/civ/civ_{gender}_select.xml</select>
+      <order_trade>voice/{lang}/civ/civ_{gender}_trade.xml</order_trade>
+      <order_walk>voice/{lang}/civ/civ_{gender}_walk.xml</order_walk>
+      <order_attack>voice/{lang}/civ/civ_{gender}_attack.xml</order_attack>
+      <order_gather>voice/{lang}/civ/civ_{gender}_gather.xml</order_gather>
+      <order_repair>voice/{lang}/civ/civ_{gender}_repair.xml</order_repair>
       <walk>actor/human/movement/walk.xml</walk>
       <run>actor/human/movement/run.xml</run>
       <attack>attack/weapon/sword.xml</attack>
-      <death>actor/human/death/death.xml</death>
+      <death>actor/human/death/{gender}_death.xml</death>
       <build>resource/construction/con_wood.xml</build>
       <gather_fruit>resource/foraging/forage_leaves.xml</gather_fruit>
       <gather_grain>resource/farming/farm.xml</gather_grain>

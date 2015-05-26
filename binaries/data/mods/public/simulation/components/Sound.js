@@ -34,9 +34,19 @@ Sound.prototype.PlaySoundGroup = function(name)
 {
 	if (name in this.template.SoundGroups)
 	{
+		// Replace the "{lang}" codes with this entity's civ ID
+		var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+		if (!cmpIdentity)
+			return;
+		var lang = cmpIdentity.GetLang();
+		// Replace the "{gender}" codes with this entity's gender ID
+		var gender = cmpIdentity.GetGender();
+
+		var soundName = this.template.SoundGroups[name].replace(/\{lang\}/g, lang)
+				.replace(/\{gender\}/g, gender);
 		var cmpSoundManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager);
 		if (cmpSoundManager)
-			cmpSoundManager.PlaySoundGroup(this.template.SoundGroups[name], this.entity);
+			cmpSoundManager.PlaySoundGroup(soundName, this.entity);
 	}
 };
 

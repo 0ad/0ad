@@ -11,6 +11,16 @@ Identity.prototype.Schema =
 	"<element name='Civ' a:help='Civilisation that this unit is primarily associated with, typically a 4-letter code. Choices include: gaia (world objects), athen (Athenians), brit (Britons), cart (Carthaginians), gaul (Gauls), iber (Iberians), mace (Macedonians), pers (Persians), ptol (Ptolemies), rome (Romans), sele (Seleucids), spart (Spartans)'>" +
 		"<text/>" +
 	"</element>" +
+	"<optional>" +
+		"<element name='Lang' a:help='Unit language for voices'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='Gender' a:help='Unit gender for voices. Choices includes male or female.'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='GenericName' a:help='Generic English-language name for this class of unit'>" +
 		"<text/>" +
 	"</element>" +
@@ -98,6 +108,16 @@ Identity.prototype.Serialize = null; // we have no dynamic state to save
 Identity.prototype.GetCiv = function()
 {
 	return this.template.Civ;
+};
+
+Identity.prototype.GetLang = function()
+{
+	return this.template.Lang || "greek"; // ugly default
+};
+
+Identity.prototype.GetGender = function()
+{
+	return this.template.Gender || "male"; // ugly default
 };
 
 Identity.prototype.GetRank = function()
