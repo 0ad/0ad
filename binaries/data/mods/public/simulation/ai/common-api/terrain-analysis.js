@@ -98,7 +98,7 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 		}
 		else if (ent.hasClass("Geology") === true)
 		{
-			radius = Math.floor(ent.obstructionRadius() / 4);
+			radius = Math.floor(ent.obstructionRadius() / this.cellSize);
 			pos = this.gamePosToMapPos(ent.position());
 			x = pos[0];
 			y = pos[1];
@@ -725,16 +725,15 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 			var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
 			if (resource === "wood" || resource === "food")
 			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
-				this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
-				this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
+				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, strength, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2);
 			}
 			else if (resource === "stone" || resource === "metal")
 			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
-				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
-				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
-				this.resourceMaps[resource].addInfluence(x, z, 8, -50);
+				this.CCResourceMaps[resource].addInfluence(x, z, 120/cellSize, strength, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, strength/2, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, strength/2);
 			}
 		}
 	}
@@ -777,16 +776,15 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
 			if (resource === "wood" || resource === "food")
 			{
-				this.resourceMaps[resource].addInfluence(x, z, 2, 5,'constant');
-				this.resourceMaps[resource].addInfluence(x, z, 9.0, -strength,'constant');
-				this.CCResourceMaps[resource].addInfluence(x, z, 15, -strength/2.0,'constant');
+				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, -strength, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, -strength/2, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, -strength/2);
 			}
 			else if (resource === "stone" || resource === "metal")
 			{
-				this.resourceMaps[resource].addInfluence(x, z, 8, 50);
-				this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/1.5);
-				this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/2.0,'constant');
-				this.CCResourceMaps[resource].addInfluence(x, z, 30, -strength,'constant');
+				this.CCResourceMaps[resource].addInfluence(x, z, 120/cellSize, -strength, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, -strength/2, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, -strength/2);
 			}
 		}
 	}
@@ -803,16 +801,15 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
 			if (resource === "wood" || resource === "food")
 			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
-				this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
-				this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
+				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, strength, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2);
 			}
 			else if (resource === "stone" || resource === "metal")
 			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
-				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
-				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
-				this.resourceMaps[resource].addInfluence(x, z, 8, -50);
+				this.CCResourceMaps[resource].addInfluence(x, z, 120/cellSize, strength, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, strength/2, "constant");
+				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, strength/2);
 			}
 		}
 	}

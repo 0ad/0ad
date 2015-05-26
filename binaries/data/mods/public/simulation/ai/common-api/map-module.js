@@ -61,10 +61,9 @@ m.Map.prototype.point = function(p)
 	return this.map[q[0] + this.width * q[1]];
 };
 
-m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type)
+m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linear")
 {
-	strength = strength ? +strength : +maxDist;
-	type = type ? type : 'linear';
+	strength = strength ? strength : maxDist;
 	
 	var x0 = Math.floor(Math.max(0, cx - maxDist));
 	var y0 = Math.floor(Math.max(0, cy - maxDist));
@@ -72,61 +71,51 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type)
 	var y1 = Math.floor(Math.min(this.height-1, cy + maxDist));
 	var maxDist2 = maxDist * maxDist;
 	
-	var str = 0.0;
-	switch (type)
-	{
-		case 'linear':
-			str = +strength / +maxDist;
-		break;
-		case 'quadratic':
-			str = +strength / +maxDist2;
-		break;
-		case 'constant':
-			str = +strength;
-		break;
-	}
-	
 	// code duplicating for speed
 	if (type === 'linear' || type === "linear")
 	{
+		let str = strength / maxDist;	
 		for (let y = y0; y < y1; ++y)
 		{
+			let dy = y - cy;		
 			for (let x = x0; x < x1; ++x)
 			{
 				let dx = x - cx;
-				let dy = y - cy;
 				let r2 = dx*dx + dy*dy;
 				if (r2 < maxDist2)
 				{
-					let quant = str * (maxDist - Math.sqrt(r2));					
-					if (this.map[x + y * this.width] + quant < 0)
-						this.map[x + y * this.width] = 0;
-					else if (this.map[x + y * this.width] + quant > this.maxVal)
-						this.map[x + y * this.width] = this.maxVal;	// avoids overflow.
+					let quant = str * (maxDist - Math.sqrt(r2));
+					let w = x + y * this.width;
+					if (this.map[w] + quant < 0)
+						this.map[w] = 0;
+					else if (this.map[w] + quant > this.maxVal)
+						this.map[w] = this.maxVal;	// avoids overflow.
 					else
-						this.map[x + y * this.width] += quant;
+						this.map[w] += quant;
 				}
 			}
 		}
 	}
 	else if (type === 'quadratic' || type === "quadratic")
 	{
+		let str = strength / maxDist2;
 		for (let y = y0; y < y1; ++y)
 		{
+			let dy = y - cy;		
 			for (let x = x0; x < x1; ++x)
 			{
 				let dx = x - cx;
-				let dy = y - cy;
 				let r2 = dx*dx + dy*dy;
 				if (r2 < maxDist2)
 				{
 					let quant = str * (maxDist2 - r2);
-					if (this.map[x + y * this.width] + quant < 0)
-						this.map[x + y * this.width] = 0;
-					else if (this.map[x + y * this.width] + quant > this.maxVal)
-						this.map[x + y * this.width] = this.maxVal;	// avoids overflow.
+					let w = x + y * this.width;				    
+					if (this.map[w] + quant < 0)
+						this.map[w] = 0;
+					else if (this.map[w] + quant > this.maxVal)
+						this.map[w] = this.maxVal;	// avoids overflow.
 					else
-						this.map[x + y * this.width] += quant;
+						this.map[w] += quant;
 				}
 			}
 		}
@@ -135,19 +124,20 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type)
 	{
 		for (let y = y0; y < y1; ++y)
 		{
+			let dy = y - cy;
 			for (let x = x0; x < x1; ++x)
 			{
 				let dx = x - cx;
-				let dy = y - cy;
 				let r2 = dx*dx + dy*dy;
 				if (r2 < maxDist2)
 				{
-					if (this.map[x + y * this.width] + str < 0)
-						this.map[x + y * this.width] = 0;
-					else if (this.map[x + y * this.width] + str > this.maxVal)
-						this.map[x + y * this.width] = this.maxVal;	// avoids overflow.
+					let w = x + y * this.width;				
+					if (this.map[w] + strength < 0)
+						this.map[w] = 0;
+					else if (this.map[w] + strength > this.maxVal)
+						this.map[w] = this.maxVal;	// avoids overflow.
 					else
-						this.map[x + y * this.width] += str;
+						this.map[w] += strength;
 				}
 			}
 		}

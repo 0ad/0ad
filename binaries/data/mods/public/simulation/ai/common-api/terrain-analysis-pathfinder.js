@@ -111,8 +111,8 @@ m.aStarPath.prototype.getPath = function(start, end, Sampling, preferredWidth, i
 	if (gamestate !== undefined)
 	{
 		this.TotorMap = new m.Map(gamestate);
-		this.TotorMap.addInfluence(s[0], s[1], 1, 200, 'constant');
-		this.TotorMap.addInfluence(e[0], e[1], 1, 200, 'constant');
+		this.TotorMap.addInfluence(s[0], s[1], 1, 200, "constant");
+		this.TotorMap.addInfluence(e[0], e[1], 1, 200, "constant");
 	}
 	this.iterationLimit = 9000000000;
 	if (iterationLimit !== undefined)
@@ -211,7 +211,7 @@ m.aStarPath.prototype.continuePath = function(gamestate)
 		this.isOpened[this.currentSquare] = false;
 
 		if (gamestate !== undefined)
-			this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w), 1, 40, 'constant');
+			this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w), 1, 40, "constant");
 
 		for (var i in positions)
 		{
@@ -312,9 +312,9 @@ m.aStarPath.prototype.continuePath = function(gamestate)
 			}
 
 			if (gamestate !== undefined && changes[this.currentSquare])
-				this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w), 2, 200, 'constant');
+				this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w), 2, 200, "constant");
 			if (gamestate !== undefined)
-				this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w), 1, 50, 'constant');
+				this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w), 1, 50, "constant");
 			
 			if (m.SquareVectorDistance([lastPosx,lastPosy],[this.currentSquare % w, Math.floor(this.currentSquare / w)]) > 300 || changes[this.currentSquare])
 			{
@@ -322,7 +322,7 @@ m.aStarPath.prototype.continuePath = function(gamestate)
 				lastPosy = Math.floor(this.currentSquare / w);
 				paths.push([ [lastPosx*this.cellSize,lastPosy*this.cellSize], changes[this.currentSquare] ]);
 				if (gamestate !== undefined)
-					this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w),1,50 + paths.length,'constant');
+					this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w), 1, 50 + paths.length, "constant");
 			}
 		}
 	}

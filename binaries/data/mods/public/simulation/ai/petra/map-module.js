@@ -81,7 +81,7 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 					var pos = ent.position();
 					var x = Math.round(pos[0] / passabilityMap.cellSize);
 					var z = Math.round(pos[1] / passabilityMap.cellSize);
-					map.addInfluence(x, z, minDist/passability.cellSize, -255, 'constant');
+					map.addInfluence(x, z, minDist/passability.cellSize, -255, "constant");
 				}
 			});
 		}
