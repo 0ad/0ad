@@ -148,9 +148,10 @@ function updateBuildingPlacementPreview()
 				    range: placementSupport.attack.Ranged.maxRange,
 				    elevationBonus: placementSupport.attack.Ranged.elevationBonus,
 				};
-				var averageRange = Engine.GuiInterfaceCall("GetAverageRangeForBuildings",cmd);
-				placementSupport.tooltipMessage = sprintf(translate("Basic range: %(range)s meters"), { range: Math.round(cmd.range) }) + "\n" + 
-												  sprintf(translate("Average bonus range: %(range)s meters"), { range: Math.round(averageRange - cmd.range) });
+				var averageRange = Math.round(Engine.GuiInterfaceCall("GetAverageRangeForBuildings", cmd) - cmd.range);
+				var range = Math.round(cmd.range);
+				placementSupport.tooltipMessage = sprintf(translatePlural("Basic range: %(range)s meter", "Basic range: %(range)s meters", range), { "range": range }) + "\n" + 
+					sprintf(translatePlural("Average bonus range: %(range)s meter", "Average bonus range: %(range)s meters", averageRange), { "range": averageRange });
 			}
 			return true;
 		}
