@@ -115,7 +115,6 @@ private:
 	VfsPath m_sHistoryFile;
 	int m_MaxHistoryLines;
 
-	bool m_bFocus;
 	bool m_bVisible;	// console is to be drawn
 	bool m_bToggle;		// show/hide animation is currently active
 	double m_prevTime;	// the previous time the cursor draw state changed (used for blinking cursor)
