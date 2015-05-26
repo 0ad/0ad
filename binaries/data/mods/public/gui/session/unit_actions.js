@@ -560,6 +560,12 @@ var unitActions =
 				data.target = targetState.id;
 				cursor = "action-repair";
 			}
+			else if (playerCheck(entState, targetState, ["Enemy"]))
+			{
+				data.target = targetState.id;
+				data.command = "attack";
+				cursor = "action-attack";
+			}
 
 			// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
 			// except if the autorallypoint hotkey is pressed and the target can produce entities
