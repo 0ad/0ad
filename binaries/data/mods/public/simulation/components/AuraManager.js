@@ -88,11 +88,12 @@ AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data
 
 AuraManager.prototype.RemoveBonus = function(value, ents, key)
 {
+	var v = this.modifications[value];
+	if (!v)
+		return;
+
 	for (let ent of ents)
 	{
-		var v = this.modifications[value];
-		if (!v)
-			continue;
 		var e = v[ent];
 		if (!e)
 			continue;
