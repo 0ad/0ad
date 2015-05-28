@@ -372,22 +372,27 @@ m.Accessibility.prototype.isAccessible = function(gameState, position, onLand){
 // Return true if you can go from a point to a point without switching means of transport
 // Hardcore means is also checks for isAccessible at the end (it checks for either water or land though, beware).
 // This is a blind check and not a pathfinder: for all it knows there is a huge block of trees in the middle.
-m.Accessibility.prototype.pathAvailable = function(gameState, start, end, onWater, hardcore){
+m.Accessibility.prototype.pathAvailable = function(gameState, start, end, onWater, hardcore)
+{
 	var pstart = this.gamePosToMapPos(start);
 	var istart = pstart[0] + pstart[1]*this.width;
 	var pend = this.gamePosToMapPos(end);
 	var iend = pend[0] + pend[1]*this.width;
 	if (onWater)
 	{
-		if (this.navalPassMap[istart] === this.navalPassMap[iend]) {
+		if (this.navalPassMap[istart] === this.navalPassMap[iend])
+		{
 			if (hardcore && this.isAccessible(gameState, end,false))
 				return true;
 			else if (hardcore)
 				return false;
 			return true;
 		}
-	} else {
-		if (this.landPassMap[istart] === this.landPassMap[iend]) {
+	}
+	else
+	{
+		if (this.landPassMap[istart] === this.landPassMap[iend])
+		{
 			if (hardcore && this.isAccessible(gameState, end,true))
 				return true;
 			else if (hardcore)
@@ -398,7 +403,8 @@ m.Accessibility.prototype.pathAvailable = function(gameState, start, end, onWate
 	return false;
 };
 
-m.Accessibility.prototype.getTrajectTo = function(start, end, noBound) {
+m.Accessibility.prototype.getTrajectTo = function(start, end, noBound)
+{
 	var pstart = this.gamePosToMapPos(start);
 	var istart = pstart[0] + pstart[1]*this.width;
 	var pend = this.gamePosToMapPos(end);
@@ -702,9 +708,9 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 };
 
 // creates a map of resource density
-m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
-	
-	for (var resource in this.decreaseFactor)
+m.SharedScript.prototype.createResourceMaps = function(sharedScript)
+{	
+	for (let resource in this.decreaseFactor)
 	{
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (!this.resourceMaps[resource])
@@ -715,15 +721,17 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
 		}
 	}
-	var cellSize = this.resourceMaps["food"].cellSize;
+	var cellSize = this.resourceMaps["wood"].cellSize;
 	for (let ent of sharedScript._entities.values())
 	{
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
 			var resource = ent.resourceSupplyType().generic;
+			if (!this.resourceMaps[resource])
+				continue;
 			var x = Math.floor(ent.position()[0] / cellSize);
 			var z = Math.floor(ent.position()[1] / cellSize);
 			var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-			if (resource === "wood" || resource === "food")
+			if (resource === "wood")
 			{
 				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, strength, "constant");
 				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2, "constant");
@@ -749,7 +757,7 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 	for (let resource in this.decreaseFactor)
 	{
 		// if there is no resourceMap create one with an influence for everything with that resource
-		if (! this.resourceMaps[resource])
+		if (!this.resourceMaps[resource])
 		{
 			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
 			// But at that point the precision is not really important anyway. And it saves memory.
@@ -757,7 +765,7 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
 		}
 	}
-	var cellSize = this.resourceMaps["food"].cellSize;
+	var cellSize = this.resourceMaps["wood"].cellSize;
 	// Look for destroy events and subtract the entities original influence from the resourceMap
 	// TODO: perhaps do something when dropsites appear/disappear.
 	let destEvents = events["Destroy"];
@@ -771,10 +779,12 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
 		{
 			let resource = ent.resourceSupplyType().generic;
+			if (!this.resourceMaps[resource])
+				continue;
 			let x = Math.floor(ent.position()[0] / cellSize);
 			let z = Math.floor(ent.position()[1] / cellSize);
 			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-			if (resource === "wood" || resource === "food")
+			if (resource === "wood")
 			{
 				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, -strength, "constant");
 				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, -strength/2, "constant");
@@ -796,10 +806,12 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
 		{
 			let resource = ent.resourceSupplyType().generic;
+			if (!this.resourceMaps[resource])
+				continue;
 			let x = Math.floor(ent.position()[0] / cellSize);
 			let z = Math.floor(ent.position()[1] / cellSize);
 			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-			if (resource === "wood" || resource === "food")
+			if (resource === "wood")
 			{
 				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, strength, "constant");
 				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2, "constant");

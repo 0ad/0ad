@@ -32,7 +32,7 @@ m.SharedScript = function(settings)
 	this.CCResourceMaps = {}; // Contains maps showing the density of wood, stone and metal, optimized for CC placement.
 	// Resource maps data.
 	// By how much to divide the resource amount when filling the map (ie a tree having 200 wood is "4").
-	this.decreaseFactor = {'wood': 50.0, 'stone': 90.0, 'metal': 90.0, 'food': 40.0};
+	this.decreaseFactor = {"wood": 50.0, "stone": 90.0, "metal": 90.0};
 };
 
 //Return a simple object (using no classes etc) that will be serialized into saved games
