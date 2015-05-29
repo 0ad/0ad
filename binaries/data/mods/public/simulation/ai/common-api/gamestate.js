@@ -142,14 +142,14 @@ m.GameState.prototype.townPhase = function()
 {
 	if (this.playerData.civ == "athen")
 		return "phase_town_athen";
-	return "phase_town_generic";
+	return "phase_town";
 };
 
 m.GameState.prototype.cityPhase = function()
 {
 	if (this.playerData.civ == "athen")
 		return "phase_city_athen";
-	return "phase_city_generic";
+	return "phase_city";
 };
 
 m.GameState.prototype.isResearched = function(template)

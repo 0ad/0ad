@@ -37,8 +37,6 @@ static const double RENDER_TIMEOUT = 10.0; // seconds before messages are delete
 static const double RENDER_TIMEOUT_RATE = 10.0; // number of timed-out messages deleted per second
 static const size_t RENDER_LIMIT = 20; // maximum messages on screen at once
 
-static const size_t BUFFER_SIZE = 1024;
-
 // Set up a default logger that throws everything away, because that's
 // better than crashing. (This is particularly useful for unit tests which
 // don't care about any log output.)

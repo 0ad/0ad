@@ -47,7 +47,7 @@ public:
 		TS_ASSERT_EQUALS(1U, boundaries.size());
 		TS_ASSERT_EQUALS(18U, boundaries[0].points.size()); // 2x6 + 2x3
 		TS_ASSERT_EQUALS((player_id_t)7, boundaries[0].owner);
-		TS_ASSERT_EQUALS(false, boundaries[0].connected); // high bits aren't set by GetGrid
+		TS_ASSERT_EQUALS(false, boundaries[0].blinking); // high bits aren't set by GetGrid
 
 		// assumes CELL_SIZE is 4; dealt with in TestBoundaryPointsEqual
 		int expectedPoints[][2] = {{ 2, 4}, { 6, 4}, {10, 4}, {14, 4}, {18, 4}, {22, 4},

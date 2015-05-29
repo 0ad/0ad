@@ -20,14 +20,14 @@ TerritoryDecay.prototype.IsConnected = function()
 	if (!cmpPosition || !cmpPosition.IsInWorld())
 		return false;
 
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership)
-		return true; // something without ownership can't decay
-		
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer)
+		return true;// something without ownership can't decay
+
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
 	var pos = cmpPosition.GetPosition2D();
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
-	if (tileOwner != cmpOwnership.GetOwner())
+	if (tileOwner != cmpPlayer.GetPlayerID())
 	{
 		this.connectedNeighbours[tileOwner] = 1;
 		return false;
@@ -40,6 +40,12 @@ TerritoryDecay.prototype.IsConnected = function()
 		return true;
 
 	this.connectedNeighbours = cmpTerritoryManager.GetNeighbours(pos.x, pos.y, true);
+
+	for (var i = 1; i < numPlayers; ++i)
+		if (this.connectedNeighbours[i] > 0 && cmpPlayer.IsMutualAlly(i))
+			return true; // don't decay if connected to a connected ally
+
+	cmpTerritoryManager.SetTerritoryBlinking(pos.x, pos.y);
 	return false;
 };
 

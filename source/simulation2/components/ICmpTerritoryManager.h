@@ -29,8 +29,9 @@ class ICmpTerritoryManager : public IComponent
 public:
 	virtual bool NeedUpdate(size_t* dirtyID) = 0;
 
-	static const int TERRITORY_PLAYER_MASK = 0x3F;
-	static const int TERRITORY_CONNECTED_MASK = 0x40;
+	static const int TERRITORY_PLAYER_MASK = 0x1F;
+	static const int TERRITORY_CONNECTED_MASK = 0x20;
+	static const int TERRITORY_BLINKING_MASK = 0x40;
 	static const int TERRITORY_PROCESSED_MASK = 0x80; //< For internal use; marks a tile as processed.
 
 	/**
@@ -57,6 +58,11 @@ public:
 	 * (civ center etc) owned by that territory's player.
 	 */
 	virtual bool IsConnected(entity_pos_t x, entity_pos_t z) = 0;
+
+	/**
+	 * Set a piece of territory to blinking. Must be updated on every territory calculation
+	 */
+	virtual void SetTerritoryBlinking(entity_pos_t x, entity_pos_t z) = 0;
 
 	DECLARE_INTERFACE_TYPE(TerritoryManager)
 };

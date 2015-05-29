@@ -337,6 +337,18 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 		}
 	}
 
+	if (template.replaces && template.replaces.length > 0)
+	{
+		for (var i of template.replaces) 
+		{
+			if (!i || this.IsTechnologyResearched(i))
+				continue;
+
+			var template = this.GetTechnologyTemplate(i);
+			this.researchedTechs[i] = template;
+		}
+	}
+
 	this.UpdateAutoResearch();
 
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);

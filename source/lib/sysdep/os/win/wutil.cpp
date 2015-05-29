@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -287,7 +287,11 @@ static OsPath* GetFolderPath(int csidl)
 	HANDLE token = 0;
 	wchar_t path[MAX_PATH];	// mandated by SHGetFolderPathW
 	const HRESULT ret = SHGetFolderPathW(hwnd, csidl, token, 0, path);
-	ENSURE(SUCCEEDED(ret));
+	if (!SUCCEEDED(ret))
+	{
+		debug_printf("SHGetFolderPathW failed with HRESULT = 0x%08lx for csidl = 0x%04x\n", ret, csidl);
+		debug_warn("SHGetFolderPathW failed (see debug output)");
+	}
 	if(GetLastError() == ERROR_NO_TOKEN)	// avoid polluting last error
 		SetLastError(0);
 	return new(wutil_Allocate(sizeof(OsPath))) OsPath(path);

@@ -20,19 +20,24 @@ RallyPoint.prototype.AddPosition = function(x, z)
 RallyPoint.prototype.GetPositions = function()
 {
 	// Update positions for moving target entities
-	// TODO: If we target an enemy unit we should update its position
-	// as long as it is outside of FoW and SoD.
 	
 	// We must not affect the simulation state here (modifications of the
 	// RallyPointRenderer are allowed though), so copy the state
 	var ret = [];
-	
 	for (var i = 0; i < this.pos.length; i++)
 	{
 		ret.push(this.pos[i]);
 		
 		if (!this.data[i] || !this.data[i].target)
 			continue;
+			
+		if (this.data[i].command && this.data[i].command == "attack")
+		{
+			var cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
+			
+			if (!cmpBuildingAI.CheckTargetVisible(this.data[i].target) || !this.TargetIsAlive(this.data[i].target))
+				continue;
+		}
 
 		// Get the actual position of the target entity
 		var cmpPosition = Engine.QueryInterface(this.data[i].target, IID_Position);
@@ -95,6 +100,19 @@ RallyPoint.prototype.OnGlobalEntityRenamed = function(msg)
 		if (data.source && data.source == msg.entity)
 			data.source = msg.newentity;
 	}
+};
+
+/**
+ * Returns true if the target exists and has non-zero hitpoints.
+ */
+RallyPoint.prototype.TargetIsAlive = function(ent)
+{
+	var cmpFormation = Engine.QueryInterface(ent, IID_Formation);
+	if (cmpFormation)
+		return true;
+
+	var cmpHealth = QueryMiragedInterface(ent, IID_Health);
+	return cmpHealth && cmpHealth.GetHitpoints() != 0;
 };
 
 Engine.RegisterComponentType(IID_RallyPoint, "RallyPoint", RallyPoint);

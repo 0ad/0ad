@@ -86,30 +86,22 @@ function Cheat(input)
 		if (!cmpTechnologyManager)
 			return;
 
-		// get phase we want to go
-		var phaseToGo;
-		var version = "generic";
-		var special;
+		// store the phase we want in the next input parameter
+		input.parameter = "phase_";
 		if (!cmpTechnologyManager.IsTechnologyResearched("phase_town"))
-		{
-			phaseToGo = "town";
-			special = {"athen":"athen"};
-		}
+			input.parameter += "town";
 		else if (!cmpTechnologyManager.IsTechnologyResearched("phase_city"))
-		{
-			phaseToGo = "city";
-			special = {"athen":"athen"};
-		}
+			input.parameter += "city";
 		else
 			return;
 
-		// check, if special civ
-		if (cmpPlayer.civ in special)
-			version = special[cmpPlayer.civ];
+		// check if specialised tech exists (like phase_town_athen)
+		var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
+		if (cmpTechnologyTemplateManager.ListAllTechs().indexOf(input.parameter + "_" + cmpPlayer.civ) > -1)
+			input.parameter += "_" + cmpPlayer.civ
 			
 		// rewrite input and call function
 		input.action = "researchTechnology";
-		input.parameter="phase_" + phaseToGo + "_" + version; 
 		Cheat(input);
 		break; 
 	case "researchTechnology": 

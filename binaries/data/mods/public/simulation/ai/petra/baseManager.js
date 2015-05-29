@@ -316,24 +316,23 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	var dpEnts = gameState.getOwnEntitiesByClass("Storehouse", true).toEntityArray();
 	var ccEnts = gameState.getOwnEntitiesByClass("CivCentre", true).toEntityArray();
 
-	var bestIdx = undefined;
+	var bestIdx;
 	var bestVal = 0;
 	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
 	var territoryMap = gameState.ai.HQ.territoryMap;
 	var width = territoryMap.width;
 	var cellSize = territoryMap.cellSize;
-
-	for (var p = 0; p < this.territoryIndices.length; ++p)
+    
+	for (let j of this.territoryIndices)
 	{
-		var j = this.territoryIndices[p];
 		var i = territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)  // no room around
 			continue;
 
 		// we add 3 times the needed resource and once the other two (not food)
 		var total = 0;
-		for (var res in gameState.sharedScript.resourceMaps)
+		for (let res in gameState.sharedScript.resourceMaps)
 		{
 			if (res === "food")
 				continue;
@@ -360,7 +359,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 				break;
 			}
 			else if (dist < 6400)
-				total /= 2;
+				total *= (Math.sqrt(dist)-60)/20;
 		}
 		if (total <= bestVal)
 			continue;
@@ -377,7 +376,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 				break;
 			}
 			else if (dist < 6400)
-				total /= 2;
+				total *= (Math.sqrt(dist)-60)/20;
 		}
 		if (total <= bestVal)
 			continue;
@@ -470,14 +469,14 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 					{
 						var newDP = this.findBestDropsiteLocation(gameState, type);
 						if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
-							queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID }, newDP.pos));
+							queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
 						else if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length == 0 && queues.civilCentre.length() == 0)
 						{
 							// No good dropsite, try to build a new base if no base already planned,
 							// and if not possible, be less strict on dropsite quality
 							if (!gameState.ai.HQ.buildNewBase(gameState, queues, type) && newDP.quality > Math.min(25, 50*0.15/ratio)
 								&& gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
-								queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID }, newDP.pos));
+								queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
 						}
 					}
 					this.gatherers[type].nextCheck = gameState.ai.playedTurn + 20;

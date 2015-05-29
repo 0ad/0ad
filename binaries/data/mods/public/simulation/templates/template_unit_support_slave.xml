@@ -68,13 +68,14 @@ Gatherer with a finite life span. Bonused at mining and lumbering.</Tooltip>
   </ResourceGatherer>
   <Sound>
     <SoundGroups>
-      <select>voice/hellenes/civ/civ_male_select.xml</select>
-      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
-      <order_gather>voice/hellenes/civ/civ_male_ack.xml</order_gather>
-      <order_repair>voice/hellenes/civ/civ_male_ack.xml</order_repair>
+      <select>voice/{lang}/civ/civ_{gender}_select.xml</select>
+      <order_walk>voice/{lang}/civ/civ_{gender}_walk.xml</order_walk>
+      <order_gather>voice/{lang}/civ/civ_{gender}_gather.xml</order_gather>
+      <order_repair>voice/{lang}/civ/civ_{gender}_repair.xml</order_repair>
+      <order_garrison>voice/{lang}/civ/civ_{gender}_garrison.xml</order_garrison>
       <walk>actor/human/movement/walk.xml</walk>
       <run>actor/human/movement/run.xml</run>
-      <death>actor/human/death/death.xml</death>
+      <death>actor/human/death/{gender}_death.xml</death>
       <build>resource/construction/con_wood.xml</build>
       <gather_fruit>resource/foraging/forage_leaves.xml</gather_fruit>
       <gather_grain>resource/farming/farm.xml</gather_grain>

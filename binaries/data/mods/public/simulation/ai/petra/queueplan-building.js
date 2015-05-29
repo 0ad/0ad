@@ -114,6 +114,19 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	if (template.buildCategory() === "Dock")
 		return this.findDockPosition(gameState);
 
+	if (template.hasClass("Storehouse") && this.metadata.base)
+	{
+		// recompute the best dropsite location in case some conditions have changed
+		let base = gameState.ai.HQ.getBaseByID(this.metadata.base);
+		let type = this.metadata.type ? this.metadata.type : "wood";
+		let newpos = base.findBestDropsiteLocation(gameState, type);
+		if (newpos && newpos.quality > 0)
+		{
+			let pos = newpos.pos;
+			return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": this.metadata.base };
+		}
+	}
+	
 	if (!this.position)
 	{
 		if (template.hasClass("CivCentre"))
@@ -199,27 +212,27 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
 				{
 					if (template.hasClass("Field"))
-						placement.addInfluence(x, z, 20, 50);
+						placement.addInfluence(x, z, 80/cellSize, 50);
 					else // If this is not a field add a negative influence because we want to leave this area for fields
-						placement.addInfluence(x, z, 20, -20);
+						placement.addInfluence(x, z, 80/cellSize, -20);
 				}
 				else if (template.hasClass("House"))
 				{
 					if (ent.hasClass("House"))
 					{
-						placement.addInfluence(x, z, 15, 40);    // houses are close to other houses
+						placement.addInfluence(x, z, 60/cellSize, 40);    // houses are close to other houses
 						alreadyHasHouses = true;
 					}
 					else
-						placement.addInfluence(x, z, 15, -40);   // and further away from other stuffs
+						placement.addInfluence(x, z, 60/cellSize, -40);   // and further away from other stuffs
 				}
 				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field")
 					&& (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
-					placement.addInfluence(x, z, 25, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
+					placement.addInfluence(x, z, 100/cellSize, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
 				else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
-					placement.addInfluence(x, z, 30, -50);
+					placement.addInfluence(x, z, 120/cellSize, -50);
 				else if (template.hasClass("Military"))
-					placement.addInfluence(x, z, 10, -40);
+					placement.addInfluence(x, z, 40/cellSize, -40);
 			});
 		}
 
@@ -324,9 +337,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 	var x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
 	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
+
 	var xx = x;
 	var zz = z;
-
 	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
 	{
 		if (obstructions.cellSize != 4)  // new pathFinder branch

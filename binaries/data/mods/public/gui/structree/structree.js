@@ -125,25 +125,7 @@ function selectCiv(civCode)
 	// Establish phase order
 	g_ParsedData.phaseList = unravelPhases(g_ParsedData.techs);
 	for (let phasecode of g_ParsedData.phaseList)
-	{
-		let phaseInfo = loadTechData(phasecode);
 		g_ParsedData.phases[phasecode] = loadPhase(phasecode);
-
-		if ("requirements" in phaseInfo)
-			for (let op in phaseInfo.requirements)
-			{
-				let val = phaseInfo.requirements[op];
-				if (op == "any")
-					for (let v of val)
-					{
-						let k = Object.keys(v);
-						k = k[0];
-						v = v[k];
-						if (k == "tech" && v in g_ParsedData.phases)
-							g_ParsedData.phases[v].actualPhase = phasecode;
-					}
-			}
-	}
 
 	// Group production lists of structures by phase
 	for (let structCode of g_Lists.structures)

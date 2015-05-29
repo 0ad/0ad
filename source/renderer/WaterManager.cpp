@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -438,10 +438,9 @@ void WaterManager::RecomputeDistanceHeightmap()
 	// This is currently upsampled by a factor of 2 to get more precision
 	// This could be refined to only be done near the coast itself, but it's probably not necessary.
 	
-	float level = SideSize;
 	for (size_t z = 0; z < SideSize; ++z)
 	{
-		level = SideSize;
+		float level = SideSize;
 		for (size_t x = 0; x < SideSize; ++x)
 			m_DistanceHeightmap[z*SideSize + x] = terrain->GetExactGroundLevel(x*2, z*2) >= m_WaterHeight ? level = 0.f : ++level;
 		level = SideSize;
@@ -459,7 +458,7 @@ void WaterManager::RecomputeDistanceHeightmap()
 	}
 	for (size_t x = 0; x < SideSize; ++x)
 	{
-		level = SideSize;
+		float level = SideSize;
 		for (size_t z = 0; z < SideSize; ++z)
 		{
 			if (terrain->GetExactGroundLevel(x*2, z*2) >= m_WaterHeight)
@@ -519,7 +518,7 @@ void WaterManager::CreateWaveMeshes()
 	std::set<int> CoastalPointsSet;
 	for (size_t z = 1; z < SideSize-1; ++z)
 		for (size_t x = 1; x < SideSize-1; ++x)
-			if (abs(m_DistanceHeightmap[z*SideSize + x]-1.0f) < 0.2f)
+			if (fabs(m_DistanceHeightmap[z*SideSize + x]-1.0f) < 0.2f)
 				CoastalPointsSet.insert(z*SideSize + x);
 	
 	// Second step: create chains out of those coastal points.
