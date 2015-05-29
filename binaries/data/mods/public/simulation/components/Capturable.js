@@ -173,9 +173,14 @@ Capturable.prototype.TimerTick = function()
 		var totalNeighbours = neighbours.reduce((a, b) => a + b);
 		var decay = Math.min(cmpTerritoryDecay.GetDecayRate(), this.cp[owner]);
 		this.cp[owner] -= decay;
+
+		if (totalNeighbours)
+			for (let p in neighbours)
+				this.cp[p] += decay * neighbours[p] / totalNeighbours;
+		else // decay to gaia as default
+			this.cp[0] += decay;
+
 		modifiedCp += decay;
-		for (let p in neighbours)
-			this.cp[p] += decay * neighbours[p] / totalNeighbours;
 		this.RegisterCapturePointsChanged();
 	}
 

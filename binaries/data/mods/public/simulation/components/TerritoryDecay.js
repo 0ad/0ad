@@ -42,12 +42,8 @@ TerritoryDecay.prototype.IsConnected = function()
 	this.connectedNeighbours = cmpTerritoryManager.GetNeighbours(pos.x, pos.y, true);
 
 	for (var i = 1; i < numPlayers; ++i)
-		if (this.connectedNeighbours[i] > 0 && cmpPlayer.IsAlly(i))
+		if (this.connectedNeighbours[i] > 0 && cmpPlayer.IsMutualAlly(i))
 			return true; // don't decay if connected to a connected ally
-
-	// decay to gaia when there all neighbours are unconnected
-	if (this.connectedNeighbours.reduce((a, b) => a + b) == 0)
-		this.connectedNeighbours[0] = 1;
 
 	cmpTerritoryManager.SetTerritoryBlinking(pos.x, pos.y);
 	return false;
