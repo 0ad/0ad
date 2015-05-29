@@ -2,7 +2,7 @@ var PETRA = function(m)
 {
 
 // other map functions
-m.TERRITORY_PLAYER_MASK = 0x3F;
+m.TERRITORY_PLAYER_MASK = 0x1F;
 
 m.createObstructionMap = function(gameState, accessIndex, template)
 {
