@@ -81,8 +81,9 @@ public:
 	float m_BorderThickness;
 	float m_BorderSeparation;
 
-	// Player ID in bits 0-5 (TERRITORY_PLAYER_MASK);
-	// connected flag in bit 6 (TERRITORY_CONNECTED_MASK);
+	// Player ID   in bits 0-4 (TERRITORY_PLAYER_MASK)
+	// connected flag in bit 4 (TERRITORY_CONNECTED_MASK)
+	// blinking flag  in bit 5 (TERRITORY_BLINKING_MASK)
 	// processed flag in bit 7 (TERRITORY_PROCESSED_MASK)
 	Grid<u8>* m_Territories;
 
@@ -92,7 +93,7 @@ public:
 
 	struct SBoundaryLine
 	{
-		bool connected;
+		bool blinking;
 		CColor color;
 		SOverlayTexturedLine overlay;
 	};
@@ -219,6 +220,8 @@ public:
 	virtual player_id_t GetOwner(entity_pos_t x, entity_pos_t z);
 	virtual std::vector<u32> GetNeighbours(entity_pos_t x, entity_pos_t z, bool filterConnected);
 	virtual bool IsConnected(entity_pos_t x, entity_pos_t z);
+
+	virtual void SetTerritoryBlinking(entity_pos_t x, entity_pos_t z);
 
 	// To support lazy updates of territory render data,
 	// we maintain a DirtyID here and increment it whenever territories change;
@@ -509,7 +512,7 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 			color = cmpPlayer->GetColor();
 
 		m_BoundaryLines.push_back(SBoundaryLine());
-		m_BoundaryLines.back().connected = boundaries[i].connected;
+		m_BoundaryLines.back().blinking = boundaries[i].blinking;
 		m_BoundaryLines.back().color = color;
 		m_BoundaryLines.back().overlay.m_SimContext = &GetSimContext();
 		m_BoundaryLines.back().overlay.m_TextureBase = textureBase;
@@ -559,7 +562,7 @@ void CCmpTerritoryManager::Interpolate(float frameTime, float UNUSED(frameOffset
 
 	for (size_t i = 0; i < m_BoundaryLines.size(); ++i)
 	{
-		if (!m_BoundaryLines[i].connected)
+		if (m_BoundaryLines[i].blinking)
 		{
 			CColor c = m_BoundaryLines[i].color;
 			c.a *= 0.2f + 0.8f * fabsf((float)cos(m_AnimTime * M_PI)); // TODO: should let artists tweak this
@@ -639,6 +642,29 @@ bool CCmpTerritoryManager::IsConnected(entity_pos_t x, entity_pos_t z)
 
 	NearestTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
 	return (m_Territories->get(i, j) & TERRITORY_CONNECTED_MASK) != 0;
+}
+
+void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z)
+{
+	CalculateTerritories();
+	if (!m_Territories)
+		return;
+
+	u16 i, j;
+	NearestTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
+
+	u16 tilesW = m_Territories->m_W;
+	u16 tilesH = m_Territories->m_H;
+
+	player_id_t thisOwner = m_Territories->get(i, j) & TERRITORY_PLAYER_MASK;
+
+	FLOODFILL(i, j,
+		u8 bitmask = m_Territories->get(nx, nz);
+		if ((bitmask & TERRITORY_PLAYER_MASK) != thisOwner || (bitmask & TERRITORY_BLINKING_MASK))
+			continue;
+		m_Territories->set(nx, nz, bitmask | TERRITORY_BLINKING_MASK);
+	);
+	m_BoundaryLinesDirty = true;
 }
 
 TerritoryOverlay::TerritoryOverlay(CCmpTerritoryManager& manager)

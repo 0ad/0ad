@@ -36,8 +36,8 @@
  */
 struct STerritoryBoundary
 {
-	/// Is the territory enclosed by this boundary mathematically connected to (i.e. reachable from) a root influence entity?
-	bool connected;
+	/// Set if this boundary should blink
+	bool blinking;
 	player_id_t owner;
 	/// The boundary points, in clockwise order for inner boundaries and counter-clockwise order for outer boundaries.
 	/// Note: if you need a way to explicitly find out which winding order these are in, you can have

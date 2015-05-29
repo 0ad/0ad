@@ -82,7 +82,7 @@ std::vector<STerritoryBoundary> CTerritoryBoundaryCalculator::ComputeBoundaries(
 	// do this by looking at a curvature value which we define to start at 0, and which is incremented by 1 for every CCW turn and
 	// decremented by 1 for every CW turn. Hence, a negative multiple of 4 means a CW winding order, and a positive one means CCW.
 	
-	const int TERRITORY_DISCR_MASK = (ICmpTerritoryManager::TERRITORY_CONNECTED_MASK | ICmpTerritoryManager::TERRITORY_PLAYER_MASK);
+	const int TERRITORY_DISCR_MASK = (ICmpTerritoryManager::TERRITORY_BLINKING_MASK | ICmpTerritoryManager::TERRITORY_PLAYER_MASK);
 
 	// Try to find an assigned tile
 	for (u16 j = 0; j < grid.m_H; ++j)
@@ -90,11 +90,11 @@ std::vector<STerritoryBoundary> CTerritoryBoundaryCalculator::ComputeBoundaries(
 		for (u16 i = 0; i < grid.m_W; ++i)
 		{
 			// saved tile state; from MSB to LSB:
-			// processed bit, connected bit, player ID
+			// processed bit, blinking bit, player ID
 			u8 tileState = grid.get(i, j);
 			u8 tileDiscr = (tileState & TERRITORY_DISCR_MASK);
 
-			// ignore neutral tiles (note that tiles without an owner should never have the connected bit set)
+			// ignore neutral tiles (note that tiles without an owner should never have the blinking bit set)
 			if (!tileDiscr)
 				continue;
 
@@ -112,7 +112,7 @@ std::vector<STerritoryBoundary> CTerritoryBoundaryCalculator::ComputeBoundaries(
 
 			boundaries.push_back(STerritoryBoundary());
 			boundaries.back().owner = (tileState & ICmpTerritoryManager::TERRITORY_PLAYER_MASK);
-			boundaries.back().connected = (tileState & ICmpTerritoryManager::TERRITORY_CONNECTED_MASK) != 0;
+			boundaries.back().blinking = (tileState & ICmpTerritoryManager::TERRITORY_BLINKING_MASK) != 0;
 			std::vector<CVector2D>& points = boundaries.back().points;
 
 			u8 dir = TILE_BOTTOM;
