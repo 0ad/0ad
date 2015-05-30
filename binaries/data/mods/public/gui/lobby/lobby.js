@@ -388,9 +388,9 @@ function updateGameList()
 	var list_data = [];
 
 	var c = 0;
-	for each (var g in gameList)
+	for (var g of gameList)
 	{
-		if(!filterGame(g))
+		if (!filterGame(g))
 		{
 			// 'waiting' games are highlighted in orange, 'running' in red, and 'init' in green.
 			let name = escapeText(g.name);
@@ -407,7 +407,7 @@ function updateGameList()
 			let idx = g_mapTypes.indexOf(g.mapType);
 			list_mapType.push(idx != -1 ? g_mapTypesText[idx] : "");
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
-			list.push(g.name);
+			list.push(name);
 			list_data.push(c);
 		}
 		c++;
