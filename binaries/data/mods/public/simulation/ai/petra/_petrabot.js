@@ -108,7 +108,7 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 
 	// Run the update every n turns, offset depending on player ID to balance the load
 	this.elapsedTime = this.gameState.getTimeElapsed() / 1000;
-	if ((this.turn + this.player) % 8 == 5)
+	if (!this.playedTurn || (this.turn + this.player) % 8 == 5)
 	{		
 		Engine.ProfileStart("PetraBot bot (player " + this.player +")");
 

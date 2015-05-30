@@ -23,7 +23,7 @@ m.ConstructionPlan.prototype = Object.create(m.QueuePlan.prototype);
 // TODO: if there are specific requirements here, maybe try to do them?
 m.ConstructionPlan.prototype.canStart = function(gameState)
 {
-	if (gameState.buildingsBuilt > 0)   // do not start another building if already one this turn
+	if (gameState.ai.HQ.turnCache["buildingBuilt"])   // do not start another building if already one this turn
 		return false;
 
 	if (!this.isGo(gameState))
@@ -63,7 +63,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 			return;
 		}
 	}
-	gameState.buildingsBuilt++;
+	gameState.ai.HQ.turnCache["buildingBuilt"] = true;
 
 	if (this.metadata === undefined)
 		this.metadata = { "base": pos.base };

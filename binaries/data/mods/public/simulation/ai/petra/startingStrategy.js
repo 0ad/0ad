@@ -108,7 +108,7 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 		}
 		if (!bestbase)	// entity outside our territory
 		{
-			bestbase = m.getBestBase(ent, gameState);
+			bestbase = m.getBestBase(gameState, ent);
 			bestbase.assignEntity(gameState, ent);
 		}
 		// now assign entities garrisoned inside this entity
@@ -268,7 +268,7 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 		let pos = ent.position();
 		if (!pos)
 		{
-			let holder = m.getHolder(ent, gameState);
+			let holder = m.getHolder(gameState, ent);
 			if (!holder || !holder.position())
 				continue;
 			pos = holder.position();

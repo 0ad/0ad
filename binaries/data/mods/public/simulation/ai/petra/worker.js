@@ -61,7 +61,7 @@ m.Worker.prototype.update = function(ent, gameState)
 			{
 				this.startGathering(gameState);
 			}
-			else if (!m.returnResources(this.ent, gameState))     // try to deposit resources
+			else if (!m.returnResources(gameState, this.ent))     // try to deposit resources
 			{
 				// no dropsite, abandon old resources and start gathering new ones
 				this.startGathering(gameState);
@@ -78,10 +78,10 @@ m.Worker.prototype.update = function(ent, gameState)
 				if (supply && !supply.hasClass("Field") && !supply.hasClass("Animal")
 					&& supplyId !== this.ent.getMetadata(PlayerID, "supply"))
 				{
-					var nbGatherers = supply.resourceSupplyNumGatherers() + m.GetTCGatherer(gameState, supplyId);
+					var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplyId);
 					if (nbGatherers > 1 && supply.resourceSupplyAmount()/nbGatherers < 30)
 					{
-						m.RemoveTCGatherer(gameState, supplyId);
+						gameState.ai.HQ.RemoveTCGatherer(supplyId);
 						this.startGathering(gameState);
 					}
 					else
@@ -95,7 +95,7 @@ m.Worker.prototype.update = function(ent, gameState)
 							this.ent.setMetadata(PlayerID, "supply", supplyId);
 						else
 						{
-							m.RemoveTCGatherer(gameState, supplyId);
+							gameState.ai.HQ.RemoveTCGatherer(supplyId);
 							this.startGathering(gameState);
 						}
 					}
@@ -117,7 +117,7 @@ m.Worker.prototype.update = function(ent, gameState)
 					dropsite.setMetadata(PlayerID, "access", goalAccess);
 				}
 				if (access !== goalAccess)
-					m.returnResources(this.ent, gameState);
+					m.returnResources(gameState, this.ent);
 			}
 		}
 	}
@@ -210,7 +210,7 @@ m.Worker.prototype.update = function(ent, gameState)
 							dropsite.setMetadata(PlayerID, "access", goalAccess);
 						}
 						if (access !== goalAccess)
-							m.returnResources(this.ent, gameState);
+							m.returnResources(gameState, this.ent);
 					}
 				}
 			}
@@ -254,13 +254,13 @@ m.Worker.prototype.startGathering = function(gameState)
 				supplies.splice(i--, 1);
 				continue;
 			}
-			if (m.IsSupplyFull(gameState, supplies[i].ent) === true)
+			if (m.IsSupplyFull(gameState, supplies[i].ent))
 				continue;
 			let inaccessibleTime = supplies[i].ent.getMetadata(PlayerID, "inaccessibleTime");
 			if (inaccessibleTime && gameState.ai.elapsedTime < inaccessibleTime)
 				continue;
 			// check if available resource is worth one additionnal gatherer (except for farms)
-			var nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + m.GetTCGatherer(gameState, supplies[i].id);
+			var nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplies[i].id);
 			if (supplies[i].ent.resourceSupplyType()["specific"] !== "grain"
 				&& nbGatherers > 0 && supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 30)
 				continue;
@@ -268,7 +268,7 @@ m.Worker.prototype.startGathering = function(gameState)
 			var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supplies[i].ent.position());
 			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				continue;
-			m.AddTCGatherer(gameState, supplies[i].id);
+			gameState.ai.HQ.AddTCGatherer(supplies[i].id);
 			ent.setMetadata(PlayerID, "supply", supplies[i].id);
 			ret = supplies[i].ent;
 			break;
@@ -534,10 +534,10 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (inaccessibleTime && gameState.ai.elapsedTime < inaccessibleTime)
 			return;
 
-		if (m.IsSupplyFull(gameState, supply) === true)
+		if (m.IsSupplyFull(gameState, supply))
 			return;
 		// check if available resource is worth one additionnal gatherer (except for farms)
-		var nbGatherers = supply.resourceSupplyNumGatherers() + m.GetTCGatherer(gameState, supply.id());
+		var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
@@ -583,7 +583,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 	{
 		if (position)
 			return true;
-		m.AddTCGatherer(gameState, nearestSupply.id());
+		gameState.ai.HQ.AddTCGatherer(nearestSupply.id());
 		this.ent.gather(nearestSupply);
 		this.ent.setMetadata(PlayerID, "supply", nearestSupply.id());
 		this.ent.setMetadata(PlayerID, "target-foundation", undefined);
@@ -632,10 +632,10 @@ m.Worker.prototype.startFishing = function(gameState)
 		if (!supply.position())
 			return;
 
-		if (m.IsSupplyFull(gameState, supply) === true)
+		if (m.IsSupplyFull(gameState, supply))
 			return;
 		// check if available resource is worth one additionnal gatherer (except for farms)
-		var nbGatherers = supply.resourceSupplyNumGatherers() + m.GetTCGatherer(gameState, supply.id());
+		var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
@@ -668,7 +668,7 @@ m.Worker.prototype.startFishing = function(gameState)
 	
 	if (nearestSupply)
 	{
-		m.AddTCGatherer(gameState, nearestSupply.id());
+		gameState.ai.HQ.AddTCGatherer(nearestSupply.id());
 		this.ent.gather(nearestSupply);
 		this.ent.setMetadata(PlayerID, "supply", nearestSupply.id());
 		this.ent.setMetadata(PlayerID, "target-foundation", undefined);
@@ -690,7 +690,7 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 
 	for (var field of ownFields.values())
 	{
-		if (m.IsSupplyFull(gameState, field) === true)
+		if (m.IsSupplyFull(gameState, field))
 			continue;
 		var dist = API3.SquareVectorDistance(field.position(), this.ent.position());
 		if (dist < bestFarmDist)
@@ -701,7 +701,7 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 	}
 	if (bestFarmEnt)
 	{
-		m.AddTCGatherer(gameState, bestFarmEnt.id());
+		gameState.ai.HQ.AddTCGatherer(bestFarmEnt.id());
 		this.ent.setMetadata(PlayerID, "supply", bestFarmEnt.id());
 	}
 	return bestFarmEnt;
@@ -774,7 +774,7 @@ m.Worker.prototype.gatherTreasure = function(gameState)
 		return false;
 	treasureFound.setMetadata(PlayerID, "lastGathered", gameState.ai.elapsedTime);
 	this.ent.gather(treasureFound);
-	m.AddTCGatherer(gameState, treasureFound.id());
+	gameState.ai.HQ.AddTCGatherer(treasureFound.id());
 	this.ent.setMetadata(PlayerID, "supply", treasureFound.id());
 	return true;
 };

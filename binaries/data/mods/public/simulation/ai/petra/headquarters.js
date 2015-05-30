@@ -22,6 +22,7 @@ m.HQ = function(Config)
 	this.currentPhase = undefined;
 
 	// cache the rates.
+	this.turnCache = {};    
 	this.wantedRates = { "food": 0, "wood": 0, "stone":0, "metal": 0 };
 	this.currentRates = { "food": 0, "wood": 0, "stone":0, "metal": 0 };
 	this.lastFailedGather = { "wood": undefined, "stone": undefined, "metal": undefined }; 
@@ -209,7 +210,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		    ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(ent.position()));
 		if (ent.hasClass("Unit"))
 		{
-			m.getBestBase(ent, gameState).assignEntity(gameState, ent);
+			m.getBestBase(gameState, ent).assignEntity(gameState, ent);
 			ent.setMetadata(PlayerID, "role", undefined);
 			ent.setMetadata(PlayerID, "subrole", undefined);
 			ent.setMetadata(PlayerID, "plan", undefined);
@@ -245,7 +246,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		else
 		{
 			// TODO should be reassigned later if a better base is captured
-			m.getBestBase(ent, gameState).assignEntity(gameState, ent);
+			m.getBestBase(gameState, ent).assignEntity(gameState, ent);
 			if (ent.hasTerritoryInfluence())
 				this.updateTerritories(gameState);
 			if (ent.decaying() && ent.isGarrisonHolder())
@@ -569,12 +570,26 @@ m.HQ.prototype.getTotalResourceLevel = function(gameState)
 // This is not per-se exact, it performs a few adjustments ad-hoc to account for travel distance, stuffs like that.
 m.HQ.prototype.GetCurrentGatherRates = function(gameState)
 {
-	for (var type in this.wantedRates)
-		this.currentRates[type] = 0;
-	
-	for (var base of this.baseManagers)
-		base.getGatherRates(gameState, this.currentRates);
+	if (!this.turnCache["gatherRates"])
+	{
+		for (let res in this.currentRates)
+			this.currentRates[res] = 0.5 * this.GetTCResGatherer(res);
 
+		for (let base of this.baseManagers)
+			base.getGatherRates(gameState, this.currentRates);
+
+		for (let res in this.currentRates)
+		{
+			if (this.currentRates[res] < 0)
+			{
+				if (this.Config.debug > 0)
+					API3.warn("Petra: current rate for " + res + " < 0 with " + this.GetTCResGatherer(res) + " moved gatherers");
+				this.currentRates[res] = 0;
+			}
+		}
+		this.turnCache["gatherRates"] = true;
+	}
+	    
 	return this.currentRates;
 };
 
@@ -1751,15 +1766,16 @@ m.HQ.prototype.numActiveBase = function()
 // to prevent the AI always reaffecting idle workers to these resourceSupplies (specially in naval maps).
 m.HQ.prototype.assignGatherers = function(gameState)
 {
+	var self = this;
 	for (var base of this.baseManagers)
 	{
 		base.workers.forEach( function (worker) {
 			if (worker.unitAIState().split(".")[1] !== "RETURNRESOURCE")
 				return;
-			var orders = worker.unitAIOrderData();
+			let orders = worker.unitAIOrderData();
 			if (orders.length < 2 || !orders[1].target || orders[1].target !== worker.getMetadata(PlayerID, "supply"))
 				return;
-			m.AddTCGatherer(gameState, orders[1].target);
+			self.AddTCGatherer(orders[1].target);
 		});
 	}
 };
@@ -1773,12 +1789,66 @@ m.HQ.prototype.isDangerousLocation = function(pos)
 	return false;
 };
 
+// Some functions that register that we assigned a gatherer to a resource this turn
+
+// add a gatherer to the turn cache for this supply.
+m.HQ.prototype.AddTCGatherer = function(supplyID)
+{
+	if (this.turnCache["resourceGatherer"] && this.turnCache["resourceGatherer"][supplyID] !== undefined)
+		++this.turnCache["resourceGatherer"][supplyID];
+	else
+	{ 
+		if (!this.turnCache["resourceGatherer"])
+			this.turnCache["resourceGatherer"] = {};
+		this.turnCache["resourceGatherer"][supplyID] = 1;
+	}
+};
+
+// remove a gatherer to the turn cache for this supply.
+m.HQ.prototype.RemoveTCGatherer = function(supplyID)
+{
+	if (this.turnCache["resourceGatherer"] && this.turnCache["resourceGatherer"][supplyID])
+		--this.turnCache["resourceGatherer"][supplyID];
+	else
+	{
+		if (!this.turnCache["resourceGatherer"])
+			this.turnCache["resourceGatherer"] = {};
+		this.turnCache["resourceGatherer"][supplyID] = -1;
+	}
+};
+
+m.HQ.prototype.GetTCGatherer = function(supplyID)
+{
+	if (this.turnCache["resourceGatherer"] && this.turnCache["resourceGatherer"][supplyID])
+		return this.turnCache["resourceGatherer"][supplyID];
+	else
+		return 0;
+};
+
+// The next two are to register that we assigned a gatherer to a resource this turn.
+m.HQ.prototype.AddTCResGatherer = function(resource)
+{
+	if (this.turnCache["resourceGatherer-" + resource])
+		++this.turnCache["resourceGatherer-" + resource];
+	else
+		this.turnCache["resourceGatherer-" + resource] = 1;
+	this.turnCache["gatherRates"] = false;
+};
+
+m.HQ.prototype.GetTCResGatherer = function(resource)
+{
+	if (this.turnCache["resourceGatherer-" + resource])
+		return this.turnCache["resourceGatherer-" + resource];
+	else
+		return 0;
+};
+
 // Some functions are run every turn
 // Others once in a while
 m.HQ.prototype.update = function(gameState, queues, events)
 {
 	Engine.ProfileStart("Headquarters update");
-
+	this.turnCache = {};
 	this.territoryMap = m.createTerritoryMap(gameState);
 
 	if (this.Config.debug > 1)
@@ -1874,6 +1944,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 m.HQ.prototype.Serialize = function()
 {
 	let properties = {
+		"turnCache": this.turnCache,
 		"econState": this.econState,
 		"currentPhase": this.currentPhase,
 		"wantedRates": this.wantedRates,
