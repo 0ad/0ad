@@ -9,9 +9,6 @@ var API3 = function(m)
 m.GameState = function() {
 	this.ai = null; // must be updated by the AIs.
 	this.cellSize = 4.0; // Size of each map tile
-
-	this.buildingsBuilt = 0;
-	this.turnCache = {};
 };
 
 m.GameState.prototype.init = function(SharedScript, state, player) {
@@ -40,9 +37,6 @@ m.GameState.prototype.update = function(SharedScript, state) {
 	this.playerData = SharedScript.playersData[this.player];
 	this.techModifications = SharedScript._techModifications[this.player];
 	this.barterPrices = SharedScript.barterPrices;
-
-	this.buildingsBuilt = 0;
-	this.turnCache = {};
 };
 
 m.GameState.prototype.updatingCollection = function(id, filter, collection)

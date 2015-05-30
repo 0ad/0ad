@@ -717,27 +717,24 @@ m.Entity = m.Class({
 		if (this.unitAIOrderData().length &&
 			(this.unitAIState().split(".")[1] === "GATHER" || this.unitAIState().split(".")[1] === "RETURNRESOURCE"))
 		{
-			var ress = undefined;
+			let res;
 			// this is an abuse of "_ai" but it works.
 			if (this.unitAIState().split(".")[1] === "GATHER" && this.unitAIOrderData()[0]["target"] !== undefined)
-				ress = this._ai._entities.get(this.unitAIOrderData()[0]["target"]);
+				res = this._ai._entities.get(this.unitAIOrderData()[0]["target"]);
 			else if (this.unitAIOrderData()[1] !== undefined && this.unitAIOrderData()[1]["target"] !== undefined)
-				ress = this._ai._entities.get(this.unitAIOrderData()[1]["target"]);
-
-			if (ress == undefined)
+				res = this._ai._entities.get(this.unitAIOrderData()[1]["target"]);
+			if (res === undefined)
 				return undefined;
 
-			var type = ress.resourceSupplyType();
-			var tstring = type.generic + "." + type.specific;
-
-			if (type.generic == "treasure")
+			let type = res.resourceSupplyType();
+			if (type.generic === "treasure")
 				return 1000;
 
-			var speed = +this.get("ResourceGatherer/BaseSpeed");
-			speed *= +this.get("ResourceGatherer/Rates/" +tstring);
-
-			if (speed)
-				return speed;
+			let tstring = type.generic + "." + type.specific;
+			let rate = +this.get("ResourceGatherer/BaseSpeed");
+			rate *= +this.get("ResourceGatherer/Rates/" +tstring);
+			if (rate)
+				return rate;
 			return 0;
 		}
 		return undefined;
