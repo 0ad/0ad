@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-04-23 21:06+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
+"POT-Creation-Date: 2015-05-25 03:32+0200\n"
+"PO-Revision-Date: 2015-05-25 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "იხსნება ქალაქის ფაზაში."
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
-msgid "Prometoopidion"
+msgid "Prometōpídion"
 msgstr ""
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
@@ -203,8 +203,8 @@ msgstr "რკინის გმირის ჯავშანი"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
-msgid "Sidi̱ró Panoplía"
-msgstr "Sidi̱ró Panoplía"
+msgid "Sidḗrea Panoplía"
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
@@ -333,7 +333,7 @@ msgstr "ფანერის ფარის შენობა"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
-msgid "Aspidiskè"
+msgid "Aspidískos"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
@@ -355,7 +355,7 @@ msgstr "გამტკიცებული ფარი"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
-msgid "Aspides"
+msgid "Aspís"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
@@ -374,11 +374,11 @@ msgstr "ბრინჯაოს ფარის სახე"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
-msgid "Chalkaspides"
+msgid "Khalkaspís"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
-msgid "Chrysaspides"
+msgid "Khrysaspís"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
@@ -400,7 +400,7 @@ msgstr "ვერცხლის ფარები"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
-msgid "Argyraspides"
+msgid "Argyraspís"
 msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
@@ -483,6 +483,29 @@ msgstr "მხედრის შუბი"
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.sele
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
+msgid "Xystón"
+msgstr ""
+
+#: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
+msgid "Hasta"
+msgstr "ჰასტა"
+
+#: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
+msgid "Training increases melee attack."
+msgstr "გაწვრთნა ზრდის შემტაკებლების თავდასხმას."
+
+#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
+msgid "+20% melee cavalry attack."
+msgstr "+20% შემტაკებელი მხედრების თავდასხმა."
+
+#: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
+msgid "Close Combat Cavalry Training"
+msgstr "ახლო ბრძოლის მხედრების წვრთნა"
+
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
@@ -505,26 +528,6 @@ msgstr "მხედრის შუბი"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
 msgstr ""
-
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
-msgid "Hasta"
-msgstr "ჰასტა"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
-msgid "Training increases melee attack."
-msgstr "გაწვრთნა ზრდის შემტაკებლების თავდასხმას."
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
-msgid "+20% melee cavalry attack."
-msgstr "+20% შემტაკებელი მხედრების თავდასხმა."
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
-msgid "Close Combat Cavalry Training"
-msgstr "ახლო ბრძოლის მხედრების წვრთნა"
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
@@ -577,7 +580,7 @@ msgstr "გმირობა"
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
-msgid "Andreia"
+msgid "Andreía"
 msgstr ""
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
@@ -680,7 +683,7 @@ msgstr "ბრძოლის სურვილი"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
-msgid "Dynamis"
+msgid "Dýnamis"
 msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
@@ -762,7 +765,7 @@ msgstr "ავტომატური სასროლი"
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.sele
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.athen
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
-msgid "Nyktophylakes"
+msgid "Nyktophýlakes"
 msgstr ""
 
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.rome
@@ -916,7 +919,7 @@ msgstr "მონები"
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
-msgid "Heilotes"
+msgid "Heílōtes"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
@@ -934,7 +937,7 @@ msgstr "აიყვანე მსახურები რომ მოიპ
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
-msgid "Douloi"
+msgid "Doûloi"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
@@ -979,7 +982,7 @@ msgstr "მონები"
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
-msgid "Andrapodon"
+msgid "Andrápoda"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
@@ -1045,8 +1048,8 @@ msgstr "განკურნების მანძილი 2"
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
-msgid "Akademia"
-msgstr "აკადემია"
+msgid "Akadḗmeia"
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -1065,7 +1068,7 @@ msgstr "განკურნების ხარისხი"
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
-msgid "Sphagia"
+msgid "Sphágia"
 msgstr ""
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
@@ -1160,8 +1163,8 @@ msgstr "რკინის ხელშუბის წვერები"
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
-msgid "Siderénies Aichmés"
-msgstr "Siderénies Aichmés"
+msgid "Sidḗreai Aikhmaí"
+msgstr ""
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
@@ -1272,8 +1275,8 @@ msgstr "საჭიროებს 4 ახალ ქალაქის ფა�
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
-msgid "Megalopolis"
-msgstr "მეგაპოლისი"
+msgid "Megalópolis"
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1317,8 +1320,8 @@ msgstr "საჭიროებს 5 სოფლის ფაზის შე�
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Komópolis"
-msgstr "Komópolis"
+msgid "Kōmópolis"
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1351,7 +1354,7 @@ msgid "Dining Hall"
 msgstr "სასადილო დარბაზი"
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
-msgid "Tholos"
+msgid "Thólos"
 msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsondescription
@@ -1373,8 +1376,8 @@ msgid "Comitium"
 msgstr "კომიტიუმი"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
-msgid "Ekklesia"
-msgstr "ეკლესია"
+msgid "Ekklēsía"
+msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1456,7 +1459,7 @@ msgstr "სასროლი შუბის ღვედი"
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.sele
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
-msgid "Ankyle"
+msgid "Himás"
 msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
@@ -1648,8 +1651,8 @@ msgstr "გახსენი ფალავნები"
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
-msgid "Agèma"
-msgstr "Agèma"
+msgid "Ágēma"
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1670,8 +1673,8 @@ msgstr "ნაყოფიერების დღესასწაული"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
-msgid "Thesmophoria"
-msgstr "თესმოფორია"
+msgid "Thesmophória"
+msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
@@ -1711,7 +1714,7 @@ msgstr "გამოცდილი მოქალაქე-ქვეითი"
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
-msgid "Metikoi"
+msgid "Zeugítai"
 msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
@@ -1743,7 +1746,7 @@ msgstr "რჩეული მოქალაქე ქვეითი"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
-msgid "Zeugites"
+msgid "Pentakosiomédimnoi"
 msgstr ""
 
 #: simulation/data/technologies/vision_outpost.jsondescription
@@ -2099,7 +2102,7 @@ msgstr ""
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
-msgid "Doratismos"
+msgid "Doratismós"
 msgstr ""
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
@@ -2198,7 +2201,7 @@ msgstr "ელინიზაცია"
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.athen
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
-msgid "Exellinismós"
+msgid "Hellēnízein"
 msgstr ""
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription

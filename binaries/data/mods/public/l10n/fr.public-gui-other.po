@@ -8,6 +8,7 @@
 # Moul <ma.azimi@laposte.net>, 2015
 # Marco tom Suden, 2014
 # Marwan <Skyplay33@gmail.com>, 2015
+# Moritz FS <momogingins@gmail.com>, 2015
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2015
 # Polakrity <sxk-fr@live.fr>, 2014
 # Vincent Pouliquen <vins_om@hotmail.fr>, 2014
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-22 00:48+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-30 17:30+0000\n"
+"Last-Translator: Moritz FS <momogingins@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -420,7 +421,7 @@ msgstr "Attaque à distance :"
 
 #: gui/common/tooltips.js:143
 msgid "Capture Attack:"
-msgstr ""
+msgstr "Attaque de capture :"
 
 #: gui/common/tooltips.js:146
 msgid "Attack:"
@@ -659,11 +660,11 @@ msgstr "Affiche le temps de jeu actuel en haut à droite."
 
 #: gui/options/options.js:16
 msgid "Ceasefire Time Overlay"
-msgstr ""
+msgstr "Sourcouche du temps de cesse-feu"
 
 #: gui/options/options.js:16
 msgid "Always show the remaining ceasefire time."
-msgstr ""
+msgstr "Toujours afficher la durée de cessez-le-feu restante."
 
 #: gui/options/options.js:17
 msgid "Persist match settings"
@@ -1193,7 +1194,7 @@ msgstr "Scénario"
 #: gui/summary/summary.js:141
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr ""
+msgstr "Temps de jeu écoulé : %(time)s"
 
 #: gui/summary/summary.js:162
 #, javascript-format
@@ -1771,7 +1772,7 @@ msgstr "CENTRES-VILLES"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr "- Les \"fondations\" de votre nouvelle colonie."
+msgstr "- Le point de départ de votre nouvelle colonie."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -1779,7 +1780,7 @@ msgstr "- Revendiquent de vastes étendues de territoire."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr "- Peuvent-être construit en territoire allié et neutre."
+msgstr "- Peuvent être construits en territoire allié et neutre."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."

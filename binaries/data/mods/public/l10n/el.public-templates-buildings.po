@@ -8,6 +8,7 @@
 # Chris Vl <inactive+chrisvl97@transifex.com>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
 # Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2014-2015
+# jason <manitarious@gmail.com>, 2015
 # malvanos <malvanos@gmail.com>, 2014
 # Menelaos Vergis <menelaosvergis@gmail.com>, 2014
 # Nick Mantas <inactive+nickthegreek@transifex.com>, 2014
@@ -18,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:51+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-05-25 03:32+0200\n"
+"PO-Revision-Date: 2015-05-31 20:30+0000\n"
+"Last-Translator: jason <manitarious@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -344,14 +345,13 @@ msgstr "Στρατηγείο"
 
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
-msgid "Khalkeîon"
-msgstr "Χαλκείο"
+msgid "Khalkeṓn"
+msgstr ""
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
-#: simulation/templates/structures/sele_civil_centre.xml:8
 #: simulation/templates/structures/spart_civil_centre.xml:8
-msgid "Agorā́"
+msgid "Agorá"
 msgstr "Αγορά"
 
 #: simulation/templates/structures/athen_corral.xml:12
@@ -376,21 +376,19 @@ msgstr "Λιμένας"
 
 #: simulation/templates/structures/athen_farmstead.xml:12
 #: simulation/templates/structures/mace_farmstead.xml:12
-#: simulation/templates/structures/sele_farmstead.xml:12
 #: simulation/templates/structures/spart_farmstead.xml:12
-msgid "Sītobólion"
-msgstr "Σιτοβολώνας"
+msgid "Sitobólion"
+msgstr "Φάρμα"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
-#: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
-msgid "Agrós"
-msgstr "Αγρός"
+msgid "Agroí"
+msgstr "Αγροί"
 
 #: simulation/templates/structures/athen_fortress.xml:9
-msgid "Epiteíchisma"
-msgstr "Επιτείχισμα"
+msgid "Epiteíkhisma"
+msgstr ""
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
@@ -403,7 +401,7 @@ msgid "Gymnasium"
 msgstr "Γυμνάσιο"
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
-msgid "Gymnásieon"
+msgid "Gymnásion"
 msgstr "Γυμνάσιον"
 
 #: simulation/templates/structures/athen_gymnasion.xml:22
@@ -419,9 +417,8 @@ msgstr "Οίκος"
 
 #: simulation/templates/structures/athen_market.xml:5
 #: simulation/templates/structures/mace_market.xml:5
-#: simulation/templates/structures/sele_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
-msgid "Empórion"
+msgid "Empórios"
 msgstr "Εμπόριο"
 
 #: simulation/templates/structures/athen_outpost.xml:5
@@ -429,6 +426,12 @@ msgstr "Εμπόριο"
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
 msgstr "Ελληνικό φυλάκιο"
+
+#: simulation/templates/structures/athen_outpost.xml:6
+#: simulation/templates/structures/mace_outpost.xml:6
+#: simulation/templates/structures/spart_outpost.xml:6
+msgid "Prophylakḗ"
+msgstr ""
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 msgid "Council Chamber"
@@ -512,8 +515,8 @@ msgstr "Πύργος"
 #: simulation/templates/structures/athen_wonder.xml:17
 #: simulation/templates/structures/mace_wonder.xml:17
 #: simulation/templates/structures/spart_wonder.xml:17
-msgid "Neṓs Parthenos"
-msgstr "Νέος Παρθένος"
+msgid "Naós Parthenṓn"
+msgstr ""
 
 #: simulation/templates/structures/athen_wonder.xml:19
 #: simulation/templates/structures/mace_wonder.xml:19
@@ -925,12 +928,10 @@ msgid "Cancho Roano"
 msgstr "Cancho Roano"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
-#: simulation/templates/structures/sele_blacksmith.xml:5
-msgid "Sidirourgeíon"
-msgstr "Σιδηρουργείο"
+msgid "Sidērourgeîon"
+msgstr ""
 
 #: simulation/templates/structures/mace_fortress.xml:15
-#: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíchisma"
 msgstr "Τόιχισμα"
 
@@ -947,9 +948,9 @@ msgid "Library"
 msgstr "Βιβλιοθήκη"
 
 #: simulation/templates/structures/mace_library.xml:16
-#: simulation/templates/structures/sele_library.xml:16
-msgid "Bibliothikon"
-msgstr "Βιβλιοθήκη"
+#: simulation/templates/structures/ptol_library.xml:16
+msgid "Bibliothḗkē"
+msgstr ""
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -960,8 +961,8 @@ msgid ""
 msgstr "Ερεύνησε εξειδικευμένες τεχνολογίες και μείωσε τον χρόνο έρευνας για όλες τις υπόλοιπες τεχνολογίες"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
-msgid "Synergeíon Poliorkías"
-msgstr "Συνεργείο Πολιορκίας"
+msgid "Synergeîon Poliorkētṓn"
+msgstr "Συνεργείο Π"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
@@ -972,8 +973,9 @@ msgid "Build siege engines. Research siege technologies."
 msgstr "Δημιουργία πολιορκητικών μηχανών. Έρευνα τεχνολογιών πολιορκίας"
 
 #: simulation/templates/structures/mace_temple.xml:9
-msgid "Asclepeion"
-msgstr "Ασκληπιείο"
+#: simulation/templates/structures/spart_temple.xml:9
+msgid "Asklēpieîon"
+msgstr ""
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
@@ -1282,17 +1284,13 @@ msgstr "mktr-'a"
 msgid "ḥwt"
 msgstr "ḥwt"
 
-#: simulation/templates/structures/ptol_library.xml:16
-msgid "Bibliothí̱ki̱"
-msgstr "Βιβλιοθήκη"
-
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
 msgstr "Φάρος"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
-msgid "Pharos"
-msgstr "Φάρος"
+msgid "Pháros"
+msgstr ""
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
@@ -1309,8 +1307,8 @@ msgid "Mercenary Camp"
 msgstr "Μισθοφορικό Στρατόπεδο"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
-msgid "Stratópedo Misthophóron"
-msgstr "Στρατόπεδο Μισθοφόρων"
+msgid "Stratopedeía Misthophórōn"
+msgstr ""
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
@@ -1330,9 +1328,8 @@ msgid "Military Colony"
 msgstr "Στρατιωτική Αποικία"
 
 #: simulation/templates/structures/ptol_military_colony.xml:47
-#: simulation/templates/structures/sele_military_colony.xml:47
-msgid "Klēroukhia"
-msgstr "Κληρουχία"
+msgid "Klēroukhía"
+msgstr ""
 
 #: simulation/templates/structures/ptol_military_colony.xml:50
 msgid ""
@@ -1548,9 +1545,25 @@ msgstr "Aedes Iovis Optimi Maximi"
 msgid "Stratones"
 msgstr "Στρατώνες"
 
+#: simulation/templates/structures/sele_blacksmith.xml:5
+msgid "Sidirourgeíon"
+msgstr "Σιδηρουργείο"
+
+#: simulation/templates/structures/sele_civil_centre.xml:8
+msgid "Agorā́"
+msgstr "Αγορά"
+
 #: simulation/templates/structures/sele_dock.xml:12
 msgid "Liménas"
 msgstr "Λιμένας"
+
+#: simulation/templates/structures/sele_farmstead.xml:12
+msgid "Sītobólion"
+msgstr "Σιτοβολώνας"
+
+#: simulation/templates/structures/sele_field.xml:5
+msgid "Agrós"
+msgstr "Αγρός"
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
@@ -1561,6 +1574,18 @@ msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
 msgstr "Κατασκευάστε πολιορκητικές μηχανές και εκπαιδεύστε Πρωταθλητές.Περιφρουρίστε με παραπάνω απο 20 στρατιώτες στο εσωτερικό του για πιο σταθερή άμυνα"
+
+#: simulation/templates/structures/sele_library.xml:16
+msgid "Bibliothikon"
+msgstr "Βιβλιοθήκη"
+
+#: simulation/templates/structures/sele_market.xml:5
+msgid "Empórion"
+msgstr "Εμπόριο"
+
+#: simulation/templates/structures/sele_military_colony.xml:47
+msgid "Klēroukhia"
+msgstr "Κληρουχία"
 
 #: simulation/templates/structures/sele_military_colony.xml:50
 msgid ""
@@ -1581,13 +1606,17 @@ msgstr "Ναός"
 msgid "Paradise of Daphne"
 msgstr "Παράδεισος της Δάφνης"
 
+#: simulation/templates/structures/spart_fortress.xml:9
+msgid "Teíkhisma"
+msgstr ""
+
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
 msgstr "Σπαρτιατική Γερουσία"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
-msgid "Gerousia"
-msgstr "Γερουσία"
+msgid "Gerontía"
+msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
@@ -1604,7 +1633,3 @@ msgstr "Συσσίτιον"
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "Εκπαίδευσε Σπαρτιάτες ήρωες και Σπαρτιάτες πρωταθλητές οπλίτες."
-
-#: simulation/templates/structures/spart_temple.xml:9
-msgid "Asklepeion"
-msgstr "Ασκληπιείο"
