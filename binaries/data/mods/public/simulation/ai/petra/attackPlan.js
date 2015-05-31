@@ -510,7 +510,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		entity.setMetadata(PlayerID, "subrole", "completing");
 		var queued = false;
 		if (entity.resourceCarrying() && entity.resourceCarrying().length)
-			queued = m.returnResources(entity, gameState);
+			queued = m.returnResources(gameState, entity);
 		var index = gameState.ai.accessibility.getAccessValue(entity.position());
 		if (index === rallyIndex)
 			entity.moveToRange(rallyPoint[0], rallyPoint[1], 0, 15, queued);

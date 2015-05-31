@@ -68,7 +68,7 @@ m.getMaxStrength = function(ent, againstClass)
 };
 
 // Makes the worker deposit the currently carried resources at the closest accessible dropsite
-m.returnResources = function(ent, gameState)
+m.returnResources = function(gameState, ent)
 {
 	if (!ent.resourceCarrying() || ent.resourceCarrying().length == 0 || !ent.position())
 		return false;
@@ -94,15 +94,29 @@ m.returnResources = function(ent, gameState)
 	return true;
 };
 
+// is supply full taking into account gatherers affected during this turn
+m.IsSupplyFull = function(gameState, ent)
+{
+	if (ent.isFull() === true)
+	    return true;
+	var turnCache = gameState.ai.HQ.turnCache;
+	var count = ent.resourceSupplyNumGatherers();
+	if (turnCache["resourceGatherer"] && turnCache["resourceGatherer"][ent.id()])
+		count += turnCache["resourceGatherer"][ent.id()];
+	if (count >= ent.maxGatherers())
+		return true;
+	return false;
+};
+
 /**
  * get the best base (in terms of distance and accessIndex) for an entity
  */
-m.getBestBase = function(ent, gameState)
+m.getBestBase = function(gameState, ent)
 {
 	var pos = ent.position();
 	if (!pos)
 	{
-		var holder = m.getHolder(ent, gameState);
+		var holder = m.getHolder(gameState, ent);
 		if (!holder || !holder.position())
 		{
 			API3.warn("Petra error: entity without position, but not garrisoned");
@@ -131,7 +145,7 @@ m.getBestBase = function(ent, gameState)
 	return bestbase;
 };
 
-m.getHolder = function(ent, gameState)
+m.getHolder = function(gameState, ent)
 {
 	var found = undefined;
 	gameState.getEntities().forEach(function (holder) {
@@ -147,7 +161,7 @@ m.getHolder = function(ent, gameState)
  * return true if it is not worth finishing this building (it would surely decay) 
  * TODO implement the other conditions
  */
-m.isNotWorthBuilding = function(ent, gameState)
+m.isNotWorthBuilding = function(gameState, ent)
 {
 	if (gameState.ai.HQ.territoryMap.getOwner(ent.position()) !== PlayerID)
 	{

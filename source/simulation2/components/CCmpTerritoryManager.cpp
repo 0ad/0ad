@@ -697,4 +697,4 @@ void TerritoryOverlay::ProcessTile(ssize_t i, ssize_t j)
 	}
 }
 
-#undef FOODFILL
+#undef FLOODFILL

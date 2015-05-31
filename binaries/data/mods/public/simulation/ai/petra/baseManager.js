@@ -172,7 +172,7 @@ m.BaseManager.prototype.anchorLost = function (gameState, ent)
 	this.anchor = undefined;
 	this.anchorId = undefined;
 	this.neededDefenders = 0;
-	let bestbase = m.getBestBase(ent, gameState);
+	let bestbase = m.getBestBase(gameState, ent);
 	this.newbaseID = bestbase.ID;
 	for (let entity of this.units.values())
 		bestbase.assignEntity(gameState, entity);
@@ -500,7 +500,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 // Adds the estimated gather rates from this base to the currentRates
 m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 {
-	for (var i in currentRates)
+	for (let res in currentRates)
 	{
 		// I calculate the exact gathering rate for each unit.
 		// I must then lower that to account for travel time.
@@ -508,29 +508,28 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 		// I use some logarithms.
 		// TODO: this should take into account for unit speed and/or distance to target
 
-		this.gatherersByType(gameState, i).forEach(function (ent) {
-			var gRate = ent.currentGatherRate();
-			if (gRate !== undefined)
-				currentRates[i] += Math.log(1+gRate)/1.1;
+		this.gatherersByType(gameState, res).forEach(function (ent) {
+			let gRate = ent.currentGatherRate();
+			if (gRate)
+				currentRates[res] += Math.log(1+gRate)/1.1;
 		});
-		if (i === "food")
+		if (res === "food")
 		{
 			this.workersBySubrole(gameState, "hunter").forEach(function (ent) {
 				if (ent.isIdle())
 					return;
-				var gRate = ent.currentGatherRate()
-				if (gRate !== undefined)
-					currentRates[i] += Math.log(1+gRate)/1.1;
+				let gRate = ent.currentGatherRate();
+				if (gRate)
+					currentRates[res] += Math.log(1+gRate)/1.1;
 			});
 			this.workersBySubrole(gameState, "fisher").forEach(function (ent) {
 				if (ent.isIdle())
 					return;
-				var gRate = ent.currentGatherRate()
-				if (gRate !== undefined)
-					currentRates[i] += Math.log(1+gRate)/1.1;
+				let gRate = ent.currentGatherRate();
+				if (gRate)
+					currentRates[res] += Math.log(1+gRate)/1.1;
 			});
 		}
-		currentRates[i] += 0.5*m.GetTCRessGatherer(gameState, i);
 	}
 };
 
@@ -596,7 +595,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 					--nb;
 					ent.stopMoving();
 					ent.setMetadata(PlayerID, "gather-type", moreNeed.type);
-					m.AddTCRessGatherer(gameState, moreNeed.type);
+					gameState.ai.HQ.AddTCResGatherer(moreNeed.type);
 				});
 				if (nb == 0)
 					return;
@@ -643,7 +642,7 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState)
 							continue;
 						ent.setMetadata(PlayerID, "subrole", "gatherer");
 						ent.setMetadata(PlayerID, "gather-type", needed.type);
-						m.AddTCRessGatherer(gameState, needed.type);
+						gameState.ai.HQ.AddTCResGatherer(needed.type);
 						break;
 					}
 				}
@@ -775,7 +774,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 				continue;
 
 		// if our territory has shrinked since this foundation was positioned, do not build it
-		if (m.isNotWorthBuilding(target, gameState))
+		if (m.isNotWorthBuilding(gameState, target))
 			continue;
 
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
@@ -932,12 +931,12 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 		if (gameState.ai.HQ.numActiveBase() > 0)
 		{
 			for (var ent of this.units.values())
-				m.getBestBase(ent, gameState).assignEntity(gameState, ent);
+				m.getBestBase(gameState, ent).assignEntity(gameState, ent);
 			for (var ent of this.buildings.values())
 			{
 				if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 					this.removeDropsite(gameState, ent);
-				m.getBestBase(ent, gameState).assignEntity(gameState, ent);
+				m.getBestBase(gameState, ent).assignEntity(gameState, ent);
 			}
 		}
 		else if (gameState.ai.HQ.canBuildUnits)
