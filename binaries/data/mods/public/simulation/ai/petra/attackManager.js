@@ -18,6 +18,7 @@ m.AttackManager = function(Config)
 	this.maxRushes = 0;
 	this.rushSize = [];
 	this.currentEnemyPlayer = undefined; // enemy player we are currently targeting
+	this.defeated = {};
 };
 
 // More initialisation for stuff that needs the gameState
@@ -48,11 +49,15 @@ m.AttackManager.prototype.setRushes = function(allowed)
 
 m.AttackManager.prototype.checkEvents = function(gameState, events)
 {
-	let PlayerEvents = events["AttackRequest"];
+	let PlayerDefeated = events["PlayerDefeated"];
+	for (let evt of PlayerDefeated)
+		this.defeated[evt.playerId] = true;
+
+	let AttackRequest = events["AttackRequest"];
 	let answer = false;
 	let other = undefined;
 	let targetPlayer = undefined;
-	for (let evt of PlayerEvents)
+	for (let evt of AttackRequest)
 	{
 		if (evt.source === PlayerID || !gameState.isPlayerAlly(evt.source) || !gameState.isPlayerEnemy(evt.target))
 			continue;
@@ -361,13 +366,17 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 		}
 	}
 
-	// No rush if enemy too well defended (i.e. iberians) 
 	var veto = {};
+	for (let i in this.defeated)
+	    veto[i] = true;
+	// No rush if enemy too well defended (i.e. iberians)     
 	if (attack.type === "Rush")
 	{
 		for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
 		{
-			if (!gameState.isPlayerEnemy(i))
+			if (!gameState.isPlayerEnemy(i) || veto[i])
+				continue;
+			if (this.defeated[i])
 				continue;
 			let enemyDefense = 0;
 			for (let ent of gameState.getEnemyStructures(i).values())
@@ -459,7 +468,8 @@ m.AttackManager.prototype.Serialize = function()
 		"debugTime": this.debugTime,
 		"maxRushes": this.maxRushes,
 		"rushSize": this.rushSize,
-		"currentEnemyPlayer": this.currentEnemyPlayer
+		"currentEnemyPlayer": this.currentEnemyPlayer,
+		"defeated": this.defeated
 	};
 
 	let upcomingAttacks = {};

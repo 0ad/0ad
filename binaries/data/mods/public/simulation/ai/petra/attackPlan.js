@@ -1725,7 +1725,17 @@ m.AttackPlan.prototype.checkEvents = function(gameState, events)
 	let captureEvents = events["OwnershipChanged"];
 	for (let evt of captureEvents)
 		if (this.target && this.target.id() == evt.entity && gameState.isPlayerAlly(evt.to))
+		    this.target = undefined;
+
+ 	let PlayerDefeated = events["PlayerDefeated"];
+	for (let evt of PlayerDefeated)
+	{
+		if (this.targetPlayer == evt.playerId)
+		{
+			this.targetPlayer = undefined;
 			this.target = undefined;
+		}
+	}
 };
 
 m.AttackPlan.prototype.waitingForTransport = function()
