@@ -290,7 +290,7 @@ Auras.prototype.GiveMembersWithValidClass = function(auraName, entityList)
 
 Auras.prototype.OnRangeUpdate = function(msg)
 {
-	var auraNames = this.GetAuraNames().filter(n => msg.tag == this[n].rangeQuery);
+	var auraNames = this.GetAuraNames().filter(n => this[n] && msg.tag == this[n].rangeQuery);
 	for (let name of auraNames)
 	{
 		this.ApplyBonus(name, msg.added);
