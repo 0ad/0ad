@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ CGUI
 extern int g_yres;
 
 const double SELECT_DBLCLICK_RATE = 0.5;
-const u32 MAX_OBECT_DEPTH = 100; // Max number of nesting for GUI includes. Used to detect recursive inclusion
+const u32 MAX_OBJECT_DEPTH = 100; // Max number of nesting for GUI includes. Used to detect recursive inclusion
 
 InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 {
@@ -1368,28 +1368,41 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 					LOGERROR("GUI: Error reading included XML: '%s', root element must have be of type 'object'.", utf8_from_wstring(filename));
 					continue;
 				}
+
+				if (nesting_depth+1 >= MAX_OBJECT_DEPTH)
+				{
+					LOGERROR("GUI: Too many nested GUI includes. Probably caused by a recursive include attribute. Abort rendering '%s'.", utf8_from_wstring(filename));
+					continue;
+				}
+
 				Xeromyces_ReadObject(node, &XeroIncluded, object, NameSubst, Paths, nesting_depth+1);
 			}
 			else if (!directory.empty())
 			{
+				if (nesting_depth+1 >= MAX_OBJECT_DEPTH)
+				{
+					LOGERROR("GUI: Too many nested GUI includes. Probably caused by a recursive include attribute. Abort rendering '%s'.", utf8_from_wstring(directory));
+					continue;
+				}
+
 				VfsPaths pathnames;
 				vfs::GetPathnames(g_VFS, directory, L"*.xml", pathnames);
-				for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+				for (const VfsPath& path : pathnames)
 				{
 					// as opposed to loading scripts, don't care if it's loaded before
 					// one might use the same parts of the GUI in different situations
-					Paths.insert(*it);
+					Paths.insert(path);
 					CXeromyces XeroIncluded;
-					if (XeroIncluded.Load(g_VFS, *it) != PSRETURN_OK)
+					if (XeroIncluded.Load(g_VFS, path) != PSRETURN_OK)
 					{
-						LOGERROR("GUI: Error reading included XML: '%s'", (*it).string8());
+						LOGERROR("GUI: Error reading included XML: '%s'", path.string8());
 						continue;
 					}
 
 					XMBElement node = XeroIncluded.GetRoot();
 					if (node.GetNodeName() != XeroIncluded.GetElementID("object"))
 					{
-						LOGERROR("GUI: Error reading included XML: '%s', root element must have be of type 'object'.", (*it).string8());
+						LOGERROR("GUI: Error reading included XML: '%s', root element must have be of type 'object'.", path.string8());
 						continue;
 					}
 					Xeromyces_ReadObject(node, &XeroIncluded, object, NameSubst, Paths, nesting_depth+1);
@@ -1403,9 +1416,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		{
 			// Try making the object read the tag.
 			if (!object->HandleAdditionalChildren(child, pFile))
-			{
 				LOGERROR("GUI: (object: %s) Reading unknown children for its type", object->GetPresentableName().c_str());
-			}
 		}
 	} 
 
@@ -1418,17 +1429,13 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		bool absolute;
 		GUI<bool>::GetSetting(object, "absolute", absolute);
 
-		// If the object is absolute, we'll have to get the parent's Z buffered,
-		//  and add to that!
 		if (absolute)
-		{
+			// If the object is absolute, we'll have to get the parent's Z buffered,
+			// and add to that!
 			GUI<float>::SetSetting(object, "z", pParent->GetBufferedZ() + 10.f, true);
-		}
 		else
-		// If the object is relative, then we'll just store Z as "10"
-		{
+			// If the object is relative, then we'll just store Z as "10"
 			GUI<float>::SetSetting(object, "z", 10.f, true);
-		}
 	}
 
 

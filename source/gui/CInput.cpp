@@ -1670,8 +1670,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 			if (destroy_row_from != m_CharacterPositions.begin())
 				--destroy_row_from;
 
-			destroy_row_from_used = true;
-
 			current_line = destroy_row_from;
 		}
 
@@ -1679,8 +1677,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		{
 			destroy_row_to = m_CharacterPositions.end();
 			check_point_row_start = -1;
-
-			destroy_row_from_used = true;
 		}
 
 		// set 'from' to the row we'll destroy from
@@ -1868,8 +1864,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 					destroy_row_from = m_CharacterPositions.end();
 					--destroy_row_from;
 
-					destroy_row_from_used = true;
-
 					current_line = destroy_row_from;
 				}
 
@@ -1877,8 +1871,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				{
 					destroy_row_to = m_CharacterPositions.end();
 					check_point_row_start = check_point_row_end = -1;
-
-					destroy_row_to_used = true;
 				}
 
 				// set 'from' to the from row we'll destroy

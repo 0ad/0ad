@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -435,7 +435,6 @@ private:
 	int el_actor;
 	int at_x, at_y, at_z;
 	int at_group, at_group2;
-	int at_id;
 	int at_angle;
 	int at_uid;
 	int at_seed;
