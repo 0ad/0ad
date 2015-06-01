@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -147,10 +147,8 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 	{
 		ObjectDef oDef;
 
-		XMBAttributeList attributes = child.GetAttributes();
-		for (int i=0; i<attributes.Count; ++i)
+		for (XMBAttribute attr : child.GetAttributes())
 		{
-			XMBAttribute attr = attributes.Item(i);
 			CStr attr_name (pFile->GetAttributeString(attr.Name));
 			CStr attr_value (attr.Value);
 
@@ -187,10 +185,8 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 		}
 
-		XMBElementList grandchildren = child.GetChildNodes();
-		for (int i = 0; i < grandchildren.Count; ++i)
+		for (XMBElement grandchild : child.GetChildNodes())
 		{
-			XMBElement grandchild = grandchildren.Item(i);
 			if (grandchild.GetNodeName() == elmt_translatableAttribute)
 			{
 				CStr attributeName(grandchild.GetAttributes().GetNamedItem(attr_id));

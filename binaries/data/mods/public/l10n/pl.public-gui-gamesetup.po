@@ -22,6 +22,7 @@
 # mhnxo <mhnxo123@gmail.com>, 2014
 # Michał Czerwiński <michal.czerwinski@gmail.com>, 2015
 # Michał Garapich <michal@garapich.pl>, 2013
+# Lapinopl <michal.klaus@gmail.com>, 2015
 # Michał Olber <michal.olber@osworld.pl>, 2013
 # miragae <miragae@gmail.com>, 2014
 # miragae <miragae@gmail.com>, 2014
@@ -38,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-30 01:39+0000\n"
+"Last-Translator: Lapinopl <michal.klaus@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,42 +128,42 @@ msgstr "Deathmatch"
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Brak zawieszenia broni"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minut"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minut"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 minut"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 minut"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minut"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 minut"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 minut"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -246,7 +247,7 @@ msgstr "Nie"
 #: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
 #: gui/gamesetup/gamesetup.js:1357
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Zależy od scenariusza"
 
 #: gui/gamesetup/gamesetup.js:1369
 msgid "Randomly selects a map from the list"
@@ -386,19 +387,19 @@ msgstr "Pokonaj wszystkich przeciwników."
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
 msgid "Conquest Structure"
-msgstr ""
+msgstr "Podbij Budynek"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Zniszcz wszystkie budowle wroga"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Podbij Jednostki"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Zniszcz wszystkie jednostki wrogów: "
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -519,7 +520,7 @@ msgstr "Początkowe zasoby:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Zawieszenie broni:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -615,7 +616,7 @@ msgstr "Wybierz początkowe zasoby w grze."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Ustaw czas gdy nie są możliwe ataki."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -717,7 +718,7 @@ msgstr ""
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "\"Wiedza pochodzi z cierpienia... Łaski przychodzą do nas od bogów\" -  Ajschylos, \"Agamemnon\""
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -743,7 +744,7 @@ msgstr "\"Każda wymówka służy tyranowi.\" - Ezop"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr ""
+msgstr "\"Lepiej uczyć się na nieszczęściach innych, niż swoich własnych\" -Ezop "
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
@@ -769,11 +770,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr ""
+msgstr "\"Perswazja jest często bardziej efektywna  niż siła\" - Ezop"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
-msgstr ""
+msgstr "\"Zarozumiałość może prowadzić do samo destrukcji\" -Ezop"
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
@@ -1580,20 +1581,20 @@ msgstr "\"Bez sprawiedliwości, żadne królestwo nie ma przyszłości.\" - Pita
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
-msgstr ""
+msgstr "\" Podczas gdy zgoda czyni małe państwa wielkimi, niezgoda osłabia największe z imperiów\"   - Sallust"
 
 #: gui/text/quotes.txt:172
 msgid ""
 "\"I am mindful of human weakness, and I reflect upon the might of Fortune "
 "and know that everything that we do is exposed to a thousand chances.\" - "
 "Scipio Africanus"
-msgstr ""
+msgstr "\"Pamiętam o ludzkich słabościach, i rozważam o potędze Fortuny i wiem że wszystko co czynimy jest narażone na tysiąc przypadków\" -Scipio Africanus"
 
 #: gui/text/quotes.txt:173
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr ""
+msgstr "\"Gotuj się do wojny, skoro nie byłeś w stanie znieść pokoju\"  - \nScipio Africanus"
 
 #: gui/text/quotes.txt:174
 msgid ""

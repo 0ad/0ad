@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-15 09:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-05-25 03:32+0200\n"
+"PO-Revision-Date: 2015-05-25 11:42+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,28 +21,28 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/templates/template_unit_cavalry.xml:32
-#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_cavalry.xml:37
+#: simulation/templates/template_unit_cavalry.xml:38
 #: simulation/templates/template_unit_champion_cavalry.xml:27
 #: simulation/templates/template_unit_hero_cavalry.xml:26
 msgid "Cavalry"
 msgstr "騎兵"
 
-#: simulation/templates/template_unit_cavalry.xml:32
-#: simulation/templates/template_unit_infantry.xml:58
+#: simulation/templates/template_unit_cavalry.xml:37
+#: simulation/templates/template_unit_infantry.xml:63
 msgid "Citizen"
 msgstr "市民"
 
-#: simulation/templates/template_unit_cavalry.xml:32
-#: simulation/templates/template_unit_champion.xml:6
+#: simulation/templates/template_unit_cavalry.xml:37
+#: simulation/templates/template_unit_champion.xml:13
 #: simulation/templates/template_unit_hero.xml:22
-#: simulation/templates/template_unit_infantry.xml:58
+#: simulation/templates/template_unit_infantry.xml:63
 msgid "Soldier"
 msgstr "士兵"
 
-#: simulation/templates/template_unit_cavalry.xml:34
+#: simulation/templates/template_unit_cavalry.xml:39
 #: simulation/templates/template_unit_dog.xml:53
-#: simulation/templates/template_unit_infantry.xml:59
+#: simulation/templates/template_unit_infantry.xml:64
 #: simulation/templates/template_unit_support_healer.xml:23
 #: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:9
@@ -147,11 +147,11 @@ msgstr "標槍"
 msgid "Cavalry Skirmisher"
 msgstr "斥候騎兵"
 
-#: simulation/templates/template_unit_champion.xml:4
+#: simulation/templates/template_unit_champion.xml:11
 msgid "Champion Unit"
 msgstr "精英單位"
 
-#: simulation/templates/template_unit_champion.xml:6
+#: simulation/templates/template_unit_champion.xml:13
 msgid "Champion"
 msgstr "精英"
 
@@ -187,8 +187,8 @@ msgstr "戰象"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:23
-#: simulation/templates/template_unit_infantry.xml:58
-#: simulation/templates/template_unit_infantry.xml:56
+#: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_infantry.xml:61
 msgid "Infantry"
 msgstr "步兵"
 
@@ -246,8 +246,8 @@ msgid "Mechanical"
 msgstr "機械"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
-#: simulation/templates/template_unit_mechanical_siege.xml:12
-#: simulation/templates/template_unit_mechanical_siege.xml:13
+#: simulation/templates/template_unit_mechanical_siege.xml:17
+#: simulation/templates/template_unit_mechanical_siege.xml:18
 msgid "Siege"
 msgstr "攻城武器"
 
@@ -477,8 +477,8 @@ msgstr "類型： 支援貿易商人。\n在您的市集與盟友的市集交易
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:20
-#: simulation/templates/units/athen_infantry_archer_a.xml:18
 #: simulation/templates/units/athen_infantry_javelinist_a.xml:18
+#: simulation/templates/units/athen_infantry_marine_archer_a.xml:18
 #: simulation/templates/units/athen_infantry_slinger_a.xml:18
 #: simulation/templates/units/athen_infantry_spearman_a.xml:22
 #: simulation/templates/units/athen_support_healer_a.xml:11
@@ -490,15 +490,15 @@ msgstr "類型： 支援貿易商人。\n在您的市集與盟友的市集交易
 #: simulation/templates/units/brit_support_healer_a.xml:11
 #: simulation/templates/units/brit_war_dog_a.xml:17
 #: simulation/templates/units/cart_cavalry_javelinist_a.xml:18
-#: simulation/templates/units/cart_cavalry_spearman_a.xml:22
-#: simulation/templates/units/cart_cavalry_swordsman_2_a.xml:20
-#: simulation/templates/units/cart_cavalry_swordsman_a.xml:20
+#: simulation/templates/units/cart_cavalry_spearman_ital_a.xml:22
+#: simulation/templates/units/cart_cavalry_swordsman_gaul_a.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_iber_a.xml:20
 #: simulation/templates/units/cart_infantry_archer_a.xml:18
-#: simulation/templates/units/cart_infantry_javelinist_a.xml:18
-#: simulation/templates/units/cart_infantry_slinger_a.xml:18
+#: simulation/templates/units/cart_infantry_javelinist_iber_a.xml:18
+#: simulation/templates/units/cart_infantry_slinger_iber_a.xml:18
 #: simulation/templates/units/cart_infantry_spearman_a.xml:22
-#: simulation/templates/units/cart_infantry_swordsman_2_a.xml:20
-#: simulation/templates/units/cart_infantry_swordsman_a.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_gaul_a.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_ital_a.xml:20
 #: simulation/templates/units/cart_support_healer_a.xml:11
 #: simulation/templates/units/gaul_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/gaul_cavalry_swordsman_a.xml:20
@@ -517,8 +517,8 @@ msgstr "類型： 支援貿易商人。\n在您的市集與盟友的市集交易
 #: simulation/templates/units/mace_cavalry_spearman_a.xml:22
 #: simulation/templates/units/mace_infantry_archer_a.xml:18
 #: simulation/templates/units/mace_infantry_javelinist_a.xml:18
+#: simulation/templates/units/mace_infantry_pikeman_a.xml:20
 #: simulation/templates/units/mace_infantry_slinger_a.xml:18
-#: simulation/templates/units/mace_infantry_spearman_a.xml:20
 #: simulation/templates/units/mace_support_healer_a.xml:11
 #: simulation/templates/units/maur_cavalry_javelinist_a.xml:9
 #: simulation/templates/units/maur_cavalry_swordsman_a.xml:20
@@ -538,14 +538,14 @@ msgstr "類型： 支援貿易商人。\n在您的市集與盟友的市集交易
 #: simulation/templates/units/pers_infantry_spearman_a.xml:22
 #: simulation/templates/units/pers_support_healer_a.xml:11
 #: simulation/templates/units/ptol_cavalry_archer_a.xml:19
-#: simulation/templates/units/ptol_cavalry_javelinist_a.xml:18
-#: simulation/templates/units/ptol_cavalry_spearman_a.xml:22
+#: simulation/templates/units/ptol_cavalry_javelinist_merc_a.xml:18
+#: simulation/templates/units/ptol_cavalry_spearman_merc_a.xml:22
 #: simulation/templates/units/ptol_infantry_archer_a.xml:18
 #: simulation/templates/units/ptol_infantry_javelinist_a.xml:18
+#: simulation/templates/units/ptol_infantry_pikeman_a.xml:20
 #: simulation/templates/units/ptol_infantry_slinger_a.xml:18
-#: simulation/templates/units/ptol_infantry_spearman_2_a.xml:22
-#: simulation/templates/units/ptol_infantry_spearman_a.xml:20
-#: simulation/templates/units/ptol_infantry_swordsman_a.xml:20
+#: simulation/templates/units/ptol_infantry_spearman_merc_a.xml:22
+#: simulation/templates/units/ptol_infantry_swordsman_merc_a.xml:20
 #: simulation/templates/units/ptol_support_healer_a.xml:11
 #: simulation/templates/units/rome_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/rome_cavalry_spearman_a.xml:22
@@ -555,12 +555,12 @@ msgstr "類型： 支援貿易商人。\n在您的市集與盟友的市集交易
 #: simulation/templates/units/rome_support_healer_a.xml:11
 #: simulation/templates/units/sele_cavalry_archer_a.xml:19
 #: simulation/templates/units/sele_cavalry_javelinist_a.xml:18
-#: simulation/templates/units/sele_cavalry_spearman_a.xml:22
-#: simulation/templates/units/sele_infantry_archer_a.xml:18
+#: simulation/templates/units/sele_cavalry_spearman_merc_a.xml:22
+#: simulation/templates/units/sele_infantry_archer_merc_a.xml:18
 #: simulation/templates/units/sele_infantry_javelinist_a.xml:18
-#: simulation/templates/units/sele_infantry_spearman_2_a.xml:22
-#: simulation/templates/units/sele_infantry_spearman_a.xml:20
-#: simulation/templates/units/sele_infantry_swordsman_a.xml:20
+#: simulation/templates/units/sele_infantry_pikeman_a.xml:20
+#: simulation/templates/units/sele_infantry_spearman_a.xml:22
+#: simulation/templates/units/sele_infantry_swordsman_merc_a.xml:20
 #: simulation/templates/units/sele_support_healer_a.xml:11
 #: simulation/templates/units/spart_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/spart_cavalry_spearman_a.xml:22
@@ -577,8 +577,8 @@ msgstr "Pródromos"
 
 #: simulation/templates/units/athen_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/athen_cavalry_swordsman_e.xml:20
-#: simulation/templates/units/athen_infantry_archer_e.xml:18
 #: simulation/templates/units/athen_infantry_javelinist_e.xml:18
+#: simulation/templates/units/athen_infantry_marine_archer_e.xml:18
 #: simulation/templates/units/athen_infantry_slinger_e.xml:18
 #: simulation/templates/units/athen_infantry_spearman_e.xml:22
 #: simulation/templates/units/athen_support_healer_e.xml:11
@@ -590,15 +590,15 @@ msgstr "Pródromos"
 #: simulation/templates/units/brit_support_healer_e.xml:11
 #: simulation/templates/units/brit_war_dog_e.xml:17
 #: simulation/templates/units/cart_cavalry_javelinist_e.xml:18
-#: simulation/templates/units/cart_cavalry_spearman_e.xml:22
-#: simulation/templates/units/cart_cavalry_swordsman_2_e.xml:20
-#: simulation/templates/units/cart_cavalry_swordsman_e.xml:20
+#: simulation/templates/units/cart_cavalry_spearman_ital_e.xml:22
+#: simulation/templates/units/cart_cavalry_swordsman_gaul_e.xml:20
+#: simulation/templates/units/cart_cavalry_swordsman_iber_e.xml:20
 #: simulation/templates/units/cart_infantry_archer_e.xml:18
-#: simulation/templates/units/cart_infantry_javelinist_e.xml:20
-#: simulation/templates/units/cart_infantry_slinger_e.xml:18
+#: simulation/templates/units/cart_infantry_javelinist_iber_e.xml:20
+#: simulation/templates/units/cart_infantry_slinger_iber_e.xml:18
 #: simulation/templates/units/cart_infantry_spearman_e.xml:22
-#: simulation/templates/units/cart_infantry_swordsman_2_e.xml:20
-#: simulation/templates/units/cart_infantry_swordsman_e.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_gaul_e.xml:20
+#: simulation/templates/units/cart_infantry_swordsman_ital_e.xml:20
 #: simulation/templates/units/cart_support_healer_e.xml:11
 #: simulation/templates/units/gaul_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/gaul_cavalry_swordsman_e.xml:20
@@ -617,8 +617,8 @@ msgstr "Pródromos"
 #: simulation/templates/units/mace_cavalry_spearman_e.xml:22
 #: simulation/templates/units/mace_infantry_archer_e.xml:18
 #: simulation/templates/units/mace_infantry_javelinist_e.xml:18
+#: simulation/templates/units/mace_infantry_pikeman_e.xml:20
 #: simulation/templates/units/mace_infantry_slinger_e.xml:18
-#: simulation/templates/units/mace_infantry_spearman_e.xml:20
 #: simulation/templates/units/mace_support_healer_e.xml:11
 #: simulation/templates/units/maur_cavalry_javelinist_e.xml:9
 #: simulation/templates/units/maur_cavalry_swordsman_e.xml:17
@@ -639,14 +639,14 @@ msgstr "Pródromos"
 #: simulation/templates/units/pers_infantry_spearman_e.xml:22
 #: simulation/templates/units/pers_support_healer_e.xml:11
 #: simulation/templates/units/ptol_cavalry_archer_e.xml:19
-#: simulation/templates/units/ptol_cavalry_javelinist_e.xml:18
-#: simulation/templates/units/ptol_cavalry_spearman_e.xml:22
+#: simulation/templates/units/ptol_cavalry_javelinist_merc_e.xml:18
+#: simulation/templates/units/ptol_cavalry_spearman_merc_e.xml:22
 #: simulation/templates/units/ptol_infantry_archer_e.xml:18
 #: simulation/templates/units/ptol_infantry_javelinist_e.xml:18
+#: simulation/templates/units/ptol_infantry_pikeman_e.xml:20
 #: simulation/templates/units/ptol_infantry_slinger_e.xml:18
-#: simulation/templates/units/ptol_infantry_spearman_2_e.xml:22
-#: simulation/templates/units/ptol_infantry_spearman_e.xml:20
-#: simulation/templates/units/ptol_infantry_swordsman_e.xml:20
+#: simulation/templates/units/ptol_infantry_spearman_merc_e.xml:22
+#: simulation/templates/units/ptol_infantry_swordsman_merc_e.xml:20
 #: simulation/templates/units/ptol_support_healer_e.xml:11
 #: simulation/templates/units/rome_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/rome_cavalry_spearman_e.xml:22
@@ -656,12 +656,12 @@ msgstr "Pródromos"
 #: simulation/templates/units/rome_support_healer_e.xml:11
 #: simulation/templates/units/sele_cavalry_archer_e.xml:19
 #: simulation/templates/units/sele_cavalry_javelinist_e.xml:18
-#: simulation/templates/units/sele_cavalry_spearman_e.xml:22
-#: simulation/templates/units/sele_infantry_archer_e.xml:18
+#: simulation/templates/units/sele_cavalry_spearman_merc_e.xml:22
+#: simulation/templates/units/sele_infantry_archer_merc_e.xml:18
 #: simulation/templates/units/sele_infantry_javelinist_e.xml:18
-#: simulation/templates/units/sele_infantry_spearman_2_e.xml:22
-#: simulation/templates/units/sele_infantry_spearman_e.xml:20
-#: simulation/templates/units/sele_infantry_swordsman_e.xml:20
+#: simulation/templates/units/sele_infantry_pikeman_e.xml:20
+#: simulation/templates/units/sele_infantry_spearman_e.xml:22
+#: simulation/templates/units/sele_infantry_swordsman_merc_e.xml:20
 #: simulation/templates/units/sele_support_healer_e.xml:11
 #: simulation/templates/units/spart_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/spart_cavalry_spearman_e.xml:22
@@ -686,24 +686,24 @@ msgid "City Guard"
 msgstr "城市衛隊"
 
 #: simulation/templates/units/athen_champion_infantry.xml:6
-msgid "Epilektos"
-msgstr "Epilektos"
+msgid "Epílektos"
+msgstr "Epílektos"
 
 #: simulation/templates/units/athen_champion_marine.xml:5
 msgid "Athenian Marine"
 msgstr "雅典陸戰隊員"
 
 #: simulation/templates/units/athen_champion_marine.xml:6
-msgid "Épibatēs Athēnaïkós"
-msgstr "Épibatēs Athēnaïkós"
+msgid "Epibátēs Athēnaîos"
+msgstr "Epibátēs Athēnaîos"
 
 #: simulation/templates/units/athen_champion_ranged.xml:5
 msgid "Scythian Archer"
 msgstr "西徐亞弓箭手"
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
-msgid "Toxotes Skithikos"
-msgstr "Toxotes Skithikos"
+msgid "Toxótēs Skythikós"
+msgstr "Toxótēs Skythikós"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:13
 msgid "Formation Reforms"
@@ -737,19 +737,19 @@ msgstr "建築者靈氣"
 msgid "Buildings construct 15% faster within his vision."
 msgstr "在他的視野內建築物的建造速度快 15%。"
 
-#: simulation/templates/units/athen_hero_pericles.xml:20
+#: simulation/templates/units/athen_hero_pericles.xml:21
 msgid "Acropolis Aura"
 msgstr "衛城靈氣"
 
-#: simulation/templates/units/athen_hero_pericles.xml:21
+#: simulation/templates/units/athen_hero_pericles.xml:22
 msgid "Temples are 50 stone cheaper during his lifetime."
 msgstr "在他的生命週期中神廟便宜50石頭。"
 
-#: simulation/templates/units/athen_hero_pericles.xml:26
+#: simulation/templates/units/athen_hero_pericles.xml:27
 msgid "Pericles"
 msgstr "伯里克里斯"
 
-#: simulation/templates/units/athen_hero_pericles.xml:27
+#: simulation/templates/units/athen_hero_pericles.xml:28
 msgid "Periklēs"
 msgstr "Periklēs"
 
@@ -777,16 +777,6 @@ msgstr "地米斯托克利"
 msgid "Themistoklês"
 msgstr "地米斯托克利"
 
-#: simulation/templates/units/athen_infantry_archer_b.xml:21
-#: simulation/templates/units/mace_infantry_archer_b.xml:19
-msgid "Cretan Mercenary Archer"
-msgstr "克里特弓箭手傭兵"
-
-#: simulation/templates/units/athen_infantry_archer_b.xml:22
-#: simulation/templates/units/mace_infantry_archer_b.xml:20
-msgid "Toxótēs Krētikós"
-msgstr "Toxótēs Krētikós"
-
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:21
 msgid "Thracian Peltast"
 msgstr "希臘盾兵"
@@ -795,21 +785,31 @@ msgstr "希臘盾兵"
 msgid "Peltastḗs Thrâx"
 msgstr "Peltastḗs Thrâx"
 
+#: simulation/templates/units/athen_infantry_marine_archer_b.xml:21
+#: simulation/templates/units/mace_infantry_archer_b.xml:19
+msgid "Cretan Mercenary Archer"
+msgstr "克里特弓箭手傭兵"
+
+#: simulation/templates/units/athen_infantry_marine_archer_b.xml:22
+#: simulation/templates/units/mace_infantry_archer_b.xml:20
+msgid "Toxótēs Krētikós"
+msgstr "Toxótēs Krētikós"
+
 #: simulation/templates/units/athen_infantry_slinger_b.xml:14
 msgid "Athenian Slinger Militia"
 msgstr "雅典投石義勇軍"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:15
-msgid "Psilós Athēnaïkós"
-msgstr "Psilós Athēnaïkós"
+msgid "Psilòs Athēnaîos"
+msgstr "Psilòs Athēnaîos"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:22
 msgid "Athenian Hoplite"
 msgstr "雅典重裝步兵"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:23
-msgid "Hoplī́tēs Athēnaïkós"
-msgstr "Hoplī́tēs Athēnaïkós"
+msgid "Hoplítēs Athēnaîos"
+msgstr "Hoplítēs Athēnaîos"
 
 #: simulation/templates/units/athen_ship_bireme.xml:5
 msgid "Penteconter"
@@ -817,8 +817,8 @@ msgstr "Penteconter"
 
 #: simulation/templates/units/athen_ship_bireme.xml:6
 #: simulation/templates/units/spart_ship_bireme.xml:5
-msgid "Pentēkónteros"
-msgstr "Pentēkónteros"
+msgid "Pentēkóntoros"
+msgstr "Pentēkóntoros"
 
 #: simulation/templates/units/athen_ship_fishing.xml:8
 #: simulation/templates/units/mace_ship_fishing.xml:5
@@ -845,23 +845,21 @@ msgid "Athenian Trireme"
 msgstr "雅典三列槳戰船"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:5
-msgid "Gýnē Athēnaïkós"
-msgstr "Gýnē Athēnaïkós"
+msgid "Gýnē Athēnaía"
+msgstr "Gýnē Athēnaía"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
 msgstr "雅典女人"
 
 #: simulation/templates/units/athen_support_healer_b.xml:6
-#: simulation/templates/units/mace_support_healer_b.xml:6
-#: simulation/templates/units/sele_support_healer_b.xml:6
 #: simulation/templates/units/spart_support_healer_b.xml:6
-msgid "Hiereús"
-msgstr "Hiereús"
+msgid "Iatrós"
+msgstr "Iatrós"
 
 #: simulation/templates/units/athen_support_slave.xml:5
-msgid "Doulos"
-msgstr "Doulos"
+msgid "Doûlos"
+msgstr "Doûlos"
 
 #: simulation/templates/units/athen_support_trader.xml:9
 #: simulation/templates/units/mace_support_trader.xml:9
@@ -946,7 +944,7 @@ msgstr "Caratacos"
 msgid "Let all units heal at 1 HP per second"
 msgstr "讓所有單位每秒回復 1 點的生命值"
 
-#: simulation/templates/units/brit_hero_cunobelin.xml:17
+#: simulation/templates/units/brit_hero_cunobelin.xml:18
 msgid "Cunobelin"
 msgstr "邱諾貝林"
 
@@ -1034,24 +1032,24 @@ msgstr "努米底亞騎兵"
 msgid "Ḥayyāl Raḫūv Masili"
 msgstr "Ḥayyāl Raḫūv Masili"
 
-#: simulation/templates/units/cart_cavalry_spearman_b.xml:13
+#: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:13
 msgid "Italic Cavalry"
 msgstr "義大利騎兵"
 
-#: simulation/templates/units/cart_cavalry_spearman_b.xml:14
+#: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
 msgstr "Ḥayyāl Romaḥ Raḫūv"
 
-#: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:12
+#: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
 msgid "Gallic Mercenary Cavalry"
 msgstr "高盧傭騎兵"
 
-#: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:13
-#: simulation/templates/units/cart_cavalry_swordsman_b.xml:13
+#: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:13
+#: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:13
 msgid "Ḥayyāl Ḥerev Raḫūv"
 msgstr "Ḥayyāl Ḥerev Raḫūv"
 
-#: simulation/templates/units/cart_cavalry_swordsman_b.xml:12
+#: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:12
 msgid "Iberian Heavy Cavalry"
 msgstr "伊比利重騎兵"
 
@@ -1109,15 +1107,15 @@ msgstr "戰術家靈氣"
 msgid "All allied units +2 attack within vision range of him."
 msgstr "在他的視野內所有的盟軍單位 +2 攻擊力。"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:19
+#: simulation/templates/units/cart_hero_hannibal.xml:20
 msgid "Hannibal Barca"
 msgstr "漢尼拔·巴卡"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:20
+#: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Baraq"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:23
+#: simulation/templates/units/cart_hero_hannibal.xml:24
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
@@ -1148,19 +1146,19 @@ msgstr "茅利塔尼亞弓箭手"
 msgid "Qešet"
 msgstr "Qešet"
 
-#: simulation/templates/units/cart_infantry_javelinist_b.xml:22
+#: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:22
 msgid "Iberian Mercenary Skirmisher"
 msgstr "伊比利雇傭散兵"
 
-#: simulation/templates/units/cart_infantry_javelinist_b.xml:23
+#: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:23
 msgid "Sǝḫīr Kidōn"
 msgstr "Sǝḫīr Kidōn"
 
-#: simulation/templates/units/cart_infantry_slinger_b.xml:22
+#: simulation/templates/units/cart_infantry_slinger_iber_b.xml:22
 msgid "Balearic Slinger"
 msgstr "巴利阿里投石兵"
 
-#: simulation/templates/units/cart_infantry_slinger_b.xml:23
+#: simulation/templates/units/cart_infantry_slinger_iber_b.xml:23
 msgid "Qallāʿ Ibušimi"
 msgstr "Qallāʿ Ibušimi"
 
@@ -1172,23 +1170,23 @@ msgstr "利比亞矛兵"
 msgid "Sǝḫīr Ḥanīt"
 msgstr "Sǝḫīr Ḥanīt"
 
-#: simulation/templates/units/cart_infantry_swordsman_2_b.xml:21
+#: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:21
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:20
+msgid "Gallic Mercenary Swordsman"
+msgstr "高盧傭兵劍士"
+
+#: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:22
+msgid "Seḫīr Ḥerev"
+msgstr "Seḫīr Ḥerev"
+
+#: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:21
 #: simulation/templates/units/samnite_swordsman.xml:5
 msgid "Samnite Swordsman"
 msgstr "薩莫內劍士"
 
-#: simulation/templates/units/cart_infantry_swordsman_2_b.xml:22
+#: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:22
 msgid "Seḫīr Romaḥ"
 msgstr "Seḫīr Romaḥ"
-
-#: simulation/templates/units/cart_infantry_swordsman_b.xml:21
-#: simulation/templates/units/ptol_infantry_swordsman_b.xml:20
-msgid "Gallic Mercenary Swordsman"
-msgstr "高盧傭兵劍士"
-
-#: simulation/templates/units/cart_infantry_swordsman_b.xml:22
-msgid "Seḫīr Ḥerev"
-msgstr "Seḫīr Ḥerev"
 
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:7
 msgid "Bonused vs. Ranged Units."
@@ -1297,7 +1295,7 @@ msgstr "Britomartus"
 msgid "+2 attack for all units within his aura."
 msgstr "所有單位在他的靈氣內部 +2 攻擊力。"
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:18
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:19
 msgid "Vercingetorix"
 msgstr "維欽托利"
 
@@ -1402,19 +1400,19 @@ msgid "Odrysian Skirmish Cavalry"
 msgstr "Odrysian 斥候騎兵"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
-msgid "Hippakontistès Odrysón"
-msgstr "Hippakontistès Odrysón"
+msgid "Hippakontistḕs Odrysós"
+msgstr "Hippakontistḕs Odrysós"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:6
 msgid "Thessalian Lancer"
 msgstr "色薩利槍騎兵"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:7
-msgid "Xystophoros Thessalikos"
-msgstr "Xystophoros Thessalikos"
+msgid "Xystophóros Thessalikós"
+msgstr "Xystophóros Thessalikós"
 
 #: simulation/templates/units/mace_champion_cavalry.xml:5
-#: simulation/templates/units/sele_cavalry_spearman_b.xml:6
+#: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:6
 msgid "Companion Cavalry"
 msgstr "夥伴騎兵"
 
@@ -1427,12 +1425,12 @@ msgid "Macedonian Shield Bearer"
 msgstr "馬其頓盾兵"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:6
-msgid "Hypaspistes"
-msgstr "盾兵"
+msgid "Hypaspistḗs"
+msgstr "Hypaspistḗs"
 
 #: simulation/templates/units/mace_champion_infantry_e.xml:18
-msgid "Hypaspistes Argyraspides"
-msgstr "銀盾兵"
+msgid "Hypaspistḗs Argyraspídi"
+msgstr "Hypaspistḗs Argyraspídi"
 
 #: simulation/templates/units/mace_hero_alexander.xml:10
 msgid "Imperialism Aura"
@@ -1470,11 +1468,11 @@ msgstr "亞歷山大大帝所信任的將軍。"
 msgid "+15% Range and +10 Crush Attack for Siege Engines."
 msgstr "攻城武器 +15% 射程且 +10 粉碎攻擊力。"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:18
+#: simulation/templates/units/mace_hero_demetrius.xml:19
 msgid "Demetrius The Besieger"
 msgstr "德米特里一世"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:19
+#: simulation/templates/units/mace_hero_demetrius.xml:20
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
@@ -1507,24 +1505,24 @@ msgid "Agrianian Peltast"
 msgstr "阿格瑞安盾兵"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
-msgid "Peltastes Agrianikos"
-msgstr "Peltastes Agrianikos"
+msgid "Peltastḗs Agrías"
+msgstr "Peltastḗs Agrías"
+
+#: simulation/templates/units/mace_infantry_pikeman_b.xml:13
+msgid "Foot Companion"
+msgstr "衛隊步兵"
+
+#: simulation/templates/units/mace_infantry_pikeman_b.xml:14
+msgid "Pezétairos"
+msgstr "Pezétairos"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:13
 msgid "Rhodian Slinger"
 msgstr "羅德投石兵"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:14
-msgid "Sphendonetes Rhodikos"
-msgstr "Sphendonetes Rhodikos"
-
-#: simulation/templates/units/mace_infantry_spearman_b.xml:13
-msgid "Foot Companion"
-msgstr "衛隊步兵"
-
-#: simulation/templates/units/mace_infantry_spearman_b.xml:14
-msgid "Pezétairos"
-msgstr "Pezétairos"
+msgid "Sphendonḗtēs Rhódios"
+msgstr "Sphendonḗtēs Rhódios"
 
 #: simulation/templates/units/mace_mechanical_siege_ram.xml:9
 #: simulation/templates/units/spart_mechanical_siege_ram.xml:9
@@ -1547,28 +1545,33 @@ msgid "Triḗrēs"
 msgstr "Triḗrēs"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
-msgid "Gynḗ Makedonikḗ"
-msgstr "Gynḗ Makedonikḗ"
+msgid "Gýnē Makedonikḗ"
+msgstr "Gýnē Makedonikḗ"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
 msgstr "馬其頓女人"
+
+#: simulation/templates/units/mace_support_healer_b.xml:6
+#: simulation/templates/units/sele_support_healer_b.xml:6
+msgid "Hiereús"
+msgstr "Hiereús"
 
 #: simulation/templates/units/mace_thorakites.xml:5
 msgid "Armored Swordsman"
 msgstr "裝甲劍兵"
 
 #: simulation/templates/units/mace_thorakites.xml:6
-msgid "Thorakites"
-msgstr "胸甲长盾矛兵"
+msgid "Thōrakitēs"
+msgstr "Thōrakitēs"
 
 #: simulation/templates/units/mace_thureophoros.xml:9
 msgid "Heavy Skirmisher"
 msgstr "重裝散兵"
 
 #: simulation/templates/units/mace_thureophoros.xml:10
-msgid "Thureophoros"
-msgstr "轻型长矛兵"
+msgid "Thyreophóros"
+msgstr "Thyreophóros"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
@@ -1768,12 +1771,12 @@ msgid "Vaishya"
 msgstr "吠舍"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
-#: simulation/templates/units/sele_infantry_swordsman_b.xml:13
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:13
 msgid "Thracian Mercenary Swordsman"
 msgstr "色雷斯傭兵劍士"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:22
-#: simulation/templates/units/sele_infantry_swordsman_b.xml:14
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:14
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
 
@@ -1869,11 +1872,11 @@ msgstr "勇往直前靈氣"
 msgid "+2 attack for nearby cavalry units."
 msgstr "鄰近的騎兵單位 +2 攻擊力。"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:18
+#: simulation/templates/units/pers_hero_cyrus.xml:19
 msgid "Cyrus II The Great"
 msgstr "居魯士二世"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:19
+#: simulation/templates/units/pers_hero_cyrus.xml:20
 msgid "Kurush II"
 msgstr "居魯士二世"
 
@@ -1910,13 +1913,13 @@ msgstr "管理人靈氣"
 msgid " +15% Gather Rate and Build Rate of nearby units."
 msgstr "鄰近單位 +15% 採集速率及建造速率。"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:18
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:23
+#: simulation/templates/units/pers_hero_xerxes.xml:19
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:24
 msgid "Xerxes I"
 msgstr "薛西斯一世"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:19
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:24
+#: simulation/templates/units/pers_hero_xerxes.xml:20
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:25
 msgid "Xsayarsa I"
 msgstr "薛西斯一世"
 
@@ -2039,29 +2042,29 @@ msgstr "Mutsābiq Gamal Nabatu"
 msgid "Classes: Ranged Cavalry Camel Archer."
 msgstr "類型：遠程騎兵，駱駝弓箭手。"
 
-#: simulation/templates/units/ptol_cavalry_javelinist_b.xml:13
+#: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:13
 msgid "Tarantine Settler Cavalry"
 msgstr "Tarantine 拓荒者騎兵"
 
-#: simulation/templates/units/ptol_cavalry_javelinist_b.xml:14
-msgid "Hippeus Tarantinos"
-msgstr "Hippeus Tarantinos"
+#: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:14
+msgid "Hippeús Tarantînos"
+msgstr "Hippeús Tarantînos"
 
-#: simulation/templates/units/ptol_cavalry_spearman_b.xml:6
+#: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:6
 msgid "Macedonian Settler Cavalry"
 msgstr "馬其頓拓荒者騎兵"
 
-#: simulation/templates/units/ptol_cavalry_spearman_b.xml:7
-msgid "Hippeus Makedonikós"
-msgstr "Hippeus Makedonikós"
+#: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:7
+msgid "Hippeús Makedonikós"
+msgstr "Hippeús Makedonikós"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
 msgstr "皇家護衛騎兵"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
-msgid "Agema Basilikos"
-msgstr "Agema Basilikos"
+msgid "Ágēma Basiléōs"
+msgstr "Ágēma Basiléōs"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:5
 msgid "Towered War Elephant"
@@ -2087,15 +2090,15 @@ msgstr "愛國者靈氣"
 msgid "Egyptian units fight 20% faster in her vision range."
 msgstr "在她視野中的埃及單位戰鬥速度加快 20%。"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:18
+#: simulation/templates/units/ptol_hero_cleopatra.xml:19
 msgid "Cleopatra VII"
 msgstr "克麗奧佩脫拉七世"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:19
+#: simulation/templates/units/ptol_hero_cleopatra.xml:20
 msgid "Kleopatra H' Philopator"
 msgstr "托勒密七世·奈俄斯·菲洛帕托爾"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:20
+#: simulation/templates/units/ptol_hero_cleopatra.xml:21
 msgid ""
 "Classes: Hero Infantry Archer.\n"
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
@@ -2109,19 +2112,19 @@ msgstr "建築靈氣"
 msgid "Buildings construct 10% faster within his vision."
 msgstr "在他視野內的建築物建造速度快 10%。"
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:23
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
 msgid "Mercenary Patron Aura"
 msgstr "傭兵守護神靈氣"
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:25
 msgid "Mercenaries cost -50% resources during his lifetime."
 msgstr "在他活著的時候，傭兵花費 -50% 資源。"
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:29
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:30
 msgid "Ptolemy I \"Savior\""
 msgstr "托勒密一世「救主」"
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:30
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:31
 msgid "Ptolemaios A' Soter"
 msgstr "托勒密一世·索塔爾一世"
 
@@ -2146,8 +2149,8 @@ msgid "Nubian Mercenary Archer"
 msgstr "努比亞傭兵弓箭手"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
-msgid "Kousít Misthophóros Toxóti̱s"
-msgstr "Kousít Misthophóros Toxóti̱s"
+msgid "Kousít Misthophóros Toxótēs"
+msgstr "Kousít Misthophóros Toxótēs"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:28
 msgid "Classes: Ranged Mercenary Infantry Archer Worker."
@@ -2158,34 +2161,34 @@ msgid "Mercenary Thureos Skirmisher"
 msgstr "大圓盾傭散兵"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
-msgid "Thureophóros Akroboli̱stí̱s"
-msgstr "Thureophóros Akroboli̱stí̱s"
+msgid "Thureophóros Akrobolistḗs"
+msgstr "Thureophóros Akrobolistḗs"
+
+#: simulation/templates/units/ptol_infantry_pikeman_b.xml:14
+msgid "Egyptian Pikeman"
+msgstr "埃及長槍兵"
+
+#: simulation/templates/units/ptol_infantry_pikeman_b.xml:15
+msgid "Phalaggomákhimos"
+msgstr "Phalaggomákhimos"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:14
 msgid "Judean Slinger"
 msgstr "猶太投石兵"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:15
-msgid "Ebraïkós Sphendonistes"
-msgstr "Ebraïkós Sphendonistes"
+msgid "Hebraikós Sphendonḗtēs"
+msgstr "Hebraikós Sphendonḗtēs"
 
-#: simulation/templates/units/ptol_infantry_spearman_2_b.xml:21
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
 msgid "Mercenary Thureos Spearman"
 msgstr "大圓盾傭矛兵"
 
-#: simulation/templates/units/ptol_infantry_spearman_2_b.xml:22
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:22
 msgid "Thureophóros Misthophóros"
 msgstr "Thureophóros Misthophóros"
 
-#: simulation/templates/units/ptol_infantry_spearman_b.xml:14
-msgid "Egyptian Pikeman"
-msgstr "埃及長槍兵"
-
-#: simulation/templates/units/ptol_infantry_spearman_b.xml:15
-msgid "Makhimos Phalangites"
-msgstr "Makhimos Phalangites"
-
-#: simulation/templates/units/ptol_infantry_swordsman_b.xml:21
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:21
 msgid "Gallikós Mistophorós"
 msgstr "Gallikós Mistophorós"
 
@@ -2199,17 +2202,16 @@ msgid "Dierēs"
 msgstr "Dierēs"
 
 #: simulation/templates/units/ptol_ship_quinquereme.xml:5
-msgid "Octères"
-msgstr "Octères"
+msgid "Octḗrēs"
+msgstr "Octḗrēs"
 
 #: simulation/templates/units/ptol_ship_trireme.xml:5
-#: simulation/templates/units/sele_ship_quinquereme.xml:5
-msgid "Pentères"
-msgstr "Pentères"
+msgid "Pentḗrēs"
+msgstr "Pentḗrēs"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:5
-msgid "Gýnē Aigyptiakós"
-msgstr "Gýnē Aigyptiakós"
+msgid "Gýnē Aigýptia"
+msgstr "Gýnē Aigýptia"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:6
 msgid "Egyptian Woman"
@@ -2220,8 +2222,8 @@ msgid "Egyptian Priest"
 msgstr "埃及祭司"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:7
-msgid "Hiereús Aigyptikos"
-msgstr "Hiereús Aigyptikos"
+msgid "Hiereús Aigýptios"
+msgstr "Hiereús Aigýptios"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:6
 msgid "Italian Allied Cavalry"
@@ -2271,7 +2273,7 @@ msgstr "羅馬之劍靈氣"
 msgid "+5 attack for Roman units within sight of him."
 msgstr "在他視野內的羅馬單位 +5 攻擊力。"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:18
+#: simulation/templates/units/rome_hero_marcellus.xml:19
 msgid "Marcus Claudius Marcellus"
 msgstr "馬克盧斯"
 
@@ -2459,7 +2461,7 @@ msgstr "Hippakontistès Politès"
 msgid "Hippeus Medikos"
 msgstr "Hippeus Medikos"
 
-#: simulation/templates/units/sele_cavalry_spearman_b.xml:7
+#: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:7
 msgid "Hippos Hetairike"
 msgstr "Hippos Hetairike"
 
@@ -2533,11 +2535,11 @@ msgid ""
 "reduced by 20%."
 msgstr "所有鄰近的敵方建築物、攻城武器、船艦等皆減少生命值 20%。"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:18
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:19
 msgid "Antiochus IV \"The Righteous\""
 msgstr "安條克四世「神顯者」"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:19
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:20
 msgid "Antiokhos D' Epiphanes"
 msgstr "神顯者 安條克四世"
 
@@ -2549,19 +2551,19 @@ msgstr "Zooiarchos 靈氣"
 msgid "Boosts War Elephant attack and speed +20% within his vision."
 msgstr "在他視野內的戰象攻擊力及速度均 +20%。"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:19
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:20
 msgid "Seleucus I \"The Victor\""
 msgstr "塞琉古一世「勝利者」"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:20
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:21
 msgid "Seleukos A' Nikator"
 msgstr "勝利者 塞琉古一世"
 
-#: simulation/templates/units/sele_infantry_archer_b.xml:13
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:13
 msgid "Syrian Archer"
 msgstr "敘利亞弓箭手"
 
-#: simulation/templates/units/sele_infantry_archer_b.xml:14
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:14
 msgid "Toxótēs Syrías"
 msgstr "Toxótēs Syrías"
 
@@ -2573,33 +2575,37 @@ msgstr "阿拉伯標槍手"
 msgid "Pezakontistès Aravikós"
 msgstr "Pezakontistès Aravikós"
 
-#: simulation/templates/units/sele_infantry_spearman_2_b.xml:13
-msgid "Militia Thureos Spearman"
-msgstr "義勇大圓盾矛兵"
-
-#: simulation/templates/units/sele_infantry_spearman_2_b.xml:14
-msgid "Thureophóros Politès"
-msgstr "Thureophóros Politès"
-
-#: simulation/templates/units/sele_infantry_spearman_b.xml:13
+#: simulation/templates/units/sele_infantry_pikeman_b.xml:13
 msgid "Bronze Shield Pikeman"
 msgstr "銅盾長槍兵"
 
-#: simulation/templates/units/sele_infantry_spearman_b.xml:14
+#: simulation/templates/units/sele_infantry_pikeman_b.xml:14
 msgid "Chalkaspides"
 msgstr "Chalkaspides"
 
-#: simulation/templates/units/sele_infantry_spearman_e.xml:21
+#: simulation/templates/units/sele_infantry_pikeman_e.xml:21
 msgid "Gold Shield Pikeman"
 msgstr "金盾長槍兵"
 
-#: simulation/templates/units/sele_infantry_spearman_e.xml:22
+#: simulation/templates/units/sele_infantry_pikeman_e.xml:22
 msgid "Chrysaspides"
 msgstr "Chrysaspides"
 
-#: simulation/templates/units/sele_infantry_swordsman_b.xml:17
+#: simulation/templates/units/sele_infantry_spearman_b.xml:13
+msgid "Militia Thureos Spearman"
+msgstr "義勇大圓盾矛兵"
+
+#: simulation/templates/units/sele_infantry_spearman_b.xml:14
+msgid "Thureophóros Politès"
+msgstr "Thureophóros Politès"
+
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
 msgid "Classes: Mercenary Citizen Melee Infantry Swordsman."
 msgstr "類型：僱傭近戰步兵劍兵民兵。"
+
+#: simulation/templates/units/sele_ship_quinquereme.xml:5
+msgid "Pentères"
+msgstr "Pentères"
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
@@ -2646,8 +2652,8 @@ msgid "Spartan Hoplite"
 msgstr "斯巴達重裝步兵"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:6
-msgid "Spartiā́tes"
-msgstr "Spartiā́tes"
+msgid "Spartiátēs"
+msgstr "Spartiátēs"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:7
 msgid "Classes: Champion Melee Infantry Spearman."
@@ -2658,8 +2664,8 @@ msgid "Skiritai Commando"
 msgstr "Skiritai 突擊隊"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:16
-msgid "Ékdromos Skiritis"
-msgstr "Ékdromos Skiritis"
+msgid "Ékdromos Skirítēs"
+msgstr "Ékdromos Skirítēs"
 
 #: simulation/templates/units/spart_hero_agis.xml:8
 msgid "Agis III"
@@ -2684,8 +2690,8 @@ msgid ""
 "Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
 msgstr "在他視野內的希洛散兵獲得 +2 攻擊力及所有盔甲類型 +1 盔甲等級。"
 
-#: simulation/templates/units/spart_hero_brasidas.xml:20
 #: simulation/templates/units/spart_hero_brasidas.xml:21
+#: simulation/templates/units/spart_hero_brasidas.xml:22
 msgid "Brasidas"
 msgstr "伯拉西達"
 
@@ -2697,11 +2703,11 @@ msgstr "背水一戰靈氣"
 msgid "+20% attack for nearby Hoplites and Spartiates."
 msgstr "為鄰近的重裝步兵和斯巴達士兵 +20% 攻擊力。"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:17
+#: simulation/templates/units/spart_hero_leonidas.xml:18
 msgid "Leonidas I"
 msgstr "列奧尼達一世"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:18
+#: simulation/templates/units/spart_hero_leonidas.xml:19
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 
@@ -2710,28 +2716,28 @@ msgid "Helot Skirmisher"
 msgstr "希洛散兵"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:14
-msgid "Akontistes Heilotes"
-msgstr "Akontistes Heilotes"
+msgid "Akontistḗs Heílōs"
+msgstr "Akontistḗs Heílōs"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:13
 msgid "Perioikoi Hoplite"
 msgstr "庇裡阿西重裝步兵"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:14
-msgid "Hoplī́tēs Perioïkós"
-msgstr "Hoplī́tēs Perioïkós"
+msgid "Hoplítēs Períoikos"
+msgstr "Hoplítēs Períoikos"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:25
 msgid "Spartan Woman"
 msgstr "斯巴達女人"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:26
-msgid "Spartiā̂tis"
-msgstr "Spartiā̂tis"
+msgid "Spartiâtis"
+msgstr "Spartiâtis"
 
 #: simulation/templates/units/spart_support_trader.xml:9
-msgid "Émporos Perioikos"
-msgstr "Émporos Perioikos"
+msgid "Émporos Períoikos"
+msgstr "Émporos Períoikos"
 
 #: simulation/templates/units/theb_champion_spearman.xml:5
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5

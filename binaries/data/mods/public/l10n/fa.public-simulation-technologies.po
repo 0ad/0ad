@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-04-23 21:06+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
+"POT-Creation-Date: 2015-05-25 03:32+0200\n"
+"PO-Revision-Date: 2015-05-25 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/projects/p/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -99,8 +99,8 @@ msgstr "در فاز شهرک باز می شود."
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
-msgid "Prometoopidion"
-msgstr "Prometoopidion"
+msgid "Prometōpídion"
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
@@ -202,8 +202,8 @@ msgstr "زره آهنی قهرمانان"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
-msgid "Sidi̱ró Panoplía"
-msgstr "Sidi̱ró Panoplía"
+msgid "Sidḗrea Panoplía"
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
@@ -332,8 +332,8 @@ msgstr "سپرهای ساخته شده توسط تخته چند لایه"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
-msgid "Aspidiskè"
-msgstr "Aspidiskè"
+msgid "Aspidískos"
+msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
 msgid ""
@@ -354,8 +354,8 @@ msgstr "سپر های تقویت شده"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
-msgid "Aspides"
-msgstr "Aspides"
+msgid "Aspís"
+msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
@@ -373,12 +373,12 @@ msgstr "پوسته مفرغی سپر"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
-msgid "Chalkaspides"
-msgstr "Chalkaspides"
+msgid "Khalkaspís"
+msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
-msgid "Chrysaspides"
-msgstr "Chrysaspides"
+msgid "Khrysaspís"
+msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
@@ -399,8 +399,8 @@ msgstr "سپر های نقره ای"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
-msgid "Argyraspides"
-msgstr "Argyraspides"
+msgid "Argyraspís"
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -482,6 +482,29 @@ msgstr "نیزه ی سواره نظام"
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.sele
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
+msgid "Xystón"
+msgstr ""
+
+#: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
+msgid "Hasta"
+msgstr "Hasta"
+
+#: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
+msgid "Training increases melee attack."
+msgstr ""
+
+#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
+msgid "+20% melee cavalry attack."
+msgstr ""
+
+#: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
+msgid "Close Combat Cavalry Training"
+msgstr ""
+
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
@@ -504,26 +527,6 @@ msgstr "نیزه ی سواره نظام"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
 msgstr "Xyston"
-
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
-msgid "Hasta"
-msgstr "Hasta"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
-msgid "Training increases melee attack."
-msgstr ""
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
-msgid "+20% melee cavalry attack."
-msgstr ""
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
-msgid "Close Combat Cavalry Training"
-msgstr ""
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
@@ -576,8 +579,8 @@ msgstr "قهرمانی"
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
-msgid "Andreia"
-msgstr "Andreia"
+msgid "Andreía"
+msgstr ""
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
 msgid "Fortitudo"
@@ -679,8 +682,8 @@ msgstr "اراده ی جنگیدن"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
-msgid "Dynamis"
-msgstr "Dynamis"
+msgid "Dýnamis"
+msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -761,8 +764,8 @@ msgstr "دیده بانان"
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.sele
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.athen
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
-msgid "Nyktophylakes"
-msgstr "Nyktophylakes"
+msgid "Nyktophýlakes"
+msgstr ""
 
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -915,8 +918,8 @@ msgstr "سرف ها"
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
-msgid "Heilotes"
-msgstr "Heilotes"
+msgid "Heílōtes"
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "+15% stone gathering rate."
@@ -933,8 +936,8 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
-msgid "Douloi"
-msgstr "Douloi"
+msgid "Doûloi"
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
@@ -978,8 +981,8 @@ msgstr "برده‌ها"
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
-msgid "Andrapodon"
-msgstr "Andrapodon"
+msgid "Andrápoda"
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "+15% metal gathering rate."
@@ -1044,8 +1047,8 @@ msgstr "برد شفابخشی 2"
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
-msgid "Akademia"
-msgstr "Akademia"
+msgid "Akadḗmeia"
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -1064,8 +1067,8 @@ msgstr "سرعت شفابخشی"
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
-msgid "Sphagia"
-msgstr "Sphagia"
+msgid "Sphágia"
+msgstr ""
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -1159,8 +1162,8 @@ msgstr "سرنیزه های آهنی"
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
-msgid "Siderénies Aichmés"
-msgstr "Siderénies Aichmés"
+msgid "Sidḗreai Aikhmaí"
+msgstr ""
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
@@ -1271,8 +1274,8 @@ msgstr "نیاز به 4 ساختمان جدید فاز شهرک دارد. (به 
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
-msgid "Megalopolis"
-msgstr "Megalopolis"
+msgid "Megalópolis"
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1316,8 +1319,8 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Komópolis"
-msgstr "Komópolis"
+msgid "Kōmópolis"
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1350,7 +1353,7 @@ msgid "Dining Hall"
 msgstr ""
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
-msgid "Tholos"
+msgid "Thólos"
 msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsondescription
@@ -1372,7 +1375,7 @@ msgid "Comitium"
 msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
-msgid "Ekklesia"
+msgid "Ekklēsía"
 msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsondescription
@@ -1455,8 +1458,8 @@ msgstr "تسمه زوبین"
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.sele
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
-msgid "Ankyle"
-msgstr "Ankyle"
+msgid "Himás"
+msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
 msgid "Amentum"
@@ -1647,8 +1650,8 @@ msgstr "باز کردن واحد های سلحشور"
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
-msgid "Agèma"
-msgstr "Agèma"
+msgid "Ágēma"
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1669,8 +1672,8 @@ msgstr "جشنواره باروری"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
-msgid "Thesmophoria"
-msgstr "Thesmophoria"
+msgid "Thesmophória"
+msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
@@ -1710,8 +1713,8 @@ msgstr "شهروند-سربازان پیاده پیشرفته"
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
-msgid "Metikoi"
-msgstr "Metikoi"
+msgid "Zeugítai"
+msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
@@ -1742,8 +1745,8 @@ msgstr "شهروند-سربازان پیاده برجسته"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
-msgid "Zeugites"
-msgstr "Zeugites"
+msgid "Pentakosiomédimnoi"
+msgstr ""
 
 #: simulation/data/technologies/vision_outpost.jsondescription
 msgid "Outposts gain longer vision for scouting."
@@ -2098,8 +2101,8 @@ msgstr "جنگ با نیزه ی پیاده نظام"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
-msgid "Doratismos"
-msgstr "Doratismos"
+msgid "Doratismós"
+msgstr ""
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -2197,8 +2200,8 @@ msgstr "یونانی سازی"
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.athen
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
-msgid "Exellinismós"
-msgstr "Exellinismós"
+msgid "Hellēnízein"
+msgstr ""
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""

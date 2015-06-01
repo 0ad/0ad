@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-26 08:53+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,42 +99,42 @@ msgstr "Gus an tigh am bàs"
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Gun fhois-losgaidh"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 mionaidean"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 mionaidean"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 mionaidean"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 mionaid"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 mionaid"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 mionaid"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 mionaid"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -359,19 +359,19 @@ msgstr "Thoir buaidh air gach nàmhaid"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
 msgid "Conquest Structure"
-msgstr ""
+msgstr "Ceannsaich togalaichean"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Mill gach togalach nan nàimhdean"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Ceannsaich aonadan"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Mill gach aonad nan nàimhdean"
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -492,7 +492,7 @@ msgstr "Tagh na stòrasan tòiseachaidh:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Fois-losgaidh:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -508,7 +508,7 @@ msgstr "Mapa air rùrachadh:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Cuir ulaidhean à comas:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
@@ -588,7 +588,7 @@ msgstr "Tagh stòrasan tòiseachaidh a' gheama."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Suidhich an ùine nach gabh ionnsaigh a thoirt."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -600,11 +600,11 @@ msgstr "Toglaich am mapa air fhoillseachadh (faic a h-uile rud)."
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Toglaich mapa air rùrachadh (seall am mapa tùsail)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Cuir gach ulaidh air a' mhapa à comas."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."

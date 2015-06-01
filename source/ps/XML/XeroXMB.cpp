@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -187,22 +187,24 @@ int XMBElement::GetNodeName() const
 XMBElementList XMBElement::GetChildNodes() const
 {
 	if (m_Pointer == NULL)
-		return XMBElementList(NULL, 0);
+		return XMBElementList(NULL, 0, NULL);
 
 	return XMBElementList(
 		m_Pointer + 20 + read<int>(m_Pointer + 16), // == Children[]
-		read<int>(m_Pointer + 12) // == ChildCount
+		read<int>(m_Pointer + 12), // == ChildCount
+		m_Pointer + read<int>(m_Pointer) // == &Children[ChildCount]
 	);
 }
 
 XMBAttributeList XMBElement::GetAttributes() const
 {
 	if (m_Pointer == NULL)
-		return XMBAttributeList(NULL, 0);
+		return XMBAttributeList(NULL, 0, NULL);
 
 	return XMBAttributeList(
 		m_Pointer + 24 + read<int>(m_Pointer + 20), // == Attributes[]
-		read<int>(m_Pointer + 8) // == AttributeCount
+		read<int>(m_Pointer + 8), // == AttributeCount
+		m_Pointer + 20 + read<int>(m_Pointer + 16) // == &Attributes[AttributeCount] ( == &Children[])
 	);
 }
 
@@ -230,7 +232,7 @@ XMBElement XMBElementList::GetFirstNamedItem(const int ElementName) const
 
 	// Maybe not the cleverest algorithm, but it should be
 	// fast enough with half a dozen attributes:
-	for (int i = 0; i < Count; ++i)
+	for (size_t i = 0; i < m_Size; ++i)
 	{
 		int Length = read<int>(Pos);
 		int Name = read<int>(Pos+4);
@@ -243,28 +245,39 @@ XMBElement XMBElementList::GetFirstNamedItem(const int ElementName) const
 	return XMBElement();
 }
 
-XMBElement XMBElementList::Item(const int id)
+XMBElementList::iterator& XMBElementList::iterator::operator++()
 {
-	ENSURE(id >= 0 && id < Count && "Element ID out of range");
-	const char* Pos;
+	m_CurPointer += read<int>(m_CurPointer);
+	++m_CurItemID;
+	return (*this);
+}
 
-	// If access is sequential, don't bother scanning
-	// through all the nodes to find the next one
-	if (id == m_LastItemID+1)
+XMBElement XMBElementList::operator[](size_t id)
+{
+	ENSURE(id < m_Size && "Element ID out of range");
+	const char* Pos;
+	size_t i;
+
+	if (id < m_CurItemID)
 	{
-		Pos = m_LastPointer;
-		Pos += read<int>(Pos); // skip over the last node
+		Pos = m_Pointer;
+		i = 0;
 	}
 	else
 	{
-		Pos = m_Pointer;
-		// Skip over each preceding node
-		for (int i=0; i<id; ++i)
-			Pos += read<int>(Pos);
+		// If access is sequential, don't bother scanning
+		// through all the nodes to find the next one
+		Pos = m_CurPointer;
+		i = m_CurItemID;
 	}
+
+	// Skip over each preceding node
+	for (; i < id; ++i)
+		Pos += read<int>(Pos);
+
 	// Cache information about this node
-	m_LastItemID = id;
-	m_LastPointer = Pos;
+	m_CurItemID = id;
+	m_CurPointer = Pos;
 
 	return XMBElement(Pos);
 }
@@ -275,7 +288,7 @@ CStr8 XMBAttributeList::GetNamedItem(const int AttributeName) const
 
 	// Maybe not the cleverest algorithm, but it should be
 	// fast enough with half a dozen attributes:
-	for (int i = 0; i < Count; ++i)
+	for (size_t i = 0; i < m_Size; ++i)
 	{
 		if (read<int>(Pos) == AttributeName)
 			return CStr8(Pos+8);
@@ -286,29 +299,44 @@ CStr8 XMBAttributeList::GetNamedItem(const int AttributeName) const
 	return CStr8();
 }
 
-XMBAttribute XMBAttributeList::Item(const int id)
+XMBAttribute XMBAttributeList::iterator::operator*() const
 {
-	ENSURE(id >= 0 && id < Count && "Attribute ID out of range");
-	const char* Pos;
+	return XMBAttribute(read<int>(m_CurPointer), CStr8(m_CurPointer+8));
+}
 
-	// If access is sequential, don't bother scanning through
-	// all the nodes to find the right one
-	if (id == m_LastItemID+1)
+XMBAttributeList::iterator& XMBAttributeList::iterator::operator++()
+{
+	m_CurPointer += 8 + read<int>(m_CurPointer+4); // skip ID, length, and string data
+	++m_CurItemID;
+	return (*this);
+}
+
+XMBAttribute XMBAttributeList::operator[](size_t id)
+{
+	ENSURE(id < m_Size && "Attribute ID out of range");
+	const char* Pos;
+	size_t i;
+
+	if (id < m_CurItemID)
 	{
-		Pos = m_LastPointer;
-		// Skip over the last attribute
-		Pos += 8 + read<int>(Pos+4);
+		Pos = m_Pointer;
+		i = 0;
 	}
 	else
 	{
-		Pos = m_Pointer;
-		// Skip over each preceding attribute
-		for (int i=0; i<id; ++i)
-			Pos += 8 + read<int>(Pos+4); // skip ID, length, and string data
+		// If access is sequential, don't bother scanning
+		// through all the nodes to find the next one
+		Pos = m_CurPointer;
+		i = m_CurItemID;
 	}
+
+	// Skip over each preceding attribute
+	for (; i < id; ++i)
+		Pos += 8 + read<int>(Pos+4); // skip ID, length, and string data
+
 	// Cache information about this attribute
-	m_LastItemID = id;
-	m_LastPointer = Pos;
+	m_CurItemID = id;
+	m_CurPointer = Pos;
 
 	return XMBAttribute(read<int>(Pos), CStr8(Pos+8));
 }

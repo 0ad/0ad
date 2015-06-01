@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,19 +89,9 @@ private:
 #define _XERO_I _XERO_MAKE_UID1__(_i_, __LINE__)
 
 #define XERO_ITER_EL(parent_element, child_element)					\
-	XMBElementList _XERO_CHILDREN = parent_element.GetChildNodes();	\
-	XMBElement child_element (0);									\
-	for (int _XERO_I = 0;											\
-		 _XERO_I < _XERO_CHILDREN.Count								\
-			&& (child_element = _XERO_CHILDREN.Item(_XERO_I), 1);	\
-		 ++_XERO_I)
+	for (XMBElement child_element : parent_element.GetChildNodes())
 
 #define XERO_ITER_ATTR(parent_element, attribute)						\
-	XMBAttributeList _XERO_CHILDREN = parent_element.GetAttributes();	\
-	XMBAttribute attribute;												\
-	for (int _XERO_I = 0;												\
-		 _XERO_I < _XERO_CHILDREN.Count									\
-			&& (attribute = _XERO_CHILDREN.Item(_XERO_I), 1);			\
-		 ++_XERO_I)
+	for (XMBAttribute attribute : parent_element.GetAttributes())
 
 #endif // INCLUDED_XEROMYCES

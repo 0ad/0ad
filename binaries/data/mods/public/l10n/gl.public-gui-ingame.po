@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-22 00:47+0200\n"
-"PO-Revision-Date: 2015-05-23 08:35+0000\n"
+"PO-Revision-Date: 2015-05-25 04:50+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,12 @@ msgstr ""
 #: gui/session/input.js:152
 #, javascript-format
 msgid "Basic range: %(range)s meters"
-msgstr ""
+msgstr "Alcance básico: %(range)s metros"
 
 #: gui/session/input.js:153
 #, javascript-format
 msgid "Average bonus range: %(range)s meters"
-msgstr ""
+msgstr "Alcance de bonificación medio: %(range)s metros"
 
 #: gui/session/input.js:732
 msgid "Cannot build wall here!"
@@ -107,7 +107,7 @@ msgstr "Inimigo"
 
 #: gui/session/menu.js:349
 msgid "request for your allies to attack this enemy"
-msgstr ""
+msgstr "Solicitar aos aliados que ataquen a este inimigo"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -274,7 +274,7 @@ msgstr "Xogador descoñecido"
 #: gui/session/messages.js:443
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s está volvendo á partida."
 
 #: gui/session/messages.js:446
 #, javascript-format
@@ -284,7 +284,7 @@ msgstr "%(player)s marchou."
 #: gui/session/messages.js:449
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s volveu á partida."
 
 #: gui/session/messages.js:454
 msgid "You have been defeated."
@@ -348,7 +348,7 @@ msgstr "%(player)s envioute %(amounts)s."
 #: gui/session/messages.js:521
 #, javascript-format
 msgid "Your livestock have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(attacker)s atacou o teu gando!"
 
 #: gui/session/messages.js:523
 #, javascript-format
@@ -407,8 +407,8 @@ msgstr "Rango %(rank)s"
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Estes cimentos completaranse en %(seconds)s segundo."
+msgstr[1] "Estes cimentos completaranse en %(seconds)s segundos."
 
 #: gui/session/selection_details.js:78
 #, javascript-format
@@ -418,7 +418,7 @@ msgstr "%(hitpoints)s/%(maxHitpoints)s"
 #: gui/session/selection_details.js:108
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:126
 #, javascript-format
@@ -462,8 +462,8 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Número de construtores.\nEncargar a outro construtor traballar nesta estrutura aceleraría a súa construción en %(speedup)s segundo."
+msgstr[1] "Número de construtores.\nEncargar a outro construtor traballar nesta estrutura aceleraría a súa construción en %(speedup)s segundos."
 
 #: gui/session/selection_details.js:202
 msgid "Number of builders."
@@ -495,7 +495,7 @@ msgstr "%(label)s %(current)s/%(max)s."
 #: gui/session/selection_details.js:347
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr ""
+msgstr "Puntos de captura:"
 
 #: gui/session/selection_panels.js:91
 #, javascript-format
@@ -642,7 +642,7 @@ msgstr "Gaia"
 #: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Árbore de estruturas"
 
 #: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
@@ -691,13 +691,13 @@ msgstr "Poboación (actual/límite)"
 #: gui/session/session.js:719
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "Poboación máxima: %(popCap)s"
 
 #: gui/session/session.js:798
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Tempo restante ata que acabe a tregua: %(time)s."
 
 #: gui/session/session.js:806
 #, javascript-format
@@ -771,7 +771,7 @@ msgstr "Non podes destruír a entidade porque está cuberta pola néboa de guerr
 #: gui/session/unit_actions.js:698
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "Non podes destruír esta entidade porque posúes menos da metade dos puntos de captura."
 
 #: gui/session/unit_actions.js:727
 msgid "Stop"
@@ -1003,7 +1003,7 @@ msgstr "Vida"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Capture points"
-msgstr ""
+msgstr "Puntos de captura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"

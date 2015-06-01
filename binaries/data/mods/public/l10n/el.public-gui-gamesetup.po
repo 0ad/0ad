@@ -9,6 +9,7 @@
 # crippledmoon <domas392@in.gr>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
 # George Charoupas <labaxp@gmail.com>, 2015
+# jason <manitarious@gmail.com>, 2015
 # LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2015
 # ridergr <ridergr@gmail.com>, 2014
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-31 15:30+0000\n"
+"Last-Translator: jason <manitarious@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,37 +116,37 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 λεπτά "
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 λεπτά "
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 λεπτά "
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 λεπτά "
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 λεπτά "
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 λεπτά "
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 λεπτά "
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -372,15 +373,15 @@ msgstr ""
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Καταστρεψτε όλα τα κτίρια από τους εχθρούς "
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Κατάκτηση μονάδων "
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Κατέστρεψε όλες τις μονάδες από τους εχθρούς "
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -705,7 +706,7 @@ msgstr ""
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
-msgstr ""
+msgstr "\"Αυτή \\[Έλενα] έφερε στη Τροία την προίκα της, καταστροφή\"-\nΑισχύλος, \"Αγαμέμνον\""
 
 #: gui/text/quotes.txt:9
 msgid ""
@@ -721,7 +722,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr "\"Κάθε δικαιολογία "
+msgstr "\"Κάθε δικαιολογία βολεύει τον τύρανο\" - Αίσωπος "
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
@@ -759,7 +760,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr ""
+msgstr "\"Αργά και σταθερά κερδίζεις τον αγώνα\" - Αίσωπος  "
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
@@ -824,7 +825,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr ""
+msgstr "\"Δεν υπάρχει τίποτα ακατόρθωτο για αυτόν που θα προσπαθήσει\" - Μέγας Αλέξανδρος "
 
 #: gui/text/quotes.txt:33
 msgid ""
@@ -871,7 +872,7 @@ msgstr ""
 msgid ""
 "\"Words give wings to the mind and make a man soar to heaven.\" - "
 "Aristophanes"
-msgstr ""
+msgstr "\"Οι λέξεις δίνουν φτερά στο μυαλό και κάνουν τον άνθρωπο να εκτοξεύεται στα ουράνια\" - Αριστοφάνης "
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -1057,7 +1058,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:75
 msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
-msgstr ""
+msgstr "Με το σήμα μου, εξαπολύστε τον διάβολο,,"
 
 #: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
@@ -1173,7 +1174,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
-msgstr ""
+msgstr "\"Μικρές ευκαιρίες συχνά προιωνίζουν μεγάλη εργατικότητα\" - Δημοσθένης "
 
 #: gui/text/quotes.txt:98
 msgid ""
@@ -1186,17 +1187,17 @@ msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
 "Alexander the Great found him sunbathing and asked if he could help in in "
 "any way"
-msgstr ""
+msgstr "\"Ναι, φύγε λίγο από την λιακάδα μου\" - Διογένης ΣΣυνοπεύς, όταν ο Μέγας Αλέξανδρος τον βρήκε να κάνει ηλιοθεραπεία και τον ρώτησε αν μπορούσε να τον βοηθήσει με όποιον τρόπο μπορούσε "
 
 #: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
-msgstr ""
+msgstr "\"Είμαι πολίτης του κόσμου\" - Διογένης Συνοπεύς "
 
 #: gui/text/quotes.txt:101
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope"
-msgstr ""
+msgstr "\"Δεν είναι ότι είμαι τρελός, είναι μόνο ότι το κεφάλι μου είναι διαφορετικό από το δικός σας\" - Διογένης Συνοπεύς "
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1226,7 +1227,7 @@ msgstr ""
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi"
-msgstr ""
+msgstr "\"Αν ένας άντρας  βγάλει το μάτι ενός αλλου άντρα, το μάτι του πρόκειται να βγει έξω\" - Χαμμουραμπί "
 
 #: gui/text/quotes.txt:108
 msgid ""
@@ -1251,11 +1252,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr ""
+msgstr "\"Τίποτα δεν διαρκεί αλλά ααλλάζει\" - Ηράκλειτος "
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr ""
+msgstr "\"Δεν μπορείς να περάσεις το ίδιο ποτάμι δύο φορές\" - Ηράκλειτος  "
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
@@ -1288,7 +1289,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
-msgstr ""
+msgstr "\"Είμαστε παρά μόνο σκόνη και σκιά\" - .... "
 
 #: gui/text/quotes.txt:121
 msgid ""

@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Alexander Serov <sekachinsky@gmail.com>, 2014
+# Alex <yanebotan@ngs.ru>, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-04-23 21:06+0200\n"
-"PO-Revision-Date: 2015-05-23 14:03+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2015-05-25 03:32+0200\n"
+"PO-Revision-Date: 2015-05-31 17:50+0000\n"
+"Last-Translator: Alex <yanebotan@ngs.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,8 +114,8 @@ msgstr "Станет доступным на этапе небольшого г�
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
-msgid "Prometoopidion"
-msgstr "Прометоопидион"
+msgid "Prometōpídion"
+msgstr "Прометопидион"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
@@ -216,8 +217,8 @@ msgstr "Железная броня героя"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
-msgid "Sidi̱ró Panoplía"
-msgstr "Сидиро паноплия"
+msgid "Sidḗrea Panoplía"
+msgstr "Сидерея Паноплия"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
@@ -290,7 +291,7 @@ msgstr "Льняной панцирь"
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
-msgstr "Линотракс"
+msgstr "Линоторакс"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
@@ -346,8 +347,8 @@ msgstr "Фанерный щит"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
-msgid "Aspidiskè"
-msgstr "Аспидиске"
+msgid "Aspidískos"
+msgstr "Аспидиск"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
 msgid ""
@@ -368,8 +369,8 @@ msgstr "Усиленный щит"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
-msgid "Aspides"
-msgstr "Аспиды"
+msgid "Aspís"
+msgstr "Аспис"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
@@ -387,12 +388,12 @@ msgstr "Бронзовая оковка щитов"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
-msgid "Chalkaspides"
-msgstr "Чалкаспиды"
+msgid "Khalkaspís"
+msgstr "Халкаспис"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
-msgid "Chrysaspides"
-msgstr "Хрисаспиды"
+msgid "Khrysaspís"
+msgstr "Хризаспис"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
@@ -413,8 +414,8 @@ msgstr "Серебрянные щиты"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
-msgid "Argyraspides"
-msgstr "Аргираспиды"
+msgid "Argyraspís"
+msgstr "Аргираспис"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -496,6 +497,29 @@ msgstr "Кавалерийские копья"
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.sele
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
+msgid "Xystón"
+msgstr "Ксистон"
+
+#: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
+msgid "Hasta"
+msgstr "Гаста"
+
+#: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
+msgid "Training increases melee attack."
+msgstr "Обучение повышает атаку в ближнем бою."
+
+#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
+msgid "+20% melee cavalry attack."
+msgstr "Кавалерия получает +20% к атаке в ближнем бою."
+
+#: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
+msgid "Close Combat Cavalry Training"
+msgstr "Обучение конницы ближнему бою"
+
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
@@ -518,26 +542,6 @@ msgstr "Кавалерийские копья"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
 msgstr "Ксистон"
-
-#: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
-msgid "Hasta"
-msgstr "Гаста"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
-msgid "Training increases melee attack."
-msgstr "Обучение повышает атаку в ближнем бою."
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
-msgid "+20% melee cavalry attack."
-msgstr "Кавалерия получает +20% к атаке в ближнем бою."
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
-msgid "Close Combat Cavalry Training"
-msgstr "Обучение конницы ближнему бою"
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
@@ -590,8 +594,8 @@ msgstr "Героизм"
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
-msgid "Andreia"
-msgstr "Андрейя"
+msgid "Andreía"
+msgstr "Мужество"
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
 msgid "Fortitudo"
@@ -693,7 +697,7 @@ msgstr "Воля к борьбе"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
-msgid "Dynamis"
+msgid "Dýnamis"
 msgstr "Динамис"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
@@ -775,12 +779,12 @@ msgstr "Караул"
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.sele
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.athen
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
-msgid "Nyktophylakes"
+msgid "Nyktophýlakes"
 msgstr "Никтофилакес"
 
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.rome
 msgid "Vigiles"
-msgstr "Виджилес"
+msgstr "Вигилес"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
@@ -929,8 +933,8 @@ msgstr "Крепостные"
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
-msgid "Heilotes"
-msgstr "Гелиотес"
+msgid "Heílōtes"
+msgstr "Илоты"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "+15% stone gathering rate."
@@ -947,8 +951,8 @@ msgstr "Наймите слуг для помощи в каменоломне. �
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
-msgid "Douloi"
-msgstr "Дулос"
+msgid "Doûloi"
+msgstr "Дулой"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
@@ -992,8 +996,8 @@ msgstr "Рабы"
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
-msgid "Andrapodon"
-msgstr "Андраподон"
+msgid "Andrápoda"
+msgstr "Андрапода"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "+15% metal gathering rate."
@@ -1058,7 +1062,7 @@ msgstr "Радиус исцеления 2"
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
-msgid "Akademia"
+msgid "Akadḗmeia"
 msgstr "Академия"
 
 #: simulation/data/technologies/heal_rate.jsondescription
@@ -1078,8 +1082,8 @@ msgstr "Скорость исцеления"
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
-msgid "Sphagia"
-msgstr "Сфактерия"
+msgid "Sphágia"
+msgstr "Сфагия"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -1173,8 +1177,8 @@ msgstr "Железные наконечники копий"
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
-msgid "Siderénies Aichmés"
-msgstr "Сидерениес аичмес"
+msgid "Sidḗreai Aikhmaí"
+msgstr "Сидереай Айхмай"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
@@ -1285,7 +1289,7 @@ msgstr "Требуется 4 новых постройки небольшого 
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
-msgid "Megalopolis"
+msgid "Megalópolis"
 msgstr "Мегалополис"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
@@ -1330,7 +1334,7 @@ msgstr "Требует 5 строений этапа деревни (исклю�
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Komópolis"
+msgid "Kōmópolis"
 msgstr "Комополис"
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
@@ -1364,7 +1368,7 @@ msgid "Dining Hall"
 msgstr "Обеденный зал"
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
-msgid "Tholos"
+msgid "Thólos"
 msgstr "Толос"
 
 #: simulation/data/technologies/pop_civic_02.jsondescription
@@ -1386,8 +1390,8 @@ msgid "Comitium"
 msgstr "Комиций"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
-msgid "Ekklesia"
-msgstr "Экклесия"
+msgid "Ekklēsía"
+msgstr "Экклезия"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1435,7 +1439,7 @@ msgstr "Манор"
 
 #: simulation/data/technologies/pop_house_02.jsonspecificName.rome
 msgid "Insulae"
-msgstr "Инсула"
+msgstr "Инсулэ"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
@@ -1469,8 +1473,8 @@ msgstr "Ремень для копий"
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.sele
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
-msgid "Ankyle"
-msgstr "Анкиле"
+msgid "Himás"
+msgstr "Гимас"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
 msgid "Amentum"
@@ -1613,7 +1617,7 @@ msgstr "Время обучения всей конницы снижается �
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
 msgid "Levy Cavalry"
-msgstr "Сбор конников"
+msgstr "Призыв кавалерии"
 
 #: simulation/data/technologies/training_levy_infantry.jsondescription
 #: simulation/data/technologies/persians/training_levy_infantry.jsondescription
@@ -1630,7 +1634,7 @@ msgstr "Время обучения всей пехоты снижается н�
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
 msgid "Levy Infantry"
-msgstr "Сбор пехотинцев"
+msgstr "Призыв пехоты"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
@@ -1661,12 +1665,12 @@ msgstr "Открыть чемпионов"
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
-msgid "Agèma"
+msgid "Ágēma"
 msgstr "Агема"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
-msgstr "Регио когорта"
+msgstr "Когорта региа"
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1683,8 +1687,8 @@ msgstr "Праздник плодородия"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
-msgid "Thesmophoria"
-msgstr "Тесмофории"
+msgid "Thesmophória"
+msgstr "Тесмофория"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
@@ -1724,8 +1728,8 @@ msgstr "Улучшенный горожанин-пехотинец"
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
-msgid "Metikoi"
-msgstr "Метэк"
+msgid "Zeugítai"
+msgstr "Дзевгитай"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
@@ -1756,8 +1760,8 @@ msgstr "Элитный гражданин-пехотинец"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
-msgid "Zeugites"
-msgstr "Зевгиты"
+msgid "Pentakosiomédimnoi"
+msgstr "Пентакосиомедимны"
 
 #: simulation/data/technologies/vision_outpost.jsondescription
 msgid "Outposts gain longer vision for scouting."
@@ -2112,7 +2116,7 @@ msgstr "Бои копейщиков"
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.athen
-msgid "Doratismos"
+msgid "Doratismós"
 msgstr "Доратисмос"
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
@@ -2211,8 +2215,8 @@ msgstr "Эллинизация"
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.athen
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
-msgid "Exellinismós"
-msgstr "Экселлинисмос"
+msgid "Hellēnízein"
+msgstr "Элленидзеин"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2386,11 +2390,11 @@ msgstr "Повышается на +25% дальность обзора всех 
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
-msgstr "Книги Сивилл"
+msgstr "Книги Сивиллы"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
-msgstr "Либри Сивиллини"
+msgstr "Либри Сибиллини"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"

@@ -5,14 +5,15 @@
 # Translators:
 # Argiris L. <archiemc1@gmail.com>, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
+# jason <manitarious@gmail.com>, 2015
 # LOUKAS SKOUROLIAKOS, 2015
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:51+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-05-31 20:55+0000\n"
+"Last-Translator: jason <manitarious@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,82 +24,82 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "Ξεκίνησα μια επίθεση εναντίον του %(_player_)s. "
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "Μόλις έστειλα στρατό ενάντια στον %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "Επιτρέψτε μου να ανασυντάξω το στρατό μου και είμαι μαζί σου ενάντια %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "Κάνω τις τελευταίες προετοιμασίες και θα επιτεθώ στον %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "Δεν μπορώ να σε βοηθήσω εναντίον του %(_player_)s προς το παρόν, έχω μια άλλη επίθεση που προβλέπετε εναντίον του %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "Sorry, I have not enough soldiers currently, but my next attack will target "
 "%(_player_)s."
-msgstr ""
+msgstr "Συγνώμη, δεν έχω αρκετούς στρατιώτες αυτή την στιγμή, αλλά η επόμενη επίθεση θα έχει στόχο τον %(_player_)s. "
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "Ένα δωρώ για τον %(_player_)s, κάνε καλή χρίση."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "Βλέπω είσαι σε κακή κατάσταση %(_player_)s, ελπίζω αυτά να βοηθήσουν. "
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr ""
+msgstr "Χρειάζομαι μερικά %(resource)s, μπορείς να με βοηθήσεις; θα σου τα ανταποδώσω."
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "Θα συμμετάσχει πιο αποτελεσματικά στο κοινό μας πόλεμο αν μπορούσες να δώσεις μερικά %(resource)s. "
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "Έχω δημιουργήσει μια καινούρια διαδρομή με τον %(_player_)s. Η συναλλαγές μας θα είναι πιο επικερδείς για όλους μας."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "Ένας νέος εμπορικός δρόμος έχει δημιουργηθεί με τον %(_player_)s. Πάρτε το μερίδιο σας από τα κέρδη.  "
 
 #: simulation/ai/petra/chatHelper.js:112
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "Προχωράω προς το %(phase)s. "
 
 #: simulation/ai/petra/chatHelper.js:114
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "Έχω εξερεύνηση το %(phase)s. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -110,39 +111,39 @@ msgstr "Προειδοποίηση: Αυτό είναι ένα προηγμέν�
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr "Ας ξεκινήσουμε, πρώτο δρομολόγιο μια παρτίδα (πάτα το shieft) 5 γυναικών πολιτών από το ΠΚ (Πολιτιστικό Κέντρο)."
+msgstr "Ας ξεκινήσουμε, πρώτα εκπαίδευσε μια παρτίδα (πάτα το shift) 5 γυναικών  από το ΠΚ (Πολιτιστικό Κέντρο)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "Τώρα, βάλτε τις γυναίκες να μαζεύουν μούρα, Τον καβαλάρη να κυνηγήσει κοτόπουλα και τους στρατιώτες να συλλέξουν ξύλο."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr ""
+msgstr "Τώρα βάλε το σημείο εκκίνησης από το Πολιτιστικό Κέντρο διπλά στα μούρα. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr ""
+msgstr "Προσθέστε μερικούς εκσφεντονιστες να προπονούνται μετά γυναίκες,\nάλλα δεν θα έχεις αρκετούς πόρους για μια παρτίδα τον 5 άτομον. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr "Οταν οι γιναίκες πολίτισσες έχουν τελειώσει την προπόνηση,χρησιμοποίησε 4 για να χτίσεις ενα σπίτι κοντά"
+msgstr "Όταν οι γυναίκες  έχουν τελειώσει την προπόνηση, χρησιμοποίησε 4 για να χτίσεις ένα σπίτι κοντά."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr ""
+msgstr "Βάλε το σημείο εκκίνησης από το  Πολιτιστικό Κέντρο διπλά στα δεντρά, πρόσθεσε μερικούς εκσφεντονιστες , τώρα θέλεις 6 άτομα."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
-msgstr "Προσθέστε στην σειρά παραγωγής 5 θυληκές πολίτες"
+msgstr "Προσθέστε στην σειρά παραγωγής 5 γυναίκες. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
@@ -163,11 +164,11 @@ msgstr "Στείλε έναν πολίτη στρατιώτη να συγκεν�
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
 msgid "Queue another 5 female citizens."
-msgstr ""
+msgstr "Προσθέστε κι άλλες στην σειρά παραγωγής 5 γυναίκες."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
-msgstr ""
+msgstr "Χρησιμοποίησε μια γυναίκα για τα φτιάξει ένα χωράφι δίπλα στο Πολιτιστικό Κέντρο.     "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
@@ -177,7 +178,7 @@ msgstr "Ο καβαλάρης σου θα έχει πιθανώς ξεμείνε
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
-msgstr ""
+msgstr "Χρησιμοποίησε 2-3 περισσότερες γυναίκες για να φτιάξουν ένα χωράφι.  "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:83
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:128
@@ -191,11 +192,11 @@ msgstr "Πρόσθεσε στην σειρά παραγωγής άλλο ένα 
 msgid ""
 "The berry bushes are getting crowded, send some female citizens to work the "
 "field, set the rally point there."
-msgstr ""
+msgstr "Οι θαμνοι με τα μουρα αρχισουν να"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
-msgstr ""
+msgstr "Βάλε στην σειρά παραγωγής 5 γυναίκες, αυτές θα θα πάνε να μαζέψουν πετρά. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:98
 msgid ""
@@ -211,11 +212,11 @@ msgstr "Βεβαιώσου ότι οι εργάτες από τους θάμνο
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
-msgstr ""
+msgstr "Βάλε στη σειρά παραγωγής ένα σπίτι να χτίζεται. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
-msgstr ""
+msgstr "Βάλε στη σειρά παραγωγής 5 η περισσότερες γυναίκες. Αυτές θα πάνε να μαζέψουν ξύλο."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:118
 msgid ""
@@ -227,15 +228,15 @@ msgstr ""
 msgid ""
 "Train some more slingers, send them to gather stone. Train about 5, you may "
 "not have enough resources for a batch right now."
-msgstr ""
+msgstr "Προπόνησε μερικούς  εκσφεντονιστες, στιλ τους να μαζέψουν πετρά. Προπόνησε περίπου 5, μάλλον δεν θα έχεις αρκετούς πόρους και για άλλους.\n "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
+msgstr "Βάλε στην σειρά παραγωγής 5 γυναίκες. Αυτές θα μαζέψουν ξύλο."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
-msgstr ""
+msgstr "Βάλε στην σειρά παραγωγής 5 ακοντιστές. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
@@ -250,7 +251,7 @@ msgid ""
 "Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
 " initially but later in the game it is best to maximize efficiency as you "
 "are able to train more citizen soldiers."
-msgstr ""
+msgstr "Μετακίνησε 3 γυναίκες από τα δεντρά και 3 από την πετρά στα χωράφια. Η γυναίκες είναι φτηνές για την προπόνηση αρχικά άλλα αργότερα στο παιχνίδι θα είναι καλύτερο να μεγιστοποιησεις της γυναίκες για να είσαι σε θέση να προπονείς περισσότερους στρατιώτες.  "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
