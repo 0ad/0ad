@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,17 +71,17 @@ public:
 		TS_ASSERT_EQUALS(root.GetLineNumber(), -1);
 		TS_ASSERT_EQUALS(CStr(root.GetText()), "");
 
-		TS_ASSERT_EQUALS(root.GetChildNodes().Count, 2);
-		XMBElement child = root.GetChildNodes().Item(0);
+		TS_ASSERT_EQUALS(root.GetChildNodes().size(), 2);
+		XMBElement child = root.GetChildNodes()[0];
 		TS_ASSERT_EQUALS(child.GetNodeName(), el_foo);
 		TS_ASSERT_EQUALS(child.GetLineNumber(), 2);
-		TS_ASSERT_EQUALS(child.GetChildNodes().Count, 0);
+		TS_ASSERT_EQUALS(child.GetChildNodes().size(), 0);
 		TS_ASSERT_EQUALS(CStr(child.GetText()), "bar");
 
-		TS_ASSERT_EQUALS(root.GetChildNodes().Item(1).GetLineNumber(), 5);
+		TS_ASSERT_EQUALS(root.GetChildNodes()[1].GetLineNumber(), 5);
 
-		TS_ASSERT_EQUALS(child.GetAttributes().Count, 1);
-		XMBAttribute attr = child.GetAttributes().Item(0);
+		TS_ASSERT_EQUALS(child.GetAttributes().size(), 1);
+		XMBAttribute attr = child.GetAttributes()[0];
 		TS_ASSERT_EQUALS(attr.Name, at_x);
 		TS_ASSERT_EQUALS(CStr(attr.Value), " y ");
 	}
@@ -91,7 +91,7 @@ public:
 		XMBFile xmb (parse("<test> <x>A</x> <x>B</x> <y>C</y> <z>D</z> </test>"));
 
 		XMBElement root = xmb.GetRoot();
-		TS_ASSERT_EQUALS(root.GetChildNodes().Count, 4);
+		TS_ASSERT_EQUALS(root.GetChildNodes().size(), 4);
 
 		XMBElement x = root.GetChildNodes().GetFirstNamedItem(xmb.GetElementID("x"));
 		XMBElement y = root.GetChildNodes().GetFirstNamedItem(xmb.GetElementID("y"));
@@ -106,8 +106,8 @@ public:
 		TS_ASSERT_EQUALS(w.GetNodeName(), -1);
 		TS_ASSERT_EQUALS(CStr(w.GetText()), "");
 		TS_ASSERT_EQUALS(w.GetLineNumber(), -1);
-		TS_ASSERT_EQUALS(w.GetChildNodes().Count, 0);
-		TS_ASSERT_EQUALS(w.GetAttributes().Count, 0);
+		TS_ASSERT_EQUALS(w.GetChildNodes().size(), 0);
+		TS_ASSERT_EQUALS(w.GetAttributes().size(), 0);
 	}
 
 	void test_doctype_ignored()
@@ -133,7 +133,7 @@ public:
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x1234);
 
-		text = xmb.GetRoot().GetAttributes().Item(0).Value.FromUTF8();
+		text = xmb.GetRoot().GetAttributes()[0].Value.FromUTF8();
 		TS_ASSERT_EQUALS((int)text.length(), 2);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x1234);
@@ -151,7 +151,7 @@ public:
 		TS_ASSERT_EQUALS(text[2], 0x0088);
 		TS_ASSERT_EQUALS(text[3], 0x00B4);
 
-		text = xmb.GetRoot().GetAttributes().Item(0).Value.FromUTF8();
+		text = xmb.GetRoot().GetAttributes()[0].Value.FromUTF8();
 		TS_ASSERT_EQUALS((int)text.length(), 4);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x00E1);

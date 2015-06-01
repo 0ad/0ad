@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -182,28 +182,62 @@ private:
 class XMBElementList
 {
 public:
-	XMBElementList()
-		: Count(0), m_Pointer(0), m_LastItemID(-2) {}
-
-	XMBElementList(const char* offset, int count)
-		: Count(count),
-		  m_Pointer(offset),
-		  m_LastItemID(-2) {} // use -2 because it isn't x-1 where x is a non-negative integer
+	XMBElementList() : XMBElementList(NULL, 0, NULL) {}
+	XMBElementList(const char* offset, size_t count, const char* endoffset)
+		: m_Size(count), m_Pointer(offset), m_CurItemID(0), m_CurPointer(offset), m_EndPointer(endoffset) {}
 
 	// Get first element in list with the given name.
 	// Performance is linear in the number of elements in the list.
 	XMBElement GetFirstNamedItem(const int ElementName) const;
 
-	XMBElement Item(const int id); // returns Children[id]
+	// Linear in the number of elements in the list
+	XMBElement operator[](size_t id); // returns Children[id]
 
-	int Count;
+	class iterator
+	{
+	public:
+		typedef ptrdiff_t difference_type;
+		typedef XMBElement value_type;
+		typedef XMBElement reference; // Because we need to construct the object
+		typedef XMBElement pointer; // Because we need to construct the object
+		typedef std::forward_iterator_tag iterator_category;
+
+		iterator() : iterator(0, NULL) {}
+		iterator(size_t size, const char* ptr, const char* endptr = NULL)
+			: m_Size(size), m_CurItemID(endptr ? size : 0), m_CurPointer(endptr ? endptr : ptr), m_Pointer(ptr) {}
+		XMBElement operator*() const { return XMBElement(m_CurPointer); }
+		XMBElement operator->() const { return **this; }
+		iterator& operator++();
+
+		bool operator==(const iterator& rhs) const
+		{
+			return m_Size == rhs.m_Size &&
+			       m_CurItemID == rhs.m_CurItemID &&
+			       m_CurPointer == rhs.m_CurPointer;
+		}
+		bool operator!=(const iterator& rhs) const { return !(*this == rhs); }
+	private:
+		size_t m_Size;
+		size_t m_CurItemID;
+		const char* m_CurPointer;
+		const char* m_Pointer;
+	};
+	iterator begin() { return iterator(m_Size, m_Pointer); }
+	iterator end() { return iterator(m_Size, m_Pointer, m_EndPointer); }
+	
+	size_t size() const { return m_Size; }
+	bool empty() const { return m_Size == 0; }
 
 private:
+	size_t m_Size;
+
 	const char* m_Pointer;
 
 	// For optimised sequential access:
-	int m_LastItemID;
-	const char* m_LastPointer;
+	size_t m_CurItemID;
+	const char* m_CurPointer;
+
+	const char* m_EndPointer;
 };
 
 
@@ -220,24 +254,61 @@ struct XMBAttribute
 class XMBAttributeList
 {
 public:
-	XMBAttributeList(const char* offset, int count)
-		: Count(count), m_Pointer(offset), m_LastItemID(-2) {};
+	XMBAttributeList(const char* offset, size_t count, const char* endoffset)
+		: m_Size(count), m_Pointer(offset), m_CurItemID(0), m_CurPointer(offset), m_EndPointer(endoffset) {}
 
 	// Get the attribute value directly
 	CStr8 GetNamedItem(const int AttributeName) const;
 
-	// Returns an attribute by position in the list
-	XMBAttribute Item(const int id);
+	// Linear in the number of elements in the list
+	XMBAttribute operator[](size_t id); // returns Children[id]
 
-	int Count;
+	class iterator
+	{
+	public:
+		typedef ptrdiff_t difference_type;
+		typedef XMBAttribute value_type;
+		typedef XMBAttribute reference; // Because we need to construct the object
+		typedef XMBAttribute pointer; // Because we need to construct the object
+		typedef std::forward_iterator_tag iterator_category;
+
+		iterator() : iterator(0, NULL) {}
+		iterator(size_t size, const char* ptr, const char* endptr = NULL)
+			: m_Size(size), m_CurItemID(endptr ? size : 0), m_CurPointer(endptr ? endptr : ptr), m_Pointer(ptr) {}
+		XMBAttribute operator*() const;
+		XMBAttribute operator->() const { return **this; }
+		iterator& operator++();
+
+		bool operator==(const iterator& rhs) const
+		{
+			return m_Size == rhs.m_Size &&
+			       m_CurItemID == rhs.m_CurItemID &&
+			       m_CurPointer == rhs.m_CurPointer;
+		}
+		bool operator!=(const iterator& rhs) const { return !(*this == rhs); }
+	private:
+		size_t m_Size;
+		size_t m_CurItemID;
+		const char* m_CurPointer;
+		const char* m_Pointer;
+	};
+	iterator begin() const { return iterator(m_Size, m_Pointer); }
+	iterator end() const { return iterator(m_Size, m_Pointer, m_EndPointer); }
+	
+	size_t size() const { return m_Size; }
+	bool empty() const { return m_Size == 0; }
 
 private:
+	size_t m_Size;	
+
 	// Pointer to start of attribute list
 	const char* m_Pointer;
 
 	// For optimised sequential access:
-	int m_LastItemID;
-	const char* m_LastPointer;
+	size_t m_CurItemID;
+	const char* m_CurPointer;
+
+	const char* m_EndPointer;
 };
 
 #endif // INCLUDED_XEROXMB

@@ -442,8 +442,8 @@ private:
 	XMBElementList nodes; // children of root
 
 	// loop counters
-	int node_idx;
-	int entity_idx;
+	size_t node_idx;
+	size_t entity_idx;
 
 	// # entities+nonentities processed and total (for progress calc)
 	int completed_jobs, total_jobs;
@@ -500,8 +500,8 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	// (used when calculating progress)
 	completed_jobs = 0;
 	total_jobs = 0;
-	for (int i = 0; i < nodes.Count; i++)
-		total_jobs += nodes.Item(i).GetChildNodes().Count;
+	for (XMBElement node : nodes)
+		total_jobs += node.GetChildNodes().size();
 
 	// Find the maximum entity ID, so we can safely allocate new IDs without conflicts
 
@@ -967,12 +967,12 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 	CSimulation2& sim = *m_MapReader.pSimulation2;
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim, SYSTEM_ENTITY);
 
-	while (entity_idx < entities.Count)
+	while (entity_idx < entities.size())
 	{
 		// all new state at this scope and below doesn't need to be
 		// wrapped, since we only yield after a complete iteration.
 
-		XMBElement entity = entities.Item(entity_idx++);
+		XMBElement entity = entities[entity_idx++];
 		ENSURE(entity.GetNodeName() == el_entity);
 
 		XMBAttributeList attrs = entity.GetAttributes();
@@ -1100,9 +1100,8 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 void CXMLReader::ReadXML()
 {
-	for (int i = 0; i < nodes.Count; ++i)
+	for (XMBElement node : nodes)
 	{
-		XMBElement node = nodes.Item(i);
 		CStr name = xmb_file.GetElementString(node.GetNodeName());
 		if (name == "Terrain")
 		{
@@ -1153,9 +1152,9 @@ int CXMLReader::ProgressiveReadEntities()
 
 	int ret;
 
-	while (node_idx < nodes.Count)
+	while (node_idx < nodes.size())
 	{
-		XMBElement node = nodes.Item(node_idx);
+		XMBElement node = nodes[node_idx];
 		CStr name = xmb_file.GetElementString(node.GetNodeName());
 		if (name == "Entities")
 		{

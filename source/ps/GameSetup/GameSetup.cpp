@@ -1145,20 +1145,17 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 	XMBElement mapElement = mapFile.GetRoot();
 
 	// Select the ScriptSettings node in the map file...
-	for (int i = 0; pathToSettings[i][0]; i++)
+	for (int i = 0; pathToSettings[i][0]; ++i)
 	{
 		int childId = mapFile.GetElementID(pathToSettings[i]);
 
-		XMBElementList children = mapElement.GetChildNodes();
-		for (int childIndex = 0; childIndex < children.Count; childIndex++)
-		{
-			XMBElement child = children.Item(childIndex);
-			if (child.GetNodeName() == childId)
-			{
-				mapElement = child;
-				break;
-			}
-		}
+		XMBElementList nodes = mapElement.GetChildNodes();
+		auto it = std::find_if(nodes.begin(), nodes.end(), [&childId](const XMBElement& child) {
+			return child.GetNodeName() == childId;
+		});
+
+		if (it != nodes.end())
+			mapElement = *it;
 	}
 	// ... they contain a JSON document to initialize the game setup
 	// screen

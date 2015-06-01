@@ -989,12 +989,8 @@ void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, boos
 
 	// Iterate main children
 	//  they should all be <object> or <script> elements
-	XMBElementList children = Element.GetChildNodes();
-	for (int i=0; i<children.Count; ++i)
+	for (XMBElement child : Element.GetChildNodes())
 	{
-		//debug_printf("Object %d\n", i);
-		XMBElement child = children.Item(i);
-
 		if (child.GetNodeName() == el_script)
 			// Execute the inline script
 			Xeromyces_ReadScript(child, pFile, Paths);
@@ -1008,39 +1004,26 @@ void CGUI::Xeromyces_ReadRootSprites(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <sprite> elements
-	XMBElementList children = Element.GetChildNodes();
-	for (int i=0; i<children.Count; ++i)
-	{
-		XMBElement child = children.Item(i);
-
+	for (XMBElement child : Element.GetChildNodes())
 		// Read in this whole object into the GUI
 		Xeromyces_ReadSprite(child, pFile);
-	}
 }
 
 void CGUI::Xeromyces_ReadRootStyles(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <styles> elements
-	XMBElementList children = Element.GetChildNodes();
-	for (int i=0; i<children.Count; ++i)
-	{
-		XMBElement child = children.Item(i);
-
+	for (XMBElement child : Element.GetChildNodes())
 		// Read in this whole object into the GUI
 		Xeromyces_ReadStyle(child, pFile);
-	}
 }
 
 void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <icon>, <scrollbar> or <tooltip>.
-	XMBElementList children = Element.GetChildNodes();
-	for (int i=0; i<children.Count; ++i)
+	for (XMBElement child : Element.GetChildNodes())
 	{
-		XMBElement child = children.Item(i);
-
 		// Read in this whole object into the GUI
 
 		CStr name(pFile->GetElementString(child.GetNodeName()));
@@ -1074,7 +1057,6 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
 {
 	ENSURE(pParent);
-	int i;
 
 	// Our object we are going to create
 	IGUIObject *object = NULL;
@@ -1152,10 +1134,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	CStr hotkeyTag;
 
 	// Now we can iterate all attributes and store
-	for (i=0; i<attributes.Count; ++i)
+	for (XMBAttribute attr : attributes)
 	{
-		XMBAttribute attr = attributes.Item(i);
-
 		// If value is "null", then it is equivalent as never being entered
 		if (CStr(attr.Value) == "null")
 			continue;
@@ -1219,14 +1199,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	//	Read Children
 	//
 
-	XMBElementList children = Element.GetChildNodes();
-
-	// Iterate children
-	for (i=0; i<children.Count; ++i)
+	for (XMBElement child : Element.GetChildNodes())
 	{
-		// Get node
-		XMBElement child = children.Item(i);
-
 		// Check what name the elements got
 		int element_name = child.GetNodeName();
 
@@ -1259,26 +1233,17 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			}
 
 			XMBElementList grandchildren = child.GetChildNodes();
-			if (grandchildren.Count > 0) // The <action> element contains <keep> and <translate> tags.
-			{
-				for (int i = 0; i < grandchildren.Count; ++i)
+			if (!grandchildren.empty()) // The <action> element contains <keep> and <translate> tags.
+				for (XMBElement grandchild : grandchildren)
 				{
-					XMBElement grandchild = grandchildren.Item(i);
 					if (grandchild.GetNodeName() == elmt_translate)
-					{
 						code += g_L10n.Translate(grandchild.GetText());
-					}
 					else if (grandchild.GetNodeName() == elmt_keep)
-					{
 						code += grandchild.GetText();
-					}
 				}
-			}
 			else // It’s pure JavaScript code.
-			{
 				// Read the inline code (concatenating to the file code, if both are specified)
 				code += CStr(child.GetText());
-			}
 
 			CStr action = CStr(child.GetAttributes().GetNamedItem(attr_on));
 
@@ -1329,18 +1294,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 			CStr translatedValue;
 
-			XMBElementList grandchildren = child.GetChildNodes();
-			for (int i = 0; i < grandchildren.Count; ++i)
+			for (XMBElement grandchild : child.GetChildNodes())
 			{
-				XMBElement grandchild = grandchildren.Item(i);
 				if (grandchild.GetNodeName() == elmt_translate)
-				{
 					translatedValue += g_L10n.Translate(grandchild.GetText());
-				}
 				else if (grandchild.GetNodeName() == elmt_keep)
-				{
 					translatedValue += grandchild.GetText();
-				}
 			}
 			object->SetSetting(attributeName, translatedValue.FromUTF8(), true);
 		}
@@ -1565,14 +1524,8 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 
 	SGUIImageEffects* effects = NULL;
 
-	// Iterate children
-	XMBElementList children = Element.GetChildNodes();
-
-	for (int i=0; i<children.Count; ++i)
+	for (XMBElement child : Element.GetChildNodes())
 	{
-		// Get node
-		XMBElement child = children.Item(i);
-
 		CStr ElementName(pFile->GetElementString(child.GetNodeName()));
 
 		if (ElementName == "image")
@@ -1630,10 +1583,8 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	//
 
 	// Now we can iterate all attributes and store
-	XMBAttributeList attributes = Element.GetAttributes();
-	for (int i=0; i<attributes.Count; ++i)
+	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name(pFile->GetAttributeString(attr.Name));
 		CStrW attr_value(attr.Value.FromUTF8());
 
@@ -1740,10 +1691,8 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	}
 
 	// Look for effects
-	XMBElementList children = Element.GetChildNodes();
-	for (int i=0; i<children.Count; ++i)
+	for (XMBElement child : Element.GetChildNodes())
 	{
-		XMBElement child = children.Item(i);
 		CStr ElementName(pFile->GetElementString(child.GetNodeName()));
 		if (ElementName == "effect")
 		{
@@ -1772,10 +1721,8 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 
 void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects &effects)
 {
-	XMBAttributeList attributes = Element.GetAttributes();
-	for (int i=0; i<attributes.Count; ++i)
+	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name(pFile->GetAttributeString(attr.Name));
 		CStrW attr_value(attr.Value.FromUTF8());
 
@@ -1808,10 +1755,8 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 	//
 
 	// Now we can iterate all attributes and store
-	XMBAttributeList attributes = Element.GetAttributes();
-	for (int i=0; i<attributes.Count; ++i)
+	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name(pFile->GetAttributeString(attr.Name));
 
 		// The "name" setting is actually the name of the style
@@ -1846,10 +1791,8 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	//
 
 	// Now we can iterate all attributes and store
-	XMBAttributeList attributes = Element.GetAttributes();
-	for (int i=0; i<attributes.Count; ++i)
+	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name = pFile->GetAttributeString(attr.Name);
 		CStr attr_value(attr.Value); 
 
@@ -1944,10 +1887,8 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 	SGUIIcon icon;
 	CStr name;
 
-	XMBAttributeList attributes = Element.GetAttributes();
-	for (int i=0; i<attributes.Count; ++i)
+	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name(pFile->GetAttributeString(attr.Name));
 		CStr attr_value(attr.Value);
 
@@ -1989,10 +1930,8 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 
 	IGUIObject* object = new CTooltip;
 
-	XMBAttributeList attributes = Element.GetAttributes();
-	for (int i=0; i<attributes.Count; ++i)
+	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name(pFile->GetAttributeString(attr.Name));
 		CStr attr_value(attr.Value);
 
