@@ -379,8 +379,7 @@ m.DefenseManager.prototype.abortArmy = function(gameState, army)
 // and if a ranged siege unit (not used for defense) is attacked, garrison it in the nearest fortress
 m.DefenseManager.prototype.checkEvents = function(gameState, events)
 {
-	var attackedEvents = events["Attacked"];
-	for (var evt of attackedEvents)
+	for (var evt of events["Attacked"])
 	{
 		var target = gameState.getEntityById(evt.target);
 		if (!target || !gameState.isEntityOwn(target) || !target.position())

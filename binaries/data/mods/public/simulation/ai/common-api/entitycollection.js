@@ -1,11 +1,11 @@
 var API3 = function(m)
 {
 
-m.EntityCollection = function(sharedAI, entities, filters)
+m.EntityCollection = function(sharedAI, entities = new Map(), filters = [])
 {
 	this._ai = sharedAI;
-	this._entities = entities || new Map();
-	this._filters = filters || [];
+	this._entities = entities;
+	this._filters = filters;
 	this.dynamicProp = [];
 	for (var filter of this._filters)
 		if (filter.dynamicProperties.length)
@@ -61,18 +61,12 @@ m.EntityCollection.prototype.defreeze = function()
 
 m.EntityCollection.prototype.toIdArray = function()
 {
-	let ret = [];
-	for (let id of this._entities.keys())
-		ret.push(id);
-	return ret;
+	return [...this._entities.keys()];
 };
 
 m.EntityCollection.prototype.toEntityArray = function()
 {
-	let ret = [];
-	for (let ent of this._entities.values())
-		ret.push(ent);
-	return ret;
+	return [...this._entities.values()];
 };
 
 m.EntityCollection.prototype.values = function()

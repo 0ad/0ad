@@ -117,8 +117,7 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues)
 {
-	var CreateEvents = events["Create"];
-	for (var evt of CreateEvents)
+	for (var evt of events["Create"])
 	{
 		// Let's check if we have a building set to create a new base.
 		var ent = gameState.getEntityById(evt.entity);
@@ -159,8 +158,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	var ConstructionEvents = events["ConstructionFinished"];
-	for (var evt of ConstructionEvents)
+	for (var evt of events["ConstructionFinished"])
 	{
 		// Let's check if we have a building set to create a new base.
 		// TODO: move to the base manager.
@@ -198,8 +196,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	let captureEvents = events["OwnershipChanged"];
-	for (let evt of captureEvents)
+	for (let evt of events["OwnershipChanged"])   // capture events
 	{
 		if (evt.to !== PlayerID)
 			continue;
@@ -257,8 +254,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	// deal with the different rally points of training units: the rally point is set when the training starts
 	// for the time being, only autogarrison is used
 
-	var TrainingEvents = events["TrainingStarted"];
-	for (var evt of TrainingEvents)
+	for (var evt of events["TrainingStarted"])
 	{
 		var ent = gameState.getEntityById(evt.entity);
 		if (!ent || !ent.isOwn(PlayerID))
@@ -273,8 +269,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			ent.unsetRallyPoint();
 	}
 
-	var TrainingEvents = events["TrainingFinished"];
-	for (var evt of TrainingEvents)
+	for (var evt of events["TrainingFinished"])
 	{
 		for (var entId of evt.entities)
 		{
@@ -308,8 +303,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	let TerritoryEvents = events["TerritoryDecayChanged"];
-	for (let evt of TerritoryEvents)
+	for (let evt of events["TerritoryDecayChanged"])
 	{
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || !ent.isOwn(PlayerID) || ent.foundationProgress() !== undefined || !ent.isGarrisonHolder())

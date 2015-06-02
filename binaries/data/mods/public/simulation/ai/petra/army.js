@@ -297,63 +297,58 @@ m.Army.prototype.merge = function (gameState, otherArmy)
 // TODO: when there is a technology update, we should probably recompute the strengths, or weird stuffs might happen.
 m.Army.prototype.checkEvents = function (gameState, events)
 {
-	var renameEvents = events["EntityRenamed"];   // take care of promoted and packed units
-	var destroyEvents = events["Destroy"];
-	var captureEvents = events["OwnershipChanged"];
-	var garriEvents = events["Garrison"];
-
 	// Warning the metadata is already cloned in shared.js. Futhermore, changes should be done before destroyEvents
 	// otherwise it would remove the old entity from this army list
 	// TODO we should may-be reevaluate the strength
-	for (let msg of renameEvents)
+	for (let evt of events["EntityRenamed"])	// take care of promoted and packed units
 	{
-		if (this.foeEntities.indexOf(msg.entity) !== -1)
+		if (this.foeEntities.indexOf(evt.entity) !== -1)
 		{
-			let ent = gameState.getEntityById(msg.newentity);
+			let ent = gameState.getEntityById(evt.newentity);
 			if (ent && ent.templateName().indexOf("resource|") !== -1)  // corpse of animal killed
 				continue;
-			var idx = this.foeEntities.indexOf(msg.entity);
-			this.foeEntities[idx] = msg.newentity;
-			this.assignedAgainst[msg.newentity] = this.assignedAgainst[msg.entity];
-			this.assignedAgainst[msg.entity] = undefined;
-			for (var to in this.assignedTo)
-				if (this.assignedTo[to] == msg.entity)
-					this.assignedTo[to] = msg.newentity;
+			var idx = this.foeEntities.indexOf(evt.entity);
+			this.foeEntities[idx] = evt.newentity;
+			this.assignedAgainst[evt.newentity] = this.assignedAgainst[evt.entity];
+			this.assignedAgainst[evt.entity] = undefined;
+			for (let to in this.assignedTo)
+				if (this.assignedTo[to] == evt.entity)
+					this.assignedTo[to] = evt.newentity;
 		}
-		else if (this.ownEntities.indexOf(msg.entity) !== -1)
+		else if (this.ownEntities.indexOf(evt.entity) !== -1)
 		{
-			var idx = this.ownEntities.indexOf(msg.entity);
-			this.ownEntities[idx] = msg.newentity;
-			this.assignedTo[msg.newentity] = this.assignedTo[msg.entity];
-			this.assignedTo[msg.entity] = undefined;
-			for (var against in this.assignedAgainst)
+			var idx = this.ownEntities.indexOf(evt.entity);
+			this.ownEntities[idx] = evt.newentity;
+			this.assignedTo[evt.newentity] = this.assignedTo[evt.entity];
+			this.assignedTo[evt.entity] = undefined;
+			for (let against in this.assignedAgainst)
 			{
 				if (!this.assignedAgainst[against])
 					continue;
-				if (this.assignedAgainst[against].indexOf(msg.entity) !== -1)
-					this.assignedAgainst[against][this.assignedAgainst[against].indexOf(msg.entity)] = msg.newentity;
+				if (this.assignedAgainst[against].indexOf(evt.entity) !== -1)
+					this.assignedAgainst[against][this.assignedAgainst[against].indexOf(evt.entity)] = evt.newentity;
 			}
 		}
 	}
 
-	for (let msg of garriEvents)
-		this.removeFoe(gameState, msg.entity);
+	for (let evt of events["Garrison"])
+		this.removeFoe(gameState, evt.entity);
 
-	for (let msg of captureEvents)
+	for (let evt of events["OwnershipChanged"])	// captured
 	{
-		if (gameState.isPlayerAlly(msg.to))
-			this.removeFoe(gameState, msg.entity);
-		else if (msg.from === PlayerID)
-			this.removeOwn(gameState, msg.entity);
+		if (!gameState.isPlayerEnemy(evt.to))
+			this.removeFoe(gameState, evt.entity);
+		else if (evt.from === PlayerID)
+			this.removeOwn(gameState, evt.entity);
 	}
 
-	for (let msg of destroyEvents)
+	for (let evt of events["Destroy"])
 	{
-		if (!msg.entityObj)
+		if (!evt.entityObj)
 			continue;
 		// we may have capture+destroy, so do not trust owner and check all possibilities
-		this.removeOwn(gameState, msg.entity, msg.entityObj);
-		this.removeFoe(gameState, msg.entity, msg.entityObj);
+		this.removeOwn(gameState, evt.entity, evt.entityObj);
+		this.removeFoe(gameState, evt.entity, evt.entityObj);
 	}
 };
 

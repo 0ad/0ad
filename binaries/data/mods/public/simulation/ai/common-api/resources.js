@@ -1,14 +1,12 @@
 var API3 = function(m)
 {
 
-m.Resources = function(amounts, population)
+m.Resources = function(amounts = {}, population = 0)
 {
-	if (!amounts)
-		amounts = { food : 0, wood : 0, stone : 0, metal : 0 };
 	for (let key of this.types)
 		this[key] = amounts[key] || 0;
 
-	this.population = (population && population > 0) ? population : 0;
+	this.population = (population > 0) ? population : 0;
 };
 
 m.Resources.prototype.types = [ "food", "wood", "stone", "metal" ];

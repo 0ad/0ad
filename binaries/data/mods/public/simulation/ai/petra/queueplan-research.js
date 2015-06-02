@@ -1,7 +1,7 @@
 var PETRA = function(m)
 {
 
-m.ResearchPlan = function(gameState, type, rush)
+m.ResearchPlan = function(gameState, type, rush = false)
 {
 	if (!m.QueuePlan.call(this, gameState, type, {}))
 		return false;
@@ -11,7 +11,7 @@ m.ResearchPlan = function(gameState, type, rush)
 
 	this.category = "technology";
 
-	this.rush = rush ? true : false;
+	this.rush = rush;
 	
 	return true;
 };

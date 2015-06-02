@@ -342,6 +342,14 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		this.debugAttack();
 
 	// find our target (if not yet done or because our previous one was destroyed)
+	if (!this.targetPlayer)
+	{
+		this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
+		if (!this.targetPlayer)
+			return 0;
+		if (this.target && this.target.owner() !== this.targetPlayer)
+			this.target = undefined;
+	}
 	if (!this.target || !gameState.getEntityById(this.target.id()))
 	{
 		this.target = this.getNearestTarget(gameState, this.rallyPoint);
@@ -963,6 +971,14 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 	if (this.Config.debug > 1)
 		API3.warn("start attack " + this.name + " with type " + this.type);
 
+	if (!this.targetPlayer)
+	{
+		this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
+		if (!this.targetPlayer)
+			return false;
+		if (this.target && this.target.owner() !== this.targetPlayer)
+			this.target = undefined;
+	}
 	if (!this.target || !gameState.getEntityById(this.target.id()))  // our target was destroyed during our preparation
 	{
 		if (!this.targetPos)    // should not happen
@@ -1074,8 +1090,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		else
 		{
 			// if we are attacked while waiting the rest of the army, retaliate
-			var attackedEvents = events["Attacked"];
-			for (var evt of attackedEvents)
+			for (var evt of events["Attacked"])
 			{
 				if (IDs.indexOf(evt.target) == -1)
 					continue;
@@ -1105,8 +1120,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		// or if we reached the enemy base. Different plans may react differently.		
 		var attackedNB = 0;
 		var attackedUnitNB = 0;
-		var attackedEvents = events["Attacked"];
-		for (var evt of attackedEvents)
+		for (var evt of events["Attacked"])
 		{
 			if (IDs.indexOf(evt.target) == -1)
 				continue;
@@ -1233,6 +1247,14 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	if (this.state === "")
 	{
 		// First update the target if needed:
+	    	if (!this.targetPlayer)
+		{
+			this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
+			if (!this.targetPlayer)
+				return false;
+			if (this.target && this.target.owner() !== this.targetPlayer)
+				this.target = undefined;
+		}
 		if (this.target && this.target.owner() === 0 && this.targetPlayer !== 0)  // this enemy has resigned
 			this.target = undefined;
 		if (!this.target || !gameState.getEntityById(this.target.id()))
@@ -1289,8 +1311,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			this.targetPos = this.target.position();
 
 		var time = gameState.ai.elapsedTime;
-		var attackedEvents = events["Attacked"];
-		for (var evt of attackedEvents)
+		for (var evt of events["Attacked"])
 		{
 			if (IDs.indexOf(evt.target) == -1)
 				continue;
@@ -1711,30 +1732,25 @@ m.AttackPlan.prototype.resetPath = function(gameState)
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)
 {
-	let renameEvents = events["EntityRenamed"];
-	for (let evt of renameEvents)
+	for (let evt of events["EntityRenamed"])
 	{
-		if (this.target && this.target.id() == evt.entity)
-		{
-			this.target = gameState.getEntityById(evt.newentity);
-			if (this.target)
-				this.targetPos = this.target.position();
-		}
+		if (!this.target || this.target.id() != evt.entity)
+			continue;
+		this.target = gameState.getEntityById(evt.newentity);
+		if (this.target)
+			this.targetPos = this.target.position();
 	}
 
-	let captureEvents = events["OwnershipChanged"];
-	for (let evt of captureEvents)
+	for (let evt of events["OwnershipChanged"])	// capture event
 		if (this.target && this.target.id() == evt.entity && gameState.isPlayerAlly(evt.to))
 		    this.target = undefined;
 
- 	let PlayerDefeated = events["PlayerDefeated"];
-	for (let evt of PlayerDefeated)
+	for (let evt of events["PlayerDefeated"])
 	{
-		if (this.targetPlayer == evt.playerId)
-		{
-			this.targetPlayer = undefined;
-			this.target = undefined;
-		}
+		if (!this.targetPlayer || this.targetPlayer != evt.playerId)
+			continue;
+		this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
+		this.target = undefined;
 	}
 };
 

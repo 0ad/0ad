@@ -96,17 +96,13 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 
 m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 {
-	var destEvents = events["Destroy"];
-	var createEvents = events["Create"];
-	var cFinishedEvents = events["ConstructionFinished"];
-
-	for (var evt of destEvents)
+	for (let evt of events["Destroy"])
 	{
 		// let's check we haven't lost an important building here.
 		if (evt && !evt.SuccessfulFoundation && evt.entityObj && evt.metadata && evt.metadata[PlayerID] &&
 			evt.metadata[PlayerID]["base"] && evt.metadata[PlayerID]["base"] == this.ID)
 		{
-			var ent = evt.entityObj;
+			let ent = evt.entityObj;
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				this.removeDropsite(gameState, ent);
 			if (evt.metadata[PlayerID]["baseAnchor"] && evt.metadata[PlayerID]["baseAnchor"] === true)
@@ -114,8 +110,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	let captureEvents = events["OwnershipChanged"];
-	for (let evt of captureEvents)
+	for (let evt of events["OwnershipChanged"])	// capture event
 	{
 		if (evt.from !== PlayerID)
 			continue;
@@ -128,36 +123,32 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			this.anchorLost(gameState, ent);
 	}
 
-	for (var evt of cFinishedEvents)
+	for (var evt of events["ConstructionFinished"])
 	{
 		if (!evt || !evt.newentity)
 			continue;
-		var ent = gameState.getEntityById(evt.newentity);
-		if (ent === undefined)
+		let ent = gameState.getEntityById(evt.newentity);
+		if (!ent)
 			continue;
 		if (evt.newentity == evt.entity)  // repaired building
 			continue;
 			
 		if (ent.getMetadata(PlayerID, "base") == this.ID)
-		{
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				this.assignResourceToDropsite(gameState, ent);
-		}
 	}
 
-	for (var evt of createEvents)
+	for (let evt of events["Create"])
 	{
 		if (!evt || !evt.entity)
 			continue;
-		var ent = gameState.getEntityById(evt.entity);
-		if (ent === undefined)
+		let ent = gameState.getEntityById(evt.entity);
+		if (!ent)
 			continue;
-
 		// do necessary stuff here
 	}
 
-	let renameEvents = events["EntityRenamed"];
-	for (let evt of renameEvents)
+	for (let evt of events["EntityRenamed"])
 	{
 		if (!this.anchorId || this.anchorId !== evt.entity)
 			continue;
