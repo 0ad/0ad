@@ -112,6 +112,11 @@ Player.prototype.GetPopulationCount = function()
 	return this.popUsed;
 };
 
+Player.prototype.AddPopulation = function(num)
+{
+	this.popUsed += num;
+};
+
 Player.prototype.SetPopulationBonuses = function(num)
 {
 	this.popBonuses = num;

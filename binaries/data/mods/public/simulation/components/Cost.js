@@ -33,12 +33,13 @@ Cost.prototype.Schema =
 
 Cost.prototype.Init = function()
 {
+	this.populationCost = +this.template.Population;
 	this.populationBonus = +this.template.PopulationBonus;
 };
 
 Cost.prototype.GetPopCost = function()
 {
-	return +this.template.Population;
+	return this.populationCost;
 };
 
 Cost.prototype.GetPopBonus = function()
@@ -87,19 +88,27 @@ Cost.prototype.OnValueModification = function(msg)
 	if (msg.component != "Cost")
 		return;
 
-	// foundations shouldn't give a pop bonus
+	// foundations shouldn't give a pop bonus and a pop cost
 	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation)
 	if (cmpFoundation)
 		return;
 
+	// update the population costs
+	var newPopCost = ApplyValueModificationsToEntity("Cost/Population",  +this.template.Population, this.entity);
+	var popCostDifference = newPopCost - this.populationCost;
+	this.populationCost = newPopCost;
+
 	// update the population bonuses
 	var newPopBonus = ApplyValueModificationsToEntity("Cost/PopulationBonus",  +this.template.PopulationBonus, this.entity);
 	var popDifference = newPopBonus - this.populationBonus;
-	if (!popDifference)
-		return;
+	this.populationBonus = newPopBonus;
 
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	if (cmpPlayer)
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer)
+		return;
+	if (popCostDifference)
+		cmpPlayer.AddPopulation(popCostDifference);
+	if (popDifference)
 		cmpPlayer.AddPopulationBonuses(popDifference);
 };
 
