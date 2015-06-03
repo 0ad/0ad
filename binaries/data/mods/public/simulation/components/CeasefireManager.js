@@ -71,13 +71,13 @@ CeasefireManager.prototype.StartCeasefire = function(ceasefireTime)
 	{
 		// Save diplomacy
 		var playerEntities = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayerEntities();
-        for (var i = 1; i < playerEntities.length; ++i)
+		for (var i = 1; i < playerEntities.length; ++i)
 			// Copy array with slice(), otherwise it will change
 			this.diplomacyBeforeCeasefire.push(Engine.QueryInterface(playerEntities[i], IID_Player).GetDiplomacy().slice());
 
 		// Set every enemy (except gaia) to neutral
-        for (var i = 1; i < playerEntities.length; ++i)
-	        for (var j = 1; j < playerEntities.length; ++j)
+		for (var i = 1; i < playerEntities.length; ++i)
+			for (var j = 1; j < playerEntities.length; ++j)
 				if (this.diplomacyBeforeCeasefire[i-1][j] < 0)
 					Engine.QueryInterface(playerEntities[i], IID_Player).SetNeutral(j);
 	}
@@ -93,16 +93,16 @@ CeasefireManager.prototype.StartCeasefire = function(ceasefireTime)
 	// Add timers for countdown message and reseting diplomacy
 	this.stopCeasefireTimer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_CeasefireManager, "StopCeasefire", this.ceasefireTime);
 	this.ceasefireCountdownMessageTimer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_CeasefireManager, "ShowCeasefireCountdownMessage",
-			this.ceasefireTime - this.countdownMessageDuration);
+		this.ceasefireTime - this.countdownMessageDuration);
 };
 
 CeasefireManager.prototype.ShowCeasefireCountdownMessage = function()
 {
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	this.ceasefireCountdownMessage = cmpGuiInterface.AddTimeNotification({
-		"message": markForTranslation("You can attack in %(time)s"),
-		"translateMessage": true
-	}, this.countdownMessageDuration);
+			"message": markForTranslation("You can attack in %(time)s"),
+			"translateMessage": true
+		}, this.countdownMessageDuration);
 };
 
 CeasefireManager.prototype.StopCeasefire = function()
@@ -121,12 +121,12 @@ CeasefireManager.prototype.StopCeasefire = function()
 	
 	// Reset diplomacies to original settings
 	var playerEntities = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayerEntities();
-    for (var i = 1; i < playerEntities.length; ++i)
-    	Engine.QueryInterface(playerEntities[i], IID_Player).SetDiplomacy(this.diplomacyBeforeCeasefire[i-1]);
+	for (var i = 1; i < playerEntities.length; ++i)
+		Engine.QueryInterface(playerEntities[i], IID_Player).SetDiplomacy(this.diplomacyBeforeCeasefire[i-1]);
 
 	// Send chat notifications and update the diplomacy screen
-    for (var i = 1; i < playerEntities.length; ++i)
-        for (var j = 1; j < playerEntities.length; ++j)
+	for (var i = 1; i < playerEntities.length; ++i)
+		for (var j = 1; j < playerEntities.length; ++j)
 			if (i != j && this.diplomacyBeforeCeasefire[i-1][j] == -1)
 				cmpGuiInterface.PushNotification({"type": "diplomacy", "players": [j], "player1": [i], "status": "enemy"});
 	

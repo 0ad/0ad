@@ -136,7 +136,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	if (cmpCeasefireManager)
 	{
 		ret.ceasefireActive = cmpCeasefireManager.IsCeasefireActive();
-		ret.ceasefireTimeRemaining = cmpCeasefireManager.GetCeasefireStartedTime() + cmpCeasefireManager.GetCeasefireTime() - ret.timeElapsed;
+		ret.ceasefireTimeRemaining = ret.ceasefireActive ? cmpCeasefireManager.GetCeasefireStartedTime() + cmpCeasefireManager.GetCeasefireTime() - ret.timeElapsed : 0;
 	}
 	
 	// Add the game type
