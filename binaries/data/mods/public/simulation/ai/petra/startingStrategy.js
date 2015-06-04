@@ -115,6 +115,16 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 		if (ent.isGarrisonHolder() && ent.garrisoned().length)
 			for (let id of ent.garrisoned())
 				bestbase.assignEntity(gameState, gameState.getEntityById(id));
+		// and find something useful to do if we already have a base
+		if (pos && bestbase.ID !== this.baseManagers[0].ID)
+		{
+			base.assignRolelessUnits(gameState, [ent]);
+			if (ent.getMetadata(PlayerID, "role") === "worker")
+			{
+				base.reassignIdleWorkers(gameState, [ent]);
+				base.workerObject.update(gameState, ent);
+			}
+		}
 	}
 };
 

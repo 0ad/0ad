@@ -300,6 +300,20 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				if (!attack || attack.state !== "unexecuted")
 					ent.setMetadata(PlayerID, "plan", -1);
 			}
+			// Assign it immediately to something useful to do
+			if (ent.getMetadata(PlayerID, "role") === "worker")
+			{
+				let base;
+				if (ent.getMetadata(PlayerID, "base") === undefined)
+				{
+					base = m.getBestBase(gameState, ent);
+					base.assignEntity(gameState, ent);
+				}
+				else
+					base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
+				base.reassignIdleWorkers(gameState, [ent]);
+				base.workerObject.update(gameState, ent);
+			}
 		}
 	}
 
@@ -610,8 +624,8 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 		
 		// If they happen to be equal (generally this means "0" aka no need), make it fair.
 		if (va === vb)
-			return (b.wanted/(b.current+1)) - (a.wanted/(a.current+1));
-		return vb-va;
+			return (a.current - b.current);
+		return (vb - va);
 	});
 	return needed;
 };
