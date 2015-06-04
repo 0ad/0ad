@@ -218,14 +218,14 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 			strColor
 		);
 
-		return size;
+		return size + startSize;
 	};
 
 	// first handle the owner's points, to keep those points on the left for clarity
 	let size = setCaptureBarPart(owner, -width / 2);
 	for (let i in cp)
 		if (i != owner && cp[i] > 0)
-			size += setCaptureBarPart(i, size);
+			size = setCaptureBarPart(i, size);
 
 	return height * 1.2;
 };
