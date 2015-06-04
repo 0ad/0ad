@@ -166,9 +166,8 @@ StatusBars.prototype.AddHealthBar = function(cmpOverlayRenderer, yoffset)
 	if (!cmpHealth || !cmpHealth.GetHitpoints() > 0)
 		return 0;
 
-	return this.AddBar(cmpOverlayRenderer, yoffset, "health", cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints()
-	);
-}
+	return this.AddBar(cmpOverlayRenderer, yoffset, "health", cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints());
+};
 
 StatusBars.prototype.AddResourceSupplyBar = function(cmpOverlayRenderer, yoffset)
 {
@@ -205,7 +204,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 	// World-space offset from the unit's position
 	let offset = { "x": 0, "y": +this.template.HeightOffset, "z": 0 };
 
-	function setCaptureBarPart(playerID, startSize)
+	let setCaptureBarPart = function(playerID, startSize)
 	{
 		let c = QueryPlayerIDInterface(playerID).GetColor();
 		let strColor = (c.r * 255) + " " + (c.g * 255) + " " + (c.b * 255) + " 255";
@@ -229,7 +228,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 			size += setCaptureBarPart(i, size);
 
 	return height * 1.2;
-}
+};
 
 StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
 {
