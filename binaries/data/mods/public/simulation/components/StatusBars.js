@@ -1,3 +1,5 @@
+const NATURAL_COLOR = "255 255 255 255"; // pure white
+
 function StatusBars() {}
 
 StatusBars.prototype.Schema =
@@ -119,7 +121,8 @@ StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
 			icon, 
 			{ "x": xoffset - iconSize/2, "y": yoffset }, 
 			{ "x": xoffset + iconSize/2, "y": yoffset + iconSize }, 
-			offset
+			offset,
+			NATURAL_COLOR
 		); 
 		xoffset += iconSize * 1.2;
 	} 
@@ -142,14 +145,16 @@ StatusBars.prototype.AddBars = function(cmpOverlayRenderer, yoffset)
 			"art/textures/ui/session/icons/"+type+"_bg.png",
 			{ "x": -width/2, "y":yoffset },
 			{ "x": width/2, "y": height + yoffset },
-			offset
+			offset,
+			NATURAL_COLOR
 		);
 
 		cmpOverlayRenderer.AddSprite(
 			"art/textures/ui/session/icons/"+type+"_fg.png",
 			{ "x": -width/2, "y": yoffset },
 			{ "x": width*(amount - 0.5), "y": height + yoffset },
-			offset
+			offset,
+			NATURAL_COLOR
 		);
 
 		yoffset += height * 1.2;
@@ -190,7 +195,8 @@ StatusBars.prototype.AddBars = function(cmpOverlayRenderer, yoffset)
 				icon,
 				{ "x": -rankSize/2 + xoffset, "y": -rankSize/2 + yoffset },
 				{ "x": rankSize/2 + xoffset, "y": rankSize/2 + yoffset },
-				offset
+				offset,
+				"255 255 255 255"
 			);
 		}
 	}

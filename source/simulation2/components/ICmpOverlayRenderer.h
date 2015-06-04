@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,8 +48,9 @@ public:
 	 * @param corner0,corner1 coordinates of sprite's corners, in world-space units oriented with the camera plane,
 	 *        relative to the sprite position.
 	 * @param offset world-space offset of sprite position from the entity's base position.
+	 * @param color multiply color of texture
 	 */
-	virtual void AddSprite(VfsPath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D offset) = 0;
+	virtual void AddSprite(VfsPath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D offset, std::string color = "255 255 255 255") = 0;
 
 	DECLARE_INTERFACE_TYPE(OverlayRenderer)
 };
