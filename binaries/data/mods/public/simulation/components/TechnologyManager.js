@@ -348,7 +348,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 			this.researchedTechs[i] = template;
 
 			// Change the EntityLimit if any
-		    	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+			let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 			if (cmpPlayer && cmpPlayer.GetPlayerID() !== undefined)
 			{
 				let playerID = cmpPlayer.GetPlayerID();
