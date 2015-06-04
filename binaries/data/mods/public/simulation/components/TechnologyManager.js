@@ -346,6 +346,16 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 
 			var template = this.GetTechnologyTemplate(i);
 			this.researchedTechs[i] = template;
+
+			// Change the EntityLimit if any
+		    	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+			if (cmpPlayer && cmpPlayer.GetPlayerID() !== undefined)
+			{
+				let playerID = cmpPlayer.GetPlayerID();
+				let cmpPlayerEntityLimits = QueryPlayerIDInterface(playerID, IID_EntityLimits);
+				if (cmpPlayerEntityLimits)
+					cmpPlayerEntityLimits.UpdateLimitsFromTech(i);
+			}
 		}
 	}
 
