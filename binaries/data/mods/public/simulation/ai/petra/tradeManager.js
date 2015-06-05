@@ -301,8 +301,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 m.TradeManager.prototype.checkEvents = function(gameState, events)
 {
 	// check if one market from a traderoute is renamed, change the route accordingly
-	let renameEvents = events["EntityRenamed"];
-	for (let evt of renameEvents)
+	for (let evt of events["EntityRenamed"])
 	{
 		let ent = gameState.getEntityById(evt.newentity);
 		if (!ent || !ent.hasClass("Market"))
@@ -323,8 +322,7 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 	}
 
 	// if one market is destroyed, we should look for a better route
-	let destroyEvents = events["Destroy"];
-	for (let evt of destroyEvents)
+	for (let evt of events["Destroy"])
 	{
 		if (!evt.entityObj)
 			continue;
@@ -338,8 +336,7 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 	}
 
 	// same thing if one market is built
-	let createEvents = events["Create"];
-	for (let evt of createEvents)
+	for (let evt of events["Create"])
 	{
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Market") || !gameState.isPlayerAlly(ent.owner()))
@@ -352,8 +349,7 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 
 
 	// and same thing for captured markets
-	let captureEvents = events["OwnershipChanged"];
-	for (let evt of captureEvents)
+	for (let evt of events["OwnershipChanged"])
 	{
 		if (!gameState.isPlayerAlly(evt.from) && !gameState.isPlayerAlly(evt.to))
 			continue;

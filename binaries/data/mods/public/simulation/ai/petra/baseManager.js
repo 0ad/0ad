@@ -96,17 +96,13 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 
 m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 {
-	var destEvents = events["Destroy"];
-	var createEvents = events["Create"];
-	var cFinishedEvents = events["ConstructionFinished"];
-
-	for (var evt of destEvents)
+	for (let evt of events["Destroy"])
 	{
 		// let's check we haven't lost an important building here.
 		if (evt && !evt.SuccessfulFoundation && evt.entityObj && evt.metadata && evt.metadata[PlayerID] &&
 			evt.metadata[PlayerID]["base"] && evt.metadata[PlayerID]["base"] == this.ID)
 		{
-			var ent = evt.entityObj;
+			let ent = evt.entityObj;
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				this.removeDropsite(gameState, ent);
 			if (evt.metadata[PlayerID]["baseAnchor"] && evt.metadata[PlayerID]["baseAnchor"] === true)
@@ -114,8 +110,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	let captureEvents = events["OwnershipChanged"];
-	for (let evt of captureEvents)
+	for (let evt of events["OwnershipChanged"])	// capture event
 	{
 		if (evt.from !== PlayerID)
 			continue;
@@ -128,36 +123,32 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			this.anchorLost(gameState, ent);
 	}
 
-	for (var evt of cFinishedEvents)
+	for (var evt of events["ConstructionFinished"])
 	{
 		if (!evt || !evt.newentity)
 			continue;
-		var ent = gameState.getEntityById(evt.newentity);
-		if (ent === undefined)
+		let ent = gameState.getEntityById(evt.newentity);
+		if (!ent)
 			continue;
 		if (evt.newentity == evt.entity)  // repaired building
 			continue;
 			
 		if (ent.getMetadata(PlayerID, "base") == this.ID)
-		{
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				this.assignResourceToDropsite(gameState, ent);
-		}
 	}
 
-	for (var evt of createEvents)
+	for (let evt of events["Create"])
 	{
 		if (!evt || !evt.entity)
 			continue;
-		var ent = gameState.getEntityById(evt.entity);
-		if (ent === undefined)
+		let ent = gameState.getEntityById(evt.entity);
+		if (!ent)
 			continue;
-
 		// do necessary stuff here
 	}
 
-	let renameEvents = events["EntityRenamed"];
-	for (let evt of renameEvents)
+	for (let evt of events["EntityRenamed"])
 	{
 		if (!this.anchorId || this.anchorId !== evt.entity)
 			continue;
@@ -509,6 +500,8 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 		// TODO: this should take into account for unit speed and/or distance to target
 
 		this.gatherersByType(gameState, res).forEach(function (ent) {
+			if (ent.isIdle() || !ent.position())
+					return;		
 			let gRate = ent.currentGatherRate();
 			if (gRate)
 				currentRates[res] += Math.log(1+gRate)/1.1;
@@ -516,14 +509,14 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 		if (res === "food")
 		{
 			this.workersBySubrole(gameState, "hunter").forEach(function (ent) {
-				if (ent.isIdle())
+				if (ent.isIdle() || !ent.position())
 					return;
 				let gRate = ent.currentGatherRate();
 				if (gRate)
 					currentRates[res] += Math.log(1+gRate)/1.1;
 			});
 			this.workersBySubrole(gameState, "fisher").forEach(function (ent) {
-				if (ent.isIdle())
+				if (ent.isIdle() || !ent.position())
 					return;
 				let gRate = ent.currentGatherRate();
 				if (gRate)
@@ -533,11 +526,12 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 	}
 };
 
-m.BaseManager.prototype.assignRolelessUnits = function(gameState)
+m.BaseManager.prototype.assignRolelessUnits = function(gameState, roleless)
 {
-	// TODO: make this cleverer.
-	var roleless = this.units.filter(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "role"))).values();
-	for (var ent of roleless)
+	if (!roleless)
+		roleless = this.units.filter(API3.Filters.not(API3.Filters.byHasMetadata(PlayerID, "role"))).values();
+
+	for (let ent of roleless)
 	{
 		if (ent.hasClass("Worker") || ent.hasClass("CitizenSoldier") || ent.hasClass("FishingBoat"))
 			ent.setMetadata(PlayerID, "role", "worker");
@@ -604,54 +598,52 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 	}
 };
 
-// TODO: work on this.
-m.BaseManager.prototype.reassignIdleWorkers = function(gameState)
+m.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorkers)
 {
 	// Search for idle workers, and tell them to gather resources based on demand
-	var filter = API3.Filters.byMetadata(PlayerID, "subrole", "idle");
-	var idleWorkers = gameState.updatingCollection("idle-workers-base-" + this.ID, filter, this.workers);
-
-	var self = this;
-	if (idleWorkers.length)
+	if (!idleWorkers)
 	{
-		idleWorkers.forEach(function(ent)
+		var filter = API3.Filters.byMetadata(PlayerID, "subrole", "idle");
+		idleWorkers = gameState.updatingCollection("idle-workers-base-" + this.ID, filter, this.workers).values();
+	}
+	
+	for (let ent of idleWorkers)
+	{
+		// Check that the worker isn't garrisoned
+		if (!ent.position())
+			continue;
+		// Support elephant can only be builders
+		if (ent.hasClass("Support") && ent.hasClass("Elephant"))
 		{
-			// Check that the worker isn't garrisoned
-			if (ent.position() === undefined)
-				return;
-			// Support elephant can only be builders
-			if (ent.hasClass("Support") && ent.hasClass("Elephant"))
-			{
-				ent.setMetadata(PlayerID, "subrole", "idle");
-				return;
-			}
+			ent.setMetadata(PlayerID, "subrole", "idle");
+			continue;
+		}
 
-			if (ent.hasClass("Worker"))
+		if (ent.hasClass("Worker"))
+		{
+			// Just emergency repairing here. It is better managed in assignToFoundations
+			if (this.anchor && this.anchor.needsRepair() === true
+				&& gameState.getOwnEntitiesByMetadata("target-foundation", this.anchor.id()).length < 2)
+				ent.repair(this.anchor);
+			else
 			{
-				// Just emergency repairing here. It is better managed in assignToFoundations
-				if (self.anchor && self.anchor.needsRepair() === true
-					&& gameState.getOwnEntitiesByMetadata("target-foundation", self.anchor.id()).length < 2)
-					ent.repair(self.anchor);
-				else
+				var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
+				for (var needed of mostNeeded)
 				{
-					var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
-					for (var needed of mostNeeded)
-					{
-						var lastFailed = gameState.ai.HQ.lastFailedGather[needed.type];
-						if (lastFailed && gameState.ai.elapsedTime - lastFailed < 20)
-							continue;
-						ent.setMetadata(PlayerID, "subrole", "gatherer");
-						ent.setMetadata(PlayerID, "gather-type", needed.type);
-						gameState.ai.HQ.AddTCResGatherer(needed.type);
-						break;
-					}
+					var lastFailed = gameState.ai.HQ.lastFailedGather[needed.type];
+					if (lastFailed && gameState.ai.elapsedTime - lastFailed < 20)
+						continue;
+					ent.setMetadata(PlayerID, "subrole", "gatherer");
+					ent.setMetadata(PlayerID, "gather-type", needed.type);
+					gameState.ai.HQ.AddTCResGatherer(needed.type);
+					break;
 				}
 			}
-			else if (ent.hasClass("Cavalry"))
-				ent.setMetadata(PlayerID, "subrole", "hunter");
-			else if (ent.hasClass("FishingBoat"))
-				ent.setMetadata(PlayerID, "subrole", "fisher");
-		});
+		}
+		else if (ent.hasClass("Cavalry"))
+			ent.setMetadata(PlayerID, "subrole", "hunter");
+		else if (ent.hasClass("FishingBoat"))
+			ent.setMetadata(PlayerID, "subrole", "fisher");
 	}
 };
 
@@ -946,8 +938,8 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 				this.setWorkersIdleByPriority(gameState);
 			this.assignRolelessUnits(gameState);
 			this.reassignIdleWorkers(gameState);
-			for (var ent of this.workers.values())
-				this.workerObject.update(ent, gameState);
+			for (let ent of this.workers.values())
+				this.workerObject.update(gameState, ent);
 		}
 		return;
 	}
@@ -1002,8 +994,8 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 	this.assignRolelessUnits(gameState);
 	this.reassignIdleWorkers(gameState);
 	// check if workers can find something useful to do
-	for (var ent of this.workers.values())
-		this.workerObject.update(ent, gameState);
+	for (let ent of this.workers.values())
+		this.workerObject.update(gameState, ent);
 
 	Engine.ProfileStop();
 };

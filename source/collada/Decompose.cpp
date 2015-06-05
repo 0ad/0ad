@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,7 +124,7 @@ Quat Qt_FromMatrix(HMatrix mat)
      * Otherwise, the largest diagonal entry corresponds to the largest of |x|,
      * |y|, or |z|, one of which must be larger than |w|, and at least 1/2. */
     Quat qu;
-    register double tr, s;
+    double tr, s;
 
     tr = mat[X][X] + mat[Y][Y]+ mat[Z][Z];
     if (tr >= 0.0) {

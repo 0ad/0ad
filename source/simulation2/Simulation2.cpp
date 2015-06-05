@@ -210,7 +210,11 @@ bool CSimulation2Impl::LoadTriggerScripts(CComponentManager& componentManager, J
 		{
 			std::string scriptName = "maps/" + scriptNames[i];
 			if (loadedScripts)
+			{
+				if (loadedScripts->find(scriptName) != loadedScripts->end())
+					return true;
 				loadedScripts->insert(scriptName);
+			}
 			LOGMESSAGE("Loading trigger script '%s'", scriptName.c_str());
 			if (!componentManager.LoadScript(scriptName.data()))
 				ok = false;

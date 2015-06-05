@@ -253,33 +253,30 @@ m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
 
 m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 {
-	var evts = events["ConstructionFinished"];
 	// TODO: probably check stuffs like a base destruction.
-	for (var evt of evts)
+	for (let evt of events["ConstructionFinished"])
 	{
 		if (!evt || !evt.newentity)
 			continue;
-		var entity = gameState.getEntityById(evt.newentity);
+		let entity = gameState.getEntityById(evt.newentity);
 		if (entity && entity.hasClass("Dock") && entity.isOwn(PlayerID))
 			this.setDockIndex(gameState, entity);
 	}
 
-	var evts = events["TrainingFinished"];
-	for (var evt of evts)
+	for (let evt of events["TrainingFinished"])
 	{
 		if (!evt || !evt.entities)
 			continue;
-		for (var entId of evt.entities)
+		for (let entId of evt.entities)
 		{
-			var entity = gameState.getEntityById(entId);
+			let entity = gameState.getEntityById(entId);
 			if (!entity || !entity.hasClass("Ship") || !entity.isOwn(PlayerID))
 				continue;
 			this.setShipIndex(gameState, entity);
 		}
 	}
 
-	var evts = events["Destroy"];
-	for (var evt of evts)
+	for (let evt of events["Destroy"])
 	{
 		if (!evt.entityObj || evt.entityObj.owner() !== PlayerID || !evt.metadata || !evt.metadata[PlayerID])
 			continue;
@@ -324,8 +321,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		}
 	}
 
-	let captureEvents = events["OwnershipChanged"];
-	for (let evt of captureEvents)
+	for (let evt of events["OwnershipChanged"])	// capture events
 	{
 		if (evt.to === PlayerID)
 		{
@@ -339,12 +335,9 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 
 m.NavalManager.prototype.getPlan = function(ID)
 {
-	for (var plan of this.transportPlans)
-	{
-		if (plan.ID !== ID)
-			continue;
-		return plan;
-	}
+	for (let plan of this.transportPlans)
+		if (plan.ID === ID)
+			return plan;
 	return undefined;
 };
 

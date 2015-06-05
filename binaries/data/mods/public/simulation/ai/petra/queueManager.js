@@ -80,6 +80,11 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 // TODO: many things.
 m.QueueManager.prototype.wantedGatherRates = function(gameState)
 {
+	if (gameState.ai.playedTurn == 0)
+	{
+		// default values for first turn when we have not yet set our queues.
+		return { "food": 10, "wood": 10, "stone": 0, "metal": 0 };
+	}
 	// get out current resources, not removing accounts.
 	var current = gameState.getResources();
 	// short queue is the first item of a queue, assumed to be ready in 30s

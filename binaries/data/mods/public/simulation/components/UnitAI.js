@@ -3273,6 +3273,7 @@ UnitAI.prototype.OnCreate = function()
 		this.UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE");
 	else
 		this.UnitFsm.Init(this, "INDIVIDUAL.IDLE");
+	this.isIdle = true;
 };
 
 UnitAI.prototype.OnDiplomacyChanged = function(msg)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,8 @@
 #include "graphics/Overlay.h"
 #include "graphics/TextureManager.h"
 #include "renderer/Renderer.h"
+
+#include "ps/CLogger.h"
 
 class CCmpOverlayRenderer : public ICmpOverlayRenderer
 {
@@ -112,8 +114,12 @@ public:
 		UpdateMessageSubscriptions();
 	}
 
-	virtual void AddSprite(VfsPath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D position)
+	virtual void AddSprite(VfsPath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D position, std::string color)
 	{
+		CColor colorObj(1.0f, 1.0f, 1.0f, 1.0f);
+		if (!colorObj.ParseString(color, 1))
+			LOGERROR("OverlayRenderer: Error parsing '%s'", color);
+
 		CTextureProperties textureProps(textureName);
 
 		SOverlaySprite sprite;
@@ -122,6 +128,7 @@ public:
 		sprite.m_Y0 = corner0.Y.ToFloat();
 		sprite.m_X1 = corner1.X.ToFloat();
 		sprite.m_Y1 = corner1.Y.ToFloat();
+		sprite.m_Color = colorObj;
 
 		m_Sprites.push_back(sprite);
 		m_SpriteOffsets.push_back(CVector3D(position));

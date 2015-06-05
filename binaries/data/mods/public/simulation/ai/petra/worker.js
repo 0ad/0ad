@@ -12,7 +12,7 @@ m.Worker = function(base)
 	this.baseID = base.ID;
 };
 
-m.Worker.prototype.update = function(ent, gameState)
+m.Worker.prototype.update = function(gameState, ent)
 {
 	if (!ent.position() || ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
 		return;
@@ -21,24 +21,27 @@ m.Worker.prototype.update = function(ent, gameState)
 	if (ent.getMetadata(PlayerID, "transport") !== undefined)
 		return;
 
-	this.ent = ent;
 	// base 0 for unassigned entities has no accessIndex, so take the one from the entity
 	if (this.baseID === gameState.ai.HQ.baseManagers[0].ID)
 		this.accessIndex = gameState.ai.accessibility.getAccessValue(ent.position());
 	else
 		this.accessIndex = this.base.accessIndex;
 
-	var subrole = this.ent.getMetadata(PlayerID, "subrole");
+	var subrole = ent.getMetadata(PlayerID, "subrole");
 	if (!subrole)	// subrole may-be undefined after a transport, garrisoning, army, ...
 	{
-		this.ent.setMetadata(PlayerID, "subrole", "idle");
+		ent.setMetadata(PlayerID, "subrole", "idle");
+		this.base.reassignIdleWorkers(gameState, [ent]);
+		this.update(gameState, ent);
 		return;
 	}
+
+	this.ent = ent;
 
 	// Check for inaccessible targets (in RMS maps, we quite often have chicken or bushes inside obstruction of other entities).
 	if (ent.unitAIState() === "INDIVIDUAL.GATHER.APPROACHING" || ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING")
 		if (this.isInaccessibleSupply(gameState) && ((subrole === "hunter" && !this.startHunting(gameState))
-				|| (subrole === "gatherer" && !this.startGathering(gameState))))
+			|| (subrole === "gatherer" && !this.startGathering(gameState))))
 			this.ent.stopMoving();
 
 	// If we're fighting or hunting, let's not start gathering
@@ -51,32 +54,32 @@ m.Worker.prototype.update = function(ent, gameState)
 
 	if (subrole === "gatherer")
 	{
-		if (this.ent.isIdle())
+		if (ent.isIdle())
 		{
 			// if we aren't storing resources or it's the same type as what we're about to gather,
 			// let's just pick a new resource.
 			// TODO if we already carry the max we can ->  returnresources
-			if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0 ||
-					this.ent.resourceCarrying()[0].type === this.ent.getMetadata(PlayerID, "gather-type"))
+			if (!ent.resourceCarrying() || ent.resourceCarrying().length === 0 ||
+				ent.resourceCarrying()[0].type === ent.getMetadata(PlayerID, "gather-type"))
 			{
 				this.startGathering(gameState);
 			}
-			else if (!m.returnResources(gameState, this.ent))     // try to deposit resources
+			else if (!m.returnResources(gameState, ent))     // try to deposit resources
 			{
 				// no dropsite, abandon old resources and start gathering new ones
 				this.startGathering(gameState);
 			}
 		}
-		else if (this.ent.unitAIState().split(".")[1] === "GATHER")
+		else if (ent.unitAIState().split(".")[1] === "GATHER")
 		{
 			// we're already gathering. But let's check if there is nothing better
 			// in case UnitAI did something bad
-			if (this.ent.unitAIOrderData().length)
+			if (ent.unitAIOrderData().length)
 			{
-				var supplyId = this.ent.unitAIOrderData()[0]["target"];
+				var supplyId = ent.unitAIOrderData()[0]["target"];
 				var supply = gameState.getEntityById(supplyId);
 				if (supply && !supply.hasClass("Field") && !supply.hasClass("Animal")
-					&& supplyId !== this.ent.getMetadata(PlayerID, "supply"))
+					&& supplyId !== ent.getMetadata(PlayerID, "supply"))
 				{
 					var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplyId);
 					if (nbGatherers > 1 && supply.resourceSupplyAmount()/nbGatherers < 30)
@@ -86,13 +89,13 @@ m.Worker.prototype.update = function(ent, gameState)
 					}
 					else
 					{
-						var gatherType = this.ent.getMetadata(PlayerID, "gather-type");
+						var gatherType = ent.getMetadata(PlayerID, "gather-type");
 						var nearby = this.base.dropsiteSupplies[gatherType]["nearby"];
 						var isNearby = nearby.some(function(sup) {
 							return (sup.id === supplyId);
 						});
 						if (nearby.length === 0 || isNearby)
-							this.ent.setMetadata(PlayerID, "supply", supplyId);
+							ent.setMetadata(PlayerID, "supply", supplyId);
 						else
 						{
 							gameState.ai.HQ.RemoveTCGatherer(supplyId);
@@ -102,14 +105,13 @@ m.Worker.prototype.update = function(ent, gameState)
 				}
 			}
 		}
-		else if (this.ent.unitAIState() === "INDIVIDUAL.RETURNRESOURCE.APPROACHING"
-			&& gameState.ai.playedTurn % 10 === 0)
+		else if (ent.unitAIState() === "INDIVIDUAL.RETURNRESOURCE.APPROACHING" && gameState.ai.playedTurn % 10 === 0)
 		{
 			// Check from time to time that UnitAI does not send us to an inaccessible dropsite
-			var dropsite = gameState.getEntityById(this.ent.unitAIOrderData()[0]["target"]);
+			var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0]["target"]);
 			if (dropsite && dropsite.position())
 			{
-				var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
+				var access = gameState.ai.accessibility.getAccessValue(ent.position());
 				var goalAccess = dropsite.getMetadata(PlayerID, "access");
 				if (!goalAccess || dropsite.hasClass("Elephant"))
 				{
@@ -123,28 +125,35 @@ m.Worker.prototype.update = function(ent, gameState)
 	}
 	else if (subrole === "builder")
 	{
-		if (this.ent.unitAIState().split(".")[1] === "REPAIR")
+		if (ent.unitAIState().split(".")[1] === "REPAIR")
 		{
 			// update our target in case UnitAI sent us to a different foundation because of autocontinue	
-			if (this.ent.unitAIOrderData()[0] && this.ent.unitAIOrderData()[0].target
-				&& this.ent.getMetadata(PlayerID, "target-foundation") !== this.ent.unitAIOrderData()[0].target)
-				this.ent.setMetadata(PlayerID, "target-foundation", this.ent.unitAIOrderData()[0].target);
+			if (ent.unitAIOrderData()[0] && ent.unitAIOrderData()[0].target
+				&& ent.getMetadata(PlayerID, "target-foundation") !== ent.unitAIOrderData()[0].target)
+				ent.setMetadata(PlayerID, "target-foundation", ent.unitAIOrderData()[0].target);
 			return;
 		}
 		// okay so apparently we aren't working.
 		// Unless we've been explicitely told to keep our role, make us idle.
-		var target = gameState.getEntityById(this.ent.getMetadata(PlayerID, "target-foundation"));
+		var target = gameState.getEntityById(ent.getMetadata(PlayerID, "target-foundation"));
 		if (!target || (target.foundationProgress() === undefined && target.needsRepair() === false))
 		{
-			this.ent.setMetadata(PlayerID, "subrole", "idle");
-			this.ent.setMetadata(PlayerID, "target-foundation", undefined);
+			ent.setMetadata(PlayerID, "subrole", "idle");
+			ent.setMetadata(PlayerID, "target-foundation", undefined);
 			// If worker elephant, move away to avoid being trapped in between constructions
-			if (this.ent.hasClass("Elephant"))
+			if (ent.hasClass("Elephant"))
 				this.moveAway(gameState);
+			else if (this.baseID !== gameState.ai.HQ.baseManagers[0].ID)
+			{
+				// reassign it to something useful
+				this.base.reassignIdleWorkers(gameState, [ent]);
+				this.update(gameState, ent);
+				return;
+			}
 		}
 		else
 		{
-			var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
+			var access = gameState.ai.accessibility.getAccessValue(ent.position());
 			var goalAccess = target.getMetadata(PlayerID, "access");
 			if (!goalAccess)
 			{
@@ -152,15 +161,15 @@ m.Worker.prototype.update = function(ent, gameState)
 				target.setMetadata(PlayerID, "access", goalAccess);
 			}
 			if (access === goalAccess)
-				this.ent.repair(target, target.hasClass("House"));  // autocontinue=true for houses
+				ent.repair(target, target.hasClass("House"));  // autocontinue=true for houses
 			else
-				gameState.ai.HQ.navalManager.requireTransport(gameState, this.ent, access, goalAccess, target.position());
+				gameState.ai.HQ.navalManager.requireTransport(gameState, ent, access, goalAccess, target.position());
 		}
 	}
 	else if (subrole === "hunter")
 	{
-		var lastHuntSearch = this.ent.getMetadata(PlayerID, "lastHuntSearch");
-		if (this.ent.isIdle() && (!lastHuntSearch || (gameState.ai.elapsedTime - lastHuntSearch) > 20))
+		var lastHuntSearch = ent.getMetadata(PlayerID, "lastHuntSearch");
+		if (ent.isIdle() && (!lastHuntSearch || (gameState.ai.elapsedTime - lastHuntSearch) > 20))
 		{
 			if (!this.startHunting(gameState))
 			{
@@ -173,36 +182,35 @@ m.Worker.prototype.update = function(ent, gameState)
 					var basePos = base.anchor.position();
 					if (this.startHunting(gameState, basePos))
 					{
-						this.ent.setMetadata(PlayerID, "base", base.ID);
-						var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
+						ent.setMetadata(PlayerID, "base", base.ID);
+						var access = gameState.ai.accessibility.getAccessValue(ent.position());
 						if (base.accessIndex === access)
-							this.ent.move(basePos[0], basePos[1]);
+							ent.move(basePos[0], basePos[1]);
 						else
-							gameState.ai.HQ.navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, basePos);
+							gameState.ai.HQ.navalManager.requireTransport(gameState, ent, access, base.accessIndex, basePos);
 						nowhereToHunt = false;
 						break;
 					}
 				}
 				if (nowhereToHunt)
-					this.ent.setMetadata(PlayerID, "lastHuntSearch", gameState.ai.elapsedTime);
+					ent.setMetadata(PlayerID, "lastHuntSearch", gameState.ai.elapsedTime);
 			}
 		}
 		else	// Perform some sanity checks
 		{
-			if (this.ent.unitAIState().split(".")[1] === "GATHER"
-				|| this.ent.unitAIState().split(".")[1] === "RETURNRESOURCE")
+			if (ent.unitAIState().split(".")[1] === "GATHER" || ent.unitAIState().split(".")[1] === "RETURNRESOURCE")
 			{
 				// we may have drifted towards ennemy territory during the hunt, if yes go home
-				var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(this.ent.position());
+				let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(ent.position());
 				if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 					this.startHunting(gameState);
-				else if (this.ent.unitAIState() === "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
+				else if (ent.unitAIState() === "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
 				{
 					// Check that UnitAI does not send us to an inaccessible dropsite
-					var dropsite = gameState.getEntityById(this.ent.unitAIOrderData()[0]["target"]);
+					var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0]["target"]);
 					if (dropsite && dropsite.position())
 					{
-						var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
+						var access = gameState.ai.accessibility.getAccessValue(ent.position());
 						var goalAccess = dropsite.getMetadata(PlayerID, "access");
 						if (!goalAccess || dropsite.hasClass("Elephant"))
 						{
@@ -210,7 +218,7 @@ m.Worker.prototype.update = function(ent, gameState)
 							dropsite.setMetadata(PlayerID, "access", goalAccess);
 						}
 						if (access !== goalAccess)
-							m.returnResources(gameState, this.ent);
+							m.returnResources(gameState, ent);
 					}
 				}
 			}
@@ -218,11 +226,11 @@ m.Worker.prototype.update = function(ent, gameState)
 	}
 	else if (subrole === "fisher")
 	{
-		if (this.ent.isIdle())
+		if (ent.isIdle())
 			this.startFishing(gameState);
 		else	// if we have drifted towards ennemy territory during the fishing, go home
 		{
-			var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(this.ent.position());
+			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(ent.position());
 			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				this.startFishing(gameState);
 		}
@@ -265,7 +273,7 @@ m.Worker.prototype.startGathering = function(gameState)
 				&& nbGatherers > 0 && supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 30)
 				continue;
 			// not in ennemy territory
-			var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supplies[i].ent.position());
+			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supplies[i].ent.position());
 			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				continue;
 			gameState.ai.HQ.AddTCGatherer(supplies[i].id);
@@ -561,7 +569,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 			return;
 
 		// Avoid ennemy territory
-		var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
+		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
 		if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 			return;
 
@@ -651,7 +659,7 @@ m.Worker.prototype.startFishing = function(gameState)
 			return;
 
 		// Avoid ennemy territory
-		var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
+		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
 		if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 			return;
 
@@ -759,7 +767,7 @@ m.Worker.prototype.gatherTreasure = function(gameState)
 		}
 		if (treasureAccess !== access)
 			continue;
-		var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
+		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
 		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
 			continue;
 		var dist = API3.SquareVectorDistance(this.ent.position(), treasure.position());

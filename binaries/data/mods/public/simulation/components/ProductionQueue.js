@@ -244,8 +244,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 		if (type == "unit")
 		{
 			// Find the template data so we can determine the build costs
-			var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-			var template = cmpTempMan.GetTemplate(templateName);
+			var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+			var template = cmpTemplateManager.GetTemplate(templateName);
 			if (!template)
 				return;
 			if (template.Promotion)
@@ -275,7 +275,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				totalCosts[r] = Math.floor(count * costs[r]);
 			}
 
-			var population = +template.Cost.Population;
+			var population = ApplyValueModificationsToTemplate("Cost/Population",  +template.Cost.Population, cmpPlayer.GetPlayerID(), template);
 
 			// TrySubtractResources should report error to player (they ran out of resources)
 			if (!cmpPlayer.TrySubtractResources(totalCosts))
@@ -309,8 +309,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 		else if (type == "technology")
 		{
 			// Load the technology template
-			var cmpTechTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
-			var template = cmpTechTempMan.GetTemplate(templateName);
+			var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
+			var template = cmpTechnologyTemplateManager.GetTemplate(templateName);
 			if (!template)
 				return;
 			var cmpPlayer = QueryOwnerInterface(this.entity);
@@ -395,8 +395,8 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 		// Update entity count in the EntityLimits component
 		if (item.unitTemplate)
 		{
-			var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-			var template = cmpTempMan.GetTemplate(item.unitTemplate);
+			var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+			var template = cmpTemplateManager.GetTemplate(item.unitTemplate);
 			if (template.TrainingRestrictions)
 			{
 				var unitCategory = template.TrainingRestrictions.Category;
@@ -665,6 +665,10 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 			// If the item is a unit then do population checks
 			if (item.unitTemplate)
 			{
+				// If something change population cost
+				var template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate(item.unitTemplate);
+				item.population = ApplyValueModificationsToTemplate("Cost/Population",  +template.Cost.Population, item.player, template);
+				
 				// Batch's training hasn't started yet.
 				// Try to reserve the necessary population slots
 				item.neededSlots = cmpPlayer.TryReservePopulationSlots(item.population * item.count);

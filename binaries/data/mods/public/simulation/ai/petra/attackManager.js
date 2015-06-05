@@ -49,15 +49,13 @@ m.AttackManager.prototype.setRushes = function(allowed)
 
 m.AttackManager.prototype.checkEvents = function(gameState, events)
 {
-	let PlayerDefeated = events["PlayerDefeated"];
-	for (let evt of PlayerDefeated)
+	for (let evt of events["PlayerDefeated"])
 		this.defeated[evt.playerId] = true;
 
-	let AttackRequest = events["AttackRequest"];
 	let answer = false;
 	let other = undefined;
 	let targetPlayer = undefined;
-	for (let evt of AttackRequest)
+	for (let evt of events["AttackRequest"])
 	{
 		if (evt.source === PlayerID || !gameState.isPlayerAlly(evt.source) || !gameState.isPlayerEnemy(evt.target))
 			continue;
@@ -339,13 +337,13 @@ m.AttackManager.prototype.getAttackInPreparation = function(type)
  */
 m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 {
-	var enemyPlayer = undefined;
+	var enemyPlayer;
 
 	// first check if there is a preferred enemy based on our victory conditions
 	if (gameState.getGameType() === "wonder")
 	{
-		var moreAdvanced = undefined;
-		var enemyWonder = undefined;
+		var moreAdvanced;
+		var enemyWonder;
 		var wonders = gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder"));
 		for (let wonder of wonders.values())
 		{
@@ -392,6 +390,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	if (attack.type !== "HugeAttack")
 	{
 		if (attack.targetPlayer === undefined && this.currentEnemyPlayer !== undefined
+			&& !this.defeated[this.currentEnemyPlayer]
 			&& gameState.getEnemyEntities(this.currentEnemyPlayer) > 0)
 			return this.currentEnemyPlayer;
 

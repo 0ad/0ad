@@ -1,5 +1,9 @@
 !!ARBfp1.0
 
-TEX result.color, fragment.texcoord[0], texture[0], 2D;
+PARAM colorMul = program.local[0];
+TEMP color;
+TEX color, fragment.texcoord[0], texture[0], 2D;
+MUL color, color, colorMul;
+MOV result.color, color;
 
 END

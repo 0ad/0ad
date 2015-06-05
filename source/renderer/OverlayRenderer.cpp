@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -622,6 +622,8 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 			shader->BindTexture(str_baseTex, sprite->m_Texture);
 		else
 			sprite->m_Texture->Bind();
+		
+		shader->Uniform(str_colorMul, sprite->m_Color);
 
 		CVector3D pos[4] = {
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y0,

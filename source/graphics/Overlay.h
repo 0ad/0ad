@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -136,6 +136,7 @@ struct SOverlayTexturedLine
 struct SOverlaySprite
 {
 	CTexturePtr m_Texture;
+	CColor m_Color;
 	CVector3D m_Position; // base position
 	float m_X0, m_Y0, m_X1, m_Y1; // billboard corner coordinates, relative to base position
 };
