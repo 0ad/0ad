@@ -56,7 +56,7 @@ class CDummyReplayLogger : public IReplayLogger
 {
 public:
 	virtual void StartGame(JS::MutableHandleValue UNUSED(attribs)) { }
-	virtual void Turn(u32 UNUSED(n), u32 UNUSED(turnLength), const std::vector<SimulationCommand>& UNUSED(commands)) { }
+	virtual void Turn(u32 UNUSED(n), u32 UNUSED(turnLength), std::vector<SimulationCommand>& UNUSED(commands)) { }
 	virtual void Hash(const std::string& UNUSED(hash), bool UNUSED(quick)) { }
 };
 

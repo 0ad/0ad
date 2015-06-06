@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,9 +19,11 @@
 #define INCLUDED_NETTURNMANAGER
 
 #include "simulation2/helpers/SimulationCommand.h"
+#include "lib/os_path.h"
 
 #include <list>
 #include <map>
+#include <vector>
 
 class CNetServerWorker;
 class CNetClient;
@@ -108,6 +110,11 @@ public:
 	virtual void OnSyncError(u32 turn, const std::string& expectedHash);
 
 	/**
+	 * Shows a message box when an out of sync error has been detected in the session or visual replay.
+	 */
+	virtual void DisplayOOSError(u32 turn, std::string& hash, const std::string& expectedHash, const bool isReplay, OsPath* path);
+
+	/**
 	 * Called by simulation code, to add a new command to be distributed to all clients and executed soon.
 	 */
 	virtual void PostCommand(JS::HandleValue data) = 0;
@@ -189,6 +196,7 @@ private:
 	std::string m_QuickSaveMetadata;
 };
 
+
 /**
  * Implementation of CNetTurnManager for network clients.
  */
@@ -233,6 +241,42 @@ protected:
 };
 
 
+
+/**
+ * Implementation of CNetTurnManager for replay games.
+ */
+class CNetReplayTurnManager : public CNetLocalTurnManager
+{
+public:
+	CNetReplayTurnManager(CSimulation2& simulation, IReplayLogger& replay);
+
+	void StoreReplayCommand(u32 turn, int player, const std::string& command);
+
+	void StoreReplayTurnLength(u32 turn, u32 turnLength);
+
+	void StoreReplayHash(u32 turn, const std::string& hash, bool quick);
+
+	void StoreFinalReplayTurn(u32 turn);
+
+
+protected:
+	virtual void NotifyFinishedUpdate(u32 turn);
+
+	void DoTurn(u32 turn);
+
+	// Contains the commands of every player on each turn
+	std::map<u32, std::map<int, std::vector<std::string> > > m_ReplayCommands;
+
+	// Contains the length of every turn
+	std::map<u32, u32> m_ReplayTurnLengths;
+
+	// Contains all replay hash values and weather or not the quick hash method was used
+	std::map<u32, std::pair<std::string, bool> > m_ReplayHash;
+
+	// The number of the last turn in the replay
+	u32 m_FinalReplayTurn;
+
+};
 /**
  * The server-side counterpart to CNetClientTurnManager.
  * Records the turn state of each client, and sends turn advancement messages

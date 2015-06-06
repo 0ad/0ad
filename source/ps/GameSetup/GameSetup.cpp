@@ -881,6 +881,9 @@ void EarlyInit()
 
 bool Autostart(const CmdLineArgs& args);
 
+// Returns true if and only if the user has intended to replay a file
+bool VisualReplay(const std::string replayFile);
+
 bool Init(const CmdLineArgs& args, int flags)
 {
 	h_mgr_init();
@@ -1073,7 +1076,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 
 	try
 	{
-		if (!Autostart(args))
+		if (!VisualReplay(args.Get("replay-visual")) && !Autostart(args))
 		{
 			const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
 			// We only want to display the splash screen at startup
@@ -1467,6 +1470,27 @@ bool Autostart(const CmdLineArgs& args)
 		InitPs(true, L"page_session.xml", NULL, JS::UndefinedHandleValue);
 	}
 
+	return true;
+}
+
+bool VisualReplay(const std::string replayFile)
+{
+	if (!FileExists(OsPath(replayFile)))
+		return false;
+
+	g_Game = new CGame(false, false);
+	g_Game->SetPlayerID(-1);
+	g_Game->StartReplay(replayFile);
+
+	// TODO: Non progressive load can fail - need a decent way to handle this
+	LDR_NonprogressiveLoad();
+
+	PSRETURN ret = g_Game->ReallyStartGame();
+	ENSURE(ret == PSRETURN_OK);
+
+	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+
+	InitPs(true, L"page_session.xml", &scriptInterface, JS::UndefinedHandleValue);
 	return true;
 }
 

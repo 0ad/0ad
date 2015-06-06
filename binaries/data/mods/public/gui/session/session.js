@@ -557,6 +557,16 @@ function onSimulationUpdate()
 	}
 }
 
+function onReplayFinished()
+{
+	closeMenu();
+	closeOpenDialogs();
+	pauseGame();
+	var btCaptions = [translateWithContext("replayFinished", "Yes"), translateWithContext("replayFinished", "No")];
+	var btCode = [leaveGame, resumeGame];
+	messageBox(400, 200, translateWithContext("replayFinished", "The replay has finished. Do you want to quit?"), translateWithContext("replayFinished","Confirmation"), 0, btCaptions, btCode);
+}
+
 /**
 * updates a status bar on the GUI
 * nameOfBar: name of the bar

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -225,26 +225,49 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	// Only complain the first time
 	if (m_HasSyncError)
 		return;
-	m_HasSyncError = true;
 
 	bool quick = !TurnNeedsFullHash(turn);
 	std::string hash;
-	bool ok = m_Simulation2.ComputeStateHash(hash, quick);
-	ENSURE(ok);
+	ENSURE(m_Simulation2.ComputeStateHash(hash, quick));
 
 	OsPath path = psLogDir()/"oos_dump.txt";
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	m_Simulation2.DumpDebugState(file);
 	file.close();
 
+	hash = Hexify(hash);
+	const std::string& expectedHashHex = Hexify(expectedHash);
+
+	DisplayOOSError(turn, hash, expectedHashHex, false, &path);
+}
+
+void CNetTurnManager::DisplayOOSError(u32 turn, std::string& hash, const std::string& expectedHash, const bool isReplay, OsPath* path = NULL)
+{
+	m_HasSyncError = true;
+
 	std::stringstream msg;
-	msg << "Out of sync on turn " << turn << ": expected hash " << Hexify(expectedHash) << "\n\n";
-	msg << "Current state: turn " << m_CurrentTurn << ", hash " << Hexify(hash) << "\n\n";
-	msg << "Dumping current state to " << utf8_from_wstring(path.string());
+	msg << "Out of sync on turn " << turn << ": expected hash " << expectedHash << "\n";
+
+	if (expectedHash != hash || m_CurrentTurn != turn)
+		msg << "\nCurrent state: turn " << m_CurrentTurn << ", hash " << hash << "\n\n";
+
+	if (isReplay)
+		msg << "\nThe current game state is different from the original game state.\n\n";
+	else
+	{
+		if (expectedHash == hash)
+			msg << "Your game state is identical to the hosts game state.\n\n";
+		else
+			msg << "Your game state is different from the hosts game state.\n\n";
+	}
+
+	if (path)
+		msg << "Dumping current state to " << utf8_from_wstring(OsPath(*path).string());
+
+	LOGERROR("%s", msg.str());
+
 	if (g_GUI)
 		g_GUI->DisplayMessageBox(600, 350, L"Sync error", wstring_from_utf8(msg.str()));
-	else
-		LOGERROR("%s", msg.str());
 }
 
 void CNetTurnManager::Interpolate(float simFrameLength, float realFrameLength)
@@ -322,8 +345,7 @@ void CNetTurnManager::QuickSave()
 	TIMER(L"QuickSave");
 	
 	std::stringstream stream;
-	bool ok = m_Simulation2.SerializeState(stream);
-	if (!ok)
+	if (!m_Simulation2.SerializeState(stream))
 	{
 		LOGERROR("Failed to quicksave game");
 		return;
@@ -350,8 +372,7 @@ void CNetTurnManager::QuickLoad()
 	}
 
 	std::stringstream stream(m_QuickSaveState);
-	bool ok = m_Simulation2.DeserializeState(stream);
-	if (!ok)
+	if (!m_Simulation2.DeserializeState(stream))
 	{
 		LOGERROR("Failed to quickload game");
 		return;
@@ -402,8 +423,7 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 	std::string hash;
 	{
 		PROFILE3("state hash check");
-		bool ok = m_Simulation2.ComputeStateHash(hash, quick);
-		ENSURE(ok);
+		ENSURE(m_Simulation2.ComputeStateHash(hash, quick));
 	}
 
 	NETTURN_LOG((L"NotifyFinishedUpdate(%d, %hs)\n", turn, Hexify(hash).c_str()));
@@ -452,8 +472,7 @@ void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn))
 	std::string hash;
 	{
 		PROFILE3("state hash check");
-		bool ok = m_Simulation2.ComputeStateHash(hash);
-		ENSURE(ok);
+		ENSURE(m_Simulation2.ComputeStateHash(hash));
 	}
 	m_Replay.Hash(hash);
 #endif
@@ -464,8 +483,75 @@ void CNetLocalTurnManager::OnSimulationMessage(CSimulationMessage* UNUSED(msg))
 	debug_warn(L"This should never be called");
 }
 
+CNetReplayTurnManager::CNetReplayTurnManager(CSimulation2& simulation, IReplayLogger& replay) :
+	CNetLocalTurnManager(simulation, replay)
+{
+}
 
+void CNetReplayTurnManager::StoreReplayCommand(u32 turn, int player, const std::string& command)
+{
+	m_ReplayCommands[turn][player].push_back(command);
+}
 
+void CNetReplayTurnManager::StoreReplayHash(u32 turn, const std::string& hash, bool quick)
+{
+	m_ReplayHash[turn] = std::make_pair(hash, quick);
+}
+
+void CNetReplayTurnManager::StoreReplayTurnLength(u32 turn, u32 turnLength)
+{
+	m_ReplayTurnLengths[turn] = turnLength;
+
+	// Initialize turn length
+	if (turn == 0)
+		m_TurnLength = m_ReplayTurnLengths[0];
+}
+
+void CNetReplayTurnManager::StoreFinalReplayTurn(u32 turn)
+{
+	m_FinalReplayTurn = turn;
+}
+
+void CNetReplayTurnManager::NotifyFinishedUpdate(u32 turn)
+{
+	if (turn > m_FinalReplayTurn)
+		return;
+
+	debug_printf("Executing turn %d of %d\n", turn, m_FinalReplayTurn);
+	DoTurn(turn);
+
+	// Compare hash if it exists in the replay and if we didn't have an oos already
+	if (m_HasSyncError || m_ReplayHash.find(turn) == m_ReplayHash.end())
+		return;
+
+	std::string expectedHash = m_ReplayHash[turn].first;
+	bool quickHash = m_ReplayHash[turn].second;
+
+	// Compute hash
+	std::string hash;
+	ENSURE(m_Simulation2.ComputeStateHash(hash, quickHash));
+	hash = Hexify(hash);
+
+	if (hash != expectedHash)
+		DisplayOOSError(turn, hash, expectedHash, true);
+}
+
+void CNetReplayTurnManager::DoTurn(u32 turn)
+{
+	// Save turn length
+	m_TurnLength = m_ReplayTurnLengths[turn];
+
+	// Simulate commands for that turn
+	for (auto& command : m_ReplayCommands[turn])
+	{
+		for (size_t i = 0; i < command.second.size(); ++i)
+		{
+			JS::RootedValue data(m_Simulation2.GetScriptInterface().GetContext());
+			m_Simulation2.GetScriptInterface().ParseJSON(command.second[i], &data);
+			AddCommand(m_ClientId, command.first, data, m_CurrentTurn + 1);
+		}
+	}
+}
 
 CNetServerTurnManager::CNetServerTurnManager(CNetServerWorker& server) :
 	m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH_MP)
