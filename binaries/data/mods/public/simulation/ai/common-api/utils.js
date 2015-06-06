@@ -1,17 +1,6 @@
 var API3 = function(m)
 {
 
-m.debug = function(output)
-{
-	if (m.DebugEnabled)
-	{
-		if (typeof output === "string")
-			warn(output);
-		else
-			warn(uneval(output));
-	}
-};
-
 m.warn = function(output)
 {
 	if (typeof output === "string")

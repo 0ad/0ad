@@ -8,7 +8,6 @@ var API3 = function(m)
  */
 m.GameState = function() {
 	this.ai = null; // must be updated by the AIs.
-	this.cellSize = 4.0; // Size of each map tile
 };
 
 m.GameState.prototype.init = function(SharedScript, state, player) {
@@ -24,6 +23,33 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.techModifications = SharedScript._techModifications[this.player];
 	this.barterPrices = SharedScript.barterPrices;
 	this.gameType = SharedScript.gameType;
+
+	// get the list of possible phases for this civ:
+	// we assume all of them are researchable from the civil centre
+	this.phases = [ { name: "phase_village" }, { name: "phase_town" }, { name: "phase_city" } ];
+	let cctemplate = this.getTemplate(this.applyCiv("structures/{civ}_civil_centre"));
+	if (!cctemplate)
+		return;
+	let techs = cctemplate.researchableTechs(this.civ());
+	for (let i = 0; i < this.phases.length; ++i)
+	{
+		let k = techs.indexOf(this.phases[i].name);
+		if (k != -1)
+		{
+			this.phases[i].requirements = (this.getTemplate(techs[k]))._template.requirements;
+			continue;
+		}
+		for (let tech of techs)
+		{
+			let template = (this.getTemplate(tech))._template;
+			if (template.replaces && template.replaces.indexOf(this.phases[i].name) != -1)
+			{
+				this.phases[i].name = tech;
+				this.phases[i].requirements = template.requirements;
+				break;
+			}
+		}
+	}
 };
 
 m.GameState.prototype.update = function(SharedScript, state) {
@@ -123,27 +149,25 @@ m.GameState.prototype.civ = function() {
 
 m.GameState.prototype.currentPhase = function()
 {
-	if (this.isResearched("phase_city"))
-		return 3;
-	if (this.isResearched("phase_town"))
-		return 2;
-	if (this.isResearched("phase_village"))
-		return 1;
+	for (let i = this.phases.length; i > 0; --i)
+		if (this.isResearched(this.phases[i-1].name))
+			return i;
 	return 0;
 };
 
 m.GameState.prototype.townPhase = function()
 {
-	if (this.playerData.civ == "athen")
-		return "phase_town_athen";
-	return "phase_town";
+	return this.phases[1].name;
 };
 
 m.GameState.prototype.cityPhase = function()
 {
-	if (this.playerData.civ == "athen")
-		return "phase_city_athen";
-	return "phase_city";
+	return this.phases[2].name;
+};
+
+m.GameState.prototype.getPhaseRequirements = function(i)
+{
+	return this.phases[i-1].requirements ? this.phases[i-1].requirements : undefined;
 };
 
 m.GameState.prototype.isResearched = function(template)

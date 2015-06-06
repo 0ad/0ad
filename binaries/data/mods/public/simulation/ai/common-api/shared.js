@@ -120,7 +120,7 @@ m.SharedScript.prototype.GetTemplate = function(name)
 };
 
 // Initialize the shared component.
-// We need to now the initial state of the game for this, as we will use it.
+// We need to know the initial state of the game for this, as we will use it.
 // This is called right at the end of the map generation.
 m.SharedScript.prototype.init = function(state, deserialization)
 {
@@ -182,7 +182,7 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	for (var i in this._players)
 	{
 		this.gameState[this._players[i]] = new m.GameState();
-		this.gameState[this._players[i]].init(this,state,this._players[i]);
+		this.gameState[this._players[i]].init(this,state, this._players[i]);
 	}
 };
 
