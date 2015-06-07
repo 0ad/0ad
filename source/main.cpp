@@ -442,6 +442,12 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// run non-visual simulation replay if requested
 	if (args.Has("replay"))
 	{
+		std::string replayFile = args.Get("replay");
+		if (!FileExists(OsPath(replayFile)))
+		{
+			debug_printf("ERROR: The requested replay file '%s' does not exist!\n", replayFile.c_str());
+			return;
+		}
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);
@@ -449,7 +455,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 		{
 			CReplayPlayer replay;
-			replay.Load(args.Get("replay"));
+			replay.Load(replayFile);
 			replay.Replay(args.Has("serializationtest"), args.Has("ooslog"));
 		}
 
@@ -457,6 +463,17 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 		CXeromyces::Terminate();
 		return;
+	}
+
+	// If visual replay file does not exist, quit before starting the renderer
+	if (args.Has("replay-visual"))
+	{
+		std::string replayFile = args.Get("replay-visual");
+		if (!FileExists(OsPath(replayFile)))
+		{
+			debug_printf("ERROR: The requested replay file '%s' does not exist!\n", replayFile.c_str());
+			return;
+		}
 	}
 
 	// run in archive-building mode if requested

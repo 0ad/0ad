@@ -63,7 +63,7 @@ CGame *g_Game=NULL;
  * Constructor
  *
  **/
-CGame::CGame(bool disableGraphics):
+CGame::CGame(bool disableGraphics, bool replayLog):
 	m_World(new CWorld(this)),
 	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), g_ScriptRuntime, m_World->GetTerrain())),
 	m_GameView(disableGraphics ? NULL : new CGameView(this)),
@@ -71,10 +71,15 @@ CGame::CGame(bool disableGraphics):
 	m_Paused(false),
 	m_SimRate(1.0f),
 	m_PlayerID(-1),
-	m_IsSavedGame(false)
+	m_IsSavedGame(false),
+	m_IsReplay(false),
+	m_ReplayStream(NULL)
 {
-	m_ReplayLogger = new CReplayLogger(m_Simulation2->GetScriptInterface());
 	// TODO: should use CDummyReplayLogger unless activated by cmd-line arg, perhaps?
+	if (replayLog)
+		m_ReplayLogger = new CReplayLogger(m_Simulation2->GetScriptInterface());
+	else
+		m_ReplayLogger = new CDummyReplayLogger();
 
 	// Need to set the CObjectManager references after various objects have
 	// been initialised, so do it here rather than via the initialisers above.
@@ -101,6 +106,7 @@ CGame::~CGame()
 	delete m_Simulation2;
 	delete m_World;
 	delete m_ReplayLogger;
+	delete m_ReplayStream;
 }
 
 void CGame::SetTurnManager(CNetTurnManager* turnManager)
@@ -114,6 +120,76 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
 		m_TurnManager->SetPlayerID(m_PlayerID);
 }
 
+int CGame::LoadReplayData()
+{
+	ENSURE(m_IsReplay);
+	ENSURE(!m_ReplayPath.empty());
+
+	CNetReplayTurnManager* replayTurnMgr = static_cast<CNetReplayTurnManager*>(GetTurnManager());
+
+	u32 currentTurn = 0;
+	std::string type;
+	while ((*m_ReplayStream >> type).good())
+	{
+		if (type == "turn")
+		{
+			u32 turn = 0;
+			u32 turnLength = 0;
+			*m_ReplayStream >> turn >> turnLength;
+			ENSURE(turn == currentTurn);
+			replayTurnMgr->StoreReplayTurnLength(currentTurn, turnLength);
+		}
+		else if (type == "cmd")
+		{
+			player_id_t player;
+			*m_ReplayStream >> player;
+
+			std::string line;
+			std::getline(*m_ReplayStream, line);
+			replayTurnMgr->StoreReplayCommand(currentTurn, player, line);
+		}
+		else if (type == "hash" || type == "hash-quick")
+		{
+			bool quick = (type == "hash-quick");
+			std::string replayHash;
+			*m_ReplayStream >> replayHash;
+			replayTurnMgr->StoreReplayHash(currentTurn, replayHash, quick);
+		}
+		else if (type == "end")
+		{
+			currentTurn++;
+		}
+		else
+		{
+			CancelLoad(L"Failed to load replay data (unrecognized content)");
+		}
+	}
+	m_FinalReplayTurn = currentTurn;
+	replayTurnMgr->StoreFinalReplayTurn(currentTurn);
+	return 0;
+}
+
+bool CGame::StartReplay(const std::string& replayPath)
+{
+	m_IsReplay = true;
+	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
+
+	SetTurnManager(new CNetReplayTurnManager(*m_Simulation2, GetReplayLogger()));
+
+	m_ReplayPath = replayPath;
+	m_ReplayStream = new std::ifstream(m_ReplayPath.c_str());
+
+	std::string type;
+	ENSURE((*m_ReplayStream >> type).good() && type == "start");
+
+	std::string line;
+	std::getline(*m_ReplayStream, line);
+	JS::RootedValue attribs(scriptInterface.GetContext());
+	scriptInterface.ParseJSON(line, &attribs);
+	StartGame(&attribs, "");
+
+	return true;
+}
 
 /**
  * Initializes the game with the set of attributes provided.
@@ -175,6 +251,9 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 
 	if (m_IsSavedGame)
 		RegMemFun(this, &CGame::LoadInitialState, L"Loading game", 1000);
+
+	if (m_IsReplay)
+		RegMemFun(this, &CGame::LoadReplayData, L"Loading replay data", 1000);
 
 	LDR_EndRegistering();
 }
@@ -263,7 +342,7 @@ int CGame::GetPlayerID()
 	return m_PlayerID;
 }
 
-void CGame::SetPlayerID(int playerID)
+void CGame::SetPlayerID(player_id_t playerID)
 {
 	m_PlayerID = playerID;
 	if (m_TurnManager)
@@ -272,7 +351,9 @@ void CGame::SetPlayerID(int playerID)
 
 void CGame::StartGame(JS::MutableHandleValue attribs, const std::string& savedState)
 {
-	m_ReplayLogger->StartGame(attribs);
+	if (m_ReplayLogger != false)
+		m_ReplayLogger->StartGame(attribs);
+
 	RegisterInit(attribs, savedState);
 }
 
@@ -310,6 +391,8 @@ bool CGame::Update(const double deltaRealTime, bool doInterpolate)
 				PROFILE3("gui sim update");
 				g_GUI->SendEventToAll("SimulationUpdate");
 			}
+			if (m_IsReplay && m_TurnManager->GetCurrentTurn() == m_FinalReplayTurn - 1)
+				g_GUI->SendEventToAll("ReplayFinished");
 
 			GetView()->GetLOSTexture().MakeDirty();
 		}
@@ -362,7 +445,7 @@ void CGame::CachePlayerColors()
 }
 
 
-CColor CGame::GetPlayerColor(int player) const
+CColor CGame::GetPlayerColor(player_id_t player) const
 {
 	if (player < 0 || player >= (int)m_PlayerColors.size())
 		return BrokenColor;

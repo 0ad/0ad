@@ -22,6 +22,10 @@
 		onSimulationUpdate();
 	</action>
 
+	<action on="ReplayFinished">
+		onReplayFinished();
+	</action>
+
 	<action on="Press">
 		this.hidden = !this.hidden;
 	</action>

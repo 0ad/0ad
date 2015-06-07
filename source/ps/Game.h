@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "scriptinterface/ScriptVal.h"
+#include "simulation2/helpers/Player.h"
 
 class CWorld;
 class CSimulation2;
@@ -60,12 +61,12 @@ class CGame
 	 **/
 	float m_SimRate;
 
-	int m_PlayerID;
+	player_id_t m_PlayerID;
 
 	CNetTurnManager* m_TurnManager;
 
 public:
-	CGame(bool disableGraphics = false);
+	CGame(bool disableGraphics = false, bool replayLog = true);
 	~CGame();
 
 	/**
@@ -75,6 +76,8 @@ public:
 
 	void StartGame(JS::MutableHandleValue attribs, const std::string& savedState);
 	PSRETURN ReallyStartGame();
+
+	bool StartReplay(const std::string& replayPath);
 
 	/**
 	 * Periodic heartbeat that controls the process. performs all per-frame updates.
@@ -90,7 +93,7 @@ public:
 	void Interpolate(float simFrameLength, float realFrameLength);
 
 	int GetPlayerID();
-	void SetPlayerID(int playerID);
+	void SetPlayerID(player_id_t playerID);
 
 	/**
 	 * Retrieving player colors from scripts is slow, so this updates an
@@ -100,7 +103,7 @@ public:
 	 */
 	void CachePlayerColors();
 
-	CColor GetPlayerColor(int player) const;
+	CColor GetPlayerColor(player_id_t player) const;
 
 	/**
 	 * Get m_GameStarted.
@@ -171,6 +174,12 @@ private:
 	int LoadInitialState();
 	std::string m_InitialSavedState; // valid between RegisterInit and LoadInitialState
 	bool m_IsSavedGame; // true if loading a saved game; false for a new game
+
+	int LoadReplayData();
+	std::string m_ReplayPath;
+	bool m_IsReplay;
+	std::istream* m_ReplayStream;
+	u32 m_FinalReplayTurn;
 };
 
 extern CGame *g_Game;

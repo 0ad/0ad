@@ -185,8 +185,6 @@ m.QueueManager.prototype.printQueues = function(gameState)
 // nice readable HTML version.
 m.QueueManager.prototype.HTMLprintQueues = function(gameState)
 {
-	if (!m.DebugEnabled())
-		return;
 	var strToSend = [];
 	strToSend.push("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\"> <html> <head> <title>Aegis Queue Manager</title> <link rel=\"stylesheet\" href=\"table.css\">  </head> <body> <table> <caption>Aegis Build Order</caption> ");
 	for (var i in this.queues)
@@ -258,7 +256,6 @@ m.QueueManager.prototype.setAccounts = function(gameState, cost, i)
 		this.accounts[i][res] += diff;
 	}
 };
-
 
 /**
  * transfer accounts from queue i to queue j

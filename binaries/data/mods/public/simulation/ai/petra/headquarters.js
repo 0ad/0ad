@@ -1236,10 +1236,11 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		queues.house.addItem(plan);
 	}
 
-	if (numPlanned > 0 && this.econState == "townPhasing")
+	if (numPlanned > 0 && this.econState == "townPhasing" && gameState.getPhaseRequirements(2))
 	{
-		var count = gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length;
-		if (count < 5 && this.stopBuilding.has(gameState.applyCiv("structures/{civ}_house")))
+		let requirements = gameState.getPhaseRequirements(2);
+		var count = gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length;
+		if (requirements && count < requirements["number"] && this.stopBuilding.has(gameState.applyCiv("structures/{civ}_house")))
 		{
 			if (this.Config.debug > 1)
 				API3.warn("no room to place a house ... try to be less restrictive");
@@ -1251,7 +1252,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		{
 			if (houseQueue[i].isGo(gameState))
 				++count;
-			else if (count < 5)
+			else if (count < requirements["number"])
 			{
 				houseQueue[i].isGo = function () { return true; };
 				++count;
@@ -1259,9 +1260,13 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		}
 	}
 
-	if (this.requireHouses && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length >= 5)
-		this.requireHouses = undefined;
-
+	if (this.requireHouses)
+	{
+		let requirements = gameState.getPhaseRequirements(2);
+		if (gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length >= requirements["number"])
+			this.requireHouses = undefined;
+	}
+    
 	// When population limit too tight
 	//    - if no room to build, try to improve with technology
 	//    - otherwise increase temporarily the priority of houses
