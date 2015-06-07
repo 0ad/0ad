@@ -241,7 +241,7 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	DisplayOOSError(turn, hash, expectedHashHex, false, &path);
 }
 
-void CNetTurnManager::DisplayOOSError(u32 turn, std::string& hash, const std::string& expectedHash, const bool isReplay, OsPath* path = NULL)
+void CNetTurnManager::DisplayOOSError(u32 turn, const std::string& hash, const std::string& expectedHash, bool isReplay, OsPath* path = NULL)
 {
 	m_HasSyncError = true;
 

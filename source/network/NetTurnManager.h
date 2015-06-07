@@ -112,7 +112,7 @@ public:
 	/**
 	 * Shows a message box when an out of sync error has been detected in the session or visual replay.
 	 */
-	virtual void DisplayOOSError(u32 turn, std::string& hash, const std::string& expectedHash, const bool isReplay, OsPath* path);
+	virtual void DisplayOOSError(u32 turn, const std::string& hash, const std::string& expectedHash, bool isReplay, OsPath* path);
 
 	/**
 	 * Called by simulation code, to add a new command to be distributed to all clients and executed soon.
