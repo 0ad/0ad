@@ -96,7 +96,7 @@ void CTextureConverter::Settings::Hash(MD5& hash)
 CTextureConverter::SettingsFile* CTextureConverter::LoadSettings(const VfsPath& path) const
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(m_VFS, path) != PSRETURN_OK)
+	if (XeroFile.Load(m_VFS, path, "texture") != PSRETURN_OK)
 		return NULL;
 
 	// Define all the elements used in the XML file

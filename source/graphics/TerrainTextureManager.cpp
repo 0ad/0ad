@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,13 +30,19 @@
 
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/XML/Xeromyces.h"
 
 #include <boost/algorithm/string.hpp>
 
 
 CTerrainTextureManager::CTerrainTextureManager():
 	m_LastGroupIndex(0)
-{}
+{
+	if (!CXeromyces::AddValidator(g_VFS, "terrain", "art/terrains/terrain.rng"))
+		LOGERROR("CTerrainTextureManager: failed to load grammar file 'art/terrains/terrain.rng'");
+	if (!CXeromyces::AddValidator(g_VFS, "terrain_texture", "art/terrains/terrain_texture.rng"))
+		LOGERROR("CTerrainTextureManager: failed to load grammar file 'art/terrains/terrain_texture.rng'");
+}
 
 CTerrainTextureManager::~CTerrainTextureManager()
 {

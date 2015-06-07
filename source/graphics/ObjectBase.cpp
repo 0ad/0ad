@@ -44,7 +44,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	m_UsedFiles.insert(pathname);
 
 	CXeromyces XeroFile;
-	if (XeroFile.Load(g_VFS, pathname) != PSRETURN_OK)
+	if (XeroFile.Load(g_VFS, pathname, "actor") != PSRETURN_OK)
 		return false;
 
 	// Define all the elements used in the XML file

@@ -283,7 +283,7 @@ void CSoundGroup::Update(float UNUSED(TimeSinceLastFrame))
 bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(g_VFS, pathnameXML) != PSRETURN_OK)
+	if (XeroFile.Load(g_VFS, pathnameXML, "sound_group") != PSRETURN_OK)
 	{
 		HandleError(L"error loading file", pathnameXML, ERR::FAIL);
 		return false;

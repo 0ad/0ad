@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,8 +18,15 @@
 #ifndef INCLUDED_RELAXNG
 #define INCLUDED_RELAXNG
 
+#include "lib/file/vfs/vfs.h"
+#include "maths/MD5.h"
+
 typedef struct _xmlRelaxNG xmlRelaxNG;
 typedef xmlRelaxNG *xmlRelaxNGPtr;
+typedef struct _xmlDoc xmlDoc;
+typedef xmlDoc *xmlDocPtr;
+
+class IRelaxNGGrammar;
 
 class RelaxNGValidator
 {
@@ -29,12 +36,26 @@ public:
 
 	bool LoadGrammar(const std::string& grammar);
 
-	bool Validate(const std::wstring& filename, const std::wstring& document);
+	bool LoadGrammarFile(const PIVFS& vfs, const VfsPath& grammarPath);
 
-	bool ValidateEncoded(const std::wstring& filename, const std::string& document);
+	MD5 GetGrammarHash() const { return m_Hash; }
+
+	bool Validate(const std::wstring& filename, const std::wstring& document) const;
+
+	bool ValidateEncoded(const std::wstring& filename, const std::string& document) const;
+
+	bool ValidateEncoded(xmlDocPtr doc) const;
+
+	bool CanValidate() const;
 
 private:
+	MD5 m_Hash;
 	xmlRelaxNGPtr m_Schema;
 };
+
+/**
+ * There should be no references to validators or schemas outside of the cache anymore when calling this.
+ */
+void ClearSchemaCache();
 
 #endif // INCLUDED_RELAXNG

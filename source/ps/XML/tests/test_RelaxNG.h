@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ public:
 		{
 			TestLogger logger;
 			TS_ASSERT(!v.Validate(L"doc", L"<bogus/>"));
-			TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "Parse error: doc:1: Expecting element test, got bogus");
+			TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "Validation error: doc:1: Expecting element test, got bogus");
 		}
 
 		{

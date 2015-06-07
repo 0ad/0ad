@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,10 +42,10 @@ void CParamNode::LoadXML(CParamNode& ret, const XMBFile& xmb, const wchar_t* sou
 	ret.ApplyLayer(xmb, xmb.GetRoot(), sourceIdentifier);
 }
 
-void CParamNode::LoadXML(CParamNode& ret, const VfsPath& path)
+void CParamNode::LoadXML(CParamNode& ret, const VfsPath& path, const std::string& validatorName)
 {
 	CXeromyces xero;
-	PSRETURN ok = xero.Load(g_VFS, path);
+	PSRETURN ok = xero.Load(g_VFS, path, validatorName);
 	if (ok != PSRETURN_OK)
 		return; // (Xeromyces already logged an error)
 

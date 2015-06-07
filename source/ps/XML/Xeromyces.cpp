@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,9 +27,14 @@
 #include "ps/CacheLoader.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "RelaxNG.h"
 #include "Xeromyces.h"
 
 #include <libxml/parser.h>
+
+static CMutex g_ValidatorCacheLock;
+static std::map<const std::string, RelaxNGValidator> g_ValidatorCache;
+static bool g_XeromycesStarted = false;
 
 static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 {
@@ -45,31 +50,76 @@ static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 	// so the caching is less transparent than it should be
 }
 
-static bool g_XeromycesStarted = false;
 void CXeromyces::Startup()
 {
 	ENSURE(!g_XeromycesStarted);
 	xmlInitParser();
 	xmlSetStructuredErrorFunc(NULL, &errorHandler);
+	CScopeLock lock(g_ValidatorCacheLock);
+	g_ValidatorCache.insert(std::make_pair("", RelaxNGValidator()));
 	g_XeromycesStarted = true;
 }
 
 void CXeromyces::Terminate()
 {
 	ENSURE(g_XeromycesStarted);
-	xmlCleanupParser();
-	xmlSetStructuredErrorFunc(NULL, NULL);
 	g_XeromycesStarted = false;
+	ClearSchemaCache();
+	CScopeLock lock(g_ValidatorCacheLock);
+	g_ValidatorCache.clear();
+	xmlSetStructuredErrorFunc(NULL, NULL);
+	xmlCleanupParser();
 }
 
-PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
+bool CXeromyces::AddValidator(const PIVFS& vfs, const std::string& name, const VfsPath& grammarPath)
+{
+	ENSURE(g_XeromycesStarted);
+	
+	RelaxNGValidator validator;
+	if (!validator.LoadGrammarFile(vfs, grammarPath))
+	{
+		LOGERROR("CXeromyces: failed adding validator for '%s'", grammarPath.string8());
+		return false;
+	}
+	{
+		CScopeLock lock(g_ValidatorCacheLock);
+		std::map<const std::string, RelaxNGValidator>::iterator it = g_ValidatorCache.find(name);
+		if (it != g_ValidatorCache.end())
+			g_ValidatorCache.erase(it);
+		g_ValidatorCache.insert(std::make_pair(name, validator));
+	}
+	return true;
+}
+
+bool CXeromyces::ValidateEncoded(const std::string& name, const std::wstring& filename, const std::string& document)
+{
+	CScopeLock lock(g_ValidatorCacheLock);
+	return GetValidator(name).ValidateEncoded(filename, document);
+}
+
+/**
+ * NOTE: Callers MUST acquire the g_ValidatorCacheLock before calling this.
+ */
+RelaxNGValidator& CXeromyces::GetValidator(const std::string& name)
+{
+	if (g_ValidatorCache.find(name) == g_ValidatorCache.end())
+		return g_ValidatorCache.find("")->second;
+	return g_ValidatorCache.find(name)->second;
+}
+
+PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename, const std::string& validatorName /* = "" */)
 {
 	ENSURE(g_XeromycesStarted);
 
 	CCacheLoader cacheLoader(vfs, L".xmb");
 
+	MD5 validatorGrammarHash;
+	{
+		CScopeLock lock(g_ValidatorCacheLock);
+		validatorGrammarHash = GetValidator(validatorName).GetGrammarHash();
+	}
 	VfsPath xmbPath;
-	Status ret = cacheLoader.TryLoadingCached(filename, MD5(), XMBVersion, xmbPath);
+	Status ret = cacheLoader.TryLoadingCached(filename, validatorGrammarHash, XMBVersion, xmbPath);
 
 	if (ret == INFO::OK)
 	{
@@ -94,19 +144,19 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 	}
 
 	// XMB isn't up to date with the XML, so rebuild it
-	return ConvertFile(vfs, filename, xmbPath);
+	return ConvertFile(vfs, filename, xmbPath, validatorName);
 }
 
-bool CXeromyces::GenerateCachedXMB(const PIVFS& vfs, const VfsPath& sourcePath, VfsPath& archiveCachePath)
+bool CXeromyces::GenerateCachedXMB(const PIVFS& vfs, const VfsPath& sourcePath, VfsPath& archiveCachePath, const std::string& validatorName /* = "" */)
 {
 	CCacheLoader cacheLoader(vfs, L".xmb");
 
 	archiveCachePath = cacheLoader.ArchiveCachePath(sourcePath);
 
-	return (ConvertFile(vfs, sourcePath, VfsPath("cache") / archiveCachePath) == PSRETURN_OK);
+	return (ConvertFile(vfs, sourcePath, VfsPath("cache") / archiveCachePath, validatorName) == PSRETURN_OK);
 }
 
-PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, const VfsPath& xmbPath)
+PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, const VfsPath& xmbPath, const std::string& validatorName)
 {
 	CVFSFile input;
 	if (input.Load(vfs, filename))
@@ -115,13 +165,20 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
-	CStr8 filename8(CStrW(filename.string()).ToUTF8());
-	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), (int)input.GetBufferSize(),
-		filename8.c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
-	if (! doc)
+	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), input.GetBufferSize(), CStrW(filename.string()).ToUTF8().c_str(), NULL,
+		XML_PARSE_NONET|XML_PARSE_NOCDATA);
+	if (!doc)
 	{
 		LOGERROR("CXeromyces: Failed to parse XML file %s", filename.string8());
 		return PSRETURN_Xeromyces_XMLParseError;
+	}
+
+	{
+		CScopeLock lock(g_ValidatorCacheLock);
+		RelaxNGValidator& validator = GetValidator(validatorName);
+		if (validator.CanValidate() && !validator.ValidateEncoded(doc))
+			// For now, log the error and continue, in the future we might fail
+			LOGERROR("CXeromyces: failed to validate XML file %s", filename.string8());
 	}
 
 	WriteBuffer writeBuffer;
@@ -160,15 +217,23 @@ bool CXeromyces::ReadXMBFile(const PIVFS& vfs, const VfsPath& filename)
 	return true;
 }
 
-PSRETURN CXeromyces::LoadString(const char* xml)
+PSRETURN CXeromyces::LoadString(const char* xml, const std::string& validatorName /* = "" */)
 {
 	ENSURE(g_XeromycesStarted);
 
-	xmlDocPtr doc = xmlReadMemory(xml, (int)strlen(xml), "", NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
-	if (! doc)
+	xmlDocPtr doc = xmlReadMemory(xml, (int)strlen(xml), "(no file)", NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
+	if (!doc)
 	{
 		LOGERROR("CXeromyces: Failed to parse XML string");
 		return PSRETURN_Xeromyces_XMLParseError;
+	}
+
+	{
+		CScopeLock lock(g_ValidatorCacheLock);
+		RelaxNGValidator& validator = GetValidator(validatorName);
+		if (validator.CanValidate() && !validator.ValidateEncoded(doc))
+			// For now, log the error and continue, in the future we might fail
+			LOGERROR("CXeromyces: failed to validate XML string");
 	}
 
 	WriteBuffer writeBuffer;

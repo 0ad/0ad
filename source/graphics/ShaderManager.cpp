@@ -28,6 +28,9 @@
 #include "ps/Filesystem.h"
 #include "ps/PreprocessorWrapper.h"
 #include "ps/Profile.h"
+#if USE_SHADER_XML_VALIDATION
+# include "ps/XML/RelaxNG.h"
+#endif
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XMLWriter.h"
 #include "renderer/Renderer.h"
@@ -47,14 +50,9 @@ CShaderManager::CShaderManager()
 #if USE_SHADER_XML_VALIDATION
 	{
 		TIMER_ACCRUE(tc_ShaderValidation);
-		CVFSFile grammar;
-		if (grammar.Load(g_VFS, L"shaders/program.rng") != PSRETURN_OK)
-			LOGERROR("Failed to read grammar shaders/program.rng");
-		else
-		{
-			if (!m_Validator.LoadGrammar(grammar.GetAsString()))
-				LOGERROR("Failed to load grammar shaders/program.rng");
-		}
+
+		if (!CXeromyces::AddValidator(g_VFS, "shader", "shaders/program.rng"))
+			LOGERROR("CShaderManager: failed to load grammar shaders/program.rng");
 	}
 #endif
 
@@ -141,7 +139,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 		XML_Start();
 		XML_SetPrettyPrint(false);
 		XML_WriteXMB(XeroFile);
-		bool ok = m_Validator.ValidateEncoded(wstring_from_utf8(name), XML_GetOutput());
+		bool ok = CXeromyces::ValidateEncoded("shader", wstring_from_utf8(name), XML_GetOutput());
 		if (!ok)
 			return false;
 	}

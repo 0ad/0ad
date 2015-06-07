@@ -30,6 +30,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Profiler2.h"
+#include "ps/XML/Xeromyces.h"
 
 ISoundManager* g_SoundManager = NULL;
 
@@ -252,6 +253,9 @@ CSoundManager::CSoundManager()
 
 		m_PlayListItems = new PlayList;
 	}
+
+	if (!CXeromyces::AddValidator(g_VFS, "sound_group", "audio/sound_group.rng"))
+		LOGERROR("CSoundManager: failed to load grammar file 'audio/sound_group.rng'");
 
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }

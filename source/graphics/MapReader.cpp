@@ -358,7 +358,7 @@ PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
 	VfsPath filename_xml = pathname.ChangeExtension(L".xml");
 
 	CXeromyces xmb_file;
-	if (xmb_file.Load(g_VFS, filename_xml) != PSRETURN_OK)
+	if (xmb_file.Load(g_VFS, filename_xml, "scenario") != PSRETURN_OK)
 		return PSRETURN_File_ReadFailed;
 
 	// Define all the relevant elements used in the XML file
@@ -467,7 +467,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	// must only assign once, so do it here
 	node_idx = entity_idx = 0;
 
-	if (xmb_file.Load(g_VFS, xml_filename) != PSRETURN_OK)
+	if (xmb_file.Load(g_VFS, xml_filename, "scenario") != PSRETURN_OK)
 		throw PSERROR_File_ReadFailed();
 
 	// define the elements and attributes that are frequently used in the XML file,

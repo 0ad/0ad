@@ -929,7 +929,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& P
 	Paths.insert(Filename);
 
 	CXeromyces XeroFile;
-	if (XeroFile.Load(g_VFS, Filename) != PSRETURN_OK)
+	if (XeroFile.Load(g_VFS, Filename, "gui") != PSRETURN_OK)
 		// Fail silently
 		return;
 
@@ -1315,7 +1315,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				Paths.insert(filename);
 
 				CXeromyces XeroIncluded;
-				if (XeroIncluded.Load(g_VFS, filename) != PSRETURN_OK)
+				if (XeroIncluded.Load(g_VFS, filename, "gui") != PSRETURN_OK)
 				{
 					LOGERROR("GUI: Error reading included XML: '%s'", utf8_from_wstring(filename));
 					continue;
@@ -1352,7 +1352,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 					// one might use the same parts of the GUI in different situations
 					Paths.insert(path);
 					CXeromyces XeroIncluded;
-					if (XeroIncluded.Load(g_VFS, path) != PSRETURN_OK)
+					if (XeroIncluded.Load(g_VFS, path, "gui") != PSRETURN_OK)
 					{
 						LOGERROR("GUI: Error reading included XML: '%s'", path.string8());
 						continue;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -134,7 +134,7 @@ public:
 	 * Any existing data in @a ret will be overwritten or else kept, so this
 	 * can be called multiple times to build up a node from multiple inputs.
 	 */
-	static void LoadXML(CParamNode& ret, const VfsPath& path);
+	static void LoadXML(CParamNode& ret, const VfsPath& path, const std::string& validatorName);
 
 	/**
 	 * See LoadXML, but parses the XML string @a xml.
