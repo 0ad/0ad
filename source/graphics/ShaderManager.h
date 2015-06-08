@@ -121,10 +121,6 @@ private:
 	typedef boost::unordered_map<VfsPath, std::set<std::weak_ptr<CShaderProgram>, std::owner_less<std::weak_ptr<CShaderProgram>>>> HotloadFilesMap;
 	HotloadFilesMap m_HotloadFiles;
 
-#if USE_SHADER_XML_VALIDATION
-	RelaxNGValidator m_Validator;
-#endif
-
 	bool NewProgram(const char* name, const CShaderDefines& defines, CShaderProgramPtr& program);
 	bool NewEffect(const char* name, const CShaderDefines& defines, CShaderTechniquePtr& tech);
 

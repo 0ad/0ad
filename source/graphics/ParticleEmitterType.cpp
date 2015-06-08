@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -361,11 +361,9 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 	m_Texture = g_Renderer.GetTextureManager().GetErrorTexture();
 
 	CXeromyces XeroFile;
-	PSRETURN ret = XeroFile.Load(g_VFS, path);
+	PSRETURN ret = XeroFile.Load(g_VFS, path, "particle");
 	if (ret != PSRETURN_OK)
 		return false;
-
-	// TODO: should do some RNG schema validation
 
 	// Define all the elements and attributes used in the XML file
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)

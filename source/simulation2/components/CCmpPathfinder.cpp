@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Profile.h"
+#include "ps/XML/Xeromyces.h"
 #include "renderer/Scene.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstruction.h"
@@ -56,11 +57,14 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 
 	m_SameTurnMovesCount = 0;
 
+	// Register Relax NG validator
+	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
+
 	// Since this is used as a system component (not loaded from an entity template),
 	// we can't use the real paramNode (it won't get handled properly when deserializing),
 	// so load the data from a special XML file.
 	CParamNode externalParamNode;
-	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml");
+	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml", "pathfinder");
 
     // Previously all move commands during a turn were
     // queued up and processed asynchronously at the start

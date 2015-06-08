@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
+#include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -70,9 +71,12 @@ CMiniMap::CMiniMap() :
 	m_Clicking = false;
 	m_MouseHovering = false;
 
+	// Register Relax NG validator
+	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
+
 	// Get the maximum height for unit passage in water.
 	CParamNode externalParamNode;
-	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml");
+	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml", "pathfinder");
 	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses");
 	if (pathingSettings.GetChild("default").IsOk() && pathingSettings.GetChild("default").GetChild("MaxWaterDepth").IsOk())
 		m_ShallowPassageHeight = pathingSettings.GetChild("default").GetChild("MaxWaterDepth").ToFloat();

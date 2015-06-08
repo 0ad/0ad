@@ -40,28 +40,6 @@
       </element>
     </zeroOrMore>
     <zeroOrMore>
-      <element name="conditional_define">
-        <attribute name="name"/>
-        <attribute name="value"/>
-        <attribute name="type"/>
-        <choice>
-          <attribute name="conf"/>
-          <group>
-            <optional>
-              <attribute name="min">
-                <data type="float"/>
-              </attribute>
-            </optional>
-            <optional>
-              <attribute name="max">
-                <data type="float"/>
-              </attribute>
-            </optional>
-          </group>
-        </choice>
-      </element>
-    </zeroOrMore>
-    <zeroOrMore>
       <element name="uniform">
         <attribute name="name"/>
         <attribute name="value">
@@ -86,10 +64,10 @@
         <attribute name="name"/>
       </element>
     </zeroOrMore>
-	<zeroOrMore>
-		<element name="required_texture">
-			<attribute name="name"/>
-		</element>
-	</zeroOrMore>
+    <zeroOrMore>
+      <element name="required_texture">
+        <attribute name="name"/>
+      </element>
+    </zeroOrMore>
   </interleave>
 </element>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,6 +59,12 @@ CGUIManager::CGUIManager()
 	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIManager", m_ScriptRuntime));
 	m_ScriptInterface->SetCallbackData(this);
 	m_ScriptInterface->LoadGlobalScripts();
+
+	if (!CXeromyces::AddValidator(g_VFS, "gui_page", "gui/gui_page.rng"))
+		LOGERROR("CGUIManager: failed to load GUI page grammar file 'gui/gui_page.rng'");
+	if (!CXeromyces::AddValidator(g_VFS, "gui", "gui/gui.rng"))
+		LOGERROR("CGUIManager: failed to load GUI XML grammar file 'gui/gui.rng'");
+
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
@@ -192,7 +198,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	page.inputs.insert(path);
 
 	CXeromyces xero;
-	if (xero.Load(g_VFS, path) != PSRETURN_OK)
+	if (xero.Load(g_VFS, path, "gui_page") != PSRETURN_OK)
 		// Fail silently (Xeromyces reported the error)
 		return;
 

@@ -44,6 +44,9 @@ var g_Disconnected = false; // Lost connection to server
 // Holds player states from the last tick
 var g_CachedLastStates = "";
 
+// Top coordinate of the research list
+var g_ResearchListTop = 4;
+
 // Colors to flash when pop limit reached
 const DEFAULT_POPULATION_COLOR = "white";
 const POPULATION_ALERT_COLOR = "orange";
@@ -542,8 +545,6 @@ function onSimulationUpdate()
 	updatePlayerDisplay();
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
-	updateTimeElapsedCounter();
-	updateCeasefireCounter();
 	updateTimeNotifications();
 	if (!g_IsObserver)
 		updateResearchDisplay();
@@ -756,7 +757,7 @@ function updateResearchDisplay()
 	{
 		var button = Engine.GetGUIObjectByName("researchStartedButton[" + i + "]");
 		var size = button.size;
-		size.top = (4 + buttonSideLength) * i;
+		size.top = g_ResearchListTop + (4 + buttonSideLength) * i;
 		size.bottom = size.top + buttonSideLength;
 		button.size = size;
 	}
@@ -790,32 +791,6 @@ function updateResearchDisplay()
 	// Hide unused buttons.
 	for (var i = numButtons; i < 10; ++i)
 		Engine.GetGUIObjectByName("researchStartedButton[" + i + "]").hidden = true;
-}
-
-function updateCeasefireCounter()
-{
-	var simState = GetSimState();
-    var isActive = simState.ceasefireActive; 
-	var remainingTimeString = timeToString(simState.ceasefireTimeRemaining);
-	
-	var ceasefireCounter = Engine.GetGUIObjectByName("ceasefireCounter");
-	var diplomacyCeasefireCounter = Engine.GetGUIObjectByName("diplomacyCeasefireCounter");
-	
-	ceasefireCounter.hidden = !isActive || Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") !== "true";
-	diplomacyCeasefireCounter.hidden = !isActive; 
-	
-	ceasefireCounter.caption = remainingTimeString;
-	diplomacyCeasefireCounter.caption = sprintf(translateWithContext("ceasefire", "Time remaining until ceasefire is over: %(time)s."), {"time": remainingTimeString});
-}
-
-function updateTimeElapsedCounter()
-{
-	var simState = GetSimState();
-	var timeElapsedCounter = Engine.GetGUIObjectByName("timeElapsedCounter");
-	if (g_CurrentSpeed != 1.0)
-		timeElapsedCounter.caption = sprintf(translate("%(time)s (%(speed)sx)"), { time: timeToString(simState.timeElapsed), speed: Engine.FormatDecimalNumberIntoString(g_CurrentSpeed) });
-	else
-		timeElapsedCounter.caption = timeToString(simState.timeElapsed);
 }
 
 // Toggles the display of status bars for all of the player's entities.

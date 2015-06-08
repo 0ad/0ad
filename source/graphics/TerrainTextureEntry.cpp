@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 	ENSURE(properties);
 	
 	CXeromyces XeroFile;
-	if (XeroFile.Load(g_VFS, path) != PSRETURN_OK)
+	if (XeroFile.Load(g_VFS, path, "terrain_texture") != PSRETURN_OK)
 	{
 		LOGERROR("Terrain xml not found (%s)", path.string8());
 		return;

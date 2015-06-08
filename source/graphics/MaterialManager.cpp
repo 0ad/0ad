@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector4D.h"
+#include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/PreprocessorWrapper.h"
@@ -35,6 +36,9 @@ CMaterialManager::CMaterialManager()
 	qualityLevel = 5.0;
 	CFG_GET_VAL("materialmgr.quality", qualityLevel);
 	qualityLevel = clamp(qualityLevel, 0.0f, 10.0f);
+
+	if (!CXeromyces::AddValidator(g_VFS, "material", "art/materials/material.rng"))
+		LOGERROR("CMaterialManager: failed to load grammar file 'art/materials/material.rng'");
 }
 
 CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
@@ -47,7 +51,7 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 		return iter->second;
 
 	CXeromyces xeroFile;
-	if (xeroFile.Load(g_VFS, pathname) != PSRETURN_OK)
+	if (xeroFile.Load(g_VFS, pathname, "material") != PSRETURN_OK)
 		return CMaterial();
 
 	#define EL(x) int el_##x = xeroFile.GetElementID(#x)

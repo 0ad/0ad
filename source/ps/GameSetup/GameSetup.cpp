@@ -1074,6 +1074,9 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 
 	ogl_WarnIfError();
 
+	// TODO: Is this the best place for this?
+	CXeromyces::AddValidator(g_VFS, "map", "maps/scenario.rng");
+
 	try
 	{
 		if (!VisualReplay(args.Get("replay-visual")) && !Autostart(args))

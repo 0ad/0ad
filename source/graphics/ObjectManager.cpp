@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/Filesystem.h"
+#include "ps/XML/Xeromyces.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpVisual.h"
@@ -62,6 +63,9 @@ CObjectManager::CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& 
 : m_MeshManager(meshManager), m_SkeletonAnimManager(skeletonAnimManager), m_Simulation(simulation)
 {
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
+
+	if (!CXeromyces::AddValidator(g_VFS, "actor", "art/actors/actor.rng"))
+		LOGERROR("CObjectManager: failed to load actor grammar file 'art/actors/actor.rng'");
 }
 
 CObjectManager::~CObjectManager()

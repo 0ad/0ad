@@ -31,7 +31,7 @@ element material {
     }* &
     element renderquery {
         attribute name { text }
-    }*
+    }* &
 	element required_texture {
 		attribute name { text }
 	}*

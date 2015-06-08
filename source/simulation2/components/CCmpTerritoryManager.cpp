@@ -25,6 +25,7 @@
 #include "graphics/TextureManager.h"
 #include "graphics/TerritoryBoundary.h"
 #include "maths/MathUtil.h"
+#include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 #include "renderer/TerrainOverlay.h"
@@ -120,8 +121,11 @@ public:
 
 		m_AnimTime = 0.0;
 
+		// Register Relax NG validator
+		CXeromyces::AddValidator(g_VFS, "territorymanager", "simulation/data/territorymanager.rng");
+
 		CParamNode externalParamNode;
-		CParamNode::LoadXML(externalParamNode, L"simulation/data/territorymanager.xml");
+		CParamNode::LoadXML(externalParamNode, L"simulation/data/territorymanager.xml", "territorymanager");
 
 		int impassableCost = externalParamNode.GetChild("TerritoryManager").GetChild("ImpassableCost").ToInt();
 		ENSURE(0 <= impassableCost && impassableCost <= 255);
