@@ -33,7 +33,7 @@
 			<action on="Press">saveGame();</action>
 		</object>
 
-		<object name="saveButton" type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton">
+		<object name="saveButton" type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">closeSave(true);</action>
 		</object>

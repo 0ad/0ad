@@ -260,7 +260,7 @@
 					displayProfile("leaderboard");
 				</action>
 			</object>
-			<object type="button" style="ModernButtonRed" size="50%-133 100%-45 50%-5 100%-17">
+			<object type="button" style="ModernButtonRed" size="50%-133 100%-45 50%-5 100%-17" hotkey="cancel">
 				<translatableAttribute id="caption">Back</translatableAttribute>
 				<action on="Press">
 					Engine.GetGUIObjectByName("leaderboard").hidden = true;
@@ -322,7 +322,7 @@
 				</object>
 			</object>			
 			</object>
-			<object type="button" style="ModernButtonRed" size="50%-64 100%-50 50%+64 100%-25">
+			<object type="button" style="ModernButtonRed" size="50%-64 100%-50 50%+64 100%-25" hotkey="cancel">
 				<translatableAttribute id="caption">Back</translatableAttribute>
 				<action on="Press">
 					Engine.GetGUIObjectByName("profileFetch").hidden = true;

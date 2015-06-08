@@ -8,9 +8,9 @@ function init(data)
 	var mbButton2Obj = Engine.GetGUIObjectByName("mbButton2");
 	var mbButton3Obj = Engine.GetGUIObjectByName("mbButton3");
 
-	var mbLeaveHotkey = Engine.GetGUIObjectByName("mbLeaveHotkey");
+	var mbCancelHotkey = Engine.GetGUIObjectByName("mbCancelHotkey");
 	// Default behaviour
-	mbLeaveHotkey.onPress = function()
+	mbCancelHotkey.onPress = function()
 	{
 		Engine.PopGuiPage();
 	};
@@ -66,7 +66,7 @@ function init(data)
 		mbButton1Obj.onPress = action;
 		mbButton1Obj.hidden = false;
 
-		mbLeaveHotkey.onPress = action;
+		mbCancelHotkey.onPress = action;
 	}
 	if (data.buttonCaptions.length >= 2)
 	{
@@ -81,8 +81,6 @@ function init(data)
 		mbButton2Obj.caption = data.buttonCaptions[1];
 		mbButton2Obj.onPress = action;
 		mbButton2Obj.hidden = false;
-
-		mbLeaveHotkey.onPress = action;
 	}
 	if (data.buttonCaptions.length >= 3)
 	{
@@ -97,8 +95,6 @@ function init(data)
 		mbButton3Obj.caption = data.buttonCaptions[2];
 		mbButton3Obj.onPress = action;
 		mbButton3Obj.hidden = false;
-
-		mbLeaveHotkey.onPress = action;
 	}
 
 	switch (data.buttonCaptions.length)

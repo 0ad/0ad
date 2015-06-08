@@ -18,7 +18,13 @@
 			</object>
 			<object name="displaySplashScreen" size="8 100%-30 22 100%-8" type="checkbox" style="ModernTickBox"/>
 		</object>
-		<object name="btnOK" type="button" style="ModernButtonRed" size="50%+5 100%-45 100%-18 100%-17">
+		<object type="button" style="ModernButtonRed" size="50%+5 100%-45 100%-18 100%-17">
+			<translatableAttribute id="caption">Known Issues (web)</translatableAttribute>
+			<action on="Press"><![CDATA[
+				openURL("http://www.wildfiregames.com/forum/index.php?showtopic=15796");
+			]]></action>
+		</object>
+		<object name="btnOK" type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17" hotkey="cancel">
 			<translatableAttribute id="caption">OK</translatableAttribute>
 			<action on="Press"><![CDATA[
 			if (Engine.GetGUIObjectByName("displaySplashScreen").checked)
@@ -27,12 +33,6 @@
 				Engine.ConfigDB_CreateValue("user", "splashscreenversion", Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"));
 			Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 			Engine.PopGuiPageCB();
-			]]></action>
-		</object>
-		<object type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17">
-			<translatableAttribute id="caption">Known Issues (web)</translatableAttribute>
-			<action on="Press"><![CDATA[
-				openURL("http://www.wildfiregames.com/forum/index.php?showtopic=15796");
 			]]></action>
 		</object>
 	</object>

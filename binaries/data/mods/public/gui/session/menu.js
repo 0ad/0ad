@@ -136,8 +136,8 @@ function resignMenuButton()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	var btCaptions = [translate("Yes"), translate("No")];
-	var btCode = [resignGame, resumeGame];
+	var btCaptions = [translate("No"), translate("Yes")];
+	var btCode = [resumeGame, resignGame];
 	messageBox(400, 200, translate("Are you sure you want to resign?"), translate("Confirmation"), 0, btCaptions, btCode);
 }
 

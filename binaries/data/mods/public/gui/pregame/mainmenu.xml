@@ -125,6 +125,12 @@
 		==========================================
 		-->
 
+		<object hotkey="cancel">
+			<action on="Press">
+				closeMenu();
+			</action>
+		</object>
+		
 		<!-- hide submenu when user clicks on the background -->
 		<object	name="subMenuScreen" type="button">
 			<action on="Press">

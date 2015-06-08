@@ -61,7 +61,7 @@
 			</object>
 			<object name="dictionaryFile" type="text" size="50%+10 260 100% 345" textcolor="white" />
 		
-			<object type="button" size="0 100%-60 33% 100%-32" style="ModernButtonRed">
+			<object type="button" size="0 100%-60 33% 100%-32" style="ModernButtonRed" hotkey="cancel">
 				<translatableAttribute id="caption">Cancel</translatableAttribute>
 				<action on="Press">cancelSetup();</action>
 			</object>

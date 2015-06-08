@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object>
-	<object hotkey="leave">
+	<object hotkey="cancel">
 		<action on="Press">closeOpenDialogs();</action>
 	</object>
 

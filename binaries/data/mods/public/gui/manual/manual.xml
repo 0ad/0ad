@@ -16,12 +16,12 @@
 			<object name="mainText" type="text" style="textPanel"/>
 		</object>
 
-		<object name="url" type="button" style="ModernButtonRed" size="100%-308 100%-52 100%-168 100%-24" hidden="true">
-			<translatableAttribute id="caption">View Online</translatableAttribute>
-		</object>
-		<object type="button" style="ModernButtonRed" tooltip_style="snToolTip" size="100%-164 100%-52 100%-24 100%-24">
+		<object type="button" style="ModernButtonRed" tooltip_style="snToolTip" size="100%-308 100%-52 100%-168 100%-24" hotkey="cancel">
 			<translatableAttribute id="caption">Close</translatableAttribute>
 			<action on="Press"><![CDATA[closeManual();]]></action>
+		</object>
+		<object name="url" type="button" style="ModernButtonRed" size="100%-164 100%-52 100%-24 100%-24" hidden="true">
+			<translatableAttribute id="caption">View Online</translatableAttribute>
 		</object>
 	</object>
 
