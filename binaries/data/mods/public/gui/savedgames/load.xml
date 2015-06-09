@@ -21,7 +21,7 @@
 			size="24 24 100%-24 100%-100">
 		</object>
 
-		<object type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton">
+		<object type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">Engine.PopGuiPage();</action>
 		</object>

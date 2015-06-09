@@ -65,7 +65,7 @@
 				</object>
 			</repeat>
 		</object>
-		<object type="button" style="ModernButtonRed" size="320 100%-44 50%-4 100%-16">
+		<object type="button" style="ModernButtonRed" size="320 100%-44 50%-4 100%-16" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">closePage();</action>
 		</object>

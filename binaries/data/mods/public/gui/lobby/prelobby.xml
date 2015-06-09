@@ -93,7 +93,7 @@
 
 		</object>
 		<object name="feedback" type="text" size="50 100%-90 100%-50 100%-50" style="ModernLabelText" textcolor="red" text_align="center"/>
-		<object name="cancel" type="button" size="18 100%-45 50%-5 100%-17" style="ModernButtonRed">
+		<object name="cancel" type="button" size="18 100%-45 50%-5 100%-17" style="ModernButtonRed" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">
 				if (Engine.GetGUIObjectByName("pageWelcome").hidden)

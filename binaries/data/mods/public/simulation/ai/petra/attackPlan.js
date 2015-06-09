@@ -831,20 +831,20 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 		this.position = this.rallyPoint;
 
 	var minDist = Math.min();
-	var target = undefined;
-	for (var building of buildings)
+	var target;
+	for (let building of buildings)
 	{
 		if (building.owner() == 0)
 			continue;
-		if (building.getDefaultArrow() || building.getArrowMultiplier())
+		if (building.hasDefensiveFire())
 			continue;
-		var pos = building.position();
-		var defended = false;
-		for (var defense of buildings)
+		let pos = building.position();
+		let defended = false;
+		for (let defense of buildings)
 		{
-			if (!building.getDefaultArrow() && !building.getArrowMultiplier())
+			if (!defense.hasDefensiveFire())
 				continue;
-			var dist = API3.SquareVectorDistance(pos, defense.position());
+			let dist = API3.SquareVectorDistance(pos, defense.position());
 			if (dist < 6400)   // TODO check on defense range rather than this fixed 80*80
 			{
 				defended = true;
@@ -853,7 +853,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 		}
 		if (defended)
 			continue;
-		var dist = API3.SquareVectorDistance(pos, this.position);
+		let dist = API3.SquareVectorDistance(pos, this.position);
 		if (dist > minDist)
 			continue;
 		minDist = dist;
@@ -1417,7 +1417,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			targetClassesSiege = {"attack": ["Unit", "Structure"], "avoid": [], "vetoEntities": veto};
 
 		// do not loose time destroying buildings which do not help enemy's defense and can be easily captured later
-		if (this.target.getDefaultArrow() || this.target.getArrowMultiplier())
+		if (this.target.hasDefensiveFire())
 		{
 			targetClassesUnit.avoid = targetClassesUnit.avoid.concat("House", "Storehouse", "Farmstead", "Field", "Blacksmith");
 			targetClassesSiege.avoid = targetClassesSiege.avoid.concat("House", "Storehouse", "Farmstead", "Field", "Blacksmith");
@@ -1518,14 +1518,14 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						var vala = structa.costSum();
 						if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))
 							vala += 10000;
-						else if (structa.getDefaultArrow() || structa.getArrowMultiplier())
+						else if (structa.hasDefensiveFire())
 							vala += 1000;
 						else if (structa.hasClass("ConquestCritical"))
 							vala += 200;
 						var valb = structb.costSum();
 						if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))
 							valb += 10000;
-						else if (structb.getDefaultArrow() || structb.getArrowMultiplier())
+						else if (structb.hasDefensiveFire())
 							valb += 1000;
 						else if (structb.hasClass("ConquestCritical"))
 							valb += 200;

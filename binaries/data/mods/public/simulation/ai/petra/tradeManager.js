@@ -111,6 +111,8 @@ m.TradeManager.prototype.updateTrader = function(gameState, ent)
 {
 	if (!this.tradeRoute || !ent.isIdle() || !ent.position())
 		return;
+	if (ent.getMetadata(PlayerID, "transport") !== undefined)
+		return;
 
 	Engine.ProfileStart("Trade Manager");
 	if (ent.hasClass("Ship"))
@@ -137,8 +139,11 @@ m.TradeManager.prototype.updateTrader = function(gameState, ent)
 			gameState.ai.HQ.navalManager.requireTransport(gameState, ent, access, route.land, route.source.position());
 		else
 			gameState.ai.HQ.navalManager.requireTransport(gameState, ent, access, route.land, route.target.position());
+		Engine.ProfileStop();
+		return;
 	}
-	else if (nearerSource)
+
+	if (nearerSource)
 		ent.tradeRoute(route.target, route.source);
 	else
 		ent.tradeRoute(route.source, route.target);
@@ -502,21 +507,15 @@ m.TradeManager.prototype.checkTrader = function(gameState, ent)
 	else
 		var access = gameState.ai.accessibility.getAccessValue(ent.position());
 	var possibleRoute = this.checkRoutes(gameState, access);
-	if (!possibleRoute)
+	// Warning:  presentRoute is from metadata, so contains entity ids
+	if (!possibleRoute 
+		|| (possibleRoute.source.id() != presentRoute.source && possibleRoute.source.id() != presentRoute.target)
+		|| (possibleRoute.target.id() != presentRoute.source && possibleRoute.target.id() != presentRoute.target))
 	{
+		// Trader will be assigned in updateTrader
 		ent.stopMoving();
 		ent.setMetadata(PlayerID, "route", undefined);
-		return;
 	}
-
-	// Warning:  presentRoute is from metadata, so contains entity ids
-	if (possibleRoute && (
-		(possibleRoute.source.id() == presentRoute.source && possibleRoute.target.id() == presentRoute.target) ||
-		(possibleRoute.source.id() == presentRoute.target && possibleRoute.target.id() == presentRoute.source)))
-		return;
-
-	ent.stopMoving();
-	ent.setMetadata(PlayerID, "route", undefined);
 };
 
 m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)

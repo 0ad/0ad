@@ -174,7 +174,7 @@
 			<action on="Press">Engine.Exit();</action>
 		</object>
 
-		<object type="button" style="ModernButtonRed" size="100%-576 100%-44 100%-392 100%-16">
+		<object type="button" style="ModernButtonRed" size="100%-576 100%-44 100%-392 100%-16" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">closePage();</action>
 		</object>

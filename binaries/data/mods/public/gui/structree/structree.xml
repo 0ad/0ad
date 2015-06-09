@@ -85,6 +85,7 @@
 			type="button"
 			style="StoneButton"
 			size="100%-164 100%-44 100%-16 100%-16"
+			hotkey="cancel"
 		>
 			<translatableAttribute id="caption">Close</translatableAttribute>
 			<action on="Press">closeStrucTree();</action>

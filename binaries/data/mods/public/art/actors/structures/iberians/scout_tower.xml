@@ -9,7 +9,7 @@
       <mesh>structural/iber_tower_1.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile" minheight=""/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/flora/bush_desert_dry_a.xml" attachpoint="plant_1" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/bush_desert_a.xml" attachpoint="plant_2" maxheight="20" minheight="-20"/>
@@ -33,7 +33,7 @@
       <mesh>structural/iber_tower_2.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile" minheight=""/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/flora/bush_desert_dry_a.xml" attachpoint="plant_1" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/bush_desert_a.xml" attachpoint="plant_2" maxheight="20" minheight="-20"/>

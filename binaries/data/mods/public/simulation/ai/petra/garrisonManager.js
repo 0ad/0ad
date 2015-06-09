@@ -230,7 +230,7 @@ m.GarrisonManager.prototype.addDecayingStructure = function(gameState, entId)
 		return;
 	let ent = gameState.getEntityById(entId);
 	// keep only useful buildings for defense
-	if (!ent || (!ent.hasClass("Barracks") && !ent.getDefaultArrow() && !ent.getArrowMultiplier()))
+	if (!ent || (!ent.hasClass("Barracks") && !ent.hasDefensiveFire()))
 		return;
 	if (!ent.territoryDecayRate() || !ent.garrisonRegenRate())
 		return;
