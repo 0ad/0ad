@@ -518,6 +518,14 @@ m.Template = m.Class({
 		return (this.get("TerritoryInfluence") !== undefined);
 	},
 
+	hasDefensiveFire: function() {
+		let fire = this.getDefaultArrow();
+		if (fire && fire > 0)
+			return true;
+		fire = this.getArrowMultiplier();
+		return (fire && fire > 0);
+	},
+
 	territoryInfluenceRadius: function() {
 		if (this.get("TerritoryInfluence") !== undefined)
 			return (this.get("TerritoryInfluence/Radius"));
@@ -672,14 +680,6 @@ m.Entity = m.Class({
 		if (typeof(this._entity.owner) === "undefined")
 			return false;
 		return this._entity.owner === player;
-	},
-
-	isFriendly: function(player) {
-		return this.isOwn(player); // TODO: diplomacy
-	},
-
-	isEnemy: function(player) {
-		return !this.isOwn(player); // TODO: diplomacy
 	},
 
 	resourceSupplyAmount: function() {

@@ -169,7 +169,14 @@ m.Filters = {
 		},
 		"dynamicProperties": []};
 	},
-	
+
+	hasDefensiveFire: function(){
+		return {"func": function(ent){
+			return ent.hasDefensiveFire();
+		},
+		"dynamicProperties": []};
+	},
+
 	byDistance: function(startPoint, dist){
 		return {"func": function(ent){
 			if (ent.position() === undefined)
