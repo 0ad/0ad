@@ -5,7 +5,7 @@
     <variant frequency="100" name="Base">
       <mesh>structural/iber_barracks_b.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root" minheight=""/>
+        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
         <prop actor="props/flora/bush_desert_dry_a.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/grass_field_parched_tall.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/grass_field_parched_tall.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
