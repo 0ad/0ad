@@ -67,6 +67,9 @@
     <zeroOrMore>
       <element name="required_texture">
         <attribute name="name"/>
+        <optional>
+          <attribute name="define"/>
+        </optional>
       </element>
     </zeroOrMore>
   </interleave>
