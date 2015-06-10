@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/maur_elephant_archer_b">
-  <Health>
-    <Max>340</Max>
-  </Health>
   <Identity>
 	<Rank>Advanced</Rank>
   </Identity>
   <Promotion>
     <Entity>units/maur_elephant_archer_e</Entity>
   </Promotion>
-  <ResourceGatherer>
-    <BaseSpeed>0.75</BaseSpeed>
-  </ResourceGatherer>
   <VisualActor>
     <Actor>units/mauryans/elephant_archer_a.xml</Actor>
   </VisualActor>
