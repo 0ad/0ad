@@ -150,7 +150,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			if (builders !== false)
 			{
 				builders.forEach(function (worker) {
-					worker.setMetadata(PlayerID, "base", baseID);
+					worker.setMetadata(PlayerID, "base", base.ID);
 					worker.setMetadata(PlayerID, "subrole", "builder");
 					worker.setMetadata(PlayerID, "target-foundation", ent.id());
 				});
