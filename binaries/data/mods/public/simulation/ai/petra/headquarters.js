@@ -246,8 +246,15 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			m.getBestBase(gameState, ent).assignEntity(gameState, ent);
 			if (ent.hasTerritoryInfluence())
 				this.updateTerritories(gameState);
-			if (ent.decaying() && ent.isGarrisonHolder())
-				this.garrisonManager.addDecayingStructure(gameState, evt.entity);
+			if (ent.decaying())
+			{
+				if (ent.isGarrisonHolder())
+					if (this.garrisonManager.addDecayingStructure(gameState, evt.entity))
+						continue
+				let capture = ent.capturePoints();
+				if (capture[PlayerID] > 0.5 * capture.reduce((a, b) => a + b))
+					ent.destroy();
+			}
 		}
 	}
 
