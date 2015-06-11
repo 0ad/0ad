@@ -249,7 +249,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			if (ent.decaying())
 			{
 				if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity))
-					continue
+					continue;
 				let capture = ent.capturePoints();
 				if (capture && capture[PlayerID] > 0.5 * capture.reduce((a, b) => a + b))
 					ent.destroy();

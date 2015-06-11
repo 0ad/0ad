@@ -21,14 +21,14 @@ m.Queue.prototype.addItem = function(plan)
 {
 	if (!plan)
 		return;
-	for (var i in this.queue)
+	for (let q of this.queue)
 	{
-		if (plan.category === "unit" && this.queue[i].type == plan.type && this.queue[i].number + plan.number <= this.queue[i].maxMerge)
+		if (plan.category === "unit" && q.type == plan.type && q.number + plan.number <= q.maxMerge)
 		{
-			this.queue[i].addItem(plan.number)
+			q.addItem(plan.number)
 			return;
 		}
-		else if (plan.category === "technology" && this.queue[i].type === plan.type)
+		else if (plan.category === "technology" && q.type === plan.type)
 			return;
 	}
 	this.queue.push(plan);
@@ -83,8 +83,8 @@ m.Queue.prototype.maxAccountWanted = function(gameState, fraction)
 m.Queue.prototype.queueCost = function()
 {
 	var cost = new API3.Resources();
-	for (var key in this.queue)
-		cost.add(this.queue[key].getCost());
+	for (let q of this.queue)
+		cost.add(q.getCost());
 	return cost;
 };
 
@@ -96,34 +96,34 @@ m.Queue.prototype.length = function()
 m.Queue.prototype.countQueuedUnits = function()
 {
 	var count = 0;
-	for (var i in this.queue)
-		count += this.queue[i].number;
+	for (let q of this.queue)
+		count += q.number;
 	return count;
 };
 
 m.Queue.prototype.countQueuedUnitsWithClass = function(classe)
 {
 	var count = 0;
-	for (var i in this.queue)
-		if (this.queue[i].template && this.queue[i].template.hasClass(classe))
-			count += this.queue[i].number;
+	for (let q of this.queue)
+		if (q.template && q.template.hasClass(classe))
+			count += q.number;
 	return count;
 };
 m.Queue.prototype.countQueuedUnitsWithMetadata = function(data, value)
 {
 	var count = 0;
-	for (var i in this.queue)
-		if (this.queue[i].metadata[data] && this.queue[i].metadata[data] == value)
-			count += this.queue[i].number;
+	for (let q of this.queue)
+		if (q.metadata[data] && q.metadata[data] == value)
+			count += q.number;
 	return count;
 };
 
 m.Queue.prototype.countAllByType = function(t)
 {
 	var count = 0;
-	for (var i in this.queue)
-		if (this.queue[i].type === t)
-			count += this.queue[i].number;
+	for (let q of this.queue)
+		if (q.type === t)
+			count += q.number;
 	return count;
 };
 
