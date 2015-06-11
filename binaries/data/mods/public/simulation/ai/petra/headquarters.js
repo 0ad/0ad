@@ -248,11 +248,10 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				this.updateTerritories(gameState);
 			if (ent.decaying())
 			{
-				if (ent.isGarrisonHolder())
-					if (this.garrisonManager.addDecayingStructure(gameState, evt.entity))
-						continue
+				if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity))
+					continue
 				let capture = ent.capturePoints();
-				if (capture[PlayerID] > 0.5 * capture.reduce((a, b) => a + b))
+				if (capture && capture[PlayerID] > 0.5 * capture.reduce((a, b) => a + b))
 					ent.destroy();
 			}
 		}
@@ -327,12 +326,18 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	for (let evt of events["TerritoryDecayChanged"])
 	{
 		let ent = gameState.getEntityById(evt.entity);
-		if (!ent || !ent.isOwn(PlayerID) || ent.foundationProgress() !== undefined || !ent.isGarrisonHolder())
+		if (!ent || !ent.isOwn(PlayerID) || ent.foundationProgress() !== undefined)
 			continue;
 		if (evt.to)
-			this.garrisonManager.addDecayingStructure(gameState, evt.entity);
-		else
-			this.garrisonManager.removeDecayingStructure(evt.entity);
+		{
+			if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity))
+				continue;
+			let capture = ent.capturePoints();
+			if (capture && capture[PlayerID] > 0.5 * capture.reduce((a, b) => a + b))
+				ent.destroy();
+		}
+		else if (ent.isGarrisonHolder())
+			this.garrisonManager.removeDecayingStructure(evt.entity);		
 	}
 };
 
