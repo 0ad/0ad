@@ -227,15 +227,16 @@ m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
 m.GarrisonManager.prototype.addDecayingStructure = function(gameState, entId)
 {
 	if (this.decayingStructures.has(entId))
-		return;
+		return true;
 	let ent = gameState.getEntityById(entId);
 	// keep only useful buildings for defense
 	if (!ent || (!ent.hasClass("Barracks") && !ent.hasDefensiveFire()))
-		return;
+		return false;
 	if (!ent.territoryDecayRate() || !ent.garrisonRegenRate())
-		return;
+		return false;
 	let gmin = Math.ceil((ent.territoryDecayRate() - ent.defaultRegenRate()) / ent.garrisonRegenRate());
 	this.decayingStructures.set(entId, gmin);
+	return true;
 };
 
 m.GarrisonManager.prototype.removeDecayingStructure = function(entId)
