@@ -1,9 +1,10 @@
 var userReportEnabledText; // contains the original version with "$status" placeholder
 var currentSubmenuType; // contains submenu type
 const MARGIN = 4; // menu border size
-const background = "hellenes1"; // Background type.
+var g_BackgroundCode; // Background type.
 
 var g_ShowSplashScreens;
+var g_BackgroundLayerData = [];
 
 function init(initData, hotloadData)
 {
@@ -20,6 +21,18 @@ function init(initData, hotloadData)
 
 	// Only show splash screen(s) once at startup, but not again after hotloading
 	g_ShowSplashScreens = hotloadData ? hotloadData.showSplashScreens : initData && initData.isStartup;
+
+	// Pick a random background and initialise it
+	g_BackgroundCode = Math.floor(Math.random() * g_BackgroundLayerData.length);
+	var layerset = g_BackgroundLayerData[g_BackgroundCode];
+	for (var i = 0; i < layerset.length; i++)
+	{
+		var layer = layerset[i];
+		var guiObj = Engine.GetGUIObjectByName("background["+i+"]");
+		guiObj.hidden = false;
+		guiObj.sprite = layer.sprite;
+		guiObj.z = i;
+	}
 }
 
 function getHotloadData()
@@ -27,37 +40,31 @@ function getHotloadData()
 	return { "showSplashScreens": g_ShowSplashScreens };
 }
 
-var t0 = new Date;
-function scrollBackgrounds(background)
+var t0 = +(new Date());
+function scrollBackgrounds()
 {
-	switch(background)
+	var layerset = g_BackgroundLayerData[g_BackgroundCode];
+	for (var i = 0; i < layerset.length; i++)
 	{
-	default:
-	case "hellenes1":
-		var layer1 = Engine.GetGUIObjectByName("backgroundHele1-1");
-		var layer2 = Engine.GetGUIObjectByName("backgroundHele1-2");
-		var layer3 = Engine.GetGUIObjectByName("backgroundHele1-3");
+		var layer = layerset[i];
+		var guiObj = Engine.GetGUIObjectByName("background["+i+"]");
 
-		layer1.hidden = false;
-		layer2.hidden = false;
-		layer3.hidden = false;
+		var screen = guiObj.parent.getComputedSize();
+		var h = screen.bottom - screen.top;
+		var w = h * 16/9;
 
-		var screen = layer1.parent.getComputedSize();
-		var h = screen.bottom - screen.top; // height of screen
-		var w = h*16/9; // width of background image
-
-		// Offset the layers by oscillating amounts
-		var t = (t0 - new Date) / 700;
-		var speed = 1/20;
-		var off1 = 0.02 * w * (1+Math.cos(t*speed));
-		var off2 = 0.12 * w * (1+Math.cos(t*speed)) - h*6/9;
-		var off3 = 0.16 * w * (1+Math.cos(t*speed));
-
-		var left = screen.right - w * (1 + Math.ceil(screen.right / w));
-		layer1.size = new GUISize(left + off1, screen.top, screen.right + off1, screen.bottom);
-		layer2.size = new GUISize(screen.right/2 - h + off2, screen.top, screen.right/2 + h + off2, screen.bottom);
-		layer3.size = new GUISize(screen.right - h + off3, screen.top, screen.right + off3, screen.bottom);
-		break;
+		var time = (new Date() - t0) / 1000;
+		var offset = layer.offset(time, w);
+		if (layer.tiling)
+		{
+			var left = offset % screen.right;
+			if (left > 0)
+				left -= screen.right;
+			var right = left + screen.right * 2;
+			guiObj.size = new GUISize(left, screen.top, right, screen.bottom);
+		}
+		else
+			guiObj.size = new GUISize(screen.right/2 - h + offset, screen.top, screen.right/2 + h + offset, screen.bottom);
 	}
 }
 
@@ -113,7 +120,7 @@ function onTick()
 	lastTickTime = now;
 
 	// Animate backgrounds
-	scrollBackgrounds(background);
+	scrollBackgrounds();
 
 	// Animate submenu
 	updateMenuPosition(tickLength);

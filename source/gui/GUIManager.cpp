@@ -221,14 +221,26 @@ void CGUIManager::LoadPage(SGUIPage& page)
 			continue;
 		}
 
-		CStrW name (node.GetText().FromUTF8());
+		std::string name = node.GetText();
+		CStrW nameW (node.GetText().FromUTF8());
 
 		PROFILE2("load gui xml");
-		PROFILE2_ATTR("name: %ls", name.c_str());
+		PROFILE2_ATTR("name: %s", name.c_str());
 
-		TIMER(name.c_str());
-		VfsPath path = VfsPath("gui") / name;
-		page.gui->LoadXmlFile(path, page.inputs);
+		TIMER(nameW.c_str());
+		if (name.back() == '/')
+		{
+			VfsPath directory = VfsPath("gui") / nameW;
+			VfsPaths pathnames;
+			vfs::GetPathnames(g_VFS, directory, L"*.xml", pathnames);
+			for (const VfsPath& path : pathnames)
+				page.gui->LoadXmlFile(path, page.inputs);
+		}
+		else
+		{
+			VfsPath path = VfsPath("gui") / nameW;
+			page.gui->LoadXmlFile(path, page.inputs);
+		}
 	}
 
 	// Remember this GUI page, in case the scripts call FindObjectByName
