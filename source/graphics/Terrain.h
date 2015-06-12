@@ -87,8 +87,12 @@ public:
 	fixed GetExactGroundLevelFixed(fixed x, fixed z) const;
 	float GetFilteredGroundLevel(float x, float z, float radius) const;
 
-	// get the approximate slope (0 = horizontal, 0.5 = 30 degrees, 1.0 = 45 degrees, etc)
+	// get the approximate slope of a tile
+	// (0 = horizontal, 0.5 = 30 degrees, 1.0 = 45 degrees, etc)
 	fixed GetSlopeFixed(ssize_t i, ssize_t j) const;
+
+	// get the precise slope of a point, accounting for triangulation direction
+	fixed GetExactSlopeFixed(fixed x, fixed z) const;
 
 	// Returns true if the triangulation diagonal for tile (i, j)
 	// should be in the direction (1,-1); false if it should be (1,1)

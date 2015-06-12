@@ -36,7 +36,7 @@
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/components/ICmpTechnologyTemplateManager.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
-#include "simulation2/helpers/Grid.h"
+#include "simulation2/helpers/LongPathfinder.h"
 #include "simulation2/serialization/DebugSerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
 #include "simulation2/serialization/StdSerializer.h"
@@ -223,6 +223,9 @@ public:
 		m_ScriptInterface->RegisterFunction<void, std::wstring, CAIWorker::IncludeModule>("IncludeModule");
 		m_ScriptInterface->RegisterFunction<void, CAIWorker::DumpHeap>("DumpHeap");
 		m_ScriptInterface->RegisterFunction<void, CAIWorker::ForceGC>("ForceGC");
+
+		m_ScriptInterface->RegisterFunction<JS::Value, JS::HandleValue, JS::HandleValue, pass_class_t, CAIWorker::ComputePath>("ComputePath");
+		m_ScriptInterface->RegisterFunction<JS::Value, pass_class_t, CAIWorker::GetConnectivityGrid>("GetConnectivityGrid");
 		
 		m_ScriptInterface->RegisterFunction<void, std::wstring, std::vector<u32>, u32, u32, u32, CAIWorker::DumpImage>("DumpImage");
 	}
@@ -288,6 +291,48 @@ public:
 		
 		LOGERROR("Invalid playerid in PostCommand!");	
 	}
+
+	static JS::Value ComputePath(ScriptInterface::CxPrivate* pCxPrivate,
+		JS::HandleValue position, JS::HandleValue goal, pass_class_t passClass)
+	{
+		ENSURE(pCxPrivate->pCBData);
+		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
+		JSContext* cx(self->m_ScriptInterface->GetContext());
+
+		CFixedVector2D pos, goalPos;
+		std::vector<CFixedVector2D> waypoints;
+		JS::RootedValue retVal(cx);
+
+		self->m_ScriptInterface->FromJSVal<CFixedVector2D>(cx, position, pos);
+		self->m_ScriptInterface->FromJSVal<CFixedVector2D>(cx, goal, goalPos);
+
+		self->ComputePath(pos, goalPos, passClass, waypoints);
+		self->m_ScriptInterface->ToJSVal<std::vector<CFixedVector2D> >(cx, &retVal, waypoints);
+
+		return retVal;
+	}
+
+	void ComputePath(const CFixedVector2D& pos, const CFixedVector2D& goal, pass_class_t passClass, std::vector<CFixedVector2D>& waypoints)
+	{
+		WaypointPath ret;
+		PathGoal pathGoal = { PathGoal::POINT, goal.X, goal.Y };
+		m_LongPathfinder.ComputePath(pos.X, pos.Y, pathGoal, passClass, ret);
+
+		for (Waypoint& wp : ret.m_Waypoints)
+			waypoints.emplace_back(wp.x, wp.z);
+	}
+
+	static JS::Value GetConnectivityGrid(ScriptInterface::CxPrivate* pCxPrivate, pass_class_t passClass)
+	{
+		ENSURE(pCxPrivate->pCBData);
+		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
+		JSContext* cx(self->m_ScriptInterface->GetContext());
+
+		JS::RootedValue retVal(cx);
+		self->m_ScriptInterface->ToJSVal<Grid<u16> >(cx, &retVal, self->m_LongPathfinder.GetConnectivityGrid(passClass));
+		return retVal;
+	}
+
 	// The next two ought to be implmeneted someday but for now as it returns "null" it can't
 	static void DumpHeap(ScriptInterface::CxPrivate* pCxPrivate)
 	{
@@ -465,16 +510,23 @@ public:
 		
 		return true;
 	}
-	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& passabilityMap, const Grid<u8>& territoryMap, bool territoryMapDirty)
+	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, 
+		const Grid<u16>& passabilityMap, bool passabilityMapDirty, const Grid<u8>* dirtinessGrid, bool passabilityMapEntirelyDirty,
+		const Grid<u8>& territoryMap, bool territoryMapDirty, 
+		std::map<std::string, pass_class_t> passClassMasks)
 	{
 		ENSURE(m_CommandsComputed);
 
 		m_GameState = gameState;
 		JSContext* cx = m_ScriptInterface->GetContext();
 
-		if (passabilityMap.m_DirtyID != m_PassabilityMap.m_DirtyID)
+		if (passabilityMapDirty)
 		{
 			m_PassabilityMap = passabilityMap;
+			if (passabilityMapEntirelyDirty)
+				m_LongPathfinder.Reload(passClassMasks, &m_PassabilityMap);
+			else
+				m_LongPathfinder.Update(&m_PassabilityMap, dirtinessGrid);
 			ScriptInterface::ToJSVal(cx, &m_PassabilityMapVal, m_PassabilityMap);
 		}
 
@@ -794,6 +846,8 @@ private:
 	Grid<u8> m_TerritoryMap;
 	JS::PersistentRootedValue m_TerritoryMapVal;
 
+	LongPathfinder m_LongPathfinder;
+
 	bool m_CommandsComputed;
 
 	shared_ptr<ObjectIdCache<std::wstring> > m_SerializablePrototypes;
@@ -981,6 +1035,11 @@ public:
 		if (cmpPathfinder)
 			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
 
+		Grid<u8> dummyDirtinessGrid;
+		const Grid<u8>* dirtinessGrid = &dummyDirtinessGrid;
+		bool passabilityMapEntirelyDirty = false;
+		bool passabilityMapDirty = cmpPathfinder->GetDirtinessData(dummyDirtinessGrid, passabilityMapEntirelyDirty);
+
 		// Get the territory data
 		//	Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
 		bool territoryMapDirty = false;
@@ -994,8 +1053,14 @@ public:
 		}
 
 		LoadPathfinderClasses(state);
+		std::map<std::string, pass_class_t> passClassMasks;
+		if (cmpPathfinder)
+			passClassMasks = cmpPathfinder->GetPassabilityClasses();
 
-		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state), *passabilityMap, *territoryMap, territoryMapDirty);
+		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state), 
+			*passabilityMap, passabilityMapDirty, dirtinessGrid, passabilityMapEntirelyDirty,
+			*territoryMap, territoryMapDirty,
+			passClassMasks);
 		
 		m_JustDeserialized = false;
 	}
@@ -1082,10 +1147,10 @@ private:
 		JSAutoRequest rq(cx);
 
 		JS::RootedValue classesVal(cx);
-		scriptInterface.Eval("({ pathfinderObstruction: 1, foundationObstruction: 2 })", &classesVal);
+		scriptInterface.Eval("({})", &classesVal);
 
-		std::map<std::string, ICmpPathfinder::pass_class_t> classes = cmpPathfinder->GetPassabilityClasses();
-		for (std::map<std::string, ICmpPathfinder::pass_class_t>::iterator it = classes.begin(); it != classes.end(); ++it)
+		std::map<std::string, pass_class_t> classes = cmpPathfinder->GetPassabilityClasses();
+		for (std::map<std::string, pass_class_t>::iterator it = classes.begin(); it != classes.end(); ++it)
 			scriptInterface.SetProperty(classesVal, it->first.c_str(), it->second, true);
 
 		scriptInterface.SetProperty(state, "passabilityClasses", classesVal, true);

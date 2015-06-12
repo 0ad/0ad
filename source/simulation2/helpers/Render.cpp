@@ -67,8 +67,11 @@ void SimRender::ConstructLineOnGround(const CSimContext& context, const std::vec
 	}
 }
 
-void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, float z, float radius,
-		SOverlayLine& overlay, bool floating, float heightOffset)
+static void ConstructCircleOrClosedArc(
+	const CSimContext& context, float x, float z, float radius,
+	bool isCircle,
+	float start, float end,
+	SOverlayLine& overlay, bool floating, float heightOffset)
 {
 	overlay.m_Coords.clear();
 
@@ -85,20 +88,56 @@ void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, flo
 	}
 
 	// Adapt the circle resolution to look reasonable for small and largeish radiuses
-	size_t numPoints = clamp((size_t)(radius*4.0f), (size_t)12, (size_t)48);
+	size_t numPoints = clamp((size_t)(radius*(end-start)), (size_t)12, (size_t)48);
 
-	overlay.m_Coords.reserve((numPoints + 1) * 3);
+	if (isCircle)
+		overlay.m_Coords.reserve((numPoints + 1 + 2) * 3);
+	else
+		overlay.m_Coords.reserve((numPoints + 1) * 3);
+
+	float cy;
+	if (!isCircle)
+	{
+		// Start at the center point
+		cy = std::max(water, cmpTerrain->GetExactGroundLevel(x, z)) + heightOffset;
+		overlay.m_Coords.push_back(x);
+		overlay.m_Coords.push_back(cy);
+		overlay.m_Coords.push_back(z);
+	}
 
 	for (size_t i = 0; i <= numPoints; ++i) // use '<=' so it's a closed loop
 	{
-		float a = (float)i * 2 * (float)M_PI / (float)numPoints;
-		float px = x + radius * sinf(a);
-		float pz = z + radius * cosf(a);
+		float a = start + (float)i * (end - start) / (float)numPoints;
+		float px = x + radius * cosf(a);
+		float pz = z + radius * sinf(a);
 		float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + heightOffset;
 		overlay.m_Coords.push_back(px);
 		overlay.m_Coords.push_back(py);
 		overlay.m_Coords.push_back(pz);
 	}
+
+	if (!isCircle)
+	{
+		// Return to the center point
+		overlay.m_Coords.push_back(x);
+		overlay.m_Coords.push_back(cy);
+		overlay.m_Coords.push_back(z);
+	}
+}
+
+void SimRender::ConstructCircleOnGround(
+	const CSimContext& context, float x, float z, float radius,
+	SOverlayLine& overlay, bool floating, float heightOffset)
+{
+	ConstructCircleOrClosedArc(context, x, z, radius, true, 0.0f, 2.0f*(float)M_PI, overlay, floating, heightOffset);
+}
+
+void SimRender::ConstructClosedArcOnGround(
+	const CSimContext& context, float x, float z, float radius,
+	float start, float end,
+	SOverlayLine& overlay, bool floating, float heightOffset)
+{
+	ConstructCircleOrClosedArc(context, x, z, radius, false, start, end, overlay, floating, heightOffset);
 }
 
 // This method splits up a straight line into a number of line segments each having a length ~= TERRAIN_TILE_SIZE

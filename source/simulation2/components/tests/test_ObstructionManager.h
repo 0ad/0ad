@@ -26,10 +26,10 @@ class TestCmpObstructionManager : public CxxTest::TestSuite
 
 	// some variables for setting up a scene with 3 shapes
 	entity_id_t ent1, ent2, ent3; // entity IDs
-	entity_angle_t ent1a, ent2r, ent3r; // angles/radiuses
+	entity_angle_t ent1a; // angles
 	entity_pos_t ent1x, ent1z, ent1w, ent1h, // positions/dimensions
-	             ent2x, ent2z,
-	             ent3x, ent3z;
+	             ent2x, ent2z, ent2r, ent2c,
+	             ent3x, ent3z, ent3r, ent3c;
 	entity_id_t ent1g1, ent1g2, ent2g, ent3g; // control groups
 
 	tag_t shape1, shape2, shape3;
@@ -58,12 +58,14 @@ public:
 
 		ent2 = 2;
 		ent2r = fixed::FromFloat(1);
+		ent2c = fixed::Zero();
 		ent2x = ent1x;
 		ent2z = ent1z;
 		ent2g = ent1g1;
 
 		ent3 = 3;
 		ent3r = fixed::FromFloat(3);
+		ent3c = fixed::Zero();
 		ent3x = ent2x;
 		ent3z = ent2z + ent2r + ent3r; // ensure it just touches the border of ent2
 		ent3g = ent3;
@@ -77,11 +79,11 @@ public:
 			ICmpObstructionManager::FLAG_BLOCK_MOVEMENT |
 			ICmpObstructionManager::FLAG_MOVING, ent1g1, ent1g2);
 
-		shape2 = cmp->AddUnitShape(ent2, ent2x, ent2z, ent2r,
+		shape2 = cmp->AddUnitShape(ent2, ent2x, ent2z, ent2r, ent2c,
 			ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION |
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION, ent2g);
 
-		shape3 = cmp->AddUnitShape(ent3, ent3x, ent3z, ent3r,
+		shape3 = cmp->AddUnitShape(ent3, ent3x, ent3z, ent3r, ent3c,
 			ICmpObstructionManager::FLAG_BLOCK_MOVEMENT |
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION, ent3g);
 	}

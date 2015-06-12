@@ -112,9 +112,9 @@ public:
 		m_Script.CallVoid("SetFacePointAfterMove", facePointAfterMove);
 	}
 
-	virtual ICmpPathfinder::pass_class_t GetPassabilityClass()
+	virtual pass_class_t GetPassabilityClass()
 	{
-		return m_Script.Call<ICmpPathfinder::pass_class_t>("GetPassabilityClass");
+		return m_Script.Call<pass_class_t>("GetPassabilityClass");
 	}
 
 	virtual std::string GetPassabilityClassName()

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,14 +32,17 @@
 template <typename Item, typename CMP>
 struct QueueItemPriority
 {
-	bool operator()(const Item& a, const Item& b)
+	bool operator()(const Item& a, const Item& b) const
 	{
 		if (CMP()(b.rank, a.rank)) // higher costs are lower priority
 			return true;
 		if (CMP()(a.rank, b.rank))
 			return false;
 		// Need to tie-break to get a consistent ordering
-		// TODO: Should probably tie-break on g or h or something, but don't bother for now
+		if (CMP()(b.h, a.h)) // higher heuristic costs are lower priority
+			return true;
+		if (CMP()(a.h, b.h))
+			return false;
 		if (a.id < b.id)
 			return true;
 		if (b.id < a.id)
@@ -57,7 +60,7 @@ struct QueueItemPriority
  * This is quite dreadfully slow in MSVC's debug STL implementation,
  * so we shouldn't use it unless we reimplement the heap functions more efficiently.
  */
-template <typename ID, typename R, typename CMP = std::less<R> >
+template <typename ID, typename R, typename H, typename CMP = std::less<R> >
 class PriorityQueueHeap
 {
 public:
@@ -65,6 +68,7 @@ public:
 	{
 		ID id;
 		R rank; // f = g+h (estimated total cost of path through here)
+		H h; // heuristic cost
 	};
 
 	void push(const Item& item)
@@ -73,19 +77,10 @@ public:
 		push_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority<Item, CMP>());
 	}
 
-	Item* find(ID id)
+	void promote(ID id, R UNUSED(oldrank), R newrank, H newh)
 	{
-		for (size_t n = 0; n < m_Heap.size(); ++n)
-		{
-			if (m_Heap[n].id == id)
-				return &m_Heap[n];
-		}
-		return NULL;
-	}
-
-	void promote(ID id, R newrank)
-	{
-		for (size_t n = 0; n < m_Heap.size(); ++n)
+		// Loop backwards since it seems a little faster in practice
+		for (ssize_t n = m_Heap.size() - 1; n >= 0; --n)
 		{
 			if (m_Heap[n].id == id)
 			{
@@ -93,6 +88,7 @@ public:
 				ENSURE(m_Heap[n].rank > newrank);
 #endif
 				m_Heap[n].rank = newrank;
+				m_Heap[n].h = newh;
 				push_heap(m_Heap.begin(), m_Heap.begin()+n+1, QueueItemPriority<Item, CMP>());
 				return;
 			}
@@ -104,7 +100,7 @@ public:
 #if PRIORITYQUEUE_DEBUG
 		ENSURE(m_Heap.size());
 #endif
-		Item r = m_Heap.front();
+		Item r = m_Heap[0];
 		pop_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority<Item, CMP>());
 		m_Heap.pop_back();
 		return r;
@@ -120,6 +116,11 @@ public:
 		return m_Heap.size();
 	}
 
+	void clear()
+	{
+		m_Heap.clear();
+	}
+
 	std::vector<Item> m_Heap;
 };
 
@@ -130,7 +131,7 @@ public:
  * It seems fractionally slower than a binary heap in optimised builds, but is
  * much simpler and less susceptible to MSVC's painfully slow debug STL.
  */
-template <typename ID, typename R, typename CMP = std::less<R> >
+template <typename ID, typename R, typename H, typename CMP = std::less<R> >
 class PriorityQueueList
 {
 public:
@@ -138,6 +139,7 @@ public:
 	{
 		ID id;
 		R rank; // f = g+h (estimated total cost of path through here)
+		H h; // heuristic cost
 	};
 
 	void push(const Item& item)
@@ -155,9 +157,10 @@ public:
 		return NULL;
 	}
 
-	void promote(ID id, R newrank)
+	void promote(ID id, R UNUSED(oldrank), R newrank, H newh)
 	{
 		find(id)->rank = newrank;
+		find(id)->h = newh;
 	}
 
 	Item pop()
@@ -191,6 +194,12 @@ public:
 	size_t size()
 	{
 		return m_List.size();
+	}
+
+
+	void clear()
+	{
+		m_List.clear();
 	}
 
 	std::vector<Item> m_List;

@@ -41,36 +41,9 @@
                 <data type="decimal"/>
               </element>
             </optional>
-          </interleave>
-        </element>
-      </oneOrMore>
-    </element>
-    <element name="MovementClasses">
-      <oneOrMore>
-        <element>
-          <anyName/>
-          <interleave>
-            <attribute name="Speed">
-              <data type="decimal"/>
-            </attribute>
-            <attribute name="Cost">
-              <data type="decimal"/>
-            </attribute>
             <optional>
-              <element name="UnitClasses">
-                <zeroOrMore>
-                  <element>
-                    <anyName/>
-                    <interleave>
-                      <attribute name="Speed">
-                        <data type="decimal"/>
-                      </attribute>
-                      <attribute name="Cost">
-                        <data type="decimal"/>
-                      </attribute>
-                    </interleave>
-                  </element>
-                </zeroOrMore>
+              <element name="Clearance">
+                <data type="decimal"/>
               </element>
             </optional>
           </interleave>

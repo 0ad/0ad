@@ -331,3 +331,41 @@ void TerrainTextureOverlay::RenderAfterWater(int cullGroup)
 
 	g_Renderer.GetTerrainRenderer().RenderTerrainOverlayTexture(cullGroup, matrix);
 }
+
+SColor4ub TerrainTextureOverlay::GetColor(size_t idx, u8 alpha) const
+{
+	static u8 colors[][3] = {
+		{ 255, 0, 0 },
+		{ 0, 255, 0 },
+		{ 0, 0, 255 },
+		{ 255, 255, 0 },
+		{ 255, 0, 255 },
+		{ 0, 255, 255 },
+		{ 255, 255, 255 },
+
+		{ 127, 0, 0 },
+		{ 0, 127, 0 },
+		{ 0, 0, 127 },
+		{ 127, 127, 0 },
+		{ 127, 0, 127 },
+		{ 0, 127, 127 },
+		{ 127, 127, 127},
+
+		{ 255, 127, 0 },
+		{ 127, 255, 0 },
+		{ 255, 0, 127 },
+		{ 127, 0, 255},
+		{ 0, 255, 127 },
+		{ 0, 127, 255},
+		{ 255, 127, 127},
+		{ 127, 255, 127},
+		{ 127, 127, 255},
+
+		{ 127, 255, 255 },
+		{ 255, 127, 255 },
+		{ 255, 255, 127 },
+	};
+
+	size_t c = idx % ARRAY_SIZE(colors);
+	return SColor4ub(colors[c][0], colors[c][1], colors[c][2], alpha);
+}

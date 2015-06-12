@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,8 +27,7 @@
  * Motion interface for entities with complex movement capabilities.
  * (Simpler motion is handled by ICmpMotion instead.)
  *
- * Currently this is limited to telling the entity to walk to a point.
- * Eventually it should support different movement speeds, moving to areas
+ * It should eventually support different movement speeds, moving to areas
  * instead of points, moving as part of a group, moving as part of a formation,
  * etc.
  */
@@ -38,6 +37,7 @@ public:
 
 	/**
 	 * Attempt to walk into range of a to a given point, or as close as possible.
+	 * The range is measured from the center of the unit.
 	 * If the unit is already in range, or cannot move anywhere at all, or if there is
 	 * some other error, then returns false.
 	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
@@ -60,6 +60,8 @@ public:
 
 	/**
 	 * Attempt to walk into range of a given target entity, or as close as possible.
+	 * The range is measured between approximately the edges of the unit and the target, so that
+	 * maxRange=0 is not unreachably close to the target.
 	 * If the unit is already in range, or cannot move anywhere at all, or if there is
 	 * some other error, then returns false.
 	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
@@ -117,7 +119,7 @@ public:
 	/**
 	 * Get the unit's passability class.
 	 */
-	virtual ICmpPathfinder::pass_class_t GetPassabilityClass() = 0;
+	virtual pass_class_t GetPassabilityClass() = 0;
 
 	/**
 	 * Get the passability class name (as defined in pathfinder.xml)

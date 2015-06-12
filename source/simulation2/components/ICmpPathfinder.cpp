@@ -23,4 +23,5 @@
 
 BEGIN_INTERFACE_WRAPPER(Pathfinder)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpPathfinder, SetDebugOverlay, bool)
+DEFINE_INTERFACE_METHOD_1("SetHierDebugOverlay", void, ICmpPathfinder, SetHierDebugOverlay, bool)
 END_INTERFACE_WRAPPER(Pathfinder)

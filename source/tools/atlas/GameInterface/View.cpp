@@ -250,10 +250,9 @@ void AtlasViewGame::Render()
 		{
 			cmpPathfinder->SetDebugOverlay(true);
 			// Kind of a hack to make it update the terrain grid
-			ICmpPathfinder::Goal goal = { ICmpPathfinder::Goal::POINT, fixed::Zero(), fixed::Zero() };
-			ICmpPathfinder::pass_class_t passClass = cmpPathfinder->GetPassabilityClass(m_DisplayPassability);
-			ICmpPathfinder::cost_class_t costClass = cmpPathfinder->GetCostClass("default");
-			cmpPathfinder->SetDebugPath(fixed::Zero(), fixed::Zero(), goal, passClass, costClass);
+			PathGoal goal = { PathGoal::POINT, fixed::Zero(), fixed::Zero() };
+			pass_class_t passClass = cmpPathfinder->GetPassabilityClass(m_DisplayPassability);
+			cmpPathfinder->SetDebugPath(fixed::Zero(), fixed::Zero(), goal, passClass);
 		}
 	}
 

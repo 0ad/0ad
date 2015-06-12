@@ -35,7 +35,6 @@
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
-#include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpTerritoryInfluence.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Grid.h"
@@ -45,15 +44,14 @@
 
 class CCmpTerritoryManager;
 
-class TerritoryOverlay : public TerrainOverlay
+class TerritoryOverlay : public TerrainTextureOverlay
 {
 	NONCOPYABLE(TerritoryOverlay);
 public:
 	CCmpTerritoryManager& m_TerritoryManager;
 
 	TerritoryOverlay(CCmpTerritoryManager& manager);
-	virtual void StartRender();
-	virtual void ProcessTile(ssize_t i, ssize_t j);
+	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h);
 };
 
 class CCmpTerritoryManager : public ICmpTerritoryManager
@@ -88,6 +86,9 @@ public:
 	// processed flag in bit 7 (TERRITORY_PROCESSED_MASK)
 	Grid<u8>* m_Territories;
 
+	// Saves the cost per tile (to stop territory on impassable tiles)
+	Grid<u8>* m_CostGrid;
+
 	// Set to true when territories change; will send a TerritoriesChanged message
 	// during the Update phase
 	bool m_TriggerEvent;
@@ -112,6 +113,7 @@ public:
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_Territories = NULL;
+		m_CostGrid = NULL;
 		m_DebugOverlay = NULL;
 //		m_DebugOverlay = new TerritoryOverlay(*this);
 		m_BoundaryLinesDirty = true;
@@ -137,6 +139,7 @@ public:
 	virtual void Deinit()
 	{
 		SAFE_DELETE(m_Territories);
+		SAFE_DELETE(m_CostGrid);
 		SAFE_DELETE(m_DebugOverlay);
 	}
 
@@ -177,6 +180,8 @@ public:
 		case MT_TerrainChanged:
 		case MT_WaterChanged:
 		{
+			// also recalculate the cost grid to support atlas changes
+			SAFE_DELETE(m_CostGrid);
 			MakeDirty();
 			break;
 		}
@@ -251,6 +256,8 @@ public:
 		return false;
 	}
 
+	void CalculateCostGrid();
+
 	void CalculateTerritories();
 
 	std::vector<STerritoryBoundary> ComputeBoundaries();
@@ -305,10 +312,50 @@ struct Tile
 /**
  * Compute the tile indexes on the grid nearest to a given point
  */
-static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
+static void NearestTerritoryTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
 {
-	i = (u16)clamp((x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, w-1);
-	j = (u16)clamp((z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, h-1);
+	entity_pos_t scale = Pathfinding::NAVCELL_SIZE * ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE;
+	i = clamp((x / scale).ToInt_RoundToNegInfinity(), 0, w - 1);
+	j = clamp((z / scale).ToInt_RoundToNegInfinity(), 0, h - 1);
+}
+
+void CCmpTerritoryManager::CalculateCostGrid()
+{
+	if (m_CostGrid)
+		return;
+
+	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+	if (!cmpPathfinder)
+		return;
+
+	pass_class_t passClassTerritory = cmpPathfinder->GetPassabilityClass("territory");
+	pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
+
+	const Grid<u16>& passGrid = cmpPathfinder->GetPassabilityGrid();
+
+	int tilesW = passGrid.m_W / NAVCELLS_PER_TERRITORY_TILE;
+	int tilesH = passGrid.m_H / NAVCELLS_PER_TERRITORY_TILE;
+
+	m_CostGrid = new Grid<u8>(tilesW, tilesH);
+
+	for (int i = 0; i < tilesW; ++i)
+	{
+		for (int j = 0; j < tilesH; ++j)
+		{
+			u16 c = 0;
+			for (u16 di = 0; di < NAVCELLS_PER_TERRITORY_TILE; ++di)
+				for (u16 dj = 0; dj < NAVCELLS_PER_TERRITORY_TILE; ++dj)
+					c |= passGrid.get(
+						i * NAVCELLS_PER_TERRITORY_TILE + di,
+						j * NAVCELLS_PER_TERRITORY_TILE + dj);
+			if (c & passClassTerritory)
+				m_CostGrid->set(i, j, m_ImpassableCost);
+			else if (c & passClassUnrestricted)
+				m_CostGrid->set(i, j, 255); // off the world; use maximum cost
+			else
+				m_CostGrid->set(i, j, 1);
+		}
+	}
 }
 
 void CCmpTerritoryManager::CalculateTerritories()
@@ -318,15 +365,14 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 	PROFILE("CalculateTerritories");
 
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
-
-	// If the terrain hasn't been loaded (e.g. this is called during map initialisation),
+	// If the pathfinder hasn't been loaded (e.g. this is called during map initialisation),
 	// abort the computation (and assume callers can cope with m_Territories == NULL)
-	if (!cmpTerrain->IsLoaded())
+	CalculateCostGrid();
+	if (!m_CostGrid)
 		return;
 
-	const u16 tilesW = cmpTerrain->GetTilesPerSide();
-	const u16 tilesH = tilesW;
+	const u16 tilesW = m_CostGrid->m_W;
+	const u16 tilesH = m_CostGrid->m_H;
 
 	m_Territories = new Grid<u8>(tilesW, tilesH);
 
@@ -356,15 +402,6 @@ void CCmpTerritoryManager::CalculateTerritories()
 	// store the root influences to mark territory as connected
 	std::vector<entity_id_t> rootInfluenceEntities;
 
-	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-	if (!cmpPathfinder)
-		return;
-
-	ICmpPathfinder::pass_class_t passClassDefault = cmpPathfinder->GetPassabilityClass("default");
-	ICmpPathfinder::pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
-
-	const Grid<u16>& passibilityGrid = cmpPathfinder->GetPassabilityGrid();
-
 	for (const std::pair<player_id_t, std::vector<entity_id_t> >& pair : influenceEntities)
 	{
 		// entityGrid stores the weight for a single entity, and is reset per entity
@@ -385,14 +422,14 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 			CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), ent);
 			u32 weight = cmpTerritoryInfluence->GetWeight();
-			u32 radius = cmpTerritoryInfluence->GetRadius() / TERRAIN_TILE_SIZE;
+			u32 radius = cmpTerritoryInfluence->GetRadius() / (Pathfinding::NAVCELL_SIZE * NAVCELLS_PER_TERRITORY_TILE).ToInt_RoundToNegInfinity();
 			if (weight == 0 || radius == 0)
 				continue;
 			u32 falloff = weight / radius;
 
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
 			u16 i, j;
-			NearestTile(pos.X, pos.Y, i, j, tilesW, tilesH);
+			NearestTerritoryTile(pos.X, pos.Y, i, j, tilesW, tilesH);
 
 			if (cmpTerritoryInfluence->IsRoot())
 				rootInfluenceEntities.push_back(ent);
@@ -407,13 +444,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 			// Expand influences outwards
 			FLOODFILL(i, j,
-				u32 dg = falloff;
-				// enlarge the falloff for unpassable tiles
-				u16 g = passibilityGrid.get(nx, nz);
-				if (g & passClassUnrestricted)
-					dg *= 255; // off the world; use maximum cost
-				else if (g & passClassDefault)
-					dg *= m_ImpassableCost;
+				u32 dg = falloff * m_CostGrid->get(nx, nz);
 
 				// diagonal neighbour -> multiply with approx sqrt(2)
 				if (nx != x && nz != z)
@@ -451,7 +482,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 		u16 i, j;
-		NearestTile(pos.X, pos.Y, i, j, tilesW, tilesH);
+		NearestTerritoryTile(pos.X, pos.Y, i, j, tilesW, tilesH);
 
 		u8 owner = (u8)cmpOwnership->GetOwner();
 
@@ -592,7 +623,7 @@ player_id_t CCmpTerritoryManager::GetOwner(entity_pos_t x, entity_pos_t z)
 	if (!m_Territories)
 		return 0;
 
-	NearestTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
+	NearestTerritoryTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
 	return m_Territories->get(i, j) & TERRITORY_PLAYER_MASK;
 }
 
@@ -608,7 +639,7 @@ std::vector<u32> CCmpTerritoryManager::GetNeighbours(entity_pos_t x, entity_pos_
 		return ret;
 
 	u16 i, j;
-	NearestTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
+	NearestTerritoryTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
 
 	// calculate the neighbours
 	player_id_t thisOwner = m_Territories->get(i, j) & TERRITORY_PLAYER_MASK;
@@ -644,7 +675,7 @@ bool CCmpTerritoryManager::IsConnected(entity_pos_t x, entity_pos_t z)
 	if (!m_Territories)
 		return false;
 
-	NearestTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
+	NearestTerritoryTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
 	return (m_Territories->get(i, j) & TERRITORY_CONNECTED_MASK) != 0;
 }
 
@@ -655,7 +686,7 @@ void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z)
 		return;
 
 	u16 i, j;
-	NearestTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
+	NearestTerritoryTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
 
 	u16 tilesW = m_Territories->m_W;
 	u16 tilesH = m_Territories->m_H;
@@ -671,33 +702,25 @@ void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z)
 	m_BoundaryLinesDirty = true;
 }
 
-TerritoryOverlay::TerritoryOverlay(CCmpTerritoryManager& manager)
-	: TerrainOverlay(manager.GetSimContext()), m_TerritoryManager(manager)
+TerritoryOverlay::TerritoryOverlay(CCmpTerritoryManager& manager) :
+	TerrainTextureOverlay((float)Pathfinding::NAVCELLS_PER_TILE / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE), 
+	m_TerritoryManager(manager)
 { }
 
-void TerritoryOverlay::StartRender()
+void TerritoryOverlay::BuildTextureRGBA(u8* data, size_t w, size_t h)
 {
-	m_TerritoryManager.CalculateTerritories();
-}
-
-void TerritoryOverlay::ProcessTile(ssize_t i, ssize_t j)
-{
-	if (!m_TerritoryManager.m_Territories)
-		return;
-
-	u8 id = (m_TerritoryManager.m_Territories->get((int) i, (int) j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK);
-
-	float a = 0.2f;
-	switch (id)
+	for (size_t j = 0; j < h; ++j)
 	{
-	case 0:  break;
-	case 1:  RenderTile(CColor(1, 0, 0, a), false); break;
-	case 2:  RenderTile(CColor(0, 1, 0, a), false); break;
-	case 3:  RenderTile(CColor(0, 0, 1, a), false); break;
-	case 4:  RenderTile(CColor(1, 1, 0, a), false); break;
-	case 5:  RenderTile(CColor(0, 1, 1, a), false); break;
-	case 6:  RenderTile(CColor(1, 0, 1, a), false); break;
-	default: RenderTile(CColor(1, 1, 1, a), false); break;
+		for (size_t i = 0; i < w; ++i)
+		{
+			SColor4ub color;
+			u8 id = (m_TerritoryManager.m_Territories->get((int)i, (int)j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK);
+			color = GetColor(id, 64);
+			*data++ = color.R;
+			*data++ = color.G;
+			*data++ = color.B;
+			*data++ = color.A;
+		}
 	}
 }
 

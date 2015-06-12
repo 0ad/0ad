@@ -64,7 +64,8 @@ namespace SimRender
  * @param[in] floating If true, the line conforms to water as well.
  * @param[in] heightOffset Height above terrain to offset the line.
  */
-void ConstructLineOnGround(const CSimContext& context, const std::vector<float>& xz,
+void ConstructLineOnGround(
+		const CSimContext& context, const std::vector<float>& xz,
 		SOverlayLine& overlay,
 		bool floating, float heightOffset = 0.25f);
 
@@ -78,7 +79,18 @@ void ConstructLineOnGround(const CSimContext& context, const std::vector<float>&
  * @param[in] heightOffset Height above terrain to offset the circle.
  * @param heightOffset The vertical offset to apply to points, to raise the line off the terrain a bit.
  */
-void ConstructCircleOnGround(const CSimContext& context, float x, float z, float radius,
+void ConstructCircleOnGround(
+		const CSimContext& context, float x, float z, float radius,
+		SOverlayLine& overlay,
+		bool floating, float heightOffset = 0.25f);
+
+/**
+ * Constructs overlay line as an outlined circle sector (an arc with straight lines between the
+ * endpoints and the circle's center), conforming to terrain.
+ */
+void ConstructClosedArcOnGround(
+		const CSimContext& context, float x, float z, float radius,
+		float start, float end,
 		SOverlayLine& overlay,
 		bool floating, float heightOffset = 0.25f);
 
@@ -92,7 +104,8 @@ void ConstructCircleOnGround(const CSimContext& context, float x, float z, float
  * @param[in] floating If true, the rectangle conforms to water as well.
  * @param[in] heightOffset Height above terrain to offset the rectangle.
  */
-void ConstructSquareOnGround(const CSimContext& context, float x, float z, float w, float h, float a,
+void ConstructSquareOnGround(
+		const CSimContext& context, float x, float z, float w, float h, float a,
 		SOverlayLine& overlay,
 		bool floating, float heightOffset = 0.25f);
 

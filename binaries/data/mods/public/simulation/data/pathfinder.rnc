@@ -12,19 +12,8 @@ element Pathfinder {
             element MaxWaterDepth { xsd:decimal }? &
             element MaxTerrainSlope { xsd:decimal }? &
             element MinShoreDistance { xsd:decimal }? &
-            element MaxShoreDistance { xsd:decimal }?
-        }+
-    } &
-    element MovementClasses {
-        element * {
-            attribute Speed { xsd:decimal } &
-            attribute Cost { xsd:decimal } &
-            element UnitClasses {
-                element * {
-                    attribute Speed { xsd:decimal } &
-                    attribute Cost { xsd:decimal }
-                }*
-            }?
+            element MaxShoreDistance { xsd:decimal }? &
+            element Clearance { xsd:decimal }?
         }+
     }
 }

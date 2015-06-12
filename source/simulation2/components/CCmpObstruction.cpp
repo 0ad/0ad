@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,6 +58,7 @@ public:
 	entity_pos_t m_Size0; // radius or width
 	entity_pos_t m_Size1; // radius or depth
 	flags_t m_TemplateFlags;
+	entity_pos_t m_Clearance;
 
 	typedef struct {
 		entity_pos_t dx, dz;
@@ -112,10 +113,14 @@ public:
 			"<choice>"
 				"<element name='Static'>"
 					"<attribute name='width'>"
-						"<ref name='positiveDecimal'/>"
+						"<data type='decimal'>"
+							"<param name='minInclusive'>1.5</param>"
+						"</data>"
 					"</attribute>"
 					"<attribute name='depth'>"
-						"<ref name='positiveDecimal'/>"
+						"<data type='decimal'>"
+							"<param name='minInclusive'>1.5</param>"
+						"</data>"
 					"</attribute>"
 				"</element>"
 				"<element name='Unit'>"
@@ -138,10 +143,14 @@ public:
 								"</attribute>"
 							"</optional>"
 							"<attribute name='width'>"
-								"<ref name='positiveDecimal'/>"
+								"<data type='decimal'>"
+									"<param name='minInclusive'>1.5</param>"
+								"</data>"
 							"</attribute>"
 							"<attribute name='depth'>"
-								"<ref name='positiveDecimal'/>"
+								"<data type='decimal'>"
+									"<param name='minInclusive'>1.5</param>"
+								"</data>"
 							"</attribute>"
 						"</element>"
 					"</zeroOrMore>"
@@ -177,6 +186,9 @@ public:
 
 	virtual void Init(const CParamNode& paramNode)
 	{
+		// The minimum obstruction size is the navcell size * sqrt(2)
+		// This is enforced in the schema as a minimum of 1.5
+		fixed minObstruction = (Pathfinding::NAVCELL_SIZE.Square() * 2).Sqrt();
 		m_TemplateFlags = 0;
 		if (paramNode.GetChild("BlockMovement").ToBool())
 			m_TemplateFlags |= ICmpObstructionManager::FLAG_BLOCK_MOVEMENT;
@@ -203,6 +215,8 @@ public:
 			m_Type = STATIC;
 			m_Size0 = paramNode.GetChild("Static").GetChild("@width").ToFixed();
 			m_Size1 = paramNode.GetChild("Static").GetChild("@depth").ToFixed();
+			ENSURE(m_Size0 > minObstruction);
+			ENSURE(m_Size1 > minObstruction);
 		}
 		else
 		{
@@ -215,6 +229,8 @@ public:
 				Shape b;
 				b.size0 = it->second.GetChild("@width").ToFixed();
 				b.size1 = it->second.GetChild("@depth").ToFixed();
+				ENSURE(b.size0 > minObstruction);
+				ENSURE(b.size1 > minObstruction);
 				b.dx = it->second.GetChild("@x").ToFixed();
 				b.dz = it->second.GetChild("@z").ToFixed();
 				b.da = entity_angle_t::FromInt(0);
@@ -319,7 +335,7 @@ public:
 						data.x, data.z, data.a, m_Size0, m_Size1, m_Flags, m_ControlGroup, m_ControlGroup2);
 				else if (m_Type == UNIT)
 					m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
-						data.x, data.z, m_Size0, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
+						data.x, data.z, m_Size0, m_Clearance, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
 				else
 					AddClusterShapes(data.x, data.x, data.a);
 			}
@@ -376,7 +392,7 @@ public:
 					pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, m_Flags, m_ControlGroup, m_ControlGroup2);
 			else if (m_Type == UNIT)
 				m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
-					pos.X, pos.Y, m_Size0, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
+					pos.X, pos.Y, m_Size0, m_Clearance, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
 			else 
 				AddClusterShapes(pos.X, pos.Y, cmpPosition->GetRotation().Y);
 		}
@@ -493,6 +509,12 @@ public:
 			return CFixedVector2D(m_Size0 / 2, m_Size1 / 2).Length();
 	}
 
+	virtual void SetUnitClearance(const entity_pos_t& clearance)
+	{
+		if (m_Type == UNIT)
+			m_Clearance = clearance;
+	}
+
 	virtual bool IsControlPersistent()
 	{
 		return m_ControlPersist;
@@ -526,7 +548,7 @@ public:
 		}
 
 		// Get passability class
-		ICmpPathfinder::pass_class_t passClass = cmpPathfinder->GetPassabilityClass(className);
+		pass_class_t passClass = cmpPathfinder->GetPassabilityClass(className);
 
 		// Ignore collisions within the same control group, or with other non-foundation-blocking shapes.
 		// Note that, since the control group for each entity defaults to the entity's ID, this is typically 
@@ -574,27 +596,14 @@ public:
 
 	virtual std::vector<entity_id_t> GetEntityCollisions(bool checkStructures, bool checkUnits)
 	{
+		// TODO: That function actually only checks for overlapping units when a new buidling is started.
+		// The name of the function should be changed and useless code removed.
+
 		std::vector<entity_id_t> ret;
-
-		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-		if (!cmpPosition)
-			return ret; // error
-
-		if (!cmpPosition->IsInWorld())
-			return ret; // no obstruction
-
-		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 		if (!cmpObstructionManager)
 			return ret; // error
-
-		// required precondition to use SkipControlGroupsRequireFlagObstructionFilter
-		if (m_ControlGroup == INVALID_ENTITY)
-		{
-			LOGERROR("[CmpObstruction] Cannot test for unit or structure obstructions; primary control group must be valid");
-			return ret;
-		}
 
 		flags_t flags = 0;
 		bool invertMatch = false;
@@ -619,18 +628,16 @@ public:
 		}
 
 		// Ignore collisions within the same control group, or with other shapes that don't match the filter.
-		// Note that, since the control group for each entity defaults to the entity's ID, this is typically 
+		// Note that, since the control group for each entity defaults to the entity's ID, this is typically
 		// equivalent to only ignoring the entity's own shape and other shapes that don't match the filter.
-		SkipControlGroupsRequireFlagObstructionFilter filter(invertMatch,
-				m_ControlGroup, m_ControlGroup2, flags);
+		SkipControlGroupsRequireFlagObstructionFilter filter(invertMatch, m_ControlGroup, m_ControlGroup2, flags);
 
-		if (m_Type == STATIC)
-			cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, &ret);
-		else if (m_Type == UNIT)
-			cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0, &ret);
-		else
-			cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, &ret);
-	
+		ICmpObstructionManager::ObstructionSquare square;
+		if (!GetObstructionSquare(square))
+			return ret; // error
+
+		cmpObstructionManager->GetUnitsOnObstruction(square, ret, filter);
+
 		return ret;
 	}
 

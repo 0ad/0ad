@@ -205,13 +205,13 @@ struct SerializeBool
 
 struct SerializeWaypoint
 {
-	void operator()(ISerializer& serialize, const char* UNUSED(name), const ICmpPathfinder::Waypoint& value)
+	void operator()(ISerializer& serialize, const char* UNUSED(name), const Waypoint& value)
 	{
 		serialize.NumberFixed_Unbounded("waypoint x", value.x);
 		serialize.NumberFixed_Unbounded("waypoint z", value.z);
 	}
 
-	void operator()(IDeserializer& deserialize, const char* UNUSED(name), ICmpPathfinder::Waypoint& value)
+	void operator()(IDeserializer& deserialize, const char* UNUSED(name), Waypoint& value)
 	{
 		deserialize.NumberFixed_Unbounded("waypoint x", value.x);
 		deserialize.NumberFixed_Unbounded("waypoint z", value.z);
@@ -221,9 +221,9 @@ struct SerializeWaypoint
 struct SerializeGoal
 {
 	template<typename S>
-	void operator()(S& serialize, const char* UNUSED(name), ICmpPathfinder::Goal& value)
+	void operator()(S& serialize, const char* UNUSED(name), PathGoal& value)
 	{
-		SerializeU8_Enum<ICmpPathfinder::Goal::Type, ICmpPathfinder::Goal::SQUARE>()(serialize, "type", value.type);
+		SerializeU8_Enum<PathGoal::Type, PathGoal::SQUARE>()(serialize, "type", value.type);
 		serialize.NumberFixed_Unbounded("goal x", value.x);
 		serialize.NumberFixed_Unbounded("goal z", value.z);
 		serialize.NumberFixed_Unbounded("goal u x", value.u.X);
@@ -232,6 +232,7 @@ struct SerializeGoal
 		serialize.NumberFixed_Unbounded("goal v z", value.v.Y);
 		serialize.NumberFixed_Unbounded("goal hw", value.hw);
 		serialize.NumberFixed_Unbounded("goal hh", value.hh);
+		serialize.NumberFixed_Unbounded("maxdist", value.maxdist);
 	}
 };
 
