@@ -104,15 +104,15 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 				break;
 			}
 
-			for (var entId of holder.garrisoned())
+			for (let entId of holder.garrisoned())
 			{
-				var ent = gameState.getEntityById(entId);
+				let ent = gameState.getEntityById(entId);
 				if (ent.owner() === PlayerID && !this.keepGarrisoned(ent, holder, enemiesAround))
 					holder.unload(entId);
 			}
-			for (var j = 0; j < list.length; ++j)
+			for (let j = 0; j < list.length; ++j)
 			{
-				var ent = gameState.getEntityById(list[j]);
+				let ent = gameState.getEntityById(list[j]);
 				if (this.keepGarrisoned(ent, holder, enemiesAround))
 					continue;
 				if (ent.getMetadata(PlayerID, "garrisonHolder") == id)

@@ -269,7 +269,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			{
 				var x = (j % placement.width + 0.5) * cellSize;
 				var z = (Math.floor(j / placement.width) + 0.5) * cellSize;
-				if (gameState.ai.HQ.isDangerousLocation([x, z]))
+				if (gameState.ai.HQ.isNearInvadingArmy([x, z]))
 					placement.map[j] = 0;
 			}
 		}
@@ -292,7 +292,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			{
 				var x = (j % placement.width + 0.5) * cellSize;
 				var z = (Math.floor(j / placement.width) + 0.5) * cellSize;
-				if (gameState.ai.HQ.isDangerousLocation([x, z]))
+				if (gameState.ai.HQ.isNearInvadingArmy([x, z]))
 					placement.map[j] = 0;
 			}
 		}
@@ -380,10 +380,10 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var obstructions = m.createObstructionMap(gameState, 0, template);
 	//obstructions.dumpIm(template.buildCategory() + "_obstructions.png");
 
-	var bestIdx = undefined;
-	var bestJdx = undefined;
-	var bestAngle = undefined;
-	var bestLand = undefined;
+	var bestIdx;
+	var bestJdx;
+	var bestAngle;
+	var bestLand;
 	var bestVal = -1;
 	var landPassMap = gameState.ai.accessibility.landPassMap;
 	var navalPassMap = gameState.ai.accessibility.navalPassMap;
@@ -391,7 +391,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var width = gameState.ai.HQ.territoryMap.width;
 	var cellSize = gameState.ai.HQ.territoryMap.cellSize;
 	var nbShips = gameState.ai.HQ.navalManager.transportShips.length;
-	var proxyAccess = undefined;
+	var proxyAccess;
 	if (this.metadata.proximity)
 		proxyAccess = gameState.ai.accessibility.getAccessValue(this.metadata.proximity);
 
@@ -433,13 +433,12 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 				continue;
 		}
 
-		var res = Math.min(maxres, this.getResourcesAround(gameState, j, 80));
-
 		var dist;
+		var res = Math.min(maxres, this.getResourcesAround(gameState, j, 80));
+		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		if (this.metadata.proximity)
 		{
 			// if proximity is given, we look for the nearest point
-			var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 			dist = API3.SquareVectorDistance(this.metadata.proximity, pos);
 			dist = Math.sqrt(dist) + 15 * (maxres - res);
 		}
@@ -454,15 +453,17 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		if (bestIdx !== undefined && dist > bestVal)
 			continue;
 
-		var x = ((i % obstructions.width) + 0.5) * obstructions.cellSize;
-		var z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
-		var angle = this.getDockAngle(gameState, x, z, halfSize);
+		let x = ((i % obstructions.width) + 0.5) * obstructions.cellSize;
+		let z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
+		let angle = this.getDockAngle(gameState, x, z, halfSize);
 		if (angle === false)
 			continue;
-		var land = this.checkDockPlacement(gameState, x, z, halfDepth, halfWidth, angle);
+		let land = this.checkDockPlacement(gameState, x, z, halfDepth, halfWidth, angle);
 		if (land < 2 || !gameState.ai.HQ.landRegions[land])
 			continue;
 		if (this.metadata.proximity && gameState.ai.accessibility.regionSize[land] < 4000)
+			continue;
+		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 
 		bestVal = dist;
