@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,9 +68,8 @@ struct SVisibilitySegment
 class CCmpRallyPointRenderer : public ICmpRallyPointRenderer
 {
 	// import some types for less verbosity
-	typedef ICmpPathfinder::Path Path;
-	typedef ICmpPathfinder::Goal Goal;
-	typedef ICmpPathfinder::Waypoint Waypoint;
+	typedef WaypointPath Path;
+	typedef PathGoal Goal;
 	typedef ICmpRangeManager::CLosQuerier CLosQuerier;
 	typedef SOverlayTexturedLine::LineCapType LineCapType;
 
@@ -114,7 +113,6 @@ protected:
 	std::wstring m_LineTexturePath;
 	std::wstring m_LineTextureMaskPath;
 	std::string m_LinePassabilityClass; ///< Pathfinder passability class to use for computing the (long-range) marker line path.
-	std::string m_LineCostClass; ///< Pathfinder cost class to use for computing the (long-range) marker line path.
 
 	CTexturePtr m_Texture;
 	CTexturePtr m_TextureMask;
@@ -140,7 +138,6 @@ public:
 				"<LineEndCap>square</LineEndCap>"
 				"<LineColor r='20' g='128' b='240'></LineColor>"
 				"<LineDashColor r='158' g='11' b='15'></LineDashColor>"
-				"<LineCostClass>default</LineCostClass>"
 				"<LinePassabilityClass>default</LinePassabilityClass>"
 			"</a:example>"
 			"<element name='MarkerTemplate' a:help='Template name for the rally point marker entity (typically a waypoint flag actor)'>"
@@ -194,9 +191,6 @@ public:
 				"</choice>"
 			"</element>"
 			"<element name='LinePassabilityClass' a:help='The pathfinder passability class to use for computing the rally point marker line path'>"
-				"<text />"
-			"</element>"
-			"<element name='LineCostClass' a:help='The pathfinder cost class to use for computing the rally point marker line path'>"
 				"<text />"
 			"</element>";
 	}
@@ -413,6 +407,11 @@ private:
 	void FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint);
 
 	/**
+	 * Get the point on the footprint edge that's as close from "start" as possible.
+	 */
+	void GetClosestsEdgePointFrom(CFixedVector2D& result, CFixedVector2D& start, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint);
+
+	/**
 	 * Returns a list of indices of waypoints in the current path (m_Path[index]) where the LOS visibility changes, ordered from 
 	 * building/previous rally point to rally point. Used to construct the overlay line segments and track changes to the SoD.
 	 */
@@ -477,7 +476,6 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 	m_LineTextureMaskPath = paramNode.GetChild("LineTextureMask").ToString();
 	m_LineStartCapType = SOverlayTexturedLine::StrToLineCapType(paramNode.GetChild("LineStartCap").ToString());
 	m_LineEndCapType = SOverlayTexturedLine::StrToLineCapType(paramNode.GetChild("LineEndCap").ToString());
-	m_LineCostClass = paramNode.GetChild("LineCostClass").ToUTF8();
 	m_LinePassabilityClass = paramNode.GetChild("LinePassabilityClass").ToUTF8();
 
 	// ---------------------------------------------------------------------------------------------
@@ -621,66 +619,61 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 	}
 	m_VisibilitySegments[index].clear();
 
-	entity_pos_t pathStartX;
-	entity_pos_t pathStartY;
-
-	if (index == 0)
-	{
-		pathStartX = cmpPosition->GetPosition2D().X;
-		pathStartY = cmpPosition->GetPosition2D().Y;
-	}
-	else
-	{
-		pathStartX = m_RallyPoints[index-1].X;
-		pathStartY = m_RallyPoints[index-1].Y;
-	}
-
 	// Find a long path to the goal point -- this uses the tile-based pathfinder, which will return a
-	// list of waypoints (i.e. a Path) from the building/previous rally point to the goal, where each
+	// list of waypoints (i.e. a Path) from the goal to the foundation/previous rally point, where each
 	// waypoint is centered at a tile. We'll have to do some post-processing on the path to get it smooth.
 	Path path;
 	std::vector<Waypoint>& waypoints = path.m_Waypoints;
 
+	CFixedVector2D start(cmpPosition->GetPosition2D());
 	Goal goal = { Goal::POINT, m_RallyPoints[index].X, m_RallyPoints[index].Y };
-	cmpPathfinder->ComputePath(
-		pathStartX,
-		pathStartY,
-		goal,
-		cmpPathfinder->GetPassabilityClass(m_LinePassabilityClass),
-		cmpPathfinder->GetCostClass(m_LineCostClass),
-		path
-	);
+
+	if (index == 0)
+		GetClosestsEdgePointFrom(start,m_RallyPoints[index], cmpPosition, cmpFootprint);
+	else
+	{
+		start.X = m_RallyPoints[index-1].X;
+		start.Y = m_RallyPoints[index-1].Y;
+	}
+	cmpPathfinder->ComputePath(start.X, start.Y, goal, cmpPathfinder->GetPassabilityClass(m_LinePassabilityClass), path);
 
 	// Check if we got a path back; if not we probably have two markers less than one tile apart.
 	if (path.m_Waypoints.size() < 2)
 	{
-		m_Path[index].push_back(CVector2D(goal.x.ToFloat(), goal.z.ToFloat()));
-		m_Path[index].push_back(CVector2D(pathStartX.ToFloat(), pathStartY.ToFloat()));
+		m_Path[index].emplace_back(start.X.ToFloat(), start.Y.ToFloat());
+		m_Path[index].emplace_back(m_RallyPoints[index].X.ToFloat(), m_RallyPoints[index].Y.ToFloat());
 		return;
 	}
+	else if (index == 0)
+	{
+		// sometimes this ends up not being optimal if you asked for a long path, so improve.
+		CFixedVector2D newend(waypoints[waypoints.size()-2].x,waypoints[waypoints.size()-2].z);
+		GetClosestsEdgePointFrom(newend,newend, cmpPosition, cmpFootprint);
+		waypoints.back().x = newend.X;
+		waypoints.back().z = newend.Y;
+	}
+	else
+	{
+		// make sure we actually start at the rallypoint because the pathfinder moves us to a usable tile.
+		waypoints.back().x = m_RallyPoints[index-1].X;
+		waypoints.back().z = m_RallyPoints[index-1].Y;
+	}
+
+	// pathfinder makes us go to the nearest passable cell which isn't always what we want
+	waypoints[0].x = m_RallyPoints[index].X;
+	waypoints[0].z = m_RallyPoints[index].Y;
 
 	// From here on, we choose to represent the waypoints as CVector2D floats to avoid to have to convert back and forth
 	// between fixed-point Waypoint/CFixedVector2D and various other float-based formats used by interpolation and whatnot.
 	// Since we'll only be further using these points for rendering purposes, using floats should be fine.
 
-	// Make sure to add the actual goal point as the last point (the long pathfinder only finds paths to the tile closest to the 
-	// goal, so we need to complete the last bit from the closest tile to the rally point itself)
-	// NOTE: the points are returned in reverse order (from the goal to the start point), so we actually need to insert it at the 
-	// front of the coordinate list. Hence, we'll do this first before appending the rest of the fixed waypoints as CVector2Ds.
-
-	Waypoint& lastWaypoint = waypoints.back();
-	if (lastWaypoint.x != goal.x || lastWaypoint.z != goal.z)
-		m_Path[index].push_back(CVector2D(goal.x.ToFloat(), goal.z.ToFloat()));
-
-	// add the rest of the waypoints
-	for (size_t i = 0; i < waypoints.size(); ++i)
-		m_Path[index].push_back(CVector2D(waypoints[i].x.ToFloat(), waypoints[i].z.ToFloat()));
+	for (Waypoint& waypoint : waypoints)
+		m_Path[index].emplace_back(waypoint.x.ToFloat(), waypoint.z.ToFloat());
 
 	// add the start position
-	m_Path[index].push_back(CVector2D(pathStartX.ToFloat(), pathStartY.ToFloat()));
+	// m_Path[index].emplace_back(m_RallyPoints[index].X.ToFloat(), m_RallyPoints[index].Y.ToFloat());
 
-	// -------------------------------------------------------------------------------------------
-	// post-processing
+	// Post-processing
 
 	// Linearize the path;
 	// Pass through the waypoints, averaging each waypoint with its next one except the last one. Because the path
@@ -691,45 +684,40 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 		m_Path[index][i] = (m_Path[index][i] + m_Path[index][i-1]) / 2.0f;
 
 	// if there's a footprint and this path starts from this entity, remove any points returned by the pathfinder that may be on obstructed footprint tiles
-	if (index == 0 && cmpFootprint)
-		FixFootprintWaypoints(m_Path[index], cmpPosition, cmpFootprint);
+	//if (index == 0 && cmpFootprint)
+	//	FixFootprintWaypoints(m_Path[index], cmpPosition, cmpFootprint);
 
 	// Eliminate some consecutive waypoints that are visible from eachother. Reduce across a maximum distance of approx. 6 tiles 
 	// (prevents segments that are too long to properly stick to the terrain)
 	ReduceSegmentsByVisibility(m_Path[index], 6);
 
-	//// <DEBUG> ///////////////////////////////////////////////
+	// Debug overlays
 	if (m_EnableDebugNodeOverlay)
 	{
 		while (index >= m_DebugNodeOverlays.size())
-		{
-			std::vector<SOverlayLine> tmp;
-			m_DebugNodeOverlays.push_back(tmp);
-		}
+			m_DebugNodeOverlays.emplace_back();
+
 		m_DebugNodeOverlays[index].clear();
 	}
 	if (m_EnableDebugNodeOverlay && m_SmoothPath)
 	{
 		// Create separate control point overlays so we can differentiate when using smoothing (offset them a little higher from the
 		// terrain so we can still see them after the interpolated points are added)
-		for (size_t j = 0; j < m_Path[index].size(); ++j)
+		for (CVector2D& point : m_Path[index])
 		{
 			SOverlayLine overlayLine;
 			overlayLine.m_Color = CColor(1.0f, 0.0f, 0.0f, 1.0f);
 			overlayLine.m_Thickness = 2;
-			SimRender::ConstructSquareOnGround(GetSimContext(), m_Path[index][j].X, m_Path[index][j].Y, 0.2f, 0.2f, 1.0f, overlayLine, true);
+			SimRender::ConstructSquareOnGround(GetSimContext(), point.X, point.Y, 0.2f, 0.2f, 1.0f, overlayLine, true);
 			m_DebugNodeOverlays[index].push_back(overlayLine);
 		}
 	}
-	//// </DEBUG> //////////////////////////////////////////////
 
 	if (m_SmoothPath)
 		// The number of points to interpolate goes hand in hand with the maximum amount of node links allowed to be joined together
 		// by the visibility reduction. The more node links that can be joined together, the more interpolated points you need to 
 		// generate to be able to deal with local terrain height changes.
-		SimRender::InterpolatePointsRNS(m_Path[index], false, 0, 8); // no offset, keep line at its exact path
-
-	// -------------------------------------------------------------------------------------------
+		SimRender::InterpolatePointsRNS(m_Path[index], false, 0, 4); // no offset, keep line at its exact path
 
 	// find which point is the last visible point before going into the SoD, so we have a point to compare to on the next turn
 	GetVisibilitySegments(m_VisibilitySegments[index], index); 
@@ -932,6 +920,53 @@ void CCmpRallyPointRenderer::UpdateOverlayLines()
 	}
 }
 
+void CCmpRallyPointRenderer::GetClosestsEdgePointFrom(CFixedVector2D& result, CFixedVector2D& start, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint)
+{
+	ENSURE(cmpPosition);
+	ENSURE(cmpFootprint);
+
+	// grab the shape and dimensions of the footprint
+	entity_pos_t footprintSize0, footprintSize1, footprintHeight;
+	ICmpFootprint::EShape footprintShape;
+	cmpFootprint->GetShape(footprintShape, footprintSize0, footprintSize1, footprintHeight);
+
+	// grab the center of the footprint
+	CFixedVector2D center = cmpPosition->GetPosition2D();
+
+	switch (footprintShape)
+	{
+		case ICmpFootprint::SQUARE:
+		{
+			// in this case, footprintSize0 and 1 indicate the size along the X and Z axes, respectively.
+
+			// the building's footprint could be rotated any which way, so let's get the rotation around the Y axis
+			// and the rotated unit vectors in the X/Z plane of the shape's footprint
+			// (the Footprint itself holds only the outline, the Position holds the orientation)
+
+			fixed s, c; // sine and cosine of the Y axis rotation angle (aka the yaw)
+			fixed a = cmpPosition->GetRotation().Y;
+			sincos_approx(a, s, c);
+			CFixedVector2D u(c, -s); // unit vector along the rotated X axis
+			CFixedVector2D v(s, c); // unit vector along the rotated Z axis
+			CFixedVector2D halfSize(footprintSize0/2, footprintSize1/2);
+
+			CFixedVector2D footprintEdgePoint = Geometry::NearestPointOnSquare(start - center, u, v, halfSize);
+			result = center + footprintEdgePoint;
+			break;
+		}
+		case ICmpFootprint::CIRCLE:
+		{
+			// in this case, both footprintSize0 and 1 indicate the circle's radius
+			// Transform target to the point nearest on the edge.
+			CFixedVector2D centerVec2D(center.X, center.Y);
+			CFixedVector2D centerToLast(start - centerVec2D);
+			centerToLast.Normalize();
+			result = centerVec2D + (centerToLast.Multiply(footprintSize0));
+			break;
+		}
+	}
+}
+
 void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint)
 {
 	ENSURE(cmpPosition);
@@ -1034,7 +1069,7 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 	std::vector<CVector2D> newCoords;
 	StationaryOnlyObstructionFilter obstructionFilter;
 	entity_pos_t lineRadius = fixed::FromFloat(m_LineThickness);
-	ICmpPathfinder::pass_class_t passabilityClass = cmpPathFinder->GetPassabilityClass(m_LinePassabilityClass);
+	pass_class_t passabilityClass = cmpPathFinder->GetPassabilityClass(m_LinePassabilityClass);
 
 	newCoords.push_back(coords[0]); // save the first base node
 

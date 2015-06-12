@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ float Geometry::ChordToCentralAngle(const float chordLength, const float radius)
 	return acosf(1.f - SQR(chordLength)/(2.f*SQR(radius))); // cfr. law of cosines
 }
 
-fixed Geometry::DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
+fixed Geometry::DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize, bool countInsideAsZero)
 {
 	/*
 	 * Relative to its own coordinate system, we have a square like:
@@ -92,7 +92,7 @@ fixed Geometry::DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedV
 		fixed closest = (dv.Absolute() - hh).Absolute(); // horizontal edges
 
 		if (-hh < dv && dv < hh) // region I
-			closest = std::min(closest, (du.Absolute() - hw).Absolute()); // vertical edges
+			closest = countInsideAsZero ? fixed::Zero() : std::min(closest, (du.Absolute() - hw).Absolute()); // vertical edges
 
 		return closest;
 	}

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -101,10 +101,16 @@ struct Vertex
 };
 
 // Obstruction edges (paths will not cross any of these).
-// When used in the 'edges' list, defines the two points of the edge.
-// When used in the 'edgesAA' list, defines the opposing corners of an axis-aligned square
-// (from which four individual edges can be trivially computed), requiring p0 <= p1
+// Defines the two points of the edge.
 struct Edge
+{
+	CFixedVector2D p0, p1;
+};
+
+// Axis-aligned obstruction squares (paths will not cross any of these).
+// Defines the opposing corners of an axis-aligned square
+// (from which four individual edges can be trivially computed), requiring p0 <= p1
+struct Square
 {
 	CFixedVector2D p0, p1;
 };
@@ -283,209 +289,266 @@ inline static bool CheckVisibilityTop(CFixedVector2D a, CFixedVector2D b, const 
 	return true;
 }
 
+typedef PriorityQueueHeap<u16, fixed, fixed> VertexPriorityQueue;
 
-static CFixedVector2D NearestPointOnGoal(CFixedVector2D pos, const CCmpPathfinder::Goal& goal)
-{
-	CFixedVector2D g(goal.x, goal.z);
-
-	switch (goal.type)
-	{
-	case CCmpPathfinder::Goal::POINT:
-	{
-		return g;
-	}
-
- 	case CCmpPathfinder::Goal::CIRCLE:
-	{
-		CFixedVector2D d = pos - g;
-		if (d.IsZero())
-			d = CFixedVector2D(fixed::FromInt(1), fixed::Zero()); // some arbitrary direction
-		d.Normalize(goal.hw);
-		return g + d;
-	}
-
-	case CCmpPathfinder::Goal::SQUARE:
-	{
-		CFixedVector2D halfSize(goal.hw, goal.hh);
-		CFixedVector2D d = pos - g;
-		return g + Geometry::NearestPointOnSquare(d, goal.u, goal.v, halfSize);
-	}
-
-	default:
-		debug_warn(L"invalid type");
-		return CFixedVector2D();
-	}
-}
-
-CFixedVector2D CCmpPathfinder::GetNearestPointOnGoal(CFixedVector2D pos, const CCmpPathfinder::Goal& goal)
-{
-	return NearestPointOnGoal(pos, goal);
-	// (It's intentional that we don't put the implementation inside this
-	// function, to avoid the (admittedly unmeasured and probably trivial)
-	// cost of a virtual call inside ComputeShortPath)
-}
-
-typedef PriorityQueueHeap<u16, fixed> PriorityQueue;
-
-struct TileEdge
-{
-	u16 i, j;
-	enum { TOP, BOTTOM, LEFT, RIGHT } dir;
-};
-
-static void AddTerrainEdges(std::vector<Edge>& edgesAA, std::vector<Vertex>& vertexes,
-	u16 i0, u16 j0, u16 i1, u16 j1, fixed r,
-	ICmpPathfinder::pass_class_t passClass, const Grid<TerrainTile>& terrain)
+/**
+ * Add edges and vertexes to represent the boundaries between passable and impassable
+ * navcells (for impassable terrain and for static obstruction shapes).
+ * Navcells i0 <= i <= i1, j0 <= j <= j1 will be considered.
+ */
+static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& vertexes,
+	int i0, int j0, int i1, int j1,
+	pass_class_t passClass, const Grid<NavcellData>& grid)
 {
 	PROFILE("AddTerrainEdges");
 
-	std::vector<TileEdge> tileEdges;
+	// Clamp the coordinates so we won't attempt to sample outside of the grid.
+	// (This assumes the outermost ring of navcells (which are always impassable)
+	// won't have a boundary with any passable navcells. TODO: is that definitely
+	// safe enough?)
 
-	// Find all edges between tiles of differently passability statuses
-	for (u16 j = j0; j <= j1; ++j)
+	i0 = clamp(i0, 1, grid.m_W-2);
+	j0 = clamp(j0, 1, grid.m_H-2);
+	i1 = clamp(i1, 1, grid.m_W-2);
+	j1 = clamp(j1, 1, grid.m_H-2);
+
+	for (int j = j0; j <= j1; ++j)
 	{
-		for (u16 i = i0; i <= i1; ++i)
+		for (int i = i0; i <= i1; ++i)
 		{
-			if (!IS_TERRAIN_PASSABLE(terrain.get(i, j), passClass))
+			if (IS_PASSABLE(grid.get(i, j), passClass))
+				continue;
+
+			if (IS_PASSABLE(grid.get(i+1, j), passClass) && IS_PASSABLE(grid.get(i, j+1), passClass) && IS_PASSABLE(grid.get(i+1, j+1), passClass))
 			{
-				bool any = false; // whether we're adding any edges of this tile
+				Vertex vert;
+				vert.status = Vertex::UNEXPLORED;
+				vert.quadOutward = QUADRANT_ALL;
+				vert.quadInward = QUADRANT_BL;
+				vert.p = CFixedVector2D(fixed::FromInt(i+1)+EDGE_EXPAND_DELTA, fixed::FromInt(j+1)+EDGE_EXPAND_DELTA).Multiply(Pathfinding::NAVCELL_SIZE);
+				vertexes.push_back(vert);
+			}
 
-				if (j > 0 && IS_TERRAIN_PASSABLE(terrain.get(i, j-1), passClass))
+			if (IS_PASSABLE(grid.get(i-1, j), passClass) && IS_PASSABLE(grid.get(i, j+1), passClass) && IS_PASSABLE(grid.get(i-1, j+1), passClass))
+			{
+				Vertex vert;
+				vert.status = Vertex::UNEXPLORED;
+				vert.quadOutward = QUADRANT_ALL;
+				vert.quadInward = QUADRANT_BR;
+				vert.p = CFixedVector2D(fixed::FromInt(i)-EDGE_EXPAND_DELTA, fixed::FromInt(j+1)+EDGE_EXPAND_DELTA).Multiply(Pathfinding::NAVCELL_SIZE);
+				vertexes.push_back(vert);
+			}
+
+			if (IS_PASSABLE(grid.get(i+1, j), passClass) && IS_PASSABLE(grid.get(i, j-1), passClass) && IS_PASSABLE(grid.get(i+1, j-1), passClass))
+			{
+				Vertex vert;
+				vert.status = Vertex::UNEXPLORED;
+				vert.quadOutward = QUADRANT_ALL;
+				vert.quadInward = QUADRANT_TL;
+				vert.p = CFixedVector2D(fixed::FromInt(i+1)+EDGE_EXPAND_DELTA, fixed::FromInt(j)-EDGE_EXPAND_DELTA).Multiply(Pathfinding::NAVCELL_SIZE);
+				vertexes.push_back(vert);
+			}
+
+			if (IS_PASSABLE(grid.get(i-1, j), passClass) && IS_PASSABLE(grid.get(i, j-1), passClass) && IS_PASSABLE(grid.get(i-1, j-1), passClass))
+			{
+				Vertex vert;
+				vert.status = Vertex::UNEXPLORED;
+				vert.quadOutward = QUADRANT_ALL;
+				vert.quadInward = QUADRANT_TR;
+				vert.p = CFixedVector2D(fixed::FromInt(i)-EDGE_EXPAND_DELTA, fixed::FromInt(j)-EDGE_EXPAND_DELTA).Multiply(Pathfinding::NAVCELL_SIZE);
+				vertexes.push_back(vert);
+			}
+		}
+	}
+
+	// XXX rewrite this stuff
+
+	for (int j = j0; j < j1; ++j)
+	{
+		std::vector<u16> segmentsR;
+		std::vector<u16> segmentsL;
+
+		for (int i = i0; i <= i1; ++i)
+		{
+			bool a = IS_PASSABLE(grid.get(i, j+1), passClass);
+			bool b = IS_PASSABLE(grid.get(i, j), passClass);
+			if (a && !b)
+				segmentsL.push_back(i);
+			if (b && !a)
+				segmentsR.push_back(i);
+		}
+
+		if (!segmentsR.empty())
+		{
+			segmentsR.push_back(0); // sentinel value to simplify the loop
+			u16 ia = segmentsR[0];
+			u16 ib = ia + 1;
+			for (size_t n = 1; n < segmentsR.size(); ++n)
+			{
+				if (segmentsR[n] == ib)
+					++ib;
+				else
 				{
-					TileEdge e = { i, j, TileEdge::BOTTOM };
-					tileEdges.push_back(e);
-					any = true;
+					CFixedVector2D v0 = CFixedVector2D(fixed::FromInt(ia), fixed::FromInt(j+1)).Multiply(Pathfinding::NAVCELL_SIZE);
+					CFixedVector2D v1 = CFixedVector2D(fixed::FromInt(ib), fixed::FromInt(j+1)).Multiply(Pathfinding::NAVCELL_SIZE);
+					edges.emplace_back(Edge{ v0, v1 });
+
+					ia = segmentsR[n];
+					ib = ia + 1;
 				}
+			}
+		}
 
-				if (j < terrain.m_H-1 && IS_TERRAIN_PASSABLE(terrain.get(i, j+1), passClass))
+		if (!segmentsL.empty())
+		{
+			segmentsL.push_back(0); // sentinel value to simplify the loop
+			u16 ia = segmentsL[0];
+			u16 ib = ia + 1;
+			for (size_t n = 1; n < segmentsL.size(); ++n)
+			{
+				if (segmentsL[n] == ib)
+					++ib;
+				else
 				{
-					TileEdge e = { i, j, TileEdge::TOP };
-					tileEdges.push_back(e);
-					any = true;
-				}
+					CFixedVector2D v0 = CFixedVector2D(fixed::FromInt(ib), fixed::FromInt(j+1)).Multiply(Pathfinding::NAVCELL_SIZE);
+					CFixedVector2D v1 = CFixedVector2D(fixed::FromInt(ia), fixed::FromInt(j+1)).Multiply(Pathfinding::NAVCELL_SIZE);
+					edges.emplace_back(Edge{ v0, v1 });
 
-				if (i > 0 && IS_TERRAIN_PASSABLE(terrain.get(i-1, j), passClass))
-				{
-					TileEdge e = { i, j, TileEdge::LEFT };
-					tileEdges.push_back(e);
-					any = true;
-				}
-
-				if (i < terrain.m_W-1 && IS_TERRAIN_PASSABLE(terrain.get(i+1, j), passClass))
-				{
-					TileEdge e = { i, j, TileEdge::RIGHT };
-					tileEdges.push_back(e);
-					any = true;
-				}
-
-				// If we want to add any edge, then add the whole square to the axis-aligned-edges list.
-				// (The inner edges are redundant but it's easier than trying to split the squares apart.)
-				if (any)
-				{
-					CFixedVector2D v0 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
-					CFixedVector2D v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
-					Edge e = { v0, v1 };
-					edgesAA.push_back(e);
+					ia = segmentsL[n];
+					ib = ia + 1;
 				}
 			}
 		}
 	}
 
-	// TODO: maybe we should precompute these terrain edges since they'll rarely change?
-
-	// TODO: for efficiency (minimising the A* search space), we should coalesce adjoining edges
-
-	// Add all the tile outer edges to the search vertex lists
-	for (size_t n = 0; n < tileEdges.size(); ++n)
+	for (int i = i0; i < i1; ++i)
 	{
-		u16 i = tileEdges[n].i;
-		u16 j = tileEdges[n].j;
-		CFixedVector2D v0, v1;
-		Vertex vert;
-		vert.status = Vertex::UNEXPLORED;
-		vert.quadOutward = QUADRANT_ALL;
+		std::vector<u16> segmentsU;
+		std::vector<u16> segmentsD;
 
-		switch (tileEdges[n].dir)
+		for (int j = j0; j <= j1; ++j)
 		{
-		case TileEdge::BOTTOM:
-		{
-			v0 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
-			v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
-			vert.p.X = v0.X - EDGE_EXPAND_DELTA; vert.p.Y = v0.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TR; vertexes.push_back(vert);
-			vert.p.X = v1.X + EDGE_EXPAND_DELTA; vert.p.Y = v1.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TL; vertexes.push_back(vert);
-			break;
+			bool a = IS_PASSABLE(grid.get(i+1, j), passClass);
+			bool b = IS_PASSABLE(grid.get(i, j), passClass);
+			if (a && !b)
+				segmentsU.push_back(j);
+			if (b && !a)
+				segmentsD.push_back(j);
 		}
-		case TileEdge::TOP:
+
+		if (!segmentsU.empty())
 		{
-			v0 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
-			v1 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
-			vert.p.X = v0.X + EDGE_EXPAND_DELTA; vert.p.Y = v0.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BL; vertexes.push_back(vert);
-			vert.p.X = v1.X - EDGE_EXPAND_DELTA; vert.p.Y = v1.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BR; vertexes.push_back(vert);
-			break;
+			segmentsU.push_back(0); // sentinel value to simplify the loop
+			u16 ja = segmentsU[0];
+			u16 jb = ja + 1;
+			for (size_t n = 1; n < segmentsU.size(); ++n)
+			{
+				if (segmentsU[n] == jb)
+					++jb;
+				else
+				{
+					CFixedVector2D v0 = CFixedVector2D(fixed::FromInt(i+1), fixed::FromInt(ja)).Multiply(Pathfinding::NAVCELL_SIZE);
+					CFixedVector2D v1 = CFixedVector2D(fixed::FromInt(i+1), fixed::FromInt(jb)).Multiply(Pathfinding::NAVCELL_SIZE);
+					edges.emplace_back(Edge{ v0, v1 });
+
+					ja = segmentsU[n];
+					jb = ja + 1;
+				}
+			}
 		}
-		case TileEdge::LEFT:
+
+		if (!segmentsD.empty())
 		{
-			v0 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
-			v1 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
-			vert.p.X = v0.X - EDGE_EXPAND_DELTA; vert.p.Y = v0.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BR; vertexes.push_back(vert);
-			vert.p.X = v1.X - EDGE_EXPAND_DELTA; vert.p.Y = v1.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TR; vertexes.push_back(vert);
-			break;
-		}
-		case TileEdge::RIGHT:
-		{
-			v0 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
-			v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
-			vert.p.X = v0.X + EDGE_EXPAND_DELTA; vert.p.Y = v0.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TL; vertexes.push_back(vert);
-			vert.p.X = v1.X + EDGE_EXPAND_DELTA; vert.p.Y = v1.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BL; vertexes.push_back(vert);
-			break;
-		}
+			segmentsD.push_back(0); // sentinel value to simplify the loop
+			u16 ja = segmentsD[0];
+			u16 jb = ja + 1;
+			for (size_t n = 1; n < segmentsD.size(); ++n)
+			{
+				if (segmentsD[n] == jb)
+					++jb;
+				else
+				{
+					CFixedVector2D v0 = CFixedVector2D(fixed::FromInt(i+1), fixed::FromInt(jb)).Multiply(Pathfinding::NAVCELL_SIZE);
+					CFixedVector2D v1 = CFixedVector2D(fixed::FromInt(i+1), fixed::FromInt(ja)).Multiply(Pathfinding::NAVCELL_SIZE);
+					edges.emplace_back(Edge{ v0, v1 });
+
+					ja = segmentsD[n];
+					jb = ja + 1;
+				}
+			}
 		}
 	}
 }
 
 static void SplitAAEdges(CFixedVector2D a,
-		const std::vector<Edge>& edgesAA,
+		const std::vector<Edge>& edges,
+		const std::vector<Square>& squares,
+		std::vector<Edge>& edgesUnaligned,
 		std::vector<EdgeAA>& edgesLeft, std::vector<EdgeAA>& edgesRight,
 		std::vector<EdgeAA>& edgesBottom, std::vector<EdgeAA>& edgesTop)
 {
-	edgesLeft.reserve(edgesAA.size());
-	edgesRight.reserve(edgesAA.size());
-	edgesBottom.reserve(edgesAA.size());
-	edgesTop.reserve(edgesAA.size());
+	edgesLeft.reserve(squares.size());
+	edgesRight.reserve(squares.size());
+	edgesBottom.reserve(squares.size());
+	edgesTop.reserve(squares.size());
 
-	for (size_t i = 0; i < edgesAA.size(); ++i)
+	for (const Square& square : squares)
 	{
-		if (a.X <= edgesAA[i].p0.X)
+		if (a.X <= square.p0.X)
+			edgesLeft.emplace_back(EdgeAA{ square.p0, square.p1.Y });
+		if (a.X >= square.p1.X)
+			edgesRight.emplace_back(EdgeAA{ square.p1, square.p0.Y });
+		if (a.Y <= square.p0.Y)
+			edgesBottom.emplace_back(EdgeAA{ square.p0, square.p1.X });
+		if (a.Y >= square.p1.Y)
+			edgesTop.emplace_back(EdgeAA{ square.p1, square.p0.X });
+	}
+
+	for (const Edge& edge : edges)
+	{
+		if (edge.p0.X == edge.p1.X)
 		{
-			EdgeAA e = { edgesAA[i].p0, edgesAA[i].p1.Y };
-			edgesLeft.push_back(e);
+			if (edge.p1.Y < edge.p0.Y)
+			{
+				if (!(a.X <= edge.p0.X))
+					continue;
+				edgesLeft.emplace_back(EdgeAA{ edge.p1, edge.p0.Y });
+			}
+			else
+			{
+				if (!(a.X >= edge.p0.X))
+					continue;
+				edgesRight.emplace_back(EdgeAA{ edge.p1, edge.p0.Y });
+			}
 		}
-		if (a.X >= edgesAA[i].p1.X)
+		else if (edge.p0.Y == edge.p1.Y)
 		{
-			EdgeAA e = { edgesAA[i].p1, edgesAA[i].p0.Y };
-			edgesRight.push_back(e);
+			if (edge.p0.X < edge.p1.X)
+			{
+				if (!(a.Y <= edge.p0.Y))
+					continue;
+				edgesBottom.emplace_back(EdgeAA{ edge.p0, edge.p1.X });
+			}
+			else
+			{
+				if (!(a.Y >= edge.p0.Y))
+					continue;
+				edgesTop.emplace_back(EdgeAA{ edge.p0, edge.p1.X });
+			}
 		}
-		if (a.Y <= edgesAA[i].p0.Y)
-		{
-			EdgeAA e = { edgesAA[i].p0, edgesAA[i].p1.X };
-			edgesBottom.push_back(e);
-		}
-		if (a.Y >= edgesAA[i].p1.Y)
-		{
-			EdgeAA e = { edgesAA[i].p1, edgesAA[i].p0.X };
-			edgesTop.push_back(e);
-		}
+		else
+			edgesUnaligned.push_back(edge);
 	}
 }
 
 /**
- * Functor for sorting edges by approximate proximity to a fixed point.
+ * Functor for sorting edge-squares by approximate proximity to a fixed point.
  */
-struct EdgeSort
+struct SquareSort
 {
 	CFixedVector2D src;
-	EdgeSort(CFixedVector2D src) : src(src) { }
-	bool operator()(const Edge& a, const Edge& b)
+	SquareSort(CFixedVector2D src) : src(src) { }
+	bool operator()(const Square& a, const Square& b)
 	{
 		if ((a.p0 - src).CompareLength(b.p0 - src) < 0)
 			return true;
@@ -495,12 +558,9 @@ struct EdgeSort
 
 void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t r,
-	entity_pos_t range, const Goal& goal, pass_class_t passClass, Path& path)
+	entity_pos_t range, const PathGoal& goal, pass_class_t passClass, WaypointPath& path)
 {
-	UpdateGrid(); // TODO: only need to bother updating if the terrain changed
-
 	PROFILE3("ComputeShortPath");
-//	ScopeTimer UID__(L"ComputeShortPath");
 
 	m_DebugOverlayShortPathLines.clear();
 
@@ -511,17 +571,19 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		m_DebugOverlayShortPathLines.back().m_Color = CColor(1, 0, 0, 1);
 		switch (goal.type)
 		{
-		case CCmpPathfinder::Goal::POINT:
+		case PathGoal::POINT:
 		{
 			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), 0.2f, m_DebugOverlayShortPathLines.back(), true);
 			break;
 		}
-		case CCmpPathfinder::Goal::CIRCLE:
+		case PathGoal::CIRCLE:
+		case PathGoal::INVERTED_CIRCLE:
 		{
 			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat(), m_DebugOverlayShortPathLines.back(), true);
 			break;
 		}
-		case CCmpPathfinder::Goal::SQUARE:
+		case PathGoal::SQUARE:
+		case PathGoal::INVERTED_SQUARE:
 		{
 			float a = atan2f(goal.v.X.ToFloat(), goal.v.Y.ToFloat());
 			SimRender::ConstructSquareOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat()*2, goal.hh.ToFloat()*2, a, m_DebugOverlayShortPathLines.back(), true);
@@ -533,7 +595,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	// List of collision edges - paths must never cross these.
 	// (Edges are one-sided so intersections are fine in one direction, but not the other direction.)
 	std::vector<Edge> edges;
-	std::vector<Edge> edgesAA; // axis-aligned squares
+	std::vector<Square> edgeSquares; // axis-aligned squares; equivalent to 4 edges
 
 	// Create impassable edges at the max-range boundary, so we can't escape the region
 	// where we're meant to be searching
@@ -541,17 +603,13 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	fixed rangeXMax = x0 + range;
 	fixed rangeZMin = z0 - range;
 	fixed rangeZMax = z0 + range;
-	{
-		// (The edges are the opposite direction to usual, so it's an inside-out square)
-		Edge e0 = { CFixedVector2D(rangeXMin, rangeZMin), CFixedVector2D(rangeXMin, rangeZMax) };
-		Edge e1 = { CFixedVector2D(rangeXMin, rangeZMax), CFixedVector2D(rangeXMax, rangeZMax) };
-		Edge e2 = { CFixedVector2D(rangeXMax, rangeZMax), CFixedVector2D(rangeXMax, rangeZMin) };
-		Edge e3 = { CFixedVector2D(rangeXMax, rangeZMin), CFixedVector2D(rangeXMin, rangeZMin) };
-		edges.push_back(e0);
-		edges.push_back(e1);
-		edges.push_back(e2);
-		edges.push_back(e3);
-	}
+
+	// (The edges are the opposite direction to usual, so it's an inside-out square)
+	edges.emplace_back(Edge{ CFixedVector2D(rangeXMin, rangeZMin), CFixedVector2D(rangeXMin, rangeZMax) });
+	edges.emplace_back(Edge{ CFixedVector2D(rangeXMin, rangeZMax), CFixedVector2D(rangeXMax, rangeZMax) });
+	edges.emplace_back(Edge{ CFixedVector2D(rangeXMax, rangeZMax), CFixedVector2D(rangeXMax, rangeZMin) });
+	edges.emplace_back(Edge{ CFixedVector2D(rangeXMax, rangeZMin), CFixedVector2D(rangeXMin, rangeZMin) });
+
 
 	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
 	// the graph defined by these vertexes
@@ -559,7 +617,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 	// Add the start point to the graph
 	CFixedVector2D posStart(x0, z0);
-	fixed hStart = (posStart - NearestPointOnGoal(posStart, goal)).Length();
+	fixed hStart = (posStart - goal.NearestPointOnGoal(posStart)).Length();
 	Vertex start = { posStart, fixed::Zero(), hStart, 0, Vertex::OPEN, QUADRANT_NONE, QUADRANT_ALL };
 	vertexes.push_back(start);
 	const size_t START_VERTEX_ID = 0;
@@ -574,9 +632,9 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	// Add terrain obstructions
 	{
 		u16 i0, j0, i1, j1;
-		NearestTile(rangeXMin, rangeZMin, i0, j0);
-		NearestTile(rangeXMax, rangeZMax, i1, j1);
-		AddTerrainEdges(edgesAA, vertexes, i0, j0, i1, j1, r, passClass, *m_Grid);
+		Pathfinding::NearestNavcell(rangeXMin, rangeZMin, i0, j0, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
+		Pathfinding::NearestNavcell(rangeXMax, rangeZMax, i1, j1, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
+		AddTerrainEdges(edges, vertexes, i0, j0, i1, j1, passClass, *m_Grid);
 	}
 
 	// Find all the obstruction squares that might affect us
@@ -586,7 +644,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 	// Resize arrays to reduce reallocations
 	vertexes.reserve(vertexes.size() + squares.size()*4);
-	edgesAA.reserve(edgesAA.size() + squares.size()); // (assume most squares are AA)
+	edgeSquares.reserve(edgeSquares.size() + squares.size()); // (assume most squares are AA)
 
 	// Convert each obstruction square into collision edges and search graph vertexes
 	for (size_t i = 0; i < squares.size(); ++i)
@@ -615,7 +673,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 		// Add the edges:
 
-		CFixedVector2D h0(squares[i].hw + r, squares[i].hh + r);
+		CFixedVector2D h0(squares[i].hw + r,   squares[i].hh + r);
 		CFixedVector2D h1(squares[i].hw + r, -(squares[i].hh + r));
 
 		CFixedVector2D ev0(center.X - h0.Dot(u), center.Y + h0.Dot(v));
@@ -623,20 +681,13 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		CFixedVector2D ev2(center.X + h0.Dot(u), center.Y - h0.Dot(v));
 		CFixedVector2D ev3(center.X + h1.Dot(u), center.Y - h1.Dot(v));
 		if (aa)
-		{
-			Edge e = { ev1, ev3 };
-			edgesAA.push_back(e);
-		}
+			edgeSquares.emplace_back(Square{ ev1, ev3 });
 		else
 		{
-			Edge e0 = { ev0, ev1 };
-			Edge e1 = { ev1, ev2 };
-			Edge e2 = { ev2, ev3 };
-			Edge e3 = { ev3, ev0 };
-			edges.push_back(e0);
-			edges.push_back(e1);
-			edges.push_back(e2);
-			edges.push_back(e3);
+			edges.emplace_back(Edge{ ev0, ev1 });
+			edges.emplace_back(Edge{ ev1, ev2 });
+			edges.emplace_back(Edge{ ev2, ev3 });
+			edges.emplace_back(Edge{ ev3, ev0 });
 		}
 
 		// TODO: should clip out vertexes and edges that are outside the range,
@@ -645,36 +696,75 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 	ENSURE(vertexes.size() < 65536); // we store array indexes as u16
 
+	// Render the debug overlay
 	if (m_DebugOverlay)
 	{
-		// Render the obstruction edges
-		for (size_t i = 0; i < edges.size(); ++i)
+#define PUSH_POINT(p) STMT(xz.push_back(p.X.ToFloat()); xz.push_back(p.Y.ToFloat()))
+		// Render the vertexes as little Pac-Man shapes to indicate quadrant direction
+		for (size_t i = 0; i < vertexes.size(); ++i)
 		{
-			m_DebugOverlayShortPathLines.push_back(SOverlayLine());
-			m_DebugOverlayShortPathLines.back().m_Color = CColor(0, 1, 1, 1);
-			std::vector<float> xz;
-			xz.push_back(edges[i].p0.X.ToFloat());
-			xz.push_back(edges[i].p0.Y.ToFloat());
-			xz.push_back(edges[i].p1.X.ToFloat());
-			xz.push_back(edges[i].p1.Y.ToFloat());
-			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back(), true);
+			m_DebugOverlayShortPathLines.emplace_back();
+			m_DebugOverlayShortPathLines.back().m_Color = CColor(1, 1, 0, 1);
+
+			float x = vertexes[i].p.X.ToFloat();
+			float z = vertexes[i].p.Y.ToFloat();
+
+			float a0 = 0, a1 = 0;
+			// Get arc start/end angles depending on quadrant (if any)
+			if      (vertexes[i].quadInward == QUADRANT_BL) { a0 = -0.25f; a1 = 0.50f; }
+			else if (vertexes[i].quadInward == QUADRANT_TR) { a0 =  0.25f; a1 = 1.00f; }
+			else if (vertexes[i].quadInward == QUADRANT_TL) { a0 = -0.50f; a1 = 0.25f; }
+			else if (vertexes[i].quadInward == QUADRANT_BR) { a0 =  0.00f; a1 = 0.75f; }
+
+			if (a0 == a1)
+				SimRender::ConstructCircleOnGround(GetSimContext(), x, z, 0.5f,
+					m_DebugOverlayShortPathLines.back(), true);
+			else
+				SimRender::ConstructClosedArcOnGround(GetSimContext(), x, z, 0.5f,
+					a0 * ((float)M_PI*2.0f), a1 * ((float)M_PI*2.0f),
+					m_DebugOverlayShortPathLines.back(), true);
 		}
 
-		for (size_t i = 0; i < edgesAA.size(); ++i)
+		// Render the edges
+		for (size_t i = 0; i < edges.size(); ++i)
+		{
+			m_DebugOverlayShortPathLines.emplace_back();
+			m_DebugOverlayShortPathLines.back().m_Color = CColor(0, 1, 1, 1);
+			std::vector<float> xz;
+			PUSH_POINT(edges[i].p0);
+			PUSH_POINT(edges[i].p1);
+
+			// Add an arrowhead to indicate the direction
+			CFixedVector2D d = edges[i].p1 - edges[i].p0;
+			d.Normalize(fixed::FromInt(1)/8);
+			CFixedVector2D p2 = edges[i].p1 - d*2;
+			CFixedVector2D p3 = p2 + d.Perpendicular();
+			CFixedVector2D p4 = p2 - d.Perpendicular();
+			PUSH_POINT(p3);
+			PUSH_POINT(p4);
+			PUSH_POINT(edges[i].p1);
+
+			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back(), true);
+		}
+#undef PUSH_POINT
+
+		// Render the axis-aligned squares
+		for (size_t i = 0; i < edgeSquares.size(); ++i)
 		{
 			m_DebugOverlayShortPathLines.push_back(SOverlayLine());
 			m_DebugOverlayShortPathLines.back().m_Color = CColor(0, 1, 1, 1);
 			std::vector<float> xz;
-			xz.push_back(edgesAA[i].p0.X.ToFloat());
-			xz.push_back(edgesAA[i].p0.Y.ToFloat());
-			xz.push_back(edgesAA[i].p0.X.ToFloat());
-			xz.push_back(edgesAA[i].p1.Y.ToFloat());
-			xz.push_back(edgesAA[i].p1.X.ToFloat());
-			xz.push_back(edgesAA[i].p1.Y.ToFloat());
-			xz.push_back(edgesAA[i].p1.X.ToFloat());
-			xz.push_back(edgesAA[i].p0.Y.ToFloat());
-			xz.push_back(edgesAA[i].p0.X.ToFloat());
-			xz.push_back(edgesAA[i].p0.Y.ToFloat());
+			Square s = edgeSquares[i];
+			xz.push_back(s.p0.X.ToFloat());
+			xz.push_back(s.p0.Y.ToFloat());
+			xz.push_back(s.p0.X.ToFloat());
+			xz.push_back(s.p1.Y.ToFloat());
+			xz.push_back(s.p1.X.ToFloat());
+			xz.push_back(s.p1.Y.ToFloat());
+			xz.push_back(s.p1.X.ToFloat());
+			xz.push_back(s.p0.Y.ToFloat());
+			xz.push_back(s.p0.X.ToFloat());
+			xz.push_back(s.p0.Y.ToFloat());
 			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back(), true);
 		}
 	}
@@ -690,10 +780,10 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	// we can't reach. Since the algorithm can only reach a vertex once (and then it'll be marked
 	// as closed), we won't be doing any redundant visibility computations.
 
-	PROFILE_START("A*");
+	PROFILE_START("Short pathfinding - A*");
 
-	PriorityQueue open;
-	PriorityQueue::Item qiStart = { START_VERTEX_ID, start.h };
+	VertexPriorityQueue open;
+	VertexPriorityQueue::Item qiStart = { START_VERTEX_ID, start.h, start.h };
 	open.push(qiStart);
 
 	u16 idBest = START_VERTEX_ID;
@@ -702,7 +792,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	while (!open.empty())
 	{
 		// Move best tile from open to closed
-		PriorityQueue::Item curr = open.pop();
+		VertexPriorityQueue::Item curr = open.pop();
 		vertexes[curr.id].status = Vertex::CLOSED;
 
 		// If we've reached the destination, stop
@@ -714,13 +804,14 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 		// Sort the edges so ones nearer this vertex are checked first by CheckVisibility,
 		// since they're more likely to block the rays
-		std::sort(edgesAA.begin(), edgesAA.end(), EdgeSort(vertexes[curr.id].p));
+		std::sort(edgeSquares.begin(), edgeSquares.end(), SquareSort(vertexes[curr.id].p));
 
+		std::vector<Edge> edgesUnaligned;
 		std::vector<EdgeAA> edgesLeft;
 		std::vector<EdgeAA> edgesRight;
 		std::vector<EdgeAA> edgesBottom;
 		std::vector<EdgeAA> edgesTop;
-		SplitAAEdges(vertexes[curr.id].p, edgesAA, edgesLeft, edgesRight, edgesBottom, edgesTop);
+		SplitAAEdges(vertexes[curr.id].p, edges, edgeSquares, edgesUnaligned, edgesLeft, edgesRight, edgesBottom, edgesTop);
 
 		// Check the lines to every other vertex
 		for (size_t n = 0; n < vertexes.size(); ++n)
@@ -732,7 +823,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 			CFixedVector2D npos;
 			if (n == GOAL_VERTEX_ID)
 			{
-				npos = NearestPointOnGoal(vertexes[curr.id].p, goal);
+				npos = goal.NearestPointOnGoal(vertexes[curr.id].p);
 
 				// To prevent integer overflows later on, we need to ensure all vertexes are
 				// 'close' to the source. The goal might be far away (not a good idea but
@@ -768,7 +859,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 				CheckVisibilityRight(vertexes[curr.id].p, npos, edgesRight) &&
 				CheckVisibilityBottom(vertexes[curr.id].p, npos, edgesBottom) &&
 				CheckVisibilityTop(vertexes[curr.id].p, npos, edgesTop) &&
-				CheckVisibility(vertexes[curr.id].p, npos, edges);
+				CheckVisibility(vertexes[curr.id].p, npos, edgesUnaligned);
 
 			/*
 			// Render the edges that we examine
@@ -792,7 +883,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 					// Add it to the open list:
 					vertexes[n].status = Vertex::OPEN;
 					vertexes[n].g = g;
-					vertexes[n].h = DistanceToGoal(npos, goal);
+					vertexes[n].h = goal.DistanceToPoint(npos);
 					vertexes[n].pred = curr.id;
 
 					// If this is an axis-aligned shape, the path must continue in the same quadrant
@@ -805,7 +896,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 					if (n == GOAL_VERTEX_ID)
 						vertexes[n].p = npos; // remember the new best goal position
 
-					PriorityQueue::Item t = { (u16)n, g + vertexes[n].h };
+					VertexPriorityQueue::Item t = { (u16)n, g + vertexes[n].h, vertexes[n].h };
 					open.push(t);
 
 					// Remember the heuristically best vertex we've seen so far, in case we never actually reach the target
@@ -823,6 +914,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 						continue;
 
 					// Otherwise, we have a better path, so replace the old one with the new cost/parent
+					fixed gprev = vertexes[n].g;
 					vertexes[n].g = g;
 					vertexes[n].pred = curr.id;
 
@@ -834,7 +926,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 					if (n == GOAL_VERTEX_ID)
 						vertexes[n].p = npos; // remember the new best goal position
 
-					open.promote((u16)n, g + vertexes[n].h);
+					open.promote((u16)n, gprev + vertexes[n].h, g + vertexes[n].h, vertexes[n].h);
 				}
 			}
 		}
@@ -842,18 +934,17 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 	// Reconstruct the path (in reverse)
 	for (u16 id = idBest; id != START_VERTEX_ID; id = vertexes[id].pred)
-	{
-		Waypoint w = { vertexes[id].p.X, vertexes[id].p.Y };
-		path.m_Waypoints.push_back(w);
-	}
+		path.m_Waypoints.emplace_back(Waypoint{ vertexes[id].p.X, vertexes[id].p.Y });
 
-	PROFILE_END("A*");
+	PROFILE_END("Short pathfinding - A*");
 }
 
 bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
 	pass_class_t passClass)
 {
+	// Test against dynamic obstructions first
+
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	if (!cmpObstructionManager)
 		return false;
@@ -861,34 +952,7 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	if (cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
 		return false;
 
-	// Test against terrain:
-
-	// (TODO: this could probably be a tiny bit faster by not reusing all the vertex computation code)
-
-	UpdateGrid();
-
-	std::vector<Edge> edgesAA;
-	std::vector<Vertex> vertexes;
-
-	u16 i0, j0, i1, j1;
-	NearestTile(std::min(x0, x1) - r, std::min(z0, z1) - r, i0, j0);
-	NearestTile(std::max(x0, x1) + r, std::max(z0, z1) + r, i1, j1);
-	AddTerrainEdges(edgesAA, vertexes, i0, j0, i1, j1, r, passClass, *m_Grid);
-
-	CFixedVector2D a(x0, z0);
-	CFixedVector2D b(x1, z1);
-
-	std::vector<EdgeAA> edgesLeft;
-	std::vector<EdgeAA> edgesRight;
-	std::vector<EdgeAA> edgesBottom;
-	std::vector<EdgeAA> edgesTop;
-	SplitAAEdges(a, edgesAA, edgesLeft, edgesRight, edgesBottom, edgesTop);
-
-	bool visible =
-		CheckVisibilityLeft(a, b, edgesLeft) &&
-		CheckVisibilityRight(a, b, edgesRight) &&
-		CheckVisibilityBottom(a, b, edgesBottom) &&
-		CheckVisibilityTop(a, b, edgesTop);
-
-	return visible;
+	// Test against the passability grid.
+	// This ignores r.
+	return m_LongPathfinder.CheckLineMovement(x0, z0, x1, z1, passClass);
 }

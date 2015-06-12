@@ -29,6 +29,14 @@ class ICmpTerritoryManager : public IComponent
 public:
 	virtual bool NeedUpdate(size_t* dirtyID) = 0;
 
+	/**
+	 * Number of pathfinder navcells per territory tile.
+	 * Passability data is stored per navcell, but we probably don't need that much
+	 * resolution, and a lower resolution can make the boundary lines look prettier
+	 * and will take less memory, so we downsample the passability data.
+	 */
+	static const int NAVCELLS_PER_TERRITORY_TILE = 8;
+
 	static const int TERRITORY_PLAYER_MASK = 0x1F;
 	static const int TERRITORY_CONNECTED_MASK = 0x20;
 	static const int TERRITORY_BLINKING_MASK = 0x40;

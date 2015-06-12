@@ -27,6 +27,7 @@
 #include "simulation2/components/ICmpMirage.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
 #include "simulation2/components/ICmpVisibility.h"
 #include "simulation2/components/ICmpVision.h"
@@ -1734,13 +1735,25 @@ public:
 
 	virtual void ExploreTerritories()
 	{
+		PROFILE3("ExploreTerritories");
+
 		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
-
 		const Grid<u8>& grid = cmpTerritoryManager->GetTerritoryGrid();
-		ENSURE(grid.m_W == m_TerrainVerticesPerSide-1 && grid.m_H == m_TerrainVerticesPerSide-1);
 
-		// For each tile, if it is owned by a valid player then update the LOS
-		// for every vertex around that tile, to mark them as explored
+		// Territory data is stored per territory-tile (typically a multiple of terrain-tiles).
+		// LOS data is stored per terrain-tile vertex.
+
+		// For each territory-tile, if it is owned by a valid player then update the LOS
+		// for every vertex inside/around that tile, to mark them as explored.
+
+		// Currently this code doesn't support territory-tiles smaller than terrain-tiles
+		// (it will get scale==0 and break), or a non-integer multiple, so check that first
+		cassert(ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE >= Pathfinding::NAVCELLS_PER_TILE);
+		cassert(ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE % Pathfinding::NAVCELLS_PER_TILE == 0);
+
+		int scale = ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE / Pathfinding::NAVCELLS_PER_TILE;
+
+		ENSURE(grid.m_W*scale == m_TerrainVerticesPerSide-1 && grid.m_H*scale == m_TerrainVerticesPerSide-1);
 
 		for (u16 j = 0; j < grid.m_H; ++j)
 		{
@@ -1749,15 +1762,19 @@ public:
 				u8 p = grid.get(i, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
 				if (p > 0 && p <= MAX_LOS_PLAYER_ID)
 				{
-					u32 &explored = m_ExploredVertices.at(p);
-					explored += !(m_LosState[i + j*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
-					m_LosState[i + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
-					explored += !(m_LosState[i+1 + j*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
-					m_LosState[i+1 + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
-					explored += !(m_LosState[i + (j+1)*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
-					m_LosState[i + (j+1)*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
-					explored += !(m_LosState[i+1 + (j+1)*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
-					m_LosState[i+1 + (j+1)*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+					u32& explored = m_ExploredVertices.at(p);
+					for (int dj = 0; dj <= scale; ++dj)
+					{
+						for (int di = 0; di <= scale; ++di)
+						{
+							u32& losState = m_LosState[(i*scale+di) + (j*scale+dj)*m_TerrainVerticesPerSide];
+							if (!(losState & (LOS_EXPLORED << (2*(p-1)))))
+							{
+								explored++;
+								losState |= (LOS_EXPLORED << (2*(p-1)));
+							}
+						}
+					}
 				}
 			}
 		}
@@ -1846,7 +1863,7 @@ public:
 	 */
 	inline bool LosIsOffWorld(ssize_t i, ssize_t j)
 	{
-		// WARNING: CCmpObstructionManager::Rasterise needs to be kept in sync with this
+		// WARNING: CCmpPathfinder::UpdateGrid needs to be kept in sync with this
 		const ssize_t edgeSize = 3; // number of vertexes around the edge that will be off-world
 
 		if (m_LosCircular)

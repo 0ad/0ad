@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -154,7 +154,7 @@ public:
 		if (!cmpUnitMotion)
 			return error;
 
-		ICmpPathfinder::pass_class_t spawnedPass = cmpUnitMotion->GetPassabilityClass();
+		pass_class_t spawnedPass = cmpUnitMotion->GetPassabilityClass();
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (!cmpPathfinder)
 			return error;
@@ -285,7 +285,7 @@ public:
 		if (!cmpUnitMotion)
 			return error;
 
-		ICmpPathfinder::pass_class_t spawnedPass = cmpUnitMotion->GetPassabilityClass();
+		pass_class_t spawnedPass = cmpUnitMotion->GetPassabilityClass();
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (!cmpPathfinder)
 			return error;
@@ -294,7 +294,7 @@ public:
 		CmpPtr<ICmpUnitMotion> cmpEntityMotion(GetEntityHandle());
 		if (!cmpEntityMotion)
 			return error;
-		ICmpPathfinder::pass_class_t entityPass = cmpEntityMotion->GetPassabilityClass();
+		pass_class_t entityPass = cmpEntityMotion->GetPassabilityClass();
 		
 		CFixedVector2D initialPos = cmpPosition->GetPosition2D();
 		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;

@@ -245,6 +245,19 @@ public:
 		return CFixed(-value);
 	}
 
+	CFixed operator>>(int n) const
+	{
+		ASSERT(n >= 0 && n < 32);
+		return CFixed(value >> n);
+	}
+
+	CFixed operator<<(int n) const
+	{
+		ASSERT(n >= 0 && n < 32);
+		// TODO: check for overflow
+		return CFixed(value << n);
+	}
+
 	/// Divide by a CFixed. Must not have n.IsZero(). Might overflow.
 	CFixed operator/(CFixed n) const
 	{
@@ -260,6 +273,14 @@ public:
 	{
 		CheckMultiplicationOverflow(T, value, n, L"Overflow in CFixed::operator*(int n)", L"Underflow in CFixed::operator*(int n)")
 		return CFixed(value * n);
+	}
+
+	/// Multiply by an integer. Avoids overflow by clamping to min/max representable value.
+	CFixed MultiplyClamp(int n) const
+	{
+		i64 t = (i64)value * n;
+		t = std::max((i64)std::numeric_limits<T>::min(), std::min((i64)std::numeric_limits<T>::max(), t));
+		return CFixed((i32)t);
 	}
 
 	/// Divide by an integer. Must not have n == 0. Cannot overflow unless n == -1.

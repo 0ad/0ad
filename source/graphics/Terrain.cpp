@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,6 +36,9 @@
 #include "maths/FixedVector3D.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "simulation2/helpers/Pathfinding.h"
+
+const fixed Pathfinding::NAVCELL_SIZE = fixed::FromInt(TERRAIN_TILE_SIZE) / Pathfinding::NAVCELLS_PER_TILE;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain constructor
@@ -334,6 +337,58 @@ fixed CTerrain::GetSlopeFixed(ssize_t i, ssize_t j) const
 	// Difference of highest point from lowest point
 	u16 delta = std::max(std::max(h00, h01), std::max(h10, h11)) -
 	            std::min(std::min(h00, h01), std::min(h10, h11));
+
+	// Compute fractional slope (being careful to avoid intermediate overflows)
+	return fixed::FromInt(delta / TERRAIN_TILE_SIZE) / (int)HEIGHT_UNITS_PER_METRE;
+}
+
+fixed CTerrain::GetExactSlopeFixed(fixed x, fixed z) const
+{
+	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
+	const ssize_t xi = clamp((ssize_t)(x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
+	const ssize_t zi = clamp((ssize_t)(z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
+
+	const fixed one = fixed::FromInt(1);
+
+	const fixed xf = clamp((x / (int)TERRAIN_TILE_SIZE) - fixed::FromInt(xi), fixed::Zero(), one);
+	const fixed zf = clamp((z / (int)TERRAIN_TILE_SIZE) - fixed::FromInt(zi), fixed::Zero(), one);
+
+	u16 h00 = m_Heightmap[zi*m_MapSize + xi];
+	u16 h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
+	u16 h10 = m_Heightmap[zi*m_MapSize + (xi+1)];
+	u16 h11 = m_Heightmap[(zi+1)*m_MapSize + (xi+1)];
+
+	u16 delta;
+	if (GetTriangulationDir(xi, zi))
+	{
+		if (xf + zf <= one)
+		{
+			// Lower-left triangle (don't use h11)
+			delta = std::max(std::max(h00, h01), h10) -
+			        std::min(std::min(h00, h01), h10);
+		}
+		else
+		{
+			// Upper-right triangle (don't use h00)
+			delta = std::max(std::max(h01, h10), h11) -
+			        std::min(std::min(h01, h10), h11);
+		}
+	}
+	else
+	{
+		if (xf <= zf)
+		{
+			// Upper-left triangle (don't use h10)
+			delta = std::max(std::max(h00, h01), h11) -
+			        std::min(std::min(h00, h01), h11);
+		}
+		else
+		{
+			// Lower-right triangle (don't use h01)
+			delta = std::max(std::max(h00, h10), h11) -
+			        std::min(std::min(h00, h10), h11);
+		}
+	}
 
 	// Compute fractional slope (being careful to avoid intermediate overflows)
 	return fixed::FromInt(delta / TERRAIN_TILE_SIZE) / (int)HEIGHT_UNITS_PER_METRE;

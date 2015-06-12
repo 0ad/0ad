@@ -25,6 +25,7 @@
 #include "ps/Shapes.h"
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/helpers/Pathfinding.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpTerrain.h"
@@ -92,7 +93,8 @@ void CTerritoryTexture::ConstructTexture(int unit)
 	if (!cmpTerrain)
 		return;
 
-	m_MapSize = cmpTerrain->GetVerticesPerSide() - 1;
+	// Convert size from terrain tiles to territory tiles
+	m_MapSize = cmpTerrain->GetTilesPerSide() * Pathfinding::NAVCELLS_PER_TILE / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE;
 
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
 

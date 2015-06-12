@@ -26,6 +26,7 @@
 #include "lib/ogl.h"
 
 struct CColor;
+struct SColor4ub;
 class CTerrain;
 class CSimContext;
 
@@ -185,6 +186,12 @@ protected:
 	 * be filled with data in RGBA order.
 	 */
 	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h) = 0;
+
+	/**
+	 * Returns an arbitrary color, for subclasses that want to distinguish
+	 * different integers visually.
+	 */
+	SColor4ub GetColor(size_t idx, u8 alpha) const;
 
 private:
 	void RenderAfterWater(int cullGroup);

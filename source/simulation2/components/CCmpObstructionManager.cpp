@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,8 +20,11 @@
 #include "simulation2/system/Component.h"
 #include "ICmpObstructionManager.h"
 
+#include "ICmpTerrain.h"
+
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Geometry.h"
+#include "simulation2/helpers/Rasterize.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"
 #include "simulation2/serialization/SerializeTemplates.h"
@@ -51,6 +54,7 @@ struct UnitShape
 	entity_id_t entity;
 	entity_pos_t x, z;
 	entity_pos_t r; // radius of circle, or half width of square
+	entity_pos_t clearance;
 	ICmpObstructionManager::flags_t flags;
 	entity_id_t group; // control group (typically the owner entity, or a formation controller entity) (units ignore collisions with others in the same group)
 };
@@ -81,6 +85,7 @@ struct SerializeUnitShape
 		serialize.NumberFixed_Unbounded("x", value.x);
 		serialize.NumberFixed_Unbounded("z", value.z);
 		serialize.NumberFixed_Unbounded("r", value.r);
+		serialize.NumberFixed_Unbounded("clearance", value.clearance);
 		serialize.NumberU8_Unbounded("flags", value.flags);
 		serialize.NumberU32_Unbounded("group", value.group);
 	}
@@ -152,7 +157,9 @@ public:
 		m_UnitShapeNext = 1;
 		m_StaticShapeNext = 1;
 
-		m_DirtyID = 1; // init to 1 so default-initialised grids are considered dirty
+		m_Dirty = true;
+		m_NeedsGlobalUpdate = true;
+		m_DirtinessGrid = NULL;
 
 		m_PassabilityCircular = false;
 
@@ -165,6 +172,7 @@ public:
 
 	virtual void Deinit()
 	{
+		SAFE_DELETE(m_DirtinessGrid);
 	}
 
 	template<typename S>
@@ -225,6 +233,15 @@ public:
 		// Subdivision system bounds:
 		ENSURE(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(x1, z1);
+
+		SAFE_DELETE(m_DirtinessGrid);
+
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+		if (!cmpTerrain)
+			return;
+
+		u16 tiles = cmpTerrain->GetTilesPerSide();
+		m_DirtinessGrid = new Grid<u8>(tiles*Pathfinding::NAVCELLS_PER_TILE, tiles*Pathfinding::NAVCELLS_PER_TILE);
 	}
 
 	void ResetSubdivisions(entity_pos_t x1, entity_pos_t z1)
@@ -249,12 +266,12 @@ public:
 		}
 	}
 
-	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t r, flags_t flags, entity_id_t group)
+	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t r, entity_pos_t clearance, flags_t flags, entity_id_t group)
 	{
-		UnitShape shape = { ent, x, z, r, flags, group };
+		UnitShape shape = { ent, x, z, r, clearance, flags, group };
 		u32 id = m_UnitShapeNext++;
 		m_UnitShapes[id] = shape;
-		MakeDirtyUnit(flags);
+		MakeDirtyUnit(flags, id);
 
 		m_UnitSubdivision.Add(id, CFixedVector2D(x - r, z - r), CFixedVector2D(x + r, z + r));
 
@@ -271,7 +288,7 @@ public:
 		StaticShape shape = { ent, x, z, u, v, w/2, h/2, flags, group, group2 };
 		u32 id = m_StaticShapeNext++;
 		m_StaticShapes[id] = shape;
-		MakeDirtyStatic(flags);
+		MakeDirtyStatic(flags, id);
 
 		CFixedVector2D center(x, z);
 		CFixedVector2D bbHalfSize = Geometry::GetHalfBoundingBox(u, v, CFixedVector2D(w/2, h/2));
@@ -316,7 +333,7 @@ public:
 			shape.x = x;
 			shape.z = z;
 
-			MakeDirtyUnit(shape.flags);
+			MakeDirtyUnit(shape.flags, TAG_TO_INDEX(tag));
 		}
 		else
 		{
@@ -340,7 +357,7 @@ public:
 			shape.u = u;
 			shape.v = v;
 
-			MakeDirtyStatic(shape.flags);
+			MakeDirtyStatic(shape.flags, TAG_TO_INDEX(tag));
 		}
 	}
 
@@ -394,7 +411,7 @@ public:
 				CFixedVector2D(shape.x - shape.r, shape.z - shape.r),
 				CFixedVector2D(shape.x + shape.r, shape.z + shape.r));
 
-			MakeDirtyUnit(shape.flags);
+			MakeDirtyUnit(shape.flags, TAG_TO_INDEX(tag));
 			m_UnitShapes.erase(TAG_TO_INDEX(tag));
 		}
 		else
@@ -405,7 +422,7 @@ public:
 			CFixedVector2D bbHalfSize = Geometry::GetHalfBoundingBox(shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh));
 			m_StaticSubdivision.Remove(TAG_TO_INDEX(tag), center - bbHalfSize, center + bbHalfSize);
 
-			MakeDirtyStatic(shape.flags);
+			MakeDirtyStatic(shape.flags, TAG_TO_INDEX(tag));
 			m_StaticShapes.erase(TAG_TO_INDEX(tag));
 		}
 	}
@@ -434,9 +451,9 @@ public:
 	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out);
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, std::vector<entity_id_t>* out);
 
-	virtual bool Rasterise(Grid<u8>& grid);
+	virtual void Rasterize(Grid<u16>& grid, const entity_pos_t& expand, ICmpObstructionManager::flags_t requireMask, u16 setMask);
 	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares);
-	virtual bool FindMostImportantObstruction(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square);
+	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter);
 
 	virtual void SetPassabilityCircular(bool enabled)
 	{
@@ -445,6 +462,11 @@ public:
 
 		CMessageObstructionMapShapeChanged msg;
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);
+	}
+
+	virtual bool GetPassabilityCircular() const
+	{
+		return m_PassabilityCircular;
 	}
 
 	virtual void SetDebugOverlay(bool enabled)
@@ -457,20 +479,38 @@ public:
 
 	void RenderSubmit(SceneCollector& collector);
 
-private:
-	// To support lazy updates of grid rasterisations of obstruction data,
-	// we maintain a DirtyID here and increment it whenever obstructions change;
-	// if a grid has a lower DirtyID then it needs to be updated.
+	virtual bool GetDirtinessData(Grid<u8>& dirtinessGrid, bool& globalUpdateNeeded)
+	{
+		if (!m_Dirty || !m_DirtinessGrid)
+		{
+			globalUpdateNeeded = false;
+			return false;
+		}
 
-	size_t m_DirtyID;
+		dirtinessGrid = *m_DirtinessGrid;
+		globalUpdateNeeded = m_NeedsGlobalUpdate;
+
+		m_Dirty = false;
+		m_NeedsGlobalUpdate = false;
+		m_DirtinessGrid->reset();
+
+		return true;
+	}
+
+private:
+	// Dynamic updates for the long-range pathfinder
+	bool m_Dirty;
+	bool m_NeedsGlobalUpdate;
+	Grid<u8>* m_DirtinessGrid;
 
 	/**
-	 * Mark all previous Rasterise()d grids as dirty, and the debug display.
+	 * Mark all previous Rasterize()d grids as dirty, and the debug display.
 	 * Call this when the world bounds have changed.
 	 */
 	void MakeDirtyAll()
 	{
-		++m_DirtyID;
+		m_Dirty = true;
+		m_NeedsGlobalUpdate = true;
 		m_DebugOverlayDirty = true;
 	}
 
@@ -483,37 +523,54 @@ private:
 		m_DebugOverlayDirty = true;
 	}
 
+	inline void MarkDirtinessGrid(const entity_pos_t& x, const entity_pos_t& z, const entity_pos_t& r)
+	{
+		if (!m_DirtinessGrid)
+			return;
+
+		u16 j0, j1, i0, i1;
+		Pathfinding::NearestNavcell(x - r, z - r, i0, j0, m_DirtinessGrid->m_W, m_DirtinessGrid->m_H);
+		Pathfinding::NearestNavcell(x + r, z + r, i1, j1, m_DirtinessGrid->m_W, m_DirtinessGrid->m_H);
+
+		for (int j = j0; j < j1; ++j)
+			for (int i = i0; i < i1; ++i)
+				m_DirtinessGrid->set(i, j, 1);
+	}
+
 	/**
-	 * Mark all previous Rasterise()d grids as dirty, if they depend on this shape.
+	 * Mark all previous Rasterize()d grids as dirty, if they depend on this shape.
 	 * Call this when a static shape has changed.
 	 */
-	void MakeDirtyStatic(flags_t flags)
+	void MakeDirtyStatic(flags_t flags, u32 index)
 	{
-		if (flags & (FLAG_BLOCK_PATHFINDING|FLAG_BLOCK_FOUNDATION))
-			++m_DirtyID;
+		if (flags & (FLAG_BLOCK_PATHFINDING | FLAG_BLOCK_FOUNDATION))
+		{
+			m_Dirty = true;
+
+			auto it = m_StaticShapes.find(index);
+			if (it != m_StaticShapes.end())
+				MarkDirtinessGrid(it->second.x, it->second.z, std::max(it->second.hw, it->second.hh));
+		}
 
 		m_DebugOverlayDirty = true;
 	}
 
 	/**
-	 * Mark all previous Rasterise()d grids as dirty, if they depend on this shape.
+	 * Mark all previous Rasterize()d grids as dirty, if they depend on this shape.
 	 * Call this when a unit shape has changed.
 	 */
-	void MakeDirtyUnit(flags_t flags)
+	void MakeDirtyUnit(flags_t flags, u32 index)
 	{
-		if (flags & (FLAG_BLOCK_PATHFINDING|FLAG_BLOCK_FOUNDATION))
-			++m_DirtyID;
+		if (flags & (FLAG_BLOCK_PATHFINDING | FLAG_BLOCK_FOUNDATION))
+		{
+			m_Dirty = true;
+
+			auto it = m_UnitShapes.find(index);
+			if (it != m_UnitShapes.end())
+				MarkDirtinessGrid(it->second.x, it->second.z, it->second.r);
+		}
 
 		m_DebugOverlayDirty = true;
-	}
-
-	/**
-	 * Test whether a Rasterise()d grid is dirty and needs updating
-	 */
-	template<typename T>
-	bool IsDirty(const Grid<T>& grid)
-	{
-		return grid.m_DirtyID < m_DirtyID;
 	}
 
 	/**
@@ -706,176 +763,61 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 		return false; // didn't collide, if we got this far
 }
 
-/**
- * Compute the tile indexes on the grid nearest to a given point
- */
-static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
+void CCmpObstructionManager::Rasterize(Grid<u16>& grid, const entity_pos_t& expand, ICmpObstructionManager::flags_t requireMask, u16 setMask)
 {
-	i = (u16)clamp((x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, w-1);
-	j = (u16)clamp((z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, h-1);
-}
+	PROFILE3("Rasterize");
 
-/**
- * Returns the position of the center of the given tile
- */
-static void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
-{
-	x = entity_pos_t::FromInt(i*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
-	z = entity_pos_t::FromInt(j*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
-}
+	// Since m_DirtyID is only updated for pathfinding/foundation blocking shapes,
+	// NeedUpdate+Rasterize will only be accurate for that subset of shapes.
+	// (If we ever want to support rasterizing more shapes, we need to improve
+	// the dirty-detection system too.)
+	ENSURE(!(requireMask & ~(FLAG_BLOCK_PATHFINDING|FLAG_BLOCK_FOUNDATION)));
 
-bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
-{
-	if (!IsDirty(grid))
-		return false;
+	// Cells are only marked as blocked if the whole cell is strictly inside the shape.
+	// (That ensures the shape's geometric border is always reachable.)
 
-	PROFILE("Rasterise");
+	// TODO: it might be nice to rasterize with rounded corners for large 'expand' values.
 
-	grid.m_DirtyID = m_DirtyID;
+	// (This could be implemented much more efficiently.)
 
-	// TODO: this is all hopelessly inefficient
-	// What we should perhaps do is have some kind of quadtree storing Shapes so it's
-	// quick to invalidate and update small numbers of tiles
-
-	grid.reset();
-
-	// For tile-based pathfinding:
-	// Since we only count tiles whose centers are inside the square,
-	// we maybe want to expand the square a bit so we're less likely to think there's
-	// free space between buildings when there isn't. But this is just a random guess
-	// and needs to be tweaked until everything works nicely.
-	//entity_pos_t expandPathfinding = entity_pos_t::FromInt(TERRAIN_TILE_SIZE / 2);
-	// Actually that's bad because units get stuck when the A* pathfinder thinks they're
-	// blocked on all sides, so it's better to underestimate
-	entity_pos_t expandPathfinding = entity_pos_t::FromInt(0);
-
-	// For AI building foundation planning, we want to definitely block all
-	// potentially-obstructed tiles (so we don't blindly build on top of an obstruction),
-	// so we need to expand by at least 1/sqrt(2) of a tile
-	entity_pos_t expandFoundation = (entity_pos_t::FromInt(TERRAIN_TILE_SIZE) * 3) / 4;
-
-	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
+	for (auto& pair : m_StaticShapes)
 	{
-		CFixedVector2D center(it->second.x, it->second.z);
+		const StaticShape& shape = pair.second;
+		if (!(shape.flags & requireMask))
+			continue;
 
-		if (it->second.flags & FLAG_BLOCK_PATHFINDING)
+		ObstructionSquare square = { shape.x, shape.z, shape.u, shape.v, shape.hw, shape.hh };
+		SimRasterize::Spans spans;
+		SimRasterize::RasterizeRectWithClearance(spans, square, expand, Pathfinding::NAVCELL_SIZE);
+		for (SimRasterize::Span& span : spans)
 		{
-			CFixedVector2D halfSize(it->second.hw + expandPathfinding, it->second.hh + expandPathfinding);
-			CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(it->second.u, it->second.v, halfSize);
-
-			u16 i0, j0, i1, j1;
-			NearestTile(center.X - halfBound.X, center.Y - halfBound.Y, i0, j0, grid.m_W, grid.m_H);
-			NearestTile(center.X + halfBound.X, center.Y + halfBound.Y, i1, j1, grid.m_W, grid.m_H);
-			for (u16 j = j0; j <= j1; ++j)
+			i16 j = span.j;
+			if (j >= 0 && j <= grid.m_H)
 			{
-				for (u16 i = i0; i <= i1; ++i)
-				{
-					entity_pos_t x, z;
-					TileCenter(i, j, x, z);
-					if (Geometry::PointIsInSquare(CFixedVector2D(x, z) - center, it->second.u, it->second.v, halfSize))
-						grid.set(i, j, grid.get(i, j) | TILE_OBSTRUCTED_PATHFINDING);
-				}
-			}
-		}
-
-		if (it->second.flags & FLAG_BLOCK_FOUNDATION)
-		{
-			CFixedVector2D halfSize(it->second.hw + expandFoundation, it->second.hh + expandFoundation);
-			CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(it->second.u, it->second.v, halfSize);
-
-			u16 i0, j0, i1, j1;
-			NearestTile(center.X - halfBound.X, center.Y - halfBound.Y, i0, j0, grid.m_W, grid.m_H);
-			NearestTile(center.X + halfBound.X, center.Y + halfBound.Y, i1, j1, grid.m_W, grid.m_H);
-			for (u16 j = j0; j <= j1; ++j)
-			{
-				for (u16 i = i0; i <= i1; ++i)
-				{
-					entity_pos_t x, z;
-					TileCenter(i, j, x, z);
-					if (Geometry::PointIsInSquare(CFixedVector2D(x, z) - center, it->second.u, it->second.v, halfSize))
-						grid.set(i, j, grid.get(i, j) | TILE_OBSTRUCTED_FOUNDATION);
-				}
+				i16 i0 = std::max(span.i0, (i16)0);
+				i16 i1 = std::min(span.i1, (i16)grid.m_W);
+				for (i16 i = i0; i < i1; ++i)
+					grid.set(i, j, grid.get(i, j) | setMask);
 			}
 		}
 	}
 
-	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
+	for (auto& pair : m_UnitShapes)
 	{
-		CFixedVector2D center(it->second.x, it->second.z);
+		CFixedVector2D center(pair.second.x, pair.second.z);
 
-		if (it->second.flags & FLAG_BLOCK_PATHFINDING)
-		{
-			entity_pos_t r = it->second.r + expandPathfinding;
+		if (!(pair.second.flags & requireMask))
+			continue;
 
-			u16 i0, j0, i1, j1;
-			NearestTile(center.X - r, center.Y - r, i0, j0, grid.m_W, grid.m_H);
-			NearestTile(center.X + r, center.Y + r, i1, j1, grid.m_W, grid.m_H);
-			for (u16 j = j0; j <= j1; ++j)
-				for (u16 i = i0; i <= i1; ++i)
-					grid.set(i, j, grid.get(i, j) | TILE_OBSTRUCTED_PATHFINDING);
-		}
+		entity_pos_t r = pair.second.r + expand;
 
-		if (it->second.flags & FLAG_BLOCK_FOUNDATION)
-		{
-			entity_pos_t r = it->second.r + expandFoundation;
-
-			u16 i0, j0, i1, j1;
-			NearestTile(center.X - r, center.Y - r, i0, j0, grid.m_W, grid.m_H);
-			NearestTile(center.X + r, center.Y + r, i1, j1, grid.m_W, grid.m_H);
-			for (u16 j = j0; j <= j1; ++j)
-				for (u16 i = i0; i <= i1; ++i)
-					grid.set(i, j, grid.get(i, j) | TILE_OBSTRUCTED_FOUNDATION);
-		}
-	}
-
-	// Any tiles outside or very near the edge of the map are impassable
-
-	// WARNING: CCmpRangeManager::LosIsOffWorld needs to be kept in sync with this
-	const u16 edgeSize = 3; // number of tiles around the edge that will be off-world
-
-	u8 edgeFlags = TILE_OBSTRUCTED_PATHFINDING | TILE_OBSTRUCTED_FOUNDATION | TILE_OUTOFBOUNDS;
-
-	if (m_PassabilityCircular)
-	{
-		for (u16 j = 0; j < grid.m_H; ++j)
-		{
-			for (u16 i = 0; i < grid.m_W; ++i)
-			{
-				// Based on CCmpRangeManager::LosIsOffWorld
-				// but tweaked since it's tile-based instead.
-				// (We double all the values so we can handle half-tile coordinates.)
-				// This needs to be slightly tighter than the LOS circle,
-				// else units might get themselves lost in the SoD around the edge.
-
-				ssize_t dist2 = (i*2 + 1 - grid.m_W)*(i*2 + 1 - grid.m_W)
-						+ (j*2 + 1 - grid.m_H)*(j*2 + 1 - grid.m_H);
-
-				if (dist2 >= (grid.m_W - 2*edgeSize) * (grid.m_H - 2*edgeSize))
-					grid.set(i, j, edgeFlags);
-			}
-		}
-	}
-	else
-	{
 		u16 i0, j0, i1, j1;
-		NearestTile(m_WorldX0, m_WorldZ0, i0, j0, grid.m_W, grid.m_H);
-		NearestTile(m_WorldX1, m_WorldZ1, i1, j1, grid.m_W, grid.m_H);
-
-		for (u16 j = 0; j < grid.m_H; ++j)
-			for (u16 i = 0; i < i0+edgeSize; ++i)
-				grid.set(i, j, edgeFlags);
-		for (u16 j = 0; j < grid.m_H; ++j)
-			for (u16 i = (u16)(i1-edgeSize+1); i < grid.m_W; ++i)
-				grid.set(i, j, edgeFlags);
-		for (u16 j = 0; j < j0+edgeSize; ++j)
-			for (u16 i = (u16)(i0+edgeSize); i < i1-edgeSize+1; ++i)
-				grid.set(i, j, edgeFlags);
-		for (u16 j = (u16)(j1-edgeSize+1); j < grid.m_H; ++j)
-			for (u16 i = (u16)(i0+edgeSize); i < i1-edgeSize+1; ++i)
-				grid.set(i, j, edgeFlags);
+		Pathfinding::NearestNavcell(center.X - r, center.Y - r, i0, j0, grid.m_W, grid.m_H);
+		Pathfinding::NearestNavcell(center.X + r, center.Y + r, i1, j1, grid.m_W, grid.m_H);
+		for (u16 j = j0+1; j < j1; ++j)
+			for (u16 i = i0+1; i < i1; ++i)
+				grid.set(i, j, grid.get(i, j) | setMask);
 	}
-
-	return true;
 }
 
 void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares)
@@ -886,9 +828,9 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 
 	std::vector<entity_id_t> unitShapes;
 	m_UnitSubdivision.GetInRange(unitShapes, CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
-	for (size_t i = 0; i < unitShapes.size(); ++i)
+	for (entity_id_t& unitShape : unitShapes)
 	{
-		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
+		auto it = m_UnitShapes.find(unitShape);
 		ENSURE(it != m_UnitShapes.end());
 
 		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
@@ -902,15 +844,14 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 
 		CFixedVector2D u(entity_pos_t::FromInt(1), entity_pos_t::Zero());
 		CFixedVector2D v(entity_pos_t::Zero(), entity_pos_t::FromInt(1));
-		ObstructionSquare s = { it->second.x, it->second.z, u, v, r, r };
-		squares.push_back(s);
+		squares.emplace_back(ObstructionSquare{ it->second.x, it->second.z, u, v, r, r });
 	}
 
 	std::vector<entity_id_t> staticShapes;
 	m_StaticSubdivision.GetInRange(staticShapes, CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
-	for (size_t i = 0; i < staticShapes.size(); ++i)
+	for (entity_id_t& staticShape : staticShapes)
 	{
-		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
+		auto it = m_StaticShapes.find(staticShape);
 		ENSURE(it != m_StaticShapes.end());
 
 		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
@@ -924,46 +865,65 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 
 		// TODO: maybe we should use Geometry::GetHalfBoundingBox to be more precise?
 
-		ObstructionSquare s = { it->second.x, it->second.z, it->second.u, it->second.v, it->second.hw, it->second.hh };
-		squares.push_back(s);
+		squares.emplace_back(ObstructionSquare{ it->second.x, it->second.z, it->second.u, it->second.v, it->second.hw, it->second.hh });
 	}
 }
 
-bool CCmpObstructionManager::FindMostImportantObstruction(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square)
+void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter)
 {
-	std::vector<ObstructionSquare> squares;
+	PROFILE3("GetUnitsOnObstruction");
 
-	CFixedVector2D center(x, z);
+	// In order to avoid getting units on impassable cells, we want to find all
+	// units s.t. the RasterizeRectWithClearance of the building's shape with the
+	// unit's clearance covers the navcell the unit is on.
 
-	// First look for obstructions that are covering the exact target point
-	GetObstructionsInRange(filter, x, z, x, z, squares);
-	// Building squares are more important but returned last, so check backwards
-	for (std::vector<ObstructionSquare>::reverse_iterator it = squares.rbegin(); it != squares.rend(); ++it)
+	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+	if (!cmpPathfinder)
+		return;
+
+	entity_pos_t maxClearance = cmpPathfinder->GetMaximumClearance();
+
+	std::vector<entity_id_t> unitShapes;
+	CFixedVector2D center(square.x, square.z);
+	CFixedVector2D expandedBox =
+		Geometry::GetHalfBoundingBox(square.u, square.v, CFixedVector2D(square.hw, square.hh)) +
+		CFixedVector2D(maxClearance, maxClearance);
+	m_UnitSubdivision.GetInRange(unitShapes, center - expandedBox, center + expandedBox);
+
+	std::map<entity_pos_t, SimRasterize::Spans> rasterizedRects;
+
+	for (entity_id_t& unitShape : unitShapes)
 	{
-		CFixedVector2D halfSize(it->hw, it->hh);
-		if (Geometry::PointIsInSquare(CFixedVector2D(it->x, it->z) - center, it->u, it->v, halfSize))
+		auto it = m_UnitShapes.find(unitShape);
+		ENSURE(it != m_UnitShapes.end());
+
+		UnitShape& shape = it->second;
+
+		if (!filter.TestShape(UNIT_INDEX_TO_TAG(unitShape), shape.flags, shape.group, INVALID_ENTITY))
+			continue;
+
+		if (rasterizedRects.find(shape.clearance) == rasterizedRects.end())
 		{
-			square = *it;
-			return true;
+			SimRasterize::Spans& newSpans = rasterizedRects[shape.clearance];
+			SimRasterize::RasterizeRectWithClearance(newSpans, square, shape.clearance, Pathfinding::NAVCELL_SIZE);
+		}
+
+		SimRasterize::Spans& spans = rasterizedRects[shape.clearance];
+
+		// Check whether the unit's center is on a navcell that's in
+		// any of the spans
+
+		u16 i = (shape.x / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity();
+		u16 j = (shape.z / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity();
+
+		for (size_t k = 0; k < spans.size(); ++k)
+		{
+			if (j == spans[k].j && spans[k].i0 <= i && i < spans[k].i1)
+				out.push_back(shape.entity);
 		}
 	}
 
-	// Then look for obstructions that cover the target point when expanded by r
-	// (i.e. if the target is not inside an object but closer than we can get to it)
-	
-	GetObstructionsInRange(filter, x-r, z-r, x+r, z+r, squares);
-	// Building squares are more important but returned last, so check backwards
-	for (std::vector<ObstructionSquare>::reverse_iterator it = squares.rbegin(); it != squares.rend(); ++it)
-	{
-		CFixedVector2D halfSize(it->hw + r, it->hh + r);
-		if (Geometry::PointIsInSquare(CFixedVector2D(it->x, it->z) - center, it->u, it->v, halfSize))
-		{
-			square = *it;
-			return true;
-		}
-	}
-
-	return false;
+	// TODO : Should we expand by r here?
 }
 
 void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)

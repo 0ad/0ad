@@ -290,3 +290,22 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 
 	ret.setObject(*obj);
 }
+
+// TODO: This is copy-pasted from scriptinterface/ScriptConversions.h (#define VECTOR stuff), would be nice to remove the duplication
+template<> void ScriptInterface::ToJSVal<std::vector<CFixedVector2D> >(JSContext* cx, JS::MutableHandleValue ret, const std::vector<CFixedVector2D>& val)
+{
+	JSAutoRequest rq(cx);
+	JS::RootedObject obj(cx, JS_NewArrayObject(cx, 0));
+	if (!obj)
+	{
+		ret.setUndefined();
+		return;
+	}
+	for (size_t i = 0; i < val.size(); ++i)
+	{
+		JS::RootedValue el(cx);
+		ScriptInterface::ToJSVal<CFixedVector2D>(cx, &el, val[i]);
+		JS_SetElement(cx, obj, i, el);
+	}
+	ret.setObject(*obj);
+}

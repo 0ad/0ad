@@ -117,11 +117,11 @@ BuildRestrictions.prototype.CheckPlacement = function()
 		break;
 
 	case "land-shore":
-		// 'default' is everywhere a normal unit can go
-		// So on passable land, and not too deep in the water
-		passClassName = "default";
+		// 'default-terrain-only' is everywhere a normal unit can go, ignoring
+		// obstructions (i.e. on passable land, and not too deep in the water)
+		passClassName = "default-terrain-only";
 		break;
-	
+
 	case "land":
 	default:
 		passClassName = "building-land";
@@ -130,8 +130,8 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (!cmpObstruction)
 		return result; // Fail
-	
-	
+
+
 	if (this.template.Category == "Wall")
 	{
 		// for walls, only test the center point

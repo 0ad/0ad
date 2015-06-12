@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,6 +55,8 @@ public:
 	virtual entity_pos_t GetSize() = 0;
 
 	virtual entity_pos_t GetUnitRadius() = 0;
+
+	virtual void SetUnitClearance(const entity_pos_t& clearance) = 0;
 
 	virtual bool IsControlPersistent() = 0;
 

@@ -485,7 +485,10 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(simContext, SYSTEM_ENTITY);
 	if (cmpPathfinder)
+	{
+		cmpPathfinder->UpdateGrid();
 		cmpPathfinder->FinishAsyncRequests();
+	}
 
 	// Push AI commands onto the queue before we use them
 	CmpPtr<ICmpAIManager> cmpAIManager(simContext, SYSTEM_ENTITY);

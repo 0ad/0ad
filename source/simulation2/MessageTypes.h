@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -458,13 +458,13 @@ class CMessagePathResult : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(PathResult)
 
-	CMessagePathResult(u32 ticket, const ICmpPathfinder::Path& path) :
+	CMessagePathResult(u32 ticket, const WaypointPath& path) :
 		ticket(ticket), path(path)
 	{
 	}
 
 	u32 ticket;
-	ICmpPathfinder::Path path;
+	WaypointPath path;
 };
 
 /**

@@ -49,11 +49,11 @@ public:
 		TS_ASSERT_EQUALS((player_id_t)7, boundaries[0].owner);
 		TS_ASSERT_EQUALS(false, boundaries[0].blinking); // high bits aren't set by GetGrid
 
-		// assumes CELL_SIZE is 4; dealt with in TestBoundaryPointsEqual
-		int expectedPoints[][2] = {{ 2, 4}, { 6, 4}, {10, 4}, {14, 4}, {18, 4}, {22, 4},
-		                           {24, 6}, {24,10}, {24,14},
-								   {22,16}, {18,16}, {14,16}, {10,16}, { 6,16}, { 2,16},
-								   { 0,14}, { 0,10}, { 0, 6}};
+		// assumes CELL_SIZE is 2; dealt with in TestBoundaryPointsEqual
+		int expectedPoints[][2] = {{ 4, 8}, {12, 8}, {20, 8}, {28, 8}, {36, 8}, {44, 8},
+		                           {48,12}, {48,20}, {48,28},
+		                           {44,32}, {36,32}, {28,32}, {20,32}, {12,32}, { 4,32},
+		                           { 0,28}, { 0,20}, { 0,12}};
 
 		TestBoundaryPointsEqual(boundaries[0].points, expectedPoints);
 	}
@@ -97,8 +97,8 @@ public:
 				}
 				else
 				{
-					TS_ASSERT_EQUALS(onesInnerNumExpectedPoints, boundary.points.size()); // all inner boundaries are of size 4
-					if (boundary.points[0].X < 14.f)
+					TS_ASSERT_EQUALS(onesInnerNumExpectedPoints, boundary.points.size()); // all inner boundaries are of size 2
+					if (boundary.points[0].X < 24.f)
 					{
 						// leftmost inner boundary, i.e. onesInner0
 						TSM_ASSERT_EQUALS("Found multiple leftmost inner boundaries for territory owned by player 1", onesInner0, (STerritoryBoundary*) NULL);
@@ -139,14 +139,14 @@ public:
 		TS_ASSERT_EQUALS(twosOuter->points.size(), 4U);
 		TS_ASSERT_EQUALS(threesOuter->points.size(), 4U);
 
-		int onesOuterExpectedPoints[][2] = {{6,4}, {10,4}, {14,4}, {18,4}, {22,4}, {26,4},
-		                                    {28,6}, {26,8}, {24,10}, {26,12}, {28,14},
-											{26,16}, {22,16}, {18,16}, {14,16}, {10,16}, {6,16},
-											{4,14}, {4,10}, {4,6}};
-		int onesInner0ExpectedPoints[][2] = {{10,12}, {12,10}, {10,8}, {8,10}};
-		int onesInner2ExpectedPoints[][2] = {{18,12}, {20,10}, {18,8}, {16,10}};
-		int twosOuterExpectedPoints[][2]  = {{18,8}, {20,10}, {18,12}, {16,10}};
-		int threesOuterExpectedPoints[][2] = {{26,8}, {28,10}, {26,12}, {24,10}};
+		int onesOuterExpectedPoints[][2] = {{12, 8}, {20, 8}, {28, 8}, {36, 8}, {44, 8}, {52, 8},
+		                                    {56,12}, {52,16}, {48,20}, {52,24}, {56,28},
+		                                    {52,32}, {44,32}, {36,32}, {28,32}, {20,32}, {12,32},
+		                                    { 8,28}, { 8,20}, { 8,12}};
+		int onesInner0ExpectedPoints[][2] = {{20,24}, {24,20}, {20,16}, {16,20}};
+		int onesInner2ExpectedPoints[][2] = {{36,24}, {40,20}, {36,16}, {32,20}};
+		int twosOuterExpectedPoints[][2]  = {{36,16}, {40,20}, {36,24}, {32,20}};
+		int threesOuterExpectedPoints[][2] = {{52,16}, {56,20}, {52,24}, {48,20}};
 
 		TestBoundaryPointsEqual(onesOuter->points, onesOuterExpectedPoints);
 		TestBoundaryPointsEqual(onesInner0->points, onesInner0ExpectedPoints);
@@ -230,15 +230,15 @@ public:
 			twosInner = tmp;
 		}
 
-		int onesOuterExpectedPoints[][2] = {{14, 8}, {18, 8}, {20,10}, {20,14}, {18,16}, {14,16}, {12,14}, {12,10}};
-		int twosOuterExpectedPoints[][2] = {{ 6, 0}, {10, 0}, {14, 0}, {16, 2}, {18, 4}, {22, 4},
-		                                    {24, 6}, {24,10}, {24,14}, {24,18}, {24,22},
-											{22,24}, {18,24}, {14,24}, {10,24}, { 6,24},
-											{4, 22}, {4, 18}, {4, 14}, {4, 10}, { 4, 6}, { 4, 2}};
-		int twosInnerExpectedPoints[][2] = {{10,20}, {14,20}, {18,20}, {20,18}, {20,14}, {20,10}, {18, 8},
-		                                    {14, 8}, {12, 6}, {10, 4}, { 8, 6}, { 8,10}, { 8,14}, { 8,18}};
-		int threesOuterExpectedPoints[][2] = {{18, 0}, {22, 0}, {26, 0}, {28, 2}, {28, 6}, {28,10}, {28,14}, {26,16},
-		                                      {24,14}, {24,10}, {24, 6}, {22, 4}, {18, 4}, {16, 2}};
+		int onesOuterExpectedPoints[][2] = {{28,16}, {36,16}, {40,20}, {40,28}, {36,32}, {28,32}, {24,28}, {24,20}};
+		int twosOuterExpectedPoints[][2] = {{12, 0}, {20, 0}, {28, 0}, {32, 4}, {36, 8}, {44, 8},
+		                                    {48,12}, {48,20}, {48,28}, {48,36}, {48,44},
+											{44,48}, {36,48}, {28,48}, {20,48}, {12,48},
+											{ 8,44}, { 8,36}, { 8,28}, { 8,20}, { 8,12}, { 8, 4}};
+		int twosInnerExpectedPoints[][2] = {{20,40}, {28,40}, {36,40}, {40,36}, {40,28}, {40,20}, {36,16},
+		                                    {28,16}, {24,12}, {20, 8}, {16,12}, {16,20}, {16,28}, {16,36}};
+		int threesOuterExpectedPoints[][2] = {{36, 0}, {44, 0}, {52, 0}, {56, 4}, {56,12}, {56,20}, {56,28}, {52,32},
+		                                      {48,28}, {48,20}, {48,12}, {44, 8}, {36, 8}, {32, 4}};
 
 		TestBoundaryPointsEqual(onesOuter->points, onesOuterExpectedPoints);
 		TestBoundaryPointsEqual(twosOuter->points, twosOuterExpectedPoints);
@@ -281,7 +281,7 @@ private:
 		// version of 'points', so that the starting position doesn't need to match exactly.
 		for (size_t i = 0; i < points.size(); i++)
 		{
-			// the input numbers in expectedPoints are defined under the assumption that CELL_SIZE is 4, so let's include
+			// the input numbers in expectedPoints are defined under the assumption that CELL_SIZE is 2, so let's include
 			// a scaling factor to protect against that should CELL_SIZE ever change
 			TS_ASSERT_DELTA(points[i].X, float(expectedPoints[i][0]) * 4.f / TERRAIN_TILE_SIZE, 1e-7);
 			TS_ASSERT_DELTA(points[i].Y, float(expectedPoints[i][1]) * 4.f / TERRAIN_TILE_SIZE, 1e-7);
