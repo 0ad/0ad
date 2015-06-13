@@ -253,6 +253,9 @@ Capturable.prototype.OnTerritoryDecayChanged = function(msg)
 
 Capturable.prototype.OnOwnershipChanged = function(msg)
 {
+	if (msg.to == -1)
+		return; // we're dead
+
 	if (this.cp.length)
 	{
 		if (!this.cp[msg.from])
