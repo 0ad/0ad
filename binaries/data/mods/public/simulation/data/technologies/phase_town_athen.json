@@ -4,13 +4,13 @@
 		"athen": "Kōmópolis"
 	},
 	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Athenian city phase, where metal gathering rates are boosted because of the Silver Owls bonus.",
-	"cost": {"food": 800, "wood": 800, "stone": 0, "metal": 0},
+	"cost": {"food": 500, "wood": 500, "stone": 0, "metal": 0},
 	"requirements": { "class": "Village", "number": 5 },
 	"requirementsTooltip": "Requires 5 Village Phase structures (except Palisades and Farm Fields).",
 	"supersedes": "phase_village",
 	"replaces": ["phase_town"],
 	"icon": "town_phase.png",
-	"researchTime": 80,
+	"researchTime": 30,
 	"tooltip": "Advance to Town Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants an extra +10% metal gather rate to all workers.",
 	"modifications": [
 		{"value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.1, "affects": "Worker"},
