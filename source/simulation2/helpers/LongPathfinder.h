@@ -161,24 +161,8 @@ class LongOverlay;
 class LongPathfinder
 {
 public:
-	LongPathfinder()
-	{
-		m_UseJPSCache = false;
-		
-		m_Grid = NULL;
-		m_GridSize = 0;
-		
-		m_DebugOverlay = NULL;
-		m_DebugGrid = NULL;
-		m_DebugPath = NULL;
-	}
-
-	~LongPathfinder()
-	{
-		SAFE_DELETE(m_DebugOverlay);
-		SAFE_DELETE(m_DebugGrid);
-		SAFE_DELETE(m_DebugPath);
-	}
+	LongPathfinder();
+	~LongPathfinder();
 
 	void SetDebugOverlay(bool enabled);
 

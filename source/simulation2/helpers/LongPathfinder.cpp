@@ -373,6 +373,20 @@ public:
 
 //////////////////////////////////////////////////////////
 
+LongPathfinder::LongPathfinder() : 
+	m_UseJPSCache(false),
+	m_Grid(NULL), m_GridSize(0),
+	m_DebugOverlay(NULL), m_DebugGrid(NULL), m_DebugPath(NULL)
+{
+}
+
+LongPathfinder::~LongPathfinder()
+{
+	SAFE_DELETE(m_DebugOverlay);
+	SAFE_DELETE(m_DebugGrid);
+	SAFE_DELETE(m_DebugPath);
+}
+
 #define PASSABLE(i, j) IS_PASSABLE(state.terrain->get(i, j), state.passClass)
 
 // Calculate heuristic cost from tile i,j to goal
