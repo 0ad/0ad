@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
+  <Armour>
+    <Hack>6</Hack>
+    <Pierce>6</Pierce>
+  </Armour>
   <Attack>
     <Melee>
       <Hack>0</Hack>
-      <Crush>15.0</Crush>
+      <Crush>12.5</Crush>
     </Melee>
     <Charge>
       <Hack>0.0</Hack>
-      <Crush>30.0</Crush>
+      <Crush>25.0</Crush>
     </Charge>
   </Attack>
   <Identity>
