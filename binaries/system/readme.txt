@@ -46,6 +46,8 @@ Advanced / diagnostic:
 -profile=NAME		(disabled)
 -replay=PATH		non-visual replay of a previous game, used for analysis purposes
 					  PATH is system path to commands.txt containing simulation log
+-replay-visual=PATH	visual replay of a previous game, used for analysis purposes
+					  PATH is system path to commands.txt containing simulation log
 -writableRoot		store runtime game data in root data directory
 					  (only use if you have write permissions on that directory)
 -ooslog				dumps simulation state in binary and ASCII representations each turn,
