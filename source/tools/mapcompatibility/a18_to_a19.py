@@ -25,6 +25,7 @@
 import argparse
 import io
 import os
+import struct
 import sys
 
 parser = argparse.ArgumentParser(description="Convert maps compatible with 0 A.D. version Alpha XVIII (A18) to maps compatible with version Alpha XIX (A19), or the other way around.")
@@ -51,27 +52,27 @@ for xmlFile in args.files:
 			f2.write(f1.read(4))
 
 			# 4 bytes to encode the version of the file format
-			version = int.from_bytes(f1.read(4), byteorder='little')
+			version = struct.unpack("<I", f1.read(4))[0]
 			if args.no_version_bump:
-				f2.write((version).to_bytes(4, byteorder='little'))
+				f2.write(struct.pack("<I", version))
 			else:
 				if args.reverse:
 					if version != 6:
 						print("Warning: File " + pmpFile + " was not at version 6, while a negative version bump was requested.\nABORTING ...")
 						continue
-					f2.write((version-1).to_bytes(4, byteorder='little'))
+					f2.write(struct.pack("<I", version-1))
 				else:
 					if version != 5:
 						print("Warning: File " + pmpFile + " was not at version 5, while a version bump was requested.\nABORTING ...")
 						continue
-					f2.write((version+1).to_bytes(4, byteorder='little'))
+					f2.write(struct.pack("<I", version+1))
 
 			# 4 bytes a for file size (which shouldn't change) 
 			f2.write(f1.read(4))
 
 			# 4 bytes to encode the map size
-			map_size = int.from_bytes(f1.read(4), byteorder='little')
-			f2.write(map_size.to_bytes(4, byteorder='little'))
+			map_size = struct.unpack("<I", f1.read(4))[0]
+			f2.write(struct.pack("<I", map_size))
 
 			# half all heights using the shift '>>' operator
 			if args.no_height_change:
@@ -86,8 +87,8 @@ for xmlFile in args.files:
 						return h >> HEIGHTMAP_BIT_SHIFT
 					
 			for i in range(0, (map_size*16+1)*(map_size*16+1)):
-				height = int.from_bytes(f1.read(2), byteorder='little')
-				f2.write(height_transform(height).to_bytes(2, byteorder='little'))
+				height = struct.unpack("<H", f1.read(2))[0]
+				f2.write(struct.pack("<H", height_transform(height)))
 			
 			# copy the rest of the file
 			byte = f1.read(1)
