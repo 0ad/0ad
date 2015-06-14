@@ -20,8 +20,7 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "simulation2/helpers/Grid.h"
-#include "simulation2/helpers/Position.h"
+#include "simulation2/helpers/Pathfinding.h"
 
 #include "maths/FixedVector2D.h"
 
@@ -217,19 +216,18 @@ public:
 
 	/**
 	 * Convert the current set of shapes onto a navcell grid.
-	 * Shapes are expanded by the clearance radius @p expand.
+	 * If @p fullUpdate is false, the function will only go through dirty shapes.
+	 * Shapes are expanded by the @p passClasses clearances, by ORing their masks onto the @p grid.
 	 * Only shapes with at least one of the flags from @p requireMask will be considered.
-	 * @p setMask will be ORed onto the @p grid value for all navcells
-	 * that are wholly enclosed by an expanded shape.
 	 */
-	virtual void Rasterize(Grid<u16>& grid, const entity_pos_t& expand, ICmpObstructionManager::flags_t requireMask, u16 setMask) = 0;
+	virtual void Rasterize(Grid<u16>& grid, const std::vector<PathfinderPassability>& passClasses, ICmpObstructionManager::flags_t requireMask, bool fullUpdate) = 0;
 
 	/**
 	 * Gets dirtiness information and resets it afterwards. Then it's the role of CCmpPathfinder
 	 * to pass the information to other components if needed. (AIs, etc.)
 	 * The return value is false if an update is unnecessary.
 	 */
-	virtual bool GetDirtinessData(Grid<u8>& dirtinessGrid, bool& globalUpdateNeeded) = 0;
+	virtual void UpdateInformations(GridUpdateInformation& informations) = 0;
 
 	/**
 	 * Standard representation for all types of shapes, for use with geometry processing code.

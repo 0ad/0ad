@@ -76,9 +76,9 @@ m.TrainingPlan.prototype.start = function(gameState)
 				bb += 10;
 			if (supportUnit)
 			{
-				if (gameState.ai.HQ.isDangerousLocation(a.position()))
+				if (gameState.ai.HQ.isNearInvadingArmy(a.position()))
 					aa += 50;
-				if (gameState.ai.HQ.isDangerousLocation(b.position()))
+				if (gameState.ai.HQ.isNearInvadingArmy(b.position()))
 					bb += 50;
 			}
 			let aBase = a.getMetadata(PlayerID, "base");

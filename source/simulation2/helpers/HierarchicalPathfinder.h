@@ -80,7 +80,7 @@ public:
 	void SetDebugOverlay(bool enabled, const CSimContext* simContext);
 
 	void Recompute(const std::map<std::string, pass_class_t>& passClassMasks, Grid<NavcellData>* passabilityGrid);
-	void Update(Grid<NavcellData>* grid, const Grid<u8>* dirtinessGrid);
+	void Update(Grid<NavcellData>* grid, const Grid<u8>& dirtinessGrid);
 
 	RegionID Get(u16 i, u16 j, pass_class_t passClass);
 

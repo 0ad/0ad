@@ -106,13 +106,11 @@ public:
 
 	u16 m_MapSize; // tiles per side
 	Grid<NavcellData>* m_Grid; // terrain/passability information
-	Grid<NavcellData>* m_BaseGrid; // same as m_Grid, but only with terrain, to avoid some recomputations
-	bool m_TerrainDirty; // indicates if m_Grid has been updated since terrain changed
+	Grid<NavcellData>* m_TerrainOnlyGrid; // same as m_Grid, but only with terrain, to avoid some recomputations
 
-	// Update data, stored for the AI manager
-	bool m_ObstructionsDirty;
-	bool m_ObstructionsGlobalUpdate;
-	Grid<u8> m_DirtinessGrid;
+	// Update data, used for clever updates and then stored for the AI manager
+	GridUpdateInformation m_ObstructionsDirty;
+	bool m_TerrainDirty;
 
 	// Interface to the long-range pathfinder.
 	LongPathfinder m_LongPathfinder;
@@ -170,7 +168,7 @@ public:
 
 	virtual const Grid<u16>& GetPassabilityGrid();
 
-	virtual bool GetDirtinessData(Grid<u8>& dirtinessGrid, bool& globalUpdateNeeded);
+	virtual const GridUpdateInformation& GetDirtinessData() const;
 
 	virtual Grid<u16> ComputeShoreGrid(bool expandOnWater = false);
 

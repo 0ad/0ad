@@ -351,7 +351,7 @@ void CGame::SetPlayerID(player_id_t playerID)
 
 void CGame::StartGame(JS::MutableHandleValue attribs, const std::string& savedState)
 {
-	if (m_ReplayLogger != false)
+	if (m_ReplayLogger)
 		m_ReplayLogger->StartGame(attribs);
 
 	RegisterInit(attribs, savedState);

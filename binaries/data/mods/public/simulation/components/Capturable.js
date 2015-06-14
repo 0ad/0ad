@@ -253,22 +253,31 @@ Capturable.prototype.OnTerritoryDecayChanged = function(msg)
 
 Capturable.prototype.OnOwnershipChanged = function(msg)
 {
+	if (msg.to == -1)
+		return; // we're dead
+
+	if (this.cp.length)
+	{
+		if (!this.cp[msg.from])
+			return; // nothing to change
+
+		// Was already initialised, this happens on defeat or wololo
+		// transfer the points of the old owner to the new one
+		this.cp[msg.to] += this.cp[msg.from];
+		this.cp[msg.from] = 0;
+		this.RegisterCapturePointsChanged();
+	}
+	else
+	{
+		// initialise the capture points when created
+		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		for (let i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
+			if (i == msg.to)
+				this.cp[i] = this.maxCp;
+			else
+				this.cp[i] = 0;
+	}
 	this.CheckTimer();
-
-	// if the new owner has no capture points, it means that either
-	// * it's being initialised now, or
-	// * it changed ownership for a different reason (defeat, atlas, ...)
-	if (this.cp[msg.to])
-		return;
-
-	// initialise the capture points when created
-	this.cp = [];
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	for (let i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
-		if (i == msg.to)
-			this.cp[i] = this.maxCp;
-		else
-			this.cp[i] = 0;
 };
 
 Engine.RegisterComponentType(IID_Capturable, "Capturable", Capturable);

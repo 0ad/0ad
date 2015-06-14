@@ -296,6 +296,11 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 {
 	
 	var template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_storehouse"));
+	var halfSize = 0;
+	if (template.get("Footprint/Square"))
+		halfSize = Math.max(+template.get("Footprint/Square/@depth"), +template.get("Footprint/Square/@width")) / 2;
+	else if (template.get("Footprint/Circle"))
+		halfSize = +template.get("Footprint/Circle/@radius");
 
 	// This builds a map. The procedure is fairly simple. It adds the resource maps
 	//	(which are dynamically updated and are made so that they will facilitate DP placement)
@@ -371,7 +376,8 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		}
 		if (total <= bestVal)
 			continue;
-
+		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
+			continue;
 		bestVal = total;
 		bestIdx = i;
 	}
@@ -761,7 +767,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (target.hasClass("Field"))
 			continue; // we do not build fields
 
-		if (gameState.ai.HQ.isDangerousLocation(target.position()))
+		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
 			if (!target.hasClass("CivCentre") && !target.hasClass("StoneWall") && (!target.hasClass("Wonder") || gameState.getGameType() !== "wonder"))
 				continue;
 
@@ -848,7 +854,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	for (var target of damagedBuildings.values())
 	{
 		// don't repair if we're still under attack, unless it's a vital (civcentre or wall) building that's getting destroyed.
-		if (gameState.ai.HQ.isDangerousLocation(target.position()))
+		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
 			if (target.healthLevel() > 0.5 ||
 				(!target.hasClass("CivCentre") && !target.hasClass("StoneWall") && (!target.hasClass("Wonder") || gameState.getGameType() !== "wonder")))
 				continue;

@@ -25,7 +25,7 @@ function init(initData, hotloadData)
 	// Pick a random background and initialise it
 	g_BackgroundCode = Math.floor(Math.random() * g_BackgroundLayerData.length);
 	var layerset = g_BackgroundLayerData[g_BackgroundCode];
-	for (var i = 0; i < layerset.length; i++)
+	for (var i = 0; i < layerset.length; ++i)
 	{
 		var layer = layerset[i];
 		var guiObj = Engine.GetGUIObjectByName("background["+i+"]");
