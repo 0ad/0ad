@@ -194,7 +194,7 @@ public:
 		m_PathfinderHier.Recompute(passClassMasks, passabilityGrid);
 	}
 
-	void Update(Grid<NavcellData>* passabilityGrid, const Grid<u8>* dirtinessGrid)
+	void Update(Grid<NavcellData>* passabilityGrid, const Grid<u8>& dirtinessGrid)
 	{
 		m_Grid = passabilityGrid;
 		ASSERT(passabilityGrid->m_H == passabilityGrid->m_W);

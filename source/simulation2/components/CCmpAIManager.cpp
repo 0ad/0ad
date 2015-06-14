@@ -511,7 +511,7 @@ public:
 		return true;
 	}
 	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, 
-		const Grid<u16>& passabilityMap, bool passabilityMapDirty, const Grid<u8>* dirtinessGrid, bool passabilityMapEntirelyDirty,
+		const Grid<u16>& passabilityMap, const GridUpdateInformation& dirtinessInformations,
 		const Grid<u8>& territoryMap, bool territoryMapDirty, 
 		std::map<std::string, pass_class_t> passClassMasks)
 	{
@@ -520,13 +520,13 @@ public:
 		m_GameState = gameState;
 		JSContext* cx = m_ScriptInterface->GetContext();
 
-		if (passabilityMapDirty)
+		if (dirtinessInformations.dirty)
 		{
 			m_PassabilityMap = passabilityMap;
-			if (passabilityMapEntirelyDirty)
+			if (dirtinessInformations.globallyDirty)
 				m_LongPathfinder.Reload(passClassMasks, &m_PassabilityMap);
 			else
-				m_LongPathfinder.Update(&m_PassabilityMap, dirtinessGrid);
+				m_LongPathfinder.Update(&m_PassabilityMap, dirtinessInformations.dirtinessGrid);
 			ScriptInterface::ToJSVal(cx, &m_PassabilityMapVal, m_PassabilityMap);
 		}
 
@@ -1035,10 +1035,7 @@ public:
 		if (cmpPathfinder)
 			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
 
-		Grid<u8> dummyDirtinessGrid;
-		const Grid<u8>* dirtinessGrid = &dummyDirtinessGrid;
-		bool passabilityMapEntirelyDirty = false;
-		bool passabilityMapDirty = cmpPathfinder->GetDirtinessData(dummyDirtinessGrid, passabilityMapEntirelyDirty);
+		GridUpdateInformation dirtinessInformations = cmpPathfinder->GetDirtinessData();
 
 		// Get the territory data
 		//	Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
@@ -1058,7 +1055,7 @@ public:
 			passClassMasks = cmpPathfinder->GetPassabilityClasses();
 
 		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state), 
-			*passabilityMap, passabilityMapDirty, dirtinessGrid, passabilityMapEntirelyDirty,
+			*passabilityMap, dirtinessInformations,
 			*territoryMap, territoryMapDirty,
 			passClassMasks);
 		

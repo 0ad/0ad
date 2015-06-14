@@ -300,16 +300,16 @@ void HierarchicalPathfinder::Recompute(const std::map<std::string, pass_class_t>
 	}
 }
 
-void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>* dirtinessGrid)
+void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dirtinessGrid)
 {
 	PROFILE3("Hierarchical Update");
 
 	std::vector<std::pair<int, int> > processedChunks;
-	for (int j = 0; j < dirtinessGrid->m_H; ++j)
+	for (int j = 0; j < dirtinessGrid.m_H; ++j)
 	{
-		for (int i = 0; i < dirtinessGrid->m_W; ++i)
+		for (int i = 0; i < dirtinessGrid.m_W; ++i)
 		{
-			if (!dirtinessGrid->get(i, j))
+			if (!dirtinessGrid.get(i, j))
 				continue;
 
 			std::pair<int, int> chunkID(i / CHUNK_SIZE, j / CHUNK_SIZE);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -183,6 +183,31 @@ public:
 	T** m_Data;
 
 	size_t m_DirtyID; // if this is < the id maintained by ICmpObstructionManager then it needs to be updated
+};
+
+/**
+ * Structure holding grid dirtiness informations, for clever updates
+ *
+ * Note: globallyDirty should be used to know which parts of the grid have been changed after an update, 
+ * whereas globalRecompute should be used during the update itself, to avoid unnecessary recomputations.
+ */
+struct GridUpdateInformation
+{
+	bool dirty;
+	bool globallyDirty;
+	bool globalRecompute;
+	Grid<u8> dirtinessGrid;
+
+	/**
+	 * Mark everything as clean
+	 */
+	void Clean()
+	{
+		dirty = false;
+		globallyDirty = false;
+		globalRecompute = false;
+		dirtinessGrid.reset();
+	}
 };
 
 #endif // INCLUDED_GRID
