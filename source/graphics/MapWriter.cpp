@@ -347,7 +347,10 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				CmpPtr<ICmpPosition> cmpPosition(sim, ent);
 				if (cmpPosition)
 				{
-					CFixedVector3D pos = cmpPosition->GetPosition();
+					CFixedVector3D pos;
+					if (cmpPosition->IsInWorld())
+						pos = cmpPosition->GetPosition();
+
 					CFixedVector3D rot = cmpPosition->GetRotation();
 					{
 						XML_Element("Position");
