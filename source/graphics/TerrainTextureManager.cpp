@@ -35,9 +35,11 @@
 #include <boost/algorithm/string.hpp>
 
 
-CTerrainTextureManager::CTerrainTextureManager():
-	m_LastGroupIndex(0)
+CTerrainTextureManager::CTerrainTextureManager()
+	: m_LastGroupIndex(0)
 {
+	if (!VfsDirectoryExists(L"art/terrains/"))
+		return;
 	if (!CXeromyces::AddValidator(g_VFS, "terrain", "art/terrains/terrain.rng"))
 		LOGERROR("CTerrainTextureManager: failed to load grammar file 'art/terrains/terrain.rng'");
 	if (!CXeromyces::AddValidator(g_VFS, "terrain_texture", "art/terrains/terrain_texture.rng"))

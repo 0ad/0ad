@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,8 @@
 extern PIVFS g_VFS;
 
 extern bool VfsFileExists(const VfsPath& pathname);
+
+extern bool VfsDirectoryExists(const VfsPath& pathname);
 
 /**
  * callback function type for file change notifications

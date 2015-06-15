@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,6 +33,12 @@ static std::vector<std::pair<FileReloadFunc, void*> > g_ReloadFuncs;
 bool VfsFileExists(const VfsPath& pathname)
 {
 	return g_VFS->GetFileInfo(pathname, 0) == INFO::OK;
+}
+
+bool VfsDirectoryExists(const VfsPath& pathname)
+{
+	ENSURE(pathname.IsDirectory());
+	return g_VFS->GetDirectoryEntries(pathname, NULL, NULL) == INFO::OK;
 }
 
 void RegisterFileReloadFunc(FileReloadFunc func, void* obj)
