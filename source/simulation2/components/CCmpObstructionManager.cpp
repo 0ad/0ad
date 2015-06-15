@@ -536,7 +536,8 @@ private:
 
 	inline void MarkDirtinessGrid(const entity_pos_t& x, const entity_pos_t& z, const CFixedVector2D& hbox)
 	{
-		ENSURE(m_UpdateInformations.dirtinessGrid.m_W != 0 && m_UpdateInformations.dirtinessGrid.m_H != 0);
+		if (m_UpdateInformations.dirtinessGrid.m_W == 0 || m_UpdateInformations.dirtinessGrid.m_H == 0)
+			return;
 
 		u16 j0, j1, i0, i1;
 		Pathfinding::NearestNavcell(x - hbox.X, z - hbox.Y, i0, j0, m_UpdateInformations.dirtinessGrid.m_W, m_UpdateInformations.dirtinessGrid.m_H);

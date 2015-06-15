@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/mace_champion_infantry_a">
-  <Attack>
-    <Melee>
-      <Hack>8.5</Hack>
-      <Pierce>17</Pierce>
-    </Melee>
-    <Charge>
-      <Hack>16.0</Hack>
-      <Pierce>48.0</Pierce>
-      <MaxRange>6.0</MaxRange>
-    </Charge>
-  </Attack>
   <Health>
-    <Max>145</Max>
+    <Max>240</Max>
   </Health>
   <Identity>
     <SpecificName>Hypaspistḗs Argyraspídi</SpecificName>
     <Icon>units/macedonian_argyraspidai.png</Icon>
   </Identity>
   <Promotion disable=""/>
-  <UnitMotion>
-    <WalkSpeed>8</WalkSpeed>
-    <Run>
-      <Speed>15.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/macedonians/mace_champion_argyraspis.xml</Actor>
   </VisualActor>
