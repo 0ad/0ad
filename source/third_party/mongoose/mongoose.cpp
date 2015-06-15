@@ -25,7 +25,9 @@
 
 #ifdef __GNUC__
 # pragma GCC diagnostic ignored "-Wunused-function"
-# pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+# ifndef __clang__
+#  pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+# endif
 #endif
 
 #define NO_CGI

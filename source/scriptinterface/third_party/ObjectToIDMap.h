@@ -34,9 +34,10 @@ class ObjectIdCache
 	typedef js::PointerHasher<JSObject *, 3> Hasher;
 	typedef js::HashMap<JSObject *, T, Hasher, js::SystemAllocPolicy> ObjectIdTable;
 
-  public:
+	NONCOPYABLE(ObjectIdCache);
 
-    ObjectIdCache(shared_ptr<ScriptRuntime> rt)
+public:
+	ObjectIdCache(shared_ptr<ScriptRuntime> rt)
 		: table_(nullptr), m_rt(rt)
 	{
 		JS_AddExtraGCRootsTracer(m_rt->m_rt, ObjectIdCache::Trace, this);
@@ -100,11 +101,7 @@ class ObjectIdCache
 		return table_->has(obj);
 	}
 
-  private:
-
-	ObjectIdCache(const ObjectIdCache&) {};
-	ObjectIdCache& operator= (const ObjectIdCache& other) {};
-
+private:
 	static void keyMarkCallback(JSTracer *trc, JSObject *key, void *data)
 	{
 		ObjectIdTable* table = static_cast<ObjectIdTable*>(data);

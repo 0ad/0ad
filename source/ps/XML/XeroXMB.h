@@ -164,7 +164,7 @@ public:
 		: m_Pointer(0) {}
 
 	XMBElement(const char* offset)
-		: m_Pointer(offset)	{}
+		: m_Pointer(offset) {}
 
 	int GetNodeName() const;
 	XMBElementList GetChildNodes() const;
@@ -182,7 +182,6 @@ private:
 class XMBElementList
 {
 public:
-	XMBElementList() : XMBElementList(NULL, 0, NULL) {}
 	XMBElementList(const char* offset, size_t count, const char* endoffset)
 		: m_Size(count), m_Pointer(offset), m_CurItemID(0), m_CurPointer(offset), m_EndPointer(endoffset) {}
 
@@ -202,7 +201,6 @@ public:
 		typedef XMBElement pointer; // Because we need to construct the object
 		typedef std::forward_iterator_tag iterator_category;
 
-		iterator() : iterator(0, NULL) {}
 		iterator(size_t size, const char* ptr, const char* endptr = NULL)
 			: m_Size(size), m_CurItemID(endptr ? size : 0), m_CurPointer(endptr ? endptr : ptr), m_Pointer(ptr) {}
 		XMBElement operator*() const { return XMBElement(m_CurPointer); }
@@ -272,7 +270,6 @@ public:
 		typedef XMBAttribute pointer; // Because we need to construct the object
 		typedef std::forward_iterator_tag iterator_category;
 
-		iterator() : iterator(0, NULL) {}
 		iterator(size_t size, const char* ptr, const char* endptr = NULL)
 			: m_Size(size), m_CurItemID(endptr ? size : 0), m_CurPointer(endptr ? endptr : ptr), m_Pointer(ptr) {}
 		XMBAttribute operator*() const;
@@ -299,7 +296,7 @@ public:
 	bool empty() const { return m_Size == 0; }
 
 private:
-	size_t m_Size;	
+	size_t m_Size;
 
 	// Pointer to start of attribute list
 	const char* m_Pointer;

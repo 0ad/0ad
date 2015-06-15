@@ -410,7 +410,7 @@ class CXMLReader
 	NONCOPYABLE(CXMLReader);
 public:
 	CXMLReader(const VfsPath& xml_filename, CMapReader& mapReader)
-		: m_MapReader(mapReader)
+		: m_MapReader(mapReader), nodes(NULL, 0, NULL)
 	{
 		Init(xml_filename);
 	}

@@ -14,8 +14,8 @@ die()
 # Check for whitespace in absolute path; this will cause problems in the
 # SpiderMonkey build (https://bugzilla.mozilla.org/show_bug.cgi?id=459089)
 # and maybe elsewhere, so we just forbid it
-SCRIPT=$(readlink -f "$0")
-SCRIPTPATH=`dirname "$SCRIPT"`
+# Use perl as an alternative to readlink -f, which isn't available on BSD or OS X
+SCRIPTPATH=`perl -MCwd -e 'print Cwd::abs_path shift' "$0"`
 case "$SCRIPTPATH" in
   *\ * )
     die "Absolute path contains whitespace, which will break the build - move the game to a path without spaces" ;;
