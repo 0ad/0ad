@@ -45,8 +45,12 @@ AttackDetection.prototype.OnGlobalAttacked = function(msg)
 {
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 	var cmpOwnership = Engine.QueryInterface(msg.target, IID_Ownership);
-	if (cmpOwnership.GetOwner() == cmpPlayer.GetPlayerID())
-		Engine.PostMessage(msg.target, MT_MinimapPing);
+	if (cmpOwnership.GetOwner() != cmpPlayer.GetPlayerID())
+		return;
+
+	Engine.PostMessage(msg.target, MT_MinimapPing);
+
+	this.AttackAlert(msg.target, msg.attacker);
 };
 
 //// External interface ////

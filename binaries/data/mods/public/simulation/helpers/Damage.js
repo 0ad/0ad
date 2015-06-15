@@ -72,7 +72,7 @@ Damage.CauseDamage = function(data)
 		return;
 
 	// Damage the target
-	var targetState = cmpDamageReceiver.TakeDamage(data.strengths.hack * data.multiplier, data.strengths.pierce * data.multiplier, data.strengths.crush * data.multiplier, data.attacker);
+	var targetState = cmpDamageReceiver.TakeDamage(data.strengths.hack * data.multiplier, data.strengths.pierce * data.multiplier, data.strengths.crush * data.multiplier);
 
 	// If the target was killed run some cleanup
 	if (targetState.killed)
