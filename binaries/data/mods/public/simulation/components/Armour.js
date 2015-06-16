@@ -34,7 +34,6 @@ Armour.prototype.Schema =
 
 Armour.prototype.Init = function()
 {
-	this.nextAlertTime = 0;
 	this.invulnerable = false;
 };
 
@@ -78,30 +77,18 @@ Armour.prototype.GetArmourStrengths = function()
 			type = "Foundation/" + type;
 		}
 		else
-		{
 			strength = +this.template[type];
-		}
 		
-		strength = ApplyValueModificationsToEntity("Armour/" + type, strength, this.entity);
-		return strength;
+		return ApplyValueModificationsToEntity("Armour/" + type, strength, this.entity);
 	};
 	
-	if (Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation) 
-	{
-		return {
-			hack: applyMods("Hack", true),
-			pierce: applyMods("Pierce", true),
-			crush: applyMods("Crush", true)
-		};
-	}
-	else
-	{
-		return {
-			hack: applyMods("Hack"),
-			pierce: applyMods("Pierce"),
-			crush: applyMods("Crush")
-		};
-	}
+	var foundation = Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation;
+
+	return {
+		"hack": applyMods("Hack", foundation),
+		"pierce": applyMods("Pierce", foundation),
+		"crush": applyMods("Crush", foundation)
+	};
 };
 
 Engine.RegisterComponentType(IID_DamageReceiver, "Armour", Armour);
