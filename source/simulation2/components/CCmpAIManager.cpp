@@ -89,7 +89,7 @@ private:
 			// LoadScripts will only load each script once even though we call it for each player
 			if (!m_Worker.LoadScripts(m_AIName))
 				return false;
-				
+
 			JSContext* cx = m_ScriptInterface->GetContext();
 			JSAutoRequest rq(cx);
 
@@ -181,11 +181,11 @@ private:
 		player_id_t m_Player;
 		u8 m_Difficulty;
 		bool m_UseSharedComponent;
-		
+
 		// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 		// members have to be called before the runtime destructor.
 		shared_ptr<ScriptInterface> m_ScriptInterface;
-		
+
 		JS::PersistentRootedValue m_Obj;
 		std::vector<shared_ptr<ScriptInterface::StructuredClone> > m_Commands;
 	};
@@ -226,7 +226,7 @@ public:
 
 		m_ScriptInterface->RegisterFunction<JS::Value, JS::HandleValue, JS::HandleValue, pass_class_t, CAIWorker::ComputePath>("ComputePath");
 		m_ScriptInterface->RegisterFunction<JS::Value, pass_class_t, CAIWorker::GetConnectivityGrid>("GetConnectivityGrid");
-		
+
 		m_ScriptInterface->RegisterFunction<void, std::wstring, std::vector<u32>, u32, u32, u32, CAIWorker::DumpImage>("DumpImage");
 	}
 
@@ -234,7 +234,7 @@ public:
 	{
 		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), Trace, this);
 	}
-	
+
 	bool LoadScripts(const std::wstring& moduleName)
 	{
 		// Ignore modules that are already loaded
@@ -263,7 +263,7 @@ public:
 
 		return true;
 	}
-	
+
 	static void IncludeModule(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name)
 	{
 		ENSURE(pCxPrivate->pCBData);
@@ -277,7 +277,7 @@ public:
 		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
 		self->PostCommand(playerid, cmd);
 	}
-	
+
 	void PostCommand(int playerid, JS::HandleValue cmd)
 	{
 		for (size_t i=0; i<m_Players.size(); i++)
@@ -288,7 +288,7 @@ public:
 				return;
 			}
 		}
-		
+
 		LOGERROR("Invalid playerid in PostCommand!");	
 	}
 
@@ -343,7 +343,7 @@ public:
 		PROFILE3("AI compute GC");
 		JS_GC(pCxPrivate->pScriptInterface->GetJSRuntime());
 	}
-	
+
 	/**
 	 * Debug function for AI scripts to dump 2D array data (e.g. terrain tile weights).
 	 */
@@ -351,22 +351,22 @@ public:
 	{
 		// TODO: this is totally not threadsafe.
 		VfsPath filename = L"screenshots/aidump/" + name;
-		
+
 		if (data.size() != w*h)
 		{
 			debug_warn(L"DumpImage: data size doesn't match w*h");
 			return;
 		}
-		
+
 		if (max == 0)
 		{
 			debug_warn(L"DumpImage: max must not be 0");
 			return;
 		}
-		
+
 		const size_t bpp = 8;
 		int flags = TEX_BOTTOM_UP|TEX_GREY;
-		
+
 		const size_t img_size = w * h * bpp/8;
 		const size_t hdr_size = tex_hdr_size(filename);
 		shared_ptr<u8> buf;
@@ -374,11 +374,11 @@ public:
 		Tex t;
 		if (t.wrap(w, h, bpp, flags, buf, hdr_size) < 0)
 			return;
-		
+
 		u8* img = buf.get() + hdr_size;
 		for (size_t i = 0; i < data.size(); ++i)
 			img[i] = (u8)((data[i] * 255) / max);
-		
+
 		tex_write(&t, filename);
 	}
 
@@ -395,10 +395,10 @@ public:
 		// we don't need to load it.
 		if (!m_HasSharedComponent)
 			return false;
-		
+
 		// reset the value so it can be used to determine if we actually initialized it.
 		m_HasSharedComponent = false;
-		
+
 		if (LoadScripts(L"common-api"))
 			m_HasSharedComponent = true;
 		else
@@ -406,7 +406,7 @@ public:
 
 		// mainly here for the error messages
 		OsPath path = L"simulation/ai/common-api/";
-		
+
 		// Constructor name is SharedScript, it's in the module API3
 		// TODO: Hardcoding this is bad, we need a smarter way. 
 		JS::RootedValue AIModule(cx);
@@ -417,31 +417,31 @@ public:
 			LOGERROR("Failed to create shared AI component: %s: can't find module '%s'", path.string8(), "API3");
 			return false;
 		}
-		
+
 		if (!m_ScriptInterface->GetProperty(AIModule, "SharedScript", &ctor)
 		    || ctor.isUndefined())
 		{
 			LOGERROR("Failed to create shared AI component: %s: can't find constructor '%s'", path.string8(), "SharedScript");
 			return false;
 		}
-		
+
 		// Set up the data to pass as the constructor argument
 		JS::RootedValue settings(cx);
 		m_ScriptInterface->Eval(L"({})", &settings);
 		JS::RootedValue playersID(cx);
 		m_ScriptInterface->Eval(L"({})", &playersID);
-		
+
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
 			JS::RootedValue val(cx);
 			m_ScriptInterface->ToJSVal(cx, &val, m_Players[i]->m_Player);
 			m_ScriptInterface->SetPropertyInt(playersID, i, val, true);
 		}
-		
+
 		m_ScriptInterface->SetProperty(settings, "players", playersID);
 		ENSURE(m_HasLoadedEntityTemplates);
 		m_ScriptInterface->SetProperty(settings, "templates", m_EntityTemplates, false);
-		
+
 		if (hasTechs)
 		{
 			m_ScriptInterface->SetProperty(settings, "techTemplates", m_TechTemplates, false);
@@ -453,17 +453,17 @@ public:
 			m_ScriptInterface->Eval("({})", &fakeTech);
 			m_ScriptInterface->SetProperty(settings, "techTemplates", fakeTech, false);
 		}
-		
+
 		JS::AutoValueVector argv(cx);
 		argv.append(settings);
 		m_ScriptInterface->CallConstructor(ctor, argv, &m_SharedAIObj);
-		
+
 		if (m_SharedAIObj.get().isNull())
 		{
 			LOGERROR("Failed to create shared AI component: %s: error calling constructor '%s'", path.string8(), "SharedScript");
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -472,7 +472,7 @@ public:
 		shared_ptr<CAIPlayer> ai(new CAIPlayer(*this, aiName, player, difficulty, m_ScriptInterface));
 		if (!ai->Initialise())
 			return false;
-		
+
 		// this will be set to true if we need to load the shared Component.
 		if (!m_HasSharedComponent)
 			m_HasSharedComponent = ai->m_UseSharedComponent;
@@ -482,32 +482,35 @@ public:
 		return true;
 	}
 
-	bool RunGamestateInit(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& passabilityMap, const Grid<u8>& territoryMap)
+	bool RunGamestateInit(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& passabilityMap, const Grid<u8>& territoryMap, const std::map<std::string, pass_class_t>& passClassMasks)
 	{
 		// this will be run last by InitGame.Js, passing the full game representation.
 		// For now it will run for the shared Component.
 		// This is NOT run during deserialization.
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		JS::RootedValue state(cx);
 		m_ScriptInterface->ReadStructuredClone(gameState, &state);
 		ScriptInterface::ToJSVal(cx, &m_PassabilityMapVal, passabilityMap);
 		ScriptInterface::ToJSVal(cx, &m_TerritoryMapVal, territoryMap);
-		
+
+		m_PassabilityMap = passabilityMap;
+		m_LongPathfinder.Reload(passClassMasks, &m_PassabilityMap);
+
 		if (m_HasSharedComponent)
 		{
 			m_ScriptInterface->SetProperty(state, "passabilityMap", m_PassabilityMapVal, true);
 			m_ScriptInterface->SetProperty(state, "territoryMap", m_TerritoryMapVal, true);
 			m_ScriptInterface->CallFunctionVoid(m_SharedAIObj, "init", state);
-			
+
 			for (size_t i = 0; i < m_Players.size(); ++i)
 			{
 				if (m_HasSharedComponent && m_Players[i]->m_UseSharedComponent)
 					m_Players[i]->InitAI(state, m_SharedAIObj);
 			}
 		}
-		
+
 		return true;
 	}
 	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, 
@@ -550,8 +553,8 @@ public:
 
 	void GetCommands(std::vector<SCommandSets>& commands)
 	{
- 		WaitToFinishComputation();
-		
+		WaitToFinishComputation();
+
 		commands.clear();
 		commands.resize(m_Players.size());
 		for (size_t i = 0; i < m_Players.size(); ++i)
@@ -565,7 +568,7 @@ public:
 	{
 		m_ScriptInterface->ReadStructuredClone(techTemplates, &m_TechTemplates);
 	}
-	
+
 	void LoadEntityTemplates(const std::vector<std::pair<std::string, const CParamNode*> >& templates)
 	{
 		JSContext* cx = m_ScriptInterface->GetContext();
@@ -630,7 +633,7 @@ public:
 			serializer.String("name", m_Players[i]->m_AIName, 1, 256);
 			serializer.NumberI32_Unbounded("player", m_Players[i]->m_Player);
 			serializer.NumberU8_Unbounded("difficulty", m_Players[i]->m_Difficulty);
-			
+
 			serializer.NumberU32_Unbounded("num commands", (u32)m_Players[i]->m_Commands.size());
 			for (size_t j = 0; j < m_Players[i]->m_Commands.size(); ++j)
 			{
@@ -705,11 +708,11 @@ public:
 				deserializer.ScriptVal("command", &val);
 				m_Players.back()->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(val));
 			}
-			
+
 			// TODO: this is yucky but necessary while the AIs are sharing data between contexts;
-			//	ideally a new (de)serializer instance would be created for each player
-			//	so they would have a single, consistent script context to use and serializable
-			//	prototypes could be stored in their ScriptInterface
+			// ideally a new (de)serializer instance would be created for each player
+			// so they would have a single, consistent script context to use and serializable
+			// prototypes could be stored in their ScriptInterface
 			deserializer.SetSerializablePrototypes(m_DeserializablePrototypes);
 
 			bool hasCustomDeserialize = m_ScriptInterface->HasProperty(m_Players.back()->m_Obj, "Deserialize");
@@ -733,7 +736,7 @@ public:
 			}
 		}
 	}
-	
+
 	int getPlayerSize()
 	{
 		return m_Players.size();
@@ -781,7 +784,7 @@ private:
 	}
 
 	void PerformComputation()
-	{			
+	{
 		// Deserialize the game state, to pass to the AI's HandleMessage
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
@@ -805,7 +808,7 @@ private:
 			PROFILE3("AI run shared component");
 			m_ScriptInterface->CallFunctionVoid(m_SharedAIObj, "onUpdate", state);
 		}
-		
+
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
 			PROFILE3("AI script");
@@ -822,7 +825,7 @@ private:
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 	// members have to be called before the runtime destructor.
 	shared_ptr<ScriptRuntime> m_ScriptRuntime;
-	
+
 	shared_ptr<ScriptInterface> m_ScriptInterface;
 	boost::rand48 m_RNG;
 	u32 m_TurnNum;
@@ -837,9 +840,9 @@ private:
 	bool m_HasSharedComponent;
 	JS::PersistentRootedValue m_SharedAIObj;
 	std::vector<SCommandSets> m_Commands;
-	
+
 	std::set<std::wstring> m_LoadedModules;
-	
+
 	shared_ptr<ScriptInterface::StructuredClone> m_GameState;
 	Grid<u16> m_PassabilityMap;
 	JS::PersistentRootedValue m_PassabilityMapVal;
@@ -907,7 +910,7 @@ public:
 			ForceLoadEntityTemplates();
 
 		m_Worker.Deserialize(deserialize.GetStream(), numAis);
-		
+
 		m_JustDeserialized = true;
 	}
 
@@ -945,7 +948,7 @@ public:
 		if (cmpRangeManager)
 			cmpRangeManager->SetLosRevealAll(player, true);
 	}
-	
+
 	virtual void SetRNGSeed(u32 seed)
 	{
 		m_Worker.SetRNGSeed(seed);
@@ -956,15 +959,15 @@ public:
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		// load the technology templates
 		CmpPtr<ICmpTechnologyTemplateManager> cmpTechTemplateManager(GetSystemEntity());
 		ENSURE(cmpTechTemplateManager);
-		
+
 		// Get the game state from AIInterface
 		JS::RootedValue techTemplates(cx);
 		cmpTechTemplateManager->GetAllTechs(&techTemplates);
-		
+
 		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates));
 		m_Worker.TryLoadSharedComponent(true);
 	}
@@ -974,10 +977,10 @@ public:
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSystemEntity());
 		ENSURE(cmpAIInterface);
-		
+
 		// Get the game state from AIInterface
 		// We flush events from the initialization so we get a clean state now.
 		JS::RootedValue state(cx);
@@ -989,7 +992,7 @@ public:
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
-		
+
 		// Get the territory data
 		//	Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
 		Grid<u8> dummyGrid2;
@@ -999,10 +1002,13 @@ public:
 		{
 			territoryMap = &cmpTerritoryManager->GetTerritoryGrid();
 		}
-		
-		LoadPathfinderClasses(state);
 
-		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state), *passabilityMap, *territoryMap);
+		LoadPathfinderClasses(state);
+		std::map<std::string, pass_class_t> passClassMasks;
+		if (cmpPathfinder)
+			passClassMasks = cmpPathfinder->GetPathfindingPassabilityClasses();
+
+		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state), *passabilityMap, *territoryMap, passClassMasks);
 	}
 
 	virtual void StartComputation()
@@ -1017,7 +1023,7 @@ public:
 
 		if (m_Worker.getPlayerSize() == 0)
 			return;
-		
+
 		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSystemEntity());
 		ENSURE(cmpAIInterface);
 
@@ -1038,7 +1044,7 @@ public:
 		GridUpdateInformation dirtinessInformations = cmpPathfinder->GetDirtinessData();
 
 		// Get the territory data
-		//	Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
+		// Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
 		bool territoryMapDirty = false;
 		Grid<u8> dummyGrid2;
 		const Grid<u8>* territoryMap = &dummyGrid2;
@@ -1058,7 +1064,7 @@ public:
 			*passabilityMap, dirtinessInformations,
 			*territoryMap, territoryMapDirty,
 			passClassMasks);
-		
+
 		m_JustDeserialized = false;
 	}
 
@@ -1070,12 +1076,12 @@ public:
 		CmpPtr<ICmpCommandQueue> cmpCommandQueue(GetSystemEntity());
 		if (!cmpCommandQueue)
 			return;
-		
+
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 		JS::RootedValue clonedCommandVal(cx);
-		
+
 		for (size_t i = 0; i < commands.size(); ++i)
 		{
 			for (size_t j = 0; j < commands[i].commands.size(); ++j)
