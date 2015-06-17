@@ -38,9 +38,6 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 		var obstructionMask = gameState.getPassabilityClassMask("building-land");
 	}
 
-	if (passabilityMap.cellSize == 4)	// old pathFinder
-		var obstructionMask = obstructionMask | gameState.getPassabilityClassMask("foundationObstruction");
-
 	for (var k = 0; k < territoryMap.data.length; ++k)
 	{
 		let tilePlayer = (territoryMap.data[k] & m.TERRITORY_PLAYER_MASK);

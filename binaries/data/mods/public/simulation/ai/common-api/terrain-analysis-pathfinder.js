@@ -31,10 +31,7 @@ m.aStarPath = function(gameState, onWater, disregardEntities, targetTerritory)
 	var passMap = gameState.sharedScript.passabilityMap;
 	var terrMap = gameState.sharedScript.territoryMap;
 	var ratio = terrMap.cellSize / passMap.cellSize;
-	if (passMap.cellSize == 4)
-		var pathObstruction = gameState.sharedScript.passabilityClasses["pathfinderObstruction"];
-	else // new pathFinder branch
-		var pathObstruction = gameState.sharedScript.passabilityClasses["default"];
+	var pathObstruction = gameState.sharedScript.passabilityClasses["default"];
 
 	this.widthMap = new Uint8Array(this.map.length);
 	for (var i = 0; i < this.map.length; ++i)

@@ -27,21 +27,12 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 	this.width = passabilityMap.width;
 	this.height = passabilityMap.height;
 	this.cellSize = passabilityMap.cellSize;
-	
-	// the first two won't change, the third is a reference to a value updated by C++
-	if (this.cellSize == 4)
-	{
-		var obstructionMaskLand = rawState.passabilityClasses["default"];
-		var obstructionMaskWater = rawState.passabilityClasses["ship"];
-	}
-	else  // new pathFinder branch
-	{
-		var obstructionMaskLand = rawState.passabilityClasses["default-terrain-only"];
-		var obstructionMaskWater = rawState.passabilityClasses["ship-small"];
-	}
+
+	var obstructionMaskLand = rawState.passabilityClasses["default-terrain-only"];
+	var obstructionMaskWater = rawState.passabilityClasses["ship-small"];
 
 	var obstructionTiles = new Uint8Array(passabilityMap.data.length);
-	
+
 	/* Generated map legend:
 	 0 is impassable
 	 200 is deep water (ie non-passable by land units)
