@@ -38,10 +38,8 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 		var obstructionMask = gameState.getPassabilityClassMask("building-land");
 	}
 
-	if (passabilityMap.cellSize == 4)
+	if (passabilityMap.cellSize == 4)	// old pathFinder
 		var obstructionMask = obstructionMask | gameState.getPassabilityClassMask("foundationObstruction");
-	else // new pathFinder branch
-		var obstructionMask = obstructionMask | gameState.getPassabilityClassMask("default-no-clearance");
 
 	for (var k = 0; k < territoryMap.data.length; ++k)
 	{
@@ -108,10 +106,7 @@ m.createBorderMap = function(gameState)
 	var width = map.width;
 	var border = Math.round(80 / map.cellSize);
 	var passabilityMap = gameState.sharedScript.passabilityMap;
-	if (passabilityMap.cellSize == 4)
-		var obstructionLandMask = gameState.getPassabilityClassMask("default");
-	else  // new pathFinder branch
-		var obstructionLandMask = gameState.getPassabilityClassMask("default-no-clearance");
+	var obstructionLandMask = gameState.getPassabilityClassMask("default");
 	var obstructionWaterMask = gameState.getPassabilityClassMask("ship");
 	if (gameState.ai.circularMap)
 	{

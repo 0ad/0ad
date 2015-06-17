@@ -9,20 +9,10 @@ var API3 = function(m)
 m.Map = function Map(sharedScript, type, originalMap, actualCopy)
 {
 	// get the correct dimensions according to the map type
-	if (type === "territory" || type === "resource")
-	{
-		var map = sharedScript.territoryMap;
-		this.width = map.width;
-		this.height = map.height;
-		this.cellSize = map.cellSize;
-	}
-	else
-	{
-		var map = sharedScript.passabilityMap;
-		this.width = map.width;
-		this.height = map.height;
-		this.cellSize = map.cellSize;
-	}
+	var map = (type === "territory" || type === "resource") ? sharedScript.territoryMap : sharedScript.passabilityMap;
+	this.width = map.width;
+	this.height = map.height;
+	this.cellSize = map.cellSize;   
 	this.length = this.width * this.height;
 
 	this.maxVal = 255;
@@ -242,10 +232,8 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
 };
 
 // doesn't check for overflow.
-m.Map.prototype.setInfluence = function(cx, cy, maxDist, value)
-{
-	value = value ? value : 0;
-	
+m.Map.prototype.setInfluence = function(cx, cy, maxDist, value = 0)
+{	
 	var x0 = Math.max(0, cx - maxDist);
 	var y0 = Math.max(0, cy - maxDist);
 	var x1 = Math.min(this.width, cx + maxDist);
@@ -378,10 +366,10 @@ m.Map.prototype.add = function(map)
 	}
 };
 
+// Find the best non-obstructed tile
 m.Map.prototype.findBestTile = function(radius, obstruction)
 {
-	// Find the best non-obstructed tile
-	let bestIdx = 0;
+	let bestIdx;
 	let bestVal = -1;
 	for (let j = 0; j < this.length; ++j)
 	{
@@ -420,7 +408,7 @@ m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
 	return -1;
 };
 
-// return true is the area centered on tile kx-ky and with radius is obstructed
+// return true if the area centered on tile kx-ky and with radius is obstructed
 m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 {
 	let w = this.width;
@@ -428,7 +416,7 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 		return true;
 	for (let dy = 0; dy <= radius; ++dy)
 	{
-		let dxmax = radius - dy;
+		let dxmax = Math.ceil(Math.sqrt(radius*radius - dy*dy));
 		let xp = kx + (ky + dy)*w;
 		let xm = kx + (ky - dy)*w;
 		for (let dx = -dxmax; dx <= dxmax; ++dx)
@@ -440,11 +428,11 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 
 // returns the nearest obstructed point
 // TODO check that the landpassmap index is the same
-m.Map.prototype.findNearestObstructed = function(i, radius)
+m.Map.prototype.findNearestObstructed = function(k, radius)
 {
 	var w = this.width;
-	var ix = i % w;
-	var iy = Math.floor(i / w);
+	var ix = k % w;
+	var iy = Math.floor(k / w);
 	var n = (this.cellSize > 8) ? 1 : Math.floor(8 / this.cellSize);
 	for (let i = 1; i <= n; ++i)
 	{
@@ -472,9 +460,9 @@ m.Map.prototype.findNearestObstructed = function(i, radius)
 				}
 				return (kx + w*ky);
 			}
-			if (j <= 2*i+1)
+			if (j < 2*i+1)
 				++kx;
-			else if (j <= 4*i+1)
+			else if (j < 4*i+1)
 				--ky;
 			else if (j < 6*i+1)
 				--kx;
@@ -507,10 +495,8 @@ m.Map.prototype.findLowestNeighbor = function(x,y,radius)
 	return lowestPt;
 };
 
-m.Map.prototype.dumpIm = function(name, threshold)
+m.Map.prototype.dumpIm = function(name = "default.png", threshold = this.maxVal)
 {
-	name = name ? name : "default.png";
-	threshold = threshold ? threshold : this.maxVal;
 	Engine.DumpImage(name, this.map, this.width, this.height, threshold);
 };
 
