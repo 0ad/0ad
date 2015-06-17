@@ -2,17 +2,29 @@ function ResourceTrickle() {}
 
 ResourceTrickle.prototype.Schema = 
 	"<a:help>Controls the resource trickle ability of the unit.</a:help>" +
-	"<element name='FoodRate' a:help='Food given to the player every interval'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
-	"<element name='WoodRate' a:help='Wood given to the player every interval'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
-	"<element name='StoneRate' a:help='Stone given to the player every interval'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
-	"<element name='MetalRate' a:help='Metal given to the player every interval'>" +
-		"<ref name='nonNegativeDecimal'/>" +
+	"<element name='Rates' a:help='Trickle Rates'>" +
+		"<interleave>" +
+			"<optional>" +
+				"<element name='food' a:help='Food given to the player every interval'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+			"</optional>" +
+			"<optional>" +
+				"<element name='wood' a:help='Wood given to the player every interval'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+			"</optional>" +
+			"<optional>" +
+				"<element name='stone' a:help='Stone given to the player every interval'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+			"</optional>" +
+			"<optional>" +
+				"<element name='metal' a:help='Metal given to the player every interval'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+			"</optional>" +
+		"</interleave>" +
 	"</element>" +
 	"<element name='Interval' a:help='Number of miliseconds must pass for the player to gain the next trickle.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
@@ -33,31 +45,23 @@ ResourceTrickle.prototype.GetTimer = function()
 
 ResourceTrickle.prototype.GetRates = function()
 {
-	var foodrate = +this.template.FoodRate;
-	var woodrate = +this.template.WoodRate;
-	var stonerate = +this.template.StoneRate;
-	var metalrate = +this.template.MetalRate;
+	var rates = {};
+	for (var resource in this.template.Rates)
+		rates[resource] = ApplyValueModificationsToEntity("ResourceTrickle/Rates/"+resource, +this.template.Rates[resource], this.entity);
 
-	foodrate = ApplyValueModificationsToEntity("ResourceTrickle/FoodRate", foodrate, this.entity);
-	woodrate = ApplyValueModificationsToEntity("ResourceTrickle/WoodRate", woodrate, this.entity);
-	stonerate = ApplyValueModificationsToEntity("ResourceTrickle/StoneRate", stonerate, this.entity);
-	metalrate = ApplyValueModificationsToEntity("ResourceTrickle/MetalRate", metalrate, this.entity);
-	
-	return {"food": foodrate, "wood": woodrate, "stone": stonerate, "metal": metalrate };
+	return rates;
 };
 
 // Do the actual work here
 ResourceTrickle.prototype.Trickle = function(data, lateness)
 {
-	// Get the rates
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer)
+		return;
+
 	var rates = this.GetRates();
-	
-	// Get the player
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	if (cmpPlayer)
-		for (var resource in rates)
-			cmpPlayer.AddResource(resource, rates[resource]);
-	
+	for (var resource in rates)
+		cmpPlayer.AddResource(resource, rates[resource]);
 };
 
 Engine.RegisterComponentType(IID_ResourceTrickle, "ResourceTrickle", ResourceTrickle);
