@@ -3,67 +3,67 @@
   <!-- Sets limit on the number of same turns moves we will process -->
   <!-- Setting the value to 0 disable this functionality -->
   <MaxSameTurnMoves>64</MaxSameTurnMoves>
-  
+
   <PassabilityClasses>
 
-    <unrestricted/>
-
     <!-- Unit pathfinding classes: -->
-    <!-- 'default-terrain-only' is used for wall building placement
-         and by the AI pathfinder; it must be kept in sync with 'default'
-    -->
     <default>
+      <Obstructions>pathfinding</Obstructions>
       <MaxWaterDepth>2</MaxWaterDepth>
       <MaxTerrainSlope>1.0</MaxTerrainSlope>
       <Clearance>1.0</Clearance>
     </default>
-    <default-no-clearance>
-      <MaxWaterDepth>2</MaxWaterDepth>
-      <MaxTerrainSlope>1.0</MaxTerrainSlope>
-      <Clearance>0.0</Clearance>
-    </default-no-clearance>
-    <default-terrain-only>
-      <MaxWaterDepth>2</MaxWaterDepth>
-      <MaxTerrainSlope>1.0</MaxTerrainSlope>
-    </default-terrain-only>
     <siege-large>
+      <Obstructions>pathfinding</Obstructions>
       <MaxWaterDepth>2</MaxWaterDepth>
       <MaxTerrainSlope>1.0</MaxTerrainSlope>
       <Clearance>4.0</Clearance>
     </siege-large>
     <ship>
+      <Obstructions>pathfinding</Obstructions>
       <MinWaterDepth>1</MinWaterDepth>
       <Clearance>12.0</Clearance>
     </ship>
     <ship-small>
+      <Obstructions>pathfinding</Obstructions>
       <MinWaterDepth>1</MinWaterDepth>
       <Clearance>4.0</Clearance>
     </ship-small>
 
-    <!-- Building construction classes:
+    <!--
+    Building construction classes:
     * Land is used for most buildings, which must be away
         from water and not on cliffs or mountains.
     * Shore is used for docks, which must be near water and
         land, yet shallow enough for builders to approach.
-
-      (These should not use <Clearance>, because the foundation placement
-      checker already does precise obstruction-shape-based checking.)
     -->
     <building-land>
+      <Obstructions>foundation</Obstructions>
       <MaxWaterDepth>0</MaxWaterDepth>
       <MinShoreDistance>4.0</MinShoreDistance>
       <MaxTerrainSlope>1.0</MaxTerrainSlope>
     </building-land>
     <building-shore>
+      <Obstructions>foundation</Obstructions>
       <MaxShoreDistance>8.0</MaxShoreDistance>
       <MaxTerrainSlope>1.25</MaxTerrainSlope>
     </building-shore>
 
-    <!-- Territory growth influences: -->
-    <territory>
+    <!--
+    Unrestricted: only off-world limits.
+
+    Default-terrain-only: used by the AI, for wall-building
+        placement and for territory influence growth.
+        It must be kept in sync with "default".
+    -->
+    <unrestricted>
+      <Obstructions>none</Obstructions>
+    </unrestricted>
+    <default-terrain-only>
+      <Obstructions>none</Obstructions>
       <MaxWaterDepth>2</MaxWaterDepth>
       <MaxTerrainSlope>1.0</MaxTerrainSlope>
-    </territory>
+    </default-terrain-only>
 
   </PassabilityClasses>
 </Pathfinder>

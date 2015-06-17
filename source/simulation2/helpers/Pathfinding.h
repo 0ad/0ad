@@ -163,10 +163,13 @@ namespace Pathfinding
  * Passability is determined by water depth, terrain slope, forestness, buildingness.
  * We need at least one bit per class per tile to represent passability.
  *
- * We use a separate bit to indicate building obstructions (instead of folding it into
- * the class passabilities) so that it can be ignored when doing the accurate short paths.
- * We use another bit to indicate tiles near obstructions that block construction,
- * for the AI to plan safe building spots.
+ * Not all pass classes are used for actual pathfinding. The pathfinder calls 
+ * CCmpObstructionManager's Rasterize() to add shapes onto the passability grid.
+ * Which shapes are rasterized depend on the value of the m_Obstructions of each passability
+ * class.
+ *
+ * Passabilities not used for unit pathfinding should not use the Clearance attribute, and
+ * will get a zero clearance value.
  */
 class PathfinderPassability
 {
@@ -201,7 +204,6 @@ public:
 
 		if (node.GetChild("Clearance").IsOk())
 		{
-			m_HasClearance = true;
 			m_Clearance = node.GetChild("Clearance").ToFixed();
 
 			if (!(m_Clearance % Pathfinding::NAVCELL_SIZE).IsZero())
@@ -214,10 +216,25 @@ public:
 			}
 		}
 		else
-		{
-			m_HasClearance = false;
 			m_Clearance = fixed::Zero();
+
+		if (node.GetChild("Obstructions").IsOk())
+		{
+			std::wstring obstructions = node.GetChild("Obstructions").ToString();
+			if (obstructions == L"none")
+				m_Obstructions = NONE;
+			else if (obstructions == L"pathfinding")
+				m_Obstructions = PATHFINDING;
+			else if (obstructions == L"foundation")
+				m_Obstructions = FOUNDATION;
+			else
+			{
+				LOGERROR("Invalid value for Obstructions in pathfinder.xml for pass class %d", mask);
+				m_Obstructions = NONE;
+			}
 		}
+		else
+			m_Obstructions = NONE;
 	}
 
 	bool IsPassable(fixed waterdepth, fixed steepness, fixed shoredist)
@@ -227,8 +244,15 @@ public:
 
 	pass_class_t m_Mask;
 
-	bool m_HasClearance; // whether static obstructions are impassable
 	fixed m_Clearance; // min distance from static obstructions
+
+	enum ObstructionHandling
+	{
+		NONE,
+		PATHFINDING,
+		FOUNDATION
+	};
+	ObstructionHandling m_Obstructions;
 
 private:
 	fixed m_MinDepth;

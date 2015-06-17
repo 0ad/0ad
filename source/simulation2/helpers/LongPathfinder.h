@@ -183,7 +183,7 @@ public:
 		m_DebugPassClass = passClass;
 	}
 
-	void Reload(std::map<std::string, pass_class_t> passClassMasks, Grid<NavcellData>* passabilityGrid)
+	void Reload(const std::map<std::string, pass_class_t>& passClassMasks, Grid<NavcellData>* passabilityGrid)
 	{
 		m_Grid = passabilityGrid;
 		ASSERT(passabilityGrid->m_H == passabilityGrid->m_W);

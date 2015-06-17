@@ -1052,7 +1052,7 @@ public:
 		LoadPathfinderClasses(state);
 		std::map<std::string, pass_class_t> passClassMasks;
 		if (cmpPathfinder)
-			passClassMasks = cmpPathfinder->GetPassabilityClasses();
+			passClassMasks = cmpPathfinder->GetPathfindingPassabilityClasses();
 
 		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state), 
 			*passabilityMap, dirtinessInformations,

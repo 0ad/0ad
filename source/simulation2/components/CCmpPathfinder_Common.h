@@ -141,13 +141,14 @@ public:
 
 	virtual std::map<std::string, pass_class_t> GetPassabilityClasses();
 
+	virtual std::map<std::string, pass_class_t> GetPathfindingPassabilityClasses();
+
 	const PathfinderPassability* GetPassabilityFromMask(pass_class_t passClass) const;
 
 	virtual entity_pos_t GetClearance(pass_class_t passClass) const
 	{
 		const PathfinderPassability* passability = GetPassabilityFromMask(passClass);
-
-		if (!passability->m_HasClearance)
+		if (!passability)
 			return fixed::Zero();
 
 		return passability->m_Clearance;
@@ -158,10 +159,8 @@ public:
 		entity_pos_t max = fixed::Zero();
 
 		for (const PathfinderPassability& passability : m_PassClasses)
-		{
-			if (passability.m_HasClearance && passability.m_Clearance > max)
+			if (passability.m_Clearance > max)
 				max = passability.m_Clearance;
-		}
 
 		return max;
 	}

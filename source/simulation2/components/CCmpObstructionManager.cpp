@@ -462,7 +462,7 @@ public:
 	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out);
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, std::vector<entity_id_t>* out);
 
-	virtual void Rasterize(Grid<u16>& grid, const std::vector<PathfinderPassability>& passClasses, ICmpObstructionManager::flags_t requireMask, bool fullUpdate);
+	virtual void Rasterize(Grid<u16>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate);
 	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares);
 	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter);
 
@@ -635,6 +635,8 @@ private:
 	{
 		return (m_WorldX0 <= p.X && p.X <= m_WorldX1 && m_WorldZ0 <= p.Y && p.Y <= m_WorldZ1);
 	}
+
+	void RasterizeHelper(Grid<u16>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, u16 appliedMask, entity_pos_t clearance = fixed::Zero());
 };
 
 REGISTER_COMPONENT_TYPE(ObstructionManager)
@@ -810,81 +812,98 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 		return false; // didn't collide, if we got this far
 }
 
-void CCmpObstructionManager::Rasterize(Grid<u16>& grid, const std::vector<PathfinderPassability>& passClasses, ICmpObstructionManager::flags_t requireMask, bool fullUpdate)
+void CCmpObstructionManager::Rasterize(Grid<u16>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate)
 {
 	PROFILE3("Rasterize");
-
-	// The update informations are only updated when pathfinding/foundation blocking shapes are modified.
-	ENSURE(!(requireMask & ~(FLAG_BLOCK_PATHFINDING|FLAG_BLOCK_FOUNDATION)));
 
 	// Cells are only marked as blocked if the whole cell is strictly inside the shape.
 	// (That ensures the shape's geometric border is always reachable.)
 
-	// Add obstructions onto the grid, for any class with (possibly zero) clearance
-	std::map<entity_pos_t, u16> combinedMasks;
+	// Pass classes will get shapes rasterized on them depending on their Obstruction value.
+	// Classes with another value than "pathfinding" should not use Clearance.
+
+	std::map<entity_pos_t, u16> pathfindingMasks;
+	u16 foundationMask = 0;
 	for (const PathfinderPassability& passability : passClasses)
 	{
-		if (!passability.m_HasClearance)
+		switch (passability.m_Obstructions)
+		{
+		case PathfinderPassability::PATHFINDING:
+		{
+			auto it = pathfindingMasks.find(passability.m_Clearance);
+			if (it == pathfindingMasks.end())
+				pathfindingMasks[passability.m_Clearance] = passability.m_Mask;
+			else
+				it->second |= passability.m_Mask;
+			break;
+		}
+		case PathfinderPassability::FOUNDATION:
+			foundationMask |= passability.m_Mask;
+			break;
+		default:
 			continue;
-
-		auto it = combinedMasks.find(passability.m_Clearance);
-		if (it == combinedMasks.end())
-			combinedMasks[passability.m_Clearance] = passability.m_Mask;
-		else
-			it->second |= passability.m_Mask;
-	}
-
-	for (auto& maskPair : combinedMasks)
-	{
-		for (auto& pair : m_StaticShapes)
-		{
-			if (!fullUpdate && std::find(m_DirtyStaticShapes.begin(), m_DirtyStaticShapes.end(), pair.first) == m_DirtyStaticShapes.end())
-				continue;
-
-			const StaticShape& shape = pair.second;
-			if (!(shape.flags & requireMask))
-				continue;
-
-			// TODO: it might be nice to rasterize with rounded corners for large 'expand' values.
-			ObstructionSquare square = { shape.x, shape.z, shape.u, shape.v, shape.hw, shape.hh };
-			SimRasterize::Spans spans;
-			SimRasterize::RasterizeRectWithClearance(spans, square, maskPair.first, Pathfinding::NAVCELL_SIZE);
-			for (SimRasterize::Span& span : spans)
-			{
-				i16 j = span.j;
-				if (j >= 0 && j <= grid.m_H)
-				{
-					i16 i0 = std::max(span.i0, (i16)0);
-					i16 i1 = std::min(span.i1, (i16)grid.m_W);
-					for (i16 i = i0; i < i1; ++i)
-						grid.set(i, j, grid.get(i, j) | maskPair.second);
-				}
-			}
-		}
-
-		for (auto& pair : m_UnitShapes)
-		{
-			if (!fullUpdate && std::find(m_DirtyUnitShapes.begin(), m_DirtyUnitShapes.end(), pair.first) == m_DirtyUnitShapes.end())
-				continue;
-
-			CFixedVector2D center(pair.second.x, pair.second.z);
-
-			if (!(pair.second.flags & requireMask))
-				continue;
-
-			entity_pos_t r = pair.second.r + maskPair.first;
-
-			u16 i0, j0, i1, j1;
-			Pathfinding::NearestNavcell(center.X - r, center.Y - r, i0, j0, grid.m_W, grid.m_H);
-			Pathfinding::NearestNavcell(center.X + r, center.Y + r, i1, j1, grid.m_W, grid.m_H);
-			for (u16 j = j0+1; j < j1; ++j)
-				for (u16 i = i0+1; i < i1; ++i)
-					grid.set(i, j, grid.get(i, j) | maskPair.second);
 		}
 	}
+
+	// FLAG_BLOCK_PATHFINDING and FLAG_BLOCK_FOUNDATION are the only flags taken into account by MakeDirty* functions,
+	// so they should be the only ones rasterized using with the help of m_Dirty*Shapes vectors.
+
+	for (auto& maskPair : pathfindingMasks)
+		RasterizeHelper(grid, FLAG_BLOCK_PATHFINDING, fullUpdate, maskPair.second, maskPair.first);
+
+	RasterizeHelper(grid, FLAG_BLOCK_FOUNDATION, fullUpdate, foundationMask);
 
 	m_DirtyStaticShapes.clear();
 	m_DirtyUnitShapes.clear();
+}
+
+void CCmpObstructionManager::RasterizeHelper(Grid<u16>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, u16 appliedMask, entity_pos_t clearance)
+{
+	for (auto& pair : m_StaticShapes)
+	{
+		if (!fullUpdate && std::find(m_DirtyStaticShapes.begin(), m_DirtyStaticShapes.end(), pair.first) == m_DirtyStaticShapes.end())
+			continue;
+
+		const StaticShape& shape = pair.second;
+		if (!(shape.flags & requireMask))
+			continue;
+
+		// TODO: it might be nice to rasterize with rounded corners for large 'expand' values.
+		ObstructionSquare square = { shape.x, shape.z, shape.u, shape.v, shape.hw, shape.hh };
+		SimRasterize::Spans spans;
+		SimRasterize::RasterizeRectWithClearance(spans, square, clearance, Pathfinding::NAVCELL_SIZE);
+		for (SimRasterize::Span& span : spans)
+		{
+			i16 j = span.j;
+			if (j >= 0 && j <= grid.m_H)
+			{
+				i16 i0 = std::max(span.i0, (i16)0);
+				i16 i1 = std::min(span.i1, (i16)grid.m_W);
+				for (i16 i = i0; i < i1; ++i)
+					grid.set(i, j, grid.get(i, j) | appliedMask);
+			}
+		}
+	}
+
+	for (auto& pair : m_UnitShapes)
+	{
+		if (!fullUpdate && std::find(m_DirtyUnitShapes.begin(), m_DirtyUnitShapes.end(), pair.first) == m_DirtyUnitShapes.end())
+			continue;
+
+		CFixedVector2D center(pair.second.x, pair.second.z);
+
+		if (!(pair.second.flags & requireMask))
+			continue;
+
+		entity_pos_t r = pair.second.r + clearance;
+
+		u16 i0, j0, i1, j1;
+		Pathfinding::NearestNavcell(center.X - r, center.Y - r, i0, j0, grid.m_W, grid.m_H);
+		Pathfinding::NearestNavcell(center.X + r, center.Y + r, i1, j1, grid.m_W, grid.m_H);
+		for (u16 j = j0+1; j < j1; ++j)
+			for (u16 i = i0+1; i < i1; ++i)
+				grid.set(i, j, grid.get(i, j) | appliedMask);
+	}
 }
 
 void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares)

@@ -8,6 +8,7 @@ element Pathfinder {
     element MaxSameTurnMoves { xsd:nonNegativeInteger } &
     element PassabilityClasses {
         element * {
+            element Obstructions { xsd:string } &
             element MinWaterDepth { xsd:decimal }? & # TODO: fixed type
             element MaxWaterDepth { xsd:decimal }? &
             element MaxTerrainSlope { xsd:decimal }? &
