@@ -200,6 +200,9 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="default_column"/>
+      </optional>
+      <optional>
         <attribute name="dropdown_size">
           <data type="decimal"/>
         </attribute>
@@ -287,6 +290,9 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="sortable"/>
+      </optional>
+      <optional>
         <attribute name="sound_closed"/>
       </optional>
       <optional>
@@ -345,6 +351,15 @@
       </optional>
       <optional>
         <attribute name="sprite_selectarea"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_asc"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_desc"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_not_sorted"/>
       </optional>
       <optional>
         <attribute name="square_side">

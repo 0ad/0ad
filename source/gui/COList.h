@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,6 +70,8 @@ protected:
 	virtual CRect GetListRect() const;
 
 	std::vector<ObjectDef> m_ObjectsDefs;
+	int m_SelectedDef;
+	int m_SelectedColumnOrder;
 
 private:
 	float m_HeadingHeight;

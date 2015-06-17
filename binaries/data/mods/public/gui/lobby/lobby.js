@@ -1,6 +1,10 @@
 var g_ChatMessages = [];
 var g_Name = "unknown";
-var g_GameList = {};
+var g_GameList = {}
+var g_GameListSortBy = "name";
+var g_PlayerListSortBy = "name";
+var g_GameListOrder = 1; // 1 for ascending sort, and -1 for descending
+var g_PlayerListOrder = 1;
 var g_specialKey = Math.random();
 // This object looks like {"name":[numMessagesSinceReset, lastReset, timeBlocked]} when in use.
 var g_spamMonitor = {};
@@ -74,6 +78,22 @@ function lobbyDisconnect()
 // Update functions
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
+function updateGameListOrderSelection()
+{
+	g_GameListSortBy = Engine.GetGUIObjectByName("gamesBox").selected_column;
+	g_GameListOrder = Engine.GetGUIObjectByName("gamesBox").selected_column_order;
+
+	applyFilters();
+}
+
+function updatePlayerListOrderSelection()
+{
+	g_PlayerListSortBy = Engine.GetGUIObjectByName("playersBox").selected_column;
+	g_PlayerListOrder = Engine.GetGUIObjectByName("playersBox").selected_column_order;
+
+	updatePlayerList();
+}
+
 function resetFilters()
 {
 	// Reset states of gui objects
@@ -82,11 +102,7 @@ function resetFilters()
 	Engine.GetGUIObjectByName("mapTypeFilter").selected = 0;
 	Engine.GetGUIObjectByName("showFullFilter").checked = false;
 
-	// Update the list of games
-	updateGameList();
-
-	// Update info box about the game currently selected
-	updateGameSelection();
+	applyFilters();
 }
 
 function applyFilters()
@@ -149,7 +165,7 @@ function updateSubject(newSubject)
 }
 
 /**
- * Do a full update of the player listing, including ratings from C++.
+ * Do a full update of the player listing, including ratings from cached C++ information.
  *
  * @return Array containing the player, presence, nickname, and rating listings.
  */
@@ -162,12 +178,36 @@ function updatePlayerList()
 	var ratingList = [];
 	var cleanPlayerList = Engine.GetPlayerList();
 	// Sort the player list, ignoring case.
-	cleanPlayerList.sort(function(a,b) 
+	cleanPlayerList.sort(function(a,b)
 	{
-		var aName = a.name.toLowerCase();
-		var bName = b.name.toLowerCase();
-		return ((aName > bName) ? 1 : (bName > aName) ? -1 : 0);
-	} );
+		switch (g_PlayerListSortBy)
+		{
+		case 'rating':
+			if (a.rating < b.rating)
+				return -g_PlayerListOrder;
+			else if (a.rating > b.rating)
+				return g_PlayerListOrder;
+			return 0;
+		case 'status':
+			let order = ["available", "away", "playing", "gone", "offline"];
+			let presenceA = order.indexOf(a.presence);
+			let presenceB = order.indexOf(b.presence);
+			if (presenceA < presenceB)
+				return -g_PlayerListOrder;
+			else if (presenceA > presenceB)
+				return g_PlayerListOrder;
+			return 0;
+		case 'name':
+		default:
+			var aName = a.name.toLowerCase();
+			var bName = b.name.toLowerCase();
+			if (aName < bName)
+				return -g_PlayerListOrder;
+			else if (aName > bName)
+				return g_PlayerListOrder;
+			return 0;
+		}
+	});
 	for (var i = 0; i < cleanPlayerList.length; i++)
 	{
 		// Identify current user's rating.
@@ -365,17 +405,44 @@ function updateGameList()
 	// Sort the list of games to that games 'waiting' are displayed at the top, followed by 'init', followed by 'running'.
 	var gameStatuses = ['waiting', 'init', 'running'];
 	g_GameList.sort(function (a,b) {
-		if (gameStatuses.indexOf(a.state) < gameStatuses.indexOf(b.state))
-			return -1;
-		else if (gameStatuses.indexOf(a.state) > gameStatuses.indexOf(b.state))
-			return 1;
+		switch (g_GameListSortBy)
+		{
+		case 'name':
+		case 'mapSize':
+			// mapSize contains the number of tiles for random maps
+			// scenario maps always display default size
+		case 'mapType':
+			if (a[g_GameListSortBy] < b[g_GameListSortBy])
+				return -g_GameListOrder;
+			else if (a[g_GameListSortBy] > b[g_GameListSortBy])
+				return g_GameListOrder;
+			return 0;
+		case 'mapName':
+			if (translate(a.niceMapName) < translate(b.niceMapName))
+				return -g_GameListOrder;
+			else if (translate(a.niceMapName) > translate(b.niceMapName))
+				return g_GameListOrder;
+			return 0;
+		case 'nPlayers':
+			// Numerical comparison of player count ratio.
+			if (a.nbp * b.tnbp < b.nbp * a.tnbp) // ratio a = a.nbp / a.tnbp, ratio b = b.nbp / b.tnbp
+				return -g_GameListOrder;
+			else if (a.nbp * b.tnbp > b.nbp * a.tnbp)
+				return g_GameListOrder;
+			return 0;
+		default:
+			if (gameStatuses.indexOf(a.state) < gameStatuses.indexOf(b.state))
+				return -1;
+			else if (gameStatuses.indexOf(a.state) > gameStatuses.indexOf(b.state))
+				return 1;
 
-		// Alphabetical comparison of names as tiebreaker.
-		if (a.name < b.name)
-			return -1;
-		else if (a.name > b.name)
-			return 1;
-		return 0;
+			// Alphabetical comparison of names as tiebreaker.
+			if (a.name < b.name)
+				return -1;
+			else if (a.name > b.name)
+				return 1;
+			return 0;
+		}
 	});
 
 	var list_name = [];
