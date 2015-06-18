@@ -563,25 +563,28 @@ private:
 			if (std::find(m_DirtyStaticShapes.begin(), m_DirtyStaticShapes.end(), index) == m_DirtyStaticShapes.end())
 				m_DirtyStaticShapes.push_back(index);
 
-			// All shapes overlapping the updated part of the grid should be dirtied too
+			// All shapes overlapping the updated part of the grid should be dirtied too.
+			// We are going to invalidate the region of the grid corresponding to the modified shape plus its clearance,
+			// and we need to get the shapes whose clearance can overlap this area. So we need to extend the search area
+			// by two times the maximum clearance.
+
 			CFixedVector2D center(shape.x, shape.z);
-			CFixedVector2D expandedBox =
-				Geometry::GetHalfBoundingBox(shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh)) +
-				CFixedVector2D(m_MaxClearance, m_MaxClearance);
+			CFixedVector2D hbox = Geometry::GetHalfBoundingBox(shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh));
+			CFixedVector2D expand(m_MaxClearance, m_MaxClearance);
 
 			std::vector<u32> staticsNear;
-			m_StaticSubdivision.GetInRange(staticsNear, center - expandedBox, center + expandedBox);
+			m_StaticSubdivision.GetInRange(staticsNear, center - hbox - expand*2, center + hbox + expand*2);
 			for (u32& staticId : staticsNear)
 				if (std::find(m_DirtyStaticShapes.begin(), m_DirtyStaticShapes.end(), staticId) == m_DirtyStaticShapes.end())
 					m_DirtyStaticShapes.push_back(staticId);
 
 			std::vector<u32> unitsNear;
-			m_UnitSubdivision.GetInRange(unitsNear, center - expandedBox, center + expandedBox);
+			m_UnitSubdivision.GetInRange(unitsNear, center - hbox - expand*2, center + hbox + expand*2);
 			for (u32& unitId : unitsNear)
 				if (std::find(m_DirtyUnitShapes.begin(), m_DirtyUnitShapes.end(), unitId) == m_DirtyUnitShapes.end())
 					m_DirtyUnitShapes.push_back(unitId);
 
-			MarkDirtinessGrid(shape.x, shape.z, expandedBox);
+			MarkDirtinessGrid(shape.x, shape.z, hbox + expand);
 		}
 	}
 
@@ -600,23 +603,26 @@ private:
 			if (std::find(m_DirtyUnitShapes.begin(), m_DirtyUnitShapes.end(), index) == m_DirtyUnitShapes.end())
 				m_DirtyUnitShapes.push_back(index);
 
-			// All shapes overlapping the updated part of the grid should be dirtied too
+			// All shapes overlapping the updated part of the grid should be dirtied too.
+			// We are going to invalidate the region of the grid corresponding to the modified shape plus its clearance,
+			// and we need to get the shapes whose clearance can overlap this area. So we need to extend the search area
+			// by two times the maximum clearance.
+
 			CFixedVector2D center(shape.x, shape.z);
-			entity_pos_t extendedRadius = shape.r + m_MaxClearance;
 
 			std::vector<u32> staticsNear;
-			m_StaticSubdivision.GetNear(staticsNear, center, extendedRadius);
+			m_StaticSubdivision.GetNear(staticsNear, center, shape.r + m_MaxClearance*2);
 			for (u32& staticId : staticsNear)
 				if (std::find(m_DirtyStaticShapes.begin(), m_DirtyStaticShapes.end(), staticId) == m_DirtyStaticShapes.end())
 					m_DirtyStaticShapes.push_back(staticId);
 
 			std::vector<u32> unitsNear;
-			m_UnitSubdivision.GetNear(staticsNear, center, extendedRadius);
+			m_UnitSubdivision.GetNear(staticsNear, center, shape.r + m_MaxClearance*2);
 			for (u32& unitId : unitsNear)
 				if (std::find(m_DirtyUnitShapes.begin(), m_DirtyUnitShapes.end(), unitId) == m_DirtyUnitShapes.end())
 					m_DirtyUnitShapes.push_back(unitId);
 
-			MarkDirtinessGrid(shape.x, shape.z, extendedRadius);
+			MarkDirtinessGrid(shape.x, shape.z, shape.r + m_MaxClearance);
 		}
 	}
 
