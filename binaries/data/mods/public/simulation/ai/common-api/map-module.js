@@ -9,7 +9,7 @@ var API3 = function(m)
 m.Map = function Map(sharedScript, type, originalMap, actualCopy)
 {
 	// get the correct dimensions according to the map type
-	var map = (type === "territory" || type === "resource") ? sharedScript.territoryMap : sharedScript.passabilityMap;
+	let map = (type === "territory" || type === "resource") ? sharedScript.territoryMap : sharedScript.passabilityMap;
 	this.width = map.width;
 	this.height = map.height;
 	this.cellSize = map.cellSize;   
@@ -45,7 +45,7 @@ m.Map.prototype.gamePosToMapPos = function(p)
 
 m.Map.prototype.point = function(p)
 {
-	var q = this.gamePosToMapPos(p);
+	let q = this.gamePosToMapPos(p);
 	q[0] = q[0] >= this.width ? this.width-1 : (q[0] < 0 ? 0 : q[0]);
 	q[1] = q[1] >= this.width ? this.width-1 : (q[1] < 0 ? 0 : q[1]);
 	return this.map[q[0] + this.width * q[1]];
@@ -233,7 +233,7 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
 
 // doesn't check for overflow.
 m.Map.prototype.setInfluence = function(cx, cy, maxDist, value = 0)
-{	
+{
 	var x0 = Math.max(0, cx - maxDist);
 	var y0 = Math.max(0, cy - maxDist);
 	var x1 = Math.min(this.width, cx + maxDist);
@@ -416,7 +416,7 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 		return true;
 	for (let dy = 0; dy <= radius; ++dy)
 	{
-		let dxmax = Math.ceil(Math.sqrt(radius*radius - dy*dy));
+		let dxmax = (dy == 0) ? radius : Math.ceil(Math.sqrt(radius*radius - (dy-0.5)*(dy-0.5)));
 		let xp = kx + (ky + dy)*w;
 		let xm = kx + (ky - dy)*w;
 		for (let dx = -dxmax; dx <= dxmax; ++dx)
@@ -471,28 +471,6 @@ m.Map.prototype.findNearestObstructed = function(k, radius)
 		}
 	}
 	return -1;
-};
-
-// returns the point with the lowest (but still > radius) point in the immediate vicinity
-m.Map.prototype.findLowestNeighbor = function(x,y,radius)
-{
-	var lowestPt = [0,0];
-	var lowestcoeff = undefined;
-	x = Math.floor(x/this.cellSize);
-	y = Math.floor(y/this.cellSize);
-	for (let xx = x-1; xx <= x+1; ++xx)
-	{
-		for (let yy = y-1; yy <= y+1; ++yy)
-		{
-			if (xx < 0 || xx >= this.width || yy < 0 || yy >= this.width)
-				continue;
-			if (lowestcoeff && this.map[xx+yy*this.width] > lowestcoeff)
-				continue;
-			lowestcoeff = this.map[xx+yy*this.width];
-			lowestPt = [(xx+0.5)*4, (yy+0.5)*4];
-		}
-	}
-	return lowestPt;
 };
 
 m.Map.prototype.dumpIm = function(name = "default.png", threshold = this.maxVal)

@@ -32,7 +32,7 @@ m.ConstructionPlan.prototype.canStart = function(gameState)
 	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
 		return false;
 
-	return (gameState.findBuilders(this.type).length != 0);
+	return (gameState.findBuilders(this.type).length > 0);
 };
 
 m.ConstructionPlan.prototype.start = function(gameState)
@@ -89,7 +89,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 				builders[0].construct(this.type, pos.x+shift*sina, pos.z+shift*cosa, pos.angle, this.metadata);
 		}
 	}
-	else if (pos.x == pos.xx && pos.z == pos.zz)
+	else if (pos.xx === undefined || (pos.x == pos.xx && pos.z == pos.zz))
 		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
 	else // try with the lowest, move towards us unless we're same
 	{
@@ -123,7 +123,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		if (newpos && newpos.quality > 0)
 		{
 			let pos = newpos.pos;
-			return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": this.metadata.base };
+			return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": this.metadata.base };
 		}
 	}
 	
@@ -140,7 +140,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				var pos = gameState.ai.HQ.findStrategicCCLocation(gameState, template);
 
 			if (pos)
-				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": 0 };
+				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": 0 };
 			else
 				return false;
 		}
@@ -149,7 +149,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			var pos = gameState.ai.HQ.findDefensiveLocation(gameState, template);
 
 			if (pos)
-				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": pos[2] };
+				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": pos[2] };
 			else if (!template.hasClass("Fortress") || gameState.civ() === "mace" || gameState.civ() === "maur" ||
 				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true)
 				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_army_camp"), true) > 0)
@@ -164,7 +164,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				if (!this.metadata)
 					this.metadata = {};
 				this.metadata.expectedGain = pos[3];
-				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": pos[2] };
+				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": pos[2] };
 			}
 			else if (!pos)
 				return false;
@@ -191,13 +191,13 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		if (this.metadata && this.metadata.base !== undefined)
 		{
 			var base = this.metadata.base;
-			for (var j = 0; j < placement.map.length; ++j)
+			for (let j = 0; j < placement.map.length; ++j)
 				if (gameState.ai.HQ.basesMap.map[j] == base)
 					placement.map[j] = 45;
 		}
 		else
 		{
-			for (var j = 0; j < placement.map.length; ++j)
+			for (let j = 0; j < placement.map.length; ++j)
 				if (gameState.ai.HQ.basesMap.map[j] != 0)
 					placement.map[j] = 45;
 		}
@@ -238,7 +238,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 		if (template.hasClass("Farmstead"))
 		{
-			for (var j = 0; j < placement.map.length; ++j)
+			for (let j = 0; j < placement.map.length; ++j)
 			{
 				var value = placement.map[j] - (gameState.sharedScript.resourceMaps["wood"].map[j])/3;
 				placement.map[j] = value >= 0 ? value : 0;
@@ -256,7 +256,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	if (this.metadata && this.metadata.base !== undefined)
 	{
 		var base = this.metadata.base;
-		for (var j = 0; j < placement.map.length; ++j)
+		for (let j = 0; j < placement.map.length; ++j)
 		{
 			if (gameState.ai.HQ.basesMap.map[j] != base)
 				placement.map[j] = 0;
@@ -267,8 +267,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 			if (placement.map[j] > 0)
 			{
-				var x = (j % placement.width + 0.5) * cellSize;
-				var z = (Math.floor(j / placement.width) + 0.5) * cellSize;
+				let x = (j % placement.width + 0.5) * cellSize;
+				let z = (Math.floor(j / placement.width) + 0.5) * cellSize;
 				if (gameState.ai.HQ.isNearInvadingArmy([x, z]))
 					placement.map[j] = 0;
 			}
@@ -276,7 +276,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	}
 	else
 	{
-		for (var j = 0; j < placement.map.length; ++j)
+		for (let j = 0; j < placement.map.length; ++j)
 		{
 			if (gameState.ai.HQ.basesMap.map[j] == 0)
 				placement.map[j] = 0;
@@ -290,8 +290,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 			if (placement.map[j] > 0)
 			{
-				var x = (j % placement.width + 0.5) * cellSize;
-				var z = (Math.floor(j / placement.width) + 0.5) * cellSize;
+				let x = (j % placement.width + 0.5) * cellSize;
+				let z = (Math.floor(j / placement.width) + 0.5) * cellSize;
 				if (gameState.ai.HQ.isNearInvadingArmy([x, z]))
 					placement.map[j] = 0;
 			}
@@ -314,7 +314,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
 		radius = Math.ceil((template.obstructionRadius() + 4) / obstructions.cellSize);
 	else
-		radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize) + 1;
+		radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
 	if (template.hasClass("House") && !alreadyHasHouses)
 	{
@@ -337,34 +337,20 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	var x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
 	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 
-	var xx = x;
-	var zz = z;
 	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
 	{
-		if (obstructions.cellSize != 4)  // new pathFinder branch
+		let secondBest = obstructions.findNearestObstructed(bestIdx, radius);
+		if (secondBest >= 0)
 		{
-			let secondBest = obstructions.findNearestObstructed(bestIdx, radius);
-			if (secondBest >= 0)
-			{
-				x = ((secondBest % obstructions.width) + 0.5) * obstructions.cellSize;
-				z = (Math.floor(secondBest / obstructions.width) + 0.5) * obstructions.cellSize;
-				xx = x;
-				zz = z;
-			}
-		}
-		else
-		{
-			obstructions.expandInfluences();
-			let secondBest = obstructions.findLowestNeighbor(x,z);
-			xx = secondBest[0];
-			zz = secondBest[1];
+			x = ((secondBest % obstructions.width) + 0.5) * obstructions.cellSize;
+			z = (Math.floor(secondBest / obstructions.width) + 0.5) * obstructions.cellSize;
 		}
 	}
 
-	let territorypos = placement.gamePosToMapPos([x,z]);
+	let territorypos = placement.gamePosToMapPos([x, z]);
 	let territoryIndex = territorypos[0] + territorypos[1]*placement.width;
 	// default angle = 3*Math.PI/4;
-	return { "x": x, "z": z, "angle": 3*Math.PI/4, "xx": xx, "zz": zz, "base": gameState.ai.HQ.basesMap.map[territoryIndex] };
+	return { "x": x, "z": z, "angle": 3*Math.PI/4, "base": gameState.ai.HQ.basesMap.map[territoryIndex] };
 };
 
 /**
@@ -501,7 +487,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		}
 	}
 
-	return { "x": x, "z": z, "angle": bestAngle, "xx": x, "zz": z, "base": baseIndex, "access": bestLand };
+	return { "x": x, "z": z, "angle": bestAngle, "base": baseIndex, "access": bestLand };
 };
 
 // Algorithm taken from the function GetDockAngle in simulation/helpers/Commands.js
