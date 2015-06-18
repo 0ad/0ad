@@ -200,6 +200,16 @@ std::map<std::string, pass_class_t> CCmpPathfinder::GetPassabilityClasses()
 	return m_PassClassMasks;
 }
 
+std::map<std::string, pass_class_t> CCmpPathfinder::GetPathfindingPassabilityClasses()
+{
+	std::map<std::string, pass_class_t> pathfindingClasses;
+	for (auto& pair : m_PassClassMasks)
+		if (GetPassabilityFromMask(pair.second)->m_Obstructions == PathfinderPassability::PATHFINDING)
+			pathfindingClasses[pair.first] = pair.second;
+
+	return pathfindingClasses;
+}
+
 const PathfinderPassability* CCmpPathfinder::GetPassabilityFromMask(pass_class_t passClass) const
 {
 	for (const PathfinderPassability& passability : m_PassClasses)
@@ -554,17 +564,22 @@ void CCmpPathfinder::UpdateGrid()
 
 		// Expand the impassability grid, for any class with non-zero clearance,
 		// so that we can stop units getting too close to impassable navcells
+		std::map<int, u16> clearancesMasks;
 		for (PathfinderPassability& passability : m_PassClasses)
 		{
-			if (!passability.m_HasClearance)
+			if (passability.m_Clearance == fixed::Zero())
 				continue;
 
-			// TODO: if multiple classes have the same clearance, we should
-			// only bother doing this once for them all
 			int clearance = (passability.m_Clearance / Pathfinding::NAVCELL_SIZE).ToInt_RoundToInfinity();
-			if (clearance > 0)
-				ExpandImpassableCells(*m_Grid, clearance, passability.m_Mask);
+
+			auto it = clearancesMasks.find(clearance);
+			if (it == clearancesMasks.end())
+				clearancesMasks[clearance] = passability.m_Mask;
+			else
+				it->second |= passability.m_Mask;
 		}
+		for (auto& pair : clearancesMasks)
+			ExpandImpassableCells(*m_Grid, pair.first, pair.second);
 
 		// Store the updated terrain-only grid
 		*m_TerrainOnlyGrid = *m_Grid;
@@ -592,11 +607,11 @@ void CCmpPathfinder::UpdateGrid()
 	}
 
 	// Add obstructions onto the grid
-	cmpObstructionManager->Rasterize(*m_Grid, m_PassClasses, ICmpObstructionManager::FLAG_BLOCK_PATHFINDING, m_ObstructionsDirty.globalRecompute);
+	cmpObstructionManager->Rasterize(*m_Grid, m_PassClasses, m_ObstructionsDirty.globalRecompute);
 
 	// Update the long-range pathfinder
 	if (m_ObstructionsDirty.globallyDirty)
-		m_LongPathfinder.Reload(m_PassClassMasks, m_Grid);
+		m_LongPathfinder.Reload(GetPathfindingPassabilityClasses(), m_Grid);
 	else
 		m_LongPathfinder.Update(m_Grid, m_ObstructionsDirty.dirtinessGrid);
 }
@@ -780,7 +795,7 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const I
 
 	entity_pos_t expand;
 	const PathfinderPassability* passability = GetPassabilityFromMask(passClass);
-	if (passability && passability->m_HasClearance)
+	if (passability)
 		expand = passability->m_Clearance;
 
 	SimRasterize::Spans spans;

@@ -328,7 +328,7 @@ void CCmpTerritoryManager::CalculateCostGrid()
 	if (!cmpPathfinder)
 		return;
 
-	pass_class_t passClassTerritory = cmpPathfinder->GetPassabilityClass("territory");
+	pass_class_t passClassTerritory = cmpPathfinder->GetPassabilityClass("default-terrain-only");
 	pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
 
 	const Grid<u16>& passGrid = cmpPathfinder->GetPassabilityGrid();

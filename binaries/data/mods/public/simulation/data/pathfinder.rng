@@ -15,6 +15,9 @@
         <element>
           <anyName/>
           <interleave>
+            <element name="Obstructions">
+              <data type="string"/>
+            </element>
             <optional>
               <element name="MinWaterDepth">
                 <data type="decimal"/>

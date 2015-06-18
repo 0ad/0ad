@@ -27,23 +27,12 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 	this.width = passabilityMap.width;
 	this.height = passabilityMap.height;
 	this.cellSize = passabilityMap.cellSize;
-	
-	// the first two won't change, the third is a reference to a value updated by C++
-	if (this.cellSize == 4)
-	{
-		var obstructionMaskLand = rawState.passabilityClasses["default"];
-		var obstructionMaskWater = rawState.passabilityClasses["ship"];
-		var obstructionMask = rawState.passabilityClasses["pathfinderObstruction"];
-	}
-	else  // new pathFinder branch
-	{
-		var obstructionMaskLand = rawState.passabilityClasses["default-terrain-only"];
-		var obstructionMaskWater = rawState.passabilityClasses["ship"];
-		var obstructionMask = rawState.passabilityClasses["default-no-clearance"];
-	}
+
+	var obstructionMaskLand = rawState.passabilityClasses["default-terrain-only"];
+	var obstructionMaskWater = rawState.passabilityClasses["ship-small"];
 
 	var obstructionTiles = new Uint8Array(passabilityMap.data.length);
-	
+
 	/* Generated map legend:
 	 0 is impassable
 	 200 is deep water (ie non-passable by land units)
@@ -359,14 +348,10 @@ m.Accessibility.prototype.getAccessValue = function(position, onWater)
 
 // Returns true if a point is deemed currently accessible (is not blocked by surrounding trees...)
 // NB: accessible means that you can reach it from one side, not necessariliy that you can go ON it.
-m.Accessibility.prototype.isAccessible = function(gameState, position, onLand){
+m.Accessibility.prototype.isAccessible = function(gameState, position, onLand)
+{
 	var gamePos = this.gamePosToMapPos(position);
-	
-	// quick check
-	if (this.countConnected(gamePos[0] + this.width*gamePos[1], onLand) >= 2) {
-		return true;
-	}
-	return false;
+	return (this.countConnected(gamePos[0] + this.width*gamePos[1], onLand) >= 2);
 };
 
 // Return true if you can go from a point to a point without switching means of transport
