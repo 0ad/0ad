@@ -1044,6 +1044,14 @@ void CNetServerWorker::StartGame()
 
 	// Send the final setup state to all clients
 	UpdateGameAttributes(&m_GameAttributes.get());
+
+	// Remove players and observers that are not present when the game starts
+	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end();)
+		if (it->second.m_Enabled)
+			++it;
+		else
+			it = m_PlayerAssignments.erase(it);
+
 	SendPlayerAssignments();
 
 	CGameStartMessage gameStart;
