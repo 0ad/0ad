@@ -563,23 +563,18 @@ void CCmpPathfinder::UpdateGrid()
 		}
 
 		// Expand the impassability grid, for any class with non-zero clearance,
-		// so that we can stop units getting too close to impassable navcells
-		std::map<int, u16> clearancesMasks;
+		// so that we can stop units getting too close to impassable navcells.
+		// Note: It's not possible to perform this expansion once for all passabilities
+		// with the same clearance, because the impassable cells are not necessarily the 
+		// same for all these passabilities.
 		for (PathfinderPassability& passability : m_PassClasses)
 		{
 			if (passability.m_Clearance == fixed::Zero())
 				continue;
 
 			int clearance = (passability.m_Clearance / Pathfinding::NAVCELL_SIZE).ToInt_RoundToInfinity();
-
-			auto it = clearancesMasks.find(clearance);
-			if (it == clearancesMasks.end())
-				clearancesMasks[clearance] = passability.m_Mask;
-			else
-				it->second |= passability.m_Mask;
-		}
-		for (auto& pair : clearancesMasks)
-			ExpandImpassableCells(*m_Grid, pair.first, pair.second);
+			ExpandImpassableCells(*m_Grid, clearance, passability.m_Mask);
+		}			
 
 		// Store the updated terrain-only grid
 		*m_TerrainOnlyGrid = *m_Grid;
