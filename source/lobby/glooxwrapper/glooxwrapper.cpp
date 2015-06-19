@@ -732,9 +732,8 @@ const glooxwrapper::Tag* glooxwrapper::Tag::findTag_clone(const string& expressi
 
 glooxwrapper::ConstTagList glooxwrapper::Tag::findTagList_clone(const string& expression) const
 {
-	gloox::ConstTagList tagList = m_Wrapped->findTagList(expression.to_string());
 	glooxwrapper::ConstTagList tagListWrapper;
-	for (gloox::ConstTagList::iterator it = tagList.begin(); it != tagList.end(); ++it)
-		tagListWrapper.push_back(new glooxwrapper::Tag(const_cast<gloox::Tag*>(*it), false));
+	for (const gloox::Tag* const& t : m_Wrapped->findTagList(expression.to_string()))
+		tagListWrapper.push_back(new glooxwrapper::Tag(const_cast<gloox::Tag*>(t), false));
 	return tagListWrapper;
 }

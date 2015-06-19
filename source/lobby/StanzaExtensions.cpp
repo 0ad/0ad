@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,9 +21,10 @@
  * GameReport, fairly generic custom stanza extension used
  * to report game statistics.
  */
-GameReport::GameReport( const glooxwrapper::Tag* tag ):StanzaExtension( ExtGameReport )
+GameReport::GameReport(const glooxwrapper::Tag* tag)
+	: StanzaExtension(EXTGAMEREPORT)
 {
-	if( !tag || tag->name() != "report" || tag->xmlns() != XMLNS_GAMEREPORT )
+	if (!tag || tag->name() != "report" || tag->xmlns() != XMLNS_GAMEREPORT)
 		return;
 	// TODO if we want to handle receiving this stanza extension.
 };
@@ -33,12 +34,11 @@ GameReport::GameReport( const glooxwrapper::Tag* tag ):StanzaExtension( ExtGameR
  */
 glooxwrapper::Tag* GameReport::tag() const
 {
-	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate( "report" );
-	t->setXmlns( XMLNS_GAMEREPORT );
+	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate("report");
+	t->setXmlns(XMLNS_GAMEREPORT);
 
-	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_GameReport.begin();
-	for( ; it != m_GameReport.end(); ++it )
-		t->addChild( (*it)->clone() );
+	for (const glooxwrapper::Tag* const& tag : m_GameReport)
+		t->addChild(tag->clone());
 
 	return t;
 }
@@ -64,21 +64,18 @@ glooxwrapper::StanzaExtension* GameReport::clone() const
  * Example stanza:
  * <board player="foobar">1200</board>
  */
-BoardListQuery::BoardListQuery( const glooxwrapper::Tag* tag ):StanzaExtension( ExtBoardListQuery )
+BoardListQuery::BoardListQuery(const glooxwrapper::Tag* tag)
+	: StanzaExtension(EXTBOARDLISTQUERY)
 {
-	if( !tag || tag->name() != "query" || tag->xmlns() != XMLNS_BOARDLIST )
+	if (!tag || tag->name() != "query" || tag->xmlns() != XMLNS_BOARDLIST)
 		return;
-	
-	const glooxwrapper::Tag* c = tag->findTag_clone( "query/command" );
+
+	const glooxwrapper::Tag* c = tag->findTag_clone("query/command");
 	if (c)
 		m_Command = c->cdata();
 	glooxwrapper::Tag::free(c);
-	const glooxwrapper::ConstTagList boardTags = tag->findTagList_clone( "query/board" );
-	glooxwrapper::ConstTagList::const_iterator it = boardTags.begin();
-	for ( ; it != boardTags.end(); ++it )
-	{
-		m_StanzaBoardList.push_back( *it );
-	}
+	for (const glooxwrapper::Tag* const& t : tag->findTagList_clone("query/board"))
+		m_StanzaBoardList.emplace_back(t);
 }
 
 /**
@@ -95,16 +92,15 @@ const glooxwrapper::string& BoardListQuery::filterString() const
  */
 glooxwrapper::Tag* BoardListQuery::tag() const
 {
-	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate( "query" );
-	t->setXmlns( XMLNS_BOARDLIST );
-	
+	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate("query");
+	t->setXmlns(XMLNS_BOARDLIST);
+
 	// Check for ratinglist or boardlist command
-	if(!m_Command.empty())
+	if (!m_Command.empty())
 		t->addChild(glooxwrapper::Tag::allocate("command", m_Command));
 
-	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_StanzaBoardList.begin();
-	for( ; it != m_StanzaBoardList.end(); ++it )
-		t->addChild( (*it)->clone() );
+	for (const glooxwrapper::Tag* const& tag : m_StanzaBoardList)
+		t->addChild(tag->clone());
 
 	return t;
 }
@@ -117,9 +113,8 @@ glooxwrapper::StanzaExtension* BoardListQuery::clone() const
 
 BoardListQuery::~BoardListQuery()
 {
-	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_StanzaBoardList.begin();
-	for( ; it != m_StanzaBoardList.end(); ++it )
-		glooxwrapper::Tag::free(*it);
+	for (const glooxwrapper::Tag* const& t : m_StanzaBoardList)
+		glooxwrapper::Tag::free(t);
 	m_StanzaBoardList.clear();
 }
 
@@ -128,9 +123,10 @@ BoardListQuery::~BoardListQuery()
  * the listing of games from the server, and register/
  * unregister/changestate games on the server.
  */
-GameListQuery::GameListQuery( const glooxwrapper::Tag* tag ):StanzaExtension( ExtGameListQuery )
+GameListQuery::GameListQuery( const glooxwrapper::Tag* tag )
+	: StanzaExtension(EXTGAMELISTQUERY)
 {
-	if( !tag || tag->name() != "query" || tag->xmlns() != XMLNS_GAMELIST )
+	if (!tag || tag->name() != "query" || tag->xmlns() != XMLNS_GAMELIST)
 		return;
 
 	const glooxwrapper::Tag* c = tag->findTag_clone( "query/game" );
@@ -138,10 +134,8 @@ GameListQuery::GameListQuery( const glooxwrapper::Tag* tag ):StanzaExtension( Ex
 		m_Command = c->cdata();
 	glooxwrapper::Tag::free(c);
 
-	const glooxwrapper::ConstTagList games = tag->findTagList_clone( "query/game" );
-	glooxwrapper::ConstTagList::const_iterator it = games.begin();
-	for ( ; it != games.end(); ++it )
-		m_GameList.push_back( *it );
+	for (const glooxwrapper::Tag* const& t : tag->findTagList_clone("query/game"))
+		m_GameList.emplace_back(t);
 }
 
 /**
@@ -158,16 +152,15 @@ const glooxwrapper::string& GameListQuery::filterString() const
  */
 glooxwrapper::Tag* GameListQuery::tag() const
 {
-	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate( "query" );
-	t->setXmlns( XMLNS_GAMELIST );
+	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate("query");
+	t->setXmlns(XMLNS_GAMELIST);
 
 	// Check for register / unregister command
-	if(!m_Command.empty())
+	if (!m_Command.empty())
 		t->addChild(glooxwrapper::Tag::allocate("command", m_Command));
 
-	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_GameList.begin();
-	for( ; it != m_GameList.end(); ++it )
-		t->addChild( (*it)->clone() );
+	for (const glooxwrapper::Tag* const& tag : m_GameList)
+		t->addChild(tag->clone());
 
 	return t;
 }
@@ -180,9 +173,8 @@ glooxwrapper::StanzaExtension* GameListQuery::clone() const
 
 GameListQuery::~GameListQuery()
 {
-	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_GameList.begin();
-	for( ; it != m_GameList.end(); ++it )
-		glooxwrapper::Tag::free(*it);
+	for (const glooxwrapper::Tag* const & t : m_GameList)
+		glooxwrapper::Tag::free(t);
 	m_GameList.clear();
 }
 
@@ -193,7 +185,8 @@ GameListQuery::~GameListQuery()
  * <profile player="foobar" highestRating="1500" rank="1895" totalGamesPlayed="50"
  * 	wins="25" losses="25" /><command>foobar</command>
  */
-ProfileQuery::ProfileQuery(const glooxwrapper::Tag* tag):StanzaExtension(ExtProfileQuery)
+ProfileQuery::ProfileQuery(const glooxwrapper::Tag* tag)
+	: StanzaExtension(EXTPROFILEQUERY)
 {
 	if (!tag || tag->name() != "query" || tag->xmlns() != XMLNS_PROFILE)
 		return;
@@ -203,10 +196,8 @@ ProfileQuery::ProfileQuery(const glooxwrapper::Tag* tag):StanzaExtension(ExtProf
 		m_Command = c->cdata();
 	glooxwrapper::Tag::free(c);
 
-	const glooxwrapper::ConstTagList profileTags = tag->findTagList_clone("query/profile");
-	glooxwrapper::ConstTagList::const_iterator it = profileTags.begin();
-	for (; it != profileTags.end(); ++it)
-		m_StanzaProfile.push_back(*it);
+	for (const glooxwrapper::Tag* const& t : tag->findTagList_clone("query/profile"))
+		m_StanzaProfile.emplace_back(t);
 }
 
 /**
@@ -229,9 +220,8 @@ glooxwrapper::Tag* ProfileQuery::tag() const
 	if (!m_Command.empty())
 		t->addChild(glooxwrapper::Tag::allocate("command", m_Command));
 
-	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_StanzaProfile.begin();
-	for (; it != m_StanzaProfile.end(); ++it)
-		t->addChild((*it)->clone());
+	for (const glooxwrapper::Tag* const& tag : m_StanzaProfile)
+		t->addChild(tag->clone());
 
 	return t;
 }
@@ -244,8 +234,7 @@ glooxwrapper::StanzaExtension* ProfileQuery::clone() const
 
 ProfileQuery::~ProfileQuery()
 {
-	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_StanzaProfile.begin();
-	for (; it != m_StanzaProfile.end(); ++it)
-		glooxwrapper::Tag::free(*it);
+	for (const glooxwrapper::Tag* const& t : m_StanzaProfile)
+		glooxwrapper::Tag::free(t);
 	m_StanzaProfile.clear();
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,19 +20,19 @@
 #include "glooxwrapper/glooxwrapper.h"
 
 /// Global Gamelist Extension
-#define ExtGameListQuery 1403
+#define EXTGAMELISTQUERY 1403
 #define XMLNS_GAMELIST "jabber:iq:gamelist"
 
 /// Global Boardlist Extension
-#define ExtBoardListQuery 1404
+#define EXTBOARDLISTQUERY 1404
 #define XMLNS_BOARDLIST "jabber:iq:boardlist"
 
 /// Global Gamereport Extension
-#define ExtGameReport 1405
+#define EXTGAMEREPORT 1405
 #define XMLNS_GAMEREPORT "jabber:iq:gamereport"
 
 /// Global Profile Extension
-#define ExtProfileQuery 1406
+#define EXTPROFILEQUERY 1406
 #define XMLNS_PROFILE "jabber:iq:profile"
 
 class GameReport : public glooxwrapper::StanzaExtension
@@ -111,4 +111,4 @@ public:
 	glooxwrapper::string m_Command;
 	std::vector<const glooxwrapper::Tag*> m_StanzaProfile;
 };
-#endif
+#endif // STANZAEXTENSIONS_H
