@@ -142,9 +142,9 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 					nb++;
 				if (this.landingZones[land][sea].indexOf(j-width) !== -1)
 					nb++;
+				if (nb > nbmax)
+					nbmax = nb;
 			}
-			if (nb > nbmax)
-				nbmax = nb;
 			var nbcut = Math.min(2, nbmax);
 			for (var i = 0; i < this.landingZones[land][sea].length; i++)
 			{

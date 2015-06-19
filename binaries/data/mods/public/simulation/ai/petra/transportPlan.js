@@ -380,7 +380,7 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 			dist += API3.SquareVectorDistance(pos, destination);
 		if (avoidEnnemy)
 		{
-			var territoryOwner = gameState.ai.HQ.territoryMap.getOwnerIndex(i);
+			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(pos);
 			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))
 				dist += 100000000;
 		}
