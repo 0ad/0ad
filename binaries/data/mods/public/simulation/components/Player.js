@@ -1,7 +1,9 @@
 function Player() {}
 
 Player.prototype.Schema =
-	"<a:component type='system'/><empty/>";
+	"<element name='SharedLosTech' a:help='Allies will share los when this technology is researched. Leave empty to never share LOS.'>" +
+		"<text/>" +
+	"</element>";
 
 Player.prototype.Init = function()
 {
@@ -19,10 +21,12 @@ Player.prototype.Init = function()
 		"metal": 300,
 		"stone": 300
 	};
-	this.tradingGoods = [                      // goods for next trade-route and its proba in % (the sum of probas must be 100)
+	// goods for next trade-route and its proba in % (the sum of probas must be 100)
+	this.tradingGoods = [
 		{ "goods":  "wood", "proba": 30 },
 		{ "goods": "stone", "proba": 35 },
-		{ "goods": "metal", "proba": 35 } ];
+		{ "goods": "metal", "proba": 35 },
+	];
 	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
 	this.teamsLocked = false;
 	this.state = "active"; // game state - one of "active", "defeated", "won"
@@ -40,7 +44,7 @@ Player.prototype.Init = function()
 		"wood": markForTranslation("Wood"),
 		"metal": markForTranslation("Metal"),
 		"stone": markForTranslation("Stone"),
-	}
+	};
 	this.disabledTemplates = {};
 	this.disabledTechnologies = {};
 	this.startingTechnologies = [];
@@ -445,15 +449,18 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 
 Player.prototype.UpdateSharedLos = function()
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	if (!cmpRangeManager)
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let cmpTechnologyManager = Engine.QueryInterface(this.entity, IID_TechnologyManager);
+	if (!cmpRangeManager || !cmpPlayerManager || !cmpTechnologyManager)
 		return;
 
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (!cmpPlayerManager)
+	let sharedLos = [];
+	if (!cmpTechnologyManager.IsTechnologyResearched(this.template.SharedLosTech))
+	{
+		cmpRangeManager.SetSharedLos(this.playerID, [this.playerID]);
 		return;
-
-	var sharedLos = [];
+	}
 	for (var i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
 		if (this.IsMutualAlly(i))
 			sharedLos.push(i);
@@ -660,6 +667,12 @@ Player.prototype.OnPlayerDefeated = function(msg)
 	var notification = {"type": "defeat", "players": [this.playerID]};
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification(notification);
+};
+
+Player.prototype.OnResearchFinished = function(msg)
+{
+	if (msg.tech == this.template.SharedLosTech)
+		this.UpdateSharedLos();
 };
 
 Player.prototype.OnDiplomacyChanged = function()

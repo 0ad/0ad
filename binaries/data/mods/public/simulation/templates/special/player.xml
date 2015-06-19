@@ -48,7 +48,9 @@
       </CivilCentre>
     </LimitRemovers>
   </EntityLimits>
-  <Player/>
+  <Player>
+	<SharedLosTech>unlock_shared_los</SharedLosTech>
+  </Player>
   <StatisticsTracker/>
   <TechnologyManager/>
 </Entity>
