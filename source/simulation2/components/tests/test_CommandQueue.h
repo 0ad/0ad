@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ public:
 
 		std::vector<SimulationCommand> empty;
 
-		ICmpCommandQueue* cmp = test.Add<ICmpCommandQueue>(CID_CommandQueue, "");
+		ICmpCommandQueue* cmp = test.Add<ICmpCommandQueue>(CID_CommandQueue, "", SYSTEM_ENTITY);
 
 		TS_ASSERT(test.GetScriptInterface().Eval("var cmds = []; function ProcessCommand(player, cmd) { cmds.push([player, cmd]); }"));
 

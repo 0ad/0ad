@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,7 +71,7 @@ public:
 		ent3g = ent3;
 
 		testHelper = new ComponentTestHelper(g_ScriptRuntime);
-		cmp = testHelper->Add<ICmpObstructionManager>(CID_ObstructionManager, "");
+		cmp = testHelper->Add<ICmpObstructionManager>(CID_ObstructionManager, "", SYSTEM_ENTITY);
 		cmp->SetBounds(fixed::FromInt(0), fixed::FromInt(0), fixed::FromInt(1000), fixed::FromInt(1000));
 
 		shape1 = cmp->AddStaticShape(ent1, ent1x, ent1z, ent1a, ent1w, ent1h,
