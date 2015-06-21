@@ -333,8 +333,6 @@ void* ScriptRuntime::jshook_function(JSContext* cx, JSAbstractFramePtr fp, bool 
 
 void ScriptRuntime::PrepareContextsForIncrementalGC()
 {
-	for (std::list<JSContext*>::iterator itr = m_Contexts.begin(); itr != m_Contexts.end(); itr++)
-	{
-		JS::PrepareZoneForGC(js::GetCompartmentZone(js::GetContextCompartment(*itr)));
-	}
+	for (JSContext* const& ctx : m_Contexts)
+		JS::PrepareZoneForGC(js::GetCompartmentZone(js::GetContextCompartment(ctx)));
 }

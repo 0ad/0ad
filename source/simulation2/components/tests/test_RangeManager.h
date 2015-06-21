@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,7 +89,7 @@ public:
 	{
 		ComponentTestHelper test(g_ScriptRuntime);
 
-		ICmpRangeManager* cmp = test.Add<ICmpRangeManager>(CID_RangeManager, "");
+		ICmpRangeManager* cmp = test.Add<ICmpRangeManager>(CID_RangeManager, "", SYSTEM_ENTITY);
 
 		MockVision vision;
 		test.AddMock(100, IID_Vision, vision);

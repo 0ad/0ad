@@ -63,7 +63,7 @@ void* CMapGeneratorWorker::RunThread(void *data)
 	self->m_ScriptInterface = new ScriptInterface("RMS", "MapGenerator", ScriptInterface::CreateRuntime(g_ScriptRuntime, RMS_RUNTIME_SIZE));
 
 	// Run map generation scripts
-	if ((!self->Run()) || (self->m_Progress > 0))
+	if (!self->Run() || self->m_Progress > 0)
 	{
 		// Don't leave progress in an unknown state, if generator failed, set it to -1
 		CScopeLock lock(self->m_WorkerMutex);
@@ -104,6 +104,7 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<void, CMapGeneratorWorker::MaybeGC>("MaybeGC");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, CMapGeneratorWorker::GetCivData>("GetCivData");
 	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
+	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
 
@@ -198,19 +199,15 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPriv
 	Status ret = vfs::GetPathnames(g_VFS, path, L"*.json", pathnames);
 	if (ret == INFO::OK)
 	{
-		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		for (const VfsPath& p : pathnames)
 		{
 			// Load JSON file
 			CVFSFile file;
-			PSRETURN ret = file.Load(g_VFS, *it);
+			PSRETURN ret = file.Load(g_VFS, p);
 			if (ret != PSRETURN_OK)
-			{
-				LOGERROR("CMapGeneratorWorker::GetCivData: Failed to load file '%s': %s", path.string8(), GetErrorString(ret));
-			}
+				LOGERROR("CMapGeneratorWorker::GetCivData: Failed to load file '%s': %s", p.string8(), GetErrorString(ret));
 			else
-			{
 				data.push_back(file.DecodeUTF8()); // assume it's UTF-8
-			}
 		}
 	}
 	else
@@ -234,6 +231,12 @@ CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPriva
 	return templateRoot;
 }
 
+bool CMapGeneratorWorker::TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName)
+{
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	return self->m_TemplateLoader.TemplateExists(templateName);
+}
+
 std::vector<std::string> CMapGeneratorWorker::FindTemplates(ScriptInterface::CxPrivate* pCxPrivate, std::string path, bool includeSubdirectories)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
@@ -250,9 +253,7 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 {
 	// Ignore libraries that are already loaded
 	if (m_LoadedLibraries.find(libraryName) != m_LoadedLibraries.end())
-	{
 		return true;
-	}
 
 	// Mark this as loaded, to prevent it recursively loading itself
 	m_LoadedLibraries.insert(libraryName);
@@ -264,13 +265,13 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	Status ret = vfs::GetPathnames(g_VFS, path, L"*.js", pathnames);
 	if (ret == INFO::OK)
 	{
-		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		for (const VfsPath& p : pathnames)
 		{
-			LOGMESSAGE("Loading map generator script '%s'", it->string8());
+			LOGMESSAGE("Loading map generator script '%s'", p.string8());
 
-			if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
+			if (!m_ScriptInterface->LoadGlobalScriptFile(p))
 			{
-				LOGERROR("CMapGeneratorWorker::LoadScripts: Failed to load script '%s'", it->string8());
+				LOGERROR("CMapGeneratorWorker::LoadScripts: Failed to load script '%s'", p.string8());
 				return false;
 			}
 		}

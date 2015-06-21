@@ -832,14 +832,14 @@ static std::vector<std::string> GetJSONData(const VfsPath& path)
 	}
 
 	std::vector<std::string> data;
-	for (VfsPaths::const_iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+	for (const VfsPath& p : pathnames)
 	{
 		// Load JSON file
 		CVFSFile file;
-		PSRETURN ret = file.Load(g_VFS, *it);
+		PSRETURN ret = file.Load(g_VFS, p);
 		if (ret != PSRETURN_OK)
 		{
-			LOGERROR("GetJSONData: Failed to load file '%s': %s", path.string8(), GetErrorString(ret));
+			LOGERROR("GetJSONData: Failed to load file '%s': %s", p.string8(), GetErrorString(ret));
 			continue;
 		}
 

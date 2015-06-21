@@ -1873,10 +1873,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 					check_point_row_start = check_point_row_end = -1;
 				}
 
-				// set 'from' to the from row we'll destroy
-				//  and 'to' to 'to_after'
-				from = destroy_row_from->m_ListStart;
-
 				if (destroy_row_to != m_CharacterPositions.end())
 					to = destroy_row_to->m_ListStart; // notice it will iterate [from, to[, so it will never reach to.
 				else

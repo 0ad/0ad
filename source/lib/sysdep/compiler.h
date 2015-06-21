@@ -63,6 +63,11 @@
 # define CLANG_VERSION 0
 #endif
 
+// Clang/LLVM feature check macro compatibility
+#ifndef __has_feature
+# define __has_feature(x) 0
+#endif
+
 
 // are PreCompiled Headers supported?
 #if MSC_VERSION
