@@ -373,10 +373,9 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 	if (cmpPlayerEntityLimits)
 		cmpPlayerEntityLimits.UpdateLimitsFromTech(tech);
 
-	// Call the related trigger event 
-	var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	cmpTrigger.CallEvent("ResearchFinished", {"player": playerID, "tech": tech});
-	
+	// always send research finished message 
+	Engine.PostMessage(this.entity, MT_ResearchFinished, {"player": playerID, "tech": tech});
+
 	for (var component in modifiedComponents)
 	{
 		Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": playerID, "component": component, "valueNames": modifiedComponents[component]});

@@ -490,7 +490,8 @@ CNetReplayTurnManager::CNetReplayTurnManager(CSimulation2& simulation, IReplayLo
 
 void CNetReplayTurnManager::StoreReplayCommand(u32 turn, int player, const std::string& command)
 {
-	m_ReplayCommands[turn][player].push_back(command);
+	// Using the pair we make sure that commands per turn will be processed in the correct order
+	m_ReplayCommands[turn].push_back(std::make_pair(player, command));
 }
 
 void CNetReplayTurnManager::StoreReplayHash(u32 turn, const std::string& hash, bool quick)
@@ -542,14 +543,11 @@ void CNetReplayTurnManager::DoTurn(u32 turn)
 	m_TurnLength = m_ReplayTurnLengths[turn];
 
 	// Simulate commands for that turn
-	for (auto& command : m_ReplayCommands[turn])
+	for (const std::pair<player_id_t, std::string>& pair : m_ReplayCommands[turn])
 	{
-		for (size_t i = 0; i < command.second.size(); ++i)
-		{
-			JS::RootedValue data(m_Simulation2.GetScriptInterface().GetContext());
-			m_Simulation2.GetScriptInterface().ParseJSON(command.second[i], &data);
-			AddCommand(m_ClientId, command.first, data, m_CurrentTurn + 1);
-		}
+		JS::RootedValue command(m_Simulation2.GetScriptInterface().GetContext());
+		m_Simulation2.GetScriptInterface().ParseJSON(pair.second, &command);
+		AddCommand(m_ClientId, pair.first, command, m_CurrentTurn + 1);
 	}
 }
 

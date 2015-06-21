@@ -147,7 +147,7 @@ m.SharedScript.prototype.init = function(state, deserialization)
 /*
 	var landPassMap = new Uint8Array(this.passabilityMap.data.length);
 	var waterPassMap = new Uint8Array(this.passabilityMap.data.length);
-	var obstructionMaskLand = this.passabilityClasses["default"];
+	var obstructionMaskLand = this.passabilityClasses["default-terrain-only"];
 	var obstructionMaskWater = this.passabilityClasses["ship-small"];
 	for (var i = 0; i < this.passabilityMap.data.length; ++i)
 	{

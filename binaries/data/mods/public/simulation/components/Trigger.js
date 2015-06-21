@@ -234,6 +234,14 @@ Trigger.prototype.OnGlobalTrainingFinished = function(msg)
 	// See function "SpawnUnits" in ProductionQueue for more details
 };
 
+// Handles "OnTrainingFinished" event.
+Trigger.prototype.OnGlobalResearchFinished = function(msg)
+{
+	this.CallEvent("ResearchFinished", msg);
+	// The data for this one is {"player": playerID,
+	//							 "tech": tech}
+};
+
 Trigger.prototype.OnGlobalOwnershipChanged = function(msg)
 {
 	this.CallEvent("OwnershipChanged", msg);
