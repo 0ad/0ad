@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -360,7 +360,7 @@ LIB_API Status debug_WriteCrashlog(const char* text);
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, atomic_bool* suppress, const wchar_t* file, int line, const char* func);
+LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, atomic_bool* suppress, const wchar_t* file, int line, const char* func) ANALYZER_NORETURN;
 
 /**
  * called when a DEBUG_WARN_ERR indicates an error occurred;
@@ -372,7 +372,7 @@ LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, atomi
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_OnError(Status err, atomic_bool* suppress, const wchar_t* file, int line, const char* func);
+LIB_API ErrorReaction debug_OnError(Status err, atomic_bool* suppress, const wchar_t* file, int line, const char* func) ANALYZER_NORETURN;
 
 
 /**
