@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -127,6 +127,7 @@ private:
 	static void MaybeGC(ScriptInterface::CxPrivate* pCxPrivate);
 	static std::vector<std::string> GetCivData(ScriptInterface::CxPrivate* pCxPrivate);
 	static CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName);
+	static bool TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName);
 	static std::vector<std::string> FindTemplates(ScriptInterface::CxPrivate* pCxPrivate, std::string path, bool includeSubdirectories);
 	static std::vector<std::string> FindActorTemplates(ScriptInterface::CxPrivate* pCxPrivate, std::string path, bool includeSubdirectories);
 
