@@ -4,15 +4,12 @@ var API3 = function(m)
 /*
  * TerrainAnalysis, inheriting from the Map Component.
  * 
- * This creates a suitable passability map for pathfinding units and provides the findClosestPassablePoint() function.
+ * This creates a suitable passability map.
  * This is part of the Shared Script, and thus should only be used for things that are non-player specific.
  * This.map is a map of the world, where particular stuffs are pointed with a value
  * For example, impassable land is 0, water is 200, areas near tree (ie forest grounds) are 41…
  * This is intended for use with 8 bit maps for reduced memory usage.
  * Upgraded from QuantumState's original TerrainAnalysis for qBot.
- * You may notice a lot of the A* star codes differ only by a few things.
- * It's wanted: each does a very slightly different things
- * But truly separating optimizes.
  */
 
 m.TerrainAnalysis = function()
@@ -21,7 +18,7 @@ m.TerrainAnalysis = function()
 
 m.copyPrototype(m.TerrainAnalysis, m.Map);
 
-m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
+m.TerrainAnalysis.prototype.init = function(sharedScript, rawState)
 {
 	var passabilityMap = rawState.passabilityMap;
 	this.width = passabilityMap.width;
@@ -38,12 +35,9 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 	 200 is deep water (ie non-passable by land units)
 	 201 is shallow water (passable by land units and water units)
 	 255 is land (or extremely shallow water where ships can't go).
-	 40 is "tree".
-	 The following 41-49 range is "near a tree", with the second number showing how many trees this tile neighbors.
-	 30 is "geological component", such as a mine
 	*/
 	
-	for (var i = 0; i < passabilityMap.data.length; ++i)
+	for (let i = 0; i < passabilityMap.data.length; ++i)
 	{
 		// If impassable for land units, set to 0, else to 255.
 		obstructionTiles[i] = (passabilityMap.data[i] & obstructionMaskLand) ? 0 : 255;
@@ -54,93 +48,7 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 			obstructionTiles[i] = 201; // navigable and walkable.
 	}
 
-	var square = [ [-1,-1], [-1,0], [-1, 1], [0,1], [1,1], [1,0], [1,-1], [0,-1], [0,0] ];
-	var xx = 0;
-	var yy = 0;
-	var value = 0;
-	var pos = [];
-	var x = 0;
-	var y = 0;
-	var radius = 0;
-	for (let ent of sharedScript._entities.values())
-	{
-		if (ent.hasClass("ForestPlant") === true)
-		{
-			pos = this.gamePosToMapPos(ent.position());
-			x = pos[0];
-			y = pos[1];
-			// unless it's impassable already, mark it as 40.
-			if (obstructionTiles[x + y*this.width] !== 0)
-				obstructionTiles[x + y*this.width] = 40;
-			for (let sq of square)
-			{
-				xx = sq[0];
-				yy = sq[1];
-				if (x+xx >= 0 && x+xx < this.width && y+yy >= 0 && y+yy < this.height) {
-					value = obstructionTiles[(x+xx) + (y+yy)*this.width];
-					if (value === 255)
-						obstructionTiles[(x+xx) + (y+yy)*this.width] = 41;
-					else if (value < 49 && value > 40)
-						obstructionTiles[(x+xx) + (y+yy)*this.width] = value + 1;
-				}
-			}
-		}
-		else if (ent.hasClass("Geology") === true)
-		{
-			radius = Math.floor(ent.obstructionRadius() / this.cellSize);
-			pos = this.gamePosToMapPos(ent.position());
-			x = pos[0];
-			y = pos[1];
-			// Unless it's impassable, mark as 30. This takes precedence over trees.
-			obstructionTiles[x + y*this.width] = obstructionTiles[x + y*this.width] === 0 ? 0 : 30;
-			for (var xx = -radius; xx <= radius;xx++)
-				for (var yy = -radius; yy <= radius;yy++)
-					if (x+xx >= 0 && x+xx < this.width && y+yy >= 0 && y+yy < this.height)
-						obstructionTiles[(x+xx) + (y+yy)*this.width] = obstructionTiles[(x+xx) + (y+yy)*this.width] === 0 ? 0 : 30;
-		}
-	}
-	// Okay now we have a pretty good knowledge of the map.
 	this.Map(rawState, "passability", obstructionTiles);
-};
-
-// Returns the (approximately) closest point which is passable by searching in a spiral pattern 
-m.TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLand, limitDistance, quickscope)
-{
-	var w = this.width;
-	var p = startPoint;
-	var direction = 1;
-	
-	if (p[0] + w*p[1] < 0 || p[0] + w*p[1] >= this.length) {
-		return undefined;
-	}
-	// quickscope
-	if (this.map[p[0] + w*p[1]] === 255)
-		if (this.countConnected(p[0] + w*p[1], onLand) >= 2)
-			return p;
-	
-	var count = 0;
-	// search in a spiral pattern. We require a value that is actually accessible in this case, ie 255, 201 or 41 if land, 200/201 if water.
-	for (var i = 1; i < w; i++)
-	{
-		for (var j = 0; j < 2; j++)
-		{
-			for (var k = 0; k < i; k++)
-			{
-				p[j] += direction;
-				// if the value is not markedly inaccessible
-				var index = p[0] + w*p[1];
-				if (this.map[index] !== 0 && this.map[index] !== 90 && this.map[index] !== 120 && this.map[index] !== 30 && this.map[index] !== 40)
-					if (quickscope || this.countConnected(index, onLand) >= 2)
-						return p;
-				if (limitDistance !== undefined && count > limitDistance)
-					return undefined;
-				count++;
-			}
-		}
-		direction *= -1;
-	}
-	
-	return undefined;
 };
 
 // Returns an estimate of a tile accessibility. It checks neighboring cells over two levels.
@@ -177,58 +85,6 @@ m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand)
 		}
 	}
 	return count;
-};
-
-// TODO: for now this resets to 255.
-m.TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI)
-{
-	var events = sharedAI.events["Destroy"];
-	var passabilityMap = sharedAI.passabilityMap;
-	
-	// looking for creation or destruction of entities, and updates the map accordingly.
-	for (let e of events)
-	{
-		if (!e.entityObj)
-			continue;
-		let ent = e.entityObj;
-		if (ent.hasClass("Geology"))
-		{
-			let pos = this.gamePosToMapPos(ent.position());
-			let x = pos[0];
-			let y = pos[1];
-			// remove it. Don't really care about surrounding and possible overlappings.
-			let radius = Math.floor(ent.obstructionRadius() / this.cellSize);
-			for (let xx = -radius; xx <= radius;xx++)
-				for (let yy = -radius; yy <= radius;yy++)
-				{
-					if (x+xx >= 0 && x+xx < this.width && y+yy >= 0 && y+yy < this.height && this.map[(x+xx) + (y+yy)*this.width] === 30)
-						this.map[(x+xx) + (y+yy)*this.width] = 255;
-				}
-		}
-		else if (ent.hasClass("ForestPlant"))
-		{
-			let pos = this.gamePosToMapPos(ent.position());
-			let x = pos[0];
-			let y = pos[1];
-			let nbOfNeigh = 0;
-			for (let xx = -1; xx <= 1;xx++)
-				for (let yy = -1; yy <= 1;yy++)
-				{
-					if (xx == 0 && yy == 0)
-						continue;
-					if (this.map[(x+xx) + (y+yy)*this.width] === 40)
-						nbOfNeigh++;
-					else if (this.map[(x+xx) + (y+yy)*this.width] === 41)
-						this.map[(x+xx) + (y+yy)*this.width] = 255;
-					else if (this.map[(x+xx) + (y+yy)*this.width] > 41 && this.map[(x+xx) + (y+yy)*this.width] < 50)
-						this.map[(x+xx) + (y+yy)*this.width] = this.map[(x+xx) + (y+yy)*this.width] - 1;
-				}
-			if (nbOfNeigh > 0)
-				this.map[x + y*this.width] = this.map[x + y*this.width] = 40 + nbOfNeigh;
-			else
-				this.map[x + y*this.width] = this.map[x + y*this.width] = 255;
-		}
-	}
 };
 
 /*

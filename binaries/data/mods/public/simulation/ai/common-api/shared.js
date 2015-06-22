@@ -213,9 +213,8 @@ m.SharedScript.prototype.onUpdate = function(state)
 	for (var i in this.gameState)
 		this.gameState[i].update(this,state);
 
-	// TODO: merge those two with "ApplyEntitiesDelta" since after all they do the same.
+	// TODO: merge this with "ApplyEntitiesDelta" since after all they do the same.
 	this.updateResourceMaps(this, this.events);
-	this.terrainAnalyzer.updateMapWithEvents(this);
 	
 	Engine.ProfileStop();
 };

@@ -34,7 +34,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	}
 	
 	// get a starting rallyPoint ... will be improved later
-	var rallyPoint = undefined;
+	var rallyPoint;
 	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (!base.anchor || !base.anchor.position())
@@ -165,13 +165,6 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	this.position5TurnsAgo = [0,0];
 	this.lastPosition = [0,0];
 	this.position = [0,0];
-
-	// get a good path to an estimated target.
-	this.pathFinder = new API3.aStarPath(gameState, false, false, this.targetPlayer);
-	//Engine.DumpImage("widthmap.png", this.pathFinder.widthMap, this.pathFinder.width,this.pathFinder.height,255);
-
-	this.pathWidth = 6;	// prefer a path far from entities. This will avoid units getting stuck in trees and also results in less straight paths.
-	this.pathSampling = 2;
 
 	return true;
 };
@@ -410,16 +403,13 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			}
 		}
 		// reset the path so that we recompute it for this new target
-		this.resetPath(gameState);
+		this.resetPath();
 	}
 
 	// when we have a target, we path to it.
-	// I'd like a good high width sampling first.
-	// Thus I will not do everything at once.
-	// It will probably carry over a few turns but that's no issue.
-	if (this.path === undefined || this.path === "toBeContinued")
+	if (!this.path || this.path === "toBeContinued")
 	{
-		var ret = this.getPathToTarget(gameState);
+		let ret = this.getPathToTarget(gameState);
 		if (ret >= 0)
 			return ret;
 	}
@@ -540,10 +530,10 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 	// let's sort by training advancement, ie 'current size / target size'
 	// count the number of queued units too.
 	// substract priority.
-	for (var i = 0; i < this.buildOrder.length; ++i)
+	for (let i = 0; i < this.buildOrder.length; ++i)
 	{
-		var special = "Plan_" + this.name + "_" + this.buildOrder[i][4];
-		var aQueued = gameState.countOwnQueuedEntitiesWithMetadata("special", special);
+		let special = "Plan_" + this.name + "_" + this.buildOrder[i][4];
+		let aQueued = gameState.countOwnQueuedEntitiesWithMetadata("special", special);
 		aQueued += this.queue.countQueuedUnitsWithMetadata("special", special);
 		aQueued += this.queueChamp.countQueuedUnitsWithMetadata("special", special);
 		aQueued += this.queueSiege.countQueuedUnitsWithMetadata("special", special);
@@ -563,13 +553,13 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 	{
 		API3.warn("====================================");
 		API3.warn("======== build order for plan " + this.name);
-		for (var order of this.buildOrder)
+		for (let order of this.buildOrder)
 		{
-			var specialData = "Plan_"+this.name+"_"+order[4];
-			var inTraining = gameState.countOwnQueuedEntitiesWithMetadata("special", specialData);
-			var queue1 = this.queue.countQueuedUnitsWithMetadata("special", specialData);
-			var queue2 = this.queueChamp.countQueuedUnitsWithMetadata("special", specialData);
-			var queue3 = this.queueSiege.countQueuedUnitsWithMetadata("special", specialData);
+			let specialData = "Plan_"+this.name+"_"+order[4];
+			let inTraining = gameState.countOwnQueuedEntitiesWithMetadata("special", specialData);
+			let queue1 = this.queue.countQueuedUnitsWithMetadata("special", specialData);
+			let queue2 = this.queueChamp.countQueuedUnitsWithMetadata("special", specialData);
+			let queue3 = this.queueSiege.countQueuedUnitsWithMetadata("special", specialData);
 			API3.warn(" >>> " + order[4] + " done " + order[2].length + " training " + inTraining
 				+ " queue " + queue1 + " champ " + queue2 + " siege " + queue3 + " >> need " + order[3].targetSize); 
 		}
@@ -735,8 +725,8 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 // Reassign one (at each turn) Cav unit to fasten raid preparation
 m.AttackPlan.prototype.reassignCavUnit = function(gameState)
 {
-	var found = undefined;
-	for (var ent of this.unitCollection.values())
+	var found;
+	for (let ent of this.unitCollection.values())
 	{
 		if (!ent.position() || ent.getMetadata(PlayerID, "transport") !== undefined)
 			continue;
@@ -770,13 +760,13 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	// picking the nearest target
 	var minDist = -1;
 	var target = undefined;
-	for (var ent of targets.values())
+	for (let ent of targets.values())
 	{
 		if (!ent.position())
 			continue;
 		if (sameLand && gameState.ai.accessibility.getAccessValue(ent.position()) != land)
 			continue;
-		var dist = API3.SquareVectorDistance(ent.position(), position);
+		let dist = API3.SquareVectorDistance(ent.position(), position);
 		if (dist < minDist || minDist == -1)
 		{
 			minDist = dist;
@@ -877,9 +867,9 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 m.AttackPlan.prototype.raidTargetFinder = function(gameState)
 {
 	var targets = new API3.EntityCollection(gameState.sharedScript);
-	for (var targetId of gameState.ai.HQ.defenseManager.targetList)
+	for (let targetId of gameState.ai.HQ.defenseManager.targetList)
 	{
-		var target = gameState.getEntityById(targetId);
+		let target = gameState.getEntityById(targetId);
 		if (target && target.position())
 			targets.addEnt(target);
 	}
@@ -888,74 +878,42 @@ m.AttackPlan.prototype.raidTargetFinder = function(gameState)
 
 m.AttackPlan.prototype.getPathToTarget = function(gameState)
 {
-	if (this.path === undefined)
-		this.path = this.pathFinder.getPath(this.rallyPoint, this.targetPos, this.pathSampling, this.pathWidth, 175);
-	else if (this.path === "toBeContinued")
-		this.path = this.pathFinder.continuePath();
-		
-	if (this.path === undefined)
+	if (!this.path)
 	{
-		if (this.pathWidth == 6)
-		{
-			this.pathWidth = 2;
-			delete this.path;
-		}
-		else
-		{
-			delete this.pathFinder;
-			return 3;	// no path.
-		}
+		Engine.ProfileStart("Compute path");
+		let startPos = { "x": this.rallyPoint[0], "y": this.rallyPoint[1] };
+		let endPos = { "x": this.targetPos[0], "y": this.targetPos[1] };
+		let path = Engine.ComputePath(startPos, endPos, gameState.getPassabilityClassMask("siege-large"));
+		this.path = [];
+		this.path.push(this.targetPos);
+		for (let p in path)
+			this.path.push([path[p].x, path[p].y])
+		this.path.push(this.rallyPoint);
+		this.path.reverse();
+	    	// Change the rally point to something useful (should avoid rams getting stuck in our territor)
+		this.setRallyPoint(gameState);
+		//API3.warn("new path computed " + uneval(this.path) + " and ralyPoint " + uneval(this.rallyPoint));
+		Engine.ProfileStop();
 	}
 	else if (this.path === "toBeContinued")
-	{
 		return 1;	// carry on
-	} 
-	else if (this.path[1] === true && this.pathWidth == 2)
-	{
-		// okay so we need a ship.
-		// Basically we'll add it as a new class to train compulsorily, and we'll recompute our path.
-		if (!gameState.ai.HQ.navalMap)
-		{
-			gameState.ai.HQ.navalMap = true;
-			return 0;
-		}
-		this.pathWidth = 3;
-		this.pathSampling = 3;
-		this.path = this.path[0].reverse();
-		delete this.pathFinder;
-		// Change the rally point to something useful (should avoid rams getting stuck in our territor)
-		this.setRallyPoint(gameState);
-	}
-	else if (this.path[1] === true && this.pathWidth == 6)
-	{
-		// retry with a smaller pathwidth:
-		this.pathWidth = 2;
-		delete this.path;
-	}
-	else
-	{
-		this.path = this.path[0].reverse();
-		delete this.pathFinder;
-		// Change the rally point to something useful (should avoid rams getting stuck in our territor)
-		this.setRallyPoint(gameState);
-	}
-	return -1;    // ok
+
+	return -1;
 };
 
 m.AttackPlan.prototype.setRallyPoint = function(gameState)
 {
-	for (var i = 0; i < this.path.length; ++i)
+	for (let i = 0; i < this.path.length; ++i)
 	{
-		// my pathfinder returns arrays in arrays in arrays.
-		var waypointPos = this.path[i][0];
-		if (gameState.ai.HQ.territoryMap.getOwner(waypointPos) !== PlayerID || this.path[i][1] === true)
+		let waypointPos = this.path[i];
+		if (gameState.ai.HQ.territoryMap.getOwner(waypointPos) !== PlayerID)
 		{
 			// Set rally point at the border of our territory
 			// or where we need to change transportation method.
 			if (i !== 0)
-				this.rallyPoint = this.path[i-1][0];
+				this.rallyPoint = this.path[i-1];
 			else
-				this.rallyPoint = this.path[0][0];
+				this.rallyPoint = this.path[0];
 
 			if (i >= 2)
 				this.path.splice(0, i-1);
@@ -1019,20 +977,20 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 		
 		var curPos = this.unitCollection.getCentrePosition();
 		
-		for (var ent of this.unitCollection.values())
+		for (let ent of this.unitCollection.values())
 			ent.setMetadata(PlayerID, "subrole", "walking");
 		this.unitCollection.setStance("aggressive");
 
 		if (gameState.ai.accessibility.getAccessValue(this.targetPos) === gameState.ai.accessibility.getAccessValue(this.rallyPoint))
 		{
-			if (!this.path[0][0][0] || !this.path[0][0][1])
+			if (!this.path[0][0] || !this.path[0][1])
 			{
 				if (this.Config.debug > 1)
 					API3.warn("StartAttack: Problem with path " + uneval(this.path));
 				return false;
 			}
 			this.state = "walking";
-			this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
+			this.unitCollection.move(this.path[0][0], this.path[0][1]);
 		}
 		else
 		{
@@ -1042,7 +1000,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 			var endPos = this.targetPos;
 			// TODO require a global transport for the collection,
 			// and put back its state to "walking" when the transport is finished
-			for (var ent of this.unitCollection.values())
+			for (let ent of this.unitCollection.values())
 				gameState.ai.HQ.navalManager.requireTransport(gameState, ent, startIndex, endIndex, endPos);
 		}
 	}
@@ -1073,7 +1031,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	if (this.state === "transporting")
 	{
 		var done = true;
-		for (var ent of this.unitCollection.values())
+		for (let ent of this.unitCollection.values())
 		{
 			if (this.Config.debug > 1 && ent.getMetadata(PlayerID, "transport") !== undefined)
 				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,2,0]});
@@ -1090,7 +1048,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		else
 		{
 			// if we are attacked while waiting the rest of the army, retaliate
-			for (var evt of events["Attacked"])
+			for (let evt of events["Attacked"])
 			{
 				if (IDs.indexOf(evt.target) == -1)
 					continue;
@@ -1098,7 +1056,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				var ourUnit = gameState.getEntityById(evt.target);
 				if (!attacker || !ourUnit)
 					continue;
-				for (var ent of this.unitCollection.values())
+				for (let ent of this.unitCollection.values())
 				{
 					if (ent.getMetadata(PlayerID, "transport") !== undefined)
 						continue;
@@ -1120,7 +1078,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		// or if we reached the enemy base. Different plans may react differently.		
 		var attackedNB = 0;
 		var attackedUnitNB = 0;
-		for (var evt of events["Attacked"])
+		for (let evt of events["Attacked"])
 		{
 			if (IDs.indexOf(evt.target) == -1)
 				continue;
@@ -1139,7 +1097,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		if (attackedUnitNB == 0)
 		{
 			var siegeNB = 0;
-			for (var ent of this.unitCollection.values())
+			for (let ent of this.unitCollection.values())
 				if (this.isSiegeUnit(gameState, ent))
 					siegeNB++;
 			if (siegeNB == 0)
@@ -1158,7 +1116,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var farthest = 0;
 			var farthestEnt = -1;
 			this.unitCollection.filter(API3.Filters.byClass("Siege")).forEach (function (ent) {
-				var dist = API3.SquareVectorDistance(ent.position(), self.position);
+				let dist = API3.SquareVectorDistance(ent.position(), self.position);
 				if (dist < farthest)
 					return;
 				farthest = dist;
@@ -1172,7 +1130,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		
 		if (this.lastPosition && API3.SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0)
 		{
-			if (!this.path[0][0][0] || !this.path[0][0][1])
+			if (!this.path[0][0] || !this.path[0][1])
 				API3.warn("Start: Problem with path " + uneval(this.path));
 			// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
 			var nexttoWalls = false;
@@ -1195,8 +1153,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				return 0;
 			}
 			else
-				//this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
-				this.unitCollection.moveIndiv(this.path[0][0][0], this.path[0][0][1]);
+				//this.unitCollection.move(this.path[0][0], this.path[0][1]);
+				this.unitCollection.moveIndiv(this.path[0][0], this.path[0][1]);
 		}
 	}
 
@@ -1209,11 +1167,11 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				API3.warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
 			this.state = "arrived";
 		}
-		else if (this.path.length && API3.SquareVectorDistance(this.position, this.path[0][0]) < 1600)
+		else if (this.path.length && API3.SquareVectorDistance(this.position, this.path[0]) < 1600)
 		{
 			this.path.shift();
 			if (this.path.length)
-				this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
+				this.unitCollection.move(this.path[0][0], this.path[0][1]);
 			else
 			{
 				if (this.Config.debug > 1)
@@ -1719,15 +1677,9 @@ m.AttackPlan.prototype.removeUnit = function(ent, update)
 };
 
 // Reset the path so that it can be recomputed for a new target
-m.AttackPlan.prototype.resetPath = function(gameState)
+m.AttackPlan.prototype.resetPath = function()
 {
 	this.path = undefined;
-	if (!this.pathFinder)
-	{
-		this.pathFinder = new API3.aStarPath(gameState, false, false, this.targetPlayer);
-		this.pathWidth = 6;
-		this.pathSampling = 2;
-	}
 };
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)
@@ -1809,16 +1761,11 @@ m.AttackPlan.prototype.Serialize = function()
 		"position": this.position,
 		"targetPlayer": this.targetPlayer,
 		"target": ((this.target !== undefined) ? this.target.id() : undefined),
-		"targetPos": this.targetPos
+		"targetPos": this.targetPos,
+		"path": this.path	    
 	};
 
-	let path = {
-		"path": this.path,
-		"pathSampling": this.pathSampling,
-		"pathWidth": this.pathWidth
-	};
-
-	return { "properties": properties, "path": path };
+	return { "properties": properties};
 };
 
 m.AttackPlan.prototype.Deserialize = function(gameState, data)
@@ -1828,11 +1775,6 @@ m.AttackPlan.prototype.Deserialize = function(gameState, data)
 
 	if (this.target)
 		this.target = gameState.getEntityById(this.target);
-
-	// if the path was not fully computed, we will recompute it as it is not serialized
-	if (data.path.path != "toBeContinued")
-		for (let key in data.path)
-			this[key] = data.path[key];
 
 	this.failed = undefined;
 };
