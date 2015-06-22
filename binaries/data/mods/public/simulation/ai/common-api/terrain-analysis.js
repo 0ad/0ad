@@ -29,7 +29,7 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 	this.cellSize = passabilityMap.cellSize;
 
 	var obstructionMaskLand = rawState.passabilityClasses["default-terrain-only"];
-	var obstructionMaskWater = rawState.passabilityClasses["ship-small"];
+	var obstructionMaskWater = rawState.passabilityClasses["ship-terrain-only"];
 
 	var obstructionTiles = new Uint8Array(passabilityMap.data.length);
 
