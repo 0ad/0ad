@@ -880,7 +880,7 @@ m.AttackPlan.prototype.getPathToTarget = function(gameState)
 {
 	if (!this.path)
 	{
-		Engine.ProfileStart("Compute path");
+		Engine.ProfileStart("AI Compute path");
 		let startPos = { "x": this.rallyPoint[0], "y": this.rallyPoint[1] };
 		let endPos = { "x": this.targetPos[0], "y": this.targetPos[1] };
 		let path = Engine.ComputePath(startPos, endPos, gameState.getPassabilityClassMask("siege-large"));
@@ -890,9 +890,8 @@ m.AttackPlan.prototype.getPathToTarget = function(gameState)
 			this.path.push([path[p].x, path[p].y])
 		this.path.push(this.rallyPoint);
 		this.path.reverse();
-	    	// Change the rally point to something useful (should avoid rams getting stuck in our territor)
+		// Change the rally point to something useful
 		this.setRallyPoint(gameState);
-		//API3.warn("new path computed " + uneval(this.path) + " and ralyPoint " + uneval(this.rallyPoint));
 		Engine.ProfileStop();
 	}
 	else if (this.path === "toBeContinued")
@@ -1209,7 +1208,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		{
 			this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
 			if (!this.targetPlayer)
+			{
+				Engine.ProfileStop();
 				return false;
+			}
 			if (this.target && this.target.owner() !== this.targetPlayer)
 				this.target = undefined;
 		}
