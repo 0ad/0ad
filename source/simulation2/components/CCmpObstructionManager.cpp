@@ -145,6 +145,7 @@ public:
 	entity_pos_t m_WorldZ0;
 	entity_pos_t m_WorldX1;
 	entity_pos_t m_WorldZ1;
+	u16 m_TerrainTiles;
 
 	static std::string GetSchema()
 	{
@@ -166,6 +167,7 @@ public:
 		m_PassabilityCircular = false;
 
 		m_WorldX0 = m_WorldZ0 = m_WorldX1 = m_WorldZ1 = entity_pos_t::Zero();
+		m_TerrainTiles = 0;
 
 		// Initialise with bogus values (these will get replaced when
 		// SetBounds is called)
@@ -193,6 +195,7 @@ public:
 		serialize.NumberFixed_Unbounded("world z0", m_WorldZ0);
 		serialize.NumberFixed_Unbounded("world x1", m_WorldX1);
 		serialize.NumberFixed_Unbounded("world z1", m_WorldZ1);
+		serialize.NumberU16_Unbounded("terrain tiles", m_TerrainTiles);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -208,6 +211,8 @@ public:
 		Init(paramNode);
 
 		SerializeCommon(deserialize);
+
+		m_UpdateInformations.dirtinessGrid = Grid<u8>(m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE, m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -239,8 +244,8 @@ public:
 		if (!cmpTerrain)
 			return;
 
-		u16 tiles = cmpTerrain->GetTilesPerSide();
-		m_UpdateInformations.dirtinessGrid = Grid<u8>(tiles*Pathfinding::NAVCELLS_PER_TILE, tiles*Pathfinding::NAVCELLS_PER_TILE);
+		m_TerrainTiles = cmpTerrain->GetTilesPerSide();
+		m_UpdateInformations.dirtinessGrid = Grid<u8>(m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE, m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE);
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
@@ -536,7 +541,9 @@ private:
 
 	inline void MarkDirtinessGrid(const entity_pos_t& x, const entity_pos_t& z, const CFixedVector2D& hbox)
 	{
-		if (m_UpdateInformations.dirtinessGrid.m_W == 0 || m_UpdateInformations.dirtinessGrid.m_H == 0)
+		ENSURE(m_UpdateInformations.dirtinessGrid.m_W == m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE &&
+			m_UpdateInformations.dirtinessGrid.m_H == m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE);
+		if (m_TerrainTiles == 0)
 			return;
 
 		u16 j0, j1, i0, i1;
