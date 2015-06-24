@@ -51,6 +51,9 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 	m_Grid = NULL;
 	m_TerrainOnlyGrid = NULL;
 
+	m_ObstructionsDirty.Clean();
+	m_PreserveUpdateInformations = false;
+
 	m_NextAsyncTicket = 1;
 
 	m_DebugOverlay = false;
@@ -224,7 +227,10 @@ const PathfinderPassability* CCmpPathfinder::GetPassabilityFromMask(pass_class_t
 const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
 {
 	if (!m_Grid)
+	{
 		UpdateGrid();
+		m_PreserveUpdateInformations = true;
+	}
 
 	return *m_Grid;
 }
@@ -477,7 +483,10 @@ void CCmpPathfinder::UpdateGrid()
 	if (!cmpTerrain)
 		return; // error
 
-	m_ObstructionsDirty.Clean();
+	if (!m_PreserveUpdateInformations)
+		m_ObstructionsDirty.Clean();
+	else
+		m_PreserveUpdateInformations = false; // Next time will be a regular update
 
 	// If the terrain was resized then delete the old grid data
 	if (m_Grid && m_MapSize != cmpTerrain->GetTilesPerSide())

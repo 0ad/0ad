@@ -111,6 +111,9 @@ public:
 	// Update data, used for clever updates and then stored for the AI manager
 	GridUpdateInformation m_ObstructionsDirty;
 	bool m_TerrainDirty;
+	// When other components request the passability grid and trigger an update, 
+	// the following regular update should not clean the dirtiness state.
+	bool m_PreserveUpdateInformations;
 
 	// Interface to the long-range pathfinder.
 	LongPathfinder m_LongPathfinder;
