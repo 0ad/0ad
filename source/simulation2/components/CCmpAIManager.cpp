@@ -496,6 +496,7 @@ public:
 		ScriptInterface::ToJSVal(cx, &m_TerritoryMapVal, territoryMap);
 
 		m_PassabilityMap = passabilityMap;
+		m_PassClasses = passClassMasks;
 		m_LongPathfinder.Reload(passClassMasks, &m_PassabilityMap);
 
 		if (m_HasSharedComponent)
@@ -655,6 +656,13 @@ public:
 				serializer.ScriptVal("data", &m_Players[i]->m_Obj);
 			}
 		}
+
+		// AI pathfinder
+		SerializeMap<SerializeString, SerializeU16_Unbounded>()(serializer, "pass classes", m_PassClasses);
+		serializer.NumberU16_Unbounded("pathfinder grid w", m_PassabilityMap.m_W);
+		serializer.NumberU16_Unbounded("pathfinder grid h", m_PassabilityMap.m_H);
+		serializer.RawBytes("pathfinder grid data", (const u8*)m_PassabilityMap.m_Data, 
+			m_PassabilityMap.m_W*m_PassabilityMap.m_H*sizeof(NavcellData));
 	}
 
 	void Deserialize(std::istream& stream, u32 numAis)
@@ -735,6 +743,15 @@ public:
 				deserializer.ScriptVal("data", &m_Players.back()->m_Obj);
 			}
 		}
+
+		// AI pathfinder
+		SerializeMap<SerializeString, SerializeU16_Unbounded>()(deserializer, "pass classes", m_PassClasses);
+		u16 mapW, mapH;
+		deserializer.NumberU16_Unbounded("pathfinder grid w", mapW);
+		deserializer.NumberU16_Unbounded("pathfinder grid h", mapH);
+		m_PassabilityMap = Grid<NavcellData>(mapW, mapH);
+		deserializer.RawBytes("pathfinder grid data", (u8*)m_PassabilityMap.m_Data, mapW*mapH*sizeof(NavcellData));
+		m_LongPathfinder.Reload(m_PassClasses, &m_PassabilityMap);
 	}
 
 	int getPlayerSize()
@@ -849,6 +866,7 @@ private:
 	Grid<u8> m_TerritoryMap;
 	JS::PersistentRootedValue m_TerritoryMapVal;
 
+	std::map<std::string, pass_class_t> m_PassClasses;
 	LongPathfinder m_LongPathfinder;
 
 	bool m_CommandsComputed;

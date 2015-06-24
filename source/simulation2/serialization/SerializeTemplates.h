@@ -203,6 +203,19 @@ struct SerializeBool
 	}
 };
 
+struct SerializeString
+{
+	void operator()(ISerializer& serialize, const char* name, const std::string& value)
+	{
+		serialize.StringASCII(name, value, 0, UINT32_MAX);
+	}
+
+	void operator()(IDeserializer& deserialize, const char* name, std::string& value)
+	{
+		deserialize.StringASCII(name, value, 0, UINT32_MAX);
+	}
+};
+
 struct SerializeWaypoint
 {
 	void operator()(ISerializer& serialize, const char* UNUSED(name), const Waypoint& value)
