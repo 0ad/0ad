@@ -786,7 +786,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 		if (bestVal !== undefined && val < bestVal)
 			continue;
-		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
+		if (this.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 		bestVal = val;
 		bestIdx = i;
@@ -929,7 +929,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 
 		if (bestVal !== undefined && currentVal > bestVal)
 			continue;
-		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
+		if (this.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 		bestVal = currentVal;
 		bestIdx = i;
@@ -1024,7 +1024,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 			continue;
 		if (bestVal !== undefined && maxDist < bestVal)
 			continue;
-		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
+		if (this.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 		bestVal = maxDist;
 		bestIdx = i;
@@ -1161,7 +1161,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 			continue;
 		if (bestVal !== undefined && minDist > bestVal)
 			continue;
-		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
+		if (this.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 		bestVal = minDist;
 		bestIdx = i;
@@ -1837,7 +1837,7 @@ m.HQ.prototype.assignGatherers = function(gameState)
 
 m.HQ.prototype.isDangerousLocation = function(gameState, pos, radius)
 {
-    return this.isNearInvadingArmy(pos) || this.isUnderEnemyFire(gameState, pos, radius);
+	return this.isNearInvadingArmy(pos) || this.isUnderEnemyFire(gameState, pos, radius);
 };
 
 // Check that the chosen position is not too near from an invading army
@@ -1851,8 +1851,9 @@ m.HQ.prototype.isNearInvadingArmy = function(pos)
 
 m.HQ.prototype.isUnderEnemyFire = function(gameState, pos, radius = 0)
 {
-	let firingStructures = gameState.updatingGlobalCollection("FiringStructures", API3.Filters.hasDefensiveFire(), gameState.getEnemyStructures());
-	for (let ent of firingStructures.values())
+	if (!this.turnCache["firingStructures"])
+		this.turnCache["firingStructures"] = gameState.updatingGlobalCollection("FiringStructures", API3.Filters.hasDefensiveFire(), gameState.getEnemyStructures());
+	for (let ent of this.turnCache["firingStructures"].values())
 	{
 		let range = radius + ent.attackRange("Ranged").max;
 		if (API3.SquareVectorDistance(ent.position(), pos) < range*range)
@@ -2016,7 +2017,6 @@ m.HQ.prototype.update = function(gameState, queues, events)
 m.HQ.prototype.Serialize = function()
 {
 	let properties = {
-		"turnCache": this.turnCache,
 		"econState": this.econState,
 		"currentPhase": this.currentPhase,
 		"wantedRates": this.wantedRates,
