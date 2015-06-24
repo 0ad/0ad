@@ -981,8 +981,9 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	else if (template.get("Footprint/Circle"))
 		halfSize = +template.get("Footprint/Circle/@radius");
 
-	var bestIdx = undefined;
-	var bestVal = undefined;
+	var bestIdx;
+	var bestJdx;
+	var bestVal;
 	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 	var isNavalMarket = template.hasClass("NavalMarket");
 
@@ -1027,6 +1028,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 			continue;
 		bestVal = maxDist;
 		bestIdx = i;
+		bestJdx = j;
 	}
 
 	if (this.Config.debug > 1)
@@ -1045,7 +1047,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 
 	var x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
-	return [x, z, this.basesMap.map[bestIdx], expectedGain];
+	return [x, z, this.basesMap.map[bestJdx], expectedGain];
 };
 
 // Returns the best position to build defensive buildings (fortress and towers)

@@ -86,7 +86,7 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 						continue;
 					}
 					attack.targetPos = attack.target.position();
-					attack.resetPath(gameState);
+					attack.resetPath();
 				}
 				if (attack.targetPlayer && attack.targetPlayer === targetPlayer)
 					available += attack.unitCollection.length;

@@ -55,6 +55,8 @@
     Default-terrain-only: used by the AI, for wall-building
         placement and for territory influence growth.
         It must be kept in sync with "default".
+    Ship-terrain-only: used by the AI.
+        It must be kept in sync with "ship" and "ship-small".
     -->
     <unrestricted>
       <Obstructions>none</Obstructions>
@@ -64,6 +66,10 @@
       <MaxWaterDepth>2</MaxWaterDepth>
       <MaxTerrainSlope>1.0</MaxTerrainSlope>
     </default-terrain-only>
+    <ship-terrain-only>
+      <Obstructions>none</Obstructions>
+      <MinWaterDepth>1</MinWaterDepth>
+    </ship-terrain-only>
 
   </PassabilityClasses>
 </Pathfinder>
