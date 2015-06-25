@@ -107,6 +107,19 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 		}
 	}
 
+	// load units and buildings from the config files
+	let civ = gameState.civ();
+	if (civ in this.Config.buildings.naval)
+		this.bNaval = this.Config.buildings.naval[civ];
+	else
+		this.bNaval = this.Config.buildings.naval['default'];
+
+	for (let i in this.bNaval)
+		this.bNaval[i] = gameState.applyCiv(this.bNaval[i]);
+
+	if (deserializing)
+		return;
+
 	// determination of the possible landing zones
 	var width = gameState.getMap().width;
 	var length = width * gameState.getMap().height;
@@ -129,53 +142,33 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 	{
 		for (let sea in this.landingZones[land])
 		{
-			let nbmax = 0;
-			for (let i = 0; i < this.landingZones[land][sea].length; i++)
+			let landing = this.landingZones[land][sea];
+			let nbaround = {};
+			let nbcut = 0;
+			for (let i = 0; i < landing.length; i++)
 			{
-				let j = this.landingZones[land][sea][i];
+				let j = landing[i];
 				let nb = 0;
-				if (this.landingZones[land][sea].indexOf(j-1) !== -1)
+				if (i > 0 && landing[i-1] == j-1)
 					nb++;
-				if (this.landingZones[land][sea].indexOf(j+1) !== -1)
+				if (i < landing.length-1 && landing[i+1] == j+1)
 					nb++;
-				if (this.landingZones[land][sea].indexOf(j+width) !== -1)
+				if (landing.indexOf(j+width) != -1)
 					nb++;
-				if (this.landingZones[land][sea].indexOf(j-width) !== -1)
+				if (landing.indexOf(j-width) != -1)
 					nb++;
-				if (nb > nbmax)
-					nbmax = nb;
+				nbaround[j] = nb;
+				nbcut = Math.max(nb, nbcut);
 			}
-			let nbcut = Math.min(2, nbmax);
-			for (let i = 0; i < this.landingZones[land][sea].length; i++)
+			nbcut = Math.min(2, nbcut);
+			for (let i = 0; i < landing.length; i++)
 			{
-				let j = this.landingZones[land][sea][i];
-				let nb = 0;
-				if (this.landingZones[land][sea].indexOf(j-1) !== -1)
-					nb++;
-				if (this.landingZones[land][sea].indexOf(j+1) !== -1)
-					nb++;
-				if (this.landingZones[land][sea].indexOf(j+width) !== -1)
-					nb++;
-				if (this.landingZones[land][sea].indexOf(j-width) !== -1)
-					nb++;
-				if (nb < nbcut)
-					this.landingZones[land][sea].splice(i--, 1);
+				let j = landing[i];
+				if (nbaround[j] < nbcut)
+					landing.splice(i--, 1);
 			}
 		}
 	}
-
-	// load units and buildings from the config files
-	let civ = gameState.civ();
-	if (civ in this.Config.buildings.naval)
-		this.bNaval = this.Config.buildings.naval[civ];
-	else
-		this.bNaval = this.Config.buildings.naval['default'];
-
-	for (let i in this.bNaval)
-		this.bNaval[i] = gameState.applyCiv(this.bNaval[i]);
-
-	if (deserializing)
-		return;
 
 	// Assign our initial docks and ships
 	for (let ship of this.ships.values())
