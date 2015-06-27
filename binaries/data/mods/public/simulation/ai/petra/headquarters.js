@@ -2088,6 +2088,10 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 		this.baseManagers.push(newbase);
 	}
 
+	this.navalManager = new m.NavalManager(this.Config);
+	this.navalManager.init(gameState, true);
+	this.navalManager.Deserialize(gameState, data.navalManager);
+
 	this.attackManager = new m.AttackManager(this.Config);
 	this.attackManager.Deserialize(gameState, data.attackManager);
 	this.attackManager.init(gameState);
@@ -2099,10 +2103,6 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 	this.tradeManager = new m.TradeManager(this.Config);
 	this.tradeManager.init(gameState);
 	this.tradeManager.Deserialize(gameState, data.tradeManager);
-
-	this.navalManager = new m.NavalManager(this.Config);
-	this.navalManager.init(gameState, true);
-	this.navalManager.Deserialize(gameState, data.navalManager);
 
 	this.researchManager = new m.ResearchManager(this.Config);
 	this.researchManager.Deserialize(data.researchManager);

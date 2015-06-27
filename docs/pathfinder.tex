@@ -24,6 +24,8 @@
 
 \maketitle
 
+Disclaimer: This document mixes elements of the current implementation and TBI features. You're invited to take a look yourself at the code, or ask questions in \#0ad-dev on QuakeNet.
+
 \tableofcontents
 
 \section{Basic concepts}
@@ -77,7 +79,7 @@ but only need to work over a short distance (to the next waypoint on the long-ra
 
 \subsection{Coordinates}
 
-Units have an $(x, z)$ position, measured in `metres' (the generic world-space unit of distance).
+Units have an $(x, z)$ position, measured in `meters' (the generic world-space unit of distance).
 The coordinates are implemented as fixed-point numbers
 (with a 16-bit fraction, i.e.\ a resolution of $2^{-16}\mathrm{m} \approx 15\mu\mathrm{m}$),
 but we can treat them as real numbers.
@@ -121,7 +123,7 @@ which is typically similar to their obstruction radius,
 defining how close they can get to structures or impassable terrain.
 Clearance should be a multiple of $\mathrm{NavcellSize}$.
 
-TODO: Constraints on clearance vs radius?
+TODO - Constraints on clearance vs radius: Currently, the radius of units is ignored, only their clearance is taken into account when computing a path, and when the move actually happens, their real obstruction size is not tested.
 
 \subsection{Structures}
 
@@ -164,7 +166,7 @@ instead of $w$, because that seems more convenient for the implementation.
 (Same for $h$.)
 
 We store $\mathbf{u}$ and $\frac{w}{2}$ as two values,
-instead of premultiplying them and using a single (non-unit) vector everywhere,
+instead of pre-multiplying them and using a single (non-unit) vector everywhere,
 because occasionally we really need the unit vectors (e.g.\ to compute
 world-space distance from a point to a square).
 
@@ -174,6 +176,22 @@ which is more convenient for editing.
 That is transformed into the vector form
 (which is more convenient for geometric computation)
 for the purposes of the algorithms described in this document.
+
+\section{Implementation and code organization}
+
+Pathfinding happens in two typical situations:
+\begin{itemize}
+\item When a unit is requested to move;
+\item When the AI wants to plan a move (which will be eventually processed by the unit pathfinder) or a building construction.
+\end{itemize}
+
+The first case is handled by two components: \texttt{CCmpPathfinder}, which is a system component implementing pathfinding algorithms, and \texttt{CCmpUnitMotion}, which is a component each unit entity has. \texttt{CCmpUnitMotion} calls \texttt{CCmpPathfinder} methods to compute unit moves.
+
+The second case must be handled inside each \emph{AI worker}, which is an object defined in \texttt{CCmpAIManager} that should eventually allow AI threading. As a consequence, it is not possible for AI workers to ask \texttt{CCmpPathfinder} for paths in a synchronous way.
+
+Instead of implementing an asynchronous path request system for AI pathfinding, both AI workers and \texttt{CCmpPathfinder} have a \texttt{LongPathfinder} object capable of computing long paths based on a passability grid computed from terrain and static obstructions. This grid is computed in \texttt{CCmpPathfinder::UpdateGrid} and passed to the AI manager when an update is needed.
+
+As of the short-range pathfinder, short-range algorithms remain plain \texttt{CCmpPathfinder} methods, only used for unit motion.
 
 \section{Navcell grid}
 
@@ -426,6 +444,12 @@ we will instead rasterize a rectangle of size $(w,h)$ with clearance $\max(c,\ (
 When the smallest unit has $c=1$,
 that limit will only take effect for obstructions with $w < 1$ or $h < 1$.
 
+\subsection{Grid updates}
+
+Each turn, the simulation calls CCmpPathfinder's UpdateGrid. This function calls the obstruction manager to know which part of the grid should be updated. This data is then stored for a clever update of the long-range pathfinder internal state. It is also sent to the AI long pathfinder.
+
+If the terrain is modified, everything is recomputed. Else, the zone of the map where modified obstructions are is reset to its terrain-only passability value, and all obstructions overlapping modified obstructions are rasterized again on the map.
+
 \section{Path goals}
 
 When a path is requested, there is a source unit and a goal.
@@ -455,7 +479,9 @@ is inside (or on the edge of) the goal shape.
 
 TODO: Think about edges cases in relation to vertex pathfinder.
 
-\section{Navcell-based A* pathfinder}
+\section{Long-range pathfinder}
+
+\subsection{Navcell-based A* pathfinder with JPS optimization}
 
 The basic pathfinder is a pretty standard A* over a uniform-cost grid of navcells.
 Connectivity between navcells is as illustrated:
@@ -518,16 +544,13 @@ means that connectivity between any two navcells
 can be determined solely from the horizontal/vertical adjacencies;
 the only effect of the diagonal moves is to allow smoother shorter paths.
 
-\section{JPS A* pathfinder}
+This algorithm is opimized using a JPS algorithm (jump-point search), which is especially efficient on sparse grids, i.e. when a lot of similar possible paths exist.
 
-This is just an optimisation of standard navcell-based A*,
-which works especially well on sparse grids.
+\subsection{Hierarchical pathfinder}
 
-TODO: Details.
+The long pathfinder has a hierarchical pathfinder that provide efficient connectivity algorithms. It is used directly by the AI and it is called to improve long paths computed with the A* algorithms.
 
-\section{Hierarchical pathfinder}
-
-This can do the following:
+It can do the following:
 \begin{itemize}
  \item Determine if there is at least one path through the navcell grid between
  passable navcells $a$ and $b$ (i.e.\ determine if $b$ is \emph{reachable} from $a$).
@@ -660,9 +683,11 @@ TODO: How does it handle edge cases like units starting precisely on an edge?
 
 \end{tikzpicture}
 
-\section{Stuck units}
+\section{Specific situations}
 
-(Implemented by \texttt{CCmpPathfinder::ComputePathOffImpassable}.)
+\subsection{Stuck units}
+
+(Implemented by \texttt{LongPathfinder::ComputePathOffImpassable}.)
 
 A unit might find itself on an impassable navcell.
 (We should prevent that whenever possible,
@@ -684,7 +709,7 @@ instead of getting out as quickly as possible.
 TODO: How can we handle that? (Add a flag to disable the short-range pathfinder?
 What if another unit is in the way?)
 
-\section{Minimum ranges}
+\subsection{Minimum ranges}
 
 Some units have a minimum attack range (e.g.\ a ballista can't be aimed
 at someone standing right in front of it).
@@ -700,20 +725,17 @@ towards a target (which avoids some minor complexities in the implementation).
 
 The short-range pathfinder already moves to the edge of a goal shape,
 and doesn't care whether the unit is starting inside or outside that shape.
-That means it'll work for minimum-range movement with no futher modifications.
+That means it'll work for minimum-range movement with no further modifications.
 
-\section{Unit movement}
+\subsection{Unit movement}
 
-The short-range pathfinder will give the unit a waypoint to walk towards.
+The long-range pathfinder will give the unit a waypoint to walk towards.
 The unit will move a short distance in that direction each turn.
 To cope with dynamic changes to the world,
 the unit needs to verify that its movement won't collide with anything.
 This requires testing the movement line against the navcell grid,
 and against unit obstructions (expanded by the moving unit's radius).
-If there is a collision then the unit won't move, and will search for
-a new path instead.
-
-TODO: Does the implementation work like that?
+If there is a collision then the unit will compute a short path towards the next waypoint, to move around obstacles.
 
 To check collisions with other units,
 we expand every unit obstruction shape by the moving unit's radius,
@@ -734,7 +756,7 @@ so we just need to be careful when spawning new units to avoid starting too clos
 
 TODO: Describe the navcell passability testing.
 
-\section{Unit spawning}
+\subsection{Unit spawning}
 
 (Implemented by \texttt{CCmpFootprint::PickSpawnPoint}
 and \texttt{CCmpPathfinder::CheckUnitPlacement}.)
@@ -747,43 +769,7 @@ and if the unit doesn't overlap with any existing units.
 
 TODO: The implementation tests against static obstructions unnecessarily.
 
-\section{Building placement}
-
-(Implemented by \texttt{CCmpObstruction::CheckFoundation}
-and \texttt{CCmpPathfinder::CheckBuildingPlacement}.)
-
-Buildings have various terrain restrictions (maximum slope,
-min/max water depth, distance from shore, etc)
-defined as a passability class.
-Players should only be permitted to place a building if every navcell
-under the building is valid,
-so that they can't make them hang over the edges of cliffs etc.
-Unlike the previously-described rasterization,
-this should be an over-estimate of the building's shape
-rather than an underestimate.
-
-Overlapping structures are not a problem for the pathfinding system,
-except that it's weird and ugly to let players build overlapping buildings,
-and it's bad if players pack buildings so tightly that units get trapped
-or if newly trained units don't have any space to spawn into.
-
-We can therefore do pretty much anything to determine placeability,
-but should expand the building's obstruction square somewhat to ensure
-it's not too near any other buildings or obstructed navcells.
-
-TODO: What specifically should we choose to do?
-
-\section{AI foundation placement}
-
-AI scripts need to be able to pick locations for new buildings that are guaranteed
-to be valid. (If they are not, the AI might get stuck forever trying to build on the
-same invalid spot.)
-They don't need to be particularly precise - a conservative terrain-tile-quantised approximation
-would be okay.
-
-TODO: How do we do that?
-
-\section{Foundation unit dispersal}
+\subsection{Foundation unit dispersal}
 
 (Implemented by \texttt{CCmpObstruction::GetConstructionCollisions}
 and \texttt{CCmpObstructionManager::GetUnitsOnObstruction}).
@@ -818,13 +804,31 @@ then the builder won't block the building it's building.
 
 TODO: Implement that range restriction somewhere.
 
-\section{Dynamic updates}
+\section{Building placement}
 
-\ldots
+(Implemented by \texttt{CCmpObstruction::CheckFoundation}
+and \texttt{CCmpPathfinder::CheckBuildingPlacement}.)
 
-\section{Territories}
+Buildings have various terrain restrictions (maximum slope,
+min/max water depth, distance from shore, etc)
+defined as a passability class.
+Players should only be permitted to place a building if every navcell
+under the building is valid,
+so that they can't make them hang over the edges of cliffs etc.
+Unlike the previously-described rasterization,
+this should be an over-estimate of the building's shape
+rather than an underestimate.
 
-\ldots
+Overlapping structures are not a problem for the pathfinding system,
+except that it's weird and ugly to let players build overlapping buildings,
+and it's bad if players pack buildings so tightly that units get trapped
+or if newly trained units don't have any space to spawn into.
+
+We can therefore do pretty much anything to determine placeability,
+but should expand the building's obstruction square somewhat to ensure
+it's not too near any other buildings or obstructed navcells.
+
+TODO: What specifically should we choose to do?
 
 \section{Summary of constraints}
 
@@ -898,16 +902,11 @@ walk through them:
 Things to fix in the implementation:
 \begin{itemize}
  \item Enforce range constraints.
- \item Remove (or specify) support for \texttt{CheckFoundation} of \texttt{Unit} shapes.
- \item Fix \texttt{CheckBuildingPlacement} to skip shapes, and put foundations in the navcell grid.
- \item Support dynamic updates.
- \item Remove cost class parameters.
+ \item Remove (or specify) support for \texttt{Unit} shapes.
  \item Fix vector pathfinder to not do quadrant stuff.
  \item Set up passability classes for the current units.
  \item Testing.
  \item Fix the navcell grid vectorisation.
- \item Don't use long pathfinder for min range movement.
- \item AI integration.
  \item Make impassable-navcell-escaping work properly.
  \item A* heuristic overestimate with large goals.
  \item ...

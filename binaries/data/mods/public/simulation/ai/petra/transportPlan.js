@@ -85,6 +85,8 @@ m.TransportPlan.prototype.init = function(gameState)
 	this.units.registerUpdates();
 	this.ships.registerUpdates();
 	this.transportShips.registerUpdates();
+
+	this.boardingRange = 18*18;	// TODO compute it from the ship clearance and garrison range
 };
 
 // count available slots
@@ -274,7 +276,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 			else
 			{
 				let distShip = API3.SquareVectorDistance(self.boardingPos[shipId], ship.position());
-				if (time - ship.getMetadata(PlayerID, "timeGarrison") > 8 && distShip > 225)
+				if (time - ship.getMetadata(PlayerID, "timeGarrison") > 8 && distShip > self.boardingRange)
 				{
 					if (!self.nTry[shipId])
 						self.nTry[shipId] = 1;
@@ -296,7 +298,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 					let newPos = ent.position();
 					if (oldPos[0] === newPos[0] && oldPos[1] === newPos[1])
 					{
-						if (distShip < 225)	// looks like we are blocked ... try to go out of this trap
+						if (distShip < self.boardingRange)	// looks like we are blocked ... try to go out of this trap
 						{
 							if (!self.nTry[ent.id()])
 								self.nTry[ent.id()] = 1;
@@ -388,7 +390,7 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 		// require a small distance between all ships of the transport plan to avoid path finder problems
 		// this is also used when the ship is blocked and we want to find a new boarding point
 		for (let shipId in this.boardingPos)
-			if (this.boardingPos[shipId] !== undefined && API3.SquareVectorDistance(this.boardingPos[shipId], pos) < 225)
+			if (this.boardingPos[shipId] !== undefined && API3.SquareVectorDistance(this.boardingPos[shipId], pos) < this.boardingRange)
 				dist += 1000000;
 		if (dist > distmin)
 			continue;
@@ -549,7 +551,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			continue;
 		}
 
-		if (dist > 225)
+		if (dist > this.boardingRange)
 		{
 			if (!this.nTry[shipId])
 				this.nTry[shipId] = 1;
