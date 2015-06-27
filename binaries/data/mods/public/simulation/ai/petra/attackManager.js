@@ -73,21 +73,10 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 						other = attack.targetPlayer;
 					continue;
 				}
+
 				if (!attack.targetPlayer || attack.targetPlayer !== targetPlayer)
-				{
-					let oldTargetPlayer = attack.targetPlayer;
-					let oldTarget = attack.target;
 					attack.targetPlayer = targetPlayer;
-					attack.target = attack.getNearestTarget(gameState, attack.rallyPoint);
-					if (!attack.target)
-					{
-						attack.targetPlayer = oldTargetPlayer;
-						attack.target = oldTarget;
-						continue;
-					}
-					attack.targetPos = attack.target.position();
-					attack.resetPath();
-				}
+
 				if (attack.targetPlayer && attack.targetPlayer === targetPlayer)
 					available += attack.unitCollection.length;
 			}
@@ -153,7 +142,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				if (attack.state === "unexecuted")
 					++unexecutedAttacks[attackType];
 			}
-			else if (updateStep === 0 || updateStep === 3)
+			else if (updateStep === 0)
 			{
 				if (this.Config.debug > 1)
 					API3.warn("Attack Manager: " + attack.getType() + " plan " + attack.getName() + " aborted.");

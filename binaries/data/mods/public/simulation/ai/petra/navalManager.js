@@ -134,8 +134,8 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 		if (!this.landingZones[land])
 			this.landingZones[land] = {};
 		if (!this.landingZones[land][naval])
-			this.landingZones[land][naval] = [];
-		this.landingZones[land][naval].push(i);
+		    this.landingZones[land][naval] = new Set();
+		this.landingZones[land][naval].add(i);
 	}
 	// and keep only thoses with enough room around when possible
 	for (let land in this.landingZones)
@@ -145,27 +145,25 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 			let landing = this.landingZones[land][sea];
 			let nbaround = {};
 			let nbcut = 0;
-			for (let i = 0; i < landing.length; i++)
+			for (let i of landing)
 			{
-				let j = landing[i];
 				let nb = 0;
-				if (i > 0 && landing[i-1] == j-1)
+				if (landing.has(i-1))
 					nb++;
-				if (i < landing.length-1 && landing[i+1] == j+1)
+				if (landing.has(i+1))
 					nb++;
-				if (landing.indexOf(j+width) != -1)
+				if (landing.has(i+width))
 					nb++;
-				if (landing.indexOf(j-width) != -1)
+				if (landing.has(i-width))
 					nb++;
-				nbaround[j] = nb;
+				nbaround[i] = nb;
 				nbcut = Math.max(nb, nbcut);
 			}
 			nbcut = Math.min(2, nbcut);
-			for (let i = 0; i < landing.length; i++)
+			for (let i of landing)
 			{
-				let j = landing[i];
-				if (nbaround[j] < nbcut)
-					landing.splice(i--, 1);
+				if (nbaround[i] < nbcut)
+					landing.delete(i);
 			}
 		}
 	}
