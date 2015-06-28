@@ -55,7 +55,7 @@ m.TerrainAnalysis.prototype.init = function(sharedScript, rawState)
 // returns a count. It's not integer. About 2 should be fairly accessible already.
 m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand)
 {
-	let count = 0.0;
+	let count = 0;
 	let w = this.width;
 	let positions = [[0,1], [0,-1], [1,0], [-1,0], [1,1], [-1,-1], [1,-1], [-1,1],
 					 [0,2], [0,-2], [2,0], [-2,0], [2,2], [-2,-2], [2,-2], [-2,2]/*,
@@ -63,26 +63,13 @@ m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand)
 	
 	for (let pos of positions)
 	{
-		var index = startIndex + pos[0] + pos[1]*w;
+		let index = startIndex + pos[0] + pos[1]*w;
 		if (this.map[index] === 0)
 			continue;
 		if (byLand)
-		{
-			if (this.map[index] === 201) count++;
-			else if (this.map[index] === 255) count++;
-			else if (this.map[index] === 41) count++;
-			else if (this.map[index] === 42) count += 0.5;
-			else if (this.map[index] === 43) count += 0.3;
-			else if (this.map[index] === 44) count += 0.13;
-			else if (this.map[index] === 45) count += 0.08;
-			else if (this.map[index] === 46) count += 0.05;
-			else if (this.map[index] === 47) count += 0.03;
-		}
+			if (this.map[index] === 201 || this.map[index] === 255) count++;
 		else
-		{
-			if (this.map[index] === 201) count++;
-			if (this.map[index] === 200) count++;
-		}
+			if (this.map[index] === 201 || this.map[index] === 200) count++;
 	}
 	return count;
 };
