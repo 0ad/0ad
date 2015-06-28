@@ -129,7 +129,7 @@ void main()
     float height = 1.0;
     float scale = effectSettings.z;
 	  
-    int iter = int(min(30, 70.0/dist));
+    int iter = int(min(20, 25.0 - dist/10.0));
 	
 	if (iter > 0.01)
 	{
