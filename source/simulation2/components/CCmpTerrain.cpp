@@ -95,6 +95,9 @@ public:
 	virtual u16 GetTilesPerSide()
 	{
 		ssize_t tiles = m_Terrain->GetTilesPerSide();
+		
+		if (tiles == -1)
+			return 0;
 		ENSURE(1 <= tiles && tiles <= 65535);
 		return (u16)tiles;
 	}

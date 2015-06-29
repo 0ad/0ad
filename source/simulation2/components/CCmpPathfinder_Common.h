@@ -40,6 +40,7 @@
 #include "simulation2/helpers/LongPathfinder.h"
 
 class SceneCollector;
+class AtlasOverlay;
 
 #ifdef NDEBUG
 #define PATHFIND_DEBUG 0
@@ -124,6 +125,7 @@ public:
 
 	bool m_DebugOverlay;
 	std::vector<SOverlayLine> m_DebugOverlayShortPathLines;
+	AtlasOverlay* m_AtlasOverlay;
 
 	static std::string GetSchema()
 	{
@@ -143,8 +145,7 @@ public:
 	virtual pass_class_t GetPassabilityClass(const std::string& name);
 
 	virtual std::map<std::string, pass_class_t> GetPassabilityClasses();
-
-	virtual std::map<std::string, pass_class_t> GetPathfindingPassabilityClasses();
+	virtual std::map<std::string, pass_class_t> GetPassabilityClasses(bool pathfindingClasses);
 
 	const PathfinderPassability* GetPassabilityFromMask(pass_class_t passClass) const;
 
@@ -206,6 +207,8 @@ public:
 		m_LongPathfinder.GetDebugData(steps, time, grid);
 	}
 
+	virtual void SetAtlasOverlay(bool enable, pass_class_t passClass = 0);
+
 	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, pass_class_t passClass);
 
 	virtual ICmpObstruction::EFoundationCheck CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass, bool onlyCenterPoint);
@@ -227,9 +230,50 @@ public:
 	 */
 	virtual void UpdateGrid();
 
-	void ComputeTerrainPassabilityGrid(const Grid<u16>& shoreGrid);
+	/**
+	 * Updates the terrain-only grid without updating the dirtiness informations.
+	 * Useful for fast passability updates in Atlas.
+	 */
+	void MinimalTerrainUpdate();
+
+	/**
+	 * Regenerates the terrain-only grid.
+	 */
+	void TerrainUpdateHelper();
 
 	void RenderSubmit(SceneCollector& collector);
+};
+
+class AtlasOverlay : public TerrainTextureOverlay
+{
+public:
+	const CCmpPathfinder* m_Pathfinder;
+	pass_class_t m_PassClass;
+
+	AtlasOverlay(const CCmpPathfinder* pathfinder, pass_class_t passClass) :
+		TerrainTextureOverlay(Pathfinding::NAVCELLS_PER_TILE), m_Pathfinder(pathfinder), m_PassClass(passClass)
+	{
+	}
+
+	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h)
+	{
+		// Render navcell passability, based on the terrain-only grid
+		u8* p = data;
+		for (size_t j = 0; j < h; ++j)
+		{
+			for (size_t i = 0; i < w; ++i)
+			{
+				SColor4ub color(0, 0, 0, 0);
+				if (!IS_PASSABLE(m_Pathfinder->m_TerrainOnlyGrid->get((int)i, (int)j), m_PassClass))
+					color = SColor4ub(255, 0, 0, 127);
+
+				*p++ = color.R;
+				*p++ = color.G;
+				*p++ = color.B;
+				*p++ = color.A;
+			}
+		}
+	}
 };
 
 #endif // INCLUDED_CCMPPATHFINDER_COMMON

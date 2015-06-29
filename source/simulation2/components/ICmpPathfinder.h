@@ -56,9 +56,9 @@ public:
 	virtual std::map<std::string, pass_class_t> GetPassabilityClasses() = 0;
 
 	/**
-	* Get the list of pathfinding passability classes.
+	* Get the list of pathfinding passability classes, or all others.
 	*/
-	virtual std::map<std::string, pass_class_t> GetPathfindingPassabilityClasses() = 0;
+	virtual std::map<std::string, pass_class_t> GetPassabilityClasses(bool pathfindingClasses) = 0;
 
 	/**
 	 * Get the tag for a given passability class name.
@@ -185,6 +185,11 @@ public:
 	 * Returns some stats about the last ComputePath.
 	 */
 	virtual void GetDebugData(u32& steps, double& time, Grid<u8>& grid) = 0;
+
+	/**
+	 * Sets up the pathfinder passability overlay in Atlas.
+	 */
+	virtual void SetAtlasOverlay(bool enable, pass_class_t passClass = 0) = 0;
 
 	DECLARE_INTERFACE_TYPE(Pathfinder)
 };

@@ -57,6 +57,7 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 	m_NextAsyncTicket = 1;
 
 	m_DebugOverlay = false;
+	m_AtlasOverlay = NULL;
 
 	m_SameTurnMovesCount = 0;
 
@@ -102,6 +103,7 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 void CCmpPathfinder::Deinit()
 {
 	SetDebugOverlay(false); // cleans up memory
+	SAFE_DELETE(m_AtlasOverlay);
 
 	SAFE_DELETE(m_Grid);
 	SAFE_DELETE(m_TerrainOnlyGrid);
@@ -171,6 +173,9 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	case MT_WaterChanged:
 	case MT_ObstructionMapShapeChanged:
 		m_TerrainDirty = true;
+		// TODO: this can be optimized by only updating a part of the terrain grid
+		// using the TerrainChanged message data.
+		MinimalTerrainUpdate();
 		break;
 	case MT_TurnStart:
 		m_SameTurnMovesCount = 0;
@@ -186,6 +191,17 @@ void CCmpPathfinder::RenderSubmit(SceneCollector& collector)
 	m_LongPathfinder.HierarchicalRenderSubmit(collector);
 }
 
+void CCmpPathfinder::SetAtlasOverlay(bool enable, pass_class_t passClass)
+{
+	if (enable)
+	{
+		if (!m_AtlasOverlay)
+			m_AtlasOverlay = new AtlasOverlay(this, passClass);
+		m_AtlasOverlay->m_PassClass = passClass;
+	}
+	else
+		SAFE_DELETE(m_AtlasOverlay);
+}
 
 pass_class_t CCmpPathfinder::GetPassabilityClass(const std::string& name)
 {
@@ -203,14 +219,14 @@ std::map<std::string, pass_class_t> CCmpPathfinder::GetPassabilityClasses()
 	return m_PassClassMasks;
 }
 
-std::map<std::string, pass_class_t> CCmpPathfinder::GetPathfindingPassabilityClasses()
+std::map<std::string, pass_class_t> CCmpPathfinder::GetPassabilityClasses(bool pathfindingClasses)
 {
-	std::map<std::string, pass_class_t> pathfindingClasses;
+	std::map<std::string, pass_class_t> passabilityClasses;
 	for (auto& pair : m_PassClassMasks)
-		if (GetPassabilityFromMask(pair.second)->m_Obstructions == PathfinderPassability::PATHFINDING)
-			pathfindingClasses[pair.first] = pair.second;
+		if ((GetPassabilityFromMask(pair.second)->m_Obstructions == PathfinderPassability::PATHFINDING) == pathfindingClasses)
+			passabilityClasses[pair.first] = pair.second;
 
-	return pathfindingClasses;
+	return passabilityClasses;
 }
 
 const PathfinderPassability* CCmpPathfinder::GetPassabilityFromMask(pass_class_t passClass) const
@@ -423,58 +439,6 @@ Grid<u16> CCmpPathfinder::ComputeShoreGrid(bool expandOnWater)
 	return shoreGrid;
 }
 
-void CCmpPathfinder::ComputeTerrainPassabilityGrid(const Grid<u16>& shoreGrid)
-{
-	PROFILE3("terrain passability");
-
-	CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
-
-	CTerrain& terrain = GetSimContext().GetTerrain();
-
-	// Compute initial terrain-dependent passability
-	for (int j = 0; j < m_MapSize * Pathfinding::NAVCELLS_PER_TILE; ++j)
-	{
-		for (int i = 0; i < m_MapSize * Pathfinding::NAVCELLS_PER_TILE; ++i)
-		{
-			// World-space coordinates for this navcell
-			fixed x, z;
-			Pathfinding::NavcellCenter(i, j, x, z);
-
-			// Terrain-tile coordinates for this navcell
-			int itile = i / Pathfinding::NAVCELLS_PER_TILE;
-			int jtile = j / Pathfinding::NAVCELLS_PER_TILE;
-
-			// Gather all the data potentially needed to determine passability:
-
-			fixed height = terrain.GetExactGroundLevelFixed(x, z);
-
-			fixed water;
-			if (cmpWaterManager)
-				water = cmpWaterManager->GetWaterLevel(x, z);
-
-			fixed depth = water - height;
-
-			//fixed slope = terrain.GetExactSlopeFixed(x, z);
-			// Exact slopes give kind of weird output, so just use rough tile-based slopes
-			fixed slope = terrain.GetSlopeFixed(itile, jtile);
-
-			// Get world-space coordinates from shoreGrid (which uses terrain tiles)
-			fixed shoredist = fixed::FromInt(shoreGrid.get(itile, jtile)).MultiplyClamp(TERRAIN_TILE_SIZE);
-
-			// Compute the passability for every class for this cell:
-
-			NavcellData t = 0;
-			for (PathfinderPassability& passability : m_PassClasses)
-			{
-				if (!passability.IsPassable(depth, slope, shoredist))
-					t |= passability.m_Mask;
-			}
-
-			m_Grid->set(i, j, t);
-		}
-	}
-}
-
 void CCmpPathfinder::UpdateGrid()
 {
 	PROFILE3("UpdateGrid");
@@ -519,74 +483,9 @@ void CCmpPathfinder::UpdateGrid()
 	// Else, use data from m_TerrainOnlyGrid and add obstructions
 	if (m_TerrainDirty)
 	{
-		Grid<u16> shoreGrid = ComputeShoreGrid();
+		TerrainUpdateHelper();
 
-		ComputeTerrainPassabilityGrid(shoreGrid);
-
-		// Compute off-world passability
-		// WARNING: CCmpRangeManager::LosIsOffWorld needs to be kept in sync with this
-
-		const int edgeSize = 3 * Pathfinding::NAVCELLS_PER_TILE; // number of tiles around the edge that will be off-world
-
-		NavcellData edgeMask = 0;
-		for (PathfinderPassability& passability : m_PassClasses)
-			edgeMask |= passability.m_Mask;
-
-		int w = m_Grid->m_W;
-		int h = m_Grid->m_H;
-
-		if (cmpObstructionManager->GetPassabilityCircular())
-		{
-			for (int j = 0; j < h; ++j)
-			{
-				for (int i = 0; i < w; ++i)
-				{
-					// Based on CCmpRangeManager::LosIsOffWorld
-					// but tweaked since it's tile-based instead.
-					// (We double all the values so we can handle half-tile coordinates.)
-					// This needs to be slightly tighter than the LOS circle,
-					// else units might get themselves lost in the SoD around the edge.
-
-					int dist2 = (i*2 + 1 - w)*(i*2 + 1 - w)
-						+ (j*2 + 1 - h)*(j*2 + 1 - h);
-
-					if (dist2 >= (w - 2*edgeSize) * (h - 2*edgeSize))
-						m_Grid->set(i, j, m_Grid->get(i, j) | edgeMask);
-				}
-			}
-		}
-		else
-		{
-			for (u16 j = 0; j < h; ++j)
-				for (u16 i = 0; i < edgeSize; ++i)
-					m_Grid->set(i, j, m_Grid->get(i, j) | edgeMask);
-			for (u16 j = 0; j < h; ++j)
-				for (u16 i = w-edgeSize+1; i < w; ++i)
-					m_Grid->set(i, j, m_Grid->get(i, j) | edgeMask);
-			for (u16 j = 0; j < edgeSize; ++j)
-				for (u16 i = edgeSize; i < w-edgeSize+1; ++i)
-					m_Grid->set(i, j, m_Grid->get(i, j) | edgeMask);
-			for (u16 j = h-edgeSize+1; j < h; ++j)
-				for (u16 i = edgeSize; i < w-edgeSize+1; ++i)
-					m_Grid->set(i, j, m_Grid->get(i, j) | edgeMask);
-		}
-
-		// Expand the impassability grid, for any class with non-zero clearance,
-		// so that we can stop units getting too close to impassable navcells.
-		// Note: It's not possible to perform this expansion once for all passabilities
-		// with the same clearance, because the impassable cells are not necessarily the 
-		// same for all these passabilities.
-		for (PathfinderPassability& passability : m_PassClasses)
-		{
-			if (passability.m_Clearance == fixed::Zero())
-				continue;
-
-			int clearance = (passability.m_Clearance / Pathfinding::NAVCELL_SIZE).ToInt_RoundToInfinity();
-			ExpandImpassableCells(*m_Grid, clearance, passability.m_Mask);
-		}			
-
-		// Store the updated terrain-only grid
-		*m_TerrainOnlyGrid = *m_Grid;
+		*m_Grid = *m_TerrainOnlyGrid;
 
 		m_TerrainDirty = false;
 		m_ObstructionsDirty.globalRecompute = true;
@@ -615,9 +514,141 @@ void CCmpPathfinder::UpdateGrid()
 
 	// Update the long-range pathfinder
 	if (m_ObstructionsDirty.globallyDirty)
-		m_LongPathfinder.Reload(GetPathfindingPassabilityClasses(), m_Grid);
+		m_LongPathfinder.Reload(GetPassabilityClasses(true), m_Grid);
 	else
 		m_LongPathfinder.Update(m_Grid, m_ObstructionsDirty.dirtinessGrid);
+}
+
+void CCmpPathfinder::MinimalTerrainUpdate()
+{
+	TerrainUpdateHelper();
+}
+
+void CCmpPathfinder::TerrainUpdateHelper()
+{
+	PROFILE3("TerrainUpdateHelper");
+
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	CTerrain& terrain = GetSimContext().GetTerrain();
+
+	if (!cmpTerrain || !cmpObstructionManager)
+		return;
+
+	u16 terrainSize = cmpTerrain->GetTilesPerSide();
+	if (terrainSize == 0)
+		return;
+
+	if (!m_TerrainOnlyGrid || m_MapSize != terrainSize)
+	{
+		m_MapSize = terrainSize;
+
+		SAFE_DELETE(m_TerrainOnlyGrid);
+		m_TerrainOnlyGrid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
+	}
+
+	Grid<u16> shoreGrid = ComputeShoreGrid();
+
+	// Compute initial terrain-dependent passability
+	for (int j = 0; j < m_MapSize * Pathfinding::NAVCELLS_PER_TILE; ++j)
+	{
+		for (int i = 0; i < m_MapSize * Pathfinding::NAVCELLS_PER_TILE; ++i)
+		{
+			// World-space coordinates for this navcell
+			fixed x, z;
+			Pathfinding::NavcellCenter(i, j, x, z);
+
+			// Terrain-tile coordinates for this navcell
+			int itile = i / Pathfinding::NAVCELLS_PER_TILE;
+			int jtile = j / Pathfinding::NAVCELLS_PER_TILE;
+
+			// Gather all the data potentially needed to determine passability:
+
+			fixed height = terrain.GetExactGroundLevelFixed(x, z);
+
+			fixed water;
+			if (cmpWaterManager)
+				water = cmpWaterManager->GetWaterLevel(x, z);
+
+			fixed depth = water - height;
+
+			// Exact slopes give kind of weird output, so just use rough tile-based slopes
+			fixed slope = terrain.GetSlopeFixed(itile, jtile);
+
+			// Get world-space coordinates from shoreGrid (which uses terrain tiles)
+			fixed shoredist = fixed::FromInt(shoreGrid.get(itile, jtile)).MultiplyClamp(TERRAIN_TILE_SIZE);
+
+			// Compute the passability for every class for this cell
+			NavcellData t = 0;
+			for (PathfinderPassability& passability : m_PassClasses)
+				if (!passability.IsPassable(depth, slope, shoredist))
+					t |= passability.m_Mask;
+
+			m_TerrainOnlyGrid->set(i, j, t);
+		}
+	}
+
+	// Compute off-world passability
+	// WARNING: CCmpRangeManager::LosIsOffWorld needs to be kept in sync with this
+	const int edgeSize = 3 * Pathfinding::NAVCELLS_PER_TILE; // number of tiles around the edge that will be off-world
+
+	NavcellData edgeMask = 0;
+	for (PathfinderPassability& passability : m_PassClasses)
+		edgeMask |= passability.m_Mask;
+
+	int w = m_TerrainOnlyGrid->m_W;
+	int h = m_TerrainOnlyGrid->m_H;
+
+	if (cmpObstructionManager->GetPassabilityCircular())
+	{
+		for (int j = 0; j < h; ++j)
+		{
+			for (int i = 0; i < w; ++i)
+			{
+				// Based on CCmpRangeManager::LosIsOffWorld
+				// but tweaked since it's tile-based instead.
+				// (We double all the values so we can handle half-tile coordinates.)
+				// This needs to be slightly tighter than the LOS circle,
+				// else units might get themselves lost in the SoD around the edge.
+
+				int dist2 = (i*2 + 1 - w)*(i*2 + 1 - w)
+					+ (j*2 + 1 - h)*(j*2 + 1 - h);
+
+				if (dist2 >= (w - 2*edgeSize) * (h - 2*edgeSize))
+					m_TerrainOnlyGrid->set(i, j, m_TerrainOnlyGrid->get(i, j) | edgeMask);
+			}
+		}
+	}
+	else
+	{
+		for (u16 j = 0; j < h; ++j)
+			for (u16 i = 0; i < edgeSize; ++i)
+				m_TerrainOnlyGrid->set(i, j, m_TerrainOnlyGrid->get(i, j) | edgeMask);
+		for (u16 j = 0; j < h; ++j)
+			for (u16 i = w-edgeSize+1; i < w; ++i)
+				m_TerrainOnlyGrid->set(i, j, m_TerrainOnlyGrid->get(i, j) | edgeMask);
+		for (u16 j = 0; j < edgeSize; ++j)
+			for (u16 i = edgeSize; i < w-edgeSize+1; ++i)
+				m_TerrainOnlyGrid->set(i, j, m_TerrainOnlyGrid->get(i, j) | edgeMask);
+		for (u16 j = h-edgeSize+1; j < h; ++j)
+			for (u16 i = edgeSize; i < w-edgeSize+1; ++i)
+				m_TerrainOnlyGrid->set(i, j, m_TerrainOnlyGrid->get(i, j) | edgeMask);
+	}
+
+	// Expand the impassability grid, for any class with non-zero clearance,
+	// so that we can stop units getting too close to impassable navcells.
+	// Note: It's not possible to perform this expansion once for all passabilities
+	// with the same clearance, because the impassable cells are not necessarily the 
+	// same for all these passabilities.
+	for (PathfinderPassability& passability : m_PassClasses)
+	{
+		if (passability.m_Clearance == fixed::Zero())
+			continue;
+
+		int clearance = (passability.m_Clearance / Pathfinding::NAVCELL_SIZE).ToInt_RoundToInfinity();
+		ExpandImpassableCells(*m_TerrainOnlyGrid, clearance, passability.m_Mask);
+	}
 }
 
 const GridUpdateInformation& CCmpPathfinder::GetDirtinessData() const
@@ -811,15 +842,14 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const I
 		i16 j = span.j;
 
 		// Fail if any span extends outside the grid
-		if (i0 < 0 || i1 > m_Grid->m_W || j < 0 || j > m_Grid->m_H)
+		if (i0 < 0 || i1 > m_TerrainOnlyGrid->m_W || j < 0 || j > m_TerrainOnlyGrid->m_H)
 			return ICmpObstruction::FOUNDATION_CHECK_FAIL_TERRAIN_CLASS;
 
 		// Fail if any span includes an impassable tile
 		for (i16 i = i0; i < i1; ++i)
-			if (!IS_PASSABLE(m_Grid->get(i, j), passClass))
+			if (!IS_PASSABLE(m_TerrainOnlyGrid->get(i, j), passClass))
 				return ICmpObstruction::FOUNDATION_CHECK_FAIL_TERRAIN_CLASS;
 	}
 
 	return ICmpObstruction::FOUNDATION_CHECK_SUCCESS;
 }
-
