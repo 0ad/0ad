@@ -236,26 +236,6 @@ void AtlasViewGame::Render()
 	camera.SetProjection(g_Game->GetView()->GetNear(), g_Game->GetView()->GetFar(), g_Game->GetView()->GetFOV());
 	camera.UpdateFrustum();
 
-	// Update the pathfinder display if necessary
-	if (!m_DisplayPassability.empty())
-	{
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(*GetSimulation2(), SYSTEM_ENTITY);
-		if (cmpObstructionManager)
-		{
-			cmpObstructionManager->SetDebugOverlay(true);
-		}
-
-		CmpPtr<ICmpPathfinder> cmpPathfinder(*GetSimulation2(), SYSTEM_ENTITY);
-		if (cmpPathfinder)
-		{
-			cmpPathfinder->SetDebugOverlay(true);
-			// Kind of a hack to make it update the terrain grid
-			PathGoal goal = { PathGoal::POINT, fixed::Zero(), fixed::Zero() };
-			pass_class_t passClass = cmpPathfinder->GetPassabilityClass(m_DisplayPassability);
-			cmpPathfinder->SetDebugPath(fixed::Zero(), fixed::Zero(), goal, passClass);
-		}
-	}
-
 	::Render();
 	Atlas_GLSwapBuffers((void*)g_AtlasGameLoop->glCanvas);
 }
@@ -315,13 +295,14 @@ void AtlasViewGame::SetParam(const std::wstring& name, const std::wstring& value
 	{
 		m_DisplayPassability = CStrW(value).ToUTF8();
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(*GetSimulation2(), SYSTEM_ENTITY);
-		if (cmpObstructionManager)
-			cmpObstructionManager->SetDebugOverlay(!value.empty());
-
 		CmpPtr<ICmpPathfinder> cmpPathfinder(*GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpPathfinder)
-			cmpPathfinder->SetDebugOverlay(!value.empty());
+		{
+			if (!value.empty())
+				cmpPathfinder->SetAtlasOverlay(true, cmpPathfinder->GetPassabilityClass(m_DisplayPassability));
+			else
+				cmpPathfinder->SetAtlasOverlay(false);
+		}
 	}
 	else if (name == L"renderpath")
 	{

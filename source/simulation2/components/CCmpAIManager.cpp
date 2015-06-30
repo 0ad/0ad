@@ -1024,7 +1024,7 @@ public:
 		LoadPathfinderClasses(state);
 		std::map<std::string, pass_class_t> passClassMasks;
 		if (cmpPathfinder)
-			passClassMasks = cmpPathfinder->GetPathfindingPassabilityClasses();
+			passClassMasks = cmpPathfinder->GetPassabilityClasses(true);
 
 		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state), *passabilityMap, *territoryMap, passClassMasks);
 	}
@@ -1076,7 +1076,7 @@ public:
 		LoadPathfinderClasses(state);
 		std::map<std::string, pass_class_t> passClassMasks;
 		if (cmpPathfinder)
-			passClassMasks = cmpPathfinder->GetPathfindingPassabilityClasses();
+			passClassMasks = cmpPathfinder->GetPassabilityClasses(true);
 
 		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state), 
 			*passabilityMap, dirtinessInformations,
