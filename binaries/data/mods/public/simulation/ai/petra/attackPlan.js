@@ -88,7 +88,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		}
 	}
 	this.paused = false;
-	this.maxCompletingTurn = 0;	
+	this.maxCompletingTime = 0;	
 
 	// priority of the queues we'll create.
 	var priority = 70;
@@ -266,7 +266,7 @@ m.AttackPlan.prototype.mustStart = function()
 		return false;
 
 	if (!this.canBuildUnits)
-		return true;
+		return (this.unitCollection.length > 0);
 
 	var MaxReachedEverywhere = true;
 	var MinReachedEverywhere = true;
@@ -359,7 +359,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			if (this.waitingForTransport())
 				return 1;
 			// bloqued units which cannot finish their order should not stop the attack
-			if (gameState.ai.playedTurn < this.maxCompletingTurn && this.hasForceOrder())
+			if (gameState.ai.elapsedTime < this.maxCompletingTime && this.hasForceOrder())
 				return 1;
 			return 2;
 		}
@@ -445,10 +445,10 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		this.getPathToTarget(gameState);
 
 	if (this.type === "Raid")
-		this.maxCompletingTurn = gameState.ai.playedTurn + 20;
+		this.maxCompletingTime = gameState.ai.elapsedTime + 20;
 	else
 	{
-		this.maxCompletingTurn = gameState.ai.playedTurn + 60;
+		this.maxCompletingTime = gameState.ai.elapsedTime + 60;
 		// warn our allies so that they can help if possible
 		if (!this.requested)
 			Engine.PostCommand(PlayerID, {"type": "attack-request", "source": PlayerID, "target": this.targetPlayer});
@@ -1785,7 +1785,7 @@ m.AttackPlan.prototype.Serialize = function()
 		"rallyPoint": this.rallyPoint,
 		"overseas": this.overseas,
 		"paused": this.paused,
-		"maxCompletingTurn": this.maxCompletingTurn,
+		"maxCompletingTime": this.maxCompletingTime,
 		"neededShips": this.neededShips,
 		"unitStat": this.unitStat,
 		"position5TurnsAgo": this.position5TurnsAgo,

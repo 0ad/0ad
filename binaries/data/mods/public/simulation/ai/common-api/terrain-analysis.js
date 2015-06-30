@@ -51,29 +51,6 @@ m.TerrainAnalysis.prototype.init = function(sharedScript, rawState)
 	this.Map(rawState, "passability", obstructionTiles);
 };
 
-// Returns an estimate of a tile accessibility. It checks neighboring cells over two levels.
-// returns a count. It's not integer. About 2 should be fairly accessible already.
-m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand)
-{
-	let count = 0;
-	let w = this.width;
-	let positions = [[0,1], [0,-1], [1,0], [-1,0], [1,1], [-1,-1], [1,-1], [-1,1],
-					 [0,2], [0,-2], [2,0], [-2,0], [2,2], [-2,-2], [2,-2], [-2,2]/*,
-					 [1,2], [1,-2], [2,1], [-2,1], [-1,2], [-1,-2], [2,-1], [-2,-1]*/];
-	
-	for (let pos of positions)
-	{
-		let index = startIndex + pos[0] + pos[1]*w;
-		if (this.map[index] === 0)
-			continue;
-		if (byLand)
-			if (this.map[index] === 201 || this.map[index] === 255) count++;
-		else
-			if (this.map[index] === 201 || this.map[index] === 200) count++;
-	}
-	return count;
-};
-
 /*
  * Accessibility inherits from TerrainAnalysis
  *  
@@ -187,48 +164,6 @@ m.Accessibility.prototype.getAccessValue = function(position, onWater)
 		}
 	}
 	return ret;
-};
-
-// Returns true if a point is deemed currently accessible (is not blocked by surrounding trees...)
-// NB: accessible means that you can reach it from one side, not necessariliy that you can go ON it.
-m.Accessibility.prototype.isAccessible = function(gameState, position, onLand)
-{
-	var gamePos = this.gamePosToMapPos(position);
-	return (this.countConnected(gamePos[0] + this.width*gamePos[1], onLand) >= 2);
-};
-
-// Return true if you can go from a point to a point without switching means of transport
-// Hardcore means is also checks for isAccessible at the end (it checks for either water or land though, beware).
-// This is a blind check and not a pathfinder: for all it knows there is a huge block of trees in the middle.
-m.Accessibility.prototype.pathAvailable = function(gameState, start, end, onWater, hardcore)
-{
-	var pstart = this.gamePosToMapPos(start);
-	var istart = pstart[0] + pstart[1]*this.width;
-	var pend = this.gamePosToMapPos(end);
-	var iend = pend[0] + pend[1]*this.width;
-	if (onWater)
-	{
-		if (this.navalPassMap[istart] === this.navalPassMap[iend])
-		{
-			if (hardcore && this.isAccessible(gameState, end,false))
-				return true;
-			else if (hardcore)
-				return false;
-			return true;
-		}
-	}
-	else
-	{
-		if (this.landPassMap[istart] === this.landPassMap[iend])
-		{
-			if (hardcore && this.isAccessible(gameState, end,true))
-				return true;
-			else if (hardcore)
-				return false;
-			return true;
-		}
-	}
-	return false;
 };
 
 m.Accessibility.prototype.getTrajectTo = function(start, end, noBound)
