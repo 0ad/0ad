@@ -173,8 +173,6 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	case MT_WaterChanged:
 	case MT_ObstructionMapShapeChanged:
 		m_TerrainDirty = true;
-		// TODO: this can be optimized by only updating a part of the terrain grid
-		// using the TerrainChanged message data.
 		MinimalTerrainUpdate();
 		break;
 	case MT_TurnStart:
@@ -521,10 +519,10 @@ void CCmpPathfinder::UpdateGrid()
 
 void CCmpPathfinder::MinimalTerrainUpdate()
 {
-	TerrainUpdateHelper();
+	TerrainUpdateHelper(false);
 }
 
-void CCmpPathfinder::TerrainUpdateHelper()
+void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability)
 {
 	PROFILE3("TerrainUpdateHelper");
 
@@ -635,6 +633,9 @@ void CCmpPathfinder::TerrainUpdateHelper()
 			for (u16 i = edgeSize; i < w-edgeSize+1; ++i)
 				m_TerrainOnlyGrid->set(i, j, m_TerrainOnlyGrid->get(i, j) | edgeMask);
 	}
+
+	if (!expandPassability)
+		return;
 
 	// Expand the impassability grid, for any class with non-zero clearance,
 	// so that we can stop units getting too close to impassable navcells.

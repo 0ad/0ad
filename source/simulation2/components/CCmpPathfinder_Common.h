@@ -238,8 +238,9 @@ public:
 
 	/**
 	 * Regenerates the terrain-only grid.
+	 * Atlas doesn't need to have passability cells expanded.
 	 */
-	void TerrainUpdateHelper();
+	void TerrainUpdateHelper(bool expandPassability = true);
 
 	void RenderSubmit(SceneCollector& collector);
 };
