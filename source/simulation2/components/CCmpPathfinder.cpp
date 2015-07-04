@@ -170,10 +170,14 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		break;
 	}
 	case MT_TerrainChanged:
+		m_TerrainDirty = true;
+		MinimalTerrainUpdate();
+		break;
 	case MT_WaterChanged:
 	case MT_ObstructionMapShapeChanged:
 		m_TerrainDirty = true;
-		MinimalTerrainUpdate();
+		UpdateGrid();
+		m_PreserveUpdateInformations = true;
 		break;
 	case MT_TurnStart:
 		m_SameTurnMovesCount = 0;
@@ -450,8 +454,12 @@ void CCmpPathfinder::UpdateGrid()
 	else
 		m_PreserveUpdateInformations = false; // Next time will be a regular update
 
+	u16 terrainSize = cmpTerrain->GetTilesPerSide();
+	if (terrainSize == 0)
+		return;
+
 	// If the terrain was resized then delete the old grid data
-	if (m_Grid && m_MapSize != cmpTerrain->GetTilesPerSide())
+	if (m_Grid && m_MapSize != terrainSize)
 	{
 		SAFE_DELETE(m_Grid);
 		SAFE_DELETE(m_TerrainOnlyGrid);
@@ -460,7 +468,7 @@ void CCmpPathfinder::UpdateGrid()
 	// Initialise the terrain data when first needed
 	if (!m_Grid)
 	{
-		m_MapSize = cmpTerrain->GetTilesPerSide();
+		m_MapSize = terrainSize;
 		m_Grid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
 		m_TerrainOnlyGrid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
 
