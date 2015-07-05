@@ -119,9 +119,9 @@ void HierarchicalPathfinder::Chunk::InitRegions(int ci, int cj, Grid<NavcellData
 	}
 
 	// Replace IDs by the root ID
-	for (int i = 0; i < CHUNK_SIZE; ++i)
-		for (int j = 0; j < CHUNK_SIZE; ++j)
-			m_Regions[i][j] = connect[m_Regions[i][j]];
+	for (int j = 0; j < CHUNK_SIZE; ++j)
+		for (int i = 0; i < CHUNK_SIZE; ++i)
+			m_Regions[j][i] = connect[m_Regions[j][i]];
 }
 
 /**
@@ -591,6 +591,21 @@ void HierarchicalPathfinder::FindPassableRegions(std::set<RegionID>& regions, pa
 	}
 }
 
+void HierarchicalPathfinder::FillRegionOnGrid(const RegionID& region, pass_class_t passClass, u16 value, Grid<u16>& grid)
+{
+	ENSURE(grid.m_W == m_W && grid.m_H == m_H);
+
+	int i0 = region.ci * CHUNK_SIZE;
+	int j0 = region.cj * CHUNK_SIZE;
+
+	const Chunk& c = m_Chunks[passClass][region.cj * m_ChunksW + region.ci];
+
+	for (int i = 0; i < CHUNK_SIZE; ++i)
+		for (int j = 0; j < CHUNK_SIZE; ++j)
+			if (c.m_Regions[j][i] == region.r)
+				grid.set(i0 + i, j0 + j, value);
+}
+
 Grid<u16> HierarchicalPathfinder::GetConnectivityGrid(pass_class_t passClass)
 {
 	Grid<u16> connectivityGrid(m_W, m_H);
@@ -598,27 +613,23 @@ Grid<u16> HierarchicalPathfinder::GetConnectivityGrid(pass_class_t passClass)
 
 	u16 idx = 1;
 
-	for (size_t j1 = 0; j1 < m_H; ++j1)
+	for (size_t j = 0; j < m_H; ++j)
 	{
-		for (size_t i1 = 0; i1 < m_W; ++i1)
+		for (size_t i = 0; i < m_W; ++i)
 		{
-			if (connectivityGrid.get(i1, j1) != 0)
+			if (connectivityGrid.get(i, j) != 0)
 				continue;
 
-			RegionID region = Get(i1, j1, passClass);
-			if (region.r == 0)
+			RegionID from = Get(i, j, passClass);
+			if (from.r == 0)
 				continue;
 
 			std::set<RegionID> reachable;
-			FindReachableRegions(region, reachable, passClass);
-			for (size_t j2 = 0; j2 < m_H; ++j2)
-			{
-				for (size_t i2 = 0; i2 < m_W; ++i2)
-				{
-					if (std::find(reachable.begin(), reachable.end(), Get(i2, j2, passClass)) != reachable.end())
-						connectivityGrid.set(i1, j1, idx);
-				}
-			}
+			FindReachableRegions(from, reachable, passClass);
+
+			for (const RegionID& region : reachable)
+				FillRegionOnGrid(region, passClass, idx, connectivityGrid);
+
 			++idx;
 		}
 	}
