@@ -247,11 +247,16 @@ void HierarchicalPathfinder::SetDebugOverlay(bool enabled, const CSimContext* si
 	}
 }
 
-void HierarchicalPathfinder::Recompute(const std::map<std::string, pass_class_t>& passClassMasks, Grid<NavcellData>* grid)
+void HierarchicalPathfinder::Recompute(Grid<NavcellData>* grid,
+	const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks,
+	const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 {
 	PROFILE3("Hierarchical Recompute");
 
-	m_PassClassMasks = passClassMasks;
+	m_PassClassMasks = pathfindingPassClassMasks;
+
+	std::map<std::string, pass_class_t> allPassClasses = m_PassClassMasks;
+	allPassClasses.insert(nonPathfindingPassClassMasks.begin(), nonPathfindingPassClassMasks.end());
 
 	m_W = grid->m_W;
 	m_H = grid->m_H;
@@ -265,7 +270,7 @@ void HierarchicalPathfinder::Recompute(const std::map<std::string, pass_class_t>
 	m_Chunks.clear();
 	m_Edges.clear();
 
-	for (auto& passClassMask : passClassMasks)
+	for (auto& passClassMask : allPassClasses)
 	{
 		pass_class_t passClass = passClassMask.second;
 

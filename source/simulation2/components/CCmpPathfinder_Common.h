@@ -144,8 +144,10 @@ public:
 
 	virtual pass_class_t GetPassabilityClass(const std::string& name);
 
-	virtual std::map<std::string, pass_class_t> GetPassabilityClasses();
-	virtual std::map<std::string, pass_class_t> GetPassabilityClasses(bool pathfindingClasses);
+	virtual void GetPassabilityClasses(std::map<std::string, pass_class_t>& passClasses) const;
+	virtual void GetPassabilityClasses(
+		std::map<std::string, pass_class_t>& nonPathfindingPassClasses,
+		std::map<std::string, pass_class_t>& pathfindingPassClasses) const;
 
 	const PathfinderPassability* GetPassabilityFromMask(pass_class_t passClass) const;
 

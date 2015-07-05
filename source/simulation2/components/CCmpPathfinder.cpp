@@ -216,19 +216,20 @@ pass_class_t CCmpPathfinder::GetPassabilityClass(const std::string& name)
 	return m_PassClassMasks[name];
 }
 
-std::map<std::string, pass_class_t> CCmpPathfinder::GetPassabilityClasses()
+void CCmpPathfinder::GetPassabilityClasses(std::map<std::string, pass_class_t>& passClasses) const
 {
-	return m_PassClassMasks;
+	passClasses = m_PassClassMasks;
 }
 
-std::map<std::string, pass_class_t> CCmpPathfinder::GetPassabilityClasses(bool pathfindingClasses)
+void CCmpPathfinder::GetPassabilityClasses(std::map<std::string, pass_class_t>& nonPathfindingPassClasses, std::map<std::string, pass_class_t>& pathfindingPassClasses) const
 {
-	std::map<std::string, pass_class_t> passabilityClasses;
 	for (auto& pair : m_PassClassMasks)
-		if ((GetPassabilityFromMask(pair.second)->m_Obstructions == PathfinderPassability::PATHFINDING) == pathfindingClasses)
-			passabilityClasses[pair.first] = pair.second;
-
-	return passabilityClasses;
+	{
+		if ((GetPassabilityFromMask(pair.second)->m_Obstructions == PathfinderPassability::PATHFINDING))
+			pathfindingPassClasses[pair.first] = pair.second;
+		else
+			nonPathfindingPassClasses[pair.first] = pair.second;
+	}
 }
 
 const PathfinderPassability* CCmpPathfinder::GetPassabilityFromMask(pass_class_t passClass) const
@@ -520,7 +521,11 @@ void CCmpPathfinder::UpdateGrid()
 
 	// Update the long-range pathfinder
 	if (m_ObstructionsDirty.globallyDirty)
-		m_LongPathfinder.Reload(GetPassabilityClasses(true), m_Grid);
+	{
+		std::map<std::string, pass_class_t> nonPathfindingPassClasses, pathfindingPassClasses;
+		GetPassabilityClasses(nonPathfindingPassClasses, pathfindingPassClasses);
+		m_LongPathfinder.Reload(m_Grid, nonPathfindingPassClasses, pathfindingPassClasses);
+	}
 	else
 		m_LongPathfinder.Update(m_Grid, m_ObstructionsDirty.dirtinessGrid);
 }

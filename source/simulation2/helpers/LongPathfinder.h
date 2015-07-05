@@ -183,7 +183,9 @@ public:
 		m_DebugPassClass = passClass;
 	}
 
-	void Reload(const std::map<std::string, pass_class_t>& passClassMasks, Grid<NavcellData>* passabilityGrid)
+	void Reload(Grid<NavcellData>* passabilityGrid,
+		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, 
+		const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
 		m_Grid = passabilityGrid;
 		ASSERT(passabilityGrid->m_H == passabilityGrid->m_W);
@@ -191,7 +193,7 @@ public:
 
 		m_JumpPointCache.clear();
 
-		m_PathfinderHier.Recompute(passClassMasks, passabilityGrid);
+		m_PathfinderHier.Recompute(passabilityGrid, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 	}
 
 	void Update(Grid<NavcellData>* passabilityGrid, const Grid<u8>& dirtinessGrid)
