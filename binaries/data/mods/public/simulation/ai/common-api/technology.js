@@ -21,26 +21,24 @@ m.Technology = function(allTemplates, templateName)
 	this._definesPair = template.top === undefined ? false : true;
 	this._template = template;
 	this._techTemplates = allTemplates;
-}
+};
+
 // returns generic, or specific if civ provided.
 m.Technology.prototype.name = function(civ)
 {
 	if (civ === undefined)
-	{
 		return this._template.genericName;
-	}
-	else
-	{
-		if (this._template.specificName === undefined || this._template.specificName[civ] === undefined)
-			return undefined;
-		return this._template.specificName[civ];
-	}
+
+	if (this._template.specificName === undefined || this._template.specificName[civ] === undefined)
+		return undefined;
+	return this._template.specificName[civ];
 };
 
 m.Technology.prototype.pairDef = function()
 {
 	return this._definesPair;
 };
+
 // in case this defines a pair only, returns the two paired technologies.
 m.Technology.prototype.getPairedTechs = function()
 {
@@ -122,17 +120,16 @@ m.Technology.prototype.isAffected = function(classes)
 	if (!this._template.affects)
 		return false;
 	
-	for (var index in this._template.affects)
+	for (let affect of this._template.affects)
 	{
-		var reqClasses = this._template.affects[index].split(" ");
-		var fitting = true;
-		for (var i in reqClasses)
+		let reqClasses = affect.split(" ");
+		let fitting = true;
+		for (let reqClass of reqClasses)
 		{
-			if (classes.indexOf(reqClasses[i]) === -1)
-			{
-				fitting = false;
-				break;
-			}
+			if (classes.indexOf(reqClass) !== -1)
+				continue;
+			fitting = false;
+			break;
 		}
 		if (fitting === true)
 			return true;

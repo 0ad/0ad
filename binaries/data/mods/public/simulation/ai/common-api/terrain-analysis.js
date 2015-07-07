@@ -166,7 +166,7 @@ m.Accessibility.prototype.getAccessValue = function(position, onWater)
 	return ret;
 };
 
-m.Accessibility.prototype.getTrajectTo = function(start, end, noBound)
+m.Accessibility.prototype.getTrajectTo = function(start, end)
 {
 	var pstart = this.gamePosToMapPos(start);
 	var istart = pstart[0] + pstart[1]*this.width;
@@ -190,127 +190,39 @@ m.Accessibility.prototype.getTrajectTo = function(start, end, noBound)
 	else
 		var startRegion = this.navalPassMap[istart];
 
-	return this.getTrajectToIndex(startRegion, endRegion, noBound);
-}
+	return this.getTrajectToIndex(startRegion, endRegion);
+};
 
-// Return a "path" of accessibility indexes from one point to another, including the start and the end indexes (unless specified otherwise)
+// Return a "path" of accessibility indexes from one point to another, including the start and the end indexes
 // this can tell you what sea zone you need to have a dock on, for example.
 // assumes a land unit unless start point is over deep water.
-// if the path is more complicated than "land->sea->land" (or "sea->land->sea"), it will run A* to try and figure it out
-// Thus it can handle arbitrarily complicated paths (theoretically).
-m.Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
-	var startRegion = istart;
-	var currentRegion = istart;
-	
-	var endRegion = iend;
-	
-	// optimizations to avoid needless memory usage
-	// if it's the same, return the path
-	if (startRegion === endRegion)
-		return [startRegion];
-	else if (this.regionLinks[startRegion].indexOf(endRegion) !== -1)
-		return [startRegion, endRegion];
-	else
+m.Accessibility.prototype.getTrajectToIndex = function(istart, iend)
+{
+	if (istart === iend)
+		return [istart];
+
+        let trajects = new Set();
+	let explored = new Set();
+        trajects.add([istart]);
+	explored.add(istart);
+	while (trajects.size)
 	{
-		for (let rgs of this.regionLinks[startRegion])
-			if (this.regionLinks[rgs].indexOf(endRegion) !== -1)
-				return [startRegion, rgs, endRegion];
-	}
-	// it appears to be difficult.
-	// computing A* over a graph with all nodes equally good (might want to change this sometimes), currently it returns the shortest path switch-wise.
-	this.openList = [];
-	this.parentSquare = new Uint8Array(this.regionSize.length);
-	this.isOpened = new Boolean(this.regionSize.length);
-	this.gCostArray = new Uint8Array(this.regionSize.length);
-
-	this.isOpened[currentRegion] = true;
-	this.openList.push(currentRegion);
-	this.gCostArray[currentRegion] = 0;
-	this.parentSquare[currentRegion] = currentRegion;
-
-	var w = this.width;
-	var h = this.height;
-	
-	//creation of variables used in the loop
-	var found = false;
-
-	// on to A*
-	while (found === false && this.openList.length !== 0) {
-		var currentDist = 300;
-		var ti = 0;
-		for (var i in this.openList)
+		for (let traj of trajects)
 		{
-			var sum = this.gCostArray[this.openList[i]];
-			if (sum < currentDist)
+			let ilast = traj[traj.length-1];
+			for (let inew of this.regionLinks[ilast])
 			{
-				ti = i;
-				currentRegion = this.openList[i];
-				currentDist = sum;
+				if (inew === iend)
+					return traj.concat(iend);
+				if (explored.has(inew))
+					continue;
+				trajects.add(traj.concat(inew));
+				explored.add(inew);
 			}
-		}
-		this.openList.splice(ti,1);
-		this.isOpened[currentRegion] = false;
-
-		// special case, might make it faster (usually oceans connect multiple land masses, sometimes all of them)
-		if (this.regionType[currentRegion] == "water" && endRegion)
-		{
-			var idx = this.regionLinks[currentRegion].indexOf(endRegion);
-			if (idx !== -1)
-			{
-				this.parentSquare[endRegion] = currentRegion;
-				this.gCostArray[endRegion] = this.gCostArray[currentRegion] + 1;
-				found = true;
-				break;
-			}
-		}
-		for (let region of this.regionLinks[currentRegion])
-		{
-			if(this.isOpened[region] === undefined)
-			{
-				this.parentSquare[region] = currentRegion;
-				this.gCostArray[region] = this.gCostArray[currentRegion] + 1;
-				this.openList.push(region);
-				this.isOpened[region] = true;
-				if (region === endRegion)
-				{
-					found = true;
-					break;
-				}
-			}
-			else
-			{
-				if (this.gCostArray[region] > 1 + this.gCostArray[currentRegion])
-				{
-					this.parentSquare[region] = currentRegion;
-					this.gCostArray[region] = 1 + this.gCostArray[currentRegion];
-				}
-			}
+			trajects.delete(traj);
 		}
 	}
-	var path = [];
-	if (found) {
-		currentRegion = endRegion;
-		if (!noBound)
-			path.push(currentRegion);
-		while (this.parentSquare[currentRegion] !== startRegion)
-		{
-			currentRegion = this.parentSquare[currentRegion];
-			path.push(currentRegion);
-		}
-		if (!noBound)
-			path.push(startRegion);
-	} else {
-		delete this.parentSquare;
-		delete this.isOpened;
-		delete this.gCostArray;
-		return false;
-	}
-	
-	delete this.parentSquare;
-	delete this.isOpened;
-	delete this.gCostArray;
-	
-	return path;
+	return undefined;
 };
 
 m.Accessibility.prototype.getRegionSize = function(position, onWater){
@@ -331,7 +243,6 @@ m.Accessibility.prototype.getRegionSizei = function(index, onWater) {
 };
 
 // Implementation of a fast flood fill. Reasonably good performances for JS.
-// TODO: take big zones of impassable trees into account?
 m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 {
 	if (value > this.maxRegions)
