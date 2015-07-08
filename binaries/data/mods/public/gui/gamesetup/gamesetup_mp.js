@@ -110,7 +110,7 @@ function pollAndHandleNetworkClient()
 			case "start":
 
 				// Copy playernames from initial player assignment to the settings
-				for (let guid of g_PlayerAssignments)
+				for (let guid in g_PlayerAssignments)
 				{
 					let player = g_PlayerAssignments[guid];
 					g_GameAttributes.settings.PlayerData[player.player - 1].Name = player.name;
