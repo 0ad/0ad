@@ -5,17 +5,17 @@ const MAX_HEADINGTITLE = 8;
 
 // const for filtering long collective headings
 const LONG_HEADING_WIDTH = 250;
-// vertical size of player box
+// Vertical size of player box
 const PLAYER_BOX_Y_SIZE = 30;
-// gap between players boxes
+// Gap between players boxes
 const PLAYER_BOX_GAP = 2;
-// alpha for player box
+// Alpha for player box
 const PLAYER_BOX_ALPHA = " 32";
-// alpha for player color box
+// Alpha for player color box
 const PLAYER_COLOR_BOX_ALPHA = " 255";
 // yStart value for spacing teams boxes (and noTeamsBox)
 const TEAMS_BOX_Y_START = 65;
-// colors used for units and buildings
+// Colors used for units and buildings
 const TRAINED_COLOR = '[color="201 255 200"]';
 const LOST_COLOR = '[color="255 213 213"]';
 const KILLED_COLOR = '[color="196 198 255"]';
@@ -24,7 +24,7 @@ const BUILDINGS_TYPES = [ "total", "House", "Economic", "Outpost", "Military", "
 const UNITS_TYPES = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Ship" ];
 const RESOURCES_TYPES = [ "food", "wood", "stone", "metal" ];
 
-// colors used for gathered and traded resources
+// Colors used for gathered and traded resources
 const INCOME_COLOR = '[color="201 255 200"]';
 const OUTCOME_COLOR = '[color="255 213 213"]';
 
@@ -32,10 +32,10 @@ const DEFAULT_DECIMAL = "0.00";
 const INFINITE_SYMBOL = "\u221E";
 // Load data
 var g_CivData = loadCivData();
-var g_Teams = [ ];
+var g_Teams = [];
 // TODO set g_MaxPlayers as playerCounters.length
 var g_MaxPlayers = 0;
-// Count players without team	(or all if teams are not displayed)
+// Count players without team (or all if teams are not displayed)
 var g_WithoutTeam = 0;
 var g_GameData;
 
@@ -121,10 +121,10 @@ function updatePanelData(panelInfo)
 		civIcon.sprite = "stretched:"+g_CivData[playerState.civ].Emblem;
 		civIcon.tooltip = g_CivData[playerState.civ].Name;
 
-		// update counters
+		// Update counters
 		updateCountersPlayer(playerState, panelInfo.counters, playerCounterValue);
 	}
-	// update team counters
+	// Update team counters
 	var teamCounterFn = panelInfo.teamCounterFn
 	if (g_Teams && teamCounterFn)
 		teamCounterFn(panelInfo.counters);
@@ -166,15 +166,14 @@ function init(data)
 
 	if (data.mapSettings.LockTeams)	// teams ARE locked
 	{
-		// count teams
+		// Count teams
 		for(var t = 0; t < g_MaxPlayers; ++t)
 		{
-			if (!g_Teams[data.playerStates[t+1].team])
-			{
-				g_Teams[data.playerStates[t+1].team] = 1;
-				continue;
-			}
-			g_Teams[data.playerStates[t+1].team]++;
+			let playerTeam = data.playerStates[t+1].team;
+			if (g_Teams[playerTeam])
+				g_Teams[playerTeam]++;
+			else
+				g_Teams[playerTeam] = 1;
 		}
 
 		if (g_Teams.length == g_MaxPlayers)
@@ -193,9 +192,9 @@ function init(data)
 	g_WithoutTeam = g_MaxPlayers;
 	if (g_Teams)
 	{
-		// count players without team	(or all if teams are not displayed)
+		// Count players without team (or all if teams are not displayed)
 		for (var i = 0; i < g_Teams.length; ++i)
-			g_WithoutTeam -= g_Teams[i];
+			g_WithoutTeam -= g_Teams[i] ? g_Teams[i] : 0;
 	}
 
 	selectPanel(0);
