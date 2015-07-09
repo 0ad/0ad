@@ -34,9 +34,10 @@ m.HQ = function(Config)
 	this.lastTerritoryUpdate = -1;
 	this.stopBuilding = new Map(); // list of buildings to stop (temporarily) production because no room
 
-	this.towerStartTime = 0;
+	this.fortStartTime = 180;	// wooden defense towers, will start at fortStartTime + towerLapseTime
+	this.towerStartTime = 0;	// stone defense towers, will start as soon as available
 	this.towerLapseTime = this.Config.Military.towerLapseTime;
-	this.fortressStartTime = 0;
+	this.fortressStartTime = 0;	// will start as soon as available
 	this.fortressLapseTime = this.Config.Military.fortressLapseTime;
 
 	this.baseManagers = [];
@@ -1413,10 +1414,21 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		}
 	}
 
+	if (this.Config.Military.numWoodenTowers && gameState.currentPhase() < 2 && this.canBuild(gameState, "other/palisades_rocks_fort"))
+	{
+		let numTowers = gameState.getOwnEntitiesByClass("Tower", true).length;	// we count all towers, including wall towers
+		if (numTowers < this.Config.Military.numWoodenTowers && gameState.ai.elapsedTime > this.towerLapseTime + this.fortStartTime)
+		{
+			this.fortStartTime = gameState.ai.elapsedTime;
+			queues.defenseBuilding.addItem(new m.ConstructionPlan(gameState, "other/palisades_rocks_fort"));
+		}
+		return;
+	}
+
 	if (gameState.currentPhase() < 2 || !this.canBuild(gameState, "structures/{civ}_defense_tower"))
 		return;	
 
-	let numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).length;
+	let numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).filter(API3.Filters.byClass("Town")).length;
 	if ((numTowers == 0 || gameState.ai.elapsedTime > (1 + 0.10*numTowers)*this.towerLapseTime + this.towerStartTime)
 		&& gameState.getOwnFoundationsByClass("DefenseTower").length < 3)
 	{
@@ -2026,6 +2038,7 @@ m.HQ.prototype.Serialize = function()
 		"targetNumWorkers": this.targetNumWorkers,
 		"lastTerritoryUpdate": this.lastTerritoryUpdate,
 		"stopBuilding": this.stopBuilding,
+		"fortStartTime": this.fortStartTime,
 		"towerStartTime": this.towerStartTime,
 		"towerLapseTime": this.towerLapseTime,
 		"fortressStartTime": this.fortressStartTime,

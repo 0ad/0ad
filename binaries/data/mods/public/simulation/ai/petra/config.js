@@ -18,7 +18,8 @@ m.Config = function(difficulty)
 		"fortressLapseTime" : 390, // Time to wait between building 2 fortresses
 		"popForBarracks1" : 25,
 		"popForBarracks2" : 95,
-		"popForBlacksmith" : 65
+		"popForBlacksmith" : 65,
+		"numWoodenTowers" : 1
 	};
 	this.Economy = {
 		"popForTown" : 40,	// How many units we want before aging to town.
@@ -123,17 +124,27 @@ m.Config.prototype.setConfig = function(gameState)
 		this.Economy.cityPhase = 240000;
 		this.Economy.femaleRatio = 0.7;
 		this.Economy.provisionFields = 1;
+		this.Military.numWoodenTowers = (this.personality.defensive > 0.66) ? 1 : 0;
 	}
 	else if (this.difficulty < 3)
 	{
 		this.Economy.cityPhase = 1800;
 		this.Economy.femaleRatio = 0.6;
 		this.Economy.provisionFields = 1;
+		this.Military.numWoodenTowers = (this.personality.defensive > 0.66) ? 1 : 0;
 	}
 	else
 	{
 		this.Military.towerLapseTime += Math.round(20*(this.personality.defensive - 0.5));
 		this.Military.fortressLapseTime += Math.round(60*(this.personality.defensive - 0.5));
+		if (this.difficulty == 3)
+			this.Military.numWoodenTowers = 1;
+		else
+			this.Military.numWoodenTowers = 2;
+		if (this.personality.defensive > 0.66)
+			++this.Military.numWoodenTowers;
+		else if (this.personality.defensive < 0.33)
+			--this.Military.numWoodenTowers;
 
 		if (this.personality.aggressive > 0.7)
 		{

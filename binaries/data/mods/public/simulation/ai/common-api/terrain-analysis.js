@@ -201,9 +201,9 @@ m.Accessibility.prototype.getTrajectToIndex = function(istart, iend)
 	if (istart === iend)
 		return [istart];
 
-        let trajects = new Set();
+	let trajects = new Set();
 	let explored = new Set();
-        trajects.add([istart]);
+	trajects.add([istart]);
 	explored.add(istart);
 	while (trajects.size)
 	{

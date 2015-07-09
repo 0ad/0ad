@@ -144,13 +144,13 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			else
 				return false;
 		}
-		else if (template.hasClass("Tower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
+		else if (template.hasClass("DefenseTower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
 		{
 			var pos = gameState.ai.HQ.findDefensiveLocation(gameState, template);
 
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": pos[2] };
-			else if (template.hasClass("Tower") || gameState.civ() === "mace" || gameState.civ() === "maur" ||
+			else if (template.hasClass("DefenseTower") || gameState.civ() === "mace" || gameState.civ() === "maur" ||
 				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true)
 				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_army_camp"), true) > 0)
 				return false;

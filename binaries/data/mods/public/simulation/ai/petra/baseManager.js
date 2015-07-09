@@ -783,7 +783,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		var targetNB = 2;
 		if (target.hasClass("House") || target.hasClass("DropsiteWood"))
 			targetNB = 3;
-		else if (target.hasClass("Barracks") || target.hasClass("Tower") || target.hasClass("Market"))
+		else if (target.hasClass("Barracks") || target.hasClass("DefenseTower") || target.hasClass("Market"))
 			targetNB = 4;
 		else if (target.hasClass("Fortress"))
 			targetNB = 7;
