@@ -74,6 +74,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	});
 	this.treasures.registerUpdates();
 	this.currentPhase = gameState.currentPhase();
+	this.decayingStructures = new Set();
 };
 
 /**
@@ -118,10 +119,10 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues)
 {
-	for (var evt of events["Create"])
+	for (let evt of events["Create"])
 	{
 		// Let's check if we have a building set to create a new base.
-		var ent = gameState.getEntityById(evt.entity);
+		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || !ent.isOwn(PlayerID))
 			continue;
 			
@@ -133,7 +134,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			newbase.setAnchor(gameState, ent);
 			this.baseManagers.push(newbase);
 			// Let's get a few units from other bases there to build this.
-			var builders = this.bulkPickWorkers(gameState, newbase, 10);
+			let builders = this.bulkPickWorkers(gameState, newbase, 10);
 			if (builders !== false)
 			{
 				builders.forEach(function (worker) {
@@ -146,8 +147,8 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		else if (ent.hasClass("Wonder") && gameState.getGameType() === "wonder")
 		{
 			// Let's get a few units from other bases there to build this.
-			var base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
-			var builders = this.bulkPickWorkers(gameState, base, 10);
+			let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
+			let builders = this.bulkPickWorkers(gameState, base, 10);
 			if (builders !== false)
 			{
 				builders.forEach(function (worker) {
@@ -159,7 +160,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	for (var evt of events["ConstructionFinished"])
+	for (let evt of events["ConstructionFinished"])
 	{
 		// Let's check if we have a building set to create a new base.
 		// TODO: move to the base manager.
@@ -167,7 +168,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		{
 			if (evt.newentity === evt.entity)  // repaired building
 				continue;
-			var ent = gameState.getEntityById(evt.newentity);
+			let ent = gameState.getEntityById(evt.newentity);
 			if (!ent || !ent.isOwn(PlayerID))
 				continue;
 
@@ -249,11 +250,10 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				this.updateTerritories(gameState);
 			if (ent.decaying())
 			{
-				if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity))
+				if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity, true))
 					continue;
-				let capture = ent.capturePoints();
-				if (capture && capture[PlayerID] > 0.5 * capture.reduce((a, b) => a + b))
-					ent.destroy();
+				if (!this.decayingStructures.has(evt.entity))
+					this.decayingStructures.add(evt.entity);
 			}
 		}
 	}
@@ -261,34 +261,34 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	// deal with the different rally points of training units: the rally point is set when the training starts
 	// for the time being, only autogarrison is used
 
-	for (var evt of events["TrainingStarted"])
+	for (let evt of events["TrainingStarted"])
 	{
-		var ent = gameState.getEntityById(evt.entity);
+		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || !ent.isOwn(PlayerID))
 			continue;
 
 		if (!ent._entity.trainingQueue || !ent._entity.trainingQueue.length)
 			continue;
-		var metadata = ent._entity.trainingQueue[0].metadata;
+		let metadata = ent._entity.trainingQueue[0].metadata;
 		if (metadata && metadata.garrisonType)
 			ent.setRallyPoint(ent, "garrison");  // trained units will autogarrison
 		else
 			ent.unsetRallyPoint();
 	}
 
-	for (var evt of events["TrainingFinished"])
+	for (let evt of events["TrainingFinished"])
 	{
-		for (var entId of evt.entities)
+		for (let entId of evt.entities)
 		{
-			var ent = gameState.getEntityById(entId);
+			let ent = gameState.getEntityById(entId);
 			if (!ent || !ent.isOwn(PlayerID))
 				continue;
 
 			if (!ent.position())
 			{
 				// we are autogarrisoned, check that the holder is registered in the garrisonManager
-				var holderId = ent.unitAIOrderData()[0]["target"];
-				var holder = gameState.getEntityById(holderId);
+				let holderId = ent.unitAIOrderData()[0]["target"];
+				let holder = gameState.getEntityById(holderId);
 				if (holder)
 					this.garrisonManager.registerHolder(gameState, holder);
 			}
@@ -333,12 +333,48 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		{
 			if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity))
 				continue;
-			let capture = ent.capturePoints();
-			if (capture && capture[PlayerID] > 0.5 * capture.reduce((a, b) => a + b))
-				ent.destroy();
+			if (!this.decayingStructures.has(evt.entity))
+				this.decayingStructures.add(evt.entity);
 		}
 		else if (ent.isGarrisonHolder())
 			this.garrisonManager.removeDecayingStructure(evt.entity);		
+	}
+
+	// then deals with decaying structures
+	for (let entId of this.decayingStructures)
+	{
+		let ent = gameState.getEntityById(entId);
+		if (ent && ent.decaying() && ent.isOwn(PlayerID))
+		{
+			let capture = ent.capturePoints();
+			if (!capture)
+				continue;
+			let captureRatio = capture[PlayerID] / capture.reduce((a, b) => a + b);
+			if (captureRatio < 0.50)
+				continue;
+			let decayToGaia = true;
+			for (let i = 1; i < capture.length; ++i)
+			{
+				if (i == PlayerID || capture[i] < capture[0])
+					continue;
+				decayToGaia = false;
+				break;
+			}
+			if (decayToGaia)
+				continue;
+			let ratioMax = 0.70;
+			for (let evt of events["Attacked"])
+			{
+				if (ent.id() != evt.target)
+					continue;
+				ratioMax = 0.90;
+				break;
+			}
+			if (captureRatio > ratioMax)
+				continue;
+			ent.destroy();
+		}
+		this.decayingStructures.delete(entId);
 	}
 };
 
@@ -2050,7 +2086,8 @@ m.HQ.prototype.Serialize = function()
 		"canBuildUnits": this.canBuildUnits,
 		"navalMap": this.navalMap,
 		"landRegions": this.landRegions,
-		"navalRegions": this.navalRegions
+		"navalRegions": this.navalRegions,
+		"decayingStructures": this.decayingStructures
 	};
 
 	let baseManagers = [];
