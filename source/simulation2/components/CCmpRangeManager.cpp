@@ -96,18 +96,15 @@ static u32 CalcSharedLosMask(std::vector<player_id_t> players)
 }
 
 /**
- * Returns shared 1-bit mask for given list of players.
+ * Add a player to mask, which is a 1-bit mask representing a list of players.
+ * Returns true if the mask is modified.
  */
-static u32 CalcSharedDirtyVisibilityMask(std::vector<player_id_t> players)
+static bool AddPlayerSharedDirtyVisibilityMask(u16& mask, player_id_t player)
 {
-	u16 playerMask = 0;
-	for (size_t i = 0; i < players.size(); i++)
-	{
-		if (players[i] > 0 && players[i] <= 16)
-			playerMask |= (0x1 << (players[i] - 1));
-	}
-
-	return playerMask;
+	u16 oldMask = mask;
+	if (player > 0 && player <= 16)
+		mask |= (0x1 << (player - 1));
+	return oldMask != mask;
 }
 
 /**
@@ -1704,10 +1701,14 @@ public:
 	{
 		m_SharedLosMasks[player] = CalcSharedLosMask(players);
 
-		u16 oldMask = m_SharedDirtyVisibilityMasks[player];
-		m_SharedDirtyVisibilityMasks[player] = CalcSharedDirtyVisibilityMask(players);
+		// From now on, units belonging to any of 'players' can trigger visibility updates for 'player'.
+		bool modified = false;
 
-		if (oldMask != m_SharedDirtyVisibilityMasks[player] && (size_t)player <= m_GlobalPlayerVisibilityUpdate.size())
+		for (player_id_t partner : players)
+			if (AddPlayerSharedDirtyVisibilityMask(m_SharedDirtyVisibilityMasks[partner], player))
+				modified = true;
+
+		if (modified && (size_t)player <= m_GlobalPlayerVisibilityUpdate.size())
 			m_GlobalPlayerVisibilityUpdate[player-1] = 1;
 	}
 
