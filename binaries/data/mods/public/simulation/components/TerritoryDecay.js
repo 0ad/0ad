@@ -27,7 +27,7 @@ TerritoryDecay.prototype.IsConnected = function()
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
 	var pos = cmpPosition.GetPosition2D();
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
-	if (tileOwner != cmpPlayer.GetPlayerID())
+	if (!cmpPlayer.IsMutualAlly(tileOwner))
 	{
 		this.connectedNeighbours[tileOwner] = 1;
 		return false;
