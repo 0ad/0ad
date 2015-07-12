@@ -142,7 +142,6 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI,
 				SpriteCall.m_Area = size;
 
 				// Handle additional attributes
-				std::vector<TextChunk::Tag::TagAttribute>::const_iterator att_it;
 				for (const TextChunk::Tag::TagAttribute& tagAttrib : tag.m_TagAttributes)
 				{
 					if (tagAttrib.attrib == L"displace" && !tagAttrib.value.empty())
