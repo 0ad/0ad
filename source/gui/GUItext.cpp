@@ -79,7 +79,7 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI,
 
 			// it's in the end of one word, and the icon
 			//  should really belong to the beginning of the next one
-			if (_to == to && to >= 1 && to < m_RawString.length())
+			if (_to == to && to >= 1 && to < (int)m_RawString.length())
 			{
 				if (m_RawString[to-1] == ' ' ||
 				    m_RawString[to-1] == '-' ||
