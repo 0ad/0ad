@@ -239,6 +239,9 @@ function updateGeneralPanelTeams()
 	var yStart = TEAMS_BOX_Y_START + g_WithoutTeam * (PLAYER_BOX_Y_SIZE + PLAYER_BOX_GAP);
 	for (var i = 0; i < g_Teams.length; ++i)
 	{
+		if (!g_Teams[i])
+			continue;
+
 		var teamBox = Engine.GetGUIObjectByName("teamBoxt["+i+"]");
 		teamBox.hidden = false;
 		var teamBoxSize = teamBox.size;

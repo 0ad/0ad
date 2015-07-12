@@ -224,13 +224,15 @@ m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
 	holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 };
 
-m.GarrisonManager.prototype.addDecayingStructure = function(gameState, entId)
+// Garrison units in decaying structures to stop their decay
+// do it only for structures useful for defense, except if we are expanding (justCaptured=true)
+// in which case we also do it for structures useful for unit trainings (TODO only Barracks are done)
+m.GarrisonManager.prototype.addDecayingStructure = function(gameState, entId, justCaptured)
 {
 	if (this.decayingStructures.has(entId))
 		return true;
 	let ent = gameState.getEntityById(entId);
-	// keep only useful buildings for defense
-	if (!ent || (!ent.hasClass("Barracks") && !ent.hasDefensiveFire()))
+	if (!ent || (!(ent.hasClass("Barracks") && justCaptured) && !ent.hasDefensiveFire()))
 		return false;
 	if (!ent.territoryDecayRate() || !ent.garrisonRegenRate())
 		return false;

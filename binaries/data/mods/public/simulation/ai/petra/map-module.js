@@ -103,24 +103,23 @@ m.createBorderMap = function(gameState)
 	var width = map.width;
 	var border = Math.round(80 / map.cellSize);
 	var passabilityMap = gameState.sharedScript.passabilityMap;
-	var obstructionLandMask = gameState.getPassabilityClassMask("default");
-	var obstructionWaterMask = gameState.getPassabilityClassMask("ship");
+	var obstructionMask = gameState.getPassabilityClassMask("unrestricted");
 	if (gameState.ai.circularMap)
 	{
-		var ic = (width - 1) / 2;
-		var radcut = (ic - border) * (ic - border);
-		for (var j = 0; j < map.length; ++j)
+		let ic = (width - 1) / 2;
+		let radcut = (ic - border) * (ic - border);
+		for (let j = 0; j < map.length; ++j)
 		{
-			var dx = j%width - ic;
-			var dy = Math.floor(j/width) - ic;
-			var radius = dx*dx + dy*dy;
+			let dx = j%width - ic;
+			let dy = Math.floor(j/width) - ic;
+			let radius = dx*dx + dy*dy;
 			if (radius < radcut)
 				continue;
 			map.map[j] = 2;
-			var ind = API3.getMapIndices(j, map, passabilityMap);
-			for (var k of ind)
+			let ind = API3.getMapIndices(j, map, passabilityMap);
+			for (let k of ind)
 			{
-				if ((passabilityMap.data[j] & obstructionLandMask) && (passabilityMap.data[j] & obstructionWaterMask))
+				if (passabilityMap.data[k] & obstructionMask)
 					continue;
 				map.map[j] = 1;
 				break;
@@ -129,18 +128,18 @@ m.createBorderMap = function(gameState)
 	}
 	else
 	{
-		var borderCut = width - border;
-		for (var j = 0; j < map.length; ++j)
+		let borderCut = width - border;
+		for (let j = 0; j < map.length; ++j)
 		{
-			var ix = j%width;
-			var iy = Math.floor(j/width);
+			let ix = j%width;
+			let iy = Math.floor(j/width);
 			if (ix < border || ix >= borderCut || iy < border || iy >= borderCut)
 			{
 				map.map[j] = 2;
-				var ind = API3.getMapIndices(j, map, passabilityMap);
-				for (var k of ind)
+				let ind = API3.getMapIndices(j, map, passabilityMap);
+				for (let k of ind)
 				{
-					if ((passabilityMap.data[j] & obstructionLandMask) && (passabilityMap.data[j] & obstructionWaterMask))
+					if (passabilityMap.data[k] & obstructionMask)
 						continue;
 					map.map[j] = 1;
 					break;

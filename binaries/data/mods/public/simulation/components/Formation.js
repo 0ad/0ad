@@ -1012,7 +1012,13 @@ Formation.prototype.LoadFormation = function(newTemplate)
 	this.Disband();
 
 	var newFormation = Engine.AddEntity(newTemplate);
-	// apply the info from the old formation to the new one
+
+	// Apply the info from the old formation to the new one
+
+	let cmpNewOwnership = Engine.QueryInterface(newFormation, IID_Ownership);
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership && cmpNewOwnership)
+		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
 
 	var cmpNewPosition = Engine.QueryInterface(newFormation, IID_Position);
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);

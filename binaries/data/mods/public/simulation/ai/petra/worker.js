@@ -553,11 +553,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		// Only cavalry and range units should hunt fleeing animals 
 		if (canFlee && !isCavalry && !isRanged)
 			return;
-
-		// quickscope accessbility check
-		if (!gameState.ai.accessibility.pathAvailable(gameState, entPosition, supply.position(), false, true))
-			return;
-					  
+		  
 		var supplyAccess = gameState.ai.accessibility.getAccessValue(supply.position());
 		if (supplyAccess !== access)
 			return;

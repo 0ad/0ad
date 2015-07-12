@@ -736,7 +736,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		foundations = this.buildings.filter(API3.Filters.byMetadata(PlayerID, "baseAnchor", true)).toEntityArray();
 		var tID = foundations[0].id();
 		workers.forEach(function (ent) {
-			var target = ent.getMetadata(PlayerID, "target-foundation");
+			let target = ent.getMetadata(PlayerID, "target-foundation");
 			if (target && target != tID)
 			{
 				ent.stopMoving();
@@ -777,10 +777,13 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		var maxTotalBuilders = Math.ceil(workers.length * 0.2);
+		if (target.hasClass("House") && gameState.getPopulationLimit() < (gameState.getPopulation() + 5)
+			&& gameState.getPopulationLimit() < gameState.getPopulationMax())
+			maxTotalBuilders = maxTotalBuilders + 2;
 		var targetNB = 2;
 		if (target.hasClass("House") || target.hasClass("DropsiteWood"))
 			targetNB = 3;
-		else if (target.hasClass("Barracks") || target.hasClass("Tower") || target.hasClass("Market"))
+		else if (target.hasClass("Barracks") || target.hasClass("DefenseTower") || target.hasClass("Market"))
 			targetNB = 4;
 		else if (target.hasClass("Fortress"))
 			targetNB = 7;

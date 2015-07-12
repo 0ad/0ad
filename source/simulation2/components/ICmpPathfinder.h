@@ -53,12 +53,14 @@ public:
 	/**
 	 * Get the list of all known passability classes.
 	 */
-	virtual std::map<std::string, pass_class_t> GetPassabilityClasses() = 0;
+	virtual void GetPassabilityClasses(std::map<std::string, pass_class_t>& passClasses) const = 0;
 
 	/**
-	* Get the list of pathfinding passability classes, or all others.
+	* Get the list of passability classes, separating pathfinding classes and others.
 	*/
-	virtual std::map<std::string, pass_class_t> GetPassabilityClasses(bool pathfindingClasses) = 0;
+	virtual void GetPassabilityClasses(
+		std::map<std::string, pass_class_t>& nonPathfindingPassClasses, 
+		std::map<std::string, pass_class_t>& pathfindingPassClasses) const = 0;
 
 	/**
 	 * Get the tag for a given passability class name.

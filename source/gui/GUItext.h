@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,36 +16,26 @@
  */
 
 /*
-GUI text, handles text stuff
-
---Overview--
-
-	Mainly contains struct SGUIText and friends.
-	 Actual text processing is made in CGUI::GenerateText()
-
---More info--
-
-	Check GUI.h
-
-*/
+ * GUI text, handles text stuff
+ *
+ * --Overview--
+ * Mainly contains struct SGUIText and friends.
+ * Actual text processing is made in CGUI::GenerateText()
+ *
+ * --More info--
+ * Check GUI.h
+ *
+ */
 
 #ifndef INCLUDED_GUITEXT
 #define INCLUDED_GUITEXT
 
-
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include <list>
 
 #include "CGUISprite.h"
 #include "ps/CStrIntern.h"
 
 class CGUI;
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * An SGUIText object is a parsed string, divided into
@@ -319,12 +309,12 @@ public:
 	 *		  to make several GenerateTextCall in different phases,
 	 *		  it avoids duplicates.
 	 */
-	void GenerateTextCall(const CGUI *pGUI,
-						  SFeedback &Feedback,
+	void GenerateTextCall(const CGUI* pGUI,
+						  SFeedback& Feedback,
 						  CStrIntern DefaultFont,
-						  const int &from, const int &to,
+						  const int& from, const int& to,
 						  const bool FirstLine,
-						  const IGUIObject *pObject=NULL) const;
+						  const IGUIObject* pObject = NULL) const;
 
 	/**
 	 * Words

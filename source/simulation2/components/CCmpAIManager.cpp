@@ -482,7 +482,8 @@ public:
 		return true;
 	}
 
-	bool RunGamestateInit(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& passabilityMap, const Grid<u8>& territoryMap, const std::map<std::string, pass_class_t>& passClassMasks)
+	bool RunGamestateInit(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& passabilityMap, const Grid<u8>& territoryMap, 
+		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
 		// this will be run last by InitGame.Js, passing the full game representation.
 		// For now it will run for the shared Component.
@@ -496,8 +497,10 @@ public:
 		ScriptInterface::ToJSVal(cx, &m_TerritoryMapVal, territoryMap);
 
 		m_PassabilityMap = passabilityMap;
-		m_PassClasses = passClassMasks;
-		m_LongPathfinder.Reload(passClassMasks, &m_PassabilityMap);
+		m_NonPathfindingPassClasses = nonPathfindingPassClassMasks;
+		m_PathfindingPassClasses = pathfindingPassClassMasks;
+
+		m_LongPathfinder.Reload(&m_PassabilityMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 
 		if (m_HasSharedComponent)
 		{
@@ -517,7 +520,7 @@ public:
 	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, 
 		const Grid<u16>& passabilityMap, const GridUpdateInformation& dirtinessInformations,
 		const Grid<u8>& territoryMap, bool territoryMapDirty, 
-		std::map<std::string, pass_class_t> passClassMasks)
+		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
 		ENSURE(m_CommandsComputed);
 
@@ -528,7 +531,7 @@ public:
 		{
 			m_PassabilityMap = passabilityMap;
 			if (dirtinessInformations.globallyDirty)
-				m_LongPathfinder.Reload(passClassMasks, &m_PassabilityMap);
+				m_LongPathfinder.Reload(&m_PassabilityMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 			else
 				m_LongPathfinder.Update(&m_PassabilityMap, dirtinessInformations.dirtinessGrid);
 			ScriptInterface::ToJSVal(cx, &m_PassabilityMapVal, m_PassabilityMap);
@@ -658,7 +661,8 @@ public:
 		}
 
 		// AI pathfinder
-		SerializeMap<SerializeString, SerializeU16_Unbounded>()(serializer, "pass classes", m_PassClasses);
+		SerializeMap<SerializeString, SerializeU16_Unbounded>()(serializer, "non pathfinding pass classes", m_NonPathfindingPassClasses);
+		SerializeMap<SerializeString, SerializeU16_Unbounded>()(serializer, "pathfinding pass classes", m_PathfindingPassClasses);
 		serializer.NumberU16_Unbounded("pathfinder grid w", m_PassabilityMap.m_W);
 		serializer.NumberU16_Unbounded("pathfinder grid h", m_PassabilityMap.m_H);
 		serializer.RawBytes("pathfinder grid data", (const u8*)m_PassabilityMap.m_Data, 
@@ -745,13 +749,14 @@ public:
 		}
 
 		// AI pathfinder
-		SerializeMap<SerializeString, SerializeU16_Unbounded>()(deserializer, "pass classes", m_PassClasses);
+		SerializeMap<SerializeString, SerializeU16_Unbounded>()(deserializer, "non pathfinding pass classes", m_NonPathfindingPassClasses);
+		SerializeMap<SerializeString, SerializeU16_Unbounded>()(deserializer, "pathfinding pass classes", m_PathfindingPassClasses);
 		u16 mapW, mapH;
 		deserializer.NumberU16_Unbounded("pathfinder grid w", mapW);
 		deserializer.NumberU16_Unbounded("pathfinder grid h", mapH);
 		m_PassabilityMap = Grid<NavcellData>(mapW, mapH);
 		deserializer.RawBytes("pathfinder grid data", (u8*)m_PassabilityMap.m_Data, mapW*mapH*sizeof(NavcellData));
-		m_LongPathfinder.Reload(m_PassClasses, &m_PassabilityMap);
+		m_LongPathfinder.Reload(&m_PassabilityMap, m_NonPathfindingPassClasses, m_PathfindingPassClasses);
 	}
 
 	int getPlayerSize()
@@ -866,7 +871,8 @@ private:
 	Grid<u8> m_TerritoryMap;
 	JS::PersistentRootedValue m_TerritoryMapVal;
 
-	std::map<std::string, pass_class_t> m_PassClasses;
+	std::map<std::string, pass_class_t> m_NonPathfindingPassClasses;
+	std::map<std::string, pass_class_t> m_PathfindingPassClasses;
 	LongPathfinder m_LongPathfinder;
 
 	bool m_CommandsComputed;
@@ -1022,11 +1028,11 @@ public:
 		}
 
 		LoadPathfinderClasses(state);
-		std::map<std::string, pass_class_t> passClassMasks;
+		std::map<std::string, pass_class_t> nonPathfindingPassClassMasks, pathfindingPassClassMasks;
 		if (cmpPathfinder)
-			passClassMasks = cmpPathfinder->GetPassabilityClasses(true);
+			cmpPathfinder->GetPassabilityClasses(nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 
-		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state), *passabilityMap, *territoryMap, passClassMasks);
+		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state), *passabilityMap, *territoryMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 	}
 
 	virtual void StartComputation()
@@ -1074,14 +1080,14 @@ public:
 		}
 
 		LoadPathfinderClasses(state);
-		std::map<std::string, pass_class_t> passClassMasks;
+		std::map<std::string, pass_class_t> nonPathfindingPassClassMasks, pathfindingPassClassMasks;
 		if (cmpPathfinder)
-			passClassMasks = cmpPathfinder->GetPassabilityClasses(true);
+			cmpPathfinder->GetPassabilityClasses(nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 
 		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state), 
 			*passabilityMap, dirtinessInformations,
 			*territoryMap, territoryMapDirty,
-			passClassMasks);
+			nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 
 		m_JustDeserialized = false;
 	}
@@ -1170,7 +1176,8 @@ private:
 		JS::RootedValue classesVal(cx);
 		scriptInterface.Eval("({})", &classesVal);
 
-		std::map<std::string, pass_class_t> classes = cmpPathfinder->GetPassabilityClasses();
+		std::map<std::string, pass_class_t> classes;
+		cmpPathfinder->GetPassabilityClasses(classes);
 		for (std::map<std::string, pass_class_t>::iterator it = classes.begin(); it != classes.end(); ++it)
 			scriptInterface.SetProperty(classesVal, it->first.c_str(), it->second, true);
 

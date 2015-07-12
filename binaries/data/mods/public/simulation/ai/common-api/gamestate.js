@@ -279,9 +279,8 @@ m.GameState.prototype.getMap = function() {
 };
 
 m.GameState.prototype.getPassabilityClassMask = function(name) {
-	if (!(name in this.sharedScript.passabilityClasses)){
+	if (!(name in this.sharedScript.passabilityClasses))
 		error("Tried to use invalid passability class name '" + name + "'");
-	}
 	return this.sharedScript.passabilityClasses[name];
 };
 
@@ -521,8 +520,7 @@ m.GameState.prototype.countFoundationsByType = function(type, maintain) {
 
 	var count = 0;
 	this.getOwnStructures().forEach(function(ent) {
-		var t = ent.templateName();
-		if (t == foundationType)
+		if (ent.templateName() == foundationType)
 			++count;
 	});
 	return count;

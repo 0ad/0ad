@@ -170,12 +170,14 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		break;
 	}
 	case MT_TerrainChanged:
+		m_TerrainDirty = true;
+		MinimalTerrainUpdate();
+		break;
 	case MT_WaterChanged:
 	case MT_ObstructionMapShapeChanged:
 		m_TerrainDirty = true;
-		// TODO: this can be optimized by only updating a part of the terrain grid
-		// using the TerrainChanged message data.
-		MinimalTerrainUpdate();
+		UpdateGrid();
+		m_PreserveUpdateInformations = true;
 		break;
 	case MT_TurnStart:
 		m_SameTurnMovesCount = 0;
@@ -214,19 +216,20 @@ pass_class_t CCmpPathfinder::GetPassabilityClass(const std::string& name)
 	return m_PassClassMasks[name];
 }
 
-std::map<std::string, pass_class_t> CCmpPathfinder::GetPassabilityClasses()
+void CCmpPathfinder::GetPassabilityClasses(std::map<std::string, pass_class_t>& passClasses) const
 {
-	return m_PassClassMasks;
+	passClasses = m_PassClassMasks;
 }
 
-std::map<std::string, pass_class_t> CCmpPathfinder::GetPassabilityClasses(bool pathfindingClasses)
+void CCmpPathfinder::GetPassabilityClasses(std::map<std::string, pass_class_t>& nonPathfindingPassClasses, std::map<std::string, pass_class_t>& pathfindingPassClasses) const
 {
-	std::map<std::string, pass_class_t> passabilityClasses;
 	for (auto& pair : m_PassClassMasks)
-		if ((GetPassabilityFromMask(pair.second)->m_Obstructions == PathfinderPassability::PATHFINDING) == pathfindingClasses)
-			passabilityClasses[pair.first] = pair.second;
-
-	return passabilityClasses;
+	{
+		if ((GetPassabilityFromMask(pair.second)->m_Obstructions == PathfinderPassability::PATHFINDING))
+			pathfindingPassClasses[pair.first] = pair.second;
+		else
+			nonPathfindingPassClasses[pair.first] = pair.second;
+	}
 }
 
 const PathfinderPassability* CCmpPathfinder::GetPassabilityFromMask(pass_class_t passClass) const
@@ -452,8 +455,12 @@ void CCmpPathfinder::UpdateGrid()
 	else
 		m_PreserveUpdateInformations = false; // Next time will be a regular update
 
+	u16 terrainSize = cmpTerrain->GetTilesPerSide();
+	if (terrainSize == 0)
+		return;
+
 	// If the terrain was resized then delete the old grid data
-	if (m_Grid && m_MapSize != cmpTerrain->GetTilesPerSide())
+	if (m_Grid && m_MapSize != terrainSize)
 	{
 		SAFE_DELETE(m_Grid);
 		SAFE_DELETE(m_TerrainOnlyGrid);
@@ -462,7 +469,7 @@ void CCmpPathfinder::UpdateGrid()
 	// Initialise the terrain data when first needed
 	if (!m_Grid)
 	{
-		m_MapSize = cmpTerrain->GetTilesPerSide();
+		m_MapSize = terrainSize;
 		m_Grid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
 		m_TerrainOnlyGrid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
 
@@ -514,17 +521,21 @@ void CCmpPathfinder::UpdateGrid()
 
 	// Update the long-range pathfinder
 	if (m_ObstructionsDirty.globallyDirty)
-		m_LongPathfinder.Reload(GetPassabilityClasses(true), m_Grid);
+	{
+		std::map<std::string, pass_class_t> nonPathfindingPassClasses, pathfindingPassClasses;
+		GetPassabilityClasses(nonPathfindingPassClasses, pathfindingPassClasses);
+		m_LongPathfinder.Reload(m_Grid, nonPathfindingPassClasses, pathfindingPassClasses);
+	}
 	else
 		m_LongPathfinder.Update(m_Grid, m_ObstructionsDirty.dirtinessGrid);
 }
 
 void CCmpPathfinder::MinimalTerrainUpdate()
 {
-	TerrainUpdateHelper();
+	TerrainUpdateHelper(false);
 }
 
-void CCmpPathfinder::TerrainUpdateHelper()
+void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability)
 {
 	PROFILE3("TerrainUpdateHelper");
 
@@ -635,6 +646,9 @@ void CCmpPathfinder::TerrainUpdateHelper()
 			for (u16 i = edgeSize; i < w-edgeSize+1; ++i)
 				m_TerrainOnlyGrid->set(i, j, m_TerrainOnlyGrid->get(i, j) | edgeMask);
 	}
+
+	if (!expandPassability)
+		return;
 
 	// Expand the impassability grid, for any class with non-zero clearance,
 	// so that we can stop units getting too close to impassable navcells.

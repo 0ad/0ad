@@ -79,7 +79,11 @@ public:
 
 	void SetDebugOverlay(bool enabled, const CSimContext* simContext);
 
-	void Recompute(const std::map<std::string, pass_class_t>& passClassMasks, Grid<NavcellData>* passabilityGrid);
+	// Non-pathfinding grids will never be recomputed on calling HierarchicalPathfinder::Update
+	void Recompute(Grid<NavcellData>* passabilityGrid,
+		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks,
+		const std::map<std::string, pass_class_t>& pathfindingPassClassMasks);
+
 	void Update(Grid<NavcellData>* grid, const Grid<u8>& dirtinessGrid);
 
 	RegionID Get(u16 i, u16 j, pass_class_t passClass);
@@ -158,12 +162,15 @@ private:
 		return m_Chunks[passClass].at(cj * m_ChunksW + ci);
 	}
 
+	void FillRegionOnGrid(const RegionID& region, pass_class_t passClass, NavcellData value, Grid<NavcellData>& grid);
+
 	u16 m_W, m_H;
 	u16 m_ChunksW, m_ChunksH;
 	std::map<pass_class_t, std::vector<Chunk> > m_Chunks;
 
 	std::map<pass_class_t, EdgesMap> m_Edges;
 
+	// Passability classes for which grids will be updated when calling Update
 	std::map<std::string, pass_class_t> m_PassClassMasks;
 
 	void AddDebugEdges(pass_class_t passClass);
