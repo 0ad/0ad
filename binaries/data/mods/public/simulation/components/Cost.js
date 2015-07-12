@@ -94,12 +94,12 @@ Cost.prototype.OnValueModification = function(msg)
 		return;
 
 	// update the population costs
-	var newPopCost = ApplyValueModificationsToEntity("Cost/Population",  +this.template.Population, this.entity);
+	var newPopCost = Math.round(ApplyValueModificationsToEntity("Cost/Population",  +this.template.Population, this.entity));
 	var popCostDifference = newPopCost - this.populationCost;
 	this.populationCost = newPopCost;
 
 	// update the population bonuses
-	var newPopBonus = ApplyValueModificationsToEntity("Cost/PopulationBonus",  +this.template.PopulationBonus, this.entity);
+	var newPopBonus = Math.round(ApplyValueModificationsToEntity("Cost/PopulationBonus",  +this.template.PopulationBonus, this.entity));
 	var popDifference = newPopBonus - this.populationBonus;
 	this.populationBonus = newPopBonus;
 
