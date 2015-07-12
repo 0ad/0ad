@@ -47,39 +47,35 @@ void CGUIString::SFeedback::Reset()
 	m_NewLine=false;
 }
 
-void CGUIString::GenerateTextCall(const CGUI *pGUI,
-								  SFeedback &Feedback,
+void CGUIString::GenerateTextCall(const CGUI* pGUI,
+								  SFeedback& Feedback,
 								  CStrIntern DefaultFont,
-								  const int &from, const int &to,
+								  const int& from, const int& to,
 								  const bool FirstLine,
-								  const IGUIObject *pObject) const
+								  const IGUIObject* pObject) const
 {
 	// Reset width and height, because they will be determined with incrementation
 	//  or comparisons.
 	Feedback.Reset();
 
 	// Check out which text chunk this is within.
-	//bool match_found = false;
-	std::vector<TextChunk>::const_iterator itTextChunk;
-	for (itTextChunk=m_TextChunks.begin(); itTextChunk!=m_TextChunks.end(); ++itTextChunk)
+	for (const TextChunk& textChunk : m_TextChunks)
 	{
 		// Get the area that is overlapped by both the TextChunk and
 		//  by the from/to inputted.
-		int _from, _to;
-		_from = std::max(from, itTextChunk->m_From);
-		_to = std::min(to, itTextChunk->m_To);
+		int _from = std::max(from, textChunk.m_From);
+		int _to = std::min(to, textChunk.m_To);
 
-		// If from is larger than to, than they are not overlapping
-		if (_to == _from && itTextChunk->m_From == itTextChunk->m_To)
+		// If from is larger than to, then they are not overlapping
+		if (_to == _from && textChunk.m_From == textChunk.m_To)
 		{
 			// These should never be able to have more than one tag.
-			ENSURE(itTextChunk->m_Tags.size()==1);
+			ENSURE(textChunk.m_Tags.size() == 1);
 
-			// Now do second check
-			//  because icons and images are placed on exactly one position
-			//  in the words-list, it can be counted twice if placed on an
-			//  edge. But there is always only one logical preference that
-			//  we want. This check filters the unwanted.
+			// Icons and images are placed on exactly one position
+			//  in the words-list, and they can be counted twice if placed
+			//  on an edge. But there is always only one logical preference
+			//  that we want. This check filters the unwanted.
 
 			// it's in the end of one word, and the icon
 			//  should really belong to the beginning of the next one
@@ -100,10 +96,10 @@ void CGUIString::GenerateTextCall(const CGUI *pGUI,
 					continue;
 			}
 
-			const CGUIString::TextChunk::Tag& tag = itTextChunk->m_Tags[0];
-			ENSURE(tag.m_TagType == CGUIString::TextChunk::Tag::TAG_IMGLEFT
-			       || tag.m_TagType == CGUIString::TextChunk::Tag::TAG_IMGRIGHT
-			       || tag.m_TagType == CGUIString::TextChunk::Tag::TAG_ICON);
+			const TextChunk::Tag& tag = textChunk.m_Tags[0];
+			ENSURE(tag.m_TagType == TextChunk::Tag::TAG_IMGLEFT
+			       || tag.m_TagType == TextChunk::Tag::TAG_IMGRIGHT
+			       || tag.m_TagType == TextChunk::Tag::TAG_ICON);
 
 			const std::string& path = utf8_from_wstring(tag.m_TagValue);
 			if (!pGUI->IconExists(path))
@@ -115,72 +111,70 @@ void CGUIString::GenerateTextCall(const CGUI *pGUI,
 
 			switch (tag.m_TagType)
 			{
-			case CGUIString::TextChunk::Tag::TAG_IMGLEFT:
+			case TextChunk::Tag::TAG_IMGLEFT:
 				Feedback.m_Images[SFeedback::Left].push_back(path);
 				break;
-			case CGUIString::TextChunk::Tag::TAG_IMGRIGHT:
+			case TextChunk::Tag::TAG_IMGRIGHT:
 				Feedback.m_Images[SFeedback::Right].push_back(path);
 				break;
+			case TextChunk::Tag::TAG_ICON:
+			{
+				// We'll need to setup a text-call that will point
+				//  to the icon, this is to be able to iterate
+				//  through the text-calls without having to
+				//  complex the structure virtually for nothing more.
+				SGUIText::STextCall TextCall;
 
-			case CGUIString::TextChunk::Tag::TAG_ICON:
+				// Also add it to the sprites being rendered.
+				SGUIText::SSpriteCall SpriteCall;
+
+				// Get Icon from icon database in pGUI
+				SGUIIcon icon = pGUI->GetIcon(path);
+
+				CSize size = icon.m_Size;
+
+				// append width, and make maximum height the height.
+				Feedback.m_Size.cx += size.cx;
+				Feedback.m_Size.cy = std::max(Feedback.m_Size.cy, size.cy);
+
+				// These are also needed later
+				TextCall.m_Size = size;
+				SpriteCall.m_Area = size;
+
+				// Handle additional attributes
+				std::vector<TextChunk::Tag::TagAttribute>::const_iterator att_it;
+				for (const TextChunk::Tag::TagAttribute& tagAttrib : tag.m_TagAttributes)
 				{
-					// We'll need to setup a text-call that will point
-					//  to the icon, this is to be able to iterate
-					//  through the text-calls without having to
-					//  complex the structure virtually for nothing more.
-					SGUIText::STextCall TextCall;
-
-					// Also add it to the sprites being rendered.
-					SGUIText::SSpriteCall SpriteCall;
-
-					// Get Icon from icon database in pGUI
-					SGUIIcon icon = pGUI->GetIcon(path);
-
-					CSize size = icon.m_Size;
-
-					// append width, and make maximum height the height.
-					Feedback.m_Size.cx += size.cx;
-					Feedback.m_Size.cy = std::max(Feedback.m_Size.cy, size.cy);
-
-					// These are also needed later
-					TextCall.m_Size = size;
-					SpriteCall.m_Area = size;
-
-					// Handle additional attributes
-					std::vector<TextChunk::Tag::TagAttribute>::const_iterator att_it;
-					for (att_it = tag.m_TagAttributes.begin(); att_it != tag.m_TagAttributes.end(); ++att_it)
+					if (tagAttrib.attrib == L"displace" && !tagAttrib.value.empty())
 					{
-						const TextChunk::Tag::TagAttribute& tagAttrib = *att_it;
-
-						if (tagAttrib.attrib == L"displace" && !tagAttrib.value.empty())
-						{
-							//Displace the sprite
-							CSize displacement;
-							// Parse the value
-							if (!GUI<CSize>::ParseString(tagAttrib.value, displacement))
-								LOGERROR("Error parsing 'displace' value for tag [ICON]");
-							else
-								SpriteCall.m_Area += displacement;
-						}
-						else if (tagAttrib.attrib == L"tooltip")
-							SpriteCall.m_Tooltip = tagAttrib.value;
-						else if (tagAttrib.attrib == L"tooltip_style")
-							SpriteCall.m_TooltipStyle = tagAttrib.value;
+						// Displace the sprite
+						CSize displacement;
+						// Parse the value
+						if (!GUI<CSize>::ParseString(tagAttrib.value, displacement))
+							LOGERROR("Error parsing 'displace' value for tag [ICON]");
+						else
+							SpriteCall.m_Area += displacement;
 					}
-
-					SpriteCall.m_Sprite = icon.m_SpriteName;
-					SpriteCall.m_CellID = icon.m_CellID;
-
-					// Add sprite call
-					Feedback.m_SpriteCalls.push_back(SpriteCall);
-
-					// Finalize text call
-					TextCall.m_pSpriteCall = &Feedback.m_SpriteCalls.back();
-
-					// Add text call
-					Feedback.m_TextCalls.push_back(TextCall);
+					else if (tagAttrib.attrib == L"tooltip")
+						SpriteCall.m_Tooltip = tagAttrib.value;
+					else if (tagAttrib.attrib == L"tooltip_style")
+						SpriteCall.m_TooltipStyle = tagAttrib.value;
 				}
+
+				SpriteCall.m_Sprite = icon.m_SpriteName;
+				SpriteCall.m_CellID = icon.m_CellID;
+
+				// Add sprite call
+				Feedback.m_SpriteCalls.push_back(SpriteCall);
+
+				// Finalize text call
+				TextCall.m_pSpriteCall = &Feedback.m_SpriteCalls.back();
+
+				// Add text call
+				Feedback.m_TextCalls.push_back(TextCall);
+
 				break;
+			}
 			NODEFAULT;
 			}
 		}
@@ -195,21 +189,19 @@ void CGUIString::GenerateTextCall(const CGUI *pGUI,
 			TextCall.m_String = m_RawString.substr(_from, _to-_from);
 
 			// Go through tags and apply changes.
-			std::vector<CGUIString::TextChunk::Tag>::const_iterator it2;
-			for (it2 = itTextChunk->m_Tags.begin(); it2 != itTextChunk->m_Tags.end(); ++it2)
+			for (const TextChunk::Tag& tag : textChunk.m_Tags)
 			{
-				switch (it2->m_TagType)
+				switch (tag.m_TagType)
 				{
-				case CGUIString::TextChunk::Tag::TAG_COLOR:
+				case TextChunk::Tag::TAG_COLOR:
 					TextCall.m_UseCustomColor = true;
 
-					if (!GUI<CColor>::ParseString(it2->m_TagValue, TextCall.m_Color)
-					    && pObject)
+					if (!GUI<CColor>::ParseString(tag.m_TagValue, TextCall.m_Color) && pObject)
 						LOGERROR("Error parsing the value of a [color]-tag in GUI text when reading object \"%s\".", pObject->GetPresentableName().c_str());
 					break;
-				case CGUIString::TextChunk::Tag::TAG_FONT:
+				case TextChunk::Tag::TAG_FONT:
 					// TODO Gee: (2004-08-15) Check if Font exists?
-					TextCall.m_Font = CStrIntern(utf8_from_wstring(it2->m_TagValue));
+					TextCall.m_Font = CStrIntern(utf8_from_wstring(tag.m_TagValue));
 					break;
 				default:
 					LOGERROR("Encountered unexpected tag applied to text");
