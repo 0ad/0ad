@@ -5,9 +5,10 @@
 	"requirements": {"all": [{"tech": "phase_village"}, {"civ": "pers"}]},
 	"icon": "stone_blocks.png",
 	"researchTime": 60,
-	"tooltip": "All Persian structures +25% health, but also +20% build time.",
+	"tooltip": "All Persian structures +25% health and capture points, but also +20% build time.",
 	"modifications": [
 		{"value": "Cost/BuildTime", "multiply": 1.20},
+		{"value": "Capturable/CapturePoints", "multiply": 1.25},
 		{"value": "Health/Max", "multiply": 1.25}
 	],
 	"affects": ["Structure"],
