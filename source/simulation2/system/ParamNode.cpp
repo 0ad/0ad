@@ -331,7 +331,7 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 		// Just a string
 		utf16string text(m_Value.begin(), m_Value.end());
-		JS::RootedString str(cx, JS_InternUCStringN(cx, reinterpret_cast<const jschar*>(text.data()), text.length()));
+		JS::RootedString str(cx, JS_NewExternalString(cx, reinterpret_cast<const char16_t*>(text.data()), text.length(), NULL));
 		if (str)
 		{
 			ret.setString(str);
@@ -344,7 +344,7 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 	// Got child nodes - convert this node into a hash-table-style object:
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr));
 	if (!obj)
 	{
 		ret.setUndefined();
@@ -366,7 +366,7 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 	if (!m_Value.empty())
 	{
 		utf16string text(m_Value.begin(), m_Value.end());
-		JS::RootedString str(cx, JS_InternUCStringN(cx, reinterpret_cast<const jschar*>(text.data()), text.length()));
+		JS::RootedString str(cx, JS_NewExternalString(cx, reinterpret_cast<const char16_t*>(text.data()), text.length(), NULL));
 		if (!str)
 		{
 			ret.setUndefined();

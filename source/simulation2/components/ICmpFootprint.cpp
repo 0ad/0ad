@@ -23,6 +23,17 @@
 
 #include "simulation2/system/SimContext.h"
 #include "maths/FixedVector3D.h"
+#include "jsapi.h"
+#include "mozilla/Attributes.h"
+#include "mozilla/GuardObjects.h"
+#include "mozilla/LinkedList.h"
+#include "mozilla/NullPtr.h"
+#include "mozilla/TypeTraits.h"
+
+#include "jspubtd.h"
+
+#include "js/TypeDecls.h"
+#include "js/Utility.h"
 
 JS::Value ICmpFootprint::GetShape_wrapper()
 {
@@ -33,7 +44,7 @@ JS::Value ICmpFootprint::GetShape_wrapper()
 	JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewObject(cx, NULL));
 	if (!obj)
 		return JS::UndefinedValue();
 

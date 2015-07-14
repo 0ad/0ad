@@ -21,7 +21,11 @@
 
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
+#include "js/GCAPI.h"
 
+#ifndef JS_USE_HELPER_THREADS
+#define JS_USE_HELPER_THREADS 1
+#endif
 
 void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const JS::GCDescription& UNUSED(desc))
 {
@@ -121,8 +125,10 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 	JSRuntime* parentJSRuntime = parentRuntime ? parentRuntime->m_rt : nullptr;
 	m_rt = JS_NewRuntime(runtimeSize, JS_USE_HELPER_THREADS, parentJSRuntime);
 	ENSURE(m_rt); // TODO: error handling
-
-	if (g_ScriptProfilingEnabled)
+	
+	//@TODO: fix after hook documentation for 42.x has been fixed, see
+	//https://bugzilla.mozilla.org/show_bug.cgi?id=1183310 for details
+	/*if (g_ScriptProfilingEnabled)
 	{
 		// Execute and call hooks are disabled if the runtime debug mode is disabled
 		JS_SetRuntimeDebugMode(m_rt, true);
@@ -136,7 +142,7 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 				JS_SetCallHook(m_rt, jshook_function, this);
 			}
 		}
-	}
+	}*/
 	
 	JS::SetGCSliceCallback(m_rt, GCSliceCallbackHook);
 	JS_SetGCCallback(m_rt, ScriptRuntime::GCCallback, this);
@@ -184,7 +190,7 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 		// The sweeping actually frees memory and it does this in a background thread (if JS_USE_HELPER_THREADS is set).
 		// While the sweeping is happening we already run scripts again and produce new garbage.
 
-		const int GCSliceTimeBudget = 30; // Milliseconds an incremental slice is allowed to run
+		const int64_t GCSliceTimeBudget = 30; // Milliseconds an incremental slice is allowed to run
 		
 		// Have a minimum time in seconds to wait between GC slices and before starting a new GC to distribute the GC 
 		// load and to hopefully make it unnoticeable for the player. This value should be high enough to distribute 
@@ -264,7 +270,10 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 					printf("Running incremental GC slice \n");
 #endif
 				PrepareContextsForIncrementalGC();
-				JS::IncrementalGC(m_rt, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
+				JS::StartIncrementalGC(m_rt, GC_NORMAL, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
+				while(!JS::IsIncrementalGCInProgress(m_rt)) {
+					JS::IncrementalGCSlice(m_rt, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
+				}
 			}
 			m_LastGCBytes = gcBytes;
 		}
@@ -275,10 +284,13 @@ void ScriptRuntime::ShrinkingGC()
 {
 	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_COMPARTMENT);
 	JS::PrepareForFullGC(m_rt);
-	JS::ShrinkingGC(m_rt, JS::gcreason::REFRESH_FRAME);
+	JS::GCForReason(m_rt, JSGCInvocationKind::GC_SHRINK, JS::gcreason::REFRESH_FRAME);
 	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 }
 
+//@TODO: fix after hook documentation for 42.x has been fixed, see
+//https://bugzilla.mozilla.org/show_bug.cgi?id=1183310 for details
+/*
 void* ScriptRuntime::jshook_script(JSContext* UNUSED(cx), JSAbstractFramePtr UNUSED(fp), bool UNUSED(isConstructing), bool before, bool* UNUSED(ok), void* closure)
 {
 	if (before)
@@ -329,7 +341,7 @@ void* ScriptRuntime::jshook_function(JSContext* cx, JSAbstractFramePtr fp, bool 
 	g_Profiler.StartScript(StringFlyweight(ss.str()).get().c_str());
 
 	return closure;
-}
+}*/
 
 void ScriptRuntime::PrepareContextsForIncrementalGC()
 {

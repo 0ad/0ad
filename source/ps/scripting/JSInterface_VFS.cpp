@@ -26,6 +26,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "lib/file/vfs/vfs_util.h"
+#include "jsapi.h"
 
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\
@@ -95,7 +96,8 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::
 	BuildDirEntListState state(pCxPrivate->pScriptInterface->GetContext());
 	vfs::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
-	return OBJECT_TO_JSVAL(state.filename_array);
+	//@TODO:
+	return JS::Value();//OBJECT_TO_JSVAL(state.filename_array);
 }
 
 // Return true iff the file exits
@@ -174,7 +176,7 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::ws
 	//
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
-		return JSVAL_NULL;
+		return JS::NullValue();
 
 	CStr contents = file.DecodeUTF8(); // assume it's UTF-8
 

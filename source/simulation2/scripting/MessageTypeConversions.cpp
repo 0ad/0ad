@@ -24,7 +24,7 @@
 #define TOJSVAL_SETUP() \
 	JSContext* cx = scriptInterface.GetContext(); \
 	JSAutoRequest rq(cx); \
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr())); \
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr)); \
 	if (!obj) \
 		return JS::UndefinedValue();
 
@@ -292,7 +292,7 @@ JS::Value CMessageTerrainChanged::ToJSVal(ScriptInterface& scriptInterface) cons
 	SET_MSG_PROPERTY(j0);
 	SET_MSG_PROPERTY(i1);
 	SET_MSG_PROPERTY(j1);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
 CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
@@ -332,7 +332,7 @@ CMessage* CMessageVisibilityChanged::FromJSVal(ScriptInterface& scriptInterface,
 JS::Value CMessageWaterChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
 CMessage* CMessageWaterChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))

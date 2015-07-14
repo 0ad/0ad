@@ -64,7 +64,8 @@ public:
 	{
 		for (typename ObjectIdTable::Range r(table_->all()); !r.empty(); r.popFront()) {
 			JSObject *obj = r.front().key();
-			JS_CallObjectTracer(trc, &obj, "ipc-id");
+			//@TODO: 31.x code
+			//JS_CallObjectTracer(trc, &obj, "ipc-id");
 			MOZ_ASSERT(obj == r.front().key());
 		}
 	}
@@ -106,7 +107,8 @@ private:
 	{
 		ObjectIdTable* table = static_cast<ObjectIdTable*>(data);
 		JSObject *prior = key;
-		JS_CallObjectTracer(trc, &key, "ObjectIdCache::table_ key");
+		//@TODO: 31.x code
+		//JS_CallObjectTracer(trc, &key, "ObjectIdCache::table_ key");
 		table->rekeyIfMoved(prior, key);
 	}
 

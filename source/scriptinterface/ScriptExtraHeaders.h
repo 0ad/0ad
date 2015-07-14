@@ -46,7 +46,6 @@
 #endif
 
 #include "jsfriendapi.h"
-#include "js/OldDebugAPI.h"
 #include "js/GCAPI.h"
 #include "js/StructuredClone.h"
 

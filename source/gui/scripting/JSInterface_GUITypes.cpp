@@ -23,11 +23,19 @@
 /**** GUISize ****/
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0,
-		JS_PropertyStub, JS_DeletePropertyStub,
-		JS_PropertyStub, JS_StrictPropertyStub,
-		JS_EnumerateStub, JS_ResolveStub,
-		JS_ConvertStub, NULL,
-		NULL, NULL, JSI_GUISize::construct, NULL
+	JSAddPropertyOp,
+    JSDeletePropertyOp,
+    JSGetterOp,
+    JSSetterOp,
+    JSEnumerateOp,
+    JSResolveOp,
+    JSMayResolveOp,
+    JSConvertOp,
+    FinalizeOpType,
+    JSNative,
+    JSHasInstanceOp,
+    JSNative,
+	NULL
 };
 
 JSFunctionSpec JSI_GUISize::JSI_methods[] = 

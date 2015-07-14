@@ -19,14 +19,11 @@
 #define INCLUDED_INTERFACE_SCRIPTED
 
 #include "scriptinterface/ScriptInterface.h"
+#include "jsapi.h"
 
 #define BEGIN_INTERFACE_WRAPPER(iname) \
 	JSClass class_ICmp##iname = { \
-		"ICmp" #iname, JSCLASS_HAS_PRIVATE, \
-		JS_PropertyStub, JS_DeletePropertyStub, JS_PropertyStub, JS_StrictPropertyStub, \
-		JS_EnumerateStub, JS_ResolveStub, \
-		JS_ConvertStub, NULL, \
-		NULL, NULL, NULL, NULL \
+		"ICmp" #iname, JSCLASS_HAS_PRIVATE \
 	}; \
 	static JSFunctionSpec methods_ICmp##iname[] = {
 

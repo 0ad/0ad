@@ -25,34 +25,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // for JSDOUBLE_IS_INT32, typed arrays
 #include "SerializedScriptTypes.h"
-
-static u8 GetArrayType(JSArrayBufferViewType arrayType)
-{
-	switch(arrayType)
-	{
-	case js::ArrayBufferView::TYPE_INT8:
-		return SCRIPT_TYPED_ARRAY_INT8;
-	case js::ArrayBufferView::TYPE_UINT8:
-		return SCRIPT_TYPED_ARRAY_UINT8;
-	case js::ArrayBufferView::TYPE_INT16:
-		return SCRIPT_TYPED_ARRAY_INT16;
-	case js::ArrayBufferView::TYPE_UINT16:
-		return SCRIPT_TYPED_ARRAY_UINT16;
-	case js::ArrayBufferView::TYPE_INT32:
-		return SCRIPT_TYPED_ARRAY_INT32;
-	case js::ArrayBufferView::TYPE_UINT32:
-		return SCRIPT_TYPED_ARRAY_UINT32;
-	case js::ArrayBufferView::TYPE_FLOAT32:
-		return SCRIPT_TYPED_ARRAY_FLOAT32;
-	case js::ArrayBufferView::TYPE_FLOAT64:
-		return SCRIPT_TYPED_ARRAY_FLOAT64;
-	case js::ArrayBufferView::TYPE_UINT8_CLAMPED:
-		return SCRIPT_TYPED_ARRAY_UINT8_CLAMPED;
-	default:
-		LOGERROR("Cannot serialize unrecognized typed array view: %d", arrayType);
-		throw PSERROR_Serialize_InvalidScriptValue();
-	}
-}
+#include "js/Conversions.h"
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer) :
 	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(scriptInterface.GetRuntime()), 
@@ -115,7 +88,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_TYPED_ARRAY);
 
-			m_Serializer.NumberU8_Unbounded("array type", GetArrayType(JS_GetArrayBufferViewType(obj)));
+			//@TODO: 31.x code
+			//m_Serializer.NumberU8_Unbounded("array type", GetArrayType(JS_GetArrayBufferViewType(obj)));
 			m_Serializer.NumberU32_Unbounded("byte offset", JS_GetTypedArrayByteOffset(obj));
 			m_Serializer.NumberU32_Unbounded("length", JS_GetTypedArrayLength(obj));
 
@@ -135,7 +109,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			u32 length = JS_GetArrayBufferByteLength(obj);
 			m_Serializer.NumberU32_Unbounded("buffer length", length);
-			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj), length);
+			JS::AutoCheckCannotGC nogc;
+			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj, nogc), length);
 			break;
 		}
 		else
@@ -179,8 +154,9 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 					if (hasCustomSerialize)
 					{
 						JS::RootedValue serialize(cx);
-						if (!JS_LookupProperty(cx, obj, "Serialize", &serialize))
-							throw PSERROR_Serialize_ScriptError("JS_LookupProperty failed");
+						//31.x code (LookupProperty obsolete, see https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/JSAPI_reference/JSObjectOps.lookupProperty)
+						//if (!JS_LookupProperty(cx, obj, "Serialize", &serialize))
+						//	throw PSERROR_Serialize_ScriptError("JS_LookupProperty failed");
 
 						// If serialize is null, so don't serialize anything more
 						if (!serialize.isNull())
@@ -324,8 +300,9 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			// Use LookupProperty instead of GetProperty to avoid the danger of getters
 			// (they might delete values and trigger GC)
-			if (!JS_LookupPropertyById(cx, obj, id, &propval))
-				throw PSERROR_Serialize_ScriptError("JS_LookupPropertyById failed");
+			//31.x code (obsolte, see https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/JSAPI_reference/JS_LookupProperty)
+			//if (!JS_LookupPropertyById(cx, obj, id, &propval))
+			//	throw PSERROR_Serialize_ScriptError("JS_LookupPropertyById failed");
 
 			HandleScriptVal(propval);
 		}
@@ -343,9 +320,10 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			if (string)
 			{
 				size_t length;
-				const jschar* ch = JS_GetStringCharsAndLength(cx, string, &length);
-				if (ch && length > 0)
-					funcname = std::wstring(ch, ch + length);
+				//@TODO: jschar not found
+				//const jschar* ch = JS_GetStringCharsAndLength(cx, string, &length);
+				//if (ch && length > 0)
+				//	funcname = std::wstring(ch, ch + length);
 			}
 		}
 
@@ -386,7 +364,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 	case JSTYPE_BOOLEAN:
 	{
 		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_BOOLEAN);
-		bool b = JSVAL_TO_BOOLEAN(val);
+		bool b = JS::ToBoolean(val);
 		m_Serializer.NumberU8_Unbounded("value", b ? 1 : 0);
 		break;
 	}
@@ -404,10 +382,10 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleStrin
 	JSAutoRequest rq(cx);
 
 	size_t length;
-	const jschar* chars = JS_GetStringCharsAndLength(cx, string, &length);
-
-	if (!chars)
-		throw PSERROR_Serialize_ScriptError("JS_GetStringCharsAndLength failed");
+	//@TODO: 31.x code 
+	//const jschar* chars = JS_GetStringCharsAndLength(cx, string, &length);
+	//if (!chars)
+	//	throw PSERROR_Serialize_ScriptError("JS_GetStringCharsAndLength failed");
 
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings to little-endian
@@ -415,7 +393,8 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleStrin
 
 	// Serialize strings directly as UTF-16, to avoid expensive encoding conversions
 	m_Serializer.NumberU32_Unbounded("string length", (u32)length);
-	m_Serializer.RawBytes(name, (const u8*)chars, length*2);
+	//@TODO: 31.x code
+	//m_Serializer.RawBytes(name, (const u8*)chars, length*2);
 }
 
 u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)

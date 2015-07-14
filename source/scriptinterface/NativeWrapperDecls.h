@@ -33,7 +33,9 @@ class HandleWrapper
 {
 public:
 	HandleWrapper() : m_Handle(JS::NullHandleValue) {};
-	void set(JS::HandleValue handle) { m_Handle.repoint(handle); }
+	void set(JS::HandleValue handle) { 
+            //m_Handle.repoint(handle); //@TODO: 31.x code; equivalent in 42.x unclear
+        }
 	operator JS::HandleValue()
 	{
 		return m_Handle;

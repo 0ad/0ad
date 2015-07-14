@@ -48,7 +48,7 @@ JS::Value JSI_Mod::GetAvailableMods(ScriptInterface::CxPrivate* pCxPrivate)
 	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
 	JSContext* cx = scriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr));
 
 	const Paths paths(g_args);
 
