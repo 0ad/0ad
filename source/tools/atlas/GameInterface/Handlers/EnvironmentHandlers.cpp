@@ -142,6 +142,8 @@ void SetSettings(const sEnvironmentSettings& s)
 	COLOR(s.unitcolor, g_LightEnv.m_UnitsAmbientColor);
 	COLOR(s.fogcolor, g_LightEnv.m_FogColor);
 #undef COLOR
+
+	cmpWaterManager->RecomputeWaterData();
 }
 
 BEGIN_COMMAND(SetEnvironmentSettings)
