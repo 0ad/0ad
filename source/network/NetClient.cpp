@@ -130,8 +130,10 @@ CNetClient::~CNetClient()
 void CNetClient::TraceMember(JSTracer *trc)
 {
 	std::deque<JS::Heap<JS::Value> >::iterator itr;
-	for (itr=m_GuiMessageQueue.begin(); itr != m_GuiMessageQueue.end(); ++itr)
-		JS_CallHeapValueTracer(trc, &*itr, "m_GuiMessageQueue");
+	for (itr=m_GuiMessageQueue.begin(); itr != m_GuiMessageQueue.end(); ++itr) {
+		//@TODO: 31.x legacy code
+		//JS_CallHeapValueTracer(trc, &*itr, "m_GuiMessageQueue");
+	}
 }
 
 void CNetClient::SetUserName(const CStrW& username)

@@ -44,7 +44,7 @@ public:
 	{
 		JSContext* cx = m_ScriptInterface.GetContext();
 		JSAutoRequest rq(cx);
-		m_AIs.set(JS_NewArrayObject(cx, 0));
+		m_AIs.init(cx, JS_NewArrayObject(cx, 0));
 	}
 
 	void Run()

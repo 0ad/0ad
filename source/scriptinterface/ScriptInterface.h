@@ -490,7 +490,7 @@ bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, co
 	JS::RootedValue jsRet(cx);
 	JS::AutoValueVector argv(cx);
 	argv.resize(1);
-	AssignOrToJSVal(cx, argv.handleAt(0), a0);
+	AssignOrToJSVal(cx, argv[0], a0);
 	return CallFunction_(val, name, argv, &jsRet);
 }
 
@@ -502,8 +502,8 @@ bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, co
 	JS::RootedValue jsRet(cx);
 	JS::AutoValueVector argv(cx);
 	argv.resize(2);
-	AssignOrToJSVal(cx, argv.handleAt(0), a0);
-	AssignOrToJSVal(cx, argv.handleAt(1), a1);
+	AssignOrToJSVal(cx, argv[0], a0);
+	AssignOrToJSVal(cx, argv[1], a1);
 	return CallFunction_(val, name, argv, &jsRet);
 }
 
@@ -515,9 +515,9 @@ bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, co
 	JS::RootedValue jsRet(cx);
 	JS::AutoValueVector argv(cx);
 	argv.resize(3);
-	AssignOrToJSVal(cx, argv.handleAt(0), a0);
-	AssignOrToJSVal(cx, argv.handleAt(1), a1);
-	AssignOrToJSVal(cx, argv.handleAt(2), a2);
+	AssignOrToJSVal(cx, argv[0], a0);
+	AssignOrToJSVal(cx, argv[1], a1);
+	AssignOrToJSVal(cx, argv[2], a2);
 	return CallFunction_(val, name, argv, &jsRet);
 }
 

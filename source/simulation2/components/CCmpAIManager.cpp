@@ -787,10 +787,14 @@ private:
 
 	void TraceMember(JSTracer *trc)
 	{
-		for (auto& prototypes : m_DeserializablePrototypes)
-			JS_CallHeapObjectTracer(trc, &prototypes.second, "CAIWorker::m_DeserializablePrototypes");
-		for (auto& metadata : m_PlayerMetadata)
-			JS_CallHeapValueTracer(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
+		for (auto& prototypes : m_DeserializablePrototypes) {
+			//@TODO: 31.x legacy code (successor unclear)
+			//JS_CallHeapObjectTracer(trc, &prototypes.second, "CAIWorker::m_DeserializablePrototypes");
+		}
+		for (auto& metadata : m_PlayerMetadata) {
+			//@TODO: 31.x legacy code (successor unclear)
+			//JS_CallHeapValueTracer(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
+		}
 	}
 
 	void LoadMetadata(const VfsPath& path, JS::MutableHandleValue out)

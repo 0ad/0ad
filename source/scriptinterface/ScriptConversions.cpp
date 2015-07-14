@@ -24,11 +24,12 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // for typed arrays
+#include "js/Conversions.h"
 
 #define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
 
 // Implicit type conversions often hide bugs, so warn about them
-#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS_ReportWarning(cx, "Script value conversion check failed: %s (got type %s)", #c, JS_GetTypeName(cx, JS_TypeOfValue(cx, v))); })
+#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS_ReportWarning(cx, "Script value conversion check failed: %s (got type %s)", #c, JS_TypeOfValue(cx, v)); })
 
 template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, JS::HandleValue v, bool& out)
 {
@@ -151,7 +152,9 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, JS::Hand
 	if (!str)
 		FAIL("Argument must be convertible to a string");
 	size_t length;
-	const jschar* ch = JS_GetStringCharsAndLength(cx, str, &length);
+	JS::AutoCheckCannotGC* nogc = NULL;
+	const char16_t* ch = NULL;
+	//@TODO: causes forward declaration error JS_FlattenString(cx, str)->twoByteChars(*nogc);
 	if (!ch)
 		FAIL("JS_GetStringsCharsAndLength failed"); // out of memory
 	out = std::wstring(ch, ch + length);
@@ -174,7 +177,7 @@ template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, JS::Handl
 	JS::RootedString str(cx, JS::ToString(cx, v));
 	if (!str)
 		FAIL("Argument must be convertible to a string");
-	char* ch = JS_EncodeString(cx, str); // chops off high byte of each jschar
+	char* ch = JS_EncodeString(cx, str); // chops off high byte of each char16_t
 	if (!ch)
 		FAIL("JS_EncodeString failed"); // out of memory
 	out = std::string(ch, ch + JS_GetStringLength(str));
@@ -291,7 +294,7 @@ template<> void ScriptInterface::ToJSVal<std::wstring>(JSContext* cx, JS::Mutabl
 {
 	JSAutoRequest rq(cx);
 	utf16string utf16(val.begin(), val.end());
-	JS::RootedString str(cx, JS_NewUCStringCopyN(cx, reinterpret_cast<const jschar*> (utf16.c_str()), utf16.length()));
+	JS::RootedString str(cx, JS_NewUCStringCopyN(cx, reinterpret_cast<const char16_t*> (utf16.c_str()), utf16.length()));
 	if (str)
 		ret.setString(str);
 	else

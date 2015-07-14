@@ -27,6 +27,7 @@ IGUIObject
 #include "scriptinterface/ScriptInterface.h"
 
 #include "ps/CLogger.h"
+#include "jsapi.h"
 
 
 //-------------------------------------------------------------------
@@ -445,16 +446,28 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 	JS::CompileOptions options(cx);
 	options.setFileAndLine(CodeName.c_str(), 0);
-	options.setCompileAndGo(true);
+	//@TODO: replacement?? options.setCompileAndGo(true);
 
-	JS::RootedFunction func(cx, JS_CompileFunction(cx, globalObj,
-		buf, paramCount, paramNames, Code.c_str(), Code.length(), options));
-
-	if (!func)
+	JS::AutoObjectVector autoObjectVector(cx);
+	const char16_t* srcBufData = reinterpret_cast<const char16_t*> (Code.c_str());
+	JS::SourceBufferHolder srcBuf(srcBufData, //data 
+		(size_t)(Code.length()), //dataLength
+		JS::SourceBufferHolder::GiveOwnership
+		);
+	JSFunction* function = JS_NewFunction(cx, 
+		NULL, //call
+		0, //nargs
+		0, // flags,
+               "[a name]" // name
+		);
+	JS::RootedFunction rootedFunction(cx, function);
+	JS::MutableHandleFunction functionHandle(&rootedFunction);
+	if(!JS::CompileFunction(cx, autoObjectVector, options, 
+		buf, paramCount, paramNames, srcBuf, functionHandle)) {
 		return; // JS will report an error message
-	
-	JS::RootedObject funcObj(cx, JS_GetFunctionObject(func));
-	SetScriptHandler(Action, funcObj);
+	}
+	JS::HandleObject handleObject(functionHandle.);
+	SetScriptHandler(Action, handleObject);
 }
 
 void IGUIObject::SetScriptHandler(const CStr& Action, JS::HandleObject Function)

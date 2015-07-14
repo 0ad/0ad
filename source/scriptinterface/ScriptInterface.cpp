@@ -44,6 +44,8 @@
 #include "valgrind.h"
 
 #include "scriptinterface/ScriptExtraHeaders.h"
+#include "jsapi.h"
+#include "jsfriendapi.h"
 
 /**
  * @file
@@ -81,12 +83,32 @@ namespace
 {
 
 JSClass global_class = {
-	"global", JSCLASS_GLOBAL_FLAGS,
-	JS_PropertyStub, JS_DeletePropertyStub, 
-	JS_PropertyStub, JS_StrictPropertyStub,
-	JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub,
-	nullptr, nullptr, nullptr, nullptr,
-	JS_GlobalObjectTraceHook
+    "global", //name
+    JSCLASS_GLOBAL_FLAGS, //flags
+    
+    /* Optional since SpiderMonkey 37 */
+    /*JSPropertyOp        addProperty;
+    JSDeletePropertyOp  delProperty;
+    JSPropertyOp        getProperty;
+    JSStrictPropertyOp  setProperty;
+    JSEnumerateOp       enumerate;
+    JSResolveOp         resolve;
+    JSConvertOp         convert;*/
+
+    /* Optional since SpiderMonkey 25 */
+    /*JSFinalizeOp        finalize;*/
+
+    /* Optional */
+    /*JSClassInternal     reserved0;    // Obsolete since SpiderMonkey 13
+    JSCheckAccessOp     checkAccess;  // Obsolete since SpiderMonkey 29
+    JSNative            call;
+    JSHasInstanceOp     hasInstance;
+    JSNative            construct;
+    JSXDRObjectOp       xdrObject;    // Obsolete since SpiderMonkey 13
+    JSTraceOp           trace;        // Added in SpiderMonkey 17
+
+    JSClassInternal     reserved1;    // Obsolete since SpiderMonkey 13
+    void                *reserved[N]; // sizeof 'reserved' depends on version */
 };
 
 void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
@@ -116,7 +138,8 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 
 		JS::RootedValue rval(cx);
 		const char dumpStack[] = "this.stack.trimRight().replace(/^/mg, '  ')"; // indent each line
-		if (JS_EvaluateScript(cx, excnObj, dumpStack, ARRAY_SIZE(dumpStack)-1, "(eval)", 1, &rval))
+		JS::ReadOnlyCompileOptions* compileOptions = NULL;
+		if (JS::Evaluate(cx, *compileOptions, dumpStack, ARRAY_SIZE(dumpStack)-1, &rval))
 		{
 			std::string stackTrace;
 			if (ScriptInterface::FromJSVal(cx, rval, stackTrace))
@@ -315,22 +338,24 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	m_cx = JS_NewContext(m_runtime->m_rt, STACK_CHUNK_SIZE);
 	ENSURE(m_cx);
 
-	JS_SetParallelIonCompilationEnabled(m_runtime->m_rt, true);
+	//@TODO: 31.x legacy code (maybe use compile options above)
+	//JS_SetParallelIonCompilationEnabled(m_runtime->m_rt, true);
 
 	// For GC debugging:
 	// JS_SetGCZeal(m_cx, 2);
 
 	JS_SetContextPrivate(m_cx, NULL);
 
-	JS_SetErrorReporter(m_cx, ErrorReporter);
+	//@TODO: 31.x legacy code
+	//JS_SetErrorReporter(JSRuntime(runtime), ErrorReporter);
 
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_ION_ENABLE, 1);
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
-	JS::ContextOptionsRef(m_cx).setExtraWarnings(1)
-		.setWerror(0)
-		.setVarObjFix(1)
-		.setStrictMode(1);
+	JS::ContextOptionsRef(m_cx);//.setExtraWarnings(1) //@TODO: 31.x legacy code
+		//.setWerror(0)
+		//.setVarObjFix(1)
+		//.setStrictMode(1);
 
 	JS::CompartmentOptions opt;
 	opt.setVersion(JSVERSION_LATEST);
@@ -353,7 +378,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS_DefineProperty(m_cx, m_glob, "global", globalRootedVal, JSPROP_ENUMERATE | JSPROP_READONLY
 			| JSPROP_PERMANENT);
 
-	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
+	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
 			| JSPROP_PERMANENT);
 
 	JS_DefineFunction(m_cx, globalRootedVal, "print", ::print,        0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
@@ -547,7 +572,7 @@ void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructo
 	}
 
 	JS::RootedObject global(m->m_cx, m->m_glob);
-	JS::RootedObject obj(m->m_cx, JS_InitClass(m->m_cx, global, JS::NullPtr(),
+	JS::RootedObject obj(m->m_cx, JS_InitClass(m->m_cx, global, NULL,
 									clasp,
 									constructor, minArgs,				// Constructor, min args
 									ps, fs,								// Properties, methods
@@ -573,7 +598,7 @@ JSObject* ScriptInterface::CreateCustomObject(const std::string & typeName)
 		throw PSERROR_Scripting_TypeDoesNotExist();
 
 	JS::RootedObject prototype(m->m_cx, it->second.m_Prototype.get());
-	return JS_NewObject(m->m_cx, (*it).second.m_Class, prototype, JS::NullPtr());
+	return JS_NewObject(m->m_cx, (*it).second.m_Class);
 }
 
 bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name)
@@ -665,7 +690,13 @@ bool ScriptInterface::SetProperty_(JS::HandleValue obj, const wchar_t* name, JS:
 	JS::RootedObject object(m->m_cx, &obj.toObject());
 
 	utf16string name16(name, name + wcslen(name));
-	if (! JS_DefineUCProperty(m->m_cx, object, reinterpret_cast<const jschar*>(name16.c_str()), name16.length(), value, NULL, NULL, attrs))
+	if (! JS_DefineUCProperty(m->m_cx, object, 
+		reinterpret_cast<const char16_t*>(name16.c_str()), 
+		name16.length(), 
+		value, 
+		attrs,
+		NULL, 
+		NULL))
 		return false;
 	return true;
 }
@@ -683,7 +714,7 @@ bool ScriptInterface::SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleV
 		return false;
 	JS::RootedObject object(m->m_cx, &obj.toObject());
 
-	if (! JS_DefinePropertyById(m->m_cx, object, INT_TO_JSID(name), value, NULL, NULL, attrs))
+	if (! JS_DefinePropertyById(m->m_cx, JS::HandleObject(object), JS::HandleId(JS::RootedId(m->m_cx, INT_TO_JSID(name))), value, attrs, NULL, NULL))
 		return false;
 	return true;
 }
@@ -768,21 +799,23 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 		return true; // reached the end of the prototype chain
 	
 	JS::RootedObject obj(m->m_cx, &objVal.toObject());
-	JS::RootedObject it(m->m_cx, JS_NewPropertyIterator(m->m_cx, obj));
-	if (!it)
+	JS::MutableHandleObject handleObj(&obj);
+	JSIdArray* it = JS_Enumerate(m->m_cx, handleObj);
+	if (!it) {
+		//@TODO: log error
 		return false;
-
-	while (true)
-	{
-		JS::RootedId idp(m->m_cx);
+	}
+	for(int i=0; i<JS_IdArrayLength(m->m_cx, it); i++) {
 		JS::RootedValue val(m->m_cx);
-		if (! JS_NextProperty(m->m_cx, it, idp.address()) || ! JS_IdToValue(m->m_cx, idp, &val))
-			return false;
-
-		if (val.isUndefined())
+		jsid idp = JS_IdArrayGet(m->m_cx, it, i);
+		JS_IdToValue(m->m_cx, idp, &val);
+		
+		if (val.isUndefined()) {
 			break; // end of iteration
-		if (!val.isString())
+		}
+		if (!val.isString()) {
 			continue; // ignore integer properties
+		}
 
 		JS::RootedString name(m->m_cx, val.toString());
 		size_t len = strlen(prefix)+1;
@@ -793,7 +826,8 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 		if(0 == strcmp(&buf[0], prefix))
 		{
 			size_t len;
-			const jschar* chars = JS_GetStringCharsAndLength(m->m_cx, name, &len);
+			JS::AutoCheckCannotGC nogc;
+			const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(m->m_cx, nogc, *name.address(), &len);
 			out.push_back(std::string(chars, chars+len));
 		}
 	}
@@ -847,17 +881,35 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 
 	JS::CompileOptions options(m->m_cx);
 	options.setFileAndLine(filenameStr.c_str(), lineNo);
-	options.setCompileAndGo(true);
+//	options.setCompileAndGo(true); //TODO: not available
 
-	JS::RootedFunction func(m->m_cx,
-	JS_CompileUCFunction(m->m_cx, global, NULL, 0, NULL,
-			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uint)(codeUtf16.length()), options)
-	);
-	if (!func)
+	JS::AutoObjectVector autoObjectVector(m->m_cx);
+	const char16_t* srcBufData = reinterpret_cast<const char16_t*> (codeUtf16.c_str());
+	JS::SourceBufferHolder srcBuf(srcBufData, //data 
+		(size_t)(codeUtf16.length()), //dataLength
+		JS::SourceBufferHolder::GiveOwnership
+		);
+	JSFunction* function = JS_NewFunction(m->m_cx, 
+		NULL, //call
+		0, //nargs
+		0, // flags,
+               "[a name]" // name
+		);
+	JS::RootedFunction rootedFunction(m->m_cx, function);
+	JS::MutableHandleFunction functionHandle(&rootedFunction);
+	if(!JS::CompileFunction(m->m_cx, autoObjectVector, options, 
+		filenameStr.c_str(), 
+		0, //nargs
+		NULL, //argnames
+		srcBuf, //srcBuf
+		functionHandle //fun
+		)
+	) {
 		return false;
+	}
 
 	JS::RootedValue rval(m->m_cx);
-	return JS_CallFunction(m->m_cx, JS::NullPtr(), func, JS::HandleValueArray::empty(), &rval);
+	return JS_CallFunction(m->m_cx, NULL, functionHandle, JS::HandleValueArray::empty(), &rval);
 }
 
 shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtimeSize, int heapGrowthBytesGCTrigger)
@@ -872,10 +924,14 @@ bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstri
 	utf16string codeUtf16(code.begin(), code.end());
 	uint lineNo = 1;
 
+	JS::CompileOptions options(m->m_cx);
 	JS::RootedValue rval(m->m_cx);
-	return JS_EvaluateUCScript(m->m_cx, global,
-			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uint)(codeUtf16.length()),
-			utf8_from_wstring(filename.string()).c_str(), lineNo, &rval);
+	JS::Rooted<JS::Value> rootedValue(m->m_cx, rval);
+	JS::MutableHandleValue handle(&rootedValue);
+	return JS::Evaluate(m->m_cx, options, //compileOptions
+			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), //srcBuf
+			codeUtf16.length(),
+			handle);
 }
 
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
@@ -903,10 +959,14 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 	utf16string codeUtf16(code.begin(), code.end());
 	uint lineNo = 1;
 
+	JS::CompileOptions options(m->m_cx);
 	JS::RootedValue rval(m->m_cx);
-	return JS_EvaluateUCScript(m->m_cx, global,
-			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uint)(codeUtf16.length()),
-			utf8_from_wstring(path.string()).c_str(), lineNo, &rval);
+	JS::Rooted<JS::Value> rootedValue(m->m_cx, rval);
+	JS::MutableHandleValue handle(&rootedValue);
+	return JS::Evaluate(m->m_cx, options, //compileOptions
+			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), //srcBuf
+			codeUtf16.length(),
+			handle);
 }
 
 bool ScriptInterface::Eval(const char* code)
@@ -922,7 +982,11 @@ bool ScriptInterface::Eval_(const char* code, JS::MutableHandleValue rval)
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	utf16string codeUtf16(code, code+strlen(code));
 	
-	return JS_EvaluateUCScript(m->m_cx, global, (const jschar*)codeUtf16.c_str(), (uint)codeUtf16.length(), "(eval)", 1, rval);
+	JS::CompileOptions options(m->m_cx);
+	return JS::Evaluate(m->m_cx, options, //compileOptions
+			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), //srcBuf
+			codeUtf16.length(),
+			rval);
 }
 
 bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval)
@@ -931,7 +995,11 @@ bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval)
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	utf16string codeUtf16(code, code+wcslen(code));
 
-	return JS_EvaluateUCScript(m->m_cx, global, (const jschar*)codeUtf16.c_str(), (uint)codeUtf16.length(), "(eval)", 1, rval);
+	JS::CompileOptions options(m->m_cx);
+	return JS::Evaluate(m->m_cx, options, //compileOptions
+			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), //srcBuf
+			codeUtf16.length(),
+			rval);
 }
 
 bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out)
@@ -939,8 +1007,9 @@ bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandl
 	JSAutoRequest rq(m->m_cx);
 	std::wstring attrsW = wstring_from_utf8(string_utf8);
  	utf16string string(attrsW.begin(), attrsW.end());
-	if (JS_ParseJSON(m->m_cx, reinterpret_cast<const jschar*>(string.c_str()), (u32)string.size(), out))
+	if (JS_ParseJSON(m->m_cx, reinterpret_cast<const char16_t*>(string.c_str()), (u32)string.size(), out)) {
 		return true;
+	}
 
 	LOGERROR("JS_ParseJSON failed!");
 	if (!JS_IsExceptionPending(m->m_cx))
@@ -992,7 +1061,7 @@ void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue o
 
 struct Stringifier
 {
-	static bool callback(const jschar* buf, u32 len, void* data)
+	static bool callback(const char16_t* buf, u32 len, void* data)
 	{
 		utf16string str(buf, buf+len);
 		std::wstring strw(str.begin(), str.end());
@@ -1012,7 +1081,7 @@ std::string ScriptInterface::StringifyJSON(JS::MutableHandleValue obj, bool inde
 	JSAutoRequest rq(m->m_cx);
 	Stringifier str;
 	JS::RootedValue indentVal(m->m_cx, indent ? JS::Int32Value(2) : JS::UndefinedValue());
-	if (!JS_Stringify(m->m_cx, obj, JS::NullPtr(), indentVal, &Stringifier::callback, &str))
+	if (!JS_Stringify(m->m_cx, obj, nullptr, indentVal, &Stringifier::callback, &str))
 	{
 		JS_ClearPendingException(m->m_cx);
 		LOGERROR("StringifyJSON failed");
@@ -1038,12 +1107,13 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty)
 		JS::RootedValue indentVal(m->m_cx, JS::Int32Value(2));
 
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
-		JSErrorReporter er = JS_SetErrorReporter(m->m_cx, NULL);
+		JSRuntime* runtime = JS_GetRuntime(m->m_cx);
+		JSErrorReporter er = JS_SetErrorReporter(runtime, nullptr);
 
-		bool ok = JS_Stringify(m->m_cx, obj, JS::NullPtr(), indentVal, &Stringifier::callback, &str);
+		bool ok = JS_Stringify(m->m_cx, obj, nullptr, indentVal, &Stringifier::callback, &str);
 
 		// Restore error reporter
-		JS_SetErrorReporter(m->m_cx, er);
+		JS_SetErrorReporter(runtime, er);
 
 		if (ok)
 			return str.stream.str();

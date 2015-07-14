@@ -41,7 +41,7 @@ struct SimulationCommand
 	SimulationCommand& operator=(SimulationCommand&& other)
 	{
 		this->player = other.player;
-		this->data.set(other.data);
+		this->data = JS::PersistentRootedValue(other.data);
 		return *this;
 	}
 
