@@ -4,13 +4,14 @@
 # 
 # Translators:
 # caniro <carlod_39@yahoo.cl>, 2015
+# Marcelo Cardenas Zapata <marcelo.cardenas.13@sansano.usm.cl>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-05-25 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Spanish (Chile) (http://www.transifex.com/projects/p/0ad/language/es_CL/)\n"
+"PO-Revision-Date: 2015-07-01 23:09+0000\n"
+"Last-Translator: Marcelo Cardenas Zapata <marcelo.cardenas.13@sansano.usm.cl>\n"
+"Language-Team: Spanish (Chile) (http://www.transifex.com/p/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +20,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr "Estructura Cívico"
+msgstr "Estructura Urbana"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
@@ -32,7 +33,7 @@ msgstr "Centro Urbano"
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Construir para adquirir grandes extensiones de territorio. Guarnición: 20 unidades."
+msgstr "Construir para adquirir grandes extensiones de territorio. Alberga hasta 20 unidades."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:74
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
@@ -64,13 +65,13 @@ msgstr "Aura de sanación"
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "Cura a las unidades cercanas 1 HP por segundo"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "Entrena sanadores. Puede albergar hasta 20 unidades para curarlas a un ritmo rápido (3 HP por segundo). Investiga mejoras religiosas y de curación "
 
 #: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -102,7 +103,7 @@ msgstr "Torre de Defensa"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr ""
+msgstr "Dispara flechas. Guarécete para obtener defensa extra."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
@@ -136,7 +137,7 @@ msgstr "Puerta de la Ciudad"
 #: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr ""
+msgstr "Permite a las unidades acceder a la ciudad a traves de una muralla. Puede ser bloqueado para prevenir el tránsito"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
@@ -146,11 +147,11 @@ msgstr ""
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "Unidades en los muros tienen un extra de 3 en los niveles de armadura"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
-msgstr ""
+msgstr "Segmentos largos de muralla pueden ser convertidos en puertas"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
@@ -216,11 +217,11 @@ msgstr ""
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr ""
+msgstr "Construye un Centro Urbano en este punto para expandir tu territorio"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
-msgstr ""
+msgstr "Estructura Militar"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
@@ -228,7 +229,7 @@ msgstr "Militar"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr ""
+msgstr "Entrena ciudadanos-soldado. Investiga mejoras de entrenamiento. Puede albergar hasta 10 unidades"
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -237,12 +238,12 @@ msgstr "Cuartel"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr ""
+msgstr "Investiga mejoras de armas y armadura"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
 msgid "Blacksmith"
-msgstr ""
+msgstr "Herrero"
 
 #: simulation/templates/template_structure_military_dock.xml:25
 msgid ""
@@ -266,7 +267,7 @@ msgstr "Embajada"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr ""
+msgstr "Entrena heroes, campeones y armas de asedio. Investiga mejoras para armas de asedio. Puede albergar hasta 20 unidades"
 
 #: simulation/templates/template_structure_military_fortress.xml:60
 msgid "City"
@@ -779,7 +780,7 @@ msgstr ""
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr ""
+msgstr "Entrena sacerdotisas para curar a tus tropas. Entrena lanceros de la Banda Sagrada. Guarece hasta 20 unidades para curarlas a un ritmo acelerado."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -1445,7 +1446,7 @@ msgstr ""
 #: simulation/templates/structures/rome_siege_wall_short.xml:38
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr "Una empaliza de madera que se puede construir en territorio neutral o enemigo"
+msgstr "Una empalizada de madera que se puede construir en territorio neutral o enemigo"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:58
 msgid "Convert Siege Wall into Siege Wall Gate"
@@ -1491,7 +1492,7 @@ msgstr ""
 msgid ""
 "Build this temple to greatly increase the loyalty of your buildings and "
 "female-citizens (helps prevent their capture)."
-msgstr ""
+msgstr "Construye este templo para incrementar grandemente la lealtad de tus construcciones y ciudadanas femeninas (ayuda a prevenir su captura)"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1580,7 +1581,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Es el edificio de expansión Selyúcida, similar a los Centros Urbanos de otras facciones. Es mas débil y con menor territorio de influencia, pero es mas barato y se edifica mas rápido.\n- Entrena soldados-colonos de varias nacionalidades.\n- Distancia mínima de otras colonias militares: 120 metros"
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1592,7 +1593,7 @@ msgstr ""
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Paradise of Daphne"
-msgstr ""
+msgstr "Paraíso de Daphne"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
@@ -1600,7 +1601,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
-msgstr ""
+msgstr "Senado Espartano"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerontía"
@@ -1608,7 +1609,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr ""
+msgstr "Entrena heroes."
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"
@@ -1620,4 +1621,4 @@ msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr ""
+msgstr "Entrena Heroes Espartanos y Campeones Espartiatos Hóplitas"

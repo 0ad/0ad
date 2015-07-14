@@ -5,13 +5,14 @@
 # Translators:
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Petri, 2014
+# Riku Viitanen <riisseli4@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:51+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
+"PO-Revision-Date: 2015-06-29 06:59+0000\n"
+"Last-Translator: Riku Viitanen <riisseli4@gmail.com>\n"
+"Language-Team: Finnish (http://www.transifex.com/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,22 +22,22 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "Olen aloittamassa hyökkäystä pelaajaa %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "Lähetin juuri armeijan pelaajaa %(_player_)s vastaan."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "Anna minun järjestää armeijani uudelleen, niin taistelen kanssasi pelaajaa %(_player_)s vastaan."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "Teen viimeisiä juuri viimeisi valmisteluja, ja hyökkään sitten pelaajaa %(_player_)s vastaan."
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
@@ -50,17 +51,17 @@ msgstr ""
 msgid ""
 "Sorry, I have not enough soldiers currently, but my next attack will target "
 "%(_player_)s."
-msgstr ""
+msgstr "Minulla ei ole tarpeeksi sotilaita nyt, mutta seuraavaksi hyökkään pelaajaa %(_player_)s vastaan."
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "Tässä lahja pelaajalle %(_player_)s, käytä se viisaasti."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "Huomaan että olet pahassa pulassa %(_player_)s, toivon että tämä auttaa."
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
@@ -72,31 +73,31 @@ msgstr "Tarvitsen %(resource)s, voitko auttaa? Hyvitän sen kyllä."
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "Osallistuisin tehokkaammin sotaamme yhteistä vihollistamme vastaan, jos voisit antaa minulle vähän %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "Olen luonut uuden kauppareitin pelaajan %(_player_)s kanssa. Kaupankäynti tulee olemaan kannattavaa meille kaikille."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "Uusi kauppareitti on luotu pelaajan %(_player_)s. Ota oma osasi voitoista."
 
 #: simulation/ai/petra/chatHelper.js:112
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "Olen etenemässä vaiheeseen %(phase)s."
 
 #: simulation/ai/petra/chatHelper.js:114
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "Olen saavuttanut vaiheen %(phase)s."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -108,7 +109,7 @@ msgstr "Varoitus: Tämä on edistynyt ja nopea opetusohjelma. Jos et pysy peräs
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "Aloitetaanpas, ensin kouluta viiden naisen joukko (shift + klikkaus) kansalaiskeskuksesta."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
@@ -118,7 +119,7 @@ msgstr "Seuraavaksi määritä naiset keräämään marjoja, ratsumiehet metsäs
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr ""
+msgstr "Nyt, aseta kaupunkikeskuksesi kokoontumispiste marjoihin."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
@@ -140,7 +141,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
-msgstr ""
+msgstr "Laita jonoon viiden naisen joukko."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
@@ -213,7 +214,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
-msgstr ""
+msgstr "Laita jonoon 5 lisää naista. Nämä tulevat keräämään puuta"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:118
 msgid ""
@@ -229,15 +230,15 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
+msgstr "Laita toinen viiden naisen joukko tulemaan. Nämä tulevat keräämään puuta."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
-msgstr ""
+msgstr "Laita joukko keihäsmiehiä tulemaan"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
-msgstr ""
+msgstr "Tutki kivenhakkuuteknologia varastossa."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:153
 msgid "Queue a batch of slingers."
@@ -271,7 +272,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:193
 msgid "Start researching Phase 2."
-msgstr ""
+msgstr "Aloita vaiheen 2 tutkiminen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:198
 msgid "Queue some slingers."
@@ -286,7 +287,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
-msgstr ""
+msgstr "Laita jonoon 5 lisää naista rakennustyöhön."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:213
 msgid ""
@@ -314,7 +315,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
-msgstr ""
+msgstr "Pääasiat, jotka sinun pitäisi muistaa, ovat:"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
@@ -509,17 +510,17 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:85
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr ""
+msgstr "Rakennusta %(name)s ei voi rakentaa tuntemattoman virheen takia"
 
 #: simulation/components/BuildRestrictions.js:106
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr ""
+msgstr "Rakennusta %(name)s ei voi rakentaa tutkimattomalle alueelle"
 
 #: simulation/components/BuildRestrictions.js:154
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr ""
+msgstr "Rakennusta %(name)s ei voi rakentaa toisen rakennuksen tai resurssin päälle"
 
 #: simulation/components/BuildRestrictions.js:158
 #, javascript-format
@@ -531,28 +532,28 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:182
 msgctxt "Territory type"
 msgid "ally"
-msgstr ""
+msgstr "liittolainen"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "oma"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "neutraali"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:191
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "vihollinen"
 
 #: simulation/components/BuildRestrictions.js:197
 #, javascript-format
@@ -571,7 +572,7 @@ msgstr ""
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr ""
+msgstr "%(name)s on liian lähellä toista tyypin %(category)s rakennusta, pitää olla vähintän %(distance)s metriä kaukana."
 
 #: simulation/components/BuildRestrictions.js:273
 #, javascript-format
@@ -584,28 +585,28 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:304
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "oma"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "liittolainen"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "neutraali"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "vihollinen"
 
 #: simulation/components/CeasefireManager.js:125
 #, javascript-format
@@ -614,7 +615,7 @@ msgstr ""
 
 #: simulation/components/CeasefireManager.js:140
 msgid "You can attack now!"
-msgstr ""
+msgstr "Voit hyökätä nyt!"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -676,39 +677,39 @@ msgstr "Liian vähän resursseja - %(resourceAmount1)s %(resourceType1)s, %(reso
 
 #: simulation/components/ProductionQueue.js:366
 msgid "The production queue is full."
-msgstr ""
+msgstr "Tuotantojono on täysi."
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "Etana (0,1x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "Hidas (0,25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "Vapaa-aikaa (0,5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "Rentoutunut (0,75x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Normal (1x)"
-msgstr ""
+msgstr "Normaali (1x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[5].Name
 msgid "Fast (1.25x)"
-msgstr ""
+msgstr "Nopea (1,25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[6].Name
 msgid "Very Fast (1.5x)"
-msgstr ""
+msgstr "Todella nopea (1,5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[7].Name
 msgid "Insane (2x)"
-msgstr ""
+msgstr "Järjetön (2x)"
 
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -798,7 +799,7 @@ msgstr "Jättiläismäinen"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr ""
+msgstr "Petra Bot"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""

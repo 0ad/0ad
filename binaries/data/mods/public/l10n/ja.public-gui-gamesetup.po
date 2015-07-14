@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Akihiro Kawakami <akinobu329@yahoo.co.jp>, 2013
+# Asakura, 2015
 # guicho2.71828 <guicho2.71828@gmail.com>, 2014
 # jiroramo <billiken316@yahoo.co.jp>, 2013
 # Kanetaka Suto, 2013
@@ -18,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
+"PO-Revision-Date: 2015-07-06 06:41+0000\n"
+"Last-Translator: Kanetaka Suto\n"
+"Language-Team: Japanese (http://www.transifex.com/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -107,42 +108,42 @@ msgstr "デスマッチ"
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "停戦不可"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 分"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 分"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 分"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 分"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 分"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 分"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 分"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -226,7 +227,7 @@ msgstr "いいえ"
 #: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
 #: gui/gamesetup/gamesetup.js:1357
 msgid "Determined by scenario"
-msgstr ""
+msgstr "シナリオで決定"
 
 #: gui/gamesetup/gamesetup.js:1369
 msgid "Randomly selects a map from the list"
@@ -364,19 +365,19 @@ msgstr "すべての敵を倒す"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
 msgid "Conquest Structure"
-msgstr ""
+msgstr "建造物の征服"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "すべての敵の建造物を破壊"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "ユニットの征服"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "すべての敵ユニットを破壊"
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -497,7 +498,7 @@ msgstr "開始時資源："
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "停戦："
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -513,7 +514,7 @@ msgstr "探索済みマップ："
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
-msgstr "宝をオフ"
+msgstr "財宝の無効化："
 
 #: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
@@ -593,7 +594,7 @@ msgstr "ゲーム開始時の資源を選択します。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "攻撃を禁ずる時間を設定してください。"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -609,7 +610,7 @@ msgstr "全体マップの切り替え(初期マップが見える)。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
-msgstr "宝の表示をオフ"
+msgstr "マップのすべての財宝を無効にします。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."

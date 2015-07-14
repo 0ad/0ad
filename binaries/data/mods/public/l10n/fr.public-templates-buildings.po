@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-05-25 15:26+0000\n"
+"PO-Revision-Date: 2015-06-26 18:16+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,7 +31,7 @@ msgstr "Bâtiment civil"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr "Citoyen"
+msgstr "Civil"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
@@ -154,7 +154,7 @@ msgstr "Mur protecteur"
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr "Les unités sur des murs ont 3 niveaux supplémentaires d'armure"
+msgstr "Les unités postées sur les murs ont 3 niveaux d'armure supplémentaires"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -170,7 +170,7 @@ msgstr "Tourelle"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Tire des flèches. Mettez-y une garnison pour défendre une muraille contre les attaques."
+msgstr "Tire des flèches. Placez-y une garnison pour défendre une muraille contre les attaques."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -187,7 +187,7 @@ msgstr "Économique"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Dépôt pour les ressources alimentaires. Rechercher les améliorations pour la collecte de nourriture."
+msgstr "Dépôt pour les ressources alimentaires. Rechercher des améliorations pour la collecte de nourriture."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
@@ -198,7 +198,7 @@ msgstr "Ferme"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr "Créer des unités commerciales pour échanger avec les autres marchés. Troquer des ressources. Rechercher les améliorations commerciales et de troc."
+msgstr "Créer des unités commerciales pour échanger avec les autres marchés. Troquer des ressources. Rechercher les améliorations de commerce et de troc."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -210,7 +210,7 @@ msgstr "Marché"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Dépôt pour le bois, la pierre et le métal. Rechercher les améliorations de collecte associées à ces ressources."
+msgstr "Dépôt pour le bois, la pierre et le métal. Rechercher des améliorations pour la collecte de ces ressources."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_economic_storehouse.xml:24
@@ -224,7 +224,7 @@ msgstr "Colonie"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr "Construire un Centre-ville à cet endroit pour étendre votre territoire."
+msgstr "Construire un centre-ville à cet endroit pour étendre votre territoire."
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
@@ -256,7 +256,7 @@ msgstr "Forge"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Construire au bord de l'eau pour produire des navires de guerre et ouvrir le commerce maritime. Rechercher les améliorations navales."
+msgstr "Construire sur la côte pour produire des navires de guerre et ouvrir le commerce maritime. Rechercher les améliorations navales."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -312,7 +312,7 @@ msgstr "Champ"
 
 #: simulation/templates/template_structure_resource_field.xml:29
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Cultiver des légumes pour la nourriture. Max cueilleurs : 5."
+msgstr "Cultiver des légumes pour la nourriture. Max. fermiers : 5."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
@@ -331,7 +331,7 @@ msgstr "Merveille"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Apporter la gloire à votre civilisation et ajouter de grandes étendues de terres à votre empire."
+msgstr "Apporte la gloire à votre civilisation et ajoute de grandes étendues de terre à votre empire."
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/mace_barracks.xml:18
@@ -520,7 +520,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Apporter la gloire à votre civilisation et ajoute de grandes étendues de terres à votre empire. Jusqu'à 30 unités en garnison pour les soigner rapidement."
+msgstr "Apporte la gloire à votre civilisation et ajoute de grandes étendues de terre à votre empire. Jusqu'à 30 unités en garnison pour les soigner rapidement."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -656,7 +656,7 @@ msgstr "Gwarchglawdd"
 #: simulation/templates/structures/brit_wall_tower.xml:13
 #: simulation/templates/structures/gaul_wall_tower.xml:13
 msgid "Does not shoot or garrison."
-msgstr "Ne peut ni tirer, ni mettre en garnison."
+msgstr "Ne peut ni tirer, ni accueillir de garnison."
 
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9

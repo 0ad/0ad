@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-22 00:48+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
+"PO-Revision-Date: 2015-07-06 06:30+0000\n"
+"Last-Translator: Kanetaka Suto\n"
+"Language-Team: Japanese (http://www.transifex.com/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -410,7 +410,7 @@ msgstr "遠隔攻撃:"
 
 #: gui/common/tooltips.js:143
 msgid "Capture Attack:"
-msgstr ""
+msgstr "捕獲攻撃:"
 
 #: gui/common/tooltips.js:146
 msgid "Attack:"
@@ -649,11 +649,11 @@ msgstr "現在のシミュレーション時間を右上隅に表示します。
 
 #: gui/options/options.js:16
 msgid "Ceasefire Time Overlay"
-msgstr ""
+msgstr "停戦時間オーバーレイ"
 
 #: gui/options/options.js:16
 msgid "Always show the remaining ceasefire time."
-msgstr ""
+msgstr "停戦の残り時間を常に表示します。"
 
 #: gui/options/options.js:17
 msgid "Persist match settings"
@@ -1009,7 +1009,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:286
 msgid "Gather Rates:"
-msgstr "ギャザラーレート:"
+msgstr "採集速度："
 
 #: gui/structree/load.js:146
 #, javascript-format
@@ -1183,7 +1183,7 @@ msgstr "シナリオ"
 #: gui/summary/summary.js:141
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr ""
+msgstr "ゲーム経過時間：%(time)s"
 
 #: gui/summary/summary.js:162
 #, javascript-format
@@ -1565,7 +1565,7 @@ msgstr "既知の問題(ウェブ)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr "シヴィライゼーション:"
+msgstr "文明："
 
 #: gui/summary/summary.xml:(caption):22
 msgid "Summary"

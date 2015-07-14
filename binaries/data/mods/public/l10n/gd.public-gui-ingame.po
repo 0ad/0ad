@@ -10,27 +10,35 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-22 00:47+0200\n"
-"PO-Revision-Date: 2015-05-26 08:41+0000\n"
+"POT-Creation-Date: 2015-05-31 22:51+0200\n"
+"PO-Revision-Date: 2015-06-01 10:46+0000\n"
 "Last-Translator: GunChleoc\n"
-"Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
+"Language-Team: Gaelic, Scottish (http://www.transifex.com/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
-#: gui/session/input.js:152
-#, javascript-format
-msgid "Basic range: %(range)s meters"
-msgstr "Bun-astar: %(range)s meatair(ean)"
-
 #: gui/session/input.js:153
 #, javascript-format
-msgid "Average bonus range: %(range)s meters"
-msgstr "Buannachd astair chuibheasach: %(range)s meatair(ean)"
+msgid "Basic range: %(range)s meter"
+msgid_plural "Basic range: %(range)s meters"
+msgstr[0] "Bun-astar: %(range)s mheatair"
+msgstr[1] "Bun-astar: %(range)s mheatair"
+msgstr[2] "Bun-astar: %(range)s meatairean"
+msgstr[3] "Bun-astar: %(range)s meatair"
 
-#: gui/session/input.js:732
+#: gui/session/input.js:154
+#, javascript-format
+msgid "Average bonus range: %(range)s meter"
+msgid_plural "Average bonus range: %(range)s meters"
+msgstr[0] "Buannachd astair chuibheasach: %(range)s mheatair"
+msgstr[1] "Buannachd astair chuibheasach: %(range)s mheatair"
+msgstr[2] "Buannachd astair chuibheasach: %(range)s meatairean"
+msgstr[3] "Buannachd astair chuibheasach: %(range)s meatair"
+
+#: gui/session/input.js:733
 msgid "Cannot build wall here!"
 msgstr "Cha ghabh balla a thogail an-seo!"
 
@@ -85,7 +93,7 @@ msgstr "A bheil thu airson gèilleadh no an till thu?"
 msgid "Destroy everything currently selected?"
 msgstr "A bheil thu airson a h‑uile rud a thagh thu a mhilleadh?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:704
+#: gui/session/menu.js:189 gui/session/unit_actions.js:710
 msgid "Delete"
 msgstr "Sguab às"
 
@@ -522,64 +530,76 @@ msgstr "%(label)s %(current)s / %(max)s"
 msgid "Capture points:"
 msgstr "Puingean glacaidh:"
 
-#: gui/session/selection_panels.js:91
+#: gui/session/selection_panels.js:72
+msgid "Increase the alert level to protect more units"
+msgstr "Cuir an àirde ìre na caismeachd airson barrachd aonadan a dhìon"
+
+#: gui/session/selection_panels.js:74
+msgid "Raise an alert!"
+msgstr "Tog caismeachd!"
+
+#: gui/session/selection_panels.js:77
+msgid "End of alert."
+msgstr "Deireadh na caismeachd."
+
+#: gui/session/selection_panels.js:143
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Ceannaich %(resource)s"
 
-#: gui/session/selection_panels.js:92
+#: gui/session/selection_panels.js:144
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Reic %(resource)s"
 
-#: gui/session/selection_panels.js:270 gui/session/selection_panels.js:1055
+#: gui/session/selection_panels.js:322 gui/session/selection_panels.js:1107
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Tha %(technology)s a dhìth"
 
-#: gui/session/selection_panels.js:387
+#: gui/session/selection_panels.js:439
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "A-mach le %(name)s"
 
-#: gui/session/selection_panels.js:388
+#: gui/session/selection_panels.js:440
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Briog aon turas ach an tig 1 dhiubh a-mach. Shift-bhriog ach an tig gach saighdear dhen t-seòrsa seo a-mach."
 
-#: gui/session/selection_panels.js:455
+#: gui/session/selection_panels.js:507
 msgid "Lock Gate"
 msgstr "Glais an geata"
 
-#: gui/session/selection_panels.js:461
+#: gui/session/selection_panels.js:513
 msgid "Unlock Gate"
 msgstr "Neo-ghlais an geata"
 
-#: gui/session/selection_panels.js:566
+#: gui/session/selection_panels.js:618
 msgid "Pack"
 msgstr "Paisg"
 
-#: gui/session/selection_panels.js:568
+#: gui/session/selection_panels.js:620
 msgid "Unpack"
 msgstr "Neo-phaisg"
 
-#: gui/session/selection_panels.js:570
+#: gui/session/selection_panels.js:622
 msgid "Cancel Packing"
 msgstr "Sguir dhen phasgadh"
 
-#: gui/session/selection_panels.js:572
+#: gui/session/selection_panels.js:624
 msgid "Cancel Unpacking"
 msgstr "Sguir dhen neo-phasgadh"
 
-#: gui/session/selection_panels.js:645
+#: gui/session/selection_panels.js:697
 msgid "Insufficient population capacity:"
 msgstr "Chan eil àiteachan-fuirich gu leòr airson an t‑sluaigh:"
 
-#: gui/session/selection_panels.js:646
+#: gui/session/selection_panels.js:698
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:817
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
@@ -588,7 +608,7 @@ msgstr[1] "Air fhàgail: %(number)s ri thogail."
 msgstr[2] "Air fhàgail: %(number)s ri an togail."
 msgstr[3] "Air fhàgail: %(number)s ri thogail."
 
-#: gui/session/selection_panels.js:1043 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:629
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Slàinte:"
@@ -787,66 +807,54 @@ msgstr "Dèan briogadh deas gus slighe-mhalairt bhunaiteach a' stèidheachadh do
 msgid "Expected gain: %(gain)s"
 msgstr "Dùil air buannachd: %(gain)s"
 
-#: gui/session/unit_actions.js:676 gui/session/unit_actions.js:944
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
 msgid "Unload All"
 msgstr "A-mach leotha uile"
 
-#: gui/session/unit_actions.js:692
+#: gui/session/unit_actions.js:698
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "Chan urrainn dhut seo a mhilleadh on a tha e fo cheò a chogaidh"
 
-#: gui/session/unit_actions.js:698
+#: gui/session/unit_actions.js:704
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Chan urrainn dhut a' bhith seo a mhilleadh o nach eil an dàrna leth dhe na puingean-glacaidh agad"
 
-#: gui/session/unit_actions.js:727
+#: gui/session/unit_actions.js:733
 msgid "Stop"
 msgstr "Sguir dheth"
 
-#: gui/session/unit_actions.js:745
+#: gui/session/unit_actions.js:751
 msgid "Garrison"
 msgstr "Rach 'nad ghearastan"
 
-#: gui/session/unit_actions.js:766
+#: gui/session/unit_actions.js:772
 msgid "Unload"
 msgstr "A-mach leat"
 
-#: gui/session/unit_actions.js:782
+#: gui/session/unit_actions.js:788
 msgid "Repair"
 msgstr "Càraich"
 
-#: gui/session/unit_actions.js:799
+#: gui/session/unit_actions.js:805
 msgid "Focus on Rally Point"
 msgstr "Fòcas air ceann-cruinneachaidh"
 
-#: gui/session/unit_actions.js:822
+#: gui/session/unit_actions.js:828
 msgid "Back to Work"
 msgstr "Tillibh dhan obair"
 
-#: gui/session/unit_actions.js:838
+#: gui/session/unit_actions.js:844
 msgid "Guard"
 msgstr "Geàrd"
 
-#: gui/session/unit_actions.js:855
+#: gui/session/unit_actions.js:861
 msgid "Remove guard"
 msgstr "Thoir geàrd air falbh"
 
-#: gui/session/unit_actions.js:871
+#: gui/session/unit_actions.js:877
 msgid "Select trading goods"
 msgstr "Tagh bathar malairt"
-
-#: gui/session/unit_actions.js:888
-msgid "Increase the alert level to protect more units"
-msgstr "Cuir an àirde ìre na caismeachd airson barrachd aonadan a dhìon"
-
-#: gui/session/unit_actions.js:890
-msgid "Raise an alert!"
-msgstr "Tog caismeachd!"
-
-#: gui/session/unit_actions.js:908
-msgid "End of alert."
-msgstr "Deireadh na caismeachd."
 
 #: gui/session/utility_functions.js:131 gui/session/utility_functions.js:133
 msgid "+"
