@@ -1601,7 +1601,10 @@ public:
 	void UpdateVisibilityData()
 	{
 		PROFILE("UpdateVisibilityData");
-		
+
+		if (m_GlobalVisibilityUpdate)
+			m_ModifiedEntities.clear();
+
 		for (i32 n = 0; n < m_LosTilesPerSide * m_LosTilesPerSide; ++n)
 		{
 			for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
@@ -1616,16 +1619,20 @@ public:
 		}
 
 		std::fill(m_GlobalPlayerVisibilityUpdate.begin(), m_GlobalPlayerVisibilityUpdate.end(), 0);
-
-		// Don't bother updating modified entities if the update was global
-		if (!m_GlobalVisibilityUpdate)
-		{
-			for (auto& ent : m_ModifiedEntities)
-				UpdateVisibility(ent);
-		}
-
-		m_ModifiedEntities.clear();
 		m_GlobalVisibilityUpdate = false;
+
+		// Calling UpdateVisibility can modify m_ModifiedEntities, so be careful
+		// Infinite loops could be triggered by feedback between entities and their mirages
+		int check = 0;
+		while (!m_ModifiedEntities.empty())
+		{
+			++check;
+			ENSURE(check < 1000 && "Possible infinite loop in UpdateVisibilityData");
+
+			entity_id_t ent = m_ModifiedEntities.back();
+			m_ModifiedEntities.pop_back();
+			UpdateVisibility(ent);
+		}
 	}
 
 	virtual void RequestVisibilityUpdate(entity_id_t ent)
@@ -1653,7 +1660,7 @@ public:
 	}
 
 	void UpdateVisibility(entity_id_t ent)
-	{		
+	{
 		for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
 			UpdateVisibility(ent, player);
 	}
