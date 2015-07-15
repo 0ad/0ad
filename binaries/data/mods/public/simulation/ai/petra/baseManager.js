@@ -439,7 +439,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				{
 					let numFound = gameState.getOwnFoundations().filter(API3.Filters.byClass("Field")).length;
 					let goal = this.Config.Economy.provisionFields;
-					if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace || count > 300)
+					if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace || count > 300 || numFarms > 5)
 						goal = Math.max(goal-1, 1);
 					if (numFound + numQueue < goal)
 						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
