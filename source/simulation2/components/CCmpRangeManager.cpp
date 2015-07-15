@@ -239,6 +239,7 @@ struct SerializeEntityData
 		serialize.NumberI8_Unbounded("owner", value.owner);
 		serialize.NumberU8("in world", value.inWorld, 0, 1);
 		serialize.NumberU8_Unbounded("flags", value.flags);
+		serialize.NumberU8_Unbounded("scripted visibility"; value.scriptedVisibility);
 	}
 };
 
