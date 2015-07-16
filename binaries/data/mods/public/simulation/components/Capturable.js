@@ -77,17 +77,30 @@ Capturable.prototype.Reduce = function(amount, playerID)
 		return 0;
 
 	// distribute the capture points over all enemies
-	var distributedAmount = amount / numberOfEnemies;
-	for (let i in this.cp)
+	let distributedAmount = amount / numberOfEnemies;
+	let removedAmount = 0;
+	while (distributedAmount > 0.0001)
 	{
-		if (!cmpPlayerSource.IsEnemy(i))
-			continue;
-		if (this.cp[i] > distributedAmount)
-			this.cp[i] -= distributedAmount;
-		else
-			this.cp[i] = 0;
+		numberOfEnemies = 0;
+		for (let i in this.cp)
+		{
+			if (!this.cp[i] || !cmpPlayerSource.IsEnemy(i))
+				continue;
+			if (this.cp[i] > distributedAmount)
+			{
+				removedAmount += distributedAmount;
+				this.cp[i] -= distributedAmount;
+				++numberOfEnemies;
+			}
+			else
+			{
+				removedAmount += this.cp[i];
+				this.cp[i] = 0;
+			}
+		}
+		distributedAmount = numberOfEnemies ? (amount - removedAmount) / numberOfEnemies : 0;	    
 	}
-
+	
 	// give all cp taken to the player
 	var takenCp = this.maxCp - this.cp.reduce((a, b) => a + b);
 	this.cp[playerID] += takenCp;
