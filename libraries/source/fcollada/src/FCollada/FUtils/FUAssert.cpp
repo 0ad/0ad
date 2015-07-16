@@ -52,7 +52,7 @@ bool FUAssertion::OnAssertionFailed(const char* file, uint32 line)
 	#elif defined(__APPLE__)
 		// Use apple builtins
 		Debugger();
-	#elif defined(__i386__) or defined(__LP64__)
+	#elif defined(__i386__) or defined(__x86_64__)
 		// Use hardware breakpoints on UNIX-like x86 based hardware
 		__asm__("int $0x03");
 	#else
