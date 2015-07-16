@@ -325,7 +325,7 @@ function updateProfile()
 		if (attributes[0].totalGamesPlayed != 0)
 			Engine.GetGUIObjectByName("profileRatioText").caption = sprintf(translate("%(percentage)s%%"), { percentage: winRate });
 		else
-			Engine.GetGUIObjectByName("profileRatioText").caption = translate("-");
+			Engine.GetGUIObjectByName("profileRatioText").caption = translateWithContext("Used for an undefined winning rate", "-");
 		return;
 	}
 	else if (!Engine.GetGUIObjectByName("leaderboard").hidden)
@@ -353,7 +353,7 @@ function updateProfile()
 	if (attributes[0].totalGamesPlayed != 0)
 		Engine.GetGUIObjectByName("ratioText").caption = sprintf(translate("%(percentage)s%%"), { percentage: winRate });
 	else
-		Engine.GetGUIObjectByName("ratioText").caption = translate("-");
+		Engine.GetGUIObjectByName("ratioText").caption = translateWithContext("Used for an undefined winning rate", "-");
 }
 
 /**
