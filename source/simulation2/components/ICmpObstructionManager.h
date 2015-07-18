@@ -112,15 +112,14 @@ public:
 	 * 
 	 * @param ent entity ID associated with this shape (or INVALID_ENTITY if none)
 	 * @param x,z coordinates of center, in world space
-	 * @param r radius of circle or half the unit's width/height
-	 * @param clearance pathfinding clearance of the unit
+	 * @param clearance pathfinding clearance of the unit (works as a radius)
 	 * @param flags a set of EFlags values
 	 * @param group control group (typically the owner entity, or a formation controller entity
 	 *	- units ignore collisions with others in the same group)
 	 * @return a valid tag for manipulating the shape
 	 * @see UnitShape
 	 */
-	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t r, entity_pos_t clearance,
+	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t clearance,
 		flags_t flags, entity_id_t group) = 0;
 
 	/**
@@ -195,13 +194,13 @@ public:
 	 * @param filter filter to restrict the shapes that are being tested against
 	 * @param x X coordinate of shape's center
 	 * @param z Z coordinate of shape's center
-	 * @param r radius of the shape (half the unit's width/height)
+	 * @param clearance clearance of the shape's unit
 	 * @param out if non-NULL, all colliding shapes' entities will be added to this list
 	 * 
 	 * @return true if there is a collision
 	 */
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter,
-		entity_pos_t x, entity_pos_t z, entity_pos_t r,
+		entity_pos_t x, entity_pos_t z, entity_pos_t clearance,
 		std::vector<entity_id_t>* out) = 0;
 
 	/**
@@ -261,7 +260,7 @@ public:
 	 */
 	virtual ObstructionSquare GetObstruction(tag_t tag) = 0;
 
-	virtual ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t r) = 0;
+	virtual ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t clearance) = 0;
 
 	virtual ObstructionSquare GetStaticShapeObstruction(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) = 0;
 

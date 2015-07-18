@@ -47,13 +47,12 @@
 #define TAG_TO_INDEX(tag) ((tag).n >> 1)
 
 /**
- * Internal representation of axis-aligned sometimes-square sometimes-circle shapes for moving units
+ * Internal representation of axis-aligned circular shapes for moving units
  */
 struct UnitShape
 {
 	entity_id_t entity;
 	entity_pos_t x, z;
-	entity_pos_t r; // radius of circle, or half width of square
 	entity_pos_t clearance;
 	ICmpObstructionManager::flags_t flags;
 	entity_id_t group; // control group (typically the owner entity, or a formation controller entity) (units ignore collisions with others in the same group)
@@ -84,7 +83,6 @@ struct SerializeUnitShape
 		serialize.NumberU32_Unbounded("entity", value.entity);
 		serialize.NumberFixed_Unbounded("x", value.x);
 		serialize.NumberFixed_Unbounded("z", value.z);
-		serialize.NumberFixed_Unbounded("r", value.r);
 		serialize.NumberFixed_Unbounded("clearance", value.clearance);
 		serialize.NumberU8_Unbounded("flags", value.flags);
 		serialize.NumberU32_Unbounded("group", value.group);
@@ -262,7 +260,7 @@ public:
 		for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 		{
 			CFixedVector2D center(it->second.x, it->second.z);
-			CFixedVector2D halfSize(it->second.r, it->second.r);
+			CFixedVector2D halfSize(it->second.clearance, it->second.clearance);
 			m_UnitSubdivision.Add(it->first, center - halfSize, center + halfSize);
 		}
 
@@ -274,13 +272,13 @@ public:
 		}
 	}
 
-	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t r, entity_pos_t clearance, flags_t flags, entity_id_t group)
+	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t clearance, flags_t flags, entity_id_t group)
 	{
-		UnitShape shape = { ent, x, z, r, clearance, flags, group };
+		UnitShape shape = { ent, x, z, clearance, flags, group };
 		u32 id = m_UnitShapeNext++;
 		m_UnitShapes[id] = shape;
 
-		m_UnitSubdivision.Add(id, CFixedVector2D(x - r, z - r), CFixedVector2D(x + r, z + r));
+		m_UnitSubdivision.Add(id, CFixedVector2D(x - clearance, z - clearance), CFixedVector2D(x + clearance, z + clearance));
 
 		MakeDirtyUnit(flags, id, shape);
 
@@ -307,11 +305,11 @@ public:
 		return STATIC_INDEX_TO_TAG(id);
 	}
 
-	virtual ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t r)
+	virtual ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t clearance)
 	{
 		CFixedVector2D u(entity_pos_t::FromInt(1), entity_pos_t::Zero());
 		CFixedVector2D v(entity_pos_t::Zero(), entity_pos_t::FromInt(1));
-		ObstructionSquare o = { x, z, u, v, r, r };
+		ObstructionSquare o = { x, z, u, v, clearance, clearance };
 		return o;
 	}
 
@@ -337,10 +335,10 @@ public:
 			MakeDirtyUnit(shape.flags, TAG_TO_INDEX(tag), shape); // dirty the old shape region
 
 			m_UnitSubdivision.Move(TAG_TO_INDEX(tag),
-				CFixedVector2D(shape.x - shape.r, shape.z - shape.r),
-				CFixedVector2D(shape.x + shape.r, shape.z + shape.r),
-				CFixedVector2D(x - shape.r, z - shape.r),
-				CFixedVector2D(x + shape.r, z + shape.r));
+				CFixedVector2D(shape.x - shape.clearance, shape.z - shape.clearance),
+				CFixedVector2D(shape.x + shape.clearance, shape.z + shape.clearance),
+				CFixedVector2D(x - shape.clearance, z - shape.clearance),
+				CFixedVector2D(x + shape.clearance, z + shape.clearance));
 
 			shape.x = x;
 			shape.z = z;
@@ -422,8 +420,8 @@ public:
 		{
 			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
 			m_UnitSubdivision.Remove(TAG_TO_INDEX(tag),
-				CFixedVector2D(shape.x - shape.r, shape.z - shape.r),
-				CFixedVector2D(shape.x + shape.r, shape.z + shape.r));
+				CFixedVector2D(shape.x - shape.clearance, shape.z - shape.clearance),
+				CFixedVector2D(shape.x + shape.clearance, shape.z + shape.clearance));
 
 			MakeDirtyUnit(shape.flags, TAG_TO_INDEX(tag), shape);
 
@@ -452,7 +450,7 @@ public:
 			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
 			CFixedVector2D u(entity_pos_t::FromInt(1), entity_pos_t::Zero());
 			CFixedVector2D v(entity_pos_t::Zero(), entity_pos_t::FromInt(1));
-			ObstructionSquare o = { shape.x, shape.z, u, v, shape.r, shape.r };
+			ObstructionSquare o = { shape.x, shape.z, u, v, shape.clearance, shape.clearance };
 			return o;
 		}
 		else
@@ -618,18 +616,18 @@ private:
 			CFixedVector2D center(shape.x, shape.z);
 
 			std::vector<u32> staticsNear;
-			m_StaticSubdivision.GetNear(staticsNear, center, shape.r + m_MaxClearance*2);
+			m_StaticSubdivision.GetNear(staticsNear, center, shape.clearance + m_MaxClearance*2);
 			for (u32& staticId : staticsNear)
 				if (std::find(m_DirtyStaticShapes.begin(), m_DirtyStaticShapes.end(), staticId) == m_DirtyStaticShapes.end())
 					m_DirtyStaticShapes.push_back(staticId);
 
 			std::vector<u32> unitsNear;
-			m_UnitSubdivision.GetNear(staticsNear, center, shape.r + m_MaxClearance*2);
+			m_UnitSubdivision.GetNear(staticsNear, center, shape.clearance + m_MaxClearance*2);
 			for (u32& unitId : unitsNear)
 				if (std::find(m_DirtyUnitShapes.begin(), m_DirtyUnitShapes.end(), unitId) == m_DirtyUnitShapes.end())
 					m_DirtyUnitShapes.push_back(unitId);
 
-			MarkDirtinessGrid(shape.x, shape.z, shape.r + m_MaxClearance);
+			MarkDirtinessGrid(shape.x, shape.z, shape.clearance + m_MaxClearance);
 		}
 	}
 
@@ -676,7 +674,7 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 			continue;
 
 		CFixedVector2D center(it->second.x, it->second.z);
-		CFixedVector2D halfSize(it->second.r + r, it->second.r + r);
+		CFixedVector2D halfSize(it->second.clearance + r, it->second.clearance + r);
 		if (Geometry::TestRayAASquare(CFixedVector2D(x0, z0) - center, CFixedVector2D(x1, z1) - center, halfSize))
 			return true;
 	}
@@ -737,7 +735,7 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 
 		CFixedVector2D center1(it->second.x, it->second.z);
 
-		if (Geometry::PointIsInSquare(center1 - center, u, v, CFixedVector2D(halfSize.X + it->second.r, halfSize.Y + it->second.r)))
+		if (Geometry::PointIsInSquare(center1 - center, u, v, CFixedVector2D(halfSize.X + it->second.clearance, halfSize.Y + it->second.clearance)))
 		{
 			if (out)
 				out->push_back(it->second.entity);
@@ -769,7 +767,7 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 }
 
 bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
-	entity_pos_t x, entity_pos_t z, entity_pos_t r,
+	entity_pos_t x, entity_pos_t z, entity_pos_t clearance,
 	std::vector<entity_id_t>* out)
 {
 	PROFILE("TestUnitShape");
@@ -777,7 +775,7 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 	// TODO: should use the subdivision stuff here, if performance is non-negligible
 
 	// Check that the shape is within the world
-	if (!IsInWorld(x, z, r))
+	if (!IsInWorld(x, z, clearance))
 	{
 		if (out)
 			out->push_back(INVALID_ENTITY); // no entity ID, so just push an arbitrary marker
@@ -792,9 +790,13 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
 			continue;
 
-		entity_pos_t r1 = it->second.r;
+		entity_pos_t c1 = it->second.clearance;
 
-		if (!(it->second.x + r1 < x - r || it->second.x - r1 > x + r || it->second.z + r1 < z - r || it->second.z - r1 > z + r))
+		if (!(
+			it->second.x + c1 < x - clearance ||
+			it->second.x - c1 > x + clearance ||
+			it->second.z + c1 < z - clearance ||
+			it->second.z - c1 > z + clearance))
 		{
 			if (out)
 				out->push_back(it->second.entity);
@@ -809,13 +811,12 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
-		if (Geometry::PointIsInSquare(center1 - center, it->second.u, it->second.v, CFixedVector2D(it->second.hw + r, it->second.hh + r)))
+		if (Geometry::PointIsInSquare(center1 - center, it->second.u, it->second.v, CFixedVector2D(it->second.hw + clearance, it->second.hh + clearance)))
 		{
 			if (out)
 				out->push_back(it->second.entity);
 			else
 				return true;
-
 		}
 	}
 
@@ -908,7 +909,7 @@ void CCmpObstructionManager::RasterizeHelper(Grid<u16>& grid, ICmpObstructionMan
 		if (!(pair.second.flags & requireMask))
 			continue;
 
-		entity_pos_t r = pair.second.r + clearance;
+		entity_pos_t r = pair.second.clearance + clearance;
 
 		u16 i0, j0, i1, j1;
 		Pathfinding::NearestNavcell(center.X - r, center.Y - r, i0, j0, grid.m_W, grid.m_H);
@@ -935,15 +936,15 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
 			continue;
 
-		entity_pos_t r = it->second.r;
+		entity_pos_t c = it->second.clearance;
 
 		// Skip this object if it's completely outside the requested range
-		if (it->second.x + r < x0 || it->second.x - r > x1 || it->second.z + r < z0 || it->second.z - r > z1)
+		if (it->second.x + c < x0 || it->second.x - c > x1 || it->second.z + c < z0 || it->second.z - c > z1)
 			continue;
 
 		CFixedVector2D u(entity_pos_t::FromInt(1), entity_pos_t::Zero());
 		CFixedVector2D v(entity_pos_t::Zero(), entity_pos_t::FromInt(1));
-		squares.emplace_back(ObstructionSquare{ it->second.x, it->second.z, u, v, r, r });
+		squares.emplace_back(ObstructionSquare{ it->second.x, it->second.z, u, v, c, c });
 	}
 
 	std::vector<entity_id_t> staticShapes;
@@ -1015,8 +1016,6 @@ void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& squa
 				out.push_back(shape.entity);
 		}
 	}
-
-	// TODO : Should we expand by r here?
 }
 
 void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)
@@ -1044,7 +1043,7 @@ void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)
 		{
 			m_DebugOverlayLines.push_back(SOverlayLine());
 			m_DebugOverlayLines.back().m_Color = ((it->second.flags & FLAG_MOVING) ? movingColor : defaultColor);
-			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.r.ToFloat()*2, it->second.r.ToFloat()*2, 0, m_DebugOverlayLines.back(), true);
+			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.clearance.ToFloat()*2, it->second.clearance.ToFloat()*2, 0, m_DebugOverlayLines.back(), true);
 		}
 
 		for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)

@@ -136,7 +136,6 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(controller, IID_UnitMotion, {
-		SetUnitRadius: function(r) { },
 		SetSpeed: function(speed) { },
 		MoveToPointRange: function(x, z, minRange, maxRange) { },
 		GetPassabilityClassName: function() { return "default"; },
@@ -281,7 +280,6 @@ function TestMoveIntoFormationWhileAttacking()
 	});
 
 	AddMock(controller, IID_UnitMotion, {
-		SetUnitRadius: function(r) { },
 		SetSpeed: function(speed) { },
 		MoveToPointRange: function(x, z, minRange, maxRange) { },
 		IsInTargetRange: function(target, min, max) { return true; },

@@ -28,8 +28,8 @@ class TestCmpObstructionManager : public CxxTest::TestSuite
 	entity_id_t ent1, ent2, ent3; // entity IDs
 	entity_angle_t ent1a; // angles
 	entity_pos_t ent1x, ent1z, ent1w, ent1h, // positions/dimensions
-	             ent2x, ent2z, ent2r, ent2c,
-	             ent3x, ent3z, ent3r, ent3c;
+	             ent2x, ent2z, ent2c,
+	             ent3x, ent3z, ent3c;
 	entity_id_t ent1g1, ent1g2, ent2g, ent3g; // control groups
 
 	tag_t shape1, shape2, shape3;
@@ -57,17 +57,15 @@ public:
 		ent1g2 = INVALID_ENTITY;
 
 		ent2 = 2;
-		ent2r = fixed::FromFloat(1);
-		ent2c = fixed::Zero();
+		ent2c = fixed::FromFloat(1);
 		ent2x = ent1x;
 		ent2z = ent1z;
 		ent2g = ent1g1;
 
 		ent3 = 3;
-		ent3r = fixed::FromFloat(3);
-		ent3c = fixed::Zero();
+		ent3c = fixed::FromFloat(3);
 		ent3x = ent2x;
-		ent3z = ent2z + ent2r + ent3r; // ensure it just touches the border of ent2
+		ent3z = ent2z + ent2c + ent3c; // ensure it just touches the border of ent2
 		ent3g = ent3;
 
 		testHelper = new ComponentTestHelper(g_ScriptRuntime);
@@ -79,11 +77,11 @@ public:
 			ICmpObstructionManager::FLAG_BLOCK_MOVEMENT |
 			ICmpObstructionManager::FLAG_MOVING, ent1g1, ent1g2);
 
-		shape2 = cmp->AddUnitShape(ent2, ent2x, ent2z, ent2r, ent2c,
+		shape2 = cmp->AddUnitShape(ent2, ent2x, ent2z, ent2c,
 			ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION |
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION, ent2g);
 
-		shape3 = cmp->AddUnitShape(ent3, ent3x, ent3z, ent3r, ent3c,
+		shape3 = cmp->AddUnitShape(ent3, ent3x, ent3z, ent3c,
 			ICmpObstructionManager::FLAG_BLOCK_MOVEMENT |
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION, ent3g);
 	}
@@ -121,13 +119,13 @@ public:
 		// Similarly, collision-test a simple shape nested inside both shape1 and shape2. Since the tested shape overlaps
 		// only with shapes 1 and 2, those are the only ones we should find in the result.
 		
-		cmp->TestUnitShape(nullFilter, ent2x, ent2z, ent2r/2, &out);
+		cmp->TestUnitShape(nullFilter, ent2x, ent2z, ent2c/2, &out);
 		TS_ASSERT_EQUALS(2U, out.size());
 		TS_ASSERT_VECTOR_CONTAINS(out, ent1);
 		TS_ASSERT_VECTOR_CONTAINS(out, ent2);
 		out.clear();
 
-		cmp->TestStaticShape(nullFilter, ent2x, ent2z, fixed::Zero(), ent2r, ent2r, &out);
+		cmp->TestStaticShape(nullFilter, ent2x, ent2z, fixed::Zero(), ent2c, ent2c, &out);
 		TS_ASSERT_EQUALS(2U, out.size());
 		TS_ASSERT_VECTOR_CONTAINS(out, ent1);
 		TS_ASSERT_VECTOR_CONTAINS(out, ent2);
@@ -202,12 +200,12 @@ public:
 
 		SkipTagObstructionFilter ignoreShape2(shape2);
 
-		cmp->TestUnitShape(ignoreShape2, ent2x, ent2z, ent2r/2, &out);
+		cmp->TestUnitShape(ignoreShape2, ent2x, ent2z, ent2c/2, &out);
 		TS_ASSERT_EQUALS(1U, out.size());
 		TS_ASSERT_EQUALS(ent1, out[0]);
 		out.clear();
 
-		cmp->TestStaticShape(ignoreShape2, ent2x, ent2z, fixed::Zero(), ent2r, ent2r, &out);
+		cmp->TestStaticShape(ignoreShape2, ent2x, ent2z, fixed::Zero(), ent2c, ent2c, &out);
 		TS_ASSERT_EQUALS(1U, out.size());
 		TS_ASSERT_EQUALS(ent1, out[0]);
 		out.clear();
@@ -422,7 +420,7 @@ public:
 		entity_angle_t ent4a = fixed::FromDouble(M_PI); // rotated 180 degrees, should not affect collision test
 		entity_pos_t ent4w = fixed::FromInt(2),
 		             ent4h = fixed::FromInt(1),
-		             ent4x = ent3x + ent3r + ent4w/2, // make ent4 adjacent to ent3
+		             ent4x = ent3x + ent3c + ent4w/2, // make ent4 adjacent to ent3
 		             ent4z = ent3z;
 
 		cmp->TestStaticShape(nullFilter, ent4x, ent4z, ent4a, ent4w, ent4h, &out);
@@ -462,15 +460,15 @@ public:
 		TS_ASSERT_EQUALS(obSquare1.u, CFixedVector2D(fixed::FromInt(1), fixed::FromInt(0)));
 		TS_ASSERT_EQUALS(obSquare1.v, CFixedVector2D(fixed::FromInt(0), fixed::FromInt(1)));
 
-		TS_ASSERT_EQUALS(obSquare2.hh, ent2r);
-		TS_ASSERT_EQUALS(obSquare2.hw, ent2r);
+		TS_ASSERT_EQUALS(obSquare2.hh, ent2c);
+		TS_ASSERT_EQUALS(obSquare2.hw, ent2c);
 		TS_ASSERT_EQUALS(obSquare2.x, ent2x);
 		TS_ASSERT_EQUALS(obSquare2.z, ent2z);
 		TS_ASSERT_EQUALS(obSquare2.u, CFixedVector2D(fixed::FromInt(1), fixed::FromInt(0)));
 		TS_ASSERT_EQUALS(obSquare2.v, CFixedVector2D(fixed::FromInt(0), fixed::FromInt(1)));
 
-		TS_ASSERT_EQUALS(obSquare3.hh, ent3r);
-		TS_ASSERT_EQUALS(obSquare3.hw, ent3r);
+		TS_ASSERT_EQUALS(obSquare3.hh, ent3c);
+		TS_ASSERT_EQUALS(obSquare3.hw, ent3c);
 		TS_ASSERT_EQUALS(obSquare3.x, ent3x);
 		TS_ASSERT_EQUALS(obSquare3.z, ent3z);
 		TS_ASSERT_EQUALS(obSquare3.u, CFixedVector2D(fixed::FromInt(1), fixed::FromInt(0)));

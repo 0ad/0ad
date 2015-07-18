@@ -111,10 +111,10 @@ public:
 	/**
 	 * Compute a precise path from the given point to the goal, and return the set of waypoints.
 	 * The path is based on the full set of obstructions that pass the filter, such that
-	 * a unit of radius 'r' will be able to follow the path with no collisions.
+	 * a unit of clearance 'clearance' will be able to follow the path with no collisions.
 	 * The path is restricted to a box of radius 'range' from the starting point.
 	 */
-	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) = 0;
+	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) = 0;
 
 	/**
 	 * Asynchronous version of ComputeShortPath (using ControlGroupObstructionFilter).
@@ -122,7 +122,7 @@ public:
 	 * Returns a unique non-zero number, which will match the 'ticket' in the result,
 	 * so callers can recognise each individual request they make.
 	 */
-	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify) = 0;
+	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify) = 0;
 
 	/**
 	 * Check whether the given movement line is valid and doesn't hit any obstructions

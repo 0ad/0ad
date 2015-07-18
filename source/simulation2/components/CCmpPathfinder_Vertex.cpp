@@ -557,7 +557,7 @@ struct SquareSort
 };
 
 void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
-	entity_pos_t x0, entity_pos_t z0, entity_pos_t r,
+	entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance,
 	entity_pos_t range, const PathGoal& goal, pass_class_t passClass, WaypointPath& path)
 {
 	PROFILE3("ComputeShortPath");
@@ -634,15 +634,15 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		u16 i0, j0, i1, j1;
 		Pathfinding::NearestNavcell(rangeXMin, rangeZMin, i0, j0, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
 		Pathfinding::NearestNavcell(rangeXMax, rangeZMax, i1, j1, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
-		AddTerrainEdges(edges, vertexes, i0, j0, i1, j1, passClass, *m_Grid);
+		AddTerrainEdges(edges, vertexes, i0, j0, i1, j1, passClass, *m_TerrainOnlyGrid);
 	}
 
 	// Find all the obstruction squares that might affect us
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	std::vector<ICmpObstructionManager::ObstructionSquare> squares;
-	cmpObstructionManager->GetObstructionsInRange(filter, rangeXMin - r, rangeZMin - r, rangeXMax + r, rangeZMax + r, squares);
+	cmpObstructionManager->GetObstructionsInRange(filter, rangeXMin - clearance, rangeZMin - clearance, rangeXMax + clearance, rangeZMax + clearance, squares);
 
-	// Resize arrays to reduce reallocations
+	// Change array capacities to reduce reallocations
 	vertexes.reserve(vertexes.size() + squares.size()*4);
 	edgeSquares.reserve(edgeSquares.size() + squares.size()); // (assume most squares are AA)
 
@@ -656,8 +656,8 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		// Expand the vertexes by the moving unit's collision radius, to find the
 		// closest we can get to it
 
-		CFixedVector2D hd0(squares[i].hw + r + EDGE_EXPAND_DELTA, squares[i].hh + r + EDGE_EXPAND_DELTA);
-		CFixedVector2D hd1(squares[i].hw + r + EDGE_EXPAND_DELTA, -(squares[i].hh + r + EDGE_EXPAND_DELTA));
+		CFixedVector2D hd0(squares[i].hw + clearance + EDGE_EXPAND_DELTA,   squares[i].hh + clearance + EDGE_EXPAND_DELTA);
+		CFixedVector2D hd1(squares[i].hw + clearance + EDGE_EXPAND_DELTA, -(squares[i].hh + clearance + EDGE_EXPAND_DELTA));
 
 		// Check whether this is an axis-aligned square
 		bool aa = (u.X == fixed::FromInt(1) && u.Y == fixed::Zero() && v.X == fixed::Zero() && v.Y == fixed::FromInt(1));
@@ -673,8 +673,8 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 		// Add the edges:
 
-		CFixedVector2D h0(squares[i].hw + r,   squares[i].hh + r);
-		CFixedVector2D h1(squares[i].hw + r, -(squares[i].hh + r));
+		CFixedVector2D h0(squares[i].hw + clearance, squares[i].hh + clearance);
+		CFixedVector2D h1(squares[i].hw + clearance, -(squares[i].hh + clearance));
 
 		CFixedVector2D ev0(center.X - h0.Dot(u), center.Y + h0.Dot(v));
 		CFixedVector2D ev1(center.X - h1.Dot(u), center.Y + h1.Dot(v));

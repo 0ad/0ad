@@ -131,7 +131,7 @@ struct SerializeShortRequest
 		serialize.NumberU32_Unbounded("ticket", value.ticket);
 		serialize.NumberFixed_Unbounded("x0", value.x0);
 		serialize.NumberFixed_Unbounded("z0", value.z0);
-		serialize.NumberFixed_Unbounded("r", value.r);
+		serialize.NumberFixed_Unbounded("clearance", value.clearance);
 		serialize.NumberFixed_Unbounded("range", value.range);
 		SerializeGoal()(serialize, "goal", value.goal);
 		serialize.NumberU16_Unbounded("pass class", value.passClass);
@@ -681,9 +681,9 @@ u32 CCmpPathfinder::ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Pat
 	return req.ticket;
 }
 
-u32 CCmpPathfinder::ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify)
+u32 CCmpPathfinder::ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify)
 {
-	AsyncShortPathRequest req = { m_NextAsyncTicket++, x0, z0, r, range, goal, passClass, avoidMovingUnits, group, notify };
+	AsyncShortPathRequest req = { m_NextAsyncTicket++, x0, z0, clearance, range, goal, passClass, avoidMovingUnits, group, notify };
 	m_AsyncShortPathRequests.push_back(req);
 	return req.ticket;
 }
@@ -725,7 +725,7 @@ void CCmpPathfinder::ProcessShortRequests(const std::vector<AsyncShortPathReques
 		const AsyncShortPathRequest& req = shortRequests[i];
 		WaypointPath path;
 		ControlGroupMovementObstructionFilter filter(req.avoidMovingUnits, req.group);
-		ComputeShortPath(filter, req.x0, req.z0, req.r, req.range, req.goal, req.passClass, path);
+		ComputeShortPath(filter, req.x0, req.z0, req.clearance, req.range, req.goal, req.passClass, path);
 		CMessagePathResult msg(req.ticket, path);
 		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
 	}

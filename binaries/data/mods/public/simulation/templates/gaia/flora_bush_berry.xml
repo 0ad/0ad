@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora_bush_berry">
   <Obstruction>
-    <Unit radius="2.0"/>
+    <Static width="4.0" depth="4.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>props/flora/berry_bush.xml</Actor>

@@ -23,7 +23,7 @@
 #include "ps/CLogger.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstructionManager.h"
-#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/serialization/SerializeTemplates.h"
 
 #define MAX(x,y) x>y ? x : y
@@ -124,9 +124,7 @@ public:
 					"</attribute>"
 				"</element>"
 				"<element name='Unit'>"
-					"<attribute name='radius'>"
-						"<ref name='positiveDecimal'/>"
-					"</attribute>"
+					"<empty/>"
 				"</element>"
 				"<element name='Obstructions'>"
 					"<zeroOrMore>"
@@ -208,7 +206,10 @@ public:
 		if (paramNode.GetChild("Unit").IsOk())
 		{
 			m_Type = UNIT;
-			m_Size0 = m_Size1 = paramNode.GetChild("Unit").GetChild("@radius").ToFixed();
+
+			CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetEntityHandle());
+			if (cmpUnitMotion)
+				m_Clearance = cmpUnitMotion->GetUnitClearance();
 		}
 		else if (paramNode.GetChild("Static").IsOk())
 		{
@@ -280,6 +281,8 @@ public:
 		serialize.NumberU8_Unbounded("flags", m_Flags);
 		if (m_Type == CLUSTER)
 			SerializeVector<SerializeTag>()(serialize, "cluster tags", m_ClusterTags);
+		if (m_Type == UNIT)
+			serialize.NumberFixed_Unbounded("clearance", m_Clearance);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -316,7 +319,7 @@ public:
 			{
 				cmpObstructionManager->MoveShape(m_Tag, data.x, data.z, data.a);
 
-				if(m_Type == CLUSTER)
+				if (m_Type == CLUSTER)
 				{
 					for (size_t i = 0; i < m_Shapes.size(); ++i)
 					{
@@ -335,7 +338,7 @@ public:
 						data.x, data.z, data.a, m_Size0, m_Size1, m_Flags, m_ControlGroup, m_ControlGroup2);
 				else if (m_Type == UNIT)
 					m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
-						data.x, data.z, m_Size0, m_Clearance, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
+						data.x, data.z, m_Clearance, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
 				else
 					AddClusterShapes(data.x, data.x, data.a);
 			}
@@ -392,7 +395,7 @@ public:
 					pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, m_Flags, m_ControlGroup, m_ControlGroup2);
 			else if (m_Type == UNIT)
 				m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
-					pos.X, pos.Y, m_Size0, m_Clearance, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
+					pos.X, pos.Y, m_Clearance, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
 			else 
 				AddClusterShapes(pos.X, pos.Y, cmpPosition->GetRotation().Y);
 		}
@@ -487,7 +490,7 @@ public:
 		else
 			pos = cmpPosition->GetPosition2D();
 		if (m_Type == UNIT)
-			out = cmpObstructionManager->GetUnitShapeObstruction(pos.X, pos.Y, m_Size0);
+			out = cmpObstructionManager->GetUnitShapeObstruction(pos.X, pos.Y, m_Clearance);
 		else
 			out = cmpObstructionManager->GetStaticShapeObstruction(pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
 		return true;
@@ -496,7 +499,7 @@ public:
 	virtual entity_pos_t GetUnitRadius()
 	{
 		if (m_Type == UNIT)
-			return m_Size0;
+			return m_Clearance;
 		else
 			return entity_pos_t::Zero();
 	}
@@ -504,7 +507,7 @@ public:
 	virtual entity_pos_t GetSize()
 	{
 		if (m_Type == UNIT)
-			return m_Size0;
+			return m_Clearance;
 		else
 			return CFixedVector2D(m_Size0 / 2, m_Size1 / 2).Length();
 	}
@@ -557,7 +560,7 @@ public:
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
 
 		if (m_Type == UNIT)
-			return cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, m_Size0, passClass, onlyCenterPoint);
+			return cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, m_Clearance, passClass, onlyCenterPoint);
 		else
 			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass, onlyCenterPoint);
 	}
@@ -589,7 +592,7 @@ public:
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
 
 		if (m_Type == UNIT)
-			return !cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0, NULL);
+			return !cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Clearance, NULL);
 		else
 			return !cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL );
 	} 
