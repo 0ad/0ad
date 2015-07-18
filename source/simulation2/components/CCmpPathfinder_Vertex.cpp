@@ -293,7 +293,7 @@ typedef PriorityQueueHeap<u16, fixed, fixed> VertexPriorityQueue;
 
 /**
  * Add edges and vertexes to represent the boundaries between passable and impassable
- * navcells (for impassable terrain and for static obstruction shapes).
+ * navcells (for impassable terrain).
  * Navcells i0 <= i <= i1, j0 <= j <= j1 will be considered.
  */
 static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& vertexes,
@@ -937,22 +937,4 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		path.m_Waypoints.emplace_back(Waypoint{ vertexes[id].p.X, vertexes[id].p.Y });
 
 	PROFILE_END("Short pathfinding - A*");
-}
-
-bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
-	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
-	pass_class_t passClass)
-{
-	// Test against dynamic obstructions first
-
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-	if (!cmpObstructionManager)
-		return false;
-
-	if (cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
-		return false;
-
-	// Test against the passability grid.
-	// This ignores r.
-	return m_LongPathfinder.CheckLineMovement(x0, z0, x1, z1, passClass);
 }

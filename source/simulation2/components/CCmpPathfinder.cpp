@@ -790,6 +790,22 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 
 //////////////////////////////////////////////////////////
 
+bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
+	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
+	pass_class_t passClass)
+{
+	// Test against obstructions first
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+	if (!cmpObstructionManager)
+		return false;
+
+	if (cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
+		return false;
+
+	// Then test against the terrain
+	return Pathfinding::CheckLineMovement(x0, z0, x1, z1, passClass, *m_TerrainOnlyGrid);
+}
+
 ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
 	entity_pos_t x, entity_pos_t z, entity_pos_t r,	pass_class_t passClass, bool UNUSED(onlyCenterPoint))
 {
