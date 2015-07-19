@@ -651,6 +651,9 @@ function resumeGame()
 
 function togglePause()
 {
+	if (g_IsObserver)
+		return;
+
 	closeMenu();
 	closeOpenDialogs();
 
