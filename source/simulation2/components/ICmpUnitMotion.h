@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -132,11 +132,9 @@ public:
 	virtual void SetPassabilityClassName(std::string passClassName) = 0;
 
 	/**
-	 * Override the default obstruction radius, used for planning paths and checking for collisions.
-	 * Bad things may happen if this entity has an active Obstruction component with a larger
-	 * radius. (This is intended primarily for formation controllers.)
+	 * Get the unit clearance (used by the Obstruction component)
 	 */
-	virtual void SetUnitRadius(fixed radius) = 0;
+	virtual entity_pos_t GetUnitClearance() = 0;
 
 	/**
 	 * Toggle the rendering of debug info.

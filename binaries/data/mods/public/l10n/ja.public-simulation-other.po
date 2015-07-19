@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Asakura, 2015
 # Kanetaka Suto, 2014-2015
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:51+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
+"PO-Revision-Date: 2015-07-06 05:49+0000\n"
+"Last-Translator: Kanetaka Suto\n"
+"Language-Team: Japanese (http://www.transifex.com/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,82 +22,82 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s に対して攻撃を開始しています。"
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s に対して軍を派遣しました。"
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "我が軍を再編成した上で、貴殿と共に%(_player_)sへ対抗します。"
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "私は%(_player_)sへの攻撃の最終準備中です。"
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "貴殿の対%(_player_)s戦への支援は当分できません。当方は%(_player_2)sへの別の攻撃を予定しているからです。"
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "Sorry, I have not enough soldiers currently, but my next attack will target "
 "%(_player_)s."
-msgstr ""
+msgstr "残念ながら今のところ我が兵が足りていないのですが、次の攻撃では%(_player_)sを狙っています。"
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "%(_player_)sへの贈り物です。お役立てください。"
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "%(_player_)sと険悪な状況とお見受けします。これがお役に立てば幸いです。"
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr "%(resource)sが必要です。助けてください！"
+msgstr "%(resource)sが必要なのですが、援助して頂けませんか。後ほど埋め合わせしますので。"
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr " %(resource)sをいくらか供与していただければ、我らが共に戦う上での効率を高められます。"
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "新たな交易路を%(_player_)sとの間に設けました。交易は我々すべてに利益をもたらすことでしょう。"
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "新たな交易路が%(_player_)sとの間に設けられました。あなたの分け前をお受け取りください。"
 
 #: simulation/ai/petra/chatHelper.js:112
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "%(phase)s へ移行中です。"
 
 #: simulation/ai/petra/chatHelper.js:114
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "%(phase)s に移行完了しました。"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -229,7 +230,7 @@ msgstr "さらに何人か投石兵を養成して、採石にあたらせてく
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
+msgstr "キューにさらに一括で5人の女性市民を追加してください。木の伐採にあてる予定です。"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -610,11 +611,11 @@ msgstr "敵領"
 #: simulation/components/CeasefireManager.js:125
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "%(time)sで攻撃可能です"
 
 #: simulation/components/CeasefireManager.js:140
 msgid "You can attack now!"
-msgstr ""
+msgstr "現在攻撃可能です！"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -798,7 +799,7 @@ msgstr "巨大"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr "ボット"
+msgstr "Petra Bot"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""

@@ -5,15 +5,15 @@
 # Translators:
 # alfalb.as, 2015
 # Luis Neves <luisjneves@gmail.com>, 2014
-# mogafi, 2014
+# mogafi, 2014-2015
 # Pedro matias <pmsm1100@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:51+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
+"PO-Revision-Date: 2015-06-28 16:15+0000\n"
+"Last-Translator: mogafi\n"
+"Language-Team: Portuguese (Portugal) (http://www.transifex.com/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,12 +23,12 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "Estou a lançar um ataque contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "Acabei de enviar um exército contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
@@ -612,11 +612,11 @@ msgstr "inimigo"
 #: simulation/components/CeasefireManager.js:125
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "Podes atacar daqui a %(time)s"
 
 #: simulation/components/CeasefireManager.js:140
 msgid "You can attack now!"
-msgstr ""
+msgstr "Podes atacar agora!"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format

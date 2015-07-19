@@ -872,7 +872,7 @@ Formation.prototype.GetEstimatedOrientation = function(pos)
 };
 
 /**
- * Set formation controller's radius and speed based on its current members.
+ * Set formation controller's speed based on its current members.
  */
 Formation.prototype.ComputeMotionParameters = function()
 {
@@ -881,10 +881,6 @@ Formation.prototype.ComputeMotionParameters = function()
 
 	for each (var ent in this.members)
 	{
-		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
-		if (cmpObstruction)
-			maxRadius = Math.max(maxRadius, cmpObstruction.GetUnitRadius());
-
 		var cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
 		if (cmpUnitMotion)
 			minSpeed = Math.min(minSpeed, cmpUnitMotion.GetWalkSpeed());
@@ -892,7 +888,6 @@ Formation.prototype.ComputeMotionParameters = function()
 	minSpeed *= this.GetSpeedMultiplier();
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	cmpUnitMotion.SetUnitRadius(maxRadius);
 	cmpUnitMotion.SetSpeed(minSpeed);
 
 	// TODO: we also need to do something about PassabilityClass, CostClass

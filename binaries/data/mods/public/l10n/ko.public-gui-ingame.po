@@ -13,27 +13,29 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-22 00:47+0200\n"
-"PO-Revision-Date: 2015-05-23 08:35+0000\n"
+"POT-Creation-Date: 2015-05-31 22:51+0200\n"
+"PO-Revision-Date: 2015-06-01 08:38+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Korean (http://www.transifex.com/projects/p/0ad/language/ko/)\n"
+"Language-Team: Korean (http://www.transifex.com/p/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/session/input.js:152
-#, javascript-format
-msgid "Basic range: %(range)s meters"
-msgstr ""
-
 #: gui/session/input.js:153
 #, javascript-format
-msgid "Average bonus range: %(range)s meters"
-msgstr ""
+msgid "Basic range: %(range)s meter"
+msgid_plural "Basic range: %(range)s meters"
+msgstr[0] ""
 
-#: gui/session/input.js:732
+#: gui/session/input.js:154
+#, javascript-format
+msgid "Average bonus range: %(range)s meter"
+msgid_plural "Average bonus range: %(range)s meters"
+msgstr[0] ""
+
+#: gui/session/input.js:733
 msgid "Cannot build wall here!"
 msgstr "여기에는 장벽을 세울 수 없습니다!"
 
@@ -88,7 +90,7 @@ msgstr "그만두시겠습니까 아니면 다시 돌아오시겠습니까?"
 msgid "Destroy everything currently selected?"
 msgstr "지금 선택한 것을 모두 부술까요?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:704
+#: gui/session/menu.js:189 gui/session/unit_actions.js:710
 msgid "Delete"
 msgstr "없애기"
 
@@ -492,70 +494,82 @@ msgstr ""
 msgid "Capture points:"
 msgstr ""
 
-#: gui/session/selection_panels.js:91
+#: gui/session/selection_panels.js:72
+msgid "Increase the alert level to protect more units"
+msgstr "더 많은 유닛을 지키기 위해 경고 수준 높익"
+
+#: gui/session/selection_panels.js:74
+msgid "Raise an alert!"
+msgstr "비상 사태!"
+
+#: gui/session/selection_panels.js:77
+msgid "End of alert."
+msgstr "비상 상황이 끝났습니다."
+
+#: gui/session/selection_panels.js:143
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "%(resource)s를 삽닏"
 
-#: gui/session/selection_panels.js:92
+#: gui/session/selection_panels.js:144
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "%(resource)s를 팝니다"
 
-#: gui/session/selection_panels.js:270 gui/session/selection_panels.js:1055
+#: gui/session/selection_panels.js:322 gui/session/selection_panels.js:1107
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)s 가 필요합니다"
 
-#: gui/session/selection_panels.js:387
+#: gui/session/selection_panels.js:439
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)s 를 내립니다"
 
-#: gui/session/selection_panels.js:388
+#: gui/session/selection_panels.js:440
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "1개 내리려면 1번 누르세요. Shift를 누르고 클릭하면 같은 타입의 유닛이 모두 내립니다."
 
-#: gui/session/selection_panels.js:455
+#: gui/session/selection_panels.js:507
 msgid "Lock Gate"
 msgstr "문 닫기"
 
-#: gui/session/selection_panels.js:461
+#: gui/session/selection_panels.js:513
 msgid "Unlock Gate"
 msgstr "문 열기"
 
-#: gui/session/selection_panels.js:566
+#: gui/session/selection_panels.js:618
 msgid "Pack"
 msgstr "짐싸기"
 
-#: gui/session/selection_panels.js:568
+#: gui/session/selection_panels.js:620
 msgid "Unpack"
 msgstr "짐풀기"
 
-#: gui/session/selection_panels.js:570
+#: gui/session/selection_panels.js:622
 msgid "Cancel Packing"
 msgstr "짐싸기 취소"
 
-#: gui/session/selection_panels.js:572
+#: gui/session/selection_panels.js:624
 msgid "Cancel Unpacking"
 msgstr "짐풀기 취소"
 
-#: gui/session/selection_panels.js:645
+#: gui/session/selection_panels.js:697
 msgid "Insufficient population capacity:"
 msgstr "인구 용량이 부족합니다."
 
-#: gui/session/selection_panels.js:646
+#: gui/session/selection_panels.js:698
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:817
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "%(number)s 개 더 지어야 합니다."
 
-#: gui/session/selection_panels.js:1043 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:629
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "건강:"
@@ -754,66 +768,54 @@ msgstr "새 보부상들에게도 표준 길목으로 지정하려면 마우스 
 msgid "Expected gain: %(gain)s"
 msgstr "예상 수익: %(gain)s"
 
-#: gui/session/unit_actions.js:676 gui/session/unit_actions.js:944
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
 msgid "Unload All"
 msgstr "다 내릭"
 
-#: gui/session/unit_actions.js:692
+#: gui/session/unit_actions.js:698
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "전장의 안개 속에 있기 때문에 이 것을 부술 수 없습니다."
 
-#: gui/session/unit_actions.js:698
+#: gui/session/unit_actions.js:704
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr ""
 
-#: gui/session/unit_actions.js:727
+#: gui/session/unit_actions.js:733
 msgid "Stop"
 msgstr "그만"
 
-#: gui/session/unit_actions.js:745
+#: gui/session/unit_actions.js:751
 msgid "Garrison"
 msgstr "탑승"
 
-#: gui/session/unit_actions.js:766
+#: gui/session/unit_actions.js:772
 msgid "Unload"
 msgstr "내릭"
 
-#: gui/session/unit_actions.js:782
+#: gui/session/unit_actions.js:788
 msgid "Repair"
 msgstr "고칙"
 
-#: gui/session/unit_actions.js:799
+#: gui/session/unit_actions.js:805
 msgid "Focus on Rally Point"
 msgstr "목표 지점에 집중"
 
-#: gui/session/unit_actions.js:822
+#: gui/session/unit_actions.js:828
 msgid "Back to Work"
 msgstr "하던 일로 돌아가기"
 
-#: gui/session/unit_actions.js:838
+#: gui/session/unit_actions.js:844
 msgid "Guard"
 msgstr "지키기"
 
-#: gui/session/unit_actions.js:855
+#: gui/session/unit_actions.js:861
 msgid "Remove guard"
 msgstr "지키지 않기"
 
-#: gui/session/unit_actions.js:871
+#: gui/session/unit_actions.js:877
 msgid "Select trading goods"
 msgstr "무역상품 선택"
-
-#: gui/session/unit_actions.js:888
-msgid "Increase the alert level to protect more units"
-msgstr "더 많은 유닛을 지키기 위해 경고 수준 높익"
-
-#: gui/session/unit_actions.js:890
-msgid "Raise an alert!"
-msgstr "비상 사태!"
-
-#: gui/session/unit_actions.js:908
-msgid "End of alert."
-msgstr "비상 상황이 끝났습니다."
 
 #: gui/session/utility_functions.js:131 gui/session/utility_functions.js:133
 msgid "+"

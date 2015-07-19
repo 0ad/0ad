@@ -10,6 +10,7 @@
 # Igor Kustov, 2014
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
+# Vladislav Belov <thebvog@gmail.com>, 2015
 # webslavic <webslavic@yahoo.com>, 2014
 # Woratiklis, 2015
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
@@ -17,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-22 00:48+0200\n"
-"PO-Revision-Date: 2015-05-23 13:47+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
+"PO-Revision-Date: 2015-06-02 01:51+0000\n"
+"Last-Translator: Woratiklis\n"
+"Language-Team: Russian (http://www.transifex.com/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -432,7 +433,7 @@ msgstr "Дальний бой:"
 
 #: gui/common/tooltips.js:143
 msgid "Capture Attack:"
-msgstr "Атака:"
+msgstr "Атака захвата:"
 
 #: gui/common/tooltips.js:146
 msgid "Attack:"
@@ -1370,7 +1371,7 @@ msgstr "Выключить обратную связь"
 #: gui/pregame/mainmenu.xml:(caption):173
 #: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
-msgstr "Диаграмма"
+msgstr "Юниты и постройки"
 
 #: gui/pregame/mainmenu.xml:(caption):190
 msgid "History"
@@ -1419,7 +1420,7 @@ msgstr "Выбор модов"
 
 #: gui/pregame/mainmenu.xml:(caption):445
 msgid "Learn To Play"
-msgstr "Обучение игре"
+msgstr "Обучение"
 
 #: gui/pregame/mainmenu.xml:(caption):460
 msgid "Single Player"
@@ -1463,7 +1464,7 @@ msgstr "Открыть игровое руководство 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):174
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr "Посмотреть диаграмму цивилизаций, представленных в 0 A.D."
+msgstr "Посмотреть описание юнитов и построек цивилизаций, представленных в 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):191
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -1659,7 +1660,7 @@ msgid ""
 "- Build anywhere on the map, even in enemy territory. Good for building a "
 "secret base behind enemy lines or to consolidate gains within enemy "
 "territory."
-msgstr "- Постройте где-нибудь на карте, даже на территории врага. Хорошо для постройки секретной базы в тылу врага или для объединения на вражеской территории. "
+msgstr "- Постройте где-нибудь на карте, даже на территории врага. Хорош для постройки секретной базы в тылу врага или для объединения на вражеской территории. "
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
@@ -1771,11 +1772,11 @@ msgstr "- Единственный корабль подобного рода."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- Не может идти на таран, как другие триремы, но имеет много жизни и брони. "
+msgstr "- Не может идти на таран, как другие триремы, но имеет много здоровья и брони. "
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
-msgstr "- Может перевозить до 40 юнитов по воде до 40."
+msgstr "- Может перевозить по воде до 40 юнитов."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -1791,7 +1792,7 @@ msgstr "- Удерживает большие участки территори�
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr "- Может быть построен на нейтральной и союзной территории."
+msgstr "- Может быть построен на нейтральной и союзной территориях."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
@@ -1843,7 +1844,7 @@ msgstr "КРЕПОСТЬ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
-msgstr "- Крепость обычно самое крепкое здание во всех цивилизациях. "
+msgstr "- Крепость, обычно, самое крепкое здание во всех цивилизациях. "
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains Champion Units, Heroes, and Siege Weapons."
@@ -1923,7 +1924,7 @@ msgstr "ЧАСТОКОЛ"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
-msgstr "- Быстрая, дешёвая деревянная стена доступна всем цивилизациям."
+msgstr "- Быстрая, дешёвая деревянная стена, доступная всем цивилизациям."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
@@ -2025,7 +2026,7 @@ msgstr "- Полон стадами животных для обильной о�
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
-msgstr "- Богатый во всех видах горного дела.."
+msgstr "- Богат всеми видами руды."
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
@@ -2105,7 +2106,7 @@ msgstr "- Особое начальное строение Эллинов."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr "- Повышает на +10 предел населения."
+msgstr "- Повышает предел населения на +10 ."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only enabled in some game modes."
@@ -2155,7 +2156,7 @@ msgstr "ХРАМЫ"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr "- Строение этапа Городок необходимая для улучшения до этапа Город."
+msgstr "- Строение Этапа небольшого Города необходимо для улучшения до Этапа большого Города."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2189,7 +2190,7 @@ msgstr "- Пока он жив, все корабли строятся быст�
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."
-msgstr "- Корабль на котором он находится движется гораздо быстрее."
+msgstr "- Корабль, на котором он находится, движется гораздо быстрее."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -2282,4 +2283,4 @@ msgstr "- Собираются с помощью рыбацких лодок п�
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr "- Бродит по океанам игры и убегает когда атакован. "
+msgstr "- Бродит по океанам игры и убегает, когда атакован. "

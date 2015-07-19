@@ -222,6 +222,7 @@ Trader.prototype.PerformTrade = function(currentMarket)
 	// First take the preferred goods of the trader if any,
 	// otherwise choose one according to the player's trading priorities
 	// if still nothing (but should never happen), choose metal
+	// and recomputes the gain in case it has changed (for example by technology)
 	var nextGoods = this.GetRequiredGoods();
 	if (!nextGoods || RESOURCES.indexOf(nextGoods) == -1)
 	{
@@ -233,7 +234,7 @@ Trader.prototype.PerformTrade = function(currentMarket)
 			nextGoods = "metal";
 	}
 	this.goods.type = nextGoods;
-	this.goods.amount = this.gain;
+	this.goods.amount = this.CalculateGain(this.firstMarket, this.secondMarket);
 	this.goods.origin = currentMarket;
 };
 

@@ -7,14 +7,15 @@
 # Ildradil <piggmatias@gmail.com>, 2013
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015
+# Riku Viitanen <riisseli4@gmail.com>, 2015
 # Vorezard <garrappp@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
+"PO-Revision-Date: 2015-07-05 14:56+0000\n"
+"Last-Translator: Riku Viitanen <riisseli4@gmail.com>\n"
+"Language-Team: Finnish (http://www.transifex.com/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -101,42 +102,42 @@ msgstr "Deathmatch"
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Ei tulitaukoja"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minuuttia"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minuuttia"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 minuuttia"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 minuuttia"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "Puoli tuntia"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 minuuttia"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "Tunti"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -172,7 +173,7 @@ msgstr "Merikartat"
 
 #: gui/gamesetup/gamesetup.js:148
 msgid "Demo Maps"
-msgstr "Demo kartat"
+msgstr "Demokartat"
 
 #: gui/gamesetup/gamesetup.js:149
 msgid "All Maps"
@@ -195,7 +196,7 @@ msgstr "Sinä"
 #: gui/gamesetup/gamesetup.js:1098
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
 #: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
@@ -220,11 +221,11 @@ msgstr "Ei"
 #: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
 #: gui/gamesetup/gamesetup.js:1357
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Skenaarion määräämä"
 
 #: gui/gamesetup/gamesetup.js:1369
 msgid "Randomly selects a map from the list"
-msgstr "Satunnaisesti valitsee kartan listasta."
+msgstr "Valitsee satunnaisen kartan listasta."
 
 #: gui/gamesetup/gamesetup.js:1376
 msgid "Sorry, no description available."
@@ -234,8 +235,8 @@ msgstr "Pahoittelut, kuvausta ei saatavilla."
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s pelaaja"
+msgstr[1] "%(number)s pelaajaa."
 
 #: gui/gamesetup/gamesetup.js:1383 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
@@ -312,7 +313,7 @@ msgstr "Ilmoita, että olet valmis pelaamaan!"
 
 #: gui/gamesetup/gamesetup.js:1857
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Merkitse, että hyväksyt tämnhetkiset asetukset ja olet valmis pelaamaan!"
 
 #: gui/gamesetup/gamesetup.js:1975
 msgid "None"
@@ -334,20 +335,20 @@ msgstr "Verkkoviestejä: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:137
 msgid "Registering with server..."
-msgstr ""
+msgstr "Rekisteröidytään palvelimelle..."
 
 #: gui/gamesetup/gamesetup_mp.js:143
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Peli on jo alkanut, liitytään uudelleen..."
 
 #: gui/gamesetup/gamesetup_mp.js:189
 msgid "Game name already in use."
-msgstr ""
+msgstr "Pelinimi on jo käytössä"
 
 #: gui/gamesetup/gamesetup_mp.js:250
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "Pelaajan %(playername)s peli"
 
 #: gui/gamesetup/victory_conditions/conquest.js:2
 msgid "Conquest"
@@ -359,19 +360,19 @@ msgstr "Päihitä kaikki vastustajat"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
 msgid "Conquest Structure"
-msgstr ""
+msgstr "Valtaa rakennelma."
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Tuhoa kaikki vihollisen rakennelmat"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Valloita joukot"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Tuhoa kaikki vihollisjoukot"
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -397,7 +398,7 @@ msgstr "Tekoälyn asetukset"
 
 #: gui/aiconfig/aiconfig.xml:(caption):18
 msgid "AI Player:"
-msgstr ""
+msgstr "AI pelaaja"
 
 #: gui/aiconfig/aiconfig.xml:(caption):26
 msgid "AI Difficulty:"
@@ -492,7 +493,7 @@ msgstr "Aloitusresurssit:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Tulitauko:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -508,7 +509,7 @@ msgstr "Tutkittu kartan alue"
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Poista aasteet:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
@@ -588,7 +589,7 @@ msgstr "Valitse pelin aloitusresurssit"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Aseta aika, jolloin ei voi hyökätä"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -604,7 +605,7 @@ msgstr "Näytä tutkitun kartan alue (aloituskartta)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Poista kaikki aarteet kartalta."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."
@@ -716,7 +717,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr "\"Parempi viisastua toisten epäonnesta kuin omastaan.\" -Aesop"
+msgstr "\"Parempi viisastua toisten epäonnesta kuin omastaan.\" -Aisopos"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
@@ -724,15 +725,15 @@ msgstr ""
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
-msgstr "\"Turvallisen kaukaa on helppo olla rohkea.\" -Aesop"
+msgstr "\"Turvallisen kaukaa on helppo olla rohkea.\" -Aisopos"
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
-msgstr "\"Säästäväinen valmistautuu tänään huomisen tarpeisiin.\" -Aesop"
+msgstr "\"Säästäväinen valmistautuu tänään huomisen tarpeisiin.\" -Aisopos"
 
 #: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
-msgstr ""
+msgstr "\"Pelkät hienot höyhenet eivät tee hienoa lintua.\" -Aisopos"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -742,34 +743,34 @@ msgstr ""
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr "\"Suostuttelu on usein voimaa tehokkaampi.\" -Aesop"
+msgstr "\"Suostuttelu on usein voimaa tehokkaampi.\" -Aisopos"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
-msgstr ""
+msgstr "\"Itserakkaus voi johtaa itsetuhoon.\" -Aisopos"
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr "\"Verkkainen ja vakaa voittaa kilvan.\" -Aesop"
+msgstr "\"Verkkainen ja vakaa voittaa kilvan.\" -Aisopos"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr "\"Jumalat auttavat niitä jotka auttavat itseään.\" -Aesop"
+msgstr "\"Jumalat auttavat niitä jotka auttavat itseään.\" -Aisopos"
 
 #: gui/text/quotes.txt:22
 msgid ""
 "\"The shaft of the arrow had been feathered with one of the eagle's own "
 "plumes. We often give our enemies the means of our own destruction.\" - "
 "Aesop"
-msgstr "\"Nuolen varsi on sulitettu kotkan omalla höyhenellä. Usein me annamme vihollisillemme keinot omaan tuhoomme.\" -Aesop"
+msgstr "\"Nuolen varsi on sulitettu kotkan omalla höyhenellä. Usein me annamme vihollisillemme keinot omaan tuhoomme.\" -Aisopos"
 
 #: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
-msgstr ""
+msgstr "\"Yhteisö antaa voimaa.\" -Aisopos, \"Risukasa\""
 
 #: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
-msgstr "\"Vihollisen lupaukset on tehty rikottavaksi.\" -Aesop"
+msgstr "\"Vihollisen lupaukset on tehty rikottavaksi.\" -Aisopos"
 
 #: gui/text/quotes.txt:25
 msgid ""
@@ -844,7 +845,7 @@ msgstr ""
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes"
-msgstr ""
+msgstr "\"Valtiot ovat tuhoon tuomittuja, kun ne eivät erota hyviä pahoista.\" - Antisthenes"
 
 #: gui/text/quotes.txt:38
 msgid ""
@@ -886,7 +887,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr ""
+msgstr "\"Ihminen on luonnostaan poliittinen eläin.\" -Aristoteles"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -943,7 +944,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
-msgstr ""
+msgstr "\"Murhe kukistetulle\" -Brennus"
 
 #: gui/text/quotes.txt:56
 msgid ""
@@ -959,7 +960,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Tulin, näin, voitin.\" -Gaius Julius Caesar"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
@@ -977,7 +978,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
-msgstr ""
+msgstr "\"Laita varas nappaamaan varas.\" - Kallimakhos"
 
 #: gui/text/quotes.txt:63
 msgid ""
@@ -1113,7 +1114,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
-msgstr ""
+msgstr "\"Olen Cyrus, maailman hallitsija...\" -Cyrus Suuri"
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
@@ -1238,19 +1239,19 @@ msgstr ""
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
-msgstr ""
+msgstr "\"Kaikki valuu, mikään ei seisahdu.\" - Herakleitos"
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr ""
+msgstr "\"Mikään muu ei kestä kuin muutos.\" -Herakleitos"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr ""
+msgstr "\"Et voinut astua kahdesti samaan jokeen.\" - Herakleitos"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
-msgstr ""
+msgstr "\"Luonne on kohtalo.\" - Herakleitos"
 
 #: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
@@ -1271,21 +1272,21 @@ msgstr ""
 
 #: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
-msgstr ""
+msgstr "\"Pehmeillä alueilla syntyy pehmeitä miehiä.\" - Herakleitos"
 
 #: gui/text/quotes.txt:119
 msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
-msgstr ""
+msgstr "\"On kunnioitettavaa kuolla maansa puolesta.\" - Horatius"
 
 #: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
-msgstr ""
+msgstr "\"Me olemme kuitenkin pölyä ja varjoja.\" - Horatius"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "\"I am not bound over to swear allegiance to any master; where the storm "
 "drives me I turn in for shelter.\" - Horace"
-msgstr ""
+msgstr "En ole sidottu vannomaan uskollisuutta kenellekään isännälle; minne myrsky minut ajaa, käännyn suojaan.\" - Horatius"
 
 #: gui/text/quotes.txt:122
 msgid ""
@@ -1356,7 +1357,7 @@ msgstr ""
 msgid ""
 "\"Freedom is the sure possession of those alone who have the courage to "
 "defend it.\" - Pericles"
-msgstr "\"Vapaus on vain niiden hallussa, joilla on rohkeutta puolustaa sitä.\" - Pericles"
+msgstr "\"Vapaus on vain niiden hallussa, joilla on rohkeutta puolustaa sitä.\" - Perikles"
 
 #: gui/text/quotes.txt:135
 msgid ""
@@ -1400,13 +1401,13 @@ msgstr ""
 msgid ""
 "\"Just because you do not take an interest in politics doesn't mean politics"
 " won't take an interest in you.\" - Pericles"
-msgstr "\"Vain koska sinä et ole kiinnostunut politiikasta, ei tarkoita että politiikka ei ole kiinnostunut sinusta.\" - Pericles"
+msgstr "\"Vain koska sinä et ole kiinnostunut politiikasta, ei tarkoita että politiikka ei ole kiinnostunut sinusta.\" - Perikles"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man trembles exceedingly at heart on its approach.\" - Pindar"
-msgstr "\"Sota on mieluista niille, joilla ei ole kokemusta siitä, mutta ne jotka ovat kokeneet sen, niiden sydän vapisee sen lähestyessä.\" - Pindar"
+msgstr "\"Sota on mieluista niille, joilla ei ole kokemusta siitä, mutta ne jotka ovat kokeneet sen, niiden sydän vapisee sen lähestyessä.\" - Pindaros"
 
 #: gui/text/quotes.txt:143
 msgid ""
@@ -1576,7 +1577,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
-msgstr ""
+msgstr "\"Edes jumalat eivät taistele välttämättömyyksiä vastaan.\" -Simonides Keoslainen"
 
 #: gui/text/quotes.txt:176
 msgid ""

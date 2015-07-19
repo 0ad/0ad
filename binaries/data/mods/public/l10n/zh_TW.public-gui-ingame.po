@@ -13,27 +13,29 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-22 00:47+0200\n"
-"PO-Revision-Date: 2015-05-23 14:20+0000\n"
+"POT-Creation-Date: 2015-05-31 22:51+0200\n"
+"PO-Revision-Date: 2015-06-02 13:42+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/session/input.js:152
-#, javascript-format
-msgid "Basic range: %(range)s meters"
-msgstr "基本範圍：%(range)s 公尺"
-
 #: gui/session/input.js:153
 #, javascript-format
-msgid "Average bonus range: %(range)s meters"
-msgstr "額外範圍：%(range)s 公尺"
+msgid "Basic range: %(range)s meter"
+msgid_plural "Basic range: %(range)s meters"
+msgstr[0] "基本範圍：%(range)s 公尺"
 
-#: gui/session/input.js:732
+#: gui/session/input.js:154
+#, javascript-format
+msgid "Average bonus range: %(range)s meter"
+msgid_plural "Average bonus range: %(range)s meters"
+msgstr[0] "額外範圍：%(range)s 公尺"
+
+#: gui/session/input.js:733
 msgid "Cannot build wall here!"
 msgstr "無法在此建築城牆！"
 
@@ -88,7 +90,7 @@ msgstr "您是想要退出？還是會很快回來？"
 msgid "Destroy everything currently selected?"
 msgstr "摧毀目前所選的任何事物？"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:704
+#: gui/session/menu.js:189 gui/session/unit_actions.js:710
 msgid "Delete"
 msgstr "刪除"
 
@@ -492,70 +494,82 @@ msgstr "%(label)s %(current)s / %(max)s"
 msgid "Capture points:"
 msgstr "捕獲點： "
 
-#: gui/session/selection_panels.js:91
+#: gui/session/selection_panels.js:72
+msgid "Increase the alert level to protect more units"
+msgstr "增加警報等級以保護更多單位"
+
+#: gui/session/selection_panels.js:74
+msgid "Raise an alert!"
+msgstr "引發警報！"
+
+#: gui/session/selection_panels.js:77
+msgid "End of alert."
+msgstr "警報結束。"
+
+#: gui/session/selection_panels.js:143
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "購買 %(resource)s"
 
-#: gui/session/selection_panels.js:92
+#: gui/session/selection_panels.js:144
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "賣出 %(resource)s"
 
-#: gui/session/selection_panels.js:270 gui/session/selection_panels.js:1055
+#: gui/session/selection_panels.js:322 gui/session/selection_panels.js:1107
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
 
-#: gui/session/selection_panels.js:387
+#: gui/session/selection_panels.js:439
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "卸下 %(name)s"
 
-#: gui/session/selection_panels.js:388
+#: gui/session/selection_panels.js:440
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "單擊卸下 1. Shift 並單擊卸下所有該類型的單位。"
 
-#: gui/session/selection_panels.js:455
+#: gui/session/selection_panels.js:507
 msgid "Lock Gate"
 msgstr "鎖住大門"
 
-#: gui/session/selection_panels.js:461
+#: gui/session/selection_panels.js:513
 msgid "Unlock Gate"
 msgstr "開放大門"
 
-#: gui/session/selection_panels.js:566
+#: gui/session/selection_panels.js:618
 msgid "Pack"
 msgstr "打包"
 
-#: gui/session/selection_panels.js:568
+#: gui/session/selection_panels.js:620
 msgid "Unpack"
 msgstr "解壓縮"
 
-#: gui/session/selection_panels.js:570
+#: gui/session/selection_panels.js:622
 msgid "Cancel Packing"
 msgstr "取消打包"
 
-#: gui/session/selection_panels.js:572
+#: gui/session/selection_panels.js:624
 msgid "Cancel Unpacking"
 msgstr "取消解壓縮"
 
-#: gui/session/selection_panels.js:645
+#: gui/session/selection_panels.js:697
 msgid "Insufficient population capacity:"
 msgstr "人口上限不足："
 
-#: gui/session/selection_panels.js:646
+#: gui/session/selection_panels.js:698
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:817
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩餘： %(number)s 要建造。"
 
-#: gui/session/selection_panels.js:1043 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:629
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "血:"
@@ -754,66 +768,54 @@ msgstr "右鍵單擊以幫商人設定預設貿易路線。"
 msgid "Expected gain: %(gain)s"
 msgstr "預期收益: %(gain)s"
 
-#: gui/session/unit_actions.js:676 gui/session/unit_actions.js:944
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
 msgid "Unload All"
 msgstr "卸下所有"
 
-#: gui/session/unit_actions.js:692
+#: gui/session/unit_actions.js:698
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "因為這個物體在戰爭迷霧中，所以您無法摧毀這個物體。"
 
-#: gui/session/unit_actions.js:698
+#: gui/session/unit_actions.js:704
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "您無法破壞此實體，因為您的捕獲點不到一半"
 
-#: gui/session/unit_actions.js:727
+#: gui/session/unit_actions.js:733
 msgid "Stop"
 msgstr "停止"
 
-#: gui/session/unit_actions.js:745
+#: gui/session/unit_actions.js:751
 msgid "Garrison"
 msgstr "駐防"
 
-#: gui/session/unit_actions.js:766
+#: gui/session/unit_actions.js:772
 msgid "Unload"
 msgstr "卸下"
 
-#: gui/session/unit_actions.js:782
+#: gui/session/unit_actions.js:788
 msgid "Repair"
 msgstr "修復"
 
-#: gui/session/unit_actions.js:799
+#: gui/session/unit_actions.js:805
 msgid "Focus on Rally Point"
 msgstr "在集合點集中"
 
-#: gui/session/unit_actions.js:822
+#: gui/session/unit_actions.js:828
 msgid "Back to Work"
 msgstr "回去工作"
 
-#: gui/session/unit_actions.js:838
+#: gui/session/unit_actions.js:844
 msgid "Guard"
 msgstr "護衛"
 
-#: gui/session/unit_actions.js:855
+#: gui/session/unit_actions.js:861
 msgid "Remove guard"
 msgstr "移除護衛"
 
-#: gui/session/unit_actions.js:871
+#: gui/session/unit_actions.js:877
 msgid "Select trading goods"
 msgstr "選取貿易貨品"
-
-#: gui/session/unit_actions.js:888
-msgid "Increase the alert level to protect more units"
-msgstr "增加警報等級以保護更多單位"
-
-#: gui/session/unit_actions.js:890
-msgid "Raise an alert!"
-msgstr "引發警報！"
-
-#: gui/session/unit_actions.js:908
-msgid "End of alert."
-msgstr "警報結束。"
 
 #: gui/session/utility_functions.js:131 gui/session/utility_functions.js:133
 msgid "+"

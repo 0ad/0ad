@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-22 00:48+0200\n"
-"PO-Revision-Date: 2015-05-25 04:36+0000\n"
+"PO-Revision-Date: 2015-07-13 05:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
+"Language-Team: Galician (http://www.transifex.com/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -460,7 +460,7 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(
 #: gui/common/tooltips.js:380
 #, javascript-format
 msgid "%(component)s %(cost)s"
-msgstr "%(component)s %(cost)s"
+msgstr "%(cost)s %(component)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1008,7 +1008,7 @@ msgstr "Vida:"
 #: gui/structree/draw.js:280
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr "%(resourceIcon)s %(rate)s"
+msgstr "%(rate)s %(resourceIcon)s"
 
 #: gui/structree/draw.js:286
 msgid "Gather Rates:"

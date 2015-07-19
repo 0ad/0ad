@@ -915,7 +915,7 @@ m.AttackPlan.prototype.getPathToTarget = function(gameState)
 	Engine.ProfileStart("AI Compute path");
 	let startPos = { "x": this.rallyPoint[0], "y": this.rallyPoint[1] };
 	let endPos = { "x": this.targetPos[0], "y": this.targetPos[1] };
-	let path = Engine.ComputePath(startPos, endPos, gameState.getPassabilityClassMask("siege-large"));
+	let path = Engine.ComputePath(startPos, endPos, gameState.getPassabilityClassMask("large"));
 	this.path = [];
 	this.path.push(this.targetPos);
 	for (let p in path)

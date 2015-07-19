@@ -49,9 +49,6 @@
   <Loot>
     <xp>75</xp>
   </Loot>
-  <Obstruction>
-    <Unit radius="3.5"/>
-  </Obstruction>
   <Position>
     <Anchor>pitch</Anchor>
   </Position>
@@ -77,6 +74,9 @@
       <trained>actor/fauna/animal/elephant_trained.xml</trained>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <PassabilityClass>large</PassabilityClass>
+  </UnitMotion>
   <VisualActor>
     <Actor>fauna/elephant_african_bush.xml</Actor>
   </VisualActor>

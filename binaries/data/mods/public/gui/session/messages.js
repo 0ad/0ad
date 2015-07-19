@@ -518,7 +518,7 @@ function addChatMessage(msg, playerAssignments)
 		// Since livestock can be attacked/gathered by other players,
 		// we display a more specific notification in this case to not confuse the player
 		if (msg.targetIsDomesticAnimal)
-			var message = translate("Your livestock have been attacked by %(attacker)s!");
+			var message = translate("Your livestock has been attacked by %(attacker)s!");
 		else
 			var message = translate("You have been attacked by %(attacker)s!");
 		formatted = sprintf(message, { attacker: "[color=\"" + playerColor + "\"]" + username + "[/color]" });

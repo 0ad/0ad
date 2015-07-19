@@ -34,7 +34,7 @@ m.Config = function(difficulty)
 		"provisionFields" : 2
 	};
 
-	this.distUnitGain = 110*110;   // TODO  take it directly from helpers/TraderGain.js
+	this.distUnitGain = 115*115;   // TODO  take it directly from helpers/TraderGain.js
 
 	// Note: attack settings are set directly in attack_plan.js
 	// defense

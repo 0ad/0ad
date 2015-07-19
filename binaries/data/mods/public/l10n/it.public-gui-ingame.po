@@ -12,7 +12,7 @@
 # Damiano, 2013
 # Daniele Tricoli <eriol@mornie.org>, 2014
 # Davide, 2014
-# SecondCloud500 <eddieven2000@gmail.com>, 2014
+# SecondCloud500 <eddieven2000@gmail.com>, 2014-2015
 # Emanuele Ricci <stermi@gmail.com>, 2013
 # Fabio Pedretti <fabio.ped@libero.it>, 2013
 # giangy <giancarlo.moi@tiscali.it>, 2014
@@ -30,27 +30,31 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-22 00:47+0200\n"
-"PO-Revision-Date: 2015-05-23 08:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/0ad/language/it/)\n"
+"POT-Creation-Date: 2015-05-31 22:51+0200\n"
+"PO-Revision-Date: 2015-06-15 19:30+0000\n"
+"Last-Translator: Me Lazzi\n"
+"Language-Team: Italian (http://www.transifex.com/p/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/session/input.js:152
-#, javascript-format
-msgid "Basic range: %(range)s meters"
-msgstr ""
-
 #: gui/session/input.js:153
 #, javascript-format
-msgid "Average bonus range: %(range)s meters"
-msgstr ""
+msgid "Basic range: %(range)s meter"
+msgid_plural "Basic range: %(range)s meters"
+msgstr[0] "Raggio di base: %(range)s metro"
+msgstr[1] "Raggio di base: %(range)s metri"
 
-#: gui/session/input.js:732
+#: gui/session/input.js:154
+#, javascript-format
+msgid "Average bonus range: %(range)s meter"
+msgid_plural "Average bonus range: %(range)s meters"
+msgstr[0] "Bonus raggio medio: %(range)s metro"
+msgstr[1] "Bonus raggio medio: %(range)s metri"
+
+#: gui/session/input.js:733
 msgid "Cannot build wall here!"
 msgstr "Non puoi costruire muri qui!"
 
@@ -105,7 +109,7 @@ msgstr "Vuoi abbandonare o ritornerai presto?"
 msgid "Destroy everything currently selected?"
 msgstr "Distruggere tutto ciò che è selezionato?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:704
+#: gui/session/menu.js:189 gui/session/unit_actions.js:710
 msgid "Delete"
 msgstr "Elimina"
 
@@ -130,7 +134,7 @@ msgstr "Nemico"
 
 #: gui/session/menu.js:349
 msgid "request for your allies to attack this enemy"
-msgstr ""
+msgstr "Chiedi ai tuoi alleati di attaccare questo nemico"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -297,7 +301,7 @@ msgstr "Giocatore sconosciuto"
 #: gui/session/messages.js:443
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s sta rientrando in partita."
 
 #: gui/session/messages.js:446
 #, javascript-format
@@ -307,7 +311,7 @@ msgstr "%(player)s ha abbandonato la partita."
 #: gui/session/messages.js:449
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s è rientrato in partita."
 
 #: gui/session/messages.js:454
 msgid "You have been defeated."
@@ -371,7 +375,7 @@ msgstr "%(player)s ti ha inviato %(amounts)s."
 #: gui/session/messages.js:521
 #, javascript-format
 msgid "Your livestock have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Il tuo bestiame è stato attaccato da %(attacker)s!"
 
 #: gui/session/messages.js:523
 #, javascript-format
@@ -430,8 +434,8 @@ msgstr "%(rank)s Rango"
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Questa costruzione sarà completata in %(seconds)s secondo."
+msgstr[1] "Questa costruzione sarà completata in %(seconds)s secondi."
 
 #: gui/session/selection_details.js:78
 #, javascript-format
@@ -441,7 +445,7 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 #: gui/session/selection_details.js:108
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:126
 #, javascript-format
@@ -485,8 +489,8 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Numero di costruttori.\nAssegnarne altri a questa costruzione può accelerare la costruzione di %(speedup)s secondo."
+msgstr[1] "Numero di costruttori.\nAssegnarne altri a questa costruzione può accelerare la costruzione di %(speedup)s secondi."
 
 #: gui/session/selection_details.js:202
 msgid "Number of builders."
@@ -518,73 +522,85 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_details.js:347
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr ""
+msgstr "Punti cattura:"
 
-#: gui/session/selection_panels.js:91
+#: gui/session/selection_panels.js:72
+msgid "Increase the alert level to protect more units"
+msgstr "Aumenta il livello di allerta per proteggere più unità"
+
+#: gui/session/selection_panels.js:74
+msgid "Raise an alert!"
+msgstr "Lancia un Allarme!"
+
+#: gui/session/selection_panels.js:77
+msgid "End of alert."
+msgstr "Fine dell'allerta."
+
+#: gui/session/selection_panels.js:143
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Compra %(resource)s"
 
-#: gui/session/selection_panels.js:92
+#: gui/session/selection_panels.js:144
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Vendi %(resource)s"
 
-#: gui/session/selection_panels.js:270 gui/session/selection_panels.js:1055
+#: gui/session/selection_panels.js:322 gui/session/selection_panels.js:1107
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Richiesta %(technology)s"
 
-#: gui/session/selection_panels.js:387
+#: gui/session/selection_panels.js:439
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Scaricare %(name)s"
 
-#: gui/session/selection_panels.js:388
+#: gui/session/selection_panels.js:440
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Un singolo clic per scaricarne 1. Maiusc+Clic per scaricare tutte le unità di un tipo."
 
-#: gui/session/selection_panels.js:455
+#: gui/session/selection_panels.js:507
 msgid "Lock Gate"
 msgstr "Blocca Cancello"
 
-#: gui/session/selection_panels.js:461
+#: gui/session/selection_panels.js:513
 msgid "Unlock Gate"
 msgstr "Sblocca Cancello"
 
-#: gui/session/selection_panels.js:566
+#: gui/session/selection_panels.js:618
 msgid "Pack"
 msgstr "Assembla"
 
-#: gui/session/selection_panels.js:568
+#: gui/session/selection_panels.js:620
 msgid "Unpack"
 msgstr "Installare"
 
-#: gui/session/selection_panels.js:570
+#: gui/session/selection_panels.js:622
 msgid "Cancel Packing"
 msgstr "Annulla Imballaggio"
 
-#: gui/session/selection_panels.js:572
+#: gui/session/selection_panels.js:624
 msgid "Cancel Unpacking"
 msgstr "Annulla Disimballaggio"
 
-#: gui/session/selection_panels.js:645
+#: gui/session/selection_panels.js:697
 msgid "Insufficient population capacity:"
 msgstr "Popolazione Insufficiente:"
 
-#: gui/session/selection_panels.js:646
+#: gui/session/selection_panels.js:698
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:817
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Rimanenti: %(number)s da costruire."
 msgstr[1] "Rimanenti: %(number)s da costruire."
 
-#: gui/session/selection_panels.js:1043 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:629
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Salute:"
@@ -665,7 +681,7 @@ msgstr "Gaia"
 #: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Diagramma Strutture"
 
 #: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
@@ -714,13 +730,13 @@ msgstr "Popolazione (attuale / limite)"
 #: gui/session/session.js:719
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "Popolazione massima: %(popCap)s"
 
 #: gui/session/session.js:798
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Tempo rimanente alla fine della tregua: %(time)s."
 
 #: gui/session/session.js:806
 #, javascript-format
@@ -783,66 +799,54 @@ msgstr "Clic destro per stabilire una rotta iniziale per i nuovi commercianti."
 msgid "Expected gain: %(gain)s"
 msgstr "Guadagno atteso: %(gain)s"
 
-#: gui/session/unit_actions.js:676 gui/session/unit_actions.js:944
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
 msgid "Unload All"
 msgstr "Sbarca tutti"
 
-#: gui/session/unit_actions.js:692
+#: gui/session/unit_actions.js:698
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "Non puoi distruggere questa entità perché è nella nebbia-di-guerra"
 
-#: gui/session/unit_actions.js:698
+#: gui/session/unit_actions.js:704
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "Non puoi distruggere questa entità poichè hai meno della metà dei punti di cattura"
 
-#: gui/session/unit_actions.js:727
+#: gui/session/unit_actions.js:733
 msgid "Stop"
 msgstr "Stop"
 
-#: gui/session/unit_actions.js:745
+#: gui/session/unit_actions.js:751
 msgid "Garrison"
 msgstr "Guarnigione"
 
-#: gui/session/unit_actions.js:766
+#: gui/session/unit_actions.js:772
 msgid "Unload"
 msgstr "Sbarca"
 
-#: gui/session/unit_actions.js:782
+#: gui/session/unit_actions.js:788
 msgid "Repair"
 msgstr "Ripara"
 
-#: gui/session/unit_actions.js:799
+#: gui/session/unit_actions.js:805
 msgid "Focus on Rally Point"
 msgstr "Focus sui punti di raccolta"
 
-#: gui/session/unit_actions.js:822
+#: gui/session/unit_actions.js:828
 msgid "Back to Work"
 msgstr "Torna al Lavoro"
 
-#: gui/session/unit_actions.js:838
+#: gui/session/unit_actions.js:844
 msgid "Guard"
 msgstr "Guardia"
 
-#: gui/session/unit_actions.js:855
+#: gui/session/unit_actions.js:861
 msgid "Remove guard"
 msgstr "Rimuovi Guardia"
 
-#: gui/session/unit_actions.js:871
+#: gui/session/unit_actions.js:877
 msgid "Select trading goods"
 msgstr "Seleziona beni commerciali"
-
-#: gui/session/unit_actions.js:888
-msgid "Increase the alert level to protect more units"
-msgstr "Aumenta il livello di allerta per proteggere più unità"
-
-#: gui/session/unit_actions.js:890
-msgid "Raise an alert!"
-msgstr "Lancia un Allarme!"
-
-#: gui/session/unit_actions.js:908
-msgid "End of alert."
-msgstr "Fine dell'allerta."
 
 #: gui/session/utility_functions.js:131 gui/session/utility_functions.js:133
 msgid "+"
@@ -1026,7 +1030,7 @@ msgstr "Hitpoints"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Capture points"
-msgstr ""
+msgstr "Punti cattura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,8 +37,8 @@ DEFINE_INTERFACE_METHOD_0("GetWalkSpeed", fixed, ICmpUnitMotion, GetWalkSpeed)
 DEFINE_INTERFACE_METHOD_0("GetRunSpeed", fixed, ICmpUnitMotion, GetRunSpeed)
 DEFINE_INTERFACE_METHOD_0("GetPassabilityClassName", std::string, ICmpUnitMotion, GetPassabilityClassName)
 DEFINE_INTERFACE_METHOD_1("SetPassabilityClassName", void, ICmpUnitMotion, SetPassabilityClassName, std::string)
+DEFINE_INTERFACE_METHOD_0("GetUnitClearance", entity_pos_t, ICmpUnitMotion, GetUnitClearance)
 DEFINE_INTERFACE_METHOD_1("SetFacePointAfterMove", void, ICmpUnitMotion, SetFacePointAfterMove, bool)
-DEFINE_INTERFACE_METHOD_1("SetUnitRadius", void, ICmpUnitMotion, SetUnitRadius, fixed)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpUnitMotion, SetDebugOverlay, bool)
 END_INTERFACE_WRAPPER(UnitMotion)
 
@@ -127,9 +127,9 @@ public:
 		m_Script.CallVoid("SetPassabilityClassName", passClassName);
 	}
 
-	virtual void SetUnitRadius(fixed radius)
+	virtual entity_pos_t GetUnitClearance()
 	{
-		m_Script.CallVoid("SetUnitRadius", radius);
+		return m_Script.Call<entity_pos_t>("GetUnitClearance");
 	}
 
 	virtual void SetDebugOverlay(bool enabled)

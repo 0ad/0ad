@@ -10,6 +10,7 @@
 # Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2015
 # firespin <dartworldgr@hotmail.com>, 2014
 # George Charoupas <labaxp@gmail.com>, 2015
+# LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2014
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <savoritiasshadow@gmail.com>, 2014
@@ -20,27 +21,31 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-22 00:47+0200\n"
-"PO-Revision-Date: 2015-05-23 08:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
+"POT-Creation-Date: 2015-05-31 22:51+0200\n"
+"PO-Revision-Date: 2015-07-14 20:45+0000\n"
+"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"Language-Team: Greek (http://www.transifex.com/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/session/input.js:152
-#, javascript-format
-msgid "Basic range: %(range)s meters"
-msgstr ""
-
 #: gui/session/input.js:153
 #, javascript-format
-msgid "Average bonus range: %(range)s meters"
-msgstr ""
+msgid "Basic range: %(range)s meter"
+msgid_plural "Basic range: %(range)s meters"
+msgstr[0] " Βασικό βεληνεκές: %(range)s μέτρα"
+msgstr[1] "Βασικό βεληνεκές: %(range)s μέτρα "
 
-#: gui/session/input.js:732
+#: gui/session/input.js:154
+#, javascript-format
+msgid "Average bonus range: %(range)s meter"
+msgid_plural "Average bonus range: %(range)s meters"
+msgstr[0] "Μέσο έυρος μπόνους: %(range)s μέτρα"
+msgstr[1] "Μέσο μπόνους έκτασης: %(range)s μέτρα"
+
+#: gui/session/input.js:733
 msgid "Cannot build wall here!"
 msgstr "Δεν μπορείς να χτίσεις τείχος εδώ!"
 
@@ -95,7 +100,7 @@ msgstr "Θέλεις να παραιτηθείς ή θα επιστρέψεις 
 msgid "Destroy everything currently selected?"
 msgstr "Καταστρέψε ό,τι είναι αυτή τη στιγμή επιλεγμένο;"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:704
+#: gui/session/menu.js:189 gui/session/unit_actions.js:710
 msgid "Delete"
 msgstr "Διαγραφή"
 
@@ -120,7 +125,7 @@ msgstr "Εχθρός"
 
 #: gui/session/menu.js:349
 msgid "request for your allies to attack this enemy"
-msgstr ""
+msgstr "Αίτηση προς τους συμμάχους σου να επιτεθούν στον εχθρό"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -287,7 +292,7 @@ msgstr "Άγνωστος παίκτης"
 #: gui/session/messages.js:443
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s ξεκινά σύνδεση στο παιχνίδι."
 
 #: gui/session/messages.js:446
 #, javascript-format
@@ -297,7 +302,7 @@ msgstr "%(player)s αποχώρησε από το παιχνίδι."
 #: gui/session/messages.js:449
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s εχει επανασυνδεθεί στο παιχνίδι."
 
 #: gui/session/messages.js:454
 msgid "You have been defeated."
@@ -361,7 +366,7 @@ msgstr "Ο %(player)s σου έστειλε %(amounts)s."
 #: gui/session/messages.js:521
 #, javascript-format
 msgid "Your livestock have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Τα ζωντανά σου δέχονται επίθεση από  %(attacker)s !"
 
 #: gui/session/messages.js:523
 #, javascript-format
@@ -420,8 +425,8 @@ msgstr "%(rank)s Βαθμίδα"
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Η κατασκευή θα ολοκληρωθεί σε %(seconds)s δευτερόλεπτα."
+msgstr[1] "Η κατασκευή θα ολοκληρωθεί σε %(seconds)s δευτερόλεπτα."
 
 #: gui/session/selection_details.js:78
 #, javascript-format
@@ -431,7 +436,7 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 #: gui/session/selection_details.js:108
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:126
 #, javascript-format
@@ -475,8 +480,8 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Αριθμός χτιστών. \nΑναθέτοντας ακόμα έναν σε αυτή την κατασκευή θα επιταχύνει την διαδικασία κατά %(speedup)s  δευτερόλεπτα."
+msgstr[1] "Αριθμός χτιστών. \nΑναθέτοντας ακόμα έναν σε αυτή την κατασκευή θα επιταχύνει την διαδικασία κατά %(speedup)s  δευτερόλεπτα."
 
 #: gui/session/selection_details.js:202
 msgid "Number of builders."
@@ -508,73 +513,85 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_details.js:347
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr ""
+msgstr "Πόντοι κατάκτησης:"
 
-#: gui/session/selection_panels.js:91
+#: gui/session/selection_panels.js:72
+msgid "Increase the alert level to protect more units"
+msgstr "Αύξησε το επίπεδο συναγερμού για να προστατεύσεις περισσότερες μονάδες"
+
+#: gui/session/selection_panels.js:74
+msgid "Raise an alert!"
+msgstr "Σήμανε συναγερμό!"
+
+#: gui/session/selection_panels.js:77
+msgid "End of alert."
+msgstr "Τέλος του συναγερμού"
+
+#: gui/session/selection_panels.js:143
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Αγόρασε %(resource)s"
 
-#: gui/session/selection_panels.js:92
+#: gui/session/selection_panels.js:144
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Πούλησε %(resource)s"
 
-#: gui/session/selection_panels.js:270 gui/session/selection_panels.js:1055
+#: gui/session/selection_panels.js:322 gui/session/selection_panels.js:1107
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Απαιτείται η τεχνολογία %(technology)s"
 
-#: gui/session/selection_panels.js:387
+#: gui/session/selection_panels.js:439
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Ξεφόρτωμα %(name)s"
 
-#: gui/session/selection_panels.js:388
+#: gui/session/selection_panels.js:440
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Μονό-κλικ για να να ξεφορτώθει 1. Shift-κλικ για να ξεφορτώθουν πάντες αυτού του τύπου."
 
-#: gui/session/selection_panels.js:455
+#: gui/session/selection_panels.js:507
 msgid "Lock Gate"
 msgstr "Κλείδωμα Πύλης"
 
-#: gui/session/selection_panels.js:461
+#: gui/session/selection_panels.js:513
 msgid "Unlock Gate"
 msgstr "Ξεκλείδωμα Πύλης"
 
-#: gui/session/selection_panels.js:566
+#: gui/session/selection_panels.js:618
 msgid "Pack"
 msgstr "Πακετάρισμα"
 
-#: gui/session/selection_panels.js:568
+#: gui/session/selection_panels.js:620
 msgid "Unpack"
 msgstr "Άνοιγμα πακέτου"
 
-#: gui/session/selection_panels.js:570
+#: gui/session/selection_panels.js:622
 msgid "Cancel Packing"
 msgstr "Ακύρωση πακεταρίσματος "
 
-#: gui/session/selection_panels.js:572
+#: gui/session/selection_panels.js:624
 msgid "Cancel Unpacking"
 msgstr "Ακύρωση ξεπακεταρίσματος "
 
-#: gui/session/selection_panels.js:645
+#: gui/session/selection_panels.js:697
 msgid "Insufficient population capacity:"
 msgstr "Aνεπαρκής χωρητικότητα πληθυσμού:"
 
-#: gui/session/selection_panels.js:646
+#: gui/session/selection_panels.js:698
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:817
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Απομένει: %(number)s να χτιστεί."
 msgstr[1] "Απομένουν: %(number)s να χτιστούν."
 
-#: gui/session/selection_panels.js:1043 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:629
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Υγεία:"
@@ -655,7 +672,7 @@ msgstr "Γαία"
 #: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Δέντρο κατασκευής"
 
 #: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
@@ -704,13 +721,13 @@ msgstr "Πληθυσμός (τρέχων / όριο)"
 #: gui/session/session.js:719
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "Μέγιστος πληθυσμοού: %(popCap)s"
 
 #: gui/session/session.js:798
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Χρόνος που απομένει μέχρι να πάυσει η κατάπυση πυρών: %(time)s."
 
 #: gui/session/session.js:806
 #, javascript-format
@@ -773,66 +790,54 @@ msgstr "Κάντε δεξί κλικ για να καθοριστεί μια π�
 msgid "Expected gain: %(gain)s"
 msgstr "Αναμενόμενο κέρδος: %(gain)s"
 
-#: gui/session/unit_actions.js:676 gui/session/unit_actions.js:944
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
 msgid "Unload All"
 msgstr "Ξεφόρτωμα όλων"
 
-#: gui/session/unit_actions.js:692
+#: gui/session/unit_actions.js:698
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "Δεν μπορείς να καταστρέψεις αυτήν την οντότητα γιατί είναι στην ομίχλη-του-πολέμου"
 
-#: gui/session/unit_actions.js:698
+#: gui/session/unit_actions.js:704
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "Δεν μπορείς να καταστρέψεις αυτήν την οντότητα γιατί εχεις λιγότερους απο τους μισούς πόντους κατάκτησης"
 
-#: gui/session/unit_actions.js:727
+#: gui/session/unit_actions.js:733
 msgid "Stop"
 msgstr "Σταμάτα"
 
-#: gui/session/unit_actions.js:745
+#: gui/session/unit_actions.js:751
 msgid "Garrison"
 msgstr "Οχύρωση"
 
-#: gui/session/unit_actions.js:766
+#: gui/session/unit_actions.js:772
 msgid "Unload"
 msgstr "Ξεφορτώμα"
 
-#: gui/session/unit_actions.js:782
+#: gui/session/unit_actions.js:788
 msgid "Repair"
 msgstr "Επισκευή"
 
-#: gui/session/unit_actions.js:799
+#: gui/session/unit_actions.js:805
 msgid "Focus on Rally Point"
 msgstr "Έμφαση στο σημείο Rally"
 
-#: gui/session/unit_actions.js:822
+#: gui/session/unit_actions.js:828
 msgid "Back to Work"
 msgstr "Πίσω στη δουλειά"
 
-#: gui/session/unit_actions.js:838
+#: gui/session/unit_actions.js:844
 msgid "Guard"
 msgstr "Προφύλαξη"
 
-#: gui/session/unit_actions.js:855
+#: gui/session/unit_actions.js:861
 msgid "Remove guard"
 msgstr "Αφαίρεση προφύλαξης"
 
-#: gui/session/unit_actions.js:871
+#: gui/session/unit_actions.js:877
 msgid "Select trading goods"
 msgstr "Επιλογή ανταλλάξιμων αγαθών."
-
-#: gui/session/unit_actions.js:888
-msgid "Increase the alert level to protect more units"
-msgstr "Αύξησε το επίπεδο συναγερμού για να προστατεύσεις περισσότερες μονάδες"
-
-#: gui/session/unit_actions.js:890
-msgid "Raise an alert!"
-msgstr "Σήμανε συναγερμό!"
-
-#: gui/session/unit_actions.js:908
-msgid "End of alert."
-msgstr "Τέλος του συναγερμού"
 
 #: gui/session/utility_functions.js:131 gui/session/utility_functions.js:133
 msgid "+"
@@ -1016,7 +1021,7 @@ msgstr "Πόντοι πληγμάτων:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Capture points"
-msgstr ""
+msgstr "Πόντοι κατάκτησης:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"

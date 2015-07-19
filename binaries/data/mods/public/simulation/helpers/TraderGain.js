@@ -1,5 +1,5 @@
 // This constant used to adjust gain value depending on distance
-const DISTANCE_FACTOR = 1 / 110;
+const DISTANCE_FACTOR = 1 / 115;
 
 // Additional gain (applying to each market) for trading performed between markets of different players, in percents
 const INTERNATIONAL_TRADING_ADDITION = 25;
@@ -22,7 +22,12 @@ function CalculateTraderGain(firstMarket, secondMarket, template, trader)
 	// We calculate gain as square of distance to encourage trading between remote markets
 	gain.traderGain = Math.pow(distance * DISTANCE_FACTOR, 2);
 	if (template && template.GainMultiplier)
-		gain.traderGain *= template.GainMultiplier;
+	{
+		if (trader)
+			gain.traderGain *= ApplyValueModificationsToEntity("Trader/GainMultiplier", +template.GainMultiplier, trader);
+		else	// called from the gui with modifications already applied
+			gain.traderGain *= template.GainMultiplier;
+	}
 	gain.traderGain = Math.round(gain.traderGain);
 	// If trader undefined, the trader owner is supposed to be the same as the first market
 	if (trader)

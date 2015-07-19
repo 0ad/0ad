@@ -77,7 +77,7 @@ AIInterface.prototype.Disable = function()
 	this.OnGlobalEntityRenamed = nop;
 	this.OnGlobalTributeExchanged = nop;
 	this.OnTemplateModification = nop;
-	this.OnValueModification = nop;
+	this.OnGlobalValueModification = nop;
 };
 
 AIInterface.prototype.GetNonEntityRepresentation = function()

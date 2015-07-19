@@ -239,8 +239,12 @@ function GetTemplateDataHelper(template, player)
 	}
 
 	if (template.Trader)
-		ret.trader = template.Trader;
-
+	{
+		ret.trader = {
+			"GainMultiplier": func("Trader/GainMultiplier", +template.Trader.GainMultiplier, player, template)
+		};
+	}
+	    
 	if (template.WallSet)
 	{
 		ret.wallSet = {

@@ -9,7 +9,7 @@
     <Classes datatype="tokens">ForestPlant</Classes>
   </Identity>
   <Obstruction>
-    <Unit radius="1.0"/>
+    <Static width="2.0" depth="2.0"/>
     <BlockMovement>false</BlockMovement>
     <BlockPathfinding>false</BlockPathfinding>
   </Obstruction>

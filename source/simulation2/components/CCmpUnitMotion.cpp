@@ -164,7 +164,7 @@ public:
 
 	// Dynamic state:
 
-	entity_pos_t m_Radius;
+	entity_pos_t m_Clearance;
 	bool m_Moving;
 	bool m_FacePointAfterMove;
 
@@ -320,17 +320,16 @@ public:
 		else
 			m_RunSpeed = m_OriginalRunSpeed = m_WalkSpeed;
 
-		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-		if (cmpObstruction)
-			m_Radius = cmpObstruction->GetUnitRadius();
-
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 		{
 			m_PassClassName = paramNode.GetChild("PassabilityClass").ToUTF8();
 			m_PassClass = cmpPathfinder->GetPassabilityClass(m_PassClassName);
+			m_Clearance = cmpPathfinder->GetClearance(m_PassClass);
+
+			CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 			if (cmpObstruction)
-				cmpObstruction->SetUnitClearance(cmpPathfinder->GetClearance(m_PassClass));
+				cmpObstruction->SetUnitClearance(m_Clearance);
 		}
 
 		m_State = STATE_IDLE;
@@ -352,8 +351,6 @@ public:
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
-		serialize.NumberFixed_Unbounded("radius", m_Radius);
-
 		serialize.NumberU8("state", m_State, 0, STATE_MAX-1);
 		serialize.NumberU8("path state", m_PathState, 0, PATHSTATE_MAX-1);
 
@@ -540,9 +537,9 @@ public:
 		m_ShortPath.m_Waypoints.clear();
 	}
 
-	virtual void SetUnitRadius(fixed radius)
+	virtual entity_pos_t GetUnitClearance()
 	{
-		m_Radius = radius;
+		return m_Clearance;
 	}
 
 private:
@@ -926,7 +923,7 @@ void CCmpUnitMotion::Move(fixed dt)
 			fixed offsetLength = offset.Length();
 			if (offsetLength <= maxdist)
 			{
-				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Radius, m_PassClass))
+				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
 				{
 					pos = target;
 
@@ -956,7 +953,7 @@ void CCmpUnitMotion::Move(fixed dt)
 				offset.Normalize(maxdist);
 				target = pos + offset;
 
-				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Radius, m_PassClass))
+				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
 				{
 					pos = target;
 					break;
@@ -1076,7 +1073,7 @@ void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos)
 	// The next step was obstructed the last time we checked; also check that
 	// the step is still obstructed (maybe the units in our way moved in the meantime)
 	if (!m_Planning.nextStepClean &&
-		!cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, nextPoint.x, nextPoint.z, m_Radius, m_PassClass))
+		!cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, nextPoint.x, nextPoint.z, m_Clearance, m_PassClass))
 	{
 		// If the short path computation is over, use it, else just forget about it
 		if (!m_Planning.nextStepShortPath.m_Waypoints.empty())
@@ -1093,12 +1090,12 @@ void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos)
 
 	const Waypoint& followingPoint = m_LongPath.m_Waypoints.rbegin()[1]; // penultimate element
 	m_Planning.nextStepClean = cmpPathfinder->CheckMovement(
-		GetObstructionFilter(), nextPoint.x, nextPoint.z, followingPoint.x, followingPoint.z, m_Radius, m_PassClass);
+		GetObstructionFilter(), nextPoint.x, nextPoint.z, followingPoint.x, followingPoint.z, m_Clearance, m_PassClass);
 	if (!m_Planning.nextStepClean)
 	{
 		PathGoal goal = { PathGoal::POINT, followingPoint.x, followingPoint.z };
 		m_Planning.expectedPathTicket = cmpPathfinder->ComputeShortPathAsync(
-			nextPoint.x, nextPoint.z, m_Radius, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, false, m_TargetEntity, GetEntityId());
+			nextPoint.x, nextPoint.z, m_Clearance, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, false, m_TargetEntity, GetEntityId());
 	}
 }
 
@@ -1142,7 +1139,7 @@ bool CCmpUnitMotion::TryGoingStraightToGoalPoint(const CFixedVector2D& from)
 		return false;
 
 	// Check if there's any collisions on that route
-	if (!cmpPathfinder->CheckMovement(GetObstructionFilter(), from.X, from.Y, goalPos.X, goalPos.Y, m_Radius, m_PassClass))
+	if (!cmpPathfinder->CheckMovement(GetObstructionFilter(), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
 		return false;
 
 	// That route is okay, so update our path
@@ -1178,7 +1175,7 @@ bool CCmpUnitMotion::TryGoingStraightToTargetEntity(const CFixedVector2D& from)
 	CFixedVector2D goalPos = goal.NearestPointOnGoal(from);
 
 	// Check if there's any collisions on that route
-	if (!cmpPathfinder->CheckMovement(GetObstructionFilter(), from.X, from.Y, goalPos.X, goalPos.Y, m_Radius, m_PassClass))
+	if (!cmpPathfinder->CheckMovement(GetObstructionFilter(), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
 		return false;
 
 	// That route is okay, so update our path
@@ -1378,7 +1375,7 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	if (!cmpPathfinder)
 		return;
 
-	m_ExpectedPathTicket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Radius, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, avoidMovingUnits, m_TargetEntity, GetEntityId());
+	m_ExpectedPathTicket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, avoidMovingUnits, m_TargetEntity, GetEntityId());
 }
 
 bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
@@ -1587,7 +1584,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 		goal.type = PathGoal::SQUARE;
 		goal.u = obstruction.u;
 		goal.v = obstruction.v;
-		entity_pos_t delta = std::max(goalDistance, m_Radius + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
+		entity_pos_t delta = std::max(goalDistance, m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
 		goal.hw = obstruction.hw + delta;
 		goal.hh = obstruction.hh + delta;
 	}
@@ -1636,7 +1633,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 			goal.type = PathGoal::SQUARE;
 			goal.u = obstruction.u;
 			goal.v = obstruction.v;
-			entity_pos_t delta = std::max(goalDistance, m_Radius + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
+			entity_pos_t delta = std::max(goalDistance, m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
 			goal.hw = obstruction.hw + delta;
 			goal.hh = obstruction.hh + delta;
 		}

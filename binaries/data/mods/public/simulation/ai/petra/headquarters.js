@@ -355,7 +355,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			let decayToGaia = true;
 			for (let i = 1; i < capture.length; ++i)
 			{
-				if (i == PlayerID || capture[i] < capture[0])
+				if (gameState.isPlayerAlly(i) || !capture[i])
 					continue;
 				decayToGaia = false;
 				break;
@@ -1900,7 +1900,7 @@ m.HQ.prototype.isNearInvadingArmy = function(pos)
 m.HQ.prototype.isUnderEnemyFire = function(gameState, pos, radius = 0)
 {
 	if (!this.turnCache["firingStructures"])
-		this.turnCache["firingStructures"] = gameState.updatingGlobalCollection("FiringStructures", API3.Filters.hasDefensiveFire(), gameState.getEnemyStructures());
+		this.turnCache["firingStructures"] = gameState.updatingCollection("FiringStructures", API3.Filters.hasDefensiveFire(), gameState.getEnemyStructures());
 	for (let ent of this.turnCache["firingStructures"].values())
 	{
 		let range = radius + ent.attackRange("Ranged").max;

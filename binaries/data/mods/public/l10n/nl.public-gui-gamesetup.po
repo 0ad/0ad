@@ -16,7 +16,7 @@
 # niektb <niektb95@gmail.com>, 2015
 # TheBuG <Ruben.bilo@gmail.com>, 2014
 # Sander Deryckere, 2013
-# Sander Deryckere, 2014
+# Sander Deryckere, 2014-2015
 # Spijker <woartel@hotmail.com>, 2014
 # Sven Baars <svenb.linux@gmail.com>, 2013
 # tnt, 2013
@@ -27,9 +27,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
+"PO-Revision-Date: 2015-06-22 07:43+0000\n"
+"Last-Translator: Sander Deryckere\n"
+"Language-Team: Dutch (http://www.transifex.com/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -116,42 +116,42 @@ msgstr "Dodenmatch"
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Geen wapenstilstand"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minuten"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minuten"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 minuten"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 minuten"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minuten"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 minuten"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 minuten"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -235,7 +235,7 @@ msgstr "Nee"
 #: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
 #: gui/gamesetup/gamesetup.js:1357
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Afhankelijk van de kaart"
 
 #: gui/gamesetup/gamesetup.js:1369
 msgid "Randomly selects a map from the list"
@@ -374,19 +374,19 @@ msgstr "Versla alle tegenstanders"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
 msgid "Conquest Structure"
-msgstr ""
+msgstr "Verover gebouwen"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Verniel of verover alle gebouwen van de vijanden"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Verover eenheden"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Dood alle eenheden van de vijanden"
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -507,7 +507,7 @@ msgstr "Beginkapitaal:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Wapenstilstand:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -603,7 +603,7 @@ msgstr "Selecteer de resources die je krijgt bij de start van het spel."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Maak aanvallen onmogelijk gedurende een bepaalde tijd."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!

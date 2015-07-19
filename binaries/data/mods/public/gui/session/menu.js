@@ -346,7 +346,7 @@ function openDiplomacy()
 		var simState = GetSimState();
 		let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
 		button.hidden = simState.ceasefireActive || !(g_Players[i].isEnemy[we]);
-		button.tooltip = translate("request for your allies to attack this enemy");
+		button.tooltip = translate("Request your allies to attack this enemy");
 		button.onpress = (function(i, we){ return function() {
 			Engine.PostNetworkCommand({"type": "attack-request", "source": we, "target": i});
 		} })(i, we);

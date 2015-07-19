@@ -7,11 +7,11 @@
   <Identity>
     <Civ>skirm</Civ>
   </Identity>
-  <Obstruction>
-    <Unit radius="3.0"/>
-  </Obstruction>
   <Promotion disable=""/>
   <SkirmishReplacer/>
+  <UnitMotion>
+    <PassabilityClass>large</PassabilityClass>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/mauryans/support_elephant.xml</Actor>
   </VisualActor>

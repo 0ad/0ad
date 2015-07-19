@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-22 00:48+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
+"PO-Revision-Date: 2015-07-13 18:42+0000\n"
+"Last-Translator: niektb <niektb95@gmail.com>\n"
+"Language-Team: Dutch (http://www.transifex.com/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -409,7 +409,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:140
 msgid "Charge Attack:"
-msgstr "Snelle Aanval:"
+msgstr "Stormaanval:"
 
 #: gui/common/tooltips.js:141
 msgid "Melee Attack:"
@@ -421,7 +421,7 @@ msgstr "Afstandsaanval:"
 
 #: gui/common/tooltips.js:143
 msgid "Capture Attack:"
-msgstr ""
+msgstr "Verover Aanval"
 
 #: gui/common/tooltips.js:146
 msgid "Attack:"
@@ -660,11 +660,11 @@ msgstr "Geef de huidige simulatietijd weer in de rechter bovenhoek."
 
 #: gui/options/options.js:16
 msgid "Ceasefire Time Overlay"
-msgstr ""
+msgstr "Wapenstilstand tijd overlay"
 
 #: gui/options/options.js:16
 msgid "Always show the remaining ceasefire time."
-msgstr ""
+msgstr "Laat de overgebleven tijd van de wapenstilstand altijd zien."
 
 #: gui/options/options.js:17
 msgid "Persist match settings"
@@ -1194,7 +1194,7 @@ msgstr "Scenario"
 #: gui/summary/summary.js:141
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr ""
+msgstr "Verstreken speltijd: %(time)s"
 
 #: gui/summary/summary.js:162
 #, javascript-format
@@ -2076,7 +2076,7 @@ msgstr "- Gebruik tegen cavalerie voor een 2x aanvalsbonus."
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr "- Fatsoenlijke hack aanval en een goede charge bonus maken ze tot goede frontlinie troepen."
+msgstr "- Fatsoenlijke slagaanval en een goede stormbonus maken ze tot goede frontlinie troepen."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
@@ -2136,7 +2136,7 @@ msgstr "- Bijna onkwetsbaar langs de voorkant."
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr "- Kwetsbaar tegen aanvallen langs achter."
+msgstr "- Kwetsbaar tegen aanvallen vanaf de achterkant."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -2205,7 +2205,7 @@ msgstr "- Beman met een katapult voor een zwaardere aanval."
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use."
-msgstr "- Kan een ander schip rammen, met vernieling tot gevolg. De aanval vraagt wat tijd om voor te bereiden. "
+msgstr "- In staat tot een verwoestende ram aanval op een ander schip. De aanval vraagt wat tijd om voor te bereiden. "
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

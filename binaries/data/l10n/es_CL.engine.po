@@ -5,13 +5,14 @@
 # Translators:
 # caniro <carlod_39@yahoo.cl>, 2015
 # caniroc <carlos.barraza.e@gmail.com>, 2013-2014
+# Marcelo Cardenas Zapata <marcelo.cardenas.13@sansano.usm.cl>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-03-14 18:44+0000\n"
-"Last-Translator: caniro <carlod_39@yahoo.cl>\n"
-"Language-Team: Spanish (Chile) (http://www.transifex.com/projects/p/0ad/language/es_CL/)\n"
+"PO-Revision-Date: 2015-07-02 00:17+0000\n"
+"Last-Translator: Marcelo Cardenas Zapata <marcelo.cardenas.13@sansano.usm.cl>\n"
+"Language-Team: Spanish (Chile) (http://www.transifex.com/p/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,7 +43,7 @@ msgstr "Long strings"
 
 #: lobby/XmppClient.cpp:221
 msgid "Authentication failed"
-msgstr "Falló la autenticación"
+msgstr "Identificación fallida"
 
 #: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
@@ -54,11 +55,11 @@ msgstr "Registro en conflicto"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
-msgstr "Registro no autorizado"
+msgstr "Registro no permitido"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
-msgstr "Registro de solicitud incorrecta"
+msgstr "Error en la solicitud de registro "
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"

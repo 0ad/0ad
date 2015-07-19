@@ -249,11 +249,6 @@ public:
 		GetDebugDataJPS(steps, time, grid);
 	}
 
-	/*
-	 * Checks that the line (x0,z0)-(x1,z1) does not intersect any impassable navcells.
-	 */
-	bool CheckLineMovement(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, pass_class_t passClass);
-
 	Grid<NavcellData>* m_Grid;
 	u16 m_GridSize;
 

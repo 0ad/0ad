@@ -519,11 +519,9 @@ m.Template = m.Class({
 	},
 
 	hasDefensiveFire: function() {
-		let fire = this.getDefaultArrow();
-		if (fire && fire > 0)
-			return true;
-		fire = this.getArrowMultiplier();
-		return (fire && fire > 0);
+		if (!this.get("Attack") || !this.get("Attack/Ranged"))
+			return false;
+		return (this.getDefaultArrow() || this.getArrowMultiplier());
 	},
 
 	territoryInfluenceRadius: function() {

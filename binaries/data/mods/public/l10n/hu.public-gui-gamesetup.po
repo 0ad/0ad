@@ -6,6 +6,7 @@
 # Attila Kocsner, 2014
 # Balázs Úr <urbalazs@gmail.com>, 2015
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2015
+# Boross Péter <borosspet@web.de>, 2015
 # chris020891 <chris020891@gmail.com>, 2013-2014
 # davesajt <davesajthun@gmail.com>, 2014
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
@@ -19,9 +20,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
+"PO-Revision-Date: 2015-07-05 10:38+0000\n"
+"Last-Translator: Boross Péter <borosspet@web.de>\n"
+"Language-Team: Hungarian (http://www.transifex.com/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -108,42 +109,42 @@ msgstr "Halálmeccs"
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Nincs tűzszünet"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 perc"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 perc"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 perc"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 perc"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 perc"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 perc"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 perc"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -227,7 +228,7 @@ msgstr "Nem"
 #: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
 #: gui/gamesetup/gamesetup.js:1357
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Játszma szerint meghatározott"
 
 #: gui/gamesetup/gamesetup.js:1369
 msgid "Randomly selects a map from the list"
@@ -366,19 +367,19 @@ msgstr "Ellenfelek legyőzése"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
 msgid "Conquest Structure"
-msgstr ""
+msgstr "Hódítsd meg el az épületet"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Pusztítsd el az ellenség összes épületét"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Igázd le az egységeket"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Pusztítsd el az ellenség összes egységét"
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -499,7 +500,7 @@ msgstr "Kezdő nyersanyagok:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Tűzszünet:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -515,7 +516,7 @@ msgstr "Felfedezett térkép:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Kincsek nélkül:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
@@ -723,7 +724,7 @@ msgstr "\"Ürügyet szolgál majd egy zsarnok\" - Aiszóposz"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr ""
+msgstr "\"Bölcsebb mások kárán tanulni, mint a sajátunkon\" - Aiszóposz"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
@@ -731,7 +732,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
-msgstr ""
+msgstr "\"Könnyű bátornak lenni biztonságos távolságról.\" - Aiszóposz"
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
@@ -761,7 +762,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr ""
+msgstr "\"Segíts magadon, isten is megsegít.\" - Aiszóposz"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -801,7 +802,7 @@ msgstr ""
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"Ha nem lennék Sándor, Diogenész szeretnék lenni.\" - Nagy Sándor"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"

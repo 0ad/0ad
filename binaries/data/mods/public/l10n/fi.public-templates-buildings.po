@@ -7,13 +7,14 @@
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015
 # mrJalostaja <pauli.nykanen@yahoo.com>, 2015
 # Petri, 2014
+# Riku Viitanen <riisseli4@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-05-25 09:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
+"PO-Revision-Date: 2015-06-26 19:09+0000\n"
+"Last-Translator: Riku Viitanen <riisseli4@gmail.com>\n"
+"Language-Team: Finnish (http://www.transifex.com/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -199,7 +200,7 @@ msgstr "Luo kauppayksiköitä käydäksesi kauppaa muiden kauppojen kanssa. Käy
 #: simulation/templates/template_structure_economic_market.xml:21
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Market"
-msgstr "Kauppapaikka"
+msgstr "Tori"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:25
 msgid ""
@@ -337,13 +338,13 @@ msgstr "Stratēgeîon"
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
 msgid "Khalkeṓn"
-msgstr ""
+msgstr "Khalkeṓn"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
 #: simulation/templates/structures/spart_civil_centre.xml:8
 msgid "Agorá"
-msgstr ""
+msgstr "Agorá"
 
 #: simulation/templates/structures/athen_corral.xml:12
 #: simulation/templates/structures/mace_corral.xml:12
@@ -369,17 +370,17 @@ msgstr "Limḗn"
 #: simulation/templates/structures/mace_farmstead.xml:12
 #: simulation/templates/structures/spart_farmstead.xml:12
 msgid "Sitobólion"
-msgstr ""
+msgstr "Sitobólion"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agroí"
-msgstr ""
+msgstr "Agroí"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
-msgstr ""
+msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
@@ -410,19 +411,19 @@ msgstr "Oîkos"
 #: simulation/templates/structures/mace_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
 msgid "Empórios"
-msgstr ""
+msgstr "Empórios"
 
 #: simulation/templates/structures/athen_outpost.xml:5
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr "Kreikkalainen Vartiotorni"
+msgstr "Kreikkalainen vartiotorni"
 
 #: simulation/templates/structures/athen_outpost.xml:6
 #: simulation/templates/structures/mace_outpost.xml:6
 #: simulation/templates/structures/spart_outpost.xml:6
 msgid "Prophylakḗ"
-msgstr ""
+msgstr "Prophylakḗ"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 msgid "Council Chamber"
@@ -507,7 +508,7 @@ msgstr "Pýrgos"
 #: simulation/templates/structures/mace_wonder.xml:17
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid "Naós Parthenṓn"
-msgstr ""
+msgstr "Naós Parthenṓn"
 
 #: simulation/templates/structures/athen_wonder.xml:19
 #: simulation/templates/structures/mace_wonder.xml:19
@@ -621,7 +622,7 @@ msgstr "Melonas"
 #: simulation/templates/structures/brit_rotarymill.xml:35
 #: simulation/templates/structures/gaul_rotarymill.xml:35
 msgid "Increase nearby farming output +25%."
-msgstr "Lisää lähellä olevien tilojen tuottoa +25%"
+msgstr "Lisää lähellä olevien maatilojen tuottoa +25%"
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -825,7 +826,7 @@ msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Lisää +10 väkilukuun. Värvää Naked Fanatics."
+msgstr "Lisää +10 maksimiväkilukuun. Värvää alastomia fanaatikkoja."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -920,7 +921,7 @@ msgstr "Cancho Roano"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
-msgstr ""
+msgstr "Sidērourgeîon"
 
 #: simulation/templates/structures/mace_fortress.xml:15
 msgid "Teíchisma"
@@ -941,7 +942,7 @@ msgstr "Kirjasto"
 #: simulation/templates/structures/mace_library.xml:16
 #: simulation/templates/structures/ptol_library.xml:16
 msgid "Bibliothḗkē"
-msgstr ""
+msgstr "Bibliothḗkē"
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -953,7 +954,7 @@ msgstr "Tutki erikoisteknologioita ja vähennä muiden teknologioiden tutkimisee
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
-msgstr ""
+msgstr "Synergeîon Poliorkētṓn"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
@@ -966,7 +967,7 @@ msgstr "Rakenna piirityslaitteita. Tutki piirityslaitteiden teknologioita."
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
-msgstr ""
+msgstr "Asklēpieîon"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
@@ -1281,13 +1282,13 @@ msgstr "Majakka"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pháros"
-msgstr ""
+msgstr "Pháros"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
-msgstr ""
+msgstr "Rakennna rannikolle paljastaaksesi kaiken rannan koko kartalla. Todella pitkä näkökenttä: 180 metriä."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
@@ -1299,7 +1300,7 @@ msgstr "Palkkasoturileiri"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
-msgstr ""
+msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
@@ -1320,7 +1321,7 @@ msgstr "Sotilaallinen siirtomaa"
 
 #: simulation/templates/structures/ptol_military_colony.xml:47
 msgid "Klēroukhía"
-msgstr ""
+msgstr "Klēroukhía"
 
 #: simulation/templates/structures/ptol_military_colony.xml:50
 msgid ""
@@ -1599,7 +1600,7 @@ msgstr "Daphnen paratiisi"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
-msgstr ""
+msgstr "Teíkhisma"
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
@@ -1607,7 +1608,7 @@ msgstr "Spartan senaatti"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerontía"
-msgstr ""
+msgstr "Gerontía"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."

@@ -34,7 +34,7 @@ m.chatAnswerRequestAttack = function(gameState, player, answer, other)
 		if (other !== undefined)
 			var message = "/allies " + markForTranslation("I cannot help you against %(_player_)s for the time being, as I have another attack foreseen against %(_player_2)s.");
 		else
-			var message = "/allies " + markForTranslation("Sorry, I have not enough soldiers currently, but my next attack will target %(_player_)s.");
+			var message = "/allies " + markForTranslation("Sorry, I do not have enough soldiers currently, but my next attack will target %(_player_)s.");
 	}
 
 	var chat = {

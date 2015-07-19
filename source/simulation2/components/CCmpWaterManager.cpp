@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -102,13 +102,16 @@ public:
 			g_Renderer.GetWaterManager()->RecomputeWindStrength();
 			g_Renderer.GetWaterManager()->CreateWaveMeshes();
 		}
-		
+
 		// Tell the terrain it'll need to recompute its cached render data
 		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
 	}
 
 	virtual void SetWaterLevel(entity_pos_t h)
 	{
+		if (m_WaterHeight == h)
+			return;
+
 		m_WaterHeight = h;
 
 		// Tell the terrain it'll need to recompute its cached render data
@@ -116,7 +119,7 @@ public:
 
 		if (CRenderer::IsInitialised())
 			g_Renderer.GetWaterManager()->m_WaterHeight = h.ToFloat();
-		
+
 		CMessageWaterChanged msg;
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}

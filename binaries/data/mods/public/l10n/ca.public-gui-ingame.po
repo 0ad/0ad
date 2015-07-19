@@ -12,27 +12,31 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-22 00:47+0200\n"
-"PO-Revision-Date: 2015-05-25 22:51+0000\n"
+"POT-Creation-Date: 2015-05-31 22:51+0200\n"
+"PO-Revision-Date: 2015-06-04 07:21+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
-"Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/session/input.js:152
-#, javascript-format
-msgid "Basic range: %(range)s meters"
-msgstr "Abast bàsic: %(range)s metres"
-
 #: gui/session/input.js:153
 #, javascript-format
-msgid "Average bonus range: %(range)s meters"
-msgstr "Bonificació mitjana de l'abast: %(range)s metres"
+msgid "Basic range: %(range)s meter"
+msgid_plural "Basic range: %(range)s meters"
+msgstr[0] "Abast bàsic: %(range)s metre"
+msgstr[1] "Abast bàsic: %(range)s metres"
 
-#: gui/session/input.js:732
+#: gui/session/input.js:154
+#, javascript-format
+msgid "Average bonus range: %(range)s meter"
+msgid_plural "Average bonus range: %(range)s meters"
+msgstr[0] "Bonificació mitjana de l'abast: %(range)s metre"
+msgstr[1] "Bonificació mitjana de l'abast: %(range)s metres"
+
+#: gui/session/input.js:733
 msgid "Cannot build wall here!"
 msgstr "No es pot construir una muralla aquí!"
 
@@ -87,7 +91,7 @@ msgstr "Voleu rendir-vos o tornareu aviat?"
 msgid "Destroy everything currently selected?"
 msgstr "Voleu destruir tot el que hi ha seleccionat?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:704
+#: gui/session/menu.js:189 gui/session/unit_actions.js:710
 msgid "Delete"
 msgstr "Esborra"
 
@@ -502,71 +506,83 @@ msgstr "%(label)s %(current)s / %(max)s"
 msgid "Capture points:"
 msgstr "Punts de captura:"
 
-#: gui/session/selection_panels.js:91
+#: gui/session/selection_panels.js:72
+msgid "Increase the alert level to protect more units"
+msgstr "Augmenta el nivell d'alerta per protegir més unitats"
+
+#: gui/session/selection_panels.js:74
+msgid "Raise an alert!"
+msgstr "Toc d'alerta!"
+
+#: gui/session/selection_panels.js:77
+msgid "End of alert."
+msgstr "Fi de l'alerta."
+
+#: gui/session/selection_panels.js:143
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Compra %(resource)s"
 
-#: gui/session/selection_panels.js:92
+#: gui/session/selection_panels.js:144
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Ven %(resource)s"
 
-#: gui/session/selection_panels.js:270 gui/session/selection_panels.js:1055
+#: gui/session/selection_panels.js:322 gui/session/selection_panels.js:1107
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Necessita %(technology)s"
 
-#: gui/session/selection_panels.js:387
+#: gui/session/selection_panels.js:439
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Expulsa %(name)s"
 
-#: gui/session/selection_panels.js:388
+#: gui/session/selection_panels.js:440
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Feu clic per expulsar-ne 1. Maj + clic per expulsar tots els d'aquest tipus."
 
-#: gui/session/selection_panels.js:455
+#: gui/session/selection_panels.js:507
 msgid "Lock Gate"
 msgstr "Tanca la porta"
 
-#: gui/session/selection_panels.js:461
+#: gui/session/selection_panels.js:513
 msgid "Unlock Gate"
 msgstr "Obre la porta"
 
-#: gui/session/selection_panels.js:566
+#: gui/session/selection_panels.js:618
 msgid "Pack"
 msgstr "Desmunta"
 
-#: gui/session/selection_panels.js:568
+#: gui/session/selection_panels.js:620
 msgid "Unpack"
 msgstr "Munta"
 
-#: gui/session/selection_panels.js:570
+#: gui/session/selection_panels.js:622
 msgid "Cancel Packing"
 msgstr "Cancel·la el desmuntatge"
 
-#: gui/session/selection_panels.js:572
+#: gui/session/selection_panels.js:624
 msgid "Cancel Unpacking"
 msgstr "Cancel·la el muntatge"
 
-#: gui/session/selection_panels.js:645
+#: gui/session/selection_panels.js:697
 msgid "Insufficient population capacity:"
 msgstr "La capacitat de població és insuficient:"
 
-#: gui/session/selection_panels.js:646
+#: gui/session/selection_panels.js:698
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:817
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "En falta %(number)s per construir."
 msgstr[1] "En falten %(number)s per construir."
 
-#: gui/session/selection_panels.js:1043 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:629
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Salut:"
@@ -765,66 +781,54 @@ msgstr "Feu clic dret per establir una ruta per defecte per a mercaders nous."
 msgid "Expected gain: %(gain)s"
 msgstr "Guany esperat: %(gain)s"
 
-#: gui/session/unit_actions.js:676 gui/session/unit_actions.js:944
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
 msgid "Unload All"
 msgstr "Expulsa a tothom"
 
-#: gui/session/unit_actions.js:692
+#: gui/session/unit_actions.js:698
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "No podeu destruir aquesta entitat perquè està dins de la boira de guerra"
 
-#: gui/session/unit_actions.js:698
+#: gui/session/unit_actions.js:704
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "No podeu destruir aquesta entitat perquè teniu menys de la meitat dels punts de captura"
 
-#: gui/session/unit_actions.js:727
+#: gui/session/unit_actions.js:733
 msgid "Stop"
 msgstr "Atura"
 
-#: gui/session/unit_actions.js:745
+#: gui/session/unit_actions.js:751
 msgid "Garrison"
 msgstr "Refugia"
 
-#: gui/session/unit_actions.js:766
+#: gui/session/unit_actions.js:772
 msgid "Unload"
 msgstr "Expulsa"
 
-#: gui/session/unit_actions.js:782
+#: gui/session/unit_actions.js:788
 msgid "Repair"
 msgstr "Repara"
 
-#: gui/session/unit_actions.js:799
+#: gui/session/unit_actions.js:805
 msgid "Focus on Rally Point"
 msgstr "Vés al punt de reunió"
 
-#: gui/session/unit_actions.js:822
+#: gui/session/unit_actions.js:828
 msgid "Back to Work"
 msgstr "Torna a la feina"
 
-#: gui/session/unit_actions.js:838
+#: gui/session/unit_actions.js:844
 msgid "Guard"
 msgstr "Protegeix"
 
-#: gui/session/unit_actions.js:855
+#: gui/session/unit_actions.js:861
 msgid "Remove guard"
 msgstr "Desprotegeix"
 
-#: gui/session/unit_actions.js:871
+#: gui/session/unit_actions.js:877
 msgid "Select trading goods"
 msgstr "Selecciona els béns de comerç"
-
-#: gui/session/unit_actions.js:888
-msgid "Increase the alert level to protect more units"
-msgstr "Augmenta el nivell d'alerta per protegir més unitats"
-
-#: gui/session/unit_actions.js:890
-msgid "Raise an alert!"
-msgstr "Toc d'alerta!"
-
-#: gui/session/unit_actions.js:908
-msgid "End of alert."
-msgstr "Fi de l'alerta."
 
 #: gui/session/utility_functions.js:131 gui/session/utility_functions.js:133
 msgid "+"

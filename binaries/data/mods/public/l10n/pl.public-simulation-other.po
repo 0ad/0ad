@@ -6,15 +6,16 @@
 # Adrian Budasz <adrianbudasz@gmail.com>, 2015
 # Annunnaky <doublemiu@gmail.com>, 2015
 # Leszek S, 2014-2015
+# Marcin Malinowski <szyszka45@gmail.com>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:51+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
+"PO-Revision-Date: 2015-06-27 19:24+0000\n"
+"Last-Translator: Marcin Malinowski <szyszka45@gmail.com>\n"
+"Language-Team: Polish (http://www.transifex.com/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,46 +25,46 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "Rozpoczynam ofensywę przeciwko %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "Rozpocząłem ofensywę przeciwko %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "Gdy przegrupuje moją armię będę walczył z tobą przeciwko %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "Przeprowadzam ostatnie przygotowania i zaatakuję gracza %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "Na razie nie mogę ci pomóc przeciwko %(_player_)s jako, że mam zaplanowany atak na %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "Sorry, I have not enough soldiers currently, but my next attack will target "
 "%(_player_)s."
-msgstr ""
+msgstr "Wybacz, obecnie nie mam wystarczająco wojsk lecz mój następny atak będzie skierowany na %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "Oto podarunek dla Ciebie  %(_player_)s, wykorzystaj go dobrze."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "Widzę, że jesteś w złej sytuacji %(_player_)s, mam nadzieję, że to pomoże."
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
@@ -75,31 +76,31 @@ msgstr "Potrzebuję %(resource)s, możesz mi pomóc? Odwdzięczę się."
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "Uczestniczyłbym skuteczniej w naszych wspólnych działaniach wojennych jeśli mógłbyś dostarczyć mi trochę %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "Wyznaczyłem nową trasę do %(_player_)s.. Handel będzie teraz jeszcze korzystniejszy dla nas wszystkich."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "Nowa droga handlowa została otwarta z %(_player_)s. Zgarnij swój udział w zyskach."
 
 #: simulation/ai/petra/chatHelper.js:112
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "Zmierzam do %(phase)s."
 
 #: simulation/ai/petra/chatHelper.js:114
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "Dotarłem do %(phase)s."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -232,7 +233,7 @@ msgstr "Stwórz kolejnych procarzy i wyślij ich do zbierania kamienia. Wytrenuj
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
+msgstr "Dodaj do kolejki następną partię 5 kobiet. Będą one zbierać drewno."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -613,11 +614,11 @@ msgstr "wrogie"
 #: simulation/components/CeasefireManager.js:125
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "Możesz atakować w %(time)s"
 
 #: simulation/components/CeasefireManager.js:140
 msgid "You can attack now!"
-msgstr ""
+msgstr "Możesz atakować teraz!"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
