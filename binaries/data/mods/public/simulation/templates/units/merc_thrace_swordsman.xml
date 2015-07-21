@@ -18,12 +18,12 @@
   </Health>
   <Identity>
     <Civ>merc</Civ>
-	<GenericName>Thracian Mercenary Swordsman</GenericName>
+    <GenericName>Thracian Mercenary Swordsman</GenericName>
     <SpecificName>Rhomphaiaphoros Thrakikós</SpecificName>
     <Rank>Elite</Rank>
     <Icon>units/sele_infantry_swordsman.png</Icon>
     <History>Thracian tribesmen who wield the fearsome rhomphaia polearm weapon in combat. They were ubiquitous mercenary swordsmen and skirmishers throughout Hellenistic times, sometimes even serving in two opposing armies.</History>
-	<Tooltip>Classes: Mercenary Melee Infantry Swordsman.</Tooltip>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Looter disable=""/>

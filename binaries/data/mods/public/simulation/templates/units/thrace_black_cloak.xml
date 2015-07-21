@@ -19,10 +19,10 @@
     <Lang>greek</Lang>
     <GenericName>Thracian Black Cloak</GenericName>
     <SpecificName>Rhomphaiaphoros</SpecificName>
-	<Tooltip>Classes: Mercenary Champion Melee Infantry Swordsman.</Tooltip>
     <History>Thracian tribesmen who wield the fiercesome rhomphaia polearm weapon in combat. They were ubiquitous mercenary swordsmen throughout Hellenistic times, sometimes even serving in two opposing armies.</History>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/sele_infantry_swordsman.png</Icon>
-	<RequiredTechnology>phase_city</RequiredTechnology>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <UnitMotion>
     <WalkSpeed>9.5</WalkSpeed>

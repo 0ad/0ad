@@ -36,11 +36,10 @@
     <Unhealable>true</Unhealable>
   </Health>
   <Identity>
-    <Classes datatype="tokens">Slave Worker</Classes>
+    <VisibleClasses datatype="tokens">Slave Worker</VisibleClasses>
     <GenericName>Slave</GenericName>
     <Icon>units/global_slave.png</Icon>
-	<Tooltip>Classes: Support Worker Slave.
-Gatherer with a finite life span. Bonused at mining and lumbering.</Tooltip>
+    <Tooltip>Gatherer with a finite life span. Bonused at mining and lumbering.</Tooltip>
   </Identity>
   <Loot>
     <xp>1</xp>
@@ -58,12 +57,12 @@ Gatherer with a finite life span. Bonused at mining and lumbering.</Tooltip>
       <food.fruit>0.5</food.fruit>
       <food.grain>0.35</food.grain>
       <food.meat>1</food.meat>
-	  <wood.tree>1.0</wood.tree>
-	  <wood.ruins>5</wood.ruins>
+      <wood.tree>1.0</wood.tree>
+      <wood.ruins>5</wood.ruins>
       <stone.rock>1.0</stone.rock>
-	  <stone.ruins>5</stone.ruins>
+      <stone.ruins>5</stone.ruins>
       <metal.ore>1.0</metal.ore>
-	  <treasure disable=""/>
+      <treasure disable=""/>
     </Rates>
   </ResourceGatherer>
   <Sound>
