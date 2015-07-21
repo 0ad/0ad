@@ -88,6 +88,10 @@ patch -p1 -i ../FixForOfBailouts.diff
 # Fix build failures on GCC 5.1 and Clang 3.6
 patch -p1 -i ../FixBug1021171.diff
 patch -p1 -i ../FixBug1119228.diff
+
+# Fix debug build failure on platforms with Ion disabled (eg AArch64)
+patch -p1 -i ../FixBug1037470.diff
+
 cd ..
 
 # Clean up header files that may be left over by earlier versions of SpiderMonkey
