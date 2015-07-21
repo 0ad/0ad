@@ -16,20 +16,29 @@
 # micha030201 <micha030201@gmail.com>, 2014
 # Rudeboy1988 <sheva-gitara@mail.ru>, 2014
 # utyf05 <utyf05@gmail.com>, 2015
+# webslavic <webslavic@yahoo.com>, 2015
 # Woratiklis, 2015
 # Xxcapog <xx.artem-kokorin@mail.ru>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-06-01 11:50+0000\n"
-"Last-Translator: Woratiklis\n"
-"Language-Team: Russian (http://www.transifex.com/p/0ad/language/ru/)\n"
+"POT-Creation-Date: 2015-07-15 00:38+0200\n"
+"PO-Revision-Date: 2015-07-15 10:52+0000\n"
+"Last-Translator: webslavic <webslavic@yahoo.com>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsongenericName
+msgid "Stats for advanced units"
+msgstr "Характеристики для улучшенных юнитов"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to advanced and elite units"
+msgstr "Эти изменения характеристик будут действовать на улучшенные и элитные юниты"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -810,6 +819,14 @@ msgstr "Упадок территории -50% для застав."
 msgid "Stone Foundations"
 msgstr "Каменный фундамент"
 
+#: simulation/data/technologies/elite_unit_bonus.jsongenericName
+msgid "Stats for elite units"
+msgstr "Характеристики для элитных юнитов"
+
+#: simulation/data/technologies/elite_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to elite units"
+msgstr "Эти изменения характеристик будут действовать на элитные юниты"
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
 msgstr "Разведение скота для пищи."
@@ -1260,11 +1277,33 @@ msgstr "Часовые и зубцы"
 msgid "Walls build time vs. Health"
 msgstr "Время постройки стен и жизнеспосоность"
 
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Переход от городка к огромному метрополису, полному чудес современных технологий."
+
+#: simulation/data/technologies/phase_city.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%"
+msgstr "Переход к этапу крупного города открывает доступ к новым постройкам и юнитам. Территория влияния городского центра центра увеличена ещё на +50%."
+
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
-#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Этап города"
+
+#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Требуется 4 новых постройки небольшого города (кроме стен и городского центра)."
+
+#: simulation/data/technologies/phase_city.jsonspecificName.mace
+#: simulation/data/technologies/phase_city.jsonspecificName.spart
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+msgid "Megalópolis"
+msgstr "Мегалополис"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1280,35 +1319,33 @@ msgid ""
 "grants an extra +10% metal gather rate to all workers."
 msgstr "Переход на этап крупного города раскрывает возможности доступа к новым юнитам и строительству новых зданий. Территория влияния городского центра увеличена ещё на +50%. Серебряные совы добавляют +10% к скорости добычи металлов."
 
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Требуется 4 новых постройки небольшого города (кроме стен и городского центра)."
-
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Мегалополис"
-
-#: simulation/data/technologies/phase_city_generic.jsondescription
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Переход от городка к огромному метрополису, полному чудес современных технологий."
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Расширение из деревни до небольшого города готового расти дальше."
 
-#: simulation/data/technologies/phase_city_generic.jsontooltip
+#: simulation/data/technologies/phase_town.jsontooltip
 msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%"
-msgstr "Переход к этапу крупного города открывает доступ к новым постройкам и юнитам. Территория влияния городского центра центра увеличена ещё на +50%."
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%"
+msgstr "Перейти к этапу небольшого города, в котором доступны новые постройки и юниты. Влияние городского центра на территории увеличено на +30%."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
-#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Этап небольшого города"
+
+#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Требует 5 строений этапа деревни (исключая частокол и фермерские поля)"
+
+#: simulation/data/technologies/phase_town.jsonspecificName.mace
+#: simulation/data/technologies/phase_town.jsonspecificName.spart
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+msgid "Kōmópolis"
+msgstr "Комополис"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1323,30 +1360,6 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
 msgstr "Перейди на этап небольшого города, открывающий новые строения и юнитов. Влияние на территорию у городского центра увеличивается на +30%. \"Серебряные совы\" дают прирост +10% к скорости добычи металлов."
-
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Требует 5 строений этапа деревни (исключая частокол и фермерские поля)"
-
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Kōmópolis"
-msgstr "Комополис"
-
-#: simulation/data/technologies/phase_town_generic.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Расширение из деревни до небольшого города готового расти дальше."
-
-#: simulation/data/technologies/phase_town_generic.jsontooltip
-msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%"
-msgstr "Перейти к этапу небольшого города, в котором доступны новые постройки и юниты. Влияние городского центра на территории увеличено на +30%."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1693,6 +1706,21 @@ msgstr "Тесмофория"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Бона Дея"
+
+#: simulation/data/technologies/unlock_shared_los.jsondescription
+msgid ""
+"By means of trading and travelling people explored beyond the boundaries of "
+"their lands and drew maps of it in order to share and memorize their "
+"discoveries."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_los.jsontooltip
+msgid "Player sees what his allies see."
+msgstr "Игрок видит то, что видят его союзники."
+
+#: simulation/data/technologies/unlock_shared_los.jsongenericName
+msgid "Cartography"
+msgstr "Картография"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -2302,8 +2330,10 @@ msgid ""
 msgstr "Персы построили замечательную 1677-мильную королевскую дорогу из Сард в Сузы; Дарий Великий и Ксеркс построили великолепный Персеполь; Кир Великий значительно улучшилось Экбатаны и практически \"восстановил\" старую эламскую столицу Сузы."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
-msgid "All Persian structures +25% health, but also +20% build time."
-msgstr "Все строения персов получают +25% здоровья, но строятся на +20% дольше."
+msgid ""
+"All Persian structures +25% health and capture points, but also +20% build "
+"time."
+msgstr ""
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2408,8 +2438,9 @@ msgid ""
 msgstr "Начиная с Александра, эллинские монархи основали много городов за время существования империи, в которых греческая культура и искусство смешались с местными обычаями, создавая пёструю эллинскую цивилизацию."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and double default arrows."
-msgstr "Городские центры получают +100% жизнеспособности и удваивают количество выпускаемых ими стрел."
+msgid ""
+"Civic centers +100% health and capture points and double default arrows."
+msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

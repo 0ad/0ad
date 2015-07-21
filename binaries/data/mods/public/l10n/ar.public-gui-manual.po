@@ -6,12 +6,13 @@
 # Odai Alali <odai.massar@gmail.com>, 2015
 # Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
+# صفا الفليج <safaalfulaij@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-24 18:15+0000\n"
-"Last-Translator: Odai Alali <odai.massar@gmail.com>\n"
+"PO-Revision-Date: 2015-07-21 14:13+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgstr "أغلق"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"sans-bold-18\"]كُتيِّب 0.A.D في اللعبة"
+msgstr "[font=\"sans-bold-18\"]كتيّب «0م» لداخل اللعبة"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -44,7 +45,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "شكرًا لتثبيت 0.A.D! هذه الصّفحة ستعطيك لمحة عامة عن الميزات المتوفّرة في إصدارة ألفا من هذه اللعبة غير المكتملة وتحت التّطوير."
+msgstr "شكرًا لك لتثبيت «0م»! هذه الصّفحة ستعطيك لمحة عامّة ومختصرة عن الميزات المتوفّرة في إصدارة ألفا من هذه اللعبة غير المكتملة والجاري تطويرها."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
@@ -58,7 +59,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]يمكنك التّبديل بين ملء الشّاشة ووضع النّافذة بضغط Alt + Enter. في وضع النّافذة، يمكنك تغيير حجم النّافذة. إن كانت اللعبة بطيئة جدًّا، يمكنك تغيير بعض الإعدادات في ملف الضبط: ابحث عن binaries/data/config/default.cfg في مكان تثبيت اللعبة، والتي تعطيك تعليمات للتّحرير، وجرّب تعطيل خياريّ \"fancywater\" و \"shadows\"."
+msgstr "[font=\"sans-14\"]يمكنك التّبديل بين ملء الشّاشة ووضع النّافذة بضغط Alt + Enter. في وضع النّافذة، يمكنك تغيير حجم النّافذة. إن كانت اللعبة بطيئة جدًّا، يمكنك تغيير بعض الإعدادات في ملف الضّبط: ابحث عن binaries/data/config/default.cfg في مكان تثبيت اللعبة (حيث تعطيك تعليمات للتّحرير) وجرّب تعطيل خياريّ \"fancywater\" و \"shadows\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -78,15 +79,15 @@ msgstr "التّحكّمات الأساسيّة:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "• النقر الأيسر لاختيار الوحدات."
+msgstr "• النّقر الأيسر لاختيار الوحدات."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "• النقر الأيسر مع السّحب لاختيار مجموعة وحدات."
+msgstr "• النّقر الأيسر مع السّحب لتحديد مجموعة وحدات."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "• النقر الأيمن لأمر الوحدات إلى الهدف."
+msgstr "• النّقر الأيمن لأمر الوحدات إلى الهدف."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
@@ -94,11 +95,11 @@ msgstr "• مفاتيح الأسهم أو المفاتيح WASD لتحريك ا
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "• Ctrl + مفاتيح الأسهم، أو shift + عجلة الفأرة، لتدوير الكاميرا."
+msgstr "• Ctrl + مفاتيح الأسهم، أو shift + عجلة الفأرة لتدوير الكاميرا."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• عجلة الفأرة، أو مفتاحي \"+\" و\"-\" للتقريب والإبعاد."
+msgstr "• عجلة الفأرة، أو مفتاحيّ \"+\" و\"-\" للتّقريب والإبعاد."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -106,7 +107,7 @@ msgstr "[font=\"sans-bold-16\"]الأوضاع"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr "[font=\"sans-14\"]تعطي القائمة الرّئيسيّة الوصول إلى وضعيّ الألعاب:"
+msgstr "[font=\"sans-14\"]يمكنك الوصول إلى وضعيّ ألعاب من القائمة الرّئيسيّة:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -139,7 +140,7 @@ msgstr "[font=\"sans-bold-16\"]إعداد اللعبة"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"sans-14\"]في اللعبة متعدّدة اللاعبين، فقط المضيف يمكنه تعديل خيارات إعدادات اللعبة."
+msgstr "[font=\"sans-14\"]في الألعاب المتعدّدة اللاعبين، فقط المضيف يمكنه تعديل خيارات إعداد اللعبة."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -176,19 +177,19 @@ msgstr "[font=\"sans-bold-14\"]دائمًا"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"sans-14\"]Alt + F4: أغلق اللعبة، دون تأكيد"
+msgstr "[font=\"sans-14\"]Alt + F4 لإغلاق اللعبة دون تأكيد"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Enter: بدّل بين ملء الشّاشة ووضع النافذة"
+msgstr "Alt + Enter للتّبديل بين ملء الشّاشة ووضع النّافذة"
 
 #: gui/manual/intro.txt:41
 msgid "~ or F9: Show/hide console"
-msgstr "~ أو F9: أظهر/أخفِ الكونسول"
+msgstr "~ أو F9 لإظهار المعراض أو إخفائه"
 
 #: gui/manual/intro.txt:42
 msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr "Alt + F: أظهر/أخفِ عدّاد الإطارات (إطار/ثا)"
+msgstr "Alt + F: لإظهار عدّاد الإطارات (إطار/ثا) أو إخفائه"
 
 #: gui/manual/intro.txt:43
 msgid ""
@@ -205,118 +206,118 @@ msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2: خُذ لقطة شاشة (بِنسق ‎.png، الموقع معروض في أعلى يسار الواجهة بعد حفظ الملفّ، ويمكن رؤيته أيضًا في الكونسول/السجلّات إن لم تجده هناك)"
+msgstr "F2 لأخذ لقطة شاشة (بنسق ‎.png، سيُعرض المكان في أعلى يسار الواجهة بعد حفظ الملفّ، ويمكن رؤيته أيضًا في المعراض/السّجلّات في حال لم تجده هناك)"
 
 #: gui/manual/intro.txt:46
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2: خُذ لقطة شاشة ضخمة (6400 بكسل×4800 بكسل، بِنسق ‎.bmp، الموقع معروض في أعلى يسار الواجهة بعد حفظ الملفّ، ويمكن رؤيته أيضًا في الكونسول/السجلّات إن لم تجده هناك)"
+msgstr "Shift + F2 لأخذ لقطة شاشة ضخمة (6400 بكسل × 4800 بكسل، بنسق ‎.bmp، سيُعرض المكان في أعلى يسار الواجهة بعد حفظ الملفّ، ويمكن رؤيته أيضًا في المعراض/ السّجلّات في حال لم تجده هناك)"
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr "[font=\"sans-bold-14\"]في اللعبة"
+msgstr "[font=\"sans-bold-14\"]داخل اللعبة"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]ضغط مزدوج أيسر \\[on unit]: تحديد كافة الوحدات الخاصة بك من نفس النوع على الشاشة (حتى إذا كانو مختلفي الرتب)"
+msgstr "[font=\"sans-14\"]النّقر باليسار مزدوجًا \\[على وحدة ما] لتحديد كلّ الوحدات التي بنفس النّوع على الشّاشة (حتّى لو اختلفت رتبها)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr "ضغط ثلاثي أيسر \\[on unit]: تحديد كافة الوحدات الخاصة بك من نفس النوع ونفس الدرجة على الشاشة"
+msgstr "النّقر باليسار ثلاث مرّت \\[على وحدة ما] لتحديد كلّ الوحدات بنفس النّوع ونفس الرّتبة على الشّاشة"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr "Alt + ضغط مزدوج أيسر \\[on unit]: تحديد جميع الوحداتالخاصة بك من نفس النوع على كامل الخريطة (حتى إذا كانو مختلفي الرتب)"
+msgstr "Alt + النّقر باليسار مزدوجًا \\[على وحدة ما] لتحديد كلّ الوحدات التي بنفس النّوع في كلّ الخريطة (حتّى لو اختلفت رتبها)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr "Alt + ضغط مزدوج أيسر  \\[on unit]: تحديد كل وحداتك من نفس النوع والرتبة على كامل الخريطة"
+msgstr "Alt + النّقر باليسار ثلاث مرّت \\[على وحدة ما] لتحديد كلّ الوحدات بنفس النّوع ونفس الرّتبة في كلّ الخريطة"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
-msgstr "Shift + F5: حفظ سريع"
+msgstr "Shift + F5 لإجراء حفظ سريع"
 
 #: gui/manual/intro.txt:54
 msgid "Shift + F8: Quickload"
-msgstr "Shift + F8: تحميل سريع"
+msgstr "Shift + F8 لإجراء تحميل سريع"
 
 #: gui/manual/intro.txt:55
 msgid "F10: Open/close menu"
-msgstr "F10: افتح/أغلق القائمة"
+msgstr "F10 لفتح القائمة أو إغلاقها"
 
 #: gui/manual/intro.txt:56
 msgid "F12: Show/hide time elapsed counter"
-msgstr "F12: أظهر/أخفِ عدّاد الوقت المنقضي"
+msgstr "F12 لإظهار عدّاد الوقت المنقضي أو إخفائه"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr "ESC: أغلق كلّ الحواريّات (المحادثة، القائمة) أو امحُ الوحدات المحدّدة"
+msgstr "ESC لإغلاق كلّ الحواريّات (الدّردشة أو القائمة) أو إزالة تحديد الوحدات المحدّدة"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
-msgstr "Enter/return: افتح المحادثة أو أرسِل واحدة"
+msgstr "Enter أو return لفتح دردشة أو إرسال واحدة"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
-msgstr "T: أرسِل محادثة إلى الفريق"
+msgstr "T لإرسال محادثة إلى الفريق"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr "Pause: ألبِث/استكمل اللعبة"
+msgstr "Pause لإلباث اللعبة أو استكمالها"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
-msgstr "Delete: احذف الوحدة/الوحدات/البناء/الأبنية المحدّد(ة) حاليًّا"
+msgstr "Delete لحذف الوحدة أو الوحدات المحدّدة حاليًّا، أو البناء أو الأبنية المحدّدة حاليًّا"
 
 #: gui/manual/intro.txt:62
 msgid ",: Select idle fighters"
-msgstr ",: تحديد المقاتلين الفارغين"
+msgstr ", لتحديد المقاتلين الخاملين"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: تحديد العمال الفارغين (من ضمنهم الجنود المواطنين)"
+msgstr ". لتحديد العاملين الخاملين (مع الجنود المواطنين)"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
-msgstr "H: إيقاف الوحدات المحددة حاليًا"
+msgstr "H لإيقاف الوحدات المحدّدة حاليًّا"
 
 #: gui/manual/intro.txt:65
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr "Ctrl + 1 (وهكذا حتّى Ctrl + 0): أنشئ مجموعة تحكّم رقم 1 (حتّى 0) من الوحدات المحدّدة"
+msgstr "Ctrl + 1 (وهكذا حتّى Ctrl + 0) لإنشاء مجموعة تحكّم رقم 1 (حتّى 0) للوحدات المحدّدة"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "1 (وهكذا حتّى 0): حدّد الوحدات/المباني في مجموعة التّحكّم رقم 1 (حتّى 0)"
+msgstr "1 (وهكذا حتّى 0) لتحديد الوحدات أو الأبنية في مجموعة التّحكّم رقم 1 (حتّى 0)"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Shift + 1 (حتّى 0): أضف مجموعة التّحكّم رقم 1 (حتّى 0) إلى الوحدات/المباني المحدّدة"
+msgstr "Shift + 1 (حتّى 0) لإضافة مجموعة التّحكّم رقم 1 (حتّى 0) إلى الوحدات أو الأبنية المحدّدة"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr "Ctrl + F5 (وحتّى F8): علّم موقع الكاميرا الحاليّ، للوصول إليه مستقبلًا."
+msgstr "Ctrl + F5 (وحتّى F8) لتعليم موقع الكاميرا الحاليّ، وذلك للوصول إليه مستقبلًا."
 
 #: gui/manual/intro.txt:69
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr "F5، وF6، وF7، وF8: تحريك الكاميرا إلى موضع مسجل، أو اقفز إلى المكان السابق إذا كانت الكاميرا موجودة فوق الموضع المسجل بالفعل"
+msgstr "F5، وF6، وF7، وF8 لتحريك الكاميرا إلى موقع معلّم. إن كانت الكاميرا بالفعل على الموقع المعلّم، ستنتقل إلى آخر مكان."
 
 #: gui/manual/intro.txt:70
 msgid ""
@@ -326,11 +327,11 @@ msgstr "Z،و X، وC، وV، وB، وN، وM أثناء تحديد مباني �
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr "[font=\"sans-bold-14\"]تعديل إجراءات الفارة"
+msgstr "[font=\"sans-bold-14\"]تعديل إجراءات الفأرة"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"sans-14\"]Ctrl + ضغطة يمنى على بناية: إحتماء"
+msgstr "[font=\"sans-14\"]Ctrl + النّقر باليمين على بناء للاحتماء"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -371,7 +372,7 @@ msgstr "النقر بزر الفأرة الأيمن أثناء تحديد مبن
 
 #: gui/manual/intro.txt:82
 msgid "Ctrl + Right Click with units selected:"
-msgstr "Ctrl + النقر باليمين على وحدة محدّدة:"
+msgstr "Ctrl + النّقر باليمين على وحدة ما محدّدة:"
 
 #: gui/manual/intro.txt:83
 msgid "    - If the cursor is over an allied structure: Garrison"
@@ -390,7 +391,7 @@ msgstr "[font=\"sans-bold-14\"]تراكب"
 
 #: gui/manual/intro.txt:87
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr "[font=\"sans-14\"]Alt + G: أظهر/أخفِ الواجهة"
+msgstr "[font=\"sans-14\"]Alt + G لإظهار الواجهة أو إخفائها"
 
 #: gui/manual/intro.txt:88
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -410,11 +411,11 @@ msgstr "ALT + S: تبديل الصور الظلية وحدة (قد تعطي سر
 
 #: gui/manual/intro.txt:91
 msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: بدّل السماء"
+msgstr "Alt + Z لتبديل السّماء"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr "[font=\"sans-bold-14\"]التلاعب بالكيمرا"
+msgstr "[font=\"sans-bold-14\"]التّعامل مع الكاميرا"
 
 #: gui/manual/intro.txt:94
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"

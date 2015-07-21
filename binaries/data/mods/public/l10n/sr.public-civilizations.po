@@ -4,12 +4,13 @@
 # 
 # Translators:
 # acac97 <aleksandar.cvetic97@gmail.com>, 2014
+# MIlosSD <pirisd@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-15 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-07-15 21:47+0000\n"
+"Last-Translator: MIlosSD <pirisd@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/projects/p/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,21 +20,21 @@ msgstr ""
 
 #: civs/athen.jsonName civs/athen.jsonFactions[0].Name
 msgid "Athenians"
-msgstr ""
+msgstr "Атињани"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr ""
+msgstr "Брзина ископавања метала се увећава за 10% за свако протекло доба."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
-msgstr ""
+msgstr "Сребрне сове"
 
 #: civs/athen.jsonCivBonuses[0].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr ""
+msgstr "Рудници у Лауреону у Атици пружали су Атини богате количине сребра из кога су они ковали своје чувене и високо цењене новчиће, Атинске сове"
 
 #: civs/athen.jsonCivBonuses[1].Description
 #: civs/mace.jsonCivBonuses[2].Description
@@ -41,7 +42,7 @@ msgstr ""
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr ""
+msgstr "Изградња Театрона повећава територијално простирање свих грађевина за +20%."
 
 #: civs/athen.jsonCivBonuses[1].Name civs/mace.jsonCivBonuses[2].Name
 #: civs/spart.jsonCivBonuses[2].Name
@@ -53,11 +54,11 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "Грци су били веома успешни у хеленизацији разних странаца. Током Хеленистичког доба грчки језик је био коришћен широм античког света, говорио се од Шпаније до Индије."
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "Бродови се граде 25% брже."
 
 #: civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -69,71 +70,71 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "Убрзо после великих поморских победа код Саламине и МИкале, грчки градови-државе су створили такозвану Делску лигу 478. године п.н.е., чији је циљ био да потисне Персијанце из региона Егеја. Савезничке државе су доприносиле бродовима и новцем, док су Атињани понудили своју целокупну морнарицу."
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
-msgstr ""
+msgstr "Темистокле"
 
 #: civs/athen.jsonAINames[1] civs/athen.jsonFactions[0].Heroes[1].Name
 msgid "Pericles"
-msgstr ""
+msgstr "Перикле"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "Кимон"
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
-msgstr ""
+msgstr "Аристид"
 
 #: civs/athen.jsonAINames[4]
 msgid "Xenophon"
-msgstr ""
+msgstr "Ксенофон"
 
 #: civs/athen.jsonAINames[5]
 msgid "Hippias"
-msgstr ""
+msgstr "Хипија"
 
 #: civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
-msgstr ""
+msgstr "Клеистен"
 
 #: civs/athen.jsonAINames[7]
 msgid "Thucydides"
-msgstr ""
+msgstr "Тукидид"
 
 #: civs/athen.jsonAINames[8]
 msgid "Alcibiades"
-msgstr ""
+msgstr "Алкибијад"
 
 #: civs/athen.jsonAINames[9]
 msgid "Miltiades"
-msgstr ""
+msgstr "Милтијад"
 
 #: civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "Клеон"
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Клеофон"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
-msgstr ""
+msgstr "Трасибул"
 
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
-msgstr ""
+msgstr "Ификрат"
 
 #: civs/athen.jsonAINames[14]
 msgid "Demosthenes"
-msgstr ""
+msgstr "Демостен"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr ""
+msgstr "Атинска трирема може да тренира маринце (Epibastes Athenaikos)."
 
 #: civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
@@ -143,11 +144,11 @@ msgstr "Ификратове реформе"
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr ""
+msgstr "Камени зидови могу бити изграђени на неутралној територији. Време изградње зидова је умањено за 50%."
 
 #: civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr ""
+msgstr "Дуги зидови"
 
 #: civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -155,18 +156,18 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr ""
+msgstr "Атински дуги зидови су изграђени под надзором лукавог Темистокла и простирали су се 6 км од града до луке Пиреј. Они су осигуравали линије снабдевања града и онемогућавале су непријатељу да изгладни град током опсаде."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "Играч добија могућност да нареди војницима наоружаним копљима да се поставе у формацију фаланге, што им да је већу вредност напада и оклопа."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr ""
+msgstr "Отисмос"
 
 #: civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -174,7 +175,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr ""
+msgstr "Класична формација фаланге је развијена око VIII века п.н.е. Била је дубока осам редова и ширине до осамсто војника. Војници унутар формације су преклапали своје штитове, чинећи тако снажан зид штитова начичкан копљима дугим 8 стопа."
 
 #: civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -184,11 +185,11 @@ msgid ""
 "in 479 B.C. Later, he pursued an active policy against the Persians in the "
 "Aegean, thereby laying the foundations of future Athenian power. Ostracised "
 "by the Athenians, he was forced to flee to the protection of the Persians."
-msgstr ""
+msgstr "Генерал који је убедио Атињане да уложе своју зараду од рудника сребра у ратну морнарицу која се састојала од 200 тријера. Кључна личност током Персијских ратова, командовао је победоносном атинском морнарицом у одлучујућој бици код Саламине 479. п.н.е. Касније, заговарао је активну пшолитику против Персијанаца на Егеју, чиме је поставио основе будућој атинској моћи. Прогнан од Атињана, био је приморан да побегне под персијску заштиту у Малој Азији."
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Перикле је био најистакнутији атински политичар 5-ог века п.н.е."
 
 #: civs/athen.jsonFactions[0].Heroes[2].History
 #: civs/maur.jsonFactions[0].Technologies[0].History
@@ -199,22 +200,22 @@ msgstr ""
 #: civs/ptol.jsonFactions[0].Heroes[2].History
 #: civs/sele.jsonCivBonuses[0].History civs/sele.jsonStructures[1].History
 msgid "."
-msgstr ""
+msgstr "."
 
 #: civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
-msgstr ""
+msgstr "Хеленски народ јонског племена."
 
 #: civs/athen.jsonStructures[0].Name civs/mace.jsonStructures[0].Name
 #: civs/spart.jsonStructures[0].Name
 msgid "Theatron"
-msgstr ""
+msgstr "Театрон"
 
 #: civs/athen.jsonStructures[0].Special civs/spart.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr ""
+msgstr "Цивилизацијски бонус хеленизације. Изградња Театрона повећава територијални утицај свих грађевина за 25%."
 
 #: civs/athen.jsonStructures[0].History civs/mace.jsonStructures[0].History
 #: civs/spart.jsonStructures[0].History
@@ -222,36 +223,36 @@ msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
-msgstr ""
+msgstr "Грчка позоришта су била места где су извођене бесмртне трагедије Есхила, Софокла и многих других талентованих драмских писаца на задовољство народа. Она су била пресудна у обогаћивању хеленске културе."
 
 #: civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
-msgstr ""
+msgstr "Гимназион"
 
 #: civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr ""
+msgstr "Тренира шампионске јединице и истражује технологије које се тичу шампионских јединица."
 
 #: civs/athen.jsonStructures[1].History
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
-msgstr ""
+msgstr "Гимназион је био кључно место у хеленским градовима, где су се одвијале физичке вежбе и успостављали друштвени контакти."
 
 #: civs/athen.jsonStructures[2].Name
 msgid "Prytaneion"
-msgstr ""
+msgstr "Пританеон"
 
 #: civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr ""
+msgstr "Тренира хероје и истражује тенологије које се тичу хероја."
 
 #: civs/athen.jsonStructures[2].History
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
-msgstr ""
+msgstr "Пританеон је место где се састају градски оци да вечерају и доносе одлуке."
 
 #: civs/athen.jsonHistory
 msgid ""
@@ -259,126 +260,126 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr ""
+msgstr "Као колевка западне цивилизације и колевка демократије, Атина је позната као центар уметности, науке и филозофије. Атињани су такође били моћни ратници, нарочито на мору. На свом врхунцу Атина је доминирала највећим делом хеленског света током неколико деценија."
 
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 msgid "Britons"
-msgstr ""
+msgstr "Брити"
 
 #: civs/brit.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Побољшана количина хране добијене од ранчева и земљорадње."
 
 #: civs/brit.jsonCivBonuses[0].Name civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
-msgstr ""
+msgstr "Ардиосмане"
 
 #: civs/brit.jsonCivBonuses[0].History civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr ""
+msgstr "Представља келтске методе земљорадње."
 
 #: civs/brit.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr ""
+msgstr "Друиди мало повећавају вредност напада за војнике који су близу њима."
 
 #: civs/brit.jsonCivBonuses[1].Name civs/gaul.jsonCivBonuses[1].Name
 msgid "Deas Celtica"
-msgstr ""
+msgstr "Деас Селтика"
 
 #: civs/brit.jsonCivBonuses[1].History civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr ""
+msgstr "Келтска религија и друидизам инспиришу њихов ратоборни менталитет."
 
 #: civs/brit.jsonTeamBonuses[0].Description
 #: civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
-msgstr ""
+msgstr "Бонус за брзину истраживања технологије."
 
 #: civs/brit.jsonTeamBonuses[0].Name civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druides"
-msgstr ""
+msgstr "Друиди"
 
 #: civs/brit.jsonTeamBonuses[0].History civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "Келтски друиди су одржавали организовану религију која је помогла унапређивању технологије њиховог народа чак и током ратова."
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
-msgstr ""
+msgstr "Каратакос"
 
 #: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr ""
+msgstr "Кунобелин"
 
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
 msgid "Boudicca"
-msgstr ""
+msgstr "Будика"
 
 #: civs/brit.jsonAINames[3]
 msgid "Prasutagus"
-msgstr ""
+msgstr "Прасутагус"
 
 #: civs/brit.jsonAINames[4]
 msgid "Venutius"
-msgstr ""
+msgstr "Венутиус"
 
 #: civs/brit.jsonAINames[5]
 msgid "Cogidubnus"
-msgstr ""
+msgstr "Когидубнус"
 
 #: civs/brit.jsonAINames[6]
 msgid "Commius"
-msgstr ""
+msgstr "Комиус"
 
 #: civs/brit.jsonAINames[7]
 msgid "Comux"
-msgstr ""
+msgstr "Комукс"
 
 #: civs/brit.jsonAINames[8]
 msgid "Adminius"
-msgstr ""
+msgstr "Админије"
 
 #: civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
-msgstr ""
+msgstr "Дубновелаунус"
 
 #: civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr ""
+msgstr "Восениус"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr ""
+msgstr "Повећан напад и покретљивост за пешадију ѕа блиску борбу."
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
-msgstr ""
+msgstr "Севили Дусиос"
 
 #: civs/brit.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
-msgstr ""
+msgstr "Брити су користили поступак остављања трајних ознака на свом телу у облику тетоважа или су привремено бојили своја тела биљном бојом. Ефекат је био веома застрашујућ."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Повећава бонус који даје висина јединицама стационираним у кули."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "Турос Марос"
 
 #: civs/brit.jsonFactions[0].Technologies[1].History
 msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
 "have been found."
-msgstr ""
+msgstr "\"Велика кула\"; келтске легенде обилује причама о масивним кулама које су изградили најмоћнији краљеви, и остаци неких веома великих кула су пронађени."
 
 #: civs/brit.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -397,7 +398,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech..."
-msgstr ""
+msgstr "Карактакус, што је римски облик, је једноставна промена од Каратакос, што је његово право име, које је било отиснуто на много његових новчића. Под овим именом је запамћен као одважни бранилац Британије од Римљана после њихове инвазије 43. године н.е. Син краља Кунобелина из племенског савеза Катувелауни, Каратакос се борио против Римљана девет година али са моло успеха, пре него што је на крају побегао племенима у Велс, где је одлучујуће поражен. На крају је отишао у северну Британију, где је предан Римљанима. Пошто је одведен у Рим, Каратакосу је цар Клаудије дозволио да живи у Италији, где је и умро. Традиција говори да се он преобратио у хришћанство када је то учинила и његова жена, али о овоме се ништа сигурно не зна. Значајнија је чињеница да му је дозвољено да преживи пошто је заробљен. Римски обичај је био да такве људе обично јавно погубљују на прославама победа. Каратакос је доведен пред цара и сенат на сопствени захтев да би се оправдао. Шта је он тамо рекао није сасвим познато, али му Тацит приписује један чувени говор..."
 
 #: civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -479,15 +480,15 @@ msgstr ""
 
 #: civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
-msgstr ""
+msgstr "Келти Британских острва"
 
 #: civs/brit.jsonStructures[0].Name
 msgid "Kennel"
-msgstr ""
+msgstr "Штенара"
 
 #: civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr ""
+msgstr "Брити су били познати по узгајању паса за рат."
 
 #: civs/brit.jsonHistory
 msgid ""
@@ -499,13 +500,13 @@ msgstr ""
 
 #: civs/cart.jsonName
 msgid "Carthaginians"
-msgstr ""
+msgstr "Картагињани"
 
 #: civs/cart.jsonCivBonuses[0].Description
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr ""
+msgstr "Картагински зидови, капије и куле имају 3x јачине стандардних зидова, али такође и 2x дуже време изградње."
 
 #: civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -513,7 +514,7 @@ msgstr "Троструки зидови"
 
 #: civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
-msgstr ""
+msgstr "Картагињани су градили троструке градске зидове."
 
 #: civs/cart.jsonCivBonuses[1].Description
 msgid ""
@@ -549,71 +550,71 @@ msgstr ""
 
 #: civs/cart.jsonAINames[0] civs/cart.jsonFactions[0].Heroes[0].Name
 msgid "Hannibal Barca"
-msgstr ""
+msgstr "Ханибал Барка"
 
 #: civs/cart.jsonAINames[1] civs/cart.jsonFactions[0].Heroes[1].Name
 msgid "Hamilcar Barca"
-msgstr ""
+msgstr "Хамилкар Барка"
 
 #: civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
-msgstr ""
+msgstr "Хаздрубал Барка"
 
 #: civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
-msgstr ""
+msgstr "Хаздрубал Гиско"
 
 #: civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
-msgstr ""
+msgstr "Хано Старији"
 
 #: civs/cart.jsonAINames[5] civs/cart.jsonFactions[0].Heroes[2].Name
 msgid "Maharbal"
-msgstr ""
+msgstr "Махарбал"
 
 #: civs/cart.jsonAINames[6]
 msgid "Mago Barca"
-msgstr ""
+msgstr "Магон Барка"
 
 #: civs/cart.jsonAINames[7]
 msgid "Hasdrubal the Fair"
-msgstr ""
+msgstr "Хаздрубал Лепи"
 
 #: civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
-msgstr ""
+msgstr "Хано Велики"
 
 #: civs/cart.jsonAINames[9]
 msgid "Himilco"
-msgstr ""
+msgstr "Химилко"
 
 #: civs/cart.jsonAINames[10]
 msgid "Hampsicora"
-msgstr ""
+msgstr "Хампсикора"
 
 #: civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
-msgstr ""
+msgstr "Ханибал Гиско"
 
 #: civs/cart.jsonAINames[12]
 msgid "Dido"
-msgstr ""
+msgstr "Дидона"
 
 #: civs/cart.jsonAINames[13]
 msgid "Xanthippus"
-msgstr ""
+msgstr "Ксантип"
 
 #: civs/cart.jsonAINames[14]
 msgid "Himilco Phameas"
-msgstr ""
+msgstr "Химилко  Фамеа"
 
 #: civs/cart.jsonAINames[15]
 msgid "Hasdrubal the Boetharch"
-msgstr ""
+msgstr "Хаздрубал Беотарх"
 
 #: civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "Сви трговци и бродови +25% на видно поље"
 
 #: civs/cart.jsonFactions[0].Technologies[0].Name
 msgid "Exploration"
@@ -624,11 +625,11 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr ""
+msgstr "Нико није у античком свету боље од Картагињана знао где иде и где ће ићи; њихови трговци су имали мисије свуда."
 
 #: civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr ""
+msgstr "Градски центри, храмови и куће -25% времена изградње"
 
 #: civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
@@ -670,11 +671,11 @@ msgstr ""
 
 #: civs/cart.jsonStructures[0].Name
 msgid "Naval Shipyard"
-msgstr ""
+msgstr "Бродоградилиште"
 
 #: civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
-msgstr ""
+msgstr "Гради моћне бојне бродове за картагинску морнарицу,"
 
 #: civs/cart.jsonStructures[0].History
 msgid ""
@@ -684,43 +685,43 @@ msgstr ""
 
 #: civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
-msgstr ""
+msgstr "Келтска амбасада"
 
 #: civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
-msgstr ""
+msgstr "Унајми келтске плаћенике"
 
 #: civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr ""
+msgstr "Келти су снабдевали картагинске војске одважним ратницима плаћеницима."
 
 #: civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
-msgstr ""
+msgstr "Италска амбасада"
 
 #: civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
-msgstr ""
+msgstr "Унајми италске плаћенике."
 
 #: civs/cart.jsonStructures[2].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the Italian peoples subject to Rome, including the Italian Greeks "
 "and powerful Samnites, revolted and joined the Carthaginian cause."
-msgstr ""
+msgstr "Када је ХАнибал напао Италију и поразио Римљане у серији битака, многи њихови италски народи поданици Рима, укључујући и италске Грке и моћне Самните, су се побунили и прикључили картагинској борби."
 
 #: civs/cart.jsonStructures[3].Name
 msgid "Iberian Embassy"
-msgstr ""
+msgstr "Иберска амбасада"
 
 #: civs/cart.jsonStructures[3].Special
 msgid "Hire Iberian mercenaries."
-msgstr ""
+msgstr "Унајми иберске плаћенике."
 
 #: civs/cart.jsonStructures[3].History
 msgid ""
 "The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr ""
+msgstr "Иберци су били познати као одважни плаћеници, лојални онима који их плаћају."
 
 #: civs/cart.jsonHistory
 msgid ""
@@ -734,7 +735,7 @@ msgstr ""
 
 #: civs/gaul.jsonName civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
-msgstr ""
+msgstr "Гали"
 
 #: civs/gaul.jsonAINames[0] civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Britomartos"
@@ -1142,7 +1143,7 @@ msgstr "Филип II"
 
 #: civs/mace.jsonAINames[2]
 msgid "Antipater"
-msgstr ""
+msgstr "Антипатер"
 
 #: civs/mace.jsonAINames[3]
 msgid "Philip IV"
@@ -1150,23 +1151,23 @@ msgstr "Филип IV"
 
 #: civs/mace.jsonAINames[4] civs/spart.jsonAINames[5]
 msgid "Lysander"
-msgstr ""
+msgstr "Лисандер"
 
 #: civs/mace.jsonAINames[5]
 msgid "Lysimachus"
-msgstr ""
+msgstr "Лисимах"
 
 #: civs/mace.jsonAINames[6]
 msgid "Pyrrhus of Epirus"
-msgstr ""
+msgstr "Пир од Епира"
 
 #: civs/mace.jsonAINames[7]
 msgid "Antigonus II Gonatas"
-msgstr ""
+msgstr "Антигон II Гоната"
 
 #: civs/mace.jsonAINames[8]
 msgid "Demetrius II Aetolicus"
-msgstr ""
+msgstr "Деметрије II Етолски"
 
 #: civs/mace.jsonAINames[9]
 msgid "Philip V"
@@ -1174,15 +1175,15 @@ msgstr "Филип V"
 
 #: civs/mace.jsonAINames[10]
 msgid "Perseus"
-msgstr ""
+msgstr "Персеј"
 
 #: civs/mace.jsonAINames[11]
 msgid "Craterus"
-msgstr ""
+msgstr "Кратер"
 
 #: civs/mace.jsonAINames[12]
 msgid "Meleager"
-msgstr ""
+msgstr "Мелеагер"
 
 #: civs/mace.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -1213,7 +1214,7 @@ msgstr ""
 
 #: civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Royal Gift"
-msgstr ""
+msgstr "Краљевски поклон"
 
 #: civs/mace.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1232,7 +1233,7 @@ msgstr ""
 #: civs/ptol.jsonFactions[0].Technologies[0].Name
 #: civs/sele.jsonFactions[0].Technologies[0].Name
 msgid "Hellenistic Metropolises"
-msgstr ""
+msgstr "Хеленистичке метрополе"
 
 #: civs/mace.jsonFactions[0].Technologies[2].History
 #: civs/ptol.jsonFactions[0].Technologies[0].History
@@ -1281,17 +1282,17 @@ msgstr ""
 
 #: civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
-msgstr ""
+msgstr "Деметрије Опсађивач"
 
 #: civs/mace.jsonFactions[0].Description
 msgid "A Hellenistic kingdom bordering the Greek city-states."
-msgstr ""
+msgstr "Хеленистичко краљевство које се граничи са грчким градовима-државама."
 
 #: civs/mace.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%. Build limit: 1."
-msgstr ""
+msgstr "Цивилизацијски бонус хеленизације. Изградња Театрона повећава територијални утицај свих грађевина за 25%. Ограничен број изградње: 1."
 
 #: civs/mace.jsonStructures[1].Name civs/ptol.jsonStructures[0].Name
 #: civs/sele.jsonStructures[0].Name
@@ -1314,11 +1315,11 @@ msgstr ""
 
 #: civs/mace.jsonStructures[2].Name
 msgid "Siege Workshop"
-msgstr ""
+msgstr "Опсадна радионица"
 
 #: civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
-msgstr ""
+msgstr "Гради и унапређује македонске опсадне справе."
 
 #: civs/mace.jsonStructures[2].History
 msgid "The Macedonians were innovators in area of siegecraft."
@@ -1345,7 +1346,7 @@ msgstr ""
 
 #: civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
-msgstr ""
+msgstr "Цар царева"
 
 #: civs/maur.jsonCivBonuses[0].History
 msgid ""
@@ -1476,7 +1477,7 @@ msgstr ""
 
 #: civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
-msgstr ""
+msgstr "штале за слонове"
 
 #: civs/maur.jsonStructures[0].Special
 msgid ""

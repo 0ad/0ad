@@ -12,12 +12,13 @@
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
 # Lene Raastad <lene.raastad.lr@gmail.com>, 2014
 # Olav Lindekleiv <>, 2014
+# Ole Sannes Riiser <OLE-SR@online.no>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-07-16 19:26+0000\n"
+"Last-Translator: Ole Sannes Riiser <OLE-SR@online.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -105,42 +106,42 @@ msgstr "Dødskamp"
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Ingen våpenhvile."
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minutter."
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minutter."
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 minutter."
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 minutter."
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minutter."
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 minutter."
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 minutter."
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -224,7 +225,7 @@ msgstr "Nei"
 #: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
 #: gui/gamesetup/gamesetup.js:1357
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Bestemmes av scenario."
 
 #: gui/gamesetup/gamesetup.js:1369
 msgid "Randomly selects a map from the list"
@@ -363,19 +364,19 @@ msgstr "Beiseir alle motstandere"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
 msgid "Conquest Structure"
-msgstr ""
+msgstr "Erobringsbygning."
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Ødelegg alle fiendens bygninger."
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Erobringsenheter."
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Ødelegg alle fiendens enheter."
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -496,7 +497,7 @@ msgstr "Startressurser:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Våpenhvile."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -512,7 +513,7 @@ msgstr "Utforsket Kart"
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Deaktiver skatter."
 
 #: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
@@ -592,7 +593,7 @@ msgstr "Velg spillets startressurser."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Bestem tidspunkt for når angrep ikke er mulig."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -604,11 +605,11 @@ msgstr "Gjem/vis kartet."
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Gjem/vis utforsket kart (se opprinnelig kart)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Deaktiver alle skatter på kartet."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."
@@ -668,7 +669,7 @@ msgstr "\"En fremgangsrik tosk er en sørgelig byrde.\" - Aiskhylos"
 msgid ""
 "\"From him \\[Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr ""
+msgstr "\"Fra ham alene \\[Døden] holder Persuasion alle himmelens makter unna\". - Aeschylus"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
@@ -700,7 +701,7 @@ msgstr "\"VIsdom kommer fra lidelse...Tjenester kommer til oss fra gudene.\" - A
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
-msgstr ""
+msgstr "\"Hun \\[Helen] brakte til Ilium hennes medgift, ødeleggelse.\" - Aeschylus, \"Agamemnon\""
 
 #: gui/text/quotes.txt:9
 msgid ""
@@ -831,7 +832,7 @@ msgstr "\"Kun sex og søvn gjør meg bevisst om at jeg er dødelig.\" - Aleksand
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
-msgstr ""
+msgstr "\"Agoraen er en etablert plass der menn kan svindle hverandre, og utvise grisk oppførsel.\" - Anacharsis"
 
 #: gui/text/quotes.txt:35
 msgid ""
@@ -1168,13 +1169,13 @@ msgstr "\"Det er ikke mulig å grunnlegge en varig makt på urett, mened og forr
 
 #: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
-msgstr ""
+msgstr "\"Små muligheter varsler ofte store vågestykker.\" - Demosthenes"
 
 #: gui/text/quotes.txt:98
 msgid ""
 "\"Every advantage in the past is judged in the light of the final issue.\" -"
 " Demosthenes"
-msgstr ""
+msgstr "\"Hvert av fortidens fortrinn dømmes i lys av den siste utfordringen.\" - Demosthenes"
 
 #: gui/text/quotes.txt:99
 msgid ""
@@ -1238,7 +1239,7 @@ msgid ""
 "\"My ancestors yielded to Roman valour. I am endeavouring that others, in "
 "their turn, will be obliged to yield to my good fortune, and my valour.\" - "
 "Hannibal Barca"
-msgstr ""
+msgstr "\""
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
@@ -1265,7 +1266,7 @@ msgid ""
 "\"The Lacedaemonians fought a memorable battle; they made it quite clear "
 "that they were the experts, and that they were fighting against amateurs.\" "
 "- Herodotus"
-msgstr ""
+msgstr "\"Lacedaemonierne kjempet en minneverdig kamp; de gjorde det relativt klart at de var ekspertene, og at de kjempet mot amatører.\" - Herodot"
 
 #: gui/text/quotes.txt:117
 msgid ""
@@ -1576,7 +1577,7 @@ msgstr "\"Forbered krig, siden du har vært ute av stand til å utholde en fred.
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
-msgstr ""
+msgstr "\"Gå, fremmede forbipasserende, fortell Spartanerne at vi ligger her, undergitt deres lover.\" - Simonides av Ceos, epitaphen om Cenotaph av Thermopylae"
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"

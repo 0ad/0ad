@@ -14,10 +14,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-31 22:51+0200\n"
-"PO-Revision-Date: 2015-06-01 08:38+0000\n"
+"POT-Creation-Date: 2015-07-15 00:37+0200\n"
+"PO-Revision-Date: 2015-07-15 08:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/p/0ad/language/uk/)\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,14 +53,14 @@ msgid "Resume"
 msgstr "Продовжити"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Так"
-
-#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ні"
+
+#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "Так"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -511,7 +511,7 @@ msgid "Hitpoints:"
 msgstr "Очок здоров’я:"
 
 #: gui/session/selection_details.js:318 gui/session/selection_details.js:348
-#: gui/session/session.js:630
+#: gui/session/session.js:641
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -598,7 +598,7 @@ msgstr[0] "Залишилось побудувати: %(number)s будівлю"
 msgstr[1] "Залишилось побудувати: %(number)s будівель"
 msgstr[2] "Залишилось побудувати: %(number)s будівель"
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:640
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Здоров'я:"
@@ -672,88 +672,97 @@ msgstr "%(action)s тренувати %(number)s."
 msgid "You"
 msgstr "Ви"
 
-#: gui/session/session.js:170
+#: gui/session/session.js:173
 msgid "Gaia"
 msgstr "Гая"
 
-#: gui/session/session.js:244
+#: gui/session/session.js:247
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr ""
 
-#: gui/session/session.js:318 gui/session/session.js:334
+#: gui/session/session.js:321 gui/session/session.js:337
 msgid "You have left the game."
 msgstr "Ви залишили гру."
 
-#: gui/session/session.js:325
+#: gui/session/session.js:328
 msgid "You have been disconnected."
 msgstr "Ви були відключені."
 
-#: gui/session/session.js:327
+#: gui/session/session.js:330
 msgid "You have won the battle!"
 msgstr "Ви перемогли!"
 
-#: gui/session/session.js:329
+#: gui/session/session.js:332
 msgid "You have been defeated..."
 msgstr "Ви потерпіли поразку..."
 
-#: gui/session/session.js:337
+#: gui/session/session.js:340
 msgid "You have abandoned the game."
 msgstr "Ви відмовилися від гри."
 
-#: gui/session/session.js:479
+#: gui/session/session.js:482
 msgid "OK"
 msgstr "ОК"
 
-#: gui/session/session.js:481
+#: gui/session/session.js:484
 msgid "Press OK to continue"
 msgstr "Натисніть ОК, щоб продовжити"
 
-#: gui/session/session.js:487
+#: gui/session/session.js:490
 msgid "Do you want to quit?"
 msgstr "Бажаєте вийти?"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:496
 msgid "DEFEATED!"
 msgstr "ПОРАЗКА!"
 
-#: gui/session/session.js:501
+#: gui/session/session.js:504
 msgid "VICTORIOUS!"
 msgstr "ПЕРЕМОГА!"
 
-#: gui/session/session.js:718
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr ""
+
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "No"
+msgstr ""
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr ""
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr ""
+
+#: gui/session/session.js:729
 msgid "Population (current / limit)"
 msgstr "Населення (поточне / межа)"
 
-#: gui/session/session.js:719
+#: gui/session/session.js:730
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr ""
 
-#: gui/session/session.js:798
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
-
-#: gui/session/session.js:806
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
-
-#: gui/session/session.js:908
+#: gui/session/session.js:893
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Версія: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Примітка: режим викривлення часу це опція для розробників, і не призначена для використання в тривалих періодах. Використання може стати причиною переповнення пам'яті або краху."
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid "Time warp mode"
 msgstr "Режим викривлення часу"
 
@@ -910,7 +919,7 @@ msgstr "Опції"
 msgid "Resign"
 msgstr "Здатися"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):341
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):349
 msgid "Exit"
 msgstr "Вихід"
 
@@ -918,71 +927,75 @@ msgstr "Вихід"
 msgid "Find idle worker"
 msgstr "Знайти вільних робітників"
 
-#: gui/session/session.xml:(caption):55
+#: gui/session/session.xml:(caption):59
 msgid "Control all units"
 msgstr "Керувати всіма одиницями"
 
-#: gui/session/session.xml:(caption):65
+#: gui/session/session.xml:(caption):69
 msgid "Change perspective"
 msgstr "Змінити перспективу"
 
-#: gui/session/session.xml:(caption):72
+#: gui/session/session.xml:(caption):76
 msgid "Display selection state"
 msgstr "Показати обраний стан"
 
-#: gui/session/session.xml:(caption):77
+#: gui/session/session.xml:(caption):81
 msgid "Pathfinder overlay"
 msgstr "Накладення алгоритму пошуку шляху"
 
-#: gui/session/session.xml:(caption):84
+#: gui/session/session.xml:(caption):88
 msgid "Obstruction overlay"
 msgstr "Накладення перешкод"
 
-#: gui/session/session.xml:(caption):91
+#: gui/session/session.xml:(caption):95
 msgid "Unit motion overlay"
 msgstr "Накладення руху юнітів"
 
-#: gui/session/session.xml:(caption):98
+#: gui/session/session.xml:(caption):102
 msgid "Range overlay"
 msgstr "Накладення радіусу дій"
 
-#: gui/session/session.xml:(caption):105
+#: gui/session/session.xml:(caption):109
 msgid "Bounding box overlay"
 msgstr "Накладення обмежувальних рамок"
 
-#: gui/session/session.xml:(caption):112
+#: gui/session/session.xml:(caption):116
 msgid "Restrict camera"
 msgstr "Обмежити камеру"
 
-#: gui/session/session.xml:(caption):121
+#: gui/session/session.xml:(caption):125
 msgid "Reveal map"
 msgstr "Виявити карту"
 
-#: gui/session/session.xml:(caption):129
+#: gui/session/session.xml:(caption):133
 msgid "Enable time warp"
 msgstr "Включити деформацію часу"
 
-#: gui/session/session.xml:(caption):139
+#: gui/session/session.xml:(caption):143
 msgid "Promote selected units"
 msgstr "Рухати вибраними одиницями"
 
-#: gui/session/session.xml:(caption):176
+#: gui/session/session.xml:(caption):150
+msgid "Hierarchical pathfinder overlay"
+msgstr ""
+
+#: gui/session/session.xml:(caption):184
 msgid "Game Paused"
 msgstr "Гру призупинено"
 
-#: gui/session/session.xml:(caption):179
+#: gui/session/session.xml:(caption):187
 msgid "Click to Resume Game"
 msgstr "Натисніть, щоб відновити гру"
 
-#: gui/session/session.xml:(caption):214
+#: gui/session/session.xml:(caption):222
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: gui/session/session.xml:(caption):220
+#: gui/session/session.xml:(caption):228
 msgid "Team Only"
 msgstr "Тільки командна"
 
-#: gui/session/session.xml:(caption):224
+#: gui/session/session.xml:(caption):232
 msgid "Send"
 msgstr "Відправити"
 

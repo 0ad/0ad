@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Wuzzy <almikes@aol.com>, 2015
 # Dominik <incredipede@outlook.com>, 2014
 # leper <leper@wildfiregames.com>, 2014-2015
 # Raymond Vetter, 2014
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2015-02-22 01:11+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2015-07-16 05:06+0000\n"
+"Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +101,7 @@ msgstr "Leider keine Beschreibung vorhanden."
 #: gui/lobby/lobby.js:565
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "Die Adresse '%(ip)s' scheint nicht gültig zu sein."
+msgstr "Die Adresse „%(ip)s“ scheint nicht gültig zu sein."
 
 #: gui/lobby/lobby.js:643
 #, javascript-format
@@ -125,7 +126,7 @@ msgstr "%(oldnick)s ist jetzt als %(newnick)s bekannt."
 #: gui/lobby/lobby.js:823
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr "Es tut uns leid, das ‚%(cmd)s‘-Kommando wird nicht unterstützt."
+msgstr "Es tut uns leid, der ‚%(cmd)s‘-Befehl wird nicht unterstützt."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:903
@@ -197,7 +198,7 @@ msgstr "Bitte gib Deinen Benutzernamen ein"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr "Benutzernamen dürfen keine [, ], Unicodezeichen, Leerzeichen oder Kommata enthalten"
+msgstr "Benutzernamen dürfen keine eckigen Klammern, Unicodezeichen, Leerzeichen oder Kommata enthalten"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
@@ -405,7 +406,7 @@ msgstr "Abbrechen"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr "0 A.D. Empires Ascendant Mehrspieler Lobby Servicebedingungen "
+msgstr "0 A.D. Empires Ascendant: Mehrspielerlobbynutzungsbedingungen "
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -415,25 +416,25 @@ msgstr "Definitionen:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr "Der \"Service\" ist die 0 A.D. Empires Ascendant Mehrspieler Lobby, die von Wildfire Games (WFG) zur Verfügung gestellt wird."
+msgstr "Die „Dienstleistung“ ist die „0 A.D. Empires Ascendant“-Mehrspielerlobby, die von Wildfire Games (WFG) zur Verfügung gestellt wird."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr "* \"Du\" bist der Benutzer des Dienstes."
+msgstr "* „Du“ bist der Benutzer des Dienstes."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr "* \"Wir\" sind das Kollektiv aller Wildfire Games (WFG) Teammitglieder."
+msgstr "* „Wir“ sind das Kollektiv aller „Wildfire Games (WFG)“-Teammitglieder."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr "* \"Bewertung\" bezeichnet die Analyse verschiedener benutzerspezifischer statistischer Daten zur Berechnung einer einzelnen Gesamtwertung."
+msgstr "* „Bewertung“ bezeichnet die Analyse verschiedener benutzerspezifischer statistischer Daten zur Berechnung einer einzelnen Gesamtwertung."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr "* \"Moderieren\" bezieht sich hierbei auf die Durchsetzung der Nutzungsrichtlinien."
+msgstr "* „Moderieren“ bezieht sich hierbei auf die Durchsetzung der Nutzungsrichtlinien."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
@@ -459,17 +460,17 @@ msgstr "1. Den Dienst zu moderieren."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr "2. Andere zu ernennen, die den Dienst moderieren."
+msgstr "2. Andere zu ernennen, den Dienst zu moderieren."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr "3. Den Dienst jederzeit, mit oder ohne vorherige Ankündigung, zu beenden oder zu unterbrechen."
+msgstr "3. Den Dienst jederzeit, mit oder ohne vorheriger Ankündigung, zu beenden oder zu unterbrechen."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr "4. Den Dienst jederzeit, mit oder ohne vorherige Ankündigung, zu ändern"
+msgstr "4. Den Dienst jederzeit, mit oder ohne vorherige Ankündigung, zu ändern."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
@@ -487,11 +488,11 @@ msgstr "6. Jederzeit einzelne oder alle Statistiken, die Benutzern eindeutig zug
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr "a. Private Analysen durch Wildfire Games (WFG) Teammitglieder und ihre Geschäftspartner."
+msgstr "a. Private Analysen durch „Wildfire Games (WFG)“-Teammitglieder und ihre Geschäftspartner."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr "b. Anonymisierte Veröffentlichungen durch Wildfire Games (WFG) Teammitglieder."
+msgstr "b. Anonymisierte Veröffentlichungen durch „Wildfire Games (WFG)“-Teammitglieder."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -503,29 +504,29 @@ msgstr "7. Dieses Dokument jederzeit beliebig verändern zu können, unter der V
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr "0 A.D. Empires Ascendant Mehrspielerlobby Nutzungsbedingungen"
+msgstr "„0 A.D. Empires Ascendant“-Mehrspielerlobbynutzungsbedingungen"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr "* \"Impersonifizierung\" bezeichnet dabei den Versuch, die Identität einer anderen Person für die eigenen Zwecke zu benutzen."
+msgstr "* „Impersonifizierung“ bezeichnet dabei den Versuch, die Identität einer anderen Person für die eigenen Zwecke zu benutzen."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr "* \"Spam\" bezeichnet irrelevante oder unangemessene Nachrichten, die an eine große Anzahl Empfänger gesendet wird."
+msgstr "* „Spam“ bezeichnet irrelevante oder unangemessene Nachrichten, die an eine große Anzahl Empfänger gesendet wird."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr "* \"Bewertung\" bezeichnet eine nutzerspezifische Gesamtbewertung."
+msgstr "* „Bewertung“ bezeichnet eine nutzerspezifische Gesamtbewertung."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr "* \"Ranglistenspiele\" sind Spiele, bei denen statistische Daten erhoben werden, welche das Ranking beeinflussen."
+msgstr "* „Ranglistenspiele“ sind Spiele, bei denen statistische Daten erhoben werden, welche den Rang beeinflussen."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -535,7 +536,7 @@ msgstr "Sie willigen in folgendes ein:"
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr "1. Nur ein Konto für jeden Benutzer auf dem Service zu erstellen, außer es wurde durch ein Wildfire Games (WFG) Teammitglied autorisiert."
+msgstr "1. Nur ein Konto für jeden Benutzer auf dem Service zu erstellen, außer es wurde durch ein „Wildfire Games (WFG)“-Teammitglied autorisiert."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
@@ -545,7 +546,7 @@ msgstr "2. Keinen unhöflichen Humor zu verwenden, keine lästernden Aussagen, p
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr "3. Niemanden Anderen mit Hilfe dieses Service zu erniedrigen. "
+msgstr "3. Niemanden anderen mit Hilfe dieses Service zu erniedrigen. "
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
@@ -554,7 +555,7 @@ msgstr "4. Den Service nicht zu benutzen, um bestimmte Waren, Dienstleistungen o
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr "5. Keine andere Benutzer des Dienstes zu imitieren."
+msgstr "5. Keine andere Benutzer des Dienstes zu impersonifizieren."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
@@ -566,7 +567,7 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr "7. Nicht zu versuchen, das Rating von Benutzern oder die zu Grunde liegenden Statistiken zu manipulieren. (Beinhaltet unter anderem: Cheaten in Ranglistenspielen, Einsatz von Reverse-Engineering-Techniken, andere Benutzer des Dienstes übervorteilen.)"
+msgstr "7. Nicht zu versuchen, die Bewertung von Benutzern oder die zu Grunde liegenden Statistiken zu manipulieren. (Beinhaltet unter anderem: Cheaten in Ranglistenspielen, Einsatz von Reverse-Engineering-Techniken, andere Benutzer des Dienstes übervorteilen.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""

@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Wuzzy <almikes@aol.com>, 2014
+# Wuzzy <almikes@aol.com>, 2014-2015
 # leper <leper@wildfiregames.com>, 2014-2015
 # MartinusMagnus <martinkleemann@web.de>, 2014
 # qwertz, 2015
@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-05-25 14:31+0000\n"
+"POT-Creation-Date: 2015-07-15 00:38+0200\n"
+"PO-Revision-Date: 2015-07-19 21:57+0000\n"
 "Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsongenericName
+msgid "Stats for advanced units"
+msgstr "Werte für fortschrittliche Einheiten"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to advanced and elite units"
+msgstr "Diese Wertemodifikationen werden auf fortschrittliche und Eliteeinheiten angewendet"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -390,7 +398,7 @@ msgstr "Khrysaspís"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr "Nur die am meisten gefeierten Soldaten hatten Schilde, die mit Silber beschlagen sind, wie die des bekannten Regiments \"Silberschilde\" in der Armee von Alexander dem Großen."
+msgstr "Nur die am meisten gefeierten Soldaten hatten Schilde, die mit Silber beschlagen sind, wie die des bekannten Regiments „Silberschilde“ in der Armee von Alexander dem Großen."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
@@ -735,7 +743,7 @@ msgstr "Stärkung der Grundlagen zur Vorbereitung eines Angriffs."
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armour level of the defense tower by 2 levels."
-msgstr "Erhöht das Rüstungsniveau des Wehrturms um 2 Level."
+msgstr "Erhöht das Rüstungsniveau des Wehrturms um 2 Stufen."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
@@ -800,6 +808,14 @@ msgstr "Territorialer Zerfall -50% für Außenposten."
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "Steinfundamente"
+
+#: simulation/data/technologies/elite_unit_bonus.jsongenericName
+msgid "Stats for elite units"
+msgstr "Werte für Eliteeinheiten"
+
+#: simulation/data/technologies/elite_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to elite units"
+msgstr "Diese Wertemodifikationen werden auf Eliteeinheiten angewendet"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1251,55 +1267,75 @@ msgstr "Nachtwache vs. Zinnen"
 msgid "Walls build time vs. Health"
 msgstr "Mauer: Bauzeit vs. Trefferpunkte"
 
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Steigen Sie von einer betriebsamen Ansiedlung zu einer wahren Metropole auf, voll mit den Wundern der modernen Technologie."
+
+#: simulation/data/technologies/phase_city.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%"
+msgstr "Erforsche die Großstadtphase und schalte mehr Gebäude und Einheiten frei. Der Territorialradius von Verwaltungssitzen wird um weitere erhöht: +50% "
+
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
-#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Großstadtphase"
+
+#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Braucht 4 neue Gebäude der Dorfphase (außer Wällen und Verwaltungssitzen)."
+
+#: simulation/data/technologies/phase_city.jsonspecificName.mace
+#: simulation/data/technologies/phase_city.jsonspecificName.spart
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+msgid "Megalópolis"
+msgstr "Megalópolis"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Steigen Sie von einer betriebsamen Ansiedlung zu einer wahren Metropole auf, voll mit den Wundern der modernen Technologie. Das ist die attische Stadt-Phase, in der die Sammelrate für Metall erhöht ist wegen des \"Silbereulen\"-Bonuses."
+msgstr "Steigen Sie von einer betriebsamen Ansiedlung zu einer wahren Metropole auf, voll mit den Wundern der modernen Technologie. Das ist die attische Stadt-Phase, in der die Sammelrate für Metall erhöht ist wegen des „Silbereulen“-Bonus."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers."
-msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +50% erhöht. Der 'Silbereulen'-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metallabbaurate."
+msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +50% erhöht. Der „Silbereulen“-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metallabbaurate."
 
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Braucht 4 neue Gebäude der Dorfphase (außer Wällen und Verwaltungssitzen)."
-
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Megalópolis"
-
-#: simulation/data/technologies/phase_city_generic.jsondescription
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Steigen Sie von einer betriebsamen Ansiedlung zu einer wahren Metropole auf, voll mit den Wundern der modernen Technologie."
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Steigen Sie von einem kleinen Dorf zu einer betriebsamen Ansiedlung, bereit, sich schnell zu entfalten."
 
-#: simulation/data/technologies/phase_city_generic.jsontooltip
+#: simulation/data/technologies/phase_town.jsontooltip
 msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%"
-msgstr "Erforsche die Großstadtphase und schalte mehr Gebäude und Einheiten frei. Der Territorialradius von Verwaltungssitzen wird um weitere erhöht: +50% "
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%"
+msgstr "Erweitere zur Stadtphase und schalte mehr Gebäude und Einheiten frei. Territorialradius von Verwaltungssitzen wird um +30% erhöht."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
-#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Stadtphase"
+
+#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Braucht 5 Gebäude der Siedlungsphase (außer Palisaden und Feldern)."
+
+#: simulation/data/technologies/phase_town.jsonspecificName.mace
+#: simulation/data/technologies/phase_town.jsonspecificName.spart
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+msgid "Kōmópolis"
+msgstr "Kōmópolis"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1313,31 +1349,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
-msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +30% erhöht. Der 'Silbereulen'-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metallabbaurate."
-
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Braucht 5 Gebäude der Siedlungsphase (außer Palisaden und Feldern)."
-
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
-
-#: simulation/data/technologies/phase_town_generic.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Steigen Sie von einem kleinen Dorf zu einer betriebsamen Ansiedlung, bereit, sich schnell zu entfalten."
-
-#: simulation/data/technologies/phase_town_generic.jsontooltip
-msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%"
-msgstr "Erweitere zur Stadtphase und schalte mehr Gebäude und Einheiten frei. Territorialradius von Verwaltungssitzen wird um +30% erhöht."
+msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +30% erhöht. Der „Silbereulen“-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metallabbaurate."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1598,7 +1610,7 @@ msgstr "Wehrpflicht"
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr "In Zeiten des Krieges Kavallerie einzuberufen hilft die Ränge der königlichen Armee zu Polstern."
+msgstr "In Zeiten des Krieges Kavallerie einzuberufen, hilft die Ränge der königlichen Armee zu stärken."
 
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
@@ -1615,7 +1627,7 @@ msgstr "Kavalleriemusterung"
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr "In Zeiten des Krieges Infanterie einzuberufen hilft die Ränge der königlichen Armee zu Polstern."
+msgstr "In Zeiten des Krieges Infanterie einzuberufen, hilft die Ränge der königlichen Armee zu stärken."
 
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
@@ -1685,6 +1697,21 @@ msgstr "Thesmophória"
 msgid "Bona Dea"
 msgstr "Bona Dea"
 
+#: simulation/data/technologies/unlock_shared_los.jsondescription
+msgid ""
+"By means of trading and travelling people explored beyond the boundaries of "
+"their lands and drew maps of it in order to share and memorize their "
+"discoveries."
+msgstr "Anhand Handels und Reisen erkundeten Leute Gebiete jenseits der Grenzen ihrer Länder und zeichneten Karten, um ihre Entdeckungen zu teilen und festzuhalten."
+
+#: simulation/data/technologies/unlock_shared_los.jsontooltip
+msgid "Player sees what his allies see."
+msgstr "Spieler sieht, was seine Verbündeten sehen."
+
+#: simulation/data/technologies/unlock_shared_los.jsongenericName
+msgid "Cartography"
+msgstr "Kartografie"
+
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
@@ -1727,7 +1754,7 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr "Befördere alle Bürger-Soldaten Kavalleristen zum Elite Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleisch Sammel-Raten um -25%."
+msgstr "Befördere alle Bürger-Soldaten Kavalleristen zum Eliterang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleischsammelrate um -25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
@@ -1735,18 +1762,18 @@ msgstr "Elite Bürgerkavallerie"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr "Befördert alle Bürger-Fußsoldaten zum Elite-Dientgrad."
+msgstr "Befördert alle Bürger-Fußsoldaten zum Eliterang."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr "Befördere alle Bürger-Soldaten Kavalleristen zum Elite Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleisch Sammel-Raten um -25%."
+msgstr "Befördere alle Bürger-Soldaten Kavalleristen zum Eliterang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleischsammelrate um -25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
-msgstr "Elite Bürgerinfantrie"
+msgstr "Elite-Bürgerinfantrie"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
@@ -1773,7 +1800,7 @@ msgid ""
 "was via the city's harbor, not by storming its walls. Consequently, "
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr "Karthager bauten ihre Stadtmauern in 3 konzentrischen Kreisen. Diese Mauern wurden nie durchbrochen. Selbst als die Stadt von den Römern eingenommen wurde, gelang dies durch den Hafen, nicht indem die Mauern erstürmt wurden.dementsprechend haben Karthagos Mauern, Tore und Türme 3x so viel Leben wie normal, Kosten aber doppelt so viel und man braucht die doppelte Zeit um sie zu bauen."
+msgstr "Karthager bauten ihre Stadtmauern in 3 konzentrischen Kreisen. Diese Mauern wurden nie durchbrochen. Selbst als die Stadt von den Römern eingenommen wurde, gelang dies durch den Hafen, nicht indem die Mauern erstürmt wurden.dementsprechend haben Karthagos Mauern, Tore und Türme 3× so viel Leben wie normal, Kosten aber doppelt so viel und man braucht die doppelte Zeit um sie zu bauen."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -1788,7 +1815,7 @@ msgstr "Keltische Söldner kosten weniger Metall."
 msgid ""
 "Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr "Werbe einen keltischen Söldnerhauptmann an, um die Metallkosten für keltische Söldner um 20 zu senken."
+msgstr "Wirb einen keltischen Söldnerhauptmann an, um die Metallkosten für keltische Söldner um 20 zu senken."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
 msgid "Celtic Mercenary Captain"
@@ -1798,7 +1825,7 @@ msgstr "Keltischer Söldnerhauptmann"
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr "Werbe einen gallischen Söldnerhauptmann an, um die Metallkosten für keltische Söldner um 20 zu senken."
+msgstr "Wirb einen gallischen Söldnerhauptmann an, um die Metallkosten für keltische Söldner um 20 zu senken."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
@@ -1813,7 +1840,7 @@ msgstr "Iberische Söldner kosten weniger Metall."
 msgid ""
 "Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Werbe einen lusitanischen Söldnerhauptmann an, um die Metallkosten für iberische Söldner um 20 zu senken."
+msgstr "Wirb einen lusitanischen Söldnerhauptmann an, um die Metallkosten für iberische Söldner um 20 zu senken."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
@@ -1823,7 +1850,7 @@ msgstr "Lusitanischer Söldnerhauptmann"
 msgid ""
 "Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Werbe einen keltiberischen Söldnerhauptmann an, um die Metallkosten für iberische Söldner um 20 zu senken."
+msgstr "Wirb einen keltiberischen Söldnerhauptmann an, um die Metallkosten für iberische Söldner um 20 zu senken."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
@@ -1838,7 +1865,7 @@ msgstr "Italische Söldner kosten weniger Metall."
 msgid ""
 "Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr "Werbe einen italiotischen Söldnerhauptmann an, um die Metallkosten für italiotische Söldner um 20 zu senken."
+msgstr "Wirb einen italiotischen Söldnerhauptmann an, um die Metallkosten für italiotische Söldner um 20 zu senken."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
 msgid "Italiote Mercenary Captain"
@@ -2002,7 +2029,7 @@ msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr "Befördere alle ihre keltischen Bürger-Soldaten Kavalleristen zum erweiterten Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleisch Sammel-Raten um -25%. Schaltet Elite-keltisch-Bürger-Technologie frei."
+msgstr "Befördere alle ihre keltischen Bürger-Soldaten-Kavalleristen zum erweiterten Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleischsammelrate um 25%. Schaltet Elite-keltisch-Bürger-Technologie frei."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -2017,7 +2044,7 @@ msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Befördere alle iberischen Bürger-Soldaten Kavalleristen zum erweiterten Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleisch Sammel-Raten um -25%. Schaltet Elite-Iberer-Kavallerie-Technologie frei."
+msgstr "Befördere alle iberischen Bürger-Soldaten Kavalleristen zum fortgeschrittenen Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleischsammelraten um 25%. Schaltet Elite-Iberer-Kavallerie-Technologie frei."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -2064,11 +2091,11 @@ msgstr "Befördere alle Bürger-Soldaten Kavalleristen zum Elite Rang. Das erhö
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
-msgstr "Elite Iberischer Söldner"
+msgstr "Iberische Elitesöldner"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr "Upgrade alle Ihre Iberischen Söldner zu Elite Rang."
+msgstr "All deine Iberischen Söldner zum Eliterang aufwerten."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
 msgid ""
@@ -2079,7 +2106,7 @@ msgstr "Befördere alle Bürger-Soldaten Kavalleristen zum erweiterten Rang. Das
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
-msgstr "Elite italiotischen Söldner"
+msgstr "Italiotische Elitesöldner"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid ""
@@ -2128,7 +2155,7 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr "Die Spartaner hatten nicht die größte Armee der Welt, aber sie hatten die Beste Armee ihrer Zeit. Was sie nicht an Quantität hatten, machten sie mit Qualität wett. Es heißt, das Sparta keine starken Stadtmauern brauche, da seine Männer die Mauern bilden."
+msgstr "Die Spartaner hatten nicht die größte Armee der Welt, aber sie hatten die beste Armee ihrer Zeit. Was sie nicht an Quantität hatten, machten sie mit Qualität wett. Es heißt, das Sparta keine starken Stadtmauern brauche, da seine Männer die Mauern bilden."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2268,7 +2295,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Die Perser konnten aufgrund der schieren Größe des Achämenidenreiches und der Art und Weise, wie es aufgebaut war, während der Kriegszeit eine große Menge an Infanterie ausheben. Allgemein war die persische Infanterie gut ausgebildet und kämpfte mit großer Hartnäckigkeit, allerdings war sie trotzdem eher schlecht im Kampf Mann gegen Mann. Außerdem war die persische Infanterie - mit Ausnahme der Eliteregimenter - keine stehende professionelle Streitmacht."
+msgstr "Die Perser konnten aufgrund der schieren Größe des Achämenidenreiches und der Art und Weise, wie es aufgebaut war, während der Kriegszeit eine große Menge an Infanterie ausheben. Allgemein war die persische Infanterie gut ausgebildet und kämpfte mit großer Hartnäckigkeit, allerdings war sie trotzdem eher schlecht im Kampf Mann gegen Mann. Außerdem war die persische Infanterie – mit Ausnahme der Eliteregimenter – keine stehende professionelle Streitmacht."
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2293,8 +2320,10 @@ msgid ""
 msgstr "Die Perser bauten die wundervolle 2700 km lange Königsstraße von Sardis nach Susa; Darius der Große und Xerxes bauten auch das zauberhafte Persepolis; Cyrus der Große verschönerte Ekbatana und erbaute die alte elamitische Hauptstadt Susa praktisch von Grund auf neu."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
-msgid "All Persian structures +25% health, but also +20% build time."
-msgstr "Alle persischen Gebäude haben 25% mehr Gesundheit, benötigen aber auch 20% mehr Bauzeit."
+msgid ""
+"All Persian structures +25% health and capture points, but also +20% build "
+"time."
+msgstr "Alle persischen Gebäude haben 25% mehr Gesundheit und Eroberungspunkte, aber auch eine 20% längere Bauzeit."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2373,7 +2402,7 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr "Die sibyllinischen Bücher oder \"Libri Sibyllini\" waren eine Sammlung von Orakelsprüche, die in griechischen Hexametern gesetzt, von einer Sibylle von dem letzten König von Rom, Tarquinius Superbus gekauft und bei bedeutsamen Krisen durch die Geschichte der Republik und dem Imperium konsultiert wurden."
+msgstr "Die sibyllinischen Bücher oder „Libri Sibyllini“ waren eine Sammlung von Orakelsprüchen, die in griechischen Hexametern gesetzt, von einer Sibylle von dem letzten König von Rom, Tarquinius Superbus gekauft und bei bedeutsamen Krisen durch die Geschichte der Republik und dem Imperium konsultiert wurden."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
@@ -2396,11 +2425,12 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr "Beginnend mit Alexander, gründeten die Hellenischen Monarchen viele Städte in ihrem Imperium, in denen Griechische Kultur und Kunst zusammen mit den lokalen Gewohnheiten eine kunterbunte Hellenistische Zivilisation bildeten."
+msgstr "Beginnend mit Alexander, gründeten die Hellenischen Monarchen viele Städte in ihrem Imperium, in denen griechische Kultur und Kunst zusammen mit den lokalen Gewohnheiten eine kunterbunte Hellenistische Zivilisation bildeten."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and double default arrows."
-msgstr "Verwaltungssitze verfügen über +100% Lebenskraft und die doppelte Anzahl an Pfeilen, wenn keine Einheiten einquartiert sind."
+msgid ""
+"Civic centers +100% health and capture points and double default arrows."
+msgstr "Verwaltungssitze haben 100% mehr Gesundheit und Eroberungspunkte und doppelt soviele Pfeile."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2425,7 +2455,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "Die heute ausgestorbenen Nisian Pferderasse war einer der größten und robusten Pferde der Antike. Sie waren sehr begehrt bei den Seleukiden und Perser sowohl als Reiter und berittene Reiter mit schwerer Rüstung mit fortschreitender Zeit."
+msgstr "Die heute ausgestorbenen Nisian-Pferderasse war einer der größten und robusten Pferde der Antike. Sie waren sehr begehrt bei den Seleukiden und Perser sowohl als Reiter und berittene Reiter mit schwerer Rüstung mit fortschreitender Zeit."
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."

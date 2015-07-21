@@ -5,6 +5,7 @@
 # Translators:
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Ellen Roels, 2015
+# mat jojo <matthias.sleurink@gmail.com>, 2015
 # niektb <niektb95@gmail.com>, 2014
 # Peter Erinkveld <peter.erinkveld@gmail.com>, 2015
 # Sander Deryckere, 2014-2015
@@ -13,10 +14,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-06-22 07:39+0000\n"
-"Last-Translator: Sander Deryckere\n"
-"Language-Team: Dutch (http://www.transifex.com/p/0ad/language/nl/)\n"
+"POT-Creation-Date: 2015-07-15 00:38+0200\n"
+"PO-Revision-Date: 2015-07-20 09:09+0000\n"
+"Last-Translator: Ellen Roels\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -117,8 +118,8 @@ msgstr "defensietoren"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and own territories to scout areas of the map. Slowly loses"
-" health while in neutral territory."
+"Build in neutral and own territories to scout areas of the map. Slowly "
+"converts to Gaia while in neutral territory."
 msgstr "Bouw op neutrale of eigen territorium om delen van de kaart te  herkennen. Als je op neutraal gebied bouwt, verlies je geleidelijk aan je sterkte"
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
@@ -469,9 +470,9 @@ msgstr "Théātron"
 #: simulation/templates/structures/spart_theatron.xml:35
 #: simulation/templates/structures/theb_theatron.xml:35
 msgid ""
-"Exellinismós (Hellenization): +20% territory influence for all buildings "
+"Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr "Exellinismós (Hellenizatie): +20% territorium voor alle gebouwen zolang het theater bestaat."
+msgstr "Hellēnízein (Hellenizatie): +20% territorium voor alle gebouwen zolang het theater bestaat."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -545,8 +546,8 @@ msgid "Island Settlement"
 msgstr "Eilandsnederzetting"
 
 #: simulation/templates/structures/brit_crannog.xml:24
-msgid "Increase population limit and defend waterways"
-msgstr "Verhoog de bevolkingslimiet en verdedig waterwegen"
+msgid "Increase population limit and defend waterways."
+msgstr "Verhoog de bevolkingslimiet en verdedig waterwegen."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15

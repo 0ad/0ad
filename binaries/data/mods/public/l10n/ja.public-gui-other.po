@@ -9,10 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-22 00:48+0200\n"
-"PO-Revision-Date: 2015-07-06 06:30+0000\n"
+"POT-Creation-Date: 2015-07-15 00:37+0200\n"
+"PO-Revision-Date: 2015-07-17 07:10+0000\n"
 "Last-Translator: Kanetaka Suto\n"
-"Language-Team: Japanese (http://www.transifex.com/p/0ad/language/ja/)\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,10 +63,21 @@ msgstr "%(url)sを\n既定のウェブブラウザーで開いています。お
 msgid "Opening page"
 msgstr "ページを開く"
 
-#: gui/common/functions_global_object.js:79
+#: gui/common/functions_global_object.js:85
 #, javascript-format
-msgid "FPS: %(fps)s"
-msgstr "FPS: %(fps)s"
+msgid "FPS: %(fps)4s"
+msgstr "FPS: %(fps)4s"
+
+#: gui/common/functions_global_object.js:102
+#, javascript-format
+msgid "%(time)s (%(speed)sx)"
+msgstr ""
+
+#: gui/common/functions_global_object.js:119
+#, javascript-format
+msgctxt "ceasefire"
+msgid "Time remaining until ceasefire is over: %(time)s."
+msgstr "停戦終了まであと%(time)s秒"
 
 #: gui/common/functions_utility.js:191
 msgid "mm:ss"
@@ -559,20 +570,20 @@ msgstr "なし"
 msgid "<invalid>"
 msgstr "<無効>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "はい"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "いいえ"
 
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:(caption):22
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
+#: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "OK"
 
@@ -844,38 +855,38 @@ msgstr "発言時刻"
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "ロビーチャットに投稿されたメッセージの時刻を表示する"
 
-#: gui/pregame/mainmenu.js:78
+#: gui/pregame/mainmenu.js:85
 msgid "disabled"
 msgstr "無効"
 
-#: gui/pregame/mainmenu.js:81
+#: gui/pregame/mainmenu.js:88
 msgid "connecting to server"
 msgstr "サーバーに接続中"
 
-#: gui/pregame/mainmenu.js:86
+#: gui/pregame/mainmenu.js:93
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "アップロード中 (%f%%)"
 
-#: gui/pregame/mainmenu.js:93
+#: gui/pregame/mainmenu.js:100
 msgid "upload succeeded"
 msgstr "アップロード成功"
 
-#: gui/pregame/mainmenu.js:95
+#: gui/pregame/mainmenu.js:102
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "アップロード失敗 (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:102
+#: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "アップロード失敗 (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:105
+#: gui/pregame/mainmenu.js:112
 msgid "unknown"
 msgstr "未知"
 
-#: gui/pregame/mainmenu.js:149
+#: gui/pregame/mainmenu.js:156
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -888,51 +899,51 @@ msgstr "%(startWarning)s警告：%(endWarning)s プログラマブルシェー�
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:162
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "「詳しく読む」を押して詳しい情報を調べるか、「OK」を押して続けてください。"
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:163
 msgid "WARNING!"
 msgstr "警告!"
 
-#: gui/pregame/mainmenu.js:158
+#: gui/pregame/mainmenu.js:165
 msgid "Read More"
 msgstr "詳しく読む"
 
-#: gui/pregame/mainmenu.js:251
+#: gui/pregame/mainmenu.js:258
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:282
+#: gui/pregame/mainmenu.js:289
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "本当に0 A.D.を終了しますか?"
 
-#: gui/pregame/mainmenu.js:282
+#: gui/pregame/mainmenu.js:289
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/pregame/mainmenu.js:292
+#: gui/pregame/mainmenu.js:299
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "シナリオエディターが利用可能でないか読み込みできません。追加情報ははゲームログを参照してください。"
 
-#: gui/pregame/mainmenu.js:292
+#: gui/pregame/mainmenu.js:299
 msgid "Error"
 msgstr "エラー"
 
-#: gui/pregame/mainmenu.js:297
+#: gui/pregame/mainmenu.js:304
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "マルチプレイヤーロビーに入ります。\\[本ビルドでは利用不可]"
 
-#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
-#: gui/pregame/mainmenu.xml:(caption):116
+#: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "技術的詳細"
 
-#: gui/pregame/mainmenu.js:307 gui/pregame/mainmenu.xml:(caption):156
+#: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "マニュアル"
 
@@ -1172,7 +1183,7 @@ msgid ""
 "exploration"
 msgstr "マップ探索率"
 
-#: gui/summary/layout.js:255
+#: gui/summary/layout.js:258
 msgid "Team total"
 msgstr "チーム合計"
 
@@ -1198,14 +1209,14 @@ msgstr "文明紹介"
 msgid "Civilization Selection"
 msgstr "文明選択"
 
-#: gui/civinfo/civinfo.xml:(caption):118
-#: gui/structree/structree.xml:(caption):89
+#: gui/civinfo/civinfo.xml:(caption):119
+#: gui/structree/structree.xml:(caption):90
 msgid "Close"
 msgstr "閉じる"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):346
+#: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
 msgstr "言語"
 
@@ -1301,237 +1312,237 @@ msgstr "ロビー設定"
 msgid "Save"
 msgstr "保存"
 
-#: gui/pregame/mainmenu.xml:75
+#: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
 msgstr "0 A.D.の改良にご協力を！"
 
-#: gui/pregame/mainmenu.xml:77
+#: gui/pregame/mainmenu.xml:64
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "自動で匿名のフィードバックを送り、バグの修正と性能および互換性の向上に協力することができます。"
 
-#: gui/pregame/mainmenu.xml:103
+#: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "0 A.D. の改良へのご協力感謝します。"
 
-#: gui/pregame/mainmenu.xml:105
+#: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
 msgstr "匿名フィードバックが現在有効です。"
 
-#: gui/pregame/mainmenu.xml:107
+#: gui/pregame/mainmenu.xml:94
 msgid "Status: $status."
 msgstr "状態： $status。"
 
-#: gui/pregame/mainmenu.xml:528
+#: gui/pregame/mainmenu.xml:521
 msgid "Alpha XVIII: Rhododactylos"
 msgstr "Alpha XVIII: Rhododactylos"
 
-#: gui/pregame/mainmenu.xml:530
+#: gui/pregame/mainmenu.xml:523
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "警告： このゲームは開発初期版です。多くの機能がまだ盛り込まれていません。"
 
-#: gui/pregame/mainmenu.xml:532
+#: gui/pregame/mainmenu.xml:525
 msgid "Get involved at: play0ad.com"
 msgstr "play0ad.comから参加しよう"
 
-#: gui/pregame/mainmenu.xml:(caption):81
+#: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
 msgstr "フィードバック\n有効化"
 
-#: gui/pregame/mainmenu.xml:(caption):112
+#: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
 msgstr "フィードバック\n無効化"
 
-#: gui/pregame/mainmenu.xml:(caption):173
+#: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr "建設早見表"
 
-#: gui/pregame/mainmenu.xml:(caption):190
+#: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
 msgstr "歴史"
 
-#: gui/pregame/mainmenu.xml:(caption):215
+#: gui/pregame/mainmenu.xml:(caption):208
 msgid "Matches"
 msgstr "対戦"
 
-#: gui/pregame/mainmenu.xml:(caption):229
+#: gui/pregame/mainmenu.xml:(caption):222
 msgid "Campaigns"
 msgstr "キャンペーン"
 
-#: gui/pregame/mainmenu.xml:(caption):246 gui/savedgames/load.xml:(caption):15
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):15
 msgid "Load Game"
 msgstr "ゲームの読込み"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):269
+#: gui/pregame/mainmenu.xml:(caption):262
 msgid "Join Game"
 msgstr "ゲームに参加する"
 
-#: gui/pregame/mainmenu.xml:(caption):284
+#: gui/pregame/mainmenu.xml:(caption):277
 msgid "Host Game"
 msgstr "ゲームをホストする"
 
-#: gui/pregame/mainmenu.xml:(caption):299
+#: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
 msgstr "ゲームロビー"
 
-#: gui/pregame/mainmenu.xml:(caption):329
+#: gui/pregame/mainmenu.xml:(caption):322
 msgid "Options"
 msgstr "設定"
 
-#: gui/pregame/mainmenu.xml:(caption):362
+#: gui/pregame/mainmenu.xml:(caption):355
 msgid "Scenario Editor"
 msgstr "シナリオエディター"
 
-#: gui/pregame/mainmenu.xml:(caption):375
+#: gui/pregame/mainmenu.xml:(caption):368
 msgid "Welcome Screen"
 msgstr "歓迎スクリーン"
 
-#: gui/pregame/mainmenu.xml:(caption):390
+#: gui/pregame/mainmenu.xml:(caption):383
 msgid "Mod Selection"
 msgstr "MODの選択"
 
-#: gui/pregame/mainmenu.xml:(caption):445
+#: gui/pregame/mainmenu.xml:(caption):438
 msgid "Learn To Play"
 msgstr "チュートリアル"
 
-#: gui/pregame/mainmenu.xml:(caption):460
+#: gui/pregame/mainmenu.xml:(caption):453
 msgid "Single Player"
 msgstr "シングルプレイヤー"
 
-#: gui/pregame/mainmenu.xml:(caption):475
+#: gui/pregame/mainmenu.xml:(caption):468
 msgid "Multiplayer"
 msgstr "マルチプレイヤー"
 
-#: gui/pregame/mainmenu.xml:(caption):490
+#: gui/pregame/mainmenu.xml:(caption):483
 msgid "Tools & Options"
 msgstr "ツールと設定"
 
-#: gui/pregame/mainmenu.xml:(caption):505
+#: gui/pregame/mainmenu.xml:(caption):498
 msgid "Exit"
 msgstr "終了"
 
-#: gui/pregame/mainmenu.xml:(caption):542
+#: gui/pregame/mainmenu.xml:(caption):535
 msgid "Help with the Translation!"
 msgstr "翻訳にご協力を！"
 
-#: gui/pregame/mainmenu.xml:(caption):554
+#: gui/pregame/mainmenu.xml:(caption):547
 msgid "Website"
 msgstr "ウェブサイト"
 
-#: gui/pregame/mainmenu.xml:(caption):566
+#: gui/pregame/mainmenu.xml:(caption):559
 msgid "Chat"
 msgstr "チャット"
 
-#: gui/pregame/mainmenu.xml:(caption):578
+#: gui/pregame/mainmenu.xml:(caption):571
 msgid "Report a Bug"
 msgstr "バグを報告する"
 
-#: gui/pregame/mainmenu.xml:(caption):607
+#: gui/pregame/mainmenu.xml:(caption):600
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):157
+#: gui/pregame/mainmenu.xml:(tooltip):150
 msgid "Open the 0 A.D. Game Manual."
 msgstr " 0 A.D. ゲームマニュアルを開きます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):174
+#: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "0 A.D.に登場する文明の建設早見表を見ます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):191
+#: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "0 A.D.に登場する多くの文明について学びます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):216
+#: gui/pregame/mainmenu.xml:(tooltip):209
 msgid "Click here to start a new single player game."
 msgstr "クリックしてシングルプレイヤーゲームを新たに始めます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):230
+#: gui/pregame/mainmenu.xml:(tooltip):223
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "歴史的軍事キャンペーンを通じて歴史を追体験します。［未実装］"
 
-#: gui/pregame/mainmenu.xml:(tooltip):247
+#: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
 msgstr "クリックして保存したゲームを読み込みます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):270
+#: gui/pregame/mainmenu.xml:(tooltip):263
 msgid "Joining an existing multiplayer game."
 msgstr "既存のマルチプレイヤーゲームに参加します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):285
+#: gui/pregame/mainmenu.xml:(tooltip):278
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "マルチプレイヤーゲームのホストをします。\\n\\nUDPの20595ポートを開放する必要があります。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):300
+#: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
 msgstr "マルチプレイヤーロビーを起動します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):330
+#: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
 msgstr "ゲームの設定を調整します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):347
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
 msgstr "ゲームの言語を選択します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):363
+#: gui/pregame/mainmenu.xml:(tooltip):356
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Atlasシナリオエディターを新しいウィンドウで開きます。より確実に起動するには、コマンドライン引数「-editor」を指定してゲームを開始します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):376
+#: gui/pregame/mainmenu.xml:(tooltip):369
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "歓迎スクリーンを表示します。誤ってこの表示を隠したときに有用です。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):391
+#: gui/pregame/mainmenu.xml:(tooltip):384
 msgid "Select mods to use."
 msgstr "使用するMODを選んでください。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):446
+#: gui/pregame/mainmenu.xml:(tooltip):439
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr "遊び方とテクノロジー系統、そして文明の背後の歴史を学びます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):461
+#: gui/pregame/mainmenu.xml:(tooltip):454
 msgid "Challenge the computer player to a single player match."
 msgstr "コンピューター相手に単独プレイで対戦に挑みます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):476
+#: gui/pregame/mainmenu.xml:(tooltip):469
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "1人または複数の人間とマルチプレイヤーで対戦します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):491
+#: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Game options and scenario design tools."
 msgstr "ゲーム設定とシナリオ作成ツールです。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):506
+#: gui/pregame/mainmenu.xml:(tooltip):499
 msgid "Exits the game."
 msgstr "ゲームを終了します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):543
+#: gui/pregame/mainmenu.xml:(tooltip):536
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "クリックして0 A.D.の翻訳サイトをウェブブラウザーで開きます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):555
+#: gui/pregame/mainmenu.xml:(tooltip):548
 msgid "Click to open play0ad.com in your web browser."
 msgstr "クリックしてplay0ad.comをウェブブラウザーで開きます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):567
+#: gui/pregame/mainmenu.xml:(tooltip):560
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "クリックしてブラウザーから 0 A.D. IRCチャットに入ります。 （webchat.quakenet.orgの#0ad）"
 
-#: gui/pregame/mainmenu.xml:(tooltip):579
+#: gui/pregame/mainmenu.xml:(tooltip):572
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "クリックして0 A.D. Tracへバグや異常終了、エラーを報告します。"
 
@@ -1559,7 +1570,7 @@ msgstr "ようこそ！"
 msgid "Show this message in the future"
 msgstr "今後もこのメッセージを表示する"
 
-#: gui/splashscreen/splashscreen.xml:(caption):33
+#: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
 msgstr "既知の問題(ウェブ)"
 
@@ -1640,16 +1651,18 @@ msgid ""
 msgstr "- マップ内のどこでも、敵領内でも建設できます。秘密基地を敵陣の背後に築いたり、敵領内の獲得地域を編入したりするのに好都合です。"
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Loses health when in neutral or enemy territory."
-msgstr "- 中立地帯や敵領内で耐久力が減少します。"
+msgid "- Decays to the territory owner when build in non-allied territory"
+msgstr ""
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
 msgstr "- 攻城兵器の建造と市民兵士の養成を行います。"
 
 #: gui/text/tips/army_camp.txt:8
-msgid "- Slowly heal up to 40 garrisoned units."
-msgstr "- 最大40の駐屯ユニットを徐々に治療します。"
+msgid ""
+"- Garrison up to 40 units to slowly heal the units and protect the army camp"
+" from attacks and decay."
+msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -1688,8 +1701,10 @@ msgid "- Research weapon and armor upgrades for your units."
 msgstr "- ユニット用の武器と装甲の改良を研究します。"
 
 #: gui/text/tips/blacksmith.txt:6
-msgid "- Garrison a citizen-soldier inside to research faster."
-msgstr "- 市民兵士を駐屯させると研究速度が速くなります。"
+msgid ""
+"- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
+"YET)."
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -1701,9 +1716,9 @@ msgstr "- カルタゴのチャンピオン槍兵とチャンピオン槍騎兵�
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
-"- Both cost Food and Metal and are trainable from the Temple, instead of the"
-" Fortress like most other champions."
-msgstr "- いずれも食料と金属を消費し、神殿で養成できます。多くの他のチャンピオンと違い要塞ではありません。"
+"- Both are trainable from the Temple, instead of the Fortress like most "
+"other champions."
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -1824,8 +1839,8 @@ msgid "- The Fortress is usually each faction's strongest building."
 msgstr "- 要塞は通常それぞれの勢力で最強の建物となります。"
 
 #: gui/text/tips/fortress.txt:4
-msgid "- Trains Champion Units, Heroes, and Siege Weapons."
-msgstr "- チャンピオンユニット、英雄、攻城兵器を養成/建造できます。"
+msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
+msgstr ""
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -1852,6 +1867,10 @@ msgid "- Citizen-Soldiers are bonused with Mining."
 msgstr "- 市民兵士は鉱山の採掘が速いです。"
 
 #: gui/text/tips/gathering.txt:8
+msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
+msgstr ""
+
+#: gui/text/tips/gathering.txt:10
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
@@ -1892,8 +1911,9 @@ msgid "- They construct quickly, but are weak."
 msgstr "- 速く建設できますが、耐久力が弱いです。"
 
 #: gui/text/tips/outposts.txt:8
-msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr "- 中立地帯ではだんだん耐久力が減っていきますが、修理できます。"
+msgid ""
+"- Garrison a unit in it to stop them from decaying in neutral territory."
+msgstr ""
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -1980,14 +2000,12 @@ msgid ""
 msgstr "- 最大の標準軍艦です。ローマ、カルタゴ、プトレマイオス朝、セレウコス朝で建造可能です。"
 
 #: gui/text/tips/quinquereme.txt:4
-msgid ""
-"- Garrison up to 50 units for tons of firepower, including ballistas and "
-"scorpions."
-msgstr "- 最大50ユニットを駐屯させて、バリスタやスコルピオンなどの火力を山盛りにできます。"
+msgid "- Garrison ballistas to increase fire power."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Has a ramming attack that sinks enemy ships."
-msgstr "- 衝角攻撃で敵船を沈めることができます。"
+msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
+msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -2132,8 +2150,8 @@ msgid "TEMPLES"
 msgstr "神殿"
 
 #: gui/text/tips/temples.txt:2
-msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr "- 都市の段階へのアップグレードに必要な町の段階の建物です。"
+msgid "- Town Phase structure."
+msgstr "- 町の段階から建てられます。"
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2150,6 +2168,27 @@ msgstr "- 「オーラ」によって近くにいるユニットを回復させ�
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
 msgstr "- ダメージを受けたユニットを駐屯させてより早く回復できます。"
+
+#: gui/text/tips/territory_decay.txt:1
+msgid "TERRITORY DECAY"
+msgstr ""
+
+#: gui/text/tips/territory_decay.txt:3
+msgid ""
+"- Decay happens when buildings are not connected to an allied Civil Centre."
+msgstr ""
+
+#: gui/text/tips/territory_decay.txt:5
+msgid ""
+"- The decay process can be slowed down or reversed by garrisoning some units"
+" in the structure."
+msgstr ""
+
+#: gui/text/tips/territory_decay.txt:7
+msgid ""
+"- When the decay is completed, the building will be given to the most "
+"influential neighbour."
+msgstr ""
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -2187,14 +2226,20 @@ msgid "- Good for transporting or fighting."
 msgstr "- 輸送と戦闘に適しています。"
 
 #: gui/text/tips/triremes.txt:8
-msgid "- Garrison a catapult aboard for a long-range siege attack."
-msgstr "- 投石機を船に乗せると長距離砲撃が可能になります。"
+msgid "- Garrison troops aboard to increase fire power."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
+"- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
+"YET)."
+msgstr ""
+
+#: gui/text/tips/triremes.txt:12
+msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
-"between each use."
-msgstr "- 敵船に破壊的な衝角攻撃を実行できます。再度発動まで準備時間が必要です。"
+"between each use (NOT IMPLEMENTED YET)."
+msgstr ""
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
