@@ -232,6 +232,9 @@ namespace
 #		elif NV_CPU_PPC
 			ucontext_t * ucp = (ucontext_t *)secret;
 			return (void *) ucp->uc_mcontext.regs->nip;
+#		elif NV_CPU_AARCH64
+			ucontext_t * ucp = (ucontext_t *)secret;
+			return (void *) ucp->uc_mcontext.pc;
 #		endif
 #	endif
 		

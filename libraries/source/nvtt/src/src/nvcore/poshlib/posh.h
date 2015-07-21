@@ -485,6 +485,11 @@ Metrowerks:
 #  define POSH_CPU_STRING "ARM"
 #endif
 
+#if defined __aarch64__
+#  define POSH_CPU_AARCH64 1
+#  define POSH_CPU_STRING "ARM64"
+#endif
+
 #if defined mips || defined __mips__ || defined __MIPS__ || defined _MIPS
 #  define POSH_CPU_MIPS 1 
 #  if defined _R5900
@@ -658,7 +663,7 @@ Metrowerks:
 ** the MIPS series, so we have to be careful about those.
 ** ----------------------------------------------------------------------------
 */
-#if defined POSH_CPU_X86 || defined POSH_CPU_AXP || defined POSH_CPU_STRONGARM || defined POSH_OS_WIN32 || defined POSH_OS_WINCE || defined __MIPSEL__
+#if defined POSH_CPU_X86 || defined POSH_CPU_AXP || defined POSH_CPU_STRONGARM || defined POSH_CPU_AARCH64 || defined POSH_OS_WIN32 || defined POSH_OS_WINCE || defined __MIPSEL__
 #  define POSH_ENDIAN_STRING "little"
 #  define POSH_LITTLE_ENDIAN 1
 #else

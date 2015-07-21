@@ -17,3 +17,4 @@ plus some patches (see patches/):
   arm-fix.patch (from NVTT SVN r1173 - fixes ARM build)
   issue188.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=188)
   clang-cpp11-error.patch (fixes build error on OS X Yosemite with clang, libc++ and c++11)
+  arm64-fix.patch (backported in http://trac.wildfiregames.com/ticket/3344 from upstream https://github.com/castano/nvidia-texture-tools/commit/58617584d4d2541ff9fcfe23a9a492af86b11efb - fixes ARM64 build)
