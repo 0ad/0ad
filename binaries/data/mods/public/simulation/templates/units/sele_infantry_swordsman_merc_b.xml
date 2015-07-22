@@ -10,12 +10,12 @@
   <Identity>
     <Civ>sele</Civ>
     <Lang>greek</Lang>
-	<SelectionGroupName>units/sele_infantry_swordsman_merc_b</SelectionGroupName>
-	<GenericName>Thracian Mercenary Swordsman</GenericName>
+    <SelectionGroupName>units/sele_infantry_swordsman_merc_b</SelectionGroupName>
+    <GenericName>Thracian Mercenary Swordsman</GenericName>
     <SpecificName>Rhomphaiaphoros Thrakikós</SpecificName>
     <Icon>units/sele_infantry_swordsman.png</Icon>
     <History>Thracian tribesmen who wield the fearsome rhomphaia polearm weapon in combat. They were ubiquitous mercenary swordsmen and skirmishers throughout Hellenistic times, sometimes even serving in two opposing armies.</History>
-	<Tooltip>Classes: Mercenary Citizen Melee Infantry Swordsman.</Tooltip>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>

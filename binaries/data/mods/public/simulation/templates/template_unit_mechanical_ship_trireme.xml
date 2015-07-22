@@ -44,8 +44,8 @@
   </Health>
   <Identity>
     <GenericName>Medium Warship</GenericName>
-    <Classes datatype="tokens">Warship Medium Ranged</Classes>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+    <VisibleClasses datatype="tokens">Warship Medium Ranged</VisibleClasses>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <ResourceGatherer disable=""/>
   <Sound>

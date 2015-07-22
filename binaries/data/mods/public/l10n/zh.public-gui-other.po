@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-22 00:48+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
+"POT-Creation-Date: 2015-07-15 00:37+0200\n"
+"PO-Revision-Date: 2015-07-15 09:17+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -61,10 +61,21 @@ msgstr "正在打开%(url)s\n在默认浏览器中。请稍后..."
 msgid "Opening page"
 msgstr "-- 正在打开"
 
-#: gui/common/functions_global_object.js:79
+#: gui/common/functions_global_object.js:85
 #, javascript-format
-msgid "FPS: %(fps)s"
-msgstr "FPS: %(fps)s"
+msgid "FPS: %(fps)4s"
+msgstr ""
+
+#: gui/common/functions_global_object.js:102
+#, javascript-format
+msgid "%(time)s (%(speed)sx)"
+msgstr ""
+
+#: gui/common/functions_global_object.js:119
+#, javascript-format
+msgctxt "ceasefire"
+msgid "Time remaining until ceasefire is over: %(time)s."
+msgstr ""
 
 #: gui/common/functions_utility.js:191
 msgid "mm:ss"
@@ -557,20 +568,20 @@ msgstr "无"
 msgid "<invalid>"
 msgstr "<无效>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "是"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "否"
 
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:(caption):22
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
+#: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "确定"
 
@@ -842,38 +853,38 @@ msgstr "聊天时间戳"
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "消息将被提交到大厅聊天室"
 
-#: gui/pregame/mainmenu.js:78
+#: gui/pregame/mainmenu.js:85
 msgid "disabled"
 msgstr "关闭"
 
-#: gui/pregame/mainmenu.js:81
+#: gui/pregame/mainmenu.js:88
 msgid "connecting to server"
 msgstr "连接到服务器"
 
-#: gui/pregame/mainmenu.js:86
+#: gui/pregame/mainmenu.js:93
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "上传 (%f%%)"
 
-#: gui/pregame/mainmenu.js:93
+#: gui/pregame/mainmenu.js:100
 msgid "upload succeeded"
 msgstr "上传成功"
 
-#: gui/pregame/mainmenu.js:95
+#: gui/pregame/mainmenu.js:102
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "上传失败 (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:102
+#: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "上传失败 (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:105
+#: gui/pregame/mainmenu.js:112
 msgid "unknown"
 msgstr "未知"
 
-#: gui/pregame/mainmenu.js:149
+#: gui/pregame/mainmenu.js:156
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -886,51 +897,51 @@ msgstr "%(startWarning)sWarning:%(endWarning)s 你似乎在使用不支持着色
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:162
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "点击“获取更多信息”或者点击\"确定\"继续游戏"
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:163
 msgid "WARNING!"
 msgstr "警告！"
 
-#: gui/pregame/mainmenu.js:158
+#: gui/pregame/mainmenu.js:165
 msgid "Read More"
 msgstr "获取更多"
 
-#: gui/pregame/mainmenu.js:251
+#: gui/pregame/mainmenu.js:258
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "创建: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:282
+#: gui/pregame/mainmenu.js:289
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "确定要退出 0 A.D. 吗?"
 
-#: gui/pregame/mainmenu.js:282
+#: gui/pregame/mainmenu.js:289
 msgid "Confirmation"
 msgstr "确认"
 
-#: gui/pregame/mainmenu.js:292
+#: gui/pregame/mainmenu.js:299
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "脚本编辑器不可用或加载失败。请查看日志了解详情。"
 
-#: gui/pregame/mainmenu.js:292
+#: gui/pregame/mainmenu.js:299
 msgid "Error"
 msgstr "错误"
 
-#: gui/pregame/mainmenu.js:297
+#: gui/pregame/mainmenu.js:304
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
-#: gui/pregame/mainmenu.xml:(caption):116
+#: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "技术详情"
 
-#: gui/pregame/mainmenu.js:307 gui/pregame/mainmenu.xml:(caption):156
+#: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "手册"
 
@@ -1170,7 +1181,7 @@ msgid ""
 "exploration"
 msgstr "地图\n探索"
 
-#: gui/summary/layout.js:255
+#: gui/summary/layout.js:258
 msgid "Team total"
 msgstr ""
 
@@ -1196,14 +1207,14 @@ msgstr "文明"
 msgid "Civilization Selection"
 msgstr "选择文明"
 
-#: gui/civinfo/civinfo.xml:(caption):118
-#: gui/structree/structree.xml:(caption):89
+#: gui/civinfo/civinfo.xml:(caption):119
+#: gui/structree/structree.xml:(caption):90
 msgid "Close"
 msgstr "关闭"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):346
+#: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
 msgstr "语言"
 
@@ -1299,237 +1310,237 @@ msgstr "大厅设置"
 msgid "Save"
 msgstr "保存"
 
-#: gui/pregame/mainmenu.xml:75
+#: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
 msgstr "帮助改善 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:77
+#: gui/pregame/mainmenu.xml:64
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "您能自动发送匿名反馈给我们，以便修复错误以及改善性能和兼容性。"
 
-#: gui/pregame/mainmenu.xml:103
+#: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "感谢您对改善 0 A.D. 的帮助！"
 
-#: gui/pregame/mainmenu.xml:105
+#: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
 msgstr "匿名反馈已启用"
 
-#: gui/pregame/mainmenu.xml:107
+#: gui/pregame/mainmenu.xml:94
 msgid "Status: $status."
 msgstr "状态: $status."
 
-#: gui/pregame/mainmenu.xml:528
+#: gui/pregame/mainmenu.xml:521
 msgid "Alpha XVIII: Rhododactylos"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:530
+#: gui/pregame/mainmenu.xml:523
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "警告：这是一个早期开发的游戏版本。许多功能没有被加进去。"
 
-#: gui/pregame/mainmenu.xml:532
+#: gui/pregame/mainmenu.xml:525
 msgid "Get involved at: play0ad.com"
 msgstr "欢迎加入：play0ad.com"
 
-#: gui/pregame/mainmenu.xml:(caption):81
+#: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
 msgstr "激活反馈"
 
-#: gui/pregame/mainmenu.xml:(caption):112
+#: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
 msgstr "取消反馈"
 
-#: gui/pregame/mainmenu.xml:(caption):173
+#: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):190
+#: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
 msgstr "历史"
 
-#: gui/pregame/mainmenu.xml:(caption):215
+#: gui/pregame/mainmenu.xml:(caption):208
 msgid "Matches"
 msgstr "对战"
 
-#: gui/pregame/mainmenu.xml:(caption):229
+#: gui/pregame/mainmenu.xml:(caption):222
 msgid "Campaigns"
 msgstr "战役"
 
-#: gui/pregame/mainmenu.xml:(caption):246 gui/savedgames/load.xml:(caption):15
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):15
 msgid "Load Game"
 msgstr "载入游戏"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):269
+#: gui/pregame/mainmenu.xml:(caption):262
 msgid "Join Game"
 msgstr "加入游戏"
 
-#: gui/pregame/mainmenu.xml:(caption):284
+#: gui/pregame/mainmenu.xml:(caption):277
 msgid "Host Game"
 msgstr "创建游戏"
 
-#: gui/pregame/mainmenu.xml:(caption):299
+#: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
 msgstr "游戏大厅"
 
-#: gui/pregame/mainmenu.xml:(caption):329
+#: gui/pregame/mainmenu.xml:(caption):322
 msgid "Options"
 msgstr "选项"
 
-#: gui/pregame/mainmenu.xml:(caption):362
+#: gui/pregame/mainmenu.xml:(caption):355
 msgid "Scenario Editor"
 msgstr "场景编辑器"
 
-#: gui/pregame/mainmenu.xml:(caption):375
+#: gui/pregame/mainmenu.xml:(caption):368
 msgid "Welcome Screen"
 msgstr "欢迎屏幕"
 
-#: gui/pregame/mainmenu.xml:(caption):390
+#: gui/pregame/mainmenu.xml:(caption):383
 msgid "Mod Selection"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):445
+#: gui/pregame/mainmenu.xml:(caption):438
 msgid "Learn To Play"
 msgstr "游戏教程"
 
-#: gui/pregame/mainmenu.xml:(caption):460
+#: gui/pregame/mainmenu.xml:(caption):453
 msgid "Single Player"
 msgstr "单人游戏"
 
-#: gui/pregame/mainmenu.xml:(caption):475
+#: gui/pregame/mainmenu.xml:(caption):468
 msgid "Multiplayer"
 msgstr "多人对战"
 
-#: gui/pregame/mainmenu.xml:(caption):490
+#: gui/pregame/mainmenu.xml:(caption):483
 msgid "Tools & Options"
 msgstr "工具和选项"
 
-#: gui/pregame/mainmenu.xml:(caption):505
+#: gui/pregame/mainmenu.xml:(caption):498
 msgid "Exit"
 msgstr "退出"
 
-#: gui/pregame/mainmenu.xml:(caption):542
+#: gui/pregame/mainmenu.xml:(caption):535
 msgid "Help with the Translation!"
 msgstr "协助翻译！"
 
-#: gui/pregame/mainmenu.xml:(caption):554
+#: gui/pregame/mainmenu.xml:(caption):547
 msgid "Website"
 msgstr "官网"
 
-#: gui/pregame/mainmenu.xml:(caption):566
+#: gui/pregame/mainmenu.xml:(caption):559
 msgid "Chat"
 msgstr "聊天"
 
-#: gui/pregame/mainmenu.xml:(caption):578
+#: gui/pregame/mainmenu.xml:(caption):571
 msgid "Report a Bug"
 msgstr "报告游戏错误"
 
-#: gui/pregame/mainmenu.xml:(caption):607
+#: gui/pregame/mainmenu.xml:(caption):600
 msgid "WILDFIRE GAMES"
 msgstr "野火游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):157
+#: gui/pregame/mainmenu.xml:(tooltip):150
 msgid "Open the 0 A.D. Game Manual."
 msgstr "打开 0 A.D. 游戏手册。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):174
+#: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):191
+#: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "了解0 A.D.游戏中众多文明的特色"
 
-#: gui/pregame/mainmenu.xml:(tooltip):216
+#: gui/pregame/mainmenu.xml:(tooltip):209
 msgid "Click here to start a new single player game."
 msgstr "点击这里以开始单人游戏。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):230
+#: gui/pregame/mainmenu.xml:(tooltip):223
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):247
+#: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
 msgstr "加载已保存的游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):270
+#: gui/pregame/mainmenu.xml:(tooltip):263
 msgid "Joining an existing multiplayer game."
 msgstr "加入一个已创建的多人游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):285
+#: gui/pregame/mainmenu.xml:(tooltip):278
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "创建多人游戏.\\n\\n需要打开UDP 端口 20595."
 
-#: gui/pregame/mainmenu.xml:(tooltip):300
+#: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
 msgstr "启动多人游戏大厅"
 
-#: gui/pregame/mainmenu.xml:(tooltip):330
+#: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
 msgstr "调整游戏设置."
 
-#: gui/pregame/mainmenu.xml:(tooltip):347
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
 msgstr "选择游戏语言。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):363
+#: gui/pregame/mainmenu.xml:(tooltip):356
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "在新窗口打开场景编辑器。您可以在命令行以参数\"-editor\"启动游戏使此功能更稳定。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):376
+#: gui/pregame/mainmenu.xml:(tooltip):369
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "显示欢迎屏幕（如果被您隐藏）。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):391
+#: gui/pregame/mainmenu.xml:(tooltip):384
 msgid "Select mods to use."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):446
+#: gui/pregame/mainmenu.xml:(tooltip):439
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):461
+#: gui/pregame/mainmenu.xml:(tooltip):454
 msgid "Challenge the computer player to a single player match."
 msgstr "人机对战"
 
-#: gui/pregame/mainmenu.xml:(tooltip):476
+#: gui/pregame/mainmenu.xml:(tooltip):469
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "在多人游戏中和其他的人类玩家作战"
 
-#: gui/pregame/mainmenu.xml:(tooltip):491
+#: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Game options and scenario design tools."
 msgstr "游戏选项和场景编辑器"
 
-#: gui/pregame/mainmenu.xml:(tooltip):506
+#: gui/pregame/mainmenu.xml:(tooltip):499
 msgid "Exits the game."
 msgstr "退出游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):543
+#: gui/pregame/mainmenu.xml:(tooltip):536
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):555
+#: gui/pregame/mainmenu.xml:(tooltip):548
 msgid "Click to open play0ad.com in your web browser."
 msgstr "点击进入游戏官网play0ad.com"
 
-#: gui/pregame/mainmenu.xml:(tooltip):567
+#: gui/pregame/mainmenu.xml:(tooltip):560
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "点击在浏览器里打开0 A.D. IRC(网络即时聊天) - 频道#0ad 在webchat.quakenet.org"
 
-#: gui/pregame/mainmenu.xml:(tooltip):579
+#: gui/pregame/mainmenu.xml:(tooltip):572
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "单击访问 0 A.D. Trac 报告bug，崩溃或错误。"
 
@@ -1557,7 +1568,7 @@ msgstr ""
 msgid "Show this message in the future"
 msgstr "以后显示此消息"
 
-#: gui/splashscreen/splashscreen.xml:(caption):33
+#: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
 msgstr ""
 
@@ -1638,16 +1649,18 @@ msgid ""
 msgstr "- 可以建造在地图上任何地方，甚至是地方领域。可以在敌方身后建立一个秘密基地。也可以在敌方领域建造，然后紧挨着建造一个资源收集建筑，这样可以获取地方领域的资源。"
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Loses health when in neutral or enemy territory."
-msgstr "- 位于中立或者地方领域的建筑会不断的减少生命值"
+msgid "- Decays to the territory owner when build in non-allied territory"
+msgstr ""
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
 msgstr "- 建造攻城武器和训练公民士兵"
 
 #: gui/text/tips/army_camp.txt:8
-msgid "- Slowly heal up to 40 garrisoned units."
-msgstr "- 可以驻守40个单位，单位会慢慢回血"
+msgid ""
+"- Garrison up to 40 units to slowly heal the units and protect the army camp"
+" from attacks and decay."
+msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -1686,8 +1699,10 @@ msgid "- Research weapon and armor upgrades for your units."
 msgstr "- 研究升级武器和装甲."
 
 #: gui/text/tips/blacksmith.txt:6
-msgid "- Garrison a citizen-soldier inside to research faster."
-msgstr "- 驻守一个公民士兵可以加快研究速度."
+msgid ""
+"- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
+"YET)."
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -1699,8 +1714,8 @@ msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
-"- Both cost Food and Metal and are trainable from the Temple, instead of the"
-" Fortress like most other champions."
+"- Both are trainable from the Temple, instead of the Fortress like most "
+"other champions."
 msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:6
@@ -1822,8 +1837,8 @@ msgid "- The Fortress is usually each faction's strongest building."
 msgstr "-通常城堡是最坚固的建筑。"
 
 #: gui/text/tips/fortress.txt:4
-msgid "- Trains Champion Units, Heroes, and Siege Weapons."
-msgstr "- 训练高级战士，英雄以及工程武器。"
+msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
+msgstr ""
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -1850,6 +1865,10 @@ msgid "- Citizen-Soldiers are bonused with Mining."
 msgstr "- 公民士兵更擅长采矿"
 
 #: gui/text/tips/gathering.txt:8
+msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
+msgstr ""
+
+#: gui/text/tips/gathering.txt:10
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
@@ -1890,8 +1909,9 @@ msgid "- They construct quickly, but are weak."
 msgstr "- 建造速度快，但是很脆弱"
 
 #: gui/text/tips/outposts.txt:8
-msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr "- 在中立领域会失血，但可以修复"
+msgid ""
+"- Garrison a unit in it to stop them from decaying in neutral territory."
+msgstr ""
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -1978,13 +1998,11 @@ msgid ""
 msgstr "-最重型的标准战舰。以下势力可建造： 罗马、 迦太基、 托勒密，塞琉古。"
 
 #: gui/text/tips/quinquereme.txt:4
-msgid ""
-"- Garrison up to 50 units for tons of firepower, including ballistas and "
-"scorpions."
-msgstr "- 驻守50个单位来提供密集的火力，包括投石车和蝎形弩。"
+msgid "- Garrison ballistas to increase fire power."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Has a ramming attack that sinks enemy ships."
+msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
 msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:1
@@ -2130,8 +2148,8 @@ msgid "TEMPLES"
 msgstr "庙宇"
 
 #: gui/text/tips/temples.txt:2
-msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr "- 用来升级到城市阶段的城镇建筑。"
+msgid "- Town Phase structure."
+msgstr ""
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2148,6 +2166,27 @@ msgstr "- 治疗光环会治愈附近的单位。"
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
 msgstr "- 把受伤的单位驻扎到里面会加快治愈."
+
+#: gui/text/tips/territory_decay.txt:1
+msgid "TERRITORY DECAY"
+msgstr ""
+
+#: gui/text/tips/territory_decay.txt:3
+msgid ""
+"- Decay happens when buildings are not connected to an allied Civil Centre."
+msgstr ""
+
+#: gui/text/tips/territory_decay.txt:5
+msgid ""
+"- The decay process can be slowed down or reversed by garrisoning some units"
+" in the structure."
+msgstr ""
+
+#: gui/text/tips/territory_decay.txt:7
+msgid ""
+"- When the decay is completed, the building will be given to the most "
+"influential neighbour."
+msgstr ""
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -2185,14 +2224,20 @@ msgid "- Good for transporting or fighting."
 msgstr "- 擅长输送士兵或者战斗"
 
 #: gui/text/tips/triremes.txt:8
-msgid "- Garrison a catapult aboard for a long-range siege attack."
-msgstr "- 驻守一个投石车可以长距离的攻城。"
+msgid "- Garrison troops aboard to increase fire power."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
+"- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
+"YET)."
+msgstr ""
+
+#: gui/text/tips/triremes.txt:12
+msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
-"between each use."
-msgstr "- 可以用撞锤撞击地方船只，但每次攻击完，需要再装填。"
+"between each use (NOT IMPLEMENTED YET)."
+msgstr ""
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

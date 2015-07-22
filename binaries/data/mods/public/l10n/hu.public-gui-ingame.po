@@ -19,10 +19,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-31 22:51+0200\n"
-"PO-Revision-Date: 2015-06-01 08:38+0000\n"
+"POT-Creation-Date: 2015-07-15 00:37+0200\n"
+"PO-Revision-Date: 2015-07-15 08:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Hungarian (http://www.transifex.com/p/0ad/language/hu/)\n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -56,14 +56,14 @@ msgid "Resume"
 msgstr "Folytat"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Igen"
-
-#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nem"
+
+#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "Igen"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -503,7 +503,7 @@ msgid "Hitpoints:"
 msgstr "Sebzéspontok:"
 
 #: gui/session/selection_details.js:318 gui/session/selection_details.js:348
-#: gui/session/session.js:630
+#: gui/session/session.js:641
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -589,7 +589,7 @@ msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "%(number)s befejezetlen épület van hátra."
 msgstr[1] "%(number)s befejezetlen épület van hátra."
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:640
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Életerő:"
@@ -663,88 +663,97 @@ msgstr ""
 msgid "You"
 msgstr "Te"
 
-#: gui/session/session.js:170
+#: gui/session/session.js:173
 msgid "Gaia"
 msgstr "Természet"
 
-#: gui/session/session.js:244
+#: gui/session/session.js:247
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr ""
 
-#: gui/session/session.js:318 gui/session/session.js:334
+#: gui/session/session.js:321 gui/session/session.js:337
 msgid "You have left the game."
 msgstr "Elhagytad a játékot."
 
-#: gui/session/session.js:325
+#: gui/session/session.js:328
 msgid "You have been disconnected."
 msgstr "Lekapcsolódtál."
 
-#: gui/session/session.js:327
+#: gui/session/session.js:330
 msgid "You have won the battle!"
 msgstr "Megnyerted a csatát!"
 
-#: gui/session/session.js:329
+#: gui/session/session.js:332
 msgid "You have been defeated..."
 msgstr "Legyőztek..."
 
-#: gui/session/session.js:337
+#: gui/session/session.js:340
 msgid "You have abandoned the game."
 msgstr "Feladtad a játékot."
 
-#: gui/session/session.js:479
+#: gui/session/session.js:482
 msgid "OK"
 msgstr "OK."
 
-#: gui/session/session.js:481
+#: gui/session/session.js:484
 msgid "Press OK to continue"
 msgstr "Nyomd meg az OK gombot a továbblépéshez"
 
-#: gui/session/session.js:487
+#: gui/session/session.js:490
 msgid "Do you want to quit?"
 msgstr "Ki akarsz lépni?"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:496
 msgid "DEFEATED!"
 msgstr "LEGYŐZTEK!"
 
-#: gui/session/session.js:501
+#: gui/session/session.js:504
 msgid "VICTORIOUS!"
 msgstr "GYŐZELEM!"
 
-#: gui/session/session.js:718
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr ""
+
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "No"
+msgstr ""
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr ""
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr ""
+
+#: gui/session/session.js:729
 msgid "Population (current / limit)"
 msgstr "Népesség (jelenlegi/maximális)"
 
-#: gui/session/session.js:719
+#: gui/session/session.js:730
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximum populáció: %(popCap)s"
 
-#: gui/session/session.js:798
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
-
-#: gui/session/session.js:806
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
-
-#: gui/session/session.js:908
+#: gui/session/session.js:893
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Verzió: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Megjegyzés: az időhurok mód egy fejlesztői eszköz, és nem hosszú idejű felhasználásra szánt. Nem megfelelő használata a játék összeomlását okozhatja, vagy kifuthat a memóriából."
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid "Time warp mode"
 msgstr "Időhurok mód"
 
@@ -901,7 +910,7 @@ msgstr "Beállítások"
 msgid "Resign"
 msgstr "Feladni"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):341
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):349
 msgid "Exit"
 msgstr "Kilépés"
 
@@ -909,71 +918,75 @@ msgstr "Kilépés"
 msgid "Find idle worker"
 msgstr "Tétlen lakos keresése"
 
-#: gui/session/session.xml:(caption):55
+#: gui/session/session.xml:(caption):59
 msgid "Control all units"
 msgstr "Összes egység irányítása"
 
-#: gui/session/session.xml:(caption):65
+#: gui/session/session.xml:(caption):69
 msgid "Change perspective"
 msgstr "Perspektíva megváltoztatása"
 
-#: gui/session/session.xml:(caption):72
+#: gui/session/session.xml:(caption):76
 msgid "Display selection state"
 msgstr "Kiválasztási állapot megjelenítése"
 
-#: gui/session/session.xml:(caption):77
+#: gui/session/session.xml:(caption):81
 msgid "Pathfinder overlay"
 msgstr "Felderítő felület"
 
-#: gui/session/session.xml:(caption):84
+#: gui/session/session.xml:(caption):88
 msgid "Obstruction overlay"
 msgstr "Akadály felület"
 
-#: gui/session/session.xml:(caption):91
+#: gui/session/session.xml:(caption):95
 msgid "Unit motion overlay"
 msgstr "Egységmozgás felület"
 
-#: gui/session/session.xml:(caption):98
+#: gui/session/session.xml:(caption):102
 msgid "Range overlay"
 msgstr "Hatókör felület"
 
-#: gui/session/session.xml:(caption):105
+#: gui/session/session.xml:(caption):109
 msgid "Bounding box overlay"
 msgstr "Határoló doboz felület"
 
-#: gui/session/session.xml:(caption):112
+#: gui/session/session.xml:(caption):116
 msgid "Restrict camera"
 msgstr "Kamera korlátozása"
 
-#: gui/session/session.xml:(caption):121
+#: gui/session/session.xml:(caption):125
 msgid "Reveal map"
 msgstr "Térkép felfedése"
 
-#: gui/session/session.xml:(caption):129
+#: gui/session/session.xml:(caption):133
 msgid "Enable time warp"
 msgstr "Időhurok engedélyezése"
 
-#: gui/session/session.xml:(caption):139
+#: gui/session/session.xml:(caption):143
 msgid "Promote selected units"
 msgstr "Kiválasztott egység előléptetése"
 
-#: gui/session/session.xml:(caption):176
+#: gui/session/session.xml:(caption):150
+msgid "Hierarchical pathfinder overlay"
+msgstr ""
+
+#: gui/session/session.xml:(caption):184
 msgid "Game Paused"
 msgstr "Játék megállítva"
 
-#: gui/session/session.xml:(caption):179
+#: gui/session/session.xml:(caption):187
 msgid "Click to Resume Game"
 msgstr "Kattints a játék folytatásához"
 
-#: gui/session/session.xml:(caption):214
+#: gui/session/session.xml:(caption):222
 msgid "Cancel"
 msgstr "Mégse"
 
-#: gui/session/session.xml:(caption):220
+#: gui/session/session.xml:(caption):228
 msgid "Team Only"
 msgstr "Csak csapat"
 
-#: gui/session/session.xml:(caption):224
+#: gui/session/session.xml:(caption):232
 msgid "Send"
 msgstr "Küldés"
 

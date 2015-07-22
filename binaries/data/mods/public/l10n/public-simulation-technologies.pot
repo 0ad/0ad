@@ -5,20 +5,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 00:38+0200\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-21 23:22+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: simulation/data/technologies/advanced_unit_bonus.json:genericName
-msgid "Stats for advanced units"
-msgstr ""
-
-#: simulation/data/technologies/advanced_unit_bonus.json:description
-msgid "These stat modifications will be applied to advanced and elite units"
-msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.json:description
 #: simulation/data/technologies/armor_cav_chamfron.json:description
@@ -71,7 +63,8 @@ msgstr ""
 #: simulation/data/technologies/pop_house_02.json:requirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.json:requirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.json:requirementsTooltip
-#: simulation/data/technologies/speed_trader_01.json:requirementsTooltip
+#: simulation/data/technologies/trade_convoys_speed.json:requirementsTooltip
+#: simulation/data/technologies/trade_gain_01.json:requirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.json:requirementsTooltip
 #: simulation/data/technologies/training_levy_infantry.json:requirementsTooltip
 #: simulation/data/technologies/unlock_females_house.json:requirementsTooltip
@@ -118,7 +111,6 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.json:requirementsTooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.json:requirementsTooltip
 #: simulation/data/technologies/armor_ship_hullsheathing.json:requirementsTooltip
-#: simulation/data/technologies/armor_trade_convoys.json:requirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_02.json:requirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_02.json:requirementsTooltip
 #: simulation/data/technologies/attack_champions_elite.json:requirementsTooltip
@@ -146,6 +138,8 @@ msgstr ""
 #: simulation/data/technologies/siege_cost_wood.json:requirementsTooltip
 #: simulation/data/technologies/siege_packing.json:requirementsTooltip
 #: simulation/data/technologies/speed_cavalry_02.json:requirementsTooltip
+#: simulation/data/technologies/trade_convoys_armor.json:requirementsTooltip
+#: simulation/data/technologies/trade_gain_02.json:requirementsTooltip
 #: simulation/data/technologies/training_conscription.json:requirementsTooltip
 #: simulation/data/technologies/training_naval_architects.json:requirementsTooltip
 #: simulation/data/technologies/unlock_champion_units.json:requirementsTooltip
@@ -454,18 +448,6 @@ msgstr ""
 #: simulation/data/technologies/mauryans/special_archery_tradition.json:requirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.json:requirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr ""
-
-#: simulation/data/technologies/armor_trade_convoys.json:description
-msgid "Increases defensive capability of traders."
-msgstr ""
-
-#: simulation/data/technologies/armor_trade_convoys.json:tooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr ""
-
-#: simulation/data/technologies/armor_trade_convoys.json:genericName
-msgid "Trade convoys"
 msgstr ""
 
 #: simulation/data/technologies/attack_cav_lance.json:description
@@ -797,14 +779,6 @@ msgstr ""
 
 #: simulation/data/technologies/decay_outpost.json:genericName
 msgid "Stone Foundations"
-msgstr ""
-
-#: simulation/data/technologies/elite_unit_bonus.json:genericName
-msgid "Stats for elite units"
-msgstr ""
-
-#: simulation/data/technologies/elite_unit_bonus.json:description
-msgid "These stat modifications will be applied to elite units"
 msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.json:description
@@ -1565,17 +1539,47 @@ msgstr ""
 msgid "Cavalry Speed Training"
 msgstr ""
 
-#: simulation/data/technologies/speed_trader_01.json:description
+#: simulation/data/technologies/trade_convoys_armor.json:description
+msgid "Increases defensive capability of traders."
+msgstr ""
+
+#: simulation/data/technologies/trade_convoys_armor.json:tooltip
+msgid "Traders +2 Hack and Pierce armor levels."
+msgstr ""
+
+#: simulation/data/technologies/trade_convoys_armor.json:genericName
+#: simulation/data/technologies/trade_convoys_speed.json:genericName
+msgid "Trade Convoys"
+msgstr ""
+
+#: simulation/data/technologies/trade_convoys_speed.json:description
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
 msgstr ""
 
-#: simulation/data/technologies/speed_trader_01.json:tooltip
+#: simulation/data/technologies/trade_convoys_speed.json:tooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
 msgstr ""
 
-#: simulation/data/technologies/speed_trader_01.json:genericName
-msgid "Trade Convoys"
+#: simulation/data/technologies/trade_gain_01.json:description
+#: simulation/data/technologies/trade_gain_02.json:description
+msgid "The progress in handicraft improves the trading profit."
+msgstr ""
+
+#: simulation/data/technologies/trade_gain_01.json:tooltip
+msgid "Traders +10% gain."
+msgstr ""
+
+#: simulation/data/technologies/trade_gain_01.json:genericName
+msgid "Handicraft"
+msgstr ""
+
+#: simulation/data/technologies/trade_gain_02.json:tooltip
+msgid "Traders +15% gain."
+msgstr ""
+
+#: simulation/data/technologies/trade_gain_02.json:genericName
+msgid "Advanced Handicraft"
 msgstr ""
 
 #: simulation/data/technologies/training_conscription.json:description

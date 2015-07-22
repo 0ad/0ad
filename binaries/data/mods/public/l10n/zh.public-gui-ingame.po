@@ -26,10 +26,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-31 22:51+0200\n"
-"PO-Revision-Date: 2015-06-01 08:38+0000\n"
+"POT-Creation-Date: 2015-07-15 00:37+0200\n"
+"PO-Revision-Date: 2015-07-15 08:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Chinese (http://www.transifex.com/p/0ad/language/zh/)\n"
+"Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,14 +61,14 @@ msgid "Resume"
 msgstr "继续游戏"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "是"
-
-#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "否"
+
+#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "是"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -497,7 +497,7 @@ msgid "Hitpoints:"
 msgstr "生命值:"
 
 #: gui/session/selection_details.js:318 gui/session/selection_details.js:348
-#: gui/session/session.js:630
+#: gui/session/session.js:641
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -582,7 +582,7 @@ msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩余: %(number)s 。"
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:640
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "生命值："
@@ -656,88 +656,97 @@ msgstr "%(action)s 训练 %(number)s."
 msgid "You"
 msgstr "您"
 
-#: gui/session/session.js:170
+#: gui/session/session.js:173
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:244
+#: gui/session/session.js:247
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr ""
 
-#: gui/session/session.js:318 gui/session/session.js:334
+#: gui/session/session.js:321 gui/session/session.js:337
 msgid "You have left the game."
 msgstr "您已经离开了游戏。"
 
-#: gui/session/session.js:325
+#: gui/session/session.js:328
 msgid "You have been disconnected."
 msgstr "连接已断开。"
 
-#: gui/session/session.js:327
+#: gui/session/session.js:330
 msgid "You have won the battle!"
 msgstr "您已胜出！"
 
-#: gui/session/session.js:329
+#: gui/session/session.js:332
 msgid "You have been defeated..."
 msgstr "您已战败……"
 
-#: gui/session/session.js:337
+#: gui/session/session.js:340
 msgid "You have abandoned the game."
 msgstr "您放弃了游戏。"
 
-#: gui/session/session.js:479
+#: gui/session/session.js:482
 msgid "OK"
 msgstr "确定"
 
-#: gui/session/session.js:481
+#: gui/session/session.js:484
 msgid "Press OK to continue"
 msgstr "点击 确定 继续"
 
-#: gui/session/session.js:487
+#: gui/session/session.js:490
 msgid "Do you want to quit?"
 msgstr "要退出吗？"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:496
 msgid "DEFEATED!"
 msgstr "战败！"
 
-#: gui/session/session.js:501
+#: gui/session/session.js:504
 msgid "VICTORIOUS!"
 msgstr "胜利！"
 
-#: gui/session/session.js:718
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr ""
+
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "No"
+msgstr ""
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr ""
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr ""
+
+#: gui/session/session.js:729
 msgid "Population (current / limit)"
 msgstr "人口(当前/上限)"
 
-#: gui/session/session.js:719
+#: gui/session/session.js:730
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr ""
 
-#: gui/session/session.js:798
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
-
-#: gui/session/session.js:806
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
-
-#: gui/session/session.js:908
+#: gui/session/session.js:893
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "创建: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "注意： 时空隧道模式是开发者选项，不适用于长时间开启。不恰当的使用可能导致内存不足或程序崩溃。"
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid "Time warp mode"
 msgstr "时空隧道模式"
 
@@ -894,7 +903,7 @@ msgstr "选择"
 msgid "Resign"
 msgstr "放弃"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):341
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):349
 msgid "Exit"
 msgstr "退出"
 
@@ -902,71 +911,75 @@ msgstr "退出"
 msgid "Find idle worker"
 msgstr "寻找空闲工人"
 
-#: gui/session/session.xml:(caption):55
+#: gui/session/session.xml:(caption):59
 msgid "Control all units"
 msgstr "操控所有单位"
 
-#: gui/session/session.xml:(caption):65
+#: gui/session/session.xml:(caption):69
 msgid "Change perspective"
 msgstr "调整视角"
 
-#: gui/session/session.xml:(caption):72
+#: gui/session/session.xml:(caption):76
 msgid "Display selection state"
 msgstr "显示选中目标的状态"
 
-#: gui/session/session.xml:(caption):77
+#: gui/session/session.xml:(caption):81
 msgid "Pathfinder overlay"
 msgstr "寻路叠加图"
 
-#: gui/session/session.xml:(caption):84
+#: gui/session/session.xml:(caption):88
 msgid "Obstruction overlay"
 msgstr "障碍叠加图"
 
-#: gui/session/session.xml:(caption):91
+#: gui/session/session.xml:(caption):95
 msgid "Unit motion overlay"
 msgstr "单位移动叠加图"
 
-#: gui/session/session.xml:(caption):98
+#: gui/session/session.xml:(caption):102
 msgid "Range overlay"
 msgstr "范围叠加图"
 
-#: gui/session/session.xml:(caption):105
+#: gui/session/session.xml:(caption):109
 msgid "Bounding box overlay"
 msgstr "碰撞边框叠加图"
 
-#: gui/session/session.xml:(caption):112
+#: gui/session/session.xml:(caption):116
 msgid "Restrict camera"
 msgstr "固定相机"
 
-#: gui/session/session.xml:(caption):121
+#: gui/session/session.xml:(caption):125
 msgid "Reveal map"
 msgstr "显示地图"
 
-#: gui/session/session.xml:(caption):129
+#: gui/session/session.xml:(caption):133
 msgid "Enable time warp"
 msgstr "启用时间扭曲"
 
-#: gui/session/session.xml:(caption):139
+#: gui/session/session.xml:(caption):143
 msgid "Promote selected units"
 msgstr "升级选中的单位"
 
-#: gui/session/session.xml:(caption):176
+#: gui/session/session.xml:(caption):150
+msgid "Hierarchical pathfinder overlay"
+msgstr ""
+
+#: gui/session/session.xml:(caption):184
 msgid "Game Paused"
 msgstr "暂停游戏"
 
-#: gui/session/session.xml:(caption):179
+#: gui/session/session.xml:(caption):187
 msgid "Click to Resume Game"
 msgstr "继续游戏"
 
-#: gui/session/session.xml:(caption):214
+#: gui/session/session.xml:(caption):222
 msgid "Cancel"
 msgstr "取消"
 
-#: gui/session/session.xml:(caption):220
+#: gui/session/session.xml:(caption):228
 msgid "Team Only"
 msgstr "仅团队"
 
-#: gui/session/session.xml:(caption):224
+#: gui/session/session.xml:(caption):232
 msgid "Send"
 msgstr "发送"
 

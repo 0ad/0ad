@@ -7,12 +7,11 @@
   <Identity>
     <Civ>sele</Civ>
     <Lang>greek</Lang>
-    <Classes datatype="tokens">Champion Chariot</Classes>
-	<GenericName>Scythed Chariot</GenericName>
+    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
+    <GenericName>Scythed Chariot</GenericName>
     <SpecificName>Drepanèphoros</SpecificName>
     <History>Expensive "suicide" unit. Mostly used to rush into infantry and cavalry formations to slaughter a bunch of enemies with scythes ("Trample Damage" aura) before getting destroyed themselves.</History>
-	<Icon>units/pers_cavalry_archer.png</Icon>
-	<Tooltip>Classes: Champion Ranged Cavalry Chariot Archer.</Tooltip>
+    <Icon>units/pers_cavalry_archer.png</Icon>
     <RequiredTechnology>successors/unlock_traditional_army</RequiredTechnology>
   </Identity>
   <Loot>

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-22 00:48+0200\n"
-"PO-Revision-Date: 2015-05-25 22:41+0000\n"
+"POT-Creation-Date: 2015-07-15 00:37+0200\n"
+"PO-Revision-Date: 2015-07-20 14:02+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -65,10 +65,21 @@ msgstr "S'està obrint %(url)s\nal navegador web predeterminat. Espereu..."
 msgid "Opening page"
 msgstr "S'està obrint la pàgina"
 
-#: gui/common/functions_global_object.js:79
+#: gui/common/functions_global_object.js:85
 #, javascript-format
-msgid "FPS: %(fps)s"
-msgstr "Fotogrames per segon: %(fps)s"
+msgid "FPS: %(fps)4s"
+msgstr "Fotogrames per segon: %(fps)4s"
+
+#: gui/common/functions_global_object.js:102
+#, javascript-format
+msgid "%(time)s (%(speed)sx)"
+msgstr "%(time)s (%(speed)sx)"
+
+#: gui/common/functions_global_object.js:119
+#, javascript-format
+msgctxt "ceasefire"
+msgid "Time remaining until ceasefire is over: %(time)s."
+msgstr "Temps que queda fins al final de l'alto el foc: %(time)s."
 
 #: gui/common/functions_utility.js:191
 msgid "mm:ss"
@@ -563,20 +574,20 @@ msgstr "Cap"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Si"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "No"
 
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:(caption):22
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
+#: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "D'acord"
 
@@ -848,38 +859,38 @@ msgstr "Data i hora del xat"
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Mostra l'hora quan s'han publicat els missatges al xat del multijugador"
 
-#: gui/pregame/mainmenu.js:78
+#: gui/pregame/mainmenu.js:85
 msgid "disabled"
 msgstr "desactivat"
 
-#: gui/pregame/mainmenu.js:81
+#: gui/pregame/mainmenu.js:88
 msgid "connecting to server"
 msgstr "s'està connectant al servidor"
 
-#: gui/pregame/mainmenu.js:86
+#: gui/pregame/mainmenu.js:93
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "s'està pujant (%f%%)"
 
-#: gui/pregame/mainmenu.js:93
+#: gui/pregame/mainmenu.js:100
 msgid "upload succeeded"
 msgstr "s'ha pujat amb èxit"
 
-#: gui/pregame/mainmenu.js:95
+#: gui/pregame/mainmenu.js:102
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "s'ha produït un error en la pujada (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:102
+#: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "s'ha produït un error en la pujada (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:105
+#: gui/pregame/mainmenu.js:112
 msgid "unknown"
 msgstr "desconegut"
 
-#: gui/pregame/mainmenu.js:149
+#: gui/pregame/mainmenu.js:156
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -892,51 +903,51 @@ msgstr "%(startWarning)sAdvertència:%(endWarning)s Sembla que esteu utilitzant 
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:162
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Premeu \"Llegeix més\" per a més informació o \"D'acord\" per continuar."
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:163
 msgid "WARNING!"
 msgstr "ADVERTÈNCIA!"
 
-#: gui/pregame/mainmenu.js:158
+#: gui/pregame/mainmenu.js:165
 msgid "Read More"
 msgstr "Llegeix més"
 
-#: gui/pregame/mainmenu.js:251
+#: gui/pregame/mainmenu.js:258
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versió: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:282
+#: gui/pregame/mainmenu.js:289
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Segur que voleu sortir del 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:282
+#: gui/pregame/mainmenu.js:289
 msgid "Confirmation"
 msgstr "Confirmació"
 
-#: gui/pregame/mainmenu.js:292
+#: gui/pregame/mainmenu.js:299
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "L'editor d'escenaris no està disponible o ha fallat en carregar. Consulteu els registres del joc per aconseguir més informació."
 
-#: gui/pregame/mainmenu.js:292
+#: gui/pregame/mainmenu.js:299
 msgid "Error"
 msgstr "Error"
 
-#: gui/pregame/mainmenu.js:297
+#: gui/pregame/mainmenu.js:304
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Obre la sala multijugador. \\[DESHABILITAT PER COMPILACIÓ]"
 
-#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
-#: gui/pregame/mainmenu.xml:(caption):116
+#: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "Detalls tècnics"
 
-#: gui/pregame/mainmenu.js:307 gui/pregame/mainmenu.xml:(caption):156
+#: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Manual"
 
@@ -1176,7 +1187,7 @@ msgid ""
 "exploration"
 msgstr "Exploració\ndel mapa"
 
-#: gui/summary/layout.js:255
+#: gui/summary/layout.js:258
 msgid "Team total"
 msgstr "Total de l'equip"
 
@@ -1202,14 +1213,14 @@ msgstr "Civilitzacions"
 msgid "Civilization Selection"
 msgstr "Selecció de civilització"
 
-#: gui/civinfo/civinfo.xml:(caption):118
-#: gui/structree/structree.xml:(caption):89
+#: gui/civinfo/civinfo.xml:(caption):119
+#: gui/structree/structree.xml:(caption):90
 msgid "Close"
 msgstr "Tanca"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):346
+#: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
 msgstr "Idioma"
 
@@ -1305,237 +1316,237 @@ msgstr "Configuració de la sala multijugador"
 msgid "Save"
 msgstr "Desa"
 
-#: gui/pregame/mainmenu.xml:75
+#: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
 msgstr "Ajudeu a millorar el 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:77
+#: gui/pregame/mainmenu.xml:64
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Podeu enviar automàticament informes anònims per ajudar a resoldre errors i millorar el rendiment i la compatibilitat."
 
-#: gui/pregame/mainmenu.xml:103
+#: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Moltes gràcies per ajudar a millorar el 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:105
+#: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
 msgstr "Els informes anònims de millora estan activats."
 
-#: gui/pregame/mainmenu.xml:107
+#: gui/pregame/mainmenu.xml:94
 msgid "Status: $status."
 msgstr "Estat: $status."
 
-#: gui/pregame/mainmenu.xml:528
+#: gui/pregame/mainmenu.xml:521
 msgid "Alpha XVIII: Rhododactylos"
 msgstr "Alfa XVIII: Rhododactylos"
 
-#: gui/pregame/mainmenu.xml:530
+#: gui/pregame/mainmenu.xml:523
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ADVERTÈNCIA: Això és una versió de desenvolupament primerenca del joc. Moltes de les funcions encara no s'han afegit."
 
-#: gui/pregame/mainmenu.xml:532
+#: gui/pregame/mainmenu.xml:525
 msgid "Get involved at: play0ad.com"
 msgstr "Si voleu participar, play0ad.com"
 
-#: gui/pregame/mainmenu.xml:(caption):81
+#: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
 msgstr "Activa els informes"
 
-#: gui/pregame/mainmenu.xml:(caption):112
+#: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
 msgstr "Desactiva els informes"
 
-#: gui/pregame/mainmenu.xml:(caption):173
+#: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
 msgstr "Arbre d'estructures"
 
-#: gui/pregame/mainmenu.xml:(caption):190
+#: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
 msgstr "Història"
 
-#: gui/pregame/mainmenu.xml:(caption):215
+#: gui/pregame/mainmenu.xml:(caption):208
 msgid "Matches"
 msgstr "Partides"
 
-#: gui/pregame/mainmenu.xml:(caption):229
+#: gui/pregame/mainmenu.xml:(caption):222
 msgid "Campaigns"
 msgstr "Campanyes"
 
-#: gui/pregame/mainmenu.xml:(caption):246 gui/savedgames/load.xml:(caption):15
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):15
 msgid "Load Game"
 msgstr "Carrega una partida"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):269
+#: gui/pregame/mainmenu.xml:(caption):262
 msgid "Join Game"
 msgstr "Uneix-te a una partida"
 
-#: gui/pregame/mainmenu.xml:(caption):284
+#: gui/pregame/mainmenu.xml:(caption):277
 msgid "Host Game"
 msgstr "Comença una partida"
 
-#: gui/pregame/mainmenu.xml:(caption):299
+#: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
 msgstr "Sala multijugador"
 
-#: gui/pregame/mainmenu.xml:(caption):329
+#: gui/pregame/mainmenu.xml:(caption):322
 msgid "Options"
 msgstr "Opcions"
 
-#: gui/pregame/mainmenu.xml:(caption):362
+#: gui/pregame/mainmenu.xml:(caption):355
 msgid "Scenario Editor"
 msgstr "Editor d'escenaris"
 
-#: gui/pregame/mainmenu.xml:(caption):375
+#: gui/pregame/mainmenu.xml:(caption):368
 msgid "Welcome Screen"
 msgstr "Pantalla de benvinguda"
 
-#: gui/pregame/mainmenu.xml:(caption):390
+#: gui/pregame/mainmenu.xml:(caption):383
 msgid "Mod Selection"
 msgstr "Selecció de mods"
 
-#: gui/pregame/mainmenu.xml:(caption):445
+#: gui/pregame/mainmenu.xml:(caption):438
 msgid "Learn To Play"
 msgstr "Apreneu a jugar"
 
-#: gui/pregame/mainmenu.xml:(caption):460
+#: gui/pregame/mainmenu.xml:(caption):453
 msgid "Single Player"
 msgstr "Un sol jugador"
 
-#: gui/pregame/mainmenu.xml:(caption):475
+#: gui/pregame/mainmenu.xml:(caption):468
 msgid "Multiplayer"
 msgstr "Multijugador"
 
-#: gui/pregame/mainmenu.xml:(caption):490
+#: gui/pregame/mainmenu.xml:(caption):483
 msgid "Tools & Options"
 msgstr "Eines i opcions"
 
-#: gui/pregame/mainmenu.xml:(caption):505
+#: gui/pregame/mainmenu.xml:(caption):498
 msgid "Exit"
 msgstr "Surt"
 
-#: gui/pregame/mainmenu.xml:(caption):542
+#: gui/pregame/mainmenu.xml:(caption):535
 msgid "Help with the Translation!"
 msgstr "Ajudeu amb la traducció!"
 
-#: gui/pregame/mainmenu.xml:(caption):554
+#: gui/pregame/mainmenu.xml:(caption):547
 msgid "Website"
 msgstr "Lloc web"
 
-#: gui/pregame/mainmenu.xml:(caption):566
+#: gui/pregame/mainmenu.xml:(caption):559
 msgid "Chat"
 msgstr "Xat"
 
-#: gui/pregame/mainmenu.xml:(caption):578
+#: gui/pregame/mainmenu.xml:(caption):571
 msgid "Report a Bug"
 msgstr "Informa d'errors"
 
-#: gui/pregame/mainmenu.xml:(caption):607
+#: gui/pregame/mainmenu.xml:(caption):600
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):157
+#: gui/pregame/mainmenu.xml:(tooltip):150
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Obre el manual del 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):174
+#: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "Visualitza l'arbre d'estructures de les civilitzacions del 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):191
+#: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Apreneu sobre les civilitzacions del 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):216
+#: gui/pregame/mainmenu.xml:(tooltip):209
 msgid "Click here to start a new single player game."
 msgstr "Cliqueu per iniciar una partida d'un sol jugador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):230
+#: gui/pregame/mainmenu.xml:(tooltip):223
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Reviviu la història a través de campanyes militars històriques. \\[PER IMPLEMENTAR]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):247
+#: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
 msgstr "Cliqueu aquí per carregar una partida desada."
 
-#: gui/pregame/mainmenu.xml:(tooltip):270
+#: gui/pregame/mainmenu.xml:(tooltip):263
 msgid "Joining an existing multiplayer game."
 msgstr "Unir-se a una partida multijugador existent."
 
-#: gui/pregame/mainmenu.xml:(tooltip):285
+#: gui/pregame/mainmenu.xml:(tooltip):278
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Comença una partida multijugador.\\n\\nCal obrir el port UDP 20595."
 
-#: gui/pregame/mainmenu.xml:(tooltip):300
+#: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
 msgstr "Obre la sala multijugador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):330
+#: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
 msgstr "Ajusta les opcions del joc."
 
-#: gui/pregame/mainmenu.xml:(tooltip):347
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
 msgstr "Tria l'idioma del joc."
 
-#: gui/pregame/mainmenu.xml:(tooltip):363
+#: gui/pregame/mainmenu.xml:(tooltip):356
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Obre l'Editor d'escenaris Atlas en una nova finestra. Podeu executar-lo de manera més fiable iniciant el joc amb l'argument de línia d'ordres \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):376
+#: gui/pregame/mainmenu.xml:(tooltip):369
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Mostra la pantalla de benvinguda. Útil si l'heu desactivat per error."
 
-#: gui/pregame/mainmenu.xml:(tooltip):391
+#: gui/pregame/mainmenu.xml:(tooltip):384
 msgid "Select mods to use."
 msgstr "Seleccioneu quins mods voleu utilitzar."
 
-#: gui/pregame/mainmenu.xml:(tooltip):446
+#: gui/pregame/mainmenu.xml:(tooltip):439
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr "Aprengueu a jugar, descobriu els arbres de tecnologies i la història de les civilitzacions"
 
-#: gui/pregame/mainmenu.xml:(tooltip):461
+#: gui/pregame/mainmenu.xml:(tooltip):454
 msgid "Challenge the computer player to a single player match."
 msgstr "Desafia l'ordinador a una partida d'un sol jugador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):476
+#: gui/pregame/mainmenu.xml:(tooltip):469
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Lluita contra un o més jugadors humans en una partida multijugador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):491
+#: gui/pregame/mainmenu.xml:(tooltip):484
 msgid "Game options and scenario design tools."
 msgstr "Opcions del joc i eines de disseny d'escenaris."
 
-#: gui/pregame/mainmenu.xml:(tooltip):506
+#: gui/pregame/mainmenu.xml:(tooltip):499
 msgid "Exits the game."
 msgstr "Surt del joc."
 
-#: gui/pregame/mainmenu.xml:(tooltip):543
+#: gui/pregame/mainmenu.xml:(tooltip):536
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Feu clic per obrir la pàgina de traducció del 0 A.D. al vostre navegador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):555
+#: gui/pregame/mainmenu.xml:(tooltip):548
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Feu clic per obrir play0ad.com en el vostre navegador web."
 
-#: gui/pregame/mainmenu.xml:(tooltip):567
+#: gui/pregame/mainmenu.xml:(tooltip):560
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Feu clic per obrir el xat IRC del 0 A.D. al vostre navegador web. (#0ad a webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):579
+#: gui/pregame/mainmenu.xml:(tooltip):572
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Feu clic per visitar el Trac del 0 A.D. per informar d'un error o problema."
 
@@ -1563,7 +1574,7 @@ msgstr "Benvingut!"
 msgid "Show this message in the future"
 msgstr "Mostra aquest missatge en el futur"
 
-#: gui/splashscreen/splashscreen.xml:(caption):33
+#: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
 msgstr "Problemes coneguts (web)"
 
@@ -1644,16 +1655,18 @@ msgid ""
 msgstr "- Es pot construir a qualsevol punt del mapa, fins i tot en territori enemic. Va bé per construir una base secreta darrera les línies enemigues o per consolidar les conquestes de territori enemic."
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Loses health when in neutral or enemy territory."
-msgstr "- Perd salut quan es troba en territori neutral o enemic."
+msgid "- Decays to the territory owner when build in non-allied territory"
+msgstr "- Passa a pertànyer a l'amo del territori quan està en territori no aliat"
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
 msgstr "- Construeix maquinària de setge i recluta soldats ciutadans."
 
 #: gui/text/tips/army_camp.txt:8
-msgid "- Slowly heal up to 40 garrisoned units."
-msgstr "- Cura lentament fins a 40 unitats refugiades."
+msgid ""
+"- Garrison up to 40 units to slowly heal the units and protect the army camp"
+" from attacks and decay."
+msgstr "- Refugieu-hi fins a 40 unitats per curar-les lentament, protegir el campament d'atacs i evitar que es converteixi a l'enemic."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -1692,8 +1705,10 @@ msgid "- Research weapon and armor upgrades for your units."
 msgstr "- Investiga millores per a les armes i l'armadura de les unitats."
 
 #: gui/text/tips/blacksmith.txt:6
-msgid "- Garrison a citizen-soldier inside to research faster."
-msgstr "- Refugieu-hi un soldat ciutadà per investigar més ràpid."
+msgid ""
+"- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
+"YET)."
+msgstr "- Refugieu-hi un soldat ciutadà per investigar més ràpid (PER IMPLEMENTAR)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -1705,9 +1720,9 @@ msgstr "- Llancers campions i llancers a cavall campions per a Cartago."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
-"- Both cost Food and Metal and are trainable from the Temple, instead of the"
-" Fortress like most other champions."
-msgstr "- Tots dos costen menjar i metall i es poden reclutar al temple, en lloc de la fortalesa com la majoria de campions."
+"- Both are trainable from the Temple, instead of the Fortress like most "
+"other champions."
+msgstr "- Tots dos es poden reclutar al temple, en lloc de la fortalesa com la majoria de campions."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -1828,8 +1843,8 @@ msgid "- The Fortress is usually each faction's strongest building."
 msgstr "- La fortalesa generalment és l'edifici més fort de cada facció."
 
 #: gui/text/tips/fortress.txt:4
-msgid "- Trains Champion Units, Heroes, and Siege Weapons."
-msgstr "- Recluta unitats campiones, herois i maquinària de setge."
+msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
+msgstr "- Recluta unitats poderoses com campions, herois i maquinària de setge."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -1856,6 +1871,10 @@ msgid "- Citizen-Soldiers are bonused with Mining."
 msgstr "- Els soldats ciutadans tenen una bonificació en la mineria."
 
 #: gui/text/tips/gathering.txt:8
+msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
+msgstr "- Els soldats ciutadans de cavalleria tenen una bonificació en la caça."
+
+#: gui/text/tips/gathering.txt:10
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
@@ -1896,8 +1915,9 @@ msgid "- They construct quickly, but are weak."
 msgstr "- Es construeixen ràpid, però són dèbils."
 
 #: gui/text/tips/outposts.txt:8
-msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr "- Perden salut en territori neutral, però es poden reparar."
+msgid ""
+"- Garrison a unit in it to stop them from decaying in neutral territory."
+msgstr "- Refugieu-hi una unitat per evitar que es converteixi en territori neutral."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -1984,14 +2004,12 @@ msgid ""
 msgstr "- El vaixell de guerra estàndard més pesat. Disponible a: Roma, Cartago, Egipte ptolemaic i Imperi Selèucida."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid ""
-"- Garrison up to 50 units for tons of firepower, including ballistas and "
-"scorpions."
-msgstr "- S'hi poden refugiar fins a 50 unitats per obtenir una potència de foc superior, incloses balistes i escorpins."
+msgid "- Garrison ballistas to increase fire power."
+msgstr "- Embarqueu-hi balistes per augmentar la potència de foc."
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Has a ramming attack that sinks enemy ships."
-msgstr "- Té un atac d'envestida que enfonsa els vaixells enemics."
+msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
+msgstr "- Té un atac d'envestida que enfonsa els vaixells enemics (PER IMPLEMENTAR)."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -2136,8 +2154,8 @@ msgid "TEMPLES"
 msgstr "TEMPLES"
 
 #: gui/text/tips/temples.txt:2
-msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr "- Estructura de la fase de vila necessària per avançar a la fase de ciutat."
+msgid "- Town Phase structure."
+msgstr "- Estructura de la fase de vila."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2154,6 +2172,27 @@ msgstr "- La seva \"aura\" cura les unitats properes."
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
 msgstr "- Refugieu-hi les unitats ferides perquè es curin més ràpid."
+
+#: gui/text/tips/territory_decay.txt:1
+msgid "TERRITORY DECAY"
+msgstr "CONVERSIÓ DE TERRITORI"
+
+#: gui/text/tips/territory_decay.txt:3
+msgid ""
+"- Decay happens when buildings are not connected to an allied Civil Centre."
+msgstr "- La conversió té lloc quan un edifici no està connectat amb un centre cívic aliat."
+
+#: gui/text/tips/territory_decay.txt:5
+msgid ""
+"- The decay process can be slowed down or reversed by garrisoning some units"
+" in the structure."
+msgstr "- El procés de conversió es pot alentir o revertir refugiant unitats a l'estructura."
+
+#: gui/text/tips/territory_decay.txt:7
+msgid ""
+"- When the decay is completed, the building will be given to the most "
+"influential neighbour."
+msgstr "- Quan la conversió es completi, l'edifici passarà a pertànyer al veí més influent."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -2191,14 +2230,20 @@ msgid "- Good for transporting or fighting."
 msgstr "- Útil per al transport o la lluita."
 
 #: gui/text/tips/triremes.txt:8
-msgid "- Garrison a catapult aboard for a long-range siege attack."
-msgstr "- Embarqueu-hi una catapulta a bord per aconseguir un atac de setge a llarga distància."
+msgid "- Garrison troops aboard to increase fire power."
+msgstr "- Embarqueu-hi tropes per augmentar la potència de foc."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
+"- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
+"YET)."
+msgstr "- Embarqueu-hi una catapulta a bord per aconseguir un atac de setge a llarga distància (PER IMPLEMENTAR)."
+
+#: gui/text/tips/triremes.txt:12
+msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
-"between each use."
-msgstr "- Pot fer una envestida devastadora a altres vaixells, però aquesta capacitat ha de recarregar-se abans de tornar a fer-la servir."
+"between each use (NOT IMPLEMENTED YET)."
+msgstr "- Pot fer una envestida devastadora a altres vaixells, però aquesta capacitat ha de recarregar-se abans de tornar a fer-la servir (PER IMPLEMENTAR)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

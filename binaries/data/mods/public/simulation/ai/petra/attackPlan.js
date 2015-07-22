@@ -647,12 +647,12 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	}
 
 	// Finally add also some workers,
-	// If Rush, assign all kind of workers, keeping a minimum number of defenders
-	// Otherwise, assign only idle workers if too much of them
-	let worker = gameState.getOwnEntitiesByRole("worker", true);
+	// If Rush, assign all kind of workers, keeping only a minimum number of defenders
+	// Otherwise, assign only some idle workers if too much of them
 	let num = 0;
 	let numbase = {};
-	for (let ent of worker.values())
+	let keep = this.type === "Rush" ? Math.round(this.Config.popScaling * (12 + 4*this.Config.personality.defensive)) : 6;
+	for (let ent of gameState.getOwnEntitiesByRole("worker", true).values())
 	{
 		if (!ent.position())
 			continue;
@@ -673,7 +673,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		}
 		if (this.type !== "Rush" && ent.getMetadata(PlayerID, "subrole") !== "idle")
 			continue;
-		if (num++ < 9 || numbase[baseID] < 5)
+		if (num++ < keep || numbase[baseID] < 5)
 			continue;
 		ent.setMetadata(PlayerID, "plan", plan);
 		this.unitCollection.updateEnt(ent);

@@ -13,10 +13,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-31 22:51+0200\n"
-"PO-Revision-Date: 2015-06-02 13:42+0000\n"
+"POT-Creation-Date: 2015-07-15 00:37+0200\n"
+"PO-Revision-Date: 2015-07-15 14:01+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/p/0ad/language/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,14 +48,14 @@ msgid "Resume"
 msgstr "繼續遊戲"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "是"
-
-#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "否"
+
+#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "是"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -484,7 +484,7 @@ msgid "Hitpoints:"
 msgstr "生命值:"
 
 #: gui/session/selection_details.js:318 gui/session/selection_details.js:348
-#: gui/session/session.js:630
+#: gui/session/session.js:641
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -569,7 +569,7 @@ msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩餘： %(number)s 要建造。"
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:640
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "血:"
@@ -643,88 +643,97 @@ msgstr "%(action)s 訓練 %(number)s."
 msgid "You"
 msgstr "您"
 
-#: gui/session/session.js:170
+#: gui/session/session.js:173
 msgid "Gaia"
 msgstr "蓋雅"
 
-#: gui/session/session.js:244
+#: gui/session/session.js:247
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - 建築樹"
 
-#: gui/session/session.js:318 gui/session/session.js:334
+#: gui/session/session.js:321 gui/session/session.js:337
 msgid "You have left the game."
 msgstr "您已經離開遊戲。"
 
-#: gui/session/session.js:325
+#: gui/session/session.js:328
 msgid "You have been disconnected."
 msgstr "您已中斷連線。"
 
-#: gui/session/session.js:327
+#: gui/session/session.js:330
 msgid "You have won the battle!"
 msgstr "您已得勝！"
 
-#: gui/session/session.js:329
+#: gui/session/session.js:332
 msgid "You have been defeated..."
 msgstr "您被擊敗..."
 
-#: gui/session/session.js:337
+#: gui/session/session.js:340
 msgid "You have abandoned the game."
 msgstr "您已放棄遊戲。"
 
-#: gui/session/session.js:479
+#: gui/session/session.js:482
 msgid "OK"
 msgstr "確定"
 
-#: gui/session/session.js:481
+#: gui/session/session.js:484
 msgid "Press OK to continue"
 msgstr "請按下「確定」繼續"
 
-#: gui/session/session.js:487
+#: gui/session/session.js:490
 msgid "Do you want to quit?"
 msgstr "您是否要退出？"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:496
 msgid "DEFEATED!"
 msgstr "戰敗！"
 
-#: gui/session/session.js:501
+#: gui/session/session.js:504
 msgid "VICTORIOUS!"
 msgstr "勝利！"
 
-#: gui/session/session.js:718
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "是"
+
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "No"
+msgstr "否"
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr "重播已結束。您想要退出嗎？"
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr "確認"
+
+#: gui/session/session.js:729
 msgid "Population (current / limit)"
 msgstr "人口 (目前/上限)"
 
-#: gui/session/session.js:719
+#: gui/session/session.js:730
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "最大人口：%(popCap)s"
 
-#: gui/session/session.js:798
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr "直到停火結束的剩餘時間：%(time)s。"
-
-#: gui/session/session.js:806
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
-
-#: gui/session/session.js:908
+#: gui/session/session.js:893
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "組建： %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "注意：時空隧道模式是開發者選項，不建議長時間使用。不恰當的使用可能會導致記憶體耗盡或是遊戲當機。"
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid "Time warp mode"
 msgstr "時空隧道模式"
 
@@ -881,7 +890,7 @@ msgstr "選項"
 msgid "Resign"
 msgstr "辭職"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):341
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):349
 msgid "Exit"
 msgstr "退出"
 
@@ -889,71 +898,75 @@ msgstr "退出"
 msgid "Find idle worker"
 msgstr "尋找閒置工人"
 
-#: gui/session/session.xml:(caption):55
+#: gui/session/session.xml:(caption):59
 msgid "Control all units"
 msgstr "控制所有單位"
 
-#: gui/session/session.xml:(caption):65
+#: gui/session/session.xml:(caption):69
 msgid "Change perspective"
 msgstr "變更觀點"
 
-#: gui/session/session.xml:(caption):72
+#: gui/session/session.xml:(caption):76
 msgid "Display selection state"
 msgstr "顯示選取狀態"
 
-#: gui/session/session.xml:(caption):77
+#: gui/session/session.xml:(caption):81
 msgid "Pathfinder overlay"
 msgstr "尋路覆蓋層"
 
-#: gui/session/session.xml:(caption):84
+#: gui/session/session.xml:(caption):88
 msgid "Obstruction overlay"
 msgstr "障礙覆蓋層"
 
-#: gui/session/session.xml:(caption):91
+#: gui/session/session.xml:(caption):95
 msgid "Unit motion overlay"
 msgstr "單位移動覆蓋層"
 
-#: gui/session/session.xml:(caption):98
+#: gui/session/session.xml:(caption):102
 msgid "Range overlay"
 msgstr "射程覆蓋層"
 
-#: gui/session/session.xml:(caption):105
+#: gui/session/session.xml:(caption):109
 msgid "Bounding box overlay"
 msgstr "邊框覆蓋層"
 
-#: gui/session/session.xml:(caption):112
+#: gui/session/session.xml:(caption):116
 msgid "Restrict camera"
 msgstr "限制攝影機"
 
-#: gui/session/session.xml:(caption):121
+#: gui/session/session.xml:(caption):125
 msgid "Reveal map"
 msgstr "顯示地圖"
 
-#: gui/session/session.xml:(caption):129
+#: gui/session/session.xml:(caption):133
 msgid "Enable time warp"
 msgstr "啟用時間隧道"
 
-#: gui/session/session.xml:(caption):139
+#: gui/session/session.xml:(caption):143
 msgid "Promote selected units"
 msgstr "升職選定的單位"
 
-#: gui/session/session.xml:(caption):176
+#: gui/session/session.xml:(caption):150
+msgid "Hierarchical pathfinder overlay"
+msgstr "分級尋路覆蓋層"
+
+#: gui/session/session.xml:(caption):184
 msgid "Game Paused"
 msgstr "遊戲已暫停"
 
-#: gui/session/session.xml:(caption):179
+#: gui/session/session.xml:(caption):187
 msgid "Click to Resume Game"
 msgstr "點按可繼續遊戲"
 
-#: gui/session/session.xml:(caption):214
+#: gui/session/session.xml:(caption):222
 msgid "Cancel"
 msgstr "取消"
 
-#: gui/session/session.xml:(caption):220
+#: gui/session/session.xml:(caption):228
 msgid "Team Only"
 msgstr "只有隊伍"
 
-#: gui/session/session.xml:(caption):224
+#: gui/session/session.xml:(caption):232
 msgid "Send"
 msgstr "傳送"
 

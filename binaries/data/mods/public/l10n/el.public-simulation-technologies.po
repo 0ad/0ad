@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-05-25 08:58+0000\n"
+"POT-Creation-Date: 2015-07-15 00:38+0200\n"
+"PO-Revision-Date: 2015-07-15 09:17+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsongenericName
+msgid "Stats for advanced units"
+msgstr ""
+
+#: simulation/data/technologies/advanced_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to advanced and elite units"
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -799,6 +807,14 @@ msgstr ""
 msgid "Stone Foundations"
 msgstr "Πέτρινα θεμέλια"
 
+#: simulation/data/technologies/elite_unit_bonus.jsongenericName
+msgid "Stats for elite units"
+msgstr ""
+
+#: simulation/data/technologies/elite_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to elite units"
+msgstr ""
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
 msgstr "Εκτροφή ζώων για τα τρόφιμα."
@@ -1249,11 +1265,33 @@ msgstr ""
 msgid "Walls build time vs. Health"
 msgstr ""
 
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr ""
+
+#: simulation/data/technologies/phase_city.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%"
+msgstr "Προχωρήσετε στην φάση Πόλη, η οποία ξεκλειδώνει περισσότερες δομές και μονάδες. H ακτίνα περιοχής στα Aστικά Κέντρα αυξάνεται και άλλο +50%."
+
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
-#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Φάση Πόλη"
+
+#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Απαιτούνται 4 νέες δομές Φάσης Κωμόπολης (εκτός από Τείχη και Αστικά κέντρα)."
+
+#: simulation/data/technologies/phase_city.jsonspecificName.mace
+#: simulation/data/technologies/phase_city.jsonspecificName.spart
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+msgid "Megalópolis"
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1269,35 +1307,33 @@ msgid ""
 "grants an extra +10% metal gather rate to all workers."
 msgstr "Προχωρήσετε στην φάση Πόλη, η οποία ξεκλειδώνει περισσότερες δομές και μονάδες. H ακτίνα περιοχής στα Aστικά Κέντρα αυξάνεται και άλλο +50%. Ο πολιτισμος \"Ασημένιες Κουκουβάγιες\" δίνει επιπλέον +10% στη συλλογή μετάλλου μετάλλου για όλους τους εργάτες."
 
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Απαιτούνται 4 νέες δομές Φάσης Κωμόπολης (εκτός από Τείχη και Αστικά κέντρα)."
-
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
-msgid "Megalópolis"
+#: simulation/data/technologies/phase_town.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
 msgstr ""
 
-#: simulation/data/technologies/phase_city_generic.jsondescription
+#: simulation/data/technologies/phase_town.jsontooltip
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr ""
-
-#: simulation/data/technologies/phase_city_generic.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%"
-msgstr "Προχωρήσετε στην φάση Πόλη, η οποία ξεκλειδώνει περισσότερες δομές και μονάδες. H ακτίνα περιοχής στα Aστικά Κέντρα αυξάνεται και άλλο +50%."
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%"
+msgstr "Προχωρήσετε στην φάση Κωμόπολη, η οποία ξεκλειδώνει περισσότερες δομές και μονάδες. H ακτίνα περιοχής στα Aστικά Κέντρα αυξάνεται και άλλο +30%."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
-#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Φάση Κωμόπολη"
+
+#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr ""
+
+#: simulation/data/technologies/phase_town.jsonspecificName.mace
+#: simulation/data/technologies/phase_town.jsonspecificName.spart
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+msgid "Kōmópolis"
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1312,30 +1348,6 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
 msgstr "Προχωρήσετε στην φάση Κωμόπολη, η οποία ξεκλειδώνει περισσότερες δομές και μονάδες. H ακτίνα περιοχής στα Aστικά Κέντρα αυξάνεται κατά +30%. Ο πολιτισμος \"Ασημένιες Κουκουβάγιες\" δίνει επιπλέον +10% στη συλλογή μετάλλου για όλους τους εργάτες."
-
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr ""
-
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Kōmópolis"
-msgstr ""
-
-#: simulation/data/technologies/phase_town_generic.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr ""
-
-#: simulation/data/technologies/phase_town_generic.jsontooltip
-msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%"
-msgstr "Προχωρήσετε στην φάση Κωμόπολη, η οποία ξεκλειδώνει περισσότερες δομές και μονάδες. H ακτίνα περιοχής στα Aστικά Κέντρα αυξάνεται και άλλο +30%."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1682,6 +1694,21 @@ msgstr ""
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Η Καλή Θεά"
+
+#: simulation/data/technologies/unlock_shared_los.jsondescription
+msgid ""
+"By means of trading and travelling people explored beyond the boundaries of "
+"their lands and drew maps of it in order to share and memorize their "
+"discoveries."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_los.jsontooltip
+msgid "Player sees what his allies see."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_los.jsongenericName
+msgid "Cartography"
+msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -2291,8 +2318,10 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
-msgid "All Persian structures +25% health, but also +20% build time."
-msgstr "Όλα τα περσικά κτίσματα +25% ενέργεια, αλλά επίσης και +20% χρόνος αποπεράτωσης."
+msgid ""
+"All Persian structures +25% health and capture points, but also +20% build "
+"time."
+msgstr ""
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2397,8 +2426,9 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and double default arrows."
-msgstr "Aστικά κέντρα +100% υγεία  και διπλά προεπιλεγμένα βέλη."
+msgid ""
+"Civic centers +100% health and capture points and double default arrows."
+msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

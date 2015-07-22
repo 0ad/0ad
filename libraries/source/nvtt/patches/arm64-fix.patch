@@ -1,0 +1,67 @@
+Patch from http://trac.wildfiregames.com/ticket/3344
+Backport from upstream https://github.com/castano/nvidia-texture-tools/commit/58617584d4d2541ff9fcfe23a9a492af86b11efb
+
+Index: src/src/nvcore/Debug.cpp
+===================================================================
+--- src/src/nvcore/Debug.cpp	(revision 16870)
++++ src/src/nvcore/Debug.cpp	(working copy)
+@@ -232,6 +232,9 @@
+ #		elif NV_CPU_PPC
+ 			ucontext_t * ucp = (ucontext_t *)secret;
+ 			return (void *) ucp->uc_mcontext.regs->nip;
++#		elif NV_CPU_AARCH64
++			ucontext_t * ucp = (ucontext_t *)secret;
++			return (void *) ucp->uc_mcontext.pc;
+ #		endif
+ #	endif
+ 		
+Index: src/src/nvcore/nvcore.h
+===================================================================
+--- src/src/nvcore/nvcore.h	(revision 16870)
++++ src/src/nvcore/nvcore.h	(working copy)
+@@ -68,6 +68,7 @@
+ // NV_CPU_X86_64
+ // NV_CPU_PPC
+ // NV_CPU_ARM
++// NV_CPU_AARCH64
+ 
+ #define NV_CPU_STRING 	POSH_CPU_STRING
+ 
+@@ -79,6 +80,8 @@
+ #	define NV_CPU_PPC 1
+ #elif defined POSH_CPU_STRONGARM
+ #	define NV_CPU_ARM 1
++#elif defined POSH_CPU_AARCH64
++#	define NV_CPU_AARCH64 1
+ #else
+ #	error "Unsupported CPU"
+ #endif
+Index: src/src/nvcore/poshlib/posh.h
+===================================================================
+--- src/src/nvcore/poshlib/posh.h	(revision 16870)
++++ src/src/nvcore/poshlib/posh.h	(working copy)
+@@ -485,6 +485,11 @@
+ #  define POSH_CPU_STRING "ARM"
+ #endif
+ 
++#if defined __aarch64__
++#  define POSH_CPU_AARCH64 1
++#  define POSH_CPU_STRING "ARM64"
++#endif
++
+ #if defined mips || defined __mips__ || defined __MIPS__ || defined _MIPS
+ #  define POSH_CPU_MIPS 1 
+ #  if defined _R5900
+@@ -658,7 +663,7 @@
+ ** the MIPS series, so we have to be careful about those.
+ ** ----------------------------------------------------------------------------
+ */
+-#if defined POSH_CPU_X86 || defined POSH_CPU_AXP || defined POSH_CPU_STRONGARM || defined POSH_OS_WIN32 || defined POSH_OS_WINCE || defined __MIPSEL__
++#if defined POSH_CPU_X86 || defined POSH_CPU_AXP || defined POSH_CPU_STRONGARM || defined POSH_CPU_AARCH64 || defined POSH_OS_WIN32 || defined POSH_OS_WINCE || defined __MIPSEL__
+ #  define POSH_ENDIAN_STRING "little"
+ #  define POSH_LITTLE_ENDIAN 1
+ #else
+Index: libraries/source/spidermonkey/mozjs-31.2.0.rc0.tar.bz2
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = application/octet-stream

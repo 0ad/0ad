@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-05-25 12:12+0000\n"
+"POT-Creation-Date: 2015-07-15 00:38+0200\n"
+"PO-Revision-Date: 2015-07-15 14:23+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsongenericName
+msgid "Stats for advanced units"
+msgstr "進階單位統計"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to advanced and elite units"
+msgstr "這些統計修正將會套用在進階及精銳單位"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -799,6 +807,14 @@ msgstr "前哨站領土範圍減少 -50%。"
 msgid "Stone Foundations"
 msgstr "石頭地基"
 
+#: simulation/data/technologies/elite_unit_bonus.jsongenericName
+msgid "Stats for elite units"
+msgstr "精銳單位統計"
+
+#: simulation/data/technologies/elite_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to elite units"
+msgstr "這些統計修正將會套用在精銳單位"
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
 msgstr "飼養家畜的食物。"
@@ -1249,11 +1265,33 @@ msgstr "夜間守望 vs. 垛口"
 msgid "Walls build time vs. Health"
 msgstr "城牆建造時間 vs. 生命值"
 
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著奇蹟與現代科技。"
+
+#: simulation/data/technologies/phase_city.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%"
+msgstr "進階到城市階段，解鎖更多建築物及單位。城鎮中心的領土範圍再度增加 +50%。"
+
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
-#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "城市階段"
+
+#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "需要 4 棟新的鄉鎮階段建築物(城牆及城鎮中心除外)。"
+
+#: simulation/data/technologies/phase_city.jsonspecificName.mace
+#: simulation/data/technologies/phase_city.jsonspecificName.spart
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+msgid "Megalópolis"
+msgstr "Megalópolis"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1269,35 +1307,33 @@ msgid ""
 "grants an extra +10% metal gather rate to all workers."
 msgstr "進展到城市階段，解鎖了更多建築物及單位。城鎮中心的領土範圍也再度增加了 +50%。銀鴞的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。"
 
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "需要 4 棟新的鄉鎮階段建築物(城牆及城鎮中心除外)。"
-
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Megalópolis"
-
-#: simulation/data/technologies/phase_city_generic.jsondescription
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著奇蹟與現代科技。"
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "從小村莊進展到繁華的城鎮，準備好迅速擴張。"
 
-#: simulation/data/technologies/phase_city_generic.jsontooltip
+#: simulation/data/technologies/phase_town.jsontooltip
 msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%"
-msgstr "進階到城市階段，解鎖更多建築物及單位。城鎮中心的領土範圍再度增加 +50%。"
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%"
+msgstr "進展到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。"
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
-#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "鄉鎮階段"
+
+#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "需要 5 棟村莊階段的建築物(柵欄及農田除外)。"
+
+#: simulation/data/technologies/phase_town.jsonspecificName.mace
+#: simulation/data/technologies/phase_town.jsonspecificName.spart
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+msgid "Kōmópolis"
+msgstr "Kōmópolis"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1312,30 +1348,6 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
 msgstr "進階到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。「銀鴞」的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。"
-
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "需要 5 棟村莊階段的建築物(柵欄及農田除外)。"
-
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
-
-#: simulation/data/technologies/phase_town_generic.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "從小村莊進展到繁華的城鎮，準備好迅速擴張。"
-
-#: simulation/data/technologies/phase_town_generic.jsontooltip
-msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%"
-msgstr "進展到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1682,6 +1694,21 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "良善女神"
+
+#: simulation/data/technologies/unlock_shared_los.jsondescription
+msgid ""
+"By means of trading and travelling people explored beyond the boundaries of "
+"their lands and drew maps of it in order to share and memorize their "
+"discoveries."
+msgstr "透過貿易與旅行，人們探索到了他們土地的界限以外，並繪製了地圖以分享並紀錄他們的發現。"
+
+#: simulation/data/technologies/unlock_shared_los.jsontooltip
+msgid "Player sees what his allies see."
+msgstr "玩家看見他的盟友可以看見的。"
+
+#: simulation/data/technologies/unlock_shared_los.jsongenericName
+msgid "Cartography"
+msgstr "製圖學"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -2291,8 +2318,10 @@ msgid ""
 msgstr "波斯人從薩第斯到蘇薩建造了驚人的1677英哩長的皇家道路；大流士大帝及薛西斯也建造了雄偉的波斯波利斯；居魯士大帝則是大大的改善了埃克巴坦那，並幾乎「重建」了古埃蘭首都蘇薩。"
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
-msgid "All Persian structures +25% health, but also +20% build time."
-msgstr "所有波斯建築物 +25% 生命值，但也 +20% 建造時間。"
+msgid ""
+"All Persian structures +25% health and capture points, but also +20% build "
+"time."
+msgstr "所有波斯建築物 +25% 生命值及捕獲點數，但也 +20% 建造時間。"
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2397,8 +2426,9 @@ msgid ""
 msgstr "自亞歷山大大帝開始，希臘的文化逐漸變為整個帝國的基礎，其中希臘文化及藝術與當地的風俗混合創造了形形色色的希臘化文明。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and double default arrows."
-msgstr "城鎮中心 +100% 血量和 2 倍箭矢。"
+msgid ""
+"Civic centers +100% health and capture points and double default arrows."
+msgstr "城鎮中心 +100% 血量及捕獲點數和雙倍的箭矢。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

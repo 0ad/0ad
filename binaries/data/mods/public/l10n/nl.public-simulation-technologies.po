@@ -14,15 +14,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-06-22 08:02+0000\n"
-"Last-Translator: Sander Deryckere\n"
-"Language-Team: Dutch (http://www.transifex.com/p/0ad/language/nl/)\n"
+"POT-Creation-Date: 2015-07-15 00:38+0200\n"
+"PO-Revision-Date: 2015-07-20 09:06+0000\n"
+"Last-Translator: Ellen Roels\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsongenericName
+msgid "Stats for advanced units"
+msgstr "Statistieken voor geavanceerde eenheden"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to advanced and elite units"
+msgstr "Deze aangepaste statistieken zullen toegepast worden op alle geavanceerde en elitaire eenheden"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -803,6 +811,14 @@ msgstr "Territoriumverval 50% trager voor voorposten."
 msgid "Stone Foundations"
 msgstr "Stenen fundamenten"
 
+#: simulation/data/technologies/elite_unit_bonus.jsongenericName
+msgid "Stats for elite units"
+msgstr "Statistieken voor elitaire eenheden"
+
+#: simulation/data/technologies/elite_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to elite units"
+msgstr "Deze aangepaste statistieken zullen toegepast worden op alle elitaire eenheden"
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
 msgstr "Kweek dieren voor voedsel."
@@ -1253,11 +1269,33 @@ msgstr "Nachtwacht vs. Kantelen"
 msgid "Walls build time vs. Health"
 msgstr "Constructietijd vs. sterkte van muren"
 
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Avanceer van een stadje naar een echter metropool, vol wonderen van moderne technologie."
+
+#: simulation/data/technologies/phase_city.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%"
+msgstr "Ga verder naar grootstadsfase. Deze geeft toegang tot meer gebouwen en meer eenheden. De territoriumgrootte van beschavingscentra wordt met nog eens 50% vergroot."
+
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
-#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Grootstadsfase"
+
+#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Vereist 4 stadsgebouwen (uitgezonderd muren en beschavingscentra)."
+
+#: simulation/data/technologies/phase_city.jsonspecificName.mace
+#: simulation/data/technologies/phase_city.jsonspecificName.spart
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+msgid "Megalópolis"
+msgstr "Megalópolis"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1273,35 +1311,33 @@ msgid ""
 "grants an extra +10% metal gather rate to all workers."
 msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en eenheden. De territoriumgrootte van beschavingscentra wordt met 50% vergroot. De 'zilveren uil' bonus geeft 10% extra metaal mijnsnelheid voor alle werkkrachten."
 
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Vereist 4 stadsgebouwen (uitgezonderd muren en beschavingscentra)."
-
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Megalópolis"
-
-#: simulation/data/technologies/phase_city_generic.jsondescription
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Avanceer van een stadje naar een echter metropool, vol wonderen van moderne technologie."
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Avanceer van klein dorp naar bloeiende stad, klaar om snel uit te breiden."
 
-#: simulation/data/technologies/phase_city_generic.jsontooltip
+#: simulation/data/technologies/phase_town.jsontooltip
 msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%"
-msgstr "Ga verder naar grootstadsfase. Deze geeft toegang tot meer gebouwen en meer eenheden. De territoriumgrootte van beschavingscentra wordt met nog eens 50% vergroot."
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%"
+msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en eenheden. De territoriumgrootte van beschavingscentra wordt met 30% vergroot."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
-#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Stadsfase"
+
+#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Vereist 5 dorpsgebouwen (uitgezonderd palissades en velden)."
+
+#: simulation/data/technologies/phase_town.jsonspecificName.mace
+#: simulation/data/technologies/phase_town.jsonspecificName.spart
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+msgid "Kōmópolis"
+msgstr "Kōmópolis"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1316,30 +1352,6 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
 msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en eenheden. De territoriumgrootte van beschavingscentra wordt met 30% vergroot. De 'zilveren uil' bonus geeft 10% extra metaal mijnsnelheid voor alle werkkrachten."
-
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Vereist 5 dorpsgebouwen (uitgezonderd palissades en velden)."
-
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
-
-#: simulation/data/technologies/phase_town_generic.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Avanceer van klein dorp naar bloeiende stad, klaar om snel uit te breiden."
-
-#: simulation/data/technologies/phase_town_generic.jsontooltip
-msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%"
-msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en eenheden. De territoriumgrootte van beschavingscentra wordt met 30% vergroot."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1686,6 +1698,21 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Bona Dea"
+
+#: simulation/data/technologies/unlock_shared_los.jsondescription
+msgid ""
+"By means of trading and travelling people explored beyond the boundaries of "
+"their lands and drew maps of it in order to share and memorize their "
+"discoveries."
+msgstr "Door te handelen en te reizen ontdekten de mensen de wereld achter de grenzen van hun land.  Ze tekenden kaarten om ze te delen en om hun ontdekkingen niet te vergeten."
+
+#: simulation/data/technologies/unlock_shared_los.jsontooltip
+msgid "Player sees what his allies see."
+msgstr "Speler ziet wat zijn bondgenoten zien."
+
+#: simulation/data/technologies/unlock_shared_los.jsongenericName
+msgid "Cartography"
+msgstr "Cartografie"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -2295,8 +2322,10 @@ msgid ""
 msgstr "De Perzen bouwden een wonderbaarlijke koninklijke weg van 1677 mijl (2700 km) van Sardis tot Susa. Darius de Grote en Xerxes bouwden ook het prachtige Perzepolis. Cyrus de Grote verbeterde de Ecbatana en bouwde de oude hoofdstad van Susa, Elamite, zowat opnieuw."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
-msgid "All Persian structures +25% health, but also +20% build time."
-msgstr "Alle Perzische gebouwen +25% gezondheid, maar ook +20% constructietijd."
+msgid ""
+"All Persian structures +25% health and capture points, but also +20% build "
+"time."
+msgstr "Alle Perzische gebouwen +25% gezondheid en veroverpunten, maar ook +20% constructietijd."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2401,8 +2430,9 @@ msgid ""
 msgstr "Vanaf Alexander hebben de Helleense monarchen veel steden gesticht doorheen hun rijken. Daar werd de Griekse en de lokale cultuur gemengd tot een bonte beschaving."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and double default arrows."
-msgstr "Beschavingscentrum dubbele sterkte, en dubbel zoveel standaardpijlen."
+msgid ""
+"Civic centers +100% health and capture points and double default arrows."
+msgstr "Beschavingscentrum +100% gezondheid en veroveringspunten, en dubbel zoveel standaardpijlen."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

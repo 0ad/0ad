@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# acac97 <aleksandar.cvetic97@gmail.com>, 2015
 # MIlosSD <pirisd@gmail.com>, 2014
-# MIlosSD <pirisd@gmail.com>, 2014
+# MIlosSD <pirisd@gmail.com>, 2014-2015
 # Tpe3op <tre-zor@live.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-07-15 16:53+0000\n"
+"Last-Translator: MIlosSD <pirisd@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/projects/p/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr "Ништа"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "AI ће бити онемогућена за овог играча"
 
 #. Translation: AI difficulty level.
 #: gui/aiconfig/aiconfig.js:29
@@ -37,12 +38,12 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "веома лако"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "лако"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -52,28 +53,28 @@ msgstr "средња"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "тешко"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "веома тешко"
 
 #. Translation: Type of victory condition.
 #: gui/gamesetup/gamesetup.js:10
 msgid "Unlimited"
-msgstr ""
+msgstr "неограничено"
 
 #. Translation: Amount of starting resources.
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "веома ниско"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "ниско"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
@@ -83,12 +84,12 @@ msgstr "средња"
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "високо"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "веома високо"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
@@ -99,50 +100,50 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Нема примирја"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 минута"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 минута"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 минута"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 минута"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 минута"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 минута"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 минута"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Повратак у главни мени."
 
 #: gui/gamesetup/gamesetup.js:114
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Повратак у припремну собу"
 
 #: gui/gamesetup/gamesetup.js:142
 msgctxt "map"
@@ -218,7 +219,7 @@ msgstr "Не"
 #: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
 #: gui/gamesetup/gamesetup.js:1357
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Одређено по сценарију"
 
 #: gui/gamesetup/gamesetup.js:1369
 msgid "Randomly selects a map from the list"
@@ -232,9 +233,9 @@ msgstr "Жао нам је, не постоји опис."
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(number)s играч. "
+msgstr[1] "%(number)s играча. "
+msgstr[2] "%(number)s играча. "
 
 #: gui/gamesetup/gamesetup.js:1383 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
@@ -242,7 +243,7 @@ msgstr "Услови за победу:"
 
 #: gui/gamesetup/gamesetup.js:1419
 msgid "Loading..."
-msgstr ""
+msgstr "Учитавање..."
 
 #: gui/gamesetup/gamesetup.js:1535
 #, javascript-format
@@ -272,7 +273,7 @@ msgstr "%(username)s је напустио"
 #: gui/gamesetup/gamesetup.js:1734
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:1735
 #, javascript-format
@@ -350,35 +351,35 @@ msgstr "%(playername)s's партија"
 
 #: gui/gamesetup/victory_conditions/conquest.js:2
 msgid "Conquest"
-msgstr ""
+msgstr "Освајање"
 
 #: gui/gamesetup/victory_conditions/conquest.js:3
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Порази све противнике"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
 msgid "Conquest Structure"
-msgstr ""
+msgstr "Освајање грађевина"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Уништи све противничке грађевине"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Освајање јединица"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Уништи све противничке јединице"
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
-msgstr "чудо"
+msgstr "Светско чудо"
 
 #: gui/gamesetup/victory_conditions/wonder.js:3
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "Изгради светско чудо да би победио"
 
 #: gui/loading/loading.js:49
 #, javascript-format
@@ -491,7 +492,7 @@ msgstr "Почетни ресурси:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Примирје:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -507,7 +508,7 @@ msgstr "Истражена мапа:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Онемогући ризнице:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
@@ -587,7 +588,7 @@ msgstr "Изабери почетне ресурсе у партији."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Подеси време када напади нису могући"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -599,11 +600,11 @@ msgstr "Омогући откривену мапу (све се види)."
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Омогући истражену мапу (види почетну мапу)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Онемогући све ризнице на мапи."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."
@@ -636,24 +637,24 @@ msgstr "Име играча:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):39
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "Име домаћина сервера или IP:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):49
 #: gui/gamesetup/gamesetup_mp.xml:(caption):91
 msgid "Continue"
-msgstr ""
+msgstr "настави"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):62
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Постави свој сервер да би био домаћин игре."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
-msgstr ""
+msgstr "Име сервера:"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
-msgstr ""
+msgstr "Изрека дана:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
@@ -711,11 +712,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr ""
+msgstr "\"Сваки изговор ће шпслужити тиранину\" - Езоп"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr ""
+msgstr "\"Боље бити мудар због недаће других него због своје сопствене\" - Езоп"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
@@ -723,7 +724,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
-msgstr ""
+msgstr "\"Лако је бити храбар са безбедне даљине.\" - Езоп"
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
@@ -793,7 +794,7 @@ msgstr ""
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"Да нисам Александар, желео би да будем Диоген.\" - Александар Велики"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
@@ -885,7 +886,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr ""
+msgstr "\"Човек је по природи политичка животиња.\" - Аристотел"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -942,23 +943,23 @@ msgstr ""
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
-msgstr ""
+msgstr "\"Јао побеђенима\" - Бренус"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Тако увек са тиранима.\" - Марко Јуније Брут, после убиства Гаја Јулија Цезара"
 
 #: gui/text/quotes.txt:57
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide"
-msgstr ""
+msgstr "\"Побећи да, али овог пута мојим рукама не ногама.\" - Марко Јуније Брут пре него што је извршио самоубиство"
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Дођох, видех, победих.\" - Гај Јулије Цезар"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
@@ -966,7 +967,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Коцка је бачена.\" - Гај Јулије Цезар"
 
 #: gui/text/quotes.txt:61
 msgid ""
@@ -982,26 +983,26 @@ msgstr ""
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder"
-msgstr ""
+msgstr "\"Мудри људи више науче од будала него што будале науче од мудрих људи.\" - Катон Старији"
 
 #: gui/text/quotes.txt:64
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Штавише, ја сматрам да Картагину треба уништити.\" - Катон Старији"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Сво човечанство влада својим женама, ми владамо свим човечанством, али наше жене владају нама.\" - Катон Старији"
 
 #: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Буди строг или благ како то прилика захтева.\" - Катон Старији"
 
 #: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Најгори је владар онај који не може да влада собом.\" - Катон Старији"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -1051,7 +1052,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Време лечи све ране.\" - Марко Тулије Цицерон"
 
 #: gui/text/quotes.txt:77
 msgid ""
@@ -1076,13 +1077,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Нека казна одговара преступу.\" - Марко Тулије Цицерон"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
-msgstr ""
+msgstr "\"Нека благостање људи буде највиши закон.\" - Марко Тулије Цицерон"
 
 #: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
@@ -1090,7 +1091,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:84
 msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"У време рата закони ћуте.\" - Марко Тулије Цицерон"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1112,7 +1113,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
-msgstr ""
+msgstr "\" Ја сам Кир, краљ света...\" - Кир Велики"
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
@@ -1180,7 +1181,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
-msgstr ""
+msgstr "\"Ја сам грађанин света.\" - Диген из Синопа"
 
 #: gui/text/quotes.txt:101
 msgid ""
@@ -1226,7 +1227,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
-msgstr ""
+msgstr "\"Или ћу наћи пут, или ћу га створити.\" - Ханибал Барка"
 
 #: gui/text/quotes.txt:110
 msgid ""
@@ -1237,15 +1238,15 @@ msgstr ""
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
-msgstr ""
+msgstr "\"Све тече, ништа не мирује.\" - Хераклит"
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr ""
+msgstr "\"Ништа не опстаје осим промена.\" - Хераклит"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr ""
+msgstr "\"Не може се угазити два пута у исту реку.\" - Хераклит"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
@@ -1439,11 +1440,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
-msgstr ""
+msgstr "\"Смрт није најгоре што може задесити човека.\" - Платон"
 
 #: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
-msgstr ""
+msgstr "\"Само су мртви видели крај рата.\" - Непознати аутор"
 
 #: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
@@ -1461,7 +1462,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
-msgstr ""
+msgstr "\"Онај кога богови воле умире млад.\" - Плаут"
 
 #: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
@@ -1491,7 +1492,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr ""
+msgstr "\"У бесу се морамо уздржати и од говора и од дела.\" - Питагора"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
@@ -1499,7 +1500,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
-msgstr ""
+msgstr "\"Бројеви владају универзумом.\" - Питагора"
 
 #: gui/text/quotes.txt:162
 msgid ""
@@ -1509,7 +1510,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
-msgstr ""
+msgstr "\"Бес почиње у лудости а завршава се у кајању.\" - Питагора"
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
@@ -1546,13 +1547,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr ""
+msgstr "\"Без правде ниједна земља не може напредовати.\" - Питагора"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
-msgstr ""
+msgstr "\"Јединство чини мале државе великим, док раздор поткопава и највећа царства.\" - Салустије"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1565,13 +1566,13 @@ msgstr ""
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr ""
+msgstr "\"Припремите се за рат пошто нисте могли да издржите мир.\" - Сципион Африканац"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
-msgstr ""
+msgstr "\"Путниче, кад стигнеш Спартанцима\nреци да падосмо верни њиховим законима\" - Симонид са Кеја, епитаф на кенотафу у Термопилима"
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"

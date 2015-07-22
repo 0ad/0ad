@@ -17,10 +17,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-31 22:51+0200\n"
-"PO-Revision-Date: 2015-06-01 08:38+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Czech (http://www.transifex.com/p/0ad/language/cs/)\n"
+"POT-Creation-Date: 2015-07-15 00:37+0200\n"
+"PO-Revision-Date: 2015-07-20 20:25+0000\n"
+"Last-Translator: fri\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,17 +31,17 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Základní dostřel: %(range)s metr"
+msgstr[1] "Základní dostřel: %(range)s metry"
+msgstr[2] "Základní dostřel: %(range)s metrů"
 
 #: gui/session/input.js:154
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Průměrná přidaná vzdálenost dostřelu: %(range)s metr"
+msgstr[1] "Průměrná přidaná vzdálenost dostřelu: %(range)s metry"
+msgstr[2] "Průměrná přidaná vzdálenost dostřelu: %(range)s metrů"
 
 #: gui/session/input.js:733
 msgid "Cannot build wall here!"
@@ -56,14 +56,14 @@ msgid "Resume"
 msgstr "Pokračovat"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Ano"
-
-#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ne"
+
+#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
+#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "Ano"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -514,7 +514,7 @@ msgid "Hitpoints:"
 msgstr "Životy:"
 
 #: gui/session/selection_details.js:318 gui/session/selection_details.js:348
-#: gui/session/session.js:630
+#: gui/session/session.js:641
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -601,7 +601,7 @@ msgstr[0] "Zbývá: %(number)s k postavení."
 msgstr[1] "Zbývá: %(number)s k postavení."
 msgstr[2] "Zbývá: %(number)s k postavení."
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:629
+#: gui/session/selection_panels.js:1095 gui/session/session.js:640
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Zdraví:"
@@ -675,88 +675,97 @@ msgstr "%(action)s pro vycvičení %(number)s."
 msgid "You"
 msgstr "Vy"
 
-#: gui/session/session.js:170
+#: gui/session/session.js:173
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:244
+#: gui/session/session.js:247
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Strom staveb"
 
-#: gui/session/session.js:318 gui/session/session.js:334
+#: gui/session/session.js:321 gui/session/session.js:337
 msgid "You have left the game."
 msgstr "Opustil jste hru."
 
-#: gui/session/session.js:325
+#: gui/session/session.js:328
 msgid "You have been disconnected."
 msgstr "Byl jste odpojen."
 
-#: gui/session/session.js:327
+#: gui/session/session.js:330
 msgid "You have won the battle!"
 msgstr "Vyhrál bitvu!"
 
-#: gui/session/session.js:329
+#: gui/session/session.js:332
 msgid "You have been defeated..."
 msgstr "Byl jste poražen..."
 
-#: gui/session/session.js:337
+#: gui/session/session.js:340
 msgid "You have abandoned the game."
 msgstr "Opustil jste hru."
 
-#: gui/session/session.js:479
+#: gui/session/session.js:482
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:481
+#: gui/session/session.js:484
 msgid "Press OK to continue"
 msgstr "Stiskněte OK pro pokračování"
 
-#: gui/session/session.js:487
+#: gui/session/session.js:490
 msgid "Do you want to quit?"
 msgstr "Chcete skončit?"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:496
 msgid "DEFEATED!"
 msgstr "PORÁŽKA!"
 
-#: gui/session/session.js:501
+#: gui/session/session.js:504
 msgid "VICTORIOUS!"
 msgstr "VÍTĚZSTVÍ!"
 
-#: gui/session/session.js:718
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "Ano"
+
+#: gui/session/session.js:566
+msgctxt "replayFinished"
+msgid "No"
+msgstr "Ne"
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr "Přehrávání skončilo. Chcete ukončit?"
+
+#: gui/session/session.js:568
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr "Potvrzení"
+
+#: gui/session/session.js:729
 msgid "Population (current / limit)"
 msgstr "Obyvatelstvo (nyní / limit)"
 
-#: gui/session/session.js:719
+#: gui/session/session.js:730
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Nejvyšší počet obyvatel: %(popCap)s"
 
-#: gui/session/session.js:798
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr "Čas zbývající do konce klidu zbraní: %(time)s."
-
-#: gui/session/session.js:806
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
-
-#: gui/session/session.js:908
+#: gui/session/session.js:893
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Sestaveno: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Poznámka: Režim cestování časem je možnost pro vývojáře a není záměrem, aby se používala po dlouhou dobu. Její špatné užití může způsobit to, že hře dojde paměť nebo že spadne."
 
-#: gui/session/session.js:913
+#: gui/session/session.js:898
 msgid "Time warp mode"
 msgstr "Režim zrychlení času"
 
@@ -913,7 +922,7 @@ msgstr "Volby"
 msgid "Resign"
 msgstr "Vzdát se"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):341
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):349
 msgid "Exit"
 msgstr "Ukončit"
 
@@ -921,71 +930,75 @@ msgstr "Ukončit"
 msgid "Find idle worker"
 msgstr "Najít nečinného dělníka"
 
-#: gui/session/session.xml:(caption):55
+#: gui/session/session.xml:(caption):59
 msgid "Control all units"
 msgstr "Ovládat všechny jednotky"
 
-#: gui/session/session.xml:(caption):65
+#: gui/session/session.xml:(caption):69
 msgid "Change perspective"
 msgstr "Změnit pohled"
 
-#: gui/session/session.xml:(caption):72
+#: gui/session/session.xml:(caption):76
 msgid "Display selection state"
 msgstr "Zobrazit stav výběru"
 
-#: gui/session/session.xml:(caption):77
+#: gui/session/session.xml:(caption):81
 msgid "Pathfinder overlay"
 msgstr "Vrstva pro hledání trasy"
 
-#: gui/session/session.xml:(caption):84
+#: gui/session/session.xml:(caption):88
 msgid "Obstruction overlay"
 msgstr "Vrstva s překážkami"
 
-#: gui/session/session.xml:(caption):91
+#: gui/session/session.xml:(caption):95
 msgid "Unit motion overlay"
 msgstr "Vrstva s pohybem jednotky"
 
-#: gui/session/session.xml:(caption):98
+#: gui/session/session.xml:(caption):102
 msgid "Range overlay"
 msgstr "Vrstva s dostřelem"
 
-#: gui/session/session.xml:(caption):105
+#: gui/session/session.xml:(caption):109
 msgid "Bounding box overlay"
 msgstr "Vrstva s okrajovými rámy"
 
-#: gui/session/session.xml:(caption):112
+#: gui/session/session.xml:(caption):116
 msgid "Restrict camera"
 msgstr "Omezit kameru"
 
-#: gui/session/session.xml:(caption):121
+#: gui/session/session.xml:(caption):125
 msgid "Reveal map"
 msgstr "Odhalit mapu"
 
-#: gui/session/session.xml:(caption):129
+#: gui/session/session.xml:(caption):133
 msgid "Enable time warp"
 msgstr "Povolit zrychlení času"
 
-#: gui/session/session.xml:(caption):139
+#: gui/session/session.xml:(caption):143
 msgid "Promote selected units"
 msgstr "Povýšit vybrané jednotky"
 
-#: gui/session/session.xml:(caption):176
+#: gui/session/session.xml:(caption):150
+msgid "Hierarchical pathfinder overlay"
+msgstr "Hierarchická vrstva pro hledání trasy"
+
+#: gui/session/session.xml:(caption):184
 msgid "Game Paused"
 msgstr "Hra pozastavena"
 
-#: gui/session/session.xml:(caption):179
+#: gui/session/session.xml:(caption):187
 msgid "Click to Resume Game"
 msgstr "Klepněte pro pokračování ve hře"
 
-#: gui/session/session.xml:(caption):214
+#: gui/session/session.xml:(caption):222
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: gui/session/session.xml:(caption):220
+#: gui/session/session.xml:(caption):228
 msgid "Team Only"
 msgstr "Jen tým"
 
-#: gui/session/session.xml:(caption):224
+#: gui/session/session.xml:(caption):232
 msgid "Send"
 msgstr "Poslat"
 

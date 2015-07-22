@@ -2,13 +2,12 @@
 <Entity parent="template_unit_cavalry_ranged_archer">
   <Identity>
     <Civ>ptol</Civ>
-    <Classes datatype="tokens">Camel</Classes>
-	<SelectionGroupName>units/ptol_cavalry_archer_b</SelectionGroupName>
-	<GenericName>Nabataean Camel Archer</GenericName>
+    <VisibleClasses datatype="tokens">Camel</VisibleClasses>
+    <SelectionGroupName>units/ptol_cavalry_archer_b</SelectionGroupName>
+    <GenericName>Nabataean Camel Archer</GenericName>
     <SpecificName>Mutsābiq Gamal Nabatu</SpecificName>
     <History>?</History>
-	<Icon>units/ptol_cavalry_archer.png</Icon>
-    <Tooltip>Classes: Ranged Cavalry Camel Archer.</Tooltip>
+    <Icon>units/ptol_cavalry_archer.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Promotion>

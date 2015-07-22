@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Alex <yanebotan@ngs.ru>, 2015
+# delpfine <delpfine2012@gmail.com>, 2015
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014
 # dr&mx <dronmax@gmail.com>, 2014
@@ -15,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-05-30 08:10+0000\n"
-"Last-Translator: Alex <yanebotan@ngs.ru>\n"
+"POT-Creation-Date: 2015-07-15 00:38+0200\n"
+"PO-Revision-Date: 2015-07-15 09:28+0000\n"
+"Last-Translator: delpfine <delpfine2012@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,9 +120,9 @@ msgstr "Оборонительная башня"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and own territories to scout areas of the map. Slowly loses"
-" health while in neutral territory."
-msgstr "Возводится на нейтральной или собственной территориях для разведки карты. Медленно теряет очки здоровья на нейтральной территории."
+"Build in neutral and own territories to scout areas of the map. Slowly "
+"converts to Gaia while in neutral territory."
+msgstr "Постройте в нейтральной и собственной территории для скаутских областей карты. Медленно преобразует Gaia на нейтральной территории."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -471,7 +472,7 @@ msgstr "Театрон"
 #: simulation/templates/structures/spart_theatron.xml:35
 #: simulation/templates/structures/theb_theatron.xml:35
 msgid ""
-"Exellinismós (Hellenization): +20% territory influence for all buildings "
+"Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
 msgstr "Экселлинисмос (Эллинизация): до тех пор пока имеется театрон, все здания увеличивают влияние на территорию на 20%."
 
@@ -547,8 +548,8 @@ msgid "Island Settlement"
 msgstr "Островное поселение"
 
 #: simulation/templates/structures/brit_crannog.xml:24
-msgid "Increase population limit and defend waterways"
-msgstr "Увеличивает предел населения и защищает водные пути"
+msgid "Increase population limit and defend waterways."
+msgstr "Увеличить лимит населения и защищать водные пути."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15

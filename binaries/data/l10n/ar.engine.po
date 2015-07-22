@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-04-15 07:37+0000\n"
+"PO-Revision-Date: 2015-07-21 07:37+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 #: gui/scripting/ScriptFunctions.cpp:767
 #, c-format
 msgid "%s (custom build)"
-msgstr "%s (بناء مخصّص)"
+msgstr "%s (إصدارة مخصّصة)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
@@ -37,11 +37,11 @@ msgstr "%s ‏(%ls)"
 
 #: gui/scripting/ScriptFunctions.cpp:793
 msgid "custom build"
-msgstr "بناء مخصّص"
+msgstr "إصدارة مخصّصة"
 
 #: i18n/L10n.cpp:276
 msgid "Long strings"
-msgstr "جُمل طويلة"
+msgstr "سلاسل طويلة"
 
 #: lobby/XmppClient.cpp:221
 msgid "Authentication failed"
@@ -49,47 +49,47 @@ msgstr "فشل الاستيثاق"
 
 #: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
-msgstr "التّسجيل غير مقبول"
+msgstr "التّسجيل: غير مقبول"
 
 #: lobby/XmppClient.cpp:456
 msgid "Registration conflict"
-msgstr "التّسجيل تعارض"
+msgstr "التّسجيل: تعارض"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
-msgstr "التسجيل ليس مخوّل"
+msgstr "التسجيل: ليس مخوّل"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
-msgstr "التّسجيل طلب سيّء"
+msgstr "التّسجيل: طلب سيّء"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
-msgstr "التّسجيل محظور"
+msgstr "التّسجيل: محظور"
 
 #: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:997
 msgid "Registration required"
-msgstr "التّسجيل مطلوب"
+msgstr "التّسجيل: مطلوب"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
-msgstr "التّسجيل طلب غير متوقّع"
+msgstr "التّسجيل: طلب غير متوقّع"
 
 #: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
-msgstr "التّسجيل غير مسموح"
+msgstr "التّسجيل: غير مسموح"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unknown error"
-msgstr "التّسجيل خطأ مجهول"
+msgstr "التّسجيل: خطأ مجهول"
 
 #: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
-msgstr "مفتاح فرعيّ مجهول (طالع السجلّات)"
+msgstr "المفتاح الفرعيّ مجهول (طالع السجلّات)"
 
 #: lobby/XmppClient.cpp:982
 msgid "Bad request"
-msgstr "طلب سيّئ"
+msgstr "الطّلب سيّئ"
 
 #: lobby/XmppClient.cpp:983
 msgid "Player name already in use"
@@ -137,7 +137,7 @@ msgstr "غير معدّل"
 
 #: lobby/XmppClient.cpp:994
 msgid "Payment required"
-msgstr "دفع المطلوب"
+msgstr "الدّفع مطلوب"
 
 #: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
@@ -169,19 +169,19 @@ msgstr "الاشتراك مطلوب"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
-msgstr "شرط غير معرّف"
+msgstr "الشّرط غير معرّف"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
-msgstr "طلب غير متوقّع"
+msgstr "الطّلب غير متوقّع"
 
 #: lobby/XmppClient.cpp:1005
 msgid "Unknown sender"
-msgstr "مرسِل مجهول"
+msgstr "المُرسِل مجهول"
 
 #: lobby/XmppClient.cpp:1007
 msgid "Error undefined"
-msgstr "خطأ غير معرّف"
+msgstr "الخطأ غير معرّف"
 
 #: ps/SavedGame.cpp:131
 #, c-format

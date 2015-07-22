@@ -3,19 +3,28 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Asakura, 2015
 # Kanetaka Suto, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-07-06 06:43+0000\n"
-"Last-Translator: Kanetaka Suto\n"
-"Language-Team: Japanese (http://www.transifex.com/p/0ad/language/ja/)\n"
+"POT-Creation-Date: 2015-07-15 00:38+0200\n"
+"PO-Revision-Date: 2015-07-20 06:08+0000\n"
+"Last-Translator: Asakura\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsongenericName
+msgid "Stats for advanced units"
+msgstr "上級ユニットのステータス"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to advanced and elite units"
+msgstr "これらのステータス修正は上級・精鋭ユニットに適用されます"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -796,6 +805,14 @@ msgstr "前哨地の領外劣化が50%鈍化します。"
 msgid "Stone Foundations"
 msgstr "石の基礎"
 
+#: simulation/data/technologies/elite_unit_bonus.jsongenericName
+msgid "Stats for elite units"
+msgstr "精鋭ユニットのステータス"
+
+#: simulation/data/technologies/elite_unit_bonus.jsondescription
+msgid "These stat modifications will be applied to elite units"
+msgstr "これらのステータス修正は精鋭ユニットに適用されます"
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
 msgstr "食用に家畜を飼育します。"
@@ -1246,11 +1263,33 @@ msgstr "夜警 対 銃眼"
 msgid "Walls build time vs. Health"
 msgstr "壁の建設時間 対 耐久力"
 
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "活気ある町から、驚異の最新テクノロジーに満ちた真の大都市へと発展します。"
+
+#: simulation/data/technologies/phase_city.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%"
+msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。"
+
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
-#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "都市の段階"
+
+#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "新たに4つの町の段階の建物（壁と町の中心は除く）が必要です。"
+
+#: simulation/data/technologies/phase_city.jsonspecificName.mace
+#: simulation/data/technologies/phase_city.jsonspecificName.spart
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+msgid "Megalópolis"
+msgstr "Megalópolis"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1266,35 +1305,33 @@ msgid ""
 "grants an extra +10% metal gather rate to all workers."
 msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。「フクロウ銀貨」文明ボーナスによって、全労働者の金属採掘速度がさらに10%上昇します。"
 
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "新たに4つの町の段階の建物（壁と町の中心は除く）が必要です。"
-
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Megalópolis"
-
-#: simulation/data/technologies/phase_city_generic.jsondescription
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "活気ある町から、驚異の最新テクノロジーに満ちた真の大都市へと発展します。"
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "小さな村から活気ある町へ発展し、迅速な拡大が可能になります。"
 
-#: simulation/data/technologies/phase_city_generic.jsontooltip
+#: simulation/data/technologies/phase_town.jsontooltip
 msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%"
-msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。"
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%"
+msgstr "町の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径が30%増加します。"
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
-#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "町の段階"
+
+#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "村の段階の建物が5棟必要です（柵と畑を除く）。"
+
+#: simulation/data/technologies/phase_town.jsonspecificName.mace
+#: simulation/data/technologies/phase_town.jsonspecificName.spart
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+msgid "Kōmópolis"
+msgstr "Kōmópolis"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1309,30 +1346,6 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
 msgstr "町の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径が30%増加します。「フクロウ銀貨」文明ボーナスによって、全労働者の金属採掘速度がさらに10%上昇します。"
-
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "村の段階の建物が5棟必要です（柵と畑を除く）。"
-
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
-
-#: simulation/data/technologies/phase_town_generic.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "小さな村から活気ある町へ発展し、迅速な拡大が可能になります。"
-
-#: simulation/data/technologies/phase_town_generic.jsontooltip
-msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%"
-msgstr "町の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径が30%増加します。"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1679,6 +1692,21 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "ボナ・デア"
+
+#: simulation/data/technologies/unlock_shared_los.jsondescription
+msgid ""
+"By means of trading and travelling people explored beyond the boundaries of "
+"their lands and drew maps of it in order to share and memorize their "
+"discoveries."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_los.jsontooltip
+msgid "Player sees what his allies see."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_los.jsongenericName
+msgid "Cartography"
+msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -2288,8 +2316,10 @@ msgid ""
 msgstr "ペルシアは1677マイルにおよぶ素晴らしい王の道をサルディスからスーサまで建設しました。また、ダレイオス大王とクセルクセスは壮麗なペルセポリスも建設しました。、キュロス大王はエクバタナを大きく改良し、エラム人の古都スーサを実質再建しました。"
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
-msgid "All Persian structures +25% health, but also +20% build time."
-msgstr "すべてのペルシアの建物の耐久力が25%増加しますが、建設時間が20%長くなります。"
+msgid ""
+"All Persian structures +25% health and capture points, but also +20% build "
+"time."
+msgstr "すべてのペルシア建築は耐久性と捕獲ポイントが 25% 増加しますが、建設時間が 20% 長くなります。"
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2394,8 +2424,9 @@ msgid ""
 msgstr "アレクサンドロスに始まるギリシアの君主は多くの都市を帝国全土に建設し、そこではギリシア文化と芸術が土地の習慣と融合して、混成のヘレニズム文明を作り上げました。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic centers +100% health and double default arrows."
-msgstr "町の中心の耐久力が100%増加し、無人時の矢の量が2倍になります。"
+msgid ""
+"Civic centers +100% health and capture points and double default arrows."
+msgstr "町の中心の耐久力と捕獲ポイントが100%増加し、矢の量が2倍になります。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

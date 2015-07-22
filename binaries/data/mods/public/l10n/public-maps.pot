@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-04-23 21:06+0200\n"
-"PO-Revision-Date: 2015-04-23 21:06+0200\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-21 23:22+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -362,10 +362,10 @@ msgstr ""
 msgid ""
 "A dry central plateau rich in minerals surrounded by rocky hills\n"
 "\n"
-"The southern parts of Zagros Mountains where the heart of the Persian "
-"empires and population. Although the altitude is high, the southern parts "
-"are drier that the northern Zagros, leading to a semi-arid climate. Still "
-"there are some sparse oak forests in the higher grounds."
+"The southern parts of Zagros Mountains were the heart of the Persian empires "
+"and population. Although the altitude is high, the southern parts are drier "
+"that the northern Zagros, leading to a semi-arid climate. Still there are "
+"some sparse oak forests in the higher grounds."
 msgstr ""
 
 #: maps/random/persian_highlands.json:settings.Name
@@ -664,7 +664,7 @@ msgstr ""
 #: maps/skirmishes/Sicilia (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
 #: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
-#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Team Oasis - 2v2.xml:PlayerData[0].Name:42
 #: maps/skirmishes/Thessalian Plains (4).xml:PlayerData[0].Name:41
@@ -732,7 +732,7 @@ msgstr ""
 #: maps/skirmishes/Sicilia (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
 #: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
-#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[2].Name:42
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Team Oasis - 2v2.xml:PlayerData[1].Name:42
 #: maps/skirmishes/Thessalian Plains (4).xml:PlayerData[1].Name:41
@@ -1175,12 +1175,12 @@ msgstr ""
 msgid "Necropolis"
 msgstr ""
 
-#: maps/scenarios/Pathfinding_demo.xml:Name:31
-msgid "Pathfinding Demo"
+#: maps/scenarios/Pathfinding_demo.xml:Description:41
+msgid "A map for testing unit movement algorithms."
 msgstr ""
 
-#: maps/scenarios/Pathfinding_demo.xml:Description:31
-msgid "A map for testing unit movement algorithms."
+#: maps/scenarios/Pathfinding_demo.xml:Name:41
+msgid "Pathfinding Demo"
 msgstr ""
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:Name:31

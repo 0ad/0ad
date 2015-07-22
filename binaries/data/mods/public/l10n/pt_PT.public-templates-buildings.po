@@ -4,6 +4,7 @@
 # 
 # Translators:
 # alfalb.as, 2015
+# Luis Neves <luisjneves@gmail.com>, 2015
 # mogafi, 2014
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2014
 # Pedro matias <pmsm1100@gmail.com>, 2015
@@ -11,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-05-25 09:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-07-15 00:38+0200\n"
+"PO-Revision-Date: 2015-07-15 11:10+0000\n"
+"Last-Translator: Luis Neves <luisjneves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,9 +116,9 @@ msgstr "Torre"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and own territories to scout areas of the map. Slowly loses"
-" health while in neutral territory."
-msgstr "Construir em territórios próprios e neutros para explorar áreas do mapa. Em território neutro, perde resistência lentamente."
+"Build in neutral and own territories to scout areas of the map. Slowly "
+"converts to Gaia while in neutral territory."
+msgstr "Construir em territórios neutros e próprios para explorar áreas do mapa. Lentamente se converte em Gaia, enquanto em território neutro."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -467,9 +468,9 @@ msgstr "Théātron"
 #: simulation/templates/structures/spart_theatron.xml:35
 #: simulation/templates/structures/theb_theatron.xml:35
 msgid ""
-"Exellinismós (Hellenization): +20% territory influence for all buildings "
+"Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr "Exellinismós (Helenização): aumenta +20% a influência territorial de todos os edifícios enquanto o Theatron existir."
+msgstr ""
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -543,8 +544,8 @@ msgid "Island Settlement"
 msgstr "Arquipélago"
 
 #: simulation/templates/structures/brit_crannog.xml:24
-msgid "Increase population limit and defend waterways"
-msgstr "Aumenta o limite populacional e defende as vias navegáveis"
+msgid "Increase population limit and defend waterways."
+msgstr "Aumentar limite de população e defender vias navegáveis."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -921,7 +922,7 @@ msgstr "Cancho Roano"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
-msgstr ""
+msgstr "Sidērourgeîon"
 
 #: simulation/templates/structures/mace_fortress.xml:15
 msgid "Teíchisma"
@@ -942,7 +943,7 @@ msgstr "Biblioteca"
 #: simulation/templates/structures/mace_library.xml:16
 #: simulation/templates/structures/ptol_library.xml:16
 msgid "Bibliothḗkē"
-msgstr ""
+msgstr "Biblioteca"
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -1288,7 +1289,7 @@ msgstr ""
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
-msgstr ""
+msgstr "Construir ao longo da costa para revelar as linhas costeiras ao longo de todo o mapa. Muito grande o campo de visão: 180 metros."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"

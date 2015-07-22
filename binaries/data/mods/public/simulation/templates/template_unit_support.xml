@@ -3,14 +3,15 @@
   <Armour>
     <Hack>1</Hack>
     <Pierce>1</Pierce>
-	<Crush>1</Crush>
+    <Crush>1</Crush>
   </Armour>
   <Cost>
     <BuildTime>8</BuildTime>
   </Cost>
   <Identity>
     <GenericName>Support</GenericName>
-    <Classes datatype="tokens">Support Human Organic</Classes>
+    <Classes datatype="tokens">Human Organic</Classes>
+    <VisibleClasses datatype="tokens">Support</VisibleClasses>
   </Identity>
   <Loot>
     <xp>10</xp>
