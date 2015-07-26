@@ -6,8 +6,6 @@
     <GenericName>Wooden Tower</GenericName>
     <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
     <Icon>structures/palisade_fort.png</Icon>
-    <Classes datatype="tokens">WoodenTower Palisade</Classes>
-    <VisibleClasses datatype="tokens">Village -Town</VisibleClasses>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Classes datatype="tokens">Palisade</Classes>
   </Identity>
 </Entity>
