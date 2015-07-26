@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_defense_tower">
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>1.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>6.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>60.0</MaxRange>
+      <MinRange>4.0</MinRange>
+    </Ranged>
+  </Attack>
+  <Cost>
+    <BuildTime>40</BuildTime>
+    <Resources>
+      <wood>100</wood>
+      <stone>0</stone>
+    </Resources>
+  </Cost>
+  <Capturable>
+    <CapturePoints>800</CapturePoints>
+  </Capturable>
+  <Footprint>
+    <Square width="9.5" depth="8.5"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Health>
+    <Max>250</Max>
+  </Health>
+  <GarrisonHolder>
+    <Max>3</Max>
+  </GarrisonHolder>
+  <Identity>
+    <SpecificName>Wooden Tower</SpecificName>
+    <GenericName>Wooden Tower</GenericName>
+    <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
+    <Icon>structures/palisade_fort.png</Icon>
+    <Classes datatype="tokens">WoodenTower</Classes>
+    <VisibleClasses datatype="tokens">Village -Town</VisibleClasses>
+    <RequiredTechnology>phase_village</RequiredTechnology>
+  </Identity>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      -attack_tower_crenellations
+      -attack_tower_range
+      -attack_tower_defense
+    </Technologies>
+  </ProductionQueue>
+  <Obstruction>
+    <Static width="9.0" depth="7.5"/>
+  </Obstruction>
+  <TerritoryInfluence disable=""/>
+  <StatusBars>
+    <HeightOffset>18.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>props/special/palisade_rocks_fort.xml</Actor>
+  </VisualActor>
+</Entity>
