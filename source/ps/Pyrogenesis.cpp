@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,31 +24,12 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/svn_revision.h"
 
-static const wchar_t* translate_no_mem = L"(no mem)";
-
-// overrides ah_translate. registered in GameSetup.cpp
-const wchar_t* psTranslate(const wchar_t* text)
-{
-	// TODO: implement this somehow
-
-	// i18n not available: at least try and return the text (unchanged)
-	const wchar_t* ret_dup = wcsdup(text);
-	return ret_dup? ret_dup : translate_no_mem;
-}
-
-void psTranslateFree(const wchar_t* text)
-{
-	if(text != translate_no_mem)
-		free((void*)text);
-}
-
-
 // convert contents of file <in_filename> from char to wchar_t and
 // append to <out> file.
 static void AppendAsciiFile(FILE* out, const OsPath& pathname)
 {
 	FILE* in = sys_OpenFile(pathname, "rb");
-	if(!in)
+	if (!in)
 	{
 		fwprintf(out, L"(unavailable)");
 		return;
@@ -57,10 +38,10 @@ static void AppendAsciiFile(FILE* out, const OsPath& pathname)
 	const size_t buf_size = 1024;
 	char buf[buf_size+1]; // include space for trailing '\0'
 
-	while(!feof(in))
+	while (!feof(in))
 	{
 		size_t bytes_read = fread(buf, 1, buf_size, in);
-		if(!bytes_read)
+		if (!bytes_read)
 			break;
 		buf[bytes_read] = 0;	// 0-terminate
 		fwprintf(out, L"%hs", buf);

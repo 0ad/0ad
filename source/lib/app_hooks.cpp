@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -124,6 +124,7 @@ void app_hooks_update(AppHooks* new_ah)
 	OVERRIDE_IF_NONZERO(translate_free)
 	OVERRIDE_IF_NONZERO(log)
 	OVERRIDE_IF_NONZERO(display_error)
+#undef OVERRIDE_IF_NONZERO
 }
 
 bool app_hook_was_redefined(size_t offset_in_struct)
