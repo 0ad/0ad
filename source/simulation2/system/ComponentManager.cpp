@@ -1170,7 +1170,7 @@ JS::Value CComponentManager::Script_ReadCivJSONFile(ScriptInterface::CxPrivate* 
 	return ReadJSONFile(pCxPrivate, L"simulation/data/civs", fileName);
 }
 
-JS::Value CComponentManager::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, std::wstring fileName)
+JS::Value CComponentManager::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, const std::wstring& fileName)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();

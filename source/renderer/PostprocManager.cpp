@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -537,7 +537,7 @@ std::vector<CStrW> CPostprocManager::GetPostEffects()
 	return effects;
 }
 
-void CPostprocManager::SetPostEffect(CStrW name)
+void CPostprocManager::SetPostEffect(const CStrW& name)
 {
 	if (m_IsInitialized)
 	{
@@ -596,7 +596,7 @@ std::vector<CStrW> CPostprocManager::GetPostEffects()
 	return std::vector<CStrW>();
 }
 
-void CPostprocManager::SetPostEffect(CStrW UNUSED(name))
+void CPostprocManager::SetPostEffect(const CStrW& UNUSED(name))
 {
 }
 

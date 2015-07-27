@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -97,7 +97,7 @@ public:
 	}
 	
 	// Sets the current effect.
-	void SetPostEffect(CStrW name);
+	void SetPostEffect(const CStrW& name);
 
 	// Clears the two color buffers and depth buffer, and redirects all rendering
 	// to our textures instead of directly to the system framebuffer.

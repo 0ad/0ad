@@ -57,7 +57,7 @@ public:
 	/**
 	 * Check if the template XML file exits, without trying to load it.
 	 */
-	bool TemplateExists(const std::string& templateName);
+	bool TemplateExists(const std::string& templateName) const;
 
 	/**
 	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplateFile.
