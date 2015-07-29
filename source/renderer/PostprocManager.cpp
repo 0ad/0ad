@@ -514,21 +514,17 @@ void CPostprocManager::ApplyPostproc()
 std::vector<CStrW> CPostprocManager::GetPostEffects()
 {
 	std::vector<CStrW> effects;
-	
+
 	const VfsPath path(L"shaders/effects/postproc/");
-	
+
 	VfsPaths pathnames;
-	if(vfs::GetPathnames(g_VFS, path, 0, pathnames) < 0)
+	if (vfs::GetPathnames(g_VFS, path, 0, pathnames) < 0)
 		LOGERROR("Error finding Post effects in '%s'", path.string8());
 
-	for(size_t i = 0; i < pathnames.size(); i++)
-	{
-		if (pathnames[i].Extension() != L".xml")
-			continue;
-		
-		effects.push_back(pathnames[i].Basename().string());
-	}
-	
+	for (const VfsPath& path : pathnames)
+		if (path.Extension() == L".xml")
+			effects.push_back(path.Basename().string());
+
 	// Add the default "null" effect to the list.
 	effects.push_back(L"default");
 

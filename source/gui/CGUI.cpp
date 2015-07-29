@@ -1470,18 +1470,18 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 	{
 		VfsPaths pathnames;
 		vfs::GetPathnames(g_VFS, directory, L"*.js", pathnames);
-		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		for (const VfsPath& path : pathnames)
 		{
 			// Only load new files (so when the insert succeeds)
-			if (Paths.insert(*it).second)
+			if (Paths.insert(path).second)
 			{
 				try
 				{
-					m_ScriptInterface->LoadGlobalScriptFile(*it);
+					m_ScriptInterface->LoadGlobalScriptFile(path);
 				}
 				catch (PSERROR_Scripting& e)
 				{
-					LOGERROR("GUI: Error executing script %s: %s", (*it).string8(), e.what());
+					LOGERROR("GUI: Error executing script %s: %s", path.string8(), e.what());
 				}
 			}
 		}

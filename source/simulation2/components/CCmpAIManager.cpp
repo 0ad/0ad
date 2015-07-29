@@ -252,11 +252,11 @@ public:
 			return false;
 		}
 
-		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		for (const VfsPath& path : pathnames)
 		{
-			if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
+			if (!m_ScriptInterface->LoadGlobalScriptFile(path))
 			{
-				LOGERROR("Failed to load script %s", it->string8());
+				LOGERROR("Failed to load script %s", path.string8());
 				return false;
 			}
 		}

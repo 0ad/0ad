@@ -264,15 +264,14 @@ std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::stri
 				if (vfs::GetPathnames(g_VFS, templatePath / (directoryPath + "/"), fileFilter.c_str(), filenames) != INFO::OK)
 					continue;
 				
-				for (VfsPaths::iterator it = filenames.begin(); it != filenames.end(); ++it)
+				for (const VfsPath& filename : filenames)
 				{
-					VfsPath filename = *it;
 					// Strip the .xml extension
 					VfsPath pathstem = filename.ChangeExtension(L"");
 					// Strip the root from the path
 					std::wstring name = pathstem.string().substr(ARRAY_SIZE(TEMPLATE_ROOT) - 1);
 
-					templates.push_back(std::string(name.begin(), name.end()));
+					templates.emplace_back(name.begin(), name.end());
 				}
 				
 			}

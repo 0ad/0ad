@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -219,23 +219,23 @@ public:
 		}
 
 		bool loaded = false;
-		for (VfsPaths::const_iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		for (const VfsPath& path : pathnames)
 		{
-			LOGMESSAGE("Loading skeleton definitions from '%s'", it->string8());
+			LOGMESSAGE("Loading skeleton definitions from '%s'", path.string8());
 			// Set the filename for the logger to report
-			set_logger(ColladaLog, const_cast<void*>(static_cast<const void*>(&(*it))));
+			set_logger(ColladaLog, const_cast<void*>(static_cast<const void*>(&path)));
 
 			CVFSFile skeletonFile;
-			if (skeletonFile.Load(m_VFS, *it) != PSRETURN_OK)
+			if (skeletonFile.Load(m_VFS, path) != PSRETURN_OK)
 			{
-				LOGERROR("Failed to read skeleton defintions from '%s'", it->string8());
+				LOGERROR("Failed to read skeleton defintions from '%s'", path.string8());
 				continue;
 			}
 
 			int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
 			if (ok < 0)
 			{
-				LOGERROR("Failed to load skeleton definitions from '%s'", it->string8());
+				LOGERROR("Failed to load skeleton definitions from '%s'", path.string8());
 				continue;
 			}
 
@@ -280,14 +280,14 @@ public:
 			m_skeletonHashes.reserve(paths.size()*2);
 
 			CFileInfo fileInfo;
-			for (VfsPaths::const_iterator it = paths.begin(); it != paths.end(); ++it)
+			for (const VfsPath& path : paths)
 			{
 				// This will cause an assertion failure if *it doesn't exist,
 				//	because fileinfo is not a NULL pointer, which is annoying but that
 				//	should never happen, unless there really is a problem
-				if (m_VFS->GetFileInfo(*it, &fileInfo) != INFO::OK)
+				if (m_VFS->GetFileInfo(path, &fileInfo) != INFO::OK)
 				{
-					LOGERROR("Failed to stat '%s' for DAE caching", it->string8());
+					LOGERROR("Failed to stat '%s' for DAE caching", path.string8());
 				}
 				else
 				{
@@ -304,8 +304,8 @@ public:
 			m_skeletonHashInvalidated = false;
 		}
 
-		for (std::vector<u64>::const_iterator it = m_skeletonHashes.begin(); it != m_skeletonHashes.end(); ++it)
-			hash.Update((const u8*)&(*it), sizeof(*it));
+		for (const u64& h : m_skeletonHashes)
+			hash.Update((const u8*)&h, sizeof(h));
 	}
 
 private:

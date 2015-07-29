@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -461,14 +461,12 @@ bool ScriptInterface::LoadGlobalScripts()
 	// Load and execute *.js in the global scripts directory
 	VfsPaths pathnames;
 	vfs::GetPathnames(g_VFS, L"globalscripts/", L"*.js", pathnames);
-	for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
-	{
-		if (!LoadGlobalScriptFile(*it))
+	for (const VfsPath& path : pathnames)
+		if (!LoadGlobalScriptFile(path))
 		{
-			LOGERROR("LoadGlobalScripts: Failed to load script %s", it->string8());
+			LOGERROR("LoadGlobalScripts: Failed to load script %s", path.string8());
 			return false;
 		}
-	}
 
 	JSAutoRequest rq(m->m_cx);
 	JS::RootedValue proto(m->m_cx);
