@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,9 +29,7 @@
 #include "lib/code_annotation.h"
 #include "lib/external_libraries/icu.h"
 #include "lib/external_libraries/tinygettext.h"
-
 #include "lib/file/vfs/vfs_path.h"
-
 #include "ps/Singleton.h"
 
 #define g_L10n L10n::GetSingleton()
@@ -88,7 +86,7 @@ public:
 	 * @sa GetAllLocales()
 	 * @sa ReevaluateCurrentLocaleAndReload()
 	 */
-	Locale GetCurrentLocale();
+	Locale GetCurrentLocale() const;
 
 	/**
 	 * Returns the code of the current locale.
@@ -100,7 +98,7 @@ public:
 	 * @sa GetAllLocales()
 	 * @sa ReevaluateCurrentLocaleAndReload()
 	 */
-	std::string GetCurrentLocaleString();
+	std::string GetCurrentLocaleString() const;
 
 	/**
 	 * Returns a vector of locale codes supported by ICU.
@@ -114,7 +112,7 @@ public:
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#a073d70df8c9c8d119c0d42d70de24137
 	 */
-	std::vector<std::string> GetAllLocales();
+	std::vector<std::string> GetAllLocales() const;
 
 	/**
 	 * Saves the specified locale in the game configuration file.
@@ -130,23 +128,9 @@ public:
 	 * @return Whether the specified locale is valid (@c true) or not
 	 *         (@c false).
 	 */
-	bool SaveLocale(const std::string& localeCode);
-
-	/**
-	 * Saves the specified locale in the game configuration file.
-	 *
-	 * The next time that the game starts, the game uses the locale in the
-	 * configuration file if there are translation files available for it.
-	 *
-	 * SaveLocale() checks the validity of the specified locale with
-	 * ValidateLocale(). If the specified locale is not valid, SaveLocale()
-	 * returns @c false and does not save the locale to the configuration file.
-	 *
-	 * @param locale Locale to save to the configuration file.
-	 * @return Whether the specified locale is valid (@c true) or not
-	 *         (@c false).
-	 */
-	bool SaveLocale(const Locale& locale);
+	bool SaveLocale(const std::string& localeCode) const;
+	///@overload SaveLocale
+	bool SaveLocale(const Locale& locale) const;
 
 	/**
 	 * Returns an array of supported locale codes sorted alphabetically.
@@ -165,7 +149,7 @@ public:
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	std::vector<std::string> GetSupportedLocaleBaseNames();
+	std::vector<std::string> GetSupportedLocaleBaseNames() const;
 
 	/**
 	 * Returns an array of supported locale names sorted alphabetically by
@@ -183,7 +167,7 @@ public:
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	std::vector<std::wstring> GetSupportedLocaleDisplayNames();
+	std::vector<std::wstring> GetSupportedLocaleDisplayNames() const;
 
 	/**
 	 * Returns the ISO-639 language code of the specified locale code.
@@ -195,7 +179,7 @@ public:
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#af36d821adced72a870d921ebadd0ca93
 	 */
-	std::string GetLocaleLanguage(const std::string& locale);
+	std::string GetLocaleLanguage(const std::string& locale) const;
 
 	/**
 	 * Returns the programmatic code of the entire locale without keywords.
@@ -205,7 +189,7 @@ public:
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#a4c1acbbdf95dc15599db5f322fa4c4d0
 	 */
-	std::string GetLocaleBaseName(const std::string& locale);
+	std::string GetLocaleBaseName(const std::string& locale) const;
 
 	/**
 	 * Returns the ISO-3166 country code of the specified locale code.
@@ -217,7 +201,7 @@ public:
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#ae3f1fc415c00d4f0ab33288ceadccbf9
 	 */
-	std::string GetLocaleCountry(const std::string& locale);
+	std::string GetLocaleCountry(const std::string& locale) const;
 
 	/**
 	 * Returns the ISO-15924 abbreviation script code of the specified locale code.
@@ -227,7 +211,7 @@ public:
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#a5e0145a339d30794178a1412dcc55abe
 	 */
-	std::string GetLocaleScript(const std::string& locale);
+	std::string GetLocaleScript(const std::string& locale) const;
 
 	/**
 	 * Returns @c true if the current locale is the special “Long Strings”
@@ -236,7 +220,7 @@ public:
 	 * @return Whether the current locale is the special “Long Strings”
 	 *         (@c true) or not (@c false).
 	 */
-	bool UseLongStrings();
+	bool UseLongStrings() const;
 
 	/**
 	 * Returns an array of paths to files in the virtual filesystem that provide
@@ -246,34 +230,12 @@ public:
 	 * @return Array of paths to files in the virtual filesystem that provide
 	 * translations for @p locale.
 	 */
-	std::vector<std::wstring> GetDictionariesForLocale(const std::string& locale);
+	std::vector<std::wstring> GetDictionariesForLocale(const std::string& locale) const;
 	
-	std::wstring GetFallbackToAvailableDictLocale(const Locale& locale);
+	std::wstring GetFallbackToAvailableDictLocale(const Locale& locale) const;
 	
-	std::wstring GetFallbackToAvailableDictLocale(const std::string& locale);
+	std::wstring GetFallbackToAvailableDictLocale(const std::string& locale) const;
 	
-	struct CheckLangAndCountry
-	{
-		CheckLangAndCountry(const Locale& locale);
-		const Locale& m_MatchLocale;
-		
-		bool operator()(const Locale* const locale) const;
-
-	private:
-		const CheckLangAndCountry& operator=(const CheckLangAndCountry&);
-	};
-	
-	struct CheckLang
-	{
-		CheckLang(const Locale& locale);
-		const Locale& m_MatchLocale;
-		
-		bool operator()(const Locale* const locale) const;
-
-	private:
-		const CheckLang& operator=(const CheckLang&);
-	};
-
 	/**
 	 * Returns the code of the recommended locale for the current user that the
 	 * game supports.
@@ -295,7 +257,7 @@ public:
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	std::string GetDictionaryLocale(const std::string& configLocaleString);
+	std::string GetDictionaryLocale(const std::string& configLocaleString) const;
 
 	/**
 	 * Saves an instance of the recommended locale for the current user that the
@@ -314,12 +276,11 @@ public:
 	 *
 	 * @param configLocaleString Locale to check for support first. Pass an
 	 *        empty string to check the system locale directly.
-	 * @param outLocale Variable where GetDictionaryLocale(std::string, Locale&)
-	 *        must store the recommended locale.
+	 * @param outLocale The recommended locale.
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	void GetDictionaryLocale(const std::string& configLocaleString, Locale& outLocale);
+	void GetDictionaryLocale(const std::string& configLocaleString, Locale& outLocale) const;
 
 	/**
 	 * Determines the best, supported locale for the current user, makes it the
@@ -350,23 +311,9 @@ public:
 	 * @return Whether @p locale is supported by both ICU and the game (@c true)
 	 *         or not (@c false).
 	 */
-	bool ValidateLocale(const Locale& locale);
-
-	/**
-	 * Returns @c true if the locale is supported by both ICU and the game. It
-	 * returns @c false otherwise.
-	 *
-	 * It returns @c true if both of these conditions are true:
-	 *     1. ICU has resources for that locale (which also ensures it’s a valid\n
-	 *       locale string).
-	 *     2. Either a dictionary for language_country or for language is\n
-	 *       available.
-	 *
-	 * @param localeCode Code of the locale to check.
-	 * @return Whether @p locale is supported by both ICU and the game (@c true)
-	 *         or not (@c false).
-	 */
-	bool ValidateLocale(const std::string& localeCode);
+	bool ValidateLocale(const Locale& locale) const;
+	///@overload ValidateLocale
+	bool ValidateLocale(const std::string& localeCode) const;
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -376,7 +323,7 @@ public:
 	 * @return Translation of @p sourceString to the current locale, or
 	 *         @p sourceString if there is no translation available.
 	 */
-	std::string Translate(const std::string& sourceString);
+	std::string Translate(const std::string& sourceString) const;
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -390,7 +337,7 @@ public:
 	 *         specified @p context, or @p sourceString if there is no
 	 *         translation available.
 	 */
-	std::string TranslateWithContext(const std::string& context, const std::string& sourceString);
+	std::string TranslateWithContext(const std::string& context, const std::string& sourceString) const;
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -408,7 +355,7 @@ public:
 	 *         @p number is 1) or @p pluralSourceString (if @p number is not 1)
 	 *         if there is no translation available.
 	 */
-	std::string TranslatePlural(const std::string& singularSourceString, const std::string& pluralSourceString, int number);
+	std::string TranslatePlural(const std::string& singularSourceString, const std::string& pluralSourceString, int number) const;
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -429,7 +376,7 @@ public:
 	 *         @p pluralSourceString (if @p number is not 1) if there is no
 	 *         translation available.
 	 */
-	std::string TranslatePluralWithContext(const std::string& context, const std::string& singularSourceString, const std::string& pluralSourceString, int number);
+	std::string TranslatePluralWithContext(const std::string& context, const std::string& singularSourceString, const std::string& pluralSourceString, int number) const;
 
 	/**
 	 * Translates a text line by line to the
@@ -443,7 +390,7 @@ public:
 	 *         locale. Some of the lines in the returned text may be in English
 	 *         because there was not translation available for them.
 	 */
-	std::string TranslateLines(const std::string& sourceString);
+	std::string TranslateLines(const std::string& sourceString) const;
 
 	/**
 	 * Parses the date in the input string using the specified date format, and
@@ -461,7 +408,7 @@ public:
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
 	 */
-	UDate ParseDateTime(const std::string& dateTimeString, const std::string& dateTimeFormat, const Locale& locale);
+	UDate ParseDateTime(const std::string& dateTimeString, const std::string& dateTimeFormat, const Locale& locale) const;
 
 	/**
 	 * Returns the specified date using the specified date format.
@@ -477,7 +424,7 @@ public:
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa http://icu-project.org/apiref/icu4c521/classicu_1_1DateFormat.html
 	 */
-	std::string LocalizeDateTime(const UDate& dateTime, const DateTimeType& type, const DateFormat::EStyle& style);
+	std::string LocalizeDateTime(const UDate& dateTime, const DateTimeType& type, const DateFormat::EStyle& style) const;
 
 	/**
 	 * Returns the specified date using the specified date format.
@@ -494,7 +441,7 @@ public:
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
 	 */
-	std::string FormatMillisecondsIntoDateString(const UDate& milliseconds, const std::string& formatString);
+	std::string FormatMillisecondsIntoDateString(const UDate& milliseconds, const std::string& formatString) const;
 
 	/**
 	 * Returns the specified floating-point number as a string, with the number
@@ -504,7 +451,7 @@ public:
 	 * @param number Number to format.
 	 * @return Decimal number formatted using the current locale.
 	 */
-	std::string FormatDecimalNumberIntoString(double number);
+	std::string FormatDecimalNumberIntoString(double number) const;
 
 	/**
 	 * Returns the localized version of the specified path if there is one for
@@ -526,7 +473,7 @@ public:
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Localization#LocalizingImages
 	 */
-	VfsPath LocalizePath(const VfsPath& sourcePath);
+	VfsPath LocalizePath(const VfsPath& sourcePath) const;
 
 	/**
 	 * Loads @p path into the dictionary if it is a translation file of the
@@ -639,7 +586,7 @@ private:
 	 *        parsing.
 	 * @return ICU date formatter.
 	 */
-	DateFormat* CreateDateTimeInstance(const DateTimeType& type, const DateFormat::EStyle& style, const Locale& locale);
+	DateFormat* CreateDateTimeInstance(const DateTimeType& type, const DateFormat::EStyle& style, const Locale& locale) const;
 };
 
 #endif // L10N_H
