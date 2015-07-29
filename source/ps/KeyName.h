@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,8 +24,8 @@
 class CStr8;
 
 extern void InitKeyNameMap();
-extern CStr8 FindKeyName( int keycode );
-extern int FindKeyCode( const CStr8& keyname );
+extern CStr8 FindKeyName(int keycode);
+extern int FindKeyCode(const CStr8& keyname);
 
 // Pick a code which is greater than any keycodes used by SDL itself
 #if SDL_VERSION_ATLEAST(2, 0, 0)

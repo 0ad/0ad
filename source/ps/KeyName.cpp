@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,8 +20,9 @@
 #include "precompiled.h"
 
 #include "KeyName.h"
-#include "CStr.h"
+
 #include "lib/external_libraries/libsdl.h"
+#include "ps/CStr.h"
 
 #include <map>
 
@@ -36,7 +37,7 @@ struct SKeycodeMapping
 
 // You can use either key name in the config file...
 
-static SKeycodeMapping keycodeMapping[] =
+static const SKeycodeMapping keycodeMapping[] =
 {
 	/* Just a tad friendlier than SDL_GetKeyName's name */
 	{ SDLK_BACKSPACE, "Backspace", "BkSp" },
@@ -332,18 +333,18 @@ static SKeycodeMapping keycodeMapping[] =
 
 void InitKeyNameMap()
 {
-	for (SKeycodeMapping* it = keycodeMapping; it->keycode != 0; it++)
+	for (const SKeycodeMapping* it = keycodeMapping; it->keycode != 0; ++it)
 	{
-		keymap.insert(std::pair<CStr,int>(CStr(it->keyname).LowerCase(), it->keycode));
-		if(it->altkeyname)
-			keymap.insert(std::pair<CStr,int>(CStr(it->altkeyname).LowerCase(), it->keycode));
+		keymap.emplace(std::move(CStr(it->keyname).LowerCase()), it->keycode);
+		if (it->altkeyname)
+			keymap.emplace(std::move(CStr(it->altkeyname).LowerCase()), it->keycode);
 	}
 
 	// Extra mouse buttons.
 	for (int i = 1; i < 256; ++i) // There is no mouse 0
 	{
-		keymap.insert(std::pair<CStr,int>("mousebutton" + CStr::FromInt(i), MOUSE_BASE + i));
-		keymap.insert(std::pair<CStr,int>("mousen" + CStr::FromInt(i), MOUSE_BASE + i));
+		keymap.emplace("mousebutton" + CStr::FromInt(i), MOUSE_BASE + i);
+		keymap.emplace("mousen" + CStr::FromInt(i), MOUSE_BASE + i);
 	}
 }
 
@@ -352,14 +353,13 @@ int FindKeyCode(const CStr& keyname)
 	std::map<CStr,int>::iterator it;
 	it = keymap.find(keyname.LowerCase());
 	if (it != keymap.end())
-		return(it->second);
+		return it->second;
 	return 0;
 }
 
 CStr FindKeyName(int keycode)
 {
-	SKeycodeMapping* it = keycodeMapping;
-	while (it->keycode != 0)
+	for (const SKeycodeMapping* it = keycodeMapping; it->keycode != 0; ++it)
 		if (it->keycode == keycode)
 			return CStr(it->keyname);
 
