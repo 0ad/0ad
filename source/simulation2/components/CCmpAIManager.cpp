@@ -1145,7 +1145,7 @@ private:
 
 		const CParamNode* node = cmpTemplateManager->GetTemplateWithoutValidation(m_TemplateNames[m_TemplateLoadedIdx]);
 		if (node)
-			m_Templates.push_back(std::make_pair(m_TemplateNames[m_TemplateLoadedIdx], node));
+			m_Templates.emplace_back(m_TemplateNames[m_TemplateLoadedIdx], node);
 
 		m_TemplateLoadedIdx++;
 

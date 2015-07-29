@@ -488,7 +488,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 		}
 
 		if (isUsable)
-			usableTechs.push_back(std::make_pair(Technique, preference));
+			usableTechs.emplace_back(Technique, preference);
 	}
 
 	if (usableTechs.empty())

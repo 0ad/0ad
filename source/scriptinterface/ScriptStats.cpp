@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ CScriptStatsTable::CScriptStatsTable()
 
 void CScriptStatsTable::Add(const ScriptInterface* scriptInterface, const std::string& title)
 {
-	m_ScriptInterfaces.push_back(std::make_pair(scriptInterface, title));
+	m_ScriptInterfaces.emplace_back(scriptInterface, title);
 }
 
 void CScriptStatsTable::Remove(const ScriptInterface* scriptInterface)

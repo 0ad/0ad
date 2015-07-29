@@ -1138,13 +1138,13 @@ bool CNetServer::SetupConnection()
 void CNetServer::AssignPlayer(int playerID, const CStr& guid)
 {
 	CScopeLock lock(m_Worker->m_WorkerMutex);
-	m_Worker->m_AssignPlayerQueue.push_back(std::make_pair(playerID, guid));
+	m_Worker->m_AssignPlayerQueue.emplace_back(playerID, guid);
 }
 
 void CNetServer::SetPlayerReady(const CStr& guid, int ready)
 {
 	CScopeLock lock(m_Worker->m_WorkerMutex);
-	m_Worker->m_PlayerReadyQueue.push_back(std::make_pair(guid, ready));
+	m_Worker->m_PlayerReadyQueue.emplace_back(guid, ready);
 }
 
 void CNetServer::ClearAllPlayerReady()

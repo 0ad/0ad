@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -113,7 +113,7 @@ static CStrInternInternals* GetString(const char* str, size_t len)
 		return it->second.get();
 
 	shared_ptr<CStrInternInternals> internals(new CStrInternInternals(str, len));
-	g_Strings.insert(std::make_pair(internals->data, internals));
+	g_Strings.emplace(internals->data, internals);
 	return internals.get();
 }
 

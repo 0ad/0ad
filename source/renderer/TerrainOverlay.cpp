@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -66,7 +66,7 @@ static std::vector<std::pair<ITerrainOverlay*, int> > g_TerrainOverlayList;
 ITerrainOverlay::ITerrainOverlay(int priority)
 {
 	// Add to global list of overlays
-	g_TerrainOverlayList.push_back(std::make_pair(this, priority));
+	g_TerrainOverlayList.emplace_back(this, priority);
 	// Sort by overlays by priority. Do stable sort so that adding/removing
 	// overlays doesn't randomly disturb all the existing ones (which would
 	// be noticeable if they have the same priority and overlap).

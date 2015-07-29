@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -94,7 +94,7 @@ typename CShaderParams<value_t>::SItems* CShaderParams<value_t>::GetInterned(con
 	ENSURE(std::adjacent_find(items.items.begin(), items.items.end(), std::binary_negate<Cmp>(Cmp())) == items.items.end());
 
 	shared_ptr<SItems> ptr(new SItems(items));
-	s_InternedItems.insert(std::make_pair(items, ptr));
+	s_InternedItems.emplace(items, ptr);
 	return ptr.get();
 }
 
@@ -245,15 +245,15 @@ void CShaderRenderQueries::Add(const char* name)
 {
 	if (name == CStr("sim_time"))
 	{
-		m_Items.push_back(std::make_pair(RQUERY_TIME, CStrIntern(name)));
+		m_Items.emplace_back(RQUERY_TIME, CStrIntern(name));
 	}
 	else if (name == CStr("water_tex"))
 	{
-		m_Items.push_back(std::make_pair(RQUERY_WATER_TEX, CStrIntern(name)));
+		m_Items.emplace_back(RQUERY_WATER_TEX, CStrIntern(name));
 	}
 	else if (name == CStr("sky_cube"))
 	{
-		m_Items.push_back(std::make_pair(RQUERY_SKY_CUBE, CStrIntern(name)));
+		m_Items.emplace_back(RQUERY_SKY_CUBE, CStrIntern(name));
 	}
 }
 

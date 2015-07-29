@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ CmdLineArgs::CmdLineArgs(int argc, const char* argv[])
 			name = CStr(argv[i]+1);
 		}
 
-		m_Args.push_back(make_pair(name, value));
+		m_Args.emplace_back(std::move(name), std::move(value));
 	}
 }
 

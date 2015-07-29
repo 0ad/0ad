@@ -184,7 +184,7 @@ void CConfigDB::SetValueString(EConfigNamespace ns, const CStr& name, const CStr
 	CScopeLock s(&cfgdb_mutex);
 	TConfigMap::iterator it = m_Map[ns].find(name);
 	if (it == m_Map[ns].end())
-		it = m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
+		it = m_Map[ns].emplace_hint(m_Map[ns].begin(), name, CConfigValueSet(1));
 
 	it->second[0] = value;
 }

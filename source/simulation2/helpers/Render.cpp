@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -151,10 +151,10 @@ static void SplitLine(std::vector<std::pair<float, float> >& coords, float x1, f
 		float yPieceLength = (y1 - y2) / (float)pieces;
 		for (size_t i = 1; i <= (pieces - 1); ++i)
 		{
-			coords.push_back(std::make_pair(x1 - (xPieceLength * (float)i), y1 - (yPieceLength * (float)i)));
+			coords.emplace_back(x1 - (xPieceLength * (float)i), y1 - (yPieceLength * (float)i));
 		}
 	}
-	coords.push_back(std::make_pair(x2, y2));
+	coords.emplace_back(x2, y2);
 }
 
 void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, float z, float w, float h, float a,
@@ -182,7 +182,7 @@ void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, flo
 	// Add the first vertex, since SplitLine will be adding only the second end-point of the each line to
 	// the coordinates list. We don't have to worry about the other lines, since the end-point of one line
 	// will be the starting point of the next
-	coords.push_back(std::make_pair(x - w/2*c + h/2*s, z + w/2*s + h/2*c));
+	coords.emplace_back(x - w/2*c + h/2*s, z + w/2*s + h/2*c);
 
 	SplitLine(coords, x - w/2*c + h/2*s, z + w/2*s + h/2*c, x - w/2*c - h/2*s, z + w/2*s - h/2*c);
 	SplitLine(coords, x - w/2*c - h/2*s, z + w/2*s - h/2*c, x + w/2*c - h/2*s, z - w/2*s - h/2*c);

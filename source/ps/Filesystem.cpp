@@ -43,7 +43,7 @@ bool VfsDirectoryExists(const VfsPath& pathname)
 
 void RegisterFileReloadFunc(FileReloadFunc func, void* obj)
 {
-	g_ReloadFuncs.push_back(std::make_pair(func, obj));
+	g_ReloadFuncs.emplace_back(func, obj);
 }
 
 void UnregisterFileReloadFunc(FileReloadFunc func, void* obj)
