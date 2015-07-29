@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
+  <Auras>
+    <AuraA>
+      <Type>garrison</Type>
+      <Affects>GarrisonHolder</Affects>
+      <Modifications>
+        <Capturable.GarrisonRegenRate> <Add>2</Add> </Capturable.GarrisonRegenRate>
+      </Modifications>
+      <AuraName>Hero Aura</AuraName>
+      <AuraDescription>When garrisoned in a structure, it galvanizes its defenders, +2 GarrisonRegenRate</AuraDescription>
+    </AuraA>    
+  </Auras>
+  <Attack> 
+    <Capture>
+      <Value>9</Value> 
+      <MaxRange>4</MaxRange> 
+      <RepeatTime>1000</RepeatTime> 
+    </Capture> 
+  </Attack>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>20.0</Pierce>
