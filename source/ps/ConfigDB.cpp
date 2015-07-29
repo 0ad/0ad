@@ -17,13 +17,14 @@
 
 #include "precompiled.h"
 
+#include "ConfigDB.h"
+
 #include <boost/algorithm/string.hpp>
 
-#include "CLogger.h"
-#include "ConfigDB.h"
-#include "Filesystem.h"
-#include "ThreadUtil.h"
 #include "lib/allocators/shared_ptr.h"
+#include "ps/CLogger.h"
+#include "ps/Filesystem.h"
+#include "ps/ThreadUtil.h"
 
 typedef std::map<CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
@@ -96,7 +97,7 @@ std::string EscapeString(const CStr& str)
 			Get(it->second[0], value);\
 			return;\
 		}\
-		for (int search_ns = ns; search_ns >= 0; search_ns--)\
+		for (int search_ns = ns; search_ns >= 0; --search_ns)\
 		{\
 			it = m_Map[search_ns].find(name);\
 			if (it != m_Map[search_ns].end())\
@@ -113,7 +114,7 @@ GETVAL(double)
 GETVAL(std::string)
 #undef GETVAL
 
-void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet& values)
+void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet& values) const
 {
 	CHECK_NS(;);
 
@@ -125,7 +126,7 @@ void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet
 		return;
 	}
 
-	for (int search_ns = ns; search_ns >= 0; search_ns--)
+	for (int search_ns = ns; search_ns >= 0; --search_ns)
 	{
 		it = m_Map[search_ns].find(name);
 		if (it != m_Map[search_ns].end())
@@ -136,7 +137,7 @@ void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet
 	}
 }
 
-EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& name)
+EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& name) const
 {
 	CHECK_NS(CFG_LAST);
 
@@ -145,7 +146,7 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 	if (it != m_Map[CFG_COMMAND].end())
 		return CFG_COMMAND;
 
-	for (int search_ns = ns; search_ns >= 0; search_ns--)
+	for (int search_ns = ns; search_ns >= 0; --search_ns)
 	{
 		it = m_Map[search_ns].find(name);
 		if (it != m_Map[search_ns].end())
@@ -155,7 +156,7 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 	return CFG_LAST;
 }
 
-std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix)
+std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix) const
 {
 	CScopeLock s(&cfgdb_mutex);
 	std::map<CStr, CConfigValueSet> ret;
@@ -164,20 +165,14 @@ std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace 
 
 	// Loop upwards so that values in later namespaces can override
 	// values in earlier namespaces
-	for (int search_ns = 0; search_ns <= ns; search_ns++)
-	{
-		for (TConfigMap::iterator it = m_Map[search_ns].begin(); it != m_Map[search_ns].end(); ++it)
-		{
-			if (boost::algorithm::starts_with(it->first, prefix))
-				ret[it->first] = it->second;
-		}
-	}
+	for (int search_ns = 0; search_ns <= ns; ++search_ns)
+		for (const std::pair<CStr, CConfigValueSet>& p : m_Map[search_ns])
+			if (boost::algorithm::starts_with(p.first, prefix))
+				ret[p.first] = p.second;
 
-	for (TConfigMap::iterator it = m_Map[CFG_COMMAND].begin(); it != m_Map[CFG_COMMAND].end(); ++it)
-	{
-		if (boost::algorithm::starts_with(it->first, prefix))
-			ret[it->first] = it->second;
-	}
+	for (const std::pair<CStr, CConfigValueSet>& p : m_Map[CFG_COMMAND])
+		if (boost::algorithm::starts_with(p.first, prefix))
+			ret[p.first] = p.second;
 
 	return ret;
 }
@@ -365,7 +360,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	return true;
 }
 
-bool CConfigDB::WriteFile(EConfigNamespace ns)
+bool CConfigDB::WriteFile(EConfigNamespace ns) const
 {
 	CHECK_NS(false);
 
@@ -373,7 +368,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns)
 	return WriteFile(ns, m_ConfigFile[ns]);
 }
 
-bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
+bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path) const
 {
 	CHECK_NS(false);
 
@@ -381,14 +376,13 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
 	shared_ptr<u8> buf;
 	AllocateAligned(buf, 1*MiB, maxSectorSize);
 	char* pos = (char*)buf.get();
-	TConfigMap &map = m_Map[ns];
-	for (TConfigMap::const_iterator it = map.begin(); it != map.end(); ++it)
+	for (const std::pair<CStr, CConfigValueSet>& p : m_Map[ns])
 	{
 		size_t i;
-		pos += sprintf(pos, "%s = ", it->first.c_str());
-		for (i = 0; i < it->second.size() - 1; ++i)
-			pos += sprintf(pos, "\"%s\", ", EscapeString(it->second[i]).c_str());
-		pos += sprintf(pos, "\"%s\"\n", EscapeString(it->second[i]).c_str());
+		pos += sprintf(pos, "%s = ", p.first.c_str());
+		for (i = 0; i < p.second.size() - 1; ++i)
+			pos += sprintf(pos, "\"%s\", ", EscapeString(p.second[i]).c_str());
+		pos += sprintf(pos, "\"%s\"\n", EscapeString(p.second[i]).c_str());
 	}
 	const size_t len = pos - (char*)buf.get();
 

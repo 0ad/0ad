@@ -276,8 +276,8 @@ CSoundManager::~CSoundManager()
 	}
 	AL_CHECK;
 
-	for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
-		delete it->second;
+	for (const std::pair<std::wstring, CSoundGroup*>& p : m_SoundGroups)
+		delete p.second;
 	m_SoundGroups.clear();
 
 	if (m_PlayListItems)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,10 +27,9 @@
 #ifndef INCLUDED_CONFIGDB
 #define INCLUDED_CONFIGDB
 
-#include "CStr.h"
-#include "Singleton.h"
-
 #include "lib/file/vfs/vfs_path.h"
+#include "ps/CStr.h"
+#include "ps/Singleton.h"
 
 // Namespace priorities: User supersedes mod supersedes system.
 //						 Command-line arguments override everything.
@@ -77,20 +76,20 @@ public:
 	 * will search CFG_COMMAND first, and then all namespaces from the specified
 	 * namespace down.
 	 */
-	void GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet& values);
+	void GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet& values) const;
 
 	/**
 	 * Returns the namespace that the value returned by GetValues was defined in,
 	 * or CFG_LAST if it wasn't defined at all.
 	 */
-	EConfigNamespace GetValueNamespace(EConfigNamespace ns, const CStr& name);
+	EConfigNamespace GetValueNamespace(EConfigNamespace ns, const CStr& name) const;
 
 	/**
 	 * Retrieve a map of values corresponding to settings whose names begin
 	 * with the given prefix;
 	 * will search all namespaces from default up to the specified namespace.
 	 */
-	std::map<CStr, CConfigValueSet> GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix);
+	std::map<CStr, CConfigValueSet> GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix) const;
 
 	/**
 	 * Save a config value in the specified namespace. If the config variable
@@ -125,7 +124,7 @@ public:
 	 *	true:	if the config namespace was successfully written to the file
 	 *	false:	if an error occurred
 	 */
-	bool WriteFile(EConfigNamespace ns, const VfsPath& path);
+	bool WriteFile(EConfigNamespace ns, const VfsPath& path) const;
 
 	/**
 	 * Write the current state of the specified config namespace to the file
@@ -135,7 +134,7 @@ public:
 	 *	true:	if the config namespace was successfully written to the file
 	 *	false:	if an error occurred
 	 */
-	bool WriteFile(EConfigNamespace ns);
+	bool WriteFile(EConfigNamespace ns) const;
 };
 
 
@@ -144,4 +143,4 @@ public:
 #define CFG_GET_VAL(name, destination)\
 	g_ConfigDB.GetValue(CFG_USER, name, destination)
 
-#endif
+#endif // INCLUDED_CONFIGDB

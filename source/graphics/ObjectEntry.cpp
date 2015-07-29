@@ -44,11 +44,10 @@ CObjectEntry::CObjectEntry(CObjectBase* base, CSimulation2& simulation) :
 {
 }
 
-template<typename T, typename S> static void delete_pair_2nd(std::pair<T,S> v) { delete v.second; }
-
 CObjectEntry::~CObjectEntry()
 {
-	std::for_each(m_Animations.begin(), m_Animations.end(), delete_pair_2nd<CStr, CSkeletonAnim*>);
+	for (const std::pair<CStr, CSkeletonAnim*>& anim : m_Animations)
+		delete anim.second;
 
 	delete m_Model;
 }
