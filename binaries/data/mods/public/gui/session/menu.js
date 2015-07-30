@@ -651,7 +651,7 @@ function resumeGame()
 
 function togglePause()
 {
-	if (g_IsObserver)
+	if (!Engine.GetGUIObjectByName("pauseButton").enabled)
 		return;
 
 	closeMenu();
