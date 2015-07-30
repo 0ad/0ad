@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -223,6 +223,7 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "arch_ia32", ARCH_IA32);
 	scriptInterface.SetProperty(settings, "arch_amd64", ARCH_AMD64);
 	scriptInterface.SetProperty(settings, "arch_arm", ARCH_ARM);
+	scriptInterface.SetProperty(settings, "arch_aarch64", ARCH_AARCH64);
 
 #ifdef NDEBUG
 	scriptInterface.SetProperty(settings, "build_debug", 0);

@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -58,6 +58,12 @@
 #else
 # define ARCH_ARM 0
 #endif
+// .. AArch64 (ARM64)
+#if defined(__aarch64__)
+# define ARCH_AARCH64 1
+#else
+# define ARCH_AARCH64 0
+#endif
 // .. MIPS
 #if defined(__MIPS__) || defined(__mips__) || defined(__mips)
 # define ARCH_MIPS 1
@@ -66,7 +72,7 @@
 #endif
 
 // ensure exactly one architecture has been detected
-#if (ARCH_IA32+ARCH_IA64+ARCH_AMD64+ARCH_ALPHA+ARCH_ARM+ARCH_MIPS) != 1
+#if (ARCH_IA32+ARCH_IA64+ARCH_AMD64+ARCH_ALPHA+ARCH_ARM+ARCH_AARCH64+ARCH_MIPS) != 1
 # error "architecture not correctly detected (either none or multiple ARCH_* defined)"
 #endif
 
