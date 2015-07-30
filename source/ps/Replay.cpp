@@ -234,7 +234,6 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	}
 	}
 
-	m_Stream->close();
 	SAFE_DELETE(m_Stream);
 
 	g_Profiler2.SaveToFile();
