@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,14 +25,15 @@
  */
 
 #include "precompiled.h"
+
 #include "lib/file/vfs/vfs_util.h"
 
-#include <queue>
-#include <cstring>
 #include <cstdio>
+#include <cstring>
+#include <queue>
 
-#include "lib/sysdep/filesystem.h"
 #include "lib/regex.h"
+#include "lib/sysdep/filesystem.h"
 
 
 namespace vfs {
@@ -58,7 +59,8 @@ Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter,
 Status ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const wchar_t* pattern, size_t flags)
 {
 	// (declare here to avoid reallocations)
-	CFileInfos files; DirectoryNames subdirectoryNames;
+	CFileInfos files;
+	DirectoryNames subdirectoryNames;
 
 	// (a FIFO queue is more efficient than recursion because it uses less
 	// stack space and avoids seeks due to breadth-first traversal.)
@@ -77,7 +79,7 @@ Status ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, u
 				continue;
 
 			const VfsPath pathname(path / fileInfo.Name());	// (CFileInfo only stores the name)
-			cb(pathname, fileInfo, cbData);
+			RETURN_STATUS_IF_ERR(cb(pathname, fileInfo, cbData));
 		}
 
 		if(!(flags & DIR_RECURSIVE))
