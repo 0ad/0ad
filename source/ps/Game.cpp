@@ -124,6 +124,7 @@ int CGame::LoadReplayData()
 {
 	ENSURE(m_IsReplay);
 	ENSURE(!m_ReplayPath.empty());
+	ENSURE(m_ReplayStream);
 
 	CNetReplayTurnManager* replayTurnMgr = static_cast<CNetReplayTurnManager*>(GetTurnManager());
 
@@ -136,7 +137,7 @@ int CGame::LoadReplayData()
 			u32 turn = 0;
 			u32 turnLength = 0;
 			*m_ReplayStream >> turn >> turnLength;
-			ENSURE(turn == currentTurn);
+			ENSURE(turn == currentTurn && "You tried to replay a commands.txt file of a rejoiend client. Please use the host's file.");
 			replayTurnMgr->StoreReplayTurnLength(currentTurn, turnLength);
 		}
 		else if (type == "cmd")
@@ -156,14 +157,12 @@ int CGame::LoadReplayData()
 			replayTurnMgr->StoreReplayHash(currentTurn, replayHash, quick);
 		}
 		else if (type == "end")
-		{
-			currentTurn++;
-		}
+			++currentTurn;
 		else
-		{
 			CancelLoad(L"Failed to load replay data (unrecognized content)");
-		}
 	}
+	m_ReplayStream->close();
+	SAFE_DELETE(m_ReplayStream);
 	m_FinalReplayTurn = currentTurn;
 	replayTurnMgr->StoreFinalReplayTurn(currentTurn);
 	return 0;

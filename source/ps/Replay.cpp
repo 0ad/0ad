@@ -159,8 +159,6 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	std::string type;
 	while ((*m_Stream >> type).good())
 	{
-//		if (turn >= 1400) break;
-
 		if (type == "start")
 		{
 			std::string line;
@@ -200,8 +198,6 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 
 			bool quick = (type == "hash-quick");
 
-//			if (turn >= 1300)
-//			if (turn >= 0)
 			if (turn % 100 == 0)
 			{
 				std::string hash;
@@ -226,15 +222,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 				commands.clear();
 			}
 
-//			std::string hash;
-//			bool ok = g_Game->GetSimulation2()->ComputeStateHash(hash, true);
-//			ENSURE(ok);
-//			debug_printf("%s\n", Hexify(hash).c_str());
-
 			g_Profiler.Frame();
-
-//			if (turn % 1000 == 0)
-//				JS_GC(g_Game->GetSimulation2()->GetScriptInterface().GetContext());
 
 			if (turn % 20 == 0)
 				g_ProfileViewer.SaveToFile();
@@ -245,6 +233,9 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 		}
 	}
 	}
+
+	m_Stream->close();
+	SAFE_DELETE(m_Stream);
 
 	g_Profiler2.SaveToFile();
 
