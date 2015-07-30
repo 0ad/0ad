@@ -389,12 +389,10 @@ bool CGame::Update(const double deltaRealTime, bool doInterpolate)
 				PROFILE3("gui sim update");
 				g_GUI->SendEventToAll("SimulationUpdate");
 			}
-			if (m_IsReplay && m_TurnManager->GetCurrentTurn() == m_FinalReplayTurn - 1)
-				g_GUI->SendEventToAll("ReplayFinished");
 
 			GetView()->GetLOSTexture().MakeDirty();
 		}
-		
+
 		if (CRenderer::IsInitialised())
 			g_Renderer.GetTimeManager().Update(deltaSimTime);
 	}

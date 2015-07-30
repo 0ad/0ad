@@ -549,6 +549,9 @@ void CNetReplayTurnManager::DoTurn(u32 turn)
 		m_Simulation2.GetScriptInterface().ParseJSON(pair.second, &command);
 		AddCommand(m_ClientId, pair.first, command, m_CurrentTurn + 1);
 	}
+
+	if (turn == m_FinalReplayTurn)
+		g_GUI->SendEventToAll("ReplayFinished");
 }
 
 CNetServerTurnManager::CNetServerTurnManager(CNetServerWorker& server) :
