@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,11 +44,10 @@ CObjectEntry::CObjectEntry(CObjectBase* base, CSimulation2& simulation) :
 {
 }
 
-template<typename T, typename S> static void delete_pair_2nd(std::pair<T,S> v) { delete v.second; }
-
 CObjectEntry::~CObjectEntry()
 {
-	std::for_each(m_Animations.begin(), m_Animations.end(), delete_pair_2nd<CStr, CSkeletonAnim*>);
+	for (const std::pair<CStr, CSkeletonAnim*>& anim : m_Animations)
+		delete anim.second;
 
 	delete m_Model;
 }
@@ -131,10 +130,8 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	model->GetMaterial().AddStaticUniform("objectColor", CVector4D(m_Color.r, m_Color.g, m_Color.b, m_Color.a));
 	model->InitModel(modeldef);
 	
-	if (m_Samplers.size() == 0)
-	{
+	if (m_Samplers.empty())
 		LOGERROR("Actor '%s' has no textures.", utf8_from_wstring(m_Base->m_ShortName));
-	}
 	
 	for (const auto& samp : m_Samplers)
 	{
@@ -164,17 +161,11 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		CStr name = it->first.LowerCase();
 
-		// TODO: Use consistent names everywhere, then remove this translation section.
-		// (It's just mapping the names used in actors onto the names used by code.)
-		if (name == "attack") name = "melee";
-		else if (name == "chop") name = "gather";
-		else if (name == "decay") name = "corpse";
-
-		if (! it->second.m_FileName.empty())
+		if (!it->second.m_FileName.empty())
 		{
 			CSkeletonAnim* anim = model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2, it->second.m_SoundPos);
 			if (anim)
-				m_Animations.insert(std::make_pair(name, anim));
+				m_Animations.emplace(std::move(name), anim);
 		}
 	}
 

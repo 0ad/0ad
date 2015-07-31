@@ -18,13 +18,14 @@
 #include "precompiled.h"
 
 #include "CLogger.h"
-#include "CConsole.h"
+
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
+#include "ps/CConsole.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 
@@ -223,15 +224,15 @@ void CLogger::Render()
 	// and attempt to lock the mutex recursively which is forbidden)
 	CScopeLock lock(m_Mutex);
 
-	for (std::deque<RenderedMessage>::iterator it = m_RenderMessages.begin(); it != m_RenderMessages.end(); ++it)
+	for (const RenderedMessage& msg : m_RenderMessages)
 	{
 		const char* type;
-		if (it->method == Normal)
+		if (msg.method == Normal)
 		{
 			type = "info";
 			textRenderer.Color(0.0f, 0.8f, 0.0f);
 		}
-		else if (it->method == Warning)
+		else if (msg.method == Warning)
 		{
 			type = "warning";
 			textRenderer.Color(1.0f, 1.0f, 0.0f);
@@ -244,10 +245,10 @@ void CLogger::Render()
 
 		CMatrix3D savedTransform = textRenderer.GetTransform();
 
-		textRenderer.PrintfAdvance(L"[%8.3f] %hs: ", it->time, type);
+		textRenderer.PrintfAdvance(L"[%8.3f] %hs: ", msg.time, type);
 		// Display the actual message in white so it's more readable
 		textRenderer.Color(1.0f, 1.0f, 1.0f);
-		textRenderer.Put(0.0f, 0.0f, it->message.c_str());
+		textRenderer.Put(0.0f, 0.0f, msg.message.c_str());
 
 		textRenderer.SetTransform(savedTransform);
 

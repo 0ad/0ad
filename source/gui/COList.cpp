@@ -408,11 +408,14 @@ void COList::DrawList(const int &selected,
 			xpos += width;
 		}
 
+		const unsigned int objectsCount = m_ObjectsDefs.size();
 		for (int i=0; i<(int)pList->m_Items.size(); ++i)
 		{
 			if (m_ItemsYPositions[i+1] - scroll < 0 ||
 				m_ItemsYPositions[i] - scroll > rect.GetHeight())
 				continue;
+
+			const float rowHeight = m_ItemsYPositions[i+1] - m_ItemsYPositions[i];
 
 			// Clipping area (we'll have to substract the scrollbar)
 			CRect cliparea = GetListRect();
@@ -429,14 +432,23 @@ void COList::DrawList(const int &selected,
 			}
 
 			xpos = 0;
-			for (unsigned int def=0; def< m_ObjectsDefs.size(); ++def)
+			for (unsigned int def=0; def < objectsCount; ++def)
 			{
-				DrawText(m_ObjectsDefs.size() * (i+/*Heading*/1) + def, m_ObjectsDefs[def].m_TextColor, rect.TopLeft() + CPos(xpos, -scroll + m_ItemsYPositions[i]), bz+0.1f, cliparea);
+				// Determine text position and width
+				const CPos textPos = rect.TopLeft() + CPos(xpos, -scroll + m_ItemsYPositions[i]);
+
+				float width = m_ObjectsDefs[def].m_Width;;
 				// Check if it's a decimal value, and if so, assume relative positioning.
 				if (m_ObjectsDefs[def].m_Width < 1 && m_ObjectsDefs[def].m_Width > 0)
-					xpos += m_ObjectsDefs[def].m_Width * m_TotalAvalibleColumnWidth;
-				else
-					xpos += m_ObjectsDefs[def].m_Width;
+					width *= m_TotalAvalibleColumnWidth;
+
+				// Clip text to the column (to prevent drawing text into the neighboring column)
+				CRect cliparea2 = cliparea;
+				cliparea2.right = std::min(cliparea2.right, textPos.x + width);
+				cliparea2.bottom = std::min(cliparea2.bottom, textPos.y + rowHeight);
+
+				DrawText(objectsCount * (i+/*Heading*/1) + def, m_ObjectsDefs[def].m_TextColor, textPos, bz+0.1f, cliparea2);
+				xpos += width;
 			}
 		}
 	}

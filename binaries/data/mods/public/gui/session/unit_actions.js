@@ -660,7 +660,7 @@ var unitActions =
 
 /**
  * Info and actions for the entity commands
- * Currently displayed in the bottom of the central pane
+ * Currently displayed in the bottom of the central panel
  */
 var g_EntityCommands = 
 {
@@ -696,13 +696,13 @@ var g_EntityCommands =
 			if (entState.mirage)
 				return {
 					"tooltip": translate("You cannot destroy this entity because it is in the fog-of-war"),
-					"icon": "kill_small.png"
+					"icon": "kill_small_disabled.png"
 				};
 
 			if (entState.capturePoints && entState.capturePoints[entState.player] < entState.maxCapturePoints / 2)
 				return {
 					"tooltip": translate("You cannot destroy this entity as you own less than half the capture points"),
-					"icon": "kill_small.png"
+					"icon": "kill_small_disabled.png"
 				};
 					
 
@@ -714,6 +714,9 @@ var g_EntityCommands =
 		"execute": function(entState)
 		{
 			if (entState.mirage)
+				return;
+
+			if (entState.capturePoints && entState.capturePoints[entState.player] < entState.maxCapturePoints / 2)
 				return;
 
 			var selection = g_Selection.toList();

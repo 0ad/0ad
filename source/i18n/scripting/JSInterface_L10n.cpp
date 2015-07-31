@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,7 +21,6 @@
 
 #include "i18n/L10n.h"
 #include "lib/utf8.h"
-#include "ps/ConfigDB.h"
 
 // Returns a translation of the specified English string into the current language.
 std::wstring JSI_L10n::Translate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring sourceString)
@@ -57,10 +56,9 @@ std::wstring JSI_L10n::TranslateLines(ScriptInterface::CxPrivate* UNUSED(pCxPriv
 std::vector<std::wstring> JSI_L10n::TranslateArray(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::vector<std::wstring> sourceArray)
 {
 	std::vector<std::wstring> translatedArray;
-	for (std::vector<std::wstring>::iterator iterator = sourceArray.begin(); iterator != sourceArray.end(); ++iterator)
-	{
-		translatedArray.push_back(wstring_from_utf8(g_L10n.Translate(utf8_from_wstring(*iterator))));
-	}
+	for (const std::wstring& elem : sourceArray)
+		translatedArray.push_back(wstring_from_utf8(g_L10n.Translate(utf8_from_wstring(elem))));
+
 	return translatedArray;
 }
 

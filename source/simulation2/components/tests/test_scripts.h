@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -66,7 +66,7 @@ public:
 
 		VfsPaths paths;
 		TS_ASSERT_OK(vfs::GetPathnames(g_VFS, L"simulation/components/tests/", L"test_*.js", paths));
-		for (size_t i = 0; i < paths.size(); ++i)
+		for (const VfsPath& path : paths)
 		{
 			CSimContext context;
 			CComponentManager componentManager(context, g_ScriptRuntime, true);
@@ -79,7 +79,7 @@ public:
 			componentManager.LoadComponentTypes();
 
 			load_script(componentManager.GetScriptInterface(), L"simulation/components/tests/setup.js");
-			load_script(componentManager.GetScriptInterface(), paths[i]);
+			load_script(componentManager.GetScriptInterface(), path);
 		}
 	}
 };

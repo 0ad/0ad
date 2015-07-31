@@ -393,20 +393,22 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	return {"quality": bestVal, "pos": [x, z]};
 };
 
-m.BaseManager.prototype.getResourceLevel = function (gameState, type)
+m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly = false)
 {
 	var count = 0;
 	var check = {};
 	var nearby = this.dropsiteSupplies[type]["nearby"];
-	for (var supply of nearby)
+	for (let supply of nearby)
 	{
 		if (check[supply.id])    // avoid double counting as same resource can appear several time
 			continue;
 		check[supply.id] = true;
 		count += supply.ent.resourceSupplyAmount();
 	}
+	if (nearbyOnly)
+		return count;
 	var medium = this.dropsiteSupplies[type]["medium"];
-	for (var supply of medium)
+	for (let supply of medium)
 	{
 		if (check[supply.id])
 			continue;
@@ -425,7 +427,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 		{
 			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{
-				var count = this.getResourceLevel(gameState, type);  // TODO animals are not accounted, may-be we should
+				var count = this.getResourceLevel(gameState, type, (gameState.currentPhase() > 1));  // animals are not accounted
 				var numFarms = gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length;  // including foundations
 				var numQueue = queues.field.countQueuedUnits();
 

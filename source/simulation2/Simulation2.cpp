@@ -187,13 +187,12 @@ bool CSimulation2Impl::LoadScripts(CComponentManager& componentManager, std::set
 		return false;
 
 	bool ok = true;
-	for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+	for (const VfsPath& path : pathnames)
 	{
-		VfsPath filename = *it;
 		if (loadedScripts)
-			loadedScripts->insert(filename);
-		LOGMESSAGE("Loading simulation script '%s'", filename.string8());
-		if (!componentManager.LoadScript(filename))
+			loadedScripts->insert(path);
+		LOGMESSAGE("Loading simulation script '%s'", path.string8());
+		if (!componentManager.LoadScript(path))
 			ok = false;
 	}
 	return ok;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,11 +26,7 @@ Standard declarations which are included in all projects.
 
 #include "lib/os_path.h"
 
-// overrides ah_translate. registered in GameSetup.cpp
-extern const wchar_t* psTranslate(const wchar_t* text);
-extern void psTranslateFree(const wchar_t* text);
-extern void psBundleLogs(FILE* f);
-
+extern void psBundleLogs(FILE* f); // set during InitVfs
 extern void psSetLogDir(const OsPath& logDir);	// set during InitVfs
 extern const OsPath& psLogDir();	// used by AppHooks and engine code when reporting errors
 

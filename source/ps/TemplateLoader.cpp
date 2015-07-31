@@ -19,10 +19,10 @@
 
 #include "TemplateLoader.h"
 
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
-#include "lib/utf8.h"
 
 static const wchar_t TEMPLATE_ROOT[] = L"simulation/templates/";
 static const wchar_t ACTOR_ROOT[] = L"art/actors/";
@@ -206,7 +206,7 @@ static Status AddActorToTemplates(const VfsPath& pathname, const CFileInfo& UNUS
 	return INFO::OK;
 }
 
-bool CTemplateLoader::TemplateExists(const std::string& templateName)
+bool CTemplateLoader::TemplateExists(const std::string& templateName) const
 {
 	size_t pos = templateName.rfind('|');
 	std::string baseName(pos != std::string::npos ? templateName.substr(pos+1) : templateName);
@@ -264,15 +264,14 @@ std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::stri
 				if (vfs::GetPathnames(g_VFS, templatePath / (directoryPath + "/"), fileFilter.c_str(), filenames) != INFO::OK)
 					continue;
 				
-				for (VfsPaths::iterator it = filenames.begin(); it != filenames.end(); ++it)
+				for (const VfsPath& filename : filenames)
 				{
-					VfsPath filename = *it;
 					// Strip the .xml extension
 					VfsPath pathstem = filename.ChangeExtension(L"");
 					// Strip the root from the path
 					std::wstring name = pathstem.string().substr(ARRAY_SIZE(TEMPLATE_ROOT) - 1);
 
-					templates.push_back(std::string(name.begin(), name.end()));
+					templates.emplace_back(name.begin(), name.end());
 				}
 				
 			}

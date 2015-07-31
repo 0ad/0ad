@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,12 +21,12 @@
 #include <boost/tokenizer.hpp>
 
 #include "lib/input.h"
-#include "ConfigDB.h"
-#include "CLogger.h"
-#include "CConsole.h"
-#include "CStr.h"
+#include "ps/CConsole.h"
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
+#include "ps/ConfigDB.h"
 #include "ps/Globals.h"
-#include "KeyName.h"
+#include "ps/KeyName.h"
 
 static bool unified[UNIFIED_LAST - UNIFIED_SHIFT];
 
@@ -64,13 +64,11 @@ std::map<std::string, bool> g_HotkeyStatus;
 // all key combinations that trigger it.
 static void LoadConfigBindings()
 {
-	std::map<CStr, CConfigValueSet> bindings = g_ConfigDB.GetValuesWithPrefix(CFG_COMMAND, "hotkey.");
-	for (std::map<CStr, CConfigValueSet>::iterator bindingsIt = bindings.begin(); bindingsIt != bindings.end(); ++bindingsIt)
+	for (const std::pair<CStr, CConfigValueSet>& configPair : g_ConfigDB.GetValuesWithPrefix(CFG_COMMAND, "hotkey."))
 	{
-		std::string hotkeyName = bindingsIt->first.substr(7); // strip the "hotkey." prefix
-		for (CConfigValueSet::iterator it = bindingsIt->second.begin(); it != bindingsIt->second.end(); ++it)
+		std::string hotkeyName = configPair.first.substr(7); // strip the "hotkey." prefix
+		for (const CStr& hotkey : configPair.second)
 		{
-			const CStr& hotkey = *it;
 			std::vector<SKey> keyCombination;
 
 			// Iterate through multiple-key bindings (e.g. Ctrl+I)
@@ -118,25 +116,21 @@ void LoadHotkeys()
 	// Set up the state of the hotkeys given no key is down.
 	// i.e. find those hotkeys triggered by all negations.
 
-	for( std::map<int, KeyMapping>::iterator mapIt = g_HotkeyMap.begin(); mapIt != g_HotkeyMap.end(); ++mapIt )
-	{
-		KeyMapping& hotkeyMap = mapIt->second;
-
-		for( std::vector<SHotkeyMapping>::iterator it = hotkeyMap.begin(); it != hotkeyMap.end(); ++it )
+	for (const std::pair<int, KeyMapping>& p : g_HotkeyMap)
+		for (const SHotkeyMapping& hotkey : p.second)
 		{
-			if( !it->negated )
+			if (!hotkey.negated)
 				continue;
 
 			bool allNegated = true;
 
-			for( std::vector<SKey>::iterator j = it->requires.begin(); j != it->requires.end(); ++j )
-				if( !j->negated )
+			for (const SKey& k : hotkey.requires)
+				if (!k.negated)
 					allNegated = false;
 			
-			if( allNegated )
-				g_HotkeyStatus[it->name] = true;
+			if (allNegated)
+				g_HotkeyStatus[hotkey.name] = true;
 		}
-	}
 }
 
 void UnloadHotkeys()
@@ -160,11 +154,11 @@ bool isNegated(const SKey& key)
 		return true;
 }
 
-InReaction HotkeyInputHandler( const SDL_Event_* ev )
+InReaction HotkeyInputHandler(const SDL_Event_* ev)
 {
 	int keycode = 0;
 
-	switch( ev->ev.type )
+	switch(ev->ev.type)
 	{
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
@@ -232,46 +226,46 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	// Just send them to this handler; don't let the imaginary event codes leak back to real SDL.
 
 	SDL_Event_ phantom;
-	phantom.ev.type = ( ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN ) ) ? SDL_KEYDOWN : SDL_KEYUP;
-	if( ( keycode == SDLK_LSHIFT ) || ( keycode == SDLK_RSHIFT ) )
+	phantom.ev.type = ((ev->ev.type == SDL_KEYDOWN) || (ev->ev.type == SDL_MOUSEBUTTONDOWN)) ? SDL_KEYDOWN : SDL_KEYUP;
+	if ((keycode == SDLK_LSHIFT) || (keycode == SDLK_RSHIFT))
 	{
 		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_SHIFT;
-		unified[0] = ( phantom.ev.type == SDL_KEYDOWN );
-		HotkeyInputHandler( &phantom );
+		unified[0] = (phantom.ev.type == SDL_KEYDOWN);
+		HotkeyInputHandler(&phantom);
 	}
-	else if( ( keycode == SDLK_LCTRL ) || ( keycode == SDLK_RCTRL ) )
+	else if ((keycode == SDLK_LCTRL) || (keycode == SDLK_RCTRL))
 	{
 		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_CTRL;
-		unified[1] = ( phantom.ev.type == SDL_KEYDOWN );
-		HotkeyInputHandler( &phantom );
+		unified[1] = (phantom.ev.type == SDL_KEYDOWN);
+		HotkeyInputHandler(&phantom);
 	}
-	else if( ( keycode == SDLK_LALT ) || ( keycode == SDLK_RALT ) )
+	else if ((keycode == SDLK_LALT) || (keycode == SDLK_RALT))
 	{
 		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_ALT;
-		unified[2] = ( phantom.ev.type == SDL_KEYDOWN );
-		HotkeyInputHandler( &phantom );
+		unified[2] = (phantom.ev.type == SDL_KEYDOWN);
+		HotkeyInputHandler(&phantom);
 	}
 #if SDL_VERSION_ATLEAST(2, 0, 0)
-	else if( ( keycode == SDLK_LGUI ) || ( keycode == SDLK_RGUI ) )
+	else if ((keycode == SDLK_LGUI) || (keycode == SDLK_RGUI))
 #else // SDL 1.2
-	else if( ( keycode == SDLK_LSUPER ) || ( keycode == SDLK_RSUPER ) || ( keycode == SDLK_LMETA ) || ( keycode == SDLK_RMETA) )
+	else if ((keycode == SDLK_LSUPER) || (keycode == SDLK_RSUPER) || (keycode == SDLK_LMETA) || (keycode == SDLK_RMETA))
 #endif
 	{
 		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_SUPER;
-		unified[3] = ( phantom.ev.type == SDL_KEYDOWN );
-		HotkeyInputHandler( &phantom );
+		unified[3] = (phantom.ev.type == SDL_KEYDOWN);
+		HotkeyInputHandler(&phantom);
 	}
 
 	// Check whether we have any hotkeys registered for this particular keycode
-	if( g_HotkeyMap.find(keycode) == g_HotkeyMap.end() )
-		return( IN_PASS );
+	if (g_HotkeyMap.find(keycode) == g_HotkeyMap.end())
+		return (IN_PASS);
 
 	// Inhibit the dispatch of hotkey events caused by real keys (not fake mouse button
 	// events) while the console is up.
 
 	bool consoleCapture = false;
 
-	if( g_Console->IsActive() && keycode < CUSTOM_SDL_KEYCODE )
+	if (g_Console->IsActive() && keycode < CUSTOM_SDL_KEYCODE)
 		consoleCapture = true;
 
 	// Here's an interesting bit:
@@ -295,32 +289,32 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	std::vector<const char*> closestMapNames;
 	size_t closestMapMatch = 0;
 
-	for (std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); ++it)
+	for (const SHotkeyMapping& hotkey : g_HotkeyMap[keycode])
 	{
 		// If a key has been pressed, and this event triggers on its release, skip it.
 		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
-		if (it->negated == typeKeyDown)
+		if (hotkey.negated == typeKeyDown)
 			continue;
 
 		// Check for no unpermitted keys
 		bool accept = true;
-		for (std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end() && accept; ++itKey)
-			accept = isNegated(*itKey);
+		for (const SKey& k : hotkey.requires)
+			accept = isNegated(k);
 
-		if (accept && !(consoleCapture && it->name != "console.toggle"))
+		if (accept && !(consoleCapture && hotkey.name != "console.toggle"))
 		{
 			// Check if this is an equally precise or more precise match
-			if (it->requires.size() + 1 >= closestMapMatch)
+			if (hotkey.requires.size() + 1 >= closestMapMatch)
 			{
 				// Check if more precise
-				if (it->requires.size() + 1 > closestMapMatch)
+				if (hotkey.requires.size() + 1 > closestMapMatch)
 				{
 					// Throw away the old less-precise matches
 					closestMapNames.clear();
-					closestMapMatch = it->requires.size() + 1;
+					closestMapMatch = hotkey.requires.size() + 1;
 				}
 
-				closestMapNames.push_back(it->name.c_str());
+				closestMapNames.push_back(hotkey.name.c_str());
 			}
 		}
 	}
@@ -335,25 +329,25 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 	// -- KEYUP SECTION --
 
-	for (std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); ++it)
+	for (const SHotkeyMapping& hotkey : g_HotkeyMap[keycode])
 	{
 		// If it's a keydown event, won't cause HotKeyUps in anything that doesn't
 		// use this key negated => skip them
 		// If it's a keyup event, won't cause HotKeyUps in anything that does use
 		// this key negated => skip them too.
-		if (it->negated != typeKeyDown)
+		if (hotkey.negated != typeKeyDown)
 			continue;
 
 		// Check for no unpermitted keys
 		bool accept = true;
-		for (std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end() && accept; ++itKey)
-			accept = isNegated(*itKey);
+		for (const SKey& k : hotkey.requires)
+			accept = isNegated(k);
 
 		if (accept)
 		{
 			SDL_Event_ hotkeyNotification;
 			hotkeyNotification.ev.type = SDL_HOTKEYUP;
-			hotkeyNotification.ev.user.data1 = const_cast<char*>(it->name.c_str());
+			hotkeyNotification.ev.user.data1 = const_cast<char*>(hotkey.name.c_str());
 			in_push_priority_event(&hotkeyNotification);
 		}
 	}

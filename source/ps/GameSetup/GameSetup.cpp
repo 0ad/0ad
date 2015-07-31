@@ -930,12 +930,6 @@ bool Init(const CmdLineArgs& args, int flags)
 		exit(0);
 	}
 
-	// override ah_translate with our i18n code.
-	AppHooks hooks = {0};
-	hooks.translate = psTranslate;
-	hooks.translate_free = psTranslateFree;
-	app_hooks_update(&hooks);
-
 	CNetHost::Initialize();
 
 #if CONFIG2_AUDIO

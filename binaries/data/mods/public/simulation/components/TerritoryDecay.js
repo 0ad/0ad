@@ -73,10 +73,7 @@ TerritoryDecay.prototype.GetConnectedNeighbours = function()
 
 TerritoryDecay.prototype.UpdateDecayState = function()
 {
-	if (this.IsConnected())
-		var decaying = false;
-	else
-		var decaying = this.GetDecayRate() > 0;
+	let decaying = !this.IsConnected() && this.GetDecayRate() > 0;
 	if (decaying === this.decaying)
 		return;
 	this.decaying = decaying;

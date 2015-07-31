@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -319,7 +319,7 @@ public:
 				
 				center = selectionBox.m_Center;
 			}
-			outEntities.push_back(std::make_pair(unit.entity, center));
+			outEntities.emplace_back(unit.entity, center);
 		}
 	}
 };

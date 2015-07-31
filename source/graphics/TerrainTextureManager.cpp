@@ -50,45 +50,33 @@ CTerrainTextureManager::~CTerrainTextureManager()
 {
 	UnloadTerrainTextures();
 	
-	TerrainAlphaMap::iterator it;
-	for (it = m_TerrainAlphas.begin(); it != m_TerrainAlphas.end(); ++it)
+	for (std::pair<const VfsPath, TerrainAlpha>& ta : m_TerrainAlphas)
 	{
-		ogl_tex_free(it->second.m_hCompositeAlphaMap);
-		it->second.m_hCompositeAlphaMap = 0;
+		ogl_tex_free(ta.second.m_hCompositeAlphaMap);
+		ta.second.m_hCompositeAlphaMap = 0;
 	}
 }
 
 void CTerrainTextureManager::UnloadTerrainTextures()
 {
-	for (size_t i=0; i < m_TextureEntries.size(); i++)
-		delete m_TextureEntries[i];
+	for (CTerrainTextureEntry* const& te : m_TextureEntries)
+		delete te;
 	m_TextureEntries.clear();
 
-	TerrainGroupMap::iterator it = m_TerrainGroups.begin();
-	while (it != m_TerrainGroups.end())
-	{
-		delete it->second;
-		++it;
-	}
+	for (const std::pair<CStr, CTerrainGroup*>& tg : m_TerrainGroups)
+		delete tg.second;
 	m_TerrainGroups.clear();
 
 	m_LastGroupIndex = 0;
 }
 
-CTerrainTextureEntry* CTerrainTextureManager::FindTexture(const CStr& tag_)
+CTerrainTextureEntry* CTerrainTextureManager::FindTexture(const CStr& tag_) const
 {
-	CStr tag(tag_);
-	// Strip extension off of tag
-	long pos=tag.ReverseFind(".");
-	if (pos != -1)
-	{
-		tag = tag.substr(0, pos);
-	}
-	for (size_t i=0;i<m_TextureEntries.size();i++)
-	{
-		if (m_TextureEntries[i]->GetTag() == tag)
-			return m_TextureEntries[i];
-	}
+	CStr tag = tag_.BeforeLast("."); // Strip extension
+
+	for (CTerrainTextureEntry* const& te : m_TextureEntries)
+		if (te->GetTag() == tag)
+			return te;
 
 	LOGWARNING("CTerrainTextureManager: Couldn't find terrain %s", tag.c_str());
 	return 0;
@@ -99,20 +87,19 @@ CTerrainPropertiesPtr CTerrainTextureManager::GetPropertiesFromFile(const CTerra
 	return CTerrainProperties::FromXML(props, pathname);
 }
 
-CTerrainTextureEntry *CTerrainTextureManager::AddTexture(const CTerrainPropertiesPtr& props, const VfsPath& path)
+CTerrainTextureEntry* CTerrainTextureManager::AddTexture(const CTerrainPropertiesPtr& props, const VfsPath& path)
 {
-	CTerrainTextureEntry *entry = new CTerrainTextureEntry(props, path);
+	CTerrainTextureEntry* entry = new CTerrainTextureEntry(props, path);
 	m_TextureEntries.push_back(entry);
 	return entry;
 }
 
 void CTerrainTextureManager::DeleteTexture(CTerrainTextureEntry* entry)
 {
-	typedef std::vector<CTerrainTextureEntry*>::iterator Iter;
-	Iter i=std::find(m_TextureEntries.begin(),m_TextureEntries.end(),entry);
-	if (i!=m_TextureEntries.end()) {
-		m_TextureEntries.erase(i);
-	}
+	auto it = std::find(m_TextureEntries.begin(), m_TextureEntries.end(), entry);
+	if (it != m_TextureEntries.end())
+		m_TextureEntries.erase(it);
+
 	delete entry;
 }
 
@@ -170,7 +157,6 @@ void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& paren
 	LoadTextures(props, path);
 }
 
-
 int CTerrainTextureManager::LoadTerrainTextures()
 {
 	CTerrainPropertiesPtr rootProps(new CTerrainProperties(CTerrainPropertiesPtr()));
@@ -180,22 +166,21 @@ int CTerrainTextureManager::LoadTerrainTextures()
 
 CTerrainGroup* CTerrainTextureManager::FindGroup(const CStr& name)
 {
-	TerrainGroupMap::const_iterator it=m_TerrainGroups.find(name);
+	TerrainGroupMap::const_iterator it = m_TerrainGroups.find(name);
 	if (it != m_TerrainGroups.end())
 		return it->second;
 	else
 		return m_TerrainGroups[name] = new CTerrainGroup(name, ++m_LastGroupIndex);
 }
 
-void CTerrainGroup::AddTerrain(CTerrainTextureEntry *pTerrain)
+void CTerrainGroup::AddTerrain(CTerrainTextureEntry* pTerrain)
 {
 	m_Terrains.push_back(pTerrain);
 }
 
-void CTerrainGroup::RemoveTerrain(CTerrainTextureEntry *pTerrain)
+void CTerrainGroup::RemoveTerrain(CTerrainTextureEntry* pTerrain)
 {
-	std::vector<CTerrainTextureEntry *>::iterator it;
-	it=find(m_Terrains.begin(), m_Terrains.end(), pTerrain);
+	auto it = find(m_Terrains.begin(), m_Terrains.end(), pTerrain);
 	if (it != m_Terrains.end())
 		m_Terrains.erase(it);
 }

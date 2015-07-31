@@ -252,11 +252,11 @@ public:
 			return false;
 		}
 
-		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		for (const VfsPath& path : pathnames)
 		{
-			if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
+			if (!m_ScriptInterface->LoadGlobalScriptFile(path))
 			{
-				LOGERROR("Failed to load script %s", it->string8());
+				LOGERROR("Failed to load script %s", path.string8());
 				return false;
 			}
 		}
@@ -1145,7 +1145,7 @@ private:
 
 		const CParamNode* node = cmpTemplateManager->GetTemplateWithoutValidation(m_TemplateNames[m_TemplateLoadedIdx]);
 		if (node)
-			m_Templates.push_back(std::make_pair(m_TemplateNames[m_TemplateLoadedIdx], node));
+			m_Templates.emplace_back(m_TemplateNames[m_TemplateLoadedIdx], node);
 
 		m_TemplateLoadedIdx++;
 

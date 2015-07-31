@@ -182,7 +182,7 @@ function displaySingle(entState, template)
 		if (entState.trader.goods.amount.market2Gain)
 			totalGain += entState.trader.goods.amount.market2Gain;
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = totalGain;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Gain: %(amount)s"), { amount: getTradingTooltip(entState.trader.goods.amount) });
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Gain: %(gain)s"), { "gain": getTradingTooltip(entState.trader.goods.amount) });
 	}
 	// And for number of workers
 	else if (entState.foundation && entState.visibility == "visible")

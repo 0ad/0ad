@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -40,7 +40,7 @@ extern Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* 
  * @param pathname full pathname (since CFileInfo only gives the name).
  * @param fileInfo file information
  * @param cbData user-specified context
- * @return INFO::CONTINUE on success; any other value will immediately
+ * @return INFO::OK on success; any other value will immediately
  * be returned to the caller (no more calls will be forthcoming).
  *
  * CAVEAT: pathname and fileInfo are only valid until the function
@@ -58,7 +58,7 @@ enum DirFlags
  *
  * @param fs
  * @param path
- * @param cb See DirCallback
+ * @param cb @ref FileCallback
  * @param cbData
  * @param pattern that file names must match. '*' and '&' wildcards
  *		  are allowed. 0 matches everything.

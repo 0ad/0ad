@@ -1450,13 +1450,13 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		}
 	}
 
-	if (this.Config.Military.numWoodenTowers && gameState.currentPhase() < 2 && this.canBuild(gameState, "other/palisades_rocks_fort"))
+	if (this.Config.Military.numWoodenTowers && gameState.currentPhase() < 2 && this.canBuild(gameState, "structures/{civ}_wooden_tower"))
 	{
 		let numTowers = gameState.getOwnEntitiesByClass("Tower", true).length;	// we count all towers, including wall towers
 		if (numTowers < this.Config.Military.numWoodenTowers && gameState.ai.elapsedTime > this.towerLapseTime + this.fortStartTime)
 		{
 			this.fortStartTime = gameState.ai.elapsedTime;
-			queues.defenseBuilding.addItem(new m.ConstructionPlan(gameState, "other/palisades_rocks_fort"));
+			queues.defenseBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_wooden_tower"));
 		}
 		return;
 	}

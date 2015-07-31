@@ -60,7 +60,7 @@ entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const C
 		const CVector3D center = entities[i].second;
 		CVector3D closest = origin + dir * (center - origin).Dot(dir);
 		dist2 = (closest - center).LengthSquared();
-		hits.push_back(std::make_pair(dist2, entities[i].first));
+		hits.emplace_back(dist2, entities[i].first);
 	}
 
 	// Sort hits by distance

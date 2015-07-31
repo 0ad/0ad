@@ -8,9 +8,10 @@
         <UnitMotion.WalkSpeed> <Multiply>1.25</Multiply> </UnitMotion.WalkSpeed>
         <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
         <Attack.Melee.Hack> <Add>5</Add> </Attack.Melee.Hack>
+        <Attack.Capture.Value> <Add>2</Add> </Attack.Capture.Value>
       </Modifications>
       <AuraName>Champion Army</AuraName>
-      <AuraDescription>+5 Attack and +25% Speed for Champion Units.</AuraDescription>
+      <AuraDescription>+5 Attack, +2 Capture and +25% Speed for Champion Units.</AuraDescription>
     </Aura1>
   </Auras>
   <Identity>

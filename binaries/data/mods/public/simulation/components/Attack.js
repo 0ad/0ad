@@ -345,7 +345,8 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	var captureIndex = types.indexOf("Capture")
 	if (captureIndex != -1)
 	{
-		var cmpCapturable = Engine.QueryInterface(target, IID_Capturable);
+		let cmpCapturable = QueryMiragedInterface(target, IID_Capturable);
+
 		var cmpPlayer = QueryOwnerInterface(this.entity);
 		if (allowCapture && cmpPlayer && cmpCapturable && cmpCapturable.CanCapture(cmpPlayer.GetPlayerID()))
 			return "Capture";

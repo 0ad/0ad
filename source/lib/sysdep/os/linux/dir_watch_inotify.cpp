@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -216,7 +216,7 @@ Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
 	dirWatch.swap(tmpDirWatch);
 	dirWatch->path = path;
 	dirWatch->reqnum = wd;
-	g_paths.insert(std::make_pair(wd, dirWatch));
+	g_paths.emplace(wd, dirWatch);
 
 	return INFO::OK;
 }

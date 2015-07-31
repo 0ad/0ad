@@ -99,7 +99,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 					else if (se.Name == at_name)
 						name = se.Value;
 				}
-				samplers.push_back(make_pair(name, path));
+				samplers.emplace_back(name, path);
 			}
 		
 		}

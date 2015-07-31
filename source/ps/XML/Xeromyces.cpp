@@ -56,7 +56,7 @@ void CXeromyces::Startup()
 	xmlInitParser();
 	xmlSetStructuredErrorFunc(NULL, &errorHandler);
 	CScopeLock lock(g_ValidatorCacheLock);
-	g_ValidatorCache.insert(std::make_pair("", RelaxNGValidator()));
+	g_ValidatorCache.emplace(std::string(), RelaxNGValidator());
 	g_XeromycesStarted = true;
 }
 
@@ -86,7 +86,7 @@ bool CXeromyces::AddValidator(const PIVFS& vfs, const std::string& name, const V
 		std::map<const std::string, RelaxNGValidator>::iterator it = g_ValidatorCache.find(name);
 		if (it != g_ValidatorCache.end())
 			g_ValidatorCache.erase(it);
-		g_ValidatorCache.insert(std::make_pair(name, validator));
+		g_ValidatorCache.emplace(name, validator);
 	}
 	return true;
 }
@@ -392,24 +392,24 @@ PSRETURN CXeromyces::CreateXMB(const xmlDocPtr doc, WriteBuffer& writeBuffer)
 	i = 0;
 	u32 elementCount = (u32)elementNames.size();
 	writeBuffer.Append(&elementCount, 4);
-	for (it = elementNames.begin(); it != elementNames.end(); ++it)
+	for (const std::string& n : elementNames)
 	{
-		u32 textLen = (u32)it->length()+1;
+		u32 textLen = (u32)n.length()+1;
 		writeBuffer.Append(&textLen, 4);
-		writeBuffer.Append((void*)it->c_str(), textLen);
-		elementIDs[*it] = i++;
+		writeBuffer.Append((void*)n.c_str(), textLen);
+		elementIDs[n] = i++;
 	}
 
 	// Output attribute names
 	i = 0;
 	u32 attributeCount = (u32)attributeNames.size();
 	writeBuffer.Append(&attributeCount, 4);
-	for (it = attributeNames.begin(); it != attributeNames.end(); ++it)
+	for (const std::string& n : attributeNames)
 	{
-		u32 textLen = (u32)it->length()+1;
+		u32 textLen = (u32)n.length()+1;
 		writeBuffer.Append(&textLen, 4);
-		writeBuffer.Append((void*)it->c_str(), textLen);
-		attributeIDs[*it] = i++;
+		writeBuffer.Append((void*)n.c_str(), textLen);
+		attributeIDs[n] = i++;
 	}
 
 	OutputElement(xmlDocGetRootElement(doc), writeBuffer, elementIDs, attributeIDs);
