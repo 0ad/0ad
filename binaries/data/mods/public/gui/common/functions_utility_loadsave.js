@@ -9,7 +9,7 @@ function generateLabel(metadata, engineInfo)
 	var dateString = sprintf(translate("\\[%(date)s]"), { date: dateTimeString });
 	if (engineInfo)
 	{
-		if (!hasSameVersion(metadata, engineInfo))
+		if (!hasSameSavegameVersion(metadata, engineInfo) || !hasSameEngineVersion(metadata, engineInfo))
 			dateString = "[color=\"red\"]" + dateString + "[/color]";
 		else if (!hasSameMods(metadata, engineInfo))
 			dateString = "[color=\"orange\"]" + dateString + "[/color]";
@@ -23,9 +23,17 @@ function generateLabel(metadata, engineInfo)
 /**
  * Check the version compatibility between the saved game to be loaded and the engine
  */
-function hasSameVersion(metadata, engineInfo)
+function hasSameSavegameVersion(metadata, engineInfo)
 {
-	return (metadata.version_major == engineInfo.version_major);
+	return metadata.version_major == engineInfo.version_major;
+}
+
+/**
+ * Check the version compatibility between the saved game to be loaded and the engine
+ */
+function hasSameEngineVersion(metadata, engineInfo)
+{
+	return metadata.engine_version && metadata.engine_version == engineInfo.engine_version;
 }
 
 /**
@@ -33,15 +41,8 @@ function hasSameVersion(metadata, engineInfo)
  */
 function hasSameMods(metadata, engineInfo)
 {
-	if (!metadata.mods)         // only here for backwards compatibility with previous saved games
-		var gameMods = [];
-	else
-		var gameMods = metadata.mods;
-
-	if (gameMods.length != engineInfo.mods.length)
+	if (!metadata.mods || metadata.mods.length != engineInfo.mods.length)
 		return false;
-	for (var i = 0; i < gameMods.length; ++i)
-		if (gameMods[i] != engineInfo.mods[i])
-			return false;
-	return true;
+	
+	return metadata.mods.every((mod, index) => mod == engineInfo.mods[index]);
 }

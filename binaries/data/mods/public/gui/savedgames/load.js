@@ -40,19 +40,34 @@ function loadGame()
 
 	// check game compatibility before really loading it
 	var engineInfo = Engine.GetEngineInfo();
-	if (!hasSameVersion(metadata, engineInfo) || !hasSameMods(metadata, engineInfo))
+	var sameMods = hasSameMods(metadata, engineInfo);
+	var sameEngineVersion = hasSameEngineVersion(metadata, engineInfo);
+	var sameSavegameVersion = hasSameSavegameVersion(metadata, engineInfo);
+	if (!sameEngineVersion || !sameSavegameVersion || !sameMods)
 	{
 		// version not compatible ... ask for confirmation
 		var btCaptions = [translate("Yes"), translate("No")];
 		var btCode = [function(){ reallyLoadGame(gameId); }, init];
 		var message = translate("This saved game may not be compatible:");
-		if (!hasSameVersion(metadata, engineInfo))
-			message += "\n" + sprintf(translate("It needs 0 A.D. version %(requiredVersion)s, while you are running version %(currentVersion)s."), {
+
+		if (!sameEngineVersion)
+		{
+			if (metadata.engine_version)
+				message += "\n" + sprintf(translate("It needs 0 A.D. version %(requiredVersion)s, while you are running version %(currentVersion)s."), {
+					requiredVersion: metadata.engine_version,
+					currentVersion: engineInfo.engine_version
+				});
+			else
+				message += "\n" + translate("It needs an older version of 0 A.D.");
+		}
+		
+		if (!sameSavegameVersion)
+			message += "\n" + sprintf(translate("It needs 0 A.D. savegame version %(requiredVersion)s, while you have savegame version %(currentVersion)s."), {
 				requiredVersion: metadata.version_major,
 				currentVersion: engineInfo.version_major
 			});
 
-		if (!hasSameMods(metadata, engineInfo))
+		if (!sameMods)
 		{
 			if (!metadata.mods)         // only for backwards compatibility with previous saved games
 				metadata.mods = [];
