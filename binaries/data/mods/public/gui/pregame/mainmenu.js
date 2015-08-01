@@ -44,7 +44,7 @@ var t0 = +(new Date());
 function scrollBackgrounds()
 {
 	var layerset = g_BackgroundLayerData[g_BackgroundCode];
-	for (var i = 0; i < layerset.length; i++)
+	for (var i = 0; i < layerset.length; ++i)
 	{
 		var layer = layerset[i];
 		var guiObj = Engine.GetGUIObjectByName("background["+i+"]");
@@ -52,16 +52,16 @@ function scrollBackgrounds()
 		var screen = guiObj.parent.getComputedSize();
 		var h = screen.bottom - screen.top;
 		var w = h * 16/9;
+		var iw = h * 2;
 
 		var time = (new Date() - t0) / 1000;
 		var offset = layer.offset(time, w);
 		if (layer.tiling)
 		{
-			var left = offset % screen.right;
-			if (left > 0)
-				left -= screen.right;
-			var right = left + screen.right * 2;
-			guiObj.size = new GUISize(left, screen.top, right, screen.bottom);
+			var left = offset % iw;
+			if (left >= 0)
+				left -= iw;
+			guiObj.size = new GUISize(left, screen.top, screen.right, screen.bottom);
 		}
 		else
 			guiObj.size = new GUISize(screen.right/2 - h + offset, screen.top, screen.right/2 + h + offset, screen.bottom);
