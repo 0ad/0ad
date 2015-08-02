@@ -102,7 +102,7 @@ function onTick()
 	else if (username != sanitizedName)
 	{
 		continueButton.enabled = false;
-		feedback.caption = translate("Usernames can't contain [, ], unicode, whitespace, or commas");
+		feedback.caption = translate("Usernames can't contain \\[, ], unicode, whitespace, or commas");
 	}
 	// Check that they entered a password.
 	else if (!password)
