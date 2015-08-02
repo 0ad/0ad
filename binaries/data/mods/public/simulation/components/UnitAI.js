@@ -3291,8 +3291,9 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 	if (msg.to != -1 && msg.from != -1)
 	{
 		// Switch to a virgin state to let states execute their leave handlers.
-		// except if garrisoned or cheering, in which case we only clear the order queue
-		if (this.isGarrisoned || (this.orderQueue[0] && this.orderQueue[0].type == "Cheering"))
+		// except if garrisoned or cheering or (un)packing, in which case we only clear the order queue
+		if (this.isGarrisoned || (this.orderQueue[0] && (this.orderQueue[0].type == "Cheering"
+			|| this.orderQueue[0].type == "Pack" || this.orderQueue[0].type == "Unpack")))
 			this.orderQueue.length = Math.min(this.orderQueue.length, 1);
 		else
 		{
@@ -3304,9 +3305,10 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 
 		this.SetStance(this.template.DefaultStance);
 		if (this.IsTurret())
-			this.SetTurretStance();	    
+			this.SetTurretStance();
 	}
 };
+
 UnitAI.prototype.OnDestroy = function()
 {
 	// Switch to an empty state to let states execute their leave handlers.
