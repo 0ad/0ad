@@ -214,7 +214,6 @@ function project_set_build_flags()
 
 		-- use native wchar_t type (not typedef to unsigned short)
 		flags { "NativeWChar" }
-		flags { "EnableSSE2" } -- Enable SSE2 code generation for VS
 
 	else	-- *nix
 

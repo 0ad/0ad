@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Mod.h"
+#include "ps/Pyrogenesis.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
@@ -86,6 +87,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().Eval("({})", &metadata);
 	simulation.GetScriptInterface().SetProperty(metadata, "version_major", SAVED_GAME_VERSION_MAJOR);
 	simulation.GetScriptInterface().SetProperty(metadata, "version_minor", SAVED_GAME_VERSION_MINOR);
+	simulation.GetScriptInterface().SetProperty(metadata, "engine_version", std::string(engine_version));
 	simulation.GetScriptInterface().SetProperty(metadata, "mods", g_modsLoaded);
 	simulation.GetScriptInterface().SetProperty(metadata, "time", (double)now);
 	simulation.GetScriptInterface().SetProperty(metadata, "player", playerID);
@@ -300,7 +302,8 @@ JS::Value SavedGames::GetEngineInfo(ScriptInterface& scriptInterface)
 	scriptInterface.Eval("({})", &metainfo); 
 	scriptInterface.SetProperty(metainfo, "version_major", SAVED_GAME_VERSION_MAJOR); 
 	scriptInterface.SetProperty(metainfo, "version_minor", SAVED_GAME_VERSION_MINOR); 
-	scriptInterface.SetProperty(metainfo, "mods"         , g_modsLoaded);
+	scriptInterface.SetProperty(metainfo, "engine_version", std::string(engine_version));
+	scriptInterface.SetProperty(metainfo, "mods", g_modsLoaded);
 	return metainfo;
 }
 

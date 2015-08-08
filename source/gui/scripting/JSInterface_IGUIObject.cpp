@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -325,6 +325,10 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		return true;
 	}
 
+	JS::RootedObject vpObj(cx);
+	if (vp.isObject())
+		vpObj = &vp.toObject();
+
 	// Use onWhatever to set event handlers
 	if (propName.substr(0, 2) == "on")
 	{
@@ -334,7 +338,6 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			return false;
 		}
 
-		JS::RootedObject vpObj(cx, &vp.toObject());
 		CStr eventName (CStr(propName.substr(2)).LowerCase());
 		e->SetScriptHandler(eventName, vpObj);
 
@@ -348,10 +351,6 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		JS_ReportError(cx, "Invalid setting '%s'", propName.c_str());
 		return true;
 	}
-
-	JS::RootedObject vpObj(cx);
-	if (vp.isObject())
-		vpObj = &vp.toObject();
 
 	switch (Type)
 	{
@@ -527,10 +526,9 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			else if (vp.isObject() && JS_InstanceOf(cx, vpObj, &JSI_GUIColor::JSI_class, NULL))
 			{
 				CColor color;
-				JS::RootedObject (cx, &vp.toObject());
 				JS::RootedValue t(cx);
 				double s;
-				#define PROP(x) JS_GetProperty(cx, obj, #x, &t); \
+				#define PROP(x) JS_GetProperty(cx, vpObj, #x, &t); \
 								s = t.toDouble(); \
 								color.x = (float)s
 				PROP(r); PROP(g); PROP(b); PROP(a);
@@ -556,12 +554,11 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			}
 
 			CGUIList list;
-			JS::RootedObject obj(cx, &vp.toObject());
 
 			for (u32 i=0; i<length; ++i)
 			{
 				JS::RootedValue element(cx);
-				if (! JS_GetElement(cx, obj, i, &element))
+				if (!JS_GetElement(cx, vpObj, i, &element))
 				{
 					JS_ReportError(cx, "Failed to get list element");
 					return false;

@@ -3287,17 +3287,25 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
 	this.SetupRangeQueries();
 
-	// If the unit isn't being created or dying, reset stance and clear orders (if not garrisoned).
+	// If the unit isn't being created or dying, reset stance and clear orders
 	if (msg.to != -1 && msg.from != -1)
 	{
 		// Switch to a virgin state to let states execute their leave handlers.
-		var index = this.GetCurrentState().indexOf(".");
-		if (index != -1)
-			this.UnitFsm.SwitchToNextState(this, this.GetCurrentState().slice(0,index));
+		// except if garrisoned or cheering or (un)packing, in which case we only clear the order queue
+		if (this.isGarrisoned || (this.orderQueue[0] && (this.orderQueue[0].type == "Cheering"
+			|| this.orderQueue[0].type == "Pack" || this.orderQueue[0].type == "Unpack")))
+			this.orderQueue.length = Math.min(this.orderQueue.length, 1);
+		else
+		{
+			let index = this.GetCurrentState().indexOf(".");
+			if (index != -1)
+				this.UnitFsm.SwitchToNextState(this, this.GetCurrentState().slice(0,index));
+			this.Stop(false);
+		}
 
 		this.SetStance(this.template.DefaultStance);
-		if(!this.isGarrisoned)
-			this.Stop(false);
+		if (this.IsTurret())
+			this.SetTurretStance();
 	}
 };
 

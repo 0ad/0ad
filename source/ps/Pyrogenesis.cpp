@@ -24,6 +24,8 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/svn_revision.h"
 
+const char engine_version[] = "0.0.19";
+
 // convert contents of file <in_filename> from char to wchar_t and
 // append to <out> file.
 static void AppendAsciiFile(FILE* out, const OsPath& pathname)
@@ -54,6 +56,7 @@ static void AppendAsciiFile(FILE* out, const OsPath& pathname)
 void psBundleLogs(FILE* f)
 {
 	fwprintf(f, L"SVN Revision: %ls\n\n", svn_revision);
+	fwprintf(f, L"Engine Version: %hs\n\n", engine_version);
 
 	fwprintf(f, L"System info:\n\n");
 	OsPath path1 = psLogDir()/"system_info.txt";

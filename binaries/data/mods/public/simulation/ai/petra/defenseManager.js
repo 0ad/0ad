@@ -195,14 +195,11 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 
 m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 {
-	for (var i = 0; i < this.armies.length; ++i)
+	for (let i = 0; i < this.armies.length; ++i)
 	{
-		var army = this.armies[i];
-		army.checkEvents(gameState, events);	// must be called every turn for all armies
-
+		let army = this.armies[i];
 		// this returns a list of IDs: the units that broke away from the army for being too far.
-		var breakaways = army.update(gameState);
-
+		let breakaways = army.update(gameState);
 		for (let breakers of breakaways)
 			this.makeIntoArmy(gameState, breakers);		// assume dangerosity
 
@@ -379,6 +376,10 @@ m.DefenseManager.prototype.abortArmy = function(gameState, army)
 // and if a ranged siege unit (not used for defense) is attacked, garrison it in the nearest fortress
 m.DefenseManager.prototype.checkEvents = function(gameState, events)
 {
+	// must be called every turn for all armies
+	for (let army of this.armies)
+		army.checkEvents(gameState, events);
+
 	for (var evt of events["Attacked"])
 	{
 		var target = gameState.getEntityById(evt.target);
