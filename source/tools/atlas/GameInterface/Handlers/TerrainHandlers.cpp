@@ -281,9 +281,6 @@ BEGIN_COMMAND(PaintTerrain)
 	void MakeDirty()
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
-		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (cmpTerrain)
-			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
 	}
 
 	void Do()
