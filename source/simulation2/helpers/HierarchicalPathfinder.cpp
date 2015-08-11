@@ -536,7 +536,8 @@ void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, p
 	// and use the best of all regions
 	ENSURE(goal.type != PathGoal::POINT);
 
-	u16 bestI, bestJ;
+	u16 bestI = 0;
+	u16 bestJ = 0;
 	u32 dist2Best = std::numeric_limits<u32>::max();
 
 	for (const RegionID& region : reachableContainingGoal)
@@ -553,6 +554,7 @@ void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, p
 		}
 	}
 
+	ENSURE(dist2Best != std::numeric_limits<u32>::max());
 	PathGoal newGoal;
 	newGoal.type = PathGoal::POINT;
 	Pathfinding::NavcellCenter(bestI, bestJ, newGoal.x, newGoal.z);
@@ -665,8 +667,8 @@ void HierarchicalPathfinder::FillRegionOnGrid(const RegionID& region, pass_class
 
 	const Chunk& c = m_Chunks[passClass][region.cj * m_ChunksW + region.ci];
 
-	for (int i = 0; i < CHUNK_SIZE; ++i)
-		for (int j = 0; j < CHUNK_SIZE; ++j)
+	for (int j = 0; j < CHUNK_SIZE; ++j)
+		for (int i = 0; i < CHUNK_SIZE; ++i)
 			if (c.m_Regions[j][i] == region.r)
 				grid.set(i0 + i, j0 + j, value);
 }
@@ -678,9 +680,9 @@ Grid<u16> HierarchicalPathfinder::GetConnectivityGrid(pass_class_t passClass)
 
 	u16 idx = 1;
 
-	for (size_t j = 0; j < m_H; ++j)
+	for (size_t i = 0; i < m_W; ++i)
 	{
-		for (size_t i = 0; i < m_W; ++i)
+		for (size_t j = 0; j < m_H; ++j)
 		{
 			if (connectivityGrid.get(i, j) != 0)
 				continue;
