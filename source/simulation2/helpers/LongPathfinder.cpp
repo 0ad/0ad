@@ -809,19 +809,9 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 
 	state.goal = origGoal;
 
-	if (state.goal.type != PathGoal::POINT)
-	{
-		// Try to go to the nearest point on non-point goals.
-		// If it is reachable, use it, else fallback to the reachable point which is closest to the center of the goal
-		CFixedVector2D goalPos = state.goal.NearestPointOnGoal(CFixedVector2D(x0, z0));
-		PathGoal pointGoal = { PathGoal::POINT, goalPos.X, goalPos.Y };
-		if (!m_PathfinderHier.MakeGoalReachable(i0, j0, pointGoal, passClass))
-			state.goal = pointGoal;
-		else
-			m_PathfinderHier.MakeGoalReachable(i0, j0, state.goal, passClass);
-	}
-	else
-		m_PathfinderHier.MakeGoalReachable(i0, j0, state.goal, passClass);
+	// Make the goal reachable. This includes shortening the path if the goal is in a non-passable
+	// region, transforming non-point goals to reachable point goals, etc.
+	m_PathfinderHier.MakeGoalReachable(i0, j0, state.goal, passClass);
 
 	// If we're already at the goal tile, then move directly to the exact goal coordinates
 	if (state.goal.NavcellContainsGoal(i0, j0))

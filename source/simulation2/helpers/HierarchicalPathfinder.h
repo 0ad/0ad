@@ -91,12 +91,14 @@ public:
 	/**
 	 * Updates @p goal so that it's guaranteed to be reachable from the navcell
 	 * @p i0, @p j0 (which is assumed to be on a passable navcell).
-	 * If any part of the goal area is already reachable then
-	 * nothing is changed; otherwise the goal is replaced with a point goal
-	 * at the nearest reachable navcell to the original goal's center.
-	 * Returns true if the goal was replaced.
+	 *
+	 * If the goal is not reachable, it is replaced with a point goal nearest to
+	 * the goal center.
+	 *
+	 * In the case of a non-point reachable goal, it is replaced with a point goal
+	 * at the reachable navcell of the goal which is nearest to the starting navcell.
 	 */
-	bool MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, pass_class_t passClass);
+	void MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, pass_class_t passClass);
 
 	/**
 	 * Updates @p i, @p j (which is assumed to be an impassable navcell)
@@ -140,6 +142,8 @@ private:
 		bool RegionContainsGoal(u16 r, const PathGoal& goal) const;
 
 		void RegionNavcellNearest(u16 r, int iGoal, int jGoal, int& iBest, int& jBest, u32& dist2Best) const;
+
+		void RegionNearestNavcellInGoal(u16 r, u16 i0, u16 j0, const PathGoal& goal, u16& iOut, u16& jOut, u32& dist2Best) const;
 	};
 
 	typedef std::map<RegionID, std::set<RegionID> > EdgesMap;
