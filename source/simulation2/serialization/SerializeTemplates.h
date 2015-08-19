@@ -94,7 +94,7 @@ struct SerializeMap
 			V v;
 			KS()(deserialize, "key", k);
 			VS()(deserialize, "value", v);
-			value.emplace(k, v);
+			value.insert(std::make_pair(k, v));
 		}
 	}
 
@@ -112,7 +112,7 @@ struct SerializeMap
 			V v;
 			KS()(deserialize, "key", k);
 			VS()(deserialize, "value", v, context);
-			value.emplace(k, v);
+			value.insert(std::make_pair(k, v));
 		}
 	}
 };

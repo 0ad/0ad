@@ -637,7 +637,7 @@ void XmppClient::SendMUCMessage(const std::string& message)
  */
 void XmppClient::PushGuiMessage(XmppClient::GUIMessage message)
 {
-	m_GuiMessageQueue.emplace_back(message);
+	m_GuiMessageQueue.push_back(std::move(message));
 }
 
 /**
