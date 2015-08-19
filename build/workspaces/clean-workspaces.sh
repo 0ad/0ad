@@ -35,6 +35,10 @@ fi
 (cd ../premake/premake4/build/gmake.macosx && ${MAKE} clean)
 (cd ../premake/premake4/build/gmake.unix && ${MAKE} clean)
 
+echo "Removing generated test files..."
+
+find ../../source -name "test_*.cpp" -type f -not -name "test_setup.cpp" -exec rm {} \;
+
 echo "Cleaning build output..."
 
 # Remove workspaces/gcc if present
