@@ -30,19 +30,6 @@
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpVisual.h"
 
-template<typename T, typename S>
-static void delete_pair_2nd(std::pair<T,S> v)
-{
-	delete v.second;
-}
-
-template<typename T>
-struct second_equals
-{
-	T x;
-	second_equals(const T& x) : x(x) {}
-	template<typename S> bool operator()(const S& v) { return v.second == x; }
-};
 
 bool CObjectManager::ObjectKey::operator< (const CObjectManager::ObjectKey& a) const
 {
@@ -170,9 +157,12 @@ CTerrain* CObjectManager::GetTerrain()
 
 void CObjectManager::DeleteObject(CObjectEntry* entry)
 {
-	std::map<ObjectKey, CObjectEntry*>::iterator it;
-	while (m_Objects.end() != (it = find_if(m_Objects.begin(), m_Objects.end(), second_equals<CObjectEntry*>(entry))))
-		m_Objects.erase(it);
+	std::function<bool(const std::pair<ObjectKey, CObjectEntry*>&)> second_equals =
+		[&entry](const std::pair<ObjectKey, CObjectEntry*>& a) { return a.second == entry; };
+
+	std::map<ObjectKey, CObjectEntry*>::iterator it = m_Objects.begin();
+	while (m_Objects.end() != (it = find_if(it, m_Objects.end(), second_equals)))
+		it = m_Objects.erase(it);
 
 	delete entry;
 }
@@ -180,18 +170,12 @@ void CObjectManager::DeleteObject(CObjectEntry* entry)
 
 void CObjectManager::UnloadObjects()
 {
-	std::for_each(
-		m_Objects.begin(),
-		m_Objects.end(),
-		delete_pair_2nd<ObjectKey, CObjectEntry*>
-	);
+	for (const std::pair<ObjectKey, CObjectEntry*>& p : m_Objects)
+		delete p.second;
 	m_Objects.clear();
 
-	std::for_each(
-		m_ObjectBases.begin(),
-		m_ObjectBases.end(),
-		delete_pair_2nd<CStrW, CObjectBase*>
-	);
+	for (const std::pair<CStrW, CObjectBase*>& p : m_ObjectBases)
+		delete p.second;
 	m_ObjectBases.clear();
 }
 
