@@ -211,7 +211,7 @@ bool CSimulation2Impl::LoadTriggerScripts(CComponentManager& componentManager, J
 			if (loadedScripts)
 			{
 				if (loadedScripts->find(scriptName) != loadedScripts->end())
-					return true;
+					continue;
 				loadedScripts->insert(scriptName);
 			}
 			LOGMESSAGE("Loading trigger script '%s'", scriptName.c_str());
