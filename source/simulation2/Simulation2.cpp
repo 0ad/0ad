@@ -366,7 +366,8 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		secondaryContext.m_Terrain = &secondaryTerrain;
 		CComponentManager secondaryComponentManager(secondaryContext, scriptInterface.GetRuntime());
 		secondaryComponentManager.LoadComponentTypes();
-		ENSURE(LoadDefaultScripts(secondaryComponentManager, NULL));
+		std::set<VfsPath> secondaryLoadedScripts;
+		ENSURE(LoadDefaultScripts(secondaryComponentManager, &secondaryLoadedScripts));
 		ResetComponentState(secondaryComponentManager, false, false);
 
 		// Load the trigger scripts after we have loaded the simulation.
@@ -376,7 +377,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			JS::RootedValue mapSettingsCloned(cx2, 
 				secondaryComponentManager.GetScriptInterface().CloneValueFromOtherContext(
 					scriptInterface, m_MapSettings));
-			ENSURE(LoadTriggerScripts(secondaryComponentManager, mapSettingsCloned, &m_LoadedScripts));
+			ENSURE(LoadTriggerScripts(secondaryComponentManager, mapSettingsCloned, &secondaryLoadedScripts));
 		}
 
 		// Load the map into the secondary simulation
