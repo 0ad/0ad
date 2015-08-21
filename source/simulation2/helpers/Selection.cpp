@@ -31,12 +31,6 @@
 #include "ps/CLogger.h"
 #include "ps/Profiler2.h"
 
-namespace {
-struct SortFun {
- 	bool operator() (std::pair<float, CEntityHandle> i, std::pair<float, CEntityHandle> j) { return (i.first<j.first);}
-} sortFun;
-}
-
 entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables)
 {	
 	PROFILE2("PickEntityAtPoint");
@@ -64,7 +58,10 @@ entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const C
 	}
 
 	// Sort hits by distance
-	std::sort(hits.begin(), hits.end(), sortFun);
+	std::sort(hits.begin(), hits.end(),
+		[](const std::pair<float, CEntityHandle>& a, const std::pair<float, CEntityHandle>& b) {
+			return a.first < b.first;
+		});
 	
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);

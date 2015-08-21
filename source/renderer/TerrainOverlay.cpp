@@ -33,32 +33,6 @@
 
 #include <algorithm>
 
-// Handy things for STL:
-
-/// Functor for sorting pairs, using the &lt;-ordering of their second values.
-struct compare2nd
-{
-	template<typename S, typename T> bool operator()(const std::pair<S, T>& a, const std::pair<S, T>& b) const
-	{
-		return a.second < b.second;
-	}
-};
-
-/// Functor for comparing the firsts of pairs to a specified value.
-template<typename S> struct equal1st
-{
-	const S& val;
-	equal1st(const S& val) : val(val) {}
-	template <typename T> bool operator()(const std::pair<S, T>& a) const
-	{
-		return a.first == val;
-	}
-private:
-	const equal1st& operator=(const equal1st& rhs);
-};
-
-//////////////////////////////////////////////////////////////////////////
-
 // Global overlay list management:
 
 static std::vector<std::pair<ITerrainOverlay*, int> > g_TerrainOverlayList;
@@ -71,14 +45,16 @@ ITerrainOverlay::ITerrainOverlay(int priority)
 	// overlays doesn't randomly disturb all the existing ones (which would
 	// be noticeable if they have the same priority and overlap).
 	std::stable_sort(g_TerrainOverlayList.begin(), g_TerrainOverlayList.end(),
-		compare2nd());
+		[](const std::pair<ITerrainOverlay*, int>& a, const std::pair<ITerrainOverlay*, int>& b) {
+			return a.second < b.second;
+		});
 }
 
 ITerrainOverlay::~ITerrainOverlay()
 {
 	std::vector<std::pair<ITerrainOverlay*, int> >::iterator newEnd =
 		std::remove_if(g_TerrainOverlayList.begin(), g_TerrainOverlayList.end(),
-			equal1st<ITerrainOverlay*>(this));
+			[this](const std::pair<ITerrainOverlay*, int>& a) { return a.first == this; });
 	g_TerrainOverlayList.erase(newEnd, g_TerrainOverlayList.end());
 }
 

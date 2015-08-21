@@ -11,6 +11,9 @@ Visibility.prototype.Schema =
 	"<element name='AlwaysVisible'>" +
 		"<data type='boolean'/>" +
 	"</element>" +
+	"<element name='Corpse'>" +
+		"<data type='boolean'/>" +
+	"</element>" +
 	"<element name='Preview'>" +
 		"<data type='boolean'/>" +
 	"</element>";
@@ -19,11 +22,12 @@ Visibility.prototype.Init = function()
 {
 	this.retainInFog = this.template.RetainInFog == "true";
 	this.alwaysVisible = this.template.AlwaysVisible == "true";
+	this.corpse = this.template.Corpse == "true";
 	this.preview = this.template.Preview == "true";
 
 	this.activated = false;
 
-	if (this.preview)
+	if (this.preview || this.corpse)
 		this.SetActivated(true);
 };
 
@@ -58,13 +62,23 @@ Visibility.prototype.GetVisibility = function(player, isVisible, isExplored)
 {
 	if (this.preview)
 	{
-		// For the owner only, mock the "RetainInFog" behaviour
-
+		// For the owner only, mock the "RetainInFog" behavior
 		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 		if (cmpOwnership && cmpOwnership.GetOwner() == player && isExplored)
 			return isVisible ? VIS_VISIBLE : VIS_FOGGED;
 
+		// For others, hide the preview
 		return VIS_HIDDEN;
+	}
+	else if (this.corpse)
+	{
+		// For the owner only, mock the "RetainInFog" behavior
+		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+		if (cmpOwnership && cmpOwnership.GetOwner() == player && isExplored)
+			return isVisible ? VIS_VISIBLE : VIS_FOGGED;
+
+		// For others, regular displaying
+		return isVisible ? VIS_VISIBLE : VIS_HIDDEN;
 	}
 
 	return VIS_VISIBLE;

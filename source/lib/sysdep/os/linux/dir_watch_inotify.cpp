@@ -216,7 +216,7 @@ Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
 	dirWatch.swap(tmpDirWatch);
 	dirWatch->path = path;
 	dirWatch->reqnum = wd;
-	g_paths.emplace(wd, dirWatch);
+	g_paths.insert(std::make_pair(wd, dirWatch));
 
 	return INFO::OK;
 }

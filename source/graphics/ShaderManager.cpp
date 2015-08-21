@@ -37,14 +37,6 @@
 
 TIMER_ADD_CLIENT(tc_ShaderValidation);
 
-struct revcompare2nd
-{
-	template<typename S, typename T> bool operator()(const std::pair<S, T>& a, const std::pair<S, T>& b) const
-	{
-		return b.second < a.second;
-	}
-};
-
 CShaderManager::CShaderManager()
 {
 #if USE_SHADER_XML_VALIDATION
@@ -498,7 +490,10 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	}
 
 	// Sort by preference, tie-break on order of specification
-	std::stable_sort(usableTechs.begin(), usableTechs.end(), revcompare2nd());
+	std::stable_sort(usableTechs.begin(), usableTechs.end(),
+		[](const std::pair<XMBElement, int>& a, const std::pair<XMBElement, int>& b) {
+			return b.second < a.second;
+		});
 
 	CShaderDefines techDefines = baseDefines;
 	

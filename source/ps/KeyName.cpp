@@ -335,16 +335,16 @@ void InitKeyNameMap()
 {
 	for (const SKeycodeMapping* it = keycodeMapping; it->keycode != 0; ++it)
 	{
-		keymap.emplace(std::move(CStr(it->keyname).LowerCase()), it->keycode);
-		if (it->altkeyname)
-			keymap.emplace(std::move(CStr(it->altkeyname).LowerCase()), it->keycode);
+		keymap.insert(std::pair<CStr,int>(CStr(it->keyname).LowerCase(), it->keycode));
+		if(it->altkeyname)
+			keymap.insert(std::pair<CStr,int>(CStr(it->altkeyname).LowerCase(), it->keycode));
 	}
 
 	// Extra mouse buttons.
 	for (int i = 1; i < 256; ++i) // There is no mouse 0
 	{
-		keymap.emplace("mousebutton" + CStr::FromInt(i), MOUSE_BASE + i);
-		keymap.emplace("mousen" + CStr::FromInt(i), MOUSE_BASE + i);
+		keymap.insert(std::pair<CStr,int>("mousebutton" + CStr::FromInt(i), MOUSE_BASE + i));
+		keymap.insert(std::pair<CStr,int>("mousen" + CStr::FromInt(i), MOUSE_BASE + i));
 	}
 }
 

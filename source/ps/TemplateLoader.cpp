@@ -406,7 +406,7 @@ void CTemplateLoader::CopyPreviewSubset(CParamNode& out, const CParamNode& in, b
 			CParamNode::LoadXMLString(out, "<Entity><VisualActor><DisableShadows/></VisualActor></Entity>");
 
 		// Previews should always be visible in fog-of-war/etc
-		CParamNode::LoadXMLString(out, "<Entity><Visibility><RetainInFog>false</RetainInFog><AlwaysVisible>true</AlwaysVisible><Preview>true</Preview></Visibility></Entity>");
+		CParamNode::LoadXMLString(out, "<Entity><Visibility><AlwaysVisible>true</AlwaysVisible><Preview>true</Preview></Visibility></Entity>");
 	}
 
 	if (corpse)
@@ -419,8 +419,8 @@ void CTemplateLoader::CopyPreviewSubset(CParamNode& out, const CParamNode& in, b
 		if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
 			CParamNode::LoadXMLString(out, "<Entity><VisualActor><SilhouetteDisplay>false</SilhouetteDisplay></VisualActor></Entity>");
 
-		// Corpses should remain visible in fog-of-war
-		CParamNode::LoadXMLString(out, "<Entity><Visibility><RetainInFog>true</RetainInFog><AlwaysVisible>false</AlwaysVisible><Preview>false</Preview></Visibility></Entity>");
+		// Corpses should remain visible in fog-of-war (for the owner only)
+		CParamNode::LoadXMLString(out, "<Entity><Visibility><Corpse>true</Corpse></Visibility></Entity>");
 	}
 }
 

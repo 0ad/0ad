@@ -14,7 +14,7 @@ var options = {
 		[translate("Realtime Overlay"), translate("Show current system time in top right corner."), {"config":"overlay.realtime"}, "boolean"],
 		[translate("Gametime Overlay"), translate("Show current simulation time in top right corner."), {"config":"gui.session.timeelapsedcounter"}, "boolean"],
 		[translate("Ceasefire Time Overlay"), translate("Always show the remaining ceasefire time."), {"config":"gui.session.ceasefirecounter"}, "boolean"],
-		[translate("Persist match settings"), translate("Save and restore match settings for quick reuse when hosting another game"), {"config":"persistmatchsettings"}, "boolean"],
+		[translate("Persist Match Settings"), translate("Save and restore match settings for quick reuse when hosting another game"), {"config":"persistmatchsettings"}, "boolean"],
 	],
 	"graphicsSetting":
 	[
@@ -33,6 +33,7 @@ var options = {
 		[translate("Water Refraction"), translate("Use a real water refraction map and not transparency"), {"renderer":"WaterRefraction", "config":"waterrefraction"}, "boolean"],
 		[translate("Shadows on Water"), translate("Cast shadows on water"), {"renderer":"WaterShadows", "config":"watershadows"}, "boolean"],
 		[translate("VSync"), translate("Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"), {"config":"vsync"}, "boolean"],
+		[translate("Limit FPS in Menus"), translate("Limit FPS to 50 in all menus, to save power."), {"config":"gui.menu.limitfps"}, "boolean"],
 	],
 	"soundSetting":
 	[

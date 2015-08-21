@@ -43,6 +43,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/ArchiveBuilder.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Globals.h"
@@ -300,9 +301,20 @@ static void Frame()
 		SDL_Delay(10);
 	}
 
-	// TODO: throttling: limit update and render frequency to the minimum.
-	// this is mostly relevant for "inactive" state, so that other windows
-	// get enough CPU time, but it's always nice for power+thermal management.
+	// Throttling: limit update and render frequency to the minimum to 50 FPS
+	// in the "inactive" state, so that other windows get enough CPU time, 
+	// (and it's always nice for power+thermal management).
+	// TODO: when the game performance is high enough, implementing a limit for
+	// in-game framerate might be sensible.
+	const float maxFPSMenu = 50.0;
+	bool limit_fps = false;
+	CFG_GET_VAL("gui.menu.limitfps", limit_fps);
+	if (limit_fps && (!g_Game || !g_Game->IsGameStarted()))
+	{
+		float remainingFrameTime = (1000.0 / maxFPSMenu) - realTimeSinceLastFrame;
+		if (remainingFrameTime > 0)
+			SDL_Delay(remainingFrameTime);
+	}
 
 
 	// this scans for changed files/directories and reloads them, thus

@@ -56,7 +56,7 @@ void CXeromyces::Startup()
 	xmlInitParser();
 	xmlSetStructuredErrorFunc(NULL, &errorHandler);
 	CScopeLock lock(g_ValidatorCacheLock);
-	g_ValidatorCache.emplace(std::string(), RelaxNGValidator());
+	g_ValidatorCache.insert(std::make_pair(std::string(), RelaxNGValidator()));
 	g_XeromycesStarted = true;
 }
 
@@ -86,7 +86,7 @@ bool CXeromyces::AddValidator(const PIVFS& vfs, const std::string& name, const V
 		std::map<const std::string, RelaxNGValidator>::iterator it = g_ValidatorCache.find(name);
 		if (it != g_ValidatorCache.end())
 			g_ValidatorCache.erase(it);
-		g_ValidatorCache.emplace(name, validator);
+		g_ValidatorCache.insert(std::make_pair(name, validator));
 	}
 	return true;
 }

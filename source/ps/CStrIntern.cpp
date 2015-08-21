@@ -113,7 +113,7 @@ static CStrInternInternals* GetString(const char* str, size_t len)
 		return it->second.get();
 
 	shared_ptr<CStrInternInternals> internals(new CStrInternInternals(str, len));
-	g_Strings.emplace(internals->data, internals);
+	g_Strings.insert(std::make_pair(internals->data, internals));
 	return internals.get();
 }
 

@@ -55,22 +55,16 @@ CmdLineArgs::CmdLineArgs(int argc, const char* argv[])
 	}
 }
 
-template<typename T>
-struct first_equals
-{
-	T x;
-	first_equals(const T& x) : x(x) {}
-	template<typename S> bool operator()(const S& v) { return v.first == x; }
-};
-
 bool CmdLineArgs::Has(const char* name) const
 {
-	return find_if(m_Args.begin(), m_Args.end(), first_equals<CStr>(name)) != m_Args.end();
+	return m_Args.end() != find_if(m_Args.begin(), m_Args.end(),
+		[&name](const std::pair<CStr, CStr>& a) { return a.first == name; });
 }
 
 CStr CmdLineArgs::Get(const char* name) const
 {
-	ArgsT::const_iterator it = find_if(m_Args.begin(), m_Args.end(), first_equals<CStr>(name));
+	ArgsT::const_iterator it = find_if(m_Args.begin(), m_Args.end(),
+		[&name](const std::pair<CStr, CStr>& a) { return a.first == name; });
 	if (it != m_Args.end())
 		return it->second;
 	else
@@ -83,7 +77,8 @@ std::vector<CStr> CmdLineArgs::GetMultiple(const char* name) const
 	ArgsT::const_iterator it = m_Args.begin();
 	while (1)
 	{
-		it = find_if(it, m_Args.end(), first_equals<CStr>(name));
+		it = find_if(it, m_Args.end(),
+			[&name](const std::pair<CStr, CStr>& a) { return a.first == name; });
 		if (it == m_Args.end())
 			break;
 		values.push_back(it->second);

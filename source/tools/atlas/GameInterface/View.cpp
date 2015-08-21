@@ -165,12 +165,6 @@ void AtlasViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colo
 
 //////////////////////////////////////////////////////////////////////////
 
-template<typename T, typename S>
-static void delete_pair_2nd(std::pair<T,S> v)
-{
-	delete v.second;
-}
-
 AtlasViewGame::AtlasViewGame()
 	: m_SpeedMultiplier(0.f), m_IsTesting(false)
 {
@@ -179,7 +173,8 @@ AtlasViewGame::AtlasViewGame()
 
 AtlasViewGame::~AtlasViewGame()
 {
-	std::for_each(m_SavedStates.begin(), m_SavedStates.end(), delete_pair_2nd<std::wstring, SimState*>);
+	for (const std::pair<std::wstring, SimState*>& p : m_SavedStates)
+		delete p.second;
 }
 
 CSimulation2* AtlasViewGame::GetSimulation2()

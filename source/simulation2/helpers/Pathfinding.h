@@ -171,8 +171,8 @@ namespace Pathfinding
 		// vice versa).
 
 		u16 i0, j0, i1, j1;
-		Pathfinding::NearestNavcell(x0, z0, i0, j0, grid.m_W, grid.m_H);
-		Pathfinding::NearestNavcell(x1, z1, i1, j1, grid.m_W, grid.m_H);
+		NearestNavcell(x0, z0, i0, j0, grid.m_W, grid.m_H);
+		NearestNavcell(x1, z1, i1, j1, grid.m_W, grid.m_H);
 
 		// Find which direction the line heads in
 		int di = (i0 < i1 ? +1 : i1 < i0 ? -1 : 0);
@@ -185,6 +185,11 @@ namespace Pathfinding
 
 		while (true)
 		{
+			// Make sure we are still in the limits
+			ENSURE(
+				((di > 0 && i0 <= i && i <= i1) || (di < 0 && i1 <= i && i <= i0) || (di == 0 && i == i0)) &&
+				((dj > 0 && j0 <= j && j <= j1) || (dj < 0 && j1 <= j && j <= j0) || (dj == 0 && j == j0)));
+
 			// Fail if we're moving onto an impassable navcell
 			bool passable = IS_PASSABLE(grid.get(i, j), passClass);
 			if (passable)
@@ -197,12 +202,13 @@ namespace Pathfinding
 				return true;
 
 			// If we can only move horizontally/vertically, then just move in that direction
-			if (di == 0)
+			// If we are reaching the limits, we can go straight to the end
+			if (di == 0 || i == i1)
 			{
 				j += dj;
 				continue;
 			}
-			else if (dj == 0)
+			else if (dj == 0 || j == j1)
 			{
 				i += di;
 				continue;
@@ -216,6 +222,11 @@ namespace Pathfinding
 			// Since we already know the line is moving from this navcell into a different
 			// navcell, we simply need to test that the edge's endpoints are not both on the
 			// same side of the line.
+
+			// If we are crossing exactly a vertex of the grid, we will get dota or dotb equal
+			// to 0. In that case we arbitrarily choose to move of dj.
+			// This only works because we handle the case (i == i1 || j == j1) beforehand.
+			// Otherwise we could go outside the j limits and never reach the final navcell.
 
 			entity_pos_t xia = entity_pos_t::FromInt(i).Multiply(Pathfinding::NAVCELL_SIZE);
 			entity_pos_t xib = entity_pos_t::FromInt(i+1).Multiply(Pathfinding::NAVCELL_SIZE);

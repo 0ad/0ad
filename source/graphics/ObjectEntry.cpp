@@ -165,7 +165,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		{
 			CSkeletonAnim* anim = model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2, it->second.m_SoundPos);
 			if (anim)
-				m_Animations.emplace(std::move(name), anim);
+				m_Animations.insert(std::make_pair(name, anim));
 		}
 	}
 

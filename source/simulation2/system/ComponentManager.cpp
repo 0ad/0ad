@@ -544,7 +544,7 @@ void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId c
 		const char* name, const std::string& schema)
 {
 	ComponentType c(CT_Native, iid, alloc, dealloc, name, schema, std::move(DefPersistentRooted<JS::Value>()));
-	m_ComponentTypesById.emplace(cid, std::move(c));
+	m_ComponentTypesById.insert(std::make_pair(cid, std::move(c)));
 	m_ComponentTypeIdsByName[name] = cid;
 }
 
@@ -552,7 +552,7 @@ void CComponentManager::RegisterComponentTypeScriptWrapper(InterfaceId iid, Comp
 		DeallocFunc dealloc, const char* name, const std::string& schema)
 {
 	ComponentType c(CT_ScriptWrapper, iid, alloc, dealloc, name, schema, std::move(DefPersistentRooted<JS::Value>()));
-	m_ComponentTypesById.emplace(cid, std::move(c));
+	m_ComponentTypesById.insert(std::make_pair(cid, std::move(c)));
 	m_ComponentTypeIdsByName[name] = cid;
 	// TODO: merge with RegisterComponentType
 }
@@ -778,8 +778,8 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 	component->SetSimContext(m_SimContext);
 
 	// Store a reference to the new component
-	emap1.emplace(ent.GetId(), component);
-	emap2.emplace(ent.GetId(), component);
+	emap1.insert(std::make_pair(ent.GetId(), component));
+	emap2.insert(std::make_pair(ent.GetId(), component));
 	// TODO: We need to more careful about this - if an entity is constructed by a component
 	// while we're iterating over all components, this will invalidate the iterators and everything
 	// will break.
@@ -801,7 +801,7 @@ void CComponentManager::AddMockComponent(CEntityHandle ent, InterfaceId iid, ICo
 	boost::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface.at(iid);
 	if (emap1.find(ent.GetId()) != emap1.end())
 		debug_warn(L"Multiple components for interface");
-	emap1.emplace(ent.GetId(), &component);
+	emap1.insert(std::make_pair(ent.GetId(), &component));
 
 	SEntityComponentCache* cache = ent.GetComponentCache();
 	ENSURE(cache != NULL && iid < (int)cache->numInterfaces && cache->interfaces[iid] == NULL);
