@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,11 +18,12 @@
 #include "precompiled.h"
 
 #include "GUITooltip.h"
-#include "lib/timer.h"
-#include "IGUIObject.h"
+
 #include "CGUI.h"
 #include "GUIutil.h"
+#include "IGUIObject.h"
 
+#include "lib/timer.h"
 #include "ps/CLogger.h"
 
 /*
@@ -137,7 +138,7 @@ bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 	return false;
 }
 
-void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI* gui)
+void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style, CGUI* gui)
 {
 	ENSURE(obj);
 
@@ -147,7 +148,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 
 	// Get the object referenced by 'tooltip_style'
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
-	if (! tooltipobj)
+	if (!tooltipobj)
 	{
 		LOGERROR("Cannot find tooltip named '%s'", style.c_str());
 		return;
@@ -160,7 +161,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 		&& !usedObjectName.empty())
 	{
 		usedobj = gui->FindObjectByName(usedObjectName);
-		if (! usedobj)
+		if (!usedobj)
 		{
 			LOGERROR("Cannot find object named '%s' used by tooltip '%s'", usedObjectName.c_str(), style.c_str());
 			return;
@@ -211,7 +212,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 		return;
 
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
-	if (! tooltipobj)
+	if (!tooltipobj)
 	{
 		LOGERROR("Cannot find tooltip named '%s'", style.c_str());
 		return;
@@ -222,7 +223,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 		&& !usedObjectName.empty())
 	{
 		IGUIObject* usedobj = gui->FindObjectByName(usedObjectName);
-		if (! usedobj)
+		if (!usedobj)
 		{
 			LOGERROR("Cannot find object named '%s' used by tooltip '%s'", usedObjectName.c_str(), style.c_str());
 			return;
@@ -247,12 +248,12 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 
 }
 
-static int GetTooltipDelay(CStr& style, CGUI* gui)
+static int GetTooltipDelay(const CStr& style, CGUI* gui)
 {
 	int delay = 500; // default value (in msec)
 
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
-	if (! tooltipobj)
+	if (!tooltipobj)
 	{
 		LOGERROR("Cannot find tooltip object named '%s'", style.c_str());
 		return delay;
@@ -261,7 +262,7 @@ static int GetTooltipDelay(CStr& style, CGUI* gui)
 	return delay;
 }
 
-void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
+void GUITooltip::Update(IGUIObject* Nearest, const CPos& MousePos, CGUI* GUI)
 {
 	// Called once per frame, so efficiency isn't vital
 
@@ -331,16 +332,16 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 			// Mouse moved onto a new object
 
 			if (GetTooltip(Nearest, style))
-			{	
+			{
 				CStr style_old;
 
-				// If we're displaying a tooltip with no delay, then we want to 
+				// If we're displaying a tooltip with no delay, then we want to
 				//  reset so that other object that should have delay can't
 				//  "ride this tail", it have to wait.
 				// Notice that this doesn't apply to when you go from one delay=0
 				//  to another delay=0
-				if (GetTooltip(m_PreviousObject, style_old) && GetTooltipDelay(style_old, GUI)==0 &&
-					GetTooltipDelay(style, GUI)!=0)
+				if (GetTooltip(m_PreviousObject, style_old) && GetTooltipDelay(style_old, GUI) == 0 &&
+					GetTooltipDelay(style, GUI) != 0)
 				{
 					HideTooltip(m_PreviousTooltipName, GUI);
 					nextstate = ST_IN_MOTION;
@@ -353,7 +354,7 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 				}
 			}
 			else
-			{	
+			{
 				nextstate = ST_COOLING;
 			}
 		}

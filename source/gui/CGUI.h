@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,48 +32,23 @@ CGUI
 #ifndef INCLUDED_CGUI
 #define INCLUDED_CGUI
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
-// NOTE: GUI.h included at the bottom of this file (has to be after CGUI class
-// definition)
-
 #include "GUITooltip.h"
 #include "GUIbase.h"
-#include "scriptinterface/ScriptInterface.h"
-
-#include "ps/Shapes.h"
 
 #include "lib/input.h"
-
+#include "ps/Shapes.h"
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #include <boost/unordered_set.hpp>
 
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Error declarations
-//--------------------------------------------------------
-
 ERROR_TYPE(GUI, JSOpenFailed);
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * Contains a list of values for new defaults to objects.
  */
 struct SGUIStyle
 {
-	// A list of defaults for 
 	std::map<CStr, CStrW> m_SettingsDefaults;
 };
 
@@ -98,7 +73,7 @@ class GUITooltip;
 class CGUI
 {
 	NONCOPYABLE(CGUI);
-	
+
 	friend class IGUIObject;
 	friend class IGUIScrollBarOwner;
 	friend class CInternalCGUIAccessorBase;
@@ -115,7 +90,7 @@ public:
 	 * Initializes the GUI, needs to be called before the GUI is used
 	 */
 	void Initialize();
-	
+
 	/**
 	 * Performs processing that should happen every frame
 	 * (including sending the "Tick" event to scripts)
@@ -145,8 +120,7 @@ public:
 	 * @param Rect Position and Size
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
-	void DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float &Z, 
-					const CRect &Rect, const CRect &Clipping=CRect());
+	void DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& Clipping = CRect());
 
 	/**
 	 * Draw a SGUIText object
@@ -157,8 +131,7 @@ public:
 	 * @param z z value.
 	 * @param clipping
 	 */
-	void DrawText(SGUIText &Text, const CColor &DefaultColor, 
-				  const CPos &pos, const float &z, const CRect &clipping);
+	void DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping);
 
 	/**
 	 * Clean up, call this to clean up all memory allocated
@@ -211,7 +184,7 @@ public:
 	 * The GUI needs to have all object types inputted and
 	 * their constructors. Also it needs to associate a type
 	 * by a string name of the type.
-	 * 
+	 *
 	 * To add a type:
 	 * @code
 	 * AddObjectType("button", &CButton::ConstructObject);
@@ -242,19 +215,17 @@ public:
 	 * will be sent to the Renderer. Also, horizontal alignment
 	 * is taken into acount in this method but NOT vertical alignment.
 	 *
-	 * Done through the CGUI since it can communicate with 
+	 * Done through the CGUI since it can communicate with
 	 *
 	 * @param Text Text to generate SGUIText object from
 	 * @param Font Default font, notice both Default color and default font
 	 *		  can be changed by tags.
 	 * @param Width Width, 0 if no word-wrapping.
 	 * @param BufferZone space between text and edge, and space between text and images.
-	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails, 
-	 *		  and we need to be able to output which object the error occured in to aid the user. 
+	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails,
+	 *		  and we need to be able to output which object the error occured in to aid the user.
 	 */
-	SGUIText GenerateText(const CGUIString &Text, const CStrW& Font,
-						  const float &Width, const float &BufferZone,
-						  const IGUIObject *pObject=NULL);
+	SGUIText GenerateText(const CGUIString& Text, const CStrW& Font, const float& Width, const float& BufferZone, const IGUIObject* pObject = NULL);
 
 
 	/**
@@ -271,8 +242,8 @@ public:
 	 * Get pre-defined color (if it exists)
 	 * Returns false if it fails.
 	 */
-	bool GetPreDefinedColor(const CStr& name, CColor &Output);
-	
+	bool GetPreDefinedColor(const CStr& name, CColor& Output) const;
+
 	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
 	jsval GetGlobalObject() { return m_ScriptInterface->GetGlobalObject(); };
 
@@ -291,7 +262,7 @@ private:
 
 	/**
 	 * Adds an object to the GUI's object database
-	 * Private, since you can only add objects through 
+	 * Private, since you can only add objects through
 	 * XML files. Why? Because it enables the GUI to
 	 * be much more encapsulated and safe.
 	 *
@@ -307,12 +278,12 @@ private:
 	 * @param str Name of object type
 	 * @return Newly constructed IGUIObject (but constructed as a subclass)
 	 */
-	IGUIObject *ConstructObject(const CStr& str);
+	IGUIObject* ConstructObject(const CStr& str);
 
 	/**
 	 * Get Focused Object.
 	 */
-	IGUIObject *GetFocusedObject() { return m_FocusedObject; }
+	IGUIObject* GetFocusedObject() { return m_FocusedObject; }
 
 public:
 	/**
@@ -444,7 +415,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
+	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<repeat\>, which repeats its child \<object\>s
@@ -452,7 +423,7 @@ private:
 	 * 'var' enclosed in square brackets) in its descendants' names with "[0]",
 	 * "[1]", etc.
 	 */
-	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
+	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<script\> (the XMBElement) and executes
@@ -490,7 +461,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite &parent);
+	void Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite& parent);
 
 	/**
 	 * Reads in the element \<effect\> (the XMBElement) and stores the
@@ -503,7 +474,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects &effects);
+	void Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects& effects);
 
 	/**
 	 * Reads in the element \<style\> (the XMBElement) and stores the
@@ -540,7 +511,7 @@ private:
 	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile);
-	
+
 	/**
 	 * Reads in the element \<tooltip\> (the XMBElement) and stores the
 	 * result as an object with the name __tooltip_#.
@@ -575,11 +546,11 @@ private:
 	/** @name Miscellaneous */
 	//--------------------------------------------------------
 	//@{
-	
+
 	shared_ptr<ScriptInterface> m_ScriptInterface;
 
 	/**
-	 * don't want to pass this around with the 
+	 * don't want to pass this around with the
 	 * ChooseMouseOverAndClosest broadcast -
 	 * we'd need to pack this and pNearest in a struct
 	 */
@@ -621,7 +592,7 @@ private:
 	 */
 	IGUIObject* m_FocusedObject;
 
-	/** 
+	/**
 	 * Just pointers for fast name access, each object
 	 * is really constructed within its parent for easy
 	 * recursive management.
@@ -671,4 +642,4 @@ private:
 	std::map<CStr, SGUIIcon> m_Icons;
 };
 
-#endif
+#endif // INCLUDED_CGUI

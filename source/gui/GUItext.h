@@ -39,7 +39,7 @@ class CGUI;
 
 /**
  * An SGUIText object is a parsed string, divided into
- * text-rendering components. Each component, being a 
+ * text-rendering components. Each component, being a
  * call to the Renderer. For instance, if you by tags
  * change the color, then the GUI will have to make
  * individual calls saying it want that color on the
@@ -89,7 +89,7 @@ struct SGUIText
 	 */
 	struct STextCall
 	{
-		STextCall() : 
+		STextCall() :
 			m_UseCustomColor(false),
 			m_Bold(false), m_Italic(false), m_Underlined(false),
 			m_pSpriteCall(NULL) {}
@@ -210,7 +210,7 @@ public:
 			 * @return True if m_TagType was set.
 			 */
 			bool SetTagType(const CStrW& tagtype);
-			TagType GetTagType(const CStrW& tagtype);
+			TagType GetTagType(const CStrW& tagtype) const;
 
 
 			/**
@@ -248,8 +248,8 @@ public:
 	struct SFeedback
 	{
 		// Constants
-		static const int Left=0;
-		static const int Right=1;
+		static const int Left = 0;
+		static const int Right = 1;
 
 		/**
 		 * Reset all member data.
@@ -309,12 +309,7 @@ public:
 	 *		  to make several GenerateTextCall in different phases,
 	 *		  it avoids duplicates.
 	 */
-	void GenerateTextCall(const CGUI* pGUI,
-						  SFeedback& Feedback,
-						  CStrIntern DefaultFont,
-						  const int& from, const int& to,
-						  const bool FirstLine,
-						  const IGUIObject* pObject = NULL) const;
+	void GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrIntern DefaultFont, const int& from, const int& to, const bool FirstLine, const IGUIObject* pObject = NULL) const;
 
 	/**
 	 * Words
@@ -338,4 +333,4 @@ private:
 	CStrW m_OriginalString;
 };
 
-#endif
+#endif // INCLUDED_GUITEXT

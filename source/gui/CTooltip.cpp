@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-// CTooltip: GUI object used for tooltips
 
 #include "precompiled.h"
 
@@ -66,7 +64,7 @@ void CTooltip::SetupText()
 	if (!GetGUI())
 		return;
 
-	ENSURE(m_GeneratedTexts.size()==1);
+	ENSURE(m_GeneratedTexts.size() == 1);
 
 	CStrW font;
 	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
@@ -89,7 +87,7 @@ void CTooltip::SetupText()
 	CPos mousepos, offset;
 	EVAlign anchor;
 	bool independent;
-	
+
 	GUI<bool>::GetSetting(this, "independent", independent);
 	if (independent)
 		mousepos = GetMousePos();
@@ -144,33 +142,33 @@ void CTooltip::SetupText()
 	GUI<CClientArea>::SetSetting(this, "size", size);
 }
 
-void CTooltip::HandleMessage(SGUIMessage &Message)
+void CTooltip::HandleMessage(SGUIMessage& Message)
 {
 	IGUITextOwner::HandleMessage(Message);
 }
 
-void CTooltip::Draw() 
+void CTooltip::Draw()
 {
+	if (!GetGUI())
+		return;
+
 	float z = 900.f; // TODO: Find a nicer way of putting the tooltip on top of everything else
 
-	if (GetGUI())
+	CGUISpriteInstance* sprite;
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
+
+	// Normally IGUITextOwner will handle this updating but since SetupText can modify the position
+	// we need to call it now *before* we do the rest of the drawing
+	if (!m_GeneratedTextsValid)
 	{
-		CGUISpriteInstance *sprite;
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-
-		// Normally IGUITextOwner will handle this updating but since SetupText can modify the position
-		// we need to call it now *before* we do the rest of the drawing
-		if (!m_GeneratedTextsValid)
-		{
-			SetupText();
-			m_GeneratedTextsValid = true;
-		}
-
-		GetGUI()->DrawSprite(*sprite, 0, z, m_CachedActualSize);
-
-		CColor color;
-		GUI<CColor>::GetSetting(this, "textcolor", color);
-
-		DrawText(0, color, m_CachedActualSize.TopLeft(), z+0.1f);
+		SetupText();
+		m_GeneratedTextsValid = true;
 	}
+
+	GetGUI()->DrawSprite(*sprite, 0, z, m_CachedActualSize);
+
+	CColor color;
+	GUI<CColor>::GetSetting(this, "textcolor", color);
+
+	DrawText(0, color, m_CachedActualSize.TopLeft(), z+0.1f);
 }

@@ -43,42 +43,23 @@ The base class of an object
 #ifndef INCLUDED_IGUIOBJECT
 #define INCLUDED_IGUIOBJECT
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUIbase.h"
 #include "GUItext.h"
-#include <string>
-#include <vector>
-#include "lib/input.h" // just for IN_PASS
-
-#include "ps/XML/Xeromyces.h"
 
 #include "gui/scripting/JSInterface_IGUIObject.h"
+#include "lib/input.h" // just for IN_PASS
+#include "ps/XML/Xeromyces.h"
+
+#include <string>
+#include <vector>
 
 struct SGUISetting;
 struct SGUIStyle;
 class CGUI;
 
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
 class JSObject;
 
-//--------------------------------------------------------
-//  Error declarations
-//--------------------------------------------------------
-
 ERROR_TYPE(GUI, UnableToParse);
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * Setting Type
@@ -192,11 +173,11 @@ public:
 	 * @throws PSERROR_GUI_ObjectNeedsName Name is missing
 	 * @throws PSERROR_GUI_NameAmbiguity Name is already taken
 	 */
-	void AddToPointersMap(map_pObjects &ObjectMap);
+	void AddToPointersMap(map_pObjects& ObjectMap);
 
 	/**
-	 * Notice nothing will be returned or thrown if the child hasn't 
-	 * been inputted into the GUI yet. This is because that's were 
+	 * Notice nothing will be returned or thrown if the child hasn't
+	 * been inputted into the GUI yet. This is because that's were
 	 * all is checked. Now we're just linking two objects, but
 	 * it's when we're inputting them into the GUI we'll check
 	 * validity! Notice also when adding it to the GUI this function
@@ -210,16 +191,18 @@ public:
 	 *
 	 * @throws PSERROR_GUI from CGUI::UpdateObjects().
 	 */
-	void AddChild(IGUIObject *pChild);
+	void AddChild(IGUIObject* pChild);
 
 	//@}
 	//--------------------------------------------------------
-	/** @name Iterate */
+	/** @name Iterate
+	 * Used to iterate over all children of this object.
+	 */
 	//--------------------------------------------------------
 	//@{
 
-	vector_pObjects::iterator ChildrenItBegin()	{ return m_Children.begin(); }
-	vector_pObjects::iterator ChildrenItEnd()	{ return m_Children.end(); }
+	vector_pObjects::iterator begin() { return m_Children.begin(); }
+	vector_pObjects::iterator end() { return m_Children.end(); }
 
 	//@}
 	//--------------------------------------------------------
@@ -236,7 +219,7 @@ public:
 	 * @return True if settings exist.
 	 */
 	bool SettingExists(const CStr& Setting) const;
-	
+
 	/**
 	 * All sizes are relative to resolution, and the calculation
 	 * is not wanted in real time, therefore it is cached, update
@@ -255,7 +238,7 @@ public:
 	 *
 	 * @return PSRETURN (PSRETURN_OK if successful)
 	 */
-	PSRETURN SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage=false);
+	PSRETURN SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage = false);
 
 	/**
 	 * Retrieves the type of a named setting.
@@ -264,7 +247,7 @@ public:
 	 * @param Type Stores an EGUISettingType
 	 * @return PSRETURN (PSRETURN_OK if successful)
 	 */
-	PSRETURN GetSettingType(const CStr& Setting, EGUISettingType &Type) const;
+	PSRETURN GetSettingType(const CStr& Setting, EGUISettingType& Type) const;
 
 	/**
 	 * Set the script handler for a particular object-specific action
@@ -274,7 +257,7 @@ public:
 	 * @param pGUI GUI instance to associate the script with
 	 */
 	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI);
-	
+
 	/**
 	 * Retrieves the JSObject representing this GUI object.
 	 */
@@ -300,14 +283,14 @@ protected:
 	 * @param Type Setting type
 	 * @param Name Setting reference name
 	 */
-	void AddSetting(const EGUISettingType &Type, const CStr& Name);
+	void AddSetting(const EGUISettingType& Type, const CStr& Name);
 
 	/**
 	 * Calls Destroy on all children, and deallocates all memory.
 	 * MEGA TODO Should it destroy it's children?
 	 */
 	virtual void Destroy();
-	
+
 public:
 	/**
      * This function is called with different messages
@@ -326,7 +309,7 @@ protected:
 	 *			it'll probably only output in the Error log, and not
 	 *			disrupt the whole GUI drawing.
 	 */
-	virtual void Draw()=0;
+	virtual void Draw() = 0;
 
 	/**
 	 * Some objects need to handle the SDL_Event_ manually.
@@ -346,14 +329,14 @@ protected:
 	 * @param GUIinstance Reference to the GUI
 	 * @param StyleName Style by name
 	 */
-	void LoadStyle(CGUI &GUIinstance, const CStr& StyleName);
+	void LoadStyle(CGUI& GUIinstance, const CStr& StyleName);
 
 	/**
 	 * Loads a style.
 	 *
 	 * @param Style The style object.
 	 */
-	void LoadStyle(const SGUIStyle &Style);
+	void LoadStyle(const SGUIStyle& Style);
 
 	/**
 	 * Returns not the Z value, but the actual buffered Z value, i.e. if it's
@@ -364,13 +347,13 @@ protected:
 	 */
 	virtual float GetBufferedZ() const;
 
-	void SetGUI(CGUI * const &pGUI);
+	void SetGUI(CGUI* const& pGUI);
 
 	/**
 	 * Set parent of this object
 	 */
-	void SetParent(IGUIObject *pParent) { m_pParent = pParent; }
-	
+	void SetParent(IGUIObject* pParent) { m_pParent = pParent; }
+
 	/**
 	 * Reset internal state of this object
 	 */
@@ -381,8 +364,8 @@ protected:
 	}
 
 public:
-	CGUI *GetGUI() { return m_pGUI; }
-	const CGUI *GetGUI() const { return m_pGUI; }
+	CGUI* GetGUI() { return m_pGUI; }
+	const CGUI* GetGUI() const { return m_pGUI; }
 
 	/**
 	 * Take focus!
@@ -404,7 +387,7 @@ protected:
 	 *
 	 * @return Pointer to parent
 	 */
-	IGUIObject *GetParent() const;
+	IGUIObject* GetParent() const;
 
 	/**
 	 * Get Mouse from CGUI.
@@ -419,8 +402,10 @@ protected:
 	 * Notice 'false' is default, because an object not using this function, should not
 	 * have any additional children (and this function should never be called).
 	 */
-	virtual bool HandleAdditionalChildren(const XMBElement& UNUSED(child), 
-											CXeromyces* UNUSED(pFile)) { return false; }
+	virtual bool HandleAdditionalChildren(const XMBElement& UNUSED(child), CXeromyces* UNUSED(pFile))
+	{
+		return false;
+	}
 
 	/**
 	 * Cached size, real size m_Size is actually dependent on resolution
@@ -466,7 +451,7 @@ protected:
 	 * @param pMouseOver	Object that is currently hovered,
 	 *						can OF COURSE be NULL too!
 	 */
-	void UpdateMouseOver(IGUIObject * const &pMouseOver);
+	void UpdateMouseOver(IGUIObject* const& pMouseOver);
 
 	//@}
 private:
@@ -474,7 +459,7 @@ private:
 	/** @name Internal functions */
 	//--------------------------------------------------------
 	//@{
-	
+
 	/**
 	 * Inputs a reference pointer, checks if the new inputted object
 	 * if hovered, if so, then check if this's Z value is greater
@@ -487,7 +472,7 @@ private:
 	 * @param pObject	Object pointer, can be either the old one, or
 	 *					the new one.
 	 */
-	void ChooseMouseOverAndClosest(IGUIObject* &pObject);
+	void ChooseMouseOverAndClosest(IGUIObject*& pObject);
 
 	// Is the object a Root object, in philosophy, this means it
 	//  has got no parent, and technically, it's got the m_BaseObject
@@ -501,12 +486,12 @@ private:
 	 */
 	PSRETURN LogInvalidSettings(const CStr8& Setting) const;
 
-	static void Trace(JSTracer *trc, void *data)
+	static void Trace(JSTracer* trc, void* data)
 	{
 		reinterpret_cast<IGUIObject*>(data)->TraceMember(trc);
 	}
 
-	void TraceMember(JSTracer *trc);
+	void TraceMember(JSTracer* trc);
 
 	// Variables
 
@@ -533,7 +518,7 @@ protected:
 	 * read. This is important to know because I don't want to force
 	 * the user to include its \<styles\>-XML-files first, so somehow
 	 * the GUI needs to know which settings were set, and which is meant
-	 * to 
+	 * to.
 	 */
 
 	// More variables
@@ -558,7 +543,7 @@ private:
 
 	// Internal storage for registered script handlers.
 	std::map<CStr, JS::Heap<JSObject*> > m_ScriptHandlers;
-	
+
 	// Cached JSObject representing this GUI object
 	DefPersistentRooted<JSObject*>			 m_JSObject;
 };
@@ -579,4 +564,4 @@ public:
 	virtual bool MouseOver() { return false; }
 };
 
-#endif
+#endif // INCLUDED_IGUIOBJECT

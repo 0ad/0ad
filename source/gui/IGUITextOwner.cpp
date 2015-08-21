@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,37 +15,26 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-IGUITextOwner
-*/
-
 #include "precompiled.h"
+
 #include "GUI.h"
 
-
-//-------------------------------------------------------------------
-//  Constructor / Destructor
-//-------------------------------------------------------------------
 IGUITextOwner::IGUITextOwner() : m_GeneratedTextsValid(false)
 {
 }
 
 IGUITextOwner::~IGUITextOwner()
 {
-	// Delete all generated texts.
-	std::vector<SGUIText*>::iterator it;
-	for (it=m_GeneratedTexts.begin(); it!=m_GeneratedTexts.end(); ++it)
-	{
-		delete *it;
-	}
+	for (SGUIText* const& t : m_GeneratedTexts)
+		delete t;
 }
 
-void IGUITextOwner::AddText(SGUIText * text)
+void IGUITextOwner::AddText(SGUIText* text)
 {
 	m_GeneratedTexts.push_back(text);
 }
 
-void IGUITextOwner::HandleMessage(SGUIMessage &Message)
+void IGUITextOwner::HandleMessage(SGUIMessage& Message)
 {
 	switch (Message.type)
 	{
@@ -78,7 +67,7 @@ void IGUITextOwner::UpdateCachedSize()
 	m_GeneratedTextsValid = false;
 }
 
-void IGUITextOwner::DrawText(int index, const CColor& color, const CPos& pos, float z, const CRect& clipping)
+void IGUITextOwner::DrawText(size_t index, const CColor& color, const CPos& pos, float z, const CRect& clipping)
 {
 	if (!m_GeneratedTextsValid)
 	{
@@ -86,19 +75,13 @@ void IGUITextOwner::DrawText(int index, const CColor& color, const CPos& pos, fl
 		m_GeneratedTextsValid = true;
 	}
 
-	if (index < 0 || index >= (int)m_GeneratedTexts.size())
-	{
-		debug_warn(L"Trying to draw a Text Index within a IGUITextOwner that doesn't exist");
-		return;
-	}
+	ENSURE(index < m_GeneratedTexts.size() && "Trying to draw a Text Index within a IGUITextOwner that doesn't exist");
 
 	if (GetGUI())
-	{
 		GetGUI()->DrawText(*m_GeneratedTexts[index], color, pos, z, clipping);
-	}
 }
 
-void IGUITextOwner::CalculateTextPosition(CRect &ObjSize, CPos &TextPos, SGUIText &Text)
+void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, SGUIText& Text)
 {
 	EVAlign valign;
 	GUI<EVAlign>::GetSetting(this, "text_valign", valign);

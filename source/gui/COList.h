@@ -17,23 +17,8 @@
 #ifndef INCLUDED_COLIST
 #define INCLUDED_COLIST
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
 #include "CList.h"
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 struct ObjectDef
 {
@@ -45,8 +30,12 @@ struct ObjectDef
 };
 
 /**
- *  Todo : add description
+ * Multi-column list. One row can be selected by the user.
+ * Individual cells are clipped if the contained text is too long.
  *
+ * The list can be sorted dynamically by JS code when a
+ * heading is ckicked.
+ * A scroll-bar will appear when needed.
  */
 class COList : public CList
 {
@@ -57,20 +46,19 @@ public:
 
 protected:
 	void SetupText();
-	void HandleMessage(SGUIMessage &Message);
+	void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * Handle the \<item\> tag.
 	 */
 	virtual bool HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile);
 
-	void DrawList(const int &selected, const CStr& _sprite,
-					const CStr& _sprite_selected, const CStr& _textcolor);
+	void DrawList(const int& selected, const CStr& _sprite, const CStr& _sprite_selected, const CStr& _textcolor);
 
 	virtual CRect GetListRect() const;
 
 	std::vector<ObjectDef> m_ObjectsDefs;
-	int m_SelectedDef;
+	size_t m_SelectedDef;
 	int m_SelectedColumnOrder;
 
 private:

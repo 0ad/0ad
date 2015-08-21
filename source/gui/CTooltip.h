@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,20 +15,14 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Object - Tooltip
-
---Overview--
-
-Mostly like CText, but intended for dynamic tooltips
-
-*/
-
 #ifndef INCLUDED_CTOOLTIP
 #define INCLUDED_CTOOLTIP
 
 #include "IGUITextOwner.h"
 
+/**
+ * Dynamic tooltips. Similar to CText.
+ */
 class CTooltip : public IGUITextOwner
 {
 	GUI_OBJECT(CTooltip)
@@ -43,9 +37,9 @@ protected:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	virtual void Draw();
 };
 
-#endif
+#endif // INCLUDED_CTOOLTIP

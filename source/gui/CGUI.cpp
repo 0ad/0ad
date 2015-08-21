@@ -15,50 +15,45 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-CGUI
-*/
-
 #include "precompiled.h"
 
-#include <string>
-
 #include <stdarg.h>
+#include <string>
 
 #include "GUI.h"
 
 // Types - when including them into the engine.
 #include "CButton.h"
-#include "CImage.h"
-#include "CText.h"
 #include "CCheckBox.h"
-#include "CRadioButton.h"
+#include "CDropDown.h"
+#include "CImage.h"
 #include "CInput.h"
 #include "CList.h"
 #include "COList.h"
-#include "CDropDown.h"
 #include "CProgressBar.h"
+#include "CRadioButton.h"
+#include "CText.h"
 #include "CTooltip.h"
 #include "MiniMap.h"
-#include "scripting/ScriptFunctions.h"
 
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
-#include "lib/input.h"
-#include "lib/bits.h"
 #include "i18n/L10n.h"
-#include "lib/timer.h"
+#include "lib/bits.h"
+#include "lib/input.h"
 #include "lib/sysdep/sysdep.h"
+#include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/Hotkey.h"
 #include "ps/Globals.h"
+#include "ps/Hotkey.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
+#include "scripting/ScriptFunctions.h"
 #include "scriptinterface/ScriptInterface.h"
 
 extern int g_yres;
@@ -75,12 +70,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		const char* hotkey = static_cast<const char*>(ev->ev.user.data1);
 		std::map<CStr, std::vector<IGUIObject*> >::iterator it = m_HotkeyObjects.find(hotkey);
 		if (it != m_HotkeyObjects.end())
-		{
-			for (size_t i = 0; i < it->second.size(); ++i)
-			{
-				it->second[i]->SendEvent(GUIM_PRESSED, "press");
-			}
-		}
+			for (IGUIObject* const& obj : it->second)
+				obj->SendEvent(GUIM_PRESSED, "press");
 	}
 
 	else if (ev->ev.type == SDL_MOUSEMOTION)
@@ -91,8 +82,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		m_MousePos = CPos((float)ev->ev.motion.x * g_GuiScale, (float)ev->ev.motion.y * g_GuiScale);
 
 		SGUIMessage msg(GUIM_MOUSE_MOTION);
-		GUI<SGUIMessage>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
-										&IGUIObject::HandleMessage, 
+		GUI<SGUIMessage>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject,
+										&IGUIObject::HandleMessage,
 										msg);
 	}
 
@@ -119,12 +110,12 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	}
 
 	// Only one object can be hovered
-	IGUIObject *pNearest = NULL;
+	IGUIObject* pNearest = NULL;
 
 	// TODO Gee: (2004-09-08) Big TODO, don't do the below if the SDL_Event is something like a keypress!
 	try
 	{
-		PROFILE( "mouse events" );
+		PROFILE("mouse events");
 		// TODO Gee: Optimizations needed!
 		//  these two recursive function are quite overhead heavy.
 
@@ -134,8 +125,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		// Now we'll call UpdateMouseOver on *all* objects,
 		//  we'll input the one hovered, and they will each
 		//  update their own data and send messages accordingly
-		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
-										&IGUIObject::UpdateMouseOver, 
+		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject,
+										&IGUIObject::UpdateMouseOver,
 										pNearest);
 
 		if (ev->ev.type == SDL_MOUSEBUTTONDOWN)
@@ -194,7 +185,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				{
 					double timeElapsed = timer_Time() - pNearest->m_LastClickTime[SDL_BUTTON_LEFT];
 					pNearest->m_LastClickTime[SDL_BUTTON_LEFT] = timer_Time();
-					
+
 					//Double click?
 					if (timeElapsed < SELECT_DBLCLICK_RATE)
 					{
@@ -211,7 +202,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				{
 					double timeElapsed = timer_Time() - pNearest->m_LastClickTime[SDL_BUTTON_RIGHT];
 					pNearest->m_LastClickTime[SDL_BUTTON_RIGHT] = timer_Time();
-					
+
 					//Double click?
 					if (timeElapsed < SELECT_DBLCLICK_RATE)
 					{
@@ -226,12 +217,12 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			}
 
 			// Reset all states on all visible objects
-			GUI<>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, 
+			GUI<>::RecurseObject(GUIRR_HIDDEN, m_BaseObject,
 									&IGUIObject::ResetStates);
 
 			// Since the hover state will have been reset, we reload it.
-			GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
-											&IGUIObject::UpdateMouseOver, 
+			GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject,
+											&IGUIObject::UpdateMouseOver,
 											pNearest);
 		}
 	}
@@ -272,7 +263,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			(ev->ev.type == SDL_KEYDOWN &&
 				ev->ev.key.keysym.sym != SDLK_ESCAPE &&
 				!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
-				!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT]) 
+				!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT])
 			|| ev->ev.type == SDL_HOTKEYDOWN
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 			|| ev->ev.type == SDL_TEXTINPUT || ev->ev.type == SDL_TEXTEDITING
@@ -290,7 +281,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 void CGUI::TickObjects()
 {
 	CStr action = "tick";
-	GUI<CStr>::RecurseObject(0, m_BaseObject, 
+	GUI<CStr>::RecurseObject(0, m_BaseObject,
 							&IGUIObject::ScriptEvent, action);
 
 	// Also update tooltips:
@@ -306,21 +297,18 @@ void CGUI::SendEventToAll(const CStr& EventName)
 	// (sending events here) wasn't converting to lower case,
 	// leading to a similar problem.
 	// now fixed; case is irrelevant since all are converted to lower.
-	GUI<CStr>::RecurseObject(0, m_BaseObject, 
+	GUI<CStr>::RecurseObject(0, m_BaseObject,
 		&IGUIObject::ScriptEvent, EventName.LowerCase());
 }
 
-//-------------------------------------------------------------------
-//  Constructor / Destructor
-//-------------------------------------------------------------------
-
-CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime) : m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
+CGUI::CGUI(const shared_ptr<ScriptRuntime>& runtime)
+	: m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
 {
 	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", runtime));
 	GuiScriptingInit(*m_ScriptInterface);
 	m_ScriptInterface->LoadGlobalScripts();
 	m_BaseObject = new CGUIDummyObject;
-	m_BaseObject->SetGUI(this);	
+	m_BaseObject->SetGUI(this);
 }
 
 CGUI::~CGUI()
@@ -331,10 +319,7 @@ CGUI::~CGUI()
 		delete m_BaseObject;
 }
 
-//-------------------------------------------------------------------
-//  Functions
-//-------------------------------------------------------------------
-IGUIObject *CGUI::ConstructObject(const CStr& str)
+IGUIObject* CGUI::ConstructObject(const CStr& str)
 {
 	if (m_ObjectTypes.count(str) > 0)
 		return (*m_ObjectTypes[str])();
@@ -383,11 +368,7 @@ void CGUI::Draw()
 	}
 }
 
-void CGUI::DrawSprite(const CGUISpriteInstance& Sprite,
-					  int CellID,
-					  const float& Z,
-					  const CRect& Rect,
-					  const CRect& UNUSED(Clipping))
+void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& UNUSED(Clipping))
 {
 	// If the sprite doesn't exist (name == ""), don't bother drawing anything
 	if (Sprite.IsEmpty())
@@ -402,11 +383,11 @@ void CGUI::Destroy()
 {
 	// We can use the map to delete all
 	//  now we don't want to cancel all if one Destroy fails
-	for (map_pObjects::iterator it = m_pAllObjects.begin(); it != m_pAllObjects.end(); ++it)
+	for (const std::pair<CStr, IGUIObject*>& p : m_pAllObjects)
 	{
 		try
 		{
-			it->second->Destroy();
+			p.second->Destroy();
 		}
 		catch (PSERROR_GUI& e)
 		{
@@ -415,13 +396,12 @@ void CGUI::Destroy()
 			// TODO Gee: Handle
 		}
 
-		delete it->second;
+		delete p.second;
 	}
-
-	// Clear all
 	m_pAllObjects.clear();
-	for(std::map<CStr, CGUISprite*>::iterator it = m_Sprites.begin(); it != m_Sprites.end(); ++it)
-		delete it->second;
+
+	for (const std::pair<CStr, CGUISprite*>& p : m_Sprites)
+		delete p.second;
 	m_Sprites.clear();
 	m_Icons.clear();
 }
@@ -429,7 +409,7 @@ void CGUI::Destroy()
 void CGUI::UpdateResolution()
 {
 	// Update ALL cached
-	GUI<>::RecurseObject(0, m_BaseObject, &IGUIObject::UpdateCachedSize );
+	GUI<>::RecurseObject(0, m_BaseObject, &IGUIObject::UpdateCachedSize);
 }
 
 void CGUI::AddObject(IGUIObject* pObject)
@@ -464,7 +444,7 @@ void CGUI::UpdateObjects()
 	try
 	{
 		// Fill freshly
-		GUI< map_pObjects >::RecurseObject(0, m_BaseObject, &IGUIObject::AddToPointersMap, AllObjects );
+		GUI<map_pObjects>::RecurseObject(0, m_BaseObject, &IGUIObject::AddToPointersMap, AllObjects);
 	}
 	catch (PSERROR_GUI&)
 	{
@@ -528,15 +508,15 @@ struct SGenerateTextImage
 
 	// Some help functions
 	// TODO Gee: CRect => CPoint ?
-	void SetupSpriteCall(const bool Left, SGUIText::SSpriteCall &SpriteCall, 
+	void SetupSpriteCall(const bool Left, SGUIText::SSpriteCall& SpriteCall,
 						 const float width, const float y,
-						 const CSize &Size, const CStr& TextureName, 
+						 const CSize& Size, const CStr& TextureName,
 						 const float BufferZone, const int CellID)
 	{
 		// TODO Gee: Temp hardcoded values
 		SpriteCall.m_Area.top = y+BufferZone;
 		SpriteCall.m_Area.bottom = y+BufferZone + Size.cy;
-		
+
 		if (Left)
 		{
 			SpriteCall.m_Area.left = BufferZone;
@@ -557,27 +537,25 @@ struct SGenerateTextImage
 	}
 };
 
-SGUIText CGUI::GenerateText(const CGUIString &string,
-							const CStrW& FontW, const float &Width, const float &BufferZone,
-							const IGUIObject *pObject)
+SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const float& Width, const float& BufferZone, const IGUIObject* pObject)
 {
 	SGUIText Text; // object we're generating
 
 	CStrIntern Font(FontW.ToUTF8());
 
-	if (string.m_Words.size() == 0)
+	if (string.m_Words.empty())
 		return Text;
 
-	float x=BufferZone, y=BufferZone; // drawing pointer
-	int from=0;
-	bool done=false;
+	float x = BufferZone, y = BufferZone; // drawing pointer
+	int from = 0;
+	bool done = false;
 
 	bool FirstLine = true;	// Necessary because text in the first line is shorter
 							// (it doesn't count the line spacing)
 
 	// Images on the left or the right side.
 	std::vector<SGenerateTextImage> Images[2];
-	int pos_last_img=-1;	// Position in the string where last img (either left or right) were encountered.
+	int pos_last_img = -1;	// Position in the string where last img (either left or right) were encountered.
 							//  in order to avoid duplicate processing.
 
 	// Easier to read.
@@ -590,7 +568,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 	GUI<EAlign>::GetSetting(pObject, "text_align", align);
 
 	// Go through string word by word
-	for (int i=0; i<(int)string.m_Words.size()-1 && !done; ++i)
+	for (int i = 0; i < (int)string.m_Words.size()-1 && !done; ++i)
 	{
 		// Pre-process each line one time, so we know which floating images
 		//  will be added for that line.
@@ -599,7 +577,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 		CGUIString::SFeedback Feedback;
 
 		// Preliminary line_height, used for word-wrapping with floating images.
-		float prelim_line_height=0.f;
+		float prelim_line_height = 0.f;
 
 		// Width and height of all text calls generated.
 		string.GenerateTextCall(this, Feedback, Font,
@@ -607,17 +585,15 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 								FirstLine);
 
 		// Loop through our images queues, to see if images has been added.
-		
+
 		// Check if this has already been processed.
 		//  Also, floating images are only applicable if Word-Wrapping is on
 		if (WordWrapping && i > pos_last_img)
 		{
 			// Loop left/right
-			for (int j=0; j<2; ++j)
+			for (int j = 0; j < 2; ++j)
 			{
-				for (std::vector<CStr>::const_iterator it = Feedback.m_Images[j].begin(); 
-					it != Feedback.m_Images[j].end();
-					++it)
+				for (const CStr& imgname : Feedback.m_Images[j])
 				{
 					SGUIText::SSpriteCall SpriteCall;
 					SGenerateTextImage Image;
@@ -628,13 +604,13 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					if (!Images[j].empty())
 						_y = std::max(y, Images[j].back().m_YTo);
 					else
-						_y = y; 
+						_y = y;
 
 					// Get Size from Icon database
-					SGUIIcon icon = GetIcon(*it);
+					SGUIIcon icon = GetIcon(imgname);
 
 					CSize size = icon.m_Size;
-					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_SpriteName, BufferZone, icon.m_CellID);
+					Image.SetupSpriteCall((j == CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_SpriteName, BufferZone, icon.m_CellID);
 
 					// Check if image is the lowest thing.
 					Text.m_Size.cy = std::max(Text.m_Size.cy, Image.m_YTo);
@@ -657,7 +633,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			int temp_from = from;
 			from = i;
 
-			static const int From=0, To=1;
+			static const int From = 0, To = 1;
 			//int width_from=0, width_to=width;
 			float width_range[2];
 			width_range[From] = BufferZone;
@@ -674,26 +650,24 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				//  structures his text in a stylistically pure fashion. Even if not, it
 				//  is still quite unlikely it will happen.
 				// Loop through left and right side, from and to.
-				for (int j=0; j<2; ++j)
+				for (int j = 0; j < 2; ++j)
 				{
-					for (std::vector<SGenerateTextImage>::const_iterator it = Images[j].begin(); 
-						it != Images[j].end(); 
-						++it)
+					for (const SGenerateTextImage& img : Images[j])
 					{
 						// We're working with two intervals here, the image's and the line height's.
 						//  let's find the union of these two.
 						float union_from, union_to;
 
-						union_from = std::max(y, it->m_YFrom);
-						union_to = std::min(y+prelim_line_height, it->m_YTo);
-						
+						union_from = std::max(y, img.m_YFrom);
+						union_to = std::min(y+prelim_line_height, img.m_YTo);
+
 						// The union is not empty
 						if (union_to > union_from)
 						{
 							if (j == From)
-								width_range[From] = std::max(width_range[From], it->m_Indentation);
+								width_range[From] = std::max(width_range[From], img.m_Indentation);
 							else
-								width_range[To] = std::min(width_range[To], Width - it->m_Indentation);
+								width_range[To] = std::min(width_range[To], Width - img.m_Indentation);
 						}
 					}
 				}
@@ -709,9 +683,9 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			//  because it didn't regard images, so we don't know
 			//  if all characters processed, will actually be involved
 			//  in that line.
-			float line_height=0.f;
-			float line_width=0.f;
-			for (int j=temp_from; j<=i; ++j)
+			float line_height = 0.f;
+			float line_width = 0.f;
+			for (int j = temp_from; j <= i; ++j)
 			{
 				// We don't want to use Feedback now, so we'll have to use
 				//  another.
@@ -766,7 +740,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			y += line_height;
 
 			// Do the real processing now
-			for (int j=temp_from; j<=i; ++j)
+			for (int j = temp_from; j <= i; ++j)
 			{
 				// We don't want to use Feedback now, so we'll have to use
 				//  another one.
@@ -774,26 +748,23 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 
 				// Defaults
 				string.GenerateTextCall(this, Feedback2, Font,
-										string.m_Words[j], string.m_Words[j+1], 
+										string.m_Words[j], string.m_Words[j+1],
 										FirstLine, pObject);
 
 				// Iterate all and set X/Y values
 				// Since X values are not set, we need to make an internal
 				//  iteration with an increment that will append the internal
 				//  x, that is what x_pointer is for.
-				float x_pointer=0.f;
+				float x_pointer = 0.f;
 
-				std::vector<SGUIText::STextCall>::iterator it;
-				for (it = Feedback2.m_TextCalls.begin(); it != Feedback2.m_TextCalls.end(); ++it)
+				for (SGUIText::STextCall& tc : Feedback2.m_TextCalls)
 				{
-					it->m_Pos = CPos(dx + x + x_pointer, y);
+					tc.m_Pos = CPos(dx + x + x_pointer, y);
 
-					x_pointer += it->m_Size.cx;
+					x_pointer += tc.m_Size.cx;
 
-					if (it->m_pSpriteCall)
-					{
-						it->m_pSpriteCall->m_Area += it->m_Pos - CSize(0,it->m_pSpriteCall->m_Area.GetHeight());
-					}
+					if (tc.m_pSpriteCall)
+						tc.m_pSpriteCall->m_Area += tc.m_Pos - CSize(0, tc.m_pSpriteCall->m_Area.GetHeight());
 				}
 
 				// Append X value.
@@ -815,14 +786,12 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 						Text.m_SpriteCalls.insert(Text.m_SpriteCalls.end(), Feedback2.m_SpriteCalls.begin(), Feedback2.m_SpriteCalls.end());
 						break;
 					}
-					else
-					if (x > width_range[To] && j==temp_from)
+					else if (x > width_range[To] && j == temp_from)
 					{
 						from = j+1;
 						// do not break, since we want it to be added to m_TextCalls
 					}
-					else
-					if (x > width_range[To])
+					else if (x > width_range[To])
 					{
 						from = j;
 						break;
@@ -856,8 +825,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 	return Text;
 }
 
-void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor, 
-					const CPos &pos, const float &z, const CRect &clipping)
+void CGUI::DrawText(SGUIText& Text, const CColor& DefaultColor, const CPos& pos, const float& z, const CRect& clipping)
 {
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 
@@ -878,29 +846,23 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	textRenderer.SetClippingRect(clipping);
 	textRenderer.Translate(0.0f, 0.0f, z);
 
-	for (std::vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
-		 it != Text.m_TextCalls.end(); 
-		 ++it)
+	for (const SGUIText::STextCall& tc : Text.m_TextCalls)
 	{
 		// If this is just a placeholder for a sprite call, continue
-		if (it->m_pSpriteCall)
+		if (tc.m_pSpriteCall)
 			continue;
 
-		CColor color = it->m_UseCustomColor ? it->m_Color : DefaultColor;
+		CColor color = tc.m_UseCustomColor ? tc.m_Color : DefaultColor;
 
 		textRenderer.Color(color);
-		textRenderer.Font(it->m_Font);
-		textRenderer.Put((float)(int)(pos.x+it->m_Pos.x), (float)(int)(pos.y+it->m_Pos.y), &it->m_String);
+		textRenderer.Font(tc.m_Font);
+		textRenderer.Put((float)(int)(pos.x + tc.m_Pos.x), (float)(int)(pos.y + tc.m_Pos.y), &tc.m_String);
 	}
 
 	textRenderer.Render();
 
-	for (std::list<SGUIText::SSpriteCall>::iterator it=Text.m_SpriteCalls.begin(); 
-		 it!=Text.m_SpriteCalls.end(); 
-		 ++it)
-	{
-		DrawSprite(it->m_Sprite, it->m_CellID, z, it->m_Area + pos);
-	}
+	for (const SGUIText::SSpriteCall& sc : Text.m_SpriteCalls)
+		DrawSprite(sc.m_Sprite, sc.m_CellID, z, sc.m_Area + pos);
 
 	if (isClipped)
 		glDisable(GL_SCISSOR_TEST);
@@ -908,17 +870,14 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	tech->EndPass();
 }
 
-bool CGUI::GetPreDefinedColor(const CStr& name, CColor &Output)
+bool CGUI::GetPreDefinedColor(const CStr& name, CColor& Output) const
 {
-	if (m_PreDefinedColors.count(name) == 0)
-	{
+	std::map<CStr, CColor>::const_iterator cit = m_PreDefinedColors.find(name);
+	if (cit == m_PreDefinedColors.end())
 		return false;
-	}
-	else
-	{
-		Output = m_PreDefinedColors[name];
-		return true;
-	}
+
+	Output = cit->second;
+	return true;
 }
 
 /**
@@ -941,7 +900,6 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& P
 
 	try
 	{
-
 		if (root_name == "objects")
 		{
 			Xeromyces_ReadRootObjects(node, &XeroFile, Paths);
@@ -949,26 +907,14 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& P
 			// Re-cache all values so these gets cached too.
 			//UpdateResolution();
 		}
-		else
-		if (root_name == "sprites")
-		{
+		else if (root_name == "sprites")
 			Xeromyces_ReadRootSprites(node, &XeroFile);
-		}
-		else
-		if (root_name == "styles")
-		{
+		else if (root_name == "styles")
 			Xeromyces_ReadRootStyles(node, &XeroFile);
-		}
-		else
-		if (root_name == "setup")
-		{
+		else if (root_name == "setup")
 			Xeromyces_ReadRootSetup(node, &XeroFile);
-		}
 		else
-		{
 			debug_warn(L"CGUI::LoadXmlFile error");
-			// TODO Gee: Output in log
-		}
 	}
 	catch (PSERROR_GUI& e)
 	{
@@ -1029,42 +975,29 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 		CStr name(pFile->GetElementString(child.GetNodeName()));
 
 		if (name == "scrollbar")
-		{
 			Xeromyces_ReadScrollBarStyle(child, pFile);
-		}
-		else
-		if (name == "icon")
-		{
+		else if (name == "icon")
 			Xeromyces_ReadIcon(child, pFile);
-		}
-		else
-		if (name == "tooltip")
-		{
+		else if (name == "tooltip")
 			Xeromyces_ReadTooltip(child, pFile);
-		}
-		else
-		if (name == "color")
-		{
+		else if (name == "color")
 			Xeromyces_ReadColor(child, pFile);
-		}
 		else
-		{
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
-		}
 	}
 }
 
-void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
+void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
 {
 	ENSURE(pParent);
 
 	// Our object we are going to create
-	IGUIObject *object = NULL;
+	IGUIObject* object = NULL;
 
 	XMBAttributeList attributes = Element.GetAttributes();
 
 	// Well first of all we need to determine the type
-	CStr type (attributes.GetNamedItem(pFile->GetAttributeID("type")));
+	CStr type(attributes.GetNamedItem(pFile->GetAttributeID("type")));
 	if (type.empty())
 		type = "empty";
 
@@ -1150,8 +1083,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			CStr name(attr.Value);
 
 			// Apply the requested substitutions
-			for (size_t j = 0; j < NameSubst.size(); ++j)
-				name.Replace(NameSubst[j].first, NameSubst[j].second);
+			for (const std::pair<CStr, CStr>& sub : NameSubst)
+				name.Replace(sub.first, sub.second);
 
 			object->SetName(name);
 			NameSet = true;
@@ -1377,7 +1310,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			if (!object->HandleAdditionalChildren(child, pFile))
 				LOGERROR("GUI: (object: %s) Reading unknown children for its type", object->GetPresentableName().c_str());
 		}
-	} 
+	}
 
 	//
 	//	Check if Z wasn't manually set
@@ -1415,7 +1348,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 }
 
-void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
+void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
 {
 	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
@@ -1432,7 +1365,7 @@ void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 	for (int n = 0; n < count; ++n)
 	{
-		NameSubst.push_back(std::make_pair(var, "[" + CStr::FromInt(n) + "]"));
+		NameSubst.emplace_back(var, "[" + CStr::FromInt(n) + "]");
 
 		XERO_ITER_EL(Element, child)
 		{
@@ -1448,7 +1381,7 @@ void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObjec
 void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::unordered_set<VfsPath>& Paths)
 {
 	// Check for a 'file' parameter
-	CStrW file(Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("file") ).FromUTF8());
+	CStrW file(Element.GetAttributes().GetNamedItem(pFile->GetAttributeID("file")).FromUTF8());
 
 	// If there is a file specified, open and execute it
 	if (!file.empty())
@@ -1465,7 +1398,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 	}
 
 	// If it has a directory attribute, read all JS files in that directory
-	CStrW directory(Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("directory") ).FromUTF8());
+	CStrW directory(Element.GetAttributes().GetNamedItem(pFile->GetAttributeID("directory")).FromUTF8());
 	if (!directory.empty())
 	{
 		VfsPaths pathnames;
@@ -1504,7 +1437,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 {
 	// Sprite object we're adding
 	CGUISprite* Sprite = new CGUISprite;
-	
+
 	// and what will be its reference name
 	CStr name;
 
@@ -1513,7 +1446,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	//
 
 	// Get name, we know it exists because of DTD requirements
-	name = Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("name") );
+	name = Element.GetAttributes().GetNamedItem(pFile->GetAttributeID("name"));
 
 	if (m_Sprites.find(name) != m_Sprites.end())
 		LOGWARNING("GUI sprite name '%s' used more than once; first definition will be discarded", name.c_str());
@@ -1553,9 +1486,9 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	// Apply the effects to every image (unless the image overrides it with
 	// different effects)
 	if (effects)
-		for (std::vector<SGUIImage*>::iterator it = Sprite->m_Images.begin(); it != Sprite->m_Images.end(); ++it)
-			if (!(*it)->m_Effects)
-				(*it)->m_Effects = new SGUIImageEffects(*effects); // do a copy just so it can be deleted correctly later
+		for (SGUIImage* const& img : Sprite->m_Images)
+			if (!img->m_Effects)
+				img->m_Effects = new SGUIImageEffects(*effects); // do a copy just so it can be deleted correctly later
 
 	delete effects;
 
@@ -1566,16 +1499,16 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	m_Sprites[name] = Sprite;
 }
 
-void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite &parent)
+void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite& parent)
 {
 
 	// Image object we're adding
 	SGUIImage* Image = new SGUIImage;
-	
+
 	// Set defaults to "0 0 100% 100%"
 	Image->m_TextureSize = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 	Image->m_Size = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
-	
+
 	// TODO Gee: Setup defaults here (or maybe they are in the SGUIImage ctor)
 
 	//
@@ -1592,56 +1525,55 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			Image->m_TextureName = VfsPath("art/textures/ui") / attr_value;
 		}
-		else
-		if (attr_name == "size")
+		else if (attr_name == "size")
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_Size = ca;
+			else
+				Image->m_Size = ca;
 		}
-		else
-		if (attr_name == "texture_size")
+		else if (attr_name == "texture_size")
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_TextureSize = ca;
+			else
+				Image->m_TextureSize = ca;
 		}
-		else
-		if (attr_name == "real_texture_placement")
+		else if (attr_name == "real_texture_placement")
 		{
 			CRect rect;
 			if (!GUI<CRect>::ParseString(attr_value, rect))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_TexturePlacementInFile = rect;
+			else
+				Image->m_TexturePlacementInFile = rect;
 		}
-		else
-		if (attr_name == "cell_size")
+		else if (attr_name == "cell_size")
 		{
 			CSize size;
 			if (!GUI<CSize>::ParseString(attr_value, size))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_CellSize = size;
+			else
+				Image->m_CellSize = size;
 		}
-		else
-		if (attr_name == "fixed_h_aspect_ratio")
+		else if (attr_name == "fixed_h_aspect_ratio")
 		{
 			float val;
 			if (!GUI<float>::ParseString(attr_value, val))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_FixedHAspectRatio = val;
+			else
+				Image->m_FixedHAspectRatio = val;
 		}
-		else
-		if (attr_name == "round_coordinates")
+		else if (attr_name == "round_coordinates")
 		{
 			bool b;
 			if (!GUI<bool>::ParseString(attr_value, b))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_RoundCoordinates = b;
+			else
+				Image->m_RoundCoordinates = b;
 		}
-		else
-		if (attr_name == "wrap_mode")
+		else if (attr_name == "wrap_mode")
 		{
 			if (attr_value == L"repeat")
 				Image->m_WrapMode = GL_REPEAT;
@@ -1652,37 +1584,37 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			else
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 		}
-		else
-		if (attr_name == "z_level")
+		else if (attr_name == "z_level")
 		{
 			float z_level;
 			if (!GUI<float>::ParseString(attr_value, z_level))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_DeltaZ = z_level/100.f;
+			else
+				Image->m_DeltaZ = z_level/100.f;
 		}
-		else
-		if (attr_name == "backcolor")
+		else if (attr_name == "backcolor")
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_BackColor = color;
+			else
+				Image->m_BackColor = color;
 		}
-		else
-		if (attr_name == "bordercolor")
+		else if (attr_name == "bordercolor")
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_BorderColor = color;
+			else
+				Image->m_BorderColor = color;
 		}
-		else
-		if (attr_name == "border")
+		else if (attr_name == "border")
 		{
 			bool b;
 			if (!GUI<bool>::ParseString(attr_value, b))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else Image->m_Border = b;
+			else
+				Image->m_Border = b;
 		}
 		else
 		{
@@ -1719,7 +1651,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	parent.AddImage(Image);
 }
 
-void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects &effects)
+void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects& effects)
 {
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
@@ -1794,15 +1726,14 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
 		CStr attr_name = pFile->GetAttributeString(attr.Name);
-		CStr attr_value(attr.Value); 
+		CStr attr_value(attr.Value);
 
 		if (attr_value == "null")
 			continue;
 
 		if (attr_name == "name")
 			name = attr_value;
-		else
-		if (attr_name == "show_edge_buttons")
+		else if (attr_name == "show_edge_buttons")
 		{
 			bool b;
 			if (!GUI<bool>::ParseString(attr_value.FromUTF8(), b))
@@ -1810,7 +1741,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			else
 				scrollbar.m_UseEdgeButtons = b;
 		}
-		if (attr_name == "width")
+		else if (attr_name == "width")
 		{
 			float f;
 			if (!GUI<float>::ParseString(attr_value.FromUTF8(), f))
@@ -1818,8 +1749,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			else
 				scrollbar.m_Width = f;
 		}
-		else
-		if (attr_name == "minimum_bar_size")
+		else if (attr_name == "minimum_bar_size")
 		{
 			float f;
 			if (!GUI<float>::ParseString(attr_value.FromUTF8(), f))
@@ -1827,8 +1757,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			else
 				scrollbar.m_MinimumBarSize = f;
 		}
-		else
-		if (attr_name == "maximum_bar_size")
+		else if (attr_name == "maximum_bar_size")
 		{
 			float f;
 			if (!GUI<float>::ParseString(attr_value.FromUTF8(), f))
@@ -1836,46 +1765,34 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			else
 				scrollbar.m_MaximumBarSize = f;
 		}
-		else
-		if (attr_name == "sprite_button_top")
+		else if (attr_name == "sprite_button_top")
 			scrollbar.m_SpriteButtonTop = attr_value;
-		else
-		if (attr_name == "sprite_button_top_pressed")
+		else if (attr_name == "sprite_button_top_pressed")
 			scrollbar.m_SpriteButtonTopPressed = attr_value;
-		else
-		if (attr_name == "sprite_button_top_disabled")
+		else if (attr_name == "sprite_button_top_disabled")
 			scrollbar.m_SpriteButtonTopDisabled = attr_value;
-		else
-		if (attr_name == "sprite_button_top_over")
+		else if (attr_name == "sprite_button_top_over")
 			scrollbar.m_SpriteButtonTopOver = attr_value;
-		else
-		if (attr_name == "sprite_button_bottom")
+		else if (attr_name == "sprite_button_bottom")
 			scrollbar.m_SpriteButtonBottom = attr_value;
-		else
-		if (attr_name == "sprite_button_bottom_pressed")
+		else if (attr_name == "sprite_button_bottom_pressed")
 			scrollbar.m_SpriteButtonBottomPressed = attr_value;
-		else
-		if (attr_name == "sprite_button_bottom_disabled")
+		else if (attr_name == "sprite_button_bottom_disabled")
 			scrollbar.m_SpriteButtonBottomDisabled = attr_value;
-		else
-		if (attr_name == "sprite_button_bottom_over")
+		else if (attr_name == "sprite_button_bottom_over")
 			scrollbar.m_SpriteButtonBottomOver = attr_value;
-		else
-		if (attr_name == "sprite_back_vertical")
+		else if (attr_name == "sprite_back_vertical")
 			scrollbar.m_SpriteBackVertical = attr_value;
-		else
-		if (attr_name == "sprite_bar_vertical")
+		else if (attr_name == "sprite_bar_vertical")
 			scrollbar.m_SpriteBarVertical = attr_value;
-		else
-		if (attr_name == "sprite_bar_vertical_over")
+		else if (attr_name == "sprite_bar_vertical_over")
 			scrollbar.m_SpriteBarVerticalOver = attr_value;
-		else
-		if (attr_name == "sprite_bar_vertical_pressed")
+		else if (attr_name == "sprite_bar_vertical_pressed")
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
 	}
 
 	//
-	//	Add to CGUI 
+	//	Add to CGUI
 	//
 
 	m_ScrollBarStyles[name] = scrollbar;
@@ -1951,23 +1868,21 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 
 	XMBAttributeList attributes = Element.GetAttributes();
 
-	//IGUIObject* object = new CTooltip;
 	CColor color;
 	CStr name = attributes.GetNamedItem(pFile->GetAttributeID("name"));
 
-	// Try parsing value 
+	// Try parsing value
 	CStr value(Element.GetText());
-	if (!value.empty())
+	if (value.empty())
+		return;
+
+	// Try setting color to value
+	if (!color.ParseString(value))
 	{
-		// Try setting color to value
-		if (!color.ParseString(value))
-		{
-			LOGERROR("GUI: Unable to create custom color '%s'. Invalid color syntax.", name.c_str());
-		}
-		else
-		{
-			// input color
-			m_PreDefinedColors[name] = color;
-		}
+		LOGERROR("GUI: Unable to create custom color '%s'. Invalid color syntax.", name.c_str());
+		return;
 	}
+
+	// input color
+	m_PreDefinedColors[name] = color;
 }

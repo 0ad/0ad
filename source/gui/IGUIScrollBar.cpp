@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,21 +15,15 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-IGUIScrollBar
-*/
-
 #include "precompiled.h"
+
 #include "GUI.h"
 #include "maths/MathUtil.h"
 
-//-------------------------------------------------------------------
-//	IGUIScrollBar
-//-------------------------------------------------------------------
 IGUIScrollBar::IGUIScrollBar() : m_pStyle(NULL), m_pGUI(NULL),
 								 m_X(300.f), m_Y(300.f),
 								 m_ScrollRange(1.f), m_ScrollSpace(0.f), // MaxPos: not 0, due to division.
-								 m_Length(200.f), m_Width(20.f), 
+								 m_Length(200.f), m_Width(20.f),
 								 m_BarSize(0.f), m_Pos(0.f),
 								 m_ButtonPlusPressed(false),
 								 m_ButtonMinusPressed(false),
@@ -48,6 +42,7 @@ void IGUIScrollBar::SetupBarSize()
 {
 	if (!GetStyle())
 		return;
+
 	float min = GetStyle()->m_MinimumBarSize;
 	float max = GetStyle()->m_MaximumBarSize;
 	float length = m_Length;
@@ -66,7 +61,7 @@ void IGUIScrollBar::SetupBarSize()
 	m_BarSize = clamp(length * std::min((float)m_ScrollSpace / (float)m_ScrollRange, 1.f), min, max);
 }
 
-const SGUIScrollBarStyle *IGUIScrollBar::GetStyle() const
+const SGUIScrollBarStyle* IGUIScrollBar::GetStyle() const
 {
 	if (!m_pHostObject)
 		return NULL;
@@ -74,12 +69,12 @@ const SGUIScrollBarStyle *IGUIScrollBar::GetStyle() const
 	return m_pHostObject->GetScrollBarStyle(m_ScrollBarStyle);
 }
 
-CGUI *IGUIScrollBar::GetGUI() const 
-{ 
+CGUI* IGUIScrollBar::GetGUI() const
+{
 	if (!m_pHostObject)
 		return NULL;
 
-	return m_pHostObject->GetGUI(); 
+	return m_pHostObject->GetGUI();
 }
 
 void IGUIScrollBar::UpdatePosBoundaries()
@@ -87,118 +82,113 @@ void IGUIScrollBar::UpdatePosBoundaries()
 	if (m_Pos < 0.f ||
 		m_ScrollRange < m_ScrollSpace) // <= scrolling not applicable
 		m_Pos = 0.f;
-	else
-	if (m_Pos > GetMaxPos())
+	else if (m_Pos > GetMaxPos())
 		m_Pos = GetMaxPos();
 }
 
-void IGUIScrollBar::HandleMessage(SGUIMessage &Message)
+void IGUIScrollBar::HandleMessage(SGUIMessage& Message)
 {
 	switch (Message.type)
 	{
-		case GUIM_MOUSE_MOTION:
+	case GUIM_MOUSE_MOTION:
+	{
+		// TODO Gee: Optimizations needed!
+
+		CPos mouse = m_pHostObject->GetMousePos();
+
+		// If bar is being dragged
+		if (m_BarPressed)
 		{
-			// TODO Gee: Optimizations needed!
-
-			CPos mouse = m_pHostObject->GetMousePos();
-
-				// If bar is being dragged
-			if (m_BarPressed)
-			{
-				SetPosFromMousePos(mouse);
-				UpdatePosBoundaries();
-			}
-
-			// check if components are being hovered
-			m_BarHovered = GetBarRect().PointInside(mouse);
-			m_ButtonMinusHovered = HoveringButtonMinus(mouse);
-			m_ButtonPlusHovered =  HoveringButtonPlus(mouse);
-
-			if (!m_ButtonMinusHovered)
-				m_ButtonMinusPressed = false;
-
-			if (!m_ButtonPlusHovered)
-				m_ButtonPlusPressed = false;
-			break;
+			SetPosFromMousePos(mouse);
+			UpdatePosBoundaries();
 		}
 
-		case GUIM_MOUSE_PRESS_LEFT:
-		{
-			if (!m_pHostObject)
-				break;
+		// check if components are being hovered
+		m_BarHovered = GetBarRect().PointInside(mouse);
+		m_ButtonMinusHovered = HoveringButtonMinus(mouse);
+		m_ButtonPlusHovered =  HoveringButtonPlus(mouse);
 
-			CPos mouse = m_pHostObject->GetMousePos();
-
-			// if bar is pressed
-			if (GetBarRect().PointInside(mouse))
-			{
-				m_BarPressed = true;
-				m_BarPressedAtPos = mouse;
-				m_PosWhenPressed = m_Pos;
-			}
-			else
-			// if button-minus is pressed
-			if (m_ButtonMinusHovered)
-			{
-				m_ButtonMinusPressed = true;
-				ScrollMinus();
-			}
-			else
-			// if button-plus is pressed
-			if (m_ButtonPlusHovered)
-			{
-				m_ButtonPlusPressed = true;
-				ScrollPlus();
-			}
-			else
-			// Pressing the background of the bar, to scroll
-			//  notice the if-sentence alone does not admit that,
-			//  it must be after the above if/elses
-			{
-				if (GetOuterRect().PointInside(mouse))
-				{
-					// Scroll plus or minus a lot, this might change, it doesn't
-					//  have to be fancy though.
-					if (mouse.y < GetBarRect().top)
-						ScrollMinusPlenty();
-					else
-						ScrollPlusPlenty();
-						// Simulate mouse movement to see if bar now is hovered
-					SGUIMessage msg(GUIM_MOUSE_MOTION);
-					HandleMessage(msg);
-				}
-			}
-			break;
-		}
-
-		case GUIM_MOUSE_RELEASE_LEFT:
-		{
+		if (!m_ButtonMinusHovered)
 			m_ButtonMinusPressed = false;
+
+		if (!m_ButtonPlusHovered)
 			m_ButtonPlusPressed = false;
-			break;
-		}
+		break;
+	}
 
-		case GUIM_MOUSE_WHEEL_UP:
+	case GUIM_MOUSE_PRESS_LEFT:
+	{
+		if (!m_pHostObject)
+			break;
+
+		CPos mouse = m_pHostObject->GetMousePos();
+
+		// if bar is pressed
+		if (GetBarRect().PointInside(mouse))
 		{
+			m_BarPressed = true;
+			m_BarPressedAtPos = mouse;
+			m_PosWhenPressed = m_Pos;
+		}
+		// if button-minus is pressed
+		else if (m_ButtonMinusHovered)
+		{
+			m_ButtonMinusPressed = true;
 			ScrollMinus();
-			// Since the scroll was changed, let's simulate a mouse movement
-			//  to check if scrollbar now is hovered
-			SGUIMessage msg(GUIM_MOUSE_MOTION);
-			HandleMessage(msg);
-			break;
 		}
-
-		case GUIM_MOUSE_WHEEL_DOWN:
+		// if button-plus is pressed
+		else if (m_ButtonPlusHovered)
 		{
+			m_ButtonPlusPressed = true;
 			ScrollPlus();
-			// Since the scroll was changed, let's simulate a mouse movement
-			//  to check if scrollbar now is hovered
-			SGUIMessage msg(GUIM_MOUSE_MOTION);
-			HandleMessage(msg);
-			break;
 		}
+		// Pressing the background of the bar, to scroll
+		//  notice the if-sentence alone does not admit that,
+		//  it must be after the above if/elses
+		else
+		{
+			if (GetOuterRect().PointInside(mouse))
+			{
+				// Scroll plus or minus a lot, this might change, it doesn't
+				//  have to be fancy though.
+				if (mouse.y < GetBarRect().top)
+					ScrollMinusPlenty();
+				else
+					ScrollPlusPlenty();
+				// Simulate mouse movement to see if bar now is hovered
+				SGUIMessage msg(GUIM_MOUSE_MOTION);
+				HandleMessage(msg);
+			}
+		}
+		break;
+	}
 
-		default:
-			break;
+	case GUIM_MOUSE_RELEASE_LEFT:
+		m_ButtonMinusPressed = false;
+		m_ButtonPlusPressed = false;
+		break;
+
+	case GUIM_MOUSE_WHEEL_UP:
+	{
+		ScrollMinus();
+		// Since the scroll was changed, let's simulate a mouse movement
+		//  to check if scrollbar now is hovered
+		SGUIMessage msg(GUIM_MOUSE_MOTION);
+		HandleMessage(msg);
+		break;
+	}
+
+	case GUIM_MOUSE_WHEEL_DOWN:
+	{
+		ScrollPlus();
+		// Since the scroll was changed, let's simulate a mouse movement
+		//  to check if scrollbar now is hovered
+		SGUIMessage msg(GUIM_MOUSE_MOTION);
+		HandleMessage(msg);
+		break;
+	}
+
+	default:
+		break;
 	}
 }

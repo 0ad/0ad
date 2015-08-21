@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,50 +15,36 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-IGUIScrollBarOwner
-*/
-
 #include "precompiled.h"
+
 #include "GUI.h"
 
-
-//-------------------------------------------------------------------
-//  Constructor / Destructor
-//-------------------------------------------------------------------
 IGUIScrollBarOwner::IGUIScrollBarOwner()
 {
 }
 
 IGUIScrollBarOwner::~IGUIScrollBarOwner()
 {
-	// Delete scroll-bars
-	std::vector<IGUIScrollBar*>::iterator it;
-	for (it=m_ScrollBars.begin(); it!=m_ScrollBars.end(); ++it)
-	{
-		delete *it;
-	}
+	for (IGUIScrollBar* const& sb : m_ScrollBars)
+		delete sb;
 }
 
 void IGUIScrollBarOwner::ResetStates()
 {
 	IGUIObject::ResetStates();
-	
-	std::vector<IGUIScrollBar*>::iterator it;
-	for (it=m_ScrollBars.begin(); it!=m_ScrollBars.end(); ++it)
-	{
-		(*it)->SetBarPressed(false);
-	}
+
+	for (IGUIScrollBar* const& sb : m_ScrollBars)
+		sb->SetBarPressed(false);
 }
 
-void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar * scrollbar)
+void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar* scrollbar)
 {
 	scrollbar->SetHostObject(this);
 	scrollbar->SetGUI(GetGUI());
 	m_ScrollBars.push_back(scrollbar);
 }
 
-const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
+const SGUIScrollBarStyle* IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
 {
 	if (!GetGUI())
 	{
@@ -76,20 +62,19 @@ const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& sty
  	return &it->second;
 }
 
-void IGUIScrollBarOwner::HandleMessage(SGUIMessage &Message)
+void IGUIScrollBarOwner::HandleMessage(SGUIMessage& msg)
 {
-	std::vector<IGUIScrollBar*>::iterator it;
-	for (it=m_ScrollBars.begin(); it!=m_ScrollBars.end(); ++it)
-	{
-		(*it)->HandleMessage(Message);
-	}
+	for (IGUIScrollBar* const& sb : m_ScrollBars)
+		sb->HandleMessage(msg);
 }
 
-void IGUIScrollBarOwner::Draw() 
+void IGUIScrollBarOwner::Draw()
 {
-	std::vector<IGUIScrollBar*>::iterator it;
-	for (it=m_ScrollBars.begin(); it!=m_ScrollBars.end(); ++it)
-	{
-		(*it)->Draw();
-	}
+	for (IGUIScrollBar* const& sb : m_ScrollBars)
+		sb->Draw();
+}
+
+float IGUIScrollBarOwner::GetScrollBarPos(const int index) const
+{
+	return m_ScrollBars[index]->GetPos();
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,16 +15,13 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-CCheckBox
-*/
-
 #include "precompiled.h"
-#include "GUI.h"
+
 #include "CRadioButton.h"
 
+#include "GUI.h"
 
-void CRadioButton::HandleMessage(SGUIMessage &Message)
+void CRadioButton::HandleMessage(SGUIMessage& Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
@@ -33,18 +30,16 @@ void CRadioButton::HandleMessage(SGUIMessage &Message)
 	switch (Message.type)
 	{
 	case GUIM_PRESSED:
+		for (IGUIObject* const& obj : *GetParent())
 		{
-			for (vector_pObjects::iterator it = GetParent()->ChildrenItBegin(); it != GetParent()->ChildrenItEnd(); ++it)
-			{
-				// Notice, if you use other objects within the parent object that has got
-				//  the setting "checked", it too will change. Hence NO OTHER OBJECTS THAN
-				//  RADIO BUTTONS SHOULD BE WITHIN IT!
-				GUI<bool>::SetSetting((*it), "checked", false);
-			}
-
-			GUI<bool>::SetSetting(this, "checked", true);
-			break;
+			// Notice, if you use other objects within the parent object that has got
+			//  the setting "checked", it too will change. Hence NO OTHER OBJECTS THAN
+			//  RADIO BUTTONS SHOULD BE WITHIN IT!
+			GUI<bool>::SetSetting(obj, "checked", false);
 		}
+
+		GUI<bool>::SetSetting(this, "checked", true);
+		break;
 
 	default:
 		break;

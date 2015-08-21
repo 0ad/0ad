@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,14 +15,15 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GUIRenderer_h
-#define GUIRenderer_h
+#ifndef INCLUDED_GUIRENDERER
+#define INCLUDED_GUIRENDERER
 
 #include "graphics/ShaderTechnique.h"
 #include "graphics/Texture.h"
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 #include "ps/Shapes.h"
+
 #include <vector>
 
 struct SGUIImageEffects;
@@ -34,8 +35,8 @@ namespace GUIRenderer
 	{
 	public:
 		virtual ~IGLState() {};
-		virtual void Set(const CTexturePtr& tex)=0;
-		virtual void Unset()=0;
+		virtual void Set(const CTexturePtr& tex) = 0;
+		virtual void Unset() = 0;
 	};
 
 	struct SDrawCall
@@ -77,9 +78,9 @@ namespace GUIRenderer
 
 namespace GUIRenderer
 {
-	void UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, CGUISprite*> &Sprites);
+	void UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, CGUISprite*>& Sprites);
 
-	void Draw(DrawCalls &Calls, float Z);
+	void Draw(DrawCalls& Calls, float Z);
 }
 
-#endif // GUIRenderer_h
+#endif // INCLUDED_GUIRENDERER

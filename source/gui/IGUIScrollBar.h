@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,14 +37,7 @@ A GUI ScrollBar
 #ifndef INCLUDED_IGUISCROLLBAR
 #define INCLUDED_IGUISCROLLBAR
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * The GUI Scroll-bar style. Tells us how scroll-bars look and feel.
@@ -96,7 +89,7 @@ struct SGUIScrollBarStyle
 	 * in pixels.
 	 */
 	float m_MaximumBarSize;
-	
+
 	/**
 	 * True if you want edge buttons, i.e. buttons that can be pressed in order
 	 * to scroll.
@@ -169,7 +162,7 @@ public:
 	/**
 	 * Draw the scroll-bar
 	 */
-	virtual void Draw()=0;
+	virtual void Draw() = 0;
 
 	/**
      * If an object that contains a scrollbar has got messages, send
@@ -178,12 +171,12 @@ public:
 	 *
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message)=0;
+	virtual void HandleMessage(SGUIMessage& Message) = 0;
 
 	/**
 	 * Set m_Pos with g_mouse_x/y input, i.e. when draggin.
 	 */
-	virtual void SetPosFromMousePos(const CPos &mouse)=0;
+	virtual void SetPosFromMousePos(const CPos& mouse) = 0;
 
 	/**
 	 * Hovering the scroll minus button
@@ -240,26 +233,26 @@ public:
 	 * Set host object, must be done almost at creation of scroll bar.
 	 * @param pOwner Pointer to host object.
 	 */
-	void SetHostObject(IGUIScrollBarOwner * pOwner) { m_pHostObject = pOwner; }
+	void SetHostObject(IGUIScrollBarOwner* pOwner) { m_pHostObject = pOwner; }
 
 	/**
 	 * Get GUI pointer
 	 * @return CGUI pointer
 	 */
-	CGUI *GetGUI() const;
+	CGUI* GetGUI() const;
 
 	/**
 	 * Set GUI pointer
 	 * @param pGUI pointer to CGUI object.
 	 */
-	void SetGUI(CGUI *pGUI) { m_pGUI = pGUI; }
+	void SetGUI(CGUI* pGUI) { m_pGUI = pGUI; }
 
 	/**
 	 * Set Width
 	 * @param width Width
 	 */
 	void SetWidth(float width) { m_Width = width; }
-	
+
 	/**
 	 * Set X Position
 	 * @param x Position in this axis
@@ -312,7 +305,7 @@ public:
 	 * Get style used by the scrollbar
 	 * @return Scroll bar style struct.
 	 */
-	const SGUIScrollBarStyle * GetStyle() const;
+	const SGUIScrollBarStyle* GetStyle() const;
 
 	/**
 	 * Get the rectangle of the actual BAR. not the whole scroll-bar.
@@ -348,7 +341,7 @@ protected:
 	/**
 	 * Width of the scroll bar
 	 */
-	float m_Width;	
+	float m_Width;
 
 	/**
 	 * Absolute X Position
@@ -451,4 +444,4 @@ protected:
 	//@}
 };
 
-#endif
+#endif // INCLUDED_IGUISCROLLBAR

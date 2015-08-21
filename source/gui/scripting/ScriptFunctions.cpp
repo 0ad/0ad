@@ -217,8 +217,8 @@ void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, 
 	CSimulation2* sim = g_Game->GetSimulation2();
 	JSContext* cxSim = sim->GetScriptInterface().GetContext();
 	JSAutoRequest rqSim(cxSim);
-	
-	JS::RootedValue gameAttribs(cxSim, 
+
+	JS::RootedValue gameAttribs(cxSim,
 		sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), attribs));
 
 	g_Game->SetPlayerID(playerID);
@@ -230,7 +230,7 @@ JS::Value StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring na
 	// We need to be careful with different compartments and contexts.
 	// The GUI calls this function from the GUI context and expects the return value in the same context.
 	// The game we start from here creates another context and expects data in this context.
-	
+
 	JSContext* cxGui = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cxGui);
 
@@ -247,13 +247,13 @@ JS::Value StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring na
 		return JS::UndefinedValue();
 
 	g_Game = new CGame();
-	
+
 	{
 		CSimulation2* sim = g_Game->GetSimulation2();
 		JSContext* cxGame = sim->GetScriptInterface().GetContext();
 		JSAutoRequest rq(cxGame);
-		
-		JS::RootedValue gameContextMetadata(cxGame, 
+
+		JS::RootedValue gameContextMetadata(cxGame,
 			sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), guiContextMetadata));
 		JS::RootedValue gameInitAttributes(cxGame);
 		sim->GetScriptInterface().GetProperty(gameContextMetadata, "initAttributes", &gameInitAttributes);
@@ -464,7 +464,7 @@ JS::Value GetMapSettings(ScriptInterface::CxPrivate* pCxPrivate)
 
 	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	JS::RootedValue mapSettings(cx);
 	g_Game->GetSimulation2()->GetMapSettings(&mapSettings);
 	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(
@@ -716,7 +716,7 @@ void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause)
 	}
 	g_Game->m_Paused = pause;
 #if CONFIG2_AUDIO
-	if ( g_SoundManager )
+	if (g_SoundManager)
 		g_SoundManager->Pause(pause);
 #endif
 }
@@ -888,7 +888,7 @@ static void InitJsTimers(ScriptInterface& scriptInterface)
 void StartJsTimer(ScriptInterface::CxPrivate* pCxPrivate, unsigned int slot)
 {
 	ONCE(InitJsTimers(*(pCxPrivate->pScriptInterface)));
-	
+
 	if (slot >= MAX_JS_TIMERS)
 		LOGERROR("Exceeded the maximum number of timer slots for scripts!");
 
@@ -923,7 +923,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Sound::RegisterScriptFunctions(scriptInterface);
 	JSI_L10n::RegisterScriptFunctions(scriptInterface);
 	JSI_Lobby::RegisterScriptFunctions(scriptInterface);
- 
+
 	// VFS (external)
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &JSI_VFS::BuildDirEntList>("BuildDirEntList");
 	scriptInterface.RegisterFunction<bool, CStrW, JSI_VFS::FileExists>("FileExists");

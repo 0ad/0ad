@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,20 +15,13 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-CProgressBar
-*/
-
 #include "precompiled.h"
+
 #include "GUI.h"
 #include "CProgressBar.h"
 
 #include "lib/ogl.h"
 
-
-//-------------------------------------------------------------------
-//  Constructor / Destructor
-//-------------------------------------------------------------------
 CProgressBar::CProgressBar()
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_background");
@@ -42,7 +35,7 @@ CProgressBar::~CProgressBar()
 {
 }
 
-void CProgressBar::HandleMessage(SGUIMessage &Message)
+void CProgressBar::HandleMessage(SGUIMessage& Message)
 {
 	// Important
 	IGUIObject::HandleMessage(Message);
@@ -68,25 +61,25 @@ void CProgressBar::HandleMessage(SGUIMessage &Message)
 	}
 }
 
-void CProgressBar::Draw() 
+void CProgressBar::Draw()
 {
-	if (GetGUI())
-	{
-		float bz = GetBufferedZ();
+	if (!GetGUI())
+		return;
 
-		CGUISpriteInstance *sprite_background, *sprite_bar;
-		int cell_id = 0;
-		float value = 0;
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_background", sprite_background);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_bar", sprite_bar);
-		GUI<float>::GetSetting(this, "caption", value);
+	float bz = GetBufferedZ();
 
-		GetGUI()->DrawSprite(*sprite_background, cell_id, bz, m_CachedActualSize);
+	CGUISpriteInstance* sprite_background;
+	CGUISpriteInstance* sprite_bar;
+	int cell_id = 0;
+	float value = 0;
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_background", sprite_background);
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_bar", sprite_bar);
+	GUI<float>::GetSetting(this, "caption", value);
 
+	GetGUI()->DrawSprite(*sprite_background, cell_id, bz, m_CachedActualSize);
 
-		// Get size of bar (notice it is drawn slightly closer, to appear above the background)
-		CRect bar_size(m_CachedActualSize.left, m_CachedActualSize.top,
-					   m_CachedActualSize.left+m_CachedActualSize.GetWidth()*(value/100.f), m_CachedActualSize.bottom);
-		GetGUI()->DrawSprite(*sprite_bar, cell_id, bz+0.01f, bar_size);
-	}
+	// Get size of bar (notice it is drawn slightly closer, to appear above the background)
+	CRect bar_size(m_CachedActualSize.left, m_CachedActualSize.top,
+				   m_CachedActualSize.left+m_CachedActualSize.GetWidth()*(value/100.f), m_CachedActualSize.bottom);
+	GetGUI()->DrawSprite(*sprite_bar, cell_id, bz+0.01f, bar_size);
 }

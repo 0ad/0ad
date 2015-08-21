@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,24 +35,9 @@ GUI Object Base - Button Behavior
 #ifndef INCLUDED_IGUIBUTTONBEHAVIOR
 #define INCLUDED_IGUIBUTTONBEHAVIOR
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
 
 class CGUISpriteInstance;
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * Appends button behaviours to the IGUIObject.
@@ -70,7 +55,7 @@ public:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * This is a function that lets a button being drawn,
@@ -89,13 +74,7 @@ public:
 	 * @param cell_id Identifies the icon to be used (if the sprite contains
 	 *                cell-using images)
 	 */
-	void DrawButton(const CRect &rect,
-					const float &z,
-					CGUISpriteInstance& sprite,
-					CGUISpriteInstance& sprite_over,
-					CGUISpriteInstance& sprite_pressed,
-					CGUISpriteInstance& sprite_disabled,
-					int cell_id);
+	void DrawButton(const CRect& rect, const float& z, CGUISpriteInstance& sprite, CGUISpriteInstance& sprite_over, CGUISpriteInstance& sprite_pressed, CGUISpriteInstance& sprite_disabled, int cell_id);
 
 	/**
 	 * Choosing which color of the following according to object enabled/hovered/pressed status:
@@ -129,4 +108,4 @@ protected:
 	bool							m_PressedRight;
 };
 
-#endif
+#endif // INCLUDED_IGUIBUTTONBEHAVIOR

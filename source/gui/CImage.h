@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,38 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Object - Image object
-
---Overview--
-
-	GUI Object for just drawing a sprite.
-
---More info--
-
-	Check GUI.h
-
-*/
-
 #ifndef INCLUDED_CIMAGE
 #define INCLUDED_CIMAGE
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * Object just for drawing a sprite. Like CText, without the
@@ -57,7 +29,7 @@ GUI Object - Image object
  * without functionality used, and that is a lot of unnecessary
  * overhead. That's why I thought I'd go with an intuitive
  * control.
- * 
+ *
  * @see IGUIObject
  */
 class CImage : public IGUIObject
@@ -75,4 +47,4 @@ protected:
 	virtual void Draw();
 };
 
-#endif
+#endif // INCLUDED_CIMAGE

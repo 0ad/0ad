@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@ GUI Core, stuff that the whole GUI uses
 
 --Overview--
 
-	Contains defines, includes, types etc that the whole 
+	Contains defines, includes, types etc that the whole
 	 GUI should have included.
 
 --More info--
@@ -32,43 +32,25 @@ GUI Core, stuff that the whole GUI uses
 #ifndef INCLUDED_GUIBASE
 #define INCLUDED_GUIBASE
 
-
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include <map>
 #include <vector>
 
+#include "ps/CStr.h"
+#include "ps/Errors.h"
 // I would like to just forward declare CSize, but it doesn't
 //  seem to be defined anywhere in the predefined header.
 #include "ps/Shapes.h"
 
-#include "ps/CStr.h"
-
-#include "ps/Errors.h"
-
-//--------------------------------------------------------
-//  Forward declarations
-//--------------------------------------------------------
 class IGUIObject;
 
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
 // Object settings setups
-
 // Setup an object's ConstructObject function
 #define GUI_OBJECT(obj)													\
 public:																	\
-	static IGUIObject *ConstructObject() { return new obj(); }
+	static IGUIObject* ConstructObject() { return new obj(); }
 
 
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-/** 
+/**
  * Message types.
  * @see SGUIMessage
  */
@@ -96,7 +78,7 @@ enum EGUIMessageType
 	GUIM_LOST_FOCUS,
 	GUIM_PRESSED_MOUSE_RIGHT,
 	GUIM_DOUBLE_PRESSED_MOUSE_RIGHT,
-	GUIM_TAB				// Used by CInput 
+	GUIM_TAB				// Used by CInput
 };
 
 /**
@@ -193,14 +175,14 @@ public:
 	/**
 	 * Get client area rectangle when the parent is given
 	 */
-	CRect GetClientArea(const CRect &parent) const;
+	CRect GetClientArea(const CRect& parent) const;
 
 	/**
 	 * The ClientArea can be set from a string looking like:
 	 *
 	 * "0 0 100% 100%"
 	 * "50%-10 50%-10 50%+10 50%+10"
-	 * 
+	 *
 	 * i.e. First percent modifier, then + or - and the pixel modifier.
 	 * Although you can use just the percent or the pixel modifier. Notice
 	 * though that the percent modifier must always be the first when
@@ -217,9 +199,7 @@ public:
 	}
 };
 
-//--------------------------------------------------------
-//  Error declarations
-//--------------------------------------------------------
+
 ERROR_GROUP(GUI);
 
 ERROR_TYPE(GUI, NullObjectProvided);
@@ -228,4 +208,4 @@ ERROR_TYPE(GUI, OperationNeedsGUIObject);
 ERROR_TYPE(GUI, NameAmbiguity);
 ERROR_TYPE(GUI, ObjectNeedsName);
 
-#endif
+#endif // INCLUDED_GUIBASE

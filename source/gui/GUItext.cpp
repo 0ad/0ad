@@ -44,15 +44,10 @@ void CGUIString::SFeedback::Reset()
 	m_TextCalls.clear();
 	m_SpriteCalls.clear();
 	m_Size = CSize();
-	m_NewLine=false;
+	m_NewLine = false;
 }
 
-void CGUIString::GenerateTextCall(const CGUI* pGUI,
-								  SFeedback& Feedback,
-								  CStrIntern DefaultFont,
-								  const int& from, const int& to,
-								  const bool FirstLine,
-								  const IGUIObject* pObject) const
+void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrIntern DefaultFont, const int& from, const int& to, const bool FirstLine, const IGUIObject* pObject) const
 {
 	// Reset width and height, because they will be determined with incrementation
 	//  or comparisons.
@@ -247,7 +242,7 @@ bool CGUIString::TextChunk::Tag::SetTagType(const CStrW& tagtype)
 	return true;
 }
 
-CGUIString::TextChunk::Tag::TagType CGUIString::TextChunk::Tag::GetTagType(const CStrW& tagtype)
+CGUIString::TextChunk::Tag::TagType CGUIString::TextChunk::Tag::GetTagType(const CStrW& tagtype) const
 {
 	if (tagtype == L"color")
 		return TAG_COLOR;
@@ -473,18 +468,5 @@ void CGUIString::SetValue(const CStrW& str)
 	if (m_Words.size() <= 2)
 		return;
 
-	std::vector<int>::iterator it;
-	int last_word = -1;
-	for (it = m_Words.begin(); it != m_Words.end(); )
-	{
-		if (last_word == *it)
-		{
-			it = m_Words.erase(it);
-		}
-		else
-		{
-			last_word = *it;
-			++it;
-		}
-	}
+	m_Words.erase(std::unique(m_Words.begin(), m_Words.end()), m_Words.end());
 }

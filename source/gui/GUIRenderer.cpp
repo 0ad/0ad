@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,7 +57,7 @@ DrawCalls& DrawCalls::operator=(const DrawCalls&)
 }
 
 
-void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, const CRect &Size, int CellID, std::map<CStr, CGUISprite*> &Sprites)
+void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, CGUISprite*>& Sprites)
 {
 	// This is called only when something has changed (like the size of the
 	// sprite), so it doesn't need to be particularly efficient.
@@ -72,7 +72,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		return;
 
 
-	std::map<CStr, CGUISprite*>::iterator it (Sprites.find(SpriteName));
+	std::map<CStr, CGUISprite*>::iterator it(Sprites.find(SpriteName));
 	if (it == Sprites.end())
 	{
 		// Sprite not found. Check whether this a special sprite:
@@ -86,7 +86,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		{
 			// TODO: Should check (nicely) that this is a valid file?
 			SGUIImage* Image = new SGUIImage;
-			
+
 			// Allow grayscale images for disabled portraits
 			if (SpriteName.substr(10, 10) == "grayscale:")
 			{
@@ -107,7 +107,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			Sprite->AddImage(Image);
 
 			Sprites[SpriteName] = Sprite;
-			
+
 			it = Sprites.find(SpriteName);
 			ENSURE(it != Sprites.end()); // The insertion above shouldn't fail
 		}
@@ -118,9 +118,9 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 
 			double xRatio = SpriteName.BeforeFirst(",").AfterLast("(").ToDouble();
 			double yRatio = SpriteName.BeforeFirst(")").AfterLast(",").ToDouble();
-			
+
 			int PathStart = SpriteName.Find(")") + 1;
-			
+
 			Image->m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(PathStart));
 
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
@@ -132,7 +132,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			Sprite->AddImage(Image);
 
 			Sprites[SpriteName] = Sprite;
-			
+
 			it = Sprites.find(SpriteName);
 			ENSURE(it != Sprites.end()); // The insertion above shouldn't fail
 		}
@@ -263,9 +263,7 @@ CRect SDrawCall::ComputeTexCoords() const
 	float TexHeight = m_Texture->GetHeight();
 
 	if (!TexWidth || !TexHeight)
-	{
 		return CRect(0, 0, 1, 1);
-	}
 
 	// Textures are positioned by defining a rectangular block of the
 	// texture (usually the whole texture), and a rectangular block on
@@ -329,7 +327,7 @@ CRect SDrawCall::ComputeTexCoords() const
 	return TexCoords;
 }
 
-void GUIRenderer::Draw(DrawCalls &Calls, float Z)
+void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 {
 	// Called every frame, to draw the object (based on cached calculations)
 
@@ -439,7 +437,7 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 			}
 #undef ADD
 		}
-		
+
 		cit->m_Shader->EndPass();
 
 		glDisable(GL_BLEND);

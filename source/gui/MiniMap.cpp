@@ -30,9 +30,9 @@
 #include "graphics/TerritoryTexture.h"
 #include "gui/GUI.h"
 #include "gui/GUIManager.h"
-#include "lib/ogl.h"
-#include "lib/external_libraries/libsdl.h"
 #include "lib/bits.h"
+#include "lib/external_libraries/libsdl.h"
+#include "lib/ogl.h"
 #include "lib/timer.h"
 #include "ps/ConfigDB.h"
 #include "ps/Game.h"
@@ -86,11 +86,11 @@ CMiniMap::CMiniMap() :
 	m_AttributePos.type = GL_FLOAT;
 	m_AttributePos.elems = 2;
 	m_VertexArray.AddAttribute(&m_AttributePos);
-	
+
 	m_AttributeColor.type = GL_UNSIGNED_BYTE;
 	m_AttributeColor.elems = 4;
 	m_VertexArray.AddAttribute(&m_AttributeColor);
-	
+
 	m_VertexArray.SetNumVertices(MAX_ENTITIES_DRAWN);
 	m_VertexArray.Layout();
 
@@ -105,7 +105,7 @@ CMiniMap::CMiniMap() :
 
 	VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
 	VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
-	for (u16 i = 0; i < MAX_ENTITIES_DRAWN; i++)
+	for (u16 i = 0; i < MAX_ENTITIES_DRAWN; ++i)
 	{
 		(*attrColor)[0] = 0;
 		(*attrColor)[1] = 0;
@@ -137,60 +137,44 @@ CMiniMap::~CMiniMap()
 	Destroy();
 }
 
-void CMiniMap::HandleMessage(SGUIMessage &Message)
+void CMiniMap::HandleMessage(SGUIMessage& Message)
 {
-	switch(Message.type)
+	switch (Message.type)
 	{
 	case GUIM_MOUSE_PRESS_LEFT:
+		if (m_MouseHovering)
 		{
-			if (m_MouseHovering)
-			{
-				SetCameraPos();
-				m_Clicking = true;
-			}
-			break;
+			SetCameraPos();
+			m_Clicking = true;
 		}
+		break;
 	case GUIM_MOUSE_RELEASE_LEFT:
-		{
-			if(m_MouseHovering && m_Clicking)
-				SetCameraPos();
-			m_Clicking = false;
-			break;
-		}
+		if (m_MouseHovering && m_Clicking)
+			SetCameraPos();
+		m_Clicking = false;
+		break;
 	case GUIM_MOUSE_DBLCLICK_LEFT:
-		{
-			if(m_MouseHovering && m_Clicking)
-				SetCameraPos();
-			m_Clicking = false;
-			break;
-		}
+		if (m_MouseHovering && m_Clicking)
+			SetCameraPos();
+		m_Clicking = false;
+		break;
 	case GUIM_MOUSE_ENTER:
-		{
-			m_MouseHovering = true;
-			break;
-		}
+		m_MouseHovering = true;
+		break;
 	case GUIM_MOUSE_LEAVE:
-		{
-			m_Clicking = false;
-			m_MouseHovering = false;
-			break;
-		}
+		m_Clicking = false;
+		m_MouseHovering = false;
+		break;
 	case GUIM_MOUSE_RELEASE_RIGHT:
-		{
-			CMiniMap::FireWorldClickEvent(SDL_BUTTON_RIGHT, 1);
-			break;
-		}
+		CMiniMap::FireWorldClickEvent(SDL_BUTTON_RIGHT, 1);
+		break;
 	case GUIM_MOUSE_DBLCLICK_RIGHT:
-		{
-			CMiniMap::FireWorldClickEvent(SDL_BUTTON_RIGHT, 2);
-			break;
-		}
+		CMiniMap::FireWorldClickEvent(SDL_BUTTON_RIGHT, 2);
+		break;
 	case GUIM_MOUSE_MOTION:
-		{
-			if (m_MouseHovering && m_Clicking)
-				SetCameraPos();
-			break;
-		}
+		if (m_MouseHovering && m_Clicking)
+			SetCameraPos();
+		break;
 	case GUIM_MOUSE_WHEEL_DOWN:
 	case GUIM_MOUSE_WHEEL_UP:
 		Message.Skip();
@@ -198,7 +182,7 @@ void CMiniMap::HandleMessage(SGUIMessage &Message)
 
 	default:
 		break;
-	}	// switch
+	}
 }
 
 bool CMiniMap::MouseOver()
@@ -248,11 +232,11 @@ float CMiniMap::GetAngle()
 	return -atan2(cameraIn.X, cameraIn.Z);
 }
 
-void CMiniMap::FireWorldClickEvent(int button, int clicks)
+void CMiniMap::FireWorldClickEvent(int UNUSED(button), int UNUSED(clicks))
 {
 	JSContext* cx = g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	float x, z;
 	GetMouseWorldCoordinates(x, z);
 
@@ -261,9 +245,6 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "x", x, false);
 	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "z", z, false);
 	ScriptEvent("worldclick", coords);
-
-	UNUSED2(button);
-	UNUSED2(clicks);
 }
 
 // This sets up and draws the rectangle on the minimap
@@ -284,7 +265,8 @@ void CMiniMap::DrawViewRect(CMatrix3D transform)
 	hitPt[3] = m_Camera->GetWorldCoordinates(0, 0, h);
 
 	float ViewRect[4][2];
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; ++i)
+	{
 		// convert to minimap space
 		ViewRect[i][0] = (width * hitPt[i].X * invTileMapSize);
 		ViewRect[i][1] = (height * hitPt[i].Z * invTileMapSize);
@@ -301,7 +283,7 @@ void CMiniMap::DrawViewRect(CMatrix3D transform)
 	glScissor(
 		m_CachedActualSize.left / g_GuiScale,
 		g_Renderer.GetHeight() - m_CachedActualSize.bottom / g_GuiScale,
-		width / g_GuiScale, 
+		width / g_GuiScale,
 		height / g_GuiScale);
 	glEnable(GL_SCISSOR_TEST);
 	glLineWidth(2.0f);
@@ -423,7 +405,7 @@ void CMiniMap::Draw()
 	const double cur_time = timer_Time();
 	const bool doUpdate = cur_time - last_time > 0.5;
 	if (doUpdate)
-	{	
+	{
 		last_time = cur_time;
 		if (m_TerrainDirty)
 			RebuildTerrainTexture();
@@ -465,7 +447,7 @@ void CMiniMap::Draw()
 	CTerritoryTexture& territoryTexture = g_Game->GetView()->GetTerritoryTexture();
 
 	shader->BindTexture(str_baseTex, territoryTexture.GetTexture());
-	const CMatrix3D *territoryTransform = territoryTexture.GetMinimapTextureMatrix();
+	const CMatrix3D* territoryTransform = territoryTexture.GetMinimapTextureMatrix();
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, *territoryTransform);
 
@@ -484,7 +466,7 @@ void CMiniMap::Draw()
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	const CMatrix3D *losTransform = losTexture.GetMinimapTextureMatrix();
+	const CMatrix3D* losTransform = losTexture.GetMinimapTextureMatrix();
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, *losTransform);
 
@@ -658,10 +640,10 @@ void CMiniMap::RebuildTerrainTexture()
 
 	m_TerrainDirty = false;
 
-	for(u32 j = 0; j < h; j++)
+	for (u32 j = 0; j < h; ++j)
 	{
-		u32 *dataPtr = m_TerrainData + ((y + j) * (m_MapSize - 1)) + x;
-		for(u32 i = 0; i < w; i++)
+		u32* dataPtr = m_TerrainData + ((y + j) * (m_MapSize - 1)) + x;
+		for (u32 i = 0; i < w; ++i)
 		{
 			float avgHeight = ( m_Terrain->GetVertexGroundLevel((int)i, (int)j)
 					+ m_Terrain->GetVertexGroundLevel((int)i+1, (int)j)
@@ -686,11 +668,11 @@ void CMiniMap::RebuildTerrainTexture()
 
 				u32 color = 0xFFFFFFFF;
 
-				CMiniPatch *mp = m_Terrain->GetTile(x + i, y + j);
-				if(mp)
+				CMiniPatch* mp = m_Terrain->GetTile(x + i, y + j);
+				if (mp)
 				{
-					CTerrainTextureEntry *tex = mp->GetTextureEntry();
-					if(tex)
+					CTerrainTextureEntry* tex = mp->GetTextureEntry();
+					if (tex)
 					{
 						// If the texture can't be loaded yet, set the dirty flags
 						// so we'll try regenerating the terrain texture again soon
@@ -713,12 +695,11 @@ void CMiniMap::RebuildTerrainTexture()
 
 void CMiniMap::Destroy()
 {
-	if(m_TerrainTexture)
+	if (m_TerrainTexture)
 	{
 		glDeleteTextures(1, &m_TerrainTexture);
 		m_TerrainTexture = 0;
 	}
 
-	delete[] m_TerrainData;
-	m_TerrainData = 0;
+	SAFE_ARRAY_DELETE(m_TerrainData);
 }

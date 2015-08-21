@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,20 +15,14 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-CImage
-*/
-
 #include "precompiled.h"
-#include "GUI.h"
+
 #include "CImage.h"
+
+#include "GUI.h"
 
 #include "lib/ogl.h"
 
-
-//-------------------------------------------------------------------
-//  Constructor / Destructor
-//-------------------------------------------------------------------
 CImage::CImage()
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
@@ -41,17 +35,17 @@ CImage::~CImage()
 {
 }
 
-void CImage::Draw() 
+void CImage::Draw()
 {
-	if (GetGUI())
-	{
-		float bz = GetBufferedZ();
+	if (!GetGUI())
+		return;
 
-		CGUISpriteInstance *sprite;
-		int cell_id;
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-		GUI<int>::GetSetting(this, "cell_id", cell_id);
+	float bz = GetBufferedZ();
 
-		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
-	}
+	CGUISpriteInstance* sprite;
+	int cell_id;
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
+	GUI<int>::GetSetting(this, "cell_id", cell_id);
+
+	GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
 }

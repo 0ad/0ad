@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,37 +32,25 @@ GUI util
 #ifndef INCLUDED_GUIUTIL
 #define INCLUDED_GUIUTIL
 
-
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
-#include "GUIbase.h"
-// TODO Gee: New
 #include "CGUI.h"
 #include "CGUISprite.h"
+#include "GUIbase.h"
 #include "IGUIObject.h"
-
-//--------------------------------------------------------
-//  Help Classes/Structs for the GUI
-//--------------------------------------------------------
 
 class CClientArea;
 class CGUIString;
 class CMatrix3D;
 
 template <typename T>
-bool __ParseString(const CStrW& Value, T &tOutput);
+bool __ParseString(const CStrW& Value, T& tOutput);
 
 // Model-view-projection matrix with (0,0) in top-left of screen
 CMatrix3D GetDefaultGuiMatrix();
 
-//--------------------------------------------------------
-//  Forward declarations
-//--------------------------------------------------------
 struct SGUIMessage;
 
 /**
- * Base class to only the class GUI. This superclass is 
+ * Base class to only the class GUI. This superclass is
  * kind of a templateless extention of the class GUI.
  * Used for other functions to friend with, because it
  * can't friend with GUI since it's templated (at least
@@ -72,20 +60,20 @@ class CInternalCGUIAccessorBase
 {
 protected:
 	/// Get object pointer
-	static IGUIObject * GetObjectPointer(CGUI &GUIinstance, const CStr& Object);
-	
+	static IGUIObject* GetObjectPointer(CGUI& GUIinstance, const CStr& Object);
+
 	/// const version
-	static const IGUIObject * GetObjectPointer(const CGUI &GUIinstance, const CStr& Object);
+	static const IGUIObject* GetObjectPointer(const CGUI& GUIinstance, const CStr& Object);
 
 	/// Wrapper for ResetStates
-	static void QueryResetting(IGUIObject *pObject);
+	static void QueryResetting(IGUIObject* pObject);
 
-	static void HandleMessage(IGUIObject *pObject, SGUIMessage &message);
+	static void HandleMessage(IGUIObject* pObject, SGUIMessage& message);
 };
 
 
 #ifndef NDEBUG
-// Used to ensure type-safety, sort of 
+// Used to ensure type-safety, sort of
 template<typename T> void CheckType(const IGUIObject* obj, const CStr& setting);
 #endif
 
@@ -109,7 +97,7 @@ public:
 
 	// Like GetSetting (below), but doesn't make a copy of the value
 	// (so it can be modified later)
-	static PSRETURN GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value);
+	static PSRETURN GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value);
 
 	/**
 	 * Retrieves a setting by name from object pointer
@@ -118,7 +106,7 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Stores value here, note type T!
 	 */
-	static PSRETURN GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value);
+	static PSRETURN GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value);
 
 	/**
 	 * Sets a value by name using a real datatype as input.
@@ -131,8 +119,7 @@ public:
 	 * @param Value Sets value to this, note type T!
 	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
 	 */
-	static PSRETURN SetSetting(IGUIObject *pObject, const CStr& Setting, 
-								const T &Value, const bool &SkipMessage=false);
+	static PSRETURN SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage = false);
 
 	/**
 	 * Retrieves a setting by settings name and object name
@@ -142,21 +129,19 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Stores value here, note type T!
 	 */
-	static PSRETURN GetSetting(
-		const CGUI &GUIinstance, const CStr& Object, 
-		const CStr& Setting, T &Value)
+	static PSRETURN GetSetting(const CGUI& GUIinstance, const CStr& Object, const CStr& Setting, T& Value)
 	{
 		if (!GUIinstance.ObjectExists(Object))
 			return PSRETURN_GUI_NullObjectProvided;
 
 		// Retrieve pointer and call sibling function
-		const IGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
+		const IGUIObject* pObject = GetObjectPointer(GUIinstance, Object);
 
 		return GetSetting(pObject, Setting, Value);
 	}
 
 	/**
-	 * Sets a value by setting and object name using a real 
+	 * Sets a value by setting and object name using a real
 	 * datatype as input
 	 *
 	 * This is just a wrapper so that we can type the object name
@@ -168,10 +153,7 @@ public:
 	 * @param Value Sets value to this, note type T!
 	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
 	 */
-	static PSRETURN SetSetting(
-		CGUI &GUIinstance, const CStr& Object, 
-		const CStr& Setting, const T &Value,
-		const bool& SkipMessage=false)
+	static PSRETURN SetSetting(CGUI& GUIinstance, const CStr& Object, const CStr& Setting, const T& Value, const bool& SkipMessage = false)
 	{
 		if (!GUIinstance.ObjectExists(Object))
 			return PSRETURN_GUI_NullObjectProvided;
@@ -181,11 +163,11 @@ public:
 		// Important, we don't want to use this T, we want
 		//  to use the standard T, since that will be the
 		//  one with the friend relationship
-		IGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
+		IGUIObject* pObject = GetObjectPointer(GUIinstance, Object);
 
 		return SetSetting(pObject, Setting, Value, SkipMessage);
 	}
-	
+
 	/**
 	 * This will return the value of the first sprite if it's not null,
 	 * if it is null, it will return the value of the second sprite, if
@@ -195,9 +177,7 @@ public:
 	 * @param sec Secondary sprite if Primary should fail
 	 * @return Resulting string
 	 */
-	static const CGUISpriteInstance& FallBackSprite(
-									const CGUISpriteInstance& prim,
-									const CGUISpriteInstance& sec)
+	static const CGUISpriteInstance& FallBackSprite(const CGUISpriteInstance& prim, const CGUISpriteInstance& sec)
 	{
 		return (prim.IsEmpty() ? sec : prim);
 	}
@@ -210,14 +190,14 @@ public:
 	 * @return Resulting color
 	 * @see FallBackSprite
 	 */
-	static CColor FallBackColor(const CColor &prim, const CColor &sec)
+	static CColor FallBackColor(const CColor& prim, const CColor& sec)
 	{
 		// CColor() == null.
 		return ((prim!=CColor())?(prim):(sec));
 	}
 
 	/**
-	 * Sets a value by setting and object name using a real 
+	 * Sets a value by setting and object name using a real
 	 * datatype as input.
 	 *
 	 * This is just a wrapper for __ParseString() which really
@@ -229,18 +209,18 @@ public:
 	 *
 	 * @see __ParseString()
 	 */
-	static bool ParseString(const CStrW& Value, T &tOutput)
+	static bool ParseString(const CStrW& Value, T& tOutput)
 	{
 		return __ParseString<T>(Value, tOutput);
 	}
 
-	static bool ParseColor(const CStrW& Value, CColor &tOutput, int DefaultAlpha);
+	static bool ParseColor(const CStrW& Value, CColor& tOutput, int DefaultAlpha);
 
 private:
 
 	// templated typedef of function pointer
-	typedef void (IGUIObject::*void_Object_pFunction_argT)(const T &arg);
-	typedef void (IGUIObject::*void_Object_pFunction_argRefT)(T &arg);
+	typedef void (IGUIObject::*void_Object_pFunction_argT)(const T& arg);
+	typedef void (IGUIObject::*void_Object_pFunction_argRefT)(T& arg);
 	typedef void (IGUIObject::*void_Object_pFunction)();
 
 	/**
@@ -269,20 +249,17 @@ private:
 	 * @throws PSERROR Depends on what pFunc might throw. PSERROR is standard.
 	 *			Itself doesn't throw anything.
 	*/
-	static void RecurseObject(int RR, IGUIObject *pObject, void_Object_pFunction_argT pFunc, const T &Argument)
+	static void RecurseObject(int RR, IGUIObject* pObject, void_Object_pFunction_argT pFunc, const T& Argument)
 	{
 		// TODO Gee: Don't run this for the base object.
 		if (CheckIfRestricted(RR, pObject))
 			return;
 
 		(pObject->*pFunc)(Argument);
-		
+
 		// Iterate children
-		vector_pObjects::iterator it;
-		for (it = pObject->ChildrenItBegin(); it != pObject->ChildrenItEnd(); ++it)
-		{
-			RecurseObject(RR, *it, pFunc, Argument);
-		}
+		for (IGUIObject* const& obj : *pObject)
+			RecurseObject(RR, obj, pFunc, Argument);
 	}
 
 	/**
@@ -290,19 +267,16 @@ private:
 	 *
 	 * @see RecurseObject()
 	 */
-	static void RecurseObject(int RR, IGUIObject *pObject, void_Object_pFunction_argRefT pFunc, T &Argument)
+	static void RecurseObject(int RR, IGUIObject* pObject, void_Object_pFunction_argRefT pFunc, T& Argument)
 	{
 		if (CheckIfRestricted(RR, pObject))
 			return;
 
 		(pObject->*pFunc)(Argument);
-		
+
 		// Iterate children
-		vector_pObjects::iterator it;
-		for (it = pObject->ChildrenItBegin(); it != pObject->ChildrenItEnd(); ++it)
-		{
-			RecurseObject(RR, *it, pFunc, Argument);
-		}
+		for (IGUIObject* const& obj : *pObject)
+			RecurseObject(RR, obj, pFunc, Argument);
 	}
 
 	/**
@@ -310,7 +284,7 @@ private:
 	 *
 	 * @see RecurseObject()
 	 */
-	static void RecurseObject(int RR, IGUIObject *pObject, void_Object_pFunction pFunc)
+	static void RecurseObject(int RR, IGUIObject* pObject, void_Object_pFunction pFunc)
 	{
 		if (CheckIfRestricted(RR, pObject))
 			return;
@@ -318,11 +292,8 @@ private:
 		(pObject->*pFunc)();
 
 		// Iterate children
-		vector_pObjects::iterator it;
-		for (it = pObject->ChildrenItBegin(); it != pObject->ChildrenItEnd(); ++it)
-		{
-			RecurseObject(RR, *it, pFunc);
-		}
+		for (IGUIObject* const& obj : *pObject)
+			RecurseObject(RR, obj, pFunc);
 	}
 
 private:
@@ -336,13 +307,13 @@ private:
 	 * @param pObject Object
 	 * @return true if restricted
 	 */
-	static bool CheckIfRestricted(int RR, IGUIObject *pObject)
+	static bool CheckIfRestricted(int RR, IGUIObject* pObject)
 	{
 		// Statically initialise some strings, so we don't have to do
 		// lots of allocation every time this function is called
-		static CStr strHidden("hidden");
-		static CStr strEnabled("enabled");
-		static CStr strGhost("ghost");
+		static const CStr strHidden("hidden");
+		static const CStr strEnabled("enabled");
+		static const CStr strGhost("ghost");
 
 		if (RR & GUIRR_HIDDEN)
 		{
@@ -374,4 +345,4 @@ private:
 	}
 };
 
-#endif
+#endif // INCLUDED_GUIUTIL

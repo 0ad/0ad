@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,41 +15,13 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Object Base - Scroll-bar owner
-
---Overview--
-
-	Base-class this if you want scroll-bars in an object.
-
---More info--
-
-	Check GUI.h
-
-*/
-
 #ifndef INCLUDED_IGUISCROLLBAROWNER
 #define INCLUDED_IGUISCROLLBAROWNER
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
 
 struct SGUIScrollBarStyle;
 class IGUIScrollBar;
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * Base-class this if you want an object to contain
@@ -71,7 +43,7 @@ public:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * @see IGUIObject#ResetStates()
@@ -81,21 +53,27 @@ public:
 	/**
 	 * Interface for the m_ScrollBar to use.
 	 */
-	virtual const SGUIScrollBarStyle *GetScrollBarStyle(const CStr& style) const;
+	virtual const SGUIScrollBarStyle* GetScrollBarStyle(const CStr& style) const;
 
 	/**
 	 * Add a scroll-bar
 	 */
-	virtual void AddScrollBar(IGUIScrollBar * scrollbar);
+	virtual void AddScrollBar(IGUIScrollBar* scrollbar);
 
 	/**
 	 * Get Scroll Bar reference (it should be transparent it's actually
 	 * pointers).
 	 */
-	virtual IGUIScrollBar & GetScrollBar(const int &index)
+	virtual IGUIScrollBar& GetScrollBar(const int& index)
 	{
 		return *m_ScrollBars[index];
 	}
+
+	/**
+	 * Get the position of the scroll bar at @param index.
+	 * Equivalent to GetScrollbar(index).GetPos().
+	 */
+	virtual float GetScrollBarPos(const int index) const;
 
 protected:
 
@@ -106,4 +84,4 @@ protected:
 	std::vector<IGUIScrollBar*> m_ScrollBars;
 };
 
-#endif
+#endif // INCLUDED_IGUISCROLLBAROWNER

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,22 +15,14 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-CCheckBox
-*/
-
 #include "precompiled.h"
 
 #include "CCheckBox.h"
 
+#include "graphics/FontMetrics.h"
 #include "ps/CLogger.h"
 #include "ps/CStrIntern.h"
-#include "graphics/FontMetrics.h"
 
-
-//-------------------------------------------------------------------
-//  Constructor / Destructor
-//-------------------------------------------------------------------
 CCheckBox::CCheckBox()
 {
 	AddSetting(GUIST_float,					"buffer_zone");
@@ -72,7 +64,7 @@ void CCheckBox::SetupText()
 	if (!GetGUI())
 		return;
 
-	ENSURE(m_GeneratedTexts.size()==1);
+	ENSURE(m_GeneratedTexts.size() == 1);
 
 	CStrW font;
 	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
@@ -86,12 +78,12 @@ void CCheckBox::SetupText()
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 
-	float buffer_zone=0.f;
+	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth()-square_side, 0.f, this);
 }
 
-void CCheckBox::HandleMessage(SGUIMessage &Message)
+void CCheckBox::HandleMessage(SGUIMessage& Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
@@ -115,12 +107,15 @@ void CCheckBox::HandleMessage(SGUIMessage &Message)
 	}
 }
 
-void CCheckBox::Draw() 
+void CCheckBox::Draw()
 {
 	float bz = GetBufferedZ();
 	bool checked;
 	int cell_id;
-	CGUISpriteInstance *sprite, *sprite_over, *sprite_pressed, *sprite_disabled;
+	CGUISpriteInstance* sprite;
+	CGUISpriteInstance* sprite_over;
+	CGUISpriteInstance* sprite_pressed;
+	CGUISpriteInstance* sprite_disabled;
 
 	GUI<bool>::GetSetting(this, "checked", checked);
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
@@ -140,7 +135,7 @@ void CCheckBox::Draw()
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_disabled", sprite_disabled);
 	}
 
-	DrawButton(m_CachedActualSize, 
+	DrawButton(m_CachedActualSize,
 			   bz,
 			   *sprite,
 			   *sprite_over,

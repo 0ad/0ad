@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,24 +32,21 @@ GUI Inclusion file
 #ifndef INCLUDED_GUI
 #define INCLUDED_GUI
 
-//--------------------------------------------------------
-//  Includes
-//--------------------------------------------------------
 #include <map>
+#include <stddef.h>
 #include <string>
 #include <vector>
-#include <stddef.h>
 
 #include "ps/CStr.h"
 
-#include "GUIbase.h"
-#include "GUIutil.h"
-#include "GUItext.h"
 #include "CGUIList.h"
-#include "IGUIObject.h"
+#include "GUIbase.h"
+#include "GUItext.h"
+#include "GUIutil.h"
 #include "IGUIButtonBehavior.h"
-#include "IGUIScrollBarOwner.h"
-#include "IGUITextOwner.h"
+#include "IGUIObject.h"
+#include "IGUIScrollBarOwner.h" // Required by IGUIScrollBar
 #include "IGUIScrollBar.h"
+#include "IGUITextOwner.h"
 
-#endif
+#endif // INCLUDED_GUI
