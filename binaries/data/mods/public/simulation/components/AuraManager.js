@@ -5,36 +5,36 @@ AuraManager.prototype.Schema =
 
 AuraManager.prototype.Init = function()
 {
-	this.modificationsCache = {};
-	this.modifications = {};
-	this.templateModificationsCache = {};
-	this.templateModifications = {};
+	this.modificationsCache = new Map();
+	this.modifications = new Map();
+	this.templateModificationsCache = new Map();
+	this.templateModifications = new Map();
 };
 
 AuraManager.prototype.ensureExists = function(name, value, id, key, defaultData)
 {
 	var cacheName = name + "Cache";
-	var v = this[name][value];
+	var v = this[name].get(value);
 	if (!v)
 	{
-		v = {};
-		this[name][value] = v;
-		this[cacheName][value] = {};
+		v = new Map();
+		this[name].set(value, v);
+		this[cacheName].set(value, new Map());
 	}
 
-	var i = v[id];
+	var i = v.get(id);
 	if (!i)
 	{
-		i = {};
-		v[id] = i;
-		this[cacheName][value][id] = defaultData;
+		i = new Map();
+		v.set(id, i);
+		this[cacheName].get(value).set(id, defaultData);
 	}
 
-	var k = i[key];
+	var k = i.get(key);
 	if (!k)
 	{
 		k = [];
-		i[key] = k;
+		i.set(key, k);
 	}
 	return k;
 };
@@ -45,17 +45,18 @@ AuraManager.prototype.ApplyBonus = function(value, ents, data, key)
 	{
 		var dataList = this.ensureExists("modifications", value, ent, key, {"add":0, "multiply":1});
 
-		dataList.push(data);
+		// Clone the data object to prevent references and serialization issues
+		dataList.push(clone(data));
 
 		if (dataList.length > 1)
 			continue;
 
 		// first time added this aura
-		if (data.multiply)
-			this.modificationsCache[value][ent].multiply *= data.multiply;
-
 		if (data.add)
-			this.modificationsCache[value][ent].add += data.add;
+			this.modificationsCache.get(value).get(ent).add += data.add;
+		if (data.multiply)
+			this.modificationsCache.get(value).get(ent).multiply *= data.multiply;
+
 		// post message to the entity to notify it about the change
 		Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
 	}
@@ -63,41 +64,42 @@ AuraManager.prototype.ApplyBonus = function(value, ents, data, key)
 
 AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data, key)
 {
-	var dataList = this.ensureExists("templateModifications", value, player, key, {});
+	var dataList = this.ensureExists("templateModifications", value, player, key, new Map());
 
-	dataList.push(data);
+	// Clone the data object to prevent references and serialization issues
+	dataList.push(clone(data));
 
 	if (dataList.length > 1)
 		return;
 
 	// first time added this aura
-	let cache = this.templateModificationsCache[value][player];
-	if (!cache[classes])
-		cache[classes] = {};
+	let cache = this.templateModificationsCache.get(value).get(player);
+	if (!cache.get(classes))
+		cache.set(classes, new Map());
 
-	if (!cache[classes][key])
-		cache[classes][key] = { "add": 0, "multiply": 1};
-
-	if (data.multiply)
-		cache[classes][key].multiply *= data.multiply;
+	if (!cache.get(classes).get(key))
+		cache.get(classes).set(key, {"add": 0, "multiply": 1});
 
 	if (data.add)
-		cache[classes][key].add += data.add;
+		cache.get(classes).get(key).add += data.add;
+	if (data.multiply)
+		cache.get(classes).get(key).multiply *= data.multiply;
+
 	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": player, "component": value.split("/")[0], "valueNames": [value] });
 };
 
 AuraManager.prototype.RemoveBonus = function(value, ents, key)
 {
-	var v = this.modifications[value];
+	var v = this.modifications.get(value);
 	if (!v)
 		return;
 
 	for (let ent of ents)
 	{
-		var e = v[ent];
+		var e = v.get(ent);
 		if (!e)
 			continue;
-		var dataList = e[key];
+		var dataList = e.get(key);
 		if (!dataList || !dataList.length)
 			continue;
 
@@ -109,10 +111,11 @@ AuraManager.prototype.RemoveBonus = function(value, ents, key)
 
 		// out of last aura of this kind, remove modifications
 		if (data.add)
-			this.modificationsCache[value][ent].add -= data.add;
+			this.modificationsCache.get(value).get(ent).add -= data.add;
 
 		if (data.multiply)
-			this.modificationsCache[value][ent].multiply /= data.multiply;
+			this.modificationsCache.get(value).get(ent).multiply /= data.multiply;
+
 		// post message to the entity to notify it about the change
 		Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
 	}
@@ -120,13 +123,13 @@ AuraManager.prototype.RemoveBonus = function(value, ents, key)
 
 AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key)
 {
-	var v = this.templateModifications[value];
+	var v = this.templateModifications.get(value);
 	if (!v)
 		return;
-	var p = v[player];
+	var p = v.get(player);
 	if (!p)
 		return;
-	var dataList = p[key];
+	var dataList = p.get(key);
 	if (!dataList || !dataList.length)
 		return;
 
@@ -135,18 +138,18 @@ AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key
 	if (dataList.length > 0)
 		return;
 
-	this.templateModificationsCache[value][player][classes][key].multiply = 1;
-	this.templateModificationsCache[value][player][classes][key].add = 0;
+	this.templateModificationsCache.get(value).get(player).get(classes).get(key).add = 0;
+	this.templateModificationsCache.get(value).get(player).get(classes).get(key).multiply = 1;
 
 	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": player, "component": value.split("/")[0], "valueNames": [value] });
 };
 
 AuraManager.prototype.ApplyModifications = function(valueName, value, ent)
 {
-	var v = this.modificationsCache[valueName];
+	var v = this.modificationsCache.get(valueName);
 	if (!v)
 		return value;
-	var cache = v[ent];
+	var cache = v.get(ent);
 	if (!cache)
 		return value;
 
@@ -157,10 +160,10 @@ AuraManager.prototype.ApplyModifications = function(valueName, value, ent)
 
 AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, player, template)
 {
-	var v = this.templateModificationsCache[valueName];
+	var v = this.templateModificationsCache.get(valueName);
 	if (!v)
 		return value;
-	var cache = v[player];
+	var cache = v.get(player);
 	if (!cache)
 		return value;
 
@@ -176,14 +179,14 @@ AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, pl
 		if (!MatchesClassList(classes, c))
 			continue;
 
-		for (let key in cache[c])
+		for (let key in cache.get(c))
 		{
 			// don't add an aura with the same key twice
 			if (usedKeys.has(key))
 				continue;
 
-			multiply *= cache[c][key].multiply;
-			add += cache[c][key].add;
+			add += cache.get(c).get(key).add;
+			multiply *= cache.get(c).get(key).multiply;
 			usedKeys.add(key);
 		}
 	}
