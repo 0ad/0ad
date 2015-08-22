@@ -136,6 +136,11 @@ function calculateTreasureCollected(playerState, position)
 	return playerState.statistics.treasuresCollected;
 }
 
+function calculateLootCollected(playerState, position)
+{
+	return playerState.statistics.lootCollected;
+}
+
 function calculateTributeSent(playerState, position)
 {
 	return INCOME_COLOR + playerState.statistics.tributesSent + "[/color] / " + OUTCOME_COLOR + playerState.statistics.tributesReceived + "[/color]";

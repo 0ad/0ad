@@ -27,6 +27,10 @@ Looter.prototype.Collect = function(targetEntity)
 	}
 	cmpPlayer.AddResources(resources);
 
+	let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	if (cmpStatisticsTracker)
+		cmpStatisticsTracker.IncreaseLootCollectedCounter(resources);
+
 	// If target entity has trader component, add carried goods to loot too
 	var cmpTrader = Engine.QueryInterface(targetEntity, IID_Trader);
 	if (cmpTrader)
@@ -42,6 +46,10 @@ Looter.prototype.Collect = function(targetEntity)
 			if (carriedGoods.amount.market2Gain)
 				resourcesToAdd[carriedGoods.type] += carriedGoods.amount.market2Gain;
 			cmpPlayer.AddResources(resourcesToAdd);
+
+			let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+			if (cmpStatisticsTracker)
+				cmpStatisticsTracker.IncreaseLootCollectedCounter(resourcesToAdd);
 		}
 	}
 }

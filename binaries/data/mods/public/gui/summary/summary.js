@@ -21,7 +21,7 @@ const LOST_COLOR = '[color="255 213 213"]';
 const KILLED_COLOR = '[color="196 198 255"]';
 
 const BUILDINGS_TYPES = [ "total", "House", "Economic", "Outpost", "Military", "Fortress", "CivCentre", "Wonder" ];
-const UNITS_TYPES = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Ship" ];
+const UNITS_TYPES = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Ship", "Trader" ];
 const RESOURCES_TYPES = [ "food", "wood", "stone", "metal" ];
 
 // Colors used for gathered and traded resources

@@ -29,7 +29,7 @@ var panelsData = [
 			{ "caption": translate("Wonders"), "yStart": 34, "width": 85 }
 		],
 		"titleHeadings": [
-			{ "caption": translate("Buildings Statistics (Constructed / Lost / Destroyed)"), "yStart": 16, "width": (85 * 7 + 105) },	// width = 735
+			{ "caption": translate("Buildings Statistics (Constructed / Lost / Destroyed)"), "yStart": 16, "width": (85 * 7 + 105) },	// width = 700
 		],
 		"counters": [	// counters on buildings panel
 			{"width": 105, "fn": calculateBuildings},
@@ -52,13 +52,15 @@ var panelsData = [
 			{ "caption": translate("Cavalry"), "yStart": 34, "width": 100 },
 			{ "caption": translate("Champion"), "yStart": 34, "width": 100 },
 			{ "caption": translate("Heroes"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Navy"), "yStart": 34, "width": 100 }
+			{ "caption": translate("Navy"), "yStart": 34, "width": 100 },
+			{ "caption": translate("Traders"), "yStart": 34, "width": 100 }
 		],
 		"titleHeadings": [
-			{ "caption": translate("Units Statistics (Trained / Lost / Killed)"), "yStart": 16, "width": (100 * 6 + 120) },	// width = 720
+			{ "caption": translate("Units Statistics (Trained / Lost / Killed)"), "yStart": 16, "width": (100 * 7 + 120) },	// width = 820
 		],
 		"counters": [	// counters on units panel
 			{"width": 120, "fn": calculateUnits},
+			{"width": 100, "fn": calculateUnits},
 			{"width": 100, "fn": calculateUnits},
 			{"width": 100, "fn": calculateUnits},
 			{"width": 100, "fn": calculateUnits},
@@ -77,7 +79,8 @@ var panelsData = [
 			{ "caption": translate("Metal"), "yStart": 34, "width": 100 },
 			{ "caption": translate("Total"), "yStart": 34, "width": 110 },
 			{ "caption": translate("Treasures collected"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Tributes (Sent / Received)"), "yStart": 16, "width": 121 }
+			{ "caption": translate("Tributes (Sent / Received)"), "yStart": 16, "width": 121 },
+			{ "caption": translate("Loot"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [
 			{ "caption": translate("Resource Statistics (Gathered / Used)"), "yStart": 16, "width": (100 * 4 + 110) }, // width = 510
@@ -88,8 +91,9 @@ var panelsData = [
 			{"width": 100, "fn": calculateResources},
 			{"width": 100, "fn": calculateResources},
 			{"width": 110, "fn": calculateTotalResources},
-			{"width": 100, "fn": calculateTreasureCollected}, 
-			{"width": 121, "fn": calculateTributeSent}
+			{"width": 100, "fn": calculateTreasureCollected},
+			{"width": 121, "fn": calculateTributeSent},
+			{"width": 100, "fn": calculateLootCollected}
 		],
 		"teamCounterFn": calculateResourcesTeam
 	},
@@ -118,7 +122,7 @@ var panelsData = [
 		"headings": [	// headings on miscellaneous panel
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "caption": translate("Vegetarian\nratio"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Feminisation"), "yStart": 26, "width": 100 },
+			{ "caption": translate("Feminisation"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Kill / Death\nratio"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Map\nexploration"), "yStart": 16, "width": 100 }
 		],

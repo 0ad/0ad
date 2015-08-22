@@ -122,13 +122,14 @@ class LeaderboardList():
     totalScoreStats = {'economyScore', 'militaryScore', 'totalScore'}
     resourceStats = {'foodGathered', 'foodUsed', 'woodGathered', 'woodUsed', 
             'stoneGathered', 'stoneUsed', 'metalGathered', 'metalUsed', 'vegetarianFoodGathered',
-            'treasuresCollected', 'tributesSent', 'tributesReceived'}
+            'treasuresCollected', 'lootCollected', 'tributesSent', 'tributesReceived'}
     unitsStats = {'totalUnitsTrained', 'totalUnitsLost', 'enemytotalUnitsKilled', 'infantryUnitsTrained',
             'infantryUnitsLost', 'enemyInfantryUnitsKilled', 'workerUnitsTrained', 'workerUnitsLost',
             'enemyWorkerUnitsKilled', 'femaleUnitsTrained', 'femaleUnitsLost', 'enemyFemaleUnitsKilled',
             'cavalryUnitsTrained', 'cavalryUnitsLost', 'enemyCavalryUnitsKilled', 'championUnitsTrained',
             'championUnitsLost', 'enemyChampionUnitsKilled', 'heroUnitsTrained', 'heroUnitsLost',
-            'enemyHeroUnitsKilled', 'shipUnitsTrained', 'shipUnitsLost', 'enemyShipUnitsKilled'}
+            'enemyHeroUnitsKilled', 'shipUnitsTrained', 'shipUnitsLost', 'enemyShipUnitsKilled', 'traderUnitsTrained',
+            'traderUnitsLost', 'enemyTraderUnitsKilled'}
     buildingsStats = {'totalBuildingsConstructed', 'totalBuildingsLost', 'enemytotalBuildingsDestroyed',
             'civCentreBuildingsConstructed', 'civCentreBuildingsLost', 'enemyCivCentreBuildingsDestroyed',
             'houseBuildingsConstructed', 'houseBuildingsLost', 'enemyHouseBuildingsDestroyed',

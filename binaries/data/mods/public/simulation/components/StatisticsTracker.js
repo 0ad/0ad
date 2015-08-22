@@ -13,7 +13,8 @@ StatisticsTracker.prototype.Init = function()
 		"Cavalry",
 		"Champion",
 		"Hero",
-		"Ship"
+		"Ship",
+		"Trader"
 	];	
 	this.unitsTrained = {
 		"Infantry": 0,
@@ -23,6 +24,7 @@ StatisticsTracker.prototype.Init = function()
 		"Champion": 0,
 		"Hero": 0,
 		"Ship": 0,
+		"Trader": 0,
 		"total": 0
 	};
 	this.unitsLost = {
@@ -33,6 +35,7 @@ StatisticsTracker.prototype.Init = function()
 		"Champion": 0,
 		"Hero": 0,
 		"Ship": 0,
+		"Trader": 0,
 		"total": 0
 	};
 	this.unitsLostValue = 0;
@@ -44,6 +47,7 @@ StatisticsTracker.prototype.Init = function()
 		"Champion": 0,
 		"Hero": 0,
 		"Ship": 0,
+		"Trader": 0,
 		"total": 0
 	};
 	this.enemyUnitsKilledValue = 0;
@@ -119,6 +123,7 @@ StatisticsTracker.prototype.Init = function()
 	this.tributesReceived = 0;
 	this.tradeIncome = 0;
 	this.treasuresCollected = 0;
+	this.lootCollected = 0;
 };
 
 /**
@@ -158,6 +163,7 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"tributesReceived": this.tributesReceived,
 		"tradeIncome": this.tradeIncome,
 		"treasuresCollected": this.treasuresCollected,
+		"lootCollected": this.lootCollected,
 		"percentMapExplored": this.GetPercentMapExplored(),
 		"teamPercentMapExplored": this.GetTeamPercentMapExplored()
 	};
@@ -309,7 +315,7 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
 
 /**
  * @param type Generic type of resource (string)
- * @param amount Amount of resource, whick should be added (integer)
+ * @param amount Amount of resource, which should be added (integer)
  */
 StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
 {
@@ -319,6 +325,12 @@ StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
 StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()
 {
 	this.treasuresCollected++;
+};
+
+StatisticsTracker.prototype.IncreaseLootCollectedCounter = function(amount)
+{
+	for (let type in amount)
+		this.lootCollected += amount[type];
 };
 
 StatisticsTracker.prototype.IncreaseResourcesSoldCounter = function(type, amount)

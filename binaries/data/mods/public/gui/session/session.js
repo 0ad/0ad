@@ -912,7 +912,8 @@ function reportGame(extendedSimState)
 		"Cavalry",
 		"Champion",
 		"Hero",
-		"Ship"
+		"Ship",
+		"Trader"
 	];
 	var unitsCountersTypes = [
 		"unitsTrained",
@@ -993,6 +994,7 @@ function reportGame(extendedSimState)
 	playerStatistics.totalScore = "";
 	// Various
 	playerStatistics.treasuresCollected = "";
+	playerStatistics.lootCollected = "";
 	playerStatistics.feminisation = "";
 	playerStatistics.percentMapExplored = "";
 	var mapName = Engine.GetMapSettings().Name;
@@ -1036,6 +1038,7 @@ function reportGame(extendedSimState)
 		playerStatistics.tributesReceived += player.statistics.tributesReceived + ",";
 		playerStatistics.percentMapExplored += player.statistics.percentMapExplored + ",";
 		playerStatistics.treasuresCollected += player.statistics.treasuresCollected + ",";
+		playerStatistics.lootCollected += player.statistics.lootCollected + ",";
 	}
 
 	// Send the report with serialized data
@@ -1077,6 +1080,7 @@ function reportGame(extendedSimState)
 	reportObject.tributesReceived = playerStatistics.tributesReceived;
 	reportObject.percentMapExplored = playerStatistics.percentMapExplored;
 	reportObject.treasuresCollected = playerStatistics.treasuresCollected;
+	reportObject.lootCollected = playerStatistics.lootCollected;
 	reportObject.tradeIncome = playerStatistics.tradeIncome;
 
 	Engine.SendGameReport(reportObject);

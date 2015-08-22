@@ -130,6 +130,7 @@ AddMock(100, IID_StatisticsTracker, {
 				"vegetarianFood": 0, 
 			},
 			"treasuresCollected": 0,
+			"lootCollected": 0,
 			"percentMapExplored": 10,
 			"teamPercentMapExplored": 10
 		};
@@ -205,6 +206,7 @@ AddMock(101, IID_StatisticsTracker, {
 				"vegetarianFood": 0, 
 			},
 			"treasuresCollected": 0,
+			"lootCollected": 0,
 			"percentMapExplored": 10,
 			"teamPercentMapExplored": 10
 		};
@@ -348,6 +350,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 					vegetarianFood: 0, 
 				},
 				treasuresCollected: 0,
+				lootCollected: 0,
 				percentMapExplored: 10,
 				teamPercentMapExplored: 10
 			},
@@ -394,6 +397,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 					vegetarianFood: 0, 
 				},
 				treasuresCollected: 0,
+				lootCollected: 0,
 				percentMapExplored: 10,
 				teamPercentMapExplored: 10
 			},
