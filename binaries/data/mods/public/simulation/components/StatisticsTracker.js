@@ -124,6 +124,8 @@ StatisticsTracker.prototype.Init = function()
 	this.tradeIncome = 0;
 	this.treasuresCollected = 0;
 	this.lootCollected = 0;
+	this.peakPercentMapControlled = 0;
+	this.teamPeakPercentMapControlled = 0;
 };
 
 /**
@@ -165,7 +167,11 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"treasuresCollected": this.treasuresCollected,
 		"lootCollected": this.lootCollected,
 		"percentMapExplored": this.GetPercentMapExplored(),
-		"teamPercentMapExplored": this.GetTeamPercentMapExplored()
+		"teamPercentMapExplored": this.GetTeamPercentMapExplored(),
+		"percentMapControlled": this.GetPercentMapControlled(),
+		"teamPercentMapControlled": this.GetTeamPercentMapControlled(),
+		"peakPercentMapControlled": this.peakPercentMapControlled,
+		"teamPeakPercentMapControlled": this.teamPeakPercentMapControlled
 	};
 };
 
@@ -392,6 +398,50 @@ StatisticsTracker.prototype.GetTeamPercentMapExplored = function()
 	}
 
 	return cmpRangeManager.GetUnionPercentMapExplored(teamPlayers);
+};
+
+StatisticsTracker.prototype.GetPercentMapControlled = function()
+{
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+	if (!cmpPlayer || !cmpTerritoryManager)
+		return 0;
+
+	return cmpTerritoryManager.GetTerritoryPercentage(cmpPlayer.GetPlayerID());
+};
+
+StatisticsTracker.prototype.GetTeamPercentMapControlled = function()
+{
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+	if (!cmpPlayer || !cmpTerritoryManager)
+		return 0;
+
+	var team = cmpPlayer.GetTeam();
+	if (team == -1 || !cmpPlayer.GetLockTeams())
+		return cmpTerritoryManager.GetTerritoryPercentage(cmpPlayer.GetPlayerID());
+
+	var teamPercent = 0;
+	for (let i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
+	{
+		let cmpOtherPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
+			teamPercent += cmpTerritoryManager.GetTerritoryPercentage(i);
+	}
+
+	return teamPercent;
+};
+
+StatisticsTracker.prototype.OnTerritoriesChanged = function(msg)
+{
+	var newPercent = this.GetPercentMapControlled();
+	if (newPercent > this.peakPercentMapControlled)
+		this.peakPercentMapControlled = newPercent;
+
+	newPercent = this.GetTeamPercentMapControlled();
+	if (newPercent > this.teamPeakPercentMapControlled)
+		this.teamPeakPercentMapControlled = newPercent;
 };
 
 Engine.RegisterComponentType(IID_StatisticsTracker, "StatisticsTracker", StatisticsTracker);

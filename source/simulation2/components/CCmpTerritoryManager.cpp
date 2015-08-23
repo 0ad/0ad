@@ -86,6 +86,9 @@ public:
 	// processed flag in bit 7 (TERRITORY_PROCESSED_MASK)
 	Grid<u8>* m_Territories;
 
+	std::vector<u16> m_TerritoryCellCounts;
+	u16 m_TerritoryTotalPassableCellCount;
+
 	// Saves the cost per tile (to stop territory on impassable tiles)
 	Grid<u8>* m_CostGrid;
 
@@ -122,6 +125,8 @@ public:
 		m_DirtyID = 1;
 
 		m_AnimTime = 0.0;
+
+		m_TerritoryTotalPassableCellCount = 0;
 
 		// Register Relax NG validator
 		CXeromyces::AddValidator(g_VFS, "territorymanager", "simulation/data/territorymanager.rng");
@@ -260,6 +265,8 @@ public:
 
 	void CalculateTerritories();
 
+	u8 GetTerritoryPercentage(player_id_t player);
+
 	std::vector<STerritoryBoundary> ComputeBoundaries();
 
 	void UpdateBoundaryLines();
@@ -337,6 +344,7 @@ void CCmpTerritoryManager::CalculateCostGrid()
 	int tilesH = passGrid.m_H / NAVCELLS_PER_TERRITORY_TILE;
 
 	m_CostGrid = new Grid<u8>(tilesW, tilesH);
+	m_TerritoryTotalPassableCellCount = 0;
 
 	for (int i = 0; i < tilesW; ++i)
 	{
@@ -353,7 +361,10 @@ void CCmpTerritoryManager::CalculateCostGrid()
 			else if (c & passClassUnrestricted)
 				m_CostGrid->set(i, j, 255); // off the world; use maximum cost
 			else
+			{
 				m_CostGrid->set(i, j, 1);
+				++m_TerritoryTotalPassableCellCount;
+			}
 		}
 	}
 }
@@ -375,6 +386,13 @@ void CCmpTerritoryManager::CalculateTerritories()
 	const u16 tilesH = m_CostGrid->m_H;
 
 	m_Territories = new Grid<u8>(tilesW, tilesH);
+
+	// Reset territory counts for all players
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
+	if (cmpPlayerManager && cmpPlayerManager->GetNumPlayers() != m_TerritoryCellCounts.size())
+		m_TerritoryCellCounts.resize(cmpPlayerManager->GetNumPlayers());
+	for (u16& count : m_TerritoryCellCounts)
+		count = 0;
 
 	// Find all territory influence entities
 	CComponentManager::InterfaceList influences = GetSimContext().GetComponentManager().GetEntitiesWithInterface(IID_TerritoryInfluence);
@@ -496,6 +514,8 @@ void CCmpTerritoryManager::CalculateTerritories()
 			if (m_Territories->get(nx, nz) != owner)
 				continue;
 			m_Territories->set(nx, nz, owner | TERRITORY_CONNECTED_MASK);
+			if (m_CostGrid->get(nx, nz) < m_ImpassableCost)
+				++m_TerritoryCellCounts[owner];
 		);
 	}
 }
@@ -508,6 +528,17 @@ std::vector<STerritoryBoundary> CCmpTerritoryManager::ComputeBoundaries()
 	ENSURE(m_Territories);
 
 	return CTerritoryBoundaryCalculator::ComputeBoundaries(m_Territories);
+}
+
+u8 CCmpTerritoryManager::GetTerritoryPercentage(player_id_t player)
+{
+	if (player <= 0 && (size_t)player > m_TerritoryCellCounts.size())
+		return 0;
+
+	ENSURE(m_TerritoryTotalPassableCellCount > 0);
+	u8 percentage = (m_TerritoryCellCounts[player] * 100) / m_TerritoryTotalPassableCellCount;
+	ENSURE(percentage <= 100);
+	return percentage;
 }
 
 void CCmpTerritoryManager::UpdateBoundaryLines()

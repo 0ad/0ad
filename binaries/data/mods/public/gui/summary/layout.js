@@ -124,14 +124,20 @@ var panelsData = [
 			{ "caption": translate("Vegetarian\nratio"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Feminisation"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Kill / Death\nratio"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Map\nexploration"), "yStart": 16, "width": 100 }
+			{ "caption": translate("Map\nexploration"), "yStart": 16, "width": 100 },
+			{ "caption": translate("At peak"), "yStart": 34, "width": 100 },
+			{ "caption": translate("At finish"), "yStart": 34, "width": 100 }
 		],
-		"titleHeadings": [],
+		"titleHeadings": [
+			{ "caption": translate("Map control"), "xOffset": 400, "yStart": 16, "width": 200 }
+		],
 		"counters": [	// counters on miscellaneous panel
 			{"width": 100, "fn": calculateVegetarianRatio},
 			{"width": 100, "fn": calculateFeminisation},
 			{"width": 100, "fn": calculateKillDeathRatio},
-			{"width": 100, "fn": calculateMapExploration}
+			{"width": 100, "fn": calculateMapExploration},
+			{"width": 100, "fn": calculateMapPeakControl},
+			{"width": 100, "fn": calculateMapFinalControl}
 		],
 		"teamCounterFn": calculateMiscellaneous
 	}
@@ -182,10 +188,16 @@ function updateGeneralPanelTitles(titleHeadings)
 		if (th >= MAX_HEADINGTITLE)
 			break;
 
+		if (titleHeadings[th].xOffset)
+			left += titleHeadings[th].xOffset;
+
 		var headerGUI = Engine.GetGUIObjectByName("titleHeading["+ th +"]");
 		headerGUI.caption = titleHeadings[th].caption;
 		headerGUI.size = left + " " + titleHeadings[th].yStart + " " + (left + titleHeadings[th].width) + " 100%";
 		headerGUI.hidden = false;
+
+		if (titleHeadings[th].width < LONG_HEADING_WIDTH)
+			left += titleHeadings[th].width;
 	}
 }
 
