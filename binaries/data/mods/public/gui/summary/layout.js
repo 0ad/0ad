@@ -78,8 +78,8 @@ var panelsData = [
 			{ "caption": translate("Stone"), "yStart": 34, "width": 100 },
 			{ "caption": translate("Metal"), "yStart": 34, "width": 100 },
 			{ "caption": translate("Total"), "yStart": 34, "width": 110 },
-			{ "caption": translate("Treasures collected"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Tributes (Sent / Received)"), "yStart": 16, "width": 121 },
+			{ "caption": translate("Treasures collected"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Loot"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [
@@ -91,8 +91,8 @@ var panelsData = [
 			{"width": 100, "fn": calculateResources},
 			{"width": 100, "fn": calculateResources},
 			{"width": 110, "fn": calculateTotalResources},
-			{"width": 100, "fn": calculateTreasureCollected},
 			{"width": 121, "fn": calculateTributeSent},
+			{"width": 100, "fn": calculateTreasureCollected},
 			{"width": 100, "fn": calculateLootCollected}
 		],
 		"teamCounterFn": calculateResourcesTeam

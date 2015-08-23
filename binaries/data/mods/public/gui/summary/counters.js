@@ -167,7 +167,7 @@ function calculateResourcesTeam(counters)
 				// clean [Color=""], [/Color] and white space for make the sum more easy
 				caption = caption.replace(/\[([\w\' \\\"\/\=]*)\]|\s/g, "");
 
-				if (w == 5)
+				if (w >= 6)
 					total.i += (+caption);
 				else
 				{
@@ -178,7 +178,7 @@ function calculateResourcesTeam(counters)
 				}
 			}
 
-			if (w == 5)
+			if (w >= 6)
 				teamTotal = total.i;
 			else
 				teamTotal = INCOME_COLOR + total.i + "[/color] / " + OUTCOME_COLOR + total.o + "[/color]";
