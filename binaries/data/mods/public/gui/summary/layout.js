@@ -122,7 +122,7 @@ var panelsData = [
 		"headings": [	// headings on miscellaneous panel
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "caption": translate("Vegetarian\nratio"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Feminisation"), "yStart": 16, "width": 100 },
+			{ "caption": translate("Feminization"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Kill / Death\nratio"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Map\nexploration"), "yStart": 16, "width": 100 },
 			{ "caption": translate("At peak"), "yStart": 34, "width": 100 },
@@ -133,7 +133,7 @@ var panelsData = [
 		],
 		"counters": [	// counters on miscellaneous panel
 			{"width": 100, "fn": calculateVegetarianRatio},
-			{"width": 100, "fn": calculateFeminisation},
+			{"width": 100, "fn": calculateFeminization},
 			{"width": 100, "fn": calculateKillDeathRatio},
 			{"width": 100, "fn": calculateMapExploration},
 			{"width": 100, "fn": calculateMapPeakControl},

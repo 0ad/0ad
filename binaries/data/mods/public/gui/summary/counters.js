@@ -270,7 +270,7 @@ function calculateVegetarianRatio(playerState, position)
 		return 0 + "%";
 }
 
-function calculateFeminisation(playerState, position)
+function calculateFeminization(playerState, position)
 {
 	if (!teamMiscHelperData[playerState.team])
 		teamMiscHelperData[playerState.team] = [];
