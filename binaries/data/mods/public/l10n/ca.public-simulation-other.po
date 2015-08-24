@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# gillemp <guplem@gmail.com>, 2015
 # Haommin <tfs.msimangu@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:51+0200\n"
-"PO-Revision-Date: 2015-05-25 22:40+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
-"Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-28 18:54+0000\n"
+"Last-Translator: gillemp <guplem@gmail.com>\n"
+"Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,9 +48,9 @@ msgstr "No puc ajudar-te contra %(_player_)s de moment, perquè estic preparant 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
-"Sorry, I have not enough soldiers currently, but my next attack will target "
-"%(_player_)s."
-msgstr "Ara mateix no tinc prou soldats, però el meu proper atac serà contra %(_player_)s."
+"Sorry, I do not have enough soldiers currently, but my next attack will "
+"target %(_player_)s."
+msgstr "Perdona, ara mateix no tinc prou soldats, però el meu proper atac serà contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
@@ -606,12 +607,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "enemic"
 
-#: simulation/components/CeasefireManager.js:125
+#: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "Podreu atacar d'aquí a %(time)s"
 
-#: simulation/components/CeasefireManager.js:140
+#: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
 msgstr "Ja podeu atacar!"
 
@@ -630,42 +631,42 @@ msgstr "%(category)s s'ha arribat al límit de reclutament de %(limit)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s s'ha arribat al límit de %(limit)s"
 
-#: simulation/components/Player.js:39
+#: simulation/components/Player.js:43
 msgid "Food"
 msgstr "menjar"
 
-#: simulation/components/Player.js:40
+#: simulation/components/Player.js:44
 msgid "Wood"
 msgstr "fusta"
 
-#: simulation/components/Player.js:41
+#: simulation/components/Player.js:45
 msgid "Metal"
 msgstr "metall"
 
-#: simulation/components/Player.js:42
+#: simulation/components/Player.js:46
 msgid "Stone"
 msgstr "pedra"
 
-#: simulation/components/Player.js:243
+#: simulation/components/Player.js:252
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Recursos insuficients - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:245
+#: simulation/components/Player.js:254
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Recursos insuficients - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:247
+#: simulation/components/Player.js:256
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Recursos insuficients - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:249
+#: simulation/components/Player.js:258
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "

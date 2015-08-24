@@ -6,6 +6,7 @@
 # FrewCen <frewcen@gmail.com>, 2014
 # Levi Taule <levi.taule@gmail.com>, 2015
 # Marián Mižik <marian@mizik.sk>, 2015
+# Mário Bulejko, 2015
 # empy <martinplavala@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Miroslav Remák <Unknown>, 2014
@@ -14,10 +15,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-04-23 21:06+0200\n"
-"PO-Revision-Date: 2015-05-23 16:21+0000\n"
-"Last-Translator: Marián Mižik <marian@mizik.sk>\n"
-"Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-08-20 16:57+0000\n"
+"Last-Translator: Mário Bulejko\n"
+"Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -335,8 +336,8 @@ msgstr "Oázy"
 msgid ""
 "A dry central plateau rich in minerals surrounded by rocky hills\n"
 "\n"
-"The southern parts of Zagros Mountains where the heart of the Persian empires and population. Although the altitude is high, the southern parts are drier that the northern Zagros, leading to a semi-arid climate. Still there are some sparse oak forests in the higher grounds."
-msgstr "Suchá planina v strede mapy bohatá na minerály a obklopená skalnatými vrchmi.\n\nJužné časti pohoria Zagros boli centrom Perzskej ríše a jej obyvateľstva. Aj napriek veľkej nadmorskej výške sú južné časti suchšie ako severný Zagros a prevládajú tam polopúšte. Na výšinách sa napriek tomu vyskytuje niekoľko riedkych lesov."
+"The southern parts of Zagros Mountains were the heart of the Persian empires and population. Although the altitude is high, the southern parts are drier that the northern Zagros, leading to a semi-arid climate. Still there are some sparse oak forests in the higher grounds."
+msgstr "Suchá centrálna plošina bohatá na minerály obklopená kamenistými kopcami\n\nJužná časť Zagrosu bola srdcom Perzských ríš a populácie. Napriek tomu, že nadmorská výška je to vysoká, južné časti sú suchšie ako tie v severnom Zagrose, čo spôsobuje polopúštnu klímu. Stále tam však sú riedke dubové lesíky vo vyšších nadmorských výškach."
 
 #: maps/random/persian_highlands.jsonsettings.Name
 msgid "Persian Highlands"
@@ -626,7 +627,7 @@ msgstr "Nastala jar v Arkádii, Grécku. Jarné dažde naplnili korytá potokov,
 #: (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[0].Name:35
 #: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[0].Name:40
-#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:41 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Tuscan Acropolis
@@ -694,7 +695,7 @@ msgstr "Hráč 1"
 #: (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Sicilia_Nomad.xml:PlayerData[1].Name:35
 #: maps/skirmishes/Siwa Oasis (2).xml:PlayerData[1].Name:40
-#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Sporades Islands (2).xml:PlayerData[2].Name:42
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:41 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Tuscan Acropolis
@@ -1124,13 +1125,13 @@ msgstr "4 hráči súperia o širokú deltu Nílu. Na začiatku leží každé m
 msgid "Necropolis"
 msgstr "Nekropola"
 
-#: maps/scenarios/Pathfinding_demo.xml:Name:31
-msgid "Pathfinding Demo"
-msgstr "Ukážka hľadania ciest"
-
-#: maps/scenarios/Pathfinding_demo.xml:Description:31
+#: maps/scenarios/Pathfinding_demo.xml:Description:41
 msgid "A map for testing unit movement algorithms."
 msgstr "Mapa testujúca algoritmy na navigáciu jednotiek."
+
+#: maps/scenarios/Pathfinding_demo.xml:Name:41
+msgid "Pathfinding Demo"
+msgstr "Ukážka hľadania ciest"
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:Name:31
 msgid "Pathfinding Terrain Demo"
@@ -1607,11 +1608,11 @@ msgstr "Vodná nádrž"
 
 #: maps/scenarios/road demo.xml:Description:31
 msgid "Demo map showcasing Temperate Road decals."
-msgstr ""
+msgstr "Demo mapa zobrazujúca mierne podnebie s cestnými stopami."
 
 #: maps/scenarios/road demo.xml:Name:31
 msgid "Road Decals Demo"
-msgstr ""
+msgstr "Ukážka cestných stôp"
 
 #: maps/scenarios/shipattacks.xml:Description:31
 msgid "Move ships around. Attack other ships."
@@ -1634,7 +1635,7 @@ msgstr "Sprievodca budovaním ekonomiky"
 
 #: maps/scenarios/temperate map.xml:Name:31
 msgid "Base Temperate Map"
-msgstr ""
+msgstr "Základná mapa mierneho podnebia"
 
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:41
 msgid ""
@@ -1651,7 +1652,7 @@ msgstr "Akropoly pri zálive (2)"
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
 "resources."
-msgstr ""
+msgstr "Mapa plná nepriechodných hôr a veľkého počtu prírodných zdrojov."
 
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Name:40
 msgid "Alpine Mountains (3)"
@@ -1681,7 +1682,7 @@ msgstr "Baktria (2)"
 
 #: maps/skirmishes/Barcania (3).xml:Name:31
 msgid "Barcania (3)"
-msgstr ""
+msgstr "Barcania (3)"
 
 #: maps/skirmishes/Barcania (3).xml:Description:31
 msgid ""
@@ -1689,7 +1690,7 @@ msgid ""
 "seas, and thick forests make for a very dynamic and fast-paced 3-player map "
 "with lots of potential for skirmishing and guerilla warfare as well as tough"
 " defensive fighting or aggressive maneuvers."
-msgstr ""
+msgstr "Divoký, zalesnený ostrov, plný lesov, zlata a záhad... hory, moria a husté lesy vytvárajú veľmi živú a rýchlu mapu pre 3 hráčov, ktorá ponúka možnosť potýčiek, partizánskych vojen, ako aj drsných obranných bojov alebo agresívnych manévrov."
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""
@@ -1707,7 +1708,7 @@ msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
-msgstr ""
+msgstr "Dva tímy stoja proti sebe naprieč rozľahlým slaným jazerom.\n\nV centrálnom jazere je možné chytať ryby. Mapa je okrem toho obdarená množstvom ložísk kovov a kameňa."
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Name:42
 msgid "Caspian Sea (2v2)"
@@ -1726,7 +1727,7 @@ msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
-msgstr ""
+msgstr "Hráči začínajú na dvoch protiľahlých ostrovoch, oba s veľmi členitým reliéfom čo sťažuje vylodenie.\n\nPôvodne obsadené Torreanmi, neskôr po okrajoch osídlené Etruskami, Feničanmi a Syrakúžanmi. Rím obsadil tieto dva ostrovy z Kartága počas Prvej púnskej vojny a v roku 238 pred Kr. vytvoril provinciu \"Corsica et Sardinia\". Korzičania sa pravidelne búrili a počas jedného storočia ostrov stratil dve tretiny svojej Korzickej populácie."
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:Name:42
 msgid "Corsica and Sardinia (4)"
@@ -1839,7 +1840,7 @@ msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr ""
+msgstr "Tri frakcie sa bezpečne ocitli na vrchole veľkých skalnatých plošín akropol, zatiaľ čo štvrtá je oddelená od nepriateľov riečnym ramenom.\n\nPreskúmaj krajinu aby si našiel poklady a zabezpečil si nové zdroje."
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:41
 msgid "Greek Acropolis (4)"
@@ -1945,7 +1946,7 @@ msgid ""
 "Stranded in the cold North, 2 players fight for supremacy over the Island. "
 "One player starts in the Mountains to the West, the other player starts near"
 " the Bay in the East."
-msgstr ""
+msgstr "Uviaznutí na chladnom Severe, 2 hráči bojujú o nadvládu nad Ostrovom. Jeden hráč začína v Horách na Západe, ďalší začína blízko Zálivu na Východe."
 
 #: maps/skirmishes/Northern Island (2).xml:Name:40
 msgid "Northern Island (2)"
@@ -2014,11 +2015,11 @@ msgstr "Sicília (2)"
 msgid ""
 "The large Mediterranean island of Sicily is open for conquest.\n"
 "[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]"
-msgstr ""
+msgstr "Veľký ostrov Stredozemia - Sicília je prístupná pre dobytie.\n[color=\"orange\"]Tip: prístavy sú užitočné skladisko pokiaľ ešte nemáš žiadne teritórium.[/color]"
 
 #: maps/skirmishes/Sicilia_Nomad.xml:Name:35
 msgid "Sicilia Nomad (2)"
-msgstr ""
+msgstr "Nomádska Sicília (2)"
 
 #: maps/skirmishes/Siwa Oasis (2).xml:Description:40
 msgid ""
@@ -2033,11 +2034,11 @@ msgstr "Sívska oáza (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:Description:42
 msgid "A demo Skirmish map."
-msgstr ""
+msgstr "Ukážková mapa pre šarvátky."
 
 #: maps/skirmishes/Skirmish Demo.xml:Name:42
 msgid "Skirmish Demo"
-msgstr ""
+msgstr "Demo šarvátka"
 
 #: maps/skirmishes/Sporades Islands (2).xml:Name:42
 msgid "Sporades Islands (2)"

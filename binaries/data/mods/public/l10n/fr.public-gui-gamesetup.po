@@ -46,10 +46,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-07-18 18:55+0000\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-07-27 20:23+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -187,7 +187,7 @@ msgid "Skirmish"
 msgstr "Escarmouche"
 
 #: gui/gamesetup/gamesetup.js:142 gui/gamesetup/gamesetup.js:638
-#: gui/gamesetup/gamesetup.js:1368
+#: gui/gamesetup/gamesetup.js:1370
 msgctxt "map"
 msgid "Random"
 msgstr "Aléatoire"
@@ -196,8 +196,8 @@ msgstr "Aléatoire"
 msgid "Scenario"
 msgstr "Scénario"
 
-#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1284
-#: gui/gamesetup/gamesetup.js:1348
+#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1286
+#: gui/gamesetup/gamesetup.js:1350
 msgid "Default"
 msgstr "Par défaut"
 
@@ -218,138 +218,138 @@ msgctxt "team"
 msgid "None"
 msgstr "Aucune"
 
-#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1435
 msgctxt "civilization"
 msgid "Random"
 msgstr "Aléatoire"
 
-#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1003
 msgid "You"
 msgstr "Vous"
 
-#: gui/gamesetup/gamesetup.js:1098
+#: gui/gamesetup/gamesetup.js:1092
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
-#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
-#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
-#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
-#: gui/gamesetup/gamesetup.js:1353
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
+#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
+#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:1355
 msgid "Yes"
 msgstr "Oui"
 
-#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
-#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
-#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
-#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
-#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1353
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
+#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
+#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:1353 gui/gamesetup/gamesetup.js:1355
 msgid "No"
 msgstr "Non"
 
-#: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
-#: gui/gamesetup/gamesetup.js:1357
+#: gui/gamesetup/gamesetup.js:1357 gui/gamesetup/gamesetup.js:1358
+#: gui/gamesetup/gamesetup.js:1359
 msgid "Determined by scenario"
 msgstr "Déterminé par le scénario"
 
-#: gui/gamesetup/gamesetup.js:1369
+#: gui/gamesetup/gamesetup.js:1371
 msgid "Randomly selects a map from the list"
 msgstr "Sélectionne aléatoirement une carte dans la liste"
 
-#: gui/gamesetup/gamesetup.js:1376
+#: gui/gamesetup/gamesetup.js:1378
 msgid "Sorry, no description available."
 msgstr "Désolé, aucune description n'est disponible."
 
-#: gui/gamesetup/gamesetup.js:1379
+#: gui/gamesetup/gamesetup.js:1381
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s joueur. "
 msgstr[1] "%(number)s joueurs. "
 
-#: gui/gamesetup/gamesetup.js:1383 gui/gamesetup/gamesetup.xml:(caption):290
+#: gui/gamesetup/gamesetup.js:1385 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
 msgstr "Condition de victoire : "
 
-#: gui/gamesetup/gamesetup.js:1419
+#: gui/gamesetup/gamesetup.js:1421
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: gui/gamesetup/gamesetup.js:1535
+#: gui/gamesetup/gamesetup.js:1537
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA : %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1540
+#: gui/gamesetup/gamesetup.js:1542
 msgid "Unassigned"
 msgstr "Non attribué"
 
-#: gui/gamesetup/gamesetup.js:1724 gui/gamesetup/gamesetup.js:1729
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1726 gui/gamesetup/gamesetup.js:1731
+#: gui/gamesetup/gamesetup.js:1749
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1724
+#: gui/gamesetup/gamesetup.js:1726
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s a rejoint"
 
-#: gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1731
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s a quitté"
 
-#: gui/gamesetup/gamesetup.js:1734
+#: gui/gamesetup/gamesetup.js:1736
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1735
+#: gui/gamesetup/gamesetup.js:1737
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr " %(username)s %(message)s "
 
-#: gui/gamesetup/gamesetup.js:1741
+#: gui/gamesetup/gamesetup.js:1743
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s est prêt !"
 
-#: gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1745
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s n'est pas prêt."
 
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1749
 msgid "Game settings have been changed"
 msgstr "Les paramètres du jeu ont été changés"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1774
 msgid "I'm not ready"
 msgstr "Je ne suis pas prêt(e)"
 
-#: gui/gamesetup/gamesetup.js:1773
+#: gui/gamesetup/gamesetup.js:1775
 msgid "State that you are not ready to play."
 msgstr "Déclarer que vous n'êtes pas prêt(e) à jouer."
 
-#: gui/gamesetup/gamesetup.js:1778 gui/gamesetup/gamesetup.js:1856
+#: gui/gamesetup/gamesetup.js:1780 gui/gamesetup/gamesetup.js:1858
 msgid "I'm ready!"
 msgstr "Je suis prêt(e) !"
 
-#: gui/gamesetup/gamesetup.js:1779
+#: gui/gamesetup/gamesetup.js:1781
 msgid "State that you are ready to play!"
 msgstr "Déclarer que vous êtes prêt(e) à jouer !"
 
-#: gui/gamesetup/gamesetup.js:1857
+#: gui/gamesetup/gamesetup.js:1859
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Déclarer que vous acceptez les paramètres actuels et êtes prêt(e) à jouer !"
 
-#: gui/gamesetup/gamesetup.js:1975
+#: gui/gamesetup/gamesetup.js:1977
 msgid "None"
 msgstr "Aucune"
 
@@ -367,19 +367,19 @@ msgstr "Connexion au serveur..."
 msgid "Net message: %(message)s"
 msgstr "Message réseau : %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:137
+#: gui/gamesetup/gamesetup_mp.js:146
 msgid "Registering with server..."
 msgstr "Enregistrement sur le serveur..."
 
-#: gui/gamesetup/gamesetup_mp.js:143
+#: gui/gamesetup/gamesetup_mp.js:152
 msgid "Game has already started, rejoining..."
 msgstr "La partie a déjà commencé, connexion..."
 
-#: gui/gamesetup/gamesetup_mp.js:189
+#: gui/gamesetup/gamesetup_mp.js:198
 msgid "Game name already in use."
 msgstr "Nom de partie déjà utilisé."
 
-#: gui/gamesetup/gamesetup_mp.js:250
+#: gui/gamesetup/gamesetup_mp.js:259
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Partie de %(playername)s"
@@ -393,7 +393,7 @@ msgid "Defeat all opponents"
 msgstr "Battre tous les adversaires"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
-msgid "Conquest Structure"
+msgid "Conquest Structures"
 msgstr "Conquérir les bâtiments"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
@@ -444,7 +444,7 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup.xml:(caption):396
+#: gui/gamesetup/gamesetup.xml:(caption):397
 msgid "OK"
 msgstr "OK"
 
@@ -653,7 +653,7 @@ msgstr "Activer / désactiver les codes de triche."
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Choisir si cette partie sera prise en compte pour le classement général."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):397
+#: gui/gamesetup/gamesetup.xml:(tooltip):398
 msgid "Close more game options window"
 msgstr "Fermer la fenêtre des options avancées"
 

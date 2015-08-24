@@ -3,28 +3,21 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Miguel Molina <miguigana12@hotmail.com>, 2015
 # Peredelgrau, 2014
 # Haommin <tfs.msimangu@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-20 13:59+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
-"Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-26 14:19+0000\n"
+"Last-Translator: Miguel Molina <miguigana12@hotmail.com>\n"
+"Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: simulation/data/technologies/advanced_unit_bonus.jsongenericName
-msgid "Stats for advanced units"
-msgstr "Estadístiques de les unitats avançades"
-
-#: simulation/data/technologies/advanced_unit_bonus.jsondescription
-msgid "These stat modifications will be applied to advanced and elite units"
-msgstr "Aquestes modificacions s'aplicaran a les unitats avançades i d'elit"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -77,7 +70,8 @@ msgstr "Barda"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_trader_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_females_house.jsonrequirementsTooltip
@@ -124,7 +118,6 @@ msgstr "Armadura de metall per al cos dels cavalls."
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_hullsheathing.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_trade_convoys.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_champions_elite.jsonrequirementsTooltip
@@ -152,6 +145,8 @@ msgstr "Armadura de metall per al cos dels cavalls."
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_packing.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
 #: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
 #: simulation/data/technologies/training_naval_architects.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
@@ -461,18 +456,6 @@ msgstr "Casc reforçat"
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "Es desbloqueja a la fase de poblat."
-
-#: simulation/data/technologies/armor_trade_convoys.jsondescription
-msgid "Increases defensive capability of traders."
-msgstr "Augmenta la capacitat defensiva dels comerciants."
-
-#: simulation/data/technologies/armor_trade_convoys.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Els mercaders guanyen 2 nivells d'armadura de tall i perforació."
-
-#: simulation/data/technologies/armor_trade_convoys.jsongenericName
-msgid "Trade convoys"
-msgstr "Combois comercials"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
@@ -804,14 +787,6 @@ msgstr "Els destacaments es converteixen un 50% més lentament en territori neut
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "Fonaments de pedra"
-
-#: simulation/data/technologies/elite_unit_bonus.jsongenericName
-msgid "Stats for elite units"
-msgstr "Estadístiques de les unitats d'elit"
-
-#: simulation/data/technologies/elite_unit_bonus.jsondescription
-msgid "These stat modifications will be applied to elite units"
-msgstr "Aquestes modificacions s'aplicaran a les unitats d'elit"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1572,18 +1547,48 @@ msgstr "Entrena els cavalls per córrer més ràpid."
 msgid "Cavalry Speed Training"
 msgstr "Entrenament de velocitat per a la cavalleria"
 
-#: simulation/data/technologies/speed_trader_01.jsondescription
+#: simulation/data/technologies/trade_convoys_armor.jsondescription
+msgid "Increases defensive capability of traders."
+msgstr "Augmenta la capacitat defensiva dels comerciants."
+
+#: simulation/data/technologies/trade_convoys_armor.jsontooltip
+msgid "Traders +2 Hack and Pierce armor levels."
+msgstr "Els mercaders guanyen 2 nivells d'armadura de tall i perforació."
+
+#: simulation/data/technologies/trade_convoys_armor.jsongenericName
+#: simulation/data/technologies/trade_convoys_speed.jsongenericName
+msgid "Trade Convoys"
+msgstr "Combois comercials"
+
+#: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
 msgstr "Augmenta la velocitat dels mercaders, que al seu torn eleva els ingressos del comerç."
 
-#: simulation/data/technologies/speed_trader_01.jsontooltip
+#: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
 msgstr "Els mercaders caminen un 25% més ràpid, cosa que eleva els ingressos del comerç."
 
-#: simulation/data/technologies/speed_trader_01.jsongenericName
-msgid "Trade Convoys"
-msgstr "Combois comercials"
+#: simulation/data/technologies/trade_gain_01.jsondescription
+#: simulation/data/technologies/trade_gain_02.jsondescription
+msgid "The progress in handicraft improves the trading profit."
+msgstr "El progrés en l'artesania millora el comerç."
+
+#: simulation/data/technologies/trade_gain_01.jsontooltip
+msgid "Traders +10% gain."
+msgstr "Els comerciants guanyen un +10%."
+
+#: simulation/data/technologies/trade_gain_01.jsongenericName
+msgid "Handicraft"
+msgstr "Artesà"
+
+#: simulation/data/technologies/trade_gain_02.jsontooltip
+msgid "Traders +15% gain."
+msgstr "Els comerciants guanyen un +15%."
+
+#: simulation/data/technologies/trade_gain_02.jsongenericName
+msgid "Advanced Handicraft"
+msgstr "Gran artesà"
 
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription

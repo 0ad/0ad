@@ -6,6 +6,7 @@
 # B2D <book2doc@gmail.com>, 2014
 # empy <martinplavala@gmail.com>, 2014
 # Marián Mižik <marian@mizik.sk>, 2015
+# Mário Bulejko, 2015
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Patrik Loch <fantofas@gmail.com>, 2014
@@ -14,10 +15,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 15:59+0000\n"
-"Last-Translator: Marián Mižik <marian@mizik.sk>\n"
-"Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-08-23 17:30+0000\n"
+"Last-Translator: Mário Bulejko\n"
+"Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -155,7 +156,7 @@ msgid "Skirmish"
 msgstr "Súboj"
 
 #: gui/gamesetup/gamesetup.js:142 gui/gamesetup/gamesetup.js:638
-#: gui/gamesetup/gamesetup.js:1368
+#: gui/gamesetup/gamesetup.js:1370
 msgctxt "map"
 msgid "Random"
 msgstr "Náhodná"
@@ -164,8 +165,8 @@ msgstr "Náhodná"
 msgid "Scenario"
 msgstr "Scenár"
 
-#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1284
-#: gui/gamesetup/gamesetup.js:1348
+#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1286
+#: gui/gamesetup/gamesetup.js:1350
 msgid "Default"
 msgstr "Prednastavené"
 
@@ -186,54 +187,54 @@ msgctxt "team"
 msgid "None"
 msgstr "Žiadny"
 
-#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1435
 msgctxt "civilization"
 msgid "Random"
 msgstr "Náhodná"
 
-#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1003
 msgid "You"
 msgstr "Vy"
 
-#: gui/gamesetup/gamesetup.js:1098
+#: gui/gamesetup/gamesetup.js:1092
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
-#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
-#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
-#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
-#: gui/gamesetup/gamesetup.js:1353
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
+#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
+#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:1355
 msgid "Yes"
 msgstr "Áno"
 
-#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
-#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
-#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
-#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
-#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1353
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
+#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
+#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:1353 gui/gamesetup/gamesetup.js:1355
 msgid "No"
 msgstr "Nie"
 
-#: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
-#: gui/gamesetup/gamesetup.js:1357
+#: gui/gamesetup/gamesetup.js:1357 gui/gamesetup/gamesetup.js:1358
+#: gui/gamesetup/gamesetup.js:1359
 msgid "Determined by scenario"
 msgstr "Stanovené scenárom"
 
-#: gui/gamesetup/gamesetup.js:1369
+#: gui/gamesetup/gamesetup.js:1371
 msgid "Randomly selects a map from the list"
 msgstr "Náhodne vyberie mapu zo zoznamu"
 
-#: gui/gamesetup/gamesetup.js:1376
+#: gui/gamesetup/gamesetup.js:1378
 msgid "Sorry, no description available."
 msgstr "Ospravedlňujeme sa, popis nie je k dispozícii."
 
-#: gui/gamesetup/gamesetup.js:1379
+#: gui/gamesetup/gamesetup.js:1381
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -241,84 +242,84 @@ msgstr[0] "%(number)s hráč."
 msgstr[1] "%(number)s hráči."
 msgstr[2] "%(number)s hráčov."
 
-#: gui/gamesetup/gamesetup.js:1383 gui/gamesetup/gamesetup.xml:(caption):290
+#: gui/gamesetup/gamesetup.js:1385 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
 msgstr "Podmienky víťazstva:"
 
-#: gui/gamesetup/gamesetup.js:1419
+#: gui/gamesetup/gamesetup.js:1421
 msgid "Loading..."
 msgstr "Načítava sa..."
 
-#: gui/gamesetup/gamesetup.js:1535
+#: gui/gamesetup/gamesetup.js:1537
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1540
+#: gui/gamesetup/gamesetup.js:1542
 msgid "Unassigned"
 msgstr "Nepridelený"
 
-#: gui/gamesetup/gamesetup.js:1724 gui/gamesetup/gamesetup.js:1729
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1726 gui/gamesetup/gamesetup.js:1731
+#: gui/gamesetup/gamesetup.js:1749
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1724
+#: gui/gamesetup/gamesetup.js:1726
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s sa pripojil"
 
-#: gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1731
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s odišiel"
 
-#: gui/gamesetup/gamesetup.js:1734
+#: gui/gamesetup/gamesetup.js:1736
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1735
+#: gui/gamesetup/gamesetup.js:1737
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1741
+#: gui/gamesetup/gamesetup.js:1743
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s je priravený!"
 
-#: gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1745
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nie je pripravený."
 
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1749
 msgid "Game settings have been changed"
 msgstr "Nastavenia boli zmenené"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1774
 msgid "I'm not ready"
 msgstr "Nie som pripravený"
 
-#: gui/gamesetup/gamesetup.js:1773
+#: gui/gamesetup/gamesetup.js:1775
 msgid "State that you are not ready to play."
 msgstr "Oznámite, že ešte nie ste pripravený hrať."
 
-#: gui/gamesetup/gamesetup.js:1778 gui/gamesetup/gamesetup.js:1856
+#: gui/gamesetup/gamesetup.js:1780 gui/gamesetup/gamesetup.js:1858
 msgid "I'm ready!"
 msgstr "Som pripravený!"
 
-#: gui/gamesetup/gamesetup.js:1779
+#: gui/gamesetup/gamesetup.js:1781
 msgid "State that you are ready to play!"
 msgstr "Oznámite, že ste pripravený hrať!"
 
-#: gui/gamesetup/gamesetup.js:1857
+#: gui/gamesetup/gamesetup.js:1859
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Oznámite, že súhlasíte so súčasními nastaveniami hry a ste pripravený hrať!"
 
-#: gui/gamesetup/gamesetup.js:1975
+#: gui/gamesetup/gamesetup.js:1977
 msgid "None"
 msgstr "Žiadne"
 
@@ -336,19 +337,19 @@ msgstr "Pripája sa na server..."
 msgid "Net message: %(message)s"
 msgstr "Sieťová správa: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:137
+#: gui/gamesetup/gamesetup_mp.js:146
 msgid "Registering with server..."
 msgstr "Registrujem sa na serveri..."
 
-#: gui/gamesetup/gamesetup_mp.js:143
+#: gui/gamesetup/gamesetup_mp.js:152
 msgid "Game has already started, rejoining..."
 msgstr "Hra sa už začala, pripája sa odznova..."
 
-#: gui/gamesetup/gamesetup_mp.js:189
+#: gui/gamesetup/gamesetup_mp.js:198
 msgid "Game name already in use."
 msgstr "Názov hry sa už používa."
 
-#: gui/gamesetup/gamesetup_mp.js:250
+#: gui/gamesetup/gamesetup_mp.js:259
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Hra hráča %(playername)s"
@@ -362,12 +363,12 @@ msgid "Defeat all opponents"
 msgstr "Porazte všetkých protivníkov"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
-msgid "Conquest Structure"
+msgid "Conquest Structures"
 msgstr ""
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Znič všetky budovy nepriateľov."
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
@@ -375,7 +376,7 @@ msgstr ""
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Znič všetky jednotky nepriateľov."
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -413,7 +414,7 @@ msgid "Cancel"
 msgstr "Zrušiť"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup.xml:(caption):396
+#: gui/gamesetup/gamesetup.xml:(caption):397
 msgid "OK"
 msgstr "OK"
 
@@ -622,7 +623,7 @@ msgstr "Prepnúť možnosť používania podvodov."
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Prepnúť, či bude hra hodnotená a umiestnená v rebríčku."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):397
+#: gui/gamesetup/gamesetup.xml:(tooltip):398
 msgid "Close more game options window"
 msgstr "Zavrieť okno s viac možnosťami hry"
 
@@ -700,7 +701,7 @@ msgstr "\"Múdrosť k nám prichádza bolesťou... Láskavosť zase od bohov.\" 
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
-msgstr ""
+msgstr "\"Ona \\[Helena] priniesla do Ilia jej veno, skazu.\" - Aischylos, \"Agamemnon\""
 
 #: gui/text/quotes.txt:9
 msgid ""
@@ -1309,11 +1310,11 @@ msgid ""
 "\"I never learned how to tune a harp, or play upon a lute; but I know how to"
 " raise a small and inconsiderable city to glory and greatness.\" - "
 "Themistocles"
-msgstr ""
+msgstr "\"Nikdy som sa nenaučil naladiť harfu, ani hrať na lutne; ale viem pozdvihnúť malé a bezvýznamné mesto v slávu a vážnosť.\" - Themistokles"
 
 #: gui/text/quotes.txt:125
 msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
-msgstr ""
+msgstr "\"Mám so sebou dvoch bohov, Presviedčania a Nátlak.\" - Themistokles"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1330,25 +1331,25 @@ msgstr " „Udrite, ak si to želáte, ale vypočujte ma.“ - Themistokles"
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
 " he left for Thermopylae"
-msgstr ""
+msgstr "\"Vezmi si dobrého muža a poroď mu dobré deti.\" - Leónidas jeho žene pred tým, ako vyrazil do Termopyl"
 
 #: gui/text/quotes.txt:129
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms"
-msgstr ""
+msgstr "\"Poďte si pre ne!\" - Leónidas perzskému poslovi, ktorý žiadal aby on a jeho muži zložili zbrane"
 
 #: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
-msgstr ""
+msgstr "\"Pre mysliaceho človeka je domov tam, kde je Múdrosť.\" - Zarathuštra"
 
 #: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
-msgstr ""
+msgstr "\"Nazývam figu figou, rýľ rýľom.\" - Menandros"
 
 #: gui/text/quotes.txt:132
 msgid "\"The man who runs may fight again.\" - Menander"
-msgstr ""
+msgstr "\"Muž, ktorý beží, môže znova bojovať\" - Menandros"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1360,127 +1361,127 @@ msgstr ""
 msgid ""
 "\"Freedom is the sure possession of those alone who have the courage to "
 "defend it.\" - Pericles"
-msgstr ""
+msgstr "\"Sloboda je dozaista posadnutosť tých, ktorí majú odvahu brániť ju.\" - Perikles"
 
 #: gui/text/quotes.txt:135
 msgid ""
 "\"What you leave behind is not what is engraved in stone monuments, but what"
 " is woven into the lives of others.\" - Pericles"
-msgstr ""
+msgstr "\"To, čo za sebou zanecháš nie je to, čo je vyryté v kamenných monumentoch, ale to, čo je vtkané do životov ostatných.\" - Perikles"
 
 #: gui/text/quotes.txt:136
 msgid ""
 "\"We do not say that a man who takes no interest in politics is a man who "
 "minds his own business; we say that he has no business here at all.\" - "
 "Pericles"
-msgstr ""
+msgstr "\"Nevravíme, že človek ktorý sa nezaujíma o politiku je človek, ktorý sa stará len o svoje veci; my hovoríme, že tu vôbec nemá čo robiť.\" - Perikles"
 
 #: gui/text/quotes.txt:137
 msgid ""
 "\"They gave her their lives, to Her and to all of us, and for their own "
 "selves they won praises that never grow old, the most splendid of "
 "sepulchers...\" - Pericles, Funeral Oration"
-msgstr ""
+msgstr "\"Dali jej svoje životy, Jej a nám všetkým, a pre nich samých vyhrali chvály, ktoré nikdy nezostarnú, najveľkolepejšie z hrobov ...\" - Perikles, slávnostná reč na pohrebe"
 
 #: gui/text/quotes.txt:138
 msgid ""
 "\"Make up your minds that happiness depends on being free, and freedom "
 "depends on being courageous.\" - Pericles"
-msgstr ""
+msgstr "\"Pamätajte, že šťastie závisí na slobode a sloboda závisí na odvahe.\" - Perikles"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Your empire is now like a tyranny: it may have been wrong to take it; it "
 "is certainly dangerous to let it go.\" - Pericles"
-msgstr ""
+msgstr "\"Tvoje impérium je teraz ako tyrania: možno bola chyba vziať si ho; je však isto nebezpečné nechať ho ísť.\" - Perikles"
 
 #: gui/text/quotes.txt:140
 msgid ""
 "\"If Athens shall appear great to you, consider then that her glories were "
 "purchased by valiant men, and by men who learned their duty.\" - Pericles"
-msgstr ""
+msgstr "\"Ak sa ti Atény zdajú veľké, zváž to, že ich sláva bola kúpená statočnými mužmi a mužmi, ktorí sa naučili svojim povinnostiam.\" - Perikles"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"Just because you do not take an interest in politics doesn't mean politics"
 " won't take an interest in you.\" - Pericles"
-msgstr ""
+msgstr "\"To, že sa nezaujímaš o politiku neznamená, že sa politika nebude zaujímať o teba.\" - Perikles"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man trembles exceedingly at heart on its approach.\" - Pindar"
-msgstr ""
+msgstr "\"Vojna je krásna pre tých, ktorí z nej nemajú žiadne skúsenosti, ale skúseným mužom sa neobvykle trasie srdce s jej príchodom.\" - Pindaros"
 
 #: gui/text/quotes.txt:143
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
-msgstr ""
+msgstr "\"Hodina odchodu nadišla a my ideme svojimi vlastnými cestami - ja za smrťou a vy za životom. Len Boh vie, ktorá z nich je lepšia.\" - Platón"
 
 #: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
-msgstr ""
+msgstr "\"Život bez skúšania nie je hodný žitia.\" - Platón"
 
 #: gui/text/quotes.txt:145
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or from cowardice fall "
 "behind.\" - Plato"
-msgstr ""
+msgstr "\"Nech každý muž pripomenie svojim potomkom, že oni sú tiež vojaci ktorí nesmú opustiť šíky svojich predchodcov alebo sa dať na ústup zo zbabelosti.\" - Platón"
 
 #: gui/text/quotes.txt:146
 msgid ""
 "\"False words are not only evil in themselves, but they infect the soul with"
 " evil.\" - Plato"
-msgstr ""
+msgstr "\"Klamstvá nie sú zlé len samé o sebe, ale nakazia zlom aj dušu.\" - Platón"
 
 #: gui/text/quotes.txt:147
 msgid ""
 "\"Democracy, which is a charming form of government, full of variety and "
 "disorder, and dispensing a sort of equality to equals and unequals alike.\" "
 "- Plato"
-msgstr ""
+msgstr "\"Demokracia, ktorá je očarujúca forma vlády, plná rôznosti a neporiadku a udeľuje formu rovnosti rovným tak ako nerovným.\" - Platón"
 
 #: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
-msgstr ""
+msgstr "\"Smrť nie je to najhoršie, čo sa môže človeku stať.\" - Platón"
 
 #: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
-msgstr ""
+msgstr "\"Len mŕtvi videli koniec vojny.\" - Neznámy"
 
 #: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
-msgstr ""
+msgstr "\"Naše potreby budú skutočným tvorcom.\" - Platón"
 
 #: gui/text/quotes.txt:151
 msgid "\"A man with courage has every blessing.\" - Plautus"
-msgstr ""
+msgstr "\"Človek s odvahou má každé požehnanie.\" - Plautus"
 
 #: gui/text/quotes.txt:152
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus"
-msgstr ""
+msgstr "\"Žiadny hosť nie je tak vítaný v dome priateľa ako ten, ktorý sa nestane obtiažou po troch dňoch.\" - Plautus"
 
 #: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
-msgstr ""
+msgstr "\"On, ktorého majú bohovia radi, zomiera mladý.\" - Plautus"
 
 #: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
-msgstr ""
+msgstr "\"Praktizuj to, čo kážeš.\" - Plautus"
 
 #: gui/text/quotes.txt:155
 msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
-msgstr ""
+msgstr "\"Pi, ži ako Gréci, jedz, napchávaj sa.\" - Plautus"
 
 #: gui/text/quotes.txt:156
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
 "the Great)"
-msgstr ""
+msgstr "\"Prestaň citovať zákony, my nesieme zbrane!\" - Gnaeus Pompeius Magnus (Pompeius Veľký)"
 
 #: gui/text/quotes.txt:157
 msgid ""
@@ -1492,33 +1493,33 @@ msgstr ""
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
-msgstr ""
+msgstr "\"Mali sme sa chovať k sebe tak, aby sme nespravili nepriateľov z našich priateľov a zároveň spravili priateľov z našich nepriateľov.\" - Pytagoras"
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr ""
+msgstr "\"V hneve by sme sa mali zdržať reči aj činov.\" - Pytagoras"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
-msgstr ""
+msgstr "\"Sila je blízky sused nutnosti.\" - Pytagoras"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
-msgstr ""
+msgstr "\"Čísla vládnu Vesmíru.\" - Pytagoras"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Rest satisfied with doing well, and leave others to talk of you as they "
 "please.\" - Pythagoras"
-msgstr ""
+msgstr "\"Odpočívaj spokojný s úspechom a nechaj ostatných hovoriť o tebe ako sa im páči.\" - Pytagoras"
 
 #: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
-msgstr ""
+msgstr "\"Hnev začína pochabosťou a končí ľútosťou.\" - Pytagoras"
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
-msgstr ""
+msgstr "\"Neexistuje také slovo alebo čin, ale má to svoju ozvenu vo Večnosti.\" - Pytagoras"
 
 #: gui/text/quotes.txt:165
 msgid ""
@@ -1530,34 +1531,34 @@ msgstr ""
 msgid ""
 "\"Practice justice in word and deed, and do not get in the habit of acting "
 "thoughtlessly about anything.\" - Pythagoras"
-msgstr ""
+msgstr "\"Praktizuj spravodlivosť slovom i skutkom a nezvykaj si chovať sa bezohľadne ohľadom hocičoho.\" - Pytagoras"
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr ""
+msgstr "\"Ani len nerozmýšľaj nad robením toho, čo by sa nemalo robiť.\" - Pytagoras"
 
 #: gui/text/quotes.txt:168
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
-msgstr ""
+msgstr "\"Keď múdry muž otvorí svoje ústa, krásy jeho duše sa vystavia na obdiv, tak, ako sochy v chráme.\" - Pytagoras"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"Remind yourself that all men assert that wisdom is the greatest good, but "
 "that there are few who strenuously seek out that greatest good.\" - "
 "Pythagoras"
-msgstr ""
+msgstr "\"Zapamätaj si, že všetci ľudia presadzujú múdrosť ako najväčšie dobro, ale tiež je niekoľko takých, čo usilovne hľadajú najväčšie dobro.\" - Pytagoras"
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr ""
+msgstr "\"Bez spravodlivosti nemôže prosperovať žiadna ríša.\" - Pytagoras"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
-msgstr ""
+msgstr "\"Pretože harmónia robí malé štáty veľkými, zatiaľ čo nezhoda podkopáva najsilnejšie impériá.\" - Gaius Sallustius Crispus"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1570,17 +1571,17 @@ msgstr ""
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr ""
+msgstr "\"Pripravte sa na vojnu, keďže ste neboli schopní vydržať v mieri.\" - Scipio Africanus"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
-msgstr ""
+msgstr "\"Choď a odkáž Spatťanom, cudzinec čo tu prechádzaš, verný ich zákonom, že klameme.\" - Simonidés z Keu, epitaf na Kenotafe v Termopylách"
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
-msgstr ""
+msgstr "\"Nie len bohovia bojujú s nutnosťou.\" - Simónidés z Keu"
 
 #: gui/text/quotes.txt:176
 msgid ""
@@ -1593,4 +1594,4 @@ msgid ""
 "\"The bravest are surely those who have the clearest vision of what is "
 "before them, glory and danger alike, and yet notwithstanding, go out to meet"
 " it.\" - Thucydides"
-msgstr ""
+msgstr "\"Najodvážnejší sú dozaista tí, čo majú najjasnejšiu predstavu o tom, čo je pred nimi, sláva tak isto ako nebezpečenstvo, no napriek tomu vychádzajú aby tomu čelili.\" - Thoukydides"

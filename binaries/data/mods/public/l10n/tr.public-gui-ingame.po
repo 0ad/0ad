@@ -21,16 +21,16 @@
 # Vilender <gokhanlnx@gmail.com>, 2013
 # volcanology <volkansag@hotmail.com>, 2014
 # Volkan Gezer <volkangezer@gmail.com>, 2014-2015
-# yakup <mutouk@yandex.ru>, 2014
-# YavuzKa <yavuzka@hotmail.com.tr>, 2014
+# yakup <mutouk@yandex.ru>, 2014-2015
+# Yavuz <yavuzka@hotmail.com.tr>, 2014
 # Yunus Emre  Çakmak <yuney12345@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-15 08:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-08-13 22:35+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,15 +41,15 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Temel menzil: %(range)s metre"
+msgstr[1] "Temel menzil: %(range)s metre"
 
 #: gui/session/input.js:154
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ortalama ilave menzil: %(range)s metre"
+msgstr[1] "Ortalama ilave menzil: %(range)s metre"
 
 #: gui/session/input.js:733
 msgid "Cannot build wall here!"
@@ -130,8 +130,8 @@ msgid "Enemy"
 msgstr "Düşman"
 
 #: gui/session/menu.js:349
-msgid "request for your allies to attack this enemy"
-msgstr ""
+msgid "Request your allies to attack this enemy"
+msgstr "Bu düşmana saldırmak için müttefiklerine istek gönder"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -243,19 +243,19 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s ticari gemi devredışı"
 msgstr[1] "%(numberOfShipTraders)s ticari gemiler devredışı"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Kılavuz"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "Bu Geliştirici Kaplaması açıldı."
 
-#: gui/session/menu.js:691
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "Bu Geliştirici Kaplaması kapandı."
 
-#: gui/session/menu.js:707
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -298,7 +298,7 @@ msgstr "Bilinmeyen oyuncu"
 #: gui/session/messages.js:443
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s tekrar katıldığı oyun başlatılıyor."
 
 #: gui/session/messages.js:446
 #, javascript-format
@@ -308,7 +308,7 @@ msgstr "%(player)s oyundan ayrıldı."
 #: gui/session/messages.js:449
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s oyuna katıldı."
 
 #: gui/session/messages.js:454
 msgid "You have been defeated."
@@ -371,7 +371,7 @@ msgstr "%(player)s size gönderdi %(amounts)s."
 
 #: gui/session/messages.js:521
 #, javascript-format
-msgid "Your livestock have been attacked by %(attacker)s!"
+msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr ""
 
 #: gui/session/messages.js:523
@@ -442,7 +442,7 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 #: gui/session/selection_details.js:108
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:126
 #, javascript-format
@@ -519,7 +519,7 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_details.js:347
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr ""
+msgstr "Saldırı noktaları:"
 
 #: gui/session/selection_panels.js:72
 msgid "Increase the alert level to protect more units"
@@ -678,7 +678,7 @@ msgstr "Gaea"
 #: gui/session/session.js:247
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Yapı Ağacı"
 
 #: gui/session/session.js:321 gui/session/session.js:337
 msgid "You have left the game."
@@ -723,22 +723,22 @@ msgstr "ZAFER!"
 #: gui/session/session.js:566
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: gui/session/session.js:566
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: gui/session/session.js:568
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "Yeniden oynatma tamamladı. Çıkmak istiyor musunuz?"
 
 #: gui/session/session.js:568
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Onay"
 
 #: gui/session/session.js:729
 msgid "Population (current / limit)"
@@ -747,7 +747,7 @@ msgstr "Nüfus (olan/limit)"
 #: gui/session/session.js:730
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "En fazla nüfus: %(popCap)s"
 
 #: gui/session/session.js:893
 #, javascript-format
@@ -1040,7 +1040,7 @@ msgstr "vuruş puanı"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Capture points"
-msgstr ""
+msgstr "Saldırı noktaları"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"

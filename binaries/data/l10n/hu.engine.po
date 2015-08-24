@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2015
+# Benedict Drummer <inactive+beni1999@transifex.com>, 2014-2015
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2014
 # Márk Kerekes <bableves64@gmail.com>, 2015
 # Peter Darvasi <darvasipeter@windowslive.com>, 2014
@@ -12,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-06-17 09:51+0000\n"
-"Last-Translator: Márk Kerekes <bableves64@gmail.com>\n"
-"Language-Team: Hungarian (http://www.transifex.com/p/0ad/language/hu/)\n"
+"PO-Revision-Date: 2015-08-19 20:48+0000\n"
+"Last-Translator: Árpád Horváth <horvath.arpad.szfvar@gmail.com>\n"
+"Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,7 +62,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
-msgstr ""
+msgstr "Hibás regisztrációs kérés"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
@@ -73,7 +74,7 @@ msgstr "Kötelező regisztráció"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "Váratlan regisztrációs kérés"
 
 #: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
@@ -85,7 +86,7 @@ msgstr "Ismeretlen regisztrációs hiba"
 
 #: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "ismeretlen altípus (lásd a logokat)"
 
 #: lobby/XmppClient.cpp:982
 msgid "Bad request"
@@ -105,7 +106,7 @@ msgstr "Megtagadva"
 
 #: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "A résztvevők vagy a szerver eltávoztak"
 
 #: lobby/XmppClient.cpp:987
 msgid "Internal server error"
@@ -117,7 +118,7 @@ msgstr "A termék nem található"
 
 #: lobby/XmppClient.cpp:989
 msgid "Jid malformed"
-msgstr ""
+msgstr "Helytelenül formázott Jid"
 
 #: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
@@ -137,11 +138,11 @@ msgstr "Nem módosított"
 
 #: lobby/XmppClient.cpp:994
 msgid "Payment required"
-msgstr ""
+msgstr "Fizetni kell"
 
 #: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "Résztvevők elérhetetlenek"
 
 #: lobby/XmppClient.cpp:996
 msgid "Redirect"
@@ -165,11 +166,11 @@ msgstr "A szolgáltatás nem elérhető."
 
 #: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
-msgstr ""
+msgstr "Feliratkozás szükséges"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
-msgstr ""
+msgstr "Nem definiált feltétel"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
@@ -186,9 +187,9 @@ msgstr "Hiba nincs definiálva "
 #: ps/SavedGame.cpp:131
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "Ide mentettem a játékot: '%s'."
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Ide mentettem a képernyőképet: '%s'."

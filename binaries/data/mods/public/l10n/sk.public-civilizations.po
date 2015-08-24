@@ -5,6 +5,7 @@
 # Translators:
 # B2D <book2doc@gmail.com>, 2014
 # empy <martinplavala@gmail.com>, 2014
+# Mário Bulejko, 2015
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Patrik Loch <fantofas@gmail.com>, 2014
@@ -14,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-03-15 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
+"PO-Revision-Date: 2015-08-20 16:10+0000\n"
+"Last-Translator: Mário Bulejko\n"
+"Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1688,7 +1689,7 @@ msgid ""
 "Empire. He was also renown as a benevolent conqueror. (OP - Kurush). "
 "Technically the second ruler of the Persians by that name, and so appears as"
 " Kurush II on his documents and coins. Kurush I was his grandfather."
-msgstr ""
+msgstr "Kýros (vládol 559-530 pred Kr.) Syn médijskej princeznej a vládcu Anšanu; plným právom nazývaný \"Otec Impéria\", Kýros Veľký dobyl Médiu, Lýdiu, Babylóniu a Baktriu, čím založil Perzskú ríšu. Bol tiež známy ako dobrosrdečný dobyvateľ. (Jeho perzské meno je Kurush) Technicky je to druhý vládca Peržanov s týmto menom, keď sa na jeho dokumentoch a minciach spomína ako Kurush II. . Kurush I. bol jeho starý otec."
 
 #: civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
@@ -1700,7 +1701,7 @@ msgid ""
 "Parthia and Hyrcania; a great administrator as well as a decent general, "
 "Darius introduced the division of the empire into satrapies and conquered NW"
 " India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
-msgstr ""
+msgstr "Dárius (vládol 522-486 pred Kr.) Syn Vištapsu (Hystapses), vládca Partie a Hyrkánie; významný správca a tiež slušný generál, Dárius predstavil rozdelenie impéria na kráľovstvá a dobyl severozápadnú Indiu, Tráciu a Macedónsko. Bol nazývaný \"Obchodník Impéria\"."
 
 #: civs/pers.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1709,7 +1710,7 @@ msgid ""
 "extended Imperial rule into Chorasmia. Apart from his failed invasion of "
 "Greece, he was famous for his extensive building programme, especially at "
 "Persepolis."
-msgstr ""
+msgstr "Xerxes (vládol 485-465 pred Kr.) Syn Dáriusa Veľkého a Atoosy, dcéry Kýrosa Veľkého, Xerxes bol schopný správca, ktorý rozšíril imperiálnu vládu do Chórzemu. Narozdiel od jeho neúspešnej invázie do Grécka bol známy pre jeho rozsiahly stavebný program, predovšetkým v Perzepolise."
 
 #: civs/pers.jsonStructures[0].Name civs/sele.jsonStructures[1].Name
 msgid "Cavalry Stables"
@@ -1717,7 +1718,7 @@ msgstr "Stajne jazdy. "
 
 #: civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr "Trénuje občanov-vojakov jazdcov."
+msgstr "Trénuje jazdeckých občianov-vojakov."
 
 #: civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -2001,7 +2002,7 @@ msgstr "Rimania na obranu zvyčajne používali formáciu Testudo, inak zvanú a
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr "Akýkoľvek rímsky občan/vojak bojujúci vo vnútri svojho vlastného územia získa dočasný +10% bonus k brneniu, "
+msgstr "Akýkoľvek rímsky občan-vojak bojujúci vo vnútri svojho vlastného územia získa dočasný +10% bonus k brneniu, "
 
 #: civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
@@ -2018,7 +2019,7 @@ msgstr "Rímske občianstvo bolo v starovekom svete vysoko cenené. Základné p
 
 #: civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Spojeneckí občania/vojaci získajú +15% útočný bonus na rímskom území."
+msgstr "Spojeneckí občania-vojaci získajú +15% útočný bonus na rímskom území."
 
 #: civs/rome.jsonTeamBonuses[0].Name
 msgid "Socii"
@@ -2147,7 +2148,7 @@ msgstr "Zabarikádovaný tábor"
 
 #: civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr "Trénuje občanov/vojakov z neutrálneho alebo nepriateľského územia."
+msgstr "Trénuje občanov-vojakov z neutrálneho alebo nepriateľského územia."
 
 #: civs/rome.jsonStructures[0].History
 msgid ""

@@ -17,6 +17,7 @@
 # Fesa <ventessa@gmail.com>, 2013
 # Hedaja <christian.pietzsch@gmail.com>, 2014
 # hunzel <nurmaguggen@hotmail.com>, 2014
+# IzNarf <iznarf31@gmail.com>, 2015
 # J5lx <j5lx@fmail.co.uk>, 2014
 # jonnius <jonatan_zeidler@gmx.de>, 2014
 # leper <leper@wildfiregames.com>, 2014-2015
@@ -52,10 +53,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-19 21:41+0000\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-08-21 18:08+0000\n"
 "Last-Translator: leper <leper@wildfiregames.com>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -109,7 +110,7 @@ msgstr "Bestätigung"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Wirklich beenden? Beim Verlassen werden alle anderen Mitspieler getrennt."
+msgstr "Möchtest du wirklich beenden? Beim Verlassen verlieren alle deine Mitspieler die Verbindung zum Spiel."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -125,7 +126,7 @@ msgstr "Ich gebe auf"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr "Möchtest du abdanken oder kehrst du bald zurück?"
+msgstr "Möchtest du aufgeben oder kehrst du bald zurück?"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
@@ -155,8 +156,8 @@ msgid "Enemy"
 msgstr "Feind"
 
 #: gui/session/menu.js:349
-msgid "request for your allies to attack this enemy"
-msgstr "Bitte Ihre Verbündeten, diesen Gegner anzugreifen"
+msgid "Request your allies to attack this enemy"
+msgstr "Bitte deine Verbündeten diesen Gegner anzugreifen"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -268,19 +269,19 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s Handelsschiff inaktiv"
 msgstr[1] "%(numberOfShipTraders)s Handelsschiffe inaktiv"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Handbuch"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "Das Entwickler-Overlay wurde geöffnet."
 
-#: gui/session/menu.js:691
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "Das Entwickler-Overlay wurde geschlossen."
 
-#: gui/session/menu.js:707
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -396,7 +397,7 @@ msgstr "%(player)s hat dir %(amounts)s gesendet."
 
 #: gui/session/messages.js:521
 #, javascript-format
-msgid "Your livestock have been attacked by %(attacker)s!"
+msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Dein Vieh wurde von %(attacker)s angegriffen!"
 
 #: gui/session/messages.js:523
@@ -548,7 +549,7 @@ msgstr "Eroberungspunkte:"
 
 #: gui/session/selection_panels.js:72
 msgid "Increase the alert level to protect more units"
-msgstr "Erhöht die Wachsamkeit, um mehr Einheiten zu beschützen! "
+msgstr "Erhöht die Wachsamkeit, um mehr Einheiten zu beschützen"
 
 #: gui/session/selection_panels.js:74
 msgid "Raise an alert!"
@@ -823,7 +824,7 @@ msgstr "Einquartiert: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:550
 msgid "Right-click to establish a default route for new traders."
-msgstr "Rechtsklicken um eine Standardroute für neue Händler zu erstellen."
+msgstr "Rechtsklicken, um eine Standardroute für neue Händler zu erstellen."
 
 #: gui/session/unit_actions.js:554
 #, javascript-format
@@ -836,12 +837,12 @@ msgstr "Alle ausquartieren"
 
 #: gui/session/unit_actions.js:698
 msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr "Du kannst diese Struktur nicht zerstören, weil sie im Nebel des Krieges liegt."
+msgstr "Du kannst diese Struktur nicht zerstören, weil sie im Nebel des Krieges liegt"
 
 #: gui/session/unit_actions.js:704
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Sie können dieses Objekt nicht zu zerstören, da Sie weniger als die Hälfte der Kontrollpunkte besitzen"
+msgstr "Du kannst dieses Objekt nicht zu zerstören, da du weniger als die Hälfte der Kontrollpunkte besitzt"
 
 #: gui/session/unit_actions.js:733
 msgid "Stop"
@@ -1045,7 +1046,7 @@ msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr "Wählen Sie zuerst eine Ware als Tauschobjekt und dann mit den Pfeiltasten die Ware zum Eintauschen (Shift setzt die gewählte Ressource auf 100% fest)."
+msgstr "Wähle zuerst eine Ware als Tauschobjekt und dann mit den Pfeiltasten die Ware zum Eintauschen (Shift setzt die gewählte Ressource auf 100% fest)."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1057,7 +1058,7 @@ msgstr "Ja oder nein?"
 
 #: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
 msgid "Exchange resources:"
-msgstr "Tausche Ressourcen:"
+msgstr "Ressourcen tauschen:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
 msgid "Hitpoints"
@@ -1087,7 +1088,7 @@ msgstr "Produktionswarteschlange"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Klicken Sie auf gruppierte Einheiten um diese auszuwählen, doppelklicken Sie auf gruppierte Einheiten um auf diese zu fokussieren und rechtsklicken Sie, um die Gruppe aufzulösen."
+msgstr "Klicke auf gruppierte Einheiten um diese auszuwählen, doppelklicke auf gruppierte Einheiten um auf diese zu fokussieren und rechtsklicke, um die Gruppe aufzulösen."
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):9
 msgid "Game speed"

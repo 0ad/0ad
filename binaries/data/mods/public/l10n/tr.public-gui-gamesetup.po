@@ -26,15 +26,15 @@
 # volcanology <volkansag@hotmail.com>, 2014
 # Volkan Gezer <volkangezer@gmail.com>, 2014-2015
 # yakup <mutouk@yandex.ru>, 2014-2015
-# YavuzKa <yavuzka@hotmail.com.tr>, 2014
+# Yavuz <yavuzka@hotmail.com.tr>, 2014
 # Yunus Emre  Çakmak <yuney12345@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-08-13 22:35+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -121,42 +121,42 @@ msgstr "Ölüm Maçı"
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Ateşkes yok"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 dakika"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 dakika"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 dakika"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 dakika"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 dakika"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 dakika"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 dakika"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -172,7 +172,7 @@ msgid "Skirmish"
 msgstr "Çatışma"
 
 #: gui/gamesetup/gamesetup.js:142 gui/gamesetup/gamesetup.js:638
-#: gui/gamesetup/gamesetup.js:1368
+#: gui/gamesetup/gamesetup.js:1370
 msgctxt "map"
 msgid "Random"
 msgstr "Rastgele"
@@ -181,8 +181,8 @@ msgstr "Rastgele"
 msgid "Scenario"
 msgstr "Senaryo"
 
-#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1284
-#: gui/gamesetup/gamesetup.js:1348
+#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1286
+#: gui/gamesetup/gamesetup.js:1350
 msgid "Default"
 msgstr "Varsayılan"
 
@@ -203,138 +203,138 @@ msgctxt "team"
 msgid "None"
 msgstr "Yok"
 
-#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1435
 msgctxt "civilization"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1003
 msgid "You"
 msgstr "Siz"
 
-#: gui/gamesetup/gamesetup.js:1098
+#: gui/gamesetup/gamesetup.js:1092
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
-#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
-#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
-#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
-#: gui/gamesetup/gamesetup.js:1353
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
+#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
+#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:1355
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
-#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
-#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
-#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
-#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1353
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
+#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
+#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:1353 gui/gamesetup/gamesetup.js:1355
 msgid "No"
 msgstr "Hayır"
 
-#: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
-#: gui/gamesetup/gamesetup.js:1357
+#: gui/gamesetup/gamesetup.js:1357 gui/gamesetup/gamesetup.js:1358
+#: gui/gamesetup/gamesetup.js:1359
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Senaryo tarafından belirlendi"
 
-#: gui/gamesetup/gamesetup.js:1369
+#: gui/gamesetup/gamesetup.js:1371
 msgid "Randomly selects a map from the list"
 msgstr "Listeden rastgele bir harita seçer"
 
-#: gui/gamesetup/gamesetup.js:1376
+#: gui/gamesetup/gamesetup.js:1378
 msgid "Sorry, no description available."
 msgstr "Üzgünüm, herhangi bir açıklama mevcut değil."
 
-#: gui/gamesetup/gamesetup.js:1379
+#: gui/gamesetup/gamesetup.js:1381
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s oyuncu."
 msgstr[1] "%(number)s oyuncu."
 
-#: gui/gamesetup/gamesetup.js:1383 gui/gamesetup/gamesetup.xml:(caption):290
+#: gui/gamesetup/gamesetup.js:1385 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
 msgstr "Galibiyet Koşulu:"
 
-#: gui/gamesetup/gamesetup.js:1419
+#: gui/gamesetup/gamesetup.js:1421
 msgid "Loading..."
 msgstr "Yükleniyor..."
 
-#: gui/gamesetup/gamesetup.js:1535
+#: gui/gamesetup/gamesetup.js:1537
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "YZ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1540
+#: gui/gamesetup/gamesetup.js:1542
 msgid "Unassigned"
 msgstr "Atanmamış"
 
-#: gui/gamesetup/gamesetup.js:1724 gui/gamesetup/gamesetup.js:1729
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1726 gui/gamesetup/gamesetup.js:1731
+#: gui/gamesetup/gamesetup.js:1749
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1724
+#: gui/gamesetup/gamesetup.js:1726
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s katıldı"
 
-#: gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1731
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s ayrıldı"
 
-#: gui/gamesetup/gamesetup.js:1734
+#: gui/gamesetup/gamesetup.js:1736
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1735
+#: gui/gamesetup/gamesetup.js:1737
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1741
+#: gui/gamesetup/gamesetup.js:1743
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s hazır!"
 
-#: gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1745
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s hazır değil."
 
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1749
 msgid "Game settings have been changed"
 msgstr "Oyun ayarları değiştirildi"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1774
 msgid "I'm not ready"
 msgstr "Hazır değilim"
 
-#: gui/gamesetup/gamesetup.js:1773
+#: gui/gamesetup/gamesetup.js:1775
 msgid "State that you are not ready to play."
 msgstr "Oynamaya hazır olmadığını beyan et."
 
-#: gui/gamesetup/gamesetup.js:1778 gui/gamesetup/gamesetup.js:1856
+#: gui/gamesetup/gamesetup.js:1780 gui/gamesetup/gamesetup.js:1858
 msgid "I'm ready!"
 msgstr "Hazırım!"
 
-#: gui/gamesetup/gamesetup.js:1779
+#: gui/gamesetup/gamesetup.js:1781
 msgid "State that you are ready to play!"
 msgstr "Oynamaya hazır olduğunu beyan et."
 
-#: gui/gamesetup/gamesetup.js:1857
+#: gui/gamesetup/gamesetup.js:1859
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Geçerli ayarları kabul ettiğini ve ve oynamaya hazır oldğunu beyan et!"
 
-#: gui/gamesetup/gamesetup.js:1975
+#: gui/gamesetup/gamesetup.js:1977
 msgid "None"
 msgstr "Yok"
 
@@ -352,19 +352,19 @@ msgstr "Sunucuya bağlanılıyor..."
 msgid "Net message: %(message)s"
 msgstr "Ağ mesajı: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:137
+#: gui/gamesetup/gamesetup_mp.js:146
 msgid "Registering with server..."
 msgstr "Sunucuya kaydediliyor"
 
-#: gui/gamesetup/gamesetup_mp.js:143
+#: gui/gamesetup/gamesetup_mp.js:152
 msgid "Game has already started, rejoining..."
 msgstr "Oyun zaten başladı, tekrar katılıyor..."
 
-#: gui/gamesetup/gamesetup_mp.js:189
+#: gui/gamesetup/gamesetup_mp.js:198
 msgid "Game name already in use."
 msgstr "Oyun ismi zaten kullanılıyor."
 
-#: gui/gamesetup/gamesetup_mp.js:250
+#: gui/gamesetup/gamesetup_mp.js:259
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s'nin oyunu"
@@ -378,20 +378,20 @@ msgid "Defeat all opponents"
 msgstr "Tüm rakipleri mağlup et"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
-msgid "Conquest Structure"
-msgstr ""
+msgid "Conquest Structures"
+msgstr "Fetih Yapıları"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Düşmanın tüm yapılarını yok et"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Fetih Birimleri"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Düşmanın tüm birimlerini yok et"
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -429,7 +429,7 @@ msgid "Cancel"
 msgstr "İptal"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup.xml:(caption):396
+#: gui/gamesetup/gamesetup.xml:(caption):397
 msgid "OK"
 msgstr "Tamam"
 
@@ -512,7 +512,7 @@ msgstr "Başlangıç Kaynakları:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Ateşkes"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -638,7 +638,7 @@ msgstr "Hile kullanımını aç."
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Eğer bu oyun liderlik tablosu için oylanacaksa seçimi değiştir."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):397
+#: gui/gamesetup/gamesetup.xml:(tooltip):398
 msgid "Close more game options window"
 msgstr "Daha fazla oyun seçeneği penceresini kapat"
 

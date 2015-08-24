@@ -43,10 +43,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-15 10:55+0000\n"
-"Last-Translator: webslavic <webslavic@yahoo.com>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-07-22 08:42+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -150,8 +150,8 @@ msgid "Enemy"
 msgstr "Враг"
 
 #: gui/session/menu.js:349
-msgid "request for your allies to attack this enemy"
-msgstr "запросить Ваших союзников напасть на этого врага"
+msgid "Request your allies to attack this enemy"
+msgstr ""
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -281,19 +281,19 @@ msgstr[1] "%(numberOfShipTraders)s торговых корабля бездей�
 msgstr[2] "%(numberOfShipTraders)s торговых кораблей бездействует"
 msgstr[3] "%(numberOfShipTraders)s торговых кораблей бездействует"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Учебник"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "Слой разработчика открыт."
 
-#: gui/session/menu.js:691
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "Слой разработчика закрыт."
 
-#: gui/session/menu.js:707
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -409,8 +409,8 @@ msgstr "%(player)s передал вам %(amounts)s."
 
 #: gui/session/messages.js:521
 #, javascript-format
-msgid "Your livestock have been attacked by %(attacker)s!"
-msgstr "%(attacker)s напал на Ваших животных!"
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr ""
 
 #: gui/session/messages.js:523
 #, javascript-format

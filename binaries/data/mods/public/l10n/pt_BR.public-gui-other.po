@@ -7,7 +7,7 @@
 # Cleiton Nunes <umarekhawari@gmail.com>, 2014
 # Ernan, 2015
 # Sturm <gravador202@yahoo.com.br>, 2014
-# Matheus Clemente <matheus.xb@gmail.com>, 2014
+# Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
 # Mihailov Vasilievic Filho <mihailov.vf@gmail.com>, 2015
 # no and no <nicolasmaia@tutanota.com>, 2015
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
@@ -16,10 +16,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-15 12:30+0000\n"
-"Last-Translator: Arthur Paim Arnold <arthurpaimarnold@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-07-23 17:47+0000\n"
+"Last-Translator: Matheus Clemente <matheus.xb@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -76,7 +76,7 @@ msgstr "Abrindo página"
 #: gui/common/functions_global_object.js:85
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #: gui/common/functions_global_object.js:102
 #, javascript-format
@@ -87,7 +87,7 @@ msgstr "%(time)s (%(speed)sx)"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Tempo restante até o cessar-fogo acabar: %(time)s."
 
 #: gui/common/functions_utility.js:191
 msgid "mm:ss"
@@ -1663,8 +1663,8 @@ msgid ""
 msgstr "- Construa em qualquer lugar do mapa, até mesmo em território inimigo. Bom para infiltrar as linhas inimigas ou consolidar ganhos dentro do território inimigo."
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Decays to the territory owner when build in non-allied territory"
-msgstr ""
+msgid "- Decays to the territory owner when built in non-allied territory"
+msgstr "- Decai para o dono do território quando construído em território não-aliado"
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
@@ -1674,7 +1674,7 @@ msgstr "- Construa armas de cerco e treine Cidadãos-Soldados."
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "- Abrigue até 40 unidades para curá-las lentamente e proteger o campo do exército de ataques e decadência."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -1716,7 +1716,7 @@ msgstr "- Pesquisar melhorias em armas e armaduras para suas unidades."
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Abrigue um cidadão-soldado para pesquisar mais rapidamente (AINDA NÃO IMPLEMENTADO)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -1730,7 +1730,7 @@ msgstr "- Campeão Lanceiros e Campeão Cavalaria Lanceiros de Cartago."
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr ""
+msgstr "- Ambos são treinados no Templo, ao invés da Fortaleza, como a maioria dos outros campeões."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -1852,7 +1852,7 @@ msgstr "- A Fortaleza é geralmente a construção mais forte de uma facção."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- Treina unidades fortes, como Campeões, Heróis e Armas de Cerco."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -1880,7 +1880,7 @@ msgstr "- Cidadãos-Soldados têm bônus de mineração."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
-msgstr ""
+msgstr "- Cavalaria de cidadãos-soldados têm bônus de Caça."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
@@ -1925,7 +1925,7 @@ msgstr "- Constroi-se rapidamente, mas é frágil."
 #: gui/text/tips/outposts.txt:8
 msgid ""
 "- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "- Abrigue uma unidade para evitar que elas decaiam em território neutro."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -2013,11 +2013,11 @@ msgstr "- O navio de guerra padrão mais pesado. Disponível para: Roma, Cartago
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Garrison ballistas to increase fire power."
-msgstr ""
+msgstr "- Abrigue uma balista para aumentar o poder de fogo."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Tem um ataque compactador que afunda navios inimigos (AINDA NÃO IMPLEMENTADO)."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -2163,7 +2163,7 @@ msgstr "TEMPLOS"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "- Estrutura da Fase de Cidade."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2183,24 +2183,24 @@ msgstr "- Abriga unidades feridas para curarem-se mais rápido."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr ""
+msgstr "DECADÊNCIA TERRITORIAL"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
-"- Decay happens when buildings are not connected to an allied Civil Centre."
-msgstr ""
+"- Decay happens when buildings are not connected to an allied Civil Center."
+msgstr "- Decadência acontece quando construções não estão conectadas a um Centro Civil aliado."
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr ""
+msgstr "- O processo de decadência pode ser desacelerado ou revertido ao abrigar algumas unidades na estrutura."
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
-"influential neighbour."
-msgstr ""
+"influential neighbor."
+msgstr "- Quando a decadência é completada, a construção será dado ao vizinho mais influente."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -2239,19 +2239,19 @@ msgstr "- Bons para transporte ou batalhas."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- Abrigue tropas à bordo para aumentar o poder de fogo."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Abrigue uma catapulta para um ataque de cerco a longa distância (AINDA NÃO IMPLEMENTADO)."
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Capaz de um poderoso abalroamento em outro barco que necessita recarregar após cada uso (AINDA NÃO IMPLEMENTADO)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-07-17 13:53+0000\n"
-"Last-Translator: abuyop <abuyop@gmail.com>\n"
-"Language-Team: Malay (http://www.transifex.com/projects/p/0ad/language/ms/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-07-22 09:16+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -149,7 +149,7 @@ msgid "Skirmish"
 msgstr "Pertempuran"
 
 #: gui/gamesetup/gamesetup.js:142 gui/gamesetup/gamesetup.js:638
-#: gui/gamesetup/gamesetup.js:1368
+#: gui/gamesetup/gamesetup.js:1370
 msgctxt "map"
 msgid "Random"
 msgstr "Rawak"
@@ -158,8 +158,8 @@ msgstr "Rawak"
 msgid "Scenario"
 msgstr "Senario"
 
-#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1284
-#: gui/gamesetup/gamesetup.js:1348
+#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1286
+#: gui/gamesetup/gamesetup.js:1350
 msgid "Default"
 msgstr "Lalai"
 
@@ -180,137 +180,137 @@ msgctxt "team"
 msgid "None"
 msgstr "Tiada"
 
-#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1435
 msgctxt "civilization"
 msgid "Random"
 msgstr "Rawak"
 
-#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1003
 msgid "You"
 msgstr "Anda"
 
-#: gui/gamesetup/gamesetup.js:1098
+#: gui/gamesetup/gamesetup.js:1092
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
-#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
-#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
-#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
-#: gui/gamesetup/gamesetup.js:1353
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
+#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
+#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:1355
 msgid "Yes"
 msgstr "Ya"
 
-#: gui/gamesetup/gamesetup.js:1212 gui/gamesetup/gamesetup.js:1217
-#: gui/gamesetup/gamesetup.js:1274 gui/gamesetup/gamesetup.js:1275
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1278
-#: gui/gamesetup/gamesetup.js:1313 gui/gamesetup/gamesetup.js:1314
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1317
-#: gui/gamesetup/gamesetup.js:1349 gui/gamesetup/gamesetup.js:1350
-#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1353
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
+#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
+#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
+#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
+#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
+#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:1353 gui/gamesetup/gamesetup.js:1355
 msgid "No"
 msgstr "Tidak"
 
-#: gui/gamesetup/gamesetup.js:1355 gui/gamesetup/gamesetup.js:1356
-#: gui/gamesetup/gamesetup.js:1357
+#: gui/gamesetup/gamesetup.js:1357 gui/gamesetup/gamesetup.js:1358
+#: gui/gamesetup/gamesetup.js:1359
 msgid "Determined by scenario"
 msgstr "Ditentukan oleh senario"
 
-#: gui/gamesetup/gamesetup.js:1369
+#: gui/gamesetup/gamesetup.js:1371
 msgid "Randomly selects a map from the list"
 msgstr "Pilih peta secara rawak dari senarai"
 
-#: gui/gamesetup/gamesetup.js:1376
+#: gui/gamesetup/gamesetup.js:1378
 msgid "Sorry, no description available."
 msgstr "Maaf, tiada keterangan tersedia."
 
-#: gui/gamesetup/gamesetup.js:1379
+#: gui/gamesetup/gamesetup.js:1381
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s pemain."
 
-#: gui/gamesetup/gamesetup.js:1383 gui/gamesetup/gamesetup.xml:(caption):290
+#: gui/gamesetup/gamesetup.js:1385 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
 msgstr "Syarat Menang:"
 
-#: gui/gamesetup/gamesetup.js:1419
+#: gui/gamesetup/gamesetup.js:1421
 msgid "Loading..."
 msgstr "Memuatkan..."
 
-#: gui/gamesetup/gamesetup.js:1535
+#: gui/gamesetup/gamesetup.js:1537
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1540
+#: gui/gamesetup/gamesetup.js:1542
 msgid "Unassigned"
 msgstr "Tidak diumpuk"
 
-#: gui/gamesetup/gamesetup.js:1724 gui/gamesetup/gamesetup.js:1729
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1726 gui/gamesetup/gamesetup.js:1731
+#: gui/gamesetup/gamesetup.js:1749
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1724
+#: gui/gamesetup/gamesetup.js:1726
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s telah sertai"
 
-#: gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1731
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s telah keluar"
 
-#: gui/gamesetup/gamesetup.js:1734
+#: gui/gamesetup/gamesetup.js:1736
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1735
+#: gui/gamesetup/gamesetup.js:1737
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1741
+#: gui/gamesetup/gamesetup.js:1743
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s sudah sedia!"
 
-#: gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1745
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s tidak sedia."
 
-#: gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1749
 msgid "Game settings have been changed"
 msgstr "Tetapan permainan telah berubah"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1774
 msgid "I'm not ready"
 msgstr "Saya tidak sedia"
 
-#: gui/gamesetup/gamesetup.js:1773
+#: gui/gamesetup/gamesetup.js:1775
 msgid "State that you are not ready to play."
 msgstr "Nyatakan anda tidak bersedia untuk main."
 
-#: gui/gamesetup/gamesetup.js:1778 gui/gamesetup/gamesetup.js:1856
+#: gui/gamesetup/gamesetup.js:1780 gui/gamesetup/gamesetup.js:1858
 msgid "I'm ready!"
 msgstr "Saya sedia!"
 
-#: gui/gamesetup/gamesetup.js:1779
+#: gui/gamesetup/gamesetup.js:1781
 msgid "State that you are ready to play!"
 msgstr "Nyatakan anda sudah sedia untuk main!"
 
-#: gui/gamesetup/gamesetup.js:1857
+#: gui/gamesetup/gamesetup.js:1859
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Nyatakan anda terima tetapan semasa dan sedia untuk main!"
 
-#: gui/gamesetup/gamesetup.js:1975
+#: gui/gamesetup/gamesetup.js:1977
 msgid "None"
 msgstr "Tiada"
 
@@ -328,19 +328,19 @@ msgstr "Menyambung ke pelayan..."
 msgid "Net message: %(message)s"
 msgstr "Mesej rangkaian: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:137
+#: gui/gamesetup/gamesetup_mp.js:146
 msgid "Registering with server..."
 msgstr "Mendaftar dengan pelayan..."
 
-#: gui/gamesetup/gamesetup_mp.js:143
+#: gui/gamesetup/gamesetup_mp.js:152
 msgid "Game has already started, rejoining..."
 msgstr "Permainan sudah bermula, menyertai semula..."
 
-#: gui/gamesetup/gamesetup_mp.js:189
+#: gui/gamesetup/gamesetup_mp.js:198
 msgid "Game name already in use."
 msgstr "Nama permainan sudah digunakan."
 
-#: gui/gamesetup/gamesetup_mp.js:250
+#: gui/gamesetup/gamesetup_mp.js:259
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Permainan %(playername)s"
@@ -354,8 +354,8 @@ msgid "Defeat all opponents"
 msgstr "Kalahkan semua pihak lawan"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
-msgid "Conquest Structure"
-msgstr "Tawan Struktur"
+msgid "Conquest Structures"
+msgstr ""
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
@@ -405,7 +405,7 @@ msgid "Cancel"
 msgstr "Batal"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup.xml:(caption):396
+#: gui/gamesetup/gamesetup.xml:(caption):397
 msgid "OK"
 msgstr "OK"
 
@@ -614,7 +614,7 @@ msgstr "Togol kebolehgunaan menipu."
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Togol jika permainan ini akan ditaraf untuk papan peneraju."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):397
+#: gui/gamesetup/gamesetup.xml:(tooltip):398
 msgid "Close more game options window"
 msgstr "Tutup lagi tetingkap pilihan permainan"
 

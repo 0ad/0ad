@@ -8,6 +8,7 @@
 # Devinate <m.brezek@gmail.com>, 2014
 # fri, 2014
 # ike20 <mvaldman@seznam.cz>, 2014
+# Martin Kříž <slovanworks.czech@gmail.com>, 2015
 # OndraK <kajinond@fjfi.cvut.cz>, 2014
 # fri, 2014-2015
 # Petr Hála <halapetr@selfnet.cz>, 2014
@@ -17,10 +18,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-20 20:25+0000\n"
-"Last-Translator: fri\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-08-10 15:01+0000\n"
+"Last-Translator: Martin Kříž <slovanworks.czech@gmail.com>\n"
+"Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -122,8 +123,8 @@ msgid "Enemy"
 msgstr "Nepřítel"
 
 #: gui/session/menu.js:349
-msgid "request for your allies to attack this enemy"
-msgstr "Požadavek na spojence, aby zaútočili na tohoto nepřítele"
+msgid "Request your allies to attack this enemy"
+msgstr "Požádat své spojence k útoku na tohoto nepřítele"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -244,19 +245,19 @@ msgstr[0] "%(numberOfShipTraders)s obchodní loď nečinná"
 msgstr[1] "%(numberOfShipTraders)s obchodní lodě nečinné"
 msgstr[2] "%(numberOfShipTraders)s obchodních lodí nečinných"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Příručka"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "Byla otevřena vývojářská vrstva."
 
-#: gui/session/menu.js:691
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "Byla zavřena vývojářská vrstva."
 
-#: gui/session/menu.js:707
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -372,8 +373,8 @@ msgstr "%(player)s vám poslal %(amounts)s."
 
 #: gui/session/messages.js:521
 #, javascript-format
-msgid "Your livestock have been attacked by %(attacker)s!"
-msgstr "Váš dobytek byl napaden %(attacker)s!"
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "Tvůj dobytek byl napaden %(attacker)s!"
 
 #: gui/session/messages.js:523
 #, javascript-format

@@ -5,8 +5,9 @@
 # Translators:
 # B2D <book2doc@gmail.com>, 2014
 # empy <martinplavala@gmail.com>, 2014
-# Levi Taule <levi.taule@gmail.com>, 2014
+# Levi Taule <levi.taule@gmail.com>, 2014-2015
 # Marián Mižik <marian@mizik.sk>, 2015
+# Mário Bulejko, 2015
 # empy <martinplavala@gmail.com>, 2014-2015
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
@@ -15,10 +16,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-15 08:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-08-20 16:46+0000\n"
+"Last-Translator: Mário Bulejko\n"
+"Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,17 +30,17 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Základný dosah: %(range)s meter"
+msgstr[1] "Základný dosah: %(range)s metre"
+msgstr[2] "Základný dosah: %(range)s metrov"
 
 #: gui/session/input.js:154
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Priemerný bonus dosahu: %(range)s meter"
+msgstr[1] "Priemerný bonus dosahu: %(range)s metre"
+msgstr[2] "Priemerný bonus dosahu: %(range)s metrov"
 
 #: gui/session/input.js:733
 msgid "Cannot build wall here!"
@@ -120,8 +121,8 @@ msgid "Enemy"
 msgstr "Nepriateľ"
 
 #: gui/session/menu.js:349
-msgid "request for your allies to attack this enemy"
-msgstr "žiadosť pre spojencov, aby zaútočili na nepriateľa"
+msgid "Request your allies to attack this enemy"
+msgstr "Požiadaj svojich spojencov o útok na tohto nepriateľa"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -242,19 +243,19 @@ msgstr[0] "%(numberOfShipTraders)s obchodná loď je nektívna"
 msgstr[1] "%(numberOfShipTraders)s obchodné lode sú neaktívne"
 msgstr[2] "%(numberOfShipTraders)s obchodných lodí je neaktívnych"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Manuál"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "Vyvojárska vrstva bola otvorená."
 
-#: gui/session/menu.js:691
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "Vývojárska vrstva bola zatvorená."
 
-#: gui/session/menu.js:707
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -370,8 +371,8 @@ msgstr "Hráč %(player)s vám poslal %(amounts)s."
 
 #: gui/session/messages.js:521
 #, javascript-format
-msgid "Your livestock have been attacked by %(attacker)s!"
-msgstr "Hospodárske zvieratá boli napadnuté útočníkom %(attacker)s!"
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "Na tvoje hospodárske zvieratá zaútočil %(attacker)s!"
 
 #: gui/session/messages.js:523
 #, javascript-format
@@ -430,9 +431,9 @@ msgstr "%(rank)s hodnosť"
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Táto rozostavaná budova bude postavená za %(seconds)s sekundu."
+msgstr[1] "Táto rozostavaná budova bude postavená za %(seconds)s sekundy."
+msgstr[2] "Táto rozostavaná budova bude postavená za %(seconds)s sekúnd."
 
 #: gui/session/selection_details.js:78
 #, javascript-format
@@ -442,7 +443,7 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 #: gui/session/selection_details.js:108
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:126
 #, javascript-format
@@ -486,9 +487,9 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Počet staviteľov.\nPridelenie ďalšieho k tejto rozostavanej budove zrýchli stavanie až o %(speedup)s sekundu."
+msgstr[1] "Počet staviteľov.\nPridelenie ďalšieho k tejto rozostavanej budove zrýchli stavanie až o %(speedup)s sekundy."
+msgstr[2] "Počet staviteľov.\nPridelenie ďalšieho k tejto rozostavanej budove zrýchli stavanie až o %(speedup)s sekúnd."
 
 #: gui/session/selection_details.js:202
 msgid "Number of builders."
@@ -520,7 +521,7 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_details.js:347
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr ""
+msgstr "Obsadzovacie body:"
 
 #: gui/session/selection_panels.js:72
 msgid "Increase the alert level to protect more units"
@@ -680,7 +681,7 @@ msgstr "Gaia"
 #: gui/session/session.js:247
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Strom stavieb"
 
 #: gui/session/session.js:321 gui/session/session.js:337
 msgid "You have left the game."
@@ -725,22 +726,22 @@ msgstr "VÍŤAZSTVO!"
 #: gui/session/session.js:566
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Áno"
 
 #: gui/session/session.js:566
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 #: gui/session/session.js:568
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "Prehrávanie sa skončilo. Chcete opustiť hru?"
 
 #: gui/session/session.js:568
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Potvrdenie"
 
 #: gui/session/session.js:729
 msgid "Population (current / limit)"
@@ -818,7 +819,7 @@ msgstr "Túto entitu nemôžete zničiť, pretože je zakrytá vojnovou hmlou."
 #: gui/session/unit_actions.js:704
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "Nemôžeš zničiť túto entitu pretože máš menej ako polovicu obsadzovacích bodov"
 
 #: gui/session/unit_actions.js:733
 msgid "Stop"
@@ -1042,7 +1043,7 @@ msgstr "Životy"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Capture points"
-msgstr ""
+msgstr "Obsadzovacie body"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"

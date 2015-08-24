@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Marián Mižik <marian@mizik.sk>, 2015
+# Mário Bulejko, 2015
 # empy <martinplavala@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Miroslav Remák <Unknown>, 2014
@@ -11,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-25 03:32+0200\n"
-"PO-Revision-Date: 2015-06-11 15:45+0000\n"
-"Last-Translator: Marián Mižik <marian@mizik.sk>\n"
-"Language-Team: Slovak (http://www.transifex.com/p/0ad/language/sk/)\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-08-20 15:43+0000\n"
+"Last-Translator: Mário Bulejko\n"
+"Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -167,16 +168,16 @@ msgid "Minor Greek Polis"
 msgstr "Malý grécky mestský štát"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
-msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr "Toto je malé grécke mesto. Má územný vplyv hodnoty 150."
+msgid "This is a minor Greek city."
+msgstr "Toto je menšie grécke mesto."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
 msgstr "Grécky mestský štát"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
-msgid "This is a major Greek city. Has a territory effect of 300."
-msgstr "Toto je veľké grécke mesto. Má územný vplyv hodnoty 300."
+msgid "This is a major Greek city."
+msgstr "Toto je veľké grécke mesto."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -216,11 +217,11 @@ msgstr "Krídla"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
-msgstr ""
+msgstr "Línia uzavretá"
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
-msgstr ""
+msgstr "Línia otvorená"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
@@ -368,7 +369,7 @@ msgstr "Levica"
 msgid "Muskox"
 msgstr "Pižmoň"
 
-#: simulation/templates/gaia/fauna_peacock.xml:5
+#: simulation/templates/gaia/fauna_peacock.xml:8
 msgid "Peacock"
 msgstr "Páv"
 
