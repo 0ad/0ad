@@ -85,6 +85,7 @@ Section "!Game and data files" GameSection
 
   SetOutPath "$INSTDIR\binaries\data\mods\public"
   File "${CHECKOUTPATH}\binaries\data\mods\public\public.zip"
+  File "${CHECKOUTPATH}\binaries\data\mods\public\mod.json"
   SetOutPath "$INSTDIR\binaries\data\mods\mod"
   File "${CHECKOUTPATH}\binaries\data\mods\mod\mod.zip"
 
