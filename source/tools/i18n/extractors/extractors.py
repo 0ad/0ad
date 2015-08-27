@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 #
-# Copyright (C) 2014 Wildfire Games
+# Copyright (C) 2015 Wildfire Games
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -305,10 +305,12 @@ class json(Extractor):
         super(json, self).__init__(directoryPath, filemasks, options)
         self.breadcrumbs = []
         self.keywords = self.options.get("keywords", {})
+        self.context = self.options.get("context", None)
 
     def setOptions(self, options):
         self.options = options
         self.keywords = self.options.get("keywords", {})
+        self.context = self.options.get("context", None)
 
     @staticmethod
     def formatBreadcrumbs(breadcrumbs):
@@ -323,7 +325,7 @@ class json(Extractor):
     def extractFromFile(self, filepath):
         with codecs.open(filepath, "r", 'utf-8') as fileObject:
             for message, breadcrumbs in self.extractFromString(fileObject.read()):
-                yield message, None, None, self.formatBreadcrumbs(breadcrumbs), -1, []
+                yield message, None, self.context, self.formatBreadcrumbs(breadcrumbs), -1, []
 
     def extractFromString(self, string):
         self.breadcrumbs = []
