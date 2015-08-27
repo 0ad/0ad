@@ -41,10 +41,12 @@
     <Formations datatype="tokens" replace=""/>
   </Identity>
   <Health>
-	 <Max>100</Max>
+    <Max>100</Max>
     <Unhealable>true</Unhealable>
-    <Repairable>true</Repairable>
   </Health>
+  <Repairable>
+    <RepairTimeRatio>3.0</RepairTimeRatio>
+  </Repairable>
   <Obstruction disable=""/>
   <Position>
     <TurnRate>1.0</TurnRate>

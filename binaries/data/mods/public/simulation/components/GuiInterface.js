@@ -333,6 +333,14 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		};
 	}
 
+	var cmpRepairable = QueryMiragedInterface(ent, IID_Repairable);
+	if (cmpRepairable)
+	{
+		ret.repairable = {
+			"numBuilders": cmpRepairable.GetNumBuilders()
+		};
+	}
+    
 	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 	if (cmpOwnership)
 	{

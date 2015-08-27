@@ -2615,9 +2615,9 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 
-					var cmpFoundation = Engine.QueryInterface(this.repairTarget, IID_Foundation);
-					if (cmpFoundation)
-						cmpFoundation.AddBuilder(this.entity);
+					let cmpBuilderList = QueryBuilderListInterface(this.repairTarget);
+					if (cmpBuilderList)
+						cmpBuilderList.AddBuilder(this.entity);
 
 					this.SelectAnimation("build", false, 1.0, "build");
 					this.StartTimer(1000, 1000);
@@ -2625,9 +2625,9 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"leave": function() {
-					var cmpFoundation = Engine.QueryInterface(this.repairTarget, IID_Foundation);
-					if (cmpFoundation)
-						cmpFoundation.RemoveBuilder(this.entity);
+					let cmpBuilderList = QueryBuilderListInterface(this.repairTarget);
+					if (cmpBuilderList)
+						cmpBuilderList.RemoveBuilder(this.entity);
 					delete this.repairTarget;
 					this.StopTimer();
 				},

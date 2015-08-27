@@ -7,8 +7,10 @@
   </Decay>
   <Health>
     <Unhealable>true</Unhealable>
-    <Repairable>true</Repairable>
   </Health>
+  <Repairable>
+    <RepairTimeRatio>4.0</RepairTimeRatio>
+  </Repairable>
   <Identity>
     <GenericName>Mechanical</GenericName>
     <VisibleClasses datatype="tokens">Mechanical</VisibleClasses>
