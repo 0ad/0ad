@@ -389,7 +389,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 	// Reset territory counts for all players
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
-	if (cmpPlayerManager && cmpPlayerManager->GetNumPlayers() != m_TerritoryCellCounts.size())
+	if (cmpPlayerManager && (size_t)cmpPlayerManager->GetNumPlayers() != m_TerritoryCellCounts.size())
 		m_TerritoryCellCounts.resize(cmpPlayerManager->GetNumPlayers());
 	for (u16& count : m_TerritoryCellCounts)
 		count = 0;
@@ -532,8 +532,11 @@ std::vector<STerritoryBoundary> CCmpTerritoryManager::ComputeBoundaries()
 
 u8 CCmpTerritoryManager::GetTerritoryPercentage(player_id_t player)
 {
-	if (player <= 0 && (size_t)player > m_TerritoryCellCounts.size())
+	if (player <= 0 || (size_t)player > m_TerritoryCellCounts.size())
 		return 0;
+
+	if (m_TerritoryTotalPassableCellCount == 0)
+		CalculateTerritories();
 
 	ENSURE(m_TerritoryTotalPassableCellCount > 0);
 	u8 percentage = (m_TerritoryCellCounts[player] * 100) / m_TerritoryTotalPassableCellCount;
