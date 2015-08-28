@@ -789,26 +789,40 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
-	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
+	// Prohibit joins while the game is loading
+	if (server.m_State == SERVER_STATE_LOADING)
+	{
+		LOGMESSAGE("Refused connection while the game is loading");
+		session->Disconnect(NDR_SERVER_LOADING);
+		return true;
+	}
 
+	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
 	CStrW username = server.DeduplicatePlayerName(SanitisePlayerName(message->m_Name));
 
-	bool isRejoining = false;
+	// Optionally allow observers to join after the game has started
+	bool observerLateJoin = false;
+	ScriptInterface& scriptInterface = server.GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue settings(cx);
+	scriptInterface.GetProperty(server.m_GameAttributes.get(), "settings", &settings);
+	if (scriptInterface.HasProperty(settings, "ObserverLateJoin"))
+		scriptInterface.GetProperty(settings, "ObserverLateJoin", observerLateJoin);
 
+	// If the game has already started, only allow rejoins
+	bool isRejoining = false;
 	if (server.m_State != SERVER_STATE_PREGAME)
 	{
-// 		isRejoining = true; // uncomment this to test rejoining even if the player wasn't connected previously
-
 		// Search for an old disconnected player of the same name
 		// (TODO: if GUIDs were stable, we should use them instead)
-		for (PlayerAssignmentMap::iterator it = server.m_PlayerAssignments.begin(); it != server.m_PlayerAssignments.end(); ++it)
-		{
-			if (!it->second.m_Enabled && it->second.m_Name == username)
-			{
-				isRejoining = true;
-				break;
-			}
-		}
+		isRejoining =
+			observerLateJoin ||
+			std::find_if(
+				server.m_PlayerAssignments.begin(), server.m_PlayerAssignments.end(),
+				[&username] (const std::pair<CStr, PlayerAssignment>& pair)
+				{ return pair.second.m_Enabled && pair.second.m_Name == username; })
+			!= server.m_PlayerAssignments.end();
 
 		// Players who weren't already in the game are not allowed to join now that it's started
 		if (!isRejoining)

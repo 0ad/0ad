@@ -154,6 +154,20 @@ function initMain()
 	mapFilters.list_data = getFilterIds();
 	g_GameAttributes.mapFilter = "default";
 
+	// For singleplayer reduce the size of more options dialog by three options (cheats, rated game, observer late join = 90px)
+	if (!g_IsNetworked)
+	{
+		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+160";
+		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 310 50%+70 336";
+	}
+	// For non-lobby multiplayergames reduce the size of the dialog by one option (rated game, 30px)
+	else if (g_IsNetworked && !Engine.HasXmppClient())
+	{
+		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+220";
+		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 370 50%+70 396";
+		Engine.GetGUIObjectByName("optionObserverLateJoin").size = "14 338 94% 366";
+	}
+
 	// Setup controls for host only
 	if (g_IsController)
 	{
@@ -255,6 +269,11 @@ function initMain()
 			updateGameAttributes();
 		};
 
+		Engine.GetGUIObjectByName("observerLateJoin").onPress = function() {
+			g_GameAttributes.settings.ObserverLateJoin = this.checked;
+			updateGameAttributes();
+		};
+
 		Engine.GetGUIObjectByName("disableTreasures").onPress = function() {
 			g_GameAttributes.settings.DisableTreasures = this.checked;
 			updateGameAttributes();
@@ -316,6 +335,7 @@ function initMain()
 	{
 		Engine.GetGUIObjectByName("optionCheats").hidden = false;
 		Engine.GetGUIObjectByName("enableCheats").checked = false;
+		Engine.GetGUIObjectByName("optionObserverLateJoin").hidden = false;
 		g_GameAttributes.settings.CheatsEnabled = false;
 		// Setup ranked option if we are connected to the lobby.
 		if (Engine.HasXmppClient())
@@ -331,6 +351,9 @@ function initMain()
 		{
 			Engine.GetGUIObjectByName("enableCheatsText").hidden = true;
 			Engine.GetGUIObjectByName("enableCheats").hidden = false;
+			Engine.GetGUIObjectByName("observerLateJoinText").hidden = true;
+			Engine.GetGUIObjectByName("observerLateJoin").hidden = false;
+
 			if (Engine.HasXmppClient())
 			{
 				Engine.GetGUIObjectByName("enableRatingText").hidden = true;
@@ -1188,10 +1211,12 @@ function onGameAttributesChange()
 	var populationCap = Engine.GetGUIObjectByName("populationCap");
 	var startingResources = Engine.GetGUIObjectByName("startingResources");
 	var ceasefire = Engine.GetGUIObjectByName("ceasefire");
+	var observerLateJoin = Engine.GetGUIObjectByName("observerLateJoin");
 
 	var numPlayersText= Engine.GetGUIObjectByName("numPlayersText");
 	var mapSizeDesc = Engine.GetGUIObjectByName("mapSizeDesc");
 	var mapSizeText = Engine.GetGUIObjectByName("mapSizeText");
+	var observerLateJoinText = Engine.GetGUIObjectByName("observerLateJoinText");
 	var revealMapText = Engine.GetGUIObjectByName("revealMapText");
 	var exploreMapText = Engine.GetGUIObjectByName("exploreMapText");
 	var disableTreasuresText = Engine.GetGUIObjectByName("disableTreasuresText");
@@ -1222,6 +1247,10 @@ function onGameAttributesChange()
 	}
 	else
 		enableRatingText.caption = "Unknown";
+
+	observerLateJoin.checked = g_GameAttributes.settings.ObserverLateJoin;
+	observerLateJoinText.caption = observerLateJoin.checked ? translate("Yes") : translate("No");
+
 	gameSpeedText.caption = g_GameSpeeds.names[speedIdx];
 	gameSpeedBox.selected = speedIdx;
 	populationCap.selected = (mapSettings.PopulationCap !== undefined && POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
