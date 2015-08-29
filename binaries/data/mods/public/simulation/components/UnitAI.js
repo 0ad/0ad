@@ -3370,39 +3370,35 @@ UnitAI.prototype.SetupRangeQueries = function()
 // This should be called whenever our ownership changes.
 UnitAI.prototype.SetupRangeQuery = function()
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	var owner = cmpOwnership.GetOwner();
-
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
 	if (this.losRangeQuery)
 	{
-		rangeMan.DestroyActiveQuery(this.losRangeQuery);
+		cmpRangeManager.DestroyActiveQuery(this.losRangeQuery);
 		this.losRangeQuery = undefined;
 	}
 
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	// If we are being destructed (owner -1), creating a range query is pointless
+	if (!cmpPlayer)
+		return;
+
 	var players = [];
 
-	if (owner != -1)
+	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (var i = 0; i < numPlayers; ++i)
 	{
-		// If unit not just killed, get enemy players via diplomacy
-		var cmpPlayer = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
-		var numPlayers = playerMan.GetNumPlayers();
-		for (var i = 0; i < numPlayers; ++i)
-		{
-			// Exclude allies, and self
-			// TODO: How to handle neutral players - Special query to attack military only?
-			if (cmpPlayer.IsEnemy(i))
-				players.push(i);
-		}
+		// Exclude allies, and self
+		// TODO: How to handle neutral players - Special query to attack military only?
+		if (cmpPlayer.IsEnemy(i))
+			players.push(i);
 	}
 
 	var range = this.GetQueryRange(IID_Attack);
 
-	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, rangeMan.GetEntityFlagMask("normal"));
+	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
 
-	rangeMan.EnableActiveQuery(this.losRangeQuery);
+	cmpRangeManager.EnableActiveQuery(this.losRangeQuery);
 };
 
 // Set up a range query for all own or ally units within LOS range
@@ -3410,34 +3406,33 @@ UnitAI.prototype.SetupRangeQuery = function()
 // This should be called whenever our ownership changes.
 UnitAI.prototype.SetupHealRangeQuery = function()
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	var owner = cmpOwnership.GetOwner();
-
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
 	if (this.losHealRangeQuery)
-		rangeMan.DestroyActiveQuery(this.losHealRangeQuery);
-
-	var players = [owner];
-
-	if (owner != -1)
 	{
-		// If unit not just killed, get ally players via diplomacy
-		var cmpPlayer = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
-		var numPlayers = playerMan.GetNumPlayers();
-		for (var i = 1; i < numPlayers; ++i)
-		{
-			// Exclude gaia and enemies
-			if (cmpPlayer.IsAlly(i))
-				players.push(i);
-		}
+		cmpRangeManager.DestroyActiveQuery(this.losHealRangeQuery);
+		this.losHealRangeQuery = undefined;
+	}
+
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	// If we are being destructed (owner -1), creating a range query is pointless
+	if (!cmpPlayer)
+		return;
+
+	var players = [];
+
+	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (var i = 0; i < numPlayers; ++i)
+	{
+		// Exclude gaia and enemies
+		if (cmpPlayer.IsAlly(i))
+			players.push(i);
 	}
 
 	var range = this.GetQueryRange(IID_Heal);
 
-	this.losHealRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, rangeMan.GetEntityFlagMask("injured"));
-	rangeMan.EnableActiveQuery(this.losHealRangeQuery);
+	this.losHealRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, cmpRangeManager.GetEntityFlagMask("injured"));
+	cmpRangeManager.EnableActiveQuery(this.losHealRangeQuery);
 };
 
 
