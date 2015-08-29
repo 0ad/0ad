@@ -9,15 +9,14 @@ const NOTIFICATION_TIMEOUT = 10000;
 const MAX_NUM_NOTIFICATION_LINES = 3;
 var notifications = [];
 var notificationsTimers = [];
-var cheats = getCheatsData();
+var g_Cheats = getCheatsData();
 
 function getCheatsData()
 {
 	var cheats = {};
-	var cheatFileList = getJSONFileList("simulation/data/cheats/");
-	for each (var fileName in cheatFileList)
+	for (let fileName of getJSONFileList("simulation/data/cheats/"))
 	{
-		var currentCheat = Engine.ReadJSONFile("simulation/data/cheats/"+fileName+".json");
+		let currentCheat = Engine.ReadJSONFile("simulation/data/cheats/"+fileName+".json");
 		if (!currentCheat)
 			continue;
 		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
@@ -26,6 +25,38 @@ function getCheatsData()
 			cheats[currentCheat.Name] = currentCheat.Data;
 	}
 	return cheats;
+}
+
+function executeCheat(text)
+{
+	if (g_IsObserver || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
+		return false;
+
+	// Find the cheat code that is a prefix of the user input
+	var cheatCode = Object.keys(g_Cheats).find(cheatCode => text.indexOf(cheatCode) == 0);
+	if (!cheatCode)
+		return false;
+
+	var cheat = g_Cheats[cheatCode];
+
+	var parameter = text.substr(cheatCode.length);
+	if (cheat.isNumeric)
+		parameter = +parameter;
+
+	if (cheat.DefaultParameter && (isNaN(parameter) || parameter <= 0))
+		parameter = cheat.DefaultParameter;
+
+	Engine.PostNetworkCommand({ 
+		"type": "cheat",
+		"action": cheat.Action,
+		"text": cheat.Type,
+		"player": Engine.GetPlayerID(),
+		"parameter": parameter,
+		"templates": cheat.Templates,
+		"selected": g_Selection.toList()
+	});
+
+	return true;
 }
 
 var g_NotificationsTypes =
@@ -326,73 +357,26 @@ function submitChatInput()
 {
 	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = input.caption;
-	var isCheat = false;
-	if (text.length)
-	{
-		if (!g_IsObserver && g_Players[Engine.GetPlayerID()].cheatsEnabled)
-		{
-			for each (var cheat in Object.keys(cheats))
-			{
-				// Line must start with the cheat.
-				if (text.indexOf(cheat) !== 0)
-					continue;
-
-				// test for additional parameter which is the rest of the string after the cheat
-				var parameter = "";
-				if (cheats[cheat].DefaultParameter !== undefined)
-				{
-					var par = text.substr(cheat.length);
-					par = par.replace(/^\W+/, '').replace(/\W+$/, ''); // remove whitespaces at start and end
-
-					// check, if the isNumeric flag is set
-					if (cheats[cheat].isNumeric)
-					{
-						// Match the first word in the substring.
-						var match = par.match(/\S+/);
-						if (match && match[0])
-							par = Math.floor(match[0]);
-						// check, if valid number could be parsed
-						if (par <= 0 || isNaN(par))
-							par = "";
-					}
-
-					// replace default parameter, if not empty or number
-					if (par.length > 0 || parseFloat(par) === par)
-						parameter = par;
-					else
-						parameter = cheats[cheat].DefaultParameter;
-				}
-
-				Engine.PostNetworkCommand({
-					"type": "cheat",
-					"action": cheats[cheat].Action,
-					"parameter": parameter,
-					"text": cheats[cheat].Type,
-					"selected": g_Selection.toList(),
-					"templates": cheats[cheat].Templates,
-					"player": Engine.GetPlayerID()});
-				isCheat = true;
-				break;
-			}
-		}
-
-		// Observers should only send messages to "/all"
-		if (!isCheat && (!g_IsObserver || text.indexOf("/") == -1 || text.indexOf("/all ") == 0))
-		{
-			if (Engine.GetGUIObjectByName("toggleTeamChat").checked)
-				text = "/team " + text;
-
-			if (g_IsNetworked)
-				Engine.SendNetworkChat(text);
-			else
-				addChatMessage({ "type": "message", "guid": "local", "text": text });
-		}
-		input.caption = ""; // Clear chat input
-	}
-
 	input.blur(); // Remove focus
-
+	input.caption = ""; // Clear chat input
 	toggleChatWindow();
+	if (!text.length)
+		return;
+
+	if (executeCheat(text))
+		return;
+
+	// Observers should only be able to chat with everyone.
+	if (g_IsObserver && text.indexOf("/") == 0 && text.indexOf("/me ") != 0)
+		return;
+
+	if (Engine.GetGUIObjectByName("toggleTeamChat").checked)
+		text = "/team " + text;
+
+	if (g_IsNetworked)
+		Engine.SendNetworkChat(text);
+	else
+		addChatMessage({ "type": "message", "guid": "local", "text": text });
 }
 
 function addChatMessage(msg, playerAssignments)
