@@ -3927,36 +3927,36 @@ UnitAI.prototype.MustKillGatherTarget = function(ent)
  */
 UnitAI.prototype.FindNearbyResource = function(filter)
 {
-	var range = 64; // TODO: what's a sensible number?
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+		return undefined;
+	var owner = cmpOwnership.GetOwner();
 
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	// We accept resources owned by Gaia or any player
 	var players = [0];
-	for (var i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
+	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (var i = 1; i < numPlayers; ++i)
 		players.push(i);
+
+	var range = 64; // TODO: what's a sensible number?
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
-	for each (var ent in nearby)
-	{
+	return nearby.find(ent => {
 		if (!this.CanGather(ent))
-			continue;
+			return false;
 		var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 		var type = cmpResourceSupply.GetType();
 		var amount = cmpResourceSupply.GetCurrentAmount();
-		var template = cmpTemplateManager.GetCurrentTemplateName(ent);
 
+		var template = cmpTemplateManager.GetCurrentTemplateName(ent);
 		// Remove "resource|" prefix from template names, if present.
 		if (template.indexOf("resource|") != -1)
 			template = template.slice(9);
 
-		if (amount > 0 && cmpResourceSupply.IsAvailable(cmpOwnership.GetOwner(), this.entity) && filter(ent, type, template))
-			return ent;
-	}
-
-	return undefined;
+		return amount > 0 && cmpResourceSupply.IsAvailable(owner, this.entity) && filter(ent, type, template);
+	});
 };
 
 /**
@@ -3965,34 +3965,22 @@ UnitAI.prototype.FindNearbyResource = function(filter)
  */
 UnitAI.prototype.FindNearestDropsite = function(genericType)
 {
-	// Find dropsites owned by this unit's player
-	var players = [];
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership)
-		players = [cmpOwnership.GetOwner()];
+	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+		return undefined;
+
+	// Find dropsites owned by this unit's player
+	var players = [cmpOwnership.GetOwner()];
+
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
 
 	// Ships are unable to reach land dropsites and shouldn't attempt to do so.
 	var excludeLand = Engine.QueryInterface(this.entity, IID_Identity).HasClass("Ship");
-
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var nearby = rangeMan.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
 	if (excludeLand)
-	{
-		nearby = nearby.filter( function(e) {
-			return Engine.QueryInterface(e, IID_Identity).HasClass("Naval");
-		});
-	}
+		nearby = nearby.filter(e => Engine.QueryInterface(e, IID_Identity).HasClass("Naval"));
 
-	for each (var ent in nearby)
-	{
-		var cmpDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
-		if (!cmpDropsite.AcceptsType(genericType))
-			continue;
-
-		return ent;
-	}
-
-	return undefined;
+	return nearby.find(ent => Engine.QueryInterface(ent, IID_ResourceDropsite).AcceptsType(genericType));
 };
 
 /**
@@ -4001,29 +3989,22 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
  */
 UnitAI.prototype.FindNearbyFoundation = function()
 {
-	var range = 64; // TODO: what's a sensible number?
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+		return undefined;
 
 	// Find buildings owned by this unit's player
-	var players = [];
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership)
-		players = [cmpOwnership.GetOwner()];
+	var players = [cmpOwnership.GetOwner()];
 
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_Foundation);
-	for each (var ent in nearby)
-	{
-		// Skip foundations that are already complete. (This matters since
-		// we process the ConstructionFinished message before the foundation
-		// we're working on has been deleted.)
-		var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
-		if (cmpFoundation.IsFinished())
-			continue;
+	var range = 64; // TODO: what's a sensible number?
 
-		return ent;
-	}
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_Foundation);
 
-	return undefined;
+	// Skip foundations that are already complete. (This matters since
+	// we process the ConstructionFinished message before the foundation
+	// we're working on has been deleted.)
+	return nearby.find(ent => !Engine.QueryInterface(ent, IID_Foundation).IsFinished());
 };
 
 /**
@@ -4032,26 +4013,26 @@ UnitAI.prototype.FindNearbyFoundation = function()
  */
 UnitAI.prototype.FindNearbyGarrisonHolder = function()
 {
-	var range = 128; // TODO: what's a sensible number?
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
+		return undefined;
 
 	// Find buildings owned by this unit's player
-	var players = [];
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership)
-		players = [cmpOwnership.GetOwner()];
+	var players = [cmpOwnership.GetOwner()];
 
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_GarrisonHolder);
-	for each (var ent in nearby)
-	{
-		var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
+	var range = 128; // TODO: what's a sensible number?
+
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_GarrisonHolder);
+
+	return nearby.find(ent => {
 		// We only want to garrison in buildings, not in moving units like ships,...
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (!cmpUnitAI && cmpGarrisonHolder.AllowedToGarrison(this.entity) && !cmpGarrisonHolder.IsFull())
-			return ent;
-	}
+		if (Engine.QueryInterface(ent, IID_UnitAI))
+			return false;
 
-	return undefined;
+		var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
+		return cmpGarrisonHolder.AllowedToGarrison(this.entity) && !cmpGarrisonHolder.IsFull();
+	});
 };
 
 /**
