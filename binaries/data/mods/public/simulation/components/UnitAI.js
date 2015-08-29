@@ -1440,11 +1440,11 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
-				var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+				var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 				if (this.losRangeQuery)
-					rangeMan.DisableActiveQuery(this.losRangeQuery);
+					cmpRangeManager.DisableActiveQuery(this.losRangeQuery);
 				if (this.losHealRangeQuery)
-					rangeMan.DisableActiveQuery(this.losHealRangeQuery);
+					cmpRangeManager.DisableActiveQuery(this.losHealRangeQuery);
 
 				this.StopTimer();
 
@@ -2671,10 +2671,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				// Switch to the next order (if any)
 				if (this.FinishOrder())
 				{
-					if (this.CanReturnResource(msg.data.newentity, true)) 
-					{ 
-						this.SetGathererAnimationOverride(true); 
-						this.PushOrderFront("ReturnResource", { "target": msg.data.newentity, "force": false }); 
+					if (this.CanReturnResource(msg.data.newentity, true))
+					{
+						this.SetGathererAnimationOverride(true);
+						this.PushOrderFront("ReturnResource", { "target": msg.data.newentity, "force": false });
 					}
 					return;
 				}
@@ -2690,10 +2690,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				// the build command should start gathering from it
 				if ((oldData.force || oldData.autoharvest) && this.CanGather(msg.data.newentity))
 				{
-					if (this.CanReturnResource(msg.data.newentity, true)) 
-					{ 
-						this.SetGathererAnimationOverride(true); 
-						this.PushOrder("ReturnResource", { "target": msg.data.newentity, "force": false }); 
+					if (this.CanReturnResource(msg.data.newentity, true))
+					{
+						this.SetGathererAnimationOverride(true);
+						this.PushOrder("ReturnResource", { "target": msg.data.newentity, "force": false });
 					}
 					this.PerformGather(msg.data.newentity, true, false);
 					return;
@@ -2761,7 +2761,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					if(this.IsUnderAlert())
+					if (this.IsUnderAlert())
 					{
 						// check that we can garrison in the building we're supposed to garrison in
 						var cmpGarrisonHolder = Engine.QueryInterface(this.alertGarrisoningTarget, IID_GarrisonHolder);
@@ -2788,11 +2788,11 @@ UnitAI.prototype.UnitFsmSpec = {
 			"GARRISONED": {
 				"enter": function() {
 					// Target is not handled the same way with Alert and direct garrisoning
-					if(this.order.data.target)
+					if (this.order.data.target)
 						var target = this.order.data.target;
 					else
 					{
-						if(!this.alertGarrisoningTarget)
+						if (!this.alertGarrisoningTarget)
 						{
 							// We've been unable to find a target nearby, so give up
 							this.FinishOrder();
@@ -2801,14 +2801,13 @@ UnitAI.prototype.UnitFsmSpec = {
 						var target = this.alertGarrisoningTarget;
 					}
 
-					var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
-
 					// Check that we can garrison here
 					if (this.CanGarrison(target))
 					{
 						// Check that we're in range of the garrison target
 						if (this.CheckGarrisonRange(target))
 						{
+							var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
 							// Check that garrisoning succeeds
 							if (cmpGarrisonHolder.Garrison(this.entity))
 							{
@@ -3219,9 +3218,7 @@ UnitAI.prototype.IsDangerousAnimal = function()
 UnitAI.prototype.IsDomestic = function()
 {
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	if (!cmpIdentity)
-		return false;
-	return cmpIdentity.HasClass("Domestic");
+	return cmpIdentity && cmpIdentity.HasClass("Domestic");
 };
 
 UnitAI.prototype.IsHealer = function()
@@ -3315,11 +3312,11 @@ UnitAI.prototype.OnDestroy = function()
 	this.UnitFsm.SwitchToNextState(this, "");
 
 	// Clean up range queries
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.losRangeQuery)
-		rangeMan.DestroyActiveQuery(this.losRangeQuery);
+		cmpRangeManager.DestroyActiveQuery(this.losRangeQuery);
 	if (this.losHealRangeQuery)
-		rangeMan.DestroyActiveQuery(this.losHealRangeQuery);
+		cmpRangeManager.DestroyActiveQuery(this.losHealRangeQuery);
 };
 
 UnitAI.prototype.OnVisionRangeChanged = function(msg)
@@ -3331,10 +3328,7 @@ UnitAI.prototype.OnVisionRangeChanged = function(msg)
 
 UnitAI.prototype.HasPickupOrder = function(entity)
 {
-	for each (var order in this.orderQueue)
-		if (order.type == "PickupUnit" && order.data.target == entity)
-			return true;
-	return false;
+	return this.orderQueue.some(order => order.type == "PickupUnit" && order.data.target == entity);
 };
 
 UnitAI.prototype.OnPickupRequested = function(msg)
@@ -3369,8 +3363,7 @@ UnitAI.prototype.SetupRangeQueries = function()
 
 	if (this.IsHealer())
 		this.SetupHealRangeQuery();
-
-}
+};
 
 // Set up a range query for all enemy and gaia units within LOS range
 // which can be attacked.
@@ -3446,7 +3439,6 @@ UnitAI.prototype.SetupHealRangeQuery = function()
 	this.losHealRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, rangeMan.GetEntityFlagMask("injured"));
 	rangeMan.EnableActiveQuery(this.losHealRangeQuery);
 };
-
 
 
 //// FSM linkage functions ////
@@ -3673,10 +3665,7 @@ UnitAI.prototype.GetOrders = function()
 
 UnitAI.prototype.AddOrders = function(orders)
 {
-	for each (var order in orders)
-	{
-		this.PushOrder(order.type, order.data);
-	}
+	orders.forEach(order => this.PushOrder(order.type, order.data));
 };
 
 UnitAI.prototype.GetOrderData = function()
@@ -3696,9 +3685,7 @@ UnitAI.prototype.UpdateWorkOrders = function(type)
 	if (this.IsUnderAlert())
 		return;
 
-	var isWorkType = function(type){
-		return (type == "Gather" || type == "Trade" || type == "Repair" || type == "ReturnResource");
-	};
+	var isWorkType = type => type == "Gather" || type == "Trade" || type == "Repair" || type == "ReturnResource";
 
 	// If we are being re-affected to a work order, forget the previous ones
 	if (isWorkType(type))
@@ -3942,10 +3929,10 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 {
 	var range = 64; // TODO: what's a sensible number?
 
-	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	// We accept resources owned by Gaia or any player
 	var players = [0];
-	for (var i = 1; i < playerMan.GetNumPlayers(); ++i)
+	for (var i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
 		players.push(i);
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
@@ -4227,7 +4214,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);
 
-	if(type!= "Ranged")
+	if (type!= "Ranged")
 		return this.MoveToTargetRange(target, IID_Attack, type);
 
 	if (!this.CheckTargetVisible(target))
@@ -4242,7 +4229,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	var s = thisCmpPosition.GetPosition();
 
 	var targetCmpPosition = Engine.QueryInterface(target, IID_Position);
-	if(!targetCmpPosition.IsInWorld())
+	if (!targetCmpPosition.IsInWorld())
 		return false;
 
 	var t = targetCmpPosition.GetPosition();
@@ -4250,7 +4237,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	var h = s.y-t.y+range.elevationBonus;
 
 	// No negative roots please
-	if(h>-range.max/2)
+	if (h>-range.max/2)
 		var parabolicMaxRange = Math.sqrt(range.max*range.max+2*range.max*h);
 	else
 		// return false? Or hope you come close enough?
@@ -4461,7 +4448,7 @@ UnitAI.prototype.CheckTargetIsInVisionRange = function(target)
 		return false;
 	var range = cmpVision.GetRange();
 
-	var distance = DistanceBetweenEntities(this.entity,target);
+	var distance = DistanceBetweenEntities(this.entity, target);
 
 	return distance < range;
 };
@@ -4497,15 +4484,12 @@ UnitAI.prototype.GetAttackBonus = function(type, target)
  */
 UnitAI.prototype.AttackVisibleEntity = function(ents, forceResponse)
 {
-	for each (var target in ents)
-	{
-		if (this.CanAttack(target, forceResponse))
-		{
-			this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse, "allowCapture": true });
-			return true;
-		}
-	}
-	return false;
+	var target = ents.find(target => this.CanAttack(target, forceResponse));
+	if (!target)
+		return false;
+
+	this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse, "allowCapture": true });
+	return true;
 };
 
 /**
@@ -4515,17 +4499,16 @@ UnitAI.prototype.AttackVisibleEntity = function(ents, forceResponse)
  */
 UnitAI.prototype.AttackEntityInZone = function(ents, forceResponse)
 {
-	for each (var target in ents)
-	{
-		var type = this.GetBestAttackAgainst(target, true);
-		if (this.CanAttack(target, forceResponse) && this.CheckTargetDistanceFromHeldPosition(target, IID_Attack, type)
-		    && (this.GetStance().respondChaseBeyondVision || this.CheckTargetIsInVisionRange(target)))
-		{
-			this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse, "allowCapture": true });
-			return true;
-		}
-	}
-	return false;
+	var target = ents.find(target =>
+		this.CanAttack(target, forceResponse)
+		&& this.CheckTargetDistanceFromHeldPosition(target, IID_Attack, this.GetBestAttackAgainst(target, true))
+		&& (this.GetStance().respondChaseBeyondVision || this.CheckTargetIsInVisionRange(target))
+	);
+	if (!target)
+		return false;
+
+	this.PushOrderFront("Attack", { "target": target, "force": false, "forceResponse": forceResponse, "allowCapture": true });
+	return true;
 };
 
 /**
@@ -4562,19 +4545,12 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
  */
 UnitAI.prototype.RespondToHealableEntities = function(ents)
 {
-	if (!ents.length)
+	var ent = ents.find(ent => this.CanHeal(ent));
+	if (!ent)
 		return false;
 
-	for each (var ent in ents)
-	{
-		if (this.CanHeal(ent))
-		{
-			this.PushOrderFront("Heal", { "target": ent, "force": false });
-			return true;
-		}
-	}
-
-	return false;
+	this.PushOrderFront("Heal", { "target": ent, "force": false });
+	return true;
 };
 
 /**
@@ -4769,7 +4745,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 	// Keep track of the position at the start of each order
 	var pos = cmpPosition.GetPosition2D();
 	var targetPositions = this.GetTargetPositions();
-	for (var i = 0; i < targetPositions.length; i++)
+	for (var i = 0; i < targetPositions.length; ++i)
 	{
 		distance += pos.distanceTo(targetPositions[i]);
 
@@ -5105,38 +5081,38 @@ UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued)
 	}
 
 	var marketsChanged = this.SetTargetMarket(target, source);
-	if (marketsChanged)
+	if (!marketsChanged)
+		return;
+
+	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+	if (cmpTrader.HasBothMarkets())
 	{
-		var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-		if (cmpTrader.HasBothMarkets())
+		var data = { "firstMarket": cmpTrader.GetFirstMarket(), "secondMarket": cmpTrader.GetSecondMarket(), "route": route, "force": false };
+
+		if (this.expectedRoute)
 		{
-			var data = { "firstMarket": cmpTrader.GetFirstMarket(), "secondMarket": cmpTrader.GetSecondMarket(), "route": route, "force": false };
+			if (!route && this.expectedRoute.length)
+				data.route = this.expectedRoute.slice();
+			this.expectedRoute = undefined;
+		}
 
-			if (this.expectedRoute)
-			{
-				if (!route && this.expectedRoute.length)
-					data.route = this.expectedRoute.slice();
-				this.expectedRoute = undefined;
-			}
-
-			if (this.IsFormationController())
-			{
-				this.CallMemberFunction("AddOrder", ["Trade", data, queued]);
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				if (cmpFormation)
-					cmpFormation.Disband();
-			}
-			else
-				this.AddOrder("Trade", data, queued);
+		if (this.IsFormationController())
+		{
+			this.CallMemberFunction("AddOrder", ["Trade", data, queued]);
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			if (cmpFormation)
+				cmpFormation.Disband();
 		}
 		else
-		{
-			if (this.IsFormationController())
-				this.CallMemberFunction("WalkToTarget", [cmpTrader.GetFirstMarket(), queued]);
-			else
-				this.WalkToTarget(cmpTrader.GetFirstMarket(), queued);
-			this.expectedRoute = [];
-		}
+			this.AddOrder("Trade", data, queued);
+	}
+	else
+	{
+		if (this.IsFormationController())
+			this.CallMemberFunction("WalkToTarget", [cmpTrader.GetFirstMarket(), queued]);
+		else
+			this.WalkToTarget(cmpTrader.GetFirstMarket(), queued);
+		this.expectedRoute = [];
 	}
 };
 
@@ -5338,11 +5314,8 @@ UnitAI.prototype.FindNewTargets = function()
 	if (!this.GetStance().targetVisibleEnemies)
 		return false;
 
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	if (this.AttackEntitiesByPreference( rangeMan.ResetActiveQuery(this.losRangeQuery) ))
-		return true;
-
-	return false;
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	return this.AttackEntitiesByPreference(cmpRangeManager.ResetActiveQuery(this.losRangeQuery));
 };
 
 UnitAI.prototype.FindWalkAndFightTargets = function()
@@ -5426,8 +5399,8 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var entities = rangeMan.ResetActiveQuery(this.losRangeQuery);
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var entities = cmpRangeManager.ResetActiveQuery(this.losRangeQuery);
 	var targets = entities.filter(function (v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
 		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 
@@ -5443,19 +5416,8 @@ UnitAI.prototype.FindNewHealTargets = function()
 	if (!this.losHealRangeQuery)
 		return false;
 
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var ents = rangeMan.ResetActiveQuery(this.losHealRangeQuery);
-
-	for each (var ent in ents)
-	{
-		if (this.CanHeal(ent))
-		{
-			this.PushOrderFront("Heal", { "target": ent, "force": false });
-			return true;
-		}
-	}
-	// We haven't found any target to heal
-	return false;
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	return this.RespondToHealableEntities(cmpRangeManager.ResetActiveQuery(this.losHealRangeQuery));
 };
 
 UnitAI.prototype.GetQueryRange = function(iid)
@@ -5858,12 +5820,11 @@ UnitAI.prototype.CallMemberFunction = function(funcname, args)
 	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 	if (!cmpFormation)
 		return;
-	var members = cmpFormation.GetMembers();
-	for each (var ent in members)
-	{
+
+	cmpFormation.GetMembers().forEach(ent => {
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI[funcname].apply(cmpUnitAI, args);
-	}
+	});
 };
 
 /**
@@ -5875,14 +5836,11 @@ UnitAI.prototype.TestAllMemberFunction = function(funcname, args)
 	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 	if (!cmpFormation)
 		return false;
-	var members = cmpFormation.GetMembers();
-	for each (var ent in members)
-	{
+
+	return cmpFormation.GetMembers().every(ent => {
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (!cmpUnitAI[funcname].apply(cmpUnitAI, args))
-			return false;
-	}
-	return true;
+		return cmpUnitAI[funcname].apply(cmpUnitAI, args);
+	});
 };
 
 UnitAI.prototype.UnitFsm = new FSM(UnitAI.prototype.UnitFsmSpec);
