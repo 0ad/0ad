@@ -65,11 +65,10 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 		players = [cmpOwnership.GetOwner()];
 
 	// Select production buildings to put "under alert", including the raiser itself if possible
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var level = this.GetLevel();
-	var buildings = rangeMan.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_ProductionQueue);
-	var ownCmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
-	if (ownCmpProductionQueue)
+	var buildings = cmpRangeManager.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_ProductionQueue);
+	if (Engine.QueryInterface(this.entity, IID_ProductionQueue))
 		buildings.push(this.entity);
 
 	for each (var building in buildings)
@@ -80,12 +79,11 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 	}
 
 	// Select units to put under alert, according to their reaction to this level
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var level = this.GetLevel();
-	var units = rangeMan.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_UnitAI).filter( function(e){
-		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		return (!cmpUnitAI.IsUnderAlert() && cmpUnitAI.ReactsToAlert(level));
-		});
+	var units = cmpRangeManager.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_UnitAI).filter(ent => {
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		return !cmpUnitAI.IsUnderAlert() && cmpUnitAI.ReactsToAlert(level);
+	});
 
 	for each (var unit in units)
 	{

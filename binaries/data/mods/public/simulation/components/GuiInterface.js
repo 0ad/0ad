@@ -54,11 +54,11 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		"players": []
 	};
 
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var n = cmpPlayerMan.GetNumPlayers();
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var n = cmpPlayerManager.GetNumPlayers();
 	for (var i = 0; i < n; ++i)
 	{
-		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
+		var playerEnt = cmpPlayerManager.GetPlayerByID(i);
 		var cmpPlayerEntityLimits = Engine.QueryInterface(playerEnt, IID_EntityLimits);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 
@@ -148,11 +148,11 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	ret.barterPrices = cmpBarter.GetPrices();
 
 	// Add basic statistics to each player
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var n = cmpPlayerMan.GetNumPlayers();
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var n = cmpPlayerManager.GetNumPlayers();
 	for (var i = 0; i < n; ++i)
 	{
-		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
+		var playerEnt = cmpPlayerManager.GetPlayerByID(i);
 		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
 		if (cmpPlayerStatisticsTracker)
 			ret.players[i].statistics = cmpPlayerStatisticsTracker.GetBasicStatistics();
@@ -173,11 +173,11 @@ GuiInterface.prototype.GetExtendedSimulationState = function(player)
 	var ret = this.GetSimulationState();
 
 	// Add statistics to each player
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var n = cmpPlayerMan.GetNumPlayers();
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var n = cmpPlayerManager.GetNumPlayers();
 	for (var i = 0; i < n; ++i)
 	{
-		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
+		var playerEnt = cmpPlayerManager.GetPlayerByID(i);
 		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
 		if (cmpPlayerStatisticsTracker)
 			ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
@@ -610,8 +610,8 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 
 GuiInterface.prototype.GetTechnologyData = function(player, name)
 {
-	var cmpTechTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
-	var template = cmpTechTempMan.GetTemplate(name);
+	var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
+	var template = cmpTechnologyTemplateManager.GetTemplate(name);
 
 	if (!template)
 	{
@@ -750,9 +750,7 @@ GuiInterface.prototype.GetNotifications = function()
 
 GuiInterface.prototype.GetAvailableFormations = function(player, wantedPlayer)
 {
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(wantedPlayer), IID_Player);
-	return cmpPlayer.GetFormations();
+	return QueryPlayerIDInterface(wantedPlayer).GetFormations();
 };
 
 GuiInterface.prototype.GetFormationRequirements = function(player, data)
@@ -826,7 +824,7 @@ GuiInterface.prototype.GetAllBuildableEntities = function(player, cmd)
 
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var playerColors = {}; // cache of owner -> color map
 	
 	for each (var ent in cmd.entities)
@@ -845,7 +843,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		if (!color)
 		{
 			color = {"r":1, "g":1, "b":1};
-			var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(owner), IID_Player);
+			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
 			if (cmpPlayer)
 				color = cmpPlayer.GetColor();
 			playerColors[owner] = color;
@@ -912,8 +910,7 @@ GuiInterface.prototype.GetPlayerEntities = function(player)
  */
 GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 {
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
+	var cmpPlayer = QueryPlayerIDInterface(player);
 
 	// If there are some rally points already displayed, first hide them
 	for each (var ent in this.entsRallyPointsDisplayed)
@@ -1593,9 +1590,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
  */
 GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 {
-	var cmpTemplateMgr = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var template = cmpTemplateMgr.GetTemplate(data.template);
-
+	var template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate(data.Template);
 	if (!template)
 	{
 		warn("[GetFoundationSnapData] Failed to load template '" + data.template + "'");

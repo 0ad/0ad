@@ -254,8 +254,8 @@ Health.prototype.CreateCorpse = function(leaveResources)
 
 	// Either creates a static local version of the current entity, or a
 	// persistent corpse retaining the ResourceSupply element of the parent.
-	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var templateName = cmpTempMan.GetCurrentTemplateName(this.entity);
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
 	var corpse;
 	if (leaveResources)
 		corpse = Engine.AddEntity("resource|" + templateName);
