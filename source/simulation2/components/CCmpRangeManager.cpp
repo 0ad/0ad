@@ -1218,6 +1218,9 @@ public:
 		for (size_t i = 0; i < owners.size(); ++i)
 			q.ownersMask |= CalcOwnerMask(owners[i]);
 
+		if (q.ownersMask == 0)
+			LOGWARNING("CCmpRangeManager: No owners in query for entity %u", source);
+
 		q.interface = requiredInterface;
 		q.flagsMask = flagsMask;
 
