@@ -284,14 +284,14 @@ GarrisonHolder.prototype.PerformGarrison = function(entity)
 
 	var cmpAura = Engine.QueryInterface(entity, IID_Auras);
 	if (cmpAura && cmpAura.HasGarrisonAura())
-		cmpAura.ApplyGarrisonBonus(this.entity);	
+		cmpAura.ApplyGarrisonBonus(this.entity);
 
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [entity], "removed": [] });
-	
+
 	var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 	if (cmpUnitAI && cmpUnitAI.IsUnderAlert())
 		Engine.PostMessage(cmpUnitAI.GetAlertRaiser(), MT_UnitGarrisonedAfterAlert, {"holder": this.entity, "unit": entity});
-	
+
 	return true;
 };
 
@@ -306,7 +306,7 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	// Error: invalid entity ID, usually it's already been ejected
 	if (entityIndex == -1)
 		return false; // Fail
-	
+
 	// Find spawning location
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
@@ -331,10 +331,10 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 			return false;
 		}
 	}
-	
+
 	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	this.entities.splice(entityIndex, 1);
-	
+
 	for (var vgp of this.visibleGarrisonPoints)
 	{
 		if (vgp.entity != entity)
@@ -357,15 +357,15 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 
 	var cmpAura = Engine.QueryInterface(entity, IID_Auras);
 	if (cmpAura && cmpAura.HasGarrisonAura())
-		cmpAura.RemoveGarrisonBonus(this.entity);	
+		cmpAura.RemoveGarrisonBonus(this.entity);
 
-	
+
 	cmpNewPosition.JumpTo(pos.x, pos.z);
 	cmpNewPosition.SetHeightOffset(0);
 	// TODO: what direction should they face in?
-	
+
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [], "removed": [entity] });
-	
+
 	return true;
 };
 
@@ -432,7 +432,7 @@ GarrisonHolder.prototype.PerformEject = function(entities, forced)
 			else
 			{
 				var cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
-				failedRadius = cmpObstruction ? cmpObstruction.GetUnitRadius() : 0;			
+				failedRadius = cmpObstruction ? cmpObstruction.GetUnitRadius() : 0;
 			}
 		}
 	}
@@ -506,7 +506,7 @@ GarrisonHolder.prototype.UnloadAllByOwner = function(owner, forced)
 		if (cmpOwnership && cmpOwnership.GetOwner() == owner)
 			entities.push(entity);
 	}
-	
+
 	return this.PerformEject(entities, forced);
 };
 
@@ -530,7 +530,7 @@ GarrisonHolder.prototype.UnloadAllOwn = function(forced)
 		if (cmpOwnership && cmpOwnership.GetOwner() == owner)
 			entities.push(entity);
 	}
-	
+
 	return this.PerformEject(entities, forced);
 };
 
