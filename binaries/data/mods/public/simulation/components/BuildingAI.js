@@ -4,7 +4,7 @@ const attackType = "Ranged";
 
 function BuildingAI() {}
 
-BuildingAI.prototype.Schema = 
+BuildingAI.prototype.Schema =
 	"<element name='DefaultArrowCount'>" +
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
@@ -86,32 +86,32 @@ BuildingAI.prototype.OnValueModification = function(msg)
  */
 BuildingAI.prototype.SetupRangeQuery = function()
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return;
 
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.enemyUnitsQuery)
 	{
 		cmpRangeManager.DestroyActiveQuery(this.enemyUnitsQuery);
 		this.enemyUnitsQuery = undefined;
 	}
 
-	var players = [];
-
 	var cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
 		return;
 
-	var numPlayers = cmpPlayerManager.GetNumPlayers();
-
+	var players = [];
+	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (var i = 1; i < numPlayers; ++i)
 	{	// Exclude gaia, allies, and self
 		// TODO: How to handle neutral players - Special query to attack military only?
 		if (cmpPlayer.IsEnemy(i))
 			players.push(i);
 	}
+
+	if (!players.length)
+		return;
 
 	var range = cmpAttack.GetRange(attackType);
 	this.enemyUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(this.entity, range.min, range.max, range.elevationBonus, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
@@ -122,11 +122,11 @@ BuildingAI.prototype.SetupRangeQuery = function()
 // This should be called whenever our ownership changes.
 BuildingAI.prototype.SetupGaiaRangeQuery = function()
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return;
 
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.gaiaUnitsQuery)
 	{
 		cmpRangeManager.DestroyActiveQuery(this.gaiaUnitsQuery);
@@ -183,7 +183,7 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 	if (msg.removed.length > 0)
 	{
 		for each (var entity in msg.removed)
-		{	
+		{
 			var index = this.targetUnits.indexOf(entity);
 			if (index > -1)
 				this.targetUnits.splice(index, 1);
@@ -230,7 +230,7 @@ BuildingAI.prototype.GetGarrisonArrowClasses = function()
 
 /**
  * Returns the number of arrows which needs to be fired.
- * DefaultArrowCount + Garrisoned Archers(ie., any unit capable 
+ * DefaultArrowCount + Garrisoned Archers(ie., any unit capable
  * of shooting arrows from inside buildings)
  */
 BuildingAI.prototype.GetArrowCount = function()
@@ -278,13 +278,13 @@ BuildingAI.prototype.FireArrows = function()
 		//Reached end of rounds. Reset count
 		this.currentRound = 0;
 	}
-	
+
 	if (this.currentRound == 0)
 	{
 		//First round. Calculate arrows to fire
 		this.arrowsLeft = this.GetArrowCount();
 	}
-	
+
 	if (this.currentRound == (roundCount - 1))
 	{
 		//Last round. Need to fire all left-over arrows
@@ -293,9 +293,9 @@ BuildingAI.prototype.FireArrows = function()
 	else
 	{
 		//Fire N arrows, 0 <= N <= Number of arrows left
-		arrowsToFire = Math.min( 
-		    Math.round(2*Math.random() * this.GetArrowCount()/roundCount),  
-		    this.arrowsLeft 
+		arrowsToFire = Math.min(
+		    Math.round(2*Math.random() * this.GetArrowCount()/roundCount),
+		    this.arrowsLeft
 		);
 	}
 	if (arrowsToFire <= 0)
@@ -336,7 +336,7 @@ BuildingAI.prototype.FireArrows = function()
 			cmpAttack.PerformAttack(attackType, selectedTarget);
 			PlaySound("attack", this.entity);
 		}
-		else 
+		else
 		{
 			targets.removeAt(selectedIndex);
 			i--; // one extra arrow left to fire
