@@ -262,7 +262,7 @@
 				>
 					<translatableAttribute id="caption">More Options</translatableAttribute>
 					<translatableAttribute id="tooltip">See more game options</translatableAttribute>
-					<action on="Press">toggleMoreOptions();</action>
+					<action on="Press">showMoreOptions(true);</action>
 				</object>
 
 			<!-- End Options -->
@@ -406,7 +406,7 @@
 				>
 					<translatableAttribute id="caption">OK</translatableAttribute>
 					<translatableAttribute id="tooltip">Close more game options window</translatableAttribute>
-					<action on="Press">toggleMoreOptions();</action>
+					<action on="Press">showMoreOptions(false);</action>
 				</object>
 			<!-- End More Options -->
 			</object>
