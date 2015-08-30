@@ -643,7 +643,7 @@ bool CNetClient::OnInGame(void *context, CFsmEvent* event)
 		else if (message->GetType() == NMT_SYNC_ERROR)
 		{
 			CSyncErrorMessage* syncMessage = static_cast<CSyncErrorMessage*> (message);
-			client->m_ClientTurnManager->OnSyncError(syncMessage->m_Turn, syncMessage->m_HashExpected);
+			client->m_ClientTurnManager->OnSyncError(syncMessage->m_Turn, syncMessage->m_HashExpected, syncMessage->m_PlayerNames);
 		}
 		else if (message->GetType() == NMT_END_COMMAND_BATCH)
 		{

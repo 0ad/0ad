@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "NetTurnManager.h"
+#include "NetMessage.h"
 
 #include "network/NetServer.h"
 #include "network/NetClient.h"
@@ -218,7 +219,7 @@ bool CNetTurnManager::UpdateFastForward()
 	return true;
 }
 
-void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
+void CNetTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, std::vector<CSyncErrorMessage::S_m_PlayerNames>& playerNames)
 {
 	NETTURN_LOG((L"OnSyncError(%d, %hs)\n", turn, Hexify(expectedHash).c_str()));
 
@@ -238,31 +239,27 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	hash = Hexify(hash);
 	const std::string& expectedHashHex = Hexify(expectedHash);
 
-	DisplayOOSError(turn, hash, expectedHashHex, false, &path);
+	DisplayOOSError(turn, hash, expectedHashHex, false, &playerNames, &path);
 }
 
-void CNetTurnManager::DisplayOOSError(u32 turn, const std::string& hash, const std::string& expectedHash, bool isReplay, OsPath* path = NULL)
+void CNetTurnManager::DisplayOOSError(u32 turn, const CStr& hash, const CStr& expectedHash, bool isReplay, std::vector<CSyncErrorMessage::S_m_PlayerNames>* playerNames = NULL, OsPath* path = NULL)
 {
 	m_HasSyncError = true;
 
 	std::stringstream msg;
-	msg << "Out of sync on turn " << turn << ": expected hash " << expectedHash << "\n";
+	msg << "Out of sync on turn " << turn;
 
-	if (expectedHash != hash || m_CurrentTurn != turn)
-		msg << "\nCurrent state: turn " << m_CurrentTurn << ", hash " << hash << "\n\n";
+	if (playerNames)
+		for (size_t i = 0; i < playerNames->size(); ++i)
+			msg << (i == 0 ? "\nPlayers: " : ", ") << utf8_from_wstring((*playerNames)[i].m_Name);
 
 	if (isReplay)
-		msg << "\nThe current game state is different from the original game state.\n\n";
+		msg << "\n\n" << "The current game state is different from the original game state.";
 	else
-	{
-		if (expectedHash == hash)
-			msg << "Your game state is identical to the hosts game state.\n\n";
-		else
-			msg << "Your game state is different from the hosts game state.\n\n";
-	}
+		msg << "\n\n" << "Your game state is " << (expectedHash == hash ? "identical to" : "different from") << " the hosts game state.";
 
 	if (path)
-		msg << "Dumping current state to " << utf8_from_wstring(OsPath(*path).string());
+		msg << "\n\n" << "Dumping current state to " << OsString(OsPath(*path));
 
 	LOGERROR("%s", msg.str());
 
@@ -429,6 +426,10 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 
 	m_Replay.Hash(hash, quick);
 
+	// Don't send the hash if OOS
+	if (m_HasSyncError)
+		return;
+
 	// Send message to the server
 	CSyncCheckMessage msg;
 	msg.m_Turn = turn;
@@ -520,7 +521,7 @@ void CNetReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 	debug_printf("Executing turn %d of %d\n", turn, m_FinalReplayTurn);
 	DoTurn(turn);
 
-	// Compare hash if it exists in the replay and if we didn't have an oos already
+	// Compare hash if it exists in the replay and if we didn't have an OOS already
 	if (m_HasSyncError || m_ReplayHash.find(turn) == m_ReplayHash.end())
 		return;
 
@@ -554,7 +555,7 @@ void CNetReplayTurnManager::DoTurn(u32 turn)
 }
 
 CNetServerTurnManager::CNetServerTurnManager(CNetServerWorker& server) :
-	m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH_MP)
+	m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH_MP), m_HasSyncError(false)
 {
 	// The first turn we will actually execute is number 2,
 	// so store dummy values into the saved lengths list
@@ -603,12 +604,17 @@ void CNetServerTurnManager::CheckClientsReady()
 	m_SavedTurnLengths.push_back(m_TurnLength);
 }
 
-void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, const std::string& hash)
+void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, const CStrW& playername, u32 turn, const CStr& hash)
 {
 	// Clients must advance one turn at a time
 	ENSURE(turn == m_ClientsSimulated[client] + 1);
 	m_ClientsSimulated[client] = turn;
 
+	// Check for OOS only if in sync
+	if (m_HasSyncError)
+		return;
+
+	m_ClientPlayernames[client] = playername;
 	m_ClientStateHashes[turn][client] = hash;
 
 	// Find the newest turn which we know all clients have simulated
@@ -628,21 +634,33 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, con
 		// Assume the host is correct (maybe we should choose the most common instead to help debugging)
 		std::string expected = it->second.begin()->second;
 
+		// Find all players that are OOS on that turn
+		std::vector<CStrW> OOSPlayerNames;
 		for (std::map<int, std::string>::iterator cit = it->second.begin(); cit != it->second.end(); ++cit)
 		{
 			NETTURN_LOG((L"sync check %d: %d = %hs\n", it->first, cit->first, Hexify(cit->second).c_str()));
 			if (cit->second != expected)
 			{
 				// Oh no, out of sync
-
-				// Tell everyone about it
-				CSyncErrorMessage msg;
-				msg.m_Turn = it->first;
-				msg.m_HashExpected = expected;
-				m_NetServer.Broadcast(&msg);
-
-				break;
+				m_HasSyncError = true;
+				OOSPlayerNames.push_back(m_ClientPlayernames[cit->first]);
 			}
+		}
+
+		// Tell everyone about it
+		if (m_HasSyncError)
+		{
+			CSyncErrorMessage msg;
+			msg.m_Turn = it->first;
+			msg.m_HashExpected = expected;
+			for (const CStrW& playername : OOSPlayerNames)
+			{
+				CSyncErrorMessage::S_m_PlayerNames h;
+				h.m_Name = playername;
+				msg.m_PlayerNames.push_back(h);
+			}
+			m_NetServer.Broadcast(&msg);
+			break;
 		}
 	}
 

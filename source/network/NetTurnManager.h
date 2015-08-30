@@ -20,6 +20,7 @@
 
 #include "simulation2/helpers/SimulationCommand.h"
 #include "lib/os_path.h"
+#include "NetMessage.h"
 
 #include <list>
 #include <map>
@@ -107,12 +108,12 @@ public:
 	/**
 	 * Called when there has been an out-of-sync error.
 	 */
-	virtual void OnSyncError(u32 turn, const std::string& expectedHash);
+	virtual void OnSyncError(u32 turn, const CStr& expectedHash, std::vector<CSyncErrorMessage::S_m_PlayerNames>& playerNames);
 
 	/**
 	 * Shows a message box when an out of sync error has been detected in the session or visual replay.
 	 */
-	virtual void DisplayOOSError(u32 turn, const std::string& hash, const std::string& expectedHash, bool isReplay, OsPath* path);
+	virtual void DisplayOOSError(u32 turn, const CStr& hash, const CStr& expectedHash, bool isReplay, std::vector<CSyncErrorMessage::S_m_PlayerNames>* playerNames, OsPath* path);
 
 	/**
 	 * Called by simulation code, to add a new command to be distributed to all clients and executed soon.
@@ -293,7 +294,7 @@ public:
 
 	void NotifyFinishedClientCommands(int client, u32 turn);
 
-	void NotifyFinishedClientUpdate(int client, u32 turn, const std::string& hash);
+	void NotifyFinishedClientUpdate(int client, const CStrW& playername, u32 turn, const CStr& hash);
 
 	/**
 	 * Inform the turn manager of a new client who will be sending commands.
@@ -336,6 +337,9 @@ protected:
 	// Map of turn -> {Client ID -> state hash}; old indexes <= min(m_ClientsSimulated) are deleted
 	std::map<u32, std::map<int, std::string> > m_ClientStateHashes;
 
+	// Map of client ID -> playername
+	std::map<u32, CStrW> m_ClientPlayernames;
+
 	// Current turn length
 	u32 m_TurnLength;
 
@@ -343,6 +347,8 @@ protected:
 	std::vector<u32> m_SavedTurnLengths;
 
 	CNetServerWorker& m_NetServer;
+
+	bool m_HasSyncError;
 };
 
 #endif // INCLUDED_NETTURNMANAGER
