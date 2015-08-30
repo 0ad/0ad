@@ -46,7 +46,6 @@ function init(attribs)
 	Engine.LobbySetPlayerPresence("available");
 	Engine.SendGetGameList();
 	Engine.SendGetBoardList();
-	Engine.SendGetRatingList();
 	updatePlayerList();
 	updateSubject(Engine.LobbyGetRoomSubject());
 
@@ -703,7 +702,6 @@ function onTick()
 				presenceList.push(status);
 				nickList.push(nick);
 				ratingList.push(String(rating));
-				Engine.SendGetRatingList();
 				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { nick: nick }), "key": g_specialKey });
 				break;
 			case "leave":
@@ -728,7 +726,6 @@ function onTick()
 				// presence stays the same
 				nickList[nickIndex] = message.data;
 				addChatMessage({ "text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), { oldnick: nick, newnick: message.data }), "key": g_specialKey });
-				Engine.SendGetRatingList();
 				break;
 			case "presence":
 				if (nickIndex == -1) // Changed presence, but not online (shouldn't ever happen)

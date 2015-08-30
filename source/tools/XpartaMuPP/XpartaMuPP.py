@@ -264,7 +264,7 @@ class LeaderboardList():
     """
     ratinglist = {}
     for JID in nicks.keys():
-      players = db.query(Player).filter(Player.jid.ilike(str(JID)))
+      players = db.query(Player.jid, Player.rating).filter(Player.jid.ilike(str(JID)))
       if players.first():
         if players.first().rating == -1:
           ratinglist[nicks[JID]] = {'name': nicks[JID], 'rating': ''}
@@ -490,6 +490,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     self.room = room
     self.nick = nick
 
+    self.ratingListUpdate = False
     # Game collection
     self.gameList = GameList()
 
@@ -545,6 +546,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     """
     Process presence stanza from a chat room.
     """
+    self.ratingListUpdate = True
     if presence['muc']['nick'] != self.nick:
       # If it doesn't already exist, store player JID mapped to their nick.
       if str(presence['muc']['jid']) not in self.nicks:
@@ -616,13 +618,6 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
           except:
             traceback.print_exc()
             logging.error("Failed to process leaderboardlist request from %s" % iq['from'].bare)
-        elif command == 'getratinglist':
-          try:
-            self.leaderboard.getOrCreatePlayer(iq['from'])
-            self.sendRatingList(iq['from'])
-          except:
-            traceback.print_exc()
-            logging.error("Failed to process ratinglist request from %s" % iq['from'].bare)
         else:
           logging.error("Failed to process boardlist request from %s" % iq['from'].bare)
       elif 'profile' in iq.plugins:
@@ -690,6 +685,9 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
           logging.error("Failed to update game statistics for %s" % iq['from'].bare)
     else:
        logging.error("Failed to process stanza type '%s' received from %s" % iq['type'], iq['from'].bare)
+    if self.ratingListUpdate == True:
+      self.sendRatingList()
+      self.ratingListUpdate = False
 
   def sendGameList(self, to = ""):
     """
@@ -778,7 +776,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         iq.send(block=False, now=True)
       except:
         logging.error("Failed to send leaderboard list")
-        
+
   def sendRatingList(self, to = ""):
     """
       Send the rating list.
