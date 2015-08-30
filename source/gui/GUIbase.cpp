@@ -15,18 +15,11 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI base
-*/
-
 #include "precompiled.h"
 
-#include "ps/CLogger.h"
 #include "GUI.h"
 
-//--------------------------------------------------------
-//  Help Classes/Structs for the GUI implementation
-//--------------------------------------------------------
+#include "ps/CLogger.h"
 
 CClientArea::CClientArea() : pixel(0.f,0.f,0.f,0.f), percent(0.f,0.f,0.f,0.f)
 {
@@ -42,7 +35,7 @@ CClientArea::CClientArea(const CRect& pixel, const CRect& percent)
 {
 }
 
-CRect CClientArea::GetClientArea(const CRect &parent) const
+CRect CClientArea::GetClientArea(const CRect& parent) const
 {
 	// If it's a 0 0 100% 100% we need no calculations
 	if (percent == CRect(0.f,0.f,100.f,100.f) && pixel == CRect(0.f,0.f,0.f,0.f))
@@ -78,7 +71,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	unsigned int coord = 0;
 	float pixels[4] = {0, 0, 0, 0};
 	float percents[4] = {0, 0, 0, 0};
-	for (unsigned int i = 0; i < Value.length(); i++)
+	for (unsigned int i = 0; i < Value.length(); ++i)
 	{
 		switch (input[i])
 		{
@@ -110,7 +103,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 		case ' ':
 			pixels[coord] += buffer.ToFloat();
 			buffer = "";
-			coord++;
+			++coord;
 			break;
 		default:
 			LOGWARNING("ClientArea definitions may only contain numerics. Your input: '%s'", Value.c_str());
@@ -143,9 +136,3 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	percent.bottom =	percents[3];
 	return true;
 }
-
-
-
-//--------------------------------------------------------
-//  Error definitions
-//--------------------------------------------------------

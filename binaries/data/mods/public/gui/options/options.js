@@ -228,6 +228,9 @@ function mergeFunctions(function1, function2)
  **/
 function closePage()
 {
+	// Revert all changes if they were not saved on the disk
+	Engine.ConfigDB_Reload("user");
+
 	if (g_hasCallback)
 		Engine.PopGuiPageCB();
 	else

@@ -136,6 +136,11 @@ function calculateTreasureCollected(playerState, position)
 	return playerState.statistics.treasuresCollected;
 }
 
+function calculateLootCollected(playerState, position)
+{
+	return playerState.statistics.lootCollected;
+}
+
 function calculateTributeSent(playerState, position)
 {
 	return INCOME_COLOR + playerState.statistics.tributesSent + "[/color] / " + OUTCOME_COLOR + playerState.statistics.tributesReceived + "[/color]";
@@ -162,7 +167,7 @@ function calculateResourcesTeam(counters)
 				// clean [Color=""], [/Color] and white space for make the sum more easy
 				caption = caption.replace(/\[([\w\' \\\"\/\=]*)\]|\s/g, "");
 
-				if (w == 5)
+				if (w >= 6)
 					total.i += (+caption);
 				else
 				{
@@ -173,7 +178,7 @@ function calculateResourcesTeam(counters)
 				}
 			}
 
-			if (w == 5)
+			if (w >= 6)
 				teamTotal = total.i;
 			else
 				teamTotal = INCOME_COLOR + total.i + "[/color] / " + OUTCOME_COLOR + total.o + "[/color]";
@@ -265,7 +270,7 @@ function calculateVegetarianRatio(playerState, position)
 		return 0 + "%";
 }
 
-function calculateFeminisation(playerState, position)
+function calculateFeminization(playerState, position)
 {
 	if (!teamMiscHelperData[playerState.team])
 		teamMiscHelperData[playerState.team] = [];
@@ -309,6 +314,24 @@ function calculateMapExploration(playerState, position)
 	return playerState.statistics.percentMapExplored + "%";
 }
 
+function calculateMapFinalControl(playerState, position)
+{
+	if (!teamMiscHelperData[playerState.team])
+		teamMiscHelperData[playerState.team] = [];
+
+	teamMiscHelperData[playerState.team][position] = playerState.statistics.teamPercentMapControlled;
+	return playerState.statistics.percentMapControlled + "%";
+}
+
+function calculateMapPeakControl(playerState, position)
+{
+	if (!teamMiscHelperData[playerState.team])
+		teamMiscHelperData[playerState.team] = [];
+
+	teamMiscHelperData[playerState.team][position] = playerState.statistics.teamPeakPercentMapControlled;
+	return playerState.statistics.peakPercentMapControlled + "%";
+}
+
 function calculateMiscellaneous(counters)
 {
 	for (var t in g_Teams)
@@ -333,7 +356,7 @@ function calculateMiscellaneous(counters)
 				else
 					teamTotal = Math.round((teamMiscHelperData[t][w].enemyUnitsKilled / teamMiscHelperData[t][w].unitsLost)*100)/100;
 			}
-			else if (w == 3)
+			else if (w >= 3)
 				teamTotal = teamMiscHelperData[t][w] + "%";
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;

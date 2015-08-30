@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ JSClass JSI_GUISize::JSI_class = {
 		NULL, NULL, JSI_GUISize::construct, NULL
 };
 
-JSFunctionSpec JSI_GUISize::JSI_methods[] = 
+JSFunctionSpec JSI_GUISize::JSI_methods[] =
 {
 	JS_FS("toString", JSI_GUISize::toString, 0, 0),
 	JS_FS_END
@@ -88,8 +88,8 @@ CStr ToPercentString(double pix, double per)
 {
 	if (per == 0)
 		return CStr::FromDouble(pix);
-	else
-		return CStr::FromDouble(per)+"%"+( pix == 0.0 ? CStr() : pix > 0.0 ? CStr("+")+CStr::FromDouble(pix) : CStr::FromDouble(pix) );
+
+	return CStr::FromDouble(per)+"%"+(pix == 0.0 ? CStr() : pix > 0.0 ? CStr("+")+CStr::FromDouble(pix) : CStr::FromDouble(pix));
 }
 
 bool JSI_GUISize::toString(JSContext* cx, uint argc, jsval* vp)
@@ -103,9 +103,10 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, jsval* vp)
 		ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 		double val, valr;
 #define SIDE(side) \
-		pScriptInterface->GetProperty(rec.thisv(), #side, val); \
-		pScriptInterface->GetProperty(rec.thisv(), "r"#side, valr); \
-		buffer += ToPercentString(val, valr);
+	pScriptInterface->GetProperty(rec.thisv(), #side, val); \
+	pScriptInterface->GetProperty(rec.thisv(), "r"#side, valr); \
+	buffer += ToPercentString(val, valr);
+
 		SIDE(left);
 		buffer += " ";
 		SIDE(top);
@@ -138,7 +139,7 @@ JSClass JSI_GUIColor::JSI_class = {
 		NULL, NULL, JSI_GUIColor::construct, NULL
 };
 
-JSFunctionSpec JSI_GUIColor::JSI_methods[] = 
+JSFunctionSpec JSI_GUIColor::JSI_methods[] =
 {
 	JS_FS("toString", JSI_GUIColor::toString, 0, 0),
 	JS_FS_END
@@ -148,10 +149,10 @@ bool JSI_GUIColor::construct(JSContext* cx, uint argc, jsval* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	
+
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
-	
+
 	if (args.length() == 4)
 	{
 		JS_SetProperty(cx, obj, "r", args[0]);
@@ -208,7 +209,7 @@ JSClass JSI_GUIMouse::JSI_class = {
 		NULL, NULL, JSI_GUIMouse::construct, NULL
 };
 
-JSFunctionSpec JSI_GUIMouse::JSI_methods[] = 
+JSFunctionSpec JSI_GUIMouse::JSI_methods[] =
 {
 	JS_FS("toString", JSI_GUIMouse::toString, 0, 0),
 	JS_FS_END

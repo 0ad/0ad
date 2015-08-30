@@ -19,6 +19,7 @@ Engine.LoadComponentScript("interfaces/Pack.js");
 Engine.LoadComponentScript("interfaces/ProductionQueue.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
 Engine.LoadComponentScript("interfaces/RallyPoint.js");
+Engine.LoadComponentScript("interfaces/Repairable.js");
 Engine.LoadComponentScript("interfaces/ResourceDropsite.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
@@ -130,8 +131,13 @@ AddMock(100, IID_StatisticsTracker, {
 				"vegetarianFood": 0, 
 			},
 			"treasuresCollected": 0,
+			"lootCollected": 0,
 			"percentMapExplored": 10,
-			"teamPercentMapExplored": 10
+			"teamPercentMapExplored": 10,
+			"percentMapControlled": 10,
+			"teamPercentMapControlled": 10,
+			"peakPercentOfMapControlled": 10,
+			"teamPeakPercentOfMapControlled": 10
 		};
 	},
 	IncreaseTrainedUnitsCounter: function() { return 1; },
@@ -205,8 +211,13 @@ AddMock(101, IID_StatisticsTracker, {
 				"vegetarianFood": 0, 
 			},
 			"treasuresCollected": 0,
+			"lootCollected": 0,
 			"percentMapExplored": 10,
-			"teamPercentMapExplored": 10
+			"teamPercentMapExplored": 10,
+			"percentMapControlled": 10,
+			"teamPercentMapControlled": 10,
+			"peakPercentOfMapControlled": 10,
+			"teamPeakPercentOfMapControlled": 10
 		};
 	},
 	IncreaseTrainedUnitsCounter: function() { return 1; },
@@ -348,8 +359,13 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 					vegetarianFood: 0, 
 				},
 				treasuresCollected: 0,
+				lootCollected: 0,
 				percentMapExplored: 10,
-				teamPercentMapExplored: 10
+				teamPercentMapExplored: 10,
+				percentMapControlled: 10,
+				teamPercentMapControlled: 10,
+				peakPercentOfMapControlled: 10,
+				teamPeakPercentOfMapControlled: 10
 			},
 		},
 		{
@@ -394,8 +410,13 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 					vegetarianFood: 0, 
 				},
 				treasuresCollected: 0,
+				lootCollected: 0,
 				percentMapExplored: 10,
-				teamPercentMapExplored: 10
+				teamPercentMapExplored: 10,
+				percentMapControlled: 10,
+				teamPercentMapControlled: 10,
+				peakPercentOfMapControlled: 10,
+				teamPeakPercentOfMapControlled: 10
 			},
 		}
 	],

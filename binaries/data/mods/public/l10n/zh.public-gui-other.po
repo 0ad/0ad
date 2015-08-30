@@ -4,13 +4,14 @@
 # 
 # Translators:
 # loms126 <loms126@126.com>, 2014
+# 呂正 <jack.lvzheng@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-15 09:17+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-08-12 07:44+0000\n"
+"Last-Translator: 呂正 <jack.lvzheng@gmail.com>\n"
+"Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,7 +65,7 @@ msgstr "-- 正在打开"
 #: gui/common/functions_global_object.js:85
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "帧率：%(fps)4s"
 
 #: gui/common/functions_global_object.js:102
 #, javascript-format
@@ -365,7 +366,7 @@ msgstr ""
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:423
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
+msgstr[0] "秒"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
@@ -375,7 +376,7 @@ msgstr ""
 #: gui/common/tooltips.js:63
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
+msgstr[0] "箭"
 
 #: gui/common/tooltips.js:65
 #, javascript-format
@@ -534,7 +535,7 @@ msgstr ""
 #. action)
 #: gui/common/tooltips.js:413
 msgid "HP"
-msgstr ""
+msgstr "HP"
 
 #: gui/common/tooltips.js:436
 #, javascript-format
@@ -638,7 +639,7 @@ msgstr ""
 
 #: gui/options/options.js:13
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "在右上角显示帧率。"
 
 #: gui/options/options.js:14
 msgid "Realtime Overlay"
@@ -739,7 +740,7 @@ msgstr "平滑阴影"
 
 #: gui/options/options.js:29
 msgid "Fast & Ugly Water"
-msgstr ""
+msgstr "快速且粗糙的水面效果"
 
 #: gui/options/options.js:29
 msgid ""
@@ -749,7 +750,7 @@ msgstr ""
 
 #: gui/options/options.js:30
 msgid "HQ Water Effects"
-msgstr ""
+msgstr "高质量水面效果"
 
 #: gui/options/options.js:30
 msgid ""
@@ -1574,7 +1575,7 @@ msgstr ""
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr ""
+msgstr "文明："
 
 #: gui/summary/summary.xml:(caption):22
 msgid "Summary"
@@ -1649,7 +1650,7 @@ msgid ""
 msgstr "- 可以建造在地图上任何地方，甚至是地方领域。可以在敌方身后建立一个秘密基地。也可以在敌方领域建造，然后紧挨着建造一个资源收集建筑，这样可以获取地方领域的资源。"
 
 #: gui/text/tips/army_camp.txt:4
-msgid "- Decays to the territory owner when build in non-allied territory"
+msgid "- Decays to the territory owner when built in non-allied territory"
 msgstr ""
 
 #: gui/text/tips/army_camp.txt:6
@@ -1971,7 +1972,7 @@ msgstr "- 波斯拥有大量建筑防御技术"
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr ""
+msgstr "矛兵"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
@@ -2173,7 +2174,7 @@ msgstr ""
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
-"- Decay happens when buildings are not connected to an allied Civil Centre."
+"- Decay happens when buildings are not connected to an allied Civil Center."
 msgstr ""
 
 #: gui/text/tips/territory_decay.txt:5
@@ -2185,7 +2186,7 @@ msgstr ""
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
-"influential neighbour."
+"influential neighbor."
 msgstr ""
 
 #: gui/text/tips/themistocles.txt:1
@@ -2200,7 +2201,7 @@ msgstr ""
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr ""
+msgstr "- 当他活着的时候，所有船舰建造加快。"
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."

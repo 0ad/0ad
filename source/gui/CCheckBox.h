@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,42 +15,14 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Object - Check box
-
---Overview--
-
-	GUI Object representing a check box
-
---More info--
-
-	Check GUI.h
-
-*/
-
 #ifndef INCLUDED_CCHECKBOX
 #define INCLUDED_CCHECKBOX
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * CheckBox
- * 
+ *
  * @see IGUIObject
  * @see IGUISettingsObject
  * @see IGUIButtonBehavior
@@ -71,7 +43,7 @@ public:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * Draws the control
@@ -86,4 +58,4 @@ protected:
 	void SetupText();
 };
 
-#endif
+#endif // INCLUDED_CCHECKBOX

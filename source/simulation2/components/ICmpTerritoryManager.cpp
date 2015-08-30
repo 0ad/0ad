@@ -26,4 +26,5 @@ DEFINE_INTERFACE_METHOD_2("GetOwner", player_id_t, ICmpTerritoryManager, GetOwne
 DEFINE_INTERFACE_METHOD_3("GetNeighbours", std::vector<u32>, ICmpTerritoryManager, GetNeighbours, entity_pos_t, entity_pos_t, bool)
 DEFINE_INTERFACE_METHOD_2("IsConnected", bool, ICmpTerritoryManager, IsConnected, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_2("SetTerritoryBlinking", void, ICmpTerritoryManager, SetTerritoryBlinking, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_1("GetTerritoryPercentage", u8, ICmpTerritoryManager, GetTerritoryPercentage, player_id_t)
 END_INTERFACE_WRAPPER(TerritoryManager)

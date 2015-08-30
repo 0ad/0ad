@@ -1,7 +1,7 @@
 /**
  * returns a clone of a simple object or array
  * Only valid JSON objects are accepted
- * So no recursion, and only plain obects or arrays
+ * So no recursion, and only plain objects or arrays
  */
 function clone(o)
 {
@@ -15,4 +15,3 @@ function clone(o)
 		r[key] = clone(o[key]);
 	return r;
 }
-

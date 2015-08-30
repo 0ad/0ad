@@ -11,10 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:51+0200\n"
-"PO-Revision-Date: 2015-07-12 11:35+0000\n"
-"Last-Translator: Claudio <claudiudurneac97@yahoo.it>\n"
-"Language-Team: Italian (http://www.transifex.com/p/0ad/language/it/)\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-30 19:26+0000\n"
+"Last-Translator: Me Lazzi\n"
+"Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -51,9 +51,9 @@ msgstr "Non ti posso aiutare contro %(_player_)s per adesso, perché devo attacc
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
-"Sorry, I have not enough soldiers currently, but my next attack will target "
-"%(_player_)s."
-msgstr "Scusa, non ho abastanza soldati al momento . Pero il mio prossimo attacco sara a %(_player_)s."
+"Sorry, I do not have enough soldiers currently, but my next attack will "
+"target %(_player_)s."
+msgstr "Scusa, non ho abbastanza soldati al momento, ma il mio prossimo attacco sarà contro %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
@@ -610,12 +610,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "nemico"
 
-#: simulation/components/CeasefireManager.js:125
+#: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "Puoi attaccare in %(time)s"
 
-#: simulation/components/CeasefireManager.js:140
+#: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
 msgstr "Puoi attaccare ora!"
 
@@ -634,42 +634,42 @@ msgstr "Raggiunto il limite di addestramento di %(limit)s %(category)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Raggiunto il limite di %(limit)s %(category)s"
 
-#: simulation/components/Player.js:39
+#: simulation/components/Player.js:43
 msgid "Food"
 msgstr "Cibo"
 
-#: simulation/components/Player.js:40
+#: simulation/components/Player.js:44
 msgid "Wood"
 msgstr "Legno"
 
-#: simulation/components/Player.js:41
+#: simulation/components/Player.js:45
 msgid "Metal"
 msgstr "Metallo"
 
-#: simulation/components/Player.js:42
+#: simulation/components/Player.js:46
 msgid "Stone"
 msgstr "Pietra"
 
-#: simulation/components/Player.js:243
+#: simulation/components/Player.js:252
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:245
+#: simulation/components/Player.js:254
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:247
+#: simulation/components/Player.js:256
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:249
+#: simulation/components/Player.js:258
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "

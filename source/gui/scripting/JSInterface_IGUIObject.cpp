@@ -88,7 +88,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	// Use onWhatever to access event handlers
 	if (propName.substr(0, 2) == "on")
 	{
-		CStr eventName (CStr(propName.substr(2)).LowerCase());
+		CStr eventName(CStr(propName.substr(2)).LowerCase());
 		auto it = e->m_ScriptHandlers.find(eventName);
 		if (it == e->m_ScriptHandlers.end())
 			vp.setNull();
@@ -135,161 +135,162 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		switch (Type)
 		{
 		case GUIST_bool:
-			{
-				bool value;
-				GUI<bool>::GetSetting(e, propName, value);
-				vp.set(JS::BooleanValue(value));
-				break;
-			}
+		{
+			bool value;
+			GUI<bool>::GetSetting(e, propName, value);
+			vp.set(JS::BooleanValue(value));
+			break;
+		}
 
 		case GUIST_int:
-			{
-				int value;
-				GUI<int>::GetSetting(e, propName, value);
-				vp.set(JS::Int32Value(value));
-				break;
-			}
+		{
+			int value;
+			GUI<int>::GetSetting(e, propName, value);
+			vp.set(JS::Int32Value(value));
+			break;
+		}
 
 		case GUIST_float:
-			{
-				float value;
-				GUI<float>::GetSetting(e, propName, value);
-				// Create a garbage-collectable double
-				vp.set(JS::NumberValue(value));
-				return !vp.isNull();
-			}
+		{
+			float value;
+			GUI<float>::GetSetting(e, propName, value);
+			// Create a garbage-collectable double
+			vp.set(JS::NumberValue(value));
+			return !vp.isNull();
+		}
 
 		case GUIST_CColor:
-			{
-				CColor color;
-				GUI<CColor>::GetSetting(e, propName, color);
-				JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
-				vp.setObject(*obj);
-				JS::RootedValue c(cx);
-				// Attempt to minimise ugliness through macrosity
-				#define P(x) c = JS::NumberValue(color.x); \
-				if (c.isNull()) \
-					return false; \
-				JS_SetProperty(cx, obj, #x, c)
-					P(r);
-					P(g);
-					P(b);
-					P(a);
-				#undef P
+		{
+			CColor color;
+			GUI<CColor>::GetSetting(e, propName, color);
+			JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
+			vp.setObject(*obj);
+			JS::RootedValue c(cx);
+			// Attempt to minimise ugliness through macrosity
+#define P(x) \
+	c = JS::NumberValue(color.x); \
+	if (c.isNull()) \
+		return false; \
+	JS_SetProperty(cx, obj, #x, c)
 
-				break;
-			}
+			P(r);
+			P(g);
+			P(b);
+			P(a);
+#undef P
+			break;
+		}
 
 		case GUIST_CClientArea:
+		{
+			CClientArea area;
+			GUI<CClientArea>::GetSetting(e, propName, area);
+
+			JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUISize"));
+			vp.setObject(*obj);
+			try
 			{
-				CClientArea area;
-				GUI<CClientArea>::GetSetting(e, propName, area);
-
-				JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUISize"));
-				vp.setObject(*obj);
-				try
-				{
-				#define P(x, y, z) pScriptInterface->SetProperty(vp, #z, area.x.y, false, true)
-					P(pixel,	left,	left);
-					P(pixel,	top,	top);
-					P(pixel,	right,	right);
-					P(pixel,	bottom,	bottom);
-					P(percent,	left,	rleft);
-					P(percent,	top,	rtop);
-					P(percent,	right,	rright);
-					P(percent,	bottom,	rbottom);
-				#undef P
-				}
-				catch (PSERROR_Scripting_ConversionFailed&)
-				{
-					debug_warn(L"Error creating size object!");
-					break;
-				}
-
+#define P(x, y, z) pScriptInterface->SetProperty(vp, #z, area.x.y, false, true)
+				P(pixel,	left,	left);
+				P(pixel,	top,	top);
+				P(pixel,	right,	right);
+				P(pixel,	bottom,	bottom);
+				P(percent,	left,	rleft);
+				P(percent,	top,	rtop);
+				P(percent,	right,	rright);
+				P(percent,	bottom,	rbottom);
+#undef P
+			}
+			catch (PSERROR_Scripting_ConversionFailed&)
+			{
+				debug_warn(L"Error creating size object!");
 				break;
 			}
+
+			break;
+		}
 
 		case GUIST_CGUIString:
-			{
-				CGUIString value;
-				GUI<CGUIString>::GetSetting(e, propName, value);
-				ScriptInterface::ToJSVal(cx, vp, value.GetOriginalString());
-				break;
-			}
+		{
+			CGUIString value;
+			GUI<CGUIString>::GetSetting(e, propName, value);
+			ScriptInterface::ToJSVal(cx, vp, value.GetOriginalString());
+			break;
+		}
 
 		case GUIST_CStr:
-			{
-				CStr value;
-				GUI<CStr>::GetSetting(e, propName, value);
-				ScriptInterface::ToJSVal(cx, vp, value);
-				break;
-			}
+		{
+			CStr value;
+			GUI<CStr>::GetSetting(e, propName, value);
+			ScriptInterface::ToJSVal(cx, vp, value);
+			break;
+		}
 
 		case GUIST_CStrW:
-			{
-				CStrW value;
-				GUI<CStrW>::GetSetting(e, propName, value);
-				ScriptInterface::ToJSVal(cx, vp, value);
-				break;
-			}
+		{
+			CStrW value;
+			GUI<CStrW>::GetSetting(e, propName, value);
+			ScriptInterface::ToJSVal(cx, vp, value);
+			break;
+		}
 
 		case GUIST_CGUISpriteInstance:
-			{
-				CGUISpriteInstance *value;
-				GUI<CGUISpriteInstance>::GetSettingPointer(e, propName, value);
-				ScriptInterface::ToJSVal(cx, vp, value->GetName());
-				break;
-			}
+		{
+			CGUISpriteInstance *value;
+			GUI<CGUISpriteInstance>::GetSettingPointer(e, propName, value);
+			ScriptInterface::ToJSVal(cx, vp, value->GetName());
+			break;
+		}
 
 		case GUIST_EAlign:
+		{
+			EAlign value;
+			GUI<EAlign>::GetSetting(e, propName, value);
+			CStr word;
+			switch (value)
 			{
-				EAlign value;
-				GUI<EAlign>::GetSetting(e, propName, value);
-				CStr word;
-				switch (value)
-				{
-				case EAlign_Left: word = "left"; break;
-				case EAlign_Right: word = "right"; break;
-				case EAlign_Center: word = "center"; break;
-				default: debug_warn(L"Invalid EAlign!"); word = "error"; break;
-				}
-				ScriptInterface::ToJSVal(cx, vp, word);
-				break;
+			case EAlign_Left: word = "left"; break;
+			case EAlign_Right: word = "right"; break;
+			case EAlign_Center: word = "center"; break;
+			default: debug_warn(L"Invalid EAlign!"); word = "error"; break;
 			}
+			ScriptInterface::ToJSVal(cx, vp, word);
+			break;
+		}
 
 		case GUIST_EVAlign:
+		{
+			EVAlign value;
+			GUI<EVAlign>::GetSetting(e, propName, value);
+			CStr word;
+			switch (value)
 			{
-				EVAlign value;
-				GUI<EVAlign>::GetSetting(e, propName, value);
-				CStr word;
-				switch (value)
-				{
-				case EVAlign_Top: word = "top"; break;
-				case EVAlign_Bottom: word = "bottom"; break;
-				case EVAlign_Center: word = "center"; break;
-				default: debug_warn(L"Invalid EVAlign!"); word = "error"; break;
-				}
-				ScriptInterface::ToJSVal(cx, vp, word);
-				break;
+			case EVAlign_Top: word = "top"; break;
+			case EVAlign_Bottom: word = "bottom"; break;
+			case EVAlign_Center: word = "center"; break;
+			default: debug_warn(L"Invalid EVAlign!"); word = "error"; break;
 			}
+			ScriptInterface::ToJSVal(cx, vp, word);
+			break;
+		}
 
 		case GUIST_CGUIList:
+		{
+			CGUIList value;
+			GUI<CGUIList>::GetSetting(e, propName, value);
+
+			JS::RootedObject obj(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
+			vp.setObject(*obj);
+
+			for (u32 i = 0; i < value.m_Items.size(); ++i)
 			{
-				CGUIList value;
-				GUI<CGUIList>::GetSetting(e, propName, value);
-
-				JS::RootedObject obj(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
-				vp.setObject(*obj);
-
-				for (u32 i = 0; i < value.m_Items.size(); ++i)
-				{
-					JS::RootedValue val(cx);
-					ScriptInterface::ToJSVal(cx, &val, value.m_Items[i].GetOriginalString());
-					JS_SetElement(cx, obj, i, val);
-				}
-
-				break;
+				JS::RootedValue val(cx);
+				ScriptInterface::ToJSVal(cx, &val, value.m_Items[i].GetOriginalString());
+				JS_SetElement(cx, obj, i, val);
 			}
+
+			break;
+		}
 
 		default:
 			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
@@ -338,7 +339,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			return false;
 		}
 
-		CStr eventName (CStr(propName.substr(2)).LowerCase());
+		CStr eventName(CStr(propName.substr(2)).LowerCase());
 		e->SetScriptHandler(eventName, vpObj);
 
 		return true;
@@ -354,231 +355,232 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 
 	switch (Type)
 	{
-
 	case GUIST_CStr:
-		{
-			std::string value;
-			if (!ScriptInterface::FromJSVal(cx, vp, value))
-				return false;
+	{
+		std::string value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
+			return false;
 
-			GUI<CStr>::SetSetting(e, propName, value);
-			break;
-		}
+		GUI<CStr>::SetSetting(e, propName, value);
+		break;
+	}
 
 	case GUIST_CStrW:
-		{
-			std::wstring value;
-			if (!ScriptInterface::FromJSVal(cx, vp, value))
-				return false;
+	{
+		std::wstring value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
+			return false;
 
-			GUI<CStrW>::SetSetting(e, propName, value);
-			break;
-		}
+		GUI<CStrW>::SetSetting(e, propName, value);
+		break;
+	}
 
 	case GUIST_CGUISpriteInstance:
-		{
-			std::string value;
-			if (!ScriptInterface::FromJSVal(cx, vp, value))
-				return false;
+	{
+		std::string value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
+			return false;
 
-			GUI<CGUISpriteInstance>::SetSetting(e, propName, CGUISpriteInstance(value));
-			break;
-		}
+		GUI<CGUISpriteInstance>::SetSetting(e, propName, CGUISpriteInstance(value));
+		break;
+	}
 
 	case GUIST_CGUIString:
+	{
+		std::wstring value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
+			return false;
+
+		CGUIString str;
+		str.SetValue(value);
+		GUI<CGUIString>::SetSetting(e, propName, str);
+		break;
+	}
+
+	case GUIST_EAlign:
+	{
+		std::string value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
+			return false;
+
+		EAlign a;
+		if (value == "left") a = EAlign_Left;
+		else if (value == "right") a = EAlign_Right;
+		else if (value == "center" || value == "centre") a = EAlign_Center;
+		else
+		{
+			JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
+			return false;
+		}
+		GUI<EAlign>::SetSetting(e, propName, a);
+		break;
+	}
+
+	case GUIST_EVAlign:
+	{
+		std::string value;
+		if (!ScriptInterface::FromJSVal(cx, vp, value))
+			return false;
+
+		EVAlign a;
+		if (value == "top") a = EVAlign_Top;
+		else if (value == "bottom") a = EVAlign_Bottom;
+		else if (value == "center" || value == "centre") a = EVAlign_Center;
+		else
+		{
+			JS_ReportError(cx, "Invalid alignment (should be 'top', 'bottom' or 'center')");
+			return false;
+		}
+		GUI<EVAlign>::SetSetting(e, propName, a);
+		break;
+	}
+
+	case GUIST_int:
+	{
+		int value;
+		if (ScriptInterface::FromJSVal(cx, vp, value))
+			GUI<int>::SetSetting(e, propName, value);
+		else
+		{
+			JS_ReportError(cx, "Cannot convert value to int");
+			return false;
+		}
+		break;
+	}
+
+	case GUIST_float:
+	{
+		double value;
+		if (JS::ToNumber(cx, vp, &value) == true)
+			GUI<float>::SetSetting(e, propName, (float)value);
+		else
+		{
+			JS_ReportError(cx, "Cannot convert value to float");
+			return false;
+		}
+		break;
+	}
+
+	case GUIST_bool:
+	{
+		bool value = JS::ToBoolean(vp);
+		GUI<bool>::SetSetting(e, propName, value);
+		break;
+	}
+
+	case GUIST_CClientArea:
+	{
+		if (vp.isString())
 		{
 			std::wstring value;
 			if (!ScriptInterface::FromJSVal(cx, vp, value))
+				return false;
+
+			if (e->SetSetting(propName, value) != PSRETURN_OK)
+			{
+				JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
+				return false;
+			}
+		}
+		else if (vp.isObject() && JS_InstanceOf(cx, vpObj, &JSI_GUISize::JSI_class, NULL))
+		{
+			CClientArea area;
+			GUI<CClientArea>::GetSetting(e, propName, area);
+
+			ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+#define P(x, y, z) pScriptInterface->GetProperty(vp, #z, area.x.y)
+			P(pixel,	left,	left);
+			P(pixel,	top,	top);
+			P(pixel,	right,	right);
+			P(pixel,	bottom,	bottom);
+			P(percent,	left,	rleft);
+			P(percent,	top,	rtop);
+			P(percent,	right,	rright);
+			P(percent,	bottom,	rbottom);
+#undef P
+
+			GUI<CClientArea>::SetSetting(e, propName, area);
+		}
+		else
+		{
+			JS_ReportError(cx, "Size only accepts strings or GUISize objects");
+			return false;
+		}
+		break;
+	}
+
+	case GUIST_CColor:
+	{
+		if (vp.isString())
+		{
+			std::wstring value;
+			if (!ScriptInterface::FromJSVal(cx, vp, value))
+				return false;
+
+			if (e->SetSetting(propName, value) != PSRETURN_OK)
+			{
+				JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
+				return false;
+			}
+		}
+		else if (vp.isObject() && JS_InstanceOf(cx, vpObj, &JSI_GUIColor::JSI_class, NULL))
+		{
+			CColor color;
+			JS::RootedValue t(cx);
+			double s;
+#define PROP(x) \
+	JS_GetProperty(cx, vpObj, #x, &t); \
+	s = t.toDouble(); \
+	color.x = (float)s
+
+			PROP(r);
+			PROP(g);
+			PROP(b);
+			PROP(a);
+#undef PROP
+			GUI<CColor>::SetSetting(e, propName, color);
+		}
+		else
+		{
+			JS_ReportError(cx, "Color only accepts strings or GUIColor objects");
+			return false;
+		}
+		break;
+	}
+
+	case GUIST_CGUIList:
+	{
+		u32 length;
+		if (!vp.isObject() || !JS_GetArrayLength(cx, vpObj, &length))
+		{
+			JS_ReportError(cx, "List only accepts a GUIList object");
+			return false;
+		}
+
+		CGUIList list;
+
+		for (u32 i = 0; i < length; ++i)
+		{
+			JS::RootedValue element(cx);
+			if (!JS_GetElement(cx, vpObj, i, &element))
+			{
+				JS_ReportError(cx, "Failed to get list element");
+				return false;
+			}
+
+			std::wstring value;
+			if (!ScriptInterface::FromJSVal(cx, element, value))
 				return false;
 
 			CGUIString str;
 			str.SetValue(value);
-			GUI<CGUIString>::SetSetting(e, propName, str);
-			break;
+
+			list.m_Items.push_back(str);
 		}
 
-	case GUIST_EAlign:
-		{
-			std::string value;
-			if (!ScriptInterface::FromJSVal(cx, vp, value))
-				return false;
-
-			EAlign a;
-			if (value == "left") a = EAlign_Left;
-			else if (value == "right") a = EAlign_Right;
-			else if (value == "center" || value == "centre") a = EAlign_Center;
-			else
-			{
-				JS_ReportError(cx, "Invalid alignment (should be 'left', 'right' or 'center')");
-				return false;
-			}
-			GUI<EAlign>::SetSetting(e, propName, a);
-			break;
-		}
-
-	case GUIST_EVAlign:
-		{
-			std::string value;
-			if (!ScriptInterface::FromJSVal(cx, vp, value))
-				return false;
-
-			EVAlign a;
-			if (value == "top") a = EVAlign_Top;
-			else if (value == "bottom") a = EVAlign_Bottom;
-			else if (value == "center" || value == "centre") a = EVAlign_Center;
-			else
-			{
-				JS_ReportError(cx, "Invalid alignment (should be 'top', 'bottom' or 'center')");
-				return false;
-			}
-			GUI<EVAlign>::SetSetting(e, propName, a);
-			break;
-		}
-
-	case GUIST_int:
-		{
-			int value;
-			if (ScriptInterface::FromJSVal(cx, vp, value))
-				GUI<int>::SetSetting(e, propName, value);
-			else
-			{
-				JS_ReportError(cx, "Cannot convert value to int");
-				return false;
-			}
-			break;
-		}
-
-	case GUIST_float:
-		{
-			double value;
-			if (JS::ToNumber(cx, vp, &value) == true)
-				GUI<float>::SetSetting(e, propName, (float)value);
-			else
-			{
-				JS_ReportError(cx, "Cannot convert value to float");
-				return false;
-			}
-			break;
-		}
-
-	case GUIST_bool:
-		{
-			bool value = JS::ToBoolean(vp);
-			GUI<bool>::SetSetting(e, propName, value);
-			break;
-		}
-
-	case GUIST_CClientArea:
-		{
-			if (vp.isString())
-			{
-				std::wstring value;
-				if (!ScriptInterface::FromJSVal(cx, vp, value))
-					return false;
-
-				if (e->SetSetting(propName, value) != PSRETURN_OK)
-				{
-					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
-					return false;
-				}
-			}
-			else if (vp.isObject() && JS_InstanceOf(cx, vpObj, &JSI_GUISize::JSI_class, NULL))
-			{
-				CClientArea area;
-				GUI<CClientArea>::GetSetting(e, propName, area);
-
-				ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-				#define P(x, y, z) pScriptInterface->GetProperty(vp, #z, area.x.y)
-					P(pixel,	left,	left);
-					P(pixel,	top,	top);
-					P(pixel,	right,	right);
-					P(pixel,	bottom,	bottom);
-					P(percent,	left,	rleft);
-					P(percent,	top,	rtop);
-					P(percent,	right,	rright);
-					P(percent,	bottom,	rbottom);
-				#undef P
-
-				GUI<CClientArea>::SetSetting(e, propName, area);
-			}
-			else
-			{
-				JS_ReportError(cx, "Size only accepts strings or GUISize objects");
-				return false;
-			}
-			break;
-		}
-
-	case GUIST_CColor:
-		{
-			if (vp.isString())
-			{
-				std::wstring value;
-				if (!ScriptInterface::FromJSVal(cx, vp, value))
-					return false;
-
-				if (e->SetSetting(propName, value) != PSRETURN_OK)
-				{
-					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
-					return false;
-				}
-			}
-			else if (vp.isObject() && JS_InstanceOf(cx, vpObj, &JSI_GUIColor::JSI_class, NULL))
-			{
-				CColor color;
-				JS::RootedValue t(cx);
-				double s;
-				#define PROP(x) JS_GetProperty(cx, vpObj, #x, &t); \
-								s = t.toDouble(); \
-								color.x = (float)s
-				PROP(r); PROP(g); PROP(b); PROP(a);
-				#undef PROP
-
-				GUI<CColor>::SetSetting(e, propName, color);
-			}
-			else
-			{
-				JS_ReportError(cx, "Color only accepts strings or GUIColor objects");
-				return false;
-			}
-			break;
-		}
-
-	case GUIST_CGUIList:
-		{
-			u32 length;
-			if (!vp.isObject() || !JS_GetArrayLength(cx, vpObj, &length))
-			{
-				JS_ReportError(cx, "List only accepts a GUIList object");
-				return false;
-			}
-
-			CGUIList list;
-
-			for (u32 i=0; i<length; ++i)
-			{
-				JS::RootedValue element(cx);
-				if (!JS_GetElement(cx, vpObj, i, &element))
-				{
-					JS_ReportError(cx, "Failed to get list element");
-					return false;
-				}
-
-				std::wstring value;
-				if (!ScriptInterface::FromJSVal(cx, element, value))
-					return false;
-
-				CGUIString str;
-				str.SetValue(value);
-
-				list.m_Items.push_back(str);
-			}
-
-			GUI<CGUIList>::SetSetting(e, propName, list);
-			break;
-		}
-
-		// TODO Gee: (2004-09-01) EAlign and EVAlign too.
+		GUI<CGUIList>::SetSetting(e, propName, list);
+		break;
+	}
 
 	default:
 		JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
@@ -594,7 +596,7 @@ bool JSI_IGUIObject::construct(JSContext* cx, uint argc, jsval* vp)
 	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	
+
 	if (args.length() == 0)
 	{
 		JS_ReportError(cx, "GUIObject has no default constructor");
@@ -616,14 +618,13 @@ void JSI_IGUIObject::init(ScriptInterface& scriptInterface)
 	scriptInterface.DefineCustomObjectType(&JSI_class, construct, 1, JSI_props, JSI_methods, NULL, NULL);
 }
 
-bool JSI_IGUIObject::toString(JSContext* cx, uint argc, jsval* vp)
+bool JSI_IGUIObject::toString(JSContext* cx, uint UNUSED(argc), jsval* vp)
 {
-	UNUSED2(argc);
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 
 	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
-	
+
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return false;
@@ -635,14 +636,13 @@ bool JSI_IGUIObject::toString(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool JSI_IGUIObject::focus(JSContext* cx, uint argc, jsval* vp)
+bool JSI_IGUIObject::focus(JSContext* cx, uint UNUSED(argc), jsval* vp)
 {
-	UNUSED2(argc);
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 
 	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
-	
+
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return false;
@@ -653,14 +653,13 @@ bool JSI_IGUIObject::focus(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool JSI_IGUIObject::blur(JSContext* cx, uint argc, jsval* vp)
+bool JSI_IGUIObject::blur(JSContext* cx, uint UNUSED(argc), jsval* vp)
 {
-	UNUSED2(argc);
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 
 	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
- 
+
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return false;
@@ -671,14 +670,13 @@ bool JSI_IGUIObject::blur(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, jsval* vp)
+bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint UNUSED(argc), jsval* vp)
 {
-	UNUSED2(argc);
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
-	
+
 	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
-	
+
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return false;

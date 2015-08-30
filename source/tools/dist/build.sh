@@ -12,8 +12,6 @@ SVNREV=`svnversion -n ${SVNWC}`
 PREFIX=0ad-0.0.XXX-alpha
 
 XZOPTS="-9 -e"
-BZ2OPTS="-9"
-GZIPOPTS="-9"
 GZIP7ZOPTS="-mx=9"
 
 # Export files with appropriate line-endings
@@ -59,7 +57,7 @@ xz -kv ${XZOPTS} $PREFIX-unix-data.tar
 makensis -nocd -dcheckoutpath=export-win32 -drevision=${SVNREV} -dprefix=${PREFIX} export-win32/source/tools/dist/0ad.nsi
 
 # Fix permissions
-chmod -f 644 ${PREFIX}-{unix-{build,data}.tar.{xz,bz2,gz},win32.exe}
+chmod -f 644 ${PREFIX}-{unix-{build,data}.tar.{xz,gz},win32.exe}
 
 # Print digests for copying into wiki page
-sha1sum ${PREFIX}-{unix-{build,data}.tar.{xz,bz2,gz},win32.exe}
+sha1sum ${PREFIX}-{unix-{build,data}.tar.{xz,gz},win32.exe}

@@ -32,14 +32,13 @@
     <Max>100</Max>
     <RegenRate>0</RegenRate>
     <Unhealable>false</Unhealable>
-    <Repairable>false</Repairable>
   </Health>
   <Identity>
     <GenericName>Unit</GenericName>
     <Classes datatype="tokens">Unit ConquestCritical</Classes>
-		<Formations datatype="tokens">
-			formations/null
-		</Formations>
+    <Formations datatype="tokens">
+      formations/null
+    </Formations>
   </Identity>
   <Looter/>
   <Minimap>

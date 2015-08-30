@@ -15,57 +15,52 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI utilities
-*/
-
 #include "precompiled.h"
+
 #include "GUI.h"
 #include "GUIManager.h"
+
 #include "maths/Matrix3D.h"
+#include "ps/CLogger.h"
 
 extern int g_xres, g_yres;
 
-#include "ps/CLogger.h"
-
-
 template <>
-bool __ParseString<bool>(const CStrW& Value, bool &Output)
+bool __ParseString<bool>(const CStrW& Value, bool& Output)
 {
 	if (Value == L"true")
 		Output = true;
-	else
-	if (Value == L"false")
+	else if (Value == L"false")
 		Output = false;
-	else 
+	else
 		return false;
 
 	return true;
 }
 
 template <>
-bool __ParseString<int>(const CStrW& Value, int &Output)
+bool __ParseString<int>(const CStrW& Value, int& Output)
 {
 	Output = Value.ToInt();
 	return true;
 }
 
 template <>
-bool __ParseString<float>(const CStrW& Value, float &Output)
+bool __ParseString<float>(const CStrW& Value, float& Output)
 {
 	Output = Value.ToFloat();
 	return true;
 }
 
 template <>
-bool __ParseString<CRect>(const CStrW& Value, CRect &Output)
+bool __ParseString<CRect>(const CStrW& Value, CRect& Output)
 {
 	const unsigned int NUM_COORDS = 4;
 	float coords[NUM_COORDS];
 	std::wstringstream stream;
 	stream.str(Value);
 	// Parse each coordinate
-	for (unsigned int i = 0; i < NUM_COORDS; i++)
+	for (unsigned int i = 0; i < NUM_COORDS; ++i)
 	{
 		if (stream.eof())
 		{
@@ -93,13 +88,13 @@ bool __ParseString<CRect>(const CStrW& Value, CRect &Output)
 }
 
 template <>
-bool __ParseString<CClientArea>(const CStrW& Value, CClientArea &Output)
+bool __ParseString<CClientArea>(const CStrW& Value, CClientArea& Output)
 {
 	return Output.SetClientArea(Value.ToUTF8());
 }
 
 template <>
-bool GUI<int>::ParseColor(const CStrW& Value, CColor &Output, int DefaultAlpha)
+bool GUI<int>::ParseColor(const CStrW& Value, CColor& Output, int DefaultAlpha)
 {
 	// First, check our database in g_GUI for pre-defined colors
 	//  If we find anything, we'll ignore DefaultAlpha
@@ -112,7 +107,7 @@ bool GUI<int>::ParseColor(const CStrW& Value, CColor &Output, int DefaultAlpha)
 
 
 template <>
-bool __ParseString<CColor>(const CStrW& Value, CColor &Output)
+bool __ParseString<CColor>(const CStrW& Value, CColor& Output)
 {
 	// First, check our database in g_GUI for pre-defined colors
 	// If it fails, it won't do anything with Output
@@ -123,14 +118,14 @@ bool __ParseString<CColor>(const CStrW& Value, CColor &Output)
 }
 
 template <>
-bool __ParseString<CSize>(const CStrW& Value, CSize &Output)
+bool __ParseString<CSize>(const CStrW& Value, CSize& Output)
 {
 	const unsigned int NUM_COORDS = 2;
 	float coords[NUM_COORDS];
 	std::wstringstream stream;
 	stream.str(Value);
 	// Parse each coordinate
-	for (unsigned int i = 0; i < NUM_COORDS; i++)
+	for (unsigned int i = 0; i < NUM_COORDS; ++i)
 	{
 		if (stream.eof())
 		{
@@ -158,14 +153,14 @@ bool __ParseString<CSize>(const CStrW& Value, CSize &Output)
 }
 
 template <>
-bool __ParseString<CPos>(const CStrW& Value, CPos &Output)
+bool __ParseString<CPos>(const CStrW& Value, CPos& Output)
 {
 	const unsigned int NUM_COORDS = 2;
 	float coords[NUM_COORDS];
 	std::wstringstream stream;
 	stream.str(Value);
 	// Parse each coordinate
-	for (unsigned int i = 0; i < NUM_COORDS; i++)
+	for (unsigned int i = 0; i < NUM_COORDS; ++i)
 	{
 		if (stream.eof())
 		{
@@ -193,15 +188,13 @@ bool __ParseString<CPos>(const CStrW& Value, CPos &Output)
 }
 
 template <>
-bool __ParseString<EAlign>(const CStrW& Value, EAlign &Output)
+bool __ParseString<EAlign>(const CStrW& Value, EAlign& Output)
 {
 	if (Value == L"left")
 		Output = EAlign_Left;
-	else
-	if (Value == L"center")
+	else if (Value == L"center")
 		Output = EAlign_Center;
-	else
-	if (Value == L"right")
+	else if (Value == L"right")
 		Output = EAlign_Right;
 	else
 		return false;
@@ -210,15 +203,13 @@ bool __ParseString<EAlign>(const CStrW& Value, EAlign &Output)
 }
 
 template <>
-bool __ParseString<EVAlign>(const CStrW& Value, EVAlign &Output)
+bool __ParseString<EVAlign>(const CStrW& Value, EVAlign& Output)
 {
 	if (Value == L"top")
 		Output = EVAlign_Top;
-	else
-	if (Value == L"center")
+	else if (Value == L"center")
 		Output = EVAlign_Center;
-	else
-	if (Value == L"bottom")
+	else if (Value == L"bottom")
 		Output = EVAlign_Bottom;
 	else
 		return false;
@@ -227,10 +218,8 @@ bool __ParseString<EVAlign>(const CStrW& Value, EVAlign &Output)
 }
 
 template <>
-bool __ParseString<CGUIString>(const CStrW& Value, CGUIString &Output)
+bool __ParseString<CGUIString>(const CStrW& Value, CGUIString& Output)
 {
-	// TODO: i18n: Might want to translate the Value perhaps
-
 	Output.SetValue(Value);
 	return true;
 }
@@ -246,14 +235,12 @@ bool __ParseString<CStr>(const CStrW& Value, CStr& Output)
 template <>
 bool __ParseString<CStrW>(const CStrW& Value, CStrW& Output)
 {
-	// TODO: i18n: Might want to translate the Value perhaps
-
 	Output = Value;
 	return true;
 }
 
 template <>
-bool __ParseString<CGUISpriteInstance>(const CStrW& Value, CGUISpriteInstance &Output)
+bool __ParseString<CGUISpriteInstance>(const CStrW& Value, CGUISpriteInstance& Output)
 {
 	Output = CGUISpriteInstance(Value.ToUTF8());
 	return true;
@@ -288,28 +275,22 @@ CMatrix3D GetDefaultGuiMatrix()
 //--------------------------------------------------------
 //  Utilities implementation
 //--------------------------------------------------------
-IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(CGUI &GUIinstance, const CStr& Object)
+IGUIObject* CInternalCGUIAccessorBase::GetObjectPointer(CGUI& GUIinstance, const CStr& Object)
 {
-//	if (!GUIinstance.ObjectExists(Object))
-//		return NULL;
-
-	return GUIinstance.m_pAllObjects.find(Object)->second;
+	return GUIinstance.FindObjectByName(Object);
 }
 
-const IGUIObject * CInternalCGUIAccessorBase::GetObjectPointer(const CGUI &GUIinstance, const CStr& Object)
+const IGUIObject* CInternalCGUIAccessorBase::GetObjectPointer(const CGUI& GUIinstance, const CStr& Object)
 {
-//	if (!GUIinstance.ObjectExists(Object))
-//		return NULL;
-
-	return GUIinstance.m_pAllObjects.find(Object)->second;
+	return GUIinstance.FindObjectByName(Object);
 }
 
-void CInternalCGUIAccessorBase::QueryResetting(IGUIObject *pObject)
+void CInternalCGUIAccessorBase::QueryResetting(IGUIObject* pObject)
 {
 	GUI<>::RecurseObject(0, pObject, &IGUIObject::ResetStates);
 }
 
-void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, SGUIMessage &message)
+void CInternalCGUIAccessorBase::HandleMessage(IGUIObject* pObject, SGUIMessage& message)
 {
 	pObject->HandleMessage(message);
 }
@@ -335,14 +316,14 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, SGUIMessage &
 //--------------------------------------------------------------------
 
 template <typename T>
-PSRETURN GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value)
+PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value)
 {
 	ENSURE(pObject != NULL);
 
 	std::map<CStr, SGUISetting>::const_iterator it = pObject->m_Settings.find(Setting);
 	if (it == pObject->m_Settings.end())
 	{
-		LOGWARNING("setting %s was not found on object %s", 
+		LOGWARNING("setting %s was not found on object %s",
 			Setting.c_str(),
 			pObject->GetPresentableName().c_str());
 		return PSRETURN_GUI_InvalidSetting;
@@ -362,7 +343,7 @@ PSRETURN GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Settin
 }
 
 template <typename T>
-PSRETURN GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value)
+PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value)
 {
 	T* v = NULL;
 	PSRETURN ret = GetSettingPointer(pObject, Setting, v);
@@ -384,14 +365,13 @@ bool IsBoolTrue<bool>(const bool& v)
 }
 
 template <typename T>
-PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, 
-							 const T &Value, const bool& SkipMessage)
+PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage)
 {
 	ENSURE(pObject != NULL);
 
 	if (!pObject->SettingExists(Setting))
 	{
-		LOGWARNING("setting %s was not found on object %s", 
+		LOGWARNING("setting %s was not found on object %s",
 			Setting.c_str(),
 			pObject->GetPresentableName().c_str());
 		return PSRETURN_GUI_InvalidSetting;
@@ -413,8 +393,7 @@ PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 	{
 		RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
 	}
-	else
-	if (Setting == "hidden")
+	else if (Setting == "hidden")
 	{
 		// Hiding an object requires us to reset it and all children
 		if (IsBoolTrue(Value))
@@ -432,9 +411,9 @@ PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 
 // Instantiate templated functions:
 #define TYPE(T) \
-	template PSRETURN GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value); \
-	template PSRETURN GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value); \
-	template PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value, const bool& SkipMessage);
+	template PSRETURN GUI<T>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, T*& Value); \
+	template PSRETURN GUI<T>::GetSetting(const IGUIObject* pObject, const CStr& Setting, T& Value); \
+	template PSRETURN GUI<T>::SetSetting(IGUIObject* pObject, const CStr& Setting, const T& Value, const bool& SkipMessage);
 #define GUITYPE_IGNORE_CGUISpriteInstance
 #include "GUItypes.h"
 #undef GUITYPE_IGNORE_CGUISpriteInstance
@@ -444,5 +423,5 @@ PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 // you attempt to retrieve a sprite using GetSetting, since that copies the sprite
 // and will mess up the caching performed by DrawSprite. You have to use GetSettingPointer
 // instead. (This is mainly useful to stop me accidentally using the wrong function.)
-template PSRETURN GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, CGUISpriteInstance* &Value);
-template PSRETURN GUI<CGUISpriteInstance>::SetSetting(IGUIObject *pObject, const CStr& Setting, const CGUISpriteInstance &Value, const bool& SkipMessage);
+template PSRETURN GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject* pObject, const CStr& Setting, CGUISpriteInstance*& Value);
+template PSRETURN GUI<CGUISpriteInstance>::SetSetting(IGUIObject* pObject, const CStr& Setting, const CGUISpriteInstance& Value, const bool& SkipMessage);

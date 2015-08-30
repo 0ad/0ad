@@ -6,6 +6,7 @@
 # FrewCen <frewcen@gmail.com>, 2014
 # Levi Taule <levi.taule@gmail.com>, 2014-2015
 # Marián Mižik <marian@mizik.sk>, 2015
+# Mário Bulejko, 2015
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Roman Beňo <romanko.sk@gmail.com>, 2014
@@ -14,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 09:17+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
+"PO-Revision-Date: 2015-08-20 16:45+0000\n"
+"Last-Translator: Mário Bulejko\n"
+"Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -119,7 +120,7 @@ msgstr "Obranná veža"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr ""
+msgstr "Postav v neutrálnom alebo vlastnenom teritóriu na prieskum oblastí mapy. Pomaly sa mení na Gaiu, pokiaľ je v neutrálnom teritóriu."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -340,13 +341,13 @@ msgstr "Stratēgeîon"
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
 msgid "Khalkeṓn"
-msgstr ""
+msgstr "Khalkeṓn"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
 #: simulation/templates/structures/spart_civil_centre.xml:8
 msgid "Agorá"
-msgstr ""
+msgstr "Agorá"
 
 #: simulation/templates/structures/athen_corral.xml:12
 #: simulation/templates/structures/mace_corral.xml:12
@@ -372,17 +373,17 @@ msgstr "Limḗn"
 #: simulation/templates/structures/mace_farmstead.xml:12
 #: simulation/templates/structures/spart_farmstead.xml:12
 msgid "Sitobólion"
-msgstr ""
+msgstr "Sitobólion"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agroí"
-msgstr ""
+msgstr "Agroí"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
-msgstr ""
+msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
@@ -413,7 +414,7 @@ msgstr "Oîkos"
 #: simulation/templates/structures/mace_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
 msgid "Empórios"
-msgstr ""
+msgstr "Empórios"
 
 #: simulation/templates/structures/athen_outpost.xml:5
 #: simulation/templates/structures/mace_outpost.xml:5
@@ -425,7 +426,7 @@ msgstr "Grécka rozhľadňa"
 #: simulation/templates/structures/mace_outpost.xml:6
 #: simulation/templates/structures/spart_outpost.xml:6
 msgid "Prophylakḗ"
-msgstr ""
+msgstr "Prophylakḗ"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 msgid "Council Chamber"
@@ -471,7 +472,7 @@ msgstr "Théātron"
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr ""
+msgstr "Hellēnízein (Helenizácia): +20% vplyv teritória pre všetky budovy pokiaľ je postavený Theatron."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -510,7 +511,7 @@ msgstr "Pýrgos"
 #: simulation/templates/structures/mace_wonder.xml:17
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid "Naós Parthenṓn"
-msgstr ""
+msgstr "Naós Parthenṓn"
 
 #: simulation/templates/structures/athen_wonder.xml:19
 #: simulation/templates/structures/mace_wonder.xml:19
@@ -546,7 +547,7 @@ msgstr "Ostrovná usadlosť"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways."
-msgstr ""
+msgstr "Zvyšuje populačný limit a bráni vodné cesty."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -923,7 +924,7 @@ msgstr "Cancho Roano"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
-msgstr ""
+msgstr "Sidērourgeîon"
 
 #: simulation/templates/structures/mace_fortress.xml:15
 msgid "Teíchisma"
@@ -944,7 +945,7 @@ msgstr "Knižnica"
 #: simulation/templates/structures/mace_library.xml:16
 #: simulation/templates/structures/ptol_library.xml:16
 msgid "Bibliothḗkē"
-msgstr ""
+msgstr "Bibliothḗkē"
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -956,7 +957,7 @@ msgstr "Umožňuje výskum špeciálnych technológií a znižuje čas výskumu 
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
-msgstr ""
+msgstr "Synergeîon Poliorkētṓn"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
@@ -969,7 +970,7 @@ msgstr "Stavia obliehacie zbrane. Umožňuje výskum obliehacích technológii."
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
-msgstr ""
+msgstr "Asklēpieîon"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
@@ -1284,7 +1285,7 @@ msgstr "Maják"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pháros"
-msgstr ""
+msgstr "Pháros"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
@@ -1302,7 +1303,7 @@ msgstr "Žoldniersky tábor"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
-msgstr ""
+msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
@@ -1323,7 +1324,7 @@ msgstr "Vojenská kolónia"
 
 #: simulation/templates/structures/ptol_military_colony.xml:47
 msgid "Klēroukhía"
-msgstr ""
+msgstr "Klēroukhía"
 
 #: simulation/templates/structures/ptol_military_colony.xml:50
 msgid ""
@@ -1602,7 +1603,7 @@ msgstr "Daphnin raj"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
-msgstr ""
+msgstr "Teíkhisma"
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
@@ -1610,7 +1611,7 @@ msgstr "Sparťanský senát"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerontía"
-msgstr ""
+msgstr "Gerontía"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."

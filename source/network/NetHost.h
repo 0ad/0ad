@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,6 +62,7 @@ enum NetDisconnectReason
 	NDR_UNKNOWN = 0,
 	NDR_UNEXPECTED_SHUTDOWN,
 	NDR_INCORRECT_PROTOCOL_VERSION,
+	NDR_SERVER_LOADING,
 	NDR_SERVER_ALREADY_IN_GAME
 };
 

@@ -13,7 +13,8 @@ StatisticsTracker.prototype.Init = function()
 		"Cavalry",
 		"Champion",
 		"Hero",
-		"Ship"
+		"Ship",
+		"Trader"
 	];	
 	this.unitsTrained = {
 		"Infantry": 0,
@@ -23,6 +24,7 @@ StatisticsTracker.prototype.Init = function()
 		"Champion": 0,
 		"Hero": 0,
 		"Ship": 0,
+		"Trader": 0,
 		"total": 0
 	};
 	this.unitsLost = {
@@ -33,6 +35,7 @@ StatisticsTracker.prototype.Init = function()
 		"Champion": 0,
 		"Hero": 0,
 		"Ship": 0,
+		"Trader": 0,
 		"total": 0
 	};
 	this.unitsLostValue = 0;
@@ -44,6 +47,7 @@ StatisticsTracker.prototype.Init = function()
 		"Champion": 0,
 		"Hero": 0,
 		"Ship": 0,
+		"Trader": 0,
 		"total": 0
 	};
 	this.enemyUnitsKilledValue = 0;
@@ -119,6 +123,9 @@ StatisticsTracker.prototype.Init = function()
 	this.tributesReceived = 0;
 	this.tradeIncome = 0;
 	this.treasuresCollected = 0;
+	this.lootCollected = 0;
+	this.peakPercentMapControlled = 0;
+	this.teamPeakPercentMapControlled = 0;
 };
 
 /**
@@ -158,8 +165,13 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"tributesReceived": this.tributesReceived,
 		"tradeIncome": this.tradeIncome,
 		"treasuresCollected": this.treasuresCollected,
+		"lootCollected": this.lootCollected,
 		"percentMapExplored": this.GetPercentMapExplored(),
-		"teamPercentMapExplored": this.GetTeamPercentMapExplored()
+		"teamPercentMapExplored": this.GetTeamPercentMapExplored(),
+		"percentMapControlled": this.GetPercentMapControlled(),
+		"teamPercentMapControlled": this.GetTeamPercentMapControlled(),
+		"peakPercentMapControlled": this.peakPercentMapControlled,
+		"teamPeakPercentMapControlled": this.teamPeakPercentMapControlled
 	};
 };
 
@@ -309,7 +321,7 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
 
 /**
  * @param type Generic type of resource (string)
- * @param amount Amount of resource, whick should be added (integer)
+ * @param amount Amount of resource, which should be added (integer)
  */
 StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
 {
@@ -319,6 +331,12 @@ StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
 StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()
 {
 	this.treasuresCollected++;
+};
+
+StatisticsTracker.prototype.IncreaseLootCollectedCounter = function(amount)
+{
+	for (let type in amount)
+		this.lootCollected += amount[type];
 };
 
 StatisticsTracker.prototype.IncreaseResourcesSoldCounter = function(type, amount)
@@ -380,6 +398,50 @@ StatisticsTracker.prototype.GetTeamPercentMapExplored = function()
 	}
 
 	return cmpRangeManager.GetUnionPercentMapExplored(teamPlayers);
+};
+
+StatisticsTracker.prototype.GetPercentMapControlled = function()
+{
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+	if (!cmpPlayer || !cmpTerritoryManager)
+		return 0;
+
+	return cmpTerritoryManager.GetTerritoryPercentage(cmpPlayer.GetPlayerID());
+};
+
+StatisticsTracker.prototype.GetTeamPercentMapControlled = function()
+{
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+	if (!cmpPlayer || !cmpTerritoryManager)
+		return 0;
+
+	var team = cmpPlayer.GetTeam();
+	if (team == -1 || !cmpPlayer.GetLockTeams())
+		return cmpTerritoryManager.GetTerritoryPercentage(cmpPlayer.GetPlayerID());
+
+	var teamPercent = 0;
+	for (let i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
+	{
+		let cmpOtherPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
+			teamPercent += cmpTerritoryManager.GetTerritoryPercentage(i);
+	}
+
+	return teamPercent;
+};
+
+StatisticsTracker.prototype.OnTerritoriesChanged = function(msg)
+{
+	var newPercent = this.GetPercentMapControlled();
+	if (newPercent > this.peakPercentMapControlled)
+		this.peakPercentMapControlled = newPercent;
+
+	newPercent = this.GetTeamPercentMapControlled();
+	if (newPercent > this.teamPeakPercentMapControlled)
+		this.teamPeakPercentMapControlled = newPercent;
 };
 
 Engine.RegisterComponentType(IID_StatisticsTracker, "StatisticsTracker", StatisticsTracker);

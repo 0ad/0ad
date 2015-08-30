@@ -64,10 +64,10 @@ Builder.prototype.GetRange = function()
  */
 Builder.prototype.PerformBuilding = function(target)
 {
-	var rate = ApplyValueModificationsToEntity("Builder/Rate", +this.template.Rate, this.entity);
+	let rate = ApplyValueModificationsToEntity("Builder/Rate", +this.template.Rate, this.entity);
 
 	// If it's a foundation, then build it
-	var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
+	let cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
 	if (cmpFoundation)
 	{
 		cmpFoundation.Build(this.entity, rate);
@@ -75,10 +75,10 @@ Builder.prototype.PerformBuilding = function(target)
 	}
 
 	// Otherwise try to repair it
-	var cmpHealth = Engine.QueryInterface(target, IID_Health);
-	if (cmpHealth)
+	let cmpRepairable = Engine.QueryInterface(target, IID_Repairable);
+	if (cmpRepairable)
 	{
-		cmpHealth.Repair(this.entity, rate);
+		cmpRepairable.Repair(this.entity, rate);
 		return;
 	}
 };

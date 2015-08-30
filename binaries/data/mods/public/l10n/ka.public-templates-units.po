@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 08:36+0000\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-22 08:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
+"Language-Team: Georgian (http://www.transifex.com/wildfire-games/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,7 +39,7 @@ msgstr "ჯარისკაცი"
 #: simulation/templates/template_unit_cavalry.xml:39
 #: simulation/templates/template_unit_dog.xml:53
 #: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_healer.xml:23
+#: simulation/templates/template_unit_support_healer.xml:22
 #: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:10
 #: simulation/templates/units/gaul_support_healer_b.xml:9
@@ -60,10 +60,12 @@ msgstr "საწყისი"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:33
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
+#: simulation/templates/template_unit_hero_elephant_melee.xml:47
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
 #: simulation/templates/template_unit_infantry_melee.xml:26
+#: simulation/templates/units/maur_ship_trireme.xml:20
 msgid "Melee"
 msgstr "შემტაკებელი"
 
@@ -114,6 +116,7 @@ msgstr "მსროლელი მხედარი"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Ranged"
 msgstr "მსროლელი"
 
@@ -278,6 +281,7 @@ msgstr "მოკალი, შემდეგ შეაგროვე ხო�
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_hero.xml:20
 #: simulation/templates/template_unit_hero_infantry.xml:24
+#: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Hero"
 msgstr "გმირი"
 
@@ -388,6 +392,12 @@ msgid ""
 "for each garrisoned). Gather profitable aquatic treasures."
 msgstr "ივაჭრე ნავსაშენებს შორის. გარნიზონში ჩაუყენე ვაჭარი დამატებით მოგებისთვის (+20% თითო გარნიზონში ჩაყენებულისთვის). მოაგროვე შემოსავლის მომტანი საზღვაო განძები."
 
+#: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
+#: simulation/templates/template_unit_support_trader.xml:15
+#: simulation/templates/template_unit_support_trader.xml:16
+msgid "Trader"
+msgstr "ვაჭარი"
+
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
 msgstr "მძიმე საბრძოლო გემი"
@@ -399,6 +409,14 @@ msgstr "გარნიზონში ჩაუყენე ფილაკვ�
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
 msgstr "საშუალო საბრძოლო გემი"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+msgid "Warship"
+msgstr ""
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+msgid "Medium"
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -425,6 +443,7 @@ msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
 msgstr "გარნიზონში ჩაუყენე 20-მდე ქვეითი, რომ გაზარდო ისრების რაოდენობა 0-დან 10-მდე."
 
+#: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
 msgstr "მხარდამჭერი"
@@ -442,34 +461,30 @@ msgid "Female Citizen"
 msgstr "ქალი მოქალაქე"
 
 #: simulation/templates/template_unit_support_healer.xml:20
+#: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Healer"
 msgstr "მკურნალი"
 
 #: simulation/templates/template_unit_support_healer.xml:21
-msgid ""
-"Classes: Support Healer.\n"
-"Heal units."
-msgstr "ხარისხები: მხარდამჭერი მკურნალი.\nკურნავს ხალხს."
+msgid "Heal units."
+msgstr ""
 
+#: simulation/templates/template_unit_support_slave.xml:39
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
 msgstr "მონა"
 
+#: simulation/templates/template_unit_support_slave.xml:39
+msgid "Worker"
+msgstr ""
+
 #: simulation/templates/template_unit_support_slave.xml:42
-msgid ""
-"Classes: Support Worker Slave.\n"
-"Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "ხარისხები: მხარდამჭერი მუშა მონა.\nშემგროვებელი საზღვრული დროის სიცოცხლით. დაჯილდოებული მოპოვებისას და ხის ჭრისას."
+msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
+msgstr ""
 
-#: simulation/templates/template_unit_support_trader.xml:15
-msgid "Trader"
-msgstr "ვაჭარი"
-
-#: simulation/templates/template_unit_support_trader.xml:17
-msgid ""
-"Classes: Support Trader.\n"
-"Trade resources between your own markets and those of your allies."
-msgstr "ხარისხები: მხარდამჭერი ვაჭარი.\nსახსრებით ივაჭრე საკუთარ და მოკავშირეების ბაზრებს შორის."
+#: simulation/templates/template_unit_support_trader.xml:18
+msgid "Trade resources between your own markets and those of your allies."
+msgstr ""
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -991,10 +1006,8 @@ msgstr ""
 #: simulation/templates/units/brit_ship_trireme.xml:19
 #: simulation/templates/units/gaul_ship_trireme.xml:19
 #: simulation/templates/units/iber_ship_trireme.xml:19
-msgid ""
-"Classes: Medium Warship Ranged\n"
-"Transport many soldiers across the sea."
-msgstr "ხარისხები: საშუალო მსროლელი საბრძოლო გემი\nგადაიყვანე ბევრი ჯარისკაცი ზღვის გადაღმა."
+msgid "Transport many soldiers across the sea."
+msgstr ""
 
 #: simulation/templates/units/brit_support_female_citizen.xml:18
 #: simulation/templates/units/gaul_support_female_citizen.xml:18
@@ -1308,10 +1321,8 @@ msgid "Leial Zalduneria"
 msgstr ""
 
 #: simulation/templates/units/iber_champion_cavalry.xml:21
-msgid ""
-"Classes: Champion Ranged Cavalry Skirmisher.\n"
-"Special: Flaming javelins. Good vs. Buildings."
-msgstr "ხარისხები: ფალავანი მსროლელი მხედარი შემტაკებელი.\nგანსაკუთრებული: ცეცხლოვანი სატყორცნი შუბი. კარგია შენობები წინააღმდეგ."
+msgid "Special: Flaming javelins. Good vs. Buildings."
+msgstr ""
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1585,6 +1596,14 @@ msgstr "ინდური მოიერიშე მხედარი"
 msgid "Aśvārohagaṇaḥ"
 msgstr "Aśvārohagaṇaḥ"
 
+#: simulation/templates/units/maur_champion_chariot.xml:9
+#: simulation/templates/units/maur_hero_ashoka.xml:12
+#: simulation/templates/units/pers_cavalry_archer_b.xml:9
+#: simulation/templates/units/pers_hero_darius.xml:21
+#: simulation/templates/units/sele_champion_chariot.xml:10
+msgid "Chariot"
+msgstr ""
+
 #: simulation/templates/units/maur_champion_chariot.xml:10
 msgid "War Chariot"
 msgstr "საბრძოლო ეტლი"
@@ -1594,8 +1613,8 @@ msgid "Rath"
 msgstr "ოთხ ბორბლიანი ეტლი"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
-msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
-msgstr "ხარისხები: ფალავანი მსროლელი მხედარი ეტლი მშვილდოსანი. იწვევს გამთელავ დაზიანებას."
+msgid "Deals Trample Damage."
+msgstr ""
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1613,10 +1632,6 @@ msgstr "მებრძოლი"
 #: simulation/templates/units/maur_champion_infantry.xml:20
 msgid "Yōddha"
 msgstr "Yōddha"
-
-#: simulation/templates/units/maur_champion_infantry.xml:24
-msgid "Classes: Champion Melee Infantry Swordsman."
-msgstr "ხარისხები: ფალავანი შემტაკებელი ქვეითი მოფარიკავე."
 
 #: simulation/templates/units/maur_champion_maiden.xml:6
 msgid "Maiden Guard"
@@ -1651,28 +1666,26 @@ msgstr "აშოკა"
 msgid "Aśoka Devānāmpriya"
 msgstr "Aśoka Devānāmpriya"
 
-#: simulation/templates/units/maur_hero_ashoka.xml:13
+#: simulation/templates/units/maur_hero_ashoka.xml:14
 msgid ""
-"Hero Chariot Archer.\n"
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr "გმირი ეტლი მშვილდოსანი.\nგმირის ზეფირი: დახასიათება იქნება.\nგმირის განსაკუთრებული თვისებები: \"აშოკას ბრძანებულებები\" - აშოკას ბრძანებულებების სვეტები შეიძლება აშენდეს აშოკას სიცოცხლეში."
+msgstr ""
 
-#: simulation/templates/units/maur_hero_chanakya.xml:29
+#: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
 msgstr "მასწავლებელი ჩანაკია"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:30
+#: simulation/templates/units/maur_hero_chanakya.xml:31
 msgid "Acharya Chāṇakya"
 msgstr "Acharya Chāṇakya"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:32
+#: simulation/templates/units/maur_hero_chanakya.xml:33
 msgid ""
-"Classes: Hero Healer.\n"
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr "ხარისხები: გმირი მკურნალი.\nგმირის განსაკუთრებული თვისება: \"მკურნალი\" - კურნავს სწრაფი ტემპით.\nგმირის განსაკუთრებული თვისება: \"მასწავლებელი\" - გააძლიერო შენობა რომ გამოიკვლიო და გაწვრთნა +50%-ი სწრაფად.\nგმირის განსაკუთრებული თვისება: \"ფილოსოფოსი\" - გამოიკვლიო მხოლოდ ჩანაკიასთვის ხელმისაწვდომი 4 განსაკუთრებული ტექნოლოგია."
+msgstr ""
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1680,10 +1693,8 @@ msgid "Chandragupta Maurya"
 msgstr ""
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
-msgid ""
-"Classes: Hero Melee Elephant.\n"
-"Hero Aura: TBD."
-msgstr "ხარისხები: გმირი შემტაკებელი სპილოთი.\nგმირის ზეფირი: დახასიათება იქნება."
+msgid "Hero Aura: TBD."
+msgstr ""
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1730,10 +1741,6 @@ msgstr "სავაჭრო გემი"
 msgid "Vanijyik Nauka"
 msgstr ""
 
-#: simulation/templates/units/maur_ship_trireme.xml:20
-msgid "Classes: Mechanical Warship Medium Ranged Melee."
-msgstr "ხარისხები: მექანიკური საბრძოლო გემი საშუალო მსროლელი შემტაკებელი."
-
 #: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Worker Elephant"
 msgstr "მუშა სპილო"
@@ -1777,8 +1784,12 @@ msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
-msgid "Classes: Mercenary Melee Infantry Swordsman."
-msgstr "ხარისხები: დაქირავებული შემტაკებელი ქვეითი მოფარიკავე."
+#: simulation/templates/units/ptol_infantry_archer_b.xml:23
+#: simulation/templates/units/samnite_swordsman.xml:9
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
+#: simulation/templates/units/thrace_black_cloak.xml:23
+msgid "Mercenary"
+msgstr ""
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1801,10 +1812,8 @@ msgid "Babiruviya Ratha"
 msgstr ""
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:15
-msgid ""
-"Classes: Ranged Cavalry Chariot Archer.\n"
-"Causes trample damage to enemy units."
-msgstr "ხარისხები: მსროლელი მხედარი მშვილდოსანი ეტლი.\nმოწინააღმდეგეებზე იწვევს გამთელავ დაზიანებას."
+msgid "Causes trample damage to enemy units."
+msgstr ""
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -1894,10 +1903,9 @@ msgstr ""
 
 #: simulation/templates/units/pers_hero_darius.xml:25
 msgid ""
-"Hero Scythe Chariot Archer.\n"
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr "გმირი სკვითი მშვილდოსანი ეტლი.\nგმირის ზეფირი: \"იმპერიის ვაჭარი.\" ზრდის ვაჭრობის მოგებას მის ცხოვრებაში (გაგრძელება იქნება).\nშორიდან მსროლელი 2x მსროლელი შუბიანის წინააღმდეგ. შორიდან მსროლელი 1.5x მოფარიკავეს წინააღმდეგ."
+msgstr ""
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2025,6 +2033,11 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "ივაჭრე სახსრებით შენი და მოწინააღმდეგის ბაზრებში. სპარსებს აქვთ +25% მიწაზე ვაჭრობის ჯილდო."
 
+#: simulation/templates/units/ptol_cavalry_archer_b.xml:5
+#: simulation/templates/units/sele_cavalry_archer_b.xml:6
+msgid "Camel"
+msgstr ""
+
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
 msgstr "ნაბათაელი მშვილდოსანი აქლემი"
@@ -2032,11 +2045,6 @@ msgstr "ნაბათაელი მშვილდოსანი აქლ�
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
 msgstr "Mutsābiq Gamal Nabatu"
-
-#: simulation/templates/units/ptol_cavalry_archer_b.xml:11
-#: simulation/templates/units/sele_cavalry_archer_b.xml:12
-msgid "Classes: Ranged Cavalry Camel Archer."
-msgstr "ხარისხები: მსროლელი მხედარი აქლემი მშვილდოსანი."
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:13
 msgid "Tarantine Settler Cavalry"
@@ -2096,9 +2104,9 @@ msgstr ""
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:22
 msgid ""
-"Classes: Hero Infantry Archer.\n"
-"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
-msgstr "ხარისხები: გმირი ქვეითი მშვილდოსანი.\n\"მეუღლე\" ზეფირი (გაგრძელება იქნება): გაზრდილი ნაყოფიერება მოკავშირე გმირებზე მისი ხედვის არეში. შემცირებული ნაყოფიერება მტრის გმირებზე."
+"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
+"vision. Decreased effectiveness for enemy heroes."
+msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
@@ -2147,10 +2155,6 @@ msgstr "ნუბიელი დაქირავებული მშვი�
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
 msgid "Kousít Misthophóros Toxótēs"
 msgstr ""
-
-#: simulation/templates/units/ptol_infantry_archer_b.xml:28
-msgid "Classes: Ranged Mercenary Infantry Archer Worker."
-msgstr "ხარისხები: მსროლელი დაქირავებული ქვეითი მშვილდოსანი მუშა."
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:14
 msgid "Mercenary Thureos Skirmisher"
@@ -2424,10 +2428,8 @@ msgid "(Samnite Swordsman)"
 msgstr "(სამნიტი მოფარიკავე)"
 
 #: simulation/templates/units/samnite_swordsman.xml:7
-msgid ""
-"Mercenary swordsman.\n"
-"Bonus vs. All Spear Units."
-msgstr "დაქირავებული მოფარიკავე.\nჯოლდო ყველა შუბოსნის წინააღმდეგ."
+msgid "Bonus vs. All Spear Units."
+msgstr ""
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Dahae Horse Archer"
@@ -2468,10 +2470,6 @@ msgstr "სკვითური ეტლი"
 #: simulation/templates/units/sele_champion_chariot.xml:12
 msgid "Drepanèphoros"
 msgstr "Drepanèphoros"
-
-#: simulation/templates/units/sele_champion_chariot.xml:15
-msgid "Classes: Champion Ranged Cavalry Chariot Archer."
-msgstr "ხარისხები: ფალავანი მსროლელი მხედარი ეტლი მშვილდოსანი."
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Armored War Elephant"
@@ -2579,10 +2577,6 @@ msgstr "მილიცია თურეით და სასროლი �
 msgid "Thureophóros Politès"
 msgstr "Thureophóros Politès"
 
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
-msgid "Classes: Mercenary Citizen Melee Infantry Swordsman."
-msgstr "ხარისები: დაქირავებული მოქალაქე შემტაკებელი ქვეითი მოფარიკავე."
-
 #: simulation/templates/units/sele_ship_quinquereme.xml:5
 msgid "Pentères"
 msgstr "Pentères"
@@ -2634,10 +2628,6 @@ msgstr "სპარტელი ჰოპლიტი"
 #: simulation/templates/units/spart_champion_infantry_spear.xml:7
 msgid "Spartiátēs"
 msgstr ""
-
-#: simulation/templates/units/spart_champion_infantry_spear.xml:8
-msgid "Classes: Champion Melee Infantry Spearman."
-msgstr "ხარისხები: ფალავანი შემტაკებელი ქვეითი სასროლი შუბით."
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:16
 msgid "Skiritai Commando"
@@ -2761,10 +2751,6 @@ msgstr "თრაკიური შავი მოსასხამი"
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid "Rhomphaiaphoros"
 msgstr ""
-
-#: simulation/templates/units/thrace_black_cloak.xml:22
-msgid "Classes: Mercenary Champion Melee Infantry Swordsman."
-msgstr "ხარისხები: დაქირავებული ფალავანი შემტაკებელი ქვეითი მოფარიკავე."
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"

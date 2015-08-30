@@ -21,6 +21,7 @@
 # Marcin Kozłowski <martinkoaz@gmail.com>, 2015
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Michał Garapich <michal@garapich.pl>, 2013
+# Michał Koźlarek <m.kozlarek@vp.pl>, 2015
 # Michał Olber <michal.olber@osworld.pl>, 2013
 # miragae <miragae@gmail.com>, 2014
 # miragae <miragae@gmail.com>, 2014
@@ -42,10 +43,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-15 08:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-08-07 16:29+0000\n"
+"Last-Translator: Michał Koźlarek <m.kozlarek@vp.pl>\n"
+"Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -101,7 +102,7 @@ msgstr "Potwierdzenie"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Czy na pewno chcesz wyjść? To spowoduje rozłączenie innych graczy."
+msgstr "Czy na pewno chcesz wyjść? Spowoduje to rozłączenie się innych graczy."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -147,8 +148,8 @@ msgid "Enemy"
 msgstr "Wróg"
 
 #: gui/session/menu.js:349
-msgid "request for your allies to attack this enemy"
-msgstr "Rozkaż swoim sojusznikom zatakować tego przeciwnika"
+msgid "Request your allies to attack this enemy"
+msgstr "Wezwij sojusznika do ataku na tego wroga."
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -269,19 +270,19 @@ msgstr[0] "Jest %(numberOfShipTraders)s nieaktywny statek handlowy"
 msgstr[1] "Liczba nieaktywnych statków handlowych wynosi %(numberOfShipTraders)s"
 msgstr[2] "Liczba nieaktywnych statków handlowych wynosi %(numberOfShipTraders)s"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Poradnik"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "Warstwa programistyczna została otwarta."
 
-#: gui/session/menu.js:691
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "Warstwa programistyczna została zamknięta."
 
-#: gui/session/menu.js:707
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -397,8 +398,8 @@ msgstr "%(player)s wysłał Ci %(amounts)s."
 
 #: gui/session/messages.js:521
 #, javascript-format
-msgid "Your livestock have been attacked by %(attacker)s!"
-msgstr "Towoje zwierzęta chodowlane zostały zaatakowane przez %(attacker)s!"
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr ""
 
 #: gui/session/messages.js:523
 #, javascript-format
@@ -752,22 +753,22 @@ msgstr "ZWYCIĘSTWO!"
 #: gui/session/session.js:566
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Tak"
 
 #: gui/session/session.js:566
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 #: gui/session/session.js:568
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "Koniec powtórki. Czy chcesz wyjść?"
 
 #: gui/session/session.js:568
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Potwierdzenie"
 
 #: gui/session/session.js:729
 msgid "Population (current / limit)"

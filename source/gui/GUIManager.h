@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_GUIMANAGER
 
 #include <boost/unordered_set.hpp>
+#include <set>
 
 #include "lib/input.h"
 #include "lib/file/vfs/vfs_path.h"
@@ -27,8 +28,6 @@
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/ScriptVal.h"
 #include "scriptinterface/ScriptInterface.h"
-
-#include <set>
 
 class CGUI;
 class JSObject;
@@ -52,9 +51,9 @@ public:
 	CGUIManager();
 	~CGUIManager();
 
-	shared_ptr<ScriptInterface> GetScriptInterface() 
-	{ 
-		return m_ScriptInterface; 
+	shared_ptr<ScriptInterface> GetScriptInterface()
+	{
+		return m_ScriptInterface;
 	}
 	shared_ptr<ScriptRuntime> GetRuntime() { return m_ScriptRuntime; }
 	shared_ptr<CGUI> GetActiveGUI() { return top(); }
@@ -106,7 +105,7 @@ public:
 	/**
 	 * See CGUI::GetPreDefinedColor; applies to the currently active page.
 	 */
-	bool GetPreDefinedColor(const CStr& name, CColor& output);
+	bool GetPreDefinedColor(const CStr& name, CColor& output) const;
 
 	/**
 	 * See CGUI::FindObjectByName; applies to the currently active page.
@@ -116,7 +115,7 @@ public:
 	/**
 	 * See CGUI::SendEventToAll; applies to the currently active page.
 	 */
-	void SendEventToAll(const CStr& eventName);
+	void SendEventToAll(const CStr& eventName) const;
 
 	/**
 	 * See CGUI::TickObjects; applies to @em all loaded pages.
@@ -137,13 +136,13 @@ public:
  	 * Calls the current page's script function getSavedGameData() and returns the result.
  	 */
 	std::string GetSavedGameData();
- 
+
 	void RestoreSavedGameData(std::string jsonData);
 
 	/**
 	 * Check if a template with this name exists
 	 */
-	bool TemplateExists(const std::string& templateName);
+	bool TemplateExists(const std::string& templateName) const;
 
 	/**
 	 * Retrieve the requested template, used for displaying faction specificities.
@@ -166,7 +165,7 @@ private:
 	void LoadPage(SGUIPage& page);
 
 	shared_ptr<CGUI> top() const;
-	
+
 	shared_ptr<CGUI> m_CurrentGUI; // used to latch state during TickObjects/LoadPage (this is kind of ugly)
 	shared_ptr<ScriptRuntime> m_ScriptRuntime;
 	shared_ptr<ScriptInterface> m_ScriptInterface;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,22 +37,15 @@ A GUI ScrollBar
 #ifndef INCLUDED_CGUISCROLLBARVERTICAL
 #define INCLUDED_CGUISCROLLBARVERTICAL
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "IGUIScrollBar.h"
 #include "GUI.h"
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * Vertical implementation of IGUIScrollBar
  *
  * @see IGUIScrollBar
  */
- class CGUIScrollBarVertical : public IGUIScrollBar
+class CGUIScrollBarVertical : public IGUIScrollBar
 {
 public:
 	CGUIScrollBarVertical();
@@ -71,28 +64,28 @@ public:
 	 *
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * Set m_Pos with g_mouse_x/y input, i.e. when dragging.
 	 */
-	virtual void SetPosFromMousePos(const CPos &mouse);
+	virtual void SetPosFromMousePos(const CPos& mouse);
 
 	/**
 	 * @see IGUIScrollBar#HoveringButtonMinus
 	 */
-	virtual bool HoveringButtonMinus(const CPos &mouse);
+	virtual bool HoveringButtonMinus(const CPos& mouse);
 
 	/**
 	 * @see IGUIScrollBar#HoveringButtonPlus
 	 */
-	virtual bool HoveringButtonPlus(const CPos &mouse);
+	virtual bool HoveringButtonPlus(const CPos& mouse);
 
 	/**
 	 * Set Right Aligned
 	 * @param align Alignment
 	 */
-	void SetRightAligned(const bool &align) { m_RightAligned = align; }
+	void SetRightAligned(const bool& align) { m_RightAligned = align; }
 
 	/**
 	 * Get the rectangle of the actual BAR.
@@ -115,4 +108,4 @@ protected:
 	bool m_RightAligned;
 };
 
-#endif
+#endif // INCLUDED_CGUISCROLLBARVERTICAL

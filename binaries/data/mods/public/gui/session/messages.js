@@ -4,20 +4,14 @@ const MAX_NUM_CHAT_LINES = 20;
 var chatMessages = [];
 var chatTimers = [];
 
-// Notification Data
-const NOTIFICATION_TIMEOUT = 10000;
-const MAX_NUM_NOTIFICATION_LINES = 3;
-var notifications = [];
-var notificationsTimers = [];
-var cheats = getCheatsData();
+var g_Cheats = getCheatsData();
 
 function getCheatsData()
 {
 	var cheats = {};
-	var cheatFileList = getJSONFileList("simulation/data/cheats/");
-	for each (var fileName in cheatFileList)
+	for (let fileName of getJSONFileList("simulation/data/cheats/"))
 	{
-		var currentCheat = Engine.ReadJSONFile("simulation/data/cheats/"+fileName+".json");
+		let currentCheat = Engine.ReadJSONFile("simulation/data/cheats/"+fileName+".json");
 		if (!currentCheat)
 			continue;
 		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
@@ -26,6 +20,38 @@ function getCheatsData()
 			cheats[currentCheat.Name] = currentCheat.Data;
 	}
 	return cheats;
+}
+
+function executeCheat(text)
+{
+	if (g_IsObserver || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
+		return false;
+
+	// Find the cheat code that is a prefix of the user input
+	var cheatCode = Object.keys(g_Cheats).find(cheatCode => text.indexOf(cheatCode) == 0);
+	if (!cheatCode)
+		return false;
+
+	var cheat = g_Cheats[cheatCode];
+
+	var parameter = text.substr(cheatCode.length);
+	if (cheat.isNumeric)
+		parameter = +parameter;
+
+	if (cheat.DefaultParameter && (isNaN(parameter) || parameter <= 0))
+		parameter = cheat.DefaultParameter;
+
+	Engine.PostNetworkCommand({ 
+		"type": "cheat",
+		"action": cheat.Action,
+		"text": cheat.Type,
+		"player": Engine.GetPlayerID(),
+		"parameter": parameter,
+		"templates": cheat.Templates,
+		"selected": g_Selection.toList()
+	});
+
+	return true;
 }
 
 var g_NotificationsTypes =
@@ -198,7 +224,7 @@ function updateTimeNotifications()
 // Returns [username, playercolor] for the given player
 function getUsernameAndColor(player)
 {
-	// This case is hit for AIs, whose names don't exist in playerAssignments.
+	// This case is hit for AIs, whose names don't exist in g_PlayerAssignments.
 	var color = g_Players[player].color;
 	return [
 		escapeText(g_Players[player].name),
@@ -209,7 +235,7 @@ function getUsernameAndColor(player)
 // Messages
 function handleNetMessage(message)
 {
-	log(sprintf(translate("Net message: %(message)s"), { message: uneval(message) }));
+	log("Net message: " + uneval(message));
 
 	switch (message.type)
 	{
@@ -266,20 +292,18 @@ function handleNetMessage(message)
 			}
 		}
 
-		// Find and report all joinings
-		for (var host in message.hosts)
-		{
-			if (!g_PlayerAssignments[host])
-			{
-				// Update the cached player data, so we can display the correct name
-				updatePlayerDataAdd(g_Players, host, message.hosts[host]);
-
-				// Tell the user about the connection
-				addChatMessage({ "type": "connect", "guid": host }, message.hosts);
-			}
-		}
+		var joins = Object.keys(message.hosts).filter(host => !g_PlayerAssignments[host]);
 
 		g_PlayerAssignments = message.hosts;
+
+		// Report all joinings
+		joins.forEach(host => {
+			// Update the cached player data, so we can display the correct name
+			updatePlayerDataAdd(g_Players, host, g_PlayerAssignments[host]);
+
+			// Tell the user about the connection
+			addChatMessage({ "type": "connect", "guid": host });
+		});
 
 		if (g_IsController && Engine.HasXmppClient())
 		{
@@ -298,9 +322,9 @@ function handleNetMessage(message)
 		break;
 
 	case "rejoined":
-		addChatMessage({ "type": "rejoined", "guid": message.guid});
+		addChatMessage({ "type": "rejoined", "guid": message.guid });
 		break;
-		
+
 	// To prevent errors, ignore these message types that occur during autostart
 	case "gamesetup":
 	case "start":
@@ -313,112 +337,62 @@ function handleNetMessage(message)
 
 function submitChatDirectly(text)
 {
-	if (text.length)
-	{
-		if (g_IsNetworked)
-			Engine.SendNetworkChat(text);
-		else
-			addChatMessage({ "type": "message", "guid": "local", "text": text });
-	}
+	if (!text.length)
+		return;
+
+	if (g_IsNetworked)
+		Engine.SendNetworkChat(text);
+	else
+		addChatMessage({ "type": "message", "guid": "local", "text": text });
 }
 
 function submitChatInput()
 {
 	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = input.caption;
-	var isCheat = false;
-	if (text.length)
-	{
-		if (!g_IsObserver && g_Players[Engine.GetPlayerID()].cheatsEnabled)
-		{
-			for each (var cheat in Object.keys(cheats))
-			{
-				// Line must start with the cheat.
-				if (text.indexOf(cheat) !== 0)
-					continue;
-
-				// test for additional parameter which is the rest of the string after the cheat
-				var parameter = "";
-				if (cheats[cheat].DefaultParameter !== undefined)
-				{
-					var par = text.substr(cheat.length);
-					par = par.replace(/^\W+/, '').replace(/\W+$/, ''); // remove whitespaces at start and end
-
-					// check, if the isNumeric flag is set
-					if (cheats[cheat].isNumeric)
-					{
-						// Match the first word in the substring.
-						var match = par.match(/\S+/);
-						if (match && match[0])
-							par = Math.floor(match[0]);
-						// check, if valid number could be parsed
-						if (par <= 0 || isNaN(par))
-							par = "";
-					}
-
-					// replace default parameter, if not empty or number
-					if (par.length > 0 || parseFloat(par) === par)
-						parameter = par;
-					else
-						parameter = cheats[cheat].DefaultParameter;
-				}
-
-				Engine.PostNetworkCommand({
-					"type": "cheat",
-					"action": cheats[cheat].Action,
-					"parameter": parameter,
-					"text": cheats[cheat].Type,
-					"selected": g_Selection.toList(),
-					"templates": cheats[cheat].Templates,
-					"player": Engine.GetPlayerID()});
-				isCheat = true;
-				break;
-			}
-		}
-
-		// Observers should only send messages to "/all"
-		if (!isCheat && (!g_IsObserver || text.indexOf("/") == -1 || text.indexOf("/all ") == 0))
-		{
-			if (Engine.GetGUIObjectByName("toggleTeamChat").checked)
-				text = "/team " + text;
-
-			if (g_IsNetworked)
-				Engine.SendNetworkChat(text);
-			else
-				addChatMessage({ "type": "message", "guid": "local", "text": text });
-		}
-		input.caption = ""; // Clear chat input
-	}
 
 	input.blur(); // Remove focus
-
+	input.caption = ""; // Clear chat input
 	toggleChatWindow();
+
+	if (!text.length)
+		return;
+
+	if (executeCheat(text))
+		return;
+
+	// Observers should only be able to chat with everyone.
+	if (g_IsObserver && text.indexOf("/") == 0 && text.indexOf("/me ") != 0)
+		return;
+
+	if (Engine.GetGUIObjectByName("toggleTeamChat").checked)
+		text = "/team " + text;
+
+	if (g_IsNetworked)
+		Engine.SendNetworkChat(text);
+	else
+		addChatMessage({ "type": "message", "guid": "local", "text": text });
 }
 
-function addChatMessage(msg, playerAssignments)
+function addChatMessage(msg)
 {
-	// Default to global assignments, but allow overriding for when reporting
-	// new players joining
-	if (!playerAssignments)
-		playerAssignments = g_PlayerAssignments;
-
 	var playerColor, username;
 
 	// No context by default. May be set by parseChatCommands().
 	msg.context = "";
 
-	if ("guid" in msg && playerAssignments[msg.guid])
+	if ("guid" in msg && g_PlayerAssignments[msg.guid])
 	{
-		var n = playerAssignments[msg.guid].player;
+		var n = g_PlayerAssignments[msg.guid].player;
 		// Observers have an ID of -1 which is not a valid index.
 		if (n < 0)
 			n = 0;
 		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
-		username = escapeText(playerAssignments[msg.guid].name);
+		username = escapeText(g_PlayerAssignments[msg.guid].name);
 
 		// Parse in-line commands in regular messages.
 		if (msg.type == "message")
-			parseChatCommands(msg, playerAssignments);
+			parseChatCommands(msg);
 	}
 	else if (msg.type == "defeat" && msg.player)
 	{
@@ -427,7 +401,7 @@ function addChatMessage(msg, playerAssignments)
 	else if (msg.type == "message")
 	{
 		[username, playerColor] = getUsernameAndColor(msg.player);
-		parseChatCommands(msg, playerAssignments);
+		parseChatCommands(msg);
 	}
 	else
 	{
@@ -440,20 +414,20 @@ function addChatMessage(msg, playerAssignments)
 	switch (msg.type)
 	{
 	case "connect":
-		formatted = sprintf(translate("%(player)s is starting to rejoin the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s is starting to rejoin the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "disconnect":
-		formatted = sprintf(translate("%(player)s has left the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s has left the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "rejoined":
-		formatted = sprintf(translate("%(player)s has rejoined the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s has rejoined the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "defeat":
 		// In singleplayer, the local player is "You". "You has" is incorrect.
 		if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
 			formatted = translate("You have been defeated.");
 		else
-			formatted = sprintf(translate("%(player)s has been defeated."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+			formatted = sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "diplomacy":
 		var message;
@@ -500,14 +474,14 @@ function addChatMessage(msg, playerAssignments)
 		{
 			let lastAmount = amounts.pop();
 			amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
-				previousAmounts: amounts.join(translate(", ")),
-				lastAmount: lastAmount
+				"previousAmounts": amounts.join(translate(", ")),
+				"lastAmount": lastAmount
 			});
 		}
 
 		formatted = sprintf(translate("%(player)s has sent you %(amounts)s."), {
-			player: "[color=\"" + playerColor + "\"]" + username + "[/color]",
-			amounts: amounts
+			"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+			"amounts": amounts
 		});
 		break;
 	case "attack":
@@ -521,7 +495,7 @@ function addChatMessage(msg, playerAssignments)
 			var message = translate("Your livestock has been attacked by %(attacker)s!");
 		else
 			var message = translate("You have been attacked by %(attacker)s!");
-		formatted = sprintf(message, { attacker: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "message":
 		// May have been hidden by the 'team' command.
@@ -547,39 +521,39 @@ function addChatMessage(msg, playerAssignments)
 			if (msg.context !== "")
 			{
 				formatted = sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
-					context: msg.context,
-					user: "[color=\"" + playerColor + "\"]" + username + "[/color]",
-					message: message
+					"context": msg.context,
+					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+					"message": message
 				});
 			}
 			else
 			{
 				formatted = sprintf(translate("* %(user)s %(message)s"), {
-					user: "[color=\"" + playerColor + "\"]" + username + "[/color]",
-					message: message
+					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+					"message": message
 				});
 			}
 		}
 		else
 		{
-			var userTag = sprintf(translate("<%(user)s>"), { user: username })
-			var formattedUserTag = sprintf(translate("<%(user)s>"), { user: "[color=\"" + playerColor + "\"]" + username + "[/color]" })
+			var userTag = sprintf(translate("<%(user)s>"), { "user": username })
+			var formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" })
 			if (msg.context !== "")
 			{
 				formatted = sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
-					context: msg.context,
-					userTag: formattedUserTag,
-					message: message
+					"context": msg.context,
+					"userTag": formattedUserTag,
+					"message": message
 				});
 			}
 			else
 			{
-				formatted = sprintf(translate("%(userTag)s %(message)s"), { userTag: formattedUserTag, message: message});
+				formatted = sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
 			}
 		}
 		break;
 	default:
-		error(sprintf("Invalid chat message '%(message)s'", { message: uneval(msg) }));
+		error("Invalid chat message " + uneval(msg));
 		return;
 	}
 
@@ -601,15 +575,15 @@ function removeOldChatMessages()
 }
 
 // Parses chat messages for commands.
-function parseChatCommands(msg, playerAssignments)
+function parseChatCommands(msg)
 {
 	// Only interested in messages that start with '/'.
 	if (!msg.text || msg.text[0] != '/')
 		return;
 
 	var sender;
-	if (playerAssignments[msg.guid])
-		sender = playerAssignments[msg.guid].player;
+	if (g_PlayerAssignments[msg.guid])
+		sender = g_PlayerAssignments[msg.guid].player;
 	else
 		sender = msg.player;
 
@@ -668,7 +642,7 @@ function parseChatCommands(msg, playerAssignments)
 		var matched = "";
 
 		// Reject names which don't match or are a superset of the intended name.
-		for each (var player in playerAssignments)
+		for each (var player in g_PlayerAssignments)
 			if (trimmed.indexOf(player.name + " ") == 0 && player.name.length > matched.length)
 				matched = player.name;
 
@@ -696,7 +670,7 @@ function parseChatCommands(msg, playerAssignments)
 
 	// Attempt to parse more commands if the current command allows it.
 	if (recurse)
-		parseChatCommands(msg, playerAssignments);
+		parseChatCommands(msg);
 }
 
 function sendDialogAnswer(guiObject, dialogName)
@@ -714,10 +688,10 @@ function sendDialogAnswer(guiObject, dialogName)
 
 function openDialog(dialogName, data, player)
 {
-	var dialog = Engine.GetGUIObjectByName(dialogName+"-dialog");
+	var dialog = Engine.GetGUIObjectByName(dialogName + "-dialog");
 	if (!dialog)
 	{
-		warn("messages.js: Unknow dialog with name "+dialogName);
+		warn("messages.js: Unknow dialog with name " + dialogName);
 		return;
 	}
 	dialog.hidden = false;

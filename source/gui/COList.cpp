@@ -14,14 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "precompiled.h"
-#include "COList.h"
-#include "i18n/L10n.h"
 
+#include "precompiled.h"
+
+#include "COList.h"
+
+#include "i18n/L10n.h"
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
 
-COList::COList() : CList(),m_HeadingHeight(30.f),m_SelectedDef(-1),m_SelectedColumnOrder(1)
+COList::COList()
+	: CList(), m_HeadingHeight(30.f), m_SelectedDef(-1), m_SelectedColumnOrder(1)
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_heading");
 	AddSetting(GUIST_bool,					"sortable"); // The actual sorting is done in JS for more versatility
@@ -44,20 +47,16 @@ void COList::SetupText()
 	if (!GetGUI())
 		return;
 
-	CGUIList *pList;
+	CGUIList* pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list_name", pList);
 
-	m_ItemsYPositions.resize( pList->m_Items.size()+1 );
+	m_ItemsYPositions.resize(pList->m_Items.size() + 1);
 
 	// Delete all generated texts. Some could probably be saved,
 	//  but this is easier, and this function will never be called
 	//  continuously, or even often, so it'll probably be okay.
-	std::vector<SGUIText*>::iterator it;
-	for (it=m_GeneratedTexts.begin(); it!=m_GeneratedTexts.end(); ++it)
-	{
-		if (*it)
-			delete *it;
-	}
+	for (SGUIText* const& t : m_GeneratedTexts)
+		delete t;
 	m_GeneratedTexts.clear();
 
 	CStrW font;
@@ -77,22 +76,22 @@ void COList::SetupText()
 	// Cache width for other use
 	m_TotalAvalibleColumnWidth = width;
 
-	float buffer_zone=0.f;
+	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 
 	CStr defaultColumn;
 	GUI<CStr>::GetSetting(this, "default_column", defaultColumn);
 	defaultColumn = "list_" + defaultColumn;
 
-	for (unsigned int c=0; c<m_ObjectsDefs.size(); ++c)
+	for (size_t c = 0; c < m_ObjectsDefs.size(); ++c)
 	{
-		SGUIText *text = new SGUIText();
+		SGUIText* text = new SGUIText();
 		CGUIString gui_string;
 		gui_string.SetValue(m_ObjectsDefs[c].m_Heading);
 		*text = GetGUI()->GenerateText(gui_string, font, width, buffer_zone, this);
 		AddText(text);
 
-		if (m_SelectedDef == -1 && defaultColumn == m_ObjectsDefs[c].m_Id)
+		if (m_SelectedDef == (size_t)-1 && defaultColumn == m_ObjectsDefs[c].m_Id)
 			m_SelectedDef = c;
 	}
 
@@ -100,16 +99,16 @@ void COList::SetupText()
 	// Generate texts
 	float buffered_y = 0.f;
 
-	for (int i=0; i<(int)pList->m_Items.size(); ++i)
+	for (size_t i = 0; i < pList->m_Items.size(); ++i)
 	{
 		m_ItemsYPositions[i] = buffered_y;
-		for (unsigned int c=0; c<m_ObjectsDefs.size(); ++c)
+		for (size_t c = 0; c < m_ObjectsDefs.size(); ++c)
 		{
-			CGUIList * pList_c;
+			CGUIList* pList_c;
 			GUI<CGUIList>::GetSettingPointer(this, m_ObjectsDefs[c].m_Id, pList_c);
-			SGUIText *text = new SGUIText();
+			SGUIText* text = new SGUIText();
 			*text = GetGUI()->GenerateText(pList_c->m_Items[i], font, width, buffer_zone, this);
-			if (c==0)
+			if (c == 0)
 				buffered_y += text->m_Size.cy;
 			AddText(text);
 		}
@@ -120,14 +119,14 @@ void COList::SetupText()
 	// Setup scrollbar
 	if (scrollbar)
 	{
-		GetScrollBar(0).SetScrollRange( m_ItemsYPositions.back() );
-		GetScrollBar(0).SetScrollSpace( GetListRect().GetHeight() );
+		GetScrollBar(0).SetScrollRange(m_ItemsYPositions.back());
+		GetScrollBar(0).SetScrollSpace(GetListRect().GetHeight());
 
 		CRect rect = GetListRect();
-		GetScrollBar(0).SetX( rect.right );
-		GetScrollBar(0).SetY( rect.top );
-		GetScrollBar(0).SetZ( GetBufferedZ() );
-		GetScrollBar(0).SetLength( rect.bottom - rect.top );
+		GetScrollBar(0).SetX(rect.right);
+		GetScrollBar(0).SetY(rect.top);
+		GetScrollBar(0).SetZ(GetBufferedZ());
+		GetScrollBar(0).SetLength(rect.bottom - rect.top);
 	}
 }
 
@@ -136,7 +135,7 @@ CRect COList::GetListRect() const
 	return m_CachedActualSize + CRect(0, m_HeadingHeight, 0, 0);
 }
 
-void COList::HandleMessage(SGUIMessage &Message)
+void COList::HandleMessage(SGUIMessage& Message)
 {
 	CList::HandleMessage(Message);
 
@@ -153,9 +152,9 @@ void COList::HandleMessage(SGUIMessage &Message)
 		CPos mouse = GetMousePos();
 		if (!m_CachedActualSize.PointInside(mouse))
 			return;
-		
+
 		float xpos = 0;
-		for (unsigned int def = 0; def < m_ObjectsDefs.size(); ++def)
+		for (size_t def = 0; def < m_ObjectsDefs.size(); ++def)
 		{
 			float width = m_ObjectsDefs[def].m_Width;
 			// Check if it's a decimal value, and if so, assume relative positioning.
@@ -166,7 +165,7 @@ void COList::HandleMessage(SGUIMessage &Message)
 				mouse.x < leftTopCorner.x + width &&
 				mouse.y < leftTopCorner.y + m_HeadingHeight)
 			{
-				if (static_cast<int> (def) != m_SelectedDef)
+				if (def != m_SelectedDef)
 				{
 					m_SelectedColumnOrder = 1;
 					m_SelectedDef = def;
@@ -198,7 +197,6 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
 	ELMT(item);
-	ELMT(heading);
 	ELMT(def);
 	ELMT(translatableAttribute);
 	ATTR(id);
@@ -209,20 +207,14 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 		AddItem(child.GetText().FromUTF8(), child.GetText().FromUTF8());
 		return true;
 	}
-	else if (child.GetNodeName() == elmt_heading)
-	{
-		CStrW text (child.GetText().FromUTF8());
-
-		return true;
-	}
 	else if (child.GetNodeName() == elmt_def)
 	{
 		ObjectDef oDef;
 
 		for (XMBAttribute attr : child.GetAttributes())
 		{
-			CStr attr_name (pFile->GetAttributeString(attr.Name));
-			CStr attr_value (attr.Value);
+			CStr attr_name(pFile->GetAttributeString(attr.Name));
+			CStr attr_value(attr.Value);
 
 			if (attr_name == "color")
 			{
@@ -244,9 +236,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 				{
 					// Check if it's a relative value, and save as decimal if so.
 					if (attr_value.find("%") != std::string::npos)
-					{
 						width = width / 100.f;
-					}
 					oDef.m_Width = width;
 				}
 			}
@@ -254,37 +244,35 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			{
 				oDef.m_Heading = attr_value.FromUTF8();
 			}
-
 		}
 
 		for (XMBElement grandchild : child.GetChildNodes())
 		{
-			if (grandchild.GetNodeName() == elmt_translatableAttribute)
+			if (grandchild.GetNodeName() != elmt_translatableAttribute)
+				continue;
+
+			CStr attributeName(grandchild.GetAttributes().GetNamedItem(attr_id));
+			// only the heading is translatable for list defs
+			if (attributeName.empty() || attributeName != "heading")
 			{
-				CStr attributeName(grandchild.GetAttributes().GetNamedItem(attr_id));
-				// only the heading is translatable for list defs
-				if (!attributeName.empty() && attributeName == "heading")
-				{
-					CStr value(grandchild.GetText());
-					if (!value.empty())
-					{
-						CStr context(grandchild.GetAttributes().GetNamedItem(attr_context)); // Read the context if any.
-						if (!context.empty())
-						{
-							CStr translatedValue(g_L10n.TranslateWithContext(context, value));
-							oDef.m_Heading = translatedValue.FromUTF8();
-						}
-						else
-						{
-							CStr translatedValue(g_L10n.Translate(value));
-							oDef.m_Heading = translatedValue.FromUTF8();
-						}
-					}
-				}
-				else // Ignore.
-				{
-					LOGERROR("GUI: translatable attribute in olist def that isn't a heading. (object: %s)", this->GetPresentableName().c_str());
-				}
+				LOGERROR("GUI: translatable attribute in olist def that isn't a heading. (object: %s)", this->GetPresentableName().c_str());
+				continue;
+			}
+
+			CStr value(grandchild.GetText());
+			if (value.empty())
+				continue;
+
+			CStr context(grandchild.GetAttributes().GetNamedItem(attr_context)); // Read the context if any.
+			if (!context.empty())
+			{
+				CStr translatedValue(g_L10n.TranslateWithContext(context, value));
+				oDef.m_Heading = translatedValue.FromUTF8();
+			}
+			else
+			{
+				CStr translatedValue(g_L10n.Translate(value));
+				oDef.m_Heading = translatedValue.FromUTF8();
 			}
 		}
 
@@ -301,10 +289,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 	}
 }
 
-void COList::DrawList(const int &selected,
-					 const CStr& _sprite,
-					 const CStr& _sprite_selected,
-					 const CStr& _textcolor)
+void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _sprite_selected, const CStr& _textcolor)
 {
 	float bz = GetBufferedZ();
 
@@ -313,143 +298,140 @@ void COList::DrawList(const int &selected,
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
 	if (scrollbar)
-	{
-		// Draw scrollbar
 		IGUIScrollBarOwner::Draw();
-	}
 
-	if (GetGUI())
+	if (!GetGUI())
+		return;
+
+	CRect rect = GetListRect();
+
+	CGUISpriteInstance* sprite = NULL;
+	CGUISpriteInstance* sprite_selectarea = NULL;
+	int cell_id;
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, _sprite, sprite);
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, _sprite_selected, sprite_selectarea);
+	GUI<int>::GetSetting(this, "cell_id", cell_id);
+
+	CGUIList* pList;
+	GUI<CGUIList>::GetSettingPointer(this, "list_name", pList);
+
+	GetGUI()->DrawSprite(*sprite, cell_id, bz, rect);
+
+	float scroll = 0.f;
+	if (scrollbar)
+		scroll = GetScrollBar(0).GetPos();
+
+	if (selected != -1)
 	{
-		CRect rect = GetListRect();
+		ENSURE(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
 
-		CGUISpriteInstance *sprite=NULL, *sprite_selectarea=NULL;
-		int cell_id;
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, _sprite, sprite);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, _sprite_selected, sprite_selectarea);
-		GUI<int>::GetSetting(this, "cell_id", cell_id);
+		// Get rectangle of selection:
+		CRect rect_sel(rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
+		               rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
 
-		CGUIList *pList;
-		GUI<CGUIList>::GetSettingPointer(this, "list_name", pList);
-
-		GetGUI()->DrawSprite(*sprite, cell_id, bz, rect);
-
-		float scroll=0.f;
-		if (scrollbar)
+		if (rect_sel.top <= rect.bottom &&
+			rect_sel.bottom >= rect.top)
 		{
-			scroll = GetScrollBar(0).GetPos();
-		}
-
-		if (selected != -1)
-		{
-			ENSURE(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
-
-			// Get rectangle of selection:
-			CRect rect_sel(rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
-								 rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
-
-			if (rect_sel.top <= rect.bottom &&
-				rect_sel.bottom >= rect.top)
-			{
-				if (rect_sel.bottom > rect.bottom)
-					rect_sel.bottom = rect.bottom;
-				if (rect_sel.top < rect.top)
-					rect_sel.top = rect.top;
-
-				if (scrollbar)
-				{
-					// Remove any overlapping area of the scrollbar.
-					if (rect_sel.right > GetScrollBar(0).GetOuterRect().left &&
-						rect_sel.right <= GetScrollBar(0).GetOuterRect().right)
-						rect_sel.right = GetScrollBar(0).GetOuterRect().left;
-
-					if (rect_sel.left >= GetScrollBar(0).GetOuterRect().left &&
-						rect_sel.left < GetScrollBar(0).GetOuterRect().right)
-						rect_sel.left = GetScrollBar(0).GetOuterRect().right;
-				}
-
-				GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect_sel);
-			}
-		}
-
-		CColor color;
-		GUI<CColor>::GetSetting(this, _textcolor, color);
-
-		CGUISpriteInstance *sprite_heading=NULL;
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_heading", sprite_heading);
-		CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
-										m_CachedActualSize.top + m_HeadingHeight);
-		GetGUI()->DrawSprite(*sprite_heading, cell_id, bz, rect_head);
-		
-		CGUISpriteInstance *sprite_order, *sprite_not_sorted;
-		if (m_SelectedColumnOrder != -1)
-			GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_asc", sprite_order);
-		else
-			GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_desc", sprite_order);
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_not_sorted", sprite_not_sorted);
-
-		float xpos = 0;
-		for (unsigned int def=0; def< m_ObjectsDefs.size(); ++def)
-		{
-			// Check if it's a decimal value, and if so, assume relative positioning.
-			float width = m_ObjectsDefs[def].m_Width;
-			if (m_ObjectsDefs[def].m_Width < 1 && m_ObjectsDefs[def].m_Width > 0)
-				width *= m_TotalAvalibleColumnWidth;
-
-			CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
-			CGUISpriteInstance *sprite;
-			// If the list sorted by current column
-			if (m_SelectedDef == static_cast<int> (def))
-				sprite = sprite_order;
-			else
-				sprite = sprite_not_sorted;
-			GetGUI()->DrawSprite(*sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - 16, 0), leftTopCorner + CPos(width, 16)));
-
-			DrawText(def, color, leftTopCorner + CPos(0, 4), bz + 0.1f, rect_head);
-			xpos += width;
-		}
-
-		const unsigned int objectsCount = m_ObjectsDefs.size();
-		for (int i=0; i<(int)pList->m_Items.size(); ++i)
-		{
-			if (m_ItemsYPositions[i+1] - scroll < 0 ||
-				m_ItemsYPositions[i] - scroll > rect.GetHeight())
-				continue;
-
-			const float rowHeight = m_ItemsYPositions[i+1] - m_ItemsYPositions[i];
-
-			// Clipping area (we'll have to substract the scrollbar)
-			CRect cliparea = GetListRect();
+			if (rect_sel.bottom > rect.bottom)
+				rect_sel.bottom = rect.bottom;
+			if (rect_sel.top < rect.top)
+				rect_sel.top = rect.top;
 
 			if (scrollbar)
 			{
-				if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
-					cliparea.right <= GetScrollBar(0).GetOuterRect().right)
-					cliparea.right = GetScrollBar(0).GetOuterRect().left;
+				// Remove any overlapping area of the scrollbar.
+				if (rect_sel.right > GetScrollBar(0).GetOuterRect().left &&
+					rect_sel.right <= GetScrollBar(0).GetOuterRect().right)
+					rect_sel.right = GetScrollBar(0).GetOuterRect().left;
 
-				if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
-					cliparea.left < GetScrollBar(0).GetOuterRect().right)
-					cliparea.left = GetScrollBar(0).GetOuterRect().right;
+				if (rect_sel.left >= GetScrollBar(0).GetOuterRect().left &&
+					rect_sel.left < GetScrollBar(0).GetOuterRect().right)
+					rect_sel.left = GetScrollBar(0).GetOuterRect().right;
 			}
 
-			xpos = 0;
-			for (unsigned int def=0; def < objectsCount; ++def)
-			{
-				// Determine text position and width
-				const CPos textPos = rect.TopLeft() + CPos(xpos, -scroll + m_ItemsYPositions[i]);
+			GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect_sel);
+		}
+	}
 
-				float width = m_ObjectsDefs[def].m_Width;;
-				// Check if it's a decimal value, and if so, assume relative positioning.
-				if (m_ObjectsDefs[def].m_Width < 1 && m_ObjectsDefs[def].m_Width > 0)
-					width *= m_TotalAvalibleColumnWidth;
+	CColor color;
+	GUI<CColor>::GetSetting(this, _textcolor, color);
 
-				// Clip text to the column (to prevent drawing text into the neighboring column)
-				CRect cliparea2 = cliparea;
-				cliparea2.right = std::min(cliparea2.right, textPos.x + width);
-				cliparea2.bottom = std::min(cliparea2.bottom, textPos.y + rowHeight);
+	CGUISpriteInstance* sprite_heading = NULL;
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_heading", sprite_heading);
+	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
+									m_CachedActualSize.top + m_HeadingHeight);
+	GetGUI()->DrawSprite(*sprite_heading, cell_id, bz, rect_head);
 
-				DrawText(objectsCount * (i+/*Heading*/1) + def, m_ObjectsDefs[def].m_TextColor, textPos, bz+0.1f, cliparea2);
-				xpos += width;
-			}
+	CGUISpriteInstance* sprite_order;
+	CGUISpriteInstance* sprite_not_sorted;
+	if (m_SelectedColumnOrder != -1)
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_asc", sprite_order);
+	else
+		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_desc", sprite_order);
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_not_sorted", sprite_not_sorted);
+
+	float xpos = 0;
+	for (size_t def = 0; def < m_ObjectsDefs.size(); ++def)
+	{
+		// Check if it's a decimal value, and if so, assume relative positioning.
+		float width = m_ObjectsDefs[def].m_Width;
+		if (m_ObjectsDefs[def].m_Width < 1 && m_ObjectsDefs[def].m_Width > 0)
+			width *= m_TotalAvalibleColumnWidth;
+
+		CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
+		CGUISpriteInstance* sprite;
+		// If the list sorted by current column
+		if (m_SelectedDef == def)
+			sprite = sprite_order;
+		else
+			sprite = sprite_not_sorted;
+		GetGUI()->DrawSprite(*sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - 16, 0), leftTopCorner + CPos(width, 16)));
+
+		DrawText(def, color, leftTopCorner + CPos(0, 4), bz + 0.1f, rect_head);
+		xpos += width;
+	}
+
+	const size_t objectsCount = m_ObjectsDefs.size();
+	for (size_t i = 0; i < pList->m_Items.size(); ++i)
+	{
+		if (m_ItemsYPositions[i+1] - scroll < 0 ||
+			m_ItemsYPositions[i] - scroll > rect.GetHeight())
+			continue;
+
+		const float rowHeight = m_ItemsYPositions[i+1] - m_ItemsYPositions[i];
+
+		// Clipping area (we'll have to substract the scrollbar)
+		CRect cliparea = GetListRect();
+
+		if (scrollbar)
+		{
+			if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
+				cliparea.right <= GetScrollBar(0).GetOuterRect().right)
+				cliparea.right = GetScrollBar(0).GetOuterRect().left;
+
+			if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
+				cliparea.left < GetScrollBar(0).GetOuterRect().right)
+				cliparea.left = GetScrollBar(0).GetOuterRect().right;
+		}
+
+		xpos = 0;
+		for (size_t def = 0; def < objectsCount; ++def)
+		{
+			// Determine text position and width
+			const CPos textPos = rect.TopLeft() + CPos(xpos, -scroll + m_ItemsYPositions[i]);
+
+			float width = m_ObjectsDefs[def].m_Width;;
+			// Check if it's a decimal value, and if so, assume relative positioning.
+			if (m_ObjectsDefs[def].m_Width < 1 && m_ObjectsDefs[def].m_Width > 0)
+				width *= m_TotalAvalibleColumnWidth;
+
+			// Clip text to the column (to prevent drawing text into the neighboring column)
+			CRect cliparea2 = cliparea;
+			cliparea2.right = std::min(cliparea2.right, textPos.x + width);
+			cliparea2.bottom = std::min(cliparea2.bottom, textPos.y + rowHeight);
+
+			DrawText(objectsCount * (i+/*Heading*/1) + def, m_ObjectsDefs[def].m_TextColor, textPos, bz+0.1f, cliparea2);
+			xpos += width;
 		}
 	}
 }

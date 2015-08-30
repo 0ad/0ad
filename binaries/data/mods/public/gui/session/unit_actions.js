@@ -523,7 +523,7 @@ var unitActions =
 				data.resourceType = resourceType;
 				data.resourceTemplate = targetState.template;
 			}
-			else if (targetState.foundation && entState.builder)
+			else if (targetState.foundation && playerCheck(entState, targetState, ["Ally"]))
 			{
 				data.command = "build";
 				data.target = targetState.id;

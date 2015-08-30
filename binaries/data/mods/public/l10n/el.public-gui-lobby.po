@@ -7,153 +7,155 @@
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
 # Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2015
+# George Charoupas <labaxp@gmail.com>, 2015
 # malvanos <malvanos@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2015-03-14 08:56+0000\n"
-"Last-Translator: malvanos <malvanos@gmail.com>\n"
-"Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-07-24 18:11+0000\n"
+"Last-Translator: George Charoupas <labaxp@gmail.com>\n"
+"Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/lobby/lobby.js:9
+#: gui/lobby/lobby.js:13
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Αψιμαχία"
 
-#: gui/lobby/lobby.js:9
+#: gui/lobby/lobby.js:13
 msgctxt "map"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/lobby/lobby.js:9
+#: gui/lobby/lobby.js:13
 msgid "Scenario"
 msgstr "Σενάριο"
 
-#: gui/lobby/lobby.js:27
+#: gui/lobby/lobby.js:32
 msgctxt "map size"
 msgid "Any"
 msgstr "Οποιοδήποτε"
 
-#: gui/lobby/lobby.js:35
+#: gui/lobby/lobby.js:40
 msgctxt "player number"
 msgid "Any"
 msgstr "Οποιοδήποτε"
 
-#: gui/lobby/lobby.js:39
+#: gui/lobby/lobby.js:44
 msgctxt "map"
 msgid "Any"
 msgstr "Οποιοδήποτε"
 
-#: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
-#: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
+#: gui/lobby/lobby.js:288 gui/lobby/lobby.js:289 gui/lobby/lobby.js:290
+#: gui/lobby/lobby.js:291 gui/lobby/lobby.js:292 gui/lobby/lobby.js:293
 msgid "N/A"
 msgstr "N / A"
 
-#: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
+#: gui/lobby/lobby.js:318 gui/lobby/lobby.js:346
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
+#: gui/lobby/lobby.js:329 gui/lobby/lobby.js:357
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/lobby/lobby.js:284 gui/lobby/lobby.js:312
+#: gui/lobby/lobby.js:331 gui/lobby/lobby.js:359
+msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:444
+#: gui/lobby/lobby.js:519
 msgid "Busy"
 msgstr "Απασχολημένος"
 
-#: gui/lobby/lobby.js:449
+#: gui/lobby/lobby.js:524
 msgid "Away"
 msgstr "Εκτός"
 
-#: gui/lobby/lobby.js:453
+#: gui/lobby/lobby.js:528
 msgid "Online"
 msgstr "Συνδεδεμένος"
 
-#: gui/lobby/lobby.js:457
+#: gui/lobby/lobby.js:532
 msgid "Offline"
 msgstr "Ανενεργός"
 
-#: gui/lobby/lobby.js:462
+#: gui/lobby/lobby.js:537
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: gui/lobby/lobby.js:511
+#: gui/lobby/lobby.js:586
 msgid "A randomly selected map."
 msgstr "Ένας τυχαία επιλεγμένος χάρτης"
 
-#: gui/lobby/lobby.js:537
+#: gui/lobby/lobby.js:612
 msgid "Sorry, no description available."
 msgstr "Δυστυχώς, δεν υπάρχει περιγραφή."
 
-#: gui/lobby/lobby.js:565
+#: gui/lobby/lobby.js:640
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Η διέυθυνση του παιχνιδιού  '%(ip)s' δέν φαίνεται να είναι έγκυρη."
 
-#: gui/lobby/lobby.js:643
+#: gui/lobby/lobby.js:723
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s προσήλθε."
 
-#: gui/lobby/lobby.js:652
+#: gui/lobby/lobby.js:733
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s αποχώρησε."
 
-#: gui/lobby/lobby.js:659
+#: gui/lobby/lobby.js:740
 #, javascript-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "Μη έγκυρο ψευδώνυμο: %(nick)s"
 
-#: gui/lobby/lobby.js:666
+#: gui/lobby/lobby.js:747
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "Ο χρήστης %(oldnick)s είναι τώρα γνωστός/ή ώς %(newnick)s."
 
-#: gui/lobby/lobby.js:823
+#: gui/lobby/lobby.js:875
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Λυπούμαστε,η εντολή '%(cmd)s' δέν υποστηρίζεται."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:903
+#: gui/lobby/lobby.js:959
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:905
+#: gui/lobby/lobby.js:961
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:909 gui/lobby/lobby.js:920 gui/lobby/lobby.js:933
+#: gui/lobby/lobby.js:965 gui/lobby/lobby.js:976 gui/lobby/lobby.js:989
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:911 gui/lobby/lobby.js:922 gui/lobby/lobby.js:935
+#: gui/lobby/lobby.js:967 gui/lobby/lobby.js:978 gui/lobby/lobby.js:991
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:916
+#: gui/lobby/lobby.js:972
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -163,24 +165,24 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:947
+#: gui/lobby/lobby.js:1013
 msgid "HH:mm"
 msgstr "ΩΩ:λλ"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:950
+#: gui/lobby/lobby.js:1016
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:953
+#: gui/lobby/lobby.js:1019
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1003
+#: gui/lobby/lobby.js:1069
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Παρακαλώ μην σπαμάρετε. Έχετε μπλοκαριστεί για τριάντα δευτερόλεπτα."
 
@@ -252,84 +254,84 @@ msgstr "Όροι Χρήσης "
 msgid "Multiplayer Lobby"
 msgstr "Λόμπι πολλαπλών παικτών."
 
-#: gui/lobby/lobby.xml:(caption):45 gui/lobby/lobby.xml:(caption):296
+#: gui/lobby/lobby.xml:(caption):48 gui/lobby/lobby.xml:(caption):300
 msgid "Current Rank:"
 msgstr "Τρέχουσα Βαθμίδα:"
 
-#: gui/lobby/lobby.xml:(caption):49 gui/lobby/lobby.xml:(caption):300
+#: gui/lobby/lobby.xml:(caption):52 gui/lobby/lobby.xml:(caption):304
 msgid "Highest Rating:"
 msgstr "Υψηλότερη Βαθμολογία:"
 
-#: gui/lobby/lobby.xml:(caption):53 gui/lobby/lobby.xml:(caption):304
+#: gui/lobby/lobby.xml:(caption):56 gui/lobby/lobby.xml:(caption):308
 msgid "Total Games:"
 msgstr "Συνολικά παιχνίδια:"
 
-#: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):308
+#: gui/lobby/lobby.xml:(caption):60 gui/lobby/lobby.xml:(caption):312
 msgid "Wins:"
 msgstr "Νίκες:"
 
-#: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):312
+#: gui/lobby/lobby.xml:(caption):64 gui/lobby/lobby.xml:(caption):316
 msgid "Losses:"
 msgstr "Ηττες:"
 
-#: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):316
+#: gui/lobby/lobby.xml:(caption):68 gui/lobby/lobby.xml:(caption):320
 msgid "Win Rate:"
 msgstr "Αναλογία Νίκης:"
 
-#: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
+#: gui/lobby/lobby.xml:(caption):77 gui/lobby/lobby.xml:(caption):248
 msgid "Leaderboard"
 msgstr "Πίνακας κατάταξης"
 
-#: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):279
+#: gui/lobby/lobby.xml:(caption):85 gui/lobby/lobby.xml:(caption):283
 msgid "User Profile Lookup"
 msgstr "Αναζήτηση προφίλ χρήστη"
 
-#: gui/lobby/lobby.xml:(caption):111
+#: gui/lobby/lobby.xml:(caption):114
 msgid "Map Type:"
 msgstr "Τύπος Χάρτη:"
 
-#: gui/lobby/lobby.xml:(caption):123
+#: gui/lobby/lobby.xml:(caption):126
 msgid "Map Size:"
 msgstr "Μέγεθος Χάρτη:"
 
-#: gui/lobby/lobby.xml:(caption):140
+#: gui/lobby/lobby.xml:(caption):143
 msgid "Players:"
 msgstr "Παίκτες:"
 
 #. Join the game currently selected in the list.
-#: gui/lobby/lobby.xml:(caption):149
+#: gui/lobby/lobby.xml:(caption):152
 msgid "Join Game"
 msgstr "Συμμετοχή στο παιχνίδι"
 
-#: gui/lobby/lobby.xml:(caption):155
+#: gui/lobby/lobby.xml:(caption):158
 msgid "Host Game"
 msgstr "Φιλοξενία παιχνιδιού"
 
-#: gui/lobby/lobby.xml:(caption):162
+#: gui/lobby/lobby.xml:(caption):165
 msgid "Main Menu"
 msgstr "Κεντρικό μενού"
 
-#: gui/lobby/lobby.xml:(caption):218
+#: gui/lobby/lobby.xml:(caption):222
 msgid "Show full games"
 msgstr "Δείξε πλήρη παιχνίδια"
 
-#: gui/lobby/lobby.xml:(caption):264 gui/lobby/lobby.xml:(caption):326
+#: gui/lobby/lobby.xml:(caption):268 gui/lobby/lobby.xml:(caption):330
 msgid "Back"
 msgstr "Πίσω"
 
-#: gui/lobby/lobby.xml:(caption):272
+#: gui/lobby/lobby.xml:(caption):276
 msgid "Update"
 msgstr "Ενημέρωση"
 
-#: gui/lobby/lobby.xml:(caption):282
+#: gui/lobby/lobby.xml:(caption):286
 msgid "Enter username:"
 msgstr "Εισάγετε όνομα χρήστη"
 
-#: gui/lobby/lobby.xml:(caption):288
+#: gui/lobby/lobby.xml:(caption):292
 msgid "View Profile"
 msgstr "Δείτε προφίλ:"
 
-#: gui/lobby/lobby.xml:(caption):321
+#: gui/lobby/lobby.xml:(caption):325
 msgid "Player not found."
 msgstr "Παίχτης δέν βρέθηκε."
 
@@ -337,34 +339,34 @@ msgstr "Παίχτης δέν βρέθηκε."
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: gui/lobby/lobby.xml:(heading):28 gui/lobby/lobby.xml:(heading):175
-#: gui/lobby/lobby.xml:(heading):254
+#: gui/lobby/lobby.xml:(heading):28 gui/lobby/lobby.xml:(heading):179
+#: gui/lobby/lobby.xml:(heading):258
 msgid "Name"
 msgstr "Όνομα"
 
-#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):257
+#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):261
 msgid "Rating"
 msgstr "Βαθμολογία"
 
-#: gui/lobby/lobby.xml:(heading):179
+#: gui/lobby/lobby.xml:(heading):183
 msgid "Map Name"
 msgstr "Όνομα  Χάρτη"
 
-#: gui/lobby/lobby.xml:(heading):182
+#: gui/lobby/lobby.xml:(heading):186
 msgctxt "map"
 msgid "Size"
 msgstr "Μέγεθος"
 
-#: gui/lobby/lobby.xml:(heading):185
+#: gui/lobby/lobby.xml:(heading):189
 msgctxt "map"
 msgid "Type"
 msgstr "Τύπος"
 
-#: gui/lobby/lobby.xml:(heading):188
+#: gui/lobby/lobby.xml:(heading):192
 msgid "Players"
 msgstr "Παίκτες"
 
-#: gui/lobby/lobby.xml:(heading):251
+#: gui/lobby/lobby.xml:(heading):255
 msgid "Rank"
 msgstr "Βαθμός"
 

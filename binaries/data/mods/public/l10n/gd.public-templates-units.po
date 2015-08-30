@@ -9,10 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 08:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-23 06:57+0000\n"
+"Last-Translator: GunChleoc\n"
+"Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,7 +41,7 @@ msgstr "Saighdear"
 #: simulation/templates/template_unit_cavalry.xml:39
 #: simulation/templates/template_unit_dog.xml:53
 #: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_healer.xml:23
+#: simulation/templates/template_unit_support_healer.xml:22
 #: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:10
 #: simulation/templates/units/gaul_support_healer_b.xml:9
@@ -62,10 +62,12 @@ msgstr "Bunasach"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:33
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
+#: simulation/templates/template_unit_hero_elephant_melee.xml:47
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
 #: simulation/templates/template_unit_infantry_melee.xml:26
+#: simulation/templates/units/maur_ship_trireme.xml:20
 msgid "Melee"
 msgstr "Dlùth"
 
@@ -116,6 +118,7 @@ msgstr "Eachraidh astair"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Ranged"
 msgstr "Astair"
 
@@ -280,6 +283,7 @@ msgstr "Marbh e is cruinnich biadh o stòras mòr na mara seo."
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_hero.xml:20
 #: simulation/templates/template_unit_hero_infantry.xml:24
+#: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Hero"
 msgstr "Curaidh"
 
@@ -390,6 +394,12 @@ msgid ""
 "for each garrisoned). Gather profitable aquatic treasures."
 msgstr "Dèan malairt eadar calachan. Cuir fear-malairt 'na ghearastan ann airson barrachd prothaide (+20% airson gach fear sa ghearastan). Tog ulaidhean-mara prothaideach."
 
+#: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
+#: simulation/templates/template_unit_support_trader.xml:15
+#: simulation/templates/template_unit_support_trader.xml:16
+msgid "Trader"
+msgstr "Fear-malairt"
+
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
 msgstr "Long-chogaidh throm"
@@ -401,6 +411,14 @@ msgstr "Cuir crainn-thabhaill 'nan gearastan ann airson buannachd ionnsaighe ast
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
 msgstr "Long-chogaidh mheadhanach"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+msgid "Warship"
+msgstr "Long-chogaidh"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+msgid "Medium"
+msgstr "Meadhanach"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -427,6 +445,7 @@ msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
 msgstr "Cuir suas ri 20 aonadan coisridh 'nan gearastan ann ach am meudaich thu àireamh nan saighdean o 0 gu 10."
 
+#: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
 msgstr "Taic"
@@ -444,34 +463,30 @@ msgid "Female Citizen"
 msgstr "Saoranach boireann"
 
 #: simulation/templates/template_unit_support_healer.xml:20
+#: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Healer"
 msgstr "Lighiche"
 
 #: simulation/templates/template_unit_support_healer.xml:21
-msgid ""
-"Classes: Support Healer.\n"
-"Heal units."
-msgstr "Seòrsaichean: lighiche taice.\nSlànaichidh e aonadan."
+msgid "Heal units."
+msgstr "Slànaich aonadan."
 
+#: simulation/templates/template_unit_support_slave.xml:39
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
 msgstr "Tràill"
 
+#: simulation/templates/template_unit_support_slave.xml:39
+msgid "Worker"
+msgstr "Obraiche"
+
 #: simulation/templates/template_unit_support_slave.xml:42
-msgid ""
-"Classes: Support Worker Slave.\n"
-"Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Seòrsa: tràill, obraiche taice.\nCruinnich e stòrasan, ach cha mhair e fada. Buannachdan le tochladh is buain fiodha."
+msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
+msgstr "Cruinnich e stòrasan ach cha mhair e fada. Buannachdan le tochladh is buain fiodha."
 
-#: simulation/templates/template_unit_support_trader.xml:15
-msgid "Trader"
-msgstr "Fear-malairt"
-
-#: simulation/templates/template_unit_support_trader.xml:17
-msgid ""
-"Classes: Support Trader.\n"
-"Trade resources between your own markets and those of your allies."
-msgstr "Seòrsa: neach-malairt taice.\nMalairt stòras eadar na margaidean agad fhèin agus an fheadhainn aig do chaidreabhaich."
+#: simulation/templates/template_unit_support_trader.xml:18
+msgid "Trade resources between your own markets and those of your allies."
+msgstr "Malairt stòras eadar na margaidean agad fhèin agus an fheadhainn aig do chaidreabhaich."
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -993,10 +1008,8 @@ msgstr "Venetic Ponti"
 #: simulation/templates/units/brit_ship_trireme.xml:19
 #: simulation/templates/units/gaul_ship_trireme.xml:19
 #: simulation/templates/units/iber_ship_trireme.xml:19
-msgid ""
-"Classes: Medium Warship Ranged\n"
-"Transport many soldiers across the sea."
-msgstr "Seòrsa: long-cogaidh meadhanach astair\nGiùlain iomadh saighdear thar na mara."
+msgid "Transport many soldiers across the sea."
+msgstr "Giùlain iomadh saighdear thar a' chuain."
 
 #: simulation/templates/units/brit_support_female_citizen.xml:18
 #: simulation/templates/units/gaul_support_female_citizen.xml:18
@@ -1310,10 +1323,8 @@ msgid "Leial Zalduneria"
 msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:21
-msgid ""
-"Classes: Champion Ranged Cavalry Skirmisher.\n"
-"Special: Flaming javelins. Good vs. Buildings."
-msgstr "Seòrsa: laoch streupaire eachraidh astair.\nSònraichte: gathan 'nan teine. Math an aghaidh togalaichean."
+msgid "Special: Flaming javelins. Good vs. Buildings."
+msgstr "Sònraichte: gathan 'nan teine. Math an aghaidh togalaichean."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1587,6 +1598,14 @@ msgstr "Spùinneadair eachraidh Innseanach"
 msgid "Aśvārohagaṇaḥ"
 msgstr "Aśvārohagaṇaḥ"
 
+#: simulation/templates/units/maur_champion_chariot.xml:9
+#: simulation/templates/units/maur_hero_ashoka.xml:12
+#: simulation/templates/units/pers_cavalry_archer_b.xml:9
+#: simulation/templates/units/pers_hero_darius.xml:21
+#: simulation/templates/units/sele_champion_chariot.xml:10
+msgid "Chariot"
+msgstr "Feun"
+
 #: simulation/templates/units/maur_champion_chariot.xml:10
 msgid "War Chariot"
 msgstr "Feun-cogaidh"
@@ -1596,8 +1615,8 @@ msgid "Rath"
 msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
-msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
-msgstr "Seòrsa: Laoch boghadair feun eachraidh astair.\nNì e dochann saltairt."
+msgid "Deals Trample Damage."
+msgstr "Nì e dochann saltairt."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1615,10 +1634,6 @@ msgstr "Gaisgeach"
 #: simulation/templates/units/maur_champion_infantry.xml:20
 msgid "Yōddha"
 msgstr "Yōddha"
-
-#: simulation/templates/units/maur_champion_infantry.xml:24
-msgid "Classes: Champion Melee Infantry Swordsman."
-msgstr "Seòrsa: laoch claidheamhair coisridh dhlùth."
 
 #: simulation/templates/units/maur_champion_maiden.xml:6
 msgid "Maiden Guard"
@@ -1653,28 +1668,26 @@ msgstr "Aśoka Mòr"
 msgid "Aśoka Devānāmpriya"
 msgstr "Aśoka Devānāmpriya"
 
-#: simulation/templates/units/maur_hero_ashoka.xml:13
+#: simulation/templates/units/maur_hero_ashoka.xml:14
 msgid ""
-"Hero Chariot Archer.\n"
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr "Seòrsa: curaidh boghadair feun.\nAura gaisgich: chan eil fhios.\nSònraichte: Fuagraidhean Aśoka - gabhaidh carraighean fuagraidh Aśoka a thogail fhad 's a bhios Aśoka beò."
+msgstr "Aura gaisgich: chan eil fhios.\nSònraichte: Fuagraidhean Aśoka - gabhaidh carraighean fuagraidh Aśoka a thogail fhad 's a bhios Aśoka beò."
 
-#: simulation/templates/units/maur_hero_chanakya.xml:29
+#: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
 msgstr "Acharya Chāṇakya"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:30
+#: simulation/templates/units/maur_hero_chanakya.xml:31
 msgid "Acharya Chāṇakya"
 msgstr "Acharya Chāṇakya"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:32
+#: simulation/templates/units/maur_hero_chanakya.xml:33
 msgid ""
-"Classes: Hero Healer.\n"
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr "Seòrsa: curaidh lighiche.\nSònraichte: Lighiche - slànaich aonadan gu luath.\nSònraichte: tidsear - Thoir comas air togalach gun rannsaich 's trèanaich e +15% nas luaithe.\nSònraichte: feallsanaiche - rannsaich 4 teicneolasan sònraichte nach eil ri làimh ach do Chāṇakya."
+msgstr "Sònraichte: Lighiche - slànaich aonadan gu luath.\nSònraichte: tidsear - Thoir comas air togalach gun rannsaich 's trèanaich e +15% nas luaithe.\nSònraichte: feallsanaiche - rannsaich 4 teicneolasan sònraichte nach eil ri làimh ach do Chāṇakya."
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1682,10 +1695,8 @@ msgid "Chandragupta Maurya"
 msgstr "Chandragupta Mauraidhea"
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
-msgid ""
-"Classes: Hero Melee Elephant.\n"
-"Hero Aura: TBD."
-msgstr "Seòrsa: curaidh ailbhean dlùth.\nAura gaisgich: chan eil fhios."
+msgid "Hero Aura: TBD."
+msgstr "Aura gaisgich: chan eil fhios."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1732,10 +1743,6 @@ msgstr "Bàta-malairt"
 msgid "Vanijyik Nauka"
 msgstr "Vanijyik Nauka"
 
-#: simulation/templates/units/maur_ship_trireme.xml:20
-msgid "Classes: Mechanical Warship Medium Ranged Melee."
-msgstr "Seòrsa: long-cogaidh innealach meadhanach dhlùth 's astair."
-
 #: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Worker Elephant"
 msgstr "Ailbhean obrach"
@@ -1779,8 +1786,12 @@ msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
-msgid "Classes: Mercenary Melee Infantry Swordsman."
-msgstr "Seòrsa: claidheamhair-duaise coisridh dhlùth."
+#: simulation/templates/units/ptol_infantry_archer_b.xml:23
+#: simulation/templates/units/samnite_swordsman.xml:9
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
+#: simulation/templates/units/thrace_black_cloak.xml:23
+msgid "Mercenary"
+msgstr "Saighdear-duaise"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1803,10 +1814,8 @@ msgid "Babiruviya Ratha"
 msgstr "Babiruviya Ratha"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:15
-msgid ""
-"Classes: Ranged Cavalry Chariot Archer.\n"
-"Causes trample damage to enemy units."
-msgstr "Seòrsa: Boghadair feun eachraidh astair.\nNì e dochann saltairt air aonadan an nàmhad."
+msgid "Causes trample damage to enemy units."
+msgstr "Nì e dochann saltairt air aonadan an nàmhad."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -1896,10 +1905,9 @@ msgstr "Darayavahush I"
 
 #: simulation/templates/units/pers_hero_darius.xml:25
 msgid ""
-"Hero Scythe Chariot Archer.\n"
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr "Seòrsa: curaidh boghadair feun-speala.\nAura gaisgich: marsanta na h-impireachd. Gheibh thu barrachd bhuannachd às a' mhalart fhad 's a bhios e beò (chan eil fhios).\nAn aghaidh: sleaghairean le 2x aig astar, claidheamhairean le 1.5x aig astar."
+msgstr "Aura gaisgich: marsanta na h-impireachd. Gheibh thu barrachd bhuannachd às a' mhalart fhad 's a bhios e beò (chan eil fhios).\nAn aghaidh: sleaghairean le 2x aig astar, claidheamhairean le 1.5x aig astar."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2027,6 +2035,11 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "Malairt stòras eadar na margaidean agad fhèin is margaidean do chaidreabhach. Gheibh na Pearsaich buannachd de +25% air malart tìre."
 
+#: simulation/templates/units/ptol_cavalry_archer_b.xml:5
+#: simulation/templates/units/sele_cavalry_archer_b.xml:6
+msgid "Camel"
+msgstr "Càmhal"
+
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
 msgstr "Boghadair càmhail Nabataidheach"
@@ -2034,11 +2047,6 @@ msgstr "Boghadair càmhail Nabataidheach"
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
 msgstr "Mutsābiq Gamal Nabatu"
-
-#: simulation/templates/units/ptol_cavalry_archer_b.xml:11
-#: simulation/templates/units/sele_cavalry_archer_b.xml:12
-msgid "Classes: Ranged Cavalry Camel Archer."
-msgstr "Seòrsa: boghadair càmhail eachraidh astair."
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:13
 msgid "Tarantine Settler Cavalry"
@@ -2098,9 +2106,9 @@ msgstr "Kleopatra H' Philopator"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:22
 msgid ""
-"Classes: Hero Infantry Archer.\n"
-"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
-msgstr "Seòrsa: cuiridh boghadair coisridh.\nAura cèile: Bidh curaidhean caidreabhach am broinn a h-astar lèirsinne nas èifeachdaiche. Caillidh curaidhean an nàmhad èifeachdachd."
+"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
+"vision. Decreased effectiveness for enemy heroes."
+msgstr "Aura cèile (chan eil fhios): Bidh curaidhean caidreabhach am broinn a h-astar lèirsinne nas èifeachdaiche. Caillidh curaidhean an nàmhad èifeachdachd."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
@@ -2149,10 +2157,6 @@ msgstr "Boghadair-duaise Nubach"
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
 msgid "Kousít Misthophóros Toxótēs"
 msgstr "Kousít Misthophóros Toxótēs"
-
-#: simulation/templates/units/ptol_infantry_archer_b.xml:28
-msgid "Classes: Ranged Mercenary Infantry Archer Worker."
-msgstr "Seòrsa: obraiche boghadair-duaise coisridh astair."
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:14
 msgid "Mercenary Thureos Skirmisher"
@@ -2426,10 +2430,8 @@ msgid "(Samnite Swordsman)"
 msgstr "(Claidheamhair Samnaidheach)"
 
 #: simulation/templates/units/samnite_swordsman.xml:7
-msgid ""
-"Mercenary swordsman.\n"
-"Bonus vs. All Spear Units."
-msgstr "Claidheamhair-duaise.\nBuannachd an aghaidh na h-uile sleaghair."
+msgid "Bonus vs. All Spear Units."
+msgstr "Buannachd an aghaidh a h-uile sleaghair."
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Dahae Horse Archer"
@@ -2470,10 +2472,6 @@ msgstr "Feun-speala"
 #: simulation/templates/units/sele_champion_chariot.xml:12
 msgid "Drepanèphoros"
 msgstr "Drepanèphoros"
-
-#: simulation/templates/units/sele_champion_chariot.xml:15
-msgid "Classes: Champion Ranged Cavalry Chariot Archer."
-msgstr "Seòrsa: Laoch boghadair feun eachraidh astair."
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Armored War Elephant"
@@ -2581,10 +2579,6 @@ msgstr "Sleaghaire-mailisidh Tuireos"
 msgid "Thureophóros Politès"
 msgstr "Thureophóros Politès"
 
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
-msgid "Classes: Mercenary Citizen Melee Infantry Swordsman."
-msgstr "Seòrsa: claidheamhair-dùthcha-duaise coisridh dhlùth."
-
 #: simulation/templates/units/sele_ship_quinquereme.xml:5
 msgid "Pentères"
 msgstr "Pentères"
@@ -2636,10 +2630,6 @@ msgstr "Hoiplid Spartach"
 #: simulation/templates/units/spart_champion_infantry_spear.xml:7
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
-
-#: simulation/templates/units/spart_champion_infantry_spear.xml:8
-msgid "Classes: Champion Melee Infantry Spearman."
-msgstr "Seòrsa: laoch sleaghair coisridh dhlùth."
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:16
 msgid "Skiritai Commando"
@@ -2763,10 +2753,6 @@ msgstr "Cleòca dubh Tràcach"
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid "Rhomphaiaphoros"
 msgstr "Rhomphaiaphoros"
-
-#: simulation/templates/units/thrace_black_cloak.xml:22
-msgid "Classes: Mercenary Champion Melee Infantry Swordsman."
-msgstr "Seòrsa: laoch claidheamhair-duaise coisridh dhlùth."
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"

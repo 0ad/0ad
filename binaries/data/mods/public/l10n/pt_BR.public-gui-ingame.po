@@ -20,10 +20,11 @@
 # JulioBianor <mr.logan1@yahoo.com.br>, 2014
 # Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2014
 # Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
-# Lucas Simões <simoes.lucas.silva@gmail.com>, 2013
+# Lucas Simões <inactive+kaslusimoes@transifex.com>, 2013
 # Marcos Correa <mcorrea.jr28@gmail.com>, 2014
 # Marcus Rasseli <mvrasseli@hotmail.com>, 2013
 # Mateus Felipe Cordeiro Caetano Pinto <uuflor@gmail.com>, 2013
+# Matheus Clemente <matheus.xb@gmail.com>, 2015
 # Mihailov Vasilievic Filho <mihailov.vf@gmail.com>, 2015
 # mliell <mauricioliell@tintasliell.com.br>, 2014
 # mogafi, 2014
@@ -41,10 +42,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-15 12:30+0000\n"
-"Last-Translator: Arthur Paim Arnold <arthurpaimarnold@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-07-23 17:04+0000\n"
+"Last-Translator: Matheus Clemente <matheus.xb@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -144,8 +145,8 @@ msgid "Enemy"
 msgstr "Inimigo"
 
 #: gui/session/menu.js:349
-msgid "request for your allies to attack this enemy"
-msgstr "requisite aos seus aliados para atacar este inimigo"
+msgid "Request your allies to attack this enemy"
+msgstr "Pedir aos seus aliados para atacar este inimigo"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -257,19 +258,19 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s navio mercante inativo"
 msgstr[1] "%(numberOfShipTraders)s navios mercantes inativos"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "O Overlay de Desenvolvedor foi aberto"
 
-#: gui/session/menu.js:691
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "O Overlay de Desenvolvedor foi fechado."
 
-#: gui/session/menu.js:707
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -385,8 +386,8 @@ msgstr "%(player)s lhe enviou %(amounts)s."
 
 #: gui/session/messages.js:521
 #, javascript-format
-msgid "Your livestock have been attacked by %(attacker)s!"
-msgstr "O seu rebanho foi atacado por %(attacker)s!"
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "Seu rebanho foi atacado por %(attacker)s!"
 
 #: gui/session/messages.js:523
 #, javascript-format
@@ -737,22 +738,22 @@ msgstr "VITORIOSO!"
 #: gui/session/session.js:566
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: gui/session/session.js:566
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: gui/session/session.js:568
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "O replay terminou. Você deseja sair?"
 
 #: gui/session/session.js:568
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmação"
 
 #: gui/session/session.js:729
 msgid "Population (current / limit)"
@@ -990,7 +991,7 @@ msgstr "Promover unidades selecionadas"
 
 #: gui/session/session.xml:(caption):150
 msgid "Hierarchical pathfinder overlay"
-msgstr ""
+msgstr "Overlay do Pathfinder hierárquico"
 
 #: gui/session/session.xml:(caption):184
 msgid "Game Paused"

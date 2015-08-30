@@ -16,10 +16,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 08:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-27 20:06+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,7 +48,7 @@ msgstr "Soldat"
 #: simulation/templates/template_unit_cavalry.xml:39
 #: simulation/templates/template_unit_dog.xml:53
 #: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_healer.xml:23
+#: simulation/templates/template_unit_support_healer.xml:22
 #: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:10
 #: simulation/templates/units/gaul_support_healer_b.xml:9
@@ -69,10 +69,12 @@ msgstr "Basique"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:33
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
+#: simulation/templates/template_unit_hero_elephant_melee.xml:47
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
 #: simulation/templates/template_unit_infantry_melee.xml:26
+#: simulation/templates/units/maur_ship_trireme.xml:20
 msgid "Melee"
 msgstr "Mêlée"
 
@@ -123,6 +125,7 @@ msgstr "Cavalier à distance"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Ranged"
 msgstr "À distance"
 
@@ -287,6 +290,7 @@ msgstr "Tuer, puis collecter de la nourriture à partir de cette ressource océa
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_hero.xml:20
 #: simulation/templates/template_unit_hero_infantry.xml:24
+#: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Hero"
 msgstr "Héros"
 
@@ -397,6 +401,12 @@ msgid ""
 "for each garrisoned). Gather profitable aquatic treasures."
 msgstr "Commerce entre les quais. La garnison d'un commerçant apporte un bénéfice supplémentaire (+20% pour chaque garnison). Collecte rentable des trésors aquatiques."
 
+#: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
+#: simulation/templates/template_unit_support_trader.xml:15
+#: simulation/templates/template_unit_support_trader.xml:16
+msgid "Trader"
+msgstr "Commerçant"
+
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
 msgstr "Navire de guerre lourd"
@@ -408,6 +418,14 @@ msgstr "Y mettre des catapultes en garnison pour augmenter la puissance de feu �
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
 msgstr "Navire de guerre moyen"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+msgid "Warship"
+msgstr "Navire de guerre"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+msgid "Medium"
+msgstr "Moyen"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -434,6 +452,7 @@ msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
 msgstr "Mettre en garnison jusqu'à 20 soldats d'infanterie à l'intérieur pour augmenter le nombre de flèches tirées de 0 à 10."
 
+#: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
 msgstr "Soutien"
@@ -451,34 +470,30 @@ msgid "Female Citizen"
 msgstr "Citoyenne"
 
 #: simulation/templates/template_unit_support_healer.xml:20
+#: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Healer"
 msgstr "Guérisseur"
 
 #: simulation/templates/template_unit_support_healer.xml:21
-msgid ""
-"Classes: Support Healer.\n"
-"Heal units."
-msgstr "Classes : Guérisseur de soutien.\nSoigne les unités."
+msgid "Heal units."
+msgstr "Soigne les unités."
 
+#: simulation/templates/template_unit_support_slave.xml:39
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
 msgstr "Esclave"
 
+#: simulation/templates/template_unit_support_slave.xml:39
+msgid "Worker"
+msgstr "Travailleur"
+
 #: simulation/templates/template_unit_support_slave.xml:42
-msgid ""
-"Classes: Support Worker Slave.\n"
-"Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Classes : Travailleur esclave de soutien. \nRamasseur avec une durée de vie limitée. Bonus pour l'exploitation minière et forestière."
+msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
+msgstr "Ramasseur avec une durée de vie limitée. Bonus pour l'exploitation minière et forestière."
 
-#: simulation/templates/template_unit_support_trader.xml:15
-msgid "Trader"
-msgstr "Commerçant"
-
-#: simulation/templates/template_unit_support_trader.xml:17
-msgid ""
-"Classes: Support Trader.\n"
-"Trade resources between your own markets and those of your allies."
-msgstr "Classes : Commerçant de soutien.\nÉchange des ressources entre vos marchés et ceux de vos alliés."
+#: simulation/templates/template_unit_support_trader.xml:18
+msgid "Trade resources between your own markets and those of your allies."
+msgstr "Échange des ressources entre vos marchés et ceux de vos alliés."
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -1000,10 +1015,8 @@ msgstr "Ponti vénètes"
 #: simulation/templates/units/brit_ship_trireme.xml:19
 #: simulation/templates/units/gaul_ship_trireme.xml:19
 #: simulation/templates/units/iber_ship_trireme.xml:19
-msgid ""
-"Classes: Medium Warship Ranged\n"
-"Transport many soldiers across the sea."
-msgstr "Classes : Navire de guerre moyen à distance\nTransporte beaucoup de soldats à travers la mer."
+msgid "Transport many soldiers across the sea."
+msgstr "Transporte de nombreux soldats de l'autre côté de l'eau."
 
 #: simulation/templates/units/brit_support_female_citizen.xml:18
 #: simulation/templates/units/gaul_support_female_citizen.xml:18
@@ -1317,10 +1330,8 @@ msgid "Leial Zalduneria"
 msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:21
-msgid ""
-"Classes: Champion Ranged Cavalry Skirmisher.\n"
-"Special: Flaming javelins. Good vs. Buildings."
-msgstr "Classes : Tirailleur champion monté à distance.\nSpécial: Javelots enflammés. Efficace contre les bâtiments."
+msgid "Special: Flaming javelins. Good vs. Buildings."
+msgstr "Spécial : Javelots enflammés. Efficace contre les bâtiments."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1594,6 +1605,14 @@ msgstr "Cavalier de raid indien"
 msgid "Aśvārohagaṇaḥ"
 msgstr "Aśvārohagaṇaḥ"
 
+#: simulation/templates/units/maur_champion_chariot.xml:9
+#: simulation/templates/units/maur_hero_ashoka.xml:12
+#: simulation/templates/units/pers_cavalry_archer_b.xml:9
+#: simulation/templates/units/pers_hero_darius.xml:21
+#: simulation/templates/units/sele_champion_chariot.xml:10
+msgid "Chariot"
+msgstr "Char"
+
 #: simulation/templates/units/maur_champion_chariot.xml:10
 msgid "War Chariot"
 msgstr "Char de guerre"
@@ -1603,8 +1622,8 @@ msgid "Rath"
 msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
-msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
-msgstr "Classes : Archer monté sur char champion. Provoque des dommages de piétinement."
+msgid "Deals Trample Damage."
+msgstr "Inflige des dégâts de piétinement."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1622,10 +1641,6 @@ msgstr "Guerrier"
 #: simulation/templates/units/maur_champion_infantry.xml:20
 msgid "Yōddha"
 msgstr "Yōddha"
-
-#: simulation/templates/units/maur_champion_infantry.xml:24
-msgid "Classes: Champion Melee Infantry Swordsman."
-msgstr "Classes : Épéiste champion d'infanterie de mêlée."
 
 #: simulation/templates/units/maur_champion_maiden.xml:6
 msgid "Maiden Guard"
@@ -1660,28 +1675,26 @@ msgstr "Ashoka le Grand"
 msgid "Aśoka Devānāmpriya"
 msgstr "Aśoka Devānāmpriya"
 
-#: simulation/templates/units/maur_hero_ashoka.xml:13
+#: simulation/templates/units/maur_hero_ashoka.xml:14
 msgid ""
-"Hero Chariot Archer.\n"
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr "Archer monté sur char héroïque.\nAura héroïque : à déterminer.\nSpécialité du héros : \"Édits d'Ashoka\" - Les Piliers à édits d'Ashoka peuvent être construits au cours de la vie d'Ashoka."
+msgstr "Aura héroïque : à déterminer.\nSpécialité du héros : \"Édits d'Ashoka\" - Les Piliers à édits d'Ashoka peuvent être construits au cours de la vie d'Ashoka."
 
-#: simulation/templates/units/maur_hero_chanakya.xml:29
+#: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
 msgstr "Acharya Chanakya"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:30
+#: simulation/templates/units/maur_hero_chanakya.xml:31
 msgid "Acharya Chāṇakya"
 msgstr "Acharya Chāṇakya"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:32
+#: simulation/templates/units/maur_hero_chanakya.xml:33
 msgid ""
-"Classes: Hero Healer.\n"
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr "Classes : Héros guérisseur.\nSpécialité du héros : \"Guérisseur\" - Soigner les unités à un rythme accéléré.\nSpécialité du héros : \"Maître\" - Habiliter un bâtiment à la recherche et former +50% plus vite.\nSpécialité du héros : \"Philosophe\" - Rechercher 4 technologies spéciales uniquement disponibles pour Chanakya."
+msgstr "Spécialité du héros : \"Guérisseur\" - Soigne les unités à un rythme accéléré.\nSpécialité du héros : \"Maître\" - Améliore un bâtiment pour rechercher et entrainer +50% plus vite.\nSpécialité du héros : \"Philosophe\" - Recherche 4 technologies spéciales uniquement disponibles pour Chanakya."
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1689,10 +1702,8 @@ msgid "Chandragupta Maurya"
 msgstr "Chandragupta Maurya"
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
-msgid ""
-"Classes: Hero Melee Elephant.\n"
-"Hero Aura: TBD."
-msgstr "Classes : Éléphant de mêlée héroïque.\nAura héroïque : à déterminer."
+msgid "Hero Aura: TBD."
+msgstr "Aura héroïque : à déterminer."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1739,10 +1750,6 @@ msgstr "Navire de commerce"
 msgid "Vanijyik Nauka"
 msgstr "Vanijyik Nauka"
 
-#: simulation/templates/units/maur_ship_trireme.xml:20
-msgid "Classes: Mechanical Warship Medium Ranged Melee."
-msgstr "Classes : Navire de guerre mécanique moyen de mêlée et à distance."
-
 #: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Worker Elephant"
 msgstr "Éléphant travailleur"
@@ -1786,8 +1793,12 @@ msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
-msgid "Classes: Mercenary Melee Infantry Swordsman."
-msgstr "Classes : Épéiste champion d'infanterie de mêlée."
+#: simulation/templates/units/ptol_infantry_archer_b.xml:23
+#: simulation/templates/units/samnite_swordsman.xml:9
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
+#: simulation/templates/units/thrace_black_cloak.xml:23
+msgid "Mercenary"
+msgstr "Mercenaire"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1810,10 +1821,8 @@ msgid "Babiruviya Ratha"
 msgstr "Babiruviya Ratha"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:15
-msgid ""
-"Classes: Ranged Cavalry Chariot Archer.\n"
-"Causes trample damage to enemy units."
-msgstr "Classes : Archer sur char champion. Provoque des dommages de piétinement."
+msgid "Causes trample damage to enemy units."
+msgstr "Inflige des dégâts de piétinement aux unités ennemies."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -1903,10 +1912,9 @@ msgstr "Darayavahush I"
 
 #: simulation/templates/units/pers_hero_darius.xml:25
 msgid ""
-"Hero Scythe Chariot Archer.\n"
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr "Héros archer scythe monté sur char.\nAura du héros : \"Commandement\". Augmente les profits des échanges durant sa durée de vie (TBD).\nAttaque à distance : 2x c. Lanciers, 1.5x c. Épéistes.  "
+msgstr "Aura héroïque : \"Marchand de l'Empire\". Augmente les profits des échanges durant sa durée de vie (TBD).\nAttaque à distance : 2x c. Lanciers, 1.5x c. Épéistes.  "
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2034,6 +2042,11 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "Échanger des ressources entre vos marchés et ceux de vos alliés. Les Perses ont un bonus de +25% de négociation des terres."
 
+#: simulation/templates/units/ptol_cavalry_archer_b.xml:5
+#: simulation/templates/units/sele_cavalry_archer_b.xml:6
+msgid "Camel"
+msgstr "Dromadaire"
+
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
 msgstr "Archer nabatéen à dos de chameau"
@@ -2041,11 +2054,6 @@ msgstr "Archer nabatéen à dos de chameau"
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
 msgstr "Mutsābiq Gamal Nabatu"
-
-#: simulation/templates/units/ptol_cavalry_archer_b.xml:11
-#: simulation/templates/units/sele_cavalry_archer_b.xml:12
-msgid "Classes: Ranged Cavalry Camel Archer."
-msgstr "Classes : Archer monté à dos de chameau."
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:13
 msgid "Tarantine Settler Cavalry"
@@ -2105,9 +2113,9 @@ msgstr "Kleopatra H' Philopator"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:22
 msgid ""
-"Classes: Hero Infantry Archer.\n"
-"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
-msgstr "Classes : Archer d'infanterie héroïque.\n\"Consort\" Aura (TBD) : Augmentation de l'efficacité des héros alliés dans son champ de vision. Diminution de l'efficacité des héros ennemis."
+"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
+"vision. Decreased effectiveness for enemy heroes."
+msgstr "Aura \"Consort\" (À déterminer) : Augmente l'efficacité des héros alliés dans son champ de vision. Diminue celle des héros adverses."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
@@ -2156,10 +2164,6 @@ msgstr "Archer mercenaire nubien"
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
 msgid "Kousít Misthophóros Toxótēs"
 msgstr "Kousít Misthophóros Toxótēs"
-
-#: simulation/templates/units/ptol_infantry_archer_b.xml:28
-msgid "Classes: Ranged Mercenary Infantry Archer Worker."
-msgstr "Classes : Archer monté à dos de chameau."
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:14
 msgid "Mercenary Thureos Skirmisher"
@@ -2433,10 +2437,8 @@ msgid "(Samnite Swordsman)"
 msgstr "(Épéiste samnite)"
 
 #: simulation/templates/units/samnite_swordsman.xml:7
-msgid ""
-"Mercenary swordsman.\n"
-"Bonus vs. All Spear Units."
-msgstr "Épéiste mercenaire.\nBonus c. Lanciers."
+msgid "Bonus vs. All Spear Units."
+msgstr "Bonus c. Lanciers."
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Dahae Horse Archer"
@@ -2477,10 +2479,6 @@ msgstr "Char à faux"
 #: simulation/templates/units/sele_champion_chariot.xml:12
 msgid "Drepanèphoros"
 msgstr "Drepanèphoros"
-
-#: simulation/templates/units/sele_champion_chariot.xml:15
-msgid "Classes: Champion Ranged Cavalry Chariot Archer."
-msgstr "Classes : Archer monté sur char champion."
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Armored War Elephant"
@@ -2588,10 +2586,6 @@ msgstr "Lancier milicien avec Thureos"
 msgid "Thureophóros Politès"
 msgstr "Thureophóros Politès"
 
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
-msgid "Classes: Mercenary Citizen Melee Infantry Swordsman."
-msgstr "Classes : Épéiste champion d'infanterie de mêlée."
-
 #: simulation/templates/units/sele_ship_quinquereme.xml:5
 msgid "Pentères"
 msgstr "Pentères"
@@ -2643,10 +2637,6 @@ msgstr "Hoplite spartiate"
 #: simulation/templates/units/spart_champion_infantry_spear.xml:7
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
-
-#: simulation/templates/units/spart_champion_infantry_spear.xml:8
-msgid "Classes: Champion Melee Infantry Spearman."
-msgstr "Classes : Piquier champion d'infanterie en mêlée."
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:16
 msgid "Skiritai Commando"
@@ -2770,10 +2760,6 @@ msgstr "Cape noire thrace"
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid "Rhomphaiaphoros"
 msgstr "Rhomphaiaphoros"
-
-#: simulation/templates/units/thrace_black_cloak.xml:22
-msgid "Classes: Mercenary Champion Melee Infantry Swordsman."
-msgstr "Classes : Épéiste champion d'infanterie de mêlée."
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"

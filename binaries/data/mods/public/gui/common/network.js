@@ -6,8 +6,9 @@ function getDisconnectReason(id)
 	case 0: return translate("Unknown reason");
 	case 1: return translate("Unexpected shutdown");
 	case 2: return translate("Incorrect network protocol version");
-	case 3: return translate("Game has already started");
-	default: return sprintf(translate("\\[Invalid value %(id)s]"), { id: id });
+	case 3: return translate("Game is loading, please try later");
+	case 4: return translate("Game has already started, no observers allowed");
+	default: return sprintf(translate("\\[Invalid value %(id)s]"), { "id": id });
 	}
 }
 

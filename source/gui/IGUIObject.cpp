@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,31 +15,18 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-IGUIObject
-*/
-
 #include "precompiled.h"
+
 #include "GUI.h"
 
-#include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
+#include "gui/scripting/JSInterface_IGUIObject.h"
+#include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
 
-#include "ps/CLogger.h"
 
-
-//-------------------------------------------------------------------
-//  Implementation Macros
-//-------------------------------------------------------------------
-
-//-------------------------------------------------------------------
-//  Constructor / Destructor
-//-------------------------------------------------------------------
-IGUIObject::IGUIObject() : 
-	m_pGUI(NULL), 
-	m_pParent(NULL),
-	m_MouseHovering(false)
+IGUIObject::IGUIObject()
+	: m_pGUI(NULL), m_pParent(NULL), m_MouseHovering(false), m_LastClickTime()
 {
 	AddSetting(GUIST_bool,			"enabled");
 	AddSetting(GUIST_bool,			"hidden");
@@ -58,29 +45,20 @@ IGUIObject::IGUIObject() :
 	GUI<bool>::SetSetting(this, "ghost", false);
 	GUI<bool>::SetSetting(this, "enabled", true);
 	GUI<bool>::SetSetting(this, "absolute", true);
-
-
-	for (int i=0; i<6; i++)
-		m_LastClickTime[i]=0;
 }
 
 IGUIObject::~IGUIObject()
 {
-	{
-		std::map<CStr, SGUISetting>::iterator it;
-		for (it = m_Settings.begin(); it != m_Settings.end(); ++it)
+	for (const std::pair<CStr, SGUISetting>& p : m_Settings)
+		switch (p.second.m_Type)
 		{
-			switch (it->second.m_Type)
-			{
-				// delete() needs to know the type of the variable - never delete a void*
-#define TYPE(t) case GUIST_##t: delete (t*)it->second.m_pSetting; break;
+			// delete() needs to know the type of the variable - never delete a void*
+#define TYPE(t) case GUIST_##t: delete (t*)p.second.m_pSetting; break;
 #include "GUItypes.h"
 #undef TYPE
 		default:
 			debug_warn(L"Invalid setting type");
-			}
 		}
-	}
 
 	if (m_pGUI)
 		JS_RemoveExtraGCRootsTracer(m_pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
@@ -89,16 +67,15 @@ IGUIObject::~IGUIObject()
 //-------------------------------------------------------------------
 //  Functions
 //-------------------------------------------------------------------
-void IGUIObject::SetGUI(CGUI * const &pGUI)
+void IGUIObject::SetGUI(CGUI* const& pGUI)
 {
 	if (!m_pGUI)
 		JS_AddExtraGCRootsTracer(pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
 	m_pGUI = pGUI;
 }
 
-void IGUIObject::AddChild(IGUIObject *pChild)
+void IGUIObject::AddChild(IGUIObject* pChild)
 {
-	// 
 //	ENSURE(pChild);
 
 	pChild->SetParent(this);
@@ -122,15 +99,15 @@ void IGUIObject::AddChild(IGUIObject *pChild)
 		{
 			// If anything went wrong, reverse what we did and throw
 			//  an exception telling it never added a child
-			m_Children.erase( m_Children.end()-1 );
-			
+			m_Children.erase(m_Children.end()-1);
+
 			throw;
 		}
 	}
 	// else do nothing
 }
 
-void IGUIObject::AddToPointersMap(map_pObjects &ObjectMap)
+void IGUIObject::AddToPointersMap(map_pObjects& ObjectMap)
 {
 	// Just don't do anything about the top node
 	if (m_pParent == NULL)
@@ -158,13 +135,7 @@ void IGUIObject::Destroy()
 	// Is there anything besides the children to destroy?
 }
 
-// Notice if using this, the naming convention of GUIST_ should be strict.
-#define TYPE(type)									\
-	case GUIST_##type:								\
-		m_Settings[Name].m_pSetting = new type();	\
-		break;
-
-void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
+void IGUIObject::AddSetting(const EGUISettingType& Type, const CStr& Name)
 {
 	// Is name already taken?
 	if (m_Settings.count(Name) >= 1)
@@ -175,20 +146,26 @@ void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 
 	switch (Type)
 	{
+#define TYPE(type) \
+	case GUIST_##type: \
+		m_Settings[Name].m_pSetting = new type(); \
+		break;
+
 		// Construct the setting.
 		#include "GUItypes.h"
+
+#undef TYPE
 
 	default:
 		debug_warn(L"IGUIObject::AddSetting failed, type not recognized!");
 		break;
 	}
 }
-#undef TYPE
 
 
 bool IGUIObject::MouseOver()
 {
-	if(!GetGUI())
+	if (!GetGUI())
 		throw PSERROR_GUI_OperationNeedsGUIObject();
 
 	return m_CachedActualSize.PointInside(GetMousePos());
@@ -200,11 +177,14 @@ bool IGUIObject::MouseOverIcon()
 }
 
 CPos IGUIObject::GetMousePos() const
-{ 
-	return ((GetGUI())?(GetGUI()->m_MousePos):CPos()); 
+{
+	if (GetGUI())
+		return GetGUI()->m_MousePos;
+
+	return CPos();
 }
 
-void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
+void IGUIObject::UpdateMouseOver(IGUIObject* const& pMouseOver)
 {
 	// Check if this is the object being hovered.
 	if (pMouseOver == this)
@@ -241,30 +221,28 @@ bool IGUIObject::SettingExists(const CStr& Setting) const
 	return (m_Settings.count(Setting) >= 1);
 }
 
-#define TYPE(type)										\
-	else												\
-	if (set.m_Type == GUIST_##type)						\
-	{													\
-		type _Value;									\
-		if (!GUI<type>::ParseString(Value, _Value))		\
-			return PSRETURN_GUI_UnableToParse;			\
-														\
-		GUI<type>::SetSetting(this, Setting, _Value, SkipMessage);	\
-	}
-
 PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage)
 {
 	if (!SettingExists(Setting))
-	{
 		return PSRETURN_GUI_InvalidSetting;
-	}
 
 	// Get setting
 	SGUISetting set = m_Settings[Setting];
 
-	if (0);
+#define TYPE(type) \
+	else if (set.m_Type == GUIST_##type) \
+	{ \
+		type _Value; \
+		if (!GUI<type>::ParseString(Value, _Value)) \
+			return PSRETURN_GUI_UnableToParse; \
+		GUI<type>::SetSetting(this, Setting, _Value, SkipMessage); \
+	}
+
+	if (0)
+		;
 	// else...
 #include "GUItypes.h"
+#undef TYPE
 	else
 	{
 		// Why does it always fail?
@@ -274,20 +252,15 @@ PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const b
 	return PSRETURN_OK;
 }
 
-#undef TYPE
 
 
-PSRETURN IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType &Type) const
+PSRETURN IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType& Type) const
 {
 	if (!SettingExists(Setting))
-	{
 		return LogInvalidSettings(Setting);
-	}
 
 	if (m_Settings.find(Setting) == m_Settings.end())
-	{
 		return LogInvalidSettings(Setting);
-	}
 
 	Type = m_Settings.find(Setting)->second.m_Type;
 
@@ -295,27 +268,27 @@ PSRETURN IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType &Type) 
 }
 
 
-void IGUIObject::ChooseMouseOverAndClosest(IGUIObject* &pObject)
+void IGUIObject::ChooseMouseOverAndClosest(IGUIObject*& pObject)
 {
-	if (MouseOver())
-	{
-		// Check if we've got competition at all
-		if (pObject == NULL)
-		{
-			pObject = this;
-			return;
-		}
+	if (!MouseOver())
+		return;
 
-		// Or if it's closer
-		if (GetBufferedZ() >= pObject->GetBufferedZ())
-		{
-			pObject = this;
-			return;
-		}
+	// Check if we've got competition at all
+	if (pObject == NULL)
+	{
+		pObject = this;
+		return;
+	}
+
+	// Or if it's closer
+	if (GetBufferedZ() >= pObject->GetBufferedZ())
+	{
+		pObject = this;
+		return;
 	}
 }
 
-IGUIObject *IGUIObject::GetParent() const
+IGUIObject* IGUIObject::GetParent() const
 {
 	// Important, we're not using GetParent() for these
 	//  checks, that could screw it up
@@ -338,7 +311,7 @@ void IGUIObject::UpdateCachedSize()
 
 	CClientArea ca;
 	GUI<CClientArea>::GetSetting(this, "size", ca);
-	
+
 	// If absolute="false" and the object has got a parent,
 	//  use its cached size instead of the screen. Notice
 	//  it must have just been cached for it to work.
@@ -367,10 +340,10 @@ void IGUIObject::UpdateCachedSize()
 	}
 }
 
-void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr& StyleName)
+void IGUIObject::LoadStyle(CGUI& GUIinstance, const CStr& StyleName)
 {
 	// Fetch style
-	if (GUIinstance.m_Styles.count(StyleName)==1)
+	if (GUIinstance.m_Styles.count(StyleName) == 1)
 	{
 		LoadStyle(GUIinstance.m_Styles[StyleName]);
 	}
@@ -380,14 +353,13 @@ void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr& StyleName)
 	}
 }
 
-void IGUIObject::LoadStyle(const SGUIStyle &Style)
+void IGUIObject::LoadStyle(const SGUIStyle& Style)
 {
 	// Iterate settings, it won't be able to set them all probably, but that doesn't matter
-	std::map<CStr, CStrW>::const_iterator cit;
-	for (cit = Style.m_SettingsDefaults.begin(); cit != Style.m_SettingsDefaults.end(); ++cit)
+	for (const std::pair<CStr, CStrW>& p : Style.m_SettingsDefaults)
 	{
 		// Try set setting in object
-		SetSetting(cit->first, cit->second);
+		SetSetting(p.first, p.second);
 
 		// It doesn't matter if it fail, it's not suppose to be able to set every setting.
 		//  since it's generic.
@@ -415,7 +387,7 @@ float IGUIObject::GetBufferedZ() const
 		else
 		{
 			// In philosophy, a parentless object shouldn't be able to have a relative sizing,
-			//  but we'll accept it so that absolute can be used as default without a complaint. 
+			//  but we'll accept it so that absolute can be used as default without a complaint.
 			//  Also, you could consider those objects children to the screen resolution.
 			return Z;
 		}
@@ -426,12 +398,12 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 {
 	if(!GetGUI())
 		throw PSERROR_GUI_OperationNeedsGUIObject();
-		
+
 	JSContext* cx = pGUI->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue globalVal(cx, pGUI->GetGlobalObject());
 	JS::RootedObject globalObj(cx, &globalVal.toObject());
-	
+
 	const int paramCount = 1;
 	const char* paramNames[paramCount] = { "mouse" };
 
@@ -439,7 +411,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	CStr CodeName = GetName()+" "+Action;
 
 	// Generate a unique name
-	static int x=0;
+	static int x = 0;
 	char buf[64];
 	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, Action.c_str());
 
@@ -452,7 +424,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 	if (!func)
 		return; // JS will report an error message
-	
+
 	JS::RootedObject funcObj(cx, JS_GetFunctionObject(func));
 	SetScriptHandler(Action, funcObj);
 }
@@ -558,12 +530,12 @@ CStr IGUIObject::GetPresentableName() const
 
 void IGUIObject::SetFocus()
 {
-	GetGUI()->m_FocusedObject = this; 
+	GetGUI()->m_FocusedObject = this;
 }
 
 bool IGUIObject::IsFocused() const
 {
-	return GetGUI()->m_FocusedObject == this; 
+	return GetGUI()->m_FocusedObject == this;
 }
 
 bool IGUIObject::IsRootObject() const
@@ -571,15 +543,15 @@ bool IGUIObject::IsRootObject() const
 	return (GetGUI() != 0 && m_pParent == GetGUI()->m_BaseObject);
 }
 
-void IGUIObject::TraceMember(JSTracer *trc)
+void IGUIObject::TraceMember(JSTracer* trc)
 {
 	for (auto& handler : m_ScriptHandlers)
 		JS_CallHeapObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
-PSRETURN IGUIObject::LogInvalidSettings(const CStr8 &Setting) const
+PSRETURN IGUIObject::LogInvalidSettings(const CStr8& Setting) const
 {
-	LOGWARNING("IGUIObject: setting %s was not found on an object", 
+	LOGWARNING("IGUIObject: setting %s was not found on an object",
 		Setting.c_str());
 	return PSRETURN_GUI_InvalidSetting;
 }

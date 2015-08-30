@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,32 +15,16 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Object - Radio Button
-
---Overview--
-
-	GUI Object representing a radio button
-
---More info--
-
-	Check GUI.h
-
-*/
-
 #ifndef INCLUDED_CRADIOBUTTON
 #define INCLUDED_CRADIOBUTTON
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
 #include "CCheckBox.h"
 
 /**
  * Just like a check box, but it'll nullify its siblings (of the same kind),
  * and it won't switch itself.
- * 
+ *
  * @see CCheckBox
  */
 class CRadioButton : public CCheckBox
@@ -51,7 +35,7 @@ public:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 };
 
-#endif
+#endif // INCLUDED_CRADIOBUTTON

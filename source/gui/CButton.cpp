@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,20 +15,12 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-CButton
-*/
-
 #include "precompiled.h"
 
 #include "CButton.h"
 
 #include "lib/ogl.h"
 
-
-//-------------------------------------------------------------------
-//  Constructor / Destructor
-//-------------------------------------------------------------------
 CButton::CButton()
 {
 	AddSetting(GUIST_float,					"buffer_zone");
@@ -66,7 +58,7 @@ void CButton::SetupText()
 	if (!GetGUI())
 		return;
 
-	ENSURE(m_GeneratedTexts.size()==1);
+	ENSURE(m_GeneratedTexts.size() == 1);
 
 	CStrW font;
 	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
@@ -77,34 +69,37 @@ void CButton::SetupText()
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);
 
-	float buffer_zone=0.f;
+	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth(), buffer_zone, this);
 
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
 }
 
-void CButton::HandleMessage(SGUIMessage &Message)
+void CButton::HandleMessage(SGUIMessage& Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
 	IGUITextOwner::HandleMessage(Message);
 }
 
-void CButton::Draw() 
+void CButton::Draw()
 {
 	float bz = GetBufferedZ();
 
-	CGUISpriteInstance *sprite, *sprite_over, *sprite_pressed, *sprite_disabled;
+	CGUISpriteInstance* sprite;
+	CGUISpriteInstance* sprite_over;
+	CGUISpriteInstance* sprite_pressed;
+	CGUISpriteInstance* sprite_disabled;
 	int cell_id;
 
 	// Statically initialise some strings, so we don't have to do
 	// lots of allocation every time this function is called
-	static CStr strSprite("sprite");
-	static CStr strSpriteOver("sprite_over");
-	static CStr strSpritePressed("sprite_pressed");
-	static CStr strSpriteDisabled("sprite_disabled");
-	static CStr strCellId("cell_id");
+	static const CStr strSprite("sprite");
+	static const CStr strSpriteOver("sprite_over");
+	static const CStr strSpritePressed("sprite_pressed");
+	static const CStr strSpriteDisabled("sprite_disabled");
+	static const CStr strCellId("cell_id");
 
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSprite, sprite);
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSpriteOver, sprite_over);

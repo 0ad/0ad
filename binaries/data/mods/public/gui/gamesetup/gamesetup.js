@@ -100,7 +100,7 @@ function init(attribs)
 		g_IsController = false;
 		break;
 	default:
-		error(sprintf("Unexpected 'type' in gamesetup init: %(unexpectedType)s", { unexpectedType: attribs.type }));
+		error("Unexpected 'type' in gamesetup init: " + attribs.type);
 	}
 
 	if (attribs.serverName)
@@ -153,6 +153,20 @@ function initMain()
 	mapFilters.list = getFilterNames();
 	mapFilters.list_data = getFilterIds();
 	g_GameAttributes.mapFilter = "default";
+
+	// For singleplayer reduce the size of more options dialog by three options (cheats, rated game, observer late join = 90px)
+	if (!g_IsNetworked)
+	{
+		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+160";
+		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 310 50%+70 336";
+	}
+	// For non-lobby multiplayergames reduce the size of the dialog by one option (rated game, 30px)
+	else if (g_IsNetworked && !Engine.HasXmppClient())
+	{
+		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+220";
+		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 370 50%+70 396";
+		Engine.GetGUIObjectByName("optionObserverLateJoin").size = "14 338 94% 366";
+	}
 
 	// Setup controls for host only
 	if (g_IsController)
@@ -255,6 +269,11 @@ function initMain()
 			updateGameAttributes();
 		};
 
+		Engine.GetGUIObjectByName("observerLateJoin").onPress = function() {
+			g_GameAttributes.settings.ObserverLateJoin = this.checked;
+			updateGameAttributes();
+		};
+
 		Engine.GetGUIObjectByName("disableTreasures").onPress = function() {
 			g_GameAttributes.settings.DisableTreasures = this.checked;
 			updateGameAttributes();
@@ -316,6 +335,7 @@ function initMain()
 	{
 		Engine.GetGUIObjectByName("optionCheats").hidden = false;
 		Engine.GetGUIObjectByName("enableCheats").checked = false;
+		Engine.GetGUIObjectByName("optionObserverLateJoin").hidden = false;
 		g_GameAttributes.settings.CheatsEnabled = false;
 		// Setup ranked option if we are connected to the lobby.
 		if (Engine.HasXmppClient())
@@ -331,6 +351,9 @@ function initMain()
 		{
 			Engine.GetGUIObjectByName("enableCheatsText").hidden = true;
 			Engine.GetGUIObjectByName("enableCheats").hidden = false;
+			Engine.GetGUIObjectByName("observerLateJoinText").hidden = true;
+			Engine.GetGUIObjectByName("observerLateJoin").hidden = false;
+
 			if (Engine.HasXmppClient())
 			{
 				Engine.GetGUIObjectByName("enableRatingText").hidden = true;
@@ -400,7 +423,7 @@ function initMain()
 
 function handleNetMessage(message)
 {
-	log("Net message: "+uneval(message));
+	log("Net message: " + uneval(message));
 
 	switch (message.type)
 	{
@@ -417,7 +440,7 @@ function handleNetMessage(message)
 			break;
 
 		default:
-			error("Unrecognised netstatus type "+message.status);
+			error("Unrecognised netstatus type " + message.status);
 			break;
 		}
 		break;
@@ -482,7 +505,7 @@ function handleNetMessage(message)
 	case "start":
 		if (g_IsController && Engine.HasXmppClient())
 		{
-			var players = [ assignment.name for each (assignment in g_PlayerAssignments) ]
+			var players = [ assignment.name for each (assignment in g_PlayerAssignments) ];
 			Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
 		}
 		Engine.SwitchGuiPage("page_loading.xml", {
@@ -510,7 +533,7 @@ function handleNetMessage(message)
 		break;
 
 	default:
-		error("Unrecognised net message type "+message.type);
+		error("Unrecognised net message type " + message.type);
 	}
 }
 
@@ -519,7 +542,7 @@ function getMapDisplayName(map)
 	var mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Name)
 	{
-		log("Map data missing in scenario '"+map+"' - likely unsupported format");
+		log("Map data missing in scenario '" + map + "' - likely unsupported format");
 		return map;
 	}
 
@@ -568,9 +591,9 @@ function initCivNameList()
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
-	//  Add random civ to beginning of list 
+	//  Add random civ to beginning of list
 	civListNames.unshift('[color="orange"]' + translateWithContext("civilization", "Random") + '[/color]');
-	civListCodes.unshift("random"); 
+	civListCodes.unshift("random");
 
 	// Update the dropdowns
 	for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -602,7 +625,7 @@ function initMapNameList()
 		break;
 
 	default:
-		error(sprintf("initMapNameList: Unexpected map type '%(mapType)s'", { mapType: g_GameAttributes.mapType }));
+		error("initMapNameList: Unexpected map type " + g_GameAttributes.mapType);
 		return;
 	}
 
@@ -628,9 +651,7 @@ function initMapNameList()
 	var selected = mapListFiles.indexOf(g_GameAttributes.map);
 	// Default to the first element if list is not empty and we can't find the one we searched for
 	if (selected == -1 && mapList.length)
-	{
 		selected = 0;
-	}
 
 	// Update the list control
 	if (g_GameAttributes.mapType == "random")
@@ -666,7 +687,7 @@ function loadMapData(name)
 			break;
 
 		default:
-			error(sprintf("loadMapData: Unexpected map type '%(mapType)s'", { mapType: g_GameAttributes.mapType }));
+			error("loadMapData: Unexpected map type " + g_GameAttributes.mapType);
 			return undefined;
 		}
 	}
@@ -702,8 +723,8 @@ function loadGameAttributes()
 	mapSettings.AISeed = Math.floor(Math.random() * 65536);
 
 	// Ensure that cheats are enabled in singleplayer
-	if (!g_IsNetworked) 
-		mapSettings.CheatsEnabled = true; 
+	if (!g_IsNetworked)
+		mapSettings.CheatsEnabled = true;
 
 	var aiCodes = [ ai.id for each (ai in g_AIs) ];
 	var civListCodes = [ civ.Code for each (civ in g_CivData) if (civ.SelectableInGameSetup !== false) ];
@@ -910,25 +931,25 @@ function selectMapType(type)
 	case "skirmish":
 		g_GameAttributes.mapPath = "maps/skirmishes/";
 		g_GameAttributes.settings = {
-			PlayerData: g_DefaultPlayerData.slice(0, 4),
-			Seed: Math.floor(Math.random() * 65536),
-			AISeed: Math.floor(Math.random() * 65536),
-			CheatsEnabled: g_GameAttributes.settings.CheatsEnabled
+			"PlayerData": g_DefaultPlayerData.slice(0, 4),
+			"Seed": Math.floor(Math.random() * 65536),
+			"AISeed": Math.floor(Math.random() * 65536),
+			"CheatsEnabled": g_GameAttributes.settings.CheatsEnabled
 		};
 		break;
 
 	case "random":
 		g_GameAttributes.mapPath = "maps/random/";
 		g_GameAttributes.settings = {
-			PlayerData: g_DefaultPlayerData.slice(0, 4),
-			Seed: Math.floor(Math.random() * 65536),
-			AISeed: Math.floor(Math.random() * 65536),
-			CheatsEnabled: g_GameAttributes.settings.CheatsEnabled
+			"PlayerData": g_DefaultPlayerData.slice(0, 4),
+			"Seed": Math.floor(Math.random() * 65536),
+			"AISeed": Math.floor(Math.random() * 65536),
+			"CheatsEnabled": g_GameAttributes.settings.CheatsEnabled
 		};
 		break;
 
 	default:
-		error(sprintf("selectMapType: Unexpected map type '%(mapType)s'", { mapType: g_GameAttributes.mapType }));
+		error("selectMapType: Unexpected map type " + g_GameAttributes.mapType);
 		return;
 	}
 
@@ -1004,7 +1025,7 @@ function selectMap(name)
 	}
 	else
 	{
-		var numPlayers = (mapSettings.PlayerData ? mapSettings.PlayerData.length : g_GameAttributes.settings.PlayerData.length);
+		var numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_GameAttributes.settings.PlayerData.length;
 
 		for (var guid in g_PlayerAssignments)
 		{	// Unassign extra players
@@ -1089,7 +1110,7 @@ function launchGame()
 			// Assign civ specific names to AI players
 			chosenName = translate(chosenName);
 			if (usedName)
-				g_GameAttributes.settings.PlayerData[i].Name = sprintf(translate("%(playerName)s %(romanNumber)s"), { playerName: chosenName, romanNumber: romanNumbers[usedName+1]});
+				g_GameAttributes.settings.PlayerData[i].Name = sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": romanNumbers[usedName+1]});
 			else
 				g_GameAttributes.settings.PlayerData[i].Name = chosenName;
 		}
@@ -1159,7 +1180,7 @@ function onGameAttributesChange()
 		{
 			var populationCapBox = Engine.GetGUIObjectByName("populationCap");
 			populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
-		}		
+		}
 		if (mapSettings.StartingResources)
 		{
 			var startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
@@ -1188,10 +1209,12 @@ function onGameAttributesChange()
 	var populationCap = Engine.GetGUIObjectByName("populationCap");
 	var startingResources = Engine.GetGUIObjectByName("startingResources");
 	var ceasefire = Engine.GetGUIObjectByName("ceasefire");
+	var observerLateJoin = Engine.GetGUIObjectByName("observerLateJoin");
 
 	var numPlayersText= Engine.GetGUIObjectByName("numPlayersText");
 	var mapSizeDesc = Engine.GetGUIObjectByName("mapSizeDesc");
 	var mapSizeText = Engine.GetGUIObjectByName("mapSizeText");
+	var observerLateJoinText = Engine.GetGUIObjectByName("observerLateJoinText");
 	var revealMapText = Engine.GetGUIObjectByName("revealMapText");
 	var exploreMapText = Engine.GetGUIObjectByName("exploreMapText");
 	var disableTreasuresText = Engine.GetGUIObjectByName("disableTreasuresText");
@@ -1210,7 +1233,7 @@ function onGameAttributesChange()
 	var speedIdx = (g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) != -1) ? g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds["default"];
 	var victories = getVictoryConditions();
 	var victoryIdx = (mapSettings.GameType !== undefined && victories.data.indexOf(mapSettings.GameType) != -1 ? victories.data.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
-	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true)
+	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true);
 	enableCheatsText.caption = (enableCheats.checked ? translate("Yes") : translate("No"));
 	if (mapSettings.RatingEnabled !== undefined)
 	{
@@ -1222,6 +1245,10 @@ function onGameAttributesChange()
 	}
 	else
 		enableRatingText.caption = "Unknown";
+
+	observerLateJoin.checked = g_GameAttributes.settings.ObserverLateJoin;
+	observerLateJoinText.caption = observerLateJoin.checked ? translate("Yes") : translate("No");
+
 	gameSpeedText.caption = g_GameSpeeds.names[speedIdx];
 	gameSpeedBox.selected = speedIdx;
 	populationCap.selected = (mapSettings.PopulationCap !== undefined && POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
@@ -1345,7 +1372,7 @@ function onGameAttributesChange()
 		populationCapText.hidden = false;
 		ceasefire.hidden = true;
 		ceasefireText.hidden = false;
-		
+
 		numPlayersText.caption = numPlayers;
 		mapSizeText.caption = translate("Default");
 		revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
@@ -1360,7 +1387,7 @@ function onGameAttributesChange()
 		break;
 
 	default:
-		error(sprintf("onGameAttributesChange: Unexpected map type '%(mapType)s'", { mapType: g_GameAttributes.mapType }));
+		error("onGameAttributesChange: Unexpected map type " + g_GameAttributes.mapType);
 		return;
 	}
 
@@ -1378,7 +1405,7 @@ function onGameAttributesChange()
 	var description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
 
 	// Describe the number of players and the victory conditions
-	var playerString = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { number: numPlayers });
+	var playerString = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { "number": numPlayers });
 	let victory = translate(victories.text[victoryIdx]);
 	if (victoryIdx != VICTORY_DEFAULTIDX)
 		victory = "[color=\"orange\"]" + victory + "[/color]";
@@ -1475,7 +1502,7 @@ function updateGameAttributes()
 		onGameAttributesChange();
 }
 
-function AIConfigCallback(ai) 
+function AIConfigCallback(ai)
 {
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AI = ai.id;
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AIDiff = ai.difficulty;
@@ -1534,7 +1561,7 @@ function updatePlayerList()
 		}
 		// Give AI a different color so it stands out
 		aiAssignments[ai.id] = hostNameList.length;
-		hostNameList.push("[color=\"70 150 70 255\"]" + sprintf(translate("AI: %(ai)s"), { ai: translate(ai.data.name) }));
+		hostNameList.push("[color=\"70 150 70 255\"]" + sprintf(translate("AI: %(ai)s"), { "ai": translate(ai.data.name) }));
 		hostGuidList.push("ai:" + ai.id);
 	}
 
@@ -1568,7 +1595,7 @@ function updatePlayerList()
 				else
 				{
 					g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
-					warn(sprintf("AI \"%(id)s\" not present. Defaulting to unassigned.", { id: aiId }));
+					warn("AI \"" + aiId + "\" not present. Defaulting to unassigned.");
 				}
 			}
 
@@ -1581,11 +1608,11 @@ function updatePlayerList()
 				configButton.hidden = false;
 				configButton.onpress = function() {
 					Engine.PushGuiPage("page_aiconfig.xml", {
-						ais: g_AIs,
-						id: g_GameAttributes.settings.PlayerData[playerSlot].AI,
-						difficulty: g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
-						callback: "AIConfigCallback",
-						playerSlot: playerSlot // required by the callback function
+						"ais": g_AIs,
+						"id": g_GameAttributes.settings.PlayerData[playerSlot].AI,
+						"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
+						"callback": "AIConfigCallback",
+						"playerSlot": playerSlot // required by the callback function
 					});
 				};
 			}
@@ -1683,11 +1710,11 @@ function submitChatInput()
 {
 	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = input.caption;
-	if (text.length)
-	{
-		Engine.SendNetworkChat(text);
-		input.caption = "";
-	}
+	if (!text.length)
+		return;
+
+	Engine.SendNetworkChat(text);
+	input.caption = "";
 }
 
 function addChatMessage(msg)
@@ -1723,34 +1750,34 @@ function addChatMessage(msg)
 	{
 	case "connect":
 		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
-		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { message: sprintf(translate("%(username)s has joined"), { username: formattedUsername }) }) + '[/font]';
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has joined"), { "username": formattedUsername }) }) + '[/font]';
 		break;
 
 	case "disconnect":
 		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
-		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { message: sprintf(translate("%(username)s has left"), { username: formattedUsername }) }) + '[/font]';
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has left"), { "username": formattedUsername }) }) + '[/font]';
 		break;
 
 	case "message":
 		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
-		var formattedUsernamePrefix = '[font="sans-bold-13"]' + sprintf(translate("<%(username)s>"), { username: formattedUsername }) + '[/font]'
-		formatted = sprintf(translate("%(username)s %(message)s"), { username: formattedUsernamePrefix, message: message });
+		var formattedUsernamePrefix = '[font="sans-bold-13"]' + sprintf(translate("<%(username)s>"), { "username": formattedUsername }) + '[/font]';
+		formatted = sprintf(translate("%(username)s %(message)s"), { "username": formattedUsernamePrefix, "message": message });
 		break;
 
 	case "ready":
-		var formattedUsername = '[font="sans-bold-13"][color="'+ color +'"]' + username + '[/color][/font]'
+		var formattedUsername = '[font="sans-bold-13"][color="' + color + '"]' + username + '[/color][/font]';
 		if (msg.ready)
-			formatted = ' ' + sprintf(translate("* %(username)s is ready!"), { username: formattedUsername });
+			formatted = ' ' + sprintf(translate("* %(username)s is ready!"), { "username": formattedUsername });
 		else
-			formatted = ' ' + sprintf(translate("* %(username)s is not ready."), { username: formattedUsername });
+			formatted = ' ' + sprintf(translate("* %(username)s is not ready."), { "username": formattedUsername });
 		break;
 
 	case "settings":
-		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { message: translate('Game settings have been changed') }) + '[/font]';
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { "message": translate('Game settings have been changed') }) + '[/font]';
 		break;
 
 	default:
-		error(sprintf("Invalid chat message '%(message)s'", { message: uneval(msg) }));
+		error("Invalid chat message " + uneval(msg));
 		return;
 	}
 
@@ -1808,7 +1835,7 @@ function updateReadyUI()
 	}
 	// AIs are always ready.
 	for (var playerid = 0; playerid < MAX_PLAYERS; ++playerid)
-	{		
+	{
 		if (!g_GameAttributes.settings.PlayerData[playerid])
 			continue;
 		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};
@@ -1867,7 +1894,7 @@ function addFilter(id, name, filterFunc)
 {
 	if (!filterFunc instanceof Object)
 	{
-		error(sprintf("Invalid map filter: %(name)s", { name: name }));
+		error("Invalid map filter: " + name);
 		return;
 	}
 
@@ -1906,7 +1933,7 @@ function testFilter(id, mapSettings)
 		if (g_MapFilters[i].id == id)
 			return g_MapFilters[i].filter(mapSettings);
 
-	error(sprintf("Invalid map filter: %(id)s", { id: id }));
+	error("Invalid map filter: " + id);
 	return false;
 }
 
@@ -1958,15 +1985,15 @@ function sendRegisterGameStanza()
 	var tnbp = g_GameAttributes.settings.PlayerData.length;
 
 	var gameData = {
-		"name":g_ServerName,
-		"mapName":g_GameAttributes.map,
-		"niceMapName":getMapDisplayName(g_GameAttributes.map),
-		"mapSize":mapSize,
-		"mapType":g_GameAttributes.mapType,
-		"victoryCondition":victoryCondition,
-		"nbp":nbp,
-		"tnbp":tnbp,
-		"players":players
+		"name": g_ServerName,
+		"mapName": g_GameAttributes.map,
+		"niceMapName": getMapDisplayName(g_GameAttributes.map),
+		"mapSize": mapSize,
+		"mapType": g_GameAttributes.mapType,
+		"victoryCondition": victoryCondition,
+		"nbp": nbp,
+		"tnbp": tnbp,
+		"players": players
 	};
 	Engine.SendRegisterGame(gameData);
 }

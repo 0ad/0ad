@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ protected:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * @see IGUIObject#MouseOver()
@@ -84,7 +84,7 @@ protected:
 
 	// 1.f if map is circular or 1.414f if square (to shrink it inside the circle)
 	float m_MapScale;
-	
+
 	// maximal water height to allow the passage of a unit (for underwater shallows).
 	float m_ShallowPassageHeight;
 
@@ -109,4 +109,4 @@ protected:
 	bool m_BlinkState;
 };
 
-#endif
+#endif // INCLUDED_MINIMAP

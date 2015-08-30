@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,42 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Object - List [box]
-
---Overview--
-
-	GUI Object for creating lists of information, wherein one
-	 of the elements can be selected. A scroll-bar will aid
-	 when there's too much information to be displayed at once.
-
---More info--
-
-	Check GUI.h
-
-*/
-
 #ifndef INCLUDED_CLIST
 #define INCLUDED_CLIST
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
-
 #include "IGUIScrollBar.h"
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
-
 
 /**
  * Create a list of elements, where one can be selected
@@ -59,10 +27,8 @@ GUI Object - List [box]
  * by the IGUITextOwner structure.
  *
  * A scroll-bar will appear when needed. This will be
- * achieve with the IGUIScrollBarOwner structure.
- *
+ * achieved with the IGUIScrollBarOwner structure.
  */
-
 class CList : public IGUIScrollBarOwner, public IGUITextOwner
 {
 	GUI_OBJECT(CList)
@@ -91,7 +57,7 @@ protected:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * Handle events manually to catch keyboard inputting.
@@ -121,8 +87,7 @@ protected:
 
 	// Extended drawing interface, this is so that classes built on the this one
 	//  can use other sprite names.
-	virtual void DrawList(const int &selected, const CStr& _sprite,
-				  const CStr& _sprite_selected, const CStr& _textcolor);
+	virtual void DrawList(const int& selected, const CStr& _sprite, const CStr& _sprite_selected, const CStr& _textcolor);
 
 	// Get the area of the list. This is so that it can easily be changed, like in CDropDown
 	//  where the area is not equal to m_CachedActualSize.
@@ -131,9 +96,6 @@ protected:
 	// Returns whether SetupText() has run since the last message was received
 	// (and thus whether list items have possibly changed).
 	virtual bool GetModified() const { return m_Modified; }
-
-	// List of items.
-	//CGUIList m_List;
 
 	/**
 	 * List of each element's relative y position. Will be
@@ -148,4 +110,4 @@ private:
 	bool m_Modified;
 };
 
-#endif
+#endif // INCLUDED_CLIST

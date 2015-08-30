@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,13 +15,12 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-IGUIScrollBar
-*/
-
 #include "precompiled.h"
-#include "GUI.h"
+
 #include "CGUIScrollBarVertical.h"
+
+#include "GUI.h"
+
 #include "ps/CLogger.h"
 
 
@@ -33,7 +32,7 @@ CGUIScrollBarVertical::~CGUIScrollBarVertical()
 {
 }
 
-void CGUIScrollBarVertical::SetPosFromMousePos(const CPos &mouse)
+void CGUIScrollBarVertical::SetPosFromMousePos(const CPos& mouse)
 {
 	if (!GetStyle())
 		return;
@@ -62,7 +61,7 @@ void CGUIScrollBarVertical::Draw()
 		// Draw background
 		GetGUI()->DrawSprite(GetStyle()->m_SpriteBackVertical,
 							 0,
-							 m_Z+0.1f, 
+							 m_Z+0.1f,
 							 CRect(outline.left,
 								   outline.top+(GetStyle()->m_UseEdgeButtons?GetStyle()->m_Width:0),
 								   outline.right,
@@ -72,7 +71,8 @@ void CGUIScrollBarVertical::Draw()
 		if (GetStyle()->m_UseEdgeButtons)
 		{
 			// Get Appropriate sprites
-			const CGUISpriteInstance *button_top, *button_bottom;
+			const CGUISpriteInstance* button_top;
+			const CGUISpriteInstance* button_bottom;
 
 			// figure out what sprite to use for top button
 			if (m_ButtonMinusHovered)
@@ -82,7 +82,8 @@ void CGUIScrollBarVertical::Draw()
 				else
 					button_top = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonTopOver, GetStyle()->m_SpriteButtonTop);
 			}
-			else button_top = &GetStyle()->m_SpriteButtonTop;
+			else
+				button_top = &GetStyle()->m_SpriteButtonTop;
 
 			// figure out what sprite to use for bottom button
 			if (m_ButtonPlusHovered)
@@ -92,8 +93,9 @@ void CGUIScrollBarVertical::Draw()
 				else
 					button_bottom = &GUI<>::FallBackSprite(GetStyle()->m_SpriteButtonBottomOver, GetStyle()->m_SpriteButtonBottom);
 			}
-			else button_bottom = &GetStyle()->m_SpriteButtonBottom;
-			
+			else
+				button_bottom = &GetStyle()->m_SpriteButtonBottom;
+
 			// Draw top button
 			GetGUI()->DrawSprite(*button_top,
 								 0,
@@ -103,7 +105,7 @@ void CGUIScrollBarVertical::Draw()
 									   outline.right,
 									   outline.top+GetStyle()->m_Width)
 								);
-			
+
 			// Draw bottom button
 			GetGUI()->DrawSprite(*button_bottom,
 								 0,
@@ -121,9 +123,9 @@ void CGUIScrollBarVertical::Draw()
 							 m_Z + 0.2f,
 							 GetBarRect());
 	}
-} 
+}
 
-void CGUIScrollBarVertical::HandleMessage(SGUIMessage &Message)
+void CGUIScrollBarVertical::HandleMessage(SGUIMessage& Message)
 {
 	IGUIScrollBar::HandleMessage(Message);
 }
@@ -167,7 +169,7 @@ CRect CGUIScrollBarVertical::GetOuterRect() const
 	return ret;
 }
 
-bool CGUIScrollBarVertical::HoveringButtonMinus(const CPos &mouse)
+bool CGUIScrollBarVertical::HoveringButtonMinus(const CPos& mouse)
 {
 	if (!GetStyle())
 		return false;
@@ -180,7 +182,7 @@ bool CGUIScrollBarVertical::HoveringButtonMinus(const CPos &mouse)
 			mouse.y <= m_Y + GetStyle()->m_Width);
 }
 
-bool CGUIScrollBarVertical::HoveringButtonPlus(const CPos &mouse)
+bool CGUIScrollBarVertical::HoveringButtonPlus(const CPos& mouse)
 {
 	if (!GetStyle())
 		return false;

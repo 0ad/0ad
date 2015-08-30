@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,45 +15,14 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Object - Text [field]
-
---Overview--
-
-	GUI Object representing a text field
-
---More info--
-
-	Check GUI.h
-
-*/
-
 #ifndef INCLUDED_CTEXT
 #define INCLUDED_CTEXT
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
-
-// TODO Gee: Remove
-class IGUIScrollBar;
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * Text field that just displays static text.
- * 
+ *
  * @see IGUIObject
  */
 class CText : public IGUIScrollBarOwner, public IGUITextOwner
@@ -84,7 +53,7 @@ protected:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * Draws the Text
@@ -97,4 +66,4 @@ protected:
 	CPos m_TextPos;
 };
 
-#endif
+#endif // INCLUDED_CTEXT

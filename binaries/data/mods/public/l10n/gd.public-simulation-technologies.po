@@ -9,23 +9,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 09:17+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-23 06:42+0000\n"
+"Last-Translator: GunChleoc\n"
+"Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
-
-#: simulation/data/technologies/advanced_unit_bonus.jsongenericName
-msgid "Stats for advanced units"
-msgstr ""
-
-#: simulation/data/technologies/advanced_unit_bonus.jsondescription
-msgid "These stat modifications will be applied to advanced and elite units"
-msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -78,7 +70,8 @@ msgstr "Seampron"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
-#: simulation/data/technologies/speed_trader_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_females_house.jsonrequirementsTooltip
@@ -125,7 +118,6 @@ msgstr "Armachd meatailt airson bodhaig eich."
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_ship_hullsheathing.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_trade_convoys.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_champions_elite.jsonrequirementsTooltip
@@ -153,6 +145,8 @@ msgstr "Armachd meatailt airson bodhaig eich."
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_packing.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
 #: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
 #: simulation/data/technologies/training_naval_architects.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
@@ -462,18 +456,6 @@ msgstr "Neartachadh air sligean luinge"
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "Ri fhaighinn ri linn nan clachan."
-
-#: simulation/data/technologies/armor_trade_convoys.jsondescription
-msgid "Increases defensive capability of traders."
-msgstr "Nì e dìon an luchd-mhalairt nas treasa."
-
-#: simulation/data/technologies/armor_trade_convoys.jsontooltip
-msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "+2 de dh'armachd an aghaidh spealgaidh 's bioraidh airson luchd-mhalairt."
-
-#: simulation/data/technologies/armor_trade_convoys.jsongenericName
-msgid "Trade convoys"
-msgstr "Coimheadachdan malairt"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
@@ -805,14 +787,6 @@ msgstr "Crìonadh ranntair de -50% airson ghearastanan."
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "Bonn cloiche"
-
-#: simulation/data/technologies/elite_unit_bonus.jsongenericName
-msgid "Stats for elite units"
-msgstr ""
-
-#: simulation/data/technologies/elite_unit_bonus.jsondescription
-msgid "These stat modifications will be applied to elite units"
-msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1573,18 +1547,48 @@ msgstr "Trèanaich na h-eich agad ach an gluais iad nas luaithe."
 msgid "Cavalry Speed Training"
 msgstr "Trèanadh air luaths an eachraidh"
 
-#: simulation/data/technologies/speed_trader_01.jsondescription
+#: simulation/data/technologies/trade_convoys_armor.jsondescription
+msgid "Increases defensive capability of traders."
+msgstr "Nì e dìon an luchd-mhalairt nas treasa."
+
+#: simulation/data/technologies/trade_convoys_armor.jsontooltip
+msgid "Traders +2 Hack and Pierce armor levels."
+msgstr "+2 de dh'armachd an aghaidh spealgaidh 's bioraidh airson luchd-mhalairt."
+
+#: simulation/data/technologies/trade_convoys_armor.jsongenericName
+#: simulation/data/technologies/trade_convoys_speed.jsongenericName
+msgid "Trade Convoys"
+msgstr "Coimheadachdan malairt"
+
+#: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
 msgstr "Cuiridh seo ri astar gluasaid an luchd-mhalairt na chuireas ri teachd a-steach on mhalart."
 
-#: simulation/data/technologies/speed_trader_01.jsontooltip
+#: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
 msgstr "Coisichidh luchd-malairt +25% nas luaithe na chuireas ri teachd a-steach on mhalart."
 
-#: simulation/data/technologies/speed_trader_01.jsongenericName
-msgid "Trade Convoys"
-msgstr "Coimheadachdan malairt"
+#: simulation/data/technologies/trade_gain_01.jsondescription
+#: simulation/data/technologies/trade_gain_02.jsondescription
+msgid "The progress in handicraft improves the trading profit."
+msgstr "Le leasachadh na làimh-cheàird, fhuaradh barrachd prothaid às a' mhalart."
+
+#: simulation/data/technologies/trade_gain_01.jsontooltip
+msgid "Traders +10% gain."
+msgstr "Buannaichidh luchd-margaid +10%."
+
+#: simulation/data/technologies/trade_gain_01.jsongenericName
+msgid "Handicraft"
+msgstr "Làimh-cheàrd"
+
+#: simulation/data/technologies/trade_gain_02.jsontooltip
+msgid "Traders +15% gain."
+msgstr "Buannaichidh luchd-margaid +15%."
+
+#: simulation/data/technologies/trade_gain_02.jsongenericName
+msgid "Advanced Handicraft"
+msgstr "Làimh-cheàrd adhartach"
 
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
@@ -1699,15 +1703,15 @@ msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr ""
+msgstr "Rùraicheadh daoine na dùthchannan thar nan crìochan aca fhèin nuair a bhiodh iad ri malart no siubhal agus tharraingeadh iad mapaichean dhiubh gus na lorg iad a cho-roinneadh is a chur an cuimhne."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid "Player sees what his allies see."
-msgstr ""
+msgstr "Chì an cluicheadair na chì na caidreabhaich aige."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
-msgstr ""
+msgstr "Mapa-eòlas"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -2320,7 +2324,7 @@ msgstr "Thog na Pearsaich an rathad mòr rìoghail mìorbhaileach o Shardis gu S
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr ""
+msgstr "Buannaichidh na h-uile togalach Pearsach +25% de shlàinte is puingean glacaidh ach bheir e +20% a bharrachd de dh'ùine cuideachd."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2427,7 +2431,7 @@ msgstr "Stèidhich na rìghrean Greugach iomadh baile sna h-impireachdan aca o A
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid ""
 "Civic centers +100% health and capture points and double default arrows."
-msgstr ""
+msgstr "Gheibh ionadan sìobhalta +100% de shlàinte is puingean glacaidh is dà uiread dhe shaighdean tùsail."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

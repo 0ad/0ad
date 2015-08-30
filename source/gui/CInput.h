@@ -15,38 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-GUI Object - Input [box]
-
---Overview--
-
-	GUI Object representing a text field you can edit.
-
---More info--
-
-	Check GUI.h
-
-*/
-
 #ifndef INCLUDED_CINPUT
 #define INCLUDED_CINPUT
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * Text field where you can input and edit the text.
@@ -75,18 +47,17 @@ public:
 
 	// Check where the mouse is hovering, and get the appropriate text position.
 	//  return is the text-position index.
-	// const in philosophy, but I need to retrieve the caption in a non-const way.
-	int GetMouseHoveringTextPosition();
+	int GetMouseHoveringTextPosition() const;
 
-	// Same as above, but only on one row in X, and a given value, not the mouse's
-	//  wanted is filled with x if the row didn't extend as far as we 
-	int GetXTextPosition(const std::list<SRow>::iterator &c, const float &x, float &wanted);
+	// Same as above, but only on one row in X, and a given value, not the mouse's.
+	//  wanted is filled with x if the row didn't extend as far as the mouse pos.
+	int GetXTextPosition(const std::list<SRow>::const_iterator& c, const float& x, float& wanted) const;
 
 protected:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * Handle events manually to catch keyboard inputting.
@@ -118,7 +89,7 @@ protected:
 	 * appears, because then the word-wrapping won't change after
 	 * that.
 	 */
-	void UpdateText(int from=0, int to_before=-1, int to_after=-1);
+	void UpdateText(int from = 0, int to_before = -1, int to_after = -1);
 
 	/**
 	 * Delete the current selection. Also places the pointer at the
@@ -172,7 +143,7 @@ protected:
 	 * List of rows to ease changing its size, so iterators stay valid.
 	 * For one-liners only one row is used.
 	 */
-	std::list< SRow > m_CharacterPositions;
+	std::list<SRow> m_CharacterPositions;
 
 	// *** Things for a multi-lined input control *** //
 
@@ -205,4 +176,4 @@ protected:
 	bool m_CursorVisState;
 };
 
-#endif
+#endif // INCLUDED_CINPUT

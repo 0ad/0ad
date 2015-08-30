@@ -114,31 +114,31 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 {
 	shared_ptr<ScriptInterface::StructuredClone> initDataClone = m_PageStack.back().initData;
 	PopPage();
-	
+
 	shared_ptr<ScriptInterface> scriptInterface = m_PageStack.back().gui->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
 	JS::RootedValue initDataVal(cx);
-	if (initDataClone)
-		scriptInterface->ReadStructuredClone(initDataClone, &initDataVal);
-	else
+	if (!initDataClone)
 	{
 		LOGERROR("Called PopPageCB when initData (which should contain the callback function name) isn't set!");
 		return;
 	}
-	
+
+	scriptInterface->ReadStructuredClone(initDataClone, &initDataVal);
+
 	if (!scriptInterface->HasProperty(initDataVal, "callback"))
 	{
 		LOGERROR("Called PopPageCB when the callback function name isn't set!");
 		return;
 	}
-	
+
 	std::string callback;
 	if (!scriptInterface->GetProperty(initDataVal, "callback", callback))
 	{
 		LOGERROR("Failed to get the callback property as a string from initData in PopPageCB!");
 		return;
 	}
-	
+
 	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 	if (!scriptInterface->HasProperty(global, callback.c_str()))
 	{
@@ -182,13 +182,13 @@ void CGUIManager::LoadPage(SGUIPage& page)
 		shared_ptr<ScriptInterface> scriptInterface = page.gui->GetScriptInterface();
 		JSContext* cx = scriptInterface->GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 		JS::RootedValue hotloadDataVal(cx);
-		scriptInterface->CallFunction(global, "getHotloadData", &hotloadDataVal); 
+		scriptInterface->CallFunction(global, "getHotloadData", &hotloadDataVal);
 		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal);
 	}
-		
+
 	page.inputs.clear();
 	page.gui.reset(new CGUI(m_ScriptRuntime));
 
@@ -252,20 +252,20 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	shared_ptr<ScriptInterface> scriptInterface = page.gui->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	JS::RootedValue initDataVal(cx);
 	JS::RootedValue hotloadDataVal(cx);
 	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
-	if (page.initData) 
+	if (page.initData)
 		scriptInterface->ReadStructuredClone(page.initData, &initDataVal);
 	if (hotloadData)
 		scriptInterface->ReadStructuredClone(hotloadData, &hotloadDataVal);
-	
+
 	// Call the init() function
 	if (!scriptInterface->CallFunctionVoid(
-			global, 
-			"init", 
-			initDataVal, 
+			global,
+			"init",
+			initDataVal,
 			hotloadDataVal)
 		)
 	{
@@ -277,15 +277,13 @@ void CGUIManager::LoadPage(SGUIPage& page)
 
 Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 {
-	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
-	{
-		if (it->inputs.count(path))
+	for (SGUIPage& p : m_PageStack)
+		if (p.inputs.count(path))
 		{
-			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), utf8_from_wstring(it->name));
-			LoadPage(*it);
+			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), utf8_from_wstring(p.name));
+			LoadPage(p);
 			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}
-	}
 
 	return INFO::OK;
 }
@@ -293,8 +291,8 @@ Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 Status CGUIManager::ReloadAllPages()
 {
 	// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
-	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
-		LoadPage(*it);
+	for (SGUIPage& p : m_PageStack)
+		LoadPage(p);
 
 	return INFO::OK;
 }
@@ -304,7 +302,7 @@ std::string CGUIManager::GetSavedGameData()
 	shared_ptr<ScriptInterface> scriptInterface = top()->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	JS::RootedValue data(cx);
 	JS::RootedValue global(cx, top()->GetGlobalObject());
 	scriptInterface->CallFunction(global, "getSavedGameData", &data);
@@ -316,7 +314,7 @@ void CGUIManager::RestoreSavedGameData(std::string jsonData)
 	shared_ptr<ScriptInterface> scriptInterface = top()->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	JS::RootedValue global(cx, top()->GetGlobalObject());
 	JS::RootedValue dataVal(cx);
 	scriptInterface->ParseJSON(jsonData, &dataVal);
@@ -331,7 +329,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 	// visible game area), sometimes they'll want to intercepts events before the GUI (e.g.
 	// to capture all mouse events until a mouseup after dragging).
 	// So we call two separate handler functions:
-	
+
 	bool handled;
 
 	{
@@ -367,7 +365,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 }
 
 
-bool CGUIManager::GetPreDefinedColor(const CStr& name, CColor& output)
+bool CGUIManager::GetPreDefinedColor(const CStr& name, CColor& output) const
 {
 	return top()->GetPreDefinedColor(name, output);
 }
@@ -382,7 +380,7 @@ IGUIObject* CGUIManager::FindObjectByName(const CStr& name) const
 		return top()->FindObjectByName(name);
 }
 
-void CGUIManager::SendEventToAll(const CStr& eventName)
+void CGUIManager::SendEventToAll(const CStr& eventName) const
 {
 	top()->SendEventToAll(eventName);
 }
@@ -394,14 +392,14 @@ void CGUIManager::TickObjects()
 	// We share the script runtime with everything else that runs in the same thread.
 	// This call makes sure we trigger GC regularly even if the simulation is not running.
 	m_ScriptInterface->GetRuntime()->MaybeIncrementalGC(1.0f);
-	
+
 	// Save an immutable copy so iterators aren't invalidated by tick handlers
 	PageStackType pageStack = m_PageStack;
 
-	for (PageStackType::iterator it = pageStack.begin(); it != pageStack.end(); ++it)
+	for (const SGUIPage& p : pageStack)
 	{
-		m_CurrentGUI = it->gui;
-		it->gui->TickObjects();
+		m_CurrentGUI = p.gui;
+		p.gui->TickObjects();
 	}
 	m_CurrentGUI.reset();
 }
@@ -410,17 +408,17 @@ void CGUIManager::Draw()
 {
 	PROFILE3_GPU("gui");
 
-	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
-		it->gui->Draw();
+	for (const SGUIPage& p : m_PageStack)
+		p.gui->Draw();
 }
 
 void CGUIManager::UpdateResolution()
 {
-	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
-		it->gui->UpdateResolution();
+	for (const SGUIPage& p : m_PageStack)
+		p.gui->UpdateResolution();
 }
 
-bool CGUIManager::TemplateExists(const std::string& templateName)
+bool CGUIManager::TemplateExists(const std::string& templateName) const
 {
 	return m_TemplateLoader.TemplateExists(templateName);
 }

@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:51+0200\n"
-"PO-Revision-Date: 2015-05-23 14:40+0000\n"
+"POT-Creation-Date: 2015-07-21 23:22+0200\n"
+"PO-Revision-Date: 2015-07-22 14:10+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,9 +47,9 @@ msgstr "我無法在這個時間點幫助你對抗 %(_player_)s，因為我已�
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
-"Sorry, I have not enough soldiers currently, but my next attack will target "
-"%(_player_)s."
-msgstr "抱歉，我目前沒有足夠的士兵，但我的下一個攻擊目標是 %(_player_)s。"
+"Sorry, I do not have enough soldiers currently, but my next attack will "
+"target %(_player_)s."
+msgstr "抱歉，目前我沒有足夠的士兵，但我的下一個攻擊目標是 %(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
@@ -606,12 +606,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "敵方的"
 
-#: simulation/components/CeasefireManager.js:125
+#: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "您可以在 %(time)s 內攻擊"
 
-#: simulation/components/CeasefireManager.js:140
+#: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
 msgstr "您現在可以攻擊了！"
 
@@ -630,42 +630,42 @@ msgstr "%(category)s 已達到最大訓練數 %(limit)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s 已達到最高限制 %(limit)s"
 
-#: simulation/components/Player.js:39
+#: simulation/components/Player.js:43
 msgid "Food"
 msgstr "糧食"
 
-#: simulation/components/Player.js:40
+#: simulation/components/Player.js:44
 msgid "Wood"
 msgstr "木材"
 
-#: simulation/components/Player.js:41
+#: simulation/components/Player.js:45
 msgid "Metal"
 msgstr "金屬"
 
-#: simulation/components/Player.js:42
+#: simulation/components/Player.js:46
 msgid "Stone"
 msgstr "石頭"
 
-#: simulation/components/Player.js:243
+#: simulation/components/Player.js:252
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:245
+#: simulation/components/Player.js:254
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:247
+#: simulation/components/Player.js:256
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:249
+#: simulation/components/Player.js:258
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "

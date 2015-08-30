@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,24 +33,8 @@ GUI Object - Drop Down (list)
 #ifndef INCLUDED_CDROPDOWN
 #define INCLUDED_CDROPDOWN
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUI.h"
 #include "CList.h"
-//class CList;
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
 
 /**
  * Drop Down
@@ -74,7 +58,7 @@ public:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
 	 * Handle events manually to catch keyboard inputting.
@@ -99,7 +83,7 @@ protected:
 	 * made that can change the visual.
 	 */
 	void SetupText();
-	
+
 	// Sets up the cached GetListRect. Decided whether it should
 	//  have a scrollbar, and so on.
 	virtual void SetupListRect();
@@ -127,14 +111,14 @@ protected:
 	//  it is set to "selected", but then when moving the mouse it will
 	//  change.
 	int m_ElementHighlight;
-	
+
 	// Stores any text entered by the user for quick access to an element
 	// (ie if you type "acro" it will take you to acropolis).
 	std::string m_InputBuffer;
-	
+
 	// used to know if we want to restart anew or add to m_inputbuffer.
 	double m_TimeOfLastInput;
 
 };
 
-#endif
+#endif // INCLUDED_CDROPDOWN

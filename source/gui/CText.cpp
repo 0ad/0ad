@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,21 +15,15 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-CText
-*/
-
 #include "precompiled.h"
-#include "GUI.h"
+
 #include "CText.h"
+
 #include "CGUIScrollBarVertical.h"
+#include "GUI.h"
 
 #include "lib/ogl.h"
 
-
-//-------------------------------------------------------------------
-//  Constructor / Destructor
-//-------------------------------------------------------------------
 CText::CText()
 {
 	AddSetting(GUIST_float,					"buffer_zone");
@@ -56,7 +50,7 @@ CText::CText()
 	GUI<bool>::SetSetting(this, "clip", true);
 
 	// Add scroll-bar
-	CGUIScrollBarVertical * bar = new CGUIScrollBarVertical();
+	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical();
 	bar->SetRightAligned(true);
 	AddScrollBar(bar);
 
@@ -92,11 +86,11 @@ void CText::SetupText()
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
 
-    float buffer_zone=0.f;
+    float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, width, buffer_zone, this);
 
-	if (! scrollbar)
+	if (!scrollbar)
 		CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
 
 	// Setup scrollbar
@@ -126,7 +120,7 @@ void CText::SetupText()
 	}
 }
 
-void CText::HandleMessage(SGUIMessage &Message)
+void CText::HandleMessage(SGUIMessage& Message)
 {
 	IGUIScrollBarOwner::HandleMessage(Message);
 	//IGUITextOwner::HandleMessage(Message); <== placed it after the switch instead!
@@ -135,9 +129,7 @@ void CText::HandleMessage(SGUIMessage &Message)
 	{
 	case GUIM_SETTINGS_UPDATED:
 		if (Message.value == "scrollbar")
-		{
 			SetupText();
-		}
 
 		// Update scrollbar
 		if (Message.value == "scrollbar_style")
@@ -145,7 +137,7 @@ void CText::HandleMessage(SGUIMessage &Message)
 			CStr scrollbar_style;
 			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
 
-			GetScrollBar(0).SetScrollBarStyle( scrollbar_style );
+			GetScrollBar(0).SetScrollBarStyle(scrollbar_style);
 
 			SetupText();
 		}
@@ -153,35 +145,35 @@ void CText::HandleMessage(SGUIMessage &Message)
 		break;
 
 	case GUIM_MOUSE_WHEEL_DOWN:
-		{
+	{
 		GetScrollBar(0).ScrollPlus();
 		// Since the scroll was changed, let's simulate a mouse movement
 		//  to check if scrollbar now is hovered
 		SGUIMessage msg(GUIM_MOUSE_MOTION);
 		HandleMessage(msg);
 		break;
-		}
+	}
 	case GUIM_MOUSE_WHEEL_UP:
-		{
+	{
 		GetScrollBar(0).ScrollMinus();
 		// Since the scroll was changed, let's simulate a mouse movement
 		//  to check if scrollbar now is hovered
 		SGUIMessage msg(GUIM_MOUSE_MOTION);
 		HandleMessage(msg);
 		break;
-		}
+	}
 	case GUIM_LOAD:
-		{
-		GetScrollBar(0).SetX( m_CachedActualSize.right );
-		GetScrollBar(0).SetY( m_CachedActualSize.top );
-		GetScrollBar(0).SetZ( GetBufferedZ() );
-		GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
+	{
+		GetScrollBar(0).SetX(m_CachedActualSize.right);
+		GetScrollBar(0).SetY(m_CachedActualSize.top);
+		GetScrollBar(0).SetZ(GetBufferedZ());
+		GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
 
 		CStr scrollbar_style;
 		GUI<CStr>::GetSetting(this, "scrollbar_style", scrollbar_style);
-		GetScrollBar(0).SetScrollBarStyle( scrollbar_style );
-		}
+		GetScrollBar(0).SetScrollBarStyle(scrollbar_style);
 		break;
+	}
 
 	default:
 		break;
@@ -190,7 +182,7 @@ void CText::HandleMessage(SGUIMessage &Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-void CText::Draw() 
+void CText::Draw()
 {
 	float bz = GetBufferedZ();
 
@@ -199,84 +191,71 @@ void CText::Draw()
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
 	if (scrollbar)
-	{
 		// Draw scrollbar
 		IGUIScrollBarOwner::Draw();
-	}
 
-	if (GetGUI())
+	if (!GetGUI())
+		return;
+
+	CGUISpriteInstance* sprite;
+	int cell_id;
+	bool clip;
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
+	GUI<int>::GetSetting(this, "cell_id", cell_id);
+	GUI<bool>::GetSetting(this, "clip", clip);
+
+	GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
+
+	float scroll = 0.f;
+	if (scrollbar)
+		scroll = GetScrollBar(0).GetPos();
+
+	// Clipping area (we'll have to subtract the scrollbar)
+	CRect cliparea;
+	if (clip)
 	{
-		CGUISpriteInstance *sprite;
-		int cell_id;
-		bool clip;
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-		GUI<int>::GetSetting(this, "cell_id", cell_id);
-		GUI<bool>::GetSetting(this, "clip", clip);
-
-		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
-
-		float scroll=0.f;
-		if (scrollbar)
-		{
-			scroll = GetScrollBar(0).GetPos();
-		}
-
-		// Clipping area (we'll have to subtract the scrollbar)
-		CRect cliparea;
-		if (clip)
-		{
-			cliparea = m_CachedActualSize;
-
-			if (scrollbar)
-			{
-				// subtract scrollbar from cliparea
-				if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
-					cliparea.right <= GetScrollBar(0).GetOuterRect().right)
-					cliparea.right = GetScrollBar(0).GetOuterRect().left;
-
-				if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
-					cliparea.left < GetScrollBar(0).GetOuterRect().right)
-					cliparea.left = GetScrollBar(0).GetOuterRect().right;
-			}
-		}
-
-		CColor color;
-		GUI<CColor>::GetSetting(this, "textcolor", color);
+		cliparea = m_CachedActualSize;
 
 		if (scrollbar)
-			DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f, cliparea);
-		else
-			DrawText(0, color, m_TextPos, bz+0.1f, cliparea);
+		{
+			// subtract scrollbar from cliparea
+			if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
+			    cliparea.right <= GetScrollBar(0).GetOuterRect().right)
+				cliparea.right = GetScrollBar(0).GetOuterRect().left;
+
+			if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
+			    cliparea.left < GetScrollBar(0).GetOuterRect().right)
+				cliparea.left = GetScrollBar(0).GetOuterRect().right;
+		}
 	}
+
+	CColor color;
+	GUI<CColor>::GetSetting(this, "textcolor", color);
+
+	if (scrollbar)
+		DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f, cliparea);
+	else
+		DrawText(0, color, m_TextPos, bz+0.1f, cliparea);
 }
 
 bool CText::MouseOverIcon()
 {
-	std::vector<SGUIText*>::iterator text_it;
-	std::list<SGUIText::SSpriteCall>::iterator sprite_it;
-
-	for (text_it=m_GeneratedTexts.begin(); text_it!=m_GeneratedTexts.end(); ++text_it)
-	{
-		SGUIText* guitext = *text_it;
-
-		for (sprite_it=guitext->m_SpriteCalls.begin(); sprite_it!=guitext->m_SpriteCalls.end(); ++sprite_it)
+	for (SGUIText* const& guitext : m_GeneratedTexts)
+		for (const SGUIText::SSpriteCall& spritecall : guitext->m_SpriteCalls)
 		{
-			//Check mouse over sprite
-			SGUIText::SSpriteCall spritecall = *sprite_it;
+			// Check mouse over sprite
+			if (!spritecall.m_Area.PointInside(GetMousePos() - m_CachedActualSize.TopLeft()))
+				continue;
 
-			if (spritecall.m_Area.PointInside(GetMousePos() - m_CachedActualSize.TopLeft()))
+			// If tooltip exists, set the property
+			if (!spritecall.m_Tooltip.empty())
 			{
-				//If tooltip exists, set the property
-				if(!spritecall.m_Tooltip.empty())
-				{
-					SetSetting("_icon_tooltip_style", spritecall.m_TooltipStyle);
-					SetSetting("_icon_tooltip", spritecall.m_Tooltip);
-				}
-
-				return true;
+				SetSetting("_icon_tooltip_style", spritecall.m_TooltipStyle);
+				SetSetting("_icon_tooltip", spritecall.m_Tooltip);
 			}
+
+			return true;
 		}
-	}
 
 	return false;
 }

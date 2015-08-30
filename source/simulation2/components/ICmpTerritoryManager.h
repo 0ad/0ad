@@ -72,6 +72,12 @@ public:
 	 */
 	virtual void SetTerritoryBlinking(entity_pos_t x, entity_pos_t z) = 0;
 
+	/**
+	 * Returns the percentage of the world controlled by a given player as defined by
+	 * the number of territory cells the given player owns
+	 */
+	 virtual u8 GetTerritoryPercentage(player_id_t player) = 0;
+
 	DECLARE_INTERFACE_TYPE(TerritoryManager)
 };
 

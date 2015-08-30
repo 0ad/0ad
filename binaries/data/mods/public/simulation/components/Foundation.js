@@ -142,8 +142,8 @@ Foundation.prototype.RemoveBuilder = function(builderEnt)
  */
 Foundation.prototype.SetBuildMultiplier = function()
 {
-	var numBuilders = this.builders.length;
-	if (numBuilders == 0)
+	let numBuilders = this.builders.length;
+	if (numBuilders < 2)
 		this.buildMultiplier = 1;
 	else
 		this.buildMultiplier = Math.pow(numBuilders, 0.7) / numBuilders;

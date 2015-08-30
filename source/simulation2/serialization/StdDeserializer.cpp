@@ -410,6 +410,9 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		NumberU32_Unbounded("map size", mapSize);
 		JS::RootedValue mapVal(cx);
 		m_ScriptInterface.Eval("(new Map())", &mapVal);
+
+		// To match the serializer order, we reserve the map's backref tag here
+		u32 mapTag = ReserveScriptBackref();
 		
 		for (u32 i=0; i<mapSize; ++i)
 		{
@@ -418,7 +421,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 			m_ScriptInterface.CallFunctionVoid(mapVal, "set", key, value);
 		}
 		JS::RootedObject mapObj(cx, &mapVal.toObject());
-		AddScriptBackref(mapObj);
+		SetReservedScriptBackref(mapTag, mapObj);
 		return mapVal;
 	}
 	case SCRIPT_TYPE_OBJECT_SET:
@@ -428,13 +431,16 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		JS::RootedValue setVal(cx);
 		m_ScriptInterface.Eval("(new Set())", &setVal);
 
+		// To match the serializer order, we reserve the set's backref tag here
+		u32 setTag = ReserveScriptBackref();
+
 		for (u32 i=0; i<setSize; ++i)
 		{
 			JS::RootedValue value(cx, ReadScriptVal("set value", JS::NullPtr()));
 			m_ScriptInterface.CallFunctionVoid(setVal, "add", value);
 		}
 		JS::RootedObject setObj(cx, &setVal.toObject());
-		AddScriptBackref(setObj);
+		SetReservedScriptBackref(setTag, setObj);
 		return setVal;
 	}
 	default:

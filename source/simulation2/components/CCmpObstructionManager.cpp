@@ -888,14 +888,12 @@ void CCmpObstructionManager::RasterizeHelper(Grid<u16>& grid, ICmpObstructionMan
 		SimRasterize::RasterizeRectWithClearance(spans, square, clearance, Pathfinding::NAVCELL_SIZE);
 		for (SimRasterize::Span& span : spans)
 		{
-			i16 j = span.j;
-			if (j >= 0 && j <= grid.m_H)
-			{
-				i16 i0 = std::max(span.i0, (i16)0);
-				i16 i1 = std::min(span.i1, (i16)grid.m_W);
-				for (i16 i = i0; i < i1; ++i)
-					grid.set(i, j, grid.get(i, j) | appliedMask);
-			}
+			i16 j = Clamp(span.j, (i16)0, (i16)(grid.m_H-1));
+			i16 i0 = std::max(span.i0, (i16)0);
+			i16 i1 = std::min(span.i1, (i16)grid.m_W);
+
+			for (i16 i = i0; i < i1; ++i)
+				grid.set(i, j, grid.get(i, j) | appliedMask);
 		}
 	}
 

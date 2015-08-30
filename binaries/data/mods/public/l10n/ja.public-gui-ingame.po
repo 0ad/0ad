@@ -17,10 +17,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-17 07:10+0000\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-07-27 06:00+0000\n"
 "Last-Translator: Kanetaka Suto\n"
-"Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
+"Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -118,7 +118,7 @@ msgid "Enemy"
 msgstr "敵対"
 
 #: gui/session/menu.js:349
-msgid "request for your allies to attack this enemy"
+msgid "Request your allies to attack this enemy"
 msgstr "味方にこの敵を攻撃するよう要請する"
 
 #: gui/session/menu.js:364
@@ -222,19 +222,19 @@ msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s隻の交易船が待機"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "マニュアル"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "開発者用オーバーレイを開きました。"
 
-#: gui/session/menu.js:691
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "開発者用オーバーレイを閉じました。"
 
-#: gui/session/menu.js:707
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -350,7 +350,7 @@ msgstr "%(player)sはあなたに%(amounts)sを贈りました。"
 
 #: gui/session/messages.js:521
 #, javascript-format
-msgid "Your livestock have been attacked by %(attacker)s!"
+msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "家畜が%(attacker)sに攻撃されました！"
 
 #: gui/session/messages.js:523
@@ -952,7 +952,7 @@ msgstr "選択したユニットを昇進"
 
 #: gui/session/session.xml:(caption):150
 msgid "Hierarchical pathfinder overlay"
-msgstr ""
+msgstr "大域パスファインダー・オーバーレイ"
 
 #: gui/session/session.xml:(caption):184
 msgid "Game Paused"

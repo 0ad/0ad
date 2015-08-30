@@ -4,16 +4,17 @@
 # 
 # Translators:
 # Laurene Albrand, 2015
+# Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014
 # leper <leper@wildfiregames.com>, 2014-2015
 # Tanksy <jake_anderson_007@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:37+0200\n"
-"PO-Revision-Date: 2015-07-19 22:41+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
-"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/0ad/language/en_GB/)\n"
+"POT-Creation-Date: 2015-07-21 23:21+0200\n"
+"PO-Revision-Date: 2015-07-22 18:08+0000\n"
+"Last-Translator: Laurene Albrand\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -113,8 +114,8 @@ msgid "Enemy"
 msgstr "Enemy"
 
 #: gui/session/menu.js:349
-msgid "request for your allies to attack this enemy"
-msgstr "request for your allies to attack this enemy"
+msgid "Request your allies to attack this enemy"
+msgstr "Request your allies to attack this enemy"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -226,19 +227,19 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s merchant ship inactive"
 msgstr[1] "%(numberOfShipTraders)s merchant ships inactive"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "The Developer Overlay was opened."
 
-#: gui/session/menu.js:691
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "The Developer Overlay was closed."
 
-#: gui/session/menu.js:707
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -354,8 +355,8 @@ msgstr "%(player)s has sent you %(amounts)s."
 
 #: gui/session/messages.js:521
 #, javascript-format
-msgid "Your livestock have been attacked by %(attacker)s!"
-msgstr "Your livestock have been attacked by %(attacker)s!"
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "Your livestock has been attacked by %(attacker)s!"
 
 #: gui/session/messages.js:523
 #, javascript-format

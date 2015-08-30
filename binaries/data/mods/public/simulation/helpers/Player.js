@@ -243,6 +243,16 @@ function QueryMiragedInterface(ent, iid)
 }
 
 /**
+ * Similar to Engine.QueryInterface, but checks for all interfaces
+ * implementing a builder list (currently Foundation and Repairable)
+ * TODO Foundation and Repairable could both implement a BuilderList component
+ */
+function QueryBuilderListInterface(ent)
+{
+	return Engine.QueryInterface(ent, IID_Foundation) || Engine.QueryInterface(ent, IID_Repairable);
+}
+
+/**
  * Returns true if the entity 'target' is owned by an ally of
  * the owner of 'entity'.
  */
@@ -400,6 +410,7 @@ Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);
 Engine.RegisterGlobal("QueryOwnerInterface", QueryOwnerInterface);
 Engine.RegisterGlobal("QueryPlayerIDInterface", QueryPlayerIDInterface);
 Engine.RegisterGlobal("QueryMiragedInterface", QueryMiragedInterface);
+Engine.RegisterGlobal("QueryBuilderListInterface", QueryBuilderListInterface);
 Engine.RegisterGlobal("IsOwnedByAllyOfEntity", IsOwnedByAllyOfEntity);
 Engine.RegisterGlobal("IsOwnedByMutualAllyOfEntity", IsOwnedByMutualAllyOfEntity);
 Engine.RegisterGlobal("IsOwnedByPlayer", IsOwnedByPlayer);

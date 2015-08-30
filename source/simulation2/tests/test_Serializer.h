@@ -579,6 +579,104 @@ public:
 		);
 	}
 
+	void test_script_map_nested()
+	{
+		helper_script_roundtrip("Nested maps",
+			"var a = new Map();"
+			"a.set(\"Builder/Range\", new Map());"
+			"a.get(\"Builder/Range\").set(\"155\", { \"add\": 0, \"multiply\": 1});"
+			"a.get(\"Builder/Range\").set(\"2300\", { \"add\": 0, \"multiply\": 1.1});"
+			"a.get(\"Builder/Range\").set(\"159\", { \"add\": 0, \"multiply\": 1});"
+			"a",
+		/* expected: */
+			"({})",
+		/* expected stream: */
+			215,
+			"\x0f" // SCRIPT_TYPE_MAP
+			"\x01\0\0\0" // size
+
+			"\x04" // SCRIPT_TYPE_STRING
+			"\x0d\0\0\0" "B\0u\0i\0l\0d\0e\0r\0/\0R\0a\0n\0g\0e\0" // "Builder/Range"
+			"\x0f" // SCRIPT_TYPE_MAP
+			"\x03\0\0\0" // size
+
+				"\x04" // SCRIPT_TYPE_STRING
+				"\x03\0\0\0" "1\0005\0005\000" // "155"
+				"\x03" // SCRIPT_TYPE_OBJECT
+				"\x02\0\0\0" // num props
+					"\x03\0\0\0" "a\0d\0d\0" // "add"
+					"\x05" // SCRIPT_TYPE_INT
+					"\0\0\0\0" // 0
+					"\x08\0\0\0" "m\0u\0l\0t\0i\0p\0l\0y\0" // "multiply"
+					"\x05" // SCRIPT_TYPE_INT
+					"\x01\0\0\0" // 1
+
+				"\x04" // SCRIPT_TYPE_STRING
+				"\x04\0\0\0" "2\0003\0000\0000\000" // "2300"
+				"\x03" // SCRIPT_TYPE_OBJECT
+				"\x02\0\0\0" // num props
+					"\x03\0\0\0" "a\0d\0d\0" // "add"
+					"\x05" // SCRIPT_TYPE_INT
+					"\0\0\0\0" // 0
+					"\x08\0\0\0" "m\0u\0l\0t\0i\0p\0l\0y\0" // "multiply"
+					"\x06" // SCRIPT_TYPE_DOUBLE
+					"\x9a\x99\x99\x99\x99\x99\xf1\x3f" // 1.1
+
+				"\x04" // SCRIPT_TYPE_STRING
+				"\x03\0\0\0" "1\0005\0009\000" // "159"
+				"\x03" // SCRIPT_TYPE_OBJECT
+				"\x02\0\0\0" // num props
+					"\x03\0\0\0" "a\0d\0d\0" // "add"
+					"\x05" // SCRIPT_TYPE_INT
+					"\0\0\0\0" // 0
+					"\x08\0\0\0" "m\0u\0l\0t\0i\0p\0l\0y\0" // "multiply"
+					"\x05" // SCRIPT_TYPE_INT
+					"\x01\0\0\0" // 1
+		);
+
+		helper_script_roundtrip("Nested maps using backrefs",
+			"var a = new Map(); var b = new Map(); b.set(1, a); b.set(2, a); b",
+		/* expected: */
+			"({})",
+		/* expected stream: */
+			25,
+			"\x0f" // SCRIPT_TYPE_MAP
+			"\x02\0\0\0" // size
+
+			"\x05" // SCRIPT_TYPE_INT
+			"\x01\0\0\0" // 1
+			"\x0f" // SCRIPT_TYPE_MAP
+			"\0\0\0\0" // size
+
+			"\x05" // SCRIPT_TYPE_INT
+			"\x02\0\0\0" // 2
+			"\x08" // SCRIPT_TYPE_BACKREF
+			"\x02\0\0\0" // ref. to object #2, i.e. "a", with #1 being "b"
+		);
+	}
+
+	void test_script_set_nested()
+	{
+		helper_script_roundtrip("Nested sets using backrefs",
+			"var a = new Set(); var b = new Set(); a.add(b); a.add({\"bar\": b}); a",
+		/* expected: */
+			"({})",
+		/* expected stream: */
+			30,
+			"\x10" // SCRIPT_TYPE_SET
+			"\x02\0\0\0" // size
+
+			"\x10" // SCRIPT_TYPE_SET
+			"\x00\0\0\0" // size
+
+			"\x03" // SCRIPT_TYPE_OBJECT
+			"\x01\0\0\0" // num props
+				"\x03\0\0\0" "b\0a\0r\0" // "bar"
+				"\x08" // SCRIPT_TYPE_BACKREF
+				"\x02\0\0\0" // ref to object #2, i.e. "b", with #1 being "a"
+		);
+	}
+
 	// TODO: prototype objects
 
 	void test_script_nonfinite()

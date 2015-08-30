@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,29 +37,9 @@ A GUI Sprite
 #ifndef INCLUDED_CGUISPRITE
 #define INCLUDED_CGUISPRITE
 
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
 #include "GUIbase.h"
 
 #include "lib/res/graphics/ogl_tex.h"
-
-//--------------------------------------------------------
-//  Macros
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Types
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Error declarations
-//--------------------------------------------------------
-
-//--------------------------------------------------------
-//  Declarations
-//--------------------------------------------------------
-
 
 struct SGUIImageEffects
 {
@@ -74,12 +54,14 @@ struct SGUIImageEffects
  */
 struct SGUIImage
 {
+	NONCOPYABLE(SGUIImage);
+public:
 	SGUIImage() :
 		m_FixedHAspectRatio(0.f), m_RoundCoordinates(true), m_WrapMode(GL_REPEAT),
 		m_Effects(NULL), m_Border(false), m_DeltaZ(0.f)
 	{
 	}
-	
+
 	~SGUIImage()
 	{
 		delete m_Effects;
@@ -138,8 +120,6 @@ struct SGUIImage
 	 * way of declaring delta-z.
 	 */
 	float			m_DeltaZ;
-
-	NONCOPYABLE(SGUIImage);
 };
 
 /**
@@ -153,6 +133,7 @@ struct SGUIImage
  */
 class CGUISprite
 {
+	NONCOPYABLE(CGUISprite);
 public:
 	CGUISprite() {}
 	virtual ~CGUISprite();
@@ -166,8 +147,6 @@ public:
 
 	/// List of images
 	std::vector<SGUIImage*> m_Images;
-
-	NONCOPYABLE(CGUISprite);
 };
 
 #include "GUIRenderer.h"
@@ -180,8 +159,8 @@ class CGUISpriteInstance
 public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
-	CGUISpriteInstance(const CGUISpriteInstance &Sprite);
-	CGUISpriteInstance &operator=(const CStr& SpriteName);
+	CGUISpriteInstance(const CGUISpriteInstance& Sprite);
+	CGUISpriteInstance& operator=(const CStr& SpriteName);
 	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite*>& Sprites, float Z) const;
 	void Invalidate();
 	bool IsEmpty() const;
@@ -198,4 +177,4 @@ private:
 	mutable int m_CachedCellID;
 };
 
-#endif
+#endif // INCLUDED_CGUISPRITE
