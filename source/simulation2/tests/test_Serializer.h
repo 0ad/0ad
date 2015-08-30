@@ -633,6 +633,48 @@ public:
 					"\x05" // SCRIPT_TYPE_INT
 					"\x01\0\0\0" // 1
 		);
+
+		helper_script_roundtrip("Nested maps using backrefs",
+			"var a = new Map(); var b = new Map(); b.set(1, a); b.set(2, a); b",
+		/* expected: */
+			"({})",
+		/* expected stream: */
+			25,
+			"\x0f" // SCRIPT_TYPE_MAP
+			"\x02\0\0\0" // size
+
+			"\x05" // SCRIPT_TYPE_INT
+			"\x01\0\0\0" // 1
+			"\x0f" // SCRIPT_TYPE_MAP
+			"\0\0\0\0" // size
+
+			"\x05" // SCRIPT_TYPE_INT
+			"\x02\0\0\0" // 2
+			"\x08" // SCRIPT_TYPE_BACKREF
+			"\x02\0\0\0" // ref. to object #2, i.e. "a", with #1 being "b"
+		);
+	}
+
+	void test_script_set_nested()
+	{
+		helper_script_roundtrip("Nested sets using backrefs",
+			"var a = new Set(); var b = new Set(); a.add(b); a.add({\"bar\": b}); a",
+		/* expected: */
+			"({})",
+		/* expected stream: */
+			30,
+			"\x10" // SCRIPT_TYPE_SET
+			"\x02\0\0\0" // size
+
+			"\x10" // SCRIPT_TYPE_SET
+			"\x00\0\0\0" // size
+
+			"\x03" // SCRIPT_TYPE_OBJECT
+			"\x01\0\0\0" // num props
+				"\x03\0\0\0" "b\0a\0r\0" // "bar"
+				"\x08" // SCRIPT_TYPE_BACKREF
+				"\x02\0\0\0" // ref to object #2, i.e. "b", with #1 being "a"
+		);
 	}
 
 	// TODO: prototype objects
