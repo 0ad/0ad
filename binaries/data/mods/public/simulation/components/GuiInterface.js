@@ -1590,7 +1590,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
  */
 GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 {
-	var template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate(data.Template);
+	var template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate(data.template);
 	if (!template)
 	{
 		warn("[GetFoundationSnapData] Failed to load template '" + data.template + "'");
