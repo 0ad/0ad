@@ -235,7 +235,7 @@ function getUsernameAndColor(player)
 // Messages
 function handleNetMessage(message)
 {
-	log(sprintf(translate("Net message: %(message)s"), { message: uneval(message) }));
+	log("Net message: " + uneval(message));
 
 	switch (message.type)
 	{
@@ -322,9 +322,9 @@ function handleNetMessage(message)
 		break;
 
 	case "rejoined":
-		addChatMessage({ "type": "rejoined", "guid": message.guid});
+		addChatMessage({ "type": "rejoined", "guid": message.guid });
 		break;
-		
+
 	// To prevent errors, ignore these message types that occur during autostart
 	case "gamesetup":
 	case "start":
@@ -337,22 +337,24 @@ function handleNetMessage(message)
 
 function submitChatDirectly(text)
 {
-	if (text.length)
-	{
-		if (g_IsNetworked)
-			Engine.SendNetworkChat(text);
-		else
-			addChatMessage({ "type": "message", "guid": "local", "text": text });
-	}
+	if (!text.length)
+		return;
+
+	if (g_IsNetworked)
+		Engine.SendNetworkChat(text);
+	else
+		addChatMessage({ "type": "message", "guid": "local", "text": text });
 }
 
 function submitChatInput()
 {
 	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = input.caption;
+
 	input.blur(); // Remove focus
 	input.caption = ""; // Clear chat input
 	toggleChatWindow();
+
 	if (!text.length)
 		return;
 
@@ -412,20 +414,20 @@ function addChatMessage(msg)
 	switch (msg.type)
 	{
 	case "connect":
-		formatted = sprintf(translate("%(player)s is starting to rejoin the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s is starting to rejoin the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "disconnect":
-		formatted = sprintf(translate("%(player)s has left the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s has left the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "rejoined":
-		formatted = sprintf(translate("%(player)s has rejoined the game."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s has rejoined the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "defeat":
 		// In singleplayer, the local player is "You". "You has" is incorrect.
 		if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
 			formatted = translate("You have been defeated.");
 		else
-			formatted = sprintf(translate("%(player)s has been defeated."), { player: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+			formatted = sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "diplomacy":
 		var message;
@@ -472,14 +474,14 @@ function addChatMessage(msg)
 		{
 			let lastAmount = amounts.pop();
 			amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
-				previousAmounts: amounts.join(translate(", ")),
-				lastAmount: lastAmount
+				"previousAmounts": amounts.join(translate(", ")),
+				"lastAmount": lastAmount
 			});
 		}
 
 		formatted = sprintf(translate("%(player)s has sent you %(amounts)s."), {
-			player: "[color=\"" + playerColor + "\"]" + username + "[/color]",
-			amounts: amounts
+			"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+			"amounts": amounts
 		});
 		break;
 	case "attack":
@@ -493,7 +495,7 @@ function addChatMessage(msg)
 			var message = translate("Your livestock has been attacked by %(attacker)s!");
 		else
 			var message = translate("You have been attacked by %(attacker)s!");
-		formatted = sprintf(message, { attacker: "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "message":
 		// May have been hidden by the 'team' command.
@@ -519,39 +521,39 @@ function addChatMessage(msg)
 			if (msg.context !== "")
 			{
 				formatted = sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
-					context: msg.context,
-					user: "[color=\"" + playerColor + "\"]" + username + "[/color]",
-					message: message
+					"context": msg.context,
+					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+					"message": message
 				});
 			}
 			else
 			{
 				formatted = sprintf(translate("* %(user)s %(message)s"), {
-					user: "[color=\"" + playerColor + "\"]" + username + "[/color]",
-					message: message
+					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+					"message": message
 				});
 			}
 		}
 		else
 		{
-			var userTag = sprintf(translate("<%(user)s>"), { user: username })
-			var formattedUserTag = sprintf(translate("<%(user)s>"), { user: "[color=\"" + playerColor + "\"]" + username + "[/color]" })
+			var userTag = sprintf(translate("<%(user)s>"), { "user": username })
+			var formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" })
 			if (msg.context !== "")
 			{
 				formatted = sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
-					context: msg.context,
-					userTag: formattedUserTag,
-					message: message
+					"context": msg.context,
+					"userTag": formattedUserTag,
+					"message": message
 				});
 			}
 			else
 			{
-				formatted = sprintf(translate("%(userTag)s %(message)s"), { userTag: formattedUserTag, message: message});
+				formatted = sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
 			}
 		}
 		break;
 	default:
-		error(sprintf("Invalid chat message '%(message)s'", { message: uneval(msg) }));
+		error("Invalid chat message " + uneval(msg));
 		return;
 	}
 
@@ -686,10 +688,10 @@ function sendDialogAnswer(guiObject, dialogName)
 
 function openDialog(dialogName, data, player)
 {
-	var dialog = Engine.GetGUIObjectByName(dialogName+"-dialog");
+	var dialog = Engine.GetGUIObjectByName(dialogName + "-dialog");
 	if (!dialog)
 	{
-		warn("messages.js: Unknow dialog with name "+dialogName);
+		warn("messages.js: Unknow dialog with name " + dialogName);
 		return;
 	}
 	dialog.hidden = false;
