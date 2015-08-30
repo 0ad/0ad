@@ -14,7 +14,6 @@ const g_mapTypesText = [translateWithContext("map", "Skirmish"), translateWithCo
 const g_mapTypes = ["skirmish", "random", "scenario"];
 var g_userRating = ""; // Rating of user, defaults to Unrated
 var g_modPrefix = "@";
-var g_joined = false;
 // Block spammers for 30 seconds.
 var SPAM_BLOCK_LENGTH = 30;
 
@@ -699,25 +698,13 @@ function onTick()
 			switch(message.level)
 			{
 			case "join":
-				if (nick == g_Name)
-				{
-					// We just joined, we need to get the full player list
-					[playerList, presenceList, nickList, ratingList] = updatePlayerList();
-					// Don't display any joins until our join request bounces back
-					// Our join message should be the last one as we just got added to the stack
-					g_joined = true;
-					break;
-				}
-				else if (g_joined)
-				{
-					var [name, status, rating] = formatPlayerListEntry(nick, presence, "-");
-					playerList.push(name);
-					presenceList.push(status);
-					nickList.push(nick);
-					ratingList.push(String(rating));
-					Engine.SendGetRatingList();
-					addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { nick: nick }), "key": g_specialKey });
-				}
+				var [name, status, rating] = formatPlayerListEntry(nick, presence, "-");
+				playerList.push(name);
+				presenceList.push(status);
+				nickList.push(nick);
+				ratingList.push(String(rating));
+				Engine.SendGetRatingList();
+				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { nick: nick }), "key": g_specialKey });
 				break;
 			case "leave":
 				if (nickIndex == -1) // Left, but not present (TODO: warn about this?)
@@ -729,7 +716,7 @@ function onTick()
 				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { nick: nick }), "key": g_specialKey });
 				break;
 			case "nick":
-				if (nickIndex == -1) // This shouldn't ever happen
+				if (nickIndex == -1) // Changed nick, but not present (shouldn't ever happen)
 					break;
 				if (!isValidNick(message.data))
 				{
@@ -744,7 +731,7 @@ function onTick()
 				Engine.SendGetRatingList();
 				break;
 			case "presence":
-				if (nickIndex == -1) // This shouldn't ever happen
+				if (nickIndex == -1) // Changed presence, but not online (shouldn't ever happen)
 					break;
 				var [name, status, rating] = formatPlayerListEntry(nick, presence, stripColorCodes(ratingList[nickIndex]));
 				presenceList[nickIndex] = status;

@@ -169,7 +169,7 @@ function onTick()
 		if (!message)
 			break;
 
-		if (message.type == "muc" && message.level == "join")
+		if (message.type == "system" && message.text == "connected")
 		{
 			// We are connected, switch to the lobby page
 			Engine.PopGuiPage();
@@ -186,8 +186,6 @@ function onTick()
 				g_EncrytedPassword = Engine.EncryptPassword(password, username);
 			Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncrytedPassword);
 			Engine.ConfigDB_WriteFile("user", "config/user.cfg");
-
-			return;
 		}
 		else if (message.type == "system" && message.text == "registered")
 		{
