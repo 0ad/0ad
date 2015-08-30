@@ -4,11 +4,6 @@ const MAX_NUM_CHAT_LINES = 20;
 var chatMessages = [];
 var chatTimers = [];
 
-// Notification Data
-const NOTIFICATION_TIMEOUT = 10000;
-const MAX_NUM_NOTIFICATION_LINES = 3;
-var notifications = [];
-var notificationsTimers = [];
 var g_Cheats = getCheatsData();
 
 function getCheatsData()
@@ -229,7 +224,7 @@ function updateTimeNotifications()
 // Returns [username, playercolor] for the given player
 function getUsernameAndColor(player)
 {
-	// This case is hit for AIs, whose names don't exist in playerAssignments.
+	// This case is hit for AIs, whose names don't exist in g_PlayerAssignments.
 	var color = g_Players[player].color;
 	return [
 		escapeText(g_Players[player].name),
@@ -297,20 +292,18 @@ function handleNetMessage(message)
 			}
 		}
 
-		// Find and report all joinings
-		for (var host in message.hosts)
-		{
-			if (!g_PlayerAssignments[host])
-			{
-				// Update the cached player data, so we can display the correct name
-				updatePlayerDataAdd(g_Players, host, message.hosts[host]);
-
-				// Tell the user about the connection
-				addChatMessage({ "type": "connect", "guid": host }, message.hosts);
-			}
-		}
+		var joins = Object.keys(message.hosts).filter(host => !g_PlayerAssignments[host]);
 
 		g_PlayerAssignments = message.hosts;
+
+		// Report all joinings
+		joins.forEach(host => {
+			// Update the cached player data, so we can display the correct name
+			updatePlayerDataAdd(g_Players, host, g_PlayerAssignments[host]);
+
+			// Tell the user about the connection
+			addChatMessage({ "type": "connect", "guid": host });
+		});
 
 		if (g_IsController && Engine.HasXmppClient())
 		{
@@ -379,30 +372,25 @@ function submitChatInput()
 		addChatMessage({ "type": "message", "guid": "local", "text": text });
 }
 
-function addChatMessage(msg, playerAssignments)
+function addChatMessage(msg)
 {
-	// Default to global assignments, but allow overriding for when reporting
-	// new players joining
-	if (!playerAssignments)
-		playerAssignments = g_PlayerAssignments;
-
 	var playerColor, username;
 
 	// No context by default. May be set by parseChatCommands().
 	msg.context = "";
 
-	if ("guid" in msg && playerAssignments[msg.guid])
+	if ("guid" in msg && g_PlayerAssignments[msg.guid])
 	{
-		var n = playerAssignments[msg.guid].player;
+		var n = g_PlayerAssignments[msg.guid].player;
 		// Observers have an ID of -1 which is not a valid index.
 		if (n < 0)
 			n = 0;
 		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
-		username = escapeText(playerAssignments[msg.guid].name);
+		username = escapeText(g_PlayerAssignments[msg.guid].name);
 
 		// Parse in-line commands in regular messages.
 		if (msg.type == "message")
-			parseChatCommands(msg, playerAssignments);
+			parseChatCommands(msg);
 	}
 	else if (msg.type == "defeat" && msg.player)
 	{
@@ -411,7 +399,7 @@ function addChatMessage(msg, playerAssignments)
 	else if (msg.type == "message")
 	{
 		[username, playerColor] = getUsernameAndColor(msg.player);
-		parseChatCommands(msg, playerAssignments);
+		parseChatCommands(msg);
 	}
 	else
 	{
@@ -585,15 +573,15 @@ function removeOldChatMessages()
 }
 
 // Parses chat messages for commands.
-function parseChatCommands(msg, playerAssignments)
+function parseChatCommands(msg)
 {
 	// Only interested in messages that start with '/'.
 	if (!msg.text || msg.text[0] != '/')
 		return;
 
 	var sender;
-	if (playerAssignments[msg.guid])
-		sender = playerAssignments[msg.guid].player;
+	if (g_PlayerAssignments[msg.guid])
+		sender = g_PlayerAssignments[msg.guid].player;
 	else
 		sender = msg.player;
 
@@ -652,7 +640,7 @@ function parseChatCommands(msg, playerAssignments)
 		var matched = "";
 
 		// Reject names which don't match or are a superset of the intended name.
-		for each (var player in playerAssignments)
+		for each (var player in g_PlayerAssignments)
 			if (trimmed.indexOf(player.name + " ") == 0 && player.name.length > matched.length)
 				matched = player.name;
 
@@ -680,7 +668,7 @@ function parseChatCommands(msg, playerAssignments)
 
 	// Attempt to parse more commands if the current command allows it.
 	if (recurse)
-		parseChatCommands(msg, playerAssignments);
+		parseChatCommands(msg);
 }
 
 function sendDialogAnswer(guiObject, dialogName)
