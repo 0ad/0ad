@@ -821,7 +821,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 			std::find_if(
 				server.m_PlayerAssignments.begin(), server.m_PlayerAssignments.end(),
 				[&username] (const std::pair<CStr, PlayerAssignment>& pair)
-				{ return pair.second.m_Enabled && pair.second.m_Name == username; })
+				{ return !pair.second.m_Enabled && pair.second.m_Name == username; })
 			!= server.m_PlayerAssignments.end();
 
 		// Players who weren't already in the game are not allowed to join now that it's started
