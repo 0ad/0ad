@@ -1339,6 +1339,8 @@ function getEntityLimitAndCount(playerState, entType)
 		"entLimitChangers": undefined,
 		"canBeAddedCount": undefined
 	};
+	if (!playerState.entityLimits)
+		return r;
 	var template = GetTemplateData(entType);
 	var entCategory = null;
 	if (template.trainingRestrictions)
