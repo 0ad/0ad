@@ -48,7 +48,8 @@ private:
 	std::string m_password;
 	std::string m_nick;
 	std::string m_xpartamuppId;
-
+	// State
+	bool m_initialLoadComplete = false;
 public:
 	//Basic
 	XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize = 0, const bool regOpt = false);

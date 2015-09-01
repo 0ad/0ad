@@ -156,6 +156,7 @@ XmppClient::~XmppClient()
 /// Network
 void XmppClient::connect()
 {
+	m_initialLoadComplete = false;
 	m_client->connect(false);
 }
 
@@ -802,7 +803,16 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 	}
 	else
 	{
-		if (m_PlayerMap.find(nick) == m_PlayerMap.end())
+		/* During the initialization process, we recieve join messages for everyone
+		 * currently in the room. We don't want to display these, so we filter them
+		 * out. We will always be the last to join during initialization.
+		 */
+		if (!m_initialLoadComplete)
+		{
+			if (m_mucRoom->nick().to_string() == nick)
+				m_initialLoadComplete = true;
+		}
+		else if (m_PlayerMap.find(nick) == m_PlayerMap.end())
 			CreateSimpleMessage("muc", nick, "join");
 		else
 			CreateSimpleMessage("muc", nick, "presence");

@@ -1606,16 +1606,13 @@ public:
 	{
 		PROFILE("UpdateVisibilityData");
 
-		if (m_GlobalVisibilityUpdate)
-			m_ModifiedEntities.clear();
-
 		for (i32 n = 0; n < m_LosTilesPerSide * m_LosTilesPerSide; ++n)
 		{
 			for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
 			{
 				if (IsVisibilityDirty(m_DirtyVisibility[n], player) || m_GlobalPlayerVisibilityUpdate[player-1] == 1 || m_GlobalVisibilityUpdate)
 				{
-					for (auto& ent : m_LosTiles[n])
+					for (const entity_id_t& ent : m_LosTiles[n])
 						UpdateVisibility(ent, player);
 				}
 			}
@@ -1625,16 +1622,17 @@ public:
 		std::fill(m_GlobalPlayerVisibilityUpdate.begin(), m_GlobalPlayerVisibilityUpdate.end(), 0);
 		m_GlobalVisibilityUpdate = false;
 
-		// Calling UpdateVisibility can modify m_ModifiedEntities, so be careful
-		// Infinite loops could be triggered by feedback between entities and their mirages
-		int check = 0;
+		// Calling UpdateVisibility can modify m_ModifiedEntities, so be careful:
+		// infinite loops could be triggered by feedback between entities and their mirages.
+		std::map<entity_id_t, u8> attempts;
 		while (!m_ModifiedEntities.empty())
 		{
-			++check;
-			ENSURE(check < 1000 && "Possible infinite loop in UpdateVisibilityData");
-
 			entity_id_t ent = m_ModifiedEntities.back();
 			m_ModifiedEntities.pop_back();
+
+			++attempts[ent];
+			ENSURE(attempts[ent] < 100 && "Infinite loop in UpdateVisibilityData");
+
 			UpdateVisibility(ent);
 		}
 	}
@@ -1656,7 +1654,7 @@ public:
 
 		if (oldVis == newVis)
 			return;
-		
+
 		itEnts->second.visibilities = (itEnts->second.visibilities & ~(0x3 << 2 * (player - 1))) | (newVis << 2 * (player - 1));
 
 		CMessageVisibilityChanged msg(player, ent, oldVis, newVis);

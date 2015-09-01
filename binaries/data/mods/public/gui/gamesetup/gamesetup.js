@@ -1786,10 +1786,10 @@ function addChatMessage(msg)
 	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
-function toggleMoreOptions()
+function showMoreOptions(show)
 {
-	Engine.GetGUIObjectByName("moreOptionsFade").hidden = !Engine.GetGUIObjectByName("moreOptionsFade").hidden;
-	Engine.GetGUIObjectByName("moreOptions").hidden = !Engine.GetGUIObjectByName("moreOptions").hidden;
+	Engine.GetGUIObjectByName("moreOptionsFade").hidden = !show;
+	Engine.GetGUIObjectByName("moreOptions").hidden = !show;
 }
 
 function toggleReady()

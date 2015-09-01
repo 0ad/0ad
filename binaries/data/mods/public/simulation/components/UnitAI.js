@@ -726,7 +726,10 @@ UnitAI.prototype.UnitFsmSpec = {
 		if (this.alertGarrisoningTarget)
 			this.ReplaceOrder("Garrison", {"target": this.alertGarrisoningTarget});
 		else
+		{
+			this.StopMoving();
 			this.FinishOrder();
+		}
 	},
 
 	"Order.Cheering": function(msg) {
@@ -2761,7 +2764,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					if (this.IsUnderAlert())
+					if (this.IsUnderAlert() && this.alertGarrisoningTarget)
 					{
 						// check that we can garrison in the building we're supposed to garrison in
 						var cmpGarrisonHolder = Engine.QueryInterface(this.alertGarrisoningTarget, IID_GarrisonHolder);

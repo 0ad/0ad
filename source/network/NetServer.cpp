@@ -894,7 +894,7 @@ bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 	else if (message->GetType() == (uint)NMT_SYNC_CHECK)
 	{
 		CSyncCheckMessage* syncMessage = static_cast<CSyncCheckMessage*> (message);
-		server.m_ServerTurnManager->NotifyFinishedClientUpdate(session->GetHostID(), syncMessage->m_Turn, syncMessage->m_Hash);
+		server.m_ServerTurnManager->NotifyFinishedClientUpdate(session->GetHostID(), session->GetUserName(), syncMessage->m_Turn, syncMessage->m_Hash);
 	}
 	else if (message->GetType() == (uint)NMT_END_COMMAND_BATCH)
 	{
