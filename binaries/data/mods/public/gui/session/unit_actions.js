@@ -569,9 +569,9 @@ var unitActions =
 
 			// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
 			// except if the autorallypoint hotkey is pressed and the target can produce entities
-			var selection = g_Selection.toList();
 			if (!Engine.HotkeyIsPressed("session.autorallypoint") || !targetState.production || !targetState.production.entities.length)
 			{
+				var selection = g_Selection.toList();			
 				for (var i = 0; i < selection.length; i++)
 					if (targetState.id === selection[i])
 						return false;
