@@ -35,9 +35,11 @@ function init(attribs)
 	mapSizeFilter.list = g_mapSizes.shortNames;
 	mapSizeFilter.list_data = g_mapSizes.tiles;
 
+	// Setup number-of-players filter
+	var playersArray = Array(g_MaxPlayers).fill(0).map((v, i) => i + 1); // 1, 2, ... MaxPlayers
 	var playersNumberFilter = Engine.GetGUIObjectByName("playersNumberFilter");
-	playersNumberFilter.list = [translateWithContext("player number", "Any"),2,3,4,5,6,7,8];
-	playersNumberFilter.list_data = ["",2,3,4,5,6,7,8];
+	playersNumberFilter.list = [translateWithContext("player number", "Any")].concat(playersArray);
+	playersNumberFilter.list_data = [""].concat(playersArray);
 
 	var mapTypeFilter = Engine.GetGUIObjectByName("mapTypeFilter");
 	mapTypeFilter.list = [translateWithContext("map", "Any")].concat(g_mapTypesText);

@@ -18,8 +18,6 @@ const STARTING_RESOURCES_DEFAULTIDX = 1;
 const CEASEFIRE = [translateWithContext("ceasefire", "No ceasefire"), translateWithContext("ceasefire", "5 minutes"), translateWithContext("ceasefire", "10 minutes"), translateWithContext("ceasefire", "15 minutes"), translateWithContext("ceasefire", "20 minutes"), translateWithContext("ceasefire", "30 minutes"), translateWithContext("ceasefire", "45 minutes"), translateWithContext("ceasefire", "60 minutes")];
 const CEASEFIRE_DATA = [0, 5, 10, 15, 20, 30, 45, 60];
 const CEASEFIRE_DEFAULTIDX = 0;
-// Max number of players for any map
-const MAX_PLAYERS = 8;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -180,13 +178,11 @@ function initMain()
 
 		initMapNameList();
 
-		var numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
-		var players = [];
-		for (var i = 1; i <= MAX_PLAYERS; ++i)
-			players.push(i);
-		numPlayersSelection.list = players;
-		numPlayersSelection.list_data = players;
-		numPlayersSelection.selected = MAX_PLAYERS - 1;
+		let playersArray = Array(g_MaxPlayers).fill(0).map((v, i) => i + 1); // 1, 2, ..., MaxPlayers
+		let numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
+		numPlayersSelection.list = playersArray;
+		numPlayersSelection.list_data = playersArray;
+		numPlayersSelection.selected = g_MaxPlayers - 1;
 
 		var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 		gameSpeed.hidden = false;
@@ -313,7 +309,7 @@ function initMain()
 
 		// Disable player and game options controls
 		// TODO: Shouldn't players be able to choose their own assignment?
-		for (var i = 0; i < MAX_PLAYERS; ++i)
+		for (let i = 0; i < g_MaxPlayers; ++i)
 		{
 			Engine.GetGUIObjectByName("playerAssignment["+i+"]").hidden = true;
 			Engine.GetGUIObjectByName("playerCiv["+i+"]").hidden = true;
@@ -364,7 +360,7 @@ function initMain()
 
 	// Settings for all possible player slots
 	var boxSpacing = 32;
-	for (var i = 0; i < MAX_PLAYERS; ++i)
+	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
 		// Space player boxes
 		var box = Engine.GetGUIObjectByName("playerBox["+i+"]");
@@ -375,9 +371,10 @@ function initMain()
 		box.size = boxSize;
 
 		// Populate team dropdowns
-		var team = Engine.GetGUIObjectByName("playerTeam["+i+"]");
-		team.list = [translateWithContext("team", "None"), "1", "2", "3", "4"];
-		team.list_data = [-1, 0, 1, 2, 3];
+		let team = Engine.GetGUIObjectByName("playerTeam["+i+"]");
+		let teamsArray = Array(g_MaxTeams).fill(0).map((v, i) => i + 1); // 1, 2, ... MaxTeams
+		team.list = [translateWithContext("team", "None")].concat(teamsArray); // "None", 1, 2, ..., maxTeams
+		team.list_data = [-1].concat(teamsArray.map(team => team - 1)); // -1, 0, ..., (maxTeams-1)
 		team.selected = 0;
 
 		let playerSlot = i;	// declare for inner function use
@@ -591,12 +588,12 @@ function initCivNameList()
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
-	//  Add random civ to beginning of list
+	//  Add random civ to beginning of list 
 	civListNames.unshift('[color="orange"]' + translateWithContext("civilization", "Random") + '[/color]');
-	civListCodes.unshift("random");
+	civListCodes.unshift("random"); 
 
 	// Update the dropdowns
-	for (var i = 0; i < MAX_PLAYERS; ++i)
+	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
 		var civ = Engine.GetGUIObjectByName("playerCiv["+i+"]");
 		civ.list = civListNames;
@@ -1031,7 +1028,7 @@ function selectMap(name)
 		{	// Unassign extra players
 			var player = g_PlayerAssignments[guid].player;
 
-			if (player <= MAX_PLAYERS && player > numPlayers)
+			if (player <= g_MaxPlayers && player > numPlayers)
 				Engine.AssignNetworkPlayer(player, "");
 		}
 	}
@@ -1162,7 +1159,7 @@ function onGameAttributesChange()
 
 	var mapName = g_GameAttributes.map || "";
 	var mapSettings = g_GameAttributes.settings;
-	var numPlayers = (mapSettings.PlayerData ? mapSettings.PlayerData.length : MAX_PLAYERS);
+	var numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_MaxPlayers;
 
 	// Update some controls for clients
 	if (!g_IsController)
@@ -1411,7 +1408,7 @@ function onGameAttributesChange()
 		victory = "[color=\"orange\"]" + victory + "[/color]";
 	playerString += translate("Victory Condition:") + " " + victory + ".\n\n" + description;
 
-	for (var i = 0; i < MAX_PLAYERS; ++i)
+	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
 		// Show only needed player slots
 		Engine.GetGUIObjectByName("playerBox["+i+"]").hidden = (i >= numPlayers);
@@ -1548,7 +1545,7 @@ function updatePlayerList()
 		{
 			// If the map uses a hidden AI then don't hide it
 			var usedByMap = false;
-			for (var i = 0; i < MAX_PLAYERS; ++i)
+			for (let i = 0; i < g_MaxPlayers; ++i)
 				if (i < g_GameAttributes.settings.PlayerData.length &&
 				    g_GameAttributes.settings.PlayerData[i].AI == ai.id)
 				{
@@ -1569,7 +1566,7 @@ function updatePlayerList()
 	hostNameList.push("[color=\"140 140 140 255\"]" + translate("Unassigned"));
 	hostGuidList.push("");
 
-	for (var i = 0; i < MAX_PLAYERS; ++i)
+	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
 		let playerSlot = i;
 		let playerID = i+1; // we don't show Gaia, so first slot is ID 1
@@ -1813,7 +1810,7 @@ function updateReadyUI()
 {
 	if (!g_IsNetworked)
 		return; // Disabled for single-player games.
-	var isAI = new Array(MAX_PLAYERS + 1);
+	var isAI = new Array(g_MaxPlayers + 1);
 	for (var i = 0; i < isAI.length; ++i)
 		isAI[i] = true;
 	var allReady = true;
@@ -1834,8 +1831,8 @@ function updateReadyUI()
 		}
 	}
 	// AIs are always ready.
-	for (var playerid = 0; playerid < MAX_PLAYERS; ++playerid)
-	{
+	for (let playerid = 0; playerid < g_MaxPlayers; ++playerid)
+	{		
 		if (!g_GameAttributes.settings.PlayerData[playerid])
 			continue;
 		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};

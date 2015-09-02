@@ -149,10 +149,10 @@ function resetGeneralPanel()
 	{
 		Engine.GetGUIObjectByName("titleHeading["+ h +"]").hidden = true;
 		Engine.GetGUIObjectByName("Heading[" + h + "]").hidden = true;
-		for (var p = 0; p < MAX_SLOTS; ++p)
+		for (let p = 0; p < g_MaxPlayers; ++p)
 		{
 			Engine.GetGUIObjectByName("valueData[" + p + "][" + h + "]").hidden = true;
-			for (var t = 0; t < MAX_TEAMS; ++t) 
+			for (let t = 0; t < g_MaxTeams; ++t)
 			{
 				Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + h + "]").hidden = true;
 				Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + h + "]").hidden = true;
@@ -205,7 +205,7 @@ function updateGeneralPanelCounter(counters)
 {
 	var rowPlayerObjectWidth = 0;
 	var left = 0;
-	for (var p = 0; p < MAX_SLOTS; ++p)
+	for (let p = 0; p < g_MaxPlayers; ++p)
 	{
 		left = 240;
 		var counterObject;
@@ -220,7 +220,7 @@ function updateGeneralPanelCounter(counters)
 			rowPlayerObjectWidth = left;
 
 		var counterTotalObject;
-		for (var t = 0; t < MAX_TEAMS; ++t)
+		for (let t = 0; t < g_MaxTeams; ++t)
 		{
 			left = 240;
 			for (var w in counters)
@@ -280,7 +280,7 @@ function updateGeneralPanelTeams()
 
 function updateObjectPlayerPosition()
 {
-	for (var h = 0; h < MAX_SLOTS; ++h) 
+	for (let h = 0; h < g_MaxPlayers; ++h)
 	{
 		var playerBox = Engine.GetGUIObjectByName("playerBox[" + h + "]");
 		var boxSize = playerBox.size;
@@ -288,7 +288,7 @@ function updateObjectPlayerPosition()
 		boxSize.bottom = boxSize.top + PLAYER_BOX_Y_SIZE;
 		playerBox.size = boxSize;
 
-		for (var i = 0; i < MAX_TEAMS; ++i)
+		for (let i = 0; i < g_MaxTeams; ++i)
 		{
 			var playerBoxt = Engine.GetGUIObjectByName("playerBoxt[" + i + "][" + h + "]");
 			boxSize = playerBoxt.size;

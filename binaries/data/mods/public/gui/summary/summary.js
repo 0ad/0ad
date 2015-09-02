@@ -1,7 +1,4 @@
 // Max player slots for any map (TODO: should read from config)
-const MAX_SLOTS = 8;
-const MAX_TEAMS = 4;
-const MAX_HEADINGTITLE = 8;
 
 // const for filtering long collective headings
 const LONG_HEADING_WIDTH = 250;
