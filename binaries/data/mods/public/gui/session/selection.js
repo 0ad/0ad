@@ -111,9 +111,8 @@ EntityGroups.prototype.getTotalCount = function()
 {
 	var totalCount = 0;
 	for each (var group in this.groups)
-	{
 		totalCount += group;
-	}
+
 	return totalCount;
 };
 
@@ -132,10 +131,8 @@ EntityGroups.prototype.getEntsByName = function(templateName)
 {
 	var ents = [];
 	for (var ent in this.ents)
-	{
 		if (this.ents[ent] == templateName)
 			ents.push(+ent);
-	}
 
 	return ents;
 };
@@ -164,10 +161,8 @@ EntityGroups.prototype.getEntsByNameInverse = function(templateName)
 {
 	var ents = [];
 	for (var ent in this.ents)
-	{
 		if (this.ents[ent] != templateName)
 			ents.push(+ent);
-	}
 
 	return ents;
 };
@@ -198,8 +193,6 @@ function EntitySelection()
  */
 EntitySelection.prototype.makePrimarySelection = function(templateName, modifierKey)
 {
-	var selection = this.toList();
-	
 	var template = GetTemplateData(templateName);
 	var key = template.selectionGroupName || templateName;
 
@@ -219,9 +212,8 @@ EntitySelection.prototype.makePrimarySelection = function(templateName, modifier
 EntitySelection.prototype.getTemplateNames = function()
 {
 	var templateNames = [];
-	var ents = this.toList();
 	
-	for each (var ent in ents)
+	for each (var ent in this.selected)
 	{
 		var entState = GetEntityState(ent);
 		if (entState)
@@ -464,23 +456,16 @@ function EntityGroupsContainer()
 {
 	this.groups = [];
 	for (var i = 0; i < 10; ++i)
-	{
 		this.groups[i] = new EntityGroups();
-	}
 }
 
 EntityGroupsContainer.prototype.addEntities = function(groupName, ents)
 {
 	for each (var ent in ents)
-	{
 		for each (var group in this.groups)
-		{
 			if (ent in group.ents)
-			{
 				group.removeEnt(ent);
-			}
-		}
-	}
+
 	this.groups[groupName].add(ents);
 }
 
@@ -492,12 +477,9 @@ EntityGroupsContainer.prototype.update = function()
 		for (var ent in group.ents)
 		{
 			var entState = GetEntityState(+ent);
-
 			// Remove deleted units
 			if (!entState)
-			{
 				group.removeEnt(ent);
-			}
 		}
 	}
 }

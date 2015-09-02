@@ -1800,10 +1800,9 @@ function unloadTemplate(template)
 
 function unloadSelection()
 {
-	var entities = g_Selection.toList();
 	var parent = 0;
 	var ents = [];
-	for each (var ent in entities)
+	for each (var ent in g_Selection.selected)
 	{
 		var state = GetExtendedEntityState(ent);
 		if (!state || !state.turretParent)

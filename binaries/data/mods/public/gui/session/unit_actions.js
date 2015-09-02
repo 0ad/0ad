@@ -571,9 +571,8 @@ var unitActions =
 			// except if the autorallypoint hotkey is pressed and the target can produce entities
 			if (!Engine.HotkeyIsPressed("session.autorallypoint") || !targetState.production || !targetState.production.entities.length)
 			{
-				var selection = g_Selection.toList();			
-				for (var i = 0; i < selection.length; i++)
-					if (targetState.id === selection[i])
+				for each (var ent in g_Selection.selected)
+					if (targetState.id === ent)
 						return false;
 			}
 
@@ -670,9 +669,8 @@ var g_EntityCommands =
 		{
 			if (!entState.garrisonHolder)
 				return false;
-			var selection = g_Selection.toList();
 			var count = 0;
-			for (var ent of selection)
+			for each (var ent in g_Selection.selected)
 			{
 				var state = GetEntityState(ent);
 				if (state.garrisonHolder)
@@ -896,9 +894,8 @@ var g_AllyEntityCommands =
 		{
 			if (!entState.garrisonHolder)
 				return false;
-			var selection = g_Selection.toList();
 			var count = 0;
-			for (var ent of selection)
+			for each (var ent in g_Selection.selected)
 			{
 				var selectedEntState = GetEntityState(ent);
 				if (selectedEntState.garrisonHolder)
