@@ -346,6 +346,12 @@ public:
 		if (group == m_Group || (group2 != INVALID_ENTITY && group2 == m_Group))
 			return false;
 
+		// If an obstruction already blocks tile-based pathfinding, 
+		// it will be handled as part of the terrain passability handling 
+		// and doesn't need to be matched by this filter 
+		if (flags & ICmpObstructionManager::FLAG_BLOCK_PATHFINDING)
+			return false;
+
 		if (!(flags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT))
 			return false;
 

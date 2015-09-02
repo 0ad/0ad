@@ -794,16 +794,13 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
 	pass_class_t passClass)
 {
-	// Test against obstructions first
+	// Test against obstructions first. Pathfinding-blocking obstructions are not handled here.
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-	if (!cmpObstructionManager)
+	if (!cmpObstructionManager || cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
 		return false;
 
-	if (cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
-		return false;
-
-	// Then test against the terrain
-	return Pathfinding::CheckLineMovement(x0, z0, x1, z1, passClass, *m_TerrainOnlyGrid);
+	// Then test against the passability grid.
+	return Pathfinding::CheckLineMovement(x0, z0, x1, z1, passClass, *m_Grid);
 }
 
 ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
