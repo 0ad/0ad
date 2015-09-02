@@ -1533,7 +1533,7 @@ function performCommand(entity, commandName)
 	var entState = GetExtendedEntityState(entity);
 	var playerID = Engine.GetPlayerID();
 
-	if (!entState.player == playerID && !g_DevSettings.controlAll)
+	if (entState.player != playerID && !g_DevSettings.controlAll)
 		return;
 
 	if (g_EntityCommands[commandName])
