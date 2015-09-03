@@ -1,4 +1,4 @@
-// Max player slots for any map (TODO: should read from config)
+const MAX_HEADINGTITLE = 8;
 
 // const for filtering long collective headings
 const LONG_HEADING_WIDTH = 250;
@@ -30,8 +30,8 @@ const INFINITE_SYMBOL = "\u221E";
 // Load data
 var g_CivData = loadCivData();
 var g_Teams = [];
-// TODO set g_MaxPlayers as playerCounters.length
-var g_MaxPlayers = 0;
+// TODO set g_PlayerCount as playerCounters.length
+var g_PlayerCount = 0;
 // Count players without team (or all if teams are not displayed)
 var g_WithoutTeam = 0;
 var g_GameData;
@@ -73,7 +73,7 @@ function updatePanelData(panelInfo)
 	updateGeneralPanelTeams();
 
 	var playerBoxesCounts = [ ];
-	for (var i = 0; i < g_MaxPlayers; ++i)
+	for (var i = 0; i < g_PlayerCount; ++i)
 	{
 		var playerState = g_GameData.playerStates[i+1];
 
@@ -159,12 +159,12 @@ function init(data)
 	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { mapName: translate(data.mapSettings.Name), mapType: mapDisplayType});
 
 	// Panels
-	g_MaxPlayers = data.playerStates.length - 1;
+	g_PlayerCount = data.playerStates.length - 1;
 
 	if (data.mapSettings.LockTeams)	// teams ARE locked
 	{
 		// Count teams
-		for(var t = 0; t < g_MaxPlayers; ++t)
+		for(var t = 0; t < g_PlayerCount; ++t)
 		{
 			let playerTeam = data.playerStates[t+1].team;
 			if (g_Teams[playerTeam])
@@ -173,7 +173,7 @@ function init(data)
 				g_Teams[playerTeam] = 1;
 		}
 
-		if (g_Teams.length == g_MaxPlayers)
+		if (g_Teams.length == g_PlayerCount)
 			g_Teams = false;	// Each player has his own team. Displaying teams makes no sense.
 	}
 	else				// teams are NOT locked
@@ -182,11 +182,11 @@ function init(data)
 	// Erase teams data if teams are not displayed
 	if (!g_Teams)
 	{
-		for(var p = 0; p < g_MaxPlayers; ++p)
+		for(var p = 0; p < g_PlayerCount; ++p)
 			data.playerStates[p+1].team = -1;
 	}
 
-	g_WithoutTeam = g_MaxPlayers;
+	g_WithoutTeam = g_PlayerCount;
 	if (g_Teams)
 	{
 		// Count players without team (or all if teams are not displayed)

@@ -588,9 +588,9 @@ function initCivNameList()
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
-	//  Add random civ to beginning of list 
+	//  Add random civ to beginning of list
 	civListNames.unshift('[color="orange"]' + translateWithContext("civilization", "Random") + '[/color]');
-	civListCodes.unshift("random"); 
+	civListCodes.unshift("random");
 
 	// Update the dropdowns
 	for (let i = 0; i < g_MaxPlayers; ++i)
@@ -1832,7 +1832,7 @@ function updateReadyUI()
 	}
 	// AIs are always ready.
 	for (let playerid = 0; playerid < g_MaxPlayers; ++playerid)
-	{		
+	{
 		if (!g_GameAttributes.settings.PlayerData[playerid])
 			continue;
 		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};
