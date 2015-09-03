@@ -1291,7 +1291,9 @@ ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool 
 	else
 		group = GetEntityId();
 
-	return ControlGroupMovementObstructionFilter(forceAvoidMovingUnits || ShouldAvoidMovingUnits(), group);
+	// If an obstruction blocks tile-based pathfinding, it will be handled during the path computation
+	// and doesn't need to be matched by this filter for the movement
+	return ControlGroupMovementObstructionFilter(false, forceAvoidMovingUnits || ShouldAvoidMovingUnits(), group);
 }
 
 

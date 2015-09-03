@@ -333,12 +333,13 @@ public:
  */
 class ControlGroupMovementObstructionFilter : public IObstructionTestFilter
 {
+	bool m_AvoidPathfindingShapes;
 	bool m_AvoidMoving;
 	entity_id_t m_Group;
 
 public:
-	ControlGroupMovementObstructionFilter(bool avoidMoving, entity_id_t group) :
-		m_AvoidMoving(avoidMoving), m_Group(group)
+	ControlGroupMovementObstructionFilter(bool avoidPathfindingShapes, bool avoidMoving, entity_id_t group) :
+		m_AvoidPathfindingShapes(avoidPathfindingShapes), m_AvoidMoving(avoidMoving), m_Group(group)
 	{}
 
 	virtual bool TestShape(tag_t UNUSED(tag), flags_t flags, entity_id_t group, entity_id_t group2) const
@@ -346,10 +347,7 @@ public:
 		if (group == m_Group || (group2 != INVALID_ENTITY && group2 == m_Group))
 			return false;
 
-		// If an obstruction already blocks tile-based pathfinding, 
-		// it will be handled as part of the terrain passability handling 
-		// and doesn't need to be matched by this filter 
-		if (flags & ICmpObstructionManager::FLAG_BLOCK_PATHFINDING)
+		if ((flags & ICmpObstructionManager::FLAG_BLOCK_PATHFINDING) && !m_AvoidPathfindingShapes)
 			return false;
 
 		if (!(flags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT))

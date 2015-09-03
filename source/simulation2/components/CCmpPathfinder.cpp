@@ -724,7 +724,7 @@ void CCmpPathfinder::ProcessShortRequests(const std::vector<AsyncShortPathReques
 	{
 		const AsyncShortPathRequest& req = shortRequests[i];
 		WaypointPath path;
-		ControlGroupMovementObstructionFilter filter(req.avoidMovingUnits, req.group);
+		ControlGroupMovementObstructionFilter filter(true, req.avoidMovingUnits, req.group);
 		ComputeShortPath(filter, req.x0, req.z0, req.clearance, req.range, req.goal, req.passClass, path);
 		CMessagePathResult msg(req.ticket, path);
 		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
