@@ -1341,10 +1341,12 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 
 	// Otherwise we need to compute a path.
 
-	// If it's close then just do a short path, not a long path
+	// If it's close then just do a short path, not a long path.
+	// We should always do long paths to non-goal points because the most
+	// accessible point has to be computed by the hierarchical pathfinder.
 	// TODO: If it's close on the opposite side of a river then we really
 	// need a long path, so we shouldn't simply check linear distance
-	if (goal.DistanceToPoint(from) < SHORT_PATH_SEARCH_RANGE)
+	if (goal.DistanceToPoint(from) < SHORT_PATH_SEARCH_RANGE && goal.type == PathGoal::POINT)
 	{
 		m_LongPath.m_Waypoints.clear();
 		m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
