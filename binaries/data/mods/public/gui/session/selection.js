@@ -379,7 +379,8 @@ EntitySelection.prototype.rebuildSelection = function(renamed)
 	this.addList(toAdd, true); // don't play selection sounds
 }
 
-EntitySelection.prototype.toList = function(){
+EntitySelection.prototype.toList = function()
+{
 	var ents = [];
 	for each (var ent in this.selected)
 		ents.push(ent);

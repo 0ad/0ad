@@ -421,9 +421,9 @@ function tryPlaceWall(queued)
 	// point are too close together for the algorithm to place a wall segment inbetween, and only the towers are being previewed
 	// (this is somewhat non-ideal and hardcode-ish)
 	var hasWallSegment = false;
-	for (var k in cmd.pieces)
+	for (let piece of cmd.pieces)
 	{
-		if (cmd.pieces[k].template != cmd.wallSet.templates.tower) // TODO: hardcode-ish :(
+		if (piece.template != cmd.wallSet.templates.tower) // TODO: hardcode-ish :(
 		{
 			hasWallSegment = true;
 			break;
