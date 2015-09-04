@@ -599,9 +599,6 @@ public:
 
 	virtual std::vector<entity_id_t> GetEntityCollisions(bool checkStructures, bool checkUnits)
 	{
-		// TODO: That function actually only checks for overlapping units when a new buidling is started.
-		// The name of the function should be changed and useless code removed.
-
 		std::vector<entity_id_t> ret;
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());

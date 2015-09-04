@@ -569,11 +569,10 @@ var unitActions =
 
 			// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
 			// except if the autorallypoint hotkey is pressed and the target can produce entities
-			var selection = g_Selection.toList();
 			if (!Engine.HotkeyIsPressed("session.autorallypoint") || !targetState.production || !targetState.production.entities.length)
 			{
-				for (var i = 0; i < selection.length; i++)
-					if (targetState.id === selection[i])
+				for each (var ent in g_Selection.selected)
+					if (targetState.id === ent)
 						return false;
 			}
 
@@ -670,9 +669,8 @@ var g_EntityCommands =
 		{
 			if (!entState.garrisonHolder)
 				return false;
-			var selection = g_Selection.toList();
 			var count = 0;
-			for (var ent of selection)
+			for each (var ent in g_Selection.selected)
 			{
 				var state = GetEntityState(ent);
 				if (state.garrisonHolder)
@@ -896,9 +894,8 @@ var g_AllyEntityCommands =
 		{
 			if (!entState.garrisonHolder)
 				return false;
-			var selection = g_Selection.toList();
 			var count = 0;
-			for (var ent of selection)
+			for each (var ent in g_Selection.selected)
 			{
 				var selectedEntState = GetEntityState(ent);
 				if (selectedEntState.garrisonHolder)

@@ -3027,9 +3027,18 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"Order.LeaveFoundation": function(msg) {
-			// Run away from the foundation
-			this.FinishOrder();
-			this.PushOrderFront("Flee", { "target": msg.data.target, "force": false });
+			// Move a tile outside the building
+			var range = 4;
+			if (this.MoveToTargetRangeExplicit(msg.data.target, range, range))
+			{
+				// We've started walking to the given point
+				this.SetNextState("WALKING");
+			}
+			else
+			{
+				// We are already at the target, or can't move at all
+				this.FinishOrder();
+			}
 		},
 
 		"IDLE": {

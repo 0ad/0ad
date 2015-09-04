@@ -984,7 +984,7 @@ void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& squa
 
 	std::map<entity_pos_t, SimRasterize::Spans> rasterizedRects;
 
-	for (entity_id_t& unitShape : unitShapes)
+	for (const u32& unitShape : unitShapes)
 	{
 		auto it = m_UnitShapes.find(unitShape);
 		ENSURE(it != m_UnitShapes.end());
@@ -1008,10 +1008,13 @@ void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& squa
 		u16 i = (shape.x / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity();
 		u16 j = (shape.z / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity();
 
-		for (size_t k = 0; k < spans.size(); ++k)
+		for (const SimRasterize::Span& span : spans)
 		{
-			if (j == spans[k].j && spans[k].i0 <= i && i < spans[k].i1)
+			if (j == span.j && span.i0 <= i && i < span.i1)
+			{
 				out.push_back(shape.entity);
+				break;
+			}
 		}
 	}
 }

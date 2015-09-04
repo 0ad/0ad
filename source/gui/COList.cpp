@@ -160,7 +160,7 @@ void COList::HandleMessage(SGUIMessage& Message)
 			// Check if it's a decimal value, and if so, assume relative positioning.
 			if (m_ObjectsDefs[def].m_Width < 1 && m_ObjectsDefs[def].m_Width > 0)
 				width *= m_TotalAvalibleColumnWidth;
-			CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 4);
+			CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
 			if (mouse.x >= leftTopCorner.x &&
 				mouse.x < leftTopCorner.x + width &&
 				mouse.y < leftTopCorner.y + m_HeadingHeight)
@@ -321,6 +321,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	if (scrollbar)
 		scroll = GetScrollBar(0).GetPos();
 
+	// Draw item selection
 	if (selected != -1)
 	{
 		ENSURE(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
@@ -349,6 +350,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 					rect_sel.left = GetScrollBar(0).GetOuterRect().right;
 			}
 
+			// Draw item selection
 			GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect_sel);
 		}
 	}
@@ -356,6 +358,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	CColor color;
 	GUI<CColor>::GetSetting(this, _textcolor, color);
 
+	// Draw line above column header
 	CGUISpriteInstance* sprite_heading = NULL;
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_heading", sprite_heading);
 	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
@@ -370,6 +373,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_desc", sprite_order);
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_not_sorted", sprite_not_sorted);
 
+	// Draw column headers
 	float xpos = 0;
 	for (size_t def = 0; def < m_ObjectsDefs.size(); ++def)
 	{
@@ -379,18 +383,23 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 			width *= m_TotalAvalibleColumnWidth;
 
 		CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
+
 		CGUISpriteInstance* sprite;
 		// If the list sorted by current column
 		if (m_SelectedDef == def)
 			sprite = sprite_order;
 		else
 			sprite = sprite_not_sorted;
+
+		// Draw sort arrows in colum header
 		GetGUI()->DrawSprite(*sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - 16, 0), leftTopCorner + CPos(width, 16)));
 
+		// Draw column header text
 		DrawText(def, color, leftTopCorner + CPos(0, 4), bz + 0.1f, rect_head);
 		xpos += width;
 	}
 
+	// Draw list items for each column
 	const size_t objectsCount = m_ObjectsDefs.size();
 	for (size_t i = 0; i < pList->m_Items.size(); ++i)
 	{
@@ -414,6 +423,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 				cliparea.left = GetScrollBar(0).GetOuterRect().right;
 		}
 
+		// Draw all items for that column
 		xpos = 0;
 		for (size_t def = 0; def < objectsCount; ++def)
 		{
@@ -430,6 +440,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 			cliparea2.right = std::min(cliparea2.right, textPos.x + width);
 			cliparea2.bottom = std::min(cliparea2.bottom, textPos.y + rowHeight);
 
+			// Draw list item
 			DrawText(objectsCount * (i+/*Heading*/1) + def, m_ObjectsDefs[def].m_TextColor, textPos, bz+0.1f, cliparea2);
 			xpos += width;
 		}

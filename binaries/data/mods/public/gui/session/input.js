@@ -1339,6 +1339,8 @@ function getEntityLimitAndCount(playerState, entType)
 		"entLimitChangers": undefined,
 		"canBeAddedCount": undefined
 	};
+	if (!playerState.entityLimits)
+		return r;
 	var template = GetTemplateData(entType);
 	var entCategory = null;
 	if (template.trainingRestrictions)
@@ -1531,7 +1533,7 @@ function performCommand(entity, commandName)
 	var entState = GetExtendedEntityState(entity);
 	var playerID = Engine.GetPlayerID();
 
-	if (!entState.player == playerID && !g_DevSettings.controlAll)
+	if (entState.player != playerID && !g_DevSettings.controlAll)
 		return;
 
 	if (g_EntityCommands[commandName])
@@ -1798,10 +1800,9 @@ function unloadTemplate(template)
 
 function unloadSelection()
 {
-	var entities = g_Selection.toList();
 	var parent = 0;
 	var ents = [];
-	for each (var ent in entities)
+	for each (var ent in g_Selection.selected)
 	{
 		var state = GetExtendedEntityState(ent);
 		if (!state || !state.turretParent)
