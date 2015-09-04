@@ -33,17 +33,17 @@ m.AttackManager.prototype.setRushes = function(allowed)
 	if (this.Config.personality.aggressive > 0.8 && allowed > 2)
 	{
 		this.maxRushes = 3
-		this.rushSize = [ 16, 22, 28 ];
+		this.rushSize = [ 16, 20, 24 ];
 	}
 	else if (this.Config.personality.aggressive > 0.6 && allowed > 1)
 	{
 		this.maxRushes = 2;
-		this.rushSize = [ 18, 28 ];
+		this.rushSize = [ 18, 22 ];
 	}
 	else if (this.Config.personality.aggressive > 0.3 && allowed > 0)
 	{
 		this.maxRushes = 1;
-		this.rushSize = [ 24 ];
+		this.rushSize = [ 20 ];
 	}
 };
 

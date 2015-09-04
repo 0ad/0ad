@@ -105,8 +105,10 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	if (type === "Rush")
 	{
 		priority = 250;
-		this.unitStat["Infantry"] = { "priority": 1, "minSize": 10, "targetSize": 26, "batchSize": 2, "classes": ["Infantry"],
+		this.unitStat["Infantry"] = { "priority": 1, "minSize": 10, "targetSize": 20, "batchSize": 2, "classes": ["Infantry"],
 			"interests": [ ["strength",1], ["cost",1], ["costsResource", 0.5, "stone"], ["costsResource", 0.6, "metal"] ] };
+		this.unitStat["Cavalry"] = { "priority": 1, "minSize": 2, "targetSize": 4, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
+			"interests": [ ["strength",1], ["cost",1] ] };
 		if (data && data.targetSize)
 			this.unitStat["Infantry"]["targetSize"] = data.targetSize;
 		this.neededShips = 1;
@@ -145,10 +147,12 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	else
 	{
 		priority = 70;
-		this.unitStat["RangedInfantry"] = { "priority": 1, "minSize": 6, "targetSize": 18, "batchSize": 3, "classes": ["Infantry","Ranged"],
+		this.unitStat["RangedInfantry"] = { "priority": 1, "minSize": 6, "targetSize": 16, "batchSize": 3, "classes": ["Infantry","Ranged"],
 			"interests": [ ["canGather", 1], ["strength",1.6], ["cost",1.5], ["costsResource", 0.3, "stone"], ["costsResource", 0.3, "metal"] ] };
-		this.unitStat["MeleeInfantry"]  = { "priority": 1, "minSize": 6, "targetSize": 18, "batchSize": 3, "classes": ["Infantry","Melee"],
+		this.unitStat["MeleeInfantry"]  = { "priority": 1, "minSize": 6, "targetSize": 16, "batchSize": 3, "classes": ["Infantry","Melee"],
 			"interests": [ ["canGather", 1], ["strength",1.6], ["cost",1.5], ["costsResource", 0.3, "stone"], ["costsResource", 0.3, "metal"] ] };
+	    	this.unitStat["Cavalry"] = { "priority": 1, "minSize": 2, "targetSize": 6, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
+			"interests": [ ["strength",1], ["cost",1] ] };
 		this.neededShips = 3;
 	}
 
