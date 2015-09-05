@@ -1291,9 +1291,7 @@ ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool 
 	else
 		group = GetEntityId();
 
-	// If an obstruction blocks tile-based pathfinding, it will be handled during the path computation
-	// and doesn't need to be matched by this filter for the movement
-	return ControlGroupMovementObstructionFilter(false, forceAvoidMovingUnits || ShouldAvoidMovingUnits(), group);
+	return ControlGroupMovementObstructionFilter(forceAvoidMovingUnits || ShouldAvoidMovingUnits(), group);
 }
 
 
@@ -1341,12 +1339,10 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 
 	// Otherwise we need to compute a path.
 
-	// If it's close then just do a short path, not a long path.
-	// We should always do long paths to non-goal points because the most
-	// accessible point has to be computed by the hierarchical pathfinder.
+	// If it's close then just do a short path, not a long path
 	// TODO: If it's close on the opposite side of a river then we really
 	// need a long path, so we shouldn't simply check linear distance
-	if (goal.DistanceToPoint(from) < SHORT_PATH_SEARCH_RANGE && goal.type == PathGoal::POINT)
+	if (goal.DistanceToPoint(from) < SHORT_PATH_SEARCH_RANGE)
 	{
 		m_LongPath.m_Waypoints.clear();
 		m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
