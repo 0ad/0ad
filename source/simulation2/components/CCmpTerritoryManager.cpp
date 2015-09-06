@@ -62,6 +62,7 @@ public:
 		componentManager.SubscribeGloballyToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_PositionChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_ValueModification);
+		componentManager.SubscribeToMessageType(MT_ObstructionMapShapeChanged);
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 		componentManager.SubscribeToMessageType(MT_WaterChanged);
 		componentManager.SubscribeToMessageType(MT_Update);
@@ -182,6 +183,7 @@ public:
 				MakeDirty();
 			break;
 		}
+		case MT_ObstructionMapShapeChanged:
 		case MT_TerrainChanged:
 		case MT_WaterChanged:
 		{
