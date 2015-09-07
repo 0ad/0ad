@@ -1329,7 +1329,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				{	// if units are attacked, abandon their target (if it was a structure or a support) and retaliate
 					// also if our unit is attacking a range unit and the attacker is a melee unit, retaliate
 					var orderData = ourUnit.unitAIOrderData();
-					if (orderData.length !== 0 && orderData[0]["target"])
+					if (orderData && orderData.length && orderData[0]["target"])
 					{
 						var target = gameState.getEntityById(orderData[0]["target"]);
 						if (target && !target.hasClass("Structure") && !target.hasClass("Support"))
@@ -1462,14 +1462,14 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			{
 				if (!maybeUpdate)
 				{
-					this.CheckCapture(ent);
+					this.CheckCapture(gameState, ent);
 					continue;
 				}
 				let deltat = (ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING") ? 10 : 5;
 				let lastAttackPlanUpdateTime = ent.getMetadata(PlayerID, "lastAttackPlanUpdateTime");
 				if (lastAttackPlanUpdateTime && (time - lastAttackPlanUpdateTime) < deltat)
 				{
-					this.CheckCapture(ent);
+					this.CheckCapture(gameState, ent);
 					continue;
 				}
 			}
@@ -1636,7 +1636,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						this.unitCollection.forEach( function (unit) {
 							if (!unit.position())
 								return;
-							if (unit.unitAIState().split(".")[1] !== "COMBAT" || unit.unitAIOrderData().length == 0
+							if (unit.unitAIState().split(".")[1] !== "COMBAT" || !unit.unitAIOrderData().length
 								|| !unit.unitAIOrderData()[0]["target"])
 								return;
 							var dist = API3.SquareVectorDistance(unit.position(), ent.position());
@@ -1787,22 +1787,22 @@ m.AttackPlan.prototype.debugAttack = function()
 	API3.warn("------------------------------");
 };
 
-m.AttackPlan.prototype.CheckCapture = function(ent)
+m.AttackPlan.prototype.CheckCapture = function(gameState, ent)
 {
 	let state = ent.unitAIState();
 	if (!state || !state.split(".")[1] || state.split(".")[1] !== "COMBAT")
 		return;
 	let orderData = ent.unitAIOrderData();
-	if (!orderData || !orderData.target || !orderData.attackType || orderData.attackType !== "Capture")
+	if (!orderData || !orderData.length || !orderData[0].target || !orderData[0].attackType || orderData[0].attackType !== "Capture")
 		return;
-	let target = gameState.getEntityById(orderData.target);
+	let target = gameState.getEntityById(orderData[0].target);
 	if (!target)
 		return;
 
 	// For the time being, do not try to capture rams
 	if (target.hasClass("Siege") && target.hasClass("Melee"))
 	{
-		ent.attack(target.id(), false);
+		ent.attack(orderData[0].target, false);
 		return;
 	}
 
@@ -1814,7 +1814,7 @@ m.AttackPlan.prototype.CheckCapture = function(ent)
 	// but TODO need to know how many units are currently capturing this target
 	// For the time being, we check on our army length
 	if (target.garrisoned() && target.garrisoned().length > Math.floor(this.unitCollection.length / 2))
-		ent.attack(target.id(), false);
+		ent.attack(orderData[0].target, false);
 };
 
 m.AttackPlan.prototype.Serialize = function()

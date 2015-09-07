@@ -25,9 +25,9 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	var distMin = undefined;
 	var idMinAll = undefined;
 	var distMinAll = undefined; 
-	for (var id of this.foeEntities)
+	for (let id of this.foeEntities)
 	{
-		var eEnt = gameState.getEntityById(id);
+		let eEnt = gameState.getEntityById(id);
 		if (!eEnt || !eEnt.position())	// probably can't happen.
 			continue;
 
@@ -43,7 +43,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 			|| (this.assignedAgainst[id].length > 5 && !eEnt.hasClass("Hero") && !eEnt.hasClass("Siege")))
 			continue;
 
-		var dist = API3.SquareVectorDistance(ent.position(), eEnt.position());
+		let dist = API3.SquareVectorDistance(ent.position(), eEnt.position());
 		if (idMinAll === undefined || dist < distMinAll)
 		{
 			idMinAll = id;
@@ -65,14 +65,15 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	else
 		return false;
 
-	var ownIndex = gameState.ai.accessibility.getAccessValue(ent.position());
-	var foePosition = gameState.getEntityById(idFoe).position();
-	var foeIndex = gameState.ai.accessibility.getAccessValue(foePosition);
+	let ownIndex = gameState.ai.accessibility.getAccessValue(ent.position());
+	let foeEnt = gameState.getEntityById(idFoe);
+	let foePosition = foeEnt.position();
+	let foeIndex = gameState.ai.accessibility.getAccessValue(foePosition);
 	if (ownIndex == foeIndex || ent.hasClass("Ship"))
 	{
 		this.assignedTo[entID] = idFoe;
 		this.assignedAgainst[idFoe].push(entID);
-		ent.attack(idFoe);
+		ent.attack(idFoe, (!foeEnt.hasClass("Siege") || !foeEnt.hasClass("Melee")));
 	}
 	else
 		gameState.ai.HQ.navalManager.requireTransport(gameState, ent, ownIndex, foeIndex, foePosition);
@@ -105,9 +106,15 @@ m.DefenseArmy.prototype.update = function (gameState)
 		let ent = gameState.getEntityById(entId);
 		if (!ent)
 			continue;
-		let orders = ent.unitAIOrderData();
-		if (orders.length == 0 && !ent.getMetadata(PlayerID, "transport"))
+		let orderData = ent.unitAIOrderData();
+		if (!orderData.length && !ent.getMetadata(PlayerID, "transport"))
 			this.assignUnit(gameState, entId);
+		else if (orderData.length && orderData[0].target && orderData[0].attackType && orderData[0].attackType === "Capture")
+		{
+			let target = gameState.getEntityById(orderData[0].target);
+			if (target && target.hasClass("Siege") && target.hasClass("Melee"))
+				ent.attack(orderData[0].target, false);
+		}
 	}
 
 	return this.onUpdate(gameState);
