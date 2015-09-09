@@ -304,6 +304,13 @@ m.GameState.prototype.getPlayerID = function() {
 	return this.player;
 };
 
+m.GameState.prototype.hasAllies = function() {
+	for (let i in this.playerData.isAlly)
+		if (this.playerData.isAlly[i] && +i !== this.player)
+			return true;
+	return false;
+};
+
 m.GameState.prototype.isPlayerAlly = function(id) {
 	return this.playerData.isAlly[id];
 };
