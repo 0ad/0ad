@@ -205,14 +205,14 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 		// don't use foundations for the class counts but check if techs apply (e.g. health increase)
 		if (!Engine.QueryInterface(msg.entity, IID_Foundation))
 		{
-			for (var i in classes)
+			for (let cls of classes)
 			{
-				this.classCounts[classes[i]] = this.classCounts[classes[i]] || 0;
-				this.classCounts[classes[i]] += 1;
-			
-				this.typeCountsByClass[classes[i]] = this.typeCountsByClass[classes[i]] || {};
-				this.typeCountsByClass[classes[i]][template] = this.typeCountsByClass[classes[i]][template] || 0;
-				this.typeCountsByClass[classes[i]][template] += 1;
+				this.classCounts[cls] = this.classCounts[cls] || 0;
+				this.classCounts[cls] += 1;
+
+				this.typeCountsByClass[cls] = this.typeCountsByClass[cls] || {};
+				this.typeCountsByClass[cls][template] = this.typeCountsByClass[cls][template] || 0;
+				this.typeCountsByClass[cls][template] += 1;
 			}
 		}
 
@@ -227,8 +227,8 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 				// We only need to find one one tech per component for a match
 				var modifications = this.modifications[name];
 				var component = name.split("/")[0];
-				for (var i in modifications)
- 					if (DoesModificationApply(modifications[i], classes))
+				for (let modif of modifications)
+ 					if (DoesModificationApply(modif, classes))
 					{
 						if (!modifiedComponents[component])
 							modifiedComponents[component] = [];
@@ -257,15 +257,15 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 			if (cmpIdentity)
 			{
 				var classes = cmpIdentity.GetClassesList();
-				for (var i in classes)
+				for (let cls of classes)
 				{
-					this.classCounts[classes[i]] -= 1;
-					if (this.classCounts[classes[i]] <= 0)
-						delete this.classCounts[classes[i]];
+					this.classCounts[cls] -= 1;
+					if (this.classCounts[cls] <= 0)
+						delete this.classCounts[cls];
 
-					this.typeCountsByClass[classes[i]][template] -= 1;
-					if (this.typeCountsByClass[classes[i]][template] <= 0)
-						delete this.typeCountsByClass[classes[i]][template];
+					this.typeCountsByClass[cls][template] -= 1;
+					if (this.typeCountsByClass[cls][template] <= 0)
+						delete this.typeCountsByClass[cls][template];
 				}
 			}
 		}
@@ -295,10 +295,10 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 		var affects = [];
 		if (template.affects && template.affects.length > 0)
 		{
-			for (var i in template.affects)
+			for (let affect of template.affects)
 			{
 				// Put the list of classes into an array for convenient access
-				affects.push(template.affects[i].split(/\s+/));
+				affects.push(affect.split(/\s+/));
 			}
 		}
 		else
