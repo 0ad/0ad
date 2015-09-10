@@ -528,6 +528,10 @@ void CCmpPathfinder::UpdateGrid()
 	}
 	else
 		m_LongPathfinder.Update(m_Grid, m_ObstructionsDirty.dirtinessGrid);
+
+	// Notify the units that their current paths can be invalid now
+	CMessagePassabilityMapChanged msg;
+	GetSimContext().GetComponentManager().BroadcastMessage(msg);
 }
 
 void CCmpPathfinder::MinimalTerrainUpdate()
@@ -724,7 +728,7 @@ void CCmpPathfinder::ProcessShortRequests(const std::vector<AsyncShortPathReques
 	{
 		const AsyncShortPathRequest& req = shortRequests[i];
 		WaypointPath path;
-		ControlGroupMovementObstructionFilter filter(req.avoidMovingUnits, req.group);
+		ControlGroupMovementObstructionFilter filter(true, req.avoidMovingUnits, req.group);
 		ComputeShortPath(filter, req.x0, req.z0, req.clearance, req.range, req.goal, req.passClass, path);
 		CMessagePathResult msg(req.ticket, path);
 		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
@@ -794,16 +798,13 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
 	pass_class_t passClass)
 {
-	// Test against obstructions first
+	// Test against obstructions first. Pathfinding-blocking obstructions are not handled here.
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-	if (!cmpObstructionManager)
+	if (!cmpObstructionManager || cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
 		return false;
 
-	if (cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
-		return false;
-
-	// Then test against the terrain
-	return Pathfinding::CheckLineMovement(x0, z0, x1, z1, passClass, *m_TerrainOnlyGrid);
+	// Then test against the passability grid.
+	return Pathfinding::CheckLineMovement(x0, z0, x1, z1, passClass, *m_Grid);
 }
 
 ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
