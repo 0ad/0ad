@@ -48,7 +48,11 @@ function init(attribs)
 	Engine.LobbySetPlayerPresence("available");
 	Engine.SendGetGameList();
 	Engine.SendGetBoardList();
+
+	// When rejoining the lobby after a game, we don't need to process presence changes
+	Engine.LobbyClearPresenceUpdates();
 	updatePlayerList();
+
 	updateSubject(Engine.LobbyGetRoomSubject());
 
 	resetFilters();
@@ -233,7 +237,6 @@ function updatePlayerList()
 	playersBox.list = nickList;
 	if (playersBox.selected >= playersBox.list.length)
 		playersBox.selected = -1;
-	return [playerList, presenceList, nickList, ratingList];
 }
 
 /**
@@ -689,53 +692,18 @@ function onTick()
 			break;
 		case "muc":
 			var nick = message.text;
-			var presence = Engine.LobbyGetPlayerPresence(nick);
-			var playersBox = Engine.GetGUIObjectByName("playersBox");
-			var playerList = playersBox.list_name;
-			var presenceList = playersBox.list_status;
-			var nickList = playersBox.list;
-			var ratingList = playersBox.list_rating;
-			var nickIndex = nickList.indexOf(nick);
 			switch(message.level)
 			{
 			case "join":
-				var [name, status, rating] = formatPlayerListEntry(nick, presence, "-");
-				playerList.push(name);
-				presenceList.push(status);
-				nickList.push(nick);
-				ratingList.push(String(rating));
 				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { nick: nick }), "key": g_specialKey });
 				break;
 			case "leave":
-				if (nickIndex == -1) // Left, but not present (TODO: warn about this?)
-					break;
-				playerList.splice(nickIndex, 1);
-				presenceList.splice(nickIndex, 1);
-				nickList.splice(nickIndex, 1);
-				ratingList.splice(nickIndex, 1);
 				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { nick: nick }), "key": g_specialKey });
 				break;
 			case "nick":
-				if (nickIndex == -1) // Changed nick, but not present (shouldn't ever happen)
-					break;
-				if (!isValidNick(message.data))
-				{
-					addChatMessage({ "from": "system", "text": sprintf(translate("Invalid nickname: %(nick)s"), { nick: message.data })});
-					break;
-				}
-				var [name, status, rating] = formatPlayerListEntry(message.data, presence, stripColorCodes(ratingList[nickIndex])); // TODO: actually we don't want to change the presence here, so use what was used before
-				playerList[nickIndex] = name;
-				// presence stays the same
-				nickList[nickIndex] = message.data;
 				addChatMessage({ "text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), { oldnick: nick, newnick: message.data }), "key": g_specialKey });
 				break;
 			case "presence":
-				if (nickIndex == -1) // Changed presence, but not online (shouldn't ever happen)
-					break;
-				var [name, status, rating] = formatPlayerListEntry(nick, presence, stripColorCodes(ratingList[nickIndex]));
-				presenceList[nickIndex] = status;
-				playerList[nickIndex] = name;
-				ratingList[nickIndex] = rating;
 				break;
 			case "subject":
 				updateSubject(message.text);
@@ -744,13 +712,10 @@ function onTick()
 				warn(sprintf("Unknown message.level '%(msglvl)s'", { msglvl: message.level }));
 				break;
 			}
-			// Push new data to GUI
-			playersBox.list_name = playerList;
-			playersBox.list_status = presenceList;
-			playersBox.list_rating = ratingList;
-			playersBox.list = nickList;		
-			if (playersBox.selected >= playersBox.list.length)
-				playersBox.selected = -1;
+			// We might receive many join/leaves when returning to the lobby from a long game.
+			// To improve performance, only update the playerlist GUI when the last update in the current stack is processed
+			if (Engine.LobbyGetMucMessageCount() == 0)
+				updatePlayerList();
 			break;
 		case "system":
 			switch (message.level)

@@ -88,7 +88,17 @@ sub add_entities
 
             if ($ent->{Entity}{Sound})
             {
-                push @deps, [ $path, "audio/" . $_->{' content'} ] for grep ref($_), values %{$ent->{Entity}{Sound}{SoundGroups}};
+                my $gender = $ent->{Entity}{Identity}{Gender}{' content'} || "male";
+                my $lang = $ent->{Entity}{Identity}{Lang}{' content'} || "greek";
+                
+                for (grep ref($_), values %{$ent->{Entity}{Sound}{SoundGroups}})
+                {
+                    # see simulation/components/Sound.js and Identity.js for explanation
+                    my $soundPath = $_->{' content'};
+                    $soundPath =~ s/{gender}/$gender/g;
+                    $soundPath =~ s/{lang}/$lang/g;
+                    push @deps, [ $path, "audio/" . $soundPath ];
+                }
             }
 
             if ($ent->{Entity}{Identity})
@@ -253,11 +263,11 @@ sub add_maps_pmp
         my $buf;
 
         read $fh, $buf, 4;
-        die "Invalid PMP file ($buf)" unless $buf eq "PSMP";
+        die "Invalid PMP header ($buf) in '$f'" unless $buf eq "PSMP";
 
         read $fh, $buf, 4;
         my $version = unpack 'V', $buf;
-        die "Invalid PMP file ($version)" unless $version == 5;
+        die "Invalid PMP version ($version) in '$f'" unless $version == 6;
 
         read $fh, $buf, 4;
         my $datasize = unpack 'V', $buf;
@@ -325,7 +335,18 @@ sub add_gui_xml
             push @roots, $f;
             my $xml = XMLin(vfs_to_physical($f), ForceArray => [qw(include)], KeyAttr => []) or die "Failed to parse '$f': $!";
 
-            push @deps, [ $f, "gui/$_" ] for @{$xml->{include}};
+            for my $include (@{$xml->{include}})
+            {
+                # If including an entire directory, find all the *.xml files
+                if ($include =~ /\/$/)
+                {
+                    push @deps, [ $f, $_ ] for find_files("gui/$include", 'xml');
+                }
+                else
+                {
+                    push @deps, [ $f, "gui/$include" ];
+                }
+            }
         }
         else
         {
@@ -333,7 +354,15 @@ sub add_gui_xml
             my $name = (keys %$xml)[0];
             if ($name eq 'objects' or $name eq 'object')
             {
-                push @deps, [ $f, $_->{file} ] for grep { ref $_ and $_->{file} } @{$xml->{objects}{script}};
+                for (grep ref $_ , @{$xml->{objects}{script}})
+                {
+                    push @deps, [ $f, $_->{file} ] if $_->{file};
+                    if ($_->{directory})
+                    {
+                        # If including an entire directory, find all the *.js files
+                        push @deps, [ $f, $_ ] for find_files($_->{directory}, 'js')
+                    }
+                }
                 my $add_objects;
                 $add_objects = sub
                 {
@@ -384,7 +413,7 @@ sub add_civs
 {
     print "Loading civs...\n";
 
-    my @civfiles = find_files('civs', 'json');
+    my @civfiles = find_files('simulation/data/civs', 'json');
     for my $f (sort @civfiles)
     {
         push @files, $f;

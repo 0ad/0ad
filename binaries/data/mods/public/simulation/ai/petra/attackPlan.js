@@ -105,8 +105,10 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	if (type === "Rush")
 	{
 		priority = 250;
-		this.unitStat["Infantry"] = { "priority": 1, "minSize": 10, "targetSize": 26, "batchSize": 2, "classes": ["Infantry"],
+		this.unitStat["Infantry"] = { "priority": 1, "minSize": 10, "targetSize": 20, "batchSize": 2, "classes": ["Infantry"],
 			"interests": [ ["strength",1], ["cost",1], ["costsResource", 0.5, "stone"], ["costsResource", 0.6, "metal"] ] };
+		this.unitStat["Cavalry"] = { "priority": 1, "minSize": 2, "targetSize": 4, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
+			"interests": [ ["strength",1], ["cost",1] ] };
 		if (data && data.targetSize)
 			this.unitStat["Infantry"]["targetSize"] = data.targetSize;
 		this.neededShips = 1;
@@ -145,10 +147,12 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	else
 	{
 		priority = 70;
-		this.unitStat["RangedInfantry"] = { "priority": 1, "minSize": 6, "targetSize": 18, "batchSize": 3, "classes": ["Infantry","Ranged"],
+		this.unitStat["RangedInfantry"] = { "priority": 1, "minSize": 6, "targetSize": 16, "batchSize": 3, "classes": ["Infantry","Ranged"],
 			"interests": [ ["canGather", 1], ["strength",1.6], ["cost",1.5], ["costsResource", 0.3, "stone"], ["costsResource", 0.3, "metal"] ] };
-		this.unitStat["MeleeInfantry"]  = { "priority": 1, "minSize": 6, "targetSize": 18, "batchSize": 3, "classes": ["Infantry","Melee"],
+		this.unitStat["MeleeInfantry"]  = { "priority": 1, "minSize": 6, "targetSize": 16, "batchSize": 3, "classes": ["Infantry","Melee"],
 			"interests": [ ["canGather", 1], ["strength",1.6], ["cost",1.5], ["costsResource", 0.3, "stone"], ["costsResource", 0.3, "metal"] ] };
+	    	this.unitStat["Cavalry"] = { "priority": 1, "minSize": 2, "targetSize": 6, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
+			"interests": [ ["strength",1], ["cost",1] ] };
 		this.neededShips = 3;
 	}
 
@@ -1296,7 +1300,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (this.isSiegeUnit(gameState, ourUnit))
 			{	// if our siege units are attacked, we'll send some units to deal with enemies.
 				var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);
-				for (var ent of collec.values())
+				for (let ent of collec.values())
 				{
 					if (this.isSiegeUnit(gameState, ent))	// needed as mauryan elephants are not filtered out
 						continue;
@@ -1306,7 +1310,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				// And if this attacker is a non-ranged siege unit and our unit also, attack it
 				if (this.isSiegeUnit(gameState, attacker) && attacker.hasClass("Melee") && ourUnit.hasClass("Melee"))
 				{
-					ourUnit.attack(attacker.id());
+					ourUnit.attack(attacker.id(), false);
 					ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 				}
 			}
@@ -1317,7 +1321,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					var collec = this.unitCollection.filter(API3.Filters.byClass("Melee")).filterNearest(ourUnit.position(), 5);
 					for (var ent of collec.values())
 					{
-						ent.attack(attacker.id());
+						ent.attack(attacker.id(), false);
 						ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 					}
 				}
@@ -1325,7 +1329,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				{	// if units are attacked, abandon their target (if it was a structure or a support) and retaliate
 					// also if our unit is attacking a range unit and the attacker is a melee unit, retaliate
 					var orderData = ourUnit.unitAIOrderData();
-					if (orderData.length !== 0 && orderData[0]["target"])
+					if (orderData && orderData.length && orderData[0]["target"])
 					{
 						var target = gameState.getEntityById(orderData[0]["target"]);
 						if (target && !target.hasClass("Structure") && !target.hasClass("Support"))
@@ -1453,14 +1457,21 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 
 			// don't update too soon if not necessary
+			// and when not updating, we check if the unit is trying to capture and if it should continue
 			if (!needsUpdate)
 			{
 				if (!maybeUpdate)
+				{
+					this.CheckCapture(gameState, ent);
 					continue;
+				}
 				let deltat = (ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING") ? 10 : 5;
-				var lastAttackPlanUpdateTime = ent.getMetadata(PlayerID, "lastAttackPlanUpdateTime");
+				let lastAttackPlanUpdateTime = ent.getMetadata(PlayerID, "lastAttackPlanUpdateTime");
 				if (lastAttackPlanUpdateTime && (time - lastAttackPlanUpdateTime) < deltat)
+				{
+					this.CheckCapture(gameState, ent);
 					continue;
+				}
 			}
 			ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 			var range = 60;
@@ -1625,7 +1636,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						this.unitCollection.forEach( function (unit) {
 							if (!unit.position())
 								return;
-							if (unit.unitAIState().split(".")[1] !== "COMBAT" || unit.unitAIOrderData().length == 0
+							if (unit.unitAIState().split(".")[1] !== "COMBAT" || !unit.unitAIOrderData().length
 								|| !unit.unitAIOrderData()[0]["target"])
 								return;
 							var dist = API3.SquareVectorDistance(unit.position(), ent.position());
@@ -1774,6 +1785,36 @@ m.AttackPlan.prototype.debugAttack = function()
 		API3.warn(unitCat + " num=" + this.unit[unitCat].length + " min=" + Unit["minSize"] + " need=" + Unit["targetSize"]);
 	}
 	API3.warn("------------------------------");
+};
+
+m.AttackPlan.prototype.CheckCapture = function(gameState, ent)
+{
+	let state = ent.unitAIState();
+	if (!state || !state.split(".")[1] || state.split(".")[1] !== "COMBAT")
+		return;
+	let orderData = ent.unitAIOrderData();
+	if (!orderData || !orderData.length || !orderData[0].target || !orderData[0].attackType || orderData[0].attackType !== "Capture")
+		return;
+	let target = gameState.getEntityById(orderData[0].target);
+	if (!target)
+		return;
+
+	// For the time being, do not try to capture rams
+	if (target.hasClass("Siege") && target.hasClass("Melee"))
+	{
+		ent.attack(orderData[0].target, false);
+		return;
+	}
+
+	// No problem to capture structure without defensive fire
+	if (!target.hasDefensiveFire())
+		return;
+
+	// Check the garrison in this target to know if we can expect to capture it
+	// but TODO need to know how many units are currently capturing this target
+	// For the time being, we check on our army length
+	if (target.garrisoned() && target.garrisoned().length > Math.floor(this.unitCollection.length / 2))
+		ent.attack(orderData[0].target, false);
 };
 
 m.AttackPlan.prototype.Serialize = function()

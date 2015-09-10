@@ -235,9 +235,9 @@ function getAllTrainableEntities(selection)
 	var trainableEnts = [];
 	var state;
 	// Get all buildable and trainable entities
-	for (var i in selection)
+	for (let ent of selection)
 	{
-		if ((state = GetEntityState(selection[i])) && state.production && state.production.entities.length)
+		if ((state = GetEntityState(ent)) && state.production && state.production.entities.length)
 			trainableEnts = trainableEnts.concat(state.production.entities);
 	}
 

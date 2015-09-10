@@ -83,7 +83,8 @@ m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 		if (tech[1]._template.affects.indexOf("Trader") === -1)
 			continue;
 		// TODO may-be loop on all modifs and check if the effect if positive ?
-		if (tech[1]._template.modifications[0].value !== "UnitMotion/WalkSpeed")
+		if (tech[1]._template.modifications[0].value !== "UnitMotion/WalkSpeed" &&
+                    tech[1]._template.modifications[0].value !== "Trader/GainMultiplier")
 			continue;
 		queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
 		break;
@@ -188,11 +189,19 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 		return;
 
 	// remove some techs not yet used by this AI
-	for (var i = 0; i < techs.length; ++i)
+	// remove alse sharedLos if we have no ally
+	for (let i = 0; i < techs.length; ++i)
 	{
-		var template = techs[i][1]._template;
+		let template = techs[i][1]._template;
 		if (template.affects && template.affects.length === 1
 			&& (template.affects[0] === "Healer" || template.affects[0] === "Outpost" || template.affects[0] === "StoneWall"))
+		{
+			techs.splice(i--, 1);
+			continue;
+		}
+		if (template.modifications && template.modifications.length === 1
+			&& template.modifications[0].value === "Player/sharedLos"
+			&& !gameState.hasAllies())
 		{
 			techs.splice(i--, 1);
 			continue;

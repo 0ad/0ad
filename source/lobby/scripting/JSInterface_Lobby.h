@@ -45,6 +45,8 @@ namespace JSI_Lobby
 	void SendUnregisterGame(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nbp, std::wstring players);
 	JS::Value GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate);
+	void LobbyClearPresenceUpdates(ScriptInterface::CxPrivate* pCxPrivate);
+	int LobbyGetMucMessageCount(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetGameList(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetProfile(ScriptInterface::CxPrivate* pCxPrivate);

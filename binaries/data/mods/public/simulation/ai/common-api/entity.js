@@ -791,8 +791,8 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	attack: function(unitId) {
-		Engine.PostCommand(PlayerID,{"type": "attack", "entities": [this.id()], "target": unitId, "queued": false});
+	attack: function(unitId, allowCapture = true) {
+		Engine.PostCommand(PlayerID,{"type": "attack", "entities": [this.id()], "target": unitId, "allowCapture": allowCapture, "queued": false});
 		return this;
 	},
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,8 +47,9 @@ public:
 	virtual void GetPresence(const std::string& nickname, std::string& presence) = 0;
 	virtual void GetRole(const std::string& nickname, std::string& role) = 0;
 	virtual void GetSubject(std::string& subject) = 0;
-
 	virtual void GUIGetPlayerList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual void ClearPresenceUpdates() = 0;
+	virtual int GetMucMessageCount() = 0;
 	virtual void GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void GUIGetBoardList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void GUIGetProfile(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;

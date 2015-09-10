@@ -182,11 +182,13 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 	if (i !== 0 || this.armies.length > 1 || gameState.ai.HQ.numActiveBase() === 0)
 		return;
 	// look for possible gaia buildings inside our territory (may happen when enemy resign or after structure decay)
+	// and attack it only if useful (and capturable) or dangereous
 	for (let ent of gameState.getEnemyStructures(i).values())
 	{
 		if (!ent.position() || ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
 			continue;
-
+		if (!ent.capturePoints() && !ent.hasDefensiveFire())
+			continue;
 		let owner = this.territoryMap.getOwner(ent.position());;
 		if (owner === PlayerID)
 			this.makeIntoArmy(gameState, ent.id());

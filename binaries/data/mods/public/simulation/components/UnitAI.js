@@ -3678,11 +3678,10 @@ UnitAI.prototype.AddOrders = function(orders)
 UnitAI.prototype.GetOrderData = function()
 {
 	var orders = [];
-	for (var i in this.orderQueue)
-	{
-		if (this.orderQueue[i].data)
-			orders.push(deepcopy(this.orderQueue[i].data));
-	}
+	for (let order of this.orderQueue)
+		if (order.data)
+			orders.push(deepcopy(order.data));
+
 	return orders;
 };
 

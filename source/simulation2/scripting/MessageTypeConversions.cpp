@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -468,6 +468,19 @@ JS::Value CMessageMinimapPing::ToJSVal(ScriptInterface& scriptInterface) const
 CMessage* CMessageMinimapPing::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	return new CMessageMinimapPing();
+}
+
+////////////////////////////////
+
+JS::Value CMessagePassabilityMapChanged::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	return JS::ObjectValue(*obj);
+}
+
+CMessage* CMessagePassabilityMapChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
+{
+	return new CMessagePassabilityMapChanged();
 }
 
 ////////////////////////////////////////////////////////////////

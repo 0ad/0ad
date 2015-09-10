@@ -528,6 +528,10 @@ void CCmpPathfinder::UpdateGrid()
 	}
 	else
 		m_LongPathfinder.Update(m_Grid, m_ObstructionsDirty.dirtinessGrid);
+
+	// Notify the units that their current paths can be invalid now
+	CMessagePassabilityMapChanged msg;
+	GetSimContext().GetComponentManager().BroadcastMessage(msg);
 }
 
 void CCmpPathfinder::MinimalTerrainUpdate()

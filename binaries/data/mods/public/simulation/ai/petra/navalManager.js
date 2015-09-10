@@ -525,7 +525,7 @@ m.NavalManager.prototype.moveApart = function(gameState)
 		{
 			if (ship.isIdle())	// do not stay idle near a dock to not disturb other ships
 			{
-				gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).forEach(function(dock) {
+				gameState.getAllyStructures().filter(API3.Filters.byClass("Dock")).forEach(function(dock) {
 					if (dock.getMetadata(PlayerID, "sea") !== sea)
 						return;
 					if (API3.SquareVectorDistance(ship.position(), dock.position()) > 2500)

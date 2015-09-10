@@ -158,7 +158,7 @@ var g_NotificationsTypes =
 	{
 		if (player != Engine.GetPlayerID())
 			return;
-		g_Selection.rebuildSelection([]);
+		g_Selection.rebuildSelection({});
 	}
 };
 
