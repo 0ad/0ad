@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,13 +20,11 @@
 
 #include "IXmppClient.h"
 
-#include "glooxwrapper/glooxwrapper.h"
-
-//game - script
 #include <deque>
+
+#include "glooxwrapper/glooxwrapper.h"
 #include "scriptinterface/ScriptVal.h"
 
-//Game - script
 class ScriptInterface;
 
 namespace glooxwrapper
@@ -38,18 +36,22 @@ namespace glooxwrapper
 class XmppClient : public IXmppClient, public glooxwrapper::ConnectionListener, public glooxwrapper::MUCRoomHandler, public glooxwrapper::IqHandler, public glooxwrapper::RegistrationHandler, public glooxwrapper::MessageHandler
 {
 	NONCOPYABLE(XmppClient);
+
 private:
 	//Components
 	glooxwrapper::Client* m_client;
 	glooxwrapper::MUCRoom* m_mucRoom;
 	glooxwrapper::Registration* m_registration;
+
 	//Account infos
 	std::string m_username;
 	std::string m_password;
 	std::string m_nick;
 	std::string m_xpartamuppId;
+
 	// State
 	bool m_initialLoadComplete = false;
+
 public:
 	//Basic
 	XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize = 0, const bool regOpt = false);
@@ -80,6 +82,7 @@ public:
 	void GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void GUIGetBoardList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void GUIGetProfile(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+
 	//Script
 	ScriptInterface& GetScriptInterface();
 
@@ -122,6 +125,7 @@ protected:
 	void GetPresenceString(const gloox::Presence::PresenceType p, std::string& presence) const;
 	void GetRoleString(const gloox::MUCRoomRole r, std::string& role) const;
 	std::string StanzaErrorToString(gloox::StanzaError err);
+
 public:
 	/* Messages */
 	struct GUIMessage
@@ -136,6 +140,8 @@ public:
 	};
 	void GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void SendMUCMessage(const std::string& message);
+	void ClearPresenceUpdates();
+	int GetMucMessageCount();
 	protected:
 	void PushGuiMessage(XmppClient::GUIMessage message);
 	void CreateSimpleMessage(const std::string& type, const std::string& text, const std::string& level = "standard", const std::string& data = "");

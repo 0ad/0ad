@@ -642,6 +642,33 @@ void XmppClient::PushGuiMessage(XmppClient::GUIMessage message)
 }
 
 /**
+ * Clears all presence updates from the message queue.
+ * Used when rejoining the lobby, since we don't need to handle past presence changes.
+ */
+void XmppClient::ClearPresenceUpdates()
+{
+	m_GuiMessageQueue.erase(
+		std::remove_if(m_GuiMessageQueue.begin(), m_GuiMessageQueue.end(),
+			[](XmppClient::GUIMessage& message)
+			{
+				return message.type == L"muc" && message.level == L"presence";
+			}
+	), m_GuiMessageQueue.end());
+}
+
+/**
+ * Used in order to update the GUI only once when multiple updates are queued.
+ */
+int XmppClient::GetMucMessageCount()
+{
+	return std::count_if(m_GuiMessageQueue.begin(), m_GuiMessageQueue.end(),
+		[](XmppClient::GUIMessage& message)
+		{
+			return message.type == L"muc";
+		});
+}
+
+/**
  * Handle a standard MUC textual message.
  */
 void XmppClient::handleMUCMessage(glooxwrapper::MUCRoom*, const glooxwrapper::Message& msg, bool)
