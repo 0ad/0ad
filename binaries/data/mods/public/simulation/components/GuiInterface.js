@@ -55,8 +55,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	};
 
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var n = cmpPlayerManager.GetNumPlayers();
-	for (var i = 0; i < n; ++i)
+	var numPlayers = cmpPlayerManager.GetNumPlayers();
+	for (var i = 0; i < numPlayers; ++i)
 	{
 		var playerEnt = cmpPlayerManager.GetPlayerByID(i);
 		var cmpPlayerEntityLimits = Engine.QueryInterface(playerEnt, IID_EntityLimits);
@@ -80,7 +80,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var mutualAllies = [];
 		var neutrals = [];
 		var enemies = [];
-		for (var j = 0; j < n; ++j)
+		for (var j = 0; j < numPlayers; ++j)
 		{
 			allies[j] = cmpPlayer.IsAlly(j);
 			mutualAllies[j] = cmpPlayer.IsMutualAlly(j);
@@ -148,9 +148,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	ret.barterPrices = cmpBarter.GetPrices();
 
 	// Add basic statistics to each player
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var n = cmpPlayerManager.GetNumPlayers();
-	for (var i = 0; i < n; ++i)
+	for (var i = 0; i < numPlayers; ++i)
 	{
 		var playerEnt = cmpPlayerManager.GetPlayerByID(i);
 		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
@@ -688,8 +686,7 @@ GuiInterface.prototype.GetIncomingAttacks = function(player)
 // Used to show a red square over GUI elements you can't yet afford.
 GuiInterface.prototype.GetNeededResources = function(player, amounts)
 {
-	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	return cmpPlayer.GetNeededResources(amounts);
+	return QueryPlayerIDInterface(player).GetNeededResources(amounts);
 };
 
 /**
@@ -1847,10 +1844,9 @@ GuiInterface.prototype.GetTraderNumber = function(player)
 	return { "landTrader": landTrader, "shipTrader": shipTrader };
 };
 
-GuiInterface.prototype.GetTradingGoods = function(player, tradingGoods)
+GuiInterface.prototype.GetTradingGoods = function(player)
 {
-	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	return cmpPlayer.GetTradingGoods();
+	return QueryPlayerIDInterface(player).GetTradingGoods();
 };
 
 GuiInterface.prototype.OnGlobalEntityRenamed = function(msg)

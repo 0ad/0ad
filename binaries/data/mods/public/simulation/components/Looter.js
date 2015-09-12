@@ -19,7 +19,7 @@ Looter.prototype.Collect = function(targetEntity)
 		if (cmpPromotion)
 			cmpPromotion.IncreaseXp(xp);
 	}
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	var cmpPlayer = QueryOwnerInterface(this.entity);
 	var resources = cmpLoot.GetResources();
 	for (var type in resources)
 	{
@@ -52,7 +52,6 @@ Looter.prototype.Collect = function(targetEntity)
 				cmpStatisticsTracker.IncreaseLootCollectedCounter(resourcesToAdd);
 		}
 	}
-}
+};
 
 Engine.RegisterComponentType(IID_Looter, "Looter", Looter);
-
