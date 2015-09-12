@@ -14,10 +14,8 @@ const POPULATION_CAP_DEFAULTIDX = 5;
 const STARTING_RESOURCES = [translateWithContext("startingResources", "Very Low"), translateWithContext("startingResources", "Low"), translateWithContext("startingResources", "Medium"), translateWithContext("startingResources", "High"), translateWithContext("startingResources", "Very High"), translateWithContext("startingResources", "Deathmatch")];
 const STARTING_RESOURCES_DATA = [100, 300, 500, 1000, 3000, 50000];
 const STARTING_RESOURCES_DEFAULTIDX = 1;
-// Translation: Ceasefire.
-const CEASEFIRE = [translateWithContext("ceasefire", "No ceasefire"), translateWithContext("ceasefire", "5 minutes"), translateWithContext("ceasefire", "10 minutes"), translateWithContext("ceasefire", "15 minutes"), translateWithContext("ceasefire", "20 minutes"), translateWithContext("ceasefire", "30 minutes"), translateWithContext("ceasefire", "45 minutes"), translateWithContext("ceasefire", "60 minutes")];
-const CEASEFIRE_DATA = [0, 5, 10, 15, 20, 30, 45, 60];
-const CEASEFIRE_DEFAULTIDX = 0;
+
+const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -83,6 +81,12 @@ var g_VictoryConditions = {};
 
 function init(attribs)
 {
+	if (!g_Settings)
+	{
+		cancelSetup();
+		return;
+	}
+
 	switch (attribs.type)
 	{
 	case "offline":
@@ -220,12 +224,12 @@ function initMain()
 		}
 
 		var ceasefireL = Engine.GetGUIObjectByName("ceasefire");
-		ceasefireL.list = CEASEFIRE;
-		ceasefireL.list_data = CEASEFIRE_DATA;
-		ceasefireL.selected = CEASEFIRE_DEFAULTIDX;
+		ceasefireL.list = g_Ceasefire.Title;
+		ceasefireL.list_data = g_Ceasefire.Duration;
+		ceasefireL.selected = g_Ceasefire.Default;
 		ceasefireL.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.settings.Ceasefire = CEASEFIRE_DATA[this.selected];
+				g_GameAttributes.settings.Ceasefire = g_Ceasefire.Duration[this.selected];
 
 			updateGameAttributes();
 		}
@@ -429,10 +433,6 @@ function handleNetMessage(message)
 		{
 		case "disconnected":
 			cancelSetup();
-			if (Engine.HasXmppClient())
-				Engine.SwitchGuiPage("page_lobby.xml");
-			else
-				Engine.SwitchGuiPage("page_pregame.xml");
 			reportDisconnect(message.reason);
 			break;
 
@@ -816,17 +816,22 @@ function cancelSetup()
 
 	if (Engine.HasXmppClient())
 	{
-		// Set player presence
 		Engine.LobbySetPlayerPresence("available");
 
-		// Unregister the game
 		if (g_IsController)
 			Engine.SendUnregisterGame();
+
+		Engine.SwitchGuiPage("page_lobby.xml");
 	}
+	else
+		Engine.SwitchGuiPage("page_pregame.xml");
 }
 
 function onTick()
 {
+	if (!g_Settings)
+		return;
+
 	// First tick happens before first render, so don't load yet
 	if (g_LoadingState == 0)
 	{
@@ -1252,8 +1257,8 @@ function onGameAttributesChange()
 	populationCapText.caption = POPULATION_CAP[populationCap.selected];
 	startingResources.selected = (mapSettings.StartingResources !== undefined && STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) != -1 ? STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) : STARTING_RESOURCES_DEFAULTIDX);
 	startingResourcesText.caption = STARTING_RESOURCES[startingResources.selected];
-	ceasefire.selected = (mapSettings.Ceasefire !== undefined && CEASEFIRE_DATA.indexOf(mapSettings.Ceasefire) != -1 ? CEASEFIRE_DATA.indexOf(mapSettings.Ceasefire) : CEASEFIRE_DEFAULTIDX);
-	ceasefireText.caption = CEASEFIRE[ceasefire.selected];
+	ceasefire.selected = mapSettings.Ceasefire !== undefined && g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) != -1 ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
+	ceasefireText.caption = g_Ceasefire.Title[ceasefire.selected];
 
 	// Update map preview
 	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);

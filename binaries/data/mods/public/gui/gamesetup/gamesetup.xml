@@ -7,7 +7,10 @@
 	<script file="gui/common/functions_utility.js"/>
 	<script file="gui/common/network.js"/>
 	<script file="gui/common/settings.js"/>
+
+	<!-- After settings.js, which defines g_Settings -->
 	<script file="gui/gamesetup/gamesetup.js"/>
+
 	<!-- After gamesetup.js which defines g_VictoryConditions -->
 	<script directory="gui/gamesetup/victory_conditions/"/>
 
@@ -240,15 +243,7 @@
 				tooltip_style="onscreenToolTip"
 			>
 				<translatableAttribute id="caption">Back</translatableAttribute>
-				<action on="Press">
-					<![CDATA[
-						cancelSetup();
-						if(!Engine.HasXmppClient())
-							Engine.SwitchGuiPage("page_pregame.xml");
-						else
-							Engine.SwitchGuiPage("page_lobby.xml");
-					]]>
-				</action>
+				<action on="Press">cancelSetup();</action>
 			</object>
 
 			<!-- Options -->
