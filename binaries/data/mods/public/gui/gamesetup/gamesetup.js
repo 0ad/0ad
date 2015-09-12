@@ -10,11 +10,8 @@ const VICTORY_DEFAULTIDX = 1;
 const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", translate("Unlimited")];
 const POPULATION_CAP_DATA = [50, 100, 150, 200, 250, 300, 10000];
 const POPULATION_CAP_DEFAULTIDX = 5;
-// Translation: Amount of starting resources.
-const STARTING_RESOURCES = [translateWithContext("startingResources", "Very Low"), translateWithContext("startingResources", "Low"), translateWithContext("startingResources", "Medium"), translateWithContext("startingResources", "High"), translateWithContext("startingResources", "Very High"), translateWithContext("startingResources", "Deathmatch")];
-const STARTING_RESOURCES_DATA = [100, 300, 500, 1000, 3000, 50000];
-const STARTING_RESOURCES_DEFAULTIDX = 1;
 
+const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
 const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -213,12 +210,12 @@ function initMain()
 		}
 
 		var startingResourcesL = Engine.GetGUIObjectByName("startingResources");
-		startingResourcesL.list = STARTING_RESOURCES;
-		startingResourcesL.list_data = STARTING_RESOURCES_DATA;
-		startingResourcesL.selected = STARTING_RESOURCES_DEFAULTIDX;
+		startingResourcesL.list = g_StartingResources.Title;
+		startingResourcesL.list_data = g_StartingResources.Resources;
+		startingResourcesL.selected = g_StartingResources.Default;
 		startingResourcesL.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.settings.StartingResources = STARTING_RESOURCES_DATA[this.selected];
+				g_GameAttributes.settings.StartingResources = g_StartingResources.Resources[this.selected];
 
 			updateGameAttributes();
 		}
@@ -1255,8 +1252,8 @@ function onGameAttributesChange()
 	gameSpeedBox.selected = speedIdx;
 	populationCap.selected = (mapSettings.PopulationCap !== undefined && POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
 	populationCapText.caption = POPULATION_CAP[populationCap.selected];
-	startingResources.selected = (mapSettings.StartingResources !== undefined && STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) != -1 ? STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) : STARTING_RESOURCES_DEFAULTIDX);
-	startingResourcesText.caption = STARTING_RESOURCES[startingResources.selected];
+	startingResources.selected = mapSettings.StartingResources !== undefined && g_StartingResources.Resources.indexOf(mapSettings.StartingResources) != -1 ? g_StartingResources.Resources.indexOf(mapSettings.StartingResources) : g_StartingResources.Default;
+	startingResourcesText.caption = g_StartingResources.Title[startingResources.selected];
 	ceasefire.selected = mapSettings.Ceasefire !== undefined && g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) != -1 ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
 	ceasefireText.caption = g_Ceasefire.Title[ceasefire.selected];
 

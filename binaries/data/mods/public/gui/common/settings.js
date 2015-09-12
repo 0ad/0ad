@@ -19,7 +19,7 @@ const g_SettingsDirectory = "simulation/data/settings/";
  * An object containing all values given by setting name.
  * Used by lobby, gamesetup, session, summary screen and replay menu.
  */
-const g_Settings = loadAvailableSettings();
+const g_Settings = loadSettingsValues();
 
 /**
  * Loads and translates all values of all settings which
@@ -27,15 +27,40 @@ const g_Settings = loadAvailableSettings();
  *
  * @returns {Object|undefined}
  */
-function loadAvailableSettings()
+function loadSettingsValues()
 {
-	var settings = {};
+	var settings = {
+		"Ceasefire": loadCeasefire(),
+		"StartingResources": loadSettingValuesFile("starting_resources.json")
+	};
 
-	settings.Ceasefire = loadCeasefire();
-	if (!settings.Ceasefire)
+	if (Object.keys(settings).some(key => settings[key] === undefined))
 		return undefined;
 
 	return settings;
+}
+
+/**
+ * Returns an array of objects reflecting all possible values for a given setting.
+ *
+ * @param {string} filename
+ * @see simulation/data/settings/
+ * @returns {Array|undefined}
+ */
+function loadSettingValuesFile(filename)
+{
+	var json = Engine.ReadJSONFile(g_SettingsDirectory + filename);
+
+	if (!json || !json.Data)
+	{
+		error("Could not load " + filename + "!");
+		return undefined;
+	}
+
+	if (json.TranslatedKeys)
+		translateObjectKeys(json, json.TranslatedKeys);
+
+	return json.Data;
 }
 
 /**

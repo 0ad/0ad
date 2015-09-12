@@ -465,6 +465,16 @@
             {
                 "extractor": "json",
                 "filemasks": [
+                    "simulation/data/settings/starting_resources.json"
+                ],
+                "options": {
+                    "keywords": ["Title"],
+                    "context": "startingResources"
+                 }
+             },
+            {
+                "extractor": "json",
+                "filemasks": [
                     "simulation/data/map_sizes.json"
                 ],
                 "options": {
