@@ -622,7 +622,7 @@ private:
 					m_DirtyStaticShapes.push_back(staticId);
 
 			std::vector<u32> unitsNear;
-			m_UnitSubdivision.GetNear(staticsNear, center, shape.clearance + m_MaxClearance*2);
+			m_UnitSubdivision.GetNear(unitsNear, center, shape.clearance + m_MaxClearance*2);
 			for (u32& unitId : unitsNear)
 				if (std::find(m_DirtyUnitShapes.begin(), m_DirtyUnitShapes.end(), unitId) == m_DirtyUnitShapes.end())
 					m_DirtyUnitShapes.push_back(unitId);
