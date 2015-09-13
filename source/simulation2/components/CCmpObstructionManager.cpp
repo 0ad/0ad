@@ -622,7 +622,7 @@ private:
 					m_DirtyStaticShapes.push_back(staticId);
 
 			std::vector<u32> unitsNear;
-			m_UnitSubdivision.GetNear(staticsNear, center, shape.clearance + m_MaxClearance*2);
+			m_UnitSubdivision.GetNear(unitsNear, center, shape.clearance + m_MaxClearance*2);
 			for (u32& unitId : unitsNear)
 				if (std::find(m_DirtyUnitShapes.begin(), m_DirtyUnitShapes.end(), unitId) == m_DirtyUnitShapes.end())
 					m_DirtyUnitShapes.push_back(unitId);
@@ -875,11 +875,11 @@ void CCmpObstructionManager::RasterizeHelper(Grid<u16>& grid, ICmpObstructionMan
 {
 	for (auto& pair : m_StaticShapes)
 	{
-		if (!fullUpdate && std::find(m_DirtyStaticShapes.begin(), m_DirtyStaticShapes.end(), pair.first) == m_DirtyStaticShapes.end())
-			continue;
-
 		const StaticShape& shape = pair.second;
 		if (!(shape.flags & requireMask))
+			continue;
+
+		if (!fullUpdate && std::find(m_DirtyStaticShapes.begin(), m_DirtyStaticShapes.end(), pair.first) == m_DirtyStaticShapes.end())
 			continue;
 
 		// TODO: it might be nice to rasterize with rounded corners for large 'expand' values.
@@ -899,14 +899,13 @@ void CCmpObstructionManager::RasterizeHelper(Grid<u16>& grid, ICmpObstructionMan
 
 	for (auto& pair : m_UnitShapes)
 	{
+		if (!(pair.second.flags & requireMask))
+			continue;
+
 		if (!fullUpdate && std::find(m_DirtyUnitShapes.begin(), m_DirtyUnitShapes.end(), pair.first) == m_DirtyUnitShapes.end())
 			continue;
 
 		CFixedVector2D center(pair.second.x, pair.second.z);
-
-		if (!(pair.second.flags & requireMask))
-			continue;
-
 		entity_pos_t r = pair.second.clearance + clearance;
 
 		u16 i0, j0, i1, j1;
