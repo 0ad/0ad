@@ -5,14 +5,9 @@ const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 const VICTORY_DEFAULTIDX = 1;
 
-// TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
-// Translation: Type of victory condition.
-const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", translate("Unlimited")];
-const POPULATION_CAP_DATA = [50, 100, 150, 200, 250, 300, 10000];
-const POPULATION_CAP_DEFAULTIDX = 5;
-
-const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
 const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
+const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
+const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -199,12 +194,12 @@ function initMain()
 		gameSpeed.selected = g_GameSpeeds["default"];
 
 		var populationCaps = Engine.GetGUIObjectByName("populationCap");
-		populationCaps.list = POPULATION_CAP;
-		populationCaps.list_data = POPULATION_CAP_DATA;
-		populationCaps.selected = POPULATION_CAP_DEFAULTIDX;
+		populationCaps.list = g_PopulationCapacities.Title;
+		populationCaps.list_data = g_PopulationCapacities.Population;
+		populationCaps.selected = g_PopulationCapacities.Default;
 		populationCaps.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.settings.PopulationCap = POPULATION_CAP_DATA[this.selected];
+				g_GameAttributes.settings.PopulationCap = g_PopulationCapacities.Population[this.selected];
 
 			updateGameAttributes();
 		}
@@ -1250,8 +1245,8 @@ function onGameAttributesChange()
 
 	gameSpeedText.caption = g_GameSpeeds.names[speedIdx];
 	gameSpeedBox.selected = speedIdx;
-	populationCap.selected = (mapSettings.PopulationCap !== undefined && POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
-	populationCapText.caption = POPULATION_CAP[populationCap.selected];
+	populationCap.selected = mapSettings.PopulationCap !== undefined && g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) != -1 ? g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) : g_PopulationCapacities.Default;
+	populationCapText.caption = g_PopulationCapacities.Title[populationCap.selected];
 	startingResources.selected = mapSettings.StartingResources !== undefined && g_StartingResources.Resources.indexOf(mapSettings.StartingResources) != -1 ? g_StartingResources.Resources.indexOf(mapSettings.StartingResources) : g_StartingResources.Default;
 	startingResourcesText.caption = g_StartingResources.Title[startingResources.selected];
 	ceasefire.selected = mapSettings.Ceasefire !== undefined && g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) != -1 ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;

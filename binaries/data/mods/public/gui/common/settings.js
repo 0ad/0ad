@@ -31,6 +31,7 @@ function loadSettingsValues()
 {
 	var settings = {
 		"Ceasefire": loadCeasefire(),
+		"PopulationCapacities": loadPopulationCapacities(),
 		"StartingResources": loadSettingValuesFile("starting_resources.json")
 	};
 
@@ -83,6 +84,28 @@ function loadCeasefire()
 		"Default": timeout == json.Default,
 		"Title": timeout == 0 ? translateWithContext("ceasefire", "No ceasefire") :
 			sprintf(translatePluralWithContext("ceasefire", "%(minutes)s minute", "%(minutes)s minutes", timeout), { "minutes": timeout })
+	}));
+}
+
+/**
+ * Loads available population capacities.
+ *
+ * @returns {Array|undefined}
+ */
+function loadPopulationCapacities()
+{
+	var json = Engine.ReadJSONFile(g_SettingsDirectory + "population_capacities.json");
+
+	if (!json || json.Default === undefined || !json.PopulationCapacities || !Array.isArray(json.PopulationCapacities))
+	{
+		error("Could not load population_capacities.json");
+		return undefined;
+	}
+
+	return json.PopulationCapacities.map(population => ({
+		"Population": population,
+		"Default": population == json.Default,
+		"Title": population < 10000 ? population : translate("Unlimited")
 	}));
 }
 
