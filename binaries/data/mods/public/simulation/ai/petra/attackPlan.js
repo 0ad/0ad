@@ -800,6 +800,9 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 		if (sameLand && gameState.ai.accessibility.getAccessValue(ent.position()) != land)
 			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), position);
+		// in normal attacks, disfavor fields
+		if (this.type !== "Rush" && this.type !== "Raid" && ent.hasClass("Field"))
+			dist += 100000;
 		if (dist < minDist || minDist == -1)
 		{
 			minDist = dist;
