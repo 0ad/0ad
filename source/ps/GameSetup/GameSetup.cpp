@@ -1483,7 +1483,8 @@ bool VisualReplay(const std::string replayFile)
 	// TODO: Non progressive load can fail - need a decent way to handle this
 	LDR_NonprogressiveLoad();
 
-	PSRETURN ret = g_Game->ReallyStartGame();	ENSURE(ret == PSRETURN_OK);
+	PSRETURN ret = g_Game->ReallyStartGame();
+	ENSURE(ret == PSRETURN_OK);
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 
