@@ -133,38 +133,6 @@ function initMapSizes()
 
 // ====================================================================
 
-// Load game speed data
-function initGameSpeeds()
-{
-	var gameSpeeds = {
-		"names": [],
-		"speeds": [],
-		"default": 0
-	};
-
-	var data = Engine.ReadJSONFile("simulation/data/game_speeds.json");
-	if (!data || !data.Speeds)
-	{
-		error("Failed to parse game speeds in game_speeds.json (check for valid JSON data)");
-		return gameSpeeds;
-	}
-
-	translateObjectKeys(data, ["Name"]);
-	for (var i = 0; i < data.Speeds.length; ++i)
-	{
-		gameSpeeds.names.push(data.Speeds[i].Name);
-		gameSpeeds.speeds.push(data.Speeds[i].Speed);
-
-		if (data.Speeds[i].Default)
-			gameSpeeds["default"] = i;
-	}
-
-	return gameSpeeds;
-}
-
-
-// ====================================================================
-
 // Convert integer color values to string (for use in GUI objects)
 function rgbToGuiColor(color, alpha)
 {

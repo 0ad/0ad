@@ -31,6 +31,7 @@ function loadSettingsValues()
 {
 	var settings = {
 		"Ceasefire": loadCeasefire(),
+		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
 		"PopulationCapacities": loadPopulationCapacities(),
 		"StartingResources": loadSettingValuesFile("starting_resources.json")
 	};
@@ -131,7 +132,7 @@ function prepareForDropdown(settingValues)
 			if (property == "Default")
 				continue;
 
-			if (index == 0)
+			if (!settings[property])
 				settings[property] = [];
 
 			// Switch property and index

@@ -6,6 +6,7 @@ const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 const VICTORY_DEFAULTIDX = 1;
 
 const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
+const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly) : undefined);
 const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
 const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
 
@@ -45,7 +46,6 @@ var g_GameAttributes = {
 	settings: {}
 };
 
-var g_GameSpeeds = {};
 var g_MapSizes = {};
 
 var g_AIs = [];
@@ -125,7 +125,6 @@ function initMain()
 	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
 		g_DefaultPlayerData[i].Civ = "random";
 
-	g_GameSpeeds = initGameSpeeds();
 	g_MapSizes = initMapSizes();
 
 	// Init civs
@@ -183,15 +182,15 @@ function initMain()
 		var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 		gameSpeed.hidden = false;
 		Engine.GetGUIObjectByName("gameSpeedText").hidden = true;
-		gameSpeed.list = g_GameSpeeds.names;
-		gameSpeed.list_data = g_GameSpeeds.speeds;
+		gameSpeed.list = g_GameSpeeds.Title;
+		gameSpeed.list_data = g_GameSpeeds.Speed;
 		gameSpeed.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.gameSpeed = g_GameSpeeds.speeds[this.selected];
+				g_GameAttributes.gameSpeed = g_GameSpeeds.Speed[this.selected];
 
 			updateGameAttributes();
 		}
-		gameSpeed.selected = g_GameSpeeds["default"];
+		gameSpeed.selected = g_GameSpeeds.Default;
 
 		var populationCaps = Engine.GetGUIObjectByName("populationCap");
 		populationCaps.list = g_PopulationCapacities.Title;
@@ -774,7 +773,7 @@ function loadGameAttributes()
 	if (attrs.gameSpeed)
 	{
 		var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
-		gameSpeedBox.selected = g_GameSpeeds.speeds.indexOf(attrs.gameSpeed);
+		gameSpeedBox.selected = g_GameSpeeds.Speed.indexOf(attrs.gameSpeed);
 	}
 
 	if (!Engine.HasXmppClient())
@@ -1224,7 +1223,6 @@ function onGameAttributesChange()
 
 	// We have to check for undefined on these properties as not all maps define them.
 	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
-	var speedIdx = (g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) != -1) ? g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds["default"];
 	var victories = getVictoryConditions();
 	var victoryIdx = (mapSettings.GameType !== undefined && victories.data.indexOf(mapSettings.GameType) != -1 ? victories.data.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
 	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true);
@@ -1243,8 +1241,10 @@ function onGameAttributesChange()
 	observerLateJoin.checked = g_GameAttributes.settings.ObserverLateJoin;
 	observerLateJoinText.caption = observerLateJoin.checked ? translate("Yes") : translate("No");
 
-	gameSpeedText.caption = g_GameSpeeds.names[speedIdx];
+	var speedIdx = g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) != -1 ? g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds.Default;
+	gameSpeedText.caption = g_GameSpeeds.Title[speedIdx];
 	gameSpeedBox.selected = speedIdx;
+
 	populationCap.selected = mapSettings.PopulationCap !== undefined && g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) != -1 ? g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) : g_PopulationCapacities.Default;
 	populationCapText.caption = g_PopulationCapacities.Title[populationCap.selected];
 	startingResources.selected = mapSettings.StartingResources !== undefined && g_StartingResources.Resources.indexOf(mapSettings.StartingResources) != -1 ? g_StartingResources.Resources.indexOf(mapSettings.StartingResources) : g_StartingResources.Default;

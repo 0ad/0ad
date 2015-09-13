@@ -453,13 +453,21 @@
             {
                 "extractor": "json",
                 "filemasks": [
-                    "simulation/data/game_speeds.json",
                     "simulation/data/player_defaults.json"
                 ],
                 "options": {
                     "keywords": [
                         "Name"
                     ]
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/data/settings/game_speeds.json"
+                ],
+                "options": {
+                    "keywords": ["Title"]
                 }
             },
             {

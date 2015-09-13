@@ -1,3 +1,6 @@
+const g_IsReplay = Engine.IsVisualReplay();
+const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly || g_IsReplay) : undefined);
+
 // Network Mode
 var g_IsNetworked = false;
 
@@ -12,9 +15,6 @@ var g_IsObserver = false;
 var g_Players = [];
 // Cache the useful civ data
 var g_CivData = {};
-
-var g_GameSpeeds = {};
-var g_CurrentSpeed;
 
 var g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1 } };
 
@@ -144,9 +144,15 @@ function GetTechnologyData(technologyName)
 	return g_TechnologyData[technologyName];
 }
 
-// Init
 function init(initData, hotloadData)
 {
+	if (!g_Settings)
+	{
+		Engine.EndGame();
+		Engine.SwitchGuiPage("page_pregame.xml");
+		return;
+	}
+
 	if (initData)
 	{
 		g_IsNetworked = initData.isNetworked; // Set network mode
@@ -177,13 +183,11 @@ function init(initData, hotloadData)
 
 	updateTopPanel();
 
-	g_GameSpeeds = initGameSpeeds();
-	g_CurrentSpeed = Engine.GetSimRate();
 	var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
-	gameSpeed.list = g_GameSpeeds.names;
-	gameSpeed.list_data = g_GameSpeeds.speeds;
-	var idx = g_GameSpeeds.speeds.indexOf(g_CurrentSpeed);
-	gameSpeed.selected = idx != -1 ? idx : g_GameSpeeds["default"];
+	gameSpeed.list = g_GameSpeeds.Title;
+	gameSpeed.list_data = g_GameSpeeds.Speed;
+	var gameSpeedIdx = g_GameSpeeds.Speed.indexOf(Engine.GetSimRate());
+	gameSpeed.selected = gameSpeedIdx != -1 ? gameSpeedIdx : g_GameSpeeds.Default;
 	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); }
 	initMenuPosition(); // set initial position
 
@@ -400,6 +404,9 @@ var lastTickTime = new Date;
  */
 function onTick()
 {
+	if (!g_Settings)
+		return;
+
 	var now = new Date;
 	var tickLength = new Date - lastTickTime;
 	lastTickTime = now;
@@ -509,10 +516,7 @@ function changeGameSpeed(speed)
 {
 	// For non-networked games only
 	if (!g_IsNetworked)
-	{
 		Engine.SetSimRate(speed);
-		g_CurrentSpeed = speed;
-	}
 }
 
 /**
