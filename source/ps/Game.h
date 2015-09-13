@@ -120,7 +120,7 @@ public:
 	 *
 	 * @return bool the value of m_IsVisualReplay.
 	 **/
-	inline bool IsVisualReplay()
+	inline bool IsVisualReplay() const
 	{	return m_IsVisualReplay; }
 
 	/**
@@ -158,7 +158,7 @@ public:
 	inline void SetSimRate(float simRate)
 	{	if (isfinite(simRate)) m_SimRate = std::max(simRate, 0.0f); }
 
-	inline float GetSimRate()
+	inline float GetSimRate() const
 	{	return m_SimRate; }
 
 	/**
