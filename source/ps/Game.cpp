@@ -72,7 +72,7 @@ CGame::CGame(bool disableGraphics, bool replayLog):
 	m_SimRate(1.0f),
 	m_PlayerID(-1),
 	m_IsSavedGame(false),
-	m_IsReplay(false),
+	m_IsVisualReplay(false),
 	m_ReplayStream(NULL)
 {
 	// TODO: should use CDummyReplayLogger unless activated by cmd-line arg, perhaps?
@@ -120,9 +120,9 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
 		m_TurnManager->SetPlayerID(m_PlayerID);
 }
 
-int CGame::LoadReplayData()
+int CGame::LoadVisualReplayData()
 {
-	ENSURE(m_IsReplay);
+	ENSURE(m_IsVisualReplay);
 	ENSURE(!m_ReplayPath.empty());
 	ENSURE(m_ReplayStream);
 
@@ -167,9 +167,9 @@ int CGame::LoadReplayData()
 	return 0;
 }
 
-bool CGame::StartReplay(const std::string& replayPath)
+bool CGame::StartVisualReplay(const std::string& replayPath)
 {
-	m_IsReplay = true;
+	m_IsVisualReplay = true;
 	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 
 	SetTurnManager(new CNetReplayTurnManager(*m_Simulation2, GetReplayLogger()));
@@ -250,8 +250,8 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 	if (m_IsSavedGame)
 		RegMemFun(this, &CGame::LoadInitialState, L"Loading game", 1000);
 
-	if (m_IsReplay)
-		RegMemFun(this, &CGame::LoadReplayData, L"Loading replay data", 1000);
+	if (m_IsVisualReplay)
+		RegMemFun(this, &CGame::LoadVisualReplayData, L"Loading visual replay data", 1000);
 
 	LDR_EndRegistering();
 }

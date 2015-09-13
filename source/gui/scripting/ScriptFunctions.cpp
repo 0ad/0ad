@@ -181,6 +181,11 @@ std::wstring SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstr
 	return old;
 }
 
+bool IsVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return g_Game ? g_Game->IsVisualReplay() : false;
+}
+
 int GetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	if (g_Game)
@@ -978,6 +983,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 
 	// Misc functions
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
+	scriptInterface.RegisterFunction<bool, &IsVisualReplay>("IsVisualReplay");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
 	scriptInterface.RegisterFunction<void, int, &SetPlayerID>("SetPlayerID");
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
