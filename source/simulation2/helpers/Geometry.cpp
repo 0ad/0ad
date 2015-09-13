@@ -85,8 +85,6 @@ fixed Geometry::DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedV
 	fixed hw = halfSize.X;
 	fixed hh = halfSize.Y;
 
-	// TODO: I haven't actually tested this
-
 	if (-hw < du && du < hw) // regions B, I, G
 	{
 		fixed closest = (dv.Absolute() - hh).Absolute(); // horizontal edges

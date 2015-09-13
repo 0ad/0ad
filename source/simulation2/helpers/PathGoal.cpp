@@ -82,10 +82,10 @@ static bool NavcellContainsSquare(int i, int j,
 		// Otherwise, since the square is convex, there cannot be any other point
 		// in the navcell that is outside the square.
 		return (
-		    Geometry::PointIsInSquare(CFixedVector2D(x0 - x, z0 - z), u, v, CFixedVector2D(hw, hh))
-		 || Geometry::PointIsInSquare(CFixedVector2D(x1 - x, z0 - z), u, v, CFixedVector2D(hw, hh))
-		 || Geometry::PointIsInSquare(CFixedVector2D(x0 - x, z1 - z), u, v, CFixedVector2D(hw, hh))
-		 || Geometry::PointIsInSquare(CFixedVector2D(x1 - x, z1 - z), u, v, CFixedVector2D(hw, hh))
+		    !Geometry::PointIsInSquare(CFixedVector2D(x0 - x, z0 - z), u, v, CFixedVector2D(hw, hh))
+		 || !Geometry::PointIsInSquare(CFixedVector2D(x1 - x, z0 - z), u, v, CFixedVector2D(hw, hh))
+		 || !Geometry::PointIsInSquare(CFixedVector2D(x0 - x, z1 - z), u, v, CFixedVector2D(hw, hh))
+		 || !Geometry::PointIsInSquare(CFixedVector2D(x1 - x, z1 - z), u, v, CFixedVector2D(hw, hh))
 		);
 	}
 }
@@ -121,7 +121,7 @@ bool PathGoal::NavcellRectContainsGoal(int i0, int j0, int i1, int j1, int* gi, 
 	int jmin = std::min(j0, j1);
 	int jmax = std::max(j0, j1);
 
-	// Direction to iterate from ij0 towards ij1
+	// Direction to iterate from (i0,j0) towards (i1,j1)
 	int di = i1 < i0 ? -1 : +1;
 	int dj = j1 < j0 ? -1 : +1;
 
@@ -174,6 +174,36 @@ bool PathGoal::NavcellRectContainsGoal(int i0, int j0, int i1, int j1, int* gi, 
 		return false;
 	}
 
+	case INVERTED_CIRCLE:
+	{
+		// Loop over all navcells in the given range (starting at (i0,j0) since
+		// this function is meant to find the goal navcell nearest to there
+		// assuming jmin==jmax || imin==imax),
+		// and check whether any point in each navcell is outside the goal circle.
+		// (TODO: this is pretty inefficient.)
+		for (int j = j0; jmin <= j && j <= jmax; j += dj)
+		{
+			for (int i = i0; imin <= i && i <= imax; i += di)
+			{
+				entity_pos_t x0 = entity_pos_t::FromInt(i).Multiply(Pathfinding::NAVCELL_SIZE);
+				entity_pos_t z0 = entity_pos_t::FromInt(j).Multiply(Pathfinding::NAVCELL_SIZE);
+				entity_pos_t x1 = x0 + Pathfinding::NAVCELL_SIZE;
+				entity_pos_t z1 = z0 + Pathfinding::NAVCELL_SIZE;
+				entity_pos_t nx = Clamp(x, x0, x1);
+				entity_pos_t nz = Clamp(z, z0, z1);
+				if ((CFixedVector2D(nx, nz) - CFixedVector2D(x, z)).CompareLength(hw) > 0)
+				{
+					if (gi)
+						*gi = i;
+					if (gj)
+						*gj = j;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	case SQUARE:
 	{
 		// Loop over all navcells in the given range (starting at (i0,j0) since
@@ -204,12 +234,35 @@ bool PathGoal::NavcellRectContainsGoal(int i0, int j0, int i1, int j1, int* gi, 
 		return false;
 	}
 
-	case INVERTED_CIRCLE:
 	case INVERTED_SQUARE:
-		// Haven't bothered implementing these, since they're not needed by the
-		// current pathfinder design
-		debug_warn(L"PathGoal::NavcellRectContainsGoal doesn't support inverted shapes");
+	{
+		// Loop over all navcells in the given range (starting at (i0,j0) since
+		// this function is meant to find the goal navcell nearest to there
+		// assuming jmin==jmax || imin==imax),
+		// and check whether any point in each navcell is outside the goal square.
+		// (TODO: this is pretty inefficient.)
+		for (int j = j0; jmin <= j && j <= jmax; j += dj)
+		{
+			for (int i = i0; imin <= i && i <= imax; i += di)
+			{
+				entity_pos_t x0 = entity_pos_t::FromInt(i).Multiply(Pathfinding::NAVCELL_SIZE);
+				entity_pos_t z0 = entity_pos_t::FromInt(j).Multiply(Pathfinding::NAVCELL_SIZE);
+				entity_pos_t x1 = x0 + Pathfinding::NAVCELL_SIZE;
+				entity_pos_t z1 = z0 + Pathfinding::NAVCELL_SIZE;
+				entity_pos_t nx = Clamp(x, x0, x1);
+				entity_pos_t nz = Clamp(z, z0, z1);
+				if (!Geometry::PointIsInSquare(CFixedVector2D(nx - x, nz - z), u, v, CFixedVector2D(hw, hh)))
+				{
+					if (gi)
+						*gi = i;
+					if (gj)
+						*gj = j;
+					return true;
+				}
+			}
+		}
 		return false;
+	}
 
 	NODEFAULT;
 	}
@@ -229,6 +282,13 @@ bool PathGoal::RectContainsGoal(entity_pos_t x0, entity_pos_t z0, entity_pos_t x
 		return (CFixedVector2D(nx, nz) - CFixedVector2D(x, z)).CompareLength(hw) <= 0;
 	}
 
+	case INVERTED_CIRCLE:
+	{
+		entity_pos_t nx = Clamp(x, x0, x1);
+		entity_pos_t nz = Clamp(z, z0, z1);
+		return (CFixedVector2D(nx, nz) - CFixedVector2D(x, z)).CompareLength(hw) > 0;
+	}
+
 	case SQUARE:
 	{
 		entity_pos_t nx = Clamp(x, x0, x1);
@@ -236,12 +296,12 @@ bool PathGoal::RectContainsGoal(entity_pos_t x0, entity_pos_t z0, entity_pos_t x
 		return Geometry::PointIsInSquare(CFixedVector2D(nx - x, nz - z), u, v, CFixedVector2D(hw, hh));
 	}
 
-	case INVERTED_CIRCLE:
 	case INVERTED_SQUARE:
-		// Haven't bothered implementing these, since they're not needed by the
-		// current pathfinder design
-		debug_warn(L"PathGoal::RectContainsGoal doesn't support inverted shapes");
-		return false;
+	{
+		entity_pos_t nx = Clamp(x, x0, x1);
+		entity_pos_t nz = Clamp(z, z0, z1);
+		return !Geometry::PointIsInSquare(CFixedVector2D(nx - x, nz - z), u, v, CFixedVector2D(hw, hh));
+	}
 
 	NODEFAULT;
 	}
