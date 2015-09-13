@@ -73,7 +73,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	{
 		this.assignedTo[entID] = idFoe;
 		this.assignedAgainst[idFoe].push(entID);
-		ent.attack(idFoe, (!foeEnt.hasClass("Siege") || !foeEnt.hasClass("Melee")));
+		ent.attack(idFoe, !foeEnt.hasClass("Siege"));
 	}
 	else
 		gameState.ai.HQ.navalManager.requireTransport(gameState, ent, ownIndex, foeIndex, foePosition);
