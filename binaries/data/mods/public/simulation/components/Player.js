@@ -536,11 +536,7 @@ Player.prototype.IsAlly = function(id)
  */
 Player.prototype.IsMutualAlly = function(id)
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (!cmpPlayerManager)
-		return false;
-
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(id), IID_Player);
+	var cmpPlayer = QueryPlayerIDInterface(id);
 	return this.IsAlly(id) && cmpPlayer && cmpPlayer.IsAlly(this.playerID);
 };
 
@@ -702,11 +698,7 @@ Player.prototype.GetCheatTimeMultiplier = function()
 
 Player.prototype.TributeResource = function(player, amounts)
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (!cmpPlayerManager)
-		return;
-
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
+	var cmpPlayer = QueryPlayerIDInterface(player);
 	if (!cmpPlayer)
 		return;
 

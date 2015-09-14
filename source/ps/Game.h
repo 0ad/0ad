@@ -77,7 +77,7 @@ public:
 	void StartGame(JS::MutableHandleValue attribs, const std::string& savedState);
 	PSRETURN ReallyStartGame();
 
-	bool StartReplay(const std::string& replayPath);
+	bool StartVisualReplay(const std::string& replayPath);
 
 	/**
 	 * Periodic heartbeat that controls the process. performs all per-frame updates.
@@ -116,6 +116,14 @@ public:
 	}
 
 	/**
+	 * Get m_IsVisualReplay.
+	 *
+	 * @return bool the value of m_IsVisualReplay.
+	 **/
+	inline bool IsVisualReplay() const
+	{	return m_IsVisualReplay; }
+
+	/**
 	 * Get the pointer to the game world object.
 	 *
 	 * @return CWorld * the value of m_World.
@@ -150,7 +158,7 @@ public:
 	inline void SetSimRate(float simRate)
 	{	if (isfinite(simRate)) m_SimRate = std::max(simRate, 0.0f); }
 
-	inline float GetSimRate()
+	inline float GetSimRate() const
 	{	return m_SimRate; }
 
 	/**
@@ -175,9 +183,9 @@ private:
 	std::string m_InitialSavedState; // valid between RegisterInit and LoadInitialState
 	bool m_IsSavedGame; // true if loading a saved game; false for a new game
 
-	int LoadReplayData();
+	int LoadVisualReplayData();
 	std::string m_ReplayPath;
-	bool m_IsReplay;
+	bool m_IsVisualReplay;
 	std::istream* m_ReplayStream;
 	u32 m_FinalReplayTurn;
 };

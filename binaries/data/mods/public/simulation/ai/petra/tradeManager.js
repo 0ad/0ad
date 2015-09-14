@@ -12,6 +12,7 @@ m.TradeManager = function(Config)
 	this.potentialTradeRoute = undefined;
 	this.routeProspection = false;
 	this.targetNumTraders = this.Config.Economy.targetNumTraders;
+	this.minimalGain = 3;
 	this.warnedAllies = {};
 };
 
@@ -408,6 +409,8 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			if (!land && !sea)
 				continue;
 			var gain = Math.round(API3.SquareVectorDistance(m1.position(), m2.position()) / this.Config.distUnitGain);
+			if (gain < this.minimalGain)
+				continue;
 			if (m1.foundationProgress() === undefined && m2.foundationProgress() === undefined)
 			{
 				if (accessIndex)

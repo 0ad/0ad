@@ -5,19 +5,10 @@ const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 const VICTORY_DEFAULTIDX = 1;
 
-// TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
-// Translation: Type of victory condition.
-const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", translate("Unlimited")];
-const POPULATION_CAP_DATA = [50, 100, 150, 200, 250, 300, 10000];
-const POPULATION_CAP_DEFAULTIDX = 5;
-// Translation: Amount of starting resources.
-const STARTING_RESOURCES = [translateWithContext("startingResources", "Very Low"), translateWithContext("startingResources", "Low"), translateWithContext("startingResources", "Medium"), translateWithContext("startingResources", "High"), translateWithContext("startingResources", "Very High"), translateWithContext("startingResources", "Deathmatch")];
-const STARTING_RESOURCES_DATA = [100, 300, 500, 1000, 3000, 50000];
-const STARTING_RESOURCES_DEFAULTIDX = 1;
-// Translation: Ceasefire.
-const CEASEFIRE = [translateWithContext("ceasefire", "No ceasefire"), translateWithContext("ceasefire", "5 minutes"), translateWithContext("ceasefire", "10 minutes"), translateWithContext("ceasefire", "15 minutes"), translateWithContext("ceasefire", "20 minutes"), translateWithContext("ceasefire", "30 minutes"), translateWithContext("ceasefire", "45 minutes"), translateWithContext("ceasefire", "60 minutes")];
-const CEASEFIRE_DATA = [0, 5, 10, 15, 20, 30, 45, 60];
-const CEASEFIRE_DEFAULTIDX = 0;
+const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
+const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly) : undefined);
+const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
+const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,7 +46,6 @@ var g_GameAttributes = {
 	settings: {}
 };
 
-var g_GameSpeeds = {};
 var g_MapSizes = {};
 
 var g_AIs = [];
@@ -83,6 +73,12 @@ var g_VictoryConditions = {};
 
 function init(attribs)
 {
+	if (!g_Settings)
+	{
+		cancelSetup();
+		return;
+	}
+
 	switch (attribs.type)
 	{
 	case "offline":
@@ -129,7 +125,6 @@ function initMain()
 	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
 		g_DefaultPlayerData[i].Civ = "random";
 
-	g_GameSpeeds = initGameSpeeds();
 	g_MapSizes = initMapSizes();
 
 	// Init civs
@@ -187,45 +182,45 @@ function initMain()
 		var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 		gameSpeed.hidden = false;
 		Engine.GetGUIObjectByName("gameSpeedText").hidden = true;
-		gameSpeed.list = g_GameSpeeds.names;
-		gameSpeed.list_data = g_GameSpeeds.speeds;
+		gameSpeed.list = g_GameSpeeds.Title;
+		gameSpeed.list_data = g_GameSpeeds.Speed;
 		gameSpeed.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.gameSpeed = g_GameSpeeds.speeds[this.selected];
+				g_GameAttributes.gameSpeed = g_GameSpeeds.Speed[this.selected];
 
 			updateGameAttributes();
 		}
-		gameSpeed.selected = g_GameSpeeds["default"];
+		gameSpeed.selected = g_GameSpeeds.Default;
 
 		var populationCaps = Engine.GetGUIObjectByName("populationCap");
-		populationCaps.list = POPULATION_CAP;
-		populationCaps.list_data = POPULATION_CAP_DATA;
-		populationCaps.selected = POPULATION_CAP_DEFAULTIDX;
+		populationCaps.list = g_PopulationCapacities.Title;
+		populationCaps.list_data = g_PopulationCapacities.Population;
+		populationCaps.selected = g_PopulationCapacities.Default;
 		populationCaps.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.settings.PopulationCap = POPULATION_CAP_DATA[this.selected];
+				g_GameAttributes.settings.PopulationCap = g_PopulationCapacities.Population[this.selected];
 
 			updateGameAttributes();
 		}
 
 		var startingResourcesL = Engine.GetGUIObjectByName("startingResources");
-		startingResourcesL.list = STARTING_RESOURCES;
-		startingResourcesL.list_data = STARTING_RESOURCES_DATA;
-		startingResourcesL.selected = STARTING_RESOURCES_DEFAULTIDX;
+		startingResourcesL.list = g_StartingResources.Title;
+		startingResourcesL.list_data = g_StartingResources.Resources;
+		startingResourcesL.selected = g_StartingResources.Default;
 		startingResourcesL.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.settings.StartingResources = STARTING_RESOURCES_DATA[this.selected];
+				g_GameAttributes.settings.StartingResources = g_StartingResources.Resources[this.selected];
 
 			updateGameAttributes();
 		}
 
 		var ceasefireL = Engine.GetGUIObjectByName("ceasefire");
-		ceasefireL.list = CEASEFIRE;
-		ceasefireL.list_data = CEASEFIRE_DATA;
-		ceasefireL.selected = CEASEFIRE_DEFAULTIDX;
+		ceasefireL.list = g_Ceasefire.Title;
+		ceasefireL.list_data = g_Ceasefire.Duration;
+		ceasefireL.selected = g_Ceasefire.Default;
 		ceasefireL.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.settings.Ceasefire = CEASEFIRE_DATA[this.selected];
+				g_GameAttributes.settings.Ceasefire = g_Ceasefire.Duration[this.selected];
 
 			updateGameAttributes();
 		}
@@ -429,10 +424,6 @@ function handleNetMessage(message)
 		{
 		case "disconnected":
 			cancelSetup();
-			if (Engine.HasXmppClient())
-				Engine.SwitchGuiPage("page_lobby.xml");
-			else
-				Engine.SwitchGuiPage("page_pregame.xml");
 			reportDisconnect(message.reason);
 			break;
 
@@ -782,7 +773,7 @@ function loadGameAttributes()
 	if (attrs.gameSpeed)
 	{
 		var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
-		gameSpeedBox.selected = g_GameSpeeds.speeds.indexOf(attrs.gameSpeed);
+		gameSpeedBox.selected = g_GameSpeeds.Speed.indexOf(attrs.gameSpeed);
 	}
 
 	if (!Engine.HasXmppClient())
@@ -816,17 +807,22 @@ function cancelSetup()
 
 	if (Engine.HasXmppClient())
 	{
-		// Set player presence
 		Engine.LobbySetPlayerPresence("available");
 
-		// Unregister the game
 		if (g_IsController)
 			Engine.SendUnregisterGame();
+
+		Engine.SwitchGuiPage("page_lobby.xml");
 	}
+	else
+		Engine.SwitchGuiPage("page_pregame.xml");
 }
 
 function onTick()
 {
+	if (!g_Settings)
+		return;
+
 	// First tick happens before first render, so don't load yet
 	if (g_LoadingState == 0)
 	{
@@ -1227,7 +1223,6 @@ function onGameAttributesChange()
 
 	// We have to check for undefined on these properties as not all maps define them.
 	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
-	var speedIdx = (g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) != -1) ? g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds["default"];
 	var victories = getVictoryConditions();
 	var victoryIdx = (mapSettings.GameType !== undefined && victories.data.indexOf(mapSettings.GameType) != -1 ? victories.data.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
 	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true);
@@ -1246,14 +1241,16 @@ function onGameAttributesChange()
 	observerLateJoin.checked = g_GameAttributes.settings.ObserverLateJoin;
 	observerLateJoinText.caption = observerLateJoin.checked ? translate("Yes") : translate("No");
 
-	gameSpeedText.caption = g_GameSpeeds.names[speedIdx];
+	var speedIdx = g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) != -1 ? g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds.Default;
+	gameSpeedText.caption = g_GameSpeeds.Title[speedIdx];
 	gameSpeedBox.selected = speedIdx;
-	populationCap.selected = (mapSettings.PopulationCap !== undefined && POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
-	populationCapText.caption = POPULATION_CAP[populationCap.selected];
-	startingResources.selected = (mapSettings.StartingResources !== undefined && STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) != -1 ? STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) : STARTING_RESOURCES_DEFAULTIDX);
-	startingResourcesText.caption = STARTING_RESOURCES[startingResources.selected];
-	ceasefire.selected = (mapSettings.Ceasefire !== undefined && CEASEFIRE_DATA.indexOf(mapSettings.Ceasefire) != -1 ? CEASEFIRE_DATA.indexOf(mapSettings.Ceasefire) : CEASEFIRE_DEFAULTIDX);
-	ceasefireText.caption = CEASEFIRE[ceasefire.selected];
+
+	populationCap.selected = mapSettings.PopulationCap !== undefined && g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) != -1 ? g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) : g_PopulationCapacities.Default;
+	populationCapText.caption = g_PopulationCapacities.Title[populationCap.selected];
+	startingResources.selected = mapSettings.StartingResources !== undefined && g_StartingResources.Resources.indexOf(mapSettings.StartingResources) != -1 ? g_StartingResources.Resources.indexOf(mapSettings.StartingResources) : g_StartingResources.Default;
+	startingResourcesText.caption = g_StartingResources.Title[startingResources.selected];
+	ceasefire.selected = mapSettings.Ceasefire !== undefined && g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) != -1 ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
+	ceasefireText.caption = g_Ceasefire.Title[ceasefire.selected];
 
 	// Update map preview
 	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);

@@ -31,7 +31,7 @@ SkirmishReplacer.prototype.OnOwnershipChanged = function(msg)
 
 SkirmishReplacer.prototype.ReplaceEntities = function()
 {
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	var cmpPlayer = QueryOwnerInterface(this.entity);
 	var civ = cmpPlayer.GetCiv();
 	var replacementEntities = getReplacementEntities(civ);
 	

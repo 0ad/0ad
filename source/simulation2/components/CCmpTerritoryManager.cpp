@@ -540,7 +540,9 @@ u8 CCmpTerritoryManager::GetTerritoryPercentage(player_id_t player)
 	if (m_TerritoryTotalPassableCellCount == 0)
 		CalculateTerritories();
 
-	ENSURE(m_TerritoryTotalPassableCellCount > 0);
+	if (m_TerritoryTotalPassableCellCount == 0)
+		return 0;
+
 	u8 percentage = (m_TerritoryCellCounts[player] * 100) / m_TerritoryTotalPassableCellCount;
 	ENSURE(percentage <= 100);
 	return percentage;

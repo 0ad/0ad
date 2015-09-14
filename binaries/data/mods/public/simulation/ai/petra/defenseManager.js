@@ -52,10 +52,11 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	if (!entity.position())
 		return false;
 
-	if (this.territoryMap.getOwner(entity.position()) === entity.owner())
+	let territoryOwner = this.territoryMap.getOwner(entity.position());
+	if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
 		return false;
-
-	// check if the entity is trying to build a new base near our buildings, and if yes, add this base in our target list
+	// check if the entity is trying to build a new base near our buildings,
+	// and if yes, add this base in our target list
 	if (entity.unitAIState() && entity.unitAIState() == "INDIVIDUAL.REPAIR.REPAIRING")
 	{
 		var targetId = entity.unitAIOrderData()[0]["target"];
@@ -82,13 +83,17 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 
 	if (entity.attackTypes() === undefined || entity.hasClass("Support"))
 		return false;
-
+	let dist2Min = 6000;
+	// TODO the 30 is to take roughly into account the structure size in following checks. Can be improved
+	if (entity.attackTypes().indexOf("Ranged") !== -1)
+		dist2Min = (entity.attackRange("Ranged").max + 30) * (entity.attackRange("Ranged").max + 30);
+    
 	for (var i = 0; i < this.targetList.length; ++i)
 	{
 		var target = gameState.getEntityById(this.targetList[i]);
 		if (!target || !target.position())   // the enemy base is either destroyed or built
 			this.targetList.splice(i--, 1);
-		else if (API3.SquareVectorDistance(target.position(), entity.position()) < 6000)
+		else if (API3.SquareVectorDistance(target.position(), entity.position()) < dist2Min)
 			return true;
 	}
 
@@ -101,7 +106,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 				continue;
 			if (this.Config.personality.cooperative < 0.6 && cc.foundationProgress() !== undefined)
 				continue;
-			if (API3.SquareVectorDistance(cc.position(), entity.position()) < 6000)
+			if (API3.SquareVectorDistance(cc.position(), entity.position()) < dist2Min)
 				return true;
 		}
 	}
@@ -111,7 +116,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	{
 		if (building.foundationProgress() == 0)
 			continue;
-		if (API3.SquareVectorDistance(building.position(), entity.position()) < 6000)
+		if (API3.SquareVectorDistance(building.position(), entity.position()) < dist2Min)
 			return true;
 	}
 
@@ -438,12 +443,19 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 		}
 
-		var attacker = gameState.getEntityById(evt.attacker);
+		let attacker = gameState.getEntityById(evt.attacker);
 		if (!attacker || !attacker.position())
 			continue;
 
 		if (target.isGarrisonHolder() && target.getArrowMultiplier())
 			this.garrisonRangedUnitsInside(gameState, target, {"attacker": attacker});
+
+		if (attacker.getMetadata(PlayerID, "PartOfArmy") === undefined && !attacker.hasClass("Ship"))
+		{
+			let territoryOwner = this.territoryMap.getOwner(attacker.position());
+			if (territoryOwner === 0 || gameState.isPlayerAlly(territoryOwner))
+				this.makeIntoArmy(gameState, attacker.id());
+		}
 	}
 };
 

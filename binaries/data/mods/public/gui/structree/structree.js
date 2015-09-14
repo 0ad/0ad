@@ -131,6 +131,7 @@ function selectCiv(civCode)
 	for (let structCode of g_Lists.structures)
 	{
 		let structInfo = g_ParsedData.structures[structCode];
+		let structPhaseIdx = g_ParsedData.phaseList.indexOf(structInfo.phase);
 
 		// If this building is shared with another civ,
 		// it may have already gone through the grouping process already
@@ -170,11 +171,11 @@ function selectCiv(civCode)
 						phase = req;
 			}
 
-			if (depath(phase).slice(0,5) !== "phase")
-			{
-				warn(prod+" doesn't have a specific phase set ("+structCode+")");
-				phase = structInfo.phase;
-			}
+			if (depath(phase).slice(0,5) !== "phase" || g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)
+				if (structInfo.phase !== false)
+					phase = structInfo.phase;
+				else
+					phase = g_ParsedData.phaseList[0];
 
 			if (!(phase in newProdTech))
 				newProdTech[phase] = [];
@@ -202,10 +203,12 @@ function selectCiv(civCode)
 				else
 					phase = reqs.generic[0];
 			}
-			else if (structInfo.phase !== false)
-				phase = structInfo.phase;
-			else
-				phase = g_ParsedData.phaseList[0];
+
+			if (depath(phase).slice(0,5) !== "phase" || g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)
+				if (structInfo.phase !== false)
+					phase = structInfo.phase;
+				else
+					phase = g_ParsedData.phaseList[0];
 
 			if (!(phase in newProdUnits))
 				newProdUnits[phase] = [];

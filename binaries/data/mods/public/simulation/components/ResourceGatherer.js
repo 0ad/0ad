@@ -329,7 +329,7 @@ ResourceGatherer.prototype.IsCarryingAnythingExcept = function(exceptedType)
  */
 ResourceGatherer.prototype.CommitResources = function(types)
 {
-	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	let cmpPlayer = QueryOwnerInterface(this.entity);
 
 	if (cmpPlayer)
 		for each (let type in types)

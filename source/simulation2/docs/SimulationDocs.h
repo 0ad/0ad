@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
  - @ref messages
  - @ref component-creation
  - @ref schema
+ - @ref system-components
 - @ref allowing-js-interfaces
 - @ref defining-js-components
 - @ref defining-js-interfaces
@@ -237,7 +238,7 @@ Deinit();
 @endcode
 
 The order of <code>Init</code>/<code>Deserialize</code>/<code>Deinit</code> between entities is mostly undefined,
-so they must not rely on other entities or components already existing; @em except that the SYSTEM_ENTITY is
+so they must not rely on other entities or components already existing; @em except that the @c SYSTEM_ENTITY is
 created before anything else and therefore may be used, and that the components for a single entity will be
 processed in the order determined by TypeList.h.
 
@@ -313,6 +314,19 @@ so the schema checker will ignore reorderings of the sequence.
 
 For early development of a new component, you can set the schema to <code>&lt;ref name='anything'/></code> to allow any content.
 If you don't define @c GetSchema, then the default is <code>&lt;empty/></code> (i.e. there must be no elements).
+
+
+@subsection system-components System components
+
+System components are global singleton components of the @c SYSTEM_ENTITY.
+These are added to it in @c CComponentManager::AddSystemComponents, and
+are passed an empty @c paramNode on @c Init.
+
+JS system components can be registered using:
+
+@code
+Engine.RegisterSystemComponentType(IID_ExampleSystem, "ExampleSystem", ExampleSystem);
+@endcode
 
 
 @section allowing-js-interfaces Allowing interfaces to be implemented in JS

@@ -1078,7 +1078,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	if (this.Config.debug > 1)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket 
-	if (expectedGain < 3 ||
+	if (expectedGain < this.tradeManager.minimalGain ||
 		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).length > 0)))
 		return false;
 

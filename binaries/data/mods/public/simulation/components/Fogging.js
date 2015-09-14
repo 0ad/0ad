@@ -15,8 +15,8 @@ Fogging.prototype.Init = function()
 	this.miraged = [];
 	this.seen = [];
 
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	for (let player = 0; player < cmpPlayerManager.GetNumPlayers(); ++player)
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let player = 0; player < numPlayers; ++player)
 	{
 		this.mirages.push(INVALID_ENTITY);
 		this.miraged.push(false);
@@ -32,8 +32,8 @@ Fogging.prototype.Activate = function()
 	if (mustUpdate)
 	{
 		// Load a mirage for each player who has already seen the entity
-		let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		for (let player = 0; player < cmpPlayerManager.GetNumPlayers(); ++player)
+		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+		for (let player = 0; player < numPlayers; ++player)
 		{
 			if (this.seen[player])
 				this.LoadMirage(player);
@@ -173,9 +173,9 @@ Fogging.prototype.WasSeen = function(player)
 
 Fogging.prototype.OnDestroy = function(msg)
 {
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	for (var player = 0; player < this.mirages.length; ++player)
 	{
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		if (cmpRangeManager.GetLosVisibility(this.mirages[player], player) == "hidden")
 		{
 			Engine.DestroyEntity(this.mirages[player]);

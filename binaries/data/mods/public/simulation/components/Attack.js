@@ -386,8 +386,6 @@ Attack.prototype.GetTimers = function(type)
 Attack.prototype.GetAttackStrengths = function(type)
 {
 	// Work out the attack values with technology effects
-	var self = this;
-
 	var template = this.template[type];
 	var splash = "";
 	if (!template)
@@ -396,18 +394,16 @@ Attack.prototype.GetAttackStrengths = function(type)
 		splash = "/Splash";
 	}
 	
-	var applyMods = function(damageType)
-	{
-		return ApplyValueModificationsToEntity("Attack/" + type + splash + "/" + damageType, +(template[damageType] || 0), self.entity);
-	};
+	var applyMods = damageType =>
+		ApplyValueModificationsToEntity("Attack/" + type + splash + "/" + damageType, +(template[damageType] || 0), this.entity);
 
 	if (type == "Capture")
-		return {value: applyMods("Value")};
+		return { "value": applyMods("Value") };
 
 	return {
-		hack: applyMods("Hack"),
-		pierce: applyMods("Pierce"),
-		crush: applyMods("Crush")
+		"hack": applyMods("Hack"),
+		"pierce": applyMods("Pierce"),
+		"crush": applyMods("Crush")
 	};
 };
 

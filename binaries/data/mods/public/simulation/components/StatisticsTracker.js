@@ -130,7 +130,7 @@ StatisticsTracker.prototype.Init = function()
 
 /**
  * Returns a subset of statistics that will be added to the simulation state,
- * thus called each turn. Basic statistics should not contain data that would 
+ * thus called each turn. Basic statistics should not contain data that would
  * be expensive to compute.
  *
  * Note: as of now, nothing in the game needs that, but some AIs developed by

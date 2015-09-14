@@ -52,7 +52,16 @@ static std::string Hexify(const std::string& s)
 }
 
 CReplayLogger::CReplayLogger(ScriptInterface& scriptInterface) :
-	m_ScriptInterface(scriptInterface)
+	m_ScriptInterface(scriptInterface), m_Stream(NULL)
+{
+}
+
+CReplayLogger::~CReplayLogger()
+{
+	delete m_Stream;
+}
+
+void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 {
 	// Construct the directory name based on the PID, to be relatively unique.
 	// Append "-1", "-2" etc if we run multiple matches in a single session,
@@ -68,15 +77,7 @@ CReplayLogger::CReplayLogger(ScriptInterface& scriptInterface) :
 	OsPath path = psLogDir() / L"sim_log" / name.str() / L"commands.txt";
 	CreateDirectories(path.Parent(), 0700);
 	m_Stream = new std::ofstream(OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
-}
 
-CReplayLogger::~CReplayLogger()
-{
-	delete m_Stream;
-}
-
-void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
-{
 	*m_Stream << "start " << m_ScriptInterface.StringifyJSON(attribs, false) << "\n";
 }
 
