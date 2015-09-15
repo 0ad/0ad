@@ -112,7 +112,7 @@ m.DefenseArmy.prototype.update = function (gameState)
 		else if (orderData.length && orderData[0].target && orderData[0].attackType && orderData[0].attackType === "Capture")
 		{
 			let target = gameState.getEntityById(orderData[0].target);
-			if (target && target.hasClass("Siege") && target.hasClass("Melee"))
+			if (target && target.hasClass("Siege"))
 				ent.attack(orderData[0].target, false);
 		}
 	}
