@@ -60,9 +60,9 @@ function updateCursorAndTooltip()
 	var informationTooltip = Engine.GetGUIObjectByName("informationTooltip");
 	if (!mouseIsOverObject)
 	{
-		var action = determineAction(mouseX, mouseY);
 		if (inputState == INPUT_NORMAL || inputState == INPUT_PRESELECTEDACTION)
 		{
+			let action = determineAction(mouseX, mouseY);		
 			if (action)
 			{
 				if (action.cursor)
