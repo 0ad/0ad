@@ -38,26 +38,26 @@ class XmppClient : public IXmppClient, public glooxwrapper::ConnectionListener, 
 	NONCOPYABLE(XmppClient);
 
 private:
-	//Components
+	// Components
 	glooxwrapper::Client* m_client;
 	glooxwrapper::MUCRoom* m_mucRoom;
 	glooxwrapper::Registration* m_registration;
 
-	//Account infos
+	// Account infos
 	std::string m_username;
 	std::string m_password;
 	std::string m_nick;
 	std::string m_xpartamuppId;
 
 	// State
-	bool m_initialLoadComplete = false;
+	bool m_initialLoadComplete;
 
 public:
-	//Basic
+	// Basic
 	XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize = 0, const bool regOpt = false);
 	virtual ~XmppClient();
 
-	//Network
+	// Network
 	void connect();
 	void disconnect();
 	void recv();
