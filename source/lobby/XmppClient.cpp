@@ -68,7 +68,7 @@ IXmppClient* IXmppClient::create(const std::string& sUsername, const std::string
  * @param regOpt If we are just registering or not.
  */
 XmppClient::XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize, bool regOpt)
-	: m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_nick(sNick)
+	: m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_nick(sNick), m_initialLoadComplete(false)
 {
 	// Read lobby configuration from default.cfg
 	std::string sServer;
