@@ -570,12 +570,12 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 	for (var i = 0; i < count; ++i)
 	{
 		var ent = this.entityCache[0];
-		var cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
-		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
 
 		if (cmpAutoGarrison && cmpAutoGarrison.PerformGarrison(ent))
 		{
-			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			let cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
+			cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
+			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			cmpUnitAI.Autogarrison(this.entity);
 		}
 		else
@@ -589,7 +589,9 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			else
 			{
 				// Successfully spawned
-				var cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
+				let cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
+				cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
+				let cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
 				cmpNewPosition.JumpTo(pos.x, pos.z);
 				// TODO: what direction should they face in?
 				spawnedEnts.push(ent);
