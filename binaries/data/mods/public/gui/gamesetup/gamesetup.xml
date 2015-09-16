@@ -11,9 +11,6 @@
 	<!-- After settings.js, which defines g_Settings -->
 	<script file="gui/gamesetup/gamesetup.js"/>
 
-	<!-- After gamesetup.js which defines g_VictoryConditions -->
-	<script directory="gui/gamesetup/victory_conditions/"/>
-
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" style="ModernWindow" size="0 0 100% 100%">
 

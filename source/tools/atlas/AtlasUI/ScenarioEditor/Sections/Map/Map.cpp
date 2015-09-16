@@ -141,8 +141,11 @@ void MapSettingsControl::CreateWidgets()
 
 	sizer->AddSpacer(5);
 
+	// TODO: replace by filenames in binaries/data/mods/public/simulation/data/settings/victory_conditions/
 	wxArrayString gameTypes;
 	gameTypes.Add(_T("conquest"));
+	gameTypes.Add(_T("conquest_structures"));
+	gameTypes.Add(_T("conquest_units"));
 	gameTypes.Add(_T("wonder"));
 	gameTypes.Add(_T("endless"));
 

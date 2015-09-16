@@ -33,7 +33,8 @@ function loadSettingsValues()
 		"Ceasefire": loadCeasefire(),
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
 		"PopulationCapacities": loadPopulationCapacities(),
-		"StartingResources": loadSettingValuesFile("starting_resources.json")
+		"StartingResources": loadSettingValuesFile("starting_resources.json"),
+		"VictoryConditions": loadVictoryConditions()
 	};
 
 	if (Object.keys(settings).some(key => settings[key] === undefined))
@@ -86,6 +87,40 @@ function loadCeasefire()
 		"Title": timeout == 0 ? translateWithContext("ceasefire", "No ceasefire") :
 			sprintf(translatePluralWithContext("ceasefire", "%(minutes)s minute", "%(minutes)s minutes", timeout), { "minutes": timeout })
 	}));
+}
+
+/**
+ * Loads available gametypes.
+ *
+ * @returns {Array|undefined}
+ */
+function loadVictoryConditions()
+{
+	const subdir = "victory_conditions/"
+
+	const files = Engine.BuildDirEntList(g_SettingsDirectory + subdir, "*.json", false).map(
+		file => file.substr(g_SettingsDirectory.length));
+
+	var victoryConditions = files.map(file => {
+		let vc = loadSettingValuesFile(file);
+		if (vc)
+			vc.Name = file.substr(subdir.length, file.length - (subdir + ".json").length);
+		return vc;
+	});
+
+	if (victoryConditions.some(vc => vc == undefined))
+		return undefined;
+
+	// TODO: We might support enabling victory conditions separately sometime.
+	// Until then, we supplement the endless gametype here.
+	victoryConditions.push({
+		"Name": "endless",
+		"Title": translate("None"),
+		"Description": translate("Endless Game"),
+		"Scripts": []
+	});
+
+	return victoryConditions;
 }
 
 /**

@@ -3,10 +3,9 @@
 const DEFAULT_NETWORKED_MAP = "Acropolis 01";
 const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
-const VICTORY_DEFAULTIDX = 1;
-
 const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
 const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly) : undefined);
+const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryConditions : undefined);
 const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
 const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
 
@@ -65,9 +64,6 @@ var g_AssignedCount = 0;
 // we'll start with a 'loading' message and switch to the main screen in the
 // tick handler
 var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
-
-// Filled by scripts in victory_conditions/
-var g_VictoryConditions = {};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -226,19 +222,18 @@ function initMain()
 		}
 
 		var victoryConditions = Engine.GetGUIObjectByName("victoryCondition");
-		var victories = getVictoryConditions();
-		victoryConditions.list = victories.text;
-		victoryConditions.list_data = victories.data;
+		victoryConditions.list = g_VictoryConditions.Title;
+		victoryConditions.list_data = g_VictoryConditions.Name;
 		victoryConditions.onSelectionChange = function() {
 			if (this.selected != -1)
 			{
-				g_GameAttributes.settings.GameType = victories.data[this.selected];
-				g_GameAttributes.settings.VictoryScripts = victories.scripts[this.selected];
+				g_GameAttributes.settings.GameType = g_VictoryConditions.Name[this.selected];
+				g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[this.selected];
 			}
 
 			updateGameAttributes();
 		};
-		victoryConditions.selected = VICTORY_DEFAULTIDX;
+		victoryConditions.selected = g_VictoryConditions.Default;
 
 		var mapSize = Engine.GetGUIObjectByName("mapSize");
 		mapSize.list = g_MapSizes.names;
@@ -991,6 +986,14 @@ function selectMap(name)
 	var mapData = loadMapData(name);
 	var mapSettings = (mapData && mapData.settings ? deepcopy(mapData.settings) : {});
 
+	// Reset victory conditions
+	if (g_GameAttributes.mapType != "random")
+	{
+		let victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
+		g_GameAttributes.settings.GameType = g_VictoryConditions.Name[victoryIdx];
+		g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[victoryIdx];
+	}
+
 	// Copy any new settings
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
@@ -1223,8 +1226,7 @@ function onGameAttributesChange()
 
 	// We have to check for undefined on these properties as not all maps define them.
 	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
-	var victories = getVictoryConditions();
-	var victoryIdx = (mapSettings.GameType !== undefined && victories.data.indexOf(mapSettings.GameType) != -1 ? victories.data.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
+	var victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
 	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true);
 	enableCheatsText.caption = (enableCheats.checked ? translate("Yes") : translate("No"));
 	if (mapSettings.RatingEnabled !== undefined)
@@ -1297,7 +1299,7 @@ function onGameAttributesChange()
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExporeMap ? translate("Yes") : translate("No"));
 			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
-			victoryConditionText.caption = victories.text[victoryIdx];
+			victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
 
@@ -1336,7 +1338,7 @@ function onGameAttributesChange()
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
 			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
-			victoryConditionText.caption = victories.text[victoryIdx];
+			victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
 
@@ -1372,7 +1374,7 @@ function onGameAttributesChange()
 		revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 		exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
 		disableTreasuresText.caption = translate("No");
-		victoryConditionText.caption = victories.text[victoryIdx];
+		victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
 		lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 
 		startingResourcesText.caption = translate("Determined by scenario");
@@ -1400,8 +1402,8 @@ function onGameAttributesChange()
 
 	// Describe the number of players and the victory conditions
 	var playerString = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { "number": numPlayers });
-	let victory = translate(victories.text[victoryIdx]);
-	if (victoryIdx != VICTORY_DEFAULTIDX)
+	let victory = g_VictoryConditions.Title[victoryIdx];
+	if (victoryIdx != g_VictoryConditions.Default)
 		victory = "[color=\"orange\"]" + victory + "[/color]";
 	playerString += translate("Victory Condition:") + " " + victory + ".\n\n" + description;
 
@@ -1990,19 +1992,4 @@ function sendRegisterGameStanza()
 		"players": players
 	};
 	Engine.SendRegisterGame(gameData);
-}
-
-function getVictoryConditions()
-{
-	var r = {};
-	r.text = [translate("None")];
-	r.data = ["endless"];
-	r.scripts = [[]];
-	for (var vc in g_VictoryConditions)
-	{
-		r.data.push(vc);
-		r.text.push(g_VictoryConditions[vc].name);
-		r.scripts.push(g_VictoryConditions[vc].scripts);
-	}
-	return r;
 }

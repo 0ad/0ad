@@ -1,0 +1,15 @@
+{
+	"TranslatedKeys": ["Title", "Description"],
+	"Data":
+	{
+		"Title": "Conquest",
+		"Description": "Defeat all opponents",
+		"Scripts":
+		[
+			"scripts/TriggerHelper.js",
+			"scripts/ConquestCommon.js",
+			"scripts/Conquest.js"
+		],
+		"Default": true
+	}
+}

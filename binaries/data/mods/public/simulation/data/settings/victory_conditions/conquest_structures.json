@@ -1,0 +1,14 @@
+{
+	"TranslatedKeys": ["Title", "Description"],
+	"Data":
+	{
+		"Title": "Conquest Structures",
+		"Description": "Destroy all structures of enemies",
+		"Scripts":
+		[
+			"scripts/TriggerHelper.js",
+			"scripts/ConquestCommon.js",
+			"scripts/ConquestStructures.js"
+		]
+	}
+}
