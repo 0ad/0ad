@@ -564,6 +564,13 @@ private:
 		return m_State == STATE_FORMATIONMEMBER_PATH;
 	}
 
+	bool HasValidPath() const
+	{
+		return m_PathState == PATHSTATE_FOLLOWING
+			|| m_PathState == PATHSTATE_FOLLOWING_REQUESTING_LONG
+			|| m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT;
+	}
+
 	void StartFailed()
 	{
 		StopMoving();
@@ -755,10 +762,10 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		if (m_LongPath.m_Waypoints.empty())
 			m_LongPath.m_Waypoints.emplace_back(Waypoint{ m_FinalGoal.x, m_FinalGoal.z });
 
-		m_PathState = PATHSTATE_FOLLOWING;
-
-		if (m_PathState == PATHSTATE_WAITING_REQUESTING_LONG)
+		if (!HasValidPath())
 			StartSucceeded();
+
+		m_PathState = PATHSTATE_FOLLOWING;
 	}
 	else if (m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT)
 	{
@@ -784,8 +791,8 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		}
 
 		// Now we've got a short path that we can follow
-		m_PathState = PATHSTATE_FOLLOWING;
 		StartSucceeded();
+		m_PathState = PATHSTATE_FOLLOWING;
 	}
 	else if (m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
 	{
@@ -1114,8 +1121,8 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out)
 
 bool CCmpUnitMotion::TryGoingStraightToGoalPoint(const CFixedVector2D& from)
 {
-	// Make sure the goal is a point
-	if (m_FinalGoal.type != PathGoal::POINT)
+	// Make sure the goal is a point (and not a point-like target like a formation controller)
+	if (m_FinalGoal.type != PathGoal::POINT && m_TargetEntity != INVALID_ENTITY)
 		return false;
 
 	// Fail if the goal is too far away
@@ -1334,6 +1341,8 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// instead of computing a path.
 	if (TryGoingStraightToTargetEntity(from))
 	{
+		if (!HasValidPath())
+			StartSucceeded();
 		m_PathState = PATHSTATE_FOLLOWING;
 		return;
 	}
@@ -1341,6 +1350,8 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// Same thing applies to non-entity points
 	if (TryGoingStraightToGoalPoint(from))
 	{
+		if (!HasValidPath())
+			StartSucceeded();
 		m_PathState = PATHSTATE_FOLLOWING;
 		return;
 	}
@@ -1695,7 +1706,7 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 		ICmpObstructionManager::ObstructionSquare previousObstruction;
 		cmpObstruction->GetPreviousObstructionSquare(previousObstruction);
 		entity_pos_t previousDistance = Geometry::DistanceToSquare(pos - CFixedVector2D(previousObstruction.x, previousObstruction.z), obstruction.u, obstruction.v, halfSize);
-		
+
 		// See if we're too close to the target square
 		if (distance < minRange && previousDistance < minRange)
 			return false;

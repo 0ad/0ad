@@ -127,11 +127,6 @@ public:
 	virtual std::string GetPassabilityClassName() = 0;
 
 	/**
-	 * Set the passability class
-	 */
-	virtual void SetPassabilityClassName(std::string passClassName) = 0;
-
-	/**
 	 * Get the unit clearance (used by the Obstruction component)
 	 */
 	virtual entity_pos_t GetUnitClearance() = 0;

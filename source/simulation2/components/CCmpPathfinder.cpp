@@ -798,7 +798,7 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
 	pass_class_t passClass)
 {
-	// Test against obstructions first. Pathfinding-blocking obstructions are not handled here.
+	// Test against obstructions first. filter may discard pathfinding-blocking obstructions.
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	if (!cmpObstructionManager || cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
 		return false;

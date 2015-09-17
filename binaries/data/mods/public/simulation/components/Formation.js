@@ -296,30 +296,13 @@ Formation.prototype.SetMembers = function(ents)
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
-	// keep the number of entities per pass class to find the most used
-	// For land units, this will be "default", for ship units, it should be "ship"
-	var passClasses = {};
-	var bestPassClassNumber = 0;
-	var bestPassClass = "default";
 
 	for each (var ent in this.members)
 	{
-		var cmpUnitMotion = Engine.QueryInterface(ent,IID_UnitMotion);
-		var passClass = cmpUnitMotion.GetPassabilityClassName();
-		if (passClasses[passClass])
-			var number = passClasses[passClass]++;
-		else
-			var number = passClasses[passClass] = 1;
-		if (number > bestPassClassNumber)
-		{
-			bestPassClass = passClass;
-			bestPassClassNumber = number;
-		}
-
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
 		cmpUnitAI.SetLastFormationTemplate(templateName);
-		
+
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (cmpAuras && cmpAuras.HasFormationAura())
 		{
@@ -327,13 +310,12 @@ Formation.prototype.SetMembers = function(ents)
 			cmpAuras.ApplyFormationBonus(ents);
 		}
 	}
-	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	cmpUnitMotion.SetPassabilityClassName(bestPassClass);
 
 	this.offsets = undefined;
 	// Locate this formation controller in the middle of its members
 	this.MoveToMembersCenter();
 
+	// Compute the speed etc. of the formation
 	this.ComputeMotionParameters();
 };
 
@@ -889,8 +871,6 @@ Formation.prototype.ComputeMotionParameters = function()
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	cmpUnitMotion.SetSpeed(minSpeed);
-
-	// TODO: we also need to do something about PassabilityClass, CostClass
 };
 
 Formation.prototype.ShapeUpdate = function()
