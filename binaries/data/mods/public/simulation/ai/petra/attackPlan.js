@@ -1121,7 +1121,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		{
 			// check for stuck siege units
 			var farthest = 0;
-			var farthestEnt = -1;
+			var farthestEnt;
 			this.unitCollection.filter(API3.Filters.byClass("Siege")).forEach (function (ent) {
 				let dist = API3.SquareVectorDistance(ent.position(), self.position);
 				if (dist < farthest)
@@ -1129,7 +1129,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				farthest = dist;
 				farthestEnt = ent;
 			});
-			if (farthestEnt !== -1)
+			if (farthestEnt)
 				farthestEnt.destroy();
 		}
 		if (gameState.ai.playedTurn % 5 == 0)

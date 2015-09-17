@@ -374,6 +374,8 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 	var posmin = destination;
 	var width = gameState.getMap().width;
 	var cell = gameState.getMap().cellSize;
+	let alliedDocks = gameState.getAllyStructures().filter(API3.Filters.and(
+		API3.Filters.byClass("Dock"), API3.Filters.byMetadata(PlayerID, "sea", seaIndex))).toEntityArray();
 	for (let i of gameState.ai.HQ.navalManager.landingZones[landIndex][seaIndex])
 	{
 		let pos = [i%width+0.5, Math.floor(i/width)+0.5];
@@ -391,7 +393,14 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 		// this is also used when the ship is blocked and we want to find a new boarding point
 		for (let shipId in this.boardingPos)
 			if (this.boardingPos[shipId] !== undefined && API3.SquareVectorDistance(this.boardingPos[shipId], pos) < this.boardingRange)
-				dist += 1000000;
+			    dist += 1000000;
+		// and not too near our allied docks to not disturb naval traffic
+		for (let dock of alliedDocks)
+		{
+			let dockDist = API3.SquareVectorDistance(dock.position(), pos);
+			if (dockDist < 4900)
+			    dist += 100000 * (4900 - dockDist) / 4900;
+		}
 		if (dist > distmin)
 			continue;
 		distmin = dist;
