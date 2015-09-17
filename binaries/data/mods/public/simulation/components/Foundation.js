@@ -160,53 +160,53 @@ Foundation.prototype.Build = function(builderEnt, work)
 	// this won't happen much)
 	if (this.GetBuildProgress() == 1.0)
 		return;
+	
+	// If there's any units in the way, ask them to move away
+	// and return early from this method.
+	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
+	{
+		var collisions = cmpObstruction.GetEntityCollisions(true, true);
+		if (collisions.length)
+		{
+			var cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+			for each (var ent in collisions)
+			{
+				var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+				if (cmpUnitAI)
+					cmpUnitAI.LeaveFoundation(this.entity);
+				else
+				{
+					// If obstructing fauna is gaia or our own but doesn't have UnitAI, just destroy it
+					var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+					var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+					if (cmpOwnership && cmpIdentity && cmpIdentity.HasClass("Animal")
+						&& (cmpOwnership.GetOwner() == 0 || cmpFoundationOwnership && cmpOwnership.GetOwner() == cmpFoundationOwnership.GetOwner()))
+						Engine.DestroyEntity(ent);
+				}
+
+				// TODO: What if an obstruction has no UnitAI?
+			}
+
+			// TODO: maybe we should tell the builder to use a special
+			// animation to indicate they're waiting for people to get
+			// out the way
+
+			return;
+		}
+	}
 
 	// Handle the initial 'committing' of the foundation
 	if (!this.committed)
 	{
-		var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 		if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
 		{
-			// If there's any units in the way, ask them to move away
-			// and return early from this method.
-			// Otherwise enable this obstruction so it blocks any further
-			// units, and continue building.
-
-			var collisions = cmpObstruction.GetEntityCollisions(true, true);
-			if (collisions.length)
-			{
-				var cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-				for each (var ent in collisions)
-				{
-					var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-					if (cmpUnitAI)
-						cmpUnitAI.LeaveFoundation(this.entity);
-					else
-					{
-						// If obstructing fauna is gaia or our own but doesn't have UnitAI, just destroy it
-						var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-						var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-						if (cmpOwnership && cmpIdentity && cmpIdentity.HasClass("Animal")
-						    && (cmpOwnership.GetOwner() == 0 || cmpFoundationOwnership && cmpOwnership.GetOwner() == cmpFoundationOwnership.GetOwner()))
-							Engine.DestroyEntity(ent);
-					}
-
-					// TODO: What if an obstruction has no UnitAI?
-				}
-
-				// TODO: maybe we should tell the builder to use a special
-				// animation to indicate they're waiting for people to get
-				// out the way
-
-				return;
-			}
-
 			// The obstruction always blocks new foundations/construction,
 			// but we've temporarily allowed units to walk all over it
 			// (via CCmpTemplateManager). Now we need to remove that temporary
 			// blocker-disabling, so that we'll perform standard unit blocking instead.
 			cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
-			
+
 			// Call the related trigger event 
 			var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 			cmpTrigger.CallEvent("ConstructionStarted", {"foundation": this.entity, "template": this.finalTemplateName});
