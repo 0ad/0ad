@@ -32,6 +32,7 @@ function loadSettingsValues()
 	var settings = {
 		"Ceasefire": loadCeasefire(),
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
+		"MapTypes": loadMapTypes(),
 		"PopulationCapacities": loadPopulationCapacities(),
 		"StartingResources": loadSettingValuesFile("starting_resources.json"),
 		"VictoryConditions": loadVictoryConditions()
@@ -87,6 +88,30 @@ function loadCeasefire()
 		"Title": timeout == 0 ? translateWithContext("ceasefire", "No ceasefire") :
 			sprintf(translatePluralWithContext("ceasefire", "%(minutes)s minute", "%(minutes)s minutes", timeout), { "minutes": timeout })
 	}));
+}
+
+/**
+ * Hardcoded, as modding is not supported without major changes.
+ *
+ * @returns {Array}
+ */
+function loadMapTypes()
+{
+	return [
+		{
+			"Name": "skirmish",
+			"Title": translateWithContext("map", "Skirmish"),
+			"Default": true
+		},
+		{
+			"Name": "random",
+			"Title": translateWithContext("map", "Random")
+		},
+		{
+			"Name": "scenario",
+			"Title": translate("Scenario") // TODO: update the translation (but not shortly before a release)
+		}
+	];
 }
 
 /**

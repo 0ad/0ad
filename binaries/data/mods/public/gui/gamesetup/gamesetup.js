@@ -5,9 +5,10 @@ const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
 const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly) : undefined);
-const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryConditions : undefined);
+const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
 const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
 const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
+const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryConditions : undefined);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -128,8 +129,8 @@ function initMain()
 
 	// Init map types
 	var mapTypes = Engine.GetGUIObjectByName("mapTypeSelection");
-	mapTypes.list = [translateWithContext("map", "Skirmish"), translateWithContext("map", "Random"), translate("Scenario")];
-	mapTypes.list_data = ["skirmish","random","scenario"];
+	mapTypes.list = g_MapTypes.Title;
+	mapTypes.list_data = g_MapTypes.Name;
 
 	// Setup map filters - will appear in order they are added
 	addFilter("default", translate("Default"), function(settings) { return settings && (settings.Keywords === undefined || !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"])); });
@@ -160,7 +161,7 @@ function initMain()
 	// Setup controls for host only
 	if (g_IsController)
 	{
-		mapTypes.selected = 0;
+		mapTypes.selected = g_MapTypes.Default;
 		mapFilters.selected = 0;
 
 		// Create a unique ID for this match, to be used for identifying the same game reports
@@ -740,8 +741,7 @@ function loadGameAttributes()
 	var mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilterSelection.selected = mapFilterSelection.list_data.indexOf(attrs.mapFilter);
 
-	var mapTypeSelection = Engine.GetGUIObjectByName("mapTypeSelection");
-	mapTypeSelection.selected = mapTypeSelection.list_data.indexOf(attrs.mapType);
+	Engine.GetGUIObjectByName("mapTypeSelection").selected = g_MapTypes.Name.indexOf(attrs.mapType);
 
 	initMapNameList();
 
@@ -1166,9 +1166,7 @@ function onGameAttributesChange()
 		var mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
 		var mapFilterId = mapFilterSelection.list_data.indexOf(g_GameAttributes.mapFilter);
 		Engine.GetGUIObjectByName("mapFilterText").caption = mapFilterSelection.list[mapFilterId];
-		var mapTypeSelection = Engine.GetGUIObjectByName("mapTypeSelection");
-		var idx = mapTypeSelection.list_data.indexOf(g_GameAttributes.mapType);
-		Engine.GetGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
+		Engine.GetGUIObjectByName("mapTypeText").caption = g_MapTypes.Title[g_MapTypes.Name.indexOf(g_GameAttributes.mapType)];
 		var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
 		Engine.GetGUIObjectByName("mapSelectionText").caption = translate(getMapDisplayName(mapName));
