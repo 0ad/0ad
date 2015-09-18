@@ -1477,7 +1477,11 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"MoveStarted": function() {
-				this.SetNextState("WALKING");
+				this.SelectAnimation("move");
+			},
+
+			"MoveCompleted": function() {
+				this.SelectAnimation("idle");
 			},
 
 			"Timer": function(msg) {
