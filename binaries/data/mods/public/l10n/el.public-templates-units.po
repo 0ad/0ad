@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-22 08:37+0000\n"
+"POT-Creation-Date: 2015-08-24 02:41+0200\n"
+"PO-Revision-Date: 2015-08-24 08:38+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "Πολίτης"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_champion.xml:13
-#: simulation/templates/template_unit_hero.xml:22
+#: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Soldier"
 msgstr "Στρατιώτης"
@@ -282,8 +282,25 @@ msgstr "Κητοειδής"
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Σκότωσε και μετά σύλλεξε τροφή από αυτόν τον άφθονο σε πόρους ωκεανό. "
 
-#: simulation/templates/template_unit_hero.xml:22
-#: simulation/templates/template_unit_hero.xml:20
+#: simulation/templates/template_unit_hero.xml:10
+#: simulation/templates/units/brit_hero_caratacos.xml:10
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
+#: simulation/templates/units/gaul_hero_brennus.xml:10
+#: simulation/templates/units/gaul_hero_britomartus.xml:10
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
+#: simulation/templates/units/mace_hero_demetrius.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:12
+msgid "Hero Aura"
+msgstr "Αύρα Ηρώων"
+
+#: simulation/templates/template_unit_hero.xml:11
+msgid ""
+"When garrisoned in a structure, it galvanizes its defenders, +2 "
+"GarrisonRegenRate"
+msgstr ""
+
+#: simulation/templates/template_unit_hero.xml:40
+#: simulation/templates/template_unit_hero.xml:38
 #: simulation/templates/template_unit_hero_infantry.xml:24
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Hero"
@@ -438,11 +455,11 @@ msgstr ""
 msgid "Battering Ram"
 msgstr "Πολιορκητικός κριός"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:52
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
 msgid "Siege Tower"
 msgstr "Πολιορκητικός Πύργος"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:54
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:59
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
 msgstr ""
@@ -917,34 +934,24 @@ msgstr ""
 msgid "Delamokludda"
 msgstr ""
 
-#: simulation/templates/units/brit_hero_boudicca.xml:12
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:12
+#: simulation/templates/units/brit_hero_boudicca.xml:13
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "Champion Army"
 msgstr "Στρατός πρωταθλητών"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:13
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:13
-msgid "+5 Attack and +25% Speed for Champion Units."
-msgstr "+5 στην επίθεση και +25% στην ταχύτητα για τους πρωταθλητές"
+#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:14
+msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
+msgstr ""
 
-#: simulation/templates/units/brit_hero_boudicca.xml:24
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:19
+#: simulation/templates/units/brit_hero_boudicca.xml:25
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:20
 msgid "Boudicca"
 msgstr "Βοαδίκεια"
 
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:20
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:21
 msgid "Heroine"
 msgstr "Ηρωίδα"
-
-#: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cunobelin.xml:11
-#: simulation/templates/units/gaul_hero_brennus.xml:10
-#: simulation/templates/units/gaul_hero_britomartus.xml:10
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:12
-#: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:11
-msgid "Hero Aura"
-msgstr "Αύρα Ηρώων"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11
@@ -1112,23 +1119,23 @@ msgstr ""
 msgid "Hamilcar Barca"
 msgstr "Αμίλκας Βάρκας"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:13
+#: simulation/templates/units/cart_hero_hannibal.xml:14
 msgid "Tactician Aura"
 msgstr "Αύρα στρατηγικής"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:14
-msgid "All allied units +2 attack within vision range of him."
-msgstr "Όλες οι συμμαχικές μονάδες αποκτούν +2 στην επίθεση όταν βρίσκονται στο οπτικό του πεδίο."
+#: simulation/templates/units/cart_hero_hannibal.xml:15
+msgid "All allied units +2 Attack and +1 Capture within vision range of him."
+msgstr ""
 
-#: simulation/templates/units/cart_hero_hannibal.xml:20
+#: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Hannibal Barca"
 msgstr "Αννίβας Βάρκας"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:21
+#: simulation/templates/units/cart_hero_hannibal.xml:22
 msgid "Ḥannibaʿal Baraq"
 msgstr "Αννίβας Βάρκας"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:24
+#: simulation/templates/units/cart_hero_hannibal.xml:25
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
@@ -1304,11 +1311,11 @@ msgstr ""
 msgid "Britomartus"
 msgstr "Βριτομάρτυς"
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
-msgid "+2 attack for all units within his aura."
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:14
+msgid "+2 Attack and +1 Capture for all units within his aura."
 msgstr ""
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:19
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:20
 msgid "Vercingetorix"
 msgstr ""
 
@@ -1487,15 +1494,15 @@ msgstr "Δημήτριος ο Πολιορκητής"
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Δημήτριος ο Πολιορκητής"
 
-#: simulation/templates/units/mace_hero_philip.xml:12
-msgid "+5 Attack for Champion Units."
+#: simulation/templates/units/mace_hero_philip.xml:13
+msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr ""
 
-#: simulation/templates/units/mace_hero_philip.xml:18
+#: simulation/templates/units/mace_hero_philip.xml:19
 msgid "Philip II of Macedon"
 msgstr "Φίλιππος Β' ο Μακεδών"
 
-#: simulation/templates/units/mace_hero_philip.xml:19
+#: simulation/templates/units/mace_hero_philip.xml:20
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Φίλιππος Β' ο Μακεδών"
 
@@ -1873,19 +1880,19 @@ msgstr "Πέρσης Αθάνατος"
 msgid "Anusiya"
 msgstr ""
 
-#: simulation/templates/units/pers_hero_cyrus.xml:12
+#: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "Lead from the Front Aura"
 msgstr ""
 
-#: simulation/templates/units/pers_hero_cyrus.xml:13
-msgid "+2 attack for nearby cavalry units."
+#: simulation/templates/units/pers_hero_cyrus.xml:14
+msgid "+2 Attack and +1 Capture for nearby cavalry units."
 msgstr ""
 
-#: simulation/templates/units/pers_hero_cyrus.xml:19
+#: simulation/templates/units/pers_hero_cyrus.xml:20
 msgid "Cyrus II The Great"
 msgstr "Κύρος Β' ο Μέγας"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:20
+#: simulation/templates/units/pers_hero_cyrus.xml:21
 msgid "Kurush II"
 msgstr "Κύρος Β'"
 
@@ -2265,15 +2272,15 @@ msgstr "Ιταλικό βαρύ πεζικό"
 msgid "Extraordinarius"
 msgstr ""
 
-#: simulation/templates/units/rome_hero_marcellus.xml:12
+#: simulation/templates/units/rome_hero_marcellus.xml:13
 msgid "Sword of Rome Aura"
 msgstr "Αύρα \"το σπαθί της Ρώμης\""
 
-#: simulation/templates/units/rome_hero_marcellus.xml:13
-msgid "+5 attack for Roman units within sight of him."
-msgstr "+5% στην επίθεση των Ρωμαικών μονάδων όταν βρίσκονται στο πεδίο θέασης του."
+#: simulation/templates/units/rome_hero_marcellus.xml:14
+msgid "+5 Attack and +2 Capture for Roman units within sight of him."
+msgstr ""
 
-#: simulation/templates/units/rome_hero_marcellus.xml:20
+#: simulation/templates/units/rome_hero_marcellus.xml:21
 msgid "Marcus Claudius Marcellus"
 msgstr "Μάρκος Κλαύδιος Μάρκελλος"
 
@@ -2669,19 +2676,19 @@ msgstr "Οι Είλωτες ακροβολιστές μέσα στο οπτικ�
 msgid "Brasidas"
 msgstr "Βρασίδας"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:11
+#: simulation/templates/units/spart_hero_leonidas.xml:12
 msgid "Last Stand Aura"
 msgstr "\"Ο τελευταίος που στέκεται\" Αύρα"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:12
-msgid "+20% attack for nearby Hoplites and Spartiates."
-msgstr "+20% επίθεση για τους κοντινούς οπλίτες και Σπαρτιάτες"
+#: simulation/templates/units/spart_hero_leonidas.xml:13
+msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
+msgstr ""
 
-#: simulation/templates/units/spart_hero_leonidas.xml:19
+#: simulation/templates/units/spart_hero_leonidas.xml:20
 msgid "Leonidas I"
 msgstr "Λεωνίδας Α'"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:20
+#: simulation/templates/units/spart_hero_leonidas.xml:21
 msgid "Leōnídēs"
 msgstr "Λεωνίδας"
 

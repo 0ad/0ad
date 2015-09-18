@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-07-23 06:49+0000\n"
+"POT-Creation-Date: 2015-08-24 02:40+0200\n"
+"PO-Revision-Date: 2015-08-31 18:42+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -480,10 +480,12 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:185
+#: gui/session/selection_details.js:185 gui/session/unit_actions.js:323
+#: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
+#: gui/session/unit_actions.js:552
 #, javascript-format
-msgid "Gain: %(amount)s"
-msgstr "Buannachd: %(amount)s"
+msgid "Gain: %(gain)s"
+msgstr "Buannachd: %(gain)s"
 
 #: gui/session/selection_details.js:199
 #, javascript-format
@@ -780,12 +782,6 @@ msgstr "Modh dlùthadh an ama"
 msgid "Origin trade market."
 msgstr "Margaid tùsail."
 
-#: gui/session/unit_actions.js:323 gui/session/unit_actions.js:330
-#: gui/session/unit_actions.js:340 gui/session/unit_actions.js:552
-#, javascript-format
-msgid "Gain: %(gain)s"
-msgstr "Buannachd: %(gain)s"
-
 #: gui/session/unit_actions.js:327
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Dèan briogadh deas air margaid eile gus a shuidheachadh mar cheann-uidhe a' mhalairt."
@@ -816,7 +812,7 @@ msgstr "Dèan briogadh deas gus slighe-mhalairt bhunaiteach a' stèidheachadh do
 msgid "Expected gain: %(gain)s"
 msgstr "Dùil air buannachd: %(gain)s"
 
-#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:916
 msgid "Unload All"
 msgstr "A-mach leotha uile"
 
@@ -829,39 +825,39 @@ msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Chan urrainn dhut a' bhith seo a mhilleadh o nach eil an dàrna leth dhe na puingean-glacaidh agad"
 
-#: gui/session/unit_actions.js:733
+#: gui/session/unit_actions.js:736
 msgid "Stop"
 msgstr "Sguir dheth"
 
-#: gui/session/unit_actions.js:751
+#: gui/session/unit_actions.js:754
 msgid "Garrison"
 msgstr "Rach 'nad ghearastan"
 
-#: gui/session/unit_actions.js:772
+#: gui/session/unit_actions.js:775
 msgid "Unload"
 msgstr "A-mach leat"
 
-#: gui/session/unit_actions.js:788
+#: gui/session/unit_actions.js:791
 msgid "Repair"
 msgstr "Càraich"
 
-#: gui/session/unit_actions.js:805
+#: gui/session/unit_actions.js:808
 msgid "Focus on Rally Point"
 msgstr "Fòcas air ceann-cruinneachaidh"
 
-#: gui/session/unit_actions.js:828
+#: gui/session/unit_actions.js:831
 msgid "Back to Work"
 msgstr "Tillibh dhan obair"
 
-#: gui/session/unit_actions.js:844
+#: gui/session/unit_actions.js:847
 msgid "Guard"
 msgstr "Geàrd"
 
-#: gui/session/unit_actions.js:861
+#: gui/session/unit_actions.js:864
 msgid "Remove guard"
 msgstr "Thoir geàrd air falbh"
 
-#: gui/session/unit_actions.js:877
+#: gui/session/unit_actions.js:880
 msgid "Select trading goods"
 msgstr "Tagh bathar malairt"
 
@@ -939,7 +935,7 @@ msgstr "Lorg obraiche na thàmh"
 
 #: gui/session/session.xml:(caption):59
 msgid "Control all units"
-msgstr "Smachdaich na h‑uile aonad"
+msgstr "Stiùirich a h‑uile aonad"
 
 #: gui/session/session.xml:(caption):69
 msgid "Change perspective"

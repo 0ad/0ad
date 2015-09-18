@@ -5,6 +5,7 @@
 # Translators:
 # Dumitru Ursu <dima@ceata.org>, 2014
 # Gabriel-Ciprian Stanciu <stanciu.gabriel.ciprian@gmail.com>, 2014
+# Jobava <jobaval10n@gmail.com>, 2015
 # Lucian Lupescu <l.lupescu@yahoo.com>, 2014
 # nokzor25 <darkex_gamer@hotmail.com>, 2014
 # nyquist <nyquist@vaspun.eu>, 2013
@@ -16,9 +17,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-07-13 09:11+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
-"Language-Team: Romanian (http://www.transifex.com/p/0ad/language/ro/)\n"
+"PO-Revision-Date: 2015-08-28 09:46+0000\n"
+"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
+"Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,11 +32,11 @@ msgstr "Atenieni"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr ""
+msgstr "Rata de adunare a minereului crește cu +10% pentru fiecare nouă epocă."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
-msgstr ""
+msgstr "Silver Owls"
 
 #: civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -49,27 +50,27 @@ msgstr "Minele din Laurion, Attica ofereau Atenei o sursă bogată de argint din
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr ""
+msgstr "Construirea unui Threatron crește extinderea de teritoriu pentru toate clădirile cu +20%."
 
 #: civs/athen.jsonCivBonuses[1].Name civs/mace.jsonCivBonuses[2].Name
 #: civs/spart.jsonCivBonuses[2].Name
 msgid "Hellenization"
-msgstr "Grecizare"
+msgstr "Elenizare"
 
 #: civs/athen.jsonCivBonuses[1].History civs/spart.jsonCivBonuses[2].History
 msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "Grecii au avut mult succes în elenizarea străinilor diverși. În timpul epocii elenistice, greaca era lingua franca pentru lumea antică, iar aceasta era vorbită din Spania în India."
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "Navele se construiesc cu 25% mai rapid."
 
 #: civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
-msgstr ""
+msgstr "Liga Deliană"
 
 #: civs/athen.jsonTeamBonuses[0].History
 msgid ""
@@ -77,7 +78,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr "La scurt timp după mariile victorii navale de la Salamis și Mykale, orașele-state grecești au instituit așa-zisă Ligă de la Delos în 478 î. Hr., a cărei scop era de a scoate perșii din regiunea Mării Egee. Statele aliate au contribuit cu nave și fonduri, pe cand atenienii și-au oferit întreaga flotă. "
+msgstr "La scurt timp după marile victorii navale de la Salamina și Mykale, orașele-state grecești au instituit așa-zisă Ligă de la Delos în 478 î.e.n., a cărei scop era de a scoate perșii din regiunea Mării Egee. Statele aliate au contribuit cu nave și fonduri, pe când atenienii și-au oferit întreaga flotă. "
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
@@ -89,47 +90,47 @@ msgstr "Pericle"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "Cimon"
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
-msgstr ""
+msgstr "Aristide"
 
 #: civs/athen.jsonAINames[4]
 msgid "Xenophon"
-msgstr ""
+msgstr "Xenofon"
 
 #: civs/athen.jsonAINames[5]
 msgid "Hippias"
-msgstr ""
+msgstr "Hippias"
 
 #: civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
-msgstr ""
+msgstr "Cleistene"
 
 #: civs/athen.jsonAINames[7]
 msgid "Thucydides"
-msgstr ""
+msgstr "Tucidide"
 
 #: civs/athen.jsonAINames[8]
 msgid "Alcibiades"
-msgstr ""
+msgstr "Alcibiade"
 
 #: civs/athen.jsonAINames[9]
 msgid "Miltiades"
-msgstr ""
+msgstr "Miltiade"
 
 #: civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "Cleon"
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Cleofon"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
-msgstr ""
+msgstr "Thrasybulus"
 
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
@@ -137,7 +138,7 @@ msgstr "Ificrate"
 
 #: civs/athen.jsonAINames[14]
 msgid "Demosthenes"
-msgstr ""
+msgstr "Demostene"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."

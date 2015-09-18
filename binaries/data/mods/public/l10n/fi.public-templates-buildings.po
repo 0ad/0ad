@@ -4,6 +4,7 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
+# Max, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015
 # mrJalostaja <pauli.nykanen@yahoo.com>, 2015
 # Petri, 2014
@@ -11,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 09:17+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
+"POT-Creation-Date: 2015-08-24 02:42+0200\n"
+"PO-Revision-Date: 2015-09-07 19:01+0000\n"
+"Last-Translator: Max\n"
+"Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -49,6 +50,7 @@ msgstr "Kasvata väkilukurajaa."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
+#: simulation/templates/template_structure_defense_wooden_tower.xml:43
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -117,7 +119,7 @@ msgstr "Puolustustorni"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr ""
+msgstr "Rakenna neutraaleihin ja omiin alueisiin tiedustellaksi kartan alueita. Hitaasti kääntää Gaiaan neutraalissa alueessa."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -171,6 +173,11 @@ msgstr "Ampuu nuolia. Kokoa joukko puolustaaksesi kaupunginmuuria hyökkääjiä
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
 msgstr "Kaupunginmuuri"
+
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+msgid "Wooden Tower"
+msgstr "Puinen torni"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -260,7 +267,7 @@ msgid "Dock"
 msgstr "Satama"
 
 #: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/template_structure_military_embassy.xml:28
+#: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
@@ -469,7 +476,7 @@ msgstr "Théātron"
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr ""
+msgstr "Hellēnízein (Hellenisaatio): +20% alueellinen vaikutus kaikille rakennuksille, kun Theatroni on olemassa."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -544,7 +551,7 @@ msgstr "Saarisiirtokunta"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways."
-msgstr ""
+msgstr "Nostaa väkilukurajoitusta ja puolustaa vesiväyliä."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -1210,7 +1217,7 @@ msgstr "Paraspa"
 msgid "Stables"
 msgstr "Tallit"
 
-#: simulation/templates/structures/pers_stables.xml:25
+#: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
 msgstr "Kouluta kansalaisratsuyksiköitä."
 

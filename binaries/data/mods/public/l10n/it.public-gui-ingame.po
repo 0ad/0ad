@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-07-30 19:40+0000\n"
-"Last-Translator: Me Lazzi\n"
+"POT-Creation-Date: 2015-08-24 02:40+0200\n"
+"PO-Revision-Date: 2015-08-24 08:44+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -476,10 +476,12 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:185
+#: gui/session/selection_details.js:185 gui/session/unit_actions.js:323
+#: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
+#: gui/session/unit_actions.js:552
 #, javascript-format
-msgid "Gain: %(amount)s"
-msgstr "Guadagno: %(amount)s"
+msgid "Gain: %(gain)s"
+msgstr "Guadagno: %(gain)s"
 
 #: gui/session/selection_details.js:199
 #, javascript-format
@@ -772,12 +774,6 @@ msgstr "Distorsione Temporale"
 msgid "Origin trade market."
 msgstr "Mercato d'origine."
 
-#: gui/session/unit_actions.js:323 gui/session/unit_actions.js:330
-#: gui/session/unit_actions.js:340 gui/session/unit_actions.js:552
-#, javascript-format
-msgid "Gain: %(gain)s"
-msgstr "Guadagno: %(gain)s"
-
 #: gui/session/unit_actions.js:327
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Clic destro su un altro mercato per impostarlo come un mercato commerciale di destinazione."
@@ -808,7 +804,7 @@ msgstr "Clic destro per stabilire una rotta iniziale per i nuovi commercianti."
 msgid "Expected gain: %(gain)s"
 msgstr "Guadagno atteso: %(gain)s"
 
-#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:916
 msgid "Unload All"
 msgstr "Sbarca tutti"
 
@@ -821,39 +817,39 @@ msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Non puoi distruggere questa entità poichè hai meno della metà dei punti di cattura"
 
-#: gui/session/unit_actions.js:733
+#: gui/session/unit_actions.js:736
 msgid "Stop"
 msgstr "Stop"
 
-#: gui/session/unit_actions.js:751
+#: gui/session/unit_actions.js:754
 msgid "Garrison"
 msgstr "Guarnigione"
 
-#: gui/session/unit_actions.js:772
+#: gui/session/unit_actions.js:775
 msgid "Unload"
 msgstr "Sbarca"
 
-#: gui/session/unit_actions.js:788
+#: gui/session/unit_actions.js:791
 msgid "Repair"
 msgstr "Ripara"
 
-#: gui/session/unit_actions.js:805
+#: gui/session/unit_actions.js:808
 msgid "Focus on Rally Point"
 msgstr "Focus sui punti di raccolta"
 
-#: gui/session/unit_actions.js:828
+#: gui/session/unit_actions.js:831
 msgid "Back to Work"
 msgstr "Torna al Lavoro"
 
-#: gui/session/unit_actions.js:844
+#: gui/session/unit_actions.js:847
 msgid "Guard"
 msgstr "Guardia"
 
-#: gui/session/unit_actions.js:861
+#: gui/session/unit_actions.js:864
 msgid "Remove guard"
 msgstr "Rimuovi Guardia"
 
-#: gui/session/unit_actions.js:877
+#: gui/session/unit_actions.js:880
 msgid "Select trading goods"
 msgstr "Seleziona beni commerciali"
 

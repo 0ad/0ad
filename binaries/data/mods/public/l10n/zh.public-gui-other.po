@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-08-12 07:44+0000\n"
-"Last-Translator: 呂正 <jack.lvzheng@gmail.com>\n"
+"POT-Creation-Date: 2015-08-24 02:41+0200\n"
+"PO-Revision-Date: 2015-08-24 09:18+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -570,13 +570,13 @@ msgid "<invalid>"
 msgstr "<无效>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "是"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "否"
@@ -666,7 +666,7 @@ msgid "Always show the remaining ceasefire time."
 msgstr ""
 
 #: gui/options/options.js:17
-msgid "Persist match settings"
+msgid "Persist Match Settings"
 msgstr ""
 
 #: gui/options/options.js:17
@@ -798,59 +798,67 @@ msgstr "垂直同步"
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "使用垂直同步以修复屏幕撕裂。需要重启游戏"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:36
+msgid "Limit FPS in Menus"
+msgstr ""
+
+#: gui/options/options.js:36
+msgid "Limit FPS to 50 in all menus, to save power."
+msgstr ""
+
+#: gui/options/options.js:40
 msgid "Master Gain"
 msgstr "主音量"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "Master audio gain"
 msgstr "音频主控制"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Music Gain"
 msgstr "音乐音量"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "In game music gain"
 msgstr "游戏音乐控制"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Ambient Gain"
 msgstr "环境音效控制"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game ambient sound gain"
 msgstr "游戏环境音效控制"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Action Gain"
 msgstr "动作控制"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game unit action sound gain"
 msgstr "游戏单位动作声音控制"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI Gain"
 msgstr "UI控制"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI sound gain"
 msgstr "UI声音控制"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Chat Backlog"
 msgstr "聊天记录"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "加入大厅时，要载入的聊天记录数。"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Timestamp"
 msgstr "聊天时间戳"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "消息将被提交到大厅聊天室"
 
@@ -950,53 +958,64 @@ msgstr "手册"
 msgid "No saved games found"
 msgstr "没有找到保存的游戏"
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:51
 msgid "This saved game may not be compatible:"
 msgstr "不兼容此保存游戏："
 
-#: gui/savedgames/load.js:50
+#: gui/savedgames/load.js:56
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "需要安装 0 A.D. 的 %(requiredVersion)s 版本, 正在使用版本 %(currentVersion)s."
 
-#: gui/savedgames/load.js:60
+#: gui/savedgames/load.js:61
+msgid "It needs an older version of 0 A.D."
+msgstr ""
+
+#: gui/savedgames/load.js:65
+#, javascript-format
+msgid ""
+"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
+"savegame version %(currentVersion)s."
+msgstr ""
+
+#: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "当您运行 \"%(currentMod)s\" 时不需要任何mod。"
 
-#: gui/savedgames/load.js:64
+#: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "您未加载任何mod，需要mod \"%(requiredMod)s\" 。"
 
-#: gui/savedgames/load.js:68
+#: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "需要mod \"%(requiredMod)s\" ，但您正在使用mod \"%(currentMod)s\" 。"
 
-#: gui/savedgames/load.js:73
+#: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
 msgstr "您仍要继续吗？"
 
-#: gui/savedgames/load.js:74
+#: gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "警告"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "确定要永久的删除保存的游戏吗？"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "删除"
 
@@ -1027,8 +1046,8 @@ msgid "%(val1)s to %(val2)s"
 msgstr ""
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
-#: gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:75 gui/summary/layout.js:102
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "玩家名字"
 
@@ -1048,7 +1067,7 @@ msgstr "探索得分"
 msgid "Total score"
 msgstr "总得分"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:78
+#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
 msgid "Total"
 msgstr "总计"
 
@@ -1104,85 +1123,105 @@ msgstr "步行骑士"
 msgid "Navy"
 msgstr "海军"
 
-#: gui/summary/layout.js:58
+#: gui/summary/layout.js:56
+msgid "Traders"
+msgstr ""
+
+#: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "单位统计（训练/阵亡/歼灭）"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:76
 msgid "Food"
 msgstr "食物"
 
-#: gui/summary/layout.js:75
+#: gui/summary/layout.js:77
 msgid "Wood"
 msgstr "木材"
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:78
 msgid "Stone"
 msgstr "石头"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:79
 msgid "Metal"
 msgstr "金矿"
 
-#: gui/summary/layout.js:79
-msgid "Treasures collected"
-msgstr "收集的宝藏"
-
-#: gui/summary/layout.js:80
+#: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
 msgstr "贡品(贡出/纳入)"
 
+#: gui/summary/layout.js:82
+msgid "Treasures collected"
+msgstr "收集的宝藏"
+
 #: gui/summary/layout.js:83
+msgid "Loot"
+msgstr ""
+
+#: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "资源统计(收集/使用)"
 
-#: gui/summary/layout.js:99
+#: gui/summary/layout.js:103
 msgid "Food exchanged"
 msgstr "交换的食物"
 
-#: gui/summary/layout.js:100
+#: gui/summary/layout.js:104
 msgid "Wood exchanged"
 msgstr "交换的木材"
 
-#: gui/summary/layout.js:101
+#: gui/summary/layout.js:105
 msgid "Stone exchanged"
 msgstr "交换的石头"
 
-#: gui/summary/layout.js:102
+#: gui/summary/layout.js:106
 msgid "Metal exchanged"
 msgstr "交换的金属"
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:107
 msgid "Barter efficiency"
 msgstr "贸易效率"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:108
 msgid "Trade income"
 msgstr "贸易收入"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:124
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "食物比例"
 
-#: gui/summary/layout.js:121
-msgid "Feminisation"
-msgstr "女性化"
+#: gui/summary/layout.js:125
+msgid "Feminization"
+msgstr ""
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:126
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "歼灭 / 阵亡\n比例"
 
-#: gui/summary/layout.js:123
+#: gui/summary/layout.js:127
 msgid ""
 "Map\n"
 "exploration"
 msgstr "地图\n探索"
 
-#: gui/summary/layout.js:258
+#: gui/summary/layout.js:128
+msgid "At peak"
+msgstr ""
+
+#: gui/summary/layout.js:129
+msgid "At finish"
+msgstr ""
+
+#: gui/summary/layout.js:132
+msgid "Map control"
+msgstr ""
+
+#: gui/summary/layout.js:274
 msgid "Team total"
 msgstr ""
 

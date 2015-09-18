@@ -10,10 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 09:17+0000\n"
+"POT-Creation-Date: 2015-08-24 02:42+0200\n"
+"PO-Revision-Date: 2015-08-24 09:18+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
+"Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,6 +48,7 @@ msgstr "Увеличи популационната граница."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
+#: simulation/templates/template_structure_defense_wooden_tower.xml:43
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -171,6 +172,11 @@ msgstr "Стреля стрели. Гарнизирай, за да защити�
 msgid "City Wall"
 msgstr "Градска Стена"
 
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+msgid "Wooden Tower"
+msgstr ""
+
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Економична Структура"
@@ -259,7 +265,7 @@ msgid "Dock"
 msgstr "Пристан"
 
 #: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/template_structure_military_embassy.xml:28
+#: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
@@ -1209,7 +1215,7 @@ msgstr "Paraspa"
 msgid "Stables"
 msgstr "Конюшни"
 
-#: simulation/templates/structures/pers_stables.xml:25
+#: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
 msgstr "Тренира граждано-кавалерииски единици"
 

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-07-23 05:56+0000\n"
+"POT-Creation-Date: 2015-08-24 02:41+0200\n"
+"PO-Revision-Date: 2015-08-27 03:22+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -574,13 +574,13 @@ msgid "<invalid>"
 msgstr "Configuración rexional inexistente."
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Si"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Non"
@@ -670,8 +670,8 @@ msgid "Always show the remaining ceasefire time."
 msgstr "Mostrar sempre o tempo restante da tregua."
 
 #: gui/options/options.js:17
-msgid "Persist match settings"
-msgstr "Manter a configuración da partida."
+msgid "Persist Match Settings"
+msgstr "Gardar a configuración da partida"
 
 #: gui/options/options.js:17
 msgid ""
@@ -802,59 +802,67 @@ msgstr "Sincronización vertical"
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Usa sincronización vertical para evitar que aparezan ao mesmo tempo imaxes de distintos fotogramas na pantalla. Para que a opción xurda efecto é necesario reiniciar o xogo."
 
-#: gui/options/options.js:39
+#: gui/options/options.js:36
+msgid "Limit FPS in Menus"
+msgstr "Limitar os FPS nos menús"
+
+#: gui/options/options.js:36
+msgid "Limit FPS to 50 in all menus, to save power."
+msgstr "Limitar os FPS a 50 en todos os menús, para aforrar enerxía."
+
+#: gui/options/options.js:40
 msgid "Master Gain"
 msgstr "Ganancia mestra"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "Master audio gain"
 msgstr "Ganancia da canle mestra de son."
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Music Gain"
 msgstr "Ganancia da música"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "In game music gain"
 msgstr "Ganancia da música do xogo."
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Ambient Gain"
 msgstr "Ganancia ambiental"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game ambient sound gain"
 msgstr "Ganancia dos sons ambientais do xogo."
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Action Gain"
 msgstr "Ganancia da acción"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game unit action sound gain"
 msgstr "Ganancia dos sons de acción das unidades no xogo."
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI Gain"
 msgstr "Ganancia da interface"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI sound gain"
 msgstr "Ganancia dos sons da interface."
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Chat Backlog"
 msgstr "Historial de conversas"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Número de mensaxes previas que cargar ao unirse á sala de espera para partidas de varios xogadores."
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Timestamp"
 msgstr "Hora das mensaxes"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Mostrar a hora das mensaxes que se envían e reciben no panel de conversa da sala de espera para partidas de varios xogadores."
 
@@ -954,53 +962,64 @@ msgstr "Manual"
 msgid "No saved games found"
 msgstr "Non se atoparon partidas gardadas."
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:51
 msgid "This saved game may not be compatible:"
 msgstr "Pode que a partida non sexa compatíbel:"
 
-#: gui/savedgames/load.js:50
+#: gui/savedgames/load.js:56
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr "Precisa da versión %(requiredVersion)s de 0 A.D. A versión que está a executar é a %(currentVersion)s."
+msgstr "Require a versión %(requiredVersion)s de 0 A.D. A versión que está a executar é a %(currentVersion)s."
 
-#: gui/savedgames/load.js:60
+#: gui/savedgames/load.js:61
+msgid "It needs an older version of 0 A.D."
+msgstr "Require unha versión anterior de 0 A.D."
+
+#: gui/savedgames/load.js:65
+#, javascript-format
+msgid ""
+"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
+"savegame version %(currentVersion)s."
+msgstr "Require unha versión %(requiredVersion)s de partida de 0 A.D., pero a versión de partida que tes é a %(currentVersion)s."
+
+#: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "A partida non emprega ningunha modificación, mentres que o xogo está a usar «%(currentMod)s»."
 
-#: gui/savedgames/load.js:64
+#: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "A partida emprega a modificación «%(requiredMod)s»,  mentres que o xogo non está a usar ningunha."
 
-#: gui/savedgames/load.js:68
+#: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "A partida emprega a modificación «%(requiredMod)s»,  mentres que o xogo está a usar «%(currentMod)s»."
 
-#: gui/savedgames/load.js:73
+#: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
 msgstr "Estás seguro de que queres continuar?"
 
-#: gui/savedgames/load.js:74
+#: gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Advertencia"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "«%(label)s»"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "A partida non se poderá recuperar, estás seguro de que queres eliminala?"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "Eliminar"
 
@@ -1031,8 +1050,8 @@ msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s a %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
-#: gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:75 gui/summary/layout.js:102
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "Nome do xogador"
 
@@ -1052,7 +1071,7 @@ msgstr "Exploración"
 msgid "Total score"
 msgstr "Total"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:78
+#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
 msgid "Total"
 msgstr "Total"
 
@@ -1108,85 +1127,105 @@ msgstr "Campións"
 msgid "Navy"
 msgstr "Flota"
 
-#: gui/summary/layout.js:58
+#: gui/summary/layout.js:56
+msgid "Traders"
+msgstr "Comerciantes"
+
+#: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Estatísticas das unidades (adestradas / perdidas / asasinadas)"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:76
 msgid "Food"
 msgstr "comida"
 
-#: gui/summary/layout.js:75
+#: gui/summary/layout.js:77
 msgid "Wood"
 msgstr "madeira"
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:78
 msgid "Stone"
 msgstr "pedra"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:79
 msgid "Metal"
 msgstr "metal"
 
-#: gui/summary/layout.js:79
-msgid "Treasures collected"
-msgstr "Tesouros recollidos"
-
-#: gui/summary/layout.js:80
+#: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
 msgstr "Tributos (enviados/recibidos)"
 
+#: gui/summary/layout.js:82
+msgid "Treasures collected"
+msgstr "Tesouros recollidos"
+
 #: gui/summary/layout.js:83
+msgid "Loot"
+msgstr "Pillaxe"
+
+#: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Estatísticas dos recursos (recollido / empregado)"
 
-#: gui/summary/layout.js:99
+#: gui/summary/layout.js:103
 msgid "Food exchanged"
 msgstr "Comida intercambiada"
 
-#: gui/summary/layout.js:100
+#: gui/summary/layout.js:104
 msgid "Wood exchanged"
 msgstr "Madeira intercambiada"
 
-#: gui/summary/layout.js:101
+#: gui/summary/layout.js:105
 msgid "Stone exchanged"
 msgstr "Pedra intercambiada"
 
-#: gui/summary/layout.js:102
+#: gui/summary/layout.js:106
 msgid "Metal exchanged"
 msgstr "Metal intercambiado"
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:107
 msgid "Barter efficiency"
 msgstr "Eficiencia do comercio"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:108
 msgid "Trade income"
 msgstr "Ingresos por comercio"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:124
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "Proporción\nde vexetais"
 
-#: gui/summary/layout.js:121
-msgid "Feminisation"
-msgstr "Poboación feminina"
+#: gui/summary/layout.js:125
+msgid "Feminization"
+msgstr "Feminización"
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:126
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "Baixas\ninimigas / propias"
 
-#: gui/summary/layout.js:123
+#: gui/summary/layout.js:127
 msgid ""
 "Map\n"
 "exploration"
 msgstr "Exploración\ndo mapa"
 
-#: gui/summary/layout.js:258
+#: gui/summary/layout.js:128
+msgid "At peak"
+msgstr "Na cúspide"
+
+#: gui/summary/layout.js:129
+msgid "At finish"
+msgstr "Ao rematar"
+
+#: gui/summary/layout.js:132
+msgid "Map control"
+msgstr "Control do mapa"
+
+#: gui/summary/layout.js:274
 msgid "Team total"
 msgstr "Total do equipo"
 

@@ -11,15 +11,16 @@
 # Igor Kustov, 2014
 # Ivan, 2014
 # Konstantin, 2014
+# Peter Seregin <peter01@myself.com>, 2015
 # vadim s. sabinich <vadim@sabini.ch>, 2015
 # Woratiklis, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 09:28+0000\n"
-"Last-Translator: delpfine <delpfine2012@gmail.com>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
+"POT-Creation-Date: 2015-08-24 02:42+0200\n"
+"PO-Revision-Date: 2015-09-02 10:37+0000\n"
+"Last-Translator: Peter Seregin <peter01@myself.com>\n"
+"Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -46,7 +47,7 @@ msgstr "Стройте, чтобы получить больше участко�
 #: simulation/templates/template_structure_civic_civil_centre.xml:74
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
-msgstr "Городской Центр"
+msgstr "Ратуша"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -54,6 +55,7 @@ msgstr "Дом увеличивает предел населения."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
+#: simulation/templates/template_structure_defense_wooden_tower.xml:43
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -177,6 +179,11 @@ msgstr "Стреляет стрелами. Разместите гарнизон
 msgid "City Wall"
 msgstr "Городская стена"
 
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+msgid "Wooden Tower"
+msgstr "Деревянная башня"
+
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Хозяйственная постройка"
@@ -265,7 +272,7 @@ msgid "Dock"
 msgstr "Причал"
 
 #: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/template_structure_military_embassy.xml:28
+#: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
@@ -1215,7 +1222,7 @@ msgstr "Параспа"
 msgid "Stables"
 msgstr "Конюшни"
 
-#: simulation/templates/structures/pers_stables.xml:25
+#: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
 msgstr "Обучает горожан-конников."
 

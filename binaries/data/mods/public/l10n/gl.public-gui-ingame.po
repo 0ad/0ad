@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-07-23 05:55+0000\n"
+"POT-Creation-Date: 2015-08-24 02:40+0200\n"
+"PO-Revision-Date: 2015-08-24 08:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -453,10 +453,12 @@ msgstr "%(amount)s/%(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:185
+#: gui/session/selection_details.js:185 gui/session/unit_actions.js:323
+#: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
+#: gui/session/unit_actions.js:552
 #, javascript-format
-msgid "Gain: %(amount)s"
-msgstr "Ganancia: %(amount)s"
+msgid "Gain: %(gain)s"
+msgstr "Ganancia: %(gain)s"
 
 #: gui/session/selection_details.js:199
 #, javascript-format
@@ -749,12 +751,6 @@ msgstr "Modo de velocidade endiañada."
 msgid "Origin trade market."
 msgstr "Mercado de orixe."
 
-#: gui/session/unit_actions.js:323 gui/session/unit_actions.js:330
-#: gui/session/unit_actions.js:340 gui/session/unit_actions.js:552
-#, javascript-format
-msgid "Gain: %(gain)s"
-msgstr "Ganancia: %(gain)s"
-
 #: gui/session/unit_actions.js:327
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Preme co botón secundario para converter nun mercado de destino para o comercio."
@@ -785,7 +781,7 @@ msgstr "Preme co botón secundario para estabelecer unha ruta predeterminada par
 msgid "Expected gain: %(gain)s"
 msgstr "Ganancia esperada: %(gain)s"
 
-#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:916
 msgid "Unload All"
 msgstr "Baleirar"
 
@@ -798,39 +794,39 @@ msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Non podes destruír esta entidade porque posúes menos da metade dos puntos de captura."
 
-#: gui/session/unit_actions.js:733
+#: gui/session/unit_actions.js:736
 msgid "Stop"
 msgstr "Deter"
 
-#: gui/session/unit_actions.js:751
+#: gui/session/unit_actions.js:754
 msgid "Garrison"
 msgstr "Acuartelar"
 
-#: gui/session/unit_actions.js:772
+#: gui/session/unit_actions.js:775
 msgid "Unload"
 msgstr "Desaloxar"
 
-#: gui/session/unit_actions.js:788
+#: gui/session/unit_actions.js:791
 msgid "Repair"
 msgstr "Reparar"
 
-#: gui/session/unit_actions.js:805
+#: gui/session/unit_actions.js:808
 msgid "Focus on Rally Point"
 msgstr "Ver o punto de encontro"
 
-#: gui/session/unit_actions.js:828
+#: gui/session/unit_actions.js:831
 msgid "Back to Work"
 msgstr "Volver ao traballo"
 
-#: gui/session/unit_actions.js:844
+#: gui/session/unit_actions.js:847
 msgid "Guard"
 msgstr "Protexer"
 
-#: gui/session/unit_actions.js:861
+#: gui/session/unit_actions.js:864
 msgid "Remove guard"
 msgstr "Quitar a protección"
 
-#: gui/session/unit_actions.js:877
+#: gui/session/unit_actions.js:880
 msgid "Select trading goods"
 msgstr "Selecciona os bens de comercio."
 

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-08-20 17:50+0000\n"
+"POT-Creation-Date: 2015-08-24 02:41+0200\n"
+"PO-Revision-Date: 2015-08-24 10:44+0000\n"
 "Last-Translator: Mário Bulejko\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -584,13 +584,13 @@ msgid "<invalid>"
 msgstr "<neplatný>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Áno"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Nie"
@@ -680,8 +680,8 @@ msgid "Always show the remaining ceasefire time."
 msgstr "Vždy ukázať zostávajúci čas do ukončenia prímeria."
 
 #: gui/options/options.js:17
-msgid "Persist match settings"
-msgstr "Ponechať nastavenia zápasu"
+msgid "Persist Match Settings"
+msgstr ""
 
 #: gui/options/options.js:17
 msgid ""
@@ -812,59 +812,67 @@ msgstr "VSync"
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Spustiť vertikálnu synchronizáciu na zamedzenie trhania obrazovky. VYŽADUJE REŠTART HRY"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:36
+msgid "Limit FPS in Menus"
+msgstr "Obmedziť FPS v menu"
+
+#: gui/options/options.js:36
+msgid "Limit FPS to 50 in all menus, to save power."
+msgstr "Obmedziť FPS na 50 vo všetkých menu kvôli šetreniu energie."
+
+#: gui/options/options.js:40
 msgid "Master Gain"
 msgstr "Hlavné zosilnenie"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "Master audio gain"
 msgstr "Zosilnenie hlavných zvukov"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Music Gain"
 msgstr "Zosilnenie hudby"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "In game music gain"
 msgstr "Zosilnenie hudby počas hry"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Ambient Gain"
 msgstr "Zosilnenie atmosféry"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game ambient sound gain"
 msgstr "Zosilnenie atmosferických zvukov počas hry"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Action Gain"
 msgstr "Zosilnenie akcií"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game unit action sound gain"
 msgstr "Zosilnenie zvukov činností jednotiek počas hry"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI Gain"
 msgstr "Zosilnenie UI"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI sound gain"
 msgstr "Zosilnenie zvukov používateľského rozhrania"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Chat Backlog"
 msgstr "Spätné záznamy chatu"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Počet spätných správ ktorý sa majú načítať pri pripájaní sa do predsiene"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Timestamp"
 msgstr "Časová pečiatka rozhovoru"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Zobrazovať čas odoslania správ rozhovoru v predsieni"
 
@@ -964,53 +972,64 @@ msgstr "Manuál"
 msgid "No saved games found"
 msgstr "Nenájdené žiadne uložené hry"
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:51
 msgid "This saved game may not be compatible:"
 msgstr "Táto uložená hra nemusí byť kompatibilná:"
 
-#: gui/savedgames/load.js:50
+#: gui/savedgames/load.js:56
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Vyžaduje verziu hry %(requiredVersion)s, kým aktuálna verzia je %(currentVersion)s."
 
-#: gui/savedgames/load.js:60
+#: gui/savedgames/load.js:61
+msgid "It needs an older version of 0 A.D."
+msgstr "Je potrebná staršia verzia 0 A.D."
+
+#: gui/savedgames/load.js:65
+#, javascript-format
+msgid ""
+"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
+"savegame version %(currentVersion)s."
+msgstr "Je potrebná uložená hra 0 A.D. verzie %(requiredVersion)s, ale ty máš uloženú hru vo verzii  %(currentVersion)s."
+
+#: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "Nie je potrebná žiadna modifikácia, kým aktuálne spustené sú tieto: %(currentMod)s."
 
-#: gui/savedgames/load.js:64
+#: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "Vyžaduje modifikáciu „%(requiredMod)s“, zatiaľ čo nie je žiadna aktuálne spustená."
 
-#: gui/savedgames/load.js:68
+#: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "Vyžaduje modifikáciu „%(requiredMod)s“, kým aktuálne spustené sú tieto: %(currentMod)s."
 
-#: gui/savedgames/load.js:73
+#: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
 msgstr "Chcete aj tak pokračovať?"
 
-#: gui/savedgames/load.js:74
+#: gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Upozornenie"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "„%(label)s“"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Uložená hra bude zmazaná natrvalo. Naozaj chcete pokračovať?"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "VYMAZANIE"
 
@@ -1041,8 +1060,8 @@ msgid "%(val1)s to %(val2)s"
 msgstr ""
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
-#: gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:75 gui/summary/layout.js:102
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "Meno hráča"
 
@@ -1062,7 +1081,7 @@ msgstr "Objaviteľské body"
 msgid "Total score"
 msgstr "Celkové body"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:78
+#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
 msgid "Total"
 msgstr "Dokopy"
 
@@ -1118,85 +1137,105 @@ msgstr "Šampióni"
 msgid "Navy"
 msgstr "Námorníctvo"
 
-#: gui/summary/layout.js:58
+#: gui/summary/layout.js:56
+msgid "Traders"
+msgstr "Obchodníci"
+
+#: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Štatistiky jednotiek (vycvičené / stratené / zabité)"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:76
 msgid "Food"
 msgstr "Jedlo"
 
-#: gui/summary/layout.js:75
+#: gui/summary/layout.js:77
 msgid "Wood"
 msgstr "Drevo"
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:78
 msgid "Stone"
 msgstr "Kameň"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:79
 msgid "Metal"
 msgstr "Kov"
 
-#: gui/summary/layout.js:79
-msgid "Treasures collected"
-msgstr "Pozbierané poklady"
-
-#: gui/summary/layout.js:80
+#: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
 msgstr "Dary (odoslané / prijaté)"
 
+#: gui/summary/layout.js:82
+msgid "Treasures collected"
+msgstr "Pozbierané poklady"
+
 #: gui/summary/layout.js:83
+msgid "Loot"
+msgstr "Korisť"
+
+#: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Štatistiky surovín (vyťažené / použité)"
 
-#: gui/summary/layout.js:99
+#: gui/summary/layout.js:103
 msgid "Food exchanged"
 msgstr "Výmena jedla"
 
-#: gui/summary/layout.js:100
+#: gui/summary/layout.js:104
 msgid "Wood exchanged"
 msgstr "Výmena dreva"
 
-#: gui/summary/layout.js:101
+#: gui/summary/layout.js:105
 msgid "Stone exchanged"
 msgstr "Výmena kameňa"
 
-#: gui/summary/layout.js:102
+#: gui/summary/layout.js:106
 msgid "Metal exchanged"
 msgstr "Výmena kovu"
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:107
 msgid "Barter efficiency"
 msgstr "Efektívnosť výmeny"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:108
 msgid "Trade income"
 msgstr "Výnos z obchodovania"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:124
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "Pomer\nvegetariánov"
 
-#: gui/summary/layout.js:121
-msgid "Feminisation"
+#: gui/summary/layout.js:125
+msgid "Feminization"
 msgstr "Feminizácia"
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:126
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "Pomer\nzabití / strát"
 
-#: gui/summary/layout.js:123
+#: gui/summary/layout.js:127
 msgid ""
 "Map\n"
 "exploration"
 msgstr "Prieskum\nmapy"
 
-#: gui/summary/layout.js:258
+#: gui/summary/layout.js:128
+msgid "At peak"
+msgstr "Na vrchole"
+
+#: gui/summary/layout.js:129
+msgid "At finish"
+msgstr "Na konci"
+
+#: gui/summary/layout.js:132
+msgid "Map control"
+msgstr "Ovládanie mapy"
+
+#: gui/summary/layout.js:274
 msgid "Team total"
 msgstr "Tím dokopy"
 

@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
+# Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014-2015
 # Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-22 08:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-08-24 02:42+0200\n"
+"PO-Revision-Date: 2015-08-28 09:34+0000\n"
+"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,7 +165,7 @@ msgstr "Mindre græsk Polis"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "Dette er en mindre græsk by."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
@@ -173,7 +173,7 @@ msgstr "Græsk Polis"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "Dette er en stor græsk by."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -780,21 +780,13 @@ msgstr "Palisade Ende"
 msgid "Wooden Wall End"
 msgstr "Træmur Endestykke"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:33
+#: simulation/templates/other/palisades_rocks_fort.xml:5
 msgid "Palisade Fort"
 msgstr "Palisade Fort"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:34
+#: simulation/templates/other/palisades_rocks_fort.xml:6
 msgid "Wooden Tower"
 msgstr "Trætårn"
-
-#: simulation/templates/other/palisades_rocks_fort.xml:38
-msgid "Village"
-msgstr "Landsby"
-
-#: simulation/templates/other/palisades_rocks_fort.xml:38
-msgid "DefenseTower"
-msgstr "Forsvarstårn"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"
@@ -994,7 +986,7 @@ msgstr "Ballist"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
-msgstr ""
+msgstr "Polybolos"
 
 #: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:23
 msgid "Scorpio"

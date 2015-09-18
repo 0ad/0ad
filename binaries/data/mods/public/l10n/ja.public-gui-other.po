@@ -6,12 +6,13 @@
 # Kanetaka Suto, 2014-2015
 # llen_llen, 2014
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
+# Werkt <werkt3639@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-08-10 13:44+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"POT-Creation-Date: 2015-08-24 02:41+0200\n"
+"PO-Revision-Date: 2015-09-14 08:10+0000\n"
+"Last-Translator: Werkt <werkt3639@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +72,7 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)s倍)"
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/common/functions_global_object.js:119
 #, javascript-format
@@ -571,13 +572,13 @@ msgid "<invalid>"
 msgstr "<無効>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "はい"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "いいえ"
@@ -667,7 +668,7 @@ msgid "Always show the remaining ceasefire time."
 msgstr "停戦の残り時間を常に表示します。"
 
 #: gui/options/options.js:17
-msgid "Persist match settings"
+msgid "Persist Match Settings"
 msgstr "対戦設定の保持"
 
 #: gui/options/options.js:17
@@ -799,59 +800,67 @@ msgstr "VSync"
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "垂直同期を実行して画面の乱れを修正します。ゲームの再起動が必要です。"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:36
+msgid "Limit FPS in Menus"
+msgstr "メニューでフレームレートを制限"
+
+#: gui/options/options.js:36
+msgid "Limit FPS to 50 in all menus, to save power."
+msgstr "すべてのメニューで毎秒50フレームに制限して、節電します。"
+
+#: gui/options/options.js:40
 msgid "Master Gain"
 msgstr "全体音量"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "Master audio gain"
 msgstr "音楽音量"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Music Gain"
 msgstr "音楽の音量"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "In game music gain"
 msgstr "ゲーム内の音楽の音量"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Ambient Gain"
 msgstr "環境音量"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game ambient sound gain"
 msgstr "ゲーム内の環境音の音量"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Action Gain"
 msgstr "アクション音量"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game unit action sound gain"
 msgstr "ゲーム内のユニットのアクションの音量"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI Gain"
 msgstr "UI音量"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI sound gain"
 msgstr "UIの音量"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Chat Backlog"
 msgstr "チャット過去ログ"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "ロビーに入った時に表示する過去のメッセージ数"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Timestamp"
 msgstr "発言時刻"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "ロビーチャットに投稿されたメッセージの時刻を表示する"
 
@@ -951,53 +960,64 @@ msgstr "マニュアル"
 msgid "No saved games found"
 msgstr "保存したゲームがありません"
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:51
 msgid "This saved game may not be compatible:"
 msgstr "この保存したゲームは互換性がない恐れがあります："
 
-#: gui/savedgames/load.js:50
+#: gui/savedgames/load.js:56
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "0 A.D. version %(requiredVersion)sが必要ですが、version %(currentVersion)sを使用しています。"
 
-#: gui/savedgames/load.js:60
+#: gui/savedgames/load.js:61
+msgid "It needs an older version of 0 A.D."
+msgstr "以前のバージョンの0 A.D.が必要です。"
+
+#: gui/savedgames/load.js:65
+#, javascript-format
+msgid ""
+"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
+"savegame version %(currentVersion)s."
+msgstr "0 A.D.セーブゲームのバージョン%(requiredVersion)sが必要ですが、このセーブゲームはバージョン%(currentVersion)sです。"
+
+#: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "MODは何も必要ありませんが、「%(currentMod)s」MODを使用しています。"
 
-#: gui/savedgames/load.js:64
+#: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "「%(requiredMod)s」MODが必要ですが、MODがありません。"
 
-#: gui/savedgames/load.js:68
+#: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "「%(requiredMod)s」MODが必要ですが、「%(currentMod)s」MODを使用しています。"
 
-#: gui/savedgames/load.js:73
+#: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
 msgstr "このまま続けますか？"
 
-#: gui/savedgames/load.js:74
+#: gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "警告"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "既存のゲームが消去されます。よろしいですか？"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "消去"
 
@@ -1028,8 +1048,8 @@ msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s から %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
-#: gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:75 gui/summary/layout.js:102
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "プレイヤー名"
 
@@ -1049,7 +1069,7 @@ msgstr "探索得点"
 msgid "Total score"
 msgstr "総合得点"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:78
+#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
 msgid "Total"
 msgstr "合計"
 
@@ -1105,85 +1125,105 @@ msgstr "チャンピオン"
 msgid "Navy"
 msgstr "海軍"
 
-#: gui/summary/layout.js:58
+#: gui/summary/layout.js:56
+msgid "Traders"
+msgstr "商人"
+
+#: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "ユニットの数（養成 / 損耗 / 殺害）"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:76
 msgid "Food"
 msgstr "食料"
 
-#: gui/summary/layout.js:75
+#: gui/summary/layout.js:77
 msgid "Wood"
 msgstr "木材"
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:78
 msgid "Stone"
 msgstr "石材"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:79
 msgid "Metal"
 msgstr "金属"
 
-#: gui/summary/layout.js:79
-msgid "Treasures collected"
-msgstr "集めた財宝の数"
-
-#: gui/summary/layout.js:80
+#: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
 msgstr "納めた / 受け取った貢ぎ物"
 
+#: gui/summary/layout.js:82
+msgid "Treasures collected"
+msgstr "集めた財宝の数"
+
 #: gui/summary/layout.js:83
+msgid "Loot"
+msgstr "略奪"
+
+#: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "資源内訳（採集 / 消費）"
 
-#: gui/summary/layout.js:99
+#: gui/summary/layout.js:103
 msgid "Food exchanged"
 msgstr "食料取引"
 
-#: gui/summary/layout.js:100
+#: gui/summary/layout.js:104
 msgid "Wood exchanged"
 msgstr "木材取引"
 
-#: gui/summary/layout.js:101
+#: gui/summary/layout.js:105
 msgid "Stone exchanged"
 msgstr "石材取引"
 
-#: gui/summary/layout.js:102
+#: gui/summary/layout.js:106
 msgid "Metal exchanged"
 msgstr "金属取引"
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:107
 msgid "Barter efficiency"
 msgstr "取引効率"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:108
 msgid "Trade income"
 msgstr "交易収入"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:124
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "ベジタリアン度"
 
-#: gui/summary/layout.js:121
-msgid "Feminisation"
+#: gui/summary/layout.js:125
+msgid "Feminization"
 msgstr "女性比率"
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:126
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "殺害/死亡\n比率"
 
-#: gui/summary/layout.js:123
+#: gui/summary/layout.js:127
 msgid ""
 "Map\n"
 "exploration"
 msgstr "マップ探索率"
 
-#: gui/summary/layout.js:258
+#: gui/summary/layout.js:128
+msgid "At peak"
+msgstr "最大"
+
+#: gui/summary/layout.js:129
+msgid "At finish"
+msgstr "終了"
+
+#: gui/summary/layout.js:132
+msgid "Map control"
+msgstr "マップ支配"
+
+#: gui/summary/layout.js:274
 msgid "Team total"
 msgstr "チーム合計"
 

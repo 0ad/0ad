@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Max, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Petri, 2014
 # Riku Viitanen <riisseli4@gmail.com>, 2015
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-22 09:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-09-10 19:44+0000\n"
+"Last-Translator: Max\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,14 +45,14 @@ msgstr "Teen viimeisiä juuri viimeisi valmisteluja, ja hyökkään sitten pelaa
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "En voi auttaa sinua %(_player_)s  tällä hetkellä, koska minulla on ennalta toinen hyökkäys %(_player_2)s vastaan."
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Olen pahoillani, minulla ei ole tarpeeksi sotilaita tällä hetkellä, mutta seuraava hyökkäykseni tulee kohdistumaan %(_player_)s vastaan."
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
@@ -125,19 +126,19 @@ msgstr "Nyt, aseta kaupunkikeskuksesi kokoontumispiste marjoihin."
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr ""
+msgstr "Lisää jonoon joitain linkomiehiä kouluttautumaan naispuolisten kansalaisten jälkeen, sinulla ei tule olemaan tarpeeksi resursseja tuotantomäärään."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr ""
+msgstr "Kun naispuoliset kansalaisesi ovat valmistuneet koullutuksesta, käytä 4 rakentaaksesi talon lähelle."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr ""
+msgstr "Aseta CC:n kokoontumispiste läheisille puille, lisää jonoon enemmän linkomiehiä, haluat kouluttaa 6 tällä hetkellä."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
@@ -145,13 +146,13 @@ msgstr "Laita jonoon viiden naisen joukko."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr ""
+msgstr "Käytä shift-klikkausta lisätäksesi jonoon toisen talon 4:lle rakentajalle."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr ""
+msgstr "Aseta kokoontumispiste takaisin marjojen kohdalle kunhan kaikki kansalaissotilaasi ovat valmistuneet koulutuksesta."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
@@ -162,21 +163,21 @@ msgstr "Lähetä yksi kansalaissotilaista keräämään kiveä, lähetä kaksi m
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
 msgid "Queue another 5 female citizens."
-msgstr ""
+msgstr "Lisää jonoon toinen 5:n naiskansalaisen joukko."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
-msgstr ""
+msgstr "Käytä naiskansalaista rakentaaksesi pellon CC:n viereen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
 "Your cavalryman has probably run out of chickens by now, there are some "
 "goats to the left of your base."
-msgstr ""
+msgstr "Ratsumiehesi on luultavasti käyttänyt loppuun kanat tähän mennessä, vasemmalla tukikohdastasi on muutamia vuohia."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
-msgstr ""
+msgstr "Käytä 2-3 naispuolista kansalaista lisää rakentaaksesi pellon."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:83
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:128
@@ -184,17 +185,17 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:163
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:188
 msgid "Queue another house."
-msgstr ""
+msgstr "Lisää jonoon toinen talo."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:88
 msgid ""
 "The berry bushes are getting crowded, send some female citizens to work the "
 "field, set the rally point there."
-msgstr ""
+msgstr "Marjapensaat ovat väentungoksessa, lähetä joitain naiskansalaisia työskentelemään pelloilla, laita kokoontumispiste sinne."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
-msgstr ""
+msgstr "Lisää toiset 5 naiskansalaista, heidän pitäisi kerätä kiveä."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:98
 msgid ""
@@ -206,11 +207,11 @@ msgstr "Siirrä puunhakkaajasi metsään lähelle varastorakennusta, jottei niid
 msgid ""
 "Make sure the workers from the berry bushes are used to gather from the "
 "field rather than standing idle when they run out."
-msgstr ""
+msgstr "Varmista, että työntekijöitä marjapensailta on käytettynä keräämään viljaa pellolta mieluummin kuin tekemättä mitään, kun marjat loppuvat."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
-msgstr ""
+msgstr "Lisää jonoon toinen talo rakentuakseen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
@@ -220,13 +221,13 @@ msgstr "Laita jonoon 5 lisää naista. Nämä tulevat keräämään puuta"
 msgid ""
 "Build another field, this decreases the amount of walking for your female "
 "citizens."
-msgstr ""
+msgstr "Rakenna toinen pelto, tämä laskee kävelyn määrää naiskansalaisiltasi."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:123
 msgid ""
 "Train some more slingers, send them to gather stone. Train about 5, you may "
 "not have enough resources for a batch right now."
-msgstr ""
+msgstr "Harjoita lisää muutamia linkomiehiä, lähetä heidät keräämään kiveä. Harjoita noin 5, sinulla ei välttämättä ole resursseja joukkoon nyt."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
@@ -242,33 +243,33 @@ msgstr "Tutki kivenhakkuuteknologia varastossa."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:153
 msgid "Queue a batch of slingers."
-msgstr ""
+msgstr "Lisää jonoon joukko linkomiehiä."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:158
 msgid ""
 "Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
 " initially but later in the game it is best to maximize efficiency as you "
 "are able to train more citizen soldiers."
-msgstr ""
+msgstr "Liikuta 3 naista puiden- ja kivenkeräyksestä maanviljelykseen. Naiset ovat halpoja kouluttaakseen aluksi, mutta myöhemmin pelissä on parasta käyttää kansalaissotilaita maksimoidakseen tehokkuutta, kun voit kouluttaa lisää heitä."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
 "The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr ""
+msgstr "Linkomiehet, jotka lisäsit jonoon ennen pitäisi kerätä kiveä jahka heidät on koulutettu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
-msgstr ""
+msgstr "Lisää jonoon joukko keihäsmiehiä, heidän pitäisi kerätä puuta."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:178
 msgid "Next queue a batch of slingers."
-msgstr ""
+msgstr "Seuraavaksi lisää jonoon joukko linkomiehiä."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:183
 msgid ""
 "Send some of the stone miners to mine metal, getting ready for the next age."
-msgstr ""
+msgstr "Lähetä joitain kivenhakkaajia louhiakseen metallia, valmistuakseen seuraavaan aikakauteen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:193
 msgid "Start researching Phase 2."
@@ -276,14 +277,14 @@ msgstr "Aloita vaiheen 2 tutkiminen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:198
 msgid "Queue some slingers."
-msgstr ""
+msgstr "Lisää jonoon jonkin verran linkomiehiä"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:203
 msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
-msgstr ""
+msgstr "Kun sinä olet kehittynyt, käytä yhtä kansalaissotilasta asettamaan kasarmin perustukset. Sitten käytä loppuja ei-ruoka tai talorakennus naiskansalaisia rakentamaan se."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
@@ -293,25 +294,25 @@ msgstr "Laita jonoon 5 lisää naista rakennustyöhön."
 msgid ""
 "Queue a batch of slingers to gather the trees on the north side of your "
 "base."
-msgstr ""
+msgstr "Lisää jonoon joukko linkomiehiä kerätäksesi puuta pohjoispuolella tukikohdastasi."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:218
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of how "
 "to build up a nice economy rapidly."
-msgstr ""
+msgstr "Tämä on läpipeluuohjeenloppu. Tämän pitäisi antaa sinulle hyvän idean miten rakentaa hyvä ekonomia nopeasti."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:223
 msgid ""
 "At this point you should be able to fully use both training facilities, keep"
 " putting units into economic work, to keep growing faster and faster."
-msgstr ""
+msgstr "Tällä hetkellä sinun pitäisi pystyä käyttämään kokonaan molempia koulutuslaitoksia, jatka yksiköiden laittamista taloudelliseen työhön pitääksesi kasvamisen nopeampana ja nopeampana."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:228
 msgid ""
 "From this point you have a good base to build an army and wipe out the "
 "opposition."
-msgstr ""
+msgstr "Tästä lähtien sinulla on hyvä tukikohta rakentaaksesi armeijan ja pyyhkiäksesi vastustajasi."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
@@ -321,13 +322,13 @@ msgstr "Pääasiat, jotka sinun pitäisi muistaa, ovat:"
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
-msgstr ""
+msgstr "- Älä pidä yhtään toimettomia yksikköjä. Shift klikkaa lisätäksesi jonoon ja kokoontumispisteet ovat todella hyödyllisiä."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
 " - Use all of your resources, stockpiled resources are waste, having too "
 "much of a resource is waste."
-msgstr ""
+msgstr "- Käytä kaikkia resursseja, varastoidut resurssit ovat haaskauta ja liian resurssin omistaminen on tuhlausta."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:248
 msgid ""
@@ -351,7 +352,7 @@ msgstr ""
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
-msgstr ""
+msgstr "- Naiskansalaiset ovat halpoja, joten voit rakentaa lisää niitä ja kerätä resursseja."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
@@ -448,7 +449,7 @@ msgstr ""
 msgid ""
 "Start building 5 female citizens in the Civil Center and set its rally point"
 " to the farm (right click on it)."
-msgstr ""
+msgstr "Aloita rakentamalla 5 naiskansalaista kansalaiskeskuksessa ja aseta kokoontumipiste maatilalle (paina oikeaa hiirennäppäintä kohteen päällä)."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:74
 msgid ""
@@ -470,7 +471,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Vihollinen on tulossa. Rakenna lisää sotilaita taistellaksei vihollisen pois"
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:99
 msgid ""
@@ -488,7 +489,7 @@ msgstr ""
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr ""
+msgstr "Nyt kun olet kaupunkivaiheessa, rakenna linnoitus lähelle ja käytä sitä rakentaaksesi 2 muurinmurtajaa."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
@@ -505,7 +506,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr ""
+msgstr "VIhollinen on lyöty. Kaikki tutoriaalitehtävät on nyt suoritettu loppuun..."
 
 #: simulation/components/BuildRestrictions.js:85
 #, javascript-format
@@ -525,7 +526,7 @@ msgstr "Rakennusta %(name)s ei voi rakentaa toisen rakennuksen tai resurssin pä
 #: simulation/components/BuildRestrictions.js:158
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr ""
+msgstr "%(name)s ei voi rakentaa epäkelpoon maastoon"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -560,12 +561,12 @@ msgstr "vihollinen"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr ""
+msgstr "%(name)s ei voida rakentaa %(territoryType)s alueelle. Sopimattomat alueet: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:236
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr ""
+msgstr "%(name)s pitää olla rakennettuna kelpaavaan rantalinjaan"
 
 #: simulation/components/BuildRestrictions.js:260
 #, javascript-format
@@ -578,7 +579,7 @@ msgstr "%(name)s on liian lähellä toista tyypin %(category)s rakennusta, pitä
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr ""
+msgstr "%(name)s  liian kaukana %(category)s, pitää olla tämän kantaman sisällä %(distance)s metriä"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -611,7 +612,7 @@ msgstr "vihollinen"
 #: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "Voit hyökätä %(time)s"
 
 #: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
@@ -620,17 +621,17 @@ msgstr "Voit hyökätä nyt!"
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr ""
+msgstr "%(limit)s rakennuskatto on saavutettu %(category)s "
 
 #: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr ""
+msgstr "%(limit)s koulutuskatto on saavutettu %(category)s "
 
 #: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr ""
+msgstr "%(limit)s katto on saavutettu %(category)s"
 
 #: simulation/components/Player.js:43
 msgid "Food"
@@ -810,10 +811,10 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
-msgstr ""
+msgstr "Tutoriaalitekoäly"
 
 #: simulation/ai/tutorial-ai/data.jsondescription
 msgid ""
 "The Tutorial AI should only be used on the \"Introductory Tutorial\" "
 "scenario."
-msgstr ""
+msgstr "Tutoriaalitekoälyä pitäisi ainoastaan käyttää \"Aloitustutoriaali\" skenaariossa."

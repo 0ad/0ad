@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-07-27 19:43+0000\n"
+"POT-Creation-Date: 2015-08-24 02:40+0200\n"
+"PO-Revision-Date: 2015-08-24 08:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -472,10 +472,12 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:185
+#: gui/session/selection_details.js:185 gui/session/unit_actions.js:323
+#: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
+#: gui/session/unit_actions.js:552
 #, javascript-format
-msgid "Gain: %(amount)s"
-msgstr "Підсилення: %(amount)s"
+msgid "Gain: %(gain)s"
+msgstr "Приріст: %(gain)s"
 
 #: gui/session/selection_details.js:199
 #, javascript-format
@@ -770,12 +772,6 @@ msgstr "Режим викривлення часу"
 msgid "Origin trade market."
 msgstr "Початковий торговий ринок."
 
-#: gui/session/unit_actions.js:323 gui/session/unit_actions.js:330
-#: gui/session/unit_actions.js:340 gui/session/unit_actions.js:552
-#, javascript-format
-msgid "Gain: %(gain)s"
-msgstr "Приріст: %(gain)s"
-
 #: gui/session/unit_actions.js:327
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Натисніть ПКМ на іншому ринку щоб вибрати цільовий ринок."
@@ -806,7 +802,7 @@ msgstr "Натисніть ПКМ щоб встановити маршрут з�
 msgid "Expected gain: %(gain)s"
 msgstr "Очікуваний приріст: %(gain)s"
 
-#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:916
 msgid "Unload All"
 msgstr "Вивантажити всіх"
 
@@ -819,39 +815,39 @@ msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr ""
 
-#: gui/session/unit_actions.js:733
+#: gui/session/unit_actions.js:736
 msgid "Stop"
 msgstr "Зупинити"
 
-#: gui/session/unit_actions.js:751
+#: gui/session/unit_actions.js:754
 msgid "Garrison"
 msgstr "Гарнізон"
 
-#: gui/session/unit_actions.js:772
+#: gui/session/unit_actions.js:775
 msgid "Unload"
 msgstr "Вивантажити"
 
-#: gui/session/unit_actions.js:788
+#: gui/session/unit_actions.js:791
 msgid "Repair"
 msgstr "Відремонтувати"
 
-#: gui/session/unit_actions.js:805
+#: gui/session/unit_actions.js:808
 msgid "Focus on Rally Point"
 msgstr "Встановити точку збору"
 
-#: gui/session/unit_actions.js:828
+#: gui/session/unit_actions.js:831
 msgid "Back to Work"
 msgstr "Назад до роботи"
 
-#: gui/session/unit_actions.js:844
+#: gui/session/unit_actions.js:847
 msgid "Guard"
 msgstr "Вартівник"
 
-#: gui/session/unit_actions.js:861
+#: gui/session/unit_actions.js:864
 msgid "Remove guard"
 msgstr "Прибрати охорону"
 
-#: gui/session/unit_actions.js:877
+#: gui/session/unit_actions.js:880
 msgid "Select trading goods"
 msgstr "Вибрати товари"
 

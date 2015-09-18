@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-07-13 17:02+0000\n"
+"PO-Revision-Date: 2015-08-28 19:36+0000\n"
 "Last-Translator: Chris_Kay_083\n"
-"Language-Team: Croatian (http://www.transifex.com/p/0ad/language/hr/)\n"
+"Language-Team: Croatian (http://www.transifex.com/wildfire-games/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,7 +35,7 @@ msgstr "[font=\"sans-bold-18\"] 0 A.D. uputstva untar igre"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -56,7 +56,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"] Možete  se prebacivati između punog i prozorskog prikaza pritiskom Alt + Enter. U prozorskom prikazu, možete promijeniti veličinu  prozora. Ako je igra prespora, možete promijeniti neke od postavki u konfiguracijskoj datoteci: potražite binaries/data/config/default.cfg na lokaciji gdje je igra instalirana, tu se nalaze upute za uređivanje, i pokušajte onesposobiti opcije \"fancywater\" i \"shadows\" "
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -113,7 +113,7 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — igraj sandbox igru ili protiv jednog ili više AI protivnika. Umjetna inteligencija je u razvoju i postoji mogućnost da nije kompletno ažurirana, ali možete testirati igrajući igru protiv pravog protivnika ako niste u mogućnosti igrati protiv drugih."
 
 #: gui/manual/intro.txt:24
 msgid ""
@@ -262,7 +262,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
-msgstr ""
+msgstr "Enter/return: otvori/pošalji chat"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
@@ -270,7 +270,7 @@ msgstr "T: pošaljite chat timu"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pauza: Pauziraj / nastavi igru"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
@@ -420,31 +420,31 @@ msgstr ""
 
 #: gui/manual/intro.txt:95
 msgid "S or \\[down]: Pan screen down"
-msgstr ""
+msgstr "S ili [dolje]: usmjeri zaslon prema dolje"
 
 #: gui/manual/intro.txt:96
 msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgstr "A ili [lijevo] usmjeri zaslon  ulijevo"
 
 #: gui/manual/intro.txt:97
 msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgstr "D ili [desno]: usmjeri zaslon udesno"
 
 #: gui/manual/intro.txt:98
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W ili [gore]: Rotiraj kameru  prema gore"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S ili [dolje] Rotiraj kamera prema dolje"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A ili [lijevo] Rotiraj kameru u smjeru kazaljke na satu oko terena."
 
 #: gui/manual/intro.txt:101
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D ili [desno]: Rotiraj kameru u smjeru  suprotnom od kazaljke na satu oko terena."
 
 #: gui/manual/intro.txt:102
 msgid "Q: Rotate camera clockwise around terrain"
@@ -456,22 +456,22 @@ msgstr "E:Rotiraj kameru u smjeru suprotnom od  kazaljke na satu oko terena."
 
 #: gui/manual/intro.txt:104
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + kotačić miša prema gore: Rotiraj kameru u smjeru suprotnom od kazaljke na satu oko terena."
 
 #: gui/manual/intro.txt:105
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Shift + kotačić miša prema dolje: Rotiraj kameru u smjeru kazaljke na satu oko terena."
 
 #: gui/manual/intro.txt:106
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr ""
+msgstr "F: Slijedi odabranu jedinicu ( pomakni kameru kako bi kamera prestala pratiti jedinicu/ce)"
 
 #: gui/manual/intro.txt:107
 msgid "R: Reset camera zoom/orientation"
-msgstr ""
+msgstr "R: Resetiraj kamerin zoom/usmjerenje"
 
 #: gui/manual/intro.txt:108
 msgid "+: Zoom in (keep pressed for continuous zoom)"
