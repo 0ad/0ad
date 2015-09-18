@@ -42,7 +42,10 @@
 					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 22% 100%">
 						<translatableAttribute id="caption">Player Name</translatableAttribute>
 					</object>
-					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="22%+5 0 50%+35 100%">
+					<object name="playerColorHeading" type="text" style="ModernLabelText" size="22%+5 0 22%+40 100%">
+						<translatableAttribute id="caption">Color</translatableAttribute>
+					</object>
+					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="22%+45 0 50%+35 100%">
 						<translatableAttribute id="caption">Player Placement</translatableAttribute>
 					</object>
 					<object name="playerCivHeading" type="text" style="ModernLabelText" size="50%+65 0 85%-26 100%">
@@ -69,7 +72,10 @@
 						<object name="playerBox[n]" size="0 0 100% 32" hidden="true">
 							<object name="playerColor[n]" type="image" size="0 0 100% 100%"/>
 							<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 22% 30"/>
-							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="22%+5 2 50%+35 30" tooltip_style="onscreenToolTip">
+							<object name="playerColorPicker[n]" type="dropdown" style="ModernDropDown" size="22%+5 2 22%+33 30" sprite="" scrollbar="false" button_width="22" font="sans-stroke-14" tooltip_style="onscreenToolTip">
+								<translatableAttribute id="tooltip">Pick a color.</translatableAttribute>
+							</object>
+							<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="22%+37 2 50%+35 30" tooltip_style="onscreenToolTip">
 								<translatableAttribute id="tooltip">Select player.</translatableAttribute>
 							</object>
 							<object name="playerAssignmentText[n]" type="text" style="ModernLabelText" size="22%+5 0 50%+35 30"/>

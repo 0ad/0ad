@@ -10,6 +10,9 @@ const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.Popula
 const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
 const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryConditions : undefined);
 
+// All colors except gaia
+const g_PlayerColors = initPlayerDefaults().slice(1).map(pData => pData.Color);
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Is this is a networked game, or offline
@@ -365,6 +368,13 @@ function initMain()
 
 			updateGameAttributes();
 		};
+
+		// Populate color drop-down lists.
+		var colorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
+		colorPicker.list = g_PlayerColors.map(color => '[color="' + color.r + ' ' + color.g + ' ' + color.b + '"] ■[/color]');
+		colorPicker.list_data = g_PlayerColors.map((color, index) => index);
+		colorPicker.selected = -1;
+		colorPicker.onSelectionChange = function() { selectPlayerColor(playerSlot, this.selected); };
 
 		// Set events
 		var civ = Engine.GetGUIObjectByName("playerCiv["+i+"]");
@@ -877,6 +887,41 @@ function selectNumPlayers(num)
 	updateGameAttributes();
 }
 
+/**
+ *  Assigns the given color to that player.
+ */
+function selectPlayerColor(playerSlot, colorIndex)
+{
+	if (colorIndex == -1)
+		return;
+
+	var playerData = g_GameAttributes.settings.PlayerData;
+
+	// If someone else has that color, give that player the old color
+	var pData = playerData.find(pData => sameColor(g_PlayerColors[colorIndex], pData.Color));
+	if (pData)
+		pData.Color = playerData[playerSlot].Color;
+
+	// Assign the new color
+	playerData[playerSlot].Color = g_PlayerColors[colorIndex];
+
+	// Ensure colors are not used twice after increasing the number of players
+	ensureUniquePlayerColors(playerData);
+
+	if (!g_IsInGuiUpdate)
+		updateGameAttributes();
+}
+
+function ensureUniquePlayerColors(playerData)
+{
+	for (let i = playerData.length - 1; i >= 0; --i)
+	{
+		// If someone else has that color, assign an unused color
+		if (playerData.some((pData, j) => i != j && sameColor(playerData[i].Color, pData.Color)))
+			playerData[i].Color = g_PlayerColors.find(color => playerData.every(pData => !sameColor(color, pData.Color)));
+	}
+}
+
 // Called when the user selects a map type from the list
 function selectMapType(type)
 {
@@ -983,16 +1028,35 @@ function selectMap(name)
 		g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[victoryIdx];
 	}
 
+	// Sanitize player data
+	if (mapSettings.PlayerData)
+	{
+		// Ignore gaia
+		if (mapSettings.PlayerData.length && !mapSettings.PlayerData[0])
+			mapSettings.PlayerData.shift();
+
+		// Set default color if no color present
+		mapSettings.PlayerData.forEach((pData, index) => {
+			if (pData && !pData.Color)
+				pData.Color = g_PlayerColors[index];
+		});
+
+		// Replace colors with the best matching color of PlayerDefaults
+		mapSettings.PlayerData.forEach((pData, index) => {
+			let colorDistances = g_PlayerColors.map(color => colorDistance(color, pData.Color));
+			let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
+			pData.Color = g_PlayerColors.find(color => colorDistance(color, pData.Color) == smallestDistance);
+		});
+		
+		ensureUniquePlayerColors(mapSettings.PlayerData);
+	}
+
 	// Copy any new settings
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
 	if (g_GameAttributes.map !== "random")
 		for (var prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
-
-	// Ignore gaia
-	if (g_GameAttributes.settings.PlayerData.length && !g_GameAttributes.settings.PlayerData[0])
-		g_GameAttributes.settings.PlayerData.shift();
 
 	// Use default AI if the map doesn't specify any explicitly
 	for (var i = 0; i < g_GameAttributes.settings.PlayerData.length; ++i)
@@ -1417,8 +1481,8 @@ function onGameAttributesChange()
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[i] : {};
 
 		// Common to all game types
-		var color = rgbToGuiColor(getSetting(pData, pDefs, "Color"));
-		pColor.sprite = "color:" + color + " 100";
+		var color = getSetting(pData, pDefs, "Color");
+		pColor.sprite = "color:" + rgbToGuiColor(color) + " 100";
 		pName.caption = translate(getSetting(pData, pDefs, "Name"));
 
 		var team = getSetting(pData, pDefs, "Team");
@@ -1457,6 +1521,15 @@ function onGameAttributesChange()
 			pCiv.selected = (civ ? pCiv.list_data.indexOf(civ) : 0);
 			pTeam.selected = (team !== undefined && team >= 0) ? team+1 : 0;
 		}
+
+		// Allow host to chose player colors on non-scenario maps
+		const pColorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
+		const pColorPickerHeading = Engine.GetGUIObjectByName("playerColorHeading");
+		const canChangeColors = g_IsController && g_GameAttributes.mapType != "scenario";
+		pColorPicker.hidden = !canChangeColors;
+		pColorPickerHeading.hidden = !canChangeColors;
+		if (canChangeColors)
+			pColorPicker.selected = g_PlayerColors.findIndex(col => sameColor(col, color));
 	}
 
 	Engine.GetGUIObjectByName("mapInfoDescription").caption = playerString;

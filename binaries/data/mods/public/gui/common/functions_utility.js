@@ -146,6 +146,20 @@ function rgbToGuiColor(color, alpha)
 	return ret;
 }
 
+function sameColor(color1, color2)
+{
+    return color1.r === color2.r && color1.g === color2.g && color1.b === color2.b;
+}
+
+/**
+ * Computes the euclidian distance between the two colors.
+ * The smaller the return value, the close the colors. Zero if identical.
+ */
+function colorDistance(color1, color2)
+{
+	return Math.sqrt(Math.pow(color2.r - color1.r, 2) + Math.pow(color2.g - color1.g, 2) + Math.pow(color2.b - color1.b, 2));
+}
+
 // ====================================================================
 
 /**
