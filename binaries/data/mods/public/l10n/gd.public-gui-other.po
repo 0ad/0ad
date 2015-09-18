@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-07-23 07:50+0000\n"
+"POT-Creation-Date: 2015-08-24 02:41+0200\n"
+"PO-Revision-Date: 2015-09-01 14:59+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -586,13 +586,13 @@ msgid "<invalid>"
 msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Tha"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Chan eil"
@@ -682,7 +682,7 @@ msgid "Always show the remaining ceasefire time."
 msgstr "Seall an ùine a tha air fhàgail air an fhois-losgaidh an-còmhnaidh."
 
 #: gui/options/options.js:17
-msgid "Persist match settings"
+msgid "Persist Match Settings"
 msgstr "Sàbhail roghainnean a’ mhaids"
 
 #: gui/options/options.js:17
@@ -814,59 +814,67 @@ msgstr "Sioncronachadh-V"
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Ruith sioncronachadh inghearach gus sracadh na sgrìn a chàradh. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:36
+msgid "Limit FPS in Menus"
+msgstr "Cuingich FPS sna clàran-taice"
+
+#: gui/options/options.js:36
+msgid "Limit FPS to 50 in all menus, to save power."
+msgstr "Cha dèid FPs thar 50 sna h-uile clàr-taice gus cumhachd a shàbhaladh."
+
+#: gui/options/options.js:40
 msgid "Master Gain"
 msgstr "Prìomh àirde"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "Master audio gain"
 msgstr "Prìomh àirde na fuaime"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Music Gain"
 msgstr "Àirde a' chiùil"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "In game music gain"
 msgstr "Àirde a' chiùil sa gheama"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Ambient Gain"
 msgstr "Àirde na h-àrainneachd"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game ambient sound gain"
 msgstr "Àirde aig fuaimean na h-àrainneachd sa gheama"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Action Gain"
 msgstr "Àirde na gnìomhachd"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game unit action sound gain"
 msgstr "Àirde aig fuaimean gnìomhachd nan aonadan sa gheama"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI Gain"
 msgstr "Àirde na h-eadar-aghaidh"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI sound gain"
 msgstr "Àirde aig fuaimean na h-eadar-aghaidh"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Chat Backlog"
 msgstr "Ro-loga na cabadaich"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "An àireamh de theachdaireachdan roimhe a thèid a luchdadh on loga nuair thig thu a-seach dhan lobaidh"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Timestamp"
 msgstr "Stampaichean-tìde na cabadaich"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Seall an t-àm a thèid teachdaireachd a phostadh gu cabadaich na lobaidh"
 
@@ -966,53 +974,64 @@ msgstr "Leabhar-mìneachaidh"
 msgid "No saved games found"
 msgstr "Cha deach geama air a shàbhaladh a lorg"
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:51
 msgid "This saved game may not be compatible:"
 msgstr "Dh'fhaoidte nach eil an geama air a shàbhaladh seo co-chòrdail:"
 
-#: gui/savedgames/load.js:50
+#: gui/savedgames/load.js:56
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Feumaidh e 0 A.D. tionndadh %(requiredVersion)s fhad 's a tha thu a' ruith an tionndadh %(currentVersion)s."
 
-#: gui/savedgames/load.js:60
+#: gui/savedgames/load.js:61
+msgid "It needs an older version of 0 A.D."
+msgstr "Tha e feumach air seann-tionndadh de 0 A.D."
+
+#: gui/savedgames/load.js:65
+#, javascript-format
+msgid ""
+"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
+"savegame version %(currentVersion)s."
+msgstr "Tha e feumach air faidhle sàbhalaidh 0 A.D. tionndadh %(requiredVersion)s fhad 's a tha tionndadh %(currentVersion)s agadsa."
+
+#: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "Chan eil e feumach air gin dhe na tuilleadain ach a tha thu 'ga ruith le \"%(currentMod)s\"."
 
-#: gui/savedgames/load.js:64
+#: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "Tha e feumach air an tuilleadan \"%(requiredMod)s\" ach chan eil thu a' ruith gin."
 
-#: gui/savedgames/load.js:68
+#: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "Tha e feumach air an tuilleadan \"%(requiredMod)s\" ach a tha thu 'ga ruith le \"%(currentMod)s\"."
 
-#: gui/savedgames/load.js:73
+#: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
 msgstr "A bheil thu airson leantainn air adhart co-dhiù?"
 
-#: gui/savedgames/load.js:74
+#: gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Rabhadh"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Thèid an geama air a shàbhaladh a sguabadh às gu buan, a bheil thu cinnteach?"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "SGUAB ÀS"
 
@@ -1043,8 +1062,8 @@ msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s gu %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
-#: gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:75 gui/summary/layout.js:102
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "Ainm a' chluicheadair"
 
@@ -1064,7 +1083,7 @@ msgstr "Sgòr an rùrachaidh"
 msgid "Total score"
 msgstr "An sgòr iomlan"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:78
+#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
 msgid "Total"
 msgstr "Gu h-iomlan"
 
@@ -1120,85 +1139,105 @@ msgstr "Làn-ghaisgeach"
 msgid "Navy"
 msgstr "An cabhlach"
 
-#: gui/summary/layout.js:58
+#: gui/summary/layout.js:56
+msgid "Traders"
+msgstr "Fir-mhalairt"
+
+#: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Stats nan aonad (air an trèanadh / call / marbhadh)"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:76
 msgid "Food"
 msgstr "Biadh"
 
-#: gui/summary/layout.js:75
+#: gui/summary/layout.js:77
 msgid "Wood"
 msgstr "Fiodh"
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:78
 msgid "Stone"
 msgstr "Clach"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:79
 msgid "Metal"
 msgstr "Meatailt"
 
-#: gui/summary/layout.js:79
-msgid "Treasures collected"
-msgstr "Ulaidhean air an togail"
-
-#: gui/summary/layout.js:80
+#: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
 msgstr "Cìsean (cur / fhaighinn)"
 
+#: gui/summary/layout.js:82
+msgid "Treasures collected"
+msgstr "Ulaidhean air an togail"
+
 #: gui/summary/layout.js:83
+msgid "Loot"
+msgstr "Spùinn"
+
+#: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Stats nan stòrasan (air an cruinneachadh / cleachdadh)"
 
-#: gui/summary/layout.js:99
+#: gui/summary/layout.js:103
 msgid "Food exchanged"
 msgstr "Biadh"
 
-#: gui/summary/layout.js:100
+#: gui/summary/layout.js:104
 msgid "Wood exchanged"
 msgstr "Fiodh"
 
-#: gui/summary/layout.js:101
+#: gui/summary/layout.js:105
 msgid "Stone exchanged"
 msgstr "Clachan"
 
-#: gui/summary/layout.js:102
+#: gui/summary/layout.js:106
 msgid "Metal exchanged"
 msgstr "Meatailt"
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:107
 msgid "Barter efficiency"
 msgstr "Èifeachdachd"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:108
 msgid "Trade income"
 msgstr "Teachd a-steach"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:124
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "Co-mheas nan\nglasraichear"
 
-#: gui/summary/layout.js:121
-msgid "Feminisation"
+#: gui/summary/layout.js:125
+msgid "Feminization"
 msgstr "Boireannaich"
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:126
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "Co-mheas\nmarbhaidh / bàsachaidh"
 
-#: gui/summary/layout.js:123
+#: gui/summary/layout.js:127
 msgid ""
 "Map\n"
 "exploration"
 msgstr "Rùrachadh\na' mhapa"
 
-#: gui/summary/layout.js:258
+#: gui/summary/layout.js:128
+msgid "At peak"
+msgstr "Mullach"
+
+#: gui/summary/layout.js:129
+msgid "At finish"
+msgstr "Deireadh"
+
+#: gui/summary/layout.js:132
+msgid "Map control"
+msgstr "Stiùireadh a’ mhapa"
+
+#: gui/summary/layout.js:274
 msgid "Team total"
 msgstr "Iomlan an sgioba"
 

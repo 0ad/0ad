@@ -434,8 +434,11 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 			dist = m.getFrontierProximity(gameState, j);
 			if (dist > 4)
 				continue;
-			dist = dist + 0.4 * (maxres - res)
+			dist += 0.4 * (maxres - res)
 		}
+		// Add a penalty if on the map border as ship movement will be difficult
+		if (gameState.ai.HQ.borderMap.map[j] > 0)
+			dist += 2;
 		if (bestIdx !== undefined && dist > bestVal)
 			continue;
 

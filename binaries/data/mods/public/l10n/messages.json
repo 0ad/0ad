@@ -473,6 +473,15 @@
             {
                 "extractor": "json",
                 "filemasks": [
+                    "simulation/data/settings/victory_conditions/*.json"
+                ],
+                "options": {
+                    "keywords": ["Title", "Description"]
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
                     "simulation/data/settings/starting_resources.json"
                 ],
                 "options": {

@@ -71,33 +71,23 @@ function GetSimState()
 
 function GetEntityState(entId)
 {
-	if (!(entId in g_EntityStates))
-	{
-		var entState = Engine.GuiInterfaceCall("GetEntityState", entId);
-		if (entState)
-			entState.extended = false;
-		g_EntityStates[entId] = entState;
-	}
+	if (!g_EntityStates[entId])
+		g_EntityStates[entId] = Engine.GuiInterfaceCall("GetEntityState", entId);
 
 	return g_EntityStates[entId];
 }
 
 function GetExtendedEntityState(entId)
 {
-	if (entId in g_EntityStates)
-		var entState = g_EntityStates[entId];
-	else
-		var entState = Engine.GuiInterfaceCall("GetEntityState", entId);
-
+	let entState = GetEntityState(entId);
 	if (!entState || entState.extended)
 		return entState;
 
-	var extension = Engine.GuiInterfaceCall("GetExtendedEntityState", entId);
-	for (var prop in extension)
+	let extension = Engine.GuiInterfaceCall("GetExtendedEntityState", entId);
+	for (let prop in extension)
 		entState[prop] = extension[prop];
 	entState.extended = true;
 	g_EntityStates[entId] = entState;
-
 	return entState;
 }
 

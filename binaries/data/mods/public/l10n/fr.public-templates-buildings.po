@@ -15,10 +15,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-16 18:44+0000\n"
+"POT-Creation-Date: 2015-08-24 02:42+0200\n"
+"PO-Revision-Date: 2015-09-12 15:45+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,6 +53,7 @@ msgstr "Augmenter la limite de population."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
+#: simulation/templates/template_structure_defense_wooden_tower.xml:43
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -176,6 +177,11 @@ msgstr "Tire des flèches. Placez-y une garnison pour défendre une muraille con
 msgid "City Wall"
 msgstr "Remparts"
 
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+msgid "Wooden Tower"
+msgstr "Tour en bois"
+
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Bâtiment économique"
@@ -264,7 +270,7 @@ msgid "Dock"
 msgstr "Port"
 
 #: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/template_structure_military_embassy.xml:28
+#: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
@@ -1214,7 +1220,7 @@ msgstr "Paraspa"
 msgid "Stables"
 msgstr "Etables"
 
-#: simulation/templates/structures/pers_stables.xml:25
+#: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
 msgstr "Former des unités de cavalerie citoyenne."
 

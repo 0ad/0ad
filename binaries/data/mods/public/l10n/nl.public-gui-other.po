@@ -7,6 +7,7 @@
 # Ellen Roels, 2015
 # Evert Van Petegem <inactive+evertvp@transifex.com>, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
+# Frode Lindeijer, 2015
 # Mark Lemmens <the_white_eagle@telenet.be>, 2015
 # Max Klaversma <maxklaversma@gmail.com>, 2014
 # niektb <niektb95@gmail.com>, 2015
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-07-27 11:02+0000\n"
-"Last-Translator: Tim G <timgoossens4@hotmail.com>\n"
+"POT-Creation-Date: 2015-08-24 02:41+0200\n"
+"PO-Revision-Date: 2015-09-05 19:35+0000\n"
+"Last-Translator: Frode Lindeijer\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr[1] "Teambonussen"
 
 #: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
-msgstr "Speciale technologieën"
+msgstr "Speciale Technologieën"
 
 #: gui/civinfo/civinfo.js:115
 msgid "Special Building"
@@ -445,7 +446,7 @@ msgstr "Interval:"
 
 #: gui/common/tooltips.js:158 gui/common/tooltips.js:421
 msgid "Rate:"
-msgstr "Freq:"
+msgstr "Winstpercentage:"
 
 #: gui/common/tooltips.js:175 gui/common/tooltips.js:184
 #, javascript-format
@@ -571,7 +572,7 @@ msgstr "???"
 
 #: gui/common/tooltips.js:490
 msgid "Classes:"
-msgstr "Klasse"
+msgstr "Klasses:"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -583,13 +584,13 @@ msgid "<invalid>"
 msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Ja"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Nee"
@@ -679,8 +680,8 @@ msgid "Always show the remaining ceasefire time."
 msgstr "Laat de overgebleven tijd van de wapenstilstand altijd zien."
 
 #: gui/options/options.js:17
-msgid "Persist match settings"
-msgstr "Wedstrijdinstellingen behouden"
+msgid "Persist Match Settings"
+msgstr "Rondeïnstellingen behouden"
 
 #: gui/options/options.js:17
 msgid ""
@@ -811,59 +812,67 @@ msgstr "VSync"
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Gebruik verticale synchronisatie om een scherm dat \"scheurt\" te voorkomen. HET SPEL MOET HERSTART WORDEN"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:36
+msgid "Limit FPS in Menus"
+msgstr "FPS in menus begrenzen"
+
+#: gui/options/options.js:36
+msgid "Limit FPS to 50 in all menus, to save power."
+msgstr "Beperk FPS tot 50 in alle menus om stroom te besparen."
+
+#: gui/options/options.js:40
 msgid "Master Gain"
 msgstr "Master volume"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "Master audio gain"
 msgstr "Mastervolume"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Music Gain"
 msgstr "Muziek volume"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "In game music gain"
 msgstr "Volume van de muziek"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Ambient Gain"
 msgstr "Achtergrondvolume"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game ambient sound gain"
 msgstr "Volume van het achtergrondgeluid"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Action Gain"
 msgstr "Actievolume"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game unit action sound gain"
 msgstr "Volume van de spelelementen"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI Gain"
 msgstr "UI volume"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "UI sound gain"
 msgstr "Volume van de klikken"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Chat Backlog"
 msgstr "Chat log"
 
-#: gui/options/options.js:47
+#: gui/options/options.js:48
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Aantal berichten die geladen worden wanneer je in de lobby binnen komt."
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Timestamp"
 msgstr "Chat tijdsweergave"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Toon de tijd waarop chatberichten in de lobby verstuurd zijn."
 
@@ -963,53 +972,64 @@ msgstr "Handleiding"
 msgid "No saved games found"
 msgstr "Geen opgeslagen spellen gevonden"
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:51
 msgid "This saved game may not be compatible:"
 msgstr "Het opgeslagen spel is mogelijks niet compatibel:"
 
-#: gui/savedgames/load.js:50
+#: gui/savedgames/load.js:56
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Dit vereist 0 A.D. versie %(requiredVersion)s, terwijl je werkt op versie %(currentVersion)s."
 
-#: gui/savedgames/load.js:60
+#: gui/savedgames/load.js:61
+msgid "It needs an older version of 0 A.D."
+msgstr "Hiervoor is een oudere versie van 0 A.D. nodig."
+
+#: gui/savedgames/load.js:65
+#, javascript-format
+msgid ""
+"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
+"savegame version %(currentVersion)s."
+msgstr "Hiervoor is versie %(requiredVersion)s van 0 A.D. vereist, jij hebt versie %(currentVersion)s."
+
+#: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "Je hebt geen mod nodig als je het start met \"%(currentMod)s\"."
 
-#: gui/savedgames/load.js:64
+#: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "Je hebt de mod \"%(requiredMod)s\" nodig terwijl je aan het werken bent zonder mod."
 
-#: gui/savedgames/load.js:68
+#: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "Je hebt de mod \"%(requiredMod)s\" nodig terwijl je aan het werken bent met \"%(currentMod)s\"."
 
-#: gui/savedgames/load.js:73
+#: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
 msgstr "Wil je verder gaan?"
 
-#: gui/savedgames/load.js:74
+#: gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Waarschuwing"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Dit spel zal permanent verwijderd worden, ben je zeker?"
 
-#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "VERWIJDER"
 
@@ -1040,8 +1060,8 @@ msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s tot %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
-#: gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:75 gui/summary/layout.js:102
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "Speler naam"
 
@@ -1061,7 +1081,7 @@ msgstr "Ontdekkings-score"
 msgid "Total score"
 msgstr "Totale score"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:78
+#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
 msgid "Total"
 msgstr "Totaal"
 
@@ -1117,85 +1137,105 @@ msgstr "Kampioen"
 msgid "Navy"
 msgstr "Marine"
 
-#: gui/summary/layout.js:58
+#: gui/summary/layout.js:56
+msgid "Traders"
+msgstr "Handelaren"
+
+#: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Eenhedenstatistieken (rekruteringen / verloren / vermoord)"
 
-#: gui/summary/layout.js:74
+#: gui/summary/layout.js:76
 msgid "Food"
 msgstr "voedsel"
 
-#: gui/summary/layout.js:75
+#: gui/summary/layout.js:77
 msgid "Wood"
 msgstr "hout"
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:78
 msgid "Stone"
 msgstr "steen"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:79
 msgid "Metal"
 msgstr "metaal"
 
-#: gui/summary/layout.js:79
-msgid "Treasures collected"
-msgstr "Schatten verzameld"
-
-#: gui/summary/layout.js:80
+#: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
 msgstr "Donaties (Verzonden / Gekregen)"
 
+#: gui/summary/layout.js:82
+msgid "Treasures collected"
+msgstr "Schatten verzameld"
+
 #: gui/summary/layout.js:83
+msgid "Loot"
+msgstr "Buit"
+
+#: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Grondstofstatistieken (verzameld/gebruikt)"
 
-#: gui/summary/layout.js:99
+#: gui/summary/layout.js:103
 msgid "Food exchanged"
 msgstr "Voedsel gewisseld"
 
-#: gui/summary/layout.js:100
+#: gui/summary/layout.js:104
 msgid "Wood exchanged"
 msgstr "Hout gewisseld"
 
-#: gui/summary/layout.js:101
+#: gui/summary/layout.js:105
 msgid "Stone exchanged"
 msgstr "Steen gewisseld"
 
-#: gui/summary/layout.js:102
+#: gui/summary/layout.js:106
 msgid "Metal exchanged"
 msgstr "Metaal gewisseld"
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:107
 msgid "Barter efficiency"
 msgstr "Handel-efficiëntie"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:108
 msgid "Trade income"
 msgstr "Handel inkomsten"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:124
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "Vegetarische\nratio"
 
-#: gui/summary/layout.js:121
-msgid "Feminisation"
-msgstr "Vervrouwe-lijking"
+#: gui/summary/layout.js:125
+msgid "Feminization"
+msgstr "Feminisatie"
 
-#: gui/summary/layout.js:122
+#: gui/summary/layout.js:126
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "Vermoord /Gestorven \nratio"
 
-#: gui/summary/layout.js:123
+#: gui/summary/layout.js:127
 msgid ""
 "Map\n"
 "exploration"
 msgstr "Kaart\nverkenning"
 
-#: gui/summary/layout.js:258
+#: gui/summary/layout.js:128
+msgid "At peak"
+msgstr ""
+
+#: gui/summary/layout.js:129
+msgid "At finish"
+msgstr ""
+
+#: gui/summary/layout.js:132
+msgid "Map control"
+msgstr ""
+
+#: gui/summary/layout.js:274
 msgid "Team total"
 msgstr "Team totaal"
 

@@ -6,6 +6,7 @@
 # Alexander Olkhovskiy, 2013
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Alexandr Kuzmenko <kuzmenko_s@ukr.net>, 2013
+# Alex <yanebotan@ngs.ru>, 2015
 # Andrew <axe.red97@gmail.com>, 2013
 # Anton Khabarov <2233009@gmail.com>, 2014
 # _Arkan0ID_ <vinnikf24@gmail.com>, 2014
@@ -43,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-07-22 08:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-08-24 02:40+0200\n"
+"PO-Revision-Date: 2015-08-25 15:53+0000\n"
+"Last-Translator: Alex <yanebotan@ngs.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,7 +152,7 @@ msgstr "Враг"
 
 #: gui/session/menu.js:349
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Запросить союзников напасть на этого врага"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -410,7 +411,7 @@ msgstr "%(player)s передал вам %(amounts)s."
 #: gui/session/messages.js:521
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(attacker)s напал на Ваш скот!"
 
 #: gui/session/messages.js:523
 #, javascript-format
@@ -513,10 +514,12 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:185
+#: gui/session/selection_details.js:185 gui/session/unit_actions.js:323
+#: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
+#: gui/session/unit_actions.js:552
 #, javascript-format
-msgid "Gain: %(amount)s"
-msgstr "Усиление: %(amount)s"
+msgid "Gain: %(gain)s"
+msgstr "Прирост: %(gain)s"
 
 #: gui/session/selection_details.js:199
 #, javascript-format
@@ -813,12 +816,6 @@ msgstr "Искажение времени"
 msgid "Origin trade market."
 msgstr "Исходный пункт торгового рынка."
 
-#: gui/session/unit_actions.js:323 gui/session/unit_actions.js:330
-#: gui/session/unit_actions.js:340 gui/session/unit_actions.js:552
-#, javascript-format
-msgid "Gain: %(gain)s"
-msgstr "Прирост: %(gain)s"
-
 #: gui/session/unit_actions.js:327
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Нажмите ПКМ на другом рынке, чтобы выбрать целевой рынок."
@@ -849,7 +846,7 @@ msgstr "Щелкните правой кнопкой мыши, чтобы уст
 msgid "Expected gain: %(gain)s"
 msgstr "Ожидаемый прирост: %(gain)s"
 
-#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:913
+#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:916
 msgid "Unload All"
 msgstr "Вывести всех"
 
@@ -862,39 +859,39 @@ msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Вы не можете уничтожить этого врага, поскольку владеете меньше, чем половиной точек захвата."
 
-#: gui/session/unit_actions.js:733
+#: gui/session/unit_actions.js:736
 msgid "Stop"
 msgstr "Остановить"
 
-#: gui/session/unit_actions.js:751
+#: gui/session/unit_actions.js:754
 msgid "Garrison"
 msgstr "Оборонять"
 
-#: gui/session/unit_actions.js:772
+#: gui/session/unit_actions.js:775
 msgid "Unload"
 msgstr "Вывести"
 
-#: gui/session/unit_actions.js:788
+#: gui/session/unit_actions.js:791
 msgid "Repair"
 msgstr "Ремонтировать"
 
-#: gui/session/unit_actions.js:805
+#: gui/session/unit_actions.js:808
 msgid "Focus on Rally Point"
 msgstr "Установить точку сбора"
 
-#: gui/session/unit_actions.js:828
+#: gui/session/unit_actions.js:831
 msgid "Back to Work"
 msgstr "Вернуть к работе"
 
-#: gui/session/unit_actions.js:844
+#: gui/session/unit_actions.js:847
 msgid "Guard"
 msgstr "Охранять"
 
-#: gui/session/unit_actions.js:861
+#: gui/session/unit_actions.js:864
 msgid "Remove guard"
 msgstr "Перестать охранять"
 
-#: gui/session/unit_actions.js:877
+#: gui/session/unit_actions.js:880
 msgid "Select trading goods"
 msgstr "Выбрать товары"
 

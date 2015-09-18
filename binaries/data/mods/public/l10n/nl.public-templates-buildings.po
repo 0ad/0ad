@@ -6,6 +6,7 @@
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Ellen Roels, 2015
 # mat jojo <matthias.sleurink@gmail.com>, 2015
+# Mike vdw <cod4ever_Zypho@msn.com>, 2015
 # niektb <niektb95@gmail.com>, 2014
 # Peter Erinkveld <peter.erinkveld@gmail.com>, 2015
 # Sander Deryckere, 2014-2015
@@ -14,10 +15,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-20 09:09+0000\n"
-"Last-Translator: Ellen Roels\n"
-"Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
+"POT-Creation-Date: 2015-08-24 02:42+0200\n"
+"PO-Revision-Date: 2015-08-24 21:03+0000\n"
+"Last-Translator: Mike vdw <cod4ever_Zypho@msn.com>\n"
+"Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,6 +53,7 @@ msgstr "Vergroot de bevolkingslimiet."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
+#: simulation/templates/template_structure_defense_wooden_tower.xml:43
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -175,6 +177,11 @@ msgstr "Schiet pijlen. Beman met extra soldaten om het aantal pijlen te verhogen
 msgid "City Wall"
 msgstr "Stadsmuur"
 
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+msgid "Wooden Tower"
+msgstr "Houten toren"
+
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Economisch gebouw"
@@ -263,7 +270,7 @@ msgid "Dock"
 msgstr "Dok"
 
 #: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/template_structure_military_embassy.xml:28
+#: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
@@ -1213,7 +1220,7 @@ msgstr "Paraspa"
 msgid "Stables"
 msgstr "Stallen"
 
-#: simulation/templates/structures/pers_stables.xml:25
+#: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
 msgstr "Rekruteer ruiters."
 

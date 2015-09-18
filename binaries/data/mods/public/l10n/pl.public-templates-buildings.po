@@ -9,16 +9,17 @@
 # Filip Lechowicz <f.lechowicz@gmail.com>, 2015
 # Leszek S, 2014
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
+# Michał Karol <mkarol@linux.pl>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
 # zyxist <nightstorm@tlen.pl>, 2014
 # slodki12341 <slodki1234@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-07-15 09:17+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
+"POT-Creation-Date: 2015-08-24 02:42+0200\n"
+"PO-Revision-Date: 2015-08-27 21:48+0000\n"
+"Last-Translator: Michał Karol <mkarol@linux.pl>\n"
+"Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,6 +54,7 @@ msgstr "Zwiększ limit populacji."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
+#: simulation/templates/template_structure_defense_wooden_tower.xml:43
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -121,7 +123,7 @@ msgstr "Wieża obronna."
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr ""
+msgstr "Buduj na neutralnym oraz własnym terytorium aby widzieć większe obszary mapy. Powoli przechodzi do Gaja gdy znajduje się na neutralnym terytorium."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -175,6 +177,11 @@ msgstr "Strzela za pomocą strzał. Umieść wewnątrz jednostki do obrony muró
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
 msgstr "Mury miasta"
+
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+msgid "Wooden Tower"
+msgstr "Drewniana wieża"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -264,7 +271,7 @@ msgid "Dock"
 msgstr "Dok"
 
 #: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/template_structure_military_embassy.xml:28
+#: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
@@ -548,7 +555,7 @@ msgstr "Osiedlanie wyspy"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways."
-msgstr ""
+msgstr "Zwiększ limit populacji oraz broń dróg wodnych."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -1214,7 +1221,7 @@ msgstr "Paraspa"
 msgid "Stables"
 msgstr "Stajnia"
 
-#: simulation/templates/structures/pers_stables.xml:25
+#: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
 msgstr "Stwórz miejską konnicę."
 

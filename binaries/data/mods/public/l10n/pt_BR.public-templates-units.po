@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-23 17:14+0000\n"
+"POT-Creation-Date: 2015-08-24 02:41+0200\n"
+"PO-Revision-Date: 2015-09-12 22:00+0000\n"
 "Last-Translator: Matheus Clemente <matheus.xb@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "Cidadão"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_champion.xml:13
-#: simulation/templates/template_unit_hero.xml:22
+#: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Soldier"
 msgstr "Soldado"
@@ -290,8 +290,25 @@ msgstr "Cetáceo"
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Mate e depois colete comida desse recurso oceânico abundante."
 
-#: simulation/templates/template_unit_hero.xml:22
-#: simulation/templates/template_unit_hero.xml:20
+#: simulation/templates/template_unit_hero.xml:10
+#: simulation/templates/units/brit_hero_caratacos.xml:10
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
+#: simulation/templates/units/gaul_hero_brennus.xml:10
+#: simulation/templates/units/gaul_hero_britomartus.xml:10
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
+#: simulation/templates/units/mace_hero_demetrius.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:12
+msgid "Hero Aura"
+msgstr "Aura de Herói"
+
+#: simulation/templates/template_unit_hero.xml:11
+msgid ""
+"When garrisoned in a structure, it galvanizes its defenders, +2 "
+"GarrisonRegenRate"
+msgstr ""
+
+#: simulation/templates/template_unit_hero.xml:40
+#: simulation/templates/template_unit_hero.xml:38
 #: simulation/templates/template_unit_hero_infantry.xml:24
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Hero"
@@ -446,11 +463,11 @@ msgstr "Cause dano em área."
 msgid "Battering Ram"
 msgstr "Aríete"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:52
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
 msgid "Siege Tower"
 msgstr "Torre de Cerco"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:54
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:59
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
 msgstr "Ocupe até 20 unidades de Infantaria para aumentar o número de flechas de 0 a 10."
@@ -925,34 +942,24 @@ msgstr "Guerreiro Bretão"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:12
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:12
+#: simulation/templates/units/brit_hero_boudicca.xml:13
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "Champion Army"
 msgstr "Exército Campeão"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:13
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:13
-msgid "+5 Attack and +25% Speed for Champion Units."
-msgstr "+5 ataque e +25% de velocidade para unidades campeãs"
+#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:14
+msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
+msgstr "+5 de ataque, +2 de Captura e +25% de velocidade para unidades campeãs."
 
-#: simulation/templates/units/brit_hero_boudicca.xml:24
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:19
+#: simulation/templates/units/brit_hero_boudicca.xml:25
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:20
 msgid "Boudicca"
 msgstr "Boudica"
 
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:20
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:21
 msgid "Heroine"
 msgstr "Heroína"
-
-#: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cunobelin.xml:11
-#: simulation/templates/units/gaul_hero_brennus.xml:10
-#: simulation/templates/units/gaul_hero_britomartus.xml:10
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:12
-#: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:11
-msgid "Hero Aura"
-msgstr "Aura de Herói"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11
@@ -1120,23 +1127,23 @@ msgstr "Ḥimelqart Baraq"
 msgid "Hamilcar Barca"
 msgstr "Amílcar Barca"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:13
+#: simulation/templates/units/cart_hero_hannibal.xml:14
 msgid "Tactician Aura"
 msgstr "Aura tática"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:14
-msgid "All allied units +2 attack within vision range of him."
-msgstr "+2 ataque a todas as unidades aliadas dentro de seu campo de visão."
+#: simulation/templates/units/cart_hero_hannibal.xml:15
+msgid "All allied units +2 Attack and +1 Capture within vision range of him."
+msgstr "+2 de ataque e +1 de Captura a todas as unidades aliadas dentro de seu campo de visão."
 
-#: simulation/templates/units/cart_hero_hannibal.xml:20
+#: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Hannibal Barca"
 msgstr "Aníbal Barca"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:21
+#: simulation/templates/units/cart_hero_hannibal.xml:22
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Baraq"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:24
+#: simulation/templates/units/cart_hero_hannibal.xml:25
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
@@ -1312,11 +1319,11 @@ msgstr "Taxa de coleta aumentada  em +15% durante seu tempo de vida."
 msgid "Britomartus"
 msgstr "Britomartus"
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
-msgid "+2 attack for all units within his aura."
-msgstr "+2 ataque para todas as unidades dentro da sua aura"
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:14
+msgid "+2 Attack and +1 Capture for all units within his aura."
+msgstr "+2 de ataque e +1 de Captura para todas as unidades dentro da sua aura."
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:19
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:20
 msgid "Vercingetorix"
 msgstr "Vercingetórix"
 
@@ -1334,7 +1341,7 @@ msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:21
 msgid "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Especial: Azagaia em chamas, Bom contra edifícios."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1495,15 +1502,15 @@ msgstr "Demétrio, O Sitiador"
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
-#: simulation/templates/units/mace_hero_philip.xml:12
-msgid "+5 Attack for Champion Units."
-msgstr "+5 de ataque para as unidades campeãs."
+#: simulation/templates/units/mace_hero_philip.xml:13
+msgid "+5 Attack and +2 Capture for Champion Units."
+msgstr "+5 de ataque e +2 de Captura para unidades campeãs."
 
-#: simulation/templates/units/mace_hero_philip.xml:18
+#: simulation/templates/units/mace_hero_philip.xml:19
 msgid "Philip II of Macedon"
 msgstr "Felipe II da Macedônia"
 
-#: simulation/templates/units/mace_hero_philip.xml:19
+#: simulation/templates/units/mace_hero_philip.xml:20
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
@@ -1626,7 +1633,7 @@ msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
 msgid "Deals Trample Damage."
-msgstr ""
+msgstr "Causa Dano de Atropelo."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1697,7 +1704,7 @@ msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr ""
+msgstr "Herói especial: \"Médico\" - cura unidades em um ritmo acelerado.\nHerói especial: \"Professor\" - Capacitar um edifício para a investigação e treino +50% mais rápido.\nHerói especial: \"Filósofo\" - Pesquisa 4 tecnologias especiais disponíveis apenas para Chanakya."
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1801,7 +1808,7 @@ msgstr "Rhomphaiaphoros Thrakikós"
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
 #: simulation/templates/units/thrace_black_cloak.xml:23
 msgid "Mercenary"
-msgstr ""
+msgstr "Mercenário"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1825,7 +1832,7 @@ msgstr "Babiruviya Ratha"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:15
 msgid "Causes trample damage to enemy units."
-msgstr ""
+msgstr "Causa dano de atropelo a unidades inimigas."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -1881,19 +1888,19 @@ msgstr "Imortal Persa"
 msgid "Anusiya"
 msgstr "Anasuia"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:12
+#: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "Lead from the Front Aura"
 msgstr "Aura de liderança da Frente"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:13
-msgid "+2 attack for nearby cavalry units."
-msgstr "+2 Ataque para unidades de cavalaria próximas."
+#: simulation/templates/units/pers_hero_cyrus.xml:14
+msgid "+2 Attack and +1 Capture for nearby cavalry units."
+msgstr "+2 ataque e +1 captura para unidades de cavalaria próximas."
 
-#: simulation/templates/units/pers_hero_cyrus.xml:19
+#: simulation/templates/units/pers_hero_cyrus.xml:20
 msgid "Cyrus II The Great"
 msgstr "Ciro II, o Grande"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:20
+#: simulation/templates/units/pers_hero_cyrus.xml:21
 msgid "Kurush II"
 msgstr "Ciro II"
 
@@ -1917,7 +1924,7 @@ msgstr "Dario I, o Grande"
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr ""
+msgstr "Aura de Herói: \"Mercador do Império\". Aumenta a lucratividade do comércio durante sua vida (A Ser Implementado).\nAlcance de ataque 2x maior contra lanceiros. Alcance de ataque 1,5x maior contra espadachins."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2048,7 +2055,7 @@ msgstr "Troque recursos entre seus próprios mercados e os dos seus aliados. Per
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 #: simulation/templates/units/sele_cavalry_archer_b.xml:6
 msgid "Camel"
-msgstr ""
+msgstr "Camelo"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
@@ -2273,15 +2280,15 @@ msgstr "Infantaria Itálica Pesada"
 msgid "Extraordinarius"
 msgstr "Extraordinarius"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:12
+#: simulation/templates/units/rome_hero_marcellus.xml:13
 msgid "Sword of Rome Aura"
 msgstr "Aura de Espada de Roma"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:13
-msgid "+5 attack for Roman units within sight of him."
-msgstr "+5 de ataque para unidades romanas dentro do seu campo de visão"
+#: simulation/templates/units/rome_hero_marcellus.xml:14
+msgid "+5 Attack and +2 Capture for Roman units within sight of him."
+msgstr "+5 ataque e +2 captura para unidades romanas dentro de seu campo de visão."
 
-#: simulation/templates/units/rome_hero_marcellus.xml:20
+#: simulation/templates/units/rome_hero_marcellus.xml:21
 msgid "Marcus Claudius Marcellus"
 msgstr "Marco Cláudio Marcelo"
 
@@ -2441,7 +2448,7 @@ msgstr "(Espadachim Samnita)"
 
 #: simulation/templates/units/samnite_swordsman.xml:7
 msgid "Bonus vs. All Spear Units."
-msgstr ""
+msgstr "Bônus contra Lanceiros."
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Dahae Horse Archer"
@@ -2677,19 +2684,19 @@ msgstr "Escaramuçadores Hilotas dentro do seu campo de visão ganham +2 ataque 
 msgid "Brasidas"
 msgstr "Brásidas"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:11
+#: simulation/templates/units/spart_hero_leonidas.xml:12
 msgid "Last Stand Aura"
 msgstr "Último Aura de Pé"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:12
-msgid "+20% attack for nearby Hoplites and Spartiates."
-msgstr "Mais  20% de ataque para Hoplites e Spartiates próximas."
+#: simulation/templates/units/spart_hero_leonidas.xml:13
+msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
+msgstr ""
 
-#: simulation/templates/units/spart_hero_leonidas.xml:19
+#: simulation/templates/units/spart_hero_leonidas.xml:20
 msgid "Leonidas I"
 msgstr "Leônidas I"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:20
+#: simulation/templates/units/spart_hero_leonidas.xml:21
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 

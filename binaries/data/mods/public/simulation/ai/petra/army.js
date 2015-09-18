@@ -96,6 +96,11 @@ m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 	else
 		var entStrength = m.getMaxStrength(ent);
 
+	// TODO adapt the getMaxStrength function for animals.
+	// For the time being, just increase it for elephants as the returned value is too small.
+	if (ent.hasClass("Animal") && ent.hasClass("Elephant"))
+		entStrength *= 3;
+
 	if (remove)
 		entStrength *= -1;
 
@@ -108,6 +113,7 @@ m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 // add an entity to the enemy army
 // Will return true if the entity was added and false otherwise.
 // won't recalculate our position but will dirty it.
+// force is true at army creation or when merging armies, so in this case we should add it even if far
 m.Army.prototype.addFoe = function (gameState, enemyId, force)
 {
 	if (this.foeEntities.indexOf(enemyId) !== -1)
@@ -197,7 +203,7 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 	}
 	this.assignedTo[id] = undefined;
 
-	let ent = (Entity ? Entity :gameState.getEntityById(id));
+	let ent = (Entity ? Entity : gameState.getEntityById(id));
 	if (ent)    // TODO recompute strength when no entities (could happen if capture+destroy)
 	{
 		this.evaluateStrength(ent, true, true);
@@ -272,20 +278,20 @@ m.Army.prototype.clear = function (gameState)
 m.Army.prototype.merge = function (gameState, otherArmy)
 {
 	// copy over all parameters.
-	for (var i in otherArmy.assignedAgainst)
+	for (let i in otherArmy.assignedAgainst)
 	{
 		if (this.assignedAgainst[i] === undefined)
 			this.assignedAgainst[i] = otherArmy.assignedAgainst[i];
 		else
 			this.assignedAgainst[i] = this.assignedAgainst[i].concat(otherArmy.assignedAgainst[i]);
 	}
-	for (var i in otherArmy.assignedTo)
+	for (let i in otherArmy.assignedTo)
 		this.assignedTo[i] = otherArmy.assignedTo[i];
 	
-	for (var id of otherArmy.foeEntities)
-		this.addFoe(gameState, id);
+	for (let id of otherArmy.foeEntities)
+		this.addFoe(gameState, id, true);
 	// TODO: reassign those ?
-	for (var id of otherArmy.ownEntities)
+	for (let id of otherArmy.ownEntities)
 		this.addOwn(gameState, id, true);
 
 	this.recalculatePosition(gameState, true);

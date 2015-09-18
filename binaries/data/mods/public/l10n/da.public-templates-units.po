@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Wachsmuth <emilistrupkarlsmose@gmail.com>, 2015
 # Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-22 08:37+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-08-24 02:41+0200\n"
+"PO-Revision-Date: 2015-09-01 11:05+0000\n"
+"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr "Beboer"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_champion.xml:13
-#: simulation/templates/template_unit_hero.xml:22
+#: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Soldier"
 msgstr "Soldat"
@@ -278,8 +279,25 @@ msgstr "Hval"
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Dræb og saml derefter mad fra denne rige oceanressource."
 
-#: simulation/templates/template_unit_hero.xml:22
-#: simulation/templates/template_unit_hero.xml:20
+#: simulation/templates/template_unit_hero.xml:10
+#: simulation/templates/units/brit_hero_caratacos.xml:10
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
+#: simulation/templates/units/gaul_hero_brennus.xml:10
+#: simulation/templates/units/gaul_hero_britomartus.xml:10
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
+#: simulation/templates/units/mace_hero_demetrius.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:12
+msgid "Hero Aura"
+msgstr "Helte Udstråling"
+
+#: simulation/templates/template_unit_hero.xml:11
+msgid ""
+"When garrisoned in a structure, it galvanizes its defenders, +2 "
+"GarrisonRegenRate"
+msgstr ""
+
+#: simulation/templates/template_unit_hero.xml:40
+#: simulation/templates/template_unit_hero.xml:38
 #: simulation/templates/template_unit_hero_infantry.xml:24
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Hero"
@@ -412,7 +430,7 @@ msgstr "Mellemstort Krigsskib"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Warship"
-msgstr ""
+msgstr "Krigsskib"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium"
@@ -434,11 +452,11 @@ msgstr ""
 msgid "Battering Ram"
 msgstr "Rambuk"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:52
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
 msgid "Siege Tower"
 msgstr "Belejringstårn"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:54
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:59
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
 msgstr "Garnisonere op til 20 enheder for at øge piletallet fra 0 til 10"
@@ -467,7 +485,7 @@ msgstr "Heler"
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid "Heal units."
-msgstr ""
+msgstr "Heler enheder."
 
 #: simulation/templates/template_unit_support_slave.xml:39
 #: simulation/templates/template_unit_support_slave.xml:40
@@ -476,7 +494,7 @@ msgstr "Slave"
 
 #: simulation/templates/template_unit_support_slave.xml:39
 msgid "Worker"
-msgstr ""
+msgstr "Arbejder"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
@@ -698,7 +716,7 @@ msgstr "Byvagt"
 
 #: simulation/templates/units/athen_champion_infantry.xml:7
 msgid "Epílektos"
-msgstr ""
+msgstr "Epílektos"
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Athenian Marine"
@@ -706,7 +724,7 @@ msgstr "Athensk Marinesoldat"
 
 #: simulation/templates/units/athen_champion_marine.xml:7
 msgid "Epibátēs Athēnaîos"
-msgstr ""
+msgstr "Epibátēs Athēnaîos"
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
 msgid "Scythian Archer"
@@ -714,7 +732,7 @@ msgstr "Skytisk Bueskytte"
 
 #: simulation/templates/units/athen_champion_ranged.xml:7
 msgid "Toxótēs Skythikós"
-msgstr ""
+msgstr "Toxótēs Skythikós"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:13
 msgid "Formation Reforms"
@@ -726,7 +744,7 @@ msgstr "Alle enheder i denne formation +15% hastighed og +1 armor"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:22
 msgid "Peltast Reforms"
-msgstr ""
+msgstr "Peltast Reformer"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:23
 msgid "All Peltasts +15% speed."
@@ -750,7 +768,7 @@ msgstr "Bygninger bygges 15% hurtigere i hans synsfelt"
 
 #: simulation/templates/units/athen_hero_pericles.xml:21
 msgid "Acropolis Aura"
-msgstr ""
+msgstr "Akropolis Aura"
 
 #: simulation/templates/units/athen_hero_pericles.xml:22
 msgid "Temples are 50 stone cheaper during his lifetime."
@@ -766,7 +784,7 @@ msgstr "Periklēs"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
 msgid "Naval Commander Aura"
-msgstr ""
+msgstr "Admiralaura"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:12
 msgid "When garrisoned in a ship, his ship is +50% faster."
@@ -774,7 +792,7 @@ msgstr "Når han er garnisorneret i et skib bliver det +50% hurtigere"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:20
 msgid "Naval Architect Aura"
-msgstr ""
+msgstr "Skibsarkitektaura"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
 msgid "Ships are built +20% faster during his lifespan."
@@ -812,7 +830,7 @@ msgstr "Athensk Slyngekastermilits"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:16
 msgid "Psilòs Athēnaîos"
-msgstr ""
+msgstr "Psilòs Athēnaîos"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:23
 msgid "Athenian Hoplite"
@@ -820,7 +838,7 @@ msgstr "Athensk Hoplit"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:24
 msgid "Hoplítēs Athēnaîos"
-msgstr ""
+msgstr "Hoplítēs Athēnaîos"
 
 #: simulation/templates/units/athen_ship_bireme.xml:5
 msgid "Penteconter"
@@ -829,7 +847,7 @@ msgstr "Penteconter"
 #: simulation/templates/units/athen_ship_bireme.xml:6
 #: simulation/templates/units/spart_ship_bireme.xml:5
 msgid "Pentēkóntoros"
-msgstr ""
+msgstr "Pentēkóntoros"
 
 #: simulation/templates/units/athen_ship_fishing.xml:8
 #: simulation/templates/units/mace_ship_fishing.xml:5
@@ -849,7 +867,7 @@ msgstr "Ploîon Phortēgikón"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaía"
-msgstr ""
+msgstr "Triḗrēs Athēnaía"
 
 #: simulation/templates/units/athen_ship_trireme.xml:6
 msgid "Athenian Trireme"
@@ -857,7 +875,7 @@ msgstr "Athensk Triere"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:5
 msgid "Gýnē Athēnaía"
-msgstr ""
+msgstr "Gýnē Athēnaía"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
@@ -866,11 +884,11 @@ msgstr "Athenian Woman"
 #: simulation/templates/units/athen_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
 msgid "Iatrós"
-msgstr ""
+msgstr "Iatrós"
 
 #: simulation/templates/units/athen_support_slave.xml:5
 msgid "Doûlos"
-msgstr ""
+msgstr "Doûlos"
 
 #: simulation/templates/units/athen_support_trader.xml:10
 #: simulation/templates/units/mace_support_trader.xml:10
@@ -913,34 +931,24 @@ msgstr "Brittonisk Langsværdkæmper"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:12
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:12
+#: simulation/templates/units/brit_hero_boudicca.xml:13
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "Champion Army"
 msgstr "Elitehær"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:13
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:13
-msgid "+5 Attack and +25% Speed for Champion Units."
-msgstr "+5 Angreb og +25% hastighed for Elite enheder"
+#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:14
+msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
+msgstr ""
 
-#: simulation/templates/units/brit_hero_boudicca.xml:24
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:19
+#: simulation/templates/units/brit_hero_boudicca.xml:25
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:20
 msgid "Boudicca"
 msgstr "Boudicca"
 
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:20
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:21
 msgid "Heroine"
 msgstr "Heltinde"
-
-#: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cunobelin.xml:11
-#: simulation/templates/units/gaul_hero_brennus.xml:10
-#: simulation/templates/units/gaul_hero_britomartus.xml:10
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:12
-#: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:11
-msgid "Hero Aura"
-msgstr "Helte Udstråling"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11
@@ -1108,23 +1116,23 @@ msgstr "Ḥimelqart Baraq"
 msgid "Hamilcar Barca"
 msgstr "Hamilcar Barca"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:13
+#: simulation/templates/units/cart_hero_hannibal.xml:14
 msgid "Tactician Aura"
 msgstr ""
 
-#: simulation/templates/units/cart_hero_hannibal.xml:14
-msgid "All allied units +2 attack within vision range of him."
-msgstr "Alle allierede enheder +2 angreb i hans rækkevide"
+#: simulation/templates/units/cart_hero_hannibal.xml:15
+msgid "All allied units +2 Attack and +1 Capture within vision range of him."
+msgstr ""
 
-#: simulation/templates/units/cart_hero_hannibal.xml:20
+#: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Hannibal Barca"
 msgstr "Hannibal Barca"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:21
+#: simulation/templates/units/cart_hero_hannibal.xml:22
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Baraq"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:24
+#: simulation/templates/units/cart_hero_hannibal.xml:25
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
@@ -1173,7 +1181,7 @@ msgstr "Qallāʿ Ibušimi"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:15
 msgid "Libyan Spearman"
-msgstr ""
+msgstr "Libysk Spydkæmper"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:16
 msgid "Sǝḫīr Ḥanīt"
@@ -1300,11 +1308,11 @@ msgstr "Samleprocenten stiger med +15% under hans levetid"
 msgid "Britomartus"
 msgstr "Britomartus"
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
-msgid "+2 attack for all units within his aura."
-msgstr "+2 angreb for alle enheder inde i han udstråling"
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:14
+msgid "+2 Attack and +1 Capture for all units within his aura."
+msgstr ""
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:19
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:20
 msgid "Vercingetorix"
 msgstr "Vercingetorix"
 
@@ -1408,7 +1416,7 @@ msgstr "Odrysisk Spydkastende Kavaleri"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 msgid "Hippakontistḕs Odrysós"
-msgstr ""
+msgstr "Hippakontistḕs Odrysós"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:7
 msgid "Thessalian Lancer"
@@ -1416,7 +1424,7 @@ msgstr "Thessalisk Lansener"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:8
 msgid "Xystophóros Thessalikós"
-msgstr ""
+msgstr "Xystophóros Thessalikós"
 
 #: simulation/templates/units/mace_champion_cavalry.xml:6
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:7
@@ -1433,15 +1441,15 @@ msgstr "Makedonsk Skjoldbærer"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:7
 msgid "Hypaspistḗs"
-msgstr ""
+msgstr "Hypaspistḗs"
 
 #: simulation/templates/units/mace_champion_infantry_e.xml:7
 msgid "Hypaspistḗs Argyraspídi"
-msgstr ""
+msgstr "Hypaspistḗs Argyraspídi"
 
 #: simulation/templates/units/mace_hero_alexander.xml:10
 msgid "Imperialism Aura"
-msgstr ""
+msgstr "Imperialismeaura"
 
 #: simulation/templates/units/mace_hero_alexander.xml:11
 msgid "+10% territory effect for all buildings while he lives."
@@ -1483,15 +1491,15 @@ msgstr "Demetrios Belejreren"
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
-#: simulation/templates/units/mace_hero_philip.xml:12
-msgid "+5 Attack for Champion Units."
+#: simulation/templates/units/mace_hero_philip.xml:13
+msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr ""
 
-#: simulation/templates/units/mace_hero_philip.xml:18
+#: simulation/templates/units/mace_hero_philip.xml:19
 msgid "Philip II of Macedon"
 msgstr "Filip II af Makedonien"
 
-#: simulation/templates/units/mace_hero_philip.xml:19
+#: simulation/templates/units/mace_hero_philip.xml:20
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
@@ -1513,7 +1521,7 @@ msgstr "Agrarisk Peltast"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:15
 msgid "Peltastḗs Agrías"
-msgstr ""
+msgstr "Peltastḗs Agrías"
 
 #: simulation/templates/units/mace_infantry_pikeman_b.xml:14
 msgid "Foot Companion"
@@ -1529,7 +1537,7 @@ msgstr "Rhodisk Slyngekaster"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:15
 msgid "Sphendonḗtēs Rhódios"
-msgstr ""
+msgstr "Sphendonḗtēs Rhódios"
 
 #: simulation/templates/units/mace_mechanical_siege_ram.xml:9
 #: simulation/templates/units/spart_mechanical_siege_ram.xml:9
@@ -1553,7 +1561,7 @@ msgstr "Triḗrēs"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gýnē Makedonikḗ"
-msgstr ""
+msgstr "Gýnē Makedonikḗ"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
@@ -1566,11 +1574,11 @@ msgstr "Hiereús"
 
 #: simulation/templates/units/mace_thorakites.xml:6
 msgid "Armored Swordsman"
-msgstr ""
+msgstr "Pansret Sværdkæmper"
 
 #: simulation/templates/units/mace_thorakites.xml:7
 msgid "Thōrakitēs"
-msgstr ""
+msgstr "Thōrakitēs"
 
 #: simulation/templates/units/mace_thureophoros.xml:10
 msgid "Heavy Skirmisher"
@@ -1578,7 +1586,7 @@ msgstr "Tung Spydkaster"
 
 #: simulation/templates/units/mace_thureophoros.xml:11
 msgid "Thyreophóros"
-msgstr ""
+msgstr "Thyreophóros"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
@@ -1602,7 +1610,7 @@ msgstr "Aśvārohagaṇaḥ"
 #: simulation/templates/units/pers_hero_darius.xml:21
 #: simulation/templates/units/sele_champion_chariot.xml:10
 msgid "Chariot"
-msgstr ""
+msgstr "Stridsvogn"
 
 #: simulation/templates/units/maur_champion_chariot.xml:10
 msgid "War Chariot"
@@ -1656,7 +1664,7 @@ msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Can run amok."
-msgstr ""
+msgstr "Kan gå amok."
 
 #: simulation/templates/units/maur_hero_ashoka.xml:9
 msgid "Ashoka the Great"
@@ -1694,7 +1702,7 @@ msgstr "Chandragupta Maurya"
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
 msgid "Hero Aura: TBD."
-msgstr ""
+msgstr "Helteaura: Endnu ikke fastlagt."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1706,7 +1714,7 @@ msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:17
 msgid "Bamboo Spearman"
-msgstr ""
+msgstr "Bambus Spydkæmper"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:18
 msgid "Kauntika"
@@ -1789,7 +1797,7 @@ msgstr "Rhomphaiaphoros Thrakikós"
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
 #: simulation/templates/units/thrace_black_cloak.xml:23
 msgid "Mercenary"
-msgstr ""
+msgstr "Lejesoldat"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1869,19 +1877,19 @@ msgstr "Persisk Udødelig"
 msgid "Anusiya"
 msgstr "Anusiya"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:12
+#: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "Lead from the Front Aura"
 msgstr ""
 
-#: simulation/templates/units/pers_hero_cyrus.xml:13
-msgid "+2 attack for nearby cavalry units."
+#: simulation/templates/units/pers_hero_cyrus.xml:14
+msgid "+2 Attack and +1 Capture for nearby cavalry units."
 msgstr ""
 
-#: simulation/templates/units/pers_hero_cyrus.xml:19
+#: simulation/templates/units/pers_hero_cyrus.xml:20
 msgid "Cyrus II The Great"
 msgstr "Kyros den Store"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:20
+#: simulation/templates/units/pers_hero_cyrus.xml:21
 msgid "Kurush II"
 msgstr "Kurush II"
 
@@ -1910,7 +1918,7 @@ msgstr ""
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Administrator Aura"
-msgstr ""
+msgstr "Administratoraura"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:13
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
@@ -2036,7 +2044,7 @@ msgstr ""
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 #: simulation/templates/units/sele_cavalry_archer_b.xml:6
 msgid "Camel"
-msgstr ""
+msgstr "Kamel"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
@@ -2052,7 +2060,7 @@ msgstr "Tarantisk Bosætterkavaleri"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:14
 msgid "Hippeús Tarantînos"
-msgstr ""
+msgstr "Hippeús Tarantînos"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:6
 msgid "Macedonian Settler Cavalry"
@@ -2060,7 +2068,7 @@ msgstr "Makedonsk Bosætterkavaleri"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:7
 msgid "Hippeús Makedonikós"
-msgstr ""
+msgstr "Hippeús Makedonikós"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
@@ -2068,7 +2076,7 @@ msgstr "Kongens Vagtkavaleri"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
 msgid "Ágēma Basiléōs"
-msgstr ""
+msgstr "Ágēma Basiléōs"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:5
 msgid "Towered War Elephant"
@@ -2088,7 +2096,7 @@ msgstr "Tessarakonterēs"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:12
 msgid "Patriot Aura"
-msgstr ""
+msgstr "Patriotaura"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
 msgid "Egyptian units fight 20% faster in her vision range."
@@ -2100,7 +2108,7 @@ msgstr "Kleopatra VII"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:21
 msgid "Kleopatra H' Philopator"
-msgstr ""
+msgstr "Kleopatra H' Philopator"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:22
 msgid ""
@@ -2146,7 +2154,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:17
 msgid "Ptolemaios D' Philopator"
-msgstr ""
+msgstr "Ptolemaios D' Philopator"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:25
 msgid "Nubian Mercenary Archer"
@@ -2154,7 +2162,7 @@ msgstr "Nubisk Bueskyttelejesoldat"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
 msgid "Kousít Misthophóros Toxótēs"
-msgstr ""
+msgstr "Kousít Misthophóros Toxótēs"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:14
 msgid "Mercenary Thureos Skirmisher"
@@ -2162,7 +2170,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
 msgid "Thureophóros Akrobolistḗs"
-msgstr ""
+msgstr "Thureophóros Akrobolistḗs"
 
 #: simulation/templates/units/ptol_infantry_pikeman_b.xml:14
 msgid "Egyptian Pikeman"
@@ -2170,7 +2178,7 @@ msgstr "Egyptisk Pikener"
 
 #: simulation/templates/units/ptol_infantry_pikeman_b.xml:15
 msgid "Phalaggomákhimos"
-msgstr ""
+msgstr "Phalaggomákhimos"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:14
 msgid "Judean Slinger"
@@ -2178,7 +2186,7 @@ msgstr "Judæisk Slyngekaster"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:15
 msgid "Hebraikós Sphendonḗtēs"
-msgstr ""
+msgstr "Hebraikós Sphendonḗtēs"
 
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
 msgid "Mercenary Thureos Spearman"
@@ -2199,15 +2207,15 @@ msgstr "Dierēs"
 
 #: simulation/templates/units/ptol_ship_quinquereme.xml:5
 msgid "Octḗrēs"
-msgstr ""
+msgstr "Octḗrēs"
 
 #: simulation/templates/units/ptol_ship_trireme.xml:5
 msgid "Pentḗrēs"
-msgstr ""
+msgstr "Pentḗrēs"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:5
 msgid "Gýnē Aigýptia"
-msgstr ""
+msgstr "Gýnē Aigýptia"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:6
 msgid "Egyptian Woman"
@@ -2219,7 +2227,7 @@ msgstr "Egyptisk Præst"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigýptios"
-msgstr ""
+msgstr "Hiereús Aigýptios"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
@@ -2261,21 +2269,21 @@ msgstr "Italiensk Tungt Infanteri"
 msgid "Extraordinarius"
 msgstr "Extraordinarius"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:12
-msgid "Sword of Rome Aura"
-msgstr ""
-
 #: simulation/templates/units/rome_hero_marcellus.xml:13
-msgid "+5 attack for Roman units within sight of him."
+msgid "Sword of Rome Aura"
+msgstr "Roms Sværdaura"
+
+#: simulation/templates/units/rome_hero_marcellus.xml:14
+msgid "+5 Attack and +2 Capture for Roman units within sight of him."
 msgstr ""
 
-#: simulation/templates/units/rome_hero_marcellus.xml:20
+#: simulation/templates/units/rome_hero_marcellus.xml:21
 msgid "Marcus Claudius Marcellus"
 msgstr "Marcus Claudius Marcellus"
 
 #: simulation/templates/units/rome_hero_maximus.xml:12
 msgid "Shield of Rome Aura"
-msgstr ""
+msgstr "Roms Skjoldaura"
 
 #: simulation/templates/units/rome_hero_maximus.xml:13
 msgid "+1 armour for all units and structures."
@@ -2305,7 +2313,7 @@ msgstr "Veles"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:15
 msgid "Veteran Spearman"
-msgstr ""
+msgstr "Veteran Spydkæmper"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:16
 msgid "Triarius"
@@ -2411,11 +2419,11 @@ msgstr ""
 
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
-msgstr ""
+msgstr "Samnitisk Spydkæmper"
 
 #: simulation/templates/units/samnite_spearman.xml:6
 msgid "(Samnite Spearman)"
-msgstr ""
+msgstr "(Samnitisk Spydkæmper)"
 
 #: simulation/templates/units/samnite_spearman.xml:7
 msgid ""
@@ -2513,7 +2521,7 @@ msgstr "Antiokhos G' Mégās"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
 msgid "Conquest Aura"
-msgstr ""
+msgstr "Erobringsaura"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
@@ -2627,7 +2635,7 @@ msgstr "Spartansk Hoplit"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:7
 msgid "Spartiátēs"
-msgstr ""
+msgstr "Spartiátēs"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:16
 msgid "Skiritai Commando"
@@ -2635,7 +2643,7 @@ msgstr "Skiritai Kommandosoldat"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:17
 msgid "Ékdromos Skirítēs"
-msgstr ""
+msgstr "Ékdromos Skirítēs"
 
 #: simulation/templates/units/spart_hero_agis.xml:9
 msgid "Agis III"
@@ -2665,19 +2673,19 @@ msgstr ""
 msgid "Brasidas"
 msgstr "Brasidas"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:11
+#: simulation/templates/units/spart_hero_leonidas.xml:12
 msgid "Last Stand Aura"
 msgstr ""
 
-#: simulation/templates/units/spart_hero_leonidas.xml:12
-msgid "+20% attack for nearby Hoplites and Spartiates."
+#: simulation/templates/units/spart_hero_leonidas.xml:13
+msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
 msgstr ""
 
-#: simulation/templates/units/spart_hero_leonidas.xml:19
+#: simulation/templates/units/spart_hero_leonidas.xml:20
 msgid "Leonidas I"
 msgstr "Leonidas I"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:20
+#: simulation/templates/units/spart_hero_leonidas.xml:21
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 
@@ -2687,7 +2695,7 @@ msgstr "Helotisk Spydkaster"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:15
 msgid "Akontistḗs Heílōs"
-msgstr ""
+msgstr "Akontistḗs Heílōs"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:14
 msgid "Perioikoi Hoplite"
@@ -2695,7 +2703,7 @@ msgstr "Perioikisk Hoplit"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:15
 msgid "Hoplítēs Períoikos"
-msgstr ""
+msgstr "Hoplítēs Períoikos"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:26
 msgid "Spartan Woman"
@@ -2703,11 +2711,11 @@ msgstr "Spartansk Kvinde"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:27
 msgid "Spartiâtis"
-msgstr ""
+msgstr "Spartiâtis"
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Períoikos"
-msgstr ""
+msgstr "Émporos Períoikos"
 
 #: simulation/templates/units/theb_champion_spearman.xml:6
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6

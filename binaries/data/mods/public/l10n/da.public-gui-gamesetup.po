@@ -6,7 +6,7 @@
 # agrang13 <anders.groengaard@gmail.com>, 2014
 # altschuler <simon@altschuler.dk>, 2014
 # Deltamat <mathias.broendum@gmail.com>, 2014
-# Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
+# Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014-2015
 # Fijure <mathiasik@live.dk>, 2014
 # jarlgjessing <jarlgjessing@gmail.com>, 2014
 # Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014-2015
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-07-22 09:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-08-28 09:56+0000\n"
+"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,42 +106,42 @@ msgstr "Deathmatch"
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Ingen våbenhvile"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minutter"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minutter"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "15 minutes"
-msgstr ""
+msgstr "15 minutter"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "20 minutes"
-msgstr ""
+msgstr "20 minutter"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minutter"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "45 minutes"
-msgstr ""
+msgstr "45 minutter"
 
 #: gui/gamesetup/gamesetup.js:18
 msgctxt "ceasefire"
 msgid "60 minutes"
-msgstr ""
+msgstr "60 minutter"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Return to the main menu."
@@ -225,7 +225,7 @@ msgstr "Nej"
 #: gui/gamesetup/gamesetup.js:1357 gui/gamesetup/gamesetup.js:1358
 #: gui/gamesetup/gamesetup.js:1359
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Bestemmes af scenariet"
 
 #: gui/gamesetup/gamesetup.js:1371
 msgid "Randomly selects a map from the list"
@@ -364,19 +364,19 @@ msgstr "Nedkæmp alle modstandere"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:2
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Erobringsbygninger"
 
 #: gui/gamesetup/victory_conditions/conquestStructures.js:3
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Ødelæg alle fjendens bygninger"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:2
 msgid "Conquest Units"
-msgstr ""
+msgstr "Erobringsenheder"
 
 #: gui/gamesetup/victory_conditions/conquestUnits.js:3
 msgid "Destroy all units of enemies"
-msgstr ""
+msgstr "Ødelæg alle fjendens enheder"
 
 #: gui/gamesetup/victory_conditions/wonder.js:2
 msgid "Wonder"
@@ -497,7 +497,7 @@ msgstr "Startressourcer:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Våbenhvile:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -513,7 +513,7 @@ msgstr "Udforsket Kort:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Slå skatte fra:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
@@ -593,7 +593,7 @@ msgstr "Vælg spillets startressourcer."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Sæt en periode hvor angreb ikke er umuligt."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -609,7 +609,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Slå alle skatte på kortet fra."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."
@@ -1541,7 +1541,7 @@ msgstr "\"Ikke engang tænk på at gøre hvad ikke bør gøres.\" - Pythagoras"
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
-msgstr ""
+msgstr "\"Når den vise mand åbner munden, præsenteres hans sjæls skønheder sig selv til beskueren, som statuer i et tempel.\" - Pythagores"
 
 #: gui/text/quotes.txt:169
 msgid ""
@@ -1571,7 +1571,7 @@ msgstr ""
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr ""
+msgstr "\"Forbered jer på krig, da I har været ude af stand til at klare freden.\" - Scipio Africanus"
 
 #: gui/text/quotes.txt:174
 msgid ""

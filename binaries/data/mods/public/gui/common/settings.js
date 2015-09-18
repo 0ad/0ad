@@ -9,10 +9,9 @@ const g_MaxPlayers = 8;
  */
 const g_MaxTeams = 4;
 
-// The following settings will be loaded here:
-// AIDifficulties, Ceasefire, GameSpeeds, GameTypes, MapTypes,
-// MapSizes, PlayerDefaults, PopulationCapacity, StartingResources
-
+/**
+ * Directory containing all editable settings.
+ */
 const g_SettingsDirectory = "simulation/data/settings/";
 
 /**
@@ -29,11 +28,16 @@ const g_Settings = loadSettingsValues();
  */
 function loadSettingsValues()
 {
+	// TODO: move PlayerDefaults and MapSizes from functions_utility.js here
 	var settings = {
+		"AIDescriptions": loadAIDescriptions(),
+		"AIDifficulties": loadAIDifficulties(),
 		"Ceasefire": loadCeasefire(),
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
+		"MapTypes": loadMapTypes(),
 		"PopulationCapacities": loadPopulationCapacities(),
-		"StartingResources": loadSettingValuesFile("starting_resources.json")
+		"StartingResources": loadSettingValuesFile("starting_resources.json"),
+		"VictoryConditions": loadVictoryConditions()
 	};
 
 	if (Object.keys(settings).some(key => settings[key] === undefined))
@@ -66,6 +70,55 @@ function loadSettingValuesFile(filename)
 }
 
 /**
+ * Loads the descriptions as defined in simulation/ai/.../data.json and loaded by ICmpAIManager.cpp.
+ *
+ * @returns {Array}
+ */
+function loadAIDescriptions()
+{
+	var ais = Engine.GetAIs();
+	translateObjectKeys(ais, ["name", "description"]);
+	return ais.sort((a, b) => a.data.name.localeCompare(b.data.name));
+}
+
+/**
+ * Hardcoded, as modding is not supported without major changes.
+ * Notice the AI code parses the difficulty level by the index, not by name.
+ *
+ * @returns {Array}
+ */
+function loadAIDifficulties()
+{
+	return [
+		{
+			"Name": "sandbox",
+			"Title": translateWithContext("aiDiff", "Sandbox")
+		},
+		{
+			"Name": "very easy",
+			"Title": translateWithContext("aiDiff", "Very Easy")
+		},
+		{
+			"Name": "easy",
+			"Title": translateWithContext("aiDiff", "Easy")
+		},
+		{
+			"Name": "medium",
+			"Title": translateWithContext("aiDiff", "Medium"),
+			"Default": true
+		},
+		{
+			"Name": "hard",
+			"Title": translateWithContext("aiDiff", "Hard")
+		},
+		{
+			"Name": "very hard",
+			"Title": translateWithContext("aiDiff", "Very Hard")
+		}
+	];
+}
+
+/**
  * Loads available ceasefire settings.
  *
  * @returns {Array|undefined}
@@ -86,6 +139,64 @@ function loadCeasefire()
 		"Title": timeout == 0 ? translateWithContext("ceasefire", "No ceasefire") :
 			sprintf(translatePluralWithContext("ceasefire", "%(minutes)s minute", "%(minutes)s minutes", timeout), { "minutes": timeout })
 	}));
+}
+
+/**
+ * Hardcoded, as modding is not supported without major changes.
+ *
+ * @returns {Array}
+ */
+function loadMapTypes()
+{
+	return [
+		{
+			"Name": "skirmish",
+			"Title": translateWithContext("map", "Skirmish"),
+			"Default": true
+		},
+		{
+			"Name": "random",
+			"Title": translateWithContext("map", "Random")
+		},
+		{
+			"Name": "scenario",
+			"Title": translate("Scenario") // TODO: update the translation (but not shortly before a release)
+		}
+	];
+}
+
+/**
+ * Loads available gametypes.
+ *
+ * @returns {Array|undefined}
+ */
+function loadVictoryConditions()
+{
+	const subdir = "victory_conditions/"
+
+	const files = Engine.BuildDirEntList(g_SettingsDirectory + subdir, "*.json", false).map(
+		file => file.substr(g_SettingsDirectory.length));
+
+	var victoryConditions = files.map(file => {
+		let vc = loadSettingValuesFile(file);
+		if (vc)
+			vc.Name = file.substr(subdir.length, file.length - (subdir + ".json").length);
+		return vc;
+	});
+
+	if (victoryConditions.some(vc => vc == undefined))
+		return undefined;
+
+	// TODO: We might support enabling victory conditions separately sometime.
+	// Until then, we supplement the endless gametype here.
+	victoryConditions.push({
+		"Name": "endless",
+		"Title": translate("None"),
+		"Description": translate("Endless Game"),
+		"Scripts": []
+	});
+
+	return victoryConditions;
 }
 
 /**

@@ -41,7 +41,7 @@ m.DefenseManager.prototype.getArmy = function(partOfArmy)
 	// Find the army corresponding to this ID partOfArmy
 	for (let army of this.armies)
 		if (army.ID === partOfArmy)
-		    return army;
+			return army;
 
 	return undefined;
 };
@@ -207,8 +207,8 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 		let army = this.armies[i];
 		// this returns a list of IDs: the units that broke away from the army for being too far.
 		let breakaways = army.update(gameState);
-		for (let breakers of breakaways)
-			this.makeIntoArmy(gameState, breakers);		// assume dangerosity
+		for (let breaker of breakaways)
+			this.makeIntoArmy(gameState, breaker);		// assume dangerosity
 
 		if (army.getState(gameState) === 0)
 		{
@@ -450,12 +450,20 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.isGarrisonHolder() && target.getArrowMultiplier())
 			this.garrisonRangedUnitsInside(gameState, target, {"attacker": attacker});
 
-		if (attacker.getMetadata(PlayerID, "PartOfArmy") === undefined && !attacker.hasClass("Ship"))
+		// Finally signal this attacker to our defense manager, except if we are ourself performing an attack
+		// TODO treat ship attack
+		if (attacker.getMetadata(PlayerID, "PartOfArmy") !== undefined || attacker.hasClass("Structure") || attacker.hasClass("Ship"))
+			continue;
+		let plan = target.getMetadata(PlayerID, "plan");
+		if (plan !== undefined && plan >= 0)
 		{
-			let territoryOwner = this.territoryMap.getOwner(attacker.position());
-			if (territoryOwner === 0 || gameState.isPlayerAlly(territoryOwner))
-				this.makeIntoArmy(gameState, attacker.id());
+			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
+			if (attack && attack.state !== "unexecuted")
+				continue;
 		}
+		let territoryOwner = this.territoryMap.getOwner(attacker.position());
+		if (territoryOwner === 0 || gameState.isPlayerAlly(territoryOwner))
+			this.makeIntoArmy(gameState, attacker.id());
 	}
 };
 

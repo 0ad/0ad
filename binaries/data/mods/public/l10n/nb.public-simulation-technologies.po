@@ -5,12 +5,13 @@
 # Translators:
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
+# Ole Sannes Riiser <OLE-SR@online.no>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-22 09:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-09-13 18:42+0000\n"
+"Last-Translator: Ole Sannes Riiser <OLE-SR@online.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr "Utstyr ditt kavaleri med panser. Alt kavaleri får +1 i pansernivå mot 
 #: simulation/data/technologies/armor_cav_02.jsongenericName
 #: simulation/data/technologies/armor_cav_chamfron.jsongenericName
 msgid "Chamfron"
-msgstr ""
+msgstr "Bard"
 
 #: simulation/data/technologies/armor_cav_01.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_cav_chamfron.jsonrequirementsTooltip
@@ -103,7 +104,7 @@ msgstr "Låses opp i by-fasen."
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
 msgid "Prometōpídion"
-msgstr ""
+msgstr "Prometōpídion"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
@@ -207,16 +208,16 @@ msgstr "Jernrustning for helt"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidḗrea Panoplía"
-msgstr ""
+msgstr "Sidḗrea Panoplía"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
-msgstr ""
+msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr ""
+msgstr "Vattert lin- eller lærrustning for infanteri."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
@@ -251,7 +252,7 @@ msgstr "Lappeflettet kroppsrustning"
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.iber
 msgid "Spolas"
-msgstr ""
+msgstr "Spolas"
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
@@ -280,7 +281,7 @@ msgstr "Laminert kroppsrustning i lin"
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
-msgstr ""
+msgstr "Linothorakes"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
@@ -298,7 +299,7 @@ msgstr "Skjellrustning"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
-msgstr ""
+msgstr "Lorica Squamata"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsondescription
 msgid ""
@@ -313,11 +314,11 @@ msgstr "Mestere +2 panser mot hugg men også +10 i metall-kostnad."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
-msgstr ""
+msgstr "Bronseharniskrustning"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
 msgid "Lorica Musculata"
-msgstr ""
+msgstr "Lorica Musculata"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
@@ -337,7 +338,7 @@ msgstr "Konstruksjon av kryssfinérskjold"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
 msgid "Aspidískos"
-msgstr ""
+msgstr "Aspidískos"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
 msgid ""
@@ -359,7 +360,7 @@ msgstr "Forsterket skjold"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspís"
-msgstr ""
+msgstr "Aspís"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
@@ -367,18 +368,18 @@ msgstr "Et bronseskinn hamret over forsiden av skjoldet."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr ""
+msgstr "Infanterispydmenn +1 i panser mot stikk."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
-msgstr ""
+msgstr "Skjoldflate i bronse"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
 msgid "Khalkaspís"
-msgstr ""
+msgstr "Khalkaspís"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Khrysaspís"
@@ -388,15 +389,15 @@ msgstr ""
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr ""
+msgstr "Bare de mest beryktede soldatene hadde skjold med overflate i sølv, som det berømte \"Sølvskjold-regimentet\" i Alexander den Stores hær. "
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr ""
+msgstr "Mestere +2 beskyttelse mot stikk, men også +10 metallkostnad."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
-msgstr ""
+msgstr "Sølvskjold"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
@@ -404,7 +405,7 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspís"
-msgstr ""
+msgstr "Argyraspís"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -420,13 +421,13 @@ msgstr "Skrogplater av bly"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr ""
+msgstr "Hypozomataen forsterker et skips struktur."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr ""
+msgstr "Hypozomataen forsterker skipets struktur. +2 for alle pansertyper til skip."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
@@ -434,7 +435,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
-msgstr ""
+msgstr "Tømmerbjelker for å forsterke skipsskrog."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
@@ -443,7 +444,7 @@ msgstr "Tømmerbjelker for å forsterke skrog. +2 for alle pansertyper til skip.
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
-msgstr ""
+msgstr "Forsterket skrog"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
@@ -475,7 +476,7 @@ msgstr "Kavalerilanse"
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
 msgid "Xystón"
-msgstr ""
+msgstr "Xystón"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
@@ -483,19 +484,19 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
 msgid "Hasta"
-msgstr ""
+msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr ""
+msgstr "Treing øker nærkampsangrep."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr ""
+msgstr "+20% nærkampangrep for kavaleri."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
-msgstr ""
+msgstr "Nærkamptrening for kavaleri"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
@@ -518,17 +519,17 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
-msgstr ""
+msgstr "Xyston"
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
 msgid "Replaces bronze weapons with iron."
-msgstr ""
+msgstr "Erstatter bronsevåpen med jern."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr ""
+msgstr "Utstyr ditt nærkampkavaleri med bedre våpen. +20% nærkampangrep for kavaleri."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -538,20 +539,20 @@ msgstr "Jern våpen"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr ""
+msgstr "Trening øker avstandsangrep."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr ""
+msgstr "+20% rekkeviddeangrep for kavaleri."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr ""
+msgstr "Avstandskamptrening for kavaleri."
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr ""
+msgstr "Utstyr ditt avstandskampkavaleri med bedre våpen. +20% avstandsangrep for kavaleri."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -572,11 +573,11 @@ msgstr "Heltemot"
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
 msgid "Andreía"
-msgstr ""
+msgstr "Andreía"
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.rome
 msgid "Fortitudo"
-msgstr ""
+msgstr "Fortitudo"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsondescription
 #: simulation/data/technologies/melee_inf_sidearms.jsondescription
@@ -584,17 +585,17 @@ msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
 "been broken."
-msgstr ""
+msgstr "En infanterist hadde gjerne med seg et sekundærvåpen i tillegg til hans primærvåpen, som kunne brukes dersom hans primærvåpen ble ødelagt."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr ""
+msgstr "+20% nærkampangrep for infanteri."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
 msgid "Side Arms"
-msgstr ""
+msgstr "Sidevåpen"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
@@ -607,28 +608,28 @@ msgstr ""
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.athen
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
 msgid "Xíphos"
-msgstr ""
+msgstr "Xíphos"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
 msgid "Pugio"
-msgstr ""
+msgstr "Pugio"
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr ""
+msgstr "Ved å bruke jern fremfor bronse fikk man kraftigere våpen."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr ""
+msgstr "Trening øker skaden fra avstandsinfanteri."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr ""
+msgstr "+20% rekkeviddeangrep for infanteri."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
@@ -651,11 +652,11 @@ msgstr ""
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.athen
 msgid "Átaktoi"
-msgstr ""
+msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "Mesterklasserekkeviddeinfanteri"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -663,7 +664,7 @@ msgstr "Kampviljen er kritisk for å seire."
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Inspire your troops with higher pay. All soldiers +25% attack."
-msgstr ""
+msgstr "Inspirer dine tropper med høyere lønn. Alle soldater +25 angrep."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -675,13 +676,13 @@ msgstr "Kampvilje"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 msgid "Dýnamis"
-msgstr ""
+msgstr "Dýnamis"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr ""
+msgstr "Hemmelige stålbearbeidingsteknikker gir sverdklinger karakteristiske og vakre graveringer. Dessuten er stålets hardhet uten sidestykke."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+2 attack for all sword units."
@@ -693,31 +694,31 @@ msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
-msgstr ""
+msgstr "Wootz-stål"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
-msgstr ""
+msgstr "Toledo-stål"
 
 #: simulation/data/technologies/attack_tower_crenellations.jsondescription
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr ""
+msgstr "Krenleringer på brystvernet gir soldater bredere skuddfelt når de forsvarer et fort."
 
 #: simulation/data/technologies/attack_tower_crenellations.jsontooltip
 msgid ""
 "Install crenellations and murder holes to have 40% more arrows fired per "
 "garrisoned soldier."
-msgstr ""
+msgstr "Installer kreneleringer og morderhull for å få 40% flere piler skutt per stasjonert soldat. "
 
 #: simulation/data/technologies/attack_tower_crenellations.jsongenericName
 msgid "Crenellations"
-msgstr ""
+msgstr "Kreneleringer"
 
 #: simulation/data/technologies/attack_tower_defense.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
+msgstr "Forsterk fundamentene for å forberede et angrep. "
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armour level of the defense tower by 2 levels."

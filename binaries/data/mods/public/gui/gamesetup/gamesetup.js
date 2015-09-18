@@ -3,12 +3,15 @@
 const DEFAULT_NETWORKED_MAP = "Acropolis 01";
 const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
-const VICTORY_DEFAULTIDX = 1;
-
 const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
 const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly) : undefined);
+const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
 const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
 const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
+const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryConditions : undefined);
+
+// All colors except gaia
+const g_PlayerColors = initPlayerDefaults().slice(1).map(pData => pData.Color);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -48,8 +51,6 @@ var g_GameAttributes = {
 
 var g_MapSizes = {};
 
-var g_AIs = [];
-
 var g_ChatMessages = [];
 
 // Data caches
@@ -65,9 +66,6 @@ var g_AssignedCount = 0;
 // we'll start with a 'loading' message and switch to the main screen in the
 // tick handler
 var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
-
-// Filled by scripts in victory_conditions/
-var g_VictoryConditions = {};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -111,14 +109,6 @@ function init(attribs)
 // Called after the map data is loaded and cached
 function initMain()
 {
-	// Load AI list
-	g_AIs = Engine.GetAIs();
-
-	// Sort AIs by displayed name
-	g_AIs.sort(function (a, b) {
-		return a.data.name < b.data.name ? -1 : b.data.name < a.data.name ? +1 : 0;
-	});
-
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = initPlayerDefaults();
 	g_DefaultPlayerData.shift();
@@ -132,8 +122,8 @@ function initMain()
 
 	// Init map types
 	var mapTypes = Engine.GetGUIObjectByName("mapTypeSelection");
-	mapTypes.list = [translateWithContext("map", "Skirmish"), translateWithContext("map", "Random"), translate("Scenario")];
-	mapTypes.list_data = ["skirmish","random","scenario"];
+	mapTypes.list = g_MapTypes.Title;
+	mapTypes.list_data = g_MapTypes.Name;
 
 	// Setup map filters - will appear in order they are added
 	addFilter("default", translate("Default"), function(settings) { return settings && (settings.Keywords === undefined || !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"])); });
@@ -164,7 +154,7 @@ function initMain()
 	// Setup controls for host only
 	if (g_IsController)
 	{
-		mapTypes.selected = 0;
+		mapTypes.selected = g_MapTypes.Default;
 		mapFilters.selected = 0;
 
 		// Create a unique ID for this match, to be used for identifying the same game reports
@@ -226,19 +216,18 @@ function initMain()
 		}
 
 		var victoryConditions = Engine.GetGUIObjectByName("victoryCondition");
-		var victories = getVictoryConditions();
-		victoryConditions.list = victories.text;
-		victoryConditions.list_data = victories.data;
+		victoryConditions.list = g_VictoryConditions.Title;
+		victoryConditions.list_data = g_VictoryConditions.Name;
 		victoryConditions.onSelectionChange = function() {
 			if (this.selected != -1)
 			{
-				g_GameAttributes.settings.GameType = victories.data[this.selected];
-				g_GameAttributes.settings.VictoryScripts = victories.scripts[this.selected];
+				g_GameAttributes.settings.GameType = g_VictoryConditions.Name[this.selected];
+				g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[this.selected];
 			}
 
 			updateGameAttributes();
 		};
-		victoryConditions.selected = VICTORY_DEFAULTIDX;
+		victoryConditions.selected = g_VictoryConditions.Default;
 
 		var mapSize = Engine.GetGUIObjectByName("mapSize");
 		mapSize.list = g_MapSizes.names;
@@ -379,6 +368,13 @@ function initMain()
 
 			updateGameAttributes();
 		};
+
+		// Populate color drop-down lists.
+		var colorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
+		colorPicker.list = g_PlayerColors.map(color => '[color="' + color.r + ' ' + color.g + ' ' + color.b + '"] ■[/color]');
+		colorPicker.list_data = g_PlayerColors.map((color, index) => index);
+		colorPicker.selected = -1;
+		colorPicker.onSelectionChange = function() { selectPlayerColor(playerSlot, this.selected); };
 
 		// Set events
 		var civ = Engine.GetGUIObjectByName("playerCiv["+i+"]");
@@ -714,7 +710,6 @@ function loadGameAttributes()
 	if (!g_IsNetworked)
 		mapSettings.CheatsEnabled = true;
 
-	var aiCodes = [ ai.id for each (ai in g_AIs) ];
 	var civListCodes = [ civ.Code for each (civ in g_CivData) if (civ.SelectableInGameSetup !== false) ];
 	civListCodes.push("random");
 
@@ -745,8 +740,7 @@ function loadGameAttributes()
 	var mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilterSelection.selected = mapFilterSelection.list_data.indexOf(attrs.mapFilter);
 
-	var mapTypeSelection = Engine.GetGUIObjectByName("mapTypeSelection");
-	mapTypeSelection.selected = mapTypeSelection.list_data.indexOf(attrs.mapType);
+	Engine.GetGUIObjectByName("mapTypeSelection").selected = g_MapTypes.Name.indexOf(attrs.mapType);
 
 	initMapNameList();
 
@@ -893,6 +887,41 @@ function selectNumPlayers(num)
 	updateGameAttributes();
 }
 
+/**
+ *  Assigns the given color to that player.
+ */
+function selectPlayerColor(playerSlot, colorIndex)
+{
+	if (colorIndex == -1)
+		return;
+
+	var playerData = g_GameAttributes.settings.PlayerData;
+
+	// If someone else has that color, give that player the old color
+	var pData = playerData.find(pData => sameColor(g_PlayerColors[colorIndex], pData.Color));
+	if (pData)
+		pData.Color = playerData[playerSlot].Color;
+
+	// Assign the new color
+	playerData[playerSlot].Color = g_PlayerColors[colorIndex];
+
+	// Ensure colors are not used twice after increasing the number of players
+	ensureUniquePlayerColors(playerData);
+
+	if (!g_IsInGuiUpdate)
+		updateGameAttributes();
+}
+
+function ensureUniquePlayerColors(playerData)
+{
+	for (let i = playerData.length - 1; i >= 0; --i)
+	{
+		// If someone else has that color, assign an unused color
+		if (playerData.some((pData, j) => i != j && sameColor(playerData[i].Color, pData.Color)))
+			playerData[i].Color = g_PlayerColors.find(color => playerData.every(pData => !sameColor(color, pData.Color)));
+	}
+}
+
 // Called when the user selects a map type from the list
 function selectMapType(type)
 {
@@ -991,16 +1020,43 @@ function selectMap(name)
 	var mapData = loadMapData(name);
 	var mapSettings = (mapData && mapData.settings ? deepcopy(mapData.settings) : {});
 
+	// Reset victory conditions
+	if (g_GameAttributes.mapType != "random")
+	{
+		let victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
+		g_GameAttributes.settings.GameType = g_VictoryConditions.Name[victoryIdx];
+		g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[victoryIdx];
+	}
+
+	// Sanitize player data
+	if (mapSettings.PlayerData)
+	{
+		// Ignore gaia
+		if (mapSettings.PlayerData.length && !mapSettings.PlayerData[0])
+			mapSettings.PlayerData.shift();
+
+		// Set default color if no color present
+		mapSettings.PlayerData.forEach((pData, index) => {
+			if (pData && !pData.Color)
+				pData.Color = g_PlayerColors[index];
+		});
+
+		// Replace colors with the best matching color of PlayerDefaults
+		mapSettings.PlayerData.forEach((pData, index) => {
+			let colorDistances = g_PlayerColors.map(color => colorDistance(color, pData.Color));
+			let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
+			pData.Color = g_PlayerColors.find(color => colorDistance(color, pData.Color) == smallestDistance);
+		});
+		
+		ensureUniquePlayerColors(mapSettings.PlayerData);
+	}
+
 	// Copy any new settings
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
 	if (g_GameAttributes.map !== "random")
 		for (var prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
-
-	// Ignore gaia
-	if (g_GameAttributes.settings.PlayerData.length && !g_GameAttributes.settings.PlayerData[0])
-		g_GameAttributes.settings.PlayerData.shift();
 
 	// Use default AI if the map doesn't specify any explicitly
 	for (var i = 0; i < g_GameAttributes.settings.PlayerData.length; ++i)
@@ -1163,9 +1219,7 @@ function onGameAttributesChange()
 		var mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
 		var mapFilterId = mapFilterSelection.list_data.indexOf(g_GameAttributes.mapFilter);
 		Engine.GetGUIObjectByName("mapFilterText").caption = mapFilterSelection.list[mapFilterId];
-		var mapTypeSelection = Engine.GetGUIObjectByName("mapTypeSelection");
-		var idx = mapTypeSelection.list_data.indexOf(g_GameAttributes.mapType);
-		Engine.GetGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
+		Engine.GetGUIObjectByName("mapTypeText").caption = g_MapTypes.Title[g_MapTypes.Name.indexOf(g_GameAttributes.mapType)];
 		var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
 		Engine.GetGUIObjectByName("mapSelectionText").caption = translate(getMapDisplayName(mapName));
@@ -1223,8 +1277,7 @@ function onGameAttributesChange()
 
 	// We have to check for undefined on these properties as not all maps define them.
 	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
-	var victories = getVictoryConditions();
-	var victoryIdx = (mapSettings.GameType !== undefined && victories.data.indexOf(mapSettings.GameType) != -1 ? victories.data.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
+	var victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
 	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true);
 	enableCheatsText.caption = (enableCheats.checked ? translate("Yes") : translate("No"));
 	if (mapSettings.RatingEnabled !== undefined)
@@ -1297,7 +1350,7 @@ function onGameAttributesChange()
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExporeMap ? translate("Yes") : translate("No"));
 			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
-			victoryConditionText.caption = victories.text[victoryIdx];
+			victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
 
@@ -1336,7 +1389,7 @@ function onGameAttributesChange()
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
 			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
-			victoryConditionText.caption = victories.text[victoryIdx];
+			victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
 
@@ -1372,7 +1425,7 @@ function onGameAttributesChange()
 		revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 		exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
 		disableTreasuresText.caption = translate("No");
-		victoryConditionText.caption = victories.text[victoryIdx];
+		victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
 		lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 
 		startingResourcesText.caption = translate("Determined by scenario");
@@ -1400,8 +1453,8 @@ function onGameAttributesChange()
 
 	// Describe the number of players and the victory conditions
 	var playerString = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { "number": numPlayers });
-	let victory = translate(victories.text[victoryIdx]);
-	if (victoryIdx != VICTORY_DEFAULTIDX)
+	let victory = g_VictoryConditions.Title[victoryIdx];
+	if (victoryIdx != g_VictoryConditions.Default)
 		victory = "[color=\"orange\"]" + victory + "[/color]";
 	playerString += translate("Victory Condition:") + " " + victory + ".\n\n" + description;
 
@@ -1428,8 +1481,8 @@ function onGameAttributesChange()
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[i] : {};
 
 		// Common to all game types
-		var color = rgbToGuiColor(getSetting(pData, pDefs, "Color"));
-		pColor.sprite = "color:" + color + " 100";
+		var color = getSetting(pData, pDefs, "Color");
+		pColor.sprite = "color:" + rgbToGuiColor(color) + " 100";
 		pName.caption = translate(getSetting(pData, pDefs, "Name"));
 
 		var team = getSetting(pData, pDefs, "Team");
@@ -1468,6 +1521,15 @@ function onGameAttributesChange()
 			pCiv.selected = (civ ? pCiv.list_data.indexOf(civ) : 0);
 			pTeam.selected = (team !== undefined && team >= 0) ? team+1 : 0;
 		}
+
+		// Allow host to chose player colors on non-scenario maps
+		const pColorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
+		const pColorPickerHeading = Engine.GetGUIObjectByName("playerColorHeading");
+		const canChangeColors = g_IsController && g_GameAttributes.mapType != "scenario";
+		pColorPicker.hidden = !canChangeColors;
+		pColorPickerHeading.hidden = !canChangeColors;
+		if (canChangeColors)
+			pColorPicker.selected = g_PlayerColors.findIndex(col => sameColor(col, color));
 	}
 
 	Engine.GetGUIObjectByName("mapInfoDescription").caption = playerString;
@@ -1536,7 +1598,7 @@ function updatePlayerList()
 	if (g_IsController)
 		Engine.GetGUIObjectByName("startGame").enabled = (g_AssignedCount > 0);
 
-	for each (var ai in g_AIs)
+	for (let ai of g_Settings.AIDescriptions)
 	{
 		if (ai.data.hidden)
 		{
@@ -1602,7 +1664,6 @@ function updatePlayerList()
 				configButton.hidden = false;
 				configButton.onpress = function() {
 					Engine.PushGuiPage("page_aiconfig.xml", {
-						"ais": g_AIs,
 						"id": g_GameAttributes.settings.PlayerData[playerSlot].AI,
 						"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
 						"callback": "AIConfigCallback",
@@ -1990,19 +2051,4 @@ function sendRegisterGameStanza()
 		"players": players
 	};
 	Engine.SendRegisterGame(gameData);
-}
-
-function getVictoryConditions()
-{
-	var r = {};
-	r.text = [translate("None")];
-	r.data = ["endless"];
-	r.scripts = [[]];
-	for (var vc in g_VictoryConditions)
-	{
-		r.data.push(vc);
-		r.text.push(g_VictoryConditions[vc].name);
-		r.scripts.push(g_VictoryConditions[vc].scripts);
-	}
-	return r;
 }

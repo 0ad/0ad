@@ -1,3 +1,5 @@
+const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
+
 var g_ChatMessages = [];
 var g_Name = "unknown";
 var g_GameList = {}
@@ -10,8 +12,6 @@ var g_specialKey = Math.random();
 var g_spamMonitor = {};
 var g_timestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
 var g_mapSizes = {};
-const g_mapTypesText = [translateWithContext("map", "Skirmish"), translateWithContext("map", "Random"), translate("Scenario")];
-const g_mapTypes = ["skirmish", "random", "scenario"];
 var g_userRating = ""; // Rating of user, defaults to Unrated
 var g_modPrefix = "@";
 // Block spammers for 30 seconds.
@@ -21,6 +21,12 @@ var SPAM_BLOCK_LENGTH = 30;
 
 function init(attribs)
 {
+	if (!g_Settings)
+	{
+		returnToMainMenu();
+		return;
+	}
+
 	// Play menu music
 	initMusic();
 	global.music.setState(global.music.states.MENU);
@@ -42,8 +48,8 @@ function init(attribs)
 	playersNumberFilter.list_data = [""].concat(playersArray);
 
 	var mapTypeFilter = Engine.GetGUIObjectByName("mapTypeFilter");
-	mapTypeFilter.list = [translateWithContext("map", "Any")].concat(g_mapTypesText);
-	mapTypeFilter.list_data = [""].concat(g_mapTypes);
+	mapTypeFilter.list = [translateWithContext("map", "Any")].concat(g_MapTypes.Title);
+	mapTypeFilter.list_data = [""].concat(g_MapTypes.Name);
 
 	Engine.LobbySetPlayerPresence("available");
 	Engine.SendGetGameList();
@@ -56,6 +62,12 @@ function init(attribs)
 	updateSubject(Engine.LobbyGetRoomSubject());
 
 	resetFilters();
+}
+
+function returnToMainMenu()
+{
+	lobbyStop();
+	Engine.SwitchGuiPage("page_pregame.xml");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +115,7 @@ function resetFilters()
 	// Reset states of gui objects
 	Engine.GetGUIObjectByName("mapSizeFilter").selected = 0
 	Engine.GetGUIObjectByName("playersNumberFilter").selected = 0;
-	Engine.GetGUIObjectByName("mapTypeFilter").selected = 0;
+	Engine.GetGUIObjectByName("mapTypeFilter").selected = g_MapTypes.Default;
 	Engine.GetGUIObjectByName("showFullFilter").checked = false;
 
 	applyFilters();
@@ -474,8 +486,8 @@ function updateGameList()
 			list_ip.push(g.ip);
 			list_mapName.push(translate(g.niceMapName));
 			list_mapSize.push(translatedMapSize(g.mapSize));
-			let idx = g_mapTypes.indexOf(g.mapType);
-			list_mapType.push(idx != -1 ? g_mapTypesText[idx] : "");
+			let mapTypeIdx = g_MapTypes.Name.indexOf(g.mapType);
+			list_mapType.push(mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "");
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
 			list.push(name);
 			list_data.push(c);
@@ -601,8 +613,8 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
 	Engine.GetGUIObjectByName("sgMapSize").caption = translatedMapSize(g_GameList[g].mapSize);
-	let idx = g_mapTypes.indexOf(g_GameList[g].mapType);
-	Engine.GetGUIObjectByName("sgMapType").caption = idx != -1 ? g_mapTypesText[idx] : "";
+	let mapTypeIdx = g_MapTypes.indexOf(g_GameList[g].mapType);
+	Engine.GetGUIObjectByName("sgMapType").caption = mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "";
 
 	// Display map description if it exists, otherwise display a placeholder.
 	if (mapData && mapData.settings.Description)
@@ -812,8 +824,7 @@ function handleSpecialCommand(text)
 		Engine.LobbyBan(nick, "");
 		break;
 	case "quit":
-		lobbyStop();
-		Engine.SwitchGuiPage("page_pregame.xml");
+		returnToMainMenu();
 		break;
 	case "say":
 	case "me":

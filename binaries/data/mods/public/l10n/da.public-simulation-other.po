@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
+# Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014-2015
 # Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-22 09:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-08-28 10:03+0000\n"
+"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "Jeg har lige sendt en hær imod %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
@@ -50,12 +50,12 @@ msgstr ""
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Jeg har desværre ikke nok soldater nu, men mit næste angreb vil ramme %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "Her er en gave til %(_player_)s, gør godt brug af den."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
@@ -610,11 +610,11 @@ msgstr "fjendligt"
 #: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "Du kan angribe om %(time)s"
 
 #: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
-msgstr ""
+msgstr "Du kan angribe nu!"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format

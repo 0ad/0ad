@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# Juan Delhon <juandelhon@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-02-06 08:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (http://www.transifex.com/projects/p/0ad/language/es_AR/)\n"
+"PO-Revision-Date: 2015-09-15 23:27+0000\n"
+"Last-Translator: Juan Delhon <juandelhon@gmail.com>\n"
+"Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -36,79 +37,79 @@ msgstr ""
 
 #: i18n/L10n.cpp:276
 msgid "Long strings"
-msgstr ""
+msgstr "Larga cadena de caracteres "
 
 #: lobby/XmppClient.cpp:221
 msgid "Authentication failed"
-msgstr ""
+msgstr "Autentificación fallada."
 
 #: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
-msgstr ""
+msgstr "Inscripción no aceptable."
 
 #: lobby/XmppClient.cpp:456
 msgid "Registration conflict"
-msgstr ""
+msgstr "Conflicto de inscripción"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
-msgstr ""
+msgstr "Inscripción no autorizada."
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
-msgstr ""
+msgstr "Inscripción mal solicitada."
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
-msgstr ""
+msgstr "Inscripción no permitida."
 
 #: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:997
 msgid "Registration required"
-msgstr ""
+msgstr "Inscripción requerida."
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "Inscripción solicitud inesperada."
 
 #: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
-msgstr ""
+msgstr "Inscripción no permitida."
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unknown error"
-msgstr ""
+msgstr "inscripción error desconocido"
 
 #: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "subtipo desconocido (ver logs)"
 
 #: lobby/XmppClient.cpp:982
 msgid "Bad request"
-msgstr ""
+msgstr "Mala solicitud"
 
 #: lobby/XmppClient.cpp:983
 msgid "Player name already in use"
-msgstr ""
+msgstr "Este nombre ya existe"
 
 #: lobby/XmppClient.cpp:984
 msgid "Feature not implemented"
-msgstr ""
+msgstr "Función no implementada"
 
 #: lobby/XmppClient.cpp:985
 msgid "Forbidden"
-msgstr ""
+msgstr "Prohibido"
 
 #: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "Recipiente o servidor acabado"
 
 #: lobby/XmppClient.cpp:987
 msgid "Internal server error"
-msgstr ""
+msgstr "Problema interno del servidor"
 
 #: lobby/XmppClient.cpp:988
 msgid "Item not found"
-msgstr ""
+msgstr "Item no encontrado"
 
 #: lobby/XmppClient.cpp:989
 msgid "Jid malformed"
@@ -116,74 +117,74 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
-msgstr ""
+msgstr "No aceptable"
 
 #: lobby/XmppClient.cpp:991
 msgid "Not allowed"
-msgstr ""
+msgstr "No permitido "
 
 #: lobby/XmppClient.cpp:992
 msgid "Not authorized"
-msgstr ""
+msgstr "No autorizado"
 
 #: lobby/XmppClient.cpp:993
 msgid "Not modified"
-msgstr ""
+msgstr "Sin modificar"
 
 #: lobby/XmppClient.cpp:994
 msgid "Payment required"
-msgstr ""
+msgstr "Pago requerido"
 
 #: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "Recipiente no disponibe"
 
 #: lobby/XmppClient.cpp:996
 msgid "Redirect"
-msgstr ""
+msgstr "Redirigiendo"
 
 #: lobby/XmppClient.cpp:998
 msgid "Remote server not found"
-msgstr ""
+msgstr "Server remoto no encontrado"
 
 #: lobby/XmppClient.cpp:999
 msgid "Remote server timeout"
-msgstr ""
+msgstr "Server remoto caduco"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
-msgstr ""
+msgstr "Recurso restringido "
 
 #: lobby/XmppClient.cpp:1001
 msgid "Service unavailable"
-msgstr ""
+msgstr "Servicio no disponible"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
-msgstr ""
+msgstr "Suscripción requerida. "
 
 #: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
-msgstr ""
+msgstr "Condición sin definir"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
-msgstr ""
+msgstr " solicitud inesperada"
 
 #: lobby/XmppClient.cpp:1005
 msgid "Unknown sender"
-msgstr ""
+msgstr "Remitente desconocido"
 
 #: lobby/XmppClient.cpp:1007
 msgid "Error undefined"
-msgstr ""
+msgstr "Error indefinido"
 
 #: ps/SavedGame.cpp:131
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "Juego salvado a \"%s\""
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Captura de pantalla escrita a \"%s\""

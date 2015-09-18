@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-15 00:38+0200\n"
-"PO-Revision-Date: 2015-08-18 00:09+0000\n"
-"Last-Translator: Marcelo Kniss <marcelo.kniss@outlook.com>\n"
+"POT-Creation-Date: 2015-08-24 02:42+0200\n"
+"PO-Revision-Date: 2015-09-12 21:45+0000\n"
+"Last-Translator: Matheus Clemente <matheus.xb@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,6 +51,7 @@ msgstr "Aumentar a população limite."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
+#: simulation/templates/template_structure_defense_wooden_tower.xml:43
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -174,6 +175,11 @@ msgstr "Lança flechas. Abrigue para defender sua muralha contra atacantes."
 msgid "City Wall"
 msgstr "Muralha da Cidade"
 
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+msgid "Wooden Tower"
+msgstr "Torre de Madeira"
+
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Estrutura Econômica"
@@ -262,7 +268,7 @@ msgid "Dock"
 msgstr "Doca"
 
 #: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/template_structure_military_embassy.xml:28
+#: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
@@ -1212,7 +1218,7 @@ msgstr "Paraspa"
 msgid "Stables"
 msgstr "Estábulos"
 
-#: simulation/templates/structures/pers_stables.xml:25
+#: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
 msgstr "Treine cidadãos-cavaleiros."
 

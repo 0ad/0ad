@@ -288,7 +288,7 @@ m.AttackManager.prototype.unpausePlan = function(planName)
 {
 	var attack = this.getPlan(planName);
 	if (attack)
-		attack.setPaused(falsee);
+		attack.setPaused(false);
 };
 
 m.AttackManager.prototype.pauseAllPlans = function()

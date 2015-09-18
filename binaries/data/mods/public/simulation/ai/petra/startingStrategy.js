@@ -7,7 +7,8 @@ var PETRA = function(m)
 m.HQ.prototype.gameAnalysis = function(gameState)
 {
 	// Analysis of the terrain and the different access regions
-	this.regionAnalysis(gameState);
+	if (!this.regionAnalysis(gameState))
+		return;
 
 	this.attackManager.init(gameState);
 	this.navalManager.init(gameState);
@@ -166,7 +167,10 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 		}
 	}
 	if (!landIndex && !seaIndex)
+	{
 		API3.warn("Petra error: it does not know how to interpret this map");
+		return false;
+	}
 
 	var passabilityMap = gameState.getMap();
 	var totalSize = passabilityMap.width * passabilityMap.width;
@@ -210,12 +214,13 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	}
 
 	if (this.Config.debug < 3)
-		return;
+		return true;
 	for (var region in this.landRegions)
 		API3.warn(" >>> zone " + region + " taille " + cellArea*gameState.ai.accessibility.regionSize[region]);
 	API3.warn(" navalMap " + this.navalMap);
 	API3.warn(" landRegions " + uneval(this.landRegions));
 	API3.warn(" navalRegions " + uneval(this.navalRegions));
+	return true;
 };
 
 /**

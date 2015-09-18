@@ -1,54 +1,42 @@
-var g_AIs; // [ {"id": ..., "data": {"name": ..., "description": ..., ...} }, ... ]
 var g_PlayerSlot;
+
+const g_AIDescriptions = [{
+	"id": "",
+	"data": {
+		"name": translateWithContext("ai", "None"),
+		"description": translate("AI will be disabled for this player.")
+	}
+}].concat(g_Settings.AIDescriptions);
 
 function init(settings)
 {
+	// Remember the player ID that we change the AI settings for
 	g_PlayerSlot = settings.playerSlot;
 
-	translateObjectKeys(settings.ais, ["name", "description"]);
-	g_AIs = [
-		{id: "", data: {name: translateWithContext("ai", "None"), description: translate("AI will be disabled for this player.")}}
-	].concat(settings.ais);
-
 	var aiSelection = Engine.GetGUIObjectByName("aiSelection");
-	aiSelection.list = [ translate(ai.data.name) for each (ai in g_AIs) ];
-
-	var selected = 0;
-	for (var i = 0; i < g_AIs.length; ++i)
-	{
-		if (g_AIs[i].id == settings.id)
-		{
-			selected = i;
-			break;
-		}
-	}
-	aiSelection.selected = selected;
+	aiSelection.list = g_AIDescriptions.map(ai => ai.data.name);
+	aiSelection.selected = g_AIDescriptions.findIndex(ai => ai.id == settings.id);
 
 	var aiDiff = Engine.GetGUIObjectByName("aiDifficulty");
-	// Translation: AI difficulty level.
-	aiDiff.list = [translateWithContext("aiDiff", "Sandbox"), translateWithContext("aiDiff", "Very Easy"), translateWithContext("aiDiff", "Easy"), translateWithContext("aiDiff", "Medium"), translateWithContext("aiDiff", "Hard"), translateWithContext("aiDiff", "Very Hard")];
+	aiDiff.list = prepareForDropdown(g_Settings.AIDifficulties).Title;
 	aiDiff.selected = settings.difficulty;
 }
 
 function selectAI(idx)
 {
-	var id = g_AIs[idx].id;
-	var name = g_AIs[idx].data.name;
-	var description = g_AIs[idx].data.description;
-
-	Engine.GetGUIObjectByName("aiDescription").caption = description;
+	Engine.GetGUIObjectByName("aiDescription").caption = g_AIDescriptions[idx].data.description;
 }
 
 function returnAI()
 {
-	var aiSelection = Engine.GetGUIObjectByName("aiSelection");
-	var idx = aiSelection.selected;
-	var id = g_AIs[idx].id;
-	var name = g_AIs[idx].data.name;
+	var idx = Engine.GetGUIObjectByName("aiSelection").selected;
 
-	var difficulty = Engine.GetGUIObjectByName("aiDifficulty").selected;
-	
 	// Pop the page before calling the callback, so the callback runs
 	// in the parent GUI page's context
-	Engine.PopGuiPageCB({"id": id, "name": name, "difficulty" : difficulty, "playerSlot" : g_PlayerSlot });
+	Engine.PopGuiPageCB({
+		"id": g_AIDescriptions[idx].id,
+		"name": g_AIDescriptions[idx].data.name,
+		"difficulty": Engine.GetGUIObjectByName("aiDifficulty").selected,
+		"playerSlot": g_PlayerSlot
+	});
 }

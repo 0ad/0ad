@@ -255,7 +255,7 @@ var economic_walkthrough = [
 			{
 				"trigger": "time",
 				"time": 525,
-				"instructions": markForTranslation(" - Build enough houses, your CC should be kept busy as much as possible, it is the only training building until town phase.")
+				"instructions": markForTranslation(" - Build enough houses, your CC should be kept busy as much as possible.")
 			},
 			{
 				"trigger": "time",

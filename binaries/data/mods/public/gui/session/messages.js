@@ -474,6 +474,7 @@ function addChatMessage(msg)
 		{
 			let lastAmount = amounts.pop();
 			amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
+				// Translation: This comma is used for separating first to penultimate elements in an enumeration.
 				"previousAmounts": amounts.join(translate(", ")),
 				"lastAmount": lastAmount
 			});

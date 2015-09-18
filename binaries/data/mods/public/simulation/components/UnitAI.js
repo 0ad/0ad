@@ -1013,6 +1013,12 @@ UnitAI.prototype.UnitFsmSpec = {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(false);
 			},
+
+			"MoveStarted": function() {
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
+			}
 		},
 
 		"WALKING": {
@@ -1468,6 +1474,14 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"LosHealRangeUpdate": function(msg) {
 				this.RespondToHealableEntities(msg.data.added);
+			},
+
+			"MoveStarted": function() {
+				this.SelectAnimation("move");
+			},
+
+			"MoveCompleted": function() {
+				this.SelectAnimation("idle");
 			},
 
 			"Timer": function(msg) {
