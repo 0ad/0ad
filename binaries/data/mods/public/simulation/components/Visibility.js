@@ -22,13 +22,21 @@ Visibility.prototype.Init = function()
 {
 	this.retainInFog = this.template.RetainInFog == "true";
 	this.alwaysVisible = this.template.AlwaysVisible == "true";
-	this.corpse = this.template.Corpse == "true";
-	this.preview = this.template.Preview == "true";
 
 	this.activated = false;
 
+	// This component is used by corpses and previews.
+	// Activation happens at template loading.
+	this.corpse = this.template.Corpse == "true";
+	this.preview = this.template.Preview == "true";
 	if (this.preview || this.corpse)
 		this.SetActivated(true);
+
+	// If the entity is a GarrisonHolder, it can hold units from
+	// other players than the owner. In that situation, the entity needs
+	// to be visible for those players, else they won't be able to un-
+	// garrison their own units.
+	this.garrisonPlayers = [];
 };
 
 /**
@@ -50,6 +58,11 @@ Visibility.prototype.SetActivated = function(status)
 Visibility.prototype.IsActivated = function()
 {
 	return this.activated;
+};
+
+Visibility.prototype.ChangeGarrisonPlayers = function(players)
+{
+	
 };
 
 /**

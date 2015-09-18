@@ -138,12 +138,12 @@ function getTradingTooltip(gain)
 	});
 	
 	if (gain.market1Gain && gain.market1Owner != gain.traderOwner)
-		tooltip += translate(", ") + sprintf(translate("%(gain)s (%(player)s)"), {
+		tooltip += translateWithContext("Separation mark in an enumeration", ", ") + sprintf(translate("%(gain)s (%(player)s)"), {
 			gain: gain.market1Gain,
 			player: (!g_IsNetworked && gain.market1Owner == playerID) ? translate("You") : simState.players[gain.market1Owner].name
 		});
 	if (gain.market2Gain && gain.market2Owner != gain.traderOwner)
-		tooltip += translate(", ") + sprintf(translate("%(gain)s (%(player)s)"), {
+		tooltip += translateWithContext("Separation mark in an enumeration", ", ") + sprintf(translate("%(gain)s (%(player)s)"), {
 			gain: gain.market2Gain,
 			player: (!g_IsNetworked && gain.market2Owner == playerID) ? translate("You") : simState.players[gain.market2Owner].name
 		});
