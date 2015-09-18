@@ -48,8 +48,6 @@ var g_GameAttributes = {
 
 var g_MapSizes = {};
 
-var g_AIs = [];
-
 var g_ChatMessages = [];
 
 // Data caches
@@ -108,14 +106,6 @@ function init(attribs)
 // Called after the map data is loaded and cached
 function initMain()
 {
-	// Load AI list
-	g_AIs = Engine.GetAIs();
-
-	// Sort AIs by displayed name
-	g_AIs.sort(function (a, b) {
-		return a.data.name < b.data.name ? -1 : b.data.name < a.data.name ? +1 : 0;
-	});
-
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = initPlayerDefaults();
 	g_DefaultPlayerData.shift();
@@ -710,7 +700,6 @@ function loadGameAttributes()
 	if (!g_IsNetworked)
 		mapSettings.CheatsEnabled = true;
 
-	var aiCodes = [ ai.id for each (ai in g_AIs) ];
 	var civListCodes = [ civ.Code for each (civ in g_CivData) if (civ.SelectableInGameSetup !== false) ];
 	civListCodes.push("random");
 
@@ -1536,7 +1525,7 @@ function updatePlayerList()
 	if (g_IsController)
 		Engine.GetGUIObjectByName("startGame").enabled = (g_AssignedCount > 0);
 
-	for each (var ai in g_AIs)
+	for (let ai of g_Settings.AIDescriptions)
 	{
 		if (ai.data.hidden)
 		{
@@ -1602,7 +1591,6 @@ function updatePlayerList()
 				configButton.hidden = false;
 				configButton.onpress = function() {
 					Engine.PushGuiPage("page_aiconfig.xml", {
-						"ais": g_AIs,
 						"id": g_GameAttributes.settings.PlayerData[playerSlot].AI,
 						"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
 						"callback": "AIConfigCallback",

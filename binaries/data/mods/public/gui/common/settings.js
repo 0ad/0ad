@@ -9,10 +9,9 @@ const g_MaxPlayers = 8;
  */
 const g_MaxTeams = 4;
 
-// The following settings will be loaded here:
-// AIDifficulties, Ceasefire, GameSpeeds, GameTypes, MapTypes,
-// MapSizes, PlayerDefaults, PopulationCapacity, StartingResources
-
+/**
+ * Directory containing all editable settings.
+ */
 const g_SettingsDirectory = "simulation/data/settings/";
 
 /**
@@ -29,7 +28,10 @@ const g_Settings = loadSettingsValues();
  */
 function loadSettingsValues()
 {
+	// TODO: move PlayerDefaults and MapSizes from functions_utility.js here
 	var settings = {
+		"AIDescriptions": loadAIDescriptions(),
+		"AIDifficulties": loadAIDifficulties(),
 		"Ceasefire": loadCeasefire(),
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
 		"MapTypes": loadMapTypes(),
@@ -65,6 +67,55 @@ function loadSettingValuesFile(filename)
 		translateObjectKeys(json, json.TranslatedKeys);
 
 	return json.Data;
+}
+
+/**
+ * Loads the descriptions as defined in simulation/ai/.../data.json and loaded by ICmpAIManager.cpp.
+ *
+ * @returns {Array}
+ */
+function loadAIDescriptions()
+{
+	var ais = Engine.GetAIs();
+	translateObjectKeys(ais, ["name", "description"]);
+	return ais.sort((a, b) => a.data.name.localeCompare(b.data.name));
+}
+
+/**
+ * Hardcoded, as modding is not supported without major changes.
+ * Notice the AI code parses the difficulty level by the index, not by name.
+ *
+ * @returns {Array}
+ */
+function loadAIDifficulties()
+{
+	return [
+		{
+			"Name": "sandbox",
+			"Title": translateWithContext("aiDiff", "Sandbox")
+		},
+		{
+			"Name": "very easy",
+			"Title": translateWithContext("aiDiff", "Very Easy")
+		},
+		{
+			"Name": "easy",
+			"Title": translateWithContext("aiDiff", "Easy")
+		},
+		{
+			"Name": "medium",
+			"Title": translateWithContext("aiDiff", "Medium"),
+			"Default": true
+		},
+		{
+			"Name": "hard",
+			"Title": translateWithContext("aiDiff", "Hard")
+		},
+		{
+			"Name": "very hard",
+			"Title": translateWithContext("aiDiff", "Very Hard")
+		}
+	];
 }
 
 /**
