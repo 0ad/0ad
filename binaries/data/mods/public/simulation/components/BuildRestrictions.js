@@ -249,11 +249,11 @@ BuildRestrictions.prototype.CheckPlacement = function()
 		{
 			var cmpIdentity = Engine.QueryInterface(id, IID_Identity);
 			return cmpIdentity.GetClassesList().indexOf(cat) > -1;
-		}
+		};
 		
 		if (this.template.Distance.MinDistance)
 		{
-			var dist = +this.template.Distance.MinDistance
+			var dist = +this.template.Distance.MinDistance;
 			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
 			if (nearEnts.length)
 			{

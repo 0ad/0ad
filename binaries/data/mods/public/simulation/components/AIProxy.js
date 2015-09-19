@@ -208,7 +208,7 @@ AIProxy.prototype.GetFullRepresentation = function()
 		// These properties are constant and won't need to be updated
 		"id": this.entity,
 		"template": cmpTemplateManager.GetCurrentTemplateName(this.entity)
-	}
+	};
 
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (cmpPosition)

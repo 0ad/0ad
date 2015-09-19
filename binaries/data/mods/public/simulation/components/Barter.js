@@ -61,7 +61,7 @@ Barter.prototype.PlayerHasMarket = function(playerEntity)
 			return true;
 	}
 	return false;
-}
+};
 
 Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, resourceToBuy, amount)
 {
@@ -140,7 +140,7 @@ Barter.prototype.ProgressTimeout = function(data)
 		cmpTimer.CancelTimer(this.restoreTimer);
 		this.restoreTimer = undefined;
 	}
-}
+};
 
 Engine.RegisterSystemComponentType(IID_Barter, "Barter", Barter);
 

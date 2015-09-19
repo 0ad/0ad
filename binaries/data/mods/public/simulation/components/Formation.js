@@ -91,7 +91,7 @@ Formation.prototype.Init = function()
 	this.centerGap = +(this.template.CenterGap || 0);
 
 	var animations = this.template.Animations;
-	this.animations = {}
+	this.animations = {};
 	for (var animationName in animations)
 	{
 		var differentAnimations = animations[animationName].split(/\s*;\s*/);
@@ -274,7 +274,7 @@ Formation.prototype.UnsetInPosition = function(ent)
 	var ind = this.inPosition.indexOf(ent);
 	if (ind != -1)
 		this.inPosition.splice(ind, 1);
-}
+};
 
 /**
  * Set whether we should rearrange formation members if

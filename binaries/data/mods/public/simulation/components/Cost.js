@@ -89,7 +89,7 @@ Cost.prototype.OnValueModification = function(msg)
 		return;
 
 	// foundations shouldn't give a pop bonus and a pop cost
-	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation)
+	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation);
 	if (cmpFoundation)
 		return;
 

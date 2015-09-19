@@ -4211,7 +4211,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 			return false;
 	}
 
-	var cmpFormation = Engine.QueryInterface(target, IID_Formation)
+	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);
 
@@ -4318,7 +4318,7 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 			return true;
 	}
 
-	var cmpFormation = Engine.QueryInterface(target, IID_Formation)
+	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);
 

@@ -563,7 +563,7 @@ GarrisonHolder.prototype.OnHealthChanged = function(msg)
  */
 GarrisonHolder.prototype.HasEnoughHealth = function()
 {
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health)
+	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	var hitpoints = cmpHealth.GetHitpoints();
 	var maxHitpoints = cmpHealth.GetMaxHitpoints();
 	var ejectHitpoints = Math.floor((+this.template.EjectHealth) * maxHitpoints);
@@ -702,7 +702,7 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
  */
 GarrisonHolder.prototype.OnDiplomacyChanged = function()
 {
-	var entities = []
+	var entities = [];
 	for each (var entity in this.entities)
 	{
 		if (!IsOwnedByMutualAllyOfEntity(this.entity, entity))
@@ -723,7 +723,7 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 	if (cmpPosition.IsInWorld())
 	{
 		var cmpGarrisonHolder = this;
-		var ejectables = entities.filter(function(ent) { return cmpGarrisonHolder.IsEjectable(ent) });
+		var ejectables = entities.filter(function(ent) { return cmpGarrisonHolder.IsEjectable(ent); });
 		if (ejectables.length)
 			this.PerformEject(ejectables, false);
 	}

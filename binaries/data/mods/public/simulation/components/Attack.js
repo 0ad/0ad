@@ -337,12 +337,12 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 		return "Slaughter";
 
 	var attack = this;
-	var isAllowed = function (type) { return !attack.GetRestrictedClasses(type).some(isTargetClass); }
+	var isAllowed = function (type) { return !attack.GetRestrictedClasses(type).some(isTargetClass); };
 
 	var types = this.GetAttackTypes().filter(isAllowed);
 
 	// check if the target is capturable
-	var captureIndex = types.indexOf("Capture")
+	var captureIndex = types.indexOf("Capture");
 	if (captureIndex != -1)
 	{
 		let cmpCapturable = QueryMiragedInterface(target, IID_Capturable);
@@ -354,8 +354,8 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 		types.splice(captureIndex, 1);
 	}
 
-	var isPreferred = function (className) { return attack.GetPreferredClasses(className).some(isTargetClass); }
-	var byPreference = function (a, b) { return (types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) - (types.indexOf(b) + (isPreferred(b) ? types.length : 0) ); }
+	var isPreferred = function (className) { return attack.GetPreferredClasses(className).some(isTargetClass); };
+	var byPreference = function (a, b) { return (types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) - (types.indexOf(b) + (isPreferred(b) ? types.length : 0) ); };
 
 
 	return types.sort(byPreference).pop();
@@ -646,9 +646,9 @@ Attack.prototype.MissileHit = function(data, lateness)
 
 	if (this.testCollision(data.target, data.position, lateness))
 	{
-		data.attacker = this.entity
-		data.multiplier = this.GetAttackBonus(data.type, data.target)
-		data.strengths = this.GetAttackStrengths(data.type)
+		data.attacker = this.entity;
+		data.multiplier = this.GetAttackBonus(data.type, data.target);
+		data.strengths = this.GetAttackStrengths(data.type);
 		// Hit the primary target
 		Damage.CauseDamage(data);
 

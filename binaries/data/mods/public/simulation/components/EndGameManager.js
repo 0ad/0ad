@@ -48,7 +48,7 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 		if (cmpPlayer.GetState() != "active")
 			continue;
 		if (playerID == cmpPlayer.GetPlayerID() || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID))
-			cmpPlayer.SetState("won")
+			cmpPlayer.SetState("won");
 		else
 			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i, "skip": true } );
 	}

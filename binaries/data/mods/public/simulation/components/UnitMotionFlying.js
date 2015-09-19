@@ -97,7 +97,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 				this.pitch = 0;
 				// We've stopped.
 				if (cmpGarrisonHolder)
-					cmpGarrisonHolder.AllowGarrisoning(true,"UnitMotionFlying")
+					cmpGarrisonHolder.AllowGarrisoning(true,"UnitMotionFlying");
 				canTurn = false;
 				this.hasTarget = false;
 				this.landing = false;					
@@ -159,7 +159,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 		if (this.speed < this.template.TakeoffSpeed && this.onGround)
 		{
 			if (cmpGarrisonHolder)
-				cmpGarrisonHolder.AllowGarrisoning(false,"UnitMotionFlying")	
+				cmpGarrisonHolder.AllowGarrisoning(false,"UnitMotionFlying");
 			this.pitch = 0;
 			// Accelerate forwards
 			this.speed = Math.min(this.template.MaxSpeed, this.speed + turnLength * this.template.AccelRate);
@@ -313,7 +313,7 @@ UnitMotionFlying.prototype.GetRunSpeed = function()
 UnitMotionFlying.prototype.GetCurrentSpeed = function()
 {
 	return this.speed;
-}
+};
 
 UnitMotionFlying.prototype.FaceTowardsPoint = function(x, z)
 {

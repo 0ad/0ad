@@ -168,7 +168,7 @@ EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 			notification.message = markForTranslation("%(category)s training limit of %(limit)s reached");
 		else
 		{
-			warn("EntityLimits.js: Unknown LimitType " + limitType)
+			warn("EntityLimits.js: Unknown LimitType " + limitType);
 			notification.message = markForTranslation("%(category)s limit of %(limit)s reached");
 		}
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
@@ -178,7 +178,7 @@ EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 	}
 	
 	return true;
-}
+};
 
 EntityLimits.prototype.AllowedToBuild = function(category)
 {

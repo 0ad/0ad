@@ -711,7 +711,7 @@ GuiInterface.prototype.AddTimeNotification = function(notification, duration = 1
 			notification.players.push(i);
 	}
 	this.timeNotifications.push(notification);
-	this.timeNotifications.sort(function (n1, n2){return n2.endTime - n1.endTime});
+	this.timeNotifications.sort(function (n1, n2){return n2.endTime - n1.endTime;});
 
 	cmpTimer.SetTimeout(this.entity, IID_GuiInterface, "DeleteTimeNotification", duration, this.timeNotificationID);
 
@@ -884,7 +884,7 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 
 	for (let ent of affectedEnts)
 	{
-		let cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars)
+		let cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
 		if (cmpStatusBars)
 			cmpStatusBars.RegenerateSprites();
 	}
@@ -989,7 +989,7 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		"parameters": {},
 		"translateMessage": false,
 		"translateParameters": [],
-	}
+	};
 
 	// See if we're changing template
 	if (!this.placementEntity || this.placementEntity[0] != cmd.template)
