@@ -257,7 +257,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	{	// Apply metadata stored in training queues
 		for (let entId of evt.entities)
 			for (let key in evt.metadata)
-				this.setMetadata(evt.owner, this._entities.get(entId), key, evt.metadata[key])
+				this.setMetadata(evt.owner, this._entities.get(entId), key, evt.metadata[key]);
 	}
 
 	for (let evt of state.events["ConstructionFinished"])
@@ -268,7 +268,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		let newEnt = this._entities.get(evt.newentity);
 		if (this._entityMetadata[ent.owner()] && this._entityMetadata[ent.owner()][evt.entity] !== undefined)
 			for (let key in this._entityMetadata[ent.owner()][evt.entity])
-				this.setMetadata(ent.owner(), newEnt, key, this._entityMetadata[ent.owner()][evt.entity][key])
+				this.setMetadata(ent.owner(), newEnt, key, this._entityMetadata[ent.owner()][evt.entity][key]);
 		foundationFinished[evt.entity] = true;
 	}
 
@@ -278,7 +278,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			continue;	// might happen in some rare cases of foundations getting destroyed, perhaps.
 						// Apply metadata (here for buildings for example)
 		for (let key in evt.metadata)
-			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key])
+			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key]);
 	}
 	
 	var DestroyEvents = state.events["Destroy"];
@@ -388,7 +388,7 @@ m.SharedScript.prototype.updateEntityCollections = function(property, ent)
 
 	for (let entCol of this._entityCollectionsByDynProp[property].values())
 		entCol.updateEnt(ent);
-}
+};
 
 m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
 {
@@ -400,6 +400,7 @@ m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
 	this.updateEntityCollections('metadata', ent);
 	this.updateEntityCollections('metadata.' + key, ent);
 };
+
 m.SharedScript.prototype.getMetadata = function(player, ent, key)
 {
 	var metadata = this._entityMetadata[player][ent.id()];
@@ -408,6 +409,7 @@ m.SharedScript.prototype.getMetadata = function(player, ent, key)
 		return undefined;
 	return metadata[key];
 };
+
 m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
 {
 	var metadata = this._entityMetadata[player][ent.id()];

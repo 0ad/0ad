@@ -95,12 +95,12 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 				ent.unload(id);
 
 		ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(pos));
-		var bestbase = undefined;
+		var bestbase;
 		var territorypos = this.territoryMap.gamePosToMapPos(pos);
 		var territoryIndex = territorypos[0] + territorypos[1]*this.territoryMap.width;
-		for (var i = 1; i < this.baseManagers.length; ++i)
+		for (let i = 1; i < this.baseManagers.length; ++i)
 		{
-			var base = this.baseManagers[i];
+			let base = this.baseManagers[i];
 			if (base.territoryIndices.indexOf(territoryIndex) === -1)
 				continue;
 			base.assignEntity(gameState, ent);
@@ -119,11 +119,11 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 		// and find something useful to do if we already have a base
 		if (pos && bestbase.ID !== this.baseManagers[0].ID)
 		{
-			base.assignRolelessUnits(gameState, [ent]);
+			bestbase.assignRolelessUnits(gameState, [ent]);
 			if (ent.getMetadata(PlayerID, "role") === "worker")
 			{
-				base.reassignIdleWorkers(gameState, [ent]);
-				base.workerObject.update(gameState, ent);
+				bestbase.reassignIdleWorkers(gameState, [ent]);
+				bestbase.workerObject.update(gameState, ent);
 			}
 		}
 	}
@@ -136,8 +136,8 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 m.HQ.prototype.regionAnalysis = function(gameState)
 {
 	var accessibility = gameState.ai.accessibility;
-	let landIndex = undefined;
-	let seaIndex = undefined;
+	let landIndex;
+	let seaIndex;
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
 	for (let cc of ccEnts.values())
 	{

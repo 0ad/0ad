@@ -22,7 +22,7 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 	this.nextTributeUpdate = gameState.ai.elapsedTime + 30;
 	var totalResources = gameState.getResources();
 	var availableResources = gameState.ai.queueManager.getAvailableResources(gameState);
-	var mostNeeded = undefined;
+	var mostNeeded;
 	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
 	{
 		if (i === PlayerID || !gameState.isPlayerAlly(i))

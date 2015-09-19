@@ -41,9 +41,9 @@ m.EntityCollection.prototype.Deserialize = function(data, sharedAI)
 		this._filters.push(eval(f));
 
 	if (data.frozen)
-		this.freeze;
+		this.freeze();
 	else
-		this.defreeze;
+		this.defreeze();
 };
 
 // If an entitycollection is frozen, it will never automatically add a unit.

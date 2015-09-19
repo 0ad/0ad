@@ -37,7 +37,7 @@ m.QueueManager = function(Config, queues)
 		this.queueArrays.push([p, this.queues[p]]);
 	}
 	var priorities = this.priorities;
-	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]) });
+	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]); });
 };
 
 m.QueueManager.prototype.getAvailableResources = function(gameState)
@@ -606,7 +606,7 @@ m.QueueManager.prototype.Serialize = function()
 		"queues": queues,
 		"accounts": accounts
 	};
-}
+};
 
 m.QueueManager.prototype.Deserialize = function(gameState, data)
 {
@@ -624,7 +624,7 @@ m.QueueManager.prototype.Deserialize = function(gameState, data)
 		this.accounts[p].Deserialize(data.accounts[p]);
 		this.queueArrays.push([p, this.queues[p]]);
 	}
-	this.queueArrays.sort(function (a,b) { return (data.priorities[b[0]] - data.priorities[a[0]]) });
+	this.queueArrays.sort(function (a,b) { return (data.priorities[b[0]] - data.priorities[a[0]]); });
 };
 
 return m;

@@ -354,7 +354,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		// if our target was destroyed, go back to "unexecuted" state
 		if (!this.targetPlayer || !this.target || !gameState.getEntityById(this.target.id()))
 		{
-			this.state === "unexecuted";
+			this.state = "unexecuted";
 			this.target = undefined;
 		}
 		else

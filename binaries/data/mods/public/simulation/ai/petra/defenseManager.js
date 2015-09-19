@@ -7,7 +7,7 @@ m.DefenseManager = function(Config)
 	this.Config = Config;
 	this.targetList = [];
 	this.armyMergeSize = this.Config.Defense.armyMergeSize;
-}
+};
 
 m.DefenseManager.prototype.update = function(gameState, events)
 {
@@ -194,7 +194,7 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 			continue;
 		if (!ent.capturePoints() && !ent.hasDefensiveFire())
 			continue;
-		let owner = this.territoryMap.getOwner(ent.position());;
+		let owner = this.territoryMap.getOwner(ent.position());
 		if (owner === PlayerID)
 			this.makeIntoArmy(gameState, ent.id());
 	}
@@ -210,7 +210,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 		for (let breaker of breakaways)
 			this.makeIntoArmy(gameState, breaker);		// assume dangerosity
 
-		if (army.getState(gameState) === 0)
+		if (army.getState() === 0)
 		{
 			army.clear(gameState);
 			this.armies.splice(i--,1);
@@ -515,7 +515,7 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 {
 	let distmin = Math.min();
-	let nearest = undefined;
+	let nearest;
 	let unitAccess = gameState.ai.accessibility.getAccessValue(unit.position());
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	gameState.getAllyStructures().forEach(function(ent) {
@@ -547,7 +547,7 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 {
 	let distmin = Math.min();
-	let nearest = undefined;
+	let nearest;
 	let unitAccess = gameState.ai.accessibility.getAccessValue(unit.position());
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	gameState.getAllyStructures().forEach(function(ent) {

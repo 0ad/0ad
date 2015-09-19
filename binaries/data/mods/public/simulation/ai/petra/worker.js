@@ -8,7 +8,7 @@ var PETRA = function(m)
 m.Worker = function(base)
 {
 	this.ent = undefined;
-	this.base = base
+	this.base = base;
 	this.baseID = base.ID;
 };
 
@@ -513,7 +513,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		var entPosition = this.ent.position();
 
 	var nearestSupplyDist = Math.min();
-	var nearestSupply = undefined;
+	var nearestSupply;
 
 	var isCavalry = this.ent.hasClass("Cavalry");
 	var isRanged = this.ent.hasClass("Ranged");
@@ -612,7 +612,7 @@ m.Worker.prototype.startFishing = function(gameState)
 	}
 
 	var nearestSupplyDist = Math.min();
-	var nearestSupply = undefined;
+	var nearestSupply;
 
 	var entPosition = this.ent.position();
 	var fisherSea = this.ent.getMetadata(PlayerID, "sea");
@@ -746,7 +746,7 @@ m.Worker.prototype.gatherTreasure = function(gameState)
 	var rates = this.ent.resourceGatherRates();
 	if (!rates || !rates["treasure"] || rates["treasure"] <= 0)
 		return false;
-	var treasureFound = undefined;
+	var treasureFound;
 	var distmin = Math.min();
 	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
 	for (var treasure of gameState.ai.HQ.treasures.values())
@@ -835,6 +835,7 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 		}
 	}
 	return false;
-}
+};
+
 return m;
 }(PETRA);

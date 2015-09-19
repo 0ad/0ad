@@ -212,7 +212,7 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	}
 
 	return this.checkTechRequirements(template.requirements());
-}
+};
 
 // Private function for checking a set of requirements is met
 // basically copies TechnologyManager's

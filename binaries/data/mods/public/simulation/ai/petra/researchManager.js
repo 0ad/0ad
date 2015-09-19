@@ -26,7 +26,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 	{
 		var plan = new m.ResearchPlan(gameState, townPhase, true);
 		plan.lastIsGo = false;
-		plan.onStart = function (gameState) { gameState.ai.HQ.econState = "growth"; gameState.ai.HQ.OnTownPhase(gameState) };
+		plan.onStart = function (gameState) { gameState.ai.HQ.econState = "growth"; gameState.ai.HQ.OnTownPhase(gameState); };
 		plan.isGo = function (gameState) {
 			var ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
 			if (ret && !this.lastIsGo)
@@ -47,7 +47,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 			&& queues.civilCentre.length() === 0)
 	{
 		var plan = new m.ResearchPlan(gameState, cityPhase, true);
-		plan.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState) };
+		plan.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState); };
 		queues.majorTech.addItem(plan);
 	}
 };

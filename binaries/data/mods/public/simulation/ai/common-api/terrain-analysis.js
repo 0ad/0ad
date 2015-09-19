@@ -151,7 +151,7 @@ m.Accessibility.prototype.getAccessValue = function(position, onWater)
 	if (ret === 1)
 	{
 		// quick spiral search.
-		var indx = [ [-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]]
+		var indx = [ [-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]];
 		for (let i of indx)
 		{
 			let id0 = gamePos[0] + i[0];
@@ -312,7 +312,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 				loop = true;
 			else
 				break;
-		} while (loop === true)	// should actually break
+		} while (loop === true);	// should actually break
 		++y;
 		var reachLeft = false;
 		var reachRight = false;
@@ -376,7 +376,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 					reachRight = false;
 			}
 			++y;
-		} while (index/w < h-1)	// should actually break
+		} while (index/w < h-1);	// should actually break
 	}
 	return true;
 };

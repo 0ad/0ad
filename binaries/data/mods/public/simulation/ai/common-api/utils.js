@@ -14,14 +14,15 @@ m.VectorDistance = function(a, b)
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
 	return Math.sqrt(dx*dx + dz*dz);
-}
+};
 
 m.SquareVectorDistance = function(a, b)
 {
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
 	return (dx*dx + dz*dz);
-}
+};
+
 // A is the reference, B must be in "range" of A
 // this supposes the range is already squared
 m.inRange = function(a, b, range)// checks for X distance
@@ -33,14 +34,15 @@ m.inRange = function(a, b, range)// checks for X distance
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
 	return ((dx*dx + dz*dz ) < range);
-}
+};
+
 // slower than SquareVectorDistance, faster than VectorDistance but not exactly accurate.
 m.ManhattanDistance = function(a, b)
 {
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
 	return Math.abs(dx) + Math.abs(dz);
-}
+};
 
 m.AssocArraytoArray = function(assocArray) {
 	var endArray = [];
@@ -55,7 +57,7 @@ m.ShallowClone = function(obj)
 	for (var k in obj)
 		ret[k] = obj[k];
 	return ret;
-}
+};
 
 // Picks a random element from an array
 m.PickRandom = function(list)
@@ -76,7 +78,7 @@ m.getMaxMapIndex = function(i, map1, map2)
 	var ratio = map1.cellSize / map2.cellSize;
 	var ix = (i % map1.width) * ratio;
 	var iy = Math.floor(i / map1.width) * ratio;
-	var index = undefined;
+	var index;
 	for (var kx = 0; kx < ratio; ++kx)
 		for (var ky = 0; ky < ratio; ++ky)
 			if (!index || map2.map[ix+kx+(iy+ky)*map2.width] > map2.map[index])

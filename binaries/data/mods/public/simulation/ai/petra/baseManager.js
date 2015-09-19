@@ -75,7 +75,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 {
 	if (!anchorEntity.hasClass("Structure") || !anchorEntity.hasTerritoryInfluence())
 	{
-		warn("Error: Petra base " + this.ID + " has been assigned an anchor building that has no territorial influence. Please report this on the forum.")
+		warn("Error: Petra base " + this.ID + " has been assigned an anchor building that has no territorial influence. Please report this on the forum.");
 		return false;
 	}
 	this.anchor = anchorEntity;
@@ -580,7 +580,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 			// but we require a bit more to avoid too frequent changes
 			if ((scale*moreNeed.wanted - moreNeed.current) - (scale*lessNeed.wanted - lessNeed.current) > 1.5)
 			{
-				let only = undefined;
+				let only;
 				// in average, females are less efficient for stone and metal, and citizenSoldiers for food
 				let gatherers = this.gatherersByType(gameState, lessNeed.type);
 				if (lessNeed.type === "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).length)
@@ -851,7 +851,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 					ent.stopMoving();
 					ent.setMetadata(PlayerID, "subrole", "builder");
 					ent.setMetadata(PlayerID, "target-foundation", target.id());
-				};
+				}
 			}
 		}
 	}

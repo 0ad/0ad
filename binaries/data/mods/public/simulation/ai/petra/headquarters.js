@@ -761,14 +761,14 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 				let dist = API3.SquareVectorDistance(cc.pos, pos);
 				if (dist < 14000)    // Reject if too near from any cc
 				{
-					norm = 0
+					norm = 0;
 					break;
 				}
 				if (!cc.ally)
 					continue;
 				if (dist < 40000)    // Reject if too near from an allied cc
 				{
-					norm = 0
+					norm = 0;
 					break;
 				}
 				if (dist < 62000)   // Disfavor if quite near an allied cc

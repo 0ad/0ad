@@ -25,7 +25,7 @@ m.Queue.prototype.addItem = function(plan)
 	{
 		if (plan.category === "unit" && q.type == plan.type && q.number + plan.number <= q.maxMerge)
 		{
-			q.addItem(plan.number)
+			q.addItem(plan.number);
 			return;
 		}
 		else if (plan.category === "technology" && q.type === plan.type)

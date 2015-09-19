@@ -65,7 +65,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 		// May-be, there were produced at an early stage when no other ship were available
 		// and the naval manager will train now more appropriate ships.
 		var already = false;
-		var shipToSwitch = undefined;
+		var shipToSwitch;
 		gameState.ai.HQ.navalManager.seaTransportShips[this.tradeRoute.sea].forEach(function(ship) {
 			if (already || !ship.hasClass("Trader"))
 				return;
@@ -186,7 +186,7 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 
 
 	// then add what is needed now
-	var mainNeed = Math.floor(remaining * 70 / 100)
+	var mainNeed = Math.floor(remaining * 70 / 100);
 	var nextNeed = remaining - mainNeed;
 
 	tradingGoods[mostNeeded[0].type] += mainNeed;
@@ -224,7 +224,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 			continue;
 
 		// pick the best resource to barter.
-		var bestToSell = undefined;
+		var bestToSell;
 		var bestRate = 0;
 		for (var sell of needs.types)
 		{
@@ -626,7 +626,7 @@ m.TradeManager.prototype.Serialize = function()
 		"targetNumTraders": this.targetNumTraders,
 		"warnedAllies": this.warnedAllies
 	};
-}
+};
 
 m.TradeManager.prototype.Deserialize = function(gameState, data)
 {
@@ -635,7 +635,7 @@ m.TradeManager.prototype.Deserialize = function(gameState, data)
 	this.routeProspection = data.routeProspection;
 	this.targetNumTraders = data.targetNumTraders;
 	this.warnedAllies = data.warnedAllies;
-}
+};
 
 return m;
 }(PETRA);

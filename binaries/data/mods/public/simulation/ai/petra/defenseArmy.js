@@ -81,7 +81,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 };
 
 // TODO: this should return cleverer results ("needs anti-elephant"…)
-m.DefenseArmy.prototype.needsDefenders = function (gameState, events)
+m.DefenseArmy.prototype.needsDefenders = function (gameState)
 {
 	// some preliminary checks because we don't update for tech so entStrength removed can be > entStrength added 
 	if (this.foeStrength <= 0 || this.ownStrength <= 0)
@@ -92,7 +92,7 @@ m.DefenseArmy.prototype.needsDefenders = function (gameState, events)
 	return this.foeStrength * this.defenseRatio - this.ownStrength;
 };
 
-m.DefenseArmy.prototype.getState = function (gameState)
+m.DefenseArmy.prototype.getState = function ()
 {
 	if (this.foeEntities.length == 0)
 		return 0;
@@ -138,7 +138,7 @@ m.DefenseArmy.prototype.Serialize = function()
 m.DefenseArmy.prototype.Deserialize = function(data)
 {
 	for (let key in data)
-		this[key] = data[key]
+		this[key] = data[key];
 };
 
 return m;
