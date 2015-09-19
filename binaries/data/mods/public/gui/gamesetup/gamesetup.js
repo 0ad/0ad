@@ -1,5 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
+const g_MatchSettings_SP = "config/matchsettings.json";
+const g_MatchSettings_MP = "config/matchsettings.mp.json";
+
+// TODO: these constants actually don't have an effect and that is not a scenario map, remove them
 const DEFAULT_NETWORKED_MAP = "Acropolis 01";
 const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
@@ -679,14 +683,12 @@ function loadMapData(name)
 	return g_MapData[name];
 }
 
-const FILEPATH_MATCHSETTINGS_SP = "config/matchsettings.json";
-const FILEPATH_MATCHSETTINGS_MP = "config/matchsettings.mp.json";
 function loadGameAttributes()
 {
 	if (Engine.ConfigDB_GetValue("user", "persistmatchsettings") != "true")
 		return;
 
-	var settingsFile = g_IsNetworked ? FILEPATH_MATCHSETTINGS_MP : FILEPATH_MATCHSETTINGS_SP;
+	var settingsFile = g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP;
 	if (!Engine.FileExists(settingsFile))
 		return;
 
@@ -736,6 +738,9 @@ function loadGameAttributes()
 		if (playerData)
 			mapSettings.PlayerData = playerData;
 	}
+
+	if (mapSettings.PlayerData)
+		sanitizePlayerData(mapSettings.PlayerData);
 
 	var mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilterSelection.selected = mapFilterSelection.list_data.indexOf(attrs.mapFilter);
@@ -787,8 +792,31 @@ function loadGameAttributes()
 function saveGameAttributes()
 {
 	var attributes = Engine.ConfigDB_GetValue("user", "persistmatchsettings") == "true" ? g_GameAttributes : {};
-	Engine.WriteJSONFile(g_IsNetworked ? FILEPATH_MATCHSETTINGS_MP : FILEPATH_MATCHSETTINGS_SP, attributes);
+	Engine.WriteJSONFile(g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP, attributes);
 }
+
+function sanitizePlayerData(playerData)
+{
+	// Ignore gaia
+	if (playerData.length && !playerData[0])
+		playerData.shift();
+
+	// Set default color if no color present
+	playerData.forEach((pData, index) => {
+		if (pData && !pData.Color)
+			pData.Color = g_PlayerColors[index];
+	});
+
+	// Replace colors with the best matching color of PlayerDefaults
+	playerData.forEach((pData, index) => {
+		let colorDistances = g_PlayerColors.map(color => colorDistance(color, pData.Color));
+		let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
+		pData.Color = g_PlayerColors.find(color => colorDistance(color, pData.Color) == smallestDistance);
+	});
+
+	ensureUniquePlayerColors(playerData);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // GUI event handlers
 
@@ -1028,28 +1056,8 @@ function selectMap(name)
 		g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[victoryIdx];
 	}
 
-	// Sanitize player data
 	if (mapSettings.PlayerData)
-	{
-		// Ignore gaia
-		if (mapSettings.PlayerData.length && !mapSettings.PlayerData[0])
-			mapSettings.PlayerData.shift();
-
-		// Set default color if no color present
-		mapSettings.PlayerData.forEach((pData, index) => {
-			if (pData && !pData.Color)
-				pData.Color = g_PlayerColors[index];
-		});
-
-		// Replace colors with the best matching color of PlayerDefaults
-		mapSettings.PlayerData.forEach((pData, index) => {
-			let colorDistances = g_PlayerColors.map(color => colorDistance(color, pData.Color));
-			let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
-			pData.Color = g_PlayerColors.find(color => colorDistance(color, pData.Color) == smallestDistance);
-		});
-		
-		ensureUniquePlayerColors(mapSettings.PlayerData);
-	}
+		sanitizePlayerData(mapSettings.PlayerData);
 
 	// Copy any new settings
 	g_GameAttributes.map = name;
