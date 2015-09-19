@@ -860,8 +860,8 @@ function addChatMessage(msg)
 		msg.datetime = null;
 
 	// Highlight local user's nick
-	if (msg.text.indexOf(g_Name) != -1 && g_Name != msg.from)
-		msg.text = msg.text.replace(new RegExp('\\b' + '\\' + g_Name + '\\b', "g"), colorPlayerName(g_Name));
+	if (g_Name != msg.from)
+		msg.text = msg.text.replace(g_Name, colorPlayerName(g_Name));
 
 	// Run spam test if it's not a historical message
 	if (!msg.datetime)
