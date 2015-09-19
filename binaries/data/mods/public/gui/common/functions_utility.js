@@ -243,7 +243,7 @@ function tryAutoComplete(text, autoCompleteList)
 		if (word.toLowerCase().indexOf(lastWord.toLowerCase()) != 0)
 			continue;
 		
-		text = wordSplit.join(" ")
+		text = wordSplit.join(" ");
 		if (text.length > 0)
 			text += " ";
 

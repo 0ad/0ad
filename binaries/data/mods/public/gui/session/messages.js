@@ -61,7 +61,7 @@ var g_NotificationsTypes =
 		var message = {
 			"type": "message",
 			"text": notification.message
-		}
+		};
 		var guid = findGuidForPlayerID(g_PlayerAssignments, player);
 		if (guid == undefined)
 		{
@@ -77,7 +77,7 @@ var g_NotificationsTypes =
 		var message = {
 			"type": "message",
 			"text": notification.message
-		}
+		};
 		message["translate"] = true;
 		if ("translateParameters" in notification)
 		{
@@ -171,13 +171,13 @@ function handleNotifications()
 	{
 		if (!notification.type)
 		{
-			error("Notification without type found.\n"+uneval(notification))
+			error("Notification without type found.\n"+uneval(notification));
 			continue;
 		}
 		
 		if (!notification.players)
 		{
-			error("Notification without players found.\n"+uneval(notification))
+			error("Notification without players found.\n"+uneval(notification));
 			continue;
 		}
 		
@@ -307,7 +307,7 @@ function handleNetMessage(message)
 
 		if (g_IsController && Engine.HasXmppClient())
 		{
-			var players = [ assignment.name for each (assignment in g_PlayerAssignments) ]
+			var players = [ assignment.name for each (assignment in g_PlayerAssignments) ];
 			Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
 		}
 
@@ -537,7 +537,7 @@ function addChatMessage(msg)
 		}
 		else
 		{
-			var userTag = sprintf(translate("<%(user)s>"), { "user": username })
+			var userTag = sprintf(translate("<%(user)s>"), { "user": username });
 			var formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" })
 			if (msg.context !== "")
 			{

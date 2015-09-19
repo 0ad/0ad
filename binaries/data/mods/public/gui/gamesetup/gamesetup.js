@@ -195,7 +195,7 @@ function initMain()
 				g_GameAttributes.settings.PopulationCap = g_PopulationCapacities.Population[this.selected];
 
 			updateGameAttributes();
-		}
+		};
 
 		var startingResourcesL = Engine.GetGUIObjectByName("startingResources");
 		startingResourcesL.list = g_StartingResources.Title;
@@ -206,7 +206,7 @@ function initMain()
 				g_GameAttributes.settings.StartingResources = g_StartingResources.Resources[this.selected];
 
 			updateGameAttributes();
-		}
+		};
 
 		var ceasefireL = Engine.GetGUIObjectByName("ceasefire");
 		ceasefireL.list = g_Ceasefire.Title;
@@ -217,7 +217,7 @@ function initMain()
 				g_GameAttributes.settings.Ceasefire = g_Ceasefire.Duration[this.selected];
 
 			updateGameAttributes();
-		}
+		};
 
 		var victoryConditions = Engine.GetGUIObjectByName("victoryCondition");
 		victoryConditions.list = g_VictoryConditions.Title;

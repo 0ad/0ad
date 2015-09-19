@@ -295,6 +295,6 @@ function updateObjectPlayerPosition()
 			boxSize.top += h * (PLAYER_BOX_Y_SIZE + PLAYER_BOX_GAP);
 			boxSize.bottom = boxSize.top + PLAYER_BOX_Y_SIZE;
 			playerBoxt.size = boxSize;
-		};
-	};
+		}
+	}
 }

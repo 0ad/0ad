@@ -122,7 +122,7 @@ function updatePanelData(panelInfo)
 		updateCountersPlayer(playerState, panelInfo.counters, playerCounterValue);
 	}
 	// Update team counters
-	var teamCounterFn = panelInfo.teamCounterFn
+	var teamCounterFn = panelInfo.teamCounterFn;
 	if (g_Teams && teamCounterFn)
 		teamCounterFn(panelInfo.counters);
 }

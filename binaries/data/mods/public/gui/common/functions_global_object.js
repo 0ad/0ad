@@ -24,7 +24,7 @@ var g_messageBoxCallbackFunction = function(btnCode)
 	{
 		// Cache the variables to make it possible to call a messageBox from a callback function.
 		var callbackFunction = g_messageBoxBtnFunctions[btnCode];
-		var callbackArgs = g_messageBoxCallbackArgs[btnCode]
+		var callbackArgs = g_messageBoxCallbackArgs[btnCode];
 		g_messageBoxBtnFunctions  = [];
 		g_messageBoxCallbackArgs = [];
 
@@ -37,7 +37,7 @@ var g_messageBoxCallbackFunction = function(btnCode)
 
 	g_messageBoxBtnFunctions  = [];
 	g_messageBoxCallbackArgs = [];
-}
+};
 
 function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCaptions, mbBtnCode, mbCallbackArgs)
 {
@@ -58,7 +58,7 @@ function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapt
 		title: mbTitle,
 		mode: mbMode,
 		buttonCaptions: mbButtonCaptions,
-	}
+	};
 	if (mbBtnCode)
 		initData.callback = "g_messageBoxCallbackFunction";
 

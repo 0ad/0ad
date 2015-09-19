@@ -1661,7 +1661,7 @@ function transformWallToGate(template)
 	var selection = g_Selection.toList();
 	Engine.PostNetworkCommand({
 		"type": "wall-to-gate",
-		"entities": selection.filter( function(e) { return getWallGateTemplate(e) == template } ),
+		"entities": selection.filter( function(e) { return getWallGateTemplate(e) == template; } ),
 		"template": template,
 	});
 }
@@ -1742,7 +1742,7 @@ function findIdleUnit(classes)
 		{
 			lastIdleUnit = idleUnits[0];
 			if (!append && (!selectall || selectall && !matched))
-				g_Selection.reset()
+				g_Selection.reset();
 
 			if (selectall)
 				g_Selection.addList(idleUnits);
@@ -1813,7 +1813,7 @@ function unloadSelection()
 			ents.push(ent);
 		}
 		else if (state.turretParent == parent)
-			ents.push(ent)
+			ents.push(ent);
 	}
 	if (parent)
 		Engine.PostNetworkCommand({"type": "unload", "entities":ents, "garrisonHolder": parent});

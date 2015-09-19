@@ -49,7 +49,7 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 	var garrisonGroups = new EntityGroups();
 
 	// Determine how many buttons there should be
-	var maxNumberOfItems = g_SelectionPanels[guiName].getMaxNumberOfItems()
+	var maxNumberOfItems = g_SelectionPanels[guiName].getMaxNumberOfItems();
 	if (maxNumberOfItems < numberOfItems)
 		numberOfItems = maxNumberOfItems;
 

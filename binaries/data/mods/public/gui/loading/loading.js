@@ -33,7 +33,7 @@ function init(data)
 		Engine.GetGUIObjectByName("tipImage").sprite = sprite? sprite : "";
 	}
 	else
-		error("Failed to find any matching tips for the loading screen.")
+		error("Failed to find any matching tips for the loading screen.");
 
 	// janwas: main loop now sets progress / description, but that won't
 	// happen until the first timeslice completes, so set initial values.

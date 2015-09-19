@@ -356,7 +356,7 @@ g_SelectionPanels.Construction = {
 g_SelectionPanels.Formation = {
 	"getMaxNumberOfItems": function()
 	{
-		return 16
+		return 16;
 	},
 	"rowLength": 4,
 	"conflictsWith": ["Garrison"],
@@ -416,7 +416,7 @@ g_SelectionPanels.Garrison = {
 		{
 			var state = GetEntityState(ent);
 			if (state.garrisonHolder)
-				groups.add(state.garrisonHolder.entities)
+				groups.add(state.garrisonHolder.entities);
 		}
 		return groups.getEntsGrouped();
 	},
@@ -560,7 +560,7 @@ g_SelectionPanels.Gate = {
 			// If already a gate, show locking actions
 			gateIcon = "icons/lock_" + GATE_ACTIONS[data.item.locked ? 0 : 1] + "ed.png";
 			if (data.item.gate.locked === undefined)
-				data.guiSelection.hidden = false
+				data.guiSelection.hidden = false;
 			else
 				data.guiSelection.hidden = data.item.gate.locked != data.item.locked;
 		}
@@ -738,7 +738,7 @@ g_SelectionPanels.Research = {
 		{
 			var entState = GetEntityState(ent);
 			if (entState.production && entState.production.technologies.length)
-				return entState.production.technologies
+				return entState.production.technologies;
 		}
 		return [];
 	},
@@ -910,7 +910,7 @@ g_SelectionPanels.Selection = {
 			return false;
 		data.name = getEntityNames(data.template);
 
-		var ents = g_Selection.groups.getEntsByName(data.item)
+		var ents = g_Selection.groups.getEntsByName(data.item);
 		data.count = ents.length;
 		for (var ent of ents)
 		{

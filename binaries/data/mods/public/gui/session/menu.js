@@ -362,7 +362,7 @@ function openDiplomacy()
 			let button = Engine.GetGUIObjectByName("diplomacyPlayer"+setting+"["+(i-1)+"]");
 
 			button.caption = g_Players[we]["is"+setting][i] ? translate("x") : "";
-			button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting.toLowerCase()});
+			button.onpress = (function(e){ return function() { setDiplomacy(e); } })({"player": i, "to": setting.toLowerCase()});
 			button.hidden = simState.ceasefireActive;
 		}
 	}
@@ -408,7 +408,7 @@ function openTrade()
 				button[res].dn.hidden = (proba[res] == 0 || proba[selec] == 100);
 			}
 		}
-	}
+	};
 
 	var proba = Engine.GuiInterfaceCall("GetTradingGoods");
 	var button = {};

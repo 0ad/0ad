@@ -172,7 +172,7 @@ function loadMapTypes()
  */
 function loadVictoryConditions()
 {
-	const subdir = "victory_conditions/"
+	const subdir = "victory_conditions/";
 
 	const files = Engine.BuildDirEntList(g_SettingsDirectory + subdir, "*.json", false).map(
 		file => file.substr(g_SettingsDirectory.length));

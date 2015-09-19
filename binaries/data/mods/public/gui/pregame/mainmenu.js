@@ -112,11 +112,11 @@ function formatUserReportStatus(status)
 	return translate("unknown");
 }
 
-var lastTickTime = new Date;
+var lastTickTime = new Date();
 function onTick()
 {
-	var now = new Date;
-	var tickLength = new Date - lastTickTime;
+	var now = new Date();
+	var tickLength = new Date() - lastTickTime;
 	lastTickTime = now;
 
 	// Animate backgrounds

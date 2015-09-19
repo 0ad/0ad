@@ -128,7 +128,7 @@ var unitActions =
 		{
 			if (Engine.HotkeyIsPressed("session.attack") && getActionInfo("attack", target).possible)
 				return {"type": "attack", "cursor": "action-attack", "target": target};
-			return false
+			return false;
 		},
 		"actionCheck": function(target)
 		{
@@ -324,7 +324,7 @@ var unitActions =
 						gain: getTradingTooltip(tradingDetails.gain)
 					});
 				else
-					tooltip += "\n" + translate("Right-click on another market to set it as a destination trade market.")
+					tooltip += "\n" + translate("Right-click on another market to set it as a destination trade market.");
 				break;
 			case "is second":
 				tooltip = translate("Destination trade market.") + "\n" + sprintf(translate("Gain: %(gain)s"), {
@@ -935,4 +935,4 @@ function playerCheck(entState, targetState, validPlayers)
 			return true;
 	}
 	return false;
-};
+}
