@@ -466,7 +466,7 @@ var commands = {
 				notUngarrisoned++;
 
 		if (notUngarrisoned != 0)
-			notifyUnloadFailure(player, cmd.garrisonHolder)
+			notifyUnloadFailure(player, cmd.garrisonHolder);
 	},
 
 	"unload-template": function(player, cmd, data)
@@ -632,9 +632,9 @@ var commands = {
 		// Debug command to make an entity brightly colored
 		for each (var ent in cmd.entities)
 		{
-			var cmpVisual = Engine.QueryInterface(ent, IID_Visual)
+			var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
 			if (cmpVisual)
-				cmpVisual.SetShadingColor(cmd.rgb[0], cmd.rgb[1], cmd.rgb[2], 0) // alpha isn't used so just send 0
+				cmpVisual.SetShadingColor(cmd.rgb[0], cmd.rgb[1], cmd.rgb[2], 0); // alpha isn't used so just send 0
 		}
 	},
 

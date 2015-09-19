@@ -51,7 +51,7 @@ Damage.CauseSplashDamage = function(data)
 			warn("The " + data.shape + " splash damage shape is not implemented!");
 		}
 		// Call CauseDamage which reduces the hitpoints, posts network command, plays sounds....
-		Damage.CauseDamage({"strengths":data.strengths, "target":entity, "attacker":data.attacker, "multiplier":damageMultiplier, "type":data.type + ".Splash"})
+		Damage.CauseDamage({"strengths":data.strengths, "target":entity, "attacker":data.attacker, "multiplier":damageMultiplier, "type":data.type + ".Splash"});
 	}
 };
 

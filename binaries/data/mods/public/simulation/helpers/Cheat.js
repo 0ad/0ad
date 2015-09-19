@@ -98,8 +98,8 @@ function Cheat(input)
 		// check if specialised tech exists (like phase_town_athen)
 		var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
 		if (cmpTechnologyTemplateManager.ListAllTechs().indexOf(input.parameter + "_" + cmpPlayer.civ) > -1)
-			input.parameter += "_" + cmpPlayer.civ
-			
+			input.parameter += "_" + cmpPlayer.civ;
+
 		// rewrite input and call function
 		input.action = "researchTechnology";
 		Cheat(input);
