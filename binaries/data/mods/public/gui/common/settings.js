@@ -64,7 +64,7 @@ function loadSettingValuesFile(filename)
 	}
 
 	if (json.TranslatedKeys)
-		translateObjectKeys(json, json.TranslatedKeys);
+		translateObjectKeys(json.Data, json.TranslatedKeys);
 
 	return json.Data;
 }

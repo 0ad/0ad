@@ -99,8 +99,7 @@ function updateCounters()
 			var currentSpeed = Engine.GetSimRate();
 			if (currentSpeed != 1.0)
 				// Translation: The "x" means "times", with the mathematical meaning of multiplication.
-				caption += sprintf(
-					translate("%(time)s (%(speed)sx)"),
+				caption += sprintf(translate("%(time)s (%(speed)sx)"),
 					{
 						time: timeToString(g_SimState.timeElapsed),
 						speed: Engine.FormatDecimalNumberIntoString(currentSpeed)
