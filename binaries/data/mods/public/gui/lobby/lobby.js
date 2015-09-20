@@ -485,7 +485,7 @@ function updateGameList()
 			list_name.push(name);
 			list_ip.push(g.ip);
 			list_mapName.push(translate(g.niceMapName));
-			list_mapSize.push(translatedMapSize(g.mapSize));
+			list_mapSize.push(translateMapSize(g.mapSize));
 			let mapTypeIdx = g_MapTypes.Name.indexOf(g.mapType);
 			list_mapType.push(mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "");
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
@@ -563,18 +563,6 @@ function formatPlayerListEntry(nickname, presence, rating)
 }
 
 /**
- * Given a map size, returns that map size translated into the current
- * language.
- */
-function translatedMapSize(mapSize)
-{
-	if (+mapSize !== +mapSize) // NaN
-		return translate(mapSize);
-	else
-		return g_mapSizes.shortNames[g_mapSizes.tiles.indexOf(+mapSize)];
-}
-
-/**
  * Populate the game info area with information on the current game selection.
  */
 function updateGameSelection()
@@ -589,19 +577,7 @@ function updateGameSelection()
 		return;
 	}
 
-	var mapData;
 	var g = Engine.GetGUIObjectByName("gamesBox").list_data[selected];
-
-	// Load map data
-	if (g_GameList[g].mapType == "random" && g_GameList[g].mapName == "random")
-		mapData = {"settings": {"Description": translate("A randomly selected map.")}};
-	else if (g_GameList[g].mapType == "random" && Engine.FileExists(g_GameList[g].mapName + ".json"))
-		mapData = Engine.ReadJSONFile(g_GameList[g].mapName + ".json");
-	else if (Engine.FileExists(g_GameList[g].mapName + ".xml"))
-		mapData = Engine.LoadMapSettings(g_GameList[g].mapName + ".xml");
-	else
-		// Warn the player if we can't find the map. 
-		warn(sprintf("Map '%(mapName)s' not found locally.", { mapName: g_GameList[g].mapName }));
 
 	// Show the game info panel and join button.
 	Engine.GetGUIObjectByName("gameInfo").hidden = false;
@@ -612,15 +588,10 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("sgMapName").caption = translate(g_GameList[g].niceMapName);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
-	Engine.GetGUIObjectByName("sgMapSize").caption = translatedMapSize(g_GameList[g].mapSize);
+	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(g_GameList[g].mapSize);
 	let mapTypeIdx = g_MapTypes.Name.indexOf(g_GameList[g].mapType);
 	Engine.GetGUIObjectByName("sgMapType").caption = mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "";
 
-	// Display map description if it exists, otherwise display a placeholder.
-	if (mapData && mapData.settings.Description)
-		var mapDescription = translate(mapData.settings.Description);
-	else
-		var mapDescription = translate("Sorry, no description available.");
 
 	// Display map preview if it exists, otherwise display a placeholder.
 	if (mapData && mapData.settings.Preview)
@@ -628,8 +599,10 @@ function updateGameSelection()
 	else
 		var mapPreview = "nopreview.png";
 
-	Engine.GetGUIObjectByName("sgMapDescription").caption = mapDescription;
-	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:(0.7812,0.5859)session/icons/mappreview/" + mapPreview;
+	// Display map description and preview (or placeholder)
+	var mapData = getMapDescriptionAndPreview(g_GameList[g].mapType, g_GameList[g].mapName);
+	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
+	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:(0.7812,0.5859)session/icons/mappreview/" + mapData.preview;
 }
 
 /**

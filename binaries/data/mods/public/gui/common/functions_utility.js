@@ -131,6 +131,38 @@ function initMapSizes()
 	return sizes;
 }
 
+/**
+ * Returns title or placeholder. Requires g_mapSizes.
+ *
+ * @param mapSize {Number} - tilecount
+ */
+function translateMapSize(tiles)
+{
+	var idx = g_mapSizes.tiles.indexOf(+tiles);
+	return (idx == -1) ? translateWithContext("map size", "Default") : g_mapSizes.shortNames[idx];
+}
+
+/**
+ * Returns map description and preview image or placeholder.
+ */
+function getMapDescriptionAndPreview(mapType, mapName)
+{
+	var mapData;
+	if (mapType == "random" && mapName == "random")
+		mapData = { "settings": { "Description": translate("A randomly selected map.") } };
+	else if (mapType == "random" && Engine.FileExists(mapName + ".json"))
+		mapData = Engine.ReadJSONFile(mapName + ".json");
+	else if (Engine.FileExists(mapName + ".xml"))
+		mapData = Engine.LoadMapSettings(mapName + ".xml");
+	else
+		warn(sprintf("Map '%(mapName)s' not found locally.", { "mapName": mapName }));
+
+	return {
+		"description": mapData && mapData.settings && mapData.settings.Description ? translate(mapData.settings.Description) : translate("Sorry, no description available."),
+		"preview": mapData && mapData.settings && mapData.settings.Preview ? mapData.settings.Preview : "nopreview.png"
+	};
+}
+
 // ====================================================================
 
 // Convert integer color values to string (for use in GUI objects)
