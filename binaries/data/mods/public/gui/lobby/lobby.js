@@ -613,7 +613,7 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
 	Engine.GetGUIObjectByName("sgMapSize").caption = translatedMapSize(g_GameList[g].mapSize);
-	let mapTypeIdx = g_MapTypes.indexOf(g_GameList[g].mapType);
+	let mapTypeIdx = g_MapTypes.Name.indexOf(g_GameList[g].mapType);
 	Engine.GetGUIObjectByName("sgMapType").caption = mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "";
 
 	// Display map description if it exists, otherwise display a placeholder.
