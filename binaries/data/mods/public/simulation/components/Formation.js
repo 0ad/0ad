@@ -414,7 +414,7 @@ Formation.prototype.FindInPosition = function()
 				this.SetInPosition(this.members[i]);
 		}
 	}
-}
+};
 
 /**
  * Remove all members and destroy the formation.
@@ -730,7 +730,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 				offsets.push(new Vector2D(x + r1, z + r2));
 				offsets[offsets.length - 1].row = r+1;
 				offsets[offsets.length - 1].column = column;
-				left--
+				left--;
 			}
 			++r;
 			this.maxColumnsUsed[r] = n;
@@ -955,7 +955,7 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 		// (e.g. packed vs. unpacked siege), we need to recompute motion parameters
 		this.ComputeMotionParameters();
 	}
-}
+};
 
 Formation.prototype.RegisterTwinFormation = function(entity)
 {

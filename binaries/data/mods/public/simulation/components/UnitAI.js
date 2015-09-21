@@ -4106,7 +4106,7 @@ UnitAI.prototype.SetGathererAnimationOverride = function(disable)
 	}
 	else
 		cmpVisual.ResetMoveAnimation("walk");
-}
+};
 
 UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)
 {

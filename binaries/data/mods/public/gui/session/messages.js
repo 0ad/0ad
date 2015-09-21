@@ -538,7 +538,7 @@ function addChatMessage(msg)
 		else
 		{
 			var userTag = sprintf(translate("<%(user)s>"), { "user": username });
-			var formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" })
+			var formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 			if (msg.context !== "")
 			{
 				formatted = sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {

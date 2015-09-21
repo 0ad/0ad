@@ -491,7 +491,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		ret.armour = cmpArmour.GetArmourStrengths();
 	}
 
-	var cmpAuras = Engine.QueryInterface(ent, IID_Auras)
+	var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 	if (cmpAuras)
 	{
 		ret.auras = cmpAuras.GetDescriptions();

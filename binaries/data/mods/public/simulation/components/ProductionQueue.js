@@ -187,7 +187,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		techList[i] = tech;
 	}
 	
-	var ret = []
+	var ret = [];
 	
 	// This inserts the techs into the correct positions to line up the technology pairs
 	for (var i = 0; i < techList.length; i++)

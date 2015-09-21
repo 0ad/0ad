@@ -178,7 +178,7 @@ function setupControl(option, i, prefix)
 					case "config":
 						// Load initial value if not yet loaded.
 						if (!checked || typeof checked != boolean)
-							caption = Engine.ConfigDB_GetValue("user", option[2][action]);;
+							caption = Engine.ConfigDB_GetValue("user", option[2][action]);
 						// Hacky macro to create the callback.
 						var callback = function(key)
 						{

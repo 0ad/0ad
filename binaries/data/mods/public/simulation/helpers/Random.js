@@ -3,7 +3,7 @@
  */
 function RandomInt(min, max)
 {
-	return Math.floor(min + Math.random() * (max-min))
+	return Math.floor(min + Math.random() * (max-min));
 }
 
 Engine.RegisterGlobal("RandomInt", RandomInt);

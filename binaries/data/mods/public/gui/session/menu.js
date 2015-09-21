@@ -446,7 +446,7 @@ function openTrade()
 				}
 				selec = resource;
 				updateButtons();
-			}
+			};
 		})(resource);
 
 		buttonUp.onpress = (function(resource){
@@ -455,7 +455,7 @@ function openTrade()
 				proba[selec]    -= Math.min(STEP, proba[selec]);
 				Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
 				updateButtons();
-			}
+			};
 		})(resource);
 
 		buttonDn.onpress = (function(resource){
@@ -464,7 +464,7 @@ function openTrade()
 				proba[resource] -= Math.min(STEP, proba[resource]);
 				Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
 				updateButtons();
-			}
+			};
 		})(resource);
 	}
 	updateButtons();

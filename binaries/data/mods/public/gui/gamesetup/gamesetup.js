@@ -183,7 +183,7 @@ function initMain()
 				g_GameAttributes.gameSpeed = g_GameSpeeds.Speed[this.selected];
 
 			updateGameAttributes();
-		}
+		};
 		gameSpeed.selected = g_GameSpeeds.Default;
 
 		var populationCaps = Engine.GetGUIObjectByName("populationCap");
@@ -598,7 +598,7 @@ function initMapNameList()
 {
 	// Get a list of map filenames
 	// TODO: Should verify these are valid maps before adding to list
-	var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection")
+	var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 	var mapFiles;
 
 	switch (g_GameAttributes.mapType)

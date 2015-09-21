@@ -257,7 +257,7 @@ function openTermsOfService()
 	Engine.PushGuiPage("page_manual.xml", {
 				"page":"lobby/Terms_of_Service",
 				"title":translate("Terms of Service"),
-				})
+				});
 }
 
 function openTermsOfUse()
@@ -266,6 +266,6 @@ function openTermsOfUse()
 	Engine.PushGuiPage("page_manual.xml", {
 				"page":"lobby/Terms_of_Use",
 				"title":translate("Terms of Use"),
-				})
+				});
 }
 

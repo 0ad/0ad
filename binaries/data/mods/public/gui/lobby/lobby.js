@@ -2,7 +2,7 @@ const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefin
 
 var g_ChatMessages = [];
 var g_Name = "unknown";
-var g_GameList = {}
+var g_GameList = {};
 var g_GameListSortBy = "name";
 var g_PlayerListSortBy = "name";
 var g_GameListOrder = 1; // 1 for ascending sort, and -1 for descending
@@ -113,7 +113,7 @@ function updatePlayerListOrderSelection()
 function resetFilters()
 {
 	// Reset states of gui objects
-	Engine.GetGUIObjectByName("mapSizeFilter").selected = 0
+	Engine.GetGUIObjectByName("mapSizeFilter").selected = 0;
 	Engine.GetGUIObjectByName("playersNumberFilter").selected = 0;
 	Engine.GetGUIObjectByName("mapTypeFilter").selected = g_MapTypes.Default;
 	Engine.GetGUIObjectByName("showFullFilter").checked = false;
@@ -896,7 +896,7 @@ function ircFormat(text, from, color, key, datetime)
 				var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
 				// Translation: IRC message.
 				var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { sender: senderString, message: message });
-				break
+				break;
 			case "special":
 				if (key === g_specialKey)
 					// Translation: IRC system message.

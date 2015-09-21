@@ -98,6 +98,6 @@ EndGameManager.prototype.OnGlobalPlayerDefeated = function(msg)
 	// Reveal the map to all players
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	cmpRangeManager.SetLosRevealAll(-1, true);
-}
+};
 
 Engine.RegisterSystemComponentType(IID_EndGameManager, "EndGameManager", EndGameManager);

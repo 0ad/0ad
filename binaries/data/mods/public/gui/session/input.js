@@ -1924,6 +1924,6 @@ function getTrainingQueueItems(selection)
 		}
 		i++;
 	}
-	while (foundNewItems)
+	while (foundNewItems);
 	return queue;
 }
