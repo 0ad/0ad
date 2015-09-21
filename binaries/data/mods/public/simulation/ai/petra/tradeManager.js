@@ -224,7 +224,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 			continue;
 
 		// pick the best resource to barter.
-		var bestToSell;
+		var bestToSell = undefined;
 		var bestRate = 0;
 		for (var sell of needs.types)
 		{
@@ -273,7 +273,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	// now do contingency bartering, selling food to buy finite resources (and annoy our ennemies by increasing prices)
 	if (available["food"] < 1000 || needs["food"] > 0)
 		return false;
-	var bestToBuy = undefined;
+	var bestToBuy;
 	var bestChoice = 0;
 	for (var buy of needs.types)
 	{

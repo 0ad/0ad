@@ -909,7 +909,7 @@ m.AttackPlan.prototype.raidTargetFinder = function(gameState)
 		if (target && target.position())
 			targets.addEnt(target);
 	}
-	return targets
+	return targets;
 };
 
 m.AttackPlan.prototype.getPathToTarget = function(gameState)
@@ -926,7 +926,7 @@ m.AttackPlan.prototype.getPathToTarget = function(gameState)
 	this.path = [];
 	this.path.push(this.targetPos);
 	for (let p in path)
-		this.path.push([path[p].x, path[p].y])
+		this.path.push([path[p].x, path[p].y]);
 	this.path.push(this.rallyPoint);
 	this.path.reverse();
 	// Change the rally point to something useful
@@ -981,8 +981,6 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 		gameState.ai.queueManager.removeQueue("plan_" + this.name);
 		gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
 		gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
-		
-		var curPos = this.unitCollection.getCentrePosition();
 		
 		for (let ent of this.unitCollection.values())
 			ent.setMetadata(PlayerID, "subrole", "walking");

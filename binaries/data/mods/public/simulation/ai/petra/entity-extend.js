@@ -75,7 +75,7 @@ m.returnResources = function(gameState, ent)
 
 	var resource = ent.resourceCarrying()[0].type;
 
-	var closestDropsite = undefined;
+	var closestDropsite;
 	var distmin = Math.min();
 	var access = gameState.ai.accessibility.getAccessValue(ent.position());
 	gameState.getOwnDropsites(resource).forEach(function(dropsite) {
@@ -126,13 +126,13 @@ m.getBestBase = function(gameState, ent)
 		pos = holder.position();
 	}
 	var distmin = Math.min();
-	var bestbase = undefined;
+	var bestbase;
 	var accessIndex = gameState.ai.accessibility.getAccessValue(pos);
-	for (var base of gameState.ai.HQ.baseManagers)
+	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (!base.anchor)
 			continue;
-		var dist = API3.SquareVectorDistance(base.anchor.position(), pos);
+		let dist = API3.SquareVectorDistance(base.anchor.position(), pos);
 		if (base.accessIndex !== accessIndex)
 			dist += 100000000;
 		if (dist > distmin)
@@ -147,7 +147,7 @@ m.getBestBase = function(gameState, ent)
 
 m.getHolder = function(gameState, ent)
 {
-	var found = undefined;
+	var found;
 	gameState.getEntities().forEach(function (holder) {
 		if (found || !holder.isGarrisonHolder())
 			return;

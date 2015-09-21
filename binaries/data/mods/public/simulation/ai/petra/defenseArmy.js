@@ -21,10 +21,10 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	if (!ent || !ent.position())
 		return false;
 	
-	var idMin = undefined;
-	var distMin = undefined;
-	var idMinAll = undefined;
-	var distMinAll = undefined; 
+	var idMin;
+	var distMin;
+	var idMinAll;
+	var distMinAll; 
 	for (let id of this.foeEntities)
 	{
 		let eEnt = gameState.getEntityById(id);
@@ -61,7 +61,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	if (idMin !== undefined)
 		var idFoe = idMin;
 	else if (idMinAll !== undefined)
-		var idFoe = idMinAll
+		var idFoe = idMinAll;
 	else
 		return false;
 

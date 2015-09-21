@@ -61,8 +61,6 @@ m.HQ.prototype.gameAnalysis = function(gameState)
  */
 m.HQ.prototype.assignStartingEntities = function(gameState)
 {
-	var defaultbase = (this.numActiveBase() > 0) ? 1 : 0;
-	var width = gameState.getMap().width;
 	for (var ent of gameState.getOwnEntities().values())
 	{
 		// do not affect merchant ship immediately to trade as they may-be useful for transport

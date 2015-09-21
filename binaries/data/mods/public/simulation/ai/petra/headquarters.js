@@ -701,17 +701,17 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
 	var dpEnts = gameState.getOwnDropsites().filter(API3.Filters.not(API3.Filters.byClassesOr(["CivCentre", "Elephant"])));
 	var ccList = [];
-	for (var cc of ccEnts.values())
+	for (let cc of ccEnts.values())
 		ccList.push({"pos": cc.position(), "ally": gameState.isPlayerAlly(cc.owner())});
 	var dpList = [];
-	for (var dp of dpEnts.values())
+	for (let dp of dpEnts.values())
 		dpList.push({"pos": dp.position()});
 
-	var bestIdx = undefined;
-	var bestVal = undefined;
+	var bestIdx;
+	var bestVal;
 	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 	var scale = 250 * 250;
-	var proxyAccess = undefined;
+	var proxyAccess;
 	var nbShips = this.navalManager.transportShips.length;
 	if (proximity)	// this is our first base
 	{
@@ -869,9 +869,9 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
 	var ccList = [];
 	var numAllyCC = 0;
-	for (var cc of ccEnts.values())
+	for (let cc of ccEnts.values())
 	{
-		var ally = gameState.isPlayerAlly(cc.owner());
+		let ally = gameState.isPlayerAlly(cc.owner());
 		ccList.push({"pos": cc.position(), "ally": ally});
 		if (ally)
 			++numAllyCC;
@@ -889,8 +889,8 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	else if (template.get("Footprint/Circle"))
 		halfSize = +template.get("Footprint/Circle/@radius");
 
-	var bestIdx = undefined;
-	var bestVal = undefined;
+	var bestIdx;
+	var bestVal;
 	var radius =  Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
 	var width = this.territoryMap.width;
@@ -1099,7 +1099,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	var enemyStructures = gameState.getEnemyStructures().filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"])).toEntityArray();
 
 	var wonderMode = (gameState.getGameType() === "wonder");
-	var wonderDistmin = undefined;
+	var wonderDistmin;
 	if (wonderMode)
 	{
 		var wonders = gameState.getOwnStructures().filter(API3.Filters.byClass("Wonder")).toEntityArray();
@@ -1116,9 +1116,9 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	else if (template.get("Footprint/Circle"))
 		halfSize = +template.get("Footprint/Circle/@radius");
 
-	var bestIdx = undefined;
-	var bestJdx = undefined;
-	var bestVal = undefined;
+	var bestIdx;
+	var bestJdx;
+	var bestVal;
 	var width = this.territoryMap.width;
 	var cellSize = this.territoryMap.cellSize;
 
@@ -1135,7 +1135,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 		{
 			// do not try if well inside or outside territory
 			if (this.frontierMap.map[j] == 0)
-				continue
+				continue;
 			if (this.frontierMap.map[j] == 1 && isTower)
 				continue;
 		}
@@ -1600,8 +1600,8 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	var civ = gameState.civ();
 	// find nearest base anchor
 	var distcut = 20000;
-	var nearestAnchor = undefined;
-	var distmin = undefined;
+	var nearestAnchor;
+	var distmin;
 	for (let pos of positions)
 	{
 		let access = gameState.ai.accessibility.getAccessValue(pos);
@@ -1614,7 +1614,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				continue;
 			if (!base.anchor.trainableEntities(civ))	// base still in construction
 				continue;
-			let queue = base.anchor._entity.trainingQueue
+			let queue = base.anchor._entity.trainingQueue;
 			if (queue)
 			{
 				let time = 0;
@@ -1651,7 +1651,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	var rangedWanted = (Math.random() > 0.5 && autogarrison);
 
 	var total = gameState.getResources();
-	var templateFound = undefined;
+	var templateFound;
 	var trainables = nearestAnchor.trainableEntities(civ);
 	var garrisonArrowClasses = nearestAnchor.getGarrisonArrowClasses();
 	for (let trainable of trainables)

@@ -333,9 +333,9 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 			continue;
 		var aMin = undefined;
 		var distMin = undefined;
-		for (var a = 0; a < armiesNeeding.length; ++a)
+		for (let a = 0; a < armiesNeeding.length; ++a)
 		{
-			var dist = API3.SquareVectorDistance(ent.position(), armiesNeeding[a]["army"].foePosition);
+			let dist = API3.SquareVectorDistance(ent.position(), armiesNeeding[a]["army"].foePosition);
 			if (aMin !== undefined && dist > distMin)
 				continue;
 			aMin = a;
@@ -361,7 +361,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		return;
 	// If shortage of defenders, produce infantry garrisoned in nearest civil centre
 	var armiesPos = [];
-	for (var a = 0; a < armiesNeeding.length; ++a)
+	for (let a = 0; a < armiesNeeding.length; ++a)
 		armiesPos.push(armiesNeeding[a]["army"].foePosition);
 	gameState.ai.HQ.trainEmergencyUnits(gameState, armiesPos);
 };

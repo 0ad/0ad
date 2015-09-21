@@ -15,7 +15,7 @@ m.GarrisonManager = function()
 	this.decayingStructures = new Map();
 };
 
-m.GarrisonManager.prototype.update = function(gameState, queues)
+m.GarrisonManager.prototype.update = function(gameState, events)
 {
 	for (let [id, list] of this.holders.entries())
 	{

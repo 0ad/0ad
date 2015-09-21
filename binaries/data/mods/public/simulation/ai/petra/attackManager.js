@@ -111,11 +111,11 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 	{
 		this.debugTime = gameState.ai.elapsedTime;
 		API3.warn(" upcoming attacks =================");
-		for (var attackType in this.upcomingAttacks)
+		for (let attackType in this.upcomingAttacks)
 			for (let attack of this.upcomingAttacks[attackType])
 				API3.warn(" plan " + attack.name + " type " + attackType + " state " + attack.state  + " units " + attack.unitCollection.length);
 		API3.warn(" started attacks ==================");
-		for (var attackType in this.startedAttacks)
+		for (let attackType in this.startedAttacks)
 			for (let attack of this.startedAttacks[attackType])
 				API3.warn(" plan " + attack.name + " type " + attackType + " state " + attack.state + " units " + attack.unitCollection.length);
 		API3.warn(" ==================================");
@@ -166,16 +166,16 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		}
 	}
 
-	for (var attackType in this.startedAttacks)
+	for (let attackType in this.startedAttacks)
 	{
-		for (var i = 0; i < this.startedAttacks[attackType].length; ++i)
+		for (let i = 0; i < this.startedAttacks[attackType].length; ++i)
 		{
-			var attack = this.startedAttacks[attackType][i];
+			let attack = this.startedAttacks[attackType][i];
 			attack.checkEvents(gameState, events);
 			// okay so then we'll update the attack.
 			if (attack.isPaused())
 				continue;
-			var remaining = attack.update(gameState, events);
+			let remaining = attack.update(gameState, events);
 			if (!remaining)
 			{
 				if (this.Config.debug > 1)

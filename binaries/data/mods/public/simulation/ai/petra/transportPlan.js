@@ -219,7 +219,7 @@ m.TransportPlan.prototype.cancelTransport = function(gameState)
 	}
 	this.endIndex = this.startIndex;
 	this.endPos = base.anchor.position();
-	this.canceled = true;;
+	this.canceled = true;
 	return true;
 };
 

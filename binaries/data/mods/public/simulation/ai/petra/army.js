@@ -44,7 +44,7 @@ m.Army = function(gameState, ownEntities, foeEntities)
 	this.recalculatePosition(gameState, true);
 
 	return true;
-}
+};
 
 // if not forced, will only recalculate if on a different turn.
 m.Army.prototype.recalculatePosition = function(gameState, force)
@@ -82,9 +82,9 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 	
 	// todo: deal with specifics.
 
-	for (var id of this.foeEntities)
+	for (let id of this.foeEntities)
 		this.evaluateStrength(gameState.getEntityById(id));
-	for (var id of this.ownEntities)
+	for (let id of this.ownEntities)
 		this.evaluateStrength(gameState.getEntityById(id), true);
 };
 
