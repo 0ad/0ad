@@ -158,7 +158,11 @@
 		<object type="button" style="ModernButtonRed" size="100%-160 100%-48 100%-20 100%-20">
 			<translatableAttribute id="caption">Continue</translatableAttribute>
 			<action on="Press"><![CDATA[
-				if (!Engine.HasXmppClient())
+				if (g_GameData.isReplay)
+				{
+					Engine.SwitchGuiPage("page_replaymenu.xml");
+				}
+				else if (!Engine.HasXmppClient())
 				{
 					Engine.SwitchGuiPage("page_pregame.xml");
 				}

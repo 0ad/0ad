@@ -256,3 +256,58 @@ function prepareForDropdown(settingValues)
 	}
 	return settings;
 }
+
+/**
+ * Returns title or placeholder.
+ *
+ * @param aiName {string} - for example "petra"
+ */
+function translateAIName(aiName)
+{
+	var description = g_Settings.AIDescriptions.find(ai => ai.id == aiName);
+	return description ? translate(description.data.name) : translate("Unknown");
+}
+
+/**
+ * Returns title or placeholder.
+ *
+ * @param index {Number} - index of AIDifficulties
+ */
+function translateAIDifficulty(index)
+{
+	var difficulty = g_Settings.AIDifficulties[index];
+	return difficulty ? difficulty.Title : translate("Unknown");
+}
+
+/**
+ * Returns title or placeholder.
+ *
+ * @param mapType {string} - for example "skirmish"
+ */
+function translateMapType(mapType)
+{
+	var type = g_Settings.MapTypes.find(t => t.Name == mapType);
+	return type ? type.Title : translate("Unknown");
+}
+
+/**
+ * Returns title or placeholder.
+ *
+ * @param population {Number} - for example 300
+ */
+function translatePopulationCapacity(population)
+{
+	var popCap = g_Settings.PopulationCapacities.find(p => p.Population == population);
+	return popCap ? popCap.Title : translate("Unknown");
+}
+
+/**
+ * Returns title or placeholder.
+ *
+ * @param gameType {string} - for example "conquest"
+ */
+function translateVictoryCondition(gameType)
+{
+	var vc = g_Settings.VictoryConditions.find(vc => vc.Name == gameType);
+	return vc ? vc.Title : translate("Unknown");
+}

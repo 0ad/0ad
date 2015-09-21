@@ -346,10 +346,24 @@
 					</action>
 				</object>
 
+				<object name="submenuReplayButton"
+					type="button"
+					style="StoneButtonFancy"
+					size="0 64 100% 92"
+					tooltip_style="pgToolTip"
+				>
+					<translatableAttribute id="caption">Replays</translatableAttribute>
+					<translatableAttribute id="tooltip">Playback previous games.</translatableAttribute>
+					<action on="Press">
+						closeMenu();
+						Engine.SwitchGuiPage("page_replaymenu.xml");
+					</action>
+				</object>
+
 				<object name="submenuEditorButton"
 					style="StoneButtonFancy"
 					type="button"
-					size="0 64 100% 92"
+					size="0 96 100% 124"
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Scenario Editor</translatableAttribute>
@@ -362,7 +376,7 @@
 				<object name="submenuWelcomeScreenButton"
 					style="StoneButtonFancy"
 					type="button"
-					size="0 96 100% 124"
+					size="0 128 100% 156"
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Welcome Screen</translatableAttribute>
@@ -377,7 +391,7 @@
 				<object name="submenuModSelection"
 					style="StoneButtonFancy"
 					type="button"
-					size="0 128 100% 156"
+					size="0 156 100% 188"
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Mod Selection</translatableAttribute>
@@ -484,7 +498,7 @@
 					<translatableAttribute id="tooltip">Game options and scenario design tools.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 5);
+						openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 6);
 					</action>
 				</object>
 

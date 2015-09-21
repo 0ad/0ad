@@ -47,6 +47,11 @@ public:
 	 * Optional hash of simulation state (for sync checking).
 	 */
 	virtual void Hash(const std::string& hash, bool quick) = 0;
+
+	/**
+	 * Remember the directory containing the commands.txt file, so that we can save additional files to it.
+	 */
+	virtual OsPath GetDirectory() const = 0;
 };
 
 /**
@@ -58,6 +63,7 @@ public:
 	virtual void StartGame(JS::MutableHandleValue UNUSED(attribs)) { }
 	virtual void Turn(u32 UNUSED(n), u32 UNUSED(turnLength), std::vector<SimulationCommand>& UNUSED(commands)) { }
 	virtual void Hash(const std::string& UNUSED(hash), bool UNUSED(quick)) { }
+	virtual OsPath GetDirectory() const { return OsPath(); }
 };
 
 /**
@@ -73,10 +79,12 @@ public:
 	virtual void StartGame(JS::MutableHandleValue attribs);
 	virtual void Turn(u32 n, u32 turnLength, std::vector<SimulationCommand>& commands);
 	virtual void Hash(const std::string& hash, bool quick);
+	virtual OsPath GetDirectory() const;
 
 private:
 	ScriptInterface& m_ScriptInterface;
 	std::ostream* m_Stream;
+	OsPath m_Directory;
 };
 
 /**

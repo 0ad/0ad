@@ -337,19 +337,25 @@ function leaveGame(willRejoin)
 		}
 	}
 
+	let summary = {
+		"timeElapsed" : extendedSimState.timeElapsed,
+		"playerStates": extendedSimState.players,
+		"players": g_Players,
+		"mapSettings": Engine.GetMapSettings(),
+	}
+
+	if (!g_IsReplay)
+		Engine.SaveReplayMetadata(JSON.stringify(summary));
+
 	stopAmbient();
 	Engine.EndGame();
 
 	if (g_IsController && Engine.HasXmppClient())
 		Engine.SendUnregisterGame();
 
-	Engine.SwitchGuiPage("page_summary.xml", {
-							"gameResult"  : gameResult,
-							"timeElapsed" : extendedSimState.timeElapsed,
-							"playerStates": extendedSimState.players,
-							"players": g_Players,
-							"mapSettings": mapSettings
-						 });
+	summary.gameResult = gameResult;
+	summary.isReplay = g_IsReplay;
+	Engine.SwitchGuiPage("page_summary.xml", summary);
 }
 
 // Return some data that we'll use when hotloading this file after changes
