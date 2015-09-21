@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:41+0200\n"
-"PO-Revision-Date: 2015-08-24 12:52+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 12:58+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -243,8 +243,8 @@ msgid "Super Siege"
 msgstr "超級攻城武器"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
-#: simulation/templates/template_unit_mechanical.xml:14
-#: simulation/templates/template_unit_mechanical.xml:13
+#: simulation/templates/template_unit_mechanical.xml:16
+#: simulation/templates/template_unit_mechanical.xml:15
 msgid "Mechanical"
 msgstr "機械"
 
@@ -274,11 +274,11 @@ msgstr "動物群"
 msgid "Fish"
 msgstr "魚場"
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:16
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:15
 msgid "Cetacean"
 msgstr "鯨魚"
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:17
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "殺死，然後從這豐富的海洋資源中收集食物。"
 
@@ -295,9 +295,9 @@ msgstr "英雄靈氣"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
-"When garrisoned in a structure, it galvanizes its defenders, +2 "
-"GarrisonRegenRate"
-msgstr "當駐守在建築物裡時，其可以刺激防禦者，+2 駐軍再生率"
+"When garrisoned in a structure, the hero gives it a bonus of +2 capture "
+"points recovery rate."
+msgstr "當駐守在建築物內時，英雄會給予其 +2 的捕獲點數恢復速度的獎勵。"
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -1124,7 +1124,7 @@ msgid "Tactician Aura"
 msgstr "戰術家靈氣"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:15
-msgid "All allied units +2 Attack and +1 Capture within vision range of him."
+msgid "All allied units +2 Attack and +1 Capture within his vision range."
 msgstr "在他的視野內所有的盟軍單位 +2 攻擊力及 +1 捕獲。"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:21
@@ -1796,7 +1796,7 @@ msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 #: simulation/templates/units/ptol_infantry_archer_b.xml:23
-#: simulation/templates/units/samnite_swordsman.xml:9
+#: simulation/templates/units/samnite_swordsman.xml:8
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
 #: simulation/templates/units/thrace_black_cloak.xml:23
 msgid "Mercenary"
@@ -1914,9 +1914,9 @@ msgstr "大流士一世"
 
 #: simulation/templates/units/pers_hero_darius.xml:25
 msgid ""
-"Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
-"Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr "英雄靈氣：「帝國商人」。在他活著的時候提升貿易獲利（待完成）。\n遠距離攻擊 2 倍對長槍兵。遠距離攻擊 1.5 倍對劍士。"
+"Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
+"his lifetime (TBD)."
+msgstr "英雄靈氣：「帝國商人」。在他活著的時候提升貿易獲利（待完成）。"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2277,7 +2277,7 @@ msgid "Sword of Rome Aura"
 msgstr "羅馬之劍靈氣"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:14
-msgid "+5 Attack and +2 Capture for Roman units within sight of him."
+msgid "+5 Attack and +2 Capture for Roman units within his vision range."
 msgstr "在他視野內的羅馬單位 +5 攻擊力及 +2 捕獲。"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:21
@@ -2437,10 +2437,6 @@ msgstr "雇傭矛兵。\n對所有騎兵單位有攻擊力獎勵。"
 #: simulation/templates/units/samnite_swordsman.xml:6
 msgid "(Samnite Swordsman)"
 msgstr "(薩莫內劍士)"
-
-#: simulation/templates/units/samnite_swordsman.xml:7
-msgid "Bonus vs. All Spear Units."
-msgstr "對所有持長矛的單位有攻擊力獎勵。"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Dahae Horse Archer"

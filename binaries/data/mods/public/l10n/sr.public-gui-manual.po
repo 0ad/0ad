@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-07-15 16:56+0000\n"
-"Last-Translator: MIlosSD <pirisd@gmail.com>\n"
-"Language-Team: Serbian (http://www.transifex.com/projects/p/0ad/language/sr/)\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 09:06+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,12 +22,12 @@ msgid "Information"
 msgstr "Информације"
 
 #: gui/manual/manual.xml:(caption):20
-msgid "View Online"
-msgstr "Погледај на интернету"
-
-#: gui/manual/manual.xml:(caption):23
 msgid "Close"
 msgstr "Затвори"
+
+#: gui/manual/manual.xml:(caption):24
+msgid "View Online"
+msgstr "Погледај на интернету"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -377,148 +377,154 @@ msgstr "- Ако је курсор изнад савеѕничке структ�
 
 #: gui/manual/intro.txt:84
 msgid ""
+"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"of capture or gather)"
+msgstr ""
+
+#: gui/manual/intro.txt:85
+msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "- У другом случају: Наређење за напад (подразумева се да су све непријатељске јединице и грађевине уз пут циљеви, користи Ctrl + Q + десни клик да циљаш само јединице)"
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Шеме приказа"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G: Приказује/сакрива  GUI"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D: Приказује/сакрива шему приказа за креаторе игре (са опцијама за креаторе игре)"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr "Alt + W: Омогућава мод жичане структуре (притиснути једном да се добију приказ жичаних структура преко модела са текстурама, два пута да се добију само жичане структуре обојене по текстурама, три пута да се врати на нормалан мод са текстурама)"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr "Alt + S: Омогући силуете јединица (може дати мали бољитак у преформансама)"
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:92
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: Омогући приказ неба"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Манипулација камером"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W или \\[up]: Помера екран на горе"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "S or \\[down]: Pan screen down"
 msgstr "S or \\[down]: Помера екран на доле"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "A or \\[left]: Pan screen left"
 msgstr "A or \\[left]: Помера екран на лево"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:98
 msgid "D or \\[right]: Pan screen right"
 msgstr "D or \\[right]: Помера екран на десно"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W or \\[up]: Ротирај камеру за поглед на горе"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S or \\[down]: Ротирај камеру за поглед на доле"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A or \\[left]: Ротирај камеру у правцу казаљке на сату по терену"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D or \\[right]: Ротирај камеру у правцу супротном казаљци на сату по терену"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Ротирај камеру у правцу казаљке на сату по терену"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: Ротирај камеру у правцу супротном казаљци на сату по терену"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + точком миша ротирати на горе: Ротирај камеру у смеру казаљке на сату по терену"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + точком миша ротирати на доле: Ротирај камеру у смеру супротном од казаљке на сату по терену"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
 msgstr "F: Прати означену јединицу (померај камеру до престани да пратиш означену јединицу/јединице)"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Ресетуј подешавања зума/оријентацију"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: Приближи (држати притиснуто за стално зумирање)"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: Удаљи (држи притиснуто за стално удаљавање)"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: Мењај кроз модове жичаног приказа"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
 msgstr "Средње дугме миша или / (коса црта): Држати притиснуто и покретати миш да би померао екран"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]током постављања зграда"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: ротирај зграду за 15 степени у смеру супротном од казаљке на сату"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: Ротирај зграду за 15 степени у смеру казаљке на сату"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Превлачење левим кликом: Ротирај зграду користећи миш (темељ ће бити постављен по пуштању тастера миша)"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Када се учитава снимљена игра"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Delete: избриши снимљену игру уз тражење потврде"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: не тражи потврду када бришеш снимљену игру"
 

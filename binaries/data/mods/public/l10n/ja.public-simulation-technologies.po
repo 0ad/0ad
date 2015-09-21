@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-28 06:09+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 21:29+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,6 @@ msgstr "馬面（ばめん）"
 #: simulation/data/technologies/attack_tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_tower_defense.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_tower_range.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
 #: simulation/data/technologies/decay_outpost.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -446,6 +445,7 @@ msgid "Reinforced hull"
 msgstr "船体補強"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
@@ -2323,7 +2323,7 @@ msgstr "ペルシアは1677マイルにおよぶ素晴らしい王の道をサ�
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr "すべてのペルシアの建物は耐久性と捕獲ポイントが25%増加しますが、建設時間が20%長くなります。"
+msgstr "すべてのペルシアの建物は耐久性と占領ポイントが25%増加しますが、建設時間が20%長くなります。"
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2430,7 +2430,7 @@ msgstr "アレクサンドロスに始まるギリシアの君主は多くの都
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid ""
 "Civic centers +100% health and capture points and double default arrows."
-msgstr "町の中心の耐久力と捕獲ポイントが100%増加し、無人時の矢の量が2倍になります。"
+msgstr "町の中心の耐久力と占領ポイントが100%増加し、無人時の矢の量が2倍になります。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

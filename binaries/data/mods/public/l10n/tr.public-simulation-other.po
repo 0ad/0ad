@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-08-29 01:38+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-21 16:01+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -345,9 +345,8 @@ msgstr " - Bir kaynaktan diğerine birimleri takas yapmaktan çekinmeyin, noktay
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
-" - Build enough houses, your CC should be kept busy as much as possible, it "
-"is the only training building until town phase."
-msgstr " - Yeterince ev inşa edin, halk merkezleri yeterince meşgul olmalıdır, Bu kasaba aşamasına kadar sadece eğitim yapılır."
+" - Build enough houses, your CC should be kept busy as much as possible."
+msgstr "- Yeterince ev inşa edin, halk merkezleri yeterince meşgul olmalıdır."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -681,38 +680,6 @@ msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s, %(resourceAm
 msgid "The production queue is full."
 msgstr "Üretim kuyruğu dolu."
 
-#: simulation/data/game_speeds.jsonSpeeds[0].Name
-msgid "Turtle (0.1x)"
-msgstr "Kaplumbağa (0.1x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[1].Name
-msgid "Slow (0.25x)"
-msgstr "Yavaş (0.25x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[2].Name
-msgid "Leisurely (0.5x)"
-msgstr "Sakin (0.5x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[3].Name
-msgid "Relaxed (0.75x)"
-msgstr "Gevşek (0.75x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[4].Name
-msgid "Normal (1x)"
-msgstr "Normal (1x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[5].Name
-msgid "Fast (1.25x)"
-msgstr "Hızlı (1.25x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[6].Name
-msgid "Very Fast (1.5x)"
-msgstr "Çok Hızlı (2x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[7].Name
-msgid "Insane (2x)"
-msgstr "Deli gibi(2x)"
-
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
 msgstr "Gaea"
@@ -748,6 +715,117 @@ msgstr "Oyuncu 7"
 #: simulation/data/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
 msgstr "Oyuncu 8"
+
+#: simulation/data/settings/game_speeds.jsonData[0].Title
+msgid "Turtle (0.1x)"
+msgstr "Kaplumbağa (0.1x)"
+
+#: simulation/data/settings/game_speeds.jsonData[1].Title
+msgid "Slow (0.25x)"
+msgstr "Yavaş (0.25x)"
+
+#: simulation/data/settings/game_speeds.jsonData[2].Title
+msgid "Leisurely (0.5x)"
+msgstr "Sakin (0.5x)"
+
+#: simulation/data/settings/game_speeds.jsonData[3].Title
+msgid "Relaxed (0.75x)"
+msgstr "Gevşek (0.75x)"
+
+#: simulation/data/settings/game_speeds.jsonData[4].Title
+msgid "Normal (1x)"
+msgstr "Normal (1x)"
+
+#: simulation/data/settings/game_speeds.jsonData[5].Title
+msgid "Fast (1.25x)"
+msgstr "Hızlı (1.25x)"
+
+#: simulation/data/settings/game_speeds.jsonData[6].Title
+msgid "Very Fast (1.5x)"
+msgstr "Çok Hızlı (2x)"
+
+#: simulation/data/settings/game_speeds.jsonData[7].Title
+msgid "Insane (2x)"
+msgstr "Deli gibi(2x)"
+
+#: simulation/data/settings/game_speeds.jsonData[8].Title
+msgid "Fast Forward (5x)"
+msgstr "Hızlı İlerle (5x)"
+
+#: simulation/data/settings/game_speeds.jsonData[9].Title
+msgid "Fast Forward (10x)"
+msgstr "Hızlı İlerle (10x)"
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20x)"
+msgstr "Hızlı İlerle (20x)"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid "Defeat all opponents"
+msgstr "Tüm rakipleri mağlup et"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr "Fethet"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Destroy all structures of enemies"
+msgstr "Düşmanın tüm yapılarını yok et"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr "Fetih Yapıları"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Kill all enemy units"
+msgstr "Tüm düşman birimlerini yok et"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr "Fetih Birimleri"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid "Build and protect a wonder to win"
+msgstr "Kazanmak için bir dünya harikası inşa et ve koru"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr "Dünya Harikası"
+
+#: simulation/data/settings/starting_resources.jsonTranslatedKeys.Title
+msgctxt "startingResources"
+msgid "startingResources"
+msgstr "Başlangıç Kaynakları"
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "Çok Düşük"
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr "Düşük"
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "Orta"
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr "Yüksek"
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "Çok Yüksek"
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "Ölümüne "
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName

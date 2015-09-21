@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:41+0200\n"
-"PO-Revision-Date: 2015-08-24 09:18+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 09:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/wildfire-games/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -66,22 +66,22 @@ msgstr "გვერდი იხსნება"
 msgid "FPS: %(fps)4s"
 msgstr ""
 
-#: gui/common/functions_global_object.js:102
+#: gui/common/functions_global_object.js:103
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr ""
 
-#: gui/common/functions_global_object.js:119
+#: gui/common/functions_global_object.js:120
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr ""
 
-#: gui/common/functions_utility.js:191
+#: gui/common/functions_utility.js:159
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:193
+#: gui/common/functions_utility.js:161
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -303,26 +303,98 @@ msgid "Incorrect network protocol version"
 msgstr "არასწორი ქსელის პროტოკოლის ვერსია"
 
 #: gui/common/network.js:9
-msgid "Game has already started"
-msgstr "თამაში უკვე დაწყებულია"
+msgid "Game is loading, please try later"
+msgstr ""
 
 #: gui/common/network.js:10
+msgid "Game has already started, no observers allowed"
+msgstr ""
+
+#: gui/common/network.js:11
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr ""
 
-#: gui/common/network.js:19
+#: gui/common/network.js:20
 msgid "Lost connection to the server."
 msgstr "მომსახურესთან კავშირი დაიკარგა."
 
-#: gui/common/network.js:19
+#: gui/common/network.js:20
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "მიზეზი: %(reason)s."
 
-#: gui/common/network.js:20
+#: gui/common/network.js:21
 msgid "Disconnected"
 msgstr "გამოერთებულია"
+
+#: gui/common/settings.js:95
+msgctxt "aiDiff"
+msgid "Sandbox"
+msgstr ""
+
+#: gui/common/settings.js:99
+msgctxt "aiDiff"
+msgid "Very Easy"
+msgstr ""
+
+#: gui/common/settings.js:103
+msgctxt "aiDiff"
+msgid "Easy"
+msgstr ""
+
+#: gui/common/settings.js:107
+msgctxt "aiDiff"
+msgid "Medium"
+msgstr ""
+
+#: gui/common/settings.js:112
+msgctxt "aiDiff"
+msgid "Hard"
+msgstr ""
+
+#: gui/common/settings.js:116
+msgctxt "aiDiff"
+msgid "Very Hard"
+msgstr ""
+
+#: gui/common/settings.js:139
+msgctxt "ceasefire"
+msgid "No ceasefire"
+msgstr ""
+
+#: gui/common/settings.js:140
+#, javascript-format
+msgctxt "ceasefire"
+msgid "%(minutes)s minute"
+msgid_plural "%(minutes)s minutes"
+msgstr[0] ""
+
+#: gui/common/settings.js:154
+msgctxt "map"
+msgid "Skirmish"
+msgstr ""
+
+#: gui/common/settings.js:159
+msgctxt "map"
+msgid "Random"
+msgstr ""
+
+#: gui/common/settings.js:163 gui/summary/summary.js:136
+msgid "Scenario"
+msgstr "სცენარი"
+
+#: gui/common/settings.js:194
+msgid "None"
+msgstr ""
+
+#: gui/common/settings.js:195
+msgid "Endless Game"
+msgstr ""
+
+#: gui/common/settings.js:220
+msgid "Unlimited"
+msgstr ""
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -1046,7 +1118,7 @@ msgstr ""
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):105
 msgid "Player name"
 msgstr "მოთამაშის სახელი"
 
@@ -1224,16 +1296,12 @@ msgstr ""
 msgid "Team total"
 msgstr ""
 
-#: gui/summary/summary.js:139
-msgid "Scenario"
-msgstr "სცენარი"
-
-#: gui/summary/summary.js:141
+#: gui/summary/summary.js:138
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:159
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1615,35 +1683,35 @@ msgstr ""
 msgid "Civilization:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):22
+#: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "შეჯამება"
 
-#: gui/summary/summary.xml:(caption):62
+#: gui/summary/summary.xml:(caption):63
 msgid "Score"
 msgstr "ანგარიში"
 
-#: gui/summary/summary.xml:(caption):69
+#: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
 msgstr "შენობები"
 
-#: gui/summary/summary.xml:(caption):76
+#: gui/summary/summary.xml:(caption):77
 msgid "Units"
 msgstr "ერთეულები"
 
-#: gui/summary/summary.xml:(caption):83
+#: gui/summary/summary.xml:(caption):84
 msgid "Resources"
 msgstr "სახსრები"
 
-#: gui/summary/summary.xml:(caption):90
+#: gui/summary/summary.xml:(caption):91
 msgid "Market"
 msgstr "ბაზარი"
 
-#: gui/summary/summary.xml:(caption):97
+#: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
 msgstr "სხვადასხვა"
 
-#: gui/summary/summary.xml:(caption):158
+#: gui/summary/summary.xml:(caption):159
 msgid "Continue"
 msgstr "გააგრძელე"
 
@@ -1663,14 +1731,18 @@ msgid ""
 msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:6
-msgid "[imgleft=\"iconLag\"]The game runs slowly when many units are moving."
+msgid ""
+"[imgleft=\"iconLag\"]The game can have performance problems, especially with"
+" large maps and a great number of units."
 msgstr ""
 
-#: gui/splashscreen/splashscreen.txt:9
-msgid "[imgleft=\"iconMap\"]Large maps can cause problems."
+#: gui/splashscreen/splashscreen.txt:8
+msgid ""
+"[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
+"performance, but it can be subject to new bugs."
 msgstr ""
 
-#: gui/splashscreen/splashscreen.txt:12
+#: gui/splashscreen/splashscreen.txt:10
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
@@ -2018,9 +2090,8 @@ msgstr "- მძიმედ შეიარაღებული და ნე�
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
-"- Used against cavalry for a 4x attack bonus or against other melee infantry"
-" to pin them them in place."
-msgstr "- გამოიყენება მხედრების წინააღმდეგ 4-მაგი თავდასხმისთვის, ან სხვა შემტაკებლის წინააღმდეგ, მათ ერთ ადგილზე გასაჩერებლად."
+"- Used against cavalry or against other melee infantry to pin them in place."
+msgstr ""
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2133,16 +2204,16 @@ msgid "STOA"
 msgstr "სტოა"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special starting structure for the Hellenes."
-msgstr "- განსაკუთრებული საწყისი შენობა ბერძნებისთვის."
+msgid "- A special starting structure for Greek factions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
 msgstr "- ასაჩუქრებს +10 მოსახლეობით."
 
 #: gui/text/tips/stoa.txt:6
-msgid "- Only enabled in some game modes."
-msgstr "- ჩართულია მხოლოდ რომელიღაც თამაშის მოდიფიკაციებში."
+msgid "- Only present on some maps."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."

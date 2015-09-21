@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:40+0200\n"
-"PO-Revision-Date: 2015-09-12 14:15+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
+"POT-Creation-Date: 2015-09-18 22:14+0200\n"
+"PO-Revision-Date: 2015-09-19 09:06+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,12 +59,12 @@ msgid "Resume"
 msgstr "استكمل"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "لا"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:488 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "نعم"
 
@@ -101,7 +101,7 @@ msgstr "أتريد الاستسلام أو ستعود قريبًا؟"
 msgid "Destroy everything currently selected?"
 msgstr "أأُدمِّر كلّ شيء محدّد حاليًّا؟"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:710
+#: gui/session/menu.js:189 gui/session/unit_actions.js:708
 msgid "Delete"
 msgstr "احذف"
 
@@ -110,7 +110,7 @@ msgctxt "team"
 msgid "None"
 msgstr "بلا"
 
-#: gui/session/menu.js:296 gui/session/messages.js:647
+#: gui/session/menu.js:296 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "حليف"
@@ -119,7 +119,7 @@ msgstr "حليف"
 msgid "Neutral"
 msgstr "محايد"
 
-#: gui/session/menu.js:296 gui/session/messages.js:657
+#: gui/session/menu.js:296 gui/session/messages.js:632
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "عدو"
@@ -293,153 +293,149 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "جزية %(resourceAmount)s %(resourceType)s الى %(playerName)s. اضغط Shift للجزية %(greaterAmount)s."
 
-#: gui/session/messages.js:212
-#, javascript-format
-msgid "Net message: %(message)s"
-msgstr "رسالة شبكيّة: %(message)s"
-
-#: gui/session/messages.js:225
+#: gui/session/messages.js:251
 msgid "Waiting for other players to connect..."
 msgstr "ينتظر اتّصال لاعبين آخرين..."
 
-#: gui/session/messages.js:229
+#: gui/session/messages.js:255
 msgid "Synchronising gameplay with other players..."
 msgstr "يزامن اللعب مع اللاعبين الآخرين..."
 
-#: gui/session/messages.js:237
+#: gui/session/messages.js:263
 msgid "Connected to the server."
 msgstr "اتّصلتُ بالخادوم."
 
-#: gui/session/messages.js:241
+#: gui/session/messages.js:267
 msgid "Connection to the server has been authenticated."
 msgstr "وُثِّق الاتّصال بالخادوم."
 
-#: gui/session/messages.js:246
+#: gui/session/messages.js:272
 msgid "Connection to the server has been lost."
 msgstr "فُقِدَ الاتّصال بالخادوم."
 
-#: gui/session/messages.js:246
+#: gui/session/messages.js:272
 msgid "The game has ended."
 msgstr "انتهت اللعبة."
 
-#: gui/session/messages.js:435
+#: gui/session/messages.js:409
 msgid "Unknown player"
 msgstr "لاعب مجهول"
 
-#: gui/session/messages.js:443
+#: gui/session/messages.js:417
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr ""
 
-#: gui/session/messages.js:446
+#: gui/session/messages.js:420
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "غادر %(player)s اللعبة."
 
-#: gui/session/messages.js:449
+#: gui/session/messages.js:423
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr ""
 
-#: gui/session/messages.js:454
+#: gui/session/messages.js:428
 msgid "You have been defeated."
 msgstr "لقد هُزِمت."
 
-#: gui/session/messages.js:456
+#: gui/session/messages.js:430
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "هُزِم %(player)s."
 
-#: gui/session/messages.js:464
+#: gui/session/messages.js:438
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "أنت حليف مع %(player)s الآن."
 
-#: gui/session/messages.js:466
+#: gui/session/messages.js:440
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "أنت تخوض حربًا مع %(player)s الآن."
 
-#: gui/session/messages.js:468
+#: gui/session/messages.js:442
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "أنت حياديّ مع %(player)s الآن."
 
-#: gui/session/messages.js:474
+#: gui/session/messages.js:448
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s حليف معك الآن."
 
-#: gui/session/messages.js:476
+#: gui/session/messages.js:450
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s يخوض حربًا معك الآن."
 
-#: gui/session/messages.js:478
+#: gui/session/messages.js:452
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "أصبح %(player)s محايدًا معك."
 
-#: gui/session/messages.js:494
+#: gui/session/messages.js:468
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr "%(amount)s %(resourceType)s"
 
-#: gui/session/messages.js:502
+#: gui/session/messages.js:476
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s و %(lastAmount)s"
 
-#: gui/session/messages.js:503 gui/session/utility_functions.js:141
-#: gui/session/utility_functions.js:146
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an enumeration.
+#: gui/session/messages.js:478
 msgid ", "
 msgstr "، و "
 
-#: gui/session/messages.js:508
+#: gui/session/messages.js:483
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s أرسل إليك %(amounts)s."
 
-#: gui/session/messages.js:521
+#: gui/session/messages.js:496
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:523
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "لقد هاجمك %(attacker)s!"
 
-#: gui/session/messages.js:549
+#: gui/session/messages.js:524
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:557
+#: gui/session/messages.js:532
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:565 gui/session/messages.js:566
+#: gui/session/messages.js:540 gui/session/messages.js:541
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:569
+#: gui/session/messages.js:544
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:577
+#: gui/session/messages.js:552
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:637 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:612 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "الفريق"
 
-#: gui/session/messages.js:679
+#: gui/session/messages.js:654
 msgid "Private"
 msgstr "خاص"
 
@@ -498,7 +494,7 @@ msgid "∞"
 msgstr "∞"
 
 #: gui/session/selection_details.js:143 gui/session/selection_details.js:170
-#: gui/session/selection_details.js:209
+#: gui/session/selection_details.js:217
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
@@ -530,34 +526,34 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: gui/session/selection_details.js:202
+#: gui/session/selection_details.js:202 gui/session/selection_details.js:210
 msgid "Number of builders."
 msgstr "عدد البنّاؤون."
 
-#: gui/session/selection_details.js:210
+#: gui/session/selection_details.js:218
 msgid "Current/max gatherers"
 msgstr "الحاصدين حاليًا/الأقصى"
 
-#: gui/session/selection_details.js:224
+#: gui/session/selection_details.js:232
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:262
+#: gui/session/selection_details.js:270
 msgid "Classes:"
 msgstr "التصنيفات"
 
-#: gui/session/selection_details.js:317
+#: gui/session/selection_details.js:325
 msgid "Hitpoints:"
 msgstr "نقاط الصحة:"
 
-#: gui/session/selection_details.js:318 gui/session/selection_details.js:348
-#: gui/session/session.js:641
+#: gui/session/selection_details.js:326 gui/session/selection_details.js:356
+#: gui/session/session.js:635
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:347
+#: gui/session/selection_details.js:355
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr ""
@@ -642,7 +638,7 @@ msgstr[3] "باقي: %(number)s للإنتهاء"
 msgstr[4] "باقي: %(number)s للإنتهاء"
 msgstr[5] "باقي: %(number)s للإنتهاء"
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:640
+#: gui/session/selection_panels.js:1095 gui/session/session.js:634
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "الصّحّة:"
@@ -716,97 +712,97 @@ msgstr "%(action)s لتدريب %(number)s."
 msgid "You"
 msgstr "أنت"
 
-#: gui/session/session.js:173
+#: gui/session/session.js:169
 msgid "Gaia"
 msgstr "الطّبيعة"
 
-#: gui/session/session.js:247
+#: gui/session/session.js:241
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - شجرة البنية"
 
-#: gui/session/session.js:321 gui/session/session.js:337
+#: gui/session/session.js:315 gui/session/session.js:331
 msgid "You have left the game."
 msgstr "لقد غادرت اللعبة."
 
-#: gui/session/session.js:328
+#: gui/session/session.js:322
 msgid "You have been disconnected."
 msgstr "لقد قُطِعَ اتّصالك."
 
-#: gui/session/session.js:330
+#: gui/session/session.js:324
 msgid "You have won the battle!"
 msgstr "لقد ربحت المعركة!"
 
-#: gui/session/session.js:332
+#: gui/session/session.js:326
 msgid "You have been defeated..."
 msgstr "لقد هُزِمت..."
 
-#: gui/session/session.js:340
+#: gui/session/session.js:334
 msgid "You have abandoned the game."
 msgstr "لقد تخلّيت عن اللعبة."
 
-#: gui/session/session.js:482
+#: gui/session/session.js:479
 msgid "OK"
 msgstr "حسنًا"
 
-#: gui/session/session.js:484
+#: gui/session/session.js:481
 msgid "Press OK to continue"
 msgstr "انقر حسنًا للمتابعة"
 
-#: gui/session/session.js:490
+#: gui/session/session.js:487
 msgid "Do you want to quit?"
 msgstr "أتريد الإنهاء؟"
 
-#: gui/session/session.js:496
+#: gui/session/session.js:493
 msgid "DEFEATED!"
 msgstr "هُزِمت!"
 
-#: gui/session/session.js:504
+#: gui/session/session.js:501
 msgid "VICTORIOUS!"
 msgstr "انتصرت!"
 
-#: gui/session/session.js:566
+#: gui/session/session.js:560
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "نعم"
 
-#: gui/session/session.js:566
+#: gui/session/session.js:560
 msgctxt "replayFinished"
 msgid "No"
 msgstr ""
 
-#: gui/session/session.js:568
+#: gui/session/session.js:562
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "انتهت الإعادة. أتريد الإنهاء؟"
 
-#: gui/session/session.js:568
+#: gui/session/session.js:562
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "أكّد"
 
-#: gui/session/session.js:729
+#: gui/session/session.js:723
 msgid "Population (current / limit)"
 msgstr "السّكّانيّة (الحاليّة / الحدّ)"
 
-#: gui/session/session.js:730
+#: gui/session/session.js:724
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr ""
 
-#: gui/session/session.js:893
+#: gui/session/session.js:887
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "البناء: %(buildDate)s‏ (%(revision)s)"
 
-#: gui/session/session.js:898
+#: gui/session/session.js:892
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "ملاحظة: وضع الوقت الاعوج هو خيار المطور، وليس المقصود للاستخدام على مدى فترات طويلة من الزمن، استخدامه بشكل غير صحيح قد يسبب للعبة النفاد الذاكرة أو تعطل."
 
-#: gui/session/session.js:898
+#: gui/session/session.js:892
 msgid "Time warp mode"
 msgstr "وضع (التلاعب بالمعدل الزمني)"
 
@@ -844,52 +840,52 @@ msgstr "انقر باليمين لإنشاء مسلك افتراضيّ للتّ�
 msgid "Expected gain: %(gain)s"
 msgstr "الكسب المتوقع: %(gain)s"
 
-#: gui/session/unit_actions.js:682 gui/session/unit_actions.js:916
+#: gui/session/unit_actions.js:680 gui/session/unit_actions.js:913
 msgid "Unload All"
 msgstr "أزل تحميل الكلّ"
 
-#: gui/session/unit_actions.js:698
+#: gui/session/unit_actions.js:696
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "لا يمكنك تدمير هذه الوحدة لأنها مخفية في غبار الحرب"
 
-#: gui/session/unit_actions.js:704
+#: gui/session/unit_actions.js:702
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr ""
 
-#: gui/session/unit_actions.js:736
+#: gui/session/unit_actions.js:734
 msgid "Stop"
 msgstr "أوقف"
 
-#: gui/session/unit_actions.js:754
+#: gui/session/unit_actions.js:752
 msgid "Garrison"
 msgstr "تمترس بالداخل"
 
-#: gui/session/unit_actions.js:775
+#: gui/session/unit_actions.js:773
 msgid "Unload"
 msgstr "أزل التّحميل"
 
-#: gui/session/unit_actions.js:791
+#: gui/session/unit_actions.js:789
 msgid "Repair"
 msgstr "أصلح"
 
-#: gui/session/unit_actions.js:808
+#: gui/session/unit_actions.js:806
 msgid "Focus on Rally Point"
 msgstr "ركّز على نقطة التّجمّع"
 
-#: gui/session/unit_actions.js:831
+#: gui/session/unit_actions.js:829
 msgid "Back to Work"
 msgstr "ارجع إلى العمل"
 
-#: gui/session/unit_actions.js:847
+#: gui/session/unit_actions.js:845
 msgid "Guard"
 msgstr "حارس"
 
-#: gui/session/unit_actions.js:864
+#: gui/session/unit_actions.js:862
 msgid "Remove guard"
 msgstr "أزل الحارس"
 
-#: gui/session/unit_actions.js:880
+#: gui/session/unit_actions.js:878
 msgid "Select trading goods"
 msgstr "اختر بضائع التجارة"
 
@@ -902,6 +898,11 @@ msgstr "+"
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
+
+#: gui/session/utility_functions.js:141 gui/session/utility_functions.js:146
+msgctxt "Separation mark in an enumeration"
+msgid ", "
+msgstr ""
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -957,7 +958,7 @@ msgstr "خيارات"
 msgid "Resign"
 msgstr "استسلم"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):349
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):350
 msgid "Exit"
 msgstr "اخرج"
 
@@ -965,75 +966,75 @@ msgstr "اخرج"
 msgid "Find idle worker"
 msgstr "جِد عاملًا خاملًا"
 
-#: gui/session/session.xml:(caption):59
+#: gui/session/session.xml:(caption):60
 msgid "Control all units"
 msgstr "تحكّم بكلّ الوحدات"
 
-#: gui/session/session.xml:(caption):69
+#: gui/session/session.xml:(caption):70
 msgid "Change perspective"
 msgstr "غيّر وجهة العرض"
 
-#: gui/session/session.xml:(caption):76
+#: gui/session/session.xml:(caption):77
 msgid "Display selection state"
 msgstr "اعرض حالة التّحديد"
 
-#: gui/session/session.xml:(caption):81
+#: gui/session/session.xml:(caption):82
 msgid "Pathfinder overlay"
 msgstr "إضافة ذاكرة Pathfinder"
 
-#: gui/session/session.xml:(caption):88
+#: gui/session/session.xml:(caption):89
 msgid "Obstruction overlay"
 msgstr "إضافة ذاكرة Obstruction"
 
-#: gui/session/session.xml:(caption):95
+#: gui/session/session.xml:(caption):96
 msgid "Unit motion overlay"
 msgstr "إضافة ذاكرة Unit motion"
 
-#: gui/session/session.xml:(caption):102
+#: gui/session/session.xml:(caption):103
 msgid "Range overlay"
 msgstr "إضافة ذاكرة Range"
 
-#: gui/session/session.xml:(caption):109
+#: gui/session/session.xml:(caption):110
 msgid "Bounding box overlay"
 msgstr "إضافة ذاكرة Bounding"
 
-#: gui/session/session.xml:(caption):116
+#: gui/session/session.xml:(caption):117
 msgid "Restrict camera"
 msgstr "قم بتقييد الكاميرا"
 
-#: gui/session/session.xml:(caption):125
+#: gui/session/session.xml:(caption):126
 msgid "Reveal map"
 msgstr "اكشف الخريطة"
 
-#: gui/session/session.xml:(caption):133
+#: gui/session/session.xml:(caption):134
 msgid "Enable time warp"
 msgstr "قم بتفعيل خاصية التخطي الزمني"
 
-#: gui/session/session.xml:(caption):143
+#: gui/session/session.xml:(caption):144
 msgid "Promote selected units"
 msgstr "رقِّ الوحدات المحدّدة"
 
-#: gui/session/session.xml:(caption):150
+#: gui/session/session.xml:(caption):151
 msgid "Hierarchical pathfinder overlay"
 msgstr ""
 
-#: gui/session/session.xml:(caption):184
+#: gui/session/session.xml:(caption):185
 msgid "Game Paused"
 msgstr "أُلبِثت اللعبة"
 
-#: gui/session/session.xml:(caption):187
+#: gui/session/session.xml:(caption):188
 msgid "Click to Resume Game"
 msgstr "انقر لاستئناف اللعبة"
 
-#: gui/session/session.xml:(caption):222
+#: gui/session/session.xml:(caption):223
 msgid "Cancel"
 msgstr "ألغِ"
 
-#: gui/session/session.xml:(caption):228
+#: gui/session/session.xml:(caption):229
 msgid "Team Only"
 msgstr "الفريق فقط"
 
-#: gui/session/session.xml:(caption):232
+#: gui/session/session.xml:(caption):233
 msgid "Send"
 msgstr "أرسِل"
 

@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:41+0200\n"
-"PO-Revision-Date: 2015-09-14 08:10+0000\n"
-"Last-Translator: Werkt <werkt3639@gmail.com>\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 22:10+0000\n"
+"Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,22 +69,22 @@ msgstr "ページを開く"
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:102
+#: gui/common/functions_global_object.js:103
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/common/functions_global_object.js:119
+#: gui/common/functions_global_object.js:120
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "停戦終了まであと%(time)s秒"
 
-#: gui/common/functions_utility.js:191
+#: gui/common/functions_utility.js:159
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:193
+#: gui/common/functions_utility.js:161
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -306,26 +306,98 @@ msgid "Incorrect network protocol version"
 msgstr "ネットワークプロトコルのバージョン不適合"
 
 #: gui/common/network.js:9
-msgid "Game has already started"
-msgstr "ゲームはすでに始まっています"
+msgid "Game is loading, please try later"
+msgstr "ゲーム読込み中です。後ほどやり直してください"
 
 #: gui/common/network.js:10
+msgid "Game has already started, no observers allowed"
+msgstr "ゲームはすでに始まっています。観戦はできません"
+
+#: gui/common/network.js:11
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[%(id)s は無効な値]"
 
-#: gui/common/network.js:19
+#: gui/common/network.js:20
 msgid "Lost connection to the server."
 msgstr "サーバーとの接続が切れました。"
 
-#: gui/common/network.js:19
+#: gui/common/network.js:20
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "理由： %(reason)s."
 
-#: gui/common/network.js:20
+#: gui/common/network.js:21
 msgid "Disconnected"
 msgstr "通信遮断"
+
+#: gui/common/settings.js:95
+msgctxt "aiDiff"
+msgid "Sandbox"
+msgstr "練習"
+
+#: gui/common/settings.js:99
+msgctxt "aiDiff"
+msgid "Very Easy"
+msgstr "とても簡単"
+
+#: gui/common/settings.js:103
+msgctxt "aiDiff"
+msgid "Easy"
+msgstr "簡単"
+
+#: gui/common/settings.js:107
+msgctxt "aiDiff"
+msgid "Medium"
+msgstr "中"
+
+#: gui/common/settings.js:112
+msgctxt "aiDiff"
+msgid "Hard"
+msgstr "難しい"
+
+#: gui/common/settings.js:116
+msgctxt "aiDiff"
+msgid "Very Hard"
+msgstr "とても難しい"
+
+#: gui/common/settings.js:139
+msgctxt "ceasefire"
+msgid "No ceasefire"
+msgstr "停戦不可"
+
+#: gui/common/settings.js:140
+#, javascript-format
+msgctxt "ceasefire"
+msgid "%(minutes)s minute"
+msgid_plural "%(minutes)s minutes"
+msgstr[0] "%(minutes)s分"
+
+#: gui/common/settings.js:154
+msgctxt "map"
+msgid "Skirmish"
+msgstr "短期戦"
+
+#: gui/common/settings.js:159
+msgctxt "map"
+msgid "Random"
+msgstr "ランダム"
+
+#: gui/common/settings.js:163 gui/summary/summary.js:136
+msgid "Scenario"
+msgstr "シナリオ"
+
+#: gui/common/settings.js:194
+msgid "None"
+msgstr "なし"
+
+#: gui/common/settings.js:195
+msgid "Endless Game"
+msgstr ""
+
+#: gui/common/settings.js:220
+msgid "Unlimited"
+msgstr "無制限"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -1049,7 +1121,7 @@ msgstr "%(val1)s から %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):105
 msgid "Player name"
 msgstr "プレイヤー名"
 
@@ -1227,16 +1299,12 @@ msgstr "マップ支配"
 msgid "Team total"
 msgstr "チーム合計"
 
-#: gui/summary/summary.js:139
-msgid "Scenario"
-msgstr "シナリオ"
-
-#: gui/summary/summary.js:141
+#: gui/summary/summary.js:138
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "ゲーム経過時間：%(time)s"
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:159
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1618,35 +1686,35 @@ msgstr "既知の問題(ウェブ)"
 msgid "Civilization:"
 msgstr "文明："
 
-#: gui/summary/summary.xml:(caption):22
+#: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "成績"
 
-#: gui/summary/summary.xml:(caption):62
+#: gui/summary/summary.xml:(caption):63
 msgid "Score"
 msgstr "得点"
 
-#: gui/summary/summary.xml:(caption):69
+#: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
 msgstr "建物"
 
-#: gui/summary/summary.xml:(caption):76
+#: gui/summary/summary.xml:(caption):77
 msgid "Units"
 msgstr "ユニット"
 
-#: gui/summary/summary.xml:(caption):83
+#: gui/summary/summary.xml:(caption):84
 msgid "Resources"
 msgstr "資源"
 
-#: gui/summary/summary.xml:(caption):90
+#: gui/summary/summary.xml:(caption):91
 msgid "Market"
 msgstr "市場"
 
-#: gui/summary/summary.xml:(caption):97
+#: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
 msgstr "その他"
 
-#: gui/summary/summary.xml:(caption):158
+#: gui/summary/summary.xml:(caption):159
 msgid "Continue"
 msgstr "続行"
 
@@ -1666,14 +1734,18 @@ msgid ""
 msgstr "[imgleft=\"constructionIcon\"]このゲームはまだ開発の途上です。機能が欠けていたりバグがあったりします。"
 
 #: gui/splashscreen/splashscreen.txt:6
-msgid "[imgleft=\"iconLag\"]The game runs slowly when many units are moving."
-msgstr "[imgleft=\"iconLag\"]多数のユニットの移動時に動作が遅くなります。"
+msgid ""
+"[imgleft=\"iconLag\"]The game can have performance problems, especially with"
+" large maps and a great number of units."
+msgstr ""
 
-#: gui/splashscreen/splashscreen.txt:9
-msgid "[imgleft=\"iconMap\"]Large maps can cause problems."
-msgstr "[imgleft=\"iconMap\"]大きなマップで問題が発生することがあります。"
+#: gui/splashscreen/splashscreen.txt:8
+msgid ""
+"[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
+"performance, but it can be subject to new bugs."
+msgstr ""
 
-#: gui/splashscreen/splashscreen.txt:12
+#: gui/splashscreen/splashscreen.txt:10
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
@@ -2021,9 +2093,8 @@ msgstr "- 重装甲で遅く、攻撃力は低いです。"
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
-"- Used against cavalry for a 4x attack bonus or against other melee infantry"
-" to pin them them in place."
-msgstr "- 騎兵に対し4倍の攻撃力ボーナスを活かすか、他の近接攻撃歩兵を足止めするのに用います。"
+"- Used against cavalry or against other melee infantry to pin them in place."
+msgstr "- 騎兵や他の近接攻撃歩兵を足止めするのに用います。"
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2136,16 +2207,16 @@ msgid "STOA"
 msgstr "柱廊"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special starting structure for the Hellenes."
-msgstr "- ギリシア特有のスタート時建造物。"
+msgid "- A special starting structure for Greek factions."
+msgstr "- ギリシア勢力特有のスタート時建造物。"
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
 msgstr "- 人口上限を10増やします。"
 
 #: gui/text/tips/stoa.txt:6
-msgid "- Only enabled in some game modes."
-msgstr "- あるゲームモードでのみ利用可能です。"
+msgid "- Only present on some maps."
+msgstr "- 一部のマップのみに存在します。"
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-22 14:10+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 13:12+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -341,9 +341,8 @@ msgstr " - 調派單位去採集另一種資源時不要猶豫，見第二點。
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
-" - Build enough houses, your CC should be kept busy as much as possible, it "
-"is the only training building until town phase."
-msgstr " - 建造足夠的房舍，您的城鎮中心應該在任何時候都盡可能保持忙碌，它是您在鄉鎮階段前唯一的訓練建築物。"
+" - Build enough houses, your CC should be kept busy as much as possible."
+msgstr " - 建造足夠的房舍，您的城鎮中心應該在任何時候都盡可能保持忙碌。"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -677,38 +676,6 @@ msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)
 msgid "The production queue is full."
 msgstr "生產佇列已滿。"
 
-#: simulation/data/game_speeds.jsonSpeeds[0].Name
-msgid "Turtle (0.1x)"
-msgstr "龜 ~ 速 ~ (0.1x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[1].Name
-msgid "Slow (0.25x)"
-msgstr "緩慢 (0.25x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[2].Name
-msgid "Leisurely (0.5x)"
-msgstr "悠閒 (0.5x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[3].Name
-msgid "Relaxed (0.75x)"
-msgstr "輕鬆 (0.75x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[4].Name
-msgid "Normal (1x)"
-msgstr "正常 (1x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[5].Name
-msgid "Fast (1.25x)"
-msgstr "快速 (1.25x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[6].Name
-msgid "Very Fast (1.5x)"
-msgstr "急速 (1.5x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[7].Name
-msgid "Insane (2x)"
-msgstr "瘋狂 (2x)"
-
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
 msgstr "大地之母"
@@ -744,6 +711,117 @@ msgstr "玩家 7"
 #: simulation/data/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
 msgstr "玩家 8"
+
+#: simulation/data/settings/game_speeds.jsonData[0].Title
+msgid "Turtle (0.1x)"
+msgstr "龜 ~ 速 ~ (0.1x)"
+
+#: simulation/data/settings/game_speeds.jsonData[1].Title
+msgid "Slow (0.25x)"
+msgstr "緩慢 (0.25x)"
+
+#: simulation/data/settings/game_speeds.jsonData[2].Title
+msgid "Leisurely (0.5x)"
+msgstr "悠閒 (0.5x)"
+
+#: simulation/data/settings/game_speeds.jsonData[3].Title
+msgid "Relaxed (0.75x)"
+msgstr "輕鬆 (0.75x)"
+
+#: simulation/data/settings/game_speeds.jsonData[4].Title
+msgid "Normal (1x)"
+msgstr "正常 (1x)"
+
+#: simulation/data/settings/game_speeds.jsonData[5].Title
+msgid "Fast (1.25x)"
+msgstr "快速 (1.25x)"
+
+#: simulation/data/settings/game_speeds.jsonData[6].Title
+msgid "Very Fast (1.5x)"
+msgstr "急速 (1.5x)"
+
+#: simulation/data/settings/game_speeds.jsonData[7].Title
+msgid "Insane (2x)"
+msgstr "瘋狂 (2x)"
+
+#: simulation/data/settings/game_speeds.jsonData[8].Title
+msgid "Fast Forward (5x)"
+msgstr "快轉 (5x)"
+
+#: simulation/data/settings/game_speeds.jsonData[9].Title
+msgid "Fast Forward (10x)"
+msgstr "快轉 (10x)"
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20x)"
+msgstr "快轉 (20x)"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid "Defeat all opponents"
+msgstr "擊敗所有對手"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr "征服"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Destroy all structures of enemies"
+msgstr "破壞敵人所有的建築物"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr "征服建築物"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Kill all enemy units"
+msgstr "殺死敵方所有單位"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr "征服單位"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid "Build and protect a wonder to win"
+msgstr "建造並保護奇觀以獲得勝利"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr "奇觀"
+
+#: simulation/data/settings/starting_resources.jsonTranslatedKeys.Title
+msgctxt "startingResources"
+msgid "startingResources"
+msgstr "起始資源"
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "非常低"
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr "低"
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "中等"
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr "高"
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "非常高"
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "死鬥"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName

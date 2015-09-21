@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:41+0200\n"
-"PO-Revision-Date: 2015-08-24 08:38+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -238,8 +238,8 @@ msgid "Super Siege"
 msgstr ""
 
 #: simulation/templates/template_unit_champion_siege.xml:18
-#: simulation/templates/template_unit_mechanical.xml:14
-#: simulation/templates/template_unit_mechanical.xml:13
+#: simulation/templates/template_unit_mechanical.xml:16
+#: simulation/templates/template_unit_mechanical.xml:15
 msgid "Mechanical"
 msgstr ""
 
@@ -269,11 +269,11 @@ msgstr "עולם חי"
 msgid "Fish"
 msgstr "דג"
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:16
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:15
 msgid "Cetacean"
 msgstr ""
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:17
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr ""
 
@@ -290,8 +290,8 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
-"When garrisoned in a structure, it galvanizes its defenders, +2 "
-"GarrisonRegenRate"
+"When garrisoned in a structure, the hero gives it a bonus of +2 capture "
+"points recovery rate."
 msgstr ""
 
 #: simulation/templates/template_unit_hero.xml:40
@@ -1119,7 +1119,7 @@ msgid "Tactician Aura"
 msgstr ""
 
 #: simulation/templates/units/cart_hero_hannibal.xml:15
-msgid "All allied units +2 Attack and +1 Capture within vision range of him."
+msgid "All allied units +2 Attack and +1 Capture within his vision range."
 msgstr ""
 
 #: simulation/templates/units/cart_hero_hannibal.xml:21
@@ -1791,7 +1791,7 @@ msgstr ""
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 #: simulation/templates/units/ptol_infantry_archer_b.xml:23
-#: simulation/templates/units/samnite_swordsman.xml:9
+#: simulation/templates/units/samnite_swordsman.xml:8
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
 #: simulation/templates/units/thrace_black_cloak.xml:23
 msgid "Mercenary"
@@ -1909,8 +1909,8 @@ msgstr "דריבש הראשון"
 
 #: simulation/templates/units/pers_hero_darius.xml:25
 msgid ""
-"Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
-"Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
+"Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
+"his lifetime (TBD)."
 msgstr ""
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
@@ -2272,7 +2272,7 @@ msgid "Sword of Rome Aura"
 msgstr ""
 
 #: simulation/templates/units/rome_hero_marcellus.xml:14
-msgid "+5 Attack and +2 Capture for Roman units within sight of him."
+msgid "+5 Attack and +2 Capture for Roman units within his vision range."
 msgstr ""
 
 #: simulation/templates/units/rome_hero_marcellus.xml:21
@@ -2431,10 +2431,6 @@ msgstr ""
 
 #: simulation/templates/units/samnite_swordsman.xml:6
 msgid "(Samnite Swordsman)"
-msgstr ""
-
-#: simulation/templates/units/samnite_swordsman.xml:7
-msgid "Bonus vs. All Spear Units."
 msgstr ""
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
