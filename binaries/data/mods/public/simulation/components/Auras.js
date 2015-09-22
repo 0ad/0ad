@@ -75,7 +75,7 @@ Auras.prototype.Init = function()
 	for (var name in this.template)
 	{
 		this.affectedPlayers[name] = []; // will be calculated on ownership change
-		var aura = {}
+		var aura = {};
 		aura.affects = this.template[name].Affects;
 		if (this.template[name].AffectedPlayers)
 			aura.affectedPlayers = this.template[name].AffectedPlayers.split(/\s+/);
@@ -96,7 +96,7 @@ Auras.prototype.Init = function()
 
 Auras.prototype.GetDescriptions = function()
 {
-	var ret = {}
+	var ret = {};
 	for each (var aura in this.template)
 		if (aura.AuraName)
 			ret[aura.AuraName] = aura.AuraDescription || null;
@@ -286,7 +286,7 @@ Auras.prototype.GiveMembersWithValidClass = function(auraName, entityList)
 			r.push(ent);
 	}
 	return r;
-}
+};
 
 Auras.prototype.OnRangeUpdate = function(msg)
 {
@@ -379,7 +379,7 @@ Auras.prototype.ApplyBonus = function(name, ents)
 		return;
 	for (let ent of validEnts)
 	{
-		var cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars)
+		var cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
 		if (cmpStatusBars)
 			cmpStatusBars.AddAuraSource(this.entity, name);
 	}
@@ -400,7 +400,7 @@ Auras.prototype.RemoveBonus = function(name, ents)
 		return;
 	for (let ent of validEnts)
 	{
-		var cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars)
+		var cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
 		if (cmpStatusBars)
 			cmpStatusBars.RemoveAuraSource(this.entity, name);
 	}

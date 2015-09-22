@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:41+0200\n"
-"PO-Revision-Date: 2015-08-24 08:57+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 12:16+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -242,8 +242,8 @@ msgid "Super Siege"
 msgstr "Super asedio"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
-#: simulation/templates/template_unit_mechanical.xml:14
-#: simulation/templates/template_unit_mechanical.xml:13
+#: simulation/templates/template_unit_mechanical.xml:16
+#: simulation/templates/template_unit_mechanical.xml:15
 msgid "Mechanical"
 msgstr "Mecánico"
 
@@ -273,11 +273,11 @@ msgstr "Fauna"
 msgid "Fish"
 msgstr "pescado"
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:16
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:15
 msgid "Cetacean"
 msgstr "Cetáceo"
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:17
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Acaba con este mastodonte marino y hazte con su carne."
 
@@ -294,9 +294,9 @@ msgstr "Aura de héroe"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
-"When garrisoned in a structure, it galvanizes its defenders, +2 "
-"GarrisonRegenRate"
-msgstr "Al guarnecerse en una estructura inspira a sus defensores, +2 de velocidad de regeneración."
+"When garrisoned in a structure, the hero gives it a bonus of +2 capture "
+"points recovery rate."
+msgstr "Al guarnecerse en una estructura el héroe inspira a sus defensores con +2 de velocidad de recuperación de captura de edificios."
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -1123,8 +1123,8 @@ msgid "Tactician Aura"
 msgstr "Aura táctica"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:15
-msgid "All allied units +2 Attack and +1 Capture within vision range of him."
-msgstr "Todas las unidades aliadas reciben +2 de ataque y +1 de captura dentro de su campo de visión."
+msgid "All allied units +2 Attack and +1 Capture within his vision range."
+msgstr "Todas las unidades aliadas dentro de su campo de visión reciben +2 de ataque y +1 de captura ."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Hannibal Barca"
@@ -1795,7 +1795,7 @@ msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 #: simulation/templates/units/ptol_infantry_archer_b.xml:23
-#: simulation/templates/units/samnite_swordsman.xml:9
+#: simulation/templates/units/samnite_swordsman.xml:8
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
 #: simulation/templates/units/thrace_black_cloak.xml:23
 msgid "Mercenary"
@@ -1913,9 +1913,9 @@ msgstr "Darayavahush I"
 
 #: simulation/templates/units/pers_hero_darius.xml:25
 msgid ""
-"Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
-"Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr "Aura de héroe: «Mercader del imperio». Bonifica las ganancias comerciales durante su vida (por hacer).\nx2 de ataque a distancia contra lanceros. x1.5 de ataque a distancia contra espadachines."
+"Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
+"his lifetime (TBD)."
+msgstr "Aura de héroe: «Mercader del imperio». Bonifica las ganancias comerciales durante su vida (por hacer)."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2276,8 +2276,8 @@ msgid "Sword of Rome Aura"
 msgstr "Aura de espada de Roma"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:14
-msgid "+5 Attack and +2 Capture for Roman units within sight of him."
-msgstr "+5 de ataque y +2 de captura para unidades romanas dentro de su campo de visión."
+msgid "+5 Attack and +2 Capture for Roman units within his vision range."
+msgstr "Las unidades romanas dentro de su campo de visión reciben +5 de ataque y +2 de captura."
 
 #: simulation/templates/units/rome_hero_marcellus.xml:21
 msgid "Marcus Claudius Marcellus"
@@ -2436,10 +2436,6 @@ msgstr "Lancero mercenario. \nBonificación contra todas las unidades de caballe
 #: simulation/templates/units/samnite_swordsman.xml:6
 msgid "(Samnite Swordsman)"
 msgstr "(Espadachín samnita)"
-
-#: simulation/templates/units/samnite_swordsman.xml:7
-msgid "Bonus vs. All Spear Units."
-msgstr "Bonificación contra todas las unidades de lanceros."
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Dahae Horse Archer"

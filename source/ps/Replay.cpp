@@ -26,8 +26,10 @@
 #include "lib/tex/tex.h"
 #include "ps/Game.h"
 #include "ps/Loader.h"
+#include "ps/Mod.h"
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
+#include "ps/Pyrogenesis.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
 #include "simulation2/Simulation2.h"
@@ -63,10 +65,16 @@ CReplayLogger::~CReplayLogger()
 
 void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 {
+	// Add timestamp, since the file-modification-date can change
+	m_ScriptInterface.SetProperty(attribs, "timestamp", std::to_string(std::time(nullptr)));
+
+	// Add engine version and currently loaded mods for sanity checks when replaying
+	m_ScriptInterface.SetProperty(attribs, "engine_version", CStr(engine_version));
+	m_ScriptInterface.SetProperty(attribs, "mods", g_modsLoaded);
+
 	// Construct the directory name based on the PID, to be relatively unique.
 	// Append "-1", "-2" etc if we run multiple matches in a single session,
 	// to avoid accidentally overwriting earlier logs.
-
 	std::wstringstream name;
 	name << getpid();
 
@@ -74,10 +82,10 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	if (++run)
 		name << "-" << run;
 
-	OsPath path = psLogDir() / L"sim_log" / name.str() / L"commands.txt";
-	CreateDirectories(path.Parent(), 0700);
-	m_Stream = new std::ofstream(OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+	m_Directory = psLogDir() / L"sim_log" / name.str();
+	CreateDirectories(m_Directory, 0700);
 
+	m_Stream = new std::ofstream(OsString(m_Directory / L"commands.txt").c_str(), std::ofstream::out | std::ofstream::trunc);
 	*m_Stream << "start " << m_ScriptInterface.StringifyJSON(attribs, false) << "\n";
 }
 
@@ -101,6 +109,11 @@ void CReplayLogger::Hash(const std::string& hash, bool quick)
 		*m_Stream << "hash-quick " << Hexify(hash) << "\n";
 	else
 		*m_Stream << "hash " << Hexify(hash) << "\n";
+}
+
+OsPath CReplayLogger::GetDirectory() const
+{
+	return m_Directory;
 }
 
 ////////////////////////////////////////////////////////////////

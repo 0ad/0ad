@@ -32,7 +32,7 @@ m.AttackManager.prototype.setRushes = function(allowed)
 {
 	if (this.Config.personality.aggressive > 0.8 && allowed > 2)
 	{
-		this.maxRushes = 3
+		this.maxRushes = 3;
 		this.rushSize = [ 16, 20, 24 ];
 	}
 	else if (this.Config.personality.aggressive > 0.6 && allowed > 1)
@@ -53,8 +53,8 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 		this.defeated[evt.playerId] = true;
 
 	let answer = false;
-	let other = undefined;
-	let targetPlayer = undefined;
+	let other;
+	let targetPlayer;
 	for (let evt of events["AttackRequest"])
 	{
 		if (evt.source === PlayerID || !gameState.isPlayerAlly(evt.source) || !gameState.isPlayerEnemy(evt.target))
@@ -111,11 +111,11 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 	{
 		this.debugTime = gameState.ai.elapsedTime;
 		API3.warn(" upcoming attacks =================");
-		for (var attackType in this.upcomingAttacks)
+		for (let attackType in this.upcomingAttacks)
 			for (let attack of this.upcomingAttacks[attackType])
 				API3.warn(" plan " + attack.name + " type " + attackType + " state " + attack.state  + " units " + attack.unitCollection.length);
 		API3.warn(" started attacks ==================");
-		for (var attackType in this.startedAttacks)
+		for (let attackType in this.startedAttacks)
 			for (let attack of this.startedAttacks[attackType])
 				API3.warn(" plan " + attack.name + " type " + attackType + " state " + attack.state + " units " + attack.unitCollection.length);
 		API3.warn(" ==================================");
@@ -166,16 +166,16 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		}
 	}
 
-	for (var attackType in this.startedAttacks)
+	for (let attackType in this.startedAttacks)
 	{
-		for (var i = 0; i < this.startedAttacks[attackType].length; ++i)
+		for (let i = 0; i < this.startedAttacks[attackType].length; ++i)
 		{
-			var attack = this.startedAttacks[attackType][i];
+			let attack = this.startedAttacks[attackType][i];
 			attack.checkEvents(gameState, events);
 			// okay so then we'll update the attack.
 			if (attack.isPaused())
 				continue;
-			var remaining = attack.update(gameState, events);
+			let remaining = attack.update(gameState, events);
 			if (!remaining)
 			{
 				if (this.Config.debug > 1)
@@ -383,8 +383,8 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 			&& gameState.getEnemyEntities(this.currentEnemyPlayer) > 0)
 			return this.currentEnemyPlayer;
 
-		let distmin = undefined;
-		let ccmin = undefined;
+		let distmin;
+		let ccmin;
 		let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
 		for (let ourcc of ccEnts.values())
 		{
@@ -466,7 +466,7 @@ m.AttackManager.prototype.Serialize = function()
 		upcomingAttacks[key] = [];
 		for (let attack of this.upcomingAttacks[key])
 			upcomingAttacks[key].push(attack.Serialize());
-	};
+	}
 
 	let startedAttacks = {};
 	for (let key in this.startedAttacks)
@@ -474,7 +474,7 @@ m.AttackManager.prototype.Serialize = function()
 		startedAttacks[key] = [];
 		for (let attack of this.startedAttacks[key])
 			startedAttacks[key].push(attack.Serialize());
-	};
+	}
 
 	return { "properties": properties, "upcomingAttacks": upcomingAttacks, "startedAttacks": startedAttacks };
 };
@@ -495,7 +495,7 @@ m.AttackManager.prototype.Deserialize = function(gameState, data)
 			attack.init(gameState);
 			this.upcomingAttacks[key].push(attack);
 		}
-	};
+	}
 
 	this.startedAttacks = {};
 	for (let key in data.startedAttacks)
@@ -508,7 +508,7 @@ m.AttackManager.prototype.Deserialize = function(gameState, data)
 			attack.init(gameState);
 			this.startedAttacks[key].push(attack);
 		}
-	};
+	}
 };
 
 return m;

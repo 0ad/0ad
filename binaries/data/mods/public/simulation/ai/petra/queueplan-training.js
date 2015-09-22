@@ -5,7 +5,7 @@ m.TrainingPlan = function(gameState, type, metadata, number = 1, maxMerge = 5)
 {
 	if (!m.QueuePlan.call(this, gameState, type, metadata))
 	{
-		warn(" Plan training " + type + " canceled");
+		API3.warn(" Plan training " + type + " canceled");
 		return false;
 	}
 

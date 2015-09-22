@@ -21,9 +21,9 @@
     <Territory>own</Territory>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>1000</CapturePoints>
-    <RegenRate>0</RegenRate>
-    <GarrisonRegenRate>5</GarrisonRegenRate>
+    <CapturePoints>500</CapturePoints>
+    <RegenRate>0.5</RegenRate>
+    <GarrisonRegenRate>7.5</GarrisonRegenRate>
   </Capturable>
   <Cost>
     <Population>0</Population>
@@ -106,7 +106,7 @@
     <HeightOffset>12.0</HeightOffset>
   </StatusBars>
   <TerritoryDecay>
-    <DecayRate>5</DecayRate>
+    <DecayRate>50</DecayRate>
   </TerritoryDecay>
   <Visibility>
     <RetainInFog>true</RetainInFog>

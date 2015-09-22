@@ -56,6 +56,7 @@
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/scripting/JSInterface_Mod.h"
 #include "ps/scripting/JSInterface_VFS.h"
+#include "ps/scripting/JSInterface_VisualReplay.h"
 #include "renderer/scripting/JSInterface_Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIManager.h"
@@ -928,6 +929,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Sound::RegisterScriptFunctions(scriptInterface);
 	JSI_L10n::RegisterScriptFunctions(scriptInterface);
 	JSI_Lobby::RegisterScriptFunctions(scriptInterface);
+	JSI_VisualReplay::RegisterScriptFunctions(scriptInterface);
 
 	// VFS (external)
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &JSI_VFS::BuildDirEntList>("BuildDirEntList");

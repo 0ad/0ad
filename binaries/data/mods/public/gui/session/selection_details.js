@@ -298,7 +298,7 @@ function displayMultiple(selection, template)
 
 	for (let i = 0; i < selection.length; i++)
 	{
-		let entState = GetEntityState(selection[i])
+		let entState = GetEntityState(selection[i]);
 		if (!entState)
 			continue;
 		playerID = entState.player; // trust that all selected entities have the same owner
@@ -318,11 +318,11 @@ function displayMultiple(selection, template)
 	if (averageHealth > 0)
 	{
 		var unitHealthBar = Engine.GetGUIObjectByName("healthBarMultiple");
-		var healthSize = unitHealthBar.size;	
+		var healthSize = unitHealthBar.size;
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
 		unitHealthBar.size = healthSize;
 
-		var hitpointsLabel = "[font=\"sans-bold-13\"]" + translate("Hitpoints:") + "[/font]"
+		var hitpointsLabel = "[font=\"sans-bold-13\"]" + translate("Hitpoints:") + "[/font]";
 		var hitpoints = sprintf(translate("%(label)s %(current)s / %(max)s"), { label: hitpointsLabel, current: averageHealth, max: maxHealth });
 		Engine.GetGUIObjectByName("healthMultiple").tooltip = hitpoints;
 	}
@@ -342,7 +342,7 @@ function displayMultiple(selection, template)
 			unitCaptureBar.sprite = "color: " + rgbToGuiColor(g_Players[playerID].color, 128);
 			unitCaptureBar.hidden=false;
 			return startSize + size;
-		}
+		};
 
 		let size = 0;
 		for (let i in capturePoints)
@@ -352,11 +352,11 @@ function displayMultiple(selection, template)
 		// last handle the owner's points, to keep those points on the bottom for clarity
 		setCaptureBarPart(playerID, size);
 
-		var capturePointsLabel = "[font=\"sans-bold-13\"]" + translate("Capture points:") + "[/font]"
+		var capturePointsLabel = "[font=\"sans-bold-13\"]" + translate("Capture points:") + "[/font]";
 		var capturePointsTooltip = sprintf(translate("%(label)s %(current)s / %(max)s"), { label: capturePointsLabel, current: Math.ceil(capturePoints[playerID]), max: Math.ceil(maxCapturePoints) });
 		Engine.GetGUIObjectByName("captureMultiple").tooltip = capturePointsTooltip;
 	}
-	
+
 	// TODO: Stamina
 	// Engine.GetGUIObjectByName("staminaBarMultiple");
 

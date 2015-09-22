@@ -48,7 +48,7 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 		if (cmpPlayer.GetState() != "active")
 			continue;
 		if (playerID == cmpPlayer.GetPlayerID() || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID))
-			cmpPlayer.SetState("won")
+			cmpPlayer.SetState("won");
 		else
 			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i, "skip": true } );
 	}
@@ -98,6 +98,6 @@ EndGameManager.prototype.OnGlobalPlayerDefeated = function(msg)
 	// Reveal the map to all players
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	cmpRangeManager.SetLosRevealAll(-1, true);
-}
+};
 
 Engine.RegisterSystemComponentType(IID_EndGameManager, "EndGameManager", EndGameManager);

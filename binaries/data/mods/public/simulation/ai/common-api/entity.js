@@ -738,7 +738,7 @@ m.Entity = m.Class({
 		return undefined;
 	},
 
-	isGarrisonHolder: function() { return this.get("GarrisonHolder") },
+	isGarrisonHolder: function() { return this.get("GarrisonHolder"); },
 
 	garrisoned: function() { return this._entity.garrisoned; },
 

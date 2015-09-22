@@ -351,9 +351,9 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 	for (let plan of this.transportPlans)
 	{
 		if (plan.startIndex !== startIndex || plan.endIndex !== endIndex)
-			continue
+			continue;
 		if (plan.state !== "boarding")
-			continue
+			continue;
 		plan.addUnit(entity, endPos);
 		return true;
 	}
@@ -646,7 +646,7 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 	});
 
 	var best = 0;
-	var bestShip = undefined;
+	var bestShip;
 	var limits = gameState.getEntityLimits();
 	var current = gameState.getEntityCounts();
 	for (let trainable of trainableShips)

@@ -80,7 +80,7 @@ Trigger.prototype.RegisterTrigger = function(event, action, data)
 	var eventString = event + "Actions";
 	if (!this[eventString])
 	{
-		warn("Trigger.js: Invalid trigger event \"" + event + "\".") 
+		warn("Trigger.js: Invalid trigger event \"" + event + "\".");
 		return;
 	}
 	if (this[eventString][action])
@@ -171,7 +171,7 @@ Trigger.prototype.EnableTrigger = function(event, action)
 			return;
 		if (!data.interval)
 		{
-			warn("Trigger.js: An interval trigger should have an intervel in its data")
+			warn("Trigger.js: An interval trigger should have an intervel in its data");
 			return;
 		}
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);

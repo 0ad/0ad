@@ -187,7 +187,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		techList[i] = tech;
 	}
 	
-	var ret = []
+	var ret = [];
 	
 	// This inserts the techs into the correct positions to line up the technology pairs
 	for (var i = 0; i < techList.length; i++)
@@ -220,11 +220,11 @@ ProductionQueue.prototype.IsTechnologyResearchedOrInProgress = function(tech)
 	if (template.top)
 	{
 		return (cmpTechnologyManager.IsTechnologyResearched(template.top) || cmpTechnologyManager.IsInProgress(template.top)
-			|| cmpTechnologyManager.IsTechnologyResearched(template.bottom) || cmpTechnologyManager.IsInProgress(template.bottom))
+			|| cmpTechnologyManager.IsTechnologyResearched(template.bottom) || cmpTechnologyManager.IsInProgress(template.bottom));
 	}
 	else
 	{
-		return (cmpTechnologyManager.IsTechnologyResearched(tech) || cmpTechnologyManager.IsInProgress(tech))
+		return (cmpTechnologyManager.IsTechnologyResearched(tech) || cmpTechnologyManager.IsInProgress(tech));
 	}
 };
 

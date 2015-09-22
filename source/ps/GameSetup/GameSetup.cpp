@@ -881,8 +881,10 @@ void EarlyInit()
 
 bool Autostart(const CmdLineArgs& args);
 
-// Returns true if and only if the user has intended to replay a file
-bool VisualReplay(const std::string replayFile);
+/**
+ * Returns true if the user has intended to start a visual replay from command line.
+ */
+bool AutostartVisualReplay(const std::string replayFile);
 
 bool Init(const CmdLineArgs& args, int flags)
 {
@@ -1074,7 +1076,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 
 	try
 	{
-		if (!VisualReplay(args.Get("replay-visual")) && !Autostart(args))
+		if (!AutostartVisualReplay(args.Get("replay-visual")) && !Autostart(args))
 		{
 			const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
 			// We only want to display the splash screen at startup
@@ -1471,7 +1473,7 @@ bool Autostart(const CmdLineArgs& args)
 	return true;
 }
 
-bool VisualReplay(const std::string replayFile)
+bool AutostartVisualReplay(const std::string replayFile)
 {
 	if (!FileExists(OsPath(replayFile)))
 		return false;

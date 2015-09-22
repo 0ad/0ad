@@ -23,7 +23,7 @@ m.Class = function(data)
 	}
 
 	return ctor;
-}
+};
 
 /* Test inheritance:
 var A = Class({foo:1, bar:10});

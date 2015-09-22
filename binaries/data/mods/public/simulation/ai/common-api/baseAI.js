@@ -60,7 +60,7 @@ m.BaseAI.prototype.Init = function(state, playerID, sharedAI)
 	this.barterPrices = sharedAI.barterPrices;
 
 	this.CustomInit(this.gameState, this.sharedScript);
-}
+};
 
 m.BaseAI.prototype.CustomInit = function()
 {	// AIs override this function

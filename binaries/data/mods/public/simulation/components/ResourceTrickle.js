@@ -34,7 +34,7 @@ ResourceTrickle.prototype.Init = function()
 {
 	// Call the timer
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
- 	cmpTimer.SetInterval(this.entity, IID_ResourceTrickle, "Trickle", this.GetTimer(), this.GetTimer(), undefined)
+ 	cmpTimer.SetInterval(this.entity, IID_ResourceTrickle, "Trickle", this.GetTimer(), this.GetTimer(), undefined);
 };
 
 ResourceTrickle.prototype.GetTimer = function()

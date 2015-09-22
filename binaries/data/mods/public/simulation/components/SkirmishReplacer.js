@@ -60,7 +60,7 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 		Engine.DestroyEntity(this.entity);
 		return;
 	}
-	var cmpReplacementPosition = Engine.QueryInterface(replacement, IID_Position)
+	var cmpReplacementPosition = Engine.QueryInterface(replacement, IID_Position);
 	var pos = cmpCurPosition.GetPosition2D();
 	cmpReplacementPosition.JumpTo(pos.x, pos.y);
 	var rot = cmpCurPosition.GetRotation();

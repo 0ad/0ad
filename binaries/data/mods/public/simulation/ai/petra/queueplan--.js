@@ -13,7 +13,7 @@ m.QueuePlan = function(gameState, type, metadata)
 	this.template = gameState.getTemplate(this.type);
 	if (!this.template)
 	{
-		warn("Tried to add the inexisting template " + this.type + " to Petra. Please report this on the forums")
+		API3.warn("Tried to add the inexisting template " + this.type + " to Petra. Please report this on the forums");
 		return false;
 	}
 	this.ID = gameState.ai.uniqueIDs.plans++;

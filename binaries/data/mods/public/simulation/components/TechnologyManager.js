@@ -53,7 +53,7 @@ TechnologyManager.prototype.Init = function()
 TechnologyManager.prototype.OnUpdate = function() 
 {
 	this.UpdateAutoResearch();
-}
+};
 
 
 // This function checks if the requirements of any autoresearch techs are met and if they are it researches them
@@ -71,7 +71,7 @@ TechnologyManager.prototype.UpdateAutoResearch = function()
 			return; // We will have recursively handled any knock-on effects so can just return
 		}
 	}
-}
+};
 
 TechnologyManager.prototype.GetTechnologyTemplate = function(tech)
 {

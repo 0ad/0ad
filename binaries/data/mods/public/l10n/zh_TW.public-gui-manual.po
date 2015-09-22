@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-23 14:20+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 12:54+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,12 +22,12 @@ msgid "Information"
 msgstr "資訊"
 
 #: gui/manual/manual.xml:(caption):20
-msgid "View Online"
-msgstr "線上查看"
-
-#: gui/manual/manual.xml:(caption):23
 msgid "Close"
 msgstr "關閉"
+
+#: gui/manual/manual.xml:(caption):24
+msgid "View Online"
+msgstr "線上查看"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -377,148 +377,154 @@ msgstr "- 若游標在盟軍建築物上：駐軍"
 
 #: gui/manual/intro.txt:84
 msgid ""
+"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"of capture or gather)"
+msgstr "- 若游標在非盟軍的建築物上：攻擊（而不是捕獲或收集）"
+
+#: gui/manual/intro.txt:85
+msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "- 除此之外：攻擊移動（預設會將移動路線上所有的敵方單位及建築物作為目標，利用 Ctrl + Q + 右鍵點擊來僅將單位作為目標）。"
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]覆蓋層"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G：隱藏/顯示GU"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D：顯示/隱藏開發者覆蓋層（與開發者選項）"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr "Alt + W：鎖定線框模式（按一下以使用線框覆蓋材質模型，按兩下使用以材質著色的線框，按三下回到一般材質模式）"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr "ALT + S：切換單位輪廓 (效能可能提升一點)"
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:92
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: 切換天空"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]視野控制"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W 或 \\[上方向鍵]：視野往上移動"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "S or \\[down]: Pan screen down"
 msgstr "S 或 \\[下方向鍵]：視野向下移動"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "A or \\[left]: Pan screen left"
 msgstr "A 或 \\[左方向鍵]：視野往左移動"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:98
 msgid "D or \\[right]: Pan screen right"
 msgstr "D 或 \\[右方向鍵]：視野往右移動"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W 或 \\[上方向鍵]：旋轉視野以向上看"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S 或 \\[下方向鍵]：旋轉視野以向下看"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A 或 \\[左方向鍵]：順時針繞地形旋轉視野"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D 或 \\[右方向鍵]：逆時針繞地形旋轉視野"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q：將視角繞地形順時針旋轉"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: 逆時針繞地形"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + 滾輪向上轉: 將視角繞地形順時針旋轉"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + 滾輪向下轉: 逆時針繞地形"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
 msgstr "F：追蹤選定的單位（將視野移動到被追蹤的單位上然後停止移動視野）"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid "R: Reset camera zoom/orientation"
 msgstr "R：重置視野縮放/方向"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+：放大（持續按著可以連續縮放）"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-：縮小（持續按著可以連續縮放）"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W：變換鎖定線框模式"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
 msgstr "滑鼠中鍵或是 / (斜線)：持續按著並移動滑鼠以平移"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]擺放建築物時"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: 逆時針轉動建築物15度"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: 順時針轉動建築物 15度"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "左鍵拖曳：使用滑鼠旋轉建築物（地基會在滑鼠放開時放置）"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]當正在載入已儲存的遊戲時"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Delete：刪除選取的已儲存遊戲，刪除前會先詢問以確認"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift：在刪除已儲存的遊戲時不詢問就刪除"
 

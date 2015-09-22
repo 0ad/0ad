@@ -4,7 +4,7 @@
 # 
 # Translators:
 # B2D <book2doc@gmail.com>, 2014
-# empy <martinplavala@gmail.com>, 2014
+# Martin Plávala <martinplavala@gmail.com>, 2014
 # Marián Mižik <marian@mizik.sk>, 2015
 # Mário Bulejko, 2015
 # MiroslavR <miroslavr256@gmail.com>, 2014
@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:21+0200\n"
-"PO-Revision-Date: 2015-09-16 14:17+0000\n"
-"Last-Translator: Marián Mižik <marian@mizik.sk>\n"
+"POT-Creation-Date: 2015-09-18 22:14+0200\n"
+"PO-Revision-Date: 2015-09-19 09:43+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,216 +25,99 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: gui/aiconfig/aiconfig.js:10
+#: gui/aiconfig/aiconfig.js:6
 msgctxt "ai"
 msgid "None"
 msgstr "Žiadny"
 
-#: gui/aiconfig/aiconfig.js:10
+#: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
 msgstr "AI bude pre tohto hráča vypnutá"
 
-#. Translation: AI difficulty level.
-#: gui/aiconfig/aiconfig.js:29
-msgctxt "aiDiff"
-msgid "Sandbox"
-msgstr "Sandbox"
-
-#: gui/aiconfig/aiconfig.js:29
-msgctxt "aiDiff"
-msgid "Very Easy"
-msgstr "Veľmi ľahká"
-
-#: gui/aiconfig/aiconfig.js:29
-msgctxt "aiDiff"
-msgid "Easy"
-msgstr "Ľahká"
-
-#: gui/aiconfig/aiconfig.js:29
-msgctxt "aiDiff"
-msgid "Medium"
-msgstr "Priemerná"
-
-#: gui/aiconfig/aiconfig.js:29
-msgctxt "aiDiff"
-msgid "Hard"
-msgstr "Ťažká"
-
-#: gui/aiconfig/aiconfig.js:29
-msgctxt "aiDiff"
-msgid "Very Hard"
-msgstr "Veľmi ťažká"
-
-#. Translation: Type of victory condition.
-#: gui/gamesetup/gamesetup.js:10
-msgid "Unlimited"
-msgstr "Neobmedzené"
-
-#. Translation: Amount of starting resources.
-#: gui/gamesetup/gamesetup.js:14
-msgctxt "startingResources"
-msgid "Very Low"
-msgstr "Veľmi málo"
-
-#: gui/gamesetup/gamesetup.js:14
-msgctxt "startingResources"
-msgid "Low"
-msgstr "Málo"
-
-#: gui/gamesetup/gamesetup.js:14
-msgctxt "startingResources"
-msgid "Medium"
-msgstr "Priemerne"
-
-#: gui/gamesetup/gamesetup.js:14
-msgctxt "startingResources"
-msgid "High"
-msgstr "Veľa"
-
-#: gui/gamesetup/gamesetup.js:14
-msgctxt "startingResources"
-msgid "Very High"
-msgstr "Veľmi veľa"
-
-#: gui/gamesetup/gamesetup.js:14
-msgctxt "startingResources"
-msgid "Deathmatch"
-msgstr "Zápas na život a smrť"
-
-#. Translation: Ceasefire.
-#: gui/gamesetup/gamesetup.js:18
-msgctxt "ceasefire"
-msgid "No ceasefire"
-msgstr "Žiadne prímerie"
-
-#: gui/gamesetup/gamesetup.js:18
-msgctxt "ceasefire"
-msgid "5 minutes"
-msgstr "5 minút"
-
-#: gui/gamesetup/gamesetup.js:18
-msgctxt "ceasefire"
-msgid "10 minutes"
-msgstr "10 minút"
-
-#: gui/gamesetup/gamesetup.js:18
-msgctxt "ceasefire"
-msgid "15 minutes"
-msgstr "15 minút"
-
-#: gui/gamesetup/gamesetup.js:18
-msgctxt "ceasefire"
-msgid "20 minutes"
-msgstr "20 minút"
-
-#: gui/gamesetup/gamesetup.js:18
-msgctxt "ceasefire"
-msgid "30 minutes"
-msgstr "30 minút"
-
-#: gui/gamesetup/gamesetup.js:18
-msgctxt "ceasefire"
-msgid "45 minutes"
-msgstr "45 minút"
-
-#: gui/gamesetup/gamesetup.js:18
-msgctxt "ceasefire"
-msgid "60 minutes"
-msgstr "60 minút"
-
-#: gui/gamesetup/gamesetup.js:112
+#: gui/gamesetup/gamesetup.js:101
 msgid "Return to the main menu."
 msgstr "Návrat do hlavného menu."
 
-#: gui/gamesetup/gamesetup.js:114
+#: gui/gamesetup/gamesetup.js:103
 msgid "Return to the lobby."
 msgstr "Návrat do lobby."
 
-#: gui/gamesetup/gamesetup.js:142
-msgctxt "map"
-msgid "Skirmish"
-msgstr "Súboj"
-
-#: gui/gamesetup/gamesetup.js:142 gui/gamesetup/gamesetup.js:638
-#: gui/gamesetup/gamesetup.js:1370
-msgctxt "map"
-msgid "Random"
-msgstr "Náhodná"
-
-#: gui/gamesetup/gamesetup.js:142
-msgid "Scenario"
-msgstr "Scenár"
-
-#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:1286
-#: gui/gamesetup/gamesetup.js:1350
+#: gui/gamesetup/gamesetup.js:126 gui/gamesetup/gamesetup.js:1296
+#: gui/gamesetup/gamesetup.js:1360
 msgid "Default"
 msgstr "Prednastavené"
 
-#: gui/gamesetup/gamesetup.js:147
+#: gui/gamesetup/gamesetup.js:127
 msgid "Naval Maps"
 msgstr "Námorné mapy"
 
-#: gui/gamesetup/gamesetup.js:148
+#: gui/gamesetup/gamesetup.js:128
 msgid "Demo Maps"
 msgstr "Ukážkové mapy"
 
-#: gui/gamesetup/gamesetup.js:149
+#: gui/gamesetup/gamesetup.js:129
 msgid "All Maps"
 msgstr "Všetky mapy"
 
-#: gui/gamesetup/gamesetup.js:356
+#: gui/gamesetup/gamesetup.js:357
 msgctxt "team"
 msgid "None"
 msgstr "Žiadny"
 
-#: gui/gamesetup/gamesetup.js:572 gui/gamesetup/gamesetup.js:1435
+#: gui/gamesetup/gamesetup.js:569 gui/gamesetup/gamesetup.js:1445
 msgctxt "civilization"
 msgid "Random"
 msgstr "Náhodná"
 
-#: gui/gamesetup/gamesetup.js:875 gui/gamesetup/gamesetup.js:1003
+#: gui/gamesetup/gamesetup.js:633 gui/gamesetup/gamesetup.js:1380
+msgctxt "map"
+msgid "Random"
+msgstr "Náhodná"
+
+#: gui/gamesetup/gamesetup.js:873 gui/gamesetup/gamesetup.js:1009
 msgid "You"
 msgstr "Vy"
 
-#: gui/gamesetup/gamesetup.js:1092
+#: gui/gamesetup/gamesetup.js:1098
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
-#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
-#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
-#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
-#: gui/gamesetup/gamesetup.js:1355
+#: gui/gamesetup/gamesetup.js:1218 gui/gamesetup/gamesetup.js:1223
+#: gui/gamesetup/gamesetup.js:1231 gui/gamesetup/gamesetup.js:1286
+#: gui/gamesetup/gamesetup.js:1287 gui/gamesetup/gamesetup.js:1288
+#: gui/gamesetup/gamesetup.js:1290 gui/gamesetup/gamesetup.js:1325
+#: gui/gamesetup/gamesetup.js:1326 gui/gamesetup/gamesetup.js:1327
+#: gui/gamesetup/gamesetup.js:1329 gui/gamesetup/gamesetup.js:1361
+#: gui/gamesetup/gamesetup.js:1362 gui/gamesetup/gamesetup.js:1365
 msgid "Yes"
 msgstr "Áno"
 
-#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1219
-#: gui/gamesetup/gamesetup.js:1276 gui/gamesetup/gamesetup.js:1277
-#: gui/gamesetup/gamesetup.js:1278 gui/gamesetup/gamesetup.js:1280
-#: gui/gamesetup/gamesetup.js:1315 gui/gamesetup/gamesetup.js:1316
-#: gui/gamesetup/gamesetup.js:1317 gui/gamesetup/gamesetup.js:1319
-#: gui/gamesetup/gamesetup.js:1351 gui/gamesetup/gamesetup.js:1352
-#: gui/gamesetup/gamesetup.js:1353 gui/gamesetup/gamesetup.js:1355
+#: gui/gamesetup/gamesetup.js:1218 gui/gamesetup/gamesetup.js:1223
+#: gui/gamesetup/gamesetup.js:1231 gui/gamesetup/gamesetup.js:1286
+#: gui/gamesetup/gamesetup.js:1287 gui/gamesetup/gamesetup.js:1288
+#: gui/gamesetup/gamesetup.js:1290 gui/gamesetup/gamesetup.js:1325
+#: gui/gamesetup/gamesetup.js:1326 gui/gamesetup/gamesetup.js:1327
+#: gui/gamesetup/gamesetup.js:1329 gui/gamesetup/gamesetup.js:1361
+#: gui/gamesetup/gamesetup.js:1362 gui/gamesetup/gamesetup.js:1363
+#: gui/gamesetup/gamesetup.js:1365
 msgid "No"
 msgstr "Nie"
 
-#: gui/gamesetup/gamesetup.js:1357 gui/gamesetup/gamesetup.js:1358
-#: gui/gamesetup/gamesetup.js:1359
+#: gui/gamesetup/gamesetup.js:1367 gui/gamesetup/gamesetup.js:1368
+#: gui/gamesetup/gamesetup.js:1369
 msgid "Determined by scenario"
 msgstr "Stanovené scenárom"
 
-#: gui/gamesetup/gamesetup.js:1371
+#: gui/gamesetup/gamesetup.js:1381
 msgid "Randomly selects a map from the list"
 msgstr "Náhodne vyberie mapu zo zoznamu"
 
-#: gui/gamesetup/gamesetup.js:1378
+#: gui/gamesetup/gamesetup.js:1388
 msgid "Sorry, no description available."
 msgstr "Ospravedlňujeme sa, popis nie je k dispozícii."
 
-#: gui/gamesetup/gamesetup.js:1381
+#: gui/gamesetup/gamesetup.js:1391
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -242,86 +125,82 @@ msgstr[0] "%(number)s hráč."
 msgstr[1] "%(number)s hráči."
 msgstr[2] "%(number)s hráčov."
 
-#: gui/gamesetup/gamesetup.js:1385 gui/gamesetup/gamesetup.xml:(caption):290
+#: gui/gamesetup/gamesetup.js:1395 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
 msgstr "Podmienky víťazstva:"
 
-#: gui/gamesetup/gamesetup.js:1421
+#: gui/gamesetup/gamesetup.js:1431
 msgid "Loading..."
 msgstr "Načítava sa..."
 
-#: gui/gamesetup/gamesetup.js:1537
+#: gui/gamesetup/gamesetup.js:1547
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1542
+#: gui/gamesetup/gamesetup.js:1552
 msgid "Unassigned"
 msgstr "Nepridelený"
 
-#: gui/gamesetup/gamesetup.js:1726 gui/gamesetup/gamesetup.js:1731
-#: gui/gamesetup/gamesetup.js:1749
+#: gui/gamesetup/gamesetup.js:1735 gui/gamesetup/gamesetup.js:1740
+#: gui/gamesetup/gamesetup.js:1758
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1726
+#: gui/gamesetup/gamesetup.js:1735
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s sa pripojil"
 
-#: gui/gamesetup/gamesetup.js:1731
+#: gui/gamesetup/gamesetup.js:1740
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s odišiel"
 
-#: gui/gamesetup/gamesetup.js:1736
+#: gui/gamesetup/gamesetup.js:1745
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1737
+#: gui/gamesetup/gamesetup.js:1746
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1752
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s je priravený!"
 
-#: gui/gamesetup/gamesetup.js:1745
+#: gui/gamesetup/gamesetup.js:1754
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nie je pripravený."
 
-#: gui/gamesetup/gamesetup.js:1749
+#: gui/gamesetup/gamesetup.js:1758
 msgid "Game settings have been changed"
 msgstr "Nastavenia boli zmenené"
 
-#: gui/gamesetup/gamesetup.js:1774
+#: gui/gamesetup/gamesetup.js:1783
 msgid "I'm not ready"
 msgstr "Nie som pripravený"
 
-#: gui/gamesetup/gamesetup.js:1775
+#: gui/gamesetup/gamesetup.js:1784
 msgid "State that you are not ready to play."
 msgstr "Oznámite, že ešte nie ste pripravený hrať."
 
-#: gui/gamesetup/gamesetup.js:1780 gui/gamesetup/gamesetup.js:1858
+#: gui/gamesetup/gamesetup.js:1789 gui/gamesetup/gamesetup.js:1867
 msgid "I'm ready!"
 msgstr "Som pripravený!"
 
-#: gui/gamesetup/gamesetup.js:1781
+#: gui/gamesetup/gamesetup.js:1790
 msgid "State that you are ready to play!"
 msgstr "Oznámite, že ste pripravený hrať!"
 
-#: gui/gamesetup/gamesetup.js:1859
+#: gui/gamesetup/gamesetup.js:1868
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Oznámite, že súhlasíte so súčasními nastaveniami hry a ste pripravený hrať!"
-
-#: gui/gamesetup/gamesetup.js:1977
-msgid "None"
-msgstr "Žiadne"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
@@ -354,38 +233,6 @@ msgstr "Názov hry sa už používa."
 msgid "%(playername)s's game"
 msgstr "Hra hráča %(playername)s"
 
-#: gui/gamesetup/victory_conditions/conquest.js:2
-msgid "Conquest"
-msgstr "Dobytie"
-
-#: gui/gamesetup/victory_conditions/conquest.js:3
-msgid "Defeat all opponents"
-msgstr "Porazte všetkých protivníkov"
-
-#: gui/gamesetup/victory_conditions/conquestStructures.js:2
-msgid "Conquest Structures"
-msgstr "Dobývacie budovy"
-
-#: gui/gamesetup/victory_conditions/conquestStructures.js:3
-msgid "Destroy all structures of enemies"
-msgstr "Znič všetky budovy nepriateľov."
-
-#: gui/gamesetup/victory_conditions/conquestUnits.js:2
-msgid "Conquest Units"
-msgstr "Dobývacie jednotky"
-
-#: gui/gamesetup/victory_conditions/conquestUnits.js:3
-msgid "Destroy all units of enemies"
-msgstr "Znič všetky jednotky nepriateľov."
-
-#: gui/gamesetup/victory_conditions/wonder.js:2
-msgid "Wonder"
-msgstr "Div sveta"
-
-#: gui/gamesetup/victory_conditions/wonder.js:3
-msgid "Build a wonder to win"
-msgstr "Vyhrajte postavením divu sveta"
-
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
@@ -396,234 +243,242 @@ msgstr "Načítava sa „%(map)s“"
 msgid "Generating “%(map)s”"
 msgstr "Generuje sa „%(map)s“"
 
-#: gui/aiconfig/aiconfig.xml:(caption):13
+#: gui/aiconfig/aiconfig.xml:(caption):14
 msgid "AI Configuration"
 msgstr "Nastavenie AI"
 
-#: gui/aiconfig/aiconfig.xml:(caption):18
+#: gui/aiconfig/aiconfig.xml:(caption):19
 msgid "AI Player:"
 msgstr "AI hráč:"
 
-#: gui/aiconfig/aiconfig.xml:(caption):26
+#: gui/aiconfig/aiconfig.xml:(caption):27
 msgid "AI Difficulty:"
 msgstr "Úroveň AI:"
 
-#: gui/aiconfig/aiconfig.xml:(caption):36
+#: gui/aiconfig/aiconfig.xml:(caption):37
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup.xml:(caption):397
+#: gui/aiconfig/aiconfig.xml:(caption):42
+#: gui/gamesetup/gamesetup.xml:(caption):400
 msgid "OK"
 msgstr "OK"
 
-#: gui/gamesetup/gamesetup.xml:(caption):17
+#: gui/gamesetup/gamesetup.xml:(caption):18
 msgid "Match Setup"
 msgstr "Nastavenie súboja"
 
-#: gui/gamesetup/gamesetup.xml:(caption):23
+#: gui/gamesetup/gamesetup.xml:(caption):24
 msgid "Loading"
 msgstr "Nahrávanie"
 
-#: gui/gamesetup/gamesetup.xml:(caption):27
+#: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Loading map data. Please wait..."
 msgstr "Načítavajú sa údaje o mape. Počkajte, prosím..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):42
+#: gui/gamesetup/gamesetup.xml:(caption):43
 msgid "Player Name"
 msgstr "Meno hráča"
 
-#: gui/gamesetup/gamesetup.xml:(caption):45
+#: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Player Placement"
 msgstr "Umiestnenie hráča"
 
-#: gui/gamesetup/gamesetup.xml:(caption):48
+#: gui/gamesetup/gamesetup.xml:(caption):49
 msgid "Civilization"
 msgstr "Civilizácia"
 
-#: gui/gamesetup/gamesetup.xml:(caption):63
+#: gui/gamesetup/gamesetup.xml:(caption):64
 msgid "Team"
 msgstr "Tím"
 
-#: gui/gamesetup/gamesetup.xml:(caption):101
+#: gui/gamesetup/gamesetup.xml:(caption):102
 msgid "Map Type:"
 msgstr "Typ mapy:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):104
+#: gui/gamesetup/gamesetup.xml:(caption):105
 msgid "Map Filter:"
 msgstr "Filter máp:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):107
+#: gui/gamesetup/gamesetup.xml:(caption):108
 msgid "Select Map:"
 msgstr "Výber mapy:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):110
+#: gui/gamesetup/gamesetup.xml:(caption):111
 msgid "Number of Players:"
 msgstr "Počet hráčov:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):113
+#: gui/gamesetup/gamesetup.xml:(caption):114
 msgid "Map Size:"
 msgstr "Veľkosť mapy"
 
-#: gui/gamesetup/gamesetup.xml:(caption):199
+#: gui/gamesetup/gamesetup.xml:(caption):200
 msgid "Send"
 msgstr "Poslať"
 
-#: gui/gamesetup/gamesetup.xml:(caption):223
+#: gui/gamesetup/gamesetup.xml:(caption):224
 msgid "Start game!"
 msgstr "Začať hru!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):241
+#: gui/gamesetup/gamesetup.xml:(caption):242
 msgid "Back"
 msgstr "Späť"
 
-#: gui/gamesetup/gamesetup.xml:(caption):263
-#: gui/gamesetup/gamesetup.xml:(caption):275
+#: gui/gamesetup/gamesetup.xml:(caption):256
+#: gui/gamesetup/gamesetup.xml:(caption):268
 msgid "More Options"
 msgstr "Viac možností"
 
-#: gui/gamesetup/gamesetup.xml:(caption):280
+#: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Game Speed:"
 msgstr "Rýchlosť hry:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):300
+#: gui/gamesetup/gamesetup.xml:(caption):293
 msgid "Population Cap:"
 msgstr "Limit populácie:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):310
+#: gui/gamesetup/gamesetup.xml:(caption):303
 msgid "Starting Resources:"
 msgstr "Počiatočné suroviny:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):320
+#: gui/gamesetup/gamesetup.xml:(caption):313
 msgid "Ceasefire:"
 msgstr "Prímerie:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):330
+#: gui/gamesetup/gamesetup.xml:(caption):323
 msgid "Revealed Map:"
 msgstr "Odhalená mapa:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):340
+#: gui/gamesetup/gamesetup.xml:(caption):333
 msgid "Explored Map:"
 msgstr "Preskúmaná mapa:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):350
+#: gui/gamesetup/gamesetup.xml:(caption):343
 msgid "Disable Treasures:"
 msgstr "Zakázať poklady:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):360
+#: gui/gamesetup/gamesetup.xml:(caption):353
 msgid "Teams Locked:"
 msgstr "Uzavreté tímy:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):370
+#: gui/gamesetup/gamesetup.xml:(caption):363
 msgid "Cheats:"
 msgstr "Podvody:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):380
+#: gui/gamesetup/gamesetup.xml:(caption):373
 msgid "Rated Game:"
 msgstr "Hodnotená hra:"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):57
+#: gui/gamesetup/gamesetup.xml:(caption):383
+msgid "Late Observer Joins:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):58
 msgid "View civilization info"
 msgstr "Zobraziť informácie o civilizácií"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):72
+#: gui/gamesetup/gamesetup.xml:(tooltip):73
 msgid "Select player."
 msgstr "Vybrať hráča."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):82
+#: gui/gamesetup/gamesetup.xml:(tooltip):83
 msgid "Configure AI settings."
 msgstr "Nastavenie parametrov AI."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):85
+#: gui/gamesetup/gamesetup.xml:(tooltip):86
 msgid "Select player's civilization."
 msgstr "Výber hráčovej civilizácie."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):89
+#: gui/gamesetup/gamesetup.xml:(tooltip):90
 msgid "Select player's team."
 msgstr "Výber hráčovho tímu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):130
+#: gui/gamesetup/gamesetup.xml:(tooltip):131
 msgid "Select a map type."
 msgstr "Vyberte typ mapy."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):139
+#: gui/gamesetup/gamesetup.xml:(tooltip):140
 msgid "Select a map filter."
 msgstr "Vyberte filter máp."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):149
+#: gui/gamesetup/gamesetup.xml:(tooltip):150
 msgid "Select a map to play on."
 msgstr "Vyberte mapu na ktorej budete hrať."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):163
+#: gui/gamesetup/gamesetup.xml:(tooltip):164
 msgid "Select number of players."
 msgstr "Vyberte počet hráčov."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):168
+#: gui/gamesetup/gamesetup.xml:(tooltip):169
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Vyberte veľkosti mapy. (Väčšie mapy môžu znížiť výkon hry.)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):224
+#: gui/gamesetup/gamesetup.xml:(tooltip):225
 msgid "Start a new game with the current settings."
 msgstr "Začať novú hru so súčasnými nastaveniami."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):264
+#: gui/gamesetup/gamesetup.xml:(tooltip):257
 msgid "See more game options"
 msgstr "Zobraziť viac možností hry"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):284
+#: gui/gamesetup/gamesetup.xml:(tooltip):277
 msgid "Select game speed."
 msgstr "Vyberte rýchlosti hry."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):294
+#: gui/gamesetup/gamesetup.xml:(tooltip):287
 msgid "Select victory condition."
 msgstr "Vyberte podmienku na víťazstvo."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):304
+#: gui/gamesetup/gamesetup.xml:(tooltip):297
 msgid "Select population cap."
 msgstr "Vyberte limit populácie."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):314
+#: gui/gamesetup/gamesetup.xml:(tooltip):307
 msgid "Select the game's starting resources."
 msgstr "Vyberte množstvo počiatočných surovín."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):324
+#: gui/gamesetup/gamesetup.xml:(tooltip):317
 msgid "Set time where no attacks are possible."
 msgstr "Nastaviť čas kedy nebude možné útočiť."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):334
+#: gui/gamesetup/gamesetup.xml:(tooltip):327
 msgid "Toggle revealed map (see everything)."
 msgstr "Prepnúť odhalenie mapy (vidno všetko)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):344
+#: gui/gamesetup/gamesetup.xml:(tooltip):337
 msgid "Toggle explored map (see initial map)."
 msgstr "Povoliť preskúmanú mapu (uvidíte pôvodnú mapu)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):354
+#: gui/gamesetup/gamesetup.xml:(tooltip):347
 msgid "Disable all treasures on the map."
 msgstr "Zakázať všetky poklady na mape."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):364
+#: gui/gamesetup/gamesetup.xml:(tooltip):357
 msgid "Toggle locked teams."
 msgstr "Prepnúť uzavreté tímy."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):374
+#: gui/gamesetup/gamesetup.xml:(tooltip):367
 msgid "Toggle the usability of cheats."
 msgstr "Prepnúť možnosť používania podvodov."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):384
+#: gui/gamesetup/gamesetup.xml:(tooltip):377
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Prepnúť, či bude hra hodnotená a umiestnená v rebríčku."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):398
+#: gui/gamesetup/gamesetup.xml:(tooltip):387
+msgid "Allow observers to join after the game started."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):401
 msgid "Close more game options window"
 msgstr "Zavrieť okno s viac možnosťami hry"
 

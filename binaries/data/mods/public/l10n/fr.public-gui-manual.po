@@ -11,10 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-05-09 23:50+0200\n"
-"PO-Revision-Date: 2015-05-29 20:20+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-20 10:02+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,12 +26,12 @@ msgid "Information"
 msgstr "Informations"
 
 #: gui/manual/manual.xml:(caption):20
-msgid "View Online"
-msgstr "Voir en ligne"
-
-#: gui/manual/manual.xml:(caption):23
 msgid "Close"
 msgstr "Fermer"
+
+#: gui/manual/manual.xml:(caption):24
+msgid "View Online"
+msgstr "Voir en ligne"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -381,148 +381,154 @@ msgstr "- Si le curseur est sur une structure alliée : Garnison"
 
 #: gui/manual/intro.txt:84
 msgid ""
+"    - If the cursor is over a non-allied unit or building: Attack (instead "
+"of capture or gather)"
+msgstr "- Si le curseur est sur une structure ou une unité non alliée : Attaque (au lieu de capture ou récolte)"
+
+#: gui/manual/intro.txt:85
+msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "- Sinon : Mouvement d'attaque (par défaut, toutes les unités et structures ennemies sur votre chemin sont prises pour cible, utilisez Ctrl + Q + Clic droit pour ne cibler que les unités)."
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Surcouches"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G : Afficher/masquer l'interface utilisateur"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D : Afficher/masquer la surcouche développeur (avec les options de développement)"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr "Alt + W : Basculer entre les modes fil de fer (appuyez une fois pour obtenir des fils de fer superposés sur les modèles texturés, deux fois pour obtenir seulement les fils de fer colorés par les textures, trois fois pour revenir au mode texturé normal)"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr "Alt + S : Basculer l'affichage des silhouettes des unités (peut améliorer légèrement les performances)"
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:92
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z : Basculer l'affichage du ciel"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Manipulation de la caméra"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W ou \\[haut] : Déplacer l'affichage vers le haut"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "S or \\[down]: Pan screen down"
 msgstr "S ou \\[bas] : Déplacer l'affichage vers le bas"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "A or \\[left]: Pan screen left"
 msgstr "A ou \\[gauche] : Déplacer l'affichage vers la gauche"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:98
 msgid "D or \\[right]: Pan screen right"
 msgstr "D ou \\[droite] : Déplacer l'affichage vers la droite"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W ou \\[haut] : Pivoter la caméra pour regarder vers le haut"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S ou \\[bas] : Pivoter la caméra pour regarder vers le bas"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A ou \\[gauche] : Pivoter la caméra dans le sens horaire autour du terrain"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D ou \\[droite] : Pivoter la caméra dans le sens antihoraire autour du terrain"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q : Pivoter la caméra dans le sens horaire autour du terrain"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E : Pivoter la caméra dans le sens antihoraire autour du terrain"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Maj + Molette de la souris vers le haut : Pivoter la caméra dans le sens horaire autour du terrain"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Maj + Molette de la souris vers le bas : Faire pivoter la caméra dans le sens antihoraire autour du terrain"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
 msgstr "F : Suivre l'unité sélectionnée (déplacer la caméra pour arrêter)"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid "R: Reset camera zoom/orientation"
 msgstr "R : Réinitialiser le zoom/orientation de la caméra"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+ : Zoom avant (maintenir appuyé pour zoomer en continu)"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "- : Zoom arrière (maintenir appuyé pour zoomer en continu)"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W : Basculer entre les modes fil de fer"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
 msgstr "Bouton-molette de la souris ou / (slash) : Maintenez appuyé et déplacez la souris pour faire un panoramique"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Lors du placement d'un bâtiment"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[ : Tourner le bâtiment de 15 degrés dans le sens antihoraire"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "] : Tourner le bâtiment de 15 degrés dans le sens horaire"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Glissement bouton Gauche : Tourner le bâtiment (ses fondations seront placées à la libération de la souris)"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Lors du chargement d'une partie sauvegardée"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Suppr : supprime la partie sélectionnée en demandant confirmation"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Maj : ne pas demander confirmation lors de la suppression d'une partie sauvegardée"
 

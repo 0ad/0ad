@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:41+0200\n"
-"PO-Revision-Date: 2015-08-24 13:31+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-20 10:14+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -78,22 +78,22 @@ msgstr "Ouverture de la page"
 msgid "FPS: %(fps)4s"
 msgstr "FPS : %(fps)4s"
 
-#: gui/common/functions_global_object.js:102
+#: gui/common/functions_global_object.js:103
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/common/functions_global_object.js:119
+#: gui/common/functions_global_object.js:120
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Temps restant avant la fin du cessez-le-feu : %(time)s."
 
-#: gui/common/functions_utility.js:191
+#: gui/common/functions_utility.js:159
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:193
+#: gui/common/functions_utility.js:161
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -315,26 +315,99 @@ msgid "Incorrect network protocol version"
 msgstr "Version de protocole réseau incorrecte"
 
 #: gui/common/network.js:9
-msgid "Game has already started"
-msgstr "La partie a déjà commencé"
+msgid "Game is loading, please try later"
+msgstr "La partie est en cours de lancement, veuillez réessayer plus tard"
 
 #: gui/common/network.js:10
+msgid "Game has already started, no observers allowed"
+msgstr "La partie a déjà commencé, pas de spectateurs autorisés"
+
+#: gui/common/network.js:11
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Valeur invalide %(id)s]"
 
-#: gui/common/network.js:19
+#: gui/common/network.js:20
 msgid "Lost connection to the server."
 msgstr "Connexion au serveur perdue."
 
-#: gui/common/network.js:19
+#: gui/common/network.js:20
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Motif : %(reason)s."
 
-#: gui/common/network.js:20
+#: gui/common/network.js:21
 msgid "Disconnected"
 msgstr "Déconnecté"
+
+#: gui/common/settings.js:95
+msgctxt "aiDiff"
+msgid "Sandbox"
+msgstr "Bac-à-sable"
+
+#: gui/common/settings.js:99
+msgctxt "aiDiff"
+msgid "Very Easy"
+msgstr "Très facile"
+
+#: gui/common/settings.js:103
+msgctxt "aiDiff"
+msgid "Easy"
+msgstr "Facile"
+
+#: gui/common/settings.js:107
+msgctxt "aiDiff"
+msgid "Medium"
+msgstr "Moyen"
+
+#: gui/common/settings.js:112
+msgctxt "aiDiff"
+msgid "Hard"
+msgstr "Difficile"
+
+#: gui/common/settings.js:116
+msgctxt "aiDiff"
+msgid "Very Hard"
+msgstr "Très difficile"
+
+#: gui/common/settings.js:139
+msgctxt "ceasefire"
+msgid "No ceasefire"
+msgstr "Pas de cessez-le-feu"
+
+#: gui/common/settings.js:140
+#, javascript-format
+msgctxt "ceasefire"
+msgid "%(minutes)s minute"
+msgid_plural "%(minutes)s minutes"
+msgstr[0] "%(minutes)s minute"
+msgstr[1] "%(minutes)s minutes"
+
+#: gui/common/settings.js:154
+msgctxt "map"
+msgid "Skirmish"
+msgstr "Escarmouche"
+
+#: gui/common/settings.js:159
+msgctxt "map"
+msgid "Random"
+msgstr "Aléatoire"
+
+#: gui/common/settings.js:163 gui/summary/summary.js:136
+msgid "Scenario"
+msgstr "Scénario"
+
+#: gui/common/settings.js:194
+msgid "None"
+msgstr "Aucune"
+
+#: gui/common/settings.js:195
+msgid "Endless Game"
+msgstr "Partie sans fin"
+
+#: gui/common/settings.js:220
+msgid "Unlimited"
+msgstr "Illimitée"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -1060,7 +1133,7 @@ msgstr "de %(val1)s à %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):105
 msgid "Player name"
 msgstr "Nom du joueur"
 
@@ -1238,16 +1311,12 @@ msgstr "Contrôle de la carte"
 msgid "Team total"
 msgstr "Total de l'équipe"
 
-#: gui/summary/summary.js:139
-msgid "Scenario"
-msgstr "Scénario"
-
-#: gui/summary/summary.js:141
+#: gui/summary/summary.js:138
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Temps de jeu écoulé : %(time)s"
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:159
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1629,35 +1698,35 @@ msgstr "Problèmes connus (web)"
 msgid "Civilization:"
 msgstr "Civilisation : "
 
-#: gui/summary/summary.xml:(caption):22
+#: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Résumé"
 
-#: gui/summary/summary.xml:(caption):62
+#: gui/summary/summary.xml:(caption):63
 msgid "Score"
 msgstr "Score"
 
-#: gui/summary/summary.xml:(caption):69
+#: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
 msgstr "Bâtiments"
 
-#: gui/summary/summary.xml:(caption):76
+#: gui/summary/summary.xml:(caption):77
 msgid "Units"
 msgstr "Unités"
 
-#: gui/summary/summary.xml:(caption):83
+#: gui/summary/summary.xml:(caption):84
 msgid "Resources"
 msgstr "Ressources"
 
-#: gui/summary/summary.xml:(caption):90
+#: gui/summary/summary.xml:(caption):91
 msgid "Market"
 msgstr "Marché"
 
-#: gui/summary/summary.xml:(caption):97
+#: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
 msgstr "Divers"
 
-#: gui/summary/summary.xml:(caption):158
+#: gui/summary/summary.xml:(caption):159
 msgid "Continue"
 msgstr "Continuer"
 
@@ -1677,14 +1746,18 @@ msgid ""
 msgstr "[imgleft=\"constructionIcon\"]Le jeu est encore en développement. Des fonctionnalités sont manquantes et il contient des bugs."
 
 #: gui/splashscreen/splashscreen.txt:6
-msgid "[imgleft=\"iconLag\"]The game runs slowly when many units are moving."
-msgstr "[imgleft=\"iconLag\"]Le jeu tourne lentement quand de nombreuses unités sont en mouvement."
+msgid ""
+"[imgleft=\"iconLag\"]The game can have performance problems, especially with"
+" large maps and a great number of units."
+msgstr "[imgleft=\"iconLag\"]Le jeu peut rencontrer des problèmes de performance, en particulier sur les grandes cartes et avec un grand nombre d'unités."
 
-#: gui/splashscreen/splashscreen.txt:9
-msgid "[imgleft=\"iconMap\"]Large maps can cause problems."
-msgstr "[imgleft=\"iconMap\"]Les grandes cartes peuvent causer des problèmes."
+#: gui/splashscreen/splashscreen.txt:8
+msgid ""
+"[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
+"performance, but it can be subject to new bugs."
+msgstr "[imgleft=\"iconMap\"]Cette version inclut un nouveau système de recherche de chemins, avec une meilleure performance, mais il peut comporter de nouveaux bugs."
 
-#: gui/splashscreen/splashscreen.txt:12
+#: gui/splashscreen/splashscreen.txt:10
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
@@ -1964,7 +2037,7 @@ msgstr "- Ils sont construits rapidement, mais sont faibles."
 #: gui/text/tips/outposts.txt:8
 msgid ""
 "- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr "Mettre en garnison une unité pour l’empêcher de changer d'allégeance."
+msgstr "- Mettre en garnison une unité pour en garder le contrôle en territoire neutre."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -2032,9 +2105,8 @@ msgstr "- Lourdement blindé et lent. Attaque faible."
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
-"- Used against cavalry for a 4x attack bonus or against other melee infantry"
-" to pin them them in place."
-msgstr "- Utilisé contre la cavalerie pour un bonus d'attaque 4x ou contre d'autres infanteries de mêlée pour les clouer sur place."
+"- Used against cavalry or against other melee infantry to pin them in place."
+msgstr "- Utilisé contre la cavalerie ou contre d'autres unités d'infanterie de mêlée pour les clouer sur place."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2147,16 +2219,16 @@ msgid "STOA"
 msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special starting structure for the Hellenes."
-msgstr "- Une structure de départ spéciale pour les Hellènes."
+msgid "- A special starting structure for Greek factions."
+msgstr "- Une structure de départ spéciale pour les factions grecques."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
 msgstr "- Alloue +10 de population."
 
 #: gui/text/tips/stoa.txt:6
-msgid "- Only enabled in some game modes."
-msgstr "- Activée uniquement dans certains modes de jeu."
+msgid "- Only present on some maps."
+msgstr "- Présente uniquement sur certaines cartes."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."

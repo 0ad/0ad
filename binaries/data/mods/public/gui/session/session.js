@@ -178,7 +178,7 @@ function init(initData, hotloadData)
 	gameSpeed.list_data = g_GameSpeeds.Speed;
 	var gameSpeedIdx = g_GameSpeeds.Speed.indexOf(Engine.GetSimRate());
 	gameSpeed.selected = gameSpeedIdx != -1 ? gameSpeedIdx : g_GameSpeeds.Default;
-	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); }
+	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); };
 	initMenuPosition(); // set initial position
 
 	// Populate player selection dropdown
@@ -236,7 +236,7 @@ function updateTopPanel()
 	var isPlayer =  playerID > 0;
 	if (isPlayer)
 	{
-		var civName = g_CivData[g_Players[playerID].civ].Name
+		var civName = g_CivData[g_Players[playerID].civ].Name;
 		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
 		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {"civ": civName});
 	}
@@ -337,19 +337,25 @@ function leaveGame(willRejoin)
 		}
 	}
 
+	let summary = {
+		"timeElapsed" : extendedSimState.timeElapsed,
+		"playerStates": extendedSimState.players,
+		"players": g_Players,
+		"mapSettings": Engine.GetMapSettings(),
+	}
+
+	if (!g_IsReplay)
+		Engine.SaveReplayMetadata(JSON.stringify(summary));
+
 	stopAmbient();
 	Engine.EndGame();
 
 	if (g_IsController && Engine.HasXmppClient())
 		Engine.SendUnregisterGame();
 
-	Engine.SwitchGuiPage("page_summary.xml", {
-							"gameResult"  : gameResult,
-							"timeElapsed" : extendedSimState.timeElapsed,
-							"playerStates": extendedSimState.players,
-							"players": g_Players,
-							"mapSettings": mapSettings
-						 });
+	summary.gameResult = gameResult;
+	summary.isReplay = g_IsReplay;
+	Engine.SwitchGuiPage("page_summary.xml", summary);
 }
 
 // Return some data that we'll use when hotloading this file after changes
@@ -387,7 +393,7 @@ function restoreSavedGameData(data)
 	updateGroups();
 }
 
-var lastTickTime = new Date;
+var lastTickTime = new Date();
 
 /**
  * Called every frame.
@@ -397,8 +403,8 @@ function onTick()
 	if (!g_Settings)
 		return;
 
-	var now = new Date;
-	var tickLength = new Date - lastTickTime;
+	var now = new Date();
+	var tickLength = new Date() - lastTickTime;
 	lastTickTime = now;
 
 	checkPlayerState();
@@ -767,7 +773,7 @@ function updateResearchDisplay()
 		var button = Engine.GetGUIObjectByName("researchStartedButton[" + numButtons + "]");
 		button.hidden = false;
 		button.tooltip = getEntityNames(template);
-		button.onpress = (function(e) { return function() { selectAndMoveTo(e) } })(researchStarted[tech].researcher);
+		button.onpress = (function(e) { return function() { selectAndMoveTo(e); } })(researchStarted[tech].researcher);
 
 		var icon = "stretched:session/portraits/" + template.icon;
 		Engine.GetGUIObjectByName("researchStartedIcon[" + numButtons + "]").sprite = icon;

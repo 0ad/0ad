@@ -771,7 +771,7 @@ Player.prototype.RemoveDisabledTechnology = function(tech)
 
 Player.prototype.SetDisabledTechnologies = function(techs)
 {
-	this.disabledTechnologies = {}
+	this.disabledTechnologies = {};
 	for (let tech of techs)
 		this.disabledTechnologies[tech] = true;
 	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, {});

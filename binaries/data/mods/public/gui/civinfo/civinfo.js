@@ -61,7 +61,7 @@ function heading(string, size)
 function escapeChars(str)
 {
 	return str.replace(/"/g, "\\\"");
-};
+}
 
 function subHeading(obj)
 {

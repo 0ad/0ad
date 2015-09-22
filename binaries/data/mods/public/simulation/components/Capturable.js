@@ -119,7 +119,7 @@ Capturable.prototype.CanCapture = function(playerID)
 
 	if (!cmpPlayerSource)
 		warn(playerID + " has no player component defined on its id");
-	var cp = this.GetCapturePoints()
+	var cp = this.GetCapturePoints();
 	var sourceEnemyCp = 0;
 	for (let i in this.GetCapturePoints())
 		if (cmpPlayerSource.IsEnemy(i))
@@ -139,7 +139,7 @@ Capturable.prototype.RegisterCapturePointsChanged = function()
 	if (!cmpOwnership)
 		return;
 
-	Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp })
+	Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp });
 
 	var owner = cmpOwnership.GetOwner();
 	if (owner == -1 || this.cp[owner] > 0)
@@ -199,9 +199,9 @@ Capturable.prototype.TimerTick = function()
 
 	var regenRate = this.GetRegenRate();
 	if (regenRate < 0)
-		modifiedCp += this.Reduce(-regenRate, 0)
+		modifiedCp += this.Reduce(-regenRate, 0);
 	else if (regenRate > 0)
-		modifiedCp += this.Reduce(regenRate, owner)
+		modifiedCp += this.Reduce(regenRate, owner);
 
 	if (modifiedCp)
 		return;

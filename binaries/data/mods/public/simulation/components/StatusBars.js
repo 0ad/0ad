@@ -177,7 +177,7 @@ StatusBars.prototype.AddResourceSupplyBar = function(cmpOverlayRenderer, yoffset
 	let cmpResourceSupply = QueryMiragedInterface(this.entity, IID_ResourceSupply);
 	if (!cmpResourceSupply)
 		return 0;
-	let value = cmpResourceSupply.IsInfinite() ? 1 : cmpResourceSupply.GetCurrentAmount() / cmpResourceSupply.GetMaxAmount()
+	let value = cmpResourceSupply.IsInfinite() ? 1 : cmpResourceSupply.GetCurrentAmount() / cmpResourceSupply.GetMaxAmount();
 	return this.AddBar(cmpOverlayRenderer, yoffset, "supply", value);
 };
 
@@ -195,7 +195,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 		return 0;
 
 	let owner = cmpOwnership.GetOwner();
-	let cp = cmpCapturable.GetCapturePoints()
+	let cp = cmpCapturable.GetCapturePoints();
 
 	// Size of health bar (in world-space units)
 	let width = +this.template.BarWidth;
@@ -252,7 +252,7 @@ StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
 	let offset = { "x": 0, "y": +this.template.HeightOffset + yoffset, "z": 0 };
 
 	let iconSize = +this.template.BarWidth / 2; 
-	let xoffset = -iconSize * (iconSet.size - 1) * 0.6
+	let xoffset = -iconSize * (iconSet.size - 1) * 0.6;
 	for (let icon of iconSet) 
 	{ 
 		cmpOverlayRenderer.AddSprite( 

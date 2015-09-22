@@ -51,7 +51,7 @@ BattleDetection.prototype.setState = function(state)
 BattleDetection.prototype.GetState = function()
 {
 	return this.state;
-}
+};
 
 BattleDetection.prototype.TimerHandler = function(data, lateness)
 {

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-27 20:06+0000\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-20 10:08+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -346,9 +346,8 @@ msgstr "- N'hésitez pas à échanger les affectations des unités sur les resso
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
-" - Build enough houses, your CC should be kept busy as much as possible, it "
-"is the only training building until town phase."
-msgstr "- Construisez assez de maisons, votre centre-ville doit être maintenu en activité autant que possible, c'est le seul bâtiment qui vous permette de produire des unités avant le passage à la phase suivante."
+" - Build enough houses, your CC should be kept busy as much as possible."
+msgstr "- Construisez assez de maisons, votre centre-ville doit être maintenu en activité autant que possible."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -682,38 +681,6 @@ msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(reso
 msgid "The production queue is full."
 msgstr "La file de production est pleine."
 
-#: simulation/data/game_speeds.jsonSpeeds[0].Name
-msgid "Turtle (0.1x)"
-msgstr "Tortue (0,1x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[1].Name
-msgid "Slow (0.25x)"
-msgstr "Lent (0,25x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[2].Name
-msgid "Leisurely (0.5x)"
-msgstr "Tranquille (0,5x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[3].Name
-msgid "Relaxed (0.75x)"
-msgstr "Détendu (0,75x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[4].Name
-msgid "Normal (1x)"
-msgstr "Normal (1x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[5].Name
-msgid "Fast (1.25x)"
-msgstr "Rapide (1,25x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[6].Name
-msgid "Very Fast (1.5x)"
-msgstr "Très rapide (1,5x)"
-
-#: simulation/data/game_speeds.jsonSpeeds[7].Name
-msgid "Insane (2x)"
-msgstr "Dément (2x)"
-
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
 msgstr "Gaia"
@@ -749,6 +716,117 @@ msgstr "Joueur 7"
 #: simulation/data/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
 msgstr "Joueur 8"
+
+#: simulation/data/settings/game_speeds.jsonData[0].Title
+msgid "Turtle (0.1x)"
+msgstr "Tortue (0,1x)"
+
+#: simulation/data/settings/game_speeds.jsonData[1].Title
+msgid "Slow (0.25x)"
+msgstr "Lent (0,25x)"
+
+#: simulation/data/settings/game_speeds.jsonData[2].Title
+msgid "Leisurely (0.5x)"
+msgstr "Tranquille (0,5x)"
+
+#: simulation/data/settings/game_speeds.jsonData[3].Title
+msgid "Relaxed (0.75x)"
+msgstr "Détendu (0,75x)"
+
+#: simulation/data/settings/game_speeds.jsonData[4].Title
+msgid "Normal (1x)"
+msgstr "Normal (1x)"
+
+#: simulation/data/settings/game_speeds.jsonData[5].Title
+msgid "Fast (1.25x)"
+msgstr "Rapide (1,25x)"
+
+#: simulation/data/settings/game_speeds.jsonData[6].Title
+msgid "Very Fast (1.5x)"
+msgstr "Très rapide (1,5x)"
+
+#: simulation/data/settings/game_speeds.jsonData[7].Title
+msgid "Insane (2x)"
+msgstr "Dément (2x)"
+
+#: simulation/data/settings/game_speeds.jsonData[8].Title
+msgid "Fast Forward (5x)"
+msgstr "Avance rapide (5x)"
+
+#: simulation/data/settings/game_speeds.jsonData[9].Title
+msgid "Fast Forward (10x)"
+msgstr "Avance rapide (10x)"
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20x)"
+msgstr "Avance rapide (20x)"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid "Defeat all opponents"
+msgstr "Battre tous les adversaires"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr "Conquête"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Destroy all structures of enemies"
+msgstr "Détruisez toute structure ennemie"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr "Conquérir les bâtiments"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Kill all enemy units"
+msgstr "Tuer toutes les unités ennemies"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr "Conquérir les unités"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid "Build and protect a wonder to win"
+msgstr "Construisez et protégez une merveille pour gagner"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr "Merveille"
+
+#: simulation/data/settings/starting_resources.jsonTranslatedKeys.Title
+msgctxt "startingResources"
+msgid "startingResources"
+msgstr ""
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "Très faibles"
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr "Faibles"
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "Moyennes"
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr "Élevées"
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "Très élevées"
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "Match à mort"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName

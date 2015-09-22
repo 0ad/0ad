@@ -100,7 +100,7 @@ EntityGroups.prototype.rebuildGroup = function(renamed)
 		toAdd.push(renamed[ent] ? renamed[ent] : +ent);
 
 	this.add(toAdd);
-}
+};
 
 EntityGroups.prototype.getCount = function(templateName)
 {
@@ -204,7 +204,7 @@ EntitySelection.prototype.makePrimarySelection = function(templateName, modifier
 
 	this.reset();
 	this.addList(ents);
-}
+};
 
 /**
  * Get a list of the template names
@@ -220,7 +220,7 @@ EntitySelection.prototype.getTemplateNames = function()
 			templateNames.push(entState.template);
 	}
 	return templateNames;
-}
+};
 
 /**
  * Update the selection to take care of changes (like units that have been killed)
@@ -285,7 +285,7 @@ EntitySelection.prototype.checkRenamedEntities = function()
 			}
 		}
 	}
-}
+};
 
 /**
  * Add entities to selection. Play selection sound unless quiet is true
@@ -377,7 +377,7 @@ EntitySelection.prototype.rebuildSelection = function(renamed)
 		toAdd.push(renamed[ent] ? renamed[ent] : ent);
 
 	this.addList(toAdd, true); // don't play selection sounds
-}
+};
 
 EntitySelection.prototype.toList = function()
 {
@@ -428,7 +428,7 @@ EntitySelection.prototype.onChange = function()
 	this.dirty = true;
 	if (this.isSelection)
 		onSelectionChange();
-}
+};
 
 /**
  * Cache some quantities which depends only on selection
@@ -468,7 +468,7 @@ EntityGroupsContainer.prototype.addEntities = function(groupName, ents)
 				group.removeEnt(ent);
 
 	this.groups[groupName].add(ents);
-}
+};
 
 EntityGroupsContainer.prototype.update = function()
 {
@@ -483,7 +483,7 @@ EntityGroupsContainer.prototype.update = function()
 				group.removeEnt(ent);
 		}
 	}
-}
+};
 
 /**
  * Update control group if some entities in the group were renamed
@@ -511,6 +511,6 @@ EntityGroupsContainer.prototype.checkRenamedEntities = function()
 			}
 		}
 	}
-}
+};
 
 var g_Groups = new EntityGroupsContainer();

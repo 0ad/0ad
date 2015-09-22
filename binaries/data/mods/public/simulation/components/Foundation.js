@@ -54,7 +54,7 @@ Foundation.prototype.OnHealthChanged = function(msg)
  */
 Foundation.prototype.GetBuildProgress = function()
 {
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health)
+	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (!cmpHealth)
 		return 0;
 
@@ -275,7 +275,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 		// Copy various parameters from the foundation
 
 		var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-		var cmpBuildingVisual = Engine.QueryInterface(building, IID_Visual)
+		var cmpBuildingVisual = Engine.QueryInterface(building, IID_Visual);
 		if (cmpVisual && cmpBuildingVisual)
 			cmpBuildingVisual.SetActorSeed(cmpVisual.GetActorSeed());
 

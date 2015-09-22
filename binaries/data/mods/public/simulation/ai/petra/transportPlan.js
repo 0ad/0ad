@@ -30,7 +30,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, ship)
 	this.flotilla = false;   // when false, only one ship per transport ... not yet tested when true
 
 	this.endPos = endPos;
-	this.endIndex = endIndex
+	this.endIndex = endIndex;
 	this.startIndex = startIndex;
 	// TODO only cases with land-sea-land are allowed for the moment
 	// we could also have land-sea-land-sea-land
@@ -219,7 +219,7 @@ m.TransportPlan.prototype.cancelTransport = function(gameState)
 	}
 	this.endIndex = this.startIndex;
 	this.endPos = base.anchor.position();
-	this.canceled = true;;
+	this.canceled = true;
 	return true;
 };
 

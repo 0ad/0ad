@@ -484,7 +484,7 @@ function getEntityNamesFormatted(template)
 
 function getVisibleEntityClassesFormatted(template)
 {
-	var r = ""
+	var r = "";
 	if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
 	{
 		r += '\n' + txtFormats.header[0] + translate("Classes:") + txtFormats.header[1];

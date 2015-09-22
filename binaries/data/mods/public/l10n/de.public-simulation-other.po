@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-25 09:00+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"POT-Creation-Date: 2015-09-18 22:15+0200\n"
+"PO-Revision-Date: 2015-09-19 16:13+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -347,9 +347,8 @@ msgstr "– Schrecke nicht davor zurück, Einheiten anderen Ressourcen zuzuweise
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
-" - Build enough houses, your CC should be kept busy as much as possible, it "
-"is the only training building until town phase."
-msgstr "– Baue genügend Wohnhäuser. Der Verwaltungssitz sollte so viele Einheiten wie möglich ausbilden, es ist bis in die Stadtphase deine einzige Ausbildungsstätte für Bürger."
+" - Build enough houses, your CC should be kept busy as much as possible."
+msgstr "Baue genug Wohnhäuser. Das Dorfzentrum sollte so viele Einheiten ausbilden wie möglich."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -683,38 +682,6 @@ msgstr "Nicht genug Rohstoffe – %(resourceAmount1)s %(resourceType1)s, %(resou
 msgid "The production queue is full."
 msgstr "Die Produktionswarteschlange ist voll."
 
-#: simulation/data/game_speeds.jsonSpeeds[0].Name
-msgid "Turtle (0.1x)"
-msgstr "Schildkröte (0,1×)"
-
-#: simulation/data/game_speeds.jsonSpeeds[1].Name
-msgid "Slow (0.25x)"
-msgstr "Langsam (0,25×)"
-
-#: simulation/data/game_speeds.jsonSpeeds[2].Name
-msgid "Leisurely (0.5x)"
-msgstr "Gemächlich (0,5×)"
-
-#: simulation/data/game_speeds.jsonSpeeds[3].Name
-msgid "Relaxed (0.75x)"
-msgstr "Entspannt (0,75×)"
-
-#: simulation/data/game_speeds.jsonSpeeds[4].Name
-msgid "Normal (1x)"
-msgstr "Normal (1×)"
-
-#: simulation/data/game_speeds.jsonSpeeds[5].Name
-msgid "Fast (1.25x)"
-msgstr "Schnell (1,25×)"
-
-#: simulation/data/game_speeds.jsonSpeeds[6].Name
-msgid "Very Fast (1.5x)"
-msgstr "Sehr schnell (1,5×)"
-
-#: simulation/data/game_speeds.jsonSpeeds[7].Name
-msgid "Insane (2x)"
-msgstr "Verrückt (2×)"
-
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
 msgstr "Gaia"
@@ -750,6 +717,117 @@ msgstr "Spieler 7"
 #: simulation/data/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
 msgstr "Spieler 8"
+
+#: simulation/data/settings/game_speeds.jsonData[0].Title
+msgid "Turtle (0.1x)"
+msgstr "Schildkröte (0,1×)"
+
+#: simulation/data/settings/game_speeds.jsonData[1].Title
+msgid "Slow (0.25x)"
+msgstr "Langsam (0,25×)"
+
+#: simulation/data/settings/game_speeds.jsonData[2].Title
+msgid "Leisurely (0.5x)"
+msgstr "Gemächlich (0,5×)"
+
+#: simulation/data/settings/game_speeds.jsonData[3].Title
+msgid "Relaxed (0.75x)"
+msgstr "Entspannt (0,75×)"
+
+#: simulation/data/settings/game_speeds.jsonData[4].Title
+msgid "Normal (1x)"
+msgstr "Normal (1×)"
+
+#: simulation/data/settings/game_speeds.jsonData[5].Title
+msgid "Fast (1.25x)"
+msgstr "Schnell (1,25×)"
+
+#: simulation/data/settings/game_speeds.jsonData[6].Title
+msgid "Very Fast (1.5x)"
+msgstr "Sehr schnell (1,5×)"
+
+#: simulation/data/settings/game_speeds.jsonData[7].Title
+msgid "Insane (2x)"
+msgstr "Verrückt (2×)"
+
+#: simulation/data/settings/game_speeds.jsonData[8].Title
+msgid "Fast Forward (5x)"
+msgstr "Schnell Vorwärts (5x)"
+
+#: simulation/data/settings/game_speeds.jsonData[9].Title
+msgid "Fast Forward (10x)"
+msgstr "Schnell Vorwärts (10x)"
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20x)"
+msgstr "Schnell Vorwärts (20x)"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid "Defeat all opponents"
+msgstr "Besiege alle Gegner"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr "Eroberung"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Destroy all structures of enemies"
+msgstr "Zerstöre alle feindlichen Strukturen"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr "Erobere Strukturen"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Kill all enemy units"
+msgstr "Töte alle feindlichen Einheiten"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr "Erobere Einheiten"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid "Build and protect a wonder to win"
+msgstr "Baue ein Wunder, um zu gewinnen"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr "Wunder"
+
+#: simulation/data/settings/starting_resources.jsonTranslatedKeys.Title
+msgctxt "startingResources"
+msgid "startingResources"
+msgstr "startingResources"
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "Sehr wenig"
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr "Wenig"
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "Mittel"
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr "Hoch"
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "Sehr hoch"
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "Auf Leben und Tod"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
