@@ -64,7 +64,18 @@ function loadSettingValuesFile(filename)
 	}
 
 	if (json.TranslatedKeys)
-		translateObjectKeys(json.Data, json.TranslatedKeys);
+	{
+		let keyContext = json.TranslatedKeys;
+
+		if (json.TranslationContext)
+		{
+			keyContext = {};
+			for (let key of json.TranslatedKeys)
+				 keyContext[key] = json.TranslationContext;
+		}
+
+		translateObjectKeys(json.Data, keyContext);
+	}
 
 	return json.Data;
 }
