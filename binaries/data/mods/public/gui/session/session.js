@@ -161,6 +161,9 @@ function init(initData, hotloadData)
 	}
 	else // Needed for autostart loading option
 	{
+		if (g_IsReplay)
+			g_PlayerAssignments.local.player = -1;
+
 		g_Players = getPlayerData(null);
 	}
 

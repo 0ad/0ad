@@ -26,7 +26,12 @@ function reallyStartVisualReplay(replayDirectory)
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": Engine.GetReplayAttributes(replayDirectory),
 		"isNetworked" : false,
-		"playerAssignments": {},
+		"playerAssignments": {
+			"local":{
+				"name": translate("You"),
+				"player": -1
+			}
+		},
 		"savedGUIData": "",
 		"isReplay" : true
 	});
