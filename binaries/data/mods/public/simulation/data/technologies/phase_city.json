@@ -14,7 +14,8 @@
 	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by another +50%",
 	"modifications": [
 		{"value": "TerritoryInfluence/Radius", "multiply": 1.50, "affects": "CivCentre"},
-		{"value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier"}
+		{"value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier"},
+		{"value": "Capturable/GarrisonRegenRate", "add": 1.5, "affects": "Structure"}
 	],
 	"soundComplete": "interface/alarm/alarm_phase.xml"
 }
