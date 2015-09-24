@@ -1796,7 +1796,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						prepare = Math.max(prepare, repeatLeft);
 					}
 
-					this.oldAttack = this.order.data.attackType;
+					this.oldAttackType = this.order.data.attackType;
 					// add prefix + no capital first letter for attackType
 					var animationName = "attack_" + this.order.data.attackType.toLowerCase();
 					if (this.IsFormationMember())
