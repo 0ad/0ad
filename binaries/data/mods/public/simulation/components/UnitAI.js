@@ -1796,6 +1796,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						prepare = Math.max(prepare, repeatLeft);
 					}
 
+					this.oldAttack = this.order.data.attackType;
 					// add prefix + no capital first letter for attackType
 					var animationName = "attack_" + this.order.data.attackType.toLowerCase();
 					if (this.IsFormationMember())
@@ -1897,7 +1898,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						return;
 					}
 
-					this.oldAttackType = this.order.data.attackType;
 					// Can't reach it, no longer owned by enemy, or it doesn't exist any more - give up
 					// Except if in WalkAndFight mode where we look for more ennemies around before moving again
 					if (this.FinishOrder())
