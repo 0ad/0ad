@@ -236,7 +236,7 @@ struct SerializeGoal
 	template<typename S>
 	void operator()(S& serialize, const char* UNUSED(name), PathGoal& value)
 	{
-		SerializeU8_Enum<PathGoal::Type, PathGoal::SQUARE>()(serialize, "type", value.type);
+		SerializeU8_Enum<PathGoal::Type, PathGoal::INVERTED_SQUARE>()(serialize, "type", value.type);
 		serialize.NumberFixed_Unbounded("goal x", value.x);
 		serialize.NumberFixed_Unbounded("goal z", value.z);
 		serialize.NumberFixed_Unbounded("goal u x", value.u.X);
