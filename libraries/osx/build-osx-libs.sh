@@ -679,8 +679,11 @@ then
   tar -xf $LIB_ARCHIVE
   # rename the extracted directory to something shorter
   mv $LIB_VERSION $LIB_DIRECTORY
-  pushd $LIB_DIRECTORY/js/src
 
+  # Apply patches
+  ./patch.sh
+
+  pushd $LIB_DIRECTORY/js/src
   # We want separate debug/release versions of the library, so change their install name in the Makefile
   perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1mozjs31-ps-debug/' Makefile.in
   perl -i.bak -pe 's/js_static/mozjs31-ps-debug/g' shell/Makefile.in
