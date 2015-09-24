@@ -2,7 +2,7 @@ function TerritoryDecay() {}
 
 TerritoryDecay.prototype.Schema =
 	"<element name='DecayRate' a:help='Decay rate in hitpoints per second'>" +
-		"<data type='positiveInteger'/>" +
+		"<ref name='positiveDecimal'/>" +
 	"</element>";
 
 TerritoryDecay.prototype.Init = function()
