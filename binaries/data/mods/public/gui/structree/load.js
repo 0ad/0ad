@@ -46,7 +46,7 @@ function loadUnit(templateName)
 
 	if (unit.requiredTechnology)
 	{
-		if (unit.requiredTechnology.slice(0, 5) == "phase")
+		if (depath(unit.requiredTechnology).slice(0, 5) == "phase")
 			unit.phase = unit.requiredTechnology;
 		else if (unit.requiredTechnology.length)
 			unit.required = unit.requiredTechnology;
@@ -80,7 +80,7 @@ function loadStructure(templateName)
 
 	if (structure.requiredTechnology)
 	{
-		if (structure.requiredTechnology.slice(0, 5) == "phase")
+		if (depath(structure.requiredTechnology).slice(0, 5) == "phase")
 			structure.phase = structure.requiredTechnology;
 		else if (structure.requiredTechnology.length)
 			structure.required = structure.requiredTechnology;
