@@ -70,7 +70,7 @@ function draw()
 				{
 					for (let prod of stru.production.technology[prod_pha])
 					{
-						prod = (prod.slice(0,5) == "phase") ? g_ParsedData.phases[prod] : g_ParsedData.techs[prod];
+						prod = (depath(prod).slice(0,5) == "phase") ? g_ParsedData.phases[prod] : g_ParsedData.techs[prod];
 						if (!drawProdIcon(i, s, r, p, prod))
 							break;
 						p++;

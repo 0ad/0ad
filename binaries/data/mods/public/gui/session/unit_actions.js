@@ -523,12 +523,6 @@ var unitActions =
 				data.resourceType = resourceType;
 				data.resourceTemplate = targetState.template;
 			}
-			else if (targetState.foundation && playerCheck(entState, targetState, ["Ally"]))
-			{
-				data.command = "build";
-				data.target = targetState.id;
-				cursor = "action-build";
-			}
 			else if (hasClass(entState, "Market") && hasClass(targetState, "Market") && entState.id != targetState.id &&
 					(!hasClass(entState, "NavalMarket") || hasClass(targetState, "NavalMarket")) && !playerCheck(entState, targetState, ["Enemy"]))
 			{
@@ -553,6 +547,12 @@ var unitActions =
 					else // Foundation or cannot produce traders
 						tooltip += "\n" + sprintf(translate("Expected gain: %(gain)s"), { gain: getTradingTooltip(gain) });
 				}
+			}
+			else if (targetState.foundation && playerCheck(entState, targetState, ["Ally"]))
+			{
+				data.command = "build";
+				data.target = targetState.id;
+				cursor = "action-build";
 			}
 			else if (targetState.needsRepair && playerCheck(entState, targetState, ["Ally"]))
 			{

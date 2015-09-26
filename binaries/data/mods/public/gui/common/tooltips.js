@@ -393,9 +393,9 @@ function getSpeedTooltip(template)
 	var label = txtFormats.header[0] + translate("Speed:") + txtFormats.header[1];
 	var speeds = [];
 	if (template.speed.walk)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: txtFormats.unit[0] + translate("Walk") + txtFormats.unit[1]}));
+		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: Math.round(template.speed.walk), movementType: txtFormats.unit[0] + translate("Walk") + txtFormats.unit[1]}));
 	if (template.speed.run)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: txtFormats.unit[0] + translate("Run") + txtFormats.unit[1]}));
+		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: Math.round(template.speed.run), movementType: txtFormats.unit[0] + translate("Run") + txtFormats.unit[1]}));
 
 	return sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) });
 }
