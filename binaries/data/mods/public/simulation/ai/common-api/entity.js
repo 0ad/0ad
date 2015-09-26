@@ -721,10 +721,12 @@ m.Entity = m.Class({
 				res = this._ai._entities.get(this.unitAIOrderData()[0]["target"]);
 			else if (this.unitAIOrderData()[1] !== undefined && this.unitAIOrderData()[1]["target"] !== undefined)
 				res = this._ai._entities.get(this.unitAIOrderData()[1]["target"]);
-			if (res === undefined)
-				return undefined;
-
+			if (!res)
+				return 0;
 			let type = res.resourceSupplyType();
+			if (!type)
+				return 0;
+
 			if (type.generic === "treasure")
 				return 1000;
 

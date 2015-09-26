@@ -2036,13 +2036,15 @@ UnitAI.prototype.UnitFsmSpec = {
 							// It's probably better in this case, to avoid units getting stuck around a dropsite
 							// in a "Target is far away, full, nearby are no good resources, return to dropsite" loop
 							// to order it to GatherNear the resource position.
-							var cmpPosition = Engine.QueryInterface(this.gatheringTarget, IID_Position);
+							var cmpPosition = Engine.QueryInterface(oldTarget, IID_Position);
 							if (cmpPosition)
 							{
 								var pos = cmpPosition.GetPosition();
 								this.GatherNearPosition(pos.x, pos.z, oldType, oldTemplate);
 								return true;
-							} else {
+							}
+							else
+							{
 								// we're kind of stuck here. Return resource.
 								var nearby = this.FindNearestDropsite(oldType.generic);
 								if (nearby)
@@ -2340,7 +2342,10 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// If hunting, try to go to the initial herd position to see if we are more lucky
 					if (herdPos)
+					{
 						this.GatherNearPosition(herdPos.x, herdPos.z, resourceType, resourceTemplate);
+						return;
+					}
 
 					// Nothing else to gather - if we're carrying anything then we should
 					// drop it off, and if not then we might as well head to the dropsite
