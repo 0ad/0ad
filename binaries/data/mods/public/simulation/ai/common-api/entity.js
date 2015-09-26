@@ -238,6 +238,13 @@ m.Template = m.Class({
 		};
 	},
 
+	captureStrength: function() {
+		if (!this.get("Attack/Capture"))
+			return undefined;
+
+		return +this.get("Attack/Capture/Value") || 0;
+	},
+
 	attackTimes: function(type) {
 		if (!this.get("Attack/" + type +""))
 			return undefined;
@@ -301,7 +308,7 @@ m.Template = m.Class({
 				var total = this.get("Attack/" + type + "/Bonuses/" + o + "/Classes").split(" ");
 				for (var j in total)
 					if (total[j] === againstClass)
-						return this.get("Attack/" + type + "/Bonuses/" + o + "/Multiplier");
+						return +this.get("Attack/" + type + "/Bonuses/" + o + "/Multiplier");
 			}
 		return 1;
 	},
@@ -408,7 +415,7 @@ m.Template = m.Class({
 	garrisonEjectHealth: function() {
 		if (!this.get("GarrisonHolder"))
 			return undefined;
-		return this.get("GarrisonHolder/EjectHealth");
+		return +this.get("GarrisonHolder/EjectHealth");
 	},
 
 	getDefaultArrow: function() {
@@ -470,7 +477,7 @@ m.Template = m.Class({
 	walkSpeed: function() {
 		if (!this.get("UnitMotion") || !this.get("UnitMotion/WalkSpeed"))
 			 return undefined;
-		return this.get("UnitMotion/WalkSpeed");
+		return +this.get("UnitMotion/WalkSpeed");
 	},
 
 	trainingCategory: function() {
@@ -488,13 +495,13 @@ m.Template = m.Class({
 	buildTime: function() {
 		if (!this.get("Cost") || !this.get("Cost/BuildTime"))
 			return undefined;
-		return this.get("Cost/BuildTime");
+		return +this.get("Cost/BuildTime");
 	},
 
 	buildDistance: function() {
 		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/Distance"))
 			return undefined;
-		return this.get("BuildRestrictions/Distance");
+		return +this.get("BuildRestrictions/Distance");
 	},
 
 	buildPlacementType: function() {
@@ -526,32 +533,32 @@ m.Template = m.Class({
 
 	territoryInfluenceRadius: function() {
 		if (this.get("TerritoryInfluence") !== undefined)
-			return (this.get("TerritoryInfluence/Radius"));
+			return +this.get("TerritoryInfluence/Radius");
 		else
 			return -1;
 	},
 
 	territoryInfluenceWeight: function() {
 		if (this.get("TerritoryInfluence") !== undefined)
-			return (this.get("TerritoryInfluence/Weight"));
+			return +this.get("TerritoryInfluence/Weight");
 		else
 			return -1;
 	},
 
 	territoryDecayRate: function() {
-		return (this.get("TerritoryDecay") ? this.get("TerritoryDecay/DecayRate") : 0);
+		return (this.get("TerritoryDecay") ? +this.get("TerritoryDecay/DecayRate") : 0);
 	},
 
 	defaultRegenRate: function() {
-		return (this.get("Capturable") ? this.get("Capturable/RegenRate") : 0);
+		return (this.get("Capturable") ? +this.get("Capturable/RegenRate") : 0);
 	},
 
 	garrisonRegenRate: function() {
-		return (this.get("Capturable") ? this.get("Capturable/GarrisonRegenRate") : 0);
+		return (this.get("Capturable") ? +this.get("Capturable/GarrisonRegenRate") : 0);
 	},
 
 	visionRange: function() {
-		return this.get("Vision/Range");
+		return +this.get("Vision/Range");
 	}
 });
 
