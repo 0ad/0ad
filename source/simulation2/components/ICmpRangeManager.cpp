@@ -41,6 +41,7 @@ DEFINE_INTERFACE_METHOD_7("CreateActiveParabolicQuery", ICmpRangeManager::tag_t,
 DEFINE_INTERFACE_METHOD_1("DestroyActiveQuery", void, ICmpRangeManager, DestroyActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("EnableActiveQuery", void, ICmpRangeManager, EnableActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("DisableActiveQuery", void, ICmpRangeManager, DisableActiveQuery, ICmpRangeManager::tag_t)
+DEFINE_INTERFACE_METHOD_1("IsActiveQueryEnabled", bool, ICmpRangeManager, IsActiveQueryEnabled, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("ResetActiveQuery", std::vector<entity_id_t>, ICmpRangeManager, ResetActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_3("SetEntityFlag", void, ICmpRangeManager, SetEntityFlag, entity_id_t, std::string, bool)
 DEFINE_INTERFACE_METHOD_1("GetEntityFlagMask", u8, ICmpRangeManager, GetEntityFlagMask, std::string)

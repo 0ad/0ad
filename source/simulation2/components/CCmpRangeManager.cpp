@@ -815,6 +815,19 @@ public:
 		q.enabled = false;
 	}
 
+	virtual bool IsActiveQueryEnabled(tag_t tag)
+	{
+		std::map<tag_t, Query>::const_iterator it = m_Queries.find(tag);
+		if (it == m_Queries.end())
+		{
+			LOGERROR("CCmpRangeManager: IsActiveQueryEnabled called with invalid tag %u", tag);
+			return false;
+		}
+
+		const Query& q = it->second;
+		return q.enabled;
+	}
+
 	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(CFixedVector2D pos,
 		entity_pos_t minRange, entity_pos_t maxRange,
 		std::vector<int> owners, int requiredInterface)

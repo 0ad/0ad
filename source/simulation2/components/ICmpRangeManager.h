@@ -170,6 +170,12 @@ public:
 	virtual void DisableActiveQuery(tag_t tag) = 0;
 
 	/**
+	 * Check if the processing of a query is enabled.
+	 * @param tag identifier of a query.
+	 */
+	virtual bool IsActiveQueryEnabled(tag_t tag) = 0;
+
+	/**
 	 * Immediately execute a query, and re-enable it if disabled.
 	 * The next RangeUpdate message will say who has entered/left since this call,
 	 * so you won't miss any notifications.

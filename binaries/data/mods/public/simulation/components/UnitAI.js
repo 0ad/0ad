@@ -3396,10 +3396,20 @@ UnitAI.prototype.SetupRangeQueries = function()
 		this.SetupHealRangeQuery();
 };
 
+UnitAI.prototype.UpdateRangeQueries = function()
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (this.losRangeQuery)
+		this.SetupRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losRangeQuery));
+ 
+	if (this.IsHealer() && this.losHealRangeQuery)
+		this.SetupHealRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losHealRangeQuery));
+};
+
 // Set up a range query for all enemy and gaia units within LOS range
 // which can be attacked.
 // This should be called whenever our ownership changes.
-UnitAI.prototype.SetupRangeQuery = function()
+UnitAI.prototype.SetupRangeQuery = function(enable = true)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
@@ -3429,13 +3439,14 @@ UnitAI.prototype.SetupRangeQuery = function()
 
 	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
 
-	cmpRangeManager.EnableActiveQuery(this.losRangeQuery);
+	if (enable)
+		cmpRangeManager.EnableActiveQuery(this.losRangeQuery);
 };
 
 // Set up a range query for all own or ally units within LOS range
 // which can be healed.
 // This should be called whenever our ownership changes.
-UnitAI.prototype.SetupHealRangeQuery = function()
+UnitAI.prototype.SetupHealRangeQuery = function(enable = true)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
@@ -3463,7 +3474,9 @@ UnitAI.prototype.SetupHealRangeQuery = function()
 	var range = this.GetQueryRange(IID_Heal);
 
 	this.losHealRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, cmpRangeManager.GetEntityFlagMask("injured"));
-	cmpRangeManager.EnableActiveQuery(this.losHealRangeQuery);
+
+	if (enable)
+		cmpRangeManager.EnableActiveQuery(this.losHealRangeQuery);
 };
 
 
