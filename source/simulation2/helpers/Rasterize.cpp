@@ -27,81 +27,65 @@ void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 {
 	// Get the bounds of cells that might possibly be within the shape
 	// (We'll then test each of those cells more precisely)
-	CFixedVector2D halfSize(shape.hw, shape.hh);
+	CFixedVector2D halfSize(shape.hw + clearance, shape.hh + clearance);
 	CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(shape.u, shape.v, halfSize);
-	// add 1 to at least have 1 tile out of reach
-	i16 iMax = (i16)( (halfBound.X + clearance) / cellSize).ToInt_RoundToInfinity() + 1;
-	i16 jMax = (i16)( (halfBound.Y + clearance) / cellSize).ToInt_RoundToInfinity() + 1;
+	i16 i0 = ((shape.x - halfBound.X) / cellSize).ToInt_RoundToNegInfinity();
+	i16 j0 = ((shape.z - halfBound.Y) / cellSize).ToInt_RoundToNegInfinity();
+	i16 i1 = ((shape.x + halfBound.X) / cellSize).ToInt_RoundToInfinity();
+	i16 j1 = ((shape.z + halfBound.Y) / cellSize).ToInt_RoundToInfinity();
 
-	i16 offsetX = (i16)(shape.x / cellSize).ToInt_RoundToNearest();
-	i16 offsetZ = (i16)(shape.z / cellSize).ToInt_RoundToNearest();
-
-	i16 i0 = -iMax;
-	i16 i1 = iMax;
-
-	if (jMax <= 0)
+	if (j1 <= j0)
 		return; // empty bounds - this shouldn't happen
 
-	spans.reserve(jMax * 2);
+	spans.reserve(j1 - j0);
 
-	// TODO: Compare the squared distance to avoid sqrting
-#define IS_IN_SQUARE(i, j) (Geometry::DistanceToSquare(CFixedVector2D(cellSize*i, cellSize*j),	shape.u, shape.v, halfSize, true) <= clearance)
-
-	// The rasterization is finished when for one row, all columns are visited and
-	// no tile in-range is found.
-	bool finished = false;
-
-	// Loop over half of the rows
-	// Other rows can be added easily due to rectangle symmetry
-	// For each row, search the outer bounds, using the bounds of the previous row
-	// as an estimation
-	for (i16 j = 0; j <= jMax; ++j)
+	for (i16 j = j0; j < j1; ++j)
 	{
-		bool foundI0 = false;
-		// check if the estimation is in or out the square, and move accordingly
-		bool isI0InSquare = IS_IN_SQUARE(i0, j);
-		while (!foundI0 && !finished)
+		// Find the min/max range of cells that are strictly inside the square+clearance.
+		// (Since the square+clearance is a convex shape, we can just test each
+		// corner of each cell is inside the shape.)
+		// (TODO: This potentially does a lot of redundant work.)
+		i16 spanI0 = std::numeric_limits<i16>::max();
+		i16 spanI1 = std::numeric_limits<i16>::min();
+		for (i16 i = i0; i < i1; ++i)
 		{
-			if (isI0InSquare && !IS_IN_SQUARE(--i0, j))
+			if (Geometry::DistanceToSquare(
+				CFixedVector2D(cellSize*i, cellSize*j) - CFixedVector2D(shape.x, shape.z),
+				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > clearance)
 			{
-				foundI0 = true;
-				++i0; // add one to bring i0 back in the square
+				continue;
 			}
-			else if (!isI0InSquare && IS_IN_SQUARE(++i0, j))
-				foundI0 = true;
 
-			// when this row has no obstructions, we're done
-			if (i0 > iMax)
-				finished = true;
-			ENSURE(i0 >= -iMax);
+			if (Geometry::DistanceToSquare(
+				CFixedVector2D(cellSize*(i+1), cellSize*j) - CFixedVector2D(shape.x, shape.z),
+				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > clearance)
+			{
+				continue;
+			}
+
+			if (Geometry::DistanceToSquare(
+				CFixedVector2D(cellSize*i, cellSize*(j+1)) - CFixedVector2D(shape.x, shape.z),
+				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > clearance)
+			{
+				continue;
+			}
+
+			if (Geometry::DistanceToSquare(
+				CFixedVector2D(cellSize*(i+1), cellSize*(j+1)) - CFixedVector2D(shape.x, shape.z),
+				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > clearance)
+			{
+				continue;
+			}
+
+			spanI0 = std::min(spanI0, i);
+			spanI1 = std::max(spanI1, (i16)(i+1));
 		}
 
-		if (finished)
-			break;
-
-		bool foundI1 = false;
-		// check if the estimation is in or out the square, and move accordingly
-		bool isI1InSquare = IS_IN_SQUARE(i1, j);
-		while (!foundI1)
+		// Add non-empty spans onto the list
+		if (spanI0 < spanI1)
 		{
-			if (isI1InSquare && !IS_IN_SQUARE(++i1, j))
-			{
-				foundI1 = true;
-				--i1; // subtract 1 to bring i1 back in the square
-			}
-			else if (!isI1InSquare && IS_IN_SQUARE(--i1, j))
-				foundI1 = true;
-			// this row will have obstructions, or we will have stopped earlier
-			ENSURE(i1 >= i0 && i1 <= iMax);
+			Span span = { spanI0, spanI1, j };
+			spans.push_back(span);
 		}
-
-		spans.emplace_back(Span{ (i16)(offsetX + i0), (i16)(offsetX + i1), (i16)(offsetZ + j) });
-		// add symmetrical row from j == 1 onwards
-		if (j > 0)
-			spans.emplace_back(Span{ (i16)(offsetX - i1), (i16)(offsetX - i0), (i16)(offsetZ - j) });
 	}
-
-	// ensure that the entire bound was found
-	ENSURE(finished);
-#undef IS_IN_SQUARE
 }
