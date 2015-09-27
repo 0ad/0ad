@@ -3548,7 +3548,14 @@ UnitAI.prototype.FinishOrder = function()
 	}
 	else
 	{
-		this.SetNextState("IDLE");
+		// We must switch to the idle state immediately (and not do a simple SetNextState)
+		// otherwise we may be in a weird state if a ProcessMessage is triggered (by a MoveStarted
+		// or MoveCompleted) when starting a new order and before we have set our new state.
+		let index = this.GetCurrentState().indexOf(".");
+		if (index != -1)
+			this.UnitFsm.SwitchToNextState(this, this.GetCurrentState().slice(0,index+1) + "IDLE");
+		else
+			this.SetNextState("IDLE");	// should never happen
 
 		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
