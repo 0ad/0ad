@@ -676,4 +676,21 @@ Attack.prototype.MissileHit = function(data, lateness)
 	}
 };
 
+Attack.prototype.OnValueModification = function(msg)
+{
+	if (msg.component != "Attack")
+		return;
+
+	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	if (!cmpUnitAI)
+		return;
+
+	for (var type of this.GetAttackTypes())
+		if (msg.valueNames.indexOf("Attack/"+type+"/MaxRange") !== -1)
+		{
+			cmpUnitAI.UpdateRangeQueries();
+			return;
+		}
+};
+
 Engine.RegisterComponentType(IID_Attack, "Attack", Attack);

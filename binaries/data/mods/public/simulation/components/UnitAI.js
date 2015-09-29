@@ -2036,13 +2036,15 @@ UnitAI.prototype.UnitFsmSpec = {
 							// It's probably better in this case, to avoid units getting stuck around a dropsite
 							// in a "Target is far away, full, nearby are no good resources, return to dropsite" loop
 							// to order it to GatherNear the resource position.
-							var cmpPosition = Engine.QueryInterface(this.gatheringTarget, IID_Position);
+							var cmpPosition = Engine.QueryInterface(oldTarget, IID_Position);
 							if (cmpPosition)
 							{
 								var pos = cmpPosition.GetPosition();
 								this.GatherNearPosition(pos.x, pos.z, oldType, oldTemplate);
 								return true;
-							} else {
+							}
+							else
+							{
 								// we're kind of stuck here. Return resource.
 								var nearby = this.FindNearestDropsite(oldType.generic);
 								if (nearby)
@@ -2340,7 +2342,10 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// If hunting, try to go to the initial herd position to see if we are more lucky
 					if (herdPos)
+					{
 						this.GatherNearPosition(herdPos.x, herdPos.z, resourceType, resourceTemplate);
+						return;
+					}
 
 					// Nothing else to gather - if we're carrying anything then we should
 					// drop it off, and if not then we might as well head to the dropsite
@@ -3391,10 +3396,20 @@ UnitAI.prototype.SetupRangeQueries = function()
 		this.SetupHealRangeQuery();
 };
 
+UnitAI.prototype.UpdateRangeQueries = function()
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (this.losRangeQuery)
+		this.SetupRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losRangeQuery));
+ 
+	if (this.IsHealer() && this.losHealRangeQuery)
+		this.SetupHealRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losHealRangeQuery));
+};
+
 // Set up a range query for all enemy and gaia units within LOS range
 // which can be attacked.
 // This should be called whenever our ownership changes.
-UnitAI.prototype.SetupRangeQuery = function()
+UnitAI.prototype.SetupRangeQuery = function(enable = true)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
@@ -3424,13 +3439,14 @@ UnitAI.prototype.SetupRangeQuery = function()
 
 	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
 
-	cmpRangeManager.EnableActiveQuery(this.losRangeQuery);
+	if (enable)
+		cmpRangeManager.EnableActiveQuery(this.losRangeQuery);
 };
 
 // Set up a range query for all own or ally units within LOS range
 // which can be healed.
 // This should be called whenever our ownership changes.
-UnitAI.prototype.SetupHealRangeQuery = function()
+UnitAI.prototype.SetupHealRangeQuery = function(enable = true)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
@@ -3458,7 +3474,9 @@ UnitAI.prototype.SetupHealRangeQuery = function()
 	var range = this.GetQueryRange(IID_Heal);
 
 	this.losHealRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, cmpRangeManager.GetEntityFlagMask("injured"));
-	cmpRangeManager.EnableActiveQuery(this.losHealRangeQuery);
+
+	if (enable)
+		cmpRangeManager.EnableActiveQuery(this.losHealRangeQuery);
 };
 
 
@@ -3530,7 +3548,14 @@ UnitAI.prototype.FinishOrder = function()
 	}
 	else
 	{
-		this.SetNextState("IDLE");
+		// We must switch to the idle state immediately (and not do a simple SetNextState)
+		// otherwise we may be in a weird state if a ProcessMessage is triggered (by a MoveStarted
+		// or MoveCompleted) when starting a new order and before we have set our new state.
+		let index = this.GetCurrentState().indexOf(".");
+		if (index != -1)
+			this.UnitFsm.SwitchToNextState(this, this.GetCurrentState().slice(0,index+1) + "IDLE");
+		else
+			this.SetNextState("IDLE");	// should never happen
 
 		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 

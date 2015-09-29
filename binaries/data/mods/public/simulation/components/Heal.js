@@ -92,4 +92,19 @@ Heal.prototype.PerformHeal = function(target)
 //	PlaySound("heal_impact", this.entity);
 };
 
+Heal.prototype.OnValueModification = function(msg)
+{
+	if (msg.component != "Heal")
+		return;
+
+	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	if (!cmpUnitAI)
+		return;
+
+	if (msg.valueNames.indexOf("Heal/Range") === -1)
+		return;
+
+	cmpUnitAI.UpdateRangeQueries();
+};
+
 Engine.RegisterComponentType(IID_Heal, "Heal", Heal);
