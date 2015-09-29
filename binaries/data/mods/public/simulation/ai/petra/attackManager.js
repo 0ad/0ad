@@ -67,17 +67,16 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 			{
 				if (attack.state === "completing")
 				{
-					if (attack.targetPlayer && attack.targetPlayer === targetPlayer)
+					if (attack.targetPlayer === targetPlayer)
 						available += attack.unitCollection.length;
-					else if (attack.targetPlayer && attack.targetPlayer !== targetPlayer)
+					else if (attack.targetPlayer !== undefined && attack.targetPlayer !== targetPlayer)
 						other = attack.targetPlayer;
 					continue;
 				}
 
-				if (!attack.targetPlayer || attack.targetPlayer !== targetPlayer)
-					attack.targetPlayer = targetPlayer;
+				attack.targetPlayer = targetPlayer;
 
-				if (attack.targetPlayer && attack.targetPlayer === targetPlayer)
+				if (attack.unitCollection.length > 2)
 					available += attack.unitCollection.length;
 			}
 		}
@@ -88,18 +87,19 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 			{
 				for (let attack of this.upcomingAttacks[attackType])
 				{
-					if (attack.state !== "completing" && attack.targetPlayer && attack.targetPlayer === targetPlayer)
-					{
-						attack.forceStart();
-						attack.requested = true;
-					}
+					if (attack.state === "completing"
+						|| attack.targetPlayer !== targetPlayer
+						|| attack.unitCollection.length < 3)
+						continue;
+					attack.forceStart();
+					attack.requested = true;
 				}
 			}
 			answer = true;
 		}
 		break;  // take only the first attack request into account
 	}
-	if (targetPlayer)
+	if (targetPlayer !== undefined)
 		m.chatAnswerRequestAttack(gameState, targetPlayer, answer, other);
 };
 
@@ -336,6 +336,8 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 		var wonders = gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder"));
 		for (let wonder of wonders.values())
 		{
+			if (wonder.owner() === 0)
+				continue;
 			let progress = wonder.foundationProgress();
 			if (progress === undefined)
 				return wonder.owner();

@@ -355,7 +355,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 	if (this.state === "completing")
 	{
 		// if our target was destroyed, go back to "unexecuted" state
-		if (!this.targetPlayer || !this.target || !gameState.getEntityById(this.target.id()))
+		if (this.targetPlayer === undefined || !this.target || !gameState.getEntityById(this.target.id()))
 		{
 			this.state = "unexecuted";
 			this.target = undefined;
@@ -712,10 +712,10 @@ m.AttackPlan.prototype.reassignCavUnit = function(gameState)
 
 m.AttackPlan.prototype.chooseTarget = function(gameState)
 {
-	if (!this.targetPlayer)
+	if (this.targetPlayer === undefined)
 	{
 		this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
-		if (!this.targetPlayer)
+		if (this.targetPlayer === undefined)
 			return false;
 	}
 
@@ -971,7 +971,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 		API3.warn("start attack " + this.name + " with type " + this.type);
 
 	// if our target was destroyed during preparation, choose a new one
-	if (!this.targetPlayer || !this.target || !gameState.getEntityById(this.target.id()))
+	if (this.targetPlayer === undefined || !this.target || !gameState.getEntityById(this.target.id()))
 	{
 		if (!this.chooseTarget(gameState))
 			return false;
@@ -1093,7 +1093,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var attacker = gameState.getEntityById(evt.attacker);
 			var ourUnit = gameState.getEntityById(evt.target);
 
-			if (attacker && (attacker.owner() != 0 || this.targetPlayer == 0))
+			if (attacker && (attacker.owner() !== 0 || this.targetPlayer === 0))
 			{
 				attackedNB++;
 				if (attacker.hasClass("Unit"))
@@ -1229,10 +1229,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 		}
 		// Then update the target if needed:
-	    	if (!this.targetPlayer)
+	    	if (this.targetPlayer === undefined)
 		{
 			this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
-			if (!this.targetPlayer)
+			if (this.targetPlayer === undefined)
 			{
 				Engine.ProfileStop();
 				return false;
@@ -1724,7 +1724,7 @@ m.AttackPlan.prototype.checkEvents = function(gameState, events)
 
 	for (let evt of events["PlayerDefeated"])
 	{
-		if (!this.targetPlayer || this.targetPlayer != evt.playerId)
+		if (this.targetPlayer !== evt.playerId)
 			continue;
 		this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
 		this.target = undefined;
