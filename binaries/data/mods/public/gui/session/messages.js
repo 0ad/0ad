@@ -348,6 +348,7 @@ function submitChatDirectly(text)
 
 function submitChatInput()
 {
+	var teamChat = Engine.GetGUIObjectByName("toggleTeamChat").checked;
 	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = input.caption;
 
@@ -365,13 +366,10 @@ function submitChatInput()
 	if (g_IsObserver && text.indexOf("/") == 0 && text.indexOf("/me ") != 0)
 		return;
 
-	if (Engine.GetGUIObjectByName("toggleTeamChat").checked)
+	if (teamChat)
 		text = "/team " + text;
 
-	if (g_IsNetworked)
-		Engine.SendNetworkChat(text);
-	else
-		addChatMessage({ "type": "message", "guid": "local", "text": text });
+	submitChatDirectly(text);
 }
 
 function addChatMessage(msg)
