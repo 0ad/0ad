@@ -236,7 +236,11 @@ void* CNetServerWorker::SetupUPnP(void*)
 		ret = 1;
 	}
 	// No cached URL, or it did not respond. Try getting a valid UPnP device for 10 seconds.
+#if defined(MINIUPNPC_API_VERSION) && MINIUPNPC_API_VERSION >= 14
+	else if ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 2, 0)) != NULL)
+#else
 	else if ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 0)) != NULL)
+#endif
 	{
 		ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress));
 		allocatedUrls = ret != 0; // urls is allocated on non-zero return values
