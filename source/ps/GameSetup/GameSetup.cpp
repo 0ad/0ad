@@ -884,7 +884,7 @@ bool Autostart(const CmdLineArgs& args);
 /**
  * Returns true if the user has intended to start a visual replay from command line.
  */
-bool AutostartVisualReplay(const std::string replayFile);
+bool AutostartVisualReplay(const std::string& replayFile);
 
 bool Init(const CmdLineArgs& args, int flags)
 {
@@ -1473,7 +1473,7 @@ bool Autostart(const CmdLineArgs& args)
 	return true;
 }
 
-bool AutostartVisualReplay(const std::string replayFile)
+bool AutostartVisualReplay(const std::string& replayFile)
 {
 	if (!FileExists(OsPath(replayFile)))
 		return false;
