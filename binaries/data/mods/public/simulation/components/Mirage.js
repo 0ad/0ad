@@ -91,7 +91,7 @@ Mirage.prototype.IsUnhealable = function() { return this.unhealable; };
 Mirage.prototype.CopyCapturable = function(cmpCapturable)
 {
 	this.miragedIids.add(IID_Capturable);
-	this.capturePoints = cmpCapturable.GetCapturePoints();
+	this.capturePoints = clone(cmpCapturable.GetCapturePoints());
 	this.maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
 };
 
