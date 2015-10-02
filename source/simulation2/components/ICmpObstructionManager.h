@@ -204,21 +204,11 @@ public:
 		std::vector<entity_id_t>* out) = 0;
 
 	/**
-	 * Bit-flags for Rasterize.
-	 */
-	enum TileObstruction
-	{
-		TILE_OBSTRUCTED_PATHFINDING = (1 << 0), // set if the tile pathfinder should consider this tile blocked
-		TILE_OBSTRUCTED_FOUNDATION = (1 << 1), // set if the AI foundation placement algorithm should consider this tile blocked
-		TILE_OUTOFBOUNDS = (1 << 2) // set if this tile is outside the world boundaries
-	};
-
-	/**
 	 * Convert the current set of shapes onto a navcell grid, for all passability classes contained in @p passClasses.
 	 * If @p fullUpdate is false, the function will only go through dirty shapes.
 	 * Shapes are expanded by the @p passClasses clearances, by ORing their masks onto the @p grid.
 	 */
-	virtual void Rasterize(Grid<u16>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate) = 0;
+	virtual void Rasterize(Grid<NavcellData>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate) = 0;
 
 	/**
 	 * Gets dirtiness information and resets it afterwards. Then it's the role of CCmpPathfinder

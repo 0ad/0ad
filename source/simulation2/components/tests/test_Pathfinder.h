@@ -192,8 +192,8 @@ public:
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(sim2, SYSTEM_ENTITY);
 		CmpPtr<ICmpPathfinder> cmpPathfinder(sim2, SYSTEM_ENTITY);
 
-		pass_class_t obstructionsMask = cmpPathfinder->GetPassabilityClass("default") | ICmpObstructionManager::TILE_OBSTRUCTED_PATHFINDING;
-		const Grid<u16>& obstructions = cmpPathfinder->GetPassabilityGrid();
+		pass_class_t obstructionsMask = cmpPathfinder->GetPassabilityClass("default");
+		const Grid<NavcellData>& obstructions = cmpPathfinder->GetPassabilityGrid();
 
 		int scale = 1;
 		stream << "<!DOCTYPE html>\n";
@@ -247,8 +247,8 @@ public:
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(sim2, SYSTEM_ENTITY);
 		CmpPtr<ICmpPathfinder> cmpPathfinder(sim2, SYSTEM_ENTITY);
 
-		pass_class_t obstructionsMask = cmpPathfinder->GetPassabilityClass("default") | ICmpObstructionManager::TILE_OBSTRUCTED_PATHFINDING;
-		const Grid<u16>& obstructions = cmpPathfinder->GetPassabilityGrid();
+		pass_class_t obstructionsMask = cmpPathfinder->GetPassabilityClass("default");
+		const Grid<NavcellData>& obstructions = cmpPathfinder->GetPassabilityGrid();
 
 		int scale = 31;
 		stream << "<!DOCTYPE html>\n";
