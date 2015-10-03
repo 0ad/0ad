@@ -529,9 +529,14 @@ void CCmpPathfinder::UpdateGrid()
 	else
 		m_LongPathfinder.Update(m_Grid, m_ObstructionsDirty.dirtinessGrid);
 
-	// Notify the units that their current paths can be invalid now
-	CMessagePassabilityMapChanged msg;
-	GetSimContext().GetComponentManager().BroadcastMessage(msg);
+	// Notify the units that their current paths can be invalid now.
+	// The passability map will be globally dirty after init, or rejoining, loading a saved game, etc.
+	// In those situations the paths can't be invalid.
+	if (!m_ObstructionsDirty.globallyDirty)
+	{
+		CMessagePassabilityMapChanged msg;
+		GetSimContext().GetComponentManager().BroadcastMessage(msg);
+	}
 }
 
 void CCmpPathfinder::MinimalTerrainUpdate()
