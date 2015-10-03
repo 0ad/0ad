@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Francesc <kiski97@gmail.com>, 2015
 # Gerard Trias <gtriasg@gmail.com>, 2015
 # gillemp <guplem@gmail.com>, 2015
 # Peredelgrau, 2014
@@ -10,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:15+0200\n"
-"PO-Revision-Date: 2015-09-19 09:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-28 09:24+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,22 +73,37 @@ msgstr "S'està obrint la pàgina"
 msgid "FPS: %(fps)4s"
 msgstr "Fotogrames per segon: %(fps)4s"
 
-#: gui/common/functions_global_object.js:103
+#. Translation: The "x" means "times", with the mathematical meaning of
+#. multiplication.
+#: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/common/functions_global_object.js:120
+#: gui/common/functions_global_object.js:119
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Temps que queda fins al final de l'alto el foc: %(time)s."
 
-#: gui/common/functions_utility.js:159
+#: gui/common/functions_utility.js:142
+msgctxt "map size"
+msgid "Default"
+msgstr "Per defecte"
+
+#: gui/common/functions_utility.js:152
+msgid "A randomly selected map."
+msgstr "Un mapa seleccionat a l'atzar."
+
+#: gui/common/functions_utility.js:161
+msgid "Sorry, no description available."
+msgstr "No hi ha cap descripció disponible."
+
+#: gui/common/functions_utility.js:205
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:207
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -310,11 +326,11 @@ msgstr "La versió del protocol de xarxa és incorrecta"
 
 #: gui/common/network.js:9
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "La partida està carregant, torneu-ho a provar més tard"
 
 #: gui/common/network.js:10
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "La partida ja ha començat, no es permeten observadors"
 
 #: gui/common/network.js:11
 #, javascript-format
@@ -334,74 +350,80 @@ msgstr "Motiu: %(reason)s."
 msgid "Disconnected"
 msgstr "Desconnectat"
 
-#: gui/common/settings.js:95
+#: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Proves"
 
-#: gui/common/settings.js:99
+#: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Molt fàcil"
 
-#: gui/common/settings.js:103
+#: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Fàcil"
 
-#: gui/common/settings.js:107
+#: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Mitjà"
 
-#: gui/common/settings.js:112
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Difícil"
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Molt difícil"
 
-#: gui/common/settings.js:139
+#: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Sense alto el foc"
 
-#: gui/common/settings.js:140
+#: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minut"
+msgstr[1] "%(minutes)s minuts"
 
-#: gui/common/settings.js:154
+#: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Escaramussa"
 
-#: gui/common/settings.js:159
+#: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Aleatori"
 
-#: gui/common/settings.js:163 gui/summary/summary.js:136
+#: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
 msgstr "Escenari"
 
-#: gui/common/settings.js:194
+#: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Cap"
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Partida sense fi"
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:231
 msgid "Unlimited"
-msgstr ""
+msgstr "Il·limitat"
+
+#: gui/common/settings.js:279 gui/common/settings.js:290
+#: gui/common/settings.js:301 gui/common/settings.js:312
+#: gui/common/settings.js:323
+msgid "Unknown"
+msgstr "Desconegut"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -1448,17 +1470,17 @@ msgstr "Els informes anònims de millora estan activats."
 msgid "Status: $status."
 msgstr "Estat: $status."
 
-#: gui/pregame/mainmenu.xml:521
-msgid "Alpha XVIII: Rhododactylos"
-msgstr "Alfa XVIII: Rhododactylos"
+#: gui/pregame/mainmenu.xml:535
+msgid "Alpha XIX: Syllepsis"
+msgstr "Alfa XIX: Syllepsis"
 
-#: gui/pregame/mainmenu.xml:523
+#: gui/pregame/mainmenu.xml:537
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ADVERTÈNCIA: Això és una versió de desenvolupament primerenca del joc. Moltes de les funcions encara no s'han afegit."
 
-#: gui/pregame/mainmenu.xml:525
+#: gui/pregame/mainmenu.xml:539
 msgid "Get involved at: play0ad.com"
 msgstr "Si voleu participar, play0ad.com"
 
@@ -1509,54 +1531,58 @@ msgid "Options"
 msgstr "Opcions"
 
 #: gui/pregame/mainmenu.xml:(caption):355
+msgid "Replays"
+msgstr "Repeticions"
+
+#: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
 msgstr "Editor d'escenaris"
 
-#: gui/pregame/mainmenu.xml:(caption):368
+#: gui/pregame/mainmenu.xml:(caption):382
 msgid "Welcome Screen"
 msgstr "Pantalla de benvinguda"
 
-#: gui/pregame/mainmenu.xml:(caption):383
+#: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
 msgstr "Selecció de mods"
 
-#: gui/pregame/mainmenu.xml:(caption):438
+#: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
 msgstr "Apreneu a jugar"
 
-#: gui/pregame/mainmenu.xml:(caption):453
+#: gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
 msgstr "Un sol jugador"
 
-#: gui/pregame/mainmenu.xml:(caption):468
+#: gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
 msgstr "Multijugador"
 
-#: gui/pregame/mainmenu.xml:(caption):483
+#: gui/pregame/mainmenu.xml:(caption):497
 msgid "Tools & Options"
 msgstr "Eines i opcions"
 
-#: gui/pregame/mainmenu.xml:(caption):498
+#: gui/pregame/mainmenu.xml:(caption):512
 msgid "Exit"
 msgstr "Surt"
 
-#: gui/pregame/mainmenu.xml:(caption):535
+#: gui/pregame/mainmenu.xml:(caption):549
 msgid "Help with the Translation!"
 msgstr "Ajudeu amb la traducció!"
 
-#: gui/pregame/mainmenu.xml:(caption):547
+#: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"
 msgstr "Lloc web"
 
-#: gui/pregame/mainmenu.xml:(caption):559
+#: gui/pregame/mainmenu.xml:(caption):573
 msgid "Chat"
 msgstr "Xat"
 
-#: gui/pregame/mainmenu.xml:(caption):571
+#: gui/pregame/mainmenu.xml:(caption):585
 msgid "Report a Bug"
 msgstr "Informa d'errors"
 
-#: gui/pregame/mainmenu.xml:(caption):600
+#: gui/pregame/mainmenu.xml:(caption):614
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1607,56 +1633,60 @@ msgid "Choose the language of the game."
 msgstr "Tria l'idioma del joc."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
+msgid "Playback previous games."
+msgstr "Reprodueix partides anteriors."
+
+#: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Obre l'Editor d'escenaris Atlas en una nova finestra. Podeu executar-lo de manera més fiable iniciant el joc amb l'argument de línia d'ordres \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):369
+#: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Mostra la pantalla de benvinguda. Útil si l'heu desactivat per error."
 
-#: gui/pregame/mainmenu.xml:(tooltip):384
+#: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
 msgstr "Seleccioneu quins mods voleu utilitzar."
 
-#: gui/pregame/mainmenu.xml:(tooltip):439
+#: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr "Aprengueu a jugar, descobriu els arbres de tecnologies i la història de les civilitzacions"
 
-#: gui/pregame/mainmenu.xml:(tooltip):454
+#: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
 msgstr "Desafia l'ordinador a una partida d'un sol jugador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):469
+#: gui/pregame/mainmenu.xml:(tooltip):483
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Lluita contra un o més jugadors humans en una partida multijugador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):484
+#: gui/pregame/mainmenu.xml:(tooltip):498
 msgid "Game options and scenario design tools."
 msgstr "Opcions del joc i eines de disseny d'escenaris."
 
-#: gui/pregame/mainmenu.xml:(tooltip):499
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
 msgstr "Surt del joc."
 
-#: gui/pregame/mainmenu.xml:(tooltip):536
+#: gui/pregame/mainmenu.xml:(tooltip):550
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Feu clic per obrir la pàgina de traducció del 0 A.D. al vostre navegador."
 
-#: gui/pregame/mainmenu.xml:(tooltip):548
+#: gui/pregame/mainmenu.xml:(tooltip):562
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Feu clic per obrir play0ad.com en el vostre navegador web."
 
-#: gui/pregame/mainmenu.xml:(tooltip):560
+#: gui/pregame/mainmenu.xml:(tooltip):574
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Feu clic per obrir el xat IRC del 0 A.D. al vostre navegador web. (#0ad a webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):572
+#: gui/pregame/mainmenu.xml:(tooltip):586
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Feu clic per visitar el Trac del 0 A.D. per informar d'un error o problema."
 
@@ -1743,13 +1773,13 @@ msgstr "[imgleft=\"constructionIcon\"]Aquest joc encara està en desenvolupament
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]El joc pot tenir problemes de rendiment, sobretot amb mapes grans i moltes unitats."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Aquesta versió presenta un nou buscador de camins amb millor rendiment, però pot ser objecte de nous errors."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
@@ -2100,7 +2130,7 @@ msgstr "- Lents i amb armadura pesada. Atac feble."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "- Útils per impedir el moviment de la cavalleria o la infanteria cos a cos."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2214,7 +2244,7 @@ msgstr "STOÀ"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- Una estructura inicial especial de les faccions gregues."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2222,7 +2252,7 @@ msgstr "- Concedeix +10 al límit de població."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "- Només està present en alguns mapes."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."

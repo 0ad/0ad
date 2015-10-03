@@ -8,6 +8,8 @@
 # Leonard König <leonard.r.koenig@gmail.com>, 2014-2015
 # leper <leper@wildfiregames.com>, 2014-2015
 # MartinusMagnus <martinkleemann@web.de>, 2014
+# Meinrad Müller <meinradmueller@hotmail.com>, 2015
+# Nicklas Wiegandt <nicklas@wiegandt.net>, 2015
 # Raymond Vetter, 2014
 # Raymond Vetter, 2014
 # richyguitar <richyguitargod@gmail.com>, 2014
@@ -19,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:42+0200\n"
-"PO-Revision-Date: 2015-08-25 12:33+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-10-01 12:57+0000\n"
+"Last-Translator: Meinrad Müller <meinradmueller@hotmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,16 +39,16 @@ msgstr "Ziviles Bauwerk"
 msgid "Civic"
 msgstr "Zivil"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Civic Center"
 msgstr "Verwaltungssitz"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:70
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Bauen, um große Teile Land zu beanspruchen. Bilde Bürger aus. Einquartieren: 20."
+msgstr "Baue, um dein Gebiet zu vergrössern. Trainiere Dorfbewohner. Garnison: 20"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:74
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Verwaltungssitz"
@@ -77,7 +79,7 @@ msgstr "Heilende Aura"
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Heilt Einheiten in der Nähe mit 1 Trefferpunkt pro Sekunde."
+msgstr "Heilt Einheiten in der Nähe um 1 Trefferpunkt pro Sekunde."
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 msgid ""
@@ -105,7 +107,7 @@ msgid "Defensive Structure"
 msgstr "Verteidigungsbauwerk"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "Defensive"
 msgstr "Defensiv"
 
@@ -115,7 +117,7 @@ msgstr "Wehrturm"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr "Verschießt Pfeile. Quartiere Einheiten für zusätzliche Verteidigung ein."
+msgstr "Verschießt Pfeile. Quartiere Einheiten zur verstärkung der Verteidigung ein."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
@@ -126,7 +128,7 @@ msgstr "Verteidigungsturm"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "In neutralem oder eigenem Territorium bauen, um Bereiche der Karte auszukundschaften. Wird langsam wieder zu Gaia, während es im neutralen Territoritum liegt."
+msgstr "In neutralem oder eigenem Territorium bauen, um Bereiche der Karte auszukundschaften. Verliert langsam an Leben, während er auf neutralem Gebiet steht."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -140,7 +142,7 @@ msgstr "Steinwall"
 #: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Ummauere deine Stadt für eine bessere Verteidigung."
+msgstr "Ummauere deine Stadt um die Verteidigung zu verbessern."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
@@ -149,7 +151,7 @@ msgstr "Stadttor"
 #: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Ermöglicht Einheiten Zugang durch eine Stadtmauer. Kann verriegelt werden um Zugang zu verhindern."
+msgstr "Ermöglicht Einheiten Den Durchgang durch eine Stadtmauer. Kann verriegelt werden um den Zugang zu verhindern."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
@@ -159,7 +161,7 @@ msgstr "Mauerschutz"
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr "Einheiten auf Mauern haben zusätzliche 3 Rüstungs-Level"
+msgstr "Einheiten auf Mauern haben 3 zusätzliche Rüstungslevel."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -193,11 +195,11 @@ msgstr "Wirtschaftsbauwerk"
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr "Ökonomisch"
+msgstr "Wirtschaftlich"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Lager für Nahrung. Erforsche Verbesserungen für die Sammelrate von Nahrung."
+msgstr "Nahrungsablage. Erforsche Verbesserungen zur Nahrungssammelrate."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
@@ -280,19 +282,19 @@ msgstr "Hafen"
 msgid "Embassy"
 msgstr "Botschaft"
 
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:59
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Bilde Helden und Gardisten aus und baue Belagerungswaffen. Erforsche Verbesserungen für Belagerungswaffen. Einquartieren: 20."
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "City"
 msgstr "Großstadt"
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 #: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:58
 msgid "Fortress"
 msgstr "Festung"
 
@@ -333,11 +335,11 @@ msgstr "Spezialgebäude"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Dieses Spezialgebäude ist einzigartig für jede Zivilisation."
 
-#: simulation/templates/template_structure_wonder.xml:38
+#: simulation/templates/template_structure_wonder.xml:39
 msgid "Wonder"
 msgstr "Wunder"
 
-#: simulation/templates/template_structure_wonder.xml:39
+#: simulation/templates/template_structure_wonder.xml:40
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -1375,15 +1377,15 @@ msgstr "Tempel von Edfu"
 msgid "Triumphal Arch"
 msgstr "Triumphbogen"
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:58
 msgid "Entrenched Army Camp"
 msgstr "Verschanztes Armeelager"
 
-#: simulation/templates/structures/rome_army_camp.xml:60
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Castrum Vallum"
 msgstr "Castrum Vallum"
 
-#: simulation/templates/structures/rome_army_camp.xml:65
+#: simulation/templates/structures/rome_army_camp.xml:64
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."

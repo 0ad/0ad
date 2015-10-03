@@ -53,8 +53,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:14+0200\n"
-"PO-Revision-Date: 2015-09-19 16:18+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-25 16:18+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -90,12 +90,12 @@ msgid "Resume"
 msgstr "Fortsetzen"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nein"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ja"
 
@@ -535,7 +535,7 @@ msgid "Hitpoints:"
 msgstr "Trefferpunkte:"
 
 #: gui/session/selection_details.js:326 gui/session/selection_details.js:356
-#: gui/session/session.js:635
+#: gui/session/session.js:644
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -621,7 +621,7 @@ msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Übrig: %(number)s zu bauen."
 msgstr[1] "Übrig: %(number)s zu bauen."
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:634
+#: gui/session/selection_panels.js:1095 gui/session/session.js:643
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Gesundheit:"
@@ -695,97 +695,97 @@ msgstr "%(action)s um %(number)s auszubilden."
 msgid "You"
 msgstr "Du"
 
-#: gui/session/session.js:169
+#: gui/session/session.js:172
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:241
+#: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s – Strukturbaum"
 
-#: gui/session/session.js:315 gui/session/session.js:331
+#: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
 msgstr "Du hast das Spiel verlassen."
 
-#: gui/session/session.js:322
+#: gui/session/session.js:325
 msgid "You have been disconnected."
 msgstr "Du wurdest getrennt."
 
-#: gui/session/session.js:324
+#: gui/session/session.js:327
 msgid "You have won the battle!"
 msgstr "Du hast die Schlacht gewonnen!"
 
-#: gui/session/session.js:326
+#: gui/session/session.js:329
 msgid "You have been defeated..."
 msgstr "Du wurdest besiegt..."
 
-#: gui/session/session.js:334
+#: gui/session/session.js:337
 msgid "You have abandoned the game."
 msgstr "Du hast das Spiel verlassen."
 
-#: gui/session/session.js:479
+#: gui/session/session.js:488
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:481
+#: gui/session/session.js:490
 msgid "Press OK to continue"
 msgstr "Drücke OK, um fortzufahren"
 
-#: gui/session/session.js:487
+#: gui/session/session.js:496
 msgid "Do you want to quit?"
 msgstr "Willst du das Spiel verlassen?"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:502
 msgid "DEFEATED!"
 msgstr "BESIEGT!"
 
-#: gui/session/session.js:501
+#: gui/session/session.js:510
 msgid "VICTORIOUS!"
 msgstr "SIEGREICH!"
 
-#: gui/session/session.js:560
+#: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/session/session.js:560
+#: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nein"
 
-#: gui/session/session.js:562
+#: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Die Wiederholung wurde beendet. Willst du das Spiel verlassen?"
 
-#: gui/session/session.js:562
+#: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Bestätigung"
 
-#: gui/session/session.js:723
+#: gui/session/session.js:732
 msgid "Population (current / limit)"
 msgstr "Bevölkerung (Aktuell / Limit)"
 
-#: gui/session/session.js:724
+#: gui/session/session.js:733
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximale Bevölkerung: %(popCap)s"
 
-#: gui/session/session.js:887
+#: gui/session/session.js:896
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:892
+#: gui/session/session.js:901
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Anmerkung: Der Zeitreisemodus ist eine Entwickleroption und nicht für längere Zeiträume gedacht. Wenn dieser Modus falsch genutzt wird, kann dem Spiel der Speicher ausgehen oder es kann abstürzen."
 
-#: gui/session/session.js:892
+#: gui/session/session.js:901
 msgid "Time warp mode"
 msgstr "Zeitreisemodus"
 
@@ -1100,8 +1100,8 @@ msgid "Menu"
 msgstr "Menü"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XVIII : Rhododactylos"
-msgstr "ALPHA XVIII : Rhododactylos"
+msgid "ALPHA XIX : Syllepsis"
+msgstr "ALPHA XIX : Syllepsis"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

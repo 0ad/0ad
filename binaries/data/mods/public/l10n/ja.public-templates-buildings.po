@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:42+0200\n"
-"PO-Revision-Date: 2015-08-26 14:55+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-23 06:47+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -28,16 +28,16 @@ msgstr "民生施設"
 msgid "Civic"
 msgstr "民生"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Civic Center"
 msgstr "町の中心"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:70
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "広い領土を獲得するために建設します。市民を養成します。駐屯定員：20。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:74
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "町の中心"
@@ -96,7 +96,7 @@ msgid "Defensive Structure"
 msgstr "防衛施設"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "Defensive"
 msgstr "防衛優先"
 
@@ -271,19 +271,19 @@ msgstr "港"
 msgid "Embassy"
 msgstr "大使館"
 
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:59
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "英雄、チャンピオンの養成と攻城兵器の建造をします。攻城兵器の改良を研究します。駐屯定員：20。"
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "City"
 msgstr "都市"
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 #: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:58
 msgid "Fortress"
 msgstr "要塞"
 
@@ -324,11 +324,11 @@ msgstr "特有の建物"
 msgid "This is a special building unique to a particular civilization."
 msgstr "これは特定の文明に特有の建造物です。"
 
-#: simulation/templates/template_structure_wonder.xml:38
+#: simulation/templates/template_structure_wonder.xml:39
 msgid "Wonder"
 msgstr "象徴"
 
-#: simulation/templates/template_structure_wonder.xml:39
+#: simulation/templates/template_structure_wonder.xml:40
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -1366,15 +1366,15 @@ msgstr "Temple of Edfu"
 msgid "Triumphal Arch"
 msgstr "凱旋門"
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:58
 msgid "Entrenched Army Camp"
 msgstr "塹壕付き軍営"
 
-#: simulation/templates/structures/rome_army_camp.xml:60
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Castrum Vallum"
 msgstr "Castrum Vallum"
 
-#: simulation/templates/structures/rome_army_camp.xml:65
+#: simulation/templates/structures/rome_army_camp.xml:64
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1500,7 +1500,7 @@ msgstr "Aedes Vestae"
 msgid ""
 "Build this temple to greatly increase the loyalty of your buildings and "
 "female-citizens (helps prevent their capture)."
-msgstr "この建物を建てることで、自国の建物と女性市民の忠誠度が大幅に上昇します（奪取されにくくなります）。"
+msgstr "この建物を建てることで、自国の建物と女性市民の忠誠度が大幅に上昇します（占領されにくくなります）。"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"

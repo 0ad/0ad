@@ -9,18 +9,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-09 02:36+0100\n"
-"PO-Revision-Date: 2015-02-02 18:01+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-24 12:02+0000\n"
 "Last-Translator: GunChleoc\n"
-"Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
+"Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):94
-#: gui/modmod/modmod.xml:(heading):135
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):93
+#: gui/modmod/modmod.xml:(heading):134
 msgid "Name"
 msgstr "Ainm"
 
@@ -32,8 +32,8 @@ msgstr "Pasgan"
 msgid "Label"
 msgstr "Leubail"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):97
-#: gui/modmod/modmod.xml:(heading):138
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):96
+#: gui/modmod/modmod.xml:(heading):137
 msgid "Version"
 msgstr "Tionndadh"
 
@@ -49,94 +49,94 @@ msgstr "Criathrag"
 msgid "Message: Mods Loaded."
 msgstr "Teachdaireachd: Tuilleadain air an luchdadh."
 
-#: gui/modmod/modmod.js:372
+#: gui/modmod/modmod.js:371
 msgid "All dependencies met"
 msgstr "Chaidh gach eisimeileachd a choileanadh"
 
-#: gui/modmod/modmod.js:498
+#: gui/modmod/modmod.js:497
 msgid "No mod has been selected."
 msgstr "Cha deach tuilleadan a thaghadh."
 
-#: gui/modmod/modmod.xml:116
+#: gui/modmod/modmod.xml:115
 msgid "Description"
 msgstr "Tuairisgeul"
 
-#: gui/modmod/modmod.xml:(caption):10
+#: gui/modmod/modmod.xml:(caption):9
 msgid "Modifications"
 msgstr "Tuilleadain"
 
-#: gui/modmod/modmod.xml:(caption):18
+#: gui/modmod/modmod.xml:(caption):17
 msgid "Reset Filters"
 msgstr "Criathrag thùsail"
 
-#: gui/modmod/modmod.xml:(caption):52
+#: gui/modmod/modmod.xml:(caption):51
 msgid "Negate"
 msgstr "Àicheadh"
 
-#: gui/modmod/modmod.xml:(caption):59
+#: gui/modmod/modmod.xml:(caption):58
 msgid "Sorting:"
 msgstr "Seòrsachadh:"
 
-#: gui/modmod/modmod.xml:(caption):71
+#: gui/modmod/modmod.xml:(caption):70
 msgid "Descending."
 msgstr "A’ teàrnadh."
 
-#: gui/modmod/modmod.xml:(caption):87
+#: gui/modmod/modmod.xml:(caption):86
 msgid "Available Mods"
 msgstr "Tuilleadan ri làimh"
 
-#: gui/modmod/modmod.xml:(caption):119
+#: gui/modmod/modmod.xml:(caption):118
 msgid "Enable"
 msgstr "Cuir an comas"
 
-#: gui/modmod/modmod.xml:(caption):128
+#: gui/modmod/modmod.xml:(caption):127
 msgid "Enabled Mods"
 msgstr "Tuilleadan an comas"
 
-#: gui/modmod/modmod.xml:(caption):158
+#: gui/modmod/modmod.xml:(caption):157
 msgid "Up"
 msgstr "Suas"
 
-#: gui/modmod/modmod.xml:(caption):162
+#: gui/modmod/modmod.xml:(caption):161
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):166
+#: gui/modmod/modmod.xml:(caption):165
 msgid "Down"
 msgstr "Sìos"
 
-#: gui/modmod/modmod.xml:(caption):174
+#: gui/modmod/modmod.xml:(caption):173
 msgid "Quit"
 msgstr "Fàg an-seo"
 
-#: gui/modmod/modmod.xml:(caption):179
+#: gui/modmod/modmod.xml:(caption):178
 msgid "Cancel"
 msgstr "Sguir dheth"
 
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modmod/modmod.xml:(caption):183
 msgid "Save Configuration"
 msgstr "Sàbhail an rèiteachadh"
 
-#: gui/modmod/modmod.xml:(caption):189
+#: gui/modmod/modmod.xml:(caption):188
 msgid "Start Mods"
 msgstr "Tòisich na tuilleadain"
 
-#: gui/modmod/modmod.xml:(heading):100 gui/modmod/modmod.xml:(heading):141
+#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):140
 msgid "(Folder)"
 msgstr "(Pasgan)"
 
-#: gui/modmod/modmod.xml:(heading):103 gui/modmod/modmod.xml:(heading):144
+#: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
 msgid "Mod Label"
 msgstr "Leubail an tuilleadain"
 
-#: gui/modmod/modmod.xml:(heading):106 gui/modmod/modmod.xml:(heading):147
+#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
 msgid "Mod Type"
 msgstr "Seòrsa an tuilleadain"
 
-#: gui/modmod/modmod.xml:(heading):109 gui/modmod/modmod.xml:(heading):150
+#: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
 msgid "Dependencies"
 msgstr "Eisimeileachdan"
 
-#: gui/modmod/modmod.xml:(heading):112 gui/modmod/modmod.xml:(heading):153
+#: gui/modmod/modmod.xml:(heading):111 gui/modmod/modmod.xml:(heading):152
 msgid "Website"
 msgstr "Làrach-lìn"

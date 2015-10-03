@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-08-28 09:40+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:03+0200\n"
+"PO-Revision-Date: 2015-09-30 23:11+0000\n"
+"Last-Translator: bogdomania <mintoi.bogdan@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: maps/random/alpine_lakes.jsonsettings.Name
 msgid "Alpine Lakes"
-msgstr ""
+msgstr "Lacurile Alpine"
 
 #: maps/random/alpine_valley.jsonsettings.Description
 msgid "High Alpine mountains bordering deep valleys."
@@ -537,7 +537,7 @@ msgstr ""
 
 #: maps/scenarios/treasure_islands.js:54
 msgid "Hurry up! Your enemy is close to victory!"
-msgstr ""
+msgstr "Grăbește-te! Inamicul tău e aproape de victorie!"
 
 #: maps/scenarios/treasure_islands.js:65
 #, javascript-format
@@ -546,11 +546,11 @@ msgstr ""
 
 #: maps/scenarios/treasure_islands.js:73
 msgid "You have collected a treasure!"
-msgstr ""
+msgstr "Ai colecționat o comoară!"
 
 #: maps/scenarios/treasure_islands.js:85
 msgid "Defeat your enemy to win!"
-msgstr ""
+msgstr "Înfrânge-ți inamicul pentru a câștiga!"
 
 #: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
@@ -623,7 +623,7 @@ msgstr ""
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:41 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[0].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[0].Name:42 maps/skirmishes/Zagros Mountains
 #: (2).xml:PlayerData[0].Name:42
 msgid "Player 1"
@@ -691,7 +691,7 @@ msgstr "Jucător 1"
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:41 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[1].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[1].Name:42 maps/skirmishes/Zagros Mountains
 #: (2).xml:PlayerData[1].Name:42
 msgid "Player 2"
@@ -772,7 +772,7 @@ msgstr ""
 
 #: maps/scenarios/Azure Coast.xml:Name:41
 msgid "Azure Coast 1"
-msgstr ""
+msgstr "Coasta de azur 1"
 
 #: maps/scenarios/Battle for the Tiber.xml:Description:31
 msgid ""
@@ -923,7 +923,7 @@ msgstr ""
 #: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Team Oasis -
 #: 2v2.xml:PlayerData[2].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[2].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[2].Name:42
 msgid "Player 3"
 msgstr "Jucător 3"
@@ -975,7 +975,7 @@ msgstr ""
 #: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Team Oasis -
 #: 2v2.xml:PlayerData[3].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[3].Name:42
 msgid "Player 4"
 msgstr "Jucător 4"
@@ -1085,7 +1085,7 @@ msgstr ""
 #: maps/scenarios/Miletus.xml:PlayerData[0].Name:31
 #: maps/scenarios/Miletus.xml:Name:31
 msgid "Miletus"
-msgstr ""
+msgstr "Milet"
 
 #: maps/scenarios/Miletus.xml:PlayerData[1].Name:31 maps/scenarios/Sandbox -
 #: Ptolemies 2.xml:PlayerData[1].Name:41
@@ -1153,11 +1153,11 @@ msgstr ""
 
 #: maps/scenarios/Peloponnese.xml:PlayerData[4].Name:41
 msgid "Corinth"
-msgstr ""
+msgstr "Corint"
 
 #: maps/scenarios/Peloponnese.xml:Name:41
 msgid "Peloponnesian Wars"
-msgstr ""
+msgstr "Războaiele peloponeziene"
 
 #: maps/scenarios/Polynesia.xml:Description:42
 msgid "Demo map for new fancy water effects."
@@ -1165,11 +1165,11 @@ msgstr ""
 
 #: maps/scenarios/Polynesia.xml:PlayerData[0].Name:42
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: maps/scenarios/Polynesia.xml:PlayerData[1].Name:42
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: maps/scenarios/Polynesia.xml:Name:42
 msgid "Polynesia"
@@ -1557,14 +1557,14 @@ msgstr ""
 
 #: maps/scenarios/Units_demo.xml:Description:92
 msgid "Every unit in the game."
-msgstr ""
+msgstr "Fiecare unitate din joc."
 
 #: maps/scenarios/WallTest.xml:Description:31
 #: maps/scenarios/_default.xml:Description:32 maps/scenarios/temperate
 #: map.xml:Description:31 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:Description:41
 msgid "Give an interesting description of your map."
-msgstr ""
+msgstr "Oferă o descriere interesantă a hărții proprii."
 
 #: maps/scenarios/WallTest.xml:Name:31
 msgid "WallTest"
@@ -1580,7 +1580,7 @@ msgstr "Ziduri"
 
 #: maps/scenarios/We are Legion.xml:Name:31
 msgid "We Are Legion"
-msgstr ""
+msgstr "Noi suntem Legiune"
 
 #: maps/scenarios/We are Legion.xml:Description:31
 msgid "A quick battle demo map using Roman legionnaires."
@@ -1596,7 +1596,7 @@ msgstr ""
 
 #: maps/scenarios/reservoir.xml:Name:31
 msgid "Reservoir"
-msgstr ""
+msgstr "Rezervor"
 
 #: maps/scenarios/road demo.xml:Description:31
 msgid "Demo map showcasing Temperate Road decals."
@@ -1723,7 +1723,7 @@ msgstr ""
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:Name:42
 msgid "Corsica and Sardinia (4)"
-msgstr ""
+msgstr "Corsica și Sardinia (4)"
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:Description:42
 msgid "A \"small island\"-style map set in the Aegean Sea."
@@ -2069,14 +2069,14 @@ msgstr ""
 msgid "Thessalian Plains (4)"
 msgstr ""
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:Description:41
+#: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
 "Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr ""
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:Name:41
+#: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"
 msgstr ""
 

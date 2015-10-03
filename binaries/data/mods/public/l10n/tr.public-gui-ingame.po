@@ -22,14 +22,14 @@
 # volcanology <volkansag@hotmail.com>, 2014
 # Volkan Gezer <volkangezer@gmail.com>, 2014-2015
 # yakup <mutouk@yandex.ru>, 2014-2015
-# Yavuz <yavuzka@hotmail.com.tr>, 2014
+# Yavuz Karakişi <yavuzka@hotmail.com.tr>, 2014
 # Yunus Emre  Çakmak <yuney12345@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:14+0200\n"
-"PO-Revision-Date: 2015-09-21 16:10+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-24 09:07+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,12 +64,12 @@ msgid "Resume"
 msgstr "Devam ettir"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Hayır"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Evet"
 
@@ -368,7 +368,7 @@ msgstr "%(player)s size gönderdi %(amounts)s."
 #: gui/session/messages.js:496
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Hayvanların %(attacker)s tarafından saldırıya uğradı!"
 
 #: gui/session/messages.js:498
 #, javascript-format
@@ -509,7 +509,7 @@ msgid "Hitpoints:"
 msgstr "Vuruş puanları:"
 
 #: gui/session/selection_details.js:326 gui/session/selection_details.js:356
-#: gui/session/session.js:635
+#: gui/session/session.js:644
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -595,7 +595,7 @@ msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Kalan: %(number)s inşa."
 msgstr[1] "Kalan: %(number)s inşa."
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:634
+#: gui/session/selection_panels.js:1095 gui/session/session.js:643
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Sağlık:"
@@ -669,97 +669,97 @@ msgstr "%(number)s tane eğitmek için %(action)s."
 msgid "You"
 msgstr "Siz"
 
-#: gui/session/session.js:169
+#: gui/session/session.js:172
 msgid "Gaia"
 msgstr "Gaea"
 
-#: gui/session/session.js:241
+#: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Yapı Ağacı"
 
-#: gui/session/session.js:315 gui/session/session.js:331
+#: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
 msgstr "Oyundan ayrıldın."
 
-#: gui/session/session.js:322
+#: gui/session/session.js:325
 msgid "You have been disconnected."
 msgstr "Bağlantın kesildi."
 
-#: gui/session/session.js:324
+#: gui/session/session.js:327
 msgid "You have won the battle!"
 msgstr "Savaşı kazandın!"
 
-#: gui/session/session.js:326
+#: gui/session/session.js:329
 msgid "You have been defeated..."
 msgstr "Kaybettin..."
 
-#: gui/session/session.js:334
+#: gui/session/session.js:337
 msgid "You have abandoned the game."
 msgstr "Oyunu terk ettin."
 
-#: gui/session/session.js:479
+#: gui/session/session.js:488
 msgid "OK"
 msgstr "Tamam"
 
-#: gui/session/session.js:481
+#: gui/session/session.js:490
 msgid "Press OK to continue"
 msgstr "Devam etmek için Tamam'a bas"
 
-#: gui/session/session.js:487
+#: gui/session/session.js:496
 msgid "Do you want to quit?"
 msgstr "Çıkmak istiyor musun?"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:502
 msgid "DEFEATED!"
 msgstr "YENİLDİN!"
 
-#: gui/session/session.js:501
+#: gui/session/session.js:510
 msgid "VICTORIOUS!"
 msgstr "ZAFER!"
 
-#: gui/session/session.js:560
+#: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/session/session.js:560
+#: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Hayır"
 
-#: gui/session/session.js:562
+#: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Yeniden oynatma tamamladı. Çıkmak istiyor musunuz?"
 
-#: gui/session/session.js:562
+#: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Onay"
 
-#: gui/session/session.js:723
+#: gui/session/session.js:732
 msgid "Population (current / limit)"
 msgstr "Nüfus (olan/limit)"
 
-#: gui/session/session.js:724
+#: gui/session/session.js:733
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "En fazla nüfus: %(popCap)s"
 
-#: gui/session/session.js:887
+#: gui/session/session.js:896
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Sürüm: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:892
+#: gui/session/session.js:901
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Not: zaman tüneli modu geliştirici seçeneğidir, ve zamanda büyük bölümlerin kullanımı için tasarlanmamıştır. Yanlış kullanımı oyunda bellek dolması veya çökmesine neden olabilir."
 
-#: gui/session/session.js:892
+#: gui/session/session.js:901
 msgid "Time warp mode"
 msgstr "Zaman tüneli modu"
 
@@ -1074,8 +1074,8 @@ msgid "Menu"
 msgstr "Menü"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XVIII : Rhododactylos"
-msgstr "ALPHA XVIII : Rhododactylos"
+msgid "ALPHA XIX : Syllepsis"
+msgstr ""
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

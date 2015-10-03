@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:15+0200\n"
-"PO-Revision-Date: 2015-09-19 09:43+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-26 03:19+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -319,42 +319,42 @@ msgstr "Non esquezas os seguintes puntos:"
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
-msgstr "    1. Non deixes que as unidades queden sen traballo. O adestramento en grupo e mailos puntos de encontro son funcionalidades clave."
+msgstr " • Non deixes que as unidades queden sen traballo. O adestramento en grupo e mailos puntos de encontro son funcionalidades clave."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
 " - Use all of your resources, stockpiled resources are waste, having too "
 "much of a resource is waste."
-msgstr "    2. Usa todos os recursos, os recursos almacenados son recursos que se están a desperdiciar. Ter unha gran cantidade dun recurso concreto é un desperdicio."
+msgstr " • Usa todos os recursos, os recursos almacenados son recursos que se están a desperdiciar. Ter unha gran cantidade dun recurso concreto é un desperdicio."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:248
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
-msgstr "    3. Usa as unidades axeitadas para cada tarefa. As cidadás recollen comida, os xinetes cazan, os cidadáns soldado fan o demais."
+msgstr " • Usa as unidades axeitadas para cada tarefa. As cidadás recollen comida, os xinetes cazan, os cidadáns soldado fan o demais."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
 " - Don't be afraid to swap units from one resource to another, see point 2. "
 "Make sure they deposit what they are carrying first though."
-msgstr "    4. Cambia as unidades de recurso sen medo (véxase o punto 2). Pero asegúrate de que antes depositan o que levan recollido no almacén ou no centro cívico."
+msgstr " • Cambia as unidades de recurso sen medo (véxase o punto 2). Pero asegúrate de que antes depositan o que levan recollido no almacén ou no centro cívico."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
+msgstr " • Constrúe casas dabondo, o centro cívico debería estar facendo cousas tanto tempo como sexa posíbel."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
-msgstr "    6. As cidadás custan poucos recursos, podes construír máis e obter máis recursos."
+msgstr " • As cidadás custan poucos recursos, podes construír máis e obter máis recursos."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
 " - Don't get carried away on the last point or you will get raided and have "
 "no defense."
-msgstr "    7. Non te deixes levar no que respecta ao punto 6. Se adestras demasiadas cidadás e te atacan, non terás xeito de defenderte."
+msgstr " • Non te deixes levar no que respecta ao punto 6. Se adestras demasiadas cidadás e te atacan, non terás xeito de defenderte."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:273
 msgid ""
@@ -746,82 +746,77 @@ msgstr "De tolos (×2)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Avanzar rapidamente (×5)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Avanzar rapidamente (×10)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Avanzar rapidamente (×20)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Derrotar a todos os inimigos."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Conquista"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Destruír todas as estruturas inimigas."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Conquista das estruturas"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Matar todas as unidades inimigas."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Conquista das unidades"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Construír e protexer unha marabilla para gañar."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
-
-#: simulation/data/settings/starting_resources.jsonTranslatedKeys.Title
-msgctxt "startingResources"
-msgid "startingResources"
-msgstr ""
+msgstr "Marabilla"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Moi escasos"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Escasos"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Normais"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Abundantes"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Moi abundantes"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Partida a morte"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName

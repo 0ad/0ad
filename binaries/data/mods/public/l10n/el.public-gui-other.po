@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:15+0200\n"
-"PO-Revision-Date: 2015-09-19 09:42+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-25 20:31+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -71,22 +71,37 @@ msgstr "Αρχική σελίδα"
 msgid "FPS: %(fps)4s"
 msgstr ""
 
-#: gui/common/functions_global_object.js:103
+#. Translation: The "x" means "times", with the mathematical meaning of
+#. multiplication.
+#: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr ""
 
-#: gui/common/functions_global_object.js:120
+#: gui/common/functions_global_object.js:119
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr ""
 
-#: gui/common/functions_utility.js:159
+#: gui/common/functions_utility.js:142
+msgctxt "map size"
+msgid "Default"
+msgstr ""
+
+#: gui/common/functions_utility.js:152
+msgid "A randomly selected map."
+msgstr ""
+
+#: gui/common/functions_utility.js:161
+msgid "Sorry, no description available."
+msgstr ""
+
+#: gui/common/functions_utility.js:205
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:207
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -333,42 +348,42 @@ msgstr "Αιτία: %(reason)s."
 msgid "Disconnected"
 msgstr "Αποσυνδεθήκατε"
 
-#: gui/common/settings.js:95
+#: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr ""
 
-#: gui/common/settings.js:99
+#: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr ""
 
-#: gui/common/settings.js:103
+#: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr ""
 
-#: gui/common/settings.js:107
+#: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr ""
 
-#: gui/common/settings.js:112
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr ""
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr ""
 
-#: gui/common/settings.js:139
+#: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr ""
 
-#: gui/common/settings.js:140
+#: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -376,30 +391,36 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/settings.js:154
+#: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
 msgstr ""
 
-#: gui/common/settings.js:159
+#: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
 msgstr ""
 
-#: gui/common/settings.js:163 gui/summary/summary.js:136
+#: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
 msgstr "Σενάριο"
 
-#: gui/common/settings.js:194
+#: gui/common/settings.js:205
 msgid "None"
 msgstr ""
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:206
 msgid "Endless Game"
 msgstr ""
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:231
 msgid "Unlimited"
+msgstr ""
+
+#: gui/common/settings.js:279 gui/common/settings.js:290
+#: gui/common/settings.js:301 gui/common/settings.js:312
+#: gui/common/settings.js:323
+msgid "Unknown"
 msgstr ""
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
@@ -1447,17 +1468,17 @@ msgstr "Η αποστολή ανώνυμων πληροφοριών είναι �
 msgid "Status: $status."
 msgstr "Κατάσταση: $status."
 
-#: gui/pregame/mainmenu.xml:521
-msgid "Alpha XVIII: Rhododactylos"
+#: gui/pregame/mainmenu.xml:535
+msgid "Alpha XIX: Syllepsis"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:523
+#: gui/pregame/mainmenu.xml:537
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Το παιχνίδι βρίσκεται ακόμα σε φάση ανάπτυξης και αυτή η έκδοσή του είναι πρώιμη. Πολλές δυνατότητες και λειτουργίες δεν έχουν προστεθεί ακόμα."
 
-#: gui/pregame/mainmenu.xml:525
+#: gui/pregame/mainmenu.xml:539
 msgid "Get involved at: play0ad.com"
 msgstr "Για να συμβάλετε στην ανάπτυξή του, δείτε εδώ: play0ad.com"
 
@@ -1508,54 +1529,58 @@ msgid "Options"
 msgstr "Επιλογές"
 
 #: gui/pregame/mainmenu.xml:(caption):355
+msgid "Replays"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
 msgstr "Επεξεργαστής Σεναρίων"
 
-#: gui/pregame/mainmenu.xml:(caption):368
+#: gui/pregame/mainmenu.xml:(caption):382
 msgid "Welcome Screen"
 msgstr "Οθόνη Καλωσορίσματος"
 
-#: gui/pregame/mainmenu.xml:(caption):383
+#: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):438
+#: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
 msgstr "Μάθετε πώς παίζεται"
 
-#: gui/pregame/mainmenu.xml:(caption):453
+#: gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
 msgstr "Παιχνίδι για έναν παίκτη"
 
-#: gui/pregame/mainmenu.xml:(caption):468
+#: gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
 msgstr "Παιχνίδι για πολλούς παίκτες"
 
-#: gui/pregame/mainmenu.xml:(caption):483
+#: gui/pregame/mainmenu.xml:(caption):497
 msgid "Tools & Options"
 msgstr "Εργαλεία & Επιλογές"
 
-#: gui/pregame/mainmenu.xml:(caption):498
+#: gui/pregame/mainmenu.xml:(caption):512
 msgid "Exit"
 msgstr "Έξοδος"
 
-#: gui/pregame/mainmenu.xml:(caption):535
+#: gui/pregame/mainmenu.xml:(caption):549
 msgid "Help with the Translation!"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):547
+#: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"
 msgstr "Ιστοσελίδα"
 
-#: gui/pregame/mainmenu.xml:(caption):559
+#: gui/pregame/mainmenu.xml:(caption):573
 msgid "Chat"
 msgstr "Συνομιλία"
 
-#: gui/pregame/mainmenu.xml:(caption):571
+#: gui/pregame/mainmenu.xml:(caption):585
 msgid "Report a Bug"
 msgstr "Αναφορά σφαλμάτων"
 
-#: gui/pregame/mainmenu.xml:(caption):600
+#: gui/pregame/mainmenu.xml:(caption):614
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1606,56 +1631,60 @@ msgid "Choose the language of the game."
 msgstr "Επιλογή της γλώσσας του παιχνιδιού."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
+msgid "Playback previous games."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Ανοίξτε τον επεξεργαστή σεναρίων \"Atlas Scenario Editor\" σε νέο παράθυρο. Για πιο αξιόπιστη λειτουργία του, εκκινήστε το παιχνίδι από γραμμή εντολών, με το όρισμα \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):369
+#: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):384
+#: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):439
+#: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):454
+#: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
 msgstr "Προκαλέστε τον υπολογιστή σε μια αναμέτρηση για έναν παίκτη (single player)."
 
-#: gui/pregame/mainmenu.xml:(tooltip):469
+#: gui/pregame/mainmenu.xml:(tooltip):483
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Πολεμήστε εναντίον ενός ή περισσότερων παικτών, σε ένα παιχνίδι για πολλούς παίκτες (multiplayer)."
 
-#: gui/pregame/mainmenu.xml:(tooltip):484
+#: gui/pregame/mainmenu.xml:(tooltip):498
 msgid "Game options and scenario design tools."
 msgstr "Επιλογές παιχνιδιού και εργαλεία σχεδίασης σεναρίων."
 
-#: gui/pregame/mainmenu.xml:(tooltip):499
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
 msgstr "Βγαίνει από το παιχνίδι"
 
-#: gui/pregame/mainmenu.xml:(tooltip):536
+#: gui/pregame/mainmenu.xml:(tooltip):550
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Κλικάρετε για να ανοίξετε την σελίδα μετάφρασης του  0 A.D. στον εξυπηρετητή σας."
 
-#: gui/pregame/mainmenu.xml:(tooltip):548
+#: gui/pregame/mainmenu.xml:(tooltip):562
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Κάντε κλικ για άνοιγμα του play0ad.com στο πρόγραμμα περιήγησης web που χρησιμοποιείτε."
 
-#: gui/pregame/mainmenu.xml:(tooltip):560
+#: gui/pregame/mainmenu.xml:(tooltip):574
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Κάντε κλικ για να ανοίξετε τη συνομιλία μέσω IRC του 0 A.D., μέσα από το πρόγραμμα περιήγησης που χρησιμοποιείτε. (#0ad στο διακομιστή webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):572
+#: gui/pregame/mainmenu.xml:(tooltip):586
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr ""
 

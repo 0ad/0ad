@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:14+0200\n"
-"PO-Revision-Date: 2015-09-19 09:43+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-22 08:57+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -31,169 +31,169 @@ msgstr "없음"
 msgid "AI will be disabled for this player."
 msgstr "이 플레이어에게는 인공지능을 사용하지 않습니다."
 
-#: gui/gamesetup/gamesetup.js:101
+#: gui/gamesetup/gamesetup.js:108
 msgid "Return to the main menu."
 msgstr "메인메뉴로 돌아가기"
 
-#: gui/gamesetup/gamesetup.js:103
+#: gui/gamesetup/gamesetup.js:110
 msgid "Return to the lobby."
 msgstr "로비로 돌아가기"
 
-#: gui/gamesetup/gamesetup.js:126 gui/gamesetup/gamesetup.js:1296
-#: gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:133 gui/gamesetup/gamesetup.js:1368
+#: gui/gamesetup/gamesetup.js:1432
 msgid "Default"
 msgstr "기본값"
 
-#: gui/gamesetup/gamesetup.js:127
+#: gui/gamesetup/gamesetup.js:134
 msgid "Naval Maps"
 msgstr "해군 맵"
 
-#: gui/gamesetup/gamesetup.js:128
+#: gui/gamesetup/gamesetup.js:135
 msgid "Demo Maps"
 msgstr "데모 맵"
 
-#: gui/gamesetup/gamesetup.js:129
+#: gui/gamesetup/gamesetup.js:136
 msgid "All Maps"
 msgstr "모든 지도들"
 
-#: gui/gamesetup/gamesetup.js:357
+#: gui/gamesetup/gamesetup.js:364
 msgctxt "team"
 msgid "None"
 msgstr "없음"
 
-#: gui/gamesetup/gamesetup.js:569 gui/gamesetup/gamesetup.js:1445
+#: gui/gamesetup/gamesetup.js:583 gui/gamesetup/gamesetup.js:1517
 msgctxt "civilization"
 msgid "Random"
 msgstr "임의로"
 
-#: gui/gamesetup/gamesetup.js:633 gui/gamesetup/gamesetup.js:1380
+#: gui/gamesetup/gamesetup.js:647 gui/gamesetup/gamesetup.js:1452
 msgctxt "map"
 msgid "Random"
 msgstr "임의로"
 
-#: gui/gamesetup/gamesetup.js:873 gui/gamesetup/gamesetup.js:1009
+#: gui/gamesetup/gamesetup.js:911 gui/gamesetup/gamesetup.js:1081
 msgid "You"
 msgstr "당신"
 
-#: gui/gamesetup/gamesetup.js:1098
+#: gui/gamesetup/gamesetup.js:1170
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1218 gui/gamesetup/gamesetup.js:1223
-#: gui/gamesetup/gamesetup.js:1231 gui/gamesetup/gamesetup.js:1286
-#: gui/gamesetup/gamesetup.js:1287 gui/gamesetup/gamesetup.js:1288
-#: gui/gamesetup/gamesetup.js:1290 gui/gamesetup/gamesetup.js:1325
-#: gui/gamesetup/gamesetup.js:1326 gui/gamesetup/gamesetup.js:1327
-#: gui/gamesetup/gamesetup.js:1329 gui/gamesetup/gamesetup.js:1361
-#: gui/gamesetup/gamesetup.js:1362 gui/gamesetup/gamesetup.js:1365
+#: gui/gamesetup/gamesetup.js:1290 gui/gamesetup/gamesetup.js:1295
+#: gui/gamesetup/gamesetup.js:1303 gui/gamesetup/gamesetup.js:1358
+#: gui/gamesetup/gamesetup.js:1359 gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:1362 gui/gamesetup/gamesetup.js:1397
+#: gui/gamesetup/gamesetup.js:1398 gui/gamesetup/gamesetup.js:1399
+#: gui/gamesetup/gamesetup.js:1401 gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:1434 gui/gamesetup/gamesetup.js:1437
 msgid "Yes"
 msgstr "예"
 
-#: gui/gamesetup/gamesetup.js:1218 gui/gamesetup/gamesetup.js:1223
-#: gui/gamesetup/gamesetup.js:1231 gui/gamesetup/gamesetup.js:1286
-#: gui/gamesetup/gamesetup.js:1287 gui/gamesetup/gamesetup.js:1288
-#: gui/gamesetup/gamesetup.js:1290 gui/gamesetup/gamesetup.js:1325
-#: gui/gamesetup/gamesetup.js:1326 gui/gamesetup/gamesetup.js:1327
-#: gui/gamesetup/gamesetup.js:1329 gui/gamesetup/gamesetup.js:1361
-#: gui/gamesetup/gamesetup.js:1362 gui/gamesetup/gamesetup.js:1363
-#: gui/gamesetup/gamesetup.js:1365
+#: gui/gamesetup/gamesetup.js:1290 gui/gamesetup/gamesetup.js:1295
+#: gui/gamesetup/gamesetup.js:1303 gui/gamesetup/gamesetup.js:1358
+#: gui/gamesetup/gamesetup.js:1359 gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:1362 gui/gamesetup/gamesetup.js:1397
+#: gui/gamesetup/gamesetup.js:1398 gui/gamesetup/gamesetup.js:1399
+#: gui/gamesetup/gamesetup.js:1401 gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:1434 gui/gamesetup/gamesetup.js:1435
+#: gui/gamesetup/gamesetup.js:1437
 msgid "No"
 msgstr "아니오"
 
-#: gui/gamesetup/gamesetup.js:1367 gui/gamesetup/gamesetup.js:1368
-#: gui/gamesetup/gamesetup.js:1369
+#: gui/gamesetup/gamesetup.js:1439 gui/gamesetup/gamesetup.js:1440
+#: gui/gamesetup/gamesetup.js:1441
 msgid "Determined by scenario"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1381
+#: gui/gamesetup/gamesetup.js:1453
 msgid "Randomly selects a map from the list"
 msgstr "리스트에서 무작위로 맵 선택"
 
-#: gui/gamesetup/gamesetup.js:1388
+#: gui/gamesetup/gamesetup.js:1460
 msgid "Sorry, no description available."
 msgstr "설명이 없어서 죄송합니다."
 
-#: gui/gamesetup/gamesetup.js:1391
+#: gui/gamesetup/gamesetup.js:1463
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s인"
 
-#: gui/gamesetup/gamesetup.js:1395 gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1467 gui/gamesetup/gamesetup.xml:(caption):289
 msgid "Victory Condition:"
 msgstr "승리 조건"
 
-#: gui/gamesetup/gamesetup.js:1431
+#: gui/gamesetup/gamesetup.js:1503
 msgid "Loading..."
 msgstr "로딩중..."
 
-#: gui/gamesetup/gamesetup.js:1547
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1552
+#: gui/gamesetup/gamesetup.js:1633
 msgid "Unassigned"
 msgstr "지정되지 않음"
 
-#: gui/gamesetup/gamesetup.js:1735 gui/gamesetup/gamesetup.js:1740
-#: gui/gamesetup/gamesetup.js:1758
+#: gui/gamesetup/gamesetup.js:1816 gui/gamesetup/gamesetup.js:1821
+#: gui/gamesetup/gamesetup.js:1839
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1735
+#: gui/gamesetup/gamesetup.js:1816
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s님이 들어왔습니다"
 
-#: gui/gamesetup/gamesetup.js:1740
+#: gui/gamesetup/gamesetup.js:1821
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s님이 나갔습니다"
 
-#: gui/gamesetup/gamesetup.js:1745
+#: gui/gamesetup/gamesetup.js:1826
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>님"
 
-#: gui/gamesetup/gamesetup.js:1746
+#: gui/gamesetup/gamesetup.js:1827
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1752
+#: gui/gamesetup/gamesetup.js:1833
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "*%(username)s님은 준비되었습니다!"
 
-#: gui/gamesetup/gamesetup.js:1754
+#: gui/gamesetup/gamesetup.js:1835
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "%(username)s는 준비되지 않았습니다. "
 
-#: gui/gamesetup/gamesetup.js:1758
+#: gui/gamesetup/gamesetup.js:1839
 msgid "Game settings have been changed"
 msgstr "게임셋팅이 변경되었습니다"
 
-#: gui/gamesetup/gamesetup.js:1783
+#: gui/gamesetup/gamesetup.js:1864
 msgid "I'm not ready"
 msgstr "준비가 아직 되지 않았습니다."
 
-#: gui/gamesetup/gamesetup.js:1784
+#: gui/gamesetup/gamesetup.js:1865
 msgid "State that you are not ready to play."
 msgstr "게임할 준비가 되지 않은 상태"
 
-#: gui/gamesetup/gamesetup.js:1789 gui/gamesetup/gamesetup.js:1867
+#: gui/gamesetup/gamesetup.js:1870 gui/gamesetup/gamesetup.js:1948
 msgid "I'm ready!"
 msgstr "준비를 다 마쳤습니다!"
 
-#: gui/gamesetup/gamesetup.js:1790
+#: gui/gamesetup/gamesetup.js:1871
 msgid "State that you are ready to play!"
 msgstr "게임할 준비가 된 상태"
 
-#: gui/gamesetup/gamesetup.js:1868
+#: gui/gamesetup/gamesetup.js:1949
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "현재의 셋팅을 적용해서 게임을 할 준비가 된 상태"
 
@@ -256,7 +256,7 @@ msgid "Cancel"
 msgstr "취소"
 
 #: gui/aiconfig/aiconfig.xml:(caption):42
-#: gui/gamesetup/gamesetup.xml:(caption):400
+#: gui/gamesetup/gamesetup.xml:(caption):406
 msgid "OK"
 msgstr "OK"
 
@@ -277,203 +277,211 @@ msgid "Player Name"
 msgstr "플레이어 이름 "
 
 #: gui/gamesetup/gamesetup.xml:(caption):46
+msgid "Color"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(caption):49
 msgid "Player Placement"
 msgstr "플레이어 배치"
 
-#: gui/gamesetup/gamesetup.xml:(caption):49
+#: gui/gamesetup/gamesetup.xml:(caption):52
 msgid "Civilization"
 msgstr "문명"
 
-#: gui/gamesetup/gamesetup.xml:(caption):64
+#: gui/gamesetup/gamesetup.xml:(caption):67
 msgid "Team"
 msgstr "팀"
 
-#: gui/gamesetup/gamesetup.xml:(caption):102
+#: gui/gamesetup/gamesetup.xml:(caption):108
 msgid "Map Type:"
 msgstr "지도 종류"
 
-#: gui/gamesetup/gamesetup.xml:(caption):105
+#: gui/gamesetup/gamesetup.xml:(caption):111
 msgid "Map Filter:"
 msgstr "맵 필터:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):108
+#: gui/gamesetup/gamesetup.xml:(caption):114
 msgid "Select Map:"
 msgstr "맵 선택:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):111
+#: gui/gamesetup/gamesetup.xml:(caption):117
 msgid "Number of Players:"
 msgstr "플레이어 수:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):114
+#: gui/gamesetup/gamesetup.xml:(caption):120
 msgid "Map Size:"
 msgstr "맵 사이즈:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):200
+#: gui/gamesetup/gamesetup.xml:(caption):206
 msgid "Send"
 msgstr "보내기"
 
-#: gui/gamesetup/gamesetup.xml:(caption):224
+#: gui/gamesetup/gamesetup.xml:(caption):230
 msgid "Start game!"
 msgstr "게임 시작!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):242
+#: gui/gamesetup/gamesetup.xml:(caption):248
 msgid "Back"
 msgstr "뒤로"
 
-#: gui/gamesetup/gamesetup.xml:(caption):256
-#: gui/gamesetup/gamesetup.xml:(caption):268
+#: gui/gamesetup/gamesetup.xml:(caption):262
+#: gui/gamesetup/gamesetup.xml:(caption):274
 msgid "More Options"
 msgstr "더 많은 옵션"
 
-#: gui/gamesetup/gamesetup.xml:(caption):273
+#: gui/gamesetup/gamesetup.xml:(caption):279
 msgid "Game Speed:"
 msgstr "게임 속도:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):293
+#: gui/gamesetup/gamesetup.xml:(caption):299
 msgid "Population Cap:"
 msgstr "인구수 제한:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):303
+#: gui/gamesetup/gamesetup.xml:(caption):309
 msgid "Starting Resources:"
 msgstr "기본 자원:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):313
+#: gui/gamesetup/gamesetup.xml:(caption):319
 msgid "Ceasefire:"
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):323
+#: gui/gamesetup/gamesetup.xml:(caption):329
 msgid "Revealed Map:"
 msgstr "공개된 지도"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):333
+#: gui/gamesetup/gamesetup.xml:(caption):339
 msgid "Explored Map:"
 msgstr "탐험맵"
 
-#: gui/gamesetup/gamesetup.xml:(caption):343
+#: gui/gamesetup/gamesetup.xml:(caption):349
 msgid "Disable Treasures:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):353
+#: gui/gamesetup/gamesetup.xml:(caption):359
 msgid "Teams Locked:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):363
+#: gui/gamesetup/gamesetup.xml:(caption):369
 msgid "Cheats:"
 msgstr "치트들:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):373
+#: gui/gamesetup/gamesetup.xml:(caption):379
 msgid "Rated Game:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):383
+#: gui/gamesetup/gamesetup.xml:(caption):389
 msgid "Late Observer Joins:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):58
+#: gui/gamesetup/gamesetup.xml:(tooltip):61
 msgid "View civilization info"
 msgstr "문명의 대한 정보를 보기"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):73
+#: gui/gamesetup/gamesetup.xml:(tooltip):76
+msgid "Pick a color."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):79
 msgid "Select player."
 msgstr "플레이어 선택"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):83
+#: gui/gamesetup/gamesetup.xml:(tooltip):89
 msgid "Configure AI settings."
 msgstr "AI 설정하기"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):86
+#: gui/gamesetup/gamesetup.xml:(tooltip):92
 msgid "Select player's civilization."
 msgstr "문명을 선택하세요"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):90
+#: gui/gamesetup/gamesetup.xml:(tooltip):96
 msgid "Select player's team."
 msgstr "팀을 선택하세요."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):131
+#: gui/gamesetup/gamesetup.xml:(tooltip):137
 msgid "Select a map type."
 msgstr "맵 타임 정하기"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):140
+#: gui/gamesetup/gamesetup.xml:(tooltip):146
 msgid "Select a map filter."
 msgstr "맵 필터 정하기"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):150
+#: gui/gamesetup/gamesetup.xml:(tooltip):156
 msgid "Select a map to play on."
 msgstr "플레이할 맵 정하기"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):164
+#: gui/gamesetup/gamesetup.xml:(tooltip):170
 msgid "Select number of players."
 msgstr " 플레이어의 수를 정하세요."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):169
+#: gui/gamesetup/gamesetup.xml:(tooltip):175
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "맵 사이즈 결정(큰 사이즈의 맵은 성능을 저하시킬수 있습니다)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):225
+#: gui/gamesetup/gamesetup.xml:(tooltip):231
 msgid "Start a new game with the current settings."
 msgstr "현재 셋팅으로 새 게임 시작하기"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):257
+#: gui/gamesetup/gamesetup.xml:(tooltip):263
 msgid "See more game options"
 msgstr "더 많은 옵션을 보기"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):277
+#: gui/gamesetup/gamesetup.xml:(tooltip):283
 msgid "Select game speed."
 msgstr "게임 속도를 정하세요."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):287
+#: gui/gamesetup/gamesetup.xml:(tooltip):293
 msgid "Select victory condition."
 msgstr "승리 조건을 정하세요."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):297
+#: gui/gamesetup/gamesetup.xml:(tooltip):303
 msgid "Select population cap."
 msgstr "인구수 제한을 정하세요."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):307
+#: gui/gamesetup/gamesetup.xml:(tooltip):313
 msgid "Select the game's starting resources."
 msgstr "시작시 받은 기본 자원의 양을 선택하세요."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):317
+#: gui/gamesetup/gamesetup.xml:(tooltip):323
 msgid "Set time where no attacks are possible."
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):327
+#: gui/gamesetup/gamesetup.xml:(tooltip):333
 msgid "Toggle revealed map (see everything)."
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):337
+#: gui/gamesetup/gamesetup.xml:(tooltip):343
 msgid "Toggle explored map (see initial map)."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):347
+#: gui/gamesetup/gamesetup.xml:(tooltip):353
 msgid "Disable all treasures on the map."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):357
+#: gui/gamesetup/gamesetup.xml:(tooltip):363
 msgid "Toggle locked teams."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):367
+#: gui/gamesetup/gamesetup.xml:(tooltip):373
 msgid "Toggle the usability of cheats."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):377
+#: gui/gamesetup/gamesetup.xml:(tooltip):383
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):387
+#: gui/gamesetup/gamesetup.xml:(tooltip):393
 msgid "Allow observers to join after the game started."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):401
+#: gui/gamesetup/gamesetup.xml:(tooltip):407
 msgid "Close more game options window"
 msgstr ""
 

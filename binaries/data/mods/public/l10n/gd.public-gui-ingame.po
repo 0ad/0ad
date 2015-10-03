@@ -5,13 +5,13 @@
 # Translators:
 # GunChleoc, 2014-2015
 # GunChleoc, 2014
-# GunChleoc, 2014
+# GunChleoc, 2014-2015
 # Michael Bauer, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:14+0200\n"
-"PO-Revision-Date: 2015-09-19 22:10+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-24 11:58+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -44,19 +44,19 @@ msgstr "Cha ghabh balla a thogail an-seo!"
 
 #: gui/session/menu.js:1 gui/session/menu.xml:(caption):64
 msgid "Pause"
-msgstr "Cuir 'na stad"
+msgstr "Cuir ’na stad"
 
 #: gui/session/menu.js:2
 msgid "Resume"
 msgstr "Lean air adhart"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Chan eil"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Tha"
 
@@ -71,7 +71,7 @@ msgstr "Dearbhadh"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "A bheil thu cinnteach gu bheil thu airson fàgail? Thèid na ceanglaichean aig càch a bhriseadh ma dh'fhàgas tu."
+msgstr "A bheil thu cinnteach gu bheil thu airson fàgail? Thèid na ceanglaichean aig càch a bhriseadh ma dh’fhàgas tu."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -83,7 +83,7 @@ msgstr "Tillidh mi"
 
 #: gui/session/menu.js:169
 msgid "I resign"
-msgstr "Tha mi a' gèilleadh"
+msgstr "Tha mi a’ gèilleadh"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
@@ -118,7 +118,7 @@ msgstr "An nàmhaid"
 
 #: gui/session/menu.js:349
 msgid "Request your allies to attack this enemy"
-msgstr "Iarr air do chaidreabhaich gun toir iad ionnsaigh air an nàmhaid seo"
+msgstr "Iarr air do chaidreabhaich gun doir iad ionnsaigh air an nàmhaid seo"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -132,44 +132,44 @@ msgstr "Chan eil neach-margaid tìre ann."
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] "%(numberOfLandTraders)s 'na thàmh"
-msgstr[1] "%(numberOfLandTraders)s 'nan tàmh"
-msgstr[2] "%(numberOfLandTraders)s 'nan tàmh"
-msgstr[3] "%(numberOfLandTraders)s 'na thàmh"
+msgstr[0] "%(numberOfLandTraders)s ’na thàmh"
+msgstr[1] "%(numberOfLandTraders)s ’nan tàmh"
+msgstr[2] "%(numberOfLandTraders)s ’nan tàmh"
+msgstr[3] "%(numberOfLandTraders)s ’na thàmh"
 
 #: gui/session/menu.js:485
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "Tha %(numberTrading)s neach-margaid a' malart"
-msgstr[1] "Tha %(numberTrading)s luchd-margaid a' malart"
-msgstr[2] "Tha %(numberTrading)s luchd-margaid a' malart"
-msgstr[3] "Tha %(numberTrading)s luchd-margaid a' malart"
+msgstr[0] "Tha %(numberTrading)s neach-margaid a’ malart"
+msgstr[1] "Tha %(numberTrading)s luchd-margaid a’ malart"
+msgstr[2] "Tha %(numberTrading)s luchd-margaid a’ malart"
+msgstr[3] "Tha %(numberTrading)s luchd-margaid a’ malart"
 
 #: gui/session/menu.js:488
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] "Tha %(numberGarrisoned)s 'na ghearastan air long-mhalairt"
-msgstr[1] "Tha %(numberGarrisoned)s 'nan gearastan air long-mhalairt"
-msgstr[2] "Tha %(numberGarrisoned)s 'nan gearastan air long-mhalairt"
-msgstr[3] "Tha %(numberGarrisoned)s 'nan gearastan air long-mhalairt"
+msgstr[0] "Tha %(numberGarrisoned)s ’na ghearastan air long-mhalairt"
+msgstr[1] "Tha %(numberGarrisoned)s ’nan gearastan air long-mhalairt"
+msgstr[2] "Tha %(numberGarrisoned)s ’nan gearastan air long-mhalairt"
+msgstr[3] "Tha %(numberGarrisoned)s ’nan gearastan air long-mhalairt"
 
 #: gui/session/menu.js:491
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, %(garrisonedString)s 's %(inactiveString)s."
+msgstr "%(openingTradingString)s, %(garrisonedString)s ’s %(inactiveString)s."
 
 #: gui/session/menu.js:499
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s 's %(garrisonedString)s."
+msgstr "%(openingTradingString)s ’s %(garrisonedString)s."
 
 #: gui/session/menu.js:509 gui/session/menu.js:571
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s 's %(inactiveString)s."
+msgstr "%(openingTradingString)s ’s %(inactiveString)s."
 
 #: gui/session/menu.js:516 gui/session/menu.js:578
 #, javascript-format
@@ -184,15 +184,15 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] "Tha %(numberGarrisoned)s neach-malairt tìre 'na ghearastan air long-mhalairt"
-msgstr[1] "Tha %(numberGarrisoned)s luchd-malairt tìre 'nan gearastan air long-mhalairt"
-msgstr[2] "Tha %(numberGarrisoned)s luchd-malairt tìre 'nan gearastan air long-mhalairt"
-msgstr[3] "Tha %(numberGarrisoned)s luchd-malairt tìre 'nan gearastan air long-mhalairt"
+msgstr[0] "Tha %(numberGarrisoned)s neach-malairt tìre ’na ghearastan air long-mhalairt"
+msgstr[1] "Tha %(numberGarrisoned)s luchd-malairt tìre ’nan gearastan air long-mhalairt"
+msgstr[2] "Tha %(numberGarrisoned)s luchd-malairt tìre ’nan gearastan air long-mhalairt"
+msgstr[3] "Tha %(numberGarrisoned)s luchd-malairt tìre ’nan gearastan air long-mhalairt"
 
 #: gui/session/menu.js:529
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingGarrisonedString)s 's %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s ’s %(inactiveString)s."
 
 #: gui/session/menu.js:536
 #, javascript-format
@@ -203,10 +203,10 @@ msgstr "%(openingGarrisonedString)s."
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] "%(numberOfLandTraders)s neach-malairt tìre 'na thàmh"
-msgstr[1] "%(numberOfLandTraders)s luchd-malairt tìre 'nan tàmh"
-msgstr[2] "%(numberOfLandTraders)s luchd-malairt tìre 'nan tàmh"
-msgstr[3] "%(numberOfLandTraders)s luchd-malairt tìre 'na thàmh"
+msgstr[0] "%(numberOfLandTraders)s neach-malairt tìre ’na thàmh"
+msgstr[1] "%(numberOfLandTraders)s luchd-malairt tìre ’nan tàmh"
+msgstr[2] "%(numberOfLandTraders)s luchd-malairt tìre ’nan tàmh"
+msgstr[3] "%(numberOfLandTraders)s luchd-malairt tìre ’na thàmh"
 
 #: gui/session/menu.js:546 gui/session/menu.js:588
 #, javascript-format
@@ -225,28 +225,28 @@ msgstr "Chan eil long-mhalairt ann"
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] "%(numberOfShipTraders)s 'na thàmh"
-msgstr[1] "%(numberOfShipTraders)s 'nan tàmh"
-msgstr[2] "%(numberOfShipTraders)s 'nan tàmh"
-msgstr[3] "%(numberOfShipTraders)s 'na thàmh"
+msgstr[0] "%(numberOfShipTraders)s ’na thàmh"
+msgstr[1] "%(numberOfShipTraders)s ’nan tàmh"
+msgstr[2] "%(numberOfShipTraders)s ’nan tàmh"
+msgstr[3] "%(numberOfShipTraders)s ’na thàmh"
 
 #: gui/session/menu.js:568
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] "Tha %(numberTrading)s long-mhalairt a' malart"
-msgstr[1] "Tha %(numberTrading)s long-mhalairt a' malart"
-msgstr[2] "Tha %(numberTrading)s longan-malairt a' malart"
-msgstr[3] "Tha %(numberTrading)s long-mhalairt a' malart"
+msgstr[0] "Tha %(numberTrading)s long-mhalairt a’ malart"
+msgstr[1] "Tha %(numberTrading)s long-mhalairt a’ malart"
+msgstr[2] "Tha %(numberTrading)s longan-malairt a’ malart"
+msgstr[3] "Tha %(numberTrading)s long-mhalairt a’ malart"
 
 #: gui/session/menu.js:587
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] "%(numberOfShipTraders)s long-mhalairt 'na thàmh"
-msgstr[1] "%(numberOfShipTraders)s long-mhalairt 'nan tàmh"
-msgstr[2] "%(numberOfShipTraders)s longan-malairt 'nan tàmh"
-msgstr[3] "%(numberOfShipTraders)s long-mhalairt 'na thàmh"
+msgstr[0] "%(numberOfShipTraders)s long-mhalairt ’na thàmh"
+msgstr[1] "%(numberOfShipTraders)s long-mhalairt ’nan tàmh"
+msgstr[2] "%(numberOfShipTraders)s longan-malairt ’nan tàmh"
+msgstr[3] "%(numberOfShipTraders)s long-mhalairt ’na thàmh"
 
 #: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -269,11 +269,11 @@ msgstr "Pàigh cìs de %(resourceAmount)s %(resourceType)s gu %(playerName)s. Sh
 
 #: gui/session/messages.js:251
 msgid "Waiting for other players to connect..."
-msgstr "A' feitheamh gus an ceangal na cluicheadairean eile ris..."
+msgstr "A’ feitheamh gus an ceangal na cluicheadairean eile ris..."
 
 #: gui/session/messages.js:255
 msgid "Synchronising gameplay with other players..."
-msgstr "A' sioncronachadh cluiche a' gheama ris na cluicheadairean eile..."
+msgstr "A’ sioncronachadh cluiche a’ gheama ris na cluicheadairean eile..."
 
 #: gui/session/messages.js:263
 msgid "Connected to the server."
@@ -281,7 +281,7 @@ msgstr "Chaidh ceangal a dhèanamh ris an fhrithealaiche."
 
 #: gui/session/messages.js:267
 msgid "Connection to the server has been authenticated."
-msgstr "Chaidh aithne a' cheangail dhan fhrithealaiche a dhearbhadh."
+msgstr "Chaidh aithne a’ cheangail dhan fhrithealaiche a dhearbhadh."
 
 #: gui/session/messages.js:272
 msgid "Connection to the server has been lost."
@@ -298,12 +298,12 @@ msgstr "Cluicheadair neo-aithnichte"
 #: gui/session/messages.js:417
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "Tha %(player)s a' tilleadh dhan gheama."
+msgstr "Tha %(player)s a’ tilleadh dhan gheama."
 
 #: gui/session/messages.js:420
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr "Dh'fhàg %(player)s an geama."
+msgstr "Dh’fhàg %(player)s an geama."
 
 #: gui/session/messages.js:423
 #, javascript-format
@@ -322,12 +322,12 @@ msgstr "Chuireadh buaidh air %(player)s."
 #: gui/session/messages.js:438
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Tha thu fhèin is %(player)s 'nan caidreabhaich a-nis."
+msgstr "Tha thu fhèin is %(player)s ’nan caidreabhaich a-nis."
 
 #: gui/session/messages.js:440
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr "Tha thu a' cogadh ri %(player)s a-nis."
+msgstr "Tha thu a’ cogadh ri %(player)s a-nis."
 
 #: gui/session/messages.js:442
 #, javascript-format
@@ -337,12 +337,12 @@ msgstr "Tha thu neo-phàirteach ri %(player)s a-nis."
 #: gui/session/messages.js:448
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "Tha %(player)s is thu fhèin 'nan caidreabhaich a-nis."
+msgstr "Tha %(player)s is thu fhèin ’nan caidreabhaich a-nis."
 
 #: gui/session/messages.js:450
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "Tha %(player)s a' cogadh riut a-nis."
+msgstr "Tha %(player)s a’ cogadh riut a-nis."
 
 #: gui/session/messages.js:452
 #, javascript-format
@@ -518,7 +518,7 @@ msgid "Hitpoints:"
 msgstr "Puingean-slàinte:"
 
 #: gui/session/selection_details.js:326 gui/session/selection_details.js:356
-#: gui/session/session.js:635
+#: gui/session/session.js:644
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -562,7 +562,7 @@ msgstr "A-mach le %(name)s"
 
 #: gui/session/selection_panels.js:440
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Briog aon turas ach an tig 1 dhiubh a-mach. Shift-bhriog ach an tig gach saighdear dhen t-seòrsa seo a-mach."
+msgstr "Briog aon turas ach an dig 1 dhiubh a-mach. Shift-bhriog ach an dig gach saighdear dhen t-seòrsa seo a-mach."
 
 #: gui/session/selection_panels.js:507
 msgid "Lock Gate"
@@ -606,7 +606,7 @@ msgstr[1] "Air fhàgail: %(number)s ri thogail."
 msgstr[2] "Air fhàgail: %(number)s ri an togail."
 msgstr[3] "Air fhàgail: %(number)s ri thogail."
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:634
+#: gui/session/selection_panels.js:1095 gui/session/session.js:643
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Slàinte:"
@@ -680,97 +680,97 @@ msgstr "%(action)s gus %(number)s a thrèanadh."
 msgid "You"
 msgstr "Thusa"
 
-#: gui/session/session.js:169
+#: gui/session/session.js:172
 msgid "Gaia"
 msgstr "Gaìa"
 
-#: gui/session/session.js:241
+#: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Craobh nan sìobhaltas"
 
-#: gui/session/session.js:315 gui/session/session.js:331
+#: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
-msgstr "Dh'fhàg thu an geama."
+msgstr "Dh’fhàg thu an geama."
 
-#: gui/session/session.js:322
+#: gui/session/session.js:325
 msgid "You have been disconnected."
 msgstr "Chaidh do cheangal a bhriseadh."
 
-#: gui/session/session.js:324
+#: gui/session/session.js:327
 msgid "You have won the battle!"
 msgstr "Thug thu buaidh air càch!"
 
-#: gui/session/session.js:326
+#: gui/session/session.js:329
 msgid "You have been defeated..."
 msgstr "Chaidh ruaig a chur ort..."
 
-#: gui/session/session.js:334
+#: gui/session/session.js:337
 msgid "You have abandoned the game."
-msgstr "Dh'fhàg thu an geama."
+msgstr "Dh’fhàg thu an geama."
 
-#: gui/session/session.js:479
+#: gui/session/session.js:488
 msgid "OK"
 msgstr "Ceart ma-thà"
 
-#: gui/session/session.js:481
+#: gui/session/session.js:490
 msgid "Press OK to continue"
 msgstr "Briog air \"Ceart ma-thà\" gus leantainn air adhart"
 
-#: gui/session/session.js:487
+#: gui/session/session.js:496
 msgid "Do you want to quit?"
 msgstr "A bheil thu airson fàgail?"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:502
 msgid "DEFEATED!"
 msgstr "RUAIG!"
 
-#: gui/session/session.js:501
+#: gui/session/session.js:510
 msgid "VICTORIOUS!"
 msgstr "BUAIDH!"
 
-#: gui/session/session.js:560
+#: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/session/session.js:560
+#: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Chan eil"
 
-#: gui/session/session.js:562
+#: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Chrìochnaich an ath-chluiche. A bheil thu airson fàgail?"
 
-#: gui/session/session.js:562
+#: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Dearbhadh"
 
-#: gui/session/session.js:723
+#: gui/session/session.js:732
 msgid "Population (current / limit)"
 msgstr "Sluagh (an-dràsta / as motha)"
 
-#: gui/session/session.js:724
+#: gui/session/session.js:733
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "An sluagh as motha: %(popCap)s"
 
-#: gui/session/session.js:887
+#: gui/session/session.js:896
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Togail: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:892
+#: gui/session/session.js:901
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "An aire: 's e modh nan leasaichear a tha sa mhodh dlùthadh an ama is cha bu chòir dhut a chleachdadh fad ùine mòire. Mur cleachd thu mar bu chòir e, dh'fhaoidte gum falbh an cuimhne air a' gheama no gun tuislich e."
+msgstr "An aire: ’s e modh nan leasaichear a tha sa mhodh dlùthadh an ama is cha bu chòir dhut a chleachdadh fad ùine mòire. Mur cleachd thu mar bu chòir e, dh’fhaoidte gum falbh an cuimhne air a’ gheama no gun tuislich e."
 
-#: gui/session/session.js:892
+#: gui/session/session.js:901
 msgid "Time warp mode"
 msgstr "Modh dlùthadh an ama"
 
@@ -780,7 +780,7 @@ msgstr "Margaid tùsail."
 
 #: gui/session/unit_actions.js:327
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr "Dèan briogadh deas air margaid eile gus a shuidheachadh mar cheann-uidhe a' mhalairt."
+msgstr "Dèan briogadh deas air margaid eile gus a shuidheachadh mar cheann-uidhe a’ mhalairt."
 
 #: gui/session/unit_actions.js:330
 msgid "Destination trade market."
@@ -788,11 +788,11 @@ msgstr "Margaid-uidhe."
 
 #: gui/session/unit_actions.js:335
 msgid "Right-click to set as origin trade market"
-msgstr "Dèan briogadh deas gus a' mhargaid a shuidheachadh mar thùs a' mhalairt"
+msgstr "Dèan briogadh deas gus a’ mhargaid a shuidheachadh mar thùs a’ mhalairt"
 
 #: gui/session/unit_actions.js:340
 msgid "Right-click to set as destination trade market."
-msgstr "Dèan briogadh deas gus a' mhargaid a shuidheachadh mar cheann-uidhe a' mhalairt"
+msgstr "Dèan briogadh deas gus a’ mhargaid a shuidheachadh mar cheann-uidhe a’ mhalairt"
 
 #: gui/session/unit_actions.js:372 gui/session/unit_actions.js:508
 #, javascript-format
@@ -801,7 +801,7 @@ msgstr "An gearastan an-dràsta: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:550
 msgid "Right-click to establish a default route for new traders."
-msgstr "Dèan briogadh deas gus slighe-mhalairt bhunaiteach a' stèidheachadh do luchd-malairt ùr."
+msgstr "Dèan briogadh deas gus slighe-mhalairt bhunaiteach a’ stèidheachadh do luchd-malairt ùr."
 
 #: gui/session/unit_actions.js:554
 #, javascript-format
@@ -819,7 +819,7 @@ msgstr "Chan urrainn dhut seo a mhilleadh on a tha e fo cheò a chogaidh"
 #: gui/session/unit_actions.js:702
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Chan urrainn dhut a' bhith seo a mhilleadh o nach eil an dàrna leth dhe na puingean-glacaidh agad"
+msgstr "Chan urrainn dhut a’ bhith seo a mhilleadh o nach eil an dàrna leth dhe na puingean-glacaidh agad"
 
 #: gui/session/unit_actions.js:734
 msgid "Stop"
@@ -827,7 +827,7 @@ msgstr "Sguir dheth"
 
 #: gui/session/unit_actions.js:752
 msgid "Garrison"
-msgstr "Rach 'nad ghearastan"
+msgstr "Rach ’nad ghearastan"
 
 #: gui/session/unit_actions.js:773
 msgid "Unload"
@@ -940,7 +940,7 @@ msgstr "Stiùirich a h‑uile aonad"
 
 #: gui/session/session.xml:(caption):70
 msgid "Change perspective"
-msgstr "Atharraich a' bhuaidh-astair"
+msgstr "Atharraich a’ bhuaidh-astair"
 
 #: gui/session/session.xml:(caption):77
 msgid "Display selection state"
@@ -988,11 +988,11 @@ msgstr "Tar-chòmhdachadh rangach an luirg-shlighean"
 
 #: gui/session/session.xml:(caption):185
 msgid "Game Paused"
-msgstr "Tha an geama 'na stad"
+msgstr "Tha an geama ’na stad"
 
 #: gui/session/session.xml:(caption):188
 msgid "Click to Resume Game"
-msgstr "Briog gus leantainn air adhart leis a' gheama"
+msgstr "Briog gus leantainn air adhart leis a’ gheama"
 
 #: gui/session/session.xml:(caption):223
 msgid "Cancel"
@@ -1052,7 +1052,7 @@ msgstr "Puingean-glacaidh"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"
-msgstr "Ionnsaigh 's armachd"
+msgstr "Ionnsaigh ’s armachd"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):69
 msgid "Experience"
@@ -1074,19 +1074,19 @@ msgstr "Briog gus aonadan buidhnichte a thaghadh, dèan briogadh dùbailte gus a
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):9
 msgid "Game speed"
-msgstr "Luaths a' gheama"
+msgstr "Luaths a’ gheama"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):17
 msgid "Choose game speed"
-msgstr "Tagh luaths a' gheama"
+msgstr "Tagh luaths a’ gheama"
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
 msgstr "Clàr-taice"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XVIII : Rhododactylos"
-msgstr "ALPHA XVIII : Rhododactylos"
+msgid "ALPHA XIX : Syllepsis"
+msgstr "ALPHA XIX : Syllepsis"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

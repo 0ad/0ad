@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:14+0200\n"
-"PO-Revision-Date: 2015-09-19 09:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-10-03 09:03+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,12 +59,12 @@ msgid "Resume"
 msgstr "استكمل"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "لا"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:485 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "نعم"
 
@@ -334,7 +334,7 @@ msgstr "غادر %(player)s اللعبة."
 #: gui/session/messages.js:423
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "أعاد %(player)s الانضمام إلى اللعبة."
 
 #: gui/session/messages.js:428
 msgid "You have been defeated."
@@ -548,7 +548,7 @@ msgid "Hitpoints:"
 msgstr "نقاط الصحة:"
 
 #: gui/session/selection_details.js:326 gui/session/selection_details.js:356
-#: gui/session/session.js:635
+#: gui/session/session.js:644
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -556,7 +556,7 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_details.js:355
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr ""
+msgstr "نقاط الالتقاط:"
 
 #: gui/session/selection_panels.js:72
 msgid "Increase the alert level to protect more units"
@@ -638,7 +638,7 @@ msgstr[3] "باقي: %(number)s للإنتهاء"
 msgstr[4] "باقي: %(number)s للإنتهاء"
 msgstr[5] "باقي: %(number)s للإنتهاء"
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:634
+#: gui/session/selection_panels.js:1095 gui/session/session.js:643
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "الصّحّة:"
@@ -712,97 +712,97 @@ msgstr "%(action)s لتدريب %(number)s."
 msgid "You"
 msgstr "أنت"
 
-#: gui/session/session.js:169
+#: gui/session/session.js:172
 msgid "Gaia"
 msgstr "الطّبيعة"
 
-#: gui/session/session.js:241
+#: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - شجرة البنية"
 
-#: gui/session/session.js:315 gui/session/session.js:331
+#: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
 msgstr "لقد غادرت اللعبة."
 
-#: gui/session/session.js:322
+#: gui/session/session.js:325
 msgid "You have been disconnected."
 msgstr "لقد قُطِعَ اتّصالك."
 
-#: gui/session/session.js:324
+#: gui/session/session.js:327
 msgid "You have won the battle!"
 msgstr "لقد ربحت المعركة!"
 
-#: gui/session/session.js:326
+#: gui/session/session.js:329
 msgid "You have been defeated..."
 msgstr "لقد هُزِمت..."
 
-#: gui/session/session.js:334
+#: gui/session/session.js:337
 msgid "You have abandoned the game."
 msgstr "لقد تخلّيت عن اللعبة."
 
-#: gui/session/session.js:479
+#: gui/session/session.js:488
 msgid "OK"
 msgstr "حسنًا"
 
-#: gui/session/session.js:481
+#: gui/session/session.js:490
 msgid "Press OK to continue"
 msgstr "انقر حسنًا للمتابعة"
 
-#: gui/session/session.js:487
+#: gui/session/session.js:496
 msgid "Do you want to quit?"
 msgstr "أتريد الإنهاء؟"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:502
 msgid "DEFEATED!"
 msgstr "هُزِمت!"
 
-#: gui/session/session.js:501
+#: gui/session/session.js:510
 msgid "VICTORIOUS!"
 msgstr "انتصرت!"
 
-#: gui/session/session.js:560
+#: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "نعم"
 
-#: gui/session/session.js:560
+#: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "No"
 msgstr ""
 
-#: gui/session/session.js:562
+#: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "انتهت الإعادة. أتريد الإنهاء؟"
 
-#: gui/session/session.js:562
+#: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "أكّد"
 
-#: gui/session/session.js:723
+#: gui/session/session.js:732
 msgid "Population (current / limit)"
 msgstr "السّكّانيّة (الحاليّة / الحدّ)"
 
-#: gui/session/session.js:724
+#: gui/session/session.js:733
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr ""
 
-#: gui/session/session.js:887
+#: gui/session/session.js:896
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "البناء: %(buildDate)s‏ (%(revision)s)"
 
-#: gui/session/session.js:892
+#: gui/session/session.js:901
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "ملاحظة: وضع الوقت الاعوج هو خيار المطور، وليس المقصود للاستخدام على مدى فترات طويلة من الزمن، استخدامه بشكل غير صحيح قد يسبب للعبة النفاد الذاكرة أو تعطل."
 
-#: gui/session/session.js:892
+#: gui/session/session.js:901
 msgid "Time warp mode"
 msgstr "وضع (التلاعب بالمعدل الزمني)"
 
@@ -1117,8 +1117,8 @@ msgid "Menu"
 msgstr "قائمة"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XVIII : Rhododactylos"
-msgstr "الالفا الثامة عشر: روهديداكتيلوس"
+msgid "ALPHA XIX : Syllepsis"
+msgstr ""
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

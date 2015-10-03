@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Boris Karalnik <eyesucker@gmail.com>, 2015
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014-2015
 # grin.sv <grin.sv@gmail.com>, 2015
@@ -13,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:15+0200\n"
-"PO-Revision-Date: 2015-09-19 09:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-10-01 22:37+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +56,7 @@ msgstr "До поры до времени я не смогу тебе помоч
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Извини, сейчас у меня недостаточно воинов, но моей следующей целью станет %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
@@ -348,7 +349,7 @@ msgstr "- Не  бойтесь перенаправлять сборщиков �
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
+msgstr "- Стройте достаточно домов. ГЦ должен быть занят, насколько это возможно."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -752,27 +753,27 @@ msgstr "Безумная (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Быстрая (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Быстрая (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Быстрая (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Поражение всех оппонентов"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Завоевание"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Уничтожьте все постройки врага"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -780,7 +781,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Уничтожьте все юниты врага"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -788,46 +789,41 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Постройте и защитете чудо для победы"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
-
-#: simulation/data/settings/starting_resources.jsonTranslatedKeys.Title
-msgctxt "startingResources"
-msgid "startingResources"
-msgstr ""
+msgstr "Чудо"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Очень мало"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Мало"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Нормально"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Много"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Очень много"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Смертельный бой"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
@@ -881,14 +877,14 @@ msgstr "Огромная"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr "Петра, бот"
+msgstr "Бот Petra"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Started as a fork of Aegis bot, Petra is the most stable AI available. It "
 "supports naval maps and is generally more challenging. Please report issues "
 "to Wildfire Games (see the link in the main menu)."
-msgstr "Изначально являясь ответвлением бота Аегис, Петра стала самым стабильным из доступных ИИ. Он поддерживает морские карты и в целом, более мощный противник. Пожалуйста, отправляйте отчёты о проблемах в Wildfire Games (ссылка есть в главном меню)."
+msgstr "Изначально являясь ответвлением бота Aegis, на настоящий момент Petra самый стабильный из доступных ИИ. Он поддерживает морские карты и является более сильным противником. Пожалуйста, отправляйте отчёты о проблемах в Wildfire Games (ссылка в главном меню)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

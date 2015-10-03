@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:15+0200\n"
-"PO-Revision-Date: 2015-09-19 22:10+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-10-03 08:17+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -69,22 +69,37 @@ msgstr "ページを開く"
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:103
+#. Translation: The "x" means "times", with the mathematical meaning of
+#. multiplication.
+#: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
+msgstr "%(time)s (%(speed)s倍)"
 
-#: gui/common/functions_global_object.js:120
+#: gui/common/functions_global_object.js:119
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "停戦終了まであと%(time)s秒"
 
-#: gui/common/functions_utility.js:159
+#: gui/common/functions_utility.js:142
+msgctxt "map size"
+msgid "Default"
+msgstr "デフォルト"
+
+#: gui/common/functions_utility.js:152
+msgid "A randomly selected map."
+msgstr "ランダムに選択されるマップです。"
+
+#: gui/common/functions_utility.js:161
+msgid "Sorry, no description available."
+msgstr "すみませんが、説明はありません。"
+
+#: gui/common/functions_utility.js:205
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:207
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -331,73 +346,79 @@ msgstr "理由： %(reason)s."
 msgid "Disconnected"
 msgstr "通信遮断"
 
-#: gui/common/settings.js:95
+#: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "練習"
 
-#: gui/common/settings.js:99
+#: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "とても簡単"
 
-#: gui/common/settings.js:103
+#: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "簡単"
 
-#: gui/common/settings.js:107
+#: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "中"
 
-#: gui/common/settings.js:112
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "難しい"
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "とても難しい"
 
-#: gui/common/settings.js:139
+#: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "停戦不可"
 
-#: gui/common/settings.js:140
+#: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s分"
 
-#: gui/common/settings.js:154
+#: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
 msgstr "短期戦"
 
-#: gui/common/settings.js:159
+#: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
 msgstr "ランダム"
 
-#: gui/common/settings.js:163 gui/summary/summary.js:136
+#: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
 msgstr "シナリオ"
 
-#: gui/common/settings.js:194
+#: gui/common/settings.js:205
 msgid "None"
 msgstr "なし"
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "終了なしゲーム"
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:231
 msgid "Unlimited"
 msgstr "無制限"
+
+#: gui/common/settings.js:279 gui/common/settings.js:290
+#: gui/common/settings.js:301 gui/common/settings.js:312
+#: gui/common/settings.js:323
+msgid "Unknown"
+msgstr "不明"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -494,7 +515,7 @@ msgstr "遠隔攻撃:"
 
 #: gui/common/tooltips.js:143
 msgid "Capture Attack:"
-msgstr "捕獲攻撃:"
+msgstr "占領攻撃:"
 
 #: gui/common/tooltips.js:146
 msgid "Attack:"
@@ -1442,17 +1463,17 @@ msgstr "匿名フィードバックが現在有効です。"
 msgid "Status: $status."
 msgstr "状態： $status。"
 
-#: gui/pregame/mainmenu.xml:521
-msgid "Alpha XVIII: Rhododactylos"
-msgstr "Alpha XVIII: Rhododactylos"
+#: gui/pregame/mainmenu.xml:535
+msgid "Alpha XIX: Syllepsis"
+msgstr "Alpha XIX: Syllepsis"
 
-#: gui/pregame/mainmenu.xml:523
+#: gui/pregame/mainmenu.xml:537
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "警告： このゲームは開発初期版です。多くの機能がまだ盛り込まれていません。"
 
-#: gui/pregame/mainmenu.xml:525
+#: gui/pregame/mainmenu.xml:539
 msgid "Get involved at: play0ad.com"
 msgstr "play0ad.comから参加しよう"
 
@@ -1503,54 +1524,58 @@ msgid "Options"
 msgstr "設定"
 
 #: gui/pregame/mainmenu.xml:(caption):355
+msgid "Replays"
+msgstr "リプレイ"
+
+#: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
 msgstr "シナリオエディター"
 
-#: gui/pregame/mainmenu.xml:(caption):368
+#: gui/pregame/mainmenu.xml:(caption):382
 msgid "Welcome Screen"
 msgstr "歓迎スクリーン"
 
-#: gui/pregame/mainmenu.xml:(caption):383
+#: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
 msgstr "MODの選択"
 
-#: gui/pregame/mainmenu.xml:(caption):438
+#: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
 msgstr "遊び方を学ぶ"
 
-#: gui/pregame/mainmenu.xml:(caption):453
+#: gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
 msgstr "シングルプレイヤー"
 
-#: gui/pregame/mainmenu.xml:(caption):468
+#: gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
 msgstr "マルチプレイヤー"
 
-#: gui/pregame/mainmenu.xml:(caption):483
+#: gui/pregame/mainmenu.xml:(caption):497
 msgid "Tools & Options"
 msgstr "ツールと設定"
 
-#: gui/pregame/mainmenu.xml:(caption):498
+#: gui/pregame/mainmenu.xml:(caption):512
 msgid "Exit"
 msgstr "終了"
 
-#: gui/pregame/mainmenu.xml:(caption):535
+#: gui/pregame/mainmenu.xml:(caption):549
 msgid "Help with the Translation!"
 msgstr "翻訳にご協力を！"
 
-#: gui/pregame/mainmenu.xml:(caption):547
+#: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"
 msgstr "ウェブサイト"
 
-#: gui/pregame/mainmenu.xml:(caption):559
+#: gui/pregame/mainmenu.xml:(caption):573
 msgid "Chat"
 msgstr "チャット"
 
-#: gui/pregame/mainmenu.xml:(caption):571
+#: gui/pregame/mainmenu.xml:(caption):585
 msgid "Report a Bug"
 msgstr "バグを報告する"
 
-#: gui/pregame/mainmenu.xml:(caption):600
+#: gui/pregame/mainmenu.xml:(caption):614
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1601,56 +1626,60 @@ msgid "Choose the language of the game."
 msgstr "ゲームの言語を選択します。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
+msgid "Playback previous games."
+msgstr "以前のゲームを再生します。"
+
+#: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Atlasシナリオエディターを新しいウィンドウで開きます。より確実に起動するには、コマンドライン引数「-editor」を指定してゲームを開始します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):369
+#: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "歓迎スクリーンを表示します。誤ってこの表示を隠したときに有用です。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):384
+#: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
 msgstr "使用するMODを選んでください。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):439
+#: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr "遊び方とテクノロジー系統、そして文明の背後の歴史を学びます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):454
+#: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
 msgstr "コンピューター相手に単独プレイで対戦に挑みます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):469
+#: gui/pregame/mainmenu.xml:(tooltip):483
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "1人または複数の人間とマルチプレイヤーで対戦します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):484
+#: gui/pregame/mainmenu.xml:(tooltip):498
 msgid "Game options and scenario design tools."
 msgstr "ゲーム設定とシナリオ作成ツールです。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):499
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
 msgstr "ゲームを終了します。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):536
+#: gui/pregame/mainmenu.xml:(tooltip):550
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "クリックして0 A.D.の翻訳サイトをウェブブラウザーで開きます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):548
+#: gui/pregame/mainmenu.xml:(tooltip):562
 msgid "Click to open play0ad.com in your web browser."
 msgstr "クリックしてplay0ad.comをウェブブラウザーで開きます。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):560
+#: gui/pregame/mainmenu.xml:(tooltip):574
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "クリックしてブラウザーから 0 A.D. IRCチャットに入ります。 （webchat.quakenet.orgの#0ad）"
 
-#: gui/pregame/mainmenu.xml:(tooltip):572
+#: gui/pregame/mainmenu.xml:(tooltip):586
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "クリックして0 A.D. Tracへバグや異常終了、エラーを報告します。"
 
@@ -1737,13 +1766,13 @@ msgstr "[imgleft=\"constructionIcon\"]このゲームはまだ開発の途上で
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]特に大きなマップと多数のユニットでは、ゲームは性能上の問題を生ずることがあります。"
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]今回のバージョンでは新しい経路探索を採用し、性能を改善していますが、新たなバグの対象ともなり得ます。"
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""

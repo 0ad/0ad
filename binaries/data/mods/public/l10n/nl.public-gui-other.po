@@ -8,6 +8,7 @@
 # Evert Van Petegem <inactive+evertvp@transifex.com>, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
 # Frode Lindeijer, 2015
+# Johannes Collosus <the_pc_pilot@live.nl>, 2015
 # Mark Lemmens <the_white_eagle@telenet.be>, 2015
 # Max Klaversma <maxklaversma@gmail.com>, 2014
 # niektb <niektb95@gmail.com>, 2015
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:15+0200\n"
-"PO-Revision-Date: 2015-09-19 09:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-30 13:01+0000\n"
+"Last-Translator: Johannes Collosus <the_pc_pilot@live.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +31,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "Spelverloop voor de %(civilization)s"
+msgstr "Spelverloop voor %(civilization)s"
 
 #: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
@@ -79,22 +80,37 @@ msgstr "Pagina aan het openen"
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:103
+#. Translation: The "x" means "times", with the mathematical meaning of
+#. multiplication.
+#: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/common/functions_global_object.js:120
+#: gui/common/functions_global_object.js:119
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Resterende tijd tot de wapenstilstand over is: %(time)s."
 
-#: gui/common/functions_utility.js:159
+#: gui/common/functions_utility.js:142
+msgctxt "map size"
+msgid "Default"
+msgstr "Standaard"
+
+#: gui/common/functions_utility.js:152
+msgid "A randomly selected map."
+msgstr "Een willekeurig geselecteerde kaart."
+
+#: gui/common/functions_utility.js:161
+msgid "Sorry, no description available."
+msgstr "Sorry, geen beschrijving verkrijgbaar."
+
+#: gui/common/functions_utility.js:205
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:207
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -317,11 +333,11 @@ msgstr "Onjuiste versie van het netwerkprotocol"
 
 #: gui/common/network.js:9
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Spel laad, probeert u later nog eens"
 
 #: gui/common/network.js:10
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Het spel is al begonnen, geen waarnemers toegestaan"
 
 #: gui/common/network.js:11
 #, javascript-format
@@ -341,42 +357,42 @@ msgstr "Reden: %(reason)s."
 msgid "Disconnected"
 msgstr "Verbinding verbroken"
 
-#: gui/common/settings.js:95
+#: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Oneindig Spel"
 
-#: gui/common/settings.js:99
+#: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Heel Makkelijk "
 
-#: gui/common/settings.js:103
+#: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Makkelijk"
 
-#: gui/common/settings.js:107
+#: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Middelzwaar"
 
-#: gui/common/settings.js:112
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Moeilijk "
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Heel Moeilijk"
 
-#: gui/common/settings.js:139
+#: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Geen Wapenstilstand"
 
-#: gui/common/settings.js:140
+#: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -384,31 +400,37 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/settings.js:154
+#: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Schermutseling"
 
-#: gui/common/settings.js:159
+#: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Willekeurig"
 
-#: gui/common/settings.js:163 gui/summary/summary.js:136
+#: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
 msgstr "Scenario"
 
-#: gui/common/settings.js:194
+#: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Eindeloos Spel"
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:231
 msgid "Unlimited"
-msgstr ""
+msgstr "Onbeperkt"
+
+#: gui/common/settings.js:279 gui/common/settings.js:290
+#: gui/common/settings.js:301 gui/common/settings.js:312
+#: gui/common/settings.js:323
+msgid "Unknown"
+msgstr "Onbekend"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -1298,15 +1320,15 @@ msgstr "Kaart\nverkenning"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr ""
+msgstr "Op hoogtepunt"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr ""
+msgstr "Aan het einde"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
-msgstr ""
+msgstr "Kaart controle"
 
 #: gui/summary/layout.js:274
 msgid "Team total"
@@ -1455,17 +1477,17 @@ msgstr "Anonieme feedback is momenteel geactiveerd."
 msgid "Status: $status."
 msgstr "Status: $status."
 
-#: gui/pregame/mainmenu.xml:521
-msgid "Alpha XVIII: Rhododactylos"
-msgstr "ALPHA XVIII : Rhododactylos"
+#: gui/pregame/mainmenu.xml:535
+msgid "Alpha XIX: Syllepsis"
+msgstr ""
 
-#: gui/pregame/mainmenu.xml:523
+#: gui/pregame/mainmenu.xml:537
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "LET OP: Dit spel is nog volop in ontwikkeling. Vele functies zijn nog niet geïmplementeerd."
 
-#: gui/pregame/mainmenu.xml:525
+#: gui/pregame/mainmenu.xml:539
 msgid "Get involved at: play0ad.com"
 msgstr "Help mee op: play0ad.com"
 
@@ -1516,54 +1538,58 @@ msgid "Options"
 msgstr "Instellingen"
 
 #: gui/pregame/mainmenu.xml:(caption):355
+msgid "Replays"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
 msgstr "Scenario bewerker"
 
-#: gui/pregame/mainmenu.xml:(caption):368
+#: gui/pregame/mainmenu.xml:(caption):382
 msgid "Welcome Screen"
 msgstr "Welkomstscherm"
 
-#: gui/pregame/mainmenu.xml:(caption):383
+#: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
 msgstr "Mod selectie"
 
-#: gui/pregame/mainmenu.xml:(caption):438
+#: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
 msgstr "Spelhandleiding"
 
-#: gui/pregame/mainmenu.xml:(caption):453
+#: gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
 msgstr "Singleplayer"
 
-#: gui/pregame/mainmenu.xml:(caption):468
+#: gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
 msgstr "Multiplayer"
 
-#: gui/pregame/mainmenu.xml:(caption):483
+#: gui/pregame/mainmenu.xml:(caption):497
 msgid "Tools & Options"
 msgstr "Hulpmiddelen & opties"
 
-#: gui/pregame/mainmenu.xml:(caption):498
+#: gui/pregame/mainmenu.xml:(caption):512
 msgid "Exit"
 msgstr "Stop"
 
-#: gui/pregame/mainmenu.xml:(caption):535
+#: gui/pregame/mainmenu.xml:(caption):549
 msgid "Help with the Translation!"
 msgstr "Help met de vertaling!"
 
-#: gui/pregame/mainmenu.xml:(caption):547
+#: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"
 msgstr "Website"
 
-#: gui/pregame/mainmenu.xml:(caption):559
+#: gui/pregame/mainmenu.xml:(caption):573
 msgid "Chat"
 msgstr "Chat"
 
-#: gui/pregame/mainmenu.xml:(caption):571
+#: gui/pregame/mainmenu.xml:(caption):585
 msgid "Report a Bug"
 msgstr "Meld een probleem"
 
-#: gui/pregame/mainmenu.xml:(caption):600
+#: gui/pregame/mainmenu.xml:(caption):614
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1614,56 +1640,60 @@ msgid "Choose the language of the game."
 msgstr "Kies de taal van het spel."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
+msgid "Playback previous games."
+msgstr "Verleden spellen afspelen."
+
+#: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Open de Atlas scenario bewerker in een nieuw venster. Je kan dit ook starten met de opdrachtpromt optie \"-editor\" op een meer betrouwbare manier."
 
-#: gui/pregame/mainmenu.xml:(tooltip):369
+#: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Toon het welkomstscherm. Nuttig als je het per ongeluk verborgen had."
 
-#: gui/pregame/mainmenu.xml:(tooltip):384
+#: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
 msgstr "Selecteer te gebruiken mods."
 
-#: gui/pregame/mainmenu.xml:(tooltip):439
+#: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr "Leer het spel kennen, ontdek de technologiebomen en de geschiedenis achter de beschavingen."
 
-#: gui/pregame/mainmenu.xml:(tooltip):454
+#: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
 msgstr "Daag de computer uit voor een gevecht."
 
-#: gui/pregame/mainmenu.xml:(tooltip):469
+#: gui/pregame/mainmenu.xml:(tooltip):483
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Daag één of meerdere mensen uit voor een netwerk spel."
 
-#: gui/pregame/mainmenu.xml:(tooltip):484
+#: gui/pregame/mainmenu.xml:(tooltip):498
 msgid "Game options and scenario design tools."
 msgstr "Spelinstellingen en scenario-ontwerphulpmiddelen."
 
-#: gui/pregame/mainmenu.xml:(tooltip):499
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
 msgstr "Stopt het spel"
 
-#: gui/pregame/mainmenu.xml:(tooltip):536
+#: gui/pregame/mainmenu.xml:(tooltip):550
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Klik om de 0 A.D. vertaalpagina te openen in je browser."
 
-#: gui/pregame/mainmenu.xml:(tooltip):548
+#: gui/pregame/mainmenu.xml:(tooltip):562
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klik om play0ad.com in je webbrowser te openen."
 
-#: gui/pregame/mainmenu.xml:(tooltip):560
+#: gui/pregame/mainmenu.xml:(tooltip):574
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Klik om de IRC chat in je webbrowser te openen. (#0ad op webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):572
+#: gui/pregame/mainmenu.xml:(tooltip):586
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Klik om de 0 A.D. Trac pagina te bezoeken en zo een bug, crash of ander probleem te melden."
 
@@ -2107,7 +2137,7 @@ msgstr "- Zwaar gepantserd en slow. Slechte aanval."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Gebruikt tegen cavalrie, of andere melee infanteri om hun in plaats te houden "
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2221,7 +2251,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- Een speciaal beginsstructuur for de Griekse facties."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2229,7 +2259,7 @@ msgstr "- Geeft +10 bevolkingsbonus."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "- Aleen aanwezig op sommige kaarten."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Boris Karalnik <eyesucker@gmail.com>, 2015
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014
 # dr&mx <dronmax@gmail.com>, 2014
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:15+0200\n"
-"PO-Revision-Date: 2015-09-19 09:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-27 12:59+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,22 +86,37 @@ msgstr "Открывающая страница"
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/functions_global_object.js:103
+#. Translation: The "x" means "times", with the mathematical meaning of
+#. multiplication.
+#: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr ""
 
-#: gui/common/functions_global_object.js:120
+#: gui/common/functions_global_object.js:119
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr ""
 
-#: gui/common/functions_utility.js:159
+#: gui/common/functions_utility.js:142
+msgctxt "map size"
+msgid "Default"
+msgstr "По умолчанию"
+
+#: gui/common/functions_utility.js:152
+msgid "A randomly selected map."
+msgstr "Случайная карта."
+
+#: gui/common/functions_utility.js:161
+msgid "Sorry, no description available."
+msgstr "К сожалению, описание недоступно."
+
+#: gui/common/functions_utility.js:205
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:207
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -323,7 +339,7 @@ msgstr "Неверная версия протокола"
 
 #: gui/common/network.js:9
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Игра загружается, пожалуйста, попробуйте позже"
 
 #: gui/common/network.js:10
 msgid "Game has already started, no observers allowed"
@@ -347,42 +363,42 @@ msgstr "Причина: %(reason)s."
 msgid "Disconnected"
 msgstr "Соединение прервано"
 
-#: gui/common/settings.js:95
+#: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Песочница"
 
-#: gui/common/settings.js:99
+#: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Очень легко"
 
-#: gui/common/settings.js:103
+#: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Легко"
 
-#: gui/common/settings.js:107
+#: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Нормально"
 
-#: gui/common/settings.js:112
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Сложно"
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Очень сложно"
 
-#: gui/common/settings.js:139
+#: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr ""
 
-#: gui/common/settings.js:140
+#: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -392,30 +408,36 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: gui/common/settings.js:154
+#: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Схватка"
 
-#: gui/common/settings.js:159
+#: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Случайно"
 
-#: gui/common/settings.js:163 gui/summary/summary.js:136
+#: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
 msgstr "Сценарий"
 
-#: gui/common/settings.js:194
+#: gui/common/settings.js:205
 msgid "None"
 msgstr ""
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Бесконечная игра"
 
-#: gui/common/settings.js:220
+#: gui/common/settings.js:231
 msgid "Unlimited"
+msgstr "Неограниченно"
+
+#: gui/common/settings.js:279 gui/common/settings.js:290
+#: gui/common/settings.js:301 gui/common/settings.js:312
+#: gui/common/settings.js:323
+msgid "Unknown"
 msgstr ""
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
@@ -899,11 +921,11 @@ msgstr "Включить покадровую синхронизацию для 
 
 #: gui/options/options.js:36
 msgid "Limit FPS in Menus"
-msgstr ""
+msgstr "Ограничить FPS в меню"
 
 #: gui/options/options.js:36
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr ""
+msgstr "Ограничить до 50 FPS во всех меню для энергосбережения."
 
 #: gui/options/options.js:40
 msgid "Master Gain"
@@ -1070,7 +1092,7 @@ msgstr "Нужна 0 A.D. версии %(requiredVersion)s, а запущенн�
 
 #: gui/savedgames/load.js:61
 msgid "It needs an older version of 0 A.D."
-msgstr ""
+msgstr "Требуется более ранняя версия 0 A.D."
 
 #: gui/savedgames/load.js:65
 #, javascript-format
@@ -1224,7 +1246,7 @@ msgstr "Флот"
 
 #: gui/summary/layout.js:56
 msgid "Traders"
-msgstr ""
+msgstr "Торговцы"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
@@ -1294,7 +1316,7 @@ msgstr "Процент\nвегетар-ев"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
-msgstr ""
+msgstr "Феминизация"
 
 #: gui/summary/layout.js:126
 msgid ""
@@ -1467,17 +1489,17 @@ msgstr "Анонимный сбор информации включён."
 msgid "Status: $status."
 msgstr "Статус: $status."
 
-#: gui/pregame/mainmenu.xml:521
-msgid "Alpha XVIII: Rhododactylos"
-msgstr "Альфа XVIII : Rhododactylos"
+#: gui/pregame/mainmenu.xml:535
+msgid "Alpha XIX: Syllepsis"
+msgstr "Альфа XIX: Syllepsis"
 
-#: gui/pregame/mainmenu.xml:523
+#: gui/pregame/mainmenu.xml:537
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ВНИМАНИЕ: Игра находится на стадии разработки. Многие запланированные функции, ещё не реализованы."
 
-#: gui/pregame/mainmenu.xml:525
+#: gui/pregame/mainmenu.xml:539
 msgid "Get involved at: play0ad.com"
 msgstr "Посетите: play0ad.com"
 
@@ -1528,54 +1550,58 @@ msgid "Options"
 msgstr "Настройки"
 
 #: gui/pregame/mainmenu.xml:(caption):355
+msgid "Replays"
+msgstr "Повторы"
+
+#: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
 msgstr "Редактор сценариев"
 
-#: gui/pregame/mainmenu.xml:(caption):368
+#: gui/pregame/mainmenu.xml:(caption):382
 msgid "Welcome Screen"
 msgstr "Экран приветствия"
 
-#: gui/pregame/mainmenu.xml:(caption):383
+#: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
 msgstr "Выбор модов"
 
-#: gui/pregame/mainmenu.xml:(caption):438
+#: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
 msgstr "Обучение"
 
-#: gui/pregame/mainmenu.xml:(caption):453
+#: gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
 msgstr "Одиночная игра"
 
-#: gui/pregame/mainmenu.xml:(caption):468
+#: gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
 msgstr "Многопользовательская игра"
 
-#: gui/pregame/mainmenu.xml:(caption):483
+#: gui/pregame/mainmenu.xml:(caption):497
 msgid "Tools & Options"
 msgstr "Инструменты и настройки"
 
-#: gui/pregame/mainmenu.xml:(caption):498
+#: gui/pregame/mainmenu.xml:(caption):512
 msgid "Exit"
 msgstr "Выход"
 
-#: gui/pregame/mainmenu.xml:(caption):535
+#: gui/pregame/mainmenu.xml:(caption):549
 msgid "Help with the Translation!"
 msgstr "Помогите с переводом!"
 
-#: gui/pregame/mainmenu.xml:(caption):547
+#: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"
 msgstr "Сайт"
 
-#: gui/pregame/mainmenu.xml:(caption):559
+#: gui/pregame/mainmenu.xml:(caption):573
 msgid "Chat"
 msgstr "Чат"
 
-#: gui/pregame/mainmenu.xml:(caption):571
+#: gui/pregame/mainmenu.xml:(caption):585
 msgid "Report a Bug"
 msgstr "Сообщить об ошибке"
 
-#: gui/pregame/mainmenu.xml:(caption):600
+#: gui/pregame/mainmenu.xml:(caption):614
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1626,56 +1652,60 @@ msgid "Choose the language of the game."
 msgstr "Выбрать язык игры."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
+msgid "Playback previous games."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Открыть редактор сценариев Atlas в новом окне. Вы также можете перейти в режим редактора, запустив игру с аргументом командной строки \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):369
+#: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Показать Экран приветствия. Полезно, если это скрыто по ошибке."
 
-#: gui/pregame/mainmenu.xml:(tooltip):384
+#: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
 msgstr "Выбрать используемые моды."
 
-#: gui/pregame/mainmenu.xml:(tooltip):439
+#: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr "Узнать, как играть, изучить деревья технологий и историю цивилизаций"
 
-#: gui/pregame/mainmenu.xml:(tooltip):454
+#: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
 msgstr "Сразиться с компьютерным игроком в однопользовательской игре."
 
-#: gui/pregame/mainmenu.xml:(tooltip):469
+#: gui/pregame/mainmenu.xml:(tooltip):483
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Сразиться с одним или несколькими игроками в многопользовательской игре."
 
-#: gui/pregame/mainmenu.xml:(tooltip):484
+#: gui/pregame/mainmenu.xml:(tooltip):498
 msgid "Game options and scenario design tools."
 msgstr "Настройки игры и инструменты для создания сценариев."
 
-#: gui/pregame/mainmenu.xml:(tooltip):499
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
 msgstr "Выйти из игры."
 
-#: gui/pregame/mainmenu.xml:(tooltip):536
+#: gui/pregame/mainmenu.xml:(tooltip):550
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Открыть страницу перевода 0 A.D. в браузере."
 
-#: gui/pregame/mainmenu.xml:(tooltip):548
+#: gui/pregame/mainmenu.xml:(tooltip):562
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Нажмите, чтобы открыть play0ad.com в браузере."
 
-#: gui/pregame/mainmenu.xml:(tooltip):560
+#: gui/pregame/mainmenu.xml:(tooltip):574
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Нажмите, чтобы открыть IRC-чат 0 A.D. в браузере. (#0ad на webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):572
+#: gui/pregame/mainmenu.xml:(tooltip):586
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Нажмите чтобы посетить 0 A.D. Trac для отчетов о багах, крахах или ошибках."
 

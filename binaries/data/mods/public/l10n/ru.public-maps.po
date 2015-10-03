@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Alexander Serov <sekachinsky@gmail.com>, 2014
+# Boris Karalnik <eyesucker@gmail.com>, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014-2015
@@ -13,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-22 09:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:03+0200\n"
+"PO-Revision-Date: 2015-09-27 12:43+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,7 +336,7 @@ msgid ""
 "A dry central plateau rich in minerals surrounded by rocky hills\n"
 "\n"
 "The southern parts of Zagros Mountains were the heart of the Persian empires and population. Although the altitude is high, the southern parts are drier that the northern Zagros, leading to a semi-arid climate. Still there are some sparse oak forests in the higher grounds."
-msgstr ""
+msgstr "Засушливое богатое минералами плато в центре окружено скалистыми холмами.\n\nЮжная часть гор Загрос — сердце персидских империй и населения. Несмотря на большую высоту над уровнем моря, южные районы более засушливы, нежели северные, что приводит к формированию полупустынного климата. Тем не менее встречается несколько редких дубовых рощ на более возвышенных землях."
 
 #: maps/random/persian_highlands.jsonsettings.Name
 msgid "Persian Highlands"
@@ -629,7 +630,7 @@ msgstr "Весна в Аркадии, в Греции. Весенние дожд
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:41 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[0].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[0].Name:42 maps/skirmishes/Zagros Mountains
 #: (2).xml:PlayerData[0].Name:42
 msgid "Player 1"
@@ -697,7 +698,7 @@ msgstr "Игрок 1"
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:41 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[1].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[1].Name:42 maps/skirmishes/Zagros Mountains
 #: (2).xml:PlayerData[1].Name:42
 msgid "Player 2"
@@ -929,7 +930,7 @@ msgstr "Сила захвата"
 #: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Team Oasis -
 #: 2v2.xml:PlayerData[2].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[2].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[2].Name:42
 msgid "Player 3"
 msgstr "Игрок 3"
@@ -981,7 +982,7 @@ msgstr "Маленькая карта с пустыней. Каждый игро
 #: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Team Oasis -
 #: 2v2.xml:PlayerData[3].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[3].Name:42
 msgid "Player 4"
 msgstr "Игрок 4"
@@ -2075,14 +2076,14 @@ msgstr "Фессалийская равнина пересечена узким�
 msgid "Thessalian Plains (4)"
 msgstr "Фессалийская равнина (4)"
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:Description:41
+#: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
 "Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr "Четыре фракции осели на вершине крупных каменистых плато, или акрополей. \n\nРазведайте земли в поисках сокровищ и новых ресурсов."
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:Name:41
+#: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"
 msgstr "Тосканский Акрополь (4)"
 
