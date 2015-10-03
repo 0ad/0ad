@@ -647,7 +647,7 @@ private:
 		return (m_WorldX0 <= p.X && p.X <= m_WorldX1 && m_WorldZ0 <= p.Y && p.Y <= m_WorldZ1);
 	}
 
-	void RasterizeHelper(Grid<NavcellData>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, u64 appliedMask, entity_pos_t clearance = fixed::Zero());
+	void RasterizeHelper(Grid<NavcellData>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, pass_class_t appliedMask, entity_pos_t clearance = fixed::Zero());
 };
 
 REGISTER_COMPONENT_TYPE(ObstructionManager)
@@ -871,7 +871,7 @@ void CCmpObstructionManager::Rasterize(Grid<NavcellData>& grid, const std::vecto
 	m_DirtyUnitShapes.clear();
 }
 
-void CCmpObstructionManager::RasterizeHelper(Grid<NavcellData>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, u64 appliedMask, entity_pos_t clearance)
+void CCmpObstructionManager::RasterizeHelper(Grid<NavcellData>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, pass_class_t appliedMask, entity_pos_t clearance)
 {
 	for (auto& pair : m_StaticShapes)
 	{
