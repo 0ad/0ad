@@ -75,7 +75,7 @@ public:
 	 */
 	virtual entity_pos_t GetMaximumClearance() const = 0;
 
-	virtual const Grid<u16>& GetPassabilityGrid() = 0;
+	virtual const Grid<NavcellData>& GetPassabilityGrid() = 0;
 
 	/**
 	 * Passes the lazily-stored dirtiness data collected from

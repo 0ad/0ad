@@ -243,7 +243,7 @@ const PathfinderPassability* CCmpPathfinder::GetPassabilityFromMask(pass_class_t
 	return NULL;
 }
 
-const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
+const Grid<NavcellData>& CCmpPathfinder::GetPassabilityGrid()
 {
 	if (!m_Grid)
 	{
@@ -266,7 +266,7 @@ const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
  * Euclidean distances; currently it effectively does dist=max(dx,dy) instead.
  * This would only really be a problem for big clearances.
  */
-static void ExpandImpassableCells(Grid<u16>& grid, u16 clearance, pass_class_t mask)
+static void ExpandImpassableCells(Grid<NavcellData>& grid, u16 clearance, pass_class_t mask)
 {
 	PROFILE3("ExpandImpassableCells");
 
@@ -866,7 +866,7 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const I
 
 	SimRasterize::Spans spans;
 	SimRasterize::RasterizeRectWithClearance(spans, square, expand, Pathfinding::NAVCELL_SIZE);
-	for (SimRasterize::Span& span : spans)
+	for (const SimRasterize::Span& span : spans)
 	{
 		i16 i0 = span.i0;
 		i16 i1 = span.i1;

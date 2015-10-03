@@ -465,7 +465,7 @@ public:
 	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out);
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, std::vector<entity_id_t>* out);
 
-	virtual void Rasterize(Grid<u16>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate);
+	virtual void Rasterize(Grid<NavcellData>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate);
 	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares);
 	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter);
 
@@ -647,7 +647,7 @@ private:
 		return (m_WorldX0 <= p.X && p.X <= m_WorldX1 && m_WorldZ0 <= p.Y && p.Y <= m_WorldZ1);
 	}
 
-	void RasterizeHelper(Grid<u16>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, u16 appliedMask, entity_pos_t clearance = fixed::Zero());
+	void RasterizeHelper(Grid<NavcellData>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, u64 appliedMask, entity_pos_t clearance = fixed::Zero());
 };
 
 REGISTER_COMPONENT_TYPE(ObstructionManager)
@@ -826,7 +826,7 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 		return false; // didn't collide, if we got this far
 }
 
-void CCmpObstructionManager::Rasterize(Grid<u16>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate)
+void CCmpObstructionManager::Rasterize(Grid<NavcellData>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate)
 {
 	PROFILE3("Rasterize");
 
@@ -871,7 +871,7 @@ void CCmpObstructionManager::Rasterize(Grid<u16>& grid, const std::vector<Pathfi
 	m_DirtyUnitShapes.clear();
 }
 
-void CCmpObstructionManager::RasterizeHelper(Grid<u16>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, u16 appliedMask, entity_pos_t clearance)
+void CCmpObstructionManager::RasterizeHelper(Grid<NavcellData>& grid, ICmpObstructionManager::flags_t requireMask, bool fullUpdate, u64 appliedMask, entity_pos_t clearance)
 {
 	for (auto& pair : m_StaticShapes)
 	{

@@ -166,7 +166,7 @@ private:
 		return m_Chunks[passClass].at(cj * m_ChunksW + ci);
 	}
 
-	void FillRegionOnGrid(const RegionID& region, pass_class_t passClass, NavcellData value, Grid<NavcellData>& grid);
+	void FillRegionOnGrid(const RegionID& region, pass_class_t passClass, u16 value, Grid<u16>& grid);
 
 	u16 m_W, m_H;
 	u16 m_ChunksW, m_ChunksH;

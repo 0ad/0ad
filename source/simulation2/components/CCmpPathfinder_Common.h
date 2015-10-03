@@ -171,7 +171,7 @@ public:
 		return max;
 	}
 
-	virtual const Grid<u16>& GetPassabilityGrid();
+	virtual const Grid<NavcellData>& GetPassabilityGrid();
 
 	virtual const GridUpdateInformation& GetDirtinessData() const;
 
