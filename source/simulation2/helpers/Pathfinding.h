@@ -100,7 +100,7 @@ static const int PASS_CLASS_BITS = 16;
 typedef u16 NavcellData; // 1 bit per passability class (up to PASS_CLASS_BITS)
 #define IS_PASSABLE(item, classmask) (((item) & (classmask)) == 0)
 #define PASS_CLASS_MASK_FROM_INDEX(id) ((pass_class_t)(1u << id))
-#define SPECIAL_PASS_CLASS PASS_CLASS_MASK_FROM_INDEX(PASS_CLASS_BITS-1) // 16th bit, used for special in-place computations
+#define SPECIAL_PASS_CLASS PASS_CLASS_MASK_FROM_INDEX((PASS_CLASS_BITS-1)) // 16th bit, used for special in-place computations
 
 namespace Pathfinding
 {
