@@ -285,13 +285,6 @@ private:
 	// Helper functions for ComputePath
 
 	/**
-	 * Same kind of interface as ComputePath, but works when the unit is starting
-	 * on an impassable navcell. 
-	 * Returns a path heading directly to the nearest passable navcell, then the goal.
-	 */
-	void ComputePathOffImpassable(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path);
-
-	/**
 	 * Given a path with an arbitrary collection of waypoints, updates the
 	 * waypoints to be nicer. Calls "Testline" between waypoints
 	 * so that bended paths can become straight if there's nothing in between

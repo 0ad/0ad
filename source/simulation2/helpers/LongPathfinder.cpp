@@ -986,38 +986,6 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 	m_DebugGoal = state.goal;
 }
 
-void LongPathfinder::ComputePathOffImpassable(entity_pos_t x0, entity_pos_t z0, const PathGoal& UNUSED(origGoal), pass_class_t passClass, WaypointPath& path)
-{
-	u16 i0, j0;
-	Pathfinding::NearestNavcell(x0, z0, i0, j0, m_GridSize, m_GridSize);
-	u16 iGoal = i0;
-	u16 jGoal = j0;
-	m_PathfinderHier.FindNearestPassableNavcell(iGoal, jGoal, passClass);
-
-	int ip = iGoal;
-	int jp = jGoal;
-
-	// Reconstruct the path (in reverse)
-	while (ip != i0 || jp != j0)
-	{
-		entity_pos_t x, z;
-		Pathfinding::NavcellCenter(ip, jp, x, z);
-		path.m_Waypoints.emplace_back(Waypoint{ x, z });
-
-		// Move diagonally/horizontally/vertically towards the start navcell
-
-		if (ip > i0)
-			ip--;
-		else if (ip < i0)
-			ip++;
-
-		if (jp > j0)
-			jp--;
-		else if (jp < j0)
-			jp++;
-	}
-}
-
 void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passClass, entity_pos_t maxDist, entity_pos_t x0, entity_pos_t z0)
 {
 	if (path.m_Waypoints.empty())
