@@ -182,9 +182,9 @@ function openDeleteDialog(selection)
 		Engine.PostNetworkCommand({"type": "delete-entities", "entities": selectionArg});
 	};
 
-	var btCaptions = [translate("Yes"), translate("No")];
-	var btCode = [deleteSelectedEntities, resumeGame];
-	var btArgs = [selection, null];
+	var btCaptions = [translate("No"), translate("Yes")];
+	var btCode = [resumeGame, deleteSelectedEntities];
+	var btArgs = [null, selection];
 
 	messageBox(400, 200, translate("Destroy everything currently selected?"), translate("Delete"), 0, btCaptions, btCode, btArgs);
 }
