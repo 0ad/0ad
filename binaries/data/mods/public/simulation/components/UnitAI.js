@@ -819,7 +819,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"Order.Stop": function(msg) {
-			this.CallMemberFunction("Stop", [false]);
+			if (!this.IsAttackingAsFormation())
+				this.CallMemberFunction("Stop", [false]);
 			this.FinishOrder();
 		},
 
@@ -1148,26 +1149,27 @@ UnitAI.prototype.UnitFsmSpec = {
 			"ATTACKING": {
 				// Wait for individual members to finish
 				"enter": function(msg) {
-					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(false, false);
-					this.StartTimer(200, 200);
-
 					var target = this.order.data.target;
+					var allowCapture = this.order.data.allowCapture;
 					// Check if we are already in range, otherwise walk there
 					if (!this.CheckTargetAttackRange(target, target))
 					{
 						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 						{
-							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-							var range = cmpAttack.GetRange(target);
-							this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max });
-							return;
+							this.FinishOrder();
+							this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": allowCapture });
+							return true;
 						}
 						this.FinishOrder();
-						return;
+						return true;
 					}
 
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					// TODO fix the rearranging while attacking as formation
+					cmpFormation.SetRearrange(!this.IsAttackingAsFormation());
+					cmpFormation.MoveMembersIntoFormation(false, false);
+					this.StartTimer(200, 200);
+					return false;
 				},
 
 				"Timer": function(msg) {
@@ -1178,8 +1180,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 						{
-							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-							var range = cmpAttack.GetRange(target);
 							this.FinishOrder();
 							this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": allowCapture });
 							return;
@@ -1191,6 +1191,9 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"leave": function(msg) {
 					this.StopTimer();
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					if (cmpFormation)
+						cmpFormation.SetRearrange(true);
 				},
 			},
 		},
@@ -4230,9 +4233,8 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	// for formation members, the formation will take care of the range check
 	if (this.IsFormationMember())
 	{
-		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
 		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.ATTACKING")
+		if (cmpFormationUnitAI && cmpFormationUnitAI.IsAttackingAsFormation())
 			return false;
 	}
 
@@ -4240,7 +4242,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);
 
-	if (type!= "Ranged")
+	if (type != "Ranged")
 		return this.MoveToTargetRange(target, IID_Attack, type);
 
 	if (!this.CheckTargetVisible(target))
@@ -4332,14 +4334,9 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 	// for formation members, the formation will take care of the range check
 	if (this.IsFormationMember())
 	{
-		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
 		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-
-		if (cmpFormationAttack &&
-		    cmpFormationAttack.CanAttackAsFormation() &&
-		    cmpFormationUnitAI &&
-		    cmpFormationUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.COMBAT.ATTACKING" &&
-		    cmpFormationUnitAI.order.data.target == target)
+		if (cmpFormationUnitAI && cmpFormationUnitAI.IsAttackingAsFormation()
+			&& cmpFormationUnitAI.order.data.target == target)
 			return true;
 	}
 
@@ -5775,6 +5772,15 @@ UnitAI.prototype.IsPacking = function()
 {
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 	return (cmpPack && cmpPack.IsPacking());
+};
+
+//// Formation specific functions ////
+
+UnitAI.prototype.IsAttackingAsFormation = function()
+{
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	return cmpAttack && cmpAttack.CanAttackAsFormation()
+		&& this.GetCurrentState() == "FORMATIONCONTROLLER.COMBAT.ATTACKING";
 };
 
 //// Animal specific functions ////
