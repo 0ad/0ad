@@ -7,18 +7,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-09 02:36+0100\n"
-"PO-Revision-Date: 2014-12-14 09:00+0000\n"
-"Last-Translator: fri\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-05-09 17:17+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
+"Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):94
-#: gui/modmod/modmod.xml:(heading):135
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):93
+#: gui/modmod/modmod.xml:(heading):134
 msgid "Name"
 msgstr "Název"
 
@@ -30,8 +30,8 @@ msgstr "Složka"
 msgid "Label"
 msgstr "Štítek"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):97
-#: gui/modmod/modmod.xml:(heading):138
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):96
+#: gui/modmod/modmod.xml:(heading):137
 msgid "Version"
 msgstr "Verze"
 
@@ -47,94 +47,94 @@ msgstr "Filtr"
 msgid "Message: Mods Loaded."
 msgstr "Zpráva: Pozměněné verze nahrány"
 
-#: gui/modmod/modmod.js:372
+#: gui/modmod/modmod.js:371
 msgid "All dependencies met"
 msgstr "Všechny závislosti přítomny"
 
-#: gui/modmod/modmod.js:498
+#: gui/modmod/modmod.js:497
 msgid "No mod has been selected."
 msgstr "Nebyla vybrána žádná pozměněná verze"
 
-#: gui/modmod/modmod.xml:116
+#: gui/modmod/modmod.xml:115
 msgid "Description"
 msgstr "Popis"
 
-#: gui/modmod/modmod.xml:(caption):10
+#: gui/modmod/modmod.xml:(caption):9
 msgid "Modifications"
 msgstr "Pozměněné verze"
 
-#: gui/modmod/modmod.xml:(caption):18
+#: gui/modmod/modmod.xml:(caption):17
 msgid "Reset Filters"
 msgstr "vynulovat filtry"
 
-#: gui/modmod/modmod.xml:(caption):52
+#: gui/modmod/modmod.xml:(caption):51
 msgid "Negate"
 msgstr "Zrušit"
 
-#: gui/modmod/modmod.xml:(caption):59
+#: gui/modmod/modmod.xml:(caption):58
 msgid "Sorting:"
 msgstr "Třídění:"
 
-#: gui/modmod/modmod.xml:(caption):71
+#: gui/modmod/modmod.xml:(caption):70
 msgid "Descending."
 msgstr "Sestupně"
 
-#: gui/modmod/modmod.xml:(caption):87
+#: gui/modmod/modmod.xml:(caption):86
 msgid "Available Mods"
 msgstr "Dostupné pozměněné verze"
 
-#: gui/modmod/modmod.xml:(caption):119
+#: gui/modmod/modmod.xml:(caption):118
 msgid "Enable"
 msgstr "Povolit"
 
-#: gui/modmod/modmod.xml:(caption):128
+#: gui/modmod/modmod.xml:(caption):127
 msgid "Enabled Mods"
 msgstr "Povolené pozměněné verze"
 
-#: gui/modmod/modmod.xml:(caption):158
+#: gui/modmod/modmod.xml:(caption):157
 msgid "Up"
 msgstr "Nahoru"
 
-#: gui/modmod/modmod.xml:(caption):162
+#: gui/modmod/modmod.xml:(caption):161
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):166
+#: gui/modmod/modmod.xml:(caption):165
 msgid "Down"
 msgstr "Dolů"
 
-#: gui/modmod/modmod.xml:(caption):174
+#: gui/modmod/modmod.xml:(caption):173
 msgid "Quit"
 msgstr "Ukončit"
 
-#: gui/modmod/modmod.xml:(caption):179
+#: gui/modmod/modmod.xml:(caption):178
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modmod/modmod.xml:(caption):183
 msgid "Save Configuration"
 msgstr "Nastavení ukládání"
 
-#: gui/modmod/modmod.xml:(caption):189
+#: gui/modmod/modmod.xml:(caption):188
 msgid "Start Mods"
 msgstr "Spustit pozměněné verze"
 
-#: gui/modmod/modmod.xml:(heading):100 gui/modmod/modmod.xml:(heading):141
+#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):140
 msgid "(Folder)"
 msgstr "(Složka)"
 
-#: gui/modmod/modmod.xml:(heading):103 gui/modmod/modmod.xml:(heading):144
+#: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
 msgid "Mod Label"
 msgstr "Štítek pozměněné verze"
 
-#: gui/modmod/modmod.xml:(heading):106 gui/modmod/modmod.xml:(heading):147
+#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
 msgid "Mod Type"
 msgstr "Typ pozměněné verze"
 
-#: gui/modmod/modmod.xml:(heading):109 gui/modmod/modmod.xml:(heading):150
+#: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
 msgid "Dependencies"
 msgstr "Závislosti"
 
-#: gui/modmod/modmod.xml:(heading):112 gui/modmod/modmod.xml:(heading):153
+#: gui/modmod/modmod.xml:(heading):111 gui/modmod/modmod.xml:(heading):152
 msgid "Website"
 msgstr "Stránka"

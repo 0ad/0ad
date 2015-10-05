@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:42+0200\n"
-"PO-Revision-Date: 2015-08-31 18:47+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-24 12:52+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -27,16 +27,16 @@ msgstr "Togalach sìobhalta"
 msgid "Civic"
 msgstr "Sìobhalta"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Civic Center"
 msgstr "Ionad sìobhalta"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:70
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Tog fear gus cnap òr de ranntair a ghabhail. Trèanaich saoranaich. Gearastan: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:74
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Ionad sìobhalta"
@@ -73,7 +73,7 @@ msgstr "Slànaichidh e aonadan am fagas le 1 PB gach diog."
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr "Trèanaich lighichean. Cuir suas ri 20 aonad 'nan gearastan ann gus an slànachadh gu luath (3 PB gach diog). Rannsaich leigheas 's leasachaidhean a' chreideimh."
+msgstr "Trèanaich lighichean. Cuir suas ri 20 aonad ’nan gearastan ann gus an slànachadh gu luath (3 PB gach diog). Rannsaich leigheas ’s leasachaidhean a’ chreideimh."
 
 #: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -95,7 +95,7 @@ msgid "Defensive Structure"
 msgstr "Togalach dìona"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "Defensive"
 msgstr "Dìonadach"
 
@@ -116,7 +116,7 @@ msgstr "Tùr dìona"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Tog seo air ranntair neo-phàirteach no air an ranntair agad fhèin gus roinn dhen mhapa a rùrachadh. Thèid e 'na Ghaia mean air mhean nuair a bhios e air ranntair neo-phàirteach."
+msgstr "Tog seo air ranntair neo-phàirteach no air an ranntair agad fhèin gus roinn dhen mhapa a rùrachadh. Thèid e ’na Ghaia mean air mhean nuair a bhios e air ranntair neo-phàirteach."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -130,16 +130,16 @@ msgstr "Balla cloiche"
 #: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Tog balla timcheall air a' bhaile agad airson dìona làidir."
+msgstr "Tog balla timcheall air a’ bhaile agad airson dìona làidir."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
-msgstr "Geata a' bhaile"
+msgstr "Geata a’ bhaile"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Leigidh seo aonadan tro bhalla a' bhaile. Gabhaidh a ghlasadh gus inntrigeadh a bhacadh."
+msgstr "Leigidh seo aonadan tro bhalla a’ bhaile. Gabhaidh a ghlasadh gus inntrigeadh a bhacadh."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
@@ -149,7 +149,7 @@ msgstr "Dìon balla"
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr "Bidh 3 a bharrachd de dh'armachd aig aonad air balla"
+msgstr "Bidh 3 a bharrachd de dh’armachd aig aonad air balla"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -165,11 +165,11 @@ msgstr "Turaid balla"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Losgaidh e saighdean. Cuir gearastan ann gus balla a' bhaile a dhìon an aghaidh ionnsaighean."
+msgstr "Losgaidh e saighdean. Cuir gearastan ann gus balla a’ bhaile a dhìon an aghaidh ionnsaighean."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
-msgstr "Balla a' bhaile"
+msgstr "Balla a’ bhaile"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:39
 #: simulation/templates/template_structure_defense_wooden_tower.xml:38
@@ -245,7 +245,7 @@ msgstr "Taighean-feachd"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr "Rannsaich leasachaidhean air airm 's armachd."
+msgstr "Rannsaich leasachaidhean air airm ’s armachd."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -256,7 +256,7 @@ msgstr "Gobha"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Tog fear air an oirthir gus soithichean-mara a thogail is tòiseachadh air malairt thar a' chuain. Rannsaich leasachaidhean co-cheangailte ris a' mhuir."
+msgstr "Tog fear air an oirthir gus soithichean-mara a thogail is tòiseachadh air malairt thar a’ chuain. Rannsaich leasachaidhean co-cheangailte ris a’ mhuir."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -270,19 +270,19 @@ msgstr "Cala"
 msgid "Embassy"
 msgstr "Ambasaid"
 
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:59
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Trèanaich curaidhean, laoich is airm sèiste. Rannsaich leasachaidhean air innealan sèiste. Gearastan: 20."
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "City"
 msgstr "Mòr-bhaile"
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 #: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:58
 msgid "Fortress"
 msgstr "Dùn"
 
@@ -298,7 +298,7 @@ msgstr "Stòras"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Tog 's buachaillich beathaichean treuda an-seo airson bìdh. Cuir beathaichean air a' chiutha an-seo ach am faigh thu beagan bìdh gu cunbhalach no buannachd eile (Chan eil seo ri làimh fhathast)."
+msgstr "Tog ’s buachaillich beathaichean treuda an-seo airson bìdh. Cuir beathaichean air a’ chiutha an-seo ach am faigh thu beagan bìdh gu cunbhalach no buannachd eile (Chan eil seo ri làimh fhathast)."
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
@@ -323,11 +323,11 @@ msgstr "Togalach sònraichte"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Seo togalach sònraichte nach fhaigh thu ach airson sìobhaltas shònraichte."
 
-#: simulation/templates/template_structure_wonder.xml:38
-msgid "Wonder"
-msgstr "Mìobhail"
-
 #: simulation/templates/template_structure_wonder.xml:39
+msgid "Wonder"
+msgstr "Mìorbhail"
+
+#: simulation/templates/template_structure_wonder.xml:40
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -390,7 +390,7 @@ msgstr "Epiteíkhisma"
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Tog innealan-sèiste. Faodaidh gu ruige 20 saighdearan a dhol 'nan gearastan ann airson dìona sheasmhaich."
+msgstr "Tog innealan-sèiste. Faodaidh gu ruige 20 saighdearan a dhol ’nan gearastan ann airson dìona sheasmhaich."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -473,7 +473,7 @@ msgstr "Théātron"
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr "Hellēnízein (Greugachadh): +20% de bhuaidh air an ranntair airson gach togalach fhad 's a bhios tèatron agad."
+msgstr "Hellēnízein (Greugachadh): +20% de bhuaidh air an ranntair airson gach togalach fhad ’s a bhios tèatron agad."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -769,7 +769,7 @@ msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Naval Shipyard"
-msgstr "Doca a' chabhlaich"
+msgstr "Doca a’ chabhlaich"
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Cothon"
@@ -787,7 +787,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr "Trèanaich bana-sagartan gus na saighdearan agad a shlànachadh. Trèanaich pìcearan còmhlain naoimh. Cuir gu ruige 20 aonad 'nan gearastan ann gus an slànachadh gu luath."
+msgstr "Trèanaich bana-sagartan gus na saighdearan agad a shlànachadh. Trèanaich pìcearan còmhlain naoimh. Cuir gu ruige 20 aonad ’nan gearastan ann gus an slànachadh gu luath."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -806,7 +806,7 @@ msgstr "Homah"
 
 #: simulation/templates/structures/cart_wonder.xml:17
 msgid "Temple of Ba'al Hammon"
-msgstr "Teampall Ba'al Hammon"
+msgstr "Teampall Ba’al Hammon"
 
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
@@ -935,7 +935,7 @@ msgstr "Teíchisma"
 msgid ""
 "Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
 "defense."
-msgstr "Trèanaich curaidhean 's laoich. Faodaidh gu ruige 20 saighdear a dhol 'nan gearastan ann airson dìona sheasmhaich."
+msgstr "Trèanaich curaidhean ’s laoich. Faodaidh gu ruige 20 saighdear a dhol ’nan gearastan ann airson dìona sheasmhaich."
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
@@ -1244,7 +1244,7 @@ msgstr "Gàrraidhean crochte Bhàbalon"
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
-msgstr "ḥwt-n-mš'"
+msgstr "ḥwt-n-mš’"
 
 #: simulation/templates/structures/ptol_barracks.xml:19
 msgid ""
@@ -1254,7 +1254,7 @@ msgstr "Trèanaich saighdearan-dùthcha Èipheiteach is Ear Mheadhanach. Rannsai
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
-msgstr "pr-'a"
+msgstr "pr-’a"
 
 #: simulation/templates/structures/ptol_corral.xml:19
 msgid "h-n-ssmt.w"
@@ -1274,7 +1274,7 @@ msgstr "pr-n-t"
 
 #: simulation/templates/structures/ptol_fortress.xml:9
 msgid "mktr-'a"
-msgstr "mktr-'a"
+msgstr "mktr-’a"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid "ḥwt"
@@ -1292,7 +1292,7 @@ msgstr "Pháros"
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
-msgstr "Tog air an oirthir e gus na h-oirthirean air feadh a' mhapa a nochdadh. Astar lèirsinne glè mhòr: 180 meatair."
+msgstr "Tog air an oirthir e gus na h-oirthirean air feadh a’ mhapa a nochdadh. Astar lèirsinne glè mhòr: 180 meatair."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
@@ -1311,7 +1311,7 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Structar coltach ri taighean-feachd ach saor a ghabhas togail air ranntair neo-phàirteach 's aig nach bi buaidh air an ranntair.\n- Trèanaich saighdearan-duaise\n- An t-astar as lugha o thuineachaidhean an airm eile: 100 meatair."
+msgstr "Structar coltach ri taighean-feachd ach saor a ghabhas togail air ranntair neo-phàirteach ’s aig nach bi buaidh air an ranntair.\n- Trèanaich saighdearan-duaise\n- An t-astar as lugha o thuineachaidhean an airm eile: 100 meatair."
 
 #: simulation/templates/structures/ptol_military_colony.xml:24
 #: simulation/templates/structures/sele_military_colony.xml:24
@@ -1365,19 +1365,19 @@ msgstr "Teampall Edfu"
 msgid "Triumphal Arch"
 msgstr "Bogha buaidhe"
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:58
 msgid "Entrenched Army Camp"
 msgstr "Campa daingeann an airm"
 
-#: simulation/templates/structures/rome_army_camp.xml:60
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Castrum Vallum"
 msgstr "Castrum Vallum"
 
-#: simulation/templates/structures/rome_army_camp.xml:65
+#: simulation/templates/structures/rome_army_camp.xml:64
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Tog seo àite sam bith air a' mhapa, fiù 's air ranntair nàmhad. tog innealan-sèiste is trèanaich saighdearan-dùthcha. Slànaichidh seo aonadan a bhios 'nan gearastan ann beag air bheag."
+msgstr "Tog seo àite sam bith air a’ mhapa, fiù ’s air ranntair nàmhad. tog innealan-sèiste is trèanaich saighdearan-dùthcha. Slànaichidh seo aonadan a bhios ’nan gearastan ann beag air bheag."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1569,7 +1569,7 @@ msgstr "Phrourion"
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr "Tog innealan-sèiste agus trèanaich laoich. Faodaidh gu ruige 20 saighdearan a dhol 'nan gearastan ann airson dìona sheasmhaich."
+msgstr "Tog innealan-sèiste agus trèanaich laoich. Faodaidh gu ruige 20 saighdearan a dhol ’nan gearastan ann airson dìona sheasmhaich."
 
 #: simulation/templates/structures/sele_library.xml:16
 msgid "Bibliothikon"

@@ -13,10 +13,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-02-06 09:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-05-09 17:16+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
+"Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,167 +25,167 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:767
+#: gui/scripting/ScriptFunctions.cpp:779
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (własna kompilacja)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:772
+#: gui/scripting/ScriptFunctions.cpp:784
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:793
+#: gui/scripting/ScriptFunctions.cpp:805
 msgid "custom build"
 msgstr "własna kompilacja"
 
-#: i18n/L10n.cpp:276
+#: i18n/L10n.cpp:252
 msgid "Long strings"
 msgstr "Długie ciągi"
 
-#: lobby/XmppClient.cpp:221
+#: lobby/XmppClient.cpp:223
 msgid "Authentication failed"
 msgstr "Nieudane uwierzytelnianie"
 
-#: lobby/XmppClient.cpp:455
+#: lobby/XmppClient.cpp:457
 msgid "Registration not acceptable"
 msgstr "Rejestracja nie jest akceptowana"
 
-#: lobby/XmppClient.cpp:456
+#: lobby/XmppClient.cpp:458
 msgid "Registration conflict"
 msgstr "Konflikt rejestracji"
 
-#: lobby/XmppClient.cpp:457
+#: lobby/XmppClient.cpp:459
 msgid "Registration not authorized"
 msgstr "Rejestracja nie jest autoryzowana"
 
-#: lobby/XmppClient.cpp:458
+#: lobby/XmppClient.cpp:460
 msgid "Registration bad request"
 msgstr "Złe zapytanie rejestracyjne"
 
-#: lobby/XmppClient.cpp:459
+#: lobby/XmppClient.cpp:461
 msgid "Registration forbidden"
 msgstr "Rejestracja zabroniona"
 
-#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:997
+#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1043
 msgid "Registration required"
 msgstr "Wymagana rejestracja"
 
-#: lobby/XmppClient.cpp:461
+#: lobby/XmppClient.cpp:463
 msgid "Registration unexpected request"
 msgstr "Nieoczekiwane zapytanie rejestracyjne"
 
-#: lobby/XmppClient.cpp:462
+#: lobby/XmppClient.cpp:464
 msgid "Registration not allowed"
 msgstr "Rejestracja nie jest dozwolona"
 
-#: lobby/XmppClient.cpp:463
+#: lobby/XmppClient.cpp:465
 msgid "Registration unknown error"
 msgstr "Nieznany błąd rejestracyjny"
 
-#: lobby/XmppClient.cpp:736
+#: lobby/XmppClient.cpp:773
 msgid "unknown subtype (see logs)"
 msgstr "nieznany podtyp (sprawdź log)"
 
-#: lobby/XmppClient.cpp:982
+#: lobby/XmppClient.cpp:1028
 msgid "Bad request"
 msgstr "Złe zapytanie"
 
-#: lobby/XmppClient.cpp:983
+#: lobby/XmppClient.cpp:1029
 msgid "Player name already in use"
 msgstr "Nazwa gracza jest już w użyciu"
 
-#: lobby/XmppClient.cpp:984
+#: lobby/XmppClient.cpp:1030
 msgid "Feature not implemented"
 msgstr "Funkcjonalność niezaimplementowana"
 
-#: lobby/XmppClient.cpp:985
+#: lobby/XmppClient.cpp:1031
 msgid "Forbidden"
 msgstr "Zabronione"
 
-#: lobby/XmppClient.cpp:986
+#: lobby/XmppClient.cpp:1032
 msgid "Recipient or server gone"
 msgstr "Odbiorca lub serwer zniknął"
 
-#: lobby/XmppClient.cpp:987
+#: lobby/XmppClient.cpp:1033
 msgid "Internal server error"
 msgstr "Wewnętrzny błąd serwera"
 
-#: lobby/XmppClient.cpp:988
+#: lobby/XmppClient.cpp:1034
 msgid "Item not found"
 msgstr "Pozycja nie została znaleziona"
 
-#: lobby/XmppClient.cpp:989
+#: lobby/XmppClient.cpp:1035
 msgid "Jid malformed"
 msgstr "Jid uszkodzony"
 
-#: lobby/XmppClient.cpp:990
+#: lobby/XmppClient.cpp:1036
 msgid "Not acceptable"
 msgstr "Nie jest akceptowana"
 
-#: lobby/XmppClient.cpp:991
+#: lobby/XmppClient.cpp:1037
 msgid "Not allowed"
 msgstr "Nie jest dozwolona"
 
-#: lobby/XmppClient.cpp:992
+#: lobby/XmppClient.cpp:1038
 msgid "Not authorized"
 msgstr "Nie jest autoryzowana"
 
-#: lobby/XmppClient.cpp:993
+#: lobby/XmppClient.cpp:1039
 msgid "Not modified"
 msgstr "Nie jest zmodyfikowana"
 
-#: lobby/XmppClient.cpp:994
+#: lobby/XmppClient.cpp:1040
 msgid "Payment required"
 msgstr "Wymagana płatność"
 
-#: lobby/XmppClient.cpp:995
+#: lobby/XmppClient.cpp:1041
 msgid "Recipient unavailable"
 msgstr "Odbiorca niedostępny"
 
-#: lobby/XmppClient.cpp:996
+#: lobby/XmppClient.cpp:1042
 msgid "Redirect"
 msgstr "Przekierowanie"
 
-#: lobby/XmppClient.cpp:998
+#: lobby/XmppClient.cpp:1044
 msgid "Remote server not found"
 msgstr "Serwer nieznaleziony"
 
-#: lobby/XmppClient.cpp:999
+#: lobby/XmppClient.cpp:1045
 msgid "Remote server timeout"
 msgstr "Przekroczenie czasu oczekiwania na serwer"
 
-#: lobby/XmppClient.cpp:1000
+#: lobby/XmppClient.cpp:1046
 msgid "Resource constraint"
 msgstr "Ograniczenie zasobów"
 
-#: lobby/XmppClient.cpp:1001
+#: lobby/XmppClient.cpp:1047
 msgid "Service unavailable"
 msgstr "Usługa niedostępna"
 
-#: lobby/XmppClient.cpp:1002
+#: lobby/XmppClient.cpp:1048
 msgid "Subscription Required"
 msgstr "Wymagana subskrypcja"
 
-#: lobby/XmppClient.cpp:1003
+#: lobby/XmppClient.cpp:1049
 msgid "Undefined condition"
 msgstr "Stan niezdefiniowany"
 
-#: lobby/XmppClient.cpp:1004
+#: lobby/XmppClient.cpp:1050
 msgid "Unexpected request"
 msgstr "Nieoczekiwane zapytanie"
 
-#: lobby/XmppClient.cpp:1005
+#: lobby/XmppClient.cpp:1051
 msgid "Unknown sender"
 msgstr "Nieznany nadawca"
 
-#: lobby/XmppClient.cpp:1007
+#: lobby/XmppClient.cpp:1053
 msgid "Error undefined"
 msgstr "Błąd niezdefiniowany"
 
-#: ps/SavedGame.cpp:131
+#: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Zapisz grę w '%s'"

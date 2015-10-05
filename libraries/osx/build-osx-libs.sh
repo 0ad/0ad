@@ -681,7 +681,9 @@ then
   mv $LIB_VERSION $LIB_DIRECTORY
 
   # Apply patches
-  ./patch.sh
+  pushd $LIB_DIRECTORY
+  . ../patch.sh
+  popd
 
   pushd $LIB_DIRECTORY/js/src
   # We want separate debug/release versions of the library, so change their install name in the Makefile

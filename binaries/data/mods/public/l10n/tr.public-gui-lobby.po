@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# AMG <kobluk1@yahoo.com>, 2015
 # Cem Aktas <cemwstone@gmail.com>, 2015
 # Doğu Kan, 2014
 # sicey <sicey224@hotmail.com>, 2015
@@ -12,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:15+0200\n"
-"PO-Revision-Date: 2015-09-19 09:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-28 16:16+0000\n"
+"Last-Translator: AMG <kobluk1@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "Herhangi bir"
 #: gui/lobby/lobby.js:303 gui/lobby/lobby.js:304 gui/lobby/lobby.js:305
 #: gui/lobby/lobby.js:306 gui/lobby/lobby.js:307 gui/lobby/lobby.js:308
 msgid "N/A"
-msgstr "Hiçbiri"
+msgstr "Uygulanamaz"
 
 #: gui/lobby/lobby.js:333 gui/lobby/lobby.js:361
 #, javascript-format
@@ -78,65 +79,57 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: gui/lobby/lobby.js:601
-msgid "A randomly selected map."
-msgstr "Rastgele seçilen harita."
-
-#: gui/lobby/lobby.js:627
-msgid "Sorry, no description available."
-msgstr "Üzgünüm, herhangi bir açıklama mevcut değil."
-
-#: gui/lobby/lobby.js:655
+#: gui/lobby/lobby.js:628
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Bu oyunun adresi '%(ip)s'  geçerli görünmüyor."
 
-#: gui/lobby/lobby.js:714
+#: gui/lobby/lobby.js:687
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s katıldı."
 
-#: gui/lobby/lobby.js:717
+#: gui/lobby/lobby.js:690
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s ayrıldı."
 
-#: gui/lobby/lobby.js:720
+#: gui/lobby/lobby.js:693
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s adını %(newnick)s olarak değiştirdi."
 
-#: gui/lobby/lobby.js:837
+#: gui/lobby/lobby.js:810
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Üzgünüz, '%(cmd)s' komutu desteklenmiyor."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:921
+#: gui/lobby/lobby.js:894
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:923
+#: gui/lobby/lobby.js:896
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:927 gui/lobby/lobby.js:938 gui/lobby/lobby.js:951
+#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:929 gui/lobby/lobby.js:940 gui/lobby/lobby.js:953
+#: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:934
+#: gui/lobby/lobby.js:907
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -146,26 +139,26 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:975
+#: gui/lobby/lobby.js:948
 msgid "HH:mm"
 msgstr "SS:dd"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:978
+#: gui/lobby/lobby.js:951
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:981
+#: gui/lobby/lobby.js:954
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1031
+#: gui/lobby/lobby.js:1004
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr "Lütfen spam yapma. Sen 30 saniye boyunca engellendin."
+msgstr "Lütfen spam yapmayınız. 30 saniye boyunca engellendiniz."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -173,7 +166,7 @@ msgstr "Bağlanıyor..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr "Kaydediliyor..."
+msgstr "Kayıt olunuyor..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
@@ -185,23 +178,23 @@ msgstr "Kullanıcı adları \\[, ], ingilizce olmayan karakter, boşluk veya vir
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr "Lütfen şifrenizi girin"
+msgstr "Lütfen şifrenizi giriniz."
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr "Lütfen şifrenizi tekrar girin"
+msgstr "Lütfen şifrenizi tekrar giriniz."
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr "Şifreler eşleşmiyor"
+msgstr "Şifreler eşleşmiyor."
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr "Lütfen hizmet şartlarını okuyun"
+msgstr "Lütfen hizmet koşullarını okuyunuz."
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr "Lütfen kullanım şartlarını okuyun"
+msgstr "Lütfen kullanım koşullarını okuyunuz."
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
@@ -209,11 +202,11 @@ msgstr "Lütfen hizmet ve kullanım koşullarını kabul ediniz."
 
 #: gui/lobby/prelobby.js:193
 msgid "Registered"
-msgstr "Kayıt edildi"
+msgstr "Kayıt olundu."
 
 #: gui/lobby/prelobby.js:203
 msgid "Disconnected"
-msgstr "Bağlatı kesildi"
+msgstr "Bağlatı kesildi."
 
 #: gui/lobby/prelobby.js:244
 msgid "Register"
@@ -225,15 +218,15 @@ msgstr "Bağlan"
 
 #: gui/lobby/prelobby.js:259 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
-msgstr "Hizmet şartları"
+msgstr "Hizmet koşulları"
 
 #: gui/lobby/prelobby.js:268 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
-msgstr "Kullanım şartları"
+msgstr "Kullanım koşulları"
 
 #: gui/lobby/lobby.xml:(caption):15 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
-msgstr "Çoklu oyuncu bekleme salonu"
+msgstr "Çok oyunculu bekleme salonu"
 
 #: gui/lobby/lobby.xml:(caption):49 gui/lobby/lobby.xml:(caption):298
 msgid "Current Rank:"
@@ -253,7 +246,7 @@ msgstr "Zaferler:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):314
 msgid "Losses:"
-msgstr "Mağlubiyet:"
+msgstr "Mağlubiyetler:"
 
 #: gui/lobby/lobby.xml:(caption):69 gui/lobby/lobby.xml:(caption):318
 msgid "Win Rate:"
@@ -286,7 +279,7 @@ msgstr "Oyuna Katıl"
 
 #: gui/lobby/lobby.xml:(caption):159
 msgid "Host Game"
-msgstr "Oyunu Kur"
+msgstr "Oyun Kur"
 
 #: gui/lobby/lobby.xml:(caption):166
 msgid "Main Menu"
@@ -294,7 +287,7 @@ msgstr "Ana Menü"
 
 #: gui/lobby/lobby.xml:(caption):220
 msgid "Show full games"
-msgstr "Tam oyunları göster"
+msgstr "Dolu oyunları göster"
 
 #: gui/lobby/lobby.xml:(caption):266 gui/lobby/lobby.xml:(caption):328
 msgid "Back"
@@ -327,7 +320,7 @@ msgstr "İsim"
 
 #: gui/lobby/lobby.xml:(heading):32 gui/lobby/lobby.xml:(heading):259
 msgid "Rating"
-msgstr "Değerlendirme"
+msgstr "Derecelendirme"
 
 #: gui/lobby/lobby.xml:(heading):181
 msgid "Map Name"
@@ -377,7 +370,7 @@ msgstr "Üyelik"
 
 #: gui/lobby/prelobby.xml:(caption):73
 msgid "Password again:"
-msgstr "Şifre tekrar:"
+msgstr "Şifre tekrarı:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
@@ -389,7 +382,7 @@ msgstr "İptal"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr "0 A.D. İmparatorlukların Yükselişi Çoklu Oyunculu Bekleme Salonu Hizmet Koşulları"
+msgstr "0 A.D. İmparatorlukların Yükselişi Çok Oyunculu Bekleme Salonu Hizmet Koşulları"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -399,43 +392,43 @@ msgstr "Tanımlar:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr " * Bu \"servis\" 0 A.D. İmparatorlukların Yükselişi Çoklu Oyunculu Lobi Wildfire Games (WFG) tarafından sağlanmaktadır."
+msgstr " * \"Servis\" Wildfire Games (WFG) tarafından sağlanan 0 A.D. İmparatorlukların Yükselişi Çok Oyunculu Bekleme Salonunu ifade eder."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr " * \"Sen\" servis kullanıcısı olarak."
+msgstr " * \"Siz\" servis kullanıcısı anlamına gelir."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr " * \"Biz\" Wildfire Games (WFG)'in tüm kollektif takım üyeleri."
+msgstr " * \"Biz\" Wildfire Games (WFG)'in tüm kollektif takım üyeleri anlamına gelir."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr " * \"Oylama\" Tek bir kapsamlı bir puan üretme amacıyla çeşitli kullanım istatistik analiz süreci belirtmektedir."
+msgstr " * \"Derecelendirme\" çeşitli kullanıcı istatistiklerini analiz ederek kapsamlı tek bir puan oluşturmak anlamına gelir."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr " * \"Moderasyon\" kullanım ilkeleri uygulama sürecini ifade eder."
+msgstr " * \"Moderasyon\" kullanım ilkelerinin uygulama süreci anlamına gelir."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr "Bu hizmeti kullanarak şunları kabul ediyorsunuz:"
+msgstr "Bu servisi kullanarak şunları kabul ediyorsunuz:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr " 1. Takip eden tüm kullanım politikaları."
+msgstr " 1. Tüm kullanım politikalarına uymayı."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr " 2. Kullanıcı tanımlanabilir istatistik değerlendirmesi, kullanıcı profilleri ve toplum istatistik amaçlar için toplanan verilere izin verilir."
+msgstr " 2. Kullanıcısı teşhis edilebilecek istatistiklerin; derecelendirme, kulanıcı profili ve topluluk istatistikleri için kullanılması için izin verilmesi."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr "Ayrıca haklarımız saklı olmak üzere:"
+msgstr "Ayrıca şu haklarımız saklıdır:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
@@ -443,39 +436,39 @@ msgstr " 1. Servis moderasyonu."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr " 2. Servis moderasyonu başkalarına tayin edilebilir."
+msgstr " 2. Servis moderasyonu için başkalarını tayin etmek."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr " 3. Durdurma veya veya önceden haber vermeksizin herhangi bir zamanda hizmet kesilebilir."
+msgstr " 3. Önceden haber vermeksizin servisi duraklatmak ya da durdurmak."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr "4. Herhangi bir zaman ile veya duyuru yapılmaksızın servis değiştirilebilir."
+msgstr "4. Herhangi bir duyuru yapılmaksızın herhangi bir zamanda serviste değişiklik yapmak."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr "5. Herhangi bir zaman ile veya duyuru yapılmaksızın servisteki verilerin bir kısmı veya tamamı silinebilir."
+msgstr "5. Herhangi bir duyuru yapılmaksızın herhangi bir zamanda tüm ya da bir kısım verileri silmek."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr "6. Kullanıcı rızası olmadan bir kısım veya tamamen kullanıcı istatistikleri toplanabilir:"
+msgstr "6. Kullanıcısı teşhis edilebilecek istatistiklerin tamamının ya da bir kısmının, kullanıcı şu rızalarını aramadan toplamak:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr "a. Wildfire Games (WFG) takım üyeleri ve onun ortakları tarafından özel analizler."
+msgstr "a. Wildfire Games (WFG) takım üyeleri ve onun ortakları tarafından özel analizlerinin yapılması."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr "b. Wildfire Games (WFG) takım üyeleri tarafından anonim kamu sürümleri."
+msgstr "b. Wildfire Games (WFG) takım üyeleri tarafından anonim bir şekilde kamuya sunulması."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -483,66 +476,66 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr " 7. Bu belge herhangi bir yolla; herhangibir zamanda değiştirildiğinde; hizmetin kullanıcı değişikliği hakkında yeterli bilgi vermek koşuluyla (Yeterli bildirim tanımı Wildfire Games (WFG) ekip üyelerinin bir panel tarafından anında tespit edilecek)."
+msgstr "7. Bu belgeyi herhangi bir şekilde; herhangi bir zamanda; servisi alan kullanıcıya makul bir süre öncesinde haber vererek değiştirmek (makul sürenin tanımı Wildfire Games(WFG) ekip üyeleri tarafından yapılacaktır)"
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr "0 A.D. İmparatorlukların Yükselişi Çoklu Oyunculu Lobi Kullanım Şartları"
+msgstr "0 A.D. İmparatorlukların Yükselişi Çoklu Oyuncu Lobi Kullanım Şartları"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr " * \"Taklit etme\" Kendi amaçları için başkasının kimliğininden yararlanma girişimi bir eylem anlamına gelir."
+msgstr " * \"Taklit etme\" kendi amaçları için başkasının kimliğininden yararlanma girişimi anlamına gelir."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr " * \"Spam\" alıcılara çok sayıda gönderilen alakasız veya uygunsuz mesaj anlamına gelir."
+msgstr " * \"Spam\" çok sayıda alıcıya gönderilen alakasız veya uygunsuz mesajlar anlamına gelir."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr " * \"Oylama\" kullanıcı başına kapsamlı puan anlamına gelir."
+msgstr " * \"Derecelendirme\" her kullanıcıya özel kapsamlı puan anlamına gelir."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr " * \"Sıralanmış oyunlar\" oylamada istatislikleri değişen oyunlar anlamına gelir."
+msgstr " * \"Derecelendirilmiş oyunlar\" oylamada istatislikleri değişen oyunlar anlamına gelir."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr "Aşağıdaki şartları kabul ediyorsun:"
+msgstr "Aşağıdaki şartları kabul ediyorsunuz:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr " 1. Wildfire Games (WFG) takım üyesi yetkilendirmediği sürece sadece serviste benzersiz kullanıcı başına bir hesap oluşturun."
+msgstr " 1. Wildfire Games (WFG) takım üyeleri tarafından özel olarak yetkilendirilmediğiniz sürece kişi başı sadece tek bir kullanıcı hesabı oluşturmayı"
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr "2. Saygısız ifadeler, kaba mizah, pornografik içerik veya hizmet ayrımcı yorumlar göndermeyin."
+msgstr "2. Servisi kullanırken saygısız ifadeler, kaba mizah, pornografik içerik veya ırkçı/ayrımcı yorumlar göndermemeyi"
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr "3. Kasıtlı olarak hizmeti kullanarak başkalarının değerini düşürmeye çalışmayın."
+msgstr "3. Servisi kullanırken kasıtlı olarak başkalarını küçük düşürmemeyi"
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr "4. Belirli mal, hizmet veya ürün tanıtmak için servisi kullanmayın."
+msgstr "4. Servisi belirli bir mal, hizmet veya ürünü tanıtmak için kullanmamayı"
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr "5. Servisi diğer kullanıcıları taklit etmek için kullanmayın."
+msgstr "5. Servisi kullanırken diğer kullanıcıları taklit etmemeyi"
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr " 6. Spamsız servis."
+msgstr " 6. Servisi kullanırken spam yapmamayı"
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -550,13 +543,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr "7. Servisi kullanarak yapay olarak herhangibir kullanıcı hakkında ona etki edecek herhangi bir puan istatisliği tutmayın. (Örnek olarak, ancak hepsini olmasada: sıralı oyunları illegal değiştirmek, serviste ters mühendislik kullanmak, ve diğer servis kullanıcılarından yararlanmak.)"
+msgstr "7. Herhangi bir kullanıcının derecesini veya derecesine etki edecek herhangi bir istatistiği  bilinçli olarak değiştirmemeyi (Şu örneklerde görüldüğü üzere ancak bunlarla sınırlı olmamakla birlikte: Derecelendirilen oyunlarda hile yapmak, servise ters mühendislik uygulamak, ve diğer kullanıcılardan yararlanmak)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr "8. Herhangi bir zamanda bir moderatör sizin davranışlarınızın kurallara uymadığını belirlerse servisin hesabınızı kaldıracağını kabul edersiniz."
+msgstr "8. Herhangi bir zamanda bir moderatör davranışlarınızın kurallara uymadığını belirlerse servis hesabınızın silineceğini"
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -564,4 +557,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr "1. Bu belge herhangi bir yolla; herhangibir zamanda değiştirildiğinde; hizmetin kullanıcı değişikliği hakkında yeterli bilgi vermek koşuluyla (Yeterli bildirim tanımı Wildfire Games (WFG) ekip üyelerinin bir panel tarafından anında tespit edilecek)."
+msgstr "1. Bu belgeyi herhangi bir şekilde; herhangi bir zamanda; servisi alan kullanıcıya makul bir süre öncesinde haber vererek değiştirmek (makul sürenin tanımı Wildfire Games(WFG) ekip üyeleri tarafından yapılacaktır)"

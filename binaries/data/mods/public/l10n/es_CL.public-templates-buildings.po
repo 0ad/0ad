@@ -4,13 +4,14 @@
 # 
 # Translators:
 # caniro <carlod_39@yahoo.cl>, 2015
+# Francisco Morales <fmorales12.97@gmail.com>, 2015
 # Marcelo Cardenas Zapata <marcelo.cardenas.13@sansano.usm.cl>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:42+0200\n"
-"PO-Revision-Date: 2015-08-24 09:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-10-01 03:58+0000\n"
+"Last-Translator: Francisco Morales <fmorales12.97@gmail.com>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/wildfire-games/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,16 +27,16 @@ msgstr "Estructura Urbana"
 msgid "Civic"
 msgstr "Cívico"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Civic Center"
 msgstr "Centro Urbano"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:70
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Construir para adquirir grandes extensiones de territorio. Alberga hasta 20 unidades."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:74
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Centro Urbano"
@@ -94,7 +95,7 @@ msgid "Defensive Structure"
 msgstr "Estructura de Defensa"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "Defensive"
 msgstr "Defensa"
 
@@ -143,7 +144,7 @@ msgstr "Permite a las unidades acceder a la ciudad a traves de una muralla. Pued
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "Protección de muro"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
@@ -168,12 +169,12 @@ msgstr "Dispara flechas. Guarnece para defender las murallas de los atacantes."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
-msgstr ""
+msgstr "Muro de ciudad"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:39
 #: simulation/templates/template_structure_defense_wooden_tower.xml:38
 msgid "Wooden Tower"
-msgstr ""
+msgstr "Torre de madera"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -186,7 +187,7 @@ msgstr "Económico"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr ""
+msgstr "Deposito para los recursos alimenticios. Investiga mejoras para recolectar alimento."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
@@ -197,7 +198,7 @@ msgstr ""
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr ""
+msgstr "Crea unidades de intercambio para intercambiar entre otros mercados. Recursos de trueque. Investiga mejoras de intercambio y trueque."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -269,19 +270,19 @@ msgstr "Muelle"
 msgid "Embassy"
 msgstr "Embajada"
 
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:59
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Entrena heroes, campeones y armas de asedio. Investiga mejoras para armas de asedio. Puede albergar hasta 20 unidades"
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "City"
 msgstr "Ciudad"
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 #: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:58
 msgid "Fortress"
 msgstr "Fortaleza"
 
@@ -322,15 +323,15 @@ msgstr "Construcciones Especiales"
 msgid "This is a special building unique to a particular civilization."
 msgstr ""
 
-#: simulation/templates/template_structure_wonder.xml:38
+#: simulation/templates/template_structure_wonder.xml:39
 msgid "Wonder"
 msgstr "Maravilla"
 
-#: simulation/templates/template_structure_wonder.xml:39
+#: simulation/templates/template_structure_wonder.xml:40
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr ""
+msgstr "Trae la gloria a tu civilización y agrega largos tramos de terreno a tu imperio."
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/mace_barracks.xml:18
@@ -547,7 +548,7 @@ msgstr ""
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways."
-msgstr ""
+msgstr "Incrementa el límite de población y defiende las vías fluviales."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -704,7 +705,7 @@ msgstr ""
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr ""
+msgstr "Construye botes de pesca para reunir carne y naves mercantiles para tradear con otros puertos."
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
@@ -776,7 +777,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_super_dock.xml:14
 msgid "Construct and repair mighty warships."
-msgstr ""
+msgstr "Construye y repara poderosos buques."
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
@@ -1364,15 +1365,15 @@ msgstr ""
 msgid "Triumphal Arch"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:58
 msgid "Entrenched Army Camp"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:60
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Castrum Vallum"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:65
+#: simulation/templates/structures/rome_army_camp.xml:64
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."

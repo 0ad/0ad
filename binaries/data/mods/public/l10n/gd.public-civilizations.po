@@ -5,173 +5,179 @@
 # Translators:
 # GunChleoc, 2014-2015
 # GunChleoc, 2014
-# GunChleoc, 2014
+# GunChleoc, 2014-2015
 # Michael Bauer, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-03-15 05:20+0100\n"
-"PO-Revision-Date: 2015-06-01 16:25+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-29 11:47+0000\n"
 "Last-Translator: GunChleoc\n"
-"Language-Team: Gaelic, Scottish (http://www.transifex.com/p/0ad/language/gd/)\n"
+"Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
-#: civs/athen.jsonName civs/athen.jsonFactions[0].Name
+#: simulation/data/civs/athen.jsonName
+#: simulation/data/civs/athen.jsonFactions[0].Name
 msgid "Athenians"
 msgstr "Muinntir na h‑Àithne"
 
-#: civs/athen.jsonCivBonuses[0].Description
+#: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Cruinneachadh meatailt nas luaithe le +10% airson gach linn a dh'fhalbhas."
+msgstr "Cruinneachadh meatailt nas luaithe le +10% airson gach linn a dh’fhalbhas."
 
-#: civs/athen.jsonCivBonuses[0].Name
+#: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "Cailleachan-oidhche airgid"
 
-#: civs/athen.jsonCivBonuses[0].History
+#: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "Thug na mèinnean aig Laureion ann an Attica saoibhreas de dh'airgead do Bhaile na h‑Àithne às a rinneadh Cailleach-oidhche na h‑Àithne, am bonn luachmhor cliùiteach aca."
+msgstr "Thug na mèinnean aig Laureion ann an Attica saoibhreas de dh’airgead do Bhaile na h‑Àithne às a rinneadh Cailleach-oidhche na h‑Àithne, am bonn luachmhor cliùiteach aca."
 
-#: civs/athen.jsonCivBonuses[1].Description
-#: civs/mace.jsonCivBonuses[2].Description
-#: civs/spart.jsonCivBonuses[2].Description
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
+#: simulation/data/civs/mace.jsonCivBonuses[2].Description
+#: simulation/data/civs/spart.jsonCivBonuses[2].Description
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
 msgstr "Ma thogas tu tèatron, thèid leudachadh an ranntair aig na h-uile togalach a mheudachadh le +20%."
 
-#: civs/athen.jsonCivBonuses[1].Name civs/mace.jsonCivBonuses[2].Name
-#: civs/spart.jsonCivBonuses[2].Name
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+#: simulation/data/civs/mace.jsonCivBonuses[2].Name
+#: simulation/data/civs/spart.jsonCivBonuses[2].Name
 msgid "Hellenization"
 msgstr "Greugachadh"
 
-#: civs/athen.jsonCivBonuses[1].History civs/spart.jsonCivBonuses[2].History
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
+#: simulation/data/civs/spart.jsonCivBonuses[2].History
 msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr "Bhiodh na Greugaich uabhasach soirbheachail le Greugachadh iomadh choigreach. ri linn a' Ghreugachais, bhiodh a' Ghreugais na lingua franca aig an t‑saoghail àrsaidh is bhathar 'ga bruidhinn gu farsaing on Spàinn gu na h‑Innseachan."
+msgstr "Bhiodh na Greugaich uabhasach soirbheachail le Greugachadh iomadh choigreach. ri linn a’ Ghreugachais, bhiodh a’ Ghreugais na lingua franca aig an t‑saoghail àrsaidh is bhathar ’ga bruidhinn gu farsaing on Spàinn gu na h‑Innseachan."
 
-#: civs/athen.jsonTeamBonuses[0].Description
+#: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
 msgstr "Thèid longan an togail 25% nas luaithe."
 
-#: civs/athen.jsonTeamBonuses[0].Name
+#: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
 msgstr "Lìg Dhealos"
 
-#: civs/athen.jsonTeamBonuses[0].History
+#: simulation/data/civs/athen.jsonTeamBonuses[0].History
 msgid ""
 "Shortly after the great naval victories at Salamis and Mykale, the Greek "
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Le gnìomhan nan rìghrean Achaimeneach tràtha, chaidh a’ Pheirse ’na chiad impireachd Àiseanach mhòr aig an robh smachd air a’ mhuir. Bha giùlan an Rìgh Mhòir fàbharach do shluaghan na mara ach an toireadh iad taic dha ach rinn e leasachaidhean-mara cuideachd. Mar eisimpleir, thogadh canal san Èiphit agus rùraich cabhlach Pearsach abhainn Indus ri linn Darius Mhòir. A-rèir Herodotus, chaidh mu 300 long aig cabhlach nam Pearsach uidheamachadh gus eich agus am marcaichean a ghiùlan. "
+msgstr "Le gnìomhan nan rìghrean Achaimeneach tràtha, chaidh a’ Pheirse ’na chiad impireachd Àiseanach mhòr aig an robh smachd air a’ mhuir. Bha giùlan an Rìgh Mhòir fàbharach do shluaghan na mara ach an doireadh iad taic dha ach rinn e leasachaidhean-mara cuideachd. Mar eisimpleir, thogadh canal san Èiphit agus rùraich cabhlach Pearsach abhainn Indus ri linn Darius Mhòir. A-rèir Herodotus, chaidh mu 300 long aig cabhlach nam Pearsach uidheamachadh gus eich agus am marcaichean a ghiùlan. "
 
-#: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/athen.jsonAINames[0]
+#: simulation/data/civs/athen.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
 msgstr "Themistocles"
 
-#: civs/athen.jsonAINames[1] civs/athen.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/athen.jsonAINames[1]
+#: simulation/data/civs/athen.jsonFactions[0].Heroes[1].Name
 msgid "Pericles"
 msgstr "Pericles"
 
-#: civs/athen.jsonAINames[2]
+#: simulation/data/civs/athen.jsonAINames[2]
 msgid "Cimon"
 msgstr "Cimon"
 
-#: civs/athen.jsonAINames[3]
+#: simulation/data/civs/athen.jsonAINames[3]
 msgid "Aristides"
 msgstr "Aristides"
 
-#: civs/athen.jsonAINames[4]
+#: simulation/data/civs/athen.jsonAINames[4]
 msgid "Xenophon"
 msgstr "Xenophon"
 
-#: civs/athen.jsonAINames[5]
+#: simulation/data/civs/athen.jsonAINames[5]
 msgid "Hippias"
 msgstr "Hippias"
 
-#: civs/athen.jsonAINames[6]
+#: simulation/data/civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
 msgstr "Cleisthenes"
 
-#: civs/athen.jsonAINames[7]
+#: simulation/data/civs/athen.jsonAINames[7]
 msgid "Thucydides"
 msgstr "Thucydides"
 
-#: civs/athen.jsonAINames[8]
+#: simulation/data/civs/athen.jsonAINames[8]
 msgid "Alcibiades"
 msgstr "Alcibiades"
 
-#: civs/athen.jsonAINames[9]
+#: simulation/data/civs/athen.jsonAINames[9]
 msgid "Miltiades"
 msgstr "Miltiades"
 
-#: civs/athen.jsonAINames[10]
+#: simulation/data/civs/athen.jsonAINames[10]
 msgid "Cleon"
 msgstr "Cleon"
 
-#: civs/athen.jsonAINames[11]
+#: simulation/data/civs/athen.jsonAINames[11]
 msgid "Cleophon"
 msgstr "Cleophon"
 
-#: civs/athen.jsonAINames[12]
+#: simulation/data/civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
 msgstr "Thrasybulus"
 
-#: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/athen.jsonAINames[13]
+#: simulation/data/civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
 msgstr "Iphicrates"
 
-#: civs/athen.jsonAINames[14]
+#: simulation/data/civs/athen.jsonAINames[14]
 msgid "Demosthenes"
 msgstr "Demosthenes"
 
-#: civs/athen.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "'S urrainn do thrì-ràmhaich na h-Àithne saighdearan-mara (Epibastes Athenaikos) a thrèanadh."
+msgstr "’S urrainn do thrì-ràmhaich na h-Àithne saighdearan-mara (Epibastes Athenaikos) a thrèanadh."
 
-#: civs/athen.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
 msgstr "Ath-leasachaidhean Iphiocratas"
 
-#: civs/athen.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
 msgstr "Gabhaidh ballachan cloiche a thogail air ranntair neo-phàirteach. Thèid ballachan a thogail 50% nas luaithe."
 
-#: civs/athen.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
 msgstr "Ballachan fada"
 
-#: civs/athen.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Long Walls of Athens were constructed under the auspices of the wily "
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "Chaidh ballachan fada na h-Àithne an togail fo stiùireadh Themistocles seòlta agus ruig iad on bhaile gu port Phiraeus a bha 6 km air falbh. Dhaingnich seo slighean solar a' bhaile on mhuir 's cha b' urrainn do nàmhaid am baile a ghortachadh rè sèiste."
+msgstr "Chaidh ballachan fada na h-Àithne an togail fo stiùireadh Themistocles seòlta agus ruig iad on bhaile gu port Phiraeus a bha 6 km air falbh. Dhaingnich seo slighean solar a’ bhaile on mhuir ’s cha b’ urrainn do nàmhaid am baile a ghortachadh rè sèiste."
 
-#: civs/athen.jsonFactions[0].Technologies[2].Description
+#: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr "Buannaichidh an cluicheadair an comas gus saighdearan-sleagha òrdachadh gun tèid iad ann an cumadh falangais a bheir ionnsaigh 's armachd nas treasa dhaibh."
+msgstr "Buannaichidh an cluicheadair an comas gus saighdearan-sleagha òrdachadh gun tèid iad ann an cumadh falangais a bheir ionnsaigh ’s armachd nas treasa dhaibh."
 
-#: civs/athen.jsonFactions[0].Technologies[2].Name
-#: civs/spart.jsonCivBonuses[0].Name
+#: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
 msgstr "Othismos"
 
-#: civs/athen.jsonFactions[0].Technologies[2].History
+#: simulation/data/civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
 "The classical phalanx formation was developed about VIII century BC. It was "
 "eight men deep and up to eight hundred men wide. The men within overlapped "
@@ -179,7 +185,7 @@ msgid ""
 "spears."
 msgstr "Chaidh cumadh falangais clasaigeach a leasachadh mun 8mh linn RC. Bhiodh ochdnar air cùl càch a chèile agus suas ri ochd ceud fear taobh ri taobh. Chuireadh na daoine na sgiathan an tar-laighe gus balla treun a dhèanamh dhiubh làn sleaghan 8 troigh a dh’fhaid."
 
-#: civs/athen.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
 "The general whom persuaded the Athenians to invest their income from silver "
 "mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
@@ -189,74 +195,79 @@ msgid ""
 "by the Athenians, he was forced to flee to the protection of the Persians."
 msgstr ""
 
-#: civs/athen.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr "- 'B e Pericles am prìomh neach-polataigs aig Baile na h-Àithne ron 5mh linn RC."
+msgstr "- ’B e Pericles am prìomh neach-polataigs aig Baile na h-Àithne ron 5mh linn RC."
 
-#: civs/athen.jsonFactions[0].Heroes[2].History
-#: civs/maur.jsonFactions[0].Technologies[0].History
-#: civs/maur.jsonStructures[0].History civs/maur.jsonStructures[1].History
-#: civs/pers.jsonFactions[0].Technologies[2].History
-#: civs/ptol.jsonFactions[0].Heroes[0].History
-#: civs/ptol.jsonFactions[0].Heroes[1].History
-#: civs/ptol.jsonFactions[0].Heroes[2].History
-#: civs/sele.jsonCivBonuses[0].History civs/sele.jsonStructures[1].History
+#: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/maur.jsonStructures[0].History
+#: simulation/data/civs/maur.jsonStructures[1].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
+#: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/ptol.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/sele.jsonCivBonuses[0].History
+#: simulation/data/civs/sele.jsonStructures[1].History
 msgid "."
 msgstr "."
 
-#: civs/athen.jsonFactions[0].Description
+#: simulation/data/civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
 msgstr "Sluagh Greugach an threubha Iònaich."
 
-#: civs/athen.jsonStructures[0].Name civs/mace.jsonStructures[0].Name
-#: civs/spart.jsonStructures[0].Name
+#: simulation/data/civs/athen.jsonStructures[0].Name
+#: simulation/data/civs/mace.jsonStructures[0].Name
+#: simulation/data/civs/spart.jsonStructures[0].Name
 msgid "Theatron"
 msgstr "Tèatron"
 
-#: civs/athen.jsonStructures[0].Special civs/spart.jsonStructures[0].Special
+#: simulation/data/civs/athen.jsonStructures[0].Special
+#: simulation/data/civs/spart.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr "Buannachd sìobhaltas a' Ghreugachais. Thèid a' bhuaidh air an ranntair aig na h-uile togalach a mheudachadh le 25% ma thogas tu tèatron."
+msgstr "Buannachd sìobhaltas a’ Ghreugachais. Thèid a’ bhuaidh air an ranntair aig na h-uile togalach a mheudachadh le 25% ma thogas tu tèatron."
 
-#: civs/athen.jsonStructures[0].History civs/mace.jsonStructures[0].History
-#: civs/spart.jsonStructures[0].History
+#: simulation/data/civs/athen.jsonStructures[0].History
+#: simulation/data/civs/mace.jsonStructures[0].History
+#: simulation/data/civs/spart.jsonStructures[0].History
 msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
 msgstr ""
 
-#: civs/athen.jsonStructures[1].Name
+#: simulation/data/civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
 msgstr "Taigh-sunntais"
 
-#: civs/athen.jsonStructures[1].Special
+#: simulation/data/civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
 msgstr "Trèanaich laoich is rannsaich teicneolasan co-cheangailte riutha."
 
-#: civs/athen.jsonStructures[1].History
+#: simulation/data/civs/athen.jsonStructures[1].History
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
-msgstr "'S e àite cudromach a bh' anns an taigh-sunntais sna bailtean Greugach far an dèante eacarsaich na bodhaige agus far an stèidhichte dàimhean sòisealta."
+msgstr "’S e àite cudromach a bh’ anns an taigh-sunntais sna bailtean Greugach far an dèante eacarsaich na bodhaige agus far an stèidhichte dàimhean sòisealta."
 
-#: civs/athen.jsonStructures[2].Name
+#: simulation/data/civs/athen.jsonStructures[2].Name
 msgid "Prytaneion"
 msgstr "Prytaneìon"
 
-#: civs/athen.jsonStructures[2].Special
+#: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
 msgstr "Trèanaich curaidhean is rannsaich teicneolasan co-cheangailte riutha."
 
-#: civs/athen.jsonStructures[2].History
+#: simulation/data/civs/athen.jsonStructures[2].History
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
-msgstr "'S e ionad coinneimh airson seanairean a' bhaile a th' anns a' Prytaneìon fad an gabhadh iad biadh 's a rinneadh iad co-dhùnaidhean luatha."
+msgstr "’S e ionad coinneimh airson seanairean a’ bhaile a th’ anns a’ Prytaneìon fad an gabhadh iad biadh ’s a rinneadh iad co-dhùnaidhean luatha."
 
-#: civs/athen.jsonHistory
+#: simulation/data/civs/athen.jsonHistory
 msgid ""
 "As the cradle of Western civilization and the birthplace of democracy, "
 "Athens was famed as a center for the arts, learning and philosophy. The "
@@ -264,126 +275,136 @@ msgid ""
 "Athens dominated a large part of the Hellenic world for several decades."
 msgstr ""
 
-#: civs/brit.jsonName civs/brit.jsonFactions[0].Name
+#: simulation/data/civs/brit.jsonName
+#: simulation/data/civs/brit.jsonFactions[0].Name
 msgid "Britons"
 msgstr "Na Breatannaich"
 
-#: civs/brit.jsonCivBonuses[0].Description
-#: civs/gaul.jsonCivBonuses[0].Description
+#: simulation/data/civs/brit.jsonCivBonuses[0].Description
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr "Leasachadh air a' bhiadh a gheibh thu o àiteach no sprèidh."
+msgstr "Leasachadh air a’ bhiadh a gheibh thu o àiteach no sprèidh."
 
-#: civs/brit.jsonCivBonuses[0].Name civs/gaul.jsonCivBonuses[0].Name
+#: simulation/data/civs/brit.jsonCivBonuses[0].Name
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
 msgstr "Ardiosmanae"
 
-#: civs/brit.jsonCivBonuses[0].History civs/gaul.jsonCivBonuses[0].History
+#: simulation/data/civs/brit.jsonCivBonuses[0].History
+#: simulation/data/civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
 msgstr "Riochdaichidh seo dòighean àitich Cheilteach."
 
-#: civs/brit.jsonCivBonuses[1].Description
-#: civs/gaul.jsonCivBonuses[1].Description
+#: simulation/data/civs/brit.jsonCivBonuses[1].Description
+#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
 msgstr "Bheir saighdearan faisg air draoidhean ionnsaighean beagan nas treasa."
 
-#: civs/brit.jsonCivBonuses[1].Name civs/gaul.jsonCivBonuses[1].Name
+#: simulation/data/civs/brit.jsonCivBonuses[1].Name
+#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
 msgid "Deas Celtica"
 msgstr "Diathan Ceiltich"
 
-#: civs/brit.jsonCivBonuses[1].History civs/gaul.jsonCivBonuses[1].History
+#: simulation/data/civs/brit.jsonCivBonuses[1].History
+#: simulation/data/civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "Bhrosnaich creideamh 's draoidhean nan Ceilteach an cumadh-inntinn cogail."
+msgstr "Bhrosnaich creideamh ’s draoidhean nan Ceilteach an cumadh-inntinn cogail."
 
-#: civs/brit.jsonTeamBonuses[0].Description
-#: civs/gaul.jsonTeamBonuses[0].Description
+#: simulation/data/civs/brit.jsonTeamBonuses[0].Description
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
 msgstr "Rannsachadh nas luaithe."
 
-#: civs/brit.jsonTeamBonuses[0].Name civs/gaul.jsonTeamBonuses[0].Name
+#: simulation/data/civs/brit.jsonTeamBonuses[0].Name
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druides"
 msgstr "Draoidhean"
 
-#: civs/brit.jsonTeamBonuses[0].History civs/gaul.jsonTeamBonuses[0].History
+#: simulation/data/civs/brit.jsonTeamBonuses[0].History
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr "Ghlèidh draoidhean nan Ceilteach creideamh eagraichte a dh'adhartaich teicneolas an sluaigh fiù 's rè amannan cogaidh."
+msgstr "Ghlèidh draoidhean nan Ceilteach creideamh eagraichte a dh’adhartaich teicneolas an sluaigh fiù ’s rè amannan cogaidh."
 
-#: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/brit.jsonAINames[0]
+#: simulation/data/civs/brit.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
 msgstr "Caratacos"
 
-#: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/brit.jsonAINames[1]
+#: simulation/data/civs/brit.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
 msgstr "Kunobelinos"
 
-#: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/brit.jsonAINames[2]
+#: simulation/data/civs/brit.jsonFactions[0].Heroes[2].Name
 msgid "Boudicca"
 msgstr "Boudicca"
 
-#: civs/brit.jsonAINames[3]
+#: simulation/data/civs/brit.jsonAINames[3]
 msgid "Prasutagus"
 msgstr "Prasutagus"
 
-#: civs/brit.jsonAINames[4]
+#: simulation/data/civs/brit.jsonAINames[4]
 msgid "Venutius"
 msgstr "Venutius"
 
-#: civs/brit.jsonAINames[5]
+#: simulation/data/civs/brit.jsonAINames[5]
 msgid "Cogidubnus"
 msgstr "Cogidubnus"
 
-#: civs/brit.jsonAINames[6]
+#: simulation/data/civs/brit.jsonAINames[6]
 msgid "Commius"
 msgstr "Commius"
 
-#: civs/brit.jsonAINames[7]
+#: simulation/data/civs/brit.jsonAINames[7]
 msgid "Comux"
 msgstr "Comux"
 
-#: civs/brit.jsonAINames[8]
+#: simulation/data/civs/brit.jsonAINames[8]
 msgid "Adminius"
 msgstr "Adminius"
 
-#: civs/brit.jsonAINames[9]
+#: simulation/data/civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
 msgstr "Dubnovellaunus"
 
-#: civs/brit.jsonAINames[10]
+#: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
 msgstr "Vosenius"
 
-#: civs/brit.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
 msgstr "Ionnsaighean is gluasad nas luaithe airson shaighdearan dlùtha."
 
-#: civs/brit.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
 msgstr "Sevili Dusios"
 
-#: civs/brit.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/brit.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
 msgstr ""
 
-#: civs/brit.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Cuiridh seo ri buannachd na h‑àirde aig aonadan a bhios 'nan gearastan ann an tùr."
+msgstr "Cuiridh seo ri buannachd na h‑àirde aig aonadan a bhios ’nan gearastan ann an tùr."
 
-#: civs/brit.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
 msgstr "Turos Maros"
 
-#: civs/brit.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/brit.jsonFactions[0].Technologies[1].History
 msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
 "have been found."
 msgstr "\"Tùr Mòr\"; Tha faoinsgeulachdan nan ceilteach làn naidheachdan mu thùir mhòra a chaidh a thogail leis na rìghrean as cumhachdaiche agus chaidh làraichean tùr glè mhòra a lorg."
 
-#: civs/brit.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/brit.jsonFactions[0].Heroes[0].History
 msgid ""
 "Caractacus, the Roman form, is a simple change from Karatakos, his actual "
 "name, which was printed on his many, many coins. Under this name he is "
@@ -402,7 +423,7 @@ msgid ""
 "but Tacitus applies to him a famous speech..."
 msgstr ""
 
-#: civs/brit.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
 "Kunobelinos (perhaps better known by the latinized form of Cunobelin) was a "
 "powerful ruler of the Catuvellauni. He was referred to by Romans as the King"
@@ -437,7 +458,7 @@ msgid ""
 "something the post-Roman Britons or Romano-British sorely needed."
 msgstr ""
 
-#: civs/brit.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
 msgid ""
 "Ammianus Marcellinus described how difficult it would be for a band of "
 "foreigners to deal with a Celt if he called in the help of his wife. For she"
@@ -480,170 +501,174 @@ msgid ""
 "Roman hands."
 msgstr ""
 
-#: civs/brit.jsonFactions[0].Description
+#: simulation/data/civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
 msgstr "Ceiltich nan Eileanan Breatannach."
 
-#: civs/brit.jsonStructures[0].Name
+#: simulation/data/civs/brit.jsonStructures[0].Name
 msgid "Kennel"
 msgstr "Taigh-chon"
 
-#: civs/brit.jsonStructures[0].History
+#: simulation/data/civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
 msgstr "Bhiodh na Breatannaich cliùiteach airson nan con-cogaidh aca."
 
-#: civs/brit.jsonHistory
+#: simulation/data/civs/brit.jsonHistory
 msgid ""
 "The Britons were the Celtic tribes of the British Isles. Using chariots, "
 "longswordsmen and powerful melee soldiers, they staged fearesome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "'S e treubhan Ceilteach nan eileanan Breatannach a bh' anns na Breatannaich. Chleachd iad feunan, claidheamhan mòra agus saighdearan dlùtha cumhachdach gus aramach eagalach a dhèanamh an aghaidh na Ròimhe ach an dìonadh iad an dualchas agus an leas aca. Thog iad mìltean de thogalaichean àraid mar dhùin-chnuic, crannagan agus bruighean."
+msgstr "’S e treubhan Ceilteach nan eileanan Breatannach a bh’ anns na Breatannaich. Chleachd iad feunan, claidheamhan mòra agus saighdearan dlùtha cumhachdach gus aramach eagalach a dhèanamh an aghaidh na Ròimhe ach an dìonadh iad an dualchas agus an leas aca. Thog iad mìltean de thogalaichean àraid mar dhùin-chnuic, crannagan agus bruighean."
 
-#: civs/cart.jsonName
+#: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
 msgstr "Na Cartagaich"
 
-#: civs/cart.jsonCivBonuses[0].Description
+#: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr "Tha 3x de shlàinte air ballachan, geataichean 's tùir nan Cartagach an coimeas na fheadhainn aig càch, ach bheir e 2x nas fhaide gus an togail cuideachd."
+msgstr "Tha 3x de shlàinte air ballachan, geataichean ’s tùir nan Cartagach an coimeas na fheadhainn aig càch, ach bheir e 2x nas fhaide gus an togail cuideachd."
 
-#: civs/cart.jsonCivBonuses[0].Name
+#: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
 msgstr "Ballachan trìoblaichte"
 
-#: civs/cart.jsonCivBonuses[0].History
+#: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
 msgstr "Thogadh na Cartagaich ballachan trìoblaichte."
 
-#: civs/cart.jsonCivBonuses[1].Description
+#: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
 msgstr "Bidh lùghdachadh an cosgais de 5% gus aonad air muin ailbhein (ailbhean cogaidh) no eich (eachraidh) a thrèanadh le gach beathach san fhàl (a-rèir na tha iomchaidh)."
 
-#: civs/cart.jsonCivBonuses[1].Name civs/ptol.jsonCivBonuses[2].Name
+#: simulation/data/civs/cart.jsonCivBonuses[1].Name
+#: simulation/data/civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
 msgstr "Tional"
 
-#: civs/cart.jsonCivBonuses[1].History
+#: simulation/data/civs/cart.jsonCivBonuses[1].History
 msgid ""
 "Not unlike the Iberian Peninsula, North Africa was known as horse country, "
 "capable of producing up to 100,000 new mounts each year. It was also the "
 "home of the North African Forest Elephant."
-msgstr "Coltach ris an rubha Ibèireach, bhiodh taobh a tuath Afraga cliùiteach mar thìr nan each agus comasach air 100,000 each ùra a sholar gach bliadhna. 'S e an dachaigh aig an ailbhean coille Afraga tuathach a bh' ann cuideachd."
+msgstr "Coltach ris an rubha Ibèireach, bhiodh taobh a tuath Afraga cliùiteach mar thìr nan each agus comasach air 100,000 each ùra a sholar gach bliadhna. ’S e an dachaigh aig an ailbhean coille Afraga tuathach a bh’ ann cuideachd."
 
-#: civs/cart.jsonTeamBonuses[0].Description
+#: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "+33% trade profit international routes."
 msgstr "133% de phrothaid o mhalairt air slighean eadar-nàiseanta."
 
-#: civs/cart.jsonTeamBonuses[0].Name
+#: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
 msgstr "Maighstirean malairt"
 
-#: civs/cart.jsonTeamBonuses[0].History
+#: simulation/data/civs/cart.jsonTeamBonuses[0].History
 msgid ""
 "The Phoenicians and Carthaginians were broadly known as the greatest trading"
 " civilization of the ancient and classical world."
 msgstr "Bha na Phenicich is na Cartagaich cliùiteach mar na sìobhaltasan malairt as motha air an t‑saoghal àrsaidh is chlasaigeach."
 
-#: civs/cart.jsonAINames[0] civs/cart.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/cart.jsonAINames[0]
+#: simulation/data/civs/cart.jsonFactions[0].Heroes[0].Name
 msgid "Hannibal Barca"
 msgstr "Hannibal Barca"
 
-#: civs/cart.jsonAINames[1] civs/cart.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/cart.jsonAINames[1]
+#: simulation/data/civs/cart.jsonFactions[0].Heroes[1].Name
 msgid "Hamilcar Barca"
 msgstr "Hamilcar Barca"
 
-#: civs/cart.jsonAINames[2]
+#: simulation/data/civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
 msgstr "Hasdrubal Barca"
 
-#: civs/cart.jsonAINames[3]
+#: simulation/data/civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
 msgstr "Hasdrubal Gisco"
 
-#: civs/cart.jsonAINames[4]
+#: simulation/data/civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
 msgstr "An seanair Hanno"
 
-#: civs/cart.jsonAINames[5] civs/cart.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/cart.jsonAINames[5]
+#: simulation/data/civs/cart.jsonFactions[0].Heroes[2].Name
 msgid "Maharbal"
 msgstr "Maharbal"
 
-#: civs/cart.jsonAINames[6]
+#: simulation/data/civs/cart.jsonAINames[6]
 msgid "Mago Barca"
 msgstr "Mago Barca"
 
-#: civs/cart.jsonAINames[7]
+#: simulation/data/civs/cart.jsonAINames[7]
 msgid "Hasdrubal the Fair"
 msgstr "Hasdrubal Bòidheach"
 
-#: civs/cart.jsonAINames[8]
+#: simulation/data/civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
 msgstr "Hanno Mòr"
 
-#: civs/cart.jsonAINames[9]
+#: simulation/data/civs/cart.jsonAINames[9]
 msgid "Himilco"
 msgstr "Himilco"
 
-#: civs/cart.jsonAINames[10]
+#: simulation/data/civs/cart.jsonAINames[10]
 msgid "Hampsicora"
 msgstr "Hampsicora"
 
-#: civs/cart.jsonAINames[11]
+#: simulation/data/civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
 msgstr "Hannibal Gisco"
 
-#: civs/cart.jsonAINames[12]
+#: simulation/data/civs/cart.jsonAINames[12]
 msgid "Dido"
 msgstr "Dido"
 
-#: civs/cart.jsonAINames[13]
+#: simulation/data/civs/cart.jsonAINames[13]
 msgid "Xanthippus"
 msgstr "Xanthippus"
 
-#: civs/cart.jsonAINames[14]
+#: simulation/data/civs/cart.jsonAINames[14]
 msgid "Himilco Phameas"
 msgstr "Himilco Phameas"
 
-#: civs/cart.jsonAINames[15]
+#: simulation/data/civs/cart.jsonAINames[15]
 msgid "Hasdrubal the Boetharch"
 msgstr "Hasdrubal am Boetharch"
 
-#: civs/cart.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
-msgstr "Gheibh na h-uile neach-malairt 's long +25% de dh'astar lèirsinne."
+msgstr "Gheibh na h-uile neach-malairt ’s long +25% de dh’astar lèirsinne."
 
-#: civs/cart.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Name
 msgid "Exploration"
 msgstr "Rùrachadh"
 
-#: civs/cart.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/cart.jsonFactions[0].Technologies[0].History
 msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr "Cha bhiodh duine san t-saoghal àrsaidh cho eòlach air càite an rachadh iad 's dè rinneadh iad ann 's a bhiodh na Cartagaich; bhiodh iad a' cur an luchd-mhalairt aca air feadh an àite."
+msgstr "Cha bhiodh duine san t-saoghal àrsaidh cho eòlach air càite an rachadh iad ’s dè rinneadh iad ann ’s a bhiodh na Cartagaich; bhiodh iad a’ cur an luchd-mhalairt aca air feadh an àite."
 
-#: civs/cart.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
 msgstr "Thèid ionadan sìobhalta, teampaill is taighean a thogail nas luaithe le -25%."
 
-#: civs/cart.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
 msgstr "Tuineachadh"
 
-#: civs/cart.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/cart.jsonFactions[0].Technologies[1].History
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Stèidhich na Cartagaich iomadh ionad-malairt mar tuineachaidhean agus aig deireadh na sgeòil, bha smachd aca air 300 bailtean ann an taobh tuath Afraga 's an corr."
+msgstr "Stèidhich na Cartagaich iomadh ionad-malairt mar tuineachaidhean agus aig deireadh na sgeòil, bha smachd aca air 300 bailtean ann an taobh tuath Afraga ’s an corr."
 
-#: civs/cart.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
 "Carthage's most famous son. Hannibal Barca was the eldest son of Hamilcar "
 "Barca and proved an even greater commander than his father. Lived 247-182 "
@@ -652,7 +677,7 @@ msgid ""
 "his position as among the best tacticians and strategists in history."
 msgstr ""
 
-#: civs/cart.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/cart.jsonFactions[0].Heroes[1].History
 msgid ""
 "Father of Hannibal and virtual military dictator. Hamilcar Barca was a "
 "soldier and politician who excelled along his entire career. Lived 275-228 "
@@ -661,7 +686,7 @@ msgid ""
 "advance."
 msgstr ""
 
-#: civs/cart.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/cart.jsonFactions[0].Heroes[2].History
 msgid ""
 "Maharbal was Hannibal Barca's 'brash young cavalry commander' during the 2nd"
 " Punic War. He is credited with turning the wing of the legions at Cannae "
@@ -671,61 +696,61 @@ msgid ""
 "'Hannibal, you know how to win the victory; just not what to do with it.'"
 msgstr ""
 
-#: civs/cart.jsonStructures[0].Name
+#: simulation/data/civs/cart.jsonStructures[0].Name
 msgid "Naval Shipyard"
-msgstr "Doca a' chabhlaich"
+msgstr "Doca a’ chabhlaich"
 
-#: civs/cart.jsonStructures[0].Special
+#: simulation/data/civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
 msgstr "Tog na longan-cogaidh neartmhor aig cabhlach nan Cartagach."
 
-#: civs/cart.jsonStructures[0].History
+#: simulation/data/civs/cart.jsonStructures[0].History
 msgid ""
 "The structure is based upon the center island of the inner harbour "
 "constructed to house the war fleet of the Carthaginian navy at Carthage."
-msgstr "Tha an structar stèidhichte air an eilean meadhanach aig a' chala taobh a-staigh a chaidh a thogail gus cabhlach cogaidh nan Cartagach a chumail aig Cartago."
+msgstr "Tha an structar stèidhichte air an eilean meadhanach aig a’ chala taobh a-staigh a chaidh a thogail gus cabhlach cogaidh nan Cartagach a chumail aig Cartago."
 
-#: civs/cart.jsonStructures[1].Name
+#: simulation/data/civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
 msgstr "Ambasaid Ceilteach"
 
-#: civs/cart.jsonStructures[1].Special
+#: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
 msgstr "Fastaich saighdearan-duaise Ceilteach."
 
-#: civs/cart.jsonStructures[1].History
+#: simulation/data/civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
 msgstr "Sholair na Ceiltich saighdearan-duaise fiadhaich airson airm nan Cartagach."
 
-#: civs/cart.jsonStructures[2].Name
+#: simulation/data/civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
 msgstr "Ambasaid Eadailteach"
 
-#: civs/cart.jsonStructures[2].Special
+#: simulation/data/civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
 msgstr "Fastaich saigheadan-duaise Eadailteach."
 
-#: civs/cart.jsonStructures[2].History
+#: simulation/data/civs/cart.jsonStructures[2].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the Italian peoples subject to Rome, including the Italian Greeks "
 "and powerful Samnites, revolted and joined the Carthaginian cause."
-msgstr "Nuair a bhriod Hannibal a-steach dhan Eadailt 's nuair a chuir e ruaig air na Ròmanaich ann an sreath de bhlàran, rinn mòran dhen mhuinntir Eadailteach a bha fo smachd na Ròimhe mar na Greugaich Eadailteach 's na Samnaidhich chumhachdach aramach 'na h-aghaidh 's chuir iad taic ri Cartago."
+msgstr "Nuair a bhriod Hannibal a-steach dhan Eadailt ’s nuair a chuir e ruaig air na Ròmanaich ann an sreath de bhlàran, rinn mòran dhen mhuinntir Eadailteach a bha fo smachd na Ròimhe mar na Greugaich Eadailteach ’s na Samnaidhich chumhachdach aramach ’na h-aghaidh ’s chuir iad taic ri Cartago."
 
-#: civs/cart.jsonStructures[3].Name
+#: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Iberian Embassy"
 msgstr "Ambasaid Ibèireach"
 
-#: civs/cart.jsonStructures[3].Special
+#: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Hire Iberian mercenaries."
 msgstr "Fastaich saighdearan-duaise Ibèireach."
 
-#: civs/cart.jsonStructures[3].History
+#: simulation/data/civs/cart.jsonStructures[3].History
 msgid ""
 "The Iberians were known as fierce mercenaries, loyal to their paymasters."
 msgstr "Bhiodh na h‑Ibèirich cliùiteach mar shaighdearan-duaise fiadhaich is dìleas do am pàigh-mhaighstirean."
 
-#: civs/cart.jsonHistory
+#: simulation/data/civs/cart.jsonHistory
 msgid ""
 "Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
 "western Mediterranean, eventually taking over much of North Africa and "
@@ -735,77 +760,81 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr ""
 
-#: civs/gaul.jsonName civs/gaul.jsonFactions[0].Name
+#: simulation/data/civs/gaul.jsonName
+#: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Muinntir na Gaille"
 
-#: civs/gaul.jsonAINames[0] civs/gaul.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/gaul.jsonAINames[0]
+#: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Britomartos"
 msgstr "Britomartos"
 
-#: civs/gaul.jsonAINames[1] civs/gaul.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/gaul.jsonAINames[1]
+#: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
 msgid "Brennos"
 msgstr "Brennos"
 
-#: civs/gaul.jsonAINames[2] civs/gaul.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/gaul.jsonAINames[2]
+#: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Uerkingetorix"
 msgstr "Uerkingetorix"
 
-#: civs/gaul.jsonAINames[3]
+#: simulation/data/civs/gaul.jsonAINames[3]
 msgid "Divico"
 msgstr "Divico"
 
-#: civs/gaul.jsonAINames[4]
+#: simulation/data/civs/gaul.jsonAINames[4]
 msgid "Ambiorix"
 msgstr "Ambiorix"
 
-#: civs/gaul.jsonAINames[5]
+#: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Ariovistus"
 msgstr "Ariovistus"
 
-#: civs/gaul.jsonAINames[6]
+#: simulation/data/civs/gaul.jsonAINames[6]
 msgid "Cassivellaunus"
 msgstr "Cassivellaunus"
 
-#: civs/gaul.jsonAINames[7]
+#: simulation/data/civs/gaul.jsonAINames[7]
 msgid "Liscus"
 msgstr "Liscus"
 
-#: civs/gaul.jsonAINames[8]
+#: simulation/data/civs/gaul.jsonAINames[8]
 msgid "Valetiacos"
 msgstr "Valetiacos"
 
-#: civs/gaul.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
 msgstr "Uiread socraichte de mheatailt is biadh aig gach togalach air a sgrios no a ghlacadh."
 
-#: civs/gaul.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Uae Uictos"
 msgstr "Uae Uictos"
 
-#: civs/gaul.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
 " spoke at the Capitol at Rome after they took their plunder."
 msgstr "O thruaighe an fheadhainn a chaill! Seo na briathran a thuirt Brennos, ceannard muinntir na Gaille aig capatal na Ròimhe nuair a bha iadsan air an creach a thogail."
 
-#: civs/gaul.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
 msgstr "Gheibh draoidhean Gallach comas ionnsaighe dlùithe beag."
 
-#: civs/gaul.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Carnutes"
 msgstr "Carnutes"
 
-#: civs/gaul.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
 " Aulercia."
 msgstr ""
 
-#: civs/gaul.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
 "When celt armies met the enemy, before the battle would start, the celt "
 "leader would go to the first line and challenge the bravest of the enemy "
@@ -823,7 +852,7 @@ msgid ""
 "task to kill Britomartos and strip him of his armor."
 msgstr ""
 
-#: civs/gaul.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
 msgid ""
 "Brennus is the name which the Roman historians give to the famous leader of "
 "the Gauls who took Rome in the time of Camillus. According to Geoffrey of "
@@ -846,7 +875,7 @@ msgid ""
 " in around 390 B.C., and were regarded as gods in old Celtic tradition."
 msgstr ""
 
-#: civs/gaul.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
 msgid ""
 "Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni "
 "tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against "
@@ -859,19 +888,19 @@ msgid ""
 "very high spirited and probably gained some renown in deeds."
 msgstr ""
 
-#: civs/gaul.jsonFactions[0].Description
+#: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
 msgstr "Ceiltich air tìr-mòr na Roinn-Eòrpa."
 
-#: civs/gaul.jsonStructures[0].Name
+#: simulation/data/civs/gaul.jsonStructures[0].Name
 msgid "Melonas"
 msgstr "Melonas"
 
-#: civs/gaul.jsonStructures[0].History
+#: simulation/data/civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
-msgstr "B' e na Ceiltich a thog a' chiad mhuilleann-cuairteachaidh."
+msgstr "B’ e na Ceiltich a thog a’ chiad mhuilleann-cuairteachaidh."
 
-#: civs/gaul.jsonHistory
+#: simulation/data/civs/gaul.jsonHistory
 msgid ""
 "The Gauls were the Celtic tribes of continental Europe. Dominated by a "
 "priestly class of Druids, they featured a sophisticated culture of advanced "
@@ -880,52 +909,52 @@ msgid ""
 "of conquest and Rome's authoritarian rule."
 msgstr ""
 
-#: civs/iber.jsonName
+#: simulation/data/civs/iber.jsonName
 msgid "Iberians"
 msgstr "Na h-Ibèirich"
 
-#: civs/iber.jsonCivBonuses[0].Description
+#: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "Tòisichidh na h-Ibèirich le ballachan cloiche neartmhor a chaidh togail dhaibh timcheall air a' bhalla aca."
+msgstr "Tòisichidh na h-Ibèirich le ballachan cloiche neartmhor a chaidh togail dhaibh timcheall air a’ bhalla aca."
 
-#: civs/iber.jsonCivBonuses[0].Name
+#: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Harritsu Leku"
 msgstr "Harritsu Leku"
 
-#: civs/iber.jsonCivBonuses[0].History
+#: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
 "With exception to alluvial plains and river valleys, stone is abundant in "
 "the Iberian Peninsula and was greatly used in construction of structures of "
 "all types."
-msgstr "Seach air tìr far a bheil 's far an robh aibhnean ann, tha clach pailt air an rubha Ibèireach agus chaidh a cleachdadh gu tric gus togalaichean de gach seòrsa a thogail."
+msgstr "Seach air tìr far a bheil ’s far an robh aibhnean ann, tha clach pailt air an rubha Ibèireach agus chaidh a cleachdadh gu tric gus togalaichean de gach seòrsa a thogail."
 
-#: civs/iber.jsonCivBonuses[1].Description
+#: simulation/data/civs/iber.jsonCivBonuses[1].Description
 msgid ""
 "The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
 " per animal corralled."
 msgstr "Bidh lùghdachadh an cosgais de 5% gus aonad air muin no eich (eachraidh) a thrèanadh le gach beathach san fhàl (a-rèir na tha iomchaidh)."
 
-#: civs/iber.jsonCivBonuses[1].Name
+#: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
 msgstr "Zaldi Saldoa"
 
-#: civs/iber.jsonCivBonuses[1].History
+#: simulation/data/civs/iber.jsonCivBonuses[1].History
 msgid ""
 "Not unlike Numidia in North Africa, the Iberian Peninsula was known as "
 "'horse country', capable of producing up to 100,000 new mounts each year."
 msgstr "Coltach ri Nuimidia taobh a tuath Afraga, bhiodh an rubha Ibèireach cliùiteach mar thìr nan each agus comasach air 100,000 each ùra a sholar gach bliadhna."
 
-#: civs/iber.jsonTeamBonuses[0].Description
+#: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid ""
 "Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
 "allies."
 msgstr "Lùghdachadh air cosgais nan streupairean-dùthcha coisridh is streupairean eachraidh do na caidreabhaich le -20%."
 
-#: civs/iber.jsonTeamBonuses[0].Name
+#: simulation/data/civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
 msgstr "Saripeko"
 
-#: civs/iber.jsonTeamBonuses[0].History
+#: simulation/data/civs/iber.jsonTeamBonuses[0].History
 msgid ""
 "The Iberians were long known to provide mercenary soldiers to other nations "
 "to serve as auxiliaries to their armies in foreign wars. Carthage is the "
@@ -933,67 +962,70 @@ msgid ""
 "capacity in Aquitania."
 msgstr "Bhiodh na h-Ibèirich a sholar saighdearan-duaise do dhùthchannan eile àm fhada ach an cuireadh iad taic do na feachdan aca ann an cogaidhean cèine. Is Cartago am ball-eisimpleir as ainmeile agus tha fianais againn gum frithealaich iad ann an Aquitàinia."
 
-#: civs/iber.jsonAINames[0] civs/iber.jsonAINames[1]
-#: civs/iber.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/iber.jsonAINames[0]
+#: simulation/data/civs/iber.jsonAINames[1]
+#: simulation/data/civs/iber.jsonFactions[0].Heroes[0].Name
 msgid "Viriato"
 msgstr "Viriato"
 
-#: civs/iber.jsonAINames[2] civs/iber.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/iber.jsonAINames[2]
+#: simulation/data/civs/iber.jsonFactions[0].Heroes[1].Name
 msgid "Karos"
 msgstr "Caros"
 
-#: civs/iber.jsonAINames[3] civs/iber.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/iber.jsonAINames[3]
+#: simulation/data/civs/iber.jsonFactions[0].Heroes[2].Name
 msgid "Indibil"
 msgstr "Indibil"
 
-#: civs/iber.jsonAINames[4]
+#: simulation/data/civs/iber.jsonAINames[4]
 msgid "Audax"
 msgstr "Audax"
 
-#: civs/iber.jsonAINames[5]
+#: simulation/data/civs/iber.jsonAINames[5]
 msgid "Ditalcus"
 msgstr "Ditalcus"
 
-#: civs/iber.jsonAINames[6]
+#: simulation/data/civs/iber.jsonAINames[6]
 msgid "Minurus"
 msgstr "Minurus"
 
-#: civs/iber.jsonAINames[7]
+#: simulation/data/civs/iber.jsonAINames[7]
 msgid "Tautalus"
 msgstr "Tautalo"
 
-#: civs/iber.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/iber.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Causes targets struck to become inflamed and lose hitpoints at a constant "
 "rate until and if either healed or repaired, as appropriate."
-msgstr "Thèid na bhuailear 'na theine agus caillidh e slàinte gu cunbhalach gus an tèid a shlànachadh no a chàradh (a-rèir na tha iomchaidh)."
+msgstr "Thèid na bhuailear ’na theine agus caillidh e slàinte gu cunbhalach gus an tèid a shlànachadh no a chàradh (a-rèir na tha iomchaidh)."
 
-#: civs/iber.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
 msgstr "Suzko Txabalina"
 
-#: civs/iber.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/iber.jsonFactions[0].Technologies[0].History
 msgid ""
 "Iberian tribesmen were noted for wrapping bundles of grass about the shafts "
 "of their throwing spears, soaking that in some sort of flammable pitch, then"
 " setting it afire just before throwing."
-msgstr "Bhiodh na h-Ibèirich a' pasgadh crainn nan sleaghan tilgeil aca le feur 's am bogadh ann an seòrsa de thearra a loisgeadh iad ron tilgeil."
+msgstr "Bhiodh na h-Ibèirich a’ pasgadh crainn nan sleaghan tilgeil aca le feur ’s am bogadh ann an seòrsa de thearra a loisgeadh iad ron tilgeil."
 
-#: civs/iber.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Description
 msgid "Metal costs for units and technologies reduced by 50%."
-msgstr "Lùghdachadh air cosgaisean meatailt airson aonadan 's teicneolasan le 50%."
+msgstr "Lùghdachadh air cosgaisean meatailt airson aonadan ’s teicneolasan le 50%."
 
-#: civs/iber.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Name
 msgid "Maisu Burdina Langileak"
 msgstr "Maisu Burdina Langileak"
 
-#: civs/iber.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/iber.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Iberians were known to produce the finest iron and steel implements and "
 "weapons of the age. The famous 'Toledo Steel.'"
 msgstr ""
 
-#: civs/iber.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/iber.jsonFactions[0].Heroes[0].History
 msgid ""
 "Viriato, like Vercingetorix amongst the Gauls, was the most famous of the "
 "Iberian tribal war leaders, having conducted at least 7 campaigns against "
@@ -1010,7 +1042,7 @@ msgid ""
 "assassinated by three comrades that were close to him."
 msgstr ""
 
-#: civs/iber.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/iber.jsonFactions[0].Heroes[1].History
 msgid ""
 "Karos was a chief of the Belli tribe located just east of the Celtiberi "
 "(Numantines at the center). Leading the confederated tribes of the meseta "
@@ -1026,7 +1058,7 @@ msgid ""
 " off one of the most humiliating defeats that Rome ever suffered."
 msgstr ""
 
-#: civs/iber.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/iber.jsonFactions[0].Heroes[2].History
 msgid ""
 "Indibil was king of the Ilegetes, a large federation ranged principally "
 "along the Ebro River in the northwest of the Iberian Peninsula. During the "
@@ -1046,25 +1078,25 @@ msgid ""
 "Ilergetes remained a pacified tribe under Roman rule."
 msgstr ""
 
-#: civs/iber.jsonStructures[0].Name
+#: simulation/data/civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: civs/iber.jsonStructures[0].Special
+#: simulation/data/civs/iber.jsonStructures[0].Special
 msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr "Aura dìonach - Bheir e ionnsaigh de 10-15% a bharrachd do na h-uile aonad no togalach Ibèireach am broinn astar lèirsinne na carraigh. Cuingeachadh togail: 5 air a' mapa gu lèir."
+msgstr "Aura dìonach - Bheir e ionnsaigh de 10-15% a bharrachd do na h-uile aonad no togalach Ibèireach am broinn astar lèirsinne na carraigh. Cuingeachadh togail: 5 air a’ mapa gu lèir."
 
-#: civs/iber.jsonStructures[0].History
+#: simulation/data/civs/iber.jsonStructures[0].History
 msgid ""
 "'Revered Monument' The Iberians were a religious people who built small "
 "monuments to their various gods. These monuments could also serve as family "
 "tombs."
-msgstr "\"Carragh urramach\" - 'S e sluagh cràbhach a bhiodh sna h-Ibèirich a thogadh carraighean beaga do na diathan aca. Dh'fhaodadh na carraighean seo a bhith 'nan uaighean teaghlaich cuideachd."
+msgstr "\"Carragh urramach\" - ’S e sluagh cràbhach a bhiodh sna h-Ibèirich a thogadh carraighean beaga do na diathan aca. Dh’fhaodadh na carraighean seo a bhith ’nan uaighean teaghlaich cuideachd."
 
-#: civs/iber.jsonHistory
+#: simulation/data/civs/iber.jsonHistory
 msgid ""
 "The Iberians were a people of mysterious origins and language, with a strong"
 " tradition of horsemanship and metalworking. A relatively peaceful culture, "
@@ -1074,21 +1106,22 @@ msgid ""
 "fought back."
 msgstr ""
 
-#: civs/mace.jsonName civs/mace.jsonFactions[0].Name
+#: simulation/data/civs/mace.jsonName
+#: simulation/data/civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
 msgstr "Na Masadonaich"
 
-#: civs/mace.jsonCivBonuses[0].Description
+#: simulation/data/civs/mace.jsonCivBonuses[0].Description
 msgid ""
 "Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
 "but -5% attack debonus vs. Romans."
 msgstr "Tha buannachd ionnsaighe de 10% aig Masadonaich an aghaidh Pearsaich no Greugaich, ach tha call buannachd ionnsaighe de -5% aca an aghaidh Ròmanaich."
 
-#: civs/mace.jsonCivBonuses[0].Name
+#: simulation/data/civs/mace.jsonCivBonuses[0].Name
 msgid "Hellenic League"
 msgstr "An Lìg Greugach"
 
-#: civs/mace.jsonCivBonuses[0].History
+#: simulation/data/civs/mace.jsonCivBonuses[0].History
 msgid ""
 "After the unification of Greece, Philip II gathered all the city-states "
 "together to form the Hellenic League, with Macedon as the its leader. With "
@@ -1098,36 +1131,36 @@ msgid ""
 "fathers plans."
 msgstr ""
 
-#: civs/mace.jsonCivBonuses[1].Description
+#: simulation/data/civs/mace.jsonCivBonuses[1].Description
 msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr "'S urrainn dhan choisridh pìceir an cumadh siontagma slaodach ach cumhachdach a chleachdadh."
+msgstr "’S urrainn dhan choisridh pìceir an cumadh siontagma slaodach ach cumhachdach a chleachdadh."
 
-#: civs/mace.jsonCivBonuses[1].Name
+#: simulation/data/civs/mace.jsonCivBonuses[1].Name
 msgid "Syntagma"
 msgstr "Siontagma"
 
-#: civs/mace.jsonCivBonuses[1].History
+#: simulation/data/civs/mace.jsonCivBonuses[1].History
 msgid ""
 "Based upon the Theban Oblique Order phalanx, the Syntagma was the formation "
 "that proved invincible against the armies of Hellas and the East."
 msgstr ""
 
-#: civs/mace.jsonCivBonuses[2].History
+#: simulation/data/civs/mace.jsonCivBonuses[2].History
 msgid ""
 "The Greeks were highly successful in Hellenizing various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr "Bhiodh na Greugaich uabhasach soirbheachail le Greugachadh iomadh choigreach. Ri linn a' Ghreugachais, bhiodh a' Ghreugais na lingua franca aig an t‑saoghail àrsaidh is bhathar 'ga bruidhinn gu farsaing on Spàinn gus na h‑Innseachan."
+msgstr "Bhiodh na Greugaich uabhasach soirbheachail le Greugachadh iomadh choigreach. Ri linn a’ Ghreugachais, bhiodh a’ Ghreugais na lingua franca aig an t‑saoghail àrsaidh is bhathar ’ga bruidhinn gu farsaing on Spàinn gus na h‑Innseachan."
 
-#: civs/mace.jsonTeamBonuses[0].Description
+#: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "+15% tribute and trade bonus on metal."
 msgstr "Buannachd de +15% air cìsean is malairt air meatailt."
 
-#: civs/mace.jsonTeamBonuses[0].Name
+#: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
 msgstr "Airgeadra stannardach"
 
-#: civs/mace.jsonTeamBonuses[0].History
+#: simulation/data/civs/mace.jsonTeamBonuses[0].History
 msgid ""
 "The Macedonians and the Diadochi minted coins of very high quality. On their"
 " currency the Diadochi in particular frequently depicted themselves as the "
@@ -1135,59 +1168,61 @@ msgid ""
 "rule."
 msgstr ""
 
-#: civs/mace.jsonAINames[0] civs/mace.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/mace.jsonAINames[0]
+#: simulation/data/civs/mace.jsonFactions[0].Heroes[1].Name
 msgid "Alexander the Great"
 msgstr "Alasdair Mòr"
 
-#: civs/mace.jsonAINames[1]
+#: simulation/data/civs/mace.jsonAINames[1]
 msgid "Philip II"
 msgstr "Filip II"
 
-#: civs/mace.jsonAINames[2]
+#: simulation/data/civs/mace.jsonAINames[2]
 msgid "Antipater"
 msgstr "Antipater"
 
-#: civs/mace.jsonAINames[3]
+#: simulation/data/civs/mace.jsonAINames[3]
 msgid "Philip IV"
 msgstr "Filip IV"
 
-#: civs/mace.jsonAINames[4] civs/spart.jsonAINames[5]
+#: simulation/data/civs/mace.jsonAINames[4]
+#: simulation/data/civs/spart.jsonAINames[5]
 msgid "Lysander"
 msgstr "Lysander"
 
-#: civs/mace.jsonAINames[5]
+#: simulation/data/civs/mace.jsonAINames[5]
 msgid "Lysimachus"
 msgstr "Lysimachus"
 
-#: civs/mace.jsonAINames[6]
+#: simulation/data/civs/mace.jsonAINames[6]
 msgid "Pyrrhus of Epirus"
 msgstr "Pyrrhus Epirus"
 
-#: civs/mace.jsonAINames[7]
+#: simulation/data/civs/mace.jsonAINames[7]
 msgid "Antigonus II Gonatas"
 msgstr "Antigonus II Gonatas"
 
-#: civs/mace.jsonAINames[8]
+#: simulation/data/civs/mace.jsonAINames[8]
 msgid "Demetrius II Aetolicus"
 msgstr "Demetrius II Aetolicus"
 
-#: civs/mace.jsonAINames[9]
+#: simulation/data/civs/mace.jsonAINames[9]
 msgid "Philip V"
 msgstr "Filip V"
 
-#: civs/mace.jsonAINames[10]
+#: simulation/data/civs/mace.jsonAINames[10]
 msgid "Perseus"
 msgstr "Perseus"
 
-#: civs/mace.jsonAINames[11]
+#: simulation/data/civs/mace.jsonAINames[11]
 msgid "Craterus"
 msgstr "Craterus"
 
-#: civs/mace.jsonAINames[12]
+#: simulation/data/civs/mace.jsonAINames[12]
 msgid "Meleager"
 msgstr "Meleager"
 
-#: civs/mace.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Each subsequent Barracks constructed comes with 5 free (random) Macedonian "
 "military units. This also applies to the Barracks of allied players (they "
@@ -1195,12 +1230,12 @@ msgid ""
 "constructed)."
 msgstr ""
 
-#: civs/mace.jsonFactions[0].Technologies[0].Name
-#: civs/sele.jsonCivBonuses[1].Name
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/sele.jsonCivBonuses[1].Name
 msgid "Military Reforms"
 msgstr "Ath-leasachaidhean an airm"
 
-#: civs/mace.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
 msgid ""
 "When Philip II came to the Macedonian throne he began a total reorganization"
 " of the Macedonian army. His reforms created a powerful cavalry arm to his "
@@ -1208,45 +1243,45 @@ msgid ""
 "conquests."
 msgstr ""
 
-#: civs/mace.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
 "and armor, but also greater cost."
-msgstr "Àrdaich laoich coisridh Hypaspistes gu sgiathan airgid aig a bheil barrachd ionnsaighe 's armachd ach barrachd cosgaisean 'nan lùib cuideachd."
+msgstr "Àrdaich laoich coisridh Hypaspistes gu sgiathan airgid aig a bheil barrachd ionnsaighe ’s armachd ach barrachd cosgaisean ’nan lùib cuideachd."
 
-#: civs/mace.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Royal Gift"
 msgstr "Tìodhlac rìoghail"
 
-#: civs/mace.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
 msgid ""
 "In India near the end of his long anabasis, Alexander gifted to the Royal "
 "Hypaspist corps shields of silver for their long and valiant service in his "
 "army."
 msgstr ""
 
-#: civs/mace.jsonFactions[0].Technologies[2].Description
-#: civs/ptol.jsonFactions[0].Technologies[0].Description
-#: civs/sele.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Description
+#: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers have double Health and double default arrows."
 msgstr "Gheibh ionadan sìobhalta an dà chuid de shlàinte is an dà uiread dhe shaighdean tùsail."
 
-#: civs/mace.jsonFactions[0].Technologies[2].Name
-#: civs/ptol.jsonFactions[0].Technologies[0].Name
-#: civs/sele.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Name
 msgid "Hellenistic Metropolises"
 msgstr "Mòr-bhailtean Greugach"
 
-#: civs/mace.jsonFactions[0].Technologies[2].History
-#: civs/ptol.jsonFactions[0].Technologies[0].History
-#: civs/sele.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/mace.jsonFactions[0].Technologies[2].History
+#: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[0].History
 msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr "Stèidhich na rìghrean Greugach iomadh baile sna h-impireachdan aca o Alasdair a-mach far an deach cultar 's ealan nan Greugach a mheasgachadh leis an dualchas ionadail agus chruthaich seo sìobhaltas Greugach measgaichte 's farsaing."
+msgstr "Stèidhich na rìghrean Greugach iomadh baile sna h-impireachdan aca o Alasdair a-mach far an deach cultar ’s ealan nan Greugach a mheasgachadh leis an dualchas ionadail agus chruthaich seo sìobhaltas Greugach measgaichte ’s farsaing."
 
-#: civs/mace.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/mace.jsonFactions[0].Heroes[0].History
 msgid ""
 "The king of Macedonia (359-336 B.C.), he carried out vast monetary and "
 "military reforms in order to make his kingdom the most powerful force in the"
@@ -1255,11 +1290,11 @@ msgid ""
 "against Persia."
 msgstr ""
 
-#: civs/mace.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/mace.jsonFactions[0].Heroes[0].Name
 msgid "Philip II of Macedon"
 msgstr "Filip II Masadonach"
 
-#: civs/mace.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/mace.jsonFactions[0].Heroes[1].History
 msgid ""
 "The most powerful hero of them all - son of Philip II, king of Macedonia "
 "(336-323 B.C.). After conquering the rest of the Thracians and quelling the "
@@ -1271,7 +1306,7 @@ msgid ""
 "against Arabia."
 msgstr ""
 
-#: civs/mace.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/mace.jsonFactions[0].Heroes[2].History
 msgid ""
 "One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was "
 "renowned as one of the bravest and most able successors of Alexander. As the"
@@ -1282,52 +1317,54 @@ msgid ""
 "Diadochi united against him and defeated him."
 msgstr ""
 
-#: civs/mace.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
 msgstr "Demetrios nan Sèist"
 
-#: civs/mace.jsonFactions[0].Description
+#: simulation/data/civs/mace.jsonFactions[0].Description
 msgid "A Hellenistic kingdom bordering the Greek city-states."
 msgstr "Rìoghachd Ghreugach ri taobh nam bailtean-stàite Greugach."
 
-#: civs/mace.jsonStructures[0].Special
+#: simulation/data/civs/mace.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%. Build limit: 1."
-msgstr "Buannachd sìobhaltas a' Ghreugachais. Thèid a' bhuaidh air an ranntair aig gach togalach a mheudachadh le 25% ma thogas tu tèatron. Cuingeachadh togail: 1"
+msgstr "Buannachd sìobhaltas a’ Ghreugachais. Thèid a’ bhuaidh air an ranntair aig gach togalach a mheudachadh le 25% ma thogas tu tèatron. Cuingeachadh togail: 1"
 
-#: civs/mace.jsonStructures[1].Name civs/ptol.jsonStructures[0].Name
-#: civs/sele.jsonStructures[0].Name
+#: simulation/data/civs/mace.jsonStructures[1].Name
+#: simulation/data/civs/ptol.jsonStructures[0].Name
+#: simulation/data/civs/sele.jsonStructures[0].Name
 msgid "Library"
 msgstr "Leabhar-lann"
 
-#: civs/mace.jsonStructures[1].Special
+#: simulation/data/civs/mace.jsonStructures[1].Special
 msgid ""
 "All Special Technologies are researched here. Building one reduces the cost "
 "of all other remaining technologies by 10%. Build limit: 1."
 msgstr "Thèid gach teicneolas sònraichte a rannsachadh an-seo. Nuair a thogas tu fear, bidh na teicneolasan eile uile nas saoire le 10%. Cuingeachadh togail: 1"
 
-#: civs/mace.jsonStructures[1].History civs/ptol.jsonStructures[0].History
-#: civs/sele.jsonStructures[0].History
+#: simulation/data/civs/mace.jsonStructures[1].History
+#: simulation/data/civs/ptol.jsonStructures[0].History
+#: simulation/data/civs/sele.jsonStructures[0].History
 msgid ""
 "Alexander the Great founded libraries all over his new empire. These became "
 "a center of learning for an entirely new synthesized culture: the "
 "Hellenistic culture."
-msgstr "Stèidhich Alasdair Mòr leabharlannan air feadh na h-impireachd ùire aige. Chaidh iad 'nan ionadan ionnsachaidh do cho-chultar ùr: A' Ghreugachas."
+msgstr "Stèidhich Alasdair Mòr leabharlannan air feadh na h-impireachd ùire aige. Chaidh iad ’nan ionadan ionnsachaidh do cho-chultar ùr: A’ Ghreugachas."
 
-#: civs/mace.jsonStructures[2].Name
+#: simulation/data/civs/mace.jsonStructures[2].Name
 msgid "Siege Workshop"
 msgstr "Ceàrdach sèistidh"
 
-#: civs/mace.jsonStructures[2].Special
+#: simulation/data/civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
 msgstr "Togaidh is àrdachaidh seo na h‑uile inneal-sèiste Masadonach."
 
-#: civs/mace.jsonStructures[2].History
+#: simulation/data/civs/mace.jsonStructures[2].History
 msgid "The Macedonians were innovators in area of siegecraft."
 msgstr "Bhiodh na Masadonaich math air innealan-sèiste ùra a thionnsgnadh."
 
-#: civs/mace.jsonHistory
+#: simulation/data/civs/mace.jsonHistory
 msgid ""
 "Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
 " the Greek peninsula. Under the leadership of Alexander the Great, "
@@ -1336,21 +1373,21 @@ msgid ""
 "diffusion of Hellenic and eastern cultures for years to come."
 msgstr ""
 
-#: civs/maur.jsonName
+#: simulation/data/civs/maur.jsonName
 msgid "Mauryans"
 msgstr "Na Mauraidhich"
 
-#: civs/maur.jsonCivBonuses[0].Description
+#: simulation/data/civs/maur.jsonCivBonuses[0].Description
 msgid ""
 "Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
 "usual 300)."
-msgstr "Tha +10% dhe sluagh as motha ceadaichte dha na Mauraidheach ('s e seo sluagh as motha de 330 an àite nan 300 àbhaisteach)."
+msgstr "Tha +10% dhe sluagh as motha ceadaichte dha na Mauraidheach (’s e seo sluagh as motha de 330 an àite nan 300 àbhaisteach)."
 
-#: civs/maur.jsonCivBonuses[0].Name
+#: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
 msgstr "Impire nan impirean."
 
-#: civs/maur.jsonCivBonuses[0].History
+#: simulation/data/civs/maur.jsonCivBonuses[0].History
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
@@ -1358,17 +1395,17 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "Ghabh impireachd nam Mauraidheach a-steach dusanan de rìoghachdan a bhiodh neo-eisimeileach roimhe thar ranntair de 5 mhillean cilemeatair ceàrnagach agus sluagh de faisg air 60 millean. Chuirte \"Impire nan Impirean\" air na rìghrean Mauraidheach agus bhiodh smachd aca air feachd seasmhach de 600,000 coisridh, 9000 ailbhean, 8000 feun 's 30,000 eachraidh. Thathar dhen bheachd gur e am feachd as motha a bh' ann aig an àm."
+msgstr "Ghabh impireachd nam Mauraidheach a-steach dusanan de rìoghachdan a bhiodh neo-eisimeileach roimhe thar ranntair de 5 mhillean cilemeatair ceàrnagach agus sluagh de faisg air 60 millean. Chuirte \"Impire nan Impirean\" air na rìghrean Mauraidheach agus bhiodh smachd aca air feachd seasmhach de 600,000 coisridh, 9000 ailbhean, 8000 feun ’s 30,000 eachraidh. Thathar dhen bheachd gur e am feachd as motha a bh’ ann aig an àm."
 
-#: civs/maur.jsonCivBonuses[1].Description
+#: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "The Mauryans enjoy access to 4 champions."
 msgstr "Tha 4 laoich ri làimh dha na Mauraidhich."
 
-#: civs/maur.jsonCivBonuses[1].Name
+#: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
 msgstr "Fine ghaisgeach Kṣhatriya."
 
-#: civs/maur.jsonCivBonuses[1].History
+#: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
 "Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social "
 "orders) in Hinduism. Traditionally Kshatriya constitute the military and "
@@ -1376,129 +1413,131 @@ msgid ""
 "Laws of Manu."
 msgstr ""
 
-#: civs/maur.jsonTeamBonuses[0].Description
+#: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied Temple techs -50% cost and research time."
-msgstr "Bidh feum air nas lugha de chosgaisean 's ùine rannsachaidh air gach teicneolas an teampaill dha na caidreabhaich le -50%."
+msgstr "Bidh feum air nas lugha de chosgaisean ’s ùine rannsachaidh air gach teicneolas an teampaill dha na caidreabhaich le -50%."
 
-#: civs/maur.jsonTeamBonuses[0].Name
+#: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Evangelism."
 msgstr "Soisgeulachd."
 
-#: civs/maur.jsonTeamBonuses[0].History
+#: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
 "Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-msgstr "Chuir Aśoka tosgairean gu siar gus eòlas air a' Bhuda a sgaoileadh."
+msgstr "Chuir Aśoka tosgairean gu siar gus eòlas air a’ Bhuda a sgaoileadh."
 
-#: civs/maur.jsonAINames[0] civs/maur.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/maur.jsonAINames[0]
+#: simulation/data/civs/maur.jsonFactions[0].Heroes[0].Name
 msgid "Chandragupta Maurya"
 msgstr "Chandragupta Mauraidhea"
 
-#: civs/maur.jsonAINames[1] civs/maur.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/maur.jsonAINames[1]
+#: simulation/data/civs/maur.jsonFactions[0].Heroes[1].Name
 msgid "Ashoka the Great"
 msgstr "Aśoka Mòr"
 
-#: civs/maur.jsonAINames[2]
+#: simulation/data/civs/maur.jsonAINames[2]
 msgid "Ashokavardhan Maurya"
 msgstr "Ashokavardhan Mauraidhea"
 
-#: civs/maur.jsonAINames[3]
+#: simulation/data/civs/maur.jsonAINames[3]
 msgid "Acharya Bhadrabahu"
 msgstr "Acharya Bhadrabahu"
 
-#: civs/maur.jsonAINames[4]
+#: simulation/data/civs/maur.jsonAINames[4]
 msgid "Bindusara Maurya"
 msgstr "Bindusara Mauraidhea"
 
-#: civs/maur.jsonAINames[5]
+#: simulation/data/civs/maur.jsonAINames[5]
 msgid "Dasaratha Maurya"
 msgstr "Dasaratha Mauraidhea"
 
-#: civs/maur.jsonAINames[6]
+#: simulation/data/civs/maur.jsonAINames[6]
 msgid "Samprati Maurya"
 msgstr "Samprati Mauraidhea"
 
-#: civs/maur.jsonAINames[7]
+#: simulation/data/civs/maur.jsonAINames[7]
 msgid "Salisuka Maurya"
 msgstr "Salisuka Mauraidhea"
 
-#: civs/maur.jsonAINames[8]
+#: simulation/data/civs/maur.jsonAINames[8]
 msgid "Devavarman Maurya"
 msgstr "Devavarman Mauraidhea"
 
-#: civs/maur.jsonAINames[9]
+#: simulation/data/civs/maur.jsonAINames[9]
 msgid "Satadhanvan Maurya"
 msgstr "Satadhanvan Mauraidhea"
 
-#: civs/maur.jsonAINames[10]
+#: simulation/data/civs/maur.jsonAINames[10]
 msgid "Brihadratha Maurya"
 msgstr "Brihadratha Mauraidhea"
 
-#: civs/maur.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Glac gu ruige 5 ailbheanan gaia agus cuir 'nan gearastan iad san stàball ailbheanan ach am faigh thu gu ruige 25% de lùghdachadh air cosgaisean 's ùine trèanaidh airson aonadan ailbhein."
+msgstr "Glac gu ruige 5 ailbheanan gaia agus cuir ’nan gearastan iad san stàball ailbheanan ach am faigh thu gu ruige 25% de lùghdachadh air cosgaisean ’s ùine trèanaidh airson aonadan ailbhein."
 
-#: civs/maur.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
 msgstr "Tional ailbheanan"
 
-#: civs/maur.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr "Gheibh boghadairean coisridh Mauraidheach barrachd astair lèirsinne 's thèid an trèanadh nas luaithe."
+msgstr "Gheibh boghadairean coisridh Mauraidheach barrachd astair lèirsinne ’s thèid an trèanadh nas luaithe."
 
-#: civs/maur.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].Name
 msgid "Archery Tradition"
 msgstr "Gnàth nam boghadairean"
 
-#: civs/maur.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/maur.jsonFactions[0].Technologies[1].History
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr "'S e dùthaich nam boghadairean a bh' anns na h-Innseachan. 'S e boghadairean air leth sgileil a bhiodh sa mhòrchuid de dh'fheachd Innseanach sam bith agus bhiodh mòr-bhoghachan bambù aca."
+msgstr "’S e dùthaich nam boghadairean a bh’ anns na h-Innseachan. ’S e boghadairean air leth sgileil a bhiodh sa mhòrchuid de dh’fheachd Innseanach sam bith agus bhiodh mòr-bhoghachan bambù aca."
 
-#: civs/maur.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
 msgstr "Am fear a stèidhich an impireachd Mhauraidheach."
 
-#: civs/maur.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
 msgstr "An t‑impire mòr mu dheireadh aig an tànaisteachd Mhauraidheach."
 
-#: civs/maur.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
 msgstr "Sàr-thidsear agus comhairle do Chandragupta Mauraidhea."
 
-#: civs/maur.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/maur.jsonFactions[0].Heroes[2].Name
 msgid "Acharya Chāṇakya"
 msgstr "Acharya Chāṇakya"
 
-#: civs/maur.jsonFactions[0].Name
+#: simulation/data/civs/maur.jsonFactions[0].Name
 msgid "Mauryan Indians"
 msgstr "Innseanaich Mauraidheach"
 
-#: civs/maur.jsonStructures[0].Name
+#: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
 msgstr "Stàball ailbheanan"
 
-#: civs/maur.jsonStructures[0].Special
+#: simulation/data/civs/maur.jsonStructures[0].Special
 msgid ""
 "Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
 "champion War Elephant at the City phase."
-msgstr "Trèanaichidh seo boghadairean ailbhein 's ailbheanan obrach ri linn nam bailtean agus bidh laoch ailbhein-chogaidh ri làimh dhut ri linn nam mòr-bhailtean."
+msgstr "Trèanaichidh seo boghadairean ailbhein ’s ailbheanan obrach ri linn nam bailtean agus bidh laoch ailbhein-chogaidh ri làimh dhut ri linn nam mòr-bhailtean."
 
-#: civs/maur.jsonStructures[1].Name
+#: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
 msgstr "Carragh fuagraidh Aśoka"
 
-#: civs/maur.jsonStructures[1].Special
+#: simulation/data/civs/maur.jsonStructures[1].Special
 msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr "Sonas: gheibh gach saoranach is saighdear-dùthcha agadsa 's nan caidreabhach a bhios am broinn na rainse +10% de shlàinte is cruinnichidh iad stòras +10% nas luaithe. 's urrainn dhut a thogail àite sam bith ach air ranntair no nàimhdean. Cuingeachadh togail: 10."
+msgstr "Sonas: gheibh gach saoranach is saighdear-dùthcha agadsa ’s nan caidreabhach a bhios am broinn na rainse +10% de shlàinte is cruinnichidh iad stòras +10% nas luaithe. ’s urrainn dhut a thogail àite sam bith ach air ranntair no nàimhdean. Cuingeachadh togail: 10."
 
-#: civs/maur.jsonHistory
+#: simulation/data/civs/maur.jsonHistory
 msgid ""
 "Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
 " to rule most of the Indian subcontinent, and was one of the largest and "
@@ -1510,21 +1549,21 @@ msgid ""
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
 msgstr ""
 
-#: civs/pers.jsonName
+#: simulation/data/civs/pers.jsonName
 msgid "Persians"
 msgstr "Na Pearsaich"
 
-#: civs/pers.jsonCivBonuses[0].Description
+#: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid ""
 "The resource cost of training camel-mounted (trader) or horse-mounted units "
 "(cavalry) is reduced by 5% per animal (as appropriate) corralled."
 msgstr "Bidh lùghdachadh an cosgais de 5% gus aonad air muin càmhail (neach-malairt) no eich (eachraidh) a thrèanadh le gach beathach san fhàl (a-rèir na tha iomchaidh)."
 
-#: civs/pers.jsonCivBonuses[0].Name
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
 msgstr "Cuir càmhail is eich san fhàl"
 
-#: civs/pers.jsonCivBonuses[0].History
+#: simulation/data/civs/pers.jsonCivBonuses[0].History
 msgid ""
 "While the Persians employed camelry only in a few cases, its use was always "
 "accompanied by great success (most notably during the battle of Sardis in "
@@ -1532,17 +1571,17 @@ msgid ""
 "while Northern Arabia supplied 'one-hump' camels."
 msgstr ""
 
-#: civs/pers.jsonCivBonuses[1].Description
+#: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr "Tha +10% dhe sluagh as motha ceadaichte dha na Pearsaich ('s e seo sluagh as motha de 330 an àite nan 300 àbhaisteach)."
+msgstr "Tha +10% dhe sluagh as motha ceadaichte dha na Pearsaich (’s e seo sluagh as motha de 330 an àite nan 300 àbhaisteach)."
 
-#: civs/pers.jsonCivBonuses[1].Name
+#: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Great King's Levy"
 msgstr "Togail airm mòr an Rìgh"
 
-#: civs/pers.jsonCivBonuses[1].History
+#: simulation/data/civs/pers.jsonCivBonuses[1].History
 msgid ""
 "The Persians could and did levy a large number of infantry during wartime "
 "due to the sheer size of the Achaemenid Empire and the way in which it was "
@@ -1550,17 +1589,17 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Thogadh na Pearsaich mòran choisridh rè àm a' chogaidh 's b' urrainn dhaibh seo a dhèanamh air sàilleibh meud is rian na h-impireachd Achaemeanach. Fhuaireadh coisridh nam Pearsach deagh thrèanadh san fharsaingeachd 's rinneadh iad sabaid le righneas mòr. Ged a bha seo fìor, cha robh iad math air sabaid glè dhlùth. Cuideachd, cha bhiodh coisridh nam Pearsach 'nam feachd seasmhachd 's proifeiseanta ach rèisimeidean nan seann-ghaisgeach."
+msgstr "Thogadh na Pearsaich mòran choisridh rè àm a’ chogaidh ’s b’ urrainn dhaibh seo a dhèanamh air sàilleibh meud is rian na h-impireachd Achaemeanach. Fhuaireadh coisridh nam Pearsach deagh thrèanadh san fharsaingeachd ’s rinneadh iad sabaid le righneas mòr. Ged a bha seo fìor, cha robh iad math air sabaid glè dhlùth. Cuideachd, cha bhiodh coisridh nam Pearsach ’nam feachd seasmhachd ’s proifeiseanta ach rèisimeidean nan seann-ghaisgeach."
 
-#: civs/pers.jsonTeamBonuses[0].Description
+#: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "+25% trade profit land routes."
 msgstr "+25% de phrothaid malairt airson shlighean air tìr."
 
-#: civs/pers.jsonTeamBonuses[0].Name
+#: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
 msgstr "Rathad rìoghail"
 
-#: civs/pers.jsonTeamBonuses[0].History
+#: simulation/data/civs/pers.jsonTeamBonuses[0].History
 msgid ""
 "Coinage was invented by the Lydians in 7th Century B.C., but it was not very"
 " common until the Persian period. Darius the Great standardized coined money"
@@ -1568,63 +1607,65 @@ msgid ""
 "throughout his empire, but as far to the west as Central Europe."
 msgstr ""
 
-#: civs/pers.jsonAINames[0]
+#: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
 msgstr "Kùrois II Mòr"
 
-#: civs/pers.jsonAINames[1] civs/pers.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/pers.jsonAINames[1]
+#: simulation/data/civs/pers.jsonFactions[0].Heroes[1].Name
 msgid "Darayavahush I"
 msgstr "Darayavahush I"
 
-#: civs/pers.jsonAINames[2]
+#: simulation/data/civs/pers.jsonAINames[2]
 msgid "Cambyses II"
 msgstr "Cambyses II"
 
-#: civs/pers.jsonAINames[3]
+#: simulation/data/civs/pers.jsonAINames[3]
 msgid "Bardiya"
 msgstr "Bardiya"
 
-#: civs/pers.jsonAINames[4] civs/pers.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/pers.jsonAINames[4]
+#: simulation/data/civs/pers.jsonFactions[0].Heroes[2].Name
 msgid "Xsayarsa I"
 msgstr "Xsayarsa I"
 
-#: civs/pers.jsonAINames[5]
+#: simulation/data/civs/pers.jsonAINames[5]
 msgid "Artaxshacha I"
 msgstr "Artaxshacha I"
 
-#: civs/pers.jsonAINames[6]
+#: simulation/data/civs/pers.jsonAINames[6]
 msgid "Darayavahush II"
 msgstr "Darayavahush II"
 
-#: civs/pers.jsonAINames[7]
+#: simulation/data/civs/pers.jsonAINames[7]
 msgid "Darayavahush III"
 msgstr "Darayavahush III"
 
-#: civs/pers.jsonAINames[8]
+#: simulation/data/civs/pers.jsonAINames[8]
 msgid "Artaxshacha II"
 msgstr "Artaxshacha II"
 
-#: civs/pers.jsonAINames[9]
+#: simulation/data/civs/pers.jsonAINames[9]
 msgid "Artaxshacha III"
 msgstr "Artaxshacha III"
 
-#: civs/pers.jsonAINames[10]
+#: simulation/data/civs/pers.jsonAINames[10]
 msgid "Haxamanish"
 msgstr "Haxamanish"
 
-#: civs/pers.jsonAINames[11]
+#: simulation/data/civs/pers.jsonAINames[11]
 msgid "Xsayarsa II"
 msgstr "Xsayarsa II"
 
-#: civs/pers.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry units."
 msgstr "Buannaichidh longan trì-ràmhach nam Pheniceach an comas sònraichte gun gabh aonadan eachraidh a thrèanadh annta."
 
-#: civs/pers.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
-msgstr "Ceàrd a' chabhlaich"
+msgstr "Ceàrd a’ chabhlaich"
 
-#: civs/pers.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian "
 "empire to rule the seas. The Great King behaved favourably towards the "
@@ -1633,51 +1674,51 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "Le gnìomhan nan rìghrean Achaimeneach tràtha, chaidh a’ Pheirse ’na chiad impireachd Àiseanach mhòr aig an robh smachd air a’ mhuir. Bha giùlan an Rìgh Mhòir fàbharach do shluaghan na mara ach an toireadh iad taic dha ach rinn e leasachaidhean-mara cuideachd. Mar eisimpleir, thogadh canal san Èiphit agus rùraich cabhlach Pearsach abhainn Indus ri linn Darius Mhòir. A-rèir Herodotus, chaidh mu 300 long aig cabhlach nam Pearsach uidheamachadh gus eich agus am marcaichean a ghiùlan."
+msgstr "Le gnìomhan nan rìghrean Achaimeneach tràtha, chaidh a’ Pheirse ’na chiad impireachd Àiseanach mhòr aig an robh smachd air a’ mhuir. Bha giùlan an Rìgh Mhòir fàbharach do shluaghan na mara ach an doireadh iad taic dha ach rinn e leasachaidhean-mara cuideachd. Mar eisimpleir, thogadh canal san Èiphit agus rùraich cabhlach Pearsach abhainn Indus ri linn Darius Mhòir. A-rèir Herodotus, chaidh mu 300 long aig cabhlach nam Pearsach uidheamachadh gus eich agus am marcaichean a ghiùlan."
 
-#: civs/pers.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
 msgstr "Bidh barrachd phuingean slàinte aig gach togalach ach bheir e barrachd ùine gus a thogail le sin."
 
-#: civs/pers.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
 msgid "Persian Architecture"
 msgstr "Ailtireachd Phearsach"
 
-#: civs/pers.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr "Thog na Pearsaich an rathad mòr rìoghail mìorbhaileach o Shardis gu Susa a bha 1677 mìle a dh'fhaid; thog Darius Mòr 's Xerxes Persepolis greadhnach cuideachd; rinn Kùrois Mòr leasachadh mòr air Ecbatana agus ath-thog e Susa, seann chathair-bhaile nan Ealamach."
+msgstr "Thog na Pearsaich an rathad mòr rìoghail mìorbhaileach o Shardis gu Susa a bha 1677 mìle a dh’fhaid; thog Darius Mòr ’s Xerxes Persepolis greadhnach cuideachd; rinn Kùrois Mòr leasachadh mòr air Ecbatana agus ath-thog e Susa, seann chathair-bhaile nan Ealamach."
 
-#: civs/pers.jsonFactions[0].Technologies[2].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr "Cha toir trèanadh laoich coisridh Anusaidhea ach an dàrna leth de dh'ùine."
+msgstr "Cha doir trèanadh laoich coisridh Anusaidhea ach an dàrna leth de dh’ùine."
 
-#: civs/pers.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Immortals"
 msgstr "Lèintean-crios neo-bhàsmhor"
 
-#: civs/pers.jsonFactions[0].Technologies[3].Description
-#: civs/sele.jsonFactions[0].Technologies[3].Description
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Description
 msgid "+25% health for cavalry, but +10% train time."
 msgstr "Gheibh eachraidh +25% de shlàinte ach bheir iad +10% nas faide gus an trèanadh."
 
-#: civs/pers.jsonFactions[0].Technologies[3].Name
-#: civs/sele.jsonFactions[0].Technologies[3].Name
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Name
 msgid "Nisean War Horses"
 msgstr "Eich-chogaidh Niseanach"
 
-#: civs/pers.jsonFactions[0].Technologies[3].History
+#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Persian cavalry."
-msgstr "An sìol eireachdail is cumhachdach de dh'eich Niseanach a bheir barrachd slàinte do dh'eachdraidh nam Pearsach."
+msgstr "An sìol eireachdail is cumhachdach de dh’eich Niseanach a bheir barrachd slàinte do dh’eachdraidh nam Pearsach."
 
-#: civs/pers.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/pers.jsonFactions[0].Heroes[0].History
 msgid ""
 "Cyrus (ruled 559-530 B.C.) The son of a Median princess and the ruler of "
 "Anshan; justly called the 'Father of the Empire', Cyrus the Great conquered "
@@ -1687,11 +1728,11 @@ msgid ""
 " Kurush II on his documents and coins. Kurush I was his grandfather."
 msgstr ""
 
-#: civs/pers.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
 msgstr "Kurush II"
 
-#: civs/pers.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/pers.jsonFactions[0].Heroes[1].History
 msgid ""
 "Darius (ruled 522-486 B.C.) The son of Vishtaspa (Hystaspes), the satrap of "
 "Parthia and Hyrcania; a great administrator as well as a decent general, "
@@ -1699,7 +1740,7 @@ msgid ""
 " India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
 msgstr ""
 
-#: civs/pers.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/pers.jsonFactions[0].Heroes[2].History
 msgid ""
 "Xerxes (ruled 485-465 B.C.) The son of Darius the Great and Atoosa, a "
 "daughter of Cyrus the Great, Xerxes was an able administrator, who also "
@@ -1708,29 +1749,30 @@ msgid ""
 "Persepolis."
 msgstr ""
 
-#: civs/pers.jsonStructures[0].Name civs/sele.jsonStructures[1].Name
+#: simulation/data/civs/pers.jsonStructures[0].Name
+#: simulation/data/civs/sele.jsonStructures[1].Name
 msgid "Cavalry Stables"
 msgstr "Stàballan an eachraidh"
 
-#: civs/pers.jsonStructures[0].Special
+#: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
 msgstr "Trèanaich eachraidh-dùthcha."
 
-#: civs/pers.jsonStructures[0].History
+#: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
-msgstr "B' e marcaichean on taobh an ear a bh' anns na saighdearan a b' fhearr aig impireachd nam Pearsach"
+msgstr "B’ e marcaichean on taobh an ear a bh’ anns na saighdearan a b’ fhearr aig impireachd nam Pearsach"
 
-#: civs/pers.jsonStructures[1].Name
+#: simulation/data/civs/pers.jsonStructures[1].Name
 msgid "Apadana"
 msgstr "Apadana"
 
-#: civs/pers.jsonStructures[1].Special
+#: simulation/data/civs/pers.jsonStructures[1].Special
 msgid ""
 "Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
 " 'Satrapy Tribute.'"
-msgstr "Trèanaich curaidhean 's lèintean-crios neo-bhàsmhor. Bheir seo beagan stòrais dhut gu cunbhalach mar \"chìos satraip.\""
+msgstr "Trèanaich curaidhean ’s lèintean-crios neo-bhàsmhor. Bheir seo beagan stòrais dhut gu cunbhalach mar \"chìos satraip.\""
 
-#: civs/pers.jsonStructures[1].History
+#: simulation/data/civs/pers.jsonStructures[1].History
 msgid ""
 "The term Apadana designates a large hypostyle palace found in Persia. The "
 "best known example, and by far the largest, was the great Apadana at "
@@ -1739,7 +1781,7 @@ msgid ""
 "the Immortals."
 msgstr ""
 
-#: civs/pers.jsonHistory
+#: simulation/data/civs/pers.jsonHistory
 msgid ""
 "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
 "greatest empires of antiquity, stretching at its zenith from the Indus "
@@ -1750,21 +1792,22 @@ msgid ""
 " of these nations."
 msgstr ""
 
-#: civs/ptol.jsonName
+#: simulation/data/civs/ptol.jsonName
 msgid "Ptolemies"
 msgstr "Na Ptolamaich"
 
-#: civs/ptol.jsonCivBonuses[0].Description
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
 msgstr "Gheibh na Ptolamaich an campa shaighdearan-duaise, seo taighean-feachd a thogar air ranntair neo-phàirteach agus a nì trèanadh air saighdearan-duaise."
 
-#: civs/ptol.jsonCivBonuses[0].Name
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
 msgstr "Feachd-duaise"
 
-#: civs/ptol.jsonCivBonuses[0].History civs/ptol.jsonStructures[1].History
+#: simulation/data/civs/ptol.jsonCivBonuses[0].History
+#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
@@ -1776,190 +1819,192 @@ msgid ""
 "successor states."
 msgstr ""
 
-#: civs/ptol.jsonCivBonuses[1].Description
+#: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
 msgstr "Gheibh na h‑Èipheitich Ptolamach 3 teicneolasan àiteachaidh a bharrachd."
 
-#: civs/ptol.jsonCivBonuses[1].Name
-#: civs/ptol.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/ptol.jsonCivBonuses[1].Name
+#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Name
 msgid "Nile Delta"
 msgstr "Gobhlan an Nìl"
 
-#: civs/ptol.jsonCivBonuses[1].History civs/ptol.jsonCivBonuses[2].History
+#: simulation/data/civs/ptol.jsonCivBonuses[1].History
+#: simulation/data/civs/ptol.jsonCivBonuses[2].History
 msgid "Unknown."
 msgstr "Chan eil fios."
 
-#: civs/ptol.jsonCivBonuses[2].Description
+#: simulation/data/civs/ptol.jsonCivBonuses[2].Description
 msgid "Can capture gaia elephants and camels to reduce their training cost."
-msgstr "'S urrainn dha ailbheanan 's càmhail gaia a ghlacadh gus cosgaisean an trèanadh a lùghdachadh."
+msgstr "’S urrainn dha ailbheanan ’s càmhail gaia a ghlacadh gus cosgaisean an trèanadh a lùghdachadh."
 
-#: civs/ptol.jsonTeamBonuses[0].Description
+#: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
 msgid "All allies automatically gain a slow trickle of food income."
 msgstr "Gheibh a h‑uile caidreabhaich beagan bìdh gu cunbhalach."
 
-#: civs/ptol.jsonTeamBonuses[0].Name
+#: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
 msgstr "Basgaid-arain na Mara Meadhanaich"
 
-#: civs/ptol.jsonTeamBonuses[0].History
+#: simulation/data/civs/ptol.jsonTeamBonuses[0].History
 msgid ""
 "Egypt was a net exporter of grain, so much so that large cities such as "
 "Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed "
 "their masses."
-msgstr "Bhiodh an Èipheit ag às-mhalart gràn an ìre cho mòr 's gum biodh bailtean mòra a leithid Baile na h-Àithne, Antioch 's an Ròimh gu tur an eisimeil gràn na h-Èipheite ach an toireadh iad biadh dhan mhòr-shluagh."
+msgstr "Bhiodh an Èipheit ag às-mhalart gràn an ìre cho mòr ’s gum biodh bailtean mòra a leithid Baile na h-Àithne, Antioch ’s an Ròimh gu tur an eisimeil gràn na h-Èipheite ach an doireadh iad biadh dhan mhòr-shluagh."
 
-#: civs/ptol.jsonAINames[0]
+#: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
 msgstr "Ptolamaidh Soter"
 
-#: civs/ptol.jsonAINames[1]
+#: simulation/data/civs/ptol.jsonAINames[1]
 msgid "Ptolemy Philadelphus"
 msgstr "Ptolamaidh Philadelphus"
 
-#: civs/ptol.jsonAINames[2]
+#: simulation/data/civs/ptol.jsonAINames[2]
 msgid "Ptolemy Epigone"
 msgstr "Ptolamaidh Epigone"
 
-#: civs/ptol.jsonAINames[3]
+#: simulation/data/civs/ptol.jsonAINames[3]
 msgid "Ptolemy Eurgetes"
 msgstr "Ptolamaidh Eurgetes"
 
-#: civs/ptol.jsonAINames[4]
+#: simulation/data/civs/ptol.jsonAINames[4]
 msgid "Ptolemy Philopater"
 msgstr "Ptolamaidh Philopater"
 
-#: civs/ptol.jsonAINames[5]
+#: simulation/data/civs/ptol.jsonAINames[5]
 msgid "Ptolemy Epiphanes"
 msgstr "Ptolamaidh Epiphanes"
 
-#: civs/ptol.jsonAINames[6]
+#: simulation/data/civs/ptol.jsonAINames[6]
 msgid "Ptolemy Philometor"
 msgstr "Ptolamaidh Philometor"
 
-#: civs/ptol.jsonAINames[7]
+#: simulation/data/civs/ptol.jsonAINames[7]
 msgid "Ptolemy Eupator"
 msgstr "Ptolamaidh Eupator"
 
-#: civs/ptol.jsonAINames[8]
+#: simulation/data/civs/ptol.jsonAINames[8]
 msgid "Ptolemy Alexander"
 msgstr "Ptolamaidh Alasdair"
 
-#: civs/ptol.jsonAINames[9]
+#: simulation/data/civs/ptol.jsonAINames[9]
 msgid "Ptolemy Neos Dionysos"
 msgstr "Ptolamaidh Neos Dionysos"
 
-#: civs/ptol.jsonAINames[10]
+#: simulation/data/civs/ptol.jsonAINames[10]
 msgid "Ptolemy Neos Philopater"
 msgstr "Ptolamaidh Neos Philopater"
 
-#: civs/ptol.jsonAINames[11]
+#: simulation/data/civs/ptol.jsonAINames[11]
 msgid "Berenice Philopater"
 msgstr "Ptolamaidh Philopater"
 
-#: civs/ptol.jsonAINames[12]
+#: simulation/data/civs/ptol.jsonAINames[12]
 msgid "Cleopatra Tryphaena"
 msgstr "Cleopatra Tryphaena"
 
-#: civs/ptol.jsonAINames[13]
+#: simulation/data/civs/ptol.jsonAINames[13]
 msgid "Berenice Epiphaneia"
 msgstr "Berenice Epiphaneia"
 
-#: civs/ptol.jsonAINames[14]
+#: simulation/data/civs/ptol.jsonAINames[14]
 msgid "Cleopatra Philopater"
 msgstr "Cleopatra Philopater"
 
-#: civs/ptol.jsonAINames[15]
+#: simulation/data/civs/ptol.jsonAINames[15]
 msgid "Cleopatra Selene"
 msgstr "Cleopatra Selene"
 
-#: civs/ptol.jsonAINames[16]
+#: simulation/data/civs/ptol.jsonAINames[16]
 msgid "Cleopatra II Philometora Soteira"
 msgstr "Cleopatra II Philometora Soteira"
 
-#: civs/ptol.jsonAINames[17]
+#: simulation/data/civs/ptol.jsonAINames[17]
 msgid "Arsinoe IV"
 msgstr "Arsinoe IV"
 
-#: civs/ptol.jsonAINames[18]
+#: simulation/data/civs/ptol.jsonAINames[18]
 msgid "Arsinoe II"
 msgstr "Arsinoe II"
 
-#: civs/ptol.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Description
 msgid "Hero aura range boosted by 50%."
 msgstr "Buannachd air astar aura gaisgich le 50%."
 
-#: civs/ptol.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Name
 msgid "Pharaonic Cult."
 msgstr "Creideamh nam Pharao."
 
-#: civs/ptol.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient "
 "Egyptian traditions in order to satiate the local populace and ingratiate "
 "themselves to the powerful priestly class in the country."
 msgstr ""
 
-#: civs/ptol.jsonFactions[0].Technologies[2].Description
+#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The Ptolemaic Egyptians receive 3 additional farming technologies above and "
 "beyond the maximum number of farming technologies usually available to a "
 "faction."
 msgstr ""
 
-#: civs/ptol.jsonFactions[0].Technologies[2].History
+#: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Nile Delta had rich soil for farming, due to centuries of seasonal "
 "floods from the Nile depositing rich silt across the landscape."
 msgstr ""
 
-#: civs/ptol.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
-msgstr "Ptolemaios A' Soter"
+msgstr "Ptolemaios A’ Soter"
 
-#: civs/ptol.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].Name
 msgid "Ptolemaios D' Philopater"
-msgstr "Ptolemaios D' Philopater"
+msgstr "Ptolemaios D’ Philopater"
 
-#: civs/ptol.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/ptol.jsonFactions[0].Heroes[2].Name
 msgid "Kleopatra H' Philopater"
-msgstr "Kleopatra H' Philopater"
+msgstr "Kleopatra H’ Philopater"
 
-#: civs/ptol.jsonFactions[0].Name
+#: simulation/data/civs/ptol.jsonFactions[0].Name
 msgid "Ptolemaic Egyptians"
 msgstr "Èiphitich Phtolamach"
 
-#: civs/ptol.jsonFactions[0].Description
+#: simulation/data/civs/ptol.jsonFactions[0].Description
 msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."
-msgstr "A' mhòr-riaghailt Ghreugach Mhasadonach thànaisteach air an Èipheit àrsaidh."
+msgstr "A’ mhòr-riaghailt Ghreugach Mhasadonach thànaisteach air an Èipheit àrsaidh."
 
-#: civs/ptol.jsonStructures[0].Special civs/sele.jsonStructures[0].Special
+#: simulation/data/civs/ptol.jsonStructures[0].Special
+#: simulation/data/civs/sele.jsonStructures[0].Special
 msgid ""
 "Maximum of 1 built. All Special Technologies and some regular city-phase "
 "technologies are researched here. Building one reduces the cost of all other"
 " remaining technologies by 10%."
-msgstr "Thèid gach teicneolas sònraichte 's cuid a theicneolasan àbhaisteach aig linn nam mòr-bhailtean a rannsachadh an-seo. Nuair a thogas tu fear, bidh na teicneolasan eile uile nas saoire le 10%. Cuingeachadh togail: 1"
+msgstr "Thèid gach teicneolas sònraichte ’s cuid a theicneolasan àbhaisteach aig linn nam mòr-bhailtean a rannsachadh an-seo. Nuair a thogas tu fear, bidh na teicneolasan eile uile nas saoire le 10%. Cuingeachadh togail: 1"
 
-#: civs/ptol.jsonStructures[1].Name
+#: simulation/data/civs/ptol.jsonStructures[1].Name
 msgid "Stratópedo Misthophóron"
 msgstr "Stratópedo Misthophóron"
 
-#: civs/ptol.jsonStructures[1].Special
+#: simulation/data/civs/ptol.jsonStructures[1].Special
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
 msgstr "Chan fhaod thu a thogail ach air ranntair neo-phàirteach. Chan eil buaidh aige air meud do ranntair. Trèanaichidh e gach saighdear-duaise."
 
-#: civs/ptol.jsonStructures[2].Name
+#: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Taigh-solais"
 
-#: civs/ptol.jsonStructures[2].Special
+#: simulation/data/civs/ptol.jsonStructures[2].Special
 msgid ""
 "When built along the shoreline, removes shroud of darkness over all the "
 "water, revealing all the coast lines on the map. Limit: 1."
-msgstr "Ma thogas tu tè air an oirthir, bheir seo air falbh an dorchadas air an uisge ach am faic thu far a bheil an costa air feadh a' mhapa. Cuingeachadh togail: 1."
+msgstr "Ma thogas tu tè air an oirthir, bheir seo air falbh an dorchadas air an uisge ach am faic thu far a bheil an costa air feadh a’ mhapa. Cuingeachadh togail: 1."
 
-#: civs/ptol.jsonStructures[2].History
+#: simulation/data/civs/ptol.jsonStructures[2].History
 msgid ""
 "The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of "
 "Alexandria near the harbor mouth of that Nile Delta city. This structure "
@@ -1967,7 +2012,7 @@ msgid ""
 "Wonders of the World."
 msgstr ""
 
-#: civs/ptol.jsonHistory
+#: simulation/data/civs/ptol.jsonHistory
 msgid ""
 "The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
 "Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
@@ -1975,36 +2020,36 @@ msgid ""
 "Egypt."
 msgstr ""
 
-#: civs/rome.jsonName
+#: simulation/data/civs/rome.jsonName
 msgid "Romans"
 msgstr "Na Ròmanaich"
 
-#: civs/rome.jsonCivBonuses[0].Description
+#: simulation/data/civs/rome.jsonCivBonuses[0].Description
 msgid "Roman Legionaries can form a Testudo."
-msgstr "'S urrainn dha na lèigiunaich Ròmanach a dhol dhan chumadh shligeanach."
+msgstr "’S urrainn dha na lèigiunaich Ròmanach a dhol dhan chumadh shligeanach."
 
-#: civs/rome.jsonCivBonuses[0].Name
+#: simulation/data/civs/rome.jsonCivBonuses[0].Name
 msgid "Testudo Formation"
 msgstr "Cumadh sligeanach"
 
-#: civs/rome.jsonCivBonuses[0].History
+#: simulation/data/civs/rome.jsonCivBonuses[0].History
 msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
 msgstr ""
 
-#: civs/rome.jsonCivBonuses[1].Description
+#: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
 msgstr "Gheibh gach saighdear-dùthcha Ròmanach a nì sabaid air ranntair Ròmanach buannachd armachd sealach de +10%."
 
-#: civs/rome.jsonCivBonuses[1].Name
+#: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
 msgstr "Saoranachd"
 
-#: civs/rome.jsonCivBonuses[1].History
+#: simulation/data/civs/rome.jsonCivBonuses[1].History
 msgid ""
 "Roman Citizenship was highly prized in the ancient world. Basic rights and "
 "privileges were afforded Roman citizens that were denied other conquered "
@@ -2013,84 +2058,84 @@ msgid ""
 "perpetrator."
 msgstr ""
 
-#: civs/rome.jsonTeamBonuses[0].Description
+#: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
 msgstr "Buannaichidh saighdearan-dùthcha caidreabhach +15% air na h‑ionnsaighean aca nuair a bhios iar air ranntair Ròmanach."
 
-#: civs/rome.jsonTeamBonuses[0].Name
+#: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Socii"
 msgstr "Socii"
 
-#: civs/rome.jsonTeamBonuses[0].History
+#: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
 "Being allied with Rome came with great benefits (as well as great peril)."
 msgstr "Gheibhte buannachd mhòr (cho math ri cunnart mòr) à caidreachas leis an Ròimh."
 
-#: civs/rome.jsonAINames[0]
+#: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
 msgstr "Lucius Junius Brutus"
 
-#: civs/rome.jsonAINames[1]
+#: simulation/data/civs/rome.jsonAINames[1]
 msgid "Lucius Tarquinius Collatinus"
 msgstr "Lucius Tarquinius Collatinus"
 
-#: civs/rome.jsonAINames[2]
+#: simulation/data/civs/rome.jsonAINames[2]
 msgid "Gaius Julius Caesar Octavianus"
 msgstr "Gaius Julius Caesar Octavianus"
 
-#: civs/rome.jsonAINames[3]
+#: simulation/data/civs/rome.jsonAINames[3]
 msgid "Marcus Vipsanius Agrippa"
 msgstr "Marcus Vipsanius Agrippa"
 
-#: civs/rome.jsonAINames[4]
+#: simulation/data/civs/rome.jsonAINames[4]
 msgid "Gaius Iulius Iullus"
 msgstr "Gaius Iulius Iullus"
 
-#: civs/rome.jsonAINames[5]
+#: simulation/data/civs/rome.jsonAINames[5]
 msgid "Gaius Servilius Structus Ahala"
 msgstr "Gaius Servilius Structus Ahala"
 
-#: civs/rome.jsonAINames[6]
+#: simulation/data/civs/rome.jsonAINames[6]
 msgid "Publius Cornelius Rufinus"
 msgstr "Publius Cornelius Rufinus"
 
-#: civs/rome.jsonAINames[7]
+#: simulation/data/civs/rome.jsonAINames[7]
 msgid "Lucius Papirius Cursor"
 msgstr "Lucius Papirius Cursor"
 
-#: civs/rome.jsonAINames[8]
+#: simulation/data/civs/rome.jsonAINames[8]
 msgid "Aulus Manlius Capitolinus"
 msgstr "Aulus Manlius Capitolinus"
 
-#: civs/rome.jsonAINames[9]
+#: simulation/data/civs/rome.jsonAINames[9]
 msgid "Publius Cornelius Scipio Africanus"
 msgstr "Publius Cornelius Scipio Africanus"
 
-#: civs/rome.jsonAINames[10]
+#: simulation/data/civs/rome.jsonAINames[10]
 msgid "Publius Sempronius Tuditanus"
 msgstr "Publius Sempronius Tuditanus"
 
-#: civs/rome.jsonAINames[11]
+#: simulation/data/civs/rome.jsonAINames[11]
 msgid "Marcus Cornelius Cethegus"
 msgstr "Marcus Cornelius Cethegus"
 
-#: civs/rome.jsonAINames[12]
+#: simulation/data/civs/rome.jsonAINames[12]
 msgid "Quintus Caecilius Metellus Pius"
 msgstr "Quintus Caecilius Metellus Pius"
 
-#: civs/rome.jsonAINames[13]
+#: simulation/data/civs/rome.jsonAINames[13]
 msgid "Marcus Licinius Crassus"
 msgstr "Marcus Licinius Crassus"
 
-#: civs/rome.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/rome.jsonFactions[0].Technologies[0].Description
 msgid "Roman heroes can convert enemy units with great cost."
-msgstr "'S urrainn do chuiridhean Ròmanach aonadan an nàmhad iompachadh le cosgais àrd."
+msgstr "’S urrainn do chuiridhean Ròmanach aonadan an nàmhad iompachadh le cosgais àrd."
 
-#: civs/rome.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/rome.jsonFactions[0].Technologies[0].Name
 msgid "Divide et Impera"
 msgstr "Divide et Impera"
 
-#: civs/rome.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/rome.jsonFactions[0].Technologies[0].History
 msgid ""
 "'Divide and conquer' was the main principle in Rome's foreign politics "
 "throughout its long history. The Romans lured enemies or neutral factions to"
@@ -2098,18 +2143,18 @@ msgid ""
 "friends as well as foes were subjugated."
 msgstr ""
 
-#: civs/rome.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/rome.jsonFactions[0].Heroes[0].History
 msgid ""
 "Dictator for six months during the Second Punic War. Instead of attacking "
 "the most powerful Hannibal, he started a very effective war of attrition "
 "against him."
 msgstr ""
 
-#: civs/rome.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/rome.jsonFactions[0].Heroes[0].Name
 msgid "Quintus Fabius Maximus"
 msgstr "Quintus Fabius Maximus"
 
-#: civs/rome.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/rome.jsonFactions[0].Heroes[1].History
 msgid ""
 "A soldier of the first war with Carthage, a hero of the Second Punic War, "
 "and victor over the Gauls at Clastidium. Plutarch describes him as a man of "
@@ -2122,11 +2167,11 @@ msgid ""
 "the people held for him, Marcellus was granted the title of 'Sword of Rome.'"
 msgstr ""
 
-#: civs/rome.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/rome.jsonFactions[0].Heroes[1].Name
 msgid "Marcus Claudius Marcellus"
 msgstr "Marcus Claudius Marcellus"
 
-#: civs/rome.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/rome.jsonFactions[0].Heroes[2].History
 msgid ""
 "He was the first really successful Roman general against the Carthaginians. "
 "His campaigns in Spain and Africa helped to bring Carthage to its knees "
@@ -2134,19 +2179,19 @@ msgid ""
 "202 B.C."
 msgstr ""
 
-#: civs/rome.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/rome.jsonFactions[0].Heroes[2].Name
 msgid "Scipio Africanus"
 msgstr "Scipio Africanus"
 
-#: civs/rome.jsonStructures[0].Name
+#: simulation/data/civs/rome.jsonStructures[0].Name
 msgid "Entrenched Camp"
 msgstr "Campa daingeann"
 
-#: civs/rome.jsonStructures[0].Special
+#: simulation/data/civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."
 msgstr "Trèanaich saighdearan-dùthcha o ranntair nàmhad no neo-phàirteach."
 
-#: civs/rome.jsonStructures[0].History
+#: simulation/data/civs/rome.jsonStructures[0].History
 msgid ""
 "Sometimes it was a temporary camp built facing the route by which the army "
 "is to march, other times a defensive or offensive (for sieges) structure. "
@@ -2160,19 +2205,19 @@ msgid ""
 "military camps to evolve to more complicated cities."
 msgstr ""
 
-#: civs/rome.jsonStructures[1].Name
+#: simulation/data/civs/rome.jsonStructures[1].Name
 msgid "Murus Latericius"
 msgstr "Murus Latericius"
 
-#: civs/rome.jsonStructures[1].Special
+#: simulation/data/civs/rome.jsonStructures[1].Special
 msgid "Can be built in neutral and enemy territory to strangle enemy towns."
 msgstr "Gabhaidh an togail air ranntair nàmhad no neo-phàirteach gus bailtean an nàmhad a mhùchadh."
 
-#: civs/rome.jsonStructures[1].History
+#: simulation/data/civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
 msgstr "Ballachan-sgratha air an togail le lèigiunaich rè shèistean."
 
-#: civs/rome.jsonHistory
+#: simulation/data/civs/rome.jsonHistory
 msgid ""
 "The Romans controlled one of the largest empires of the ancient world, "
 "stretching at its peak from southern Scotland to the Sahara Desert, and "
@@ -2183,29 +2228,30 @@ msgid ""
 "infantry and navy."
 msgstr ""
 
-#: civs/sele.jsonName civs/sele.jsonFactions[0].Name
+#: simulation/data/civs/sele.jsonName
+#: simulation/data/civs/sele.jsonFactions[0].Name
 msgid "Seleucids"
 msgstr "Seleucaich"
 
-#: civs/sele.jsonCivBonuses[0].Description
+#: simulation/data/civs/sele.jsonCivBonuses[0].Description
 msgid ""
 "This unlocks the Seleucid expansion building, the Klēroukhia or Military "
 "Colony, similar to Civic Centers for other factions. It is weaker and "
 "carries a smaller territory influence, but is cheaper and built faster."
 msgstr ""
 
-#: civs/sele.jsonCivBonuses[0].Name
+#: simulation/data/civs/sele.jsonCivBonuses[0].Name
 msgid "Cleruchy"
 msgstr "Klēroukhia"
 
-#: civs/sele.jsonCivBonuses[1].Description
+#: simulation/data/civs/sele.jsonCivBonuses[1].Description
 msgid ""
 "Choose between Traditional Army and Reform Army technologies that unlock "
 "different Champions."
 msgstr "Tagh eadar teicneolasan aig an fheachd tradaiseanta no feachd an ath-leasachaidh a bheir taghadh de laoich eadar-dhealaichte dhut."
 
-#: civs/sele.jsonCivBonuses[1].History
-#: civs/sele.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/sele.jsonCivBonuses[1].History
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
 msgid ""
 "Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
 " 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
@@ -2216,156 +2262,157 @@ msgid ""
 " more flexible."
 msgstr ""
 
-#: civs/sele.jsonTeamBonuses[0].Description
+#: simulation/data/civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civic Centers are 20% cheaper."
 msgstr "Tha ionadan sìobhalta caidreabhach 20% nas saoire."
 
-#: civs/sele.jsonTeamBonuses[0].Name
+#: simulation/data/civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
 msgstr "Ceithir-bhaile Siridheach"
 
-#: civs/sele.jsonTeamBonuses[0].History
+#: simulation/data/civs/sele.jsonTeamBonuses[0].History
 msgid ""
 "The political core of the Seleucid Empire consisted of four 'sister' cities:"
 " Antioch (the capital), Seleucia Pieria, Apamea, and Laodicea."
 msgstr ""
 
-#: civs/sele.jsonAINames[0]
+#: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
 msgstr "Seleucus I Nicator"
 
-#: civs/sele.jsonAINames[1]
+#: simulation/data/civs/sele.jsonAINames[1]
 msgid "Antiochus I Soter"
 msgstr "Antiochus I Soter"
 
-#: civs/sele.jsonAINames[2]
+#: simulation/data/civs/sele.jsonAINames[2]
 msgid "Antiochus II Theos"
 msgstr "Antiochus II Theos"
 
-#: civs/sele.jsonAINames[3]
+#: simulation/data/civs/sele.jsonAINames[3]
 msgid "Seleucus II Callinicus"
 msgstr "Seleucus II Callinicus"
 
-#: civs/sele.jsonAINames[4]
+#: simulation/data/civs/sele.jsonAINames[4]
 msgid "Seleucus III Ceraunus"
 msgstr "Seleucus III Ceraunus"
 
-#: civs/sele.jsonAINames[5]
+#: simulation/data/civs/sele.jsonAINames[5]
 msgid "Antiochus III Megas"
 msgstr "Antiochus III Megas"
 
-#: civs/sele.jsonAINames[6]
+#: simulation/data/civs/sele.jsonAINames[6]
 msgid "Seleucus IV Philopator"
 msgstr "Seleucus IV Philopator"
 
-#: civs/sele.jsonAINames[7]
+#: simulation/data/civs/sele.jsonAINames[7]
 msgid "Antiochus IV Epiphanes"
 msgstr "Antiochus IV Epiphanes"
 
-#: civs/sele.jsonAINames[8]
+#: simulation/data/civs/sele.jsonAINames[8]
 msgid "Antiochus V Eupator"
 msgstr "Antiochus V Eupator"
 
-#: civs/sele.jsonAINames[9]
+#: simulation/data/civs/sele.jsonAINames[9]
 msgid "Demetrius I Soter"
 msgstr "Demetrius I Soter"
 
-#: civs/sele.jsonAINames[10]
+#: simulation/data/civs/sele.jsonAINames[10]
 msgid "Alexander I Balas"
 msgstr "Alastair I Balas"
 
-#: civs/sele.jsonAINames[11] civs/sele.jsonAINames[15]
+#: simulation/data/civs/sele.jsonAINames[11]
+#: simulation/data/civs/sele.jsonAINames[15]
 msgid "Demetrius II Nicator"
 msgstr "Demetrius II Nicator"
 
-#: civs/sele.jsonAINames[12]
+#: simulation/data/civs/sele.jsonAINames[12]
 msgid "Antiochus VI Dionysus"
 msgstr "Antiochus VI Dionysus"
 
-#: civs/sele.jsonAINames[13]
+#: simulation/data/civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
 msgstr "Diodotus Tryphon"
 
-#: civs/sele.jsonAINames[14]
+#: simulation/data/civs/sele.jsonAINames[14]
 msgid "Antiochus VII Sidetes"
 msgstr "Antiochus VII Sidetes"
 
-#: civs/sele.jsonAINames[16]
+#: simulation/data/civs/sele.jsonAINames[16]
 msgid "Alexander II Zabinas"
 msgstr "Alastair II Zabinas"
 
-#: civs/sele.jsonAINames[17]
+#: simulation/data/civs/sele.jsonAINames[17]
 msgid "Cleopatra Thea"
 msgstr "Cleopatra Thea"
 
-#: civs/sele.jsonAINames[18]
+#: simulation/data/civs/sele.jsonAINames[18]
 msgid "Seleucus V Philometor"
 msgstr "Seleucus V Philometor"
 
-#: civs/sele.jsonAINames[19]
+#: simulation/data/civs/sele.jsonAINames[19]
 msgid "Antiochus VIII Grypus"
 msgstr "Antiochus VIII Grypus"
 
-#: civs/sele.jsonAINames[20]
+#: simulation/data/civs/sele.jsonAINames[20]
 msgid "Antiochus IX Cyzicenus"
 msgstr "Antiochus IX Cyzicenus"
 
-#: civs/sele.jsonAINames[21]
+#: simulation/data/civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
 msgstr "Seleucus VI Epiphanes"
 
-#: civs/sele.jsonAINames[22]
+#: simulation/data/civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
 msgstr "Antiochus X Eusebes"
 
-#: civs/sele.jsonAINames[23]
+#: simulation/data/civs/sele.jsonAINames[23]
 msgid "Demetrius III Eucaerus"
 msgstr "Demetrius III Eucaerus"
 
-#: civs/sele.jsonAINames[24]
+#: simulation/data/civs/sele.jsonAINames[24]
 msgid "Antiochus XI Epiphanes"
 msgstr "Antiochus XI Epiphanes"
 
-#: civs/sele.jsonAINames[25]
+#: simulation/data/civs/sele.jsonAINames[25]
 msgid "Philip I Philadelphus"
 msgstr "Filip I Philadelphus"
 
-#: civs/sele.jsonAINames[26]
+#: simulation/data/civs/sele.jsonAINames[26]
 msgid "Antiochus XII Dionysus"
 msgstr "Antiochus XII Dionysus"
 
-#: civs/sele.jsonAINames[27]
+#: simulation/data/civs/sele.jsonAINames[27]
 msgid "Seleucus VII Kybiosaktes"
 msgstr "Seleucus VII Kybiosaktes"
 
-#: civs/sele.jsonAINames[28]
+#: simulation/data/civs/sele.jsonAINames[28]
 msgid "Antiochus XIII Asiaticus"
 msgstr "Antiochus XIII Asiaticus"
 
-#: civs/sele.jsonAINames[29]
+#: simulation/data/civs/sele.jsonAINames[29]
 msgid "Philip II Philoromaeus"
 msgstr "Philip II Philoromaeus"
 
-#: civs/sele.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
 "unlocks Romanized Heavy Swordsmen and Cataphracts."
-msgstr "Bheir am feachd tradaiseanta sgiathan airgid 's feunan-speala dhut, bheir feachd an ath-leasachaidh claidheamhairean troma Ròmanach 's cataphragan Seleucach dhut."
+msgstr "Bheir am feachd tradaiseanta sgiathan airgid ’s feunan-speala dhut, bheir feachd an ath-leasachaidh claidheamhairean troma Ròmanach ’s cataphragan Seleucach dhut."
 
-#: civs/sele.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
 msgid "Traditional Army vs. Reform Army"
 msgstr "Feachd tradaiseanta no feachd an ath-leasachaidh"
 
-#: civs/sele.jsonFactions[0].Technologies[2].Description
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
 msgstr "Ceannach aon-turais de 20 ailbheanan cogaidh Innseanach o Impireachd nam Mauryach."
 
-#: civs/sele.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Marriage Alliance"
 msgstr "Caidreachas pòsaidh"
 
-#: civs/sele.jsonFactions[0].Technologies[2].History
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
 "Seleucus I Nicator invaded the Punjab region of India in 305 BC, confronting"
 " Chandragupta Maurya (Sandrokottos), founder of the Mauryan empire. It is "
@@ -2377,13 +2424,13 @@ msgid ""
 "military asset for Seleucus as he fought the rest of Alexander's successors."
 msgstr ""
 
-#: civs/sele.jsonFactions[0].Technologies[3].History
+#: simulation/data/civs/sele.jsonFactions[0].Technologies[3].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Seleucid cavalry."
-msgstr "An sìol eireachdail is cumhachdach de dh'eich Niseanach a bheir barrachd slàinte do dh'eachdraidh nan Seuleucach."
+msgstr "An sìol eireachdail is cumhachdach de dh’eich Niseanach a bheir barrachd slàinte do dh’eachdraidh nan Seuleucach."
 
-#: civs/sele.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/sele.jsonFactions[0].Heroes[0].History
 msgid ""
 "Always lying in wait for the neighboring nations, strong in arms and "
 "persuasive in council, he (Seleucus) acquired Mesopotamia, Armenia, "
@@ -2395,11 +2442,11 @@ msgid ""
 "Wars'."
 msgstr ""
 
-#: civs/sele.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/sele.jsonFactions[0].Heroes[0].Name
 msgid "Seleukos A' Nikator"
-msgstr "Seleukos A' Nikator"
+msgstr "Seleukos A’ Nikator"
 
-#: civs/sele.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
 " the verge of collapse he managed to weld back together the empire Seleukus "
@@ -2412,11 +2459,11 @@ msgid ""
 "Alexander's empire."
 msgstr ""
 
-#: civs/sele.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
-msgstr "Antiokhos G' Megas"
+msgstr "Antiokhos G’ Megas"
 
-#: civs/sele.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/sele.jsonFactions[0].Heroes[2].History
 msgid ""
 "Antiochus IV Epiphanes was a son of Antiochus III the Great and brother of "
 "Seleucus IV Philopator. Originally named Mithridates, he assumed the name "
@@ -2427,32 +2474,32 @@ msgid ""
 "died of sudden illness while fighting off a Parthian invasion from the East."
 msgstr ""
 
-#: civs/sele.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/sele.jsonFactions[0].Heroes[2].Name
 msgid "Antiokhos D' Epiphanes"
-msgstr "Antiokhos D' Epiphanes"
+msgstr "Antiokhos D’ Epiphanes"
 
-#: civs/sele.jsonFactions[0].Description
+#: simulation/data/civs/sele.jsonFactions[0].Description
 msgid ""
 "The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's "
 "former empire."
 msgstr "An sliochd Greugach is Masadonach a riaghlaich an impireachd a bha aig Alastair san ear roimhe."
 
-#: civs/sele.jsonStructures[1].Special
+#: simulation/data/civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
 msgstr "Trèanaichidh e na h-uile aonad eachraidh ach mailisidh-dùthcha."
 
-#: civs/sele.jsonStructures[2].Name
+#: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
 msgstr "Tuineachas an airm"
 
-#: civs/sele.jsonStructures[2].Special
+#: simulation/data/civs/sele.jsonStructures[2].Special
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster."
 msgstr ""
 
-#: civs/sele.jsonStructures[2].History
+#: simulation/data/civs/sele.jsonStructures[2].History
 msgid ""
 "The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, "
 "and Thracians alike to settle in within the vast territories of the empire. "
@@ -2466,20 +2513,21 @@ msgid ""
 "factor to Greece's eventual conquest by Rome."
 msgstr ""
 
-#: civs/sele.jsonHistory
+#: simulation/data/civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
 msgstr "An sliochd Greugach is Masadonach a riaghlaich cuid mhòr dhen impireachd a bha aig Alastair roimhe."
 
-#: civs/spart.jsonName civs/spart.jsonFactions[0].Name
+#: simulation/data/civs/spart.jsonName
+#: simulation/data/civs/spart.jsonFactions[0].Name
 msgid "Spartans"
 msgstr "Na Spartaich"
 
-#: civs/spart.jsonCivBonuses[0].Description
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Spartans can use the powerful Phalanx formation."
-msgstr "'S urrainn dha na Spartaich an cumadh falangais cumhachdach a chleachdadh."
+msgstr "’S urrainn dha na Spartaich an cumadh falangais cumhachdach a chleachdadh."
 
-#: civs/spart.jsonCivBonuses[0].History
+#: simulation/data/civs/spart.jsonCivBonuses[0].History
 msgid ""
 "The Spartans were undisputed masters of phalanx warfare. The Spartans were "
 "so feared for their discipline that the enemy army would sometimes break up "
@@ -2488,31 +2536,31 @@ msgid ""
 "formation, attempting to breaking up the enemy lines and routing them."
 msgstr ""
 
-#: civs/spart.jsonCivBonuses[1].Description
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
 msgid ""
 "The Spartan rank upgrades at the Barracks cost no resources, except time."
 msgstr "Chan eil cosgais an lùib àrdachaidhean aig taighean-feachd nam Spartach ach ùine."
 
-#: civs/spart.jsonCivBonuses[1].Name
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
 msgstr "Laghan Lycurgus"
 
-#: civs/spart.jsonCivBonuses[1].History
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
 msgid ""
 "Under the Constitution written by the mythical law-giver Lycurgus, the "
 "institution of The Agoge was established, where Spartans were trained from "
 "the age of 6 to be superior warriors in defense of the Spartan state."
 msgstr ""
 
-#: civs/spart.jsonTeamBonuses[0].Description
+#: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allies can train Spartiates."
-msgstr "'S urrainn do chaidreabhaich spàrtaich a thrèanadh."
+msgstr "’S urrainn do chaidreabhaich spàrtaich a thrèanadh."
 
-#: civs/spart.jsonTeamBonuses[0].Name
+#: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
 msgstr "An Lìg Pheoloponnasach"
 
-#: civs/spart.jsonTeamBonuses[0].History
+#: simulation/data/civs/spart.jsonTeamBonuses[0].History
 msgid ""
 "Much of the Peloponnese was subject to Sparta in one way or another. This "
 "loose confederation, with Sparta as its leader, was later dubbed the "
@@ -2520,62 +2568,63 @@ msgid ""
 "Lacedaemonians and their allies.'"
 msgstr ""
 
-#: civs/spart.jsonAINames[0]
+#: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
 msgstr "Leonidas"
 
-#: civs/spart.jsonAINames[1]
+#: simulation/data/civs/spart.jsonAINames[1]
 msgid "Dienekes"
 msgstr "Dienekes"
 
-#: civs/spart.jsonAINames[2] civs/spart.jsonFactions[0].Heroes[1].Name
+#: simulation/data/civs/spart.jsonAINames[2]
+#: simulation/data/civs/spart.jsonFactions[0].Heroes[1].Name
 msgid "Brasidas"
 msgstr "Brasidas"
 
-#: civs/spart.jsonAINames[3]
+#: simulation/data/civs/spart.jsonAINames[3]
 msgid "Agis"
 msgstr "Agis"
 
-#: civs/spart.jsonAINames[4]
+#: simulation/data/civs/spart.jsonAINames[4]
 msgid "Archidamus"
 msgstr "Archidamus"
 
-#: civs/spart.jsonAINames[6]
+#: simulation/data/civs/spart.jsonAINames[6]
 msgid "Pausanias"
 msgstr "Pausanias"
 
-#: civs/spart.jsonAINames[7]
+#: simulation/data/civs/spart.jsonAINames[7]
 msgid "Agesilaus"
 msgstr "Agesilaus"
 
-#: civs/spart.jsonAINames[8]
+#: simulation/data/civs/spart.jsonAINames[8]
 msgid "Echestratus"
 msgstr "Echestratus"
 
-#: civs/spart.jsonAINames[9]
+#: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"
 msgstr "Eurycrates"
 
-#: civs/spart.jsonAINames[10]
+#: simulation/data/civs/spart.jsonAINames[10]
 msgid "Eucleidas"
 msgstr "Eucleidas"
 
-#: civs/spart.jsonAINames[11]
+#: simulation/data/civs/spart.jsonAINames[11]
 msgid "Agesipolis"
 msgstr "Agesipolis"
 
-#: civs/spart.jsonFactions[0].Technologies[0].Description
+#: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr "Cha ghabh saoranaich bhoireann nam Spartach a ghlacadh agus nì iad dùr-shabaid an aghaidh gach ionnsaigheir. Tha iad comasach air tùir dhìona 's sonnaich a thogail."
+msgstr "Cha ghabh saoranaich bhoireann nam Spartach a ghlacadh agus nì iad dùr-shabaid an aghaidh gach ionnsaigheir. Tha iad comasach air tùir dhìona ’s sonnaich a thogail."
 
-#: civs/spart.jsonFactions[0].Technologies[0].Name
+#: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
 msgstr "Meas air boireannaich"
 
-#: civs/spart.jsonFactions[0].Technologies[0].History
+#: simulation/data/civs/spart.jsonFactions[0].Technologies[0].History
 msgid ""
 "Spartan women were some of the freest in the ancient world. They could own "
 "land and slaves and even exercise naked like Spartan men. It is said that "
@@ -2586,36 +2635,36 @@ msgid ""
 "next day's siege."
 msgstr ""
 
-#: civs/spart.jsonFactions[0].Technologies[1].Description
+#: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
 msgstr "Gluaisidh aonadan ann an cumadh falangais nas luaithe."
 
-#: civs/spart.jsonFactions[0].Technologies[1].Name
+#: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"
 msgstr "Laoidhean Thirteus"
 
-#: civs/spart.jsonFactions[0].Technologies[1].History
+#: simulation/data/civs/spart.jsonFactions[0].Technologies[1].History
 msgid ""
 "Paeans were battle hymns that were sung by the hoplites when they charged "
 "the enemy lines. One of the first known Paeans were composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
 msgstr ""
 
-#: civs/spart.jsonFactions[0].Technologies[2].Description
+#: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "+25% health for spear infantry, but also +10% train time."
 msgstr "Gheibh sleaghair coisridh +25% de shlàinte ach bheir iad +10% nas faide gus an trèanadh."
 
-#: civs/spart.jsonFactions[0].Technologies[2].Name
+#: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"
 msgstr "An t‑Agoga"
 
-#: civs/spart.jsonFactions[0].Technologies[2].History
+#: simulation/data/civs/spart.jsonFactions[0].Technologies[2].History
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "Chaidh na Spartaich a thrèanadh ann an ionadan sònraichte on òige ach am bhiodh iad nan sàr-ghaisgeach 's gun seasadh iad ri cruadal a' bheatha san arm."
+msgstr "Chaidh na Spartaich a thrèanadh ann an ionadan sònraichte on òige ach am bhiodh iad nan sàr-ghaisgeach ’s gun seasadh iad ri cruadal a’ bheatha san arm."
 
-#: civs/spart.jsonFactions[0].Heroes[0].History
+#: simulation/data/civs/spart.jsonFactions[0].Heroes[0].History
 msgid ""
 "The king of Sparta, who fought and died at the battle of Thermopylae in 480 "
 "B.C. He successfully blocked the way of the huge Persian army through the "
@@ -2625,18 +2674,18 @@ msgid ""
 "time for the others to withdraw."
 msgstr ""
 
-#: civs/spart.jsonFactions[0].Heroes[0].Name
+#: simulation/data/civs/spart.jsonFactions[0].Heroes[0].Name
 msgid "Leonidas I"
 msgstr "Leonidas I"
 
-#: civs/spart.jsonFactions[0].Heroes[1].History
+#: simulation/data/civs/spart.jsonFactions[0].Heroes[1].History
 msgid ""
 "Because Brasidas has sponsored their citizenship in return for service, "
 "Helot Skirmishers fight longer and harder for Sparta while within range of "
 "him."
 msgstr ""
 
-#: civs/spart.jsonFactions[0].Heroes[2].History
+#: simulation/data/civs/spart.jsonFactions[0].Heroes[2].History
 msgid ""
 "Agis III was the 20th Spartan king of the Eurypontid lineage. Agis cobbled "
 "together an alliance of Southern Greek states to fight off Macedonian "
@@ -2649,25 +2698,25 @@ msgid ""
 "made a heroic final stand in order to buy time for his troops to retreat."
 msgstr ""
 
-#: civs/spart.jsonFactions[0].Heroes[2].Name
+#: simulation/data/civs/spart.jsonFactions[0].Heroes[2].Name
 msgid "Agis III"
 msgstr "Agis III"
 
-#: civs/spart.jsonStructures[1].Name
+#: simulation/data/civs/spart.jsonStructures[1].Name
 msgid "Syssition"
 msgstr "Syssítion"
 
-#: civs/spart.jsonStructures[1].Special
+#: simulation/data/civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
 msgstr "Trèanaich curaidhean is spàrtaich is rannsaich teicneolasan co-cheangailte riutha."
 
-#: civs/spart.jsonStructures[1].History
+#: simulation/data/civs/spart.jsonStructures[1].History
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
 msgstr ""
 
-#: civs/spart.jsonHistory
+#: simulation/data/civs/spart.jsonHistory
 msgid ""
 "Sparta was a prominent city-state in ancient Greece, and its dominant "
 "military power on land from circa 650 B.C. Spartan culture was obsessed with"

@@ -311,7 +311,7 @@ RMS.SetProgress(60);
 //create the undersea bumps
 log("Creating undersea bumps...");
 placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
-painter = new SmoothElevationPainter(ELEVATION_SET, -1.6, 3);
+painter = new SmoothElevationPainter(ELEVATION_SET, -2.5, 3);
 createAreas(
 	placer,
 	[painter, paintClass(clCorals)], 

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-18 22:15+0200\n"
-"PO-Revision-Date: 2015-09-19 09:06+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-22 08:16+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Uzbek (http://www.transifex.com/wildfire-games/0ad/language/uz/)\n"
 "MIME-Version: 1.0\n"
@@ -72,65 +72,57 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr ""
 
-#: gui/lobby/lobby.js:601
-msgid "A randomly selected map."
-msgstr ""
-
-#: gui/lobby/lobby.js:627
-msgid "Sorry, no description available."
-msgstr ""
-
-#: gui/lobby/lobby.js:655
+#: gui/lobby/lobby.js:628
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:714
+#: gui/lobby/lobby.js:687
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr ""
 
-#: gui/lobby/lobby.js:717
+#: gui/lobby/lobby.js:690
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr ""
 
-#: gui/lobby/lobby.js:720
+#: gui/lobby/lobby.js:693
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr ""
 
-#: gui/lobby/lobby.js:837
+#: gui/lobby/lobby.js:810
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:921
+#: gui/lobby/lobby.js:894
 #, javascript-format
 msgid "* %(sender)s"
 msgstr ""
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:923
+#: gui/lobby/lobby.js:896
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr ""
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:927 gui/lobby/lobby.js:938 gui/lobby/lobby.js:951
+#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr ""
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:929 gui/lobby/lobby.js:940 gui/lobby/lobby.js:953
+#: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr ""
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:934
+#: gui/lobby/lobby.js:907
 #, javascript-format
 msgid "== %(message)s"
 msgstr ""
@@ -140,24 +132,24 @@ msgstr ""
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:975
+#: gui/lobby/lobby.js:948
 msgid "HH:mm"
 msgstr ""
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:978
+#: gui/lobby/lobby.js:951
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:981
+#: gui/lobby/lobby.js:954
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:1031
+#: gui/lobby/lobby.js:1004
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr ""
 

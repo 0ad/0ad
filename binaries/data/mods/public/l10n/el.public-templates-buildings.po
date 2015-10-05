@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Argiris L. <archiemc1@gmail.com>, 2015
 # LOUKAS SKOUROLIAKOS, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Chris Vl <inactive+chrisvl97@transifex.com>, 2014
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-08-24 02:42+0200\n"
-"PO-Revision-Date: 2015-08-24 09:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-25 19:56+0000\n"
+"Last-Translator: Argiris L. <archiemc1@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,16 +39,16 @@ msgstr "Αστικής δομής"
 msgid "Civic"
 msgstr "Αστικό"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Civic Center"
 msgstr "Aστικό Κέντρο"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:70
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Χτίσε για να αποκτήσεις μεγάλες εκτάσεις περιοχής. Εκπαίδευσε πολίτες. Οχυρώνει: 20 μονάδες."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:74
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Κέντρο Πόλης"
@@ -106,7 +107,7 @@ msgid "Defensive Structure"
 msgstr "Αμυντική κατασκευή"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "Defensive"
 msgstr "Αμυντικός"
 
@@ -185,7 +186,7 @@ msgstr "Τείχη της πόλης"
 #: simulation/templates/template_structure_defense_wooden_tower.xml:39
 #: simulation/templates/template_structure_defense_wooden_tower.xml:38
 msgid "Wooden Tower"
-msgstr ""
+msgstr "Ξύλινος Πύργος"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -281,19 +282,19 @@ msgstr "Λιμάνι"
 msgid "Embassy"
 msgstr "Πρεσβεία"
 
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:59
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Εκπαίδευσε ήρωες, πρωταθλητές και κατασκεύασε πολιορκητικές μηχανές. Ερεύνησε για αναβαθμίσεις των πολιορκητικών μηχανών. Οχύρωση: 20 μονάδες."
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 msgid "City"
 msgstr "Πόλη"
 
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:61
 #: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:58
 msgid "Fortress"
 msgstr "Φρούριο"
 
@@ -334,11 +335,11 @@ msgstr "Ειδικό κτήριο"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Αυτό είναι ένα ειδικό κτίριο, μοναδικό για ένα συγκεκριμένο πολιτισμό."
 
-#: simulation/templates/template_structure_wonder.xml:38
+#: simulation/templates/template_structure_wonder.xml:39
 msgid "Wonder"
 msgstr "Θαύμα"
 
-#: simulation/templates/template_structure_wonder.xml:39
+#: simulation/templates/template_structure_wonder.xml:40
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -1376,15 +1377,15 @@ msgstr "Ναός της Έντφου"
 msgid "Triumphal Arch"
 msgstr "Αψίδα του Θριάμβου"
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:58
 msgid "Entrenched Army Camp"
 msgstr "Οχυρωμένο Στρατόπεδο"
 
-#: simulation/templates/structures/rome_army_camp.xml:60
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Castrum Vallum"
 msgstr "Κάστρο Τείχους"
 
-#: simulation/templates/structures/rome_army_camp.xml:65
+#: simulation/templates/structures/rome_army_camp.xml:64
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."

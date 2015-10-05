@@ -1,6 +1,6 @@
+#!/bin/sh
 # Apply patches if needed
 # This script gets called from build-osx-libs.sh and build.sh.
-cd mozjs31
 
 # Tracelogger patches (the Tracelogger is a tool for developers and these
 # patches are only needed if the tracelogger is used). The first patch is

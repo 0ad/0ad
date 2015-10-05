@@ -482,7 +482,7 @@ public:
 		return true;
 	}
 
-	bool RunGamestateInit(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& passabilityMap, const Grid<u8>& territoryMap, 
+	bool RunGamestateInit(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<NavcellData>& passabilityMap, const Grid<u8>& territoryMap, 
 		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
 		// this will be run last by InitGame.Js, passing the full game representation.
@@ -518,7 +518,7 @@ public:
 		return true;
 	}
 	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, 
-		const Grid<u16>& passabilityMap, const GridUpdateInformation& dirtinessInformations,
+		const Grid<NavcellData>& passabilityMap, const GridUpdateInformation& dirtinessInformations,
 		const Grid<u8>& territoryMap, bool territoryMapDirty, 
 		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
@@ -866,7 +866,7 @@ private:
 	std::set<std::wstring> m_LoadedModules;
 
 	shared_ptr<ScriptInterface::StructuredClone> m_GameState;
-	Grid<u16> m_PassabilityMap;
+	Grid<NavcellData> m_PassabilityMap;
 	JS::PersistentRootedValue m_PassabilityMapVal;
 	Grid<u8> m_TerritoryMap;
 	JS::PersistentRootedValue m_TerritoryMapVal;
@@ -1011,8 +1011,8 @@ public:
 		cmpAIInterface->GetFullRepresentation(&state, true);
 
 		// Get the passability data
-		Grid<u16> dummyGrid;
-		const Grid<u16>* passabilityMap = &dummyGrid;
+		Grid<NavcellData> dummyGrid;
+		const Grid<NavcellData>* passabilityMap = &dummyGrid;
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
@@ -1059,8 +1059,8 @@ public:
 			cmpAIInterface->GetRepresentation(&state);
 
 		// Get the passability data
-		Grid<u16> dummyGrid;
-		const Grid<u16>* passabilityMap = &dummyGrid;
+		Grid<NavcellData> dummyGrid;
+		const Grid<NavcellData>* passabilityMap = &dummyGrid;
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 			passabilityMap = &cmpPathfinder->GetPassabilityGrid();

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# linux_eki <ekiuusi@gmail.com>, 2015
 # Max, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015
@@ -11,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-09-10 20:07+0000\n"
-"Last-Translator: Max\n"
+"POT-Creation-Date: 2015-09-24 00:03+0200\n"
+"PO-Revision-Date: 2015-09-27 02:34+0000\n"
+"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -185,7 +186,7 @@ msgstr "Linnoitus"
 
 #: maps/random/gear.jsonsettings.Description
 msgid "A land with waterways decorated in a manner similar to spider web."
-msgstr ""
+msgstr "Maa jota koristaa hämähäkin seitin tavoin levittäytyneet vesiväylät."
 
 #: maps/random/gear.jsonsettings.Name
 msgid "Gear"
@@ -207,7 +208,7 @@ msgid ""
 "Players start around a gulf dotted with small islands.\n"
 "\n"
 "The Gulf of Bothnia is the northernmost arm of the Baltic Sea."
-msgstr ""
+msgstr "Pelaajat aloittavat ympäri saarien täplittämää lahtea.\n\nPohjanlahti on itämeren pohjoisin osa."
 
 #: maps/random/gulf_of_bothnia.jsonsettings.Name
 msgid "Gulf of Bothnia"
@@ -217,7 +218,7 @@ msgstr "Pohjanlahti"
 msgid ""
 "Each player starts in a coastal area between forested hills and the Caspian "
 "Sea."
-msgstr ""
+msgstr "Pelaajat aloittavat rannikkoalueelta metsäisten kukkuloiden ja Kaspianmeren välistä."
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
@@ -225,7 +226,7 @@ msgstr "Hyrkanialaiset rannikot"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
-msgstr ""
+msgstr "Pelaajat aloittavat pieniltä saarilta muiden saarien ympäröimänä."
 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
@@ -235,7 +236,7 @@ msgstr "Saaret"
 msgid ""
 "Players start in the southwestern shores of India between a sea and "
 "mountains."
-msgstr ""
+msgstr "Pelaajat aloittavat lounais Intian rannikolta meren ja vuorten välistä."
 
 #: maps/random/kerala.jsonsettings.Name
 msgid "Kerala"
@@ -264,7 +265,7 @@ msgstr "Latium"
 msgid ""
 "Players start in a nearly flat Gallic plain divided by a river and its "
 "tributaries."
-msgstr ""
+msgstr "Pelaajat aloittavat lähes tasaiselta Gallialaiselta tasangolta jonka halkaisee joki ja sen sivuhaarat."
 
 #: maps/random/lorraine_plain.jsonsettings.Name
 msgid "Lorraine Plain"
@@ -282,7 +283,7 @@ msgstr "Manner"
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
 "big continent in the west ready for expansion."
-msgstr ""
+msgstr "Pelaajat aloittavat pieniltä saarilta kartan itäpuolella. Suuri manner odottaa lännessä laajentumista varten."
 
 #: maps/random/migration.jsonsettings.Name
 #: maps/scenarios/Migration.xml:Name:31
@@ -298,11 +299,11 @@ msgstr ""
 
 #: maps/random/neareastern_badlands.jsonsettings.Name
 msgid "Neareastern Badlands"
-msgstr ""
+msgstr "Lähi-idän erämaat"
 
 #: maps/random/new_rms_test.jsonsettings.Description
 msgid "A basic test of the random map generator - not playable."
-msgstr ""
+msgstr "Yksinkertainen testi satunnaisen kartan generaattorille - pelikelvoton."
 
 #: maps/random/new_rms_test.jsonsettings.Name
 msgid "New RMS Test"
@@ -312,7 +313,7 @@ msgstr "Uusi RMS Testi"
 msgid ""
 "Players start in a tough map to play with scarce wood and dangerous polar "
 "animals."
-msgstr ""
+msgstr "Pelaajat aloittavat vaikealta kartalta, pelatakseen vähien puustojen ja vaarallisten napaseudun eläimien kanssa."
 
 #: maps/random/northern_lights.jsonsettings.Name
 msgid "Northern Lights"
@@ -322,7 +323,7 @@ msgstr "Revontulet"
 msgid ""
 "Players start around a small oasis in the center of the map which holds much"
 " of the available wood on the map."
-msgstr ""
+msgstr "Pelaajat aloittavat pienen keitaan ympärillä keskellä kartaa. Suurin osa kartan puustosta sijaitsee keitään välittömässä läheisyydessä."
 
 #: maps/random/oasis.jsonsettings.Name
 msgid "Oasis"
@@ -343,7 +344,7 @@ msgstr "Persian ylängöt"
 msgid ""
 "Players start in the eastern part of the map while a great sea is located to"
 " the west."
-msgstr ""
+msgstr "Pelaajat aloittavat kartan itäosista ja suuri meri löytyy lännestä."
 
 #: maps/random/pheonician_levant.jsonsettings.Name
 msgid "Phoenician Levant"
@@ -373,7 +374,7 @@ msgstr "Reinin suomaa"
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
 "Rivers flow between players and join each other in the center of the map."
-msgstr ""
+msgstr "Joet virtaavat pelaajien välissä ja liittyvät toisiinsa kartan keskellä."
 
 #: maps/random/rivers.jsonsettings.Name
 msgid "Rivers"
@@ -392,7 +393,7 @@ msgstr "Saharan keitaat"
 msgid ""
 "A somewhat open map with an abundance of food and mineral resources, while "
 "wood is somewhat scarce."
-msgstr ""
+msgstr "Avoimehko kartta jossa on runsaasti ruokaa ja mineraaleja, joskin puuta on vähän."
 
 #: maps/random/sahel.jsonsettings.Name maps/scenarios/Sahel.xml:Name:42
 msgid "Sahel"
@@ -411,7 +412,7 @@ msgstr ""
 
 #: maps/random/schwarzwald.jsonsettings.Description
 msgid "A forest heavy map with a lake in the middle and plenty of resources."
-msgstr ""
+msgstr "Metsikköinen rikas kartta jonka keskellä on järvi."
 
 #: maps/random/schwarzwald.jsonsettings.Name
 msgid "Schwarzwald"
@@ -419,7 +420,7 @@ msgstr "Schwartzwald"
 
 #: maps/random/snowflake_searocks.jsonsettings.Description
 msgid "Many small islands connected to each other by narrow passages."
-msgstr ""
+msgstr "Pieniä saaria jotka yhdistyy toisiinsa kapeilla käytävillä."
 
 #: maps/random/snowflake_searocks.jsonsettings.Name
 msgid "Snowflake Searocks"
@@ -627,7 +628,7 @@ msgstr ""
 #: maps/skirmishes/Syria (2).xml:PlayerData[0].Name:41 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[0].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[0].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[0].Name:42 maps/skirmishes/Zagros Mountains
 #: (2).xml:PlayerData[0].Name:42
 msgid "Player 1"
@@ -695,7 +696,7 @@ msgstr "Pelaaja 1"
 #: maps/skirmishes/Syria (2).xml:PlayerData[1].Name:41 maps/skirmishes/Team
 #: Oasis - 2v2.xml:PlayerData[1].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[1].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[1].Name:42 maps/skirmishes/Zagros Mountains
 #: (2).xml:PlayerData[1].Name:42
 msgid "Player 2"
@@ -873,7 +874,7 @@ msgstr ""
 
 #: maps/scenarios/Combat_demo.xml:Name:30
 msgid "Combat Demo"
-msgstr ""
+msgstr "Taistelu testi"
 
 #: maps/scenarios/Combat_demo.xml:Description:30
 msgid ""
@@ -883,11 +884,11 @@ msgstr ""
 
 #: maps/scenarios/Combat_demo_(huge).xml:Name:77
 msgid "Combat Demo (Huge)"
-msgstr ""
+msgstr "Taistelu testi (Valtava)"
 
 #: maps/scenarios/Combat_demo_(huge).xml:Description:77
 msgid "1296 units. Extremely slow (we need more optimisation)."
-msgstr ""
+msgstr "1296 yksikköä. Erittäin hidas (tarvitaan lisää optimointia)."
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:Description:42
 msgid ""
@@ -927,7 +928,7 @@ msgstr "Tunkeutumisvoimat"
 #: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Team Oasis -
 #: 2v2.xml:PlayerData[2].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[2].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[2].Name:42
 msgid "Player 3"
 msgstr "Pelaaja 3"
@@ -938,7 +939,7 @@ msgstr ""
 
 #: maps/scenarios/Demo_Trading.xml:Description:31
 msgid "A demonstration of the new trading feature."
-msgstr ""
+msgstr "Uuden kaupankäynnin demonstraatio."
 
 #: maps/scenarios/Demo_Trading.xml:Name:31
 msgid "Trading Demo"
@@ -979,7 +980,7 @@ msgstr ""
 #: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Team Oasis -
 #: 2v2.xml:PlayerData[3].Name:42 maps/skirmishes/Thessalian Plains
 #: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Tuscan Acropolis
-#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Watering Holes
 #: (4).xml:PlayerData[3].Name:42
 msgid "Player 4"
 msgstr "Pelaaja 4"
@@ -1010,7 +1011,7 @@ msgstr "Lennä joitain Mustangeja"
 
 #: maps/scenarios/Flight_demo_2.xml:Name:31
 msgid "Flight Demo 2"
-msgstr ""
+msgstr "Lentodemo 2"
 
 #: maps/scenarios/Gold_Rush.xml:Description:31
 msgid ""
@@ -1165,7 +1166,7 @@ msgstr "Peloponnesolaiset sodat"
 
 #: maps/scenarios/Polynesia.xml:Description:42
 msgid "Demo map for new fancy water effects."
-msgstr ""
+msgstr "Demo kartta uusia vesi efektejä varten."
 
 #: maps/scenarios/Polynesia.xml:PlayerData[0].Name:42
 msgid "Samoa"
@@ -1357,15 +1358,15 @@ msgstr ""
 #: maps/scenarios/Sandbox - Ptolemies.xml:Description:41
 #: maps/skirmishes/Sporades Islands (2).xml:Description:42
 msgid "An islands map good for intense naval combat."
-msgstr ""
+msgstr "Saarikartta. Hyvä intensiiviseen meritaisteluun."
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[0].Name:41
 msgid "Ptolemaios A' Soter"
-msgstr ""
+msgstr "Ptolemaios A' Soter"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[1].Name:41
 msgid "Kautilya"
-msgstr ""
+msgstr "Kautilya"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:Name:41
 msgid "Sandbox - The Ptolemaic Egyptians"
@@ -1434,7 +1435,7 @@ msgstr ""
 
 #: maps/scenarios/Serengeti.xml:Name:31
 msgid "Serengeti 1"
-msgstr ""
+msgstr "Serengeti 1"
 
 #: maps/scenarios/Ship Formations.xml:Description:31
 msgid "Ship formations mockup."
@@ -1525,7 +1526,7 @@ msgstr "Kreikkalaisliittolaiset"
 
 #: maps/scenarios/Third Macedonian War.xml:Name:31
 msgid "Third Macedonian War"
-msgstr ""
+msgstr "Kolmas Makedonian sota"
 
 #: maps/scenarios/Treasure Islands.xml:Description:41
 msgid ""
@@ -1545,7 +1546,7 @@ msgstr ""
 
 #: maps/scenarios/Triggers_demo.xml:Name:41
 msgid "Triggers Demo"
-msgstr ""
+msgstr "Triggeri demo"
 
 #: maps/scenarios/Tropical Island.xml:Description:41
 msgid "Multiplayer map. A tropical paradise."
@@ -1795,7 +1796,7 @@ msgstr ""
 
 #: maps/skirmishes/Gallic Fields (3).xml:Name:41
 msgid "Gallic Fields (3)"
-msgstr ""
+msgstr "Gallian pellot (3)"
 
 #: maps/skirmishes/Gambia River (3).xml:Description:42
 msgid ""
@@ -1920,11 +1921,11 @@ msgstr ""
 
 #: maps/skirmishes/Neareastern Badlands (2).xml:Name:42
 msgid "Neareastern Badlands (2)"
-msgstr ""
+msgstr "Lähi-idän erämaat (2)"
 
 #: maps/skirmishes/Neareastern Badlands (4).xml:Name:41
 msgid "Neareastern Badlands (4)"
-msgstr ""
+msgstr "Lähi-idän erämaat (4)"
 
 #: maps/skirmishes/Nile River (4).xml:Description:41
 msgid ""
@@ -1993,7 +1994,7 @@ msgstr "Sahel (4)"
 
 #: maps/skirmishes/Savanna River.xml:Description:42
 msgid "A large savanna is bisected by a narrow jungle stream."
-msgstr ""
+msgstr "Suuri savanni jonka puolittaa kapea viidakkopuro."
 
 #: maps/skirmishes/Savanna River.xml:Name:42
 msgid "Savanna River (2)"
@@ -2073,14 +2074,14 @@ msgstr ""
 msgid "Thessalian Plains (4)"
 msgstr ""
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:Description:41
+#: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""
 "Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr ""
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:Name:41
+#: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"
 msgstr ""
 

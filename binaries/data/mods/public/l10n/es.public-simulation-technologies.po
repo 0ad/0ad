@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-07-21 23:22+0200\n"
-"PO-Revision-Date: 2015-07-22 09:23+0000\n"
+"POT-Creation-Date: 2015-09-24 00:02+0200\n"
+"PO-Revision-Date: 2015-09-24 10:24+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,6 @@ msgstr "Chaflán protector"
 #: simulation/data/technologies/attack_tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_tower_defense.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_tower_range.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
 #: simulation/data/technologies/decay_outpost.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -447,6 +446,7 @@ msgid "Reinforced hull"
 msgstr "Cascos de navío reforzados"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
@@ -2296,7 +2296,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Los persas pudieron y llevaron a cabo reclutamientos forzosos de un gran número de infantería durante la guerra dado el gran tamaño del imperio Arqueménida y la forma en la que se instituyó. En general, la infantería persa estaba bien entrenada y luchaba con gran tenacidad. Sin embargo, aunque esto es cierto, la infantería era mala en los combates cuerpo a cuerpo. También, con la excepción de los regimientos de élite, la infantería persa no era una fuerza profesional. "
+msgstr "Los persas pudieron y llevaron a cabo reclutamientos forzosos de un gran número de infantería durante la guerra debido al gran tamaño del imperio Arqueménida y a la forma en la que se instituyó. En general, la infantería persa estaba bien entrenada y luchaba con gran tenacidad, aunque se veía en desventaja en los combates cuerpo a cuerpo. Cabe destacar que con la excepción de los regimientos de élite, la infantería persa no se consideraba una fuerza profesional ni permanente."
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2345,7 +2345,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "Los primeros gobernantes Aqueménidas trabajaron para hacer de Persia el primer gran imperio asiático que dominara los mares. El Gran Rey favoreció a las diferentes gentes del mar para asegurar sus servicios, pero también llevo a cabo varias iniciativas marinas. Durante el reinado de Darío el Grande, por ejemplo, se construyó un canal en Egipto y se envió una flota Persa para explorar el río Indo. De acuerdo con Herodoto, unos 300 barcos de la flota Persa fueron adaptados para llevar caballos y sus jinetes. "
+msgstr "Los primeros gobernantes Aqueménidas trabajaron para hacer de Persia el primer gran imperio asiático que dominara los mares. El Gran Rey favoreció a las diferentes gentes del mar para asegurar sus servicios, pero también llevo a cabo varias iniciativas marinas. Durante el reinado de Darío el Grande, por ejemplo, se construyó un canal en Egipto y se envió una flota persa para explorar el río Indo. Según Heródoto, unos trescientos barcos de la flotapersa se adaptaron para llevar a bordo caballos y sus jinetes. "
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
@@ -2426,7 +2426,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr "Comenzando con Alejandro, los monarcas helenísticos fundaron numerosas ciudades a lo largo de sus imperios, donde la cultura y el arte griego se mezclaron con las costumbres locales para crear la variopinta civilización Helenística."
+msgstr "Comenzando con Alejandro, los monarcas helenos fundaron numerosas ciudades a lo largo y ancho de sus imperios, donde la cultura y el arte griego se mezclaron con las costumbres locales para conformar la variopinta civilización helena."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid ""

@@ -340,7 +340,7 @@ void CCmpTerritoryManager::CalculateCostGrid()
 	pass_class_t passClassTerritory = cmpPathfinder->GetPassabilityClass("default-terrain-only");
 	pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
 
-	const Grid<u16>& passGrid = cmpPathfinder->GetPassabilityGrid();
+	const Grid<NavcellData>& passGrid = cmpPathfinder->GetPassabilityGrid();
 
 	int tilesW = passGrid.m_W / NAVCELLS_PER_TERRITORY_TILE;
 	int tilesH = passGrid.m_H / NAVCELLS_PER_TERRITORY_TILE;
@@ -352,15 +352,15 @@ void CCmpTerritoryManager::CalculateCostGrid()
 	{
 		for (int j = 0; j < tilesH; ++j)
 		{
-			u16 c = 0;
+			NavcellData c = 0;
 			for (u16 di = 0; di < NAVCELLS_PER_TERRITORY_TILE; ++di)
 				for (u16 dj = 0; dj < NAVCELLS_PER_TERRITORY_TILE; ++dj)
 					c |= passGrid.get(
 						i * NAVCELLS_PER_TERRITORY_TILE + di,
 						j * NAVCELLS_PER_TERRITORY_TILE + dj);
-			if (c & passClassTerritory)
+			if (!IS_PASSABLE(c, passClassTerritory))
 				m_CostGrid->set(i, j, m_ImpassableCost);
-			else if (c & passClassUnrestricted)
+			else if (!IS_PASSABLE(c, passClassUnrestricted))
 				m_CostGrid->set(i, j, 255); // off the world; use maximum cost
 			else
 			{

@@ -314,7 +314,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
 		radius = Math.ceil((template.obstructionRadius() + 4) / obstructions.cellSize);
 	else
-		radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+		radius = Math.ceil((template.obstructionRadius() + 0.5) / obstructions.cellSize);
 
 	if (template.hasClass("House") && !alreadyHasHouses)
 	{
