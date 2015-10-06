@@ -1434,6 +1434,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				// remain idle
 				this.StartTimer(1000);
 
+				// If we have some orders, it is because we are in an intermediary state
+				// from FinishOrder (SetNextState("IDLE") is only executed when we get
+				// a ProcessMessage), and thus we should not start an attack which could
+				// put us in a weird state
+				if (this.orderQueue.length > 0)
+					return false;
+
 				// If a unit can heal and attack we first want to heal wounded units,
 				// so check if we are a healer and find whether there's anybody nearby to heal.
 				// (If anyone approaches later it'll be handled via LosHealRangeUpdate.)
@@ -3551,14 +3558,7 @@ UnitAI.prototype.FinishOrder = function()
 	}
 	else
 	{
-		// We must switch to the idle state immediately (and not do a simple SetNextState)
-		// otherwise we may be in a weird state if a ProcessMessage is triggered (by a MoveStarted
-		// or MoveCompleted) when starting a new order and before we have set our new state.
-		let index = this.GetCurrentState().indexOf(".");
-		if (index != -1)
-			this.UnitFsm.SwitchToNextState(this, this.GetCurrentState().slice(0,index+1) + "IDLE");
-		else
-			this.SetNextState("IDLE");	// should never happen
+		this.SetNextState("IDLE");
 
 		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
