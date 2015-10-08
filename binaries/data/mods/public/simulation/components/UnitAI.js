@@ -4476,14 +4476,6 @@ UnitAI.prototype.CheckTargetIsInVisionRange = function(target)
 	return distance < range;
 };
 
-UnitAI.prototype.GetBestAttack = function()
-{
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (!cmpAttack)
-		return undefined;
-	return cmpAttack.GetBestAttack();
-};
-
 UnitAI.prototype.GetBestAttackAgainst = function(target, allowCapture)
 {
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
@@ -5451,7 +5443,7 @@ UnitAI.prototype.GetQueryRange = function(iid)
 		var cmpRanged = Engine.QueryInterface(this.entity, iid);
 		if (!cmpRanged)
 			return ret;
-		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetRange(cmpRanged.GetBestAttack());
+		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetFullAttackRange();
 		ret.min = range.min;
 		ret.max = range.max;
 	}
@@ -5468,7 +5460,7 @@ UnitAI.prototype.GetQueryRange = function(iid)
 		var cmpRanged = Engine.QueryInterface(this.entity, iid);
 		if (!cmpRanged)
 			return ret;
-		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetRange(cmpRanged.GetBestAttack());
+		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetFullAttackRange();
 		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
 		if (!cmpVision)
 			return ret;
