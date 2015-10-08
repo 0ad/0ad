@@ -687,9 +687,15 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.Garrison": function(msg) {
 		if (this.IsTurret())
 		{
-			this.FinishOrder();
+			this.SetNextState("IDLE");
 			return;
 		}
+		else if (this.IsGarrisoned())
+		{
+			this.SetNextState("INDIVIDUAL.AUTOGARRISON");
+			return;
+		}
+
 		// For packable units:
 		// 1. If packed, we can move to the garrison target.
 		// 2. If unpacked, we first need to pack, then follow case 1.
@@ -713,6 +719,12 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Autogarrison": function(msg) {
+		if (this.IsTurret())
+		{
+			this.SetNextState("IDLE");
+			return;
+		}
+
 		this.SetNextState("INDIVIDUAL.AUTOGARRISON");
 	},
 
@@ -1438,7 +1450,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				// from FinishOrder (SetNextState("IDLE") is only executed when we get
 				// a ProcessMessage), and thus we should not start an attack which could
 				// put us in a weird state
-				if (this.orderQueue.length > 0)
+				if (this.orderQueue.length > 0 && !this.IsGarrisoned())
 					return false;
 
 				// If a unit can heal and attack we first want to heal wounded units,
@@ -1500,6 +1512,11 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.isIdle = true;
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
+			},
+
+			"Order.Ungarrison": function() {	// Needed for turrets
+				this.FinishOrder();
+				this.isGarrisoned = false;
 			},
 		},
 
@@ -2918,12 +2935,11 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"Order.Ungarrison": function() {
-					if (this.FinishOrder())
-						return;
+					this.FinishOrder();
+					this.isGarrisoned = false;
 				},
 
 				"leave": function() {
-					this.isGarrisoned = false;
 				}
 			},
 		},
@@ -2935,12 +2951,11 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"Order.Ungarrison": function() {
-				if (this.FinishOrder())
-					return;
+				this.FinishOrder();
+				this.isGarrisoned = false;
 			},
 
 			"leave": function() {
-				this.isGarrisoned = false;
 			}
 		},
 
@@ -3318,7 +3333,7 @@ UnitAI.prototype.OnDiplomacyChanged = function(msg)
 {
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
-		this.SetupRangeQuery();
+		this.SetupRangeQueries();
 };
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
@@ -4976,7 +4991,13 @@ UnitAI.prototype.Garrison = function(target, queued)
 UnitAI.prototype.Ungarrison = function()
 {
 	if (this.IsGarrisoned())
+	{
+		// Turret may be attacking, so we must finish all orders except the last one 
+		// which must be Garrison or Autogarrison
+		while (this.orderQueue.length > 1)
+			this.FinishOrder();
 		this.AddOrder("Ungarrison", null, false);
+	}
 };
 
 /**

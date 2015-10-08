@@ -80,22 +80,9 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 
 	var orders = cmpCurrentUnitAI.GetOrders();
 	if (cmpCurrentUnitAI.IsGarrisoned())
-	{
-		if (orders.length > 0 && (orders[0].type == "Garrison" || orders[0].type == "Autogarrison"))
-		{
-			// Replace the garrison order by an autogarrison order,
-			// as we are already garrisoned and do not need to do
-			// any further checks (or else we should do them here).
-			var garrisonHolder = orders[0].data.target;
-			orders.shift();
-			cmpPromotedUnitAI.Autogarrison(garrisonHolder);
-		}
-		else
-			warn("Promoted garrisoned entity with empty order queue.");
-	}
-	else
-		cmpPromotedUnitAI.Cheer();
-
+		cmpPromotedUnitAI.isGarrisoned = true;
+	if (cmpCurrentUnitPosition.IsInWorld())	// do not cheer if not visibly garrisoned
+		cmpPromotedUnitAI.Cheer();	
 	cmpPromotedUnitAI.AddOrders(orders);
 
 	var workOrders = cmpCurrentUnitAI.GetWorkOrders();

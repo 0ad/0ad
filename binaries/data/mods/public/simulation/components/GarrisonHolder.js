@@ -224,8 +224,9 @@ GarrisonHolder.prototype.AllowedToGarrison = function(entity)
  * Garrison a unit inside.
  * Returns true if successful, false if not
  * The timer for AutoHeal is started here
+ * if vgpEntity is given, this visualGarrisonPoint will be used for the entity
  */
-GarrisonHolder.prototype.Garrison = function(entity)
+GarrisonHolder.prototype.Garrison = function(entity, vgpEntity)
 {
 	var cmpPosition = Engine.QueryInterface(entity, IID_Position);
 	if (!cmpPosition)
@@ -234,21 +235,29 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (!this.PerformGarrison(entity))
 		return false;
 
-	var visiblyGarrisoned = false;
-	for (var vgp of this.visibleGarrisonPoints)
+	let visibleGarrisonPoint = vgpEntity;
+	if (!visibleGarrisonPoint)
 	{
-		if (vgp.entity)
-			continue;
-		vgp.entity = entity;
-		cmpPosition.SetTurretParent(this.entity, vgp.offset);
-		visiblyGarrisoned = true;
-		var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
+		for (let vgp of this.visibleGarrisonPoints)
+		{
+			if (vgp.entity)
+				continue;
+			visibleGarrisonPoint = vgp;
+			break;
+		}
+	}
+
+	if (visibleGarrisonPoint)
+	{
+		visibleGarrisonPoint.entity = entity;
+		cmpPosition.SetTurretParent(this.entity, visibleGarrisonPoint.offset);
+		let cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 		if (cmpUnitAI)
 			cmpUnitAI.SetTurretStance();
-		break;
 	}
-	if (!visiblyGarrisoned)
+	else
 		cmpPosition.MoveOutOfWorld();
+
 	return true;
 };
 
@@ -674,8 +683,16 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 	var entityIndex = this.entities.indexOf(msg.entity);
 	if (entityIndex != -1)
 	{
+		let vgpRenamed;
+		for (let vgp of this.visibleGarrisonPoints)
+		{
+			if (vgp.entity != msg.entity)
+				continue;
+			vgpRenamed = vgp;
+			break;
+		}
 		this.Eject(msg.entity);
-		this.Garrison(msg.newentity);
+		this.Garrison(msg.newentity, vgpRenamed);
 	}
 
 	if (!this.initGarrison)
