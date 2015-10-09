@@ -3292,6 +3292,11 @@ UnitAI.prototype.IsGarrisoned = function()
 	return this.isGarrisoned || this.IsTurret();
 };
 
+UnitAI.prototype.SetGarrisoned = function()
+{
+	this.isGarrisoned = true;
+};
+
 UnitAI.prototype.IsFleeing = function()
 {
 	var state = this.GetCurrentState().split(".").pop();
