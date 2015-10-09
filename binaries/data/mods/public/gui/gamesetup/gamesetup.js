@@ -1795,18 +1795,9 @@ function addChatMessage(msg)
 	// TODO: Maybe host should have distinct font/color?
 	var color = "white";
 
+	// Valid player who has been assigned - get player color
 	if (msg.guid && g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != -1)
-	{
-		// Valid player who has been assigned - get player color
-		var player = g_PlayerAssignments[msg.guid].player - 1;
-		var mapName = g_GameAttributes.map;
-		var mapData = loadMapData(mapName);
-		var mapSettings = (mapData && mapData.settings ? mapData.settings : {});
-		var pData = mapSettings.PlayerData ? mapSettings.PlayerData[player] : {};
-		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[player] : {};
-
-		color = rgbToGuiColor(getSetting(pData, pDefs, "Color"));
-	}
+		color = rgbToGuiColor(g_GameAttributes.settings.PlayerData[g_PlayerAssignments[msg.guid].player - 1].Color);
 
 	var formatted;
 	switch (msg.type)
