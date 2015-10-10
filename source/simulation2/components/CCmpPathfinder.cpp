@@ -37,12 +37,6 @@
 #include "simulation2/helpers/Rasterize.h"
 #include "simulation2/serialization/SerializeTemplates.h"
 
-
-// Default cost to move a single tile is a fairly arbitrary number, which should be big
-// enough to be precise when multiplied/divided and small enough to never overflow when
-// summing the cost of a whole path.
-const int DEFAULT_MOVE_COST = 256;
-
 REGISTER_COMPONENT_TYPE(Pathfinder)
 
 void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
