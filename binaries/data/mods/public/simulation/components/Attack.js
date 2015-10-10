@@ -309,6 +309,26 @@ Attack.prototype.GetPreference = function(target)
 };
 
 /**
+ * Get the full range of attack using all available attack types.
+ */
+Attack.prototype.GetFullAttackRange = function()
+{
+	let ret = {"min": Infinity, "max": 0};
+	for (let type of this.GetAttackTypes())
+	{
+		// Ignore the special attack "slaughter" dedicated to domestic animals
+		if (type == "Slaughter")
+			continue;
+		let range = this.GetRange(type);
+		if (range.min < ret.min)
+			ret.min = range.min;
+		if (range.max > ret.max)
+			ret.max = range.max;
+	}
+	return ret;
+};
+
+/**
  * Return the type of the best attack.
  * TODO: this should probably depend on range, target, etc,
  * so we can automatically switch between ranged and melee
@@ -322,7 +342,15 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 {
 	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
-		return this.GetBestAttack();
+	{
+		// TODO: Formation against formation needs review
+		let best = ["Ranged", "Melee", "Capture"];
+		let types = this.GetAttackTypes();
+		for (let attack of best)
+			if (types.indexOf(attack) != -1)
+				return attack;
+		return undefined;
+	}
 
 	var cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity) 

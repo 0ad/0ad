@@ -687,9 +687,15 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.Garrison": function(msg) {
 		if (this.IsTurret())
 		{
-			this.FinishOrder();
+			this.SetNextState("IDLE");
 			return;
 		}
+		else if (this.IsGarrisoned())
+		{
+			this.SetNextState("INDIVIDUAL.AUTOGARRISON");
+			return;
+		}
+
 		// For packable units:
 		// 1. If packed, we can move to the garrison target.
 		// 2. If unpacked, we first need to pack, then follow case 1.
@@ -713,6 +719,12 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Autogarrison": function(msg) {
+		if (this.IsTurret())
+		{
+			this.SetNextState("IDLE");
+			return;
+		}
+
 		this.SetNextState("INDIVIDUAL.AUTOGARRISON");
 	},
 
@@ -819,7 +831,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"Order.Stop": function(msg) {
-			this.CallMemberFunction("Stop", [false]);
+			if (!this.IsAttackingAsFormation())
+				this.CallMemberFunction("Stop", [false]);
 			this.FinishOrder();
 		},
 
@@ -1148,26 +1161,27 @@ UnitAI.prototype.UnitFsmSpec = {
 			"ATTACKING": {
 				// Wait for individual members to finish
 				"enter": function(msg) {
-					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(false, false);
-					this.StartTimer(200, 200);
-
 					var target = this.order.data.target;
+					var allowCapture = this.order.data.allowCapture;
 					// Check if we are already in range, otherwise walk there
 					if (!this.CheckTargetAttackRange(target, target))
 					{
 						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 						{
-							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-							var range = cmpAttack.GetRange(target);
-							this.PushOrderFront("WalkToTargetRange", { "target": target, "min": range.min, "max": range.max });
-							return;
+							this.FinishOrder();
+							this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": allowCapture });
+							return true;
 						}
 						this.FinishOrder();
-						return;
+						return true;
 					}
 
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					// TODO fix the rearranging while attacking as formation
+					cmpFormation.SetRearrange(!this.IsAttackingAsFormation());
+					cmpFormation.MoveMembersIntoFormation(false, false);
+					this.StartTimer(200, 200);
+					return false;
 				},
 
 				"Timer": function(msg) {
@@ -1178,8 +1192,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
 						{
-							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-							var range = cmpAttack.GetRange(target);
 							this.FinishOrder();
 							this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": allowCapture });
 							return;
@@ -1191,6 +1203,9 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"leave": function(msg) {
 					this.StopTimer();
+					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					if (cmpFormation)
+						cmpFormation.SetRearrange(true);
 				},
 			},
 		},
@@ -1431,6 +1446,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				// remain idle
 				this.StartTimer(1000);
 
+				// If we have some orders, it is because we are in an intermediary state
+				// from FinishOrder (SetNextState("IDLE") is only executed when we get
+				// a ProcessMessage), and thus we should not start an attack which could
+				// put us in a weird state
+				if (this.orderQueue.length > 0 && !this.IsGarrisoned())
+					return false;
+
 				// If a unit can heal and attack we first want to heal wounded units,
 				// so check if we are a healer and find whether there's anybody nearby to heal.
 				// (If anyone approaches later it'll be handled via LosHealRangeUpdate.)
@@ -1490,6 +1512,11 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.isIdle = true;
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
+			},
+
+			"Order.Ungarrison": function() {	// Needed for turrets
+				this.FinishOrder();
+				this.isGarrisoned = false;
 			},
 		},
 
@@ -2908,12 +2935,11 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"Order.Ungarrison": function() {
-					if (this.FinishOrder())
-						return;
+					this.FinishOrder();
+					this.isGarrisoned = false;
 				},
 
 				"leave": function() {
-					this.isGarrisoned = false;
 				}
 			},
 		},
@@ -2925,12 +2951,11 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"Order.Ungarrison": function() {
-				if (this.FinishOrder())
-					return;
+				this.FinishOrder();
+				this.isGarrisoned = false;
 			},
 
 			"leave": function() {
-				this.isGarrisoned = false;
 			}
 		},
 
@@ -3267,6 +3292,11 @@ UnitAI.prototype.IsGarrisoned = function()
 	return this.isGarrisoned || this.IsTurret();
 };
 
+UnitAI.prototype.SetGarrisoned = function()
+{
+	this.isGarrisoned = true;
+};
+
 UnitAI.prototype.IsFleeing = function()
 {
 	var state = this.GetCurrentState().split(".").pop();
@@ -3308,7 +3338,7 @@ UnitAI.prototype.OnDiplomacyChanged = function(msg)
 {
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
-		this.SetupRangeQuery();
+		this.SetupRangeQueries();
 };
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
@@ -3548,14 +3578,7 @@ UnitAI.prototype.FinishOrder = function()
 	}
 	else
 	{
-		// We must switch to the idle state immediately (and not do a simple SetNextState)
-		// otherwise we may be in a weird state if a ProcessMessage is triggered (by a MoveStarted
-		// or MoveCompleted) when starting a new order and before we have set our new state.
-		let index = this.GetCurrentState().indexOf(".");
-		if (index != -1)
-			this.UnitFsm.SwitchToNextState(this, this.GetCurrentState().slice(0,index+1) + "IDLE");
-		else
-			this.SetNextState("IDLE");	// should never happen
+		this.SetNextState("IDLE");
 
 		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
@@ -4230,9 +4253,8 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	// for formation members, the formation will take care of the range check
 	if (this.IsFormationMember())
 	{
-		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
 		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.ATTACKING")
+		if (cmpFormationUnitAI && cmpFormationUnitAI.IsAttackingAsFormation())
 			return false;
 	}
 
@@ -4240,7 +4262,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);
 
-	if (type!= "Ranged")
+	if (type != "Ranged")
 		return this.MoveToTargetRange(target, IID_Attack, type);
 
 	if (!this.CheckTargetVisible(target))
@@ -4332,14 +4354,9 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 	// for formation members, the formation will take care of the range check
 	if (this.IsFormationMember())
 	{
-		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
 		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-
-		if (cmpFormationAttack &&
-		    cmpFormationAttack.CanAttackAsFormation() &&
-		    cmpFormationUnitAI &&
-		    cmpFormationUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.COMBAT.ATTACKING" &&
-		    cmpFormationUnitAI.order.data.target == target)
+		if (cmpFormationUnitAI && cmpFormationUnitAI.IsAttackingAsFormation()
+			&& cmpFormationUnitAI.order.data.target == target)
 			return true;
 	}
 
@@ -4477,14 +4494,6 @@ UnitAI.prototype.CheckTargetIsInVisionRange = function(target)
 	var distance = DistanceBetweenEntities(this.entity, target);
 
 	return distance < range;
-};
-
-UnitAI.prototype.GetBestAttack = function()
-{
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (!cmpAttack)
-		return undefined;
-	return cmpAttack.GetBestAttack();
 };
 
 UnitAI.prototype.GetBestAttackAgainst = function(target, allowCapture)
@@ -4987,7 +4996,13 @@ UnitAI.prototype.Garrison = function(target, queued)
 UnitAI.prototype.Ungarrison = function()
 {
 	if (this.IsGarrisoned())
+	{
+		// Turret may be attacking, so we must finish all orders except the last one 
+		// which must be Garrison or Autogarrison
+		while (this.orderQueue.length > 1)
+			this.FinishOrder();
 		this.AddOrder("Ungarrison", null, false);
+	}
 };
 
 /**
@@ -5454,7 +5469,7 @@ UnitAI.prototype.GetQueryRange = function(iid)
 		var cmpRanged = Engine.QueryInterface(this.entity, iid);
 		if (!cmpRanged)
 			return ret;
-		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetRange(cmpRanged.GetBestAttack());
+		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetFullAttackRange();
 		ret.min = range.min;
 		ret.max = range.max;
 	}
@@ -5471,7 +5486,7 @@ UnitAI.prototype.GetQueryRange = function(iid)
 		var cmpRanged = Engine.QueryInterface(this.entity, iid);
 		if (!cmpRanged)
 			return ret;
-		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetRange(cmpRanged.GetBestAttack());
+		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetFullAttackRange();
 		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
 		if (!cmpVision)
 			return ret;
@@ -5775,6 +5790,15 @@ UnitAI.prototype.IsPacking = function()
 {
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 	return (cmpPack && cmpPack.IsPacking());
+};
+
+//// Formation specific functions ////
+
+UnitAI.prototype.IsAttackingAsFormation = function()
+{
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	return cmpAttack && cmpAttack.CanAttackAsFormation()
+		&& this.GetCurrentState() == "FORMATIONCONTROLLER.COMBAT.ATTACKING";
 };
 
 //// Animal specific functions ////

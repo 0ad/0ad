@@ -9,7 +9,7 @@ m.Technology = function(allTemplates, templateName)
 	var template = allTemplates[templateName];
 	
 	// check if this is one of two paired technologies.
-	this._isPair = template.pair === undefined ? false : true;
+	this._isPair = template.pair !== undefined;
 	if (this._isPair)
 	{
 		if (allTemplates[template.pair].top == templateName)
@@ -18,7 +18,7 @@ m.Technology = function(allTemplates, templateName)
 			this._pairedWith = allTemplates[template.pair].top;
 	}
 	// check if it only defines a pair:
-	this._definesPair = template.top === undefined ? false : true;
+	this._definesPair = template.top !== undefined;
 	this._template = template;
 	this._techTemplates = allTemplates;
 };
