@@ -263,7 +263,7 @@ class LeaderboardList():
     JID to nick conveniently.
     """
     ratinglist = {}
-    for JID in nicks.keys():
+    for JID in list(nicks):
       players = db.query(Player.jid, Player.rating).filter(Player.jid.ilike(str(JID)))
       if players.first():
         if players.first().rating == -1:
@@ -697,7 +697,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     """
     games = self.gameList.getAllGames()
     if to == "":
-      for JID in self.nicks.keys():
+      for JID in list(self.nicks):
         stz = GameListXmppPlugin()
 
         ## Pull games and add each to the stanza        
@@ -756,7 +756,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     stz.addCommand('boardlist')
     iq.setPayload(stz)
     if to == "":    
-      for JID in self.nicks.keys():
+      for JID in list(self.nicks):
         ## Set additional IQ attributes
         iq['to'] = JID
         ## Try sending the stanza
@@ -793,7 +793,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     stz.addCommand('ratinglist')
     iq.setPayload(stz)
     if to == "":    
-      for JID in self.nicks.keys():
+      for JID in list(self.nicks):
         ## Set additional IQ attributes
         iq['to'] = JID
         ## Try sending the stanza
@@ -824,7 +824,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
 
     online = False;
     ## Pull stats and add it to the stanza
-    for JID in self.nicks.keys():
+    for JID in list(self.nicks):
       if self.nicks[JID] == player:
         stats = self.leaderboard.getProfile(JID)
         online = True
