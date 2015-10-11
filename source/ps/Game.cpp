@@ -137,7 +137,7 @@ int CGame::LoadVisualReplayData()
 			u32 turn = 0;
 			u32 turnLength = 0;
 			*m_ReplayStream >> turn >> turnLength;
-			ENSURE(turn == currentTurn && "You tried to replay a commands.txt file of a rejoiend client. Please use the host's file.");
+			ENSURE(turn == currentTurn && "You tried to replay a commands.txt file of a rejoined client. Please use the host's file.");
 			replayTurnMgr->StoreReplayTurnLength(currentTurn, turnLength);
 		}
 		else if (type == "cmd")
