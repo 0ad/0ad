@@ -442,10 +442,10 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 			CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), ent);
 			u32 weight = cmpTerritoryInfluence->GetWeight();
-			u32 radius = cmpTerritoryInfluence->GetRadius() / (Pathfinding::NAVCELL_SIZE * NAVCELLS_PER_TERRITORY_TILE).ToInt_RoundToNegInfinity();
+			u32 radius = cmpTerritoryInfluence->GetRadius();
 			if (weight == 0 || radius == 0)
 				continue;
-			u32 falloff = weight / radius;
+			u32 falloff = weight * (Pathfinding::NAVCELL_SIZE * NAVCELLS_PER_TERRITORY_TILE).ToInt_RoundToNegInfinity() / radius;
 
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
 			u16 i, j;

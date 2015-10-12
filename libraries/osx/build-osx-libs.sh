@@ -42,7 +42,7 @@ NSPR_VERSION="4.10.3"
 # OS X only includes part of ICU, and only the dylib
 ICU_VERSION="icu4c-52_1"
 ENET_VERSION="enet-1.3.12"
-MINIUPNPC_VERSION="miniupnpc-1.9"
+MINIUPNPC_VERSION="miniupnpc-1.9.20151008"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 31
@@ -645,8 +645,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  # patch miniupnpc to fix symbol visibility (fixed upstream, see https://github.com/miniupnp/miniupnp/issues/63 )
-  (patch -p0 -i../../patches/miniupnpc-clang-fix.patch && make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS} && INSTALLPREFIX="$INSTALL_DIR" make install) || die "MiniUPnPc build failed"
+  (make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS} && INSTALLPREFIX="$INSTALL_DIR" make install) || die "MiniUPnPc build failed"
   popd
   # TODO: how can we not build the dylibs?
   rm -f lib/*.dylib

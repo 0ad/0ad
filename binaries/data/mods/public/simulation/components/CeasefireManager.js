@@ -123,12 +123,6 @@ CeasefireManager.prototype.StopCeasefire = function()
 	var playerEntities = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayerEntities();
 	for (var i = 1; i < playerEntities.length; ++i)
 		Engine.QueryInterface(playerEntities[i], IID_Player).SetDiplomacy(this.diplomacyBeforeCeasefire[i-1]);
-
-	// Send chat notifications and update the diplomacy screen
-	for (var i = 1; i < playerEntities.length; ++i)
-		for (var j = 1; j < playerEntities.length; ++j)
-			if (i != j && this.diplomacyBeforeCeasefire[i-1][j] == -1)
-				cmpGuiInterface.PushNotification({"type": "diplomacy", "players": [j], "player1": [i], "status": "enemy"});
 	
 	// Reset values
 	this.ceasefireIsActive = false;

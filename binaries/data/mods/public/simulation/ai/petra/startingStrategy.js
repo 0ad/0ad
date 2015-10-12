@@ -93,7 +93,7 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 				ent.unload(id);
 
 		ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(pos));
-		var bestbase;
+		let bestbase;
 		var territorypos = this.territoryMap.gamePosToMapPos(pos);
 		var territoryIndex = territorypos[0] + territorypos[1]*this.territoryMap.width;
 		for (let i = 1; i < this.baseManagers.length; ++i)

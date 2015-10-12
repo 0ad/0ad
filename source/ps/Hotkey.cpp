@@ -299,7 +299,11 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		// Check for no unpermitted keys
 		bool accept = true;
 		for (const SKey& k : hotkey.requires)
+		{
 			accept = isNegated(k);
+			if (!accept)
+				break;
+		}
 
 		if (accept && !(consoleCapture && hotkey.name != "console.toggle"))
 		{
@@ -341,7 +345,11 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		// Check for no unpermitted keys
 		bool accept = true;
 		for (const SKey& k : hotkey.requires)
+		{
 			accept = isNegated(k);
+			if (!accept)
+				break;
+		}
 
 		if (accept)
 		{

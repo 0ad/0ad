@@ -110,14 +110,25 @@ function updateCounters()
 			caption += "\n";
 			++linesCount;
 		}
-		if (Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") === "true" && g_SimState.ceasefireActive)
+
+		var diplomacyCeasefireCounter = Engine.GetGUIObjectByName("diplomacyCeasefireCounter");
+		if (g_SimState.ceasefireActive)
 		{
+			// Update ceasefire counter in the diplomacy window
 			var remainingTimeString = timeToString(g_SimState.ceasefireTimeRemaining);
-			caption += remainingTimeString + "\n";
-			
-			var diplomacyCeasefireCounter = Engine.GetGUIObjectByName("diplomacyCeasefireCounter");
 			diplomacyCeasefireCounter.caption = sprintf(translateWithContext("ceasefire", "Time remaining until ceasefire is over: %(time)s."), {"time": remainingTimeString});
-			++linesCount;
+
+			// Update ceasefire overlay counter
+			if (Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") === "true")
+			{
+				caption += remainingTimeString + "\n";
+				++linesCount;
+			}
+		}
+		else if (!diplomacyCeasefireCounter.hidden)
+		{
+			diplomacyCeasefireCounter.hidden = true;
+			updateDiplomacy();
 		}
 
 		g_ResearchListTop = 4;

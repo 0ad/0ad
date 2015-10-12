@@ -51,15 +51,6 @@
 static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*8);
 
 /**
- * When advancing along the long path, we'll pick a new waypoint to move
- * towards if we expect to reach the end of our current short path within
- * this many turns (assuming constant speed and turn length).
- * (This could typically be 1, but we need some tolerance in case speeds
- * or turn lengths change.)
- */
-static const int WAYPOINT_ADVANCE_LOOKAHEAD_TURNS = 4;
-
-/**
  * Maximum range to restrict short path queries to. (Larger ranges are slower,
  * smaller ranges might miss some legitimate routes around large obstacles.)
  */
@@ -1122,7 +1113,7 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out)
 bool CCmpUnitMotion::TryGoingStraightToGoalPoint(const CFixedVector2D& from)
 {
 	// Make sure the goal is a point (and not a point-like target like a formation controller)
-	if (m_FinalGoal.type != PathGoal::POINT && m_TargetEntity != INVALID_ENTITY)
+	if (m_FinalGoal.type != PathGoal::POINT || m_TargetEntity != INVALID_ENTITY)
 		return false;
 
 	// Fail if the goal is too far away
