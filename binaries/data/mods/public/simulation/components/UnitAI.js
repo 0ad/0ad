@@ -728,6 +728,11 @@ UnitAI.prototype.UnitFsmSpec = {
 		this.SetNextState("INDIVIDUAL.AUTOGARRISON");
 	},
 
+	"Order.Ungarrison": function() {
+		this.FinishOrder();
+		this.isGarrisoned = false;
+	},
+
 	"Order.Alert": function(msg) {
 		this.alertRaiser = this.order.data.raiser;
 
@@ -1512,11 +1517,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.isIdle = true;
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
-			},
-
-			"Order.Ungarrison": function() {	// Needed for turrets
-				this.FinishOrder();
-				this.isGarrisoned = false;
 			},
 		},
 
@@ -2934,11 +2934,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					return true;
 				},
 
-				"Order.Ungarrison": function() {
-					this.FinishOrder();
-					this.isGarrisoned = false;
-				},
-
 				"leave": function() {
 				}
 			},
@@ -2948,11 +2943,6 @@ UnitAI.prototype.UnitFsmSpec = {
 			"enter": function() {
 				this.isGarrisoned = true;
 				return false;
-			},
-
-			"Order.Ungarrison": function() {
-				this.FinishOrder();
-				this.isGarrisoned = false;
 			},
 
 			"leave": function() {
@@ -3215,6 +3205,8 @@ UnitAI.prototype.Init = function()
 
 UnitAI.prototype.IsTurret = function()
 {
+	if (!this.IsGarrisoned())
+		return false;
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	return cmpPosition && cmpPosition.GetTurretParent() != INVALID_ENTITY;
 };
@@ -3289,7 +3281,7 @@ UnitAI.prototype.IsIdle = function()
 
 UnitAI.prototype.IsGarrisoned = function()
 {
-	return this.isGarrisoned || this.IsTurret();
+	return this.isGarrisoned;
 };
 
 UnitAI.prototype.SetGarrisoned = function()
@@ -4996,13 +4988,7 @@ UnitAI.prototype.Garrison = function(target, queued)
 UnitAI.prototype.Ungarrison = function()
 {
 	if (this.IsGarrisoned())
-	{
-		// Turret may be attacking, so we must finish all orders except the last one 
-		// which must be Garrison or Autogarrison
-		while (this.orderQueue.length > 1)
-			this.FinishOrder();
 		this.AddOrder("Ungarrison", null, false);
-	}
 };
 
 /**
