@@ -102,8 +102,6 @@ static const fixed CHECK_TARGET_MOVEMENT_MIN_COS = fixed::FromInt(866)/1000;
 static const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
 static const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
 
-static const entity_pos_t g_GoalDelta = Pathfinding::NAVCELL_SIZE; // for extending the goal outwards/inwards a little bit
-
 struct SUnitMotionPlanning
 {
 	WaypointPath nextStepShortPath; // if !nextStepClean, store a short path for the next step here
@@ -1425,14 +1423,14 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 			// Too close to target - move outwards to a circle
 			// that's slightly larger than the min range
 			goal.type = PathGoal::INVERTED_CIRCLE;
-			goal.hw = minRange + g_GoalDelta;
+			goal.hw = minRange + Pathfinding::GOAL_DELTA;
 		}
 		else if (maxRange >= entity_pos_t::Zero() && distance > maxRange)
 		{
 			// Too far from target - move inwards to a circle
 			// that's slightly smaller than the max range
 			goal.type = PathGoal::CIRCLE;
-			goal.hw = maxRange - g_GoalDelta;
+			goal.hw = maxRange - Pathfinding::GOAL_DELTA;
 
 			// If maxRange was abnormally small,
 			// collapse the circle into a point
@@ -1594,7 +1592,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 
 		// TODO: maybe we should do the ShouldTreatTargetAsCircle thing here?
 
-		entity_pos_t goalDistance = minRange + g_GoalDelta;
+		entity_pos_t goalDistance = minRange + Pathfinding::GOAL_DELTA;
 
 		goal.type = PathGoal::INVERTED_SQUARE;
 		goal.u = obstruction.u;
@@ -1634,7 +1632,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 				return false;
 			}
 
-			entity_pos_t goalDistance = maxRange - g_GoalDelta;
+			entity_pos_t goalDistance = maxRange - Pathfinding::GOAL_DELTA;
 
 			goal.type = PathGoal::CIRCLE;
 			goal.hw = circleRadius + goalDistance;
@@ -1644,7 +1642,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 			// The target is large relative to our range, so treat it as a square and
 			// get close enough that the diagonals come within range
 
-			entity_pos_t goalDistance = (maxRange - g_GoalDelta)*2 / 3; // multiply by slightly less than 1/sqrt(2)
+			entity_pos_t goalDistance = (maxRange - Pathfinding::GOAL_DELTA)*2 / 3; // multiply by slightly less than 1/sqrt(2)
 
 			goal.type = PathGoal::SQUARE;
 			goal.u = obstruction.u;
