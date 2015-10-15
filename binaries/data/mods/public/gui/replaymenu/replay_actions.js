@@ -108,8 +108,8 @@ function deleteReplay()
 	var replay = g_ReplaysFiltered[selected];
 
 	// Show confirmation message
-	var btCaptions = [translate("Yes"), translate("No")];
-	var btCode = [function() { reallyDeleteReplay(replay.directory); }, null];
+	var btCaptions = [translate("No"), translate("Yes")];
+	var btCode = [null, function() { reallyDeleteReplay(replay.directory); }];
 
 	var title = translate("Delete replay");
 	var question = translate("Are you sure to delete this replay permanently?") + "\n" + escapeText(replay.file);
