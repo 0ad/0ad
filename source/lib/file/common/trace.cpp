@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -80,7 +80,8 @@ TraceEntry::TraceEntry(const std::wstring& text)
 	stream >> m_size;
 
 	ENSURE(stream.get() == '\n');
-	ENSURE(stream.good());
+	// NOTE: Don't use good() here - it fails due to a bug in older libc++ versions
+	ENSURE(!stream.bad() && !stream.fail());
 	ENSURE(stream.get() == WEOF);
 }
 

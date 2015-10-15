@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,11 @@ class CStdSerializerImpl
 	NONCOPYABLE(CStdSerializerImpl);
 public:
 	CStdSerializerImpl(std::ostream& stream);
+
+	~CStdSerializerImpl()
+	{
+		m_Stream.flush();
+	}
 
 	void Put(const char* name, const u8* data, size_t len)
 	{

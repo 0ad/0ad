@@ -84,7 +84,7 @@ void CStdDeserializer::Get(const char* name, u8* data, size_t len)
 	if (!m_Stream.good())
 	{
 		// hit eof before len, or other errors
-		// Note: older libc++ versions incorrectly set eofbit on the last char; test gcount as a workaround
+		// NOTE: older libc++ versions incorrectly set eofbit on the last char; test gcount as a workaround
 		// see https://llvm.org/bugs/show_bug.cgi?id=9335
 		if (m_Stream.bad() || m_Stream.fail() || (m_Stream.eof() && m_Stream.gcount() != (std::streamsize)len))
 			throw PSERROR_Deserialize_ReadFailed();

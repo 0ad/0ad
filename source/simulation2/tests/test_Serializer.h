@@ -167,7 +167,8 @@ public:
 		deserialize.NumberI32("z", n, 0, 65535);
 		TS_ASSERT_EQUALS(n, 12345);
 
-		TS_ASSERT(stream.good());
+		// NOTE: Don't use good() here - it fails due to a bug in older libc++ versions
+		TS_ASSERT(!stream.bad() && !stream.fail());
 		TS_ASSERT_EQUALS(stream.peek(), EOF);
 	}
 
@@ -233,7 +234,8 @@ public:
 		deserialize.RawBytes("raw bytes", cbuf, 6);
 		TS_ASSERT_SAME_DATA(cbuf, (const u8*)"\0\1\2\3\x0f\x10\x42", 7);
 
-		TS_ASSERT(stream.good());
+		// NOTE: Don't use good() here - it fails due to a bug in older libc++ versions
+		TS_ASSERT(!stream.bad() && !stream.fail());
 		TS_ASSERT_EQUALS(stream.peek(), EOF);
 	}
 
@@ -248,7 +250,30 @@ public:
 
 		TS_ASSERT_EQUALS(serialize.GetHashLength(), (size_t)16);
 		TS_ASSERT_SAME_DATA(serialize.ComputeHash(), "\xa0\x3a\xe5\x3e\x9b\xd7\xfb\x11\x88\x35\xc6\xfb\xb9\x94\xa9\x72", 16);
-		// echo -en "\x85\xff\xff\xff\xd2\x04\x00\x00\x39\x30\x00\x00" | openssl md5 | perl -pe 's/(..)/\\x$1/g'
+		// echo -en "\x85\xff\xff\xff\xd2\x04\x00\x00\x39\x30\x00\x00" | openssl md5 -binary | xxd -p | perl -pe 's/(..)/\\x$1/g'
+	}
+
+	void test_Hash_stream()
+	{
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		CHashSerializer hashSerialize(script);
+
+		hashSerialize.NumberI32_Unbounded("x", -123);
+		hashSerialize.NumberU32_Unbounded("y", 1234);
+		hashSerialize.NumberI32("z", 12345, 0, 65535);
+
+		ISerializer& serialize = hashSerialize;
+
+		{
+			CStdSerializer streamSerialize(script, serialize.GetStream());
+			streamSerialize.NumberI32_Unbounded("x2", -456);
+			streamSerialize.NumberU32_Unbounded("y2", 5678);
+			streamSerialize.NumberI32("z2", 45678, 0, 65535);
+		}
+
+		TS_ASSERT_EQUALS(hashSerialize.GetHashLength(), (size_t)16);
+		TS_ASSERT_SAME_DATA(hashSerialize.ComputeHash(), "\x5c\xff\x33\xd1\x72\xdd\x6d\x77\xa8\xd4\xa1\xf6\x84\xcc\xaa\x10", 16);
+		// echo -en "\x85\xff\xff\xff\xd2\x04\x00\x00\x39\x30\x00\x00\x38\xfe\xff\xff\x2e\x16\x00\x00\x6e\xb2\x00\x00" | openssl md5 -binary | xxd -p | perl -pe 's/(..)/\\x$1/g'
 	}
 
 	void test_bounds()
@@ -295,7 +320,8 @@ public:
 
 		JS::RootedValue newobj(cx);
 		deserialize.ScriptVal("script", &newobj);
-		TSM_ASSERT(msg, stream.good());
+		// NOTE: Don't use good() here - it fails due to a bug in older libc++ versions
+		TSM_ASSERT(msg, !stream.bad() && !stream.fail());
 		TSM_ASSERT_EQUALS(msg, stream.peek(), EOF);
 
 		std::string source;
@@ -769,7 +795,8 @@ public:
 
 			JS::RootedValue newobj(cx);
 			deserialize.ScriptVal("script", &newobj);
-			TS_ASSERT(stream.good());
+			// NOTE: Don't use good() here - it fails due to a bug in older libc++ versions
+			TS_ASSERT(!stream.bad() && !stream.fail());
 			TS_ASSERT_EQUALS(stream.peek(), EOF);
 
 			if (i == 0)
