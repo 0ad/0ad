@@ -1316,7 +1316,7 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 #if DISABLE_PATHFINDER
 	{
 		CmpPtr<ICmpPathfinder> cmpPathfinder (GetSimContext(), SYSTEM_ENTITY);
-		CFixedVector2D goalPos = cmpPathfinder->GetNearestPointOnGoal(from, m_FinalGoal);
+		CFixedVector2D goalPos = m_FinalGoal.NearestPointOnGoal(from);
 		m_LongPath.m_Waypoints.clear();
 		m_ShortPath.m_Waypoints.clear();
 		m_ShortPath.m_Waypoints.emplace_back(Waypoint{ goalPos.X, goalPos.Y });
