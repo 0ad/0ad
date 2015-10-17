@@ -328,16 +328,6 @@ Attack.prototype.GetFullAttackRange = function()
 	return ret;
 };
 
-/**
- * Return the type of the best attack.
- * TODO: this should probably depend on range, target, etc,
- * so we can automatically switch between ranged and melee
- */
-Attack.prototype.GetBestAttack = function()
-{
-	return this.GetAttackTypes().pop();
-};
-
 Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 {
 	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
