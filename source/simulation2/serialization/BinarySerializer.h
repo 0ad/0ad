@@ -35,10 +35,38 @@ class CSerializerStreamBuf : public std::streambuf
 {
 	NONCOPYABLE(CSerializerStreamBuf);
 	T& m_SerializerImpl;
+	char m_Buffer[2048];
 public:
 	CSerializerStreamBuf(T& impl) :
 		m_SerializerImpl(impl)
 	{
+		setp(m_Buffer, m_Buffer + ARRAY_SIZE(m_Buffer) - 1);
+	}
+
+protected:
+	// Override overflow and sync, because older versions of libc++ streams
+	// write strings as individual characters, then xsputn is never called
+	int overflow(int ch)
+	{
+		if (ch == traits_type::eof())
+			return traits_type::not_eof(ch);
+		
+		ENSURE(pptr() <= epptr());
+		*pptr() = ch;
+		pbump(1);
+		sync();
+		return ch;
+	}
+
+	int sync()
+	{
+		std::ptrdiff_t n = pptr() - pbase();
+		if (n != 0)
+		{
+			pbump(-n);
+			m_SerializerImpl.Put("stream", reinterpret_cast<const u8*> (pbase()), n);
+		}
+		return 0;
 	}
 
 	std::streamsize xsputn(const char* s, std::streamsize n)

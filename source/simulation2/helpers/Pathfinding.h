@@ -119,9 +119,16 @@ namespace Pathfinding
 	/**
 	 * Size of a navcell in metres ( = TERRAIN_TILE_SIZE / NAVCELLS_PER_TILE)
 	 */
-	extern const fixed NAVCELL_SIZE;
+	const fixed NAVCELL_SIZE = fixed::FromInt((int)TERRAIN_TILE_SIZE) / Pathfinding::NAVCELLS_PER_TILE;
 	const int NAVCELL_SIZE_INT = 1;
 	const int NAVCELL_SIZE_LOG2 = 0;
+
+	/**
+	 * For extending the goal outwards/inwards a little bit
+	 * NOTE: keep next to the definition of NAVCELL_SIZE to avoid init order problems
+	 *	between translation units.
+	 */
+	const entity_pos_t GOAL_DELTA = NAVCELL_SIZE;
 
 	/**
 	 * Compute the navcell indexes on the grid nearest to a given point

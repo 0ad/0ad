@@ -38,8 +38,6 @@
 #include "ps/CLogger.h"
 #include "simulation2/helpers/Pathfinding.h"
 
-const fixed Pathfinding::NAVCELL_SIZE = fixed::FromInt(TERRAIN_TILE_SIZE) / Pathfinding::NAVCELLS_PER_TILE;
-
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain constructor
 CTerrain::CTerrain()

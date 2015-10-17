@@ -259,7 +259,7 @@ void CNetTurnManager::DisplayOOSError(u32 turn, const CStr& hash, const CStr& ex
 		msg << "\n\n" << "Your game state is " << (expectedHash == hash ? "identical to" : "different from") << " the hosts game state.";
 
 	if (path)
-		msg << "\n\n" << "Dumping current state to " << utf8_from_wstring(OsPath(*path).string());
+		msg << "\n\n" << "Dumping current state to " << CStr(path->string8()).EscapeToPrintableASCII();
 
 	LOGERROR("%s", msg.str());
 

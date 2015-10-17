@@ -56,8 +56,8 @@ function saveGame()
 	if (gameSelection.selected != -1)
 	{
 		// Ask for confirmation
-		var btCaptions = [translate("Yes"), translate("No")];
-		var btCode = [function(){ reallySaveGame(name, desc, false); }, null];
+		var btCaptions = [translate("No"), translate("Yes")];
+		var btCode = [null, function(){ reallySaveGame(name, desc, false); }];
 		messageBox(500, 200, sprintf(translate("\"%(label)s\""), { label: gameLabel }) + "\n" + translate("Saved game will be permanently overwritten, are you sure?"), translate("OVERWRITE SAVE"), 0, btCaptions, btCode);
 	}
 	else
@@ -86,8 +86,8 @@ function deleteGame()
 	var gameID = gameSelection.list_data[gameSelection.selected];
 
 	// Ask for confirmation
-	var btCaptions = [translate("Yes"), translate("No")];
-	var btCode = [function(){ reallyDeleteGame(gameID); }, null];
+	var btCaptions = [translate("No"), translate("Yes")];
+	var btCode = [null, function(){ reallyDeleteGame(gameID); }];
 	messageBox(500, 200, sprintf(translate("\"%(label)s\""), { label: gameLabel }) + "\n" + translate("Saved game will be permanently deleted, are you sure?"), translate("DELETE"), 0, btCaptions, btCode);
 }
 

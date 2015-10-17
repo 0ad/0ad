@@ -566,8 +566,8 @@ function onReplayFinished()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	var btCaptions = [translateWithContext("replayFinished", "Yes"), translateWithContext("replayFinished", "No")];
-	var btCode = [leaveGame, resumeGame];
+	var btCaptions = [translateWithContext("replayFinished", "No"), translateWithContext("replayFinished", "Yes")];
+	var btCode = [resumeGame, leaveGame];
 	messageBox(400, 200, translateWithContext("replayFinished", "The replay has finished. Do you want to quit?"), translateWithContext("replayFinished","Confirmation"), 0, btCaptions, btCode);
 }
 

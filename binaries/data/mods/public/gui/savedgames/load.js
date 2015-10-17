@@ -46,8 +46,8 @@ function loadGame()
 	if (!sameEngineVersion || !sameSavegameVersion || !sameMods)
 	{
 		// version not compatible ... ask for confirmation
-		var btCaptions = [translate("Yes"), translate("No")];
-		var btCode = [function(){ reallyLoadGame(gameId); }, init];
+		var btCaptions = [translate("No"), translate("Yes")];
+		var btCode = [init, function(){ reallyLoadGame(gameId); }];
 		var message = translate("This saved game may not be compatible:");
 
 		if (!sameEngineVersion)
@@ -120,8 +120,8 @@ function deleteGame()
 	var gameID = gameSelection.list_data[gameSelection.selected];
 
 	// Ask for confirmation
-	var btCaptions = [translate("Yes"), translate("No")];
-	var btCode = [function(){ reallyDeleteGame(gameID); }, null];
+	var btCaptions = [translate("No"), translate("Yes")];
+	var btCode = [null, function(){ reallyDeleteGame(gameID); }];
 	messageBox(500, 200, sprintf(translate("\"%(label)s\""), { label: gameLabel }) + "\n" + translate("Saved game will be permanently deleted, are you sure?"), translate("DELETE"), 0, btCaptions, btCode);
 }
 
