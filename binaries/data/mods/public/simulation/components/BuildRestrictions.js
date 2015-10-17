@@ -273,7 +273,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 				result.message = markForTranslation("%(name)s too far from a %(category)s, must be within %(distance)s meters");
 				result.parameters.category = cat;
 				result.translateParameters.push("category");
-				result.parameters.distance = this.template.Distance.MinDistance;
+				result.parameters.distance = this.template.Distance.MaxDistance;
 				return result;	// Fail
 			}
 		}
