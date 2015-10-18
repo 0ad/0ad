@@ -155,13 +155,7 @@ bool PathGoal::NavcellRectContainsGoal(int i0, int j0, int i1, int j1, int* gi, 
 		{
 			for (int i = i0; imin <= i && i <= imax; i += di)
 			{
-				entity_pos_t x0 = entity_pos_t::FromInt(i).Multiply(Pathfinding::NAVCELL_SIZE);
-				entity_pos_t z0 = entity_pos_t::FromInt(j).Multiply(Pathfinding::NAVCELL_SIZE);
-				entity_pos_t x1 = x0 + Pathfinding::NAVCELL_SIZE;
-				entity_pos_t z1 = z0 + Pathfinding::NAVCELL_SIZE;
-				entity_pos_t nx = Clamp(x, x0, x1);
-				entity_pos_t nz = Clamp(z, z0, z1);
-				if ((CFixedVector2D(nx, nz) - CFixedVector2D(x, z)).CompareLength(hw) <= 0)
+				if (NavcellContainsCircle(i, j, x, z, hw, true))
 				{
 					if (gi)
 						*gi = i;
@@ -185,13 +179,7 @@ bool PathGoal::NavcellRectContainsGoal(int i0, int j0, int i1, int j1, int* gi, 
 		{
 			for (int i = i0; imin <= i && i <= imax; i += di)
 			{
-				entity_pos_t x0 = entity_pos_t::FromInt(i).Multiply(Pathfinding::NAVCELL_SIZE);
-				entity_pos_t z0 = entity_pos_t::FromInt(j).Multiply(Pathfinding::NAVCELL_SIZE);
-				entity_pos_t x1 = x0 + Pathfinding::NAVCELL_SIZE;
-				entity_pos_t z1 = z0 + Pathfinding::NAVCELL_SIZE;
-				entity_pos_t nx = Clamp(x, x0, x1);
-				entity_pos_t nz = Clamp(z, z0, z1);
-				if ((CFixedVector2D(nx, nz) - CFixedVector2D(x, z)).CompareLength(hw) > 0)
+				if (NavcellContainsCircle(i, j, x, z, hw, false))
 				{
 					if (gi)
 						*gi = i;
@@ -215,13 +203,7 @@ bool PathGoal::NavcellRectContainsGoal(int i0, int j0, int i1, int j1, int* gi, 
 		{
 			for (int i = i0; imin <= i && i <= imax; i += di)
 			{
-				entity_pos_t x0 = entity_pos_t::FromInt(i).Multiply(Pathfinding::NAVCELL_SIZE);
-				entity_pos_t z0 = entity_pos_t::FromInt(j).Multiply(Pathfinding::NAVCELL_SIZE);
-				entity_pos_t x1 = x0 + Pathfinding::NAVCELL_SIZE;
-				entity_pos_t z1 = z0 + Pathfinding::NAVCELL_SIZE;
-				entity_pos_t nx = Clamp(x, x0, x1);
-				entity_pos_t nz = Clamp(z, z0, z1);
-				if (Geometry::PointIsInSquare(CFixedVector2D(nx - x, nz - z), u, v, CFixedVector2D(hw, hh)))
+				if (NavcellContainsSquare(i, j, x, z, u, v, hw, hh, true))
 				{
 					if (gi)
 						*gi = i;
@@ -245,13 +227,7 @@ bool PathGoal::NavcellRectContainsGoal(int i0, int j0, int i1, int j1, int* gi, 
 		{
 			for (int i = i0; imin <= i && i <= imax; i += di)
 			{
-				entity_pos_t x0 = entity_pos_t::FromInt(i).Multiply(Pathfinding::NAVCELL_SIZE);
-				entity_pos_t z0 = entity_pos_t::FromInt(j).Multiply(Pathfinding::NAVCELL_SIZE);
-				entity_pos_t x1 = x0 + Pathfinding::NAVCELL_SIZE;
-				entity_pos_t z1 = z0 + Pathfinding::NAVCELL_SIZE;
-				entity_pos_t nx = Clamp(x, x0, x1);
-				entity_pos_t nz = Clamp(z, z0, z1);
-				if (!Geometry::PointIsInSquare(CFixedVector2D(nx - x, nz - z), u, v, CFixedVector2D(hw, hh)))
+				if (NavcellContainsSquare(i, j, x, z, u, v, hw, hh, false))
 				{
 					if (gi)
 						*gi = i;
@@ -284,9 +260,12 @@ bool PathGoal::RectContainsGoal(entity_pos_t x0, entity_pos_t z0, entity_pos_t x
 
 	case INVERTED_CIRCLE:
 	{
-		entity_pos_t nx = Clamp(x, x0, x1);
-		entity_pos_t nz = Clamp(z, z0, z1);
-		return (CFixedVector2D(nx, nz) - CFixedVector2D(x, z)).CompareLength(hw) > 0;
+		return (
+		    (CFixedVector2D(x0, z0) - CFixedVector2D(x, z)).CompareLength(hw) >= 0
+		 || (CFixedVector2D(x1, z0) - CFixedVector2D(x, z)).CompareLength(hw) >= 0
+		 || (CFixedVector2D(x0, z1) - CFixedVector2D(x, z)).CompareLength(hw) >= 0
+		 || (CFixedVector2D(x1, z1) - CFixedVector2D(x, z)).CompareLength(hw) >= 0
+		);
 	}
 
 	case SQUARE:
@@ -298,9 +277,12 @@ bool PathGoal::RectContainsGoal(entity_pos_t x0, entity_pos_t z0, entity_pos_t x
 
 	case INVERTED_SQUARE:
 	{
-		entity_pos_t nx = Clamp(x, x0, x1);
-		entity_pos_t nz = Clamp(z, z0, z1);
-		return !Geometry::PointIsInSquare(CFixedVector2D(nx - x, nz - z), u, v, CFixedVector2D(hw, hh));
+		return (
+		    !Geometry::PointIsInSquare(CFixedVector2D(x0 - x, z0 - z), u, v, CFixedVector2D(hw, hh))
+		 || !Geometry::PointIsInSquare(CFixedVector2D(x1 - x, z0 - z), u, v, CFixedVector2D(hw, hh))
+		 || !Geometry::PointIsInSquare(CFixedVector2D(x0 - x, z1 - z), u, v, CFixedVector2D(hw, hh))
+		 || !Geometry::PointIsInSquare(CFixedVector2D(x1 - x, z1 - z), u, v, CFixedVector2D(hw, hh))
+		);
 	}
 
 	NODEFAULT;
@@ -311,15 +293,15 @@ fixed PathGoal::DistanceToPoint(CFixedVector2D pos) const
 {
 	switch (type)
 	{
-	case PathGoal::POINT:
+	case POINT:
 		return (pos - CFixedVector2D(x, z)).Length();
 
-	case PathGoal::CIRCLE:
-	case PathGoal::INVERTED_CIRCLE:
+	case CIRCLE:
+	case INVERTED_CIRCLE:
 		return ((pos - CFixedVector2D(x, z)).Length() - hw).Absolute();
 
-	case PathGoal::SQUARE:
-	case PathGoal::INVERTED_SQUARE:
+	case SQUARE:
+	case INVERTED_SQUARE:
 	{
 		CFixedVector2D halfSize(hw, hh);
 		CFixedVector2D d(pos.X - x, pos.Y - z);
@@ -336,11 +318,11 @@ CFixedVector2D PathGoal::NearestPointOnGoal(CFixedVector2D pos) const
 
 	switch (type)
 	{
-	case PathGoal::POINT:
+	case POINT:
 		return g;
 
-	case PathGoal::CIRCLE:
-	case PathGoal::INVERTED_CIRCLE:
+	case CIRCLE:
+	case INVERTED_CIRCLE:
 	{
 		CFixedVector2D d = pos - g;
 		if (d.IsZero())
@@ -349,8 +331,8 @@ CFixedVector2D PathGoal::NearestPointOnGoal(CFixedVector2D pos) const
 		return g + d;
 	}
 
-	case PathGoal::SQUARE:
-	case PathGoal::INVERTED_SQUARE:
+	case SQUARE:
+	case INVERTED_SQUARE:
 	{
 		CFixedVector2D halfSize(hw, hh);
 		CFixedVector2D d = pos - g;

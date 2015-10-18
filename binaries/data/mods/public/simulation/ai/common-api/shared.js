@@ -13,14 +13,12 @@ m.SharedScript = function(settings)
 	this._techTemplates = settings.techTemplates;
 
 	this._entityMetadata = {};
-	for (var i in this._players)
+	for (let i in this._players)
 		this._entityMetadata[this._players[i]] = {};
-
-	// always create for 8 + gaia players, since _players isn't aware of the human.
-	this._techModifications = { 0 : {}, 1 : {}, 2 : {}, 3 : {}, 4 : {}, 5 : {}, 6 : {}, 7 : {}, 8 : {} };
 
 	// array of entity collections
 	this._entityCollections = new Map();
+	this._techModifications = {};
 	// each name is a reference to the actual one.
 	this._entityCollectionsName = new Map();
 	this._entityCollectionsByDynProp = {};
@@ -124,6 +122,10 @@ m.SharedScript.prototype.GetTemplate = function(name)
 // This is called right at the end of the map generation.
 m.SharedScript.prototype.init = function(state, deserialization)
 {
+	if (!deserialization)
+		for (let i = 0; i < state.players.length; ++i)
+			this._techModifications[i] = {};
+
 	this.ApplyTemplatesDelta(state);
 
 	this.passabilityClasses = state.passabilityClasses;

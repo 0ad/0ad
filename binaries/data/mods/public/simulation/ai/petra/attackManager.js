@@ -321,8 +321,9 @@ m.AttackManager.prototype.getAttackInPreparation = function(type)
 };
 
 /**
- * determine which player should be attacked:
- * - when called when starting the attack, attack.targetPlayer is undefined
+ * determine which player should be attacked: when called when starting the attack,
+ * attack.targetPlayer is undefined and in that case, we keep track of the chosen target
+ * for future attacks.
  */
 m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 {
@@ -340,7 +341,10 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 				continue;
 			let progress = wonder.foundationProgress();
 			if (progress === undefined)
-				return wonder.owner();
+			{
+				enemyWonder = wonder;
+				break;
+			}
 			if (enemyWonder && moreAdvanced > progress)
 				continue;
 			enemyWonder = wonder;

@@ -1867,19 +1867,19 @@ m.HQ.prototype.numActiveBase = function()
 
 // Count gatherers returning resources in the number of gatherers of resourceSupplies
 // to prevent the AI always reaffecting idle workers to these resourceSupplies (specially in naval maps).
-m.HQ.prototype.assignGatherers = function(gameState)
+m.HQ.prototype.assignGatherers = function()
 {
-	var self = this;
-	for (var base of this.baseManagers)
+	for (let base of this.baseManagers)
 	{
-		base.workers.forEach( function (worker) {
+		for (let worker of base.workers.values())
+		{
 			if (worker.unitAIState().split(".")[1] !== "RETURNRESOURCE")
-				return;
+				continue;
 			let orders = worker.unitAIOrderData();
 			if (orders.length < 2 || !orders[1].target || orders[1].target !== worker.getMetadata(PlayerID, "supply"))
-				return;
-			self.AddTCGatherer(orders[1].target);
-		});
+				continue;
+			this.AddTCGatherer(orders[1].target);
+		}
 	}
 };
 
@@ -2044,7 +2044,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	if (this.Config.difficulty > 0)
 		this.buildDefenses(gameState, queues);
 
-	this.assignGatherers(gameState);
+	this.assignGatherers();
 	for (let i = 0; i < this.baseManagers.length; ++i)
 	{
 		this.baseManagers[i].checkEvents(gameState, events, queues);

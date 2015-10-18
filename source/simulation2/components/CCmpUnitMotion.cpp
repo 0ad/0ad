@@ -1590,16 +1590,27 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	{
 		// Too close to the square - need to move away
 
-		// TODO: maybe we should do the ShouldTreatTargetAsCircle thing here?
+		// Circumscribe the square
+		entity_pos_t circleRadius = halfSize.Length();
 
 		entity_pos_t goalDistance = minRange + Pathfinding::GOAL_DELTA;
+		// ensure it's far enough to not intersect the building itself (TODO is it really needed for inverted move ?)
+		goalDistance = std::max(goalDistance, m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16);
 
-		goal.type = PathGoal::INVERTED_SQUARE;
-		goal.u = obstruction.u;
-		goal.v = obstruction.v;
-		entity_pos_t delta = std::max(goalDistance, m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
-		goal.hw = obstruction.hw + delta;
-		goal.hh = obstruction.hh + delta;
+		if (ShouldTreatTargetAsCircle(minRange, obstruction.hw, obstruction.hh, circleRadius))
+		{
+			// The target is small relative to our range, so pretend it's a circle
+			goal.type = PathGoal::INVERTED_CIRCLE;
+			goal.hw = goalDistance;
+		}
+		else
+		{
+			goal.type = PathGoal::INVERTED_SQUARE;
+			goal.u = obstruction.u;
+			goal.v = obstruction.v;
+			goal.hw = obstruction.hw + goalDistance;
+			goal.hh = obstruction.hh + goalDistance;
+		}
 	}
 	else if (maxRange < entity_pos_t::Zero() || distance < maxRange || previousDistance < maxRange)
 	{
