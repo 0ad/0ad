@@ -1507,11 +1507,15 @@ bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t 
 	// is a round-cornered square which we can approximate as either a circle or as a square.
 	// Choose the shape that will minimise the worst-case error:
 
-	// For a square, error is (sqrt(2)-1) * range at the corners
-	entity_pos_t errSquare = (entity_pos_t::FromInt(4142)/10000).Multiply(range);
+	entity_pos_t rSquare = std::min(hw, hh);
+	if (range < rSquare)
+		return false;
+
+	// For a square, error is (sqrt(2)-1) * (range-rSquare) at the corners
+	entity_pos_t errSquare = (entity_pos_t::FromInt(4142)/10000).Multiply(range-rSquare);
 
 	// For a circle, error is radius-hw at the sides and radius-hh at the top/bottom
-	entity_pos_t errCircle = circleRadius - std::min(hw, hh);
+	entity_pos_t errCircle = circleRadius - rSquare;
 
 	return (errCircle < errSquare);
 }
