@@ -542,7 +542,6 @@ void CTemplateLoader::CopyResourceSubset(CParamNode& out, const CParamNode& in)
 	permittedComponentTypes.insert("Position");
 	permittedComponentTypes.insert("VisualActor");
 	permittedComponentTypes.insert("Identity");
-	permittedComponentTypes.insert("Obstruction");
 	permittedComponentTypes.insert("Minimap");
 	permittedComponentTypes.insert("ResourceSupply");
 	permittedComponentTypes.insert("Selectable");
@@ -554,4 +553,11 @@ void CTemplateLoader::CopyResourceSubset(CParamNode& out, const CParamNode& in)
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
 	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
+	
+	// When dying, resources lose the unitMotion component
+	// This causes them to have no clearance. Since unit obstructions no longer have a radius,
+	// this makes them unreachable in some cases (see #3530).
+	// Instead, create a static, unblocking (see #3530 for why) static obstruction.
+	// TODO: this should probably be generalized as a parameter on entity death or something.
+	CParamNode::LoadXMLString(out, "<Entity><Obstruction><Active>true</Active><BlockMovement>false</BlockMovement><BlockPathfinding>false</BlockPathfinding><BlockFoundation>false</BlockFoundation><BlockConstruction>false</BlockConstruction><DisableBlockMovement>false</DisableBlockMovement><DisableBlockPathfinding>false</DisableBlockPathfinding><Static width=\"2.0\" depth=\"2.0\"/></Obstruction></Entity>");
 }
