@@ -522,7 +522,7 @@ void CCmpPathfinder::UpdateGrid()
 	}
 	else
 		m_LongPathfinder.Update(m_Grid, m_ObstructionsDirty.dirtinessGrid);
-	}
+}
 
 void CCmpPathfinder::MinimalTerrainUpdate()
 {
@@ -793,8 +793,9 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	if (!cmpObstructionManager || cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
 		return false;
 
-	// Then test against the passability grid.
-	return Pathfinding::CheckLineMovement(x0, z0, x1, z1, passClass, *m_Grid);
+	// Then test against the terrain grid. This should not be necessary
+	// But in case we allow terrain to change it will become so.
+	return Pathfinding::CheckLineMovement(x0, z0, x1, z1, passClass, *m_TerrainOnlyGrid);
 }
 
 ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
