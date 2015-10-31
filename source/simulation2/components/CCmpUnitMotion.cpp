@@ -542,6 +542,11 @@ private:
 		return m_State == STATE_FORMATIONMEMBER_PATH;
 	}
 
+	entity_id_t GetGroup() const
+	{
+		return IsFormationMember() ? m_TargetEntity : GetEntityId();
+	}
+
 	bool HasValidPath() const
 	{
 		return m_PathState == PATHSTATE_FOLLOWING
@@ -656,8 +661,10 @@ private:
 
 	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
+         * noTarget is true only when used inside tryGoingStraightToTargetEntity, 
+         * in which case we do not want the target obstruction otherwise it would always fail
 	 */
-	ControlGroupMovementObstructionFilter GetObstructionFilter(bool forceAvoidMovingUnits = false) const;
+	ControlGroupMovementObstructionFilter GetObstructionFilter(bool forceAvoidMovingUnits = false, noTarget = false) const;
 
 	/**
 	 * Start moving to the given goal, from our current position 'from'.
@@ -1063,7 +1070,7 @@ void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos)
 	{
 		PathGoal goal = { PathGoal::POINT, followingPoint.x, followingPoint.z };
 		m_Planning.expectedPathTicket = cmpPathfinder->ComputeShortPathAsync(
-			nextPoint.x, nextPoint.z, m_Clearance, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, false, m_TargetEntity, GetEntityId());
+			nextPoint.x, nextPoint.z, m_Clearance, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, false, GetGroup(), GetEntityId());
 	}
 }
 
@@ -1143,7 +1150,7 @@ bool CCmpUnitMotion::TryGoingStraightToTargetEntity(const CFixedVector2D& from)
 	CFixedVector2D goalPos = goal.NearestPointOnGoal(from);
 
 	// Check if there's any collisions on that route
-	if (!cmpPathfinder->CheckMovement(GetObstructionFilter(), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
+	if (!cmpPathfinder->CheckMovement(GetObstructionFilter(false, true), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
 		return false;
 
 	// That route is okay, so update our path
@@ -1251,14 +1258,9 @@ void CCmpUnitMotion::FaceTowardsPointFromPos(const CFixedVector2D& pos, entity_p
 	}
 }
 
-ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool forceAvoidMovingUnits) const
+ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool forceAvoidMovingUnits, bool noTarget) const
 {
-	entity_id_t group;
-	if (IsFormationMember())
-		group = m_TargetEntity;
-	else
-		group = GetEntityId();
-
+	entity_id_t group = noTarget ? m_TargetEntity : GetGroup();
 	return ControlGroupMovementObstructionFilter(forceAvoidMovingUnits || ShouldAvoidMovingUnits(), group);
 }
 
@@ -1347,7 +1349,7 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	if (!cmpPathfinder)
 		return;
 
-	m_ExpectedPathTicket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, avoidMovingUnits, m_TargetEntity, GetEntityId());
+	m_ExpectedPathTicket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, avoidMovingUnits, GetGroup(), GetEntityId());
 }
 
 bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
