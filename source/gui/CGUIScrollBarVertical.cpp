@@ -54,7 +54,7 @@ void CGUIScrollBarVertical::Draw()
 		return;
 	}
 
-	if (GetGUI() && GetMaxPos() != 1)
+	if (GetGUI() && IsVisible())
 	{
 		CRect outline = GetOuterRect();
 

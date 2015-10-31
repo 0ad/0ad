@@ -200,8 +200,9 @@ void CList::HandleMessage(SGUIMessage& Message)
 			if (mouse.y >= rect.top + m_ItemsYPositions[i] &&
 				mouse.y < rect.top + m_ItemsYPositions[i+1] &&
 				// mouse is not over scroll-bar
-				!(mouse.x >= GetScrollBar(0).GetOuterRect().left &&
-				mouse.x <= GetScrollBar(0).GetOuterRect().right))
+				(!scrollbar || !GetScrollBar(0).IsVisible() ||
+					mouse.x < GetScrollBar(0).GetOuterRect().left ||
+					mouse.x > GetScrollBar(0).GetOuterRect().right))
 			{
 				set = i;
 			}

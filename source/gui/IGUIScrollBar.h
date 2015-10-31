@@ -210,6 +210,11 @@ public:
 	float GetMaxPos() const { return std::max(1.f, m_ScrollRange - m_ScrollSpace); }
 
 	/**
+	 * Get the value of m_Pos that corresponds to the bottom of the scrollable region
+	 */
+	float IsVisible() const { return GetMaxPos() != 1.f; }
+
+	/**
 	 * Increase scroll one step
 	 */
 	virtual void ScrollPlus() { m_Pos += 30.f; UpdatePosBoundaries(); }
