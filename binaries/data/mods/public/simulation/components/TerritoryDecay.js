@@ -27,16 +27,20 @@ TerritoryDecay.prototype.IsConnected = function()
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
 	var pos = cmpPosition.GetPosition2D();
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
-	if (!cmpPlayer.IsMutualAlly(tileOwner))
+	if (tileOwner == 0)
+	{
+		this.connectedNeighbours[0] = 1;
+		return cmpPlayer.GetPlayerID() == 0; // Gaia building on gaia ground -> don't decay
+	}
+
+	var tileConnected = cmpTerritoryManager.IsConnected(pos.x, pos.y);
+	if (tileConnected && !cmpPlayer.IsMutualAlly(tileOwner))
 	{
 		this.connectedNeighbours[tileOwner] = 1;
 		return false;
 	}
 
-	if (tileOwner == 0)
-		return true; // Gaia building on gaia ground -> don't decay
-
-	if (cmpTerritoryManager.IsConnected(pos.x, pos.y))
+	if (tileConnected)
 		return true;
 
 	this.connectedNeighbours = cmpTerritoryManager.GetNeighbours(pos.x, pos.y, true);

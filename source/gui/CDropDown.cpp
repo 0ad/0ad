@@ -113,8 +113,9 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			if (mouse.y >= rect.top + m_ItemsYPositions[i] &&
 				mouse.y < rect.top + m_ItemsYPositions[i+1] &&
 				// mouse is not over scroll-bar
-				!(mouse.x >= GetScrollBar(0).GetOuterRect().left &&
-				mouse.x <= GetScrollBar(0).GetOuterRect().right))
+				(m_HideScrollBar ||
+					mouse.x < GetScrollBar(0).GetOuterRect().left ||
+					mouse.x > GetScrollBar(0).GetOuterRect().right))
 			{
 				set = i;
 			}
@@ -208,9 +209,10 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 				return; // overshadow
 			}
 
-			if (!(mouse.x >= GetScrollBar(0).GetOuterRect().left &&
-				mouse.x <= GetScrollBar(0).GetOuterRect().right) &&
-				mouse.y >= GetListRect().top)
+			if (m_HideScrollBar ||
+				mouse.x < GetScrollBar(0).GetOuterRect().left ||
+				mouse.x > GetScrollBar(0).GetOuterRect().right ||
+				mouse.y < GetListRect().top)
 			{
 				m_Open = false;
 				GetScrollBar(0).SetZ(GetBufferedZ());

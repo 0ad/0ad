@@ -226,11 +226,6 @@ function startHost(playername, servername)
 
 function startJoin(playername, ip)
 {
-	// Save player name and host address
-	Engine.ConfigDB_CreateValue("user", "playername", playername);
-	Engine.ConfigDB_CreateValue("user", "multiplayerserver", ip);
-	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
-
 	try
 	{
 		if (g_userRating)
@@ -248,9 +243,16 @@ function startJoin(playername, ip)
 	}
 
 	startConnectionStatus("client");
-	// Set player lobby presence
+
 	if (Engine.HasXmppClient())
+		// Set player lobby presence
 		Engine.LobbySetPlayerPresence("playing");
+	else {
+		// Only save the player name and host address if they're valid and we're not in the lobby
+		Engine.ConfigDB_CreateValue("user", "playername", playername);
+		Engine.ConfigDB_CreateValue("user", "multiplayerserver", ip);
+		Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+	}
 	return true;
 }
 

@@ -154,8 +154,6 @@ function getMapDescriptionAndPreview(mapType, mapName)
 		mapData = Engine.ReadJSONFile(mapName + ".json");
 	else if (Engine.FileExists(mapName + ".xml"))
 		mapData = Engine.LoadMapSettings(mapName + ".xml");
-	else
-		warn(sprintf("Map '%(mapName)s' not found locally.", { "mapName": mapName }));
 
 	return {
 		"description": mapData && mapData.settings && mapData.settings.Description ? translate(mapData.settings.Description) : translate("Sorry, no description available."),

@@ -57,7 +57,6 @@ MESSAGE(ValueModification)
 MESSAGE(TemplateModification)
 MESSAGE(VisionRangeChanged)
 MESSAGE(MinimapPing)
-MESSAGE(PassabilityMapChanged)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized

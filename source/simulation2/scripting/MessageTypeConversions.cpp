@@ -470,19 +470,6 @@ CMessage* CMessageMinimapPing::FromJSVal(ScriptInterface& UNUSED(scriptInterface
 	return new CMessageMinimapPing();
 }
 
-////////////////////////////////
-
-JS::Value CMessagePassabilityMapChanged::ToJSVal(ScriptInterface& scriptInterface) const
-{
-	TOJSVAL_SETUP();
-	return JS::ObjectValue(*obj);
-}
-
-CMessage* CMessagePassabilityMapChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
-{
-	return new CMessagePassabilityMapChanged();
-}
-
 ////////////////////////////////////////////////////////////////
 
 CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, JS::HandleValue val)
