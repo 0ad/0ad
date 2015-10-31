@@ -538,17 +538,4 @@ public:
 	}
 };
 
-/**
- * Sent when the pathfinder's passability map is modified on update
- */
-class CMessagePassabilityMapChanged : public CMessage
-{
-public:
-	DEFAULT_MESSAGE_IMPL(PassabilityMapChanged)
-
-	CMessagePassabilityMapChanged()
-	{
-	}
-};
-
 #endif // INCLUDED_MESSAGETYPES

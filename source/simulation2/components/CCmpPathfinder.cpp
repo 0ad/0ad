@@ -522,16 +522,7 @@ void CCmpPathfinder::UpdateGrid()
 	}
 	else
 		m_LongPathfinder.Update(m_Grid, m_ObstructionsDirty.dirtinessGrid);
-
-	// Notify the units that their current paths can be invalid now.
-	// The passability map will be globally dirty after init, or rejoining, loading a saved game, etc.
-	// In those situations the paths can't be invalid.
-	if (!m_ObstructionsDirty.globallyDirty)
-	{
-		CMessagePassabilityMapChanged msg;
-		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}
-}
 
 void CCmpPathfinder::MinimalTerrainUpdate()
 {
@@ -727,7 +718,7 @@ void CCmpPathfinder::ProcessShortRequests(const std::vector<AsyncShortPathReques
 	{
 		const AsyncShortPathRequest& req = shortRequests[i];
 		WaypointPath path;
-		ControlGroupMovementObstructionFilter filter(true, req.avoidMovingUnits, req.group);
+		ControlGroupMovementObstructionFilter filter(req.avoidMovingUnits, req.group);
 		ComputeShortPath(filter, req.x0, req.z0, req.clearance, req.range, req.goal, req.passClass, path);
 		CMessagePathResult msg(req.ticket, path);
 		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
