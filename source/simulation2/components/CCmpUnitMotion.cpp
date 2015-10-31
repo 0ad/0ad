@@ -664,7 +664,7 @@ private:
          * noTarget is true only when used inside tryGoingStraightToTargetEntity, 
          * in which case we do not want the target obstruction otherwise it would always fail
 	 */
-	ControlGroupMovementObstructionFilter GetObstructionFilter(bool forceAvoidMovingUnits = false, noTarget = false) const;
+	ControlGroupMovementObstructionFilter GetObstructionFilter(bool forceAvoidMovingUnits = false, bool noTarget = false) const;
 
 	/**
 	 * Start moving to the given goal, from our current position 'from'.
