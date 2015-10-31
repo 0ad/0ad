@@ -173,6 +173,7 @@
 			<object name="gamesBox" style="ModernList" sprite_asc="ModernArrowDown" default_column="name" sprite_desc="ModernArrowUp" sprite_not_sorted="ModernNotSorted" type="olist" sortable="true" size="0 25 100% 48%" font="sans-stroke-13">
 				<action on="SelectionChange">updateGameSelection();</action>
 				<action on="SelectionColumnChange">updateGameListOrderSelection();</action>
+				<action on="mouseleftdoubleclick">joinSelectedGame();</action>
 				<def id="name" color="0 60 0" width="27%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</def>
