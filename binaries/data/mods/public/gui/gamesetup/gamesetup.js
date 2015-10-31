@@ -775,14 +775,11 @@ function loadGameAttributes()
 		gameSpeedBox.selected = g_GameSpeeds.Speed.indexOf(attrs.gameSpeed);
 	}
 
-	if (!Engine.HasXmppClient())
-	{
-		g_GameAttributes.settings.RatingEnabled = false;
-		Engine.SetRankedGame(false);
-		Engine.GetGUIObjectByName("enableRating").checked = false;
-		Engine.GetGUIObjectByName("enableCheats").enabled = true;
-		Engine.GetGUIObjectByName("lockTeams").enabled = true;
-	}
+	g_GameAttributes.settings.RatingEnabled = Engine.HasXmppClient();
+	Engine.SetRankedGame(g_GameAttributes.settings.RatingEnabled);
+	Engine.GetGUIObjectByName("enableRating").checked = g_GameAttributes.settings.RatingEnabled;
+	Engine.GetGUIObjectByName("enableCheats").enabled = !g_GameAttributes.settings.RatingEnabled;
+	Engine.GetGUIObjectByName("lockTeams").enabled = !g_GameAttributes.settings.RatingEnabled;
 
 	g_IsInGuiUpdate = false;
 
