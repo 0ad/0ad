@@ -350,11 +350,10 @@ m.Army.prototype.checkEvents = function (gameState, events)
 
 	for (let evt of events["Destroy"])
 	{
-		if (!evt.entityObj)
-			continue;
+		let entityObj = evt.entityObj ? evt.entityObj : undefined;
 		// we may have capture+destroy, so do not trust owner and check all possibilities
-		this.removeOwn(gameState, evt.entity, evt.entityObj);
-		this.removeFoe(gameState, evt.entity, evt.entityObj);
+		this.removeOwn(gameState, evt.entity, entityObj);
+		this.removeFoe(gameState, evt.entity, entityObj);
 	}
 };
 
