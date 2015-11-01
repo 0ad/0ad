@@ -171,6 +171,12 @@ public:
 	 * @return true if there is a collision
 	 */
 	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r) = 0;
+	
+	/**
+	 * This version is similar to TestLine but uses a smaller clearance than the real one for unit shapes.
+	 * This allows them to overlap a bit more, which is mostly good for the pathfinding behavior.
+	 */
+	virtual bool TestLineRelaxedUnit(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r) = 0;
 
 	/**
 	 * Collision test a static square shape against the current set of shapes.
@@ -237,6 +243,8 @@ public:
 	 * @param squares output list of obstructions
 	 */
 	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) = 0;
+	virtual void GetStaticObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) = 0;
+	virtual void GetUnitObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) = 0;
 
 	/**
 	 * Returns the entity IDs of all unit shapes that intersect the given

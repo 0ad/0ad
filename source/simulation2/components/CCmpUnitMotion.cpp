@@ -962,23 +962,43 @@ void CCmpUnitMotion::Move(fixed dt)
 		if (wasObstructed)
 		{
 			// Oops, we hit something (very likely another unit).
-			// Stop, and recompute the whole path.
-			// TODO: if the target has UnitMotion and is higher priority,
-			// we should wait a little bit.
-
-			// Recompute our path
-			// If we are following a long path
+			// This is when we might easily get stuck wrongly.
+			
+			// If we still have long waypoints, try and compute a short path
+			// This will get us around units, amongst others.
+			// However in some cases a long waypoint will be in located in the obstruction of
+			// an idle unit. In that case, we need to scrap that waypoint or we might never be able to reach it.
+			// I am not sure why this happens but the following code seems to work.
 			if (!m_LongPath.m_Waypoints.empty())
 			{
-				PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
-				RequestShortPath(pos, goal, true);
-				m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
-				return;
+				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+				if (cmpObstructionManager)
+				{
+					// create a fake obstruction to represent our waypoint.
+					ICmpObstructionManager::ObstructionSquare square;
+					square.hh = entity_pos_t::FromInt(1);
+					square.hw = entity_pos_t::FromInt(1);
+					square.u = CFixedVector2D(entity_pos_t::FromInt(1),entity_pos_t::FromInt(0));
+					square.v = CFixedVector2D(entity_pos_t::FromInt(0),entity_pos_t::FromInt(1));
+					square.x = m_LongPath.m_Waypoints.back().x;
+					square.z = m_LongPath.m_Waypoints.back().z;
+					std::vector<entity_id_t> unitOnGoal;
+					cmpObstructionManager->GetUnitsOnObstruction(square, unitOnGoal, GetObstructionFilter(true, false));
+					if (!unitOnGoal.empty())
+						m_LongPath.m_Waypoints.pop_back();
+				}
+				if (!m_LongPath.m_Waypoints.empty())
+				{
+					PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+					RequestShortPath(pos, goal, true);
+					m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
+					return;
+				}
 			}
 			// Else, just entirely recompute
 			BeginPathing(pos, m_FinalGoal);
 
-			// TODO: check where the collision was and move slightly.
+			// potential TODO: We could switch the short-range pathfinder for something else entirely.
 			return;
 		}
 
