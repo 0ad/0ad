@@ -1042,7 +1042,9 @@ void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos)
 		return;
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-
+	if (!cmpPathfinder)
+		return;
+	
 	const Waypoint& nextPoint = m_LongPath.m_Waypoints.back();
 
 	// The next step was obstructed the last time we checked; also check that

@@ -127,7 +127,7 @@ struct EdgeAA
 // When computing vertexes to insert into the search graph,
 // add a small delta so that the vertexes of an edge don't get interpreted
 // as crossing the edge (given minor numerical inaccuracies)
-static const entity_pos_t EDGE_EXPAND_DELTA = entity_pos_t::FromInt(1)/4;
+static const entity_pos_t EDGE_EXPAND_DELTA = entity_pos_t::FromInt(1)/16;
 
 /**
  * Check whether a ray from 'a' to 'b' crosses any of the edges.

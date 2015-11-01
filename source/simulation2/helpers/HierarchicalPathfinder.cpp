@@ -352,8 +352,7 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 
 			if (std::find(processedChunks.begin(), processedChunks.end(), chunkID) == processedChunks.end())
 			{
-				// iterate over a std::map<std::string, pass_class_t>
-				for (auto& passClassMask : m_PassClassMasks)
+				for (const std::pair<std::string, pass_class_t>& passClassMask : m_PassClassMasks)
 				{
 					pass_class_t passClass = passClassMask.second;
 					Chunk& a = m_Chunks[passClass].at(chunkID.second*m_ChunksW + chunkID.first);
@@ -366,8 +365,7 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 
 	// TODO: Also be clever with edges
 	m_Edges.clear();
-	// iterate over a std::map<std::string, pass_class_t>
-	for (auto& passClassMask : m_PassClassMasks)
+	for (const std::pair<std::string, pass_class_t>& passClassMask : m_PassClassMasks)
 	{
 		pass_class_t passClass = passClassMask.second;
 		EdgesMap& edges = m_Edges[passClass];
