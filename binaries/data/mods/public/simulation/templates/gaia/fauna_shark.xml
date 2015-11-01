@@ -16,6 +16,9 @@
     <Icon>gaia/fauna_fish.png</Icon>
   </Identity>
   <Minimap disable=""/>
+  <Obstruction>
+    <BlockMovement>false</BlockMovement>
+  </Obstruction>
   <Position>
     <Altitude>-1</Altitude>
     <Floating>true</Floating>

@@ -12,6 +12,9 @@
     <SpecificName>Chicken</SpecificName>
     <Icon>gaia/fauna_chicken.png</Icon>
   </Identity>
+  <Obstruction>
+    <BlockMovement>false</BlockMovement>
+  </Obstruction>
   <ResourceSupply>
     <Amount>40</Amount>
     <Type>food.meat</Type>

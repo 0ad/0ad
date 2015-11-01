@@ -1316,7 +1316,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 		// if we move them to it. We should check if we can use formations
 		// for the other cases.
 		var nullFormation = (formationTemplate || cmpUnitAI.GetLastFormationTemplate()) == "formations/null";
-		if (!nullFormation && cmpIdentity && cmpIdentity.CanUseFormation(formationTemplate || "formations/line_closed"))
+		if (!nullFormation && cmpIdentity && cmpIdentity.CanUseFormation(formationTemplate || "formations/null"))
 			formedEnts.push(ent);
 		else
 		{
@@ -1395,7 +1395,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 				if (lastFormationTemplate && CanMoveEntsIntoFormation(cluster, lastFormationTemplate))
 					formationTemplate = lastFormationTemplate;
 				else
-					formationTemplate = "formations/line_closed";
+					formationTemplate = "formations/null";
 			}
 
 			// Create the new controller
