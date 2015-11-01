@@ -392,6 +392,11 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		var target = gameState.getEntityById(evt.target);
 		if (!target || !gameState.isEntityOwn(target) || !target.position())
 			continue;
+		// If attacked by one of our allies (he must trying to recover capture points), do not react
+		let attacker = gameState.getEntityById(evt.attacker);
+		if (attacker && gameState.isEntityAlly(attacker))
+			continue;
+
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
 
@@ -443,7 +448,6 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 		}
 
-		let attacker = gameState.getEntityById(evt.attacker);
 		if (!attacker || !attacker.position())
 			continue;
 
