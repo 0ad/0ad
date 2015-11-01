@@ -661,8 +661,8 @@ private:
 
 	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
-         * noTarget is true only when used inside tryGoingStraightToTargetEntity, 
-         * in which case we do not want the target obstruction otherwise it would always fail
+	 * noTarget is true only when used inside tryGoingStraightToTargetEntity, 
+	 * in which case we do not want the target obstruction otherwise it would always fail
 	 */
 	ControlGroupMovementObstructionFilter GetObstructionFilter(bool forceAvoidMovingUnits = false, bool noTarget = false) const;
 
