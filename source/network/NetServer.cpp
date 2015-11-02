@@ -883,6 +883,23 @@ bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 	{
 		CSimulationMessage* simMessage = static_cast<CSimulationMessage*> (message);
 
+		// Ignore messages sent by one player on behalf of another player
+		// unless cheating is enabled
+		bool cheatsEnabled = false;
+		ScriptInterface& scriptInterface = server.GetScriptInterface();
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+		JS::RootedValue settings(cx);
+		scriptInterface.GetProperty(server.m_GameAttributes.get(), "settings", &settings);
+		if (scriptInterface.HasProperty(settings, "CheatsEnabled"))
+			scriptInterface.GetProperty(settings, "CheatsEnabled", cheatsEnabled);
+
+		PlayerAssignmentMap::iterator it = server.m_PlayerAssignments.find(session->GetGUID());
+		// When cheating is disabled, fail if the player the message claims to
+		// represent does not exist or does not match the sender's player name
+		if (!cheatsEnabled && (it == server.m_PlayerAssignments.end() || it->second.m_PlayerID != simMessage->m_Player))
+			return true;
+
 		// Send it back to all clients immediately
 		server.Broadcast(simMessage);
 
@@ -890,8 +907,6 @@ bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 		if (server.m_SavedCommands.size() < simMessage->m_Turn + 1)
 			server.m_SavedCommands.resize(simMessage->m_Turn + 1);
 		server.m_SavedCommands[simMessage->m_Turn].push_back(*simMessage);
-
-		// TODO: we should do some validation of ownership (clients can't send commands on behalf of opposing players)
 
 		// TODO: we shouldn't send the message back to the client that first sent it
 	}
