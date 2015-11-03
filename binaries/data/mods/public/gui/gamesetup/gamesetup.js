@@ -1285,6 +1285,9 @@ function onGameAttributesChange()
 	var victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
 	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true);
 	enableCheatsText.caption = (enableCheats.checked ? translate("Yes") : translate("No"));
+	if (g_IsNetworked)
+		Engine.GetGUIObjectByName("cheatWarningText").hidden = !enableCheats.checked;
+
 	if (mapSettings.RatingEnabled !== undefined)
 	{
 		enableRating.checked = mapSettings.RatingEnabled;
