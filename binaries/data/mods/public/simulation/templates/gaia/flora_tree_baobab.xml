@@ -8,9 +8,12 @@
     <SpecificName>Baobab</SpecificName>
     <History>The baobab is the giant African tree that dots the landscape of the African savanna.</History>
   </Identity>
+  <Obstruction>
+    <Static width="3.0" depth="3.0"/>
+  </Obstruction>
   <ResourceSupply>
     <Amount>400</Amount>
-	<MaxGatherers>9</MaxGatherers>
+  	<MaxGatherers>9</MaxGatherers>
   </ResourceSupply>
   <Selectable>
     <Overlay>

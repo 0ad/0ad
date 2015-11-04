@@ -10,11 +10,14 @@
     <Type>wood</Type>
     <Color r="69" g="107" b="68"/>
   </Minimap>
+  <Obstruction>
+    <Static width="1.6" depth="1.6"/>
+  </Obstruction>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
     <Amount>200</Amount>
     <Type>wood.tree</Type>
-	<MaxGatherers>8</MaxGatherers>
+	 <MaxGatherers>8</MaxGatherers>
   </ResourceSupply>
   <Selectable>
     <EditorOnly disable=""/>
