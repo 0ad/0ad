@@ -104,6 +104,11 @@ bool CNetTurnManager::Update(float simFrameLength, size_t maxTurns)
 {
 	m_DeltaSimTime += simFrameLength;
 
+	// If the game becomes laggy, m_DeltaSimTime increases progressively.
+	// The engine will fast forward accordingly to catch up.
+	// To keep the game playable, stop fast forwarding after 2 turn lengths.
+	m_DeltaSimTime = std::min(m_DeltaSimTime, 2.0f * m_TurnLength / 1000.0f);
+
 	// If we haven't reached the next turn yet, do nothing
 	if (m_DeltaSimTime < 0)
 		return false;

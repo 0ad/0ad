@@ -537,8 +537,7 @@ u8 CCmpTerritoryManager::GetTerritoryPercentage(player_id_t player)
 	if (player <= 0 || (size_t)player > m_TerritoryCellCounts.size())
 		return 0;
 
-	if (m_TerritoryTotalPassableCellCount == 0)
-		CalculateTerritories();
+	CalculateTerritories();
 
 	if (m_TerritoryTotalPassableCellCount == 0)
 		return 0;

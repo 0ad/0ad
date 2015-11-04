@@ -218,6 +218,13 @@
 				size="20 100%-56 100%-312 100%-24"
 			/>
 
+			<!-- Cheat Warning Text -->
+			<object size="0 100%-52 100%-320 100%-24" hidden="true" name="cheatWarningText">
+				<object type="text" textcolor="red" style="ModernRightLabelText" size="0 0 100% 30">
+					<translatableAttribute id="caption">Cheats enabled.</translatableAttribute>
+				</object>
+			</object>
+
 			<!-- Start/Ready Button -->
 			<object
 				name="startGame"

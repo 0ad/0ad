@@ -3182,7 +3182,8 @@ UnitAI.prototype.Init = function()
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
 	this.isGarrisoned = false;
 	this.isIdle = false;
-	this.lastFormationTemplate = "";
+	// For A19, keep no formations as a default to help pathfinding.
+	this.lastFormationTemplate = "formations/null";
 	this.finishedOrder = false; // used to find if all formation members finished the order
 
 	this.heldPosition = undefined;

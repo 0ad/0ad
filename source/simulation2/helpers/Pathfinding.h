@@ -310,6 +310,12 @@ public:
 		{
 			m_Clearance = node.GetChild("Clearance").ToFixed();
 
+			/* According to Philip who designed the original doc (in docs/pathfinder.pdf),
+			 * clearance should usually be integer to ensure consistent behavior when rasterizing
+			 * the passability map.
+			 * This seems doubtful to me and my pathfinder fix makes having a clearance of 0.8 quite convenient
+			 * so I comment out this check, but leave it here for the purpose of documentation should a bug arise.
+			
 			if (!(m_Clearance % Pathfinding::NAVCELL_SIZE).IsZero())
 			{
 				// If clearance isn't an integer number of navcells then we'll
@@ -317,7 +323,7 @@ public:
 				// by clearance, vs expanding static obstructions by clearance
 				LOGWARNING("Pathfinder passability class has clearance %f, should be multiple of %f",
 					m_Clearance.ToFloat(), Pathfinding::NAVCELL_SIZE.ToFloat());
-			}
+			}*/
 		}
 		else
 			m_Clearance = fixed::Zero();
