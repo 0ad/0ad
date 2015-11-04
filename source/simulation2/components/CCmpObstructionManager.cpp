@@ -182,6 +182,8 @@ public:
 		SerializeSpatialSubdivision()(serialize, "unit subdiv", m_UnitSubdivision);
 		SerializeSpatialSubdivision()(serialize, "static subdiv", m_StaticSubdivision);
 
+		serialize.NumberFixed_Unbounded("max clearance", m_MaxClearance);
+		
 		SerializeMap<SerializeU32_Unbounded, SerializeUnitShape>()(serialize, "unit shapes", m_UnitShapes);
 		SerializeMap<SerializeU32_Unbounded, SerializeStaticShape>()(serialize, "static shapes", m_StaticShapes);
 		serialize.NumberU32_Unbounded("unit shape next", m_UnitShapeNext);
@@ -226,6 +228,8 @@ public:
 		}
 	}
 
+	// NB: on deserialization, this function is not called after the component is reset.
+	// So anything that happens here should be safely serialized.
 	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1)
 	{
 		m_WorldX0 = x0;
