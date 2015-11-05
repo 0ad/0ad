@@ -75,10 +75,10 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	// Construct the directory name based on the PID, to be relatively unique.
 	// Append "-1", "-2" etc if we run multiple matches in a single session,
 	// to avoid accidentally overwriting earlier logs.
-	std::wstringstream name;
 	static int run = -1;
 	do
 	{
+		std::wstringstream name;
 		name << getpid();
 		if (++run)
 			name << "-" << run;
