@@ -1680,7 +1680,8 @@ m.AttackPlan.prototype.Abort = function(gameState)
 		var withdrawal = (this.isStarted() && !this.overseas);
 		for (let ent of this.unitCollection.values())
 		{
-			ent.stopMoving();
+			if (ent.getMetadata(PlayerID, "role") === "attack")
+				ent.stopMoving();
 			if (withdrawal)
 				ent.move(rallyPoint[0], rallyPoint[1]);
 			this.removeUnit(ent);
