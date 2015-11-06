@@ -622,7 +622,7 @@ private:
 	 * Decide whether to approximate the given range from a square target as a circle,
 	 * rather than as a square.
 	 */
-	bool ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t hw, entity_pos_t hh, entity_pos_t circleRadius) const;
+	bool ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const;
 
 	/**
 	 * Computes the current location of our target entity (plus offset).
@@ -1490,7 +1490,7 @@ bool CCmpUnitMotion::IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t
 	}
 }
 
-bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t hw, entity_pos_t hh, entity_pos_t circleRadius) const
+bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const
 {
 	// Given a square, plus a target range we should reach, the shape at that distance
 	// is a round-cornered square which we can approximate as either a circle or as a square.
@@ -1579,7 +1579,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 
 		entity_pos_t goalDistance = minRange + Pathfinding::GOAL_DELTA;
 
-		if (ShouldTreatTargetAsCircle(minRange, obstruction.hw, obstruction.hh, circleRadius))
+		if (ShouldTreatTargetAsCircle(minRange, circleRadius))
 		{
 			// The target is small relative to our range, so pretend it's a circle
 			goal.type = PathGoal::INVERTED_CIRCLE;
@@ -1607,7 +1607,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 		// Circumscribe the square
 		entity_pos_t circleRadius = halfSize.Length();
 
-		if (ShouldTreatTargetAsCircle(maxRange, obstruction.hw, obstruction.hh, circleRadius))
+		if (ShouldTreatTargetAsCircle(maxRange, circleRadius))
 		{
 			// The target is small relative to our range, so pretend it's a circle
 
@@ -1699,7 +1699,7 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 
 		entity_pos_t circleRadius = halfSize.Length();
 
-		if (ShouldTreatTargetAsCircle(maxRange, obstruction.hw, obstruction.hh, circleRadius))
+		if (ShouldTreatTargetAsCircle(maxRange, circleRadius))
 		{
 			// The target is small relative to our range, so pretend it's a circle
 			// and see if we're close enough to that.
