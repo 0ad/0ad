@@ -1711,11 +1711,12 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 			entity_pos_t circleDistance = (pos - CFixedVector2D(obstruction.x, obstruction.z)).Length() - circleRadius;
 			entity_pos_t previousCircleDistance = (pos - CFixedVector2D(previousObstruction.x, previousObstruction.z)).Length() - circleRadius;
 
-			if (circleDistance <= maxRange || previousCircleDistance <= maxRange)
-				return true;
+			return circleDistance <= maxRange || previousCircleDistance <= maxRange;
 		}
 
-		return false;
+		// take minimal clearance required in MoveToTargetRange into account, multiplying by 3/2 for diagonals
+		entity_pos_t maxDist = std::max(maxRange, (m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16)*3/2);
+		return distance <= maxDist || distance <= maxDist;
 	}
 	else
 	{
