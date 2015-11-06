@@ -981,8 +981,8 @@ void CCmpUnitMotion::Move(fixed dt)
 				{
 					// create a fake obstruction to represent our waypoint.
 					ICmpObstructionManager::ObstructionSquare square;
-					square.hh = entity_pos_t::FromInt(1);
-					square.hw = entity_pos_t::FromInt(1);
+					square.hh = m_Clearance;
+					square.hw = m_Clearance;
 					square.u = CFixedVector2D(entity_pos_t::FromInt(1),entity_pos_t::FromInt(0));
 					square.v = CFixedVector2D(entity_pos_t::FromInt(0),entity_pos_t::FromInt(1));
 					square.x = m_LongPath.m_Waypoints.back().x;
