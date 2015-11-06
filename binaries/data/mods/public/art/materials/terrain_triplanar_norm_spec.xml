@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
     <shader effect="terrain_base"/>
+    <alternative material="terrain_triplanar_norm.xml" quality="2"/>
+
     <define name="USE_TRIPLANAR" value="1"/>
     
     <uniform name="effectSettings" value="1.0 15.0 0.0 0.0"/>

@@ -3,6 +3,9 @@
     <shader effect="terrain_base"/>
     <alternative material="terrain_triplanar.xml" quality="2"/>
 
+    <define name="USE_TRIPLANAR" value="1"/>
+    
     <uniform name="effectSettings" value="1.0 15.0 0.0 0.0"/>
+	<required_texture name="baseTex"/>
 	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
 </material>

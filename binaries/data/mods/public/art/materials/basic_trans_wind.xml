@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
     <shader effect="model_transparent"/>
+    <alternative material="basic_trans.xml" quality="1"/>
     <alpha_blending/>
     <define name="USE_TRANSPARENT" value="1"/>
     <renderquery name="sim_time"/>
