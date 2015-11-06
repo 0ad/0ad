@@ -695,6 +695,13 @@ REGISTER_COMPONENT_TYPE(UnitMotion)
 
 void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 {
+	// reset our state for sanity.
+	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+	if (cmpObstruction)
+		cmpObstruction->SetMovingFlag(false);
+
+	m_Moving = false;
+
 	if (ticket == m_Planning.expectedPathTicket)
 	{
 		// If no path was found, better cancel the planning
@@ -742,8 +749,13 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			StartSucceeded();
 
 		m_PathState = PATHSTATE_FOLLOWING;
+
+		if (cmpObstruction)
+			cmpObstruction->SetMovingFlag(true);
+		
+		m_Moving = true;
 	}
-	else if (m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT)
+	else if (m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT || m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
 	{
 		m_ShortPath = path;
 
@@ -751,49 +763,42 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		if (m_ShortPath.m_Waypoints.empty())
 		{
 			// If we're globally following a long path, try to remove the next waypoint, it might be obstructed
+			// If not, and we are not in a formation, retry with a long-range one.
 			if (m_LongPath.m_Waypoints.size() > 1)
 				m_LongPath.m_Waypoints.pop_back();
-			else if (!IsFormationMember())
-			{
-				StartFailed();
-				return;
-			}
-			else
+			else if (IsFormationMember())
 			{
 				m_Moving = false;
 				CMessageMotionChanged msg(true, true);
 				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+				return;
 			}
+			
+			CMessageMotionChanged msg(false, false);
+			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+
+			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+			if (!cmpPosition || !cmpPosition->IsInWorld())
+				return;
+			
+			CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+			m_LongPath.m_Waypoints.clear();
+			RequestLongPath(pos, m_FinalGoal);
+			m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
+			return;
 		}
 
 		// Now we've got a short path that we can follow
-		StartSucceeded();
-		m_PathState = PATHSTATE_FOLLOWING;
-	}
-	else if (m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
-	{
-		// Replace the current path with the new one
-		m_ShortPath = path;
-
-		// If there's no waypoints then we couldn't get near the target
-		if (m_ShortPath.m_Waypoints.empty())
-		{
-			// We should stop moving (unless we're in a formation, in which
-			// case we should continue following it)
-			if (!IsFormationMember())
-			{
-				MoveFailed();
-				return;
-			}
-			else
-			{
-				m_Moving = false;
-				CMessageMotionChanged msg(false, true);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-			}
-		}
+		if (!HasValidPath())
+			StartSucceeded();
 
 		m_PathState = PATHSTATE_FOLLOWING;
+
+		if (cmpObstruction)
+			cmpObstruction->SetMovingFlag(true);
+
+		m_Moving = true;
 	}
 	else
 	{
@@ -1008,7 +1013,6 @@ void CCmpUnitMotion::Move(fixed dt)
 		if (m_PathState == PATHSTATE_FOLLOWING)
 		{
 			// If we're not currently computing any new paths:
-
 			if (m_LongPath.m_Waypoints.empty() && m_ShortPath.m_Waypoints.empty())
 			{
 				if (IsFormationMember())
@@ -1293,14 +1297,6 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// Cancel any pending path requests
 	m_ExpectedPathTicket = 0;
 
-	// Update the unit's movement status.
-	m_Moving = true;
-
-	// Set our 'moving' flag, so other units pathfinding now will ignore us
-	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-	if (cmpObstruction)
-		cmpObstruction->SetMovingFlag(true);
-
 #if DISABLE_PATHFINDER
 	{
 		CmpPtr<ICmpPathfinder> cmpPathfinder (GetSimContext(), SYSTEM_ENTITY);
@@ -1340,7 +1336,12 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// need a long path, so we shouldn't simply check linear distance
 	if (goal.DistanceToPoint(from) < SHORT_PATH_SEARCH_RANGE)
 	{
+		// add our final goal as a long range waypoint so we don't forget
+		// where we are going if the short-range pathfinder returns
+		// an aborted path.
 		m_LongPath.m_Waypoints.clear();
+		CFixedVector2D target = m_FinalGoal.NearestPointOnGoal(from);
+		m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
 		m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
 		RequestShortPath(from, goal, true);
 	}
@@ -1493,15 +1494,10 @@ bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t 
 {
 	// Given a square, plus a target range we should reach, the shape at that distance
 	// is a round-cornered square which we can approximate as either a circle or as a square.
-	// Choose the shape that will minimise the worst-case error:
-
-	// For a square, error is (sqrt(2)-1) * (range-rSquare) at the corners
-	entity_pos_t errSquare = (entity_pos_t::FromInt(4142)/10000).Multiply(range);
-
-	// For a circle, error is radius-hw at the sides and radius-hh at the top/bottom
-	entity_pos_t errCircle = circleRadius - std::min(hw, hh);
-
-	return (errCircle < errSquare);
+	// Previously, we used the shape that minimized the worst-case error.
+	// However that is unsage in some situations. So let's be less clever and
+	// just check if our range is at least three times bigger than the circleradius
+	return (range > circleRadius*3);
 }
 
 bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
