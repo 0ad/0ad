@@ -465,8 +465,7 @@ public:
 		}
 	}
 
-	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r);
-	virtual bool TestLineRelaxedUnit(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r);
+	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits = false);
 	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out);
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, std::vector<entity_id_t>* out);
 
@@ -659,7 +658,7 @@ private:
 
 REGISTER_COMPONENT_TYPE(ObstructionManager)
 
-bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r)
+bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits)
 {
 	PROFILE("TestLine");
 
@@ -669,6 +668,11 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 
 	CFixedVector2D posMin (std::min(x0, x1) - r, std::min(z0, z1) - r);
 	CFixedVector2D posMax (std::max(x0, x1) + r, std::max(z0, z1) + r);
+
+	// actual radius used for unit-unit collisions. If relaxClearanceForUnits, will be smaller to allow more overlap.
+	entity_pos_t unitUnitRadius = r;
+	if (relaxClearanceForUnits)
+		unitUnitRadius -= entity_pos_t::FromInt(1)/2;
 
 	std::vector<entity_id_t> unitShapes;
 	m_UnitSubdivision.GetInRange(unitShapes, posMin, posMax);
@@ -681,41 +685,11 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 			continue;
 
 		CFixedVector2D center(it->second.x, it->second.z);
-		CFixedVector2D halfSize(it->second.clearance + r, it->second.clearance + r);
+		CFixedVector2D halfSize(it->second.clearance + unitUnitRadius, it->second.clearance + unitUnitRadius);
 		if (Geometry::TestRayAASquare(CFixedVector2D(x0, z0) - center, CFixedVector2D(x1, z1) - center, halfSize))
 			return true;
 	}
 
-	std::vector<entity_id_t> staticShapes;
-	m_StaticSubdivision.GetInRange(staticShapes, posMin, posMax);
-	for (size_t i = 0; i < staticShapes.size(); ++i)
-	{
-		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
-		ENSURE(it != m_StaticShapes.end());
-
-		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
-			continue;
-
-		CFixedVector2D center(it->second.x, it->second.z);
-		CFixedVector2D halfSize(it->second.hw + r, it->second.hh + r);
-		if (Geometry::TestRaySquare(CFixedVector2D(x0, z0) - center, CFixedVector2D(x1, z1) - center, it->second.u, it->second.v, halfSize))
-			return true;
-	}
-
-	return false;
-}
-
-bool CCmpObstructionManager::TestLineRelaxedUnit(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r)
-{
-	PROFILE("TestLine");
-	
-	// Check that both end points are within the world (which means the whole line must be)
-	if (!IsInWorld(x0, z0, r) || !IsInWorld(x1, z1, r))
-		return true;
-	
-	CFixedVector2D posMin (std::min(x0, x1) - r, std::min(z0, z1) - r);
-	CFixedVector2D posMax (std::max(x0, x1) + r, std::max(z0, z1) + r);
-	
 	std::vector<entity_id_t> staticShapes;
 	m_StaticSubdivision.GetInRange(staticShapes, posMin, posMax);
 	for (size_t i = 0; i < staticShapes.size(); ++i)
@@ -729,24 +703,6 @@ bool CCmpObstructionManager::TestLineRelaxedUnit(const IObstructionTestFilter& f
 		CFixedVector2D center(it->second.x, it->second.z);
 		CFixedVector2D halfSize(it->second.hw + r, it->second.hh + r);
 		if (Geometry::TestRaySquare(CFixedVector2D(x0, z0) - center, CFixedVector2D(x1, z1) - center, it->second.u, it->second.v, halfSize))
-			return true;
-	}
-	
-	static entity_pos_t halfOne = entity_pos_t::FromInt(1)/2;
-	
-	std::vector<entity_id_t> unitShapes;
-	m_UnitSubdivision.GetInRange(unitShapes, posMin, posMax);
-	for (size_t i = 0; i < unitShapes.size(); ++i)
-	{
-		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
-		ENSURE(it != m_UnitShapes.end());
-		
-		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
-			continue;
-		
-		CFixedVector2D center(it->second.x, it->second.z);
-		CFixedVector2D halfSize((it->second.clearance + r)-halfOne, it->second.clearance + r-halfOne);
-		if (Geometry::TestRayAASquare(CFixedVector2D(x0, z0) - center, CFixedVector2D(x1, z1) - center, halfSize))
 			return true;
 	}
 	

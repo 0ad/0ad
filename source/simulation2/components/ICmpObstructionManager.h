@@ -168,15 +168,10 @@ public:
 	 * @param x1 X coordinate of line's second point
 	 * @param z1 Z coordinate of line's second point
 	 * @param r radius (half width) of line
+	 * @param relaxClearanceForUnits whether unit-unit collisions should be more permissive.
 	 * @return true if there is a collision
 	 */
-	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r) = 0;
-	
-	/**
-	 * This version is similar to TestLine but uses a smaller clearance than the real one for unit shapes.
-	 * This allows them to overlap a bit more, which is mostly good for the pathfinding behavior.
-	 */
-	virtual bool TestLineRelaxedUnit(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r) = 0;
+	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits) = 0;
 
 	/**
 	 * Collision test a static square shape against the current set of shapes.

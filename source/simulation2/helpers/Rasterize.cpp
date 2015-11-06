@@ -58,8 +58,8 @@ void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 	
 	for (i16 j = j0; j < j1; ++j)
 	{
-		// Find the min/max range of cells that are strictly inside the square+realClearance.
-		// (Since the square+realClearance is a convex shape, we can just test each
+		// Find the min/max range of cells that are strictly inside the square+rasterClearance.
+		// (Since the square+rasterClearance is a convex shape, we can just test each
 		// corner of each cell is inside the shape.)
 		// (TODO: This potentially does a lot of redundant work.)
 		i16 spanI0 = std::numeric_limits<i16>::max();

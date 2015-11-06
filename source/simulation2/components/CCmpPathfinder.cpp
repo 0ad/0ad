@@ -792,7 +792,7 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	// Use more permissive version of TestLine to allow unit-unit collisions to overlap slightly.
 	// This makes movement smoother and more natural for units, overall.
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-	if (!cmpObstructionManager || cmpObstructionManager->TestLineRelaxedUnit(filter, x0, z0, x1, z1, r))
+	if (!cmpObstructionManager || cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r, true))
 		return false;
 
 	// Then test against the terrain grid. This should not be necessary
