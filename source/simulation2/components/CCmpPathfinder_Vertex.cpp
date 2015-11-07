@@ -605,10 +605,14 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	fixed rangeZMax = z0 + range;
 
 	// (The edges are the opposite direction to usual, so it's an inside-out square)
-	edges.emplace_back(Edge{ CFixedVector2D(rangeXMin, rangeZMin), CFixedVector2D(rangeXMin, rangeZMax) });
-	edges.emplace_back(Edge{ CFixedVector2D(rangeXMin, rangeZMax), CFixedVector2D(rangeXMax, rangeZMax) });
-	edges.emplace_back(Edge{ CFixedVector2D(rangeXMax, rangeZMax), CFixedVector2D(rangeXMax, rangeZMin) });
-	edges.emplace_back(Edge{ CFixedVector2D(rangeXMax, rangeZMin), CFixedVector2D(rangeXMin, rangeZMin) });
+	edges.emplace_back(Edge{	CFixedVector2D(rangeXMin-fixed::Epsilon(), rangeZMin-fixed::Epsilon()),
+								CFixedVector2D(rangeXMin-fixed::Epsilon(), rangeZMax+fixed::Epsilon()) });
+	edges.emplace_back(Edge{	CFixedVector2D(rangeXMin-fixed::Epsilon(), rangeZMax+fixed::Epsilon()),
+								CFixedVector2D(rangeXMax+fixed::Epsilon(), rangeZMax+fixed::Epsilon()) });
+	edges.emplace_back(Edge{	CFixedVector2D(rangeXMax+fixed::Epsilon(), rangeZMax+fixed::Epsilon()),
+								CFixedVector2D(rangeXMax+fixed::Epsilon(), rangeZMin-fixed::Epsilon()) });
+	edges.emplace_back(Edge{	CFixedVector2D(rangeXMax+fixed::Epsilon(), rangeZMin-fixed::Epsilon()),
+								CFixedVector2D(rangeXMin-fixed::Epsilon(), rangeZMin-fixed::Epsilon()) });
 
 
 	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
