@@ -1435,7 +1435,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			else if (siegeUnit && targetId)
 			{
 				var target = gameState.getEntityById(targetId);
-				if (!target)
+				if (!target || gameState.isPlayerAlly(target.owner()))
 					needsUpdate = true;
 				else if (unitTargets[targetId] && unitTargets[targetId] > 0)
 				{
@@ -1448,7 +1448,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			else if (targetId)
 			{
 				var target = gameState.getEntityById(targetId);
-				if (!target)
+				if (!target || gameState.isPlayerAlly(target.owner()))
 					needsUpdate = true;
 				else if (unitTargets[targetId] && unitTargets[targetId] > 0)
 				{
