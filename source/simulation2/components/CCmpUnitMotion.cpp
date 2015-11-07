@@ -581,6 +581,12 @@ private:
 
 	void StartSucceeded()
 	{
+		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+		if (cmpObstruction)
+			cmpObstruction->SetMovingFlag(true);
+		
+		m_Moving = true;
+		
 		CMessageMotionChanged msg(true, false);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
@@ -1023,6 +1029,10 @@ void CCmpUnitMotion::Move(fixed dt)
 					CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
 					if (cmpUnitMotion && !cmpUnitMotion->IsMoving())
 					{
+						CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+						if (cmpObstruction)
+							cmpObstruction->SetMovingFlag(false);
+
 						m_Moving = false;
 						CMessageMotionChanged msg(false, false);
 						GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
@@ -1294,8 +1304,16 @@ ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool 
 
 void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& goal)
 {
-	// Cancel any pending path requests
+	// reset our state for sanity.
 	m_ExpectedPathTicket = 0;
+	
+	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+	if (cmpObstruction)
+		cmpObstruction->SetMovingFlag(false);
+	
+	m_Moving = false;
+
+	m_PathState = PATHSTATE_NONE;
 
 #if DISABLE_PATHFINDER
 	{
