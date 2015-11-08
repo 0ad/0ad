@@ -57,11 +57,12 @@ static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(TERRAIN_T
 static const entity_pos_t SHORT_PATH_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*6);
 
 /**
- * When short-pathing to an intermediate waypoint, we aim for a circle of this radius
- * around the waypoint rather than expecting to reach precisely the waypoint itself
- * (since it might be inside an obstacle).
+ * When short-pathing, and the short-range pathfinder failed to return a path,
+ * Assume we are at destination if we are closer than this distance to the target
+ * And we have no target entity.
+ * This is somewhat arbitrary, but setting a too big distance means units might lose sight of their end goal too much;
  */
-static const entity_pos_t SHORT_PATH_GOAL_RADIUS = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*3/2);
+static const entity_pos_t SHORT_PATH_GOAL_RADIUS = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*2);
 
 /**
  * If we are this close to our target entity/point, then think about heading
@@ -769,7 +770,9 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		if (m_ShortPath.m_Waypoints.empty())
 		{
 			// If we're globally following a long path, try to remove the next waypoint, it might be obstructed
-			// If not, and we are not in a formation, retry with a long-range one.
+			// If not, and we are not in a formation, retry
+			// unless we are close to our target and we don't have a target entity.
+			// This makes sure that units don't clump too much when they are not in a formation and tasked to move.
 			if (m_LongPath.m_Waypoints.size() > 1)
 				m_LongPath.m_Waypoints.pop_back();
 			else if (IsFormationMember())
@@ -789,6 +792,18 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
 
+			if (m_TargetEntity == INVALID_ENTITY)
+			{
+				if (m_FinalGoal.DistanceToPoint(pos) <= SHORT_PATH_GOAL_RADIUS)
+				{
+					StopMoving();
+					MoveSucceeded();
+					
+					if (m_FacePointAfterMove)
+						FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
+					return;
+				}
+			}
 			m_LongPath.m_Waypoints.clear();
 			RequestLongPath(pos, m_FinalGoal);
 			m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
