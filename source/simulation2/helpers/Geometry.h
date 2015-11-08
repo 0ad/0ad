@@ -72,6 +72,12 @@ fixed DistanceToSquare(CFixedVector2D point,
 	bool countInsideAsZero = false);
 
 /**
+ * Similar to above but never uses sqrt, so it returns the squared distance.
+ */
+fixed DistanceToSquareSquared(CFixedVector2D point,
+					   CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize,
+					   bool countInsideAsZero = false);
+/**
  * Returns a point on the boundary of the given rotated rectangle
  * that is closest (or equally closest) to the given point
  * in Euclidean distance.

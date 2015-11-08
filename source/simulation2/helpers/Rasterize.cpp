@@ -54,6 +54,9 @@ void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 	if (j1 <= j0)
 		return; // empty bounds - this shouldn't happen
 
+
+	rasterClearance = rasterClearance.Multiply(rasterClearance);
+
 	spans.reserve(j1 - j0);
 	
 	for (i16 j = j0; j < j1; ++j)
@@ -66,28 +69,28 @@ void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 		i16 spanI1 = std::numeric_limits<i16>::min();
 		for (i16 i = i0; i < i1; ++i)
 		{
-			if (Geometry::DistanceToSquare(
+			if (Geometry::DistanceToSquareSquared(
 				CFixedVector2D(cellSize*i, cellSize*j) - CFixedVector2D(shape.x, shape.z),
 				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > rasterClearance)
 			{
 				continue;
 			}
 
-			if (Geometry::DistanceToSquare(
+			if (Geometry::DistanceToSquareSquared(
 				CFixedVector2D(cellSize*(i+1), cellSize*j) - CFixedVector2D(shape.x, shape.z),
 				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > rasterClearance)
 			{
 				continue;
 			}
 
-			if (Geometry::DistanceToSquare(
+			if (Geometry::DistanceToSquareSquared(
 				CFixedVector2D(cellSize*i, cellSize*(j+1)) - CFixedVector2D(shape.x, shape.z),
 				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > rasterClearance)
 			{
 				continue;
 			}
 
-			if (Geometry::DistanceToSquare(
+			if (Geometry::DistanceToSquareSquared(
 				CFixedVector2D(cellSize*(i+1), cellSize*(j+1)) - CFixedVector2D(shape.x, shape.z),
 				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > rasterClearance)
 			{
