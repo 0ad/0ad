@@ -552,15 +552,14 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       if str(presence['muc']['jid']) not in self.nicks:
         self.nicks[str(presence['muc']['jid'])] = presence['muc']['nick']
       # Check the jid isn't already in the lobby.
-      if str(presence['muc']['jid']) != self.lastLeft:
-        # Send Gamelist to new player.
-        self.sendGameList(presence['muc']['jid'])
-        # Following two calls make sqlalchemy complain about using objects in the
-        #  incorrect thread. TODO: Figure out how to fix this.
-        # Send Leaderboard to new player.
-        #self.sendBoardList(presence['muc']['jid'])
-        # Register on leaderboard.
-        #self.leaderboard.getOrCreatePlayer(presence['muc']['jid'])
+      # Send Gamelist to new player.
+      self.sendGameList(presence['muc']['jid'])
+      # Following two calls make sqlalchemy complain about using objects in the
+      #  incorrect thread. TODO: Figure out how to fix this.
+      # Send Leaderboard to new player.
+      #self.sendBoardList(presence['muc']['jid'])
+      # Register on leaderboard.
+      #self.leaderboard.getOrCreatePlayer(presence['muc']['jid'])
       logging.debug("Client '%s' connected with a nick of '%s'." %(presence['muc']['jid'], presence['muc']['nick']))
 
   def muc_offline(self, presence):
