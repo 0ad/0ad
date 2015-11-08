@@ -44,6 +44,7 @@ void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 	
 	// Get the bounds of cells that might possibly be within the shape
 	// (We'll then test each of those cells more precisely)
+	CFixedVector2D shapeHalfSize(CFixedVector2D(shape.hw, shape.hh));
 	CFixedVector2D halfSize(shape.hw + rasterClearance, shape.hh + rasterClearance);
 	CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(shape.u, shape.v, halfSize);
 	i16 i0 = ((shape.x - halfBound.X) / cellSize).ToInt_RoundToNegInfinity();
@@ -69,33 +70,21 @@ void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 		i16 spanI1 = std::numeric_limits<i16>::min();
 		for (i16 i = i0; i < i1; ++i)
 		{
-			if (Geometry::DistanceToSquareSquared(
-				CFixedVector2D(cellSize*i, cellSize*j) - CFixedVector2D(shape.x, shape.z),
-				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > rasterClearance)
-			{
+			if (Geometry::DistanceToSquareSquared(CFixedVector2D(cellSize*i-shape.x, cellSize*j-shape.z),
+												  shape.u, shape.v, shapeHalfSize, true) > rasterClearance)
 				continue;
-			}
 
-			if (Geometry::DistanceToSquareSquared(
-				CFixedVector2D(cellSize*(i+1), cellSize*j) - CFixedVector2D(shape.x, shape.z),
-				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > rasterClearance)
-			{
+			if (Geometry::DistanceToSquareSquared(CFixedVector2D(cellSize*(i+1)-shape.x, cellSize*j-shape.z),
+												  shape.u, shape.v, shapeHalfSize, true) > rasterClearance)
 				continue;
-			}
 
-			if (Geometry::DistanceToSquareSquared(
-				CFixedVector2D(cellSize*i, cellSize*(j+1)) - CFixedVector2D(shape.x, shape.z),
-				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > rasterClearance)
-			{
+			if (Geometry::DistanceToSquareSquared(CFixedVector2D(cellSize*i-shape.x, cellSize*(j+1)-shape.z),
+												  shape.u, shape.v, shapeHalfSize, true) > rasterClearance)
 				continue;
-			}
 
-			if (Geometry::DistanceToSquareSquared(
-				CFixedVector2D(cellSize*(i+1), cellSize*(j+1)) - CFixedVector2D(shape.x, shape.z),
-				shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh), true) > rasterClearance)
-			{
+			if (Geometry::DistanceToSquareSquared(CFixedVector2D(cellSize*(i+1)-shape.x, cellSize*(j+1)-shape.z),
+												  shape.u, shape.v, shapeHalfSize, true) > rasterClearance)
 				continue;
-			}
 
 			spanI0 = std::min(spanI0, i);
 			spanI1 = std::max(spanI1, (i16)(i+1));
