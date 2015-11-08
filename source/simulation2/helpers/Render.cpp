@@ -90,7 +90,7 @@ static void ConstructCircleOrClosedArc(
 	// Adapt the circle resolution to look reasonable for small and largeish radiuses
 	size_t numPoints = clamp((size_t)(radius*(end-start)), (size_t)12, (size_t)48);
 
-	if (isCircle)
+	if (!isCircle)
 		overlay.m_Coords.reserve((numPoints + 1 + 2) * 3);
 	else
 		overlay.m_Coords.reserve((numPoints + 1) * 3);
