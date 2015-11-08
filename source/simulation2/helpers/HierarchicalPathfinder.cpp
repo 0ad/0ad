@@ -546,6 +546,9 @@ void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, p
 		if (!goal.RectContainsGoal(x0, z0, x1, z1))
 			continue;
 
+		u16 i,j;
+		u32 dist2;
+		
 		// If the region contains the goal area, the goal is reachable
 		// Remember the best point for optimization.
 		if (GetChunk(region.ci, region.cj, passClass).RegionNearestNavcellInGoal(region.r, i0, j0, goal, i, j, dist2))
