@@ -459,18 +459,17 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		return;
 
 	// default template
-	var template = gameState.applyCiv("units/{civ}_support_female_citizen");
-
-	let femaleRatio = (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.femaleRatio, 0.2) : this.femaleRatio);
+	var templateDef = gameState.applyCiv("units/{civ}_support_female_citizen");
 	// Choose whether we want soldiers instead.
-	if ((numFemales+numQueuedF) > 8 && (numFemales+numQueuedF)/numTotal > femaleRatio)
+	let femaleRatio = (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.femaleRatio, 0.2) : this.femaleRatio);
+	let template;
+	if (!gameState.templates[templateDef] || ((numFemales+numQueuedF) > 8 && (numFemales+numQueuedF)/numTotal > femaleRatio))
 	{
 		if (numTotal < 45)
 			var requirements = [ ["cost", 1], ["speed", 0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]];
 		else
 			var requirements = [ ["strength", 1] ];
 
-		template = undefined;
 		var proba = Math.random();
 		if (proba < 0.6)
 		{	// we require at least 30% ranged and 30% melee
@@ -482,14 +481,14 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		}
 		if (!template)
 			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], requirements);
-		if (!template)
-			template = gameState.applyCiv("units/{civ}_support_female_citizen");
 	}
+	if (!template && gameState.templates[templateDef])
+		template = templateDef;
 
 	// base "0" means "auto"
 	if (template === gameState.applyCiv("units/{civ}_support_female_citizen"))
 		queues.villager.addItem(new m.TrainingPlan(gameState, template, { "role": "worker", "base": 0 }, size, size));
-	else
+	else if (template)
 		queues.citizenSoldier.addItem(new m.TrainingPlan(gameState, template, { "role": "worker", "base": 0 }, size, size));
 };
 
