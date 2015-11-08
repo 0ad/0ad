@@ -170,27 +170,6 @@ void HierarchicalPathfinder::Chunk::RegionCenter(u16 r, int& i_out, int& j_out) 
 }
 
 /**
- * Returns whether any navcell in the given region is inside the goal.
- */
-bool HierarchicalPathfinder::Chunk::RegionContainsGoal(u16 r, const PathGoal& goal) const
-{
-	// Inefficiently check every single navcell:
-	for (u16 j = 0; j < CHUNK_SIZE; ++j)
-	{
-		for (u16 i = 0; i < CHUNK_SIZE; ++i)
-		{
-			if (m_Regions[j][i] == r)
-			{
-				if (goal.NavcellContainsGoal(m_ChunkI * CHUNK_SIZE + i, m_ChunkJ * CHUNK_SIZE + j))
-					return true;
-			}
-		}
-	}
-
-	return false;
-}
-
-/**
  * Returns the global navcell coords, and the squared distance to the goal
  * navcell, of whichever navcell inside the given region is closest to
  * that goal.
@@ -222,34 +201,93 @@ void HierarchicalPathfinder::Chunk::RegionNavcellNearest(u16 r, int iGoal, int j
 }
 
 /**
- * Returns the global navcell coords, and the squared distance to the (i0,j0)
+ * Gives the global navcell coords, and the squared distance to the (i0,j0)
  * navcell, of whichever navcell inside the given region and inside the given goal
  * is closest to (i0,j0)
+ * Returns true if the goal is inside the region, false otherwise.
  */
-void HierarchicalPathfinder::Chunk::RegionNearestNavcellInGoal(u16 r, u16 i0, u16 j0, const PathGoal& goal, u16& iOut, u16& jOut, u32& dist2Best) const
+bool HierarchicalPathfinder::Chunk::RegionNearestNavcellInGoal(u16 r, u16 i0, u16 j0, const PathGoal& goal, u16& iOut, u16& jOut, u32& dist2Best) const
 {
+	// TODO: this should be optimized further.
+	// Most used cases empirically seem to be SQUARE, INVERTED_CIRCLE and then POINT and CIRCLE somehwat equally
 	iOut = 0;
 	jOut = 0;
 	dist2Best = std::numeric_limits<u32>::max();
-
-	for (int j = 0; j < CHUNK_SIZE; ++j)
+	
+	// Calculate the navcell that contains the center of the goal.
+	int gi = (goal.x >> Pathfinding::NAVCELL_SIZE_LOG2).ToInt_RoundToNegInfinity();
+	int gj = (goal.z >> Pathfinding::NAVCELL_SIZE_LOG2).ToInt_RoundToNegInfinity();
+	
+	switch(goal.type)
 	{
-		for (int i = 0; i < CHUNK_SIZE; ++i)
+	case PathGoal::POINT:
+	{
+		if (m_Regions[gj-m_ChunkJ * CHUNK_SIZE][gi-m_ChunkI * CHUNK_SIZE] == r)
 		{
-			if (m_Regions[j][i] != r || !goal.NavcellContainsGoal(i + m_ChunkI*CHUNK_SIZE, j + m_ChunkJ*CHUNK_SIZE))
-				continue;
-
-			u32 dist2 = (i + m_ChunkI*CHUNK_SIZE - i0)*(i + m_ChunkI*CHUNK_SIZE - i0)
-				        + (j + m_ChunkJ*CHUNK_SIZE - j0)*(j + m_ChunkJ*CHUNK_SIZE - j0);
-
-			if (dist2 < dist2Best)
+			iOut = gi;
+			jOut = gj;
+			dist2Best = (gi + m_ChunkI*CHUNK_SIZE - i0)*(gi + m_ChunkI*CHUNK_SIZE - i0)
+					  + (gj + m_ChunkJ*CHUNK_SIZE - j0)*(gj + m_ChunkJ*CHUNK_SIZE - j0);
+			return true;
+		}
+	}
+	case PathGoal::CIRCLE:
+	case PathGoal::SQUARE:
+	{
+		// restrict ourselves to a square surrounding the goal.
+		int radius = (std::max(goal.hw*3/2,goal.hh*3/2) >> Pathfinding::NAVCELL_SIZE_LOG2).ToInt_RoundToInfinity();
+		int i0 = std::max(0, gi-radius);
+		int i1 = std::min((int)CHUNK_SIZE, gi+radius+1);
+		int j0 = std::max(0, gj-radius);
+		int j1 = std::min((int)CHUNK_SIZE, gj+radius+1);
+		for (u16 j = j0; j < j1; ++j)
+		{
+			for (u16 i = i0; i < i1; ++i)
 			{
-				iOut = i + m_ChunkI*CHUNK_SIZE;
-				jOut = j + m_ChunkJ*CHUNK_SIZE;
-				dist2Best = dist2;
+				if (m_Regions[j][i] != r || !goal.NavcellContainsGoal(m_ChunkI * CHUNK_SIZE + i, m_ChunkJ * CHUNK_SIZE + j))
+					continue;
+				
+				u32 dist2 = (i + m_ChunkI*CHUNK_SIZE - i0)*(i + m_ChunkI*CHUNK_SIZE - i0)
+						  + (j + m_ChunkJ*CHUNK_SIZE - j0)*(j + m_ChunkJ*CHUNK_SIZE - j0);
+				
+				if (dist2 < dist2Best)
+				{
+					iOut = i + m_ChunkI*CHUNK_SIZE;
+					jOut = j + m_ChunkJ*CHUNK_SIZE;
+					dist2Best = dist2;
+				}
 			}
 		}
 	}
+	case PathGoal::INVERTED_CIRCLE:
+	case PathGoal::INVERTED_SQUARE:
+	{
+		// loop over all navcells.
+		for (u16 j = 0; j < CHUNK_SIZE; ++j)
+		{
+			for (u16 i = 0; i < CHUNK_SIZE; ++i)
+			{
+				if (m_Regions[j][i] != r || !goal.NavcellContainsGoal(m_ChunkI * CHUNK_SIZE + i, m_ChunkJ * CHUNK_SIZE + j))
+					continue;
+				
+				u32 dist2 = (i + m_ChunkI*CHUNK_SIZE - i0)*(i + m_ChunkI*CHUNK_SIZE - i0)
+						  + (j + m_ChunkJ*CHUNK_SIZE - j0)*(j + m_ChunkJ*CHUNK_SIZE - j0);
+				
+				if (dist2 < dist2Best)
+				{
+					iOut = i + m_ChunkI*CHUNK_SIZE;
+					jOut = j + m_ChunkJ*CHUNK_SIZE;
+					dist2Best = dist2;
+				}
+
+			}
+		}
+	}
+	}
+	if (dist2Best != std::numeric_limits<u32>::max())
+		return true;
+	
+	return false;
 }
 
 HierarchicalPathfinder::HierarchicalPathfinder() : m_DebugOverlay(NULL)
@@ -492,7 +530,12 @@ void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, p
 	FindReachableRegions(source, reachableRegions, passClass);
 
 	// Check whether any reachable region contains the goal
-	std::set<RegionID> reachableContainingGoal;
+	// And get the navcell that's the closest to the point
+	
+	u16 bestI = 0;
+	u16 bestJ = 0;
+	u32 dist2Best = std::numeric_limits<u32>::max();
+	
 	for (const RegionID& region : reachableRegions)
 	{
 		// Skip region if its chunk doesn't contain the goal area
@@ -504,19 +547,24 @@ void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, p
 			continue;
 
 		// If the region contains the goal area, the goal is reachable
-		if (GetChunk(region.ci, region.cj, passClass).RegionContainsGoal(region.r, goal))
+		// Remember the best point for optimization.
+		if (GetChunk(region.ci, region.cj, passClass).RegionNearestNavcellInGoal(region.r, i0, j0, goal, i, j, dist2))
 		{
 			// If it's a point, no need to move it, we're done
 			if (goal.type == PathGoal::POINT)
 				return;
-			// Else remember this region
-			reachableContainingGoal.insert(region);
+			if (dist2 < dist2Best)
+			{
+				bestI = i;
+				bestJ = j;
+				dist2Best = dist2;
+			}
 		}
 	}
 
 	// If the goal area wasn't reachable,
 	// find the navcell that's nearest to the goal's center
-	if (reachableContainingGoal.empty())
+	if (dist2Best == std::numeric_limits<u32>::max())
 	{
 		u16 iGoal, jGoal;
 		Pathfinding::NearestNavcell(goal.x, goal.z, iGoal, jGoal, m_W, m_H);
@@ -529,29 +577,6 @@ void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, p
 		Pathfinding::NavcellCenter(iGoal, jGoal, newGoal.x, newGoal.z);
 		goal = newGoal;
 		return;
-	}
-
-	// Non-point goals:
-	// For each region, find the closest navcell to (i0,j0) which is also in the goal,
-	// and use the best of all regions
-	ENSURE(goal.type != PathGoal::POINT);
-
-	u16 bestI = 0;
-	u16 bestJ = 0;
-	u32 dist2Best = std::numeric_limits<u32>::max();
-
-	for (const RegionID& region : reachableContainingGoal)
-	{
-		u16 i, j;
-		u32 dist2;
-		GetChunk(region.ci, region.cj, passClass).RegionNearestNavcellInGoal(region.r, i0, j0, goal, i, j, dist2);
-
-		if (dist2 < dist2Best)
-		{
-			bestI = i;
-			bestJ = j;
-			dist2Best = dist2;
-		}
 	}
 
 	ENSURE(dist2Best != std::numeric_limits<u32>::max());
