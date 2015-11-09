@@ -296,6 +296,7 @@ void main()
 	
 #if USE_REFLECTION
 	// Reflections
+	// we use real reflections against th skybox, and distort a texture of objects closer.
 	vec3 eye = reflect(v,n);
 	//eye.y = min(-0.2,eye.y);
 	// let's calculate where we intersect with the skycube.
@@ -308,12 +309,11 @@ void main()
 	newpos *= skyBoxRot;
 	newpos.y *= 4.0;
 	reflColor = textureCube(skyCube, newpos.rgb).rgb;
-	//float disttt = distance(worldPos,cameraPos);
-	//tex = mix(tex,vec3(0.7,0.7,0.9),clamp(disttt/300.0*disttt/300.0*disttt/300.0,0.0,0.9));
-	//gl_FragColor = vec4(clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),1.0);
-	//return;
 	
-	reflCoords = clamp( (0.5*reflectionCoords.xy - 40.0 * n.zx) / reflectionCoords.z + 0.5,0.0,1.0);	// Unbias texture coords
+	// Reflections appear more distorted when viewed from a lower angle. Simulate this.
+	float angleEffect = clamp(1.3 - dot(vec3(0.0,1.0,0.0), v),0.0,1.0);
+
+	reflCoords = clamp( (0.5*reflectionCoords.xy - 40.0 * n.zx * angleEffect) / reflectionCoords.z + 0.5,0.0,1.0);	// Unbias texture coords
 	vec4 refTex = texture2D(reflectionMap, reflCoords);
 	fresnel = clamp(fresnel+refTex.a/3.0,0.0,1.0);
 	reflColor = refTex.rgb * refTex.a + reflColor*(1.0-refTex.a);

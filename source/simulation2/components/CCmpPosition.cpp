@@ -695,7 +695,7 @@ public:
 			}
 		}
 
-		float y = baseY + m_Y.ToFloat() + Interpolate(m_LastYDifference.ToFloat(), 0.f, frameOffset);
+		float y = baseY + m_Y.ToFloat() + Interpolate(-1 * m_LastYDifference.ToFloat(), 0.f, frameOffset);
 
 		CMatrix3D m;
 

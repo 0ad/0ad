@@ -57,11 +57,12 @@ static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(TERRAIN_T
 static const entity_pos_t SHORT_PATH_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*6);
 
 /**
- * When short-pathing to an intermediate waypoint, we aim for a circle of this radius
- * around the waypoint rather than expecting to reach precisely the waypoint itself
- * (since it might be inside an obstacle).
+ * When short-pathing, and the short-range pathfinder failed to return a path,
+ * Assume we are at destination if we are closer than this distance to the target
+ * And we have no target entity.
+ * This is somewhat arbitrary, but setting a too big distance means units might lose sight of their end goal too much;
  */
-static const entity_pos_t SHORT_PATH_GOAL_RADIUS = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*3/2);
+static const entity_pos_t SHORT_PATH_GOAL_RADIUS = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*2);
 
 /**
  * If we are this close to our target entity/point, then think about heading
@@ -581,6 +582,12 @@ private:
 
 	void StartSucceeded()
 	{
+		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+		if (cmpObstruction)
+			cmpObstruction->SetMovingFlag(true);
+		
+		m_Moving = true;
+		
 		CMessageMotionChanged msg(true, false);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
@@ -622,7 +629,7 @@ private:
 	 * Decide whether to approximate the given range from a square target as a circle,
 	 * rather than as a square.
 	 */
-	bool ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t hw, entity_pos_t hh, entity_pos_t circleRadius) const;
+	bool ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const;
 
 	/**
 	 * Computes the current location of our target entity (plus offset).
@@ -695,6 +702,13 @@ REGISTER_COMPONENT_TYPE(UnitMotion)
 
 void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 {
+	// reset our state for sanity.
+	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+	if (cmpObstruction)
+		cmpObstruction->SetMovingFlag(false);
+
+	m_Moving = false;
+
 	if (ticket == m_Planning.expectedPathTicket)
 	{
 		// If no path was found, better cancel the planning
@@ -742,8 +756,13 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			StartSucceeded();
 
 		m_PathState = PATHSTATE_FOLLOWING;
+
+		if (cmpObstruction)
+			cmpObstruction->SetMovingFlag(true);
+		
+		m_Moving = true;
 	}
-	else if (m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT)
+	else if (m_PathState == PATHSTATE_WAITING_REQUESTING_SHORT || m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
 	{
 		m_ShortPath = path;
 
@@ -751,49 +770,56 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		if (m_ShortPath.m_Waypoints.empty())
 		{
 			// If we're globally following a long path, try to remove the next waypoint, it might be obstructed
+			// If not, and we are not in a formation, retry
+			// unless we are close to our target and we don't have a target entity.
+			// This makes sure that units don't clump too much when they are not in a formation and tasked to move.
 			if (m_LongPath.m_Waypoints.size() > 1)
 				m_LongPath.m_Waypoints.pop_back();
-			else if (!IsFormationMember())
-			{
-				StartFailed();
-				return;
-			}
-			else
+			else if (IsFormationMember())
 			{
 				m_Moving = false;
 				CMessageMotionChanged msg(true, true);
 				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+				return;
 			}
+			
+			CMessageMotionChanged msg(false, false);
+			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+
+			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+			if (!cmpPosition || !cmpPosition->IsInWorld())
+				return;
+			
+			CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+			if (m_TargetEntity == INVALID_ENTITY)
+			{
+				if (m_FinalGoal.DistanceToPoint(pos) <= SHORT_PATH_GOAL_RADIUS)
+				{
+					StopMoving();
+					MoveSucceeded();
+					
+					if (m_FacePointAfterMove)
+						FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
+					return;
+				}
+			}
+			m_LongPath.m_Waypoints.clear();
+			RequestLongPath(pos, m_FinalGoal);
+			m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
+			return;
 		}
 
 		// Now we've got a short path that we can follow
-		StartSucceeded();
-		m_PathState = PATHSTATE_FOLLOWING;
-	}
-	else if (m_PathState == PATHSTATE_FOLLOWING_REQUESTING_SHORT)
-	{
-		// Replace the current path with the new one
-		m_ShortPath = path;
-
-		// If there's no waypoints then we couldn't get near the target
-		if (m_ShortPath.m_Waypoints.empty())
-		{
-			// We should stop moving (unless we're in a formation, in which
-			// case we should continue following it)
-			if (!IsFormationMember())
-			{
-				MoveFailed();
-				return;
-			}
-			else
-			{
-				m_Moving = false;
-				CMessageMotionChanged msg(false, true);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
-			}
-		}
+		if (!HasValidPath())
+			StartSucceeded();
 
 		m_PathState = PATHSTATE_FOLLOWING;
+
+		if (cmpObstruction)
+			cmpObstruction->SetMovingFlag(true);
+
+		m_Moving = true;
 	}
 	else
 	{
@@ -976,8 +1002,8 @@ void CCmpUnitMotion::Move(fixed dt)
 				{
 					// create a fake obstruction to represent our waypoint.
 					ICmpObstructionManager::ObstructionSquare square;
-					square.hh = entity_pos_t::FromInt(1);
-					square.hw = entity_pos_t::FromInt(1);
+					square.hh = m_Clearance;
+					square.hw = m_Clearance;
 					square.u = CFixedVector2D(entity_pos_t::FromInt(1),entity_pos_t::FromInt(0));
 					square.v = CFixedVector2D(entity_pos_t::FromInt(0),entity_pos_t::FromInt(1));
 					square.x = m_LongPath.m_Waypoints.back().x;
@@ -1008,7 +1034,6 @@ void CCmpUnitMotion::Move(fixed dt)
 		if (m_PathState == PATHSTATE_FOLLOWING)
 		{
 			// If we're not currently computing any new paths:
-
 			if (m_LongPath.m_Waypoints.empty() && m_ShortPath.m_Waypoints.empty())
 			{
 				if (IsFormationMember())
@@ -1019,6 +1044,10 @@ void CCmpUnitMotion::Move(fixed dt)
 					CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
 					if (cmpUnitMotion && !cmpUnitMotion->IsMoving())
 					{
+						CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+						if (cmpObstruction)
+							cmpObstruction->SetMovingFlag(false);
+
 						m_Moving = false;
 						CMessageMotionChanged msg(false, false);
 						GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
@@ -1290,16 +1319,16 @@ ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool 
 
 void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& goal)
 {
-	// Cancel any pending path requests
+	// reset our state for sanity.
 	m_ExpectedPathTicket = 0;
-
-	// Update the unit's movement status.
-	m_Moving = true;
-
-	// Set our 'moving' flag, so other units pathfinding now will ignore us
+	
 	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 	if (cmpObstruction)
-		cmpObstruction->SetMovingFlag(true);
+		cmpObstruction->SetMovingFlag(false);
+	
+	m_Moving = false;
+
+	m_PathState = PATHSTATE_NONE;
 
 #if DISABLE_PATHFINDER
 	{
@@ -1340,7 +1369,12 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// need a long path, so we shouldn't simply check linear distance
 	if (goal.DistanceToPoint(from) < SHORT_PATH_SEARCH_RANGE)
 	{
+		// add our final goal as a long range waypoint so we don't forget
+		// where we are going if the short-range pathfinder returns
+		// an aborted path.
 		m_LongPath.m_Waypoints.clear();
+		CFixedVector2D target = m_FinalGoal.NearestPointOnGoal(from);
+		m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
 		m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
 		RequestShortPath(from, goal, true);
 	}
@@ -1489,23 +1523,14 @@ bool CCmpUnitMotion::IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t
 	}
 }
 
-bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t hw, entity_pos_t hh, entity_pos_t circleRadius) const
+bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t circleRadius) const
 {
 	// Given a square, plus a target range we should reach, the shape at that distance
 	// is a round-cornered square which we can approximate as either a circle or as a square.
-	// Choose the shape that will minimise the worst-case error:
-
-	entity_pos_t rSquare = std::min(hw, hh);
-	if (range < rSquare)
-		return false;
-
-	// For a square, error is (sqrt(2)-1) * (range-rSquare) at the corners
-	entity_pos_t errSquare = (entity_pos_t::FromInt(4142)/10000).Multiply(range-rSquare);
-
-	// For a circle, error is radius-hw at the sides and radius-hh at the top/bottom
-	entity_pos_t errCircle = circleRadius - rSquare;
-
-	return (errCircle < errSquare);
+	// Previously, we used the shape that minimized the worst-case error.
+	// However that is unsage in some situations. So let's be less clever and
+	// just check if our range is at least three times bigger than the circleradius
+	return (range > circleRadius*3);
 }
 
 bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
@@ -1586,14 +1611,12 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 		entity_pos_t circleRadius = halfSize.Length();
 
 		entity_pos_t goalDistance = minRange + Pathfinding::GOAL_DELTA;
-		// ensure it's far enough to not intersect the building itself (TODO is it really needed for inverted move ?)
-		goalDistance = std::max(goalDistance, m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16);
 
-		if (ShouldTreatTargetAsCircle(minRange, obstruction.hw, obstruction.hh, circleRadius))
+		if (ShouldTreatTargetAsCircle(minRange, circleRadius))
 		{
 			// The target is small relative to our range, so pretend it's a circle
 			goal.type = PathGoal::INVERTED_CIRCLE;
-			goal.hw = goalDistance;
+			goal.hw = circleRadius + goalDistance;
 		}
 		else
 		{
@@ -1617,7 +1640,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 		// Circumscribe the square
 		entity_pos_t circleRadius = halfSize.Length();
 
-		if (ShouldTreatTargetAsCircle(maxRange, obstruction.hw, obstruction.hh, circleRadius))
+		if (ShouldTreatTargetAsCircle(maxRange, circleRadius))
 		{
 			// The target is small relative to our range, so pretend it's a circle
 
@@ -1709,7 +1732,7 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 
 		entity_pos_t circleRadius = halfSize.Length();
 
-		if (ShouldTreatTargetAsCircle(maxRange, obstruction.hw, obstruction.hh, circleRadius))
+		if (ShouldTreatTargetAsCircle(maxRange, circleRadius))
 		{
 			// The target is small relative to our range, so pretend it's a circle
 			// and see if we're close enough to that.
@@ -1717,11 +1740,12 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 			entity_pos_t circleDistance = (pos - CFixedVector2D(obstruction.x, obstruction.z)).Length() - circleRadius;
 			entity_pos_t previousCircleDistance = (pos - CFixedVector2D(previousObstruction.x, previousObstruction.z)).Length() - circleRadius;
 
-			if (circleDistance <= maxRange || previousCircleDistance <= maxRange)
-				return true;
+			return circleDistance <= maxRange || previousCircleDistance <= maxRange;
 		}
 
-		return false;
+		// take minimal clearance required in MoveToTargetRange into account, multiplying by 3/2 for diagonals
+		entity_pos_t maxDist = std::max(maxRange, (m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16)*3/2);
+		return distance <= maxDist || distance <= maxDist;
 	}
 	else
 	{

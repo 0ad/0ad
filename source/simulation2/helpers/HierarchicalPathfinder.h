@@ -139,11 +139,9 @@ private:
 
 		void RegionCenter(u16 r, int& i, int& j) const;
 
-		bool RegionContainsGoal(u16 r, const PathGoal& goal) const;
-
 		void RegionNavcellNearest(u16 r, int iGoal, int jGoal, int& iBest, int& jBest, u32& dist2Best) const;
 
-		void RegionNearestNavcellInGoal(u16 r, u16 i0, u16 j0, const PathGoal& goal, u16& iOut, u16& jOut, u32& dist2Best) const;
+		bool RegionNearestNavcellInGoal(u16 r, u16 i0, u16 j0, const PathGoal& goal, u16& iOut, u16& jOut, u32& dist2Best) const;
 	};
 
 	typedef std::map<RegionID, std::set<RegionID> > EdgesMap;

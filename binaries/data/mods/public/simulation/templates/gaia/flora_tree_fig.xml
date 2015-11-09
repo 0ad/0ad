@@ -10,6 +10,9 @@
     <Tooltip>Gather figs for Food.</Tooltip>
     <Icon>gaia/flora_bush_berry.png</Icon>
   </Identity>
+  <Obstruction>
+    <Static width="4.0" depth="4.0"/>
+  </Obstruction>
   <ResourceSupply>
     <Amount>500</Amount>
     <Type>food.fruit</Type>

@@ -75,14 +75,17 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	// Construct the directory name based on the PID, to be relatively unique.
 	// Append "-1", "-2" etc if we run multiple matches in a single session,
 	// to avoid accidentally overwriting earlier logs.
-	std::wstringstream name;
-	name << getpid();
-
 	static int run = -1;
-	if (++run)
-		name << "-" << run;
+	do
+	{
+		std::wstringstream name;
+		name << getpid();
+		if (++run)
+			name << "-" << run;
 
-	m_Directory = psLogDir() / L"sim_log" / name.str();
+		m_Directory = psLogDir() / L"sim_log" / name.str();
+	} while (DirectoryExists(m_Directory));
+
 	CreateDirectories(m_Directory, 0700);
 
 	m_Stream = new std::ofstream(OsString(m_Directory / L"commands.txt").c_str(), std::ofstream::out | std::ofstream::trunc);

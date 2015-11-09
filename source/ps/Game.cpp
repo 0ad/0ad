@@ -162,8 +162,8 @@ int CGame::LoadVisualReplayData()
 			CancelLoad(L"Failed to load replay data (unrecognized content)");
 	}
 	SAFE_DELETE(m_ReplayStream);
-	m_FinalReplayTurn = currentTurn;
-	replayTurnMgr->StoreFinalReplayTurn(currentTurn);
+	m_FinalReplayTurn = currentTurn - 1;
+	replayTurnMgr->StoreFinalReplayTurn(m_FinalReplayTurn);
 	return 0;
 }
 
