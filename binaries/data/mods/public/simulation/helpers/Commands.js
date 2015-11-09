@@ -30,17 +30,17 @@ function ProcessCommand(player, cmd)
 	//	moves the entities closer to the target before giving up.)
 
 	// Now handle various commands
-	if (commands[cmd.type])
+	if (g_Commands[cmd.type])
 	{
 		var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 		cmpTrigger.CallEvent("PlayerCommand", {"player": player, "cmd": cmd});
-		commands[cmd.type](player, cmd, data);
+		g_Commands[cmd.type](player, cmd, data);
 	}
 	else
 		error("Invalid command: unknown command type: "+uneval(cmd));
 }
 
-var commands = {
+var g_Commands = {
 	"debug-print": function(player, cmd, data)
 	{
 		print(cmd.message);
@@ -1638,5 +1638,4 @@ Engine.RegisterGlobal("GetFormationRequirements", GetFormationRequirements);
 Engine.RegisterGlobal("CanMoveEntsIntoFormation", CanMoveEntsIntoFormation);
 Engine.RegisterGlobal("GetDockAngle", GetDockAngle);
 Engine.RegisterGlobal("ProcessCommand", ProcessCommand);
-Engine.RegisterGlobal("commands", commands);
-
+Engine.RegisterGlobal("g_Commands", g_Commands);
