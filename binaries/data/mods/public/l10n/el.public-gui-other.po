@@ -6,12 +6,13 @@
 # LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2014-2015
 # Nicolas Auvray <na.itms76@gmail.com>, 2014
+# Sotiris K <sotok42@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-25 20:31+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-28 15:08+0000\n"
+"Last-Translator: Sotiris K <sotok42@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,7 +88,7 @@ msgstr ""
 #: gui/common/functions_utility.js:142
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Προεπιλεγμένες "
 
 #: gui/common/functions_utility.js:152
 msgid "A randomly selected map."
@@ -324,11 +325,11 @@ msgstr "Λάθος έκδοση δικτυακού πρωτοκόλλου"
 
 #: gui/common/network.js:9
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Το παιχνίδι φορτώνει, δοκιμάστε ξανά αργότερα."
 
 #: gui/common/network.js:10
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Το παιχνίδι είδη έχει αρχίσει. Οι παρατηρητές δεν επιτρέπονται"
 
 #: gui/common/network.js:11
 #, javascript-format
@@ -356,27 +357,27 @@ msgstr ""
 #: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Πολύ εύκολο"
 
 #: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Εύκολο"
 
 #: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Μεσαίο"
 
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Δύσκολο"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Πολύ δύσκολο"
 
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
@@ -399,7 +400,7 @@ msgstr ""
 #: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Τυχαίο"
 
 #: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
@@ -407,21 +408,21 @@ msgstr "Σενάριο"
 
 #: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Κανένα"
 
 #: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Ατελείωτο παιχνίδι "
 
 #: gui/common/settings.js:231
 msgid "Unlimited"
-msgstr ""
+msgstr "Απεριόριστο"
 
 #: gui/common/settings.js:279 gui/common/settings.js:290
 #: gui/common/settings.js:301 gui/common/settings.js:312
 #: gui/common/settings.js:323
 msgid "Unknown"
-msgstr ""
+msgstr "Άγνωστο"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -1311,11 +1312,11 @@ msgstr "Εξερεύνηση\nΧάρτη"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr ""
+msgstr "Στην κορυφή "
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr ""
+msgstr "Στο τέλος"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
@@ -1365,7 +1366,7 @@ msgstr "Γλώσσα:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "Περιοχή:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
@@ -1566,7 +1567,7 @@ msgstr "Έξοδος"
 
 #: gui/pregame/mainmenu.xml:(caption):549
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Βοηθήστε με τη μετάφραση!"
 
 #: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"

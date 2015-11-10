@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-22 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-28 14:11+0000\n"
+"Last-Translator: Joshua Christo Randiny <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,7 @@ msgstr "Kembali ke menu utama."
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the lobby."
-msgstr "Kembali ke Lobi"
+msgstr "Kembali ke lobi"
 
 #: gui/gamesetup/gamesetup.js:133 gui/gamesetup/gamesetup.js:1368
 #: gui/gamesetup/gamesetup.js:1432
@@ -109,7 +109,7 @@ msgstr "Tidak"
 #: gui/gamesetup/gamesetup.js:1439 gui/gamesetup/gamesetup.js:1440
 #: gui/gamesetup/gamesetup.js:1441
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Ditentukan skenario"
 
 #: gui/gamesetup/gamesetup.js:1453
 msgid "Randomly selects a map from the list"
@@ -117,7 +117,7 @@ msgstr "Memilih peta secara acak dari daftar"
 
 #: gui/gamesetup/gamesetup.js:1460
 msgid "Sorry, no description available."
-msgstr "Maaf, tidak ada deskripsi"
+msgstr "Maaf, tidak ada deskripsi yang tersedia."
 
 #: gui/gamesetup/gamesetup.js:1463
 #, javascript-format
@@ -180,7 +180,7 @@ msgstr "* %(username)s belum siap."
 
 #: gui/gamesetup/gamesetup.js:1839
 msgid "Game settings have been changed"
-msgstr "Pengaturan permainan telah diganti"
+msgstr "Pengaturan permainan telah diubah"
 
 #: gui/gamesetup/gamesetup.js:1864
 msgid "I'm not ready"
@@ -283,7 +283,7 @@ msgstr "Nama Pemain"
 
 #: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Color"
-msgstr ""
+msgstr "Warna"
 
 #: gui/gamesetup/gamesetup.xml:(caption):49
 msgid "Player Placement"
@@ -323,7 +323,7 @@ msgstr "Kirim"
 
 #: gui/gamesetup/gamesetup.xml:(caption):230
 msgid "Start game!"
-msgstr "Mulai Permainan!"
+msgstr "Mulai permainan!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):248
 msgid "Back"
@@ -348,7 +348,7 @@ msgstr "Sumberdaya awal:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):319
 msgid "Ceasefire:"
-msgstr "Gencatan senjata:"
+msgstr "Gencatan Senjata:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -368,7 +368,7 @@ msgstr "Matikan Harta Karun:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):359
 msgid "Teams Locked:"
-msgstr "Regu dikunci:"
+msgstr "Regu Dikunci:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):369
 msgid "Cheats:"
@@ -388,11 +388,11 @@ msgstr "Tampilkan info bangsa"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):76
 msgid "Pick a color."
-msgstr ""
+msgstr "Pilih warna."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):79
 msgid "Select player."
-msgstr "Pilih Pemain"
+msgstr "Pilih Pemain."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):89
 msgid "Configure AI settings."
@@ -484,7 +484,7 @@ msgstr "Alih apabila permainan ini akan diperingkat untuk papan penilaian."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):393
 msgid "Allow observers to join after the game started."
-msgstr ""
+msgstr "Perbolehkan pengamat untuk bergabung setelah permainan mulai"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):407
 msgid "Close more game options window"
@@ -777,7 +777,7 @@ msgstr ""
 msgid ""
 "\"It is simplicity that makes the uneducated more effective than the "
 "educated when addressing popular audiences.\" - Aristotle"
-msgstr ""
+msgstr "\"Adalah kesederhanaan yang mengakibatkan kaum tak terpelajar lebih efisien dibanding kaum terpelajar dalam mengatasi khalayak luas.\" - Aristoteles"
 
 #: gui/text/quotes.txt:50
 msgid ""
@@ -807,7 +807,7 @@ msgstr ""
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
-msgstr ""
+msgstr "\"Dia belum memperoleh nasib baik; nasib baiklah yang telah memperoleh dia.\" - Bion dari Borysthenes"
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
@@ -831,7 +831,7 @@ msgstr "\"Saya datang, saya melihat, saya menaklukkan.\" - Gaius Julius Caesar"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Manusia secara sukarela percaya akan hal yang mereka harapkan.\" - Gaius Julius Caesar"
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
@@ -841,7 +841,7 @@ msgstr ""
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Bukan orang yang berkecukupan makanan dan berambut panjang yang saya takuti, tetapi yang pucat dan terlihat lapar.\" - Gaius Julius Caesar"
 
 #: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
@@ -931,7 +931,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:78
 msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Jenius dipupuk oleh energi.\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
@@ -945,13 +945,13 @@ msgstr "\"Kita tidak boleh mengatakan semua kesalahan adalah kebodohan\" - Marcu
 
 #: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Biarkan hukumannya sesuai perlawanannya.\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
-msgstr ""
+msgstr "\"Biarkan kemakmuran rakyat menjadi hukum yang utama.\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
@@ -971,13 +971,13 @@ msgstr ""
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Tugas pertama manusia adalah mencari dan meneyelidiki kebenaran.\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:87
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus (Greek: Kroisos), king of Lydia"
-msgstr ""
+msgstr "\"Dalam damai anak mengubur ayahnya, tapi dalam perang ayah yang mengubur anaknya.\" - Croesus (Greek: Kroisos), raja Lydia"
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
@@ -1055,17 +1055,17 @@ msgstr "\"Saya adalah warga dari dunia.\" - Diogenes of Sinope"
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope"
-msgstr ""
+msgstr "\"Bukan karena saya gila, tapi hanya saja kepala saya berbeda dari milikmu.\" - Diogenes dari Sinope"
 
 #: gui/text/quotes.txt:102
 msgid ""
 "\"Let thy speech be better than silence, or be silent.\" - Dionysius I of "
 "Syracuse"
-msgstr ""
+msgstr "\"Hendaknya ucapanmu lebih baik dari keheningan atau tetaplah diam.\" - Dionysius I dari Syracuse"
 
 #: gui/text/quotes.txt:103
 msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
-msgstr ""
+msgstr "\"Tak ada yang punya kekuatan lebih besar dari kebutuhan.\" - Euripides"
 
 #: gui/text/quotes.txt:104
 msgid "\"A coward turns away, but a brave man's choice is danger.\" - Euripides"
@@ -1085,13 +1085,13 @@ msgstr ""
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi"
-msgstr ""
+msgstr "\"Jika seseorang mencungkil mata orang lain, matanya juga harus dicungkil.\" - Hammurabi"
 
 #: gui/text/quotes.txt:108
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
-msgstr ""
+msgstr "\"Aku datang bukan untuk perang dengan Italia, tapi untuk membantunya melawan Roma.\" - Hannibal Barca"
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
@@ -1106,11 +1106,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
-msgstr ""
+msgstr "\"Segalanya mengalir, tak ada yang berdiri diam.\" - Herakleitos"
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr ""
+msgstr "\"Tak ada yang dapat bertahan selain perubahan\" - Herakleitos"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
@@ -1122,7 +1122,7 @@ msgstr "\"Karakter adalah takdir.\" - Herakleitos"
 
 #: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
-msgstr ""
+msgstr "\"Kenyataan mengusasi manusia; manusia tidak menguasai kenyataan.\" - Herodotus"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1139,7 +1139,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
-msgstr ""
+msgstr "\"Di daerah lemah lahirlah manusia lemah.\" - Herodotus"
 
 #: gui/text/quotes.txt:119
 msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
@@ -1194,7 +1194,7 @@ msgstr ""
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
 " he left for Thermopylae"
-msgstr ""
+msgstr "\"Menikahlah dengan pria yang baik dan lahirkanlah anak yang baik.\" - Leonidas,kepada istrinya sebelum ia pergi ke Thermopylae"
 
 #: gui/text/quotes.txt:129
 msgid ""
@@ -1230,7 +1230,7 @@ msgstr "\"Kebebasan adalah milik pasti dari orang yang punya keberanian untuk me
 msgid ""
 "\"What you leave behind is not what is engraved in stone monuments, but what"
 " is woven into the lives of others.\" - Pericles"
-msgstr ""
+msgstr "\"Apa yang kamu tinggalkan bukanlah yang terpahat di monumen batu tapi yang tersemat pada kehidupan orang lain\" - Pericles"
 
 #: gui/text/quotes.txt:136
 msgid ""
@@ -1268,23 +1268,23 @@ msgstr ""
 msgid ""
 "\"Just because you do not take an interest in politics doesn't mean politics"
 " won't take an interest in you.\" - Pericles"
-msgstr ""
+msgstr "\"Hanya karena kamu tidak tertarik dengan politik tidak berarti politik tak tertarik denganmu.\" - Pericles"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man trembles exceedingly at heart on its approach.\" - Pindar"
-msgstr ""
+msgstr "\"Perang itu indah bagi yang tak pernah mengalaminya, tapi yang telah mengalaminya gemetar dalam hatinya.\" - Pindar"
 
 #: gui/text/quotes.txt:143
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
-msgstr ""
+msgstr "\"Waktu untuk keberangkatan telah tiba dan kita pergi ke jalan kita masing-masing — Saya menuju kematian dan kamu kehidupan. Mana yang lebih baik hanya Tuhan yang tahu.\" - Plato"
 
 #: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
-msgstr ""
+msgstr "\"Hidup tanpa cobaan tak pantas dijalani.\" - Plato"
 
 #: gui/text/quotes.txt:145
 msgid ""
@@ -1297,7 +1297,7 @@ msgstr ""
 msgid ""
 "\"False words are not only evil in themselves, but they infect the soul with"
 " evil.\" - Plato"
-msgstr ""
+msgstr "\"Kata-kata palsu tidak hanya jahat, tapi mereka juga menginfeksi jiwa dengan kejahatan.\" - Plato"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1320,7 +1320,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:151
 msgid "\"A man with courage has every blessing.\" - Plautus"
-msgstr ""
+msgstr "\"Seseorang dengan keberanian punya semua berkat.\" - Plautus"
 
 #: gui/text/quotes.txt:152
 msgid ""
@@ -1360,7 +1360,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr ""
+msgstr "\"Dalam kemarahan kita harus menahan diri untuk berbicara atau bertindak\" - Pythagoras"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
@@ -1382,7 +1382,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
-msgstr ""
+msgstr "\"Tak ada kata atau perbuatan yang tak menggema untuk selamanya.\" - Pythagoras"
 
 #: gui/text/quotes.txt:165
 msgid ""
@@ -1398,7 +1398,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr ""
+msgstr "\"Jangan sedikit pun berpikir tentang hal yang seharusnya tidak dilakukan.\" - Pythagoras"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -1415,7 +1415,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr ""
+msgstr "\"Tanpa keadilan, tak ada dunia yang akan makmur\" - Pythagoras"
 
 #: gui/text/quotes.txt:171
 msgid ""
@@ -1434,7 +1434,7 @@ msgstr ""
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr ""
+msgstr "\"Bersiaplah untuk perang, karena kamu tak dapat mempertahankan kedamaian.\" - Scipio Africanus"
 
 #: gui/text/quotes.txt:174
 msgid ""

@@ -15,13 +15,13 @@
 # Rácz Zsolt <zsoltr@gmail.com>, 2015
 # ricsipontaz <ricsipontaz@googlemail.com>, 2014
 # Tibor Buzási, 2014
-# Tibor Buzási, 2014
+# Tibor Buzási, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-19 11:14+0000\n"
+"Last-Translator: Tibor Buzási\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,15 +33,15 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Alap hatókör: %(range)s méter"
+msgstr[1] "Alap hatókör: %(range)s méter"
 
 #: gui/session/input.js:154
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Átlagos bónusz hatókör: %(range)s méter"
+msgstr[1] "Átlagos bónusz hatókör: %(range)s méter"
 
 #: gui/session/input.js:733
 msgid "Cannot build wall here!"
@@ -123,7 +123,7 @@ msgstr "Ellenség"
 
 #: gui/session/menu.js:349
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Szövetségesek megkérése, hogy megtámadják ezt az ellenséget"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -207,8 +207,8 @@ msgstr[1] "%(numberOfLandTraders)s szárazföldi kereskedő inaktív"
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(inactiveString)s van."
+msgstr[1] "%(inactiveString)s van."
 
 #: gui/session/menu.js:558
 msgid "There are no merchant ships."
@@ -245,7 +245,7 @@ msgstr "A Fejlesztői felület megnyílt."
 
 #: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
-msgstr "A Fejlesztői Felület becsukódott."
+msgstr "A Fejlesztői felület becsukódott."
 
 #: gui/session/menu.js:710
 #, javascript-format
@@ -285,7 +285,7 @@ msgstr "Ismeretlen játékos"
 #: gui/session/messages.js:417
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s megkezdte az újracsatlakozást a játékhoz."
 
 #: gui/session/messages.js:420
 #, javascript-format
@@ -295,7 +295,7 @@ msgstr "%(player)s elhagyta a játékot."
 #: gui/session/messages.js:423
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s újracsatlakozott a játékhoz."
 
 #: gui/session/messages.js:428
 msgid "You have been defeated."
@@ -339,7 +339,7 @@ msgstr "%(player)s semlegesen áll hozzád."
 #: gui/session/messages.js:468
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/session/messages.js:476
 #, javascript-format
@@ -360,7 +360,7 @@ msgstr "%(player)s ennyit küldött neked: %(amounts)s."
 #: gui/session/messages.js:496
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Állataidat megtámadta %(attacker)s!"
 
 #: gui/session/messages.js:498
 #, javascript-format
@@ -408,7 +408,7 @@ msgstr "%(genericName)s — becsomagolva"
 #: gui/session/selection_details.js:43
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[OFFLINE] %(player)s"
 
 #: gui/session/selection_details.js:48
 #, javascript-format
@@ -419,8 +419,8 @@ msgstr "%(rank)s. rang"
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ez az építmény %(seconds)s másodperc múlva elkészül."
+msgstr[1] "Ez az építmény %(seconds)s másodperc múlva elkészül."
 
 #: gui/session/selection_details.js:78
 #, javascript-format
@@ -430,7 +430,7 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 #: gui/session/selection_details.js:108
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:126
 #, javascript-format
@@ -476,8 +476,8 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Építők száma.\nMég egy építőmunkással ez az épület %(speedup)s másodperccel hamarabb elkészül."
+msgstr[1] "Építők száma.\nMég egy építőmunkással ez az épület %(speedup)s másodperccel hamarabb elkészül."
 
 #: gui/session/selection_details.js:202 gui/session/selection_details.js:210
 msgid "Number of builders."
@@ -509,7 +509,7 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_details.js:355
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr ""
+msgstr "Foglalási pontok:"
 
 #: gui/session/selection_panels.js:72
 msgid "Increase the alert level to protect more units"
@@ -668,7 +668,7 @@ msgstr "Természet"
 #: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Struktúrafa"
 
 #: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
@@ -713,22 +713,22 @@ msgstr "GYŐZELEM!"
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Igen"
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Nem"
 
 #: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "A visszajátszás befejeződött. Ki akarsz lépni?"
 
 #: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Megerősítés"
 
 #: gui/session/session.js:732
 msgid "Population (current / limit)"
@@ -800,7 +800,7 @@ msgstr "Nem tudod elpusztítani ezt az egységet, mert a háború ködében van.
 #: gui/session/unit_actions.js:702
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "Nem tudod elpusztítani ezt az egységet, mert a foglalási pontok kevesebb mint fele van a birtokodban."
 
 #: gui/session/unit_actions.js:734
 msgid "Stop"
@@ -851,7 +851,7 @@ msgstr "%(gain)s (%(player)s)"
 #: gui/session/utility_functions.js:141 gui/session/utility_functions.js:146
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -965,7 +965,7 @@ msgstr "Kiválasztott egység előléptetése"
 
 #: gui/session/session.xml:(caption):151
 msgid "Hierarchical pathfinder overlay"
-msgstr ""
+msgstr "Hierarchikus felderítő felület"
 
 #: gui/session/session.xml:(caption):185
 msgid "Game Paused"
@@ -1029,7 +1029,7 @@ msgstr "Sebzéspontok:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Capture points"
-msgstr ""
+msgstr "Foglalási pontok"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"
@@ -1067,7 +1067,7 @@ msgstr "Menü"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XIX : Syllepsis"
-msgstr ""
+msgstr "ALPHA XIX : Syllepsis"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

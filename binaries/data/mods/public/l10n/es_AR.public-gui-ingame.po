@@ -3,12 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Alan Ponce <ae_ponce@hotmail.com>, 2015
+# Guillermo Faundo Gini <guillermofgini@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-10 02:48+0000\n"
+"Last-Translator: Alan Ponce <ae_ponce@hotmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,8 +22,8 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Rango básico: %(range)s metros"
+msgstr[1] "Rango básico: %(range)s metros"
 
 #: gui/session/input.js:154
 #, javascript-format
@@ -32,50 +34,50 @@ msgstr[1] ""
 
 #: gui/session/input.js:733
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "No se puede construir un muro aquí!"
 
 #: gui/session/menu.js:1 gui/session/menu.xml:(caption):64
 msgid "Pause"
-msgstr ""
+msgstr "Pausa."
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Continuar."
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "¿Estás seguro que quieres rendirte?"
 
 #: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmar"
 
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "¿Estás seguro que quieres salir? Al retirarte se desconectarán todos los otros jugadores."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "¿Estás seguro que quieres salir?"
 
 #: gui/session/menu.js:169
 msgid "I will return"
-msgstr ""
+msgstr "Regresaré"
 
 #: gui/session/menu.js:169
 msgid "I resign"
-msgstr ""
+msgstr "Me rindo"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
@@ -87,26 +89,26 @@ msgstr ""
 
 #: gui/session/menu.js:189 gui/session/unit_actions.js:708
 msgid "Delete"
-msgstr ""
+msgstr "Borrar"
 
 #: gui/session/menu.js:293
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: gui/session/menu.js:296 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
-msgstr ""
+msgstr "Aliado"
 
 #: gui/session/menu.js:296 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
-msgstr ""
+msgstr "Neutral"
 
 #: gui/session/menu.js:296 gui/session/messages.js:632
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
-msgstr ""
+msgstr "Enemigo"
 
 #: gui/session/menu.js:349
 msgid "Request your allies to attack this enemy"
@@ -114,7 +116,7 @@ msgstr ""
 
 #: gui/session/menu.js:364
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #: gui/session/menu.js:475
 msgid "There are no land traders."
@@ -199,7 +201,7 @@ msgstr[1] ""
 
 #: gui/session/menu.js:558
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "No hay barcos mercantes"
 
 #: gui/session/menu.js:564
 #, javascript-format
@@ -224,7 +226,7 @@ msgstr[1] ""
 
 #: gui/session/menu.js:681 gui/session/menu.xml:(caption):17
 msgid "Manual"
-msgstr ""
+msgstr "Manuel"
 
 #: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
@@ -337,7 +339,7 @@ msgstr ""
 #. elements in an enumeration.
 #: gui/session/messages.js:478
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/messages.js:483
 #, javascript-format
@@ -381,7 +383,7 @@ msgstr ""
 
 #: gui/session/messages.js:612 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
-msgstr ""
+msgstr "Equipo"
 
 #: gui/session/messages.js:654
 msgid "Private"
@@ -481,7 +483,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:270
 msgid "Classes:"
-msgstr ""
+msgstr "Clases:"
 
 #: gui/session/selection_details.js:325
 msgid "Hitpoints:"
@@ -646,7 +648,7 @@ msgstr ""
 #: gui/session/session.js:19 gui/session/utility_functions.js:137
 #: gui/session/utility_functions.js:143 gui/session/utility_functions.js:148
 msgid "You"
-msgstr ""
+msgstr "Vos"
 
 #: gui/session/session.js:172
 msgid "Gaia"
@@ -679,7 +681,7 @@ msgstr ""
 
 #: gui/session/session.js:488
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/session/session.js:490
 msgid "Press OK to continue"
@@ -700,12 +702,12 @@ msgstr ""
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: gui/session/session.js:571
 msgctxt "replayFinished"
@@ -715,7 +717,7 @@ msgstr ""
 #: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmar"
 
 #: gui/session/session.js:732
 msgid "Population (current / limit)"
@@ -838,7 +840,7 @@ msgstr ""
 #: gui/session/utility_functions.js:141 gui/session/utility_functions.js:146
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -847,11 +849,11 @@ msgstr ""
 
 #: gui/session/diplomacy_window.xml:(caption):15
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: gui/session/diplomacy_window.xml:(caption):18
 msgid "Civilization"
-msgstr ""
+msgstr "Civilización"
 
 #: gui/session/diplomacy_window.xml:(caption):24
 msgid "Theirs"
@@ -876,7 +878,7 @@ msgstr ""
 #: gui/session/diplomacy_window.xml:(caption):79
 #: gui/session/trade_window.xml:(caption):47
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: gui/session/menu.xml:(caption):28
 msgid "Chat"
@@ -964,7 +966,7 @@ msgstr ""
 
 #: gui/session/session.xml:(caption):223
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: gui/session/session.xml:(caption):229
 msgid "Team Only"
@@ -972,7 +974,7 @@ msgstr ""
 
 #: gui/session/session.xml:(caption):233
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: gui/session/top_panel.xml:(tooltip):18
 msgid "Choose player to view"
@@ -1028,7 +1030,7 @@ msgstr ""
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Rank"
-msgstr ""
+msgstr "Rango"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
@@ -1058,16 +1060,16 @@ msgstr ""
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"
-msgstr ""
+msgstr "Comida"
 
 #: gui/session/top_panel/resource_metal.xml:(tooltip):3
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #: gui/session/top_panel/resource_stone.xml:(tooltip):3
 msgid "Stone"
-msgstr ""
+msgstr "Piedra"
 
 #: gui/session/top_panel/resource_wood.xml:(tooltip):3
 msgid "Wood"
-msgstr ""
+msgstr "Madera"

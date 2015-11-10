@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Fabrizio Marana, 2015
 # Laurene Albrand, 2015
 # Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014-2015
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-07-22 18:09+0000\n"
-"Last-Translator: Laurene Albrand\n"
+"PO-Revision-Date: 2015-10-09 22:42+0000\n"
+"Last-Translator: Fabrizio Marana\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -464,7 +465,7 @@ msgstr "A long spear made specifically for cavalry."
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
+msgstr "Equip your close-quarter cavalry with better weapons. Close-quarter Cavalry +2 Hack Attack."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -488,11 +489,11 @@ msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr "Training increases melee attack."
+msgstr "Training increases close-quarter attack."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr "+20% melee cavalry attack."
+msgstr "+20% close-quarter cavalry attack."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
@@ -529,7 +530,7 @@ msgstr "Replaces bronze weapons with iron."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
+msgstr "Equip your close-quarter cavalry with better weapons. +20% close-quarter cavalry attack."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -590,7 +591,7 @@ msgstr "Often, an infantryman would carry a secondary weapon in addition to his 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr "+20% melee infantry attack."
+msgstr "+20% close-quarter infantry attack."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
@@ -1136,7 +1137,7 @@ msgstr "Geometric Masonry"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
-msgstr "Melee infantry +1 hack attack."
+msgstr "Close-quarter infantry +1 hack attack."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."

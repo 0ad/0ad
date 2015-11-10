@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Amin Behshad <behshadn1-ted@yahoo.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-08-24 08:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-26 14:38+0000\n"
+"Last-Translator: Amin Behshad <behshadn1-ted@yahoo.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +23,7 @@ msgstr "مادر طبیعت"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
-msgstr "گیاه"
+msgstr "رده گیاهان"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
@@ -35,7 +36,7 @@ msgstr "تمشک"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:10
 msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "از این بوته ها به عنوان غذا میوه جمع آوری کنید."
+msgstr "از این بوته‌های میوه، غذا جمع‌آوری کنید."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
@@ -47,7 +48,7 @@ msgstr "این را تکه تکه کنید تا چوب به دست بیاوری�
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
-msgstr ""
+msgstr "رده زمین شناسی"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
@@ -59,7 +60,7 @@ msgstr "معدن فلز"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr ""
+msgstr "معدن فلزات، دسترسی به یک نوع کمیاب فلز را ممکن میسازد."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -71,26 +72,26 @@ msgstr "معدن سنگ"
 
 #: simulation/templates/template_gaia_geo_rock.xml:6
 msgid "Mine these to provide Stone building material."
-msgstr ""
+msgstr "اینجا را معدن کاوی کنید تا بتوانید سنگ ساختمان بدست بیاورید."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr "خرابه ها"
+msgstr "رده خرابه‌ها"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
 #: simulation/templates/gaia/special_ruins_column_doric.xml:9
 #: simulation/templates/other/unfinished_greek_temple.xml:9
 msgid "Ruins"
-msgstr "خرابه ها"
+msgstr "خرابه‌ها"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
-msgstr "از این خرابه ها می توان سنگ به دست آورد."
+msgstr "از این خرابه‌ها می‌توان سنگ به دست آورد."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr ""
+msgstr "رده گنجینه‌ها"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -108,11 +109,11 @@ msgstr ""
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
 msgid "Treasure"
-msgstr "گنج"
+msgstr "گنجینه"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
-msgstr ""
+msgstr "گنجینه‌ای که به سرعت قابل دست یابیست."
 
 #: simulation/templates/template_structure.xml:56
 msgid "Structure"
@@ -124,17 +125,17 @@ msgstr "واحد"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
-msgstr ""
+msgstr "ارتش اسکندر مقدونی."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great"
-msgstr ""
+msgstr "ارتش اسکندر مقدونی."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "This is what an army would look like on the Strat Map."
-msgstr ""
+msgstr "در اول بازی، یک ارتش این شکلی است."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
@@ -146,40 +147,40 @@ msgstr "ارتش مقدونی"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
 msgid "Army of Leonidas I."
-msgstr ""
+msgstr "ارتش لئونیداس یکم."
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
-msgstr ""
+msgstr "ارتش لئونیداس یکم."
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
 msgid "Settlement"
-msgstr ""
+msgstr "نشینه"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr ""
+msgstr "شهرک مصری"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "این یک شهرک مصریست."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr ""
+msgstr "شهر مصری"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "این یک کلان شهر مصریست."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr ""
+msgstr "مکان مقدس مذهبی"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr ""
+msgstr "معبد مصری"
 
 #: simulation/templates/formations/battle_line.xml:5
 msgid "Battle Line"
@@ -187,11 +188,11 @@ msgstr "خط نبرد"
 
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
-msgstr "نیاز به 4 واحد نیرو"
+msgstr "ِآرایش ۴ واحدی نیروها"
 
 #: simulation/templates/formations/box.xml:7
 msgid "Box"
-msgstr "جعبه"
+msgstr "آرایش مربعی نیروها"
 
 #: simulation/templates/formations/column_closed.xml:5
 msgid "Column Closed"
@@ -203,19 +204,19 @@ msgstr "ستون باز"
 
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
-msgstr "نیاز به 8 واحد نیرو"
+msgstr "آرایش ۸ واحدی نیروها"
 
 #: simulation/templates/formations/flank.xml:7
 msgid "Flank"
-msgstr "جناح"
+msgstr "پهلو"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
-msgstr "خط باز"
+msgstr "خط بسته"
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
-msgstr "خط بسته"
+msgstr "خط باز"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
@@ -223,7 +224,7 @@ msgstr "هیچ"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
-msgstr "10 پیاده ی نزدیک زن مورد نیاز است"
+msgstr "۱۰پیاده نزدیکزن مورد نیاز است."
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -235,7 +236,7 @@ msgstr "پراکنده"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Only ranged units allowed"
-msgstr "تنها دور پرتاب ها توانایی چنین آرایشی دارند."
+msgstr "تنها دور پرتاب‌ها توانایی چنین آرایشی دارند."
 
 #: simulation/templates/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -247,11 +248,11 @@ msgstr "9 نیزه دار مورد نیاز است"
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
-msgstr ""
+msgstr "میدان یونانی"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "9 melee infantry units required"
-msgstr "9 پیاده ی نزدیک زن مورد نیاز است"
+msgstr "۹ پیاده ی نزدیک زن مورد نیاز است"
 
 #: simulation/templates/formations/testudo.xml:7
 msgid "Testudo"
@@ -259,7 +260,7 @@ msgstr "آرایش لاک پشتی"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "3 cavalry units required"
-msgstr "3 سوار مورد نیاز است"
+msgstr "۳ سوار مورد نیاز است"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
@@ -283,11 +284,11 @@ msgstr "جوجه"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
-msgstr ""
+msgstr "تمساح نیل"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
-msgstr "کروکودیل نیل"
+msgstr "تمساح نیل"
 
 #: simulation/templates/gaia/fauna_deer.xml:5
 msgid "Deer"
@@ -321,7 +322,7 @@ msgstr "ماهی تن"
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
 msgid "Collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "ازاین منبع پربرکت اقیانوسی غذا بدست آورید."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -329,7 +330,7 @@ msgstr "ماهی تیلاپیلا"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
-msgstr ""
+msgstr "ازاین منبع پربرکت رودخانه‌ای غذا بدست آورید."
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
@@ -353,15 +354,15 @@ msgstr "اسب"
 
 #: simulation/templates/gaia/fauna_lion.xml:18
 msgid "Lion"
-msgstr "شیر"
+msgstr "شیر نر"
 
 #: simulation/templates/gaia/fauna_lioness.xml:18
 msgid "Lioness"
-msgstr ""
+msgstr "شیر ماده"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
-msgstr ""
+msgstr "گاو مشک"
 
 #: simulation/templates/gaia/fauna_peacock.xml:8
 msgid "Peacock"
@@ -377,7 +378,7 @@ msgstr "خرگوش"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
-msgstr "کوسه ی سفید"
+msgstr "کوسه سفید"
 
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Shark"
@@ -397,7 +398,7 @@ msgstr "شیر ماهی"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:4
 msgid "Fin Whale"
-msgstr ""
+msgstr "نهنگ تیغ‌باله"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
@@ -405,7 +406,7 @@ msgstr "نهنگ گوژپشت"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Wildebeest"
-msgstr ""
+msgstr "گوزن یالدار"
 
 #: simulation/templates/gaia/fauna_wolf.xml:18
 msgid "Wolf"
@@ -421,7 +422,7 @@ msgstr "گورخر"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr "بوته ی مقاوم"
+msgstr "بوته با ساقه‌های چوبی"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
@@ -433,7 +434,7 @@ msgstr "انگور"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
-msgstr "از این درختان مو به عنوان غذا انگور بکنید."
+msgstr "برای جمع‌آوری غذا از این درختان مو انگور بچینید."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
@@ -501,7 +502,7 @@ msgstr "درخت بلوط بزرگ"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
-msgstr ""
+msgstr "درخت زیتون"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -518,7 +519,7 @@ msgstr "درخت کاج"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
-msgstr "\tدرخت صنوبر"
+msgstr "درخت صنوبر"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Lombardy Poplar Tree"
@@ -550,7 +551,7 @@ msgstr "خرابه های سنگی"
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:10
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:10
 msgid "Celtic Standing Stone"
-msgstr "سنگ های ایستاده کلتی"
+msgstr "سنگ های ایستاده سلتی"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
@@ -567,7 +568,7 @@ msgstr "مجسمه رومی"
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
 msgid "Food Treasure"
-msgstr "گنج غذا"
+msgstr "گنجینه غذا"
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
@@ -579,17 +580,17 @@ msgstr "انبار غذای پارسیان"
 
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
 msgid "Persian Food Treasure"
-msgstr "گنج غذای پارسی"
+msgstr "گنجینه غذای پارسی"
 
 #: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
 msgid "Golden Fleece"
-msgstr ""
+msgstr "پشم طلایی"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
 msgid "Metal Treasure"
-msgstr "گنج فلز"
+msgstr "گنجینه فلز"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:10
 msgid "Secret Box"
@@ -605,7 +606,7 @@ msgstr "فرش پارسی"
 
 #: simulation/templates/gaia/special_treasure_pegasus.xml:10
 msgid "Pegasus"
-msgstr "اسب بالدار"
+msgstr "اسب بالدار پگاسوس"
 
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:9
 #: simulation/templates/gaia/special_treasure_stone.xml:10
@@ -640,11 +641,11 @@ msgstr "قربانگاه"
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
-msgstr "Tophet"
+msgstr "قربانگاه انسان"
 
 #: simulation/templates/other/cart_tophet.xml:25
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
+msgstr "درمانگر و سواره‌نظام فدایی آموزش دهید."
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
@@ -652,7 +653,7 @@ msgstr "آلونک"
 
 #: simulation/templates/other/celt_hut.xml:23
 msgid "Add +2 to Population Cap."
-msgstr "حداکثر جمعیت را به اندازه +2 بالا می برد."
+msgstr "حداکثر جمعیت را به اندازه +۲ بالا می برد."
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
@@ -662,7 +663,7 @@ msgstr "خانه"
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
-msgstr "حداکثر جمعیت را به اندازه +10 بالا می برد."
+msgstr "حداکثر جمعیت را به اندازه +۱۰ بالا می برد."
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
@@ -672,12 +673,12 @@ msgstr "ستون"
 
 #: simulation/templates/other/column_doric.xml:21
 msgid "Doric Column"
-msgstr "ستون دری"
+msgstr "ستون یونانی قدیمی"
 
 #: simulation/templates/other/column_doric_fallen.xml:21
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
-msgstr "ستون افتاده دری"
+msgstr "ستون یونانی افتاده "
 
 #: simulation/templates/other/fence_long.xml:21
 #: simulation/templates/other/fence_short.xml:21
@@ -686,7 +687,7 @@ msgstr "نرده"
 
 #: simulation/templates/other/fence_long.xml:22
 msgid "Long Wooden Fence"
-msgstr ""
+msgstr "نرده چوبی طولانی"
 
 #: simulation/templates/other/fence_short.xml:22
 msgid "Short Wooden Fence"
@@ -707,44 +708,44 @@ msgstr "معبد عظیم"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Naos Parthenos"
-msgstr "Naos Parthenos"
+msgstr "معبد پارتنون"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:32
 msgid "Garrison up to 30 units to heal them at a quick rate."
-msgstr ""
+msgstr "بالای ۳۰ نفر را مستقر کنید تا با سرعت بالایی بهبود یابند."
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
-msgstr ""
+msgstr "ایوان"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
-msgstr ""
+msgstr "دروازه کروپولیس"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
-msgstr "Stoa"
+msgstr "ایوان یونانی"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:31
 msgid "Hellenic Royal Stoa"
-msgstr "استوئای شاهانه ی یونانی"
+msgstr "ایوان شاهانه یونانی"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:33
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "حداکثر جمعیت را به اندازه +10 بالا می برد. سربازان خاص تربیت می کند."
+msgstr "حداکثر جمعیت را به اندازه +۱۰ بالا می برد. سربازان خاص تربیت می کند."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr "استوئای یونانی"
+msgstr "ایوان یونانی"
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
-msgstr ""
+msgstr "پشت بام"
 
 #: simulation/templates/other/maur_palace.xml:14
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr ""
+msgstr "حداکثر جمعیت را به اندازه +۱۵ بالا می برد. سربازان خاص و قهرمانها را تربیت می کند."
 
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
@@ -776,7 +777,7 @@ msgstr "انتهای دیوار چوبی"
 
 #: simulation/templates/other/palisades_rocks_end.xml:16
 msgid "Wooden Wall End"
-msgstr ""
+msgstr "انتهای دیوار چوبی"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:5
 msgid "Palisade Fort"
@@ -814,7 +815,7 @@ msgstr "دیوار چوبی"
 
 #: simulation/templates/other/palisades_rocks_long.xml:24
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr ""
+msgstr "دیوار چوبی را به دروازه چوبی تبدیل کنید"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
@@ -831,7 +832,7 @@ msgstr "برج مراقبت"
 
 #: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Spikes Small"
-msgstr "Spikes Small"
+msgstr "خار کوچک"
 
 #: simulation/templates/other/palisades_small_spikes.xml:17
 msgid "Small Spikes"
@@ -847,7 +848,7 @@ msgstr "خار های بلند"
 
 #: simulation/templates/other/pers_apartment_block.xml:15
 msgid "Apartment Block"
-msgstr ""
+msgstr "بلوک آپارتمان"
 
 #: simulation/templates/other/pers_house_a.xml:12
 msgid "House"
@@ -856,7 +857,7 @@ msgstr "خانه"
 #: simulation/templates/other/pers_house_b.xml:15
 #: simulation/templates/other/pers_inn.xml:15
 msgid "Inn"
-msgstr "قهوه خانه"
+msgstr "مهمان‌سرا"
 
 #: simulation/templates/other/pers_warehouse.xml:12
 msgid "Warehouse"
@@ -864,11 +865,11 @@ msgstr "انبار"
 
 #: simulation/templates/other/plane.xml:37
 msgid "P-51 Mustang"
-msgstr ""
+msgstr "هواپیمای جنگنده پی-۵۱"
 
 #: simulation/templates/other/plane.xml:39
 msgid "A World War 2 American fighter plane."
-msgstr ""
+msgstr "یک جنگنده آمریکایی جنگ جهانی دوم."
 
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
@@ -888,42 +889,42 @@ msgstr "هرم کوچک"
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
-msgstr "غرق کشتی"
+msgstr "کشتی شکسته"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr ""
+msgstr "یک کشتی شکسته در حال پوسیدگی. یک فرصت خوب برای هر تاجری!"
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr ""
+msgstr "بار کشتی شکسته"
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
 "A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "یک کشتی غرق شده. فرصتی خوب برای هر بازرگان."
+msgstr "یک کشتی شکسته با جان کم. فرصتی خوب برای هر بازرگان."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr ""
+msgstr "یک کشتی شکسته باری کوچک. فرصتی خوب برای هر تاجر."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr ""
+msgstr "یک کشتی شکسته با جان نصفه. فرصتی خوب برای هر بازرگان."
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr ""
+msgstr "جایگاه بزرگ"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr ""
+msgstr "جایگاه متوسط"
 
 #: simulation/templates/other/stall_small_a.xml:12
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall"
-msgstr ""
+msgstr "جایگاه کوچک"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
@@ -944,48 +945,48 @@ msgstr "مبعد ناتمام یونانی"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr ""
+msgstr "این معبد ناتمام به مخروبه تبدیل شده است."
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr ""
+msgstr "تغییرات در خانه‌های با ظرفیت ۱۰ نفر، برای سایر شهروندان خراب میشوند"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:5
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr ""
+msgstr "تغییرات در خانه‌های با ظرفیت ۵ نفر، برای سایر شهروندان خراب میشوند"
 
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
-msgstr ""
+msgstr "نشانگر"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
 msgid "Lithobólos"
-msgstr ""
+msgstr "پرتابگر تیر آتنی"
 
 #: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
 msgid "Oxybelḗs"
-msgstr "Oxybelḗs"
+msgstr "پرتابگر تیر اسپارتی"
 
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:29
 msgid "Ballista"
-msgstr "کشکنجير"
+msgstr "منجنیق سنگ انداز"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
-msgstr "Polybolos"
+msgstr "پرتابگر تیر یونانی"
 
 #: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:23
 msgid "Scorpio"
-msgstr "Scorpio"
+msgstr "کژدم"

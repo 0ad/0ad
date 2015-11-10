@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Amin Behshad <behshadn1-ted@yahoo.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-19 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-26 14:35+0000\n"
+"Last-Translator: Amin Behshad <behshadn1-ted@yahoo.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,14 +27,14 @@ msgstr "سواره نظام"
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Citizen"
-msgstr ""
+msgstr "شهروند"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_champion.xml:13
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Soldier"
-msgstr ""
+msgstr "سرباز"
 
 #: simulation/templates/template_unit_cavalry.xml:39
 #: simulation/templates/template_unit_dog.xml:53
@@ -48,7 +49,7 @@ msgstr ""
 #: simulation/templates/units/rome_support_healer_b.xml:11
 msgctxt "Rank"
 msgid "Basic"
-msgstr ""
+msgstr "پایه‌ای"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:26
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
@@ -66,7 +67,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee.xml:26
 #: simulation/templates/units/maur_ship_trireme.xml:20
 msgid "Melee"
-msgstr ""
+msgstr "واحد نبرد تن‌به‌تن"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:27
 msgid "Melee Cavalry"
@@ -82,7 +83,7 @@ msgstr "سوار نزدیک زن"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:35
 msgid "Spear"
-msgstr ""
+msgstr "نیزه"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:21
 msgid "Cavalry Spearman"
@@ -95,7 +96,7 @@ msgstr "سوار نیزه دار"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:25
 msgid "Sword"
-msgstr ""
+msgstr "شمشير"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:30
 msgid "Cavalry Swordsman"
@@ -139,7 +140,7 @@ msgstr "سوار کماندار"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:26
 msgid "Javelin"
-msgstr ""
+msgstr "زوبین"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
@@ -151,7 +152,7 @@ msgstr "واحد سلحشور"
 
 #: simulation/templates/template_unit_champion.xml:13
 msgid "Champion"
-msgstr ""
+msgstr "پهلوان"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:26
 msgid "Champion Cavalry"
@@ -200,13 +201,13 @@ msgstr "کماندار سلحشور"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:27
 msgid "Champion Skirmisher"
-msgstr ""
+msgstr "پیاده پهلوان بزن در رو"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
-msgstr ""
+msgstr "نیزه"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:46
 msgid "Champion Pikeman"
@@ -219,7 +220,7 @@ msgstr "نیزه دار سلحشور"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:38
 msgid "Counters: 3x vs. Cavalry."
-msgstr ""
+msgstr "دارای برتری ۳برابری در مقابل سواره‌نظام."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 msgid "Champion Spearman"
@@ -235,7 +236,7 @@ msgstr "سلحشور دور پرتاب"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
-msgstr ""
+msgstr "قلعه فوق‌العاده"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical.xml:16
@@ -247,11 +248,11 @@ msgstr "مکانیکی"
 #: simulation/templates/template_unit_mechanical_siege.xml:17
 #: simulation/templates/template_unit_mechanical_siege.xml:18
 msgid "Siege"
-msgstr "محاصره"
+msgstr "قلعه"
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
-msgstr ""
+msgstr "سگ"
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
@@ -259,7 +260,7 @@ msgstr "سگ جنگی"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
-msgstr ""
+msgstr "نمیتونم به ساختمان حمله کنم."
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
@@ -271,11 +272,11 @@ msgstr "ماهی"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:15
 msgid "Cetacean"
-msgstr ""
+msgstr "والن"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Kill, then collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "ازاین منبع پربرکت اقیانوسی غذا بدست آورید."
 
 #: simulation/templates/template_unit_hero.xml:10
 #: simulation/templates/units/brit_hero_caratacos.xml:10
@@ -286,13 +287,13 @@ msgstr ""
 #: simulation/templates/units/mace_hero_demetrius.xml:12
 #: simulation/templates/units/mace_hero_philip.xml:12
 msgid "Hero Aura"
-msgstr ""
+msgstr "هاله قهرمان"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
 "When garrisoned in a structure, the hero gives it a bonus of +2 capture "
 "points recovery rate."
-msgstr ""
+msgstr "وقتی قهرمان در ساختمانی اسقرار یابد،به آن امکان بازسازی با سرعت +۲ میدهد."
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -363,7 +364,7 @@ msgstr "بزن در رو"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:27
 msgid "Sling"
-msgstr ""
+msgstr "فلاخن"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:28
 msgid "Slinger"
@@ -376,7 +377,7 @@ msgstr "کشتی"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
-msgstr "کشتی سبک"
+msgstr "کشتی جنگی سبک"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
@@ -386,7 +387,7 @@ msgstr "کشتی آتشین"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr ""
+msgstr "به سرعت جان کشتی‌های دشمن را خالی میکند.به دلیل مشتعل بودن به آرامی جانش کم میشود؛ پس سریعا از کشتی‌آتشین استفاده کنید."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
@@ -406,7 +407,7 @@ msgstr "تاجر"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "تجارت بین بنادر. یک تاجر را در آن برای سود بیشتر مستقر کنید (+20% f به ازای هر تاجر). گنج های پر سود دریایی را تصاحب کنید."
+msgstr "تجارت بین بنادر. یک تاجر را در آن برای سود بیشتر مستقر کنید (+20%  به ازای هر تاجر). گنج های پر سود دریایی را تصاحب کنید."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -420,7 +421,7 @@ msgstr "کشتی سنگین"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
-msgstr ""
+msgstr "منجنیقهارا در اینجا مستقر کنید تا آتش دوربرد افزایش یابد."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -428,36 +429,36 @@ msgstr "کشتی جنگی متوسط"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Warship"
-msgstr ""
+msgstr "کشتی جنگی "
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium"
-msgstr ""
+msgstr "متوسط"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
-msgstr "کشکنجیر"
+msgstr "پرتابگر تیر"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Siege Catapult"
-msgstr "منجنیق محاصره"
+msgstr "منجنیق قلعه کوب"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:45
 msgid "Causes splash damage."
-msgstr ""
+msgstr "باعث خرابی بر اثر ترکش میشود."
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:46
 msgid "Battering Ram"
-msgstr "دیوار کوب"
+msgstr "دژ کوب"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:57
 msgid "Siege Tower"
-msgstr "برج محاصره"
+msgstr "برج قلعه کوب"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:59
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr ""
+msgstr "بیش از ۲۰ نفر را مستقر کنید تا تیرپراکنی از ۰به ۱۰ واحد افزایش یابد."
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
@@ -466,11 +467,11 @@ msgstr "پشتیبانی"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:12
 msgid "Inspiration Aura"
-msgstr ""
+msgstr "هاله الهام"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
 msgid "Nearby males work 10% faster"
-msgstr ""
+msgstr "مردان در نزدیکی آن ۱۰٪سریعتر کار خواهند کرد."
 
 #: simulation/templates/template_unit_support_female_citizen.xml:55
 msgid "Female Citizen"
@@ -479,11 +480,11 @@ msgstr "شهروند زن"
 #: simulation/templates/template_unit_support_healer.xml:20
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Healer"
-msgstr "شفاء دهنده"
+msgstr "شفا دهنده"
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid "Heal units."
-msgstr ""
+msgstr "شفا دادن نیروها."
 
 #: simulation/templates/template_unit_support_slave.xml:39
 #: simulation/templates/template_unit_support_slave.xml:40
@@ -492,15 +493,15 @@ msgstr "برده"
 
 #: simulation/templates/template_unit_support_slave.xml:39
 msgid "Worker"
-msgstr ""
+msgstr "کارگر"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "جمع‌آوری کننده با محدوده جان مشخص. در معدن‌‌کاوی و هیزم‌شکنی کمک بیشتری خواهد بود. "
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr ""
+msgstr "بین بازارهای خودی و متحدین تجارت خواهدکرد."
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -596,7 +597,7 @@ msgstr ""
 #: simulation/templates/units/spart_support_healer_a.xml:4
 msgctxt "Rank"
 msgid "Advanced"
-msgstr ""
+msgstr "پیشرفته"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
@@ -698,7 +699,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/spart_support_healer_e.xml:4
 msgctxt "Rank"
 msgid "Elite"
-msgstr ""
+msgstr "نخبه"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 msgid "Greek Cavalry"
@@ -714,7 +715,7 @@ msgstr "نگهبان شهر"
 
 #: simulation/templates/units/athen_champion_infantry.xml:7
 msgid "Epílektos"
-msgstr ""
+msgstr "Epílektos"
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Athenian Marine"
@@ -726,15 +727,15 @@ msgstr ""
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
 msgid "Scythian Archer"
-msgstr "کماندار اسکیتی"
+msgstr "کماندار اسکاتلندی"
 
 #: simulation/templates/units/athen_champion_ranged.xml:7
 msgid "Toxótēs Skythikós"
-msgstr ""
+msgstr " Toxótēs Skythikós"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:13
 msgid "Formation Reforms"
-msgstr ""
+msgstr "تغییرات چینش لشکر"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:14
 msgid "All units in his formation +15% speed and +1 armor."
@@ -973,7 +974,7 @@ msgstr "Baguada"
 #: simulation/templates/units/brit_infantry_slinger_b.xml:13
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:15
 msgid "Celtic Slinger"
-msgstr "قلابسنگدار کلتی"
+msgstr "قلابسنگدار سلتی"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:14
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:16
@@ -987,7 +988,7 @@ msgstr "Gaeroa"
 
 #: simulation/templates/units/brit_infantry_spearman_b.xml:14
 msgid "Celtic Spearman"
-msgstr "نیزه دار کلتی"
+msgstr "نیزه دار سلتی"
 
 #: simulation/templates/units/brit_mechanical_siege_ram.xml:12
 #: simulation/templates/units/gaul_mechanical_siege_ram.xml:12

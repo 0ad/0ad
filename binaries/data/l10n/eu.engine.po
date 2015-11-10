@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014
+# Osoitz <oelkoro@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-05-09 17:16+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2015-10-25 10:20+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,150 +42,150 @@ msgstr "Kate luzeak"
 
 #: lobby/XmppClient.cpp:223
 msgid "Authentication failed"
-msgstr ""
+msgstr "Autentifikazioak huts egin du"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not acceptable"
-msgstr ""
+msgstr "Izen emate ez onargarria"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration conflict"
-msgstr ""
+msgstr "Talka izen ematean"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration not authorized"
-msgstr ""
+msgstr "Izen emate ez baimendua"
 
 #: lobby/XmppClient.cpp:460
 msgid "Registration bad request"
-msgstr ""
+msgstr "Eskari okerra izen ematean"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration forbidden"
-msgstr ""
+msgstr "Izen ematea debekatuta"
 
 #: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1043
 msgid "Registration required"
-msgstr ""
+msgstr "Izen ematea ezinbestekoa"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "Ustekabeko izen emate eskaria"
 
 #: lobby/XmppClient.cpp:464
 msgid "Registration not allowed"
-msgstr ""
+msgstr "Izen ematea ez da zilegi"
 
 #: lobby/XmppClient.cpp:465
 msgid "Registration unknown error"
-msgstr ""
+msgstr "Errore ezezaguna izen ematean"
 
 #: lobby/XmppClient.cpp:773
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "azpimota ezezaguna (ikusi egunkariak)"
 
 #: lobby/XmppClient.cpp:1028
 msgid "Bad request"
-msgstr ""
+msgstr "Eskari okerra"
 
 #: lobby/XmppClient.cpp:1029
 msgid "Player name already in use"
-msgstr ""
+msgstr "Erabiltzaile izen hori beste inork erabiltzen du jada"
 
 #: lobby/XmppClient.cpp:1030
 msgid "Feature not implemented"
-msgstr ""
+msgstr "Ezaugarri ezarri gabea"
 
 #: lobby/XmppClient.cpp:1031
 msgid "Forbidden"
-msgstr ""
+msgstr "Debekatuta"
 
 #: lobby/XmppClient.cpp:1032
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "Hartzailea edo zerbitzaria ez dago jada"
 
 #: lobby/XmppClient.cpp:1033
 msgid "Internal server error"
-msgstr ""
+msgstr "Barne zerbitzari errorea"
 
 #: lobby/XmppClient.cpp:1034
 msgid "Item not found"
-msgstr ""
+msgstr "Ez da elementua aurkitu"
 
 #: lobby/XmppClient.cpp:1035
 msgid "Jid malformed"
-msgstr ""
+msgstr "Gaizki osatutako Jid"
 
 #: lobby/XmppClient.cpp:1036
 msgid "Not acceptable"
-msgstr ""
+msgstr "Onartezina"
 
 #: lobby/XmppClient.cpp:1037
 msgid "Not allowed"
-msgstr ""
+msgstr "Ez da zilegi"
 
 #: lobby/XmppClient.cpp:1038
 msgid "Not authorized"
-msgstr ""
+msgstr "Baimendu gabea"
 
 #: lobby/XmppClient.cpp:1039
 msgid "Not modified"
-msgstr ""
+msgstr "Aldatu gabea"
 
 #: lobby/XmppClient.cpp:1040
 msgid "Payment required"
-msgstr ""
+msgstr "Ordainketa ezinbestekoa"
 
 #: lobby/XmppClient.cpp:1041
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "Hartzailea ez dago eskuragarri"
 
 #: lobby/XmppClient.cpp:1042
 msgid "Redirect"
-msgstr ""
+msgstr "Birbideratu"
 
 #: lobby/XmppClient.cpp:1044
 msgid "Remote server not found"
-msgstr ""
+msgstr "Urruneko zerbitzaria ez da aurkitu"
 
 #: lobby/XmppClient.cpp:1045
 msgid "Remote server timeout"
-msgstr ""
+msgstr "Urruneko zerbitzariaren denbora-muga gainditu da"
 
 #: lobby/XmppClient.cpp:1046
 msgid "Resource constraint"
-msgstr ""
+msgstr "Baliabide muga"
 
 #: lobby/XmppClient.cpp:1047
 msgid "Service unavailable"
-msgstr ""
+msgstr "Zerbitzua ez dago eskuragarri"
 
 #: lobby/XmppClient.cpp:1048
 msgid "Subscription Required"
-msgstr ""
+msgstr "Harpidetza ezinbestekoa"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Undefined condition"
-msgstr ""
+msgstr "Zehaztu gabeko baldintza"
 
 #: lobby/XmppClient.cpp:1050
 msgid "Unexpected request"
-msgstr ""
+msgstr "Ustekabeko eskaria"
 
 #: lobby/XmppClient.cpp:1051
 msgid "Unknown sender"
-msgstr ""
+msgstr "Igorle ezezaguna"
 
 #: lobby/XmppClient.cpp:1053
 msgid "Error undefined"
-msgstr ""
+msgstr "Zehaztu gabeko errorea"
 
 #: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "Gorde partida hemen '%s'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Pantaila-argazkia hemen gorde da '%s'"

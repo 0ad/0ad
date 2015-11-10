@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Osoitz <oelkoro@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-22 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-25 20:49+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,22 +20,22 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s erasotuko dut."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "Armada bat bidali berri dut %(_player_)s(r)en aurka."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "Utzidazu nire berrantolatzen eta %(_player_)s(r)en aurka lagunduko dizut."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "Prestakuntzekin bukatzen ari naiz eta %(_player_)s erasotuko dut."
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
@@ -53,7 +54,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "Hona opari bat %(_player_)s(r)entzat, ondo erabili."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
@@ -89,12 +90,12 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:112
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "%(phase)s arora aurreratzen ari naiz."
 
 #: simulation/ai/petra/chatHelper.js:114
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "%(phase)s arora heldu naiz."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -106,7 +107,7 @@ msgstr ""
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "Has gaitezen, lehenik eta behin entrenatu 5 emakumezko hiritarren talde bat (maiuskula klik) ZZ eraikinean (Zentro Zibila)"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
@@ -269,7 +270,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:193
 msgid "Start researching Phase 2."
-msgstr ""
+msgstr "Hasi 2. aroa ikertzen"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:198
 msgid "Queue some slingers."
@@ -373,13 +374,13 @@ msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr ""
+msgstr "Aukeratu soldadu hiritarra, egin eskumako klik Zentru Zibiletik hurbil dagoen zuhaitzean zura jasotzen hasteko. soldadu hiritarrek zura azkarrago jasotzen dute emakumezko hiritarrak baino."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
 "Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
 "in the row) once to begin training 5 Hoplites."
-msgstr ""
+msgstr "Hautatu Zentro Zibilaren eraikina, eta egin maiuskula+klik behin Hoplitaren ikonoan (2.a lerroan) 5 Hoplita entrenatzen hasteko."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:15
 msgid ""
@@ -432,13 +433,13 @@ msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
-msgstr ""
+msgstr "Agindu langabe dauden Jazarleei aitzindari bat eraikitzea zure lurraldearen ipar ekialde mugan. Hau Herrixka Aroko bosgarren eraikina izango da, eta Herri Arora aurreratzea baimenduko dizu"
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:63
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr ""
+msgstr "Hautatu Zentro Zibila berriro eta aurreratu Herri Arora \"II\" ikonoan klik eginda. Honek Herri Aroko eraikinak eraikitzea baimenduko du."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
@@ -478,13 +479,13 @@ msgstr ""
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr ""
+msgstr "Orain Hiri Aroko baldintzak bete direla, hautatu zure Zentro Zibila eta aurreratu Hiri Arora. "
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr ""
+msgstr "Orain Hiri Aroan zaudela, eraiki gotorleku bat inguruan eta erabili 2 Ahari-buru Kolpekari eraikitzeko."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
@@ -677,7 +678,7 @@ msgstr ""
 
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
@@ -800,7 +801,7 @@ msgstr ""
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Ertaina"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"

@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# R. Pablo B. <f00ck6006l3@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-22 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-26 15:21+0000\n"
+"Last-Translator: R. Pablo B. <f00ck6006l3@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,41 +20,41 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:6
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "La IA será desactivada para este jugador."
 
 #: gui/gamesetup/gamesetup.js:108
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Volver al menú principal."
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Volver al lobby."
 
 #: gui/gamesetup/gamesetup.js:133 gui/gamesetup/gamesetup.js:1368
 #: gui/gamesetup/gamesetup.js:1432
 msgid "Default"
-msgstr ""
+msgstr "Por defecto"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "Naval Maps"
-msgstr ""
+msgstr "Mapas navales"
 
 #: gui/gamesetup/gamesetup.js:135
 msgid "Demo Maps"
-msgstr ""
+msgstr "Mapas de demostración"
 
 #: gui/gamesetup/gamesetup.js:136
 msgid "All Maps"
-msgstr ""
+msgstr "Todos los mapas"
 
 #: gui/gamesetup/gamesetup.js:364
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: gui/gamesetup/gamesetup.js:583 gui/gamesetup/gamesetup.js:1517
 msgctxt "civilization"
@@ -67,12 +68,12 @@ msgstr "Aleatorio "
 
 #: gui/gamesetup/gamesetup.js:911 gui/gamesetup/gamesetup.js:1081
 msgid "You"
-msgstr ""
+msgstr "Vos"
 
 #: gui/gamesetup/gamesetup.js:1170
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1290 gui/gamesetup/gamesetup.js:1295
 #: gui/gamesetup/gamesetup.js:1303 gui/gamesetup/gamesetup.js:1358
@@ -82,7 +83,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1401 gui/gamesetup/gamesetup.js:1433
 #: gui/gamesetup/gamesetup.js:1434 gui/gamesetup/gamesetup.js:1437
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: gui/gamesetup/gamesetup.js:1290 gui/gamesetup/gamesetup.js:1295
 #: gui/gamesetup/gamesetup.js:1303 gui/gamesetup/gamesetup.js:1358
@@ -93,430 +94,430 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1434 gui/gamesetup/gamesetup.js:1435
 #: gui/gamesetup/gamesetup.js:1437
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: gui/gamesetup/gamesetup.js:1439 gui/gamesetup/gamesetup.js:1440
 #: gui/gamesetup/gamesetup.js:1441
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Determinado por el escenario"
 
 #: gui/gamesetup/gamesetup.js:1453
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Selecciona un mapa de la lista aleatoriamente"
 
 #: gui/gamesetup/gamesetup.js:1460
 msgid "Sorry, no description available."
-msgstr "Disculpe, ninguna descripción disponible."
+msgstr "Disculpá, ninguna descripción disponible."
 
 #: gui/gamesetup/gamesetup.js:1463
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s jugador. "
+msgstr[1] "%(number)s jugadores. "
 
 #: gui/gamesetup/gamesetup.js:1467 gui/gamesetup/gamesetup.xml:(caption):289
 msgid "Victory Condition:"
-msgstr ""
+msgstr "Condiciones de victoria:"
 
 #: gui/gamesetup/gamesetup.js:1503
 msgid "Loading..."
-msgstr ""
+msgstr "Cargando..."
 
 #: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr ""
+msgstr "IA: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1633
 msgid "Unassigned"
-msgstr ""
+msgstr "Sin asignar"
 
 #: gui/gamesetup/gamesetup.js:1816 gui/gamesetup/gamesetup.js:1821
 #: gui/gamesetup/gamesetup.js:1839
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1816
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s se unió"
 
 #: gui/gamesetup/gamesetup.js:1821
 #, javascript-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s se fue"
 
 #: gui/gamesetup/gamesetup.js:1826
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:1827
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1833
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* ¡ %(username)s está listo!"
 
 #: gui/gamesetup/gamesetup.js:1835
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s no está listo"
 
 #: gui/gamesetup/gamesetup.js:1839
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "La configuración del juego cambió"
 
 #: gui/gamesetup/gamesetup.js:1864
 msgid "I'm not ready"
-msgstr ""
+msgstr "No estoy listo"
 
 #: gui/gamesetup/gamesetup.js:1865
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Declara que todavía no estás listo"
 
 #: gui/gamesetup/gamesetup.js:1870 gui/gamesetup/gamesetup.js:1948
 msgid "I'm ready!"
-msgstr ""
+msgstr "¡Estoy listo!"
 
 #: gui/gamesetup/gamesetup.js:1871
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "¡Declara que ya estás listo para jugar!"
 
 #: gui/gamesetup/gamesetup.js:1949
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "¡Declara que aceptas la configuración actual y que estás listo para jugar!"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "El juego de %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Conectándose al servidor..."
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Mensaje de la red: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:146
 msgid "Registering with server..."
-msgstr ""
+msgstr "Registrándose con el servidor..."
 
 #: gui/gamesetup/gamesetup_mp.js:152
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "El juego ya comenzó, reingresando..."
 
 #: gui/gamesetup/gamesetup_mp.js:198
 msgid "Game name already in use."
-msgstr ""
+msgstr "El nombre de juego ya está en uso."
 
 #: gui/gamesetup/gamesetup_mp.js:259
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "El juego de %(playername)s'"
 
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Cargando “%(map)s”"
 
 #: gui/loading/loading.js:53
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Generando “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):14
 msgid "AI Configuration"
-msgstr ""
+msgstr "Configuración de la IA"
 
 #: gui/aiconfig/aiconfig.xml:(caption):19
 msgid "AI Player:"
-msgstr ""
+msgstr "Jugador de la IA"
 
 #: gui/aiconfig/aiconfig.xml:(caption):27
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "Dificultad de la IA"
 
 #: gui/aiconfig/aiconfig.xml:(caption):37
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: gui/aiconfig/aiconfig.xml:(caption):42
 #: gui/gamesetup/gamesetup.xml:(caption):406
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/gamesetup/gamesetup.xml:(caption):18
 msgid "Match Setup"
-msgstr ""
+msgstr "Configuración de partida"
 
 #: gui/gamesetup/gamesetup.xml:(caption):24
 msgid "Loading"
-msgstr ""
+msgstr "Cargando"
 
 #: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "Cargando datos del mapa, por favor espere..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):43
 msgid "Player Name"
-msgstr ""
+msgstr "Nombre del jugador"
 
 #: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: gui/gamesetup/gamesetup.xml:(caption):49
 msgid "Player Placement"
-msgstr ""
+msgstr "Localización del jugador"
 
 #: gui/gamesetup/gamesetup.xml:(caption):52
 msgid "Civilization"
-msgstr ""
+msgstr "Civilización"
 
 #: gui/gamesetup/gamesetup.xml:(caption):67
 msgid "Team"
-msgstr ""
+msgstr "Equipo"
 
 #: gui/gamesetup/gamesetup.xml:(caption):108
 msgid "Map Type:"
-msgstr ""
+msgstr "Tipo de mapa:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):111
 msgid "Map Filter:"
-msgstr ""
+msgstr "Filtro de mapa:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):114
 msgid "Select Map:"
-msgstr ""
+msgstr "Seleccionar mapa:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):117
 msgid "Number of Players:"
-msgstr ""
+msgstr "Número de jugadores:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):120
 msgid "Map Size:"
-msgstr ""
+msgstr "Tamaño del mapa:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):206
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: gui/gamesetup/gamesetup.xml:(caption):230
 msgid "Start game!"
-msgstr ""
+msgstr "¡Empezar juego!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):248
 msgid "Back"
-msgstr ""
+msgstr "Volver"
 
 #: gui/gamesetup/gamesetup.xml:(caption):262
 #: gui/gamesetup/gamesetup.xml:(caption):274
 msgid "More Options"
-msgstr ""
+msgstr "Más opciones"
 
 #: gui/gamesetup/gamesetup.xml:(caption):279
 msgid "Game Speed:"
-msgstr ""
+msgstr "Velocidad:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):299
 msgid "Population Cap:"
-msgstr ""
+msgstr "Límite de población:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):309
 msgid "Starting Resources:"
-msgstr ""
+msgstr "Recursos iniciales:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):319
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Alto el fuego:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):329
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Mapa revelado:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):339
 msgid "Explored Map:"
-msgstr ""
+msgstr "Mapa explorado:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):349
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Desactivar tesoros:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):359
 msgid "Teams Locked:"
-msgstr ""
+msgstr "Cerrar equipos:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):369
 msgid "Cheats:"
-msgstr ""
+msgstr "Trucos:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):379
 msgid "Rated Game:"
-msgstr ""
+msgstr "Juego puntuado:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):389
 msgid "Late Observer Joins:"
-msgstr ""
+msgstr "Observador tardío se une a:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):61
 msgid "View civilization info"
-msgstr ""
+msgstr "Ver información de civilización"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):76
 msgid "Pick a color."
-msgstr ""
+msgstr "Elige un color."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):79
 msgid "Select player."
-msgstr ""
+msgstr "Selecciona un jugador."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):89
 msgid "Configure AI settings."
-msgstr ""
+msgstr "Configura la IA."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):92
 msgid "Select player's civilization."
-msgstr ""
+msgstr "Selecciona la civilización del jugador."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):96
 msgid "Select player's team."
-msgstr ""
+msgstr "Selecciona el equipo del jugador."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):137
 msgid "Select a map type."
-msgstr ""
+msgstr "Selecciona un tipo de mapa."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):146
 msgid "Select a map filter."
-msgstr ""
+msgstr "Selecciona un filtro de mapa."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):156
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Selecciona un mapa para jugar."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):170
 msgid "Select number of players."
-msgstr ""
+msgstr "Selecciona el número de jugadores."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):175
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Selecciona el tamaño del mapa. (Los mapas grandes pueden reducir el rendimiento del equipo)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):231
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "Empieza un nuevo juego con la configuración actual."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):263
 msgid "See more game options"
-msgstr ""
+msgstr "Ver más opciones"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):283
 msgid "Select game speed."
-msgstr ""
+msgstr "Selecciona la velocidad del juego."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):293
 msgid "Select victory condition."
-msgstr ""
+msgstr "Selecciona la condición de victoria."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):303
 msgid "Select population cap."
-msgstr ""
+msgstr "Selecciona el límite de población."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):313
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Selecciona los recursos iniciales del juego."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):323
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Selecciona el tiempo en el que los ataques no son posibles."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):333
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Activa o desactiva el mapa revelado (ver todo)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):343
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Activa o desactiva el mapa explorado (ver mapa inicial)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):353
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Desactiva todos los tesoros del mapa."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):363
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "Activa o desactiva equipos cerrados."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):373
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "Activa o desactiva el uso de trucos."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):383
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Activa o desactiva la puntuación de la tabla de clasificación de este juego."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):393
 msgid "Allow observers to join after the game started."
-msgstr ""
+msgstr "Permite a los espectadores unirse después de iniciado el juego."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):407
 msgid "Close more game options window"
-msgstr ""
+msgstr "Cierra la ventana de más opciones"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):19
 msgid "Multiplayer"
-msgstr ""
+msgstr "Multijugador"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):25
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Unirse a un juego en curso."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):29
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Player name:"
-msgstr ""
+msgstr "Nombre del jugador:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):39
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "IP o nombre del servidor:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):49
 #: gui/gamesetup/gamesetup_mp.xml:(caption):91
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):62
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Configura tu servidor para hostear."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
-msgstr ""
+msgstr "Nombre del servidor:"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
-msgstr ""
+msgstr "Frase del día:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "\"Un necio próspero supone una carga penosa\". - Esquilo"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -526,7 +527,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "\"Es mejor ser antes que parecer\". - Esquilio en \"Los Siete contra Tebas\""
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -570,7 +571,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr ""
+msgstr "\"Cualquier excusa servirá a un tirano\". - Esopo"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
@@ -608,7 +609,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr ""
+msgstr "\"Con paciencia y perseverancia se gana la carrera\". - Esopo"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
@@ -623,7 +624,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
-msgstr ""
+msgstr "\"La unión hace a la fuerza\". - Esopo en \"El Viejo y sus Hijos\""
 
 #: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
@@ -633,7 +634,7 @@ msgstr ""
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr ""
+msgstr "\"Los espartanos no preguntan cuántos son los enemigos, sino donde están\". - Agis II de Esparta"
 
 #: gui/text/quotes.txt:26
 msgid ""
@@ -652,11 +653,11 @@ msgstr ""
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"Si no fuese Alejandro, desearía ser Diógenes\". - Alejandro Magno"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
-msgstr ""
+msgstr "\"Yo no robo la victoria\". - Alejandro Magno"
 
 #: gui/text/quotes.txt:30
 msgid ""
@@ -673,7 +674,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr ""
+msgstr "\"No hay nada imposible para aquél que intenta\". - Alejandro Magno"
 
 #: gui/text/quotes.txt:33
 msgid ""
@@ -740,11 +741,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
-msgstr ""
+msgstr "\"Nuestro carácter es el resultado de nuestra conducta\". - Aristóteles"
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr ""
+msgstr "\"El hombre es, por naturaleza, un animal político\". - Aristóteles"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -761,7 +762,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
-msgstr ""
+msgstr "\"El ingenio es la insolencia educada\". - Aristóteles"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -801,13 +802,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
-msgstr ""
+msgstr "\"Ay de los vencidos\". - Breno"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Así siempre a los tiranos\". - Marco Junio Bruto después de asesinar a Julio César"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -817,15 +818,15 @@ msgstr ""
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Vine, vi, vencí\". - Cayo Julio César"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\""
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"La suerte está echada\". - Cayo Julio César"
 
 #: gui/text/quotes.txt:61
 msgid ""
@@ -873,7 +874,7 @@ msgstr ""
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya"
-msgstr ""
+msgstr "\"Si un rey es enérgico, sus súbditos serán igualmente enérgicos\". - Brahmán Chanakia"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -884,7 +885,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:71
 msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"¡Oh tiempos, oh costumbres!\". - Marco Tulio Cicerón"
 
 #: gui/text/quotes.txt:72
 msgid ""
@@ -906,7 +907,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:75
 msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
-msgstr ""
+msgstr "\"A mi señal desatad el Infierno\". - Máximo Decio Meridio en \"Gladiador\""
 
 #: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
@@ -971,7 +972,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
-msgstr ""
+msgstr "\"Soy Ciro, Rey del Mundo...\" - Ciro el Grande"
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
@@ -1302,11 +1303,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
-msgstr ""
+msgstr "\"Sólo los muertos conocen el fin de la guerra\". - Desconocido"
 
 #: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
-msgstr ""
+msgstr "\"La necesidad es la madre de la invención\". - Platón"
 
 #: gui/text/quotes.txt:151
 msgid "\"A man with courage has every blessing.\" - Plautus"
@@ -1320,45 +1321,45 @@ msgstr ""
 
 #: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
-msgstr ""
+msgstr "\"Aquél a quien los dioses aman muere joven\". - Plauto"
 
 #: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
-msgstr ""
+msgstr "\"Practica lo que pregonas\". - Plauto"
 
 #: gui/text/quotes.txt:155
 msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
-msgstr ""
+msgstr "\"Bebe, vive como los griegos, come, atibórrate\". - Plauto"
 
 #: gui/text/quotes.txt:156
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
 "the Great)"
-msgstr ""
+msgstr "\"¡Dejad de citar leyes, estamos armados!\". - Cneo Pompeyo Magno (Pompeyo el Gande)"
 
 #: gui/text/quotes.txt:157
 msgid ""
 "\"Man is the measure of all things: of things which are, that they are, and "
 "of things which are not, that they are not.\" - Protagoras"
-msgstr ""
+msgstr "\"El hombre es la medida de todas las cosas: "
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
-msgstr ""
+msgstr "\"Hemos de comportarnos con el otro de manera que evitemos hacer enemigos de nuestros amigos y, al mismo tiempo, ganemos la amistad de nuestros enemigos\". - Pitágoras"
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr ""
+msgstr "\"En la ira debemos abstenernos tanto de hablar como de actuar\". - Pitágoras"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
-msgstr ""
+msgstr "\"El poder es pariente de la necesidad\". - Pitágoras"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
-msgstr ""
+msgstr "\"Los números rigen el Universo\". - Pitágoras"
 
 #: gui/text/quotes.txt:162
 msgid ""
@@ -1368,7 +1369,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
-msgstr ""
+msgstr "\"La ira comienza con locura y termina con arrepentimiento\". - Pitágoras"
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
@@ -1405,7 +1406,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr ""
+msgstr "\"Sin justicia, ningún reino prosperará\". - Pitágoras"
 
 #: gui/text/quotes.txt:171
 msgid ""
@@ -1434,7 +1435,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
-msgstr ""
+msgstr "\"Ni siquiera los dioses se oponen a la necesidad\". - Simónides de Ceos"
 
 #: gui/text/quotes.txt:176
 msgid ""

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# Amin Behshad <behshadn1-ted@yahoo.com>, 2015
 # Spahbod <myops37@yahoo.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-05-09 17:16+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2015-10-26 14:53+0000\n"
+"Last-Translator: Amin Behshad <behshadn1-ted@yahoo.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,150 +42,150 @@ msgstr "Long strings"
 
 #: lobby/XmppClient.cpp:223
 msgid "Authentication failed"
-msgstr ""
+msgstr "اعتبارسنجی با شکست مواجه شد"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not acceptable"
-msgstr ""
+msgstr "ثبت‌نام قابل قبول نیست"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration conflict"
-msgstr ""
+msgstr "تداخل ثبت‌نام"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration not authorized"
-msgstr ""
+msgstr "ثبت‌نام مجاز نیست"
 
 #: lobby/XmppClient.cpp:460
 msgid "Registration bad request"
-msgstr ""
+msgstr "ثبت‌نام به درستی صورت نگرفت"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration forbidden"
-msgstr ""
+msgstr "ثبت‌نام ممنوع است"
 
 #: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1043
 msgid "Registration required"
-msgstr ""
+msgstr "ثبت‌نام کنید"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "درخواست غیرقابل‌فهم ثبت‌نام"
 
 #: lobby/XmppClient.cpp:464
 msgid "Registration not allowed"
-msgstr ""
+msgstr "ثبت‌نام مجاز نیست"
 
 #: lobby/XmppClient.cpp:465
 msgid "Registration unknown error"
-msgstr ""
+msgstr "اشکال ناشناخته ثبت‌نام"
 
 #: lobby/XmppClient.cpp:773
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "زیرشاخه شناخته نشده(یادداشتها را ببینید)"
 
 #: lobby/XmppClient.cpp:1028
 msgid "Bad request"
-msgstr ""
+msgstr "درخواست بد"
 
 #: lobby/XmppClient.cpp:1029
 msgid "Player name already in use"
-msgstr ""
+msgstr "نام بازیکن قبلا انتخاب شده است."
 
 #: lobby/XmppClient.cpp:1030
 msgid "Feature not implemented"
-msgstr ""
+msgstr "این قابلیت هنوز اجرایی نشده است"
 
 #: lobby/XmppClient.cpp:1031
 msgid "Forbidden"
-msgstr ""
+msgstr "ممنوع شده است"
 
 #: lobby/XmppClient.cpp:1032
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "دریافت‌کننده یا سرور وجود ندارد"
 
 #: lobby/XmppClient.cpp:1033
 msgid "Internal server error"
-msgstr ""
+msgstr "اشکال داخلی سرور"
 
 #: lobby/XmppClient.cpp:1034
 msgid "Item not found"
-msgstr ""
+msgstr "مورد پیدا نشد"
 
 #: lobby/XmppClient.cpp:1035
 msgid "Jid malformed"
-msgstr ""
+msgstr "Jid ناهنجار است"
 
 #: lobby/XmppClient.cpp:1036
 msgid "Not acceptable"
-msgstr ""
+msgstr " قابل قبول نیست"
 
 #: lobby/XmppClient.cpp:1037
 msgid "Not allowed"
-msgstr ""
+msgstr "مجاز نیست"
 
 #: lobby/XmppClient.cpp:1038
 msgid "Not authorized"
-msgstr ""
+msgstr "معتبر نیست"
 
 #: lobby/XmppClient.cpp:1039
 msgid "Not modified"
-msgstr ""
+msgstr "دستکاری نشده است"
 
 #: lobby/XmppClient.cpp:1040
 msgid "Payment required"
-msgstr ""
+msgstr "دستمزد نیاز است"
 
 #: lobby/XmppClient.cpp:1041
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "گیرنده در دسترس نیست"
 
 #: lobby/XmppClient.cpp:1042
 msgid "Redirect"
-msgstr ""
+msgstr "ارجاع"
 
 #: lobby/XmppClient.cpp:1044
 msgid "Remote server not found"
-msgstr ""
+msgstr "سرور پیدا نشد"
 
 #: lobby/XmppClient.cpp:1045
 msgid "Remote server timeout"
-msgstr ""
+msgstr "timeout سرور"
 
 #: lobby/XmppClient.cpp:1046
 msgid "Resource constraint"
-msgstr ""
+msgstr "محدودیت منابع"
 
 #: lobby/XmppClient.cpp:1047
 msgid "Service unavailable"
-msgstr ""
+msgstr "سرویس در دسترس نیست"
 
 #: lobby/XmppClient.cpp:1048
 msgid "Subscription Required"
-msgstr ""
+msgstr "نیاز به مشترک شدن دارد"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Undefined condition"
-msgstr ""
+msgstr "وضعیت تعریف نشده"
 
 #: lobby/XmppClient.cpp:1050
 msgid "Unexpected request"
-msgstr ""
+msgstr "درخواست غیرقابل‌فهم"
 
 #: lobby/XmppClient.cpp:1051
 msgid "Unknown sender"
-msgstr ""
+msgstr "فرستنده ناشناخته"
 
 #: lobby/XmppClient.cpp:1053
 msgid "Error undefined"
-msgstr ""
+msgstr "اشکال تعریف نشده"
 
 #: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "بازی در '%s' ذخیره شد"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "تصویر نمایشگر در '%s' ذخیره شد"

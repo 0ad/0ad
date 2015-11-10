@@ -5,12 +5,13 @@
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014
 # Thadah <juchuf@gmail.com>, 2015
+# Osoitz <oelkoro@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-25 18:52+0000\n"
-"Last-Translator: Thadah <juchuf@gmail.com>\n"
+"PO-Revision-Date: 2015-11-09 20:35+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:6
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "Ezer ez"
 
 #: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
@@ -38,15 +39,15 @@ msgstr "Itxaron gelara bueltatu."
 #: gui/gamesetup/gamesetup.js:133 gui/gamesetup/gamesetup.js:1368
 #: gui/gamesetup/gamesetup.js:1432
 msgid "Default"
-msgstr ""
+msgstr "Lehenetsia"
 
 #: gui/gamesetup/gamesetup.js:134
 msgid "Naval Maps"
-msgstr ""
+msgstr "Itsas-mapak"
 
 #: gui/gamesetup/gamesetup.js:135
 msgid "Demo Maps"
-msgstr ""
+msgstr "Demo Mapak"
 
 #: gui/gamesetup/gamesetup.js:136
 msgid "All Maps"
@@ -55,17 +56,17 @@ msgstr "Mapa Guztiak"
 #: gui/gamesetup/gamesetup.js:364
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Ezer ez"
 
 #: gui/gamesetup/gamesetup.js:583 gui/gamesetup/gamesetup.js:1517
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "Ausazko"
 
 #: gui/gamesetup/gamesetup.js:647 gui/gamesetup/gamesetup.js:1452
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Ausazko"
 
 #: gui/gamesetup/gamesetup.js:911 gui/gamesetup/gamesetup.js:1081
 msgid "You"
@@ -74,7 +75,7 @@ msgstr "Zu"
 #: gui/gamesetup/gamesetup.js:1170
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1290 gui/gamesetup/gamesetup.js:1295
 #: gui/gamesetup/gamesetup.js:1303 gui/gamesetup/gamesetup.js:1358
@@ -100,22 +101,22 @@ msgstr "Ez"
 #: gui/gamesetup/gamesetup.js:1439 gui/gamesetup/gamesetup.js:1440
 #: gui/gamesetup/gamesetup.js:1441
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Eszenarioarengatik determinatua"
 
 #: gui/gamesetup/gamesetup.js:1453
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Zerrendatik mapa bat ausaz aukeratzen du"
 
 #: gui/gamesetup/gamesetup.js:1460
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Sentitzen dut, ez dago deskripziorik eskuragarri."
 
 #: gui/gamesetup/gamesetup.js:1463
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Jokalari %(number)s  "
+msgstr[1] "%(number)s jokalari. "
 
 #: gui/gamesetup/gamesetup.js:1467 gui/gamesetup/gamesetup.xml:(caption):289
 msgid "Victory Condition:"
@@ -123,7 +124,7 @@ msgstr "Irabazteko baldintza:"
 
 #: gui/gamesetup/gamesetup.js:1503
 msgid "Loading..."
-msgstr ""
+msgstr "Kargatzen..."
 
 #: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
@@ -138,41 +139,41 @@ msgstr "Esleitu gabea"
 #: gui/gamesetup/gamesetup.js:1839
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1816
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s sartu egin da"
 
 #: gui/gamesetup/gamesetup.js:1821
 #, javascript-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s joan egin da"
 
 #: gui/gamesetup/gamesetup.js:1826
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:1827
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1833
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s prest dago!"
 
 #: gui/gamesetup/gamesetup.js:1835
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s ez dago prest."
 
 #: gui/gamesetup/gamesetup.js:1839
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Jokoaren hautapenak aldatu egin dira"
 
 #: gui/gamesetup/gamesetup.js:1864
 msgid "I'm not ready"
@@ -180,60 +181,60 @@ msgstr "Ez nago prest"
 
 #: gui/gamesetup/gamesetup.js:1865
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Esan jokatzeko prest ez zaudela."
 
 #: gui/gamesetup/gamesetup.js:1870 gui/gamesetup/gamesetup.js:1948
 msgid "I'm ready!"
-msgstr ""
+msgstr "Prest nago!"
 
 #: gui/gamesetup/gamesetup.js:1871
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Esan jokatzeko prest zaudela!"
 
 #: gui/gamesetup/gamesetup.js:1949
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Esan hautapenak onartzen dituzula eta jokatzeko prest zaudela!"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s-ren partida"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Zerbitzarira konektatzen..."
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Net mezua: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:146
 msgid "Registering with server..."
-msgstr ""
+msgstr "Zerbitzariarekin erregistratzen..."
 
 #: gui/gamesetup/gamesetup_mp.js:152
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Partida jada hasia da, berriro sartzen..."
 
 #: gui/gamesetup/gamesetup_mp.js:198
 msgid "Game name already in use."
-msgstr ""
+msgstr "Partidaren izena jada erabilita dago."
 
 #: gui/gamesetup/gamesetup_mp.js:259
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s-ren partida"
 
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "“%(map)s” kargatzen"
 
 #: gui/loading/loading.js:53
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "“%(map)s” sortzen"
 
 #: gui/aiconfig/aiconfig.xml:(caption):14
 msgid "AI Configuration"
@@ -267,7 +268,7 @@ msgstr "Kargatzen"
 
 #: gui/gamesetup/gamesetup.xml:(caption):28
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "Maparen datuak kargatzen. Itxaron mesedez..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):43
 msgid "Player Name"
@@ -275,7 +276,7 @@ msgstr "Jokalariaren izena"
 
 #: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Color"
-msgstr ""
+msgstr "Kolorea"
 
 #: gui/gamesetup/gamesetup.xml:(caption):49
 msgid "Player Placement"
@@ -291,7 +292,7 @@ msgstr "Taldea"
 
 #: gui/gamesetup/gamesetup.xml:(caption):108
 msgid "Map Type:"
-msgstr ""
+msgstr "Mapa Mota:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):111
 msgid "Map Filter:"
@@ -303,7 +304,7 @@ msgstr "Hautatu mapa:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):117
 msgid "Number of Players:"
-msgstr ""
+msgstr "Jokalari Kopurua:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):120
 msgid "Map Size:"
@@ -319,7 +320,7 @@ msgstr "Hasi jokoa!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):248
 msgid "Back"
-msgstr ""
+msgstr "Atzera"
 
 #: gui/gamesetup/gamesetup.xml:(caption):262
 #: gui/gamesetup/gamesetup.xml:(caption):274
@@ -340,23 +341,23 @@ msgstr "Hasierako baliabideak:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):319
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Suetena:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):329
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Mapa Erakutsia:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):339
 msgid "Explored Map:"
-msgstr ""
+msgstr "Mapa Esploratua:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):349
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Altxorrak Ezgaitu"
 
 #: gui/gamesetup/gamesetup.xml:(caption):359
 msgid "Teams Locked:"
@@ -368,7 +369,7 @@ msgstr "Trikimailuak:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):379
 msgid "Rated Game:"
-msgstr ""
+msgstr "Partida Puntuatua:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):389
 msgid "Late Observer Joins:"
@@ -380,7 +381,7 @@ msgstr "Ikusi zibilizazioaren informazioa"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):76
 msgid "Pick a color."
-msgstr ""
+msgstr "Kolore bat aukeratu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):79
 msgid "Select player."
@@ -444,7 +445,7 @@ msgstr "Hautatu jokoaren hasierako baliabideak."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):323
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Ezarri erasoak zilegi ez diren denbora tartea."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -460,7 +461,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):353
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Mapako altxor guztiak ezgaitu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):363
 msgid "Toggle locked teams."
@@ -514,7 +515,7 @@ msgstr "Zerbitzariaren izena:"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
-msgstr ""
+msgstr "Eguneko aipua:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"

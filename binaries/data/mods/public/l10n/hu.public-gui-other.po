@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Stew Den <stewden55@hotmail.com>, 2014
 # Tibor Buzási, 2014
 # Tibor Buzási, 2015
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-22 07:47+0000\n"
+"Last-Translator: Mátyás Demeter <mathias.demeter@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,33 +70,33 @@ msgstr "Nyitólap"
 #: gui/common/functions_global_object.js:85
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "Képkocka másodpercenként: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/common/functions_global_object.js:119
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Hátralévő idő a tűzszünet végéig: %(time)s."
 
 #: gui/common/functions_utility.js:142
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Alapértelmezett"
 
 #: gui/common/functions_utility.js:152
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Véletlenszerűen választott térkép."
 
 #: gui/common/functions_utility.js:161
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Sajnos nem érhető el leírás."
 
 #: gui/common/functions_utility.js:205
 msgid "mm:ss"
@@ -324,16 +325,16 @@ msgstr "Helytelen hálózati protokoll verzió"
 
 #: gui/common/network.js:9
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "A játék betöltődik, kérlek, próbálkozz később"
 
 #: gui/common/network.js:10
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "A játék már elkezdődött, megfigyelők nem engedélyezettek"
 
 #: gui/common/network.js:11
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[érvénytelen érték: %(id)s]"
 
 #: gui/common/network.js:20
 msgid "Lost connection to the server."
@@ -351,55 +352,55 @@ msgstr "Lekapcsolódott"
 #: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Homokozó"
 
 #: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Nagyon könnyű"
 
 #: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Könnyű"
 
 #: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Közepes"
 
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Nehéz"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Nagyon nehéz"
 
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Nincs tűzszünet"
 
 #: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s perc"
+msgstr[1] "%(minutes)s perc"
 
 #: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Csata"
 
 #: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Véletlenszerű"
 
 #: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
@@ -407,21 +408,21 @@ msgstr "Játszma"
 
 #: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Nincs"
 
 #: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Végtelen játék"
 
 #: gui/common/settings.js:231
 msgid "Unlimited"
-msgstr ""
+msgstr "Korlátlan"
 
 #: gui/common/settings.js:279 gui/common/settings.js:290
 #: gui/common/settings.js:301 gui/common/settings.js:312
 #: gui/common/settings.js:323
 msgid "Unknown"
-msgstr ""
+msgstr "Ismeretlen"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -459,24 +460,24 @@ msgstr ", "
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(time)s %(second)s"
-msgstr ""
+msgstr "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:423
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "másodperc"
+msgstr[1] "másodperc"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
-msgstr ""
+msgstr "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:63
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "nyíl"
+msgstr[1] "nyíl"
 
 #: gui/common/tooltips.js:65
 #, javascript-format
@@ -537,7 +538,7 @@ msgstr "Arány:"
 #: gui/common/tooltips.js:175 gui/common/tooltips.js:184
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:416
 msgid "Range:"
@@ -552,14 +553,14 @@ msgstr "méter"
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:209
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
 #: gui/common/tooltips.js:259 gui/common/tooltips.js:260
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:262
@@ -625,27 +626,27 @@ msgstr "%(label)s %(speeds)s"
 #: gui/common/tooltips.js:420
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
-msgstr ""
+msgstr "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:410
 msgid "Heal:"
-msgstr ""
+msgstr "Gyógyulás:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
 #: gui/common/tooltips.js:413
 msgid "HP"
-msgstr ""
+msgstr "HP"
 
 #: gui/common/tooltips.js:436
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/common/tooltips.js:437
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/common/tooltips.js:450
 #, javascript-format
@@ -712,7 +713,7 @@ msgstr "Mozgóháttér leállítása"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
-msgstr ""
+msgstr "Egyjátékos játszmák szüneteltetése, ha az ablak elveszti a fókuszt"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
@@ -759,15 +760,15 @@ msgstr "Jelelegi szimulációs idő megjelenítése a jobb felső sarokban."
 
 #: gui/options/options.js:16
 msgid "Ceasefire Time Overlay"
-msgstr ""
+msgstr "Tűzszünet idő felület"
 
 #: gui/options/options.js:16
 msgid "Always show the remaining ceasefire time."
-msgstr ""
+msgstr "Mindig mutassa a tűzszünet hátralévő idejét."
 
 #: gui/options/options.js:17
 msgid "Persist Match Settings"
-msgstr ""
+msgstr "Állandó játszma beállítások"
 
 #: gui/options/options.js:17
 msgid ""
@@ -900,11 +901,11 @@ msgstr "Függőleges szinkronizáció futtatása a képtörés javítására. A 
 
 #: gui/options/options.js:36
 msgid "Limit FPS in Menus"
-msgstr ""
+msgstr "FPS korlátozása a menükben"
 
 #: gui/options/options.js:36
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr ""
+msgstr "FPS korlátozása 50-re minden menüben, energiamegtakarítás céljából."
 
 #: gui/options/options.js:40
 msgid "Master Gain"
@@ -1043,7 +1044,7 @@ msgstr "Hiba"
 
 #: gui/pregame/mainmenu.js:304
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Többjátékos előcsarnok indítása. \\[BUILD ÁLTAL LETILTVA]"
 
 #: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
@@ -1071,14 +1072,14 @@ msgstr "Ehhez a 0 A.D. következő verziója szükséges: %(requiredVersion)s, t
 
 #: gui/savedgames/load.js:61
 msgid "It needs an older version of 0 A.D."
-msgstr ""
+msgstr "Ehhez egy régebbi 0 A.D. verzió szükséges."
 
 #: gui/savedgames/load.js:65
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr ""
+msgstr "Ehhez a 0 A.D. következő játékmentési verziója szükséges: %(requiredVersion)s, te jelenleg a következő játékmentési verziót használod: %(currentVersion)s"
 
 #: gui/savedgames/load.js:75
 #, javascript-format
@@ -1134,7 +1135,7 @@ msgstr "Életerő:"
 #: gui/structree/draw.js:280
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:286
 msgid "Gather Rates:"
@@ -1143,7 +1144,7 @@ msgstr ""
 #: gui/structree/load.js:146
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr ""
+msgstr "%(val1)s to %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
@@ -1470,7 +1471,7 @@ msgstr "Állapot: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr ""
+msgstr "Alpha XIX: Syllepsis"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1493,7 +1494,7 @@ msgstr "Visszajelzés Tiltása"
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
-msgstr ""
+msgstr "Struktúrafa"
 
 #: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
@@ -1530,7 +1531,7 @@ msgstr "Beállítások"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Újrajátszások"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1542,7 +1543,7 @@ msgstr "Üdvözlőképernyő"
 
 #: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
-msgstr ""
+msgstr "Modok választása"
 
 #: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
@@ -1604,7 +1605,7 @@ msgstr "Kattints ide új egyjátékos módú játék indításához."
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr ""
+msgstr "Éld újra a történelmet történelmi hadjáratok újrajátszásával! \\[MÉG NEM ELÉRHETŐ]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
@@ -1620,7 +1621,7 @@ msgstr "Házigazda szerep egy többjátékos módú játékban.\\n\\n\nSzükség
 
 #: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
-msgstr ""
+msgstr "Többjátékos előcsarnok indítása."
 
 #: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
@@ -1632,7 +1633,7 @@ msgstr "Válaszd ki a játék nyelvét!"
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Korábbi játékok visszajátszása."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1652,7 +1653,7 @@ msgstr "Válaszd ki a használni kívánt módot."
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr ""
+msgstr "Tanulj meg játszani, fedezd fel a technológiafákat és a civilizációk történelmét"
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
@@ -1686,7 +1687,7 @@ msgstr "Kattints a 0 A.D. IRC csevegés böngésződben való megnyitásához. (
 
 #: gui/pregame/mainmenu.xml:(tooltip):586
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Kattints a 0 A.D. Trac oldalának meglátogatásához, ahol bejelentheted az előforduló hibákat."
 
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
@@ -1706,7 +1707,7 @@ msgstr "Leírás:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "Üdvözlet!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -1714,11 +1715,11 @@ msgstr "Mutassa ezt az üzenetet a jövőben"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Ismert problémák (web)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr ""
+msgstr "Civilizáció:"
 
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
@@ -1755,7 +1756,7 @@ msgstr "Tovább"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Köszönjük, hogy telepítetted a 0 A.D. Empires Ascendant játékot!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -1765,25 +1766,25 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr ""
+msgstr "[icon=\"constructionIcon\"] Ez a játék még fejlesztés alatt áll. Egyes jellegzetességek hiányoznak és hibákat tartalmaz."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]A játékban előfordulhatnak teljesítményproblémák, főként nagy térképeknél és nagy számú egységeknél."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Ez a verzió új útvonalkeresőt tartalmaz, ami hatékonyabb, de új hibák forrása lehet."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "[imgleft=\"iconFormation\"]A formációk fejlesztés alatt állnak, de tetszés szerint be-/kikapcsolhatóak a formációk létrehozása és felosztása funkciók."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -1898,7 +1899,7 @@ msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr ""
+msgstr "Kelta harci bárka"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
@@ -2136,7 +2137,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "NEHÉZ HADIHAJÓ"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
@@ -2412,7 +2413,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "HARCI ELEFÁNTOK"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
