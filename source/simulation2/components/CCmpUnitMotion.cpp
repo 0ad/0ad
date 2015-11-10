@@ -134,6 +134,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_Update_MotionFormation);
 		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
 		componentManager.SubscribeToMessageType(MT_PathResult);
+		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_ValueModification);
 		componentManager.SubscribeToMessageType(MT_Deserialized);
 	}
@@ -427,6 +428,7 @@ public:
 				break;
 		}
 		// fall-through
+		case MT_OwnershipChanged:
 		case MT_Deserialized:
 		{
 			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
