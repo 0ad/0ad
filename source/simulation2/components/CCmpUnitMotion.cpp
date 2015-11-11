@@ -624,10 +624,11 @@ private:
 	void Move(fixed dt);
 
 	/**
-	 * Analyse the next long path step (if any) and precompute a short path if needed.
-	 * Then use the previous computed short path, if present, for the current step.
+	 * Analyze our current path, and check if we expect to be obstructed soon
+	 * If yes, try to anticipate.
+	 * TODO: remove this and use a more general "pushing" manager.
 	 */
-	void PlanNextStep(const CFixedVector2D& pos);
+	void PlanNextStep(const CFixedVector2D& pos, const CFixedVector2D& currentOffset);
 
 	/**
 	 * Decide whether to approximate the given range from a square target as a circle,
@@ -939,10 +940,7 @@ void CCmpUnitMotion::Move(fixed dt)
 					timeLeft = timeLeft - (offsetLength / maxSpeed);
 
 					if (m_ShortPath.m_Waypoints.empty())
-					{
 						m_LongPath.m_Waypoints.pop_back();
-						//PlanNextStep(pos);
-					}
 					else
 						m_ShortPath.m_Waypoints.pop_back();
 
@@ -963,6 +961,7 @@ void CCmpUnitMotion::Move(fixed dt)
 
 				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
 				{
+					PlanNextStep(pos, offset);
 					pos = target;
 					break;
 				}
@@ -1093,43 +1092,28 @@ void CCmpUnitMotion::Move(fixed dt)
 	}
 }
 
-void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos)
+void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos, const CFixedVector2D& currentOffset)
 {
-	if (m_LongPath.m_Waypoints.empty())
-		return;
-
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 	if (!cmpPathfinder)
 		return;
 	
-	const Waypoint& nextPoint = m_LongPath.m_Waypoints.back();
-
-	// The next step was obstructed the last time we checked; also check that
-	// the step is still obstructed (maybe the units in our way moved in the meantime)
-	if (!m_Planning.nextStepClean &&
-		!cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, nextPoint.x, nextPoint.z, m_Clearance, m_PassClass))
-	{
-		// If the short path computation is over, use it, else just forget about it
-		if (!m_Planning.nextStepShortPath.m_Waypoints.empty())
-		{
-			m_PathState = PATHSTATE_FOLLOWING;
-			m_ShortPath = m_Planning.nextStepShortPath;
-		}
-	}
-
 	m_Planning = SUnitMotionPlanning();
-
-	if (m_LongPath.m_Waypoints.size() == 1)
-		return;
-
-	const Waypoint& followingPoint = m_LongPath.m_Waypoints.rbegin()[1]; // penultimate element
-	m_Planning.nextStepClean = cmpPathfinder->CheckMovement(
-		GetObstructionFilter(), nextPoint.x, nextPoint.z, followingPoint.x, followingPoint.z, m_Clearance, m_PassClass);
-	if (!m_Planning.nextStepClean)
+	
+	// see 2 turns in advance, otherwise this would start to lag in MP
+	CFixedVector2D futurePos = pos + currentOffset*2;
+	
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+	
+	std::cout << cmpObstructionManager->TestLine(GetObstructionFilter(true, false), pos.X, pos.Y, futurePos.X, futurePos.Y, m_Clearance, true) << std::endl;
+	// Don't actually use CheckMovement since we want to check against units only, we assume the rest is taken care of.
+	if (cmpObstructionManager && cmpObstructionManager->TestLine(GetObstructionFilter(true, false), pos.X, pos.Y, futurePos.X, futurePos.Y, m_Clearance, true))
 	{
-		PathGoal goal = { PathGoal::POINT, followingPoint.x, followingPoint.z };
-		m_Planning.expectedPathTicket = cmpPathfinder->ComputeShortPathAsync(
-			nextPoint.x, nextPoint.z, m_Clearance, SHORT_PATH_MIN_SEARCH_RANGE, goal, m_PassClass, false, GetGroup(), GetEntityId());
+		// we will run in a static unit obstruction. Try to shortpath around it.
+		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+		RequestShortPath(pos, goal, false);
+		m_PathState = PATHSTATE_FOLLOWING_REQUESTING_SHORT;
+		return;
 	}
 }
 
