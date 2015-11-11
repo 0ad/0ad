@@ -135,6 +135,10 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		pNewMessage = new CRejoinedMessage;
 		break;
 
+	case NMT_KICKED:
+		pNewMessage = new CKickedMessage;
+		break;
+
 	case NMT_LOADED_GAME:
 		pNewMessage = new CLoadedGameMessage;
 		break;

@@ -269,7 +269,9 @@ function handleNetMessage(message)
 			break;
 		case "disconnected":
 			g_Disconnected = true;
-			obj.caption = translate("Connection to the server has been lost.") + "\n\n" + translate("The game has ended.");
+			// Translation: States the reason why the client disconnected from the server.
+			let reason = sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(message.reason) });
+			obj.caption = translate("Connection to the server has been lost.") + "\n" + reason + "\n" + translate("The game has ended.");
 			obj.hidden = false;
 			break;
 		default:
@@ -325,6 +327,14 @@ function handleNetMessage(message)
 		addChatMessage({ "type": "rejoined", "guid": message.guid });
 		break;
 
+	case "kicked":
+		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": message.username })});
+		break;
+
+	case "banned":
+		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": message.username })});
+		break;
+
 	// To prevent errors, ignore these message types that occur during autostart
 	case "gamesetup":
 	case "start":
@@ -357,6 +367,9 @@ function submitChatInput()
 	toggleChatWindow();
 
 	if (!text.length)
+		return;
+
+	if (executeNetworkCommand(text))
 		return;
 
 	if (executeCheat(text))
@@ -419,6 +432,12 @@ function addChatMessage(msg)
 		break;
 	case "rejoined":
 		formatted = sprintf(translate("%(player)s has rejoined the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		break;
+	case "clientlist":
+		formatted = sprintf(translate("Users: %(users)s"), { "users": getUsernameList().join(translate(", ")) });
+		break;
+	case "system":
+		formatted = msg.text;
 		break;
 	case "defeat":
 		// In singleplayer, the local player is "You". "You has" is incorrect.

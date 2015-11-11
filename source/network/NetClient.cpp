@@ -93,6 +93,7 @@ CNetClient::CNetClient(CGame* game) :
 	AddTransition(NCS_PREGAME, (uint)NMT_READY, NCS_PREGAME, (void*)&OnReady, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, (void*)&OnPlayerAssignment, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_KICKED, NCS_PREGAME, (void*)&OnKicked, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, (void*)&OnGameStart, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_JOIN_SYNC_START, NCS_JOIN_SYNCING, (void*)&OnJoinSyncStart, context);
 
@@ -110,6 +111,7 @@ CNetClient::CNetClient(CGame* game) :
 	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, (void*)&OnLoadedGame, context);
 
 	AddTransition(NCS_INGAME, (uint)NMT_REJOINED, NCS_INGAME, (void*)&OnRejoined, context);
+	AddTransition(NCS_INGAME, (uint)NMT_KICKED, NCS_INGAME, (void*)&OnKicked, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, (void*)&OnChat, context);
 	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, (void*)&OnPlayerAssignment, context);
@@ -602,6 +604,24 @@ bool CNetClient::OnRejoined(void *context, CFsmEvent* event)
 	JS::RootedValue msg(cx);
 	client->GetScriptInterface().Eval("({'type':'rejoined'})", &msg);
 	client->GetScriptInterface().SetProperty(msg, "guid", std::string(message->m_GUID), false);
+	client->PushGuiMessage(msg);
+
+	return true;
+}
+
+bool CNetClient::OnKicked(void *context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_KICKED);
+
+	CNetClient* client = (CNetClient*)context;
+	JSContext* cx = client->GetScriptInterface().GetContext();
+
+	CKickedMessage* message = (CKickedMessage*)event->GetParamRef();
+	JS::RootedValue msg(cx);
+
+	client->GetScriptInterface().Eval("({})", &msg);
+	client->GetScriptInterface().SetProperty(msg, "username", message->m_Name);
+	client->GetScriptInterface().SetProperty(msg, "type", message->m_Ban ? std::string("banned") : std::string("kicked"));
 	client->PushGuiMessage(msg);
 
 	return true;

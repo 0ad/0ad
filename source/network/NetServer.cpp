@@ -121,7 +121,7 @@ CNetServerWorker::CNetServerWorker(int autostartPlayers) :
 	m_AutostartPlayers(autostartPlayers),
 	m_Shutdown(false),
 	m_ScriptInterface(NULL),
-	m_NextHostID(1), m_Host(NULL), m_Stats(NULL)
+	m_NextHostID(1), m_Host(NULL), m_HostGUID(), m_Stats(NULL)
 {
 	m_State = SERVER_STATE_UNCONNECTED;
 
@@ -610,6 +610,12 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 
 bool CNetServerWorker::HandleConnect(CNetServerSession* session)
 {
+	if (std::find(m_BannedIPs.begin(), m_BannedIPs.end(), session->GetIPAddress()) != m_BannedIPs.end())
+	{
+		session->Disconnect(NDR_BANNED);
+		return false;
+	}
+
 	CSrvHandshakeMessage handshake;
 	handshake.m_Magic = PS_PROTOCOL_MAGIC;
 	handshake.m_ProtocolVersion = PS_PROTOCOL_VERSION;
@@ -620,6 +626,10 @@ bool CNetServerWorker::HandleConnect(CNetServerSession* session)
 void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 {
 	AddPlayer(session->GetGUID(), session->GetUserName());
+
+	// Host is the first to join
+	if (m_HostGUID.empty())
+		m_HostGUID = session->GetGUID();
 
 	CGameSetupMessage gameSetupMessage(GetScriptInterface());
 	gameSetupMessage.m_Data = m_GameAttributes.get();
@@ -713,6 +723,40 @@ void CNetServerWorker::ClearAllPlayerReady()
 	SendPlayerAssignments();
 }
 
+bool CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
+{
+	// Find the user with that name
+	std::vector<CNetServerSession*>::iterator it = std::find_if(m_Sessions.begin(), m_Sessions.end(),
+		[&](CNetServerSession* session) { return session->GetUserName() == playerName; });
+
+	// and return if no one or the host has that name
+	if (it == m_Sessions.end() || (*it)->GetGUID() == m_HostGUID)
+		return false;
+
+	if (ban)
+	{
+		// Remember name
+		if (std::find(m_BannedPlayers.begin(), m_BannedPlayers.end(), playerName) == m_BannedPlayers.end())
+			m_BannedPlayers.push_back(playerName);
+
+		// Remember IP address
+		CStr ipAddress = (*it)->GetIPAddress();
+		if (!ipAddress.empty() && std::find(m_BannedIPs.begin(), m_BannedIPs.end(), ipAddress) == m_BannedIPs.end())
+			m_BannedIPs.push_back(ipAddress);
+	}
+
+	// Disconnect that user
+	(*it)->Disconnect(ban ? NDR_BANNED : NDR_KICKED);
+
+	// Send message notifying other clients
+	CKickedMessage kickedMessage;
+	kickedMessage.m_Name = playerName;
+	kickedMessage.m_Ban = ban;
+	Broadcast(&kickedMessage);
+
+	return true;
+}
+
 void CNetServerWorker::AssignPlayer(int playerID, const CStr& guid)
 {
 	// Remove anyone who's already assigned to this player
@@ -803,6 +847,13 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
 	CStrW username = server.DeduplicatePlayerName(SanitisePlayerName(message->m_Name));
+
+	// Disconnect banned usernames
+	if (std::find(server.m_BannedPlayers.begin(), server.m_BannedPlayers.end(), username) != server.m_BannedPlayers.end())
+	{
+		session->Disconnect(NDR_BANNED);
+		return true;
+	}
 
 	// Optionally allow observers to join after the game has started
 	bool observerLateJoin = false;
@@ -1166,6 +1217,12 @@ CNetServer::~CNetServer()
 bool CNetServer::SetupConnection()
 {
 	return m_Worker->SetupConnection();
+}
+
+bool CNetServer::KickPlayer(const CStrW& playerName, const bool ban)
+{
+	CScopeLock lock(m_Worker->m_WorkerMutex);
+	return m_Worker->KickPlayer(playerName, ban);
 }
 
 void CNetServer::AssignPlayer(int playerID, const CStr& guid)

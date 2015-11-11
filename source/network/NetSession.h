@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -121,6 +121,8 @@ public:
 
 	u32 GetHostID() const { return m_HostID; }
 	void SetHostID(u32 id) { m_HostID = id; }
+
+	CStr GetIPAddress() const;
 
 	/**
 	 * Sends a disconnection notification to the client,

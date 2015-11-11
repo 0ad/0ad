@@ -508,6 +508,14 @@ function handleNetMessage(message)
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
 		break;
 
+	case "kicked":
+		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": message.username })});
+		break;
+
+	case "banned":
+		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": message.username })});
+		break;
+
 	// Singular client to host message
 	case "ready":
 		g_ReadyChanged -= 1;
@@ -1776,8 +1784,12 @@ function submitChatInput()
 	if (!text.length)
 		return;
 
-	Engine.SendNetworkChat(text);
 	input.caption = "";
+
+	if (executeNetworkCommand(text))
+		return;
+
+	Engine.SendNetworkChat(text);
 }
 
 function addChatMessage(msg)
@@ -1810,6 +1822,14 @@ function addChatMessage(msg)
 	case "disconnect":
 		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
 		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has left"), { "username": formattedUsername }) }) + '[/font]';
+		break;
+
+	case "clientlist":
+		formatted = sprintf(translate("Users: %(users)s"), { "users": getUsernameList().join(translate(", ")) });
+		break;
+
+	case "system":
+		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { "message": msg.text }) + '[/font]';
 		break;
 
 	case "message":
