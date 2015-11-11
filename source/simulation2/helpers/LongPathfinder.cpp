@@ -22,6 +22,8 @@
 #include "lib/bits.h"
 #include "ps/Profile.h"
 
+#include "Geometry.h"
+
 /**
  * Jump point cache.
  *

@@ -18,11 +18,11 @@
 #ifndef INCLUDED_PATHFINDING
 #define INCLUDED_PATHFINDING
 
+#include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 
 #include "simulation2/system/ParamNode.h"
 #include "graphics/Terrain.h"
-#include "Geometry.h"
 #include "Grid.h"
 #include "PathGoal.h"
 

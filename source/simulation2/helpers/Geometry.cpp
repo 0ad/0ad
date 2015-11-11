@@ -23,7 +23,7 @@ using namespace Geometry;
 
 // TODO: all of these things could be optimised quite easily
 
-CFixedVector2D Geometry::GetHalfBoundingBox(CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
+CFixedVector2D Geometry::GetHalfBoundingBox(const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
 {
 	return CFixedVector2D(
 		u.X.Multiply(halfSize.X).Absolute() + v.X.Multiply(halfSize.Y).Absolute(),
@@ -36,7 +36,7 @@ float Geometry::ChordToCentralAngle(const float chordLength, const float radius)
 	return acosf(1.f - SQR(chordLength)/(2.f*SQR(radius))); // cfr. law of cosines
 }
 
-fixed Geometry::DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize, bool countInsideAsZero)
+fixed Geometry::DistanceToSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
 {
 	/*
 	 * Relative to its own coordinate system, we have a square like:
@@ -102,7 +102,7 @@ fixed Geometry::DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedV
 
 // Same as above except it does not use Length.
 // For explanations refer to DistanceToSquare
-fixed Geometry::DistanceToSquareSquared(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize, bool countInsideAsZero)
+fixed Geometry::DistanceToSquareSquared(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
 {
 	fixed du = point.Dot(u);
 	fixed dv = point.Dot(v);
@@ -140,7 +140,7 @@ fixed Geometry::DistanceToSquareSquared(CFixedVector2D point, CFixedVector2D u, 
 	}
 }
 
-CFixedVector2D Geometry::NearestPointOnSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
+CFixedVector2D Geometry::NearestPointOnSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
 {
 	/*
 	 * Relative to its own coordinate system, we have a square like:
@@ -214,7 +214,7 @@ CFixedVector2D Geometry::NearestPointOnSquare(CFixedVector2D point, CFixedVector
 	}
 }
 
-bool Geometry::TestRaySquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
+bool Geometry::TestRaySquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
 {
 	/*
 	 * We only consider collisions to be when the ray goes from outside to inside the shape (and possibly out again).
@@ -262,7 +262,7 @@ bool Geometry::TestRaySquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2D 
 	return false;
 }
 
-bool Geometry::TestRayAASquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2D halfSize)
+bool Geometry::TestRayAASquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& halfSize)
 {
 	// Exactly like TestRaySquare with u=(1,0), v=(0,1)
 
@@ -308,7 +308,7 @@ bool Geometry::TestRayAASquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2
  * Separating axis test; returns true if the square defined by u/v/halfSize at the origin
  * is not entirely on the clockwise side of a line in direction 'axis' passing through 'a'
  */
-static bool SquareSAT(CFixedVector2D a, CFixedVector2D axis, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
+static bool SquareSAT(const CFixedVector2D& a, const CFixedVector2D& axis, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
 {
 	fixed hw = halfSize.X;
 	fixed hh = halfSize.Y;
@@ -327,8 +327,8 @@ static bool SquareSAT(CFixedVector2D a, CFixedVector2D axis, CFixedVector2D u, C
 }
 
 bool Geometry::TestSquareSquare(
-		CFixedVector2D c0, CFixedVector2D u0, CFixedVector2D v0, CFixedVector2D halfSize0,
-		CFixedVector2D c1, CFixedVector2D u1, CFixedVector2D v1, CFixedVector2D halfSize1)
+		const CFixedVector2D& c0, const CFixedVector2D& u0, const CFixedVector2D& v0, const CFixedVector2D& halfSize0,
+		const CFixedVector2D& c1, const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1)
 {
 	// TODO: need to test this carefully
 

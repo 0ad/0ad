@@ -640,7 +640,7 @@ private:
 	/**
 	 * Return whether the given point is within the world bounds by at least r
 	 */
-	bool IsInWorld(entity_pos_t x, entity_pos_t z, entity_pos_t r)
+	inline bool IsInWorld(entity_pos_t x, entity_pos_t z, entity_pos_t r)
 	{
 		return (m_WorldX0+r <= x && x <= m_WorldX1-r && m_WorldZ0+r <= z && z <= m_WorldZ1-r);
 	}
@@ -648,7 +648,7 @@ private:
 	/**
 	 * Return whether the given point is within the world bounds
 	 */
-	bool IsInWorld(CFixedVector2D p)
+	inline bool IsInWorld(const CFixedVector2D& p)
 	{
 		return (m_WorldX0 <= p.X && p.X <= m_WorldX1 && m_WorldZ0 <= p.Y && p.Y <= m_WorldZ1);
 	}

@@ -36,7 +36,6 @@
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTerritoryInfluence.h"
-#include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/Render.h"
 

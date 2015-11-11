@@ -27,7 +27,6 @@
 #include "maths/FixedVector2D.h"
 #include "maths/MathUtil.h"
 
-
 namespace Geometry
 {
 
@@ -40,7 +39,7 @@ namespace Geometry
  *
  * The @p u and @p v vectors must be perpendicular.
  */
-inline bool PointIsInSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
+inline bool PointIsInSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize)
 {
 	return point.Dot(u).Absolute() <= halfSize.X && point.Dot(v).Absolute() <= halfSize.Y;
 }
@@ -53,7 +52,7 @@ inline bool PointIsInSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector
  * The rectangle is defined by the four vertexes
  * (+/-u*halfSize.X +/-v*halfSize.Y).
  */
-CFixedVector2D GetHalfBoundingBox(CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
+CFixedVector2D GetHalfBoundingBox(const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize);
 
 /**
  * Returns the minimum Euclidean distance from the given point to
@@ -69,15 +68,15 @@ CFixedVector2D GetHalfBoundingBox(CFixedVector2D u, CFixedVector2D v, CFixedVect
  *
  * The @p u and @p v vectors must be perpendicular and unit length.
  */
-fixed DistanceToSquare(CFixedVector2D point,
-	CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize,
+fixed DistanceToSquare(const CFixedVector2D& point,
+	const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize,
 	bool countInsideAsZero = false);
 
 /**
  * Similar to above but never uses sqrt, so it returns the squared distance.
  */
-fixed DistanceToSquareSquared(CFixedVector2D point,
-					   CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize,
+fixed DistanceToSquareSquared(const CFixedVector2D& point,
+					   const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize,
 					   bool countInsideAsZero = false);
 /**
  * Returns a point on the boundary of the given rotated rectangle
@@ -89,8 +88,8 @@ fixed DistanceToSquareSquared(CFixedVector2D point,
  *
  * The @p u and @p v vectors must be perpendicular and unit length.
  */
-CFixedVector2D NearestPointOnSquare(CFixedVector2D point,
-	CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
+CFixedVector2D NearestPointOnSquare(const CFixedVector2D& point,
+	const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize);
 
 /**
  * Given a circle of radius @p radius, and a chord of length @p chordLength
@@ -101,13 +100,13 @@ CFixedVector2D NearestPointOnSquare(CFixedVector2D point,
  */
 float ChordToCentralAngle(const float chordLength, const float radius);
 
-bool TestRaySquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
+bool TestRaySquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize);
 
-bool TestRayAASquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2D halfSize);
+bool TestRayAASquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& halfSize);
 
 bool TestSquareSquare(
-		CFixedVector2D c0, CFixedVector2D u0, CFixedVector2D v0, CFixedVector2D halfSize0,
-		CFixedVector2D c1, CFixedVector2D u1, CFixedVector2D v1, CFixedVector2D halfSize1);
+		const CFixedVector2D& c0, const CFixedVector2D& u0, const CFixedVector2D& v0, const CFixedVector2D& halfSize0,
+		const CFixedVector2D& c1, const CFixedVector2D& u1, const CFixedVector2D& v1, const CFixedVector2D& halfSize1);
 
 } // namespace
 

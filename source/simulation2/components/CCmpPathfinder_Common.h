@@ -36,7 +36,6 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "simulation2/components/ICmpObstructionManager.h"
-#include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/LongPathfinder.h"
 
 class SceneCollector;

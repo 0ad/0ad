@@ -198,7 +198,7 @@ public:
 	/**
 	 * Compute the dot product of this vector with another.
 	 */
-	fixed Dot(const CFixedVector2D& v)
+	fixed Dot(const CFixedVector2D& v) const
 	{
 		i64 x = FIXED_MUL_I64_I32_I32(X.GetInternalValue(), v.X.GetInternalValue());
 		i64 y = FIXED_MUL_I64_I32_I32(Y.GetInternalValue(), v.Y.GetInternalValue());
@@ -212,7 +212,7 @@ public:
 		return ret;
 	}
 
-	CFixedVector2D Perpendicular()
+	CFixedVector2D Perpendicular() const
 	{
 		return CFixedVector2D(Y, -X);
 	}

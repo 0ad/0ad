@@ -133,7 +133,7 @@ static const entity_pos_t EDGE_EXPAND_DELTA = entity_pos_t::FromInt(1)/16;
  * Check whether a ray from 'a' to 'b' crosses any of the edges.
  * (Edges are one-sided so it's only considered a cross if going from front to back.)
  */
-inline static bool CheckVisibility(CFixedVector2D a, CFixedVector2D b, const std::vector<Edge>& edges)
+inline static bool CheckVisibility(const CFixedVector2D& a, const CFixedVector2D& b, const std::vector<Edge>& edges)
 {
 	CFixedVector2D abn = (b - a).Perpendicular();
 
@@ -177,7 +177,7 @@ inline static bool CheckVisibility(CFixedVector2D a, CFixedVector2D b, const std
 // They assume the caller has already excluded edges for which 'a' is
 // on the wrong side.)
 
-inline static bool CheckVisibilityLeft(CFixedVector2D a, CFixedVector2D b, const std::vector<EdgeAA>& edges)
+inline static bool CheckVisibilityLeft(const CFixedVector2D& a, const CFixedVector2D& b, const std::vector<EdgeAA>& edges)
 {
 	if (a.X >= b.X)
 		return true;
@@ -205,7 +205,7 @@ inline static bool CheckVisibilityLeft(CFixedVector2D a, CFixedVector2D b, const
 	return true;
 }
 
-inline static bool CheckVisibilityRight(CFixedVector2D a, CFixedVector2D b, const std::vector<EdgeAA>& edges)
+inline static bool CheckVisibilityRight(const CFixedVector2D& a, const CFixedVector2D& b, const std::vector<EdgeAA>& edges)
 {
 	if (a.X <= b.X)
 		return true;
@@ -233,7 +233,7 @@ inline static bool CheckVisibilityRight(CFixedVector2D a, CFixedVector2D b, cons
 	return true;
 }
 
-inline static bool CheckVisibilityBottom(CFixedVector2D a, CFixedVector2D b, const std::vector<EdgeAA>& edges)
+inline static bool CheckVisibilityBottom(const CFixedVector2D& a, const CFixedVector2D& b, const std::vector<EdgeAA>& edges)
 {
 	if (a.Y >= b.Y)
 		return true;
@@ -261,7 +261,7 @@ inline static bool CheckVisibilityBottom(CFixedVector2D a, CFixedVector2D b, con
 	return true;
 }
 
-inline static bool CheckVisibilityTop(CFixedVector2D a, CFixedVector2D b, const std::vector<EdgeAA>& edges)
+inline static bool CheckVisibilityTop(const CFixedVector2D& a, const CFixedVector2D& b, const std::vector<EdgeAA>& edges)
 {
 	if (a.Y <= b.Y)
 		return true;
@@ -480,7 +480,7 @@ static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& verte
 	}
 }
 
-static void SplitAAEdges(CFixedVector2D a,
+static void SplitAAEdges(const CFixedVector2D& a,
 		const std::vector<Edge>& edges,
 		const std::vector<Square>& squares,
 		std::vector<Edge>& edgesUnaligned,
