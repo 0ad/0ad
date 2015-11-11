@@ -24,9 +24,9 @@
  */
 
 #include "maths/Fixed.h"
+#include "maths/FixedVector2D.h"
 #include "maths/MathUtil.h"
 
-class CFixedVector2D;
 
 namespace Geometry
 {
@@ -36,12 +36,14 @@ namespace Geometry
  * Points precisely on an edge are considered to be inside.
  *
  * The rectangle is defined by the four vertexes
- * (+/-u*halfSize.X +/-v*halfSize.Y).
+ * (+/-u*halfSize.X +/-v*halfSize.Y)
  *
  * The @p u and @p v vectors must be perpendicular.
  */
-bool PointIsInSquare(CFixedVector2D point,
-	CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
+inline bool PointIsInSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
+{
+	return point.Dot(u).Absolute() <= halfSize.X && point.Dot(v).Absolute() <= halfSize.Y;
+}
 
 /**
  * Returns a vector (bx,by) such that every point inside

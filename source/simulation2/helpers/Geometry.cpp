@@ -19,23 +19,9 @@
 
 #include "Geometry.h"
 
-#include "maths/FixedVector2D.h"
-
 using namespace Geometry;
 
 // TODO: all of these things could be optimised quite easily
-
-bool Geometry::PointIsInSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
-{
-	fixed du = point.Dot(u);
-	if (-halfSize.X <= du && du <= halfSize.X)
-	{
-		fixed dv = point.Dot(v);
-		if (-halfSize.Y <= dv && dv <= halfSize.Y)
-			return true;
-	}
-	return false;
-}
 
 CFixedVector2D Geometry::GetHalfBoundingBox(CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
 {
