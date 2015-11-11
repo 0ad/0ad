@@ -7,6 +7,7 @@
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
 # István Norbert Pétert <peter.norbert.istvan@gmail.com>, 2015
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2014
+# Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Nagy András <asd0707@freemail.hu>, 2014
 # Robert Müller <mullerrobi93@gmail.com>, 2015
 # Tibor Buzási, 2014
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-19 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-22 08:02+0000\n"
+"Last-Translator: Mátyás Demeter <mathias.demeter@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,7 +231,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 msgid "Champion Spearman"
-msgstr ""
+msgstr "Bajnok lándzsás"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:34
 msgid "Champion Swordsman"
@@ -254,7 +255,7 @@ msgstr ""
 #: simulation/templates/template_unit_mechanical_siege.xml:17
 #: simulation/templates/template_unit_mechanical_siege.xml:18
 msgid "Siege"
-msgstr ""
+msgstr "Ostrom"
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
@@ -266,7 +267,7 @@ msgstr "Harci Eb"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
-msgstr ""
+msgstr "A szerkezeteket nem lehet támadni."
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
@@ -439,7 +440,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium"
-msgstr ""
+msgstr "Közepes"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -1982,7 +1983,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:15
 msgid "Assyrian Siege Ram"
-msgstr ""
+msgstr "Asszír ostrom kos"
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:16
 msgid "Athuriya Hamaranakuba"
@@ -2049,7 +2050,7 @@ msgstr "Cserélj nyersanyagokat a saját piacaid és a szövetségeseid között
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 #: simulation/templates/units/sele_cavalry_archer_b.xml:6
 msgid "Camel"
-msgstr ""
+msgstr "Teve"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
@@ -2123,7 +2124,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
-msgstr ""
+msgstr "Építési terület"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
 msgid "Buildings construct 10% faster within his vision."
@@ -2179,7 +2180,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_pikeman_b.xml:14
 msgid "Egyptian Pikeman"
-msgstr ""
+msgstr "Egyiptomi lándzsás"
 
 #: simulation/templates/units/ptol_infantry_pikeman_b.xml:15
 msgid "Phalaggomákhimos"
@@ -2482,7 +2483,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Armored War Elephant"
-msgstr ""
+msgstr "Vértezett harci elefánt"
 
 #: simulation/templates/units/sele_champion_elephant.xml:7
 msgid "Thorakisménos Eléphantos"
@@ -2490,7 +2491,7 @@ msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Silver Shield Pikeman"
-msgstr ""
+msgstr "Ezüst pajzsos lándzsás"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:7
 msgid "Phalangitès Argyraspis"
@@ -2514,7 +2515,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:19
 msgid "Antiochus III \"The Great\""
-msgstr ""
+msgstr "III. \"Nagy\" Antiokhosz"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:20
 msgid "Antiokhos G' Mégās"
@@ -2556,7 +2557,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:14
 msgid "Syrian Archer"
-msgstr ""
+msgstr "Szír íjász"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:15
 msgid "Toxótēs Syrías"
@@ -2564,7 +2565,7 @@ msgstr "Toxótēs Syrías"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:14
 msgid "Arab Javelineer"
-msgstr ""
+msgstr "Arab dárdás"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:15
 msgid "Pezakontistès Aravikós"
@@ -2572,7 +2573,7 @@ msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele_infantry_pikeman_b.xml:14
 msgid "Bronze Shield Pikeman"
-msgstr ""
+msgstr "Bronz vértes lándzsás"
 
 #: simulation/templates/units/sele_infantry_pikeman_b.xml:15
 msgid "Chalkaspides"
@@ -2616,7 +2617,7 @@ msgstr ""
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:7
 msgid "Allied Greek Cavalry"
-msgstr ""
+msgstr "Szövetséges görög lovasság"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:8
 msgid "Hippeús Symmakhikós"
@@ -2624,11 +2625,11 @@ msgstr "Hippeús Symmakhikós"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:6
 msgid "Spartan Pikeman"
-msgstr ""
+msgstr "Spártai lándzsás"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:7
 msgid "Phalangites Spartiatis"
-msgstr ""
+msgstr "Spártai gyalogság"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:6
 msgid "Spartan Hoplite"
@@ -2648,11 +2649,11 @@ msgstr ""
 
 #: simulation/templates/units/spart_hero_agis.xml:9
 msgid "Agis III"
-msgstr ""
+msgstr "III. Agisz"
 
 #: simulation/templates/units/spart_hero_agis.xml:10
 msgid "Agis"
-msgstr ""
+msgstr "Agisz"
 
 #: simulation/templates/units/spart_hero_agis.xml:11
 msgid ""
@@ -2672,7 +2673,7 @@ msgstr ""
 #: simulation/templates/units/spart_hero_brasidas.xml:22
 #: simulation/templates/units/spart_hero_brasidas.xml:23
 msgid "Brasidas"
-msgstr ""
+msgstr "Braszidasz"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:12
 msgid "Last Stand Aura"

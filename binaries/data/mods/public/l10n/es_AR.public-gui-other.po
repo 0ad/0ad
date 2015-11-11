@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# PoinoComer <ignacio.torea@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-10 02:47+0000\n"
+"Last-Translator: PoinoComer <ignacio.torea@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,296 +25,296 @@ msgstr ""
 #: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bonus de Civilización"
+msgstr[1] "Bonuses de Civilización"
 
 #: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bonus de Equipo"
+msgstr[1] "Bonuses de Equipo"
 
 #: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
-msgstr ""
+msgstr "Tecnologías Especiales"
 
 #: gui/civinfo/civinfo.js:115
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Edificio Especial"
+msgstr[1] "Edificios Especiales"
 
 #: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
-msgstr ""
+msgstr "Héroes"
 
 #: gui/civinfo/civinfo.js:138
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Historia de las %(civilization)s"
 
 #: gui/common/functions_global_object.js:74
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "Abriendo %(url)s\nen navegador predeterminado. Por favor espere..."
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr ""
+msgstr "Página principal"
 
 #: gui/common/functions_global_object.js:85
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/common/functions_global_object.js:119
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Tiempo hasta que el alto al fuego termine: %(time)s."
 
 #: gui/common/functions_utility.js:142
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Por defecto"
 
 #: gui/common/functions_utility.js:152
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Un mapa elegido al azar."
 
 #: gui/common/functions_utility.js:161
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Disculpá, ninguna descripción disponible."
 
 #: gui/common/functions_utility.js:205
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:207
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
-msgstr ""
+msgstr "Carga Abortada"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
 msgid "\\[%(date)s]"
-msgstr ""
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:4
 msgctxt "firstWord"
 msgid "Food"
-msgstr ""
+msgstr "Comida"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:6
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "Carne"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:8
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:10
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Mineral"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:12
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "Roca"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:14
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruinas"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:16
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "Piedra"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:18
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr ""
+msgstr "Tesoro"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:20
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "Árbol"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:22
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "Madera"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:24
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "Fruta"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:26
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "Grano"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:28
 msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
+msgstr "Pez"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:32
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Comida"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:34
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "Carne"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:36
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:38
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "Mineral"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:40
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "Roca"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:42
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruinas"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:44
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Piedra"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:46
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr ""
+msgstr "Tesoro"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:48
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "Árbol"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:50
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Madera"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:52
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "Fruta"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:54
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "Grano"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:56
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr ""
+msgstr "Pez"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
-msgstr ""
+msgstr "Motivo desconocido"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
-msgstr ""
+msgstr "Cierre inesperado"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
@@ -321,25 +322,25 @@ msgstr ""
 
 #: gui/common/network.js:9
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "El juego está cargando, intente más tarde"
 
 #: gui/common/network.js:10
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "El juego ya ha empezado, sin espectadores."
 
 #: gui/common/network.js:11
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Valor inválido %(id)s]"
 
 #: gui/common/network.js:20
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "Se ha perdido la conexión con el servidor."
 
 #: gui/common/network.js:20
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Motivo: %(reason)s."
 
 #: gui/common/network.js:21
 msgid "Disconnected"
@@ -348,55 +349,55 @@ msgstr "Desconectado "
 #: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Sandbox"
 
 #: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Muy fácil"
 
 #: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Facil"
 
 #: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Medio"
 
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Difícil"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Muy difícil"
 
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Sin alto al fuego"
 
 #: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minuto"
+msgstr[1] "%(minutes)s minutos"
 
 #: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Escaramuza"
 
 #: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio"
 
 #: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
@@ -404,33 +405,33 @@ msgstr "Escenario "
 
 #: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Juego infinito"
 
 #: gui/common/settings.js:231
 msgid "Unlimited"
-msgstr ""
+msgstr "Ilimitado"
 
 #: gui/common/settings.js:279 gui/common/settings.js:290
 #: gui/common/settings.js:301 gui/common/settings.js:312
 #: gui/common/settings.js:323
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
 msgid "(None)"
-msgstr ""
+msgstr "(Nada)"
 
 #: gui/common/tooltips.js:31 gui/common/tooltips.js:36
 #: gui/common/tooltips.js:41 gui/common/tooltips.js:120
 #: gui/common/tooltips.js:125 gui/common/tooltips.js:130
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:33 gui/common/tooltips.js:91
 #: gui/common/tooltips.js:122
@@ -451,112 +452,112 @@ msgstr ""
 #: gui/common/tooltips.js:135 gui/common/tooltips.js:400
 #: gui/common/tooltips.js:426 gui/common/tooltips.js:494
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(time)s %(second)s"
-msgstr ""
+msgstr "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:54 gui/common/tooltips.js:423
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "segundo"
+msgstr[1] "segundos"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
-msgstr ""
+msgstr "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:63
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "flecha"
+msgstr[1] "flechas"
 
 #: gui/common/tooltips.js:65
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
-msgstr ""
+msgstr "%(arrowString)s / %(timeString)s"
 
 #: gui/common/tooltips.js:80
 msgid "Armor:"
-msgstr ""
+msgstr "Armadura:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
 #: gui/common/tooltips.js:167 gui/structree/draw.js:260
 #: gui/structree/draw.js:285
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/common/tooltips.js:89 gui/common/tooltips.js:95
 #: gui/common/tooltips.js:101
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:98
 #: gui/common/tooltips.js:104
 #, javascript-format
 msgid "(%(armorPercentage)s)"
-msgstr ""
+msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:140
 msgid "Charge Attack:"
-msgstr ""
+msgstr "Ataque de carga:"
 
 #: gui/common/tooltips.js:141
 msgid "Melee Attack:"
-msgstr ""
+msgstr "Ataque de cuerpo a cuerpo:"
 
 #: gui/common/tooltips.js:142
 msgid "Ranged Attack:"
-msgstr ""
+msgstr "Ataque a distancia:"
 
 #: gui/common/tooltips.js:143
 msgid "Capture Attack:"
-msgstr ""
+msgstr "Ataque de captura:"
 
 #: gui/common/tooltips.js:146
 msgid "Attack:"
-msgstr ""
+msgstr "Ataque:"
 
 #: gui/common/tooltips.js:156
 msgid "Interval:"
-msgstr ""
+msgstr "Intervalo:"
 
 #: gui/common/tooltips.js:158 gui/common/tooltips.js:421
 msgid "Rate:"
-msgstr ""
+msgstr "Ritmo:"
 
 #: gui/common/tooltips.js:175 gui/common/tooltips.js:184
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:416
 msgid "Range:"
-msgstr ""
+msgstr "Rango:"
 
 #: gui/common/tooltips.js:196 gui/common/tooltips.js:418
 msgid "meters"
-msgstr ""
+msgstr "metros"
 
 #: gui/common/tooltips.js:199
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:209
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
 #: gui/common/tooltips.js:259 gui/common/tooltips.js:260
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:262
@@ -564,148 +565,148 @@ msgstr ""
 #: gui/common/tooltips.js:380
 #, javascript-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
 #: gui/common/tooltips.js:318
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s a %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:349
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "Muros: %(costs)s"
 
 #: gui/common/tooltips.js:350
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "Torres: %(costs)s"
 
 #: gui/common/tooltips.js:366
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
-msgstr ""
+msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:367
 msgid "Population Bonus:"
-msgstr ""
+msgstr "Población Bonus:"
 
 #: gui/common/tooltips.js:385
 msgid "Insufficient resources:"
-msgstr ""
+msgstr "Recursos insuficientes:"
 
 #: gui/common/tooltips.js:393
 msgid "Speed:"
-msgstr ""
+msgstr "Velocidad:"
 
 #: gui/common/tooltips.js:396 gui/common/tooltips.js:398
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:396
 msgid "Walk"
-msgstr ""
+msgstr "Caminar"
 
 #: gui/common/tooltips.js:398
 msgid "Run"
-msgstr ""
+msgstr "Correr"
 
 #: gui/common/tooltips.js:400
 #, javascript-format
 msgid "%(label)s %(speeds)s"
-msgstr ""
+msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:409 gui/common/tooltips.js:415
 #: gui/common/tooltips.js:420
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
-msgstr ""
+msgstr "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:410
 msgid "Heal:"
-msgstr ""
+msgstr "Curar:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
 #: gui/common/tooltips.js:413
 msgid "HP"
-msgstr ""
+msgstr "HP"
 
 #: gui/common/tooltips.js:436
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/common/tooltips.js:437
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/common/tooltips.js:450
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
-msgstr ""
+msgstr "%(specificName)s (%(genericName)s)"
 
 #: gui/common/tooltips.js:460
 msgid "???"
-msgstr ""
+msgstr "???"
 
 #: gui/common/tooltips.js:490
 msgid "Classes:"
-msgstr ""
+msgstr "Clases:"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
-msgstr ""
+msgstr "Volver a intentar"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Ignore"
-msgstr ""
+msgstr "Ignorar"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Abort"
-msgstr ""
+msgstr "Abortar"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "Modo ventana"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "Iniciar 0 A.D. en una ventana"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
-msgstr ""
+msgstr "Pausa del fondo"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
@@ -713,22 +714,22 @@ msgstr ""
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Deshabilitar la pantalla de bienvenida"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Si desactivas esta ventana completamente, puedes perderte anuncios importantes.\nPuedes seguir abriéndola usando el menú principal."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "Tips detallados"
 
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "Muestra tips detallados para unidades entrenables en edificios productores de unidades."
 
 #: gui/options/options.js:13
 msgid "FPS Overlay"
@@ -736,7 +737,7 @@ msgstr ""
 
 #: gui/options/options.js:13
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "Muestra los FPS en la esquina superior derecha."
 
 #: gui/options/options.js:14
 msgid "Realtime Overlay"
@@ -752,7 +753,7 @@ msgstr ""
 
 #: gui/options/options.js:15
 msgid "Show current simulation time in top right corner."
-msgstr ""
+msgstr "Muestra el tiempo en la esquina superior derecha"
 
 #: gui/options/options.js:16
 msgid "Ceasefire Time Overlay"
@@ -760,7 +761,7 @@ msgstr ""
 
 #: gui/options/options.js:16
 msgid "Always show the remaining ceasefire time."
-msgstr ""
+msgstr "Siempre muestra el tiempo del alto al fuego."
 
 #: gui/options/options.js:17
 msgid "Persist Match Settings"
@@ -769,7 +770,7 @@ msgstr ""
 #: gui/options/options.js:17
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr ""
+msgstr "Guarda partidas para volver a jugarlas cuando hostees otro juego"
 
 #: gui/options/options.js:21
 msgid "Prefer GLSL"
@@ -777,11 +778,11 @@ msgstr ""
 
 #: gui/options/options.js:21
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr ""
+msgstr "Usar OpenGL 2.0 shaders (recomendado)"
 
 #: gui/options/options.js:22
 msgid "Post Processing"
-msgstr ""
+msgstr "Post Procesado"
 
 #: gui/options/options.js:22
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
@@ -789,71 +790,71 @@ msgstr ""
 
 #: gui/options/options.js:23
 msgid "Shadows"
-msgstr ""
+msgstr "Sombras"
 
 #: gui/options/options.js:23
 msgid "Enable shadows"
-msgstr ""
+msgstr "Activar sombras"
 
 #: gui/options/options.js:24
 msgid "Particles"
-msgstr ""
+msgstr "Partículas"
 
 #: gui/options/options.js:24
 msgid "Enable particles"
-msgstr ""
+msgstr "Activar partículas"
 
 #: gui/options/options.js:25
 msgid "Show Sky"
-msgstr ""
+msgstr "Mostrar el cielo"
 
 #: gui/options/options.js:25
 msgid "Render Sky"
-msgstr ""
+msgstr "Renderizar el cielo"
 
 #: gui/options/options.js:26
 msgid "Smooth LOS"
-msgstr ""
+msgstr "LOS suave"
 
 #: gui/options/options.js:26
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr ""
+msgstr "Mostrar la oscuridad y la sombra de guerra suavemente"
 
 #: gui/options/options.js:27
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "Siluetas de unidades"
 
 #: gui/options/options.js:27
 msgid "Show outlines of units behind buildings"
-msgstr ""
+msgstr "Muestra la silueta de las unidades que estén detrás de edificios/plantas/etc."
 
 #: gui/options/options.js:28
 msgid "Shadow Filtering"
-msgstr ""
+msgstr "Filtro de sombras"
 
 #: gui/options/options.js:28
 msgid "Smooth shadows"
-msgstr ""
+msgstr "Sombras suaves"
 
 #: gui/options/options.js:29
 msgid "Fast & Ugly Water"
-msgstr ""
+msgstr "Agua fea"
 
 #: gui/options/options.js:29
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr ""
+msgstr "Usa la peor calidad gráfica para renderizar el agua. Esto hace otros cambios irrelevantes."
 
 #: gui/options/options.js:30
 msgid "HQ Water Effects"
-msgstr ""
+msgstr "Efectos del agua HQ"
 
 #: gui/options/options.js:30
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "Usa efectos de mayor calidad para el agua, renderizar las olas, marea en la costa y el oleaje producido por los barcos."
 
 #: gui/options/options.js:31
 msgid "Real Water Depth"
@@ -865,43 +866,43 @@ msgstr ""
 
 #: gui/options/options.js:32
 msgid "Water Reflections"
-msgstr ""
+msgstr "Reflejos del agua"
 
 #: gui/options/options.js:32
 msgid "Allow water to reflect a mirror image"
-msgstr ""
+msgstr "Permite que el agua refleje una imagen en forma de espejo"
 
 #: gui/options/options.js:33
 msgid "Water Refraction"
-msgstr ""
+msgstr "Refracción del agua"
 
 #: gui/options/options.js:33
 msgid "Use a real water refraction map and not transparency"
-msgstr ""
+msgstr "Usa una refracción real del agua y no la transparencia"
 
 #: gui/options/options.js:34
 msgid "Shadows on Water"
-msgstr ""
+msgstr "Sombras en el agua"
 
 #: gui/options/options.js:34
 msgid "Cast shadows on water"
-msgstr ""
+msgstr "Activa las sombras en el agua"
 
 #: gui/options/options.js:35
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
 #: gui/options/options.js:35
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Usa el sync vertical para solucionar la ruptura de la pantalla. REQUIERE REINICIAR EL JUEGO"
 
 #: gui/options/options.js:36
 msgid "Limit FPS in Menus"
-msgstr ""
+msgstr "Limite de FPS"
 
 #: gui/options/options.js:36
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr ""
+msgstr "Limite de FPS a 50 en todos los menúes, para guardar energía."
 
 #: gui/options/options.js:40
 msgid "Master Gain"
@@ -957,38 +958,38 @@ msgstr ""
 
 #: gui/options/options.js:49
 msgid "Show time that messages are posted in the lobby chat"
-msgstr ""
+msgstr "Muestra el tiempo en que los mensajes son posteados en el chat del lobby"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
-msgstr ""
+msgstr "deshabilitado"
 
 #: gui/pregame/mainmenu.js:88
 msgid "connecting to server"
-msgstr ""
+msgstr "conectando a servidor"
 
 #: gui/pregame/mainmenu.js:93
 #, javascript-format
 msgid "uploading (%f%%)"
-msgstr ""
+msgstr "subiendo (%f%%)"
 
 #: gui/pregame/mainmenu.js:100
 msgid "upload succeeded"
-msgstr ""
+msgstr "subido completado"
 
 #: gui/pregame/mainmenu.js:102
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "subido fallado (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "subido fallado (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:112
 msgid "unknown"
-msgstr ""
+msgstr "desconocido"
 
 #: gui/pregame/mainmenu.js:156
 #, javascript-format
@@ -1005,15 +1006,15 @@ msgstr ""
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:162
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr ""
+msgstr "Apreta \"Leer Más\" para más información u \"OK\" para continuar."
 
 #: gui/pregame/mainmenu.js:163
 msgid "WARNING!"
-msgstr ""
+msgstr "ALERTA!"
 
 #: gui/pregame/mainmenu.js:165
 msgid "Read More"
-msgstr ""
+msgstr "Leer más"
 
 #: gui/pregame/mainmenu.js:258
 #, javascript-format
@@ -1022,11 +1023,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:289
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "Estás seguro que quieres salir de 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:289
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmar"
 
 #: gui/pregame/mainmenu.js:299
 msgid ""
@@ -1036,7 +1037,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:299
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: gui/pregame/mainmenu.js:304
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
@@ -1045,62 +1046,62 @@ msgstr ""
 #: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
-msgstr ""
+msgstr "Detalles técnicos"
 
 #: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
-msgstr ""
+msgstr "No se han encontrado partidas guardadas"
 
 #: gui/savedgames/load.js:51
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "Esta partida guardada puede no ser compatible:"
 
 #: gui/savedgames/load.js:56
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "Necesita esta versión %(requiredVersion)s, y tu estás usando esta %(currentVersion)s."
 
 #: gui/savedgames/load.js:61
 msgid "It needs an older version of 0 A.D."
-msgstr ""
+msgstr "Necesita una versión más vieja de 0 A.D."
 
 #: gui/savedgames/load.js:65
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr ""
+msgstr "Necesita la versión de 0 A.D. %(requiredVersion)s, mientras que tu tienes %(currentVersion)s."
 
 #: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr ""
+msgstr "No necesita ningún mod mientras que tu estás usando: \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr ""
+msgstr "Necesita el mod \"%(requiredMod)s\" mientras que tu no estás usando un mod."
 
 #: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr ""
+msgstr "Necesita el mod \"%(requiredMod)s\" mientras que tu estás usando \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "Quieres proceder igualmente?"
 
 #: gui/savedgames/load.js:89
 msgid "Warning"
-msgstr ""
+msgstr "Alerta"
 
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
@@ -1202,19 +1203,19 @@ msgstr ""
 
 #: gui/summary/layout.js:50
 msgid "Infantry"
-msgstr ""
+msgstr "Infantería"
 
 #: gui/summary/layout.js:51
 msgid "Worker"
-msgstr ""
+msgstr "Trabajador"
 
 #: gui/summary/layout.js:52
 msgid "Cavalry"
-msgstr ""
+msgstr "Caballería"
 
 #: gui/summary/layout.js:53
 msgid "Champion"
-msgstr ""
+msgstr "Campeón"
 
 #: gui/summary/layout.js:55
 msgid "Navy"
@@ -1230,19 +1231,19 @@ msgstr ""
 
 #: gui/summary/layout.js:76
 msgid "Food"
-msgstr ""
+msgstr "Comida"
 
 #: gui/summary/layout.js:77
 msgid "Wood"
-msgstr ""
+msgstr "Madera"
 
 #: gui/summary/layout.js:78
 msgid "Stone"
-msgstr ""
+msgstr "Piedra"
 
 #: gui/summary/layout.js:79
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
@@ -1343,7 +1344,7 @@ msgstr ""
 #: gui/civinfo/civinfo.xml:(caption):119
 #: gui/structree/structree.xml:(caption):90
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1369,11 +1370,11 @@ msgstr ""
 #: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
 #: gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzado"
 
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
@@ -1511,11 +1512,11 @@ msgstr ""
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:(caption):262
 msgid "Join Game"
-msgstr ""
+msgstr "Unirse a la partida"
 
 #: gui/pregame/mainmenu.xml:(caption):277
 msgid "Host Game"
-msgstr ""
+msgstr "Hostear una partida"
 
 #: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
@@ -1551,7 +1552,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
-msgstr ""
+msgstr "Multijugador"
 
 #: gui/pregame/mainmenu.xml:(caption):497
 msgid "Tools & Options"
@@ -1567,7 +1568,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"
-msgstr ""
+msgstr "Sitio web"
 
 #: gui/pregame/mainmenu.xml:(caption):573
 msgid "Chat"
@@ -1687,7 +1688,7 @@ msgstr ""
 
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
-msgstr ""
+msgstr "Borrar"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -1747,7 +1748,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):159
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

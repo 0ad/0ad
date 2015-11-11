@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# helinb <1696060289@qq.com>, 2015
 # loms126 <loms126@126.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-22 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-02 16:41+0000\n"
+"Last-Translator: helinb <1696060289@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,82 +21,82 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "我正在攻击  %(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "我已经命令军队对抗  %(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "让我重新组织我的军队，然后我会和你一起对抗 %(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "我正在做最后的准备，然后我将会攻击 %(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "我无法在这个时间点帮助你对抗 %(_player_)s , 因为我已经有对 %(_player_2)s 的攻击计画了。"
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "抱歉，目前我没有足够的士兵，但我的下一个攻击目标是 %(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "这是给 %(_player_)s 的一份礼物，请好好的利用它。"
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "我发现您正处于一个不太好的状况 %(_player_)s, 希望这个能有所帮助。"
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr ""
+msgstr "我需要 %(resource)s ,  您可以帮忙吗？我会归功于您的。"
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "如果您能提供给我一些 %(resource)s, 我将会更积极参与我们的共同战争行动。"
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "我已经与 %(_player_)s 设定了一条新的路线。这交易对我们来说都有利可图。"
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "与  %(_player_)s 成立一条新的贸易路线。获取您的那一份利润吧"
 
 #: simulation/ai/petra/chatHelper.js:112
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "我正在进阶到 %(phase)s。"
 
 #: simulation/ai/petra/chatHelper.js:114
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "我已经到达 %(phase)s。"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -228,7 +229,7 @@ msgstr "训练更多的投石兵，让他们采石。训练大约5个，您可�
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
+msgstr "再训练另外 5 个女性市民。让她们去伐木。"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -342,7 +343,7 @@ msgstr "- 调人采集其他种类的资源时不要犹豫，见第二点。但�
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
+msgstr "- 建造足够的房舍，您的城镇中心应该在任何时候都尽可能保持忙碌。"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -608,11 +609,11 @@ msgstr "敌对"
 #: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "您可以在 %(time)s 内攻击"
 
 #: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
-msgstr ""
+msgstr "您现在可以攻击了！"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -746,72 +747,72 @@ msgstr "疯狂 (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "快速 (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "快速 (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "快速 (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "击败所有对手"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "征服单位"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "破坏敌人所有的建筑物"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "征服建筑物"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "杀死敌方所有单位"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "征服单位"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "建造并保护奇观以获得胜利"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "奇观"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "极低"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "低"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "中等"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "高"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "极高"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
@@ -877,7 +878,7 @@ msgid ""
 "Started as a fork of Aegis bot, Petra is the most stable AI available. It "
 "supports naval maps and is generally more challenging. Please report issues "
 "to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "是从一个Aegis 的分支开始的，Petra 是一个更加稳​​定的人工智慧。它支援海洋地图，且更具挑战性。请向Wildfire Games 回报问题(见主选单中的链接)。"
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
@@ -887,4 +888,4 @@ msgstr "教程版电脑玩家"
 msgid ""
 "The Tutorial AI should only be used on the \"Introductory Tutorial\" "
 "scenario."
-msgstr ""
+msgstr "入门AI 应该只能在 入门 剧情中使用。"

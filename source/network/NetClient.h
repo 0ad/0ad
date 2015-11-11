@@ -201,6 +201,7 @@ private:
 	static bool OnJoinSyncStart(void* context, CFsmEvent* event);
 	static bool OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event);
 	static bool OnRejoined(void* context, CFsmEvent* event);
+	static bool OnKicked(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 
 	/**

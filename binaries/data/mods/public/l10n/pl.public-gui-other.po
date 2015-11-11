@@ -6,10 +6,12 @@
 # Adrian Budasz <adrianbudasz@gmail.com>, 2014-2015
 # Annunnaky <doublemiu@gmail.com>, 2015
 # Astinus Eberhard <inactive+Astinus@transifex.com>, 2015
+# Krzysztof Grabania, 2015
 # Leszek S, 2014-2015
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
-# Michał Karol <mkarol@linux.pl>, 2015
+# Michał Karol <michal.p.karol+transifex@gmail.com>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
+# q <q@qq.qq>, 2015
 # rabusek <rabusek@gmail.com>, 2014
 # Rafał <rafix1989@interia.pl>, 2015
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
@@ -18,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-07 22:33+0000\n"
+"Last-Translator: q <q@qq.qq>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,14 +82,14 @@ msgstr "Strona startowa"
 #: gui/common/functions_global_object.js:85
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/common/functions_global_object.js:119
 #, javascript-format
@@ -98,15 +100,15 @@ msgstr "Pozostały czas do zakończenia zawieszenia broni: %(time)s."
 #: gui/common/functions_utility.js:142
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Domyślny"
 
 #: gui/common/functions_utility.js:152
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Losowo wybrana mapa."
 
 #: gui/common/functions_utility.js:161
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Przepraszamy, opis niedostępny."
 
 #: gui/common/functions_utility.js:205
 msgid "mm:ss"
@@ -335,11 +337,11 @@ msgstr "Niewłaściwa wersja protokołu sieciowego"
 
 #: gui/common/network.js:9
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Ładowanie gry, proszę spróbować później"
 
 #: gui/common/network.js:10
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Gra już się rozpoczęła, nie zezwolono na obserwację"
 
 #: gui/common/network.js:11
 #, javascript-format
@@ -362,56 +364,56 @@ msgstr "Rozłączono"
 #: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Piaskownica"
 
 #: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Bardzo łatwy"
 
 #: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Łatwy"
 
 #: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Średni"
 
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Trudny"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Bardzo trudny"
 
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Brak zawieszenia broni"
 
 #: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(minutes)s minuta"
+msgstr[1] "%(minutes)s minuty"
+msgstr[2] "%(minutes)s minut"
 
 #: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Potyczka"
 
 #: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Losowe"
 
 #: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
@@ -419,21 +421,21 @@ msgstr "Scenariusz"
 
 #: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Żaden"
 
 #: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Niekończąca się gra"
 
 #: gui/common/settings.js:231
 msgid "Unlimited"
-msgstr ""
+msgstr "Bez limitu"
 
 #: gui/common/settings.js:279 gui/common/settings.js:290
 #: gui/common/settings.js:301 gui/common/settings.js:312
 #: gui/common/settings.js:323
 msgid "Unknown"
-msgstr ""
+msgstr "Nieznane"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -1309,7 +1311,7 @@ msgstr "Wegetarianizm"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
-msgstr ""
+msgstr "Populacja kobiet"
 
 #: gui/summary/layout.js:126
 msgid ""
@@ -1325,11 +1327,11 @@ msgstr "Odkrycie mapy"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr ""
+msgstr "W szczycie"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr ""
+msgstr "Na koniec"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
@@ -1484,7 +1486,7 @@ msgstr "Stan: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr ""
+msgstr "Alpha XIX: Syllepsis"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1544,7 +1546,7 @@ msgstr "Opcje"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Powtórki"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1646,7 +1648,7 @@ msgstr "Zmień język interfejsu."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Odtwórz poprzednie rozgrywki."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1785,7 +1787,7 @@ msgstr "[imgleft=\"constructionIcon\"] Ta gra jest wciąż w fazie rozwoju. Brak
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Gra może mieć problemy z wydajnością, w szczególności przy dużych mapach i sporej liczbie jednostek."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
@@ -1864,7 +1866,7 @@ msgstr "- Odkrywaj ulepszenia broni i pancerza dla swoich jednostek."
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "Umieść wewnątrz żołnierza miejskigo aby szybciej prowadzić badania (NIE ZAIMPLEMENTOWANE)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -2142,7 +2144,7 @@ msgstr "- Silnie opancerzone i powolne. Niski atak."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Używane do przygwożdżenia kawalerii lub piechoty walczącej wręcz."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2160,11 +2162,11 @@ msgstr "- Najcięższy standardowy okręt wojenny. Dostępny dla: Rzymian, Karta
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Garrison ballistas to increase fire power."
-msgstr ""
+msgstr "- Umieść wewnątrz balisty aby zwiększyć siłę ognia."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "Posiada ogromną siłę ataku, która zatapia statki wroga (NIE ZAIMPLEMENTOWANE)."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -2256,7 +2258,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- Specjalna struktura początkowa Greków."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2264,7 +2266,7 @@ msgstr "- Dodaje +10 ludności."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "- Obecne tylko na niektórych mapach."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
@@ -2310,7 +2312,7 @@ msgstr "ŚWIĄTYNIE"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "- Struktura Fazy miasta"
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2330,18 +2332,18 @@ msgstr "- Umieść wewnątrz skrzywdzone jednostki, aby przyspieszyć ich uzdraw
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr ""
+msgstr "GRANICA TERYTORIUM"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Rozpad rozpoczyna się, gdy budynek nie jest połączony z Centrum Miasta."
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr ""
+msgstr "Proces rozpadu może być opóźniony lub odwrócony poprzez umieszczenie własnych jednostek w budynku."
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
@@ -2386,19 +2388,19 @@ msgstr "- Dobry do transportu i walki."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- Umieść na pokładzie by zwiększyć siłę ognia."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Umieść katapultę na pokładzie, aby umożliwić atak oblężniczy z dużej odległości (NIE ZAIMPLEMENTOWANE)."
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Zdolne do niszczycielskiego ataku typu statek-statek, który wymaga ponownego naładowania przed kolejnym użyciem (NIE ZAIMPLEMENTOWANE)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-30 13:01+0000\n"
-"Last-Translator: Johannes Collosus <the_pc_pilot@live.nl>\n"
+"PO-Revision-Date: 2015-10-06 15:49+0000\n"
+"Last-Translator: niektb <niektb95@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -397,8 +397,8 @@ msgstr "Geen Wapenstilstand"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minuut"
+msgstr[1] "%(minutes)s minuten"
 
 #: gui/common/settings.js:165
 msgctxt "map"
@@ -1463,7 +1463,7 @@ msgstr "Help om 0 A.D. te verbeteren!"
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "Je kan ons automatisch anonieme feedback sturen. Dit zal ons helpen om bugs op te lossen en de compatibiliteit te verbeteren."
+msgstr "Je kan ons automatisch anonieme feedback sturen. Dit zal ons helpen om bugs op te lossen en de performance en compatibiliteit te verbeteren."
 
 #: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
@@ -1479,7 +1479,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr ""
+msgstr "Alpha XIX: Syllepsis"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1539,7 +1539,7 @@ msgstr "Instellingen"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Herhalingen"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1780,13 +1780,13 @@ msgstr "[icon=\"constructionIcon\"]Dit spel is nog steeds in ontwikkeling. Er zi
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Het spel kan performance problemen hebben, in het bijzonder met grote kaarten en een groot aantal eenheden."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Deze versie heeft een nieuwe 'pathfinder', met verbeterde performance, maar er kunnen nieuwe bugs zijn ontstaan."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""

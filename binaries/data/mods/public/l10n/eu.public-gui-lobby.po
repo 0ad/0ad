@@ -3,12 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Thadah <juchuf@gmail.com>, 2015
+# Osoitz <oelkoro@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-22 08:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-27 08:47+0000\n"
+"Last-Translator: Thadah <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,27 +21,27 @@ msgstr ""
 #: gui/lobby/lobby.js:37
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Edozein"
 
 #: gui/lobby/lobby.js:47
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Edozein"
 
 #: gui/lobby/lobby.js:51
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Edozein"
 
 #: gui/lobby/lobby.js:303 gui/lobby/lobby.js:304 gui/lobby/lobby.js:305
 #: gui/lobby/lobby.js:306 gui/lobby/lobby.js:307 gui/lobby/lobby.js:308
 msgid "N/A"
-msgstr ""
+msgstr "E/E"
 
 #: gui/lobby/lobby.js:333 gui/lobby/lobby.js:361
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:344 gui/lobby/lobby.js:372
 #, javascript-format
@@ -49,23 +51,23 @@ msgstr ""
 #: gui/lobby/lobby.js:346 gui/lobby/lobby.js:374
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:534
 msgid "Busy"
-msgstr ""
+msgstr "Lanean"
 
 #: gui/lobby/lobby.js:539
 msgid "Away"
-msgstr ""
+msgstr "Kanpoan"
 
 #: gui/lobby/lobby.js:543
 msgid "Online"
-msgstr ""
+msgstr "Linean"
 
 #: gui/lobby/lobby.js:547
 msgid "Offline"
-msgstr ""
+msgstr "Deskonektatua"
 
 #: gui/lobby/lobby.js:552
 msgctxt "lobby presence"
@@ -80,12 +82,12 @@ msgstr ""
 #: gui/lobby/lobby.js:687
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr ""
+msgstr "%(nick)s batu da."
 
 #: gui/lobby/lobby.js:690
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr ""
+msgstr "%(nick)s joan da."
 
 #: gui/lobby/lobby.js:693
 #, javascript-format
@@ -101,7 +103,7 @@ msgstr ""
 #: gui/lobby/lobby.js:894
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:896
@@ -125,7 +127,7 @@ msgstr ""
 #: gui/lobby/lobby.js:907
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the options page).
@@ -134,14 +136,14 @@ msgstr ""
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:948
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
 #: gui/lobby/lobby.js:951
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:954
@@ -155,15 +157,15 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr ""
+msgstr "Konektatzen..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr ""
+msgstr "Erregistratzen..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Mesedez sartu zure erabiltzaile izena"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
@@ -171,19 +173,19 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Mesedez sartu zure pasahitza"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Mesedez sartu zure pasahitza berriz"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Pasahitzak ez dira berdinak"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Mesedez irakurri Zerbitzuaren Baldintzak"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
@@ -199,7 +201,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:203
 msgid "Disconnected"
-msgstr ""
+msgstr "Deskonektatuta"
 
 #: gui/lobby/prelobby.js:244
 msgid "Register"
@@ -207,15 +209,15 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:249 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
-msgstr ""
+msgstr "Konektatu"
 
 #: gui/lobby/prelobby.js:259 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
-msgstr ""
+msgstr "Zerbitzuaren Baldintzak"
 
 #: gui/lobby/prelobby.js:268 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
-msgstr ""
+msgstr "Erabilera baldintzak"
 
 #: gui/lobby/lobby.xml:(caption):15 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
@@ -231,19 +233,19 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):306
 msgid "Total Games:"
-msgstr ""
+msgstr "Partidak guztira:"
 
 #: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):310
 msgid "Wins:"
-msgstr ""
+msgstr "Garaipenak:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):314
 msgid "Losses:"
-msgstr ""
+msgstr "Porrotak:"
 
 #: gui/lobby/lobby.xml:(caption):69 gui/lobby/lobby.xml:(caption):318
 msgid "Win Rate:"
-msgstr ""
+msgstr "Garaipen erratioa:"
 
 #: gui/lobby/lobby.xml:(caption):78 gui/lobby/lobby.xml:(caption):246
 msgid "Leaderboard"
@@ -255,7 +257,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):115
 msgid "Map Type:"
-msgstr ""
+msgstr "Mapa Mota:"
 
 #: gui/lobby/lobby.xml:(caption):127
 msgid "Map Size:"
@@ -263,7 +265,7 @@ msgstr "Maparen tamaina:"
 
 #: gui/lobby/lobby.xml:(caption):144
 msgid "Players:"
-msgstr ""
+msgstr "Jokalariak:"
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby.xml:(caption):153
@@ -276,7 +278,7 @@ msgstr "Ostatatu partida bat"
 
 #: gui/lobby/lobby.xml:(caption):166
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu nagusia"
 
 #: gui/lobby/lobby.xml:(caption):220
 msgid "Show full games"
@@ -284,11 +286,11 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):266 gui/lobby/lobby.xml:(caption):328
 msgid "Back"
-msgstr ""
+msgstr "Atzera"
 
 #: gui/lobby/lobby.xml:(caption):274
 msgid "Update"
-msgstr ""
+msgstr "Eguneratu"
 
 #: gui/lobby/lobby.xml:(caption):284
 msgid "Enter username:"
@@ -296,15 +298,15 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):290
 msgid "View Profile"
-msgstr ""
+msgstr "Ikusi profila"
 
 #: gui/lobby/lobby.xml:(caption):323
 msgid "Player not found."
-msgstr ""
+msgstr "Ez da jokalaria aurkitu."
 
 #: gui/lobby/lobby.xml:(heading):26
 msgid "Status"
-msgstr ""
+msgstr "Egoera"
 
 #: gui/lobby/lobby.xml:(heading):29 gui/lobby/lobby.xml:(heading):177
 #: gui/lobby/lobby.xml:(heading):256
@@ -317,21 +319,21 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(heading):181
 msgid "Map Name"
-msgstr ""
+msgstr "Maparen Izena"
 
 #: gui/lobby/lobby.xml:(heading):184
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Tamaina"
 
 #: gui/lobby/lobby.xml:(heading):187
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Mota"
 
 #: gui/lobby/lobby.xml:(heading):190
 msgid "Players"
-msgstr ""
+msgstr "Jokalariak"
 
 #: gui/lobby/lobby.xml:(heading):253
 msgid "Rank"
@@ -339,11 +341,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:(caption):23
 msgid "Create a new account"
-msgstr ""
+msgstr "Sortu kontu berria"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Hasi saioa badagoen kontu batekin"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
@@ -351,11 +353,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
-msgstr ""
+msgstr "Erabiltzaile izena:"
 
 #: gui/lobby/prelobby.xml:(caption):44 gui/lobby/prelobby.xml:(caption):68
 msgid "Password:"
-msgstr ""
+msgstr "Pasahitza: "
 
 #: gui/lobby/prelobby.xml:(caption):59
 msgid "Registration"
@@ -363,7 +365,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:(caption):73
 msgid "Password again:"
-msgstr ""
+msgstr "Pasahitza berriro:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
@@ -379,7 +381,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Definizioak:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -407,11 +409,11 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Zerbitzu hau erabilita honakoa betetzea onartzen duzu:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Erabilera politika guztiei men egitea."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
@@ -499,7 +501,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "Honakoa betetzea onartzen duzu:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""

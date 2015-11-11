@@ -10,12 +10,13 @@
 # juanda097 <juanda097@openmailbox.org>, 2014-2015
 # OJankano <ojankano@hotmail.com>, 2014
 # Swyter <Swyterzone@gmail.com>, 2013-2014
+# tarod kaos <tarodofchaos@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-08-15 23:35+0000\n"
-"Last-Translator: Edgardo <edgar_916@live.cl>\n"
+"PO-Revision-Date: 2015-10-07 14:23+0000\n"
+"Last-Translator: tarod kaos <tarodofchaos@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgstr "Registro no autorizado"
 
 #: lobby/XmppClient.cpp:460
 msgid "Registration bad request"
-msgstr "Mal pedido de solicitud"
+msgstr "Solicitud de registro errónea"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration forbidden"
@@ -75,7 +76,7 @@ msgstr "Registro requerido"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unexpected request"
-msgstr "Pedido inesperado de registro"
+msgstr "Solicitud de registro inesperada"
 
 #: lobby/XmppClient.cpp:464
 msgid "Registration not allowed"
@@ -91,7 +92,7 @@ msgstr "Subtipo desconocido (vea registros)"
 
 #: lobby/XmppClient.cpp:1028
 msgid "Bad request"
-msgstr "Mal pedido"
+msgstr "Solicitud errónea"
 
 #: lobby/XmppClient.cpp:1029
 msgid "Player name already in use"
@@ -115,7 +116,7 @@ msgstr "Error de servidor interno"
 
 #: lobby/XmppClient.cpp:1034
 msgid "Item not found"
-msgstr "No se ha encontrado el ítem"
+msgstr "No se ha encontrado el objeto"
 
 #: lobby/XmppClient.cpp:1035
 msgid "Jid malformed"

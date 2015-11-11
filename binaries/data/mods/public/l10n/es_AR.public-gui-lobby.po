@@ -3,13 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Alan Ponce <ae_ponce@hotmail.com>, 2015
 # Juan Delhon <juandelhon@gmail.com>, 2015
+# PoinoComer <ignacio.torea@gmail.com>, 2015
+# R. Pablo B. <f00ck6006l3@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-22 08:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-10 02:37+0000\n"
+"Last-Translator: Alan Ponce <ae_ponce@hotmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,22 +38,22 @@ msgstr "Cualquiera"
 #: gui/lobby/lobby.js:303 gui/lobby/lobby.js:304 gui/lobby/lobby.js:305
 #: gui/lobby/lobby.js:306 gui/lobby/lobby.js:307 gui/lobby/lobby.js:308
 msgid "N/A"
-msgstr ""
+msgstr "No disponible"
 
 #: gui/lobby/lobby.js:333 gui/lobby/lobby.js:361
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:344 gui/lobby/lobby.js:372
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:346 gui/lobby/lobby.js:374
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:534
 msgid "Busy"
@@ -62,7 +65,7 @@ msgstr "Ausente "
 
 #: gui/lobby/lobby.js:543
 msgid "Online"
-msgstr "En linea "
+msgstr "En línea "
 
 #: gui/lobby/lobby.js:547
 msgid "Offline"
@@ -76,12 +79,12 @@ msgstr "Desconocido "
 #: gui/lobby/lobby.js:628
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "La dirección del juego \"%(ip)s\" no aparece como valida."
+msgstr "La dirección del juego \"%(ip)s\" no parece ser válida."
 
 #: gui/lobby/lobby.js:687
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "%(nick)s se unió"
+msgstr "%(nick)s se ha unido."
 
 #: gui/lobby/lobby.js:690
 #, javascript-format
@@ -102,31 +105,31 @@ msgstr "Lo sentimos, el comando '%(cmd)s' no es admitido."
 #: gui/lobby/lobby.js:894
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:896
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:907
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the options page).
@@ -135,24 +138,24 @@ msgstr ""
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:948
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
 #: gui/lobby/lobby.js:951
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:954
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1004
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr "por favor nada de spam. Has sido bloqueado por treinta segundos."
+msgstr "Por favor, nada de spam. Has sido bloqueado por treinta segundos."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -164,19 +167,19 @@ msgstr "Registrando..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr "Por favor ingrese su nombre de usuario"
+msgstr "Por favor, ingrese su nombre de usuario"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr "El nombre de usuario no puede contener \\[, ], unicódigos, espacios o comas"
+msgstr "El nombre de usuario no puede contener \\[, ], Unicode, espacios o comas"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr "Por favor ingrese su contraseá"
+msgstr "Ingrese su contraseña, por favor"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr "Por vaor ingrese su contraseña nuevamente"
+msgstr "Por favor, ingrese su contraseña nuevamente"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -192,7 +195,7 @@ msgstr "Por favor lee nuestras Condiciones de Uso"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr "Por favor este de acuerdo con las Condiciones de servicio y de Uso"
+msgstr "Por favor, acepte las Condiciones de Servicio y de Uso"
 
 #: gui/lobby/prelobby.js:193
 msgid "Registered"
@@ -204,265 +207,265 @@ msgstr "Desconectado "
 
 #: gui/lobby/prelobby.js:244
 msgid "Register"
-msgstr ""
+msgstr "Registro"
 
 #: gui/lobby/prelobby.js:249 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
-msgstr ""
+msgstr "Conectarse"
 
 #: gui/lobby/prelobby.js:259 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
-msgstr ""
+msgstr "Condiciones de Servicio"
 
 #: gui/lobby/prelobby.js:268 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
-msgstr ""
+msgstr "Condiciones de Uso"
 
 #: gui/lobby/lobby.xml:(caption):15 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Sala de espera"
 
 #: gui/lobby/lobby.xml:(caption):49 gui/lobby/lobby.xml:(caption):298
 msgid "Current Rank:"
-msgstr ""
+msgstr "Rango actual:"
 
 #: gui/lobby/lobby.xml:(caption):53 gui/lobby/lobby.xml:(caption):302
 msgid "Highest Rating:"
-msgstr ""
+msgstr "Puntuación más alta:"
 
 #: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):306
 msgid "Total Games:"
-msgstr ""
+msgstr "Total de juegos:"
 
 #: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):310
 msgid "Wins:"
-msgstr ""
+msgstr "Victorias:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):314
 msgid "Losses:"
-msgstr ""
+msgstr "Derrotas:"
 
 #: gui/lobby/lobby.xml:(caption):69 gui/lobby/lobby.xml:(caption):318
 msgid "Win Rate:"
-msgstr ""
+msgstr "Tasa de victorias:"
 
 #: gui/lobby/lobby.xml:(caption):78 gui/lobby/lobby.xml:(caption):246
 msgid "Leaderboard"
-msgstr ""
+msgstr "Tabla de clasificación"
 
 #: gui/lobby/lobby.xml:(caption):86 gui/lobby/lobby.xml:(caption):281
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "Búsqueda de perfil de usuario"
 
 #: gui/lobby/lobby.xml:(caption):115
 msgid "Map Type:"
-msgstr ""
+msgstr "Tipo de mapa:"
 
 #: gui/lobby/lobby.xml:(caption):127
 msgid "Map Size:"
-msgstr ""
+msgstr "Tamaño del mapa:"
 
 #: gui/lobby/lobby.xml:(caption):144
 msgid "Players:"
-msgstr ""
+msgstr "Jugadores:"
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby.xml:(caption):153
 msgid "Join Game"
-msgstr ""
+msgstr "Unirse a una partida"
 
 #: gui/lobby/lobby.xml:(caption):159
 msgid "Host Game"
-msgstr ""
+msgstr "Hostear una partida"
 
 #: gui/lobby/lobby.xml:(caption):166
 msgid "Main Menu"
-msgstr ""
+msgstr "Menú principal"
 
 #: gui/lobby/lobby.xml:(caption):220
 msgid "Show full games"
-msgstr ""
+msgstr "Mostrar juegos llenos"
 
 #: gui/lobby/lobby.xml:(caption):266 gui/lobby/lobby.xml:(caption):328
 msgid "Back"
-msgstr ""
+msgstr "Volver"
 
 #: gui/lobby/lobby.xml:(caption):274
 msgid "Update"
-msgstr ""
+msgstr "Actualización"
 
 #: gui/lobby/lobby.xml:(caption):284
 msgid "Enter username:"
-msgstr ""
+msgstr "Ingresar nombre de usuario:"
 
 #: gui/lobby/lobby.xml:(caption):290
 msgid "View Profile"
-msgstr ""
+msgstr "Ver perfil"
 
 #: gui/lobby/lobby.xml:(caption):323
 msgid "Player not found."
-msgstr ""
+msgstr "Jugador no encontrado."
 
 #: gui/lobby/lobby.xml:(heading):26
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #: gui/lobby/lobby.xml:(heading):29 gui/lobby/lobby.xml:(heading):177
 #: gui/lobby/lobby.xml:(heading):256
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: gui/lobby/lobby.xml:(heading):32 gui/lobby/lobby.xml:(heading):259
 msgid "Rating"
-msgstr ""
+msgstr "Puntaje"
 
 #: gui/lobby/lobby.xml:(heading):181
 msgid "Map Name"
-msgstr ""
+msgstr "Nombre de mapa"
 
 #: gui/lobby/lobby.xml:(heading):184
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Tamaño"
 
 #: gui/lobby/lobby.xml:(heading):187
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: gui/lobby/lobby.xml:(heading):190
 msgid "Players"
-msgstr ""
+msgstr "Jugadores"
 
 #: gui/lobby/lobby.xml:(heading):253
 msgid "Rank"
-msgstr ""
+msgstr "Rango"
 
 #: gui/lobby/prelobby.xml:(caption):23
 msgid "Create a new account"
-msgstr ""
+msgstr "Crear una cuenta nueva"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Ingresar a una cuenta existente"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Conectarse a sala de espera"
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
-msgstr ""
+msgstr "Usuario:"
 
 #: gui/lobby/prelobby.xml:(caption):44 gui/lobby/prelobby.xml:(caption):68
 msgid "Password:"
-msgstr ""
+msgstr "Contraseña:"
 
 #: gui/lobby/prelobby.xml:(caption):59
 msgid "Registration"
-msgstr ""
+msgstr "Registro"
 
 #: gui/lobby/prelobby.xml:(caption):73
 msgid "Password again:"
-msgstr ""
+msgstr "Contraseña nuevamente:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "He leído y estoy de acuerdo con las Condiciones de Servicio y de Uso:"
 
 #: gui/lobby/prelobby.xml:(caption):97
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "Condiciones de Servicio de la sala de espera del modo multijugador de 0 A.D. Empires Ascendant"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Definiciones:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* El \"servicio\" es la sala de espera del modo multijugador de 0 A.D. Empires Ascendant, provisto por Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "* \"Tú\" eres el usuario del servicio."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* \"Nosotros\" somos el conjunto de todos los miembros del equipo de Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"Clasificación\" refiere al proceso de analizar estadísticas de usuario con el propósito de crear un puntaje único."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"Moderación\" refiere al proceso de implementar políticas de uso."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Al usar este servicio, tu estás de acuerdo con:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Respetar todas las políticas de uso."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Permitir que se recolecten estadísticas identificables con los fines de clasificación, perfil de usuario y estadísticas de la comunidad."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Nos reservamos el derecho a:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. Moderar el servicio."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Apuntar terceros para moderar el servicio."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. Discontinuar o interrumpir el servicio en cualquier momento con o sin previo aviso."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Cambiar el servicio en cualquier momento con o sin previo aviso."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Borrar todos y cada uno de los datos del servicio en cualquier momento con o sin previo aviso."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Recolectar estadísticas de todos y cada uno de los usuarios sin consentimiento por:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. Análisis privados llevados a cabo por el equipo de Wildfire Games (WFG) y afiliados."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "b. Publicación anonimizada por el equipo de Wilfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -470,66 +473,66 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Cambios en este documento de cualquier forma y en cualquier momento, con la condición de que el usuario del servicio sea notificado adecuadamente del cambio (la definición de notificación adecuada será determinada por un panel del equipo de Wildfire Games (WFG))."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "Términos de Uso de la sala de espera del modo multijugador de 0 A.D. Empires Ascendant"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "\"Impersonar\" se refiere a la acción en la cuál tú intentas aprovecharte de la identidad de otro para tus propios propósitos."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* \"Spam\" se refiere a mensajes irrelevantes o inapropiados enviados a muchas personas repetidas veces."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* \"Rating\" se refiere a el puntaje de cada jugador."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* \"Partidas Ranked\" son juegos en los que tu \"Rating\" puede ser modificado según el resultado."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "Estás de acuerdo a:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1- Solo crear una cuenta por usuario a menos que estes autorizado por un miembro de Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2- No postear estados profanos, humor negro, contenido pornográfico o comentarios discriminatorios."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3- No degrades intencionalmente el valor de otros usuarios que están utilizando el servicio."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4- No promover artículos, productos,etc."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5- No impersonar a otros usuarios del servicio."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6- No spammear."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -543,7 +546,7 @@ msgstr ""
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8- Permítete a ser removido del servicio en cualquier momento si un moderador determina que tu compaortamiento no es adecuado a estas reglas"
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""

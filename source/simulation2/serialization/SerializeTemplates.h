@@ -151,6 +151,19 @@ struct SerializeU8_Enum
 	}
 };
 
+struct SerializeU8_Unbounded
+{
+	void operator()(ISerializer& serialize, const char* name, u8 value)
+	{
+		serialize.NumberU8_Unbounded(name, value);
+	}
+
+	void operator()(IDeserializer& deserialize, const char* name, u8& value)
+	{
+		deserialize.NumberU8_Unbounded(name, value);
+	}
+};
+
 struct SerializeU16_Unbounded
 {
 	void operator()(ISerializer& serialize, const char* name, u16 value)

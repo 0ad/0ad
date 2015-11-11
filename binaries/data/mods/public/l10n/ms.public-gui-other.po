@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-16 06:11+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,15 +82,15 @@ msgstr "Masa berbaki sehingga genjatan senjata tamat: %(time)s."
 #: gui/common/functions_utility.js:142
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Lalai"
 
 #: gui/common/functions_utility.js:152
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Peta dipilih secara rawak."
 
 #: gui/common/functions_utility.js:161
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Maaf, tiada keterangan tersedia."
 
 #: gui/common/functions_utility.js:205
 msgid "mm:ss"
@@ -319,11 +319,11 @@ msgstr "Versi protokol rangkaian tidak betul"
 
 #: gui/common/network.js:9
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Permainan dimuatkan, cuba lagi kemudian"
 
 #: gui/common/network.js:10
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Permainan sudah bermula, pemerhati tidak dibenarkan"
 
 #: gui/common/network.js:11
 #, javascript-format
@@ -346,54 +346,54 @@ msgstr "Terputus"
 #: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Kotak Pasir"
 
 #: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Sangat Mudah"
 
 #: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Mudah"
 
 #: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Sederhana"
 
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Sukar"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Sangat Sukar"
 
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Tanpa genjatan senjata"
 
 #: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)s minit"
 
 #: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Pertempuran"
 
 #: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Rawak"
 
 #: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
@@ -401,21 +401,21 @@ msgstr "Senario"
 
 #: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Tiada"
 
 #: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Permainan Tanpa Penamat"
 
 #: gui/common/settings.js:231
 msgid "Unlimited"
-msgstr ""
+msgstr "Tidak Terhad"
 
 #: gui/common/settings.js:279 gui/common/settings.js:290
 #: gui/common/settings.js:301 gui/common/settings.js:312
 #: gui/common/settings.js:323
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak Diketahui"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -1462,7 +1462,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr ""
+msgstr "Alfa XIX: Syllepsis"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1522,7 +1522,7 @@ msgstr "Pilihan"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Main Semula"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1624,7 +1624,7 @@ msgstr "Pilih bahasa permainan."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Main balik permainan terdahulu"
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1763,13 +1763,13 @@ msgstr "[imgleft=\"constructionIcon\"]  Permainan ini masih lagi dalam pembangun
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Permainan didapati mengalami masalah prestasi, terutamanya ketika mengendalikan peta bersaiz besar dengan unit yang sangat ramai."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Versi ini fiturkan satu pencari laluan baharu, dengan prestasi dipertingkatkan, tetapi ia masih terdapat pepijat baharu."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
@@ -2120,7 +2120,7 @@ msgstr "- Berperisai berat dan perlahan. Serangan bawah."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "- Digunakan terhadap askar berkuda atau lain-lain infantri melee untuk menekan musuh dalam satu tempat."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2234,7 +2234,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- Struktur permulaan khas untuk puak Yunani."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2242,7 +2242,7 @@ msgstr "- Dianugerah +10 Populasi."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "- Hanya hadir dalam beberapa peta."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."

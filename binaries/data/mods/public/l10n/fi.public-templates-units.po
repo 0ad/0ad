@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-28 01:15+0000\n"
-"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
+"PO-Revision-Date: 2015-10-13 00:01+0000\n"
+"Last-Translator: Max\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -167,7 +167,7 @@ msgstr "Mestarijousiratsumies"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 msgid "Champion Cavalry Skirmisher"
-msgstr ""
+msgstr "Mestariratsuväkikahakoija"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
@@ -204,7 +204,7 @@ msgstr "Mestarijousiväki"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:27
 msgid "Champion Skirmisher"
-msgstr ""
+msgstr "Mestarikahakoija"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
@@ -223,7 +223,7 @@ msgstr "Mestaripiikkimies"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:38
 msgid "Counters: 3x vs. Cavalry."
-msgstr ""
+msgstr "Vastatoimet: 3x vs. Ratsuväki."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 msgid "Champion Spearman"
@@ -290,7 +290,7 @@ msgstr "Tapa ja kerää ruokaa tästä runsaasta merellisestä lähteestä."
 #: simulation/templates/units/mace_hero_demetrius.xml:12
 #: simulation/templates/units/mace_hero_philip.xml:12
 msgid "Hero Aura"
-msgstr ""
+msgstr "Sankariaura"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
@@ -315,7 +315,7 @@ msgstr "Sankarijousiratsuväki"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
 msgid "Hero Cavalry Skirmisher"
-msgstr ""
+msgstr "Sankariratsuväkikahakoija"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
@@ -331,7 +331,7 @@ msgstr "Sankarijousimies"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 msgid "Hero Skirmisher"
-msgstr ""
+msgstr "Sankarikahakoija"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 msgid "Hero Pikeman"
@@ -363,7 +363,7 @@ msgstr "Miekkamies"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:27
 msgid "Skirmisher"
-msgstr ""
+msgstr "Kahakoija"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:27
 msgid "Sling"
@@ -440,7 +440,7 @@ msgstr "Keskinkertainen"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
-msgstr ""
+msgstr "Vasama-ampuja"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Siege Catapult"
@@ -470,7 +470,7 @@ msgstr "Tuki"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:12
 msgid "Inspiration Aura"
-msgstr ""
+msgstr "Inspiraatioaura"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
 msgid "Nearby males work 10% faster"
@@ -762,7 +762,7 @@ msgstr "Iphikrates"
 
 #: simulation/templates/units/athen_hero_pericles.xml:11
 msgid "Builder Aura"
-msgstr ""
+msgstr "Rakentaja-aura"
 
 #: simulation/templates/units/athen_hero_pericles.xml:12
 msgid "Buildings construct 15% faster within his vision."
@@ -770,7 +770,7 @@ msgstr "- Rakennukset rakentuvat 15% nopeammin hänen katseen alla."
 
 #: simulation/templates/units/athen_hero_pericles.xml:21
 msgid "Acropolis Aura"
-msgstr ""
+msgstr "Acropolisaura"
 
 #: simulation/templates/units/athen_hero_pericles.xml:22
 msgid "Temples are 50 stone cheaper during his lifetime."
@@ -786,7 +786,7 @@ msgstr "Perikles"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
 msgid "Naval Commander Aura"
-msgstr ""
+msgstr "Laivastokomentaja-aura"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:12
 msgid "When garrisoned in a ship, his ship is +50% faster."
@@ -794,7 +794,7 @@ msgstr "Miehittämänsä laiva liikkuu +50% nopeammin."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:20
 msgid "Naval Architect Aura"
-msgstr ""
+msgstr "Laivastoarkkitehtuuriaura"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
 msgid "Ships are built +20% faster during his lifespan."
@@ -906,7 +906,7 @@ msgstr "Gaisaredos"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
-msgstr ""
+msgstr "Iskuratsuväki"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
@@ -936,7 +936,7 @@ msgstr "Delamokludda"
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "Champion Army"
-msgstr ""
+msgstr "Mestariarmeija"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:14
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:14
@@ -1167,7 +1167,7 @@ msgstr "Qešet"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:22
 msgid "Iberian Mercenary Skirmisher"
-msgstr ""
+msgstr "Iberialainen palkkasoturikahakoija"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:23
 msgid "Sǝḫīr Kidōn"
@@ -1201,7 +1201,7 @@ msgstr "Seḫīr Ḥerev"
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:21
 #: simulation/templates/units/samnite_swordsman.xml:5
 msgid "Samnite Swordsman"
-msgstr ""
+msgstr "Samniitti miekkamies"
 
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:22
 msgid "Seḫīr Romaḥ"
@@ -1209,7 +1209,7 @@ msgstr "Seḫīr Romaḥ"
 
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:7
 msgid "Bonused vs. Ranged Units."
-msgstr ""
+msgstr "Saa bonusta vs. kantamajoukkoja."
 
 #: simulation/templates/units/cart_ship_bireme.xml:9
 #: simulation/templates/units/ptol_ship_bireme.xml:5
@@ -1402,7 +1402,7 @@ msgstr "Iberialainen nainen"
 
 #: simulation/templates/units/iber_support_healer_b.xml:7
 msgid "Priestess of Ataekina"
-msgstr ""
+msgstr "Ataekinan papitar"
 
 #: simulation/templates/units/iber_support_healer_b.xml:8
 msgid "Emakumezko Apaiz de Ataekina"
@@ -1451,7 +1451,7 @@ msgstr "Hypaspistḗs Argyraspídi"
 
 #: simulation/templates/units/mace_hero_alexander.xml:10
 msgid "Imperialism Aura"
-msgstr ""
+msgstr "Imperialismiaura"
 
 #: simulation/templates/units/mace_hero_alexander.xml:11
 msgid "+10% territory effect for all buildings while he lives."
@@ -1487,7 +1487,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_hero_demetrius.xml:20
 msgid "Demetrius The Besieger"
-msgstr ""
+msgstr "Demetrius \"Piirittäjä\""
 
 #: simulation/templates/units/mace_hero_demetrius.xml:21
 msgid "Dēmḗtrios Poliorkḗtēs"
@@ -1527,7 +1527,7 @@ msgstr "Peltastḗs Agrías"
 
 #: simulation/templates/units/mace_infantry_pikeman_b.xml:14
 msgid "Foot Companion"
-msgstr ""
+msgstr "Jalkatoveri"
 
 #: simulation/templates/units/mace_infantry_pikeman_b.xml:15
 msgid "Pezétairos"
@@ -1567,7 +1567,7 @@ msgstr "Gýnē Makedonikḗ"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
-msgstr ""
+msgstr "Makedonialainen nainen"
 
 #: simulation/templates/units/mace_support_healer_b.xml:7
 #: simulation/templates/units/sele_support_healer_b.xml:7
@@ -1576,7 +1576,7 @@ msgstr "Hiereús"
 
 #: simulation/templates/units/mace_thorakites.xml:6
 msgid "Armored Swordsman"
-msgstr ""
+msgstr "Panssaroitu miekkamies"
 
 #: simulation/templates/units/mace_thorakites.xml:7
 msgid "Thōrakitēs"
@@ -1584,7 +1584,7 @@ msgstr "Thōrakitēs"
 
 #: simulation/templates/units/mace_thureophoros.xml:10
 msgid "Heavy Skirmisher"
-msgstr ""
+msgstr "Raskas kahakoija"
 
 #: simulation/templates/units/mace_thureophoros.xml:11
 msgid "Thyreophóros"
@@ -1645,7 +1645,7 @@ msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_maiden.xml:6
 msgid "Maiden Guard"
-msgstr ""
+msgstr "Neitsyt suojelija"
 
 #: simulation/templates/units/maur_champion_maiden.xml:7
 #: simulation/templates/units/maur_champion_maiden_archer.xml:7
@@ -1666,7 +1666,7 @@ msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Can run amok."
-msgstr ""
+msgstr "Voi poistua hallinnasta."
 
 #: simulation/templates/units/maur_hero_ashoka.xml:9
 msgid "Ashoka the Great"
@@ -1724,7 +1724,7 @@ msgstr "Kauntika"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:13
 msgid "Indian Swordsman"
-msgstr ""
+msgstr "Intialainen miekkamies"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:14
 msgid "Khadagdhari"
@@ -1753,7 +1753,7 @@ msgstr "Vanijyik Nauka"
 
 #: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Worker Elephant"
-msgstr ""
+msgstr "Työntekijäelephantti"
 
 #: simulation/templates/units/maur_support_elephant.xml:29
 msgid "Karmākara Gaja"
@@ -1773,7 +1773,7 @@ msgstr "Intialainen nainen"
 
 #: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brahmin Priest"
-msgstr ""
+msgstr "Brahmin-pappi"
 
 #: simulation/templates/units/maur_support_healer_b.xml:7
 msgid "Brāhmaṇa Pujari"
@@ -2066,7 +2066,7 @@ msgstr "Hippeús Tarantînos"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:6
 msgid "Macedonian Settler Cavalry"
-msgstr ""
+msgstr "Makedonialainen uudisasukasratsuväki"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:7
 msgid "Hippeús Makedonikós"
@@ -2074,7 +2074,7 @@ msgstr "Hippeús Makedonikós"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
-msgstr ""
+msgstr "Kuniinkaallisen kaartin ratsuväki"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
 msgid "Ágēma Basiléōs"
@@ -2090,7 +2090,7 @@ msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:19
 msgid "Juggernaut"
-msgstr ""
+msgstr "Kaiken tieltään tuhoava voima"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Tessarakonterēs"

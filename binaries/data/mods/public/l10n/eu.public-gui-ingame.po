@@ -4,12 +4,14 @@
 # 
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014
+# Thadah <juchuf@gmail.com>, 2015
+# Osoitz <oelkoro@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-08 10:50+0000\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,19 +23,19 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Oinarrizko irismena: metro %(range)s"
+msgstr[1] "Oinarrizko irismena: %(range)s metro"
 
 #: gui/session/input.js:154
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Batez besteko irismen hobaria: metro %(range)s"
+msgstr[1] "Batez besteko irismen hobaria: %(range)s metro"
 
 #: gui/session/input.js:733
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "Ezin duzu harresia eraiki hemen!"
 
 #: gui/session/menu.js:1 gui/session/menu.xml:(caption):64
 msgid "Pause"
@@ -41,7 +43,7 @@ msgstr "Pausatu"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Berrekin"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:494 gui/session/dialogs/yes_no.xml:(caption):24
@@ -55,45 +57,45 @@ msgstr "Bai"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "Errenditu nahi duzula ziur zaude?"
 
 #: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
 msgid "Confirmation"
-msgstr ""
+msgstr "Konfirmazioa"
 
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Irten nahi duzula ziur zaude? Irtetzean beste jokalari guztiak deskonektatuko dira."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Ziur zaude irten nahi duzula?"
 
 #: gui/session/menu.js:169
 msgid "I will return"
-msgstr ""
+msgstr "Bueltatu egingo naiz"
 
 #: gui/session/menu.js:169
 msgid "I resign"
-msgstr ""
+msgstr "Errenditzen naiz"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Errenditu nahi duzu edo laster bueltatuko zara?"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "Suntsitu aukeratuta dagoen guztia?"
 
 #: gui/session/menu.js:189 gui/session/unit_actions.js:708
 msgid "Delete"
-msgstr ""
+msgstr "Ezabatu"
 
 #: gui/session/menu.js:293
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Ezer ez"
 
 #: gui/session/menu.js:296 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):28
@@ -107,15 +109,15 @@ msgstr "Neutrala"
 #: gui/session/menu.js:296 gui/session/messages.js:632
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
-msgstr ""
+msgstr "Etsaia"
 
 #: gui/session/menu.js:349
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Eskatu zure aliatuei etsai hau erasotzea"
 
 #: gui/session/menu.js:364
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #: gui/session/menu.js:475
 msgid "There are no land traders."
@@ -244,7 +246,7 @@ msgstr ""
 
 #: gui/session/messages.js:251
 msgid "Waiting for other players to connect..."
-msgstr ""
+msgstr "Beste jokalariak konektatu daitezen itxaroten..."
 
 #: gui/session/messages.js:255
 msgid "Synchronising gameplay with other players..."
@@ -252,7 +254,7 @@ msgstr ""
 
 #: gui/session/messages.js:263
 msgid "Connected to the server."
-msgstr ""
+msgstr "Zerbitzarira konektatuta."
 
 #: gui/session/messages.js:267
 msgid "Connection to the server has been authenticated."
@@ -264,11 +266,11 @@ msgstr ""
 
 #: gui/session/messages.js:272
 msgid "The game has ended."
-msgstr ""
+msgstr "Partida amaitu da."
 
 #: gui/session/messages.js:409
 msgid "Unknown player"
-msgstr ""
+msgstr "Jokalari ezezaguna"
 
 #: gui/session/messages.js:417
 #, javascript-format
@@ -338,7 +340,7 @@ msgstr ""
 #. elements in an enumeration.
 #: gui/session/messages.js:478
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:483
 #, javascript-format
@@ -368,7 +370,7 @@ msgstr ""
 #: gui/session/messages.js:540 gui/session/messages.js:541
 #, javascript-format
 msgid "<%(user)s>"
-msgstr ""
+msgstr "<%(user)s>"
 
 #: gui/session/messages.js:544
 #, javascript-format
@@ -386,7 +388,7 @@ msgstr "Taldea"
 
 #: gui/session/messages.js:654
 msgid "Private"
-msgstr ""
+msgstr "Pribatua"
 
 #: gui/session/selection_details.js:32
 #, javascript-format
@@ -427,34 +429,34 @@ msgstr ""
 
 #: gui/session/selection_details.js:127 gui/session/selection_details.js:133
 msgid "Experience:"
-msgstr ""
+msgstr "Esperientzia:"
 
 #: gui/session/selection_details.js:132
 #, javascript-format
 msgid "%(experience)s %(current)s"
-msgstr ""
+msgstr "%(experience)s %(current)s"
 
 #: gui/session/selection_details.js:142
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/session/selection_details.js:143 gui/session/selection_details.js:170
 #: gui/session/selection_details.js:217
 #, javascript-format
 msgid "%(amount)s / %(max)s"
-msgstr ""
+msgstr "%(amount)s / %(max)s"
 
 #: gui/session/selection_details.js:152
 #, javascript-format
 msgid "%(resource)s:"
-msgstr ""
+msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:185 gui/session/unit_actions.js:323
 #: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
 #: gui/session/unit_actions.js:552
 #, javascript-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "Irabazia: %(gain)s"
 
 #: gui/session/selection_details.js:199
 #, javascript-format
@@ -478,11 +480,11 @@ msgstr ""
 #: gui/session/selection_details.js:232
 #, javascript-format
 msgid "(%(genericName)s)"
-msgstr ""
+msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:270
 msgid "Classes:"
-msgstr ""
+msgstr "Klaseak:"
 
 #: gui/session/selection_details.js:325
 msgid "Hitpoints:"
@@ -501,15 +503,15 @@ msgstr ""
 
 #: gui/session/selection_panels.js:72
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "Areagotu alarmaren maila unitate gehiago babesteko"
 
 #: gui/session/selection_panels.js:74
 msgid "Raise an alert!"
-msgstr ""
+msgstr "Jo alarma!"
 
 #: gui/session/selection_panels.js:77
 msgid "End of alert."
-msgstr ""
+msgstr "Alarmaren bukaera."
 
 #: gui/session/selection_panels.js:143
 #, javascript-format
@@ -583,32 +585,32 @@ msgstr "Osasuna:"
 #: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "Bortitza"
 
 #: gui/session/selection_panels_helpers.js:42
 msgctxt "stance"
 msgid "Aggressive"
-msgstr ""
+msgstr "Erasokorra"
 
 #: gui/session/selection_panels_helpers.js:45
 msgctxt "stance"
 msgid "Passive"
-msgstr ""
+msgstr "Pasiboa"
 
 #: gui/session/selection_panels_helpers.js:48
 msgctxt "stance"
 msgid "Defensive"
-msgstr ""
+msgstr "Defentsarako"
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Standground"
-msgstr ""
+msgstr "Posizioa mantendu"
 
 #: gui/session/selection_panels_helpers.js:70
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr ""
+msgstr "Uneko kontua: %(count)s, Muga: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:76
 #, javascript-format
@@ -627,7 +629,7 @@ msgstr ""
 
 #: gui/session/selection_panels_helpers.js:114
 msgid "Shift-click"
-msgstr ""
+msgstr "Mayus-klik"
 
 #: gui/session/selection_panels_helpers.js:123
 #, javascript-format
@@ -651,7 +653,7 @@ msgstr "Zu"
 
 #: gui/session/session.js:172
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: gui/session/session.js:244
 #, javascript-format
@@ -660,15 +662,15 @@ msgstr ""
 
 #: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
-msgstr ""
+msgstr "Partida utzi duzu."
 
 #: gui/session/session.js:325
 msgid "You have been disconnected."
-msgstr ""
+msgstr "Deskonektatua izan zara."
 
 #: gui/session/session.js:327
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Bataila irabazi duzu!"
 
 #: gui/session/session.js:329
 msgid "You have been defeated..."
@@ -676,7 +678,7 @@ msgstr ""
 
 #: gui/session/session.js:337
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Jokoa abandonatu duzu"
 
 #: gui/session/session.js:488
 msgid "OK"
@@ -684,29 +686,29 @@ msgstr "Ados"
 
 #: gui/session/session.js:490
 msgid "Press OK to continue"
-msgstr ""
+msgstr "Sakatu Ados jarraitzeko"
 
 #: gui/session/session.js:496
 msgid "Do you want to quit?"
-msgstr ""
+msgstr "Irten nahi duzu?"
 
 #: gui/session/session.js:502
 msgid "DEFEATED!"
-msgstr ""
+msgstr "PORROTA!"
 
 #: gui/session/session.js:510
 msgid "VICTORIOUS!"
-msgstr ""
+msgstr "GARAILE!"
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Bai"
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Ez"
 
 #: gui/session/session.js:571
 msgctxt "replayFinished"
@@ -716,7 +718,7 @@ msgstr ""
 #: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Konfirmazioa"
 
 #: gui/session/session.js:732
 msgid "Population (current / limit)"
@@ -792,7 +794,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:734
 msgid "Stop"
-msgstr ""
+msgstr "Gelditu"
 
 #: gui/session/unit_actions.js:752
 msgid "Garrison"
@@ -804,7 +806,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:789
 msgid "Repair"
-msgstr ""
+msgstr "Konpondu"
 
 #: gui/session/unit_actions.js:806
 msgid "Focus on Rally Point"
@@ -828,7 +830,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:131 gui/session/utility_functions.js:133
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/session/utility_functions.js:135 gui/session/utility_functions.js:141
 #: gui/session/utility_functions.js:146
@@ -839,7 +841,7 @@ msgstr ""
 #: gui/session/utility_functions.js:141 gui/session/utility_functions.js:146
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -856,7 +858,7 @@ msgstr "Zibilizazioa"
 
 #: gui/session/diplomacy_window.xml:(caption):24
 msgid "Theirs"
-msgstr ""
+msgstr "Haiena"
 
 #: gui/session/diplomacy_window.xml:(caption):27
 msgid "A"
@@ -868,7 +870,7 @@ msgstr "N"
 
 #: gui/session/diplomacy_window.xml:(caption):35
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #: gui/session/diplomacy_window.xml:(caption):39
 msgid "Tribute"
@@ -889,7 +891,7 @@ msgstr "Gorde"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Options"
-msgstr ""
+msgstr "Aukerak"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Resign"
@@ -1001,11 +1003,11 @@ msgstr ""
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "Galdera"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "Bai ala ez?"
 
 #: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
 msgid "Exchange resources:"
@@ -1051,7 +1053,7 @@ msgstr "Hautatu jokoaren abiadura"
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
-msgstr ""
+msgstr "Menua"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XIX : Syllepsis"

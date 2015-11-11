@@ -134,7 +134,12 @@ public:
 	 * The changes will be asynchronously propagated to all clients.
 	 */
 	void ClearAllPlayerReady();
-	
+
+	/**
+	 * Disconnects a player from gamesetup or session.
+	 */
+	bool KickPlayer(const CStrW& playerName, const bool ban);
+
 	/**
 	 * Call from the GUI to asynchronously notify all clients that they should start loading the game.
 	 */
@@ -181,6 +186,11 @@ public:
 	 * Send a message to the given network peer.
 	 */
 	bool SendMessage(ENetPeer* peer, const CNetMessage* message);
+
+	/**
+	 * Disconnects a player from gamesetup or session.
+	 */
+	bool KickPlayer(const CStrW& playerName, const bool ban);
 
 	/**
 	 * Send a message to all clients who have completed the full connection process
@@ -299,9 +309,14 @@ private:
 	CStrW m_ServerName;
 	CStrW m_WelcomeMessage;
 
+	std::vector<CStr> m_BannedIPs;
+	std::vector<CStrW> m_BannedPlayers;
+
 	u32 m_NextHostID;
 
 	CNetServerTurnManager* m_ServerTurnManager;
+
+	CStr m_HostGUID;
 
 	/**
 	 * A copy of all simulation commands received so far, indexed by

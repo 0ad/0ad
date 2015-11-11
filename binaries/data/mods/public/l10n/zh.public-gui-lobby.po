@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# helinb <1696060289@qq.com>, 2015
 # liulitchi <xingzuo88@qq.com>, 2014
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-22 08:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-02 16:11+0000\n"
+"Last-Translator: helinb <1696060289@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +52,7 @@ msgstr "%(percentage)s%%"
 #: gui/lobby/lobby.js:346 gui/lobby/lobby.js:374
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:534
 msgid "Busy"
@@ -77,7 +78,7 @@ msgstr "未知"
 #: gui/lobby/lobby.js:628
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "此游戏的位址 '%(ip)s'  似乎无效。"
 
 #: gui/lobby/lobby.js:687
 #, javascript-format
@@ -143,7 +144,7 @@ msgstr "HH:mm"
 #: gui/lobby/lobby.js:951
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:954
@@ -169,7 +170,7 @@ msgstr "请输入您的用户名。"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "使用者名称不能含有\\[, ] 逗号、Unicode、空白、或是半型逗号"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
@@ -229,11 +230,11 @@ msgstr "当前队列："
 
 #: gui/lobby/lobby.xml:(caption):53 gui/lobby/lobby.xml:(caption):302
 msgid "Highest Rating:"
-msgstr ""
+msgstr "最高排行："
 
 #: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):306
 msgid "Total Games:"
-msgstr ""
+msgstr "游戏总数："
 
 #: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):310
 msgid "Wins:"
@@ -294,11 +295,11 @@ msgstr "更新"
 
 #: gui/lobby/lobby.xml:(caption):284
 msgid "Enter username:"
-msgstr ""
+msgstr "输入用户名 :"
 
 #: gui/lobby/lobby.xml:(caption):290
 msgid "View Profile"
-msgstr ""
+msgstr "查看档案"
 
 #: gui/lobby/lobby.xml:(caption):323
 msgid "Player not found."
@@ -401,7 +402,7 @@ msgstr "* \"我们\" 特指所有 Wildfire Games (WFG) 团队成员组成的集�
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"排行\" 指的是分析各项使用者统计数据以产生单一综合分数的过程。"
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
@@ -481,23 +482,23 @@ msgstr "0 A.D. Empires Ascendant 多人游戏大厅 使用条款"
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "*  \"冒充\" 是指您试图使用其他人的身份以满足自己的目的的行为。"
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* \"垃圾信息\" 是指发送给大量收件者的不相关或不恰当的信息。"
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* \"排行\" 是指每个使用者的综合得分。"
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "*  \"排名游戏\" 是指会追踪排行统计资讯变更的游戏。"
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -538,13 +539,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. 不试图人为调整任何使用者的服务的排行或统计数据。 (包含但不限于：在排名游戏中作弊、对此服务进行逆向工程，或是利用其他本服务的使用者。)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. 允许管理员在您不遵守以上规定时从游戏中移除。"
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""

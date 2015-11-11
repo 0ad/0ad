@@ -51,10 +51,11 @@
 static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*8);
 
 /**
- * Maximum range to restrict short path queries to. (Larger ranges are slower,
+ * Min/Max range to restrict short path queries to. (Larger ranges are slower,
  * smaller ranges might miss some legitimate routes around large obstacles.)
  */
-static const entity_pos_t SHORT_PATH_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*6);
+static const entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*2);
+static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*9);
 
 /**
  * When short-pathing, and the short-range pathfinder failed to return a path,
@@ -134,6 +135,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_Update_MotionFormation);
 		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
 		componentManager.SubscribeToMessageType(MT_PathResult);
+		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_ValueModification);
 		componentManager.SubscribeToMessageType(MT_Deserialized);
 	}
@@ -256,6 +258,7 @@ public:
 	WaypointPath m_ShortPath;
 
 	// Motion planning
+	u8 m_Tries; // how many tries we've done to get to our current Final Goal.
 	SUnitMotionPlanning m_Planning;
 
 	PathGoal m_FinalGoal;
@@ -427,6 +430,7 @@ public:
 				break;
 		}
 		// fall-through
+		case MT_OwnershipChanged:
 		case MT_Deserialized:
 		{
 			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
@@ -620,10 +624,11 @@ private:
 	void Move(fixed dt);
 
 	/**
-	 * Analyse the next long path step (if any) and precompute a short path if needed.
-	 * Then use the previous computed short path, if present, for the current step.
+	 * Analyze our current path, and check if we expect to be obstructed soon
+	 * If yes, try to anticipate.
+	 * TODO: remove this and use a more general "pushing" manager.
 	 */
-	void PlanNextStep(const CFixedVector2D& pos);
+	void PlanNextStep(const CFixedVector2D& pos, const CFixedVector2D& currentOffset);
 
 	/**
 	 * Decide whether to approximate the given range from a square target as a circle,
@@ -654,6 +659,12 @@ private:
 	 * last path computations, and we're close enough to it to care.
 	 */
 	bool CheckTargetMovement(const CFixedVector2D& from, entity_pos_t minDelta);
+
+	/**
+	 * Returns whether we are close enough to the target to assume it's a good enough
+	 * position to stop.
+	 */
+	bool ShouldConsiderOurselvesAtDestination(const CFixedVector2D& from);
 
 	/**
 	 * Returns whether the length of the given path, plus the distance from
@@ -792,24 +803,17 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
 
-			if (m_TargetEntity == INVALID_ENTITY)
-			{
-				if (m_FinalGoal.DistanceToPoint(pos) <= SHORT_PATH_GOAL_RADIUS)
-				{
-					StopMoving();
-					MoveSucceeded();
-					
-					if (m_FacePointAfterMove)
-						FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
-					return;
-				}
-			}
-			m_LongPath.m_Waypoints.clear();
+			if (ShouldConsiderOurselvesAtDestination(pos))
+				return;
+
 			RequestLongPath(pos, m_FinalGoal);
 			m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
 			return;
 		}
 
+		// else we could, so reset our number of tries.
+		m_Tries = 0;
+		
 		// Now we've got a short path that we can follow
 		if (!HasValidPath())
 			StartSucceeded();
@@ -936,10 +940,7 @@ void CCmpUnitMotion::Move(fixed dt)
 					timeLeft = timeLeft - (offsetLength / maxSpeed);
 
 					if (m_ShortPath.m_Waypoints.empty())
-					{
 						m_LongPath.m_Waypoints.pop_back();
-						PlanNextStep(pos);
-					}
 					else
 						m_ShortPath.m_Waypoints.pop_back();
 
@@ -960,6 +961,7 @@ void CCmpUnitMotion::Move(fixed dt)
 
 				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
 				{
+					PlanNextStep(pos, offset);
 					pos = target;
 					break;
 				}
@@ -990,6 +992,10 @@ void CCmpUnitMotion::Move(fixed dt)
 			// Oops, we hit something (very likely another unit).
 			// This is when we might easily get stuck wrongly.
 			
+			// check if we've arrived.
+			if (ShouldConsiderOurselvesAtDestination(pos))
+				return;
+			
 			// If we still have long waypoints, try and compute a short path
 			// This will get us around units, amongst others.
 			// However in some cases a long waypoint will be in located in the obstruction of
@@ -1009,7 +1015,8 @@ void CCmpUnitMotion::Move(fixed dt)
 					square.x = m_LongPath.m_Waypoints.back().x;
 					square.z = m_LongPath.m_Waypoints.back().z;
 					std::vector<entity_id_t> unitOnGoal;
-					cmpObstructionManager->GetUnitsOnObstruction(square, unitOnGoal, GetObstructionFilter(true, false));
+					// don't ignore moving units as those might be units like us, ie not really moving.
+					cmpObstructionManager->GetUnitsOnObstruction(square, unitOnGoal, GetObstructionFilter(false, false), true);
 					if (!unitOnGoal.empty())
 						m_LongPath.m_Waypoints.pop_back();
 				}
@@ -1085,43 +1092,30 @@ void CCmpUnitMotion::Move(fixed dt)
 	}
 }
 
-void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos)
+void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos, const CFixedVector2D& currentOffset)
 {
 	if (m_LongPath.m_Waypoints.empty())
 		return;
-
+	
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 	if (!cmpPathfinder)
 		return;
 	
-	const Waypoint& nextPoint = m_LongPath.m_Waypoints.back();
-
-	// The next step was obstructed the last time we checked; also check that
-	// the step is still obstructed (maybe the units in our way moved in the meantime)
-	if (!m_Planning.nextStepClean &&
-		!cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, nextPoint.x, nextPoint.z, m_Clearance, m_PassClass))
-	{
-		// If the short path computation is over, use it, else just forget about it
-		if (!m_Planning.nextStepShortPath.m_Waypoints.empty())
-		{
-			m_PathState = PATHSTATE_FOLLOWING;
-			m_ShortPath = m_Planning.nextStepShortPath;
-		}
-	}
-
 	m_Planning = SUnitMotionPlanning();
-
-	if (m_LongPath.m_Waypoints.size() == 1)
-		return;
-
-	const Waypoint& followingPoint = m_LongPath.m_Waypoints.rbegin()[1]; // penultimate element
-	m_Planning.nextStepClean = cmpPathfinder->CheckMovement(
-		GetObstructionFilter(), nextPoint.x, nextPoint.z, followingPoint.x, followingPoint.z, m_Clearance, m_PassClass);
-	if (!m_Planning.nextStepClean)
+	
+	// see 2 turns in advance, otherwise this would start to lag in MP
+	CFixedVector2D futurePos = pos + currentOffset*2;
+	
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+	
+	// Don't actually use CheckMovement since we want to check against units only, we assume the rest is taken care of.
+	if (cmpObstructionManager && cmpObstructionManager->TestLine(GetObstructionFilter(true, false), pos.X, pos.Y, futurePos.X, futurePos.Y, m_Clearance, true))
 	{
-		PathGoal goal = { PathGoal::POINT, followingPoint.x, followingPoint.z };
-		m_Planning.expectedPathTicket = cmpPathfinder->ComputeShortPathAsync(
-			nextPoint.x, nextPoint.z, m_Clearance, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, false, GetGroup(), GetEntityId());
+		// we will run in a static unit obstruction. Try to shortpath around it.
+		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+		RequestShortPath(pos, goal, false);
+		m_PathState = PATHSTATE_FOLLOWING_REQUESTING_SHORT;
+		return;
 	}
 }
 
@@ -1262,6 +1256,23 @@ bool CCmpUnitMotion::CheckTargetMovement(const CFixedVector2D& from, entity_pos_
 	return true;
 }
 
+bool CCmpUnitMotion::ShouldConsiderOurselvesAtDestination(const CFixedVector2D& from)
+{
+	if (m_TargetEntity == INVALID_ENTITY)
+	{
+		if (m_FinalGoal.DistanceToPoint(from) <= SHORT_PATH_GOAL_RADIUS)
+		{
+			StopMoving();
+			MoveSucceeded();
+		
+			if (m_FacePointAfterMove)
+				FaceTowardsPointFromPos(from, m_FinalGoal.x, m_FinalGoal.z);
+			return true;
+		}
+	}
+	return false;
+}
+
 bool CCmpUnitMotion::PathIsShort(const WaypointPath& path, const CFixedVector2D& from, entity_pos_t minDistance) const
 {
 	CFixedVector2D prev = from;
@@ -1367,7 +1378,7 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// If it's close then just do a short path, not a long path
 	// TODO: If it's close on the opposite side of a river then we really
 	// need a long path, so we shouldn't simply check linear distance
-	if (goal.DistanceToPoint(from) < SHORT_PATH_SEARCH_RANGE)
+	if (goal.DistanceToPoint(from) < SHORT_PATH_MIN_SEARCH_RANGE*3)
 	{
 		// add our final goal as a long range waypoint so we don't forget
 		// where we are going if the short-range pathfinder returns
@@ -1391,8 +1402,10 @@ void CCmpUnitMotion::RequestLongPath(const CFixedVector2D& from, const PathGoal&
 	if (!cmpPathfinder)
 		return;
 
+	// this is by how much our waypoints will be apart at most.
+	// this value here seems sensible enough.
 	PathGoal improvedGoal = goal;
-	improvedGoal.maxdist = SHORT_PATH_SEARCH_RANGE / 2;
+	improvedGoal.maxdist = SHORT_PATH_MIN_SEARCH_RANGE - entity_pos_t::FromInt(1);
 
 	cmpPathfinder->SetDebugPath(from.X, from.Y, improvedGoal, m_PassClass);
 
@@ -1405,7 +1418,11 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	if (!cmpPathfinder)
 		return;
 
-	m_ExpectedPathTicket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, avoidMovingUnits, GetGroup(), GetEntityId());
+	fixed searchRange = std::max(SHORT_PATH_MIN_SEARCH_RANGE * ++m_Tries, goal.DistanceToPoint(from));
+	if (searchRange > SHORT_PATH_MAX_SEARCH_RANGE)
+		searchRange = SHORT_PATH_MAX_SEARCH_RANGE;
+	
+	m_ExpectedPathTicket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, searchRange, goal, m_PassClass, avoidMovingUnits, GetGroup(), GetEntityId());
 }
 
 bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
@@ -1474,6 +1491,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 	m_TargetMinRange = minRange;
 	m_TargetMaxRange = maxRange;
 	m_FinalGoal = goal;
+	m_Tries = 0;
 
 	BeginPathing(pos, goal);
 
@@ -1685,6 +1703,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	m_TargetMinRange = minRange;
 	m_TargetMaxRange = maxRange;
 	m_FinalGoal = goal;
+	m_Tries = 0;
 
 	BeginPathing(pos, goal);
 
@@ -1779,6 +1798,7 @@ void CCmpUnitMotion::MoveToFormationOffset(entity_id_t target, entity_pos_t x, e
 	m_TargetMinRange = entity_pos_t::Zero();
 	m_TargetMaxRange = entity_pos_t::Zero();
 	m_FinalGoal = goal;
+	m_Tries = 0;
 
 	BeginPathing(pos, goal);
 }

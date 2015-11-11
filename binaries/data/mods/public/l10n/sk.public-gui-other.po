@@ -8,13 +8,14 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Miroslav Remák <Unknown>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
+# Peter Tuharsky <peter.tuharsky@gmail.com>, 2015
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-03 07:41+0000\n"
+"Last-Translator: Peter Tuharsky <peter.tuharsky@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,15 +94,15 @@ msgstr "Čas zostávajúci do ukončenia prímeria: %(time)s."
 #: gui/common/functions_utility.js:142
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Prednastavené"
 
 #: gui/common/functions_utility.js:152
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Náhodne vybraná mapa."
 
 #: gui/common/functions_utility.js:161
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Ľutujeme, žiadny popis nie je k dispozícii."
 
 #: gui/common/functions_utility.js:205
 msgid "mm:ss"
@@ -330,11 +331,11 @@ msgstr "Nesprávna verzia sieťového protokolu"
 
 #: gui/common/network.js:9
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Hra sa načítava, prosím skúste to neskôr."
 
 #: gui/common/network.js:10
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Hra sa už začala, pozorovateľom nie je prístupná."
 
 #: gui/common/network.js:11
 #, javascript-format
@@ -343,7 +344,7 @@ msgstr "\\[Invalid value %(id)s]"
 
 #: gui/common/network.js:20
 msgid "Lost connection to the server."
-msgstr "Stratilo sa pripojenie na server."
+msgstr "Spojenie so serverom bolo prerušené."
 
 #: gui/common/network.js:20
 #, javascript-format
@@ -362,32 +363,32 @@ msgstr ""
 #: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Veľmi ľahká"
 
 #: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Ľahká"
 
 #: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Priemerne"
 
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Ťažká"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Veľmi ťažká"
 
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Žiadne prímerie"
 
 #: gui/common/settings.js:151
 #, javascript-format
@@ -401,12 +402,12 @@ msgstr[2] ""
 #: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Súboj"
 
 #: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Náhodná"
 
 #: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
@@ -414,21 +415,21 @@ msgstr "Scenár"
 
 #: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Žiadne"
 
 #: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Hra bez konca"
 
 #: gui/common/settings.js:231
 msgid "Unlimited"
-msgstr ""
+msgstr "Neobmedzené"
 
 #: gui/common/settings.js:279 gui/common/settings.js:290
 #: gui/common/settings.js:301 gui/common/settings.js:312
 #: gui/common/settings.js:323
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámy"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -606,7 +607,7 @@ msgstr "Populačný bonus:"
 
 #: gui/common/tooltips.js:385
 msgid "Insufficient resources:"
-msgstr "Nedostatočné suroviny:"
+msgstr "Nedostatkové suroviny:"
 
 #: gui/common/tooltips.js:393
 msgid "Speed:"
@@ -731,7 +732,7 @@ msgstr "Zakázať uvítaciu obrazovku"
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr "Ak zakážete uvítaciu obrazovku, môžete prísť o dôležité oznamy.\nUvítaciu obrazovku môžete znovu spustiť z hlavného menu."
+msgstr "Ak zakážete uvítaciu obrazovku, môžete prísť o dôležité oznamy.\nUvítaciu obrazovku môžete znovu spustiť z hlavnej ponuky."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
@@ -768,7 +769,7 @@ msgstr "Zobrazovať aktuálny čas simulácie v pravom hornom rohu obrazovky."
 
 #: gui/options/options.js:16
 msgid "Ceasefire Time Overlay"
-msgstr ""
+msgstr "Vrstva času prímeria"
 
 #: gui/options/options.js:16
 msgid "Always show the remaining ceasefire time."
@@ -781,7 +782,7 @@ msgstr ""
 #: gui/options/options.js:17
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr "Ulož a obnov nastavenia zápasu pre rýchle znovupoužitie pri tvorbe ďalšej hry"
+msgstr "Uloženie a obnova nastavenia zápasu pre rýchle opätovné použitie pri tvorbe ďalšej hry"
 
 #: gui/options/options.js:21
 msgid "Prefer GLSL"
@@ -933,11 +934,11 @@ msgstr "Zosilnenie hudby počas hry"
 
 #: gui/options/options.js:42
 msgid "Ambient Gain"
-msgstr "Zosilnenie atmosféry"
+msgstr "Zosilnenie prírodných zvukov"
 
 #: gui/options/options.js:42
 msgid "In game ambient sound gain"
-msgstr "Zosilnenie atmosferických zvukov počas hry"
+msgstr "Zosilnenie prírodných zvukov počas hry"
 
 #: gui/options/options.js:43
 msgid "Action Gain"
@@ -957,7 +958,7 @@ msgstr "Zosilnenie zvukov používateľského rozhrania"
 
 #: gui/options/options.js:48
 msgid "Chat Backlog"
-msgstr "Spätné záznamy chatu"
+msgstr "Spätné záznamy rozhovoru"
 
 #: gui/options/options.js:48
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -1076,7 +1077,7 @@ msgstr "Táto uložená hra nemusí byť kompatibilná:"
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr "Vyžaduje verziu hry %(requiredVersion)s, kým aktuálna verzia je %(currentVersion)s."
+msgstr "Vyžaduje verziu hry %(requiredVersion)s, no vaša aktuálna verzia je %(currentVersion)s."
 
 #: gui/savedgames/load.js:61
 msgid "It needs an older version of 0 A.D."
@@ -1087,24 +1088,24 @@ msgstr "Je potrebná staršia verzia 0 A.D."
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr "Je potrebná uložená hra 0 A.D. verzie %(requiredVersion)s, ale ty máš uloženú hru vo verzii  %(currentVersion)s."
+msgstr "Je potrebná uložená hra 0 A.D. verzie %(requiredVersion)s, ale hru máte uloženú hru vo verzii  %(currentVersion)s."
 
 #: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr "Nie je potrebná žiadna modifikácia, kým aktuálne spustené sú tieto: %(currentMod)s."
+msgstr "Nie je potrebná žiadna modifikácia, no aktuálne spustené sú tieto: %(currentMod)s."
 
 #: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr "Vyžaduje modifikáciu „%(requiredMod)s“, zatiaľ čo nie je žiadna aktuálne spustená."
+msgstr "Vyžaduje modifikáciu „%(requiredMod)s“, no žiadna nie je spustená."
 
 #: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr "Vyžaduje modifikáciu „%(requiredMod)s“, kým aktuálne spustené sú tieto: %(currentMod)s."
+msgstr "Vyžaduje modifikáciu „%(requiredMod)s“, no aktuálne spustené sú tieto: %(currentMod)s."
 
 #: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
@@ -1147,7 +1148,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:286
 msgid "Gather Rates:"
-msgstr ""
+msgstr "Výsledky zberu:"
 
 #: gui/structree/load.js:146
 #, javascript-format
@@ -1539,7 +1540,7 @@ msgstr "Možnosti"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Prehrávania"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1641,7 +1642,7 @@ msgstr "Vybrať jazyk hry."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Prehrať predošlé hry."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1780,13 +1781,13 @@ msgstr "[imgleft=\"constructionIcon\"]Táto hra je stále vo vývoji. Niektoré 
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Táto hra môže mať problémy s výkonom, najmä pri veľkých mapách a väčšom počte jednotiek."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Táto verzia prináša nový algoritmus hľadania cesty, s vyšším výkonom, no môže obsahovať nové chyby."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
@@ -1837,7 +1838,7 @@ msgstr "- Umožňuje výskum vojenských technológií unikátnych pre každú f
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Postavte jedny zavčasu na výcvik občanov-vojakov počas toho, ako budete budovať svoju kolóniu."
+msgstr "- Postavte si jedny na tréning občanov-vojakov už v začiatkoch budovania svojej kolónie."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
@@ -2029,7 +2030,7 @@ msgstr "- Občania-vojaci na koni sú obzvlášť zruční v love."
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr "- Čím väčšiu úroveň má občan-vojak (pokročilý, elitný), tým lepšie vie bojovať, ale zato menej účinnejšie získavať suroviny."
+msgstr "- Čím vyššiu úroveň má občan-vojak (pokročilý, elitný), tým lepšie vie bojovať, ale zato menej účinnejšie získavať suroviny."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -2137,7 +2138,7 @@ msgstr "- Ťažko obrnení a pomalí. Nízky útok."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "- Používa sa proti jazde alebo inej pechote útočiacej zblízka, na ich udržanie na mieste."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2197,7 +2198,7 @@ msgstr "- Zvyčajne stoja 100 dreva a 100 kameňa. Iberské obranné veže stoja
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr "- Majú útok na diaľku, ktorý zvyšuje každá jednotka do nich umiestnená."
+msgstr "- Majú útok na diaľku, ktorý sa zvyšuje s každou jednotkou do nich umiestnenou."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -2251,7 +2252,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- Špeciálna úvodná stavba pre grécke frakcie"
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2259,7 +2260,7 @@ msgstr "- Zvyšuje populáciu o 10."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "- Vyskytuje sa len na niektorých mapách."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
@@ -2271,7 +2272,7 @@ msgstr "SKLADISKÁ"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr "- Lacné miesto na skladovanie surovín iných ako jedlo (drevo, kameň, kov)."
+msgstr "- Lacné miesto na skladovanie surovín, okrem jedla (drevo, kameň, kov)."
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
@@ -2393,7 +2394,7 @@ msgstr "- Naloď katapult pre ďalekosiahly obliehací útok (ZATIAĽ NEIMPLEMEN
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr "- Schopný ničivého prerážacieho útoku od lode k lodi, ktorý sa musí znova pripraviť po každom použití (ZATIAĽ NEIMPLEMENTOVANÉ)."
+msgstr "- Schopný ničivého prerážacieho útoku loď-proti-lodi, ktorý sa musí znova pripraviť po každom použití (ZATIAĽ NEIMPLEMENTOVANÉ)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

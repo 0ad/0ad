@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
+# Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Stew Den <stewden55@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-08-24 08:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-10-22 07:46+0000\n"
+"Last-Translator: Mátyás Demeter <mathias.demeter@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,12 +25,12 @@ msgstr "Természet"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
-msgstr ""
+msgstr "Átlagos növényzet"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
-msgstr ""
+msgstr "Bokor"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
@@ -45,7 +46,7 @@ msgstr "Fa"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
-msgstr ""
+msgstr "Vágd ki, faanyag gyűjtéséhez!"
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -53,7 +54,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
-msgstr ""
+msgstr "Ásvány"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Metal Mine"
@@ -77,7 +78,7 @@ msgstr "Bányássz ezekből, hogy több Követ szerezz!"
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr ""
+msgstr "Romok"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
@@ -88,11 +89,11 @@ msgstr "Romok"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
-msgstr ""
+msgstr "Ezek a romok erőforrásként kiaknázhatók."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr ""
+msgstr "Kincs"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -114,7 +115,7 @@ msgstr "Kincs"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
-msgstr ""
+msgstr "A kincs gyorsan begyűjthető."
 
 #: simulation/templates/template_structure.xml:56
 msgid "Structure"

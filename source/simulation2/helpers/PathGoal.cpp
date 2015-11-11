@@ -22,6 +22,8 @@
 #include "graphics/Terrain.h"
 #include "Pathfinding.h"
 
+#include "Geometry.h"
+
 static bool NavcellContainsCircle(int i, int j, fixed x, fixed z, fixed r, bool inside)
 {
 	// Accept any navcell (i,j) that contains a point which is inside[/outside]

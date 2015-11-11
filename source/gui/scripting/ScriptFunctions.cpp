@@ -353,6 +353,14 @@ void DisconnectNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	SAFE_DELETE(g_Game);
 }
 
+bool KickPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW playerName, bool ban)
+{
+	if (!g_NetServer)
+		return false;
+
+	return g_NetServer->KickPlayer(playerName, ban);
+}
+
 JS::Value PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_NetClient)
@@ -963,6 +971,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::wstring, &StartNetworkHost>("StartNetworkHost");
 	scriptInterface.RegisterFunction<void, std::wstring, std::string, &StartNetworkJoin>("StartNetworkJoin");
 	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
+	scriptInterface.RegisterFunction<bool, CStrW, bool, &KickPlayer>("KickPlayer");
 	scriptInterface.RegisterFunction<JS::Value, &PollNetworkClient>("PollNetworkClient");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, &SetNetworkGameAttributes>("SetNetworkGameAttributes");
 	scriptInterface.RegisterFunction<void, int, std::string, &AssignNetworkPlayer>("AssignNetworkPlayer");

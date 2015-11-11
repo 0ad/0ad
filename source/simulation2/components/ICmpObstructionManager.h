@@ -244,8 +244,12 @@ public:
 	/**
 	 * Returns the entity IDs of all unit shapes that intersect the given
 	 * obstruction square, filtering out using the given filter.
+	 * @param square the Obstruction squre we want to compare with.
+	 * @param out output list of obstructions
+	 * @param filter filter for the obstructing units
+	 * @param strict whether to be strict in the check or more permissive (ie rasterize more or less). Default false.
 	 */
-	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter) = 0;
+	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict = false) = 0;
 
 	/**
 	 * Get the obstruction square representing the given shape.

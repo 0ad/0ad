@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -173,6 +173,15 @@ bool CNetClientSession::SendMessage(const CNetMessage* message)
 CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
 	m_Server(server), m_FileTransferer(this), m_Peer(peer)
 {
+}
+
+CStr CNetServerSession::GetIPAddress() const
+{
+	char ipAddress[256] = "";
+	if (enet_address_get_host_ip(&m_Peer->address, ipAddress, ARRAY_SIZE(ipAddress)) < 0)
+		LOGMESSAGE("Could not get IP address of a client!");
+
+	return ipAddress;
 }
 
 void CNetServerSession::Disconnect(u32 reason)
