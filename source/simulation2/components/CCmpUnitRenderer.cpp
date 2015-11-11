@@ -274,7 +274,7 @@ public:
 		for (size_t i = 0; i < m_Units.size(); ++i)
 		{
 			SUnit& unit = m_Units[i];
-			if (!unit.actor)
+			if (!unit.actor || !unit.inWorld)
 				continue;
 			if (unit.sweptBounds.RayIntersect(origin, dir))
 				candidates.push_back(&unit);
