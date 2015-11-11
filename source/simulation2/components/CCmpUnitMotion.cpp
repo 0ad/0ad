@@ -1387,7 +1387,7 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 		CFixedVector2D target = m_FinalGoal.NearestPointOnGoal(from);
 		m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
 		m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
-		RequestShortPath(from, goal, false);
+		RequestShortPath(from, goal, true);
 	}
 	else
 	{
