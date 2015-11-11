@@ -1094,6 +1094,9 @@ void CCmpUnitMotion::Move(fixed dt)
 
 void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos, const CFixedVector2D& currentOffset)
 {
+	if (m_LongPath.m_Waypoints.empty())
+		return;
+	
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 	if (!cmpPathfinder)
 		return;
@@ -1105,7 +1108,6 @@ void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos, const CFixedVector2
 	
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	
-	std::cout << cmpObstructionManager->TestLine(GetObstructionFilter(true, false), pos.X, pos.Y, futurePos.X, futurePos.Y, m_Clearance, true) << std::endl;
 	// Don't actually use CheckMovement since we want to check against units only, we assume the rest is taken care of.
 	if (cmpObstructionManager && cmpObstructionManager->TestLine(GetObstructionFilter(true, false), pos.X, pos.Y, futurePos.X, futurePos.Y, m_Clearance, true))
 	{
