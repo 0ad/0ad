@@ -604,16 +604,8 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	fixed rangeZMin = z0 - range;
 	fixed rangeZMax = z0 + range;
 
-	// (The edges are the opposite direction to usual, so it's an inside-out square)
-	edges.emplace_back(Edge{	CFixedVector2D(rangeXMin-fixed::Epsilon(), rangeZMin-fixed::Epsilon()),
-								CFixedVector2D(rangeXMin-fixed::Epsilon(), rangeZMax+fixed::Epsilon()) });
-	edges.emplace_back(Edge{	CFixedVector2D(rangeXMin-fixed::Epsilon(), rangeZMax+fixed::Epsilon()),
-								CFixedVector2D(rangeXMax+fixed::Epsilon(), rangeZMax+fixed::Epsilon()) });
-	edges.emplace_back(Edge{	CFixedVector2D(rangeXMax+fixed::Epsilon(), rangeZMax+fixed::Epsilon()),
-								CFixedVector2D(rangeXMax+fixed::Epsilon(), rangeZMin-fixed::Epsilon()) });
-	edges.emplace_back(Edge{	CFixedVector2D(rangeXMax+fixed::Epsilon(), rangeZMin-fixed::Epsilon()),
-								CFixedVector2D(rangeXMin-fixed::Epsilon(), rangeZMin-fixed::Epsilon()) });
-
+	// we don't actually add the "search space" edges as edges, since we may want to cross the
+	// in some cases (such as if we need to go around an obstruction that's partly out of the search range)
 
 	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
 	// the graph defined by these vertexes
