@@ -303,6 +303,10 @@ public:
 	bool m_DebugOverlayDirty;
 	std::vector<SOverlayLine> m_DebugOverlayLines;
 
+	// Deserialization flag. A lot of different functions are called by Deserialize()
+	// and we don't want to pass isDeserializing bool arguments to all of them...
+	bool m_Deserializing;
+
 	// World bounds (entities are expected to be within this range)
 	entity_pos_t m_WorldX0;
 	entity_pos_t m_WorldZ0;
@@ -323,7 +327,7 @@ public:
 	bool m_LosCircular;
 	i32 m_TerrainVerticesPerSide;
 	
-	// Cache for visibility tracking (not serialized)
+	// Cache for visibility tracking
 	i32 m_LosTilesPerSide;
 	bool m_GlobalVisibilityUpdate;
 	std::vector<u8> m_GlobalPlayerVisibilityUpdate;
@@ -367,6 +371,7 @@ public:
 		m_DebugOverlayEnabled = false;
 		m_DebugOverlayDirty = true;
 
+		m_Deserializing = false;
 		m_WorldX0 = m_WorldZ0 = m_WorldX1 = m_WorldZ1 = entity_pos_t::Zero();
 
 		// Initialise with bogus values (these will get replaced when
@@ -379,6 +384,9 @@ public:
 		m_LosRevealAll[0] = true;
 		m_SharedLosMasks.resize(MAX_LOS_PLAYER_ID+2,0);
 		m_SharedDirtyVisibilityMasks.resize(MAX_LOS_PLAYER_ID + 2, 0);
+
+		m_GlobalVisibilityUpdate = true;
+		m_GlobalPlayerVisibilityUpdate.resize(MAX_LOS_PLAYER_ID);
 
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
@@ -404,6 +412,9 @@ public:
 		serialize.Bool("los circular", m_LosCircular);
 		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
 
+		serialize.Bool("global visibility update", m_GlobalVisibilityUpdate);
+		SerializeVector<SerializeU8_Unbounded>()(serialize, "global player visibility update", m_GlobalPlayerVisibilityUpdate);
+		SerializeVector<SerializeU16_Unbounded>()(serialize, "dirty visibility", m_DirtyVisibility);
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "modified entities", m_ModifiedEntities);
 
 		// We don't serialize m_Subdivision, m_LosPlayerCounts or m_LosTiles
@@ -427,7 +438,9 @@ public:
 		SerializeCommon(deserialize);
 
 		// Reinitialise subdivisions and LOS data
-		ResetDerivedData(true);
+		m_Deserializing = true;
+		ResetDerivedData();
+		m_Deserializing = false;
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -631,7 +644,7 @@ public:
 		m_WorldZ1 = z1;
 		m_TerrainVerticesPerSide = (i32)vertices;
 
-		ResetDerivedData(false);
+		ResetDerivedData();
 	}
 
 	virtual void Verify()
@@ -648,7 +661,9 @@ public:
 		FastSpatialSubdivision oldSubdivision = m_Subdivision;
 		std::vector<std::set<entity_id_t> > oldLosTiles = m_LosTiles;
 
-		ResetDerivedData(true);
+		m_Deserializing = true;
+		ResetDerivedData();
+		m_Deserializing = false;
 
 		if (oldPlayerCounts != m_LosPlayerCounts)
 		{
@@ -682,7 +697,7 @@ public:
 	}
 
 	// Reinitialise subdivisions and LOS data, based on entity data
-	void ResetDerivedData(bool skipLosState)
+	void ResetDerivedData()
 	{
 		ENSURE(m_WorldX0.IsZero() && m_WorldZ0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(m_WorldX1, m_WorldZ1);
@@ -693,7 +708,7 @@ public:
 		m_LosPlayerCounts.resize(MAX_LOS_PLAYER_ID+1);
 		m_ExploredVertices.clear();
 		m_ExploredVertices.resize(MAX_LOS_PLAYER_ID+1, 0);
-		if (skipLosState)
+		if (m_Deserializing)
 		{
 			// recalc current exploration stats.
 			for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
@@ -715,14 +730,16 @@ public:
 		}
 		m_LosStateRevealed.clear();
 		m_LosStateRevealed.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
-		
-		m_DirtyVisibility.clear();
-		m_DirtyVisibility.resize(m_LosTilesPerSide*m_LosTilesPerSide);
+
+		if (!m_Deserializing)
+		{
+			m_DirtyVisibility.clear();
+			m_DirtyVisibility.resize(m_LosTilesPerSide*m_LosTilesPerSide);
+		}
+		ENSURE(m_DirtyVisibility.size() == m_LosTilesPerSide*m_LosTilesPerSide);
+
 		m_LosTiles.clear();
 		m_LosTiles.resize(m_LosTilesPerSide*m_LosTilesPerSide);
-		m_GlobalVisibilityUpdate = true;
-		m_GlobalPlayerVisibilityUpdate.clear();
-		m_GlobalPlayerVisibilityUpdate.resize(MAX_LOS_PLAYER_ID);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
@@ -1711,7 +1728,7 @@ public:
 	{
 		m_LosCircular = enabled;
 
-		ResetDerivedData(false);
+		ResetDerivedData();
 	}
 
 	virtual bool GetLosCircular()
@@ -1971,6 +1988,10 @@ public:
 
 	inline void MarkVisibilityDirtyAroundTile(u8 owner, i32 i, i32 j)
 	{
+		// If we're still in the deserializing process, we must not modify m_DirtyVisibility
+		if (m_Deserializing)
+			return;
+
 		// Mark the LoS tiles around the updated vertex
 		// 1: left-up, 2: right-up, 3: left-down, 4: right-down
 		int n1 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
