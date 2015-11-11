@@ -434,7 +434,9 @@ function addChatMessage(msg)
 		formatted = sprintf(translate("%(player)s has rejoined the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "clientlist":
-		formatted = sprintf(translate("Users: %(users)s"), { "users": getUsernameList().join(translate(", ")) });
+		formatted = sprintf(translate("Users: %(users)s"),
+			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
+			{ "users": getUsernameList().join(translate(", ")) });
 		break;
 	case "system":
 		formatted = msg.text;

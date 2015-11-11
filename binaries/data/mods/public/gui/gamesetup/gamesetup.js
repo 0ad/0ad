@@ -1825,7 +1825,9 @@ function addChatMessage(msg)
 		break;
 
 	case "clientlist":
-		formatted = sprintf(translate("Users: %(users)s"), { "users": getUsernameList().join(translate(", ")) });
+		formatted = sprintf(translate("Users: %(users)s"),
+			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
+			{ "users": getUsernameList().join(translate(", ")) });
 		break;
 
 	case "system":
