@@ -806,7 +806,6 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 					return;
 				}
 			}
-			m_LongPath.m_Waypoints.clear();
 			RequestLongPath(pos, m_FinalGoal);
 			m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
 			return;
@@ -1011,7 +1010,8 @@ void CCmpUnitMotion::Move(fixed dt)
 					square.x = m_LongPath.m_Waypoints.back().x;
 					square.z = m_LongPath.m_Waypoints.back().z;
 					std::vector<entity_id_t> unitOnGoal;
-					cmpObstructionManager->GetUnitsOnObstruction(square, unitOnGoal, GetObstructionFilter(true, false));
+					// don't ignore moving units as those might be units like us, ie not really moving.
+					cmpObstructionManager->GetUnitsOnObstruction(square, unitOnGoal, GetObstructionFilter(false, false), true);
 					if (!unitOnGoal.empty())
 						m_LongPath.m_Waypoints.pop_back();
 				}

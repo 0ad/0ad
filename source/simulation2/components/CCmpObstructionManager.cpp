@@ -473,7 +473,7 @@ public:
 	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares);
 	virtual void GetUnitObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares);
 	virtual void GetStaticObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares);
-	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter);
+	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict = false);
 
 	virtual void SetPassabilityCircular(bool enabled)
 	{
@@ -990,7 +990,7 @@ void CCmpObstructionManager::GetStaticObstructionsInRange(const IObstructionTest
 	}
 }
 
-void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter)
+void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict)
 {
 	PROFILE3("GetUnitsOnObstruction");
 
@@ -1019,12 +1019,17 @@ void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& squa
 
 		if (rasterizedRects.find(shape.clearance) == rasterizedRects.end())
 		{
-			// Wraitii 31/10/15: check out helpers/Rasterize.cpp for more info, but
-			// a change in the long-range pathfinder rasterization to fix stuck units
-			// requires the foundation code to be more restrictive, thus adding the substraction
-			// of Pathfinding::NAVCELL_SIZE. Remove it if the problem in Rasterize.cpp is ever fixed.
+			// The rasterization is an approximation of the real shapes.
+			// Depending on your use, you may want to be more or less strict on the rasterization,
+			// ie this may either return some units that aren't actually on the shape (if strict is set)
+			// or this may not return some units that are on the shape (if strict is not set).
+			// Foundations need to be non-strict, as otherwise it sometimes detects the builder units
+			// as being on the shape, so it orders them away.
 			SimRasterize::Spans& newSpans = rasterizedRects[shape.clearance];
-			SimRasterize::RasterizeRectWithClearance(newSpans, square, shape.clearance-Pathfinding::NAVCELL_SIZE, Pathfinding::NAVCELL_SIZE);
+			if (strict)
+				SimRasterize::RasterizeRectWithClearance(newSpans, square, shape.clearance, Pathfinding::NAVCELL_SIZE);
+			else
+				SimRasterize::RasterizeRectWithClearance(newSpans, square, shape.clearance-Pathfinding::NAVCELL_SIZE, Pathfinding::NAVCELL_SIZE);
 		}
 
 		SimRasterize::Spans& spans = rasterizedRects[shape.clearance];
