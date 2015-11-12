@@ -330,6 +330,9 @@ public:
 
 		m_ExpectedPathTicket = 0;
 
+		m_Tries = 0;
+		m_Planning = SUnitMotionPlanning();
+		
 		m_TargetEntity = INVALID_ENTITY;
 
 		m_FinalGoal.type = PathGoal::POINT;
