@@ -604,7 +604,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	fixed rangeZMin = z0 - range;
 	fixed rangeZMax = z0 + range;
 
-	// we don't actually add the "search space" edges as edges, since we may want to cross the
+	// we don't actually add the "search space" edges as edges, since we may want to cross them
 	// in some cases (such as if we need to go around an obstruction that's partly out of the search range)
 
 	// List of obstruction vertexes (plus start/end points); we'll try to find paths through

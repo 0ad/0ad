@@ -1098,7 +1098,8 @@ void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos, const CFixedVector2
 		return;
 	
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-	if (!cmpPathfinder)
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
+	if (!cmpPathfinder || !cmpObstructionManager)
 		return;
 	
 	m_Planning = SUnitMotionPlanning();
@@ -1106,17 +1107,14 @@ void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos, const CFixedVector2
 	// see 2 turns in advance, otherwise this would start to lag in MP
 	CFixedVector2D futurePos = pos + currentOffset*2;
 	
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
-	
 	// Don't actually use CheckMovement since we want to check against units only, we assume the rest is taken care of.
-	if (cmpObstructionManager && cmpObstructionManager->TestLine(GetObstructionFilter(true, false), pos.X, pos.Y, futurePos.X, futurePos.Y, m_Clearance, true))
-	{
-		// we will run in a static unit obstruction. Try to shortpath around it.
-		PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
-		RequestShortPath(pos, goal, false);
-		m_PathState = PATHSTATE_FOLLOWING_REQUESTING_SHORT;
+	if (!cmpObstructionManager->TestLine(GetObstructionFilter(true, false), pos.X, pos.Y, futurePos.X, futurePos.Y, m_Clearance, true))
 		return;
-	}
+	
+	// we will run into a static unit obstruction. Try to shortpath around it.
+	PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+	RequestShortPath(pos, goal, false);
+	m_PathState = PATHSTATE_FOLLOWING_REQUESTING_SHORT;
 }
 
 bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out)
@@ -1258,19 +1256,15 @@ bool CCmpUnitMotion::CheckTargetMovement(const CFixedVector2D& from, entity_pos_
 
 bool CCmpUnitMotion::ShouldConsiderOurselvesAtDestination(const CFixedVector2D& from)
 {
-	if (m_TargetEntity == INVALID_ENTITY)
-	{
-		if (m_FinalGoal.DistanceToPoint(from) <= SHORT_PATH_GOAL_RADIUS)
-		{
-			StopMoving();
-			MoveSucceeded();
+	if (m_TargetEntity != INVALID_ENTITY || m_FinalGoal.DistanceToPoint(from) > SHORT_PATH_GOAL_RADIUS)
+		return false;
+	
+	StopMoving();
+	MoveSucceeded();
 		
-			if (m_FacePointAfterMove)
-				FaceTowardsPointFromPos(from, m_FinalGoal.x, m_FinalGoal.z);
-			return true;
-		}
-	}
-	return false;
+	if (m_FacePointAfterMove)
+		FaceTowardsPointFromPos(from, m_FinalGoal.x, m_FinalGoal.z);
+	return true;
 }
 
 bool CCmpUnitMotion::PathIsShort(const WaypointPath& path, const CFixedVector2D& from, entity_pos_t minDistance) const
@@ -1378,7 +1372,8 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// If it's close then just do a short path, not a long path
 	// TODO: If it's close on the opposite side of a river then we really
 	// need a long path, so we shouldn't simply check linear distance
-	if (goal.DistanceToPoint(from) < SHORT_PATH_MIN_SEARCH_RANGE*3)
+	// the check is arbitrary but should be a reasonably small distance.
+	if (goal.DistanceToPoint(from) < SHORT_PATH_MIN_SEARCH_RANGE*2)
 	{
 		// add our final goal as a long range waypoint so we don't forget
 		// where we are going if the short-range pathfinder returns
