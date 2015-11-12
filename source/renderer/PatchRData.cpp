@@ -443,6 +443,9 @@ void CPatchRData::BuildIndices()
 	// number of vertices in each direction in each patch
 	ssize_t vsize=PATCH_SIZE+1;
 
+	// PATCH_SIZE must be 2^15-1 or less to not overflow u16 indices buffer. Thankfully this is always true.
+	ENSURE(vsize*vsize < 65536);
+
 	std::vector<unsigned short> indices;
 	indices.reserve(PATCH_SIZE * PATCH_SIZE * 4);
 
@@ -466,7 +469,7 @@ void CPatchRData::BuildIndices()
 	m_Splats.resize(textures.size());
 	// build indices for base splats
 	size_t base=m_VBBase->m_Index;
-	ENSURE(base + vsize*vsize < 65536); // mustn't overflow u16 indexes
+	
 	for (size_t i=0;i<m_Splats.size();i++) {
 		CTerrainTextureEntry* tex=textures[i];
 
