@@ -443,7 +443,7 @@ void CPatchRData::BuildIndices()
 	// number of vertices in each direction in each patch
 	ssize_t vsize=PATCH_SIZE+1;
 
-	// PATCH_SIZE must be 2^15-1 or less to not overflow u16 indices buffer. Thankfully this is always true.
+	// PATCH_SIZE must be 2^8-2 or less to not overflow u16 indices buffer. Thankfully this is always true.
 	ENSURE(vsize*vsize < 65536);
 
 	std::vector<unsigned short> indices;
