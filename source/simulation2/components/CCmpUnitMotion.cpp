@@ -364,6 +364,8 @@ public:
 		serialize.Bool("moving", m_Moving);
 		serialize.Bool("facePointAfterMove", m_FacePointAfterMove);
 
+		serialize.NumberU8("tries", m_Tries, 0, 255);
+
 		SerializeVector<SerializeWaypoint>()(serialize, "long path", m_LongPath.m_Waypoints);
 		SerializeVector<SerializeWaypoint>()(serialize, "short path", m_ShortPath.m_Waypoints);
 
@@ -1413,6 +1415,7 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	if (!cmpPathfinder)
 		return;
 
+	// wrapping around on m_Tries isn't really a problem so don't check for overflow.
 	fixed searchRange = std::max(SHORT_PATH_MIN_SEARCH_RANGE * ++m_Tries, goal.DistanceToPoint(from));
 	if (searchRange > SHORT_PATH_MAX_SEARCH_RANGE)
 		searchRange = SHORT_PATH_MAX_SEARCH_RANGE;
