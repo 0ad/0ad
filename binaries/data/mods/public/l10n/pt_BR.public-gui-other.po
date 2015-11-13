@@ -9,16 +9,16 @@
 # Sturm <gravador202@yahoo.com.br>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
 # Mihailov Vasilievic Filho <mihailov.vf@gmail.com>, 2015
-# no and no <nicolasmaia@tutanota.com>, 2015
+# pizzaiolo, 2015
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Raphael Mendonça, 2014
-# Thiago Perrotta <thiagoperrotta95@gmail.com>, 2015
+# Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-26 19:03+0000\n"
+"POT-Creation-Date: 2015-11-11 04:16+0100\n"
+"PO-Revision-Date: 2015-11-12 02:55+0000\n"
 "Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -101,15 +101,15 @@ msgstr "Padrão"
 msgid "A randomly selected map."
 msgstr "Um mapa selecionado aleatoriamente."
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:159
 msgid "Sorry, no description available."
 msgstr "Desculpe, não há nenhuma descrição disponível."
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:203
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:207
+#: gui/common/functions_utility.js:205
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -318,43 +318,62 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Peixe"
 
-#: gui/common/network.js:6
+#: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "Motivo desconhecido"
 
-#: gui/common/network.js:7
+#: gui/common/network.js:13
 msgid "Unexpected shutdown"
 msgstr "Desligamento inesperado"
 
-#: gui/common/network.js:8
+#: gui/common/network.js:14
 msgid "Incorrect network protocol version"
 msgstr "Versão incorreta do protocolo de rede"
 
-#: gui/common/network.js:9
+#: gui/common/network.js:15
 msgid "Game is loading, please try later"
 msgstr "O jogo está carregando, por favor tente mais tarde"
 
-#: gui/common/network.js:10
+#: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
 msgstr "O jogo já foi iniciado, não são permitidos mais observadores"
 
-#: gui/common/network.js:11
+#: gui/common/network.js:17
+msgid "You have been kicked"
+msgstr "Você foi expulso!"
+
+#: gui/common/network.js:18
+msgid "You have been banned"
+msgstr "Você foi banido!"
+
+#: gui/common/network.js:19
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "[Valor inválido %(id)s]"
 
-#: gui/common/network.js:20
-msgid "Lost connection to the server."
-msgstr "Conexão com servidor perdida."
-
-#: gui/common/network.js:20
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/common/network.js:31
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Razão: %(reason)s."
 
-#: gui/common/network.js:21
+#: gui/common/network.js:32
+msgid "Lost connection to the server."
+msgstr "Conexão com servidor perdida."
+
+#: gui/common/network.js:32
 msgid "Disconnected"
 msgstr "Desconectado"
+
+#: gui/common/network.js:80
+#, javascript-format
+msgid "Could not kick %(name)s."
+msgstr "Não foi possível expulsar %(name)s."
+
+#: gui/common/network.js:85
+#, javascript-format
+msgid "Could not ban %(name)s."
+msgstr "Não foi possível banir %(name)s."
 
 #: gui/common/settings.js:106
 msgctxt "aiDiff"

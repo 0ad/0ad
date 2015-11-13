@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-11-11 04:16+0100\n"
+"PO-Revision-Date: 2015-11-12 23:46+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,15 +96,15 @@ msgstr "Varsayılan"
 msgid "A randomly selected map."
 msgstr "Rasgele seçilen harita."
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:159
 msgid "Sorry, no description available."
 msgstr "Üzgünüm, herhangi bir açıklama mevcut değil."
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:203
 msgid "mm:ss"
 msgstr "dd:ss"
 
-#: gui/common/functions_utility.js:207
+#: gui/common/functions_utility.js:205
 msgid "HH:mm:ss"
 msgstr "SS:dd:ss"
 
@@ -313,43 +313,62 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Balık"
 
-#: gui/common/network.js:6
+#: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "Bilinmeyen sebep"
 
-#: gui/common/network.js:7
+#: gui/common/network.js:13
 msgid "Unexpected shutdown"
 msgstr "Beklenmedik kapanış"
 
-#: gui/common/network.js:8
+#: gui/common/network.js:14
 msgid "Incorrect network protocol version"
 msgstr "Geçersiz ağ protokol sürümü"
 
-#: gui/common/network.js:9
+#: gui/common/network.js:15
 msgid "Game is loading, please try later"
 msgstr "Oyun yükleniyor, lütfen daha sonra deneyin"
 
-#: gui/common/network.js:10
+#: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
 msgstr "Oyun zaten başladı, izleyicilere izin verilmemektedir"
 
-#: gui/common/network.js:11
+#: gui/common/network.js:17
+msgid "You have been kicked"
+msgstr "Atıldın"
+
+#: gui/common/network.js:18
+msgid "You have been banned"
+msgstr "Yasaklandın"
+
+#: gui/common/network.js:19
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Geçersiz değer %(id)s]"
 
-#: gui/common/network.js:20
-msgid "Lost connection to the server."
-msgstr "Sunucuya bağlantı kaybedildi."
-
-#: gui/common/network.js:20
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/common/network.js:31
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Sebep: %(reason)s."
 
-#: gui/common/network.js:21
+#: gui/common/network.js:32
+msgid "Lost connection to the server."
+msgstr "Sunucuya bağlantı kaybedildi."
+
+#: gui/common/network.js:32
 msgid "Disconnected"
 msgstr "Bağlatı kesildi"
+
+#: gui/common/network.js:80
+#, javascript-format
+msgid "Could not kick %(name)s."
+msgstr "%(name)s atılamaz."
+
+#: gui/common/network.js:85
+#, javascript-format
+msgid "Could not ban %(name)s."
+msgstr "%(name)s engellenemez."
 
 #: gui/common/settings.js:106
 msgctxt "aiDiff"
@@ -907,7 +926,7 @@ msgstr "Menülerdeki FPS Limiti"
 
 #: gui/options/options.js:36
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr ""
+msgstr "Güç tasarrufu için, FPS limiti tüm menülerde 50 olmalı."
 
 #: gui/options/options.js:40
 msgid "Master Gain"
@@ -1228,7 +1247,7 @@ msgstr "Donanma"
 
 #: gui/summary/layout.js:56
 msgid "Traders"
-msgstr ""
+msgstr "Tüccarlar"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
@@ -1473,7 +1492,7 @@ msgstr "Durum: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr ""
+msgstr "Alpha XIX: Syllepsis"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1635,7 +1654,7 @@ msgstr "Oyun lisanı seç."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Önceki oyunları oynatın."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1853,7 +1872,7 @@ msgstr "- Her birliğiniz için silah ve zırh iyileştirmesi araştırın."
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Daha hızlı araştırabilmek için binaya vatandaş-askeri garnizon kur (HENÜZ AKTİF DEĞİL)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -1989,7 +2008,7 @@ msgstr "- Kale genellikle her grubun en kuvvetli binasıdır."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- Güçlü birimler Şampiyon savaşçılar, Kahramanlar ve Kuşatma Silahları gibi yetiştirilebilir."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -2017,7 +2036,7 @@ msgstr "- Vatandaş-Askerler Madencilik ile bonuslandırıldı."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
-msgstr ""
+msgstr "- Süvari Vatandaş-Askerler avcılık ile ödüllendirildi."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
@@ -2062,7 +2081,7 @@ msgstr "- Hızlı inşa eder, ama zayıftır."
 #: gui/text/tips/outposts.txt:8
 msgid ""
 "- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "- Garnizon içinde bir birim tarafsız bölgede çürümeden durabilir."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -2131,7 +2150,7 @@ msgstr "- Ağır zırhlı ve yavaşlık. Düşük saldırıya sebep olur."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "- Süvarilere karşı kullanılan veya diğer yakın dövüş piyadesine karşı onları kullanın."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2149,11 +2168,11 @@ msgstr "- Ağır standart savaş gemisi. Kullanılabilir olanlar: Roma, Kartaca,
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Garrison ballistas to increase fire power."
-msgstr ""
+msgstr "- Garnizon balistaları ateş gücünü arttırır."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Çakma saldırısı düşman gemilerini batırır (HENÜZ AKTİF DEĞİL)."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -2245,7 +2264,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- Yunan hizipler için özel bir başlangıç yapısı."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2299,7 +2318,7 @@ msgstr "TAPINAKLAR"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "- Kasaba Aşaması yapıları."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2319,24 +2338,24 @@ msgstr "- Hasar almış garnizon birimleri daha hızlı iyileştirme için içer
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr ""
+msgstr "ÇÜRÜME BÖLGESİ"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "- Yapılar çürürken müttefik Halk merkezleriyle irtibat kuramazlar."
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr ""
+msgstr "- Çürüme süreci yavaşlar veya süreç tersine dönerse birimler yapılara yerleştirilebilir."
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "- Çürüme tamamlandığında, bu yapı yakınındakilere çok fazla etki edecektir."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -2375,19 +2394,19 @@ msgstr "- Ticaret ya da savaş için iyi."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- Garnizon birlikleri gemiye alınarak ateş gücü arttırılabilir."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Uzun menzilli kuşatma saldırısı için garnizona bir mancınık (HENÜZ AKTİF DEĞİL)."
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Yıkıcı bir gemiye karşı gemi saldırısında her çarpma saldırında bir tekrar yenilenmesi gerekiyor (HENÜZ AKTİF DEĞİL)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

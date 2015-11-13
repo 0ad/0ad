@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:07+0000\n"
+"POT-Creation-Date: 2015-11-11 04:16+0100\n"
+"PO-Revision-Date: 2015-11-11 09:45+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -104,7 +104,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Нема"
 
-#: gui/session/menu.js:296 gui/session/messages.js:622
+#: gui/session/menu.js:296 gui/session/messages.js:641
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Спільник"
@@ -113,7 +113,7 @@ msgstr "Спільник"
 msgid "Neutral"
 msgstr "Байдужий"
 
-#: gui/session/menu.js:296 gui/session/messages.js:632
+#: gui/session/menu.js:296 gui/session/messages.js:651
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Ворог"
@@ -276,133 +276,154 @@ msgstr "З’єднання з сервером."
 msgid "Connection to the server has been authenticated."
 msgstr "З’єднання з сервером ідентифіковано."
 
-#: gui/session/messages.js:272
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/session/messages.js:273
+#, javascript-format
+msgid "Reason: %(reason)s."
+msgstr ""
+
+#: gui/session/messages.js:274
 msgid "Connection to the server has been lost."
 msgstr "З’єднання з сервером було втрачено."
 
-#: gui/session/messages.js:272
+#: gui/session/messages.js:274
 msgid "The game has ended."
 msgstr "Гру завершено."
 
-#: gui/session/messages.js:409
+#: gui/session/messages.js:331
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr ""
+
+#: gui/session/messages.js:335
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr ""
+
+#: gui/session/messages.js:420
 msgid "Unknown player"
 msgstr "Невідомий гравець"
 
-#: gui/session/messages.js:417
+#: gui/session/messages.js:428
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr ""
 
-#: gui/session/messages.js:420
+#: gui/session/messages.js:431
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s покинув гру."
 
-#: gui/session/messages.js:423
+#: gui/session/messages.js:434
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr ""
 
-#: gui/session/messages.js:428
+#: gui/session/messages.js:437
+#, javascript-format
+msgid "Users: %(users)s"
+msgstr ""
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an enumeration.
+#: gui/session/messages.js:439 gui/session/messages.js:497
+msgid ", "
+msgstr ","
+
+#: gui/session/messages.js:447
 msgid "You have been defeated."
 msgstr "Ви потерпіли поразку."
 
-#: gui/session/messages.js:430
+#: gui/session/messages.js:449
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s потерпів поразку."
 
-#: gui/session/messages.js:438
+#: gui/session/messages.js:457
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Тепер ви спільники з %(player)s."
 
-#: gui/session/messages.js:440
+#: gui/session/messages.js:459
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Ви тепер ворогуєте з %(player)s."
 
-#: gui/session/messages.js:442
+#: gui/session/messages.js:461
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Тепер ви в байдужі до %(player)s."
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:467
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s тепер є вашим спільником."
 
-#: gui/session/messages.js:450
+#: gui/session/messages.js:469
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s тепер є вашим ворогом."
 
-#: gui/session/messages.js:452
+#: gui/session/messages.js:471
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s тепер байдужий до вас."
 
-#: gui/session/messages.js:468
+#: gui/session/messages.js:487
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr "%(amount)s %(resourceType)s"
 
-#: gui/session/messages.js:476
+#: gui/session/messages.js:495
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s і %(lastAmount)s"
 
-#. Translation: This comma is used for separating first to penultimate
-#. elements in an enumeration.
-#: gui/session/messages.js:478
-msgid ", "
-msgstr ","
-
-#: gui/session/messages.js:483
+#: gui/session/messages.js:502
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s надіслав вам %(amounts)s."
 
-#: gui/session/messages.js:496
+#: gui/session/messages.js:515
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:498
+#: gui/session/messages.js:517
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Ви були атаковані %(attacker)s"
 
-#: gui/session/messages.js:524
+#: gui/session/messages.js:543
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:532
+#: gui/session/messages.js:551
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:540 gui/session/messages.js:541
+#: gui/session/messages.js:559 gui/session/messages.js:560
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:544
+#: gui/session/messages.js:563
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:552
+#: gui/session/messages.js:571
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:612 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:631 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Команда"
 
-#: gui/session/messages.js:654
+#: gui/session/messages.js:673
 msgid "Private"
 msgstr "Приватний"
 
@@ -470,7 +491,7 @@ msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:185 gui/session/unit_actions.js:323
 #: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
-#: gui/session/unit_actions.js:552
+#: gui/session/unit_actions.js:546
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Приріст: %(gain)s"
@@ -721,12 +742,12 @@ msgstr "ПЕРЕМОГА!"
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
-msgid "Yes"
+msgid "No"
 msgstr ""
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
-msgid "No"
+msgid "Yes"
 msgstr ""
 
 #: gui/session/session.js:571
@@ -789,11 +810,11 @@ msgstr "Натисніть ПКМ щоб вибрати як місце приз
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Поточний гарнізон: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:550
+#: gui/session/unit_actions.js:544
 msgid "Right-click to establish a default route for new traders."
 msgstr "Натисніть ПКМ щоб встановити маршрут за умовчанням для нових торговців."
 
-#: gui/session/unit_actions.js:554
+#: gui/session/unit_actions.js:548
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Очікуваний приріст: %(gain)s"
@@ -916,7 +937,7 @@ msgstr "Опції"
 msgid "Resign"
 msgstr "Здатися"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):350
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):351
 msgid "Exit"
 msgstr "Вихід"
 
@@ -924,75 +945,75 @@ msgstr "Вихід"
 msgid "Find idle worker"
 msgstr "Знайти вільних робітників"
 
-#: gui/session/session.xml:(caption):60
+#: gui/session/session.xml:(caption):61
 msgid "Control all units"
 msgstr "Керувати всіма одиницями"
 
-#: gui/session/session.xml:(caption):70
+#: gui/session/session.xml:(caption):71
 msgid "Change perspective"
 msgstr "Змінити перспективу"
 
-#: gui/session/session.xml:(caption):77
+#: gui/session/session.xml:(caption):78
 msgid "Display selection state"
 msgstr "Показати обраний стан"
 
-#: gui/session/session.xml:(caption):82
+#: gui/session/session.xml:(caption):83
 msgid "Pathfinder overlay"
 msgstr "Накладення алгоритму пошуку шляху"
 
-#: gui/session/session.xml:(caption):89
+#: gui/session/session.xml:(caption):90
 msgid "Obstruction overlay"
 msgstr "Накладення перешкод"
 
-#: gui/session/session.xml:(caption):96
+#: gui/session/session.xml:(caption):97
 msgid "Unit motion overlay"
 msgstr "Накладення руху юнітів"
 
-#: gui/session/session.xml:(caption):103
+#: gui/session/session.xml:(caption):104
 msgid "Range overlay"
 msgstr "Накладення радіусу дій"
 
-#: gui/session/session.xml:(caption):110
+#: gui/session/session.xml:(caption):111
 msgid "Bounding box overlay"
 msgstr "Накладення обмежувальних рамок"
 
-#: gui/session/session.xml:(caption):117
+#: gui/session/session.xml:(caption):118
 msgid "Restrict camera"
 msgstr "Обмежити камеру"
 
-#: gui/session/session.xml:(caption):126
+#: gui/session/session.xml:(caption):127
 msgid "Reveal map"
 msgstr "Виявити карту"
 
-#: gui/session/session.xml:(caption):134
+#: gui/session/session.xml:(caption):135
 msgid "Enable time warp"
 msgstr "Включити деформацію часу"
 
-#: gui/session/session.xml:(caption):144
+#: gui/session/session.xml:(caption):145
 msgid "Promote selected units"
 msgstr "Рухати вибраними одиницями"
 
-#: gui/session/session.xml:(caption):151
+#: gui/session/session.xml:(caption):152
 msgid "Hierarchical pathfinder overlay"
 msgstr ""
 
-#: gui/session/session.xml:(caption):185
+#: gui/session/session.xml:(caption):186
 msgid "Game Paused"
 msgstr "Гру призупинено"
 
-#: gui/session/session.xml:(caption):188
+#: gui/session/session.xml:(caption):189
 msgid "Click to Resume Game"
 msgstr "Натисніть, щоб відновити гру"
 
-#: gui/session/session.xml:(caption):223
+#: gui/session/session.xml:(caption):224
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: gui/session/session.xml:(caption):229
+#: gui/session/session.xml:(caption):230
 msgid "Team Only"
 msgstr "Тільки командна"
 
-#: gui/session/session.xml:(caption):233
+#: gui/session/session.xml:(caption):234
 msgid "Send"
 msgstr "Відправити"
 

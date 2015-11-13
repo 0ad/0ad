@@ -6,13 +6,14 @@
 # Joop Kiefte <ikojba@gmail.com>, 2014
 # Kamparano <kamparano.viro@gmail.com>, 2015
 # Michael Moroni <michael.moroni@openmailbox.org>, 2015
+# Pritchenko, 2015
 # Tempo D. Valse <tempodivalse.wiki@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-11-11 04:16+0100\n"
+"PO-Revision-Date: 2015-11-11 10:21+0000\n"
+"Last-Translator: Pritchenko\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,21 +89,21 @@ msgstr ""
 #: gui/common/functions_utility.js:142
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "defaŭlta"
 
 #: gui/common/functions_utility.js:152
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Hazarde elektitan mapon"
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:159
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "bedaŭrinde ne priskribo estas disponebla"
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:203
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:207
+#: gui/common/functions_utility.js:205
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -311,43 +312,62 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Fiŝo"
 
-#: gui/common/network.js:6
+#: gui/common/network.js:12
 msgid "Unknown reason"
-msgstr ""
+msgstr "Nekonata rezono"
 
-#: gui/common/network.js:7
+#: gui/common/network.js:13
 msgid "Unexpected shutdown"
 msgstr ""
 
-#: gui/common/network.js:8
+#: gui/common/network.js:14
 msgid "Incorrect network protocol version"
 msgstr ""
 
-#: gui/common/network.js:9
+#: gui/common/network.js:15
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Ludo estas ŝarĝanta, bonvolu provi poste"
 
-#: gui/common/network.js:10
+#: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
 msgstr ""
 
-#: gui/common/network.js:11
+#: gui/common/network.js:17
+msgid "You have been kicked"
+msgstr ""
+
+#: gui/common/network.js:18
+msgid "You have been banned"
+msgstr ""
+
+#: gui/common/network.js:19
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr ""
 
-#: gui/common/network.js:20
-msgid "Lost connection to the server."
-msgstr ""
-
-#: gui/common/network.js:20
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/common/network.js:31
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Kialo: %(reason)s."
 
-#: gui/common/network.js:21
+#: gui/common/network.js:32
+msgid "Lost connection to the server."
+msgstr ""
+
+#: gui/common/network.js:32
 msgid "Disconnected"
 msgstr "Malkonektis"
+
+#: gui/common/network.js:80
+#, javascript-format
+msgid "Could not kick %(name)s."
+msgstr ""
+
+#: gui/common/network.js:85
+#, javascript-format
+msgid "Could not ban %(name)s."
+msgstr ""
 
 #: gui/common/settings.js:106
 msgctxt "aiDiff"
@@ -357,27 +377,27 @@ msgstr ""
 #: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Tre facila"
 
 #: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Facila"
 
 #: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Mezfacila"
 
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Malfacila"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Tre Malfacila"
 
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
@@ -400,7 +420,7 @@ msgstr ""
 #: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Hazarda"
 
 #: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
@@ -412,7 +432,7 @@ msgstr ""
 
 #: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Senlima ludo"
 
 #: gui/common/settings.js:231
 msgid "Unlimited"
@@ -422,7 +442,7 @@ msgstr ""
 #: gui/common/settings.js:301 gui/common/settings.js:312
 #: gui/common/settings.js:323
 msgid "Unknown"
-msgstr ""
+msgstr "Nekonata"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -542,7 +562,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:416
 msgid "Range:"
-msgstr ""
+msgstr "Atingpovo"
 
 #: gui/common/tooltips.js:196 gui/common/tooltips.js:418
 msgid "meters"
@@ -793,11 +813,11 @@ msgstr ""
 
 #: gui/options/options.js:23
 msgid "Shadows"
-msgstr ""
+msgstr "Ombroj"
 
 #: gui/options/options.js:23
 msgid "Enable shadows"
-msgstr ""
+msgstr "Ebligi ombroj"
 
 #: gui/options/options.js:24
 msgid "Particles"

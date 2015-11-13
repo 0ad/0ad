@@ -8,12 +8,13 @@
 # giangy <giancarlo.moi@tiscali.it>, 2014
 # Me Lazzi, 2014-2015
 # Nicola Jelmorini, 2014-2015
+# Sergio <leonesergio96@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-30 21:01+0000\n"
-"Last-Translator: Me Lazzi\n"
+"POT-Creation-Date: 2015-11-11 04:16+0100\n"
+"PO-Revision-Date: 2015-11-11 20:14+0000\n"
+"Last-Translator: Sergio <leonesergio96@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,15 +96,15 @@ msgstr "Predefinito"
 msgid "A randomly selected map."
 msgstr "Una mappa casuale."
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:159
 msgid "Sorry, no description available."
 msgstr "Spiacenti, nessuna descrizione disponibile."
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:203
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:207
+#: gui/common/functions_utility.js:205
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -312,43 +313,62 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Pesce"
 
-#: gui/common/network.js:6
+#: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "Motivo sconosciuto"
 
-#: gui/common/network.js:7
+#: gui/common/network.js:13
 msgid "Unexpected shutdown"
 msgstr "Chiusura Inaspettata"
 
-#: gui/common/network.js:8
+#: gui/common/network.js:14
 msgid "Incorrect network protocol version"
 msgstr "Errata versione del protocollo di rete"
 
-#: gui/common/network.js:9
+#: gui/common/network.js:15
 msgid "Game is loading, please try later"
 msgstr "Caricamento in corso, prova più tardi"
 
-#: gui/common/network.js:10
+#: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
 msgstr "La partita è già iniziata, non sono permessi osservatori"
 
-#: gui/common/network.js:11
+#: gui/common/network.js:17
+msgid "You have been kicked"
+msgstr "Sei stato espulso"
+
+#: gui/common/network.js:18
+msgid "You have been banned"
+msgstr "Sei stato bannato"
+
+#: gui/common/network.js:19
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Valore non valido %(id)s] "
 
-#: gui/common/network.js:20
-msgid "Lost connection to the server."
-msgstr "Connessione col server interrotta"
-
-#: gui/common/network.js:20
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/common/network.js:31
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Motivo: %(reason)s."
 
-#: gui/common/network.js:21
+#: gui/common/network.js:32
+msgid "Lost connection to the server."
+msgstr "Connessione col server interrotta"
+
+#: gui/common/network.js:32
 msgid "Disconnected"
 msgstr "Disconnesso"
+
+#: gui/common/network.js:80
+#, javascript-format
+msgid "Could not kick %(name)s."
+msgstr "Impossibile espellere %(name)s."
+
+#: gui/common/network.js:85
+#, javascript-format
+msgid "Could not ban %(name)s."
+msgstr "Impossibile bannare %(name)s."
 
 #: gui/common/settings.js:106
 msgctxt "aiDiff"

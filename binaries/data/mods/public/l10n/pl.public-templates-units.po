@@ -8,6 +8,7 @@
 # Bartłomiej Ozimek <boozimek2@gmail.com>, 2014
 # Emil Klok <brzozomir@gmail.com>, 2015
 # FoskamPL <fifi4001@o2.pl>, 2014
+# Jacek <jacek15klb@gmail.com>, 2015
 # Jakub Szydło <winandgame@gmail.com>, 2014
 # Krzysztof Grabania, 2015
 # Krzysztof Nowakowski <xychukojot@gmail.com>, 2014
@@ -18,6 +19,7 @@
 # Michał Koźlarek <m.kozlarek@vp.pl>, 2015
 # miragae <miragae@gmail.com>, 2014
 # zyxist <nightstorm@tlen.pl>, 2014
+# Paulina <pafi2@onet.eu>, 2015
 # q <q@qq.qq>, 2015
 # slodki12341 <slodki1234@gmail.com>, 2014
 # Voltinus <voltinusmail@gmail.com>, 2014
@@ -25,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-11-07 22:22+0000\n"
-"Last-Translator: q <q@qq.qq>\n"
+"PO-Revision-Date: 2015-11-12 20:38+0000\n"
+"Last-Translator: Jacek <jacek15klb@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -310,7 +312,7 @@ msgstr "Aura - bohaterstwo"
 msgid ""
 "When garrisoned in a structure, the hero gives it a bonus of +2 capture "
 "points recovery rate."
-msgstr ""
+msgstr "Kiedy należy do garnizonu budynku, bohater daje bonus +2 do prędkości regeneracji"
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -1138,7 +1140,7 @@ msgstr "Aura - taktyka"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:15
 msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr ""
+msgstr "Wszystkie sojusznicze jednostki +2 atak i +1 do przechwytywania w zasięgu jego wzroku."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Hannibal Barca"
@@ -1638,7 +1640,7 @@ msgstr "Ratha"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
 msgid "Deals Trample Damage."
-msgstr ""
+msgstr "Zadaje obrażenia tratując przeciwnika"
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1694,7 +1696,7 @@ msgstr "Aśoka"
 msgid ""
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr ""
+msgstr "Aura bohatera: TBD.\nMoc specjalna bohatera: \"Edicts of Ashoka\" - Edykt filarów Ashoki, można budować gdy Ashoka żyje."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
@@ -1709,7 +1711,7 @@ msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr ""
+msgstr "Moc specjalna bohatera: \"Uzdrowiciel\" Leczy jednostki w przyśpieszonym tempie\nMoc specjalna bohatera: \"Nauczyciel\" Trening oraz badania w budynku +50% szybciej\nMoc specjalna bohatera: \"Filozof\" - Odkrywa 4 specjalne technologie dostępne tylko dla Chanakya"
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1718,7 +1720,7 @@ msgstr "Czandragupta Maurja"
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
 msgid "Hero Aura: TBD."
-msgstr ""
+msgstr "Aura bohatera: TBD."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1775,7 +1777,7 @@ msgstr "Karmākara Gaja"
 
 #: simulation/templates/units/maur_support_elephant.xml:32
 msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr ""
+msgstr "Ruchomy magazyn. Może także pomagać przy wznoszeniu budynków."
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
@@ -1929,7 +1931,7 @@ msgstr "Darayavahush I"
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
-msgstr ""
+msgstr "Aura bohatera \"Kupcy imperium.\" Zwiększa opłacalność handlu w trakcie jego trwania (TBD)."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2037,7 +2039,7 @@ msgstr "Mezopotamska kobieta"
 
 #: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
-msgstr ""
+msgstr "Medyjski Mag"
 
 #: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Mada"
@@ -2072,7 +2074,7 @@ msgstr "Mutsābiq Gamal Nabatu"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:13
 msgid "Tarantine Settler Cavalry"
-msgstr ""
+msgstr "Kawaleria \"Tarantine\""
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:14
 msgid "Hippeús Tarantînos"
@@ -2088,7 +2090,7 @@ msgstr "Hippeús Makedonikós"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
-msgstr ""
+msgstr "Królewska Kawaleria Obronna"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
 msgid "Ágēma Basiléōs"
@@ -2124,13 +2126,13 @@ msgstr "Kleopatra Wielka"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:21
 msgid "Kleopatra H' Philopator"
-msgstr ""
+msgstr "Kleopatra VII Filopator"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:22
 msgid ""
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
 "vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "\"Małżonek\" Aura (TBD): Zwiększa efektywność sojuszniczych bohaterów w swoim zasięgu, oraz zmniejsza efektywność wrogich bohaterów"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
@@ -2170,7 +2172,7 @@ msgstr "Ptolemeusz IV Filopator"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:17
 msgid "Ptolemaios D' Philopator"
-msgstr ""
+msgstr "Ptolemeusz IV Filopator"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:25
 msgid "Nubian Mercenary Archer"
@@ -2206,7 +2208,7 @@ msgstr "Hebraikós Sphendonḗtēs"
 
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
 msgid "Mercenary Thureos Spearman"
-msgstr ""
+msgstr "Najemny włócznik z Thureos"
 
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:22
 msgid "Thureophóros Misthophóros"
@@ -2247,7 +2249,7 @@ msgstr "Hiereús Aigýptios"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
-msgstr ""
+msgstr "Sojusznicza Italska Kawaleria"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:8
 msgid "Eques Socius"
@@ -2291,7 +2293,7 @@ msgstr "Aura - rzymski miecz"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:14
 msgid "+5 Attack and +2 Capture for Roman units within his vision range."
-msgstr ""
+msgstr "+5 do Ataku i +2 do Pojmania dla rzymskich jednostek w zasięgu jego wzroku."
 
 #: simulation/templates/units/rome_hero_marcellus.xml:21
 msgid "Marcus Claudius Marcellus"
@@ -2353,7 +2355,7 @@ msgstr "Rzymski Legionista"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:6
 msgid "Marian Legionaire"
-msgstr ""
+msgstr "Legion Gaius'a Marius'a"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:7
 msgid "Marian Legionarius"
@@ -2385,7 +2387,7 @@ msgstr "Quinqueremis Romana"
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:6
 msgid "Roman Quinquereme"
-msgstr ""
+msgstr "Rzymska Pentera"
 
 #: simulation/templates/units/rome_ship_trireme.xml:8
 msgid "Triremis Romana"
@@ -2409,7 +2411,7 @@ msgstr "Państwowy kapłan"
 
 #: simulation/templates/units/rome_support_healer_b.xml:8
 msgid "Pontifex Minor"
-msgstr ""
+msgstr "Mniejszy kapłan"
 
 #: simulation/templates/units/rome_support_trader.xml:10
 msgid "Plebeian Merchant"
@@ -2453,7 +2455,7 @@ msgstr "(Samnicki zbrojny)"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Dahae Horse Archer"
-msgstr ""
+msgstr "Dahski łucznik konny"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:9
 msgid "Hippotoxotès Dahae"
@@ -2591,7 +2593,7 @@ msgstr "Chalkaspides"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:14
 msgid "Militia Thureos Spearman"
-msgstr ""
+msgstr "Milicja włócznik z Thureos"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:15
 msgid "Thureophóros Politès"
@@ -2673,7 +2675,7 @@ msgstr "Brak aury bohatera. Ma 2x zdrowia innych bohaterów piechoty. Zasadniczo
 
 #: simulation/templates/units/spart_hero_brasidas.xml:14
 msgid "Helot Reforms"
-msgstr ""
+msgstr "Reformy helockie"
 
 #: simulation/templates/units/spart_hero_brasidas.xml:15
 msgid ""
@@ -2703,7 +2705,7 @@ msgstr "Leonidas I"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:14
 msgid "Helot Skirmisher"
-msgstr ""
+msgstr "Helocki oszczepnik"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:15
 msgid "Akontistḗs Heílōs"
@@ -2711,7 +2713,7 @@ msgstr "Akontistḗs Heílōs"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:14
 msgid "Perioikoi Hoplite"
-msgstr ""
+msgstr "Periojski hoplita"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:15
 msgid "Hoplítēs Períoikos"
@@ -2758,7 +2760,7 @@ msgstr "Pyrobolos"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Hieros Lochos Hoplites"
-msgstr ""
+msgstr "Hoplici falangi macedońskiej"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:8
 msgid "Champion Spearman."
