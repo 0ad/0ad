@@ -258,26 +258,30 @@ Attack.prototype.CanAttack = function(target)
 
 	const targetClasses = cmpIdentity.GetClassesList();
 
-	for each (var type in this.GetAttackTypes())
+	for (let type of this.GetAttackTypes())
 	{
+		if (type == "Capture" && !QueryMiragedInterface(target, IID_Capturable))
+			continue;
+		if (type == "Slaughter" && targetClasses.indexOf("Domestic") == -1)
+			continue;
+
 		if (heightDiff > this.GetRange(type).max)
 			continue;
 
-		var canAttack = true;
-		var restrictedClasses = this.GetRestrictedClasses(type);
+		let restrictedClasses = this.GetRestrictedClasses(type);
+		if (!restrictedClasses.length)
+			return true;
 
-		for each (var targetClass in targetClasses)
+		let canAttack = true;
+		for (let targetClass of targetClasses)
 		{
-			if (restrictedClasses.indexOf(targetClass) != -1)
-			{
-				canAttack = false;
-				break;
-			}
+			if (restrictedClasses.indexOf(targetClass) == -1)
+				continue;
+			canAttack = false;
+			break;
 		}
 		if (canAttack)
-		{
 			return true;
-		}
 	}
 
 	return false;
@@ -295,12 +299,14 @@ Attack.prototype.GetPreference = function(target)
 	const targetClasses = cmpIdentity.GetClassesList();
 
 	var minPref = null;
-	for (var type of this.GetAttackTypes())
+	for (let type of this.GetAttackTypes())
 	{
-		var preferredClasses = this.GetPreferredClasses(type);
-		for (var targetClass of targetClasses)
+		let preferredClasses = this.GetPreferredClasses(type);
+		for (let targetClass of targetClasses)
 		{
-			var pref = preferredClasses.indexOf(targetClass);
+			let pref = preferredClasses.indexOf(targetClass);
+			if (pref === 0)
+				return pref;
 			if (pref != -1 && (minPref === null || minPref > pref))
 				minPref = pref;
 		}
