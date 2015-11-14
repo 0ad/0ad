@@ -69,11 +69,6 @@ ResourceGatherer.prototype.Init = function()
 	this.RecalculateGatherRatesAndCapacities();
 };
 
-ResourceGatherer.prototype.Deserialize = function ()
-{
-	this.RecalculateGatherRatesAndCapacities();
-};
-
 /**
  * Returns data about what resources the unit is currently carrying,
  * in the form [ {"type":"wood", "amount":7, "max":10} ]

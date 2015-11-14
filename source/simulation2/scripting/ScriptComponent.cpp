@@ -95,6 +95,9 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	
+	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
+	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
+
 	// Support a custom "Deserialize" function, to which we pass the deserialized data
 	// instead of automatically adding the deserialized properties onto the object
 	if (m_HasCustomDeserialize)
@@ -117,7 +120,4 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 			deserialize.ScriptObjectAppend("object", m_Instance);
 		}
 	}
-
-	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
-	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
 }
