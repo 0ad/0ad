@@ -65,6 +65,8 @@ ResourceGatherer.prototype.Init = function()
 
 	// The last exact type gathered, so we can render appropriate props
 	this.lastCarriedType = undefined; // { generic, specific }
+
+	this.RecalculateGatherRatesAndCapacities();
 };
 
 /**
@@ -125,25 +127,33 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 		return undefined;
 };
 
-ResourceGatherer.prototype.GetBaseSpeed = function()
+// Since this code is very performancecritical and applying technologies quite slow, cache it.
+ResourceGatherer.prototype.RecalculateGatherRatesAndCapacities = function()
 {
 	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	let multiplier = cmpPlayer ? cmpPlayer.GetGatherRateMultiplier() : 1;
-	return multiplier * ApplyValueModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity);
+	this.baseSpeed = multiplier * ApplyValueModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity);
+
+	this.rates = {};
+	for (let r in this.template.Rates)
+	{
+		let rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + r, +this.template.Rates[r], this.entity);
+		this.rates[r] = rate * this.baseSpeed;
+	}
+
+	this.capacities = {};
+	for (let r in this.template.Capacities)
+		this.capacities[r] = ApplyValueModificationsToEntity("ResourceGatherer/Capacities/" + r, +this.template.Capacities[r], this.entity);
+}
+
+ResourceGatherer.prototype.GetBaseSpeed = function()
+{
+	this.baseSpeed;
 };
 
 ResourceGatherer.prototype.GetGatherRates = function()
 {
-	let ret = {};
-	let baseSpeed = this.GetBaseSpeed();
-
-	for (let r in this.template.Rates)
-	{
-		let rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + r, +this.template.Rates[r], this.entity);
-		ret[r] = rate * baseSpeed;
-	}
-
-	return ret;
+	return this.rates;
 };
 
 ResourceGatherer.prototype.GetGatherRate = function(resourceType)
@@ -151,16 +161,14 @@ ResourceGatherer.prototype.GetGatherRate = function(resourceType)
 	if (!this.template.Rates[resourceType])
 		return 0;
 
-	let baseSpeed = this.GetBaseSpeed();
-	let rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + resourceType, +this.template.Rates[resourceType], this.entity);
-	return rate * baseSpeed;
+	return this.rates[resourceType];
 };
 
 ResourceGatherer.prototype.GetCapacity = function(resourceType)
 {
 	if(!this.template.Capacities[resourceType])
 		return 0;
-	return ApplyValueModificationsToEntity("ResourceGatherer/Capacities/" + resourceType, +this.template.Capacities[resourceType], this.entity);
+	return this.capacities[resourceType];
 };
 
 ResourceGatherer.prototype.GetRange = function()
@@ -235,9 +243,6 @@ ResourceGatherer.prototype.PerformGather = function(target)
 
 	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 
-	// Tell the target we're gathering from it
-	Engine.PostMessage(target, MT_ResourceGather,
-		{ "entity": target, "gatherer": this.entity });
 
 	return {
 		"amount": status.amount,
@@ -352,6 +357,26 @@ ResourceGatherer.prototype.DropResources = function()
 	this.carrying = {};
 
 	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
+};
+
+// Since we cache gather rates, we need to make sure we update them when tech changes.
+// and when our owner change because owners can had different techs.
+ResourceGatherer.prototype.OnValueModification = function(msg)
+{
+	if (msg.component != "ResourceGatherer")
+		return;
+
+	this.RecalculateGatherRatesAndCapacities();
+};
+
+ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
+{
+	this.RecalculateGatherRatesAndCapacities();
+};
+
+ResourceGatherer.prototype.OnGlobalInitGame = function(msg)
+{
+	this.RecalculateGatherRatesAndCapacities();
 };
 
 Engine.RegisterComponentType(IID_ResourceGatherer, "ResourceGatherer", ResourceGatherer);

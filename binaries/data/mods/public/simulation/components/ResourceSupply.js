@@ -51,6 +51,10 @@ ResourceSupply.prototype.Init = function()
 		this.gatherers.push([]);
 
 	this.infinite = !isFinite(+this.template.Amount);
+
+	[this.type,this.subType] = this.template.Type.split('.');
+	this.cachedType = { "generic" : this.type, "specific" : this.subType };
+
 };
 
 ResourceSupply.prototype.IsInfinite = function()
@@ -107,20 +111,18 @@ ResourceSupply.prototype.TakeResources = function(rate)
 	var change = old - this.amount;
 
 	// Remove entities that have been exhausted
-	if (this.amount == 0)
+	if (this.amount === 0)
 		Engine.DestroyEntity(this.entity);
 
 	Engine.PostMessage(this.entity, MT_ResourceSupplyChanged, { "from": old, "to": this.amount });
 
-	return { "amount": change, "exhausted": (this.amount == 0) };
+	return { "amount": change, "exhausted": (this.amount === 0) };
 };
 
 ResourceSupply.prototype.GetType = function()
 {
 	// All resources must have both type and subtype
-
-	var [type, subtype] = this.template.Type.split('.');
-	return { "generic": type, "specific": subtype };
+	return this.cachedType;
 };
 
 ResourceSupply.prototype.IsAvailable = function(player, gathererID)
