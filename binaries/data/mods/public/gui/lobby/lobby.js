@@ -681,6 +681,7 @@ function onTick()
 			{
 			case "join":
 				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { nick: nick }), "key": g_specialKey });
+				Engine.SendGetRatingList();
 				break;
 			case "leave":
 				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { nick: nick }), "key": g_specialKey });
