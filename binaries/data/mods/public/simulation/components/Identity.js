@@ -101,6 +101,9 @@ Identity.prototype.Schema =
 
 Identity.prototype.Init = function()
 {
+	// caching
+	this.classesList = GetIdentityClasses(this.template);;	
+	this.visibleClassesList = GetVisibleIdentityClasses(this.template);;
 };
 
 Identity.prototype.Serialize = null; // we have no dynamic state to save
@@ -127,12 +130,12 @@ Identity.prototype.GetRank = function()
 
 Identity.prototype.GetClassesList = function()
 {
-	return GetIdentityClasses(this.template);
+	return this.classesList;
 };
 
 Identity.prototype.GetVisibleClassesList = function()
 {
-	return GetVisibleIdentityClasses(this.template);
+	return this.visibleClassesList;
 };
 
 Identity.prototype.HasClass = function(name)
