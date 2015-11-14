@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Mesh">
+        <animations>
+        <animation file="quadraped/rhino_idle.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/rhino_idle2.dae" name="Idle" speed="100"/>
+                                               
+        <animation file="quadraped/rhino_walk.dae" name="Walk" speed="20"/>
+        <animation file="quadraped/rhino_run.dae" name="run" speed="10"/>
+        <animation file="quadraped/rhino_death.dae" name="death" speed="100"/>
+        <animation file="quadraped/rhino_attack.dae" name="attack_melee" speed="100"/>
+      </animations>
+      <mesh>skeletal/rhino.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="standard">
+      <textures><texture file="skeletal/animal_rhino.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+</actor>
