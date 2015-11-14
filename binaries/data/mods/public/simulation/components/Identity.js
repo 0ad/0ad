@@ -102,8 +102,13 @@ Identity.prototype.Schema =
 Identity.prototype.Init = function()
 {
 	// caching
-	this.classesList = GetIdentityClasses(this.template);;	
-	this.visibleClassesList = GetVisibleIdentityClasses(this.template);;
+	this.classesList = GetIdentityClasses(this.template);
+	this.visibleClassesList = GetVisibleIdentityClasses(this.template);
+};
+
+Identity.prototype.Deserialize = function ()
+{
+	this.Init();
 };
 
 Identity.prototype.Serialize = null; // we have no dynamic state to save
