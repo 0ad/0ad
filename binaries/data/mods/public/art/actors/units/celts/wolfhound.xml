@@ -3,18 +3,12 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-<?xml version="1.0" encoding="utf-8"?>
-<actor version="1">
-  <castshadow/>
-  <group>
-    <variant frequency="100" name="Base">
        <animations>
         <animation file="quadraped/wolfhound_idle1.dae" name="Idle" speed="100"/>
         <animation file="quadraped/wolfhound_idle_laydown.dae" name="Idle" speed="100"/> 
         <animation file="quadraped/wolfhound_idle_long.dae" name="Idle" speed="100"/> 
         <animation file="quadraped/wolfhound_idle_sit.dae" name="Idle" speed="100"/>
-                                        
-    
+
         <animation file="quadraped/wolfhound_walk.dae" name="Walk" speed="10"/>
         <animation file="quadraped/wolfhound_walk.dae" name="run" speed="10"/>
         <animation file="quadraped/wolfhound_death.dae" name="death" speed="100"/>
@@ -22,9 +16,8 @@
       </animations>
       <mesh>skeletal/wolfhound.dae</mesh>
       <props>
-      <prop actor="props/units/wolfhound_collar.xml" attachpoint="collar"/>
+        <prop actor="props/units/wolfhound_collar.xml" attachpoint="collar"/>
       </props>
-
     </variant>
   </group>
   <group>
@@ -35,4 +28,4 @@
     </variant>      
   </group>
   <material>basic_trans.xml</material>
-  </actor>
+</actor>
