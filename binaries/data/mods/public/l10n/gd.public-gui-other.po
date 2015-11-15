@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 13:02+0000\n"
+"POT-Creation-Date: 2015-11-11 04:16+0100\n"
+"PO-Revision-Date: 2015-11-11 10:30+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -99,15 +99,15 @@ msgstr "Bun-roghainn"
 msgid "A randomly selected map."
 msgstr "Mapa a chaidh a thaghadh air thuaiream."
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:159
 msgid "Sorry, no description available."
 msgstr "Duilich ach chan eil tuairisgeul ri làimh."
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:203
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:207
+#: gui/common/functions_utility.js:205
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -316,43 +316,62 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Iasg"
 
-#: gui/common/network.js:6
+#: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "Chan eil fhios dè as adhbhar"
 
-#: gui/common/network.js:7
+#: gui/common/network.js:13
 msgid "Unexpected shutdown"
 msgstr "Dùnadh sìos gun dùil"
 
-#: gui/common/network.js:8
+#: gui/common/network.js:14
 msgid "Incorrect network protocol version"
 msgstr "Chan eil tionndadh a’ phròtacail lìonraidh mar bu chòir"
 
-#: gui/common/network.js:9
+#: gui/common/network.js:15
 msgid "Game is loading, please try later"
 msgstr "Tha an geama ’ga luchdadh, feuch ris a-rithist an ceann greis"
 
-#: gui/common/network.js:10
+#: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
 msgstr "Tha an geama air a thòiseachadh mar-thà is chan eil amhairc ceadaichte"
 
-#: gui/common/network.js:11
+#: gui/common/network.js:17
+msgid "You have been kicked"
+msgstr "Fhuair thu a’ bhròg"
+
+#: gui/common/network.js:18
+msgid "You have been banned"
+msgstr "Chaidh do thoirmeasg"
+
+#: gui/common/network.js:19
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Luach mì-dhligheach %(id)s]"
 
-#: gui/common/network.js:20
-msgid "Lost connection to the server."
-msgstr "Chaidh an ceangal dhan fhrithealaiche a bhriseadh."
-
-#: gui/common/network.js:20
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/common/network.js:31
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Adhbhar: %(reason)s."
 
-#: gui/common/network.js:21
+#: gui/common/network.js:32
+msgid "Lost connection to the server."
+msgstr "Chaidh an ceangal dhan fhrithealaiche a bhriseadh."
+
+#: gui/common/network.js:32
 msgid "Disconnected"
 msgstr "Air a dhì-cheangal"
+
+#: gui/common/network.js:80
+#, javascript-format
+msgid "Could not kick %(name)s."
+msgstr "Cha b’ urrainn dhuinn a’ bhròg a thoirt dha %(name)s."
+
+#: gui/common/network.js:85
+#, javascript-format
+msgid "Could not ban %(name)s."
+msgstr "Cha b’ urrainn dhuinn %(name)s a thoirmeasg."
 
 #: gui/common/settings.js:106
 msgctxt "aiDiff"

@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-10-10 13:13+0000\n"
-"Last-Translator: Xaver\n"
+"POT-Creation-Date: 2015-11-11 04:16+0100\n"
+"PO-Revision-Date: 2015-11-11 19:22+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,15 +101,15 @@ msgstr "Standard"
 msgid "A randomly selected map."
 msgstr "Eine zufällig ausgewählte Karte."
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:159
 msgid "Sorry, no description available."
 msgstr "Leider keine Beschreibung vorhanden."
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:203
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:207
+#: gui/common/functions_utility.js:205
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -318,43 +318,62 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Fisch"
 
-#: gui/common/network.js:6
+#: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "Unbekannter Grund"
 
-#: gui/common/network.js:7
+#: gui/common/network.js:13
 msgid "Unexpected shutdown"
 msgstr "Unerwarteter Absturz"
 
-#: gui/common/network.js:8
+#: gui/common/network.js:14
 msgid "Incorrect network protocol version"
 msgstr "Fehlerhafte Netzwerkprotokoll-Version"
 
-#: gui/common/network.js:9
+#: gui/common/network.js:15
 msgid "Game is loading, please try later"
 msgstr "Spiel läd, bitte versuche es später"
 
-#: gui/common/network.js:10
+#: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
 msgstr "Spiel hat bereits begonnen, keine Beobachter erlaubt"
 
-#: gui/common/network.js:11
+#: gui/common/network.js:17
+msgid "You have been kicked"
+msgstr "Du wurdest gekickt"
+
+#: gui/common/network.js:18
+msgid "You have been banned"
+msgstr "Du wurdest gebannt"
+
+#: gui/common/network.js:19
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Unzulässiger Wert %(id)s]"
 
-#: gui/common/network.js:20
-msgid "Lost connection to the server."
-msgstr "Verbindung zum Server verloren."
-
-#: gui/common/network.js:20
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/common/network.js:31
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Grund: %(reason)s."
 
-#: gui/common/network.js:21
+#: gui/common/network.js:32
+msgid "Lost connection to the server."
+msgstr "Verbindung zum Server verloren."
+
+#: gui/common/network.js:32
 msgid "Disconnected"
 msgstr "Verbindung getrennt"
+
+#: gui/common/network.js:80
+#, javascript-format
+msgid "Could not kick %(name)s."
+msgstr "Kann nicht %(name)s kicken."
+
+#: gui/common/network.js:85
+#, javascript-format
+msgid "Could not ban %(name)s."
+msgstr "Kann nicht %(name)s bannen."
 
 #: gui/common/settings.js:106
 msgctxt "aiDiff"

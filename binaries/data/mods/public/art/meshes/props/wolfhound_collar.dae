@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.76.0 commit date:2015-11-03, commit time:10:56, hash:f337fea</authoring_tool>
+    </contributor>
+    <created>2015-11-14T13:27:58</created>
+    <modified>2015-11-14T13:27:58</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Skeleton_001-mesh" name="Skeleton.001">
+      <mesh>
+        <source id="Skeleton_001-mesh-positions">
+          <float_array id="Skeleton_001-mesh-positions-array" count="63">0.1418591 -0.1496449 0.1963058 0.2149803 -0.4648764 0.1099858 0.1332367 -0.5927656 -0.004992604 0.2560636 -0.3215357 -0.1134489 0.123856 -0.5277216 -0.3107066 0.1346971 -0.2291716 0.2693383 0.2356068 -0.3930101 -0.001579403 0.1288671 -0.5600248 -0.1577932 -0.1418591 -0.1496449 0.1963058 -0.2149803 -0.4648764 0.1099858 -0.1332367 -0.5927656 -0.004992604 -0.2560636 -0.3215357 -0.1134489 0 -0.1330293 0.226883 0 -0.656144 -0.0432831 -0.123856 -0.5277216 -0.3107066 0 -0.5729278 -0.3579016 0 -0.614566 -0.2005997 0 -0.2087544 0.2984163 -0.1346971 -0.2291716 0.2693383 -0.2356068 -0.3930101 -0.001579403 -0.1288671 -0.5600248 -0.1577932</float_array>
+          <technique_common>
+            <accessor source="#Skeleton_001-mesh-positions-array" count="21" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Skeleton_001-mesh-normals">
+          <float_array id="Skeleton_001-mesh-normals-array" count="63">0.9838325 -0.1618103 0.07675457 0.9849316 -0.1505489 0.0851168 0.7477463 -0.6443174 -0.1604079 0.6977028 0.4532428 0.5547807 0.7266595 0.4270841 0.5381126 0 0.677551 0.735476 0.6999288 -0.6926957 -0.1739903 0 -0.9709839 -0.2391448 0.6199762 -0.7604887 -0.1930978 0 -0.9693893 -0.2455289 0.971951 -0.2334123 0.02881026 -0.9838325 -0.1618103 0.07675457 -0.6999288 -0.6926957 -0.1739903 -0.7477463 -0.6443174 -0.1604079 -0.6977028 0.4532428 0.5547807 0 0.6867087 0.7269328 -0.7266595 0.4270841 0.5381126 -0.971951 -0.2334123 0.02881026 -0.6199762 -0.7604887 -0.1930978 0 -0.9667115 -0.255869 -0.9849316 -0.1505489 0.0851168</float_array>
+          <technique_common>
+            <accessor source="#Skeleton_001-mesh-normals-array" count="21" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Skeleton_001-mesh-map-0">
+          <float_array id="Skeleton_001-mesh-map-0-array" count="156">0.1765106 0.7353023 0.1728559 0.7836841 0.1089406 0.7725719 0.2740246 0.7920712 0.2845914 0.7548642 0.32564 0.7718814 0.09277981 0.7186844 0.1089406 0.7725719 0.06027084 0.7757123 0.2845914 0.7548642 0.2740246 0.7920712 0.1765106 0.7353023 0.07661902 0.664797 0.09277981 0.7186844 0.04608356 0.7196257 0.1801653 0.6869205 0.1765106 0.7353023 0.09277981 0.7186844 0.1765106 0.7353023 0.2740246 0.7920712 0.1728559 0.7836841 0.1765106 0.7353023 0.09277981 0.7186844 0.1089406 0.7725719 0.2740246 0.7920712 0.3147146 0.8066166 0.32564 0.7718814 0.09277981 0.7186844 0.04608356 0.7196257 0.06027084 0.7757123 0.2845914 0.7548642 0.1801653 0.6869205 0.1765106 0.7353023 0.07661902 0.664797 0.03189635 0.6635392 0.04608356 0.7196257 0.1801653 0.6869205 0.07661902 0.664797 0.09277981 0.7186844 0.1765106 0.7353023 0.1728559 0.7836841 0.2740246 0.7920712 0.09277981 0.7186844 0.1765106 0.7353023 0.1089406 0.7725719 0.3147146 0.8066166 0.2740246 0.7920712 0.32564 0.7718814 0.04608356 0.7196257 0.09277981 0.7186844 0.06027084 0.7757123 0.1801653 0.6869205 0.2845914 0.7548642 0.1765106 0.7353023 0.03189635 0.6635392 0.07661902 0.664797 0.04608356 0.7196257 0.07661902 0.664797 0.1801653 0.6869205 0.09277981 0.7186844 0.1728559 0.7836841 0.1765106 0.7353023 0.1089406 0.7725719 0.2845914 0.7548642 0.2740246 0.7920712 0.32564 0.7718814 0.1089406 0.7725719 0.09277981 0.7186844 0.06027084 0.7757123 0.2740246 0.7920712 0.2845914 0.7548642 0.1765106 0.7353023 0.09277981 0.7186844 0.07661902 0.664797 0.04608356 0.7196257 0.1765106 0.7353023 0.1801653 0.6869205 0.09277981 0.7186844</float_array>
+          <technique_common>
+            <accessor source="#Skeleton_001-mesh-map-0-array" count="78" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Skeleton_001-mesh-map-1">
+          <float_array id="Skeleton_001-mesh-map-1-array" count="156">0.271192 0.6756865 0.2501654 0.6999356 0.2166025 0.6591981 0.2723097 0.7592986 0.2913617 0.7395555 0.3001992 0.8046292 0.2273052 0.6172089 0.2166025 0.6591981 0.1746382 0.6310212 0.2913617 0.7395555 0.2723097 0.7592986 0.271192 0.6756865 0.2380079 0.5752198 0.2273052 0.6172089 0.1899578 0.587706 0.2922185 0.6514375 0.271192 0.6756865 0.2273052 0.6172089 0.271192 0.6756865 0.2723097 0.7592986 0.2501654 0.6999356 0.271192 0.6756865 0.2273052 0.6172089 0.2166025 0.6591981 0.2723097 0.7592986 0.275527 0.8163528 0.3001992 0.8046292 0.2273052 0.6172089 0.1899578 0.587706 0.1746382 0.6310212 0.2913617 0.7395555 0.2922185 0.6514375 0.271192 0.6756865 0.2380079 0.5752198 0.2052774 0.5443907 0.1899578 0.587706 0.2922185 0.6514375 0.2380079 0.5752198 0.2273052 0.6172089 0.271192 0.6756865 0.2501654 0.6999356 0.2723097 0.7592986 0.2273052 0.6172089 0.271192 0.6756865 0.2166025 0.6591981 0.275527 0.8163528 0.2723097 0.7592986 0.3001992 0.8046292 0.1899578 0.587706 0.2273052 0.6172089 0.1746382 0.6310212 0.2922185 0.6514375 0.2913617 0.7395555 0.271192 0.6756865 0.2052774 0.5443907 0.2380079 0.5752198 0.1899578 0.587706 0.2380079 0.5752198 0.2922185 0.6514375 0.2273052 0.6172089 0.2501654 0.6999356 0.271192 0.6756865 0.2166025 0.6591981 0.2913617 0.7395555 0.2723097 0.7592986 0.3001992 0.8046292 0.2166025 0.6591981 0.2273052 0.6172089 0.1746382 0.6310212 0.2723097 0.7592986 0.2913617 0.7395555 0.271192 0.6756865 0.2273052 0.6172089 0.2380079 0.5752198 0.1899578 0.587706 0.271192 0.6756865 0.2922185 0.6514375 0.2273052 0.6172089</float_array>
+          <technique_common>
+            <accessor source="#Skeleton_001-mesh-map-1-array" count="78" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Skeleton_001-mesh-map-2">
+          <float_array id="Skeleton_001-mesh-map-2-array" count="156">0.2637699 0.7049897 0.2444391 0.7414344 0.2136706 0.7062966 0.303435 0.7894849 0.3247213 0.7661026 0.327732 0.7746048 0.2250961 0.6541814 0.2136706 0.7062966 0.1981235 0.6942611 0.3247213 0.7661026 0.303435 0.7894849 0.2637699 0.7049897 0.2365216 0.602066 0.2250961 0.6541814 0.2072583 0.6389648 0.2831007 0.668545 0.2637699 0.7049897 0.2250961 0.6541814 0.2637699 0.7049897 0.303435 0.7894849 0.2444391 0.7414344 0.2637699 0.7049897 0.2250961 0.6541814 0.2136706 0.7062966 0.303435 0.7894849 0.3076735 0.7977431 0.327732 0.7746048 0.2250961 0.6541814 0.2072583 0.6389648 0.1981235 0.6942611 0.3247213 0.7661026 0.2831007 0.668545 0.2637699 0.7049897 0.2365216 0.602066 0.2163932 0.5836685 0.2072583 0.6389648 0.2831007 0.668545 0.2365216 0.602066 0.2250961 0.6541814 0.2637699 0.7049897 0.2444391 0.7414344 0.303435 0.7894849 0.2250961 0.6541814 0.2637699 0.7049897 0.2136706 0.7062966 0.3076735 0.7977431 0.303435 0.7894849 0.327732 0.7746048 0.2072583 0.6389648 0.2250961 0.6541814 0.1981235 0.6942611 0.2831007 0.668545 0.3247213 0.7661026 0.2637699 0.7049897 0.2163932 0.5836685 0.2365216 0.602066 0.2072583 0.6389648 0.2365216 0.602066 0.2831007 0.668545 0.2250961 0.6541814 0.2444391 0.7414344 0.2637699 0.7049897 0.2136706 0.7062966 0.3247213 0.7661026 0.303435 0.7894849 0.327732 0.7746048 0.2136706 0.7062966 0.2250961 0.6541814 0.1981235 0.6942611 0.303435 0.7894849 0.3247213 0.7661026 0.2637699 0.7049897 0.2250961 0.6541814 0.2365216 0.602066 0.2072583 0.6389648 0.2637699 0.7049897 0.2831007 0.668545 0.2250961 0.6541814</float_array>
+          <technique_common>
+            <accessor source="#Skeleton_001-mesh-map-2-array" count="78" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Skeleton_001-mesh-colors-Col" name="Col">
+          <float_array id="Skeleton_001-mesh-colors-Col-array" count="234">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
+          <technique_common>
+            <accessor source="#Skeleton_001-mesh-colors-Col-array" count="78" stride="3">
+              <param name="R" type="float"/>
+              <param name="G" type="float"/>
+              <param name="B" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Skeleton_001-mesh-vertices">
+          <input semantic="POSITION" source="#Skeleton_001-mesh-positions"/>
+        </vertices>
+        <polylist count="26">
+          <input semantic="VERTEX" source="#Skeleton_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Skeleton_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Skeleton_001-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#Skeleton_001-mesh-map-1" offset="2" set="1"/>
+          <input semantic="TEXCOORD" source="#Skeleton_001-mesh-map-2" offset="2" set="2"/>
+          <input semantic="COLOR" source="#Skeleton_001-mesh-colors-Col" offset="3" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>6 0 0 0 1 1 1 1 2 2 2 2 5 3 3 3 0 4 4 4 12 5 5 5 7 6 6 6 2 2 7 7 13 7 8 8 0 4 9 9 5 3 10 10 6 0 11 11 4 8 12 12 7 6 13 13 16 9 14 14 3 10 15 15 6 0 16 16 7 6 17 17 6 0 18 18 5 3 19 19 1 1 20 20 19 11 21 21 20 12 22 22 10 13 23 23 18 14 24 24 17 15 25 25 12 5 26 26 20 12 27 27 16 9 28 28 13 7 29 29 8 16 30 30 11 17 31 31 19 11 32 32 14 18 33 33 15 19 34 34 16 9 35 35 11 17 36 36 14 18 37 37 20 12 38 38 19 11 39 39 9 20 40 40 18 14 41 41 7 6 42 42 6 0 43 43 2 2 44 44 17 15 45 45 5 3 46 46 12 5 47 47 16 9 48 48 7 6 49 49 13 7 50 50 3 10 51 51 0 4 52 52 6 0 53 53 15 19 54 54 4 8 55 55 16 9 56 56 4 8 57 57 3 10 58 58 7 6 59 59 9 20 60 60 19 11 61 61 10 13 62 62 8 16 63 63 18 14 64 64 12 5 65 65 10 13 66 66 20 12 67 67 13 7 68 68 18 14 69 69 8 16 70 70 19 11 71 71 20 12 72 72 14 18 73 73 16 9 74 74 19 11 75 75 11 17 76 76 20 12 77 77</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_animations>
+    <animation id="Wolfhound_001_location_X">
+      <source id="Wolfhound_001_location_X-input">
+        <float_array id="Wolfhound_001_location_X-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_X-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_X-output">
+        <float_array id="Wolfhound_001_location_X-output-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_X-output-array" count="1" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_X-interpolation">
+        <Name_array id="Wolfhound_001_location_X-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_X-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_X-intangent">
+        <float_array id="Wolfhound_001_location_X-intangent-array" count="2">-0.04166662 0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_X-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_X-outtangent">
+        <float_array id="Wolfhound_001_location_X-outtangent-array" count="2">0.04166662 0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_X-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Wolfhound_001_location_X-sampler">
+        <input semantic="INPUT" source="#Wolfhound_001_location_X-input"/>
+        <input semantic="OUTPUT" source="#Wolfhound_001_location_X-output"/>
+        <input semantic="INTERPOLATION" source="#Wolfhound_001_location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Wolfhound_001_location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Wolfhound_001_location_X-outtangent"/>
+      </sampler>
+      <channel source="#Wolfhound_001_location_X-sampler" target="Wolfhound_001/location.X"/>
+    </animation>
+    <animation id="Wolfhound_001_location_Y">
+      <source id="Wolfhound_001_location_Y-input">
+        <float_array id="Wolfhound_001_location_Y-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Y-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_Y-output">
+        <float_array id="Wolfhound_001_location_Y-output-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Y-output-array" count="1" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_Y-interpolation">
+        <Name_array id="Wolfhound_001_location_Y-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Y-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_Y-intangent">
+        <float_array id="Wolfhound_001_location_Y-intangent-array" count="2">-0.04166662 0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Y-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_Y-outtangent">
+        <float_array id="Wolfhound_001_location_Y-outtangent-array" count="2">0.04166662 0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Y-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Wolfhound_001_location_Y-sampler">
+        <input semantic="INPUT" source="#Wolfhound_001_location_Y-input"/>
+        <input semantic="OUTPUT" source="#Wolfhound_001_location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Wolfhound_001_location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Wolfhound_001_location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Wolfhound_001_location_Y-outtangent"/>
+      </sampler>
+      <channel source="#Wolfhound_001_location_Y-sampler" target="Wolfhound_001/location.Y"/>
+    </animation>
+    <animation id="Wolfhound_001_location_Z">
+      <source id="Wolfhound_001_location_Z-input">
+        <float_array id="Wolfhound_001_location_Z-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Z-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_Z-output">
+        <float_array id="Wolfhound_001_location_Z-output-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Z-output-array" count="1" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_Z-interpolation">
+        <Name_array id="Wolfhound_001_location_Z-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Z-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_Z-intangent">
+        <float_array id="Wolfhound_001_location_Z-intangent-array" count="2">-0.04166662 0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Z-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Wolfhound_001_location_Z-outtangent">
+        <float_array id="Wolfhound_001_location_Z-outtangent-array" count="2">0.04166662 0</float_array>
+        <technique_common>
+          <accessor source="#Wolfhound_001_location_Z-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Wolfhound_001_location_Z-sampler">
+        <input semantic="INPUT" source="#Wolfhound_001_location_Z-input"/>
+        <input semantic="OUTPUT" source="#Wolfhound_001_location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Wolfhound_001_location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Wolfhound_001_location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Wolfhound_001_location_Z-outtangent"/>
+      </sampler>
+      <channel source="#Wolfhound_001_location_Z-sampler" target="Wolfhound_001/location.Z"/>
+    </animation>
+  </library_animations>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Wolfhound_001" name="Wolfhound_001" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#Skeleton_001-mesh" name="Wolfhound_001"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

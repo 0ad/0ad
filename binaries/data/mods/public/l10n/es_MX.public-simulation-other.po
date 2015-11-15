@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Edgar Carballo <karvayoEdgar@gmail.com>, 2015
+# Ivan <navicgamboa@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-23 07:32+0000\n"
-"Last-Translator: Edgar Carballo <karvayoEdgar@gmail.com>\n"
+"PO-Revision-Date: 2015-11-13 06:12+0000\n"
+"Last-Translator: Ivan <navicgamboa@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +65,7 @@ msgstr "Veo que estás en una mala situación %(_player_)s, espero y esto ayude.
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr ""
+msgstr "Necesito %(resource)s, ¿ me puedes ayudar? Te lo recompesare."
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
@@ -107,13 +108,13 @@ msgstr "Advertencia: Este es un tutorial avanzado y va bastante rápido. Si no p
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "Empezemos, primero crea un grupo (shift+click) de 5 mujeres desde el CC(Centro Civico)"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "Ahora , asigna a tus mujeres a recolectar frutos, tu hombre a caballo a cazar gallinas y a los soldados a recolectar madera."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
@@ -529,28 +530,28 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:182
 msgctxt "Territory type"
 msgid "ally"
-msgstr ""
+msgstr "Aliado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "Propio"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "Neutral"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:191
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "Enemigo"
 
 #: simulation/components/BuildRestrictions.js:197
 #, javascript-format
@@ -582,42 +583,42 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:304
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "Tuyo"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "Aliado"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "Neutral"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "Enemigo"
 
 #: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "Podras atacar en %(time)s "
 
 #: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
-msgstr ""
+msgstr "Ya puedes atacar!"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s limite de construccion %(limit)s alcanzado"
 
 #: simulation/components/EntityLimits.js:168
 #, javascript-format
@@ -648,21 +649,21 @@ msgstr "Piedra"
 #: simulation/components/Player.js:252
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "Recursos Insuficientes - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:254
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "Recursos Insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:256
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "Recursos Insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:258
 #, javascript-format
@@ -670,11 +671,11 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "Recursos Insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:366
 msgid "The production queue is full."
-msgstr ""
+msgstr "La cola de producción esta llena."
 
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -730,106 +731,106 @@ msgstr "Relajado (0.75x)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1x)"
-msgstr ""
+msgstr "Normal (1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25x)"
-msgstr ""
+msgstr "Rapido (1.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5x)"
-msgstr ""
+msgstr "Muy Rapido (1.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2x)"
-msgstr ""
+msgstr "Demente (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Avance Rapido (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Avance Rapido (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Avance Rapido (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Derrotar a todos los oponentes"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Conquista."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Destruir todas las estructuras del enemigo."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Conquistar Estructuras"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Matar a todas las unidades enemigas"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Conquistar Unidades"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Construir y protejer una maravilla para ganar"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Maravilla"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Muy Bajos"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Bajos"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Medios"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Altos"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Muy Altos"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Combate a muerte"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
 msgid "Tiny"
-msgstr ""
+msgstr "Diminuto"
 
 #: simulation/data/map_sizes.jsonSizes[1].Name
 msgid "Small"
-msgstr ""
+msgstr "Pequeño"
 
 #: simulation/data/map_sizes.jsonSizes[1].LongName
 msgid "Small (2 players)"
-msgstr ""
+msgstr "Pequeño (2 jugadores)"
 
 #: simulation/data/map_sizes.jsonSizes[2].Name
 msgid "Medium"
@@ -837,40 +838,40 @@ msgstr "Medio"
 
 #: simulation/data/map_sizes.jsonSizes[2].LongName
 msgid "Medium (3 players)"
-msgstr ""
+msgstr "Mediano (3 jugadores)"
 
 #: simulation/data/map_sizes.jsonSizes[3].Name
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: simulation/data/map_sizes.jsonSizes[3].LongName
 msgid "Normal (4 players)"
-msgstr ""
+msgstr "Normal (4 jugadores)"
 
 #: simulation/data/map_sizes.jsonSizes[4].Name
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #: simulation/data/map_sizes.jsonSizes[4].LongName
 msgid "Large (6 players)"
-msgstr ""
+msgstr "Grande (6 jugadores)"
 
 #: simulation/data/map_sizes.jsonSizes[5].Name
 msgid "Very Large"
-msgstr ""
+msgstr "Muy Grande"
 
 #: simulation/data/map_sizes.jsonSizes[5].LongName
 msgid "Very Large (8 players)"
-msgstr ""
+msgstr "Muy Grande (8 jugadores)"
 
 #: simulation/data/map_sizes.jsonSizes[6].Name
 #: simulation/data/map_sizes.jsonSizes[6].LongName
 msgid "Giant"
-msgstr ""
+msgstr "Gigante"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr ""
+msgstr "Petra Bot"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
@@ -881,10 +882,10 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
-msgstr ""
+msgstr "Tutorial AI"
 
 #: simulation/ai/tutorial-ai/data.jsondescription
 msgid ""
 "The Tutorial AI should only be used on the \"Introductory Tutorial\" "
 "scenario."
-msgstr ""
+msgstr "La IA Tutorial deberia usarse solo en el escenario \"Tutorial de introduccion\"."

@@ -11,6 +11,7 @@
 # Igor Kustov, 2014
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
+# sad2shade <sad.2.shade@gmail.com>, 2015
 # Vladislav Belov <thebvog@gmail.com>, 2015
 # webslavic <webslavic@yahoo.com>, 2014-2015
 # Woratiklis, 2015
@@ -18,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-27 12:59+0000\n"
-"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
+"POT-Creation-Date: 2015-11-11 04:16+0100\n"
+"PO-Revision-Date: 2015-11-12 04:14+0000\n"
+"Last-Translator: sad2shade <sad.2.shade@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)s, особенности в игре"
+msgstr "%(civilization)s - Геймплей"
 
 #: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
@@ -91,13 +92,13 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/common/functions_global_object.js:119
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Времени до возобновления военных действий: %(time)s."
 
 #: gui/common/functions_utility.js:142
 msgctxt "map size"
@@ -108,15 +109,15 @@ msgstr "По умолчанию"
 msgid "A randomly selected map."
 msgstr "Случайная карта."
 
-#: gui/common/functions_utility.js:161
+#: gui/common/functions_utility.js:159
 msgid "Sorry, no description available."
 msgstr "К сожалению, описание недоступно."
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:203
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:207
+#: gui/common/functions_utility.js:205
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -325,43 +326,62 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Рыба"
 
-#: gui/common/network.js:6
+#: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "Неизвестная причина"
 
-#: gui/common/network.js:7
+#: gui/common/network.js:13
 msgid "Unexpected shutdown"
 msgstr "Неожиданная остановка"
 
-#: gui/common/network.js:8
+#: gui/common/network.js:14
 msgid "Incorrect network protocol version"
 msgstr "Неверная версия протокола"
 
-#: gui/common/network.js:9
+#: gui/common/network.js:15
 msgid "Game is loading, please try later"
 msgstr "Игра загружается, пожалуйста, попробуйте позже"
 
-#: gui/common/network.js:10
+#: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Игра уже началась, наблюдатели не разрешены"
 
-#: gui/common/network.js:11
+#: gui/common/network.js:17
+msgid "You have been kicked"
+msgstr "Вас отключили"
+
+#: gui/common/network.js:18
+msgid "You have been banned"
+msgstr "Вас заблокировали"
+
+#: gui/common/network.js:19
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Неверное значение %(id)s]"
 
-#: gui/common/network.js:20
-msgid "Lost connection to the server."
-msgstr "Соединение с сервером потеряно."
-
-#: gui/common/network.js:20
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/common/network.js:31
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Причина: %(reason)s."
 
-#: gui/common/network.js:21
+#: gui/common/network.js:32
+msgid "Lost connection to the server."
+msgstr "Соединение с сервером потеряно."
+
+#: gui/common/network.js:32
 msgid "Disconnected"
 msgstr "Соединение прервано"
+
+#: gui/common/network.js:80
+#, javascript-format
+msgid "Could not kick %(name)s."
+msgstr "Невозможно отключить %(name)s."
+
+#: gui/common/network.js:85
+#, javascript-format
+msgid "Could not ban %(name)s."
+msgstr "Невозможно заблокировать %(name)s."
 
 #: gui/common/settings.js:106
 msgctxt "aiDiff"
@@ -396,17 +416,17 @@ msgstr "Очень сложно"
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Без прекращения военных действий"
 
 #: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(minutes)s минуа"
+msgstr[1] "%(minutes)s минут(ы)"
+msgstr[2] "%(minutes)s минут(ы)"
+msgstr[3] "%(minutes)s минут(ы)"
 
 #: gui/common/settings.js:165
 msgctxt "map"
@@ -424,7 +444,7 @@ msgstr "Сценарий"
 
 #: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Нет"
 
 #: gui/common/settings.js:206
 msgid "Endless Game"
@@ -438,7 +458,7 @@ msgstr "Неограниченно"
 #: gui/common/settings.js:301 gui/common/settings.js:312
 #: gui/common/settings.js:323
 msgid "Unknown"
-msgstr ""
+msgstr "Неизвестно"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -788,7 +808,7 @@ msgstr "Всегда показывать время, оставшееся до 
 
 #: gui/options/options.js:17
 msgid "Persist Match Settings"
-msgstr ""
+msgstr "Сохранить настройки состязания"
 
 #: gui/options/options.js:17
 msgid ""
@@ -1099,7 +1119,7 @@ msgstr "Требуется более ранняя версия 0 A.D."
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr ""
+msgstr "Необходимы сохранения 0 A.D. версии %(requiredVersion)s, но у Вас имеются сохранения версии %(currentVersion)s."
 
 #: gui/savedgames/load.js:75
 #, javascript-format
@@ -1278,7 +1298,7 @@ msgstr "Собрано сокровищ"
 
 #: gui/summary/layout.js:83
 msgid "Loot"
-msgstr ""
+msgstr "Добыча"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
@@ -1332,15 +1352,15 @@ msgstr "Разведано\nкарты"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr ""
+msgstr "На пике"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr ""
+msgstr "В конце"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
-msgstr ""
+msgstr "Управление картой"
 
 #: gui/summary/layout.js:274
 msgid "Team total"
@@ -1653,7 +1673,7 @@ msgstr "Выбрать язык игры."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Воспроизвести предыдущие игры."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1792,13 +1812,13 @@ msgstr "[imgleft=\"constructionIcon\"]Данная игра находится �
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Игра может иметь проблемы с производительностью, особенно на больших картах и большим количеством юнитов."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]В этой версии обновлен алгоритм поиска пути с улучшенной производительностью, но он может содержать новые ошибки."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""

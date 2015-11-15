@@ -20,24 +20,25 @@ RallyPoint.prototype.AddPosition = function(x, z)
 RallyPoint.prototype.GetPositions = function()
 {
 	// Update positions for moving target entities
-	
+
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+
 	// We must not affect the simulation state here (modifications of the
 	// RallyPointRenderer are allowed though), so copy the state
 	var ret = [];
 	for (var i = 0; i < this.pos.length; i++)
 	{
 		ret.push(this.pos[i]);
-		
-		if (!this.data[i] || !this.data[i].target)
+
+		// Update the rallypoint coordinates if the target is alive
+		if (!this.data[i] || !this.data[i].target || !this.TargetIsAlive(this.data[i].target))
 			continue;
-			
-		if (this.data[i].command && this.data[i].command == "attack")
-		{
-			var cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
-			
-			if (!cmpBuildingAI.CheckTargetVisible(this.data[i].target) || !this.TargetIsAlive(this.data[i].target))
-				continue;
-		}
+		
+		// and visible
+		if (cmpRangeManager && cmpOwnership &&
+				cmpRangeManager.GetLosVisibility(this.data[i].target, cmpOwnership.GetOwner()) != "visible")
+			continue;
 
 		// Get the actual position of the target entity
 		var cmpPosition = Engine.QueryInterface(this.data[i].target, IID_Position);

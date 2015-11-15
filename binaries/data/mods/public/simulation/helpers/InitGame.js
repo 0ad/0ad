@@ -27,12 +27,13 @@ function PreInitGame()
 
 function InitGame(settings)
 {
-	// Map dependent initialisations of components (i.e. garrisoned units)
-	Engine.BroadcastMessage(MT_InitGame, {});
-
 	// No settings when loading a map in Atlas, so do nothing
 	if (!settings)
+	{
+		// Map dependent initialisations of components (i.e. garrisoned units)
+		Engine.BroadcastMessage(MT_InitGame, {});
 		return;
+	}
 
 	if (settings.ExploreMap)
 	{
@@ -66,6 +67,9 @@ function InitGame(settings)
 			cmpPlayer.SetResourceCounts(newResourceCounts);
 		}
 	}
+	// Map or player data (handicap...) dependent initialisations of components (i.e. garrisoned units)
+	Engine.BroadcastMessage(MT_InitGame, {});
+
 	let seed = settings.AISeed ? settings.AISeed : 0;
 	cmpAIManager.SetRNGSeed(seed);
 	cmpAIManager.TryLoadSharedComponent();

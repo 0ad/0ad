@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-10-02 09:52+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2015-11-11 04:16+0100\n"
+"PO-Revision-Date: 2015-11-11 09:45+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,7 +108,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Žádný"
 
-#: gui/session/menu.js:296 gui/session/messages.js:622
+#: gui/session/menu.js:296 gui/session/messages.js:641
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Spojenec"
@@ -117,7 +117,7 @@ msgstr "Spojenec"
 msgid "Neutral"
 msgstr "Neutrální"
 
-#: gui/session/menu.js:296 gui/session/messages.js:632
+#: gui/session/menu.js:296 gui/session/messages.js:651
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Nepřítel"
@@ -280,133 +280,154 @@ msgstr "Připojen k serveru."
 msgid "Connection to the server has been authenticated."
 msgstr "Spojení se serverem bylo ověřeno."
 
-#: gui/session/messages.js:272
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/session/messages.js:273
+#, javascript-format
+msgid "Reason: %(reason)s."
+msgstr ""
+
+#: gui/session/messages.js:274
 msgid "Connection to the server has been lost."
 msgstr "Spojení se serverem bylo ztraceno."
 
-#: gui/session/messages.js:272
+#: gui/session/messages.js:274
 msgid "The game has ended."
 msgstr "Hra skončila."
 
-#: gui/session/messages.js:409
+#: gui/session/messages.js:331
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr ""
+
+#: gui/session/messages.js:335
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr ""
+
+#: gui/session/messages.js:420
 msgid "Unknown player"
 msgstr "Neznámý hráč"
 
-#: gui/session/messages.js:417
+#: gui/session/messages.js:428
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s zahajuje návrat zpět ke hře."
 
-#: gui/session/messages.js:420
+#: gui/session/messages.js:431
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s opustil hru."
 
-#: gui/session/messages.js:423
+#: gui/session/messages.js:434
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s se znovu připojil ke hře."
 
-#: gui/session/messages.js:428
+#: gui/session/messages.js:437
+#, javascript-format
+msgid "Users: %(users)s"
+msgstr ""
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an enumeration.
+#: gui/session/messages.js:439 gui/session/messages.js:497
+msgid ", "
+msgstr ", "
+
+#: gui/session/messages.js:447
 msgid "You have been defeated."
 msgstr "Byl jste poražen."
 
-#: gui/session/messages.js:430
+#: gui/session/messages.js:449
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s byl poražen."
 
-#: gui/session/messages.js:438
+#: gui/session/messages.js:457
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Nyní jste spojencem %(player)s."
 
-#: gui/session/messages.js:440
+#: gui/session/messages.js:459
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Nyní jste ve válce s %(player)s."
 
-#: gui/session/messages.js:442
+#: gui/session/messages.js:461
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Nyní jste neutrální vůči %(player)s."
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:467
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s je nyní vaším spojencem."
 
-#: gui/session/messages.js:450
+#: gui/session/messages.js:469
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s je s vámi nyní ve válce."
 
-#: gui/session/messages.js:452
+#: gui/session/messages.js:471
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s je nyní vůči vám neutrální."
 
-#: gui/session/messages.js:468
+#: gui/session/messages.js:487
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr "%(amount)s %(resourceType)s"
 
-#: gui/session/messages.js:476
+#: gui/session/messages.js:495
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s a %(lastAmount)s"
 
-#. Translation: This comma is used for separating first to penultimate
-#. elements in an enumeration.
-#: gui/session/messages.js:478
-msgid ", "
-msgstr ", "
-
-#: gui/session/messages.js:483
+#: gui/session/messages.js:502
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s vám poslal %(amounts)s."
 
-#: gui/session/messages.js:496
+#: gui/session/messages.js:515
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Tvůj dobytek byl napaden %(attacker)s!"
 
-#: gui/session/messages.js:498
+#: gui/session/messages.js:517
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Byl jste napaden %(attacker)s!"
 
-#: gui/session/messages.js:524
+#: gui/session/messages.js:543
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:532
+#: gui/session/messages.js:551
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:540 gui/session/messages.js:541
+#: gui/session/messages.js:559 gui/session/messages.js:560
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:544
+#: gui/session/messages.js:563
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:552
+#: gui/session/messages.js:571
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:612 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:631 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Tým"
 
-#: gui/session/messages.js:654
+#: gui/session/messages.js:673
 msgid "Private"
 msgstr "Soukromý"
 
@@ -474,7 +495,7 @@ msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:185 gui/session/unit_actions.js:323
 #: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
-#: gui/session/unit_actions.js:552
+#: gui/session/unit_actions.js:546
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Zisk: %(gain)s"
@@ -725,13 +746,13 @@ msgstr "VÍTĚZSTVÍ!"
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Ano"
+msgid "No"
+msgstr "Ne"
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
-msgid "No"
-msgstr "Ne"
+msgid "Yes"
+msgstr "Ano"
 
 #: gui/session/session.js:571
 msgctxt "replayFinished"
@@ -793,11 +814,11 @@ msgstr "Klepněte pravým tlačítkem myši pro nastavení jako cílový obchodn
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Nynější posádka: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:550
+#: gui/session/unit_actions.js:544
 msgid "Right-click to establish a default route for new traders."
 msgstr "Klepněte pravým tlačítkem myši pro zřízení výchozí cesty pro nové obchodníky."
 
-#: gui/session/unit_actions.js:554
+#: gui/session/unit_actions.js:548
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Očekávaný zisk: %(gain)s"
@@ -920,7 +941,7 @@ msgstr "Volby"
 msgid "Resign"
 msgstr "Vzdát se"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):350
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):351
 msgid "Exit"
 msgstr "Ukončit"
 
@@ -928,75 +949,75 @@ msgstr "Ukončit"
 msgid "Find idle worker"
 msgstr "Najít nečinného dělníka"
 
-#: gui/session/session.xml:(caption):60
+#: gui/session/session.xml:(caption):61
 msgid "Control all units"
 msgstr "Ovládat všechny jednotky"
 
-#: gui/session/session.xml:(caption):70
+#: gui/session/session.xml:(caption):71
 msgid "Change perspective"
 msgstr "Změnit pohled"
 
-#: gui/session/session.xml:(caption):77
+#: gui/session/session.xml:(caption):78
 msgid "Display selection state"
 msgstr "Zobrazit stav výběru"
 
-#: gui/session/session.xml:(caption):82
+#: gui/session/session.xml:(caption):83
 msgid "Pathfinder overlay"
 msgstr "Vrstva pro hledání trasy"
 
-#: gui/session/session.xml:(caption):89
+#: gui/session/session.xml:(caption):90
 msgid "Obstruction overlay"
 msgstr "Vrstva s překážkami"
 
-#: gui/session/session.xml:(caption):96
+#: gui/session/session.xml:(caption):97
 msgid "Unit motion overlay"
 msgstr "Vrstva s pohybem jednotky"
 
-#: gui/session/session.xml:(caption):103
+#: gui/session/session.xml:(caption):104
 msgid "Range overlay"
 msgstr "Vrstva s dostřelem"
 
-#: gui/session/session.xml:(caption):110
+#: gui/session/session.xml:(caption):111
 msgid "Bounding box overlay"
 msgstr "Vrstva s okrajovými rámy"
 
-#: gui/session/session.xml:(caption):117
+#: gui/session/session.xml:(caption):118
 msgid "Restrict camera"
 msgstr "Omezit kameru"
 
-#: gui/session/session.xml:(caption):126
+#: gui/session/session.xml:(caption):127
 msgid "Reveal map"
 msgstr "Odhalit mapu"
 
-#: gui/session/session.xml:(caption):134
+#: gui/session/session.xml:(caption):135
 msgid "Enable time warp"
 msgstr "Povolit zrychlení času"
 
-#: gui/session/session.xml:(caption):144
+#: gui/session/session.xml:(caption):145
 msgid "Promote selected units"
 msgstr "Povýšit vybrané jednotky"
 
-#: gui/session/session.xml:(caption):151
+#: gui/session/session.xml:(caption):152
 msgid "Hierarchical pathfinder overlay"
 msgstr "Hierarchická vrstva pro hledání trasy"
 
-#: gui/session/session.xml:(caption):185
+#: gui/session/session.xml:(caption):186
 msgid "Game Paused"
 msgstr "Hra pozastavena"
 
-#: gui/session/session.xml:(caption):188
+#: gui/session/session.xml:(caption):189
 msgid "Click to Resume Game"
 msgstr "Klepněte pro pokračování ve hře"
 
-#: gui/session/session.xml:(caption):223
+#: gui/session/session.xml:(caption):224
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: gui/session/session.xml:(caption):229
+#: gui/session/session.xml:(caption):230
 msgid "Team Only"
 msgstr "Jen tým"
 
-#: gui/session/session.xml:(caption):233
+#: gui/session/session.xml:(caption):234
 msgid "Send"
 msgstr "Poslat"
 

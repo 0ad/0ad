@@ -1,0 +1,88 @@
+<skeletons>
+	<standard_skeleton title="rhino" id="rhino">
+		<bone name="rhino">
+			<bone name="spine1">
+				<bone name="spine2">
+					<bone name="neck">
+						<bone name="head">
+							<bone name="ear_L"></bone>
+							<bone name="ear_R"></bone>
+						</bone>
+					</bone>				
+					<bone name="shoulder_L">
+						<bone name="leg_upper_L">
+							<bone name="leg_L">
+								<bone name="foot_front_L"></bone>
+							</bone>
+						</bone>
+					</bone>
+					<bone name="shoulder_R">
+						<bone name="leg_upper_R">
+							<bone name="leg_R">
+								<bone name="foot_front_R"></bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="Belly"></bone>	
+			</bone>		
+			<bone name="tail1">
+				<bone name="tail2"></bone>			    
+			</bone>
+			<bone name="thigh_L">
+				<bone name="leg_back_L">
+					<bone name="foot_back_L"></bone>
+				</bone>
+			</bone>
+			<bone name="thigh_R">
+				<bone name="leg_back_R">
+					<bone name="foot_back_R"></bone>
+				</bone>
+			</bone>			
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="rhino" target="rhino">
+		<identifier><root>rhino</root></identifier>
+		<bone name="rhino"><target>rhino</target>
+			<bone name="spine1"><target>spine1</target>
+				<bone name="spine2"><target>spine2</target>
+					<bone name="neck"><target>neck</target>
+						<bone name="head"><target>head</target>
+							<bone name="ear_L"><target>ear_L</target></bone>
+							<bone name="ear_R"><target>ear_R</target></bone>
+						</bone>
+					</bone>				
+					<bone name="shoulder_L"><target>shoulder_L</target>
+						<bone name="leg_upper_L"><target>leg_upper_L</target>
+							<bone name="leg_L"><target>leg_L</target>
+								<bone name="foot_front_L"><target>foot_front_L</target></bone>
+							</bone>
+						</bone>
+					</bone>
+					<bone name="shoulder_R"><target>shoulder_R</target>
+						<bone name="leg_upper_R"><target>leg_upper_R</target>
+							<bone name="leg_R"><target>leg_R</target>
+								<bone name="foot_front_R"><target>foot_front_R</target></bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+				<bone name="Belly"><target>Belly</target></bone>	
+			</bone>		
+			<bone name="tail1"><target>tail1</target>
+				<bone name="tail2"><target>tail2</target></bone>			    
+			</bone>
+			<bone name="thigh_L"><target>thigh_L</target>
+				<bone name="leg_back_L"><target>leg_back_L</target>
+					<bone name="foot_back_L"><target>foot_back_L</target></bone>
+				</bone>
+			</bone>
+			<bone name="thigh_R"><target>thigh_R</target>
+				<bone name="leg_back_R"><target>leg_back_R</target>
+					<bone name="foot_back_R"><target>foot_back_R</target></bone>
+				</bone>
+			</bone>			
+		</bone>
+	</skeleton>
+</skeletons>
