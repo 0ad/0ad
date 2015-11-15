@@ -5830,8 +5830,10 @@ UnitAI.prototype.SetFacePointAfterMove = function(val)
 
 UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 {
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!ents.length)
+		return false;
 
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return false;
 
@@ -5843,10 +5845,31 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
-	return this.RespondToTargetedEntities(
-		ents.filter(function (v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
-		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); })
-	);
+	let entsByPreferences = {};
+	let preferences = [];
+	for (let ent of ents)
+	{
+		if (!attackfilter(ent))
+			continue;
+		let pref = cmpAttack.GetPreference(ent);
+		if (pref === null || pref === undefined)
+			pref = 999;
+		if (!entsByPreferences[pref])
+		{
+			preferences.push(pref);
+			entsByPreferences[pref] = [ent];
+		}
+		else
+			entsByPreferences[pref].push(ent);
+	}
+	if (!preferences.length)
+		return false;
+	preferences.sort((a, b) => a - b);
+	for (let pref of preferences)
+		if (this.RespondToTargetedEntities(entsByPreferences[pref]))
+ 			return true;
+
+	return false;
 };
 
 /**
