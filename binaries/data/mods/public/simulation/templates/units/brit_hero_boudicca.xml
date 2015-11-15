@@ -2,7 +2,8 @@
 <Entity parent="template_unit_hero_cavalry_javelinist">
   <Auras>
     <Aura1>
-      <Type>global</Type>
+      <Type>range</Type>
+      <Radius>60</Radius>
       <Affects>Champion</Affects>
       <Modifications>
         <UnitMotion.WalkSpeed> <Multiply>1.25</Multiply> </UnitMotion.WalkSpeed>
@@ -12,6 +13,7 @@
       </Modifications>
       <AuraName>Champion Army</AuraName>
       <AuraDescription>+5 Attack, +2 Capture and +25% Speed for Champion Units.</AuraDescription>
+      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
     </Aura1>
   </Auras>
   <Footprint replace="">
