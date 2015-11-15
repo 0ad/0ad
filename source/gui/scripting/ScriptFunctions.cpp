@@ -904,7 +904,10 @@ void StartJsTimer(ScriptInterface::CxPrivate* pCxPrivate, unsigned int slot)
 	ONCE(InitJsTimers(*(pCxPrivate->pScriptInterface)));
 
 	if (slot >= MAX_JS_TIMERS)
+	{
 		LOGERROR("Exceeded the maximum number of timer slots for scripts!");
+		return;
+	}
 
 	js_start_times[slot].SetFromTimer();
 }
@@ -912,7 +915,10 @@ void StartJsTimer(ScriptInterface::CxPrivate* pCxPrivate, unsigned int slot)
 void StopJsTimer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int slot)
 {
 	if (slot >= MAX_JS_TIMERS)
+	{
 		LOGERROR("Exceeded the maximum number of timer slots for scripts!");
+		return;
+	}
 
 	TimerUnit now;
 	now.SetFromTimer();
