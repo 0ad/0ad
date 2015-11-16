@@ -111,7 +111,7 @@ void CList::SetupText()
 		SGUIText* text = new SGUIText();
 
 		*text = GetGUI()->GenerateText(pList->m_Items[i], font, width, buffer_zone, this);
-		text->
+
 		m_ItemsYPositions[i] = buffered_y;
 		buffered_y += text->m_Size.cy;
 
