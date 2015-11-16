@@ -5847,14 +5847,15 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 
 	let entsByPreferences = {};
 	let preferences = [];
+	let entsWithoutPref = [];
 	for (let ent of ents)
 	{
 		if (!attackfilter(ent))
 			continue;
 		let pref = cmpAttack.GetPreference(ent);
 		if (pref === null || pref === undefined)
-			pref = 999;
-		if (!entsByPreferences[pref])
+			entsWithoutPref.push(ent);
+		else if (!entsByPreferences[pref])
 		{
 			preferences.push(pref);
 			entsByPreferences[pref] = [ent];
@@ -5862,14 +5863,16 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 		else
 			entsByPreferences[pref].push(ent);
 	}
-	if (!preferences.length)
-		return false;
-	preferences.sort((a, b) => a - b);
-	for (let pref of preferences)
-		if (this.RespondToTargetedEntities(entsByPreferences[pref]))
- 			return true;
 
-	return false;
+	if (preferences.length)
+	{
+		preferences.sort((a, b) => a - b);
+		for (let pref of preferences)
+			if (this.RespondToTargetedEntities(entsByPreferences[pref]))
+				return true;
+	}
+
+	return this.RespondToTargetedEntities(entsWithoutPref);
 };
 
 /**
