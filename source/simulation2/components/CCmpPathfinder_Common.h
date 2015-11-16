@@ -167,7 +167,7 @@ public:
 			if (passability.m_Clearance > max)
 				max = passability.m_Clearance;
 
-		return max;
+		return max + Pathfinding::CLEARANCE_EXTENSION_RADIUS;
 	}
 
 	virtual const Grid<NavcellData>& GetPassabilityGrid();

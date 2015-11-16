@@ -37,10 +37,10 @@ void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 	// Since this is a very complicated subject, check out logs on 31/10/2015 for more detailled info.
 	// or ask wraitii about it.
 	// If the short-range pathfinder is sufficiently changed, this could become unnecessary and thus removed.
-	// A side effect is that the basic clearance has been set to 0.8, so removing this line should be done
+	// A side effect is that the basic clearance has been set to 0.8, so removing this constant should be done
 	// in parallel with setting clearance back to 1 for the default passability class (though this isn't strictly necessary).
 	// Also: the code detecting foundation obstruction in CcmpObstructionManager had to be changed similarly.
-	entity_pos_t rasterClearance = clearance + entity_pos_t::FromInt(1);
+	entity_pos_t rasterClearance = clearance + Pathfinding::CLEARANCE_EXTENSION_RADIUS;
 	
 	// Get the bounds of cells that might possibly be within the shape
 	// (We'll then test each of those cells more precisely)

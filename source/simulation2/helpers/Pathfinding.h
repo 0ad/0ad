@@ -133,6 +133,12 @@ namespace Pathfinding
 	const entity_pos_t GOAL_DELTA = NAVCELL_SIZE/8;
 
 	/**
+	 * To make sure the long-range pathfinder is more strict than the short-range one,
+	 * we need to slightly over-rasterize. So we extend the clearance radius by 1.
+	 */
+	const entity_pos_t CLEARANCE_EXTENSION_RADIUS = fixed::FromInt(1);
+
+	/**
 	 * Compute the navcell indexes on the grid nearest to a given point
 	 * w, h are the grid dimensions, i.e. the number of navcells per side
 	 */
