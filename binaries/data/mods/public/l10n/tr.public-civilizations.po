@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-11-12 18:12+0000\n"
+"PO-Revision-Date: 2015-11-13 17:25+0000\n"
 "Last-Translator: utkugun <utkugundogan@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -252,7 +252,7 @@ msgstr "Tiyatro"
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr "Bu Helenleştirme medeniyet ikramiyesi. Bir Theatron yapısı bölgedeki diğer tüm binalara %25 etki eder."
+msgstr "Bu Helenleştirme uygarlık ödülü. Bir Theatron yapısı bölgedeki diğer tüm binalara %25 etki eder."
 
 #: simulation/data/civs/athen.jsonStructures[0].History
 #: simulation/data/civs/mace.jsonStructures[0].History
@@ -338,7 +338,7 @@ msgstr "Kelt dini ve Druidlik onların savaşçı zihniyet ilham verir."
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
-msgstr "Teknoloji hız bonusu"
+msgstr "Teknoloji hız ödülü"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
@@ -416,7 +416,7 @@ msgstr "Britonlar, vücutlarını etkileri oldukça korkunç olan dövme şeklin
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Kulelerde konuşlandırılmış birliklerin yükseklik bonusu artar."
+msgstr "Kulelerde konuşlandırılmış birliklerin yükseklik ödülü artar."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
@@ -681,7 +681,7 @@ msgstr "Hiç kimse tüccarlığı Kartacalılardan daha iyi bilmezdi. Antik dün
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr "Halk Merkezi, Tapınaklar ve evler -25% oluşturma süresi."
+msgstr "Şehir Merkezi, Tapınaklar ve evler -25% oluşturma süresi."
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
@@ -932,7 +932,7 @@ msgid ""
 "metalworking, agriculture, trade and even road engineering. With heavy "
 "infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
 "of conquest and Rome's authoritarian rule."
-msgstr ""
+msgstr "Galyalılar kıta Avrupa'sının Kelt kabileleriydi. Bir tür rahip sınıfı olan Druidler tarafından yönetilmektelerdi ve ileri metal işçiliği, tarım, ticaret ve hatta yol mühendisliğini de içeren sofistike bir kültürleri vardı. Ağır piyade ve süvarileriyle, Galyalı askerler cesur bir şekilde Sezar'ın fetih seferini ve Roma'nın otoriter yönetimine engel oldular. "
 
 #: simulation/data/civs/iber.jsonName
 msgid "Iberians"
@@ -985,7 +985,7 @@ msgid ""
 "to serve as auxiliaries to their armies in foreign wars. Carthage is the "
 "most well known example, and we have evidence of them serving in such a "
 "capacity in Aquitania."
-msgstr ""
+msgstr "İberyalılar dış savaşlarda başka uluslara paralı asker biçiminde yardımcı birlik olarak katılmalarıyla uzun süredir biliniyorlardı. Kartaca bunun en çok bilinen örneği, ve onların bu şekilde Akuitanya'da görevli olduklarının kanıtı elimizde mevcuttur."
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -1034,7 +1034,7 @@ msgid ""
 "Iberian tribesmen were noted for wrapping bundles of grass about the shafts "
 "of their throwing spears, soaking that in some sort of flammable pitch, then"
 " setting it afire just before throwing."
-msgstr ""
+msgstr "İberyalı kabile üyeleri mızraklarının saplarına ot yumakları bağlamalarıyla biliniyorlardı, bunları önce bir tür yanabilir zifte batırıp, tam fırlatmdan önce ateşe veriyorlardı."
 
 #: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Description
 msgid "Metal costs for units and technologies reduced by 50%."
@@ -1175,11 +1175,11 @@ msgid ""
 "The Greeks were highly successful in Hellenizing various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "Yunanlılar birçok yabancıyı Helenleştirmek konusunda çok başarılıydılar. Helenik Çağ'da, Yunanca İspanya'dan Hindistan'a kadar Antik Dünya'nın ortak diliydi."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "+15% tribute and trade bonus on metal."
-msgstr "Metalde +15% haraç ve ticaret bonusu."
+msgstr "Metalde +15% haraç ve ticaret ödülü."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1289,7 +1289,7 @@ msgstr ""
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers have double Health and double default arrows."
-msgstr "Halk Merkezleri iki katı Sağlığa ve iki katı korunmaya sahiptir."
+msgstr "Şehir Merkezleri iki katı Sağlığa ve iki katı korunmaya sahiptir."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
@@ -1354,7 +1354,7 @@ msgstr "Helenistik bir krallık Yunan şehir-devletleriyle sınır komşusu oldu
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%. Build limit: 1."
-msgstr "Bu Helenleştirme medeniyet ikramiyesi. Bir Theatron yapısı bölgedeki diğer tüm binalara %25 etki eder. Yapı limiti: 1."
+msgstr "Bu Helenleştirme uygarlık ödülü Bir Theatron yapısı bölgedeki diğer tüm binalara %25 etki eder. Yapı limiti: 1."
 
 #: simulation/data/civs/mace.jsonStructures[1].Name
 #: simulation/data/civs/ptol.jsonStructures[0].Name
@@ -1406,7 +1406,7 @@ msgstr "Mauryalılar"
 msgid ""
 "Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
 "usual 300)."
-msgstr "Mauryalılar %+10 nüfus kapasite bonusuna sahiptir (yani, 300 nufüs kapasitesi 330 olur)."
+msgstr "Mauryalılar %+10 nüfus kapasite ödülüne sahiptir (yani, 300 nufüs kapasitesi 330 olur)."
 
 #: simulation/data/civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1600,7 +1600,7 @@ msgstr ""
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr "Persliler +10% başket nüfusu bonusuna sahip (Örn : Genelde 300 olan başkent nüfusu 330 olur)."
+msgstr "Persliler +10% başket nüfusu ödülüne sahip (Örn : Genelde 300 olan başkent nüfusu 330 olur)."
 
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Great King's Levy"
@@ -2007,7 +2007,7 @@ msgid ""
 "Maximum of 1 built. All Special Technologies and some regular city-phase "
 "technologies are researched here. Building one reduces the cost of all other"
 " remaining technologies by 10%."
-msgstr ""
+msgstr "En fazla 1 yapı. Tüm Özel Teknolojiler ve bazı düzenli şehir aşaması teknolojileri burada araştırılmıştır. Bir yapı diğer tüm kalan teknolojilerin maliyetini  %10  azaltır."
 
 #: simulation/data/civs/ptol.jsonStructures[1].Name
 msgid "Stratópedo Misthophóron"
@@ -2068,7 +2068,7 @@ msgstr ""
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr "Roma topraklarında savaşan herhangi bir Roma vatandaş-askeri zırhta değişken olarak %+10 ikramiye kazanır."
+msgstr "Roma topraklarında savaşan herhangi bir Roma vatandaş-askeri zırhta değişken olarak %+10 ödül kazanır."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"

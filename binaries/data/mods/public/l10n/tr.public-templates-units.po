@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-11-13 00:16+0000\n"
+"PO-Revision-Date: 2015-11-13 12:24+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -300,7 +300,7 @@ msgstr "Kahraman Gücü"
 msgid ""
 "When garrisoned in a structure, the hero gives it a bonus of +2 capture "
 "points recovery rate."
-msgstr "Bir yapıda garnizon kurulduğunda, kahramana +2 yakalama kurtarma oranı ikramiyesi vermektedir."
+msgstr "Bir yapıda garnizon kurulduğunda, kahramana +2 yakalama kurtarma oranı ödülü vermektedir."
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -508,7 +508,7 @@ msgstr "Kısa ömürlü toplayıcı. Madencilik ve kerestecilik daha verimlidir.
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr ""
+msgstr "Kendi ve müttefik pazarların arasında ticaret yapar."
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -1128,7 +1128,7 @@ msgstr "Taktikci Gücü"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:15
 msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr ""
+msgstr "Tüm müttefik birimler görüş alanları içinde +2 Saldırı ve +1 Yakalamaya sahiptir."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Hannibal Barca"
@@ -1213,7 +1213,7 @@ msgstr "Seḫīr Romaḥ"
 
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:7
 msgid "Bonused vs. Ranged Units."
-msgstr "İkramiyeli vs. Sıralı Birimler."
+msgstr "Ödüllü vs. Sıralı Birimler."
 
 #: simulation/templates/units/cart_ship_bireme.xml:9
 #: simulation/templates/units/ptol_ship_bireme.xml:5
@@ -1238,7 +1238,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Rıhtım arasında ticaret. Garnizona ek kazanç için gemide bir Tüccar (+20% her konuşlanma için). Sudaki kârlı hazineleri toplayın. Kartacalılar %+25 deniz ticaret ikramiyesi sağlar."
+msgstr "Rıhtım arasında ticaret. Garnizona ek kazanç için gemide bir Tüccar (+20% her konuşlanma için). Sudaki kârlı hazineleri toplayın. Kartacalılar %+25 deniz ticaret ödülü sağlar."
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
 msgid "Quinquereme"
@@ -1316,7 +1316,7 @@ msgstr "Britomartis"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:14
 msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr ""
+msgstr "Onun gücüyle tüm birimler için +2 Saldırı ve +1 Yakalama sağlar"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:20
 msgid "Vercingetorix"
@@ -1336,7 +1336,7 @@ msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:21
 msgid "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Özel: Alevli ciritler, Binalara karşı kullanışlı."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1471,7 +1471,7 @@ msgstr "Mégās Aléxandros"
 
 #: simulation/templates/units/mace_hero_alexander.xml:34
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr "\"Herocide\" İkramiye: +20% saldırı ikramiyesi vs. düşman Atlar."
+msgstr "\"Herocide\" Ödülü: +20% saldırı ödülü vs. düşman Atlar."
 
 #: simulation/templates/units/mace_hero_craterus.xml:6
 msgid "Crateros"
@@ -1499,7 +1499,7 @@ msgstr "Dēmḗtrios Poliorkḗtēs"
 
 #: simulation/templates/units/mace_hero_philip.xml:13
 msgid "+5 Attack and +2 Capture for Champion Units."
-msgstr ""
+msgstr "Şampiyon Birimler için +5 Saldırı ve +2 Yakalama."
 
 #: simulation/templates/units/mace_hero_philip.xml:19
 msgid "Philip II of Macedon"
@@ -1628,7 +1628,7 @@ msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
 msgid "Deals Trample Damage."
-msgstr ""
+msgstr "Ezilmiş Hasarlı Fiyatlar."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1684,7 +1684,7 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr ""
+msgstr "Kahraman Güç: TBD.\nÖzel Kahraman: \"Ashoka Fermanları\" - Ashoka Ferman desteği ile Ashoka'nın yaşamı boyunca inşa yapılır."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
@@ -1699,7 +1699,7 @@ msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr ""
+msgstr "Özel Kahraman: \"İyileştirici\" - Birimleri hızlıca iyileştirir.\nÖzel Kahraman: \"Öğretmen\" - İnşa araştırmaları ve eğitimi %+50 daha hızlı.\nÖzel Kahraman: \"Filozof\" - Yalnız çanakyaya 4 özel teknoloji araştırması araştır."
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1827,7 +1827,7 @@ msgstr "Babiruviya Ratha"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:15
 msgid "Causes trample damage to enemy units."
-msgstr ""
+msgstr "Saldırı anında düşmana fazladan zarar verir."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -1919,7 +1919,7 @@ msgstr "Darayavahush I"
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
-msgstr ""
+msgstr "Kahraman Güç: \"İmparatorluğun Tüccarı.\" Yaşam boyunca kârlı ticareti arttırır (TBD)."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2045,7 +2045,7 @@ msgstr "Tamkarum Arami"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Kendi pazar ve müttefikleri arasındaki ticaret kaynakları. Perslerin %+25 daha fazla kara ticaret ikramiyesi vardır."
+msgstr "Kendi pazar ve müttefikleri arasındaki ticaret kaynakları. Perslerin %+25 daha fazla kara ticaret ödülü vardır."
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 #: simulation/templates/units/sele_cavalry_archer_b.xml:6
@@ -2120,7 +2120,7 @@ msgstr "Kleopatra H' Philopator"
 msgid ""
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
 "vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "\"Yoldaş\" Güç (TBD): Gördüğü müttefiklerin kahramanlığını arttırır. Düşman kahramanlarının etkinliğini azaltır."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"

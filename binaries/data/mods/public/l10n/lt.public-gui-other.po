@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Donatas Kičas <donatas.kicas@outlook.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-14 18:39+0000\n"
+"Last-Translator: Donatas Kičas <donatas.kicas@outlook.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -332,7 +333,7 @@ msgstr ""
 
 #: gui/common/network.js:17
 msgid "You have been kicked"
-msgstr ""
+msgstr "Jūs buvote išmestas"
 
 #: gui/common/network.js:18
 msgid "You have been banned"
@@ -351,7 +352,7 @@ msgstr ""
 
 #: gui/common/network.js:32
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "Prarastas ryšys su serveriu."
 
 #: gui/common/network.js:32
 msgid "Disconnected"
@@ -375,27 +376,27 @@ msgstr ""
 #: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Labai Lengvas"
 
 #: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Lengvas"
 
 #: gui/common/settings.js:118
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Normalus"
 
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Sunkus"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Labai Sunkus"
 
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
@@ -651,13 +652,13 @@ msgstr ""
 
 #: gui/common/tooltips.js:410
 msgid "Heal:"
-msgstr ""
+msgstr "Gydyti:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
 #: gui/common/tooltips.js:413
 msgid "HP"
-msgstr ""
+msgstr "GT"
 
 #: gui/common/tooltips.js:436
 #, javascript-format
@@ -1074,11 +1075,11 @@ msgstr "Techninė informacija"
 
 #: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
-msgstr ""
+msgstr "Instrukcija"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
-msgstr ""
+msgstr "Nerasta išsaugotų žaidimų"
 
 #: gui/savedgames/load.js:51
 msgid "This saved game may not be compatible:"
@@ -1093,7 +1094,7 @@ msgstr ""
 
 #: gui/savedgames/load.js:61
 msgid "It needs an older version of 0 A.D."
-msgstr ""
+msgstr "Reikalinga senesnė 0 A.D. versija"
 
 #: gui/savedgames/load.js:65
 #, javascript-format
@@ -1121,11 +1122,11 @@ msgstr ""
 
 #: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "Ar norite tęsti?"
 
 #: gui/savedgames/load.js:89
 msgid "Warning"
-msgstr ""
+msgstr "Įspėjimas"
 
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
@@ -1139,7 +1140,7 @@ msgstr ""
 
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:91
 msgid "DELETE"
-msgstr ""
+msgstr "PAŠALINTI"
 
 #: gui/savedgames/save.js:61
 msgid "Saved game will be permanently overwritten, are you sure?"
@@ -1171,7 +1172,7 @@ msgstr ""
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
 #: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):105
 msgid "Player name"
-msgstr ""
+msgstr "Žaidėjo vardas"
 
 #: gui/summary/layout.js:5
 msgid "Economy score"
@@ -1235,7 +1236,7 @@ msgstr "Darbininkas"
 
 #: gui/summary/layout.js:52
 msgid "Cavalry"
-msgstr ""
+msgstr "Kavalerija"
 
 #: gui/summary/layout.js:53
 msgid "Champion"
@@ -1247,7 +1248,7 @@ msgstr "Laivynas"
 
 #: gui/summary/layout.js:56
 msgid "Traders"
-msgstr ""
+msgstr "Pirkliai"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
@@ -1374,12 +1375,12 @@ msgstr "Uždaryti"
 #: gui/locale/locale_advanced.xml:(caption):14
 #: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
-msgstr ""
+msgstr "Kalba"
 
 #: gui/locale/locale.xml:(caption):17
 #: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr ""
+msgstr "Kalba:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special variant preferences that the user wants to see in their
@@ -1403,11 +1404,11 @@ msgstr ""
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
-msgstr ""
+msgstr "Sutikti"
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "Šalis:"
 
 #: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
@@ -1720,7 +1721,7 @@ msgstr ""
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
-msgstr ""
+msgstr "Išsaugoti Žaidimą"
 
 #: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
@@ -1748,7 +1749,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):63
 msgid "Score"
-msgstr ""
+msgstr "Rezultatas"
 
 #: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
@@ -1760,11 +1761,11 @@ msgstr "Vienetai"
 
 #: gui/summary/summary.xml:(caption):84
 msgid "Resources"
-msgstr ""
+msgstr "Ištekliai"
 
 #: gui/summary/summary.xml:(caption):91
 msgid "Market"
-msgstr ""
+msgstr "Turgus"
 
 #: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
@@ -1834,7 +1835,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr ""
+msgstr "KAREIVINĖS"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
@@ -1960,7 +1961,7 @@ msgstr ""
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
-msgstr ""
+msgstr "AMBASADOS"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
@@ -2456,15 +2457,15 @@ msgstr "- Galimi Maurjams, Ptolemėjams, Seleukidams ir Kartaginiečiams."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "BANGINIAI"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "-Vandenyno išteklis."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "-2000 Maisto."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
