@@ -27,7 +27,7 @@
 
 
 CList::CList()
-	: m_Modified(false)
+	: m_Modified(false), m_PrevSelectedItem(-1), m_LastItemClickTime(0)
 {
 	// Add sprite_disabled! TODO
 
@@ -111,7 +111,7 @@ void CList::SetupText()
 		SGUIText* text = new SGUIText();
 
 		*text = GetGUI()->GenerateText(pList->m_Items[i], font, width, buffer_zone, this);
-
+		text->
 		m_ItemsYPositions[i] = buffered_y;
 		buffered_y += text->m_Size.cy;
 
@@ -216,6 +216,11 @@ void CList::HandleMessage(SGUIMessage& Message)
 			CStrW soundPath;
 			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
 				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+
+			if (timer_Time() - m_LastItemClickTime < SELECT_DBLCLICK_RATE && set == m_PrevSelectedItem)
+				this->SendEvent(GUIM_MOUSE_DBLCLICK_LEFT_ITEM, "mouseleftdoubleclickitem");
+			m_LastItemClickTime = timer_Time();
+			m_PrevSelectedItem = set;
 		}
 		break;
 	}
