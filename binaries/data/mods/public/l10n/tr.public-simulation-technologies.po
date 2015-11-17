@@ -11,15 +11,15 @@
 # receb, 2014
 # redbullah <redbullah@gmail.com>, 2014
 # Sinan Özgün <ozgunsinan@gmail.com>, 2014
-# utkugun <utkugundogan@gmail.com>, 2014
+# utkugun <utkugundogan@gmail.com>, 2014-2015
 # Volkan Gezer <volkangezer@gmail.com>, 2014
 # yakup <mutouk@yandex.ru>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:17+0100\n"
-"PO-Revision-Date: 2015-11-12 23:53+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"PO-Revision-Date: 2015-11-15 19:15+0000\n"
+"Last-Translator: utkugun <utkugundogan@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1266,7 +1266,7 @@ msgstr "Şehir Durumu"
 #: simulation/data/technologies/phase_city.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "4 yeni Şehir Aşaması yapısı gerekli (Duvarlar ve Sivil Merkezler hariç)."
+msgstr "4 yeni Şehir Aşaması yapısı gerekli (Duvarlar ve Şehir Merkezleri hariç)."
 
 #: simulation/data/technologies/phase_city.jsonspecificName.mace
 #: simulation/data/technologies/phase_city.jsonspecificName.spart
@@ -1279,14 +1279,14 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Kalabalık bir kasabadan harikalar ve modern teknoloji ile dolu gerçek bir metropole gelişir. Bu \"Gümüş Baykuşlar\" bonusu ile metal toplama hızının arttığı Atinalı şehir aşamasıdır."
+msgstr "Kalabalık bir kasabadan harikalar ve modern teknoloji ile dolu gerçek bir metropole gelişir. Bu \"Gümüş Baykuşlar\" ödülü ile metal toplama hızının arttığı Atinalı şehir aşamasıdır."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers."
-msgstr "Daha çok bina ve ünite seçeneği sağlayan Şehir Aşaması'na ilerle. Halk Merkezleri için arazi alanı %+50 artar. Gümüş Baykuşlar medeniyet bonusu tüm işçiler için %+10 metal toplama hızı sağlar."
+msgstr "Daha çok bina ve ünite seçeneği sağlayan Şehir Aşaması'na ilerle. Şehir Merkezleri için arazi alanı %+50 artar. Gümüş Baykuşlar uygarlık ödülü tüm işçiler için %+10 metal toplama hızı sağlar."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1297,7 +1297,7 @@ msgstr "Küçük köyden kalabalık kasabaları geliştir, hızlıca genişmeye 
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%"
-msgstr "Daha çok bina ve birim çeşidi sağlayan Kasaba Aşaması'na ilerle. Halk Merkezleri'nin arazi alanı %+30 artar."
+msgstr "Daha çok bina ve birim çeşidi sağlayan Kasaba Aşaması'na ilerle. Şehir Merkezleri'nin arazi alanı %+30 artar."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1321,14 +1321,14 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Ufak bir köyden genişlemeye hazır, canlı bir kasabaya gelişir. Bu Atena kasaba aşamasıdır, bu aşamada metal toplama oranları 'Gümüş Baykuşlar' bonusu sayesinde artar."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
-msgstr "Daha çok bina ve birim seçeneği sağlayan Kasaba Aşaması'na ilerle. Halk Merkezleri için arazi alanı %+30 artar. Gümüş Baykuşlar medeniyet bonusu tüm işçiler için %+10 metal toplama hızı sağlar."
+msgstr "Daha çok bina ve birim seçeneği sağlayan Kasaba Aşaması'na ilerle. Şehir Merkezleri için arazi alanı %+30 artar. Gümüş Baykuşlar uygarlık ödülü tüm işçiler için %+10 metal toplama hızı sağlar."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1343,7 +1343,7 @@ msgstr "Devlet ya da kabile genellikle ziyafetler için ve yabancı elçileri a�
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Medeniyet Merkezleri nüfusu +5 arttırır."
+msgstr "Şehir Merkezleri nüfusunu +5 arttırır."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1580,7 +1580,7 @@ msgstr "Tüccara +25% Yürüyüş Hızı, ticaret gelirleri hızlıca artar."
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr ""
+msgstr "El sanatlarındaki ilerleme ticaret karını artırır."
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
@@ -1654,7 +1654,7 @@ msgstr "Tersanelerin toplu gemi üretim hızını arttırır."
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
-msgstr "Tersane toplu üretim hızı bonusu."
+msgstr "Tersane toplu üretim hızı ödülü."
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
@@ -1711,7 +1711,7 @@ msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr ""
+msgstr "Ticaret ve yolculuklar sayesinde insanlar topraklarının sınırların ötesini gezdiler ve keşiflerini paylaşmak ve kaydetmek için haritalar yaptılar."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid "Player sees what his allies see."
@@ -1952,7 +1952,7 @@ msgstr "Tersanelerdeki toplu gemi üretim hızını gözle görülür derecede a
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
-msgstr "Tersane görev tamamlama hız ikramiyesi arttı."
+msgstr "Tersane görev tamamlama hız ödülü arttı."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"

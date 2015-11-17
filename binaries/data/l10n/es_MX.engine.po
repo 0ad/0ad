@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-07-06 00:00+0000\n"
+"PO-Revision-Date: 2015-11-13 22:14+0000\n"
 "Last-Translator: Ivan <navicgamboa@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -59,11 +59,11 @@ msgstr "Registro no autorizado"
 
 #: lobby/XmppClient.cpp:460
 msgid "Registration bad request"
-msgstr ""
+msgstr "Solicitud incorrecta de Registro"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration forbidden"
-msgstr ""
+msgstr "Registro prohibido"
 
 #: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1043
 msgid "Registration required"
@@ -71,15 +71,15 @@ msgstr "Se necesita registro"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "Solicitud inesperada de Registro"
 
 #: lobby/XmppClient.cpp:464
 msgid "Registration not allowed"
-msgstr ""
+msgstr "Registro no autorizado"
 
 #: lobby/XmppClient.cpp:465
 msgid "Registration unknown error"
-msgstr ""
+msgstr "Error desconocido de Registro"
 
 #: lobby/XmppClient.cpp:773
 msgid "unknown subtype (see logs)"
@@ -87,11 +87,11 @@ msgstr "subtipo desconocido (ver el registro)"
 
 #: lobby/XmppClient.cpp:1028
 msgid "Bad request"
-msgstr ""
+msgstr "Solicitud incorrecta"
 
 #: lobby/XmppClient.cpp:1029
 msgid "Player name already in use"
-msgstr ""
+msgstr "Nombre de usuario ya esta en uso"
 
 #: lobby/XmppClient.cpp:1030
 msgid "Feature not implemented"
@@ -99,51 +99,51 @@ msgstr "Característica no implementada"
 
 #: lobby/XmppClient.cpp:1031
 msgid "Forbidden"
-msgstr ""
+msgstr "Prohibido"
 
 #: lobby/XmppClient.cpp:1032
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "Servidor desconectado"
 
 #: lobby/XmppClient.cpp:1033
 msgid "Internal server error"
-msgstr ""
+msgstr "Error interno del servidor"
 
 #: lobby/XmppClient.cpp:1034
 msgid "Item not found"
-msgstr ""
+msgstr "Objeto no encontrado"
 
 #: lobby/XmppClient.cpp:1035
 msgid "Jid malformed"
-msgstr ""
+msgstr "Malformado"
 
 #: lobby/XmppClient.cpp:1036
 msgid "Not acceptable"
-msgstr ""
+msgstr "No aceptable"
 
 #: lobby/XmppClient.cpp:1037
 msgid "Not allowed"
-msgstr ""
+msgstr "No permitido"
 
 #: lobby/XmppClient.cpp:1038
 msgid "Not authorized"
-msgstr ""
+msgstr "No autorizado"
 
 #: lobby/XmppClient.cpp:1039
 msgid "Not modified"
-msgstr ""
+msgstr "No modificado"
 
 #: lobby/XmppClient.cpp:1040
 msgid "Payment required"
-msgstr ""
+msgstr "Pago requerido"
 
 #: lobby/XmppClient.cpp:1041
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "Servidor no disponible"
 
 #: lobby/XmppClient.cpp:1042
 msgid "Redirect"
-msgstr ""
+msgstr "Redireccionar"
 
 #: lobby/XmppClient.cpp:1044
 msgid "Remote server not found"
@@ -151,11 +151,11 @@ msgstr "Servidor remoto no encontrado"
 
 #: lobby/XmppClient.cpp:1045
 msgid "Remote server timeout"
-msgstr ""
+msgstr "Conexion con el servidor remoto agotada"
 
 #: lobby/XmppClient.cpp:1046
 msgid "Resource constraint"
-msgstr ""
+msgstr "Limitacion de recursos"
 
 #: lobby/XmppClient.cpp:1047
 msgid "Service unavailable"
@@ -175,18 +175,18 @@ msgstr "Peticion inesperada"
 
 #: lobby/XmppClient.cpp:1051
 msgid "Unknown sender"
-msgstr ""
+msgstr "Desconocido"
 
 #: lobby/XmppClient.cpp:1053
 msgid "Error undefined"
-msgstr ""
+msgstr "Error indefinido"
 
 #: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "Guardar juego en '%s'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Captura de pantalla guardada en '%s'"

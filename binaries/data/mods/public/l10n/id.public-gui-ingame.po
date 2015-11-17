@@ -12,14 +12,14 @@
 # Joshua Christo Randiny <jrandiny2@gmail.com>, 2015
 # Joshua Christo Randiny <jrandiny2@gmail.com>, 2013-2014
 # La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2014
-# Samuel Christo Randiny <srandiny@gmail.com>, 2014
+# Samuel Christo Randiny <srandiny@gmail.com>, 2014-2015
 # Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-15 12:09+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,13 +31,13 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
+msgstr[0] "Jarak dasar: %(range)s meter"
 
 #: gui/session/input.js:154
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
+msgstr[0] "Rata-rata bonus jarak: %(range)s meter"
 
 #: gui/session/input.js:733
 msgid "Cannot build wall here!"
@@ -119,7 +119,7 @@ msgstr "Musuh"
 
 #: gui/session/menu.js:349
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Meminta sekutu Anda untuk meyerang musuh ini"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -261,7 +261,7 @@ msgstr "Sambungan ke server telah diautentikasi"
 #: gui/session/messages.js:273
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Alasan: %(reason)s."
 
 #: gui/session/messages.js:274
 msgid "Connection to the server has been lost."
@@ -274,7 +274,7 @@ msgstr "Permainan telah berakhir."
 #: gui/session/messages.js:331
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s telah dikeluarkan dari permainan"
 
 #: gui/session/messages.js:335
 #, javascript-format
@@ -288,7 +288,7 @@ msgstr "Pemain tidak dikenal"
 #: gui/session/messages.js:428
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s mencoba bergabung kembali ke permainan."
 
 #: gui/session/messages.js:431
 #, javascript-format
@@ -298,12 +298,12 @@ msgstr "%(player)s telah meninggalkan permainan."
 #: gui/session/messages.js:434
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s bergabung kembali ke permainan."
 
 #: gui/session/messages.js:437
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Pengguna: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -368,7 +368,7 @@ msgstr "%(player)s telah mengirimmu %(amounts)s."
 #: gui/session/messages.js:515
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Hewan ternak Anda diserang oleh %(attacker)s!"
 
 #: gui/session/messages.js:517
 #, javascript-format
@@ -427,7 +427,7 @@ msgstr "%(rank)s Peringkat"
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
+msgstr[0] "Fondasi ini akan selesai dalam %(seconds)s detik."
 
 #: gui/session/selection_details.js:78
 #, javascript-format
@@ -437,7 +437,7 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 #: gui/session/selection_details.js:108
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:126
 #, javascript-format
@@ -487,7 +487,7 @@ msgstr[0] ""
 
 #: gui/session/selection_details.js:202 gui/session/selection_details.js:210
 msgid "Number of builders."
-msgstr ""
+msgstr "Jumlah pembangun."
 
 #: gui/session/selection_details.js:218
 msgid "Current/max gatherers"
@@ -673,7 +673,7 @@ msgstr "Gaia"
 #: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Pohon Struktur"
 
 #: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
@@ -718,12 +718,12 @@ msgstr "MENANG!"
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Tidak"
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: gui/session/session.js:571
 msgctxt "replayFinished"
@@ -733,7 +733,7 @@ msgstr ""
 #: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Konfirmasi"
 
 #: gui/session/session.js:732
 msgid "Population (current / limit)"
@@ -742,7 +742,7 @@ msgstr "Populasi (sekarang/batas)"
 #: gui/session/session.js:733
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "Populasi maksimum: %(popCap)s"
 
 #: gui/session/session.js:896
 #, javascript-format
@@ -856,7 +856,7 @@ msgstr "%(gain)s (%(player)s)"
 #: gui/session/utility_functions.js:141 gui/session/utility_functions.js:146
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -1072,7 +1072,7 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XIX : Syllepsis"
-msgstr ""
+msgstr "ALPHA XIX : Syllepsis"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

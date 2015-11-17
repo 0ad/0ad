@@ -108,6 +108,12 @@ protected:
 private:
 	// Whether the list's items have been modified since last handling a message.
 	bool m_Modified;
+
+	// Used for doubleclick registration
+	int m_PrevSelectedItem;
+
+	// Last time a click on an item was issued
+	double m_LastItemClickTime;
 };
 
 #endif // INCLUDED_CLIST

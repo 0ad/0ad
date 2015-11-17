@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-12 23:46+0000\n"
+"PO-Revision-Date: 2015-11-13 19:49+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -30,14 +30,14 @@ msgstr "%(civilization)s Oynanabilirlik"
 #: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] "Medeniyet İkramiyesi"
-msgstr[1] "Medeniyet İkramiyeleri"
+msgstr[0] "Uygarlık Ödülü"
+msgstr[1] "Uygarlık Ödülleri"
 
 #: gui/civinfo/civinfo.js:97
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Takım İkramiyesi"
-msgstr[1] "Takım İkramiyeleri"
+msgstr[0] "Takım Ödülü"
+msgstr[1] "Takım Ödülleri"
 
 #: gui/civinfo/civinfo.js:106
 msgid "Special Technologies"
@@ -199,7 +199,7 @@ msgstr "Ağaç"
 #: gui/common/l10n.js:22
 msgctxt "firstWord"
 msgid "Wood"
-msgstr "Tahta"
+msgstr "Odun"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -290,7 +290,7 @@ msgstr "Ağaç"
 #: gui/common/l10n.js:50
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr "Tahta"
+msgstr "Odun"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -615,7 +615,7 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:367
 msgid "Population Bonus:"
-msgstr "Nüfus Bonusu:"
+msgstr "Nüfus Ödülü:"
 
 #: gui/common/tooltips.js:385
 msgid "Insufficient resources:"
@@ -1100,7 +1100,7 @@ msgstr "O, 0 A.D.'nin eski sürümüne ihtiyaç duyuyor."
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr ""
+msgstr "O 0 A.D. %(requiredVersion)s kayıtlı oyun sürümüne ihtiyaç duyuyor, çalışan kayıtlı oyun sürüm ise %(currentVersion)s dür."
 
 #: gui/savedgames/load.js:75
 #, javascript-format
@@ -1259,7 +1259,7 @@ msgstr "Gıda"
 
 #: gui/summary/layout.js:77
 msgid "Wood"
-msgstr "Tahta"
+msgstr "Odun"
 
 #: gui/summary/layout.js:78
 msgid "Stone"
@@ -1552,7 +1552,7 @@ msgstr "Ayarlar"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Yeniden oynatma"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1793,13 +1793,13 @@ msgstr "[imgleft=\"constructionIcon\"]Oyun hala geliştirilme aşamasında. Eksi
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Bu oyun özellikle büyük haritalarla ve fazla sayılı birliklerle oynanırken, performans sorunlarına yol açabilir. "
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Bu sürümde, daha performanslı bir yol gösterici bulunmaktadır, ancak o yeni hatalara sebep olabilir."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
@@ -1820,7 +1820,7 @@ msgstr "Harita üzerinde herhangi bir yere inşa edin, hatta düşman topraklar�
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr ""
+msgstr "- Müttefik olmayan kendi bölgelerindeki yapıların çürür."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
@@ -1830,7 +1830,7 @@ msgstr "- Kuşatma silahları üret ve sivil-askerleri eğit."
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "- Garnizonda 40 birime kadar birimler yavaş yavaş iyileşir ve saldırı ve çürümelere karşı korunulur."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -1886,7 +1886,7 @@ msgstr "- Kartacalılar için Mükemmel Mızraklılar ve Mükemmel Süvari Mızr
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr ""
+msgstr "- Diğer çoğu Kaledeki şampiyon gibi, Tapınaktan eğitilebilir."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -2028,11 +2028,11 @@ msgstr "- Kaynak toplamak için Vatandaş-Askerleri ve Kadın Vatandaşları kul
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr "- Kadın Vatandaşlar Tarım ve Toplayıcılıkla bonuslandırıldı."
+msgstr "- Kadın Vatandaşlar Çiftçilik ve Toplayıcılıkla ödüllendirildi."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
-msgstr "- Vatandaş-Askerler Madencilik ile bonuslandırıldı."
+msgstr "- Vatandaş-Askerler Madencilik ile ödüllendirildi."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
@@ -2232,7 +2232,7 @@ msgstr "- Düşman süvarilerinin katliam ve şok saldırılarına karşı düze
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "- Ek ikramiye elde etmek için 'Falanks' kullan."
+msgstr "- Ek ödül elde etmek için 'Falanks' kullan."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -2244,13 +2244,13 @@ msgstr "- Bu temel yakın dövüş süvarisi oyundaki her fonksiyon içindir."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for a 2x attack bonus."
-msgstr "- Süvarilere karşı kullanılmak için 2x saldırı ikramiyesi."
+msgstr "- Süvarilere karşı kullanılmak için 2x saldırı ödülü."
 
 #: gui/text/tips/spearmen.txt:6
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr "- İyi bir bozguna uğratma saldırısı ve iyi bir ücret ikramiyesi cephede iyi asker oluşmasını sağlar."
+msgstr "- İyi bir bozguna uğratma saldırısı ve iyi bir ücret ödülü cephede iyi asker oluşmasını sağlar."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""

@@ -64,7 +64,7 @@
 
 				<action on="SelectionChange">displayReplayDetails();</action>
 				<action on="SelectionColumnChange">displayReplayList();</action>
-				<action on="mouseleftdoubleclick">startReplay();</action>
+				<action on="mouseleftdoubleclickitem">startReplay();</action>
 
 				<!-- Columns -->
 				<!-- We have to call one "name" as the GUI expects one. -->

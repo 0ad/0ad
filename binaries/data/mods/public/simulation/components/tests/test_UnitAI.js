@@ -98,6 +98,7 @@ function TestFormationExiting(mode)
 		GetRange: function() { return { "max": 10, "min": 0}; },
 		GetFullAttackRange: function() { return { "max": 40, "min": 0}; },
 		GetBestAttackAgainst: function(t) { return "melee"; },
+		GetPreference: function(t) { return 0; },
 		GetTimers: function() { return { "prepare": 500, "repeat": 1000 }; },
 		CanAttack: function(v) { return true; },
 		CompareEntitiesByPreference: function(a, b) { return 0; },

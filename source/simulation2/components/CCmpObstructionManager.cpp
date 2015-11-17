@@ -1029,7 +1029,7 @@ void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& squa
 			if (strict)
 				SimRasterize::RasterizeRectWithClearance(newSpans, square, shape.clearance, Pathfinding::NAVCELL_SIZE);
 			else
-				SimRasterize::RasterizeRectWithClearance(newSpans, square, shape.clearance-Pathfinding::NAVCELL_SIZE, Pathfinding::NAVCELL_SIZE);
+				SimRasterize::RasterizeRectWithClearance(newSpans, square, shape.clearance-Pathfinding::CLEARANCE_EXTENSION_RADIUS, Pathfinding::NAVCELL_SIZE);
 		}
 
 		SimRasterize::Spans& spans = rasterizedRects[shape.clearance];

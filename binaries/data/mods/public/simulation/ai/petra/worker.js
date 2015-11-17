@@ -43,6 +43,8 @@ m.Worker.prototype.update = function(gameState, ent)
 		if (this.isInaccessibleSupply(gameState) && ((subrole === "hunter" && !this.startHunting(gameState))
 			|| (subrole === "gatherer" && !this.startGathering(gameState))))
 			this.ent.stopMoving();
+	else if (this.ent.getMetadata(PlayerID, "approachingTarget"))
+		this.ent.setMetadata(PlayerID, "approachingTarget", undefined);
 
 	// If we're fighting or hunting, let's not start gathering
 	if (ent.unitAIState().split(".")[1] === "COMBAT")
@@ -815,6 +817,13 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 {
 	if (!this.ent.unitAIOrderData()[0] || !this.ent.unitAIOrderData()[0]["target"])
 		return false;
+	let approachingTarget = this.ent.getMetadata(PlayerID, "approachingTarget");
+	if (!approachingTarget || approachingTarget !== this.ent.unitAIOrderData()[0]["target"])
+	{
+		this.ent.setMetadata(PlayerID, "approachingTarget", this.ent.unitAIOrderData()[0]["target"]);
+		this.ent.setMetadata(PlayerID, "approachingTime", undefined);
+		this.ent.setMetadata(PlayerID, "approachingPos", undefined);
+	}
 	let approachingTime = this.ent.getMetadata(PlayerID, "approachingTime");
 	if (!approachingTime || gameState.ai.elapsedTime - approachingTime > 5)
 	{

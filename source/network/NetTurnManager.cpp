@@ -61,7 +61,7 @@ static std::string Hexify(const std::string& s)
 CNetTurnManager::CNetTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int clientId, IReplayLogger& replay) :
 	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength), m_DeltaSimTime(0),
 	m_PlayerId(-1), m_ClientId(clientId), m_HasSyncError(false), m_Replay(replay),
-	m_TimeWarpNumTurns(0)
+	m_TimeWarpNumTurns(0), m_FinalTurn(0)
 {
 	// When we are on turn n, we schedule new commands for n+2.
 	// We know that all other clients have finished scheduling commands for n (else we couldn't have got here).
@@ -91,6 +91,9 @@ bool CNetTurnManager::WillUpdate(float simFrameLength)
 {
 	// Keep this in sync with the return value of Update()
 
+	if (m_FinalTurn > 0 && m_CurrentTurn > m_FinalTurn)
+		return false;
+
 	if (m_DeltaSimTime + simFrameLength < 0)
 		return false;
 
@@ -102,6 +105,10 @@ bool CNetTurnManager::WillUpdate(float simFrameLength)
 
 bool CNetTurnManager::Update(float simFrameLength, size_t maxTurns)
 {
+
+	if (m_FinalTurn > 0 && m_CurrentTurn > m_FinalTurn)
+		return false;
+
 	m_DeltaSimTime += simFrameLength;
 
 	// If the game becomes laggy, m_DeltaSimTime increases progressively.
@@ -515,15 +522,15 @@ void CNetReplayTurnManager::StoreReplayTurnLength(u32 turn, u32 turnLength)
 
 void CNetReplayTurnManager::StoreFinalReplayTurn(u32 turn)
 {
-	m_FinalReplayTurn = turn;
+	m_FinalTurn = turn;
 }
 
 void CNetReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 {
-	if (turn > m_FinalReplayTurn)
+	if (turn > m_FinalTurn)
 		return;
 
-	debug_printf("Executing turn %d of %d\n", turn, m_FinalReplayTurn);
+	debug_printf("Executing turn %d of %d\n", turn, m_FinalTurn);
 	DoTurn(turn);
 
 	// Compare hash if it exists in the replay and if we didn't have an OOS already
@@ -555,7 +562,7 @@ void CNetReplayTurnManager::DoTurn(u32 turn)
 		AddCommand(m_ClientId, pair.first, command, m_CurrentTurn + 1);
 	}
 
-	if (turn == m_FinalReplayTurn)
+	if (turn == m_FinalTurn)
 		g_GUI->SendEventToAll("ReplayFinished");
 }
 

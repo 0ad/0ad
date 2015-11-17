@@ -56,8 +56,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-12 04:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-13 18:10+0000\n"
+"Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,12 +107,12 @@ msgstr "Нет"
 #: gui/gamesetup/gamesetup.js:512
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s отключён."
 
 #: gui/gamesetup/gamesetup.js:516
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s заблокирован."
 
 #: gui/gamesetup/gamesetup.js:591 gui/gamesetup/gamesetup.js:1525
 msgctxt "civilization"
@@ -212,13 +212,13 @@ msgstr "%(username)s вышел"
 #: gui/gamesetup/gamesetup.js:1828
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Пользователи: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
 #: gui/gamesetup/gamesetup.js:1830
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/gamesetup/gamesetup.js:1839
 #, javascript-format
@@ -385,7 +385,7 @@ msgstr "Отправить"
 
 #: gui/gamesetup/gamesetup.xml:(caption):224
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Чит-режим включён."
 
 #: gui/gamesetup/gamesetup.xml:(caption):237
 msgid "Start game!"

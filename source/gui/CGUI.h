@@ -44,6 +44,8 @@ CGUI
 
 ERROR_TYPE(GUI, JSOpenFailed);
 
+extern const double SELECT_DBLCLICK_RATE;
+
 /**
  * Contains a list of values for new defaults to objects.
  */

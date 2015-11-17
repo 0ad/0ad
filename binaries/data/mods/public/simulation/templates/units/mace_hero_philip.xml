@@ -2,7 +2,8 @@
 <Entity parent="template_unit_hero_cavalry_spearman">
   <Auras>
     <Aura1>
-      <Type>global</Type>
+      <Type>range</Type>
+      <Radius>60</Radius>
       <Affects>Champion</Affects>
       <Modifications>
         <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
@@ -11,6 +12,7 @@
       </Modifications>
       <AuraName>Hero Aura</AuraName>
       <AuraDescription>+5 Attack and +2 Capture for Champion Units.</AuraDescription>
+      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
     </Aura1>
   </Auras>
   <Identity>

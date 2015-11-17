@@ -190,6 +190,9 @@ protected:
 
 	IReplayLogger& m_Replay;
 
+	// The number of the last turn that is allowed to be executed (used for replays)
+	u32 m_FinalTurn;
+
 private:
 	size_t m_TimeWarpNumTurns; // 0 if disabled
 	std::list<std::string> m_TimeWarpStates;
@@ -273,10 +276,6 @@ protected:
 
 	// Contains all replay hash values and weather or not the quick hash method was used
 	std::map<u32, std::pair<std::string, bool> > m_ReplayHash;
-
-	// The number of the last turn in the replay
-	u32 m_FinalReplayTurn;
-
 };
 /**
  * The server-side counterpart to CNetClientTurnManager.
