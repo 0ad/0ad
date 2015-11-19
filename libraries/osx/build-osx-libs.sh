@@ -32,7 +32,7 @@ JPEG_VERSION="jpegsrc.v8d"
 JPEG_DIR="jpeg-8d" # Must match directory name inside source tarball
 # * libpng was included as part of X11 but that's removed from Mountain Lion
 #   (also the Snow Leopard version was ancient 1.2)
-PNG_VERSION="libpng-1.5.13"
+PNG_VERSION="libpng-1.6.19"
 OGG_VERSION="libogg-1.3.0"
 VORBIS_VERSION="libvorbis-1.3.3"
 # gloox is necessary for multiplayer lobby
