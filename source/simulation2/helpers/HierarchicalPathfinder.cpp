@@ -230,64 +230,88 @@ bool HierarchicalPathfinder::Chunk::RegionNearestNavcellInGoal(u16 r, u16 i0, u1
 					  + (gj + m_ChunkJ*CHUNK_SIZE - j0)*(gj + m_ChunkJ*CHUNK_SIZE - j0);
 			return true;
 		}
+		return false;
 	}
 	case PathGoal::CIRCLE:
 	case PathGoal::SQUARE:
 	{
 		// restrict ourselves to a square surrounding the goal.
 		int radius = (std::max(goal.hw*3/2,goal.hh*3/2) >> Pathfinding::NAVCELL_SIZE_LOG2).ToInt_RoundToInfinity();
-		int i0 = std::max(0, gi-radius);
-		int i1 = std::min((int)CHUNK_SIZE, gi+radius+1);
-		int j0 = std::max(0, gj-radius);
-		int j1 = std::min((int)CHUNK_SIZE, gj+radius+1);
-		for (u16 j = j0; j < j1; ++j)
+		int imin = std::max(0, gi-radius);
+		int imax = std::min((int)CHUNK_SIZE, gi+radius+1);
+		int jmin = std::max(0, gj-radius);
+		int jmax = std::min((int)CHUNK_SIZE, gj+radius+1);
+		bool found = false;
+		u32 dist2;
+		for (u16 j = jmin; j < jmax; ++j)
 		{
-			for (u16 i = i0; i < i1; ++i)
+			for (u16 i = imin; i < imax; ++i)
 			{
-				if (m_Regions[j][i] != r || !goal.NavcellContainsGoal(m_ChunkI * CHUNK_SIZE + i, m_ChunkJ * CHUNK_SIZE + j))
+				if (m_Regions[j][i] != r)
 					continue;
-				
-				u32 dist2 = (i + m_ChunkI*CHUNK_SIZE - i0)*(i + m_ChunkI*CHUNK_SIZE - i0)
-						  + (j + m_ChunkJ*CHUNK_SIZE - j0)*(j + m_ChunkJ*CHUNK_SIZE - j0);
-				
-				if (dist2 < dist2Best)
+
+				if (found)
 				{
+					dist2 = (i + m_ChunkI*CHUNK_SIZE - i0)*(i + m_ChunkI*CHUNK_SIZE - i0)
+						+ (j + m_ChunkJ*CHUNK_SIZE - j0)*(j + m_ChunkJ*CHUNK_SIZE - j0);
+					if (dist2 >= dist2Best)
+						continue;
+				}
+
+				if (goal.NavcellContainsGoal(m_ChunkI * CHUNK_SIZE + i, m_ChunkJ * CHUNK_SIZE + j))
+				{
+					if (!found)
+					{
+						found = true;
+						dist2 = (i + m_ChunkI*CHUNK_SIZE - i0)*(i + m_ChunkI*CHUNK_SIZE - i0)
+							+ (j + m_ChunkJ*CHUNK_SIZE - j0)*(j + m_ChunkJ*CHUNK_SIZE - j0);
+					}
 					iOut = i + m_ChunkI*CHUNK_SIZE;
 					jOut = j + m_ChunkJ*CHUNK_SIZE;
 					dist2Best = dist2;
 				}
 			}
 		}
+		return found;
 	}
 	case PathGoal::INVERTED_CIRCLE:
 	case PathGoal::INVERTED_SQUARE:
 	{
+		bool found = false;
+		u32 dist2;
 		// loop over all navcells.
 		for (u16 j = 0; j < CHUNK_SIZE; ++j)
 		{
 			for (u16 i = 0; i < CHUNK_SIZE; ++i)
 			{
-				if (m_Regions[j][i] != r || !goal.NavcellContainsGoal(m_ChunkI * CHUNK_SIZE + i, m_ChunkJ * CHUNK_SIZE + j))
+				if (m_Regions[j][i] != r)
 					continue;
-				
-				u32 dist2 = (i + m_ChunkI*CHUNK_SIZE - i0)*(i + m_ChunkI*CHUNK_SIZE - i0)
-						  + (j + m_ChunkJ*CHUNK_SIZE - j0)*(j + m_ChunkJ*CHUNK_SIZE - j0);
-				
-				if (dist2 < dist2Best)
+
+				if (found)
 				{
+					dist2 = (i + m_ChunkI*CHUNK_SIZE - i0)*(i + m_ChunkI*CHUNK_SIZE - i0)
+						+ (j + m_ChunkJ*CHUNK_SIZE - j0)*(j + m_ChunkJ*CHUNK_SIZE - j0);
+					if (dist2 >= dist2Best)
+						continue;
+				}
+
+				if (goal.NavcellContainsGoal(m_ChunkI * CHUNK_SIZE + i, m_ChunkJ * CHUNK_SIZE + j))
+				{
+					if (!found)
+					{
+						found = true;
+						dist2 = (i + m_ChunkI*CHUNK_SIZE - i0)*(i + m_ChunkI*CHUNK_SIZE - i0)
+							+ (j + m_ChunkJ*CHUNK_SIZE - j0)*(j + m_ChunkJ*CHUNK_SIZE - j0);
+					}
 					iOut = i + m_ChunkI*CHUNK_SIZE;
 					jOut = j + m_ChunkJ*CHUNK_SIZE;
 					dist2Best = dist2;
 				}
-
 			}
 		}
+		return found;
 	}
 	}
-	if (dist2Best != std::numeric_limits<u32>::max())
-		return true;
-	
-	return false;
 }
 
 HierarchicalPathfinder::HierarchicalPathfinder() : m_DebugOverlay(NULL)
