@@ -91,10 +91,16 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 // adds or remove the strength of the entity either to the enemy or to our units.
 m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 {
+	var entStrength;
 	if (ent.hasClass("Structure"))
-		var entStrength = (ent.getDefaultArrow() ? 6*ent.getDefaultArrow() : 4);
+	{
+		if (ent.owner() !== PlayerID)
+			entStrength = (ent.getDefaultArrow() ? 6*ent.getDefaultArrow() : 4);
+		else	// small strength used only when we try to recover capture points
+			entStrength = 2;
+	}
 	else
-		var entStrength = m.getMaxStrength(ent);
+		entStrength = m.getMaxStrength(ent);
 
 	// TODO adapt the getMaxStrength function for animals.
 	// For the time being, just increase it for elephants as the returned value is too small.
@@ -358,11 +364,27 @@ m.Army.prototype.checkEvents = function (gameState, events)
 };
 
 // assumes cleaned army.
-// this only checks for breakaways.
 m.Army.prototype.onUpdate = function (gameState)
 {
 	if (this.isCapturing(gameState))
+	{
+		let done = true;
+		let capture = gameState.getEntityById(this.foeEntities[0]).capturePoints();
+		if (capture !== undefined)
+		{
+			for (let j = 0; j < capture.length; ++j)
+			{
+				if (gameState.isPlayerEnemy(j) && capture[j] > 0)
+				{
+					done = false;
+					break;
+				}
+			}
+		}
+		if (done)
+			this.removeFoe(gameState, this.foeEntities[0]);
 		return [];
+	}
 
 	var breakaways = [];
 	// TODO: assign unassigned defenders, cleanup of a few things.
