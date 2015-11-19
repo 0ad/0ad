@@ -312,6 +312,7 @@ bool HierarchicalPathfinder::Chunk::RegionNearestNavcellInGoal(u16 r, u16 i0, u1
 		return found;
 	}
 	}
+	return false;
 }
 
 HierarchicalPathfinder::HierarchicalPathfinder() : m_DebugOverlay(NULL)
