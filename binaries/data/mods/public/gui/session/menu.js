@@ -683,8 +683,8 @@ function openManual()
 
 function toggleDeveloperOverlay()
 {
-	// The developer overlay is disabled when cheats are disabled
-	if (g_IsObserver || !g_SimState.players[Engine.GetPlayerID()].cheatsEnabled)
+	// The developer overlay is disabled in ranked games
+	if (Engine.HasXmppClient() && Engine.IsRankedGame())
 		return;
 
 	var devCommands = Engine.GetGUIObjectByName("devCommands");

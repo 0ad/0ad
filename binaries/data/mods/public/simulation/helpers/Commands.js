@@ -100,17 +100,11 @@ var g_Commands = {
 
 	"control-all": function(player, cmd, data)
 	{
-		if (!data.cmpPlayer.GetCheatsEnabled())
-			return;
-
 		data.cmpPlayer.SetControlAllUnits(cmd.flag);
 	},
 
 	"reveal-map": function(player, cmd, data)
 	{
-		if (!data.cmpPlayer.GetCheatsEnabled())
-			return;
-
 		// Reveal the map for all players, not just the current player,
 		// primarily to make it obvious to everyone that the player is cheating
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -560,9 +554,7 @@ var g_Commands = {
 
 	"promote": function(player, cmd, data)
 	{
-		if (!data.cmpPlayer.GetCheatsEnabled())
-			return;
-
+		// No need to do checks here since this is a cheat anyway
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "chat", "players": [player], "message": "(Cheat - promoted units)"});
 
