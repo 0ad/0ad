@@ -25,7 +25,7 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 	var mostNeeded;
 	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
 	{
-		if (i === PlayerID || !gameState.isPlayerAlly(i))
+		if (i === PlayerID || !gameState.isPlayerAlly(i) || gameState.ai.HQ.attackManager.defeated[i])
 			continue;
 		let allyResources = gameState.sharedScript.playersData[i].resourceCounts;
 		let allyPop = gameState.sharedScript.playersData[i].popCount;
