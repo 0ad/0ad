@@ -21,7 +21,6 @@
 
 #include "graphics/Overlay.h"
 #include "ps/Profile.h"
-#include "ps/CLogger.h"
 
 // Find the root ID of a region, used by InitRegions
 inline u16 RootID(u16 x, const std::vector<u16>& v)
