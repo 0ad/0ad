@@ -21,6 +21,7 @@
 
 #include "graphics/Overlay.h"
 #include "ps/Profile.h"
+#include "ps/CLogger.h"
 
 // Find the root ID of a region, used by InitRegions
 inline u16 RootID(u16 x, const std::vector<u16>& v)
@@ -226,8 +227,8 @@ bool HierarchicalPathfinder::Chunk::RegionNearestNavcellInGoal(u16 r, u16 i0, u1
 		{
 			iOut = gi;
 			jOut = gj;
-			dist2Best = (gi + m_ChunkI*CHUNK_SIZE - i0)*(gi + m_ChunkI*CHUNK_SIZE - i0)
-					  + (gj + m_ChunkJ*CHUNK_SIZE - j0)*(gj + m_ChunkJ*CHUNK_SIZE - j0);
+			dist2Best = (gi - i0)*(gi - i0)
+					  + (gj - j0)*(gj - j0);
 			return true;
 		}
 		return false;
@@ -237,10 +238,10 @@ bool HierarchicalPathfinder::Chunk::RegionNearestNavcellInGoal(u16 r, u16 i0, u1
 	{
 		// restrict ourselves to a square surrounding the goal.
 		int radius = (std::max(goal.hw*3/2,goal.hh*3/2) >> Pathfinding::NAVCELL_SIZE_LOG2).ToInt_RoundToInfinity();
-		int imin = std::max(0, gi-radius);
-		int imax = std::min((int)CHUNK_SIZE, gi+radius+1);
-		int jmin = std::max(0, gj-radius);
-		int jmax = std::min((int)CHUNK_SIZE, gj+radius+1);
+		int imin = std::max(0, gi-m_ChunkI*CHUNK_SIZE-radius);
+		int imax = std::min((int)CHUNK_SIZE, gi-m_ChunkI*CHUNK_SIZE+radius+1);
+		int jmin = std::max(0, gj-m_ChunkJ*CHUNK_SIZE-radius);
+		int jmax = std::min((int)CHUNK_SIZE, gj-m_ChunkJ*CHUNK_SIZE+radius+1);
 		bool found = false;
 		u32 dist2;
 		for (u16 j = jmin; j < jmax; ++j)
