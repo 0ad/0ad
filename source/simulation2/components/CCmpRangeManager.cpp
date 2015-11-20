@@ -736,7 +736,7 @@ public:
 			m_DirtyVisibility.clear();
 			m_DirtyVisibility.resize(m_LosTilesPerSide*m_LosTilesPerSide);
 		}
-		ENSURE(m_DirtyVisibility.size() == m_LosTilesPerSide*m_LosTilesPerSide);
+		ENSURE(m_DirtyVisibility.size() == (size_t)(m_LosTilesPerSide*m_LosTilesPerSide));
 
 		m_LosTiles.clear();
 		m_LosTiles.resize(m_LosTilesPerSide*m_LosTilesPerSide);
