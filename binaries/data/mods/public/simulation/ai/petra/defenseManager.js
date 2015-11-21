@@ -145,7 +145,7 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 				for (let j = 0; j < capture.length; ++j)
 					if (gameState.isPlayerEnemy(j))
 						lost += capture[j];
-				if (lost < Math.ceil(0.2 * capture[i]))
+				if (lost < Math.ceil(0.25 * capture[i]))
 					continue;
 				this.makeIntoArmy(gameState, ent.id());
 				break;

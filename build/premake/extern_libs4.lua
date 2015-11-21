@@ -456,7 +456,7 @@ extern_lib_defs = {
 				unix_names = { "png" },
 				-- Otherwise ld will sometimes pull in ancient 1.2 from the SDK, which breaks the build :/
 				-- TODO: Figure out why that happens
-				osx_names = { "png15" },
+				osx_names = { "png16" },
 			})
 		end,
 	},

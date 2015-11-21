@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:17+0100\n"
-"PO-Revision-Date: 2015-11-15 01:23+0000\n"
+"PO-Revision-Date: 2015-11-16 21:20+0000\n"
 "Last-Translator: Ivan <navicgamboa@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -544,7 +544,7 @@ msgstr "El entrenamiento aumenta el ataque de rango."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr "+20% ataque de rango de la caballería."
+msgstr "+20% ataque a la caballeria a distancia."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
@@ -553,7 +553,7 @@ msgstr "Entrenamiento de Combate de Rango para la Caballería"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "Equipa a la caballería de rango con mejores armas. +20% ataque de rango de la caballería."
+msgstr "Equipa a la caballería a distancia con mejores armas. +20% ataque a distancia."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -624,7 +624,7 @@ msgstr "Usar hierro en lugar de bronce les dio a las armas poder adicional."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr "El entrenamiento aumenta el daño de las unidades de infantería de rango."
+msgstr "El entrenamiento aumenta el daño de las unidades de infantería a distancia."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -837,7 +837,7 @@ msgstr "Nutrientes adicionales para tus cultivos."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr "Los trabajadores +25% velocidad en granjas."
+msgstr "Los trabajadores +25% velocidad en cultivos."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -849,7 +849,7 @@ msgstr "Un apero tirado por caballos con el que arar las tierras."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr "Equipa a tus trabajadores con arados de hierro. +15% velocidad en granjas."
+msgstr "Equipa a tus trabajadores con arados de hierro. +15% velocidad en cultivos."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -857,7 +857,7 @@ msgstr "Arado de hierro"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr "Entrena a tus trabajadores para incrementar la velocidad de recoleccion en la granja."
+msgstr "Entrena a tus trabajadores para incrementar la velocidad de recoleccion en cultivos."
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
@@ -1301,7 +1301,7 @@ msgstr "Fase de Ciudad"
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Necesita cinco estructuras de la Fase inicial (exceptuando empalizadas y huertos)."
+msgstr "Necesita 5 estructuras de la Fase de Pueblo (exceptuando empalizadas y cultivos)."
 
 #: simulation/data/technologies/phase_town.jsonspecificName.mace
 #: simulation/data/technologies/phase_town.jsonspecificName.spart
