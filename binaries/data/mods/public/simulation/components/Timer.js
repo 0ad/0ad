@@ -17,7 +17,7 @@ Timer.prototype.Init = function()
 Timer.prototype.GetTime = function()
 {
 	return this.time;
-}
+};
 
 Timer.prototype.GetLatestTurnLength = function()
 {
@@ -118,6 +118,6 @@ Timer.prototype.OnUpdate = function(msg)
 			this.timers.delete(id);
 		}
 	}
-}
+};
 
 Engine.RegisterSystemComponentType(IID_Timer, "Timer", Timer);

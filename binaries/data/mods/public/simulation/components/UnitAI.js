@@ -3396,7 +3396,6 @@ UnitAI.prototype.OnPickupRequested = function(msg)
 
 UnitAI.prototype.OnPickupCanceled = function(msg)
 {
-	var cmpUnitAI = Engine.QueryInterface(msg.entity, IID_UnitAI);
 	for (var i = 0; i < this.orderQueue.length; ++i)
 	{
 		if (this.orderQueue[i].type == "PickupUnit" && this.orderQueue[i].data.target == msg.entity)
