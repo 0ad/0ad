@@ -2,6 +2,8 @@
 <Entity parent="template_structure_defense">
   <Armour>
     <Hack>5.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>4.0</Crush>
   </Armour>
   <BuildRestrictions>
     <Category>Wall</Category>
@@ -10,7 +12,7 @@
   <Cost>
     <BuildTime>0</BuildTime>
     <Resources>
-      <stone>60</stone>
+      <stone>50</stone>
     </Resources>
   </Cost>
   <Footprint>

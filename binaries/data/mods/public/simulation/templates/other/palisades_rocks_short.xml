@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
+    <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>25.0</Pierce>
+    <Crush>2.0</Crush>
+  </Armour>
   <Cost>
-    <BuildTime>10</BuildTime>
+    <BuildTime>5</BuildTime>
     <Resources>
-      <wood>5</wood>
+      <wood>4</wood>
       <stone>0</stone>
     </Resources>
   </Cost>
@@ -12,7 +17,7 @@
     <Height>9.0</Height>
   </Footprint>
   <Health>
-    <Max>1000</Max>
+    <Max>400</Max>
     <SpawnEntityOnDeath>rubble/rubble_1x1pal</SpawnEntityOnDeath>
   </Health>
   <Identity>

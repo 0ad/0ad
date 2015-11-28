@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
+   <Armour>
+    <Hack>18.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
   <Auras>
     <Aura1>
       <Type>garrisonedUnits</Type>
@@ -15,9 +20,9 @@
     </Aura1>
   </Auras>
   <Cost>
-    <BuildTime>30</BuildTime>
+    <BuildTime>45</BuildTime>
     <Resources>
-      <stone>30</stone>
+      <stone>28</stone>
     </Resources>
   </Cost>
   <Health>

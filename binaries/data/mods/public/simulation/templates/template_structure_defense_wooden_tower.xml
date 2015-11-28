@@ -14,6 +14,13 @@
       <MinRange>4.0</MinRange>
     </Ranged>
   </Attack>
+  <BuildRestrictions>
+    <Category>DefenseTower</Category>
+    <Distance>
+      <FromClass>DefenseTower</FromClass>
+      <MinDistance>40</MinDistance>
+    </Distance>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>40</BuildTime>
     <Resources>
