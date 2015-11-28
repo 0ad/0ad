@@ -1437,6 +1437,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				}
 				this.SelectAnimation(animationName);
 
+				// If we have some orders, it is because we are in an intermediary state
+				// from FinishOrder (SetNextState("IDLE") is only executed when we get
+				// a ProcessMessage), and thus we should not start another order which could
+				// put us in a weird state
+				if (this.orderQueue.length > 0 && !this.IsGarrisoned())
+					return false;
+
 				// If the unit is guarding/escorting, go back to its duty
 				if (this.isGuardOf)
 				{
@@ -1450,13 +1457,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				// So we'll set a timer here and only report the idle event if we
 				// remain idle
 				this.StartTimer(1000);
-
-				// If we have some orders, it is because we are in an intermediary state
-				// from FinishOrder (SetNextState("IDLE") is only executed when we get
-				// a ProcessMessage), and thus we should not start an attack which could
-				// put us in a weird state
-				if (this.orderQueue.length > 0 && !this.IsGarrisoned())
-					return false;
 
 				// If a unit can heal and attack we first want to heal wounded units,
 				// so check if we are a healer and find whether there's anybody nearby to heal.
