@@ -464,18 +464,26 @@ void HierarchicalPathfinder::FindEdges(u8 ci, u8 cj, pass_class_t passClass, Edg
 	// (i.e. are passable navcells) then add a graph edge between those regions.
 	// (We don't need to test for duplicates since EdgesMap already uses a
 	// std::set which will drop duplicate entries.)
+	// But as set.insert can be quite slow on large collection, and that we usually
+	// try to insert the same values, we cache the previous one for a fast test.
 
 	if (ci > 0)
 	{
 		Chunk& b = chunks.at(cj*m_ChunksW + (ci-1));
+		RegionID raPrev(0,0,0);
+		RegionID rbPrev(0,0,0);
 		for (int j = 0; j < CHUNK_SIZE; ++j)
 		{
 			RegionID ra = a.Get(0, j);
 			RegionID rb = b.Get(CHUNK_SIZE-1, j);
 			if (ra.r && rb.r)
 			{
+				if (ra == raPrev && rb == rbPrev)
+					continue;
 				edges[ra].insert(rb);
 				edges[rb].insert(ra);
+				raPrev = ra;
+				rbPrev = rb;
 			}
 		}
 	}
@@ -483,14 +491,20 @@ void HierarchicalPathfinder::FindEdges(u8 ci, u8 cj, pass_class_t passClass, Edg
 	if (cj > 0)
 	{
 		Chunk& b = chunks.at((cj-1)*m_ChunksW + ci);
+		RegionID raPrev(0,0,0);
+		RegionID rbPrev(0,0,0);
 		for (int i = 0; i < CHUNK_SIZE; ++i)
 		{
 			RegionID ra = a.Get(i, 0);
 			RegionID rb = b.Get(i, CHUNK_SIZE-1);
 			if (ra.r && rb.r)
 			{
+				if (ra == raPrev && rb == rbPrev)
+					continue;
 				edges[ra].insert(rb);
 				edges[rb].insert(ra);
+				raPrev = ra;
+				rbPrev = rb;
 			}
 		}
 	}
