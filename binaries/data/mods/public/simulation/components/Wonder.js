@@ -9,6 +9,8 @@ Wonder.prototype.Init = function()
 {
 };
 
+Wonder.prototype.Serialize = null;
+
 Wonder.prototype.GetTimeTillVictory = function()
 {
 	return +this.template.TimeTillVictory;

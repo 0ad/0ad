@@ -11,6 +11,8 @@ TrainingRestrictions.prototype.Schema =
 		"<text/>" +
 	"</element>";
 
+TrainingRestrictions.prototype.Serialize = null;
+
 TrainingRestrictions.prototype.GetCategory = function()
 {
 	return this.template.Category;

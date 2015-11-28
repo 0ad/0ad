@@ -13,6 +13,8 @@ SkirmishReplacer.prototype.Init = function()
 {
 };
 
+SkirmishReplacer.prototype.Serialize = null; // We have no dynamic state to save
+
 //this function gets the replacement entities from the {civ}.json file
 function getReplacementEntities(civ)
 {	

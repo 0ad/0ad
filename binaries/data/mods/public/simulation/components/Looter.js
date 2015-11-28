@@ -3,6 +3,8 @@ function Looter() {}
 Looter.prototype.Schema =
 	"<empty/>";
 
+Looter.prototype.Serialize = null; // We have no dynamic state to save
+
 /**
  * Try to collect loot from target entity
  */
