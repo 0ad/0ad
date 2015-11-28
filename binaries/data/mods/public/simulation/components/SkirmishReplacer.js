@@ -38,7 +38,7 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
 	
-	if(templateName in replacementEntities)
+	if (templateName in replacementEntities)
 		templateName = replacementEntities[templateName];
 	else if (this.template && "general" in this.template)
 		templateName = this.template.general;
@@ -69,9 +69,10 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 	var cmpReplacementOwnership = Engine.QueryInterface(replacement, IID_Ownership);
 	cmpReplacementOwnership.SetOwner(cmpCurOwnership.GetOwner());
 	
-	Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: replacement});
+	Engine.BroadcastMessage(MT_EntityRenamed, { "entity": this.entity, "newentity": replacement });
 	Engine.DestroyEntity(this.entity);
 };
+
 /**
  * Replace this entity with a civ-specific entity
  * Message is sent right before InitGame() is called, in InitGame.js
