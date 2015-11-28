@@ -381,7 +381,7 @@ function updateLeaderboard()
 	// Get GUI leaderboard object
 	var leaderboard = Engine.GetGUIObjectByName("leaderboardBox");
 	// Sort list in acending order by rating
-	boardList.sort(function(a, b) b.rating - a.rating);
+	boardList.sort((a, b) => b.rating - a.rating);
 
 	var list = [];
 	var list_name = [];
