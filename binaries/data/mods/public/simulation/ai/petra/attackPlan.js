@@ -604,7 +604,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	if (this.type === "Raid")
 	{
 		// Raid are fast cavalry attack: assign all cav except some for hunting
-		var num = 0;
+		let num = 0;
 		for (let ent of gameState.getOwnUnits().values())
 		{
 			if (!ent.hasClass("Cavalry"))
