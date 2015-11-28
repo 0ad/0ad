@@ -374,7 +374,6 @@ function updateSelectionDetails()
 	var detailsPanel = Engine.GetGUIObjectByName("selectionDetails");
 	var commandsPanel = Engine.GetGUIObjectByName("unitCommands");
 
-	g_Selection.update();
 	var selection = g_Selection.toList();
 
 	if (selection.length == 0)
