@@ -1119,13 +1119,14 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 	}
 	
 	var i = 0;
+	var queued = cmd.queued;
 	for (; i < cmd.pieces.length; ++i)
 	{
 		var piece = cmd.pieces[i];
 
 		// All wall pieces after the first must be queued.
-		if (i > 0 && !cmd.queued)
-			cmd.queued = true;
+		if (i > 0 && !queued)
+			queued = true;
 
 		// 'lastTowerControlGroup' must always be defined and valid here, except if we're at the first piece and we didn't do
 		// start position snapping (implying that the first entity we build must be a tower)
@@ -1147,7 +1148,7 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 			"angle": piece.angle,
 			"autorepair": cmd.autorepair,
 			"autocontinue": cmd.autocontinue,
-			"queued": cmd.queued,
+			"queued": queued,
 			// Regardless of whether we're building a tower or an intermediate wall piece, it is always (first) constructed
 			// using the control group of the last tower (see comments above).
 			"obstructionControlGroup": lastTowerControlGroup,
