@@ -210,10 +210,7 @@ function openOptions()
 function openChat()
 {
 	if (g_Disconnected)
-	{
-		closeChat();
 		return;
-	}
 
 	updateTeamCheckbox(false);
 
@@ -239,10 +236,7 @@ function updateTeamCheckbox(check)
 function toggleChatWindow(teamChat)
 {
 	if (g_Disconnected)
-	{
-		closeChat();
 		return;
-	}
 
 	var chatWindow = Engine.GetGUIObjectByName("chatDialogPanel");
 	var chatInput = Engine.GetGUIObjectByName("chatInput");
