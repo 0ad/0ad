@@ -23,124 +23,6 @@ h2
 	font-size: 30px;
 	font-style: italic;
 }
-h3
-{
-	border-bottom: 1px #33AAFF solid;
-	text-align: center;
-	font-size: 25px;
-	font-weight: normal;
-}
-.UnitList
-{
-	border-collapse: collapse;
-	white-space:nowrap;
-}
-
-.UnitList th
-{
-	text-align: center;
-	padding: 0px 8px 3px 8px;
-	font-weight: normal;
-	border-bottom: 1px #DDDDDD solid;
-}
-
-.UnitList td
-{
-	text-align: center;
-	white-space:nowrap;
-	padding:3px;
-}
-
-.ComparisonTable
-{
-	margin-top: 175px;
-	border-collapse: collapse;
-	border:1px black;
-	font-size: 18px;
-	margin-bottom: 40px;
-}
-
-.ComparisonTable td
-{
-	width:20px;
-	height: 20px;
-	text-align: center;
-}
-
-.Separator
-{
-	min-width:50px;
-	border: none;
-}
-
-.ComparisonTable th
-{
-	text-align: right;
-	font-weight:normal;
-	padding-right:5px;
-}
-.ComparisonTable .vertical-text th {
-	-webkit-transform: rotate(-45deg);
- 	-moz-transform: rotate(-45deg);
-  	-ms-transform: rotate(-45deg);
-  	-o-transform: rotate(-45deg);
-  	transform: rotate(-45deg);
-  	max-width: 20px;
-  	height: 25px;
-  	padding-right:0px;
-  	font-size: 12px;
-}
-.desc
-{
-	font-style: italic;
-	font-size: 13px;
-	margin-top: -15px;
-}
-.WorthList th
-{
-	text-align: right;
-	font-weight:normal;
-	padding-right:2px;
-}
-.WorthList td
-{
-	width: 400px;
-	color:white;
-}
-.WorthList td span
-{
-	display:inline-block;
-}
-
-.AverageComp
-{
-	border-collapse: collapse;
-	font-size: 16px;
-	margin-left: auto;
-	margin-right: auto;
-}
-.AverageComp tr
-{
-	border-bottom: 1px #DDD solid;
-	height:28px;
-}
-.AverageComp th
-{
-	font-weight: normal
-}
-.AverageComp td
-{
-	text-align: center;
-	min-width: 150px;
-}
-
-.AverageComp .UnitTd
-{
-	text-align: center;
-	width: 150px;
-	border: 1px #DDD solid;
-	padding: 0px 5px 0px 5px;
-}
 
 .CivRosterVariety
 {
@@ -152,6 +34,7 @@ h3
 {
 	font-weight: normal;
 	width:100px;
+	height:50px;
 	margin-left: 50px;
 	font-size: 14px;
 }
@@ -179,26 +62,19 @@ h3
   	font-size: 20px;
 }
 
-.TemplateParentComp th
-{
-	border-right: 1px #CCC solid;
-	border-bottom: 1px #CCC solid;
-	font-weight: normal;
-	font-size: 15px;
-	padding:4px;
-	margin: 2px;
-}
-.TemplateParentComp .Sub
+table .Sub
 {
 	padding: 4px;
 	font-size: 13px;
+	text-align: left;
 }
-.TemplateParentComp tr
+
+table tr
 {
 	border-bottom: 1px #F3F3F3 solid;
 }
 
-.TemplateParentComp .Label td
+table td
 {
 	text-align: center;
 	font-weight: normal;
@@ -206,7 +82,24 @@ h3
 	padding: 3px 6px 3px 6px;
 }
 
-.TemplateParentComp
+table th
+{
+	border-bottom: 1px #CCC solid;
+	font-size: 15px;
+	padding:4px;
+	margin: 2px;
+	text-align: center;
+	font-weight: normal;
+	min-width: 25px;
+	border-left:1px black solid;
+}
+
+table .Label td, table .Label th
+{
+	border-bottom: 1px #000 solid;
+}
+
+table
 {
 	border: 2px black solid;
 	font-size: 12px;
