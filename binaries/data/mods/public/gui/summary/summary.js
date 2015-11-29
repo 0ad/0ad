@@ -42,7 +42,7 @@ var g_GameData;
  */
 function selectPanel(panelNumber)
 {
-	var panelNames = [ 'scorePanel', 'buildingsPanel', 'unitsPanel', 'resourcesPanel', 'marketPanel', 'miscPanel'];
+	var panelNames = [ 'scorePanel', 'buildingsPanel', 'unitsPanel', 'resourcesPanel', 'marketPanel', 'miscPanel' ];
 
 	function adjustTabDividers(tabSize)
 	{
@@ -135,7 +135,7 @@ function init(data)
 	// Map
 	var mapDisplayType = translate("Scenario");
 
-	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(translate("Game time elapsed: %(time)s"), { time: timeToString(data.timeElapsed) });
+	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(translate("Game time elapsed: %(time)s"), { "time": timeToString(data.timeElapsed) });
 
 	Engine.GetGUIObjectByName("summaryText").caption = data.gameResult;
 
@@ -156,7 +156,7 @@ function init(data)
 		}
 	}
 
-	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { mapName: translate(data.mapSettings.Name), mapType: mapDisplayType});
+	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { "mapName": translate(data.mapSettings.Name), "mapType": mapDisplayType });
 
 	// Panels
 	g_PlayerCount = data.playerStates.length - 1;

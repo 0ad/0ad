@@ -677,7 +677,7 @@ function loadMapData(name)
 		case "random":
 			if (name == "random")
 				// To be defined later.
-				g_MapData[name] = { settings: { "Name": "", "Description": "" } };
+				g_MapData[name] = { "settings": { "Name": "", "Description": "" } };
 			else
 				g_MapData[name] = Engine.ReadJSONFile(name+".json");
 			break;
@@ -913,7 +913,7 @@ function selectNumPlayers(num)
 			if (g_IsNetworked)
 				Engine.AssignNetworkPlayer(player, "");
 			else
-				g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0} };
+				g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0 } };
 		}
 	}
 
@@ -1083,7 +1083,7 @@ function selectMap(name)
 	// Reset player assignments on map change
 	if (!g_IsNetworked)
 	{	// Slot 1
-		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0} };
+		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0 } };
 	}
 	else
 	{
@@ -1172,7 +1172,7 @@ function launchGame()
 			// Assign civ specific names to AI players
 			chosenName = translate(chosenName);
 			if (usedName)
-				g_GameAttributes.settings.PlayerData[i].Name = sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": romanNumbers[usedName+1]});
+				g_GameAttributes.settings.PlayerData[i].Name = sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": romanNumbers[usedName+1] });
 			else
 				g_GameAttributes.settings.PlayerData[i].Name = chosenName;
 		}

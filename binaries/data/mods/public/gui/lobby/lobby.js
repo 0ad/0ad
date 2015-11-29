@@ -237,7 +237,7 @@ function updatePlayerList()
 			return 0;
 		}
 	});
-	for (var i = 0; i < cleanPlayerList.length; i++)
+	for (var i = 0; i < cleanPlayerList.length; ++i)
 	{
 		// Identify current user's rating.
 		if (cleanPlayerList[i].name == g_Name && cleanPlayerList[i].rating)
@@ -252,7 +252,7 @@ function updatePlayerList()
 		presenceList.push(status);
 		nickList.push(cleanPlayerList[i].name);
 		var ratingSpaces = "  ";
-		for (var index = 0; index < 4 - Math.ceil(Math.log(cleanPlayerList[i].rating) / Math.LN10); index++)
+		for (var index = 0; index < 4 - Math.ceil(Math.log(cleanPlayerList[i].rating) / Math.LN10); ++index)
 			ratingSpaces += "  ";
 		ratingList.push(String(ratingSpaces + rating));
 	}
@@ -268,7 +268,7 @@ function updatePlayerList()
  * Display the profile of the selected player.
  * Displays N/A for all stats until updateProfile is called when the stats
  * 	are actually received from the bot.
- * 
+ *
  * @param caller From which screen is the user requesting data from?
  */
 function displayProfile(caller)
@@ -293,7 +293,7 @@ function displayProfile(caller)
 	}
 	Engine.GetGUIObjectByName("profileArea").hidden = false;
 
-	Engine.SendGetProfile(playerList.list[playerList.selected]);	
+	Engine.SendGetProfile(playerList.list[playerList.selected]);
 
 	var user = playerList.list_name[playerList.selected];
 	var role = Engine.LobbyGetPlayerRole(playerList.list[playerList.selected]);
@@ -338,7 +338,7 @@ function updateProfile()
 		}
 		Engine.GetGUIObjectByName("profileWindowArea").hidden = false;
 		Engine.GetGUIObjectByName("profileErrorText").hidden = true;
-		
+
 		if (attributes[0].rating != "")
 			user = sprintf(translate("%(nick)s (%(rating)s)"), { nick: user, rating: attributes[0].rating });
 
@@ -360,7 +360,7 @@ function updateProfile()
 		playerList = Engine.GetGUIObjectByName("leaderboardBox");
 	else
 		playerList = Engine.GetGUIObjectByName("playersBox");
-	
+
 	if (attributes[0].rating == "-2")
 		return;
 	// Make sure the stats we have received coincide with the selected player.
@@ -402,7 +402,7 @@ function updateLeaderboard()
 	var list_rating = [];
 
 	// Push changes
-	for (var i = 0; i < boardList.length; i++)
+	for (var i = 0; i < boardList.length; ++i)
 	{
 		list_name.push(boardList[i].name);
 		list_rating.push(boardList[i].rating);
@@ -1049,7 +1049,7 @@ function getPlayerColor(playername)
 {
 	// Generate a probably-unique hash for the player name and use that to create a color.
 	var hash = 0;
-	for (var i = 0; i < playername.length; i++)
+	for (var i = 0; i < playername.length; ++i)
 		hash = playername.charCodeAt(i) + ((hash << 5) - hash);
 
 	// First create the color in RGB then HSL, clamp the lightness so it's not too dark to read, and then convert back to RGB to display.
