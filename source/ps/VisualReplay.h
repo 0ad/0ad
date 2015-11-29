@@ -37,6 +37,11 @@ namespace VisualReplay
 OsPath GetDirectoryName();
 
 /**
+ * Replays the commands.txt file in the given subdirectory visually.
+ */
+void StartVisualReplay(CStrW directory);
+
+/**
  * Get a list of replays to display in the GUI.
  *
  * @param scriptInterface the ScriptInterface in which to create the return data.
