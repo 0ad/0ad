@@ -2052,7 +2052,7 @@ UnitAI.prototype.UnitFsmSpec = {
 								 || (type.specific == oldType.specific
 								 && (type.specific != "meat" || oldTemplate == template)))
 							);
-						});
+						}, oldTarget);
 						if (nearby)
 						{
 							this.PerformGather(nearby, false, false);
@@ -3982,10 +3982,11 @@ UnitAI.prototype.MustKillGatherTarget = function(ent)
 /**
  * Returns the entity ID of the nearest resource supply where the given
  * filter returns true, or undefined if none can be found.
+ * if target if given, the nearest is computed versus this target position.
  * TODO: extend this to exclude resources that already have lots of
  * gatherers.
  */
-UnitAI.prototype.FindNearbyResource = function(filter)
+UnitAI.prototype.FindNearbyResource = function(filter, target)
 {
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
@@ -4002,7 +4003,14 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
+	let entity = this.entity;
+	if (target)
+	{
+		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		if (cmpPosition && cmpPosition.IsInWorld())
+			entity = target;
+	}
+	var nearby = cmpRangeManager.ExecuteQuery(entity, 0, range, players, IID_ResourceSupply);
 	return nearby.find(ent => {
 		if (!this.CanGather(ent))
 			return false;
