@@ -14,46 +14,42 @@ Looter.prototype.Collect = function(targetEntity)
 	if (!cmpLoot)
 		return;
 
+	// Loot experience points as defined in the template
 	var xp = cmpLoot.GetXp();
 	if (xp > 0)
 	{
-		var cmpPromotion = Engine.QueryInterface(this.entity, IID_Promotion);
+		let cmpPromotion = Engine.QueryInterface(this.entity, IID_Promotion);
 		if (cmpPromotion)
 			cmpPromotion.IncreaseXp(xp);
 	}
-	var cmpPlayer = QueryOwnerInterface(this.entity);
+
+	// Loot resources as defined in the templates
 	var resources = cmpLoot.GetResources();
-	for (var type in resources)
-	{
+	for (let type in resources)
 		resources[type] = ApplyValueModificationsToEntity("Looter/Resource/"+type, resources[type], this.entity);
-	}
-	cmpPlayer.AddResources(resources);
 
-	let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-	if (cmpStatisticsTracker)
-		cmpStatisticsTracker.IncreaseLootCollectedCounter(resources);
-
-	// If target entity has trader component, add carried goods to loot too
+	// Loot resources traders carry
 	var cmpTrader = Engine.QueryInterface(targetEntity, IID_Trader);
 	if (cmpTrader)
 	{
-		var carriedGoods = cmpTrader.GetGoods();
-		if (carriedGoods.amount && carriedGoods.amount.traderGain)
+		let carriedGoods = cmpTrader.GetGoods();
+		if (carriedGoods.amount)
 		{
-			// Convert from {type:<type>,amount:<amount>} to {<type>:<amount>}
-			var resourcesToAdd = {};
-			resourcesToAdd[carriedGoods.type] = carriedGoods.amount.traderGain;
-			if (carriedGoods.amount.market1Gain)
-				resourcesToAdd[carriedGoods.type] += carriedGoods.amount.market1Gain;
-			if (carriedGoods.amount.market2Gain)
-				resourcesToAdd[carriedGoods.type] += carriedGoods.amount.market2Gain;
-			cmpPlayer.AddResources(resourcesToAdd);
-
-			let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-			if (cmpStatisticsTracker)
-				cmpStatisticsTracker.IncreaseLootCollectedCounter(resourcesToAdd);
+			resources[carriedGoods.type] +=
+				+ (carriedGoods.amount.traderGain || 0);
+				+ (carriedGoods.amount.market1Gain || 0);
+				+ (carriedGoods.amount.market2Gain || 0);
 		}
 	}
+
+	// Transfer resources
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	cmpPlayer.AddResources(resources);
+
+	// Update statistics
+	var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	if (cmpStatisticsTracker)
+		cmpStatisticsTracker.IncreaseLootCollectedCounter(resources);
 };
 
 Engine.RegisterComponentType(IID_Looter, "Looter", Looter);
