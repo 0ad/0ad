@@ -58,7 +58,7 @@ function MatchesClassList(classes, match)
 		if (typeof sublist == "string")
 			sublist = sublist.split(/[+\s]+/);
 		if (sublist.every(c => (c[0] == "!" && classes.indexOf(c.substr(1)) == -1)
-					|| (c[0] != "!" && classes.indexOf(c) != -1)))
+		                    || (c[0] != "!" && classes.indexOf(c) != -1)))
 			return true;
 	}
 
