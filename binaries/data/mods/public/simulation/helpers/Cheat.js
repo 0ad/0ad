@@ -13,28 +13,25 @@ function Cheat(input)
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (!cmpPlayer.GetCheatsEnabled())
 	{
-		cmpGuiInterface.PushNotification({"type": "chat", "players": [input.player], "message": "Cheats are disbaled in this match"});
+		cmpGuiInterface.PushNotification({ "type": "chat", "players": [input.player], "message": "Cheats are disbaled in this match" });
 		return;
 	}
 
 	switch(input.action)
 	{
 	case "addresource":
-		// force input.text to be an array
-		input.text = [].concat(input.text);
-		for each (var type in input.text)
-			cmpPlayer.AddResource(type, input.parameter);
-		break;
+		cmpPlayer.AddResource(input.text, input.parameter);
+		return;
 	case "revealmap":
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		cmpRangeManager.SetLosRevealAll(-1, true);
-		break;
+		return;
 	case "maxpopulation":
 		cmpPlayer.SetPopulationBonuses(500);
-		break;
+		return;
 	case "changemaxpopulation":
 		cmpPlayer.SetMaxPopulation(500);
-		break;
+		return;
 	case "convertunit":
 		for (let ent of input.selected)
 		{
@@ -42,7 +39,7 @@ function Cheat(input)
 			if (cmpOwnership)
 				cmpOwnership.SetOwner(cmpPlayer.GetPlayerID());
 		}
-		break;
+		return;
 	case "killunits":
 		for (let ent of input.selected)
 		{
@@ -52,35 +49,35 @@ function Cheat(input)
 			else
 				Engine.DestroyEntity(ent);
 		}
-		break;
+		return;
 	case "defeatplayer":
 		var playerEnt = cmpPlayerManager.GetPlayerByID(input.parameter);
 		if (playerEnt == INVALID_ENTITY)
 			return;
-		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": input.parameter } );
-		break;
+		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": input.parameter });
+		return;
 	case "createunits":
 		if (!input.selected[0])
 		{
-			cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "You need to select a building that trains units."});
+			cmpGuiInterface.PushNotification({ "type": "notification", "players": [input.player], "message": "You need to select a building that trains units." });
 			return;
 		}
 
 		var cmpProductionQueue = Engine.QueryInterface(input.selected[0], IID_ProductionQueue);
 		if (!cmpProductionQueue)
 		{
-			cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "You need to select a building that trains units."});
+			cmpGuiInterface.PushNotification({ "type": "notification", "players": [input.player], "message": "You need to select a building that trains units." });
 			return;
 		}
 		for (let i = 0; i < input.parameter; ++i)
 			cmpProductionQueue.SpawnUnits(input.templates[i % input.templates.length], 1, null);
-		break;
+		return;
 	case "fastactions":
 		cmpPlayer.SetCheatTimeMultiplier((cmpPlayer.GetCheatTimeMultiplier() == 1) ? 0.01 : 1);
-		break;
+		return;
 	case "changespeed":
 		cmpPlayer.SetCheatTimeMultiplier(input.parameter);
-		break;
+		return;
 	case "changephase": 
 		var cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager); 
 		if (!cmpTechnologyManager)
@@ -100,15 +97,13 @@ function Cheat(input)
 		if (cmpTechnologyTemplateManager.ListAllTechs().indexOf(input.parameter + "_" + cmpPlayer.civ) > -1)
 			input.parameter += "_" + cmpPlayer.civ;
 
-		// rewrite input and call function
-		input.action = "researchTechnology";
-		Cheat(input);
-		break; 
+		Cheat({ "player": input.player, "action": "researchTechnology", "parameter": input.parameter, "selected": input.selected });
+		return;
 	case "researchTechnology": 
 		// check, if name of technology is given
 		if (input.parameter.length == 0)
 		{
-			cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "You have to enter the name of a technology or select a building and enter the number of the technology (brainiac number [top|paired].)"});
+			cmpGuiInterface.PushNotification({ "type": "notification", "players": [input.player], "message": "You have to enter the name of a technology or select a building and enter the number of the technology (brainiac number [top|paired].)" });
 			return;
 		}
 		var techname = input.parameter;
@@ -137,7 +132,7 @@ function Cheat(input)
 						var tech = techs[number-1];
 						if (!tech)
 						{
-							cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "You have already researched this technology."});
+							cmpGuiInterface.PushNotification({ "type": "notification", "players": [input.player], "message": "You have already researched this technology." });
 							return;
 						}
 						// get name of tech
@@ -148,7 +143,7 @@ function Cheat(input)
 					}
 					else
 					{
-						cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "This building only has " + techs.length + " technologies."});
+						cmpGuiInterface.PushNotification({ "type": "notification", "players": [input.player], "message": "This building only has " + techs.length + " technologies." });
 						return;
 					}
 				}
@@ -159,17 +154,26 @@ function Cheat(input)
 		var template = cmpTechnologyManager.GetTechnologyTemplate(techname);
 		if (!template)
 		{
-			cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "Technology \"" + techname + "\" does not exist"});
+			cmpGuiInterface.PushNotification({ "type": "notification", "players": [input.player], "message": "Technology \"" + techname + "\" does not exist" });
 			return;
 		}
 
 		// check, if technology is already researched
 		if (!cmpTechnologyManager.IsTechnologyResearched(techname))
 			cmpTechnologyManager.ResearchTechnology(techname); 
-		break; 
+		return;
+	case "metaCheat":
+		for (let resource of ["food", "wood", "metal", "stone"])
+			Cheat({ "player": input.player, "action": "addresource", "text": resource, "parameter": input.parameter });
+		Cheat({ "player": input.player, "action": "maxpopulation" });
+		Cheat({ "player": input.player, "action": "changemaxpopulation" });
+		Cheat({ "player": input.player, "action": "fastactions" });
+		for (let i=0; i<2; ++i)
+			Cheat({ "player": input.player, "action": "changephase", "selected": input.selected });
+		return;
 	default:
 		warn("Cheat '" + input.action + "' is not implemented");
-		break;
+		return;
 	}
 }
 
