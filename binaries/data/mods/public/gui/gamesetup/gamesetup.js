@@ -813,11 +813,14 @@ function sanitizePlayerData(playerData)
 	});
 
 	// Replace colors with the best matching color of PlayerDefaults
-	playerData.forEach((pData, index) => {
-		let colorDistances = g_PlayerColors.map(color => colorDistance(color, pData.Color));
-		let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
-		pData.Color = g_PlayerColors.find(color => colorDistance(color, pData.Color) == smallestDistance);
-	});
+	if (g_GameAttributes.mapType != "scenario")
+	{
+		playerData.forEach((pData, index) => {
+			let colorDistances = g_PlayerColors.map(color => colorDistance(color, pData.Color));
+			let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
+			pData.Color = g_PlayerColors.find(color => colorDistance(color, pData.Color) == smallestDistance);
+		});
+	}
 
 	ensureUniquePlayerColors(playerData);
 }
