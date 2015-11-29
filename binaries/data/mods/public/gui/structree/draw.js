@@ -105,14 +105,72 @@ function draw()
 		hideRemaining("phase["+i+"]_struct[", s, "]");
 		++i;
 	}
+	
+	var t = 0;
+	for (let trainer of g_CivData[g_SelectedCiv].trainList)
+	{
+		let thisEle = Engine.GetGUIObjectByName("trainer["+t+"]");
+		if (thisEle === undefined)
+		{
+			error("\""+g_SelectedCiv+"\" has more unit trainers than can be supported by the current GUI layout");
+			break;
+		}
+
+		trainer = g_ParsedData.units[trainer];
+		Engine.GetGUIObjectByName("trainer["+t+"]_icon").sprite = "stretched:session/portraits/"+trainer.icon;
+		Engine.GetGUIObjectByName("trainer["+t+"]_icon").tooltip = assembleTooltip(trainer);
+		Engine.GetGUIObjectByName("trainer["+t+"]_name").caption = translate(trainer.name.specific);
+		thisEle.hidden = false;
+		
+		let p = 0;
+		for (let prod of trainer.trainer)
+		{
+			prod = g_ParsedData.units[prod];
+			if (!drawProdIcon(null, t, null, p, prod))
+				break;
+			p++;
+		}
+		hideRemaining("trainer["+t+"]_prod[", p, "]");
+
+		let size = thisEle.size;
+		size.right = size.left + ((p*24 < defWidth)?defWidth:p*24)+4;
+		thisEle.size = size;
+
+		let eleWidth = size.right - size.left;
+		let wid = p * 24 - 4;
+		let phaEle = Engine.GetGUIObjectByName("trainer["+t+"]_row");
+		size = phaEle.size;
+		size.left = (eleWidth - wid)/2;
+		phaEle.size = size;
+		++t;
+	}
+	hideRemaining("trainer[", t, "]");
+	
+	if (t > 0)
+	{
+		Engine.GetGUIObjectByName("display_trainers").hidden = false;
+		var size = Engine.GetGUIObjectByName("display_tree").size;
+		size.right = -124;
+		Engine.GetGUIObjectByName("display_tree").size = size;
+	}
+	else
+	{
+		Engine.GetGUIObjectByName("display_trainers").hidden = true;
+		var size = Engine.GetGUIObjectByName("display_tree").size;
+		size.right = -4;
+		Engine.GetGUIObjectByName("display_tree").size = size;
+	}
 }
 
 function drawProdIcon(pha, s, r, p, prod)
 {
 	var prodEle = Engine.GetGUIObjectByName("phase["+pha+"]_struct["+s+"]_row["+r+"]_prod["+p+"]");
+	if (pha === null)
+		prodEle = Engine.GetGUIObjectByName("trainer["+s+"]_prod["+p+"]");
+
 	if (prodEle === undefined)
 	{
-		error("The structures of \""+g_SelectedCiv+"\" have more production icons in phase "+pha+" than can be supported by the current GUI layout");
+		error("The "+(pha === null ? "trainer units" : "structures")+" of \""+g_SelectedCiv+"\" have more production icons than can be supported by the current GUI layout");
 		return false;
 	}
 
@@ -236,6 +294,44 @@ function predraw()
 	}
 	hideRemaining("phase[", i, "]");
 	hideRemaining("phase[", i, "]_bar");
+	
+	var t = 0;
+	var ele = Engine.GetGUIObjectByName("trainer["+t+"]");
+	g_DrawLimits.trainer = {
+		trainerQuant: 0,
+		prodQuant: 0
+	};
+	
+	var x = 4;
+	do
+	{
+		let p = 0;
+		let prodEle = Engine.GetGUIObjectByName("trainer["+t+"]_prod["+p+"]");
+		do
+		{
+			let prodsize = prodEle.size;
+			prodsize.left = (initIconSize.right+4) * p;
+			prodsize.right = (initIconSize.right+4) * (p+1) - 4;
+			prodEle.size = prodsize;
+
+			p++;
+			prodEle = Engine.GetGUIObjectByName("trainer["+t+"]_prod["+p+"]");
+		} while (prodEle !== undefined);
+		Engine.GetGUIObjectByName("trainer["+t+"]_row").size = "4 100%-24"+" 100%-4 100%";
+		g_DrawLimits.trainer.prodQuant = p;
+		
+		let size = ele.size;
+		size.top += x;
+		size.bottom += x + 24;
+		x += size.bottom - size.top + 8;
+		ele.size = size;
+		
+		t++;
+		ele = Engine.GetGUIObjectByName("trainer["+t+"]");
+		
+	} while (ele !== undefined);
+	
+	g_DrawLimits.trainer.trainerQuant = t;
 }
 
 /**
