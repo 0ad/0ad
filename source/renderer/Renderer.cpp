@@ -438,7 +438,6 @@ CRenderer::CRenderer()
 	m_Options.m_PreferGLSL = false;
 	m_Options.m_ForceAlphaTest = false;
 	m_Options.m_GPUSkinning = false;
-	m_Options.m_GenTangents = false;
 	m_Options.m_SmoothLOS = false;
 	m_Options.m_Postproc = false;
 	m_Options.m_ShowSky = false;
@@ -448,7 +447,6 @@ CRenderer::CRenderer()
 	CFG_GET_VAL("preferglsl", m_Options.m_PreferGLSL);
 	CFG_GET_VAL("forcealphatest", m_Options.m_ForceAlphaTest);
 	CFG_GET_VAL("gpuskinning", m_Options.m_GPUSkinning);
-	CFG_GET_VAL("gentangents", m_Options.m_GenTangents);
 	CFG_GET_VAL("smoothlos", m_Options.m_SmoothLOS);
 	CFG_GET_VAL("postproc", m_Options.m_Postproc);
 
@@ -581,11 +579,11 @@ void CRenderer::ReloadShaders()
 
 	bool cpuLighting = (GetRenderPath() == RP_FIXED);
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelVertexRenderer(cpuLighting));
-	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false, m_Options.m_GenTangents));
+	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false, m_Options.m_PreferGLSL));
 
 	if (GetRenderPath() == RP_SHADER && m_Options.m_GPUSkinning) // TODO: should check caps and GLSL etc too
 	{
-		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, m_Options.m_GenTangents));
+		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, m_Options.m_PreferGLSL));
 		m->Model.NormalSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 		m->Model.TranspSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 	}
@@ -708,9 +706,6 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_PARTICLES:
 			m_Options.m_Particles = value;
 			break;
-		case OPT_GENTANGENTS:
-			m_Options.m_GenTangents = value;
-			break;
 		case OPT_PREFERGLSL:
 			m_Options.m_PreferGLSL = value;
 			MakeShadersDirty();
@@ -762,8 +757,6 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_ShadowPCF;
 		case OPT_PARTICLES:
 			return m_Options.m_Particles;
-		case OPT_GENTANGENTS:
-			return m_Options.m_GenTangents;
 		case OPT_PREFERGLSL:
 			return m_Options.m_PreferGLSL;
 		case OPT_SILHOUETTES:
