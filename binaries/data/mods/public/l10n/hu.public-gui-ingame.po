@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Attila Kocsner, 2014
+# Balázs Meskó <meskobalazs@gmail.com>, 2015
 # chris020891 <chris020891@gmail.com>, 2013-2014
 # davesajt <davesajthun@gmail.com>, 2014
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-29 22:42+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -274,7 +275,7 @@ msgstr "A szerverkapcsolat hitelesítve lett."
 #: gui/session/messages.js:273
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Ok: %(reason)s."
 
 #: gui/session/messages.js:274
 msgid "Connection to the server has been lost."
@@ -287,12 +288,12 @@ msgstr "A játék véget ért."
 #: gui/session/messages.js:331
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s ki lett rúgva"
 
 #: gui/session/messages.js:335
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s le lett tiltva"
 
 #: gui/session/messages.js:420
 msgid "Unknown player"
@@ -316,7 +317,7 @@ msgstr "%(player)s újracsatlakozott a játékhoz."
 #: gui/session/messages.js:437
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Felhasználók: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.

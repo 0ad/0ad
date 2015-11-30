@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-23 12:40+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,15 +90,15 @@ msgstr "Čas zbývající do konce klidu zbraní: %(time)s."
 #: gui/common/functions_utility.js:142
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Výchozí"
 
 #: gui/common/functions_utility.js:152
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Náhodně vybraná mapa."
 
 #: gui/common/functions_utility.js:159
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Bohužel, popis není dostupný."
 
 #: gui/common/functions_utility.js:203
 msgid "mm:ss"
@@ -327,19 +327,19 @@ msgstr "Nesprávná verze síťového protokolu"
 
 #: gui/common/network.js:15
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Hra se nahrává. Zkuste to, prosím, později"
 
 #: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Hra již byla spuštěna, žádní pozorovatelé nejsou povoleni"
 
 #: gui/common/network.js:17
 msgid "You have been kicked"
-msgstr ""
+msgstr "Byl jste vyhozen"
 
 #: gui/common/network.js:18
 msgid "You have been banned"
-msgstr ""
+msgstr "Byl jste zakázán"
 
 #: gui/common/network.js:19
 #, javascript-format
@@ -363,27 +363,27 @@ msgstr "Odpojeno"
 #: gui/common/network.js:80
 #, javascript-format
 msgid "Could not kick %(name)s."
-msgstr ""
+msgstr "Nepodařilo se vykopnout %(name)s."
 
 #: gui/common/network.js:85
 #, javascript-format
 msgid "Could not ban %(name)s."
-msgstr ""
+msgstr "Nepodařilo se zakázat %(name)s."
 
 #: gui/common/settings.js:106
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Pískoviště"
 
 #: gui/common/settings.js:110
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Velmi lehká"
 
 #: gui/common/settings.js:114
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Lehká"
 
 #: gui/common/settings.js:118
 msgctxt "aiDiff"
@@ -393,36 +393,36 @@ msgstr "Střední"
 #: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Těžká"
 
 #: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Velmi těžká"
 
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Žádný klid zbraní"
 
 #: gui/common/settings.js:151
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(minutes)s minuta"
+msgstr[1] "%(minutes)s minuty"
+msgstr[2] "%(minutes)s minut"
 
 #: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Potyčka"
 
 #: gui/common/settings.js:170
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Náhodná"
 
 #: gui/common/settings.js:174 gui/summary/summary.js:136
 msgid "Scenario"
@@ -430,21 +430,21 @@ msgstr "Scénář"
 
 #: gui/common/settings.js:205
 msgid "None"
-msgstr ""
+msgstr "Žádná"
 
 #: gui/common/settings.js:206
 msgid "Endless Game"
-msgstr ""
+msgstr "Hra bez konce"
 
 #: gui/common/settings.js:231
 msgid "Unlimited"
-msgstr ""
+msgstr "Bez omezení"
 
 #: gui/common/settings.js:279 gui/common/settings.js:290
 #: gui/common/settings.js:301 gui/common/settings.js:312
 #: gui/common/settings.js:323
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámý"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -545,7 +545,7 @@ msgstr "Útok na dálku:"
 
 #: gui/common/tooltips.js:143
 msgid "Capture Attack:"
-msgstr ""
+msgstr "Zajímací útok:"
 
 #: gui/common/tooltips.js:146
 msgid "Attack:"
@@ -792,7 +792,7 @@ msgstr "Vždy ukázat zbývající čas klidu zbraní."
 
 #: gui/options/options.js:17
 msgid "Persist Match Settings"
-msgstr ""
+msgstr "Zapamatovat si nastavení hry"
 
 #: gui/options/options.js:17
 msgid ""
@@ -925,11 +925,11 @@ msgstr "Použít svislou synchronizaci k opravení trhání obrazovky. VYŽADUJE
 
 #: gui/options/options.js:36
 msgid "Limit FPS in Menus"
-msgstr ""
+msgstr "Omezit rychlost obnovování (FPS) v nabídkách"
 
 #: gui/options/options.js:36
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr ""
+msgstr "Omezit rychlost obnovování (počet snímků za sekundu) na 50 ve všech nabídkách kvůli šetření energií."
 
 #: gui/options/options.js:40
 msgid "Master Gain"
@@ -1096,14 +1096,14 @@ msgstr "Je vyžadována verze %(requiredVersion)s 0 A.D., toto je však verze %(
 
 #: gui/savedgames/load.js:61
 msgid "It needs an older version of 0 A.D."
-msgstr ""
+msgstr "Je potřeba starší verze 0 A.D."
 
 #: gui/savedgames/load.js:65
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr ""
+msgstr "Je vyžadována uložená hra 0 A. D. ve verzi %(requiredVersion)s, toto je však verze %(currentVersion)s."
 
 #: gui/savedgames/load.js:75
 #, javascript-format
@@ -1250,7 +1250,7 @@ msgstr "Loďstvo"
 
 #: gui/summary/layout.js:56
 msgid "Traders"
-msgstr ""
+msgstr "Obchodníci"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
@@ -1282,7 +1282,7 @@ msgstr "Shromážděné poklady"
 
 #: gui/summary/layout.js:83
 msgid "Loot"
-msgstr ""
+msgstr "Kořist"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
@@ -1320,7 +1320,7 @@ msgstr "Poměr\nvegetariánů"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
-msgstr ""
+msgstr "Poženštění"
 
 #: gui/summary/layout.js:126
 msgid ""
@@ -1336,15 +1336,15 @@ msgstr "Prozkoumání\nmapy"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr ""
+msgstr "Na vrcholu"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr ""
+msgstr "Na konci"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
-msgstr ""
+msgstr "Ovládání mapy"
 
 #: gui/summary/layout.js:274
 msgid "Team total"
@@ -1495,7 +1495,7 @@ msgstr "Stav: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr ""
+msgstr "Alpha XIX: Syllepsis"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1555,7 +1555,7 @@ msgstr "Možnosti"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Přehrávání"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1657,7 +1657,7 @@ msgstr "Vyberte jazyk hry."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Přehrát předchozí hry."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1796,13 +1796,13 @@ msgstr "[imgleft=\"constructionIcon\"]Hra je stále ve vývoji. Chybí v ní rů
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Tato hra může mít potíže s výkonem, zvláště u velkých map a větším počtu jednotek."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Tato verze přináší nový algoritmus hledání cesty, s vyšším výkonem, může však obsahovat nové chyby."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""

@@ -11,6 +11,7 @@
 # Igor Kustov, 2014
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
+# Nick Zhivotenko <niko.zvt@gmail.com>, 2015
 # sad2shade <sad.2.shade@gmail.com>, 2015
 # Vladislav Belov <thebvog@gmail.com>, 2015
 # webslavic <webslavic@yahoo.com>, 2014-2015
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-12 04:14+0000\n"
-"Last-Translator: sad2shade <sad.2.shade@gmail.com>\n"
+"PO-Revision-Date: 2015-11-28 04:04+0000\n"
+"Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:89
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)s - Геймплей"
+msgstr "%(civilization)s - Особенности"
 
 #: gui/civinfo/civinfo.js:92
 msgid "Civilization Bonus"
@@ -416,7 +417,7 @@ msgstr "Очень сложно"
 #: gui/common/settings.js:150
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr "Без прекращения военных действий"
+msgstr "Без прекращения"
 
 #: gui/common/settings.js:151
 #, javascript-format
@@ -503,7 +504,7 @@ msgid "second"
 msgid_plural "seconds"
 msgstr[0] "секунда"
 msgstr[1] "секунд"
-msgstr[2] "секунды"
+msgstr[2] "секунд"
 msgstr[3] "секунды"
 
 #: gui/common/tooltips.js:61
@@ -1891,7 +1892,7 @@ msgstr "- Исследует улучшений вооружения и брон
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Разместите горожанина-солдата внутри для ускорения исследований. (НЕ РЕАЛИЗОВАНО)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -1905,7 +1906,7 @@ msgstr "- Чемпионы копейщики и чемпионы конные �
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr ""
+msgstr "- Обучение проходит в храме, а не в крепости, как у большинства других чемпионов."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -2169,7 +2170,7 @@ msgstr "- Тяжеловооруженные и медлительные, как
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "- Используйте против конницы или против пехотинцев ближнего боя."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2191,7 +2192,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Оборудован тараном для потопления вражеских судов. (НЕ РЕАЛИЗОВАНО)"
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -2357,7 +2358,7 @@ msgstr "- Разместите раненых юнитов внутри храм
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr ""
+msgstr "РАСПАД ТЕРРИТОРИИ"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
