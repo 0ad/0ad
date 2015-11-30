@@ -28,6 +28,14 @@ Looter.prototype.Collect = function(targetEntity)
 	for (let type in resources)
 		resources[type] = ApplyValueModificationsToEntity("Looter/Resource/"+type, resources[type], this.entity);
 
+	// TODO: stop assuming that cmpLoot.GetResources() delivers all resource types (by defining them in a central location)
+
+	// Loot resources that killed enemies carried
+	var cmpResourceGatherer = Engine.QueryInterface(targetEntity, IID_ResourceGatherer);
+	if (cmpResourceGatherer)
+		for (let resource of cmpResourceGatherer.GetCarryingStatus())
+			resources[resource.type] += resource.amount;
+
 	// Loot resources traders carry
 	var cmpTrader = Engine.QueryInterface(targetEntity, IID_Trader);
 	if (cmpTrader)
