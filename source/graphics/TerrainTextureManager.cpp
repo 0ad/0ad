@@ -82,11 +82,6 @@ CTerrainTextureEntry* CTerrainTextureManager::FindTexture(const CStr& tag_) cons
 	return 0;
 }
 
-CTerrainPropertiesPtr CTerrainTextureManager::GetPropertiesFromFile(const CTerrainPropertiesPtr& props, const VfsPath& pathname)
-{
-	return CTerrainProperties::FromXML(props, pathname);
-}
-
 CTerrainTextureEntry* CTerrainTextureManager::AddTexture(const CTerrainPropertiesPtr& props, const VfsPath& path)
 {
 	CTerrainTextureEntry* entry = new CTerrainTextureEntry(props, path);
@@ -103,64 +98,37 @@ void CTerrainTextureManager::DeleteTexture(CTerrainTextureEntry* entry)
 	delete entry;
 }
 
-// FIXME This could be effectivized by surveying the xml files in the directory
-// instead of trial-and-error checking for existence of the xml file through
-// the VFS.
-// jw: indeed this is inefficient and RecurseDirectory should be implemented
-// via VFSUtil::EnumFiles, but it works fine and "only" takes 25ms for
-// typical maps. therefore, we'll leave it for now.
-void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, const VfsPath& path)
+struct AddTextureCallbackData
 {
-	VfsPaths pathnames;
-	if(vfs::GetPathnames(g_VFS, path, 0, pathnames) < 0)
-		return;
+	CTerrainTextureManager* self;
+	CTerrainPropertiesPtr props;
+};
 
-	for(size_t i = 0; i < pathnames.size(); i++)
-	{
-		if (pathnames[i].Extension() != L".xml")
-			continue;
-		
-		if (pathnames[i].Basename() == L"terrains")
-			continue;
-		
-		AddTexture(props, pathnames[i]);
-	}
+static Status AddTextureDirCallback(const VfsPath& pathname, const uintptr_t cbData)
+{
+	AddTextureCallbackData& data = *(AddTextureCallbackData*)cbData;
+	VfsPath path = pathname / L"terrains.xml";
+	if (!VfsFileExists(path))
+		LOGMESSAGE("'%s' does not exist. Using previous properties.", path.string8());
+	else
+		data.props = CTerrainProperties::FromXML(data.props, path);
+
+	return INFO::OK;
 }
 
-void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps, const VfsPath& path)
+static Status AddTextureCallback(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
-	//LOGMESSAGE("CTextureManager::RecurseDirectory(%s)", path.string8());
+	AddTextureCallbackData& data = *(AddTextureCallbackData*)cbData;
+	if (pathname.Basename() != L"terrains")
+		data.self->AddTexture(data.props, pathname);
 
-	CTerrainPropertiesPtr props;
-
-	// Load terrains.xml first, if it exists
-	VfsPath pathname = path / "terrains.xml";
-	if (VfsFileExists(pathname))
-		props = GetPropertiesFromFile(parentProps, pathname);
-	
-	// No terrains.xml, or read failures -> use parent props (i.e. 
-	if (!props)
-	{
-		LOGMESSAGE("CTerrainTextureManager::RecurseDirectory(%s): no terrains.xml (or errors while loading) - using parent properties", path.string8());
-		props = parentProps;
-	}
-
-	// Recurse once for each subdirectory
-	DirectoryNames subdirectoryNames;
-	(void)g_VFS->GetDirectoryEntries(path, 0, &subdirectoryNames);
-	for (size_t i=0;i<subdirectoryNames.size();i++)
-	{
-		VfsPath subdirectoryPath = path / subdirectoryNames[i] / "";
-		RecurseDirectory(props, subdirectoryPath);
-	}
-
-	LoadTextures(props, path);
+	return INFO::OK;
 }
 
 int CTerrainTextureManager::LoadTerrainTextures()
 {
-	CTerrainPropertiesPtr rootProps(new CTerrainProperties(CTerrainPropertiesPtr()));
-	RecurseDirectory(rootProps, L"art/terrains/");
+	AddTextureCallbackData data = {this, CTerrainPropertiesPtr(new CTerrainProperties(CTerrainPropertiesPtr()))};
+	vfs::ForEachFile(g_VFS, L"art/terrains/", AddTextureCallback, (uintptr_t)&data, L"*.xml", vfs::DIR_RECURSIVE, AddTextureDirCallback, (uintptr_t)&data);
 	return 0;
 }
 

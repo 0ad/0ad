@@ -103,15 +103,6 @@ private:
 
 	size_t m_LastGroupIndex;
 
-	// Find+load all textures in directory; check if
-	// there's an override XML with the same basename (if there is, load it)
-	void LoadTextures(const CTerrainPropertiesPtr& props, const VfsPath& path);
-	
-	// Load all terrains below path, using props as the parent property sheet.
-	void RecurseDirectory(const CTerrainPropertiesPtr& props, const VfsPath& path);
-	
-	CTerrainPropertiesPtr GetPropertiesFromFile(const CTerrainPropertiesPtr& props, const VfsPath& pathname);
-
 public:
 	// constructor, destructor
 	CTerrainTextureManager();

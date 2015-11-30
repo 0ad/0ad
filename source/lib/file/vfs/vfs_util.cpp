@@ -56,7 +56,7 @@ Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter,
 }
 
 
-Status ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const wchar_t* pattern, size_t flags)
+Status ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const wchar_t* pattern, size_t flags, DirCallback dircb, uintptr_t dircbData)
 {
 	// (declare here to avoid reallocations)
 	CFileInfos files;
@@ -71,6 +71,9 @@ Status ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, u
 		const VfsPath& path = pendingDirectories.front();
 
 		RETURN_STATUS_IF_ERR(fs->GetDirectoryEntries(path, &files, &subdirectoryNames));
+
+		if(dircb)
+			RETURN_STATUS_IF_ERR(dircb(path, dircbData));
 
 		for(size_t i = 0; i < files.size(); i++)
 		{
