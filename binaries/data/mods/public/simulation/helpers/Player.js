@@ -15,7 +15,7 @@ function LoadPlayerSettings(settings, newPlayers)
 		settings = {};
 
 	// Get default player data
-	var rawData = Engine.ReadJSONFile("player_defaults.json");
+	var rawData = Engine.ReadJSONFile("settings/player_defaults.json");
 	if (!(rawData && rawData.PlayerData))
 		throw("Player.js: Error reading player_defaults.json");
 

@@ -28,13 +28,14 @@ const g_Settings = loadSettingsValues();
  */
 function loadSettingsValues()
 {
-	// TODO: move PlayerDefaults and MapSizes from functions_utility.js here
+	// TODO: move MapSizes from functions_utility.js here
 	var settings = {
 		"AIDescriptions": loadAIDescriptions(),
 		"AIDifficulties": loadAIDifficulties(),
 		"Ceasefire": loadCeasefire(),
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
 		"MapTypes": loadMapTypes(),
+		"PlayerDefaults": loadPlayerDefaults(),
 		"PopulationCapacities": loadPopulationCapacities(),
 		"StartingResources": loadSettingValuesFile("starting_resources.json"),
 		"VictoryConditions": loadVictoryConditions()
@@ -208,6 +209,22 @@ function loadVictoryConditions()
 	});
 
 	return victoryConditions;
+}
+
+/**
+ * Loads the default player settings (like civs and colors).
+ *
+ * @returns {Array|undefined}
+ */
+function loadPlayerDefaults()
+{
+	var json = Engine.ReadJSONFile("simulation/data/settings/player_defaults.json");
+	if (!json || !json.PlayerData)
+	{
+		error("Could not load player_defaults.json");
+		return undefined;
+	}
+	return json.PlayerData;
 }
 
 /**

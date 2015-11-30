@@ -881,7 +881,7 @@ static std::string ReadJSON(const VfsPath& path)
 
 std::string CSimulation2::GetPlayerDefaults()
 {
-	return ReadJSON(L"simulation/data/player_defaults.json");
+	return ReadJSON(L"simulation/data/settings/player_defaults.json");
 }
 
 std::string CSimulation2::GetMapSizes()

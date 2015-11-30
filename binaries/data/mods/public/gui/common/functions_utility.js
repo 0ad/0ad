@@ -85,21 +85,6 @@ function escapeText(text)
 
 // ====================================================================
 
-// Load default player data, for when it's not otherwise specified
-function initPlayerDefaults()
-{
-	var data = Engine.ReadJSONFile("simulation/data/player_defaults.json");
-	if (!data || !data.PlayerData)
-	{
-		error("Failed to parse player defaults in player_defaults.json (check for valid JSON data)");
-		return [];
-	}
-
-	return data.PlayerData;
-}
-
-// ====================================================================
-
 // Load map size data
 function initMapSizes()
 {

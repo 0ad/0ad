@@ -15,7 +15,7 @@ const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingR
 const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryConditions : undefined);
 
 // All colors except gaia
-const g_PlayerColors = initPlayerDefaults().slice(1).map(pData => pData.Color);
+const g_PlayerColors = g_Settings ? g_Settings.PlayerDefaults.slice(1).map(pData => pData.Color) : undefined;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -114,7 +114,7 @@ function init(attribs)
 function initMain()
 {
 	// Get default player data - remove gaia
-	g_DefaultPlayerData = initPlayerDefaults();
+	g_DefaultPlayerData = g_Settings.PlayerDefaults;
 	g_DefaultPlayerData.shift();
 	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
 		g_DefaultPlayerData[i].Civ = "random";
