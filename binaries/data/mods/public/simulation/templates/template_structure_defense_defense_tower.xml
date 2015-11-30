@@ -6,7 +6,7 @@
       <Pierce>15.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>80.0</MaxRange>
-      <MinRange>4.0</MinRange>
+      <MinRange>10.0</MinRange>
       <ElevationBonus>15</ElevationBonus>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
@@ -52,11 +52,11 @@
   </Health>
   <Identity>
     <GenericName>Defense Tower</GenericName>
-    <Tooltip>Shoots arrows. Garrison to provide extra defense.</Tooltip>
+    <Tooltip>Shoots arrows. Garrison to provide extra defense. Needs the murderholes tech to protect its foot.</Tooltip>
     <Classes datatype="tokens">Tower GarrisonTower -ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Town DefenseTower</VisibleClasses>
     <Icon>structures/defense_tower.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -74,6 +74,7 @@
       attack_tower_watch
       attack_tower_crenellations
       attack_tower_range
+      attack_tower_murderholes
       attack_tower_defense
     </Technologies>
   </ProductionQueue>
