@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -180,6 +180,7 @@ function RunDetection(settings)
 	var disable_shadowpcf = undefined;
 	var disable_allwater = undefined;
 	var disable_fancywater = undefined;
+	var enable_glsl = undefined;
 	var override_renderpath = undefined;
 
 	// TODO: add some mechanism for setting config values
@@ -209,6 +210,10 @@ function RunDetection(settings)
 	var GL_VERSION = settings.GL_VERSION;
 	var GL_EXTENSIONS = settings.GL_EXTENSIONS.split(" ");
 
+	// enable GLSL on OpenGL 3+, which should be able to properly manage
+	// GLSL shaders, needed for effects like windy tree
+	if (GL_VERSION.match(/^[3-9]/))
+		enable_glsl = true;
 
 	// NVIDIA 260.19.* UNIX drivers cause random crashes soon after startup.
 	// http://www.wildfiregames.com/forum/index.php?showtopic=13668
@@ -293,6 +298,7 @@ function RunDetection(settings)
 		"disable_shadowpcf": disable_shadowpcf,
 		"disable_allwater": disable_allwater,
 		"disable_fancywater": disable_fancywater,
+		"enable_glsl": enable_glsl,
 		"override_renderpath": override_renderpath,
 	};
 }
@@ -331,6 +337,9 @@ global.RunHardwareDetection = function(settings)
 	
 	if (output.disable_fancywater !== undefined)
 		Engine.SetDisableFancyWater(output.disable_fancywater);
+
+	if (output.enable_glsl !== undefined)
+		Engine.SetEnableGLSL(output.enable_glsl);
 
 	if (output.override_renderpath !== undefined)
 		Engine.SetRenderPath(output.override_renderpath);

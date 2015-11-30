@@ -51,6 +51,8 @@ bool g_Particles = false;
 bool g_Silhouettes = false;
 bool g_ShowSky = false;
 
+bool g_PreferGLSL = false;
+
 float g_Gamma = 1.0f;
 
 CStr g_RenderPath = "default";

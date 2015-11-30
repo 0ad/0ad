@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,6 +71,9 @@ extern bool g_Particles;
 extern bool g_Silhouettes;
 // flag to switch on sky rendering
 extern bool g_ShowSky;
+
+// Prefer GLSL shaders over ARB shaders
+extern bool g_PreferGLSL;
 
 extern float g_Gamma;
 // name of configured render path (depending on OpenGL extensions, this may not be
