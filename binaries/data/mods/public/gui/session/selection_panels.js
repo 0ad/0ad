@@ -553,7 +553,7 @@ g_SelectionPanels.Gate = {
 	},
 	"setGraphics": function(data)
 	{
-		data.affordableMask.hidden = data.neededResources ? false : true;
+		data.affordableMask.hidden = !data.neededResources;
 		var gateIcon;
 		if (data.item.gate)
 		{
