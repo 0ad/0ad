@@ -99,11 +99,11 @@ function initDurationFilter()
 
 		if (index == 1)
 			// Translation: Shorter duration than max minutes.
-			return sprintf(translateWithContext("duration filter", "< %(max)s min"), interval);
+			return sprintf(translatePluralWithContext("duration filter", "< %(max)s min", "< %(max)s min", interval.max), interval);
 
 		if (index == g_DurationFilterIntervals.length - 1)
 			// Translation: Longer duration than min minutes.
-			return sprintf(translateWithContext("duration filter", "> %(min)s min"), interval);
+			return sprintf(translatePluralWithContext("duration filter", "> %(min)s min", "> %(min)s min", interval.min), interval);
 
 		// Translation: Duration between min and max minutes.
 		return sprintf(translateWithContext("duration filter", "%(min)s - %(max)s min"), interval);

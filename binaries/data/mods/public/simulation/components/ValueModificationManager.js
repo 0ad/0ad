@@ -7,6 +7,8 @@ function ValueModificationManager() {}
 ValueModificationManager.prototype.Schema =
 	"<a:component type='system'/><empty/>";
 
+ValueModificationManager.prototype.Serialize = null;
+
 ValueModificationManager.prototype.ApplyModifications = function(valueName, currentValue, entity)
 {
 	return ApplyValueModificationsToEntity(valueName, currentValue, entity);

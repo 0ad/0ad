@@ -64,79 +64,56 @@ fixed Geometry::DistanceToSquare(const CFixedVector2D& point, const CFixedVector
 	 *
 	 */
 
+	// By symmetry (taking absolute values), we work only in the 0-B-C-E quadrant
 	// du, dv are the location of the point in the square's coordinate system
-	fixed du = point.Dot(u);
-	fixed dv = point.Dot(v);
+	fixed du = point.Dot(u).Absolute();
+	fixed dv = point.Dot(v).Absolute();
 
 	fixed hw = halfSize.X;
 	fixed hh = halfSize.Y;
 
-	if (-hw < du && du < hw) // regions B, I, G
+	if (du < hw) // regions B, I, G
 	{
-		fixed closest = (dv.Absolute() - hh).Absolute(); // horizontal edges
-
-		if (-hh < dv && dv < hh) // region I
-			closest = countInsideAsZero ? fixed::Zero() : std::min(closest, (du.Absolute() - hw).Absolute()); // vertical edges
-
-		return closest;
+		if (dv < hh) // region I
+			return countInsideAsZero ? fixed::Zero() : std::min(hw - du, hh - dv);
+		else
+			return dv - hh;
 	}
-	else if (-hh < dv && dv < hh) // regions D, E
+	else if (dv < hh) // regions D, E
 	{
-		return (du.Absolute() - hw).Absolute(); // vertical edges
+		return du - hw; // vertical edges
 	}
 	else // regions A, C, F, H
 	{
-		CFixedVector2D corner;
-		if (du < fixed::Zero()) // A, F
-			corner -= u.Multiply(hw);
-		else // C, H
-			corner += u.Multiply(hw);
-		if (dv < fixed::Zero()) // F, H
-			corner -= v.Multiply(hh);
-		else // A, C
-			corner += v.Multiply(hh);
-
-		return (corner - point).Length();
+		CFixedVector2D distance(du - hw, dv - hh);
+		return distance.Length();
 	}
 }
 
-// Same as above except it does not use Length.
+// Same as above except it does not use Length
 // For explanations refer to DistanceToSquare
 fixed Geometry::DistanceToSquareSquared(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
 {
-	fixed du = point.Dot(u);
-	fixed dv = point.Dot(v);
+	fixed du = point.Dot(u).Absolute();
+	fixed dv = point.Dot(v).Absolute();
 	
 	fixed hw = halfSize.X;
 	fixed hh = halfSize.Y;
 	
-	if (-hw < du && du < hw) // regions B, I, G
+	if (du < hw) // regions B, I, G
 	{
-		fixed closest = (dv.Absolute() - hh).Multiply(dv.Absolute() - hh); // horizontal edges
-		
-		if (-hh < dv && dv < hh) // region I
-			closest = countInsideAsZero ? fixed::Zero() : std::min(closest, (du.Absolute() - hw).Multiply(du.Absolute() - hw)); // vertical edges
-		
-		return closest;
+		if (dv < hh) // region I
+			return countInsideAsZero ? fixed::Zero() : std::min((hw - du).Square(), (hh - dv).Square());
+		else
+			return (dv - hh).Square(); // horizontal edges
 	}
-	else if (-hh < dv && dv < hh) // regions D, E
+	else if (dv < hh) // regions D, E
 	{
-		return (du.Absolute() - hw).Multiply(du.Absolute() - hw); // vertical edges
+		return (du - hw).Square(); // vertical edges
 	}
 	else // regions A, C, F, H
 	{
-		CFixedVector2D corner;
-		if (du < fixed::Zero()) // A, F
-			corner -= u.Multiply(hw);
-		else // C, H
-			corner += u.Multiply(hw);
-		if (dv < fixed::Zero()) // F, H
-			corner -= v.Multiply(hh);
-		else // A, C
-			corner += v.Multiply(hh);
-		
-		CFixedVector2D result(corner-point);
-		return (result.X.Multiply(result.X) + result.Y.Multiply(result.Y));
+		return (du - hw).Square() + (dv - hh).Square();
 	}
 }
 

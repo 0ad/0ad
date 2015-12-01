@@ -121,6 +121,7 @@ Pack.prototype.PackProgress = function(data, lateness)
 		this.CancelTimer();
 
 		this.packed = !this.packed;
+		this.packing = false;
 		Engine.PostMessage(this.entity, MT_PackFinished, { packed: this.packed });
 
 		// Done un/packing, copy our parameters to the final entity

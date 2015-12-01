@@ -6,9 +6,9 @@
   </BuildRestrictions>
   <Capturable disable=""/>
   <Cost>
-    <BuildTime>10</BuildTime>
+    <BuildTime>25</BuildTime>
     <Resources>
-      <stone>30</stone>
+      <stone>20</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -16,7 +16,7 @@
     <Height>8.0</Height>
   </Footprint>
   <Health>
-    <Max>4000</Max>
+    <Max>3000</Max>
     <SpawnEntityOnDeath>rubble/rubble_wall</SpawnEntityOnDeath>
   </Health>
   <Identity>

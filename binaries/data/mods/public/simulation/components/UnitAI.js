@@ -1437,6 +1437,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				}
 				this.SelectAnimation(animationName);
 
+				// If we have some orders, it is because we are in an intermediary state
+				// from FinishOrder (SetNextState("IDLE") is only executed when we get
+				// a ProcessMessage), and thus we should not start another order which could
+				// put us in a weird state
+				if (this.orderQueue.length > 0 && !this.IsGarrisoned())
+					return false;
+
 				// If the unit is guarding/escorting, go back to its duty
 				if (this.isGuardOf)
 				{
@@ -1450,13 +1457,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				// So we'll set a timer here and only report the idle event if we
 				// remain idle
 				this.StartTimer(1000);
-
-				// If we have some orders, it is because we are in an intermediary state
-				// from FinishOrder (SetNextState("IDLE") is only executed when we get
-				// a ProcessMessage), and thus we should not start an attack which could
-				// put us in a weird state
-				if (this.orderQueue.length > 0 && !this.IsGarrisoned())
-					return false;
 
 				// If a unit can heal and attack we first want to heal wounded units,
 				// so check if we are a healer and find whether there's anybody nearby to heal.
@@ -2052,7 +2052,7 @@ UnitAI.prototype.UnitFsmSpec = {
 								 || (type.specific == oldType.specific
 								 && (type.specific != "meat" || oldTemplate == template)))
 							);
-						});
+						}, oldTarget);
 						if (nearby)
 						{
 							this.PerformGather(nearby, false, false);
@@ -3396,7 +3396,6 @@ UnitAI.prototype.OnPickupRequested = function(msg)
 
 UnitAI.prototype.OnPickupCanceled = function(msg)
 {
-	var cmpUnitAI = Engine.QueryInterface(msg.entity, IID_UnitAI);
 	for (var i = 0; i < this.orderQueue.length; ++i)
 	{
 		if (this.orderQueue[i].type == "PickupUnit" && this.orderQueue[i].data.target == msg.entity)
@@ -3983,10 +3982,11 @@ UnitAI.prototype.MustKillGatherTarget = function(ent)
 /**
  * Returns the entity ID of the nearest resource supply where the given
  * filter returns true, or undefined if none can be found.
+ * if target if given, the nearest is computed versus this target position.
  * TODO: extend this to exclude resources that already have lots of
  * gatherers.
  */
-UnitAI.prototype.FindNearbyResource = function(filter)
+UnitAI.prototype.FindNearbyResource = function(filter, target)
 {
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
@@ -4003,7 +4003,14 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
+	let entity = this.entity;
+	if (target)
+	{
+		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		if (cmpPosition && cmpPosition.IsInWorld())
+			entity = target;
+	}
+	var nearby = cmpRangeManager.ExecuteQuery(entity, 0, range, players, IID_ResourceSupply);
 	return nearby.find(ent => {
 		if (!this.CanGather(ent))
 			return false;

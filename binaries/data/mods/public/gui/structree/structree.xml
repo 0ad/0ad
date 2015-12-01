@@ -61,8 +61,8 @@
 			size="104 52 100%-8 100%"
 		/>
 
-		<!-- Data display -->
-		<object size="0 54+64 100% 100%-54">
+		<!-- Structure Tree display -->
+		<object size="0 54+64 100%-124 100%-54" name="display_tree">
 			<repeat count="4" var="n">
 				<object name="phase[n]_phase" type="image"/>
 				<object name="phase[n]_bar">
@@ -74,10 +74,39 @@
 				</object>
 			</repeat>
 
-			<object type="image" style="TreeDisplay" size="48+16+8 0 100%-16 100%">
+			<object type="image" style="TreeDisplay" size="48+16+8 0 100%-12 100%">
 				<include file="gui/structree/rows.xml"/>
 			</object>
+		</object>
 
+		<!-- Trainer Units display -->
+		<object size="100%-124 54+64 100%-16 100%-54" name="display_trainers">
+			<object
+				type="text"
+				font="sans-bold-14"
+				textcolor="white"
+				text_align="center"
+				text_valign="top"
+				size="0 0 100% 16"
+			>
+				<translatableAttribute id="caption">Trainer Units</translatableAttribute>
+			</object>
+			
+			<object type="image" style="TreeDisplay" size="0 24 100% 100%">
+				<repeat count="3" var="t">
+					<object type="image" style="StructBox" name="trainer[t]">
+						<object type="text" style="StructNameSpecific" name="trainer[t]_name"/>
+						<object type="image" style="StructIcon" name="trainer[t]_icon"
+							sprite="stretched:pregame/shell/logo/wfg_logo_white.png"
+						/>
+						<object name="trainer[t]_row">
+							<repeat count="4" var="p">
+								<object type="image" style="ProdBox" name="trainer[t]_prod[p]"/>
+							</repeat>
+						</object>
+					</object>
+				</repeat>
+			</object>
 		</object>
 
 		<!-- Close dialog -->

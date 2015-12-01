@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="200"/>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Walk" speed="1"/>
+        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="attack_ranged" speed="90"/>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Run" speed="1"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+      </animations>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_maur_tall_hair.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_inf_tall_wrap.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
+      </props>
+      <textures>
+        <texture file="skeletal/maur_iar_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="attack_ranged">
+      <props>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -144,10 +144,8 @@ WaterManager::~WaterManager()
 	// Cleanup if the caller messed up
 	UnloadWaterTextures();
 
-	// TODO: when c++11 is around, use lambdas or something because short Korea is best Korea.
-	for (size_t i = 0; i < m_ShoreWaves.size(); ++i)
+	for (WaveObject* const& obj : m_ShoreWaves)
 	{
-		WaveObject* obj = m_ShoreWaves[i];
 		if (obj->m_VBvertices)
 			g_VBMan.Release(obj->m_VBvertices);
 		delete obj;
@@ -495,10 +493,8 @@ void WaterManager::CreateWaveMeshes()
 	size_t SideSize = m_MapSize*2;
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
-	// TODO: when c++11 is around, use lambdas or something because short Korea is best Korea.
-	for (size_t i = 0; i < m_ShoreWaves.size(); ++i)
+	for (WaveObject* const& obj : m_ShoreWaves)
 	{
-		WaveObject* obj = m_ShoreWaves[i];
 		if (obj->m_VBvertices)
 			g_VBMan.Release(obj->m_VBvertices);
 		delete obj;

@@ -22,9 +22,10 @@ function getResourceTypeDisplayName(resourceType)
 }
 
 // Fills out information that most entities have
-function displaySingle(entState, template)
+function displaySingle(entState)
 {
 	// Get general unit and player data
+	var template = GetTemplateData(entState.template);
 	var specificName = template.name.specific;
 	var genericName = template.name.generic;
 	// If packed, add that to the generic name (reduces template clutter)
@@ -288,7 +289,7 @@ function displaySingle(entState, template)
 }
 
 // Fills out information for multiple entities
-function displayMultiple(selection, template)
+function displayMultiple(selection)
 {
 	var averageHealth = 0;
 	var maxHealth = 0;
@@ -374,7 +375,6 @@ function updateSelectionDetails()
 	var detailsPanel = Engine.GetGUIObjectByName("selectionDetails");
 	var commandsPanel = Engine.GetGUIObjectByName("unitCommands");
 
-	g_Selection.update();
 	var selection = g_Selection.toList();
 
 	if (selection.length == 0)
@@ -396,13 +396,11 @@ function updateSelectionDetails()
 	if (!entState)
 		return;
 
-	var template = GetTemplateData(entState.template);
-
 	// Fill out general info and display it
 	if (selection.length == 1)
-		displaySingle(entState, template);
+		displaySingle(entState);
 	else
-		displayMultiple(selection, template);
+		displayMultiple(selection);
 
 	// Show basic details.
 	detailsPanel.hidden = false;

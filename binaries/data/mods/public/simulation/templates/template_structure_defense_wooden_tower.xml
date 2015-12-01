@@ -14,6 +14,13 @@
       <MinRange>4.0</MinRange>
     </Ranged>
   </Attack>
+  <BuildRestrictions>
+    <Category>DefenseTower</Category>
+    <Distance>
+      <FromClass>DefenseTower</FromClass>
+      <MinDistance>40</MinDistance>
+    </Distance>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>40</BuildTime>
     <Resources>
@@ -47,6 +54,7 @@
     <Technologies datatype="tokens">
       -attack_tower_crenellations
       -attack_tower_range
+      -attack_tower_murderholes
       -attack_tower_defense
     </Technologies>
   </ProductionQueue>

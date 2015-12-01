@@ -617,6 +617,7 @@ static void InitRenderer()
 	g_Renderer.SetOptionBool(CRenderer::OPT_PARTICLES, g_Particles);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SILHOUETTES, g_Silhouettes);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHOWSKY, g_ShowSky);
+	g_Renderer.SetOptionBool(CRenderer::OPT_PREFERGLSL, g_PreferGLSL);
 
 	// create terrain related stuff
 	new CTerrainTextureManager;
@@ -1485,8 +1486,7 @@ bool AutostartVisualReplay(const std::string& replayFile)
 	// TODO: Non progressive load can fail - need a decent way to handle this
 	LDR_NonprogressiveLoad();
 
-	PSRETURN ret = g_Game->ReallyStartGame();
-	ENSURE(ret == PSRETURN_OK);
+	ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 

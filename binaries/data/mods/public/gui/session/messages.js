@@ -269,6 +269,7 @@ function handleNetMessage(message)
 			break;
 		case "disconnected":
 			g_Disconnected = true;
+			closeChat();
 			// Translation: States the reason why the client disconnected from the server.
 			let reason = sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(message.reason) });
 			obj.caption = translate("Connection to the server has been lost.") + "\n" + reason + "\n" + translate("The game has ended.");

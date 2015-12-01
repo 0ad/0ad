@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Attila Kocsner, 2014
+# Balázs Meskó <meskobalazs@gmail.com>, 2015
 # Balázs Úr <urbalazs@gmail.com>, 2015
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2015
 # Boross Péter <borosspet@web.de>, 2015
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 09:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-29 22:42+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,12 +73,12 @@ msgstr "Nincs"
 #: gui/gamesetup/gamesetup.js:512
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s ki lett rúgva"
 
 #: gui/gamesetup/gamesetup.js:516
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s le lett tiltva"
 
 #: gui/gamesetup/gamesetup.js:591 gui/gamesetup/gamesetup.js:1525
 msgctxt "civilization"
@@ -175,7 +176,7 @@ msgstr "%(username)s kilépett"
 #: gui/gamesetup/gamesetup.js:1828
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Felhasználók: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -662,7 +663,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
-msgstr ""
+msgstr "\"Egységben az erõ.\" - Aiszóposz, \"A földműves gyermekei\" (Sarkady János)"
 
 #: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
@@ -672,7 +673,7 @@ msgstr ""
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr ""
+msgstr "\"Ember, a spártaiakat nem az érdekli, mennyi az ellenség, hanem az, hogy hol van.\" - II. Agisz spártai király"
 
 #: gui/text/quotes.txt:26
 msgid ""
@@ -949,7 +950,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Az idő begyógyítja a sebeket\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:77
 msgid ""
@@ -974,7 +975,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"A büntetés legyen arányos a bűnnel\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:82
 msgid ""
@@ -1074,7 +1075,7 @@ msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
 "Alexander the Great found him sunbathing and asked if he could help in in "
 "any way"
-msgstr ""
+msgstr "\"Állj egy kicsit odébb, ne fogd el előlem a napot!\" - Szinópéi Diogenész, napozás közben, amikor Nagy Sándor rátalált és megkérdezte tőle, hogy mit óhajt"
 
 #: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
@@ -1120,7 +1121,7 @@ msgstr ""
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
-msgstr ""
+msgstr "\"Nem azért jöttem, hogy az itáliaiak ellen harcoljak, hanem azért, hogy megsegítsem őket Róma ellen\" - Hannibal Barkasz"
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
@@ -1139,11 +1140,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr ""
+msgstr "\"Semmi sem állandó, csak a változás maga.\" - Hérakleitosz"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr ""
+msgstr "\"Egyetlen ember sem léphet kétszer ugyanabba a folyóba, mert az már nem ugyanaz a folyó, és ő már nem ugyanaz az ember.\" - Hérakleitosz"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"

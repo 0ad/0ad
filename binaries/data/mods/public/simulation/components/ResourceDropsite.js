@@ -14,6 +14,7 @@ ResourceDropsite.prototype.Schema =
 		"</list>" +
 	"</element>";
 
+ResourceDropsite.prototype.Serialize = null;
 
 /**
  * Returns the list of resource types accepted by this dropsite.

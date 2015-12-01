@@ -362,18 +362,14 @@ BuildingAI.prototype.CheckTargetVisible = function(target)
 	if (!cmpOwnership)
 		return false;
 
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-
 	// Entities that are hidden and miraged are considered visible
 	var cmpFogging = Engine.QueryInterface(target, IID_Fogging);
 	if (cmpFogging && cmpFogging.IsMiraged(cmpOwnership.GetOwner()))
 		return true;
 
-	if (cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner()) == "hidden")
-		return false;
-
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	// Either visible directly, or visible in fog
-	return true;
+	return cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner()) != "hidden";
 };
 
 Engine.RegisterComponentType(IID_BuildingAI, "BuildingAI", BuildingAI);

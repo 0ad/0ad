@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-22 22:43+0000\n"
+"Last-Translator: caniro <carlod_39@yahoo.cl>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/wildfire-games/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -330,11 +330,11 @@ msgstr "Juego ya ha comenzado, no hay observadores autorizados"
 
 #: gui/common/network.js:17
 msgid "You have been kicked"
-msgstr ""
+msgstr "Usted ha sido expulsado"
 
 #: gui/common/network.js:18
 msgid "You have been banned"
-msgstr ""
+msgstr "Tu has sido bloqueado"
 
 #: gui/common/network.js:19
 #, javascript-format
@@ -358,12 +358,12 @@ msgstr "Desconectado"
 #: gui/common/network.js:80
 #, javascript-format
 msgid "Could not kick %(name)s."
-msgstr ""
+msgstr "No se pudo expulsar a %(name)s."
 
 #: gui/common/network.js:85
 #, javascript-format
 msgid "Could not ban %(name)s."
-msgstr ""
+msgstr "No se pudo bloquear a %(name)s."
 
 #: gui/common/settings.js:106
 msgctxt "aiDiff"
@@ -411,7 +411,7 @@ msgstr[1] "%(minutes)s minutos"
 #: gui/common/settings.js:165
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Escaramuza"
 
 #: gui/common/settings.js:170
 msgctxt "map"
@@ -1487,7 +1487,7 @@ msgstr "Estado: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr ""
+msgstr "Alfa XIX: Silepsis"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1649,7 +1649,7 @@ msgstr "Seleccione el idioma del juego."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Volver a un juego anterior."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -2455,11 +2455,11 @@ msgstr ""
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "- Un recurso oceánico."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "- 2000 Alimento"
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."

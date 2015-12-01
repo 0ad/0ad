@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-11-22 22:33+0000\n"
+"Last-Translator: caniro <carlod_39@yahoo.cl>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/wildfire-games/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -265,7 +265,7 @@ msgstr "La conexión con el servidor ha sido verificada."
 #: gui/session/messages.js:273
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Motivo: %(reason)s."
 
 #: gui/session/messages.js:274
 msgid "Connection to the server has been lost."
@@ -278,12 +278,12 @@ msgstr "El juego ha terminado."
 #: gui/session/messages.js:331
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s ha sido expulsado"
 
 #: gui/session/messages.js:335
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s ha sido bloqueado"
 
 #: gui/session/messages.js:420
 msgid "Unknown player"
@@ -307,7 +307,7 @@ msgstr "%(player)s se ha vuelto a conectar al juego"
 #: gui/session/messages.js:437
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Usuarios: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.

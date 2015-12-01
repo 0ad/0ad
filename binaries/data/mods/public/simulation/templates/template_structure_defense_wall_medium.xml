@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
+  <Armour>
+    <Hack>18.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
   <Auras>
     <Aura1>
       <Type>garrisonedUnits</Type>
@@ -15,9 +20,9 @@
     </Aura1>
   </Auras>
   <Cost>
-    <BuildTime>20</BuildTime>
+    <BuildTime>30</BuildTime>
     <Resources>
-	  <stone>20</stone>
+	  <stone>22</stone>
     </Resources>
   </Cost>
   <GarrisonHolder>
@@ -40,7 +45,7 @@
     </VisibleGarrisonPoints>
   </GarrisonHolder>
   <Health>
-    <Max>3000</Max>
+    <Max>2000</Max>
 	<SpawnEntityOnDeath>rubble/rubble_stone_wall_medium</SpawnEntityOnDeath>
   </Health>
 </Entity>

@@ -37,7 +37,7 @@ function calculateExplorationScore(playerState, position)
 
 function calculateScoreTotal(playerState, position)
 {
-	return calculateEconomyScore(playerState) + 
+	return calculateEconomyScore(playerState) +
 		calculateMilitaryScore(playerState) +
 		calculateExplorationScore(playerState);
 }
@@ -258,7 +258,7 @@ function calculateVegetarianRatio(playerState, position)
 	if (!teamMiscHelperData[playerState.team])
 		teamMiscHelperData[playerState.team] = [];
 	if (!teamMiscHelperData[playerState.team][position])
-		teamMiscHelperData[playerState.team][position] = {"food": 0, "vegetarianFood": 0};
+		teamMiscHelperData[playerState.team][position] = { "food": 0, "vegetarianFood": 0 };
 
 	if (playerState.statistics.resourcesGathered.vegetarianFood && playerState.statistics.resourcesGathered.food)
 	{
@@ -275,7 +275,7 @@ function calculateFeminization(playerState, position)
 	if (!teamMiscHelperData[playerState.team])
 		teamMiscHelperData[playerState.team] = [];
 	if (!teamMiscHelperData[playerState.team][position])
-		teamMiscHelperData[playerState.team][position] = {"Female": 0, "Worker": 0};
+		teamMiscHelperData[playerState.team][position] = { "Female": 0, "Worker": 0 };
 
 	if (playerState.statistics.unitsTrained.Worker && playerState.statistics.unitsTrained.Female)
 	{
@@ -292,7 +292,7 @@ function calculateKillDeathRatio(playerState, position)
 	if (!teamMiscHelperData[playerState.team])
 		teamMiscHelperData[playerState.team] = [];
 	if (!teamMiscHelperData[playerState.team][position])
-		teamMiscHelperData[playerState.team][position] = {"enemyUnitsKilled": 0, "unitsLost": 0};
+		teamMiscHelperData[playerState.team][position] = { "enemyUnitsKilled": 0, "unitsLost": 0 };
 
 	teamMiscHelperData[playerState.team][position].enemyUnitsKilled = playerState.statistics.enemyUnitsKilled.total;
 	teamMiscHelperData[playerState.team][position].unitsLost = playerState.statistics.unitsLost.total;

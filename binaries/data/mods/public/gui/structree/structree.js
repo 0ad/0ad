@@ -270,6 +270,7 @@ function selectCiv(civCode)
 
 	// Determine the buildList for the civ (grouped by phase)
 	var buildList = {};
+	var trainerList = [];
 	for (let pha of g_ParsedData.phaseList)
 		buildList[pha] = [];
 	for (let structCode of g_Lists.structures)
@@ -283,8 +284,12 @@ function selectCiv(civCode)
 
 		buildList[myPhase].push(structCode);
 	}
+	for (let unitCode of g_Lists.units)
+		if (g_ParsedData.units[unitCode] && g_ParsedData.units[unitCode].trainer)
+			trainerList.push(unitCode);
 
 	g_CivData[g_SelectedCiv].buildList = buildList;
+	g_CivData[g_SelectedCiv].trainList = trainerList;
 
 	// Draw tree
 	draw();

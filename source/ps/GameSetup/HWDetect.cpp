@@ -172,6 +172,12 @@ void SetDisableFancyWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool d
 		g_WaterShadows = !disabled;
 }
 
+void SetEnableGLSL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
+{
+	if (!IsOverridden("preferglsl"))
+		g_PreferGLSL = enabled;
+}
+
 void SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string renderpath)
 {
 	g_RenderPath = renderpath;
@@ -191,6 +197,7 @@ void RunHardwareDetection()
 	scriptInterface.RegisterFunction<void, bool, &SetDisableShadowPCF>("SetDisableShadowPCF");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableAllWater>("SetDisableAllWater");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableFancyWater>("SetDisableFancyWater");
+	scriptInterface.RegisterFunction<void, bool, &SetEnableGLSL>("SetEnableGLSL");
 	scriptInterface.RegisterFunction<void, std::string, &SetRenderPath>("SetRenderPath");
 
 	// Load the detection script:

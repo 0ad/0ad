@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_defense_tower">
+  <Attack>
+    <Ranged>
+      <MinRange>12.0</MinRange>
+    </Ranged>
+  </Attack>
   <BuildingAI>
     <DefaultArrowCount>2</DefaultArrowCount>
   </BuildingAI>

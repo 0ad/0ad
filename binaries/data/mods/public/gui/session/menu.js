@@ -209,6 +209,9 @@ function openOptions()
 
 function openChat()
 {
+	if (g_Disconnected)
+		return;
+
 	updateTeamCheckbox(false);
 
 	Engine.GetGUIObjectByName("chatInput").focus(); // Grant focus to the input area
@@ -232,6 +235,9 @@ function updateTeamCheckbox(check)
 
 function toggleChatWindow(teamChat)
 {
+	if (g_Disconnected)
+		return;
+
 	var chatWindow = Engine.GetGUIObjectByName("chatDialogPanel");
 	var chatInput = Engine.GetGUIObjectByName("chatInput");
 

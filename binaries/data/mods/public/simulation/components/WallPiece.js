@@ -13,4 +13,6 @@ WallPiece.prototype.Init = function()
 {
 };
 
+WallPiece.prototype.Serialize = null;
+
 Engine.RegisterComponentType(IID_WallPiece, "WallPiece", WallPiece);

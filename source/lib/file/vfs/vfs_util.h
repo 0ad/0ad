@@ -48,13 +48,25 @@ extern Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* 
  **/
 typedef Status (*FileCallback)(const VfsPath& pathname, const CFileInfo& fileInfo, const uintptr_t cbData);
 
+/**
+ * called for directories in a directory.
+ *
+ * @param pathname full pathname
+ * @param cbData user-specified context
+ * @return INFO::OK on success; any other value will immediately
+ * be returned to the caller (no more calls will be forthcoming).
+ *
+ * CAVEAT: pathname only valid until the function returns!
+ **/
+typedef Status (*DirCallback)(const VfsPath& pathname, const uintptr_t cbData);
+
 enum DirFlags
 {
 	DIR_RECURSIVE = 1
 };
 
 /**
- * call back for each file in a directory tree
+ * call back for each file in a directory tree, and optionally each directory.
  *
  * @param fs
  * @param path
@@ -63,9 +75,11 @@ enum DirFlags
  * @param pattern that file names must match. '*' and '&' wildcards
  *		  are allowed. 0 matches everything.
  * @param flags @ref DirFlags
+ * @param dircb @ref DirCallback
+ * @param dircbData
  * @return Status
  **/
-extern Status ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const wchar_t* pattern = 0, size_t flags = 0);
+extern Status ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const wchar_t* pattern = 0, size_t flags = 0, DirCallback dircb = NULL, uintptr_t dircbData = 0);
 
 
 /**

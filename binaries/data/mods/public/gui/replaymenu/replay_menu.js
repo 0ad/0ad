@@ -1,6 +1,5 @@
 const g_EngineInfo = Engine.GetEngineInfo();
 const g_CivData = loadCivData();
-const g_DefaultPlayerData = initPlayerDefaults();
 const g_mapSizes = initMapSizes();
 
 /**
@@ -301,7 +300,7 @@ function getReplayTeamText(replay)
 		// Get player info
 		++playerIdx;
 		let teamIdx = playerData.Team;
-		let playerColor = playerData.Color ? playerData.Color : g_DefaultPlayerData[playerIdx].Color;
+		let playerColor = playerData.Color ? playerData.Color : g_Settings.PlayerDefaults[playerIdx].Color;
 		let showDefeated = spoiler && metadata && metadata.playerStates && metadata.playerStates[playerIdx].state == "defeated";
 		let isAI = playerData.AI;
 

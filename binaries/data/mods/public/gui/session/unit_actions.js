@@ -230,7 +230,7 @@ var unitActions =
 				return {"type": "build", "cursor": "action-repair", "target": target};
 			return false;
 		},
-		"specificness": 4,
+		"specificness": 15,
 	},
 
 	"gather": 

@@ -229,6 +229,8 @@ EntitySelection.prototype.update = function()
 {
 	var changed = false;
 	this.checkRenamedEntities();
+	var removeOwnerChanges = !g_DevSettings.controlAll && this.toList().length > 1;
+	var playerID = Engine.GetPlayerID();
 	for each (var ent in this.selected)
 	{
 		var entState = GetEntityState(ent);
@@ -245,7 +247,9 @@ EntitySelection.prototype.update = function()
 		// Remove non-visible units (e.g. moved back into fog-of-war)
 		// At the next update, mirages will be renamed to the real 
 		// entity they replace, so just ignore them now
-		if (entState.visibility == "hidden" && !entState.mirage)
+		// Futhermore, when multiple selection, remove units which have changed ownership
+		if ((entState.visibility == "hidden" && !entState.mirage)
+			|| (removeOwnerChanges && entState.player != playerID))
 		{
 			// Disable any highlighting of the disappeared unit
 			_setHighlight([ent], 0, false);

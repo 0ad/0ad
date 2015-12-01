@@ -144,11 +144,6 @@ ResourceGatherer.prototype.RecalculateGatherRatesAndCapacities = function()
 	this.capacities = {};
 	for (let r in this.template.Capacities)
 		this.capacities[r] = ApplyValueModificationsToEntity("ResourceGatherer/Capacities/" + r, +this.template.Capacities[r], this.entity);
-}
-
-ResourceGatherer.prototype.GetBaseSpeed = function()
-{
-	this.baseSpeed;
 };
 
 ResourceGatherer.prototype.GetGatherRates = function()

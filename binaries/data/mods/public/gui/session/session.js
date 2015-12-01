@@ -536,6 +536,8 @@ function onSimulationUpdate()
 
 	handleNotifications();
 
+	g_Selection.update();
+
 	if (g_ShowAllStatusBars)
 		recalculateStatusBarDisplay();
 

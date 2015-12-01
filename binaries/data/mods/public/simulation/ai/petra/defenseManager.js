@@ -17,7 +17,7 @@ m.DefenseManager.prototype.update = function(gameState, events)
 
 	this.checkEvents(gameState, events);
 
-	this.checkEnemyArmies(gameState, events);
+	this.checkEnemyArmies(gameState);
 	this.checkEnemyUnits(gameState);
 	this.assignDefenders(gameState);
 
@@ -200,7 +200,7 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 	}
 };
 
-m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
+m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 {
 	for (let i = 0; i < this.armies.length; ++i)
 	{

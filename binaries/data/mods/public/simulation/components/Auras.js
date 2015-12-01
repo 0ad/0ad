@@ -71,7 +71,6 @@ Auras.prototype.Init = function()
 	var auraNames = this.GetAuraNames();
 	this.auras = {};
 	this.affectedPlayers = {};
-	var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
 	for (var name in this.template)
 	{
 		this.affectedPlayers[name] = []; // will be calculated on ownership change

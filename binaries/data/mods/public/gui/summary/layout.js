@@ -145,7 +145,7 @@ var panelsData = [
 
 function resetGeneralPanel()
 {
-	for (var h = 0; h < MAX_HEADINGTITLE; ++h) 
+	for (var h = 0; h < MAX_HEADINGTITLE; ++h)
 	{
 		Engine.GetGUIObjectByName("titleHeading["+ h +"]").hidden = true;
 		Engine.GetGUIObjectByName("Heading[" + h + "]").hidden = true;

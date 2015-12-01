@@ -22,6 +22,8 @@
 #include "gui/GUIManager.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/utf8.h"
+#include "network/NetClient.h"
+#include "network/NetServer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
@@ -42,6 +44,21 @@ const bool debugParser = false;
 OsPath VisualReplay::GetDirectoryName()
 {
 	return OsPath(psLogDir() / L"sim_log");
+}
+
+void VisualReplay::StartVisualReplay(CStrW directory)
+{
+	ENSURE(!g_NetServer);
+	ENSURE(!g_NetClient);
+	ENSURE(!g_Game);
+
+	const OsPath replayFile = VisualReplay::GetDirectoryName() / directory / L"commands.txt";
+
+	if (!FileExists(replayFile))
+		return;
+
+	g_Game = new CGame(false, false);
+	g_Game->StartVisualReplay(replayFile.string8());
 }
 
 JS::Value VisualReplay::GetReplays(ScriptInterface& scriptInterface)
@@ -129,7 +146,7 @@ inline int getReplayDuration(std::istream *replayStream, const CStr& fileName, c
 
 		if (!replayStream->good())
 		{
-			LOGERROR("Read error when determining replay duration at %i of %lu in %s", currentPosition - 2, fileSize, fileName.c_str());
+			LOGERROR("Read error when determining replay duration at %i of %llu in %s", currentPosition - 2, fileSize, fileName.c_str());
 			return -1;
 		}
 
@@ -155,7 +172,7 @@ JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, OsPath&
 	const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";
 
 	if (debugParser)
-		debug_printf("Opening %s\n", utf8_from_wstring(replayFile.string()).c_str());
+		debug_printf("Opening %s\n", replayFile.string8().c_str());
 
 	if (!FileExists(replayFile))
 		return JSVAL_NULL;
@@ -170,8 +187,7 @@ JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, OsPath&
 		return JSVAL_NULL;
 
 	// Open file
-	// TODO: enhancement: support unicode when OsString() is properly implemented for windows
-	const CStr fileName = utf8_from_wstring(replayFile.string());
+	const CStr fileName = replayFile.string8();
 	std::ifstream* replayStream = new std::ifstream(fileName.c_str());
 
 	// File must begin with "start"
@@ -255,7 +271,7 @@ JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPriva
 		return attribs;
 
 	// Open file
-	std::istream* replayStream = new std::ifstream(utf8_from_wstring(replayFile.string()).c_str());
+	std::istream* replayStream = new std::ifstream(replayFile.string8().c_str());
 	CStr type, line;
 	ENSURE((*replayStream >> type).good() && type == "start");
 
@@ -298,7 +314,7 @@ JS::Value VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate
 	CStr line;
 	std::getline(*stream, line);
 	stream->close();
-	delete stream;
+	SAFE_DELETE(stream);
 	pCxPrivate->pScriptInterface->ParseJSON(line, &metadata);
 
 	return metadata;

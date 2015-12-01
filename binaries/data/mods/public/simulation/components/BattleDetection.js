@@ -39,13 +39,14 @@ BattleDetection.prototype.Init = function()
 	this.state = "PEACE";
 };
 
-BattleDetection.prototype.setState = function(state)
+BattleDetection.prototype.SetState = function(state)
 {
-	if (state != this.state) {
-		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-		this.state = state;
-		Engine.PostMessage(this.entity, MT_BattleStateChanged, { "player": cmpPlayer.GetPlayerID(), "to": this.state });
-	}
+	if (state == this.state)
+		return;
+
+	this.state = state;
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	Engine.PostMessage(this.entity, MT_BattleStateChanged, { "player": cmpPlayer.GetPlayerID(), "to": this.state });
 };
 
 BattleDetection.prototype.GetState = function()
@@ -79,12 +80,12 @@ BattleDetection.prototype.TimerHandler = function(data, lateness)
 
 		// Stop the damage rate timer if we're no longer alert.
 		if (!this.alertness)
-			this.stopTimer();
+			this.StopTimer();
 
 		if (this.alertness >= this.alertnessBattleThreshold)
-			this.setState("BATTLE");
+			this.SetState("BATTLE");
 		else if (this.alertness <= this.alertnessPeaceThreshold)
-			this.setState("PEACE");
+			this.SetState("PEACE");
 
 	}
 	if (this.recordControl > this.recordLength-1)
@@ -93,15 +94,15 @@ BattleDetection.prototype.TimerHandler = function(data, lateness)
 
 /**
  * Set up the damage rate timer to run after 'offset' msecs, and then optionally
- * every 'repeat' msecs until stopTimer is called, if 'repeat' is set. A "Timer" message
+ * every 'repeat' msecs until StopTimer is called, if 'repeat' is set. A "Timer" message
  * will be sent each time the timer runs. Must not be called if a timer is already active.
  */
-BattleDetection.prototype.startTimer = function(offset, repeat)
+BattleDetection.prototype.StartTimer = function(offset, repeat)
 {
 	if (this.timer)
 	{
-		this.stopTimer();
-		error("Called startTimer when there's already an active timer.");
+		this.StopTimer();
+		error("Called StartTimer when there's already an active timer.");
 	}
 
 	this.recordControl = 0;
@@ -118,7 +119,7 @@ BattleDetection.prototype.startTimer = function(offset, repeat)
 /**
  * Stop the current damage rate timer.
  */
-BattleDetection.prototype.stopTimer = function()
+BattleDetection.prototype.StopTimer = function()
 {
 	if (!this.timer)
 		return;
@@ -142,7 +143,7 @@ BattleDetection.prototype.OnGlobalAttacked = function(msg)
 
 	// If the damage rate timer isn't already started, start it now.
 	if (!this.timer)
-		this.startTimer(0, this.interval);
+		this.StartTimer(0, this.interval);
 	// Add damage of this attack to the damage counter.
 	if (msg.damage)
 		this.damage += msg.damage;

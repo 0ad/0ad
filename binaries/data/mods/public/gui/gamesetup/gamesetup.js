@@ -15,7 +15,7 @@ const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingR
 const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryConditions : undefined);
 
 // All colors except gaia
-const g_PlayerColors = initPlayerDefaults().slice(1).map(pData => pData.Color);
+const g_PlayerColors = g_Settings ? g_Settings.PlayerDefaults.slice(1).map(pData => pData.Color) : undefined;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -114,7 +114,7 @@ function init(attribs)
 function initMain()
 {
 	// Get default player data - remove gaia
-	g_DefaultPlayerData = initPlayerDefaults();
+	g_DefaultPlayerData = g_Settings.PlayerDefaults;
 	g_DefaultPlayerData.shift();
 	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
 		g_DefaultPlayerData[i].Civ = "random";
@@ -677,7 +677,7 @@ function loadMapData(name)
 		case "random":
 			if (name == "random")
 				// To be defined later.
-				g_MapData[name] = { settings: { "Name": "", "Description": "" } };
+				g_MapData[name] = { "settings": { "Name": "", "Description": "" } };
 			else
 				g_MapData[name] = Engine.ReadJSONFile(name+".json");
 			break;
@@ -813,11 +813,14 @@ function sanitizePlayerData(playerData)
 	});
 
 	// Replace colors with the best matching color of PlayerDefaults
-	playerData.forEach((pData, index) => {
-		let colorDistances = g_PlayerColors.map(color => colorDistance(color, pData.Color));
-		let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
-		pData.Color = g_PlayerColors.find(color => colorDistance(color, pData.Color) == smallestDistance);
-	});
+	if (g_GameAttributes.mapType != "scenario")
+	{
+		playerData.forEach((pData, index) => {
+			let colorDistances = g_PlayerColors.map(color => colorDistance(color, pData.Color));
+			let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
+			pData.Color = g_PlayerColors.find(color => colorDistance(color, pData.Color) == smallestDistance);
+		});
+	}
 
 	ensureUniquePlayerColors(playerData);
 }
@@ -913,7 +916,7 @@ function selectNumPlayers(num)
 			if (g_IsNetworked)
 				Engine.AssignNetworkPlayer(player, "");
 			else
-				g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0} };
+				g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0 } };
 		}
 	}
 
@@ -1083,7 +1086,7 @@ function selectMap(name)
 	// Reset player assignments on map change
 	if (!g_IsNetworked)
 	{	// Slot 1
-		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0} };
+		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0 } };
 	}
 	else
 	{
@@ -1172,7 +1175,7 @@ function launchGame()
 			// Assign civ specific names to AI players
 			chosenName = translate(chosenName);
 			if (usedName)
-				g_GameAttributes.settings.PlayerData[i].Name = sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": romanNumbers[usedName+1]});
+				g_GameAttributes.settings.PlayerData[i].Name = sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": romanNumbers[usedName+1] });
 			else
 				g_GameAttributes.settings.PlayerData[i].Name = chosenName;
 		}

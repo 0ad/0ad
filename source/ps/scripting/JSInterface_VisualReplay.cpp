@@ -17,26 +17,12 @@
 
 #include "precompiled.h"
 
-#include "network/NetClient.h"
-#include "network/NetServer.h"
-#include "ps/Filesystem.h"
-#include "ps/Game.h"
 #include "ps/VisualReplay.h"
 #include "ps/scripting/JSInterface_VisualReplay.h"
 
 void JSI_VisualReplay::StartVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW directory)
 {
-	ENSURE(!g_NetServer);
-	ENSURE(!g_NetClient);
-	ENSURE(!g_Game);
-
-	const OsPath replayFile = VisualReplay::GetDirectoryName() / directory / L"commands.txt";
-	if (FileExists(replayFile))
-	{
-		g_Game = new CGame(false, false);
-		// TODO: support unicode when OsString() is implemented for windows
-		g_Game->StartVisualReplay(utf8_from_wstring(replayFile.string()));
-	}
+	VisualReplay::StartVisualReplay(directory);
 }
 
 bool JSI_VisualReplay::DeleteReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW replayFile)

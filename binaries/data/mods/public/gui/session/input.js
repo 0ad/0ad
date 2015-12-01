@@ -292,7 +292,7 @@ function determineAction(x, y, fromMinimap)
 	// if two actions are possible, the first one is taken
 	// so the most specific should appear first
 	var actions = Object.keys(unitActions).slice();
-	actions.sort(function(a, b) {return unitActions[a].specificness - unitActions[b].specificness;});
+	actions.sort((a, b) => unitActions[a].specificness - unitActions[b].specificness);
 
 	var actionInfo = undefined;
 	if (preSelectedAction != ACTION_NONE)

@@ -54,6 +54,18 @@ function loadUnit(templateName)
 
 	unit.gather = getGatherRates(templateName);
 
+	if (template.ProductionQueue)
+	{
+		unit.trainer = [];
+		for (let build of template.ProductionQueue.Entities._string.split(" "))
+		{
+			build = build.replace("{civ}", g_SelectedCiv);
+			unit.trainer.push(build);
+			if (g_Lists.units.indexOf(build) === -1)
+				g_Lists.units.push(build);
+		}
+	}
+
 	if (template.Heal)
 		unit.healer = {
 			"Range": +template.Heal.Range || 0,

@@ -83,7 +83,6 @@ public:
 		OPT_SHADOWSONWATER,
 		OPT_SHADOWPCF,
 		OPT_PARTICLES,
-		OPT_GENTANGENTS,
 		OPT_PREFERGLSL,
 		OPT_SILHOUETTES,
 		OPT_SHOWSKY,
@@ -155,7 +154,6 @@ public:
 		bool m_ForceAlphaTest;
 		bool m_GPUSkinning;
 		bool m_Silhouettes;
-		bool m_GenTangents;
 		bool m_SmoothLOS;
 		bool m_ShowSky;
 		bool m_Postproc;

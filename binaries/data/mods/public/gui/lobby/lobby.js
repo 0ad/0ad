@@ -1,21 +1,36 @@
 const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
+const g_SpecialKey = Math.random();
+
+/**
+ * Whether or not to display timestamps in the chat window.
+ */
+const g_ShowTimestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
+
+/**
+ * Mute spammers for this time.
+ */
+const g_SpamBlockDuration = 30;
+
+/**
+ * A symbol which is prepended to the username of moderators.
+ */
+const g_ModeratorPrefix = "@";
+
+/**
+ * Current username.
+ */
+const g_Name = Engine.LobbyGetNick();
 
 var g_ChatMessages = [];
-var g_Name = "unknown";
 var g_GameList = {};
 var g_GameListSortBy = "name";
 var g_PlayerListSortBy = "name";
 var g_GameListOrder = 1; // 1 for ascending sort, and -1 for descending
 var g_PlayerListOrder = 1;
-var g_specialKey = Math.random();
 // This object looks like {"name":[numMessagesSinceReset, lastReset, timeBlocked]} when in use.
 var g_spamMonitor = {};
-var g_timestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
 var g_mapSizes = {};
 var g_userRating = ""; // Rating of user, defaults to Unrated
-var g_modPrefix = "@";
-// Block spammers for 30 seconds.
-var SPAM_BLOCK_LENGTH = 30;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -30,8 +45,6 @@ function init(attribs)
 	// Play menu music
 	initMusic();
 	global.music.setState(global.music.states.MENU);
-
-	g_Name = Engine.LobbyGetNick();
 
 	g_mapSizes = initMapSizes();
 	g_mapSizes.shortNames.splice(0, 0, translateWithContext("map size", "Any"));
@@ -224,7 +237,7 @@ function updatePlayerList()
 			return 0;
 		}
 	});
-	for (var i = 0; i < cleanPlayerList.length; i++)
+	for (var i = 0; i < cleanPlayerList.length; ++i)
 	{
 		// Identify current user's rating.
 		if (cleanPlayerList[i].name == g_Name && cleanPlayerList[i].rating)
@@ -239,7 +252,7 @@ function updatePlayerList()
 		presenceList.push(status);
 		nickList.push(cleanPlayerList[i].name);
 		var ratingSpaces = "  ";
-		for (var index = 0; index < 4 - Math.ceil(Math.log(cleanPlayerList[i].rating) / Math.LN10); index++)
+		for (var index = 0; index < 4 - Math.ceil(Math.log(cleanPlayerList[i].rating) / Math.LN10); ++index)
 			ratingSpaces += "  ";
 		ratingList.push(String(ratingSpaces + rating));
 	}
@@ -255,7 +268,7 @@ function updatePlayerList()
  * Display the profile of the selected player.
  * Displays N/A for all stats until updateProfile is called when the stats
  * 	are actually received from the bot.
- * 
+ *
  * @param caller From which screen is the user requesting data from?
  */
 function displayProfile(caller)
@@ -280,7 +293,7 @@ function displayProfile(caller)
 	}
 	Engine.GetGUIObjectByName("profileArea").hidden = false;
 
-	Engine.SendGetProfile(playerList.list[playerList.selected]);	
+	Engine.SendGetProfile(playerList.list[playerList.selected]);
 
 	var user = playerList.list_name[playerList.selected];
 	var role = Engine.LobbyGetPlayerRole(playerList.list[playerList.selected]);
@@ -325,7 +338,7 @@ function updateProfile()
 		}
 		Engine.GetGUIObjectByName("profileWindowArea").hidden = false;
 		Engine.GetGUIObjectByName("profileErrorText").hidden = true;
-		
+
 		if (attributes[0].rating != "")
 			user = sprintf(translate("%(nick)s (%(rating)s)"), { nick: user, rating: attributes[0].rating });
 
@@ -347,7 +360,7 @@ function updateProfile()
 		playerList = Engine.GetGUIObjectByName("leaderboardBox");
 	else
 		playerList = Engine.GetGUIObjectByName("playersBox");
-	
+
 	if (attributes[0].rating == "-2")
 		return;
 	// Make sure the stats we have received coincide with the selected player.
@@ -381,7 +394,7 @@ function updateLeaderboard()
 	// Get GUI leaderboard object
 	var leaderboard = Engine.GetGUIObjectByName("leaderboardBox");
 	// Sort list in acending order by rating
-	boardList.sort(function(a, b) b.rating - a.rating);
+	boardList.sort((a, b) => b.rating - a.rating);
 
 	var list = [];
 	var list_name = [];
@@ -389,7 +402,7 @@ function updateLeaderboard()
 	var list_rating = [];
 
 	// Push changes
-	for (var i = 0; i < boardList.length; i++)
+	for (var i = 0; i < boardList.length; ++i)
 	{
 		list_name.push(boardList[i].name);
 		list_rating.push(boardList[i].rating);
@@ -543,7 +556,7 @@ function formatPlayerListEntry(nickname, presence, rating)
 		status = translate("Offline");
 		break;
 	default:
-		warn(sprintf("Unknown presence '%(presence)s'", { presence: presence }));
+		warn(sprintf("Unknown presence '%(presence)s'", { "presence": presence }));
 		color = "178 178 178";
 		status = translateWithContext("lobby presence", "Unknown");
 		break;
@@ -555,7 +568,7 @@ function formatPlayerListEntry(nickname, presence, rating)
 	var formattedRating = '[color="' + color + '"]' + rating + "[/color]";
 	var role = Engine.LobbyGetPlayerRole(nickname);
 	if (role == "moderator")
-		nickname = g_modPrefix + nickname;
+		nickname = g_ModeratorPrefix + nickname;
 	var formattedName = colorPlayerName(nickname);
 
 	// Push this player's name and status onto the list
@@ -621,12 +634,12 @@ function joinSelectedGame()
 		// Check if it looks like an ip address
 		if (sip.split('.').length != 4)
 		{
-			addChatMessage({ "from": "system", "text": sprintf(translate("This game's address '%(ip)s' does not appear to be valid."), { ip: sip }) });
+			addChatMessage({ "from": "system", "text": sprintf(translate("This game's address '%(ip)s' does not appear to be valid."), { "ip": sip }) });
 			return;
 		}
 
 		// Open Multiplayer connection window with join option.
-		Engine.PushGuiPage("page_gamesetup_mp.xml", { multiplayerGameType: "join", name: sname, ip: sip, rating: g_userRating });
+		Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "join", "name": sname, "ip": sip, "rating": g_userRating });
 	}
 }
 
@@ -636,7 +649,7 @@ function joinSelectedGame()
 function hostGame()
 {
 	// Open Multiplayer connection window with host option.
-	Engine.PushGuiPage("page_gamesetup_mp.xml", { multiplayerGameType: "host", name: g_Name, rating: g_userRating });
+	Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "host", "name": g_Name, "rating": g_userRating });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -680,14 +693,14 @@ function onTick()
 			switch(message.level)
 			{
 			case "join":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { nick: nick }), "key": g_specialKey });
+				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": nick }), "key": g_SpecialKey });
 				Engine.SendGetRatingList();
 				break;
 			case "leave":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { nick: nick }), "key": g_specialKey });
+				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": nick }), "key": g_SpecialKey });
 				break;
 			case "nick":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), { oldnick: nick, newnick: message.data }), "key": g_specialKey });
+				addChatMessage({ "text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), { "oldnick": nick, "newnick": message.data }), "key": g_SpecialKey });
 				break;
 			case "presence":
 				break;
@@ -695,7 +708,7 @@ function onTick()
 				updateSubject(message.text);
 				break;
 			default:
-				warn(sprintf("Unknown message.level '%(msglvl)s'", { msglvl: message.level }));
+				warn(sprintf("Unknown message.level '%(msglvl)s'", { "msglvl": message.level }));
 				break;
 			}
 			// We might receive many join/leaves when returning to the lobby from a long game.
@@ -745,7 +758,7 @@ function onTick()
 			}
 			break;
 		default:
-			error(sprintf("Unrecognised message type %(msgtype)s", { msgtype: message.type }));
+			error(sprintf("Unrecognised message type %(msgtype)s", { "msgtype": message.type }));
 		}
 	}
 }
@@ -804,7 +817,10 @@ function handleSpecialCommand(text)
 	case "me":
 		return false;
 	default:
-		addChatMessage({ "from":"system", "text": sprintf(translate("We're sorry, the '%(cmd)s' command is not supported."), { cmd: cmd})});
+		addChatMessage({
+			"from": "system",
+			"text": sprintf(translate("We're sorry, the '%(cmd)s' command is not supported."), { "cmd": cmd })
+		});
 	}
 	return true;
 }
@@ -822,7 +838,7 @@ function addChatMessage(msg)
 		// Display the moderator symbol in the chatbox.
 		var playerRole = Engine.LobbyGetPlayerRole(msg.from);
 		if (playerRole == "moderator")
-			msg.from = g_modPrefix + msg.from;
+			msg.from = g_ModeratorPrefix + msg.from;
 	}
 	else
 		msg.from = null;
@@ -888,26 +904,26 @@ function ircFormat(text, from, color, key, datetime)
 		{
 			case "me":
 				// Translation: IRC message prefix when the sender uses the /me command.
-				var senderString = '[font="sans-bold-13"]' + sprintf(translate("* %(sender)s"), { sender: coloredFrom }) + '[/font]';
+				var senderString = '[font="sans-bold-13"]' + sprintf(translate("* %(sender)s"), { "sender": coloredFrom }) + '[/font]';
 				// Translation: IRC message issued using the ‘/me’ command.
-				var formattedMessage = sprintf(translate("%(sender)s %(action)s"), { sender: senderString, action: message });
+				var formattedMessage = sprintf(translate("%(sender)s %(action)s"), { "sender": senderString, "action": message });
 				break;
 			case "say":
 				// Translation: IRC message prefix.
-				var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
+				var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
 				// Translation: IRC message.
-				var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { sender: senderString, message: message });
+				var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": message });
 				break;
 			case "special":
-				if (key === g_specialKey)
+				if (key === g_SpecialKey)
 					// Translation: IRC system message.
-					var formattedMessage = '[font="sans-bold-13"]' + sprintf(translate("== %(message)s"), { message: message }) + '[/font]';
+					var formattedMessage = '[font="sans-bold-13"]' + sprintf(translate("== %(message)s"), { "message": message }) + '[/font]';
 				else
 				{
 					// Translation: IRC message prefix.
-					var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
+					var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
 					// Translation: IRC message.
-					var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { sender: senderString, message: message });
+					var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": message });
 				}
 				break;
 			default:
@@ -918,13 +934,13 @@ function ircFormat(text, from, color, key, datetime)
 	else
 	{
 		// Translation: IRC message prefix.
-		var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { sender: coloredFrom }) + '[/font]';
+		var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
 		// Translation: IRC message.
-		var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { sender: senderString, message: text });
+		var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": text });
 	}
 
 	// Build time header if enabled
-	if (g_timestamp)
+	if (g_ShowTimestamp)
 	{
 
 		var time;
@@ -945,10 +961,10 @@ function ircFormat(text, from, color, key, datetime)
 		var timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
 
 		// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
-		var timePrefixString = '[font="sans-bold-13"]' + sprintf(translate("\\[%(time)s]"), { time: timeString }) + '[/font]';
+		var timePrefixString = '[font="sans-bold-13"]' + sprintf(translate("\\[%(time)s]"), { "time": timeString }) + '[/font]';
 
 		// Translation: IRC message format when there is a time prefix.
-		return sprintf(translate("%(time)s %(message)s"), { time: timePrefixString, message: formattedMessage });
+		return sprintf(translate("%(time)s %(message)s"), { "time": timePrefixString, "message": formattedMessage });
 	}
 	else
 		return formattedMessage;
@@ -991,7 +1007,7 @@ function isSpam(text, from)
 	if (text == " ")
 		return true;
 	// Block users who are still within their spam block period.
-	else if (g_spamMonitor[from][2] + SPAM_BLOCK_LENGTH >= time)
+	else if (g_spamMonitor[from][2] + g_SpamBlockDuration >= time)
 		return true;
 	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked. TODO: Make this smarter and block profanity.
 	else if (g_spamMonitor[from][0] == 6)
@@ -1033,7 +1049,7 @@ function getPlayerColor(playername)
 {
 	// Generate a probably-unique hash for the player name and use that to create a color.
 	var hash = 0;
-	for (var i = 0; i < playername.length; i++)
+	for (var i = 0; i < playername.length; ++i)
 		hash = playername.charCodeAt(i) + ((hash << 5) - hash);
 
 	// First create the color in RGB then HSL, clamp the lightness so it's not too dark to read, and then convert back to RGB to display.
@@ -1060,7 +1076,7 @@ function colorPlayerName(playername)
 	return ('[color="' + playername.split("").map(function (c, i) color.slice(i * 3, i * 3 + 3).join(" ") + '"]' + c + '[/color][color="')
 				.join("") + '"]').slice(0, -10);
 	}
-	return '[color="' + getPlayerColor(playername.replace(g_modPrefix, "")) + '"]' + playername + '[/color]';
+	return '[color="' + getPlayerColor(playername.replace(g_ModeratorPrefix, "")) + '"]' + playername + '[/color]';
 }
 
 // Ensure `value` is between 0 and 1.

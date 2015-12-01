@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -180,6 +180,7 @@ function RunDetection(settings)
 	var disable_shadowpcf = undefined;
 	var disable_allwater = undefined;
 	var disable_fancywater = undefined;
+	var enable_glsl = undefined;
 	var override_renderpath = undefined;
 
 	// TODO: add some mechanism for setting config values
@@ -209,6 +210,24 @@ function RunDetection(settings)
 	var GL_VERSION = settings.GL_VERSION;
 	var GL_EXTENSIONS = settings.GL_EXTENSIONS.split(" ");
 
+	// Enable GLSL on OpenGL 3+, which should be able to properly
+	// manage GLSL shaders, needed for effects like windy trees
+	if (GL_VERSION.match(/^[3-9]/))
+		enable_glsl = true;
+
+	// Disable most graphics features on software renderers
+	if (GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on (llvm|soft)pipe.*|Mesa X11|Apple Software Renderer|GDI Generic)$/))
+	{
+		warnings.push("You are using '" + GL_RENDERER + "' graphics driver, expect very poor performance!");
+		warnings.push("If possible install a proper graphics driver for your hardware.");
+		enable_glsl = false;
+		// s3tc on software renderers halves fps and makes textures weird
+		disable_s3tc = true;
+		disable_shadows = true;
+		disable_shadowpcf = true;
+		disable_allwater = true;
+		disable_fancywater = true;
+	}
 
 	// NVIDIA 260.19.* UNIX drivers cause random crashes soon after startup.
 	// http://www.wildfiregames.com/forum/index.php?showtopic=13668
@@ -235,7 +254,7 @@ function RunDetection(settings)
 	//   Intel 4500MHD
 	// In the interests of performance, we'll disable them on lots of devices
 	// (with a fairly arbitrary cutoff for Intels)
-	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe|Mesa X11|Apple Software Renderer)$/)) ||
+	if (
 		(os_unix && GL_RENDERER.match(/^Mesa DRI R[123]00 /)) ||
 		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "Intel HD Graphics 3000")) ||
 		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "Intel(R) Ironlake Desktop")) ||
@@ -247,8 +266,8 @@ function RunDetection(settings)
 	}
 
 	// Fragment-shader water is really slow on most Intel devices (especially the
-	// "use actual depth" option) and on software renderers, so disable it on all of them
-	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe|Apple Software Renderer)$/)) ||
+	// "use actual depth" option), so disable it on all of them
+	if (
 		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "*")) ||
 		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "*")) ||
 		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "*"))
@@ -293,6 +312,7 @@ function RunDetection(settings)
 		"disable_shadowpcf": disable_shadowpcf,
 		"disable_allwater": disable_allwater,
 		"disable_fancywater": disable_fancywater,
+		"enable_glsl": enable_glsl,
 		"override_renderpath": override_renderpath,
 	};
 }
@@ -331,6 +351,9 @@ global.RunHardwareDetection = function(settings)
 	
 	if (output.disable_fancywater !== undefined)
 		Engine.SetDisableFancyWater(output.disable_fancywater);
+
+	if (output.enable_glsl !== undefined)
+		Engine.SetEnableGLSL(output.enable_glsl);
 
 	if (output.override_renderpath !== undefined)
 		Engine.SetRenderPath(output.override_renderpath);

@@ -607,7 +607,6 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 
 	var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 	var cmpCost = Engine.QueryInterface(msg.entity, IID_Cost);
-	var cmpFoundation = Engine.QueryInterface(msg.entity, IID_Foundation);
 
 	if (msg.from == this.playerID)
 	{
