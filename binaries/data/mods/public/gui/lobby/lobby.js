@@ -206,15 +206,15 @@ function updatePlayerList()
 	var nickList = [];
 	var ratingList = [];
 	var cleanPlayerList = Engine.GetPlayerList();
+
 	// Sort the player list, ignoring case.
-	cleanPlayerList.sort(function(a,b)
-	{
+	cleanPlayerList.sort((a, b) => {
 		switch (g_PlayerListSortBy)
 		{
 		case 'rating':
-			if (a.rating < b.rating)
+			if (+a.rating < +b.rating)
 				return -g_PlayerListOrder;
-			else if (a.rating > b.rating)
+			else if (+a.rating > +b.rating)
 				return g_PlayerListOrder;
 			return 0;
 		case 'status':
@@ -237,6 +237,7 @@ function updatePlayerList()
 			return 0;
 		}
 	});
+
 	for (var i = 0; i < cleanPlayerList.length; ++i)
 	{
 		// Identify current user's rating.
@@ -432,7 +433,7 @@ function updateGameList()
 
 	// Sort the list of games to that games 'waiting' are displayed at the top, followed by 'init', followed by 'running'.
 	var gameStatuses = ['waiting', 'init', 'running'];
-	g_GameList.sort(function (a,b) {
+	g_GameList.sort((a, b) => {
 		switch (g_GameListSortBy)
 		{
 		case 'name':
@@ -1073,7 +1074,7 @@ function colorPlayerName(playername)
 	var color = fixedColors[playername];
 	if (color) {
 	color = color.split(".");
-	return ('[color="' + playername.split("").map(function (c, i) color.slice(i * 3, i * 3 + 3).join(" ") + '"]' + c + '[/color][color="')
+	return ('[color="' + playername.split("").map((c, i) => color.slice(i * 3, i * 3 + 3).join(" ") + '"]' + c + '[/color][color="')
 				.join("") + '"]').slice(0, -10);
 	}
 	return '[color="' + getPlayerColor(playername.replace(g_ModeratorPrefix, "")) + '"]' + playername + '[/color]';
@@ -1137,7 +1138,7 @@ function hslToRgb(h, s, l)
 		b = hue2rgb(p, q, h - 1/3);
 	}
 
-	return [r, g, b].map(function (n) Math.round(n * 255));
+	return [r, g, b].map(n => Math.round(n * 255));
 }
 
 (function () {
