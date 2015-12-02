@@ -1,3 +1,6 @@
+/**
+ * Used for the gamelist-filtering.
+ */
 const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
 
 /**
@@ -20,18 +23,37 @@ const g_ModeratorPrefix = "@";
  */
 const g_Username = Engine.LobbyGetNick();
 
+/**
+ * All chat messages received since init (i.e. after lobby join and after returning from a game).
+ */
 var g_ChatMessages = [];
+
+/**
+ * Rating of the current user.
+ * Contains the number or an empty string in case the user has no rating.
+ */
+var g_UserRating = "";
+
+/**
+ * All games currently running.
+ */
 var g_GameList = {};
+
+/**
+ * Remembers how many messages were sent by each user since the last reset.
+ *
+ * For example { "username": [numMessagesSinceReset, lastReset, timeBlocked] }
+ */
+var g_SpamMonitor = {};
+
+/**
+ * Remembers how to sort the columns in the lobby playerlist / gamelist.
+ * TODO: move logic to c++ / xml
+ */
 var g_GameListSortBy = "name";
 var g_PlayerListSortBy = "name";
 var g_GameListOrder = 1; // 1 for ascending sort, and -1 for descending
 var g_PlayerListOrder = 1;
-// This object looks like {"name":[numMessagesSinceReset, lastReset, timeBlocked]} when in use.
-var g_SpamMonitor = {};
-var g_MapSizes = {};
-var g_UserRating = ""; // Rating of user, defaults to Unrated
-
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 function init(attribs)
 {
@@ -45,13 +67,13 @@ function init(attribs)
 	initMusic();
 	global.music.setState(global.music.states.MENU);
 
-	g_MapSizes = initMapSizes();
-	g_MapSizes.shortNames.splice(0, 0, translateWithContext("map size", "Any"));
-	g_MapSizes.tiles.splice(0, 0, "");
-
+	// Init mapsize filter
+	var mapSizes = initMapSizes();
+	mapSizes.shortNames.splice(0, 0, translateWithContext("map size", "Any"));
+	mapSizes.tiles.splice(0, 0, "");
 	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
-	mapSizeFilter.list = g_MapSizes.shortNames;
-	mapSizeFilter.list_data = g_MapSizes.tiles;
+	mapSizeFilter.list = mapSizes.shortNames;
+	mapSizeFilter.list_data = mapSizes.tiles;
 
 	// Setup number-of-players filter
 	var playersArray = Array(g_MaxPlayers).fill(0).map((v, i) => i + 1); // 1, 2, ... MaxPlayers
