@@ -1,6 +1,6 @@
 const g_EngineInfo = Engine.GetEngineInfo();
 const g_CivData = loadCivData();
-const g_mapSizes = initMapSizes();
+const g_MapSizes = initMapSizes();
 
 /**
  * All replays found in the directory.

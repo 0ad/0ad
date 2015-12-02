@@ -17,9 +17,9 @@ const g_SpamBlockDuration = 30;
 const g_ModeratorPrefix = "@";
 
 /**
- * Current username.
+ * Current username. Cannot contain whitespace.
  */
-const g_Name = Engine.LobbyGetNick();
+const g_Username = Engine.LobbyGetNick();
 
 var g_ChatMessages = [];
 var g_GameList = {};
@@ -28,9 +28,9 @@ var g_PlayerListSortBy = "name";
 var g_GameListOrder = 1; // 1 for ascending sort, and -1 for descending
 var g_PlayerListOrder = 1;
 // This object looks like {"name":[numMessagesSinceReset, lastReset, timeBlocked]} when in use.
-var g_spamMonitor = {};
-var g_mapSizes = {};
-var g_userRating = ""; // Rating of user, defaults to Unrated
+var g_SpamMonitor = {};
+var g_MapSizes = {};
+var g_UserRating = ""; // Rating of user, defaults to Unrated
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -46,13 +46,13 @@ function init(attribs)
 	initMusic();
 	global.music.setState(global.music.states.MENU);
 
-	g_mapSizes = initMapSizes();
-	g_mapSizes.shortNames.splice(0, 0, translateWithContext("map size", "Any"));
-	g_mapSizes.tiles.splice(0, 0, "");
+	g_MapSizes = initMapSizes();
+	g_MapSizes.shortNames.splice(0, 0, translateWithContext("map size", "Any"));
+	g_MapSizes.tiles.splice(0, 0, "");
 
 	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
-	mapSizeFilter.list = g_mapSizes.shortNames;
-	mapSizeFilter.list_data = g_mapSizes.tiles;
+	mapSizeFilter.list = g_MapSizes.shortNames;
+	mapSizeFilter.list_data = g_MapSizes.tiles;
 
 	// Setup number-of-players filter
 	var playersArray = Array(g_MaxPlayers).fill(0).map((v, i) => i + 1); // 1, 2, ... MaxPlayers
@@ -241,8 +241,8 @@ function updatePlayerList()
 	for (var i = 0; i < cleanPlayerList.length; ++i)
 	{
 		// Identify current user's rating.
-		if (cleanPlayerList[i].name == g_Name && cleanPlayerList[i].rating)
-			g_userRating = cleanPlayerList[i].rating;
+		if (cleanPlayerList[i].name == g_Username && cleanPlayerList[i].rating)
+			g_UserRating = cleanPlayerList[i].rating;
 		// Add a "-" for unrated players.
 		if (!cleanPlayerList[i].rating)
 			cleanPlayerList[i].rating = "-";
@@ -627,7 +627,7 @@ function joinSelectedGame()
 	if (gamesBox.selected >= 0)
 	{
 		var g = gamesBox.list_data[gamesBox.selected];
-		var sname = g_Name;
+		var sname = g_Username;
 		var sip = g_GameList[g].ip;
 
 		// TODO: What about valid host names?
@@ -639,7 +639,7 @@ function joinSelectedGame()
 		}
 
 		// Open Multiplayer connection window with join option.
-		Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "join", "name": sname, "ip": sip, "rating": g_userRating });
+		Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "join", "name": sname, "ip": sip, "rating": g_UserRating });
 	}
 }
 
@@ -649,7 +649,7 @@ function joinSelectedGame()
 function hostGame()
 {
 	// Open Multiplayer connection window with host option.
-	Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "host", "name": g_Name, "rating": g_userRating });
+	Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "host", "name": g_Username, "rating": g_UserRating });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -770,7 +770,7 @@ function submitChatInput()
 	var text = input.caption;
 	if (text.length)
 	{
-		if (!handleSpecialCommand(text) && !isSpam(text, g_Name))
+		if (!handleSpecialCommand(text) && !isSpam(text, g_Username))
 			Engine.LobbySendMessage(text);
 		input.caption = "";
 	}
@@ -850,8 +850,8 @@ function addChatMessage(msg)
 		msg.datetime = null;
 
 	// Highlight local user's nick
-	if (g_Name != msg.from)
-		msg.text = msg.text.replace(g_Name, colorPlayerName(g_Name));
+	if (g_Username != msg.from)
+		msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
 
 	// Run spam test if it's not a historical message
 	if (!msg.datetime)
@@ -981,10 +981,10 @@ function updateSpamMonitor(from)
 	var time = Math.floor(Date.now() / 1000);
 
 	// Update or initialize the user in the spam monitor.
-	if (g_spamMonitor[from])
-		g_spamMonitor[from][0]++;
+	if (g_SpamMonitor[from])
+		g_SpamMonitor[from][0]++;
 	else
-		g_spamMonitor[from] = [1, time, 0];
+		g_SpamMonitor[from] = [1, time, 0];
 }
 
 /**
@@ -1000,20 +1000,20 @@ function isSpam(text, from)
 	var time = Math.floor(Date.now() / 1000);
 
 	// Initialize if not already in the database.
-	if (!g_spamMonitor[from])
-		g_spamMonitor[from] = [1, time, 0];
+	if (!g_SpamMonitor[from])
+		g_SpamMonitor[from] = [1, time, 0];
 
 	// Block blank lines.
 	if (text == " ")
 		return true;
 	// Block users who are still within their spam block period.
-	else if (g_spamMonitor[from][2] + g_SpamBlockDuration >= time)
+	else if (g_SpamMonitor[from][2] + g_SpamBlockDuration >= time)
 		return true;
 	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked. TODO: Make this smarter and block profanity.
-	else if (g_spamMonitor[from][0] == 6)
+	else if (g_SpamMonitor[from][0] == 6)
 	{
-		g_spamMonitor[from][2] = time;
-		if (from == g_Name)
+		g_SpamMonitor[from][2] = time;
+		if (from == g_Username)
 			addChatMessage({ "from": "system", "text": translate("Please do not spam. You have been blocked for thirty seconds.") });
 		return true;
 	}
@@ -1031,7 +1031,7 @@ function checkSpamMonitor()
 	var time = Math.floor(Date.now() / 1000);
 
 	// Clear message count every 5 seconds.
-	for each (var stats in g_spamMonitor)
+	for each (var stats in g_SpamMonitor)
 	{
 		if (stats[1] + 5 <= time)
 		{

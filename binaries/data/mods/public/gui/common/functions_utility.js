@@ -117,14 +117,14 @@ function initMapSizes()
 }
 
 /**
- * Returns title or placeholder. Requires g_mapSizes.
+ * Returns title or placeholder. Requires g_MapSizes.
  *
  * @param mapSize {Number} - tilecount
  */
 function translateMapSize(tiles)
 {
-	var idx = g_mapSizes.tiles.indexOf(+tiles);
-	return (idx == -1) ? translateWithContext("map size", "Default") : g_mapSizes.shortNames[idx];
+	var idx = g_MapSizes.tiles.indexOf(+tiles);
+	return (idx == -1) ? translateWithContext("map size", "Default") : g_MapSizes.shortNames[idx];
 }
 
 /**
