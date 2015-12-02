@@ -1041,9 +1041,10 @@ function checkSpamMonitor()
 
 }
 
-/* Utilities */
-// Generate a (mostly) unique color for this player based on their name.
-// See http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
+/**
+ *  Generate a (mostly) unique color for this player based on their name.
+ *  See http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
+ */
 function getPlayerColor(playername)
 {
 	// Generate a probably-unique hash for the player name and use that to create a color.
@@ -1059,52 +1060,10 @@ function getPlayerColor(playername)
 	return hslToRgb(h, s, Math.max(0.7, l)).join(" ");
 }
 
-function repeatString(times, string) {
-	return Array(times + 1).join(string);
-}
-
-// Some names are special and should always appear in certain colors.
-var fixedColors = { "system": repeatString(7, "255.0.0."), "@WFGbot": repeatString(7, "255.24.24."),
-					"pyrogenesis": repeatString(2, "97.0.0.") + repeatString(2, "124.0.0.") + "138.0.0." +
-						repeatString(2, "174.0.0.") + repeatString(2, "229.40.0.") + repeatString(2, "243.125.15.") };
+/**
+ * Returns the given playername wrapped in an appropriate color-tag.
+ */
 function colorPlayerName(playername)
 {
-	var color = fixedColors[playername];
-	if (color) {
-	color = color.split(".");
-	return ('[color="' + playername.split("").map((c, i) => color.slice(i * 3, i * 3 + 3).join(" ") + '"]' + c + '[/color][color="')
-				.join("") + '"]').slice(0, -10);
-	}
 	return '[color="' + getPlayerColor(playername.replace(g_ModeratorPrefix, "")) + '"]' + playername + '[/color]';
 }
-
-(function () {
-function hexToRgb(hex) {
-	return parseInt(hex.slice(0, 2), 16) + "." + parseInt(hex.slice(2, 4), 16) + "." + parseInt(hex.slice(4, 6), 16) + ".";
-}
-function r(times, hex) {
-	return repeatString(times, hexToRgb(hex));
-}
-
-fixedColors["Twilight_Sparkle"] = r(2, "d19fe3") + r(2, "b689c8") + r(2, "a76bc2") +
-	r(4, "263773") + r(2, "131f46") + r(2, "662d8a") + r(2, "ed438a");
-fixedColors["Applejack"] = r(3, "ffc261") + r(3, "efb05d") + r(3, "f26f31");
-fixedColors["Rarity"] = r(1, "ebeff1") + r(1, "dee3e4") + r(1, "bec2c3") +
-	r(1, "83509f") + r(1, "4b2568") + r(1, "4917d6");
-fixedColors["Rainbow_Dash"] = r(2, "ee4144") + r(1, "f37033") + r(1, "fdf6af") +
-	r(1, "62bc4d") + r(1, "1e98d3") + r(2, "672f89") + r(1, "9edbf9") +
-	r(1, "88c4eb") + r(1, "77b0e0") + r(1, "1e98d3");
-fixedColors["Pinkie_Pie"] = r(2, "f3b6cf") + r(2, "ec9dc4") + r(4, "eb81b4") +
-	r(1, "ed458b") + r(1, "be1d77");
-fixedColors["Fluttershy"] = r(2, "fdf6af") + r(2, "fee78f") + r(2, "ead463") +
-	r(2, "f3b6cf") + r(2, "eb81b4");
-fixedColors["Sweetie_Belle"] = r(2, "efedee") + r(3, "e2dee3") + r(3, "cfc8d1") +
-	r(2, "b28dc0") + r(2, "f6b8d2") + r(1, "795b8a");
-fixedColors["Apple_Bloom"] = r(2, "f4f49b") + r(2, "e7e793") + r(2, "dac582") +
-	r(2, "f46091") + r(2, "f8415f") + r(1, "c52451");
-fixedColors["Scootaloo"] = r(2, "fbba64") + r(2, "f2ab56") + r(2, "f37003") +
-	r(2, "bf5d95") + r(1, "bf1f79");
-fixedColors["Luna"] = r(1, "7ca7fa") + r(1, "5d6fc1") + r(1, "656cb9") + r(1, "393993");
-fixedColors["Celestia"] = r(1, "fdfafc") + r(1, "f7eaf2") + r(1, "d99ec5") +
-	r(1, "00aec5") + r(1, "f7c6dc") + r(1, "98d9ef") + r(1, "ced7ed") + r(1, "fed17b");
-})();
