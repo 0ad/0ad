@@ -46,7 +46,7 @@ OsPath VisualReplay::GetDirectoryName()
 	return OsPath(psLogDir() / L"sim_log");
 }
 
-void VisualReplay::StartVisualReplay(CStrW directory)
+void VisualReplay::StartVisualReplay(const CStrW& directory)
 {
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -142,6 +142,7 @@ inline int getReplayDuration(std::istream *replayStream, const CStr& fileName, c
 			return -1;
 
 		if (debugParser)
+			// TODO: throws a compiler warning on some systems
 			debug_printf("At position %i of %lu after %i lines reads.\n", currentPosition, fileSize, linesRead);
 
 		if (!replayStream->good())
@@ -293,23 +294,26 @@ void VisualReplay::SaveReplayMetadata(const CStrW& data)
 	const OsPath fileName = g_Game->GetReplayLogger().GetDirectory() / L"metadata.json";
 	CreateDirectories(fileName.Parent(), 0700);
 
-	std::ofstream stream (OsString(fileName).c_str(), std::ofstream::out | std::ofstream::trunc);
+	std::ofstream stream (fileName.string8().c_str(), std::ofstream::out | std::ofstream::trunc);
 	stream << utf8_from_wstring(data);
 	stream.close();
 }
 
+bool VisualReplay::HasReplayMetadata(const CStrW& directoryName)
+{
+	return FileExists(GetDirectoryName() / directoryName / L"metadata.json");
+}
+
 JS::Value VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName)
 {
-	const OsPath filePath = GetDirectoryName() / directoryName / L"metadata.json";
+	if (!HasReplayMetadata(directoryName))
+		return JSVAL_NULL;
 
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue metadata(cx);
 
-	if (!FileExists(filePath))
-		return JSVAL_NULL;
-
-	std::ifstream* stream = new std::ifstream(OsString(filePath).c_str());
+	std::ifstream* stream = new std::ifstream(OsPath(GetDirectoryName() / directoryName / L"metadata.json").string8());
 	ENSURE(stream->good());
 	CStr line;
 	std::getline(*stream, line);
