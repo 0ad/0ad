@@ -218,7 +218,7 @@ function updatePlayerList()
 				return g_PlayerListOrder;
 			return 0;
 		case 'status':
-			let order = ["available", "away", "playing", "gone", "offline"];
+			let order = ["available", "away", "playing", "offline"];
 			let presenceA = order.indexOf(a.presence);
 			let presenceB = order.indexOf(b.presence);
 			if (presenceA < presenceB)
@@ -543,7 +543,6 @@ function formatPlayerListEntry(nickname, presence, rating)
 		color = "125 0 0";
 		status = translate("Busy");
 		break;
-	case "gone":
 	case "away":
 		color = "229 76 13";
 		status = translate("Away");
