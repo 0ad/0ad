@@ -44,8 +44,8 @@ Looter.prototype.Collect = function(targetEntity)
 		if (carriedGoods.amount)
 		{
 			resources[carriedGoods.type] +=
-				+ (carriedGoods.amount.traderGain || 0);
-				+ (carriedGoods.amount.market1Gain || 0);
+				+ (carriedGoods.amount.traderGain || 0)
+				+ (carriedGoods.amount.market1Gain || 0)
 				+ (carriedGoods.amount.market2Gain || 0);
 		}
 	}
