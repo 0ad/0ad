@@ -1,5 +1,4 @@
 const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
-const g_SpecialKey = Math.random();
 
 /**
  * Whether or not to display timestamps in the chat window.
@@ -693,14 +692,14 @@ function onTick()
 			switch(message.level)
 			{
 			case "join":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": nick }), "key": g_SpecialKey });
+				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": nick }), "isSpecial": true });
 				Engine.SendGetRatingList();
 				break;
 			case "leave":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": nick }), "key": g_SpecialKey });
+				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": nick }), "isSpecial": true });
 				break;
 			case "nick":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), { "oldnick": nick, "newnick": message.data }), "key": g_SpecialKey });
+				addChatMessage({ "text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), { "oldnick": nick, "newnick": message.data }), "isSpecial": true });
 				break;
 			case "presence":
 				break;
@@ -860,7 +859,7 @@ function addChatMessage(msg)
 		return;
 
 	// Format Text
-	var formatted = ircFormat(msg.text, msg.from, msg.color, msg.key, msg.datetime);
+	var formatted = ircFormat(msg.text, msg.from, msg.color, msg.key, msg.datetime, msg.isSpecial || false);
 
 	// If there is text, add it to the chat box.
 	if (formatted)
@@ -888,7 +887,7 @@ function ircSplit(string)
  * @param datetime Current date and time of message, only used for historical messages
  * @return Formatted text.
  */
-function ircFormat(text, from, color, key, datetime)
+function ircFormat(text, from, color, key, datetime, isSpecial)
 {
 	// Generate and apply color to uncolored names,
 	if (!color && from)
@@ -915,7 +914,7 @@ function ircFormat(text, from, color, key, datetime)
 				var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": message });
 				break;
 			case "special":
-				if (key === g_SpecialKey)
+				if (isSpecial)
 					// Translation: IRC system message.
 					var formattedMessage = '[font="sans-bold-13"]' + sprintf(translate("== %(message)s"), { "message": message }) + '[/font]';
 				else
