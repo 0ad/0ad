@@ -303,7 +303,7 @@ function displayProfile(caller)
 		// Make the role uppercase.
 		role = role.charAt(0).toUpperCase() + role.slice(1);
 		if (role == "Moderator")
-			role = '[color="0 125 0"]' + translate(role) + '[/color]';
+			role = '[color="0 219 0"]' + translate(role) + '[/color]';
 	}
 	else
 		role = "";
@@ -490,11 +490,11 @@ function updateGameList()
 			// 'waiting' games are highlighted in orange, 'running' in red, and 'init' in green.
 			let name = escapeText(g.name);
 			if (g.state == 'init')
-				name = '[color="0 125 0"]' + name + '[/color]';
+				name = '[color="0 219 0"]' + name + '[/color]';
 			else if (g.state == 'waiting')
 				name = '[color="255 127 0"]' + name + '[/color]';
 			else
-				name = '[color="255 0 0"]' + name + '[/color]';
+				name = '[color="219 0 0"]' + name + '[/color]';
 			list_name.push(name);
 			list_ip.push(g.ip);
 			list_mapName.push(translate(g.niceMapName));
@@ -539,7 +539,7 @@ function formatPlayerListEntry(nickname, presence, rating)
 	switch (presence)
 	{
 	case "playing":
-		color = "125 0 0";
+		color = "200 0 0";
 		status = translate("Busy");
 		break;
 	case "away":
@@ -547,7 +547,7 @@ function formatPlayerListEntry(nickname, presence, rating)
 		status = translate("Away");
 		break;
 	case "available":
-		color = "0 125 0";
+		color = "0 219 0";
 		status = translate("Online");
 		break;
 	case "offline":
@@ -1056,7 +1056,7 @@ function getPlayerColor(playername)
 	// us much more variety if we generate in RGB. Unfortunately, enforcing that RGB values are a certain lightness is very difficult, so
 	// we convert to HSL to do the computation. Since our GUI code only displays RGB colors, we have to convert back.
 	var [h, s, l] = rgbToHsl(hash >> 24 & 0xFF, hash >> 16 & 0xFF, hash >> 8 & 0xFF);
-	return hslToRgb(h, s, Math.max(0.4, l)).join(" ");
+	return hslToRgb(h, s, Math.max(0.7, l)).join(" ");
 }
 
 function repeatString(times, string) {
@@ -1076,67 +1076,6 @@ function colorPlayerName(playername)
 				.join("") + '"]').slice(0, -10);
 	}
 	return '[color="' + getPlayerColor(playername.replace(g_ModeratorPrefix, "")) + '"]' + playername + '[/color]';
-}
-
-// Ensure `value` is between 0 and 1.
-function clampColorValue(value)
-{
-	return Math.abs(1 - Math.abs(value - 1));
-}
-
-// See http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion
-function rgbToHsl(r, g, b)
-{
-	r /= 255;
-	g /= 255;
-	b /= 255;
-	var max = Math.max(r, g, b), min = Math.min(r, g, b);
-	var h, s, l = (max + min) / 2;
-
-	if (max == min)
-		h = s = 0; // achromatic
-	else
-	{
-		var d = max - min;
-		s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-		switch (max)
-		{
-			case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-			case g: h = (b - r) / d + 2; break;
-			case b: h = (r - g) / d + 4; break;
-		}
-		h /= 6;
-	}
-
-	return [h, s, l];
-}
-
-function hslToRgb(h, s, l)
-{
-	function hue2rgb(p, q, t)
-	{
-		if (t < 0) t += 1;
-		if (t > 1) t -= 1;
-		if (t < 1/6) return p + (q - p) * 6 * t;
-		if (t < 1/2) return q;
-		if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-		return p;
-	}
-
-	[h, s, l] = [h, s, l].map(clampColorValue);
-	var r, g, b;
-
-	if (s == 0)
-		r = g = b = l; // achromatic
-	else {
-		var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-		var p = 2 * l - q;
-		r = hue2rgb(p, q, h + 1/3);
-		g = hue2rgb(p, q, h);
-		b = hue2rgb(p, q, h - 1/3);
-	}
-
-	return [r, g, b].map(n => Math.round(n * 255));
 }
 
 (function () {

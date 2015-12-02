@@ -1812,7 +1812,15 @@ function addChatMessage(msg)
 
 	// Valid player who has been assigned - get player color
 	if (msg.guid && g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != -1)
-		color = rgbToGuiColor(g_GameAttributes.settings.PlayerData[g_PlayerAssignments[msg.guid].player - 1].Color);
+	{
+		color = g_GameAttributes.settings.PlayerData[g_PlayerAssignments[msg.guid].player - 1].Color;
+
+		// Enlighten playercolor to improve readability
+		var [h, s, l] = rgbToHsl(color.r, color.g, color.b);
+		var [r, g, b] = hslToRgb(h, s, Math.max(0.6, l));
+
+		color = rgbToGuiColor({ "r": r, "g": g, "b": b });
+	}
 
 	var formatted;
 	switch (msg.type)
