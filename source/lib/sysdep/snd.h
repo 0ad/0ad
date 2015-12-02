@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,13 +27,13 @@
 #ifndef INCLUDED_SND
 #define INCLUDED_SND
 
-const size_t SND_CARD_LEN = 256;
+const size_t SND_CARD_LEN = 512;
 /**
  * description of sound card.
  **/
 extern wchar_t snd_card[SND_CARD_LEN];
 
-const size_t SND_DRV_VER_LEN = 256;
+const size_t SND_DRV_VER_LEN = 512;
 /**
  * sound driver identification and version.
  **/
