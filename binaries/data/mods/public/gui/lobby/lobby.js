@@ -24,6 +24,26 @@ const g_ModeratorPrefix = "@";
 const g_Username = Engine.LobbyGetNick();
 
 /**
+ * Current games will be listed in these colors.
+ */
+const g_GameColors = {
+	"init": "0 219 0",
+	"waiting": "255 127 0",
+	"running": "219 0 0"
+}
+
+/**
+ * The playerlist will be assembled using these values.
+ */
+const g_PlayerStatuses = {
+	"available": { "color": "0 219 0",     "status": translate("Online") },
+	"away":      { "color": "229 76 13",   "status": translate("Away") },
+	"playing":   { "color": "200 0 0",     "status": translate("Busy") },
+	"offline":   { "color": "0 0 0",       "status": translate("Offline") },
+	"unknown":   { "color": "178 178 178", "status": translateWithContext("lobby presence", "Unknown") }
+};
+
+/**
  * All chat messages received since init (i.e. after lobby join and after returning from a game).
  */
 var g_ChatMessages = [];
@@ -216,8 +236,6 @@ function updateSubject(newSubject)
 
 /**
  * Do a full update of the player listing, including ratings from cached C++ information.
- *
- * @return Array containing the player, presence, nickname, and rating listings.
  */
 function updatePlayerList()
 {
@@ -226,62 +244,66 @@ function updatePlayerList()
 	var presenceList = [];
 	var nickList = [];
 	var ratingList = [];
-	var cleanPlayerList = Engine.GetPlayerList();
 
-	// Sort the player list, ignoring case.
-	cleanPlayerList.sort((a, b) => {
+	// Get a sorted list of all users currently connected
+	var cleanPlayerList = Engine.GetPlayerList().sort((a, b) => {
+		var sortA, sortB;
 		switch (g_PlayerListSortBy)
 		{
 		case 'rating':
-			if (+a.rating < +b.rating)
-				return -g_PlayerListOrder;
-			else if (+a.rating > +b.rating)
-				return g_PlayerListOrder;
-			return 0;
+			sortA = +a.rating;
+			sortB = +b.rating;
+			break;
 		case 'status':
-			let order = ["available", "away", "playing", "offline"];
-			let presenceA = order.indexOf(a.presence);
-			let presenceB = order.indexOf(b.presence);
-			if (presenceA < presenceB)
-				return -g_PlayerListOrder;
-			else if (presenceA > presenceB)
-				return g_PlayerListOrder;
-			return 0;
+			let statusOrder = Object.keys(g_PlayerStatuses);
+			sortA = statusOrder.indexOf(a.presence);
+			sortB = statusOrder.indexOf(b.presence);
+			break;
 		case 'name':
 		default:
-			var aName = a.name.toLowerCase();
-			var bName = b.name.toLowerCase();
-			if (aName < bName)
-				return -g_PlayerListOrder;
-			else if (aName > bName)
-				return g_PlayerListOrder;
-			return 0;
+			sortA = a.name.toLowerCase();
+			sortB = b.name.toLowerCase();
+			break;
 		}
+		if (sortA < sortB) return -g_PlayerListOrder;
+		if (sortA > sortB) return +g_PlayerListOrder;
+		return 0;
 	});
 
-	for (var i = 0; i < cleanPlayerList.length; ++i)
+	// Colorize list entries
+	for (let player of cleanPlayerList)
 	{
-		// Identify current user's rating.
-		if (cleanPlayerList[i].name == g_Username && cleanPlayerList[i].rating)
-			g_UserRating = cleanPlayerList[i].rating;
-		// Add a "-" for unrated players.
-		if (!cleanPlayerList[i].rating)
-			cleanPlayerList[i].rating = "-";
-		// Colorize.
-		var [name, status, rating] = formatPlayerListEntry(cleanPlayerList[i].name, cleanPlayerList[i].presence, cleanPlayerList[i].rating, cleanPlayerList[i].role);
-		// Push to lists.
-		playerList.push(name);
-		presenceList.push(status);
-		nickList.push(cleanPlayerList[i].name);
-		var ratingSpaces = "  ";
-		for (var index = 0; index < 4 - Math.ceil(Math.log(cleanPlayerList[i].rating) / Math.LN10); ++index)
-			ratingSpaces += "  ";
-		ratingList.push(String(ratingSpaces + rating));
+		// Identify rating of the current user
+		if (player.rating && player.name == g_Username)
+			g_UserRating = player.rating;
+
+		// Center rating using leading whitespace
+		let rating = ("    " + (player.rating ? player.rating : "-")).substr(-5);
+
+		// Find presence status
+		let presence = g_PlayerStatuses[player.presence] ? player.presence : "unknown";
+		if (presence == "unknown")
+			warn("Unknown presence:" + player.presence);
+
+		// Colorize list entries
+		let statusColor = g_PlayerStatuses[presence].color;
+		let coloredName = colorPlayerName((player.role == "moderator" ? g_ModeratorPrefix : "") + player.name);
+		let coloredPresence = '[color="' + statusColor + '"]' + g_PlayerStatuses[presence].status + "[/color]";
+		let coloredRating = '[color="' + statusColor + '"]' + rating + "[/color]";
+
+		// Push to list
+		playerList.push(coloredName);
+		presenceList.push(coloredPresence);
+		ratingList.push(coloredRating);
+		nickList.push(player.name);
 	}
+
+	// Push list to GUI
 	playersBox.list_name = playerList;
 	playersBox.list_status = presenceList;
 	playersBox.list_rating = ratingList;
 	playersBox.list = nickList;
+
 	if (playersBox.selected >= playersBox.list.length)
 		playersBox.selected = -1;
 }
@@ -509,18 +531,11 @@ function updateGameList()
 	{
 		if (!filterGame(g))
 		{
-			// 'waiting' games are highlighted in orange, 'running' in red, and 'init' in green.
-			let name = escapeText(g.name);
-			if (g.state == 'init')
-				name = '[color="0 219 0"]' + name + '[/color]';
-			else if (g.state == 'waiting')
-				name = '[color="255 127 0"]' + name + '[/color]';
-			else
-				name = '[color="219 0 0"]' + name + '[/color]';
-			list_name.push(name);
+			list_name.push('[color="' + g_GameColors(g.state) + '"]' + escapeText(g.name));
 			list_ip.push(g.ip);
 			list_mapName.push(translate(g.niceMapName));
 			list_mapSize.push(translateMapSize(g.mapSize));
+
 			let mapTypeIdx = g_MapTypes.Name.indexOf(g.mapType);
 			list_mapType.push(mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "");
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
@@ -543,57 +558,6 @@ function updateGameList()
 
 	// Update info box about the game currently selected
 	updateGameSelection();
-}
-
-/**
- * Colorize and format the entries in the player list.
- *
- * @param nickname Name of player.
- * @param presence Presence of player.
- * @param rating Rating of player.
- * @return Colorized versions of name, status, and rating.
- */
-function formatPlayerListEntry(nickname, presence, rating)
-{
-	// Set colors based on player status
-	var color;
-	var status;
-	switch (presence)
-	{
-	case "playing":
-		color = "200 0 0";
-		status = translate("Busy");
-		break;
-	case "away":
-		color = "229 76 13";
-		status = translate("Away");
-		break;
-	case "available":
-		color = "0 219 0";
-		status = translate("Online");
-		break;
-	case "offline":
-		color = "0 0 0";
-		status = translate("Offline");
-		break;
-	default:
-		warn(sprintf("Unknown presence '%(presence)s'", { "presence": presence }));
-		color = "178 178 178";
-		status = translateWithContext("lobby presence", "Unknown");
-		break;
-	}
-	// Center the unrated symbol.
-	if (rating == "-")
-		rating = "    -";
-	var formattedStatus = '[color="' + color + '"]' + status + "[/color]";
-	var formattedRating = '[color="' + color + '"]' + rating + "[/color]";
-	var role = Engine.LobbyGetPlayerRole(nickname);
-	if (role == "moderator")
-		nickname = g_ModeratorPrefix + nickname;
-	var formattedName = colorPlayerName(nickname);
-
-	// Push this player's name and status onto the list
-	return [formattedName, formattedStatus, formattedRating];
 }
 
 /**
