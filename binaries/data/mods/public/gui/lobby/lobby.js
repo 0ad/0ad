@@ -49,6 +49,11 @@ const g_PlayerStatuses = {
 };
 
 /**
+ * Color for error messages in the chat.
+ */
+const g_SystemColor = "150 0 0";
+
+/**
  * All chat messages received since init (i.e. after lobby join and after returning from a game).
  */
 var g_ChatMessages = [];
@@ -80,6 +85,11 @@ var g_PlayerListSortBy = "name";
 var g_GameListOrder = 1; // 1 for ascending sort, and -1 for descending
 var g_PlayerListOrder = 1;
 
+/**
+ * Called after the XmppConnection succeeded and when returning from a game.
+ *
+ *  attribs {Object}
+ */
 function init(attribs)
 {
 	if (!g_Settings)
@@ -88,16 +98,33 @@ function init(attribs)
 		return;
 	}
 
-	// Play menu music
 	initMusic();
 	global.music.setState(global.music.states.MENU);
 
-	// Init mapsize filter
+	initGameFilters();
+
+	Engine.LobbySetPlayerPresence("available");
+	Engine.SendGetGameList();
+	Engine.SendGetBoardList();
+
+	// When rejoining the lobby after a game, we don't need to process presence changes
+	Engine.LobbyClearPresenceUpdates();
+	updatePlayerList();
+	updateSubject(Engine.LobbyGetRoomSubject());
+}
+
+function returnToMainMenu()
+{
+	Engine.StopXmppClient();
+	Engine.SwitchGuiPage("page_pregame.xml");
+}
+
+function initGameFilters()
+{
 	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
 	mapSizeFilter.list = [translateWithContext("map size", "Any")].concat(g_MapSizes.shortNames);
 	mapSizeFilter.list_data = [""].concat(g_MapSizes.tiles);
 
-	// Setup number-of-players filter
 	var playersArray = Array(g_MaxPlayers).fill(0).map((v, i) => i + 1); // 1, 2, ... MaxPlayers
 	var playersNumberFilter = Engine.GetGUIObjectByName("playersNumberFilter");
 	playersNumberFilter.list = [translateWithContext("player number", "Any")].concat(playersArray);
@@ -107,48 +134,8 @@ function init(attribs)
 	mapTypeFilter.list = [translateWithContext("map", "Any")].concat(g_MapTypes.Title);
 	mapTypeFilter.list_data = [""].concat(g_MapTypes.Name);
 
-	Engine.LobbySetPlayerPresence("available");
-	Engine.SendGetGameList();
-	Engine.SendGetBoardList();
-
-	// When rejoining the lobby after a game, we don't need to process presence changes
-	Engine.LobbyClearPresenceUpdates();
-	updatePlayerList();
-
-	updateSubject(Engine.LobbyGetRoomSubject());
-
 	resetFilters();
 }
-
-function returnToMainMenu()
-{
-	lobbyStop();
-	Engine.SwitchGuiPage("page_pregame.xml");
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Xmpp client connection management
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-function lobbyStop()
-{
-	Engine.StopXmppClient();
-}
-
-function lobbyConnect()
-{
-	Engine.ConnectXmppClient();
-}
-
-function lobbyDisconnect()
-{
-	Engine.DisconnectXmppClient();
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Update functions
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 function updateGameListOrderSelection()
 {
@@ -168,7 +155,6 @@ function updatePlayerListOrderSelection()
 
 function resetFilters()
 {
-	// Reset states of gui objects
 	Engine.GetGUIObjectByName("mapSizeFilter").selected = 0;
 	Engine.GetGUIObjectByName("playersNumberFilter").selected = 0;
 	Engine.GetGUIObjectByName("mapTypeFilter").selected = g_MapTypes.Default;
@@ -179,17 +165,14 @@ function resetFilters()
 
 function applyFilters()
 {
-	// Update the list of games
 	updateGameList();
-
-	// Update info box about the game currently selected
 	updateGameSelection();
 }
 
 /**
  * Filter a game based on the status of the filter dropdowns.
  *
- * @param game Game to be tested.
+ * @param game {Object}
  * @return True if game should not be displayed.
  */
 function filterGame(game)
@@ -198,6 +181,7 @@ function filterGame(game)
 	var playersNumberFilter = Engine.GetGUIObjectByName("playersNumberFilter");
 	var mapTypeFilter = Engine.GetGUIObjectByName("mapTypeFilter");
 	var showFullFilter = Engine.GetGUIObjectByName("showFullFilter");
+
 	// We assume index 0 means display all for any given filter.
 	if (mapSizeFilter.selected != 0 && game.mapSize != mapSizeFilter.list_data[mapSizeFilter.selected])
 		return true;
@@ -214,17 +198,16 @@ function filterGame(game)
 /**
  * Update the subject GUI object.
  *
- * @param newSubject New room subject.
+ * @param newSubject {string}
  */
 function updateSubject(newSubject)
 {
-	var subject = Engine.GetGUIObjectByName("subject");
+	var subject = Engine.GetGUIObjectByName("subject").caption = newSubject;
 	var subjectBox = Engine.GetGUIObjectByName("subjectBox");
 	var logo = Engine.GetGUIObjectByName("logo");
-	// Load new subject and un-escape newlines.
-	subject.caption = newSubject;
+
 	// If the subject is only whitespace, hide it and reposition the logo.
-	if (subject.caption.match(/^([\s\t\r\n]*)$/g))
+	if (!newSubject.trim())
 	{
 		subjectBox.hidden = true;
 		logo.size = "50%-110 50%-50 50%+110 50%+50";
@@ -247,7 +230,6 @@ function updatePlayerList()
 	var nickList = [];
 	var ratingList = [];
 
-	// Get a sorted list of all users currently connected
 	var cleanPlayerList = Engine.GetPlayerList().sort((a, b) => {
 		var sortA, sortB;
 		switch (g_PlayerListSortBy)
@@ -275,32 +257,25 @@ function updatePlayerList()
 	// Colorize list entries
 	for (let player of cleanPlayerList)
 	{
-		// Identify rating of the current user
 		if (player.rating && player.name == g_Username)
 			g_UserRating = player.rating;
-
-		// Center rating using leading whitespace
 		let rating = ("    " + (player.rating ? player.rating : "-")).substr(-5);
 
-		// Find presence status
 		let presence = g_PlayerStatuses[player.presence] ? player.presence : "unknown";
 		if (presence == "unknown")
 			warn("Unknown presence:" + player.presence);
 
-		// Colorize list entries
 		let statusColor = g_PlayerStatuses[presence].color;
 		let coloredName = colorPlayerName((player.role == "moderator" ? g_ModeratorPrefix : "") + player.name);
 		let coloredPresence = '[color="' + statusColor + '"]' + g_PlayerStatuses[presence].status + "[/color]";
 		let coloredRating = '[color="' + statusColor + '"]' + rating + "[/color]";
 
-		// Push to list
 		playerList.push(coloredName);
 		presenceList.push(coloredPresence);
 		ratingList.push(coloredRating);
 		nickList.push(player.name);
 	}
 
-	// Push list to GUI
 	playersBox.list_name = playerList;
 	playersBox.list_status = presenceList;
 	playersBox.list_rating = ratingList;
@@ -315,7 +290,7 @@ function updatePlayerList()
  * Displays N/A for all stats until updateProfile is called when the stats
  * 	are actually received from the bot.
  *
- * @param caller From which screen is the user requesting data from?
+ * @param caller {string} - From which screen is the user requesting data from?
  */
 function displayProfile(caller)
 {
@@ -332,30 +307,15 @@ function displayProfile(caller)
 	else
 		return;
 
-	if (!playerList.list[playerList.selected])
-	{
-		Engine.GetGUIObjectByName("profileArea").hidden = true;
+	var playerName = playerList.list[playerList.selected];
+	Engine.GetGUIObjectByName("profileArea").hidden = !playerName;
+	if (!playerName)
 		return;
-	}
-	Engine.GetGUIObjectByName("profileArea").hidden = false;
+	Engine.SendGetProfile(playerName);
 
-	Engine.SendGetProfile(playerList.list[playerList.selected]);
-
-	var user = playerList.list_name[playerList.selected];
-	var role = Engine.LobbyGetPlayerRole(playerList.list[playerList.selected]);
-	var userList = Engine.GetGUIObjectByName("playersBox");
-	if (role && caller == "lobbylist")
-	{
-		// Make the role uppercase.
-		role = role.charAt(0).toUpperCase() + role.slice(1);
-		if (role == "Moderator")
-			role = '[color="0 219 0"]' + translate(role) + '[/color]';
-	}
-	else
-		role = "";
-
-	Engine.GetGUIObjectByName("usernameText").caption = user;
-	Engine.GetGUIObjectByName("roleText").caption = translate(role);
+	var isModerator = Engine.LobbyGetPlayerRole(playerName) == "moderator";
+	Engine.GetGUIObjectByName("usernameText").caption = playerList.list_name[playerList.selected];
+	Engine.GetGUIObjectByName("roleText").caption = isModerator ? translate("Moderator") : translate("Player");
 	Engine.GetGUIObjectByName("rankText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("highestRatingText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("totalGamesText").caption = translate("N/A");
@@ -366,27 +326,25 @@ function displayProfile(caller)
 
 /**
  * Update the profile of the selected player with data from the bot.
- *
  */
 function updateProfile()
 {
-	var playerList, user;
+	var user;
+	var playerList;
 	var attributes = Engine.GetProfile();
 
 	if (!Engine.GetGUIObjectByName("profileFetch").hidden)
 	{
-		user = attributes[0].player;
-		if (attributes[0].rating == "-2") // Profile not found code
-		{
-			Engine.GetGUIObjectByName("profileWindowArea").hidden = true;
-			Engine.GetGUIObjectByName("profileErrorText").hidden = false;
-			return;
-		}
-		Engine.GetGUIObjectByName("profileWindowArea").hidden = false;
-		Engine.GetGUIObjectByName("profileErrorText").hidden = true;
+		let profileFound = attributes[0].rating != "-2";
+		Engine.GetGUIObjectByName("profileWindowArea").hidden = !profileFound;
+		Engine.GetGUIObjectByName("profileErrorText").hidden = profileFound;
 
+		if (!profileFound)
+			return;
+
+		user = attributes[0].player;
 		if (attributes[0].rating != "")
-			user = sprintf(translate("%(nick)s (%(rating)s)"), { nick: user, rating: attributes[0].rating });
+			user = sprintf(translate("%(nick)s (%(rating)s)"), { "nick": user, "rating": attributes[0].rating });
 
 		Engine.GetGUIObjectByName("profileUsernameText").caption = user;
 		Engine.GetGUIObjectByName("profileRankText").caption = attributes[0].rank;
@@ -397,7 +355,7 @@ function updateProfile()
 
 		var winRate = (attributes[0].wins / attributes[0].totalGamesPlayed * 100).toFixed(2);
 		if (attributes[0].totalGamesPlayed != 0)
-			Engine.GetGUIObjectByName("profileRatioText").caption = sprintf(translate("%(percentage)s%%"), { percentage: winRate });
+			Engine.GetGUIObjectByName("profileRatioText").caption = sprintf(translate("%(percentage)s%%"), { "percentage": winRate });
 		else
 			Engine.GetGUIObjectByName("profileRatioText").caption = translateWithContext("Used for an undefined winning rate", "-");
 		return;
@@ -409,12 +367,14 @@ function updateProfile()
 
 	if (attributes[0].rating == "-2")
 		return;
+
 	// Make sure the stats we have received coincide with the selected player.
 	if (attributes[0].player != playerList.list[playerList.selected])
 		return;
+
 	user = playerList.list_name[playerList.selected];
 	if (attributes[0].rating != "")
-		user = sprintf(translate("%(nick)s (%(rating)s)"), { nick: user, rating: attributes[0].rating });
+		user = sprintf(translate("%(nick)s (%(rating)s)"), { "nick": user, "rating": attributes[0].rating });
 
 	Engine.GetGUIObjectByName("usernameText").caption = user;
 	Engine.GetGUIObjectByName("rankText").caption = attributes[0].rank;
@@ -425,7 +385,7 @@ function updateProfile()
 
 	var winRate = (attributes[0].wins / attributes[0].totalGamesPlayed * 100).toFixed(2);
 	if (attributes[0].totalGamesPlayed != 0)
-		Engine.GetGUIObjectByName("ratioText").caption = sprintf(translate("%(percentage)s%%"), { percentage: winRate });
+		Engine.GetGUIObjectByName("ratioText").caption = sprintf(translate("%(percentage)s%%"), { "percentage": winRate });
 	else
 		Engine.GetGUIObjectByName("ratioText").caption = translateWithContext("Used for an undefined winning rate", "-");
 }
@@ -435,20 +395,15 @@ function updateProfile()
  */
 function updateLeaderboard()
 {
-	// Get list from C++
-	var boardList = Engine.GetBoardList();
-	// Get GUI leaderboard object
 	var leaderboard = Engine.GetGUIObjectByName("leaderboardBox");
-	// Sort list in acending order by rating
-	boardList.sort((a, b) => b.rating - a.rating);
+	var boardList = Engine.GetBoardList().sort((a, b) => b.rating - a.rating);
 
 	var list = [];
 	var list_name = [];
 	var list_rank = [];
 	var list_rating = [];
 
-	// Push changes
-	for (var i = 0; i < boardList.length; ++i)
+	for (let i in boardList)
 	{
 		list_name.push(boardList[i].name);
 		list_rating.push(boardList[i].rating);
@@ -472,51 +427,29 @@ function updateGameList()
 {
 	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
 	var gameList = Engine.GetGameList();
-	// Store the game whole game list data so that we can access it later
-	// to update the game info panel.
-	g_GameList = gameList;
 
-	// Sort the list of games to that games 'waiting' are displayed at the top, followed by 'init', followed by 'running'.
-	var gameStatuses = ['waiting', 'init', 'running'];
-	g_GameList.sort((a, b) => {
+	g_GameList = gameList.sort((a, b) => {
 		switch (g_GameListSortBy)
 		{
 		case 'name':
 		case 'mapSize':
-			// mapSize contains the number of tiles for random maps
-			// scenario maps always display default size
 		case 'mapType':
-			if (a[g_GameListSortBy] < b[g_GameListSortBy])
-				return -g_GameListOrder;
-			else if (a[g_GameListSortBy] > b[g_GameListSortBy])
-				return g_GameListOrder;
-			return 0;
+			sortA = a[g_GameListSortBy];
+			sortB = b[g_GameListSortBy];
+			break;
 		case 'mapName':
-			if (translate(a.niceMapName) < translate(b.niceMapName))
-				return -g_GameListOrder;
-			else if (translate(a.niceMapName) > translate(b.niceMapName))
-				return g_GameListOrder;
-			return 0;
+			sortA = translate(a.niceMapName);
+			sortB = translate(b.niceMapName);
+			break;
 		case 'nPlayers':
-			// Numerical comparison of player count ratio.
-			if (a.nbp * b.tnbp < b.nbp * a.tnbp) // ratio a = a.nbp / a.tnbp, ratio b = b.nbp / b.tnbp
-				return -g_GameListOrder;
-			else if (a.nbp * b.tnbp > b.nbp * a.tnbp)
-				return g_GameListOrder;
-			return 0;
-		default:
-			if (gameStatuses.indexOf(a.state) < gameStatuses.indexOf(b.state))
-				return -1;
-			else if (gameStatuses.indexOf(a.state) > gameStatuses.indexOf(b.state))
-				return 1;
-
-			// Alphabetical comparison of names as tiebreaker.
-			if (a.name < b.name)
-				return -1;
-			else if (a.name > b.name)
-				return 1;
-			return 0;
+			// Compare playercount ratio
+			sortA = a.nbp * b.tnbp;
+			sortB = b.nbp * a.tnbp;
+			break;
 		}
+		if (sortA < sortB) return -g_GameListOrder;
+		if (sortA > sortB) return +g_GameListOrder;
+		return 0;
 	});
 
 	var list_name = [];
@@ -528,24 +461,23 @@ function updateGameList()
 	var list = [];
 	var list_data = [];
 
-	var c = 0;
-	for (var g of gameList)
+	for (let i in gameList)
 	{
-		if (!filterGame(g))
-		{
-			let gameName = escapeText(g.name);
-			list_name.push('[color="' + g_GameColors[g.state] + '"]' + gameName);
-			list_ip.push(g.ip);
-			list_mapName.push(translate(g.niceMapName));
-			list_mapSize.push(translateMapSize(g.mapSize));
+		let game = gameList[i];
+		if (filterGame(game))
+			continue;
 
-			let mapTypeIdx = g_MapTypes.Name.indexOf(g.mapType);
-			list_mapType.push(mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "");
-			list_nPlayers.push(g.nbp + "/" +g.tnbp);
-			list.push(gameName);
-			list_data.push(c);
-		}
-		c++;
+		let gameName = escapeText(game.name);
+		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
+		list_ip.push(game.ip);
+		list_mapName.push(translate(game.niceMapName));
+		list_mapSize.push(translateMapSize(game.mapSize));
+
+		let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);
+		list_mapType.push(mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "");
+		list_nPlayers.push(game.nbp + "/" + game.tnbp);
+		list.push(gameName);
+		list_data.push(i);
 	}
 
 	gamesBox.list_name = list_name;
@@ -559,7 +491,6 @@ function updateGameList()
 	if (gamesBox.selected >= gamesBox.list_name.length)
 		gamesBox.selected = -1;
 
-	// Update info box about the game currently selected
 	updateGameSelection();
 }
 
@@ -569,7 +500,6 @@ function updateGameList()
 function updateGameSelection()
 {
 	var selected = Engine.GetGUIObjectByName("gamesBox").selected;
-	// If a game is not selected, hide the game information area.
 	if (selected == -1)
 	{
 		Engine.GetGUIObjectByName("gameInfo").hidden = true;
@@ -593,14 +523,11 @@ function updateGameSelection()
 	let mapTypeIdx = g_MapTypes.Name.indexOf(g_GameList[g].mapType);
 	Engine.GetGUIObjectByName("sgMapType").caption = mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "";
 
-
-	// Display map preview if it exists, otherwise display a placeholder.
 	if (mapData && mapData.settings.Preview)
 		var mapPreview = mapData.settings.Preview;
 	else
 		var mapPreview = "nopreview.png";
 
-	// Display map description and preview (or placeholder)
 	var mapData = getMapDescriptionAndPreview(g_GameList[g].mapType, g_GameList[g].mapName);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
 	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:(0.7812,0.5859)session/icons/mappreview/" + mapData.preview;
@@ -612,57 +539,38 @@ function updateGameSelection()
 function joinSelectedGame()
 {
 	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
-	if (gamesBox.selected >= 0)
+	if (gamesBox.selected < 0)
+		return;
+
+	var ipAddress = g_GameList[gamesBox.list_data[gamesBox.selected]].ip;
+	if (ipAddress.split('.').length != 4)
 	{
-		var g = gamesBox.list_data[gamesBox.selected];
-		var sname = g_Username;
-		var sip = g_GameList[g].ip;
-
-		// TODO: What about valid host names?
-		// Check if it looks like an ip address
-		if (sip.split('.').length != 4)
-		{
-			addChatMessage({ "from": "system", "text": sprintf(translate("This game's address '%(ip)s' does not appear to be valid."), { "ip": sip }) });
-			return;
-		}
-
-		// Open Multiplayer connection window with join option.
-		Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "join", "name": sname, "ip": sip, "rating": g_UserRating });
+		addChatMessage({ "from": "system", "text": sprintf(translate("This game's address '%(ip)s' does not appear to be valid."), { "ip": ipAddress }) });
+		return;
 	}
+
+	Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "join", "name": g_Username, "ip": ipAddress, "rating": g_UserRating });
 }
 
 /**
- * Start the hosting process.
+ * Open the dialog box to enter the game name.
  */
 function hostGame()
 {
-	// Open Multiplayer connection window with host option.
 	Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "host", "name": g_Username, "rating": g_UserRating });
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Utils
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-function stripColorCodes(input)
-{
-	return input.replace(/\[(\w+)[^w]*?](.*?)\[\/\1]/g, '$2');
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-// GUI event handlers
-////////////////////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Processes one GUI message sent by the XmppClient.
+ */
 function onTick()
 {
 	updateTimers();
 	checkSpamMonitor();
 
-	// Receive messages
 	while (true)
 	{
 		var message = Engine.LobbyGuiPollMessage();
-		// Clean Message
 		if (!message)
 			break;
 		var text = escapeText(message.text);
@@ -708,7 +616,7 @@ function onTick()
 			switch (message.level)
 			{
 			case "standard":
-				addChatMessage({ "from": "system", "text": text, "color": "150 0 0" });
+				addChatMessage({ "from": "system", "text": text, "color": g_SystemColor });
 				if (message.text == "disconnected")
 				{
 					// Clear the list of games and the list of players
@@ -724,7 +632,7 @@ function onTick()
 				}
 				break;
 			case "error":
-				addChatMessage({ "from": "system", "text": text, "color": "150 0 0" });
+				addChatMessage({ "from": "system", "text": text, "color": g_SystemColor });
 				break;
 			case "internal":
 				switch (message.text)
@@ -751,29 +659,21 @@ function onTick()
 	}
 }
 
-/* Messages */
 function submitChatInput()
 {
 	var input = Engine.GetGUIObjectByName("chatInput");
 	var text = input.caption;
-	if (text.length)
-	{
-		if (!handleSpecialCommand(text) && !isSpam(text, g_Username))
-			Engine.LobbySendMessage(text);
-		input.caption = "";
-	}
-}
-
-function isValidNick(nick)
-{
-	var prohibitedNicks = ["system"];
-	return prohibitedNicks.indexOf(nick) == -1;
+	if (!text.length)
+		return;
+	if (!handleSpecialCommand(text) && !isSpam(text, g_Username))
+		Engine.LobbySendMessage(text);
+	input.caption = "";
 }
 
 /**
  * Handle all '/' commands.
  *
- * @param text Text to be checked for commands.
+ * @param text {string} - Text to be checked for commands.
  * @return true if more text processing is needed, false otherwise.
  */
 function handleSpecialCommand(text)
@@ -814,16 +714,14 @@ function handleSpecialCommand(text)
 }
 
 /**
- * Process and, if appropriate, display a formatted message.
+ * Process and if appropriate, display a formatted message.
  *
- * @param msg The message to be processed.
+ * @param msg {Object} - The message to be processed.
  */
 function addChatMessage(msg)
 {
-	// Some calls of this function will leave some msg parameters empty. Text is required though.
 	if (msg.from)
 	{
-		// Display the moderator symbol in the chatbox.
 		var playerRole = Engine.LobbyGetPlayerRole(msg.from);
 		if (playerRole == "moderator")
 			msg.from = g_ModeratorPrefix + msg.from;
@@ -847,15 +745,13 @@ function addChatMessage(msg)
 	if (isSpam(msg.text, msg.from))
 		return;
 
-	// Format Text
 	var formatted = ircFormat(msg.text, msg.from, msg.color, msg.key, msg.datetime, msg.isSpecial || false);
 
-	// If there is text, add it to the chat box.
-	if (formatted)
-	{
-		g_ChatMessages.push(formatted);
-		Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
-	}
+	if (!formatted)
+		return;
+
+	g_ChatMessages.push(formatted);
+	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
 function ircSplit(string)
@@ -965,14 +861,10 @@ function ircFormat(text, from, color, key, datetime, isSpecial)
  */
 function updateSpamMonitor(from)
 {
-	// Integer time in seconds.
-	var time = Math.floor(Date.now() / 1000);
-
-	// Update or initialize the user in the spam monitor.
 	if (g_SpamMonitor[from])
-		g_SpamMonitor[from][0]++;
+		++g_SpamMonitor[from][0];
 	else
-		g_SpamMonitor[from] = [1, time, 0];
+		g_SpamMonitor[from] = [1, Math.floor(Date.now() / 1000), 0];
 }
 
 /**
@@ -994,40 +886,39 @@ function isSpam(text, from)
 	// Block blank lines.
 	if (text == " ")
 		return true;
+
 	// Block users who are still within their spam block period.
-	else if (g_SpamMonitor[from][2] + g_SpamBlockDuration >= time)
+	if (g_SpamMonitor[from][2] + g_SpamBlockDuration >= time)
 		return true;
+
 	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked. TODO: Make this smarter and block profanity.
-	else if (g_SpamMonitor[from][0] == 6)
+	if (g_SpamMonitor[from][0] == 6)
 	{
 		g_SpamMonitor[from][2] = time;
 		if (from == g_Username)
 			addChatMessage({ "from": "system", "text": translate("Please do not spam. You have been blocked for thirty seconds.") });
 		return true;
 	}
-	// Return false if everything is clear.
-	else
-		return false;
+
+	return false;
 }
 
 /**
  * Reset timer used to measure message send speed.
+ * Clear message count every 5 seconds.
  */
 function checkSpamMonitor()
 {
-	// Integer time in seconds.
-	var time = Math.floor(Date.now() / 1000);
-
-	// Clear message count every 5 seconds.
-	for each (var stats in g_SpamMonitor)
+	var time = Math.floor(Date.now() / 1000)
+	for (let i in g_SpamMonitor)
 	{
+		let stats = g_SpamMonitor[i];
 		if (stats[1] + 5 <= time)
 		{
 			stats[1] = time;
 			stats[0] = 0;
 		}
 	}
-
 }
 
 /**
