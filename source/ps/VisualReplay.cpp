@@ -36,11 +36,6 @@
  */
 const u8 minimumReplayDuration = 3;
 
-/**
- * Allows quick debugging of potential platform-dependent file-reading bugs.
- */
-const bool debugParser = false;
-
 OsPath VisualReplay::GetDirectoryName()
 {
 	return OsPath(psLogDir() / L"sim_log");
@@ -141,10 +136,6 @@ inline int getReplayDuration(std::istream *replayStream, const CStr& fileName, c
 		if (currentPosition < 1)
 			return -1;
 
-		if (debugParser)
-			// TODO: throws a compiler warning on some systems
-			debug_printf("At position %i of %lu after %i lines reads.\n", currentPosition, fileSize, linesRead);
-
 		if (!replayStream->good())
 		{
 			LOGERROR("Read error when determining replay duration at %i of %llu in %s", currentPosition - 2, fileSize, fileName.c_str());
@@ -171,9 +162,6 @@ JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, OsPath&
 {
 	// The directory argument must not be constant, otherwise concatenating will fail
 	const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";
-
-	if (debugParser)
-		debug_printf("Opening %s\n", replayFile.string8().c_str());
 
 	if (!FileExists(replayFile))
 		return JSVAL_NULL;
