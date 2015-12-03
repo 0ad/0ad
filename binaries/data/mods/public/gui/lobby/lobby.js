@@ -54,6 +54,11 @@ const g_PlayerStatuses = {
 const g_SystemColor = "150 0 0";
 
 /**
+ * Used for highlighting the sender of chat messages.
+ */
+const g_SenderFont = "sans-bold-13";
+
+/**
  * All chat messages received since init (i.e. after lobby join and after returning from a game).
  */
 var g_ChatMessages = [];
@@ -88,7 +93,7 @@ var g_PlayerListOrder = 1;
 /**
  * Called after the XmppConnection succeeded and when returning from a game.
  *
- *  attribs {Object}
+ * @param attribs {Object}
  */
 function init(attribs)
 {
@@ -173,7 +178,7 @@ function applyFilters()
  * Filter a game based on the status of the filter dropdowns.
  *
  * @param game {Object}
- * @return True if game should not be displayed.
+ * @return {boolean} - True if game should not be displayed.
  */
 function filterGame(game)
 {
@@ -573,30 +578,23 @@ function onTick()
 		var message = Engine.LobbyGuiPollMessage();
 		if (!message)
 			break;
-		var text = escapeText(message.text);
 		switch (message.type)
 		{
-		case "mucmessage": // For room messages
-			var from = escapeText(message.from);
-			addChatMessage({ "from": from, "text": text, "datetime": message.datetime});
-			break;
-		case "message": // For private messages
-			var from = escapeText(message.from);
-			addChatMessage({ "from": from, "text": text, "datetime": message.datetime});
+		case "mucmessage":
+			addChatMessage({ "from": escapeText(message.from), "text": escapeText(message.text), "datetime": message.datetime});
 			break;
 		case "muc":
-			var nick = message.text;
 			switch(message.level)
 			{
 			case "join":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": nick }), "isSpecial": true });
+				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": message.text }), "isSpecial": true });
 				Engine.SendGetRatingList();
 				break;
 			case "leave":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": nick }), "isSpecial": true });
+				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": message.text }), "isSpecial": true });
 				break;
 			case "nick":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), { "oldnick": nick, "newnick": message.data }), "isSpecial": true });
+				addChatMessage({ "text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), { "oldnick": message.text, "newnick": message.data }), "isSpecial": true });
 				break;
 			case "presence":
 				break;
@@ -607,7 +605,6 @@ function onTick()
 				warn(sprintf("Unknown message.level '%(msglvl)s'", { "msglvl": message.level }));
 				break;
 			}
-			// We might receive many join/leaves when returning to the lobby from a long game.
 			// To improve performance, only update the playerlist GUI when the last update in the current stack is processed
 			if (Engine.LobbyGetMucMessageCount() == 0)
 				updatePlayerList();
@@ -616,23 +613,19 @@ function onTick()
 			switch (message.level)
 			{
 			case "standard":
-				addChatMessage({ "from": "system", "text": text, "color": g_SystemColor });
+				addChatMessage({ "from": "system", "text": escapeText(message.text), "color": g_SystemColor });
 				if (message.text == "disconnected")
 				{
-					// Clear the list of games and the list of players
 					updateGameList();
 					updateLeaderboard();
 					updatePlayerList();
-					// Disable the 'host' button
 					Engine.GetGUIObjectByName("hostButton").enabled = false;
 				}
 				else if (message.text == "connected")
-				{
 					Engine.GetGUIObjectByName("hostButton").enabled = true;
-				}
 				break;
 			case "error":
-				addChatMessage({ "from": "system", "text": text, "color": g_SystemColor });
+				addChatMessage({ "from": "system", "text": escapeText(message.text), "color": g_SystemColor });
 				break;
 			case "internal":
 				switch (message.text)
@@ -722,31 +715,23 @@ function addChatMessage(msg)
 {
 	if (msg.from)
 	{
-		var playerRole = Engine.LobbyGetPlayerRole(msg.from);
-		if (playerRole == "moderator")
+		if (Engine.LobbyGetPlayerRole(msg.from) == "moderator")
 			msg.from = g_ModeratorPrefix + msg.from;
+
+		// Highlight local user's nick
+		if (g_Username != msg.from)
+			msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
+
+		// Run spam test if it's not a historical message
+		if (!msg.datetime)
+		{
+			updateSpamMonitor(msg.from);
+			if (isSpam(msg.text, msg.from))
+				return;
+		}
 	}
-	else
-		msg.from = null;
-	if (!msg.color)
-		msg.color = null;
-	if (!msg.key)
-		msg.key = null;
-	if (!msg.datetime)
-		msg.datetime = null;
 
-	// Highlight local user's nick
-	if (g_Username != msg.from)
-		msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
-
-	// Run spam test if it's not a historical message
-	if (!msg.datetime)
-		updateSpamMonitor(msg.from);
-	if (isSpam(msg.text, msg.from))
-		return;
-
-	var formatted = ircFormat(msg.text, msg.from, msg.color, msg.key, msg.datetime, msg.isSpecial || false);
-
+	var formatted = ircFormat(msg);
 	if (!formatted)
 		return;
 
@@ -754,6 +739,13 @@ function addChatMessage(msg)
 	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
+
+/**
+ * Splits given input into command and argument.
+ *
+ * @param string {string}
+ * @returns {Array}
+ */
 function ircSplit(string)
 {
 	var idx = string.indexOf(' ');
@@ -765,99 +757,88 @@ function ircSplit(string)
 /**
  * Format text in an IRC-like way.
  *
- * @param text Body of the message.
- * @param from Sender of the message.
- * @param color Optional color of sender.
- * @param key Key to verify join/leave messages with. TODO: Remove this, it only provides synthetic security.
- * @param datetime Current date and time of message, only used for historical messages
- * @return Formatted text.
+ * @param msg {Object} - Received chat message.
+ * @return {string} - Formatted text.
  */
-function ircFormat(text, from, color, key, datetime, isSpecial)
+function ircFormat(msg)
 {
-	// Generate and apply color to uncolored names,
-	if (!color && from)
-		var coloredFrom = colorPlayerName(from);
-	else if (color && from)
-		var coloredFrom = '[color="' + color + '"]' + from + "[/color]";
+	var senderString = "";
+	var formattedMessage = "";
+	var coloredFrom = !msg.from ? "" : (msg.color ? '[color="' + msg.color + '"]' + msg.from + "[/color]" : colorPlayerName(msg.from));
 
 	// Handle commands allowed past handleSpecialCommand.
-	if (text[0] == '/')
+	if (msg.text[0] == '/')
 	{
-		var [command, message] = ircSplit(text);
+		var [command, message] = ircSplit(msg.text);
 		switch (command)
 		{
-			case "me":
-				// Translation: IRC message prefix when the sender uses the /me command.
-				var senderString = '[font="sans-bold-13"]' + sprintf(translate("* %(sender)s"), { "sender": coloredFrom }) + '[/font]';
-				// Translation: IRC message issued using the ‘/me’ command.
-				var formattedMessage = sprintf(translate("%(sender)s %(action)s"), { "sender": senderString, "action": message });
-				break;
-			case "say":
+		case "me":
+			// Translation: IRC message prefix when the sender uses the /me command.
+			senderString = '[font="' + g_SenderFont + '"]' + sprintf(translate("* %(sender)s"), { "sender": coloredFrom }) + '[/font]';
+			// Translation: IRC message issued using the ‘/me’ command.
+			formattedMessage = sprintf(translate("%(sender)s %(action)s"), { "sender": senderString, "action": message });
+			break;
+		case "say":
+			// Translation: IRC message prefix.
+			senderString = '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
+			// Translation: IRC message.
+			formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": message });
+			break;
+		case "special":
+			if (msg.isSpecial)
+				// Translation: IRC system message.
+				formattedMessage = '[font="' + g_SenderFont + '"]' + sprintf(translate("== %(message)s"), { "message": message }) + '[/font]';
+			else
+			{
 				// Translation: IRC message prefix.
-				var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
+				senderString = '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
 				// Translation: IRC message.
-				var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": message });
-				break;
-			case "special":
-				if (isSpecial)
-					// Translation: IRC system message.
-					var formattedMessage = '[font="sans-bold-13"]' + sprintf(translate("== %(message)s"), { "message": message }) + '[/font]';
-				else
-				{
-					// Translation: IRC message prefix.
-					var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
-					// Translation: IRC message.
-					var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": message });
-				}
-				break;
-			default:
-				// This should never happen.
-				var formattedMessage = "";
+				formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": message });
+			}
+			break;
 		}
 	}
 	else
 	{
 		// Translation: IRC message prefix.
-		var senderString = '[font="sans-bold-13"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
+		senderString = '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
 		// Translation: IRC message.
-		var formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": text });
+		formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": msg.text });
 	}
 
-	// Build time header if enabled
-	if (g_ShowTimestamp)
+	// Add chat message timestamp
+	if (!g_ShowTimestamp)
+		return formattedMessage;
+
+	var time;
+	if (msg.datetime)
 	{
-
-		var time;
-		if (datetime)
-		{
-			var parserDate = datetime.split("T")[0].split("-");
-			var parserTime = datetime.split("T")[1].split(":");
-			// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format of datetime
-			// Date takes Year, Month, Day, Hour, Minute, Second
-			time = new Date(Date.UTC(parserDate[0], parserDate[1], parserDate[2], parserTime[0], parserTime[1], parserTime[2].split("Z")[0]));
-		}
-		else
-			time = new Date(Date.now());
-
-		// Translation: Time as shown in the multiplayer lobby (when you enable it in the options page).
-		// For a list of symbols that you can use, see:
-		// https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
-		var timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
-
-		// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
-		var timePrefixString = '[font="sans-bold-13"]' + sprintf(translate("\\[%(time)s]"), { "time": timeString }) + '[/font]';
-
-		// Translation: IRC message format when there is a time prefix.
-		return sprintf(translate("%(time)s %(message)s"), { "time": timePrefixString, "message": formattedMessage });
+		let dTime = msg.datetime.split("T");
+		let parserDate = dTime[0].split("-");
+		let parserTime = dTime[1].split(":");
+		// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format of datetime
+		// Date takes Year, Month, Day, Hour, Minute, Second
+		time = new Date(Date.UTC(parserDate[0], parserDate[1], parserDate[2], parserTime[0], parserTime[1], parserTime[2].split("Z")[0]));
 	}
 	else
-		return formattedMessage;
-}
+		time = new Date(Date.now());
+
+	// Translation: Time as shown in the multiplayer lobby (when you enable it in the options page).
+	// For a list of symbols that you can use, see:
+	// https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
+	var timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
+
+	// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
+	var timePrefixString = '[font="' + g_SenderFont + '"]' + sprintf(translate("\\[%(time)s]"), { "time": timeString }) + '[/font]';
+
+	// Translation: IRC message format when there is a time prefix.
+	return sprintf(translate("%(time)s %(message)s"), { "time": timePrefixString, "message": formattedMessage });
+ }
 
 /**
  * Update the spam monitor.
  *
- * @param from User to update.
+ * @param from {string} - User to update.
  */
 function updateSpamMonitor(from)
 {
@@ -870,9 +851,10 @@ function updateSpamMonitor(from)
 /**
  * Check if a message is spam.
  *
- * @param text Body of message.
- * @param from Sender of message.
- * @return True if message should be blocked.
+ * @param text {string} - Body of message.
+ * @param from {string} - Sender of message.
+ *
+ * @return {boolean} - True if message should be blocked.
  */
 function isSpam(text, from)
 {
@@ -884,14 +866,14 @@ function isSpam(text, from)
 		g_SpamMonitor[from] = [1, time, 0];
 
 	// Block blank lines.
-	if (text == " ")
+	if (!text.trim())
 		return true;
 
 	// Block users who are still within their spam block period.
 	if (g_SpamMonitor[from][2] + g_SpamBlockDuration >= time)
 		return true;
 
-	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked. TODO: Make this smarter and block profanity.
+	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked.
 	if (g_SpamMonitor[from][0] == 6)
 	{
 		g_SpamMonitor[from][2] = time;
@@ -924,6 +906,8 @@ function checkSpamMonitor()
 /**
  *  Generate a (mostly) unique color for this player based on their name.
  *  See http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
+ *
+ *  @param playername {string}
  */
 function getPlayerColor(playername)
 {
@@ -942,6 +926,8 @@ function getPlayerColor(playername)
 
 /**
  * Returns the given playername wrapped in an appropriate color-tag.
+ *
+ *  @param playername {string}
  */
 function colorPlayerName(playername)
 {
