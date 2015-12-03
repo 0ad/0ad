@@ -1,4 +1,9 @@
 /**
+ * Used for game-filtering and showing details about the selected game. Requirement for translateMapSize.
+ */
+const g_MapSizes = initMapSizes();
+
+/**
  * Used for the gamelist-filtering.
  */
 const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
@@ -88,12 +93,9 @@ function init(attribs)
 	global.music.setState(global.music.states.MENU);
 
 	// Init mapsize filter
-	var mapSizes = initMapSizes();
-	mapSizes.shortNames.splice(0, 0, translateWithContext("map size", "Any"));
-	mapSizes.tiles.splice(0, 0, "");
 	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
-	mapSizeFilter.list = mapSizes.shortNames;
-	mapSizeFilter.list_data = mapSizes.tiles;
+	mapSizeFilter.list = [translateWithContext("map size", "Any")].concat(g_MapSizes.shortNames);
+	mapSizeFilter.list_data = [""].concat(g_MapSizes.tiles);
 
 	// Setup number-of-players filter
 	var playersArray = Array(g_MaxPlayers).fill(0).map((v, i) => i + 1); // 1, 2, ... MaxPlayers
@@ -531,7 +533,8 @@ function updateGameList()
 	{
 		if (!filterGame(g))
 		{
-			list_name.push('[color="' + g_GameColors(g.state) + '"]' + escapeText(g.name));
+			let gameName = escapeText(g.name);
+			list_name.push('[color="' + g_GameColors[g.state] + '"]' + gameName);
 			list_ip.push(g.ip);
 			list_mapName.push(translate(g.niceMapName));
 			list_mapSize.push(translateMapSize(g.mapSize));
@@ -539,7 +542,7 @@ function updateGameList()
 			let mapTypeIdx = g_MapTypes.Name.indexOf(g.mapType);
 			list_mapType.push(mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "");
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
-			list.push(name);
+			list.push(gameName);
 			list_data.push(c);
 		}
 		c++;
