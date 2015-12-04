@@ -1,11 +1,14 @@
-const g_CivData = loadCivData();
+/**
+ * Load playable civs.
+ */
+const g_CivData = loadCivData(true);
 
 /**
  * Initialize the dropdown containing all the available civs.
  */
 function init(settings)
 {
-	var civList = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
+	var civList = Object.keys(g_CivData).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
 	var civSelection = Engine.GetGUIObjectByName("civSelection");
 
 	civSelection.list = civList.map(civ => civ.name);

@@ -17,6 +17,12 @@ function loadCivData(playableOnly = false)
 		translateObjectKeys(data, ["Name", "Description", "History", "Special"]);
 		if (!playableOnly || data.SelectableInGameSetup)
 			civData[data.Code] = data;
+
+		// Sanity check
+		for (let prop of ["Code", "Culture", "Name", "Emblem", "History", "Music", "Factions", "CivBonuses",
+		                  "TeamBonuses", "Structures", "StartEntities", "Formations", "AINames","SelectableInGameSetup"])
+			if (!data[prop])
+				error(filename + " doesn't contain " + prop);
 	}
 
 	return civData;
