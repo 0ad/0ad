@@ -1,11 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Constants
 const g_MatchSettings_SP = "config/matchsettings.json";
 const g_MatchSettings_MP = "config/matchsettings.mp.json";
-
-// TODO: these constants actually don't have an effect and that is not a scenario map, remove them
-const DEFAULT_NETWORKED_MAP = "Acropolis 01";
-const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
 const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly) : undefined);
@@ -17,8 +11,6 @@ const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryCo
 
 // All colors except gaia
 const g_PlayerColors = g_Settings ? g_Settings.PlayerDefaults.slice(1).map(pData => pData.Color) : undefined;
-
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Is this is a networked game, or offline
 var g_IsNetworked;
@@ -69,8 +61,6 @@ var g_AssignedCount = 0;
 // we'll start with a 'loading' message and switch to the main screen in the
 // tick handler
 var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
-
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 function init(attribs)
 {
@@ -977,9 +967,7 @@ function selectMapType(type)
 	switch (g_GameAttributes.mapType)
 	{
 	case "scenario":
-		// Set a default map
 		g_GameAttributes.mapPath = "maps/scenarios/";
-		g_GameAttributes.map = g_GameAttributes.mapPath + (g_IsNetworked ? DEFAULT_NETWORKED_MAP : DEFAULT_OFFLINE_MAP);
 		g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
 		break;
 
