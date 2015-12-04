@@ -12,6 +12,8 @@ const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryCo
 // All colors except gaia
 const g_PlayerColors = g_Settings ? g_Settings.PlayerDefaults.slice(1).map(pData => pData.Color) : undefined;
 
+const g_CivData = loadCivData();
+
 // Is this is a networked game, or offline
 var g_IsNetworked;
 
@@ -48,10 +50,14 @@ var g_GameAttributes = {
 
 var g_ChatMessages = [];
 
-// Data caches
+/**
+ * Cache containing the mapsettings for scenario/skirmish maps. Just-in-time loading.
+ */
 var g_MapData = {};
-var g_CivData = {};
 
+/**
+ * Holds available map filters (for example "naval") and the functions which test the maps.
+ */
 var g_MapFilters = [];
 
 // Current number of assigned human players.
@@ -124,8 +130,8 @@ function initMain()
 
 	// Populate map filters dropdown
 	var mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
-	mapFilters.list = getFilterNames();
-	mapFilters.list_data = getFilterIds();
+	mapFilters.list = g_MapFilters.map(mapFilter => mapFilter.name);
+	mapFilters.list_data = g_MapFilters.map(mapFilter => mapFilter.id);
 	g_GameAttributes.mapFilter = "default";
 
 	// For singleplayer reduce the size of more options dialog by three options (cheats, rated game, observer late join = 90px)
@@ -557,9 +563,6 @@ function getSetting(settings, defaults, property)
 // Initialize the dropdowns containing all the available civs
 function initCivNameList()
 {
-	// Cache civ data
-	g_CivData = loadCivData();
-
 	// Extract name/code, and skip civs that are explicitly disabled
 	// (intended for unusable incomplete civs)
 	var civList = [
@@ -1958,81 +1961,69 @@ function resetReadyData()
 		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you accept the current settings and are ready to play!");
 	}
 }
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Basic map filters API
-
-// Add a new map list filter
-function addFilter(id, name, filterFunc)
+/**
+ * Add a new maplist-filter.
+ *
+ * @param id {string} - Unique identifier
+ * @param title {string} - Translated name to be displayed.
+ * @param filterFunc {Object} - Function returning true if the provided map should be listed if that filter is chosen.
+ */
+function addFilter(id, title, filterFunc)
 {
 	if (!filterFunc instanceof Object)
 	{
-		error("Invalid map filter: " + name);
+		error("Invalid map filter: " + title);
 		return;
 	}
 
-	var newFilter = {};
-	newFilter.id = id;
-	newFilter.name = name;
-	newFilter.filter = filterFunc;
-
-	g_MapFilters.push(newFilter);
+	g_MapFilters.push({ "id": id, "name": title, "filter": filterFunc });
 }
 
-// Get array of map filter IDs
-function getFilterIds()
-{
-	var filters = [];
-	for (var i = 0; i < g_MapFilters.length; ++i)
-		filters.push(g_MapFilters[i].id);
-
-	return filters;
-}
-
-// Get array of map filter names
-function getFilterNames()
-{
-	var filters = [];
-	for (var i = 0; i < g_MapFilters.length; ++i)
-		filters.push(g_MapFilters[i].name);
-
-	return filters;
-}
-
-// Test map filter on given map settings object
+/**
+ * Returns true if the given map will be shown when having selected the mapFilter given by id.
+ *
+ * @param id {string} - Specifies the mapfilter
+ * @param mapSettings {Object}
+ */
 function testFilter(id, mapSettings)
 {
-	for (var i = 0; i < g_MapFilters.length; ++i)
-		if (g_MapFilters[i].id == id)
-			return g_MapFilters[i].filter(mapSettings);
+	var mapFilter = g_MapFilters.find(mapFilter => mapFilter.id == id);
 
-	error("Invalid map filter: " + id);
-	return false;
+	if (!mapFilter)
+	{
+		error("Invalid map filter: " + id);
+		return false;
+	}
+
+	return mapFilter.filter(mapSettings);
 }
 
-// Test an array of keywords against a match array using AND logic
+/**
+ *  Returns true if the keywords contain all of the matches.
+ *
+ *  @param keywords {Array}
+ *  @param matches {Array}
+ */
 function keywordTestAND(keywords, matches)
 {
 	if (!keywords || !matches)
 		return false;
 
-	for (var m = 0; m < matches.length; ++m)
-		if (keywords.indexOf(matches[m]) == -1)
-			return false;
-
-	return true;
+	return matches.every(match => keywords.indexOf(match) != -1);
 }
 
-// Test an array of keywords against a match array using OR logic
+/**
+ *  Returns true if the keywords contain some of the matches.
+ *
+ *  @param keywords {Array}
+ *  @param matches {Array}
+ */
 function keywordTestOR(keywords, matches)
 {
 	if (!keywords || !matches)
 		return false;
 
-	for (var m = 0; m < matches.length; ++m)
-		if (keywords.indexOf(matches[m]) != -1)
-			return true;
-
-	return false;
+	return matches.some(match => keywords.indexOf(match) != -1);
 }
 
 function sendRegisterGameStanza()
