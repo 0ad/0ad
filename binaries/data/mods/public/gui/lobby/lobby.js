@@ -431,9 +431,8 @@ function updateLeaderboard()
 function updateGameList()
 {
 	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
-	var gameList = Engine.GetGameList();
 
-	g_GameList = gameList.sort((a, b) => {
+	g_GameList = Engine.GetGameList().filter(game => !filterGame(game)).sort((a, b) => {
 		switch (g_GameListSortBy)
 		{
 		case 'name':
@@ -466,13 +465,11 @@ function updateGameList()
 	var list = [];
 	var list_data = [];
 
-	for (let i in gameList)
+	for (let i in g_GameList)
 	{
-		let game = gameList[i];
-		if (filterGame(game))
-			continue;
-
+		let game = g_GameList[i];
 		let gameName = escapeText(game.name);
+
 		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
 		list_ip.push(game.ip);
 		list_mapName.push(translate(game.niceMapName));
@@ -513,27 +510,21 @@ function updateGameSelection()
 		return;
 	}
 
-	var g = Engine.GetGUIObjectByName("gamesBox").list_data[selected];
-
 	// Show the game info panel and join button.
 	Engine.GetGUIObjectByName("gameInfo").hidden = false;
 	Engine.GetGUIObjectByName("joinGameButton").hidden = false;
 	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = true;
 
 	// Display the map name, number of players, the names of the players, the map size and the map type.
-	Engine.GetGUIObjectByName("sgMapName").caption = translate(g_GameList[g].niceMapName);
-	Engine.GetGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
-	Engine.GetGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
-	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(g_GameList[g].mapSize);
-	let mapTypeIdx = g_MapTypes.Name.indexOf(g_GameList[g].mapType);
+	var game = g_GameList[selected];
+	Engine.GetGUIObjectByName("sgMapName").caption = translate(game.niceMapName);
+	Engine.GetGUIObjectByName("sgNbPlayers").caption = game.nbp + "/" + game.tnbp;
+	Engine.GetGUIObjectByName("sgPlayersNames").caption = game.players;
+	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(game.mapSize);
+	let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);
 	Engine.GetGUIObjectByName("sgMapType").caption = mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "";
 
-	if (mapData && mapData.settings.Preview)
-		var mapPreview = mapData.settings.Preview;
-	else
-		var mapPreview = "nopreview.png";
-
-	var mapData = getMapDescriptionAndPreview(g_GameList[g].mapType, g_GameList[g].mapName);
+	var mapData = getMapDescriptionAndPreview(game.mapType, game.mapName);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
 	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:(0.7812,0.5859)session/icons/mappreview/" + mapData.preview;
 }
@@ -566,7 +557,7 @@ function hostGame()
 }
 
 /**
- * Processes one GUI message sent by the XmppClient.
+ * Processes GUI messages sent by the XmppClient.
  */
 function onTick()
 {
@@ -652,6 +643,9 @@ function onTick()
 	}
 }
 
+/**
+ * Executes a lobby command or sends GUI input directly as chat.
+ */
 function submitChatInput()
 {
 	var input = Engine.GetGUIObjectByName("chatInput");
