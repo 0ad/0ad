@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-11-30 09:01+0100\n"
-"PO-Revision-Date: 2015-11-30 09:01+0100\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-04 09:01+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,7 +44,6 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_melee_01.json:requirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.json:requirementsTooltip
 #: simulation/data/technologies/attack_tower_crenellations.json:requirementsTooltip
-#: simulation/data/technologies/attack_tower_defense.json:requirementsTooltip
 #: simulation/data/technologies/attack_tower_range.json:requirementsTooltip
 #: simulation/data/technologies/buildtime_walls_rubble.json:requirementsTooltip
 #: simulation/data/technologies/decay_outpost.json:requirementsTooltip
@@ -117,6 +116,8 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_ranged_02.json:requirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.json:requirementsTooltip
 #: simulation/data/technologies/attack_steel_working.json:requirementsTooltip
+#: simulation/data/technologies/attack_tower_defense.json:requirementsTooltip
+#: simulation/data/technologies/attack_tower_murderholes.json:requirementsTooltip
 #: simulation/data/technologies/gather_capacity_carts.json:requirementsTooltip
 #: simulation/data/technologies/gather_farming_fertilizer.json:requirementsTooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.json:requirementsTooltip
@@ -720,6 +721,18 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_defense.json:genericName
 msgid "Sturdy Foundations"
+msgstr ""
+
+#: simulation/data/technologies/attack_tower_murderholes.json:description
+msgid "Murder holes allow hitting enemies at the foot of the tower."
+msgstr ""
+
+#: simulation/data/technologies/attack_tower_murderholes.json:tooltip
+msgid "Removes defense tower minimum range."
+msgstr ""
+
+#: simulation/data/technologies/attack_tower_murderholes.json:genericName
+msgid "Murder Holes"
 msgstr ""
 
 #: simulation/data/technologies/attack_tower_range.json:description

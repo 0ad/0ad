@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Balázs Úr <urbalazs@gmail.com>, 2015
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2015
 # Boross Péter <borosspet@web.de>, 2015
 # Kristóf Kófiás <kristof.kofias@gmail.com>, 2014
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-11-06 14:27+0000\n"
-"Last-Translator: Boross Péter <borosspet@web.de>\n"
+"PO-Revision-Date: 2015-12-02 19:28+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,7 +82,7 @@ msgstr "Ismeretlen"
 #: gui/lobby/lobby.js:628
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Ennek a játéknak a(z) „%(ip)s” címe nem tűnik érvényesnek."
 
 #: gui/lobby/lobby.js:687
 #, javascript-format
@@ -147,7 +148,7 @@ msgstr "HH.mm"
 #: gui/lobby/lobby.js:951
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:954
@@ -185,7 +186,7 @@ msgstr "Add meg ismét a jelszavadat"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr "A jelszavak nem egyeznek meg"
+msgstr "A jelszavak nem egyeznek"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
@@ -286,7 +287,7 @@ msgstr "Főmenü"
 
 #: gui/lobby/lobby.xml:(caption):220
 msgid "Show full games"
-msgstr "Teljes játékok mutatása"
+msgstr "Teljes játékok megjelenítése"
 
 #: gui/lobby/lobby.xml:(caption):266 gui/lobby/lobby.xml:(caption):328
 msgid "Back"
@@ -306,7 +307,7 @@ msgstr "Profil megtekintése"
 
 #: gui/lobby/lobby.xml:(caption):323
 msgid "Player not found."
-msgstr "Nem található játékos"
+msgstr "Nem található játékos."
 
 #: gui/lobby/lobby.xml:(heading):26
 msgid "Status"
@@ -373,7 +374,7 @@ msgstr "Jelszó ismét:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr "Elolvastam és elfogadom a Felhasználási és Szolgáltatási feltételeket:"
+msgstr "Elolvastam és elfogadom a szolgáltatási és felhasználási feltételeket:"
 
 #: gui/lobby/prelobby.xml:(caption):97
 msgid "Cancel"
@@ -381,7 +382,7 @@ msgstr "Mégse"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "0 A.D. birodalmak növekvő többjátékos váró szolgáltatási feltételei"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -391,25 +392,25 @@ msgstr "Értelmezések:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* A „szolgáltatás” a Wildfire Games (WFG) által szolgáltatott 0 A.D. birodalmak növekvő többjátékos várója."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "* „Te” vagy a szolgáltatás felhasználója."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* „Mi” vagyunk az összes Wildfire Games (WFG) csapattagok összessége."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* Az „értékelés” különféle felhasználói statisztikák elemzésének folyamatára utal egyetlen átfogó pontszám előállításának céljából."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* A „moderálás” a használati irányelvek kikényszerítésének folyamatára utal."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
@@ -423,51 +424,51 @@ msgstr "1. Követed a használat szabályait."
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Lehetővé teszed a felhasználó azonosítható statisztikáinak begyűjtését értékelési, felhasználói profilok és közösségi statisztikák céljára."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Fenntartjuk a jogot a következőkre is:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. A szolgáltatás moderálására."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Mások kijelölésére a szolgáltatás moderálására."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. A szolgáltatás folytatásának megszüntetésére vagy megszakítására bármikor előzetes bejelentéssel vagy anélkül."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. A szolgáltatás bármikor történő megváltoztatására bejelentéssel vagy anélkül."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Bármely vagy az összes szolgáltatási adat bármikor történő törlésére bejelentéssel vagy anélkül."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Bármely vagy az összes, a felhasználót azonosítható statisztikák bármikor történő begyűjtésére beleegyezés nélkül a következőkhöz:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. A Wildfire Games (WFG) csapattagjai és társvállalatai általi személyes elemzéshez."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "b. A Wildfire Games (WFG) csapattagjai által névtelenné tett nyilvános kiadáshoz."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -475,49 +476,49 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Ennek a dokumentumnak a megváltoztatására bármely módon, bármikor, azon feltétellel, hogy a szolgáltatás felhasználójának a változtatás megfelelő figyelmeztetése meg legyen adva (a megfelelő figyelmeztetés meghatározását a Wildfire Games (WFG) csapattagok bizottsága időben meg fogja határozni)."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "0 A.D. birodalmak növekvő többjátékos váró felhasználási feltételei"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "* A „megszemélyesítés” arra a tevékenységre utal, amelyben kísérletet teszel más személyazonosságát kihasználni a saját céljaidra."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* A „szemét” lényegtelen vagy nem megfelelő üzenetek nagy mennyiségű címzettnek történő küldésére utal."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* Az „értékelés” a felhasználónkénti átfogó pontszámra utal."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* A „rangsorolt játékok” olyan játékokra utalnak, amelyekben az értékelést megváltoztató statisztikákat követik."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr "Elfogadod:"
+msgstr "Elfogadod a következőket:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Egyedi felhasználóként csak egyetlen fiókot hozol létre a szolgáltatáshoz, hacsak erre nem fel nem jogosított egy Wildfire Games (WFG) csapattag."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Nem küldesz gyalázkodó kijelentéseket, durva humort, pornografikus tartalmat vagy diszkriminatív megjegyzéseket a szolgáltatásba."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
@@ -526,15 +527,15 @@ msgstr ""
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. Nem használod a szolgáltatást bizonyos javak, szolgáltatások vagy termékek hirdetésére."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Nem személyesíted meg a szolgáltatás többi felhasználóját."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. Nem küldesz kéretlen üzeneteket a szolgáltatásba."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -548,7 +549,7 @@ msgstr ""
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Engedélyezed saját magad eltávolítását a szolgáltatásból, ha egy moderátor valamikor úgy határoz, hogy a viselkedésed nincs összhangban ezekkel a szabályokkal."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -556,4 +557,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Ennek a dokumentumnak a megváltoztatására bármely módon, bármikor, azon feltétellel, hogy a szolgáltatás felhasználójának a változtatás megfelelő figyelmeztetése meg legyen adva (a megfelelő figyelmeztetés meghatározását a Wildfire Games (WFG) csapattagok bizottsága időben meg fogja határozni)."

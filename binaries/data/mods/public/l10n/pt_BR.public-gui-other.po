@@ -7,6 +7,7 @@
 # Cleiton Nunes <umarekhawari@gmail.com>, 2014
 # Ernan, 2015
 # Sturm <gravador202@yahoo.com.br>, 2014
+# Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2015
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
 # Mihailov Vasilievic Filho <mihailov.vf@gmail.com>, 2015
 # pizzaiolo, 2015
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-12 02:55+0000\n"
-"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-12-01 01:48+0000\n"
+"Last-Translator: Leonardo Augusto Suzin <leonardosuzin@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,24 +93,24 @@ msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Tempo restante até o cessar-fogo acabar: %(time)s."
 
-#: gui/common/functions_utility.js:142
+#: gui/common/functions_utility.js:127
 msgctxt "map size"
 msgid "Default"
 msgstr "Padrão"
 
-#: gui/common/functions_utility.js:152
+#: gui/common/functions_utility.js:137
 msgid "A randomly selected map."
 msgstr "Um mapa selecionado aleatoriamente."
 
-#: gui/common/functions_utility.js:159
+#: gui/common/functions_utility.js:144
 msgid "Sorry, no description available."
 msgstr "Desculpe, não há nenhuma descrição disponível."
 
-#: gui/common/functions_utility.js:203
+#: gui/common/functions_utility.js:188
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:190
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -375,42 +376,42 @@ msgstr "Não foi possível expulsar %(name)s."
 msgid "Could not ban %(name)s."
 msgstr "Não foi possível banir %(name)s."
 
-#: gui/common/settings.js:106
+#: gui/common/settings.js:107
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Sandbox"
 
-#: gui/common/settings.js:110
+#: gui/common/settings.js:111
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Muito Fácil"
 
-#: gui/common/settings.js:114
+#: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Fácil"
 
-#: gui/common/settings.js:118
+#: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Médio"
 
-#: gui/common/settings.js:123
+#: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Difícil"
 
-#: gui/common/settings.js:127
+#: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Muito Difícil"
 
-#: gui/common/settings.js:150
+#: gui/common/settings.js:151
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Sem cessar-fogo"
 
-#: gui/common/settings.js:151
+#: gui/common/settings.js:152
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -418,35 +419,35 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s minuto"
 msgstr[1] "%(minutes)s minutos"
 
-#: gui/common/settings.js:165
+#: gui/common/settings.js:166
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Escaramuça"
 
-#: gui/common/settings.js:170
+#: gui/common/settings.js:171
 msgctxt "map"
 msgid "Random"
 msgstr "Aleatório"
 
-#: gui/common/settings.js:174 gui/summary/summary.js:136
+#: gui/common/settings.js:175 gui/summary/summary.js:136
 msgid "Scenario"
 msgstr "Cenário"
 
-#: gui/common/settings.js:205
+#: gui/common/settings.js:206
 msgid "None"
 msgstr "Nenhum"
 
-#: gui/common/settings.js:206
+#: gui/common/settings.js:207
 msgid "Endless Game"
 msgstr "Jogo Interminável"
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:248
 msgid "Unlimited"
 msgstr "Ilimitado"
 
-#: gui/common/settings.js:279 gui/common/settings.js:290
-#: gui/common/settings.js:301 gui/common/settings.js:312
-#: gui/common/settings.js:323
+#: gui/common/settings.js:296 gui/common/settings.js:307
+#: gui/common/settings.js:318 gui/common/settings.js:329
+#: gui/common/settings.js:340
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -515,8 +516,8 @@ msgid "Armor:"
 msgstr "Armadura:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:167 gui/structree/draw.js:260
-#: gui/structree/draw.js:285
+#: gui/common/tooltips.js:167 gui/structree/draw.js:356
+#: gui/structree/draw.js:381
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -697,14 +698,16 @@ msgid "<invalid>"
 msgstr "<inválido>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
+#: gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Sim"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
+#: gui/savedgames/save.js:89
 msgid "No"
 msgstr "Não"
 
@@ -1064,7 +1067,7 @@ msgid ""
 "for additional information."
 msgstr "O editor de cenário não esta disponível ou falhou ao carregar. Veja o log do jogo para obter mais informações."
 
-#: gui/pregame/mainmenu.js:299
+#: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:75
 msgid "Error"
 msgstr "Erro"
 
@@ -1080,6 +1083,139 @@ msgstr "Detalhes Técnicos"
 #: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Manual"
+
+#: gui/replaymenu/replay_actions.js:31
+msgid "You"
+msgstr "Você"
+
+#: gui/replaymenu/replay_actions.js:51
+msgid "You don't have the same mods active as the replay does."
+msgstr "Você não tem os mesmos mods ativos que o replay tem."
+
+#: gui/replaymenu/replay_actions.js:52
+#, javascript-format
+msgid "Required: %(mods)s"
+msgstr "Necessário: %(mods)s"
+
+#: gui/replaymenu/replay_actions.js:53
+#, javascript-format
+msgid "Active: %(mods)s"
+msgstr "Ativo: %(mods)s"
+
+#: gui/replaymenu/replay_actions.js:56
+msgid "This replay is not compatible with your version of the game!"
+msgstr "O replay não é compatível com a sua versão do jogo!"
+
+#: gui/replaymenu/replay_actions.js:58
+msgid "Incompatible replay"
+msgstr "Replay incompatível"
+
+#: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
+msgid "Ok"
+msgstr "OK"
+
+#: gui/replaymenu/replay_actions.js:75
+msgid "No summary data available."
+msgstr "Sem dados de resumo disponíveis."
+
+#: gui/replaymenu/replay_actions.js:81
+msgid "Scores at the end of the game."
+msgstr "Resultados no final do jogo."
+
+#: gui/replaymenu/replay_actions.js:114
+msgid "Delete replay"
+msgstr "Apagar replay"
+
+#: gui/replaymenu/replay_actions.js:115
+msgid "Are you sure to delete this replay permanently?"
+msgstr "Tem certeza que quer apagar permanentemente este replay?"
+
+#: gui/replaymenu/replay_filters.js:40
+msgctxt "datetime"
+msgid "Any"
+msgstr "Qualquer"
+
+#: gui/replaymenu/replay_filters.js:56
+msgctxt "map size"
+msgid "Any"
+msgstr "Qualquer"
+
+#: gui/replaymenu/replay_filters.js:69
+msgctxt "map name"
+msgid "Any"
+msgstr "Qualquer"
+
+#: gui/replaymenu/replay_filters.js:82
+msgctxt "population capacity"
+msgid "Any"
+msgstr "Qualquer"
+
+#: gui/replaymenu/replay_filters.js:98
+msgctxt "duration"
+msgid "Any"
+msgstr "Qualquer"
+
+#. Translation: Shorter duration than max minutes.
+#: gui/replaymenu/replay_filters.js:102
+#, javascript-format
+msgctxt "duration filter"
+msgid "< %(max)s min"
+msgstr "< %(max)s min"
+
+#. Translation: Longer duration than min minutes.
+#: gui/replaymenu/replay_filters.js:106
+#, javascript-format
+msgctxt "duration filter"
+msgid "> %(min)s min"
+msgstr "> %(min)s min"
+
+#. Translation: Duration between min and max minutes.
+#: gui/replaymenu/replay_filters.js:109
+#, javascript-format
+msgctxt "duration filter"
+msgid "%(min)s - %(max)s min"
+msgstr "%(min)s - %(max)s min"
+
+#: gui/replaymenu/replay_menu.js:222
+msgid "yyyy-MM-dd HH:mm"
+msgstr "aaaa-MM-dd HH:mm"
+
+#: gui/replaymenu/replay_menu.js:253
+msgid "yyyy-MM"
+msgstr "aaaa-MM"
+
+#: gui/replaymenu/replay_menu.js:316
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s (%(civ)s)"
+
+#: gui/replaymenu/replay_menu.js:318
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, defeated)"
+msgstr "%(playerName)s (%(civ)s, derrotado)"
+
+#: gui/replaymenu/replay_menu.js:320
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+
+#: gui/replaymenu/replay_menu.js:322
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, derrotado(s))"
+
+#: gui/replaymenu/replay_menu.js:338
+msgid "No Team"
+msgstr "Sem time"
+
+#: gui/replaymenu/replay_menu.js:338
+#, javascript-format
+msgid "Team %(team)s"
+msgstr "Time %(team)s"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -1154,20 +1290,20 @@ msgstr "O jogo salvo será sobrescrito permanentemente, você está certo disto?
 msgid "OVERWRITE SAVE"
 msgstr "SOBRESCREVER JOGO SALVO"
 
-#: gui/structree/draw.js:261
+#: gui/structree/draw.js:357
 msgid "Health:"
 msgstr "Saúde:"
 
-#: gui/structree/draw.js:280
+#: gui/structree/draw.js:376
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:286
+#: gui/structree/draw.js:382
 msgid "Gather Rates:"
 msgstr "Taxa de Colheita:"
 
-#: gui/structree/load.js:146
+#: gui/structree/load.js:158
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s a %(val2)s"
@@ -1371,7 +1507,7 @@ msgid "Civilization Selection"
 msgstr "Selecionar Civilização"
 
 #: gui/civinfo/civinfo.xml:(caption):119
-#: gui/structree/structree.xml:(caption):90
+#: gui/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Fechar"
 
@@ -1715,9 +1851,81 @@ msgstr "Clique para abrir o chat IRC do 0 A.D. em seu navegador. (#0ad em webcha
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Clique para visitar o 0 A.D. Trac para reportar um problema, uma quebra, ou um erro."
 
+#: gui/replaymenu/replay_menu.xml:(caption):26
+msgid "Replay Games"
+msgstr "Jogar novamete"
+
+#: gui/replaymenu/replay_menu.xml:(caption):109
+msgid "Filter compatible replays"
+msgstr "Filtrar replays compatíveis"
+
+#: gui/replaymenu/replay_menu.xml:(caption):135
+msgid "Map Type:"
+msgstr "Tipo de Mapa:"
+
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Size:"
+msgstr "Tamanho do Mapa:"
+
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Victory:"
+msgstr "Vitória:"
+
+#: gui/replaymenu/replay_menu.xml:(caption):186
+msgid "Players:"
+msgstr "Jogadores:"
+
+#: gui/replaymenu/replay_menu.xml:(caption):203
+msgid "Spoiler"
+msgstr "Spoiler"
+
+#: gui/replaymenu/replay_menu.xml:(caption):215
+msgid "Main Menu"
+msgstr "Menu Principal"
+
+#: gui/replaymenu/replay_menu.xml:(caption):221
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Deletar"
+
+#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/summary/summary.xml:(caption):23
+msgid "Summary"
+msgstr "Sumário"
+
+#: gui/replaymenu/replay_menu.xml:(caption):233
+msgid "Start Replay"
+msgstr "Iniciar Replay"
+
+#: gui/replaymenu/replay_menu.xml:(heading):72
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Data / Hora"
+
+#: gui/replaymenu/replay_menu.xml:(heading):76
+msgctxt "replay"
+msgid "Players"
+msgstr "Jogadores"
+
+#: gui/replaymenu/replay_menu.xml:(heading):80
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Nome do Mapa"
+
+#: gui/replaymenu/replay_menu.xml:(heading):84
+msgctxt "replay"
+msgid "Size"
+msgstr "Tamanho"
+
+#: gui/replaymenu/replay_menu.xml:(heading):88
+msgctxt "replay"
+msgid "Population"
+msgstr "População"
+
+#: gui/replaymenu/replay_menu.xml:(heading):92
+msgctxt "replay"
+msgid "Duration"
+msgstr "Duração"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -1747,9 +1955,9 @@ msgstr "Questões conhecidas (web)"
 msgid "Civilization:"
 msgstr "Civilização"
 
-#: gui/summary/summary.xml:(caption):23
-msgid "Summary"
-msgstr "Sumário"
+#: gui/structree/structree.xml:(caption):92
+msgid "Trainer Units"
+msgstr "Unidades de Treinamento"
 
 #: gui/summary/summary.xml:(caption):63
 msgid "Score"

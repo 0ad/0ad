@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-11 04:17+0100\n"
-"PO-Revision-Date: 2015-11-11 10:33+0000\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-11-30 10:07+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -449,6 +449,7 @@ msgstr "Neartachadh air sligean luinge"
 #: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
@@ -822,6 +823,22 @@ msgstr "Cleachdaidh na h‑obraichean cairtean-each. Beiridh na h‑aonadan +10 
 msgid "Horse-drawn Carts"
 msgstr "Cairtean-each"
 
+#: simulation/data/technologies/gather_capacity_fishing.jsondescription
+msgid "Salting allows to preserve the fishes longer."
+msgstr "Mairidh an t-iasg nas fhaide ma bhios sailleadh agad."
+
+#: simulation/data/technologies/gather_capacity_fishing.jsontooltip
+msgid "Fishing Boats +20 food capacity."
+msgstr "Gheibh bàtaichean-iasgaich +20 de rum airson biadh."
+
+#: simulation/data/technologies/gather_capacity_fishing.jsongenericName
+msgid "Salting Fish"
+msgstr "Sailleadh èisg"
+
+#: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
+msgid "Unlocked in Town Phase. Requires Fishing Net."
+msgstr "Ri fhaighinn ri linn nam bailtean. Feum air lìon-èisg."
+
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
 msgstr "Cleachdaidh na h‑obraichean barachan-cuibhle. Beiridh na h‑aonadan +5 de dh’eallach nas motha de na h‑uile stòras."
@@ -865,6 +882,19 @@ msgstr "Buainidh na h-obraichean nas luaithe le +15%."
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
 msgstr "Trèanadh air cruinneachadh"
+
+#: simulation/data/technologies/gather_fishing_net.jsondescription
+msgid "Using net improves the fishing productivity."
+msgstr "Bidh an t-iasgach agad nas torraiche ma chleachdas tu lìon."
+
+#: simulation/data/technologies/gather_fishing_net.jsontooltip
+msgid ""
+"Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
+msgstr "Cleachd lìontan air na bàtaichean-iasgaich agad. Dèan iasgach nas luaithe le +30%. Bheir seo a’ ghlas far saillidh èisg."
+
+#: simulation/data/technologies/gather_fishing_net.jsongenericName
+msgid "Fishing Net"
+msgstr "Lìon-èisg"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription

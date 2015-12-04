@@ -9,6 +9,7 @@
 # dr&mx <dronmax@gmail.com>, 2014
 # grin.sv <grin.sv@gmail.com>, 2015
 # Igor Kustov, 2014
+# Ivan Seleznev <evan.roda@gmail.com>, 2015
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
 # Nick Zhivotenko <niko.zvt@gmail.com>, 2015
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-28 04:04+0000\n"
-"Last-Translator: Woratiklis\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-11-30 20:39+0000\n"
+"Last-Translator: Ivan Seleznev <evan.roda@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,24 +102,24 @@ msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Времени до возобновления военных действий: %(time)s."
 
-#: gui/common/functions_utility.js:142
+#: gui/common/functions_utility.js:127
 msgctxt "map size"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: gui/common/functions_utility.js:152
+#: gui/common/functions_utility.js:137
 msgid "A randomly selected map."
 msgstr "Случайная карта."
 
-#: gui/common/functions_utility.js:159
+#: gui/common/functions_utility.js:144
 msgid "Sorry, no description available."
 msgstr "К сожалению, описание недоступно."
 
-#: gui/common/functions_utility.js:203
+#: gui/common/functions_utility.js:188
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:190
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -128,7 +129,7 @@ msgstr "Загрузка прервана"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "yyyy-MM-dd HH:mm:ss"
+msgstr "dd-MM-yyyy HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
@@ -384,42 +385,42 @@ msgstr "Невозможно отключить %(name)s."
 msgid "Could not ban %(name)s."
 msgstr "Невозможно заблокировать %(name)s."
 
-#: gui/common/settings.js:106
+#: gui/common/settings.js:107
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Песочница"
 
-#: gui/common/settings.js:110
+#: gui/common/settings.js:111
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Очень легко"
 
-#: gui/common/settings.js:114
+#: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Легко"
 
-#: gui/common/settings.js:118
+#: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Нормально"
 
-#: gui/common/settings.js:123
+#: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Сложно"
 
-#: gui/common/settings.js:127
+#: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Очень сложно"
 
-#: gui/common/settings.js:150
+#: gui/common/settings.js:151
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Без прекращения"
 
-#: gui/common/settings.js:151
+#: gui/common/settings.js:152
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -429,35 +430,35 @@ msgstr[1] "%(minutes)s минут(ы)"
 msgstr[2] "%(minutes)s минут(ы)"
 msgstr[3] "%(minutes)s минут(ы)"
 
-#: gui/common/settings.js:165
+#: gui/common/settings.js:166
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Схватка"
 
-#: gui/common/settings.js:170
+#: gui/common/settings.js:171
 msgctxt "map"
 msgid "Random"
 msgstr "Случайно"
 
-#: gui/common/settings.js:174 gui/summary/summary.js:136
+#: gui/common/settings.js:175 gui/summary/summary.js:136
 msgid "Scenario"
 msgstr "Сценарий"
 
-#: gui/common/settings.js:205
+#: gui/common/settings.js:206
 msgid "None"
 msgstr "Нет"
 
-#: gui/common/settings.js:206
+#: gui/common/settings.js:207
 msgid "Endless Game"
 msgstr "Бесконечная игра"
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:248
 msgid "Unlimited"
 msgstr "Неограниченно"
 
-#: gui/common/settings.js:279 gui/common/settings.js:290
-#: gui/common/settings.js:301 gui/common/settings.js:312
-#: gui/common/settings.js:323
+#: gui/common/settings.js:296 gui/common/settings.js:307
+#: gui/common/settings.js:318 gui/common/settings.js:329
+#: gui/common/settings.js:340
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -530,8 +531,8 @@ msgid "Armor:"
 msgstr "Защита:"
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:167 gui/structree/draw.js:260
-#: gui/structree/draw.js:285
+#: gui/common/tooltips.js:167 gui/structree/draw.js:356
+#: gui/structree/draw.js:381
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -712,14 +713,16 @@ msgid "<invalid>"
 msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
+#: gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Да"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
+#: gui/savedgames/save.js:89
 msgid "No"
 msgstr "Нет"
 
@@ -1079,7 +1082,7 @@ msgid ""
 "for additional information."
 msgstr "Редактор сценариев недоступен или не запускается. Посмотрите логи игры для более подробной информации."
 
-#: gui/pregame/mainmenu.js:299
+#: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:75
 msgid "Error"
 msgstr "Ошибка"
 
@@ -1095,6 +1098,139 @@ msgstr "Технические детали"
 #: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Руководство"
+
+#: gui/replaymenu/replay_actions.js:31
+msgid "You"
+msgstr "Вы"
+
+#: gui/replaymenu/replay_actions.js:51
+msgid "You don't have the same mods active as the replay does."
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:52
+#, javascript-format
+msgid "Required: %(mods)s"
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:53
+#, javascript-format
+msgid "Active: %(mods)s"
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:56
+msgid "This replay is not compatible with your version of the game!"
+msgstr "Этот повтор несовместим с вашей версией игры!"
+
+#: gui/replaymenu/replay_actions.js:58
+msgid "Incompatible replay"
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
+msgid "Ok"
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:75
+msgid "No summary data available."
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:81
+msgid "Scores at the end of the game."
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:114
+msgid "Delete replay"
+msgstr "Удалить повтор"
+
+#: gui/replaymenu/replay_actions.js:115
+msgid "Are you sure to delete this replay permanently?"
+msgstr "Вы уверенны что хотите удалить этот повтор навсегда?"
+
+#: gui/replaymenu/replay_filters.js:40
+msgctxt "datetime"
+msgid "Any"
+msgstr ""
+
+#: gui/replaymenu/replay_filters.js:56
+msgctxt "map size"
+msgid "Any"
+msgstr ""
+
+#: gui/replaymenu/replay_filters.js:69
+msgctxt "map name"
+msgid "Any"
+msgstr ""
+
+#: gui/replaymenu/replay_filters.js:82
+msgctxt "population capacity"
+msgid "Any"
+msgstr ""
+
+#: gui/replaymenu/replay_filters.js:98
+msgctxt "duration"
+msgid "Any"
+msgstr ""
+
+#. Translation: Shorter duration than max minutes.
+#: gui/replaymenu/replay_filters.js:102
+#, javascript-format
+msgctxt "duration filter"
+msgid "< %(max)s min"
+msgstr ""
+
+#. Translation: Longer duration than min minutes.
+#: gui/replaymenu/replay_filters.js:106
+#, javascript-format
+msgctxt "duration filter"
+msgid "> %(min)s min"
+msgstr ""
+
+#. Translation: Duration between min and max minutes.
+#: gui/replaymenu/replay_filters.js:109
+#, javascript-format
+msgctxt "duration filter"
+msgid "%(min)s - %(max)s min"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:222
+msgid "yyyy-MM-dd HH:mm"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:253
+msgid "yyyy-MM"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:316
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s)"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:318
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, defeated)"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:320
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:322
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:338
+msgid "No Team"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:338
+#, javascript-format
+msgid "Team %(team)s"
+msgstr ""
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -1169,20 +1305,20 @@ msgstr "Сохраненная игра будет перезаписана. У�
 msgid "OVERWRITE SAVE"
 msgstr "ПЕРЕЗАПИСАТЬ СОХРАНЕНИЕ"
 
-#: gui/structree/draw.js:261
+#: gui/structree/draw.js:357
 msgid "Health:"
 msgstr "Здоровье:"
 
-#: gui/structree/draw.js:280
+#: gui/structree/draw.js:376
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:286
+#: gui/structree/draw.js:382
 msgid "Gather Rates:"
 msgstr "Сбор ресурсов:"
 
-#: gui/structree/load.js:146
+#: gui/structree/load.js:158
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s к %(val2)s"
@@ -1386,7 +1522,7 @@ msgid "Civilization Selection"
 msgstr "Выбор цивилизации"
 
 #: gui/civinfo/civinfo.xml:(caption):119
-#: gui/structree/structree.xml:(caption):90
+#: gui/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Закрыть"
 
@@ -1730,9 +1866,81 @@ msgstr "Нажмите, чтобы открыть IRC-чат 0 A.D. в брау�
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Нажмите чтобы посетить 0 A.D. Trac для отчетов о багах, крахах или ошибках."
 
+#: gui/replaymenu/replay_menu.xml:(caption):26
+msgid "Replay Games"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):109
+msgid "Filter compatible replays"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):135
+msgid "Map Type:"
+msgstr "Тип карты:"
+
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Size:"
+msgstr "Размер карты:"
+
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Victory:"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):186
+msgid "Players:"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):203
+msgid "Spoiler"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):215
+msgid "Main Menu"
+msgstr "Главное меню"
+
+#: gui/replaymenu/replay_menu.xml:(caption):221
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Удалить"
+
+#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/summary/summary.xml:(caption):23
+msgid "Summary"
+msgstr "Итог"
+
+#: gui/replaymenu/replay_menu.xml:(caption):233
+msgid "Start Replay"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(heading):72
+msgctxt "replay"
+msgid "Date / Time"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(heading):76
+msgctxt "replay"
+msgid "Players"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(heading):80
+msgctxt "replay"
+msgid "Map Name"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(heading):84
+msgctxt "replay"
+msgid "Size"
+msgstr "Размер"
+
+#: gui/replaymenu/replay_menu.xml:(heading):88
+msgctxt "replay"
+msgid "Population"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(heading):92
+msgctxt "replay"
+msgid "Duration"
+msgstr ""
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -1762,9 +1970,9 @@ msgstr "Известные проблемы (web)"
 msgid "Civilization:"
 msgstr "Цивилизация:"
 
-#: gui/summary/summary.xml:(caption):23
-msgid "Summary"
-msgstr "Итог"
+#: gui/structree/structree.xml:(caption):92
+msgid "Trainer Units"
+msgstr ""
 
 #: gui/summary/summary.xml:(caption):63
 msgid "Score"
@@ -2414,7 +2622,7 @@ msgstr "- Подходит для транспортировки или сраж
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Поместите бойцов на корабль, чтобы увеличить огневую мощь."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""

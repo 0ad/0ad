@@ -4,16 +4,16 @@
 # 
 # Translators:
 # Gerard Trias <gtriasg@gmail.com>, 2015
-# gillemp <guplem@gmail.com>, 2015
+# Guillem Poy <guplem@gmail.com>, 2015
 # Miguel Molina <miguigana12@hotmail.com>, 2015
 # Peredelgrau, 2014
 # Haommin <tfs.msimangu@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-21 21:46+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-11-30 09:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -289,7 +289,7 @@ msgstr "Es pot matar per obtenir-ne menjar en abundància."
 #: simulation/templates/units/gaul_hero_britomartus.xml:10
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:13
 #: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:13
 msgid "Hero Aura"
 msgstr "Aura d'heroi"
 
@@ -477,7 +477,7 @@ msgstr "Aura d'inspiració"
 msgid "Nearby males work 10% faster"
 msgstr "Els homes propers treballen un 10% més ràpid."
 
-#: simulation/templates/template_unit_support_female_citizen.xml:55
+#: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
 msgstr "Ciutadana"
 
@@ -934,17 +934,17 @@ msgstr "Soldat amb espasa llarga britó"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:13
+#: simulation/templates/units/brit_hero_boudicca.xml:14
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "Champion Army"
 msgstr "Exèrcit campió"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca.xml:15
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:14
 msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
 msgstr "+5 d'atac, +2 de captura i +25% de velocitat per a les unitats campiones."
 
-#: simulation/templates/units/brit_hero_boudicca.xml:25
+#: simulation/templates/units/brit_hero_boudicca.xml:27
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:20
 msgid "Boudicca"
 msgstr "Budicca"
@@ -1000,9 +1000,8 @@ msgid "Reithe"
 msgstr "Reithe"
 
 #: simulation/templates/units/brit_ship_fishing.xml:5
-#: simulation/templates/units/gaul_ship_fishing.xml:5
-msgid "/Fishing Boat/"
-msgstr "/Barca de pesca/"
+msgid "Manea"
+msgstr ""
 
 #: simulation/templates/units/brit_ship_merchant.xml:9
 #: simulation/templates/units/gaul_ship_merchant.xml:9
@@ -1319,6 +1318,10 @@ msgstr "+2 d'atac i +1 de captura per a totes les unitats dins de la seva aura."
 msgid "Vercingetorix"
 msgstr "Vercingètorix"
 
+#: simulation/templates/units/gaul_ship_fishing.xml:5
+msgid "Lembus"
+msgstr ""
+
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
 msgstr "Kantabriako Zaldun"
@@ -1494,15 +1497,15 @@ msgstr "Demetri Poliorcetes"
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
-#: simulation/templates/units/mace_hero_philip.xml:13
+#: simulation/templates/units/mace_hero_philip.xml:14
 msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr "+5 d'atac i +2 de captura per a les unitats campiones."
 
-#: simulation/templates/units/mace_hero_philip.xml:19
+#: simulation/templates/units/mace_hero_philip.xml:21
 msgid "Philip II of Macedon"
 msgstr "Filip II de Macedònia"
 
-#: simulation/templates/units/mace_hero_philip.xml:20
+#: simulation/templates/units/mace_hero_philip.xml:22
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
@@ -2672,19 +2675,19 @@ msgstr "La infanteria lleugera ilota dins del seu camp de visió guanya 2 d'atac
 msgid "Brasidas"
 msgstr "Bràsides"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:12
+#: simulation/templates/units/spart_hero_leonidas.xml:14
 msgid "Last Stand Aura"
 msgstr "Aura \"Darrera defensa\""
 
-#: simulation/templates/units/spart_hero_leonidas.xml:13
+#: simulation/templates/units/spart_hero_leonidas.xml:15
 msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
 msgstr "+20% d'atac i +1 de captura per als hoplites i espartiates propers."
 
-#: simulation/templates/units/spart_hero_leonidas.xml:20
+#: simulation/templates/units/spart_hero_leonidas.xml:22
 msgid "Leonidas I"
 msgstr "Leònides I"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:21
+#: simulation/templates/units/spart_hero_leonidas.xml:23
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 

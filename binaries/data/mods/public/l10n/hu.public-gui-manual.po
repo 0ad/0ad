@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Balázs Úr <urbalazs@gmail.com>, 2015
 # Stew Den <stewden55@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-19 09:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-02 19:54+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,15 +24,15 @@ msgstr "Információ"
 
 #: gui/manual/manual.xml:(caption):20
 msgid "Close"
-msgstr "Bezár"
+msgstr "Bezárás"
 
 #: gui/manual/manual.xml:(caption):24
 msgid "View Online"
-msgstr "Megtekintés Online"
+msgstr "Megtekintés online"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"sans-bold-18\"]0 A.D. Játékbeli Kézikönyv"
+msgstr "[font=\"sans-bold-18\"]0 A.D. játékbeli kézikönyv"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -42,7 +43,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Köszönjük, hogy telpítetted a 0 A.D. játékot! Ez a lap röviden bemutatja a még fejlesztés alatt álló játék szolgáltatásait."
+msgstr "Köszönjük, hogy telepítetted a 0 A.D. játékot! Ez az oldal egy rövid áttekintést fog adni a még befejezetlen, fejlesztés alatt álló, alfa verziójú játék szolgáltatásairól."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
@@ -60,7 +61,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]A játék menete"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -76,27 +77,27 @@ msgstr "Alapvető irányítás:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "• Kattints bal gombbal az egységek kijelöléséhez"
+msgstr "• Kattints a bal gombbal az egységek kijelöléséhez."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "• Kattints a bal gombbal, és húzd az egeredet egy egységcsoport kijelöléséhez"
+msgstr "• Kattints a bal gombbal, és húzd az egeredet egy egységcsoport kijelöléséhez."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "• Kattints a jobb gombbal, hogy megadj egy célt a kijelölt egységeknek"
+msgstr "• Kattints a jobb gombbal, hogy megadj egy célt a kijelölt egységeknek."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "• A nyílbillentyűk, vagy a WASD billentyűk segítségével mozgathatod a kamerát"
+msgstr "• A nyílbillentyűk vagy a WASD billentyűk segítségével mozgathatod a kamerát."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "• A Ctrl és a nyílbillentyűk, illetve a shift és az egér görgő segítségével forgathatod a kamerát"
+msgstr "• A Ctrl és a nyílbillentyűk, illetve a Shift és az egérgörgő segítségével forgathatod a kamerát."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Az egér görgőjével vagy a \"+\" és \"-\" billentyűkkel közelíthetsz és távolíthatsz"
+msgstr "• Az egér görgőjével vagy a „+” és a „-” billentyűkkel nagyíthatsz."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -104,7 +105,7 @@ msgstr "[font=\"sans-bold-16\"]Módok"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]A főmenü két játékmódhoz ad hozzáférést:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -127,7 +128,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Többjátékos módú játék indításához az egyik játékosnak rá kell mennie a \"Házigazda mód\" lehetőségre. A játék a 20595-ös UDP portot használja, tehát a házigazdának be kell állítania a tűzfalat/routert, hogy ez működjön. A többi játékos ezután kiválaszthatja a \"Csatlakozás játékhoz\" lehetőséget, és beírhatja a házigazda IP címét."
+msgstr "Többjátékos módú játék indításához az egyik játékosnak ki kell választania a „Házigazda mód” lehetőséget. A játék a 20595-ös UDP-portot használja, tehát a házigazdának be kell állítania a tűzfalat/útválasztót, hogy ez működjön. A többi játékos ezután kiválaszthatja a „Csatlakozás játékhoz” lehetőséget, és beírhatja a házigazda IP-címét."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -148,7 +149,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr "Először válaszd ki, hogy véletlenszerű pályán (amit egy térkép generáló script készít) vagy egy valós pályaszerkesztő (fejlesztő) által készített pályán szeretnél játszani. Az alap térképek azonnal látszanak, ám az egyedi térképek általában nem, ezért válaszd ki a \"Minden térkép\" lehetőséget, hogy az összes rendelkezésre álló térképet lásd. Ezek után válaszd ki a térképet, amin játszani szeretnél. A \"Demo térképek\" a játék bizonyos funkcióinak tesztelése céljából készültek, így nem valószínű, hogy normál játékhoz érdemes lenne használni."
+msgstr "Először válaszd ki, hogy véletlenszerű pályán (amit egy térkép-előállító parancsfájl készít) vagy egy valós pályaszerkesztő (fejlesztő) által készített pályán szeretnél játszani. Az alap térképek azonnal látszanak, ám az egyedi térképek általában nem, ezért válaszd ki a „Minden térkép” lehetőséget, hogy az összes rendelkezésre álló térképet lásd. Ezek után válaszd ki a térképet, amin játszani szeretnél. A „Demo térképek” a játék bizonyos funkcióinak tesztelése céljából készültek, így nem valószínű, hogy normál játékhoz érdemes lenne használni."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -162,7 +163,7 @@ msgstr "Végül add meg a beállításokat. Véletlenszerű pályáknál a ját�
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Amikor készen állsz, kattints a \"Játék indítása\" gombra."
+msgstr "Amikor készen állsz, kattints a „Játék indítása” gombra."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -196,7 +197,7 @@ msgstr "F11: valós-idejű profiler bekapcsolása/kikapcsolása (a mutatott info
 
 #: gui/manual/intro.txt:44
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11: Jelenlegi profiler adatok elmentése a \"logs/profile.txt\" fájlba"
+msgstr "Shift + F11: Jelenlegi profilozó adatok elmentése a „logs/profile.txt” fájlba"
 
 #: gui/manual/intro.txt:45
 msgid ""
@@ -258,7 +259,7 @@ msgstr "F12: Eltelt idő számlálójának mutatása/rejtése"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Az összes párbeszédablak (csevegés, menü) bezárása vagy a kijelölt egységek törlése"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -270,7 +271,7 @@ msgstr "T: Csevegés csapaton belül"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pause: A játék szüneteltetése/folytatása"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
@@ -324,37 +325,37 @@ msgstr "Z, X, C, V, B, N, M:  Kiképző épületeket kiválasztva hozzáadja ren
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Egérművelet módosítása"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + jobb kattintás egy épületen: Beszállásolás"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Shift + Jobb kattintás: Mozgás/építés/gyűjtögetés/stb. feladatok sorba állítása"
+msgstr "Shift + jobb kattintás: Mozgás/építés/gyűjtögetés/stb. feladatok sorba állítása"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shift + Bal kattintás egységek kiképzésekor: Ötösével ad hozzá az egységeket"
+msgstr "Shift + bal kattintás egységek kiképzésekor: Ötösével ad hozzá az egységeket"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + Bal kattintás vagy az egység Bal gombbal való bekerítése a térképen: Egység hozzáadása a kiválasztottak csoportjához"
+msgstr "Shift + bal kattintás vagy az egység Bal gombbal való bekerítése a térképen: Egység hozzáadása a kiválasztottak csoportjához"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + Bal kattintás vagy az egység Bal gombbal való bekerítése a térképen: Egység eltávolítása a kiválasztottak csoportjából"
+msgstr "Ctrl + bal kattintás vagy az egység Bal gombbal való bekerítése a térképen: Egység eltávolítása a kiválasztottak csoportjából"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Alt + az egységek Bal gombbal való bekerítése a térképen: Csak a katonai egységek kiválasztása"
+msgstr "Alt + az egységek bal gombbal való bekerítése a térképen: Csak a katonai egységek kiválasztása"
 
 #: gui/manual/intro.txt:79
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgstr "I + az egységek bal gombbal való bekerítése a térképen: Csak a tétlen egységek kijelölése"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -365,7 +366,7 @@ msgstr "Ctrl + bal kattintás egy egység vagy csoport ikonján úgy, hogy több
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Jobb kattintás amikor ki van jelölve egy vagy több épület: gyülekezési pont kijelölése a helyőrséget elhagyó és az elkészült egységeknek"
+msgstr "Jobb kattintás amikor ki van jelölve egy vagy több épület: gyülekezési pont kijelölése a helyőrséget elhagyó és az elkészült egységeknek."
 
 #: gui/manual/intro.txt:82
 msgid "Ctrl + Right Click with units selected:"
@@ -373,32 +374,32 @@ msgstr "Ctrl + jobb kattintás amikor ki vannak jelölve egységek"
 
 #: gui/manual/intro.txt:83
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "- Ha a kurzor egy szövetséges épület fölött áll: Beszállásolás"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr ""
+msgstr "- Ha a kurzor egy nem szövetséges egység vagy épület fölött áll: Támadás (elfoglalás vagy begyűjtés helyett)"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
+msgstr "- Egyébként: Támadó mozgás (alapértelmezetten az út mentén lévő összes ellenséges egység és épület meg van célozva, használd a Ctrl + Q + jobb kattintást csak az egységek megcélzásához)."
 
 #: gui/manual/intro.txt:87
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Rátétek"
 
 #: gui/manual/intro.txt:88
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr "[font=\"sans-14\"]Alt + G: A játék felhasználói felületének /GUI/ mutatása/elrejtése"
+msgstr "[font=\"sans-14\"]Alt + G: A felhasználói felület elrejtése/megjelenítése"
 
 #: gui/manual/intro.txt:89
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr "Alt + D: Fejlesztői nézetek (fejlesztői beállításokkal) mutatása/elrejtése"
+msgstr "Alt + D: Fejlesztői nézetek (fejlesztői beállításokkal) megjelenítése/elrejtése"
 
 #: gui/manual/intro.txt:90
 msgid ""
@@ -414,7 +415,7 @@ msgstr "Alt + S: Egységek sziluettjei közötti váltás (kis teljesítménynö
 
 #: gui/manual/intro.txt:92
 msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: Égbolt váltása"
+msgstr "Alt + Z: Égbolt be- vagy kikapcsolása"
 
 #: gui/manual/intro.txt:94
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -422,35 +423,35 @@ msgstr "[font=\"sans-bold-14\"]Kamera manipuláció"
 
 #: gui/manual/intro.txt:95
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W vagy \\[fel]: Képernyő görgetése fel"
 
 #: gui/manual/intro.txt:96
 msgid "S or \\[down]: Pan screen down"
-msgstr ""
+msgstr "S vagy \\[le]: Képernyő görgetése le"
 
 #: gui/manual/intro.txt:97
 msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgstr "A vagy \\[balra]: Képernyő görgetése balra"
 
 #: gui/manual/intro.txt:98
 msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgstr "D vagy \\[jobbra]: Képernyő görgetése jobbra"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W vagy \\[fel]: Kamera forgatása felfelé irányuló nézethez"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S vagy \\[le]: Kamera forgatása lefelé irányuló nézethez"
 
 #: gui/manual/intro.txt:101
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A vagy \\[balra]: Kamera forgatása az óramutató járása szerint a felszín mentén"
 
 #: gui/manual/intro.txt:102
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D vagy \\[jobbra]: Kamera forgatása az óramutató járásával ellentétesen a felszín mentén"
 
 #: gui/manual/intro.txt:103
 msgid "Q: Rotate camera clockwise around terrain"
@@ -517,16 +518,16 @@ msgstr "Bal gombos húzás: Épület forgatása az egér használatával (az eg�
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Egy elmentett játék betöltésekor"
 
 #: gui/manual/intro.txt:120
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Delete: a kijelölt elmentett játék törlése megerősítést kérve"
 
 #: gui/manual/intro.txt:121
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr ""
+msgstr "Shift: nem kér megerősítést egy elmentett játék törlésekor"
 
 #: gui/manual/userreport.txt:1
 msgid ""

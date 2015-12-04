@@ -15,6 +15,7 @@
 # MathiasB, 2013
 # Matthijs de Rijk <MrTheRich@gmail.com>, 2013
 # niektb <niektb95@gmail.com>, 2015
+# Oscar Schrover <oscarschrover@gmail.com>, 2015
 # TheBuG <Ruben.bilo@gmail.com>, 2014
 # Sander Deryckere, 2013
 # Sander Deryckere, 2014-2015
@@ -28,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-22 11:51+0000\n"
-"Last-Translator: Ellen Roels\n"
+"PO-Revision-Date: 2015-12-02 19:32+0000\n"
+"Last-Translator: Oscar Schrover <oscarschrover@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +45,7 @@ msgstr "Geen"
 
 #: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
-msgstr "AI zal niet geactiveerd zijn voor deze speler."
+msgstr "AI is uitgeschakeld voor deze speler."
 
 #: gui/gamesetup/gamesetup.js:108
 msgid "Return to the main menu."
@@ -84,7 +85,7 @@ msgstr "%(username)s werd uitgesloten"
 #: gui/gamesetup/gamesetup.js:516
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s kreeg een ban"
+msgstr "%(username)s is uitgesloten"
 
 #: gui/gamesetup/gamesetup.js:591 gui/gamesetup/gamesetup.js:1525
 msgctxt "civilization"
@@ -148,7 +149,7 @@ msgstr[1] "%(number)s spelers."
 
 #: gui/gamesetup/gamesetup.js:1475 gui/gamesetup/gamesetup.xml:(caption):296
 msgid "Victory Condition:"
-msgstr "Overwinningsvoorwaarde:"
+msgstr "Vereisten om te winnen:"
 
 #: gui/gamesetup/gamesetup.js:1511
 msgid "Loading..."
@@ -161,7 +162,7 @@ msgstr "AI: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1641
 msgid "Unassigned"
-msgstr "Niet toegekend"
+msgstr "Niet toegewezen"
 
 #: gui/gamesetup/gamesetup.js:1819 gui/gamesetup/gamesetup.js:1824
 #: gui/gamesetup/gamesetup.js:1834 gui/gamesetup/gamesetup.js:1852
@@ -232,7 +233,7 @@ msgstr "Geef aan dat je klaar bent om te spelen!"
 
 #: gui/gamesetup/gamesetup.js:1962
 msgid "State that you accept the current settings and are ready to play!"
-msgstr "Geef aan dat je de huidige instellingen aanvaard, en dat je klaar bent om te spelen."
+msgstr "Geef aan dat je de huidige instellingen aanvaardt en klaar om te spelen."
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
@@ -254,7 +255,7 @@ msgstr "Registreren op de server..."
 
 #: gui/gamesetup/gamesetup_mp.js:152
 msgid "Game has already started, rejoining..."
-msgstr "Het spel was al begonnen, opnieuw aansluiten..."
+msgstr "Het spel is al begonnen, weer meedoen..."
 
 #: gui/gamesetup/gamesetup_mp.js:198
 msgid "Game name already in use."
@@ -319,7 +320,7 @@ msgstr "Kleur "
 
 #: gui/gamesetup/gamesetup.xml:(caption):49
 msgid "Player Placement"
-msgstr "Spelerplaatsing"
+msgstr "Spelerlocatie"
 
 #: gui/gamesetup/gamesetup.xml:(caption):52
 msgid "Civilization"
@@ -568,7 +569,7 @@ msgstr "\"Een welvarend dwaas is een zware last.\" - Achilles"
 msgid ""
 "\"From him \\[Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr "\"Hij \\[de dood] mist slechts één goddelijke kracht: Overtuiging.\" - Aeschylus"
+msgstr "\"Van alle Hemelse krachten is het enkel de dood waarvan  Overreding zich verre houdt.\" - Aeschylus"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
@@ -578,45 +579,45 @@ msgstr "\"Eerder zijn dan lijken.\" --Achilles, \"Zeven tegen Thebe\""
 msgid ""
 "\"It is not the oath that makes us believe the man, but the man the oath.\" "
 "- Aeschylus"
-msgstr "\"Het is niet de eed die ons laat geloven in de persoon, maar de persoon in de eed.\" -- Achilles"
+msgstr "\"Het is niet de eed die maakt dat we hem geloven, maar door hem de eed.\" -- Achilles"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus, \"Prometheus Bound\""
-msgstr "\"Het hart van iedere tiran scheurt bij de gedachte dat hij geen vriend kan vertrouwen.\" - Achilles, \"Prometheus Gebonden\""
+msgstr "\"Aan het hart van iedere tiran ontspruit tenslotte de gedachte dat hij geen vriend kan vertrouwen.\" - Achilles, \"Prometheus Geketend\""
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
-msgstr "\"Tijd, zolang hij groeit, leert ons alles.\" -- Achilles, \"Prometheus gebonden\""
+msgstr "\"Met het stapelen der jaren, leert de Tijd ons alles.\" -- Achilles, \"Prometheus gebonden\""
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr "\"Wijsheden bereiken via lijden... Geluk bereikt ons via de Goden.\" - Achilles, \"Agamemnon\""
+msgstr "\"Wijsheid komt door lijden... Genade reiiken ons de Goden aan.\" - Achilles, \"Agamemnon\""
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
-msgstr "\"Zij \\[Helena] bracht haar bruidsschat naar Ilium: vernietiging.\" - Aeschylus, \"Agamemnon\""
+msgstr "\"Zij \\[Helena] bracht haar bruidsschat naar Ilium, vernietiging.\" - Aeschylus, \"Agamemnon\""
 
 #: gui/text/quotes.txt:9
 msgid ""
 "\"It is in the character of very few men to honor without envy a friend who "
 "has prospered.\" - Aeschylus, \"Agamemnon\""
-msgstr "\"Slechts weinig man heeft een karakter goed genoeg om zonder jaloezie een vriend met succes te eren.\" - Achilles, \"Agamemnon\""
+msgstr "\"Slechts weinigen zijn genegen een succesvolle vriend te eren.\" - Achilles, \"Agamemnon\""
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"For a deadly blow let him pay with a deadly blow; it is for him who has "
 "done a deed to suffer.\" - Aeschylus"
-msgstr "\"Zet een dodelijke klap betaald met een dodelijke klap. Daar hij een daad om te leiden gedaan had.\" - Achilles"
+msgstr "\"Zet een doodklap betaald met een doodklap; wie de misdaad heeft begaan mag lijden.\" - Achilles"
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr "\"Ieder excuus zal een tiran dienen.\" -- Aesopus"
+msgstr "\"Ieder excuus komt een tiran gelegen.\" -- Aesopus"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
@@ -624,7 +625,7 @@ msgstr "\"Het is beter te leren van de fouten van anderen dan van je eigen foute
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
-msgstr "\"Vertrouwdheid leidt tot minachting; kennismaking verzacht de vooroordelen.\" - Aesop"
+msgstr "\"Omgang laat weerzin groeien; vertrouwdheid verzacht  vooroordelen.\" - Aesop"
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
@@ -632,21 +633,21 @@ msgstr "\"Het is gemakkelijk om dapper te zijn van op een veilige afstand.\" -- 
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
-msgstr "\"Het is spaarzaam vandaag voor te bereiden op de behoeften van morgen.\" - Aesop"
+msgstr "\"Zuinig is vandaag zich voorbereiden op de noden van morgen.\" - Aesop"
 
 #: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
-msgstr "\"Een vogel bestaat niet enkel uit zijn mooie pluimen.\" -- Aesopus"
+msgstr " \"Niet enkel een fraai pluimage bepaalt of de vogel goed is.\" -- Aesopus"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop"
-msgstr "\"Vertrouw nooit op advies van een man die zelf met moeilijkheden kampt.\" -- Aesop"
+msgstr "\"Vertrouw nooit het advies van een man die zelf met moeilijkheden kampt.\" -- Aesop"
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr "\"Verleiding is vaak effectiever dan kracht.\" -- Aesopus"
+msgstr "\"Overreding is vaak effectiever dan kracht.\" -- Aesopus"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
@@ -658,14 +659,14 @@ msgstr "\"Rustige vastberadenheid wint de wedstrijd.\" -- Ausopus"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr "\"De Goden helpen de zelfredzamen.\" -- Aesopus"
+msgstr "\"De Goden helpen wie zichzelf helpen.\" -- Aesopus"
 
 #: gui/text/quotes.txt:22
 msgid ""
 "\"The shaft of the arrow had been feathered with one of the eagle's own "
 "plumes. We often give our enemies the means of our own destruction.\" - "
 "Aesop"
-msgstr "\"De staart van de pijl is gemaakt één van de arends eigen pluimen. We geven onze vijanden vaak de middelen voor onze eigen vernietiging.\" - Aesop"
+msgstr "\"De veren, gestoken aan de pijlschacht, waren van de adelaars eigen veren. We verschaffen onze vijanden vaak de middelen  onszelf vernietiging.\" - Aesop"
 
 #: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
@@ -673,26 +674,26 @@ msgstr "\"Eendracht maakt macht.\" -- Aesopus, \"De bundel stokken\""
 
 #: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
-msgstr "\"Beloftes van vijanden zijn gemaakt om te breken.\" -- Aesopus"
+msgstr "\"De beloftes van vijanden worden gedaan om te breken.\" -- Aesopus"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr "\"Spartanen vragen niet naar hoeveel, maar waar de vijand is.\" -- Agis II van Sparta"
+msgstr "\"Spartanen vragen niet naar het aantal, maar naar waar de vijand is.\" -- Agis II van Sparta"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"Weep not for me, suffering as I do unjustly, I am in a happier case than "
 "my murderers.\" - Agis IV, 24th Spartan king of the Eurypontid dynasty"
-msgstr "\"Ween niet voor mij, onrechtmatig lijden zoals ik. Ik ben in een gelukkiger geval dan mijn moordenaars.\" - Agis IV, 24ste Spartaanse koning van de Eurypontid dynastie"
+msgstr "\"Huil niet om mij, ook al lijd ik onterecht, ik ben blijer dan mijn moordenaars.\" - Agis IV, 24ste Spartaanse koning van de Eurypontid dynastie"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"He who doeth good shall meet with good; and he who doeth evil shall meet "
 "with evil, for the Lord judgeth a man according to the measure of his "
 "work.\" - Ahiqar, Assyrian sage"
-msgstr "\"Hij die goed doet zal goed vinden. Hij die kwaad doet zal kwaad vinden. Daar de heer een man oordeelt naar zijn daden.\" - Ahiqar, Syrrische saga"
+msgstr "\"Wie goed doet, goed ontmoet. Het kwade straft zichzelf, want God oordeelt eenieder al naar gelang zijn daden.\" - Ahiqar, Syrrische saga"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -709,58 +710,58 @@ msgid ""
 "\"Are you still to learn that the end and perfection of our victories is to "
 "avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
 "Great"
-msgstr "\"Moet jij nog steeds leren dat het einde en de perfectie van onze overwinningen is om de ondeugden en zwakheden van hen die we onderwerpen te vermijden?\" - Alexander de Grote"
+msgstr "\"Moet jij nog steeds leren dat de voltooiing en voleinding van onze overwinningen bestaat uit het vermijden van de ondeugden en zwakheden van hen die we onderwerpen?\" - Alexander de Grote"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"To the strongest!\" - Alexander, on his death bed, when asked who should "
 "succeed him as king"
-msgstr "\"Op de sterkste!\" -- Alexander, op zijn sterfbed, toen gevraagd werd wie hem moest opvolgen als koning"
+msgstr "\"Op de sterkste!\" -- antwoordde Alexander op zijn sterfbed, toen gevraagd werd wie hem moest opvolgen als koning"
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr "\"Niets is onmogelijk voor degene die proberen\" -- Alexander de Grote"
+msgstr "\"Niets is onmogelijk voor hem die poogt\" -- Alexander de Grote"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
-msgstr "\"Enkel vrijen en slapen maken me bewust dat ik sterfelijk ben.\" Alexander de Grote"
+msgstr "\"Enkel vrijen en slapen doordringen me ervan dat ik sterfelijk ben.\" Alexander de Grote"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
-msgstr "\"De agora is een plaats waar het bekend is dat mannen bedriegen en zich begeerlijk gedragen.\" - Anacharsis"
+msgstr "\"Van de markt is het bekend dat mensen daar elkaar bedriegen en jaloers gedragen.\" - Anacharsis"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
 " and poor, but would be torn in pieces by the rich and powerful.\" - "
 "Anacharsis"
-msgstr "\"Geschreven wetten zijn als spinnenwebben, ze zullen de armen en zwakken vangen, maar worden kapot getrokken door de rijken en machtigen.\" -- Anacharsis"
+msgstr "\"Geschreven wetten zijn als spinnenwebben, ze zullen - het is waar - de armen en zwakken vangen, maar worden door de rijken en machtigen stukgescheurd.\" -- Anacharsis"
 
 #: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
-msgstr "\"De vos kent vele trucs, het everzwijn één goede.\" -- Archilochus"
+msgstr "\"De vos kent vele trucs, het everzwijn enkel één goede.\" -- Archilochus"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes"
-msgstr "\"Staten zijn gedoemd wanneer zij geen goede van slechte burgers kunnen onderscheiden.\" -- Antisthenes"
+msgstr "\"Staten zijn verloren als zij geen goede van slechte burgers kunnen onderscheiden.\" -- Antisthenes"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever."
-msgstr "\"Geef me een steunpunt en ik zal de wereld verplaatsen.\" -- Archimedes over zijn hefboom"
+msgstr "\"Geef me een plaats om te staan en ik zal de wereld in beweging zetten.\" -- Archimedes over zijn hefboom"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes"
-msgstr "\"Het is van hun vijanden, niet hun vrienden, dat steden hoge muren en een oorlogsvloot leren bouwen.\" -- Aristophanes"
+msgstr "\"Het is om hun vijanden, niet om wille van de vrienden, dat steden hoge muren en een oorlogsvloot leren bouwen.\" -- Aristophanes"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -772,7 +773,7 @@ msgstr "\"Woorden geven de man vleugels en laten hem ten hemel reizen.\" - Arist
 msgid ""
 "\"It is the compelling power of great thoughts and ideas to engender "
 "language of equal greatness.\" - Aristophanes"
-msgstr "\"Het is de verleidelijke kracht van grote gedachten om evengrote woorden te vragen.\" - Aristophanes"
+msgstr "\"Het is de onweerstaanbare kracht van grote gedachten en ideeen die de taal grootsheid verleent.\" - Aristophanes"
 
 #: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"

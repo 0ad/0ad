@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-28 02:09+0000\n"
-"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-11-30 09:45+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -679,42 +679,6 @@ msgstr "Liian vähän resursseja - %(resourceAmount1)s %(resourceType1)s, %(reso
 #: simulation/components/ProductionQueue.js:366
 msgid "The production queue is full."
 msgstr "Tuotantojono on täysi."
-
-#: simulation/data/player_defaults.jsonPlayerData[0].Name
-msgid "Gaia"
-msgstr "Gaia"
-
-#: simulation/data/player_defaults.jsonPlayerData[1].Name
-msgid "Player 1"
-msgstr "Pelaaja 1"
-
-#: simulation/data/player_defaults.jsonPlayerData[2].Name
-msgid "Player 2"
-msgstr "Pelaaja 2"
-
-#: simulation/data/player_defaults.jsonPlayerData[3].Name
-msgid "Player 3"
-msgstr "Pelaaja 3"
-
-#: simulation/data/player_defaults.jsonPlayerData[4].Name
-msgid "Player 4"
-msgstr "Pelaaja 4"
-
-#: simulation/data/player_defaults.jsonPlayerData[5].Name
-msgid "Player 5"
-msgstr "Pelaaja 5"
-
-#: simulation/data/player_defaults.jsonPlayerData[6].Name
-msgid "Player 6"
-msgstr "Pelaaja 6"
-
-#: simulation/data/player_defaults.jsonPlayerData[7].Name
-msgid "Player 7"
-msgstr "Pelaaja 7"
-
-#: simulation/data/player_defaults.jsonPlayerData[8].Name
-msgid "Player 8"
-msgstr "Pelaaja "
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
