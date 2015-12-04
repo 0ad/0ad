@@ -1129,7 +1129,10 @@ function launchGame()
 		if (g_GameAttributes.mapType === "scenario" || !g_GameAttributes.settings.PlayerData[i].AI)
 			continue;
 
-		let chosenName = translate(g_CivData[chosenCiv].AINames[Math.floor(Math.random() * g_CivData[chosenCiv].AINames.length)]);
+		let chosenName = g_CivData[chosenCiv].AINames[Math.floor(Math.random() * g_CivData[chosenCiv].AINames.length)];
+
+		if (!g_IsNetworked)
+			chosenName = translate(chosenName);
 
 		// Count how many players use the chosenName
 		let usedName = g_GameAttributes.settings.PlayerData.filter(pData => pData.Name && pData.Name.indexOf(chosenName) !== -1).length;
