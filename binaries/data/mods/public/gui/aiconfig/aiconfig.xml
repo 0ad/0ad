@@ -3,6 +3,8 @@
 <objects>
 
 	<script file="gui/common/settings.js"/>
+
+	<!-- After settings.js, which defines g_Settings -->
 	<script file="gui/aiconfig/aiconfig.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->

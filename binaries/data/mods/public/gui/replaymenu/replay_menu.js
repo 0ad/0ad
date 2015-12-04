@@ -1,6 +1,17 @@
+/**
+ * Used for checking replay compability.
+ */
 const g_EngineInfo = Engine.GetEngineInfo();
+
+/**
+ * To show the titles of the selected civs in the replay details.
+ */
 const g_CivData = loadCivData();
-const g_MapSizes = initMapSizes();
+
+/**
+ * Used for creating the mapsize filter.
+ */
+const g_MapSizes = prepareForDropdown(g_Settings ? g_Settings.MapSizes : undefined);
 
 /**
  * All replays found in the directory.

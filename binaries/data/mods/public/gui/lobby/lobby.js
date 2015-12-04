@@ -1,7 +1,7 @@
 /**
- * Used for game-filtering and showing details about the selected game. Requirement for translateMapSize.
+ * Used for the gamelist-filtering.
  */
-const g_MapSizes = initMapSizes();
+const g_MapSizes = prepareForDropdown(g_Settings ? g_Settings.MapSizes : undefined);
 
 /**
  * Used for the gamelist-filtering.
@@ -127,8 +127,8 @@ function returnToMainMenu()
 function initGameFilters()
 {
 	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
-	mapSizeFilter.list = [translateWithContext("map size", "Any")].concat(g_MapSizes.shortNames);
-	mapSizeFilter.list_data = [""].concat(g_MapSizes.tiles);
+	mapSizeFilter.list = [translateWithContext("map size", "Any")].concat(g_MapSizes.Name);
+	mapSizeFilter.list_data = [""].concat(g_MapSizes.Tiles);
 
 	var playersArray = Array(g_MaxPlayers).fill(0).map((v, i) => i + 1); // 1, 2, ... MaxPlayers
 	var playersNumberFilter = Engine.GetGUIObjectByName("playersNumberFilter");

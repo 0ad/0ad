@@ -28,13 +28,13 @@ const g_Settings = loadSettingsValues();
  */
 function loadSettingsValues()
 {
-	// TODO: move MapSizes from functions_utility.js here
 	var settings = {
 		"AIDescriptions": loadAIDescriptions(),
 		"AIDifficulties": loadAIDifficulties(),
 		"Ceasefire": loadCeasefire(),
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
 		"MapTypes": loadMapTypes(),
+		"MapSizes": loadSettingValuesFile("map_sizes.json"),
 		"PlayerDefaults": loadPlayerDefaults(),
 		"PopulationCapacities": loadPopulationCapacities(),
 		"StartingResources": loadSettingValuesFile("starting_resources.json"),
@@ -172,7 +172,7 @@ function loadMapTypes()
 		},
 		{
 			"Name": "scenario",
-			"Title": translate("Scenario") // TODO: update the translation (but not shortly before a release)
+			"Title": translateWithContext("map", "Scenario")
 		}
 	];
 }
@@ -218,7 +218,7 @@ function loadVictoryConditions()
  */
 function loadPlayerDefaults()
 {
-	var json = Engine.ReadJSONFile("simulation/data/settings/player_defaults.json");
+	var json = Engine.ReadJSONFile(g_SettingsDirectory + "player_defaults.json");
 	if (!json || !json.PlayerData)
 	{
 		error("Could not load player_defaults.json");
@@ -311,6 +311,7 @@ function translateAIDifficulty(index)
  * Returns title or placeholder.
  *
  * @param mapType {string} - for example "skirmish"
+ * @returns {string}
  */
 function translateMapType(mapType)
 {
@@ -319,9 +320,22 @@ function translateMapType(mapType)
 }
 
 /**
+ * Returns title or placeholder "Default".
+ *
+ * @param mapSize {Number} - tilecount
+ * @returns {string}
+ */
+function translateMapSize(tiles)
+{
+	var mapSize = g_Settings.MapSizes.find(mapSize => mapSize.Tiles == +tiles);
+	return mapSize ? mapSize.Name : translateWithContext("map size", "Default");
+}
+
+/**
  * Returns title or placeholder.
  *
  * @param population {Number} - for example 300
+ * @returns {string}
  */
 function translatePopulationCapacity(population)
 {
@@ -333,6 +347,7 @@ function translatePopulationCapacity(population)
  * Returns title or placeholder.
  *
  * @param gameType {string} - for example "conquest"
+ * @returns {string}
  */
 function translateVictoryCondition(gameType)
 {

@@ -53,8 +53,8 @@ function initDateFilter()
 function initMapSizeFilter()
 {
 	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
-	mapSizeFilter.list = [translateWithContext("map size", "Any")].concat(g_MapSizes.shortNames);
-	mapSizeFilter.list_data = [-1].concat(g_MapSizes.tiles);
+	mapSizeFilter.list = [translateWithContext("map size", "Any")].concat(g_MapSizes.Name);
+	mapSizeFilter.list_data = [-1].concat(g_MapSizes.Tiles);
 
 	if (mapSizeFilter.selected == -1 || mapSizeFilter.selected >= mapSizeFilter.list.length)
 		mapSizeFilter.selected = 0;

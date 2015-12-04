@@ -83,50 +83,6 @@ function escapeText(text)
 	return text.substr(0, 255).replace(/\\/g, "\\\\").replace(/\[/g, "\\[");
 }
 
-// ====================================================================
-
-// Load map size data
-function initMapSizes()
-{
-	var sizes = {
-		"shortNames":[],
-		"names":[],
-		"tiles": [],
-		"default": 0
-	};
-
-	var data = Engine.ReadJSONFile("simulation/data/map_sizes.json");
-	if (!data || !data.Sizes)
-	{
-		error("Failed to parse map sizes in map_sizes.json (check for valid JSON data)");
-		return sizes;
-	}
-
-	translateObjectKeys(data, ["Name", "LongName"]);
-	for (var i = 0; i < data.Sizes.length; ++i)
-	{
-		sizes.shortNames.push(data.Sizes[i].Name);
-		sizes.names.push(data.Sizes[i].LongName);
-		sizes.tiles.push(data.Sizes[i].Tiles);
-
-		if (data.Sizes[i].Default)
-			sizes["default"] = i;
-	}
-
-	return sizes;
-}
-
-/**
- * Returns title or placeholder. Requires g_MapSizes.
- *
- * @param mapSize {Number} - tilecount
- */
-function translateMapSize(tiles)
-{
-	var idx = g_MapSizes.tiles.indexOf(+tiles);
-	return (idx == -1) ? translateWithContext("map size", "Default") : g_MapSizes.shortNames[idx];
-}
-
 /**
  * Returns map description and preview image or placeholder.
  */

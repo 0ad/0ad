@@ -9,6 +9,7 @@ const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
 const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
 const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly) : undefined);
+const g_MapSizes = prepareForDropdown(g_Settings ? g_Settings.MapSizes : undefined);
 const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
 const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
 const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
@@ -52,8 +53,6 @@ var g_DefaultPlayerData = [];
 var g_GameAttributes = {
 	settings: {}
 };
-
-var g_MapSizes = {};
 
 var g_ChatMessages = [];
 
@@ -118,8 +117,6 @@ function initMain()
 	g_DefaultPlayerData.shift();
 	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
 		g_DefaultPlayerData[i].Civ = "random";
-
-	g_MapSizes = initMapSizes();
 
 	// Init civs
 	initCivNameList();
@@ -234,11 +231,11 @@ function initMain()
 		victoryConditions.selected = g_VictoryConditions.Default;
 
 		var mapSize = Engine.GetGUIObjectByName("mapSize");
-		mapSize.list = g_MapSizes.names;
-		mapSize.list_data = g_MapSizes.tiles;
+		mapSize.list = g_MapSizes.LongName;
+		mapSize.list_data = g_MapSizes.Tiles;
 		mapSize.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.settings.Size = g_MapSizes.tiles[this.selected];
+				g_GameAttributes.settings.Size = g_MapSizes.Tiles[this.selected];
 			updateGameAttributes();
 		};
 		mapSize.selected = 0;
@@ -1292,7 +1289,7 @@ function onGameAttributesChange()
 	var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
 
 	// We have to check for undefined on these properties as not all maps define them.
-	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
+	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.Tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.Tiles.indexOf(mapSettings.Size) : g_MapSizes.Default);
 	var victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
 	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true);
 	enableCheatsText.caption = (enableCheats.checked ? translate("Yes") : translate("No"));
@@ -1365,7 +1362,7 @@ function onGameAttributesChange()
 		{
 			// Client
 			numPlayersText.caption = numPlayers;
-			mapSizeText.caption = g_MapSizes.names[sizeIdx];
+			mapSizeText.caption = g_MapSizes.LongName[sizeIdx];
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExporeMap ? translate("Yes") : translate("No"));
 			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));

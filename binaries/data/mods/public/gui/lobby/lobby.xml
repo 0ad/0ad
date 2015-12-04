@@ -8,6 +8,7 @@
 	<script file="gui/common/settings.js"/>
 	<script file="gui/common/timer.js"/>
 
+	<!-- After settings.js, which defines g_Settings -->
 	<script file="gui/lobby/lobby.js"/>
 
 	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="lobbyWindow">
