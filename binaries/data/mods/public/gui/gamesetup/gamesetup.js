@@ -114,7 +114,6 @@ function initMain()
 	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
 		g_DefaultPlayerData[i].Civ = "random";
 
-	// Init civs
 	initCivNameList();
 
 	// Init map types
@@ -560,22 +559,15 @@ function getSetting(settings, defaults, property)
 	return undefined;
 }
 
-// Initialize the dropdowns containing all the available civs
+/**
+ * Initialize the dropdowns containing all the available civs (including random).
+ */
 function initCivNameList()
 {
-	// Extract name/code, and skip civs that are explicitly disabled
-	// (intended for unusable incomplete civs)
-	var civList = [
-		{ "name": civ.Name, "code": civ.Code }
-		for each (civ in g_CivData)
-			if (civ.SelectableInGameSetup !== false)
-	];
+	var civList = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
 
-	// Alphabetically sort the list, ignoring case
-	civList.sort(sortNameIgnoreCase);
-
-	var civListNames = [ civ.name for each (civ in civList) ];
-	var civListCodes = [ civ.code for each (civ in civList) ];
+	var civListNames = civList.map(civ => civ.name);
+	var civListCodes = civList.map(civ => civ.code);
 
 	//  Add random civ to beginning of list
 	civListNames.unshift('[color="orange"]' + translateWithContext("civilization", "Random") + '[/color]');
@@ -717,13 +709,11 @@ function loadGameAttributes()
 
 	// Validate player civs
 	if (playerData)
-	{
 		for (var i = 0; i < playerData.length; ++i)
 		{
 			if (civListCodes.indexOf(playerData[i].Civ) < 0)
 				playerData[i].Civ = "random";
 		}
-	}
 
 	// Refresh probably obsoleted/incomplete map data.
 	var newMapData = loadMapData(mapName);
@@ -732,7 +722,6 @@ function loadGameAttributes()
 		for (var prop in newMapData.settings)
 			mapSettings[prop] = newMapData.settings[prop];
 
-		// Set player data
 		if (playerData)
 			mapSettings.PlayerData = playerData;
 	}
@@ -814,9 +803,6 @@ function sanitizePlayerData(playerData)
 
 	ensureUniquePlayerColors(playerData);
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-// GUI event handlers
 
 function cancelSetup()
 {

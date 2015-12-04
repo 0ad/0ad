@@ -1,17 +1,15 @@
-/*
-	DESCRIPTION	: Functions related to reading civ info
-	NOTES		: 
-*/
-
+/**
+ * Loads history and some gameplay data for all (or all playable) civs.
+ *
+ *  @param playableOnly {boolean}
+ */
 function loadCivData(playableOnly = false)
 {
-	// Load all JSON files containing civ data
 	var civData = {};
 	var civFiles = Engine.BuildDirEntList("simulation/data/civs/", "*.json", false);
 
-	for each (var filename in civFiles)
+	for (let filename of civFiles)
 	{
-		// Parse data if valid file
 		var data = Engine.ReadJSONFile(filename);
 		if (!data)
 			continue;
