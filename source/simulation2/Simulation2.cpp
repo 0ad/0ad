@@ -886,7 +886,7 @@ std::string CSimulation2::GetPlayerDefaults()
 
 std::string CSimulation2::GetMapSizes()
 {
-	return ReadJSON(L"simulation/data/map_sizes.json");
+	return ReadJSON(L"simulation/data/settings/map_sizes.json");
 }
 
 std::string CSimulation2::GetAIData()

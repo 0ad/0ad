@@ -286,7 +286,7 @@ void TerrainSidebar::OnResizeMap(wxCommandEvent& WXUNUSED(evt))
 	AtlasMessage::qGetMapSizes qrySizes;
 	qrySizes.Post();
 	AtObj sizes = AtlasObject::LoadFromJSON(*qrySizes.sizes);
-	for (AtIter s = sizes["Sizes"]["item"]; s.defined(); ++s)
+	for (AtIter s = sizes["Data"]["item"]; s.defined(); ++s)
 	{
 		long tiles = 0;
 		wxString(s["Tiles"]).ToLong(&tiles);
