@@ -263,6 +263,8 @@ function calcReqs(op, val)
 	switch (op)
 	{
 	case "civ":
+	case "class":
+	case "number":
 		// nothing needs doing
 		break;
 
