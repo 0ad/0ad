@@ -1177,17 +1177,13 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 		if (minDist < 0)
 			continue;
 
+		var cutDist = 900;  //  30*30   TODO maybe increase it
 		for (let str of ownStructures)
 		{
 			let strPos = str.position();
 			if (!strPos)
 				continue;
-			var dist = API3.SquareVectorDistance(strPos, pos);
-			if ((isTower && str.hasClass("Tower")) || (isFortress && str.hasClass("Fortress")))
-				var cutDist = 4225; //  TODO check on true buildrestrictions instead of this 65*65
-			else
-				var cutDist = 900;  //  30*30   TODO maybe increase it
-			if (dist < cutDist)
+			if (API3.SquareVectorDistance(strPos, pos) < cutDist)
 			{
 				minDist = -1;
 				break;

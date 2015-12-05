@@ -501,7 +501,7 @@ m.Template = m.Class({
 	buildDistance: function() {
 		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/Distance"))
 			return undefined;
-		return +this.get("BuildRestrictions/Distance");
+		return this.get("BuildRestrictions/Distance");
 	},
 
 	buildPlacementType: function() {
@@ -800,8 +800,8 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	attack: function(unitId, allowCapture = true) {
-		Engine.PostCommand(PlayerID,{"type": "attack", "entities": [this.id()], "target": unitId, "allowCapture": allowCapture, "queued": false});
+	attack: function(unitId, allowCapture = true, queued = false) {
+		Engine.PostCommand(PlayerID,{"type": "attack", "entities": [this.id()], "target": unitId, "allowCapture": allowCapture, "queued": queued});
 		return this;
 	},
 

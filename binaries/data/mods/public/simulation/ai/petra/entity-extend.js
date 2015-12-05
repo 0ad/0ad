@@ -50,7 +50,8 @@ m.getMaxStrength = function(ent, againstClass)
 			}
 		}
 	}
-	for (var str in armourStrength) {
+	for (var str in armourStrength)
+	{
 		var val = parseFloat(armourStrength[str]);
 		switch (str) {
 			case "crush":
