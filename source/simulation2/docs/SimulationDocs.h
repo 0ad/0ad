@@ -298,12 +298,39 @@ The content will typically be one of:
 - <code>&lt;text/></code>
 - <code>&lt;data type='boolean'/></code>
 - <code>&lt;data type='decimal'/></code>
+- <code>&lt;data type='integer'/></code>
 - <code>&lt;data type='nonNegativeInteger'/></code>
 - <code>&lt;data type='positiveInteger'/></code>
+- <code>&lt;ref name='decimal'/></code>
 - <code>&lt;ref name='nonNegativeDecimal'/></code>
 - <code>&lt;ref name='positiveDecimal'/></code>
 
-(The last two are slightly different since they're not standard data types.)
+
+The <code>&lt;data&gt;</code> elements are native elements, while the <code>&lt;ref&gt;</code> elements are elements added for our engine. These non-native elements allow the definition of an operation that depends on the parent template. Possible operations are "add" and "mul", and can be applied as the example below.
+
+Say the parent template is
+@code 
+<Entity> 
+  <Example> 
+    <Name>Semi-Humanoids</Name> 
+    <Height>9000</Height> 
+    <Eyes/> 
+  </Example> 
+  <!-- ... other components ... --> 
+</Entity> 
+@endcode 
+and the child template appears like
+@code 
+<Entity> 
+  <Example> 
+    <Name>Barney</Name> 
+    <Height op="add">5</Height> 
+    <Eyes/> 
+  </Example> 
+  <!-- ... other components ... --> 
+</Entity> 
+@endcode 
+then Barney would have a height of 9005. 
 
 Elements can be wrapped in <code>&lt;optional></code>.
 Groups of elements can be wrapped in <code>&lt;choice></code> to allow only one of them.
