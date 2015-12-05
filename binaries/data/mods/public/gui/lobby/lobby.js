@@ -82,6 +82,16 @@ var g_GameList = {};
 var g_SpamMonitor = {};
 
 /**
+ * Used to restore the selection after updating the playerlist.
+ */
+var g_SelectedPlayer = "";
+
+/**
+ * Used to restore the selection after updating the gamelist.
+ */
+var g_SelectedGameIP = "";
+
+/**
  * Remembers how to sort the columns in the lobby playerlist / gamelist.
  * TODO: move logic to c++ / xml
  */
@@ -230,6 +240,10 @@ function updateSubject(newSubject)
 function updatePlayerList()
 {
 	var playersBox = Engine.GetGUIObjectByName("playersBox");
+
+	if (playersBox.selected > -1)
+		g_SelectedPlayer = playersBox.list[playersBox.selected];
+
 	var playerList = [];
 	var presenceList = [];
 	var nickList = [];
@@ -285,9 +299,7 @@ function updatePlayerList()
 	playersBox.list_status = presenceList;
 	playersBox.list_rating = ratingList;
 	playersBox.list = nickList;
-
-	if (playersBox.selected >= playersBox.list.length)
-		playersBox.selected = -1;
+	playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer)
 }
 
 /**
@@ -432,6 +444,9 @@ function updateGameList()
 {
 	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
 
+	if (gamesBox.selected > -1)
+		g_SelectedGameIP = g_GameList[gamesBox.selected].ip;
+
 	g_GameList = Engine.GetGameList().filter(game => !filterGame(game)).sort((a, b) => {
 		switch (g_GameListSortBy)
 		{
@@ -457,25 +472,26 @@ function updateGameList()
 	});
 
 	var list_name = [];
-	var list_ip = [];
 	var list_mapName = [];
 	var list_mapSize = [];
 	var list_mapType = [];
 	var list_nPlayers = [];
 	var list = [];
 	var list_data = [];
+	var selectedGameIndex = -1;
 
 	for (let i in g_GameList)
 	{
 		let game = g_GameList[i];
 		let gameName = escapeText(game.name);
+		let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);
+
+		if (game.ip == g_SelectedGameIP)
+			selectedGameIndex = +i;
 
 		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
-		list_ip.push(game.ip);
 		list_mapName.push(translate(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
-
-		let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);
 		list_mapType.push(mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "");
 		list_nPlayers.push(game.nbp + "/" + game.tnbp);
 		list.push(gameName);
@@ -487,11 +503,10 @@ function updateGameList()
 	gamesBox.list_mapSize = list_mapSize;
 	gamesBox.list_mapType = list_mapType;
 	gamesBox.list_nPlayers = list_nPlayers;
+	// Change these last, otherwise crash
 	gamesBox.list = list;
 	gamesBox.list_data = list_data;
-
-	if (gamesBox.selected >= gamesBox.list_name.length)
-		gamesBox.selected = -1;
+	gamesBox.selected = selectedGameIndex;
 
 	updateGameSelection();
 }
