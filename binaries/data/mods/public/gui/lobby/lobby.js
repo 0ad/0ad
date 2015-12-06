@@ -255,7 +255,7 @@ function updatePlayerList()
 	{
 		if (player.rating && player.name == g_Username)
 			g_UserRating = player.rating;
-		let rating = ("    " + (player.rating ? player.rating : "-")).substr(-5);
+		let rating = player.rating ? ("     " + player.rating).substr(-5) : "     -";
 
 		let presence = g_PlayerStatuses[player.presence] ? player.presence : "unknown";
 		if (presence == "unknown")
@@ -422,7 +422,7 @@ function updateGameList()
 	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
 	var sortBy = gamesBox.selected_column || "status";
 	var sortOrder = gamesBox.selected_column_order || 1;
-error(sortBy);
+
 	if (gamesBox.selected > -1)
 		g_SelectedGameIP = g_GameList[gamesBox.selected].ip;
 
