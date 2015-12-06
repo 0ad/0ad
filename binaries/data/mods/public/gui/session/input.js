@@ -143,14 +143,15 @@ function updateBuildingPlacementPreview()
 			{
 				// building can be placed here, and has an attack
 				// show the range advantage in the tooltip
-				var cmd = {x: placementSupport.position.x, 
-				    z: placementSupport.position.z,
-				    range: placementSupport.attack.Ranged.maxRange,
-				    elevationBonus: placementSupport.attack.Ranged.elevationBonus,
+				var cmd = {
+					"x": placementSupport.position.x,
+					"z": placementSupport.position.z,
+					"range": placementSupport.attack.Ranged.maxRange,
+					"elevationBonus": placementSupport.attack.Ranged.elevationBonus,
 				};
 				var averageRange = Math.round(Engine.GuiInterfaceCall("GetAverageRangeForBuildings", cmd) - cmd.range);
 				var range = Math.round(cmd.range);
-				placementSupport.tooltipMessage = sprintf(translatePlural("Basic range: %(range)s meter", "Basic range: %(range)s meters", range), { "range": range }) + "\n" + 
+				placementSupport.tooltipMessage = sprintf(translatePlural("Basic range: %(range)s meter", "Basic range: %(range)s meters", range), { "range": range }) + "\n" +
 					sprintf(translatePlural("Average bonus range: %(range)s meter", "Average bonus range: %(range)s meters", averageRange), { "range": averageRange });
 			}
 			return true;
@@ -167,7 +168,7 @@ function updateBuildingPlacementPreview()
 				true, // require exact template match
 				true  // include foundations
 			);
-			
+
 			return Engine.GuiInterfaceCall("SetWallPlacementPreview", {
 				"wallSet": placementSupport.wallSet,
 				"start": placementSupport.position,
@@ -199,14 +200,14 @@ function getActionInfo(action, target)
 	// If the selection doesn't exist, no action
 	var entState = GetEntityState(selection[0]);
 	if (!entState)
-		return {"possible": false};
+		return { "possible": false };
 
 	if (!target) // TODO move these non-target actions to an object like unit_actions.js
 	{
 		if (action == "set-rallypoint")
 		{
 			var cursor = "";
-			var data = {command: "walk"};
+			var data = { "command": "walk" };
 			if (Engine.HotkeyIsPressed("session.attackmove"))
 			{
 				if (Engine.HotkeyIsPressed("session.attackmoveUnit"))
@@ -217,14 +218,13 @@ function getActionInfo(action, target)
 				data.targetClasses = targetClasses;
 				cursor = "action-attack-move";
 			}
-			return {"possible": true, "data": data, "cursor": cursor};
+			return { "possible": true, "data": data, "cursor": cursor };
 		}
-		else if (action == "move" || action == "attack-move")
-			return {"possible": true};
-		else if (action == "remove-guard")
-			return {"possible": true};
-		else
-			return {"possible": false};
+		if (action == "move" || action == "attack-move")
+			return { "possible": true };
+		if (action == "remove-guard")
+			return { "possible": true };
+		return { "possible": false };
 	}
 
 	// Look at the first targeted entity
@@ -248,7 +248,7 @@ function getActionInfo(action, target)
 				return r;
 		}
 	}
-	return {"possible": false};
+	return { "possible": false };
 }
 
 /**
@@ -306,7 +306,7 @@ function determineAction(x, y, fromMinimap)
 					return r;
 			}
 		}
-		return {"type": "none", "cursor": "", "target": target};
+		return { "type": "none", "cursor": "", "target": target };
 	}
 
 	for (var action of actions)
@@ -328,8 +328,8 @@ function determineAction(x, y, fromMinimap)
 				return r;
 		}
 	}
-		
-	return {"type": "none", "cursor": "", "target": target};
+
+	return { "type": "none", "cursor": "", "target": target };
 }
 
 
@@ -389,7 +389,7 @@ function tryPlaceWall(queued)
 		}));
 		return false;
 	}
-	
+
 	var wallPlacementInfo = updateBuildingPlacementPreview(); // entities making up the wall (wall segments, towers, ...)
 	if (!(wallPlacementInfo === false || typeof(wallPlacementInfo) === "object"))
 	{
@@ -400,10 +400,10 @@ function tryPlaceWall(queued)
 		}));
 		return false;
 	}
-	
+
 	if (!wallPlacementInfo)
 		return false;
-	
+
 	var selection = g_Selection.toList();
 	var cmd = {
 		"type": "construct-wall",
@@ -416,7 +416,7 @@ function tryPlaceWall(queued)
 		"startSnappedEntity": wallPlacementInfo.startSnappedEnt,
 		"endSnappedEntity": wallPlacementInfo.endSnappedEnt,
 	};
-	
+
 	// make sure that there's at least one non-tower entity getting built, to prevent silly edge cases where the start and end
 	// point are too close together for the algorithm to place a wall segment inbetween, and only the towers are being previewed
 	// (this is somewhat non-ideal and hardcode-ish)
@@ -429,11 +429,11 @@ function tryPlaceWall(queued)
 			break;
 		}
 	}
-	
+
 	if (hasWallSegment)
 	{
 		Engine.PostNetworkCommand(cmd);
-		Engine.GuiInterfaceCall("PlaySound", {"name": "order_repair", "entity": selection[0] });
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
 	}
 
 	return true;
@@ -505,7 +505,7 @@ function getPreferredEntities(ents)
 	for (var i = 0; i < filters.length; ++i)
 	{
 		preferredEnts = ents.filter(filters[i]);
-		if (preferredEnts.length > 0) 
+		if (preferredEnts.length > 0)
 			break;
 	}
 	return preferredEnts;
@@ -530,7 +530,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 
 	// Close the menu when interacting with the game world
 	if (!mouseIsOverObject && (ev.type =="mousebuttonup" || ev.type == "mousebuttondown")
-	    && (ev.button == SDL_BUTTON_LEFT || ev.button == SDL_BUTTON_RIGHT))
+		&& (ev.button == SDL_BUTTON_LEFT || ev.button == SDL_BUTTON_RIGHT))
 		closeMenu();
 
 	// State-machine processing:
@@ -647,10 +647,10 @@ function handleInputBeforeGui(ev, hoveredObject)
 			break;
 		}
 		break;
-		
+
 	case INPUT_BUILDING_WALL_CLICK:
 		// User is mid-click in choosing a starting point for building a wall. The build process can still be cancelled at this point
-		// by right-clicking; releasing the left mouse button will 'register' the starting point and commence endpoint choosing mode. 
+		// by right-clicking; releasing the left mouse button will 'register' the starting point and commence endpoint choosing mode.
 		switch (ev.type)
 		{
 		case "mousebuttonup":
@@ -660,14 +660,14 @@ function handleInputBeforeGui(ev, hoveredObject)
 				return true;
 			}
 			break;
-			
+
 		case "mousebuttondown":
 			if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel building
 				placementSupport.Reset();
 				updateBuildingPlacementPreview();
-				
+
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -678,26 +678,26 @@ function handleInputBeforeGui(ev, hoveredObject)
 	case INPUT_BUILDING_WALL_PATHING:
 		// User has chosen a starting point for constructing the wall, and is now looking to set the endpoint.
 		// Right-clicking cancels wall building mode, left-clicking sets the endpoint and builds the wall and returns to
-		// normal input mode. Optionally, shift + left-clicking does not return to normal input, and instead allows the 
+		// normal input mode. Optionally, shift + left-clicking does not return to normal input, and instead allows the
 		// user to continue building walls.
 		switch (ev.type)
 		{
 			case "mousemotion":
 				placementSupport.wallEndPosition = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-				
+
 				// Update the building placement preview, and by extension, the list of snapping candidate entities for both (!)
 				// the ending point and the starting point to snap to.
-				// 
+				//
 				// TODO: Note that here, we need to fetch all similar entities, including any offscreen ones, to support the case
 				// where the snap entity for the starting point has moved offscreen, or has been deleted/destroyed, or was a
 				// foundation and has been replaced with a completed entity since the user first chose it. Fetching all towers on
 				// the entire map instead of only the current screen might get expensive fast since walls all have a ton of towers
 				// in them. Might be useful to query only for entities within a certain range around the starting point and ending
 				// points.
-				
+
 				placementSupport.wallSnapEntitiesIncludeOffscreen = true;
 				var result = updateBuildingPlacementPreview(); // includes an update of the snap entity candidates
-				
+
 				if (result && result.cost)
 				{
 					placementSupport.tooltipMessage = getEntityCostTooltip(result);
@@ -705,9 +705,9 @@ function handleInputBeforeGui(ev, hoveredObject)
 					if (neededResources)
 						placementSupport.tooltipMessage += getNeededResourcesTooltip(neededResources);
 				}
-				
+
 				break;
-				
+
 			case "mousebuttondown":
 				if (ev.button == SDL_BUTTON_LEFT)
 				{
@@ -719,7 +719,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 							// continue building, just set a new starting position where we left off
 							placementSupport.position = placementSupport.wallEndPosition;
 							placementSupport.wallEndPosition = undefined;
-							
+
 							inputState = INPUT_BUILDING_WALL_CLICK;
 						}
 						else
@@ -732,7 +732,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 					{
 						placementSupport.tooltipMessage = translate("Cannot build wall here!");
 					}
-					
+
 					updateBuildingPlacementPreview();
 					return true;
 				}
@@ -741,14 +741,14 @@ function handleInputBeforeGui(ev, hoveredObject)
 					// reset to normal input mode
 					placementSupport.Reset();
 					updateBuildingPlacementPreview();
-					
+
 					inputState = INPUT_NORMAL;
 					return true;
 				}
 				break;
 		}
 		break;
-		
+
 	case INPUT_BUILDING_DRAG:
 		switch (ev.type)
 		{
@@ -855,7 +855,7 @@ function handleInputAfterGui(ev)
 	{
 		g_ShowAllStatusBars = (ev.type == "hotkeydown");
 		recalculateStatusBarDisplay();
-	} 
+	}
 	else if (ev.hotkey == "session.highlightguarding")
 	{
 		g_ShowGuarding = (ev.type == "hotkeydown");
@@ -924,7 +924,7 @@ function handleInputAfterGui(ev)
 				break;
 		}
 		break;
-		
+
 	case INPUT_PRESELECTEDACTION:
 		switch (ev.type)
 		{
@@ -965,7 +965,7 @@ function handleInputAfterGui(ev)
 			}
 		}
 		break;
-		
+
 	case INPUT_SELECTING:
 		switch (ev.type)
 		{
@@ -1084,9 +1084,9 @@ function handleInputAfterGui(ev)
 		switch (ev.type)
 		{
 		case "mousemotion":
-			
+
 			placementSupport.position = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-			
+
 			if (placementSupport.mode === "wall")
 			{
 				// Including only the on-screen towers in the next snap candidate list is sufficient here, since the user is
@@ -1218,9 +1218,9 @@ function startBuildingPlacement(buildTemplate, playerState)
 	// TODO: we should clear any highlight selection rings here. If the mouse was over an entity before going onto the GUI
 	// to start building a structure, then the highlight selection rings are kept during the construction of the building.
 	// Gives the impression that somehow the hovered-over entity has something to do with the building you're constructing.
-	
+
 	placementSupport.Reset();
-	
+
 	// find out if we're building a wall, and change the entity appropriately if so
 	var templateData = GetTemplateData(buildTemplate);
 	if (templateData.wallSet)
@@ -1236,9 +1236,9 @@ function startBuildingPlacement(buildTemplate, playerState)
 		inputState = INPUT_BUILDING_PLACEMENT;
 	}
 
-	if (templateData.attack && 
-	    templateData.attack.Ranged && 
-	    templateData.attack.Ranged.maxRange) 
+	if (templateData.attack &&
+		templateData.attack.Ranged &&
+		templateData.attack.Ranged.maxRange)
 	{
 		// add attack information to display a good tooltip
 		placementSupport.attack = templateData.attack;
@@ -1248,13 +1248,13 @@ function startBuildingPlacement(buildTemplate, playerState)
 // Called by GUI when user changes required trading goods
 function selectRequiredGoods(data)
 {
-	Engine.PostNetworkCommand({"type": "select-required-goods", "entities": data.entities, "requiredGoods": data.requiredGoods});
+	Engine.PostNetworkCommand({ "type": "select-required-goods", "entities": data.entities, "requiredGoods": data.requiredGoods} );
 }
 
 // Called by GUI when user clicks exchange resources button
 function exchangeResources(command)
 {
-	Engine.PostNetworkCommand({"type": "barter", "sell": command.sell, "buy": command.buy, "amount": command.amount});
+	Engine.PostNetworkCommand({ "type": "barter", "sell": command.sell, "buy": command.buy, "amount": command.amount });
 }
 
 // Camera jumping: when the user presses a hotkey the current camera location is marked.
@@ -1305,20 +1305,28 @@ function flushTrainingBatch()
 		// Train as many full batches as we can
 		var buildingsCountToTrainFullBatch = Math.floor(batchTrainingEntityAllowedCount / batchTrainingCount);
 		var buildingsToTrainFullBatch = appropriateBuildings.slice(0, buildingsCountToTrainFullBatch);
-		Engine.PostNetworkCommand({"type": "train", "entities": buildingsToTrainFullBatch,
-			"template": batchTrainingType, "count": batchTrainingCount});
+		Engine.PostNetworkCommand({
+			"type": "train",
+			"entities": buildingsToTrainFullBatch,
+			"template": batchTrainingType,
+			"count": batchTrainingCount
+		});
 
 		// Train remainer in one more building
-		var remainderToTrain = batchTrainingEntityAllowedCount % batchTrainingCount;
-		Engine.PostNetworkCommand({"type": "train",
+		Engine.PostNetworkCommand({
+			"type": "train",
 			"entities": [ appropriateBuildings[buildingsCountToTrainFullBatch] ],
-			"template": batchTrainingType, "count": remainderToTrain});
+			"template": batchTrainingType,
+			"count": batchTrainingEntityAllowedCount % batchTrainingCount
+		});
 	}
 	else
-	{
-		Engine.PostNetworkCommand({"type": "train", "entities": appropriateBuildings,
-			"template": batchTrainingType, "count": batchTrainingCount});
-	}
+		Engine.PostNetworkCommand({
+			"type": "train",
+			"entities": appropriateBuildings,
+			"template": batchTrainingType,
+			"count": batchTrainingCount
+		});
 }
 
 function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
@@ -1366,15 +1374,15 @@ function addTrainingByPosition(position)
 
 	if (!selection.length)
 		return;
-	
+
 	var trainableEnts = getAllTrainableEntitiesFromSelection();
-	
+
 	// Check if the position is valid
-	if (!trainableEnts.length || trainableEnts.length <= position) 
+	if (!trainableEnts.length || trainableEnts.length <= position)
 		return;
-	
+
 	var entToTrain = trainableEnts[position];
-	
+
 	addTrainingToQueue(selection, entToTrain, playerState);
 	return;
 }
@@ -1459,15 +1467,19 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 		var buildingsForTraining = appropriateBuildings;
 		if (limits.entLimit)
 			buildingsForTraining = buildingsForTraining.slice(0, limits.canBeAddedCount);
-		Engine.PostNetworkCommand({"type": "train", "template": trainEntType,
-			"count": 1, "entities": buildingsForTraining});
+		Engine.PostNetworkCommand({
+			"type": "train",
+			"template": trainEntType,
+			"count": 1,
+			"entities": buildingsForTraining
+		});
 	}
 }
 
 // Called by GUI when user clicks research button
 function addResearchToQueue(entity, researchType)
 {
-	Engine.PostNetworkCommand({"type": "research", "entity": entity, "template": researchType});
+	Engine.PostNetworkCommand({ "type": "research", "entity": entity, "template": researchType });
 }
 
 // Returns the number of units that will be present in a batch if the user clicks
@@ -1513,7 +1525,7 @@ function getTrainingBatchStatus(playerState, entity, trainEntType, selection)
 // Called by GUI when user clicks production queue item
 function removeFromProductionQueue(entity, id)
 {
-	Engine.PostNetworkCommand({"type": "stop-production", "entity": entity, "id": id});
+	Engine.PostNetworkCommand({ "type": "stop-production", "entity": entity, "id": id });
 }
 
 // Called by unit selection buttons
@@ -1598,10 +1610,10 @@ function performGroup(action, groupId)
 	case "save":
 	case "breakUp":
 		g_Groups.groups[groupId].reset();
-		
+
 		if (action == "save")
 			g_Groups.addEntities(groupId, g_Selection.toList());
-			
+
 		updateGroups();
 		break;
 	}
@@ -1724,7 +1736,7 @@ function findIdleUnit(classes)
 
 	for (var i = 0; i < classes.length; ++i)
 	{
-		var data = { 
+		var data = {
 			"idleClass": classes[currIdleClass],
 			"prevUnit": lastIdleUnit,
 			"limit": 1,
@@ -1775,9 +1787,9 @@ function stopUnits(entities)
 function unload(garrisonHolder, entities)
 {
 	if (Engine.HotkeyIsPressed("session.unloadtype"))
-		Engine.PostNetworkCommand({"type": "unload", "entities": entities, "garrisonHolder": garrisonHolder});
+		Engine.PostNetworkCommand({ "type": "unload", "entities": entities, "garrisonHolder": garrisonHolder });
 	else
-		Engine.PostNetworkCommand({"type": "unload", "entities": [entities[0]], "garrisonHolder": garrisonHolder});
+		Engine.PostNetworkCommand({ "type": "unload", "entities": [entities[0]], "garrisonHolder": garrisonHolder });
 }
 
 function unloadTemplate(template)
@@ -1816,7 +1828,7 @@ function unloadSelection()
 			ents.push(ent);
 	}
 	if (parent)
-		Engine.PostNetworkCommand({"type": "unload", "entities":ents, "garrisonHolder": parent});
+		Engine.PostNetworkCommand({ "type": "unload", "entities":ents, "garrisonHolder": parent });
 }
 
 function unloadAllByOwner()
@@ -1825,7 +1837,7 @@ function unloadAllByOwner()
 		var state = GetEntityState(e);
 		return state && state.garrisonHolder;
 	});
-	Engine.PostNetworkCommand({"type": "unload-all-by-owner", "garrisonHolders": garrisonHolders});
+	Engine.PostNetworkCommand({ "type": "unload-all-by-owner", "garrisonHolders": garrisonHolders });
 }
 
 function unloadAll()
@@ -1838,7 +1850,7 @@ function unloadAll()
 		return false;
 	});
 
-	Engine.PostNetworkCommand({"type": "unload-all", "garrisonHolders": garrisonHolders});
+	Engine.PostNetworkCommand({ "type": "unload-all", "garrisonHolders": garrisonHolders });
 }
 
 function backToWork()
@@ -1849,7 +1861,7 @@ function backToWork()
 		return (state && state.unitAI && state.unitAI.hasWorkOrders);
 	});
 
-	Engine.PostNetworkCommand({"type": "back-to-work", "entities": workers});
+	Engine.PostNetworkCommand({ "type": "back-to-work", "entities": workers });
 }
 
 function removeGuard()
@@ -1860,7 +1872,7 @@ function removeGuard()
 		return (state && state.unitAI && state.unitAI.isGuarding);
 	});
 
-	Engine.PostNetworkCommand({"type": "remove-guard", "entities": entities});
+	Engine.PostNetworkCommand({ "type": "remove-guard", "entities": entities });
 }
 
 function increaseAlertLevel()
@@ -1870,7 +1882,7 @@ function increaseAlertLevel()
 		return (state && state.alertRaiser && state.alertRaiser.canIncreaseLevel);
 	});
 
-	Engine.PostNetworkCommand({"type": "increase-alert-level", "entities": entities});
+	Engine.PostNetworkCommand({ "type": "increase-alert-level", "entities": entities });
 }
 
 function endOfAlert()
@@ -1880,7 +1892,7 @@ function endOfAlert()
 		return (state && state.alertRaiser && state.alertRaiser.hasRaisedAlert);
 	});
 
-	Engine.PostNetworkCommand({"type": "alert-end", "entities": entities});
+	Engine.PostNetworkCommand({ "type": "alert-end", "entities": entities });
 }
 
 function clearSelection()
