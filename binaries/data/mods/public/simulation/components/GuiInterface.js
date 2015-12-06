@@ -979,6 +979,8 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
  *		"parameters":          parameters to use in the message
  *		"translateMessage":    localisation info
  *		"translateParameters": localisation info
+ *		"pluralMessage":       we might return a plural translation instead (optional)
+ *		"pluralCount":         localisation info (optional)
  *  }
  */
 GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)

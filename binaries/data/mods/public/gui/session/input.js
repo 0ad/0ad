@@ -130,7 +130,10 @@ function updateBuildingPlacementPreview()
 				{
 					var message = result.message;
 					if (result.translateMessage)
-						message = translate(message);
+						if (result.pluralMessage)
+							message = translatePlural(result.message, result.pluralMessage, result.pluralCount);
+						else
+							message = translate(message);
 					var parameters = result.parameters;
 					if (result.translateParameters)
 						translateObjectKeys(parameters, result.translateParameters);

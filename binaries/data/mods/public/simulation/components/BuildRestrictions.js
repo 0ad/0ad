@@ -69,6 +69,8 @@ BuildRestrictions.prototype.Init = function()
  *		"parameters":          parameters to use in the GUI message
  *		"translateMessage":    always true
  *		"translateParameters": list of parameters to translate
+ *		"pluralMessage":       we might return a plural translation instead (optional)
+ *		"pluralCount":         plural translation argument (optional)
  *  }
  *
  * Note: The entity which is used to check this should be a preview entity
@@ -257,11 +259,20 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
 			if (nearEnts.length)
 			{
-				result.message = markForTranslation("%(name)s too close to a %(category)s, must be at least %(distance)s meters away");
-				result.parameters.category = cat;
-				result.translateParameters.push("category");
-				result.parameters.distance = this.template.Distance.MinDistance;
-				return result;	// Fail
+				var result = markForPluralTranslation(
+					"%(name)s too close to a %(category)s, must be at least 1 meter away",
+					"%(name)s too close to a %(category)s, must be at least %(distance)s meters away",
+					+this.template.Distance.MinDistance);
+
+				result.success = false;
+				result.translateMessage = true;
+				result.parameters = {
+					"name": name,
+					"category": cat,
+					"distance": this.template.Distance.MinDistance
+				};
+				result.translateParameters = ["name", "category"];
+				return result;  // Fail
 			}
 		}
 		if (this.template.Distance.MaxDistance)
@@ -270,10 +281,19 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
 			if (!nearEnts.length)
 			{
-				result.message = markForTranslation("%(name)s too far from a %(category)s, must be within %(distance)s meters");
-				result.parameters.category = cat;
-				result.translateParameters.push("category");
-				result.parameters.distance = this.template.Distance.MaxDistance;
+				var result = markForPluralTranslation(
+					"%(name)s too far from a %(category)s, must be within 1 meter",
+					"%(name)s too far from a %(category)s, must be within %(distance)s meters",
+					+this.template.Distance.MinDistance);
+
+				result.success = false;
+				result.translateMessage = true;
+				result.parameters = {
+					"name": name,
+					"category": cat,
+					"distance": this.template.Distance.MaxDistance
+				};
+				result.translateParameters = ["name", "category"];
 				return result;	// Fail
 			}
 		}
