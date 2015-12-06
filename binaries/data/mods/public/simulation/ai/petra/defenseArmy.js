@@ -20,7 +20,10 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	var ent = gameState.getEntityById(entID);
 	if (!ent || !ent.position())
 		return false;
-	
+
+	// try to return its resources, and if any, the attack order will be queued
+	var queued = m.returnResources(gameState, ent);
+
 	var idMin;
 	var distMin;
 	var idMinAll;
@@ -73,7 +76,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	{
 		this.assignedTo[entID] = idFoe;
 		this.assignedAgainst[idFoe].push(entID);
-		ent.attack(idFoe, !foeEnt.hasClass("Siege"));
+		ent.attack(idFoe, !foeEnt.hasClass("Siege"), queued);
 	}
 	else
 		gameState.ai.HQ.navalManager.requireTransport(gameState, ent, ownIndex, foeIndex, foePosition);

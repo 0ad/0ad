@@ -3,17 +3,20 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Balázs Meskó <meskobalazs@gmail.com>, 2015
+# Balázs Úr <urbalazs@gmail.com>, 2015
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2014
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2014
 # Boross Péter <borosspet@web.de>, 2015
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
+# Mikola Péter <mikopet@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-11 04:17+0100\n"
-"PO-Revision-Date: 2015-11-29 22:27+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-12-02 20:56+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +34,7 @@ msgstr "Fémpáncél egy ló fejére."
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr ""
+msgstr "Páncéllal szereli fel a hátaslovakat. Minden lovassági egységnek +1 Vágás és Szúrás páncél szint."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -105,7 +108,7 @@ msgstr "Város fázistól érhető el"
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.athen
 msgid "Prometōpídion"
-msgstr ""
+msgstr "Prometōpídion"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
@@ -185,7 +188,7 @@ msgstr "Nagyváros fázistól érhető el"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr ""
+msgstr "Páncéllal szereli fel a hátaslovakat. Minden lovassági egységnek +1 Vágás páncél szint."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -197,7 +200,7 @@ msgstr "Testpáncél, amelyet teljesen vasból készítettek, az ókorban ismert
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr ""
+msgstr "Minden hősnek +2 Vágás páncél szint és +2 Szúrás páncél szint, de +50 Fém költség."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -209,7 +212,7 @@ msgstr "Vas hőspáncél"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidḗrea Panoplía"
-msgstr ""
+msgstr "Sidḗrea Panoplía"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
@@ -223,12 +226,12 @@ msgstr "Tűzött vászon vagy bőr testpáncél a gyalogosok számára."
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr ""
+msgstr "Minden gyalogosnak +1 Vágás és Szúrás páncél szint."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr ""
+msgstr "Tűzött testpáncél"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
@@ -288,7 +291,7 @@ msgstr "Linothorax"
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr ""
+msgstr "Minden gyalogosnak +1 Vágás páncél szint."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
@@ -296,7 +299,7 @@ msgstr "Bronzlapokkal megerősített testpáncél."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr ""
+msgstr "Pikkelyes testpáncél"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -311,7 +314,7 @@ msgstr "Teljesen bronzból készült testpáncél. Csak a legjobb harcosokat sze
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr ""
+msgstr "A bajnokoknak +2 Vágás páncél szint, de +10 Fém költség."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -323,15 +326,15 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
-msgstr ""
+msgstr "Rétegelt szerkezet a nagyobb pajzsokhoz."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr ""
+msgstr "A lándzsás gyalogosoknak +2 Szúrás páncél szint."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
-msgstr ""
+msgstr "Rétegelt pajzskészítés"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
@@ -339,7 +342,7 @@ msgstr ""
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.athen
 msgid "Aspidískos"
-msgstr ""
+msgstr "Aspidískos"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsondescription
 msgid ""
@@ -349,7 +352,7 @@ msgstr "A legjobb pajzsikat megerősítették vagy a sarkaiknál (római scutum)
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr ""
+msgstr "A lándzsás gylaogosoknak +1 Szúrás páncél szint."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -361,30 +364,30 @@ msgstr "Megerősített pajzs"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.athen
 msgid "Aspís"
-msgstr ""
+msgstr "Aspis"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
-msgstr ""
+msgstr "Bronz borítás a pajzs lapjára kalapálva."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr ""
+msgstr "A lándzsás gyalogosoknak +1 Szúrás páncél szint"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
-msgstr ""
+msgstr "Bronz pajzsborítás"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
 msgid "Khalkaspís"
-msgstr ""
+msgstr "Khalkaspis"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Khrysaspís"
-msgstr ""
+msgstr "Khrysaspís"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
@@ -398,7 +401,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
-msgstr "Ezüst Pajzsok"
+msgstr "Ezüst pajzsok"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
@@ -406,19 +409,19 @@ msgstr "Ezüst Pajzsok"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspís"
-msgstr ""
+msgstr "Argyraspís"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr ""
+msgstr "Ólomborítás védi a hajótesteket."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "Ólomborítás védi a hajótesteket. +2 szint minden hajó páncéltípushoz."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr ""
+msgstr "Ólom hajótestborítás"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
@@ -445,12 +448,13 @@ msgstr ""
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
-msgstr ""
+msgstr "Megerősített hajótest"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
@@ -824,6 +828,22 @@ msgstr ""
 msgid "Horse-drawn Carts"
 msgstr ""
 
+#: simulation/data/technologies/gather_capacity_fishing.jsondescription
+msgid "Salting allows to preserve the fishes longer."
+msgstr ""
+
+#: simulation/data/technologies/gather_capacity_fishing.jsontooltip
+msgid "Fishing Boats +20 food capacity."
+msgstr ""
+
+#: simulation/data/technologies/gather_capacity_fishing.jsongenericName
+msgid "Salting Fish"
+msgstr ""
+
+#: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
+msgid "Unlocked in Town Phase. Requires Fishing Net."
+msgstr ""
+
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
 msgstr ""
@@ -866,6 +886,19 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
+msgstr ""
+
+#: simulation/data/technologies/gather_fishing_net.jsondescription
+msgid "Using net improves the fishing productivity."
+msgstr ""
+
+#: simulation/data/technologies/gather_fishing_net.jsontooltip
+msgid ""
+"Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
+msgstr ""
+
+#: simulation/data/technologies/gather_fishing_net.jsongenericName
+msgid "Fishing Net"
 msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
@@ -1027,7 +1060,7 @@ msgstr ""
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
-msgstr "Gyógyító Hatókör"
+msgstr "Gyógyító hatósugár"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
@@ -1043,7 +1076,7 @@ msgstr "Gyógyítási hatósugár 2"
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadḗmeia"
-msgstr ""
+msgstr "Akadḗmeia"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -1110,7 +1143,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr "Szövöszék"
+msgstr "A szövőszék"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
@@ -1158,7 +1191,7 @@ msgstr "Vas lándzsahegyek"
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
 msgid "Sidḗreai Aikhmaí"
-msgstr ""
+msgstr "Sidḗreai Aikhmaí"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
@@ -1367,7 +1400,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
 msgid "Ekklēsía"
-msgstr ""
+msgstr "Ekklēsía"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -2494,7 +2527,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
-msgstr ""
+msgstr "Hagyományos sereg"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
 msgid ""
@@ -2510,4 +2543,4 @@ msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
-msgstr ""
+msgstr "Ezüst pajzs regiment"

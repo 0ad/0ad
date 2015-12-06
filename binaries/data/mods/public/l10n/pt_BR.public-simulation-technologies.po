@@ -8,6 +8,7 @@
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2015
 # Ernan, 2014
 # Guilherme Dias <guilherme325@gmail.com>, 2014
+# Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2015
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-11 04:17+0100\n"
-"PO-Revision-Date: 2015-11-12 03:02+0000\n"
-"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-12-01 01:55+0000\n"
+"Last-Translator: Leonardo Augusto Suzin <leonardosuzin@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -459,6 +460,7 @@ msgstr "Casco Reforçado"
 #: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
@@ -832,6 +834,22 @@ msgstr "Os trabalhadores usam carroças. +10 de capacidade de transporte para to
 msgid "Horse-drawn Carts"
 msgstr "Carroças"
 
+#: simulation/data/technologies/gather_capacity_fishing.jsondescription
+msgid "Salting allows to preserve the fishes longer."
+msgstr "Salgar permite preservar os peixes por mais tempo."
+
+#: simulation/data/technologies/gather_capacity_fishing.jsontooltip
+msgid "Fishing Boats +20 food capacity."
+msgstr "Barcos de Pesca +20 capacidade de comida."
+
+#: simulation/data/technologies/gather_capacity_fishing.jsongenericName
+msgid "Salting Fish"
+msgstr "Salgando Peixes"
+
+#: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
+msgid "Unlocked in Town Phase. Requires Fishing Net."
+msgstr "Destravado na Fase de Cidade. Requer Rede de Pesca."
+
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
 msgstr "Os trabalhadores usam carrinhos de mão. +5 de capacidade de carregamento de todos os recursos."
@@ -875,6 +893,19 @@ msgstr "Trabalhadores ganham +15% de taxa de agricultura."
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
 msgstr "Treinamento de coletas"
+
+#: simulation/data/technologies/gather_fishing_net.jsondescription
+msgid "Using net improves the fishing productivity."
+msgstr "Usar rede aumenta a produção de peixes."
+
+#: simulation/data/technologies/gather_fishing_net.jsontooltip
+msgid ""
+"Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
+msgstr "Usar rede em seus Barcos de Pesca. +30% taxa de pesca. Libera Salgar Peixes."
+
+#: simulation/data/technologies/gather_fishing_net.jsongenericName
+msgid "Fishing Net"
+msgstr "Rede de Pesca"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription

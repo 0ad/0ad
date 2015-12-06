@@ -373,7 +373,7 @@ void MapSidebar::OnFirstDisplay()
 	qrySizes.Post();
 	AtObj sizes = AtlasObject::LoadFromJSON(*qrySizes.sizes);
 	wxChoice* sizeChoice = wxDynamicCast(FindWindow(ID_RandomSize), wxChoice);
-	for (AtIter s = sizes["Sizes"]["item"]; s.defined(); ++s)
+	for (AtIter s = sizes["Data"]["item"]; s.defined(); ++s)
 	{
 		long tiles = 0;
 		wxString(s["Tiles"]).ToLong(&tiles);

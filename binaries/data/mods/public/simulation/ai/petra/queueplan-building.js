@@ -371,7 +371,6 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var bestAngle;
 	var bestLand;
 	var bestVal = -1;
-	var landPassMap = gameState.ai.accessibility.landPassMap;
 	var navalPassMap = gameState.ai.accessibility.navalPassMap;
 
 	var width = gameState.ai.HQ.territoryMap.width;

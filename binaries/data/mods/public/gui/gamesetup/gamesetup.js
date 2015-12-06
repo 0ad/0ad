@@ -1,23 +1,28 @@
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Constants
 const g_MatchSettings_SP = "config/matchsettings.json";
 const g_MatchSettings_MP = "config/matchsettings.mp.json";
 
-// TODO: these constants actually don't have an effect and that is not a scenario map, remove them
-const DEFAULT_NETWORKED_MAP = "Acropolis 01";
-const DEFAULT_OFFLINE_MAP = "Acropolis 01";
-
 const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
 const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly) : undefined);
+const g_MapSizes = prepareForDropdown(g_Settings ? g_Settings.MapSizes : undefined);
 const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
 const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
 const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
 const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryConditions : undefined);
 
-// All colors except gaia
+/**
+ * All selectable playercolors except gaia.
+ */
 const g_PlayerColors = g_Settings ? g_Settings.PlayerDefaults.slice(1).map(pData => pData.Color) : undefined;
 
-////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Used for generating the botnames.
+ */
+const g_RomanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+
+/**
+ * Load playable civs.
+ */
+const g_CivData = loadCivData(true);
 
 // Is this is a networked game, or offline
 var g_IsNetworked;
@@ -42,7 +47,9 @@ var g_ReadyInit = true;
 // 2 - Host's initial ready, suppressed settings message, 1 - Will show settings message, <=0 - Suppressed settings message
 var g_ReadyChanged = 2;
 
-// Has the game started?
+/**
+ * Used to prevent calling resetReadyData when starting a game.
+ */
 var g_GameStarted = false;
 
 var g_PlayerAssignments = {};
@@ -53,14 +60,16 @@ var g_GameAttributes = {
 	settings: {}
 };
 
-var g_MapSizes = {};
-
 var g_ChatMessages = [];
 
-// Data caches
+/**
+ * Cache containing the mapsettings for scenario/skirmish maps. Just-in-time loading.
+ */
 var g_MapData = {};
-var g_CivData = {};
 
+/**
+ * Holds available map filters (for example "naval") and the functions which test the maps.
+ */
 var g_MapFilters = [];
 
 // Current number of assigned human players.
@@ -70,8 +79,6 @@ var g_AssignedCount = 0;
 // we'll start with a 'loading' message and switch to the main screen in the
 // tick handler
 var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
-
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 function init(attribs)
 {
@@ -119,9 +126,6 @@ function initMain()
 	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
 		g_DefaultPlayerData[i].Civ = "random";
 
-	g_MapSizes = initMapSizes();
-
-	// Init civs
 	initCivNameList();
 
 	// Init map types
@@ -137,8 +141,8 @@ function initMain()
 
 	// Populate map filters dropdown
 	var mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
-	mapFilters.list = getFilterNames();
-	mapFilters.list_data = getFilterIds();
+	mapFilters.list = g_MapFilters.map(mapFilter => mapFilter.name);
+	mapFilters.list_data = g_MapFilters.map(mapFilter => mapFilter.id);
 	g_GameAttributes.mapFilter = "default";
 
 	// For singleplayer reduce the size of more options dialog by three options (cheats, rated game, observer late join = 90px)
@@ -234,11 +238,11 @@ function initMain()
 		victoryConditions.selected = g_VictoryConditions.Default;
 
 		var mapSize = Engine.GetGUIObjectByName("mapSize");
-		mapSize.list = g_MapSizes.names;
-		mapSize.list_data = g_MapSizes.tiles;
+		mapSize.list = g_MapSizes.LongName;
+		mapSize.list_data = g_MapSizes.Tiles;
 		mapSize.onSelectionChange = function() {
 			if (this.selected != -1)
-				g_GameAttributes.settings.Size = g_MapSizes.tiles[this.selected];
+				g_GameAttributes.settings.Size = g_MapSizes.Tiles[this.selected];
 			updateGameAttributes();
 		};
 		mapSize.selected = 0;
@@ -567,25 +571,15 @@ function getSetting(settings, defaults, property)
 	return undefined;
 }
 
-// Initialize the dropdowns containing all the available civs
+/**
+ * Initialize the dropdowns containing all the available civs (including random).
+ */
 function initCivNameList()
 {
-	// Cache civ data
-	g_CivData = loadCivData();
+	var civList = Object.keys(g_CivData).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
 
-	// Extract name/code, and skip civs that are explicitly disabled
-	// (intended for unusable incomplete civs)
-	var civList = [
-		{ "name": civ.Name, "code": civ.Code }
-		for each (civ in g_CivData)
-			if (civ.SelectableInGameSetup !== false)
-	];
-
-	// Alphabetically sort the list, ignoring case
-	civList.sort(sortNameIgnoreCase);
-
-	var civListNames = [ civ.name for each (civ in civList) ];
-	var civListCodes = [ civ.code for each (civ in civList) ];
+	var civListNames = civList.map(civ => civ.name);
+	var civListCodes = civList.map(civ => civ.code);
 
 	//  Add random civ to beginning of list
 	civListNames.unshift('[color="orange"]' + translateWithContext("civilization", "Random") + '[/color]');
@@ -720,29 +714,14 @@ function loadGameAttributes()
 	if (!g_IsNetworked)
 		mapSettings.CheatsEnabled = true;
 
-	var civListCodes = [ civ.Code for each (civ in g_CivData) if (civ.SelectableInGameSetup !== false) ];
-	civListCodes.push("random");
-
-	var playerData = mapSettings.PlayerData;
-
-	// Validate player civs
-	if (playerData)
-	{
-		for (var i = 0; i < playerData.length; ++i)
-		{
-			if (civListCodes.indexOf(playerData[i].Civ) < 0)
-				playerData[i].Civ = "random";
-		}
-	}
-
 	// Refresh probably obsoleted/incomplete map data.
+	var playerData = mapSettings.PlayerData;
 	var newMapData = loadMapData(mapName);
 	if (newMapData && newMapData.settings)
 	{
 		for (var prop in newMapData.settings)
 			mapSettings[prop] = newMapData.settings[prop];
 
-		// Set player data
 		if (playerData)
 			mapSettings.PlayerData = playerData;
 	}
@@ -802,14 +781,13 @@ function saveGameAttributes()
 
 function sanitizePlayerData(playerData)
 {
-	// Ignore gaia
+	// Remove gaia
 	if (playerData.length && !playerData[0])
 		playerData.shift();
 
-	// Set default color if no color present
 	playerData.forEach((pData, index) => {
-		if (pData && !pData.Color)
-			pData.Color = g_PlayerColors[index];
+		pData.Color = pData.Color || g_PlayerColors[index];
+		pData.Civ = pData.Civ || "random";
 	});
 
 	// Replace colors with the best matching color of PlayerDefaults
@@ -824,9 +802,6 @@ function sanitizePlayerData(playerData)
 
 	ensureUniquePlayerColors(playerData);
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-// GUI event handlers
 
 function cancelSetup()
 {
@@ -980,9 +955,7 @@ function selectMapType(type)
 	switch (g_GameAttributes.mapType)
 	{
 	case "scenario":
-		// Set a default map
 		g_GameAttributes.mapPath = "maps/scenarios/";
-		g_GameAttributes.map = g_GameAttributes.mapPath + (g_IsNetworked ? DEFAULT_NETWORKED_MAP : DEFAULT_OFFLINE_MAP);
 		g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
 		break;
 
@@ -1112,12 +1085,12 @@ function launchGame()
 		return;
 	}
 
-	// Check that we have a map
 	if (!g_GameAttributes.map)
 		return;
 
 	saveGameAttributes();
 
+	// Select random map
 	if (g_GameAttributes.map == "random")
 	{
 		let victoryScriptsSelected = g_GameAttributes.settings.VictoryScripts;
@@ -1127,58 +1100,44 @@ function launchGame()
 		g_GameAttributes.settings.VictoryScripts = victoryScriptsSelected;
 		g_GameAttributes.settings.GameType = gameTypeSelected;
 	}
-	if (!g_GameAttributes.settings.TriggerScripts)
-		g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts;
-	else
-		g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts);
+
+	g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts || []);
+
+	// Prevent reseting the readystate
 	g_GameStarted = true;
+
 	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
-	var numPlayers = g_GameAttributes.settings.PlayerData.length;
-	// Assign random civilizations to players with that choice
-	//  (this is synchronized because we're the host)
-	var cultures = [];
-	for each (var civ in g_CivData)
-		if (civ.Culture !== undefined && cultures.indexOf(civ.Culture) < 0 && civ.SelectableInGameSetup !== false)
-			cultures.push(civ.Culture);
-	var allcivs = new Array(cultures.length);
-	for (var i = 0; i < allcivs.length; ++i)
-		allcivs[i] = [];
-	for each (var civ in g_CivData)
-		if (civ.Culture !== undefined && civ.SelectableInGameSetup !== false)
-			allcivs[cultures.indexOf(civ.Culture)].push(civ.Code);
 
-	const romanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
-	for (var i = 0; i < numPlayers; ++i)
+	// Get a unique array of cultures
+	var cultures = Object.keys(g_CivData).map(civ => g_CivData[civ].Culture);
+	cultures = cultures.filter((culture, index) => cultures.indexOf(culture) === index);
+
+	// Determine random civs and botnames
+	for (let i in g_GameAttributes.settings.PlayerData)
 	{
-		var civs = allcivs[Math.floor(Math.random()*allcivs.length)];
-
-		if (!g_GameAttributes.settings.PlayerData[i].Civ || g_GameAttributes.settings.PlayerData[i].Civ == "random")
-			g_GameAttributes.settings.PlayerData[i].Civ = civs[Math.floor(Math.random()*civs.length)];
-		// Setting names for AI players. Check if the player is AI and the match is not a scenario
-		if (g_GameAttributes.mapType !== "scenario" && g_GameAttributes.settings.PlayerData[i].AI)
+		// Pick a random civ of a random culture
+		let chosenCiv = g_GameAttributes.settings.PlayerData[i].Civ || "random";
+		if (chosenCiv == "random")
 		{
-			// Get the civ specific names
-			if (g_CivData[g_GameAttributes.settings.PlayerData[i].Civ].AINames !== undefined)
-				var civAINames = shuffleArray(g_CivData[g_GameAttributes.settings.PlayerData[i].Civ].AINames);
-			else
-				var civAINames = [g_CivData[g_GameAttributes.settings.PlayerData[i].Civ].Name];
-			// Choose the name
-			var usedName = 0;
-			if (i < civAINames.length)
-				var chosenName = civAINames[i];
-			else
-				var chosenName = civAINames[Math.floor(Math.random() * civAINames.length)];
-			for (var j = 0; j < numPlayers; ++j)
-				if (g_GameAttributes.settings.PlayerData[j].Name && g_GameAttributes.settings.PlayerData[j].Name.indexOf(chosenName) !== -1)
-					usedName++;
-
-			// Assign civ specific names to AI players
-			chosenName = translate(chosenName);
-			if (usedName)
-				g_GameAttributes.settings.PlayerData[i].Name = sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": romanNumbers[usedName+1] });
-			else
-				g_GameAttributes.settings.PlayerData[i].Name = chosenName;
+			let culture = cultures[Math.floor(Math.random() * cultures.length)];
+			let civs = Object.keys(g_CivData).filter(civ => g_CivData[civ].Culture == culture);
+			chosenCiv = civs[Math.floor(Math.random() * civs.length)];
 		}
+		g_GameAttributes.settings.PlayerData[i].Civ = chosenCiv;
+
+		// Pick one of the available botnames for the chosen civ
+		if (g_GameAttributes.mapType === "scenario" || !g_GameAttributes.settings.PlayerData[i].AI)
+			continue;
+
+		let chosenName = g_CivData[chosenCiv].AINames[Math.floor(Math.random() * g_CivData[chosenCiv].AINames.length)];
+
+		if (!g_IsNetworked)
+			chosenName = translate(chosenName);
+
+		// Count how many players use the chosenName
+		let usedName = g_GameAttributes.settings.PlayerData.filter(pData => pData.Name && pData.Name.indexOf(chosenName) !== -1).length;
+
+		g_GameAttributes.settings.PlayerData[i].Name = !usedName ? chosenName : sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": g_RomanNumbers[usedName+1] });
 	}
 
 	// Copy playernames from initial player assignment to the settings
@@ -1197,16 +1156,13 @@ function launchGame()
 	else
 	{
 		// Find the player ID which the user has been assigned to
-		var numPlayers = g_GameAttributes.settings.PlayerData.length;
-		var playerID = -1;
-		for (var i = 0; i < numPlayers; ++i)
+		let playerID = -1;
+		for (let i in g_GameAttributes.settings.PlayerData)
 		{
-			var assignBox = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
+			let assignBox = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
 			if (assignBox.list_data[assignBox.selected] == "local")
-				playerID = i+1;
+				playerID = +i+1;
 		}
-		// Remove extra player data
-		g_GameAttributes.settings.PlayerData = g_GameAttributes.settings.PlayerData.slice(0, numPlayers);
 
 		Engine.StartGame(g_GameAttributes, playerID);
 		Engine.SwitchGuiPage("page_loading.xml", {
@@ -1292,7 +1248,7 @@ function onGameAttributesChange()
 	var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
 
 	// We have to check for undefined on these properties as not all maps define them.
-	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
+	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.Tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.Tiles.indexOf(mapSettings.Size) : g_MapSizes.Default);
 	var victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
 	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true);
 	enableCheatsText.caption = (enableCheats.checked ? translate("Yes") : translate("No"));
@@ -1365,7 +1321,7 @@ function onGameAttributesChange()
 		{
 			// Client
 			numPlayersText.caption = numPlayers;
-			mapSizeText.caption = g_MapSizes.names[sizeIdx];
+			mapSizeText.caption = g_MapSizes.LongName[sizeIdx];
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExporeMap ? translate("Yes") : translate("No"));
 			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
@@ -1812,7 +1768,15 @@ function addChatMessage(msg)
 
 	// Valid player who has been assigned - get player color
 	if (msg.guid && g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != -1)
-		color = rgbToGuiColor(g_GameAttributes.settings.PlayerData[g_PlayerAssignments[msg.guid].player - 1].Color);
+	{
+		color = g_GameAttributes.settings.PlayerData[g_PlayerAssignments[msg.guid].player - 1].Color;
+
+		// Enlighten playercolor to improve readability
+		var [h, s, l] = rgbToHsl(color.r, color.g, color.b);
+		var [r, g, b] = hslToRgb(h, s, Math.max(0.6, l));
+
+		color = rgbToGuiColor({ "r": r, "g": g, "b": b });
+	}
 
 	var formatted;
 	switch (msg.type)
@@ -1943,7 +1907,7 @@ function resetReadyData()
 		return;
 
 	if (g_ReadyChanged < 1)
-		addChatMessage({ "type": "settings"});
+		addChatMessage({ "type": "settings" });
 	else if (g_ReadyChanged == 2 && !g_ReadyInit)
 		return; // duplicate calls on init
 	else
@@ -1965,81 +1929,69 @@ function resetReadyData()
 		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you accept the current settings and are ready to play!");
 	}
 }
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Basic map filters API
-
-// Add a new map list filter
-function addFilter(id, name, filterFunc)
+/**
+ * Add a new maplist-filter.
+ *
+ * @param id {string} - Unique identifier
+ * @param title {string} - Translated name to be displayed.
+ * @param filterFunc {Object} - Function returning true if the provided map should be listed if that filter is chosen.
+ */
+function addFilter(id, title, filterFunc)
 {
 	if (!filterFunc instanceof Object)
 	{
-		error("Invalid map filter: " + name);
+		error("Invalid map filter: " + title);
 		return;
 	}
 
-	var newFilter = {};
-	newFilter.id = id;
-	newFilter.name = name;
-	newFilter.filter = filterFunc;
-
-	g_MapFilters.push(newFilter);
+	g_MapFilters.push({ "id": id, "name": title, "filter": filterFunc });
 }
 
-// Get array of map filter IDs
-function getFilterIds()
-{
-	var filters = [];
-	for (var i = 0; i < g_MapFilters.length; ++i)
-		filters.push(g_MapFilters[i].id);
-
-	return filters;
-}
-
-// Get array of map filter names
-function getFilterNames()
-{
-	var filters = [];
-	for (var i = 0; i < g_MapFilters.length; ++i)
-		filters.push(g_MapFilters[i].name);
-
-	return filters;
-}
-
-// Test map filter on given map settings object
+/**
+ * Returns true if the given map will be shown when having selected the mapFilter given by id.
+ *
+ * @param id {string} - Specifies the mapfilter
+ * @param mapSettings {Object}
+ */
 function testFilter(id, mapSettings)
 {
-	for (var i = 0; i < g_MapFilters.length; ++i)
-		if (g_MapFilters[i].id == id)
-			return g_MapFilters[i].filter(mapSettings);
+	var mapFilter = g_MapFilters.find(mapFilter => mapFilter.id == id);
 
-	error("Invalid map filter: " + id);
-	return false;
+	if (!mapFilter)
+	{
+		error("Invalid map filter: " + id);
+		return false;
+	}
+
+	return mapFilter.filter(mapSettings);
 }
 
-// Test an array of keywords against a match array using AND logic
+/**
+ *  Returns true if the keywords contain all of the matches.
+ *
+ *  @param keywords {Array}
+ *  @param matches {Array}
+ */
 function keywordTestAND(keywords, matches)
 {
 	if (!keywords || !matches)
 		return false;
 
-	for (var m = 0; m < matches.length; ++m)
-		if (keywords.indexOf(matches[m]) == -1)
-			return false;
-
-	return true;
+	return matches.every(match => keywords.indexOf(match) != -1);
 }
 
-// Test an array of keywords against a match array using OR logic
+/**
+ *  Returns true if the keywords contain some of the matches.
+ *
+ *  @param keywords {Array}
+ *  @param matches {Array}
+ */
 function keywordTestOR(keywords, matches)
 {
 	if (!keywords || !matches)
 		return false;
 
-	for (var m = 0; m < matches.length; ++m)
-		if (keywords.indexOf(matches[m]) != -1)
-			return true;
-
-	return false;
+	return matches.some(match => keywords.indexOf(match) != -1);
 }
 
 function sendRegisterGameStanza()

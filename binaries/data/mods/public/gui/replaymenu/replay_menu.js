@@ -1,6 +1,17 @@
+/**
+ * Used for checking replay compability.
+ */
 const g_EngineInfo = Engine.GetEngineInfo();
+
+/**
+ * To show the titles of the selected civs in the replay details.
+ */
 const g_CivData = loadCivData();
-const g_mapSizes = initMapSizes();
+
+/**
+ * Used for creating the mapsize filter.
+ */
+const g_MapSizes = prepareForDropdown(g_Settings ? g_Settings.MapSizes : undefined);
 
 /**
  * All replays found in the directory.
@@ -57,7 +68,7 @@ function loadReplays()
 	for (let replay of g_Replays)
 	{
 		// Use time saved in file, otherwise file mod date
-		replay.timestamp = replay.attribs.timestamp ? +replay.attribs.timestamp : +replay.filemod_timestamp;
+		replay.timestamp = replay.attribs.timestamp ? +replay.attribs.timestamp : +replay.filemod_timestamp-replay.duration;
 
 		// Check replay for compability
 		replay.isCompatible = isReplayCompatible(replay);
@@ -187,7 +198,7 @@ function displayReplayDetails()
 	Engine.GetGUIObjectByName("replayInfoEmpty").hidden = replaySelected;
 	Engine.GetGUIObjectByName("startReplayButton").enabled = replaySelected;
 	Engine.GetGUIObjectByName("deleteReplayButton").enabled = replaySelected;
-	Engine.GetGUIObjectByName("summaryButton").enabled = replaySelected;
+	Engine.GetGUIObjectByName("summaryButton").hidden = true;
 
 	if (!replaySelected)
 		return;
@@ -204,6 +215,7 @@ function displayReplayDetails()
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = getReplayTeamText(replay);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
 	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:(0.7812,0.5859)session/icons/mappreview/" + mapData.preview;
+	Engine.GetGUIObjectByName("summaryButton").hidden = !Engine.HasReplayMetadata(replay.directory);
 }
 
 /**

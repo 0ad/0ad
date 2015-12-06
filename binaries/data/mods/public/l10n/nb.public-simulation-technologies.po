@@ -6,12 +6,13 @@
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
 # Ole Sannes Riiser <OLE-SR@online.no>, 2015
+# Rasmus Støren <rasmus4521@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-11 04:17+0100\n"
-"PO-Revision-Date: 2015-11-11 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-12-03 10:34+0000\n"
+"Last-Translator: Rasmus Støren <rasmus4521@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -382,7 +383,7 @@ msgstr "Khalkaspís"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Khrysaspís"
-msgstr ""
+msgstr "Khrysaspís"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
@@ -430,7 +431,7 @@ msgstr "Hypozomataen forsterker skipets struktur. +2 for alle pansertyper til sk
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr ""
+msgstr "Tauforsikring av trimene"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -449,6 +450,7 @@ msgstr "Forsterket skrog"
 #: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
@@ -634,7 +636,7 @@ msgstr "+20% rekkeviddeangrep for infanteri."
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr ""
+msgstr "Irregulær avstandsinfanteri"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
@@ -664,7 +666,7 @@ msgstr "Kampviljen er kritisk for å seire."
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Inspire your troops with higher pay. All soldiers +25% attack."
-msgstr "Inspirer dine tropper med høyere lønn. Alle soldater +25 angrep."
+msgstr "Inspirer dine tropper med høyere lønn. Alle soldater +25% angrep."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -690,7 +692,7 @@ msgstr "+2 angrep til alle sverd enheter."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
-msgstr ""
+msgstr "Stålarbeid"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
@@ -722,19 +724,19 @@ msgstr "Forsterk fundamentene for å forberede et angrep. "
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armour level of the defense tower by 2 levels."
-msgstr ""
+msgstr "Øker rustning nivået av forsvarstårnet med 2 nivåer."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
-msgstr ""
+msgstr "Robuste fundamenter"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr ""
+msgstr "Bueskyttere øker det maksimale rekkevidde av flammepiler."
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr ""
+msgstr "Øker forsvarstårnet sitt maksimale rekkevidde med 8 meter."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -742,15 +744,15 @@ msgstr "Bueskytter"
 
 #: simulation/data/technologies/attack_tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
-msgstr ""
+msgstr "En natts vakt øker årvåkenhet."
 
 #: simulation/data/technologies/attack_tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to towers."
-msgstr ""
+msgstr "Skiltvakter legger til en pil til tårn."
 
 #: simulation/data/technologies/attack_tower_watch.jsongenericName
 msgid "Sentries"
-msgstr ""
+msgstr "Vakt"
 
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.ptol
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.spart
@@ -758,7 +760,7 @@ msgstr ""
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.athen
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
 msgid "Nyktophýlakes"
-msgstr ""
+msgstr "Nyktophýlakes"
 
 #: simulation/data/technologies/attack_tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -786,7 +788,7 @@ msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
-msgstr ""
+msgstr "Stein fundamenter"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -808,7 +810,7 @@ msgstr "Øker transportkapasiteten for alle ressurser."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr ""
+msgstr "Arbeidere bruker kruver. +5 transportkapasitet for alle ressurser."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -816,11 +818,27 @@ msgstr "Kurver"
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr ""
+msgstr "Arbeidere bruker heste-dratte vogner. +10 transpostkapasitet for alle ressurser."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
 msgstr "Heste-tegnet kart"
+
+#: simulation/data/technologies/gather_capacity_fishing.jsondescription
+msgid "Salting allows to preserve the fishes longer."
+msgstr "Salting tillater å preservere fisk lenger."
+
+#: simulation/data/technologies/gather_capacity_fishing.jsontooltip
+msgid "Fishing Boats +20 food capacity."
+msgstr "Fiske båter +20 mat kapasitet."
+
+#: simulation/data/technologies/gather_capacity_fishing.jsongenericName
+msgid "Salting Fish"
+msgstr "Salte fisk"
+
+#: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
+msgid "Unlocked in Town Phase. Requires Fishing Net."
+msgstr "Låses opp i By Fasen. Krever fiske nett."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -828,15 +846,15 @@ msgstr "Arbeidere bruker trillebårer. +5 transportkapasitet for alle ressurser.
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
-msgstr ""
+msgstr "Trillebår"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
-msgstr ""
+msgstr "Ekstra næringsstoffer for farmer."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr ""
+msgstr "Arbeidere +25% jordbruks-hastighet."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -864,6 +882,19 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
+msgstr ""
+
+#: simulation/data/technologies/gather_fishing_net.jsondescription
+msgid "Using net improves the fishing productivity."
+msgstr ""
+
+#: simulation/data/technologies/gather_fishing_net.jsontooltip
+msgid ""
+"Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
+msgstr ""
+
+#: simulation/data/technologies/gather_fishing_net.jsongenericName
+msgid "Fishing Net"
 msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
@@ -902,7 +933,7 @@ msgstr "Øker utvinningstakten for stein."
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Tving livegne (\"slaver\") til å hjelpe dine arbeidere å hakke stein. +15% steinhakkings-hastighet."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -924,7 +955,7 @@ msgstr "Tjenere"
 
 #: simulation/data/technologies/gather_mining_servants.jsonrequirementsTooltip
 msgid "Hire servants to help mine stone. No requirements."
-msgstr ""
+msgstr "Betal tjenere for å hjelpe med å hakke stein. Ingen krav."
 
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
@@ -956,16 +987,16 @@ msgstr "Sølv gruve"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
 msgid "Mines of Krenides"
-msgstr ""
+msgstr "Miner av Krenides"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.athen
 msgid "Mines of Laureion"
-msgstr ""
+msgstr "Miner av Laurelon"
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
 "Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr ""
+msgstr "Kjøp slaver for å hjelpe dine arbeidere hakke stein.  +50% stone gathering rate."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -2508,4 +2539,4 @@ msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
-msgstr ""
+msgstr "Sølvskjolds regiment"

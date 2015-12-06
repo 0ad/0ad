@@ -3,7 +3,7 @@ var g_EncrytedPassword = "";
 var g_PasswordInputIsHidden = false;
 var g_TermsOfServiceRead = false;
 var g_TermsOfUseRead = false;
-var g_hasSystemMessage = false;
+var g_HasSystemMessage = false;
 
 function init()
 {
@@ -113,7 +113,7 @@ function onTick()
 	// Allow them to connect if tests pass up to this point.
 	else if (pageRegisterHidden)
 	{
-		if (!g_hasSystemMessage)
+		if (!g_HasSystemMessage)
 			feedback.caption = "";
 		continueButton.enabled = true;
 	}
@@ -150,7 +150,7 @@ function onTick()
 	// Allow them to register.
 	else
 	{
-		if (!g_hasSystemMessage)
+		if (!g_HasSystemMessage)
 			feedback.caption = "";
 		continueButton.enabled = true;
 	}
@@ -199,7 +199,7 @@ function onTick()
 		}
 		else if(message.type == "system" && (message.level == "error" || message.text == "disconnected"))
 		{
-			g_hasSystemMessage = true;
+			g_HasSystemMessage = true;
 			feedback.caption = message.text == "disconnected" ? translate("Disconnected") : message.text;
 			Engine.StopXmppClient();
 			g_LobbyIsConnecting = false;
@@ -232,40 +232,40 @@ function switchPage(page)
 	// Then show appropriate page.
 	switch(page)
 	{
-		case "welcome":
-			Engine.GetGUIObjectByName("pageWelcome").hidden = false;
-			break;
-		case "register":
-			var dialog = Engine.GetGUIObjectByName("dialog");
-			var newSize = dialog.size;
-			newSize.bottom += 150;
-			dialog.size = newSize;
-			Engine.GetGUIObjectByName("pageRegister").hidden = false;
-			Engine.GetGUIObjectByName("continue").caption = translate("Register");
-			Engine.GetGUIObjectByName("continue").hidden = false;
-			break;
-		case "connect":
-			Engine.GetGUIObjectByName("pageConnect").hidden = false;
-			Engine.GetGUIObjectByName("continue").caption = translate("Connect");
-			Engine.GetGUIObjectByName("continue").hidden = false;
-			break;
+	case "welcome":
+		Engine.GetGUIObjectByName("pageWelcome").hidden = false;
+		break;
+	case "register":
+		var dialog = Engine.GetGUIObjectByName("dialog");
+		var newSize = dialog.size;
+		newSize.bottom += 150;
+		dialog.size = newSize;
+		Engine.GetGUIObjectByName("pageRegister").hidden = false;
+		Engine.GetGUIObjectByName("continue").caption = translate("Register");
+		Engine.GetGUIObjectByName("continue").hidden = false;
+		break;
+	case "connect":
+		Engine.GetGUIObjectByName("pageConnect").hidden = false;
+		Engine.GetGUIObjectByName("continue").caption = translate("Connect");
+		Engine.GetGUIObjectByName("continue").hidden = false;
+		break;
 	}
 }
 function openTermsOfService()
 {
 	g_TermsOfServiceRead = true;
 	Engine.PushGuiPage("page_manual.xml", {
-				"page":"lobby/Terms_of_Service",
-				"title":translate("Terms of Service"),
-				});
+		"page": "lobby/Terms_of_Service",
+		"title": translate("Terms of Service"),
+	});
 }
 
 function openTermsOfUse()
 {
 	g_TermsOfUseRead = true;
 	Engine.PushGuiPage("page_manual.xml", {
-				"page":"lobby/Terms_of_Use",
-				"title":translate("Terms of Use"),
-				});
+		"page": "lobby/Terms_of_Use",
+		"title": translate("Terms of Use"),
+	});
 }
 

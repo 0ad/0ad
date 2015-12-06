@@ -63,22 +63,25 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 
 	var map = new API3.Map(gameState.sharedScript, "passability", obstructionTiles);
 	map.setMaxVal(255);
-	
+
 	if (template && template.buildDistance())
 	{
-		var minDist = template.buildDistance().MinDistance;
-		var category = template.buildDistance().FromCategory;
-		if (minDist !== undefined && category !== undefined)
+		let minDist = +template.buildDistance().MinDistance;
+		let fromClass = template.buildDistance().FromClass;
+		if (minDist && fromClass)
 		{
-			gameState.getOwnStructures().forEach(function(ent) {
-				if (ent.buildCategory() === category && ent.position())
-				{
-					var pos = ent.position();
-					var x = Math.round(pos[0] / passabilityMap.cellSize);
-					var z = Math.round(pos[1] / passabilityMap.cellSize);
-					map.addInfluence(x, z, minDist/passability.cellSize, -255, "constant");
-				}
-			});
+			let cellSize = passabilityMap.cellSize;
+			let cellDist = 1 + minDist / cellSize;
+			let structures = gameState.getOwnStructures().filter(API3.Filters.byClass(fromClass));
+			for (let ent of structures.values())
+			{
+				if (!ent.position())
+					continue;
+				let pos = ent.position();
+				let x = Math.round(pos[0] / cellSize);
+				let z = Math.round(pos[1] / cellSize);
+				map.addInfluence(x, z, cellDist, -255, "constant");
+			}
 		}
 	}
 

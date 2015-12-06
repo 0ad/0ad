@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 14:10+0000\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-11-30 14:34+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -82,24 +82,24 @@ msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "直到停火結束的剩餘時間：%(time)s。"
 
-#: gui/common/functions_utility.js:142
+#: gui/common/functions_utility.js:127
 msgctxt "map size"
 msgid "Default"
 msgstr "預設"
 
-#: gui/common/functions_utility.js:152
+#: gui/common/functions_utility.js:137
 msgid "A randomly selected map."
 msgstr "隨機選取地圖。"
 
-#: gui/common/functions_utility.js:159
+#: gui/common/functions_utility.js:144
 msgid "Sorry, no description available."
 msgstr "抱歉，沒有可用的描述。"
 
-#: gui/common/functions_utility.js:203
+#: gui/common/functions_utility.js:188
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:205
+#: gui/common/functions_utility.js:190
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -365,77 +365,77 @@ msgstr "無法踢出 %(name)s。"
 msgid "Could not ban %(name)s."
 msgstr "無法封禁 %(name)s。"
 
-#: gui/common/settings.js:106
+#: gui/common/settings.js:107
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "測試區"
 
-#: gui/common/settings.js:110
+#: gui/common/settings.js:111
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "非常簡單"
 
-#: gui/common/settings.js:114
+#: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "簡易"
 
-#: gui/common/settings.js:118
+#: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "中等"
 
-#: gui/common/settings.js:123
+#: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "困難"
 
-#: gui/common/settings.js:127
+#: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "非常難"
 
-#: gui/common/settings.js:150
+#: gui/common/settings.js:151
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "無停火"
 
-#: gui/common/settings.js:151
+#: gui/common/settings.js:152
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s 分鐘"
 
-#: gui/common/settings.js:165
+#: gui/common/settings.js:166
 msgctxt "map"
 msgid "Skirmish"
 msgstr "小規模戰鬥"
 
-#: gui/common/settings.js:170
+#: gui/common/settings.js:171
 msgctxt "map"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/common/settings.js:174 gui/summary/summary.js:136
+#: gui/common/settings.js:175 gui/summary/summary.js:136
 msgid "Scenario"
 msgstr "劇本"
 
-#: gui/common/settings.js:205
+#: gui/common/settings.js:206
 msgid "None"
 msgstr "無"
 
-#: gui/common/settings.js:206
+#: gui/common/settings.js:207
 msgid "Endless Game"
 msgstr "無盡的遊戲"
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:248
 msgid "Unlimited"
 msgstr "無限制"
 
-#: gui/common/settings.js:279 gui/common/settings.js:290
-#: gui/common/settings.js:301 gui/common/settings.js:312
-#: gui/common/settings.js:323
+#: gui/common/settings.js:296 gui/common/settings.js:307
+#: gui/common/settings.js:318 gui/common/settings.js:329
+#: gui/common/settings.js:340
 msgid "Unknown"
 msgstr "未知"
 
@@ -502,8 +502,8 @@ msgid "Armor:"
 msgstr "甲冑："
 
 #: gui/common/tooltips.js:82 gui/common/tooltips.js:107
-#: gui/common/tooltips.js:167 gui/structree/draw.js:260
-#: gui/structree/draw.js:285
+#: gui/common/tooltips.js:167 gui/structree/draw.js:356
+#: gui/structree/draw.js:381
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -684,14 +684,16 @@ msgid "<invalid>"
 msgstr "<無效>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
+#: gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "是"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
+#: gui/savedgames/save.js:89
 msgid "No"
 msgstr "否"
 
@@ -1051,7 +1053,7 @@ msgid ""
 "for additional information."
 msgstr "劇情編輯器無法使用或載入失敗。見遊戲日誌以獲得更多資訊。"
 
-#: gui/pregame/mainmenu.js:299
+#: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:75
 msgid "Error"
 msgstr "錯誤"
 
@@ -1067,6 +1069,139 @@ msgstr "技術詳情"
 #: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "手冊"
+
+#: gui/replaymenu/replay_actions.js:31
+msgid "You"
+msgstr "您"
+
+#: gui/replaymenu/replay_actions.js:51
+msgid "You don't have the same mods active as the replay does."
+msgstr "您沒有與重播相同的 mod。"
+
+#: gui/replaymenu/replay_actions.js:52
+#, javascript-format
+msgid "Required: %(mods)s"
+msgstr "需要：%(mods)s"
+
+#: gui/replaymenu/replay_actions.js:53
+#, javascript-format
+msgid "Active: %(mods)s"
+msgstr "啟用：%(mods)s"
+
+#: gui/replaymenu/replay_actions.js:56
+msgid "This replay is not compatible with your version of the game!"
+msgstr "此重播於您遊戲的版本不相容！"
+
+#: gui/replaymenu/replay_actions.js:58
+msgid "Incompatible replay"
+msgstr "不相容的重播"
+
+#: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
+msgid "Ok"
+msgstr "是"
+
+#: gui/replaymenu/replay_actions.js:75
+msgid "No summary data available."
+msgstr "無簡介可用。"
+
+#: gui/replaymenu/replay_actions.js:81
+msgid "Scores at the end of the game."
+msgstr "遊戲結束時的分數。"
+
+#: gui/replaymenu/replay_actions.js:114
+msgid "Delete replay"
+msgstr "刪除重播"
+
+#: gui/replaymenu/replay_actions.js:115
+msgid "Are you sure to delete this replay permanently?"
+msgstr "您確定您要永久刪除此重播嗎？"
+
+#: gui/replaymenu/replay_filters.js:40
+msgctxt "datetime"
+msgid "Any"
+msgstr "任意"
+
+#: gui/replaymenu/replay_filters.js:56
+msgctxt "map size"
+msgid "Any"
+msgstr "任意"
+
+#: gui/replaymenu/replay_filters.js:69
+msgctxt "map name"
+msgid "Any"
+msgstr "任意"
+
+#: gui/replaymenu/replay_filters.js:82
+msgctxt "population capacity"
+msgid "Any"
+msgstr "任意"
+
+#: gui/replaymenu/replay_filters.js:98
+msgctxt "duration"
+msgid "Any"
+msgstr "任意"
+
+#. Translation: Shorter duration than max minutes.
+#: gui/replaymenu/replay_filters.js:102
+#, javascript-format
+msgctxt "duration filter"
+msgid "< %(max)s min"
+msgstr "< %(max)s 分鐘"
+
+#. Translation: Longer duration than min minutes.
+#: gui/replaymenu/replay_filters.js:106
+#, javascript-format
+msgctxt "duration filter"
+msgid "> %(min)s min"
+msgstr "> %(min)s 分鐘"
+
+#. Translation: Duration between min and max minutes.
+#: gui/replaymenu/replay_filters.js:109
+#, javascript-format
+msgctxt "duration filter"
+msgid "%(min)s - %(max)s min"
+msgstr "%(min)s - %(max)s 分鐘"
+
+#: gui/replaymenu/replay_menu.js:222
+msgid "yyyy-MM-dd HH:mm"
+msgstr "yyyy-MM-dd HH:mm"
+
+#: gui/replaymenu/replay_menu.js:253
+msgid "yyyy-MM"
+msgstr "yyyy-MM"
+
+#: gui/replaymenu/replay_menu.js:316
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s (%(civ)s)"
+
+#: gui/replaymenu/replay_menu.js:318
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, defeated)"
+msgstr "%(playerName)s (%(civ)s，戰敗)"
+
+#: gui/replaymenu/replay_menu.js:320
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+
+#: gui/replaymenu/replay_menu.js:322
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s，戰敗)"
+
+#: gui/replaymenu/replay_menu.js:338
+msgid "No Team"
+msgstr "無隊伍"
+
+#: gui/replaymenu/replay_menu.js:338
+#, javascript-format
+msgid "Team %(team)s"
+msgstr "隊伍 %(team)s"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -1141,20 +1276,20 @@ msgstr "儲存的遊戲將被永遠覆蓋，您是否確定？"
 msgid "OVERWRITE SAVE"
 msgstr "覆蓋儲存"
 
-#: gui/structree/draw.js:261
+#: gui/structree/draw.js:357
 msgid "Health:"
 msgstr "生命值："
 
-#: gui/structree/draw.js:280
+#: gui/structree/draw.js:376
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:286
+#: gui/structree/draw.js:382
 msgid "Gather Rates:"
 msgstr "採集速率："
 
-#: gui/structree/load.js:146
+#: gui/structree/load.js:158
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s 至 %(val2)s"
@@ -1358,7 +1493,7 @@ msgid "Civilization Selection"
 msgstr "文明選擇"
 
 #: gui/civinfo/civinfo.xml:(caption):119
-#: gui/structree/structree.xml:(caption):90
+#: gui/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "關閉"
 
@@ -1702,9 +1837,81 @@ msgstr "點擊以在瀏覽器中打開 0 A.D. IRC 聊天。（#0ad on webchat.qu
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "點擊以連結至0 A.D. Trac 回報臭蟲、當機、或是錯誤。"
 
+#: gui/replaymenu/replay_menu.xml:(caption):26
+msgid "Replay Games"
+msgstr "遊戲重播"
+
+#: gui/replaymenu/replay_menu.xml:(caption):109
+msgid "Filter compatible replays"
+msgstr "過濾相容的重播"
+
+#: gui/replaymenu/replay_menu.xml:(caption):135
+msgid "Map Type:"
+msgstr "地圖類型："
+
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Size:"
+msgstr "地圖大小："
+
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Victory:"
+msgstr "勝利："
+
+#: gui/replaymenu/replay_menu.xml:(caption):186
+msgid "Players:"
+msgstr "玩家數："
+
+#: gui/replaymenu/replay_menu.xml:(caption):203
+msgid "Spoiler"
+msgstr "掠奪者"
+
+#: gui/replaymenu/replay_menu.xml:(caption):215
+msgid "Main Menu"
+msgstr "主選單"
+
+#: gui/replaymenu/replay_menu.xml:(caption):221
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "刪除"
+
+#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/summary/summary.xml:(caption):23
+msgid "Summary"
+msgstr "摘要"
+
+#: gui/replaymenu/replay_menu.xml:(caption):233
+msgid "Start Replay"
+msgstr "開始重播"
+
+#: gui/replaymenu/replay_menu.xml:(heading):72
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "日期／時間"
+
+#: gui/replaymenu/replay_menu.xml:(heading):76
+msgctxt "replay"
+msgid "Players"
+msgstr "玩家"
+
+#: gui/replaymenu/replay_menu.xml:(heading):80
+msgctxt "replay"
+msgid "Map Name"
+msgstr "地圖名稱"
+
+#: gui/replaymenu/replay_menu.xml:(heading):84
+msgctxt "replay"
+msgid "Size"
+msgstr "大小"
+
+#: gui/replaymenu/replay_menu.xml:(heading):88
+msgctxt "replay"
+msgid "Population"
+msgstr "人口"
+
+#: gui/replaymenu/replay_menu.xml:(heading):92
+msgctxt "replay"
+msgid "Duration"
+msgstr "持續時間"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -1734,9 +1941,9 @@ msgstr "已知問題（網頁）"
 msgid "Civilization:"
 msgstr "文明："
 
-#: gui/summary/summary.xml:(caption):23
-msgid "Summary"
-msgstr "摘要"
+#: gui/structree/structree.xml:(caption):92
+msgid "Trainer Units"
+msgstr "訓練者單位"
 
 #: gui/summary/summary.xml:(caption):63
 msgid "Score"

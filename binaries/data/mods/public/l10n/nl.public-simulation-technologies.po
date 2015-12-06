@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-11 04:17+0100\n"
-"PO-Revision-Date: 2015-11-22 11:47+0000\n"
-"Last-Translator: Ellen Roels\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-11-30 09:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -454,6 +454,7 @@ msgstr "Versterkte scheepsromp"
 #: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
@@ -827,6 +828,22 @@ msgstr "Werkers gebruiken paard en kar. +10 vervoerscapaciteit voor alle grondst
 msgid "Horse-drawn Carts"
 msgstr "Per paard getrokken Karren"
 
+#: simulation/data/technologies/gather_capacity_fishing.jsondescription
+msgid "Salting allows to preserve the fishes longer."
+msgstr ""
+
+#: simulation/data/technologies/gather_capacity_fishing.jsontooltip
+msgid "Fishing Boats +20 food capacity."
+msgstr ""
+
+#: simulation/data/technologies/gather_capacity_fishing.jsongenericName
+msgid "Salting Fish"
+msgstr ""
+
+#: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
+msgid "Unlocked in Town Phase. Requires Fishing Net."
+msgstr ""
+
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
 msgstr "Werkers gebruiken kruiwagens. +5 vervoerscapaciteit voor alle grondstoffen."
@@ -870,6 +887,19 @@ msgstr "Werkers +15% landbouwproductie."
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
 msgstr "Verzamel Training"
+
+#: simulation/data/technologies/gather_fishing_net.jsondescription
+msgid "Using net improves the fishing productivity."
+msgstr ""
+
+#: simulation/data/technologies/gather_fishing_net.jsontooltip
+msgid ""
+"Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
+msgstr ""
+
+#: simulation/data/technologies/gather_fishing_net.jsongenericName
+msgid "Fishing Net"
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription

@@ -13,7 +13,10 @@ var g_IsObserver = false;
 
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
-// Cache the useful civ data
+
+/**
+ * Not constant as we add "gaia".
+ **/
 var g_CivData = {};
 
 var g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1 } };
@@ -169,7 +172,7 @@ function init(initData, hotloadData)
 
 	// Cache civ data
 	g_CivData = loadCivData();
-	g_CivData["gaia"] = { "Code": "gaia", "Name": translate("Gaia") };
+	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
 	if (Engine.GetPlayerID() <= 0)
 		g_IsObserver = true;

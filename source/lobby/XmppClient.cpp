@@ -924,7 +924,6 @@ void XmppClient::SetPresence(const std::string& presence)
 	else IF("chat", Chat);
 	else IF("away", Away);
 	else IF("playing", DND);
-	else IF("gone", XA);
 	else IF("offline", Unavailable);
 	// The others are not to be set
 #undef IF
@@ -978,7 +977,7 @@ void XmppClient::GetPresenceString(const gloox::Presence::PresenceType p, std::s
 	CASE(Chat, "chat");
 	CASE(Away, "away");
 	CASE(DND, "playing");
-	CASE(XA, "gone");
+	CASE(XA, "away");
 	CASE(Unavailable, "offline");
 	CASE(Probe, "probe");
 	CASE(Error, "error");

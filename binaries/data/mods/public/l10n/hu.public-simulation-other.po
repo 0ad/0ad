@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Balázs Úr <urbalazs@gmail.com>, 2015
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-10-22 07:21+0000\n"
-"Last-Translator: Mátyás Demeter <mathias.demeter@gmail.com>\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-12-01 17:46+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,26 +31,26 @@ msgstr "Épp most küldtem egy sereget %(_player_)s ellen."
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "Hadd csoportosítsam át a seregem, és megyek veled %(_player_)s ellen."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "A végső előkészületeket végzem, és támadást fogok indítani %(_player_)s ellen."
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "Egyelőre nem tudok segíteni %(_player_)s ellen, mivel előre láthatóan egy másik támadást indítok %(_player_2)s ellen."
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Sajnálom, jelenleg nincs elég katonám, de a következő támadásom célpontja %(_player_)s lesz."
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
@@ -608,11 +609,11 @@ msgstr "ellenséges"
 #: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "%(time)s múlva támadhatsz"
 
 #: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
-msgstr ""
+msgstr "Most támadhatsz!"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -648,21 +649,21 @@ msgstr "Kő"
 #: simulation/components/Player.js:252
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "Nincs elegendő erőforrás - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:254
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "Nincs elegendő erőforrás - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:256
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "Nincs elegendő erőforrás - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:258
 #, javascript-format
@@ -670,67 +671,31 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "Nincs elegendő erőforrás - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:366
 msgid "The production queue is full."
-msgstr ""
-
-#: simulation/data/player_defaults.jsonPlayerData[0].Name
-msgid "Gaia"
-msgstr "Természet"
-
-#: simulation/data/player_defaults.jsonPlayerData[1].Name
-msgid "Player 1"
-msgstr "1-es Játékos"
-
-#: simulation/data/player_defaults.jsonPlayerData[2].Name
-msgid "Player 2"
-msgstr "2-es Játékos"
-
-#: simulation/data/player_defaults.jsonPlayerData[3].Name
-msgid "Player 3"
-msgstr "3-as Játékos"
-
-#: simulation/data/player_defaults.jsonPlayerData[4].Name
-msgid "Player 4"
-msgstr "4-es Játékos"
-
-#: simulation/data/player_defaults.jsonPlayerData[5].Name
-msgid "Player 5"
-msgstr "5-ös Játékos"
-
-#: simulation/data/player_defaults.jsonPlayerData[6].Name
-msgid "Player 6"
-msgstr "6-os Játékos"
-
-#: simulation/data/player_defaults.jsonPlayerData[7].Name
-msgid "Player 7"
-msgstr "7-es Játékos"
-
-#: simulation/data/player_defaults.jsonPlayerData[8].Name
-msgid "Player 8"
-msgstr "8-as Játékos"
+msgstr "A termelési sor tele van."
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "Teknős (0.1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "Lassú (0.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "Ráérős (0.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "Nyugodt (0.75x)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1x)"
-msgstr "Normális (1x)"
+msgstr "Normál (1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25x)"
@@ -738,7 +703,7 @@ msgstr "Gyors (1.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5x)"
-msgstr "Nagyon Gyors (1.5x)"
+msgstr "Nagyon gyors (1.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2x)"
@@ -746,57 +711,57 @@ msgstr "Őrületes (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Gyors előretekerés (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Gyors előretekerés (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Gyors előretekerés (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Az összes ellenfél legyőzése"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Hódítás"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Az összes ellenséges épület lerombolása"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Épületek meghódítása"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Az összes ellenséges egység megölése"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Egységek meghódítása"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Egy csoda építése és megvédése a győzelemhez"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Csoda"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Nagyon alacsony"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Alacsony"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
@@ -806,17 +771,17 @@ msgstr "Közepes"
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Magas"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Nagyon magas"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Élet-halál küzdelem"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
@@ -841,11 +806,11 @@ msgstr "Közepes (3 játékos)"
 
 #: simulation/data/map_sizes.jsonSizes[3].Name
 msgid "Normal"
-msgstr "Normális"
+msgstr "Normál"
 
 #: simulation/data/map_sizes.jsonSizes[3].LongName
 msgid "Normal (4 players)"
-msgstr "Normális (4 játékos)"
+msgstr "Normál (4 játékos)"
 
 #: simulation/data/map_sizes.jsonSizes[4].Name
 msgid "Large"
@@ -857,11 +822,11 @@ msgstr "Nagy (6 játékos)"
 
 #: simulation/data/map_sizes.jsonSizes[5].Name
 msgid "Very Large"
-msgstr "Nagyon Nagy"
+msgstr "Nagyon nagy"
 
 #: simulation/data/map_sizes.jsonSizes[5].LongName
 msgid "Very Large (8 players)"
-msgstr "Nagyon Nagy (8 játékos)"
+msgstr "Nagyon nagy (8 játékos)"
 
 #: simulation/data/map_sizes.jsonSizes[6].Name
 #: simulation/data/map_sizes.jsonSizes[6].LongName
@@ -870,7 +835,7 @@ msgstr "Óriás"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr "Petra Bot"
+msgstr "Petra bot"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""

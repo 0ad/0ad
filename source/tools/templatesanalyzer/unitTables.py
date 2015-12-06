@@ -1,8 +1,27 @@
+# Copyright (c) 2015 Wildfire Games
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
 import xml.etree.ElementTree as ET
 import os
 import glob
 
-# What data to use
 AttackTypes = ["Hack","Pierce","Crush"]
 Resources = ["food", "wood", "stone", "metal"]
 
@@ -17,7 +36,7 @@ LoadTemplatesIfParent = ["template_unit_infantry.xml", "template_unit_cavalry.xm
 Civs = ["athen", "mace", "spart", "sele", "cart", "rome", "pers", "maur", "brit", "gaul", "iber"]
 
 # Remote Civ templates with those strings in their name.
-FilterOut = ["marian"]
+FilterOut = ["marian", "thureophoros", "thorakites", "kardakes"]
 
 # Sorting parameters for the "roster variety" table
 ComparativeSortByCav = True
@@ -58,12 +77,26 @@ def hasParentTemplate(UnitName, parentName):
 
 	return False
 
+def NumericStatProcess(unitValue, templateValue):
+   	if not "op" in templateValue.attrib:
+   		return float(templateValue.text)
+	if (templateValue.attrib["op"] == "add"):
+		unitValue += float(templateValue.text)
+	elif (templateValue.attrib["op"] == "sub"):
+		unitValue -= float(templateValue.text)
+	elif (templateValue.attrib["op"] == "mul"):
+		unitValue *= float(templateValue.text)
+	elif (templateValue.attrib["op"] == "div"):
+		unitValue /= float(templateValue.text)
+	return unitValue
+
+
 # This function parses the entity values manually.
 def CalcUnit(UnitName, existingUnit = None):
 	unit = { 'HP' : "0", "BuildTime" : "0", "Cost" : { 'food' : "0", "wood" : "0", "stone" : "0", "metal" : "0", "population" : "0"},
 	'Attack' : { "Melee" : { "Hack" : 0, "Pierce" : 0, "Crush" : 0 }, "Ranged" : { "Hack" : 0, "Pierce" : 0, "Crush" : 0 } },
-	'RepeatRate' : {"Melee" : "0", "Ranged" : "0"},'PrepRate' : {"Melee" : "0", "Ranged" : "0"}, "Armour" : {},
-	"Ranged" : False, "Classes" : [], "AttackBonuses" : {}, "Restricted" : [],
+	'RepeatRate' : {"Melee" : "0", "Ranged" : "0"},'PrepRate' : {"Melee" : "0", "Ranged" : "0"}, "Armour" : { "Hack" : 0, "Pierce" : 0, "Crush" : 0},
+	"Ranged" : False, "Classes" : [], "AttackBonuses" : {}, "Restricted" : [], "WalkSpeed" : 0, "Range" : 0, "Spread" : 0,
 	"Civ" : None }
 	
 	if (existingUnit != None):
@@ -80,26 +113,26 @@ def CalcUnit(UnitName, existingUnit = None):
 		unit['Civ'] = Template.find("./Identity/Civ").text
 
 	if (Template.find("./Health/Max") != None):
-		unit['HP'] = Template.find("./Health/Max").text
+		unit['HP'] = NumericStatProcess(unit['HP'], Template.find("./Health/Max"))
 
 	if (Template.find("./Cost/BuildTime") != None):
-		unit['BuildTime'] = Template.find("./Cost/BuildTime").text
+		unit['BuildTime'] = NumericStatProcess(unit['BuildTime'], Template.find("./Cost/BuildTime"))
 	
 	if (Template.find("./Cost/Resources") != None):
 		for type in list(Template.find("./Cost/Resources")):
-			unit['Cost'][type.tag] = type.text
+			unit['Cost'][type.tag] = NumericStatProcess(unit['Cost'][type.tag], type)
 
 	if (Template.find("./Cost/Population") != None):
-		unit['Cost']["population"] = Template.find("./Cost/Population").text
+		unit['Cost']["population"] = NumericStatProcess(unit['Cost']["population"], Template.find("./Cost/Population"))
 
 	if (Template.find("./Attack/Melee") != None):
 		if (Template.find("./Attack/Melee/RepeatTime") != None):
-			unit['RepeatRate']["Melee"] = Template.find("./Attack/Melee/RepeatTime").text
+			unit['RepeatRate']["Melee"] = NumericStatProcess(unit['RepeatRate']["Melee"], Template.find("./Attack/Melee/RepeatTime"))
 		if (Template.find("./Attack/Melee/PrepareTime") != None):
-			unit['PrepRate']["Melee"] = Template.find("./Attack/Melee/PrepareTime").text
+			unit['PrepRate']["Melee"] = NumericStatProcess(unit['PrepRate']["Melee"], Template.find("./Attack/Melee/PrepareTime"))
 		for atttype in AttackTypes:
 			if (Template.find("./Attack/Melee/"+atttype) != None):
-				unit['Attack']['Melee'][atttype] = Template.find("./Attack/Melee/"+atttype).text
+				unit['Attack']['Melee'][atttype] = NumericStatProcess(unit['Attack']['Melee'][atttype], Template.find("./Attack/Melee/"+atttype))
 		if (Template.find("./Attack/Melee/Bonuses") != None):
 			for Bonus in Template.find("./Attack/Melee/Bonuses"):
 				Against = []
@@ -123,16 +156,16 @@ def CalcUnit(UnitName, existingUnit = None):
 	if (Template.find("./Attack/Ranged") != None):
 		unit['Ranged'] = True
 		if (Template.find("./Attack/Ranged/MaxRange") != None):
-			unit['Range'] = Template.find("./Attack/Ranged/MaxRange").text
+			unit['Range'] = NumericStatProcess(unit['Range'], Template.find("./Attack/Ranged/MaxRange"))
 		if (Template.find("./Attack/Ranged/Spread") != None):
-			unit['Spread'] = Template.find("./Attack/Ranged/Spread").text
+			unit['Spread'] = NumericStatProcess(unit['Spread'], Template.find("./Attack/Ranged/Spread"))
 		if (Template.find("./Attack/Ranged/RepeatTime") != None):
-			unit['RepeatRate']["Ranged"] = Template.find("./Attack/Ranged/RepeatTime").text
+			unit['RepeatRate']["Ranged"] = NumericStatProcess(unit['RepeatRate']["Ranged"], Template.find("./Attack/Ranged/RepeatTime"))
 		if (Template.find("./Attack/Ranged/PrepareTime") != None):
-			unit['PrepRate']["Ranged"] = Template.find("./Attack/Ranged/PrepareTime").text
+			unit['PrepRate']["Ranged"] = NumericStatProcess(unit['PrepRate']["Ranged"], Template.find("./Attack/Ranged/PrepareTime"))
 		for atttype in AttackTypes:
 			if (Template.find("./Attack/Ranged/"+atttype) != None):
-				unit['Attack']['Ranged'][atttype] = Template.find("./Attack/Ranged/"+atttype).text
+				unit['Attack']['Ranged'][atttype] = NumericStatProcess(unit['Attack']['Ranged'][atttype], Template.find("./Attack/Ranged/"+atttype))
 		if (Template.find("./Attack/Ranged/Bonuses") != None):
 			for Bonus in Template.find("./Attack/Ranged/Bonuses"):
 				Against = []
@@ -155,11 +188,11 @@ def CalcUnit(UnitName, existingUnit = None):
 	if (Template.find("./Armour") != None):
 		for atttype in AttackTypes:
 			if (Template.find("./Armour/"+atttype) != None):
-				unit['Armour'][atttype] = Template.find("./Armour/"+atttype).text
+				unit['Armour'][atttype] = NumericStatProcess(unit['Armour'][atttype], Template.find("./Armour/"+atttype))
 
 	if (Template.find("./UnitMotion") != None):
 		if (Template.find("./UnitMotion/WalkSpeed") != None):
-				unit['WalkSpeed'] = Template.find("./UnitMotion/WalkSpeed").text
+				unit['WalkSpeed'] = NumericStatProcess(unit['WalkSpeed'], Template.find("./UnitMotion/WalkSpeed"))
 
 	if (Template.find("./Identity/VisibleClasses") != None):
 		newClasses = Template.find("./Identity/VisibleClasses").text.split(" ")
@@ -209,7 +242,7 @@ def WriteUnit(Name, UnitDict):
 			ret += "<td> - </td>"
 		ret += "<td> - </td>"
 
-	if UnitDict["Ranged"] == True:
+	if UnitDict["Ranged"] == True and UnitDict["Range"] > 0:
 		ret += "<td>" + str("%.1f" % float(UnitDict["Range"])) + "</td>"
 		spread = (float(UnitDict["Spread"]) / float(UnitDict["Range"]))*100.0
 		ret += "<td>" + str("%.1f" % spread) + "</td>"

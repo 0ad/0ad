@@ -39,7 +39,7 @@ OsPath GetDirectoryName();
 /**
  * Replays the commands.txt file in the given subdirectory visually.
  */
-void StartVisualReplay(CStrW directory);
+void StartVisualReplay(const CStrW& directory);
 
 /**
  * Get a list of replays to display in the GUI.
@@ -67,6 +67,11 @@ bool DeleteReplay(const CStrW& replayFile);
  * Returns the parsed header of the replay file (commands.txt).
  */
 JS::Value GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
+
+/**
+ * Returns whether or not the metadata / summary screen data has been saved properly when the game ended.
+ */
+bool HasReplayMetadata(const CStrW& directoryName);
 
 /**
  * Returns the metadata of a replay.

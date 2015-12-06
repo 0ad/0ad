@@ -40,6 +40,11 @@ JS::Value JSI_VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxP
 	return VisualReplay::GetReplayAttributes(pCxPrivate, directoryName);
 }
 
+bool JSI_VisualReplay::HasReplayMetadata(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW directoryName)
+{
+	return VisualReplay::HasReplayMetadata(directoryName);
+}
+
 JS::Value JSI_VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, CStrW directoryName)
 {
 	return VisualReplay::GetReplayMetadata(pCxPrivate, directoryName);
@@ -57,5 +62,6 @@ void JSI_VisualReplay::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, CStrW, &StartVisualReplay>("StartVisualReplay");
 	scriptInterface.RegisterFunction<JS::Value, CStrW, &GetReplayAttributes>("GetReplayAttributes");
 	scriptInterface.RegisterFunction<JS::Value, CStrW, &GetReplayMetadata>("GetReplayMetadata");
+	scriptInterface.RegisterFunction<bool, CStrW, &HasReplayMetadata>("HasReplayMetadata");
 	scriptInterface.RegisterFunction<void, CStrW, &SaveReplayMetadata>("SaveReplayMetadata");
 }

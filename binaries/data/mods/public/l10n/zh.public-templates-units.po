@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-11-02 15:04+0000\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-11-30 09:46+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -287,7 +287,7 @@ msgstr "杀死，然后从丰富的海洋资源中收集食物。"
 #: simulation/templates/units/gaul_hero_britomartus.xml:10
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:13
 #: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:13
 msgid "Hero Aura"
 msgstr "英雄光环"
 
@@ -475,7 +475,7 @@ msgstr "鼓舞光环"
 msgid "Nearby males work 10% faster"
 msgstr "附近的男性单位工作快10%"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:55
+#: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
 msgstr "女市民"
 
@@ -932,17 +932,17 @@ msgstr "布立吞长剑士"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:13
+#: simulation/templates/units/brit_hero_boudicca.xml:14
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "Champion Army"
 msgstr "精英军队"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca.xml:15
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:14
 msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
 msgstr ""
 
-#: simulation/templates/units/brit_hero_boudicca.xml:25
+#: simulation/templates/units/brit_hero_boudicca.xml:27
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:20
 msgid "Boudicca"
 msgstr "艾西尼王后布狄卡"
@@ -998,9 +998,8 @@ msgid "Reithe"
 msgstr "Reithe"
 
 #: simulation/templates/units/brit_ship_fishing.xml:5
-#: simulation/templates/units/gaul_ship_fishing.xml:5
-msgid "/Fishing Boat/"
-msgstr "/渔船/"
+msgid "Manea"
+msgstr ""
 
 #: simulation/templates/units/brit_ship_merchant.xml:9
 #: simulation/templates/units/gaul_ship_merchant.xml:9
@@ -1317,6 +1316,10 @@ msgstr ""
 msgid "Vercingetorix"
 msgstr "维钦托利"
 
+#: simulation/templates/units/gaul_ship_fishing.xml:5
+msgid "Lembus"
+msgstr ""
+
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
 msgstr ""
@@ -1492,15 +1495,15 @@ msgstr "德米特里一世"
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
-#: simulation/templates/units/mace_hero_philip.xml:13
+#: simulation/templates/units/mace_hero_philip.xml:14
 msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr ""
 
-#: simulation/templates/units/mace_hero_philip.xml:19
+#: simulation/templates/units/mace_hero_philip.xml:21
 msgid "Philip II of Macedon"
 msgstr "马其顿王国腓力二世"
 
-#: simulation/templates/units/mace_hero_philip.xml:20
+#: simulation/templates/units/mace_hero_philip.xml:22
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
@@ -2670,19 +2673,19 @@ msgstr ""
 msgid "Brasidas"
 msgstr "伯拉西达"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:12
+#: simulation/templates/units/spart_hero_leonidas.xml:14
 msgid "Last Stand Aura"
 msgstr ""
 
-#: simulation/templates/units/spart_hero_leonidas.xml:13
+#: simulation/templates/units/spart_hero_leonidas.xml:15
 msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
 msgstr ""
 
-#: simulation/templates/units/spart_hero_leonidas.xml:20
+#: simulation/templates/units/spart_hero_leonidas.xml:22
 msgid "Leonidas I"
 msgstr "列奥尼达斯"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:21
+#: simulation/templates/units/spart_hero_leonidas.xml:23
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 

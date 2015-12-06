@@ -76,7 +76,13 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 	// Look for special attributes
 	int at_disable = xmb.GetAttributeID("disable");
 	int at_replace = xmb.GetAttributeID("replace");
+	int at_op = xmb.GetAttributeID("op");
 	int at_datatype = xmb.GetAttributeID("datatype");
+	enum op {
+		INVALID,
+		ADD,
+		MUL
+	} op = INVALID;
 	bool replacing = false;
 	{
 		XERO_ITER_ATTR(element, attr)
@@ -90,6 +96,15 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 			{
 				m_Childs.erase(name);
 				replacing = true;
+			}
+			else if (attr.Name == at_op)
+			{
+				if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"add") 
+					op = ADD; 
+				else if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"mul") 
+					op = MUL; 
+				else 
+					LOGWARNING("Invalid op '%ls'", attr.Value); 
 			}
 		}
 	}
@@ -137,6 +152,22 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 
 	// Add this element as a child node
 	CParamNode& node = m_Childs[name];
+	if (op != INVALID) 
+	{ 
+		// TODO: Support parsing of data types other than fixed; log warnings in other cases
+		fixed oldval = node.ToFixed();
+		fixed mod = fixed::FromString(CStrW(value));
+		switch (op) 
+		{ 
+		case ADD: 
+			node.m_Value = (oldval + mod).ToString().FromUTF8(); 
+			break; 
+		case MUL: 
+			node.m_Value = (oldval.Multiply(mod)).ToString().FromUTF8(); 
+			break; 
+		} 
+		hasSetValue = true; 
+	} 
 	if (!hasSetValue)
 		node.m_Value = value;
 
@@ -150,7 +181,8 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 	XERO_ITER_ATTR(element, attr)
 	{
 		// Skip special attributes
-		if (attr.Name == at_replace) continue;
+		if (attr.Name == at_replace || attr.Name == at_op)
+			continue;
 		// Add any others
 		std::string attrName = xmb.GetAttributeString(attr.Name);
 		node.m_Childs["@" + attrName].m_Value = attr.Value.FromUTF8();

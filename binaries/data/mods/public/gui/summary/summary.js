@@ -132,31 +132,11 @@ function init(data)
 	updateObjectPlayerPosition();
 	g_GameData = data;
 
-	// Map
-	var mapDisplayType = translate("Scenario");
-
+	var mapSize = data.mapSettings.Size ? g_Settings.MapSizes.find(size => size.Tiles == data.mapSettings.Size) : undefined;
+	var mapType = g_Settings.MapTypes.find(mapType => mapType.Name == data.mapSettings.mapType);
 	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(translate("Game time elapsed: %(time)s"), { "time": timeToString(data.timeElapsed) });
-
 	Engine.GetGUIObjectByName("summaryText").caption = data.gameResult;
-
-	// This is only defined for random maps
-	if (data.mapSettings.Size)
-	{
-		// load the map sizes from the JSON file
-		var mapSizes = initMapSizes();
-
-		// retrieve the index of the map size
-		for (var mapSizeIndex in mapSizes.tiles)
-		{
-			if (mapSizes.tiles[mapSizeIndex] == data.mapSettings.Size)
-			{
-				mapDisplayType = mapSizes.names[mapSizeIndex];
-				break;
-			}
-		}
-	}
-
-	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { "mapName": translate(data.mapSettings.Name), "mapType": mapDisplayType });
+	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { "mapName": translate(data.mapSettings.Name), "mapType": mapSize ? mapSize.LongName : (mapType ? mapType.Title : "") });
 
 	// Panels
 	g_PlayerCount = data.playerStates.length - 1;

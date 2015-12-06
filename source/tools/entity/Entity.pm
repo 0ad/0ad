@@ -83,6 +83,19 @@ sub apply_layer
             }
         }
         $base->{' content'} = join ' ', @t;
+    } elsif ($new->{'@op'}) {
+        my $op = $new->{'@op'}{' content'};
+        my $op1 = $base->{' content'};
+        my $op2 = $new->{' content'};
+        if ($op eq 'add') {
+            $base->{' content'} = $op1 + $op2;
+        }
+        elsif ($op eq 'mul') {
+            $base->{' content'} = $op1 * $op2;
+        }
+        else {
+            die "Invalid operator '$op'";
+        }
     } else {
         $base->{' content'} = $new->{' content'};
     }

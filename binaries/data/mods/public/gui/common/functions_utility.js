@@ -1,10 +1,3 @@
-/*
-	DESCRIPTION	: Generic utility functions.
-	NOTES	:
-*/
-
-// ====================================================================
-
 function getRandom(randomMin, randomMax)
 {
 	// Returns a random whole number in a min..max range.
@@ -14,8 +7,6 @@ function getRandom(randomMin, randomMax)
 	var randomNum = randomMin + (randomMax-randomMin)*Math.random();  // num is random, from A to B
 	return Math.round(randomNum);
 }
-
-// ====================================================================
 
 // Get list of XML files in pathname with recursion, excepting those starting with _
 function getXMLFileList(pathname)
@@ -40,8 +31,6 @@ function getXMLFileList(pathname)
 	return result;
 }
 
-// ====================================================================
-
 // Get list of JSON files in pathname
 function getJSONFileList(pathname)
 {
@@ -52,8 +41,6 @@ function getJSONFileList(pathname)
 
 	return files;
 }
-
-// ====================================================================
 
 // A sorting function for arrays of objects with 'name' properties, ignoring case
 function sortNameIgnoreCase(x, y)
@@ -69,8 +56,6 @@ function sortNameIgnoreCase(x, y)
 		return 0;
 }
 
-// ====================================================================
-
 /**
  * Escape tag start and escape characters, so users cannot use special formatting.
  * Also limit string length to 256 characters (not counting escape characters).
@@ -81,50 +66,6 @@ function escapeText(text)
 		return text;
 
 	return text.substr(0, 255).replace(/\\/g, "\\\\").replace(/\[/g, "\\[");
-}
-
-// ====================================================================
-
-// Load map size data
-function initMapSizes()
-{
-	var sizes = {
-		"shortNames":[],
-		"names":[],
-		"tiles": [],
-		"default": 0
-	};
-
-	var data = Engine.ReadJSONFile("simulation/data/map_sizes.json");
-	if (!data || !data.Sizes)
-	{
-		error("Failed to parse map sizes in map_sizes.json (check for valid JSON data)");
-		return sizes;
-	}
-
-	translateObjectKeys(data, ["Name", "LongName"]);
-	for (var i = 0; i < data.Sizes.length; ++i)
-	{
-		sizes.shortNames.push(data.Sizes[i].Name);
-		sizes.names.push(data.Sizes[i].LongName);
-		sizes.tiles.push(data.Sizes[i].Tiles);
-
-		if (data.Sizes[i].Default)
-			sizes["default"] = i;
-	}
-
-	return sizes;
-}
-
-/**
- * Returns title or placeholder. Requires g_mapSizes.
- *
- * @param mapSize {Number} - tilecount
- */
-function translateMapSize(tiles)
-{
-	var idx = g_mapSizes.tiles.indexOf(+tiles);
-	return (idx == -1) ? translateWithContext("map size", "Default") : g_mapSizes.shortNames[idx];
 }
 
 /**
@@ -145,8 +86,6 @@ function getMapDescriptionAndPreview(mapType, mapName)
 		"preview": mapData && mapData.settings && mapData.settings.Preview ? mapData.settings.Preview : "nopreview.png"
 	};
 }
-
-// ====================================================================
 
 // Convert integer color values to string (for use in GUI objects)
 function rgbToGuiColor(color, alpha)
@@ -175,8 +114,6 @@ function colorDistance(color1, color2)
 	return Math.sqrt(Math.pow(color2.r - color1.r, 2) + Math.pow(color2.g - color1.g, 2) + Math.pow(color2.b - color1.b, 2));
 }
 
-// ====================================================================
-
 /**
  * Convert time in milliseconds to [hh:]mm:ss string representation.
  * @param time Time period in milliseconds (integer)
@@ -191,8 +128,6 @@ function timeToString(time)
 	return Engine.FormatMillisecondsIntoDateString(time, format);
 }
 
-// ====================================================================
-
 function removeDupes(array)
 {
 	// loop backwards to make splice operations cheaper
@@ -204,7 +139,6 @@ function removeDupes(array)
 	}
 }
 
-// ====================================================================
 // "Inside-out" implementation of Fisher-Yates shuffle
 function shuffleArray(source)
 {
@@ -221,7 +155,6 @@ function shuffleArray(source)
 	return result;
 }
 
-// ====================================================================
 // Filter out conflicting characters and limit the length of a given name.
 // @param name Name to be filtered.
 // @param stripUnicode Whether or not to remove unicode characters.

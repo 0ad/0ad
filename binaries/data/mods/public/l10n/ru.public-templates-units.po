@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-11-13 18:03+0000\n"
-"Last-Translator: Woratiklis\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-11-30 09:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -302,7 +302,7 @@ msgstr "Убейте, затем соберите пищу с этого оби�
 #: simulation/templates/units/gaul_hero_britomartus.xml:10
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:13
 #: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:13
 msgid "Hero Aura"
 msgstr "Аура героя"
 
@@ -490,7 +490,7 @@ msgstr "Аура воодушевления"
 msgid "Nearby males work 10% faster"
 msgstr "Мужчины, находящиеся неподалёку от женщин, работают на 10% быстрее"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:55
+#: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
 msgstr "Горожанка"
 
@@ -947,17 +947,17 @@ msgstr "Бриттский мечник с длинным мечом"
 msgid "Delamokludda"
 msgstr "Деламоклудда"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:13
+#: simulation/templates/units/brit_hero_boudicca.xml:14
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "Champion Army"
 msgstr "Армия чемпионов"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca.xml:15
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:14
 msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
 msgstr "Чемпионы получают +5 к атаке, +2 к захвату и +25% к скорости."
 
-#: simulation/templates/units/brit_hero_boudicca.xml:25
+#: simulation/templates/units/brit_hero_boudicca.xml:27
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:20
 msgid "Boudicca"
 msgstr "Боудикка"
@@ -1013,9 +1013,8 @@ msgid "Reithe"
 msgstr "Реита"
 
 #: simulation/templates/units/brit_ship_fishing.xml:5
-#: simulation/templates/units/gaul_ship_fishing.xml:5
-msgid "/Fishing Boat/"
-msgstr "/Рыбацкая лодка/"
+msgid "Manea"
+msgstr ""
 
 #: simulation/templates/units/brit_ship_merchant.xml:9
 #: simulation/templates/units/gaul_ship_merchant.xml:9
@@ -1332,6 +1331,10 @@ msgstr "Все юниты под его аурой получают +2 к ата
 msgid "Vercingetorix"
 msgstr "Верцингеторикс"
 
+#: simulation/templates/units/gaul_ship_fishing.xml:5
+msgid "Lembus"
+msgstr ""
+
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
 msgstr "Кантабриако Салдун"
@@ -1507,15 +1510,15 @@ msgstr "Деметрий Завоеватель"
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Деметриос Полиоркетес"
 
-#: simulation/templates/units/mace_hero_philip.xml:13
+#: simulation/templates/units/mace_hero_philip.xml:14
 msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr "Чемпионы получают +5 к атаке и +2 к захвату."
 
-#: simulation/templates/units/mace_hero_philip.xml:19
+#: simulation/templates/units/mace_hero_philip.xml:21
 msgid "Philip II of Macedon"
 msgstr "Филипп II Македонский"
 
-#: simulation/templates/units/mace_hero_philip.xml:20
+#: simulation/templates/units/mace_hero_philip.xml:22
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Филиппос Дейтерос хо Македон"
 
@@ -2685,19 +2688,19 @@ msgstr "Илотские застрельщики под его взором п�
 msgid "Brasidas"
 msgstr "Брасид"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:12
+#: simulation/templates/units/spart_hero_leonidas.xml:14
 msgid "Last Stand Aura"
 msgstr "Аура последней битвы"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:13
+#: simulation/templates/units/spart_hero_leonidas.xml:15
 msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
 msgstr "Гоплиты и спартиаты, находящиеся рядом, получают +20% к атаке и +1 к захвату."
 
-#: simulation/templates/units/spart_hero_leonidas.xml:20
+#: simulation/templates/units/spart_hero_leonidas.xml:22
 msgid "Leonidas I"
 msgstr "Леонид I"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:21
+#: simulation/templates/units/spart_hero_leonidas.xml:23
 msgid "Leōnídēs"
 msgstr "Леонидес"
 

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Balázs Úr <urbalazs@gmail.com>, 2015
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Stew Den <stewden55@hotmail.com>, 2014
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-16 08:31+0100\n"
-"PO-Revision-Date: 2015-11-16 09:47+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-01 17:31+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr "Természet"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
-msgstr "Átlagos növényzet"
+msgstr "Átlalános növényzet"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
@@ -46,11 +47,11 @@ msgstr "Fa"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
-msgstr "Vágd ki, faanyag gyűjtéséhez!"
+msgstr "Vágd ki faanyag gyűjtéséhez!"
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
-msgstr ""
+msgstr "Általános földtan"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
@@ -74,11 +75,11 @@ msgstr "Kőbánya"
 
 #: simulation/templates/template_gaia_geo_rock.xml:6
 msgid "Mine these to provide Stone building material."
-msgstr "Bányássz ezekből, hogy több Követ szerezz!"
+msgstr "Bányássz ezekből, hogy építőanyag követ szerezz!"
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr "Romok"
+msgstr "Általános romok"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
@@ -93,7 +94,7 @@ msgstr "Ezek a romok erőforrásként kiaknázhatók."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr "Kincs"
+msgstr "Általános kincs"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -127,25 +128,25 @@ msgstr "Egység"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
-msgstr "Nagy Sándor Serege."
+msgstr "Nagy Sándor serege."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great"
-msgstr "Nagy Sándor Serege"
+msgstr "Nagy Sándor serege"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "This is what an army would look like on the Strat Map."
-msgstr ""
+msgstr "Ez az, ahogy egy seregnek ki kellene néznie a stratégiai térképen."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
-msgstr "Macedónia Serege"
+msgstr "Macedónia serege"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
-msgstr "Macedónia Serege"
+msgstr "Macedónia serege"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
 msgid "Army of Leonidas I."
@@ -162,19 +163,19 @@ msgstr "Település"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr "Apró Görög Polisz"
+msgstr "Kisebb görög polisz"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "Ez egy kisebb görög város."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr "Görög Polisz"
+msgstr "Görög polisz"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "Ez egy jelentősebb görög város."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -186,7 +187,7 @@ msgstr ""
 
 #: simulation/templates/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr ""
+msgstr "Harcvonal"
 
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
@@ -202,7 +203,7 @@ msgstr "Zárt oszlop"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
-msgstr "Nyitott Oszlop"
+msgstr "Nyitott oszlop"
 
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
@@ -210,15 +211,15 @@ msgstr "8 egység szükséges"
 
 #: simulation/templates/formations/flank.xml:7
 msgid "Flank"
-msgstr ""
+msgstr "Oldalsánc"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
-msgstr "Zárt Vonal"
+msgstr "Zárt vonal"
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
-msgstr "Nyitott Vonal"
+msgstr "Nyitott vonal"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
@@ -226,7 +227,7 @@ msgstr "Nincs"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
-msgstr ""
+msgstr "10 közelharci gyalogos egység szükséges"
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -234,11 +235,11 @@ msgstr "Phalanx"
 
 #: simulation/templates/formations/scatter.xml:5
 msgid "Scatter"
-msgstr ""
+msgstr "Szétszóródás"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Only ranged units allowed"
-msgstr ""
+msgstr "Csak távolsági egységek engedélyezettek"
 
 #: simulation/templates/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -246,7 +247,7 @@ msgstr "Csata"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "9 pike infantry units required"
-msgstr ""
+msgstr "9 lándzsás gyalogos egység szükséges"
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
@@ -254,15 +255,15 @@ msgstr "Szüntagma"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "9 melee infantry units required"
-msgstr ""
+msgstr "9 közelharci gyalogos egység szükséges"
 
 #: simulation/templates/formations/testudo.xml:7
 msgid "Testudo"
-msgstr ""
+msgstr "Pajzsfedezék"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "3 cavalry units required"
-msgstr ""
+msgstr "3 lovas egység szükséges"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
@@ -290,7 +291,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
-msgstr ""
+msgstr "Nílusi krokodil"
 
 #: simulation/templates/gaia/fauna_deer.xml:5
 msgid "Deer"
@@ -302,19 +303,19 @@ msgstr "Elefánt"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
 msgid "African Bush Elephant"
-msgstr ""
+msgstr "Afrikai bokor elefánt"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
-msgstr "Afrikai Elefánt (Csecsemő)"
+msgstr "Afrikai elefánt (csecsemő)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:46
 msgid "Asian Elephant"
-msgstr "Ázsiai Elefánt"
+msgstr "Ázsiai elefánt"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:33
 msgid "North African Elephant"
-msgstr "Észak-afrikai Elefánt"
+msgstr "Észak-afrikai elefánt"
 
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
@@ -336,15 +337,15 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
-msgstr ""
+msgstr "Gazella"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 msgid "Giraffe (Adult)"
-msgstr "Zsiráf (Felnőtt)"
+msgstr "Zsiráf (felnőtt)"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffe (Juvenile)"
-msgstr ""
+msgstr "Zsiráf (fiatal)"
 
 #: simulation/templates/gaia/fauna_goat.xml:11
 msgid "Goat"
@@ -360,11 +361,11 @@ msgstr "Oroszlán"
 
 #: simulation/templates/gaia/fauna_lioness.xml:18
 msgid "Lioness"
-msgstr ""
+msgstr "Nőstény oroszlán"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
-msgstr ""
+msgstr "Pézsmatulok"
 
 #: simulation/templates/gaia/fauna_peacock.xml:8
 msgid "Peacock"
@@ -380,11 +381,11 @@ msgstr "Nyúl"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr ""
+msgstr "Orrszarvú"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
-msgstr ""
+msgstr "Nagy fehér"
 
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Shark"
@@ -404,15 +405,15 @@ msgstr "Rozmár"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:4
 msgid "Fin Whale"
-msgstr ""
+msgstr "Barázdásbálna"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
-msgstr ""
+msgstr "Hosszúszárnyú bálna"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Wildebeest"
-msgstr ""
+msgstr "Gnú"
 
 #: simulation/templates/gaia/fauna_wolf.xml:18
 msgid "Wolf"
@@ -444,7 +445,7 @@ msgstr "Szüretelj szőlőt ezekről a tőkékről élelemért."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
-msgstr "Lombhullató Bokor"
+msgstr "Lombhullató bokor"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
@@ -456,21 +457,21 @@ msgstr "Almafa"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 msgid "Baobab"
-msgstr ""
+msgstr "Majomkenyérfa"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
-msgstr ""
+msgstr "Szentjánoskenyérfa"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
 msgid "Cretan Date Palm"
-msgstr ""
+msgstr "Krétai datolyapálma"
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 msgid "Cypress Tree"
-msgstr ""
+msgstr "Ciprusfa"
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 msgid "Date Palm"
@@ -478,12 +479,12 @@ msgstr "Datolyapálma"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
-msgstr "Korhadt Fa"
+msgstr "Korhadt fa"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
-msgstr ""
+msgstr "Európai bükkfa"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
@@ -495,7 +496,7 @@ msgstr "Szüretelj fügét több élelemért."
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
-msgstr ""
+msgstr "Lószőrpálma"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
@@ -504,7 +505,7 @@ msgstr "Tölgyfa"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
-msgstr "Nagy Tölgy"
+msgstr "Nagy tölgyfa"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
@@ -516,7 +517,7 @@ msgstr "Pálma"
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr "Trópusi Pálma"
+msgstr "Trópusi pálma"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
@@ -529,15 +530,15 @@ msgstr "Nyárfa"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Lombardy Poplar Tree"
-msgstr ""
+msgstr "Jegenyenyárfa"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
-msgstr ""
+msgstr "Szenegál datolyapálma"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
-msgstr ""
+msgstr "Tamariszkuszfa"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
@@ -546,7 +547,7 @@ msgstr ""
 #: simulation/templates/gaia/special_ruins.xml:10
 #: simulation/templates/gaia/special_ruins_column_doric.xml:10
 msgid "Ancient Ruins"
-msgstr ""
+msgstr "Ősi romok"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
@@ -557,15 +558,15 @@ msgstr "Kő romok"
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:10
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:10
 msgid "Celtic Standing Stone"
-msgstr ""
+msgstr "Kelta állókő"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
-msgstr ""
+msgstr "Ptolemaioszi egyiptomi szobrok"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
 msgid "Roman Statues"
-msgstr "Római Oszlopok"
+msgstr "Római szobrok"
 
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:10
 #: simulation/templates/gaia/special_treasure_food_bin.xml:10
@@ -574,41 +575,41 @@ msgstr "Római Oszlopok"
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
 msgid "Food Treasure"
-msgstr "Étel Kincs"
+msgstr "Élelemkincs"
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
-msgstr ""
+msgstr "Félig eltemetett hordók"
 
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
 msgid "Persian Food Stores"
-msgstr "Perzsa faraktárak"
+msgstr "Perzsa élelemraktárak"
 
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
 msgid "Persian Food Treasure"
-msgstr "Perzsa ételkincs"
+msgstr "Perzsa élelemkincs"
 
 #: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
 msgid "Golden Fleece"
-msgstr ""
+msgstr "Aranygyapjú"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
 msgid "Metal Treasure"
-msgstr ""
+msgstr "Fémkincs"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:10
 msgid "Secret Box"
-msgstr "Titkos Doboz"
+msgstr "Titkos doboz"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
-msgstr ""
+msgstr "Perzsa áruk"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
 msgid "Persian Rugs"
-msgstr "Perzsa Szőnyegek"
+msgstr "Perzsa szőnyegek"
 
 #: simulation/templates/gaia/special_treasure_pegasus.xml:10
 msgid "Pegasus"
@@ -617,11 +618,11 @@ msgstr "Pegazus"
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:9
 #: simulation/templates/gaia/special_treasure_stone.xml:10
 msgid "Stone Treasure"
-msgstr "Kő Kincs"
+msgstr "Kőkincs"
 
 #: simulation/templates/gaia/special_treasure_wood.xml:10
 msgid "Wood Treasure"
-msgstr "Fa Kincs"
+msgstr "Fakincs"
 
 #: simulation/templates/other/bench.xml:20
 msgid "Bench"
@@ -629,7 +630,7 @@ msgstr "Pad"
 
 #: simulation/templates/other/bench.xml:21
 msgid "Wooden Bench"
-msgstr "Fa Pad"
+msgstr "Fapad"
 
 #: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
@@ -639,11 +640,11 @@ msgstr "Híd"
 #: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
 msgid "Wooden Bridge"
-msgstr "Fa Híd"
+msgstr "Fahíd"
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
-msgstr ""
+msgstr "Áldozati templom"
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
@@ -659,7 +660,7 @@ msgstr "Kunyhó"
 
 #: simulation/templates/other/celt_hut.xml:23
 msgid "Add +2 to Population Cap."
-msgstr ""
+msgstr "+2 fő hozzáadása a maximális népességhez"
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
@@ -669,22 +670,22 @@ msgstr ""
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
-msgstr "+10 fő hozzáadása a maximális népességhez."
+msgstr "+10 fő hozzáadása a maximális népességhez"
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
 #: simulation/templates/other/column_doric_fallen_b.xml:20
 msgid "Column"
-msgstr ""
+msgstr "Oszlop"
 
 #: simulation/templates/other/column_doric.xml:21
 msgid "Doric Column"
-msgstr ""
+msgstr "Dór oszlop"
 
 #: simulation/templates/other/column_doric_fallen.xml:21
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
-msgstr ""
+msgstr "Ledőlt dór oszlop"
 
 #: simulation/templates/other/fence_long.xml:21
 #: simulation/templates/other/fence_short.xml:21
@@ -693,16 +694,16 @@ msgstr "Kerítés"
 
 #: simulation/templates/other/fence_long.xml:22
 msgid "Long Wooden Fence"
-msgstr ""
+msgstr "Hosszú fakerítés"
 
 #: simulation/templates/other/fence_short.xml:22
 msgid "Short Wooden Fence"
-msgstr ""
+msgstr "Rövid fakerítés"
 
 #: simulation/templates/other/fence_stone.xml:21
 #: simulation/templates/other/fence_stone.xml:22
 msgid "Stone Fence"
-msgstr ""
+msgstr "Kőkerítés"
 
 #: simulation/templates/other/generic_field.xml:9
 msgid "Wheat Field"
@@ -710,7 +711,7 @@ msgstr "Búzamező"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:29
 msgid "Epic Temple"
-msgstr "Hatalmas Templom"
+msgstr "Hatalmas templom"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Naos Parthenos"
@@ -722,11 +723,11 @@ msgstr ""
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
-msgstr ""
+msgstr "Oszlopcsarnok"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
-msgstr ""
+msgstr "Propülaia"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
@@ -759,7 +760,7 @@ msgstr "Obeliszk"
 
 #: simulation/templates/other/obelisk.xml:21
 msgid "Egyptian Obelisk"
-msgstr "Egyiptomi Obeliszk"
+msgstr "Egyiptomi obeliszk"
 
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
@@ -791,7 +792,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_fort.xml:6
 msgid "Wooden Tower"
-msgstr "Fa Torony"
+msgstr "Fatorony"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"
@@ -799,7 +800,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_gate.xml:21
 msgid "Wooden Gate"
-msgstr "Fa Kapu"
+msgstr "Fakapu"
 
 #: simulation/templates/other/palisades_rocks_long.xml:22
 #: simulation/templates/other/palisades_rocks_medium.xml:22
@@ -808,7 +809,7 @@ msgstr "Fa Kapu"
 #: simulation/templates/other/palisades_rocks_tower.xml:21
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
-msgstr ""
+msgstr "Palánk"
 
 #: simulation/templates/other/palisades_rocks_long.xml:23
 #: simulation/templates/other/palisades_rocks_medium.xml:23
@@ -817,7 +818,7 @@ msgstr ""
 #: simulation/templates/other/palisades_rocks_tower.xml:22
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
-msgstr "Fa Fal"
+msgstr "Fafal"
 
 #: simulation/templates/other/palisades_rocks_long.xml:24
 msgid "Convert Wooden Wall into Wooden Gate"
@@ -830,31 +831,31 @@ msgstr "Előörs"
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
 msgid "Wooden Watch Tower"
-msgstr ""
+msgstr "Fa őrtorony"
 
 #: simulation/templates/other/palisades_rocks_watchtower.xml:15
 msgid "Watchtower"
-msgstr ""
+msgstr "Őrtorony"
 
 #: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Spikes Small"
-msgstr ""
+msgstr "Alacsony cövekek"
 
 #: simulation/templates/other/palisades_small_spikes.xml:17
 msgid "Small Spikes"
-msgstr ""
+msgstr "Alacsony cövekek"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Spikes Tall"
-msgstr ""
+msgstr "Magas cövekek"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:17
 msgid "Tall Spikes"
-msgstr ""
+msgstr "Magas cövekek"
 
 #: simulation/templates/other/pers_apartment_block.xml:15
 msgid "Apartment Block"
-msgstr ""
+msgstr "Bérháztömb"
 
 #: simulation/templates/other/pers_house_a.xml:12
 msgid "House"
@@ -863,11 +864,11 @@ msgstr "Ház"
 #: simulation/templates/other/pers_house_b.xml:15
 #: simulation/templates/other/pers_inn.xml:15
 msgid "Inn"
-msgstr ""
+msgstr "Fogadó"
 
 #: simulation/templates/other/pers_warehouse.xml:12
 msgid "Warehouse"
-msgstr ""
+msgstr "Áruház"
 
 #: simulation/templates/other/plane.xml:37
 msgid "P-51 Mustang"
@@ -875,7 +876,7 @@ msgstr "P-51 Mustang"
 
 #: simulation/templates/other/plane.xml:39
 msgid "A World War 2 American fighter plane."
-msgstr "Egy 2. világháborús amerikai harci gép."
+msgstr "Egy 2. világháborús amerikai vadászrepülőgép."
 
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
@@ -884,40 +885,40 @@ msgstr "Piramis"
 
 #: simulation/templates/other/pyramid_great.xml:10
 msgid "Great Pyramid"
-msgstr "Nagy Piramis"
+msgstr "Nagy piramis"
 
 #: simulation/templates/other/pyramid_minor.xml:10
 msgid "Minor Pyramid"
-msgstr ""
+msgstr "Kisebb piramis"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
-msgstr ""
+msgstr "Hajóroncs"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr ""
+msgstr "Egy pusztuló katonai hajóroncs. Jó lehetőség bármely üzletembernek."
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr ""
+msgstr "Hajóroncs rakomány"
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
 "A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr ""
+msgstr "Egy hajóroncs sok életveszéllyel. Jó lehetőség bármely üzletembernek."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr ""
+msgstr "Egy kis teherhajó roncsa. Jó lehetőség bármely üzletembernek."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr ""
+msgstr "Egy félig döngölt teherhajó. Jó lehetőség bármely üzletembernek."
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
@@ -939,19 +940,19 @@ msgstr "Asztal"
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
-msgstr ""
+msgstr "Téglalap asztal"
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
-msgstr "Négyzetes Asztal"
+msgstr "Négyzetes asztal"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
-msgstr "Befejezetlen Görög Templom"
+msgstr "Befejezetlen görög templom"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr "Ez a templom befejezetlenül áll itt romjai között."
+msgstr "Ez a templom befejezetlen és romokban hever."
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

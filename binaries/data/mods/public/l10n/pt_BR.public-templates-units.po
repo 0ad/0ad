@@ -6,7 +6,7 @@
 # Cleiton Nunes <umarekhawari@gmail.com>, 2014
 # dexmendonca <dexmendoncadev@gmail.com>, 2014
 # Ernan, 2014-2015
-# Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2014
+# Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2014-2015
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # mac.edgar <mac.edgar@hotmail.com>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
@@ -15,14 +15,14 @@
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Raphael Mendonça, 2014
-# Thiago Perrotta <thiagoperrotta95@gmail.com>, 2015
+# Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
 # Teutao <victordaquino@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-24 15:18+0000\n"
-"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
+"POT-Creation-Date: 2015-11-30 09:01+0100\n"
+"PO-Revision-Date: 2015-12-01 01:57+0000\n"
+"Last-Translator: Leonardo Augusto Suzin <leonardosuzin@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -298,7 +298,7 @@ msgstr "Mate e depois colete comida desse recurso oceânico abundante."
 #: simulation/templates/units/gaul_hero_britomartus.xml:10
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:13
 #: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:13
 msgid "Hero Aura"
 msgstr "Aura de Herói"
 
@@ -486,7 +486,7 @@ msgstr "Aura de Inspiração"
 msgid "Nearby males work 10% faster"
 msgstr "Homens nas proximidades trabalham 10% mais rápido"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:55
+#: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
 msgstr "Cidadã"
 
@@ -943,17 +943,17 @@ msgstr "Guerreiro Bretão"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:13
+#: simulation/templates/units/brit_hero_boudicca.xml:14
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "Champion Army"
 msgstr "Exército Campeão"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca.xml:15
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:14
 msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
 msgstr "+5 de ataque, +2 de Captura e +25% de velocidade para unidades campeãs."
 
-#: simulation/templates/units/brit_hero_boudicca.xml:25
+#: simulation/templates/units/brit_hero_boudicca.xml:27
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:20
 msgid "Boudicca"
 msgstr "Boudica"
@@ -1009,9 +1009,8 @@ msgid "Reithe"
 msgstr "Reithe"
 
 #: simulation/templates/units/brit_ship_fishing.xml:5
-#: simulation/templates/units/gaul_ship_fishing.xml:5
-msgid "/Fishing Boat/"
-msgstr "/Pesqueiro/"
+msgid "Manea"
+msgstr "Manea"
 
 #: simulation/templates/units/brit_ship_merchant.xml:9
 #: simulation/templates/units/gaul_ship_merchant.xml:9
@@ -1328,6 +1327,10 @@ msgstr "+2 de ataque e +1 de Captura para todas as unidades dentro da sua aura."
 msgid "Vercingetorix"
 msgstr "Vercingetórix"
 
+#: simulation/templates/units/gaul_ship_fishing.xml:5
+msgid "Lembus"
+msgstr "Lembus"
+
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
 msgstr "Kantabriako Zaldun"
@@ -1503,15 +1506,15 @@ msgstr "Demétrio, O Sitiador"
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
-#: simulation/templates/units/mace_hero_philip.xml:13
+#: simulation/templates/units/mace_hero_philip.xml:14
 msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr "+5 de ataque e +2 de Captura para unidades campeãs."
 
-#: simulation/templates/units/mace_hero_philip.xml:19
+#: simulation/templates/units/mace_hero_philip.xml:21
 msgid "Philip II of Macedon"
 msgstr "Felipe II da Macedônia"
 
-#: simulation/templates/units/mace_hero_philip.xml:20
+#: simulation/templates/units/mace_hero_philip.xml:22
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
@@ -2681,19 +2684,19 @@ msgstr "Escaramuçadores Hilotas dentro do seu campo de visão ganham +2 ataque 
 msgid "Brasidas"
 msgstr "Brásidas"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:12
+#: simulation/templates/units/spart_hero_leonidas.xml:14
 msgid "Last Stand Aura"
 msgstr "Último Aura de Pé"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:13
+#: simulation/templates/units/spart_hero_leonidas.xml:15
 msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
 msgstr "+20% de Ataque e +1 de Captura para Hoplitas e Esparciatas próximos."
 
-#: simulation/templates/units/spart_hero_leonidas.xml:20
+#: simulation/templates/units/spart_hero_leonidas.xml:22
 msgid "Leonidas I"
 msgstr "Leônidas I"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:21
+#: simulation/templates/units/spart_hero_leonidas.xml:23
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 
