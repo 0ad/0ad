@@ -92,15 +92,6 @@ var g_SelectedPlayer = "";
 var g_SelectedGameIP = "";
 
 /**
- * Remembers how to sort the columns in the lobby playerlist / gamelist.
- * TODO: move logic to c++ / xml
- */
-var g_GameListSortBy = "name";
-var g_PlayerListSortBy = "name";
-var g_GameListOrder = 1; // 1 for ascending sort, and -1 for descending
-var g_PlayerListOrder = 1;
-
-/**
  * Called after the XmppConnection succeeded and when returning from a game.
  *
  * @param attribs {Object}
@@ -150,22 +141,6 @@ function initGameFilters()
 	mapTypeFilter.list_data = [""].concat(g_MapTypes.Name);
 
 	resetFilters();
-}
-
-function updateGameListOrderSelection()
-{
-	g_GameListSortBy = Engine.GetGUIObjectByName("gamesBox").selected_column;
-	g_GameListOrder = Engine.GetGUIObjectByName("gamesBox").selected_column_order;
-
-	applyFilters();
-}
-
-function updatePlayerListOrderSelection()
-{
-	g_PlayerListSortBy = Engine.GetGUIObjectByName("playersBox").selected_column;
-	g_PlayerListOrder = Engine.GetGUIObjectByName("playersBox").selected_column_order;
-
-	updatePlayerList();
 }
 
 function resetFilters()
@@ -240,6 +215,8 @@ function updateSubject(newSubject)
 function updatePlayerList()
 {
 	var playersBox = Engine.GetGUIObjectByName("playersBox");
+	var sortBy = playersBox.selected_column || "name";
+	var sortOrder = playersBox.selected_column_order || 1;
 
 	if (playersBox.selected > -1)
 		g_SelectedPlayer = playersBox.list[playersBox.selected];
@@ -251,7 +228,7 @@ function updatePlayerList()
 
 	var cleanPlayerList = Engine.GetPlayerList().sort((a, b) => {
 		var sortA, sortB;
-		switch (g_PlayerListSortBy)
+		switch (sortBy)
 		{
 		case 'rating':
 			sortA = +a.rating;
@@ -268,8 +245,8 @@ function updatePlayerList()
 			sortB = b.name.toLowerCase();
 			break;
 		}
-		if (sortA < sortB) return -g_PlayerListOrder;
-		if (sortA > sortB) return +g_PlayerListOrder;
+		if (sortA < sortB) return -sortOrder;
+		if (sortA > sortB) return +sortOrder;
 		return 0;
 	});
 
@@ -443,19 +420,21 @@ function updateLeaderboard()
 function updateGameList()
 {
 	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
-
+	var sortBy = gamesBox.selected_column || "status";
+	var sortOrder = gamesBox.selected_column_order || 1;
+error(sortBy);
 	if (gamesBox.selected > -1)
 		g_SelectedGameIP = g_GameList[gamesBox.selected].ip;
 
 	g_GameList = Engine.GetGameList().filter(game => !filterGame(game)).sort((a, b) => {
 		var sortA, sortB;
-		switch (g_GameListSortBy)
+		switch (sortBy)
 		{
 		case 'name':
 		case 'mapSize':
 		case 'mapType':
-			sortA = a[g_GameListSortBy];
-			sortB = b[g_GameListSortBy];
+			sortA = a[sortBy];
+			sortB = b[sortBy];
 			break;
 		case 'mapName':
 			sortA = translate(a.niceMapName);
@@ -466,13 +445,14 @@ function updateGameList()
 			sortA = a.nbp * b.tnbp;
 			sortB = b.nbp * a.tnbp;
 			break;
+		case 'status':
 		default:
 			sortA = gameStatuses.indexOf(a.state);
 			sortB = gameStatuses.indexOf(b.state);
 			break;
 		}
-		if (sortA < sortB) return -g_GameListOrder;
-		if (sortA > sortB) return +g_GameListOrder;
+		if (sortA < sortB) return -sortOrder;
+		if (sortA > sortB) return +sortOrder;
 		return 0;
 	});
 
