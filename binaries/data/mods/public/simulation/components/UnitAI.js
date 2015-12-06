@@ -5723,10 +5723,7 @@ UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
 
 	// Verify that the dropsite is owned by this entity's player
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || !IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
-		return false;
-
-	return true;
+	return cmpOwnership && IsOwnedByPlayer(cmpOwnership.GetOwner(), target);
 };
 
 UnitAI.prototype.CanTrade = function(target)
@@ -5740,10 +5737,7 @@ UnitAI.prototype.CanTrade = function(target)
 
 	// Verify that we're able to respond to Trade commands
 	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-	if (!cmpTrader || !cmpTrader.CanTrade(target))
-		return false;
-
-	return true;
+	return cmpTrader && cmpTrader.CanTrade(target);
 };
 
 UnitAI.prototype.CanRepair = function(target)
@@ -5762,10 +5756,7 @@ UnitAI.prototype.CanRepair = function(target)
 
 	// Verify that the target is owned by an ally of this entity's player
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || !IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target))
-		return false;
-
-	return true;
+	return cmpOwnership && IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target);
 };
 
 UnitAI.prototype.CanPack = function()
