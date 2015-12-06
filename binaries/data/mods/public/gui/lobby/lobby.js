@@ -448,6 +448,7 @@ function updateGameList()
 		g_SelectedGameIP = g_GameList[gamesBox.selected].ip;
 
 	g_GameList = Engine.GetGameList().filter(game => !filterGame(game)).sort((a, b) => {
+		var sortA, sortB;
 		switch (g_GameListSortBy)
 		{
 		case 'name':
@@ -464,6 +465,10 @@ function updateGameList()
 			// Compare playercount ratio
 			sortA = a.nbp * b.tnbp;
 			sortB = b.nbp * a.tnbp;
+			break;
+		default:
+			sortA = gameStatuses.indexOf(a.state);
+			sortB = gameStatuses.indexOf(b.state);
 			break;
 		}
 		if (sortA < sortB) return -g_GameListOrder;
