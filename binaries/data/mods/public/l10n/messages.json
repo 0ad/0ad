@@ -435,7 +435,8 @@
                 "extractor": "javascript",
                 "filemasks": [
                     "simulation/ai/**.js",
-                    "simulation/components/**.js"
+                    "simulation/components/**.js",
+                    "simulation/helpers/**.js"
                 ],
                 "options": {
                     "format": "javascript-format",
