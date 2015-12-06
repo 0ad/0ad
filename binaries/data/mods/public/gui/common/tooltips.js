@@ -49,7 +49,7 @@ function damageTypeDetails(dmg)
 function attackRateDetails(entState, type)
 {
 	var time = entState.attack[type].repeatTime / 1000;
-	var timeString = sprintf(translate("%(time)s %(second)s"), {
+	var timeString = sprintf(translatePlural("%(time)s %(second)s", "%(time)s %(second)s", time), {
 		time: time,
 		second: txtFormats.unit[0] + translatePlural("second", "seconds", time) + txtFormats.unit[1]
 	});
@@ -58,7 +58,7 @@ function attackRateDetails(entState, type)
 		return timeString;
 
 	var arrows = Math.max(entState.buildingAI.arrowCount, entState.buildingAI.defaultArrowCount);
-	var arrowString = sprintf(translate("%(arrowcount)s %(arrow)s"), {
+	var arrowString = sprintf(translatePlural("%(arrowcount)s %(arrow)s", "%(arrowcount)s %(arrow)s", arrows), {
 		arrowcount: arrows,
 		arrow: txtFormats.unit[0] + translatePlural("arrow", "arrows", arrows) + txtFormats.unit[1]
 	});
@@ -193,25 +193,31 @@ function getAttackTooltip(template)
 		var range = Math.round(template.attack[type].maxRange);
 		var rangeLabel = txtFormats.header[0] + translate("Range:") + txtFormats.header[1];
 		var relativeRange = Math.round((realRange - range));
-		var meters = txtFormats.unit[0] + translate("meters") + txtFormats.unit[1];
+		var meters = txtFormats.unit[0] + translatePlural("meter", "meters", range) + txtFormats.unit[1];
 
 		if (relativeRange) // show if it is non-zero
-			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"), {
+			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"), {
 				attackLabel: attackLabel,
 				details: damageTypesToText(template.attack[type]),
 				rangeLabel: rangeLabel,
-				range: range,
-				meters: meters,
+				"rangeString": sprintf(
+					translatePlural("%(range)s %(meters)s", "%(range)s %(meters)s", range), {
+						"range": range,
+						"meters": meters
+					}),
 				relative: relativeRange > 0 ? "+" + relativeRange : relativeRange,
 				rate: rate
 			}));
 		else
-			attacks.push(sprintf(translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"), {
+			attacks.push(sprintf(translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"), {
 				attackLabel: attackLabel,
 				damageTypes: damageTypesToText(template.attack[type]),
 				rangeLabel: rangeLabel,
-				range: range,
-				meters: meters,
+				"rangeString": sprintf(
+					translatePlural("%(range)s %(meters)s", "%(range)s %(meters)s", range), {
+						"range": range,
+						"meters": meters
+					}),
 				rate: rate
 			}));
 	}
@@ -406,18 +412,18 @@ function getHealerTooltip(template)
 		return "";
 
 	var healer = [
-		sprintf(translate("%(label)s %(val)s %(unit)s"), {
+		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.HP), {
 			label: txtFormats.header[0] + translate("Heal:") + txtFormats.header[1],
 			val: template.healer.HP,
 			// Translation: Short for Health Points (that are healed in one healing action)
-			unit: txtFormats.unit[0] + translate("HP") + txtFormats.unit[1]
+			"unit": txtFormats.unit[0] + translatePlural("HP", "HP", template.healer.HP) + txtFormats.unit[1]
 		}),
-		sprintf(translate("%(label)s %(val)s %(unit)s"), {
+		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.Range), {
 			label: txtFormats.header[0] + translate("Range:") + txtFormats.header[1],
 			val: template.healer.Range,
-			unit: txtFormats.unit[0] + translate("meters") + txtFormats.unit[1]
+			"unit": txtFormats.unit[0] + translatePlural("meter", "meters", template.healer.Range) + txtFormats.unit[1]
 		}),
-		sprintf(translate("%(label)s %(val)s %(unit)s"), {
+		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.Rate/1000), {
 			label: txtFormats.header[0] + translate("Rate:") + txtFormats.header[1],
 			val: template.healer.Rate/1000,
 			unit: txtFormats.unit[0] + translatePlural("second", "seconds", template.healer.Rate/1000) + txtFormats.unit[1]
