@@ -8,14 +8,15 @@
 # Boross Péter <borosspet@web.de>, 2015
 # Czene István <kekana@citromail.hu>, 2015
 # davesajt <davesajthun@gmail.com>, 2015
+# Gellért Gyuris <gellert.gyuris@gmail.com>, 2015
 # Nagy András <asd0707@freemail.hu>, 2014
 # ricsipontaz <ricsipontaz@googlemail.com>, 2014
 # Tibor Buzási, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-10 15:55+0100\n"
-"PO-Revision-Date: 2015-12-01 17:59+0000\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-04 21:51+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +53,7 @@ msgstr "Növeli a népesség maximális számát."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:43
+#: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -109,11 +110,14 @@ msgid "Defense Tower"
 msgstr "Védelmi torony"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
-msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr "Nyilakat lő. Szállásolj el, hogy extra védelemhez juss."
+msgid ""
+"Shoots arrows. Garrison to provide extra defense. Needs the murderholes tech"
+" to protect its foot."
+msgstr "Nyilakat lő. Beszállásolva extra védelmet nyújt. Szükséges a lőrés technológia a lábuk védelmére."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
+#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "Védelmi torony"
 
@@ -137,38 +141,38 @@ msgstr "Kőfal"
 msgid "Wall off your town for a stout defense."
 msgstr "Falazd körbe a városod a jobb védelemért."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:30
 msgid "City Gate"
 msgstr "Városkapu"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:29
+#: simulation/templates/template_structure_defense_wall_gate.xml:31
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Lehetővé teszi az egységek átjárását a városfalon. Zárható az átjárás megakadályozására."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:13
-#: simulation/templates/template_structure_defense_wall_medium.xml:13
+#: simulation/templates/template_structure_defense_wall_long.xml:18
+#: simulation/templates/template_structure_defense_wall_medium.xml:18
 msgid "Wall Protection"
 msgstr "Fal védelem"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:14
-#: simulation/templates/template_structure_defense_wall_medium.xml:14
+#: simulation/templates/template_structure_defense_wall_long.xml:19
+#: simulation/templates/template_structure_defense_wall_medium.xml:19
 msgid "Units on walls have 3 extra Armor levels"
 msgstr "Falon lévő egységen 3 extra pajzs szintet kapnak"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:53
+#: simulation/templates/template_structure_defense_wall_long.xml:58
 msgid "Long wall segments can be converted to gates."
 msgstr "Hosszú fal részek kapukká alakíthatóak."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:54
+#: simulation/templates/template_structure_defense_wall_long.xml:59
 msgid "Convert Stone Wall into City Gate"
 msgstr "Kőfal átalakítása Városkapuvá"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
 msgstr "Fali Torony"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:51
+#: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Nyilakat lő. Szállásolj be egységeket, hogy megvédd a város falat a támadókkal szemben."
 
@@ -176,8 +180,8 @@ msgstr "Nyilakat lő. Szállásolj be egységeket, hogy megvédd a város falat 
 msgid "City Wall"
 msgstr "Városfal"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:39
-#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+#: simulation/templates/template_structure_defense_wooden_tower.xml:46
+#: simulation/templates/template_structure_defense_wooden_tower.xml:45
 msgid "Wooden Tower"
 msgstr "Fatorony"
 
@@ -426,7 +430,7 @@ msgstr "Empórios"
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr "Görög Előőrs"
+msgstr "Görög előőrs"
 
 #: simulation/templates/structures/athen_outpost.xml:6
 #: simulation/templates/structures/mace_outpost.xml:6
@@ -857,7 +861,7 @@ msgstr "Oppidum"
 msgid "Saroe"
 msgstr "Saroe"
 
-#: simulation/templates/structures/iber_defense_tower.xml:27
+#: simulation/templates/structures/iber_defense_tower.xml:32
 #: simulation/templates/structures/iber_wall_tower.xml:9
 msgid "Dorre"
 msgstr "Dorre"

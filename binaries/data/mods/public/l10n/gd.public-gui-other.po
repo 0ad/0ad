@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-30 09:01+0100\n"
-"PO-Revision-Date: 2015-12-01 10:02+0000\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-04 10:13+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -1163,14 +1163,22 @@ msgstr "Faide sam bith"
 #, javascript-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
-msgstr "< %(max)s mion"
+msgid_plural "< %(max)s min"
+msgstr[0] "< %(max)s mhion"
+msgstr[1] "< %(max)s mhion"
+msgstr[2] "< %(max)s mion"
+msgstr[3] "< %(max)s mion"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
 #, javascript-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
-msgstr "> %(min)s mion"
+msgid_plural "> %(min)s min"
+msgstr[0] "> %(min)s mhion"
+msgstr[1] "> %(min)s mhion"
+msgstr[2] "> %(min)s mion"
+msgstr[3] "> %(min)s mion"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
@@ -1179,43 +1187,43 @@ msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s mion"
 
-#: gui/replaymenu/replay_menu.js:222
+#: gui/replaymenu/replay_menu.js:223
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:253
+#: gui/replaymenu/replay_menu.js:254
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/replaymenu/replay_menu.js:316
+#: gui/replaymenu/replay_menu.js:317
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
-#: gui/replaymenu/replay_menu.js:318
+#: gui/replaymenu/replay_menu.js:319
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, defeated)"
 msgstr "%(playerName)s (%(civ)s, ruaig)"
 
-#: gui/replaymenu/replay_menu.js:320
+#: gui/replaymenu/replay_menu.js:321
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
-#: gui/replaymenu/replay_menu.js:322
+#: gui/replaymenu/replay_menu.js:323
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, ruaig)"
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:339
 msgid "No Team"
 msgstr "Gun sgioba"
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:339
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Sgioba %(team)s"

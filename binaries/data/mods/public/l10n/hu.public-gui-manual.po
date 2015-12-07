@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Balázs Úr <urbalazs@gmail.com>, 2015
+# Gellért Gyuris <gellert.gyuris@gmail.com>, 2015
 # Stew Den <stewden55@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-12-02 19:54+0000\n"
+"PO-Revision-Date: 2015-12-06 14:37+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +58,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Az Alt + Enter billentyűzetkombinációval válthatsz a teljes képernyős és az ablakos mód között. Ablakos módban át lehet méretezni az ablakot. Ha a játék lassan fut, a konfigurációs fájlban lehet módosítani néhány beállítást: keresd meg a játék telepítési helyén a binaries/data/config/default.cfg állományt, amely ad némi szerkesztési útmutatót, és próbáld meg kikapcsolni a „fancywater” és a „shadows” opciókat."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -69,7 +70,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]A vezérlés és a játékmenet ismerős kell legyen a hagyományos RTS játékosoknak. Egyelőre sok a hiányzó funkció valamint a rosszul kezelt statisztika ‒ várni kell a béta kiadásra, hogy minden jól működjön."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -114,13 +115,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Egyjátékos mód[font=\"sans-14\"] —  játssz egyedül vagy számítógépes ellenfelek ellen. A számítógépes ellenfelek fejlesztés alatt állnak, így nem mindig a legjobbak, de legalább kipróbálhatod ellenféllel is a játékot, ha nincs épp másik ember, akivel játszhatnál."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Többjátékos mód[font=\"sans-14\"] — játssz emberi játékosokkal az Interneten keresztül."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -221,25 +222,25 @@ msgstr "[font=\"sans-bold-14\"]Játékban"
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Dupla bal klikk \\[az egységen]: Az összes azonos fajtájú egység kijelölése a képernyőn (akkor is, ha más a rangjuk)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr ""
+msgstr "Tripla bal klikk \\[az egységen]: Az összes azonos fajtájú és rangú egység kijelölése a képernyőn"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + Dupla bal klikk \\[az egységen]: Az összes azonos fajtájú egység kijelölése a térképen (akkor is, ha más a rangjuk)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Tripla bal klikk \\[az egységen]: Az összes azonos fajtájú és rangú egység kijelölése az egész térképen"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -496,7 +497,7 @@ msgstr "Alt + W: Váltás a textúrarácsos módok között"
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "Középső egérgomb vagy / (perjel): Tartsd lenyomva és mozgasd az egeret a nagyításhoz"
 
 #: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]During Building Placement"
@@ -504,7 +505,7 @@ msgstr "[font=\"sans-bold-14\"]Épületlerakás alatt"
 
 #: gui/manual/intro.txt:115
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"]\\[: Építmény elforgatása 15 fokkal az óramutató járásával ellentétes irányba"
 
 #: gui/manual/intro.txt:116
 msgid "]: Rotate building 15 degrees clockwise"
@@ -547,13 +548,13 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• Egy véletlenszerű felhasználói azonosító (Windows alatt az %APPDATA%\\0ad\\config\\user.cfg helyen, Unix környezetben a ~/.config/0ad/config/user.cfg helyen tárolva), hogy érzékeljük az azonos felhasználóktól érkező jelentéseket."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "• Játék verziószáma és egyszerű build beállítások (optimalizáció módja, CPU architektúra, időbélyeg, fordító verzió)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
@@ -580,4 +581,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "A beküldött adatokat a saját szerverünkön fogjuk tárolni és lehet, hogy statisztikákat is fogunk belőle készíteni vagy a felhasználókat nem felfedő részleteket., hogy segítsünk a játékfejlesztőknek a hasonló kérdésekben. Az IP címet tároljuk, ahonnan beküldték az adatokat, hogy felfedjük a szolgáltatással visszaélőket, de ezeket nem fogjuk publikálni. A publikált adatok itt tekinthetők meg: http://feedback.wildfiregames.com/"

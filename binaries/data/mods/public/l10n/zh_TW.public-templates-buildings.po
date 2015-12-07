@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-10 15:55+0100\n"
-"PO-Revision-Date: 2015-11-11 14:01+0000\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-04 13:25+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "增加人口上限。"
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:43
+#: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -104,11 +104,14 @@ msgid "Defense Tower"
 msgstr "防禦塔"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
-msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr "射出箭矢。駐防以提供額外的防禦力。"
+msgid ""
+"Shoots arrows. Garrison to provide extra defense. Needs the murderholes tech"
+" to protect its foot."
+msgstr "射出箭矢。駐防以提供額外的防禦力。需要城垛射孔科技以保護其塔底。"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
+#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "防禦塔"
 
@@ -132,38 +135,38 @@ msgstr "石牆"
 msgid "Wall off your town for a stout defense."
 msgstr "以牢靠的防禦保護您的城鎮的一堵牆。"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:30
 msgid "City Gate"
 msgstr "城門"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:29
+#: simulation/templates/template_structure_defense_wall_gate.xml:31
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "允許單位通過城市的牆。可以鎖住以避免通過。"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:13
-#: simulation/templates/template_structure_defense_wall_medium.xml:13
+#: simulation/templates/template_structure_defense_wall_long.xml:18
+#: simulation/templates/template_structure_defense_wall_medium.xml:18
 msgid "Wall Protection"
 msgstr "防護城牆"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:14
-#: simulation/templates/template_structure_defense_wall_medium.xml:14
+#: simulation/templates/template_structure_defense_wall_long.xml:19
+#: simulation/templates/template_structure_defense_wall_medium.xml:19
 msgid "Units on walls have 3 extra Armor levels"
 msgstr "在城牆上的單位有額外的3點護甲等級"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:53
+#: simulation/templates/template_structure_defense_wall_long.xml:58
 msgid "Long wall segments can be converted to gates."
 msgstr "長的城牆區段可以被轉換為閘門。"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:54
+#: simulation/templates/template_structure_defense_wall_long.xml:59
 msgid "Convert Stone Wall into City Gate"
 msgstr "將石牆轉換為城門"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
 msgstr "城牆塔樓"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:51
+#: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "射出箭矢。在城牆中駐軍以對抗攻擊者。"
 
@@ -171,8 +174,8 @@ msgstr "射出箭矢。在城牆中駐軍以對抗攻擊者。"
 msgid "City Wall"
 msgstr "城牆"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:39
-#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+#: simulation/templates/template_structure_defense_wooden_tower.xml:46
+#: simulation/templates/template_structure_defense_wooden_tower.xml:45
 msgid "Wooden Tower"
 msgstr "木製塔樓"
 
@@ -852,7 +855,7 @@ msgstr "Oppidum"
 msgid "Saroe"
 msgstr "Saroe"
 
-#: simulation/templates/structures/iber_defense_tower.xml:27
+#: simulation/templates/structures/iber_defense_tower.xml:32
 #: simulation/templates/structures/iber_wall_tower.xml:9
 msgid "Dorre"
 msgstr "Dorre"

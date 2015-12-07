@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-10 15:55+0100\n"
-"PO-Revision-Date: 2015-11-11 12:45+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-04 09:48+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,7 @@ msgstr "Augmenter la limite de population."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:43
+#: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -110,11 +110,14 @@ msgid "Defense Tower"
 msgstr "Tour de défense"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
-msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr "Tire des flèches. Mettre une garnison pour fournir une défense supplémentaire."
+msgid ""
+"Shoots arrows. Garrison to provide extra defense. Needs the murderholes tech"
+" to protect its foot."
+msgstr ""
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
+#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "Tour de défense"
 
@@ -138,38 +141,38 @@ msgstr "Mur de pierre"
 msgid "Wall off your town for a stout defense."
 msgstr "Entourez votre ville d'une muraille pour une défense robuste."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:30
 msgid "City Gate"
 msgstr "Porte de la cité"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:29
+#: simulation/templates/template_structure_defense_wall_gate.xml:31
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Permet aux unités de franchir les murs de la ville. Peut être verrouillée pour empêcher l'accès."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:13
-#: simulation/templates/template_structure_defense_wall_medium.xml:13
+#: simulation/templates/template_structure_defense_wall_long.xml:18
+#: simulation/templates/template_structure_defense_wall_medium.xml:18
 msgid "Wall Protection"
 msgstr "Mur protecteur"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:14
-#: simulation/templates/template_structure_defense_wall_medium.xml:14
+#: simulation/templates/template_structure_defense_wall_long.xml:19
+#: simulation/templates/template_structure_defense_wall_medium.xml:19
 msgid "Units on walls have 3 extra Armor levels"
 msgstr "Les unités postées sur les murs ont 3 niveaux d'armure supplémentaires"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:53
+#: simulation/templates/template_structure_defense_wall_long.xml:58
 msgid "Long wall segments can be converted to gates."
 msgstr "Les longues portions de mur peuvent être converties en portes."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:54
+#: simulation/templates/template_structure_defense_wall_long.xml:59
 msgid "Convert Stone Wall into City Gate"
 msgstr "Convertir le Mur de pierre en Porte de la cité"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
 msgstr "Tourelle"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:51
+#: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Tire des flèches. Placez-y une garnison pour défendre une muraille contre les attaques."
 
@@ -177,8 +180,8 @@ msgstr "Tire des flèches. Placez-y une garnison pour défendre une muraille con
 msgid "City Wall"
 msgstr "Remparts"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:39
-#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+#: simulation/templates/template_structure_defense_wooden_tower.xml:46
+#: simulation/templates/template_structure_defense_wooden_tower.xml:45
 msgid "Wooden Tower"
 msgstr "Tour en bois"
 
@@ -858,7 +861,7 @@ msgstr "Oppidum"
 msgid "Saroe"
 msgstr "Saroe"
 
-#: simulation/templates/structures/iber_defense_tower.xml:27
+#: simulation/templates/structures/iber_defense_tower.xml:32
 #: simulation/templates/structures/iber_wall_tower.xml:9
 msgid "Dorre"
 msgstr "Dorre"

@@ -8,12 +8,13 @@
 # Luca <kokonos@live.de>, 2015
 # Me Lazzi, 2014-2015
 # Nicola Jelmorini, 2015
+# andreac <supercarrer1989@hotmail.it>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-30 09:01+0100\n"
-"PO-Revision-Date: 2015-11-30 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-05 14:48+0000\n"
+"Last-Translator: andreac <supercarrer1989@hotmail.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -679,6 +680,42 @@ msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s, %(resourc
 #: simulation/components/ProductionQueue.js:366
 msgid "The production queue is full."
 msgstr "La coda di produzione è piena."
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+msgid "Gaia"
+msgstr "Gaia"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+msgid "Player 1"
+msgstr "Giocatore 1"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+msgid "Player 2"
+msgstr "Giocatore 2"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+msgid "Player 3"
+msgstr "Giocatore 3"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+msgid "Player 4"
+msgstr "Giocatore 4"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+msgid "Player 5"
+msgstr "Giocatore 5"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+msgid "Player 6"
+msgstr "Giocatore 6"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+msgid "Player 7"
+msgstr "Giocatore 7"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+msgid "Player 8"
+msgstr "Giocatore 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"

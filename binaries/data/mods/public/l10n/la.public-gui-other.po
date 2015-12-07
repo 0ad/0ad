@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-30 09:01+0100\n"
-"PO-Revision-Date: 2015-11-30 09:45+0000\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-04 09:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -1148,14 +1148,18 @@ msgstr ""
 #, javascript-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
-msgstr ""
+msgid_plural "< %(max)s min"
+msgstr[0] ""
+msgstr[1] ""
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
 #, javascript-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
-msgstr ""
+msgid_plural "> %(min)s min"
+msgstr[0] ""
+msgstr[1] ""
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
@@ -1164,43 +1168,43 @@ msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:222
+#: gui/replaymenu/replay_menu.js:223
 msgid "yyyy-MM-dd HH:mm"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:253
+#: gui/replaymenu/replay_menu.js:254
 msgid "yyyy-MM"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:316
+#: gui/replaymenu/replay_menu.js:317
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s)"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:318
+#: gui/replaymenu/replay_menu.js:319
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, defeated)"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:320
+#: gui/replaymenu/replay_menu.js:321
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:322
+#: gui/replaymenu/replay_menu.js:323
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:339
 msgid "No Team"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:339
 #, javascript-format
 msgid "Team %(team)s"
 msgstr ""
