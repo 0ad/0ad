@@ -58,24 +58,21 @@ function updateCursorAndTooltip()
 	var cursorSet = false;
 	var tooltipSet = false;
 	var informationTooltip = Engine.GetGUIObjectByName("informationTooltip");
-	if (!mouseIsOverObject)
+	if (!mouseIsOverObject && (inputState == INPUT_NORMAL || inputState == INPUT_PRESELECTEDACTION))
 	{
-		if (inputState == INPUT_NORMAL || inputState == INPUT_PRESELECTEDACTION)
+		let action = determineAction(mouseX, mouseY);
+		if (action)
 		{
-			let action = determineAction(mouseX, mouseY);		
-			if (action)
+			if (action.cursor)
 			{
-				if (action.cursor)
-				{
-					Engine.SetCursor(action.cursor);
-					cursorSet = true;
-				}
-				if (action.tooltip)
-				{
-					tooltipSet = true;
-					informationTooltip.caption = action.tooltip;
-					informationTooltip.hidden = false;
-				}
+				Engine.SetCursor(action.cursor);
+				cursorSet = true;
+			}
+			if (action.tooltip)
+			{
+				tooltipSet = true;
+				informationTooltip.caption = action.tooltip;
+				informationTooltip.hidden = false;
 			}
 		}
 	}
@@ -84,22 +81,13 @@ function updateCursorAndTooltip()
 		Engine.SetCursor("arrow-default");
 	if (!tooltipSet)
 		informationTooltip.hidden = true;
-	
+
 	var placementTooltip = Engine.GetGUIObjectByName("placementTooltip");
 	if (placementSupport.tooltipMessage)
-	{
-		if (placementSupport.tooltipError)
-			placementTooltip.sprite = "BackgroundErrorTooltip";
-		else
-			placementTooltip.sprite = "BackgroundInformationTooltip";
-		placementTooltip.caption = placementSupport.tooltipMessage;
-		placementTooltip.hidden = false;
-	}
-	else
-	{
-		placementTooltip.caption = "";
-		placementTooltip.hidden = true;
-	}
+		placementTooltip.sprite = placementSupport.tooltipError ? "BackgroundErrorTooltip" : "BackgroundInformationTooltip";
+
+	placementTooltip.caption = placementSupport.tooltipMessage || "";
+	placementTooltip.hidden = !placementSupport.tooltipMessage;
 }
 
 function updateBuildingPlacementPreview()
@@ -213,21 +201,14 @@ function getActionInfo(action, target)
 			var data = { "command": "walk" };
 			if (Engine.HotkeyIsPressed("session.attackmove"))
 			{
-				if (Engine.HotkeyIsPressed("session.attackmoveUnit"))
-					var targetClasses = { "attack": ["Unit"] };
-				else
-					var targetClasses = { "attack": ["Unit", "Structure"] };
 				data.command = "attack-walk";
-				data.targetClasses = targetClasses;
+				data.targetClasses = Engine.HotkeyIsPressed("session.attackmoveUnit") ? { "attack": ["Unit"] } : { "attack": ["Unit", "Structure"] };
 				cursor = "action-attack-move";
 			}
 			return { "possible": true, "data": data, "cursor": cursor };
 		}
-		if (action == "move" || action == "attack-move")
-			return { "possible": true };
-		if (action == "remove-guard")
-			return { "possible": true };
-		return { "possible": false };
+
+		return { "possible": (action == "move" || action == "attack-move" || action == "remove-guard") };
 	}
 
 	// Look at the first targeted entity
@@ -343,8 +324,8 @@ function tryPlaceBuilding(queued)
 	if (placementSupport.mode !== "building")
 	{
 		error(sprintf("[%(functionName)s] Called while in '%(mode)s' placement mode instead of 'building'", {
-			functionName: "tryPlaceBuilding",
-			mode: placementSupport.mode
+			"functionName": "tryPlaceBuilding",
+			"mode": placementSupport.mode
 		}));
 		return false;
 	}
@@ -1130,9 +1111,7 @@ function handleInputAfterGui(ev)
 				{
 					var validPlacement = updateBuildingPlacementPreview();
 					if (validPlacement !== false)
-					{
 						inputState = INPUT_BUILDING_WALL_CLICK;
-					}
 				}
 				else
 				{
@@ -1534,10 +1513,7 @@ function removeFromProductionQueue(entity, id)
 // Called by unit selection buttons
 function changePrimarySelectionGroup(templateName, deselectGroup)
 {
-	if (Engine.HotkeyIsPressed("session.deselectgroup") || deselectGroup)
-		g_Selection.makePrimarySelection(templateName, true);
-	else
-		g_Selection.makePrimarySelection(templateName, false);
+	g_Selection.makePrimarySelection(templateName, Engine.HotkeyIsPressed("session.deselectgroup") || deselectGroup);
 }
 
 // Performs the specified command (delete, town bell, repair, etc.)
@@ -1574,14 +1550,11 @@ function performAllyCommand(entity, commandName)
 function performFormation(entity, formationTemplate)
 {
 	if (entity)
-	{
-		var selection = g_Selection.toList();
 		Engine.PostNetworkCommand({
 			"type": "formation",
-			"entities": selection,
+			"entities": g_Selection.toList(),
 			"name": formationTemplate
 		});
-	}
 }
 
 // Performs the specified group
