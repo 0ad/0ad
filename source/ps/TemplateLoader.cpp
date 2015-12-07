@@ -548,7 +548,8 @@ void CTemplateLoader::CopyResourceSubset(CParamNode& out, const CParamNode& in)
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("StatusBars");
 	permittedComponentTypes.insert("OverlayRenderer");
-	permittedComponentTypes.insert("Sound");
+	// Corpses shouldn't emit sounds.
+	// permittedComponentTypes.insert("Sound");
 	permittedComponentTypes.insert("AIProxy");
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
