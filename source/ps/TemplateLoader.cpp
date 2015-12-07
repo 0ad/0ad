@@ -537,6 +537,7 @@ void CTemplateLoader::CopyResourceSubset(CParamNode& out, const CParamNode& in)
 {
 	// Currently used for animals which die and leave a gatherable corpse.
 	// Mostly serves to filter out components like Vision, UnitAI, etc.
+	// Don't emit sound as our samples only apply to living animals.
 	std::set<std::string> permittedComponentTypes;
 	permittedComponentTypes.insert("Ownership");
 	permittedComponentTypes.insert("Position");
@@ -548,8 +549,6 @@ void CTemplateLoader::CopyResourceSubset(CParamNode& out, const CParamNode& in)
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("StatusBars");
 	permittedComponentTypes.insert("OverlayRenderer");
-	// Corpses shouldn't emit sounds.
-	// permittedComponentTypes.insert("Sound");
 	permittedComponentTypes.insert("AIProxy");
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
