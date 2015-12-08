@@ -30,6 +30,9 @@ Health.prototype.Schema =
 			"<value a:help='Remain in the world with 0 health'>remain</value>" +
 		"</choice>" +
 	"</element>" +
+	"<element name='Undeletable' a:help='Prevent players from deleting this entity.'>" +
+		"<data type='boolean'/>" +
+	"</element>" +
 	"<element name='Unhealable' a:help='Indicates that the entity can not be healed by healer units'>" +
 		"<data type='boolean'/>" +
 	"</element>";
@@ -97,6 +100,11 @@ Health.prototype.IsUnhealable = function()
 	return (this.template.Unhealable == "true"
 		|| this.GetHitpoints() <= 0
 		|| this.GetHitpoints() >= this.GetMaxHitpoints());
+};
+
+Health.prototype.IsUndeletable = function()
+{
+	return this.template.Undeletable == "true";
 };
 
 Health.prototype.GetRegenRate = function()

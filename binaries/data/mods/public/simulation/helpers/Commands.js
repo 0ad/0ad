@@ -366,6 +366,8 @@ var g_Commands = {
 			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
 			if (cmpHealth)
 			{
+				if (cmpHealth.IsUndeletable())
+					continue;
 				var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 				if (!cmpResourceSupply || !cmpResourceSupply.GetKillBeforeGather())
 					cmpHealth.Kill();

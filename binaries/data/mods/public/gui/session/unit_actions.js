@@ -691,6 +691,9 @@ var g_EntityCommands =
 	"delete": {
 		"getInfo": function(entState)
 		{
+			if (!entState.canDelete)
+				return false;
+
 			if (entState.mirage)
 				return {
 					"tooltip": translate("You cannot destroy this entity because it is in the fog-of-war"),
