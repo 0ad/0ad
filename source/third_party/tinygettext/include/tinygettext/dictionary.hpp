@@ -43,8 +43,8 @@ private:
   std::string charset;
   PluralForms plural_forms;
 
-  std::string translate(const Entries& dict, const std::string& msgid);
-  std::string translate_plural(const Entries& dict, const std::string& msgid, const std::string& msgidplural, int num);
+  std::string translate(const Entries& dict, const std::string& msgid) const;
+  std::string translate_plural(const Entries& dict, const std::string& msgid, const std::string& msgidplural, int num) const;
 
   bool m_has_fallback;
   Dictionary* m_fallback;
@@ -62,21 +62,21 @@ public:
 
 
   /** Translate the string \a msgid. */
-  std::string translate(const std::string& msgid);
+  std::string translate(const std::string& msgid) const;
 
   /** Translate the string \a msgid to its correct plural form, based
       on the number of items given by \a num. \a msgid_plural is \a msgid in
       plural form. */
-  std::string translate_plural(const std::string& msgid, const std::string& msgidplural, int num);
+  std::string translate_plural(const std::string& msgid, const std::string& msgidplural, int num) const;
 
   /** Translate the string \a msgid that is in context \a msgctx. A
       context is a way to disambiguate msgids that contain the same
       letters, but different meaning. For example "exit" might mean to
       quit doing something or it might refer to a door that leads
       outside (i.e. 'Ausgang' vs 'Beenden' in german) */
-  std::string translate_ctxt(const std::string& msgctxt, const std::string& msgid);
+  std::string translate_ctxt(const std::string& msgctxt, const std::string& msgid) const;
 
-  std::string translate_ctxt_plural(const std::string& msgctxt, const std::string& msgid, const std::string& msgidplural, int num);
+  std::string translate_ctxt_plural(const std::string& msgctxt, const std::string& msgid, const std::string& msgidplural, int num) const;
 
   /** Add a translation from \a msgid to \a msgstr to the dictionary,
       where \a msgid is the singular form of the message, msgid_plural the
