@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_mechanical_siege_onager">
+<Entity parent="special_units/rome_mechanical_siege_ballista_common">
   <Attack>
     <Ranged>
       <MaxRange>76</MaxRange>
@@ -17,20 +17,11 @@
     </Ranged>
   </Attack>
   <Cost>
-    <BuildTime>40</BuildTime>
     <Resources>
       <wood>300</wood>
       <stone>100</stone>
     </Resources>
   </Cost>
-  <Footprint replace="">
-    <Square width="10.0" depth="10.0"/>
-    <Height>5.0</Height>
-  </Footprint>
-  <Identity>
-    <Civ>rome</Civ>
-    <SpecificName>Ballista</SpecificName>
-  </Identity>
   <Vision>
     <Range>88</Range>
   </Vision>
