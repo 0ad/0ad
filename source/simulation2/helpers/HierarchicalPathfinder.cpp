@@ -415,11 +415,11 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 
 			if (std::find(processedChunks.begin(), processedChunks.end(), chunkID) == processedChunks.end())
 			{
+				processedChunks.push_back(chunkID);
 				for (const std::pair<std::string, pass_class_t>& passClassMask : m_PassClassMasks)
 				{
 					pass_class_t passClass = passClassMask.second;
 					Chunk& a = m_Chunks[passClass].at(chunkID.second*m_ChunksW + chunkID.first);
-					processedChunks.push_back(chunkID);
 					a.InitRegions(chunkID.first, chunkID.second, grid, passClass);
 				}
 			}
