@@ -260,7 +260,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			if (nearEnts.length)
 			{
 				var result = markForPluralTranslation(
-					"%(name)s too close to a %(category)s, must be at least 1 meter away",
+					"%(name)s too close to a %(category)s, must be at least %(distance)s meter away",
 					"%(name)s too close to a %(category)s, must be at least %(distance)s meters away",
 					+this.template.Distance.MinDistance);
 
@@ -282,7 +282,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			if (!nearEnts.length)
 			{
 				var result = markForPluralTranslation(
-					"%(name)s too far from a %(category)s, must be within 1 meter",
+					"%(name)s too far from a %(category)s, must be within %(distance)s meter",
 					"%(name)s too far from a %(category)s, must be within %(distance)s meters",
 					+this.template.Distance.MinDistance);
 
