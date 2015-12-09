@@ -226,7 +226,6 @@ function RunDetection(settings)
 		disable_shadows = true;
 		disable_shadowpcf = true;
 		disable_allwater = true;
-		disable_fancywater = true;
 	}
 
 	// NVIDIA 260.19.* UNIX drivers cause random crashes soon after startup.
@@ -273,7 +272,6 @@ function RunDetection(settings)
 		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "*"))
 	)
 	{
-		disable_allwater = false;
 		disable_fancywater = true;
 		disable_shadowpcf = true;
 	}
@@ -347,7 +345,7 @@ global.RunHardwareDetection = function(settings)
 		Engine.SetDisableShadowPCF(output.disable_shadowpcf);
 
 	if (output.disable_allwater !== undefined)
-		Engine.SetDisableFancyWater(output.disable_allwater);
+		Engine.SetDisableAllWater(output.disable_allwater);
 	
 	if (output.disable_fancywater !== undefined)
 		Engine.SetDisableFancyWater(output.disable_fancywater);
