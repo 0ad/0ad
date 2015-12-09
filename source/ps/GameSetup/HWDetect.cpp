@@ -149,7 +149,7 @@ void SetDisableShadowPCF(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool di
 
 void SetDisableAllWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
-	g_WaterUgly = true;
+	g_WaterUgly = disabled;
 	if (!IsOverridden("waterfancyeffects"))
 		g_WaterFancyEffects = !disabled;
 	if (!IsOverridden("waterrealdepth"))
