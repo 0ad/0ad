@@ -403,26 +403,18 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 {
 	PROFILE3("Hierarchical Update");
 
-	std::vector<std::pair<int, int> > processedChunks;
-	for (int j = 0; j < dirtinessGrid.m_H; ++j)
+	for (int cj = 0; cj <  m_ChunksH; ++cj)
 	{
-		for (int i = 0; i < dirtinessGrid.m_W; ++i)
+		for (int ci = 0; ci < m_ChunksW; ++ci)
 		{
-			if (!dirtinessGrid.get(i, j))
+			if (!IsChunkDirty(ci, cj, dirtinessGrid))
 				continue;
-
-			std::pair<int, int> chunkID(i / CHUNK_SIZE, j / CHUNK_SIZE);
-
-			if (std::find(processedChunks.begin(), processedChunks.end(), chunkID) == processedChunks.end())
-			{
-				processedChunks.push_back(chunkID);
-				for (const std::pair<std::string, pass_class_t>& passClassMask : m_PassClassMasks)
-				{
-					pass_class_t passClass = passClassMask.second;
-					Chunk& a = m_Chunks[passClass].at(chunkID.second*m_ChunksW + chunkID.first);
-					a.InitRegions(chunkID.first, chunkID.second, grid, passClass);
-				}
-			}
+	       		for (const std::pair<std::string, pass_class_t>& passClassMask : m_PassClassMasks)
+	       	       	{
+				pass_class_t passClass = passClassMask.second;
+	       		       	Chunk& a = m_Chunks[passClass].at(ci + cj*m_ChunksW);
+		       		a.InitRegions(ci, cj, grid, passClass);
+	       		}
 		}
 	}
 
@@ -450,6 +442,23 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 	}
 }
 
+bool HierarchicalPathfinder::IsChunkDirty(int ci, int cj, const Grid<u8>& dirtinessGrid)
+{
+	int i0 = ci * CHUNK_SIZE;
+	int j0 = cj * CHUNK_SIZE;
+	int i1 = std::min(i0 + CHUNK_SIZE, (int)dirtinessGrid.m_W);
+	int j1 = std::min(j0 + CHUNK_SIZE, (int)dirtinessGrid.m_H);
+	for (int j = j0; j < j1; ++j)
+	{
+		for (int i = i0; i < i1; ++i)
+		{
+			if (!dirtinessGrid.get(i, j))
+	       			continue;
+	       		return true;
+		}
+	}
+	return false;
+}
 /**
  * Find edges between regions in this chunk and the adjacent below/left chunks.
  */
