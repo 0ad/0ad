@@ -174,6 +174,8 @@ function RunDetection(settings)
 	// List of warning strings to log
 	var warnings = [];
 
+	// If variable value is not undefined it overrides default.cfg,
+	// local preferences have a higher priority anyway
 	var disable_audio = undefined;
 	var disable_s3tc = undefined;
 	var disable_shadows = undefined;
@@ -181,6 +183,8 @@ function RunDetection(settings)
 	var disable_allwater = undefined;
 	var disable_fancywater = undefined;
 	var enable_glsl = undefined;
+	var enable_postproc = undefined;
+	var enable_smoothlos = undefined;
 	var override_renderpath = undefined;
 
 	// TODO: add some mechanism for setting config values
@@ -215,12 +219,24 @@ function RunDetection(settings)
 	if (GL_VERSION.match(/^[3-9]/))
 		enable_glsl = true;
 
+	// Enable most graphics options on OpenGL 4+, which should be
+	// able to properly manage them
+	if (GL_VERSION.match(/^[4-9]/))
+	{
+		enable_postproc = true;
+		enable_smoothlos = true;
+		// enable all water effects
+		disable_allwater = false;
+	}
+
 	// Disable most graphics features on software renderers
 	if (GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on (llvm|soft)pipe.*|Mesa X11|Apple Software Renderer|GDI Generic)$/))
 	{
 		warnings.push("You are using '" + GL_RENDERER + "' graphics driver, expect very poor performance!");
 		warnings.push("If possible install a proper graphics driver for your hardware.");
 		enable_glsl = false;
+		enable_postproc = false;
+		enable_smoothlos = false;
 		// s3tc on software renderers halves fps and makes textures weird
 		disable_s3tc = true;
 		disable_shadows = true;
@@ -311,6 +327,8 @@ function RunDetection(settings)
 		"disable_allwater": disable_allwater,
 		"disable_fancywater": disable_fancywater,
 		"enable_glsl": enable_glsl,
+		"enable_postproc": enable_postproc,
+		"enable_smoothlos": enable_smoothlos,
 		"override_renderpath": override_renderpath,
 	};
 }
@@ -352,6 +370,12 @@ global.RunHardwareDetection = function(settings)
 
 	if (output.enable_glsl !== undefined)
 		Engine.SetEnableGLSL(output.enable_glsl);
+
+	if (output.enable_postproc !== undefined)
+		Engine.SetEnablePostProc(output.enable_postproc);
+
+	if (output.enable_smoothlos !== undefined)
+		Engine.SetEnableSmoothLOS(output.enable_smoothlos);
 
 	if (output.override_renderpath !== undefined)
 		Engine.SetRenderPath(output.override_renderpath);

@@ -618,6 +618,8 @@ static void InitRenderer()
 	g_Renderer.SetOptionBool(CRenderer::OPT_SILHOUETTES, g_Silhouettes);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHOWSKY, g_ShowSky);
 	g_Renderer.SetOptionBool(CRenderer::OPT_PREFERGLSL, g_PreferGLSL);
+	g_Renderer.SetOptionBool(CRenderer::OPT_POSTPROC, g_PostProc);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SMOOTHLOS, g_SmoothLOS);
 
 	// create terrain related stuff
 	new CTerrainTextureManager;
