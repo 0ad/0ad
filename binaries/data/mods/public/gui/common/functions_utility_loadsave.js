@@ -38,11 +38,23 @@ function hasSameEngineVersion(metadata, engineInfo)
 
 /**
  * Check the mod compatibility between the saved game to be loaded and the engine
+ *
+ * @param metadata {string[]}
+ * @param engineInfo {string[]}
+ * @returns {boolean}
  */
 function hasSameMods(metadata, engineInfo)
 {
-	if (!metadata.mods || metadata.mods.length != engineInfo.mods.length)
+	if (!metadata.mods || !engineInfo.mods)
 		return false;
-	
-	return metadata.mods.every((mod, index) => mod == engineInfo.mods[index]);
+
+	// Ignore the "user" mod which is loaded for releases but not working-copies
+	var modsA = metadata.mods.filter(mod => mod != "user");
+	var modsB = engineInfo.mods.filter(mod => mod != "user");
+
+	if (modsA.length != modsB.length)
+		return false;
+
+	// Mods must be loaded in the same order
+	return modsA.every((mod, index) => mod == modsB[index]);
 }

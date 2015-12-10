@@ -74,6 +74,10 @@ extern bool g_ShowSky;
 
 // Prefer GLSL shaders over ARB shaders
 extern bool g_PreferGLSL;
+// Use screen-space postprocessing filters (HDR, bloom, DOF, etc)
+extern bool g_PostProc;
+// Use smooth LOS interpolation
+extern bool g_SmoothLOS;
 
 extern float g_Gamma;
 // name of configured render path (depending on OpenGL extensions, this may not be

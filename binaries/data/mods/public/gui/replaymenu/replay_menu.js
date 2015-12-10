@@ -241,7 +241,6 @@ function getReplayDateTime(replay)
  */
 function getReplayPlayernames(replay)
 {
-	// TODO: colorize playernames like in the lobby.
 	return replay.attribs.settings.PlayerData.map(pData => pData.Name).join(", ");
 }
 

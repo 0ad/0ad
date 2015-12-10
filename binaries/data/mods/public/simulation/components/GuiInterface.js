@@ -272,6 +272,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.maxHitpoints = cmpHealth.GetMaxHitpoints();
 		ret.needsRepair = cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints());
 		ret.needsHeal = !cmpHealth.IsUnhealable();
+		ret.canDelete = !cmpHealth.IsUndeletable();
 	}
 
 	var cmpCapturable = QueryMiragedInterface(ent, IID_Capturable);
@@ -979,6 +980,8 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
  *		"parameters":          parameters to use in the message
  *		"translateMessage":    localisation info
  *		"translateParameters": localisation info
+ *		"pluralMessage":       we might return a plural translation instead (optional)
+ *		"pluralCount":         localisation info (optional)
  *  }
  */
 GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)

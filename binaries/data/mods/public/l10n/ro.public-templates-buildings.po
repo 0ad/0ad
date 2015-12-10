@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-10 15:55+0100\n"
-"PO-Revision-Date: 2015-11-22 22:59+0000\n"
-"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-04 09:48+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +51,7 @@ msgstr "Crește limita populației."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:43
+#: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -108,11 +108,14 @@ msgid "Defense Tower"
 msgstr "Turn de apărare"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
-msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr "Trage săgeți. Pune în garnizoană pentru un plus de apărare."
+msgid ""
+"Shoots arrows. Garrison to provide extra defense. Needs the murderholes tech"
+" to protect its foot."
+msgstr ""
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
+#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "Turn de apărare"
 
@@ -136,38 +139,38 @@ msgstr "Zid de piatră"
 msgid "Wall off your town for a stout defense."
 msgstr "Înconjurați-vă orașul cu un zid pentru o apărare puternică."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:30
 msgid "City Gate"
 msgstr "Poarta orașului"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:29
+#: simulation/templates/template_structure_defense_wall_gate.xml:31
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Permiteți unităților acces prin zidul orașului. Poate fi blocat pentru a preveni accesul."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:13
-#: simulation/templates/template_structure_defense_wall_medium.xml:13
+#: simulation/templates/template_structure_defense_wall_long.xml:18
+#: simulation/templates/template_structure_defense_wall_medium.xml:18
 msgid "Wall Protection"
 msgstr "Zid de apărare."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:14
-#: simulation/templates/template_structure_defense_wall_medium.xml:14
+#: simulation/templates/template_structure_defense_wall_long.xml:19
+#: simulation/templates/template_structure_defense_wall_medium.xml:19
 msgid "Units on walls have 3 extra Armor levels"
 msgstr "Unitățile de pe ziduri au un plus de 3 nivele de armură."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:53
+#: simulation/templates/template_structure_defense_wall_long.xml:58
 msgid "Long wall segments can be converted to gates."
 msgstr "Segmentele lungi de zid pot fi convertite în porți"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:54
+#: simulation/templates/template_structure_defense_wall_long.xml:59
 msgid "Convert Stone Wall into City Gate"
 msgstr "Transformă zidul de piatră în poartă de oraș"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
 msgstr "Zid turelă"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:51
+#: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Trage săgeți. Pune în garnizoană pentru a apăra un zid al orașului împotriva atacatorilor."
 
@@ -175,8 +178,8 @@ msgstr "Trage săgeți. Pune în garnizoană pentru a apăra un zid al orașului
 msgid "City Wall"
 msgstr "Zid oraș"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:39
-#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+#: simulation/templates/template_structure_defense_wooden_tower.xml:46
+#: simulation/templates/template_structure_defense_wooden_tower.xml:45
 msgid "Wooden Tower"
 msgstr "Turn de lemn"
 
@@ -856,7 +859,7 @@ msgstr "Oppidum"
 msgid "Saroe"
 msgstr "Saroe"
 
-#: simulation/templates/structures/iber_defense_tower.xml:27
+#: simulation/templates/structures/iber_defense_tower.xml:32
 #: simulation/templates/structures/iber_wall_tower.xml:9
 msgid "Dorre"
 msgstr "Dorre"

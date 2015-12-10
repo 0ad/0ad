@@ -52,6 +52,8 @@ bool g_Silhouettes = false;
 bool g_ShowSky = false;
 
 bool g_PreferGLSL = false;
+bool g_PostProc = false;
+bool g_SmoothLOS = false;
 
 float g_Gamma = 1.0f;
 
@@ -107,6 +109,8 @@ static void LoadGlobals()
 	CFG_GET_VAL("silhouettes", g_Silhouettes);
 	CFG_GET_VAL("showsky", g_ShowSky);
 	CFG_GET_VAL("preferglsl", g_PreferGLSL);
+	CFG_GET_VAL("postproc", g_PostProc);
+	CFG_GET_VAL("smoothlos", g_SmoothLOS);
 	CFG_GET_VAL("gui.scale", g_GuiScale);
 
 	CFG_GET_VAL("jsdebugger.enable", g_JSDebuggerEnabled);

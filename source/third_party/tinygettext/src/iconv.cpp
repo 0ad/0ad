@@ -129,15 +129,15 @@ IConv::convert(const std::string& text)
       }
       else if (errno == E2BIG)
       { // output buffer to small
-        assert(!"tinygettext/iconv.cpp: E2BIG: This should never be reached");
+        assert(false && "tinygettext/iconv.cpp: E2BIG: This should never be reached");
       }
       else if (errno == EBADF)
       {
-        assert(!"tinygettext/iconv.cpp: EBADF: This should never be reached");
+        assert(false && "tinygettext/iconv.cpp: EBADF: This should never be reached");
       }
       else
       {
-        assert(!"tinygettext/iconv.cpp: <unknown>: This should never be reached");
+        assert(false && "tinygettext/iconv.cpp: <unknown>: This should never be reached");
       }
     }
 

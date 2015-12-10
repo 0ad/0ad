@@ -86,6 +86,8 @@ public:
 
 	void Update(Grid<NavcellData>* grid, const Grid<u8>& dirtinessGrid);
 
+	bool IsChunkDirty(int ci, int cj, const Grid<u8>& dirtinessGrid);
+
 	RegionID Get(u16 i, u16 j, pass_class_t passClass);
 
 	/**

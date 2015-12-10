@@ -230,7 +230,7 @@ var unitActions =
 				return {"type": "build", "cursor": "action-repair", "target": target};
 			return false;
 		},
-		"specificness": 15,
+		"specificness": 11,
 	},
 
 	"gather": 
@@ -691,6 +691,9 @@ var g_EntityCommands =
 	"delete": {
 		"getInfo": function(entState)
 		{
+			if (!entState.canDelete)
+				return false;
+
 			if (entState.mirage)
 				return {
 					"tooltip": translate("You cannot destroy this entity because it is in the fog-of-war"),

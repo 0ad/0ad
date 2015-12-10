@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-10 15:55+0100\n"
-"PO-Revision-Date: 2015-11-11 09:44+0000\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-04 09:48+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "يزيد حد السكان."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:43
+#: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -109,11 +109,14 @@ msgid "Defense Tower"
 msgstr "برج دفاعي"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
-msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr "يطلق الأسهم. يزيد دفاعه عند الاحتماء فيه."
+msgid ""
+"Shoots arrows. Garrison to provide extra defense. Needs the murderholes tech"
+" to protect its foot."
+msgstr ""
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
+#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "برج الدفاع"
 
@@ -137,38 +140,38 @@ msgstr "سور حجري"
 msgid "Wall off your town for a stout defense."
 msgstr "سوّر مدينتك لتحصل على دفاع منيع."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:30
 msgid "City Gate"
 msgstr "بوابة المدينة"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:29
+#: simulation/templates/template_structure_defense_wall_gate.xml:31
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "تسمح  للوحدات بالعبور من خلال سور المدينة، يمكن قُفله لمنع الدخول."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:13
-#: simulation/templates/template_structure_defense_wall_medium.xml:13
+#: simulation/templates/template_structure_defense_wall_long.xml:18
+#: simulation/templates/template_structure_defense_wall_medium.xml:18
 msgid "Wall Protection"
 msgstr "جدار حماية"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:14
-#: simulation/templates/template_structure_defense_wall_medium.xml:14
+#: simulation/templates/template_structure_defense_wall_long.xml:19
+#: simulation/templates/template_structure_defense_wall_medium.xml:19
 msgid "Units on walls have 3 extra Armor levels"
 msgstr "الوحدات على السور تزيد حمايتهم بمقدار 3 مستويات."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:53
+#: simulation/templates/template_structure_defense_wall_long.xml:58
 msgid "Long wall segments can be converted to gates."
 msgstr "جدران الاسوار الطويلة يمكن تحويلها الى بوابات"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:54
+#: simulation/templates/template_structure_defense_wall_long.xml:59
 msgid "Convert Stone Wall into City Gate"
 msgstr "تحويل السور الحجري داخل بوابة المدينة \"تراجع\""
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
 msgstr "سور رُماة"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:51
+#: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "يطلق الأسهم. الاحتماء فيه يحمي سور المدينة من الغزاة."
 
@@ -176,8 +179,8 @@ msgstr "يطلق الأسهم. الاحتماء فيه يحمي سور المد�
 msgid "City Wall"
 msgstr "سور المدينة"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:39
-#: simulation/templates/template_structure_defense_wooden_tower.xml:38
+#: simulation/templates/template_structure_defense_wooden_tower.xml:46
+#: simulation/templates/template_structure_defense_wooden_tower.xml:45
 msgid "Wooden Tower"
 msgstr "برج خشبي"
 
@@ -857,7 +860,7 @@ msgstr "أوپيدوم"
 msgid "Saroe"
 msgstr "سارو"
 
-#: simulation/templates/structures/iber_defense_tower.xml:27
+#: simulation/templates/structures/iber_defense_tower.xml:32
 #: simulation/templates/structures/iber_wall_tower.xml:9
 msgid "Dorre"
 msgstr "دوري"

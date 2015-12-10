@@ -20,7 +20,7 @@ const g_PlayerColors = g_Settings ? g_Settings.PlayerDefaults.slice(1).map(pData
 const g_RomanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
 
 /**
- * Load playable civs.
+ * Offer users to select playable civs only.
  */
 const g_CivData = loadCivData(true);
 

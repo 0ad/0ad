@@ -438,6 +438,7 @@ AddMock(10, IID_Health, {
 	GetMaxHitpoints: function() { return 60; },
 	IsRepairable: function() { return false; },
 	IsUnhealable: function() { return false; },
+	IsUndeletable: function() { return false; },
 });
 
 AddMock(10, IID_Identity, {
@@ -495,6 +496,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	maxHitpoints: 60,
 	needsRepair: false,
 	needsHeal: true,
+	canDelete: true,
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {

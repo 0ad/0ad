@@ -370,6 +370,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var bestJdx;
 	var bestAngle;
 	var bestLand;
+	var bestWater;
 	var bestVal = -1;
 	var navalPassMap = gameState.ai.accessibility.navalPassMap;
 
@@ -398,14 +399,17 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		halfWidth = halfSize;
 	}
 
-	var maxres = 10;
+	// res is a measure of the amount of resources around, and maxRes is the max value taken into account
+	// water is a measure of the water space around, and maxWater is the max value that can be returned by checkDockPlacement
+	const maxRes = 10;
+	const maxWater = 16;
 	for (let j = 0; j < territoryMap.length; ++j)
 	{
-		var i = territoryMap.getNonObstructedTile(j, radius, obstructions);
+		let i = territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)
 			continue;
 
-		var landAccess = this.getLandAccess(gameState, i, radius+1, obstructions.width);
+		let landAccess = this.getLandAccess(gameState, i, radius+1, obstructions.width);
 		if (landAccess.size == 0)
 			continue;
 		if (this.metadata)
@@ -418,14 +422,14 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 				continue;
 		}
 
-		var dist;
-		var res = Math.min(maxres, this.getResourcesAround(gameState, j, 80));
-		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+		let dist;
+		let res = Math.min(maxRes, this.getResourcesAround(gameState, j, 80));
+		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		if (this.metadata.proximity)
 		{
 			// if proximity is given, we look for the nearest point
 			dist = API3.SquareVectorDistance(this.metadata.proximity, pos);
-			dist = Math.sqrt(dist) + 15 * (maxres - res);
+			dist = Math.sqrt(dist) + 20 * (maxRes - res);
 		}
 		else
 		{
@@ -433,12 +437,13 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 			dist = m.getFrontierProximity(gameState, j);
 			if (dist > 4)
 				continue;
-			dist += 0.4 * (maxres - res);
+			dist += 0.6 * (maxRes - res);
 		}
 		// Add a penalty if on the map border as ship movement will be difficult
 		if (gameState.ai.HQ.borderMap.map[j] > 0)
 			dist += 2;
-		if (bestIdx !== undefined && dist > bestVal)
+		// do a pre-selection, supposing we will have the best possible water
+		if (bestIdx !== undefined && dist > bestVal + maxWater)
 			continue;
 
 		let x = ((i % obstructions.width) + 0.5) * obstructions.cellSize;
@@ -446,22 +451,30 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		let angle = this.getDockAngle(gameState, x, z, halfSize);
 		if (angle === false)
 			continue;
-		let land = this.checkDockPlacement(gameState, x, z, halfDepth, halfWidth, angle);
-		if (land < 2 || !gameState.ai.HQ.landRegions[land])
+		let ret = this.checkDockPlacement(gameState, x, z, halfDepth, halfWidth, angle);
+		if (!ret || !gameState.ai.HQ.landRegions[ret.land])
 			continue;
-		if (this.metadata.proximity && gameState.ai.accessibility.regionSize[land] < 4000)
+		// final selection now that the checkDockPlacement water is known
+		if (bestIdx !== undefined && dist + maxWater - ret.water > bestVal)
+			continue;
+		if (this.metadata.proximity && gameState.ai.accessibility.regionSize[ret.land] < 4000)
 			continue;
 		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 
-		bestVal = dist;
+		bestVal = dist + maxWater - ret.water;
 		bestIdx = i;
 		bestJdx = j;
 		bestAngle = angle;
-		bestLand = land;
+		bestLand = ret.land;
+		bestWater = ret.water;
 	}
 
 	if (bestVal < 0)
+		return false;
+
+	// if no good place with enough water around and still in first phase, wait for expansion at the next phase 
+	if (!this.metadata.proximity && bestWater < 10 && gameState.currentPhase() == 1)
 		return false;
 
 	var x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
@@ -549,6 +562,7 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 
 // Algorithm taken from checkPlacement in simulation/components/BuildRestriction.js
 // to determine the special dock requirements
+// returns {"land": land index for this dock, "water": amount of water around this spot}
 m.ConstructionPlan.prototype.checkDockPlacement = function(gameState, x, z, halfDepth, halfWidth, angle)
 {
 	let sz = halfDepth * Math.sin(angle);
@@ -556,26 +570,45 @@ m.ConstructionPlan.prototype.checkDockPlacement = function(gameState, x, z, half
 	// center back position
 	let pos = gameState.ai.accessibility.gamePosToMapPos([x - sz, z - cz]);
 	let j = pos[0] + pos[1]*gameState.ai.accessibility.width;
-	let ret = gameState.ai.accessibility.landPassMap[j];
-	if (ret < 2)
-		return 0;
+	let land = gameState.ai.accessibility.landPassMap[j];
+	if (land < 2)
+		return null;
 	// center front position
 	pos = gameState.ai.accessibility.gamePosToMapPos([x + sz, z + cz]);
 	j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 	if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
-		return 0;
+		return null;
 	// additional constraints compared to BuildRestriction.js to assure we have enough place to build
 	let sw = halfWidth * Math.cos(angle) * 3 / 4;
 	let cw = halfWidth * Math.sin(angle) * 3 / 4;
 	pos = gameState.ai.accessibility.gamePosToMapPos([x - sz + sw, z - cz - cw]);
 	j = pos[0] + pos[1]*gameState.ai.accessibility.width;
-	if (gameState.ai.accessibility.landPassMap[j] != ret)
-		return 0;
+	if (gameState.ai.accessibility.landPassMap[j] != land)
+		return null;
 	pos = gameState.ai.accessibility.gamePosToMapPos([x - sz - sw, z - cz + cw]);
 	j = pos[0] + pos[1]*gameState.ai.accessibility.width;
-	if (gameState.ai.accessibility.landPassMap[j] != ret)
-		return 0;
-	return ret;
+	if (gameState.ai.accessibility.landPassMap[j] != land)
+		return null;
+	let water = 0;
+ 	let sp = 15 * Math.sin(angle);
+	let cp = 15 * Math.cos(angle);
+	for (let i = 1; i < 5; ++i)
+	{
+		pos = gameState.ai.accessibility.gamePosToMapPos([x + sz + i*(sp+sw), z + cz + i*(cp-cw)]);
+		j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+		if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
+			break;
+		pos = gameState.ai.accessibility.gamePosToMapPos([x + sz + i*sp, z + cz + i*cp]);
+		j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+		if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
+			break;
+		pos = gameState.ai.accessibility.gamePosToMapPos([x + sz + i*(sp-sw), z + cz + i*(cp+cw)]);
+		j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+		if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
+			break;
+		water += 4;
+	}
+	return {"land": land, "water": water};
 };
 
 // get the list of all the land access from this position

@@ -9,13 +9,15 @@
 # giangy <giancarlo.moi@tiscali.it>, 2014
 # Me Lazzi, 2014-2015
 # Nicola Jelmorini, 2014-2015
+# Paolo <paolo.libardi@gmail.com>, 2015
 # Sergio <leonesergio96@gmail.com>, 2015
+# andreac <supercarrer1989@hotmail.it>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-30 09:01+0100\n"
-"PO-Revision-Date: 2015-11-30 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-12-04 09:01+0100\n"
+"PO-Revision-Date: 2015-12-07 10:13+0000\n"
+"Last-Translator: Paolo <paolo.libardi@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1081,136 +1083,140 @@ msgstr "Manuale"
 
 #: gui/replaymenu/replay_actions.js:31
 msgid "You"
-msgstr ""
+msgstr "Tu"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "Non hai attivato le stesse modalità del replay."
 
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Richiede: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:53
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Attiva: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Il replay non è compatibile con la tua versione del gioco"
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Replay non compatibile"
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
-msgstr ""
+msgstr "OK"
 
 #: gui/replaymenu/replay_actions.js:75
 msgid "No summary data available."
-msgstr ""
+msgstr "Nessun dato di riepilogo disponibile."
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Punteggi al termine della partita."
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
-msgstr ""
+msgstr "Cancella replay"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure to delete this replay permanently?"
-msgstr ""
+msgstr "Sei sicuro di cancellare questo replay definitivamente?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Nessuno"
 
 #: gui/replaymenu/replay_filters.js:56
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Nessuno"
 
 #: gui/replaymenu/replay_filters.js:69
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Nessuno"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Nessuno"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Nessuno"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:102
 #, javascript-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
-msgstr ""
+msgid_plural "< %(max)s min"
+msgstr[0] "< %(max)s min"
+msgstr[1] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
 #, javascript-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
-msgstr ""
+msgid_plural "> %(min)s min"
+msgstr[0] "> %(min)s min"
+msgstr[1] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr ""
+msgstr "%(min)s - %(max)s min"
 
-#: gui/replaymenu/replay_menu.js:222
+#: gui/replaymenu/replay_menu.js:223
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "aaaa-MM-gg HH:mm"
 
-#: gui/replaymenu/replay_menu.js:253
+#: gui/replaymenu/replay_menu.js:254
 msgid "yyyy-MM"
-msgstr ""
+msgstr "aaaa-MM"
 
-#: gui/replaymenu/replay_menu.js:316
+#: gui/replaymenu/replay_menu.js:317
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
-#: gui/replaymenu/replay_menu.js:318
+#: gui/replaymenu/replay_menu.js:319
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, defeated)"
 
-#: gui/replaymenu/replay_menu.js:320
+#: gui/replaymenu/replay_menu.js:321
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
-#: gui/replaymenu/replay_menu.js:322
+#: gui/replaymenu/replay_menu.js:323
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:339
 msgid "No Team"
-msgstr ""
+msgstr "Nessuna Squadra"
 
-#: gui/replaymenu/replay_menu.js:338
+#: gui/replaymenu/replay_menu.js:339
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Squadra %(team)s"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -1848,35 +1854,35 @@ msgstr "Clicca per visitare il Trac di 0 A.D. per segnalare un difetto, un crash
 
 #: gui/replaymenu/replay_menu.xml:(caption):26
 msgid "Replay Games"
-msgstr ""
+msgstr "Replay Partite"
 
 #: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Filtrare Replay Compatibili"
 
 #: gui/replaymenu/replay_menu.xml:(caption):135
 msgid "Map Type:"
-msgstr ""
+msgstr "Tipo di Mappa:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):150
 msgid "Map Size:"
-msgstr ""
+msgstr "Dimensione della Mappa"
 
 #: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Victory:"
-msgstr ""
+msgstr "Vittoria:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):186
 msgid "Players:"
-msgstr ""
+msgstr "Giocatori:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):203
 msgid "Spoiler"
-msgstr ""
+msgstr "Spoiler"
 
 #: gui/replaymenu/replay_menu.xml:(caption):215
 msgid "Main Menu"
-msgstr ""
+msgstr "Menù Principale"
 
 #: gui/replaymenu/replay_menu.xml:(caption):221
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
@@ -1890,37 +1896,37 @@ msgstr "Riepilogo"
 
 #: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Start Replay"
-msgstr ""
+msgstr "Inizia Replay"
 
 #: gui/replaymenu/replay_menu.xml:(heading):72
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Data / Ora"
 
 #: gui/replaymenu/replay_menu.xml:(heading):76
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Giocatori"
 
 #: gui/replaymenu/replay_menu.xml:(heading):80
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Nome mappa"
 
 #: gui/replaymenu/replay_menu.xml:(heading):84
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Dimensione"
 
 #: gui/replaymenu/replay_menu.xml:(heading):88
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Popolazione"
 
 #: gui/replaymenu/replay_menu.xml:(heading):92
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Durata"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -1952,7 +1958,7 @@ msgstr "Civiltà:"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
-msgstr ""
+msgstr "Unità Allenatore"
 
 #: gui/summary/summary.xml:(caption):63
 msgid "Score"

@@ -206,7 +206,7 @@ m.createFrontierMap = function(gameState)
 };
 
 // return a measure of the proximity to our frontier (including our allies)
-// 0=inside, 1=less than 16m, 2= less than 32m, 3= less than 48m, 4=less than 64m, 5=above 64m
+// 0=inside, 1=less than 24m, 2= less than 48m, 3= less than 64m, 4=less than 96m, 5=above 96m
 m.getFrontierProximity = function(gameState, j)
 {
 	var territoryMap = gameState.ai.HQ.territoryMap;
@@ -214,7 +214,7 @@ m.getFrontierProximity = function(gameState, j)
 	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
 
 	var width = territoryMap.width;
-	var step = Math.round(16 / territoryMap.cellSize);
+	var step = Math.round(24 / territoryMap.cellSize);
 
 	if (gameState.isPlayerAlly(territoryMap.getOwnerIndex(j)))
 		return 0;
