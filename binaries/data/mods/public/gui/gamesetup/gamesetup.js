@@ -2008,29 +2008,19 @@ function sendRegisterGameStanza()
 	var selectedMapSize = Engine.GetGUIObjectByName("mapSize").selected;
 	var selectedVictoryCondition = Engine.GetGUIObjectByName("victoryCondition").selected;
 
-	// Map sizes only apply to random maps.
-	if (g_GameAttributes.mapType == "random")
-		var mapSize = Engine.GetGUIObjectByName("mapSize").list_data[selectedMapSize];
-	else
-		var mapSize = "Default";
-
+	var mapSize = g_GameAttributes.mapType == "random" ? : Engine.GetGUIObjectByName("mapSize").list_data[selectedMapSize] : "Default";
 	var victoryCondition = Engine.GetGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
-	var numberOfPlayers = Object.keys(g_PlayerAssignments).length;
 	var playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
 
-	var nbp = numberOfPlayers ? numberOfPlayers : 1;
-	var tnbp = g_GameAttributes.settings.PlayerData.length;
-
-	var gameData = {
+	Engine.SendRegisterGame({
 		"name": g_ServerName,
 		"mapName": g_GameAttributes.map,
 		"niceMapName": getMapDisplayName(g_GameAttributes.map),
 		"mapSize": mapSize,
 		"mapType": g_GameAttributes.mapType,
 		"victoryCondition": victoryCondition,
-		"nbp": nbp,
-		"tnbp": tnbp,
+		"nbp": Object.keys(g_PlayerAssignments).length || 1,
+		"tnbp": g_GameAttributes.settings.PlayerData.length,
 		"players": playerNames.join(", ")
-	};
-	Engine.SendRegisterGame(gameData);
+	});
 }
