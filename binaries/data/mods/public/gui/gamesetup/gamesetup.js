@@ -2008,7 +2008,7 @@ function sendRegisterGameStanza()
 	var selectedMapSize = Engine.GetGUIObjectByName("mapSize").selected;
 	var selectedVictoryCondition = Engine.GetGUIObjectByName("victoryCondition").selected;
 
-	var mapSize = g_GameAttributes.mapType == "random" ? : Engine.GetGUIObjectByName("mapSize").list_data[selectedMapSize] : "Default";
+	var mapSize = g_GameAttributes.mapType == "random" ? Engine.GetGUIObjectByName("mapSize").list_data[selectedMapSize] : "Default";
 	var victoryCondition = Engine.GetGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
 	var playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
 
