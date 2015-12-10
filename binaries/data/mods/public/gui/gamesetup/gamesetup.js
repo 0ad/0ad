@@ -21,8 +21,9 @@ const g_RomanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VI
 
 /**
  * Offer users to select playable civs only.
+ * Load unselectable civs as they could appear in scenario maps.
  */
-const g_CivData = loadCivData(true);
+const g_CivData = loadCivData();
 
 // Is this is a networked game, or offline
 var g_IsNetworked;
@@ -572,12 +573,11 @@ function getSetting(settings, defaults, property)
 }
 
 /**
- * Initialize the dropdowns containing all the available civs (including random).
+ * Initialize the dropdowns containing all selectable civs (including random).
  */
 function initCivNameList()
 {
-	var civList = Object.keys(g_CivData).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
-
+	var civList = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
 	var civListNames = civList.map(civ => civ.name);
 	var civListCodes = civList.map(civ => civ.code);
 
@@ -714,8 +714,14 @@ function loadGameAttributes()
 	if (!g_IsNetworked)
 		mapSettings.CheatsEnabled = true;
 
-	// Refresh probably obsoleted/incomplete map data.
+	// Replace unselectable civs with random civ
 	var playerData = mapSettings.PlayerData;
+	if (playerData && g_GameAttributes.mapType != "scenario")
+		for (let i in playerData)
+			if (!g_CivData[playerData[i].Civ] || !g_CivData[playerData[i].Civ].SelectableInGameSetup)
+				playerData[i].Civ = "random";
+
+	// Apply map settings
 	var newMapData = loadMapData(mapName);
 	if (newMapData && newMapData.settings)
 	{
@@ -1108,8 +1114,8 @@ function launchGame()
 
 	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
 
-	// Get a unique array of cultures
-	var cultures = Object.keys(g_CivData).map(civ => g_CivData[civ].Culture);
+	// Get a unique array of selectable cultures
+	var cultures = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => g_CivData[civ].Culture);
 	cultures = cultures.filter((culture, index) => cultures.indexOf(culture) === index);
 
 	// Determine random civs and botnames
