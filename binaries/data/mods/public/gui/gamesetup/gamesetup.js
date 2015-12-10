@@ -109,7 +109,7 @@ function initMain()
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = g_Settings.PlayerDefaults;
 	g_DefaultPlayerData.shift();
-	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
+	for (let i in g_DefaultPlayerData)
 		g_DefaultPlayerData[i].Civ = "random";
 
 	initCivNameList();
@@ -163,7 +163,7 @@ function initMain()
 		numPlayersSelection.list_data = playersArray;
 		numPlayersSelection.selected = g_MaxPlayers - 1;
 
-		var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
+		let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 		gameSpeed.hidden = false;
 		Engine.GetGUIObjectByName("gameSpeedText").hidden = true;
 		gameSpeed.list = g_GameSpeeds.Title;
@@ -176,7 +176,7 @@ function initMain()
 		};
 		gameSpeed.selected = g_GameSpeeds.Default;
 
-		var populationCaps = Engine.GetGUIObjectByName("populationCap");
+		let populationCaps = Engine.GetGUIObjectByName("populationCap");
 		populationCaps.list = g_PopulationCapacities.Title;
 		populationCaps.list_data = g_PopulationCapacities.Population;
 		populationCaps.selected = g_PopulationCapacities.Default;
@@ -187,7 +187,7 @@ function initMain()
 			updateGameAttributes();
 		};
 
-		var startingResourcesL = Engine.GetGUIObjectByName("startingResources");
+		let startingResourcesL = Engine.GetGUIObjectByName("startingResources");
 		startingResourcesL.list = g_StartingResources.Title;
 		startingResourcesL.list_data = g_StartingResources.Resources;
 		startingResourcesL.selected = g_StartingResources.Default;
@@ -198,7 +198,7 @@ function initMain()
 			updateGameAttributes();
 		};
 
-		var ceasefireL = Engine.GetGUIObjectByName("ceasefire");
+		let ceasefireL = Engine.GetGUIObjectByName("ceasefire");
 		ceasefireL.list = g_Ceasefire.Title;
 		ceasefireL.list_data = g_Ceasefire.Duration;
 		ceasefireL.selected = g_Ceasefire.Default;
@@ -209,7 +209,7 @@ function initMain()
 			updateGameAttributes();
 		};
 
-		var victoryConditions = Engine.GetGUIObjectByName("victoryCondition");
+		let victoryConditions = Engine.GetGUIObjectByName("victoryCondition");
 		victoryConditions.list = g_VictoryConditions.Title;
 		victoryConditions.list_data = g_VictoryConditions.Name;
 		victoryConditions.onSelectionChange = function() {
@@ -223,7 +223,7 @@ function initMain()
 		};
 		victoryConditions.selected = g_VictoryConditions.Default;
 
-		var mapSize = Engine.GetGUIObjectByName("mapSize");
+		let mapSize = Engine.GetGUIObjectByName("mapSize");
 		mapSize.list = g_MapSizes.LongName;
 		mapSize.list_data = g_MapSizes.Tiles;
 		mapSize.onSelectionChange = function() {
@@ -341,9 +341,9 @@ function initMain()
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
 		// Space player boxes
-		var box = Engine.GetGUIObjectByName("playerBox["+i+"]");
-		var boxSize = box.size;
-		var h = boxSize.bottom - boxSize.top;
+		let box = Engine.GetGUIObjectByName("playerBox["+i+"]");
+		let boxSize = box.size;
+		let h = boxSize.bottom - boxSize.top;
 		boxSize.top = i * boxSpacing;
 		boxSize.bottom = i * boxSpacing + h;
 		box.size = boxSize;
@@ -364,15 +364,14 @@ function initMain()
 		};
 
 		// Populate color drop-down lists.
-		var colorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
+		let colorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
 		colorPicker.list = g_PlayerColors.map(color => '[color="' + color.r + ' ' + color.g + ' ' + color.b + '"] ■[/color]');
 		colorPicker.list_data = g_PlayerColors.map((color, index) => index);
 		colorPicker.selected = -1;
 		colorPicker.onSelectionChange = function() { selectPlayerColor(playerSlot, this.selected); };
 
 		// Set events
-		var civ = Engine.GetGUIObjectByName("playerCiv["+i+"]");
-		civ.onSelectionChange = function() {
+		Engine.GetGUIObjectByName("playerCiv["+i+"]").onSelectionChange = function() {
 			if ((this.selected != -1)&&(g_GameAttributes.mapType !== "scenario"))
 				g_GameAttributes.settings.PlayerData[playerSlot].Civ = this.list_data[this.selected];
 
@@ -436,7 +435,7 @@ function handleNetMessage(message)
 		var resetReady = false;
 		var newPlayer = "";
 		// Find and report all joinings/leavings
-		for (var host in message.hosts)
+		for (let host in message.hosts)
 		{
 			if (!g_PlayerAssignments[host])
 			{
@@ -448,7 +447,7 @@ function handleNetMessage(message)
 			}
 		}
 
-		for (var host in g_PlayerAssignments)
+		for (let host in g_PlayerAssignments)
 		{
 			if (!message.hosts[host])
 			{
@@ -564,7 +563,7 @@ function initCivNameList()
 	// Update the dropdowns
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
-		var civ = Engine.GetGUIObjectByName("playerCiv["+i+"]");
+		let civ = Engine.GetGUIObjectByName("playerCiv["+i+"]");
 		civ.list = civListNames;
 		civ.list_data = civListCodes;
 		civ.selected = 0;
@@ -597,10 +596,10 @@ function initMapNameList()
 
 	// Apply map filter, if any defined
 	var mapList = [];
-	for (var i = 0; i < mapFiles.length; ++i)
+	for (let mapFile of mapFiles)
 	{
-		var file = g_GameAttributes.mapPath + mapFiles[i];
-		var mapData = loadMapData(file);
+		let file = g_GameAttributes.mapPath + mapFile;
+		let mapData = loadMapData(file);
 
 		if (g_GameAttributes.mapFilter && mapData && testFilter(g_GameAttributes.mapFilter, mapData.settings))
 			mapList.push({ "name": getMapDisplayName(file), "file": file });
@@ -701,7 +700,7 @@ function loadGameAttributes()
 	var newMapData = loadMapData(mapName);
 	if (newMapData && newMapData.settings)
 	{
-		for (var prop in newMapData.settings)
+		for (let prop in newMapData.settings)
 			mapSettings[prop] = newMapData.settings[prop];
 
 		if (playerData)
@@ -723,24 +722,24 @@ function loadGameAttributes()
 
 	if (mapSettings.PopulationCap)
 	{
-		var populationCapBox = Engine.GetGUIObjectByName("populationCap");
+		let populationCapBox = Engine.GetGUIObjectByName("populationCap");
 		populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
 	}
 	if (mapSettings.StartingResources)
 	{
-		var startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
+		let startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
 		startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
 	}
 
 	if (mapSettings.Ceasefire)
 	{
-		var ceasefireBox = Engine.GetGUIObjectByName("ceasefire");
+		let ceasefireBox = Engine.GetGUIObjectByName("ceasefire");
 		ceasefireBox.selected = ceasefireBox.list_data.indexOf(mapSettings.Ceasefire);
 	}
 
 	if (attrs.gameSpeed)
 	{
-		var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
+		let gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
 		gameSpeedBox.selected = g_GameSpeeds.Speed.indexOf(attrs.gameSpeed);
 	}
 
@@ -826,7 +825,7 @@ function onTick()
 	{
 		while (true)
 		{
-			var message = Engine.PollNetworkClient();
+			let message = Engine.PollNetworkClient();
 			if (!message)
 				break;
 
@@ -860,14 +859,14 @@ function selectNumPlayers(num)
 	else
 	{
 		// Add player data from defaults
-		for (var i = pData.length; i < num; ++i)
+		for (let i = pData.length; i < num; ++i)
 			g_GameAttributes.settings.PlayerData.push(g_DefaultPlayerData[i]);
 	}
 
 	// Some players may have lost their assigned slot
-	for (var guid in g_PlayerAssignments)
+	for (let guid in g_PlayerAssignments)
 	{
-		var player = g_PlayerAssignments[guid].player;
+		let player = g_PlayerAssignments[guid].player;
 		if (player > num)
 		{
 			if (g_IsNetworked)
@@ -1026,11 +1025,11 @@ function selectMap(name)
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
 	if (g_GameAttributes.map !== "random")
-		for (var prop in mapSettings)
+		for (let prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
 
 	// Use default AI if the map doesn't specify any explicitly
-	for (var i = 0; i < g_GameAttributes.settings.PlayerData.length; ++i)
+	for (let i in g_GameAttributes.settings.PlayerData)
 	{
 		if (!('AI' in g_GameAttributes.settings.PlayerData[i]))
 			g_GameAttributes.settings.PlayerData[i].AI = g_DefaultPlayerData[i].AI;
@@ -1043,12 +1042,11 @@ function selectMap(name)
 		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0 } };
 	else
 	{
-		var numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_GameAttributes.settings.PlayerData.length;
+		let numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_GameAttributes.settings.PlayerData.length;
 
-		for (var guid in g_PlayerAssignments)
+		for (let guid in g_PlayerAssignments)
 		{	// Unassign extra players
-			var player = g_PlayerAssignments[guid].player;
-
+			let player = g_PlayerAssignments[guid].player;
 			if (player <= g_MaxPlayers && player > numPlayers)
 				Engine.AssignNetworkPlayer(player, "");
 		}
@@ -1168,27 +1166,31 @@ function onGameAttributesChange()
 	// Update some controls for clients
 	if (!g_IsController)
 	{
-		var mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
-		var mapFilterId = mapFilterSelection.list_data.indexOf(g_GameAttributes.mapFilter);
+		let mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
+		let mapFilterId = mapFilterSelection.list_data.indexOf(g_GameAttributes.mapFilter);
 		Engine.GetGUIObjectByName("mapFilterText").caption = mapFilterSelection.list[mapFilterId];
+
 		Engine.GetGUIObjectByName("mapTypeText").caption = g_MapTypes.Title[g_MapTypes.Name.indexOf(g_GameAttributes.mapType)];
-		var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
+
+		let mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
 		Engine.GetGUIObjectByName("mapSelectionText").caption = translate(getMapDisplayName(mapName));
+
 		if (mapSettings.PopulationCap)
 		{
-			var populationCapBox = Engine.GetGUIObjectByName("populationCap");
+			let populationCapBox = Engine.GetGUIObjectByName("populationCap");
 			populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
 		}
+
 		if (mapSettings.StartingResources)
 		{
-			var startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
+			let startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
 			startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
 		}
 
 		if (mapSettings.Ceasefire)
 		{
-			var ceasefireBox = Engine.GetGUIObjectByName("ceasefire");
+			let ceasefireBox = Engine.GetGUIObjectByName("ceasefire");
 			ceasefireBox.selected = ceasefireBox.list_data.indexOf(mapSettings.Ceasefire);
 		}
 
@@ -1535,11 +1537,11 @@ function updatePlayerList()
 	var noAssignment;
 	g_AssignedCount = 0;
 
-	for (var guid in g_PlayerAssignments)
+	for (let guid in g_PlayerAssignments)
 	{
-		var name = g_PlayerAssignments[guid].name;
-		var hostID = hostNameList.length;
-		var player = g_PlayerAssignments[guid].player;
+		let name = g_PlayerAssignments[guid].name;
+		let hostID = hostNameList.length;
+		let player = g_PlayerAssignments[guid].player;
 
 		hostNameList.push(name);
 		hostGuidList.push(guid);
@@ -1558,7 +1560,7 @@ function updatePlayerList()
 		if (ai.data.hidden)
 		{
 			// If the map uses a hidden AI then don't hide it
-			var usedByMap = false;
+			let usedByMap = false;
 			for (let i = 0; i < g_MaxPlayers; ++i)
 				if (i < g_GameAttributes.settings.PlayerData.length &&
 				    g_GameAttributes.settings.PlayerData[i].AI == ai.id)
@@ -1585,9 +1587,9 @@ function updatePlayerList()
 		let playerSlot = i;
 		let playerID = i+1; // we don't show Gaia, so first slot is ID 1
 
-		var selection = assignments[playerID];
+		let selection = assignments[playerID];
 
-		var configButton = Engine.GetGUIObjectByName("playerConfig["+i+"]");
+		let configButton = Engine.GetGUIObjectByName("playerConfig["+i+"]");
 		configButton.hidden = true;
 
 		// Look for valid player slots
@@ -1649,7 +1651,7 @@ function updatePlayerList()
 				if (g_IsInGuiUpdate)
 					return;
 
-				var guid = hostGuidList[this.selected];
+				let guid = hostGuidList[this.selected];
 				if (guid == "")
 				{
 					if (g_IsNetworked)
@@ -1690,7 +1692,7 @@ function swapPlayers(guid, newSlot)
 	// if any, into the slot this player is currently in.
 	if (playerID != -1)
 	{
-		for (var i in g_PlayerAssignments)
+		for (let i in g_PlayerAssignments)
 		{
 			// Move the player in the destination slot into the current slot.
 			if (g_PlayerAssignments[i].player == newPlayerID)
@@ -1836,17 +1838,19 @@ function updateReadyUI()
 {
 	if (!g_IsNetworked)
 		return; // Disabled for single-player games.
+
 	var isAI = new Array(g_MaxPlayers + 1);
-	for (var i = 0; i < isAI.length; ++i)
+	for (let i = 0; i < isAI.length; ++i)
 		isAI[i] = true;
+
 	var allReady = true;
-	for (var guid in g_PlayerAssignments)
+	for (let guid in g_PlayerAssignments)
 	{
 		// We don't really care whether observers are ready.
 		if (g_PlayerAssignments[guid].player == -1 || !g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1])
 			continue;
-		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1] : {};
-		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[g_PlayerAssignments[guid].player - 1] : {};
+		let pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1] : {};
+		let pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[g_PlayerAssignments[guid].player - 1] : {};
 		isAI[g_PlayerAssignments[guid].player] = false;
 		if (g_PlayerAssignments[guid].status || !g_IsNetworked)
 			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
@@ -1856,13 +1860,14 @@ function updateReadyUI()
 			allReady = false;
 		}
 	}
+
 	// AIs are always ready.
 	for (let playerid = 0; playerid < g_MaxPlayers; ++playerid)
 	{
 		if (!g_GameAttributes.settings.PlayerData[playerid])
 			continue;
-		var pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};
-		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[playerid] : {};
+		let pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};
+		let pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[playerid] : {};
 		if (isAI[playerid + 1])
 			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 	}
@@ -1870,10 +1875,10 @@ function updateReadyUI()
 	// The host is not allowed to start until everyone is ready.
 	if (g_IsNetworked && g_IsController)
 	{
-		var startGameButton = Engine.GetGUIObjectByName("startGame");
+		let startGameButton = Engine.GetGUIObjectByName("startGame");
 		startGameButton.enabled = allReady;
 		// Add a explanation on to the tooltip if disabled.
-		var disabledIndex = startGameButton.tooltip.indexOf('Disabled');
+		let disabledIndex = startGameButton.tooltip.indexOf('Disabled');
 		if (disabledIndex != -1 && allReady)
 			startGameButton.tooltip = startGameButton.tooltip.substring(0, disabledIndex - 2);
 		else if (disabledIndex == -1 && !allReady)
