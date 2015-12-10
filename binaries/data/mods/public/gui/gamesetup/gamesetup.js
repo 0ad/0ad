@@ -498,8 +498,8 @@ function handleNetMessage(message)
 	case "start":
 		if (g_IsController && Engine.HasXmppClient())
 		{
-			var players = [ assignment.name for each (assignment in g_PlayerAssignments) ];
-			Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
+			let playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
+			Engine.SendChangeStateGame(playerNames.length, playerNames.join(", "));
 		}
 		Engine.SwitchGuiPage("page_loading.xml", {
 			"attribs": g_GameAttributes,
@@ -634,8 +634,8 @@ function initMapNameList()
 	translateObjectKeys(mapList, ["name"]);
 	mapList.sort(sortNameIgnoreCase);
 
-	var mapListNames = [ map.name for each (map in mapList) ];
-	var mapListFiles = [ map.file for each (map in mapList) ];
+	var mapListNames = mapList.map(map => map.name);
+	var mapListFiles = mapList.map(map => map.file);
 
 	// Select the default map
 	var selected = mapListFiles.indexOf(g_GameAttributes.map);
@@ -2016,7 +2016,7 @@ function sendRegisterGameStanza()
 
 	var victoryCondition = Engine.GetGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
 	var numberOfPlayers = Object.keys(g_PlayerAssignments).length;
-	var players = [ assignment.name for each (assignment in g_PlayerAssignments) ].join(", ");
+	var playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
 
 	var nbp = numberOfPlayers ? numberOfPlayers : 1;
 	var tnbp = g_GameAttributes.settings.PlayerData.length;
@@ -2030,7 +2030,7 @@ function sendRegisterGameStanza()
 		"victoryCondition": victoryCondition,
 		"nbp": nbp,
 		"tnbp": tnbp,
-		"players": players
+		"players": playerNames.join(", ")
 	};
 	Engine.SendRegisterGame(gameData);
 }
