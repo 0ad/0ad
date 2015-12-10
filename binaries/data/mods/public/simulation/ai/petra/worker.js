@@ -38,16 +38,19 @@ m.Worker.prototype.update = function(gameState, ent)
 
 	this.ent = ent;
 
-	// Check for inaccessible targets (in RMS maps, we quite often have chicken or bushes inside obstruction of other entities).
-	if (ent.unitAIState() === "INDIVIDUAL.GATHER.APPROACHING" || ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING")
+	var unitAIState = ent.unitAIState();
+	if (unitAIState === "INDIVIDUAL.GATHER.GATHERING" || unitAIState === "INDIVIDUAL.GATHER.APPROACHING" || unitAIState === "INDIVIDUAL.COMBAT.APPROACHING")
+	{
 		if (this.isInaccessibleSupply(gameState) && ((subrole === "hunter" && !this.startHunting(gameState))
 			|| (subrole === "gatherer" && !this.startGathering(gameState))))
-			this.ent.stopMoving();
-	else if (this.ent.getMetadata(PlayerID, "approachingTarget"))
-		this.ent.setMetadata(PlayerID, "approachingTarget", undefined);
+			ent.stopMoving();
+	}
+	else if (ent.getMetadata(PlayerID, "approachingTarget"))
+		ent.setMetadata(PlayerID, "approachingTarget", undefined);
 
+	var unitAIStateOrder = unitAIState.split(".")[1];
 	// If we're fighting or hunting, let's not start gathering
-	if (ent.unitAIState().split(".")[1] === "COMBAT")
+	if (unitAIStateOrder === "COMBAT")
 		return;
 
 	// Okay so we have a few tasks.
@@ -72,7 +75,7 @@ m.Worker.prototype.update = function(gameState, ent)
 				this.startGathering(gameState);
 			}
 		}
-		else if (ent.unitAIState().split(".")[1] === "GATHER")
+		else if (unitAIStateOrder === "GATHER")
 		{
 			// we're already gathering. But let's check if there is nothing better
 			// in case UnitAI did something bad
@@ -107,7 +110,7 @@ m.Worker.prototype.update = function(gameState, ent)
 				}
 			}
 		}
-		else if (ent.unitAIState() === "INDIVIDUAL.RETURNRESOURCE.APPROACHING" && gameState.ai.playedTurn % 10 === 0)
+		else if (unitAIState === "INDIVIDUAL.RETURNRESOURCE.APPROACHING" && gameState.ai.playedTurn % 10 === 0)
 		{
 			// Check from time to time that UnitAI does not send us to an inaccessible dropsite
 			var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0]["target"]);
@@ -127,7 +130,7 @@ m.Worker.prototype.update = function(gameState, ent)
 	}
 	else if (subrole === "builder")
 	{
-		if (ent.unitAIState().split(".")[1] === "REPAIR")
+		if (unitAIStateOrder === "REPAIR")
 		{
 			// update our target in case UnitAI sent us to a different foundation because of autocontinue	
 			if (ent.unitAIOrderData()[0] && ent.unitAIOrderData()[0].target
@@ -200,13 +203,13 @@ m.Worker.prototype.update = function(gameState, ent)
 		}
 		else	// Perform some sanity checks
 		{
-			if (ent.unitAIState().split(".")[1] === "GATHER" || ent.unitAIState().split(".")[1] === "RETURNRESOURCE")
+			if (unitAIStateOrder === "GATHER" || unitAIStateOrder === "RETURNRESOURCE")
 			{
 				// we may have drifted towards ennemy territory during the hunt, if yes go home
 				let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(ent.position());
 				if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 					this.startHunting(gameState);
-				else if (ent.unitAIState() === "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
+				else if (unitAIState === "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
 				{
 					// Check that UnitAI does not send us to an inaccessible dropsite
 					var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0]["target"]);
@@ -823,7 +826,19 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 		this.ent.setMetadata(PlayerID, "approachingTarget", this.ent.unitAIOrderData()[0]["target"]);
 		this.ent.setMetadata(PlayerID, "approachingTime", undefined);
 		this.ent.setMetadata(PlayerID, "approachingPos", undefined);
+		this.ent.setMetadata(PlayerID, "carriedAmount", undefined);
 	}
+
+	let carriedAmount = this.ent.resourceCarrying().length ? this.ent.resourceCarrying()[0].amount : 0;
+	if (this.ent.getMetadata(PlayerID, "carriedAmount") === undefined ||
+		this.ent.getMetadata(PlayerID, "carriedAmount") !== carriedAmount)
+	{
+		this.ent.setMetadata(PlayerID, "carriedAmount", carriedAmount);
+		this.ent.setMetadata(PlayerID, "approachingTime", undefined);
+		this.ent.setMetadata(PlayerID, "approachingPos", undefined);
+		return false;
+	}
+
 	let approachingTime = this.ent.getMetadata(PlayerID, "approachingTime");
 	if (!approachingTime || gameState.ai.elapsedTime - approachingTime > 5)
 	{
