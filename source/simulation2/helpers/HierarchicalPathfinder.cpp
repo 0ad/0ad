@@ -442,7 +442,7 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 	}
 }
 
-bool HierarchicalPathfinder::IsChunkDirty(int ci, int cj, const Grid<u8>& dirtinessGrid)
+bool HierarchicalPathfinder::IsChunkDirty(int ci, int cj, const Grid<u8>& dirtinessGrid) const
 {
 	int i0 = ci * CHUNK_SIZE;
 	int j0 = cj * CHUNK_SIZE;
