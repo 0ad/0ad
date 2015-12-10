@@ -1,6 +1,13 @@
 var PETRA = function(m)
 {
 
+const resourceNames = {
+	"food": markForTranslation("Food"),
+	"wood": markForTranslation("Wood"),
+	"metal": markForTranslation("Metal"),
+	"stone": markForTranslation("Stone")
+};
+
 m.chatLaunchAttack = function(gameState, player)
 {
 	var proba = Math.random();
@@ -82,8 +89,8 @@ m.chatRequestTribute = function(gameState, resource)
 		"type": "aichat",
 		"message": message,
 		"translateMessage": true,
-		"translateParameters": ["resource"],
-		"parameters": {"resource": resource}
+		"translateParameters": {"resource": "withinSentence"},
+		"parameters": {"resource": resourceNames[resource]}
 	};
 	Engine.PostCommand(PlayerID, chat);
 };
