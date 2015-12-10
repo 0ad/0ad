@@ -55,11 +55,9 @@ var g_GameStarted = false;
 
 var g_PlayerAssignments = {};
 
-// Default game setup attributes
 var g_DefaultPlayerData = [];
-var g_GameAttributes = {
-	settings: {}
-};
+
+var g_GameAttributes = { "settings": {} };
 
 var g_ChatMessages = [];
 
@@ -89,33 +87,20 @@ function init(attribs)
 		return;
 	}
 
-	switch (attribs.type)
+	if (["offline", "server", "client"].indexOf(attribs.type) == -1)
 	{
-	case "offline":
-		g_IsNetworked = false;
-		g_IsController = true;
-		break;
-	case "server":
-		g_IsNetworked = true;
-		g_IsController = true;
-		break;
-	case "client":
-		g_IsNetworked = true;
-		g_IsController = false;
-		break;
-	default:
 		error("Unexpected 'type' in gamesetup init: " + attribs.type);
+		cancelSetup();
+		return;
 	}
+
+	g_IsNetworked = attribs.type != "offline";
+	g_IsController = attribs.type != "client";
 
 	if (attribs.serverName)
 		g_ServerName = attribs.serverName;
 
-	// Init the Cancel Button caption and tooltip
-	var cancelButton = Engine.GetGUIObjectByName("cancelGame");
-	if (!Engine.HasXmppClient())
-		cancelButton.tooltip = translate("Return to the main menu.");
-	else
-		cancelButton.tooltip = translate("Return to the lobby.");
+	Engine.GetGUIObjectByName("cancelGame").tooltip = Engine.HasXmppClient() ? translate("Return to the lobby.") : translate("Return to the main menu.");
 }
 
 // Called after the map data is loaded and cached
@@ -396,16 +381,7 @@ function initMain()
 	}
 
 	if (g_IsNetworked)
-	{
-		// For multiplayer, focus the chat input box by default
 		Engine.GetGUIObjectByName("chatInput").focus();
-	}
-	else
-	{
-		// For single-player, focus the map list by default,
-		// to allow easy keyboard selection of maps
-		Engine.GetGUIObjectByName("mapSelection").focus();
-	}
 
 	if (g_IsController)
 	{
@@ -1033,7 +1009,7 @@ function selectMap(name)
 			g_GameAttributes.settings[prop] = undefined;
 
 	var mapData = loadMapData(name);
-	var mapSettings = (mapData && mapData.settings ? deepcopy(mapData.settings) : {});
+	var mapSettings = mapData && mapData.settings ? deepcopy(mapData.settings) : {};
 
 	// Reset victory conditions
 	if (g_GameAttributes.mapType != "random")
@@ -1064,9 +1040,7 @@ function selectMap(name)
 
 	// Reset player assignments on map change
 	if (!g_IsNetworked)
-	{	// Slot 1
 		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0 } };
-	}
 	else
 	{
 		var numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_GameAttributes.settings.PlayerData.length;
