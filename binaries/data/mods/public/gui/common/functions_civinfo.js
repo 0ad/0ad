@@ -1,9 +1,10 @@
 /**
- * Loads history and some gameplay data for all (or all playable) civs.
+ * Loads history and some gameplay data for civs.
  *
- *  @param playableOnly {boolean}
+ *  @param selectableOnly {boolean} - Only load those which can be selected
+ *         in the gamesetup. Scenario maps might set non-selectable civs.
  */
-function loadCivData(playableOnly = false)
+function loadCivData(selectableOnly = false)
 {
 	var civData = {};
 	var civFiles = Engine.BuildDirEntList("simulation/data/civs/", "*.json", false);
@@ -15,7 +16,7 @@ function loadCivData(playableOnly = false)
 			continue;
 
 		translateObjectKeys(data, ["Name", "Description", "History", "Special"]);
-		if (!playableOnly || data.SelectableInGameSetup)
+		if (!selectableOnly || data.SelectableInGameSetup)
 			civData[data.Code] = data;
 
 		// Sanity check
