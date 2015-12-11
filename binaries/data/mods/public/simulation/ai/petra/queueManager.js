@@ -37,7 +37,7 @@ m.QueueManager = function(Config, queues)
 		this.queueArrays.push([p, this.queues[p]]);
 	}
 	var priorities = this.priorities;
-	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]); });
+	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.getAvailableResources = function(gameState)
@@ -180,60 +180,6 @@ m.QueueManager.prototype.printQueues = function(gameState)
 	API3.warn("Current Gather Rates: " + uneval(gameState.ai.HQ.GetCurrentGatherRates(gameState)));
 	API3.warn("Most needed resources: " + uneval(gameState.ai.HQ.pickMostNeededResources(gameState)));
 	API3.warn("------------------------------------");
-};
-
-// nice readable HTML version.
-m.QueueManager.prototype.HTMLprintQueues = function(gameState)
-{
-	var strToSend = [];
-	strToSend.push("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\"> <html> <head> <title>Aegis Queue Manager</title> <link rel=\"stylesheet\" href=\"table.css\">  </head> <body> <table> <caption>Aegis Build Order</caption> ");
-	for (var i in this.queues)
-	{
-		strToSend.push("<tr>");
-		
-		var q = this.queues[i];
-		var str = "<th>" + i + "  (" + this.priorities[i] + ")<br><span class=\"ressLevel\">";
-		for (var k of this.accounts[i].types)
-		{
-			str += this.accounts[i][k] + k.substr(0,1).toUpperCase() ;
-			if (k != "metal") str += " / ";
-		}
-		strToSend.push(str + "</span></th>");
-		for (var j in q.queue) {
-			if (q.queue[j].isGo(gameState))
-				strToSend.push("<td>");
-			else
-				strToSend.push("<td class=\"NotGo\">");
-
-			var qStr = "";
-			if (q.queue[j].number)
-				qStr += q.queue[j].number + " ";
-			qStr += q.queue[j].type;
-			qStr += "<br><span class=\"ressLevel\">";
-			var costs = q.queue[j].getCost();
-			for (var k of costs.types)
-			{
-				qStr += costs[k] + k.substr(0,1).toUpperCase() ;
-				if (k != "metal")
-					qStr += " / ";
-			}
-			qStr += "</span></td>";
-			strToSend.push(qStr);
-		}
-		strToSend.push("</tr>");
-	}
-	strToSend.push("</table>");
-	/*strToSend.push("<h3>Accounts</h3>");
-	for (var p in this.accounts)
-	{
-		strToSend.push("<p>" + p + ": " + uneval(this.accounts[p]) + " </p>");
-	}*/
-	strToSend.push("<p>Wanted Gather Rate:" + uneval(this.wantedGatherRates(gameState)) + "</p>");
-	strToSend.push("<p>Current Resources:" + uneval(gameState.getResources()) + "</p>");
-	strToSend.push("<p>Available Resources:" + uneval(this.getAvailableResources(gameState)) + "</p>");
-	strToSend.push("</body></html>");
-	for (var logged of strToSend)
-		log(logged);
 };
 
 m.QueueManager.prototype.clear = function()
@@ -554,7 +500,7 @@ m.QueueManager.prototype.addQueue = function(queueName, priority)
 	for (var p in this.queues)
 		this.queueArrays.push([p, this.queues[p]]);
 	var priorities = this.priorities;
-	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]); });
+	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.removeQueue = function(queueName)
@@ -570,7 +516,7 @@ m.QueueManager.prototype.removeQueue = function(queueName)
 	for (var p in this.queues)
 		this.queueArrays.push([p, this.queues[p]]);
 	var priorities = this.priorities;
-	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]); });
+	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.getPriority = function(queueName)
@@ -585,7 +531,7 @@ m.QueueManager.prototype.changePriority = function(queueName, newPriority)
 	if (this.queues[queueName] !== undefined)
 		this.priorities[queueName] = newPriority;
 	var priorities = this.priorities;
-	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]); });
+	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.Serialize = function()
@@ -624,7 +570,7 @@ m.QueueManager.prototype.Deserialize = function(gameState, data)
 		this.accounts[p].Deserialize(data.accounts[p]);
 		this.queueArrays.push([p, this.queues[p]]);
 	}
-	this.queueArrays.sort(function (a,b) { return (data.priorities[b[0]] - data.priorities[a[0]]); });
+	this.queueArrays.sort((a,b) => data.priorities[b[0]] - data.priorities[a[0]]);
 };
 
 return m;
