@@ -134,24 +134,60 @@ function initGUIObjects()
 	Engine.GetGUIObjectByName("cancelGame").tooltip = Engine.HasXmppClient() ? translate("Return to the lobby.") : translate("Return to the main menu.");
 
 	initCivNameList();
+	initMapTypes();
+	initMapFilters();
+	initMoreOptions();
 
-	// Init map types
+	if (g_IsController)
+	{
+		initHostControls();
+		initNumberOfPlayers();
+		initGameSpeed();
+		initPopulationCaps();
+		initStartingResources();
+		initCeasefire();
+		initVictoryConditions();
+		initMapSizes();
+		initRadioButtons();
+	}
+	else
+		hideControls();
+
+	initMultiplayerSettings();
+	initPlayerAssignments();
+	initFinalize();
+}
+
+function initMapTypes()
+{
 	var mapTypes = Engine.GetGUIObjectByName("mapTypeSelection");
 	mapTypes.list = g_MapTypes.Title;
 	mapTypes.list_data = g_MapTypes.Name;
+	if (g_IsController)
+		mapTypes.selected = g_MapTypes.Default;
+}
 
+function initMapFilters()
+{
 	// Setup map filters - will appear in order they are added
 	addFilter("default", translate("Default"), function(settings) { return settings && (settings.Keywords === undefined || !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"])); });
 	addFilter("naval", translate("Naval Maps"), function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["naval"]); });
 	addFilter("demo", translate("Demo Maps"), function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["demo"]); });
 	addFilter("all", translate("All Maps"), function(settings) { return true; });
 
-	// Populate map filters dropdown
 	var mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilters.list = g_MapFilters.map(mapFilter => mapFilter.name);
 	mapFilters.list_data = g_MapFilters.map(mapFilter => mapFilter.id);
+	if (g_IsController)
+		mapFilters.selected = 0;
 	g_GameAttributes.mapFilter = "default";
+}
 
+/**
+ * Sets the size of the more-options dialog.
+ */
+function initMoreOptions()
+{
 	// For singleplayer reduce the size of more options dialog by three options (cheats, rated game, observer late join = 90px)
 	if (!g_IsNetworked)
 	{
@@ -165,25 +201,29 @@ function initGUIObjects()
 		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 370 50%+70 396";
 		Engine.GetGUIObjectByName("optionObserverLateJoin").size = "14 338 94% 366";
 	}
+}
 
-	// Setup controls for host only
-	if (g_IsController)
-	{
-		mapTypes.selected = g_MapTypes.Default;
-		mapFilters.selected = 0;
-
+// TODO: move to initGUIObjects
+function initHostControls()
+{
 		// Create a unique ID for this match, to be used for identifying the same game reports
 		// for the lobby.
 		g_GameAttributes.matchID = Engine.GetMatchID();
 
 		initMapNameList();
+}
 
+function initNumberOfPlayers()
+{
 		let playersArray = Array(g_MaxPlayers).fill(0).map((v, i) => i + 1); // 1, 2, ..., MaxPlayers
 		let numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
 		numPlayersSelection.list = playersArray;
 		numPlayersSelection.list_data = playersArray;
 		numPlayersSelection.selected = g_MaxPlayers - 1;
+}
 
+function initGameSpeed()
+{
 		let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 		gameSpeed.hidden = false;
 		Engine.GetGUIObjectByName("gameSpeedText").hidden = true;
@@ -196,7 +236,10 @@ function initGUIObjects()
 			updateGameAttributes();
 		};
 		gameSpeed.selected = g_GameSpeeds.Default;
+}
 
+function initPopulationCaps()
+{
 		let populationCaps = Engine.GetGUIObjectByName("populationCap");
 		populationCaps.list = g_PopulationCapacities.Title;
 		populationCaps.list_data = g_PopulationCapacities.Population;
@@ -207,7 +250,10 @@ function initGUIObjects()
 
 			updateGameAttributes();
 		};
+}
 
+function initStartingResources()
+{
 		let startingResourcesL = Engine.GetGUIObjectByName("startingResources");
 		startingResourcesL.list = g_StartingResources.Title;
 		startingResourcesL.list_data = g_StartingResources.Resources;
@@ -218,7 +264,10 @@ function initGUIObjects()
 
 			updateGameAttributes();
 		};
+}
 
+function initCeasefire()
+{
 		let ceasefireL = Engine.GetGUIObjectByName("ceasefire");
 		ceasefireL.list = g_Ceasefire.Title;
 		ceasefireL.list_data = g_Ceasefire.Duration;
@@ -229,7 +278,10 @@ function initGUIObjects()
 
 			updateGameAttributes();
 		};
+}
 
+function initVictoryConditions()
+{
 		let victoryConditions = Engine.GetGUIObjectByName("victoryCondition");
 		victoryConditions.list = g_VictoryConditions.Title;
 		victoryConditions.list_data = g_VictoryConditions.Name;
@@ -243,7 +295,10 @@ function initGUIObjects()
 			updateGameAttributes();
 		};
 		victoryConditions.selected = g_VictoryConditions.Default;
+}
 
+function initMapSizes()
+{
 		let mapSize = Engine.GetGUIObjectByName("mapSize");
 		mapSize.list = g_MapSizes.LongName;
 		mapSize.list_data = g_MapSizes.Tiles;
@@ -253,7 +308,13 @@ function initGUIObjects()
 			updateGameAttributes();
 		};
 		mapSize.selected = 0;
+}
 
+/**
+ * Assign update-functions to all checkboxes.
+ */
+function initRadioButtons()
+{
 		Engine.GetGUIObjectByName("revealMap").onPress = function() {
 			g_GameAttributes.settings.RevealMap = this.checked;
 			updateGameAttributes();
@@ -291,10 +352,13 @@ function initGUIObjects()
 			Engine.GetGUIObjectByName("lockTeams").enabled = !this.checked;
 			updateGameAttributes();
 		};
-	}
-	else
-	{
-		// If we're a network client, disable all the map controls
+}
+
+/**
+ * If we're a network client, hide the controls and show the text instead.
+ */
+function hideControls()
+{
 		Engine.GetGUIObjectByName("mapTypeSelection").hidden = true;
 		Engine.GetGUIObjectByName("mapTypeText").hidden = false;
 		Engine.GetGUIObjectByName("mapFilterSelection").hidden = true;
@@ -317,8 +381,13 @@ function initGUIObjects()
 
 		Engine.GetGUIObjectByName("numPlayersSelection").hidden = true;
 		Engine.GetGUIObjectByName("startGame").enabled = true;
-	}
+}
 
+/**
+ * Hide and set some elements depending on whether we play single- or multiplayer.
+ */
+function initMultiplayerSettings()
+{
 	// Set up multiplayer/singleplayer bits:
 	if (!g_IsNetworked)
 	{
@@ -356,8 +425,13 @@ function initGUIObjects()
 			}
 		}
 	}
+}
 
-	// Settings for all possible player slots
+/**
+ * Populate team-, color- and civ-dropdowns.
+ */
+function initPlayerAssignments()
+{
 	var boxSpacing = 32;
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
@@ -399,7 +473,11 @@ function initGUIObjects()
 			updateGameAttributes();
 		};
 	}
+}
 
+// TODO: move to initGUIObjects
+function initFinalize()
+{
 	if (g_IsNetworked)
 		Engine.GetGUIObjectByName("chatInput").focus();
 
