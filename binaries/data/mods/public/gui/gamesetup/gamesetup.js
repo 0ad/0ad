@@ -15,6 +15,15 @@ const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryCo
 const g_PlayerColors = g_Settings ? g_Settings.PlayerDefaults.slice(1).map(pData => pData.Color) : undefined;
 
 /**
+ * Directory containing all maps of the given type.
+ */
+const g_MapPath = {
+	"random": "maps/random/",
+	"scenario": "maps/scenarios/",
+	"skirmish": "maps/skirmishes/"
+};
+
+/**
  * Used for generating the botnames.
  */
 const g_RomanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
@@ -644,11 +653,7 @@ function loadMapData(name)
 			break;
 
 		case "random":
-			if (name == "random")
-				// To be defined later.
-				g_MapData[name] = { "settings": { "Name": "", "Description": "" } };
-			else
-				g_MapData[name] = Engine.ReadJSONFile(name+".json");
+			g_MapData[name] = name == "random" ? { "settings": { "Name": "", "Description": "" } } : Engine.ReadJSONFile(name+".json");
 			break;
 
 		default:
@@ -914,56 +919,38 @@ function ensureUniquePlayerColors(playerData)
 	}
 }
 
-// Called when the user selects a map type from the list
+/**
+ * Called when the user selects a map type from the list.
+ *
+ * @param type {string} - scenario, skirmish or random
+ */
 function selectMapType(type)
 {
 	// Avoid recursion
 	if (g_IsInGuiUpdate)
 		return;
 
-	// Network clients can't change map type
 	if (g_IsNetworked && !g_IsController)
 		return;
 
-	// Reset game attributes
-	g_GameAttributes.map = "";
-	g_GameAttributes.mapType = type;
-
-	// Clear old map data
-	g_MapData = {};
-
-	// Select correct path
-	switch (g_GameAttributes.mapType)
+	if (!g_MapPath[type])
 	{
-	case "scenario":
-		g_GameAttributes.mapPath = "maps/scenarios/";
-		g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
-		break;
-
-	case "skirmish":
-		g_GameAttributes.mapPath = "maps/skirmishes/";
-		g_GameAttributes.settings = {
-			"PlayerData": g_DefaultPlayerData.slice(0, 4),
-			"Seed": Math.floor(Math.random() * 65536),
-			"AISeed": Math.floor(Math.random() * 65536),
-			"CheatsEnabled": g_GameAttributes.settings.CheatsEnabled
-		};
-		break;
-
-	case "random":
-		g_GameAttributes.mapPath = "maps/random/";
-		g_GameAttributes.settings = {
-			"PlayerData": g_DefaultPlayerData.slice(0, 4),
-			"Seed": Math.floor(Math.random() * 65536),
-			"AISeed": Math.floor(Math.random() * 65536),
-			"CheatsEnabled": g_GameAttributes.settings.CheatsEnabled
-		};
-		break;
-
-	default:
-		error("selectMapType: Unexpected map type " + g_GameAttributes.mapType);
+		error("selectMapType: Unexpected map type " + type);
 		return;
 	}
+
+	g_MapData = {};
+	g_GameAttributes.map = "";
+	g_GameAttributes.mapType = type;
+	g_GameAttributes.mapPath = g_MapPath[type];
+
+	if (type != "scenario")
+		g_GameAttributes.settings = {
+			"PlayerData": g_DefaultPlayerData.slice(0, 4),
+			"Seed": Math.floor(Math.random() * 65536),
+			"CheatsEnabled": g_GameAttributes.settings.CheatsEnabled
+		};
+	g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
 
 	initMapNameList();
 
@@ -1397,13 +1384,8 @@ function onGameAttributesChange()
 
 	// Display map name
 	if (mapName == "random")
-	{
-		var mapDisplayName  = translateWithContext("map", "Random");
 		mapSettings.Description = markForTranslation("Randomly selects a map from the list");
-	}
-	else
-		var mapDisplayName  = translate(getMapDisplayName(mapName));
-	Engine.GetGUIObjectByName("mapInfoName").caption = mapDisplayName;
+	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map", "Random") : translate(getMapDisplayName(mapName));
 
 	// Load the description from the map file, if there is one
 	var description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
@@ -1557,21 +1539,10 @@ function updatePlayerList()
 
 	for (let ai of g_Settings.AIDescriptions)
 	{
-		if (ai.data.hidden)
-		{
-			// If the map uses a hidden AI then don't hide it
-			let usedByMap = false;
-			for (let i = 0; i < g_MaxPlayers; ++i)
-				if (i < g_GameAttributes.settings.PlayerData.length &&
-				    g_GameAttributes.settings.PlayerData[i].AI == ai.id)
-				{
-					usedByMap = true;
-					break;
-				}
+		// If the map uses a hidden AI then don't hide it
+		if (ai.data.hidden && g_GameAttributes.settings.PlayerData.every(pData => pData.AI != ai.id))
+			continue;
 
-			if (!usedByMap)
-				continue;
-		}
 		// Give AI a different color so it stands out
 		aiAssignments[ai.id] = hostNameList.length;
 		hostNameList.push("[color=\"70 150 70 255\"]" + sprintf(translate("AI: %(ai)s"), { "ai": translate(ai.data.name) }));
@@ -1839,10 +1810,7 @@ function updateReadyUI()
 	if (!g_IsNetworked)
 		return; // Disabled for single-player games.
 
-	var isAI = new Array(g_MaxPlayers + 1);
-	for (let i = 0; i < isAI.length; ++i)
-		isAI[i] = true;
-
+	var isAI = new Array(g_MaxPlayers + 1).fill(true);
 	var allReady = true;
 	for (let guid in g_PlayerAssignments)
 	{
