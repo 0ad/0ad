@@ -34,6 +34,11 @@ const g_RomanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VI
  */
 const g_CivData = loadCivData();
 
+/**
+ * Used for highlighting the sender of chat messages.
+ */
+const g_SenderFont = "sans-bold-13";
+
 // Is this is a networked game, or offline
 var g_IsNetworked;
 
@@ -406,6 +411,9 @@ function handleNetMessage(message)
 {
 	log("Net message: " + uneval(message));
 
+	var resetReady;
+	var newGUID;
+
 	switch (message.type)
 	{
 	case "netstatus":
@@ -441,39 +449,39 @@ function handleNetMessage(message)
 		break;
 
 	case "players":
-		var resetReady = false;
-		var newPlayer = "";
-		// Find and report all joinings/leavings
-		for (let host in message.hosts)
+		resetReady = false;
+		newGUID = "";
+
+		// Report joinings
+		for (let guid in message.hosts)
 		{
-			if (!g_PlayerAssignments[host])
-			{
-				// If we have extra player slots and we are the controller, give the player an ID.
-				if (g_IsController && message.hosts[host].player === -1 && g_AssignedCount < g_GameAttributes.settings.PlayerData.length)
-					Engine.AssignNetworkPlayer(g_AssignedCount + 1, host);
-				addChatMessage({ "type": "connect", "username": message.hosts[host].name });
-				newPlayer = host;
-			}
+			if (g_PlayerAssignments[guid])
+				continue;
+			// If we have extra player slots and we are the controller, give the player an ID.
+			if (g_IsController && message.hosts[guid].player === -1 && g_AssignedCount < g_GameAttributes.settings.PlayerData.length)
+				Engine.AssignNetworkPlayer(g_AssignedCount + 1, guid);
+			addChatMessage({ "type": "connect", "username": message.hosts[guid].name });
+			newGUID = guid;
 		}
 
-		for (let host in g_PlayerAssignments)
+		// Report leavings
+		for (let guid in g_PlayerAssignments)
 		{
-			if (!message.hosts[host])
-			{
-				addChatMessage({ "type": "disconnect", "guid": host });
-				if (g_PlayerAssignments[host].player != -1)
-					resetReady = true; // Observers shouldn't reset ready.
-			}
+			if (message.hosts[guid])
+				continue;
+			addChatMessage({ "type": "disconnect", "guid": guid });
+			if (g_PlayerAssignments[guid].player != -1)
+				resetReady = true; // Observers shouldn't reset ready.
 		}
 
 		// Update the player list
 		g_PlayerAssignments = message.hosts;
 		updatePlayerList();
-		if (g_PlayerAssignments[newPlayer] && g_PlayerAssignments[newPlayer].player != -1)
+		if (g_PlayerAssignments[newGUID] && g_PlayerAssignments[newGUID].player != -1)
 			resetReady = true;
 
 		if (resetReady)
-			resetReadyData(); // Observers shouldn't reset ready.
+			resetReadyData();
 		updateReadyUI();
 		if (g_IsController)
 			sendRegisterGameStanza();
@@ -1627,17 +1635,17 @@ function swapPlayers(guid, newSlot)
 	// if any, into the slot this player is currently in.
 	if (playerID != -1)
 	{
-		for (let i in g_PlayerAssignments)
+		for (let guid in g_PlayerAssignments)
 		{
 			// Move the player in the destination slot into the current slot.
-			if (g_PlayerAssignments[i].player == newPlayerID)
-			{
-				if (g_IsNetworked)
-					Engine.AssignNetworkPlayer(playerID, i);
-				else
-					g_PlayerAssignments[i].player = playerID;
-				break;
-			}
+			if (g_PlayerAssignments[guid].player != newPlayerID)
+				continue;
+
+			if (g_IsNetworked)
+				Engine.AssignNetworkPlayer(playerID, guid);
+			else
+				g_PlayerAssignments[guid].player = playerID;
+			break;
 		}
 
 		// Transfer the AI from the target slot to the current slot.
@@ -1696,16 +1704,19 @@ function addChatMessage(msg)
 	}
 
 	var formatted;
+	var formattedUsername;
+	var formattedUsernamePrefix;
+
 	switch (msg.type)
 	{
 	case "connect":
-		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
-		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has joined"), { "username": formattedUsername }) }) + '[/font]';
+		formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
+		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has joined"), { "username": formattedUsername }) }) + '[/font]';
 		break;
 
 	case "disconnect":
-		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
-		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has left"), { "username": formattedUsername }) }) + '[/font]';
+		formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
+		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has left"), { "username": formattedUsername }) }) + '[/font]';
 		break;
 
 	case "clientlist":
@@ -1715,17 +1726,17 @@ function addChatMessage(msg)
 		break;
 
 	case "system":
-		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { "message": msg.text }) + '[/font]';
+		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": msg.text }) + '[/font]';
 		break;
 
 	case "message":
-		var formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
-		var formattedUsernamePrefix = '[font="sans-bold-13"]' + sprintf(translate("<%(username)s>"), { "username": formattedUsername }) + '[/font]';
+		formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
+		formattedUsernamePrefix = '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(username)s>"), { "username": formattedUsername }) + '[/font]';
 		formatted = sprintf(translate("%(username)s %(message)s"), { "username": formattedUsernamePrefix, "message": message });
 		break;
 
 	case "ready":
-		var formattedUsername = '[font="sans-bold-13"][color="' + color + '"]' + username + '[/color][/font]';
+		formattedUsername = '[font="' + g_SenderFont + '"][color="' + color + '"]' + username + '[/color][/font]';
 		if (msg.ready)
 			formatted = ' ' + sprintf(translate("* %(username)s is ready!"), { "username": formattedUsername });
 		else
@@ -1733,7 +1744,7 @@ function addChatMessage(msg)
 		break;
 
 	case "settings":
-		formatted = '[font="sans-bold-13"] ' + sprintf(translate("== %(message)s"), { "message": translate('Game settings have been changed') }) + '[/font]';
+		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": translate('Game settings have been changed') }) + '[/font]';
 		break;
 
 	default:
@@ -1772,7 +1783,7 @@ function toggleReady()
 function updateReadyUI()
 {
 	if (!g_IsNetworked)
-		return; // Disabled for single-player games.
+		return;
 
 	var isAI = new Array(g_MaxPlayers + 1).fill(true);
 	var allReady = true;
