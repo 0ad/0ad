@@ -262,6 +262,9 @@ function updateTopPanel()
 	var isActive = isPlayer && GetSimState().players[playerID].state == "active";
 	Engine.GetGUIObjectByName("pauseButton").enabled = isActive || !g_IsNetworked;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = isActive;
+
+	// Enable observer-only "summary" button.
+	Engine.GetGUIObjectByName("summaryButton").enabled = !isActive;
 }
 
 function reportPerformance(time)

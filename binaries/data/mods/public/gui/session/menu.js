@@ -9,7 +9,7 @@ const RESUME = translate("Resume");
 const MARGIN = 4;
 
 // Includes the main menu button
-const NUM_BUTTONS = 8;
+const NUM_BUTTONS = 9;
 
 // Regular menu buttons
 const BUTTON_HEIGHT = 32;
