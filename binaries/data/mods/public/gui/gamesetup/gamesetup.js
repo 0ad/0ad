@@ -579,31 +579,21 @@ function initCivNameList()
 	}
 }
 
-// Initialise the list control containing all the available maps
+/**
+ * Initialize the dropdown containing all maps for the selected maptype and mapfilter.
+ */
 function initMapNameList()
 {
-	// Get a list of map filenames
-	// TODO: Should verify these are valid maps before adding to list
-	var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
-	var mapFiles;
-
-	switch (g_GameAttributes.mapType)
+	if (!g_MapPath[g_GameAttributes.mapType])
 	{
-	case "scenario":
-	case "skirmish":
-		mapFiles = getXMLFileList(g_GameAttributes.mapPath);
-		break;
-
-	case "random":
-		mapFiles = getJSONFileList(g_GameAttributes.mapPath);
-		break;
-
-	default:
 		error("initMapNameList: Unexpected map type " + g_GameAttributes.mapType);
 		return;
 	}
 
+	var mapFiles = g_GameAttributes.mapType == "random" ? getJSONFileList(g_GameAttributes.mapPath) : getXMLFileList(g_GameAttributes.mapPath);
+
 	// Apply map filter, if any defined
+	// TODO: Should verify these are valid maps before adding to list
 	var mapList = [];
 	for (let mapFile of mapFiles)
 	{
@@ -613,26 +603,24 @@ function initMapNameList()
 		if (g_GameAttributes.mapFilter && mapData && testFilter(g_GameAttributes.mapFilter, mapData.settings))
 			mapList.push({ "name": getMapDisplayName(file), "file": file });
 	}
-
-	// Alphabetically sort the list, ignoring case
 	translateObjectKeys(mapList, ["name"]);
 	mapList.sort(sortNameIgnoreCase);
 
 	var mapListNames = mapList.map(map => map.name);
 	var mapListFiles = mapList.map(map => map.file);
 
-	// Select the default map
 	var selected = mapListFiles.indexOf(g_GameAttributes.map);
-	// Default to the first element if list is not empty and we can't find the one we searched for
 	if (selected == -1 && mapList.length)
 		selected = 0;
 
-	// Update the list control
+	// Scenario/skirmish maps have a fixed playercount
 	if (g_GameAttributes.mapType == "random")
 	{
 		mapListNames.unshift("[color=\"orange\"]" + translateWithContext("map", "Random") + "[/color]");
 		mapListFiles.unshift("random");
 	}
+
+	var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
 	mapSelectionBox.selected = selected;
@@ -730,6 +718,7 @@ function loadGameAttributes()
 		let populationCapBox = Engine.GetGUIObjectByName("populationCap");
 		populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
 	}
+
 	if (mapSettings.StartingResources)
 	{
 		let startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
@@ -843,15 +832,7 @@ function onTick()
 function selectNumPlayers(num)
 {
 	// Avoid recursion
-	if (g_IsInGuiUpdate)
-		return;
-
-	// Network clients can't change number of players
-	if (g_IsNetworked && !g_IsController)
-		return;
-
-	// Only meaningful for random maps
-	if (g_GameAttributes.mapType != "random")
+	if (g_IsInGuiUpdate || !g_IsController || g_GameAttributes.mapType != "random")
 		return;
 
 	// Update player data
@@ -927,10 +908,7 @@ function ensureUniquePlayerColors(playerData)
 function selectMapType(type)
 {
 	// Avoid recursion
-	if (g_IsInGuiUpdate)
-		return;
-
-	if (g_IsNetworked && !g_IsController)
+	if (g_IsInGuiUpdate || !g_IsController)
 		return;
 
 	if (!g_MapPath[type])
@@ -960,11 +938,7 @@ function selectMapType(type)
 function selectMapFilter(id)
 {
 	// Avoid recursion
-	if (g_IsInGuiUpdate)
-		return;
-
-	// Network clients can't change map filter
-	if (g_IsNetworked && !g_IsController)
+	if (g_IsInGuiUpdate || !g_IsController)
 		return;
 
 	g_GameAttributes.mapFilter = id;
@@ -978,15 +952,7 @@ function selectMapFilter(id)
 function selectMap(name)
 {
 	// Avoid recursion
-	if (g_IsInGuiUpdate)
-		return;
-
-	// Network clients can't change map
-	if (g_IsNetworked && !g_IsController)
-		return;
-
-	// Return if we have no map
-	if (!name)
+	if (g_IsInGuiUpdate || !g_IsController || !name)
 		return;
 
 	// Reset some map specific properties which are not necessarily redefined on each map
@@ -1044,7 +1010,7 @@ function selectMap(name)
 
 function launchGame()
 {
-	if (g_IsNetworked && !g_IsController)
+	if (!g_IsController)
 	{
 		error("Only host can start game");
 		return;
@@ -1450,7 +1416,7 @@ function onGameAttributesChange()
 				pCivText.caption = g_CivData[civ].Name;
 			pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
 		}
-		else if (g_GameAttributes.mapType != "scenario")
+		else
 		{
 			pCivText.hidden = true;
 			pCiv.hidden = false;
@@ -1521,13 +1487,11 @@ function updatePlayerList()
 
 	for (let guid in g_PlayerAssignments)
 	{
-		let name = g_PlayerAssignments[guid].name;
-		let hostID = hostNameList.length;
 		let player = g_PlayerAssignments[guid].player;
 
-		hostNameList.push(name);
+		hostNameList.push(g_PlayerAssignments[guid].name);
 		hostGuidList.push(guid);
-		assignments[player] = hostID;
+		assignments[player] = hostNameList.length-1;
 
 		if (player != -1)
 			g_AssignedCount++;
@@ -1725,8 +1689,8 @@ function addChatMessage(msg)
 		color = g_GameAttributes.settings.PlayerData[g_PlayerAssignments[msg.guid].player - 1].Color;
 
 		// Enlighten playercolor to improve readability
-		var [h, s, l] = rgbToHsl(color.r, color.g, color.b);
-		var [r, g, b] = hslToRgb(h, s, Math.max(0.6, l));
+		let [h, s, l] = rgbToHsl(color.r, color.g, color.b);
+		let [r, g, b] = hslToRgb(h, s, Math.max(0.6, l));
 
 		color = rgbToGuiColor({ "r": r, "g": g, "b": b });
 	}
