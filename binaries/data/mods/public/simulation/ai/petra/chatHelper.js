@@ -1,11 +1,16 @@
 var PETRA = function(m)
 {
 
+// Keep in sync with gui/common/l10n.js
 const resourceNames = {
-	"food": markForTranslation("Food"),
-	"wood": markForTranslation("Wood"),
-	"metal": markForTranslation("Metal"),
-	"stone": markForTranslation("Stone")
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"food": markForTranslationWithContext("withinSentence", "Food"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"wood": markForTranslationWithContext("withinSentence", "Wood"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"metal": markForTranslationWithContext("withinSentence", "Metal"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"stone": markForTranslationWithContext("withinSentence", "Stone"),
 };
 
 m.chatLaunchAttack = function(gameState, player)
