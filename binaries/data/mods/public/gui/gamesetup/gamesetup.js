@@ -565,7 +565,7 @@ function initCivNameList()
 	var civListNames = civList.map(civ => civ.name);
 	var civListCodes = civList.map(civ => civ.code);
 
-	//  Add random civ to beginning of list
+	// Add random civ to beginning of list
 	civListNames.unshift('[color="orange"]' + translateWithContext("civilization", "Random") + '[/color]');
 	civListCodes.unshift("random");
 
@@ -989,7 +989,7 @@ function selectMap(name)
 	if (!name)
 		return;
 
-	// reset some map specific properties which are not necessarily redefined on each map
+	// Reset some map specific properties which are not necessarily redefined on each map
 	for (let prop of ["TriggerScripts", "CircularMap", "Garrison"])
 		if (g_GameAttributes.settings[prop] !== undefined)
 			g_GameAttributes.settings[prop] = undefined;
@@ -1406,26 +1406,26 @@ function onGameAttributesChange()
 		if (i >= numPlayers)
 			continue;
 
-		var pName = Engine.GetGUIObjectByName("playerName["+i+"]");
-		var pAssignment = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
-		var pAssignmentText = Engine.GetGUIObjectByName("playerAssignmentText["+i+"]");
-		var pCiv = Engine.GetGUIObjectByName("playerCiv["+i+"]");
-		var pCivText = Engine.GetGUIObjectByName("playerCivText["+i+"]");
-		var pTeam = Engine.GetGUIObjectByName("playerTeam["+i+"]");
-		var pTeamText = Engine.GetGUIObjectByName("playerTeamText["+i+"]");
-		var pColor = Engine.GetGUIObjectByName("playerColor["+i+"]");
+		let pName = Engine.GetGUIObjectByName("playerName["+i+"]");
+		let pAssignment = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
+		let pAssignmentText = Engine.GetGUIObjectByName("playerAssignmentText["+i+"]");
+		let pCiv = Engine.GetGUIObjectByName("playerCiv["+i+"]");
+		let pCivText = Engine.GetGUIObjectByName("playerCivText["+i+"]");
+		let pTeam = Engine.GetGUIObjectByName("playerTeam["+i+"]");
+		let pTeamText = Engine.GetGUIObjectByName("playerTeamText["+i+"]");
+		let pColor = Engine.GetGUIObjectByName("playerColor["+i+"]");
 
 		// Player data / defaults
-		var pData = mapSettings.PlayerData ? mapSettings.PlayerData[i] : {};
-		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[i] : {};
+		let pData = mapSettings.PlayerData ? mapSettings.PlayerData[i] : {};
+		let pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[i] : {};
 
 		// Common to all game types
-		var color = getSetting(pData, pDefs, "Color");
+		let color = getSetting(pData, pDefs, "Color");
 		pColor.sprite = "color:" + rgbToGuiColor(color) + " 100";
 		pName.caption = translate(getSetting(pData, pDefs, "Name"));
 
-		var team = getSetting(pData, pDefs, "Team");
-		var civ = getSetting(pData, pDefs, "Civ");
+		let team = getSetting(pData, pDefs, "Team");
+		let civ = getSetting(pData, pDefs, "Civ");
 
 		// Nobody but the controller can assign people
 		pAssignmentText.hidden = g_IsController;
@@ -1462,9 +1462,9 @@ function onGameAttributesChange()
 		}
 
 		// Allow host to chose player colors on non-scenario maps
-		const pColorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
-		const pColorPickerHeading = Engine.GetGUIObjectByName("playerColorHeading");
-		const canChangeColors = g_IsController && g_GameAttributes.mapType != "scenario";
+		let pColorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
+		let pColorPickerHeading = Engine.GetGUIObjectByName("playerColorHeading");
+		let canChangeColors = g_IsController && g_GameAttributes.mapType != "scenario";
 		pColorPicker.hidden = !canChangeColors;
 		pColorPickerHeading.hidden = !canChangeColors;
 		if (canChangeColors)
@@ -1570,7 +1570,7 @@ function updatePlayerList()
 		// If no human is assigned, look for an AI instead
 		if (selection === undefined)
 		{
-			var aiId = g_GameAttributes.settings.PlayerData[playerSlot].AI;
+			let aiId = g_GameAttributes.settings.PlayerData[playerSlot].AI;
 			if (aiId)
 			{
 				// Check for a valid AI
@@ -1609,8 +1609,8 @@ function updatePlayerList()
 				Engine.SetNetworkGameAttributes(g_GameAttributes);
 		}
 
-		var assignBox = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
-		var assignBoxText = Engine.GetGUIObjectByName("playerAssignmentText["+i+"]");
+		let assignBox = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
+		let assignBoxText = Engine.GetGUIObjectByName("playerAssignmentText["+i+"]");
 		assignBox.list = hostNameList;
 		assignBox.list_data = hostGuidList;
 		if (assignBox.selected != selection)
