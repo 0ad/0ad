@@ -144,11 +144,10 @@ var g_Commands = {
 			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
 		}
 
-		if (cmd.allowCapture == null)
-			cmd.allowCapture = true;
+		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
 		// See UnitAI.CanAttack for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
-			cmpUnitAI.Attack(cmd.target, cmd.queued, cmd.allowCapture);
+			cmpUnitAI.Attack(cmd.target, cmd.queued, allowCapture);
 		});
 	},
 
@@ -885,17 +884,18 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	// If it's a dock, get the right angle.
 	var cmpTemplateMgr = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var template = cmpTemplateMgr.GetTemplate(cmd.template);
+	var angle = cmd.angle;
 	if (template.BuildRestrictions.Category === "Dock")
 	{
-		var angle = GetDockAngle(template, cmd.x, cmd.z);
-		if (angle !== undefined)
-			cmd.angle = angle;
+		let angleDock = GetDockAngle(template, cmd.x, cmd.z);
+		if (angleDock !== undefined)
+			angle = angleDock;
 	}
 	
 	// Move the foundation to the right place
 	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	cmpPosition.JumpTo(cmd.x, cmd.z);
-	cmpPosition.SetYRotation(cmd.angle);
+	cmpPosition.SetYRotation(angle);
 	
 	// Set the obstruction control group if needed
 	if (cmd.obstructionControlGroup || cmd.obstructionControlGroup2)
