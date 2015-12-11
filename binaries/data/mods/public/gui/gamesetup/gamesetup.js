@@ -93,6 +93,11 @@ var g_AssignedCount = 0;
 // tick handler
 var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
 
+/**
+ * Initializes some globals without touching the GUI.
+ *
+ * @param attribs {Object} - context data sent by the lobby / mainmenu
+ */
 function init(attribs)
 {
 	if (!g_Settings)
@@ -114,17 +119,19 @@ function init(attribs)
 	if (attribs.serverName)
 		g_ServerName = attribs.serverName;
 
-	Engine.GetGUIObjectByName("cancelGame").tooltip = Engine.HasXmppClient() ? translate("Return to the lobby.") : translate("Return to the main menu.");
-}
-
-// Called after the map data is loaded and cached
-function initMain()
-{
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = g_Settings.PlayerDefaults;
 	g_DefaultPlayerData.shift();
 	for (let i in g_DefaultPlayerData)
 		g_DefaultPlayerData[i].Civ = "random";
+}
+
+/**
+ * Called after the first tick.
+ */
+function initGUIObjects()
+{
+	Engine.GetGUIObjectByName("cancelGame").tooltip = Engine.HasXmppClient() ? translate("Return to the lobby.") : translate("Return to the main menu.");
 
 	initCivNameList();
 
@@ -398,15 +405,21 @@ function initMain()
 
 	if (g_IsController)
 	{
-		loadGameAttributes();
+		loadPersistMatchSettings();
 		// Sync g_GameAttributes to everyone.
 		if (g_IsInGuiUpdate)
-			warn("initMain() called while in GUI update");
+			warn("initGUIObjects() called while in GUI update");
 
 		updateGameAttributes();
 	}
 }
 
+/**
+ * Processes a CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
+ * Saves the received object to mainlog.html.
+ *
+ * @param message {Object}
+ */
 function handleNetMessage(message)
 {
 	log("Net message: " + uneval(message));
@@ -661,7 +674,10 @@ function loadMapData(name)
 	return g_MapData[name];
 }
 
-function loadGameAttributes()
+/**
+ * Sets the gameattributes the way they were the last time the user left the gamesetup.
+ */
+function loadPersistMatchSettings()
 {
 	if (Engine.ConfigDB_GetValue("user", "persistmatchsettings") != "true")
 		return;
@@ -820,7 +836,7 @@ function onTick()
 	{
 		Engine.GetGUIObjectByName("loadingWindow").hidden = true;
 		Engine.GetGUIObjectByName("setupWindow").hidden = false;
-		initMain();
+		initGUIObjects();
 		g_LoadingState++;
 	}
 	else if (g_LoadingState == 2)
@@ -1112,8 +1128,6 @@ function launchGame()
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-
 function onGameAttributesChange()
 {
 	g_IsInGuiUpdate = true;
@@ -1207,6 +1221,7 @@ function onGameAttributesChange()
 		lockTeams.enabled = !enableRating.checked;
 	}
 	else
+		// TODO: take care this can't happen anymore
 		enableRatingText.caption = "Unknown";
 
 	observerLateJoin.checked = g_GameAttributes.settings.ObserverLateJoin;
@@ -1223,7 +1238,6 @@ function onGameAttributesChange()
 	ceasefire.selected = mapSettings.Ceasefire !== undefined && g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) != -1 ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
 	ceasefireText.caption = g_Ceasefire.Title[ceasefire.selected];
 
-	// Update map preview
 	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
 
 	// Hide/show settings depending on whether we can change them or not
@@ -1251,18 +1265,16 @@ function onGameAttributesChange()
 
 		if (g_IsController)
 		{
-			//Host
 			numPlayersSelection.selected = numPlayers - 1;
 			mapSize.selected = sizeIdx;
-			revealMap.checked = (mapSettings.RevealMap ? true : false);
-			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
-			disableTreasures.checked = (mapSettings.DisableTreasures ? true : false);
+			revealMap.checked = !!mapSettings.RevealMap;
+			exploreMap.checked = !!mapSettings.ExploreMap;
+			disableTreasures.checked = !!mapSettings.DisableTreasures;
 			victoryCondition.selected = victoryIdx;
-			lockTeams.checked = (mapSettings.LockTeams ? true : false);
+			lockTeams.checked = !!mapSettings.LockTeams;
 		}
 		else
 		{
-			// Client
 			numPlayersText.caption = numPlayers;
 			mapSizeText.caption = g_MapSizes.LongName[sizeIdx];
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
@@ -1294,16 +1306,14 @@ function onGameAttributesChange()
 
 		if (g_IsController)
 		{
-			//Host
-			revealMap.checked = (mapSettings.RevealMap ? true : false);
-			exploreMap.checked = (mapSettings.ExploreMap ? true : false);
-			disableTreasures.checked = (mapSettings.DisableTreasures ? true : false);
+			revealMap.checked = !!mapSettings.RevealMap;
+			exploreMap.checked = !!mapSettings.ExploreMap;
+			disableTreasures.checked = !!mapSettings.DisableTreasures;
 			victoryCondition.selected = victoryIdx;
-			lockTeams.checked = (mapSettings.LockTeams ? true : false);
+			lockTeams.checked = !!mapSettings.LockTeams;
 		}
 		else
 		{
-			// Client
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
 			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
@@ -1595,7 +1605,7 @@ function updatePlayerList()
 					return;
 
 				let guid = hostGuidList[this.selected];
-				if (guid == "")
+				if (!guid)
 				{
 					if (g_IsNetworked)
 						// Unassign any host from this player slot
