@@ -89,14 +89,6 @@ m.BaseAI.prototype.chat = function(message)
 {
 	Engine.PostCommand(PlayerID,{"type": "aichat", "message": message});
 };
-m.BaseAI.prototype.chatTeam = function(message)
-{
-	Engine.PostCommand(PlayerID,{"type": "aichat", "message": "/team " +message});
-};
-m.BaseAI.prototype.chatEnemies = function(message)
-{
-	Engine.PostCommand(PlayerID,{"type": "aichat", "message": "/enemy " +message});
-};
 
 return m;
 

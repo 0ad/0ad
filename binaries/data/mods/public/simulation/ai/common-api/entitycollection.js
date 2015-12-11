@@ -104,7 +104,8 @@ m.EntityCollection.prototype.filterNearest = function(targetPos, n)
 			data.push([id, ent, m.SquareVectorDistance(targetPos, ent.position())]);
 
 	// Sort by increasing distance
-	data.sort(function (a, b) { return (a[2] - b[2]); });
+	data.sort((a, b) => a[2] - b[2]);
+
 	if (n === undefined)
 		n = data.length;
 	else
@@ -155,13 +156,7 @@ m.EntityCollection.prototype.moveIndiv = function(x, z, queued)
 {
 	queued = queued || false;
 	for (let id of this._entities.keys())
-	{
-		// The following try {} finally {} block is a workaround for OOS problems in multiplayer games with AI players (check ticket #2000).
-		// It disables JIT compiling of this loop. Don't remove it unless you are sure that the underlying issue has been resolved!
-		// TODO: Check this again after the SpiderMonkey upgrade.
-		try {} finally {}
 		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [id], "x": x, "z": z, "queued": queued});
-	}
 	return this;
 };
 
