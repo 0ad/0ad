@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 13:34+0000\n"
+"POT-Creation-Date: 2015-12-07 17:36+0100\n"
+"PO-Revision-Date: 2015-12-08 13:50+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -504,103 +504,105 @@ msgstr "敵人的基地已經被發現了，派遣您所有的攻城武器及士
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr "敵人被打敗了。所有教學任務到都已完成..."
 
-#: simulation/components/BuildRestrictions.js:85
+#: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "因為未知的錯誤，無法建造 %(name)s"
 
-#: simulation/components/BuildRestrictions.js:106
+#: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "無法在尚未探索的區域建造 %(name)s"
 
-#: simulation/components/BuildRestrictions.js:154
+#: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "不能在另一棟建築物或資源上建造 %(name)s"
 
-#: simulation/components/BuildRestrictions.js:158
+#: simulation/components/BuildRestrictions.js:160
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "不能在無效的地形上建造 %(name)s"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:182
+#: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "盟友"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:185
+#: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "自己"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:188
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "中立"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:191
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "敵方"
 
-#: simulation/components/BuildRestrictions.js:197
+#: simulation/components/BuildRestrictions.js:199
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "不能在 %(territoryType)s 的領土上建造 %(name)s 。有效的領土： %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:236
+#: simulation/components/BuildRestrictions.js:238
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "必須在有效的海岸線上建造 %(name)s"
 
-#: simulation/components/BuildRestrictions.js:260
+#: simulation/components/BuildRestrictions.js:262
 #, javascript-format
-msgid ""
+msgid "%(name)s too close to a %(category)s, must be at least 1 meter away"
+msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr "%(name)s 距離 %(category)s 太近，必須要有至少 %(distance)s 公尺的距離"
+msgstr[0] "%(name)s 距離 %(category)s 太近，必須要有至少 %(distance)s 公尺的距離"
 
-#: simulation/components/BuildRestrictions.js:273
+#: simulation/components/BuildRestrictions.js:284
 #, javascript-format
-msgid ""
+msgid "%(name)s too far from a %(category)s, must be within 1 meter"
+msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr "%(name)s 距離 %(category)s 太遠，必須在 %(distance)s 公尺的距離以內"
+msgstr[0] "%(name)s 距離 %(category)s 太遠，必須在 %(distance)s 公尺的距離以內"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:304
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "own"
 msgstr "自己的"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:306
+#: simulation/components/BuildRestrictions.js:326
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "盟友的"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:308
+#: simulation/components/BuildRestrictions.js:328
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "中立的"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:310
+#: simulation/components/BuildRestrictions.js:330
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "敵方的"
@@ -675,6 +677,11 @@ msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)
 #: simulation/components/ProductionQueue.js:366
 msgid "The production queue is full."
 msgstr "生產佇列已滿。"
+
+#: simulation/helpers/Commands.js:680
+#, javascript-format
+msgid "Attack against %(_player_)s requested."
+msgstr "請攻擊 %(_player_)s。"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -818,53 +825,53 @@ msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "死鬥"
 
-#: simulation/data/map_sizes.jsonSizes[0].Name
-#: simulation/data/map_sizes.jsonSizes[0].LongName
+#: simulation/data/settings/map_sizes.jsonData[0].Name
+#: simulation/data/settings/map_sizes.jsonData[0].LongName
 msgid "Tiny"
 msgstr "微型"
 
-#: simulation/data/map_sizes.jsonSizes[1].Name
+#: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
 msgstr "小型"
 
-#: simulation/data/map_sizes.jsonSizes[1].LongName
+#: simulation/data/settings/map_sizes.jsonData[1].LongName
 msgid "Small (2 players)"
 msgstr "小型 (2 位玩家)"
 
-#: simulation/data/map_sizes.jsonSizes[2].Name
+#: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
 msgstr "中等"
 
-#: simulation/data/map_sizes.jsonSizes[2].LongName
+#: simulation/data/settings/map_sizes.jsonData[2].LongName
 msgid "Medium (3 players)"
 msgstr "中等 (3 位玩家)"
 
-#: simulation/data/map_sizes.jsonSizes[3].Name
+#: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
 msgstr "一般"
 
-#: simulation/data/map_sizes.jsonSizes[3].LongName
+#: simulation/data/settings/map_sizes.jsonData[3].LongName
 msgid "Normal (4 players)"
 msgstr "一般 (4 位玩家)"
 
-#: simulation/data/map_sizes.jsonSizes[4].Name
+#: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
 msgstr "大型"
 
-#: simulation/data/map_sizes.jsonSizes[4].LongName
+#: simulation/data/settings/map_sizes.jsonData[4].LongName
 msgid "Large (6 players)"
 msgstr "大型 (6 位玩家)"
 
-#: simulation/data/map_sizes.jsonSizes[5].Name
+#: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
 msgstr "極大"
 
-#: simulation/data/map_sizes.jsonSizes[5].LongName
+#: simulation/data/settings/map_sizes.jsonData[5].LongName
 msgid "Very Large (8 players)"
 msgstr "極大 (8 位玩家)"
 
-#: simulation/data/map_sizes.jsonSizes[6].Name
-#: simulation/data/map_sizes.jsonSizes[6].LongName
+#: simulation/data/settings/map_sizes.jsonData[6].Name
+#: simulation/data/settings/map_sizes.jsonData[6].LongName
 msgid "Giant"
 msgstr "巨大"
 

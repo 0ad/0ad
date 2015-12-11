@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:49+0000\n"
+"POT-Creation-Date: 2015-12-07 17:36+0100\n"
+"PO-Revision-Date: 2015-12-08 12:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -509,103 +509,107 @@ msgstr "La base ennemie a été repérée, envoyez vos armes de siège et tous v
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr "L'ennemi a été vaincu. Toutes les tâches du tutoriel ont été complétées..."
 
-#: simulation/components/BuildRestrictions.js:85
+#: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s ne peut pas être construit pour une raison inconnue"
 
-#: simulation/components/BuildRestrictions.js:106
+#: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s ne peut pas être construit dans une zone inexplorée"
 
-#: simulation/components/BuildRestrictions.js:154
+#: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s ne peut pas être construit sur un autre bâtiment ou ressource"
 
-#: simulation/components/BuildRestrictions.js:158
+#: simulation/components/BuildRestrictions.js:160
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s ne peut pas être construit sur un terrain invalide"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:182
+#: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "allié"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:185
+#: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "propre"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:188
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neutre"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:191
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "ennemi"
 
-#: simulation/components/BuildRestrictions.js:197
+#: simulation/components/BuildRestrictions.js:199
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s ne peut pas être construit en territoire %(territoryType)s. Territoires valides : %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:236
+#: simulation/components/BuildRestrictions.js:238
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s doit être construit sur un rivage valide"
 
-#: simulation/components/BuildRestrictions.js:260
+#: simulation/components/BuildRestrictions.js:262
 #, javascript-format
-msgid ""
+msgid "%(name)s too close to a %(category)s, must be at least 1 meter away"
+msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr "%(name)s trop proche d'un %(category)s, doit être au moins à %(distance)s mètres de distance"
+msgstr[0] ""
+msgstr[1] ""
 
-#: simulation/components/BuildRestrictions.js:273
+#: simulation/components/BuildRestrictions.js:284
 #, javascript-format
-msgid ""
+msgid "%(name)s too far from a %(category)s, must be within 1 meter"
+msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr "%(name)s trop loin d'un %(category)s, doit être à moins de %(distance)s mètres"
+msgstr[0] ""
+msgstr[1] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:304
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "own"
 msgstr "propre"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:306
+#: simulation/components/BuildRestrictions.js:326
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "allié"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:308
+#: simulation/components/BuildRestrictions.js:328
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neutre"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:310
+#: simulation/components/BuildRestrictions.js:330
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "ennemi"
@@ -680,6 +684,11 @@ msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(reso
 #: simulation/components/ProductionQueue.js:366
 msgid "The production queue is full."
 msgstr "La file de production est pleine."
+
+#: simulation/helpers/Commands.js:680
+#, javascript-format
+msgid "Attack against %(_player_)s requested."
+msgstr ""
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -823,53 +832,53 @@ msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "Match à mort"
 
-#: simulation/data/map_sizes.jsonSizes[0].Name
-#: simulation/data/map_sizes.jsonSizes[0].LongName
+#: simulation/data/settings/map_sizes.jsonData[0].Name
+#: simulation/data/settings/map_sizes.jsonData[0].LongName
 msgid "Tiny"
 msgstr "Minuscule"
 
-#: simulation/data/map_sizes.jsonSizes[1].Name
+#: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
 msgstr "Petite"
 
-#: simulation/data/map_sizes.jsonSizes[1].LongName
+#: simulation/data/settings/map_sizes.jsonData[1].LongName
 msgid "Small (2 players)"
 msgstr "Petite (2 joueurs)"
 
-#: simulation/data/map_sizes.jsonSizes[2].Name
+#: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
 msgstr "Moyenne"
 
-#: simulation/data/map_sizes.jsonSizes[2].LongName
+#: simulation/data/settings/map_sizes.jsonData[2].LongName
 msgid "Medium (3 players)"
 msgstr "Moyenne (3 joueurs)"
 
-#: simulation/data/map_sizes.jsonSizes[3].Name
+#: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
 msgstr "Normale"
 
-#: simulation/data/map_sizes.jsonSizes[3].LongName
+#: simulation/data/settings/map_sizes.jsonData[3].LongName
 msgid "Normal (4 players)"
 msgstr "Normale (4 joueurs)"
 
-#: simulation/data/map_sizes.jsonSizes[4].Name
+#: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
 msgstr "Grande"
 
-#: simulation/data/map_sizes.jsonSizes[4].LongName
+#: simulation/data/settings/map_sizes.jsonData[4].LongName
 msgid "Large (6 players)"
 msgstr "Grande (6 joueurs)"
 
-#: simulation/data/map_sizes.jsonSizes[5].Name
+#: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
 msgstr "Très grande"
 
-#: simulation/data/map_sizes.jsonSizes[5].LongName
+#: simulation/data/settings/map_sizes.jsonData[5].LongName
 msgid "Very Large (8 players)"
 msgstr "Très grande (8 joueurs)"
 
-#: simulation/data/map_sizes.jsonSizes[6].Name
-#: simulation/data/map_sizes.jsonSizes[6].LongName
+#: simulation/data/settings/map_sizes.jsonData[6].Name
+#: simulation/data/settings/map_sizes.jsonData[6].LongName
 msgid "Giant"
 msgstr "Géante"
 

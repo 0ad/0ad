@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:49+0000\n"
+"POT-Creation-Date: 2015-12-07 17:36+0100\n"
+"PO-Revision-Date: 2015-12-08 12:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -511,103 +511,107 @@ msgstr "Η βάση του εχθρού εντοπίστηκε, στείλτε �
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr "Ο εχθρός έχει ηττηθεί. Όλες οι εκπαιδευτικές εργασίες έχουν ολοκληρωθεί..."
 
-#: simulation/components/BuildRestrictions.js:85
+#: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s δέν μπορούν να χτιστούν λόγω κάποιου άγνωστου σφάλματος"
 
-#: simulation/components/BuildRestrictions.js:106
+#: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s δέν μπορούν να χτιστούν σε ανεξερεύνητες περιοχές"
 
-#: simulation/components/BuildRestrictions.js:154
+#: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s δε δύνατε η κατασκευή σε άλλο κτήριο ή πόρο"
 
-#: simulation/components/BuildRestrictions.js:158
+#: simulation/components/BuildRestrictions.js:160
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s δε δύνατε η κατασκευή σε αδύνατη περιοχή."
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:182
+#: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "σύμμαχος"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:185
+#: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "δικό μου"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:188
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "ουδέτερος"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:191
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "εχθρός"
 
-#: simulation/components/BuildRestrictions.js:197
+#: simulation/components/BuildRestrictions.js:199
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s δε μπορεί να οικοδομηθεί στη %(territoryType)s περιοχή. Ισχύεις περιοχές: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:236
+#: simulation/components/BuildRestrictions.js:238
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s απαιτείται έγγυρη ακτογραμμή"
 
-#: simulation/components/BuildRestrictions.js:260
+#: simulation/components/BuildRestrictions.js:262
 #, javascript-format
-msgid ""
+msgid "%(name)s too close to a %(category)s, must be at least 1 meter away"
+msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr "%(name)s πολύ κοντά σε %(category)s, πρέπει να είναι τουλάχιστον %(distance)s μέτρα μακρυά."
+msgstr[0] ""
+msgstr[1] ""
 
-#: simulation/components/BuildRestrictions.js:273
+#: simulation/components/BuildRestrictions.js:284
 #, javascript-format
-msgid ""
+msgid "%(name)s too far from a %(category)s, must be within 1 meter"
+msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr "%(name)s πολύ μακρυά από %(category)s, πρέπει να βρίσκεται μέχρι %(distance)s μέτρα"
+msgstr[0] ""
+msgstr[1] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:304
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "own"
 msgstr "δικό μου"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:306
+#: simulation/components/BuildRestrictions.js:326
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "σύμμαχος"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:308
+#: simulation/components/BuildRestrictions.js:328
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "ουδέτερος"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:310
+#: simulation/components/BuildRestrictions.js:330
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "εχθρός"
@@ -682,6 +686,11 @@ msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s,
 #: simulation/components/ProductionQueue.js:366
 msgid "The production queue is full."
 msgstr "Η σειρά παραγωγής είναι πλήρης."
+
+#: simulation/helpers/Commands.js:680
+#, javascript-format
+msgid "Attack against %(_player_)s requested."
+msgstr ""
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -825,53 +834,53 @@ msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "Αγώνας Θανάτου"
 
-#: simulation/data/map_sizes.jsonSizes[0].Name
-#: simulation/data/map_sizes.jsonSizes[0].LongName
+#: simulation/data/settings/map_sizes.jsonData[0].Name
+#: simulation/data/settings/map_sizes.jsonData[0].LongName
 msgid "Tiny"
 msgstr "Μικροσκοπικό"
 
-#: simulation/data/map_sizes.jsonSizes[1].Name
+#: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
 msgstr "Μικρό"
 
-#: simulation/data/map_sizes.jsonSizes[1].LongName
+#: simulation/data/settings/map_sizes.jsonData[1].LongName
 msgid "Small (2 players)"
 msgstr "Μικρό (2 παίκτες)"
 
-#: simulation/data/map_sizes.jsonSizes[2].Name
+#: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
 msgstr "Μέσης δυσκολίας"
 
-#: simulation/data/map_sizes.jsonSizes[2].LongName
+#: simulation/data/settings/map_sizes.jsonData[2].LongName
 msgid "Medium (3 players)"
 msgstr "Μεσαίο (3 παίκτες)"
 
-#: simulation/data/map_sizes.jsonSizes[3].Name
+#: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
 msgstr "Κανονικό"
 
-#: simulation/data/map_sizes.jsonSizes[3].LongName
+#: simulation/data/settings/map_sizes.jsonData[3].LongName
 msgid "Normal (4 players)"
 msgstr "Κανονικό (4 παίκτες)"
 
-#: simulation/data/map_sizes.jsonSizes[4].Name
+#: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
 msgstr "Μεγάλο"
 
-#: simulation/data/map_sizes.jsonSizes[4].LongName
+#: simulation/data/settings/map_sizes.jsonData[4].LongName
 msgid "Large (6 players)"
 msgstr "Μεγάλο (6 παίκτες)"
 
-#: simulation/data/map_sizes.jsonSizes[5].Name
+#: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
 msgstr "Πολύ Μεγάλο"
 
-#: simulation/data/map_sizes.jsonSizes[5].LongName
+#: simulation/data/settings/map_sizes.jsonData[5].LongName
 msgid "Very Large (8 players)"
 msgstr "Πολύ Μεγάλο (8 παίκτες)"
 
-#: simulation/data/map_sizes.jsonSizes[6].Name
-#: simulation/data/map_sizes.jsonSizes[6].LongName
+#: simulation/data/settings/map_sizes.jsonData[6].Name
+#: simulation/data/settings/map_sizes.jsonData[6].LongName
 msgid "Giant"
 msgstr "Τεράστιο"
 

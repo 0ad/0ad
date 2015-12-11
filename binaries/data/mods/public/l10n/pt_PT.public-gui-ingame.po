@@ -5,6 +5,7 @@
 # Translators:
 # alfalb.as, 2015
 # André Rodrigues, 2013
+# crolidge, 2015
 # Ernan, 2014
 # Grim Kriegor <grimkriegor@opmbx.org>, 2014
 # Helder Meneses <helder.meneses@gmail.com>, 2013
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 09:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-08 22:42+0000\n"
+"Last-Translator: crolidge\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,8 +33,8 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Distância básica: %(range)s metro"
+msgstr[1] "Distância básica: %(range)s metros"
 
 #: gui/session/input.js:154
 #, javascript-format
@@ -122,7 +123,7 @@ msgstr "Inimigo"
 
 #: gui/session/menu.js:349
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Pedir aos seus aliados para atacar este exército"
 
 #: gui/session/menu.js:364
 msgid "x"
@@ -273,7 +274,7 @@ msgstr "A ligação ao servidor foi autenticada."
 #: gui/session/messages.js:273
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Razão: %(reason)s."
 
 #: gui/session/messages.js:274
 msgid "Connection to the server has been lost."
@@ -286,12 +287,12 @@ msgstr "O jogo terminou."
 #: gui/session/messages.js:331
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s foi expulso"
 
 #: gui/session/messages.js:335
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s foi banido"
 
 #: gui/session/messages.js:420
 msgid "Unknown player"
@@ -315,7 +316,7 @@ msgstr ""
 #: gui/session/messages.js:437
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Utilizadores: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -380,7 +381,7 @@ msgstr "%(player)s enviou-lhe %(amounts)s."
 #: gui/session/messages.js:515
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "O seu gado foi atacado por %(attacker)s!"
 
 #: gui/session/messages.js:517
 #, javascript-format
@@ -450,7 +451,7 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 #: gui/session/selection_details.js:108
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:126
 #, javascript-format
@@ -529,7 +530,7 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_details.js:355
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr ""
+msgstr "Pontos de captura:"
 
 #: gui/session/selection_panels.js:72
 msgid "Increase the alert level to protect more units"
@@ -688,7 +689,7 @@ msgstr "Gaia"
 #: gui/session/session.js:244
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Árvore de Estrutura"
 
 #: gui/session/session.js:318 gui/session/session.js:334
 msgid "You have left the game."
@@ -733,12 +734,12 @@ msgstr "VENCEDOR!"
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: gui/session/session.js:569
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: gui/session/session.js:571
 msgctxt "replayFinished"
@@ -748,7 +749,7 @@ msgstr ""
 #: gui/session/session.js:571
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmação"
 
 #: gui/session/session.js:732
 msgid "Population (current / limit)"
@@ -757,7 +758,7 @@ msgstr "População (actual / limite)"
 #: gui/session/session.js:733
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "População máxima: %(popCap)s"
 
 #: gui/session/session.js:896
 #, javascript-format
@@ -871,7 +872,7 @@ msgstr "%(gain)s (%(player)s)"
 #: gui/session/utility_functions.js:141 gui/session/utility_functions.js:146
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -1049,7 +1050,7 @@ msgstr "Resistência"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Capture points"
-msgstr ""
+msgstr "Pontos de captura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"
@@ -1087,7 +1088,7 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XIX : Syllepsis"
-msgstr ""
+msgstr "ALPHA XIX : Syllepsis"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"
