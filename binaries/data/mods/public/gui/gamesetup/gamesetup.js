@@ -488,94 +488,22 @@ function handleNetMessage(message)
 {
 	log("Net message: " + uneval(message));
 
-	var resetReady;
-	var newGUID;
-
 	switch (message.type)
 	{
 	case "netstatus":
-		switch (message.status)
-		{
-		case "disconnected":
-			cancelSetup();
-			reportDisconnect(message.reason);
-			break;
-
-		default:
-			error("Unrecognised netstatus type " + message.status);
-			break;
-		}
+		handleNetStatusMessage(message);
 		break;
 
 	case "gamesetup":
-		if (message.data) // (the host gets undefined data on first connect, so skip that)
-		{
-			g_GameAttributes = message.data;
-
-			// Validate some settings for rated games.
-			if (g_GameAttributes.settings.RatingEnabled)
-			{
-				// Cheats can never be on in rated games.
-				g_GameAttributes.settings.CheatsEnabled = false;
-				// Teams must be locked in rated games.
-				g_GameAttributes.settings.LockTeams = true;
-			}
-		}
-
-		onGameAttributesChange();
+		handleGamesetupMessage(message);
 		break;
 
 	case "players":
-		resetReady = false;
-		newGUID = "";
-
-		// Report joinings
-		for (let guid in message.hosts)
-		{
-			if (g_PlayerAssignments[guid])
-				continue;
-			// If we have extra player slots and we are the controller, give the player an ID.
-			if (g_IsController && message.hosts[guid].player === -1 && g_AssignedCount < g_GameAttributes.settings.PlayerData.length)
-				Engine.AssignNetworkPlayer(g_AssignedCount + 1, guid);
-			addChatMessage({ "type": "connect", "username": message.hosts[guid].name });
-			newGUID = guid;
-		}
-
-		// Report leavings
-		for (let guid in g_PlayerAssignments)
-		{
-			if (message.hosts[guid])
-				continue;
-			addChatMessage({ "type": "disconnect", "guid": guid });
-			if (g_PlayerAssignments[guid].player != -1)
-				resetReady = true; // Observers shouldn't reset ready.
-		}
-
-		// Update the player list
-		g_PlayerAssignments = message.hosts;
-		updatePlayerList();
-		if (g_PlayerAssignments[newGUID] && g_PlayerAssignments[newGUID].player != -1)
-			resetReady = true;
-
-		if (resetReady)
-			resetReadyData();
-		updateReadyUI();
-		if (g_IsController)
-			sendRegisterGameStanza();
+		handlePlayerAssignmentMessage(message);
 		break;
 
 	case "start":
-		if (g_IsController && Engine.HasXmppClient())
-		{
-			let playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
-			Engine.SendChangeStateGame(playerNames.length, playerNames.join(", "));
-		}
-		Engine.SwitchGuiPage("page_loading.xml", {
-			"attribs": g_GameAttributes,
-			"isNetworked" : g_IsNetworked,
-			"playerAssignments": g_PlayerAssignments,
-			"isController": g_IsController
-		});
+		handleGamestartMessage(message);
 		break;
 
 	case "chat":
@@ -590,21 +518,145 @@ function handleNetMessage(message)
 		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": message.username })});
 		break;
 
-	// Singular client to host message
 	case "ready":
-		g_ReadyChanged -= 1;
-		if (g_ReadyChanged < 1 && g_PlayerAssignments[message.guid].player != -1)
-			addChatMessage({ "type": "ready", "guid": message.guid, "ready": +message.status == 1 });
-		if (!g_IsController)
-			break;
-		g_PlayerAssignments[message.guid].status = +message.status == 1;
-		Engine.SetNetworkPlayerStatus(message.guid, +message.status);
-		updateReadyUI();
+		handleReadyMessage(message)
 		break;
 
 	default:
 		error("Unrecognised net message type " + message.type);
 	}
+}
+
+/**
+ * Called when the client disconnects.
+ * The other cases from NetClient should never occur in the gamesetup.
+ * @param message {Object}
+ */
+function handleNetStatusMessage()
+{
+	switch (message.status)
+	{
+	case "disconnected":
+		cancelSetup();
+		reportDisconnect(message.reason);
+		break;
+
+	default:
+		error("Unrecognised netstatus type " + message.status);
+		break;
+	}
+}
+
+/**
+ * Called whenever a client clicks on ready (or not ready).
+ * @param message {Object}
+ */
+function handleReadyMessage(message)
+{
+	g_ReadyChanged -= 1;
+
+	if (g_ReadyChanged < 1 && g_PlayerAssignments[message.guid].player != -1)
+		addChatMessage({ "type": "ready", "guid": message.guid, "ready": +message.status == 1 });
+
+	if (!g_IsController)
+		return;
+
+	g_PlayerAssignments[message.guid].status = +message.status == 1;
+	Engine.SetNetworkPlayerStatus(message.guid, +message.status);
+	updateReadyUI();
+}
+
+/**
+ * Called after every player is ready and the host decided to finally start the game.
+ * @param message {Object}
+ */
+function handleGamestartMessage(message)
+{
+	if (g_IsController && Engine.HasXmppClient())
+	{
+		let playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
+		Engine.SendChangeStateGame(playerNames.length, playerNames.join(", "));
+	}
+
+	Engine.SwitchGuiPage("page_loading.xml", {
+		"attribs": g_GameAttributes,
+		"isNetworked" : g_IsNetworked,
+		"playerAssignments": g_PlayerAssignments,
+		"isController": g_IsController
+	});
+}
+
+/**
+ * Called whenever the host changed any setting.
+ * @param message {Object}
+ */
+function handleGamesetupMessage(message)
+{
+	if (message.data) // (the host gets undefined data on first connect, so skip that)
+	{
+		g_GameAttributes = message.data;
+
+		// Validate some settings for rated games.
+		if (g_GameAttributes.settings.RatingEnabled)
+		{
+			// Cheats can never be on in rated games.
+			g_GameAttributes.settings.CheatsEnabled = false;
+			// Teams must be locked in rated games.
+			g_GameAttributes.settings.LockTeams = true;
+		}
+	}
+
+	onGameAttributesChange();
+}
+
+/**
+ * Called whenever a client joins/leaves or any gamesetting is changed.
+ * @param message {Object}
+ */
+function handlePlayerAssignmentMessage(message)
+{
+	var resetReady = false;
+	var newGUID = "";
+
+	// Report joinings
+	for (let guid in message.hosts)
+	{
+		if (g_PlayerAssignments[guid])
+			continue;
+
+		// If we have extra player slots and we are the controller, give the player an ID.
+		if (g_IsController && message.hosts[guid].player === -1 && g_AssignedCount < g_GameAttributes.settings.PlayerData.length)
+			Engine.AssignNetworkPlayer(g_AssignedCount + 1, guid);
+
+		addChatMessage({ "type": "connect", "username": message.hosts[guid].name });
+		newGUID = guid;
+	}
+
+	// Report leavings
+	for (let guid in g_PlayerAssignments)
+	{
+		if (message.hosts[guid])
+			continue;
+
+		addChatMessage({ "type": "disconnect", "guid": guid });
+
+		if (g_PlayerAssignments[guid].player != -1)
+			resetReady = true; // Observers shouldn't reset ready.
+	}
+
+	g_PlayerAssignments = message.hosts;
+	updatePlayerList();
+
+	if (g_PlayerAssignments[newGUID] && g_PlayerAssignments[newGUID].player != -1)
+		resetReady = true;
+
+	if (resetReady)
+		resetReadyData();
+
+	updateReadyUI();
+
+	if (g_IsController)
+		sendRegisterGameStanza();
 }
 
 function getMapDisplayName(map)
