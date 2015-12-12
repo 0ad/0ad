@@ -390,6 +390,20 @@ function hideControl(control, label, allowControl = g_IsController)
 	Engine.GetGUIObjectByName(label).hidden = allowControl;
 };
 
+
+/**
+ * Checks a boolean checkbox for the host and sets the text of the label for the client.
+ *
+ * @param {string} control - name of the GUI object able to change a setting
+ * @param {string} label - name of the GUI object displaying a setting
+ * @param {boolean} checked - Whether the setting is active / enabled.
+ */
+function setGUIBoolean(control, label, checked)
+{
+	Engine.GetGUIObjectByName(control).checked = checked;
+	Engine.GetGUIObjectByName(label).caption = checked ? translate("Yes") : translate("No");
+}
+
 /**
  * Hide and set some elements depending on whether we play single- or multiplayer.
  */
@@ -1309,25 +1323,26 @@ function onGameAttributesChange()
 	// We have to check for undefined on these properties as not all maps define them.
 	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.Tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.Tiles.indexOf(mapSettings.Size) : g_MapSizes.Default);
 	var victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
-	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true);
-	enableCheatsText.caption = (enableCheats.checked ? translate("Yes") : translate("No"));
+
+	setGUIBoolean("enableCheats", "enableCheatsText", !!mapSettings.CheatsEnabled);
+	setGUIBoolean("disableTreasures", "disableTreasuresText", !!mapSettings.DisableTreasures);
+	setGUIBoolean("exploreMap", "exploreMapText", !!mapSettings.ExploreMap);
+	setGUIBoolean("revealMap", "revealMapText", !!mapSettings.RevealMap);
+	setGUIBoolean("lockTeams", "lockTeamsText", !!mapSettings.LockTeams);
+	setGUIBoolean("observerLateJoin", "observerLateJoinText", !!g_GameAttributes.settings.ObserverLateJoin);
+
 	if (g_IsNetworked)
 		Engine.GetGUIObjectByName("cheatWarningText").hidden = !enableCheats.checked;
-
 	if (mapSettings.RatingEnabled !== undefined)
 	{
-		enableRating.checked = mapSettings.RatingEnabled;
+		setGUIBoolean("enableRating", "enableRatingText", mapSettings.RatingEnabled);
 		Engine.SetRankedGame(enableRating.checked);
-		enableRatingText.caption = (enableRating.checked ? translate("Yes") : translate("No"));
 		enableCheats.enabled = !enableRating.checked;
 		lockTeams.enabled = !enableRating.checked;
 	}
 	else
 		// TODO: take care this can't happen anymore
 		enableRatingText.caption = "Unknown";
-
-	observerLateJoin.checked = g_GameAttributes.settings.ObserverLateJoin;
-	observerLateJoinText.caption = observerLateJoin.checked ? translate("Yes") : translate("No");
 
 	var speedIdx = g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) != -1 ? g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds.Default;
 	gameSpeedText.caption = g_GameSpeeds.Title[speedIdx];
@@ -1362,23 +1377,14 @@ function onGameAttributesChange()
 		{
 			numPlayersSelection.selected = numPlayers - 1;
 			mapSize.selected = sizeIdx;
-			revealMap.checked = !!mapSettings.RevealMap;
-			exploreMap.checked = !!mapSettings.ExploreMap;
-			disableTreasures.checked = !!mapSettings.DisableTreasures;
 			victoryCondition.selected = victoryIdx;
-			lockTeams.checked = !!mapSettings.LockTeams;
 		}
 		else
 		{
 			numPlayersText.caption = numPlayers;
 			mapSizeText.caption = g_MapSizes.LongName[sizeIdx];
-			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
-			exploreMapText.caption = (mapSettings.ExporeMap ? translate("Yes") : translate("No"));
-			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
 			victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
-			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
-
 		break;
 
 	case "skirmish":
@@ -1399,21 +1405,9 @@ function onGameAttributesChange()
 		hideControl("ceasefire", "ceasefireText");
 
 		if (g_IsController)
-		{
-			revealMap.checked = !!mapSettings.RevealMap;
-			exploreMap.checked = !!mapSettings.ExploreMap;
-			disableTreasures.checked = !!mapSettings.DisableTreasures;
 			victoryCondition.selected = victoryIdx;
-			lockTeams.checked = !!mapSettings.LockTeams;
-		}
 		else
-		{
-			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
-			exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
-			disableTreasuresText.caption = (mapSettings.DisableTreasures ? translate("Yes") : translate("No"));
 			victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
-			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
-		}
 
 		break;
 
@@ -1443,12 +1437,7 @@ function onGameAttributesChange()
 
 		numPlayersText.caption = numPlayers;
 		mapSizeText.caption = translate("Default");
-		revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
-		exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
-		disableTreasuresText.caption = translate("No");
 		victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
-		lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
-
 		startingResourcesText.caption = translate("Determined by scenario");
 		populationCapText.caption = translate("Determined by scenario");
 		ceasefireText.caption = translate("Determined by scenario");
