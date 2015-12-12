@@ -156,7 +156,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 					if (this.Config.debug > 1)
 						API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
 					if (this.Config.chat)
-						m.chatLaunchAttack(gameState, attack.targetPlayer);
+						m.chatLaunchAttack(gameState, attack.targetPlayer, attack.getType());
 					this.startedAttacks[attackType].push(attack);
 				}
 				else

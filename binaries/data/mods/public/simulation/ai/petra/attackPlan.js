@@ -455,7 +455,10 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		this.maxCompletingTime = gameState.ai.elapsedTime + 20;
 	else
 	{
-		this.maxCompletingTime = gameState.ai.elapsedTime + 60;
+		if (this.type === "Rush")
+			this.maxCompletingTime = gameState.ai.elapsedTime + 40;
+		else
+			this.maxCompletingTime = gameState.ai.elapsedTime + 60;
 		// warn our allies so that they can help if possible
 		if (!this.requested)
 			Engine.PostCommand(PlayerID, {"type": "attack-request", "source": PlayerID, "target": this.targetPlayer});
