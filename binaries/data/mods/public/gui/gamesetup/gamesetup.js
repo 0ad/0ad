@@ -85,9 +85,6 @@ var g_MapData = {};
  */
 var g_MapFilters = [];
 
-// Current number of assigned human players.
-var g_AssignedCount = 0;
-
 // To prevent the display locking up while we load the map metadata,
 // we'll start with a 'loading' message and switch to the main screen in the
 // tick handler
@@ -624,12 +621,19 @@ function handlePlayerAssignmentMessage(message)
 		if (g_PlayerAssignments[guid])
 			continue;
 
-		// If we have extra player slots and we are the controller, give the player an ID.
-		if (g_IsController && message.hosts[guid].player === -1 && g_AssignedCount < g_GameAttributes.settings.PlayerData.length)
-			Engine.AssignNetworkPlayer(g_AssignedCount + 1, guid);
-
 		addChatMessage({ "type": "connect", "username": message.hosts[guid].name });
 		newGUID = guid;
+
+		// Assign the new player
+		if (!g_IsController || message.hosts[guid].player != -1)
+			continue;
+
+		let freeSlot = g_GameAttributes.settings.PlayerData.findIndex((v,i) =>
+			Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player != i+1)
+		);
+
+		if (freeSlot != -1)
+			Engine.AssignNetworkPlayer(freeSlot+1, guid);
 	}
 
 	// Report leavings
@@ -1617,7 +1621,7 @@ function updatePlayerList()
 	var assignments = [];
 	var aiAssignments = {};
 	var noAssignment;
-	g_AssignedCount = 0;
+	var assignedCount = 0;
 
 	for (let guid in g_PlayerAssignments)
 	{
@@ -1628,12 +1632,12 @@ function updatePlayerList()
 		assignments[player] = hostNameList.length-1;
 
 		if (player != -1)
-			g_AssignedCount++;
+			assignedCount++;
 	}
 
 	// Only enable start button if we have enough assigned players
 	if (g_IsController)
-		Engine.GetGUIObjectByName("startGame").enabled = (g_AssignedCount > 0);
+		Engine.GetGUIObjectByName("startGame").enabled = assignedCount > 0;
 
 	for (let ai of g_Settings.AIDescriptions)
 	{
