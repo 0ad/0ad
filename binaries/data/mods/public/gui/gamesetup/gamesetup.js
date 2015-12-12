@@ -93,7 +93,7 @@ var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
 /**
  * Initializes some globals without touching the GUI.
  *
- * @param attribs {Object} - context data sent by the lobby / mainmenu
+ * @param {Object} attribs - context data sent by the lobby / mainmenu
  */
 function init(attribs)
 {
@@ -370,7 +370,6 @@ function hideControls()
 	Engine.GetGUIObjectByName("gameSpeedText").hidden = false;
 	Engine.GetGUIObjectByName("gameSpeed").hidden = true;
 
-	// Disable player and game options controls
 	// TODO: Shouldn't players be able to choose their own assignment?
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
@@ -388,7 +387,6 @@ function hideControls()
  */
 function initMultiplayerSettings()
 {
-	// Set up multiplayer/singleplayer bits:
 	if (!g_IsNetworked)
 	{
 		Engine.GetGUIObjectByName("chatPanel").hidden = true;
@@ -401,16 +399,16 @@ function initMultiplayerSettings()
 		Engine.GetGUIObjectByName("enableCheats").checked = false;
 		Engine.GetGUIObjectByName("optionObserverLateJoin").hidden = false;
 		g_GameAttributes.settings.CheatsEnabled = false;
-		// Setup ranked option if we are connected to the lobby.
+
 		if (Engine.HasXmppClient())
 		{
 			Engine.GetGUIObjectByName("optionRating").hidden = false;
 			Engine.GetGUIObjectByName("enableRating").checked = Engine.IsRankedGame();
 			g_GameAttributes.settings.RatingEnabled = Engine.IsRankedGame();
-			// We force locked teams and disabled cheats in ranked games.
 			Engine.GetGUIObjectByName("enableCheats").enabled = !Engine.IsRankedGame();
 			Engine.GetGUIObjectByName("lockTeams").enabled = !Engine.IsRankedGame();
 		}
+
 		if (g_IsController)
 		{
 			Engine.GetGUIObjectByName("enableCheatsText").hidden = true;
@@ -435,7 +433,6 @@ function initPlayerAssignments()
 	var boxSpacing = 32;
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
-		// Space player boxes
 		let box = Engine.GetGUIObjectByName("playerBox["+i+"]");
 		let boxSize = box.size;
 		let h = boxSize.bottom - boxSize.top;
@@ -443,7 +440,6 @@ function initPlayerAssignments()
 		boxSize.bottom = i * boxSpacing + h;
 		box.size = boxSize;
 
-		// Populate team dropdowns
 		let team = Engine.GetGUIObjectByName("playerTeam["+i+"]");
 		let teamsArray = Array(g_MaxTeams).fill(0).map((v, i) => i + 1); // 1, 2, ... MaxTeams
 		team.list = [translateWithContext("team", "None")].concat(teamsArray); // "None", 1, 2, ..., maxTeams
@@ -458,14 +454,12 @@ function initPlayerAssignments()
 			updateGameAttributes();
 		};
 
-		// Populate color drop-down lists.
 		let colorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
 		colorPicker.list = g_PlayerColors.map(color => '[color="' + color.r + ' ' + color.g + ' ' + color.b + '"] ■[/color]');
 		colorPicker.list_data = g_PlayerColors.map((color, index) => index);
 		colorPicker.selected = -1;
 		colorPicker.onSelectionChange = function() { selectPlayerColor(playerSlot, this.selected); };
 
-		// Set events
 		Engine.GetGUIObjectByName("playerCiv["+i+"]").onSelectionChange = function() {
 			if ((this.selected != -1)&&(g_GameAttributes.mapType !== "scenario"))
 				g_GameAttributes.settings.PlayerData[playerSlot].Civ = this.list_data[this.selected];
@@ -479,7 +473,7 @@ function initPlayerAssignments()
  * Processes a CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
  * Saves the received object to mainlog.html.
  *
- * @param message {Object}
+ * @param {Object} message
  */
 function handleNetMessage(message)
 {
@@ -527,7 +521,7 @@ function handleNetMessage(message)
 /**
  * Called when the client disconnects.
  * The other cases from NetClient should never occur in the gamesetup.
- * @param message {Object}
+ * @param {Object} message
  */
 function handleNetStatusMessage()
 {
@@ -546,7 +540,7 @@ function handleNetStatusMessage()
 
 /**
  * Called whenever a client clicks on ready (or not ready).
- * @param message {Object}
+ * @param {Object} message
  */
 function handleReadyMessage(message)
 {
@@ -565,7 +559,7 @@ function handleReadyMessage(message)
 
 /**
  * Called after every player is ready and the host decided to finally start the game.
- * @param message {Object}
+ * @param {Object} message
  */
 function handleGamestartMessage(message)
 {
@@ -585,7 +579,7 @@ function handleGamestartMessage(message)
 
 /**
  * Called whenever the host changed any setting.
- * @param message {Object}
+ * @param {Object} message
  */
 function handleGamesetupMessage(message)
 {
@@ -593,12 +587,9 @@ function handleGamesetupMessage(message)
 	{
 		g_GameAttributes = message.data;
 
-		// Validate some settings for rated games.
 		if (g_GameAttributes.settings.RatingEnabled)
 		{
-			// Cheats can never be on in rated games.
 			g_GameAttributes.settings.CheatsEnabled = false;
-			// Teams must be locked in rated games.
 			g_GameAttributes.settings.LockTeams = true;
 		}
 	}
@@ -608,7 +599,7 @@ function handleGamesetupMessage(message)
 
 /**
  * Called whenever a client joins/leaves or any gamesetting is changed.
- * @param message {Object}
+ * @param {Object} message
  */
 function handlePlayerAssignmentMessage(message)
 {
@@ -690,7 +681,6 @@ function getSetting(settings, defaults, property)
 	if (settings && (property in settings))
 		return settings[property];
 
-	// Use defaults
 	if (defaults && (property in defaults))
 		return defaults[property];
 
@@ -706,11 +696,9 @@ function initCivNameList()
 	var civListNames = civList.map(civ => civ.name);
 	var civListCodes = civList.map(civ => civ.code);
 
-	// Add random civ to beginning of list
 	civListNames.unshift('[color="orange"]' + translateWithContext("civilization", "Random") + '[/color]');
 	civListCodes.unshift("random");
 
-	// Update the dropdowns
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
 		let civ = Engine.GetGUIObjectByName("playerCiv["+i+"]");
@@ -816,13 +804,10 @@ function loadPersistMatchSettings()
 	var mapSettings = attrs.settings;
 
 	g_GameAttributes = attrs;
-
-	// Assign new seeds and match id
 	g_GameAttributes.matchID = Engine.GetMatchID();
 	mapSettings.Seed = Math.floor(Math.random() * 65536);
 	mapSettings.AISeed = Math.floor(Math.random() * 65536);
 
-	// Ensure that cheats are enabled in singleplayer
 	if (!g_IsNetworked)
 		mapSettings.CheatsEnabled = true;
 
@@ -974,7 +959,7 @@ function onTick()
 
 /**
  * Called when the host choses the number of players on a random map.
- * @param num {Number}
+ * @param {Number} num
  */
 function selectNumPlayers(num)
 {
@@ -1030,17 +1015,15 @@ function selectPlayerColor(playerSlot, colorIndex)
 function ensureUniquePlayerColors(playerData)
 {
 	for (let i = playerData.length - 1; i >= 0; --i)
-	{
 		// If someone else has that color, assign an unused color
 		if (playerData.some((pData, j) => i != j && sameColor(playerData[i].Color, pData.Color)))
 			playerData[i].Color = g_PlayerColors.find(color => playerData.every(pData => !sameColor(color, pData.Color)));
-	}
 }
 
 /**
  * Called when the user selects a map type from the list.
  *
- * @param type {string} - scenario, skirmish or random
+ * @param {string} type - scenario, skirmish or random
  */
 function selectMapType(type)
 {
@@ -1251,7 +1234,6 @@ function onGameAttributesChange()
 	var mapSettings = g_GameAttributes.settings;
 	var numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_MaxPlayers;
 
-	// Update some controls for clients
 	if (!g_IsController)
 	{
 		let mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
@@ -1983,9 +1965,9 @@ function resetReadyData()
 /**
  * Add a new maplist-filter.
  *
- * @param id {string} - Unique identifier
- * @param title {string} - Translated name to be displayed.
- * @param filterFunc {Object} - Function returning true if the provided map should be listed if that filter is chosen.
+ * @param {string} id - Unique identifier
+ * @param {string} title - Translated name to be displayed.
+ * @param {Object} filterFunc - Function returning true if the provided map should be listed if that filter is chosen.
  */
 function addFilter(id, title, filterFunc)
 {
@@ -2001,8 +1983,8 @@ function addFilter(id, title, filterFunc)
 /**
  * Returns true if the given map will be shown when having selected the mapFilter given by id.
  *
- * @param id {string} - Specifies the mapfilter
- * @param mapSettings {Object}
+ * @param {string} id - Specifies the mapfilter
+ * @param {Object} mapSettings
  */
 function testFilter(id, mapSettings)
 {
@@ -2020,8 +2002,8 @@ function testFilter(id, mapSettings)
 /**
  *  Returns true if the keywords contain all of the matches.
  *
- *  @param keywords {Array}
- *  @param matches {Array}
+ *  @param {Array} keywords
+ *  @param {Array} matches
  */
 function keywordTestAND(keywords, matches)
 {
@@ -2034,8 +2016,8 @@ function keywordTestAND(keywords, matches)
 /**
  *  Returns true if the keywords contain some of the matches.
  *
- *  @param keywords {Array}
- *  @param matches {Array}
+ *  @param {Array} keywords
+ *  @param {Array} matches
  */
 function keywordTestOR(keywords, matches)
 {
