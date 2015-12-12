@@ -972,39 +972,32 @@ function onTick()
 	}
 }
 
-// Called when user selects number of players
+/**
+ * Called when the host choses the number of players on a random map.
+ * @param num {Number}
+ */
 function selectNumPlayers(num)
 {
 	// Avoid recursion
 	if (g_IsInGuiUpdate || !g_IsController || g_GameAttributes.mapType != "random")
 		return;
 
+	// Unassign players from nonexistent slots
+	if (g_IsNetworked)
+	{
+		for (let i = g_MaxPlayers; i > num; --i)
+			Engine.AssignNetworkPlayer(i, "");
+	}
+	else if (g_PlayerAssignments.local.player > num)
+		g_PlayerAssignments.local.player = 1;
+
 	// Update player data
 	var pData = g_GameAttributes.settings.PlayerData;
-	if (pData && num < pData.length)
-	{
-		// Remove extra player data
+	if (num < pData.length)
 		g_GameAttributes.settings.PlayerData = pData.slice(0, num);
-	}
 	else
-	{
-		// Add player data from defaults
 		for (let i = pData.length; i < num; ++i)
 			g_GameAttributes.settings.PlayerData.push(g_DefaultPlayerData[i]);
-	}
-
-	// Some players may have lost their assigned slot
-	for (let guid in g_PlayerAssignments)
-	{
-		let player = g_PlayerAssignments[guid].player;
-		if (player > num)
-		{
-			if (g_IsNetworked)
-				Engine.AssignNetworkPlayer(player, "");
-			else
-				g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0 } };
-		}
-	}
 
 	updateGameAttributes();
 }
