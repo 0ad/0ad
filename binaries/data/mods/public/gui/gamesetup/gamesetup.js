@@ -359,16 +359,12 @@ function initRadioButtons()
  */
 function hideControls()
 {
-	Engine.GetGUIObjectByName("mapTypeSelection").hidden = true;
-	Engine.GetGUIObjectByName("mapTypeText").hidden = false;
-	Engine.GetGUIObjectByName("mapFilterSelection").hidden = true;
-	Engine.GetGUIObjectByName("mapFilterText").hidden = false;
-	Engine.GetGUIObjectByName("mapSelectionText").hidden = false;
-	Engine.GetGUIObjectByName("mapSelection").hidden = true;
-	Engine.GetGUIObjectByName("victoryConditionText").hidden = false;
-	Engine.GetGUIObjectByName("victoryCondition").hidden = true;
-	Engine.GetGUIObjectByName("gameSpeedText").hidden = false;
-	Engine.GetGUIObjectByName("gameSpeed").hidden = true;
+	hideControl("mapTypeSelection", "mapTypeText");
+	hideControl("mapFilterSelection", "mapFilterText");
+	hideControl("mapSelection", "mapSelectionText");
+	hideControl("victoryCondition", "victoryConditionText");
+	hideControl("gameSpeed", "gameSpeedText");
+	hideControl("numPlayersSelection", "numPlayersText");
 
 	// TODO: Shouldn't players be able to choose their own assignment?
 	for (let i = 0; i < g_MaxPlayers; ++i)
@@ -378,9 +374,21 @@ function hideControls()
 		Engine.GetGUIObjectByName("playerTeam["+i+"]").hidden = true;
 	}
 
-	Engine.GetGUIObjectByName("numPlayersSelection").hidden = true;
 	Engine.GetGUIObjectByName("startGame").enabled = true;
 }
+
+/**
+ * Hides the GUI controls for clients and shows the read-only label instead.
+ *
+ * @param {string} control - name of the GUI object able to change a setting
+ * @param {string} label - name of the GUI object displaying a setting
+ * @param {boolean} [allowControl] - Whether the current user is allowed to change the control.
+ */
+function hideControl(control, label, allowControl = g_IsController)
+{
+	Engine.GetGUIObjectByName(control).hidden = !allowControl;
+	Engine.GetGUIObjectByName(label).hidden = allowControl;
+};
 
 /**
  * Hide and set some elements depending on whether we play single- or multiplayer.
@@ -1335,28 +1343,21 @@ function onGameAttributesChange()
 
 	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
 
-	// Hide/show settings depending on whether we can change them or not
-	var updateDisplay = function(guiObjChg, guiObjDsp, chg) {
-		guiObjChg.hidden = !chg;
-		guiObjDsp.hidden = chg;
-	};
-
 	// Handle map type specific logic
 	switch (g_GameAttributes.mapType)
 	{
 	case "random":
-		mapSizeDesc.hidden = false;
-
-		updateDisplay(numPlayersSelection, numPlayersText, g_IsController);
-		updateDisplay(mapSize, mapSizeText, g_IsController);
-		updateDisplay(revealMap, revealMapText, g_IsController);
-		updateDisplay(exploreMap, exploreMapText, g_IsController);
-		updateDisplay(disableTreasures, disableTreasuresText, g_IsController);
-		updateDisplay(victoryCondition, victoryConditionText, g_IsController);
-		updateDisplay(lockTeams, lockTeamsText, g_IsController);
-		updateDisplay(populationCap, populationCapText, g_IsController);
-		updateDisplay(startingResources, startingResourcesText, g_IsController);
-		updateDisplay(ceasefire, ceasefireText, g_IsController);
+		hideControl("numPlayersSelection", "numPlayersText");
+		hideControl("mapSize", "mapSizeText");
+		hideControl("mapSize", "mapSizeDesc");
+		hideControl("revealMap", "revealMapText");
+		hideControl("exploreMap", "exploreMapText");
+		hideControl("disableTreasures", "disableTreasuresText");
+		hideControl("victoryCondition", "victoryConditionText");
+		hideControl("lockTeams", "lockTeamsText");
+		hideControl("populationCap", "populationCapText");
+		hideControl("startingResources", "startingResourcesText");
+		hideControl("ceasefire", "ceasefireText");
 
 		if (g_IsController)
 		{
@@ -1390,14 +1391,14 @@ function onGameAttributesChange()
 		mapSizeText.hidden = true;
 		mapSizeDesc.hidden = true;
 
-		updateDisplay(revealMap, revealMapText, g_IsController);
-		updateDisplay(exploreMap, exploreMapText, g_IsController);
-		updateDisplay(disableTreasures, disableTreasuresText, g_IsController);
-		updateDisplay(victoryCondition, victoryConditionText, g_IsController);
-		updateDisplay(lockTeams, lockTeamsText, g_IsController);
-		updateDisplay(populationCap, populationCapText, g_IsController);
-		updateDisplay(startingResources, startingResourcesText, g_IsController);
-		updateDisplay(ceasefire, ceasefireText, g_IsController);
+		hideControl("revealMap", "revealMapText");
+		hideControl("exploreMap", "exploreMapText");
+		hideControl("disableTreasures", "disableTreasuresText");
+		hideControl("victoryCondition", "victoryConditionText");
+		hideControl("lockTeams", "lockTeamsText");
+		hideControl("populationCap", "populationCapText");
+		hideControl("startingResources", "startingResourcesText");
+		hideControl("ceasefire", "ceasefireText");
 
 		if (g_IsController)
 		{
