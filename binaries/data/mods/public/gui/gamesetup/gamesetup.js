@@ -523,7 +523,7 @@ function handleNetMessage(message)
  * The other cases from NetClient should never occur in the gamesetup.
  * @param {Object} message
  */
-function handleNetStatusMessage()
+function handleNetStatusMessage(message)
 {
 	switch (message.status)
 	{
