@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="tree test top">
+      <mesh>gaia/tree_test.dae</mesh>
+        <props>
+        <prop actor="flora/trees/tree_test_top.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="trunk">
+      <textures><texture file="gaia/trunk_deciduous_a.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+  <material>basic_trans_wind.xml</material>
+
+</actor>

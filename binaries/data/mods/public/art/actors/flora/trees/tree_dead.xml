@@ -4,9 +4,15 @@
   <group>
     <variant frequency="1" name="Tree dead 1">
       <mesh>gaia/tree_dead_a_2.dae</mesh>
+            <props>
+        <prop actor="props/flora/tree_dead_a2_branches.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="Tree dead 2">
       <mesh>gaia/tree_dead_a_1.dae</mesh>
+      <props>
+        <prop actor="props/flora/tree_dead_a1_branches.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>

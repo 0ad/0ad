@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="oak-new-top-mesh-b">
+      <mesh>gaia/tree_oak_new_top_b.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="oak-top-texture-a">
+      <textures><texture file="gaia/tree_oak_a.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="2" name="oak-top-texture-b">
+      <textures><texture file="gaia/tree_oak_b.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="4" name="oak-top-texture-c">
+      <textures><texture file="gaia/tree_oak_c.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+  <material>basic_trans_wind.xml</material>
+
+</actor>

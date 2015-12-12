@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>	
+    <variant frequency="1" name="trunk-b">
+      <mesh>gaia/tree_oak_new_b.dae</mesh>
+    </variant>
+	
+    <variant frequency="1" name="trunk-c">
+      <mesh>gaia/tree_oak_new_c.dae</mesh>
+    </variant>
+	
+    <variant frequency="1" name="trunk-d">
+      <mesh>gaia/tree_oak_new_d.dae</mesh>
+    </variant>
+	
+    <variant frequency="1" name="trunk-e">
+      <mesh>gaia/tree_oak_new_e.dae</mesh>
+    </variant>
+	
+    <variant frequency="1" name="trunk-f">
+      <mesh>gaia/tree_oak_new_f.dae</mesh>
+    </variant>	
+  </group>
+
+  <group>
+    <variant name="trunk-texture">
+      <textures><texture file="gaia/tree_dead.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  
+  <material>basic_trans_wind.xml</material>
+
+</actor>

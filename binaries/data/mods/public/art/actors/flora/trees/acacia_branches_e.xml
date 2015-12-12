@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="acacia-branches-mesh-e">
+      <mesh>gaia/tree_acacia_branches_e.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="acacia-dead-branches">
+      <textures><texture file="gaia/tree_dead_branches.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+  <material>basic_trans_wind.xml</material>
+
+</actor>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="tree test top">
+      <mesh>gaia/tree_test_top.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="leaf-color-a">
+      <textures><texture file="gaia/tree_carob_a.dds" name="baseTex"/>
+          <texture file="props/yellow.png" name="specTex"/>
+    </textures>
+    </variant>
+    <variant frequency="1" name="leaf-color-b">
+      <textures><texture file="gaia/tree_carob_b.dds" name="baseTex"/>
+    <texture file="props/yellow.png" name="specTex"/>
+    </textures>
+    </variant>
+    <variant frequency="1" name="leaf-color-c">
+      <textures><texture file="gaia/tree_carob_c.dds" name="baseTex"/>
+    <texture file="props/yellow.png" name="specTex"/>
+    </textures>
+    </variant>
+  </group>
+
+  <material>basic_trans_wind.xml</material>
+
+</actor>
