@@ -1291,7 +1291,6 @@ function onGameAttributesChange()
 	var observerLateJoin = Engine.GetGUIObjectByName("observerLateJoin");
 
 	var numPlayersText= Engine.GetGUIObjectByName("numPlayersText");
-	var mapSizeDesc = Engine.GetGUIObjectByName("mapSizeDesc");
 	var mapSizeText = Engine.GetGUIObjectByName("mapSizeText");
 	var observerLateJoinText = Engine.GetGUIObjectByName("observerLateJoinText");
 	var revealMapText = Engine.GetGUIObjectByName("revealMapText");
@@ -1342,6 +1341,7 @@ function onGameAttributesChange()
 	ceasefireText.caption = g_Ceasefire.Title[ceasefire.selected];
 
 	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
+	Engine.GetGUIObjectByName("mapSizeDesc").hidden = g_GameAttributes.mapType != "random";
 
 	// Handle map type specific logic
 	switch (g_GameAttributes.mapType)
@@ -1349,7 +1349,6 @@ function onGameAttributesChange()
 	case "random":
 		hideControl("numPlayersSelection", "numPlayersText");
 		hideControl("mapSize", "mapSizeText");
-		hideControl("mapSize", "mapSizeDesc");
 		hideControl("revealMap", "revealMapText");
 		hideControl("exploreMap", "exploreMapText");
 		hideControl("disableTreasures", "disableTreasuresText");
@@ -1389,7 +1388,6 @@ function onGameAttributesChange()
 		numPlayersSelection.hidden = true;
 		mapSize.hidden = true;
 		mapSizeText.hidden = true;
-		mapSizeDesc.hidden = true;
 
 		hideControl("revealMap", "revealMapText");
 		hideControl("exploreMap", "exploreMapText");
@@ -1426,7 +1424,6 @@ function onGameAttributesChange()
 		numPlayersText.hidden = false;
 		mapSize.hidden = true;
 		mapSizeText.hidden = true;
-		mapSizeDesc.hidden = true;
 		revealMap.hidden = true;
 		revealMapText.hidden = false;
 		exploreMap.hidden = true;
