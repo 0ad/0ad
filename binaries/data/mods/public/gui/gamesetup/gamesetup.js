@@ -1356,23 +1356,29 @@ function onGameAttributesChange()
 	ceasefireText.caption = g_Ceasefire.Title[ceasefire.selected];
 
 	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
-	Engine.GetGUIObjectByName("mapSizeDesc").hidden = g_GameAttributes.mapType != "random";
 
 	// Handle map type specific logic
+
+	// Mapsize completely hidden for non-random maps
+	var isRandom = g_GameAttributes.mapType == "random";
+	Engine.GetGUIObjectByName("mapSizeDesc").hidden = !isRandom;
+	Engine.GetGUIObjectByName("mapSize").hidden = !isRandom || !g_IsController;
+	Engine.GetGUIObjectByName("mapSizeText").hidden = !isRandom || g_IsController;
+	hideControl("numPlayersSelection", "numPlayersText", isRandom && g_IsController);
+
+	var notScenario = g_GameAttributes.mapType != "scenario" && g_IsController ;
+	hideControl("victoryCondition", "victoryConditionText", notScenario);
+	hideControl("populationCap", "populationCapText", notScenario);
+	hideControl("startingResources", "startingResourcesText", notScenario);
+	hideControl("ceasefire", "ceasefireText", notScenario);
+	hideControl("revealMap", "revealMapText", notScenario);
+	hideControl("exploreMap", "exploreMapText", notScenario);
+	hideControl("disableTreasures", "disableTreasuresText", notScenario);
+	hideControl("lockTeams", "lockTeamsText", notScenario);
+
 	switch (g_GameAttributes.mapType)
 	{
 	case "random":
-		hideControl("numPlayersSelection", "numPlayersText");
-		hideControl("mapSize", "mapSizeText");
-		hideControl("revealMap", "revealMapText");
-		hideControl("exploreMap", "exploreMapText");
-		hideControl("disableTreasures", "disableTreasuresText");
-		hideControl("victoryCondition", "victoryConditionText");
-		hideControl("lockTeams", "lockTeamsText");
-		hideControl("populationCap", "populationCapText");
-		hideControl("startingResources", "startingResourcesText");
-		hideControl("ceasefire", "ceasefireText");
-
 		if (g_IsController)
 		{
 			numPlayersSelection.selected = numPlayers - 1;
@@ -1390,19 +1396,6 @@ function onGameAttributesChange()
 	case "skirmish":
 		mapSizeText.caption = translate("Default");
 		numPlayersText.caption = numPlayers;
-		numPlayersText.hidden = false;
-		numPlayersSelection.hidden = true;
-		mapSize.hidden = true;
-		mapSizeText.hidden = true;
-
-		hideControl("revealMap", "revealMapText");
-		hideControl("exploreMap", "exploreMapText");
-		hideControl("disableTreasures", "disableTreasuresText");
-		hideControl("victoryCondition", "victoryConditionText");
-		hideControl("lockTeams", "lockTeamsText");
-		hideControl("populationCap", "populationCapText");
-		hideControl("startingResources", "startingResourcesText");
-		hideControl("ceasefire", "ceasefireText");
 
 		if (g_IsController)
 			victoryCondition.selected = victoryIdx;
@@ -1411,30 +1404,7 @@ function onGameAttributesChange()
 
 		break;
 
-
 	case "scenario":
-		// For scenario just reflect settings for the current map
-		numPlayersSelection.hidden = true;
-		numPlayersText.hidden = false;
-		mapSize.hidden = true;
-		mapSizeText.hidden = true;
-		revealMap.hidden = true;
-		revealMapText.hidden = false;
-		exploreMap.hidden = true;
-		exploreMapText.hidden = false;
-		disableTreasures.hidden = true;
-		disableTreasuresText.hidden = false;
-		victoryCondition.hidden = true;
-		victoryConditionText.hidden = false;
-		lockTeams.hidden = true;
-		lockTeamsText.hidden = false;
-		startingResources.hidden = true;
-		startingResourcesText.hidden = false;
-		populationCap.hidden = true;
-		populationCapText.hidden = false;
-		ceasefire.hidden = true;
-		ceasefireText.hidden = false;
-
 		numPlayersText.caption = numPlayers;
 		mapSizeText.caption = translate("Default");
 		victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
@@ -1448,12 +1418,10 @@ function onGameAttributesChange()
 		return;
 	}
 
-	// Display map name
 	if (mapName == "random")
 		mapSettings.Description = markForTranslation("Randomly selects a map from the list");
 	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map", "Random") : translate(getMapDisplayName(mapName));
 
-	// Load the description from the map file, if there is one
 	var description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
 
 	// Describe the number of players and the victory conditions
