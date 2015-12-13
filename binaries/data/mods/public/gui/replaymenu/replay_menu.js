@@ -214,8 +214,9 @@ function displayReplayDetails()
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = replay.attribs.settings.PlayerData.length;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = getReplayTeamText(replay);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
-	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:0.7812,0.5859:session/icons/mappreview/" + mapData.preview;
 	Engine.GetGUIObjectByName("summaryButton").hidden = !Engine.HasReplayMetadata(replay.directory);
+
+	setMapPreviewImage("sgMapPreview", mapData.preview);
 }
 
 /**

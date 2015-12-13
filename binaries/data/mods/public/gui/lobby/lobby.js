@@ -526,7 +526,7 @@ function updateGameSelection()
 
 	var mapData = getMapDescriptionAndPreview(game.mapType, game.mapName);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
-	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:0.7812,0.5859:session/icons/mappreview/" + mapData.preview;
+	setMapPreviewImage("sgMapPreview", mapData.preview);
 }
 
 /**

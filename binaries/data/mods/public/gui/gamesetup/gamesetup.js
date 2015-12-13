@@ -1355,7 +1355,7 @@ function onGameAttributesChange()
 	ceasefire.selected = mapSettings.Ceasefire !== undefined && g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) != -1 ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
 	ceasefireText.caption = g_Ceasefire.Title[ceasefire.selected];
 
-	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:0.78125,0.5859375:session/icons/mappreview/" + getMapPreview(mapName);
+	setMapPreviewImage("mapPreview", getMapPreview(mapName));
 
 	// Handle map type specific logic
 

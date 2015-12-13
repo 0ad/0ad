@@ -87,6 +87,18 @@ function getMapDescriptionAndPreview(mapType, mapName)
 	};
 }
 
+/**
+ * Sets the mappreview image correctly.
+ * It needs to be cropped as the engine only allows loading square textures.
+ *
+ * @param {string} guiObject
+ * @param {string} filename
+ */
+function setMapPreviewImage(guiObject, filename)
+{
+	Engine.GetGUIObjectByName(guiObject).sprite = "cropped:" + 400/512+ "," + 300/512 + ":session/icons/mappreview/" + filename;
+}
+
 // Convert integer color values to string (for use in GUI objects)
 function rgbToGuiColor(color, alpha)
 {
