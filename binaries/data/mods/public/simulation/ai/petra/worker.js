@@ -96,9 +96,7 @@ m.Worker.prototype.update = function(gameState, ent)
 					{
 						var gatherType = ent.getMetadata(PlayerID, "gather-type");
 						var nearby = this.base.dropsiteSupplies[gatherType]["nearby"];
-						var isNearby = nearby.some(function(sup) {
-							return (sup.id === supplyId);
-						});
+						var isNearby = nearby.some(sup => sup.id === supplyId);
 						if (nearby.length === 0 || isNearby)
 							ent.setMetadata(PlayerID, "supply", supplyId);
 						else

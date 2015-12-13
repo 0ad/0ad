@@ -435,7 +435,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				if (numFarms + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
 				{
 					if (count < 600)
-						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
+						queues.field.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
 				}
 				else
 				{
@@ -444,7 +444,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 					if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace || count > 300 || numFarms > 5)
 						goal = Math.max(goal-1, 1);
 					if (numFound + numQueue < goal)
-						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
+						queues.field.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
 				}
 			}
 		}
@@ -468,14 +468,14 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 					{
 						var newDP = this.findBestDropsiteLocation(gameState, type);
 						if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
-							queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
+							queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
 						else if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length == 0 && queues.civilCentre.length() == 0)
 						{
 							// No good dropsite, try to build a new base if no base already planned,
 							// and if not possible, be less strict on dropsite quality
 							if (!gameState.ai.HQ.buildNewBase(gameState, queues, type) && newDP.quality > Math.min(25, 50*0.15/ratio)
 								&& gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
-								queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
+								queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
 						}
 					}
 					this.gatherers[type].nextCheck = gameState.ai.playedTurn + 20;

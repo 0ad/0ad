@@ -63,9 +63,9 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 	for (let q of this.queueArrays)
 	{
 		let queue = q[1];
-		if (!queue.length() || !queue.queue[0].isGo(gameState))
+		if (!queue.length() || !queue.plans[0].isGo(gameState))
 			continue;
-		var costs = queue.queue[0].getCost();
+		var costs = queue.plans[0].getCost();
 		needed.add(costs);
 	}
 	// get out current resources, not removing accounts.
@@ -104,8 +104,8 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 		{
 			if (j > 1)
 				break;
-			let cost = queue.queue[j].getCost();
-			if (queue.queue[j].isGo(gameState))
+			let cost = queue.plans[j].getCost();
+			if (queue.plans[j].isGo(gameState))
 			{
 				if (j == 0)
 					total = totalShort;
@@ -116,14 +116,14 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 				total = totalLong;
 			for (let type in total)
 				total[type] += cost[type];
-			if (!queue.queue[j].isGo(gameState))
+			if (!queue.plans[j].isGo(gameState))
 				break;
 		}
 	}
 	// global rates
 	var rates = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	var diff;
-	for (var type in rates)
+	for (let type in rates)
 	{
 		if (current[type] > 0)
 		{
@@ -162,12 +162,12 @@ m.QueueManager.prototype.printQueues = function(gameState)
 			API3.warn(i + ": ( with priority " + this.priorities[i] +" and accounts " + uneval(this.accounts[i]) +")");
 			API3.warn(" while maxAccountWanted(0.6) is " + uneval(q.maxAccountWanted(gameState, 0.6)));
 		}
-		for (var j in q.queue)
+		for (let plan of q.plans)
 		{
-			qStr = "     " + q.queue[j].type + " ";
-			if (q.queue[j].number)
-				qStr += "x" + q.queue[j].number;
-			qStr += "   isGo " + q.queue[j].isGo(gameState);
+			qStr = "     " + plan.type + " ";
+			if (plan.number)
+				qStr += "x" + plan.number;
+			qStr += "   isGo " + plan.isGo(gameState);
 			API3.warn(qStr);
 		}
 	}
@@ -194,12 +194,11 @@ m.QueueManager.prototype.clear = function()
 m.QueueManager.prototype.setAccounts = function(gameState, cost, i)
 {
 	var available = this.getAvailableResources(gameState);
-	for (var res of this.accounts[i].types)
+	for (let res of this.accounts[i].types)
 	{
 		if (this.accounts[i][res] >= cost[res])
 			continue;
-		var diff = Math.min(available[res], cost[res] - this.accounts[i][res]);
-		this.accounts[i][res] += diff;
+		this.accounts[i][res] += Math.min(available[res], cost[res] - this.accounts[i][res]);
 	}
 };
 
@@ -208,11 +207,11 @@ m.QueueManager.prototype.setAccounts = function(gameState, cost, i)
  */
 m.QueueManager.prototype.transferAccounts = function(cost, i, j)
 {
-	for (var res of this.accounts[i].types)
+	for (let res of this.accounts[i].types)
 	{
 		if (this.accounts[j][res] >= cost[res])
 			continue;
-		var diff = Math.min(this.accounts[i][res], cost[res] - this.accounts[j][res]);
+		let diff = Math.min(this.accounts[i][res], cost[res] - this.accounts[j][res]);
 		this.accounts[i][res] -= diff;
 		this.accounts[j][res] += diff;
 	}
@@ -441,11 +440,11 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 			queue.paused = false;
 
 		// And reduce the batch sizes of attack queues
-		if (q.indexOf("plan_") != -1 && numWorkers < workersMin && queue.queue[0])
+		if (q.indexOf("plan_") != -1 && numWorkers < workersMin && queue.plans[0])
 		{
-			queue.queue[0].number = 1;
-			if (queue.queue[1])
-				queue.queue[1].number = 1;
+			queue.plans[0].number = 1;
+			if (queue.plans[1])
+				queue.plans[1].number = 1;
 		}
 	}
 };
@@ -468,22 +467,21 @@ m.QueueManager.prototype.unpauseQueue = function(queue)
 
 m.QueueManager.prototype.pauseAll = function(scrapAccounts, but)
 {
-	for (var p in this.queues)
+	for (let q in this.queues)
 	{
-		if (p != but)
-		{
-			if (scrapAccounts)
-				this.accounts[p].reset();
-			this.queues[p].paused = true;
-		}
+		if (q == but)
+			continue;
+		if (scrapAccounts)
+			this.accounts[q].reset();
+		this.queues[q].paused = true;
 	}
 };
 
 m.QueueManager.prototype.unpauseAll = function(but)
 {
-	for (var p in this.queues)
-		if (p != but)
-			this.queues[p].paused = false;
+	for (let q in this.queues)
+		if (q != but)
+			this.queues[q].paused = false;
 };
 
 
@@ -497,8 +495,8 @@ m.QueueManager.prototype.addQueue = function(queueName, priority)
 	this.accounts[queueName] = new API3.Resources();
 
 	this.queueArrays = [];
-	for (var p in this.queues)
-		this.queueArrays.push([p, this.queues[p]]);
+	for (let q in this.queues)
+		this.queueArrays.push([q, this.queues[q]]);
 	var priorities = this.priorities;
 	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
@@ -513,8 +511,8 @@ m.QueueManager.prototype.removeQueue = function(queueName)
 	delete this.accounts[queueName];
 		
 	this.queueArrays = [];
-	for (var p in this.queues)
-		this.queueArrays.push([p, this.queues[p]]);
+	for (let q in this.queues)
+		this.queueArrays.push([q, this.queues[q]]);
 	var priorities = this.priorities;
 	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
@@ -538,13 +536,13 @@ m.QueueManager.prototype.Serialize = function()
 {
 	var accounts = {};
 	var queues = {};
-	for (let p in this.queues)
+	for (let q in this.queues)
 	{
-		queues[p] = this.queues[p].Serialize();
-		accounts[p] = this.accounts[p].Serialize();
+		queues[q] = this.queues[q].Serialize();
+		accounts[q] = this.accounts[q].Serialize();
 		if (this.Config.debug == -100)
-			API3.warn("queueManager serialization: queue " + p + " >>> " + uneval(queues[p])
-				+ " with accounts " + uneval(accounts[p]));
+			API3.warn("queueManager serialization: queue " + q + " >>> " + uneval(queues[q])
+				+ " with accounts " + uneval(accounts[q]));
 	}
 
 	return {
@@ -562,13 +560,13 @@ m.QueueManager.prototype.Deserialize = function(gameState, data)
 
 	// the sorting is updated on priority change.
 	this.queueArrays = [];
-	for (let p in data.queues)
+	for (let q in data.queues)
 	{
-		this.queues[p] = new m.Queue();
-		this.queues[p].Deserialize(gameState, data.queues[p]);
-		this.accounts[p] = new API3.Resources();
-		this.accounts[p].Deserialize(data.accounts[p]);
-		this.queueArrays.push([p, this.queues[p]]);
+		this.queues[q] = new m.Queue();
+		this.queues[q].Deserialize(gameState, data.queues[q]);
+		this.accounts[q] = new API3.Resources();
+		this.accounts[q].Deserialize(data.accounts[q]);
+		this.queueArrays.push([q, this.queues[q]]);
 	}
 	this.queueArrays.sort((a,b) => data.priorities[b[0]] - data.priorities[a[0]]);
 };

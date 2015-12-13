@@ -39,7 +39,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 		plan.onGo = function (gameState) { gameState.ai.HQ.econState = "townPhasing"; };
 		plan.onNotGo = function (gameState) { gameState.ai.HQ.econState = "growth"; };
 
-		queues.majorTech.addItem(plan);
+		queues.majorTech.addPlan(plan);
 	}
 	else if (gameState.canResearch(cityPhase,true) && gameState.ai.elapsedTime > this.Config.Economy.cityPhase
 			&& gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workForCity
@@ -48,7 +48,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 	{
 		var plan = new m.ResearchPlan(gameState, cityPhase, true);
 		plan.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState); };
-		queues.majorTech.addItem(plan);
+		queues.majorTech.addPlan(plan);
 	}
 };
 
@@ -65,7 +65,7 @@ m.ResearchManager.prototype.researchPopulationBonus = function(gameState, queues
 		// TODO may-be loop on all modifs and check if the effect if positive ?
 		if (tech[1]._template.modifications[0].value !== "Cost/PopulationBonus")
 			continue;
-		queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
+		queues.minorTech.addPlan(new m.ResearchPlan(gameState, tech[0]));
 		break;
 	}
 };
@@ -86,7 +86,7 @@ m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 		if (tech[1]._template.modifications[0].value !== "UnitMotion/WalkSpeed" &&
                     tech[1]._template.modifications[0].value !== "Trader/GainMultiplier")
 			continue;
-		queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
+		queues.minorTech.addPlan(new m.ResearchPlan(gameState, tech[0]));
 		break;
 	}
 };
@@ -171,7 +171,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	var techName = this.researchWantedTechs(gameState, techs);
 	if (techName)
 	{
-		queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));
+		queues.minorTech.addPlan(new m.ResearchPlan(gameState, techName));
 		return;
 	}
 
@@ -181,7 +181,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	var techName = this.researchPreferredTechs(gameState, techs);
 	if (techName)
 	{
-		queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));
+		queues.minorTech.addPlan(new m.ResearchPlan(gameState, techName));
 		return;
 	}
 
@@ -211,7 +211,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 		return;
 	// randomly pick one. No worries about pairs in that case.
 	var p = Math.floor((Math.random()*techs.length));
-	queues.minorTech.addItem(new m.ResearchPlan(gameState, techs[p][0]));
+	queues.minorTech.addPlan(new m.ResearchPlan(gameState, techs[p][0]));
 };
 
 m.ResearchManager.prototype.Serialize = function()

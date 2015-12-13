@@ -706,9 +706,7 @@ m.GameState.prototype.findTrainers = function(template)
 	var civ = this.playerData.civ;
 	return this.getOwnTrainingFacilities().filter(function(ent) {
 		let trainable = ent.trainableEntities(civ);
-		if (!trainable || trainable.indexOf(template) == -1)
-			return false;
-		return true;
+		return trainable && trainable.indexOf(template) != -1;
 	});
 };
 
@@ -719,9 +717,7 @@ m.GameState.prototype.findBuilders = function(template)
 {
 	return this.getOwnUnits().filter(function(ent) {
 		let buildable = ent.buildableEntities();
-		if (!buildable || buildable.indexOf(template) == -1)
-			return false;
-		return true;
+		return buildable && buildable.indexOf(template) != -1;
 	});
 };
 
