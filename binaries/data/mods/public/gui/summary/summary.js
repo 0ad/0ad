@@ -1,32 +1,32 @@
-const MAX_HEADINGTITLE = 8;
+const g_MaxHeadingTitle= 8;
 
 // const for filtering long collective headings
-const LONG_HEADING_WIDTH = 250;
+const g_LongHeadingWidth = 250;
 // Vertical size of player box
-const PLAYER_BOX_Y_SIZE = 30;
+const g_PlayerBoxYSize = 30;
 // Gap between players boxes
-const PLAYER_BOX_GAP = 2;
+const g_PlayerBoxGap = 2;
 // Alpha for player box
-const PLAYER_BOX_ALPHA = " 32";
+const g_PlayerBoxAlpha = " 32";
 // Alpha for player color box
-const PLAYER_COLOR_BOX_ALPHA = " 255";
+const g_PlayerColorBoxAlpha = " 255";
 // yStart value for spacing teams boxes (and noTeamsBox)
-const TEAMS_BOX_Y_START = 65;
+const g_TeamsBoxYStart = 65;
 // Colors used for units and buildings
-const TRAINED_COLOR = '[color="201 255 200"]';
-const LOST_COLOR = '[color="255 213 213"]';
-const KILLED_COLOR = '[color="196 198 255"]';
+const g_TrainedColor = '[color="201 255 200"]';
+const g_LostColor = '[color="255 213 213"]';
+const g_KilledColor = '[color="196 198 255"]';
 
-const BUILDINGS_TYPES = [ "total", "House", "Economic", "Outpost", "Military", "Fortress", "CivCentre", "Wonder" ];
-const UNITS_TYPES = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Ship", "Trader" ];
-const RESOURCES_TYPES = [ "food", "wood", "stone", "metal" ];
+const g_BuildingsTypes = [ "total", "House", "Economic", "Outpost", "Military", "Fortress", "CivCentre", "Wonder" ];
+const g_UnitsTypes = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Ship", "Trader" ];
+const g_ResourcesTypes = [ "food", "wood", "stone", "metal" ];
 
 // Colors used for gathered and traded resources
-const INCOME_COLOR = '[color="201 255 200"]';
-const OUTCOME_COLOR = '[color="255 213 213"]';
+const g_IncomeColor = '[color="201 255 200"]';
+const g_OutcomeColor = '[color="255 213 213"]';
 
-const DEFAULT_DECIMAL = "0.00";
-const INFINITE_SYMBOL = "\u221E";
+const g_DefaultDecimal = "0.00";
+const g_InfiniteSymbol = "\u221E";
 // Load data
 var g_CivData = loadCivData();
 var g_Teams = [];
@@ -52,7 +52,7 @@ function selectPanel(panelNumber)
 		rightSpacer.size = (tabSize.right - 2) + " " + rightSpacer.size.top + " 100%-20 " + rightSpacer.size.bottom;
 	}
 
-	for (var i = 0; i < panelNames.length; ++i)
+	for (let i = 0; i < panelNames.length; ++i)
 	{
 		Engine.GetGUIObjectByName(panelNames[i] + 'Button').sprite = "BackgroundTab";
 	}
@@ -73,7 +73,7 @@ function updatePanelData(panelInfo)
 	updateGeneralPanelTeams();
 
 	var playerBoxesCounts = [ ];
-	for (var i = 0; i < g_PlayerCount; ++i)
+	for (let i = 0; i < g_PlayerCount; ++i)
 	{
 		var playerState = g_GameData.playerStates[i+1];
 
@@ -104,13 +104,13 @@ function updatePanelData(panelInfo)
 
 		var rowPlayerObject = Engine.GetGUIObjectByName(rowPlayer);
 		rowPlayerObject.hidden = false;
-		rowPlayerObject.sprite = colorString + PLAYER_BOX_ALPHA;
+		rowPlayerObject.sprite = colorString + g_PlayerBoxAlpha;
 		var boxSize = rowPlayerObject.size;
 		boxSize.right = rowPlayerObjectWidth;
 		rowPlayerObject.size = boxSize;
 
 		var playerColorBox = Engine.GetGUIObjectByName(playerColorBoxColumn);
-		playerColorBox.sprite = colorString + PLAYER_COLOR_BOX_ALPHA;
+		playerColorBox.sprite = colorString + g_PlayerColorBoxAlpha;
 
 		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.players[i+1].name;
 
@@ -144,7 +144,7 @@ function init(data)
 	if (data.mapSettings.LockTeams)	// teams ARE locked
 	{
 		// Count teams
-		for(var t = 0; t < g_PlayerCount; ++t)
+		for (let t = 0; t < g_PlayerCount; ++t)
 		{
 			let playerTeam = data.playerStates[t+1].team;
 			if (g_Teams[playerTeam])
@@ -162,7 +162,7 @@ function init(data)
 	// Erase teams data if teams are not displayed
 	if (!g_Teams)
 	{
-		for(var p = 0; p < g_PlayerCount; ++p)
+		for (let p = 0; p < g_PlayerCount; ++p)
 			data.playerStates[p+1].team = -1;
 	}
 
@@ -170,7 +170,7 @@ function init(data)
 	if (g_Teams)
 	{
 		// Count players without team (or all if teams are not displayed)
-		for (var i = 0; i < g_Teams.length; ++i)
+		for (let i = 0; i < g_Teams.length; ++i)
 			g_WithoutTeam -= g_Teams[i] ? g_Teams[i] : 0;
 	}
 

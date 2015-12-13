@@ -8,7 +8,7 @@ function resetDataHelpers()
 
 function updateCountersPlayer(playerState, counters, idGUI)
 {
-	for (var w in counters)
+	for (let w in counters)
 	{
 		var fn = counters[w].fn;
 		Engine.GetGUIObjectByName(idGUI + "[" + w + "]").caption = fn && fn(playerState, w);
@@ -18,7 +18,7 @@ function updateCountersPlayer(playerState, counters, idGUI)
 function calculateEconomyScore(playerState, position)
 {
 	let total = 0;
-	for each (var res in playerState.statistics.resourcesGathered)
+	for each (let res in playerState.statistics.resourcesGathered)
 		total += res;
 
 	return Math.round(total / 10);
@@ -44,15 +44,15 @@ function calculateScoreTotal(playerState, position)
 
 function calculateScoreTeam(counters)
 {
-	for (var t in g_Teams)
+	for (let t in g_Teams)
 	{
 		if (t == -1)
 			continue;
 
-		for (var w in counters)
+		for (let w in counters)
 		{
 			var total = 0;
-			for (var p = 0; p < g_Teams[t]; ++p)
+			for (let p = 0; p < g_Teams[t]; ++p)
 				total += (+Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption);
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = total;
@@ -62,27 +62,27 @@ function calculateScoreTeam(counters)
 
 function calculateBuildings(playerState, position)
 {
-	var type = BUILDINGS_TYPES[position];
-	return TRAINED_COLOR + playerState.statistics.buildingsConstructed[type] + '[/color] / ' +
-	LOST_COLOR + playerState.statistics.buildingsLost[type] + '[/color] / ' +
-	KILLED_COLOR + playerState.statistics.enemyBuildingsDestroyed[type] + '[/color]';
+	var type = g_BuildingsTypes[position];
+	return g_TrainedColor + playerState.statistics.buildingsConstructed[type] + '[/color] / ' +
+		g_LostColor + playerState.statistics.buildingsLost[type] + '[/color] / ' +
+		g_KilledColor + playerState.statistics.enemyBuildingsDestroyed[type] + '[/color]';
 }
 
 function calculateColorsTeam(counters)
 {
-	for (var t in g_Teams)
+	for (let t in g_Teams)
 	{
 		if (t == -1)
 			continue;
 
-		for (var w in counters)
+		for (let w in counters)
 		{
 			var total = {
 				c : 0,
 				l : 0,
 				d : 0
 			};
-			for (var p = 0; p < g_Teams[t]; ++p)
+			for (let p = 0; p < g_Teams[t]; ++p)
 			{
 				var caption = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption;
 				// clean [Color=""], [/Color] and white space for make the sum more easy
@@ -94,8 +94,8 @@ function calculateColorsTeam(counters)
 				total.l += (+splitCaption[1]);
 				total.d += (+splitCaption[2]);
 			}
-			var teamTotal = TRAINED_COLOR + total.c + '[/color] / ' +
-			LOST_COLOR + total.l + '[/color] / ' + KILLED_COLOR + total.d + '[/color]';
+			var teamTotal = g_Trained_Color + total.c + '[/color] / ' +
+			g_Lost_Color + total.l + '[/color] / ' + g_Killed_Color + total.d + '[/color]';
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
 		}
@@ -104,17 +104,17 @@ function calculateColorsTeam(counters)
 
 function calculateUnits(playerState, position)
 {
-	var type = UNITS_TYPES[position];
-	return TRAINED_COLOR + playerState.statistics.unitsTrained[type] + '[/color] / ' +
-	LOST_COLOR + playerState.statistics.unitsLost[type] + '[/color] / ' +
-	KILLED_COLOR + playerState.statistics.enemyUnitsKilled[type] + '[/color]';
+	var type = g_UnitsTypes[position];
+	return g_TrainedColor + playerState.statistics.unitsTrained[type] + '[/color] / ' +
+		g_LostColor + playerState.statistics.unitsLost[type] + '[/color] / ' +
+		g_KilledColor + playerState.statistics.enemyUnitsKilled[type] + '[/color]';
 }
 
 function calculateResources(playerState, position)
 {
-	var type = RESOURCES_TYPES[position];
-	return INCOME_COLOR + playerState.statistics.resourcesGathered[type] + '[/color] / ' +
-	OUTCOME_COLOR + (playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type]) + '[/color]';
+	var type = g_ResourcesTypes[position];
+	return g_IncomeColor + playerState.statistics.resourcesGathered[type] + '[/color] / ' +
+		g_OutcomeColor + (playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type]) + '[/color]';
 }
 
 function calculateTotalResources(playerState, position)
@@ -122,13 +122,13 @@ function calculateTotalResources(playerState, position)
 	var totalGathered = 0;
 	var totalUsed = 0;
 
-	for each (var type in RESOURCES_TYPES)
+	for each (let type in g_ResourcesTypes)
 	{
 		totalGathered += playerState.statistics.resourcesGathered[type];
 		totalUsed += playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type];
 	}
 
-	return INCOME_COLOR + totalGathered + '[/color] / ' + OUTCOME_COLOR + totalUsed + '[/color]';
+	return g_IncomeColor + totalGathered + '[/color] / ' + g_OutcomeColor + totalUsed + '[/color]';
 }
 
 function calculateTreasureCollected(playerState, position)
@@ -143,17 +143,18 @@ function calculateLootCollected(playerState, position)
 
 function calculateTributeSent(playerState, position)
 {
-	return INCOME_COLOR + playerState.statistics.tributesSent + "[/color] / " + OUTCOME_COLOR + playerState.statistics.tributesReceived + "[/color]";
+	return g_IncomeColor + playerState.statistics.tributesSent + "[/color] / " +
+	       g_OutcomeColor + playerState.statistics.tributesReceived + "[/color]";
 }
 
 function calculateResourcesTeam(counters)
 {
-	for (var t in g_Teams)
+	for (let t in g_Teams)
 	{
 		if (t == -1)
 			continue;
 
-		for (var w in counters)
+		for (let w in counters)
 		{
 			var teamTotal = "undefined";
 
@@ -161,7 +162,7 @@ function calculateResourcesTeam(counters)
 				i : 0,
 				o : 0
 			};
-			for (var p = 0; p < g_Teams[t]; ++p)
+			for (let p = 0; p < g_Teams[t]; ++p)
 			{
 				var caption = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption;
 				// clean [Color=""], [/Color] and white space for make the sum more easy
@@ -181,7 +182,7 @@ function calculateResourcesTeam(counters)
 			if (w >= 6)
 				teamTotal = total.i;
 			else
-				teamTotal = INCOME_COLOR + total.i + "[/color] / " + OUTCOME_COLOR + total.o + "[/color]";
+				teamTotal = g_IncomeColor + total.i + "[/color] / " + g_OutcomeColor + total.o + "[/color]";
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
 		}
@@ -190,18 +191,18 @@ function calculateResourcesTeam(counters)
 
 function calculateResourceExchanged(playerState, position)
 {
-	var type = RESOURCES_TYPES[position];
-	return INCOME_COLOR + '+' + playerState.statistics.resourcesBought[type] + '[/color] ' +
-		OUTCOME_COLOR + '-' + playerState.statistics.resourcesSold[type] + '[/color]';
+	var type = g_ResourcesTypes[position];
+	return g_IncomeColor + '+' + playerState.statistics.resourcesBought[type] + '[/color] ' +
+		g_OutcomeColor + '-' + playerState.statistics.resourcesSold[type] + '[/color]';
 }
 
 function calculateBatteryEfficiency(playerState, position)
 {
 	var totalBought = 0;
-	for each (var boughtAmount in playerState.statistics.resourcesBought)
+	for each (let boughtAmount in playerState.statistics.resourcesBought)
 		totalBought += boughtAmount;
 	var totalSold = 0;
-	for each (var soldAmount in playerState.statistics.resourcesSold)
+	for each (let soldAmount in playerState.statistics.resourcesSold)
 		totalSold += soldAmount;
 
 	return Math.floor(totalSold > 0 ? (totalBought / totalSold) * 100 : 0) + "%";
@@ -214,12 +215,12 @@ function calculateTradeIncome(playerState, position)
 
 function calculateMarketTeam(counters)
 {
-	for (var t in g_Teams)
+	for (let t in g_Teams)
 	{
 		if (t == -1)
 			continue;
 
-		for (var w in counters)
+		for (let w in counters)
 		{
 			var teamTotal = "undefined";
 
@@ -227,7 +228,7 @@ function calculateMarketTeam(counters)
 				i : 0,
 				o : 0
 			};
-			for (var p = 0; p < g_Teams[t]; ++p)
+			for (let p = 0; p < g_Teams[t]; ++p)
 			{
 				var caption = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption;
 				// clean [Color=""], [/Color], white space, + and % for make the sum more easy
@@ -246,7 +247,7 @@ function calculateMarketTeam(counters)
 			if (w >= 4)
 				teamTotal = total.i +(w == 4 ? "%" : "");
 			else
-				teamTotal = INCOME_COLOR + '+' + total.i + '[/color] ' + OUTCOME_COLOR + '-' + total.o + '[/color]';
+				teamTotal = g_IncomeColor + '+' + total.i + '[/color] ' + g_IncomeColor + '-' + total.o + '[/color]';
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
 		}
@@ -298,9 +299,9 @@ function calculateKillDeathRatio(playerState, position)
 	teamMiscHelperData[playerState.team][position].unitsLost = playerState.statistics.unitsLost.total;
 
 	if (!playerState.statistics.enemyUnitsKilled.total)
-		return DEFAULT_DECIMAL;
+		return g_DefaultDecimal
 	if (!playerState.statistics.unitsLost.total)	// and enemyUnitsKilled.total > 0
-		return INFINITE_SYMBOL; // infinity symbol
+		return g_InfiniteSymbol; // infinity symbol
 
 	return Math.round((playerState.statistics.enemyUnitsKilled.total / playerState.statistics.unitsLost.total)*100)/100;
 }
@@ -334,12 +335,12 @@ function calculateMapPeakControl(playerState, position)
 
 function calculateMiscellaneous(counters)
 {
-	for (var t in g_Teams)
+	for (let t in g_Teams)
 	{
 		if (t == -1)
 			continue;
 
-		for (var w in counters)
+		for (let w in counters)
 		{
 			var teamTotal = "undefined";
 
@@ -350,9 +351,9 @@ function calculateMiscellaneous(counters)
 			else if (w == 2)
 			{
 				if (!teamMiscHelperData[t][w].enemyUnitsKilled)
-					teamTotal = DEFAULT_DECIMAL;
+					teamTotal = g_DefaultDecimal;
 				else if (!teamMiscHelperData[t][w].unitsLost)	// and enemyUnitsKilled.total > 0
-					teamTotal = INFINITE_SYMBOL; // infinity symbol
+					teamTotal = g_InfiniteSymbol; // infinity symbol
 				else
 					teamTotal = Math.round((teamMiscHelperData[t][w].enemyUnitsKilled / teamMiscHelperData[t][w].unitsLost)*100)/100;
 			}
