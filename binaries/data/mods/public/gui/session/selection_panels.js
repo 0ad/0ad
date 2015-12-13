@@ -18,7 +18,6 @@
  *   "rowLength":      rowLength
  *   "numberOfItems":  number of items that will be processed
  *   "button":         gui Button object
- *   "affordableMask": gui Unaffordable overlay
  *   "icon":           gui Icon object
  *   "guiSelection":   gui button Selection overlay
  *   "countDisplay":   gui caption space
@@ -122,7 +121,6 @@ g_SelectionPanels.Barter = {
 			data.amount[a] = Engine.GetGUIObjectByName("unitBarter"+a+"Amount["+data.i+"]");
 		}
 		data.selectionIcon = Engine.GetGUIObjectByName("unitBarterSellSelection["+data.i+"]");
-		data.affordableMask = Engine.GetGUIObjectByName("unitBarterSellUnaffordable["+data.i+"]");
 
 		data.amountToSell = BARTER_RESOURCE_AMOUNT_TO_SELL;
 		if (Engine.HotkeyIsPressed("session.massbarter"))
@@ -155,18 +153,22 @@ g_SelectionPanels.Barter = {
 	},
 	"setGraphics": function(data)
 	{
-		var grayscale = data.isSelected ? "grayscale:" : ""; 
-		data.button.Buy.hidden = data.isSelected;
-		data.button.Sell.hidden = false;
-		for each (var icon in data.icon)
-			icon.sprite = "stretched:"+grayscale+"session/icons/resources/" + data.item + ".png";
+		var grayscale = data.isSelected ? "color: 0 0 0 100:grayscale:" : "";
 
+		// do we have enough of this resource to sell?
 		var neededRes = {};
 		neededRes[data.item] = data.amountToSell;
-		if (Engine.GuiInterfaceCall("GetNeededResources", neededRes))
-			data.affordableMask.hidden = false;
-		else
-			data.affordableMask.hidden = true;
+		var canSellCurrent = Engine.GuiInterfaceCall("GetNeededResources", neededRes) != undefined ? "color:255 0 0 80:" : "";
+		// Let's see if we have enough resources to barter.
+		neededRes = {};
+		neededRes[g_barterSell] = data.amountToSell;
+		var canBuyAny = Engine.GuiInterfaceCall("GetNeededResources", neededRes) != undefined ? "color:255 0 0 80:" : "";
+
+		data.icon.Sell.sprite = canSellCurrent + "stretched:"+grayscale+"session/icons/resources/" + data.item + ".png";
+		data.icon.Buy.sprite = canBuyAny + "stretched:"+grayscale+"session/icons/resources/" + data.item + ".png";
+
+		data.button.Buy.hidden = data.isSelected;
+		data.button.Sell.hidden = false;
 		data.selectionIcon.hidden = !data.isSelected;
 	},
 	"setPosition": function(data)
@@ -328,22 +330,21 @@ g_SelectionPanels.Construction = {
 	},
 	"setGraphics": function(data)
 	{
-		var grayscale = "";
+		var modifier = "";
 		if (!data.technologyEnabled || data.limits.canBeAddedCount == 0)
 		{
 			data.button.enabled = false;
-			grayscale = "grayscale:";
-			data.affordableMask.hidden = false;
-			data.affordableMask.sprite = "color: 0 0 0 127";
+			modifier += "color: 0 0 0 127:textureAsMask:";
+			modifier += "grayscale:";
 		}
 		else if (data.neededResources)
 		{
 			data.button.enabled = false;
-			data.affordableMask.hidden = false;
-			data.affordableMask.sprite = resourcesToAlphaMask(data.neededResources);
+			modifier += resourcesToAlphaMask(data.neededResources) +":";
 		}
+
 		if (data.template.icon)
-			data.icon.sprite = "stretched:" + grayscale + "session/portraits/" + data.template.icon;
+			data.icon.sprite = modifier + "stretched:session/portraits/" + data.template.icon;
 	},
 	"setPosition": function(data)
 	{
@@ -449,7 +450,7 @@ g_SelectionPanels.Garrison = {
 		var grayscale = "";
 		var ents = data.item.ents;
 		var entplayer = GetEntityState(ents[0]).player;
-		data.button.sprite = "color: " + rgbToGuiColor(g_Players[entplayer].color);
+		data.button.sprite = "color:" + rgbToGuiColor(g_Players[entplayer].color) +":";
 
 		var player = Engine.GetPlayerID();
 		if(player != data.unitEntState.player && !g_DevSettings.controlAll)
@@ -553,7 +554,6 @@ g_SelectionPanels.Gate = {
 	},
 	"setGraphics": function(data)
 	{
-		data.affordableMask.hidden = !data.neededResources;
 		var gateIcon;
 		if (data.item.gate)
 		{
@@ -574,7 +574,7 @@ g_SelectionPanels.Gate = {
 			data.guiSelection.hidden = true;
 		}
 
-		data.icon.sprite = "stretched:session/" + gateIcon;
+		data.icon.sprite = (data.neededResources ? resourcesToAlphaMask(data.neededResources) + ":" : "") + "stretched:session/" + gateIcon;
 	},
 	"setPosition": function(data)
 	{
@@ -770,11 +770,6 @@ g_SelectionPanels.Research = {
 			return Engine.GetGUIObjectByName("unitResearchButton["+p+"]"); 
 		});
 
-
-		data.affordableMask = data.positions.map(function(p) { 
-			return Engine.GetGUIObjectByName("unitResearchUnaffordable["+p+"]");
-		});
-
 		data.icon = data.positions.map(function(p) { 
 			return Engine.GetGUIObjectByName("unitResearchIcon["+p+"]");
 		});
@@ -854,27 +849,23 @@ g_SelectionPanels.Research = {
 		{
 			var button = data.button[i];
 			button.hidden = false;
-			var grayscale = "";
+			var modifier = "";
 			if (!data.requirementsPassed[i])
 			{
 				button.enabled = false;
-				grayscale = "grayscale:";
-				data.affordableMask[i].hidden = false;
-				data.affordableMask[i].sprite = "color: 0 0 0 127";
+				modifier += "color: 0 0 0 127:";
+				modifier += "grayscale:";
 			}
 			else if (data.neededResources[i])
 			{
 				button.enabled = false;
-				data.affordableMask[i].hidden = false;
-				data.affordableMask[i].sprite = resourcesToAlphaMask(data.neededResources[i]);
+				modifier += resourcesToAlphaMask(data.neededResources[i]) + ":";
 			}
 			else
-			{
-				data.affordableMask[i].hidden = true;
 				button.enabled = true; 
-			}
+
 			if (data.template[i].icon)
-				data.icon[i].sprite = "stretched:" + grayscale + "session/portraits/" + data.template[i].icon;
+				data.icon[i].sprite = modifier + "stretched:session/portraits/" + data.template[i].icon;
 		}
 		for (var button of data.buttonsToHide)
 			button.hidden = true;

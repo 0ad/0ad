@@ -156,3 +156,16 @@ function getEntityOrHolder(ent)
 
 	return ent;
 }
+
+/**
+ * Returns a "color:255 0 0 Alpha" string based on how many resources are needed.
+ */
+function resourcesToAlphaMask(neededResources)
+{
+	var totalCost = 0;
+	for (var resource in neededResources)
+		totalCost += +neededResources[resource];
+	var alpha = 50 + Math.round(+totalCost/10.0);
+	alpha = alpha > 125 ? 125 : alpha;
+	return "color:255 0 0 " + alpha;
+}
