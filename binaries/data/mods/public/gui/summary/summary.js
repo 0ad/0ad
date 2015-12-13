@@ -42,12 +42,12 @@ var g_GameData;
  */
 function selectPanel(panelNumber)
 {
-	var panelNames = [ 'scorePanel', 'buildingsPanel', 'unitsPanel', 'resourcesPanel', 'marketPanel', 'miscPanel' ];
+	let panelNames = [ 'scorePanel', 'buildingsPanel', 'unitsPanel', 'resourcesPanel', 'marketPanel', 'miscPanel' ];
 
 	function adjustTabDividers(tabSize)
 	{
-		var leftSpacer = Engine.GetGUIObjectByName("tabDividerLeft");
-		var rightSpacer = Engine.GetGUIObjectByName("tabDividerRight");
+		let leftSpacer = Engine.GetGUIObjectByName("tabDividerLeft");
+		let rightSpacer = Engine.GetGUIObjectByName("tabDividerRight");
 		leftSpacer.size = "20 " + leftSpacer.size.top + " " + (tabSize.left + 2) + " " + leftSpacer.size.bottom;
 		rightSpacer.size = (tabSize.right - 2) + " " + rightSpacer.size.top + " 100%-20 " + rightSpacer.size.bottom;
 	}
@@ -60,7 +60,7 @@ function selectPanel(panelNumber)
 	Engine.GetGUIObjectByName(panelNames[panelNumber] + 'Button').sprite = "ForegroundTab";
 	adjustTabDividers(Engine.GetGUIObjectByName(panelNames[panelNumber] + 'Button').size);
 
-	updatePanelData(panelsData[panelNumber]);
+	updatePanelData(g_ScorePanelsData[panelNumber]);
 }
 
 function updatePanelData(panelInfo)
@@ -69,25 +69,25 @@ function updatePanelData(panelInfo)
 	resetDataHelpers();
 	updateGeneralPanelHeadings(panelInfo.headings);
 	updateGeneralPanelTitles(panelInfo.titleHeadings);
-	var rowPlayerObjectWidth = updateGeneralPanelCounter(panelInfo.counters);
+	let rowPlayerObjectWidth = updateGeneralPanelCounter(panelInfo.counters);
 	updateGeneralPanelTeams();
 
-	var playerBoxesCounts = [ ];
+	let playerBoxesCounts = [ ];
 	for (let i = 0; i < g_PlayerCount; ++i)
 	{
-		var playerState = g_GameData.playerStates[i+1];
+		let playerState = g_GameData.playerStates[i+1];
 
 		if (!playerBoxesCounts[playerState.team+1])
 			playerBoxesCounts[playerState.team+1] = 1;
 		else
 			playerBoxesCounts[playerState.team+1] += 1;
 
-		var positionObject = playerBoxesCounts[playerState.team+1] - 1;
-		var rowPlayer = "playerBox[" + positionObject + "]";
-		var playerNameColumn = "playerName[" + positionObject + "]";
-		var playerColorBoxColumn = "playerColorBox[" + positionObject + "]";
-		var playerCivicBoxColumn = "civIcon[" + positionObject + "]";
-		var playerCounterValue = "valueData[" + positionObject + "]";
+		let positionObject = playerBoxesCounts[playerState.team+1] - 1;
+		let rowPlayer = "playerBox[" + positionObject + "]";
+		let playerNameColumn = "playerName[" + positionObject + "]";
+		let playerColorBoxColumn = "playerColorBox[" + positionObject + "]";
+		let playerCivicBoxColumn = "civIcon[" + positionObject + "]";
+		let playerCounterValue = "valueData[" + positionObject + "]";
 		if (playerState.team != -1)
 		{
 			rowPlayer = "playerBoxt[" + playerState.team + "][" + positionObject + "]";
@@ -97,24 +97,24 @@ function updatePanelData(panelInfo)
 			playerCounterValue = "valueDataTeam[" + playerState.team + "][" + positionObject + "]";
 		}
 
-		var colorString = "color: "
+		let colorString = "color: "
 				+ Math.floor(playerState.color.r * 255) + " "
 				+ Math.floor(playerState.color.g * 255) + " "
 				+ Math.floor(playerState.color.b * 255);
 
-		var rowPlayerObject = Engine.GetGUIObjectByName(rowPlayer);
+		let rowPlayerObject = Engine.GetGUIObjectByName(rowPlayer);
 		rowPlayerObject.hidden = false;
 		rowPlayerObject.sprite = colorString + g_PlayerBoxAlpha;
-		var boxSize = rowPlayerObject.size;
+		let boxSize = rowPlayerObject.size;
 		boxSize.right = rowPlayerObjectWidth;
 		rowPlayerObject.size = boxSize;
 
-		var playerColorBox = Engine.GetGUIObjectByName(playerColorBoxColumn);
+		let playerColorBox = Engine.GetGUIObjectByName(playerColorBoxColumn);
 		playerColorBox.sprite = colorString + g_PlayerColorBoxAlpha;
 
 		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.players[i+1].name;
 
-		var civIcon = Engine.GetGUIObjectByName(playerCivicBoxColumn);
+		let civIcon = Engine.GetGUIObjectByName(playerCivicBoxColumn);
 		civIcon.sprite = "stretched:"+g_CivData[playerState.civ].Emblem;
 		civIcon.tooltip = g_CivData[playerState.civ].Name;
 
@@ -122,7 +122,7 @@ function updatePanelData(panelInfo)
 		updateCountersPlayer(playerState, panelInfo.counters, playerCounterValue);
 	}
 	// Update team counters
-	var teamCounterFn = panelInfo.teamCounterFn;
+	let teamCounterFn = panelInfo.teamCounterFn;
 	if (g_Teams && teamCounterFn)
 		teamCounterFn(panelInfo.counters);
 }
@@ -132,8 +132,8 @@ function init(data)
 	updateObjectPlayerPosition();
 	g_GameData = data;
 
-	var mapSize = data.mapSettings.Size ? g_Settings.MapSizes.find(size => size.Tiles == data.mapSettings.Size) : undefined;
-	var mapType = g_Settings.MapTypes.find(mapType => mapType.Name == data.mapSettings.mapType);
+	let mapSize = data.mapSettings.Size ? g_Settings.MapSizes.find(size => size.Tiles == data.mapSettings.Size) : undefined;
+	let mapType = g_Settings.MapTypes.find(mapType => mapType.Name == data.mapSettings.mapType);
 	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(translate("Game time elapsed: %(time)s"), { "time": timeToString(data.timeElapsed) });
 	Engine.GetGUIObjectByName("summaryText").caption = data.gameResult;
 	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { "mapName": translate(data.mapSettings.Name), "mapType": mapSize ? mapSize.LongName : (mapType ? mapType.Title : "") });
