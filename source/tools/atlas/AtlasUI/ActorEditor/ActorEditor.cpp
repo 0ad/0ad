@@ -23,7 +23,9 @@
 #include "AtlasObject/AtlasObject.h"
 #include "AtlasObject/AtlasObjectText.h"
 #include "General/Datafile.h"
-
+#ifdef __WXMAC__
+#include <ApplicationServices/ApplicationServices.h>
+#endif
 #include "wx/file.h"
 
 BEGIN_EVENT_TABLE(ActorEditor, AtlasWindow)
@@ -36,6 +38,11 @@ ActorEditor::ActorEditor(wxWindow* parent)
 {
 	SetIcon(wxIcon(_T("ICON_ActorEditor")));
 
+#ifdef __WXMAC__
+	ProcessSerialNumber PSN;
+	GetCurrentProcess(&PSN);
+	TransformProcessType(&PSN,kProcessTransformToForegroundApplication);
+#endif
 	wxMenu* menu = new wxMenu;
 	menu->Append(ID_CreateEntity, _("Create &entity..."));
 	AddCustomMenu(menu, _("&Actor"));
