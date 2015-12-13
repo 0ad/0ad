@@ -334,7 +334,7 @@ g_SelectionPanels.Construction = {
 		if (!data.technologyEnabled || data.limits.canBeAddedCount == 0)
 		{
 			data.button.enabled = false;
-			modifier += "color: 0 0 0 127:textureAsMask:";
+			modifier += "color: 0 0 0 127:";
 			modifier += "grayscale:";
 		}
 		else if (data.neededResources)
