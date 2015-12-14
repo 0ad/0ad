@@ -1,13 +1,16 @@
 const g_IsReplay = Engine.IsVisualReplay();
 const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly || g_IsReplay) : undefined);
 
-const g_AmbientTemperate = "temperate";
-
 /**
  * Colors to flash when pop limit reached.
  */
 const g_DefaultPopulationColor = "white";
 const g_PopulationAlertColor = "orange";
+
+/**
+ * A random file will be played. TODO: more variety
+ */
+const g_Ambient = [ "audio/ambient/dayscape/day_temperate_gen_03.ogg" ];
 
 var g_IsNetworked = false;
 
@@ -61,8 +64,6 @@ var g_CachedLastStates = "";
 
 // Top coordinate of the research list
 var g_ResearchListTop = 4;
-
-var currentAmbient;
 
 // List of additional entities to highlight
 var g_ShowGuarding = false;
@@ -217,9 +218,9 @@ function init(initData, hotloadData)
 	initMusic();
 	if (!g_IsObserver)
 		global.music.storeTracks(g_CivData[g_Players[Engine.GetPlayerID()].civ].Music);
-
 	global.music.setState(global.music.states.PEACE);
-	playRandomAmbient("temperate");
+	playAmbient();
+
 	onSimulationUpdate();
 
 	// Report the performance after 5 seconds (when we're still near
@@ -357,7 +358,6 @@ function leaveGame(willRejoin)
 	if (!g_IsReplay)
 		Engine.SaveReplayMetadata(JSON.stringify(summary));
 
-	stopAmbient();
 	Engine.EndGame();
 
 	if (g_IsController && Engine.HasXmppClient())
@@ -680,7 +680,7 @@ function updateGroups()
 {
 	let guiName = "Group";
 	g_Groups.update();
-	for (let i = 0; i < 10; i++)
+	for (let i = 0; i < 10; ++i)
 	{
 		let button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		let label = Engine.GetGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
@@ -870,29 +870,9 @@ function updateAdditionalHighlight()
 	g_AdditionalHighlight = entsAdd;
 }
 
-function playRandomAmbient(type)
+function playAmbient()
 {
-	switch (type)
-	{
-		case g_AmbientTemperate:
-			const AMBIENT = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
-			Engine.PlayAmbientSound(AMBIENT, true);
-			break;
-
-		default:
-			error("Unrecognized ambient type: '" + type + "'");
-			break;
-	}
-}
-
-// Temporarily adding this here
-function stopAmbient()
-{
-	if (!currentAmbient)
-		return;
-
-	currentAmbient.free();
-	currentAmbient = null;
+	Engine.PlayAmbientSound(g_Ambient[Math.floor(Math.random() * g_Ambient.length)], true);
 }
 
 function getBuildString()
