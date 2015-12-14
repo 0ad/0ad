@@ -31,10 +31,10 @@ m.QueueManager = function(Config, queues)
 
 	// the sorting is updated on priority change.
 	this.queueArrays = [];
-	for (var p in this.queues)
+	for (let q in this.queues)
 	{
-		this.accounts[p] = new API3.Resources();
-		this.queueArrays.push([p, this.queues[p]]);
+		this.accounts[q] = new API3.Resources();
+		this.queueArrays.push([q, this.queues[q]]);
 	}
 	var priorities = this.priorities;
 	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
@@ -43,7 +43,7 @@ m.QueueManager = function(Config, queues)
 m.QueueManager.prototype.getAvailableResources = function(gameState)
 {
 	var resources = gameState.getResources();
-	for (var key in this.queues)
+	for (let key in this.queues)
 		resources.subtract(this.accounts[key]);
 	return resources;
 };
@@ -97,7 +97,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	//queueArrays because it's faster.
 	for (let q of this.queueArrays)
 	{
-		var queue = q[1];
+		let queue = q[1];
 		if (queue.paused)
 			continue;
 		for (let j = 0; j < queue.length(); ++j)
@@ -153,7 +153,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 			numWorkers++;
 	});
 	API3.warn("---------- QUEUES ------------ with pop " + gameState.getPopulation() + " and workers " + numWorkers);
-	for (var i in this.queues)
+	for (let i in this.queues)
 	{
 		var qStr = "";
 		var q = this.queues[i];
@@ -172,7 +172,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 		}
 	}
 	API3.warn("Accounts");
-	for (var p in this.accounts)
+	for (let p in this.accounts)
 	    API3.warn(p + ": " + uneval(this.accounts[p]));
 	API3.warn("Current Resources: " + uneval(gameState.getResources()));
 	API3.warn("Available Resources: " + uneval(this.getAvailableResources(gameState)));
@@ -184,7 +184,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 
 m.QueueManager.prototype.clear = function()
 {
-	for (var i in this.queues)
+	for (let i in this.queues)
 		this.queues[i].empty();
 };
 
@@ -375,7 +375,7 @@ m.QueueManager.prototype.update = function(gameState)
 {
 	Engine.ProfileStart("Queue Manager");
 
-	for (var i in this.queues)
+	for (let i in this.queues)
 	{
 		this.queues[i].check(gameState);  // do basic sanity checks on the queue
 		if (this.priorities[i] > 0)
@@ -449,14 +449,20 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 	}
 };
 
+m.QueueManager.prototype.canAfford = function(queue, cost)
+{
+	if (!this.accounts[queue])
+		return false;
+	return this.accounts[queue].canAfford(cost);
+};
+
 m.QueueManager.prototype.pauseQueue = function(queue, scrapAccounts)
 {
-	if (this.queues[queue])
-	{
-		this.queues[queue].paused = true;
-		if (scrapAccounts)
-			this.accounts[queue].reset();
-	}
+	if (!this.queues[queue])
+		return;
+	this.queues[queue].paused = true;
+	if (scrapAccounts)
+		this.accounts[queue].reset();
 };
 
 m.QueueManager.prototype.unpauseQueue = function(queue)

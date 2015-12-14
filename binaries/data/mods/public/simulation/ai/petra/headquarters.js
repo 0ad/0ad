@@ -1234,14 +1234,14 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 			let queueManager = gameState.ai.queueManager;
 			let cost = queues.economicBuilding.plans[0].getCost();
 			queueManager.setAccounts(gameState, cost, "economicBuilding");
-			if (!queueManager.accounts["economicBuilding"].canAfford(cost))
+			if (!queueManager.canAfford("economicBuilding", cost))
 			{
-				for (let p in queueManager.queues)
+				for (let q in queueManager.queues)
 				{
-					if (p === "economicBuilding")
+					if (q === "economicBuilding")
 						continue;
-					queueManager.transferAccounts(cost, p, "economicBuilding");
-					if (queueManager.accounts["economicBuilding"].canAfford(cost))
+					queueManager.transferAccounts(cost, q, "economicBuilding");
+					if (queueManager.canAfford("economicBuilding", cost))
 						break;
 				}
 			}
@@ -1487,14 +1487,14 @@ m.HQ.prototype.buildWonder = function(gameState, queues)
 {
 	if (!this.canBuild(gameState, "structures/{civ}_wonder"))
 		return;
-	if (gameState.ai.queues.wonder && gameState.ai.queues.wonder.length() > 0)
+	if (queues.wonder && queues.wonder.length() > 0)
 		return;
 	if (gameState.getOwnEntitiesByClass("Wonder", true).length > 0)
 		return;
 
-	if (!gameState.ai.queues.wonder)
+	if (!queues.wonder)
 		gameState.ai.queueManager.addQueue("wonder", 1000);
-	gameState.ai.queues.wonder.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_wonder"));
+	queues.wonder.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_wonder"));
 };
 
 // Deals with constructing military buildings (barracks, stables…)
@@ -1673,14 +1673,14 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	let queueManager = gameState.ai.queueManager;
 	let cost = new API3.Resources(templateFound[1].cost());
 	queueManager.setAccounts(gameState, cost, "emergency");
-	if (!queueManager.accounts.emergency.canAfford(cost))
+	if (!queueManager.canAfford("emergency", cost))
 	{
-		for (let p in queueManager.queues)
+		for (let q in queueManager.queues)
 		{
-			if (p === "emergency")
+			if (q === "emergency")
 				continue;
-			queueManager.transferAccounts(cost, p, "emergency");
-			if (queueManager.accounts.emergency.canAfford(cost))
+			queueManager.transferAccounts(cost, q, "emergency");
+			if (queueManager.canAfford("emergency", cost))
 				break;
 		}
 	}
