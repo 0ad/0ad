@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-30 09:01+0100\n"
-"PO-Revision-Date: 2015-12-01 16:08+0000\n"
+"POT-Creation-Date: 2015-12-11 09:01+0100\n"
+"PO-Revision-Date: 2015-12-13 15:25+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Közelharc"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:27
 msgid "Melee Cavalry"
-msgstr "Közelharci lovasság"
+msgstr "Közelharci lovas"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:20
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
@@ -92,11 +92,11 @@ msgstr "Közelharci lovasság"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:35
 msgid "Spear"
-msgstr "Dárda"
+msgstr "Lándzsa"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:21
 msgid "Cavalry Spearman"
-msgstr "Dárdás lovasság"
+msgstr "Lándzsás lovas"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:36
@@ -109,7 +109,7 @@ msgstr "Kard"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:30
 msgid "Cavalry Swordsman"
-msgstr "Kardos lovasság"
+msgstr "Lovas kardforgató"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:21
 msgid "Ranged Cavalry"
@@ -141,7 +141,7 @@ msgstr "Íjász"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 msgid "Cavalry Archer"
-msgstr "Íjász lovasság"
+msgstr "Lovas íjász"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:22
@@ -149,7 +149,7 @@ msgstr "Íjász lovasság"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:26
 msgid "Javelin"
-msgstr "Dárda"
+msgstr "Gerely"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
@@ -157,7 +157,7 @@ msgstr "Lovas csatár"
 
 #: simulation/templates/template_unit_champion.xml:11
 msgid "Champion Unit"
-msgstr "Bajnoki egység"
+msgstr "Bajnok egység"
 
 #: simulation/templates/template_unit_champion.xml:13
 msgid "Champion"
@@ -169,7 +169,7 @@ msgstr "Bajnok lovas"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer."
-msgstr "Bajnok lovas íjász."
+msgstr "Bajnok lovas íjász"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 msgid "Champion Cavalry Skirmisher"
@@ -177,11 +177,11 @@ msgstr "Bajnok lovas csatár"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
-msgstr "Bajnok lovas dárdás"
+msgstr "Bajnok lándzsás lovas"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:37
 msgid "Champion Cavalry Swordsman"
-msgstr "Bajnok kardos lovas"
+msgstr "Bajnok lovas kardforgató"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
@@ -198,11 +198,11 @@ msgstr "Harci elefánt"
 #: simulation/templates/template_unit_infantry.xml:63
 #: simulation/templates/template_unit_infantry.xml:61
 msgid "Infantry"
-msgstr "Gyalogság"
+msgstr "Gyalogos"
 
 #: simulation/templates/template_unit_champion_infantry.xml:22
 msgid "Champion Infantry"
-msgstr "Bajnok gyalogság"
+msgstr "Bajnok gyalogos"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
@@ -216,11 +216,11 @@ msgstr "Bajnok csatár"
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
-msgstr "Lándzsa"
+msgstr "Pika"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:46
 msgid "Champion Pikeman"
-msgstr "Bajnok lándzsás"
+msgstr "Bajnok pikás"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:48
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:46
@@ -229,11 +229,11 @@ msgstr "Bajnok lándzsás"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:38
 msgid "Counters: 3x vs. Cavalry."
-msgstr "Ellenfelek: 3x a lovasság ellen."
+msgstr "Elhárítás: 3x a lovasság ellen."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 msgid "Champion Spearman"
-msgstr "Bajnok dárdás"
+msgstr "Bajnok lándzsás"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:34
 msgid "Champion Swordsman"
@@ -241,7 +241,7 @@ msgstr "Bajnok kardforgató"
 
 #: simulation/templates/template_unit_champion_ranged.xml:4
 msgid "Champion Ranged"
-msgstr "Távolsági bajnok"
+msgstr "Bajnok távolsági"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
@@ -261,15 +261,15 @@ msgstr "Ostrom"
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
-msgstr "Eb"
+msgstr "Kutya"
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
-msgstr "Harci eb"
+msgstr "Harci kutya"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
-msgstr "A szerkezeteket nem lehet támadni."
+msgstr "Nem tud épületet támadni."
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
@@ -281,11 +281,11 @@ msgstr "Hal"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:15
 msgid "Cetacean"
-msgstr "Bálna"
+msgstr "Cet"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Kill, then collect food from this bountiful oceanic resource."
-msgstr "Ölj, majd gyűjts élelmet ebből a bőséges óceáni nyersanyagforrásból."
+msgstr "Öld meg, majd gyűjts élelmet ebből a bőséges óceáni nyersanyagforrásból."
 
 #: simulation/templates/template_unit_hero.xml:10
 #: simulation/templates/units/brit_hero_caratacos.xml:10
@@ -302,7 +302,7 @@ msgstr "Hős aura"
 msgid ""
 "When garrisoned in a structure, the hero gives it a bonus of +2 capture "
 "points recovery rate."
-msgstr ""
+msgstr "Ha beszállásolják egy épületbe, akkor a hős +2 foglalási pont bónuszt ad a visszaállítási sebességhez."
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -325,7 +325,7 @@ msgstr "Hős lovas csatár"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
-msgstr "Hős dárdás lovasság"
+msgstr "Hős lándzsás lovas"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
 msgid "Hero Cavalry Swordsman"
@@ -341,27 +341,27 @@ msgstr "Hős csatár"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 msgid "Hero Pikeman"
-msgstr "Lándzsás hős"
+msgstr "Hős pikás"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 msgid "Hero Spearman"
-msgstr "Dárdás hős"
+msgstr "Hős lándzsás"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 msgid "Hero Swordsman"
-msgstr "Kardos Hős"
+msgstr "Hős kardforgató"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
-msgstr "Közelharci gyalogság"
+msgstr "Közelharci gyalogos"
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
-msgstr "Lándzsás"
+msgstr "Pikás"
 
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spearman"
-msgstr "Dárdás"
+msgstr "Lándzsás"
 
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:26
 msgid "Swordsman"
@@ -396,7 +396,7 @@ msgstr "Gyújtóhajó"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr ""
+msgstr "Gyorsan csökkenti az ellenséges hajók életerejét. Az égés miatt lassan veszít az életerejéből, ezért gyorsan használd fel a gyújtóhajót."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
@@ -406,7 +406,7 @@ msgstr "Halászhajó"
 msgid ""
 "Fish the waters for Food. Garrison a support or infantry unit inside to "
 "boost fishing rate."
-msgstr ""
+msgstr "A vizeken halászik élelemért. Egy támogató vagy gyalogos egység beszállásolása növeli a halászat sebességét."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -416,7 +416,7 @@ msgstr "Kereskedőhajó"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr ""
+msgstr "Dokkok közti kereskedés. Egy kereskedő beszállásolása további profitot hoz (+20% kereskedőnként). Értékes tengeri kincsek begyűjtése."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -430,7 +430,7 @@ msgstr "Nehéz hadihajó"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
-msgstr ""
+msgstr "A katapultok beszállásolása növeli a távolsági tűzerőt."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -446,7 +446,7 @@ msgstr "Közepes"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
-msgstr ""
+msgstr "Nyílvető"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Siege Catapult"
@@ -462,17 +462,17 @@ msgstr "Faltörő kos"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:57
 msgid "Siege Tower"
-msgstr "Ostrom torony"
+msgstr "Ostromtorony"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:59
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr ""
+msgstr "Legfeljebb 20 gyalogos beszállásolása növeli a nyilak számát 0-tól 10-ig."
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
-msgstr "Támogatás"
+msgstr "Támogató"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:12
 msgid "Inspiration Aura"
@@ -493,7 +493,7 @@ msgstr "Gyógyító"
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid "Heal units."
-msgstr "Gyógyító egységek."
+msgstr "Egységek gyógyítása."
 
 #: simulation/templates/template_unit_support_slave.xml:39
 #: simulation/templates/template_unit_support_slave.xml:40
@@ -506,11 +506,11 @@ msgstr "Munkás"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "Véges élettartamú gyűjtögető. Bányászatkor és favágáskor bónuszt kap."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr ""
+msgstr "Nyersanyagok kereskedelme a saját és a szövetségeseid piacai között."
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -712,7 +712,7 @@ msgstr "Elit"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 msgid "Greek Cavalry"
-msgstr "Görög lovasság"
+msgstr "Görög lovas"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:8
 msgid "Hippeús"
@@ -744,19 +744,19 @@ msgstr "Toxótēs Skythikós"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:13
 msgid "Formation Reforms"
-msgstr ""
+msgstr "Alakzat reformok"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:14
 msgid "All units in his formation +15% speed and +1 armor."
-msgstr "Az alakulatában lévő összes egység +15% sebességet és +1 páncélt kap."
+msgstr "Az alakzatában lévő összes egységnek +15% sebesség és +1 páncél."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:22
 msgid "Peltast Reforms"
-msgstr ""
+msgstr "Peltasztész reformok"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:23
 msgid "All Peltasts +15% speed."
-msgstr ""
+msgstr "Minden peltasztésznek +15% sebesség."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:29
 msgid "Iphicrates"
@@ -780,7 +780,7 @@ msgstr "Akropolisz aura"
 
 #: simulation/templates/units/athen_hero_pericles.xml:22
 msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr "A templomok 50 kővel olcsóbbak az életciklusa alatt."
+msgstr "A templomok 50 kővel olcsóbbak az élettartama alatt."
 
 #: simulation/templates/units/athen_hero_pericles.xml:28
 msgid "Pericles"
@@ -792,15 +792,15 @@ msgstr "Periklēs"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
 msgid "Naval Commander Aura"
-msgstr "Tengerészeti parancsnokság aura"
+msgstr "Tengeri parancsnokság aura"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:12
 msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr "Ha elszállásolják egy hajóba, akkor a hajója +50%-kal gyorsabb."
+msgstr "Egy hajóba beszállásolva a hajója +50%-kal gyorsabb."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:20
 msgid "Naval Architect Aura"
-msgstr "Tengerészeti építész aura"
+msgstr "Hajómérnöki aura"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
 msgid "Ships are built +20% faster during his lifespan."
@@ -912,7 +912,7 @@ msgstr "Gaisaredos"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
-msgstr ""
+msgstr "Fosztogató lovas"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
@@ -929,11 +929,11 @@ msgstr "Kelta harci szekér"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:11
 msgid "Carbanto"
-msgstr ""
+msgstr "Carbanto"
 
 #: simulation/templates/units/brit_champion_infantry.xml:5
 msgid "Brythonic Longswordsman"
-msgstr ""
+msgstr "Briton hosszúkardos"
 
 #: simulation/templates/units/brit_champion_infantry.xml:6
 msgid "Delamokludda"
@@ -942,7 +942,7 @@ msgstr "Delamokludda"
 #: simulation/templates/units/brit_hero_boudicca.xml:14
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "Champion Army"
-msgstr ""
+msgstr "Bajnok sereg"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:15
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:14
@@ -961,7 +961,7 @@ msgstr "Hősnő"
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11
 msgid "All Units +15% speed."
-msgstr "Minden egység +15% gyorsaság."
+msgstr "Minden egységnek +15% sebesség."
 
 #: simulation/templates/units/brit_hero_caratacos.xml:16
 msgid "Caratacos"
@@ -983,7 +983,7 @@ msgstr "Baguada"
 #: simulation/templates/units/brit_infantry_slinger_b.xml:13
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:15
 msgid "Celtic Slinger"
-msgstr "Kelta hajító"
+msgstr "Kelta parittyás"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:14
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:16
@@ -997,7 +997,7 @@ msgstr "Gaeroa"
 
 #: simulation/templates/units/brit_infantry_spearman_b.xml:14
 msgid "Celtic Spearman"
-msgstr "Kelta dárdás"
+msgstr "Kelta lándzsás"
 
 #: simulation/templates/units/brit_mechanical_siege_ram.xml:12
 #: simulation/templates/units/gaul_mechanical_siege_ram.xml:12
@@ -1016,13 +1016,13 @@ msgstr "Curach"
 #: simulation/templates/units/brit_ship_trireme.xml:18
 #: simulation/templates/units/gaul_ship_trireme.xml:18
 msgid "Venetic Ponti"
-msgstr ""
+msgstr "Venetic Ponti"
 
 #: simulation/templates/units/brit_ship_trireme.xml:19
 #: simulation/templates/units/gaul_ship_trireme.xml:19
 #: simulation/templates/units/iber_ship_trireme.xml:19
 msgid "Transport many soldiers across the sea."
-msgstr "Szállíts át több katonát a tengeren keresztül."
+msgstr "Sok katonát szállít a tengeren keresztül."
 
 #: simulation/templates/units/brit_support_female_citizen.xml:18
 #: simulation/templates/units/gaul_support_female_citizen.xml:18
@@ -1050,7 +1050,7 @@ msgstr "Coun"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
-msgstr "Numídiai lovasság"
+msgstr "Numidiai lovas"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:7
 msgid "Ḥayyāl Raḫūv Masili"
@@ -1058,7 +1058,7 @@ msgstr "Ḥayyāl Raḫūv Masili"
 
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:13
 msgid "Italic Cavalry"
-msgstr "Itáliai lovasság"
+msgstr "Itáliai lovas"
 
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
@@ -1066,7 +1066,7 @@ msgstr "Ḥayyāl Romaḥ Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
 msgid "Gallic Mercenary Cavalry"
-msgstr "Gall zsoldos lovasság"
+msgstr "Gall zsoldos lovas"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:13
 #: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:13
@@ -1075,17 +1075,17 @@ msgstr "Ḥayyāl Ḥerev Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:12
 msgid "Iberian Heavy Cavalry"
-msgstr "Ibériai nehéz lovasság"
+msgstr "Ibériai nehéz lovas"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:5
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:5
 msgid "Sacred Band Cavalry"
-msgstr ""
+msgstr "Szent csapat lovasa"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:6
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:6
 msgid "Sacred Band of Astarte"
-msgstr ""
+msgstr "Astarte szent csapata"
 
 #: simulation/templates/units/cart_champion_elephant.xml:5
 msgid "North African War Elephant"
@@ -1097,15 +1097,15 @@ msgstr "Pil Malḥamit"
 
 #: simulation/templates/units/cart_champion_infantry.xml:5
 msgid "Sacred Band Infantry"
-msgstr ""
+msgstr "Szent csapat gyalogosa"
 
 #: simulation/templates/units/cart_champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
-msgstr ""
+msgstr "Baál szent csapata"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
-msgstr ""
+msgstr "Szent csapat pikása"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
@@ -1129,7 +1129,7 @@ msgstr "Taktikai aura"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:15
 msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr "Minden szövetséges egység +2 támadás és +1 elfoglalás a látóhatárán belül."
+msgstr "Minden szövetséges egységnek +2 támadás és +1 elfoglalás a látóhatárán belül."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Hannibal Barca"
@@ -1143,7 +1143,7 @@ msgstr "Ḥannibaʿal Baraq"
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
-msgstr ""
+msgstr "„Stratéga” képesség (TBD): a játékos láthatja a változásokat a háborús ködben, amíg Hannibál él.\nÁmokfutásra képes."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:11
 msgid "Commander Aura"
@@ -1152,7 +1152,7 @@ msgstr "Parancsnoki aura"
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid ""
 " +5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr ""
+msgstr "+5 lovas rohamtámadás a látóhatárán belül (jelenleg haszontalan)."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:17
 msgid "Maharbal"
@@ -1164,7 +1164,7 @@ msgstr "Maharbaʿal"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:15
 msgid "Mauritanian Archer"
-msgstr ""
+msgstr "Mauritániai íjász"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:16
 msgid "Qešet"
@@ -1172,7 +1172,7 @@ msgstr "Qešet"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:22
 msgid "Iberian Mercenary Skirmisher"
-msgstr ""
+msgstr "Ibériai zsoldos csatár"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:23
 msgid "Sǝḫīr Kidōn"
@@ -1188,7 +1188,7 @@ msgstr "Qallāʿ Ibušimi"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:15
 msgid "Libyan Spearman"
-msgstr "Líbiai dárdás"
+msgstr "Líbiai lándzsás"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:16
 msgid "Sǝḫīr Ḥanīt"
@@ -1206,7 +1206,7 @@ msgstr "Seḫīr Ḥerev"
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:21
 #: simulation/templates/units/samnite_swordsman.xml:5
 msgid "Samnite Swordsman"
-msgstr "Szamnita kardforgató"
+msgstr "Szamnisz kardforgató"
 
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:22
 msgid "Seḫīr Romaḥ"
@@ -1214,13 +1214,13 @@ msgstr "Seḫīr Romaḥ"
 
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:7
 msgid "Bonused vs. Ranged Units."
-msgstr ""
+msgstr "Bónusz távolsági egységek ellen."
 
 #: simulation/templates/units/cart_ship_bireme.xml:9
 #: simulation/templates/units/ptol_ship_bireme.xml:5
 #: simulation/templates/units/sele_ship_bireme.xml:5
 msgid "Bireme"
-msgstr ""
+msgstr "Bireme"
 
 #: simulation/templates/units/cart_ship_bireme.xml:10
 msgid "Du-Mašōt"
@@ -1239,11 +1239,11 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Kereskedés kikötők közt. Kereskedők elszállásolása a fedélzeten további profitért (+20% minden kereskedő után). Vízalatti kincsek gyűjtése. A karthágóiak +25% kereskedelmi bónuszt kapnak."
+msgstr "Dokkok közti kereskedés. Egy kereskedő beszállásolása további profitot hoz (+20% kereskedőnként). Értékes tengeri kincsek begyűjtése. A karthágóiak +25% kereskedelmi bónuszt kapnak."
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
 msgid "Quinquereme"
-msgstr ""
+msgstr "Pentérész"
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
@@ -1277,11 +1277,11 @@ msgstr "Mekir"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
-msgstr ""
+msgstr "Gall nemes lovas"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:6
 msgid "Gallic Brihent"
-msgstr ""
+msgstr "Gall brihent"
 
 #: simulation/templates/units/gaul_champion_fanatic.xml:15
 msgid "Naked Fanatic"
@@ -1293,15 +1293,15 @@ msgstr "Gaesata"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:5
 msgid "Heavy Swordsman"
-msgstr "Nehéz kardos"
+msgstr "Nehéz kardforgató"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:6
 msgid "Solduros"
-msgstr ""
+msgstr "Solduros"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:11
 msgid "+10 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "+10 fém zsákmány minden megölt ellenséges egység után."
 
 #: simulation/templates/units/gaul_hero_brennus.xml:16
 msgid "Brennus"
@@ -1309,39 +1309,39 @@ msgstr "Brennus"
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:11
 msgid "Gathering rates increased with +15% during his lifetime."
-msgstr ""
+msgstr "A gyűjtési sebességek +15%-kal növelve az élettartama alatt."
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:16
 msgid "Britomartus"
-msgstr ""
+msgstr "Britomartus"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:14
 msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr ""
+msgstr "+2 támadás és +1 elfoglalás minden egységnek az auráján belül."
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:20
 msgid "Vercingetorix"
-msgstr ""
+msgstr "Vercingetorix"
 
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Lembus"
-msgstr ""
+msgstr "Lembus"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
-msgstr ""
+msgstr "Kantabriako Zaldun"
 
 #: simulation/templates/units/iber_cavalry_spearman_b.xml:6
 msgid "Lantzari"
-msgstr ""
+msgstr "Lantzari"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:17
 msgid "Leial Zalduneria"
-msgstr ""
+msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:21
 msgid "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Különlegesség: égő gerelyek. Jó az épületek ellen."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1349,13 +1349,13 @@ msgstr "Leial Ezpatari"
 
 #: simulation/templates/units/iber_hero_caros.xml:5
 msgid "Caros"
-msgstr ""
+msgstr "Caros"
 
 #: simulation/templates/units/iber_hero_caros.xml:7
 #: simulation/templates/units/iber_hero_indibil.xml:7
 #: simulation/templates/units/iber_hero_viriato.xml:7
 msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
-msgstr ""
+msgstr "Hős aura: „gerilla taktika”. TBD."
 
 #: simulation/templates/units/iber_hero_indibil.xml:5
 msgid "Indibil"
@@ -1387,7 +1387,7 @@ msgstr "Ahariburu"
 
 #: simulation/templates/units/iber_ship_fire.xml:5
 msgid "Iberian Fire Ship"
-msgstr "Ibéria gyújtóhajó"
+msgstr "Ibériai gyújtóhajó"
 
 #: simulation/templates/units/iber_ship_fishing.xml:5
 msgid "Arrantza Ontzi"
@@ -1419,11 +1419,11 @@ msgstr "Emakumezko Apaiz de Ataekina"
 
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
-msgstr ""
+msgstr "Merkatari"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Odrysian Skirmish Cavalry"
-msgstr ""
+msgstr "Odrüszai lovas csatár"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 msgid "Hippakontistḕs Odrysós"
@@ -1431,16 +1431,16 @@ msgstr "Hippakontistḕs Odrysós"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:7
 msgid "Thessalian Lancer"
-msgstr ""
+msgstr "Thesszáliai kopjás"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:8
 msgid "Xystophóros Thessalikós"
-msgstr ""
+msgstr "Xystophóros Thessalikós"
 
 #: simulation/templates/units/mace_champion_cavalry.xml:6
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:7
 msgid "Companion Cavalry"
-msgstr ""
+msgstr "Kísérő lovas"
 
 #: simulation/templates/units/mace_champion_cavalry.xml:7
 msgid "Hetaîros"
@@ -1448,7 +1448,7 @@ msgstr "Hetaîros"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:6
 msgid "Macedonian Shield Bearer"
-msgstr ""
+msgstr "Makedón pajzshordozó"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:7
 msgid "Hypaspistḗs"
@@ -1460,11 +1460,11 @@ msgstr "Hypaspistḗs Argyraspídi"
 
 #: simulation/templates/units/mace_hero_alexander.xml:10
 msgid "Imperialism Aura"
-msgstr ""
+msgstr "Imperializmus aura"
 
 #: simulation/templates/units/mace_hero_alexander.xml:11
 msgid "+10% territory effect for all buildings while he lives."
-msgstr ""
+msgstr "+10% területhatás az összes épülethez, amíg él."
 
 #: simulation/templates/units/mace_hero_alexander.xml:32
 msgid "Alexander The Great"
@@ -1476,27 +1476,27 @@ msgstr "Mégās Aléxandros"
 
 #: simulation/templates/units/mace_hero_alexander.xml:34
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr ""
+msgstr "„Hősgyilkosság” bónusz: +20% támadási bónusz az ellenséges hősök ellen."
 
 #: simulation/templates/units/mace_hero_craterus.xml:6
 msgid "Crateros"
-msgstr ""
+msgstr "Kraterosz"
 
 #: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Kraterós"
-msgstr ""
+msgstr "Kraterós"
 
 #: simulation/templates/units/mace_hero_craterus.xml:8
 msgid "Trusted general under Alexander the Great."
-msgstr ""
+msgstr "Nagy Sándor bizalmas hadvezére."
 
 #: simulation/templates/units/mace_hero_demetrius.xml:13
 msgid "+15% Range and +10 Crush Attack for Siege Engines."
-msgstr ""
+msgstr "+15% hatótávolság és +10 zúzás támadás az ostromgépeknek."
 
 #: simulation/templates/units/mace_hero_demetrius.xml:20
 msgid "Demetrius The Besieger"
-msgstr ""
+msgstr "Démétriosz, az ostromló"
 
 #: simulation/templates/units/mace_hero_demetrius.xml:21
 msgid "Dēmḗtrios Poliorkḗtēs"
@@ -1504,15 +1504,15 @@ msgstr "Dēmḗtrios Poliorkḗtēs"
 
 #: simulation/templates/units/mace_hero_philip.xml:14
 msgid "+5 Attack and +2 Capture for Champion Units."
-msgstr ""
+msgstr "+5 támadás és +2 elfoglalás a bajnok egységeknek."
 
 #: simulation/templates/units/mace_hero_philip.xml:21
 msgid "Philip II of Macedon"
-msgstr "II. Philipposz, Makedónia királya"
+msgstr "II. Philipposz makedón király"
 
 #: simulation/templates/units/mace_hero_philip.xml:22
 msgid "Phílippos B' ho Makedṓn"
-msgstr ""
+msgstr "Phílippos B' ho Makedṓn"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:6
 msgid "Pyrrhus of Epirus"
@@ -1524,19 +1524,19 @@ msgstr "Pyrrhos ton Epeiros"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:8
 msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr ""
+msgstr "„Pürrhoszi győzelem” aura: TBD."
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
-msgstr ""
+msgstr "Agrianész peltasztész"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:15
 msgid "Peltastḗs Agrías"
-msgstr ""
+msgstr "Peltastḗs Agrías"
 
 #: simulation/templates/units/mace_infantry_pikeman_b.xml:14
 msgid "Foot Companion"
-msgstr ""
+msgstr "Gyalogos kísérő"
 
 #: simulation/templates/units/mace_infantry_pikeman_b.xml:15
 msgid "Pezétairos"
@@ -1544,11 +1544,11 @@ msgstr "Pezétairos"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:14
 msgid "Rhodian Slinger"
-msgstr ""
+msgstr "Rodoszi parittyás"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:15
 msgid "Sphendonḗtēs Rhódios"
-msgstr ""
+msgstr "Sphendonḗtēs Rhódios"
 
 #: simulation/templates/units/mace_mechanical_siege_ram.xml:9
 #: simulation/templates/units/spart_mechanical_siege_ram.xml:9
@@ -1576,7 +1576,7 @@ msgstr "Gýnē Makedonikḗ"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
-msgstr "Macedóniai nő"
+msgstr "Makedón nő"
 
 #: simulation/templates/units/mace_support_healer_b.xml:7
 #: simulation/templates/units/sele_support_healer_b.xml:7
@@ -1593,11 +1593,11 @@ msgstr "Thōrakitēs"
 
 #: simulation/templates/units/mace_thureophoros.xml:10
 msgid "Heavy Skirmisher"
-msgstr ""
+msgstr "Nehéz csatár"
 
 #: simulation/templates/units/mace_thureophoros.xml:11
 msgid "Thyreophóros"
-msgstr ""
+msgstr "Thyreophóros"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
@@ -1605,11 +1605,11 @@ msgstr "Indiai könnyűlovas"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:7
 msgid "Ashwarohi"
-msgstr ""
+msgstr "Ashwarohi"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr ""
+msgstr "Indiai fosztogató lovas"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -1621,19 +1621,19 @@ msgstr "Aśvārohagaṇaḥ"
 #: simulation/templates/units/pers_hero_darius.xml:21
 #: simulation/templates/units/sele_champion_chariot.xml:10
 msgid "Chariot"
-msgstr ""
+msgstr "Harci szekér"
 
 #: simulation/templates/units/maur_champion_chariot.xml:10
 msgid "War Chariot"
-msgstr ""
+msgstr "Harci szekér"
 
 #: simulation/templates/units/maur_champion_chariot.xml:11
 msgid "Rath"
-msgstr ""
+msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
 msgid "Deals Trample Damage."
-msgstr ""
+msgstr "Taposás sebzést okoz."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1642,7 +1642,7 @@ msgstr "Indiai harci elefánt"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
-msgstr ""
+msgstr "Gajendra"
 
 #: simulation/templates/units/maur_champion_infantry.xml:19
 msgid "Warrior"
@@ -1654,28 +1654,28 @@ msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_maiden.xml:6
 msgid "Maiden Guard"
-msgstr ""
+msgstr "Leányőr"
 
 #: simulation/templates/units/maur_champion_maiden.xml:7
 #: simulation/templates/units/maur_champion_maiden_archer.xml:7
 msgid "Visha Kanya"
-msgstr ""
+msgstr "Visha Kanya"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:6
 msgid "Maiden Guard Archer"
-msgstr ""
+msgstr "Leányőr íjász"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:11
 msgid "Elephant Archer"
-msgstr ""
+msgstr "Elefántos íjász"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:12
 msgid "Vachii Gaja"
-msgstr ""
+msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Can run amok."
-msgstr ""
+msgstr "Ámokfutásra képes."
 
 #: simulation/templates/units/maur_hero_ashoka.xml:9
 msgid "Ashoka the Great"
@@ -1689,11 +1689,11 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr ""
+msgstr "Hős aura: TBD.\nHős különlegesség: „Asóka rendeletei” - Asóka rendeleti oszlopai megépíthetőek Asóka élete alatt."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
-msgstr ""
+msgstr "Ácsárja Csánakja"
 
 #: simulation/templates/units/maur_hero_chanakya.xml:31
 msgid "Acharya Chāṇakya"
@@ -1704,16 +1704,16 @@ msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr ""
+msgstr "Hős különlegesség: „gyógyító” - egységek gyorsabb gyógyítása.\nHős különlegesség: „tanító” - lehetővé teszi egy épületnek a +50%-kal gyorsabb kutatást és kiképzést.\nHős különlegesség: „filozófus” - 4 különleges technológia kutatása, amely kizárólag Csánakja számára érhető el."
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
 msgid "Chandragupta Maurya"
-msgstr ""
+msgstr "Csandragupta Maurja"
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
 msgid "Hero Aura: TBD."
-msgstr ""
+msgstr "Hős aura: TBD."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1721,23 +1721,23 @@ msgstr "Hosszúíjász"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:14
 msgid "Dhanurdhar"
-msgstr ""
+msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:17
 msgid "Bamboo Spearman"
-msgstr "Bambusz dárdás"
+msgstr "Bambusz lándzsás"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:18
 msgid "Kauntika"
-msgstr ""
+msgstr "Kauntika"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:13
 msgid "Indian Swordsman"
-msgstr "Indiai kardos"
+msgstr "Indiai kardforgató"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:14
 msgid "Khadagdhari"
-msgstr ""
+msgstr "Khadagdhari"
 
 #: simulation/templates/units/maur_ship_bireme.xml:5
 #: simulation/templates/units/maur_ship_trireme.xml:18
@@ -1750,7 +1750,7 @@ msgstr "Halász"
 
 #: simulation/templates/units/maur_ship_fishing.xml:10
 msgid "Matsyapalak"
-msgstr ""
+msgstr "Matsyapalak"
 
 #: simulation/templates/units/maur_ship_merchant.xml:9
 msgid "Trading Ship"
@@ -1770,7 +1770,7 @@ msgstr "Karmākara Gaja"
 
 #: simulation/templates/units/maur_support_elephant.xml:32
 msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr ""
+msgstr "Mozgatható lerakóhely. Segíthet az épületek építésében is."
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
@@ -1782,20 +1782,20 @@ msgstr "Indiai nő"
 
 #: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brahmin Priest"
-msgstr ""
+msgstr "Brahmin pap"
 
 #: simulation/templates/units/maur_support_healer_b.xml:7
 msgid "Brāhmaṇa Pujari"
-msgstr ""
+msgstr "Brāhmaṇa Pujari"
 
 #: simulation/templates/units/maur_support_trader.xml:9
 msgid "Vaishya"
-msgstr ""
+msgstr "Vaishya"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:14
 msgid "Thracian Mercenary Swordsman"
-msgstr "Trák zsoldos kardos"
+msgstr "Trák zsoldos kardforgató"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:22
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:15
@@ -1808,7 +1808,7 @@ msgstr "Rhomphaiaphoros Thrakikós"
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
 #: simulation/templates/units/thrace_black_cloak.xml:23
 msgid "Mercenary"
-msgstr ""
+msgstr "Zsoldos"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1816,7 +1816,7 @@ msgstr "Mankar Cirya"
 
 #: simulation/templates/units/pers_arstibara.xml:12
 msgid "Persian Apple Bearer"
-msgstr ""
+msgstr "Perzsa almahordozó"
 
 #: simulation/templates/units/pers_arstibara.xml:13
 msgid "Arštibara"
@@ -1824,7 +1824,7 @@ msgstr "Arštibara"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:11
 msgid "Babylonian Scythed Chariot"
-msgstr ""
+msgstr "Babilóniai sarlós kerekű harci szekér"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:12
 msgid "Babiruviya Ratha"
@@ -1832,7 +1832,7 @@ msgstr "Babiruviya Ratha"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:15
 msgid "Causes trample damage to enemy units."
-msgstr ""
+msgstr "Taposás sebzést okoz az ellenséges egységeknek."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -1843,11 +1843,11 @@ msgstr "Méd könnyűlovas"
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:10
 msgid "Mada Asabara"
-msgstr ""
+msgstr "Mada Asabara"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:6
 msgid "Cappadocian Cavalry"
-msgstr ""
+msgstr "Kappadókiai lovas"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:7
 msgid "Katpaduka Asabara"
@@ -1856,7 +1856,7 @@ msgstr "Katpaduka Asabara"
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:12
 msgid "Hyrcanian Cavalry"
-msgstr ""
+msgstr "Hirkániai lovas"
 
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:13
@@ -1865,40 +1865,40 @@ msgstr "Varkaniya Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:5
 msgid "Bactrian Heavy Lancer"
-msgstr ""
+msgstr "Baktriai nehéz kopjás"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:6
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:6
 msgid "Bakhtrish Asabara"
-msgstr ""
+msgstr "Bakhtrish Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:5
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr ""
+msgstr "Baktriai nehéz lovas íjász"
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"
-msgstr ""
+msgstr "Hinduya Pila"
 
 #: simulation/templates/units/pers_champion_infantry.xml:5
 msgid "Persian Immortal"
-msgstr ""
+msgstr "Perzsa halhatatlan"
 
 #: simulation/templates/units/pers_champion_infantry.xml:6
 msgid "Anusiya"
-msgstr ""
+msgstr "Anusiya"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "Lead from the Front Aura"
-msgstr ""
+msgstr "Élenjáró aura"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:14
 msgid "+2 Attack and +1 Capture for nearby cavalry units."
-msgstr ""
+msgstr "+2 támadás és +1 elfoglalás a közeli lovassági egységeknek."
 
 #: simulation/templates/units/pers_hero_cyrus.xml:20
 msgid "Cyrus II The Great"
-msgstr ""
+msgstr "II. (Nagy) Kürosz"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:21
 msgid "Kurush II"
@@ -1906,11 +1906,11 @@ msgstr "II. Kurus"
 
 #: simulation/templates/units/pers_hero_darius.xml:11
 msgid "Leadership Aura"
-msgstr ""
+msgstr "Vezetői aura"
 
 #: simulation/templates/units/pers_hero_darius.xml:12
 msgid "+15% Movement Speed of all units."
-msgstr ""
+msgstr "+15% mozgási sebesség minden egységnek."
 
 #: simulation/templates/units/pers_hero_darius.xml:22
 msgid "Darius The Great"
@@ -1924,17 +1924,17 @@ msgstr "I. Dárajavaus"
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
-msgstr ""
+msgstr "Hős aura: „a birodalom kereskedője”. Megnöveli a kereskedelem hasznát az élettartama alatt (TBD)."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Administrator Aura"
-msgstr ""
+msgstr "Hivatalnok aura"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:13
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
 msgid " +15% Gather Rate and Build Rate of nearby units."
-msgstr ""
+msgstr "+15% gyűjtési sebesség és építési sebesség a közeli egységeknek."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:19
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:24
@@ -1948,7 +1948,7 @@ msgstr "I. Khsajársá"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:13
 msgid "Sogdian Archer"
-msgstr ""
+msgstr "Szogd íjász"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:14
 msgid "Sugda Vaçabara"
@@ -1964,7 +1964,7 @@ msgstr "Spardiya Takabara"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:13
 msgid "Shieldbearer"
-msgstr ""
+msgstr "Pajzshordozó"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:14
 msgid "Sparabara"
@@ -1972,23 +1972,23 @@ msgstr "Sparabara"
 
 #: simulation/templates/units/pers_kardakes_hoplite.xml:5
 msgid "Cardaces Hoplite"
-msgstr ""
+msgstr "Kardakes hoplita"
 
 #: simulation/templates/units/pers_kardakes_hoplite.xml:6
 msgid "Hoplites Kardakes"
-msgstr ""
+msgstr "Hoplites Kardakes"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:5
 msgid "Cardaces Skirmisher"
-msgstr ""
+msgstr "Kardakes csatár"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:6
 msgid "Peltastes Kardakes"
-msgstr ""
+msgstr "Peltastes Kardakes"
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:15
 msgid "Assyrian Siege Ram"
-msgstr "Asszír ostrom kos"
+msgstr "Asszír faltörő kos"
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:16
 msgid "Athuriya Hamaranakuba"
@@ -1996,7 +1996,7 @@ msgstr "Athuriya Hamaranakuba"
 
 #: simulation/templates/units/pers_ship_bireme.xml:9
 msgid "Cypriot Galley"
-msgstr ""
+msgstr "Ciprusi gálya"
 
 #: simulation/templates/units/pers_ship_bireme.xml:10
 msgid "Hamaraniyanava"
@@ -2008,11 +2008,11 @@ msgstr "Masiyakara"
 
 #: simulation/templates/units/pers_ship_merchant.xml:9
 msgid "Ionian Trade Ship"
-msgstr ""
+msgstr "Ión kereskedőhajó"
 
 #: simulation/templates/units/pers_ship_merchant.xml:10
 msgid "Yaunash Nav"
-msgstr ""
+msgstr "Yaunash Nav"
 
 #: simulation/templates/units/pers_ship_trireme.xml:9
 msgid "Phoenician Trireme"
@@ -2032,7 +2032,7 @@ msgstr "Mezopotámiai nő"
 
 #: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
-msgstr ""
+msgstr "Méd magik"
 
 #: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Mada"
@@ -2040,17 +2040,17 @@ msgstr "Maguš Mada"
 
 #: simulation/templates/units/pers_support_trader.xml:10
 msgid "Aramaean Merchant"
-msgstr ""
+msgstr "Arámi kereskedő"
 
 #: simulation/templates/units/pers_support_trader.xml:11
 msgid "Tamkarum Arami"
-msgstr ""
+msgstr "Tamkarum Arami"
 
 #: simulation/templates/units/pers_support_trader.xml:14
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Cserélj nyersanyagokat a saját piacaid és a szövetségeseid között. A perzsák +25% földi kereskedelmi bónusszal rendelkeznek."
+msgstr "Nyersanyagok kereskedelme a saját és a szövetségeseid piacai között. A perzsák +25% földi kereskedelmi bónusszal rendelkeznek."
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 #: simulation/templates/units/sele_cavalry_archer_b.xml:6
@@ -2067,31 +2067,31 @@ msgstr "Mutsābiq Gamal Nabatu"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:13
 msgid "Tarantine Settler Cavalry"
-msgstr ""
+msgstr "Tarantói telepes lovas"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:14
 msgid "Hippeús Tarantînos"
-msgstr ""
+msgstr "Hippeús Tarantînos"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:6
 msgid "Macedonian Settler Cavalry"
-msgstr ""
+msgstr "Makedón telepes lovas"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:7
 msgid "Hippeús Makedonikós"
-msgstr ""
+msgstr "Hippeús Makedonikós"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
-msgstr ""
+msgstr "Királyi őrség lovasa"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
 msgid "Ágēma Basiléōs"
-msgstr ""
+msgstr "Ágēma Basiléōs"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:5
 msgid "Towered War Elephant"
-msgstr "Tornyozott harci elefánt"
+msgstr "Tornyos harci elefánt"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:6
 msgid "Polémou Eléphantos"
@@ -2099,7 +2099,7 @@ msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:19
 msgid "Juggernaut"
-msgstr ""
+msgstr "Buldózer"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Tessarakonterēs"
@@ -2107,11 +2107,11 @@ msgstr "Tessarakonterēs"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:12
 msgid "Patriot Aura"
-msgstr ""
+msgstr "Hazafi aura"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
 msgid "Egyptian units fight 20% faster in her vision range."
-msgstr ""
+msgstr "Az egyiptomi egységek 20%-kal gyorsabban harcolnak a látóhatárán belül."
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:20
 msgid "Cleopatra VII"
@@ -2119,89 +2119,89 @@ msgstr "VII. Kleopátra"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:21
 msgid "Kleopatra H' Philopator"
-msgstr ""
+msgstr "Kleopatra H' Philopator"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:22
 msgid ""
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
 "vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "„Hitvesi” aura (TBD): a szövetséges hősök hatékonysága megnövelve a látótávolságán belül. Az ellenséges hősök hatékonysága csökkentve."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
-msgstr "Építési terület"
+msgstr "Építkezés aura"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
 msgid "Buildings construct 10% faster within his vision."
-msgstr ""
+msgstr "Az épületek 10%-kal gyorsabban épülnek a látóhatárán belül."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
 msgid "Mercenary Patron Aura"
-msgstr ""
+msgstr "Zsoldos pártfogó aura"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:25
 msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr ""
+msgstr "A zsoldosok 50%-kal olcsóbbak az élettartama alatt."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:30
 msgid "Ptolemy I \"Savior\""
-msgstr ""
+msgstr "I. Ptolemaiosz, a „Megmentő”"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:31
 msgid "Ptolemaios A' Soter"
-msgstr ""
+msgstr "Ptolemaiosz Szótér"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
 msgid "Raphia Aura"
-msgstr ""
+msgstr "Raphia aura"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
 msgid "Egyptian Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Az egyiptomi pikások életereje 40%-kal nagyobb az élettartama alatt."
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:16
 msgid "Ptolemy IV \"Father Loving\""
-msgstr ""
+msgstr "IV. Ptolemaiosz, az „Apaszerető”"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:17
 msgid "Ptolemaios D' Philopator"
-msgstr ""
+msgstr "Ptolemaiosz Philopatór"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:25
 msgid "Nubian Mercenary Archer"
-msgstr ""
+msgstr "Núbiai zsoldos íjász"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
 msgid "Kousít Misthophóros Toxótēs"
-msgstr ""
+msgstr "Kousít Misthophóros Toxótēs"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:14
 msgid "Mercenary Thureos Skirmisher"
-msgstr ""
+msgstr "Ovális pajzsos zsoldos csatár"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
 msgid "Thureophóros Akrobolistḗs"
-msgstr ""
+msgstr "Thureophóros Akrobolistḗs"
 
 #: simulation/templates/units/ptol_infantry_pikeman_b.xml:14
 msgid "Egyptian Pikeman"
-msgstr "Egyiptomi lándzsás"
+msgstr "Egyiptomi pikás"
 
 #: simulation/templates/units/ptol_infantry_pikeman_b.xml:15
 msgid "Phalaggomákhimos"
-msgstr ""
+msgstr "Phalaggomákhimos"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:14
 msgid "Judean Slinger"
-msgstr ""
+msgstr "Júdeai parittyás"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:15
 msgid "Hebraikós Sphendonḗtēs"
-msgstr ""
+msgstr "Hebraikós Sphendonḗtēs"
 
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
 msgid "Mercenary Thureos Spearman"
-msgstr ""
+msgstr "Ovális pajzsos zsoldos lándzsás"
 
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:22
 msgid "Thureophóros Misthophóros"
@@ -2242,7 +2242,7 @@ msgstr "Hiereús Aigýptios"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
-msgstr "Szövetséges olasz lovasság"
+msgstr "Itáliai szövetséges lovas"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:8
 msgid "Eques Socius"
@@ -2250,7 +2250,7 @@ msgstr "Eques Socius"
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:7
 msgid "Roman Cavalry"
-msgstr "Római lovasság"
+msgstr "Római lovas"
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:8
 msgid "Eques Romanus"
@@ -2258,11 +2258,11 @@ msgstr "Eques Romanus"
 
 #: simulation/templates/units/rome_centurio_imperial.xml:17
 msgid "Roman Centurion"
-msgstr ""
+msgstr "Római centurio"
 
 #: simulation/templates/units/rome_centurio_imperial.xml:18
 msgid "Centurio Legionarius"
-msgstr ""
+msgstr "Centurio legionarius"
 
 #: simulation/templates/units/rome_champion_cavalry.xml:6
 msgid "Eques Consularis"
@@ -2270,23 +2270,23 @@ msgstr "Eques Consularis"
 
 #: simulation/templates/units/rome_champion_cavalry.xml:7
 msgid "Consular Bodyguard"
-msgstr ""
+msgstr "Konzuli testőr"
 
 #: simulation/templates/units/rome_champion_infantry.xml:6
 msgid "Italic Heavy Infantry"
-msgstr ""
+msgstr "Itáliai nehézgyalogos"
 
 #: simulation/templates/units/rome_champion_infantry.xml:7
 msgid "Extraordinarius"
-msgstr ""
+msgstr "Extraordinarius"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:13
 msgid "Sword of Rome Aura"
-msgstr ""
+msgstr "Róma kardja aura"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:14
 msgid "+5 Attack and +2 Capture for Roman units within his vision range."
-msgstr ""
+msgstr "+5 támadás és +2 elfoglalás a római egységeknek a látóhatárán belül."
 
 #: simulation/templates/units/rome_hero_marcellus.xml:21
 msgid "Marcus Claudius Marcellus"
@@ -2294,11 +2294,11 @@ msgstr "Marcus Claudius Marcellus"
 
 #: simulation/templates/units/rome_hero_maximus.xml:12
 msgid "Shield of Rome Aura"
-msgstr ""
+msgstr "Róma pajzsa aura"
 
 #: simulation/templates/units/rome_hero_maximus.xml:13
 msgid "+1 armour for all units and structures."
-msgstr ""
+msgstr "+1 páncél minden egységnek és épületnek."
 
 #: simulation/templates/units/rome_hero_maximus.xml:19
 msgid "Quintus Fabius Maximus"
@@ -2312,11 +2312,11 @@ msgstr "Scipio Africanus"
 msgid ""
 "\"Divide and Conquer\" Ability: Convert groups of enemy units to his side "
 "for 500 Metal. (Not implemented)"
-msgstr ""
+msgstr "„Oszd meg és uralkodj” képesség: ellenséges egységek csoportjának átállítása a saját oldalára 500 fémért. (Nincs megvalósítva)"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:15
 msgid "Roman Skirmisher"
-msgstr ""
+msgstr "Római csatár"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:16
 msgid "Veles"
@@ -2324,7 +2324,7 @@ msgstr "Veles"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:15
 msgid "Veteran Spearman"
-msgstr "Veterán dárdás"
+msgstr "Veterán lándzsás"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:16
 msgid "Triarius"
@@ -2332,15 +2332,15 @@ msgstr "Triarius"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:16
 msgid "Roman Swordsman"
-msgstr "Római kardos"
+msgstr "Római kardforgató"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:17
 msgid "Hastatus"
-msgstr ""
+msgstr "Hastatus"
 
 #: simulation/templates/units/rome_legionnaire_imperial.xml:14
 msgid "Roman Legionnaire"
-msgstr "Római Legionárius"
+msgstr "Római legionárius"
 
 #: simulation/templates/units/rome_legionnaire_imperial.xml:15
 msgid "Legionarius Romanus"
@@ -2348,15 +2348,11 @@ msgstr "Legionarius Romanus"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:6
 msgid "Marian Legionaire"
-msgstr ""
+msgstr "Máriuszi legionárius"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:7
 msgid "Marian Legionarius"
-msgstr ""
-
-#: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:32
-msgid "Ballista"
-msgstr "Ballisztikus"
+msgstr "Marian Legionarius"
 
 #: simulation/templates/units/rome_mechanical_siege_ram.xml:9
 msgid "Aries"
@@ -2368,23 +2364,23 @@ msgstr "Liburnus"
 
 #: simulation/templates/units/rome_ship_fishing.xml:5
 msgid "Navicula Piscatoria"
-msgstr ""
+msgstr "Navicula Piscatoria"
 
 #: simulation/templates/units/rome_ship_merchant.xml:9
 msgid "Corbita"
-msgstr ""
+msgstr "Corbita"
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:5
 msgid "Quinqueremis Romana"
-msgstr ""
+msgstr "Quinqueremis Romana"
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:6
 msgid "Roman Quinquereme"
-msgstr ""
+msgstr "Római pentérész"
 
 #: simulation/templates/units/rome_ship_trireme.xml:8
 msgid "Triremis Romana"
-msgstr ""
+msgstr "Triremis Romana"
 
 #: simulation/templates/units/rome_ship_trireme.xml:9
 msgid "Roman Trireme"
@@ -2392,7 +2388,7 @@ msgstr "Római triérész"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:6
 msgid "Romana"
-msgstr ""
+msgstr "Romana"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:7
 msgid "Roman Woman"
@@ -2400,7 +2396,7 @@ msgstr "Római nő"
 
 #: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "State Priest"
-msgstr ""
+msgstr "Állami pap"
 
 #: simulation/templates/units/rome_support_healer_b.xml:8
 msgid "Pontifex Minor"
@@ -2408,47 +2404,47 @@ msgstr "Pontifex Minor"
 
 #: simulation/templates/units/rome_support_trader.xml:10
 msgid "Plebeian Merchant"
-msgstr ""
+msgstr "Plebejus kereskedő"
 
 #: simulation/templates/units/rome_support_trader.xml:11
 msgid "Mercator Plebeius"
-msgstr ""
+msgstr "Mercator Plebeius"
 
 #: simulation/templates/units/samnite_skirmisher.xml:5
 msgid "Samnite Skirmisher"
-msgstr ""
+msgstr "Szamnisz csatár"
 
 #: simulation/templates/units/samnite_skirmisher.xml:6
 msgid "(Samnite Skirmisher)"
-msgstr ""
+msgstr "(Szamnisz csatár)"
 
 #: simulation/templates/units/samnite_skirmisher.xml:7
 msgid ""
 "Mercenary skirmisher.\n"
 "Bonus vs. Archers and Spearmen."
-msgstr ""
+msgstr "Zsoldos csatár.\nBónusz íjászok és lándzsások ellen."
 
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
-msgstr ""
+msgstr "Szamnisz lándzsás"
 
 #: simulation/templates/units/samnite_spearman.xml:6
 msgid "(Samnite Spearman)"
-msgstr ""
+msgstr "(Szamnisz lándzsás)"
 
 #: simulation/templates/units/samnite_spearman.xml:7
 msgid ""
 "Mercenary spearman.\n"
 "Bonus vs. All Cavalry Units."
-msgstr ""
+msgstr "Zsoldos lándzsás.\nBónusz minden lovassági egység ellen."
 
 #: simulation/templates/units/samnite_swordsman.xml:6
 msgid "(Samnite Swordsman)"
-msgstr ""
+msgstr "(Szamnisz kardforgató)"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Dahae Horse Archer"
-msgstr ""
+msgstr "Daha lovas íjász"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:9
 msgid "Hippotoxotès Dahae"
@@ -2456,7 +2452,7 @@ msgstr "Hippotoxotès Dahae"
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:7
 msgid "Militia Cavalry"
-msgstr ""
+msgstr "Lovas milícia"
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:8
 msgid "Hippakontistès Politès"
@@ -2472,7 +2468,7 @@ msgstr "Hippos Hetairike"
 
 #: simulation/templates/units/sele_champion_cavalry.xml:6
 msgid "Seleucid Cataphract"
-msgstr ""
+msgstr "Szeleukida kataphraktosz"
 
 #: simulation/templates/units/sele_champion_cavalry.xml:7
 msgid "Seleukidón Kataphraktos"
@@ -2480,7 +2476,7 @@ msgstr "Seleukidón Kataphraktos"
 
 #: simulation/templates/units/sele_champion_chariot.xml:11
 msgid "Scythed Chariot"
-msgstr ""
+msgstr "Sarlós kerekű harci szekér"
 
 #: simulation/templates/units/sele_champion_chariot.xml:12
 msgid "Drepanèphoros"
@@ -2488,7 +2484,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Armored War Elephant"
-msgstr "Vértezett harci elefánt"
+msgstr "Páncélos harci elefánt"
 
 #: simulation/templates/units/sele_champion_elephant.xml:7
 msgid "Thorakisménos Eléphantos"
@@ -2496,7 +2492,7 @@ msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Silver Shield Pikeman"
-msgstr "Ezüst pajzsos lándzsás"
+msgstr "Ezüst pajzsos pikás"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:7
 msgid "Phalangitès Argyraspis"
@@ -2504,7 +2500,7 @@ msgstr "Phalangitès Argyraspis"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:6
 msgid "Romanized Heavy Swordsman"
-msgstr ""
+msgstr "Romanizált nehéz kardforgató"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:7
 msgid "Thorakitès Rhomaïkós"
@@ -2512,11 +2508,11 @@ msgstr "Thorakitès Rhomaïkós"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:12
 msgid "Ilarchès Aura"
-msgstr ""
+msgstr "Ilarchès aura"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:13
 msgid "All cavalry gains +2 levels of all armour types."
-msgstr ""
+msgstr "Minden lovas minden típusú páncélból +2 szintet kap."
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:19
 msgid "Antiochus III \"The Great\""
@@ -2524,21 +2520,21 @@ msgstr "III. „Nagy” Antiokhosz"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:20
 msgid "Antiokhos G' Mégās"
-msgstr "Antiokhos G' Mégās"
+msgstr "III. Antiokhosz Megasz"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
 msgid "Conquest Aura"
-msgstr ""
+msgstr "Hódítás aura"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Minden közeli ellenséges épület, ostromgép és hajó életereje 20%-kal csökkentve."
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:20
 msgid "Antiochus IV \"The Righteous\""
-msgstr ""
+msgstr "IV. Antiokhosz, az „Igazságos”"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:21
 msgid "Antiokhos D' Epiphanes"
@@ -2546,15 +2542,15 @@ msgstr "Antiokhosz Epiphanész"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:13
 msgid "Zooiarchos Aura"
-msgstr ""
+msgstr "Elefánt parancsnok aura"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:14
 msgid "Boosts War Elephant attack and speed +20% within his vision."
-msgstr ""
+msgstr "A harci elefántok támadását és sebességét +20%-kal növeli a látóhatárán belül."
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:21
 msgid "Seleucus I \"The Victor\""
-msgstr ""
+msgstr "I. Szeleukosz, a „Győzedelmes”"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:22
 msgid "Seleukos A' Nikator"
@@ -2570,7 +2566,7 @@ msgstr "Toxótēs Syrías"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:14
 msgid "Arab Javelineer"
-msgstr "Arab dárdás"
+msgstr "Arab gerelyes"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:15
 msgid "Pezakontistès Aravikós"
@@ -2578,15 +2574,15 @@ msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele_infantry_pikeman_b.xml:14
 msgid "Bronze Shield Pikeman"
-msgstr "Bronz pajzsos lándzsás"
+msgstr "Bronz pajzsos pikás"
 
 #: simulation/templates/units/sele_infantry_pikeman_b.xml:15
 msgid "Chalkaspides"
-msgstr ""
+msgstr "Chalkaspides"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:14
 msgid "Militia Thureos Spearman"
-msgstr ""
+msgstr "Ovális pajzsos lándzsás milícia"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:15
 msgid "Thureophóros Politès"
@@ -2594,7 +2590,7 @@ msgstr "Thureophóros Politès"
 
 #: simulation/templates/units/sele_ship_quinquereme.xml:5
 msgid "Pentères"
-msgstr "Pentères"
+msgstr "Pentérész"
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
@@ -2610,19 +2606,19 @@ msgstr "Syrías Gýnē"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:7
 msgid "Syrian Woman"
-msgstr "Szíriai nő"
+msgstr "Szír nő"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Perioikoi Cavalryman"
-msgstr ""
+msgstr "Perioikosz lovas"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:8
 msgid "Pródromos Perioïkós"
-msgstr ""
+msgstr "Pródromos Perioïkós"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:7
 msgid "Allied Greek Cavalry"
-msgstr "Szövetséges görög lovasság"
+msgstr "Szövetséges görög lovas"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:8
 msgid "Hippeús Symmakhikós"
@@ -2630,11 +2626,11 @@ msgstr "Hippeús Symmakhikós"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:6
 msgid "Spartan Pikeman"
-msgstr "Spártai lándzsás"
+msgstr "Spártai pikás"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:7
 msgid "Phalangites Spartiatis"
-msgstr "Spártai gyalogság"
+msgstr "Phalangites Spartiatis"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:6
 msgid "Spartan Hoplite"
@@ -2646,7 +2642,7 @@ msgstr "Spartiátēs"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:16
 msgid "Skiritai Commando"
-msgstr ""
+msgstr "Szkiritész elit könnyűgyalogos"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:17
 msgid "Ékdromos Skirítēs"
@@ -2664,16 +2660,16 @@ msgstr "Agisz"
 msgid ""
 "No hero aura. Has 2x health of other infantry heroes. Basically a very tough"
 " hoplite."
-msgstr ""
+msgstr "Nincs hős aura. A többi gyalogos hős életerejének a duplájával rendelkezik. Alapvetően egy nagyon szívós hoplita."
 
 #: simulation/templates/units/spart_hero_brasidas.xml:14
 msgid "Helot Reforms"
-msgstr ""
+msgstr "Helóta reformok"
 
 #: simulation/templates/units/spart_hero_brasidas.xml:15
 msgid ""
 "Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
-msgstr ""
+msgstr "A látóhatárán belüli helóta csatárok +2 támadást és minden páncéltípusból +1 szintet kapnak."
 
 #: simulation/templates/units/spart_hero_brasidas.xml:22
 #: simulation/templates/units/spart_hero_brasidas.xml:23
@@ -2682,11 +2678,11 @@ msgstr "Braszidasz"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:14
 msgid "Last Stand Aura"
-msgstr ""
+msgstr "Utolsó vérig aura"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:15
 msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
-msgstr ""
+msgstr "+20% támadás és +1 elfoglalás a közeli hoplitáknak és spártaiaknak."
 
 #: simulation/templates/units/spart_hero_leonidas.xml:22
 msgid "Leonidas I"
@@ -2698,7 +2694,7 @@ msgstr "Leōnídēs"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:14
 msgid "Helot Skirmisher"
-msgstr ""
+msgstr "Helóta csatár"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:15
 msgid "Akontistḗs Heílōs"
@@ -2706,11 +2702,11 @@ msgstr "Akontistḗs Heílōs"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:14
 msgid "Perioikoi Hoplite"
-msgstr ""
+msgstr "Perioikosz hoplita"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:15
 msgid "Hoplítēs Períoikos"
-msgstr ""
+msgstr "Hoplítēs Períoikos"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:26
 msgid "Spartan Woman"
@@ -2718,16 +2714,16 @@ msgstr "Spártai nő"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:27
 msgid "Spartiâtis"
-msgstr ""
+msgstr "Spartiâtis"
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Períoikos"
-msgstr ""
+msgstr "Émporos Períoikos"
 
 #: simulation/templates/units/theb_champion_spearman.xml:6
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
 msgid "Theban Sacred Band Hoplite"
-msgstr ""
+msgstr "Thébai szent csapat hoplitája"
 
 #: simulation/templates/units/theb_champion_spearman.xml:7
 msgid "Hieròs Lókhos tôn Thebôn"
@@ -2736,12 +2732,12 @@ msgstr "Hieròs Lókhos tôn Thebôn"
 #: simulation/templates/units/theb_champion_swordsman.xml:6
 #: simulation/templates/units/thespian_melanochitones.xml:6
 msgid "Thespian Black Cloak"
-msgstr ""
+msgstr "Theszpiai fekete köpenyes"
 
 #: simulation/templates/units/theb_champion_swordsman.xml:7
 #: simulation/templates/units/thespian_melanochitones.xml:7
 msgid "Melanochitones"
-msgstr ""
+msgstr "Melanochitones"
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:22
 msgid "Fire Raiser"
@@ -2753,19 +2749,19 @@ msgstr "Pyrobolos"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Hieros Lochos Hoplites"
-msgstr ""
+msgstr "Hieros Lochos Hoplites"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:8
 msgid "Champion Spearman."
-msgstr "Bajnok dárdás."
+msgstr "Bajnok lándzsás"
 
 #: simulation/templates/units/thrace_black_cloak.xml:20
 msgid "Thracian Black Cloak"
-msgstr ""
+msgstr "Trák fekete köpenyes"
 
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid "Rhomphaiaphoros"
-msgstr ""
+msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"

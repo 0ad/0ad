@@ -15,6 +15,7 @@
 # davesajt <davesajthun@gmail.com>, 2014-2015
 # davesajt <davesajthun@gmail.com>, 2015
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
+# kelemeng <kelemeng@ubuntu.com>, 2015
 # Aqualung <molnar.boldizsar@gmail.com>, 2014
 # Nagy András <asd0707@freemail.hu>, 2014
 # Peter Darvasi <darvasipeter@windowslive.com>, 2013-2014
@@ -24,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-12-06 14:50+0000\n"
+"PO-Revision-Date: 2015-12-13 23:22+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +59,7 @@ msgstr "Az Attikai Laurium bányái biztosították Athén számára azt a renge
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr "Egy Theatron építése +20%-al növeli az épületek által elfoglalt területeket."
+msgstr "Egy Theatron építése +20%-kal növeli az épületek által elfoglalt területeket."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
@@ -72,11 +73,11 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr "A görögök sikerrel Hellenizáltak különböző idegeneket. A Hellenizmus korában a görög volt az antik világ keveréknyelve, amit az Ibériai-félszigettől Indiáig beszéltek."
+msgstr "A görögök sikerrel hellenizáltak különböző idegeneket. A hellenizmus korában a görög volt az antik világ közvetítőnyelve, amit az Ibériai-félszigettől Indiáig beszéltek."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr "A hajók 25%-al gyorsabban elkészülnek"
+msgstr "A hajók 25%-kal gyorsabban elkészülnek"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -165,7 +166,7 @@ msgstr "Iphikratészi reformok"
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr "Kőfalakat lehet építeni semleges területre. A falak építésének időszükséglete 50%-al csökken."
+msgstr "Kőfalakat lehet építeni semleges területre. A falak építésének időszükséglete 50%-kal csökken."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
@@ -1241,7 +1242,7 @@ msgid ""
 "military units. This also applies to the Barracks of allied players (they "
 "receive 5 free units of their own culture for each new Barracks "
 "constructed)."
-msgstr "Minden következő barakk ami épül 5 ingyen (véletlenszerű) makedón gyalogos egységet kap mikor elkészül. Ez a szövetséges játékosok barakkjaira is vonatkozik (a saját kultúrájukból kapnak 5 egységet minden megépített barakk után)"
+msgstr "Minden további felépített laktanya 5 ingyen (véletlenszerű) makedón gyalogos egységgel érkezik. Ez a szövetséges játékosok laktanyáira is vonatkozik (a saját kultúrájukból kapnak 5 egységet minden megépített laktanya után)."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/sele.jsonCivBonuses[1].Name
@@ -1442,7 +1443,7 @@ msgstr ""
 #: simulation/data/civs/maur.jsonAINames[0]
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].Name
 msgid "Chandragupta Maurya"
-msgstr ""
+msgstr "Csandragupta Maurja"
 
 #: simulation/data/civs/maur.jsonAINames[1]
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[1].Name
@@ -1588,7 +1589,7 @@ msgstr ""
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr "A perzsák +10% népességkapacitást kapnak (pl. 330 a szokásos 300 helyett)."
+msgstr "A perzsák +10% népességkapacitást kapnak (például 330 a szokásos 300 helyett)."
 
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Great King's Levy"
@@ -1656,7 +1657,7 @@ msgstr "III. Dárajavaus"
 
 #: simulation/data/civs/pers.jsonAINames[8]
 msgid "Artaxshacha II"
-msgstr ""
+msgstr "II. Artakhsaszjá"
 
 #: simulation/data/civs/pers.jsonAINames[9]
 msgid "Artaxshacha III"
@@ -1765,11 +1766,11 @@ msgstr ""
 #: simulation/data/civs/pers.jsonStructures[0].Name
 #: simulation/data/civs/sele.jsonStructures[1].Name
 msgid "Cavalry Stables"
-msgstr "Lovas Istállók"
+msgstr "Lovassági istálló"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr ""
+msgstr "Lovas polgári katonák kiképzése."
 
 #: simulation/data/civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -1971,7 +1972,7 @@ msgstr ""
 
 #: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
-msgstr ""
+msgstr "Ptolemaiosz Szótér"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].Name
 msgid "Ptolemaios D' Philopater"

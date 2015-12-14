@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-09 23:42+0000\n"
+"PO-Revision-Date: 2015-12-13 19:57+0000\n"
 "Last-Translator: Gellért Gyuris <gellert.gyuris@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -196,12 +196,12 @@ msgstr "Gazdasági"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Lerakati hely az élelem erőforrás számára. Élelemgyűjtési fejlesztések kutatása."
+msgstr "Lerakati hely az élelem nyersanyag számára. Élelemgyűjtési fejlesztések kutatása."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
 msgid "Farmstead"
-msgstr "Termőföld"
+msgstr "Tanya"
 
 #: simulation/templates/template_structure_economic_market.xml:22
 msgid ""
@@ -219,7 +219,7 @@ msgstr "Piac"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Lerakati hely faanyag, kő és fém erőforrások számára. Gyűjtési fejlesztések kutatása ezen erőforrásokhoz."
+msgstr "Lerakati hely faanyag, kő és fém nyersanyagok számára. Gyűjtési fejlesztések kutatása ezen nyersanyagokhoz."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_economic_storehouse.xml:24
@@ -250,7 +250,7 @@ msgstr "Polgár-katonák kiképzése. Kiképzési fejlesztések kutatása. Szál
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
 msgid "Barracks"
-msgstr "Kaszárnyák"
+msgstr "Laktanyák"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
@@ -297,17 +297,17 @@ msgstr "Erőd"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
-msgstr "Erőforrás épületek"
+msgstr "Nyersanyag épület"
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
-msgstr "Erőforrás"
+msgstr "Nyersanyag"
 
 #: simulation/templates/template_structure_resource_corral.xml:27
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Csordaállatok tenyésztése élelemért. Háziállatok beosztása ide csörgedező élelem erőforrás vagy más bónusz szerzésére (nem implementált)."
+msgstr "Csordaállatok tenyésztése élelemért. Háziállatok beosztása ide csörgedező élelem nyersanyag vagy más bónusz szerzésére (nem implementált)."
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
@@ -704,7 +704,7 @@ msgstr "Mijdil"
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
-msgstr "Kereskedelmi Kikötő"
+msgstr "Kereskedelmi kikötő"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
@@ -722,7 +722,7 @@ msgstr "Zsoldosok toborzása."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
-msgstr "Kelta Követség"
+msgstr "Kelta követség"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
@@ -738,7 +738,7 @@ msgstr "Ibériai zsoldos katonák felvétele. Fejlesztések kutatása ezeknek a 
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italiote Embassy"
-msgstr "Itáliai Követség"
+msgstr "Itáliai követség"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
@@ -770,7 +770,7 @@ msgstr "Šūq"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr "Karthágói Örs"
+msgstr "Karthágói előőrs"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
@@ -906,7 +906,7 @@ msgstr "Minden egység az emlékmű látókörén belül keményebben fog harcol
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
-msgstr "Ibériai Örs"
+msgstr "Ibériai előőrs"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
@@ -1084,7 +1084,7 @@ msgstr "Puratta"
 
 #: simulation/templates/structures/maur_wonder.xml:9
 msgid "Great Stupa"
-msgstr "Nagy Sztúpa"
+msgstr "Nagy sztúpa"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
@@ -1093,7 +1093,7 @@ msgstr "Zsoldos tábor"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
-msgstr "Zsoldos Tábor (Egyiptomi)"
+msgstr "Zsoldos tábor (egyiptomi)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
@@ -1117,7 +1117,7 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr "\"Satrapa sarc\": Csörgedező élelem, faanyag, kő és fém erőforrások szerzése. Perzsa hősök és \"halhatatlan\" kísérőik képzése. Max. építhető: 1."
+msgstr "„Satrapa sarc”: Csörgedező élelem, faanyag, kő és fém nyersanyagok szerzése. Perzsa hősök és „halhatatlan” kísérőik képzése. Építési korlát: 1."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1213,7 +1213,7 @@ msgstr "Speciális épület.\nHarci elefántok és kardakes zsoldosok képzése.
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
-msgstr "Lovas Istállók"
+msgstr "Lovassági istálló"
 
 #: simulation/templates/structures/pers_stables.xml:19
 msgid "Paraspa"
@@ -1249,7 +1249,7 @@ msgstr "Duvitaparnam"
 
 #: simulation/templates/structures/pers_wonder.xml:12
 msgid "Hanging Gardens of Babylon"
-msgstr "Babiloni Függőkert"
+msgstr "Babiloni függőkert"
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
@@ -1320,7 +1320,7 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Olcsó barrakkszerű építmény, ami semleges területre építhető, de nincsen terület befolyásoló hatása.\n- zsoldosok képzése\n- min. távolság más katonai létesítményektől: 100 méter."
+msgstr "Olcsó laktanyaszerű építmény, ami semleges területre építhető, de nincsen terület befolyásoló hatása.\n- zsoldosok kiképzése\n- min. távolság más katonai létesítményektől: 100 méter."
 
 #: simulation/templates/structures/ptol_military_colony.xml:24
 #: simulation/templates/structures/sele_military_colony.xml:24
@@ -1486,7 +1486,7 @@ msgstr "Aedes"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
-msgstr "Mars Temploma"
+msgstr "Mars temploma"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedes Martis"

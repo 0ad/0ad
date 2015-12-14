@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-10 00:14+0000\n"
-"Last-Translator: Gellért Gyuris <gellert.gyuris@gmail.com>\n"
+"PO-Revision-Date: 2015-12-13 10:33+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -541,15 +541,15 @@ msgstr "Villámtámadás"
 
 #: gui/common/tooltips.js:141
 msgid "Melee Attack:"
-msgstr "Közelharci Támadás:"
+msgstr "Közelharci támadás:"
 
 #: gui/common/tooltips.js:142
 msgid "Ranged Attack:"
-msgstr "Távolsági Támadás:"
+msgstr "Távolsági támadás:"
 
 #: gui/common/tooltips.js:143
 msgid "Capture Attack:"
-msgstr "CSata felvétele:"
+msgstr "Elfoglalási támadás:"
 
 #: gui/common/tooltips.js:146
 msgid "Attack:"
@@ -561,7 +561,7 @@ msgstr "Időtartam:"
 
 #: gui/common/tooltips.js:158 gui/common/tooltips.js:427
 msgid "Rate:"
-msgstr "Arány:"
+msgstr "Sebesség:"
 
 #: gui/common/tooltips.js:175 gui/common/tooltips.js:184
 #, javascript-format
@@ -630,7 +630,7 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:373
 msgid "Population Bonus:"
-msgstr "Lakossági Bónusz:"
+msgstr "Népességbónusz:"
 
 #: gui/common/tooltips.js:391
 msgid "Insufficient resources:"
@@ -727,7 +727,7 @@ msgstr "Nem"
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
-msgstr "OK."
+msgstr "OK"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
@@ -815,7 +815,7 @@ msgstr "Állandó játszma beállítások"
 #: gui/options/options.js:17
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr "A mérkőzés adatinak mentése és visszaállítása gyors újrafelhasználással egy másik játékhoz"
+msgstr "A mérkőzés beállításainak mentése és visszaállítása a gyors újrafelhasználáshoz egy másik hálózati játék indításakor"
 
 #: gui/options/options.js:21
 msgid "Prefer GLSL"
@@ -823,15 +823,15 @@ msgstr "GLSL előnyben részesítése"
 
 #: gui/options/options.js:21
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr "OpenGL 2.0 shaderek használata (ajánlott)"
+msgstr "OpenGL 2.0 árnyékolók használata (ajánlott)"
 
 #: gui/options/options.js:22
 msgid "Post Processing"
-msgstr "Post Processing"
+msgstr "Utófeldolgozás"
 
 #: gui/options/options.js:22
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr "Screen-space post processing szűrők használata (HDR,ragyogás,mélységélesség stb.)"
+msgstr "Képernyőszintű utófeldolgozó szűrők használata (HDR, ragyogás, mélységélesség, stb.)"
 
 #: gui/options/options.js:23
 msgid "Shadows"
@@ -903,7 +903,7 @@ msgstr "Magasabb minőségű effektek használata a víz, a tengerparti hullámo
 
 #: gui/options/options.js:31
 msgid "Real Water Depth"
-msgstr "Tényleges vízmélység."
+msgstr "Tényleges vízmélység"
 
 #: gui/options/options.js:31
 msgid "Use actual water depth in rendering calculations"
@@ -995,7 +995,7 @@ msgstr "Csevegésnapló"
 
 #: gui/options/options.js:48
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "Betöltendő tárolt üzenetek száma az előcsarnokhoz csatlakozáskor"
+msgstr "Betöltendő naplózott üzenetek száma a váróhoz csatlakozáskor"
 
 #: gui/options/options.js:49
 msgid "Chat Timestamp"
@@ -1086,7 +1086,7 @@ msgstr "Hiba"
 
 #: gui/pregame/mainmenu.js:304
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "Többjátékos előcsarnok indítása. \\[BUILD ÁLTAL LETILTVA]"
+msgstr "Többjátékos váró indítása. \\[BUILD ÁLTAL LETILTVA]"
 
 #: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
@@ -1318,7 +1318,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:382
 msgid "Gather Rates:"
-msgstr "Gyűjtési arány"
+msgstr "Gyűjtési sebesség:"
 
 #: gui/structree/load.js:158
 #, javascript-format
@@ -1353,7 +1353,7 @@ msgstr "Összes"
 
 #: gui/summary/layout.js:23
 msgid "Houses"
-msgstr "Ház"
+msgstr "Házak"
 
 #: gui/summary/layout.js:24
 msgid "Economic"
@@ -1361,7 +1361,7 @@ msgstr "Gazdasági"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
-msgstr "Örs"
+msgstr "Előőrsök"
 
 #: gui/summary/layout.js:26
 msgid "Military"
@@ -1377,11 +1377,11 @@ msgstr "Városközpontok"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
-msgstr "Csoda"
+msgstr "Csodák"
 
 #: gui/summary/layout.js:32
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "Épület statisztikák (Épített / Elvesztett / Lerombolt)"
+msgstr "Épület statisztikák (épített / elvesztett / lerombolt)"
 
 #: gui/summary/layout.js:50
 msgid "Infantry"
@@ -1401,7 +1401,7 @@ msgstr "Bajnok"
 
 #: gui/summary/layout.js:55
 msgid "Navy"
-msgstr "Haditengerészet"
+msgstr "Tengeri"
 
 #: gui/summary/layout.js:56
 msgid "Traders"
@@ -1409,7 +1409,7 @@ msgstr "Kereskedők"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "Egység Statisztikák (Képzett / Elvesztett / Megölt)"
+msgstr "Egység statisztikák (kiképzett / elvesztett / megölt)"
 
 #: gui/summary/layout.js:76
 msgid "Food"
@@ -1429,7 +1429,7 @@ msgstr "Fém"
 
 #: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
-msgstr "Sarcok (Adott / Kapott)"
+msgstr "Sarcok (adott / kapott)"
 
 #: gui/summary/layout.js:82
 msgid "Treasures collected"
@@ -1441,27 +1441,27 @@ msgstr "Zsákmány"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
-msgstr "Nyersanyag-Statisztikák (Begyűjtött / Felhasznált)"
+msgstr "Nyersanyag statisztikák (begyűjtött / felhasznált)"
 
 #: gui/summary/layout.js:103
 msgid "Food exchanged"
-msgstr "Cserélt Élelem"
+msgstr "Cserélt élelem"
 
 #: gui/summary/layout.js:104
 msgid "Wood exchanged"
-msgstr "Cserélt Fa"
+msgstr "Cserélt fa"
 
 #: gui/summary/layout.js:105
 msgid "Stone exchanged"
-msgstr "Cserélt Kő"
+msgstr "Cserélt kő"
 
 #: gui/summary/layout.js:106
 msgid "Metal exchanged"
-msgstr "Cserélt Fém"
+msgstr "Cserélt fém"
 
 #: gui/summary/layout.js:107
 msgid "Barter efficiency"
-msgstr "Kereskedelmi hat."
+msgstr "Csere hatékonysága"
 
 #: gui/summary/layout.js:108
 msgid "Trade income"
@@ -1491,7 +1491,7 @@ msgstr "Térkép\nfelfedezése"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr "A csúcson"
+msgstr "Csúcson"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
@@ -1521,12 +1521,12 @@ msgstr "Civilizációk"
 
 #: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
-msgstr "Civilizáció Választása"
+msgstr "Civilizáció választása"
 
 #: gui/civinfo/civinfo.xml:(caption):119
 #: gui/structree/structree.xml:(caption):119
 msgid "Close"
-msgstr "Bezár"
+msgstr "Bezárás"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1545,7 +1545,7 @@ msgstr "Nyelv:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr "Hely:"
+msgstr "Területi beállítás:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
@@ -1569,11 +1569,11 @@ msgstr "Ország:"
 
 #: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr "Szkript:"
+msgstr "Írásrendszer:"
 
 #: gui/locale/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
-msgstr "Variáns (nem használt):"
+msgstr "Változat (nem használt):"
 
 #: gui/locale/locale_advanced.xml:(caption):48
 msgid "Keywords (unused):"
@@ -1589,18 +1589,18 @@ msgstr "Felhasznált szótárfájlok:"
 
 #: gui/locale/locale_advanced.xml:(caption):70
 msgid "Auto detect"
-msgstr "Automatikus felismerés"
+msgstr "Felismerés"
 
 #: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr "Lehetséges négykarakterű szkript-kód a nyelvi kód alapján (ISO 15924 szerint)"
+msgstr "Lehetséges négykarakterű írásrendszerkód a nyelvi kód alapján (ISO 15924 szerint)"
 
 #: gui/locale/locale_advanced.xml:(tooltip):44
 #: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
-msgstr "Nincs még implementálva."
+msgstr "Még nincs megvalósítva."
 
 #: gui/options/options.xml:(caption):18
 msgid "Game Options"
@@ -1620,7 +1620,7 @@ msgstr "Hangbeállítások"
 
 #: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
-msgstr "Várószoba beállítások"
+msgstr "Váró beállításai"
 
 #: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1664,11 +1664,11 @@ msgstr "Szállj be Te is a play0ad.com-on"
 
 #: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
-msgstr "Visszajelzés Engedélyezése"
+msgstr "Visszajelzés engedélyezése"
 
 #: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
-msgstr "Visszajelzés Tiltása"
+msgstr "Visszajelzés tiltása"
 
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
@@ -1698,7 +1698,7 @@ msgstr "Csatlakozás játékhoz"
 
 #: gui/pregame/mainmenu.xml:(caption):277
 msgid "Host Game"
-msgstr "Házigazda mód"
+msgstr "Játék létrehozása"
 
 #: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
@@ -1746,7 +1746,7 @@ msgstr "Kilépés"
 
 #: gui/pregame/mainmenu.xml:(caption):549
 msgid "Help with the Translation!"
-msgstr "Segíts a fordítással!"
+msgstr "Segíts a fordításban!"
 
 #: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"
@@ -1796,11 +1796,11 @@ msgstr "Csatlakozás meglévő többjátékos módú játékhoz"
 
 #: gui/pregame/mainmenu.xml:(tooltip):278
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "Házigazda szerep egy többjátékos módú játékban.\\n\\n\nSzükség van a 20595-ös UDP portra."
+msgstr "Többjátékos módú játék létrehozása.\\n\\nA 20595-ös UDP portnak nyitva kell lennie."
 
 #: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
-msgstr "Többjátékos előcsarnok indítása."
+msgstr "Többjátékos váró indítása."
 
 #: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
@@ -1848,11 +1848,11 @@ msgstr "Játékbeállítások és küldetéstervező eszközök."
 
 #: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
-msgstr "Bezárja a játékot."
+msgstr "Kilép a játékból."
 
 #: gui/pregame/mainmenu.xml:(tooltip):550
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Kattintson a 0 A.D. fordítási oldal böngészőben való megnyitásához."
+msgstr "Kattints a 0 A.D. fordítási oldal böngészőben való megnyitásához."
 
 #: gui/pregame/mainmenu.xml:(tooltip):562
 msgid "Click to open play0ad.com in your web browser."
@@ -1886,7 +1886,7 @@ msgstr "Térkép mérete:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Victory:"
-msgstr "Győzelem"
+msgstr "Győzelem:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):186
 msgid "Players:"
@@ -1917,7 +1917,7 @@ msgstr "Visszajátszás kezdése"
 #: gui/replaymenu/replay_menu.xml:(heading):72
 msgctxt "replay"
 msgid "Date / Time"
-msgstr "Dátum / Idő"
+msgstr "Dátum / idő"
 
 #: gui/replaymenu/replay_menu.xml:(heading):76
 msgctxt "replay"
@@ -1950,7 +1950,7 @@ msgstr "Betöltés"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
-msgstr "Mentés"
+msgstr "Játék mentése"
 
 #: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
@@ -1962,7 +1962,7 @@ msgstr "Üdvözlet!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
-msgstr "Mutassa ezt az üzenetet a jövőben"
+msgstr "Jelenítse meg ezt az üzenetet a jövőben"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
@@ -2064,7 +2064,7 @@ msgstr "- 40 egységet tud beszállásolni, hogy lassan gyógyuljanak az egység
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr "BARAKKOK"
+msgstr "LAKTANYÁK"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
@@ -2088,7 +2088,7 @@ msgstr "- Építsd egy előretölt bázisra, hogy friss csapatutánpótlással t
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr "KOVÁCS"
+msgstr "KOVÁCSMŰHELY"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
@@ -2170,11 +2170,11 @@ msgstr "- 40 egységet tud szállítani vízen."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr "VÁROSKÖZPONTOK"
+msgstr "VÁROSHÁZÁK"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr "- Az új kolóniád \"alapja\""
+msgstr "- Az új kolóniád „alapja”."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -2194,7 +2194,7 @@ msgstr "KÖVETSÉGEK"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- Különleges „barakkok” érhetőek el a karthágóiaknak."
+msgstr "- Különleges „laktanyák” érhetőek el a karthágóiaknak."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
@@ -2222,7 +2222,7 @@ msgstr "- A halászhajók nagy mennyiségű élelmet képesek magukkal vinni."
 msgid ""
 "- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
 "rate."
-msgstr "- Hajózz be egy támogató egységet, hogy megkettőzd a hajó gyűjtési hatékonyságát."
+msgstr "- Hajózz be egy támogató egységet, hogy megkettőzd a hajó gyűjtési sebességét."
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
@@ -2294,7 +2294,7 @@ msgstr "- A csatárok gyorsabban mozognak, amíg ő él."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr "ÖRSÖK"
+msgstr "ELŐŐRSÖK"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
@@ -2315,7 +2315,7 @@ msgstr "- Semleges területen egy egység beszállásolásával megállítható 
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr "PALÁNKFAL"
+msgstr "PALÁNKFALAK"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
@@ -2323,7 +2323,7 @@ msgstr "- Gyors, olcsó fából készült fal minden nép számára."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr "- A legtöbb nép számára elérhető a falusi fázisban."
+msgstr "- A legtöbb nép számára elérhető a falusi szakaszban."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
@@ -2510,7 +2510,7 @@ msgstr "- Megtalálható az Atlasz szerkesztőben az egyéni küldetésekhez."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr "BOLTOK"
+msgstr "RAKTÁRAK"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
@@ -2548,7 +2548,7 @@ msgstr "TEMPLOMOK"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr "- Városi fázishoz tartozó épület."
+msgstr "- Városi szakaszhoz tartozó épület."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2690,7 +2690,7 @@ msgstr "BÁLNÁK"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr "- Óceáni forrás."
+msgstr "- Óceáni nyersanyag."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
