@@ -1,14 +1,37 @@
-// Chat data
-const CHAT_TIMEOUT = 30000;
-const MAX_NUM_CHAT_LINES = 20;
-var chatMessages = [];
-var chatTimers = [];
+/**
+ * All known cheat commands.
+ * @type {Object}
+ */
+const g_Cheats = getCheatsData();
 
-var g_Cheats = getCheatsData();
+/**
+ * Number of seconds after which chatmessages will disappear.
+ */
+const g_ChatTimeout = 30;
 
+/**
+ * Maximum number of lines to display simultaneously.
+ */
+const g_ChatLines = 20;
+
+/**
+ * The strings to be displayed including sender and formating.
+ */
+var g_ChatMessages = [];
+
+/**
+ * Holds the timer-IDs used for hiding the chat after g_ChatTimeout seconds.
+ */
+var g_ChatTimers = [];
+
+/**
+ * Loads all known cheat commands.
+ *
+ * @returns {Object}
+ */
 function getCheatsData()
 {
-	var cheats = {};
+	let cheats = {};
 	for (let fileName of getJSONFileList("simulation/data/cheats/"))
 	{
 		let currentCheat = Engine.ReadJSONFile("simulation/data/cheats/"+fileName+".json");
@@ -22,19 +45,26 @@ function getCheatsData()
 	return cheats;
 }
 
+/**
+ * Reads userinput from the chat and sends a simulation command in case it is known a cheat.
+ * Hence cheats won't be sent as chat over network.
+ *
+ * @param {string} text
+ * @returns {boolean} - True if a cheat was executed.
+ */
 function executeCheat(text)
 {
 	if (g_IsObserver || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
 		return false;
 
 	// Find the cheat code that is a prefix of the user input
-	var cheatCode = Object.keys(g_Cheats).find(cheatCode => text.indexOf(cheatCode) == 0);
+	let cheatCode = Object.keys(g_Cheats).find(cheatCode => text.indexOf(cheatCode) == 0);
 	if (!cheatCode)
 		return false;
 
-	var cheat = g_Cheats[cheatCode];
+	let cheat = g_Cheats[cheatCode];
 
-	var parameter = text.substr(cheatCode.length);
+	let parameter = text.substr(cheatCode.length);
 	if (cheat.isNumeric)
 		parameter = +parameter;
 
@@ -54,15 +84,18 @@ function executeCheat(text)
 	return true;
 }
 
+/**
+ * Defines how the GUI reacts to notifications that are sent by the simulation.
+ */
 var g_NotificationsTypes =
 {
 	"chat": function(notification, player)
 	{
-		var message = {
+		let message = {
 			"type": "message",
 			"text": notification.message
 		};
-		var guid = findGuidForPlayerID(g_PlayerAssignments, player);
+		let guid = findGuidForPlayerID(g_PlayerAssignments, player);
 		if (guid == undefined)
 		{
 			message["guid"] = -1;
@@ -74,7 +107,7 @@ var g_NotificationsTypes =
 	},
 	"aichat": function(notification, player)
 	{
-		var message = {
+		let message = {
 			"type": "message",
 			"text": notification.message
 		};
@@ -92,7 +125,7 @@ var g_NotificationsTypes =
 				message["parameters"][param] = "[color=\"" + colorName[1] + "\"]" + colorName[0] + "[/color]";
 			}
 		}
-		var guid = findGuidForPlayerID(g_PlayerAssignments, player);
+		let guid = findGuidForPlayerID(g_PlayerAssignments, player);
 		if (guid == undefined)
 		{
 			message["guid"] = -1;
@@ -162,12 +195,14 @@ var g_NotificationsTypes =
 	}
 };
 
-// Notifications
+/**
+ * Processes all pending simulation messages.
+ */
 function handleNotifications()
 {
-	var notifications = Engine.GuiInterfaceCall("GetNotifications");
+	let notifications = Engine.GuiInterfaceCall("GetNotifications");
 
-	for (var notification of notifications)
+	for (let notification of notifications)
 	{
 		if (!notification.type)
 		{
@@ -181,38 +216,43 @@ function handleNotifications()
 			continue;
 		}
 		
-		var action = g_NotificationsTypes[notification.type];
+		let action = g_NotificationsTypes[notification.type];
 		if (!action)
 		{
 			error("Unknown notification type '" + notification.type + "' found.");
 			continue;
 		}
 		
-		for (var player of notification.players)
+		for (let player of notification.players)
 			action(notification, player);
 	}
 }
 
+/**
+ * Updates playerdata cache and refresh diplomacy panel.
+ */
 function updateDiplomacy()
 {
 	g_Players = getPlayerData(g_PlayerAssignments);
 
-	// If the diplomacy panel is open refresh it.
 	if (isDiplomacyOpen)
 		openDiplomacy();
 }
 
+/**
+ * Displays all active counters (messages showing the remaining time) for wonder-victory, ceasefire etc.
+ */
 function updateTimeNotifications()
 {
-	var notifications =  Engine.GuiInterfaceCall("GetTimeNotifications");
-	var notificationText = "";
-	var playerID = Engine.GetPlayerID();
-	for (var n of notifications)
+	let notifications =  Engine.GuiInterfaceCall("GetTimeNotifications");
+	let notificationText = "";
+	let playerID = Engine.GetPlayerID();
+	for (let n of notifications)
 	{
-		var message = n.message;
+		let message = n.message;
 		if (n.translateMessage)
 			message = translate(message);
-		var parameters = n.parameters || {};
+		let parameters = n.parameters || {};
 		if (n.translateParameters)
 			translateObjectKeys(parameters, n.translateParameters);
 		parameters.time = timeToString(n.endTime - g_SimState.timeElapsed);
@@ -221,18 +261,25 @@ function updateTimeNotifications()
 	Engine.GetGUIObjectByName("notificationText").caption = notificationText;
 }
 
-// Returns [username, playercolor] for the given player
+/**
+ * Returns [username, playercolor] for the given player.
+ */
 function getUsernameAndColor(player)
 {
 	// This case is hit for AIs, whose names don't exist in g_PlayerAssignments.
-	var color = g_Players[player].color;
+	let color = g_Players[player].color;
 	return [
 		escapeText(g_Players[player].name),
 		color.r + " " + color.g + " " + color.b,
 	];
 }
 
-// Messages
+/**
+ * Processes a CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
+ * Saves the received object to mainlog.html.
+ *
+ * @param {Object} message
+ */
 function handleNetMessage(message)
 {
 	log("Net message: " + uneval(message));
@@ -244,7 +291,7 @@ function handleNetMessage(message)
 		if (g_Disconnected)
 			return;
 
-		var obj = Engine.GetGUIObjectByName("netStatus");
+		let obj = Engine.GetGUIObjectByName("netStatus");
 		switch (message.status)
 		{
 		case "waiting_for_players":
@@ -283,34 +330,34 @@ function handleNetMessage(message)
 
 	case "players":
 		// Find and report all leavings
-		for (var host in g_PlayerAssignments)
+		for (let guid in g_PlayerAssignments)
 		{
-			if (!message.hosts[host])
+			if (!message.hosts[guid])
 			{
 				// Tell the user about the disconnection
-				addChatMessage({ "type": "disconnect", "guid": host });
+				addChatMessage({ "type": "disconnect", "guid": guid });
 
 				// Update the cached player data, so we can display the disconnection status
-				updatePlayerDataRemove(g_Players, host);
+				updatePlayerDataRemove(g_Players, guid);
 			}
 		}
 
-		var joins = Object.keys(message.hosts).filter(host => !g_PlayerAssignments[host]);
+		let joins = Object.keys(message.hosts).filter(guid => !g_PlayerAssignments[guid]);
 
 		g_PlayerAssignments = message.hosts;
 
 		// Report all joinings
-		joins.forEach(host => {
+		joins.forEach(guid => {
 			// Update the cached player data, so we can display the correct name
-			updatePlayerDataAdd(g_Players, host, g_PlayerAssignments[host]);
+			updatePlayerDataAdd(g_Players, guid, g_PlayerAssignments[guid]);
 
 			// Tell the user about the connection
-			addChatMessage({ "type": "connect", "guid": host });
+			addChatMessage({ "type": "connect", "guid": guid });
 		});
 
 		if (g_IsController && Engine.HasXmppClient())
 		{
-			var players = [ assignment.name for each (assignment in g_PlayerAssignments) ];
+			let players = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
 			Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
 		}
 
@@ -346,6 +393,11 @@ function handleNetMessage(message)
 	}
 }
 
+/**
+ * Send text as chat. Don't look for commands.
+ *
+ * @param {string} text
+ */
 function submitChatDirectly(text)
 {
 	if (!text.length)
@@ -357,11 +409,15 @@ function submitChatDirectly(text)
 		addChatMessage({ "type": "message", "guid": "local", "text": text });
 }
 
+/**
+ * Loads the text from the GUI window, checks if it is a local command
+ * or cheat and executes it. Otherwise sends it as chat.
+ */
 function submitChatInput()
 {
-	var teamChat = Engine.GetGUIObjectByName("toggleTeamChat").checked;
-	var input = Engine.GetGUIObjectByName("chatInput");
-	var text = input.caption;
+	let teamChat = Engine.GetGUIObjectByName("toggleTeamChat").checked;
+	let input = Engine.GetGUIObjectByName("chatInput");
+	let text = input.caption;
 
 	input.blur(); // Remove focus
 	input.caption = ""; // Clear chat input
@@ -386,16 +442,21 @@ function submitChatInput()
 	submitChatDirectly(text);
 }
 
+/**
+ * Displays the prepared chatmessage.
+ *
+ * @param msg {Object}
+ */
 function addChatMessage(msg)
 {
-	var playerColor, username;
+	let playerColor, username;
 
 	// No context by default. May be set by parseChatCommands().
 	msg.context = "";
 
 	if ("guid" in msg && g_PlayerAssignments[msg.guid])
 	{
-		var n = g_PlayerAssignments[msg.guid].player;
+		let n = g_PlayerAssignments[msg.guid].player;
 		// Observers have an ID of -1 which is not a valid index.
 		if (n < 0)
 			n = 0;
@@ -421,7 +482,8 @@ function addChatMessage(msg)
 		username = translate("Unknown player");
 	}
 
-	var formatted;
+	let formatted;
+	let message;
 
 	switch (msg.type)
 	{
@@ -450,7 +512,6 @@ function addChatMessage(msg)
 			formatted = sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "diplomacy":
-		var message;
 		if (msg.player == Engine.GetPlayerID())
 		{
 			[username, playerColor] = getUsernameAndColor(msg.player1);
@@ -513,9 +574,9 @@ function addChatMessage(msg)
 		// Since livestock can be attacked/gathered by other players,
 		// we display a more specific notification in this case to not confuse the player
 		if (msg.targetIsDomesticAnimal)
-			var message = translate("Your livestock has been attacked by %(attacker)s!");
+			message = translate("Your livestock has been attacked by %(attacker)s!");
 		else
-			var message = translate("You have been attacked by %(attacker)s!");
+			message = translate("You have been attacked by %(attacker)s!");
 		formatted = sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "message":
@@ -523,13 +584,12 @@ function addChatMessage(msg)
 		if (msg.hide)
 			return;
 
-		var message;
 		if ("translate" in msg && msg.translate)
 		{
 			message = translate(msg.text); // No need to escape, not a user message.
 			if ("translateParameters" in msg && msg.translateParameters)
 			{
-				var parameters = msg.parameters || {};
+				let parameters = msg.parameters || {};
 				translateObjectKeys(parameters, msg.translateParameters);
 				message = sprintf(message, parameters);
 			}
@@ -557,8 +617,8 @@ function addChatMessage(msg)
 		}
 		else
 		{
-			var userTag = sprintf(translate("<%(user)s>"), { "user": username });
-			var formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+			let userTag = sprintf(translate("<%(user)s>"), { "user": username });
+			let formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 			if (msg.context !== "")
 			{
 				formatted = sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
@@ -568,9 +628,7 @@ function addChatMessage(msg)
 				});
 			}
 			else
-			{
 				formatted = sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
-			}
 		}
 		break;
 	default:
@@ -578,31 +636,38 @@ function addChatMessage(msg)
 		return;
 	}
 
-	chatMessages.push(formatted);
-	chatTimers.push(setTimeout(removeOldChatMessages, CHAT_TIMEOUT));
+	g_ChatMessages.push(formatted);
+	g_ChatTimers.push(setTimeout(removeOldChatMessage, g_ChatTimeout * 1000));
 
-	if (chatMessages.length > MAX_NUM_CHAT_LINES)
-		removeOldChatMessages();
+	if (g_ChatMessages.length > g_ChatLines)
+		removeOldChatMessage();
 	else
-		Engine.GetGUIObjectByName("chatText").caption = chatMessages.join("\n");
+		Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
-function removeOldChatMessages()
+/**
+ * Called when the timer has run out for the oldest chatmessage or when the message limit is reached.
+ */
+function removeOldChatMessage()
 {
-	clearTimeout(chatTimers[0]); // The timer only needs to be cleared when new messages bump old messages off
-	chatTimers.shift();
-	chatMessages.shift();
-	Engine.GetGUIObjectByName("chatText").caption = chatMessages.join("\n");
+	clearTimeout(g_ChatTimers[0]); // The timer only needs to be cleared when new messages bump old messages off
+	g_ChatTimers.shift();
+	g_ChatMessages.shift();
+	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
-// Parses chat messages for commands.
+/**
+ * Checks if the current player is a selected addressee of the received chatmessage.
+ * Also formats the chatmessage. Parses recursively!
+ *
+ * @param {Object} msg
+ */
 function parseChatCommands(msg)
 {
-	// Only interested in messages that start with '/'.
 	if (!msg.text || msg.text[0] != '/')
 		return;
 
-	var sender;
+	let sender;
 	if (g_PlayerAssignments[msg.guid])
 		sender = g_PlayerAssignments[msg.guid].player;
 	else
@@ -610,10 +675,9 @@ function parseChatCommands(msg)
 
 	// TODO: It would be nice to display multiple different contexts.
 	// It should be made clear that only players matching the union of those receive the message.
-	var recurse = false;
-	var split = msg.text.split(/\s/);
+	let recurse = false;
+	let split = msg.text.split(/\s/);
 
-	// Parse commands embedded in the message.
 	switch (split[0])
 	{
 	case "/all":
@@ -659,16 +723,19 @@ function parseChatCommands(msg)
 		msg.action = true;
 		break;
 	case "/msg":
-		var trimmed = msg.text.substr(split[0].length + 1);
-		var matched = "";
+		let trimmed = msg.text.substr(split[0].length + 1);
+		let matched = "";
 
 		// Reject names which don't match or are a superset of the intended name.
-		for each (var player in g_PlayerAssignments)
-			if (trimmed.indexOf(player.name + " ") == 0 && player.name.length > matched.length)
-				matched = player.name;
+		for (let guid in g_PlayerAssignments)
+		{
+			let pName = g_PlayerAssignments[guid].name;
+			if (trimmed.indexOf(pName + " ") == 0 && pName.length > matched.length)
+				matched = pName;
+		}
 
 		// If the local player's name was the longest one matched, show the message.
-		var playerName = g_Players[Engine.GetPlayerID()].name;
+		let playerName = g_Players[Engine.GetPlayerID()].name;
 		if (matched.length && (matched == playerName || sender == Engine.GetPlayerID()))
 		{
 			msg.context = translate("Private");
@@ -694,6 +761,9 @@ function parseChatCommands(msg)
 		parseChatCommands(msg);
 }
 
+/**
+ * Unused multiplayer-dialog.
+ */
 function sendDialogAnswer(guiObject, dialogName)
 {
 	Engine.GetGUIObjectByName(dialogName+"-dialog").hidden = true;
@@ -707,9 +777,12 @@ function sendDialogAnswer(guiObject, dialogName)
 	resumeGame();
 }
 
+/**
+ * Unused multiplayer-dialog.
+ */
 function openDialog(dialogName, data, player)
 {
-	var dialog = Engine.GetGUIObjectByName(dialogName + "-dialog");
+	let dialog = Engine.GetGUIObjectByName(dialogName + "-dialog");
 	if (!dialog)
 	{
 		warn("messages.js: Unknow dialog with name " + dialogName);
@@ -717,23 +790,24 @@ function openDialog(dialogName, data, player)
 	}
 	dialog.hidden = false;
 
-	for (var objName in data)
+	for (let objName in data)
 	{
-		var obj = Engine.GetGUIObjectByName(dialogName + "-dialog-" + objName);
+		let obj = Engine.GetGUIObjectByName(dialogName + "-dialog-" + objName);
 		if (!obj)
 		{
 			warn("messages.js: Key '" + objName + "' not found in '" + dialogName + "' dialog.");
 			continue;
 		}
-		for (var key in data[objName])
+
+		for (let key in data[objName])
 		{
-			var n = data[objName][key];
+			let n = data[objName][key];
 			if (typeof n == "object" && n.message)
 			{
-				var message = n.message;
+				let message = n.message;
 				if (n.translateMessage)
 					message = translate(message);
-				var parameters = n.parameters || {};
+				let parameters = n.parameters || {};
 				if (n.translateParameters)
 					translateObjectKeys(parameters, n.translateParameters);
 				obj[key] = sprintf(message, parameters);
