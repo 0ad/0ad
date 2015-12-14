@@ -2,6 +2,9 @@
 <Entity parent="template_unit_fauna_wild">
   <Identity>
   </Identity>
+  <Loot>
+    <xp>15</xp>
+  </Loot>
   <UnitAI>
     <NaturalBehaviour>defensive</NaturalBehaviour>
   </UnitAI>
