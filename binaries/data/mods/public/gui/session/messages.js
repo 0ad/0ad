@@ -46,7 +46,7 @@ function getCheatsData()
 }
 
 /**
- * Reads userinput from the chat and sends a simulation command in case it is known a cheat.
+ * Reads userinput from the chat and sends a simulation command in case it is a known cheat.
  * Hence cheats won't be sent as chat over network.
  *
  * @param {string} text

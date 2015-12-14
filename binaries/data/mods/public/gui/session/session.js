@@ -1,18 +1,30 @@
 const g_IsReplay = Engine.IsVisualReplay();
 const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly || g_IsReplay) : undefined);
 
-// Network Mode
+const g_AmbientTemperate = "temperate";
+
+/**
+ * Colors to flash when pop limit reached.
+ */
+const g_DefaultPopulationColor = "white";
+const g_PopulationAlertColor = "orange";
+
 var g_IsNetworked = false;
 
 // Is this user in control of game settings (i.e. is a network server, or offline player)
 var g_IsController;
-// Match ID for tracking
+
+/**
+ * Unique ID for lobby reports
+ */
 var g_MatchID;
-// Is this user an observer?
+
 var g_IsObserver = false;
 
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
+
+var lastTickTime = new Date();
 
 /**
  * Not constant as we add "gaia".
@@ -23,7 +35,7 @@ var g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1 } }
 
 // Cache dev-mode settings that are frequently or widely used
 var g_DevSettings = {
-	controlAll: false
+	"controlAll": false
 };
 
 // Whether status bars should be shown for all of the player's units.
@@ -50,9 +62,7 @@ var g_CachedLastStates = "";
 // Top coordinate of the research list
 var g_ResearchListTop = 4;
 
-// Colors to flash when pop limit reached
-const DEFAULT_POPULATION_COLOR = "white";
-const POPULATION_ALERT_COLOR = "orange";
+var currentAmbient;
 
 // List of additional entities to highlight
 var g_ShowGuarding = false;
@@ -62,7 +72,11 @@ var g_AdditionalHighlight = [];
 // for saving the hitpoins of the hero (is there a better way to do that?) 
 // Should be possible with AttackDetection but might be an overkill because it would have to loop
 // always through the list of all ongoing attacks...
-var g_previousHeroHitPoints = undefined;
+var g_PreviousHeroHitPoints = undefined;
+
+var g_TemplateData = {}; // {id:template}
+var g_TemplateDataWithoutLocalization = {};
+var g_TechnologyData = {}; // {id:template}
 
 function GetSimState()
 {
@@ -94,16 +108,11 @@ function GetExtendedEntityState(entId)
 	return entState;
 }
 
-// Cache TemplateData
-var g_TemplateData = {}; // {id:template}
-var g_TemplateDataWithoutLocalization = {};
-
-
 function GetTemplateData(templateName)
 {
 	if (!(templateName in g_TemplateData))
 	{
-		var template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
+		let template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
 		translateObjectKeys(template, ["specific", "generic", "tooltip"]);
 		g_TemplateData[templateName] = template;
 	}
@@ -115,21 +124,18 @@ function GetTemplateDataWithoutLocalization(templateName)
 {
 	if (!(templateName in g_TemplateDataWithoutLocalization))
 	{
-		var template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
+		let template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
 		g_TemplateDataWithoutLocalization[templateName] = template;
 	}
 
 	return g_TemplateDataWithoutLocalization[templateName];
 }
 
-// Cache TechnologyData
-var g_TechnologyData = {}; // {id:template}
-
 function GetTechnologyData(technologyName)
 {
 	if (!(technologyName in g_TechnologyData))
 	{
-		var template = Engine.GuiInterfaceCall("GetTechnologyData", technologyName);
+		let template = Engine.GuiInterfaceCall("GetTechnologyData", technologyName);
 		translateObjectKeys(template, ["specific", "generic", "description", "tooltip", "requirementsTooltip"]);
 		g_TechnologyData[technologyName] = template;
 	}
@@ -148,8 +154,8 @@ function init(initData, hotloadData)
 
 	if (initData)
 	{
-		g_IsNetworked = initData.isNetworked; // Set network mode
-		g_IsController = initData.isController; // Set controller mode
+		g_IsNetworked = initData.isNetworked;
+		g_IsController = initData.isController;
 		g_PlayerAssignments = initData.playerAssignments;
 		g_MatchID = initData.attribs.matchID;
 
@@ -170,7 +176,6 @@ function init(initData, hotloadData)
 		g_Players = getPlayerData(null);
 	}
 
-	// Cache civ data
 	g_CivData = loadCivData();
 	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
@@ -179,24 +184,24 @@ function init(initData, hotloadData)
 
 	updateTopPanel();
 
-	var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
+	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.list = g_GameSpeeds.Title;
 	gameSpeed.list_data = g_GameSpeeds.Speed;
-	var gameSpeedIdx = g_GameSpeeds.Speed.indexOf(Engine.GetSimRate());
+	let gameSpeedIdx = g_GameSpeeds.Speed.indexOf(Engine.GetSimRate());
 	gameSpeed.selected = gameSpeedIdx != -1 ? gameSpeedIdx : g_GameSpeeds.Default;
 	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); };
-	initMenuPosition(); // set initial position
+	initMenuPosition();
 
 	// Populate player selection dropdown
-	var playerNames = [];
-	var playerIDs = [];
-	for (var player in g_Players)
+	let playerNames = [];
+	let playerIDs = [];
+	for (let player in g_Players)
 	{
 		playerNames.push(g_Players[player].name);
 		playerIDs.push(player);
 	}
 
-	var viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
+	let viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
 	viewPlayerDropdown.list = playerNames;
 	viewPlayerDropdown.list_data = playerIDs;
 	viewPlayerDropdown.selected = Engine.GetPlayerID();
@@ -211,10 +216,8 @@ function init(initData, hotloadData)
 	// Starting for the first time:
 	initMusic();
 	if (!g_IsObserver)
-	{
-		var civMusic = g_CivData[g_Players[Engine.GetPlayerID()].civ].Music;
-		global.music.storeTracks(civMusic);
-	}
+		global.music.storeTracks(g_CivData[g_Players[Engine.GetPlayerID()].civ].Music);
+
 	global.music.setState(global.music.states.PEACE);
 	playRandomAmbient("temperate");
 	onSimulationUpdate();
@@ -238,13 +241,13 @@ function selectViewPlayer(playerID)
 
 function updateTopPanel()
 {
-	var playerID = Engine.GetPlayerID();
-	var isPlayer =  playerID > 0;
+	let playerID = Engine.GetPlayerID();
+	let isPlayer =  playerID > 0;
 	if (isPlayer)
 	{
-		var civName = g_CivData[g_Players[playerID].civ].Name;
+		let civName = g_CivData[g_Players[playerID].civ].Name;
 		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
-		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {"civ": civName});
+		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), { "civ": civName });
 	}
 	
 	// Hide stuff gaia/observers don't use.
@@ -259,7 +262,7 @@ function updateTopPanel()
 	Engine.GetGUIObjectByName("observerText").hidden = playerID >= 0;
 
 	// Disable stuff observers shouldn't use
-	var isActive = isPlayer && GetSimState().players[playerID].state == "active";
+	let isActive = isPlayer && GetSimState().players[playerID].state == "active";
 	Engine.GetGUIObjectByName("pauseButton").enabled = isActive || !g_IsNetworked;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = isActive;
 
@@ -269,16 +272,14 @@ function updateTopPanel()
 
 function reportPerformance(time)
 {
-	var settings = Engine.GetMapSettings();
-	var data = {
-		time: time,
-		map: settings.Name,
-		seed: settings.Seed, // only defined for random maps
-		size: settings.Size, // only defined for random maps
-		profiler: Engine.GetProfilerState()
-	};
-
-	Engine.SubmitUserReport("profile", 3, JSON.stringify(data));
+	let settings = Engine.GetMapSettings();
+	Engine.SubmitUserReport("profile", 3, JSON.stringify({
+		"time": time,
+		"map": settings.Name,
+		"seed": settings.Seed, // only defined for random maps
+		"size": settings.Size, // only defined for random maps
+		"profiler": Engine.GetProfilerState()
+	}));
 }
 
 /**
@@ -287,7 +288,7 @@ function reportPerformance(time)
  */
 function resignGame(leaveGameAfterResign)
 {
-	var simState = GetSimState();
+	let simState = GetSimState();
 
 	// Players can't resign if they've already won or lost.
 	if (simState.players[Engine.GetPlayerID()].state != "active" || g_Disconnected)
@@ -314,9 +315,9 @@ function resignGame(leaveGameAfterResign)
  */
 function leaveGame(willRejoin)
 {
-	var extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
-	var mapSettings = Engine.GetMapSettings();
-	var gameResult;
+	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
+	let mapSettings = Engine.GetMapSettings();
+	let gameResult;
 
 	if (g_IsObserver)
 	{
@@ -326,7 +327,7 @@ function leaveGame(willRejoin)
 	}
 	else
 	{
-		var playerState = extendedSimState.players[Engine.GetPlayerID()];
+		let playerState = extendedSimState.players[Engine.GetPlayerID()];
 		if (g_Disconnected)
 			gameResult = translate("You have been disconnected.");
 		else if (playerState.state == "won")
@@ -370,17 +371,17 @@ function leaveGame(willRejoin)
 // Return some data that we'll use when hotloading this file after changes
 function getHotloadData()
 {
-	return { selection: g_Selection.selected };
+	return { "selection": g_Selection.selected };
 }
 
 // Return some data that will be stored in saved game files
 function getSavedGameData()
 {
-	var data = {};
-	data.playerAssignments = g_PlayerAssignments;
-	data.groups = g_Groups.groups;
 	// TODO: any other gui state?
-	return data;
+	return {
+		"playerAssignments": g_PlayerAssignments,
+		"groups": g_Groups.groups
+	};
 }
 
 function restoreSavedGameData(data)
@@ -394,15 +395,13 @@ function restoreSavedGameData(data)
 	g_Selection.reset();
 
 	// Restore control groups
-	for (var groupNumber in data.groups)
+	for (let groupNumber in data.groups)
 	{
 		g_Groups.groups[groupNumber].groups = data.groups[groupNumber].groups;
 		g_Groups.groups[groupNumber].ents = data.groups[groupNumber].ents;
 	}
 	updateGroups();
 }
-
-var lastTickTime = new Date();
 
 /**
  * Called every frame.
@@ -412,14 +411,14 @@ function onTick()
 	if (!g_Settings)
 		return;
 
-	var now = new Date();
-	var tickLength = new Date() - lastTickTime;
+	let now = new Date();
+	let tickLength = new Date() - lastTickTime;
 	lastTickTime = now;
 
 	checkPlayerState();
 	while (true)
 	{
-		var message = Engine.PollNetworkClient();
+		let message = Engine.PollNetworkClient();
 		if (!message)
 			break;
 		handleNetMessage(message);
@@ -440,19 +439,13 @@ function onTick()
 			Engine.GuiInterfaceCall("DisplayRallyPoint", { "entities": g_Selection.toList() });
 	}
 
-	// Run timers
 	updateTimers();
 
-	// Animate menu
 	updateMenuPosition(tickLength);
 
 	// When training is blocked, flash population (alternates color every 500msec)
-	if (g_IsTrainingBlocked && (Date.now() % 1000) < 500)
-		Engine.GetGUIObjectByName("resourcePop").textcolor = POPULATION_ALERT_COLOR;
-	else
-		Engine.GetGUIObjectByName("resourcePop").textcolor = DEFAULT_POPULATION_COLOR;
+	Engine.GetGUIObjectByName("resourcePop").textcolor = g_IsTrainingBlocked && Date.now() % 1000 < 500 ? g_PopulationAlertColor : g_DefaultPopulationColor;
 
-	// Clear renamed entities list
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
 }
 
@@ -463,9 +456,9 @@ function checkPlayerState()
 		return;
 
 	// Send a game report for each player in this game.
-	var m_simState = GetSimState();
-	var playerState = m_simState.players[Engine.GetPlayerID()];
-	var tempStates = "";
+	let m_simState = GetSimState();
+	let playerState = m_simState.players[Engine.GetPlayerID()];
+	let tempStates = "";
 	for each (var player in m_simState.players) {tempStates += player.state + ",";}
 
 	if (g_CachedLastStates != tempStates)
@@ -488,38 +481,43 @@ function checkPlayerState()
 	// Make sure this doesn't run again.
 	g_GameEnded = true;
 
+	let btCaptions;
+	let btCode;
+	let message;
+	let title;
 	if (Engine.IsAtlasRunning())
 	{
 		// If we're in Atlas, we can't leave the game
-		var btCaptions = [translate("OK")];
-		var btCode = [null];
-		var message = translate("Press OK to continue");
+		btCaptions = [translate("OK")];
+		btCode = [null];
+		message = translate("Press OK to continue");
 	}
 	else
 	{
-		var btCaptions = [translate("No"), translate("Yes")];
-		var btCode = [null, leaveGame];
-		var message = translate("Do you want to quit?");
+		btCaptions = [translate("No"), translate("Yes")];
+		btCode = [null, leaveGame];
+		message = translate("Do you want to quit?");
 	}
 
 	if (playerState.state == "defeated")
 	{
+		title = translate("DEFEATED!");
 		global.music.setState(global.music.states.DEFEAT);
-		messageBox(400, 200, message, translate("DEFEATED!"), 0, btCaptions, btCode);
 	}
 	else if (playerState.state == "won")
 	{
+		title = translate("VICTORIOUS!");
 		global.music.setState(global.music.states.VICTORY);
 		// TODO: Reveal map directly instead of this silly proxy.
 		if (!Engine.GetGUIObjectByName("devCommandsRevealMap").checked)
 			Engine.GetGUIObjectByName("devCommandsRevealMap").checked = true;
-		messageBox(400, 200, message, translate("VICTORIOUS!"), 0, btCaptions, btCode);
 	}
+
+	messageBox(400, 200, message, title, 0, btCaptions, btCode);
 }
 
 function changeGameSpeed(speed)
 {
-	// For non-networked games only
 	if (!g_IsNetworked)
 		Engine.SetSimRate(speed);
 }
@@ -557,13 +555,14 @@ function onSimulationUpdate()
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
+
 	if (!g_IsObserver)
 		updateResearchDisplay();
 
 	if (!g_IsObserver && !g_GameEnded)
 	{
 		// Update music state on basis of battle state.
-		var battleState = Engine.GuiInterfaceCall("GetBattleState", Engine.GetPlayerID());
+		let battleState = Engine.GuiInterfaceCall("GetBattleState", Engine.GetPlayerID());
 		if (battleState)
 			global.music.setState(global.music.states[battleState]);
 	}
@@ -574,9 +573,13 @@ function onReplayFinished()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	var btCaptions = [translateWithContext("replayFinished", "No"), translateWithContext("replayFinished", "Yes")];
-	var btCode = [resumeGame, leaveGame];
-	messageBox(400, 200, translateWithContext("replayFinished", "The replay has finished. Do you want to quit?"), translateWithContext("replayFinished","Confirmation"), 0, btCaptions, btCode);
+
+	messageBox(400, 200,
+		translateWithContext("replayFinished", "The replay has finished. Do you want to quit?"),
+		translateWithContext("replayFinished", "Confirmation"),
+		0,
+		[translateWithContext("replayFinished", "No"), translateWithContext("replayFinished", "Yes")],
+		[resumeGame, leaveGame]);
 }
 
 /**
@@ -593,49 +596,48 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 		direction = 0;
 
 	// get the bar and update it
-	var statusBar = Engine.GetGUIObjectByName(nameOfBar);
+	let statusBar = Engine.GetGUIObjectByName(nameOfBar);
 	if (!statusBar) 
 		return;
 		
-	var healthSize = statusBar.size;
-	var value = 100*Math.max(0, Math.min(1, points / maxPoints));
+	let healthSize = statusBar.size;
+	let value = 100*Math.max(0, Math.min(1, points / maxPoints));
 	
 	// inverse bar
 	if(direction == 2 || direction == 3) 
 		value = 100 - value;
 
-	if(direction == 0)
+	if (direction == 0)
 		healthSize.rright = value;
-	else if(direction == 1)
+	else if (direction == 1)
 		healthSize.rbottom = value;
-	else if(direction == 2)
+	else if (direction == 2)
 		healthSize.rleft = value;
-	else if(direction == 3)
+	else if (direction == 3)
 		healthSize.rtop = value;
 	
-	// update bar
 	statusBar.size = healthSize;
 }
 
 
 function updateHero()
 {
-	var playerState = GetSimState().players[Engine.GetPlayerID()];
-	var unitHeroPanel = Engine.GetGUIObjectByName("unitHeroPanel");
-	var heroButton = Engine.GetGUIObjectByName("unitHeroButton");
+	let playerState = GetSimState().players[Engine.GetPlayerID()];
+	let unitHeroPanel = Engine.GetGUIObjectByName("unitHeroPanel");
+	let heroButton = Engine.GetGUIObjectByName("unitHeroButton");
 
 	if (!playerState || playerState.heroes.length <= 0)
 	{
-		g_previousHeroHitPoints = undefined;
+		g_PreviousHeroHitPoints = undefined;
 		unitHeroPanel.hidden = true;
 		return;
 	}
 
-	var heroImage = Engine.GetGUIObjectByName("unitHeroImage");
-	var heroState = GetExtendedEntityState(playerState.heroes[0]);
-	var template = GetTemplateData(heroState.template);
+	let heroImage = Engine.GetGUIObjectByName("unitHeroImage");
+	let heroState = GetExtendedEntityState(playerState.heroes[0]);
+	let template = GetTemplateData(heroState.template);
 	heroImage.sprite = "stretched:session/portraits/" + template.icon;
-	var hero = playerState.heroes[0];
+	let hero = playerState.heroes[0];
 
 	heroButton.onpress = function()
 	{
@@ -647,8 +649,8 @@ function updateHero()
 	unitHeroPanel.hidden = false;
 
 	// Setup tooltip
-	var tooltip = "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]";
-	var healthLabel = "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]";
+	let tooltip = "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]";
+	let healthLabel = "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]";
 	tooltip += "\n" + sprintf(translate("%(label)s %(current)s / %(max)s"), { label: healthLabel, current: heroState.hitpoints, max: heroState.maxHitpoints });
 	if (heroState.attack)
 		tooltip += "\n" + getAttackTooltip(heroState);
@@ -663,29 +665,26 @@ function updateHero()
 	updateGUIStatusBar("heroHealthBar", heroState.hitpoints, heroState.maxHitpoints);
 	
 	// define the hit points if not defined
-	if (!g_previousHeroHitPoints)
-		g_previousHeroHitPoints = heroState.hitpoints;
+	if (!g_PreviousHeroHitPoints)
+		g_PreviousHeroHitPoints = heroState.hitpoints;
 	
 	// if the health of the hero changed since the last update, trigger the animation
-	if (heroState.hitpoints < g_previousHeroHitPoints)
+	if (heroState.hitpoints < g_PreviousHeroHitPoints)
 		startColorFade("heroHitOverlay", 100, 0, colorFade_attackUnit, true, smoothColorFadeRestart_attackUnit);
 
-	g_previousHeroHitPoints = heroState.hitpoints;
+	g_PreviousHeroHitPoints = heroState.hitpoints;
 }
 
 
 function updateGroups()
 {
-	var guiName = "Group";
+	let guiName = "Group";
 	g_Groups.update();
-	for (var i = 0; i < 10; i++)
+	for (let i = 0; i < 10; i++)
 	{
-		var button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		var label = Engine.GetGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
-		if (g_Groups.groups[i].getTotalCount() == 0)
-			button.hidden = true;
-		else
-			button.hidden = false;
+		let button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		let label = Engine.GetGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
+		button.hidden = g_Groups.groups[i].getTotalCount() == 0;
 		button.onpress = (function(i) { return function() { performGroup((Engine.HotkeyIsPressed("selection.add") ? "add" : "select"), i); } })(i);
 		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); } })(i);
 		button.onpressright = (function(i) { return function() { performGroup("breakUp", i); } })(i);
@@ -728,7 +727,7 @@ function updateDebug()
 
 function updatePlayerDisplay()
 {
-	var playerState = GetSimState().players[Engine.GetPlayerID()];
+	let playerState = GetSimState().players[Engine.GetPlayerID()];
 	if (!playerState)
 		return;
 
@@ -745,52 +744,52 @@ function updatePlayerDisplay()
 
 function selectAndMoveTo(ent)
 {
-	var entState = GetEntityState(ent);
+	let entState = GetEntityState(ent);
 	if (!entState || !entState.position)
 		return;
 
 	g_Selection.reset();
 	g_Selection.addList([ent]);
 
-	var position = entState.position;
+	let position = entState.position;
 	Engine.CameraMoveTo(position.x, position.z);
 }
 
 function updateResearchDisplay()
 {
-	var researchStarted = Engine.GuiInterfaceCall("GetStartedResearch", Engine.GetPlayerID());
+	let researchStarted = Engine.GuiInterfaceCall("GetStartedResearch", Engine.GetPlayerID());
 	if (!researchStarted)
 		return;
 
 	// Set up initial positioning.
-	var buttonSideLength = Engine.GetGUIObjectByName("researchStartedButton[0]").size.right;
-	for (var i = 0; i < 10; ++i)
+	let buttonSideLength = Engine.GetGUIObjectByName("researchStartedButton[0]").size.right;
+	for (let i = 0; i < 10; ++i)
 	{
-		var button = Engine.GetGUIObjectByName("researchStartedButton[" + i + "]");
-		var size = button.size;
+		let button = Engine.GetGUIObjectByName("researchStartedButton[" + i + "]");
+		let size = button.size;
 		size.top = g_ResearchListTop + (4 + buttonSideLength) * i;
 		size.bottom = size.top + buttonSideLength;
 		button.size = size;
 	}
 
-	var numButtons = 0;
-	for (var tech in researchStarted)
+	let numButtons = 0;
+	for (let tech in researchStarted)
 	{
 		// Show at most 10 in-progress techs.
 		if (numButtons >= 10)
 			break;
 
-		var template = GetTechnologyData(tech);
-		var button = Engine.GetGUIObjectByName("researchStartedButton[" + numButtons + "]");
+		let template = GetTechnologyData(tech);
+		let button = Engine.GetGUIObjectByName("researchStartedButton[" + numButtons + "]");
 		button.hidden = false;
 		button.tooltip = getEntityNames(template);
 		button.onpress = (function(e) { return function() { selectAndMoveTo(e); } })(researchStarted[tech].researcher);
 
-		var icon = "stretched:session/portraits/" + template.icon;
+		let icon = "stretched:session/portraits/" + template.icon;
 		Engine.GetGUIObjectByName("researchStartedIcon[" + numButtons + "]").sprite = icon;
 
 		// Scale the progress indicator.
-		var size = Engine.GetGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size;
+		let size = Engine.GetGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size;
 
 		// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
 		size.top = size.left + Math.round(researchStarted[tech].progress * (size.right - size.left));
@@ -800,25 +799,24 @@ function updateResearchDisplay()
 	}
 
 	// Hide unused buttons.
-	for (var i = numButtons; i < 10; ++i)
+	for (let i = numButtons; i < 10; ++i)
 		Engine.GetGUIObjectByName("researchStartedButton[" + i + "]").hidden = true;
 }
 
 // Toggles the display of status bars for all of the player's entities.
 function recalculateStatusBarDisplay()
 {
+	let entities;
 	if (g_ShowAllStatusBars)
-		var entities = Engine.PickFriendlyEntitiesOnScreen(Engine.GetPlayerID());
+		entities = Engine.PickFriendlyEntitiesOnScreen(Engine.GetPlayerID());
 	else
 	{
-		var selected = g_Selection.toList();
+		let selected = g_Selection.toList();
 		for each (var ent in g_Selection.highlighted)
 			selected.push(ent);
 
 		// Remove selected entities from the 'all entities' array, to avoid disabling their status bars.
-		var entities = Engine.GuiInterfaceCall("GetPlayerEntities").filter(
-				function(idx) { return (selected.indexOf(idx) == -1); }
-		);
+		entities = Engine.GuiInterfaceCall("GetPlayerEntities").filter(idx => selected.indexOf(idx) == -1);
 	}
 
 	Engine.GuiInterfaceCall("SetStatusBars", { "entities": entities, "enabled": g_ShowAllStatusBars });
@@ -827,9 +825,9 @@ function recalculateStatusBarDisplay()
 // Update the additional list of entities to be highlighted.
 function updateAdditionalHighlight()
 {
-	var entsAdd = [];    // list of entities units to be highlighted
-	var entsRemove = [];
-	var highlighted = g_Selection.toList();
+	let entsAdd = []; // list of entities units to be highlighted
+	let entsRemove = [];
+	let highlighted = g_Selection.toList();
 	for each (var ent in g_Selection.highlighted)
 		highlighted.push(ent);
 
@@ -838,9 +836,10 @@ function updateAdditionalHighlight()
 		// flag the guarding entities to add in this additional highlight
 		for each (var sel in g_Selection.selected)
 		{
-			var state = GetEntityState(sel);
+			let state = GetEntityState(sel);
 			if (!state.guard || !state.guard.entities.length)
 				continue;
+
 			for each (var ent in state.guard.entities)
 				if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1)
 					entsAdd.push(ent);
@@ -852,10 +851,10 @@ function updateAdditionalHighlight()
 		// flag the guarded entities to add in this additional highlight
 		for each (var sel in g_Selection.selected)
 		{
-			var state = GetEntityState(sel);
+			let state = GetEntityState(sel);
 			if (!state.unitAI || !state.unitAI.isGuarding)
 				continue;
-			var ent = state.unitAI.isGuarding;
+			let ent = state.unitAI.isGuarding;
 			if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1)
 				entsAdd.push(ent);
 		}
@@ -866,19 +865,16 @@ function updateAdditionalHighlight()
 	    if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1 && entsRemove.indexOf(ent) == -1)
 			entsRemove.push(ent);
 
-	_setHighlight(entsAdd   , HIGHLIGHTED_ALPHA, true );
-	_setHighlight(entsRemove, 0                , false);
+	_setHighlight(entsAdd, g_HighlightedAlpha, true);
+	_setHighlight(entsRemove, 0, false);
 	g_AdditionalHighlight = entsAdd;
 }
 
-// Temporarily adding this here
-const AMBIENT_TEMPERATE = "temperate";
-var currentAmbient;
 function playRandomAmbient(type)
 {
 	switch (type)
 	{
-		case AMBIENT_TEMPERATE:
+		case g_AmbientTemperate:
 			const AMBIENT = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
 			Engine.PlayAmbientSound(AMBIENT, true);
 			break;
@@ -892,21 +888,23 @@ function playRandomAmbient(type)
 // Temporarily adding this here
 function stopAmbient()
 {
-	if (currentAmbient)
-	{
-		currentAmbient.free();
-		currentAmbient = null;
-	}
+	if (!currentAmbient)
+		return;
+
+	currentAmbient.free();
+	currentAmbient = null;
 }
 
 function getBuildString()
 {
-	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), { buildDate: Engine.GetBuildTimestamp(0), revision: Engine.GetBuildTimestamp(2) });
+	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), { "buildDate": Engine.GetBuildTimestamp(0), revision: Engine.GetBuildTimestamp(2) });
 }
 
 function showTimeWarpMessageBox()
 {
-	messageBox(500, 250, translate("Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."), translate("Time warp mode"), 2);
+	messageBox(500, 250,
+			translate("Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."),
+			translate("Time warp mode"), 2);
 }
 
 // Send a report on the game status to the lobby
@@ -914,8 +912,8 @@ function reportGame(extendedSimState)
 {
 	if (!Engine.HasXmppClient() || !Engine.IsRankedGame())
 		return;
-	// units
-	var unitsClasses = [
+
+	let unitsClasses = [
 		"total",
 		"Infantry",
 		"Worker",
@@ -926,13 +924,14 @@ function reportGame(extendedSimState)
 		"Ship",
 		"Trader"
 	];
-	var unitsCountersTypes = [
+
+	let unitsCountersTypes = [
 		"unitsTrained",
 		"unitsLost",
 		"enemyUnitsKilled"
 	];
-	// buildings
-	var buildingsClasses = [
+
+	let buildingsClasses = [
 		"total",
 		"CivCentre",
 		"House",
@@ -942,26 +941,28 @@ function reportGame(extendedSimState)
 		"Fortress",
 		"Wonder"
 	];
-	var buildingsCountersTypes = [
+
+	let buildingsCountersTypes = [
 		"buildingsConstructed",
 		"buildingsLost",
 		"enemyBuildingsDestroyed"
 	];
-	// resources
-	var resourcesTypes = [
+
+	let resourcesTypes = [
 		"wood",
 		"food",
 		"stone",
 		"metal"
 	];
-	var resourcesCounterTypes = [
+
+	let resourcesCounterTypes = [
 		"resourcesGathered",
 		"resourcesUsed",
 		"resourcesSold",
 		"resourcesBought"
 	];
 
-	var playerStatistics = { };
+	let playerStatistics = {};
 
 	// Unit Stats
 	for each (var unitCounterType in unitsCountersTypes)
@@ -1008,11 +1009,12 @@ function reportGame(extendedSimState)
 	playerStatistics.lootCollected = "";
 	playerStatistics.feminisation = "";
 	playerStatistics.percentMapExplored = "";
-	var mapName = Engine.GetMapSettings().Name;
-	var playerStates = "";
-	var playerCivs = "";
-	var teams = "";
-	var teamsLocked = true;
+
+	let mapName = Engine.GetMapSettings().Name;
+	let playerStates = "";
+	let playerCivs = "";
+	let teams = "";
+	let teamsLocked = true;
 
 	// Serialize the statistics for each player into a comma-separated list.
 	// Ignore gaia
@@ -1053,7 +1055,7 @@ function reportGame(extendedSimState)
 	}
 
 	// Send the report with serialized data
-	var reportObject = { };
+	let reportObject = {};
 	reportObject.timeElapsed = extendedSimState.timeElapsed;
 	reportObject.playerStates = playerStates;
 	reportObject.playerID = Engine.GetPlayerID();
