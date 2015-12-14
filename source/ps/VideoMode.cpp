@@ -71,7 +71,6 @@ void CVideoMode::ReadConfig()
 
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 {
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	Uint32 flags = 0;
 	if (fullscreen)
 		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
@@ -154,47 +153,6 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	else
 		SDL_SetWindowGrab(m_Window, SDL_FALSE);
 
-#else // SDL 1.2:
-
-	Uint32 flags = SDL_OPENGL;
-	if (fullscreen)
-		flags |= SDL_FULLSCREEN;
-	else
-		flags |= SDL_RESIZABLE;
-
-	SDL_Surface* screen = SDL_SetVideoMode(w, h, bpp, flags);
-
-	if (!screen)
-	{
-		// If fullscreen fails, try windowed mode
-		if (fullscreen)
-		{
-			LOGWARNING("Failed to set the video mode to fullscreen for the chosen resolution "
-				"%dx%d:%d (\"%hs\"), falling back to windowed mode",
-				w, h, bpp, SDL_GetError());
-			// Using default size for the window for now, as the attempted setting
-			// could be as large, or larger than the screen size.
-			return SetVideoMode(DEFAULT_WINDOW_W, DEFAULT_WINDOW_H, bpp, false);		
-		}
-		else
-		{
-			LOGERROR("SetVideoMode failed: %dx%d:%d %d (\"%s\")",
-				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
-			return false;
-		}
-	}
-
-	// Grab the current video settings
-	m_CurrentW = screen->w;
-	m_CurrentH = screen->h;
-	m_CurrentBPP = screen->format->BitsPerPixel;
-
-	if (fullscreen)
-		SDL_WM_GrabInput(SDL_GRAB_ON);
-	else
-		SDL_WM_GrabInput(SDL_GRAB_OFF);
-#endif
-
 	m_IsFullscreen = fullscreen;
 
 	g_xres = m_CurrentW;
@@ -249,11 +207,8 @@ bool CVideoMode::InitSDL()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-	SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, g_VSync ? 1 : 0);
-#endif
 
-#if CONFIG2_GLES && SDL_VERSION_ATLEAST(2, 0, 0)
+#if CONFIG2_GLES
 	// Require GLES 2.0
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
@@ -270,9 +225,7 @@ bool CVideoMode::InitSDL()
 			return false;
 	}
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	SDL_GL_SetSwapInterval(g_VSync ? 1 : 0);
-#endif
 
 	// Work around a bug in the proprietary Linux ATI driver (at least versions 8.16.20 and 8.14.13).
 	// The driver appears to register its own atexit hook on context creation.
@@ -287,26 +240,11 @@ bool CVideoMode::InitSDL()
 	ogl_Init(); // required after each mode change
 	// (TODO: does that mean we need to call this when toggling fullscreen later?)
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 #if !OS_ANDROID
 	u16 ramp[256];
 	SDL_CalculateGammaRamp(g_Gamma, ramp);
 	if (SDL_SetWindowGammaRamp(m_Window, ramp, ramp, ramp) < 0)
 		LOGWARNING("SDL_SetWindowGammaRamp failed");
-#endif
-#else
-# if OS_MACOSX
-	// Workaround for crash on Mavericks, see http://trac.wildfiregames.com/ticket/2272
-	int major, minor, bugfix;
-	GetSystemVersion(major, minor, bugfix);
-	if (minor < 9)
-	{
-# endif
-	if (SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
-		LOGWARNING("SDL_SetGamma failed");
-# if OS_MACOSX
-	}
-# endif
 #endif
 
 	m_IsInitialised = true;
@@ -339,13 +277,11 @@ void CVideoMode::Shutdown()
 
 	m_IsFullscreen = false;
 	m_IsInitialised = false;
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	if (m_Window)
 	{
 		SDL_DestroyWindow(m_Window);
 		m_Window = NULL;
 	}
-#endif
 }
 
 void CVideoMode::EnableS3TC()

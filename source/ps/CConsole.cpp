@@ -93,13 +93,11 @@ void CConsole::ToggleVisible()
 	m_bToggle = true;
 	m_bVisible = !m_bVisible;
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	// TODO: this should be based on input focus, not visibility
 	if (m_bVisible)
 		SDL_StartTextInput();
 	else
 		SDL_StopTextInput();
-#endif
 }
 
 void CConsole::SetVisible(bool visible)
@@ -611,17 +609,8 @@ void CConsole::SaveHistory()
 	g_VFS->CreateFile(m_sHistoryFile, buffer.Data(), buffer.Size());
 }
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 static bool isUnprintableChar(SDL_Keysym key)
-#else
-static bool isUnprintableChar(SDL_keysym key)
-#endif
 {
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-	// U+0000 to U+001F are control characters
-	if (key.unicode < 0x20)
-	{
-#endif
 		switch (key.sym)
 		{
 			// We want to allow some, which are handled specially
@@ -637,10 +626,6 @@ static bool isUnprintableChar(SDL_keysym key)
 		default:
 			return true;
 		}
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-	}
-	return false;
-#endif
 }
 
 InReaction conInputHandler(const SDL_Event_* ev)
@@ -676,7 +661,6 @@ InReaction conInputHandler(const SDL_Event_* ev)
 	if (!g_Console->IsActive())
 		return IN_PASS;
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	// In SDL2, we no longer get Unicode wchars via SDL_Keysym
 	// we use text input events instead and they provide UTF-8 chars
 	if (ev->ev.type == SDL_TEXTINPUT && !HotkeyIsPressed("console.toggle"))
@@ -688,7 +672,6 @@ InReaction conInputHandler(const SDL_Event_* ev)
 		return IN_HANDLED;
 	}
 	// TODO: text editing events for IME support
-#endif
 
 	if (ev->ev.type != SDL_KEYDOWN)
 		return IN_PASS;
@@ -700,11 +683,7 @@ InReaction conInputHandler(const SDL_Event_* ev)
 	if (!isUnprintableChar(ev->ev.key.keysym) &&
 		!HotkeyIsPressed("console.toggle"))
 	{
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		g_Console->InsertChar(sym, 0);
-#else
-		g_Console->InsertChar(sym, (wchar_t)ev->ev.key.keysym.unicode);
-#endif
 		return IN_HANDLED;
 	}
 

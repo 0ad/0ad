@@ -261,7 +261,6 @@ InReaction CTouchInput::HandleEvent(const SDL_Event_* ev)
 	}
 #endif
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	switch(ev->ev.type)
 	{
 	case SDL_FINGERDOWN:
@@ -285,7 +284,6 @@ InReaction CTouchInput::HandleEvent(const SDL_Event_* ev)
 		return IN_HANDLED;
 	}
 	}
-#endif
 
 	return IN_PASS;
 }

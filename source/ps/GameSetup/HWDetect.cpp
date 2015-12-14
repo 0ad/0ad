@@ -729,18 +729,10 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, JS::HandleValue set
 
 	SDL_SysWMinfo wminfo;
 	SDL_VERSION(&wminfo.version);
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	const int ret = SDL_GetWindowWMInfo(g_VideoMode.GetWindow(), &wminfo);
-#else
-	const int ret = SDL_GetWMInfo(&wminfo);
-#endif
 	if (ret && wminfo.subsystem == SDL_SYSWM_X11)
 	{
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		Display* dpy = wminfo.info.x11.display;
-#else
-		Display* dpy = wminfo.info.x11.gfxdisplay;
-#endif
 		int scrnum = DefaultScreen(dpy);
 
 		const char* glxexts = glXQueryExtensionsString(dpy, scrnum);

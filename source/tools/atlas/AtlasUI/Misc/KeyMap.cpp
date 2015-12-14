@@ -20,11 +20,7 @@
 #include "KeyMap.h"
 
 #include "SDL_version.h"
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-# include "SDL_keycode.h"
-#else // SDL 1.2
-# include "SDL_keysym.h"
-#endif
+#include "SDL_keycode.h"
 
 int GetSDLKeyFromWxKeyCode(int wxkey)
 {
@@ -37,7 +33,6 @@ int GetSDLKeyFromWxKeyCode(int wxkey)
 
 	switch (wxkey)
 	{
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	case WXK_NUMPAD0: return SDLK_KP_0;
 	case WXK_NUMPAD1: return SDLK_KP_1;
 	case WXK_NUMPAD2: return SDLK_KP_2;
@@ -48,18 +43,6 @@ int GetSDLKeyFromWxKeyCode(int wxkey)
 	case WXK_NUMPAD7: return SDLK_KP_7;
 	case WXK_NUMPAD8: return SDLK_KP_8;
 	case WXK_NUMPAD9: return SDLK_KP_9;
-#else // SDL 1.2
-	case WXK_NUMPAD0: return SDLK_KP0;
-	case WXK_NUMPAD1: return SDLK_KP1;
-	case WXK_NUMPAD2: return SDLK_KP2;
-	case WXK_NUMPAD3: return SDLK_KP3;
-	case WXK_NUMPAD4: return SDLK_KP4;
-	case WXK_NUMPAD5: return SDLK_KP5;
-	case WXK_NUMPAD6: return SDLK_KP6;
-	case WXK_NUMPAD7: return SDLK_KP7;
-	case WXK_NUMPAD8: return SDLK_KP8;
-	case WXK_NUMPAD9: return SDLK_KP9;
-#endif
 	case WXK_NUMPAD_DECIMAL: return SDLK_KP_PERIOD;
 	case WXK_NUMPAD_DIVIDE: return SDLK_KP_DIVIDE;
 	case WXK_NUMPAD_MULTIPLY: return SDLK_KP_MULTIPLY;
@@ -94,13 +77,8 @@ int GetSDLKeyFromWxKeyCode(int wxkey)
 	case WXK_F14: return SDLK_F14;
 	case WXK_F15: return SDLK_F15;
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	case WXK_NUMLOCK: return SDLK_NUMLOCKCLEAR;
 	case WXK_SCROLL: return SDLK_SCROLLLOCK;
-#else // SDL 1.2
-	case WXK_NUMLOCK: return SDLK_NUMLOCK;
-	case WXK_SCROLL: return SDLK_SCROLLOCK;
-#endif
 //	case WXK_: return SDLK_CAPSLOCK;
 	case WXK_SHIFT: return SDLK_RSHIFT;
 //	case WXK_: return SDLK_LSHIFT;
@@ -116,11 +94,7 @@ int GetSDLKeyFromWxKeyCode(int wxkey)
 //	case WXK_: return SDLK_COMPOSE;
 
 	case WXK_HELP: return SDLK_HELP;
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	case WXK_PRINT: return SDLK_PRINTSCREEN;
-#else // SDL 1.2
-	case WXK_PRINT: return SDLK_PRINT;
-#endif
 //	case WXK_: return SDLK_SYSREQ;
 //	case WXK_: return SDLK_BREAK;
 	case WXK_MENU: return SDLK_MENU;

@@ -30,11 +30,7 @@
 
 static bool unified[UNIFIED_LAST - UNIFIED_SHIFT];
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 #define SDLKEY SDL_Keycode
-#else
-#define SDLKEY SDLKey
-#endif
 
 struct SKey
 {
@@ -167,17 +163,14 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		// Mousewheel events are no longer buttons, but we want to maintain the order
 		// expected by g_mouse_buttons for compatibility
 		if (ev->ev.button.button >= SDL_BUTTON_X1)
 			keycode = MOUSE_BASE + (int)ev->ev.button.button + 2;
 		else
-#endif
 		keycode = MOUSE_BASE + (int)ev->ev.button.button;
 		break;
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	case SDL_MOUSEWHEEL:
 		if (ev->ev.wheel.y > 0)
 		{
@@ -200,7 +193,6 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 			break;
 		}
 		return IN_PASS;
-#endif
 
 	case SDL_HOTKEYDOWN:
 		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = true;
@@ -213,13 +205,6 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	default:
 		return IN_PASS;
 	}
-
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-	// Rather ugly hack to make the '"' key work better on a MacBook Pro on Windows so it doesn't
-	// always close the console. (Maybe this would be better handled in wsdl or something?)
-	if (keycode == SDLK_BACKQUOTE && (ev->ev.key.keysym.unicode == '\'' || ev->ev.key.keysym.unicode == '"'))
-		keycode = ev->ev.key.keysym.unicode;
-#endif
 
 	// Somewhat hackish:
 	// Create phantom 'unified-modifier' events when left- or right- modifier keys are pressed
@@ -245,11 +230,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		unified[2] = (phantom.ev.type == SDL_KEYDOWN);
 		HotkeyInputHandler(&phantom);
 	}
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	else if ((keycode == SDLK_LGUI) || (keycode == SDLK_RGUI))
-#else // SDL 1.2
-	else if ((keycode == SDLK_LSUPER) || (keycode == SDLK_RSUPER) || (keycode == SDLK_LMETA) || (keycode == SDLK_RMETA))
-#endif
 	{
 		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_SUPER;
 		unified[3] = (phantom.ev.type == SDL_KEYDOWN);
@@ -278,11 +259,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	// matching the conditions (i.e. the event with the highest number of auxiliary
 	// keys, providing they're all down)
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	bool typeKeyDown = ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN ) || (ev->ev.type == SDL_MOUSEWHEEL);
-#else
-	bool typeKeyDown = ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN );
-#endif
 
 	// -- KEYDOWN SECTION -- 
 

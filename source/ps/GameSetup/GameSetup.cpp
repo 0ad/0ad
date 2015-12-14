@@ -545,10 +545,6 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, ScriptInterface* srcSc
 
 static void InitInput()
 {
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-#endif
-
 	g_Joystick.Initialise();
 
 	// register input handlers
@@ -663,11 +659,7 @@ static void InitSDL()
 	}
 	atexit(SDL_Quit);
 
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-	SDL_EnableUNICODE(1);
-#endif
-
-#if OS_MACOSX && SDL_VERSION_ATLEAST(2, 0, 0)
+#if OS_MACOSX
 	// Some Mac mice only have one button, so they can't right-click
 	// but SDL2 can emulate that with Ctrl+Click
 	bool macMouse = false;
@@ -993,10 +985,6 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 
 		if (!g_VideoMode.InitSDL())
 			throw PSERROR_System_VmodeFailed(); // abort startup
-
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
-#endif
 	}
 
 	RunHardwareDetection();

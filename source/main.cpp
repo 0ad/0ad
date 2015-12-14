@@ -96,7 +96,6 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 {
 	switch(ev->ev.type)
 	{
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	case SDL_WINDOWEVENT:
 		switch(ev->ev.window.event)
 		{
@@ -114,24 +113,6 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 			g_VideoMode.UpdatePosition(ev->ev.window.data1, ev->ev.window.data2);
 		}
 		break;
-#else
-	case SDL_ACTIVEEVENT:
-		if (ev->ev.active.state & SDL_APPMOUSEFOCUS)
-		{
-			// Tell renderer not to render cursor if mouse focus is lost
-			//	this restores system cursor, until/if focus is regained
-			if (!ev->ev.active.gain)
-				RenderCursor(false);
-			else
-				RenderCursor(true);
-		}
-		break;
-
-	case SDL_VIDEORESIZE:
-		g_ResizedW = ev->ev.resize.w;
-		g_ResizedH = ev->ev.resize.h;
-		break;
-#endif
 
 	case SDL_QUIT:
 		kill_mainloop();
@@ -374,11 +355,7 @@ static void Frame()
 		Render();
 
 		PROFILE3("swap buffers");
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		SDL_GL_SwapWindow(g_VideoMode.GetWindow());
-#else
-		SDL_GL_SwapBuffers();
-#endif
 	}
 	ogl_WarnIfError();
 

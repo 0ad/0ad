@@ -28,11 +28,7 @@ extern CStr8 FindKeyName(int keycode);
 extern int FindKeyCode(const CStr8& keyname);
 
 // Pick a code which is greater than any keycodes used by SDL itself
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 # define CUSTOM_SDL_KEYCODE SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES)
-#else
-# define CUSTOM_SDL_KEYCODE SDLK_LAST
-#endif
 
 enum {
 	// Start sequential IDs in the right place
@@ -51,26 +47,11 @@ enum {
 	MOUSE_LEFT = MOUSE_BASE + SDL_BUTTON_LEFT,
 	MOUSE_MIDDLE = MOUSE_BASE + SDL_BUTTON_MIDDLE,
 	MOUSE_RIGHT = MOUSE_BASE + SDL_BUTTON_RIGHT,
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	// SDL2 doesn't count wheels as buttons, so just give them the previous sequential IDs
 	MOUSE_WHEELUP = MOUSE_BASE + 4,
 	MOUSE_WHEELDOWN = MOUSE_BASE + 5,
 	MOUSE_X1 = MOUSE_BASE + SDL_BUTTON_X1 + 2,
 	MOUSE_X2 = MOUSE_BASE + SDL_BUTTON_X2 + 2,
-#elif SDL_VERSION_ATLEAST(1, 2, 13)
-	// SDL 1.2 defines wheel buttons before X1/X2 buttons
-	MOUSE_WHEELUP = MOUSE_BASE + SDL_BUTTON_WHEELUP,
-	MOUSE_WHEELDOWN = MOUSE_BASE + SDL_BUTTON_WHEELDOWN,
-	MOUSE_X1 = MOUSE_BASE + SDL_BUTTON_X1,
-	MOUSE_X2 = MOUSE_BASE + SDL_BUTTON_X2,
-#else
-	// SDL <1.2.13 doesn't support X1/X2 buttons, so define them manually
-	MOUSE_WHEELUP = MOUSE_BASE + SDL_BUTTON_WHEELUP,
-	MOUSE_WHEELDOWN = MOUSE_BASE + SDL_BUTTON_WHEELDOWN,
-	MOUSE_X1 = MOUSE_BASE + SDL_BUTTON_WHEELDOWN + 1,
-	MOUSE_X2 = MOUSE_BASE + SDL_BUTTON_WHEELDOWN + 2,
-#endif
-
 }; 
 
 #endif	// #ifndef INCLUDED_KEYNAME

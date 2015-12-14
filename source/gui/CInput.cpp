@@ -101,7 +101,6 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 			return IN_HANDLED;
 		return(ManuallyHandleHotkeyEvent(ev));
 	}
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	// SDL2 has a new method of text input that better supports Unicode and CJK
 	// see https://wiki.libsdl.org/Tutorials/TextInput
 	else if (ev->ev.type == SDL_TEXTINPUT)
@@ -182,7 +181,6 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 		return IN_HANDLED;
 	}
-#endif
 	else if (ev->ev.type == SDL_KEYDOWN)
 	{
 		if (m_ComposingText)
@@ -193,15 +191,10 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 		bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
 
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-		int szChar = ev->ev.key.keysym.sym;
-		wchar_t cooked = (wchar_t)ev->ev.key.keysym.unicode;
-#else // SDL2
 		int szChar = 0;
 		if (ev->ev.type == SDL_KEYDOWN)
 			szChar = ev->ev.key.keysym.sym;
 		wchar_t cooked = 0;
-#endif
 
 		switch (szChar)
 		{
@@ -492,15 +485,10 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		}
 		default: // Insert a character
 		{
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-			if (cooked == 0)
-				return IN_PASS; // Important, because we didn't use any key
-#else // SDL2
 			// In SDL2, we no longer get Unicode wchars via SDL_Keysym
 			// we use text input events instead and they provide UTF-8 chars
 			if (ev->ev.type == SDL_KEYDOWN && cooked == 0)
 				return IN_HANDLED;
-#endif
 
 			// check max length
 			int max_length;
@@ -1041,7 +1029,6 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		m_PrevTime = 0.0;
 		m_CursorVisState = false;
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		// Tell the IME where to draw the candidate list
 		SDL_Rect rect;
 		rect.h = m_CachedActualSize.GetSize().cy;
@@ -1050,11 +1037,9 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		rect.y = m_CachedActualSize.TopLeft().y;
 		SDL_SetTextInputRect(&rect);
 		SDL_StartTextInput();
-#endif
 		break;
 
 	case GUIM_LOST_FOCUS:
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		if (m_ComposingText)
 		{
 			// Simulate a final text editing event to clear the composition
@@ -1066,7 +1051,6 @@ void CInput::HandleMessage(SGUIMessage& Message)
 			ManuallyHandleEvent(&evt);
 		}
 		SDL_StopTextInput();
-#endif
 
 		m_iBufferPos = -1;
 		m_iBufferPos_Tail = -1;

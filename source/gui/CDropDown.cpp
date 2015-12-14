@@ -321,11 +321,7 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 			// TODO: not too nice and doesn't deal with dashes.
 			if (m_Open && ((szChar >= SDLK_a && szChar <= SDLK_z) || szChar == SDLK_SPACE
 						   || (szChar >= SDLK_0 && szChar <= SDLK_9)
-	#if !SDL_VERSION_ATLEAST(2,0,0)
-						   || (szChar >= SDLK_KP0 && szChar <= SDLK_KP9)))
-	#else // SDL2
 						   || (szChar >= SDLK_KP_0 && szChar <= SDLK_KP_9)))
-	#endif
 			{
 				// arbitrary 1 second limit to add to string or start fresh.
 				// maximal amount of characters is 100, which imo is far more than enough.
