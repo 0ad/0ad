@@ -39,6 +39,11 @@ const g_CivData = loadCivData();
  */
 const g_SenderFont = "sans-bold-13";
 
+/**
+ * Highlight the "random" dropdownlist item.
+ */
+const g_ColorRandom = "orange";
+
 // Is this is a networked game, or offline
 var g_IsNetworked;
 
@@ -718,7 +723,7 @@ function initCivNameList()
 	let civListNames = civList.map(civ => civ.name);
 	let civListCodes = civList.map(civ => civ.code);
 
-	civListNames.unshift('[color="orange"]' + translateWithContext("civilization", "Random") + '[/color]');
+	civListNames.unshift('[color="' + g_ColorRandom + '"]' + translateWithContext("civilization", "Random") + '[/color]');
 	civListCodes.unshift("random");
 
 	for (let i = 0; i < g_MaxPlayers; ++i)
@@ -767,7 +772,7 @@ function initMapNameList()
 	// Scenario/skirmish maps have a fixed playercount
 	if (g_GameAttributes.mapType == "random")
 	{
-		mapListNames.unshift("[color=\"orange\"]" + translateWithContext("map", "Random") + "[/color]");
+		mapListNames.unshift('[color="' + g_ColorRandom + '"]' + translateWithContext("map", "Random") + "[/color]");
 		mapListFiles.unshift("random");
 	}
 
@@ -779,27 +784,14 @@ function initMapNameList()
 
 function loadMapData(name)
 {
-	if (!name)
+	if (!name || !g_MapPath[g_GameAttributes.mapType])
 		return undefined;
 
+	if (name == "random")
+		return { "settings": { "Name": "", "Description": "" } };
+
 	if (!g_MapData[name])
-	{
-		switch (g_GameAttributes.mapType)
-		{
-		case "scenario":
-		case "skirmish":
-			g_MapData[name] = Engine.LoadMapSettings(name);
-			break;
-
-		case "random":
-			g_MapData[name] = name == "random" ? { "settings": { "Name": "", "Description": "" } } : Engine.ReadJSONFile(name+".json");
-			break;
-
-		default:
-			error("loadMapData: Unexpected map type " + g_GameAttributes.mapType);
-			return undefined;
-		}
-	}
+		g_MapData[name] = g_GameAttributes.mapType == "random" ? Engine.ReadJSONFile(name + ".json") : Engine.LoadMapSettings(name);
 
 	return g_MapData[name];
 }
@@ -899,7 +891,7 @@ function loadPersistMatchSettings()
 	onGameAttributesChange();
 }
 
-function saveGameAttributes()
+function savePersistMatchSettings()
 {
 	let attributes = Engine.ConfigDB_GetValue("user", "persistmatchsettings") == "true" ? g_GameAttributes : {};
 	Engine.WriteJSONFile(g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP, attributes);
@@ -932,7 +924,7 @@ function sanitizePlayerData(playerData)
 function cancelSetup()
 {
 	if (g_IsController)
-		saveGameAttributes();
+		savePersistMatchSettings();
 
 	Engine.DisconnectNetworkGame();
 
@@ -1160,7 +1152,7 @@ function launchGame()
 	if (!g_GameAttributes.map)
 		return;
 
-	saveGameAttributes();
+	savePersistMatchSettings();
 
 	// Select random map
 	if (g_GameAttributes.map == "random")
@@ -1266,7 +1258,7 @@ function onGameAttributesChange()
 
 		let mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
-		Engine.GetGUIObjectByName("mapSelectionText").caption = translate(getMapDisplayName(mapName));
+		Engine.GetGUIObjectByName("mapSelectionText").caption = mapName == "random" ? '[color="' + g_ColorRandom + '"]' + translateWithContext("map", "Random") + "[/color]" : translate(getMapDisplayName(mapName));
 
 		if (mapSettings.PopulationCap)
 		{
@@ -1455,7 +1447,7 @@ function onGameAttributesChange()
 		let civ = getSetting(pData, pDefs, "Civ");
 
 		pAssignmentText.caption = pAssignment.list[0] ? pAssignment.list[Math.max(0, pAssignment.selected)] : translate("Loading...");
-		pCivText.caption = civ == "random" ? "[color=\"orange\"]" + translateWithContext("civilization", "Random") : g_CivData[civ].Name;
+		pCivText.caption = civ == "random" ? '[color="' + g_ColorRandom + '"]' + translateWithContext("civilization", "Random") : g_CivData[civ].Name;
 		pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
 
 		pCiv.selected = civ ? pCiv.list_data.indexOf(civ) : 0;
