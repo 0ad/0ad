@@ -191,4 +191,11 @@ function clearChatMessages()
 {
 	g_ChatMessages.length = 0;
 	Engine.GetGUIObjectByName("chatText").caption = "";
+
+	try {
+		for (let timer of g_ChatTimers)
+			clearTimeout(timer);
+		g_ChatTimers.length = 0;
+	} catch (e) {
+	}
 }
