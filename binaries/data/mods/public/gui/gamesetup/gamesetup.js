@@ -1099,8 +1099,7 @@ function selectMap(name)
 
 	// Reset some map specific properties which are not necessarily redefined on each map
 	for (let prop of ["TriggerScripts", "CircularMap", "Garrison"])
-		if (g_GameAttributes.settings[prop] !== undefined)
-			g_GameAttributes.settings[prop] = undefined;
+		g_GameAttributes.settings[prop] = undefined;
 
 	let mapData = loadMapData(name);
 	let mapSettings = mapData && mapData.settings ? deepcopy(mapData.settings) : {};
@@ -1108,7 +1107,7 @@ function selectMap(name)
 	// Reset victory conditions
 	if (g_GameAttributes.mapType != "random")
 	{
-		let victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
+		let victoryIdx = g_VictoryConditions.Name.indexOf(mapSettings.GameType || "") != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
 		g_GameAttributes.settings.GameType = g_VictoryConditions.Name[victoryIdx];
 		g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[victoryIdx];
 	}
@@ -1246,11 +1245,12 @@ function launchGame()
 	}
 }
 
+/**
+ * Don't set any attributes here, just show the changes in the GUI.
+ */
 function onGameAttributesChange()
 {
 	g_IsInGuiUpdate = true;
-
-	// Don't set any attributes here, just show the changes in GUI
 
 	let mapName = g_GameAttributes.map || "";
 	let mapSettings = g_GameAttributes.settings;
@@ -1357,8 +1357,6 @@ function onGameAttributesChange()
 
 	setMapPreviewImage("mapPreview", getMapPreview(mapName));
 
-	// Handle map type specific logic
-
 	// Mapsize completely hidden for non-random maps
 	let isRandom = g_GameAttributes.mapType == "random";
 	Engine.GetGUIObjectByName("mapSizeDesc").hidden = !isRandom;
@@ -1424,7 +1422,6 @@ function onGameAttributesChange()
 
 	let description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
 
-	// Describe the number of players and the victory conditions
 	let playerString = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { "number": numPlayers });
 	let victory = g_VictoryConditions.Title[victoryIdx];
 	if (victoryIdx != g_VictoryConditions.Default)
@@ -1433,10 +1430,8 @@ function onGameAttributesChange()
 
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
-		// Show only needed player slots
 		Engine.GetGUIObjectByName("playerBox["+i+"]").hidden = (i >= numPlayers);
 
-		// Show player data or defaults as necessary
 		if (i >= numPlayers)
 			continue;
 
@@ -1449,11 +1444,9 @@ function onGameAttributesChange()
 		let pTeamText = Engine.GetGUIObjectByName("playerTeamText["+i+"]");
 		let pColor = Engine.GetGUIObjectByName("playerColor["+i+"]");
 
-		// Player data / defaults
 		let pData = mapSettings.PlayerData ? mapSettings.PlayerData[i] : {};
 		let pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[i] : {};
 
-		// Common to all game types
 		let color = getSetting(pData, pDefs, "Color");
 		pColor.sprite = "color:" + rgbToGuiColor(color) + " 100";
 		pName.caption = translate(getSetting(pData, pDefs, "Name"));
@@ -1461,39 +1454,16 @@ function onGameAttributesChange()
 		let team = getSetting(pData, pDefs, "Team");
 		let civ = getSetting(pData, pDefs, "Civ");
 
-		// Nobody but the controller can assign people
-		pAssignmentText.hidden = g_IsController;
-		pAssignment.hidden = !g_IsController;
-		if (!pAssignment.list[0])
-			pAssignmentText.caption = translate("Loading...");
-		else
-			pAssignmentText.caption = pAssignment.list[pAssignment.selected === -1 ? 0 : pAssignment.selected];
+		pAssignmentText.caption = pAssignment.list[0] ? pAssignment.list[Math.max(0, pAssignment.selected)] : translate("Loading...");
+		pCivText.caption = civ == "random" ? "[color=\"orange\"]" + translateWithContext("civilization", "Random") : g_CivData[civ].Name;
+		pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
 
-		// For clients or scenarios, hide some player dropdowns
-		// TODO: Allow clients to choose their own civ and team
-		if (!g_IsController || g_GameAttributes.mapType == "scenario")
-		{
-			pCivText.hidden = false;
-			pCiv.hidden = true;
-			pTeamText.hidden = false;
-			pTeam.hidden = true;
-			// Set text values
-			if (civ == "random")
-				pCivText.caption = "[color=\"orange\"]" + translateWithContext("civilization", "Random");
-			else
-				pCivText.caption = g_CivData[civ].Name;
-			pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
-		}
-		else
-		{
-			pCivText.hidden = true;
-			pCiv.hidden = false;
-			pTeamText.hidden = true;
-			pTeam.hidden = false;
-			// Set dropdown values
-			pCiv.selected = (civ ? pCiv.list_data.indexOf(civ) : 0);
-			pTeam.selected = (team !== undefined && team >= 0) ? team+1 : 0;
-		}
+		pCiv.selected = civ ? pCiv.list_data.indexOf(civ) : 0;
+		pTeam.selected = team !== undefined && team >= 0 ? team+1 : 0;
+
+		hideControl("playerAssignment["+i+"]", "playerAssignmentText["+i+"]", g_IsController);
+		hideControl("playerCiv["+i+"]", "playerCivText["+i+"]", notScenario);
+		hideControl("playerTeam["+i+"]", "playerTeamText["+i+"]", notScenario);
 
 		// Allow host to chose player colors on non-scenario maps
 		let pColorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
