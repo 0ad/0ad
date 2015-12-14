@@ -230,3 +230,9 @@ function autoCompleteNick(guiName, playerList)
 	input.caption = newText + text.substring(bufferPosition);
 	input.buffer_position = bufferPosition + (newText.length - textTillBufferPosition.length);
 }
+
+function clearChatMessages()
+{
+	g_ChatMessages.length = 0;
+	Engine.GetGUIObjectByName("chatText").caption = "";
+}

@@ -688,6 +688,9 @@ function handleSpecialCommand(text)
 	case "quit":
 		returnToMainMenu();
 		break;
+	case "clear":
+		clearChatMessages();
+		break;
 	case "say":
 	case "me":
 		return false;
