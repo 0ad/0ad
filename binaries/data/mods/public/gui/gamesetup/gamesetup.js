@@ -170,7 +170,7 @@ function initGUIObjects()
 
 function initMapTypes()
 {
-	var mapTypes = Engine.GetGUIObjectByName("mapTypeSelection");
+	let mapTypes = Engine.GetGUIObjectByName("mapTypeSelection");
 	mapTypes.list = g_MapTypes.Title;
 	mapTypes.list_data = g_MapTypes.Name;
 	if (g_IsController)
@@ -185,7 +185,7 @@ function initMapFilters()
 	addFilter("demo", translate("Demo Maps"), function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["demo"]); });
 	addFilter("all", translate("All Maps"), function(settings) { return true; });
 
-	var mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
+	let mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilters.list = g_MapFilters.map(mapFilter => mapFilter.name);
 	mapFilters.list_data = g_MapFilters.map(mapFilter => mapFilter.id);
 	if (g_IsController)
@@ -452,7 +452,7 @@ function initMultiplayerSettings()
  */
 function initPlayerAssignments()
 {
-	var boxSpacing = 32;
+	let boxSpacing = 32;
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
 		let box = Engine.GetGUIObjectByName("playerBox["+i+"]");
@@ -625,8 +625,8 @@ function handleGamesetupMessage(message)
  */
 function handlePlayerAssignmentMessage(message)
 {
-	var resetReady = false;
-	var newGUID = "";
+	let resetReady = false;
+	let newGUID = "";
 
 	// Report joinings
 	for (let guid in message.hosts)
@@ -678,7 +678,7 @@ function handlePlayerAssignmentMessage(message)
 
 function getMapDisplayName(map)
 {
-	var mapData = loadMapData(map);
+	let mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Name)
 	{
 		log("Map data missing in scenario '" + map + "' - likely unsupported format");
@@ -690,7 +690,7 @@ function getMapDisplayName(map)
 
 function getMapPreview(map)
 {
-	var mapData = loadMapData(map);
+	let mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Preview)
 		return "nopreview.png";
 
@@ -714,9 +714,9 @@ function getSetting(settings, defaults, property)
  */
 function initCivNameList()
 {
-	var civList = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
-	var civListNames = civList.map(civ => civ.name);
-	var civListCodes = civList.map(civ => civ.code);
+	let civList = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
+	let civListNames = civList.map(civ => civ.name);
+	let civListCodes = civList.map(civ => civ.code);
 
 	civListNames.unshift('[color="orange"]' + translateWithContext("civilization", "Random") + '[/color]');
 	civListCodes.unshift("random");
@@ -741,11 +741,11 @@ function initMapNameList()
 		return;
 	}
 
-	var mapFiles = g_GameAttributes.mapType == "random" ? getJSONFileList(g_GameAttributes.mapPath) : getXMLFileList(g_GameAttributes.mapPath);
+	let mapFiles = g_GameAttributes.mapType == "random" ? getJSONFileList(g_GameAttributes.mapPath) : getXMLFileList(g_GameAttributes.mapPath);
 
 	// Apply map filter, if any defined
 	// TODO: Should verify these are valid maps before adding to list
-	var mapList = [];
+	let mapList = [];
 	for (let mapFile of mapFiles)
 	{
 		let file = g_GameAttributes.mapPath + mapFile;
@@ -757,10 +757,10 @@ function initMapNameList()
 	translateObjectKeys(mapList, ["name"]);
 	mapList.sort(sortNameIgnoreCase);
 
-	var mapListNames = mapList.map(map => map.name);
-	var mapListFiles = mapList.map(map => map.file);
+	let mapListNames = mapList.map(map => map.name);
+	let mapListFiles = mapList.map(map => map.file);
 
-	var selected = mapListFiles.indexOf(g_GameAttributes.map);
+	let selected = mapListFiles.indexOf(g_GameAttributes.map);
 	if (selected == -1 && mapList.length)
 		selected = 0;
 
@@ -771,7 +771,7 @@ function initMapNameList()
 		mapListFiles.unshift("random");
 	}
 
-	var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
+	let mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
 	mapSelectionBox.selected = selected;
@@ -812,18 +812,18 @@ function loadPersistMatchSettings()
 	if (Engine.ConfigDB_GetValue("user", "persistmatchsettings") != "true")
 		return;
 
-	var settingsFile = g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP;
+	let settingsFile = g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP;
 	if (!Engine.FileExists(settingsFile))
 		return;
 
-	var attrs = Engine.ReadJSONFile(settingsFile);
+	let attrs = Engine.ReadJSONFile(settingsFile);
 	if (!attrs || !attrs.settings)
 		return;
 
 	g_IsInGuiUpdate = true;
 
-	var mapName = attrs.map || "";
-	var mapSettings = attrs.settings;
+	let mapName = attrs.map || "";
+	let mapSettings = attrs.settings;
 
 	g_GameAttributes = attrs;
 	g_GameAttributes.matchID = Engine.GetMatchID();
@@ -834,14 +834,14 @@ function loadPersistMatchSettings()
 		mapSettings.CheatsEnabled = true;
 
 	// Replace unselectable civs with random civ
-	var playerData = mapSettings.PlayerData;
+	let playerData = mapSettings.PlayerData;
 	if (playerData && g_GameAttributes.mapType != "scenario")
 		for (let i in playerData)
 			if (!g_CivData[playerData[i].Civ] || !g_CivData[playerData[i].Civ].SelectableInGameSetup)
 				playerData[i].Civ = "random";
 
 	// Apply map settings
-	var newMapData = loadMapData(mapName);
+	let newMapData = loadMapData(mapName);
 	if (newMapData && newMapData.settings)
 	{
 		for (let prop in newMapData.settings)
@@ -854,14 +854,14 @@ function loadPersistMatchSettings()
 	if (mapSettings.PlayerData)
 		sanitizePlayerData(mapSettings.PlayerData);
 
-	var mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
+	let mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilterSelection.selected = mapFilterSelection.list_data.indexOf(attrs.mapFilter);
 
 	Engine.GetGUIObjectByName("mapTypeSelection").selected = g_MapTypes.Name.indexOf(attrs.mapType);
 
 	initMapNameList();
 
-	var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
+	let mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 	mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
 
 	if (mapSettings.PopulationCap)
@@ -901,7 +901,7 @@ function loadPersistMatchSettings()
 
 function saveGameAttributes()
 {
-	var attributes = Engine.ConfigDB_GetValue("user", "persistmatchsettings") == "true" ? g_GameAttributes : {};
+	let attributes = Engine.ConfigDB_GetValue("user", "persistmatchsettings") == "true" ? g_GameAttributes : {};
 	Engine.WriteJSONFile(g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP, attributes);
 }
 
@@ -999,7 +999,7 @@ function selectNumPlayers(num)
 		g_PlayerAssignments.local.player = 1;
 
 	// Update player data
-	var pData = g_GameAttributes.settings.PlayerData;
+	let pData = g_GameAttributes.settings.PlayerData;
 	if (num < pData.length)
 		g_GameAttributes.settings.PlayerData = pData.slice(0, num);
 	else
@@ -1017,10 +1017,10 @@ function selectPlayerColor(playerSlot, colorIndex)
 	if (colorIndex == -1)
 		return;
 
-	var playerData = g_GameAttributes.settings.PlayerData;
+	let playerData = g_GameAttributes.settings.PlayerData;
 
 	// If someone else has that color, give that player the old color
-	var pData = playerData.find(pData => sameColor(g_PlayerColors[colorIndex], pData.Color));
+	let pData = playerData.find(pData => sameColor(g_PlayerColors[colorIndex], pData.Color));
 	if (pData)
 		pData.Color = playerData[playerSlot].Color;
 
@@ -1102,8 +1102,8 @@ function selectMap(name)
 		if (g_GameAttributes.settings[prop] !== undefined)
 			g_GameAttributes.settings[prop] = undefined;
 
-	var mapData = loadMapData(name);
-	var mapSettings = mapData && mapData.settings ? deepcopy(mapData.settings) : {};
+	let mapData = loadMapData(name);
+	let mapSettings = mapData && mapData.settings ? deepcopy(mapData.settings) : {};
 
 	// Reset victory conditions
 	if (g_GameAttributes.mapType != "random")
@@ -1182,7 +1182,7 @@ function launchGame()
 	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
 
 	// Get a unique array of selectable cultures
-	var cultures = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => g_CivData[civ].Culture);
+	let cultures = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => g_CivData[civ].Culture);
 	cultures = cultures.filter((culture, index) => cultures.indexOf(culture) === index);
 
 	// Determine random civs and botnames
@@ -1252,9 +1252,9 @@ function onGameAttributesChange()
 
 	// Don't set any attributes here, just show the changes in GUI
 
-	var mapName = g_GameAttributes.map || "";
-	var mapSettings = g_GameAttributes.settings;
-	var numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_MaxPlayers;
+	let mapName = g_GameAttributes.map || "";
+	let mapSettings = g_GameAttributes.settings;
+	let numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_MaxPlayers;
 
 	if (!g_IsController)
 	{
@@ -1290,39 +1290,39 @@ function onGameAttributesChange()
 	}
 
 	// Controls common to all map types
-	var numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
-	var revealMap = Engine.GetGUIObjectByName("revealMap");
-	var exploreMap = Engine.GetGUIObjectByName("exploreMap");
-	var disableTreasures = Engine.GetGUIObjectByName("disableTreasures");
-	var victoryCondition = Engine.GetGUIObjectByName("victoryCondition");
-	var lockTeams = Engine.GetGUIObjectByName("lockTeams");
-	var mapSize = Engine.GetGUIObjectByName("mapSize");
-	var enableCheats = Engine.GetGUIObjectByName("enableCheats");
-	var enableRating = Engine.GetGUIObjectByName("enableRating");
-	var populationCap = Engine.GetGUIObjectByName("populationCap");
-	var startingResources = Engine.GetGUIObjectByName("startingResources");
-	var ceasefire = Engine.GetGUIObjectByName("ceasefire");
-	var observerLateJoin = Engine.GetGUIObjectByName("observerLateJoin");
+	let numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
+	let revealMap = Engine.GetGUIObjectByName("revealMap");
+	let exploreMap = Engine.GetGUIObjectByName("exploreMap");
+	let disableTreasures = Engine.GetGUIObjectByName("disableTreasures");
+	let victoryCondition = Engine.GetGUIObjectByName("victoryCondition");
+	let lockTeams = Engine.GetGUIObjectByName("lockTeams");
+	let mapSize = Engine.GetGUIObjectByName("mapSize");
+	let enableCheats = Engine.GetGUIObjectByName("enableCheats");
+	let enableRating = Engine.GetGUIObjectByName("enableRating");
+	let populationCap = Engine.GetGUIObjectByName("populationCap");
+	let startingResources = Engine.GetGUIObjectByName("startingResources");
+	let ceasefire = Engine.GetGUIObjectByName("ceasefire");
+	let observerLateJoin = Engine.GetGUIObjectByName("observerLateJoin");
 
-	var numPlayersText= Engine.GetGUIObjectByName("numPlayersText");
-	var mapSizeText = Engine.GetGUIObjectByName("mapSizeText");
-	var observerLateJoinText = Engine.GetGUIObjectByName("observerLateJoinText");
-	var revealMapText = Engine.GetGUIObjectByName("revealMapText");
-	var exploreMapText = Engine.GetGUIObjectByName("exploreMapText");
-	var disableTreasuresText = Engine.GetGUIObjectByName("disableTreasuresText");
-	var victoryConditionText = Engine.GetGUIObjectByName("victoryConditionText");
-	var lockTeamsText = Engine.GetGUIObjectByName("lockTeamsText");
-	var enableCheatsText = Engine.GetGUIObjectByName("enableCheatsText");
-	var enableRatingText = Engine.GetGUIObjectByName("enableRatingText");
-	var populationCapText = Engine.GetGUIObjectByName("populationCapText");
-	var startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
-	var ceasefireText = Engine.GetGUIObjectByName("ceasefireText");
-	var gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
-	var gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
+	let numPlayersText= Engine.GetGUIObjectByName("numPlayersText");
+	let mapSizeText = Engine.GetGUIObjectByName("mapSizeText");
+	let observerLateJoinText = Engine.GetGUIObjectByName("observerLateJoinText");
+	let revealMapText = Engine.GetGUIObjectByName("revealMapText");
+	let exploreMapText = Engine.GetGUIObjectByName("exploreMapText");
+	let disableTreasuresText = Engine.GetGUIObjectByName("disableTreasuresText");
+	let victoryConditionText = Engine.GetGUIObjectByName("victoryConditionText");
+	let lockTeamsText = Engine.GetGUIObjectByName("lockTeamsText");
+	let enableCheatsText = Engine.GetGUIObjectByName("enableCheatsText");
+	let enableRatingText = Engine.GetGUIObjectByName("enableRatingText");
+	let populationCapText = Engine.GetGUIObjectByName("populationCapText");
+	let startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
+	let ceasefireText = Engine.GetGUIObjectByName("ceasefireText");
+	let gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
+	let gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
 
 	// We have to check for undefined on these properties as not all maps define them.
-	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.Tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.Tiles.indexOf(mapSettings.Size) : g_MapSizes.Default);
-	var victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
+	let sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.Tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.Tiles.indexOf(mapSettings.Size) : g_MapSizes.Default);
+	let victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
 
 	setGUIBoolean("enableCheats", "enableCheatsText", !!mapSettings.CheatsEnabled);
 	setGUIBoolean("disableTreasures", "disableTreasuresText", !!mapSettings.DisableTreasures);
@@ -1344,7 +1344,7 @@ function onGameAttributesChange()
 		// TODO: take care this can't happen anymore
 		enableRatingText.caption = "Unknown";
 
-	var speedIdx = g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) != -1 ? g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds.Default;
+	let speedIdx = g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) != -1 ? g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds.Default;
 	gameSpeedText.caption = g_GameSpeeds.Title[speedIdx];
 	gameSpeedBox.selected = speedIdx;
 
@@ -1360,13 +1360,13 @@ function onGameAttributesChange()
 	// Handle map type specific logic
 
 	// Mapsize completely hidden for non-random maps
-	var isRandom = g_GameAttributes.mapType == "random";
+	let isRandom = g_GameAttributes.mapType == "random";
 	Engine.GetGUIObjectByName("mapSizeDesc").hidden = !isRandom;
 	Engine.GetGUIObjectByName("mapSize").hidden = !isRandom || !g_IsController;
 	Engine.GetGUIObjectByName("mapSizeText").hidden = !isRandom || g_IsController;
 	hideControl("numPlayersSelection", "numPlayersText", isRandom && g_IsController);
 
-	var notScenario = g_GameAttributes.mapType != "scenario" && g_IsController ;
+	let notScenario = g_GameAttributes.mapType != "scenario" && g_IsController ;
 	hideControl("victoryCondition", "victoryConditionText", notScenario);
 	hideControl("populationCap", "populationCapText", notScenario);
 	hideControl("startingResources", "startingResourcesText", notScenario);
@@ -1422,10 +1422,10 @@ function onGameAttributesChange()
 		mapSettings.Description = markForTranslation("Randomly selects a map from the list");
 	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map", "Random") : translate(getMapDisplayName(mapName));
 
-	var description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
+	let description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
 
 	// Describe the number of players and the victory conditions
-	var playerString = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { "number": numPlayers });
+	let playerString = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { "number": numPlayers });
 	let victory = g_VictoryConditions.Title[victoryIdx];
 	if (victoryIdx != g_VictoryConditions.Default)
 		victory = "[color=\"orange\"]" + victory + "[/color]";
@@ -1546,12 +1546,12 @@ function updatePlayerList()
 {
 	g_IsInGuiUpdate = true;
 
-	var hostNameList = [];
-	var hostGuidList = [];
-	var assignments = [];
-	var aiAssignments = {};
-	var noAssignment;
-	var assignedCount = 0;
+	let hostNameList = [];
+	let hostGuidList = [];
+	let assignments = [];
+	let aiAssignments = {};
+	let noAssignment;
+	let assignedCount = 0;
 
 	for (let guid in g_PlayerAssignments)
 	{
@@ -1688,8 +1688,8 @@ function updatePlayerList()
 function swapPlayers(guid, newSlot)
 {
 	// Player slots are indexed from 0 as Gaia is omitted.
-	var newPlayerID = newSlot + 1;
-	var playerID = g_PlayerAssignments[guid].player;
+	let newPlayerID = newSlot + 1;
+	let playerID = g_PlayerAssignments[guid].player;
 
 	// Attempt to swap the player or AI occupying the target slot,
 	// if any, into the slot this player is currently in.
@@ -1723,8 +1723,8 @@ function swapPlayers(guid, newSlot)
 
 function submitChatInput()
 {
-	var input = Engine.GetGUIObjectByName("chatInput");
-	var text = input.caption;
+	let input = Engine.GetGUIObjectByName("chatInput");
+	let text = input.caption;
 	if (!text.length)
 		return;
 
@@ -1738,18 +1738,18 @@ function submitChatInput()
 
 function addChatMessage(msg)
 {
-	var username = "";
+	let username = "";
 	if (msg.username)
 		username = escapeText(msg.username);
 	else if (msg.guid && g_PlayerAssignments[msg.guid])
 		username = escapeText(g_PlayerAssignments[msg.guid].name);
 
-	var message = "";
+	let message = "";
 	if ("text" in msg && msg.text)
 		message = escapeText(msg.text);
 
 	// TODO: Maybe host should have distinct font/color?
-	var color = "white";
+	let color = "white";
 
 	// Valid player who has been assigned - get player color
 	if (msg.guid && g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != -1)
@@ -1763,9 +1763,9 @@ function addChatMessage(msg)
 		color = rgbToGuiColor({ "r": r, "g": g, "b": b });
 	}
 
-	var formatted;
-	var formattedUsername;
-	var formattedUsernamePrefix;
+	let formatted;
+	let formattedUsername;
+	let formattedUsernamePrefix;
 
 	switch (msg.type)
 	{
@@ -1845,8 +1845,8 @@ function updateReadyUI()
 	if (!g_IsNetworked)
 		return;
 
-	var isAI = new Array(g_MaxPlayers + 1).fill(true);
-	var allReady = true;
+	let isAI = new Array(g_MaxPlayers + 1).fill(true);
+	let allReady = true;
 	for (let guid in g_PlayerAssignments)
 	{
 		// We don't really care whether observers are ready.
@@ -1943,7 +1943,7 @@ function addFilter(id, title, filterFunc)
  */
 function testFilter(id, mapSettings)
 {
-	var mapFilter = g_MapFilters.find(mapFilter => mapFilter.id == id);
+	let mapFilter = g_MapFilters.find(mapFilter => mapFilter.id == id);
 
 	if (!mapFilter)
 	{
@@ -1987,12 +1987,12 @@ function sendRegisterGameStanza()
 	if (!Engine.HasXmppClient())
 		return;
 
-	var selectedMapSize = Engine.GetGUIObjectByName("mapSize").selected;
-	var selectedVictoryCondition = Engine.GetGUIObjectByName("victoryCondition").selected;
+	let selectedMapSize = Engine.GetGUIObjectByName("mapSize").selected;
+	let selectedVictoryCondition = Engine.GetGUIObjectByName("victoryCondition").selected;
 
-	var mapSize = g_GameAttributes.mapType == "random" ? Engine.GetGUIObjectByName("mapSize").list_data[selectedMapSize] : "Default";
-	var victoryCondition = Engine.GetGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
-	var playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
+	let mapSize = g_GameAttributes.mapType == "random" ? Engine.GetGUIObjectByName("mapSize").list_data[selectedMapSize] : "Default";
+	let victoryCondition = Engine.GetGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
+	let playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
 
 	Engine.SendRegisterGame({
 		"name": g_ServerName,
