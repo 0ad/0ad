@@ -616,7 +616,7 @@ function handleGamesetupMessage(message)
 		}
 	}
 
-	onGameAttributesChange();
+	updateGUIObjects();
 }
 
 /**
@@ -672,8 +672,7 @@ function handlePlayerAssignmentMessage(message)
 
 	updateReadyUI();
 
-	if (g_IsController)
-		sendRegisterGameStanza();
+	sendRegisterGameStanza();
 }
 
 function getMapDisplayName(map)
@@ -885,7 +884,7 @@ function loadPersistMatchSettings()
 
 	g_IsInGuiUpdate = false;
 
-	onGameAttributesChange();
+	updateGUIObjects();
 }
 
 function savePersistMatchSettings()
@@ -1237,7 +1236,7 @@ function launchGame()
 /**
  * Don't set any attributes here, just show the changes in the GUI.
  */
-function onGameAttributesChange()
+function updateGUIObjects()
 {
 	g_IsInGuiUpdate = true;
 
@@ -1401,7 +1400,7 @@ function onGameAttributesChange()
 		break;
 
 	default:
-		error("onGameAttributesChange: Unexpected map type " + g_GameAttributes.mapType);
+		error("updateGUIObjects: Unexpected map type " + g_GameAttributes.mapType);
 		return;
 	}
 
@@ -1475,19 +1474,22 @@ function onGameAttributesChange()
 	resetReadyData();
 }
 
+/**
+ * Broadcast the changed settings to all clients and the lobbybot.
+ */
 function updateGameAttributes()
 {
-	if (g_IsInGuiUpdate)
+	if (g_IsInGuiUpdate || !g_IsController)
 		return;
 
 	if (g_IsNetworked)
 	{
 		Engine.SetNetworkGameAttributes(g_GameAttributes);
-		if (g_IsController && g_LoadingState >= 2)
+		if (g_LoadingState >= 2)
 			sendRegisterGameStanza();
 	}
 	else
-		onGameAttributesChange();
+		updateGUIObjects();
 }
 
 function AIConfigCallback(ai)
@@ -1877,9 +1879,12 @@ function resetReadyData()
 	}
 }
 
+/**
+ * Send the relevant gamesettings to the lobbybot.
+ */
 function sendRegisterGameStanza()
 {
-	if (!Engine.HasXmppClient())
+	if (!g_IsController || !Engine.HasXmppClient())
 		return;
 
 	let selectedMapSize = Engine.GetGUIObjectByName("mapSize").selected;
