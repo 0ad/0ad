@@ -615,16 +615,18 @@ function handleGamestartMessage(message)
  */
 function handleGamesetupMessage(message)
 {
-	if (message.data) // (the host gets undefined data on first connect, so skip that)
-	{
-		g_GameAttributes = message.data;
+	if (!message.data)
+		return;
 
-		if (g_GameAttributes.settings.RatingEnabled)
-		{
-			g_GameAttributes.settings.CheatsEnabled = false;
-			g_GameAttributes.settings.LockTeams = true;
-		}
+	g_GameAttributes = message.data;
+
+	if (!!g_GameAttributes.settings.RatingEnabled)
+	{
+		g_GameAttributes.settings.CheatsEnabled = false;
+		g_GameAttributes.settings.LockTeams = true;
 	}
+
+	Engine.SetRankedGame(!!g_GameAttributes.settings.RatingEnabled);
 
 	updateGUIObjects();
 }
@@ -845,19 +847,11 @@ function loadPersistMatchSettings()
 	if (mapSettings.PlayerData)
 		sanitizePlayerData(mapSettings.PlayerData);
 
-	let mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
-	mapFilterSelection.selected = mapFilterSelection.list_data.indexOf(attrs.mapFilter);
-
-	Engine.GetGUIObjectByName("mapTypeSelection").selected = g_MapTypes.Name.indexOf(attrs.mapType);
-
+	// Reload, as the maptype or mapfilter might have changed
 	initMapNameList();
 
 	g_GameAttributes.settings.RatingEnabled = Engine.HasXmppClient();
 	Engine.SetRankedGame(g_GameAttributes.settings.RatingEnabled);
-
-	Engine.GetGUIObjectByName("enableRating").checked = g_GameAttributes.settings.RatingEnabled;
-	Engine.GetGUIObjectByName("enableCheats").enabled = !g_GameAttributes.settings.RatingEnabled;
-	Engine.GetGUIObjectByName("lockTeams").enabled = !g_GameAttributes.settings.RatingEnabled;
 
 	updateGUIObjects();
 }
@@ -1215,14 +1209,22 @@ function updateGUIObjects()
 {
 	g_IsInGuiUpdate = true;
 
+	let mapFilterIdx = Math.max(0, g_MapFilters.findIndex(mapFilter => mapFilter.id == g_GameAttributes.mapFilter || "default"));
+	let mapTypeIdx = Math.max(0, g_MapTypes.Name.indexOf(g_GameAttributes.mapType));
 	let mapName = g_GameAttributes.map || "";
 	let mapSettings = g_GameAttributes.settings;
 	let numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_MaxPlayers;
 
-	if (!g_IsController)
+	if (g_IsController)
 	{
-		Engine.GetGUIObjectByName("mapFilterText").caption = g_MapFilters.find(mapFilter => mapFilter.id == g_GameAttributes.mapFilter || "default").name;
-		Engine.GetGUIObjectByName("mapTypeText").caption = g_MapTypes.Title[g_MapTypes.Name.indexOf(g_GameAttributes.mapType)];
+		Engine.GetGUIObjectByName("mapTypeSelection").selected = mapTypeIdx;
+		Engine.GetGUIObjectByName("mapFilterSelection").selected = mapFilterIdx;
+		Engine.GetGUIObjectByName("mapSelection").selected = Engine.GetGUIObjectByName("mapSelection").list_data.indexOf(mapName);
+	}
+	else
+	{
+		Engine.GetGUIObjectByName("mapTypeText").caption = g_MapTypes.Title[mapTypeIdx];
+		Engine.GetGUIObjectByName("mapFilterText").caption = g_MapFilters[mapFilterIdx].name;
 		Engine.GetGUIObjectByName("mapSelectionText").caption = mapName == "random" ? g_RandomMap : translate(getMapDisplayName(mapName));
 		initMapNameList();
 	}
@@ -1267,20 +1269,13 @@ function updateGUIObjects()
 	setGUIBoolean("exploreMap", "exploreMapText", !!mapSettings.ExploreMap);
 	setGUIBoolean("revealMap", "revealMapText", !!mapSettings.RevealMap);
 	setGUIBoolean("lockTeams", "lockTeamsText", !!mapSettings.LockTeams);
-	setGUIBoolean("observerLateJoin", "observerLateJoinText", !!g_GameAttributes.settings.ObserverLateJoin);
+	setGUIBoolean("observerLateJoin", "observerLateJoinText", !!mapSettings.ObserverLateJoin);
+	setGUIBoolean("enableRating", "enableRatingText", !!mapSettings.RatingEnabled);
 
-	if (g_IsNetworked)
-		Engine.GetGUIObjectByName("cheatWarningText").hidden = !enableCheats.checked;
-	if (mapSettings.RatingEnabled !== undefined)
-	{
-		setGUIBoolean("enableRating", "enableRatingText", mapSettings.RatingEnabled);
-		Engine.SetRankedGame(enableRating.checked);
-		enableCheats.enabled = !enableRating.checked;
-		lockTeams.enabled = !enableRating.checked;
-	}
-	else
-		// TODO: take care this can't happen anymore
-		enableRatingText.caption = "Unknown";
+	Engine.GetGUIObjectByName("cheatWarningText").hidden = !g_IsNetworked || !enableCheats.checked;
+
+	enableCheats.enabled = !enableRating.checked;
+	lockTeams.enabled = !enableRating.checked;
 
 	let speedIdx = g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) != -1 ? g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds.Default;
 	gameSpeedText.caption = g_GameSpeeds.Title[speedIdx];

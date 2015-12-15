@@ -145,7 +145,10 @@
 				size="100%-275 387 100%-25 415"
 				tooltip_style="onscreenToolTip">
 				<translatableAttribute id="tooltip">Select a map filter.</translatableAttribute>
-				<action on="SelectionChange">selectMapFilter(this.list_data[this.selected]);</action>
+				<action on="SelectionChange">
+				if (this.list_data[this.selected])
+					selectMapFilter(this.list_data[this.selected]);
+				</action>
 			</object>
 
 			<object size="100%-275 419 100%-25 447" name="mapSelectionPannel">
