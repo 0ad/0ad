@@ -761,10 +761,6 @@ function initMapNameList()
 	let mapListNames = mapList.map(map => map.name);
 	let mapListFiles = mapList.map(map => map.file);
 
-	let selected = mapListFiles.indexOf(g_GameAttributes.map);
-	if (selected == -1 && mapList.length)
-		selected = 0;
-
 	// Scenario/skirmish maps have a fixed playercount
 	if (g_GameAttributes.mapType == "random")
 	{
@@ -775,7 +771,7 @@ function initMapNameList()
 	let mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
-	mapSelectionBox.selected = selected;
+	mapSelectionBox.selected = Math.max(0, mapListFiles.indexOf(g_GameAttributes.map || ""));
 }
 
 function loadMapData(name)
@@ -1252,27 +1248,7 @@ function updateGUIObjects()
 
 		Engine.GetGUIObjectByName("mapTypeText").caption = g_MapTypes.Title[g_MapTypes.Name.indexOf(g_GameAttributes.mapType)];
 
-		let mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
-		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
 		Engine.GetGUIObjectByName("mapSelectionText").caption = mapName == "random" ? '[color="' + g_ColorRandom + '"]' + translateWithContext("map", "Random") + "[/color]" : translate(getMapDisplayName(mapName));
-
-		if (mapSettings.PopulationCap)
-		{
-			let populationCapBox = Engine.GetGUIObjectByName("populationCap");
-			populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
-		}
-
-		if (mapSettings.StartingResources)
-		{
-			let startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
-			startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
-		}
-
-		if (mapSettings.Ceasefire)
-		{
-			let ceasefireBox = Engine.GetGUIObjectByName("ceasefire");
-			ceasefireBox.selected = ceasefireBox.list_data.indexOf(mapSettings.Ceasefire);
-		}
 
 		initMapNameList();
 	}
@@ -1338,8 +1314,10 @@ function updateGUIObjects()
 
 	populationCap.selected = mapSettings.PopulationCap !== undefined && g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) != -1 ? g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) : g_PopulationCapacities.Default;
 	populationCapText.caption = g_PopulationCapacities.Title[populationCap.selected];
+
 	startingResources.selected = mapSettings.StartingResources !== undefined && g_StartingResources.Resources.indexOf(mapSettings.StartingResources) != -1 ? g_StartingResources.Resources.indexOf(mapSettings.StartingResources) : g_StartingResources.Default;
 	startingResourcesText.caption = g_StartingResources.Title[startingResources.selected];
+
 	ceasefire.selected = mapSettings.Ceasefire !== undefined && g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) != -1 ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
 	ceasefireText.caption = g_Ceasefire.Title[ceasefire.selected];
 
