@@ -144,6 +144,8 @@ function initGUIObjects()
 	{
 		// Unique ID to be used for identifying the same game reports for the lobby
 		g_GameAttributes.matchID = Engine.GetMatchID();
+		g_GameAttributes.settings.CheatsEnabled = !g_IsNetworked;
+		g_GameAttributes.settings.RatingEnabled = Engine.IsRankedGame() || undefined;
 
 		initMapNameList();
 		initNumberOfPlayers();
@@ -414,42 +416,20 @@ function setGUIBoolean(control, label, checked)
  */
 function initMultiplayerSettings()
 {
-	if (!g_IsNetworked)
-	{
-		Engine.GetGUIObjectByName("chatPanel").hidden = true;
-		Engine.GetGUIObjectByName("enableCheats").checked = true;
-		g_GameAttributes.settings.CheatsEnabled = true;
-	}
-	else
-	{
-		Engine.GetGUIObjectByName("optionCheats").hidden = false;
-		Engine.GetGUIObjectByName("enableCheats").checked = false;
-		Engine.GetGUIObjectByName("optionObserverLateJoin").hidden = false;
-		g_GameAttributes.settings.CheatsEnabled = false;
+	Engine.GetGUIObjectByName("chatPanel").hidden = !g_IsNetworked;
+	Engine.GetGUIObjectByName("optionCheats").hidden = !g_IsNetworked;
+	Engine.GetGUIObjectByName("optionRating").hidden = !Engine.HasXmppClient();
+	Engine.GetGUIObjectByName("optionObserverLateJoin").hidden = !g_IsNetworked;
 
-		if (Engine.HasXmppClient())
-		{
-			Engine.GetGUIObjectByName("optionRating").hidden = false;
-			Engine.GetGUIObjectByName("enableRating").checked = Engine.IsRankedGame();
-			g_GameAttributes.settings.RatingEnabled = Engine.IsRankedGame();
-			Engine.GetGUIObjectByName("enableCheats").enabled = !Engine.IsRankedGame();
-			Engine.GetGUIObjectByName("lockTeams").enabled = !Engine.IsRankedGame();
-		}
+	Engine.GetGUIObjectByName("enableCheats").enabled = !Engine.IsRankedGame();
+	Engine.GetGUIObjectByName("lockTeams").enabled = !Engine.IsRankedGame();
 
-		if (g_IsController)
-		{
-			Engine.GetGUIObjectByName("enableCheatsText").hidden = true;
-			Engine.GetGUIObjectByName("enableCheats").hidden = false;
-			Engine.GetGUIObjectByName("observerLateJoinText").hidden = true;
-			Engine.GetGUIObjectByName("observerLateJoin").hidden = false;
+	Engine.GetGUIObjectByName("enableCheats").checked = g_GameAttributes.settings.CheatsEnabled;
+	Engine.GetGUIObjectByName("enableRating").checked = !!g_GameAttributes.settings.RatingEnabled;
 
-			if (Engine.HasXmppClient())
-			{
-				Engine.GetGUIObjectByName("enableRatingText").hidden = true;
-				Engine.GetGUIObjectByName("enableRating").hidden = false;
-			}
-		}
-	}
+	hideControl("enableCheats", "enableCheatsText");
+	hideControl("enableRating", "enableRatingText");
+	hideControl("observerLateJoin", "observerLateJoinText");
 }
 
 /**
