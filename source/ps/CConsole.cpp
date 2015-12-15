@@ -611,9 +611,9 @@ void CConsole::SaveHistory()
 
 static bool isUnprintableChar(SDL_Keysym key)
 {
-		switch (key.sym)
-		{
-			// We want to allow some, which are handled specially
+	switch (key.sym)
+	{
+		// We want to allow some, which are handled specially
 		case SDLK_RETURN: case SDLK_TAB:
 		case SDLK_BACKSPACE: case SDLK_DELETE:
 		case SDLK_HOME: case SDLK_END:
@@ -622,10 +622,10 @@ static bool isUnprintableChar(SDL_Keysym key)
 		case SDLK_PAGEUP: case SDLK_PAGEDOWN:
 			return false;
 
-			// Ignore the others
+		// Ignore the others
 		default:
 			return true;
-		}
+	}
 }
 
 InReaction conInputHandler(const SDL_Event_* ev)

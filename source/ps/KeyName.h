@@ -27,12 +27,10 @@ extern void InitKeyNameMap();
 extern CStr8 FindKeyName(int keycode);
 extern int FindKeyCode(const CStr8& keyname);
 
-// Pick a code which is greater than any keycodes used by SDL itself
-# define CUSTOM_SDL_KEYCODE SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES)
-
 enum {
 	// Start sequential IDs in the right place
-	EXTRA_KEYS_BASE = CUSTOM_SDL_KEYCODE,
+	// Pick a code which is greater than any keycodes used by SDL itself
+	EXTRA_KEYS_BASE = SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES),
 	// 'Keycodes' for the unified modifier keys
 	UNIFIED_SHIFT,
 	UNIFIED_CTRL,

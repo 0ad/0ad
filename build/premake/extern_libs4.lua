@@ -584,7 +584,7 @@ extern_lib_defs = {
 			if os.is("windows") then
 				includedirs { libraries_dir .. "sdl2/include/SDL" }
 			elseif not _OPTIONS["android"] then
-				-- Support SDL*_CONFIG for overriding the default PATH-based sdl*-config
+				-- Support SDL2_CONFIG for overriding the default PATH-based sdl2-config
 				sdl_config_path = os.getenv("SDL2_CONFIG")
 				if not sdl_config_path then
 					sdl_config_path = "sdl2-config"

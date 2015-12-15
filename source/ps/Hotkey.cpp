@@ -30,11 +30,9 @@
 
 static bool unified[UNIFIED_LAST - UNIFIED_SHIFT];
 
-#define SDLKEY SDL_Keycode
-
 struct SKey
 {
-	SDLKEY code; // keycode or MOUSE_ or UNIFIED_ value
+	SDL_Keycode code; // keycode or MOUSE_ or UNIFIED_ value
 	bool negated; // whether the key must be pressed (false) or unpressed (true)
 };
 
@@ -81,7 +79,7 @@ static void LoadConfigBindings()
 					continue;
 				}
 
-				SKey key = { (SDLKEY)mapping, false };
+				SKey key = { (SDL_Keycode)mapping, false };
 				keyCombination.push_back(key);
 			}
 
@@ -144,7 +142,7 @@ bool isNegated(const SKey& key)
 	else if ((int)key.code > UNIFIED_LAST && g_mouse_buttons[key.code - UNIFIED_LAST] == key.negated)
 		return false;
 	// Modifier keycodes are between the normal keys and the mouse 'keys'
-	else if ((int)key.code < UNIFIED_LAST && (int)key.code > CUSTOM_SDL_KEYCODE && unified[key.code - UNIFIED_SHIFT] == key.negated)
+	else if ((int)key.code < UNIFIED_LAST && (int)key.code > SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES) && unified[key.code - UNIFIED_SHIFT] == key.negated)
 		return false;
 	else
 		return true;
@@ -214,25 +212,25 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	phantom.ev.type = ((ev->ev.type == SDL_KEYDOWN) || (ev->ev.type == SDL_MOUSEBUTTONDOWN)) ? SDL_KEYDOWN : SDL_KEYUP;
 	if ((keycode == SDLK_LSHIFT) || (keycode == SDLK_RSHIFT))
 	{
-		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_SHIFT;
+		phantom.ev.key.keysym.sym = (SDL_Keycode)UNIFIED_SHIFT;
 		unified[0] = (phantom.ev.type == SDL_KEYDOWN);
 		HotkeyInputHandler(&phantom);
 	}
 	else if ((keycode == SDLK_LCTRL) || (keycode == SDLK_RCTRL))
 	{
-		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_CTRL;
+		phantom.ev.key.keysym.sym = (SDL_Keycode)UNIFIED_CTRL;
 		unified[1] = (phantom.ev.type == SDL_KEYDOWN);
 		HotkeyInputHandler(&phantom);
 	}
 	else if ((keycode == SDLK_LALT) || (keycode == SDLK_RALT))
 	{
-		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_ALT;
+		phantom.ev.key.keysym.sym = (SDL_Keycode)UNIFIED_ALT;
 		unified[2] = (phantom.ev.type == SDL_KEYDOWN);
 		HotkeyInputHandler(&phantom);
 	}
 	else if ((keycode == SDLK_LGUI) || (keycode == SDLK_RGUI))
 	{
-		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_SUPER;
+		phantom.ev.key.keysym.sym = (SDL_Keycode)UNIFIED_SUPER;
 		unified[3] = (phantom.ev.type == SDL_KEYDOWN);
 		HotkeyInputHandler(&phantom);
 	}
@@ -246,7 +244,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	bool consoleCapture = false;
 
-	if (g_Console->IsActive() && keycode < CUSTOM_SDL_KEYCODE)
+	if (g_Console->IsActive() && keycode < SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES))
 		consoleCapture = true;
 
 	// Here's an interesting bit:
