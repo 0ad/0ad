@@ -1213,6 +1213,8 @@ function updateGUIObjects()
 	let mapTypeIdx = Math.max(0, g_MapTypes.Name.indexOf(g_GameAttributes.mapType));
 	let mapName = g_GameAttributes.map || "";
 	let mapSettings = g_GameAttributes.settings;
+	let mapSizeIdx = Math.max(0, g_MapSizes.Tiles.indexOf(mapSettings.Size || -1));
+	let victoryIdx = Math.max(0, g_VictoryConditions.Name.indexOf(mapSettings.GameType || ""));
 	let numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_MaxPlayers;
 
 	if (g_IsController)
@@ -1220,6 +1222,9 @@ function updateGUIObjects()
 		Engine.GetGUIObjectByName("mapTypeSelection").selected = mapTypeIdx;
 		Engine.GetGUIObjectByName("mapFilterSelection").selected = mapFilterIdx;
 		Engine.GetGUIObjectByName("mapSelection").selected = Engine.GetGUIObjectByName("mapSelection").list_data.indexOf(mapName);
+		Engine.GetGUIObjectByName("mapSize").selected = mapSizeIdx;
+		Engine.GetGUIObjectByName("numPlayersSelection").selected = numPlayers - 1;
+		Engine.GetGUIObjectByName("victoryCondition").selected = victoryIdx;
 	}
 	else
 	{
@@ -1229,40 +1234,22 @@ function updateGUIObjects()
 		initMapNameList();
 	}
 
-	// Controls common to all map types
-	let numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
-	let revealMap = Engine.GetGUIObjectByName("revealMap");
-	let exploreMap = Engine.GetGUIObjectByName("exploreMap");
-	let disableTreasures = Engine.GetGUIObjectByName("disableTreasures");
-	let victoryCondition = Engine.GetGUIObjectByName("victoryCondition");
+	// Can be visible to both host and clients
+	Engine.GetGUIObjectByName("mapSizeText").caption = g_GameAttributes.mapType == "random" ? g_MapSizes.LongName[mapSizeIdx] : translate("Default");
+	Engine.GetGUIObjectByName("numPlayersText").caption = numPlayers;
+	Engine.GetGUIObjectByName("victoryConditionText").caption = g_VictoryConditions.Title[victoryIdx];
+
 	let lockTeams = Engine.GetGUIObjectByName("lockTeams");
-	let mapSize = Engine.GetGUIObjectByName("mapSize");
 	let enableCheats = Engine.GetGUIObjectByName("enableCheats");
 	let enableRating = Engine.GetGUIObjectByName("enableRating");
 	let populationCap = Engine.GetGUIObjectByName("populationCap");
 	let startingResources = Engine.GetGUIObjectByName("startingResources");
 	let ceasefire = Engine.GetGUIObjectByName("ceasefire");
-	let observerLateJoin = Engine.GetGUIObjectByName("observerLateJoin");
-
-	let numPlayersText= Engine.GetGUIObjectByName("numPlayersText");
-	let mapSizeText = Engine.GetGUIObjectByName("mapSizeText");
-	let observerLateJoinText = Engine.GetGUIObjectByName("observerLateJoinText");
-	let revealMapText = Engine.GetGUIObjectByName("revealMapText");
-	let exploreMapText = Engine.GetGUIObjectByName("exploreMapText");
-	let disableTreasuresText = Engine.GetGUIObjectByName("disableTreasuresText");
-	let victoryConditionText = Engine.GetGUIObjectByName("victoryConditionText");
-	let lockTeamsText = Engine.GetGUIObjectByName("lockTeamsText");
-	let enableCheatsText = Engine.GetGUIObjectByName("enableCheatsText");
-	let enableRatingText = Engine.GetGUIObjectByName("enableRatingText");
 	let populationCapText = Engine.GetGUIObjectByName("populationCapText");
 	let startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
 	let ceasefireText = Engine.GetGUIObjectByName("ceasefireText");
 	let gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
 	let gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
-
-	// We have to check for undefined on these properties as not all maps define them.
-	let sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.Tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.Tiles.indexOf(mapSettings.Size) : g_MapSizes.Default);
-	let victoryIdx = mapSettings.GameType !== undefined && g_VictoryConditions.Name.indexOf(mapSettings.GameType) != -1 ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
 
 	setGUIBoolean("enableCheats", "enableCheatsText", !!mapSettings.CheatsEnabled);
 	setGUIBoolean("disableTreasures", "disableTreasuresText", !!mapSettings.DisableTreasures);
@@ -1308,48 +1295,6 @@ function updateGUIObjects()
 	hideControl("exploreMap", "exploreMapText", notScenario);
 	hideControl("disableTreasures", "disableTreasuresText", notScenario);
 	hideControl("lockTeams", "lockTeamsText", notScenario);
-
-	switch (g_GameAttributes.mapType)
-	{
-	case "random":
-		if (g_IsController)
-		{
-			numPlayersSelection.selected = numPlayers - 1;
-			mapSize.selected = sizeIdx;
-			victoryCondition.selected = victoryIdx;
-		}
-		else
-		{
-			numPlayersText.caption = numPlayers;
-			mapSizeText.caption = g_MapSizes.LongName[sizeIdx];
-			victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
-		}
-		break;
-
-	case "skirmish":
-		mapSizeText.caption = translate("Default");
-		numPlayersText.caption = numPlayers;
-
-		if (g_IsController)
-			victoryCondition.selected = victoryIdx;
-		else
-			victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
-
-		break;
-
-	case "scenario":
-		numPlayersText.caption = numPlayers;
-		mapSizeText.caption = translate("Default");
-		victoryConditionText.caption = g_VictoryConditions.Title[victoryIdx];
-		startingResourcesText.caption = translate("Determined by scenario");
-		populationCapText.caption = translate("Determined by scenario");
-		ceasefireText.caption = translate("Determined by scenario");
-		break;
-
-	default:
-		error("updateGUIObjects: Unexpected map type " + g_GameAttributes.mapType);
-		return;
-	}
 
 	if (mapName == "random")
 		mapSettings.Description = markForTranslation("Randomly selects a map from the list");

@@ -146,8 +146,8 @@
 				tooltip_style="onscreenToolTip">
 				<translatableAttribute id="tooltip">Select a map filter.</translatableAttribute>
 				<action on="SelectionChange">
-				if (this.list_data[this.selected])
-					selectMapFilter(this.list_data[this.selected]);
+					if (this.list_data[this.selected])
+						selectMapFilter(this.list_data[this.selected]);
 				</action>
 			</object>
 
@@ -172,7 +172,10 @@
 					size="100%-275 451 100%-25 479"
 					tooltip_style="onscreenToolTip">
 				<translatableAttribute id="tooltip">Select number of players.</translatableAttribute>
-				<action on="SelectionChange">selectNumPlayers(this.list_data[this.selected]);</action>
+				<action on="SelectionChange">
+					if (this.list_data[this.selected])
+						selectNumPlayers(this.list_data[this.selected]);
+				</action>
 			</object>
 
 			<object name="mapSize" size="100%-275 483 100%-25 511" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip">
