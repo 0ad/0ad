@@ -70,6 +70,16 @@ const g_SenderFont = "sans-bold-13";
  */
 const g_ColorRandom = "orange";
 
+/**
+ * Placeholder item for the map-dropdownlist.
+ */
+const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map", "Random") + "[/color]";
+
+/**
+ * Placeholder item for the civ-dropdownlists.
+ */
+const g_RandomCiv = '[color="' + g_ColorRandom + '"]' + translateWithContext("civilization", "Random") + '[/color]';
+
 // Is this is a networked game, or offline
 var g_IsNetworked;
 
@@ -714,11 +724,8 @@ function getSetting(settings, defaults, property)
 function initCivNameList()
 {
 	let civList = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => ({ "name": g_CivData[civ].Name, "code": civ })).sort(sortNameIgnoreCase);
-	let civListNames = civList.map(civ => civ.name);
-	let civListCodes = civList.map(civ => civ.code);
-
-	civListNames.unshift('[color="' + g_ColorRandom + '"]' + translateWithContext("civilization", "Random") + '[/color]');
-	civListCodes.unshift("random");
+	let civListNames = [g_RandomCiv].concat(civList.map(civ => civ.name));
+	let civListCodes = ["random"].concat(civList.map(civ => civ.code));
 
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
@@ -764,7 +771,7 @@ function initMapNameList()
 	// Scenario/skirmish maps have a fixed playercount
 	if (g_GameAttributes.mapType == "random")
 	{
-		mapListNames.unshift('[color="' + g_ColorRandom + '"]' + translateWithContext("map", "Random") + "[/color]");
+		mapListNames.unshift(g_RandomMap);
 		mapListFiles.unshift("random");
 	}
 
@@ -1242,14 +1249,9 @@ function updateGUIObjects()
 
 	if (!g_IsController)
 	{
-		let mapFilterSelection = Engine.GetGUIObjectByName("mapFilterSelection");
-		let mapFilterId = mapFilterSelection.list_data.indexOf(g_GameAttributes.mapFilter);
-		Engine.GetGUIObjectByName("mapFilterText").caption = mapFilterSelection.list[mapFilterId];
-
+		Engine.GetGUIObjectByName("mapFilterText").caption = g_MapFilters.find(mapFilter => mapFilter.id == g_GameAttributes.mapFilter || "default").name;
 		Engine.GetGUIObjectByName("mapTypeText").caption = g_MapTypes.Title[g_MapTypes.Name.indexOf(g_GameAttributes.mapType)];
-
-		Engine.GetGUIObjectByName("mapSelectionText").caption = mapName == "random" ? '[color="' + g_ColorRandom + '"]' + translateWithContext("map", "Random") + "[/color]" : translate(getMapDisplayName(mapName));
-
+		Engine.GetGUIObjectByName("mapSelectionText").caption = mapName == "random" ? g_RandomMap : translate(getMapDisplayName(mapName));
 		initMapNameList();
 	}
 
@@ -1421,7 +1423,7 @@ function updateGUIObjects()
 		let civ = getSetting(pData, pDefs, "Civ");
 
 		pAssignmentText.caption = pAssignment.list[0] ? pAssignment.list[Math.max(0, pAssignment.selected)] : translate("Loading...");
-		pCivText.caption = civ == "random" ? '[color="' + g_ColorRandom + '"]' + translateWithContext("civilization", "Random") : g_CivData[civ].Name;
+		pCivText.caption = civ == "random" ? g_RandomCiv : g_CivData[civ].Name;
 		pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
 
 		pCiv.selected = civ ? pCiv.list_data.indexOf(civ) : 0;
