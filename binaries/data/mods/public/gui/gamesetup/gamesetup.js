@@ -1209,7 +1209,7 @@ function updateGUIObjects()
 {
 	g_IsInGuiUpdate = true;
 
-	let mapFilterIdx = Math.max(0, g_MapFilters.findIndex(mapFilter => mapFilter.id == g_GameAttributes.mapFilter || "default"));
+	let mapFilterIdx = Math.max(0, g_MapFilters.findIndex(mapFilter => mapFilter.id == (g_GameAttributes.mapFilter || "default")));
 	let mapTypeIdx = Math.max(0, g_MapTypes.Name.indexOf(g_GameAttributes.mapType));
 	let mapName = g_GameAttributes.map || "";
 	let mapSettings = g_GameAttributes.settings;
