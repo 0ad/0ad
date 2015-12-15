@@ -852,40 +852,12 @@ function loadPersistMatchSettings()
 
 	initMapNameList();
 
-	let mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
-	mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
-
-	if (mapSettings.PopulationCap)
-	{
-		let populationCapBox = Engine.GetGUIObjectByName("populationCap");
-		populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
-	}
-
-	if (mapSettings.StartingResources)
-	{
-		let startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
-		startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
-	}
-
-	if (mapSettings.Ceasefire)
-	{
-		let ceasefireBox = Engine.GetGUIObjectByName("ceasefire");
-		ceasefireBox.selected = ceasefireBox.list_data.indexOf(mapSettings.Ceasefire);
-	}
-
-	if (attrs.gameSpeed)
-	{
-		let gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
-		gameSpeedBox.selected = g_GameSpeeds.Speed.indexOf(attrs.gameSpeed);
-	}
-
 	g_GameAttributes.settings.RatingEnabled = Engine.HasXmppClient();
 	Engine.SetRankedGame(g_GameAttributes.settings.RatingEnabled);
+
 	Engine.GetGUIObjectByName("enableRating").checked = g_GameAttributes.settings.RatingEnabled;
 	Engine.GetGUIObjectByName("enableCheats").enabled = !g_GameAttributes.settings.RatingEnabled;
 	Engine.GetGUIObjectByName("lockTeams").enabled = !g_GameAttributes.settings.RatingEnabled;
-
-	g_IsInGuiUpdate = false;
 
 	updateGUIObjects();
 }
