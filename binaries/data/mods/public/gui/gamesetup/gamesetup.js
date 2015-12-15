@@ -24,6 +24,32 @@ const g_MapPath = {
 };
 
 /**
+ * The dropdownlist items will appear in the order they are added.
+ */
+const g_MapFilters = [
+	{
+		"id": "default",
+		"name": translate("Default"),
+		"filter": mapKeywords => mapKeywords.every(keyword => ["naval", "demo", "hidden"].indexOf(keyword) == -1)
+	},
+	{
+		"id": "naval",
+		"name": translate("Naval Maps"),
+		"filter": mapKeywords => mapKeywords.indexOf("naval") != -1
+	},
+	{
+		"id": "demo",
+		"name": translate("Demo Maps"),
+		"filter": mapKeywords => mapKeywords.indexOf("demo") != -1
+	},
+	{
+		"id": "all",
+		"name": translate("All Maps"),
+		"filter": mapKeywords => true
+	}
+];
+
+/**
  * Used for generating the botnames.
  */
 const g_RomanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
@@ -84,11 +110,6 @@ var g_ChatMessages = [];
  * Cache containing the mapsettings for scenario/skirmish maps. Just-in-time loading.
  */
 var g_MapData = {};
-
-/**
- * Holds available map filters (for example "naval") and the functions which test the maps.
- */
-var g_MapFilters = [];
 
 // To prevent the display locking up while we load the map metadata,
 // we'll start with a 'loading' message and switch to the main screen in the
@@ -186,12 +207,6 @@ function initMapTypes()
 
 function initMapFilters()
 {
-	// Setup map filters - will appear in order they are added
-	addFilter("default", translate("Default"), function(settings) { return settings && (settings.Keywords === undefined || !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"])); });
-	addFilter("naval", translate("Naval Maps"), function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["naval"]); });
-	addFilter("demo", translate("Demo Maps"), function(settings) { return settings && settings.Keywords !== undefined && keywordTestAND(settings.Keywords, ["demo"]); });
-	addFilter("all", translate("All Maps"), function(settings) { return true; });
-
 	let mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilters.list = g_MapFilters.map(mapFilter => mapFilter.name);
 	mapFilters.list_data = g_MapFilters.map(mapFilter => mapFilter.id);
@@ -735,10 +750,12 @@ function initMapNameList()
 	{
 		let file = g_GameAttributes.mapPath + mapFile;
 		let mapData = loadMapData(file);
+		let mapFilter = g_MapFilters.find(mapFilter => mapFilter.id == (g_GameAttributes.mapFilter || "all"));
 
-		if (g_GameAttributes.mapFilter && mapData && testFilter(g_GameAttributes.mapFilter, mapData.settings))
+		if (!!mapData.settings && mapFilter && mapFilter.filter(mapData.settings.Keywords || []))
 			mapList.push({ "name": getMapDisplayName(file), "file": file });
 	}
+
 	translateObjectKeys(mapList, ["name"]);
 	mapList.sort(sortNameIgnoreCase);
 
@@ -1858,70 +1875,6 @@ function resetReadyData()
 		Engine.GetGUIObjectByName("startGame").caption = translate("I'm ready!");
 		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you accept the current settings and are ready to play!");
 	}
-}
-/**
- * Add a new maplist-filter.
- *
- * @param {string} id - Unique identifier
- * @param {string} title - Translated name to be displayed.
- * @param {Object} filterFunc - Function returning true if the provided map should be listed if that filter is chosen.
- */
-function addFilter(id, title, filterFunc)
-{
-	if (!filterFunc instanceof Object)
-	{
-		error("Invalid map filter: " + title);
-		return;
-	}
-
-	g_MapFilters.push({ "id": id, "name": title, "filter": filterFunc });
-}
-
-/**
- * Returns true if the given map will be shown when having selected the mapFilter given by id.
- *
- * @param {string} id - Specifies the mapfilter
- * @param {Object} mapSettings
- */
-function testFilter(id, mapSettings)
-{
-	let mapFilter = g_MapFilters.find(mapFilter => mapFilter.id == id);
-
-	if (!mapFilter)
-	{
-		error("Invalid map filter: " + id);
-		return false;
-	}
-
-	return mapFilter.filter(mapSettings);
-}
-
-/**
- *  Returns true if the keywords contain all of the matches.
- *
- *  @param {Array} keywords
- *  @param {Array} matches
- */
-function keywordTestAND(keywords, matches)
-{
-	if (!keywords || !matches)
-		return false;
-
-	return matches.every(match => keywords.indexOf(match) != -1);
-}
-
-/**
- *  Returns true if the keywords contain some of the matches.
- *
- *  @param {Array} keywords
- *  @param {Array} matches
- */
-function keywordTestOR(keywords, matches)
-{
-	if (!keywords || !matches)
-		return false;
-
-	return matches.some(match => keywords.indexOf(match) != -1);
 }
 
 function sendRegisterGameStanza()
