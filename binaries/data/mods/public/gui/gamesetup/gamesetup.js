@@ -1215,6 +1215,10 @@ function updateGUIObjects()
 	let mapSettings = g_GameAttributes.settings;
 	let mapSizeIdx = Math.max(0, g_MapSizes.Tiles.indexOf(mapSettings.Size || -1));
 	let victoryIdx = Math.max(0, g_VictoryConditions.Name.indexOf(mapSettings.GameType || ""));
+	let popIdx = Math.max(0, g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap || -1));
+	let gameSpeedIdx = Math.max(0, g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed || -1));
+	let startingResIdx = Math.max(0, g_StartingResources.Resources.indexOf(mapSettings.StartingResources || -1));
+	let ceasefireIdx = Math.max(0, g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire || -1));
 	let numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_MaxPlayers;
 
 	if (g_IsController)
@@ -1225,6 +1229,10 @@ function updateGUIObjects()
 		Engine.GetGUIObjectByName("mapSize").selected = mapSizeIdx;
 		Engine.GetGUIObjectByName("numPlayersSelection").selected = numPlayers - 1;
 		Engine.GetGUIObjectByName("victoryCondition").selected = victoryIdx;
+		Engine.GetGUIObjectByName("populationCap").selected = popIdx;
+		Engine.GetGUIObjectByName("gameSpeed").selected = gameSpeedIdx;
+		Engine.GetGUIObjectByName("ceasefire").selected = ceasefireIdx;
+		Engine.GetGUIObjectByName("startingResources").selected = startingResIdx;
 	}
 	else
 	{
@@ -1238,18 +1246,10 @@ function updateGUIObjects()
 	Engine.GetGUIObjectByName("mapSizeText").caption = g_GameAttributes.mapType == "random" ? g_MapSizes.LongName[mapSizeIdx] : translate("Default");
 	Engine.GetGUIObjectByName("numPlayersText").caption = numPlayers;
 	Engine.GetGUIObjectByName("victoryConditionText").caption = g_VictoryConditions.Title[victoryIdx];
-
-	let lockTeams = Engine.GetGUIObjectByName("lockTeams");
-	let enableCheats = Engine.GetGUIObjectByName("enableCheats");
-	let enableRating = Engine.GetGUIObjectByName("enableRating");
-	let populationCap = Engine.GetGUIObjectByName("populationCap");
-	let startingResources = Engine.GetGUIObjectByName("startingResources");
-	let ceasefire = Engine.GetGUIObjectByName("ceasefire");
-	let populationCapText = Engine.GetGUIObjectByName("populationCapText");
-	let startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
-	let ceasefireText = Engine.GetGUIObjectByName("ceasefireText");
-	let gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
-	let gameSpeedBox = Engine.GetGUIObjectByName("gameSpeed");
+	Engine.GetGUIObjectByName("populationCapText").caption = g_PopulationCapacities.Title[popIdx];
+	Engine.GetGUIObjectByName("startingResourcesText").caption = g_StartingResources.Title[startingResIdx];
+	Engine.GetGUIObjectByName("ceasefireText").caption = g_Ceasefire.Title[ceasefireIdx];
+	Engine.GetGUIObjectByName("gameSpeedText").caption = g_GameSpeeds.Title[gameSpeedIdx];
 
 	setGUIBoolean("enableCheats", "enableCheatsText", !!mapSettings.CheatsEnabled);
 	setGUIBoolean("disableTreasures", "disableTreasuresText", !!mapSettings.DisableTreasures);
@@ -1259,23 +1259,10 @@ function updateGUIObjects()
 	setGUIBoolean("observerLateJoin", "observerLateJoinText", !!mapSettings.ObserverLateJoin);
 	setGUIBoolean("enableRating", "enableRatingText", !!mapSettings.RatingEnabled);
 
-	Engine.GetGUIObjectByName("cheatWarningText").hidden = !g_IsNetworked || !enableCheats.checked;
+	Engine.GetGUIObjectByName("cheatWarningText").hidden = !g_IsNetworked || !mapSettings.CheatsEnabled;
 
-	enableCheats.enabled = !enableRating.checked;
-	lockTeams.enabled = !enableRating.checked;
-
-	let speedIdx = g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) != -1 ? g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds.Default;
-	gameSpeedText.caption = g_GameSpeeds.Title[speedIdx];
-	gameSpeedBox.selected = speedIdx;
-
-	populationCap.selected = mapSettings.PopulationCap !== undefined && g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) != -1 ? g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) : g_PopulationCapacities.Default;
-	populationCapText.caption = g_PopulationCapacities.Title[populationCap.selected];
-
-	startingResources.selected = mapSettings.StartingResources !== undefined && g_StartingResources.Resources.indexOf(mapSettings.StartingResources) != -1 ? g_StartingResources.Resources.indexOf(mapSettings.StartingResources) : g_StartingResources.Default;
-	startingResourcesText.caption = g_StartingResources.Title[startingResources.selected];
-
-	ceasefire.selected = mapSettings.Ceasefire !== undefined && g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) != -1 ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
-	ceasefireText.caption = g_Ceasefire.Title[ceasefire.selected];
+	Engine.GetGUIObjectByName("enableCheats").enabled = !mapSettings.RatingEnabled;
+	Engine.GetGUIObjectByName("lockTeams").enabled = !mapSettings.RatingEnabled;
 
 	setMapPreviewImage("mapPreview", getMapPreview(mapName));
 
