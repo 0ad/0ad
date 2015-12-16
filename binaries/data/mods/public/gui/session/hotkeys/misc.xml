@@ -16,7 +16,7 @@
 
 	<!-- Menu -->
 	<object hotkey="menu.toggle">
-		<action on="Press">openMenu();</action>
+		<action on="Press">toggleMenu();</action>
 	</object>
 
 	<!-- Unit silhouettes -->
