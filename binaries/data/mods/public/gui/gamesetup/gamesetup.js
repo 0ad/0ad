@@ -169,7 +169,6 @@ function initGUIObjects()
 	initCivNameList();
 	initMapTypes();
 	initMapFilters();
-	initMoreOptions();
 
 	if (g_IsController)
 	{
@@ -194,6 +193,8 @@ function initGUIObjects()
 	initMultiplayerSettings();
 	initPlayerAssignments();
 
+	resizeMoreOptionsWindow();
+
 	if (g_IsNetworked)
 		Engine.GetGUIObjectByName("chatInput").focus();
 
@@ -211,6 +212,10 @@ function initMapTypes()
 	let mapTypes = Engine.GetGUIObjectByName("mapTypeSelection");
 	mapTypes.list = g_MapTypes.Title;
 	mapTypes.list_data = g_MapTypes.Name;
+	mapTypes.onSelectionChange = function() {
+		if (this.selected != -1)
+			selectMapType(this.list_data[this.selected]);
+	};
 	if (g_IsController)
 		mapTypes.selected = g_MapTypes.Default;
 }
@@ -220,6 +225,10 @@ function initMapFilters()
 	let mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
 	mapFilters.list = g_MapFilters.map(mapFilter => mapFilter.name);
 	mapFilters.list_data = g_MapFilters.map(mapFilter => mapFilter.id);
+	mapFilters.onSelectionChange = function() {
+		if (this.selected != -1)
+			selectMapFilter(this.list_data[this.selected]);
+	};
 	if (g_IsController)
 		mapFilters.selected = 0;
 	g_GameAttributes.mapFilter = "default";
@@ -228,7 +237,7 @@ function initMapFilters()
 /**
  * Sets the size of the more-options dialog.
  */
-function initMoreOptions()
+function resizeMoreOptionsWindow()
 {
 	// For singleplayer reduce the size of more options dialog by three options (cheats, rated game, observer late join = 90px)
 	if (!g_IsNetworked)
@@ -237,7 +246,7 @@ function initMoreOptions()
 		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 310 50%+70 336";
 	}
 	// For non-lobby multiplayergames reduce the size of the dialog by one option (rated game, 30px)
-	else if (g_IsNetworked && !Engine.HasXmppClient())
+	else if (!Engine.HasXmppClient())
 	{
 		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+220";
 		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 370 50%+70 396";
@@ -251,6 +260,10 @@ function initNumberOfPlayers()
 	let numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
 	numPlayersSelection.list = playersArray;
 	numPlayersSelection.list_data = playersArray;
+	numPlayersSelection.onSelectionChange = function() {
+		if (this.selected != -1)
+			selectNumPlayers(this.list_data[this.selected]);
+	};
 	numPlayersSelection.selected = g_MaxPlayers - 1;
 }
 
@@ -780,6 +793,10 @@ function initMapNameList()
 	let mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
+	mapSelectionBox.onSelectionChange = function() {
+		if (this.selected != -1)
+			selectMap(this.list_data[this.selected]);
+	};
 	mapSelectionBox.selected = Math.max(0, mapListFiles.indexOf(g_GameAttributes.map || ""));
 }
 
