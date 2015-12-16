@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -319,154 +319,156 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 
 	if (!m_bVisible) return;
 
-	switch (szChar){
-		case SDLK_RETURN:
-			iHistoryPos = -1;
-			m_iMsgHistPos = 1;
-			ProcessBuffer(m_szBuffer);
-			FlushBuffer();
-			return;
+	switch (szChar)
+	{
+	case SDLK_RETURN:
+		iHistoryPos = -1;
+		m_iMsgHistPos = 1;
+		ProcessBuffer(m_szBuffer);
+		FlushBuffer();
+		return;
 
-		case SDLK_TAB:
-			// Auto Complete
-			return;
+	case SDLK_TAB:
+		// Auto Complete
+		return;
 
-		case SDLK_BACKSPACE:
-			if (IsEmpty() || IsBOB()) return;
+	case SDLK_BACKSPACE:
+		if (IsEmpty() || IsBOB()) return;
 
-			if (m_iBufferPos == m_iBufferLength)
-				m_szBuffer[m_iBufferPos - 1] = '\0';
-			else
-			{
-				for (int j = m_iBufferPos-1; j < m_iBufferLength-1; j++)
-					m_szBuffer[j] = m_szBuffer[j+1]; // move chars to left
-				m_szBuffer[m_iBufferLength-1] = '\0';
-			}
+		if (m_iBufferPos == m_iBufferLength)
+			m_szBuffer[m_iBufferPos - 1] = '\0';
+		else
+		{
+			for (int j = m_iBufferPos-1; j < m_iBufferLength-1; j++)
+				m_szBuffer[j] = m_szBuffer[j+1]; // move chars to left
+			m_szBuffer[m_iBufferLength-1] = '\0';
+		}
 
-			m_iBufferPos--;
+		m_iBufferPos--;
+		m_iBufferLength--;
+		return;
+
+	case SDLK_DELETE:
+		if (IsEmpty() || IsEOB()) return;
+
+		if (m_iBufferPos == m_iBufferLength-1)
+		{
+			m_szBuffer[m_iBufferPos] = '\0';
 			m_iBufferLength--;
-			return;
-
-		case SDLK_DELETE:
-			if (IsEmpty() || IsEOB()) return;
-
-			if (m_iBufferPos == m_iBufferLength-1)
+		}
+		else
+		{
+			if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
 			{
+				// Make Ctrl-Delete delete up to end of line
 				m_szBuffer[m_iBufferPos] = '\0';
+				m_iBufferLength = m_iBufferPos;
+			}
+			else 
+			{
+				// Delete just one char and move the others left
+				for(int j=m_iBufferPos; j<m_iBufferLength-1; j++)
+					m_szBuffer[j] = m_szBuffer[j+1];
+				m_szBuffer[m_iBufferLength-1] = '\0';
 				m_iBufferLength--;
 			}
-			else
-			{
-				if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
-				{
-					// Make Ctrl-Delete delete up to end of line
-					m_szBuffer[m_iBufferPos] = '\0';
-					m_iBufferLength = m_iBufferPos;
-				}
-				else 
-				{
-					// Delete just one char and move the others left
-					for(int j=m_iBufferPos; j<m_iBufferLength-1; j++)
-						m_szBuffer[j] = m_szBuffer[j+1];
-					m_szBuffer[m_iBufferLength-1] = '\0';
-					m_iBufferLength--;
-				}
-			}
+		}
 
-			return;
+		return;
 
-		case SDLK_HOME:
-			if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
-			{
-				CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
-
-				int linesShown = (int)m_fHeight/m_iFontHeight - 4;
-				m_iMsgHistPos = clamp((int)m_deqMsgHistory.size() - linesShown, 1, (int)m_deqMsgHistory.size());
-			}
-			else
-			{
-				m_iBufferPos = 0;
-			}
-			return;
-
-		case SDLK_END:
-			if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
-			{
-				m_iMsgHistPos = 1;
-			}
-			else
-			{
-				m_iBufferPos = m_iBufferLength;
-			}
-			return;
-
-		case SDLK_LEFT:
-			if (m_iBufferPos) m_iBufferPos--;
-			return;
-
-		case SDLK_RIGHT:
-			if (m_iBufferPos != m_iBufferLength) m_iBufferPos++;
-			return;
-
-		// BEGIN: Buffer History Lookup
-		case SDLK_UP:
-			if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
-			{
-				iHistoryPos++;
-				SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
-				m_iBufferPos = m_iBufferLength;
-			}
-			return;
-
-		case SDLK_DOWN:
-			if (m_deqBufHistory.size())
-			{
-				if (iHistoryPos > 0)
-				{
-					iHistoryPos--;
-					SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
-					m_iBufferPos = m_iBufferLength;
-				}
-				else if (iHistoryPos == 0)
-				{
-					iHistoryPos--;
-					FlushBuffer();
-				}
-			}
-			return;
-		// END: Buffer History Lookup
-
-		// BEGIN: Message History Lookup
-		case SDLK_PAGEUP:
+	case SDLK_HOME:
+		if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
 		{
 			CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
-			if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
-			return;
+			int linesShown = (int)m_fHeight/m_iFontHeight - 4;
+			m_iMsgHistPos = clamp((int)m_deqMsgHistory.size() - linesShown, 1, (int)m_deqMsgHistory.size());
+		}
+		else
+		{
+			m_iBufferPos = 0;
+		}
+		return;
+
+	case SDLK_END:
+		if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
+		{
+			m_iMsgHistPos = 1;
+		}
+		else
+		{
+			m_iBufferPos = m_iBufferLength;
+		}
+		return;
+
+	case SDLK_LEFT:
+		if (m_iBufferPos) m_iBufferPos--;
+		return;
+
+	case SDLK_RIGHT:
+		if (m_iBufferPos != m_iBufferLength) m_iBufferPos++;
+		return;
+
+	// BEGIN: Buffer History Lookup
+	case SDLK_UP:
+		if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
+		{
+			iHistoryPos++;
+			SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
+			m_iBufferPos = m_iBufferLength;
+		}
+		return;
+
+	case SDLK_DOWN:
+		if (m_deqBufHistory.size())
+		{
+			if (iHistoryPos > 0)
+			{
+				iHistoryPos--;
+				SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
+				m_iBufferPos = m_iBufferLength;
+			}
+			else if (iHistoryPos == 0)
+			{
+				iHistoryPos--;
+				FlushBuffer();
+			}
+		}
+		return;
+	// END: Buffer History Lookup
+
+	// BEGIN: Message History Lookup
+	case SDLK_PAGEUP:
+	{
+		CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
+
+		if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
+		return;
+	}
+
+	case SDLK_PAGEDOWN:
+		if (m_iMsgHistPos != 1) m_iMsgHistPos--;
+		return;
+	// END: Message History Lookup
+
+	default: //Insert a character
+		if (IsFull()) return;
+		if (cooked == 0) return;
+
+		if (IsEOB()) //are we at the end of the buffer?
+			m_szBuffer[m_iBufferPos] = cooked; //cat char onto end
+		else
+		{ //we need to insert
+			int i;
+			for(i=m_iBufferLength; i>m_iBufferPos; i--)
+				m_szBuffer[i] = m_szBuffer[i-1]; // move chars to right
+			m_szBuffer[i] = cooked;
 		}
 
-		case SDLK_PAGEDOWN:
-			if (m_iMsgHistPos != 1) m_iMsgHistPos--;
-			return;
-		// END: Message History Lookup
+		m_iBufferPos++;
+		m_iBufferLength++;
 
-		default: //Insert a character
-			if (IsFull()) return;
-			if (cooked == 0) return;
-
-			if (IsEOB()) //are we at the end of the buffer?
-				m_szBuffer[m_iBufferPos] = cooked; //cat char onto end
-			else{ //we need to insert
-				int i;
-				for(i=m_iBufferLength; i>m_iBufferPos; i--)
-					m_szBuffer[i] = m_szBuffer[i-1]; // move chars to right
-				m_szBuffer[i] = cooked;
-			}
-
-			m_iBufferPos++;
-			m_iBufferLength++;
-
-			return;
+		return;
 	}
 }
 
@@ -613,18 +615,18 @@ static bool isUnprintableChar(SDL_Keysym key)
 {
 	switch (key.sym)
 	{
-		// We want to allow some, which are handled specially
-		case SDLK_RETURN: case SDLK_TAB:
-		case SDLK_BACKSPACE: case SDLK_DELETE:
-		case SDLK_HOME: case SDLK_END:
-		case SDLK_LEFT: case SDLK_RIGHT:
-		case SDLK_UP: case SDLK_DOWN:
-		case SDLK_PAGEUP: case SDLK_PAGEDOWN:
-			return false;
+	// We want to allow some, which are handled specially
+	case SDLK_RETURN: case SDLK_TAB:
+	case SDLK_BACKSPACE: case SDLK_DELETE:
+	case SDLK_HOME: case SDLK_END:
+	case SDLK_LEFT: case SDLK_RIGHT:
+	case SDLK_UP: case SDLK_DOWN:
+	case SDLK_PAGEUP: case SDLK_PAGEDOWN:
+		return false;
 
-		// Ignore the others
-		default:
-			return true;
+	// Ignore the others
+	default:
+		return true;
 	}
 }
 
