@@ -1264,8 +1264,6 @@ function updateGUIObjects()
 	Engine.GetGUIObjectByName("enableCheats").enabled = !mapSettings.RatingEnabled;
 	Engine.GetGUIObjectByName("lockTeams").enabled = !mapSettings.RatingEnabled;
 
-	setMapPreviewImage("mapPreview", getMapPreview(mapName));
-
 	// Mapsize completely hidden for non-random maps
 	let isRandom = g_GameAttributes.mapType == "random";
 	Engine.GetGUIObjectByName("mapSizeDesc").hidden = !isRandom;
@@ -1283,17 +1281,7 @@ function updateGUIObjects()
 	hideControl("disableTreasures", "disableTreasuresText", notScenario);
 	hideControl("lockTeams", "lockTeamsText", notScenario);
 
-	if (mapName == "random")
-		mapSettings.Description = markForTranslation("Randomly selects a map from the list");
-	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map", "Random") : translate(getMapDisplayName(mapName));
-
-	let description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
-
-	let playerString = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { "number": numPlayers });
-	let victory = g_VictoryConditions.Title[victoryIdx];
-	if (victoryIdx != g_VictoryConditions.Default)
-		victory = "[color=\"orange\"]" + victory + "[/color]";
-	playerString += translate("Victory Condition:") + " " + victory + ".\n\n" + description;
+	setMapDescription();
 
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
@@ -1342,8 +1330,6 @@ function updateGUIObjects()
 			pColorPicker.selected = g_PlayerColors.findIndex(col => sameColor(col, color));
 	}
 
-	Engine.GetGUIObjectByName("mapInfoDescription").caption = playerString;
-
 	g_IsInGuiUpdate = false;
 
 	// Game attributes include AI settings, so update the player list
@@ -1351,6 +1337,32 @@ function updateGUIObjects()
 
 	// We should have everyone confirm that the new settings are acceptable.
 	resetReadyData();
+}
+
+/**
+ * Sets an additional map label, map preview image and mapsettings description.
+ */
+function setMapDescription()
+{
+	let numPlayers = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData.length : 0;
+	let mapName = g_GameAttributes.map || "";
+
+	let victoryIdx = Math.max(0, g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType || ""));
+	let victoryTitle = g_VictoryConditions.Title[victoryIdx];
+	if (victoryIdx != g_VictoryConditions.Default)
+		victoryTitle = "[color=\"orange\"]" + victoryTitle + "[/color]";
+
+	let mapDescription = g_GameAttributes.settings.Description ? translate(g_GameAttributes.settings.Description) : translate("Sorry, no description available.");
+	if (mapName == "random")
+		mapDescription = translate("Randomly selects a map from the list");
+
+	let gameDescription = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { "number": numPlayers });
+	gameDescription += translate("Victory Condition:") + " " + victoryTitle + ".\n\n";
+	gameDescription += mapDescription;
+
+	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map", "Random") : translate(getMapDisplayName(mapName));
+	Engine.GetGUIObjectByName("mapInfoDescription").caption = gameDescription;
+	setMapPreviewImage("mapPreview", getMapPreview(mapName));
 }
 
 /**
