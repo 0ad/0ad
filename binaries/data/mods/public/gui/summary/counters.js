@@ -96,8 +96,8 @@ function calculateColorsTeam(counters)
 				total.d += (+splitCaption[2]);
 			}
 
-			let teamTotal = g_Trained_Color + total.c + '[/color] / ' +
-				g_Lost_Color + total.l + '[/color] / ' + g_Killed_Color + total.d + '[/color]';
+			let teamTotal = g_TrainedColor + total.c + '[/color] / ' +
+				g_LostColor + total.l + '[/color] / ' + g_KilledColor + total.d + '[/color]';
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
 		}
@@ -306,7 +306,7 @@ function calculateKillDeathRatio(playerState, position)
 	g_TeamMiscHelperData[playerState.team][position].unitsLost = playerState.statistics.unitsLost.total;
 
 	if (!playerState.statistics.enemyUnitsKilled.total)
-		return g_DefaultDecimal
+		return g_DefaultDecimal;
 
 	if (!playerState.statistics.unitsLost.total)	// and enemyUnitsKilled.total > 0
 		return g_InfiniteSymbol; // infinity symbol
