@@ -67,10 +67,8 @@ m.HQ.prototype.init = function(gameState, queues)
 	this.navalRegions = {};
 
 	this.treasures = gameState.getEntities().filter(function (ent) {
-		var type = ent.resourceSupplyType();
-		if (type && type.generic === "treasure")
-			return true;
-		return false;
+		let type = ent.resourceSupplyType();
+		return type && type.generic === "treasure";
 	});
 	this.treasures.registerUpdates();
 	this.currentPhase = gameState.currentPhase();
@@ -119,7 +117,7 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues)
 {
-	for (let evt of events["Create"])
+	for (let evt of events.Create)
 	{
 		// Let's check if we have a building set to create a new base.
 		let ent = gameState.getEntityById(evt.entity);
@@ -160,7 +158,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	for (let evt of events["ConstructionFinished"])
+	for (let evt of events.ConstructionFinished)
 	{
 		// Let's check if we have a building set to create a new base.
 		// TODO: move to the base manager.
@@ -198,7 +196,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	for (let evt of events["OwnershipChanged"])   // capture events
+	for (let evt of events.OwnershipChanged)   // capture events
 	{
 		if (evt.to !== PlayerID)
 			continue;
@@ -261,7 +259,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	// deal with the different rally points of training units: the rally point is set when the training starts
 	// for the time being, only autogarrison is used
 
-	for (let evt of events["TrainingStarted"])
+	for (let evt of events.TrainingStarted)
 	{
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || !ent.isOwn(PlayerID))
@@ -276,7 +274,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			ent.unsetRallyPoint();
 	}
 
-	for (let evt of events["TrainingFinished"])
+	for (let evt of events.TrainingFinished)
 	{
 		for (let entId of evt.entities)
 		{
@@ -324,7 +322,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	for (let evt of events["TerritoryDecayChanged"])
+	for (let evt of events.TerritoryDecayChanged)
 	{
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || !ent.isOwn(PlayerID) || ent.foundationProgress() !== undefined)
@@ -1283,21 +1281,21 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 		return;
 
-	var numPlanned = queues.house.length();
+	let numPlanned = queues.house.length();
 	if (numPlanned < 3 || (numPlanned < 5 && gameState.getPopulation() > 80))
 	{
-		var plan = new m.ConstructionPlan(gameState, "structures/{civ}_house");
+		let plan = new m.ConstructionPlan(gameState, "structures/{civ}_house");
 		// change the starting condition according to the situation.
 		plan.isGo = function (gameState) {
 			if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_house"))
 				return false;
 			if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 				return false;
-			var HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
+			let HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
 			// TODO popBonus may have different values if we can ever capture foundations from another civ
 			// and take into account other structures than houses
-			var popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
-			var freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
+			let popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
+			let freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
 			if (gameState.ai.HQ.saveResources)
 				return (freeSlots <= 10);
 			else if (gameState.getPopulation() > 55)
@@ -1313,7 +1311,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	if (numPlanned > 0 && this.econState == "townPhasing" && gameState.getPhaseRequirements(2))
 	{
 		let requirements = gameState.getPhaseRequirements(2);
-		var count = gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length;
+		let count = gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length;
 		if (requirements && count < requirements["number"] && this.stopBuilding.has(gameState.applyCiv("structures/{civ}_house")))
 		{
 			if (this.Config.debug > 1)
@@ -1321,8 +1319,8 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 			this.stopBuilding.delete(gameState.applyCiv("structures/{civ}_house"));
 			this.requireHouses = true;
 		}
-		var houseQueue = queues.house.plans;
-		for (var i = 0; i < numPlanned; ++i)
+		let houseQueue = queues.house.plans;
+		for (let i = 0; i < numPlanned; ++i)
 		{
 			if (houseQueue[i].isGo(gameState))
 				++count;
@@ -1344,10 +1342,11 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	// When population limit too tight
 	//    - if no room to build, try to improve with technology
 	//    - otherwise increase temporarily the priority of houses
-	var house = gameState.applyCiv("structures/{civ}_house");
-	var HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
-	var popBonus = gameState.getTemplate(house).getPopulationBonus();
-	var freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
+	let house = gameState.applyCiv("structures/{civ}_house");
+	let HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
+	let popBonus = gameState.getTemplate(house).getPopulationBonus();
+	let freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
+	let priority;
 	if (freeSlots < 5)
 	{
 		if (this.stopBuilding.has(house))
@@ -1361,14 +1360,14 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 			else
 			{
 				this.stopBuilding.delete(house);
-				var priority = 2*this.Config.priorities.house;
+				priority = 2*this.Config.priorities.house;
 			}
 		}
 		else
-			var priority = 2*this.Config.priorities.house;
+			priority = 2*this.Config.priorities.house;
 	}
 	else
-		var priority = this.Config.priorities.house;
+		priority = this.Config.priorities.house;
 	if (priority && priority != gameState.ai.queueManager.getPriority("house"))
 		gameState.ai.queueManager.changePriority("house", priority);
 };
@@ -1409,7 +1408,7 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 		return false;
 	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length > 0 || queues.civilCentre.length() > 0)
 		return false;
-	var template = (this.numActiveBase() > 0) ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
+	let template = (this.numActiveBase() > 0) ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
 	if (!this.canBuild(gameState, template))
 		return false;
 
@@ -1511,26 +1510,26 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			(this.econState == "townPhasing" && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)))
 		{
 			gameState.ai.queueManager.changePriority("militaryBuilding", 2*this.Config.priorities.militaryBuilding);
-			var preferredBase = this.findBestBaseForMilitary(gameState);
-			var plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase });
+			let preferredBase = this.findBestBaseForMilitary(gameState);
+			let plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase });
 			plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("militaryBuilding", gameState.ai.Config.priorities.militaryBuilding); };
 			queues.militaryBuilding.addPlan(plan);
 		}
 		// second barracks, then 3rd barrack, and optional 4th for some civs as they rely on barracks more.
 		else if (barrackNb == 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
 		{
-			var preferredBase = this.findBestBaseForMilitary(gameState);
+			let preferredBase = this.findBestBaseForMilitary(gameState);
 			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
 		}
 		else if (barrackNb == 2 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 20)
 		{
-			var preferredBase = this.findBestBaseForMilitary(gameState);
+			let preferredBase = this.findBestBaseForMilitary(gameState);
 			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
 		}
 		else if (barrackNb == 3 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 50
 			&& (gameState.civ() == "gaul" || gameState.civ() == "brit" || gameState.civ() == "iber"))
 		{
-			var preferredBase = this.findBestBaseForMilitary(gameState);
+			let preferredBase = this.findBestBaseForMilitary(gameState);
 			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
 		}
 	}
@@ -1538,20 +1537,19 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	//build advanced military buildings
 	if (gameState.currentPhase() > 2 && gameState.getPopulation() > 80 && queues.militaryBuilding.length() == 0 && this.bAdvanced.length != 0)
 	{
-		var nAdvanced = 0;
-		for (var advanced of this.bAdvanced)
+		let nAdvanced = 0;
+		for (let advanced of this.bAdvanced)
 			nAdvanced += gameState.countEntitiesAndQueuedByType(advanced, true);
 
 		if (nAdvanced == 0 || (nAdvanced < this.bAdvanced.length && gameState.getPopulation() > 120))
 		{
-			for (var advanced of this.bAdvanced)
+			for (let advanced of this.bAdvanced)
 			{
-				if (gameState.countEntitiesAndQueuedByType(advanced, true) < 1 && this.canBuild(gameState, advanced))
-				{
-					var preferredBase = this.findBestBaseForMilitary(gameState);
-					queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced, { "preferredBase": preferredBase }));
-					break;
-				}
+				if (gameState.countEntitiesAndQueuedByType(advanced, true) > 0 || !this.canBuild(gameState, advanced))
+					continue;
+				let preferredBase = this.findBestBaseForMilitary(gameState);
+				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced, { "preferredBase": preferredBase }));
+				break;
 			}
 		}
 	}
@@ -1562,18 +1560,18 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
  */
 m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 {
-	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
-	var bestBase = 1;
-	var distMin = Math.min();
-	for (var cce of ccEnts)
+	let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
+	let bestBase = 1;
+	let distMin = Math.min();
+	for (let cce of ccEnts)
 	{
 		if (gameState.isPlayerAlly(cce.owner()))
 			continue;
-		for (var cc of ccEnts)
+		for (let cc of ccEnts)
 		{
 			if (cc.owner() != PlayerID)
 				continue;
-			var dist = API3.SquareVectorDistance(cc.position(), cce.position());
+			let dist = API3.SquareVectorDistance(cc.position(), cce.position());
 			if (dist > distMin)
 				continue;
 			bestBase = cc.getMetadata(PlayerID, "base");
