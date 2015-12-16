@@ -5,12 +5,13 @@
     <variant frequency="100" name="Base">
       <mesh>gaia/tree_dead_a_1.dae</mesh>
       <props>
-        <prop actor="flora/tree_dead_a1_branches.xml" attachpoint="root"/>
+        <prop actor="props/flora/tree_dead_a1_branches.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="gaia/tree_dead.dds" name="baseTex"/>
+      </textures>
     </variant>
-    <textures><texture file="gaia/tree_dead.dds" name="baseTex"/></textures>
   </group>
 
   <material>basic_trans_wind.xml</material>
-
 </actor>
