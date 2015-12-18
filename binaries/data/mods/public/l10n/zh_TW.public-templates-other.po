@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-16 08:31+0100\n"
-"PO-Revision-Date: 2015-11-16 14:22+0000\n"
+"POT-Creation-Date: 2015-12-14 09:01+0100\n"
+"PO-Revision-Date: 2015-12-14 12:43+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -115,11 +115,11 @@ msgstr "寶藏"
 msgid "A treasure that can be quickly gathered."
 msgstr "可以快速收集的資源。"
 
-#: simulation/templates/template_structure.xml:56
+#: simulation/templates/template_structure.xml:57
 msgid "Structure"
 msgstr "建築物"
 
-#: simulation/templates/template_unit.xml:37
+#: simulation/templates/template_unit.xml:38
 msgid "Unit"
 msgstr "單位"
 
@@ -444,6 +444,10 @@ msgstr "從葡萄藤上採集葡萄以獲取食物。"
 msgid "Deciduous Bush"
 msgstr "落葉灌木"
 
+#: simulation/templates/gaia/flora_tree_acacia.xml:4
+msgid "Acacia Tree"
+msgstr "合歡樹"
+
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
 msgstr "地中海松樹"
@@ -497,6 +501,9 @@ msgstr "叢櫚"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
+#: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
+#: simulation/templates/gaia/flora_tree_oak_dead.xml:4
+#: simulation/templates/gaia/flora_tree_oak_new.xml:4
 msgid "Oak Tree"
 msgstr "橡樹"
 
@@ -791,33 +798,33 @@ msgstr "柵欄要塞"
 msgid "Wooden Tower"
 msgstr "木製塔樓"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:20
+#: simulation/templates/other/palisades_rocks_gate.xml:25
 msgid "Palisade Gate"
 msgstr "柵欄門"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:21
+#: simulation/templates/other/palisades_rocks_gate.xml:26
 msgid "Wooden Gate"
 msgstr "木門"
 
-#: simulation/templates/other/palisades_rocks_long.xml:22
-#: simulation/templates/other/palisades_rocks_medium.xml:22
-#: simulation/templates/other/palisades_rocks_short.xml:21
+#: simulation/templates/other/palisades_rocks_long.xml:27
+#: simulation/templates/other/palisades_rocks_medium.xml:27
+#: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
-#: simulation/templates/other/palisades_rocks_tower.xml:21
+#: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
 msgstr "柵欄"
 
-#: simulation/templates/other/palisades_rocks_long.xml:23
-#: simulation/templates/other/palisades_rocks_medium.xml:23
-#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_long.xml:28
+#: simulation/templates/other/palisades_rocks_medium.xml:28
+#: simulation/templates/other/palisades_rocks_short.xml:27
 #: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/palisades_rocks_tower.xml:27
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
 msgstr "木牆"
 
-#: simulation/templates/other/palisades_rocks_long.xml:24
+#: simulation/templates/other/palisades_rocks_long.xml:29
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "將木牆轉換為木門"
 

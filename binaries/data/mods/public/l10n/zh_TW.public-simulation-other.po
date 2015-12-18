@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-11 09:01+0100\n"
-"PO-Revision-Date: 2015-12-11 13:10+0000\n"
+"POT-Creation-Date: 2015-12-14 09:01+0100\n"
+"PO-Revision-Date: 2015-12-14 12:40+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -17,98 +17,130 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/ai/petra/chatHelper.js:5 simulation/components/Player.js:43
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:7
+msgctxt "withinSentence"
 msgid "Food"
-msgstr "糧食"
+msgstr "食物"
 
-#: simulation/ai/petra/chatHelper.js:6 simulation/components/Player.js:44
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:9
+msgctxt "withinSentence"
 msgid "Wood"
-msgstr "木材"
+msgstr "木頭"
 
-#: simulation/ai/petra/chatHelper.js:7 simulation/components/Player.js:45
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:11
+msgctxt "withinSentence"
 msgid "Metal"
 msgstr "金屬"
 
-#: simulation/ai/petra/chatHelper.js:8 simulation/components/Player.js:46
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:13
+msgctxt "withinSentence"
 msgid "Stone"
 msgstr "石頭"
 
-#: simulation/ai/petra/chatHelper.js:15
+#: simulation/ai/petra/chatHelper.js:21
+#, javascript-format
+msgid ""
+"I am starting a massive military campaign against %(_player_)s, come and "
+"join me."
+msgstr "我已開始發起對 %(_player_)s 的大型戰役，來加入我吧。"
+
+#: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "我正在攻擊 %(_player_)s 。"
 
-#: simulation/ai/petra/chatHelper.js:17
+#: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "我已經命令軍隊對抗 %(_player_)s 。"
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:44
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "讓我重新組織我的軍隊，然後我會和你一起對抗 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:46
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "我正在做最後的準備，然後我將會攻擊 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:42
+#: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "我無法在這個時間點幫助你對抗 %(_player_)s，因為我已經有對 %(_player_2)s 的攻擊計畫了。"
 
-#: simulation/ai/petra/chatHelper.js:44
+#: simulation/ai/petra/chatHelper.js:53
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "抱歉，目前我沒有足夠的士兵，但我的下一個攻擊目標是 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:66
+#: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "這是給 %(_player_)s 的一份禮物，請好好的利用它。"
 
-#: simulation/ai/petra/chatHelper.js:68
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "我發現您正處於一個不太好的狀況 %(_player_)s，希望這個能有所幫助。"
 
-#: simulation/ai/petra/chatHelper.js:84
+#: simulation/ai/petra/chatHelper.js:80
+#, javascript-format
+msgid ""
+"I can help you this time %(_player_)s, but try to assemble more resources in"
+" the future."
+msgstr "我這次可以協助您 %(_player_)s，但請在未來收集更多的資源。"
+
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "我需要 %(resource)s，您可以幫忙嗎？ 我會歸功於您的。"
 
-#: simulation/ai/petra/chatHelper.js:86
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "如果您能提供給我一些 %(resource)s，我將會更積極參與我們的共同戰爭行動。"
 
-#: simulation/ai/petra/chatHelper.js:102
+#: simulation/ai/petra/chatHelper.js:101
+#, javascript-format
+msgid ""
+"If you have some %(resource)s excess, that would help me strengthen my army."
+msgstr "若您有多出一些 %(resource)s，這可以幫忙我加強我的軍力。"
+
+#: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "我已經與 %(_player_)s 設定了一條新的路線。這交易對我們來說都有利可圖。"
 
-#: simulation/ai/petra/chatHelper.js:104
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "與 %(_player_)s 成立一條新的貿易路線。獲取您的那一份利潤吧"
 
-#: simulation/ai/petra/chatHelper.js:119
+#: simulation/ai/petra/chatHelper.js:136
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "我正在進階到 %(phase)s。"
 
-#: simulation/ai/petra/chatHelper.js:121
+#: simulation/ai/petra/chatHelper.js:138
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "我已經到達 %(phase)s 了。"
@@ -650,6 +682,22 @@ msgstr "%(category)s 已達到最大訓練數 %(limit)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s 已達到最高限制 %(limit)s"
 
+#: simulation/components/Player.js:43
+msgid "Food"
+msgstr "糧食"
+
+#: simulation/components/Player.js:44
+msgid "Wood"
+msgstr "木材"
+
+#: simulation/components/Player.js:45
+msgid "Metal"
+msgstr "金屬"
+
+#: simulation/components/Player.js:46
+msgid "Stone"
+msgstr "石頭"
+
 #: simulation/components/Player.js:252
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
@@ -681,7 +729,7 @@ msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)
 msgid "The production queue is full."
 msgstr "生產佇列已滿。"
 
-#: simulation/helpers/Commands.js:682
+#: simulation/helpers/Commands.js:681
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "請攻擊 %(_player_)s。"

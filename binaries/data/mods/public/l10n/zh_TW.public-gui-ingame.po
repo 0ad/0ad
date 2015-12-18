@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-11 09:00+0100\n"
-"PO-Revision-Date: 2015-12-11 13:10+0000\n"
+"POT-Creation-Date: 2015-12-14 09:00+0100\n"
+"PO-Revision-Date: 2015-12-14 12:43+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr[0] "額外範圍：%(range)s 公尺"
 msgid "Cannot build wall here!"
 msgstr "無法在此建築城牆！"
 
-#: gui/session/menu.js:1 gui/session/menu.xml:(caption):64
+#: gui/session/menu.js:1 gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "暫停"
 
@@ -99,7 +99,7 @@ msgctxt "team"
 msgid "None"
 msgstr "無"
 
-#: gui/session/menu.js:302 gui/session/messages.js:642
+#: gui/session/menu.js:302 gui/session/messages.js:706
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "同盟"
@@ -108,7 +108,7 @@ msgstr "同盟"
 msgid "Neutral"
 msgstr "中立"
 
-#: gui/session/menu.js:302 gui/session/messages.js:652
+#: gui/session/menu.js:302 gui/session/messages.js:716
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "敵方"
@@ -241,170 +241,170 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "進貢 %(resourceAmount)s %(resourceType)s 給 %(playerName)s 。Shift 加上點擊以進貢 %(greaterAmount)s 。"
 
-#: gui/session/messages.js:251
+#: gui/session/messages.js:298
 msgid "Waiting for other players to connect..."
 msgstr "正等候其他玩家連接..."
 
-#: gui/session/messages.js:255
+#: gui/session/messages.js:302
 msgid "Synchronising gameplay with other players..."
 msgstr "正在與其他玩家同步遊戲..."
 
-#: gui/session/messages.js:263
+#: gui/session/messages.js:310
 msgid "Connected to the server."
 msgstr "已連線至伺服器。"
 
-#: gui/session/messages.js:267
+#: gui/session/messages.js:314
 msgid "Connection to the server has been authenticated."
 msgstr "已驗證與伺服器間的連線。"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:274
+#: gui/session/messages.js:321
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "原因：%(reason)s。"
 
-#: gui/session/messages.js:275
+#: gui/session/messages.js:322
 msgid "Connection to the server has been lost."
 msgstr "已失去與伺服器間的連線。"
 
-#: gui/session/messages.js:275
+#: gui/session/messages.js:322
 msgid "The game has ended."
 msgstr "遊戲結束。"
 
-#: gui/session/messages.js:332
+#: gui/session/messages.js:379
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s 已被踢出"
 
-#: gui/session/messages.js:336
+#: gui/session/messages.js:383
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s 已被封禁"
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:482
 msgid "Unknown player"
 msgstr "未知玩家"
 
-#: gui/session/messages.js:429
+#: gui/session/messages.js:491
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s 正在開始重新加入遊戲。"
 
-#: gui/session/messages.js:432
+#: gui/session/messages.js:494
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s 已離開遊戲。"
 
-#: gui/session/messages.js:435
+#: gui/session/messages.js:497
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s 已經重新加入遊戲。"
 
-#: gui/session/messages.js:438
+#: gui/session/messages.js:500
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "使用者：%(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/session/messages.js:440 gui/session/messages.js:498
+#: gui/session/messages.js:502 gui/session/messages.js:559
 msgid ", "
 msgstr "，"
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:510
 msgid "You have been defeated."
 msgstr "您被擊敗。"
 
-#: gui/session/messages.js:450
+#: gui/session/messages.js:512
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s 已被擊敗。"
 
-#: gui/session/messages.js:458
+#: gui/session/messages.js:519
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "您正與 %(player)s 同盟。"
 
-#: gui/session/messages.js:460
+#: gui/session/messages.js:521
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "您正與 %(player)s 交戰。"
 
-#: gui/session/messages.js:462
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "您與 %(player)s 關係為中立。"
 
-#: gui/session/messages.js:468
+#: gui/session/messages.js:529
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s 現在與你同盟。"
 
-#: gui/session/messages.js:470
+#: gui/session/messages.js:531
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s 現在與你作戰。"
 
-#: gui/session/messages.js:472
+#: gui/session/messages.js:533
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s 現與你處於中立。"
 
-#: gui/session/messages.js:488
+#: gui/session/messages.js:549
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr "%(amount)s %(resourceType)s"
 
-#: gui/session/messages.js:496
+#: gui/session/messages.js:557
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s 和 %(lastAmount)s"
 
-#: gui/session/messages.js:503
+#: gui/session/messages.js:564
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s 已傳送給您 %(amounts)s。"
 
-#: gui/session/messages.js:516
+#: gui/session/messages.js:577
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "您的家畜正被 %(attacker)s 攻擊！"
 
-#: gui/session/messages.js:518
+#: gui/session/messages.js:579
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "您正被 %(attacker)s 攻擊！"
 
-#: gui/session/messages.js:544
+#: gui/session/messages.js:604
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:552
+#: gui/session/messages.js:612
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:560 gui/session/messages.js:561
+#: gui/session/messages.js:620 gui/session/messages.js:621
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:564
+#: gui/session/messages.js:624
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:572
+#: gui/session/messages.js:631
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:632 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:696 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "團隊"
 
-#: gui/session/messages.js:674
+#: gui/session/messages.js:741
 msgid "Private"
 msgstr "私人"
 
@@ -507,7 +507,7 @@ msgid "Hitpoints:"
 msgstr "生命值:"
 
 #: gui/session/selection_details.js:327 gui/session/selection_details.js:357
-#: gui/session/session.js:649
+#: gui/session/session.js:654
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -517,47 +517,47 @@ msgstr "%(label)s %(current)s / %(max)s"
 msgid "Capture points:"
 msgstr "捕獲點： "
 
-#: gui/session/selection_panels.js:72
+#: gui/session/selection_panels.js:71
 msgid "Increase the alert level to protect more units"
 msgstr "增加警報等級以保護更多單位"
 
-#: gui/session/selection_panels.js:74
+#: gui/session/selection_panels.js:73
 msgid "Raise an alert!"
 msgstr "引發警報！"
 
-#: gui/session/selection_panels.js:77
+#: gui/session/selection_panels.js:76
 msgid "End of alert."
 msgstr "警報結束。"
 
-#: gui/session/selection_panels.js:143
+#: gui/session/selection_panels.js:141
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "購買 %(resource)s"
 
-#: gui/session/selection_panels.js:144
+#: gui/session/selection_panels.js:142
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "賣出 %(resource)s"
 
-#: gui/session/selection_panels.js:322 gui/session/selection_panels.js:1107
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1098
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
 
-#: gui/session/selection_panels.js:439
+#: gui/session/selection_panels.js:440
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "卸下 %(name)s"
 
-#: gui/session/selection_panels.js:440
+#: gui/session/selection_panels.js:441
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "單擊卸下 1. Shift 並單擊卸下所有該類型的單位。"
 
-#: gui/session/selection_panels.js:507
+#: gui/session/selection_panels.js:508
 msgid "Lock Gate"
 msgstr "鎖住大門"
 
-#: gui/session/selection_panels.js:513
+#: gui/session/selection_panels.js:514
 msgid "Unlock Gate"
 msgstr "開放大門"
 
@@ -586,13 +586,13 @@ msgstr "人口上限不足："
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:817
+#: gui/session/selection_panels.js:812
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩餘： %(number)s 要建造。"
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:648
+#: gui/session/selection_panels.js:1086 gui/session/session.js:653
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "血:"
@@ -661,37 +661,37 @@ msgstr "%(action)s 訓練 %(number)s (%(fullBatch)s)."
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s 訓練 %(number)s."
 
-#: gui/session/session.js:22 gui/session/utility_functions.js:130
+#: gui/session/session.js:34 gui/session/utility_functions.js:130
 #: gui/session/utility_functions.js:136 gui/session/utility_functions.js:141
 msgid "You"
 msgstr "您"
 
-#: gui/session/session.js:175
+#: gui/session/session.js:180
 msgid "Gaia"
 msgstr "蓋雅"
 
-#: gui/session/session.js:247
+#: gui/session/session.js:250
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - 建築樹"
 
-#: gui/session/session.js:321 gui/session/session.js:337
+#: gui/session/session.js:325 gui/session/session.js:341
 msgid "You have left the game."
 msgstr "您已經離開遊戲。"
 
-#: gui/session/session.js:328
+#: gui/session/session.js:332
 msgid "You have been disconnected."
 msgstr "您已中斷連線。"
 
-#: gui/session/session.js:330
+#: gui/session/session.js:334
 msgid "You have won the battle!"
 msgstr "您已得勝！"
 
-#: gui/session/session.js:332
+#: gui/session/session.js:336
 msgid "You have been defeated..."
 msgstr "您被擊敗..."
 
-#: gui/session/session.js:340
+#: gui/session/session.js:344
 msgid "You have abandoned the game."
 msgstr "您已放棄遊戲。"
 
@@ -707,44 +707,44 @@ msgstr "請按下「確定」繼續"
 msgid "Do you want to quit?"
 msgstr "您是否要退出？"
 
-#: gui/session/session.js:505
+#: gui/session/session.js:504
 msgid "DEFEATED!"
 msgstr "戰敗！"
 
-#: gui/session/session.js:513
+#: gui/session/session.js:509
 msgid "VICTORIOUS!"
 msgstr "勝利！"
 
-#: gui/session/session.js:574
-msgctxt "replayFinished"
-msgid "No"
-msgstr "否"
-
-#: gui/session/session.js:574
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "是"
-
-#: gui/session/session.js:576
+#: gui/session/session.js:578
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "重播已結束。您想要退出嗎？"
 
-#: gui/session/session.js:576
+#: gui/session/session.js:579
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/session/session.js:737
+#: gui/session/session.js:581
+msgctxt "replayFinished"
+msgid "No"
+msgstr "否"
+
+#: gui/session/session.js:581
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "是"
+
+#: gui/session/session.js:739
 msgid "Population (current / limit)"
 msgstr "人口 (目前/上限)"
 
-#: gui/session/session.js:738
+#: gui/session/session.js:740
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "最大人口：%(popCap)s"
 
-#: gui/session/session.js:901
+#: gui/session/session.js:900
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "組建： %(buildDate)s (%(revision)s)"
@@ -756,7 +756,7 @@ msgid ""
 "memory or crash."
 msgstr "注意：時空隧道模式是開發者選項，不建議長時間使用。不恰當的使用可能會導致記憶體耗盡或是遊戲當機。"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:907
 msgid "Time warp mode"
 msgstr "時空隧道模式"
 
@@ -904,15 +904,19 @@ msgstr "聊天"
 msgid "Save"
 msgstr "儲存"
 
-#: gui/session/menu.xml:(caption):52
+#: gui/session/menu.xml:(caption):53
+msgid "Summary"
+msgstr "摘要"
+
+#: gui/session/menu.xml:(caption):64
 msgid "Options"
 msgstr "選項"
 
-#: gui/session/menu.xml:(caption):76
+#: gui/session/menu.xml:(caption):88
 msgid "Resign"
 msgstr "辭職"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):351
+#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):352
 msgid "Exit"
 msgstr "退出"
 
@@ -920,75 +924,75 @@ msgstr "退出"
 msgid "Find idle worker"
 msgstr "尋找閒置工人"
 
-#: gui/session/session.xml:(caption):61
+#: gui/session/session.xml:(caption):62
 msgid "Control all units"
 msgstr "控制所有單位"
 
-#: gui/session/session.xml:(caption):71
+#: gui/session/session.xml:(caption):72
 msgid "Change perspective"
 msgstr "變更觀點"
 
-#: gui/session/session.xml:(caption):78
+#: gui/session/session.xml:(caption):79
 msgid "Display selection state"
 msgstr "顯示選取狀態"
 
-#: gui/session/session.xml:(caption):83
+#: gui/session/session.xml:(caption):84
 msgid "Pathfinder overlay"
 msgstr "尋路覆蓋層"
 
-#: gui/session/session.xml:(caption):90
+#: gui/session/session.xml:(caption):91
 msgid "Obstruction overlay"
 msgstr "障礙覆蓋層"
 
-#: gui/session/session.xml:(caption):97
+#: gui/session/session.xml:(caption):98
 msgid "Unit motion overlay"
 msgstr "單位移動覆蓋層"
 
-#: gui/session/session.xml:(caption):104
+#: gui/session/session.xml:(caption):105
 msgid "Range overlay"
 msgstr "射程覆蓋層"
 
-#: gui/session/session.xml:(caption):111
+#: gui/session/session.xml:(caption):112
 msgid "Bounding box overlay"
 msgstr "邊框覆蓋層"
 
-#: gui/session/session.xml:(caption):118
+#: gui/session/session.xml:(caption):119
 msgid "Restrict camera"
 msgstr "限制攝影機"
 
-#: gui/session/session.xml:(caption):127
+#: gui/session/session.xml:(caption):128
 msgid "Reveal map"
 msgstr "顯示地圖"
 
-#: gui/session/session.xml:(caption):135
+#: gui/session/session.xml:(caption):136
 msgid "Enable time warp"
 msgstr "啟用時間隧道"
 
-#: gui/session/session.xml:(caption):145
+#: gui/session/session.xml:(caption):146
 msgid "Promote selected units"
 msgstr "升職選定的單位"
 
-#: gui/session/session.xml:(caption):152
+#: gui/session/session.xml:(caption):153
 msgid "Hierarchical pathfinder overlay"
 msgstr "分級尋路覆蓋層"
 
-#: gui/session/session.xml:(caption):186
+#: gui/session/session.xml:(caption):187
 msgid "Game Paused"
 msgstr "遊戲已暫停"
 
-#: gui/session/session.xml:(caption):189
+#: gui/session/session.xml:(caption):190
 msgid "Click to Resume Game"
 msgstr "點按可繼續遊戲"
 
-#: gui/session/session.xml:(caption):224
+#: gui/session/session.xml:(caption):225
 msgid "Cancel"
 msgstr "取消"
 
-#: gui/session/session.xml:(caption):230
+#: gui/session/session.xml:(caption):231
 msgid "Team Only"
 msgstr "只有隊伍"
 
-#: gui/session/session.xml:(caption):234
+#: gui/session/session.xml:(caption):235
 msgid "Send"
 msgstr "傳送"
 
@@ -1069,10 +1073,6 @@ msgstr "選擇遊戲速度"
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
 msgstr "選單"
-
-#: gui/session/top_panel/button_summary.xml:(tooltip):9
-msgid "Summary Screen"
-msgstr "摘要畫面"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XIX : Syllepsis"

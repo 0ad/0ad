@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-11 09:00+0100\n"
-"PO-Revision-Date: 2015-12-11 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-12-14 09:00+0100\n"
+"PO-Revision-Date: 2015-12-16 18:57+0000\n"
+"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +41,7 @@ msgstr[1] "Lisätoimintasäde: %(range)s metriä"
 msgid "Cannot build wall here!"
 msgstr "Muuria ei voida rakentaa tähän!"
 
-#: gui/session/menu.js:1 gui/session/menu.xml:(caption):64
+#: gui/session/menu.js:1 gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "Tauko"
 
@@ -101,7 +101,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Ei mitään"
 
-#: gui/session/menu.js:302 gui/session/messages.js:642
+#: gui/session/menu.js:302 gui/session/messages.js:706
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Liittolainen"
@@ -110,7 +110,7 @@ msgstr "Liittolainen"
 msgid "Neutral"
 msgstr "Neutraali"
 
-#: gui/session/menu.js:302 gui/session/messages.js:652
+#: gui/session/menu.js:302 gui/session/messages.js:716
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Vihollinen"
@@ -231,7 +231,7 @@ msgstr[1] "%(numberOfShipTraders)s kauppa-aluksia epäaktiivisena"
 
 #: gui/session/menu.js:640
 msgid "Current Scores"
-msgstr ""
+msgstr "Pistetilanne:"
 
 #: gui/session/menu.js:707 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -252,170 +252,170 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Lahjoita %(resourceAmount)s %(resourceType)s pelaajalle %(playerName)s. Suurempi avustus Shift-napin avulla %(greaterAmount)s."
 
-#: gui/session/messages.js:251
+#: gui/session/messages.js:298
 msgid "Waiting for other players to connect..."
 msgstr "Odotetaan muita pelaajia..."
 
-#: gui/session/messages.js:255
+#: gui/session/messages.js:302
 msgid "Synchronising gameplay with other players..."
 msgstr "Synkronoidaan peliä..."
 
-#: gui/session/messages.js:263
+#: gui/session/messages.js:310
 msgid "Connected to the server."
 msgstr "Yhdistetty palvelimeen."
 
-#: gui/session/messages.js:267
+#: gui/session/messages.js:314
 msgid "Connection to the server has been authenticated."
 msgstr "Yhteys palvelimeen todennettu."
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:274
+#: gui/session/messages.js:321
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Syy: %(reason)s."
 
-#: gui/session/messages.js:275
+#: gui/session/messages.js:322
 msgid "Connection to the server has been lost."
 msgstr "Yhteys palvelimeen menetetty."
 
-#: gui/session/messages.js:275
+#: gui/session/messages.js:322
 msgid "The game has ended."
 msgstr "Peli on päättynyt."
 
-#: gui/session/messages.js:332
+#: gui/session/messages.js:379
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s on potkittu ulos"
 
-#: gui/session/messages.js:336
+#: gui/session/messages.js:383
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s on bannattu"
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:482
 msgid "Unknown player"
 msgstr "Tuntematon pelaaja"
 
-#: gui/session/messages.js:429
+#: gui/session/messages.js:491
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s on valmistautumassa uudelleenliittymään peliin."
 
-#: gui/session/messages.js:432
+#: gui/session/messages.js:494
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s poistui pelistä."
 
-#: gui/session/messages.js:435
+#: gui/session/messages.js:497
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s on uudelleenliittynyt peliin."
 
-#: gui/session/messages.js:438
+#: gui/session/messages.js:500
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Käyttäjät: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/session/messages.js:440 gui/session/messages.js:498
+#: gui/session/messages.js:502 gui/session/messages.js:559
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:510
 msgid "You have been defeated."
 msgstr "Sinut on lyöty."
 
-#: gui/session/messages.js:450
+#: gui/session/messages.js:512
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s on lyöty."
 
-#: gui/session/messages.js:458
+#: gui/session/messages.js:519
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Sinä olet nyt liittoutunut %(player)s kanssa."
 
-#: gui/session/messages.js:460
+#: gui/session/messages.js:521
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Sinä olet nyt sodassa %(player)s kanssa."
 
-#: gui/session/messages.js:462
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "You are nyt sovussa %(player)s kanssa."
 
-#: gui/session/messages.js:468
+#: gui/session/messages.js:529
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s on nyt liittoutunut kanssasi."
 
-#: gui/session/messages.js:470
+#: gui/session/messages.js:531
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s on nyt sodassa kanssasi."
 
-#: gui/session/messages.js:472
+#: gui/session/messages.js:533
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s on nyt sovussa kanssasi."
 
-#: gui/session/messages.js:488
+#: gui/session/messages.js:549
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr "%(amount)s %(resourceType)s"
 
-#: gui/session/messages.js:496
+#: gui/session/messages.js:557
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s ja %(lastAmount)s"
 
-#: gui/session/messages.js:503
+#: gui/session/messages.js:564
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s lähetti sinulle %(amounts)s."
 
-#: gui/session/messages.js:516
+#: gui/session/messages.js:577
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Karjaasi vastaan hyökkäsi %(attacker)s!"
 
-#: gui/session/messages.js:518
+#: gui/session/messages.js:579
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Sinua vastaan hyökkää %(attacker)s !"
 
-#: gui/session/messages.js:544
+#: gui/session/messages.js:604
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:552
+#: gui/session/messages.js:612
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:560 gui/session/messages.js:561
+#: gui/session/messages.js:620 gui/session/messages.js:621
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:564
+#: gui/session/messages.js:624
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:572
+#: gui/session/messages.js:631
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:632 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:696 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Joukkue"
 
-#: gui/session/messages.js:674
+#: gui/session/messages.js:741
 msgid "Private"
 msgstr "Yksityinen"
 
@@ -520,7 +520,7 @@ msgid "Hitpoints:"
 msgstr "Osumapisteet:"
 
 #: gui/session/selection_details.js:327 gui/session/selection_details.js:357
-#: gui/session/session.js:649
+#: gui/session/session.js:654
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -530,47 +530,47 @@ msgstr "%(label)s %(current)s / %(max)s"
 msgid "Capture points:"
 msgstr "Valtauspisteitä:"
 
-#: gui/session/selection_panels.js:72
+#: gui/session/selection_panels.js:71
 msgid "Increase the alert level to protect more units"
 msgstr "Korota hälytyksen tasoa suojellaksesi useampia yksiköitä"
 
-#: gui/session/selection_panels.js:74
+#: gui/session/selection_panels.js:73
 msgid "Raise an alert!"
 msgstr "Nosta hälytys!"
 
-#: gui/session/selection_panels.js:77
+#: gui/session/selection_panels.js:76
 msgid "End of alert."
 msgstr "Lopeta hälytys."
 
-#: gui/session/selection_panels.js:143
+#: gui/session/selection_panels.js:141
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Osta %(resource)s"
 
-#: gui/session/selection_panels.js:144
+#: gui/session/selection_panels.js:142
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Myy %(resource)s"
 
-#: gui/session/selection_panels.js:322 gui/session/selection_panels.js:1107
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1098
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Vaatii %(technology)s"
 
-#: gui/session/selection_panels.js:439
+#: gui/session/selection_panels.js:440
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Pura %(name)s"
 
-#: gui/session/selection_panels.js:440
+#: gui/session/selection_panels.js:441
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Yksittäinen painallus purkaa 1:n yksikön. Shiftin avulla purat kaikki saman tyypin yksiköt."
 
-#: gui/session/selection_panels.js:507
+#: gui/session/selection_panels.js:508
 msgid "Lock Gate"
 msgstr "Lukitse portti"
 
-#: gui/session/selection_panels.js:513
+#: gui/session/selection_panels.js:514
 msgid "Unlock Gate"
 msgstr "Avaa portin lukitus"
 
@@ -599,14 +599,14 @@ msgstr "Riittämätön väestömäärä:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:817
+#: gui/session/selection_panels.js:812
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Rakennettavia jäljellä: %(number)s."
 msgstr[1] "Rakennettavia jäljellä: %(number)s."
 
-#: gui/session/selection_panels.js:1095 gui/session/session.js:648
+#: gui/session/selection_panels.js:1086 gui/session/session.js:653
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Terveys:"
@@ -675,37 +675,37 @@ msgstr "%(action)s kouluttaaksesi %(number)s (%(fullBatch)s)."
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s kouluttaaksesi %(number)s."
 
-#: gui/session/session.js:22 gui/session/utility_functions.js:130
+#: gui/session/session.js:34 gui/session/utility_functions.js:130
 #: gui/session/utility_functions.js:136 gui/session/utility_functions.js:141
 msgid "You"
 msgstr "Sinä"
 
-#: gui/session/session.js:175
+#: gui/session/session.js:180
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:247
+#: gui/session/session.js:250
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Teknologiapuu"
 
-#: gui/session/session.js:321 gui/session/session.js:337
+#: gui/session/session.js:325 gui/session/session.js:341
 msgid "You have left the game."
 msgstr "Olet poistunut pelistä."
 
-#: gui/session/session.js:328
+#: gui/session/session.js:332
 msgid "You have been disconnected."
 msgstr "Yhteys katkesi."
 
-#: gui/session/session.js:330
+#: gui/session/session.js:334
 msgid "You have won the battle!"
 msgstr "Olet voittanut taistelun!"
 
-#: gui/session/session.js:332
+#: gui/session/session.js:336
 msgid "You have been defeated..."
 msgstr "Olet hävinnyt taistelun..."
 
-#: gui/session/session.js:340
+#: gui/session/session.js:344
 msgid "You have abandoned the game."
 msgstr "Olet jättänyt pelin."
 
@@ -721,44 +721,44 @@ msgstr "Paina OK jatkaaksesi"
 msgid "Do you want to quit?"
 msgstr "Tahdotko lopettaa?"
 
-#: gui/session/session.js:505
+#: gui/session/session.js:504
 msgid "DEFEATED!"
 msgstr "TUHOUDUIT!"
 
-#: gui/session/session.js:513
+#: gui/session/session.js:509
 msgid "VICTORIOUS!"
 msgstr "VOITTO!"
 
-#: gui/session/session.js:574
-msgctxt "replayFinished"
-msgid "No"
-msgstr "Ei"
-
-#: gui/session/session.js:574
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Kyllä"
-
-#: gui/session/session.js:576
+#: gui/session/session.js:578
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Uusinta on päättynyt. Haluatko lopettaa?"
 
-#: gui/session/session.js:576
+#: gui/session/session.js:579
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Vahvistus"
 
-#: gui/session/session.js:737
+#: gui/session/session.js:581
+msgctxt "replayFinished"
+msgid "No"
+msgstr "Ei"
+
+#: gui/session/session.js:581
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "Kyllä"
+
+#: gui/session/session.js:739
 msgid "Population (current / limit)"
 msgstr "Väkiluku (nykyinen / raja)"
 
-#: gui/session/session.js:738
+#: gui/session/session.js:740
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maksimi väkiluku: %(popCap)s"
 
-#: gui/session/session.js:901
+#: gui/session/session.js:900
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versio: %(buildDate)s (%(revision)s)"
@@ -770,7 +770,7 @@ msgid ""
 "memory or crash."
 msgstr "Huomio: aikasiirtymätila on kehittäjäoptio, sitä ei ole tarkoitettu käytettäväksi pitkiä aikoja. Jos sitä käytetään väärin, se voi aiheuttaa muistin loppumisen tai pelin kaatumisen,"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:907
 msgid "Time warp mode"
 msgstr "Aikasiirtymätila"
 
@@ -918,15 +918,19 @@ msgstr "Keskustelu"
 msgid "Save"
 msgstr "Tallenna"
 
-#: gui/session/menu.xml:(caption):52
+#: gui/session/menu.xml:(caption):53
+msgid "Summary"
+msgstr "Katsaus"
+
+#: gui/session/menu.xml:(caption):64
 msgid "Options"
 msgstr "Vaihtoehdot"
 
-#: gui/session/menu.xml:(caption):76
+#: gui/session/menu.xml:(caption):88
 msgid "Resign"
 msgstr "Luovuta"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):351
+#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):352
 msgid "Exit"
 msgstr "Poistu"
 
@@ -934,75 +938,75 @@ msgstr "Poistu"
 msgid "Find idle worker"
 msgstr "Etsi joutilas työntekijä"
 
-#: gui/session/session.xml:(caption):61
+#: gui/session/session.xml:(caption):62
 msgid "Control all units"
 msgstr "Ohjaa kaikkia joukkoja"
 
-#: gui/session/session.xml:(caption):71
+#: gui/session/session.xml:(caption):72
 msgid "Change perspective"
 msgstr "Vaihda näkymää"
 
-#: gui/session/session.xml:(caption):78
+#: gui/session/session.xml:(caption):79
 msgid "Display selection state"
 msgstr "Näytä valinnan tila."
 
-#: gui/session/session.xml:(caption):83
+#: gui/session/session.xml:(caption):84
 msgid "Pathfinder overlay"
 msgstr "Reitinetsinnän näkymä"
 
-#: gui/session/session.xml:(caption):90
+#: gui/session/session.xml:(caption):91
 msgid "Obstruction overlay"
 msgstr "Este yleisnäkymä"
 
-#: gui/session/session.xml:(caption):97
+#: gui/session/session.xml:(caption):98
 msgid "Unit motion overlay"
 msgstr "Yksiköiden liike"
 
-#: gui/session/session.xml:(caption):104
+#: gui/session/session.xml:(caption):105
 msgid "Range overlay"
 msgstr "Alueen yleisnäkymä"
 
-#: gui/session/session.xml:(caption):111
+#: gui/session/session.xml:(caption):112
 msgid "Bounding box overlay"
 msgstr "Rajausalueen yleisnäkymä"
 
-#: gui/session/session.xml:(caption):118
+#: gui/session/session.xml:(caption):119
 msgid "Restrict camera"
 msgstr "Rajoita kamera"
 
-#: gui/session/session.xml:(caption):127
+#: gui/session/session.xml:(caption):128
 msgid "Reveal map"
 msgstr "Paljasta kartta"
 
-#: gui/session/session.xml:(caption):135
+#: gui/session/session.xml:(caption):136
 msgid "Enable time warp"
 msgstr "Aktivoi aikasiirtymä"
 
-#: gui/session/session.xml:(caption):145
+#: gui/session/session.xml:(caption):146
 msgid "Promote selected units"
 msgstr "Ylennä valitut yksiköt"
 
-#: gui/session/session.xml:(caption):152
+#: gui/session/session.xml:(caption):153
 msgid "Hierarchical pathfinder overlay"
 msgstr "Hierarkinen reitinetsinnän näkymä"
 
-#: gui/session/session.xml:(caption):186
+#: gui/session/session.xml:(caption):187
 msgid "Game Paused"
 msgstr "Peli pysäytettu"
 
-#: gui/session/session.xml:(caption):189
+#: gui/session/session.xml:(caption):190
 msgid "Click to Resume Game"
 msgstr "Paina jatkaaksesi peliä"
 
-#: gui/session/session.xml:(caption):224
+#: gui/session/session.xml:(caption):225
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: gui/session/session.xml:(caption):230
+#: gui/session/session.xml:(caption):231
 msgid "Team Only"
 msgstr "Vain Joukkue"
 
-#: gui/session/session.xml:(caption):234
+#: gui/session/session.xml:(caption):235
 msgid "Send"
 msgstr "Lähetä"
 
@@ -1083,10 +1087,6 @@ msgstr "Valitse pelinopeus"
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
 msgstr "Valikko"
-
-#: gui/session/top_panel/button_summary.xml:(tooltip):9
-msgid "Summary Screen"
-msgstr ""
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XIX : Syllepsis"

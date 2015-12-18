@@ -5,13 +5,14 @@
 # Translators:
 # Dimaver <dimaver@ukr.net>, 2014
 # Victor Butko <victor.butko@gmail.com>, 2014
+# Victor Ptah, 2015
 # Yaroslav Yenkala <hyper-news@yandex.ru>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-08 12:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-16 08:48+0000\n"
+"Last-Translator: Victor Ptah\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr "Громадська будівля"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr "Громадянин"
+msgstr "Громадський"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Civic Center"
@@ -34,16 +35,16 @@ msgstr "Громадський Центр"
 #: simulation/templates/template_structure_civic_civil_centre.xml:70
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Побудуй, щоб придбати великі ділянки території. Навчай громадян. Гарнізон: 20."
+msgstr "Побудується, щоб придбати великі ділянки території та тренування громадян. Гарнізон: 20."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:75
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
-msgstr "Центр цивілізації"
+msgstr "Громадянський Центр."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
-msgstr "Збільшити межу населення"
+msgstr "Збільшує населення."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
@@ -107,7 +108,7 @@ msgstr "Захисна башта"
 msgid ""
 "Shoots arrows. Garrison to provide extra defense. Needs the murder holes "
 "tech to protect its foot."
-msgstr ""
+msgstr "Метає стріли. Гарнізон використовується для збільшення захисту. Потребує технологію дірок смерті для захисту."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
@@ -119,7 +120,7 @@ msgstr "Захисна башта"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr ""
+msgstr "Будується на нейтральних та власних територіях щоб розвідати мапу. Повільно стає Ґаєю поки на нейтральній території. "
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -177,7 +178,7 @@ msgstr "Міський мур"
 #: simulation/templates/template_structure_defense_wooden_tower.xml:46
 #: simulation/templates/template_structure_defense_wooden_tower.xml:45
 msgid "Wooden Tower"
-msgstr ""
+msgstr "Дерев'яна Вежа"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -239,7 +240,7 @@ msgstr "Військове"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Тренує солдатів. Досліджує технології військової підготовки. Гарнізон: 10."
+msgstr "Тренує солдатів. Досліджує вдосконалення військової підготовки. Гарнізон: 10."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -476,7 +477,7 @@ msgstr "Театрон"
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr ""
+msgstr "Hellēnízein (Геленізація): +20% територіального впливу для всіх будівель поки існує Театрон. "
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -551,7 +552,7 @@ msgstr "Острівне селище"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways."
-msgstr ""
+msgstr "Збільшує ріст населення і захищає водяні території."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -674,7 +675,7 @@ msgstr "Маханет"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Тренує Північно-Африканських солдатів. Досліджує покращення для північноафриканських юнітів."
+msgstr "Тренує Північно-Африканських громадян-солдатів. Досліджує покращення для північноафриканських юнітів."
 
 #: simulation/templates/structures/cart_blacksmith.xml:5
 #: simulation/templates/structures/ptol_blacksmith.xml:5
@@ -712,7 +713,7 @@ msgstr "Будує рибальські човни для вилову риби 
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
-msgstr "Придбання наймитів."
+msgstr "Наняти найманців."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
@@ -720,7 +721,7 @@ msgstr "Посольство Кельтів"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "Придбання Кельтських наймитів. Досліджує покращення для цих наймитів"
+msgstr "Придбання Кельтських найманців. Досліджує покращення для цих найманців."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
@@ -728,7 +729,7 @@ msgstr "Іберійське посольство"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Придбання Іберійських наймитів. Досліджує покращення для цих наймитів."
+msgstr "Придбання Іберійських найманців. Досліджує покращення для цих найманців."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italiote Embassy"
@@ -736,7 +737,7 @@ msgstr "Італіотське Посольство"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Придбання італійських наймитів. Досліджує покращення для цих наймитів."
+msgstr "Придбання італійських найманців. Досліджує покращення для цих найманців."
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
@@ -990,7 +991,7 @@ msgstr "Ражадханіка"
 
 #: simulation/templates/structures/maur_corral.xml:12
 msgid "Gotra"
-msgstr ""
+msgstr "Клан"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
 msgid "Udarka"
@@ -1095,7 +1096,7 @@ msgstr "Стратопедо Мицофорон Айгиптіакос"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Захопи цю будівлю для тренування наймитів з Елліністичного Єгипту."
+msgstr "Захопи цю будівлю для тренування найманців з Елліністичного Єгипту."
 
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
@@ -1303,11 +1304,11 @@ msgstr "хвт-н-хт.в-вха.в"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
-msgstr "Табір Наймитів"
+msgstr "Табір Найманців."
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
-msgstr "Табір найманців"
+msgstr "Армійський навчальний табір."
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""

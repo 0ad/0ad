@@ -4,12 +4,13 @@
 # 
 # Translators:
 # fri, 2014-2015
+# Pavel Šindelář <pavelsin123@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-11 09:01+0100\n"
-"PO-Revision-Date: 2015-12-11 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-12-14 09:01+0100\n"
+"PO-Revision-Date: 2015-12-17 15:21+0000\n"
+"Last-Translator: Pavel Šindelář <pavelsin123@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,98 +18,130 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: simulation/ai/petra/chatHelper.js:5 simulation/components/Player.js:43
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:7
+msgctxt "withinSentence"
 msgid "Food"
 msgstr "Jídlo"
 
-#: simulation/ai/petra/chatHelper.js:6 simulation/components/Player.js:44
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:9
+msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Dřevo"
 
-#: simulation/ai/petra/chatHelper.js:7 simulation/components/Player.js:45
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:11
+msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Kov"
 
-#: simulation/ai/petra/chatHelper.js:8 simulation/components/Player.js:46
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:13
+msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Kámen"
 
-#: simulation/ai/petra/chatHelper.js:15
+#: simulation/ai/petra/chatHelper.js:21
+#, javascript-format
+msgid ""
+"I am starting a massive military campaign against %(_player_)s, come and "
+"join me."
+msgstr "Začínám masivní vojenskou kampaň proti %(_player_)s, přijď a přidej se ke mně."
+
+#: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Zahajuji útok proti %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:17
+#: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Právě jsem poslal vojsko proti %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:44
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Nech mě přeskupit moje vojsko a jdu s tebou proti %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:46
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Udělám konečné přípravy a zaútočím na %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:42
+#: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Nemůžu ti zatím pomoci proti %(_player_)s, protože jsem předvídal další útok proti %(_player_2)s."
 
-#: simulation/ai/petra/chatHelper.js:44
+#: simulation/ai/petra/chatHelper.js:53
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Omlouvám se, ale teď nemám dost vojáků, ale cílem mého příštího útoku bude %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:66
+#: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Tady je dar pro %(_player_)s, dobře si jej užij."
 
-#: simulation/ai/petra/chatHelper.js:68
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Vidím, že jsi na tom špatně %(_player_)s, toto by mělo pomoci."
 
-#: simulation/ai/petra/chatHelper.js:84
+#: simulation/ai/petra/chatHelper.js:80
+#, javascript-format
+msgid ""
+"I can help you this time %(_player_)s, but try to assemble more resources in"
+" the future."
+msgstr "Tentokrát ti mohu pomoci %(_player_)s, ale zkus v budoucnu nahromadit více zdrojů."
+
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Potřebuji %(resource)s, můžeš pomoci? Oplatím ti to."
 
-#: simulation/ai/petra/chatHelper.js:86
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Účastnil bych se účinněji na tvém běžném válečném úsilí, pokud bys mi poskytl %(resource)s."
 
-#: simulation/ai/petra/chatHelper.js:102
+#: simulation/ai/petra/chatHelper.js:101
+#, javascript-format
+msgid ""
+"If you have some %(resource)s excess, that would help me strengthen my army."
+msgstr "Pokud máš přebytek %(resource)s, pomohlo by to posílit mou armádu."
+
+#: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Mám zřízenu novou cestu s %(_player_)s. Obchod nám všem bude přinášet zisk."
 
-#: simulation/ai/petra/chatHelper.js:104
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Nová obchodní cesta je zřízena s %(_player_)s. Zajistěte si svůj podíl na zisku"
 
-#: simulation/ai/petra/chatHelper.js:119
+#: simulation/ai/petra/chatHelper.js:136
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Postupuji do %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:121
+#: simulation/ai/petra/chatHelper.js:138
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Dosáhl jsem %(phase)s."
@@ -358,7 +391,7 @@ msgstr " - Nebojte se převést jednotky z jednoho zdroje k jinému, viz bod 2. 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
+msgstr "Postav více domů, tvoje CC by mělo být zaměstnáváno jak to jen jde."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -588,9 +621,9 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(name)s je příliš blízko %(category)s, musí být alespoň %(distance)s metr daleko."
+msgstr[1] "%(name)s je příliš blízko %(category)s, musí být alespoň %(distance)s metry daleko."
+msgstr[2] "%(name)s je příliš blízko %(category)s, musí být alespoň %(distance)s metrů daleko."
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -598,9 +631,9 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(name)s je moc daleko od %(category)s, může být maximálně vzdáleno %(distance)s metr."
+msgstr[1] "%(name)s je moc daleko od %(category)s, může být maximálně vzdáleno %(distance)s metry."
+msgstr[2] "%(name)s je moc daleko od %(category)s, může být maximálně vzdáleno %(distance)s metrů."
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -654,6 +687,22 @@ msgstr "%(category)s kapacity výcviku %(limit)s dosaženo"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limitu %(limit)s dosaženo"
 
+#: simulation/components/Player.js:43
+msgid "Food"
+msgstr "Jídlo"
+
+#: simulation/components/Player.js:44
+msgid "Wood"
+msgstr "Dřevo"
+
+#: simulation/components/Player.js:45
+msgid "Metal"
+msgstr "Kov"
+
+#: simulation/components/Player.js:46
+msgid "Stone"
+msgstr "Kámen"
+
 #: simulation/components/Player.js:252
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
@@ -685,46 +734,46 @@ msgstr "Nedostatek surovin - %(resourceAmount1)s %(resourceType1)s, %(resourceAm
 msgid "The production queue is full."
 msgstr "Výrobní řada je plná."
 
-#: simulation/helpers/Commands.js:682
+#: simulation/helpers/Commands.js:681
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Vyžaduji útok proti %(_player_)s."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Hráč 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Hráč 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Hráč 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Hráč 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Hráč 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Hráč 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Hráč 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Hráč 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
@@ -760,57 +809,57 @@ msgstr "Šílená (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Rychleji (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Rychleji (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Rychleji (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Poraz všechny protivníky."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Dobytí"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Znič všechny budovy nepřátel"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Dobýjecí budovy."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Zabij všechny nepřátelské jednotky"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Dobýjecí jednotky."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Postav a ochraň div pro výtězství"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Div"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Velmi nízké"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Nízké"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
@@ -820,17 +869,17 @@ msgstr "Střední"
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Vysoké"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Velmi vysoké"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Zápas na smrt (Deathmatch)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 #: simulation/data/settings/map_sizes.jsonData[0].LongName

@@ -5,13 +5,14 @@
 # Translators:
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
+# Martin ‌ <mhilgendrf@aol.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-19 09:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-16 17:59+0000\n"
+"Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,11 +103,11 @@ msgstr "• Mushjulet, eller \"+\" och \"-\" tangenterna, zoomar."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Lägen"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]Huvudmenyn ger tillgång till två spellägen:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -121,7 +122,7 @@ msgstr ""
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — spela mot andra spelare över internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -139,7 +140,7 @@ msgstr "[font=\"sans-bold-16\"]Spelinställningar"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]I ett multiplayer-spel kan bara värden ändra på spelinställningarna."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -216,31 +217,31 @@ msgstr "Shift + F2: Ta stor skärmdump (6400px*4800px, i .bmp-format, platsen  v
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]I spelet"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Dubbel vänsterklick \\[på enhet]: Välj alla enheter av samma typ på skärmen (även om de har annan rang)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr ""
+msgstr "Trippel Vänsterklick \\[på enhet]: Välj alla enheter av samma typ och rang på skärmen"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + Dubbel Vänsterklick \\[på enhet]: Välj alla enheter av samma typ på hela kartan (även om de har annan rang)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Trippel Vänsterklick [på enhet]: Välj alla enheter av samma typ och rang på hela kartan"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -304,7 +305,7 @@ msgstr "1 (osv upp till 0): Välj enheterna/byggnaderna i kontrollgrupp 1 (till 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Skift 1 (till 0): Lägg till kontrollgrupp 1 (till 0) till de utvalda enheter/byggnader"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -322,15 +323,15 @@ msgstr "F5, F6, F7, och F8: Flytta kameran till en markerad position. Hoppa till
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: Med utvald träningsbyggnad. Lägg till den 1:a, 2:a, ... enheten som visas till träningskön för alla utvalda byggnader."
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ändra muskänsligheten"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Högerklick på byggnad: Garnison"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -356,7 +357,7 @@ msgstr "Alt + Vänsterdrag över enheter på kartan: Välj bara militära enhete
 
 #: gui/manual/intro.txt:79
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgstr "I + Vänsterdrag över enheter på kartan: Välj bara inaktiva enheter"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -367,7 +368,7 @@ msgstr "Ctrl + Vänsterklick på enhet/gruppikon med flera enheter valda: Avmark
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr ""
+msgstr "Högerklick med en/flera byggnad/byggnader utvald: sätter en samlingsplats för enheter som tränas/går ur garnison från denna byggnad."
 
 #: gui/manual/intro.txt:82
 msgid "Ctrl + Right Click with units selected:"
@@ -375,24 +376,24 @@ msgstr "Ctrl + Högerklick med enheter valda:"
 
 #: gui/manual/intro.txt:83
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "- Om muspekaren är över en allierad byggnad: Garnison"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr ""
+msgstr "- Om muspekaren är över in icke-allierad enhet eller byggnad: Attackera (istället för erövra eller samla)"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
+msgstr "- Annars: Attackrörelse (standardmässigt attackeras alla enheter och byggnader längs vägen, använd Ctrl + Q + Högerklick för att bara attackera enheter)"
 
 #: gui/manual/intro.txt:87
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Överlägg"
 
 #: gui/manual/intro.txt:88
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
@@ -424,35 +425,35 @@ msgstr "[font=\"sans-bold-14\"]Kamera manipulation"
 
 #: gui/manual/intro.txt:95
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W eller \\[up]: Panorera skärmen uppåt"
 
 #: gui/manual/intro.txt:96
 msgid "S or \\[down]: Pan screen down"
-msgstr ""
+msgstr "S eller \\[down]: Panorera skärmen neråt"
 
 #: gui/manual/intro.txt:97
 msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgstr "A eller \\[left]: Panorera skärmen åt vänter"
 
 #: gui/manual/intro.txt:98
 msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgstr "D eller \\[right]: Panorera skärmen åt höger"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W eller \\[up]: Rotera kameran för att se uppåt"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S eller \\[down]: Rotera kameran för att se neråt"
 
 #: gui/manual/intro.txt:101
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A eller \\[Vänster]: Rotera kameran medurs runt terrängen"
 
 #: gui/manual/intro.txt:102
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D eller \\[höger]: Rotera kameran moturs runt terrängen"
 
 #: gui/manual/intro.txt:103
 msgid "Q: Rotate camera clockwise around terrain"
@@ -501,11 +502,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Under Byggnadsplacering"
 
 #: gui/manual/intro.txt:115
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"]\\[: Rotera byggnad 15 grader medurs"
 
 #: gui/manual/intro.txt:116
 msgid "]: Rotate building 15 degrees clockwise"
@@ -519,16 +520,16 @@ msgstr "Vänsterdrag: Rotera byggnaden med musen (fundamentet placeras när du s
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]När du laddar ett sparat spel"
 
 #: gui/manual/intro.txt:120
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Delete: ta bort utvalda sparade spelet med bekräftelse"
 
 #: gui/manual/intro.txt:121
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr ""
+msgstr "Skift: fråga ej efter bekräftelse när du tar bort ett sparat spel"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -566,13 +567,13 @@ msgstr "• Hårdvarudetaljer: Operativsystemsversion, version på grafikdrivrut
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "• Prestandainformation: prestandainformationer skickas några sekunder efter du startar en match eller ändrar grafikinställningar."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "Uppgifterna kommer bara vara några få kilobyte varje gång du spelar spelet, bandbreddsutlastning är minimal."
 
 #: gui/manual/userreport.txt:12
 msgid ""

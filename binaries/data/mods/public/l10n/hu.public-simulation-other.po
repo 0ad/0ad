@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-11 09:01+0100\n"
-"PO-Revision-Date: 2015-12-13 19:20+0000\n"
+"POT-Creation-Date: 2015-12-14 09:01+0100\n"
+"PO-Revision-Date: 2015-12-14 22:04+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -19,98 +19,130 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/ai/petra/chatHelper.js:5 simulation/components/Player.js:43
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:7
+msgctxt "withinSentence"
 msgid "Food"
 msgstr "Élelem"
 
-#: simulation/ai/petra/chatHelper.js:6 simulation/components/Player.js:44
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:9
+msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Fa"
 
-#: simulation/ai/petra/chatHelper.js:7 simulation/components/Player.js:45
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:11
+msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Fém"
 
-#: simulation/ai/petra/chatHelper.js:8 simulation/components/Player.js:46
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:13
+msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Kő"
 
-#: simulation/ai/petra/chatHelper.js:15
+#: simulation/ai/petra/chatHelper.js:21
+#, javascript-format
+msgid ""
+"I am starting a massive military campaign against %(_player_)s, come and "
+"join me."
+msgstr "Egy nagy hadjáratot indítok %(_player_)s ellen, gyere, csatlakozz."
+
+#: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Támadást indítok %(_player_)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:17
+#: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Épp most küldtem egy sereget %(_player_)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:44
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Hadd csoportosítsam át a seregem, és megyek veled %(_player_)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:46
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "A végső előkészületeket végzem, és támadást fogok indítani %(_player_)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:42
+#: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Egyelőre nem tudok segíteni %(_player_)s ellen, mivel előre láthatóan egy másik támadást indítok %(_player_2)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:44
+#: simulation/ai/petra/chatHelper.js:53
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Sajnálom, jelenleg nincs elég katonám, de a következő támadásom célpontja %(_player_)s lesz."
 
-#: simulation/ai/petra/chatHelper.js:66
+#: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Itt egy ajándék %(_player_)s számára, vedd hasznát."
 
-#: simulation/ai/petra/chatHelper.js:68
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Úgy látom,  %(_player_)s, vacak helyzetben vagy. Remélem ez segít."
 
-#: simulation/ai/petra/chatHelper.js:84
+#: simulation/ai/petra/chatHelper.js:80
+#, javascript-format
+msgid ""
+"I can help you this time %(_player_)s, but try to assemble more resources in"
+" the future."
+msgstr "%(_player_)s, ezúttal tudok segíteni, de próbálj meg több nyersanyagot összegyűjteni a jövőben."
+
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Szükségem van erre a nyersanyagra: %(resource)s. Tudsz segíteni? Kártalanítani foglak."
 
-#: simulation/ai/petra/chatHelper.js:86
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Eredményesebben tudnék részt venni a közös háborúnkban, ha tudnál adni ebből a nyersanyagból: %(resource)s"
 
-#: simulation/ai/petra/chatHelper.js:102
+#: simulation/ai/petra/chatHelper.js:101
+#, javascript-format
+msgid ""
+"If you have some %(resource)s excess, that would help me strengthen my army."
+msgstr "Ha van némi többlet nálad %(resource)s nyersanyagból, az segítene nekem a hadsereg megerősítésében."
+
+#: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Létrehoztam egy új kereskedelmi útvonalat vele: %(_player_)s. A kereskedés mindannyiunk javát szolgálni fogja,"
 
-#: simulation/ai/petra/chatHelper.js:104
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Új kereskedelmi út jött létre vele: %(_player_)s. Vedd ki a részed a profitból."
 
-#: simulation/ai/petra/chatHelper.js:119
+#: simulation/ai/petra/chatHelper.js:136
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Fejlesztés folyik a %(phase)s érdekében."
 
-#: simulation/ai/petra/chatHelper.js:121
+#: simulation/ai/petra/chatHelper.js:138
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Elértem a %(phase)st."
@@ -125,7 +157,7 @@ msgstr "Figyelem: Ez a fejlett tanítójáték viszonylag gyorsan halad. Ha nem 
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr "Lássunk neki, először ötösével képezzünk ki (Shift+klikk) 5 női polgárt a városközpontban."
+msgstr "Lássunk neki, először ötösével képezzünk ki (Shift+kattintás) 5 női polgárt a városközpontban."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
@@ -161,7 +193,7 @@ msgstr "Állíts sorba ötösével 5 női polgárt."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr "Shift+klikkel állíts sorba a négy építkezőnél egy további házat."
+msgstr "Shift+kattintással állíts sorba a négy építkezőnél egy további házat."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
@@ -315,7 +347,7 @@ msgstr "Állíts sorba egy csoport parittyást, hogy a bázis északi oldalán l
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of how "
 "to build up a nice economy rapidly."
-msgstr "Íme, a körsétánk végéhez értünk. Remélhetőleg sok jó ötletet kaptál, hogyan lehetséges egy jó gazdaságot gyorsan kiépíteni."
+msgstr "Íme, oktatásunk végéhez értünk. Remélhetőleg sok jó ötletet kaptál, hogyan lehetséges egy jó gazdaságot gyorsan kiépíteni."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:223
 msgid ""
@@ -337,7 +369,7 @@ msgstr "A legfontosabb megjegyzendő dolgok:"
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
-msgstr " - Ne legyen tétlen egységed. A Shift-klikkes sorba állítás ás a gyülekezőhely nagyon hasznos."
+msgstr " - Ne legyen tétlen egységed. A Shift-kattintásos sorba állítás és a gyülekezőhely nagyon hasznos."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
@@ -385,26 +417,26 @@ msgid ""
 "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
 "Right-click on a berry bush nearby to make the unit collect food. Female "
 "citizens gather food faster than other units."
-msgstr "Isten hozott a 0 A.D. tanítójátékban. Kattints először bal gombbal egy női polgáron majd jobb klikkel egy bogyóbokron, hogy az élelmet gyűjtsön. A női polgárok minden más egységtől gyorsabban gyűjtenek élelmet."
+msgstr "Isten hozott a 0 A.D. tanítójátékban. Kattints először bal gombbal egy női polgáron majd jobb kattintással egy bogyóbokron, hogy az élelmet gyűjtsön. A női polgárok minden más egységtől gyorsabban gyűjtenek élelmet."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr "Jelölj ki egy polgári katonát, majd jobb klikk egy a városközpont közelében lévő fán, hogy az fát vágjon. A polgári katonák a női polgárokhoz képest gyorsabban vágják a fát."
+msgstr "Jelölj ki egy polgári katonát, majd jobb kattintás egy a városközpont közelében lévő fán, hogy az fát vágjon. A polgári katonák a női polgárokhoz képest gyorsabban vágják a fát."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
 "Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
 "in the row) once to begin training 5 Hoplites."
-msgstr "Jelöld ki a városközpont épületét, majd a hoplitán (2. a sorban) való Shift-klikkel indítsd el 5 hoplita egyszerre való képzését."
+msgstr "Jelöld ki a városközpont épületét, majd a hoplitán (2. a sorban) való Shift-kattintással indítsd el 5 hoplita egyszerre való képzését."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:15
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
-msgstr "Jelöld ki a két tétlen női polgárt és építs a közelben egy házat a ház ikont megjelölve. Bal klikkel helyezd el a házat egy üres földterületen."
+msgstr "Jelöld ki a két tétlen női polgárt és építs a közelben egy házat a ház ikont megjelölve. Bal kattintással helyezd el a házat egy üres földterületen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:21
 msgid ""
@@ -417,7 +449,7 @@ msgstr "Jelöld ki az előbb kiképzett hoplitákat és utasítsd őket egy rakt
 msgid ""
 "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
 "in the row) in the Civil Center."
-msgstr "A városközpontban hozz létre 5 csatárt a csatár ikonon való Shift+bal klikkeléssel (3. a sorban)"
+msgstr "A városközpontban hozz létre 5 csatárt a csatár ikonon való Shift+bal kattintással (3. a sorban)"
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:33
 msgid ""
@@ -444,7 +476,7 @@ msgid ""
 "Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
 "selected right click on a tree nearby. Units from the Civil Center will now "
 "automatically gather wood."
-msgstr "Képezz ki 5 hoplitát a városközpontban. Jelöld ki a városközpontot és kijelölve jobb klikkel válassz ki egy fát a közelben. Az egységek a városközpontból így automatikusan fát fognak vágni."
+msgstr "Képezz ki 5 hoplitát a városközpontban. Jelöld ki a városközpontot és kijelölve jobb kattintással válassz ki egy fát a közelben. Az egységek a városközpontból így automatikusan fát fognak vágni."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:57
 msgid ""
@@ -463,7 +495,7 @@ msgstr "Jelöld ki újra városközpontot és fejleszd városi szakaszba a „II
 msgid ""
 "Start building 5 female citizens in the Civil Center and set its rally point"
 " to the farm (right click on it)."
-msgstr "Hozz létre 5 női polgárt a városközpontban és jelöld ki a gyülekezőhelyüket a farmon (jobb klikk a farmon)."
+msgstr "Hozz létre 5 női polgárt a városközpontban és jelöld ki a gyülekezőhelyüket a farmon (jobb kattintás a farmon)."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:74
 msgid ""
@@ -654,6 +686,22 @@ msgstr "%(category)s kiképzési korlátja betelt: %(limit)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s korlát betelt: %(limit)s"
 
+#: simulation/components/Player.js:43
+msgid "Food"
+msgstr "Élelem"
+
+#: simulation/components/Player.js:44
+msgid "Wood"
+msgstr "Fa"
+
+#: simulation/components/Player.js:45
+msgid "Metal"
+msgstr "Fém"
+
+#: simulation/components/Player.js:46
+msgid "Stone"
+msgstr "Kő"
+
 #: simulation/components/Player.js:252
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
@@ -685,14 +733,14 @@ msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s, %(re
 msgid "The production queue is full."
 msgstr "A termelési sor tele van."
 
-#: simulation/helpers/Commands.js:682
+#: simulation/helpers/Commands.js:681
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s ellen támadást kértek."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr "Természet"
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"

@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Victor Butko <victor.butko@gmail.com>, 2014
+# Victor Ptah, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-08 12:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-18 02:17+0000\n"
+"Last-Translator: Victor Ptah\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,7 +92,7 @@ msgstr ""
 
 #: gui/common/functions_utility.js:85
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Вибачте, опису не існує."
 
 #: gui/common/functions_utility.js:125
 msgid "mm:ss"
@@ -324,7 +325,7 @@ msgstr ""
 
 #: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Гра вже почалася. Глядачі не дозволені."
 
 #: gui/common/network.js:17
 msgid "You have been kicked"
@@ -371,32 +372,32 @@ msgstr ""
 #: gui/common/settings.js:111
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Дуже Просто"
 
 #: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Просто"
 
 #: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Посередньо"
 
 #: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Важко"
 
 #: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Дуже Важко"
 
 #: gui/common/settings.js:151
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Без перемир'я"
 
 #: gui/common/settings.js:152
 #, javascript-format
@@ -428,17 +429,17 @@ msgstr ""
 
 #: gui/common/settings.js:207
 msgid "Endless Game"
-msgstr ""
+msgstr "Безкінечна Гра"
 
 #: gui/common/settings.js:248
 msgid "Unlimited"
-msgstr ""
+msgstr "Необмежено"
 
 #: gui/common/settings.js:296 gui/common/settings.js:307
 #: gui/common/settings.js:319 gui/common/settings.js:343
 #: gui/common/settings.js:355
 msgid "Unknown"
-msgstr ""
+msgstr "Невідомо"
 
 #: gui/common/settings.js:331
 msgctxt "map size"
@@ -1396,7 +1397,7 @@ msgstr "Піхотинець"
 
 #: gui/summary/layout.js:51
 msgid "Worker"
-msgstr ""
+msgstr "Працівник"
 
 #: gui/summary/layout.js:52
 msgid "Cavalry"
@@ -1915,7 +1916,7 @@ msgstr "Видалити"
 #: gui/replaymenu/replay_menu.xml:(caption):227
 #: gui/summary/summary.xml:(caption):25
 msgid "Summary"
-msgstr ""
+msgstr "Підсумок"
 
 #: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Start Replay"

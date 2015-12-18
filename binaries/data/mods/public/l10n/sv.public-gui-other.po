@@ -5,14 +5,15 @@
 # Translators:
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
+# Martin ‌ <mhilgendrf@aol.com>, 2015
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-08 12:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-17 19:47+0000\n"
+"Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,7 +78,7 @@ msgstr ""
 #: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/common/functions_global_object.js:119
 #, javascript-format
@@ -87,11 +88,11 @@ msgstr "Tid till vapenvila upphör: %(time)s."
 
 #: gui/common/functions_utility.js:78
 msgid "A randomly selected map."
-msgstr ""
+msgstr "En slumpmässig karta."
 
 #: gui/common/functions_utility.js:85
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Tyvärr finns ingen beskrivning tillgänglig."
 
 #: gui/common/functions_utility.js:125
 msgid "mm:ss"
@@ -320,15 +321,15 @@ msgstr "Felaktig nätverksprotokollversion"
 
 #: gui/common/network.js:15
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Spelet laddar, försök igen senare"
 
 #: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Matchen har redan startat, inga observatörer tillåtna"
 
 #: gui/common/network.js:17
 msgid "You have been kicked"
-msgstr ""
+msgstr "Du har blivit utsparkad"
 
 #: gui/common/network.js:18
 msgid "You have been banned"
@@ -381,7 +382,7 @@ msgstr ""
 #: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Mellan"
 
 #: gui/common/settings.js:124
 msgctxt "aiDiff"
@@ -2084,7 +2085,7 @@ msgstr ""
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr ""
+msgstr "SMEDJA"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
@@ -2506,7 +2507,7 @@ msgstr ""
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr ""
+msgstr "LAGERHUS"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
