@@ -1221,21 +1221,27 @@ function launchGame()
 
 /**
  * Don't set any attributes here, just show the changes in the GUI.
+ *
+ * Unless the mapsettings don't specify a property and the user didn't set it in g_GameAttributes previously.
  */
 function updateGUIObjects()
 {
 	g_IsInGuiUpdate = true;
 
-	let mapFilterIdx = Math.max(0, g_MapFilters.findIndex(mapFilter => mapFilter.id == (g_GameAttributes.mapFilter || "default")));
-	let mapTypeIdx = Math.max(0, g_MapTypes.Name.indexOf(g_GameAttributes.mapType));
-	let mapName = g_GameAttributes.map || "";
 	let mapSettings = g_GameAttributes.settings;
-	let mapSizeIdx = Math.max(0, g_MapSizes.Tiles.indexOf(mapSettings.Size || -1));
-	let victoryIdx = Math.max(0, g_VictoryConditions.Name.indexOf(mapSettings.GameType || ""));
-	let popIdx = Math.max(0, g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap || -1));
-	let gameSpeedIdx = Math.max(0, g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed || -1));
-	let startingResIdx = Math.max(0, g_StartingResources.Resources.indexOf(mapSettings.StartingResources || -1));
-	let ceasefireIdx = Math.max(0, g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire || -1));
+
+	// These dropdowns don't set values while g_IsInGuiUpdate
+	let mapName = g_GameAttributes.map || "";
+	let mapFilterIdx = g_MapFilters.findIndex(mapFilter => mapFilter.id == (g_GameAttributes.mapFilter || "default"));
+	let mapTypeIdx = g_GameAttributes.mapType !== undefined ? g_MapTypes.Name.indexOf(g_GameAttributes.mapType) : g_MapTypes.Default;
+	let gameSpeedIdx = g_GameAttributes.gameSpeed !== undefined ? g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds.Default;
+
+	// These dropdowns might set the default (as they ignore g_IsInGuiUpdate)
+	let mapSizeIdx = mapSettings.Size !== undefined ? g_MapSizes.Tiles.indexOf(mapSettings.Size) : g_MapSizes.Default;
+	let victoryIdx = mapSettings.GameType !== undefined ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
+	let popIdx = mapSettings.PopulationCap !== undefined ? g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) : g_PopulationCapacities.Default;
+	let startingResIdx = mapSettings.StartingResources !== undefined ? g_StartingResources.Resources.indexOf(mapSettings.StartingResources) : g_StartingResources.Default;
+	let ceasefireIdx = mapSettings.Ceasefire !== undefined ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
 	let numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_MaxPlayers;
 
 	if (g_IsController)
