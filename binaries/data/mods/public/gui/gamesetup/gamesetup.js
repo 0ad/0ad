@@ -360,35 +360,21 @@ function initMapSizes()
  */
 function initRadioButtons()
 {
-	Engine.GetGUIObjectByName("revealMap").onPress = function() {
-		g_GameAttributes.settings.RevealMap = this.checked;
-		updateGameAttributes();
+	let options = {
+		"RevealMap": "revealMap",
+		"ExploreMap": "exploreMap",
+		"DisableTreasures": "disableTreasures",
+		"LockTeams": "lockTeams",
+		"CheatsEnabled": "enableCheats",
+		"ObserverLateJoin": "observerLateJoin"
 	};
 
-	Engine.GetGUIObjectByName("exploreMap").onPress = function() {
-		g_GameAttributes.settings.ExploreMap = this.checked;
-		updateGameAttributes();
-	};
-
-	Engine.GetGUIObjectByName("observerLateJoin").onPress = function() {
-		g_GameAttributes.settings.ObserverLateJoin = this.checked;
-		updateGameAttributes();
-	};
-
-	Engine.GetGUIObjectByName("disableTreasures").onPress = function() {
-		g_GameAttributes.settings.DisableTreasures = this.checked;
-		updateGameAttributes();
-	};
-
-	Engine.GetGUIObjectByName("lockTeams").onPress = function() {
-		g_GameAttributes.settings.LockTeams = this.checked;
-		updateGameAttributes();
-	};
-
-	Engine.GetGUIObjectByName("enableCheats").onPress = function() {
-		g_GameAttributes.settings.CheatsEnabled = this.checked;
-		updateGameAttributes();
-	};
+	Object.keys(options).forEach(attribute => {
+		Engine.GetGUIObjectByName(options[attribute]).onPress = function() {
+			g_GameAttributes.settings[attribute] = this.checked;
+			updateGameAttributes();
+		};
+	});
 
 	Engine.GetGUIObjectByName("enableRating").onPress = function() {
 		g_GameAttributes.settings.RatingEnabled = this.checked;
