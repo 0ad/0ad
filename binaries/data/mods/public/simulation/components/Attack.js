@@ -219,7 +219,7 @@ Attack.prototype.GetAttackTypes = function()
 Attack.prototype.GetPreferredClasses = function(type)
 {
 	if (this.template[type] && this.template[type].PreferredClasses &&
-			this.template[type].PreferredClasses._string)
+	    this.template[type].PreferredClasses._string)
 	{
 		return this.template[type].PreferredClasses._string.split(/\s+/);
 	}
@@ -229,7 +229,7 @@ Attack.prototype.GetPreferredClasses = function(type)
 Attack.prototype.GetRestrictedClasses = function(type)
 {
 	if (this.template[type] && this.template[type].RestrictedClasses &&
-			this.template[type].RestrictedClasses._string)
+	    this.template[type].RestrictedClasses._string)
 	{
 		return this.template[type].RestrictedClasses._string.split(/\s+/);
 	}
@@ -353,7 +353,6 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	if (!cmpIdentity) 
 		return undefined;
 
-
 	let targetClasses = cmpIdentity.GetClassesList();
 	let isTargetClass = function (className) { return targetClasses.indexOf(className) != -1; };
 
@@ -382,7 +381,6 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	let isPreferred = function (className) { return attack.GetPreferredClasses(className).some(isTargetClass); };
 	let byPreference = function (a, b) { return (types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) - (types.indexOf(b) + (isPreferred(b) ? types.length : 0) ); };
 
-
 	return types.sort(byPreference).pop();
 };
 
@@ -401,7 +399,7 @@ Attack.prototype.GetTimers = function(type)
 {
 	let prepare = +(this.template[type].PrepareTime || 0);
 	prepare = ApplyValueModificationsToEntity("Attack/" + type + "/PrepareTime", prepare, this.entity);
-	
+
 	let repeat = +(this.template[type].RepeatTime || 1000);
 	repeat = ApplyValueModificationsToEntity("Attack/" + type + "/RepeatTime", repeat, this.entity);
 
@@ -418,7 +416,7 @@ Attack.prototype.GetAttackStrengths = function(type)
 		template = this.template[type.split(".")[0]].Splash;
 		splash = "/Splash";
 	}
-	
+
 	let applyMods = damageType =>
 		ApplyValueModificationsToEntity("Attack/" + type + splash + "/" + damageType, +(template[damageType] || 0), this.entity);
 
@@ -436,13 +434,13 @@ Attack.prototype.GetRange = function(type)
 {
 	let max = +this.template[type].MaxRange;
 	max = ApplyValueModificationsToEntity("Attack/" + type + "/MaxRange", max, this.entity);
-	
+
 	let min = +(this.template[type].MinRange || 0);
 	min = ApplyValueModificationsToEntity("Attack/" + type + "/MinRange", min, this.entity);
 
 	let elevationBonus = +(this.template[type].ElevationBonus || 0);
 	elevationBonus = ApplyValueModificationsToEntity("Attack/" + type + "/ElevationBonus", elevationBonus, this.entity);
-	
+
 	return { "max": max, "min": min, "elevationBonus": elevationBonus };
 };
 
@@ -471,7 +469,7 @@ Attack.prototype.GetAttackBonus = function(type, target)
 				for (let key in classes)
 					hasClasses = hasClasses && cmpIdentity.HasClass(classes[key]);
 			}
-			
+
 			if (hasClasses && (!bonus.Civ || bonus.Civ === cmpIdentity.GetCiv()))
 				attackBonus *= bonus.Multiplier;
 		}
@@ -595,7 +593,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		let cmpCapturable = Engine.QueryInterface(target, IID_Capturable);
 		if (!cmpCapturable || !cmpCapturable.CanCapture(owner))
 			return;
-		
+
 		let strength = this.GetAttackStrengths("Capture").value * multiplier;
 		if (cmpCapturable.Reduce(strength, owner))
 			Engine.PostMessage(target, MT_Attacked, {
