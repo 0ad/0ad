@@ -276,6 +276,7 @@ function updateGeneralPanelTeams()
 		teamHeading.size = "50 "+yStartTotal+" 100% "+(yStartTotal+20);
 		teamHeading.caption = translate("Team total");
 	}
+
 	// If there are no players without team, hide "player name" heading
 	if (!g_WithoutTeam)
 		Engine.GetGUIObjectByName("playerNameHeading").caption = "";

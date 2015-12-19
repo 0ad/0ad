@@ -18,8 +18,8 @@ function updateCountersPlayer(playerState, counters, idGUI)
 function calculateEconomyScore(playerState, position)
 {
 	let total = 0;
-	for each (let res in playerState.statistics.resourcesGathered)
-		total += res;
+	for (let type in playerState.statistics.resourcesGathered)
+		total += playerState.statistics.resourcesGathered[type];
 
 	return Math.round(total / 10);
 }
@@ -124,7 +124,7 @@ function calculateTotalResources(playerState, position)
 	let totalGathered = 0;
 	let totalUsed = 0;
 
-	for each (let type in g_ResourcesTypes)
+	for (let type of g_ResourcesTypes)
 	{
 		totalGathered += playerState.statistics.resourcesGathered[type];
 		totalUsed += playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type];
@@ -202,11 +202,13 @@ function calculateResourceExchanged(playerState, position)
 function calculateBatteryEfficiency(playerState, position)
 {
 	let totalBought = 0;
-	for each (let boughtAmount in playerState.statistics.resourcesBought)
-		totalBought += boughtAmount;
 	let totalSold = 0;
-	for each (let soldAmount in playerState.statistics.resourcesSold)
-		totalSold += soldAmount;
+
+	for (let type in playerState.statistics.resourcesBought)
+		totalBought += playerState.statistics.resourcesBought[type];
+
+	for (let type in playerState.statistics.resourcesSold)
+		totalSold += playerState.statistics.resourcesSold[type];
 
 	return Math.floor(totalSold > 0 ? (totalBought / totalSold) * 100 : 0) + "%";
 }
@@ -366,7 +368,7 @@ function calculateMiscellaneous(counters)
 				else if (!g_TeamMiscHelperData[t][w].unitsLost)	// and enemyUnitsKilled.total > 0
 					teamTotal = g_InfiniteSymbol; // infinity symbol
 				else
-					teamTotal = Math.round((g_TeamMiscHelperData[t][w].enemyUnitsKilled / g_TeamMiscHelperData[t][w].unitsLost)*100)/100;
+					teamTotal = Math.round((g_TeamMiscHelperData[t][w].enemyUnitsKilled / g_TeamMiscHelperData[t][w].unitsLost) * 100) / 100;
 			}
 			else if (w >= 3)
 				teamTotal = g_TeamMiscHelperData[t][w] + "%";

@@ -53,9 +53,7 @@ function selectPanel(panelNumber)
 	}
 
 	for (let i = 0; i < panelNames.length; ++i)
-	{
 		Engine.GetGUIObjectByName(panelNames[i] + 'Button').sprite = "BackgroundTab";
-	}
 
 	Engine.GetGUIObjectByName(panelNames[panelNumber] + 'Button').sprite = "ForegroundTab";
 	adjustTabDividers(Engine.GetGUIObjectByName(panelNames[panelNumber] + 'Button').size);
@@ -88,6 +86,7 @@ function updatePanelData(panelInfo)
 		let playerColorBoxColumn = "playerColorBox[" + positionObject + "]";
 		let playerCivicBoxColumn = "civIcon[" + positionObject + "]";
 		let playerCounterValue = "valueData[" + positionObject + "]";
+
 		if (playerState.team != -1)
 		{
 			rowPlayer = "playerBoxt[" + playerState.team + "][" + positionObject + "]";
