@@ -767,19 +767,17 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 		return true; // reached the end of the prototype chain
 	
 	JS::RootedObject obj(m->m_cx, &objVal.toObject());
-	JS::RootedObject it(m->m_cx, JS_NewPropertyIterator(m->m_cx, obj));
-	if (!it)
+	JS::AutoIdArray props(m->m_cx, JS_Enumerate(m->m_cx, obj));
+	if (!props)
 		return false;
 
-	while (true)
+	for (size_t i = 0; i < props.length(); ++i)
 	{
-		JS::RootedId idp(m->m_cx);
+		JS::RootedId id(m->m_cx, props[i]);
 		JS::RootedValue val(m->m_cx);
-		if (! JS_NextProperty(m->m_cx, it, idp.address()) || ! JS_IdToValue(m->m_cx, idp, &val))
+		if (!JS_IdToValue(m->m_cx, id, &val))
 			return false;
 
-		if (val.isUndefined())
-			break; // end of iteration
 		if (!val.isString())
 			continue; // ignore integer properties
 
