@@ -663,7 +663,7 @@ bool ScriptInterface::SetProperty_(JS::HandleValue obj, const wchar_t* name, JS:
 	JS::RootedObject object(m->m_cx, &obj.toObject());
 
 	utf16string name16(name, name + wcslen(name));
-	if (! JS_DefineUCProperty(m->m_cx, object, reinterpret_cast<const jschar*>(name16.c_str()), name16.length(), value, NULL, NULL, attrs))
+	if (!JS_DefineUCProperty(m->m_cx, object, reinterpret_cast<const char16_t*>(name16.c_str()), name16.length(), value, NULL, NULL, attrs))
 		return false;
 	return true;
 }
@@ -791,7 +791,7 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 		if(0 == strcmp(&buf[0], prefix))
 		{
 			size_t len;
-			const jschar* chars = JS_GetStringCharsAndLength(m->m_cx, name, &len);
+			const char16_t* chars = JS_GetStringCharsAndLength(m->m_cx, name, &len);
 			out.push_back(std::string(chars, chars+len));
 		}
 	}
@@ -849,7 +849,7 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 
 	JS::RootedFunction func(m->m_cx,
 	JS_CompileUCFunction(m->m_cx, global, NULL, 0, NULL,
-			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uint)(codeUtf16.length()), options)
+			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), (uint)(codeUtf16.length()), options)
 	);
 	if (!func)
 		return false;
@@ -872,7 +872,7 @@ bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstri
 
 	JS::RootedValue rval(m->m_cx);
 	return JS_EvaluateUCScript(m->m_cx, global,
-			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uint)(codeUtf16.length()),
+			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), (uint)(codeUtf16.length()),
 			utf8_from_wstring(filename.string()).c_str(), lineNo, &rval);
 }
 
@@ -903,7 +903,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 
 	JS::RootedValue rval(m->m_cx);
 	return JS_EvaluateUCScript(m->m_cx, global,
-			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uint)(codeUtf16.length()),
+			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), (uint)(codeUtf16.length()),
 			utf8_from_wstring(path.string()).c_str(), lineNo, &rval);
 }
 
@@ -920,7 +920,7 @@ bool ScriptInterface::Eval_(const char* code, JS::MutableHandleValue rval)
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	utf16string codeUtf16(code, code+strlen(code));
 	
-	return JS_EvaluateUCScript(m->m_cx, global, (const jschar*)codeUtf16.c_str(), (uint)codeUtf16.length(), "(eval)", 1, rval);
+	return JS_EvaluateUCScript(m->m_cx, global, (const char16_t*)codeUtf16.c_str(), (uint)codeUtf16.length(), "(eval)", 1, rval);
 }
 
 bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval)
@@ -929,7 +929,7 @@ bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval)
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	utf16string codeUtf16(code, code+wcslen(code));
 
-	return JS_EvaluateUCScript(m->m_cx, global, (const jschar*)codeUtf16.c_str(), (uint)codeUtf16.length(), "(eval)", 1, rval);
+	return JS_EvaluateUCScript(m->m_cx, global, (const char16_t*)codeUtf16.c_str(), (uint)codeUtf16.length(), "(eval)", 1, rval);
 }
 
 bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out)
@@ -937,7 +937,7 @@ bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandl
 	JSAutoRequest rq(m->m_cx);
 	std::wstring attrsW = wstring_from_utf8(string_utf8);
  	utf16string string(attrsW.begin(), attrsW.end());
-	if (JS_ParseJSON(m->m_cx, reinterpret_cast<const jschar*>(string.c_str()), (u32)string.size(), out))
+	if (JS_ParseJSON(m->m_cx, reinterpret_cast<const char16_t*>(string.c_str()), (u32)string.size(), out))
 		return true;
 
 	LOGERROR("JS_ParseJSON failed!");
@@ -990,7 +990,7 @@ void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue o
 
 struct Stringifier
 {
-	static bool callback(const jschar* buf, u32 len, void* data)
+	static bool callback(const char16_t* buf, u32 len, void* data)
 	{
 		utf16string str(buf, buf+len);
 		std::wstring strw(str.begin(), str.end());

@@ -785,7 +785,7 @@ namespace CyclicRefWorkaround
 	
 	struct Stringifier
 	{
-		static bool callback(const jschar* buf, uint32 len, void* data)
+		static bool callback(const char16_t* buf, uint32 len, void* data)
 		{
 			utf16string str(buf, buf+len);
 			std::wstring strw(str.begin(), str.end());

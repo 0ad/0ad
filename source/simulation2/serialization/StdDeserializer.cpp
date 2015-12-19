@@ -234,7 +234,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 			ReadStringUTF16("prop name", propname);
 			JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
 
-			if (!JS_SetUCProperty(cx, obj, (const jschar*)propname.data(), propname.length(), propval))
+			if (!JS_SetUCProperty(cx, obj, (const char16_t*)propname.data(), propname.length(), propval))
 				throw PSERROR_Deserialize_ScriptError();
 		}
 
@@ -466,7 +466,7 @@ void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString ou
 #error TODO: probably need to convert JS strings from little-endian
 #endif
 
-	out.set(JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const jschar*)str.data(), str.length()));
+	out.set(JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const char16_t*)str.data(), str.length()));
 	if (!out)
 		throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
 }
