@@ -3,15 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Filip Kružík <fildakr@gmail.com>, 2015
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
 # fri, 2014-2015
+# Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Vojtěch Valigura <Encounter@seznam.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-12-07 17:36+0100\n"
+"PO-Revision-Date: 2015-12-17 20:49+0000\n"
+"Last-Translator: Filip Kružík <fildakr@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,30 +21,30 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: gui/civinfo/civinfo.js:89
+#: gui/civinfo/civinfo.js:96
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s hra"
 
-#: gui/civinfo/civinfo.js:92
+#: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Civilizační přídavek"
 msgstr[1] "Civilizační přídavky"
 msgstr[2] "Civilizačních přídavků"
 
-#: gui/civinfo/civinfo.js:97
+#: gui/civinfo/civinfo.js:104
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Týmový přídavek"
 msgstr[1] "Týmové přídavky"
 msgstr[2] "Týmových přídavků"
 
-#: gui/civinfo/civinfo.js:106
+#: gui/civinfo/civinfo.js:111
 msgid "Special Technologies"
 msgstr "Zvláštní technologie"
 
-#: gui/civinfo/civinfo.js:115
+#: gui/civinfo/civinfo.js:117
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Zvláštní budova"
@@ -53,7 +55,7 @@ msgstr[2] "Zvláštních budov"
 msgid "Heroes"
 msgstr "Hrdinové"
 
-#: gui/civinfo/civinfo.js:138
+#: gui/civinfo/civinfo.js:134
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Historie %(civilization)s"
@@ -87,24 +89,19 @@ msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Čas zbývající do konce klidu zbraní: %(time)s."
 
-#: gui/common/functions_utility.js:127
-msgctxt "map size"
-msgid "Default"
-msgstr "Výchozí"
-
-#: gui/common/functions_utility.js:137
+#: gui/common/functions_utility.js:78
 msgid "A randomly selected map."
 msgstr "Náhodně vybraná mapa."
 
-#: gui/common/functions_utility.js:144
+#: gui/common/functions_utility.js:85
 msgid "Sorry, no description available."
 msgstr "Bohužel, popis není dostupný."
 
-#: gui/common/functions_utility.js:188
+#: gui/common/functions_utility.js:125
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:190
+#: gui/common/functions_utility.js:127
 msgid "HH:mm:ss"
 msgstr "hh:mm:ss"
 
@@ -424,7 +421,8 @@ msgctxt "map"
 msgid "Random"
 msgstr "Náhodná"
 
-#: gui/common/settings.js:175 gui/summary/summary.js:136
+#: gui/common/settings.js:175
+msgctxt "map"
 msgid "Scenario"
 msgstr "Scénář"
 
@@ -441,10 +439,15 @@ msgid "Unlimited"
 msgstr "Bez omezení"
 
 #: gui/common/settings.js:296 gui/common/settings.js:307
-#: gui/common/settings.js:318 gui/common/settings.js:329
-#: gui/common/settings.js:340
+#: gui/common/settings.js:319 gui/common/settings.js:343
+#: gui/common/settings.js:355
 msgid "Unknown"
 msgstr "Neznámý"
+
+#: gui/common/settings.js:331
+msgctxt "map size"
+msgid "Default"
+msgstr "Výchozí"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -474,17 +477,20 @@ msgid "Crush"
 msgstr "Úder"
 
 #: gui/common/tooltips.js:46 gui/common/tooltips.js:109
-#: gui/common/tooltips.js:135 gui/common/tooltips.js:400
-#: gui/common/tooltips.js:426 gui/common/tooltips.js:494
+#: gui/common/tooltips.js:135 gui/common/tooltips.js:406
+#: gui/common/tooltips.js:432 gui/common/tooltips.js:500
 msgid ", "
 msgstr ", "
 
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(time)s %(second)s"
-msgstr "%(time)s %(second)s"
+msgid_plural "%(time)s %(second)s"
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
+msgstr[2] "%(time)s %(second)s"
 
-#: gui/common/tooltips.js:54 gui/common/tooltips.js:423
+#: gui/common/tooltips.js:54 gui/common/tooltips.js:429
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekunda"
@@ -494,7 +500,10 @@ msgstr[2] "sekund"
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
-msgstr "%(arrowcount)s %(arrow)s"
+msgid_plural "%(arrowcount)s %(arrow)s"
+msgstr[0] "%(arrowcount)s %(arrow)s"
+msgstr[1] "%(arrowcount)s %(arrow)s"
+msgstr[2] "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:63
 msgid "arrow"
@@ -555,7 +564,7 @@ msgstr "Útok:"
 msgid "Interval:"
 msgstr "Interval:"
 
-#: gui/common/tooltips.js:158 gui/common/tooltips.js:421
+#: gui/common/tooltips.js:158 gui/common/tooltips.js:427
 msgid "Rate:"
 msgstr "Výše:"
 
@@ -564,124 +573,140 @@ msgstr "Výše:"
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:194 gui/common/tooltips.js:416
+#: gui/common/tooltips.js:194 gui/common/tooltips.js:422
 msgid "Range:"
 msgstr "Dostřel:"
 
-#: gui/common/tooltips.js:196 gui/common/tooltips.js:418
-msgid "meters"
-msgstr "metrů"
+#: gui/common/tooltips.js:196 gui/common/tooltips.js:424
+msgid "meter"
+msgid_plural "meters"
+msgstr[0] "metr"
+msgstr[1] "metry"
+msgstr[2] "metry"
 
 #: gui/common/tooltips.js:199
 #, javascript-format
 msgid ""
-"%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
-"(%(relative)s), %(rate)s"
-msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
+"%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), "
+"%(rate)s"
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
-#: gui/common/tooltips.js:209
+#: gui/common/tooltips.js:204 gui/common/tooltips.js:217
+#, javascript-format
+msgid "%(range)s %(meters)s"
+msgid_plural "%(range)s %(meters)s"
+msgstr[0] "%(range)s %(meters)s"
+msgstr[1] "%(range)s %(meters)s"
+msgstr[2] "%(range)s %(meters)s"
+
+#: gui/common/tooltips.js:212
 #, javascript-format
 msgid ""
-"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
-"%(rate)s"
-msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
+"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
 
-#: gui/common/tooltips.js:259 gui/common/tooltips.js:260
-#: gui/common/tooltips.js:261 gui/common/tooltips.js:262
-#: gui/common/tooltips.js:263 gui/common/tooltips.js:264
-#: gui/common/tooltips.js:380
+#: gui/common/tooltips.js:265 gui/common/tooltips.js:266
+#: gui/common/tooltips.js:267 gui/common/tooltips.js:268
+#: gui/common/tooltips.js:269 gui/common/tooltips.js:270
+#: gui/common/tooltips.js:386
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:318
+#: gui/common/tooltips.js:324
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s na %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:349
+#: gui/common/tooltips.js:355
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Hradby:  %(costs)s"
 
-#: gui/common/tooltips.js:350
+#: gui/common/tooltips.js:356
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Věže:  %(costs)s"
 
-#: gui/common/tooltips.js:366
+#: gui/common/tooltips.js:372
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:367
+#: gui/common/tooltips.js:373
 msgid "Population Bonus:"
 msgstr "Populační zvýhodnění:"
 
-#: gui/common/tooltips.js:385
+#: gui/common/tooltips.js:391
 msgid "Insufficient resources:"
 msgstr "Nedostatečné zdroje:"
 
-#: gui/common/tooltips.js:393
+#: gui/common/tooltips.js:399
 msgid "Speed:"
 msgstr "Rychlost:"
 
-#: gui/common/tooltips.js:396 gui/common/tooltips.js:398
+#: gui/common/tooltips.js:402 gui/common/tooltips.js:404
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:396
+#: gui/common/tooltips.js:402
 msgid "Walk"
 msgstr "Jít"
 
-#: gui/common/tooltips.js:398
+#: gui/common/tooltips.js:404
 msgid "Run"
 msgstr "Běžet"
 
-#: gui/common/tooltips.js:400
+#: gui/common/tooltips.js:406
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:409 gui/common/tooltips.js:415
-#: gui/common/tooltips.js:420
+#: gui/common/tooltips.js:415 gui/common/tooltips.js:421
+#: gui/common/tooltips.js:426
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
-msgstr "%(label)s %(val)s %(unit)s"
+msgid_plural "%(label)s %(val)s %(unit)s"
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
+msgstr[2] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:410
+#: gui/common/tooltips.js:416
 msgid "Heal:"
 msgstr "Léčit:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
-#: gui/common/tooltips.js:413
+#: gui/common/tooltips.js:419
 msgid "HP"
-msgstr "HP"
+msgid_plural "HP"
+msgstr[0] "HP"
+msgstr[1] "HP"
+msgstr[2] "HP"
 
-#: gui/common/tooltips.js:436
+#: gui/common/tooltips.js:442
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:437
+#: gui/common/tooltips.js:443
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:450
+#: gui/common/tooltips.js:456
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:460
+#: gui/common/tooltips.js:466
 msgid "???"
 msgstr "???"
 
-#: gui/common/tooltips.js:490
+#: gui/common/tooltips.js:496
 msgid "Classes:"
 msgstr "Třídy:"
 
@@ -1083,74 +1108,74 @@ msgstr "Příručka"
 
 #: gui/replaymenu/replay_actions.js:31
 msgid "You"
-msgstr ""
+msgstr "Ty"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "Nemáš aktivované stejné módy jako má záznam. "
 
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Potřeba: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:53
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Aktivní: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Tento záznam není kompatibilní s touto verzí hry!"
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Nekompatibilní záznam."
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
-msgstr ""
+msgstr "Dobře"
 
 #: gui/replaymenu/replay_actions.js:75
 msgid "No summary data available."
-msgstr ""
+msgstr "Není k dipozici žádné shrnutí"
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Skóre na konci hry"
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
-msgstr ""
+msgstr "Smazat záznam"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure to delete this replay permanently?"
-msgstr ""
+msgstr "Jsi si jistý že chceš na vždy smazat tento záznam?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Jakýkoliv\nPlease note that this only works if time (čas) is the noun."
 
 #: gui/replaymenu/replay_filters.js:56
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Jakákoliv\nPlease note that this only works if size (velikost) is the noun."
 
 #: gui/replaymenu/replay_filters.js:69
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Jakékoliv\nPlease note that this is only works if name (jméno) is the noun."
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Jakákoliv\nPlease note that this only works if capacity (kapacita) is the noun."
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Jakákoliv\nPlease note that this only works if duration (doba trvání) is the noun."
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:102
@@ -1158,9 +1183,9 @@ msgstr ""
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "< %(max)s min"
+msgstr[1] "< %(max)s min"
+msgstr[2] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
@@ -1168,57 +1193,57 @@ msgstr[2] ""
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "> %(min)s min"
+msgstr[1] "> %(min)s min"
+msgstr[2] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr ""
+msgstr "%(min)s - %(max)s min"
 
-#: gui/replaymenu/replay_menu.js:223
+#: gui/replaymenu/replay_menu.js:234
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "rrrr-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:254
+#: gui/replaymenu/replay_menu.js:264
 msgid "yyyy-MM"
-msgstr ""
+msgstr "rrrr-MM"
 
-#: gui/replaymenu/replay_menu.js:317
+#: gui/replaymenu/replay_menu.js:327
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
-#: gui/replaymenu/replay_menu.js:319
+#: gui/replaymenu/replay_menu.js:329
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, poražen)"
 
-#: gui/replaymenu/replay_menu.js:321
+#: gui/replaymenu/replay_menu.js:331
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
-#: gui/replaymenu/replay_menu.js:323
+#: gui/replaymenu/replay_menu.js:333
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, poražen)"
 
-#: gui/replaymenu/replay_menu.js:339
+#: gui/replaymenu/replay_menu.js:349
 msgid "No Team"
-msgstr ""
+msgstr "Žádný tým"
 
-#: gui/replaymenu/replay_menu.js:339
+#: gui/replaymenu/replay_menu.js:349
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Tým %(team)s"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -1313,7 +1338,7 @@ msgstr "%(val1)s do %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):105
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):107
 msgid "Player name"
 msgstr "Jméno hráče"
 
@@ -1491,12 +1516,12 @@ msgstr "Ovládání mapy"
 msgid "Team total"
 msgstr "Tým celkem"
 
-#: gui/summary/summary.js:138
+#: gui/summary/summary.js:137
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Uplynulý herní čas: %(time)s"
 
-#: gui/summary/summary.js:159
+#: gui/summary/summary.js:139
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1770,7 +1795,7 @@ msgstr "Klepněte zde pro spuštění nové hry pro jednoho hráče."
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr "Zažijte znovu historii prostřednictvím historických vojenských tažení. \\[[NEPROVEDENO]"
+msgstr "Zažijte znovu historii prostřednictvím historických vojenských tažení. \\[NEIMPLEMENTOVÁNO]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
@@ -1856,35 +1881,35 @@ msgstr "Klepněte na 0 A.D. Trac pro nahlášení chyby, pádu nebo jiného prob
 
 #: gui/replaymenu/replay_menu.xml:(caption):26
 msgid "Replay Games"
-msgstr ""
+msgstr "Hrát hru znovu\nHrát hry znovu\nHráj hru znovu\nHraj hry znovu"
 
 #: gui/replaymenu/replay_menu.xml:(caption):109
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Filtruj kompatybilný záznami"
 
 #: gui/replaymenu/replay_menu.xml:(caption):135
 msgid "Map Type:"
-msgstr ""
+msgstr "Typ Mapy:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):150
 msgid "Map Size:"
-msgstr ""
+msgstr "Velikost Mapy:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):165
 msgid "Victory:"
-msgstr ""
+msgstr "Vítězství:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):186
 msgid "Players:"
-msgstr ""
+msgstr "Hráči:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):203
 msgid "Spoiler"
-msgstr ""
+msgstr "Spoiler"
 
 #: gui/replaymenu/replay_menu.xml:(caption):215
 msgid "Main Menu"
-msgstr ""
+msgstr "Hlavní Menu"
 
 #: gui/replaymenu/replay_menu.xml:(caption):221
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
@@ -1892,43 +1917,43 @@ msgid "Delete"
 msgstr "Smazat"
 
 #: gui/replaymenu/replay_menu.xml:(caption):227
-#: gui/summary/summary.xml:(caption):23
+#: gui/summary/summary.xml:(caption):25
 msgid "Summary"
 msgstr "Shrnutí"
 
 #: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Start Replay"
-msgstr ""
+msgstr "Začít Přehrávání Záznamu"
 
 #: gui/replaymenu/replay_menu.xml:(heading):72
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Datum / Čas"
 
 #: gui/replaymenu/replay_menu.xml:(heading):76
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Hráči"
 
 #: gui/replaymenu/replay_menu.xml:(heading):80
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Název mapy"
 
 #: gui/replaymenu/replay_menu.xml:(heading):84
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Velikost"
 
 #: gui/replaymenu/replay_menu.xml:(heading):88
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Populace"
 
 #: gui/replaymenu/replay_menu.xml:(heading):92
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Trvání"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -1960,33 +1985,33 @@ msgstr "Civilizace:"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
-msgstr ""
+msgstr "Trenérské Jednotky"
 
-#: gui/summary/summary.xml:(caption):63
+#: gui/summary/summary.xml:(caption):65
 msgid "Score"
 msgstr "Výsledek"
 
-#: gui/summary/summary.xml:(caption):70
+#: gui/summary/summary.xml:(caption):72
 msgid "Buildings"
 msgstr "Budovy"
 
-#: gui/summary/summary.xml:(caption):77
+#: gui/summary/summary.xml:(caption):79
 msgid "Units"
 msgstr "Jednotky"
 
-#: gui/summary/summary.xml:(caption):84
+#: gui/summary/summary.xml:(caption):86
 msgid "Resources"
 msgstr "Zdroje"
 
-#: gui/summary/summary.xml:(caption):91
+#: gui/summary/summary.xml:(caption):93
 msgid "Market"
 msgstr "Trh"
 
-#: gui/summary/summary.xml:(caption):98
+#: gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
 msgstr "Různé"
 
-#: gui/summary/summary.xml:(caption):159
+#: gui/summary/summary.xml:(caption):161
 msgid "Continue"
 msgstr "Pokračovat"
 
@@ -2046,7 +2071,7 @@ msgstr " - Stavte obléhací stroje a cvičte občanské vojáky."
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "Shromážděte až 40 jednotek "
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -2088,7 +2113,7 @@ msgstr "- Zkoumejte vylepšení zbraní a brnění svých jednotek."
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Umísti dovnitř občana-vojáka pro zrychlení výzkumu (JEŠTĚ NEBYLO PŘIDÁNO)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -2102,7 +2127,7 @@ msgstr "- Elitní bojovníci s oštěpem a jízdní bojovníci s oštěpem pro K
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr ""
+msgstr "- Oba můžou být trénováni ve Chrámu, na rozdíl od většiny ostatních šampionů. "
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -2366,7 +2391,7 @@ msgstr "- Těžce vyzbrojený a pomalý. Pomalý útok."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "- Použitelné proti kavalerii nebo jiné pěchotě pro zabránění pohybu."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2384,11 +2409,11 @@ msgstr " - Nejtěžší dostupná válečná loď. Dostupná pro: Řím, Karthá
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Garrison ballistas to increase fire power."
-msgstr ""
+msgstr "- Umísti dovnitř balisty pro zvýšení síly palby."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Má narážecí útok kterým dokáže potopit nepřátelské lodě (JEŠTĚ NEBYLO PŘIDÁNO)."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -2480,7 +2505,7 @@ msgstr "KRYTÁ KOLONÁDA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- Speciální startovní budova pro Řecké frakce."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2488,7 +2513,7 @@ msgstr "- Poskytuje +10 k populaci"
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "- Pouze přítomné na nějakých mapách."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
@@ -2610,19 +2635,19 @@ msgstr "- Dobrá pro přepravu nebo pro boj."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- Naloď jednotky pro zvýšení palebné síly."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Naloď katapult pro daleko-dosahový obléhací ,útok (JEŠTĚ NEBYLO PŘIDÁNO)."
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Schopná devastujícího nárazového útoku loď do lodě, který se musí po každém použití dobít (JEŠTĚ NEBYLO PŘIDÁNO)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

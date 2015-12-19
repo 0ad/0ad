@@ -146,22 +146,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 					ret = pNearest->SendEvent(GUIM_MOUSE_PRESS_RIGHT, "mouserightpress");
 				break;
 
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-			case SDL_BUTTON_WHEELDOWN: // wheel down
-				if (pNearest)
-					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_DOWN, "mousewheeldown");
-				break;
-
-			case SDL_BUTTON_WHEELUP: // wheel up
-				if (pNearest)
-					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_UP, "mousewheelup");
-				break;
-#endif
 			default:
 				break;
 			}
 		}
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		else if (ev->ev.type == SDL_MOUSEWHEEL)
 		{
 			if (ev->ev.wheel.y < 0)
@@ -175,7 +163,6 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_UP, "mousewheelup");
 			}
 		}
-#endif
 		else if (ev->ev.type == SDL_MOUSEBUTTONUP)
 		{
 			switch (ev->ev.button.button)
@@ -265,9 +252,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
 				!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT])
 			|| ev->ev.type == SDL_HOTKEYDOWN
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 			|| ev->ev.type == SDL_TEXTINPUT || ev->ev.type == SDL_TEXTEDITING
-#endif
 			)
 		{
 			ret = GetFocusedObject()->ManuallyHandleEvent(ev);

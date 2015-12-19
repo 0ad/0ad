@@ -31,7 +31,6 @@ function getXMLFileList(pathname)
 	return result;
 }
 
-// Get list of JSON files in pathname
 function getJSONFileList(pathname)
 {
 	var files = Engine.BuildDirEntList(pathname, "*.json", false);
@@ -87,31 +86,16 @@ function getMapDescriptionAndPreview(mapType, mapName)
 	};
 }
 
-// Convert integer color values to string (for use in GUI objects)
-function rgbToGuiColor(color, alpha)
-{
-	var ret;
-	if (color && ("r" in color) && ("g" in color) && ("b" in color))
-		ret = color.r + " " + color.g + " " + color.b;
-	else
-		ret = "0 0 0";
-	if (alpha)
-		ret += " " + alpha;
-	return ret;
-}
-
-function sameColor(color1, color2)
-{
-    return color1.r === color2.r && color1.g === color2.g && color1.b === color2.b;
-}
-
 /**
- * Computes the euclidian distance between the two colors.
- * The smaller the return value, the close the colors. Zero if identical.
+ * Sets the mappreview image correctly.
+ * It needs to be cropped as the engine only allows loading square textures.
+ *
+ * @param {string} guiObject
+ * @param {string} filename
  */
-function colorDistance(color1, color2)
+function setMapPreviewImage(guiObject, filename)
 {
-	return Math.sqrt(Math.pow(color2.r - color1.r, 2) + Math.pow(color2.g - color1.g, 2) + Math.pow(color2.b - color1.b, 2));
+	Engine.GetGUIObjectByName(guiObject).sprite = "cropped:" + 400/512+ "," + 300/512 + ":session/icons/mappreview/" + filename;
 }
 
 /**
@@ -137,22 +121,6 @@ function removeDupes(array)
 		if (array.indexOf(array[i]) != i)
 			array.splice(i, 1);
 	}
-}
-
-// "Inside-out" implementation of Fisher-Yates shuffle
-function shuffleArray(source)
-{
-	if (!source.length)
-		return [];
-
-	var result = [source[0]];
-	for (var i = 1; i < source.length; ++i)
-	{
-		var j = Math.floor(Math.random() * i);
-		result[i] = result[j];
-		result[j] = source[i];
-	}
-	return result;
 }
 
 // Filter out conflicting characters and limit the length of a given name.
@@ -217,4 +185,17 @@ function autoCompleteNick(guiName, playerList)
 	var newText = tryAutoComplete(textTillBufferPosition, autoCompleteList);
 	input.caption = newText + text.substring(bufferPosition);
 	input.buffer_position = bufferPosition + (newText.length - textTillBufferPosition.length);
+}
+
+function clearChatMessages()
+{
+	g_ChatMessages.length = 0;
+	Engine.GetGUIObjectByName("chatText").caption = "";
+
+	try {
+		for (let timer of g_ChatTimers)
+			clearTimeout(timer);
+		g_ChatTimers.length = 0;
+	} catch (e) {
+	}
 }

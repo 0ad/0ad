@@ -13,15 +13,30 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Foliage-small">
+    <variant frequency="1" name="Aleppo-1">
       <mesh>gaia/tree_pine_aleppo_1.dae</mesh>
     </variant>
-    <variant frequency="1" name="Foliage-double">
+    <variant frequency="1" name="Aleppo-2">
       <mesh>gaia/tree_pine_aleppo_2.dae</mesh>
     </variant>
-    <variant frequency="2" name="Foliage-single">
+    <variant frequency="1" name="Aleppo-3">
       <mesh>gaia/tree_pine_aleppo_3.dae</mesh>
     </variant>
+	<variant frequency="1" name="Aleppo-4">
+      <mesh>gaia/tree_pine_aleppo_4.dae</mesh>
+    </variant>
+	<variant frequency="1" name="Aleppo-5">
+      <mesh>gaia/tree_pine_aleppo_5.dae</mesh>
+    </variant>
+	<variant frequency="1" name="Aleppo-6">
+      <mesh>gaia/tree_pine_aleppo_6.dae</mesh>
+    </variant>
+  <variant frequency="1" name="Aleppo-7">
+      <mesh>gaia/tree_pine_aleppo_7.dae</mesh>
+    </variant>
+  <variant frequency="1" name="Aleppo-8">
+      <mesh>gaia/tree_pine_aleppo_8.dae</mesh>
+    </variant>        
   </group>
   <material>basic_trans_wind.xml</material>
 </actor>

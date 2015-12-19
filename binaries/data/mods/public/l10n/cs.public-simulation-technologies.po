@@ -4,15 +4,17 @@
 # 
 # Translators:
 # Ardenlax <ardenlax@gmail.com>, 2014
+# Filip Kružík <fildakr@gmail.com>, 2015
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
 # Ondřej Kolín <ondrej.kolin@gmail.com>, 2014
 # fri, 2014-2015
+# Pavel Šindelář <pavelsin123@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-17 20:54+0000\n"
+"Last-Translator: Filip Kružík <fildakr@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -733,15 +735,15 @@ msgstr "Bytelné základy"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "Díry ve stropě umožňují zasáhnout nepřátele pod věží."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
-msgstr ""
+msgstr "Umožní obranným věžím střílet i na nepřátele bližší, než je jejich nejmenší vzdálenost k nepříteli ve které pořád mohou pálit."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr ""
+msgstr "Díry ve stropě"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -839,19 +841,19 @@ msgstr "Vozy tažené koňmi"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve the fishes longer."
-msgstr ""
+msgstr "Nasolování umožňuje uchovat ryby déle."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr ""
+msgstr "Rybářské lodě mají +20 ke kapacitě jídla."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr ""
+msgstr "Nasolování Ryb"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr ""
+msgstr "Odemčeno v Městské Fázi. Požaduje Rybářskou Síť."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -899,16 +901,16 @@ msgstr "Výcvik sběračů"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Using net improves the fishing productivity."
-msgstr ""
+msgstr "Používání sítí zlepšuje produktivitu rybaření."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
 "Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr ""
+msgstr "Používáte sítě na Rybářských Lodích. +30% rychlosti rybaření. Odemyká Nasolování Ryb"
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
-msgstr ""
+msgstr "Rybářská Síť"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription

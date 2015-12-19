@@ -79,7 +79,7 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 {
 	// Increase slowly the cooperative personality trait either when we receive tribute from our allies
 	// or if our allies attack enemies inside our territory
-	for (let evt of events["TributeExchanged"])
+	for (let evt of events.TributeExchanged)
 	{
 		if (evt.to !== PlayerID || !gameState.isPlayerAlly(evt.from))
 			continue;
@@ -94,7 +94,7 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 		this.Config.personality.cooperative = Math.min(1, this.Config.personality.cooperative + 0.0002 * tributes);
 	}
 
-	for (let evt of events["Attacked"])
+	for (let evt of events.Attacked)
 	{
 		let target = gameState.getEntityById(evt.target);
 		if (!target || !target.position()

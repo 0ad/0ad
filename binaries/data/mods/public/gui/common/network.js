@@ -84,6 +84,10 @@ function executeNetworkCommand(input)
 		if (!Engine.KickPlayer(argument, true))
 			addChatMessage({ "type": "system", "text": sprintf(translate("Could not ban %(name)s."), { "name": argument }) });
 		return true;
+
+	case "/clear":
+		clearChatMessages();
+		return true;
 	}
 	return false;
 }

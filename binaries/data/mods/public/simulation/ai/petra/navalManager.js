@@ -486,7 +486,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 			var template = this.getBestShip(gameState, sea, "transport");
 			if (template)
 			{
-				queues.ships.addItem(new m.TrainingPlan(gameState, template, { "sea": sea }, 1, 1));
+				queues.ships.addPlan(new m.TrainingPlan(gameState, template, { "sea": sea }, 1, 1));
 				continue;
 			}
 		}
@@ -497,7 +497,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 			let template = this.getBestShip(gameState, sea, "fishing");
 			if (template)
 			{
-				queues.ships.addItem(new m.TrainingPlan(gameState, template, { "base": 0, "role": "worker", "sea": sea }, 1, 1));
+				queues.ships.addPlan(new m.TrainingPlan(gameState, template, { "base": 0, "role": "worker", "sea": sea }, 1, 1));
 				continue;
 			}
 		}
@@ -588,7 +588,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 				{
 					if (!gameState.ai.HQ.navalRegions[sea])
 						continue;
-					queues.dock.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": [base.accessIndex], "sea": sea }));
+					queues.dock.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": [base.accessIndex], "sea": sea }));
 					dockStarted = true;
 					break;
 				}
@@ -621,7 +621,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 						land.push(base.accessIndex);
 				}
 				let sea = docks.toEntityArray()[0].getMetadata(PlayerID, "sea");
-				queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, naval, { "land": land, "sea": sea }));
+				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, naval, { "land": land, "sea": sea }));
 				break;
 			}
 		}

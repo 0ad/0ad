@@ -11,6 +11,7 @@
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
+# Martin ‌ <mhilgendrf@aol.com>, 2015
 # Patrik Nilsson <asavartzeth@gmail.com>, 2014
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 09:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-16 18:00+0000\n"
+"Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,12 +71,12 @@ msgstr "Inga"
 #: gui/gamesetup/gamesetup.js:512
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s har blivit utsparkad"
 
 #: gui/gamesetup/gamesetup.js:516
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s har blivit bannlyst"
 
 #: gui/gamesetup/gamesetup.js:591 gui/gamesetup/gamesetup.js:1525
 msgctxt "civilization"
@@ -120,7 +121,7 @@ msgstr "Nej"
 #: gui/gamesetup/gamesetup.js:1447 gui/gamesetup/gamesetup.js:1448
 #: gui/gamesetup/gamesetup.js:1449
 msgid "Determined by scenario"
-msgstr ""
+msgstr "Bestämd av scenariot"
 
 #: gui/gamesetup/gamesetup.js:1461
 msgid "Randomly selects a map from the list"
@@ -173,13 +174,13 @@ msgstr "%(username)s har lämnat"
 #: gui/gamesetup/gamesetup.js:1828
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Användare: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
 #: gui/gamesetup/gamesetup.js:1830
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/gamesetup/gamesetup.js:1839
 #, javascript-format
@@ -306,7 +307,7 @@ msgstr "Spelarnamn"
 
 #: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Color"
-msgstr ""
+msgstr "Färg"
 
 #: gui/gamesetup/gamesetup.xml:(caption):49
 msgid "Player Placement"
@@ -346,7 +347,7 @@ msgstr "Skicka"
 
 #: gui/gamesetup/gamesetup.xml:(caption):224
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Fusk är påslagna"
 
 #: gui/gamesetup/gamesetup.xml:(caption):237
 msgid "Start game!"
@@ -375,7 +376,7 @@ msgstr "Start-resurser:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):326
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Vapenvila:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -407,7 +408,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):396
 msgid "Late Observer Joins:"
-msgstr ""
+msgstr "Sen anslutning för observatörer:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):61
 msgid "View civilization info"
@@ -415,7 +416,7 @@ msgstr "Se civilisationsinformation"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):76
 msgid "Pick a color."
-msgstr ""
+msgstr "Välj en färg."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):79
 msgid "Select player."
@@ -479,23 +480,23 @@ msgstr "Välj spelets start-resurser."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):330
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Ställ in tid där inga attacker är möjliga."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):340
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Växla avslöjad karta (se allt)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):350
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Växla upptäckt karta (se kartan i början)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):360
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Inaktivera alla skatter på kartan."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):370
 msgid "Toggle locked teams."
@@ -511,7 +512,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):400
 msgid "Allow observers to join after the game started."
-msgstr ""
+msgstr "Tillåt observatörer att ansluta efter spelet har börjat."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):414
 msgid "Close more game options window"

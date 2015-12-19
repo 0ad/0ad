@@ -42,11 +42,23 @@
 			</action>
 		</object>
 		
+		<!-- Summary button -->
+		<object type="button"
+			name="summaryButton"
+			style="StoneButtonFancy"
+			size="0 96 100% 124"
+			tooltip_style="sessionToolTip"
+			enabled="false"
+		>
+			<translatableAttribute id="caption">Summary</translatableAttribute>
+			<action on="Press">openGameSummary();</action>
+		</object>
+
 		<!-- Options button -->
 		<object type="button"
 			name="optionsButton"
 			style="StoneButtonFancy"
-			size="0 96 100% 124"
+			size="0 128 100% 156"
 			tooltip_style="sessionToolTip"
 		>
 			<translatableAttribute id="caption">Options</translatableAttribute>
@@ -57,7 +69,7 @@
 		<object type="button"
 			name="pauseButton"
 			style="StoneButtonFancy"
-			size="0 128 100% 156"
+			size="0 160 100% 188"
 			tooltip_style="sessionToolTip"
 		>
 			<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">
@@ -70,7 +82,7 @@
 		<object type="button"
 			name="menuResignButton"
 			style="StoneButtonFancy"
-			size="0 160 100% 188"
+			size="0 192 100% 220"
 			tooltip_style="sessionToolTip"
 		>
 			<translatableAttribute id="caption">Resign</translatableAttribute>
@@ -81,7 +93,7 @@
 		<object type="button"
 			name="menuExitButton"
 			style="StoneButtonFancy"
-			size="0 192 100% 220"
+			size="0 224 100% 248"
 			tooltip_style="sessionToolTip"
 		>
 			<translatableAttribute id="caption">Exit</translatableAttribute>

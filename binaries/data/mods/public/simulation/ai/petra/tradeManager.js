@@ -105,7 +105,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 			API3.warn("Petra error: trying to train " + template + " for civ " + gameState.civ() + " but no template found.");
 		return;
 	}
-	queues.trader.addItem(new m.TrainingPlan(gameState, template, metadata, 1, 1));
+	queues.trader.addPlan(new m.TrainingPlan(gameState, template, metadata, 1, 1));
 };
 
 m.TradeManager.prototype.updateTrader = function(gameState, ent)
@@ -559,7 +559,7 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 	let plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
 	if (!this.tradeRoute)
 		plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", gameState.ai.Config.priorities.economicBuilding); };
-	queues.economicBuilding.addItem(plan);
+	queues.economicBuilding.addPlan(plan);
 };
 
 m.TradeManager.prototype.isNewMarketWorth = function(expectedGain)

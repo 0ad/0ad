@@ -75,70 +75,70 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, 
 	std::map<CStr, CGUISprite*>::iterator it(Sprites.find(SpriteName));
 	if (it == Sprites.end())
 	{
-		// Sprite not found. Check whether this a special sprite:
-		//     "stretched:filename.ext" - stretched image
-		//     "stretched:grayscale:filename.ext" - stretched grayscale image
-		//     "cropped:(0.5, 0.25)"    - stretch this ratio (x,y) of the top left of the image
-		//     "color:r g b a"         - solid color
-		//
-		// and if so, try to create it as a new sprite.
-		if (SpriteName.substr(0, 10) == "stretched:")
+		/*
+		 * Sprite not found. Check whether this a special sprite,
+		 * and if so create a new sprite:
+		 * "stretched:filename.ext" - stretched image
+		 * "stretched:grayscale:filename.ext" - stretched grayscale image.
+		 * "cropped:0.5, 0.25"    - stretch this ratio (x,y) of the top left of the image
+		 * "color:r g b a"        - solid color
+		 *     > "textureAsMask"  - when using color, use the (optional) texture alpha channel as mask.
+		 * These can be combined, but they must be separated by a ":"
+		 * so you can have a white overlay over an stretched grayscale image with:
+		 * "grayscale:color:255 255 255 100:stretched:filename.ext"
+		 */
+		// Check that this can be a special sprite.
+		if (SpriteName.ReverseFind(":") == -1 && SpriteName.Find("color(") == -1)
+		{
+			LOGERROR("Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
+			return;
+		}
+		CGUISprite* Sprite = new CGUISprite;
+		VfsPath TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.AfterLast(":"));
+		if (SpriteName.Find("stretched:") != -1)
 		{
 			// TODO: Should check (nicely) that this is a valid file?
 			SGUIImage* Image = new SGUIImage;
 
+			Image->m_TextureName = TextureName;
 			// Allow grayscale images for disabled portraits
-			if (SpriteName.substr(10, 10) == "grayscale:")
+			if (SpriteName.Find("grayscale:") != -1)
 			{
-				Image->m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(20));
 				Image->m_Effects = new SGUIImageEffects;
 				Image->m_Effects->m_Greyscale = true;
-			}
-			else
-			{
-				Image->m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(10));
 			}
 
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 			Image->m_Size = ca;
 			Image->m_TextureSize = ca;
 
-			CGUISprite* Sprite = new CGUISprite;
 			Sprite->AddImage(Image);
 
 			Sprites[SpriteName] = Sprite;
-
-			it = Sprites.find(SpriteName);
-			ENSURE(it != Sprites.end()); // The insertion above shouldn't fail
 		}
-		else if (SpriteName.substr(0, 8) == "cropped:")
+		else if (SpriteName.Find("cropped:") != -1)
 		{
 			// TODO: Should check (nicely) that this is a valid file?
 			SGUIImage* Image = new SGUIImage;
 
-			double xRatio = SpriteName.BeforeFirst(",").AfterLast("(").ToDouble();
-			double yRatio = SpriteName.BeforeFirst(")").AfterLast(",").ToDouble();
+			CStr info = SpriteName.AfterLast("cropped:").BeforeFirst(":");
+			double xRatio = info.BeforeFirst(",").ToDouble();
+			double yRatio = info.AfterLast(",").ToDouble();
 
-			int PathStart = SpriteName.Find(")") + 1;
-
-			Image->m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(PathStart));
+			Image->m_TextureName = TextureName;
 
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 			CClientArea cb(CRect(0, 0, 0, 0), CRect(0, 0, 100/xRatio, 100/yRatio));
 			Image->m_Size = ca;
 			Image->m_TextureSize = cb;
 
-			CGUISprite* Sprite = new CGUISprite;
 			Sprite->AddImage(Image);
 
 			Sprites[SpriteName] = Sprite;
-
-			it = Sprites.find(SpriteName);
-			ENSURE(it != Sprites.end()); // The insertion above shouldn't fail
 		}
-		else if (SpriteName.substr(0, 6) == "color:")
+		if (SpriteName.Find("color:") != -1)
 		{
-			CStrW value = wstring_from_utf8(SpriteName.substr(6));
+			CStrW value = wstring_from_utf8(SpriteName.AfterLast("color:").BeforeFirst(":"));
 			CColor color;
 
 			// Check color is valid
@@ -150,23 +150,32 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, 
 
 			SGUIImage* Image = new SGUIImage;
 
-			Image->m_BackColor = color;
+			// If we are using a mask, this is an effect.
+			// Otherwise we can fallback to the "back color" attribute
+			// TODO: we are assuming there is a filename here.
+			if (SpriteName.Find("textureAsMask:") != -1)
+			{
+				Image->m_TextureName = TextureName;
+				Image->m_Effects = new SGUIImageEffects;
+				Image->m_Effects->m_SolidColor = color;
+			}
+			else
+				Image->m_BackColor = color;
 
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 			Image->m_Size = ca;
 			Image->m_TextureSize = ca;
 
-			CGUISprite* Sprite = new CGUISprite;
 			Sprite->AddImage(Image);
 
 			Sprites[SpriteName] = Sprite;
-
-			it = Sprites.find(SpriteName);
-			ENSURE(it != Sprites.end()); // The insertion above shouldn't fail
 		}
-		else
+		it = Sprites.find(SpriteName);
+
+		// Otherwise, just complain and give up:
+		if (it == Sprites.end())
 		{
-			// Otherwise, just complain and give up:
+			SAFE_DELETE(Sprite);
 			LOGERROR("Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
 			return;
 		}
@@ -242,6 +251,12 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls& Calls, const CStr& SpriteName, 
 			else if ((*cit)->m_Effects->m_Greyscale)
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_grayscale);
+			}
+			else if ((*cit)->m_Effects->m_SolidColor != CColor())
+			{
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid_mask);
+				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_SolidColor;
+				Call.m_EnableBlending = !(fabs((*cit)->m_Effects->m_SolidColor.a - 1.0f) < 0.0000001f);
 			}
 			else /* Slight confusion - why no effects? */
 			{

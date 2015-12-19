@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -151,7 +151,7 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, JS::Hand
 	if (!str)
 		FAIL("Argument must be convertible to a string");
 	size_t length;
-	const jschar* ch = JS_GetStringCharsAndLength(cx, str, &length);
+	const char16_t* ch = JS_GetStringCharsAndLength(cx, str, &length);
 	if (!ch)
 		FAIL("JS_GetStringsCharsAndLength failed"); // out of memory
 	out = std::wstring(ch, ch + length);
@@ -174,7 +174,7 @@ template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, JS::Handl
 	JS::RootedString str(cx, JS::ToString(cx, v));
 	if (!str)
 		FAIL("Argument must be convertible to a string");
-	char* ch = JS_EncodeString(cx, str); // chops off high byte of each jschar
+	char* ch = JS_EncodeString(cx, str); // chops off high byte of each char16_t
 	if (!ch)
 		FAIL("JS_EncodeString failed"); // out of memory
 	out = std::string(ch, ch + JS_GetStringLength(str));
@@ -291,7 +291,7 @@ template<> void ScriptInterface::ToJSVal<std::wstring>(JSContext* cx, JS::Mutabl
 {
 	JSAutoRequest rq(cx);
 	utf16string utf16(val.begin(), val.end());
-	JS::RootedString str(cx, JS_NewUCStringCopyN(cx, reinterpret_cast<const jschar*> (utf16.c_str()), utf16.length()));
+	JS::RootedString str(cx, JS_NewUCStringCopyN(cx, reinterpret_cast<const char16_t*> (utf16.c_str()), utf16.length()));
 	if (str)
 		ret.setString(str);
 	else

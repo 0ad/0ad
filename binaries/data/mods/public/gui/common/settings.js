@@ -255,7 +255,7 @@ function loadPopulationCapacities()
  *
  * This allows easy copying of setting values to dropdown lists.
  *
- * @param settingValues {Array}
+ * @param {Array} settingValues
  * @returns {Object|undefined}
  */
 function prepareForDropdown(settingValues)
@@ -288,7 +288,7 @@ function prepareForDropdown(settingValues)
 /**
  * Returns title or placeholder.
  *
- * @param aiName {string} - for example "petra"
+ * @param {string} aiName - for example "petra"
  */
 function translateAIName(aiName)
 {
@@ -299,7 +299,7 @@ function translateAIName(aiName)
 /**
  * Returns title or placeholder.
  *
- * @param index {Number} - index of AIDifficulties
+ * @param {Number} index - index of AIDifficulties
  */
 function translateAIDifficulty(index)
 {
@@ -310,7 +310,7 @@ function translateAIDifficulty(index)
 /**
  * Returns title or placeholder.
  *
- * @param mapType {string} - for example "skirmish"
+ * @param {string} mapType - for example "skirmish"
  * @returns {string}
  */
 function translateMapType(mapType)
@@ -322,7 +322,7 @@ function translateMapType(mapType)
 /**
  * Returns title or placeholder "Default".
  *
- * @param mapSize {Number} - tilecount
+ * @param {Number} mapSize - tilecount
  * @returns {string}
  */
 function translateMapSize(tiles)
@@ -334,7 +334,7 @@ function translateMapSize(tiles)
 /**
  * Returns title or placeholder.
  *
- * @param population {Number} - for example 300
+ * @param {Number} population - for example 300
  * @returns {string}
  */
 function translatePopulationCapacity(population)
@@ -346,7 +346,7 @@ function translatePopulationCapacity(population)
 /**
  * Returns title or placeholder.
  *
- * @param gameType {string} - for example "conquest"
+ * @param {string} gameType - for example "conquest"
  * @returns {string}
  */
 function translateVictoryCondition(gameType)

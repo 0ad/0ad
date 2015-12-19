@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-16 08:31+0100\n"
-"PO-Revision-Date: 2015-11-30 04:43+0000\n"
-"Last-Translator: Catalanoic <catalanoic@gmail.com>\n"
+"POT-Creation-Date: 2015-12-14 09:01+0100\n"
+"PO-Revision-Date: 2015-12-14 10:24+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,11 +117,11 @@ msgstr "tresor"
 msgid "A treasure that can be quickly gathered."
 msgstr "Un tresor que es pot recollir ràpidament."
 
-#: simulation/templates/template_structure.xml:56
+#: simulation/templates/template_structure.xml:57
 msgid "Structure"
 msgstr "Estructura"
 
-#: simulation/templates/template_unit.xml:37
+#: simulation/templates/template_unit.xml:38
 msgid "Unit"
 msgstr "Unitat"
 
@@ -446,6 +446,10 @@ msgstr "Es pot collir raïm d'aquestes vinyes per obtenir menjar."
 msgid "Deciduous Bush"
 msgstr "Arbust de fulla caduca"
 
+#: simulation/templates/gaia/flora_tree_acacia.xml:4
+msgid "Acacia Tree"
+msgstr "Acàcia"
+
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
 msgstr "Pi blanc"
@@ -499,6 +503,9 @@ msgstr "Margalló"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
+#: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
+#: simulation/templates/gaia/flora_tree_oak_dead.xml:4
+#: simulation/templates/gaia/flora_tree_oak_new.xml:4
 msgid "Oak Tree"
 msgstr "Roure"
 
@@ -793,33 +800,33 @@ msgstr "Fort d'estacada"
 msgid "Wooden Tower"
 msgstr "Torre de fusta"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:20
+#: simulation/templates/other/palisades_rocks_gate.xml:25
 msgid "Palisade Gate"
 msgstr "Porta d'estacada"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:21
+#: simulation/templates/other/palisades_rocks_gate.xml:26
 msgid "Wooden Gate"
 msgstr "Porta de fusta"
 
-#: simulation/templates/other/palisades_rocks_long.xml:22
-#: simulation/templates/other/palisades_rocks_medium.xml:22
-#: simulation/templates/other/palisades_rocks_short.xml:21
+#: simulation/templates/other/palisades_rocks_long.xml:27
+#: simulation/templates/other/palisades_rocks_medium.xml:27
+#: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
-#: simulation/templates/other/palisades_rocks_tower.xml:21
+#: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
 msgstr "Estacada"
 
-#: simulation/templates/other/palisades_rocks_long.xml:23
-#: simulation/templates/other/palisades_rocks_medium.xml:23
-#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_long.xml:28
+#: simulation/templates/other/palisades_rocks_medium.xml:28
+#: simulation/templates/other/palisades_rocks_short.xml:27
 #: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/palisades_rocks_tower.xml:27
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
 msgstr "Muralla de fusta"
 
-#: simulation/templates/other/palisades_rocks_long.xml:24
+#: simulation/templates/other/palisades_rocks_long.xml:29
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "Converteix mur de fusta en porta de fusta"
 

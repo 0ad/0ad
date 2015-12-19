@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-16 08:31+0100\n"
-"PO-Revision-Date: 2015-11-16 10:37+0000\n"
+"POT-Creation-Date: 2015-12-14 09:01+0100\n"
+"PO-Revision-Date: 2015-12-15 09:33+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -116,11 +116,11 @@ msgstr "Ulaidh"
 msgid "A treasure that can be quickly gathered."
 msgstr "Ulaidh a ghabhas togail gu luath."
 
-#: simulation/templates/template_structure.xml:56
+#: simulation/templates/template_structure.xml:57
 msgid "Structure"
 msgstr "Togalach"
 
-#: simulation/templates/template_unit.xml:37
+#: simulation/templates/template_unit.xml:38
 msgid "Unit"
 msgstr "Aonad"
 
@@ -445,6 +445,10 @@ msgstr "Cruinnich fìon-dhearcan on chrann-fìona seo airson bìdh."
 msgid "Deciduous Bush"
 msgstr "Preas seargach"
 
+#: simulation/templates/gaia/flora_tree_acacia.xml:4
+msgid "Acacia Tree"
+msgstr "Sitta"
+
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
 msgstr "Giuthas Aleppo"
@@ -498,6 +502,9 @@ msgstr "Pailm gaotharain mheadhan-thìreach"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
+#: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
+#: simulation/templates/gaia/flora_tree_oak_dead.xml:4
+#: simulation/templates/gaia/flora_tree_oak_new.xml:4
 msgid "Oak Tree"
 msgstr "Darach"
 
@@ -792,33 +799,33 @@ msgstr "Dùn sonnaich"
 msgid "Wooden Tower"
 msgstr "Tùr fiodha"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:20
+#: simulation/templates/other/palisades_rocks_gate.xml:25
 msgid "Palisade Gate"
 msgstr "Geata sonnaich"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:21
+#: simulation/templates/other/palisades_rocks_gate.xml:26
 msgid "Wooden Gate"
 msgstr "Geata fiodha"
 
-#: simulation/templates/other/palisades_rocks_long.xml:22
-#: simulation/templates/other/palisades_rocks_medium.xml:22
-#: simulation/templates/other/palisades_rocks_short.xml:21
+#: simulation/templates/other/palisades_rocks_long.xml:27
+#: simulation/templates/other/palisades_rocks_medium.xml:27
+#: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
-#: simulation/templates/other/palisades_rocks_tower.xml:21
+#: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
 msgstr "Sonnach"
 
-#: simulation/templates/other/palisades_rocks_long.xml:23
-#: simulation/templates/other/palisades_rocks_medium.xml:23
-#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_long.xml:28
+#: simulation/templates/other/palisades_rocks_medium.xml:28
+#: simulation/templates/other/palisades_rocks_short.xml:27
 #: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/palisades_rocks_tower.xml:27
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
 msgstr "Balla fiodha"
 
-#: simulation/templates/other/palisades_rocks_long.xml:24
+#: simulation/templates/other/palisades_rocks_long.xml:29
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "Dèan geata fiodha dhen bhalla fhiodha"
 

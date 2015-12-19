@@ -1,10 +1,10 @@
 // Limits selection size
-const MAX_SELECTION_SIZE = 200; 
+const g_MaxSelectionSize = 200;
 
 // Alpha value of hovered/mouseover/highlighted selection overlays
 // (should probably be greater than always visible alpha value,
 //	see CCmpSelectable)
-const HIGHLIGHTED_ALPHA = 0.75; 
+const g_HighlightedAlpha = 0.75;
 
 function _setHighlight(ents, alpha, selected)
 {
@@ -317,7 +317,7 @@ EntitySelection.prototype.addList = function(ents, quiet)
 	{
 		// Only add entities we own to our selection
 		var entState = GetEntityState(ent);
-		if (!this.selected[ent] && (selection.length + i) <= MAX_SELECTION_SIZE && entState && (allowUnownedSelect || entState.player == playerID))
+		if (!this.selected[ent] && (selection.length + i) <= g_MaxSelectionSize && entState && (allowUnownedSelect || entState.player == playerID))
 		{
 			added.push(ent);
 			this.selected[ent] = ent;
@@ -421,7 +421,7 @@ EntitySelection.prototype.setHighlightList = function(ents)
 	_setHighlight(removed, 0, false);
 	_setStatusBars(removed, false);
 
-	_setHighlight(added, HIGHLIGHTED_ALPHA, true);
+	_setHighlight(added, g_HighlightedAlpha, true);
 	_setStatusBars(added, true);
 	
 	// Store the new highlight list

@@ -43,7 +43,6 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 
 	switch(ev->ev.type)
 	{
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	case SDL_WINDOWEVENT:
 		switch(ev->ev.window.event)
 		{
@@ -68,26 +67,6 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 			break;
 		}
 		return IN_PASS;
-#else
-	case SDL_ACTIVEEVENT:
-		if(ev->ev.active.state & SDL_APPACTIVE)
-		{
-			g_app_minimized = (ev->ev.active.gain == 0);	// negated
-
-			if ( g_SoundManager )
-				g_SoundManager->Pause( g_app_minimized && g_PauseOnFocusLoss && !g_NetClient );
-		}
-		if(ev->ev.active.state & SDL_APPINPUTFOCUS)
-		{
-			g_app_has_focus = (ev->ev.active.gain != 0);
-
-			if ( g_SoundManager )
-				g_SoundManager->Pause( !g_app_has_focus && g_PauseOnFocusLoss && !g_NetClient );
-		}
-		if(ev->ev.active.state & SDL_APPMOUSEFOCUS)
-			g_mouse_active = (ev->ev.active.gain != 0);
-		return IN_PASS;
-#endif
 
 	case SDL_MOUSEMOTION:
 		g_mouse_x = ev->ev.motion.x;

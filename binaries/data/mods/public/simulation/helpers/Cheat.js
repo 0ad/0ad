@@ -69,7 +69,8 @@ function Cheat(input)
 			cmpGuiInterface.PushNotification({ "type": "chat", "players": [input.player], "message": "You need to select a building that trains units." });
 			return;
 		}
-		for (let i = 0; i < input.parameter; ++i)
+
+		for (let i = 0; i < Math.min(input.parameter, cmpPlayer.GetMaxPopulation() - cmpPlayer.GetPopulationCount()); ++i)
 			cmpProductionQueue.SpawnUnits(input.templates[i % input.templates.length], 1, null);
 		return;
 	case "fastactions":

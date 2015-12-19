@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="fixed"/>
+        <pass shader="fixed:gui_solid"/>
+    </technique>
+
+    <technique>
+        <require shaders="glsl"/>
+        <pass shader="glsl/gui_solid_mask"/>
+    </technique>
+
+</effect>

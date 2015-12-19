@@ -7,15 +7,16 @@
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 # Marco tom Suden, 2014
+# Martin ‌ <mhilgendrf@aol.com>, 2015
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # Simon Österberg <simon.osterberg@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-12-07 17:36+0100\n"
+"PO-Revision-Date: 2015-12-17 17:33+0000\n"
+"Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,9 +110,9 @@ msgstr "Försvarstorn"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid ""
-"Shoots arrows. Garrison to provide extra defense. Needs the murderholes tech"
-" to protect its foot."
-msgstr ""
+"Shoots arrows. Garrison to provide extra defense. Needs the murder holes "
+"tech to protect its foot."
+msgstr "Skjuter pilar. Bemanna för att utöka skyddet. Kräver lönnhål för att skydda tornets bas."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
@@ -123,7 +124,7 @@ msgstr "Försvarstorn"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr ""
+msgstr "Bygg i neutrala och egna territorier för att utforska områden. Konverteras sakta till Gaia i neutrala territorier."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -146,7 +147,7 @@ msgstr "Stadsport"
 #: simulation/templates/template_structure_defense_wall_gate.xml:31
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr ""
+msgstr "Låter enheter komma igenom stadsmur. Kan låsas för att förhindra åtkomst."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:18
 #: simulation/templates/template_structure_defense_wall_medium.xml:18
@@ -168,11 +169,11 @@ msgstr "Konvertera Stenmur till Stadsport"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
-msgstr ""
+msgstr "Murtorn"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr ""
+msgstr "Skjuter pilar. Bemanna för att skydda en mur mot anfallare."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -181,7 +182,7 @@ msgstr "Stadsmur"
 #: simulation/templates/template_structure_defense_wooden_tower.xml:46
 #: simulation/templates/template_structure_defense_wooden_tower.xml:45
 msgid "Wooden Tower"
-msgstr ""
+msgstr "Trätorn"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -194,7 +195,7 @@ msgstr "Ekonomi"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr ""
+msgstr "Insamlingsställe för resursen mat. Forska fram förbättringar för matinsamling."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
@@ -205,7 +206,7 @@ msgstr "Bondgård"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr ""
+msgstr "Skapa handelsenheter för att handla med andra marknader. Driv byteshandel med resurser. Forska fram handels- och bytesförbättringar."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -217,7 +218,7 @@ msgstr "Marknad"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr ""
+msgstr "Insamlingsställe for trä, sten och metall. Forska fram insamlingsförbättringar för dessa resurser."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_economic_storehouse.xml:24
@@ -243,7 +244,7 @@ msgstr "Militär"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr ""
+msgstr "Träna medborgarsoldater. Forska fram träningsförbättringar. Garnison: 10."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -263,7 +264,7 @@ msgstr "Smedja"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr ""
+msgstr "Bygg vid strandkanten för att kunna bygga skepp och möjliggöra sjöhandel. Forska fram marina förbättringar."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -305,7 +306,7 @@ msgstr "Resurs"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr ""
+msgstr "Föd upp flockdjur för mat. Skicka hit tama djur för att ge dem mat eller annan bonus (Inte implementerat ännu)."
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
@@ -349,13 +350,13 @@ msgstr "Stratēgeîon"
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
 msgid "Khalkeṓn"
-msgstr ""
+msgstr "Khalkeṓn"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
 #: simulation/templates/structures/spart_civil_centre.xml:8
 msgid "Agorá"
-msgstr ""
+msgstr "Agorá"
 
 #: simulation/templates/structures/athen_corral.xml:12
 #: simulation/templates/structures/mace_corral.xml:12
@@ -381,23 +382,23 @@ msgstr "Limḗn"
 #: simulation/templates/structures/mace_farmstead.xml:12
 #: simulation/templates/structures/spart_farmstead.xml:12
 msgid "Sitobólion"
-msgstr ""
+msgstr "Sitobólion"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agroí"
-msgstr ""
+msgstr "Agroí"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
-msgstr ""
+msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr ""
+msgstr "Bygg belägringsvapen. Garnisonera upp till 20 soldater inuti för starkt försvar."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -422,7 +423,7 @@ msgstr "Oîkos"
 #: simulation/templates/structures/mace_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
 msgid "Empórios"
-msgstr ""
+msgstr "Empórios"
 
 #: simulation/templates/structures/athen_outpost.xml:5
 #: simulation/templates/structures/mace_outpost.xml:5
@@ -434,7 +435,7 @@ msgstr "Grekisk utpost"
 #: simulation/templates/structures/mace_outpost.xml:6
 #: simulation/templates/structures/spart_outpost.xml:6
 msgid "Prophylakḗ"
-msgstr ""
+msgstr "Prophylakḗ"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 msgid "Council Chamber"
@@ -480,7 +481,7 @@ msgstr "Théātron"
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr ""
+msgstr "Hellēnízein (Hellenisation): +20% territoriellt inflytande för alla byggnader medan Theatron finns."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -519,7 +520,7 @@ msgstr "Pýrgos"
 #: simulation/templates/structures/mace_wonder.xml:17
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid "Naós Parthenṓn"
-msgstr ""
+msgstr "Naós Parthenṓn"
 
 #: simulation/templates/structures/athen_wonder.xml:19
 #: simulation/templates/structures/mace_wonder.xml:19
@@ -555,7 +556,7 @@ msgstr "Öbosättning"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways."
-msgstr ""
+msgstr "Utöka befolkningsgränsen och försvara vattenvägarna"
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -618,7 +619,7 @@ msgstr "Jordbruks bonus"
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
 msgid "Boosts nearby farming with +25%."
-msgstr ""
+msgstr "Ökar närliggande åkrars produktion med +25%."
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -633,7 +634,7 @@ msgstr "Melonas"
 #: simulation/templates/structures/brit_rotarymill.xml:35
 #: simulation/templates/structures/gaul_rotarymill.xml:35
 msgid "Increase nearby farming output +25%."
-msgstr ""
+msgstr "Ökar närliggande åkrars produktion med +25%."
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -794,7 +795,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr ""
+msgstr "Träna prästinnor för att hela dina trupper. Träna Heliga Band pikenerare. Garnisonera upp till 20 enheter för att hela dem snabbt."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -849,7 +850,7 @@ msgstr "Kaserna"
 
 #: simulation/templates/structures/iber_blacksmith.xml:5
 msgid "Harotz"
-msgstr ""
+msgstr "Harotz"
 
 #: simulation/templates/structures/iber_civil_centre.xml:5
 msgid "Oppidum"
@@ -886,7 +887,7 @@ msgstr "Etxe"
 
 #: simulation/templates/structures/iber_market.xml:12
 msgid "Arruga"
-msgstr ""
+msgstr "Arruga"
 
 #: simulation/templates/structures/iber_monument.xml:38
 msgid "Revered Monument"
@@ -900,7 +901,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
-msgstr ""
+msgstr "Alla enheter inom monumentets synhåll strider hårdare. Effektiv radie: 50 meter."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -928,11 +929,11 @@ msgstr "Biko Sarbide"
 
 #: simulation/templates/structures/iber_wonder.xml:17
 msgid "Cancho Roano"
-msgstr ""
+msgstr "Cancho Roano"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
-msgstr ""
+msgstr "Sidērourgeîon"
 
 #: simulation/templates/structures/mace_fortress.xml:15
 msgid "Teíchisma"
@@ -942,7 +943,7 @@ msgstr "Teíchisma"
 msgid ""
 "Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Träna mästare och hjältar. Garnisonera upp till 20 soldater för ståndaktigt försvar."
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
@@ -953,7 +954,7 @@ msgstr "Bibliotek"
 #: simulation/templates/structures/mace_library.xml:16
 #: simulation/templates/structures/ptol_library.xml:16
 msgid "Bibliothḗkē"
-msgstr ""
+msgstr "Bibliothḗkē"
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -965,7 +966,7 @@ msgstr "Forska fram unika teknologier och minska utforskningstiden för alla kva
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
-msgstr ""
+msgstr "Synergeîon Poliorkētṓn"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
@@ -973,12 +974,12 @@ msgstr "Belägrings Verkstad"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr ""
+msgstr "Bygg belägringsvapen. Forska fram förbättringar för belägringsteknik."
 
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
-msgstr ""
+msgstr "Asklēpieîon"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
@@ -994,7 +995,7 @@ msgstr "Rajadhanika"
 
 #: simulation/templates/structures/maur_corral.xml:12
 msgid "Gotra"
-msgstr ""
+msgstr "Gotra"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
 msgid "Udarka"
@@ -1054,7 +1055,7 @@ msgstr "Śāsana Stambha Aśokā"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:29
 msgid "The famous pillar of Ashoka. Currently a useless structure."
-msgstr ""
+msgstr "Den berömda pelaren av Ashoka. För tillfället ingen funktion."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1087,19 +1088,19 @@ msgstr "Den stora stupan"
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "Legosoldatlager"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
-msgstr ""
+msgstr "Legosoldatlager (Egyptiskt)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
-msgstr ""
+msgstr "Stratópedo Misthophóron Aigyptiakós"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr ""
+msgstr "Överta denna byggnad för att träna legosoldater från Hellenistiska Egypten."
 
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
@@ -1185,7 +1186,7 @@ msgstr "Ardatašta"
 
 #: simulation/templates/structures/pers_outpost.xml:5
 msgid "Didebani"
-msgstr ""
+msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Palace"
@@ -1251,7 +1252,7 @@ msgstr "Babylons hängande trädgårdar"
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
-msgstr ""
+msgstr "ḥwt-n-mš'"
 
 #: simulation/templates/structures/ptol_barracks.xml:19
 msgid ""
@@ -1261,31 +1262,31 @@ msgstr "Träna bosättarsoldater från Egypten och Mellanöstern. Forska fram tr
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
-msgstr ""
+msgstr "pr-'a"
 
 #: simulation/templates/structures/ptol_corral.xml:19
 msgid "h-n-ssmt.w"
-msgstr ""
+msgstr "h-n-ssmt.w"
 
 #: simulation/templates/structures/ptol_defense_tower.xml:9
 msgid "mktr-n-ḏw"
-msgstr ""
+msgstr "mktr-n-ḏw"
 
 #: simulation/templates/structures/ptol_dock.xml:12
 msgid "ḥwt-n-dpt.w"
-msgstr ""
+msgstr "ḥwt-n-dpt.w"
 
 #: simulation/templates/structures/ptol_farmstead.xml:19
 msgid "pr-n-t"
-msgstr ""
+msgstr "pr-n-t"
 
 #: simulation/templates/structures/ptol_fortress.xml:9
 msgid "mktr-'a"
-msgstr ""
+msgstr "mktr-'a"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid "ḥwt"
-msgstr ""
+msgstr "ḥwt"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1293,32 +1294,32 @@ msgstr "Fyr"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pháros"
-msgstr ""
+msgstr "Pháros"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
-msgstr ""
+msgstr "Bygg vid kusten för att täcka upp alla kuster på hela kartan. Väldigt stort synhåll: 180 meter."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
-msgstr ""
+msgstr "ḥwt-n-ḫt.w-wḫa.w"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
-msgstr ""
+msgstr "Legosoldatlager"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
-msgstr ""
+msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr ""
+msgstr "Billig baracker-liknande struktur som är byggbar i neutralt territorium, men som intehar något territorieinflytande.\n- Utbilda legosoldater.\n- Min. avstånd från andra militära byggnader: 100 meter."
 
 #: simulation/templates/structures/ptol_military_colony.xml:24
 #: simulation/templates/structures/sele_military_colony.xml:24
@@ -1332,37 +1333,37 @@ msgstr "Militärkoloni "
 
 #: simulation/templates/structures/ptol_military_colony.xml:47
 msgid "Klēroukhía"
-msgstr ""
+msgstr "Klēroukhía"
 
 #: simulation/templates/structures/ptol_military_colony.xml:50
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Detta är den Ptolemaiska expansionsbyggnaden, liknande samhällsbyggnaden för andra fraktioner. Det är svagare och har mindre territorieinflytande, men är billigare och byggs snabbare.\n- Utbilda medborgarsoldater av olika nationaliteter.\n- Min. avstånd från andra militära kolonier: 120 meter."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
-msgstr ""
+msgstr "mktr-n-ḫt"
 
 #: simulation/templates/structures/ptol_storehouse.xml:18
 msgid "h-n-ḫt.w"
-msgstr ""
+msgstr "h-n-ḫt.w"
 
 #: simulation/templates/structures/ptol_wall_gate.xml:9
 msgid "sba-n-njwt"
-msgstr ""
+msgstr "sba-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_long.xml:29
 #: simulation/templates/structures/ptol_wall_medium.xml:23
 #: simulation/templates/structures/ptol_wall_short.xml:10
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
-msgstr ""
+msgstr "h-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_tower.xml:9
 msgid "mktr"
-msgstr ""
+msgstr "mktr"
 
 #: simulation/templates/structures/ptol_wonder.xml:17
 msgid "Temple of Edfu"
@@ -1378,7 +1379,7 @@ msgstr "Befäst militärläger"
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Castrum Vallum"
-msgstr ""
+msgstr "Castrum Vallum"
 
 #: simulation/templates/structures/rome_army_camp.xml:64
 msgid ""
@@ -1388,7 +1389,7 @@ msgstr "Kan byggas var som helt på kartan, även i fientligt territorium. Bygg 
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
-msgstr ""
+msgstr "Castrum"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armamentarium"
@@ -1464,7 +1465,7 @@ msgstr "En palissad av trä och grästorvor som kan byggas i fientliga och neutr
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:58
 msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr ""
+msgstr "Konvertera belägringsvägg till belägringsväggsport."
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
@@ -1546,11 +1547,11 @@ msgstr "Aedes Iovis Optimi Maximi"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
-msgstr ""
+msgstr "Stratones"
 
 #: simulation/templates/structures/sele_blacksmith.xml:5
 msgid "Sidirourgeíon"
-msgstr ""
+msgstr "Sidirourgeíon"
 
 #: simulation/templates/structures/sele_civil_centre.xml:8
 msgid "Agorā́"
@@ -1558,7 +1559,7 @@ msgstr "Agorā́"
 
 #: simulation/templates/structures/sele_dock.xml:12
 msgid "Liménas"
-msgstr ""
+msgstr "Liménas"
 
 #: simulation/templates/structures/sele_farmstead.xml:12
 msgid "Sītobólion"
@@ -1570,13 +1571,13 @@ msgstr "Agrós"
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
-msgstr ""
+msgstr "Phrourion"
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr ""
+msgstr "Bygg belägringsvapen och träna mästare. Garnisonera upp till 20 soldater inuti för starkt försvar."
 
 #: simulation/templates/structures/sele_library.xml:16
 msgid "Bibliothikon"
@@ -1595,15 +1596,15 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Detta är den Seleukidiska expansionsbyggnaden, liknande samhällsbyggnaden för andra fraktioner. Det är svagare och har mindre territorieinflytande, men är billigare och byggs snabbare.\n- Utbilda medborgarsoldater av olika nationaliteter.\n- Min. avstånd från andra militära kolonier: 120 meter."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
-msgstr ""
+msgstr "Prophylax"
 
 #: simulation/templates/structures/sele_temple.xml:9
 msgid "Naós"
-msgstr ""
+msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Paradise of Daphne"
@@ -1611,7 +1612,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
-msgstr ""
+msgstr "Teíkhisma"
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
@@ -1619,7 +1620,7 @@ msgstr "Spartansk senat"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerontía"
-msgstr ""
+msgstr "Gerontía"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
@@ -1627,7 +1628,7 @@ msgstr "Träna hjältar."
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"
-msgstr ""
+msgstr "Militär Matsal"
 
 #: simulation/templates/structures/spart_syssiton.xml:22
 msgid "Syssítion"
@@ -1635,4 +1636,4 @@ msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr ""
+msgstr "Träna Spartanska hjältar och Spartanska elithopliter."

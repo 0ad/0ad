@@ -47,15 +47,6 @@ m.Resources.prototype.multiply = function(n)
 	this.population *= n;
 };
 
-m.Resources.prototype.toInt = function()
-{
-	let sum = 0;
-	for (let key of this.types)
-		sum += this[key];
-	sum += this.population * 50; // based on typical unit costs
-	return sum;
-};
-
 m.Resources.prototype.Serialize = function()
 {
 	let amounts = {};

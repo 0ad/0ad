@@ -39,7 +39,7 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	this.canBuildUnits = true;
 	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).length)
 	{
-		var template = gameState.applyCiv("structures/{civ}_civil_centre");
+		let template = gameState.applyCiv("structures/{civ}_civil_centre");
 		if (gameState.isDisabledTemplates(template) || !gameState.getTemplate(template).available(gameState))
 		{
 			if (this.Config.debug > 1)
@@ -175,7 +175,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	var minLandSize = Math.floor(0.1*totalSize);
 	var minWaterSize = Math.floor(0.2*totalSize);
 	var cellArea = passabilityMap.cellSize * passabilityMap.cellSize;  
-	for (var i = 0; i < accessibility.regionSize.length; ++i)
+	for (let i = 0; i < accessibility.regionSize.length; ++i)
 	{
 		if (landIndex && i == landIndex)
 			this.landRegions[i] = true;
@@ -183,7 +183,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 		{
 			if (landIndex)
 			{
-				var sea = this.getSeaIndex(gameState, landIndex, i);
+				let sea = this.getSeaIndex(gameState, landIndex, i);
 				if (sea && (accessibility.regionSize[i] > minLandSize || accessibility.regionSize[sea] > minWaterSize))
 				{
 					this.navalMap = true;
@@ -193,7 +193,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 			}
 			else
 			{
-				var traject = accessibility.getTrajectToIndex(seaIndex, i);
+				let traject = accessibility.getTrajectToIndex(seaIndex, i);
 				if (traject && traject.length === 2)
 				{
 					this.navalMap = true;
@@ -213,7 +213,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 
 	if (this.Config.debug < 3)
 		return true;
-	for (var region in this.landRegions)
+	for (let region in this.landRegions)
 		API3.warn(" >>> zone " + region + " taille " + cellArea*gameState.ai.accessibility.regionSize[region]);
 	API3.warn(" navalMap " + this.navalMap);
 	API3.warn(" landRegions " + uneval(this.landRegions));
@@ -237,9 +237,9 @@ m.HQ.prototype.structureAnalysis = function(gameState)
 		this.bAdvanced = this.Config.buildings.advanced[civ];
 	else
 		this.bAdvanced = this.Config.buildings.advanced['default'];	
-	for (var i in this.bBase)
+	for (let i in this.bBase)
 		this.bBase[i] = gameState.applyCiv(this.bBase[i]);
-	for (var i in this.bAdvanced)
+	for (let i in this.bAdvanced)
 		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
 };
 
@@ -267,7 +267,7 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 		template = gameState.getTemplate(template);
 		if (!total.canAfford(new API3.Resources(template.cost())))
 			return;
-		var goal = "dock";
+		goal = "dock";
 	}
 
 	// We first choose as startingPoint the point where we have the more units  
@@ -315,10 +315,10 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 	if (goal === "dock")
 	{
 		let sea = startingPoint[imax].sea > 1 ? startingPoint[imax].sea : undefined;
-		gameState.ai.queues.dock.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "sea": sea, "proximity": startingPoint[imax].pos }));
+		gameState.ai.queues.dock.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "sea": sea, "proximity": startingPoint[imax].pos }));
 	}
 	else
-		gameState.ai.queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base": -1, "resource": "wood", "proximity": startingPoint[imax].pos }));
+		gameState.ai.queues.civilCentre.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base": -1, "resource": "wood", "proximity": startingPoint[imax].pos }));
 };
 
 /**
@@ -344,7 +344,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
 			var access = gameState.ai.accessibility.getAccessValue(ent.position());
-			for (var cc of allycc)
+			for (let cc of allycc)
 			{
 				if (!cc.position())
 					continue;
@@ -353,7 +353,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				--num;
 				--num1;
 				ent.setMetadata(PlayerID, "allied", true);
-				var range = 1.5 * cc.footprintRadius();
+				let range = 1.5 * cc.footprintRadius();
 				ent.moveToRange(cc.position()[0], cc.position()[1], range, range);
 				break;
 			}
@@ -365,7 +365,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
 			var access = gameState.ai.accessibility.getAccessValue(ent.position());
-			for (var cc of allycc)
+			for (let cc of allycc)
 			{
 				if (!cc.position())
 					continue;
@@ -374,7 +374,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				--num;
 				--num2;
 				ent.setMetadata(PlayerID, "allied", true);
-				var range = 1.5 * cc.footprintRadius();
+				let range = 1.5 * cc.footprintRadius();
 				ent.moveToRange(cc.position()[0], cc.position()[1], range, range);
 				break;
 			}
@@ -386,7 +386,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
 			var access = gameState.ai.accessibility.getAccessValue(ent.position());
-			for (var cc of allycc)
+			for (let cc of allycc)
 			{
 				if (!cc.position())
 					continue;
@@ -395,7 +395,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				if (!ent.hasClass("Support"))
 					--num;
 				ent.setMetadata(PlayerID, "allied", true);
-				var range = 1.5 * cc.footprintRadius();
+				let range = 1.5 * cc.footprintRadius();
 				ent.moveToRange(cc.position()[0], cc.position()[1], range, range);
 				break;
 			}
@@ -438,11 +438,11 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
 	var startingWood = gameState.getResources()["wood"];
 	var check = {};
-	for (var proxim of ["nearby", "medium", "faraway"])
+	for (let proxim of ["nearby", "medium", "faraway"])
 	{
 		for (let base of this.baseManagers)
 		{
-			for (var supply of base.dropsiteSupplies["wood"][proxim])
+			for (let supply of base.dropsiteSupplies["wood"][proxim])
 			{
 				if (check[supply.id])    // avoid double counting as same resource can appear several time
 					continue;
@@ -477,7 +477,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 				let cost = new API3.Resources(gameState.getTemplate(template).cost());
 				gameState.ai.queueManager.setAccounts(gameState, cost, "dropsites");
 			}
-			gameState.ai.queues.dropsites.addItem(new m.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }, newDP.pos));
+			gameState.ai.queues.dropsites.addPlan(new m.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }, newDP.pos));
 		}
 	}
 };

@@ -234,7 +234,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 			ReadStringUTF16("prop name", propname);
 			JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
 
-			if (!JS_SetUCProperty(cx, obj, (const jschar*)propname.data(), propname.length(), propval))
+			if (!JS_SetUCProperty(cx, obj, (const char16_t*)propname.data(), propname.length(), propval))
 				throw PSERROR_Deserialize_ScriptError();
 		}
 
@@ -287,7 +287,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		if (!JS_GetClassObject(cx, JSProto_Number, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
 
-		JS::RootedObject obj(cx, JS_New(cx, ctorobj, val));
+		JS::RootedObject obj(cx, JS_New(cx, ctorobj, JS::HandleValueArray(val)));
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
@@ -305,7 +305,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		if (!JS_GetClassObject(cx, JSProto_String, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
 
-		JS::RootedObject obj(cx, JS_New(cx, ctorobj, val));
+		JS::RootedObject obj(cx, JS_New(cx, ctorobj, JS::HandleValueArray(val)));
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
@@ -321,7 +321,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		if (!JS_GetClassObject(cx, JSProto_Boolean, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
 
-		JS::RootedObject obj(cx, JS_New(cx, ctorobj, val));
+		JS::RootedObject obj(cx, JS_New(cx, ctorobj, JS::HandleValueArray(val)));
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
@@ -396,8 +396,8 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: need to convert JS ArrayBuffer data from little-endian
 #endif
-		void* contents = NULL;
-		contents = JS_AllocateArrayBufferContents(cx, length);
+		void* contents = malloc(length);
+		ENSURE(contents);
 		RawBytes("buffer data", (u8*)contents, length);
 		JS::RootedObject bufferObj(cx, JS_NewArrayBufferWithContents(cx, length, contents));
 		AddScriptBackref(bufferObj);
@@ -466,7 +466,7 @@ void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString ou
 #error TODO: probably need to convert JS strings from little-endian
 #endif
 
-	out.set(JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const jschar*)str.data(), str.length()));
+	out.set(JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const char16_t*)str.data(), str.length()));
 	if (!out)
 		throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
 }

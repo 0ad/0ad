@@ -11,7 +11,9 @@
 # chris020891 <chris020891@gmail.com>, 2013-2014
 # davesajt <davesajthun@gmail.com>, 2014
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
+# kelemeng <kelemeng@ubuntu.com>, 2015
 # Kristóf Kófiás <kristof.kofias@gmail.com>, 2014
+# lkishalmi <laszlo.kishalmi@gmail.com>, 2015
 # László Viktor <szemcse1@gmail.com>, 2015
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2014
 # Nagy András <asd0707@freemail.hu>, 2014
@@ -23,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-12-05 20:21+0000\n"
-"Last-Translator: László Viktor <szemcse1@gmail.com>\n"
+"PO-Revision-Date: 2015-12-14 23:43+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -290,7 +292,7 @@ msgstr "Mégse"
 #: gui/aiconfig/aiconfig.xml:(caption):42
 #: gui/gamesetup/gamesetup.xml:(caption):413
 msgid "OK"
-msgstr "Ok"
+msgstr "OK"
 
 #: gui/gamesetup/gamesetup.xml:(caption):18
 msgid "Match Setup"
@@ -350,7 +352,7 @@ msgstr "Küldés"
 
 #: gui/gamesetup/gamesetup.xml:(caption):224
 msgid "Cheats enabled."
-msgstr "Csalás engedélyezve."
+msgstr "Csalások engedélyezve."
 
 #: gui/gamesetup/gamesetup.xml:(caption):237
 msgid "Start game!"
@@ -395,7 +397,7 @@ msgstr "Felfedezett térkép:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):356
 msgid "Disable Treasures:"
-msgstr "Kincsek nélkül:"
+msgstr "Kincsek letiltása:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):366
 msgid "Teams Locked:"
@@ -411,7 +413,7 @@ msgstr "Pontozott játék:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):396
 msgid "Late Observer Joins:"
-msgstr ""
+msgstr "Késő megfigyelő csatlakozás:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):61
 msgid "View civilization info"
@@ -463,7 +465,7 @@ msgstr "Új játék kezdése a meglévő beállításokkal."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):270
 msgid "See more game options"
-msgstr "További beállítások mutatása"
+msgstr "További játékbeállítások megtekintése"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):290
 msgid "Select game speed."
@@ -545,7 +547,7 @@ msgstr "Tovább"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):62
 msgid "Set up your server to host."
-msgstr "Kiszolgáló beállítása."
+msgstr "Kiszolgáló beállítása a játék létrehozásához."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
@@ -557,7 +559,7 @@ msgstr "A nap idézete:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "„A sok kincs a boldogságot porba dönti.” - Aiszkhülosz"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -567,23 +569,23 @@ msgstr ""
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "„Lenni, nemcsak annak látszani” - Aiszkhülosz, „Heten Théba ellen”"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"It is not the oath that makes us believe the man, but the man the oath.\" "
 "- Aeschylus"
-msgstr ""
+msgstr "„Nem esküjéért hiszünk az emberben, hanem embertől az esküt.” - Aiszkülosz"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "„A zsarnoksággal mindig együtt jár e kór: barátaikban sem mernek megbízni ők.” - Aiszkhülosz, „Leláncolt Prométeusz”"
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "„Mindenre megtanít a vénülő idő.” - Aiszkhülosz, „Leláncolt Prométeusz”"
 
 #: gui/text/quotes.txt:7
 msgid ""
@@ -611,15 +613,15 @@ msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr "\"Ürügyet szolgál majd egy zsarnok\" - Aiszóposz"
+msgstr "„Ürügyet szolgál majd egy zsarnok.” - Aiszóposz"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr "„Bölcsebb mások kárán tanulni mint a sajátunkon” - Aiszóposz"
+msgstr "„Bölcsebb mások kárán tanulni mint a sajátunkon.” - Aiszóposz"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
-msgstr ""
+msgstr "„A jártasság megvetést szül; a tudás csökkenti az előítéleteket.” - Aiszóposz"
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
@@ -641,7 +643,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr ""
+msgstr "„A meggyőzés sokszor erősebb, mint a kényszer.” - Aiszóposz"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
@@ -668,7 +670,7 @@ msgstr "„Egységben az erő.” - Aiszóposz, „A földműves gyermekei” (S
 
 #: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
-msgstr ""
+msgstr "„Embernek (ki farkas) soha nem kell hinni.” - Aiszóposz."
 
 #: gui/text/quotes.txt:25
 msgid ""
@@ -737,7 +739,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
-msgstr ""
+msgstr "„A róka sok trükköt ismer; a vakond viszont egy jót” - Arkhilokhosz"
 
 #: gui/text/quotes.txt:37
 msgid ""
@@ -749,7 +751,7 @@ msgstr ""
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever."
-msgstr ""
+msgstr "„Adjatok egy helyet ahová állhatok, s én megmozgatom a világot.” - Arkhimédész az emelőrúd használatáról"
 
 #: gui/text/quotes.txt:39
 msgid ""
@@ -771,13 +773,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
-msgstr ""
+msgstr "„Az éhség nem ismer barátot, csak etetőt.” - Arisztophanész"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
-msgstr ""
+msgstr "„Bátrabbnak tartom azt aki legyőzi vágyait, mint aki legyőzi ellenségeit.” - Arisztotelész"
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
@@ -785,7 +787,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr ""
+msgstr "„Az ember természeténél fogva egy politikai állat.” - Arisztotelész"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -802,7 +804,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
-msgstr ""
+msgstr "„A szellemesség művelt pimaszság.” - Arisztotelész"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -842,7 +844,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
-msgstr ""
+msgstr "„Jaj a legyőzötteknek” - Brennus"
 
 #: gui/text/quotes.txt:56
 msgid ""
@@ -925,7 +927,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:71
 msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "„Ó, idők, ó, erkölcsök!.” - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:72
 msgid ""
@@ -966,7 +968,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "„Amíg a beteg lélegzik, van remény.” - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:80
 msgid ""
@@ -990,7 +992,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:84
 msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "„Háború alatt hallgatnak a törvények.” - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1008,21 +1010,21 @@ msgstr ""
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus (Greek: Kroisos), king of Lydia"
-msgstr ""
+msgstr "„Békeidőben a fiak temetik el az apjukat, de háborúban az apák a fiaikat.” - Krőzus (görögül: Kroiszosz), Lüdia királya"
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
-msgstr "„Cyrus vagyok, a világ ura…” - Cyrus, a hatalmas"
+msgstr "„Kurus vagyok, a világ ura…” - II. Nagy Kurus (görögül: Kürosz)"
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
-msgstr ""
+msgstr "„Sokféleség a tanácsban, egység a parancsban” - II. Nagy Kurus (görögül: Kürosz)"
 
 #: gui/text/quotes.txt:90
 msgid ""
 "\"Do not therefore begrudge me this bit of earth that covers my bones.\" - "
 "Epitaph of Cyrus the Great"
-msgstr ""
+msgstr "„Ne sajnáld hát tőlem ezt a darab földet, mely a csontjaimat takarja.” - II. Nagy Kurus sírfelirata (görögül: Kürosz)"
 
 #: gui/text/quotes.txt:91
 msgid ""
@@ -1063,7 +1065,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
-msgstr ""
+msgstr "„A kis lehetõségek gyakran, nagy kezdeményezésekhez vezetnek.” - Démoszthenész"
 
 #: gui/text/quotes.txt:98
 msgid ""
@@ -1080,13 +1082,13 @@ msgstr "„Állj egy kicsit odébb, ne fogd el előlem a napot!” - Szinópéi 
 
 #: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
-msgstr ""
+msgstr "„A világ polgára vagyok.” - Szinópéi Diogenész"
 
 #: gui/text/quotes.txt:101
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope"
-msgstr ""
+msgstr "„Nem vagyok őrült, csak más a fejem mint a tiéd.” - Szinópéi Diogenész"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1116,7 +1118,7 @@ msgstr ""
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi"
-msgstr ""
+msgstr "„Ha egy férfi elveszi egy másik férfi szeme világát, akkor vakíttasson meg.” - Hammurapi"
 
 #: gui/text/quotes.txt:108
 msgid ""
@@ -1178,7 +1180,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
-msgstr ""
+msgstr "„Csak por és árnyék vagyunk.” - Horatius"
 
 #: gui/text/quotes.txt:121
 msgid ""
@@ -1231,7 +1233,7 @@ msgstr ""
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms"
-msgstr ""
+msgstr "„Gyere és vedd el!.” - Leónidasz a perzsa hírnöknek, amikor az őt és embereit fegyverletételre szólította"
 
 #: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"

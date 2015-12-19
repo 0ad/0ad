@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:49+0000\n"
+"POT-Creation-Date: 2015-12-14 09:01+0100\n"
+"PO-Revision-Date: 2015-12-16 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -18,82 +18,130 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: simulation/ai/petra/chatHelper.js:8
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:7
+msgctxt "withinSentence"
+msgid "Food"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:9
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:11
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/ai/petra/chatHelper.js:13
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:21
+#, javascript-format
+msgid ""
+"I am starting a massive military campaign against %(_player_)s, come and "
+"join me."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:10
+#: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:28
+#: simulation/ai/petra/chatHelper.js:44
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:30
+#: simulation/ai/petra/chatHelper.js:46
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:37
+#: simulation/ai/petra/chatHelper.js:53
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:59
+#: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:61
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:80
+#, javascript-format
+msgid ""
+"I can help you this time %(_player_)s, but try to assemble more resources in"
+" the future."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Мені потрібні %(resource)s, чи допоможеш? Я би допоміг."
 
-#: simulation/ai/petra/chatHelper.js:79
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:95
+#: simulation/ai/petra/chatHelper.js:101
+#, javascript-format
+msgid ""
+"If you have some %(resource)s excess, that would help me strengthen my army."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:112
+#: simulation/ai/petra/chatHelper.js:136
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:114
+#: simulation/ai/petra/chatHelper.js:138
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr ""
@@ -505,103 +553,112 @@ msgstr "Ворожа база була помічена, відправте ва
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr "Ворог був розгромлений, Слава Україні. Всі керівні завдання було виконано..."
 
-#: simulation/components/BuildRestrictions.js:85
+#: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s неможливо звести через невідому помилку"
 
-#: simulation/components/BuildRestrictions.js:106
+#: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s неможливо звести на нерозвіданій території"
 
-#: simulation/components/BuildRestrictions.js:154
+#: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s неможливо звести іншій будівлі або ресурсі"
 
-#: simulation/components/BuildRestrictions.js:158
+#: simulation/components/BuildRestrictions.js:160
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s неможливо звести на неприпустимій місцевості"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:182
+#: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "спільній"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:185
+#: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "власній"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:188
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "нейтральній"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:191
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "ворожій"
 
-#: simulation/components/BuildRestrictions.js:197
+#: simulation/components/BuildRestrictions.js:199
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s неможливо звести на %(territoryType)s території. Доступні території: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:236
+#: simulation/components/BuildRestrictions.js:238
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s може зводитися на березі"
 
-#: simulation/components/BuildRestrictions.js:260
+#: simulation/components/BuildRestrictions.js:262
 #, javascript-format
 msgid ""
+"%(name)s too close to a %(category)s, must be at least %(distance)s meter "
+"away"
+msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr "%(name)s занадто близько до %(category)s, має бути на відстані %(distance)s метрів"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
-#: simulation/components/BuildRestrictions.js:273
+#: simulation/components/BuildRestrictions.js:284
 #, javascript-format
 msgid ""
+"%(name)s too far from a %(category)s, must be within %(distance)s meter"
+msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr "%(name)s задалеко від %(category)s, має бути ближче %(distance)s метрів"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:304
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "own"
 msgstr "власні"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:306
+#: simulation/components/BuildRestrictions.js:326
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "спільні"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:308
+#: simulation/components/BuildRestrictions.js:328
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "нейтральні"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:310
+#: simulation/components/BuildRestrictions.js:330
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "ворожі"
@@ -676,6 +733,11 @@ msgstr "Не вистачає ресурсів - %(resourceAmount1)s %(resourceT
 #: simulation/components/ProductionQueue.js:366
 msgid "The production queue is full."
 msgstr "Черга виробництва заповнена."
+
+#: simulation/helpers/Commands.js:681
+#, javascript-format
+msgid "Attack against %(_player_)s requested."
+msgstr ""
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -802,7 +864,7 @@ msgstr ""
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Посередньо"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
@@ -819,53 +881,53 @@ msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr ""
 
-#: simulation/data/map_sizes.jsonSizes[0].Name
-#: simulation/data/map_sizes.jsonSizes[0].LongName
+#: simulation/data/settings/map_sizes.jsonData[0].Name
+#: simulation/data/settings/map_sizes.jsonData[0].LongName
 msgid "Tiny"
 msgstr "Крихітна"
 
-#: simulation/data/map_sizes.jsonSizes[1].Name
+#: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
 msgstr "Маленька"
 
-#: simulation/data/map_sizes.jsonSizes[1].LongName
+#: simulation/data/settings/map_sizes.jsonData[1].LongName
 msgid "Small (2 players)"
 msgstr "Маленька (2 гравця)"
 
-#: simulation/data/map_sizes.jsonSizes[2].Name
+#: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
 msgstr "Середня"
 
-#: simulation/data/map_sizes.jsonSizes[2].LongName
+#: simulation/data/settings/map_sizes.jsonData[2].LongName
 msgid "Medium (3 players)"
 msgstr "Середня (3 гравця)"
 
-#: simulation/data/map_sizes.jsonSizes[3].Name
+#: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
 msgstr "Звичайна"
 
-#: simulation/data/map_sizes.jsonSizes[3].LongName
+#: simulation/data/settings/map_sizes.jsonData[3].LongName
 msgid "Normal (4 players)"
 msgstr "Звичайна (4 гравця)"
 
-#: simulation/data/map_sizes.jsonSizes[4].Name
+#: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
 msgstr "Велика"
 
-#: simulation/data/map_sizes.jsonSizes[4].LongName
+#: simulation/data/settings/map_sizes.jsonData[4].LongName
 msgid "Large (6 players)"
 msgstr "Велика (6 гравців)"
 
-#: simulation/data/map_sizes.jsonSizes[5].Name
+#: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
 msgstr "Дуже велика"
 
-#: simulation/data/map_sizes.jsonSizes[5].LongName
+#: simulation/data/settings/map_sizes.jsonData[5].LongName
 msgid "Very Large (8 players)"
 msgstr "Дуже велика (8 гравців)"
 
-#: simulation/data/map_sizes.jsonSizes[6].Name
-#: simulation/data/map_sizes.jsonSizes[6].LongName
+#: simulation/data/settings/map_sizes.jsonData[6].Name
+#: simulation/data/settings/map_sizes.jsonData[6].LongName
 msgid "Giant"
 msgstr "Гігантська"
 

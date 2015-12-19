@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-04 09:00+0100\n"
-"PO-Revision-Date: 2015-12-06 15:14+0000\n"
+"PO-Revision-Date: 2015-12-13 16:00+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -48,17 +48,17 @@ msgstr "Ismeretlen"
 #: gui/lobby/lobby.js:130
 msgctxt "map size"
 msgid "Any"
-msgstr "Bármilyen"
+msgstr "Bármely"
 
 #: gui/lobby/lobby.js:135
 msgctxt "player number"
 msgid "Any"
-msgstr "Bármilyen"
+msgstr "Bármely"
 
 #: gui/lobby/lobby.js:139
 msgctxt "map"
 msgid "Any"
-msgstr "Bármilyen"
+msgstr "Bármely"
 
 #: gui/lobby/lobby.js:323
 msgid "Moderator"
@@ -111,7 +111,7 @@ msgstr "%(oldnick)s mostantól így ismert: %(newnick)s"
 #: gui/lobby/lobby.js:697
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr "Sajnáljuk, de a/z/ '%(cmd)s' parancs nem támogatott."
+msgstr "Sajnáljuk, de a(z) „%(cmd)s” parancs nem támogatott."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:771
@@ -150,7 +150,7 @@ msgstr "== %(message)s"
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:823
 msgid "HH:mm"
-msgstr "HH.mm"
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
@@ -207,7 +207,7 @@ msgstr "Olvasd el a felhasználási feltételeket"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr "Fogad el a felhasználási, illetve a szolgáltatási feltételeket"
+msgstr "Fogadd el a felhasználási, illetve a szolgáltatási feltételeket"
 
 #: gui/lobby/prelobby.js:193
 msgid "Registered"
@@ -215,7 +215,7 @@ msgstr "Regisztrálva"
 
 #: gui/lobby/prelobby.js:203
 msgid "Disconnected"
-msgstr "Lekapcsolódott"
+msgstr "Szétkapcsolva"
 
 #: gui/lobby/prelobby.js:244
 msgid "Register"
@@ -235,7 +235,7 @@ msgstr "Felhasználási feltételek"
 
 #: gui/lobby/lobby.xml:(caption):16 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
-msgstr "Többjátékos váróterem"
+msgstr "Többjátékos váró"
 
 #: gui/lobby/lobby.xml:(caption):50 gui/lobby/lobby.xml:(caption):300
 msgid "Current Rank:"
@@ -288,7 +288,7 @@ msgstr "Csatlakozás játékhoz"
 
 #: gui/lobby/lobby.xml:(caption):160
 msgid "Host Game"
-msgstr "Házigazda mód"
+msgstr "Játék létrehozása"
 
 #: gui/lobby/lobby.xml:(caption):167
 msgid "Main Menu"
@@ -296,7 +296,7 @@ msgstr "Főmenü"
 
 #: gui/lobby/lobby.xml:(caption):222
 msgid "Show full games"
-msgstr "Teljes játékok megjelenítése"
+msgstr "Betelt játékok megjelenítése"
 
 #: gui/lobby/lobby.xml:(caption):268 gui/lobby/lobby.xml:(caption):330
 msgid "Back"
@@ -363,11 +363,11 @@ msgstr "Bejelentkezés már létező fiókba"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
-msgstr "Csatlakozva a játék várójához"
+msgstr "Csatlakozás a játék várójához"
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
-msgstr "Bejelentkezés:"
+msgstr "Felhasználónév:"
 
 #: gui/lobby/prelobby.xml:(caption):44 gui/lobby/prelobby.xml:(caption):68
 msgid "Password:"
@@ -391,17 +391,17 @@ msgstr "Mégse"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr "0 A.D. birodalmak növekvő többjátékos váró szolgáltatási feltételei"
+msgstr "0 A.D. Felemelkedő birodalmak többjátékos váró szolgáltatási feltételei"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr "Értelmezések:"
+msgstr "Meghatározások:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr "* A „szolgáltatás” a Wildfire Games (WFG) által szolgáltatott 0 A.D. birodalmak növekvő többjátékos várója."
+msgstr "* A „szolgáltatás” a Wildfire Games (WFG) által szolgáltatott 0 A.D. Felemelkedő birodalmak többjátékos várója."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -409,7 +409,7 @@ msgstr "* „Te” vagy a szolgáltatás felhasználója."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr "* „Mi” vagyunk az összes Wildfire Games (WFG) csapattagok összessége."
+msgstr "* „Mi” vagyunk a Wildfire Games (WFG) csapattagjainak összessége."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
@@ -473,7 +473,7 @@ msgstr "6. Bármely vagy az összes, a felhasználót azonosítható statisztik�
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr "a. A Wildfire Games (WFG) csapattagjai és társvállalatai általi személyes elemzéshez."
+msgstr "a. A Wildfire Games (WFG) csapattagjai és szerződéses partnerei általi személyes elemzéséhez."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
@@ -489,7 +489,7 @@ msgstr "7. Ennek a dokumentumnak a megváltoztatására bármely módon, bármik
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr "0 A.D. birodalmak növekvő többjátékos váró felhasználási feltételei"
+msgstr "0 A.D. Felemelkedő birodalmak többjátékos váró felhasználási feltételei"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
@@ -521,7 +521,7 @@ msgstr "Elfogadod a következőket:"
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr "1. Egyedi felhasználóként csak egyetlen fiókot hozol létre a szolgáltatáshoz, hacsak erre nem fel nem jogosított egy Wildfire Games (WFG) csapattag."
+msgstr "1. Egyedi felhasználóként csak egyetlen fiókot hozol létre a szolgáltatáshoz, hacsak erre fel nem jogosított egy Wildfire Games (WFG) csapattag."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
@@ -552,7 +552,7 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr "7. Nem kísérled meg a szolgáltatás egyetlen felhasználójának sem a minősítését mesterségesen módosítani vagy bármely statisztikáját, amely befolyásolja. (Nem kizárólagos példák: csalni rangsorolásban, visszafejteni a szolgáltatást, becsapni a szolgáltatás más felhasználóit.)"
+msgstr "7. Nem kísérled meg a szolgáltatás egyetlen felhasználójának sem a minősítését, vagy az azt befolyásoló bármely statisztikájának mesterséges módosítását. (Például, de nem kizárólagosan: csalás rangsorolt játékban, a szolgáltatás visszafejtése, illetve a szolgáltatás más felhasználói elleni előnyszerzés.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""

@@ -498,10 +498,10 @@ public:
 	void test_script_typed_arrays_complex()
 	{
 		helper_script_roundtrip("ArrayBuffer with Int16Array",
-			"var buf=new ArrayBuffer(16);"
-			"var int16=Int16Array(buf);"
-			"for(var i=0; i<int16.length; ++i)"
-			"  int16[i]=(i+1)*8192;"
+			"var buf = new ArrayBuffer(16);"
+			"var int16 = new Int16Array(buf);"
+			"for(var i = 0; i < int16.length; ++i)"
+			"  int16[i] = (i+1)*8192;"
 			"int16",
 		/* expected: */
 			"({0:8192, 1:16384, 2:24576, 3:-32768, 4:-24576, 5:-16384, 6:-8192, 7:0})"
@@ -509,7 +509,7 @@ public:
 
 		helper_script_roundtrip("ArrayBuffer with Int16Array and Uint32Array",
 			"var buf = new ArrayBuffer(16);"
-			"var int16 = Int16Array(buf);"
+			"var int16 = new Int16Array(buf);"
 			"for(var i=0; i < int16.length; ++i)"
 			"  int16[i] = (i+1)*32768;"
 			"var uint32 = new Uint32Array(buf);"
@@ -523,16 +523,16 @@ public:
 
 		helper_script_roundtrip("ArrayBuffer with complex structure",
 			"var buf=new ArrayBuffer(16);" // 16 bytes
-			"var chunk1=Int8Array(buf, 0, 4);" // 4 bytes
-			"var chunk2=Uint16Array(buf, 4, 2);" // 4 bytes
-			"var chunk3=Int32Array(buf, 8, 2);" // 8 bytes
-			"for(var i=0; i<chunk1.length; ++i)"
-			"  chunk1[i]=255;"
-			"for(var i=0; i<chunk2.length; ++i)"
-			"  chunk2[i]=65535;"
-			"for(var i=0; i<chunk3.length; ++i)"
-			"  chunk3[i]=4294967295;"
-			"var bytes = Uint8Array(buf);"
+			"var chunk1 = new Int8Array(buf, 0, 4);" // 4 bytes
+			"var chunk2 = new Uint16Array(buf, 4, 2);" // 4 bytes
+			"var chunk3 = new Int32Array(buf, 8, 2);" // 8 bytes
+			"for(var i = 0; i < chunk1.length; ++i)"
+			"  chunk1[i] = 255;"
+			"for(var i = 0; i < chunk2.length; ++i)"
+			"  chunk2[i] = 65535;"
+			"for(var i = 0; i < chunk3.length; ++i)"
+			"  chunk3[i] = 4294967295;"
+			"var bytes = new Uint8Array(buf);"
 			"({'struct':[chunk1, chunk2, chunk3], 'bytes':bytes})",
 		/* expected: */ "({"
 				"struct:[{0:-1, 1:-1, 2:-1, 3:-1}, {0:65535, 1:65535}, {0:-1, 1:-1}], "

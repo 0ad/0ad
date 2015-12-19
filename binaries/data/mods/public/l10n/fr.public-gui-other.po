@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-12-07 17:36+0100\n"
+"PO-Revision-Date: 2015-12-14 09:05+0000\n"
+"Last-Translator: Mortimer <doug.mortimer@netcourrier.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,28 +27,28 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: gui/civinfo/civinfo.js:89
+#: gui/civinfo/civinfo.js:96
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Jouer avec les %(civilization)s"
 
-#: gui/civinfo/civinfo.js:92
+#: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonus de civilisation"
 msgstr[1] "Bonus de civilisation"
 
-#: gui/civinfo/civinfo.js:97
+#: gui/civinfo/civinfo.js:104
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonus d'équipe"
 msgstr[1] "Bonus d'équipe"
 
-#: gui/civinfo/civinfo.js:106
+#: gui/civinfo/civinfo.js:111
 msgid "Special Technologies"
 msgstr "Technologies spéciales"
 
-#: gui/civinfo/civinfo.js:115
+#: gui/civinfo/civinfo.js:117
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Bâtiment spécial"
@@ -58,7 +58,7 @@ msgstr[1] "Bâtiments spéciaux"
 msgid "Heroes"
 msgstr "Héros"
 
-#: gui/civinfo/civinfo.js:138
+#: gui/civinfo/civinfo.js:134
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Histoire des %(civilization)s"
@@ -92,24 +92,19 @@ msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Temps restant avant la fin du cessez-le-feu : %(time)s."
 
-#: gui/common/functions_utility.js:127
-msgctxt "map size"
-msgid "Default"
-msgstr "Par défaut"
-
-#: gui/common/functions_utility.js:137
+#: gui/common/functions_utility.js:78
 msgid "A randomly selected map."
 msgstr "Une carte sélectionnée au hasard."
 
-#: gui/common/functions_utility.js:144
+#: gui/common/functions_utility.js:85
 msgid "Sorry, no description available."
 msgstr "Désolé, aucune description n'est disponible."
 
-#: gui/common/functions_utility.js:188
+#: gui/common/functions_utility.js:125
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:190
+#: gui/common/functions_utility.js:127
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -428,9 +423,10 @@ msgctxt "map"
 msgid "Random"
 msgstr "Aléatoire"
 
-#: gui/common/settings.js:175 gui/summary/summary.js:136
+#: gui/common/settings.js:175
+msgctxt "map"
 msgid "Scenario"
-msgstr "Scénario"
+msgstr "Scenario"
 
 #: gui/common/settings.js:206
 msgid "None"
@@ -445,10 +441,15 @@ msgid "Unlimited"
 msgstr "Illimitée"
 
 #: gui/common/settings.js:296 gui/common/settings.js:307
-#: gui/common/settings.js:318 gui/common/settings.js:329
-#: gui/common/settings.js:340
+#: gui/common/settings.js:319 gui/common/settings.js:343
+#: gui/common/settings.js:355
 msgid "Unknown"
 msgstr "Inconnu"
+
+#: gui/common/settings.js:331
+msgctxt "map size"
+msgid "Default"
+msgstr "Par défaut"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:84
 #: gui/common/tooltips.js:116
@@ -478,17 +479,19 @@ msgid "Crush"
 msgstr "Écrasant"
 
 #: gui/common/tooltips.js:46 gui/common/tooltips.js:109
-#: gui/common/tooltips.js:135 gui/common/tooltips.js:400
-#: gui/common/tooltips.js:426 gui/common/tooltips.js:494
+#: gui/common/tooltips.js:135 gui/common/tooltips.js:406
+#: gui/common/tooltips.js:432 gui/common/tooltips.js:500
 msgid ", "
 msgstr ", "
 
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(time)s %(second)s"
-msgstr "%(time)s %(second)s"
+msgid_plural "%(time)s %(second)s"
+msgstr[0] ""
+msgstr[1] ""
 
-#: gui/common/tooltips.js:54 gui/common/tooltips.js:423
+#: gui/common/tooltips.js:54 gui/common/tooltips.js:429
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "seconde"
@@ -497,7 +500,9 @@ msgstr[1] "secondes"
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
-msgstr "%(arrowcount)s %(arrow)s"
+msgid_plural "%(arrowcount)s %(arrow)s"
+msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:63
 msgid "arrow"
@@ -557,7 +562,7 @@ msgstr "Attaque :"
 msgid "Interval:"
 msgstr "Intervalle :"
 
-#: gui/common/tooltips.js:158 gui/common/tooltips.js:421
+#: gui/common/tooltips.js:158 gui/common/tooltips.js:427
 msgid "Rate:"
 msgstr "Taux :"
 
@@ -566,124 +571,136 @@ msgstr "Taux :"
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:194 gui/common/tooltips.js:416
+#: gui/common/tooltips.js:194 gui/common/tooltips.js:422
 msgid "Range:"
 msgstr "Portée :"
 
-#: gui/common/tooltips.js:196 gui/common/tooltips.js:418
-msgid "meters"
-msgstr "mètres"
+#: gui/common/tooltips.js:196 gui/common/tooltips.js:424
+msgid "meter"
+msgid_plural "meters"
+msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/tooltips.js:199
 #, javascript-format
 msgid ""
-"%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
-"(%(relative)s), %(rate)s"
-msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
+"%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), "
+"%(rate)s"
+msgstr ""
 
-#: gui/common/tooltips.js:209
+#: gui/common/tooltips.js:204 gui/common/tooltips.js:217
+#, javascript-format
+msgid "%(range)s %(meters)s"
+msgid_plural "%(range)s %(meters)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/common/tooltips.js:212
 #, javascript-format
 msgid ""
-"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
-"%(rate)s"
-msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
+"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
+msgstr ""
 
-#: gui/common/tooltips.js:259 gui/common/tooltips.js:260
-#: gui/common/tooltips.js:261 gui/common/tooltips.js:262
-#: gui/common/tooltips.js:263 gui/common/tooltips.js:264
-#: gui/common/tooltips.js:380
+#: gui/common/tooltips.js:265 gui/common/tooltips.js:266
+#: gui/common/tooltips.js:267 gui/common/tooltips.js:268
+#: gui/common/tooltips.js:269 gui/common/tooltips.js:270
+#: gui/common/tooltips.js:386
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:318
+#: gui/common/tooltips.js:324
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "de %(resourceIcon)s %(minimum)s à %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:349
+#: gui/common/tooltips.js:355
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Murs : %(costs)s"
 
-#: gui/common/tooltips.js:350
+#: gui/common/tooltips.js:356
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Tours : %(costs)s"
 
-#: gui/common/tooltips.js:366
+#: gui/common/tooltips.js:372
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:367
+#: gui/common/tooltips.js:373
 msgid "Population Bonus:"
 msgstr "Bonus de population :"
 
-#: gui/common/tooltips.js:385
+#: gui/common/tooltips.js:391
 msgid "Insufficient resources:"
 msgstr "Ressources insuffisantes :"
 
-#: gui/common/tooltips.js:393
+#: gui/common/tooltips.js:399
 msgid "Speed:"
 msgstr "Vitesse :"
 
-#: gui/common/tooltips.js:396 gui/common/tooltips.js:398
+#: gui/common/tooltips.js:402 gui/common/tooltips.js:404
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:396
+#: gui/common/tooltips.js:402
 msgid "Walk"
 msgstr "Marche"
 
-#: gui/common/tooltips.js:398
+#: gui/common/tooltips.js:404
 msgid "Run"
 msgstr "Course"
 
-#: gui/common/tooltips.js:400
+#: gui/common/tooltips.js:406
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:409 gui/common/tooltips.js:415
-#: gui/common/tooltips.js:420
+#: gui/common/tooltips.js:415 gui/common/tooltips.js:421
+#: gui/common/tooltips.js:426
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
-msgstr "%(label)s %(val)s %(unit)s"
+msgid_plural "%(label)s %(val)s %(unit)s"
+msgstr[0] ""
+msgstr[1] ""
 
-#: gui/common/tooltips.js:410
+#: gui/common/tooltips.js:416
 msgid "Heal:"
 msgstr "Guérir :"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
-#: gui/common/tooltips.js:413
+#: gui/common/tooltips.js:419
 msgid "HP"
-msgstr "PV"
+msgid_plural "HP"
+msgstr[0] ""
+msgstr[1] ""
 
-#: gui/common/tooltips.js:436
+#: gui/common/tooltips.js:442
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:437
+#: gui/common/tooltips.js:443
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s :"
 
-#: gui/common/tooltips.js:450
+#: gui/common/tooltips.js:456
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:460
+#: gui/common/tooltips.js:466
 msgid "???"
 msgstr "???"
 
-#: gui/common/tooltips.js:490
+#: gui/common/tooltips.js:496
 msgid "Classes:"
 msgstr "Classes :"
 
@@ -1119,7 +1136,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Scores en fin de jeux"
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
@@ -1179,43 +1196,43 @@ msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s min"
 
-#: gui/replaymenu/replay_menu.js:223
+#: gui/replaymenu/replay_menu.js:234
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:254
+#: gui/replaymenu/replay_menu.js:264
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/replaymenu/replay_menu.js:317
+#: gui/replaymenu/replay_menu.js:327
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
-#: gui/replaymenu/replay_menu.js:319
+#: gui/replaymenu/replay_menu.js:329
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, defeated)"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:321
+#: gui/replaymenu/replay_menu.js:331
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:323
+#: gui/replaymenu/replay_menu.js:333
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:339
+#: gui/replaymenu/replay_menu.js:349
 msgid "No Team"
 msgstr "Pas d'équipe"
 
-#: gui/replaymenu/replay_menu.js:339
+#: gui/replaymenu/replay_menu.js:349
 #, javascript-format
 msgid "Team %(team)s"
 msgstr ""
@@ -1313,7 +1330,7 @@ msgstr "de %(val1)s à %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):105
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):107
 msgid "Player name"
 msgstr "Nom du joueur"
 
@@ -1491,12 +1508,12 @@ msgstr "Contrôle de la carte"
 msgid "Team total"
 msgstr "Total de l'équipe"
 
-#: gui/summary/summary.js:138
+#: gui/summary/summary.js:137
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Temps de jeu écoulé : %(time)s"
 
-#: gui/summary/summary.js:159
+#: gui/summary/summary.js:139
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1892,7 +1909,7 @@ msgid "Delete"
 msgstr "Supprimer"
 
 #: gui/replaymenu/replay_menu.xml:(caption):227
-#: gui/summary/summary.xml:(caption):23
+#: gui/summary/summary.xml:(caption):25
 msgid "Summary"
 msgstr "Résumé"
 
@@ -1962,31 +1979,31 @@ msgstr "Civilisation : "
 msgid "Trainer Units"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):63
+#: gui/summary/summary.xml:(caption):65
 msgid "Score"
 msgstr "Score"
 
-#: gui/summary/summary.xml:(caption):70
+#: gui/summary/summary.xml:(caption):72
 msgid "Buildings"
 msgstr "Bâtiments"
 
-#: gui/summary/summary.xml:(caption):77
+#: gui/summary/summary.xml:(caption):79
 msgid "Units"
 msgstr "Unités"
 
-#: gui/summary/summary.xml:(caption):84
+#: gui/summary/summary.xml:(caption):86
 msgid "Resources"
 msgstr "Ressources"
 
-#: gui/summary/summary.xml:(caption):91
+#: gui/summary/summary.xml:(caption):93
 msgid "Market"
 msgstr "Marché"
 
-#: gui/summary/summary.xml:(caption):98
+#: gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
 msgstr "Divers"
 
-#: gui/summary/summary.xml:(caption):159
+#: gui/summary/summary.xml:(caption):161
 msgid "Continue"
 msgstr "Continuer"
 

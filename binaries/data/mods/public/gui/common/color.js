@@ -1,5 +1,53 @@
 /**
+ * Concatenate integer color values to a string (for use in GUI objects)
+ *
+ * @param {Object} color
+ * @param {number} alpha
+ * @returns {string}
+ */
+function rgbToGuiColor(color, alpha)
+{
+	let ret = "0 0 0";
+
+	if (color && ("r" in color) && ("g" in color) && ("b" in color))
+		ret = color.r + " " + color.g + " " + color.b;
+
+	if (alpha)
+		ret += " " + alpha;
+
+	return ret;
+}
+
+/**
+ * True if the colors are identical.
+ *
+ * @param {Object} color1
+ * @param {Object} color2
+ * @returns {boolean}
+ */
+function sameColor(color1, color2)
+{
+    return color1.r === color2.r && color1.g === color2.g && color1.b === color2.b;
+}
+
+/**
+ * Computes the euclidian distance between the two colors.
+ * The smaller the return value, the close the colors. Zero if identical.
+ *
+ * @param {Object} color1
+ * @param {Object} color2
+ * @returns {number}
+ */
+function colorDistance(color1, color2)
+{
+	return Math.sqrt(Math.pow(color2.r - color1.r, 2) + Math.pow(color2.g - color1.g, 2) + Math.pow(color2.b - color1.b, 2));
+}
+
+/**
  * Ensure `value` is between 0 and 1.
+ *
+ * @param {number} value
+ * @returns {number}
  */
 function clampColorValue(value)
 {
@@ -7,21 +55,27 @@ function clampColorValue(value)
 }
 
 /**
- * See http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion
+ * Convert color value from RGB to HSL space.
+ *
+ * @see {@link http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion}
+ * @param {number} r - red
+ * @param {number} g - green
+ * @param {number} b - blue
+ * @returns {Array}
  */
 function rgbToHsl(r, g, b)
 {
 	r /= 255;
 	g /= 255;
 	b /= 255;
-	var max = Math.max(r, g, b), min = Math.min(r, g, b);
-	var h, s, l = (max + min) / 2;
+	let max = Math.max(r, g, b), min = Math.min(r, g, b);
+	let h, s, l = (max + min) / 2;
 
 	if (max == min)
 		h = s = 0; // achromatic
 	else
 	{
-		var d = max - min;
+		let d = max - min;
 		s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
 		switch (max)
 		{
@@ -35,6 +89,15 @@ function rgbToHsl(r, g, b)
 	return [h, s, l];
 }
 
+/**
+ * Convert color value from HSL to RGB space.
+ *
+ * @see {@link http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion}
+ * @param {number} h - hueness
+ * @param {number} s - saturation
+ * @param {number} l - lightness
+ * @returns {Array}
+ */
 function hslToRgb(h, s, l)
 {
 	function hue2rgb(p, q, t)
@@ -48,13 +111,12 @@ function hslToRgb(h, s, l)
 	}
 
 	[h, s, l] = [h, s, l].map(clampColorValue);
-	var r, g, b;
-
+	let r, g, b;
 	if (s == 0)
 		r = g = b = l; // achromatic
 	else {
-		var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-		var p = 2 * l - q;
+		let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+		let p = 2 * l - q;
 		r = hue2rgb(p, q, h + 1/3);
 		g = hue2rgb(p, q, h);
 		b = hue2rgb(p, q, h - 1/3);

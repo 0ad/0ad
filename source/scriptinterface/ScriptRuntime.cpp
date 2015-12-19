@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -67,7 +67,7 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 	if (progress == JS::GCProgress::GC_CYCLE_BEGIN)
 		printf("starting cycle ===========================================\n");
 
-	const jschar* str = desc.formatMessage(rt);
+	const char16_t* str = desc.formatMessage(rt);
 	int len = 0;
 	
 	for(int i = 0; i < 10000; i++)

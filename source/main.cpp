@@ -96,7 +96,6 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 {
 	switch(ev->ev.type)
 	{
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	case SDL_WINDOWEVENT:
 		switch(ev->ev.window.event)
 		{
@@ -114,24 +113,6 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 			g_VideoMode.UpdatePosition(ev->ev.window.data1, ev->ev.window.data2);
 		}
 		break;
-#else
-	case SDL_ACTIVEEVENT:
-		if (ev->ev.active.state & SDL_APPMOUSEFOCUS)
-		{
-			// Tell renderer not to render cursor if mouse focus is lost
-			//	this restores system cursor, until/if focus is regained
-			if (!ev->ev.active.gain)
-				RenderCursor(false);
-			else
-				RenderCursor(true);
-		}
-		break;
-
-	case SDL_VIDEORESIZE:
-		g_ResizedW = ev->ev.resize.w;
-		g_ResizedH = ev->ev.resize.h;
-		break;
-#endif
 
 	case SDL_QUIT:
 		kill_mainloop();
@@ -374,11 +355,7 @@ static void Frame()
 		Render();
 
 		PROFILE3("swap buffers");
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		SDL_GL_SwapWindow(g_VideoMode.GetWindow());
-#else
-		SDL_GL_SwapBuffers();
-#endif
 	}
 	ogl_WarnIfError();
 
@@ -444,22 +421,32 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// might run Atlas.
 	CXeromyces::Startup();
 
-	// run Atlas (if requested via args)
-	bool ran_atlas = ATLAS_RunIfOnCmdLine(args, false);
 	// Atlas handles the whole init/shutdown/etc sequence by itself;
-	// when we get here, it has exited and we're done.
-	if(ran_atlas)
+	if (ATLAS_RunIfOnCmdLine(args, false))
 		return;
 
-	// run non-visual simulation replay if requested
-	if (args.Has("replay"))
+	const bool isReplay = args.Has("replay");
+	const bool isVisualReplay = args.Has("replay-visual");
+	const std::string replayFile = isReplay ? args.Get("replay") : (isVisualReplay ? args.Get("replay-visual") : "");
+
+	// Ensure the replay file exists
+	if (isReplay || isVisualReplay)
 	{
-		std::string replayFile = args.Get("replay");
 		if (!FileExists(OsPath(replayFile)))
 		{
 			debug_printf("ERROR: The requested replay file '%s' does not exist!\n", replayFile.c_str());
 			return;
 		}
+		if (DirectoryExists(OsPath(replayFile)))
+		{
+			debug_printf("ERROR: The requested replay file '%s' is a directory!\n", replayFile.c_str());
+			return;
+		}
+	}
+
+	// run non-visual simulation replay if requested
+	if (isReplay)
+	{
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);
@@ -475,17 +462,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 		CXeromyces::Terminate();
 		return;
-	}
-
-	// If visual replay file does not exist, quit before starting the renderer
-	if (args.Has("replay-visual"))
-	{
-		std::string replayFile = args.Get("replay-visual");
-		if (!FileExists(OsPath(replayFile)))
-		{
-			debug_printf("ERROR: The requested replay file '%s' does not exist!\n", replayFile.c_str());
-			return;
-		}
 	}
 
 	// run in archive-building mode if requested

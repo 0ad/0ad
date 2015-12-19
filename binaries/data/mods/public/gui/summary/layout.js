@@ -1,4 +1,4 @@
-var panelsData = [
+var g_ScorePanelsData = [
 	{	// Scores panel
 		"headings": [	// headings on score panel
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
@@ -16,7 +16,7 @@ var panelsData = [
 		],
 		"teamCounterFn": calculateScoreTeam
 	},
-    {	// buildings panel
+	{	// buildings panel
 		"headings": [	// headings on buildings panel
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "caption": translate("Total"), "yStart": 34, "width": 105 },
@@ -32,14 +32,14 @@ var panelsData = [
 			{ "caption": translate("Buildings Statistics (Constructed / Lost / Destroyed)"), "yStart": 16, "width": (85 * 7 + 105) },	// width = 700
 		],
 		"counters": [	// counters on buildings panel
-			{"width": 105, "fn": calculateBuildings},
-			{"width": 85, "fn": calculateBuildings},
-			{"width": 85, "fn": calculateBuildings},
-			{"width": 85, "fn": calculateBuildings},
-			{"width": 85, "fn": calculateBuildings},
-			{"width": 85, "fn": calculateBuildings},
-			{"width": 85, "fn": calculateBuildings},
-			{"width": 85, "fn": calculateBuildings}
+			{ "width": 105, "fn": calculateBuildings },
+			{ "width": 85, "fn": calculateBuildings },
+			{ "width": 85, "fn": calculateBuildings },
+			{ "width": 85, "fn": calculateBuildings },
+			{ "width": 85, "fn": calculateBuildings },
+			{ "width": 85, "fn": calculateBuildings },
+			{ "width": 85, "fn": calculateBuildings },
+			{ "width": 85, "fn": calculateBuildings }
 		],
 		"teamCounterFn": calculateColorsTeam
 	},
@@ -59,14 +59,14 @@ var panelsData = [
 			{ "caption": translate("Units Statistics (Trained / Lost / Killed)"), "yStart": 16, "width": (100 * 7 + 120) },	// width = 820
 		],
 		"counters": [	// counters on units panel
-			{"width": 120, "fn": calculateUnits},
-			{"width": 100, "fn": calculateUnits},
-			{"width": 100, "fn": calculateUnits},
-			{"width": 100, "fn": calculateUnits},
-			{"width": 100, "fn": calculateUnits},
-			{"width": 100, "fn": calculateUnits},
-			{"width": 100, "fn": calculateUnits},
-			{"width": 100, "fn": calculateUnits}
+			{ "width": 120, "fn": calculateUnits },
+			{ "width": 100, "fn": calculateUnits },
+			{ "width": 100, "fn": calculateUnits },
+			{ "width": 100, "fn": calculateUnits },
+			{ "width": 100, "fn": calculateUnits },
+			{ "width": 100, "fn": calculateUnits },
+			{ "width": 100, "fn": calculateUnits },
+			{ "width": 100, "fn": calculateUnits }
 		],
 		"teamCounterFn": calculateColorsTeam
 	},
@@ -86,14 +86,14 @@ var panelsData = [
 			{ "caption": translate("Resource Statistics (Gathered / Used)"), "yStart": 16, "width": (100 * 4 + 110) }, // width = 510
 		],
 		"counters": [	// counters on resources panel
-			{"width": 100, "fn": calculateResources},
-			{"width": 100, "fn": calculateResources},
-			{"width": 100, "fn": calculateResources},
-			{"width": 100, "fn": calculateResources},
-			{"width": 110, "fn": calculateTotalResources},
-			{"width": 121, "fn": calculateTributeSent},
-			{"width": 100, "fn": calculateTreasureCollected},
-			{"width": 100, "fn": calculateLootCollected}
+			{ "width": 100, "fn": calculateResources },
+			{ "width": 100, "fn": calculateResources },
+			{ "width": 100, "fn": calculateResources },
+			{ "width": 100, "fn": calculateResources },
+			{ "width": 110, "fn": calculateTotalResources },
+			{ "width": 121, "fn": calculateTributeSent },
+			{ "width": 100, "fn": calculateTreasureCollected },
+			{ "width": 100, "fn": calculateLootCollected }
 		],
 		"teamCounterFn": calculateResourcesTeam
 	},
@@ -109,12 +109,12 @@ var panelsData = [
 		],
 		"titleHeadings": [],
 		"counters": [	// counters on market panel
-			{"width": 100, "fn": calculateResourceExchanged},
-			{"width": 100, "fn": calculateResourceExchanged},
-			{"width": 100, "fn": calculateResourceExchanged},
-			{"width": 100, "fn": calculateResourceExchanged},
-			{"width": 100, "fn": calculateBatteryEfficiency},
-			{"width": 100, "fn": calculateTradeIncome}
+			{ "width": 100, "fn": calculateResourceExchanged },
+			{ "width": 100, "fn": calculateResourceExchanged },
+			{ "width": 100, "fn": calculateResourceExchanged },
+			{ "width": 100, "fn": calculateResourceExchanged },
+			{ "width": 100, "fn": calculateBatteryEfficiency },
+			{ "width": 100, "fn": calculateTradeIncome }
 		],
 		"teamCounterFn": calculateMarketTeam
 	},
@@ -132,12 +132,12 @@ var panelsData = [
 			{ "caption": translate("Map control"), "xOffset": 400, "yStart": 16, "width": 200 }
 		],
 		"counters": [	// counters on miscellaneous panel
-			{"width": 100, "fn": calculateVegetarianRatio},
-			{"width": 100, "fn": calculateFeminization},
-			{"width": 100, "fn": calculateKillDeathRatio},
-			{"width": 100, "fn": calculateMapExploration},
-			{"width": 100, "fn": calculateMapPeakControl},
-			{"width": 100, "fn": calculateMapFinalControl}
+			{ "width": 100, "fn": calculateVegetarianRatio },
+			{ "width": 100, "fn": calculateFeminization },
+			{ "width": 100, "fn": calculateKillDeathRatio },
+			{ "width": 100, "fn": calculateMapExploration },
+			{ "width": 100, "fn": calculateMapPeakControl },
+			{ "width": 100, "fn": calculateMapFinalControl }
 		],
 		"teamCounterFn": calculateMiscellaneous
 	}
@@ -145,7 +145,7 @@ var panelsData = [
 
 function resetGeneralPanel()
 {
-	for (var h = 0; h < MAX_HEADINGTITLE; ++h)
+	for (let h = 0; h < g_MaxHeadingTitle; ++h)
 	{
 		Engine.GetGUIObjectByName("titleHeading["+ h +"]").hidden = true;
 		Engine.GetGUIObjectByName("Heading[" + h + "]").hidden = true;
@@ -163,67 +163,70 @@ function resetGeneralPanel()
 
 function updateGeneralPanelHeadings(headings)
 {
-	var left = 50;
-	for (var h in headings)
+	let left = 50;
+	for (let h in headings)
 	{
-		var headerGUIName = "playerNameHeading";
+		let headerGUIName = "playerNameHeading";
 		if (h > 0)
 			headerGUIName = "Heading[" + (h - 1) + "]";
 
-		var headerGUI = Engine.GetGUIObjectByName(headerGUIName);
+		let headerGUI = Engine.GetGUIObjectByName(headerGUIName);
 		headerGUI.caption = headings[h].caption;
 		headerGUI.size = left + " " + headings[h].yStart + " " + (left + headings[h].width) + " 100%";
 		headerGUI.hidden = false;
 
-		if (headings[h].width < LONG_HEADING_WIDTH)
+		if (headings[h].width < g_LongHeadingWidth)
 			left += headings[h].width;
 	}
 }
 
 function updateGeneralPanelTitles(titleHeadings)
 {
-	var left = 250;
-	for (var th in titleHeadings)
+	let left = 250;
+	for (let th in titleHeadings)
 	{
-		if (th >= MAX_HEADINGTITLE)
+		if (th >= g_MaxHeadingTitle)
 			break;
 
 		if (titleHeadings[th].xOffset)
 			left += titleHeadings[th].xOffset;
 
-		var headerGUI = Engine.GetGUIObjectByName("titleHeading["+ th +"]");
+		let headerGUI = Engine.GetGUIObjectByName("titleHeading["+ th +"]");
 		headerGUI.caption = titleHeadings[th].caption;
 		headerGUI.size = left + " " + titleHeadings[th].yStart + " " + (left + titleHeadings[th].width) + " 100%";
 		headerGUI.hidden = false;
 
-		if (titleHeadings[th].width < LONG_HEADING_WIDTH)
+		if (titleHeadings[th].width < g_LongHeadingWidth)
 			left += titleHeadings[th].width;
 	}
 }
 
 function updateGeneralPanelCounter(counters)
 {
-	var rowPlayerObjectWidth = 0;
-	var left = 0;
+	let rowPlayerObjectWidth = 0;
+	let left = 0;
+
 	for (let p = 0; p < g_MaxPlayers; ++p)
 	{
 		left = 240;
-		var counterObject;
-		for (var w in counters)
+		let counterObject;
+
+		for (let w in counters)
 		{
 			counterObject = Engine.GetGUIObjectByName("valueData[" + p + "][" + w + "]");
 			counterObject.size = left + " 6 " + (left + counters[w].width) + " 100%";
 			counterObject.hidden = false;
 			left += counters[w].width;
 		}
+
 		if (rowPlayerObjectWidth == 0)
 			rowPlayerObjectWidth = left;
 
-		var counterTotalObject;
+		let counterTotalObject;
 		for (let t = 0; t < g_MaxTeams; ++t)
 		{
 			left = 240;
-			for (var w in counters)
+			for (let w in counters)
 			{
 				counterObject = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]");
 				counterObject.size = left + " 6 " + (left + counters[w].width) + " 100%";
@@ -231,7 +234,7 @@ function updateGeneralPanelCounter(counters)
 
 				if (g_Teams[t])
 				{
-					var yStart = 30 + g_Teams[t] * (PLAYER_BOX_Y_SIZE + PLAYER_BOX_GAP) + 2;
+					let yStart = 30 + g_Teams[t] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 2;
 					counterTotalObject = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]");
 					counterTotalObject.size = (left + 20) + " " + yStart + " " + (left + counters[w].width) + " 100%";
 					counterTotalObject.hidden = false;
@@ -252,27 +255,28 @@ function updateGeneralPanelTeams()
 	if (!g_Teams)
 		return;
 
-	var yStart = TEAMS_BOX_Y_START + g_WithoutTeam * (PLAYER_BOX_Y_SIZE + PLAYER_BOX_GAP);
-	for (var i = 0; i < g_Teams.length; ++i)
+	let yStart = g_TeamsBoxYStart + g_WithoutTeam * (g_PlayerBoxYSize + g_PlayerBoxGap);
+	for (let i = 0; i < g_Teams.length; ++i)
 	{
 		if (!g_Teams[i])
 			continue;
 
-		var teamBox = Engine.GetGUIObjectByName("teamBoxt["+i+"]");
+		let teamBox = Engine.GetGUIObjectByName("teamBoxt["+i+"]");
 		teamBox.hidden = false;
-		var teamBoxSize = teamBox.size;
+		let teamBoxSize = teamBox.size;
 		teamBoxSize.top = yStart;
 		teamBox.size = teamBoxSize;
 
-		yStart += 30 + g_Teams[i] * (PLAYER_BOX_Y_SIZE + PLAYER_BOX_GAP) + 32;
+		yStart += 30 + g_Teams[i] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 32;
 
 		Engine.GetGUIObjectByName("teamNameHeadingt["+i+"]").caption = "Team "+(i+1);
 
-		var teamHeading = Engine.GetGUIObjectByName("teamHeadingt["+i+"]");
-		var yStartTotal = 30 + g_Teams[i] * (PLAYER_BOX_Y_SIZE + PLAYER_BOX_GAP) + 2;
+		let teamHeading = Engine.GetGUIObjectByName("teamHeadingt["+i+"]");
+		let yStartTotal = 30 + g_Teams[i] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 2;
 		teamHeading.size = "50 "+yStartTotal+" 100% "+(yStartTotal+20);
 		teamHeading.caption = translate("Team total");
 	}
+
 	// If there are no players without team, hide "player name" heading
 	if (!g_WithoutTeam)
 		Engine.GetGUIObjectByName("playerNameHeading").caption = "";
@@ -282,18 +286,18 @@ function updateObjectPlayerPosition()
 {
 	for (let h = 0; h < g_MaxPlayers; ++h)
 	{
-		var playerBox = Engine.GetGUIObjectByName("playerBox[" + h + "]");
-		var boxSize = playerBox.size;
-		boxSize.top += h * (PLAYER_BOX_Y_SIZE + PLAYER_BOX_GAP);
-		boxSize.bottom = boxSize.top + PLAYER_BOX_Y_SIZE;
+		let playerBox = Engine.GetGUIObjectByName("playerBox[" + h + "]");
+		let boxSize = playerBox.size;
+		boxSize.top += h * (g_PlayerBoxYSize + g_PlayerBoxGap);
+		boxSize.bottom = boxSize.top + g_PlayerBoxYSize;
 		playerBox.size = boxSize;
 
 		for (let i = 0; i < g_MaxTeams; ++i)
 		{
-			var playerBoxt = Engine.GetGUIObjectByName("playerBoxt[" + i + "][" + h + "]");
+			let playerBoxt = Engine.GetGUIObjectByName("playerBoxt[" + i + "][" + h + "]");
 			boxSize = playerBoxt.size;
-			boxSize.top += h * (PLAYER_BOX_Y_SIZE + PLAYER_BOX_GAP);
-			boxSize.bottom = boxSize.top + PLAYER_BOX_Y_SIZE;
+			boxSize.top += h * (g_PlayerBoxYSize + g_PlayerBoxGap);
+			boxSize.bottom = boxSize.top + g_PlayerBoxYSize;
 			playerBoxt.size = boxSize;
 		}
 	}

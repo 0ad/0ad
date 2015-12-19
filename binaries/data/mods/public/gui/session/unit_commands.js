@@ -89,7 +89,6 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 		// add standard gui objects to the data
 		// depending on the actual XML, some of this may be undefined
 		data.button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		data.affordableMask = Engine.GetGUIObjectByName("unit"+guiName+"Unaffordable["+i+"]");
 		data.icon = Engine.GetGUIObjectByName("unit"+guiName+"Icon["+i+"]");
 		data.guiSelection = Engine.GetGUIObjectByName("unit"+guiName+"Selection["+i+"]");
 		data.countDisplay = Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]");
@@ -103,9 +102,6 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 			data.button.tooltip = "";
 			data.button.caption = "";
 		}
-
-		if (data.affordableMask)
-			data.affordableMask.hidden = true;	// actually used for the red "lack of resource" overlay, and darkening if unavailable. Sort of a hack.
 
 		// GENERAL DATA
 		// add general data, and a chance to abort on faulty data
@@ -144,16 +140,6 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 	// remember the number of items
 	g_unitPanelButtons[guiName] = numberOfItems;
 	g_SelectionPanels[guiName].used = true;
-}
-
-function resourcesToAlphaMask(neededResources)
-{
-	var totalCost = 0;
-	for each (var resource in neededResources)
-		totalCost += resource;
-	var alpha = 50 + Math.round(totalCost/10);
-	alpha = alpha > 125 ? 125 : alpha;
-	return "color: 255 0 0 " + (alpha);
 }
 
 /**

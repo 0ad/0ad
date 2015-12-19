@@ -455,7 +455,10 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		this.maxCompletingTime = gameState.ai.elapsedTime + 20;
 	else
 	{
-		this.maxCompletingTime = gameState.ai.elapsedTime + 60;
+		if (this.type === "Rush")
+			this.maxCompletingTime = gameState.ai.elapsedTime + 40;
+		else
+			this.maxCompletingTime = gameState.ai.elapsedTime + 60;
 		// warn our allies so that they can help if possible
 		if (!this.requested)
 			Engine.PostCommand(PlayerID, {"type": "attack-request", "source": PlayerID, "target": this.targetPlayer});
@@ -568,7 +571,7 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 				else
 					var trainingPlan = new m.TrainingPlan(gameState, template, { "role": "attack", "plan": this.name, "special": specialData, "base": 0 }, max, max);
 				if (trainingPlan.template)
-					queue.addItem(trainingPlan);
+					queue.addPlan(trainingPlan);
 				else if (this.Config.debug > 1)
 					API3.warn("training plan canceled because no template for " + template + "   build1 " + uneval(this.buildOrder[0][1])
 						+ " build3 " + uneval(this.buildOrder[0][3]["interests"]));

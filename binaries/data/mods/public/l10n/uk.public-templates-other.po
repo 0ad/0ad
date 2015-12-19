@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Victor Butko <victor.butko@gmail.com>, 2014
+# Victor Ptah, 2015
 # Yaroslav Yenkala <hyper-news@yandex.ru>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-16 08:31+0100\n"
-"PO-Revision-Date: 2015-11-16 09:47+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-12-14 09:01+0100\n"
+"PO-Revision-Date: 2015-12-17 03:27+0000\n"
+"Last-Translator: Victor Ptah\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,11 +117,11 @@ msgstr "Скарб"
 msgid "A treasure that can be quickly gathered."
 msgstr "Скарби, що можуть бути швидко зібрані."
 
-#: simulation/templates/template_structure.xml:56
+#: simulation/templates/template_structure.xml:57
 msgid "Structure"
 msgstr "Будівля"
 
-#: simulation/templates/template_unit.xml:37
+#: simulation/templates/template_unit.xml:38
 msgid "Unit"
 msgstr "Юніт"
 
@@ -165,7 +166,7 @@ msgstr "Мале Грецьке Місто"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "Це є незначне грецьке місто."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
@@ -173,7 +174,7 @@ msgstr "Грецьке місто"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "Це грецьке місто є одним з основних."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -379,7 +380,7 @@ msgstr "Кріль"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr ""
+msgstr "Носоріг"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
@@ -445,6 +446,10 @@ msgstr "Збирайте виноград з цих лоз для Їжі."
 msgid "Deciduous Bush"
 msgstr "Листяний Кущ"
 
+#: simulation/templates/gaia/flora_tree_acacia.xml:4
+msgid "Acacia Tree"
+msgstr "дерево Акації"
+
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
 msgstr "Сосна Алепо"
@@ -498,6 +503,9 @@ msgstr "Середземноморська віялова пальма"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
+#: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
+#: simulation/templates/gaia/flora_tree_oak_dead.xml:4
+#: simulation/templates/gaia/flora_tree_oak_new.xml:4
 msgid "Oak Tree"
 msgstr "Дуб"
 
@@ -792,33 +800,33 @@ msgstr "Фортеця з частоколу"
 msgid "Wooden Tower"
 msgstr "Дерев'яна башта"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:20
+#: simulation/templates/other/palisades_rocks_gate.xml:25
 msgid "Palisade Gate"
 msgstr "Брама в частоколі"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:21
+#: simulation/templates/other/palisades_rocks_gate.xml:26
 msgid "Wooden Gate"
 msgstr "Дерев'яна брама"
 
-#: simulation/templates/other/palisades_rocks_long.xml:22
-#: simulation/templates/other/palisades_rocks_medium.xml:22
-#: simulation/templates/other/palisades_rocks_short.xml:21
+#: simulation/templates/other/palisades_rocks_long.xml:27
+#: simulation/templates/other/palisades_rocks_medium.xml:27
+#: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
-#: simulation/templates/other/palisades_rocks_tower.xml:21
+#: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
 msgstr "Частокіл"
 
-#: simulation/templates/other/palisades_rocks_long.xml:23
-#: simulation/templates/other/palisades_rocks_medium.xml:23
-#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_long.xml:28
+#: simulation/templates/other/palisades_rocks_medium.xml:28
+#: simulation/templates/other/palisades_rocks_short.xml:27
 #: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/palisades_rocks_tower.xml:27
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
 msgstr "Дерев'яний мур"
 
-#: simulation/templates/other/palisades_rocks_long.xml:24
+#: simulation/templates/other/palisades_rocks_long.xml:29
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "Перетворити дерев’яний мур на Дерев’яну браму"
 

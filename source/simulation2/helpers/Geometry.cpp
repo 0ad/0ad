@@ -239,38 +239,26 @@ bool Geometry::TestRaySquare(const CFixedVector2D& a, const CFixedVector2D& b, c
 	return false;
 }
 
+// Exactly like TestRaySquare with u=(1,0), v=(0,1)
 bool Geometry::TestRayAASquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& halfSize)
 {
-	// Exactly like TestRaySquare with u=(1,0), v=(0,1)
-
-	// Assume the compiler is clever enough to inline and simplify all this
-	// (TODO: stop assuming that)
-	CFixedVector2D u (fixed::FromInt(1), fixed::Zero());
-	CFixedVector2D v (fixed::Zero(), fixed::FromInt(1));
-
 	fixed hw = halfSize.X;
 	fixed hh = halfSize.Y;
 
-	fixed au = a.Dot(u);
-	fixed av = a.Dot(v);
-
-	if (-hw <= au && au <= hw && -hh <= av && av <= hh)
+	if (-hw <= a.X && a.X <= hw && -hh <= a.Y && a.Y <= hh)
 		return false; // a is inside
 
-	fixed bu = b.Dot(u);
-	fixed bv = b.Dot(v);
-
-	if (-hw <= bu && bu <= hw && -hh <= bv && bv <= hh) // TODO: isn't this subsumed by the next checks?
+	if (-hw <= b.X && b.X <= hw && -hh <= b.Y && b.Y <= hh) // TODO: isn't this subsumed by the next checks?
 		return true; // a is outside, b is inside
 
-	if ((au < -hw && bu < -hw) || (au > hw && bu > hw) || (av < -hh && bv < -hh) || (av > hh && bv > hh))
+	if ((a.X < -hw && b.X < -hw) || (a.X > hw && b.X > hw) || (a.Y < -hh && b.Y < -hh) || (a.Y > hh && b.Y > hh))
 		return false; // ab is entirely above/below/side the square
 
 	CFixedVector2D abp = (b - a).Perpendicular();
-	fixed s0 = abp.Dot((u.Multiply(hw) + v.Multiply(hh)) - a);
-	fixed s1 = abp.Dot((u.Multiply(hw) - v.Multiply(hh)) - a);
-	fixed s2 = abp.Dot((-u.Multiply(hw) - v.Multiply(hh)) - a);
-	fixed s3 = abp.Dot((-u.Multiply(hw) + v.Multiply(hh)) - a);
+	fixed s0 = abp.Dot(CFixedVector2D(hw, hh) - a);
+	fixed s1 = abp.Dot(CFixedVector2D(hw, -hh) - a);
+	fixed s2 = abp.Dot(CFixedVector2D(-hw, -hh) - a);
+	fixed s3 = abp.Dot(CFixedVector2D(-hw, hh) - a);
 	if (s0.IsZero() || s1.IsZero() || s2.IsZero() || s3.IsZero())
 		return true; // ray intersects the corner
 

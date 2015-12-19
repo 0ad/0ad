@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="trunk-a">
+      <mesh>gaia/tree_acacia_a.dae</mesh>
+	   <props>
+        <prop actor="flora/trees/acacia_top_a.xml" attachpoint="root"/>
+        <prop actor="flora/trees/acacia_branches_a.xml" attachpoint="root"/>
+     </props>
+    </variant>
+	
+    <variant frequency="1" name="trunk-b">
+      <mesh>gaia/tree_acacia_b.dae</mesh>
+	  	  <props>
+          <prop actor="flora/trees/acacia_top_b.xml" attachpoint="root"/>
+          <prop actor="flora/trees/acacia_branches_b.xml" attachpoint="root"/>
+        </props>
+    </variant>
+	
+    <variant frequency="1" name="trunk-c">
+      <mesh>gaia/tree_acacia_c.dae</mesh>
+	    <props>
+        <prop actor="flora/trees/acacia_top_c.xml" attachpoint="root"/>
+        <prop actor="flora/trees/acacia_branches_c.xml" attachpoint="root"/>
+      </props>
+    </variant>
+	
+    <variant frequency="1" name="trunk-d">
+      <mesh>gaia/tree_acacia_d.dae</mesh>
+	  	  <props>
+          <prop actor="flora/trees/acacia_top_d.xml" attachpoint="root"/>
+          <prop actor="flora/trees/acacia_branches_d.xml" attachpoint="root"/>
+        </props>
+    </variant>
+	
+    <variant frequency="1" name="trunk-e">
+      <mesh>gaia/tree_acacia_e.dae</mesh>
+	  	  <props>
+          <prop actor="flora/trees/acacia_top_e.xml" attachpoint="root"/>
+          <prop actor="flora/trees/acacia_branches_e.xml" attachpoint="root"/>
+        </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="trunk-texture">
+      <textures><texture file="gaia/tree_dead.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  
+  <material>basic_trans_wind.xml</material>
+
+</actor>

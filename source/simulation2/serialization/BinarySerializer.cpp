@@ -343,7 +343,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			if (string)
 			{
 				size_t length;
-				const jschar* ch = JS_GetStringCharsAndLength(cx, string, &length);
+				const char16_t* ch = JS_GetStringCharsAndLength(cx, string, &length);
 				if (ch && length > 0)
 					funcname = std::wstring(ch, ch + length);
 			}
@@ -404,7 +404,7 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleStrin
 	JSAutoRequest rq(cx);
 
 	size_t length;
-	const jschar* chars = JS_GetStringCharsAndLength(cx, string, &length);
+	const char16_t* chars = JS_GetStringCharsAndLength(cx, string, &length);
 
 	if (!chars)
 		throw PSERROR_Serialize_ScriptError("JS_GetStringCharsAndLength failed");

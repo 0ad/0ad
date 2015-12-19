@@ -94,7 +94,7 @@ var g_SelectedGameIP = "";
 /**
  * Called after the XmppConnection succeeded and when returning from a game.
  *
- * @param attribs {Object}
+ * @param {Object} attribs
  */
 function init(attribs)
 {
@@ -162,8 +162,8 @@ function applyFilters()
 /**
  * Filter a game based on the status of the filter dropdowns.
  *
- * @param game {Object}
- * @return {boolean} - True if game should not be displayed.
+ * @param {Object} game
+ * @returns {boolean} - True if game should not be displayed.
  */
 function filterGame(game)
 {
@@ -188,7 +188,7 @@ function filterGame(game)
 /**
  * Update the subject GUI object.
  *
- * @param newSubject {string}
+ * @param {string} newSubject
  */
 function updateSubject(newSubject)
 {
@@ -284,7 +284,7 @@ function updatePlayerList()
  * Displays N/A for all stats until updateProfile is called when the stats
  * 	are actually received from the bot.
  *
- * @param caller {string} - From which screen is the user requesting data from?
+ * @param {string} caller - From which screen is the user requesting data from?
  */
 function displayProfile(caller)
 {
@@ -526,7 +526,7 @@ function updateGameSelection()
 
 	var mapData = getMapDescriptionAndPreview(game.mapType, game.mapName);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
-	Engine.GetGUIObjectByName("sgMapPreview").sprite = "cropped:(0.7812,0.5859)session/icons/mappreview/" + mapData.preview;
+	setMapPreviewImage("sgMapPreview", mapData.preview);
 }
 
 /**
@@ -660,8 +660,8 @@ function submitChatInput()
 /**
  * Handle all '/' commands.
  *
- * @param text {string} - Text to be checked for commands.
- * @return true if more text processing is needed, false otherwise.
+ * @param {string} text - Text to be checked for commands.
+ * @returns {boolean} true if more text processing is needed, false otherwise.
  */
 function handleSpecialCommand(text)
 {
@@ -688,6 +688,9 @@ function handleSpecialCommand(text)
 	case "quit":
 		returnToMainMenu();
 		break;
+	case "clear":
+		clearChatMessages();
+		break;
 	case "say":
 	case "me":
 		return false;
@@ -703,7 +706,7 @@ function handleSpecialCommand(text)
 /**
  * Process and if appropriate, display a formatted message.
  *
- * @param msg {Object} - The message to be processed.
+ * @param {Object} msg - The message to be processed.
  */
 function addChatMessage(msg)
 {
@@ -737,7 +740,7 @@ function addChatMessage(msg)
 /**
  * Splits given input into command and argument.
  *
- * @param string {string}
+ * @param {string} string
  * @returns {Array}
  */
 function ircSplit(string)
@@ -751,8 +754,8 @@ function ircSplit(string)
 /**
  * Format text in an IRC-like way.
  *
- * @param msg {Object} - Received chat message.
- * @return {string} - Formatted text.
+ * @param {Object} msg - Received chat message.
+ * @returns {string} - Formatted text.
  */
 function ircFormat(msg)
 {
@@ -832,7 +835,7 @@ function ircFormat(msg)
 /**
  * Update the spam monitor.
  *
- * @param from {string} - User to update.
+ * @param {string} from - User to update.
  */
 function updateSpamMonitor(from)
 {
@@ -845,10 +848,10 @@ function updateSpamMonitor(from)
 /**
  * Check if a message is spam.
  *
- * @param text {string} - Body of message.
- * @param from {string} - Sender of message.
+ * @param {string} text - Body of message.
+ * @param {string} from - Sender of message.
  *
- * @return {boolean} - True if message should be blocked.
+ * @returns {boolean} - True if message should be blocked.
  */
 function isSpam(text, from)
 {
@@ -901,7 +904,7 @@ function checkSpamMonitor()
  *  Generate a (mostly) unique color for this player based on their name.
  *  See http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
  *
- *  @param playername {string}
+ *  @param {string} playername
  */
 function getPlayerColor(playername)
 {
@@ -921,7 +924,7 @@ function getPlayerColor(playername)
 /**
  * Returns the given playername wrapped in an appropriate color-tag.
  *
- *  @param playername {string}
+ *  @param {string} playername
  */
 function colorPlayerName(playername)
 {

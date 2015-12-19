@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# crolidge, 2015
 # Luis Neves <luisjneves@gmail.com>, 2015
 # mogafi, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-16 08:31+0100\n"
-"PO-Revision-Date: 2015-11-16 09:47+0000\n"
+"POT-Creation-Date: 2015-12-14 09:01+0100\n"
+"PO-Revision-Date: 2015-12-14 09:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -116,11 +117,11 @@ msgstr "Tesouro"
 msgid "A treasure that can be quickly gathered."
 msgstr "Um tesouro que pode ser obtido facilmente."
 
-#: simulation/templates/template_structure.xml:56
+#: simulation/templates/template_structure.xml:57
 msgid "Structure"
 msgstr "Edifício"
 
-#: simulation/templates/template_unit.xml:37
+#: simulation/templates/template_unit.xml:38
 msgid "Unit"
 msgstr "Unidade"
 
@@ -165,7 +166,7 @@ msgstr "Pólis Grega Secundária"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "Uma pequena cidade grega."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
@@ -173,7 +174,7 @@ msgstr "Pólis Grega"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "Uma importante cidade grega."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -379,7 +380,7 @@ msgstr "Coelho"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr ""
+msgstr "Rinoceronte"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
@@ -445,6 +446,10 @@ msgstr "Recolha as uvas destas vinhas para as comer."
 msgid "Deciduous Bush"
 msgstr "Arbusto de folha caduca"
 
+#: simulation/templates/gaia/flora_tree_acacia.xml:4
+msgid "Acacia Tree"
+msgstr ""
+
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
 msgstr "Pinheiro-de-alepo"
@@ -498,6 +503,9 @@ msgstr "Palmeira ibérica"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
+#: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
+#: simulation/templates/gaia/flora_tree_oak_dead.xml:4
+#: simulation/templates/gaia/flora_tree_oak_new.xml:4
 msgid "Oak Tree"
 msgstr "Carvalho"
 
@@ -792,33 +800,33 @@ msgstr "Fortaleza de Paliçada"
 msgid "Wooden Tower"
 msgstr "Torre de Madeira"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:20
+#: simulation/templates/other/palisades_rocks_gate.xml:25
 msgid "Palisade Gate"
 msgstr "Portão de Paliçada"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:21
+#: simulation/templates/other/palisades_rocks_gate.xml:26
 msgid "Wooden Gate"
 msgstr "Portão de Madeira"
 
-#: simulation/templates/other/palisades_rocks_long.xml:22
-#: simulation/templates/other/palisades_rocks_medium.xml:22
-#: simulation/templates/other/palisades_rocks_short.xml:21
+#: simulation/templates/other/palisades_rocks_long.xml:27
+#: simulation/templates/other/palisades_rocks_medium.xml:27
+#: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
-#: simulation/templates/other/palisades_rocks_tower.xml:21
+#: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
 msgstr "Paliçada"
 
-#: simulation/templates/other/palisades_rocks_long.xml:23
-#: simulation/templates/other/palisades_rocks_medium.xml:23
-#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_long.xml:28
+#: simulation/templates/other/palisades_rocks_medium.xml:28
+#: simulation/templates/other/palisades_rocks_short.xml:27
 #: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/palisades_rocks_tower.xml:27
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
 msgstr "Muralha de Madeira"
 
-#: simulation/templates/other/palisades_rocks_long.xml:24
+#: simulation/templates/other/palisades_rocks_long.xml:29
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "Transforme a muralha em madeira num portão em madeira"
 
@@ -974,7 +982,7 @@ msgstr "Marcador"
 #: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
 msgid "Lithobólos"
-msgstr ""
+msgstr "Lithobólos"
 
 #: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5

@@ -32,12 +32,8 @@
 # include "SDL.h"
 # include "SDL_thread.h"
 
-#if SDL_VERSION_ATLEAST(2,0,0)
-# if !SDL_VERSION_ATLEAST(2,0,2)
-#  error You are using an old, untested libsdl2 release. It is \
-recommended to use libsdl2 >= 2.0.2. Alternatively, remove this \
-error message from this file, but remember you may encounter issues.
-# endif
+#if !SDL_VERSION_ATLEAST(2,0,2)
+#error You are using an old libsdl release. At least libsdl2 >= 2.0.2 is required.
 #endif
 
 // if the compiler doesn't support inlining, this header will pull
@@ -47,13 +43,8 @@ error message from this file, but remember you may encounter issues.
 # include "SDL_endian.h"
 
 # if MSC_VERSION
-#  if SDL_VERSION_ATLEAST(2,0,0)
-#   pragma comment(lib, "SDL2")
-#   pragma comment(lib, "SDL2main")
-#  else
-#   pragma comment(lib, "SDL")
-#   pragma comment(lib, "SDLmain")
-#  endif
+#  pragma comment(lib, "SDL2")
+#  pragma comment(lib, "SDL2main")
 # endif
 
 // complete definition of our forward-declared SDL_Event (see sdl_fwd.h)

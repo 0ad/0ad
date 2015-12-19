@@ -45,6 +45,7 @@ struct SGUIImageEffects
 {
 	SGUIImageEffects() : m_Greyscale(false) {}
 	CColor m_AddColor;
+	CColor m_SolidColor;
 	bool m_Greyscale;
 };
 

@@ -34,13 +34,7 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 
 	switch (val.ev.type)
 	{
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 	case SDL_WINDOWEVENT: typeName = "windowevent"; break;
-#else
-	case SDL_ACTIVEEVENT: typeName = "activeevent"; break;
-	case SDL_VIDEOEXPOSE: typeName = "videoexpose"; break;
-	case SDL_VIDEORESIZE: typeName = "videoresize"; break;
-#endif
 	case SDL_KEYDOWN: typeName = "keydown"; break;
 	case SDL_KEYUP: typeName = "keyup"; break;
 	case SDL_MOUSEMOTION: typeName = "mousemotion"; break;
@@ -63,14 +57,6 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 
 	switch (val.ev.type)
 	{
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-	case SDL_ACTIVEEVENT:
-	{
-		SET(obj, "gain", (int)val.ev.active.gain);
-		SET(obj, "state", (int)val.ev.active.state);
-		break;
-	}
-#endif
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
 	{
@@ -89,14 +75,6 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 		// SET(keysym, "scancode", (int)val.ev.key.keysym.scancode); // (not in wsdl.h)
 		SET(keysym, "sym", (int)val.ev.key.keysym.sym);
 		// SET(keysym, "mod", (int)val.ev.key.keysym.mod); // (not in wsdl.h)
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-		if (val.ev.key.keysym.unicode)
-		{
-			std::wstring unicode(1, (wchar_t)val.ev.key.keysym.unicode);
-			SET(keysym, "unicode", unicode);
-		}
-		else
-#endif
 		{
 			SET(keysym, "unicode", JS::UndefinedHandleValue);
 		}

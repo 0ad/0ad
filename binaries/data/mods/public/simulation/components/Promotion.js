@@ -30,6 +30,11 @@ Promotion.prototype.GetPromotedTemplateName = function()
 
 Promotion.prototype.Promote = function(promotedTemplateName)
 {
+	// If the unit is dead, don't promote it
+	var cmpCurrentUnitHealth = Engine.QueryInterface(this.entity, IID_Health);
+	if (cmpCurrentUnitHealth.GetHitpoints() == 0)
+		return;
+
 	// Create promoted unit entity
 	var promotedUnitEntity = Engine.AddEntity(promotedTemplateName);
 
@@ -52,7 +57,6 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	cmpPromotedUnitOwnership.SetOwner(cmpCurrentUnitOwnership.GetOwner());
 
 	// change promoted unit health to the same percent of hitpoints as unit had before promotion
-	var cmpCurrentUnitHealth = Engine.QueryInterface(this.entity, IID_Health);
 	var cmpPromotedUnitHealth = Engine.QueryInterface(promotedUnitEntity, IID_Health);
 	var healthFraction = Math.max(0, Math.min(1, cmpCurrentUnitHealth.GetHitpoints() / cmpCurrentUnitHealth.GetMaxHitpoints()));
 	var promotedUnitHitpoints = Math.round(cmpPromotedUnitHealth.GetMaxHitpoints() * healthFraction);

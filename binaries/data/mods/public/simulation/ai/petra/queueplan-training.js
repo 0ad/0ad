@@ -111,10 +111,8 @@ m.TrainingPlan.prototype.start = function(gameState)
 	this.onStart(gameState);
 };
 
-m.TrainingPlan.prototype.addItem = function(amount)
+m.TrainingPlan.prototype.addItem = function(amount = 1)
 {
-	if (amount === undefined)
-		amount = 1;
 	this.number += amount;
 };
 

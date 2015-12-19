@@ -51,7 +51,6 @@ void CJoystick::Initialise()
 
 	for (int i = 0; i < numJoysticks; ++i)
 	{
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		SDL_Joystick* stick = SDL_JoystickOpen(i);
 		if (!stick)
 		{
@@ -59,13 +58,8 @@ void CJoystick::Initialise()
 			continue;
 		}
 		const char* name = SDL_JoystickName(stick);
-#else // SDL 1.2
-		const char* name = SDL_JoystickName(i);
-#endif
 		LOGMESSAGE("Joystick %d: %s", i, name);
-#if SDL_VERSION_ATLEAST(2, 0, 0)
 		SDL_JoystickClose(stick);
-#endif
 	}
 
 	if (numJoysticks)

@@ -160,7 +160,11 @@
 		<object type="button" style="ModernButtonRed" size="100%-160 100%-48 100%-20 100%-20">
 			<translatableAttribute id="caption">Continue</translatableAttribute>
 			<action on="Press"><![CDATA[
-				if (g_GameData.isReplay)
+				if (g_GameData.isInGame)
+				{
+					Engine.PopGuiPageCB(0);
+				}
+				else if (g_GameData.isReplay)
 				{
 					Engine.SwitchGuiPage("page_replaymenu.xml");
 				}

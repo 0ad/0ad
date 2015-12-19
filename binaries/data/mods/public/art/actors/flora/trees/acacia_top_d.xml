@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="acacia-top-mesh-d">
+      <mesh>gaia/tree_acacia_top_d.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="2" name="acacia-top-texture-a">
+      <textures><texture file="gaia/tree_carob_c.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="acacia-top-texture-b">
+      <textures><texture file="gaia/tree_baobab_b.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+  <material>basic_trans_wind.xml</material>
+
+</actor>

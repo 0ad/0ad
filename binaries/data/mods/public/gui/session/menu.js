@@ -9,7 +9,7 @@ const RESUME = translate("Resume");
 const MARGIN = 4;
 
 // Includes the main menu button
-const NUM_BUTTONS = 8;
+const NUM_BUTTONS = 9;
 
 // Regular menu buttons
 const BUTTON_HEIGHT = 32;
@@ -623,16 +623,36 @@ function toggleGameSpeed()
 	gameSpeed.hidden = !gameSpeed.hidden;
 }
 
+function openGameSummary()
+{
+	closeMenu();
+	closeOpenDialogs();
+	pauseGame();
+
+	var extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
+
+	Engine.PushGuiPage("page_summary.xml", {
+		"timeElapsed" : extendedSimState.timeElapsed,
+		"playerStates": extendedSimState.players,
+		"players": g_Players,
+		"mapSettings": Engine.GetMapSettings(),
+		"isInGame": true,
+		"gameResult": translate("Current Scores"),
+		"callback": "resumeGame"
+	});
+}
+
 function openStrucTree()
 {
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	var data = { // TODO add info about researched techs and unlocked entities
+
+	// TODO add info about researched techs and unlocked entities
+	Engine.PushGuiPage("page_structree.xml", {
 		"civ" : g_Players[Engine.GetPlayerID()].civ,
 		"callback": "resumeGame",
-	};
-	Engine.PushGuiPage("page_structree.xml", data);
+	});
 }
 
 /**
