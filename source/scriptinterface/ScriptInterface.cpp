@@ -840,7 +840,7 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 	uint lineNo = 1;
 	// CompileOptions does not copy the contents of the filename string pointer.
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
-	std::string filenameStr(utf8_from_wstring(filename.string()));
+	std::string filenameStr = filename.string8();
 
 	JS::CompileOptions options(m->m_cx);
 	options.setFileAndLine(filenameStr.c_str(), lineNo);
@@ -868,10 +868,13 @@ bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstri
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	utf16string codeUtf16(code.begin(), code.end());
 	uint lineNo = 1;
+	// CompileOptions does not copy the contents of the filename string pointer.
+	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
+	std::string filenameStr = filename.string8();
 
 	JS::RootedValue rval(m->m_cx);
 	JS::CompileOptions opts(m->m_cx);
-	opts.setFileAndLine(filename.string8().c_str(), lineNo);
+	opts.setFileAndLine(filenameStr.c_str(), lineNo);
 	return JS::Evaluate(m->m_cx, global, opts,
 			reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &rval);
 }
@@ -900,10 +903,13 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 
 	utf16string codeUtf16(code.begin(), code.end());
 	uint lineNo = 1;
+	// CompileOptions does not copy the contents of the filename string pointer.
+	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
+	std::string filenameStr = path.string8();
 
 	JS::RootedValue rval(m->m_cx);
 	JS::CompileOptions opts(m->m_cx);
-	opts.setFileAndLine(path.string8().c_str(), lineNo);
+	opts.setFileAndLine(filenameStr.c_str(), lineNo);
 	return JS::Evaluate(m->m_cx, global, opts,
 			reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &rval);
 }
