@@ -2,7 +2,7 @@
 <Entity parent="template_unit_support_female_citizen">
   <Attack>
     <Melee>
-      <Hack>7</Hack>
+      <Hack op="mul">3.5</Hack>
     </Melee>
   </Attack>
   <Builder>
@@ -11,7 +11,7 @@
     </Entities>
   </Builder>
   <Health>
-    <Max>75</Max>
+    <Max op="mul">1.5</Max>
   </Health>
   <Identity>
     <Civ>gaul</Civ>
