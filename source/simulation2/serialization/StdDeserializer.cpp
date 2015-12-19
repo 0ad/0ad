@@ -287,7 +287,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		if (!JS_GetClassObject(cx, JSProto_Number, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
 
-		JS::RootedObject obj(cx, JS_New(cx, ctorobj, val));
+		JS::RootedObject obj(cx, JS_New(cx, ctorobj, JS::HandleValueArray(val)));
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
@@ -305,7 +305,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		if (!JS_GetClassObject(cx, JSProto_String, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
 
-		JS::RootedObject obj(cx, JS_New(cx, ctorobj, val));
+		JS::RootedObject obj(cx, JS_New(cx, ctorobj, JS::HandleValueArray(val)));
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
@@ -321,7 +321,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		if (!JS_GetClassObject(cx, JSProto_Boolean, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
 
-		JS::RootedObject obj(cx, JS_New(cx, ctorobj, val));
+		JS::RootedObject obj(cx, JS_New(cx, ctorobj, JS::HandleValueArray(val)));
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
