@@ -396,8 +396,8 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: need to convert JS ArrayBuffer data from little-endian
 #endif
-		void* contents = NULL;
-		contents = JS_AllocateArrayBufferContents(cx, length);
+		void* contents = malloc(length);
+		ENSURE(contents);
 		RawBytes("buffer data", (u8*)contents, length);
 		JS::RootedObject bufferObj(cx, JS_NewArrayBufferWithContents(cx, length, contents));
 		AddScriptBackref(bufferObj);
