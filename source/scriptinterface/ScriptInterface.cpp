@@ -116,7 +116,8 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 
 		JS::RootedValue rval(cx);
 		const char dumpStack[] = "this.stack.trimRight().replace(/^/mg, '  ')"; // indent each line
-		if (JS_EvaluateScript(cx, excnObj, dumpStack, ARRAY_SIZE(dumpStack)-1, "(eval)", 1, &rval))
+		JS::CompileOptions opts(cx);
+		if (JS::Evaluate(cx, excnObj, opts.setFileAndLine("(eval)", 1), dumpStack, ARRAY_SIZE(dumpStack)-1, &rval))
 		{
 			std::string stackTrace;
 			if (ScriptInterface::FromJSVal(cx, rval, stackTrace))
@@ -849,7 +850,7 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 
 	JS::RootedFunction func(m->m_cx,
 	JS_CompileUCFunction(m->m_cx, global, NULL, 0, NULL,
-			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), (uint)(codeUtf16.length()), options)
+			reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), options)
 	);
 	if (!func)
 		return false;
@@ -871,9 +872,10 @@ bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstri
 	uint lineNo = 1;
 
 	JS::RootedValue rval(m->m_cx);
-	return JS_EvaluateUCScript(m->m_cx, global,
-			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), (uint)(codeUtf16.length()),
-			utf8_from_wstring(filename.string()).c_str(), lineNo, &rval);
+	JS::CompileOptions opts(m->m_cx);
+	opts.setFileAndLine(filename.string8().c_str(), lineNo);
+	return JS::Evaluate(m->m_cx, global, opts,
+			reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &rval);
 }
 
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
@@ -902,9 +904,10 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 	uint lineNo = 1;
 
 	JS::RootedValue rval(m->m_cx);
-	return JS_EvaluateUCScript(m->m_cx, global,
-			reinterpret_cast<const char16_t*> (codeUtf16.c_str()), (uint)(codeUtf16.length()),
-			utf8_from_wstring(path.string()).c_str(), lineNo, &rval);
+	JS::CompileOptions opts(m->m_cx);
+	opts.setFileAndLine(path.string8().c_str(), lineNo);
+	return JS::Evaluate(m->m_cx, global, opts,
+			reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &rval);
 }
 
 bool ScriptInterface::Eval(const char* code)
@@ -920,7 +923,9 @@ bool ScriptInterface::Eval_(const char* code, JS::MutableHandleValue rval)
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	utf16string codeUtf16(code, code+strlen(code));
 	
-	return JS_EvaluateUCScript(m->m_cx, global, (const char16_t*)codeUtf16.c_str(), (uint)codeUtf16.length(), "(eval)", 1, rval);
+	JS::CompileOptions opts(m->m_cx);
+	opts.setFileAndLine("(eval)", 1);
+	return JS::Evaluate(m->m_cx, global, opts, reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)codeUtf16.length(), rval);
 }
 
 bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval)
@@ -929,7 +934,9 @@ bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval)
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	utf16string codeUtf16(code, code+wcslen(code));
 
-	return JS_EvaluateUCScript(m->m_cx, global, (const char16_t*)codeUtf16.c_str(), (uint)codeUtf16.length(), "(eval)", 1, rval);
+	JS::CompileOptions opts(m->m_cx);
+	opts.setFileAndLine("(eval)", 1);
+	return JS::Evaluate(m->m_cx, global, opts, reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)codeUtf16.length(), rval);
 }
 
 bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out)
