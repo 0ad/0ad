@@ -208,7 +208,7 @@ Attack.prototype.Serialize = null; // we have no dynamic state to save
 
 Attack.prototype.GetAttackTypes = function()
 {
-	var ret = [];
+	let ret = [];
 	if (this.template.Charge) ret.push("Charge");
 	if (this.template.Melee) ret.push("Melee");
 	if (this.template.Ranged) ret.push("Ranged");
@@ -218,8 +218,8 @@ Attack.prototype.GetAttackTypes = function()
 
 Attack.prototype.GetPreferredClasses = function(type)
 {
-	if (this.template[type] && this.template[type].PreferredClasses
-	    && this.template[type].PreferredClasses._string)
+	if (this.template[type] && this.template[type].PreferredClasses &&
+			this.template[type].PreferredClasses._string)
 	{
 		return this.template[type].PreferredClasses._string.split(/\s+/);
 	}
@@ -228,8 +228,8 @@ Attack.prototype.GetPreferredClasses = function(type)
 
 Attack.prototype.GetRestrictedClasses = function(type)
 {
-	if (this.template[type] && this.template[type].RestrictedClasses
-	    && this.template[type].RestrictedClasses._string)
+	if (this.template[type] && this.template[type].RestrictedClasses &&
+			this.template[type].RestrictedClasses._string)
 	{
 		return this.template[type].RestrictedClasses._string.split(/\s+/);
 	}
@@ -238,19 +238,19 @@ Attack.prototype.GetRestrictedClasses = function(type)
 
 Attack.prototype.CanAttack = function(target)
 {
-	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 		return true;
 
-	var cmpThisPosition = Engine.QueryInterface(this.entity, IID_Position);
-	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+	let cmpThisPosition = Engine.QueryInterface(this.entity, IID_Position);
+	let cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpThisPosition || !cmpTargetPosition || !cmpThisPosition.IsInWorld() || !cmpTargetPosition.IsInWorld())
 		return false;
 
 	// Check if the relative height difference is larger than the attack range
 	// If the relative height is bigger, it means they will never be able to
 	// reach each other, no matter how close they come.
-	var heightDiff = Math.abs(cmpThisPosition.GetHeightOffset() - cmpTargetPosition.GetHeightOffset());
+	let heightDiff = Math.abs(cmpThisPosition.GetHeightOffset() - cmpTargetPosition.GetHeightOffset());
 
 	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity) 
@@ -262,6 +262,7 @@ Attack.prototype.CanAttack = function(target)
 	{
 		if (type == "Capture" && !QueryMiragedInterface(target, IID_Capturable))
 			continue;
+
 		if (type == "Slaughter" && targetClasses.indexOf("Domestic") == -1)
 			continue;
 
@@ -298,7 +299,7 @@ Attack.prototype.GetPreference = function(target)
 
 	const targetClasses = cmpIdentity.GetClassesList();
 
-	var minPref = null;
+	let minPref = null;
 	for (let type of this.GetAttackTypes())
 	{
 		let preferredClasses = this.GetPreferredClasses(type);
@@ -319,7 +320,7 @@ Attack.prototype.GetPreference = function(target)
  */
 Attack.prototype.GetFullAttackRange = function()
 {
-	let ret = {"min": Infinity, "max": 0};
+	let ret = { "min": Infinity, "max": 0 };
 	for (let type of this.GetAttackTypes())
 	{
 		// Ignore the special attack "slaughter" dedicated to domestic animals
@@ -336,7 +337,7 @@ Attack.prototype.GetFullAttackRange = function()
 
 Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 {
-	var cmpFormation = Engine.QueryInterface(target, IID_Formation);
+	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 	{
 		// TODO: Formation against formation needs review
@@ -348,38 +349,38 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 		return undefined;
 	}
 
-	var cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity) 
 		return undefined;
 
 
-	var targetClasses = cmpIdentity.GetClassesList();
-	var isTargetClass = function (className) { return targetClasses.indexOf(className) != -1; };
+	let targetClasses = cmpIdentity.GetClassesList();
+	let isTargetClass = function (className) { return targetClasses.indexOf(className) != -1; };
 
 	// Always slaughter domestic animals instead of using a normal attack
 	if (isTargetClass("Domestic") && this.template.Slaughter) 
 		return "Slaughter";
 
-	var attack = this;
-	var isAllowed = function (type) { return !attack.GetRestrictedClasses(type).some(isTargetClass); };
+	let attack = this;
+	let isAllowed = function (type) { return !attack.GetRestrictedClasses(type).some(isTargetClass); };
 
-	var types = this.GetAttackTypes().filter(isAllowed);
+	let types = this.GetAttackTypes().filter(isAllowed);
 
 	// check if the target is capturable
-	var captureIndex = types.indexOf("Capture");
+	let captureIndex = types.indexOf("Capture");
 	if (captureIndex != -1)
 	{
 		let cmpCapturable = QueryMiragedInterface(target, IID_Capturable);
 
-		var cmpPlayer = QueryOwnerInterface(this.entity);
+		let cmpPlayer = QueryOwnerInterface(this.entity);
 		if (allowCapture && cmpPlayer && cmpCapturable && cmpCapturable.CanCapture(cmpPlayer.GetPlayerID()))
 			return "Capture";
 		// not captureable, so remove this attack
 		types.splice(captureIndex, 1);
 	}
 
-	var isPreferred = function (className) { return attack.GetPreferredClasses(className).some(isTargetClass); };
-	var byPreference = function (a, b) { return (types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) - (types.indexOf(b) + (isPreferred(b) ? types.length : 0) ); };
+	let isPreferred = function (className) { return attack.GetPreferredClasses(className).some(isTargetClass); };
+	let byPreference = function (a, b) { return (types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) - (types.indexOf(b) + (isPreferred(b) ? types.length : 0) ); };
 
 
 	return types.sort(byPreference).pop();
@@ -387,8 +388,8 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 
 Attack.prototype.CompareEntitiesByPreference = function(a, b)
 {
-	var aPreference = this.GetPreference(a);
-	var bPreference = this.GetPreference(b);
+	let aPreference = this.GetPreference(a);
+	let bPreference = this.GetPreference(b);
 
 	if (aPreference === null && bPreference === null) return 0;
 	if (aPreference === null) return 1;
@@ -398,10 +399,10 @@ Attack.prototype.CompareEntitiesByPreference = function(a, b)
 
 Attack.prototype.GetTimers = function(type)
 {
-	var prepare = +(this.template[type].PrepareTime || 0);
+	let prepare = +(this.template[type].PrepareTime || 0);
 	prepare = ApplyValueModificationsToEntity("Attack/" + type + "/PrepareTime", prepare, this.entity);
 	
-	var repeat = +(this.template[type].RepeatTime || 1000);
+	let repeat = +(this.template[type].RepeatTime || 1000);
 	repeat = ApplyValueModificationsToEntity("Attack/" + type + "/RepeatTime", repeat, this.entity);
 
 	return { "prepare": prepare, "repeat": repeat, "recharge": repeat - prepare };
@@ -410,15 +411,15 @@ Attack.prototype.GetTimers = function(type)
 Attack.prototype.GetAttackStrengths = function(type)
 {
 	// Work out the attack values with technology effects
-	var template = this.template[type];
-	var splash = "";
+	let template = this.template[type];
+	let splash = "";
 	if (!template)
 	{
 		template = this.template[type.split(".")[0]].Splash;
 		splash = "/Splash";
 	}
 	
-	var applyMods = damageType =>
+	let applyMods = damageType =>
 		ApplyValueModificationsToEntity("Attack/" + type + splash + "/" + damageType, +(template[damageType] || 0), this.entity);
 
 	if (type == "Capture")
@@ -433,41 +434,41 @@ Attack.prototype.GetAttackStrengths = function(type)
 
 Attack.prototype.GetRange = function(type)
 {
-	var max = +this.template[type].MaxRange;
+	let max = +this.template[type].MaxRange;
 	max = ApplyValueModificationsToEntity("Attack/" + type + "/MaxRange", max, this.entity);
 	
-	var min = +(this.template[type].MinRange || 0);
+	let min = +(this.template[type].MinRange || 0);
 	min = ApplyValueModificationsToEntity("Attack/" + type + "/MinRange", min, this.entity);
 
-	var elevationBonus = +(this.template[type].ElevationBonus || 0);
+	let elevationBonus = +(this.template[type].ElevationBonus || 0);
 	elevationBonus = ApplyValueModificationsToEntity("Attack/" + type + "/ElevationBonus", elevationBonus, this.entity);
 	
-	return { "max": max, "min": min, "elevationBonus": elevationBonus};
+	return { "max": max, "min": min, "elevationBonus": elevationBonus };
 };
 
 // Calculate the attack damage multiplier against a target
 Attack.prototype.GetAttackBonus = function(type, target)
 {
-	var attackBonus = 1;
-	var template = this.template[type];
+	let attackBonus = 1;
+	let template = this.template[type];
 	if (!template)
 		template = this.template[type.split(".")[0]].Splash;
 
 	if (template.Bonuses)
 	{
-		var cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+		let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 		if (!cmpIdentity)
 			return 1;
 
 		// Multiply the bonuses for all matching classes
-		for (var key in template.Bonuses)
+		for (let key in template.Bonuses)
 		{
-			var bonus = template.Bonuses[key];
+			let bonus = template.Bonuses[key];
 
-			var hasClasses = true;
+			let hasClasses = true;
 			if (bonus.Classes){
-				var classes = bonus.Classes.split(/\s+/);
-				for (var key in classes)
+				let classes = bonus.Classes.split(/\s+/);
+				for (let key in classes)
 					hasClasses = hasClasses && cmpIdentity.HasClass(classes[key]);
 			}
 			
@@ -484,11 +485,11 @@ Attack.prototype.GetAttackBonus = function(type, target)
 Attack.prototype.GetNormalDistribution = function(){
 
 	// Use the Box-Muller transform to get a gaussian distribution
-	var a = Math.random();
-	var b = Math.random();
+	let a = Math.random();
+	let b = Math.random();
 
-	var c = Math.sqrt(-2*Math.log(a)) * Math.cos(2*Math.PI*b);
-	var d = Math.sqrt(-2*Math.log(a)) * Math.sin(2*Math.PI*b);
+	let c = Math.sqrt(-2*Math.log(a)) * Math.cos(2*Math.PI*b);
+	let d = Math.sqrt(-2*Math.log(a)) * Math.sin(2*Math.PI*b);
 
 	return [c, d];
 };
@@ -503,113 +504,130 @@ Attack.prototype.PerformAttack = function(type, target)
 	// If this is a ranged attack, then launch a projectile
 	if (type == "Ranged")
 	{
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		var turnLength = cmpTimer.GetLatestTurnLength()/1000;
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		let turnLength = cmpTimer.GetLatestTurnLength()/1000;
 		// In the future this could be extended:
 		//  * Obstacles like trees could reduce the probability of the target being hit
 		//  * Obstacles like walls should block projectiles entirely
 
 		// Get some data about the entity
-		var horizSpeed = +this.template[type].ProjectileSpeed;
-		var gravity = 9.81; // this affects the shape of the curve; assume it's constant for now
+		let horizSpeed = +this.template[type].ProjectileSpeed;
+		let gravity = 9.81; // this affects the shape of the curve; assume it's constant for now
 
-		var spread = +this.template.Ranged.Spread;
+		let spread = +this.template.Ranged.Spread;
 		spread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", spread, this.entity);
 
 		//horizSpeed /= 2; gravity /= 2; // slow it down for testing
 
-		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 		if (!cmpPosition || !cmpPosition.IsInWorld())
 			return;
-		var selfPosition = cmpPosition.GetPosition();
-		var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+		let selfPosition = cmpPosition.GetPosition();
+		let cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
 		if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
 			return;
-		var targetPosition = cmpTargetPosition.GetPosition();
+		let targetPosition = cmpTargetPosition.GetPosition();
 
-		var relativePosition = Vector3D.sub(targetPosition, selfPosition);
-		var previousTargetPosition = Engine.QueryInterface(target, IID_Position).GetPreviousPosition();
+		let relativePosition = Vector3D.sub(targetPosition, selfPosition);
+		let previousTargetPosition = Engine.QueryInterface(target, IID_Position).GetPreviousPosition();
 
-		var targetVelocity = Vector3D.sub(targetPosition, previousTargetPosition).div(turnLength);
-		// the component of the targets velocity radially away from the archer
-		var radialSpeed = relativePosition.dot(targetVelocity) / relativePosition.length();
+		let targetVelocity = Vector3D.sub(targetPosition, previousTargetPosition).div(turnLength);
+		// The component of the targets velocity radially away from the archer
+		let radialSpeed = relativePosition.dot(targetVelocity) / relativePosition.length();
 
-		var horizDistance = targetPosition.horizDistanceTo(selfPosition);
+		let horizDistance = targetPosition.horizDistanceTo(selfPosition);
 
 		// This is an approximation of the time ot the target, it assumes that the target has a constant radial 
 		// velocity, but since units move in straight lines this is not true.  The exact value would be more 
 		// difficult to calculate and I think this is sufficiently accurate.  (I tested and for cavalry it was 
 		// about 5% of the units radius out in the worst case)
-		var timeToTarget = horizDistance / (horizSpeed - radialSpeed);
+		let timeToTarget = horizDistance / (horizSpeed - radialSpeed);
 
 		// Predict where the unit is when the missile lands.
-		var predictedPosition = Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
+		let predictedPosition = Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
 
 		// Compute the real target point (based on spread and target speed)
-		var range = this.GetRange(type);
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var elevationAdaptedMaxRange = cmpRangeManager.GetElevationAdaptedRange(selfPosition, cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
-		var distanceModifiedSpread = spread * horizDistance/elevationAdaptedMaxRange;
+		let range = this.GetRange(type);
+		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		let elevationAdaptedMaxRange = cmpRangeManager.GetElevationAdaptedRange(selfPosition, cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
+		let distanceModifiedSpread = spread * horizDistance/elevationAdaptedMaxRange;
 
-		var randNorm = this.GetNormalDistribution();
-		var offsetX = randNorm[0] * distanceModifiedSpread * (1 + targetVelocity.length() / 20);
-		var offsetZ = randNorm[1] * distanceModifiedSpread * (1 + targetVelocity.length() / 20);
+		let randNorm = this.GetNormalDistribution();
+		let offsetX = randNorm[0] * distanceModifiedSpread * (1 + targetVelocity.length() / 20);
+		let offsetZ = randNorm[1] * distanceModifiedSpread * (1 + targetVelocity.length() / 20);
 
-		var realTargetPosition = new Vector3D(predictedPosition.x + offsetX, targetPosition.y, predictedPosition.z + offsetZ);
+		let realTargetPosition = new Vector3D(predictedPosition.x + offsetX, targetPosition.y, predictedPosition.z + offsetZ);
 
 		// Calculate when the missile will hit the target position
-		var realHorizDistance = realTargetPosition.horizDistanceTo(selfPosition);
-		var timeToTarget = realHorizDistance / horizSpeed;
+		let realHorizDistance = realTargetPosition.horizDistanceTo(selfPosition);
+		timeToTarget = realHorizDistance / horizSpeed;
 
-		var missileDirection = Vector3D.sub(realTargetPosition, selfPosition).div(realHorizDistance);
+		let missileDirection = Vector3D.sub(realTargetPosition, selfPosition).div(realHorizDistance);
 
-		// Make the arrow appear to land slightly behind the target so that arrows landing next to a guys foot don't count but arrows that go through the torso do
-		var graphicalPosition = Vector3D.mult(missileDirection, 2).add(realTargetPosition);
 		// Launch the graphical projectile
-		var cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
-		var id = cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
+		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
+		let id = cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
 
-		var playerId = Engine.QueryInterface(this.entity, IID_Ownership).GetOwner();
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
- 		cmpTimer.SetTimeout(this.entity, IID_Attack, "MissileHit", timeToTarget*1000, {"type": type, "target": target, "position": realTargetPosition, "direction": missileDirection, "projectileId": id, "playerId":playerId});
+		let playerId = Engine.QueryInterface(this.entity, IID_Ownership).GetOwner();
+		cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.SetTimeout(this.entity, IID_Attack, "MissileHit", timeToTarget * 1000, {
+			"type": type,
+			"target": target,
+			"position": realTargetPosition,
+			"direction": missileDirection,
+			"projectileId": id,
+			"playerId":playerId
+		});
 	}
 	else if (type == "Capture")
 	{
-		var multiplier = this.GetAttackBonus(type, target);
-		var cmpHealth = Engine.QueryInterface(target, IID_Health);
+		let multiplier = this.GetAttackBonus(type, target);
+		let cmpHealth = Engine.QueryInterface(target, IID_Health);
 		if (!cmpHealth || cmpHealth.GetHitpoints() == 0)
 			return;
 		multiplier *= cmpHealth.GetMaxHitpoints() / cmpHealth.GetHitpoints();
 
-		var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 		if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
 			return;
-		var owner = cmpOwnership.GetOwner();
-		var cmpCapturable = Engine.QueryInterface(target, IID_Capturable);
+
+		let owner = cmpOwnership.GetOwner();
+		let cmpCapturable = Engine.QueryInterface(target, IID_Capturable);
 		if (!cmpCapturable || !cmpCapturable.CanCapture(owner))
 			return;
 		
-		var strength = this.GetAttackStrengths("Capture").value * multiplier;
-		if(cmpCapturable.Reduce(strength, owner))
-			Engine.PostMessage(target, MT_Attacked, {"attacker":this.entity, "target":target, "type":type, "damage":strength});
+		let strength = this.GetAttackStrengths("Capture").value * multiplier;
+		if (cmpCapturable.Reduce(strength, owner))
+			Engine.PostMessage(target, MT_Attacked, {
+				"attacker": this.entity,
+				"target": target,
+				"type": type,
+				"damage": strength
+			});
 	}
 	else
 	{
 		// Melee attack - hurt the target immediately
-		Damage.CauseDamage({"strengths":this.GetAttackStrengths(type), "target":target, "attacker":this.entity, "multiplier":this.GetAttackBonus(type, target), "type":type});
+		Damage.CauseDamage({
+			"strengths": this.GetAttackStrengths(type),
+			"target": target,
+			"attacker": this.entity,
+			"multiplier": this.GetAttackBonus(type, target),
+			"type":type
+		});
 	}
 	// TODO: charge attacks (need to design how they work)
 };
 
 Attack.prototype.InterpolatedLocation = function(ent, lateness)
 {
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	var turnLength = cmpTimer.GetLatestTurnLength()/1000;
-	var cmpTargetPosition = Engine.QueryInterface(ent, IID_Position);
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	let turnLength = cmpTimer.GetLatestTurnLength()/1000;
+	let cmpTargetPosition = Engine.QueryInterface(ent, IID_Position);
 	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld()) // TODO: handle dead target properly
 		return undefined;
-	var curPos = cmpTargetPosition.GetPosition();
-	var prevPos = cmpTargetPosition.GetPreviousPosition();
+	let curPos = cmpTargetPosition.GetPosition();
+	let prevPos = cmpTargetPosition.GetPreviousPosition();
 	lateness /= 1000;
 	return new Vector3D((curPos.x * (turnLength - lateness) + prevPos.x * lateness) / turnLength,
 			0,
@@ -619,13 +637,13 @@ Attack.prototype.InterpolatedLocation = function(ent, lateness)
 // Tests whether it point is inside of ent's footprint
 Attack.prototype.testCollision = function(ent, point, lateness)
 {
-	var targetPosition = this.InterpolatedLocation(ent, lateness);
+	let targetPosition = this.InterpolatedLocation(ent, lateness);
 	if (!targetPosition)
 		return false;
-	var cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
+	let cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
 	if (!cmpFootprint)
 		return false;
-	var targetShape = cmpFootprint.GetShape();
+	let targetShape = cmpFootprint.GetShape();
 
 	if (!targetShape || !targetPosition)
 		return false;
@@ -637,9 +655,9 @@ Attack.prototype.testCollision = function(ent, point, lateness)
 	}
 	else
 	{
-		var angle = Engine.QueryInterface(ent, IID_Position).GetRotation().y;
+		let angle = Engine.QueryInterface(ent, IID_Position).GetRotation().y;
 
-		var d = Vector3D.sub(point, targetPosition);
+		let d = Vector3D.sub(point, targetPosition);
 		d = Vector2D.from3D(d).rotate(-angle);
 
 		return d.x < Math.abs(targetShape.width/2) && d.y < Math.abs(targetShape.depth/2);
@@ -648,24 +666,33 @@ Attack.prototype.testCollision = function(ent, point, lateness)
 
 Attack.prototype.MissileHit = function(data, lateness)
 {
-	var targetPosition = this.InterpolatedLocation(data.target, lateness);
+	let targetPosition = this.InterpolatedLocation(data.target, lateness);
 	if (!targetPosition)
 		return;
 
 	if (this.template.Ranged.Splash) // splash damage, do this first in case the direct hit kills the target
 	{
-		var friendlyFire = this.template.Ranged.Splash.FriendlyFire;
-		var splashRadius = this.template.Ranged.Splash.Range;
-		var splashShape = this.template.Ranged.Splash.Shape;
-		var playersToDamage;
+		let friendlyFire = this.template.Ranged.Splash.FriendlyFire;
+		let splashRadius = this.template.Ranged.Splash.Range;
+		let splashShape = this.template.Ranged.Splash.Shape;
+		let playersToDamage;
 		// If friendlyFire isn't enabled, get all player enemies to pass to "Damage.CauseSplashDamage".
 		if (friendlyFire == "false")
 		{
-			var cmpPlayer = QueryPlayerIDInterface(data.playerId);
+			let cmpPlayer = QueryPlayerIDInterface(data.playerId);
 			playersToDamage = cmpPlayer.GetEnemies();
 		}
 		// Damage the units.
-		Damage.CauseSplashDamage({"attacker":this.entity, "origin":Vector2D.from3D(data.position), "radius":splashRadius, "shape":splashShape, "strengths":this.GetAttackStrengths(data.type), "direction":data.direction, "playersToDamage":playersToDamage, "type":data.type});
+		Damage.CauseSplashDamage({
+			"attacker": this.entity,
+			"origin": Vector2D.from3D(data.position),
+			"radius": splashRadius,
+			"shape": splashShape,
+			"strengths": this.GetAttackStrengths(data.type),
+			"direction": data.direction,
+			"playersToDamage": playersToDamage,
+			"type":data.type
+		});
 	}
 
 	if (this.testCollision(data.target, data.position, lateness))
@@ -677,23 +704,28 @@ Attack.prototype.MissileHit = function(data, lateness)
 		Damage.CauseDamage(data);
 
 		// Remove the projectile
-		var cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
+		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
 	}
 	else
 	{
 		// If we didn't hit the main target look for nearby units
-		var cmpPlayer = QueryPlayerIDInterface(data.playerId);
-		var ents = Damage.EntitiesNearPoint(Vector2D.from3D(data.position), targetPosition.horizDistanceTo(data.position) * 2, cmpPlayer.GetEnemies());
+		let cmpPlayer = QueryPlayerIDInterface(data.playerId);
+		let ents = Damage.EntitiesNearPoint(Vector2D.from3D(data.position), targetPosition.horizDistanceTo(data.position) * 2, cmpPlayer.GetEnemies());
 
-		for (var i = 0; i < ents.length; i++)
+		for (let i = 0; i < ents.length; ++i)
 		{
 			if (this.testCollision(ents[i], data.position, lateness))
 			{
-				var newData = {"strengths":this.GetAttackStrengths(data.type), "target":ents[i], "attacker":this.entity, "multiplier":this.GetAttackBonus(data.type, ents[i]), "type":data.type};
-				Damage.CauseDamage(newData);
+				Damage.CauseDamage({
+						"strengths": this.GetAttackStrengths(data.type),
+						"target": ents[i],
+						"attacker": this.entity,
+						"multiplier": this.GetAttackBonus(data.type, ents[i]),
+						"type": data.type
+				});
 				// Remove the projectile
-				var cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
+				let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 				cmpProjectileManager.RemoveProjectile(data.projectileId);
 			}
 		}
@@ -705,11 +737,11 @@ Attack.prototype.OnValueModification = function(msg)
 	if (msg.component != "Attack")
 		return;
 
-	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	if (!cmpUnitAI)
 		return;
 
-	for (var type of this.GetAttackTypes())
+	for (let type of this.GetAttackTypes())
 		if (msg.valueNames.indexOf("Attack/"+type+"/MaxRange") !== -1)
 		{
 			cmpUnitAI.UpdateRangeQueries();
