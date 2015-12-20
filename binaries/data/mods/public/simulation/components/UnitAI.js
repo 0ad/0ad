@@ -1420,7 +1420,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.PushOrderFront("WalkAndFight", { "x": pos.x, "z": pos.z, "target": msg.data.attacker, "force": false });
 				// if we already had a WalkAndFight, keep only the most recent one in case the target has moved
 				if (this.orderQueue[1] && this.orderQueue[1].type == "WalkAndFight")
+				{
 					this.orderQueue.splice(1, 1);
+					Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
+				}
 			}
 		},
 
@@ -3345,7 +3348,10 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 		// except if garrisoned or cheering or (un)packing, in which case we only clear the order queue
 		if (this.isGarrisoned || (this.orderQueue[0] && (this.orderQueue[0].type == "Cheering"
 			|| this.orderQueue[0].type == "Pack" || this.orderQueue[0].type == "Unpack")))
+		{
 			this.orderQueue.length = Math.min(this.orderQueue.length, 1);
+			Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
+		}
 		else
 		{
 			let index = this.GetCurrentState().indexOf(".");
@@ -3396,16 +3402,16 @@ UnitAI.prototype.OnPickupRequested = function(msg)
 
 UnitAI.prototype.OnPickupCanceled = function(msg)
 {
-	for (var i = 0; i < this.orderQueue.length; ++i)
+	for (let i = 0; i < this.orderQueue.length; ++i)
 	{
-		if (this.orderQueue[i].type == "PickupUnit" && this.orderQueue[i].data.target == msg.entity)
-		{
-			if (i == 0)
-				this.UnitFsm.ProcessMessage(this, {"type": "PickupCanceled", "data": msg});
-			else
-				this.orderQueue.splice(i, 1);
-			break;
-		}
+		if (this.orderQueue[i].type != "PickupUnit" || this.orderQueue[i].data.target != msg.entity)
+			continue;
+		if (i == 0)
+			this.UnitFsm.ProcessMessage(this, {"type": "PickupCanceled", "data": msg});
+		else
+			this.orderQueue.splice(i, 1);
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
+		break;
 	}
 };
 
@@ -3552,7 +3558,7 @@ UnitAI.prototype.FinishOrder = function()
 
 	if (this.orderQueue.length)
 	{
-		var ret = this.UnitFsm.ProcessMessage(this,
+		let ret = this.UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
 
@@ -3561,9 +3567,7 @@ UnitAI.prototype.FinishOrder = function()
 		// If the order was rejected then immediately take it off
 		// and process the remaining queue
 		if (ret && ret.discardOrder)
-		{
 			return this.FinishOrder();
-		}
 
 		// Otherwise we've successfully processed a new order
 		return true;
@@ -3577,7 +3581,7 @@ UnitAI.prototype.FinishOrder = function()
 		// Check if there are queued formation orders
 		if (this.IsFormationMember())
 		{
-			var cmpUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+			let cmpUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
 			if (cmpUnitAI)
 			{
 				// Inform the formation controller that we finished this task
@@ -3606,17 +3610,17 @@ UnitAI.prototype.PushOrder = function(type, data)
 	if (this.orderQueue.length == 1)
 	{
 		this.order = order;
-		var ret = this.UnitFsm.ProcessMessage(this,
+		let ret = this.UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
-
-		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 		// If the order was rejected then immediately take it off
 		// and process the remaining queue
 		if (ret && ret.discardOrder)
 			this.FinishOrder();
 	}
+
+	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };
 
 /**
@@ -3642,11 +3646,9 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 	{
 		this.orderQueue.unshift(order);
 		this.order = order;
-		var ret = this.UnitFsm.ProcessMessage(this,
+		let ret = this.UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
-
-		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 		// If the order was rejected then immediately take it off again;
 		// assume the previous active order is still valid (the short-lived
@@ -3658,6 +3660,9 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 			this.order = this.orderQueue[0];
 		}
 	}
+
+	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
+
 };
 
 /**
@@ -3667,22 +3672,23 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 UnitAI.prototype.PushOrderAfterForced = function(type, data)
 {
 	if (!this.order || ((!this.order.data || !this.order.data.force) && this.order.type != type))
-	{
 		this.PushOrderFront(type, data);
-	}
 	else
 	{
-		for (var i = 1; i < this.orderQueue.length; ++i)
+		for (let i = 1; i < this.orderQueue.length; ++i)
 		{
 			if (this.orderQueue[i].data && this.orderQueue[i].data.force)
 				continue;
 			if (this.orderQueue[i].type == type)
 				continue;
 			this.orderQueue.splice(i, 0, {"type": type, "data": data});
+			Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 			return;
 		}
 		this.PushOrder(type, data);
 	}
+
+	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };
 
 UnitAI.prototype.ReplaceOrder = function(type, data)
@@ -3717,6 +3723,7 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 		this.orderQueue = [];
 		this.PushOrder(type, data);
 	}
+	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };
 
 UnitAI.prototype.GetOrders = function()
@@ -3801,6 +3808,7 @@ UnitAI.prototype.BackToWork = function()
 		this.orderQueue = [];
 
 	this.AddOrders(this.workOrders);
+	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 	// And if the unit is in a formation, remove it from the formation
 	if (this.IsFormationMember())
@@ -3890,13 +3898,22 @@ UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
 
 UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	for each (var order in this.orderQueue)
+	let changed = false;
+	for (let order of this.orderQueue)
 	{
 		if (order.data && order.data.target && order.data.target == msg.entity)
+		{
+			changed = true;
 			order.data.target = msg.newentity;
+		}
 		if (order.data && order.data.formationTarget && order.data.formationTarget == msg.entity)
+		{
+			changed = true;
 			order.data.formationTarget = msg.newentity;
+		}
 	}
+	if (changed)
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 	if (this.isGuardOf && this.isGuardOf == msg.entity)
 		this.isGuardOf = msg.newentity;
@@ -4867,6 +4884,8 @@ UnitAI.prototype.RemoveGuard = function()
 		for (var i = 1; i < this.orderQueue.length; ++i)
 			if (this.orderQueue[i].type == "Guard")
 				this.orderQueue.splice(i, 1);
+
+	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };
 
 UnitAI.prototype.IsGuardOf = function()
