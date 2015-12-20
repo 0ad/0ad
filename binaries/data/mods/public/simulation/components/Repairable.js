@@ -74,4 +74,13 @@ Repairable.prototype.Repair = function(builderEnt, rate)
 		Engine.PostMessage(this.entity, MT_ConstructionFinished, { "entity": this.entity, "newentity": this.entity });
 };
 
+Repairable.prototype.GetRepairRatio = function()
+{
+	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	let cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
+	let repairTime = this.repairTimeRatio * cmpCost.GetBuildTime();
+	let repairRatio = (cmpHealth.GetMaxHitpoints() / repairTime);
+	return (Math.round(repairRatio * 10 ) / 10);
+};
+
 Engine.RegisterComponentType(IID_Repairable, "Repairable", Repairable);

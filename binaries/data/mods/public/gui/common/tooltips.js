@@ -229,6 +229,21 @@ function getAttackTooltip(template)
 	return attacks.join("\n");
 }
 
+function getRepairRatioTooltip(ratio)
+{
+	let unit = sprintf(translate("%(health)s / %(second)s / %(worker)s"), {
+		"health": g_TooltipTextFormats.unit[0] + translate("health") + g_TooltipTextFormats.unit[1],
+		"second": g_TooltipTextFormats.unit[0] + translate("second") + g_TooltipTextFormats.unit[1],
+		"worker": g_TooltipTextFormats.unit[0] + translate("worker") + g_TooltipTextFormats.unit[1]
+	});
+
+	return "\n" + sprintf(translate("%(repairRateLabel)s %(detail)s %(unit)s"), {
+		"repairRateLabel": g_TooltipTextFormats.header[0] + translate("Repair Rate:") + g_TooltipTextFormats.header[1],
+		"detail": ratio,
+		"unit": unit
+	});
+}
+
 /**
  * Translates a cost component identifier as they are used internally
  * (e.g. "population", "food", etc.) to proper display names.
