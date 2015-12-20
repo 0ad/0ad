@@ -459,7 +459,8 @@ function checkPlayerState()
 	let m_simState = GetSimState();
 	let playerState = m_simState.players[Engine.GetPlayerID()];
 	let tempStates = "";
-	for each (var player in m_simState.players) {tempStates += player.state + ",";}
+	for (let player of m_simState.players)
+		tempStates += player.state + ",";
 
 	if (g_CachedLastStates != tempStates)
 	{
@@ -812,8 +813,8 @@ function recalculateStatusBarDisplay()
 	else
 	{
 		let selected = g_Selection.toList();
-		for each (var ent in g_Selection.highlighted)
-			selected.push(ent);
+		for (let ent in g_Selection.highlighted)
+			selected.push(g_Selection.highlighted[ent]);
 
 		// Remove selected entities from the 'all entities' array, to avoid disabling their status bars.
 		entities = Engine.GuiInterfaceCall("GetPlayerEntities").filter(idx => selected.indexOf(idx) == -1);
@@ -828,19 +829,19 @@ function updateAdditionalHighlight()
 	let entsAdd = []; // list of entities units to be highlighted
 	let entsRemove = [];
 	let highlighted = g_Selection.toList();
-	for each (var ent in g_Selection.highlighted)
-		highlighted.push(ent);
+	for (let ent in g_Selection.highlighted)
+		highlighted.push(g_Selection.highlighted[ent]);
 
 	if (g_ShowGuarding)
 	{
 		// flag the guarding entities to add in this additional highlight
-		for each (var sel in g_Selection.selected)
+		for (let sel in g_Selection.selected)
 		{
-			let state = GetEntityState(sel);
+			let state = GetEntityState(g_Selection.selected[sel]);
 			if (!state.guard || !state.guard.entities.length)
 				continue;
 
-			for each (var ent in state.guard.entities)
+			for (let ent of state.guard.entities)
 				if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1)
 					entsAdd.push(ent);
 		}
@@ -849,9 +850,9 @@ function updateAdditionalHighlight()
 	if (g_ShowGuarded)
 	{
 		// flag the guarded entities to add in this additional highlight
-		for each (var sel in g_Selection.selected)
+		for (let sel in g_Selection.selected)
 		{
-			let state = GetEntityState(sel);
+			let state = GetEntityState(g_Selection.selected[sel]);
 			if (!state.unitAI || !state.unitAI.isGuarding)
 				continue;
 			let ent = state.unitAI.isGuarding;
@@ -861,8 +862,8 @@ function updateAdditionalHighlight()
 	}
 
 	// flag the entities to remove (from the previously added) from this additional highlight
-	for each (var ent in g_AdditionalHighlight)
-	    if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1 && entsRemove.indexOf(ent) == -1)
+	for (let ent of g_AdditionalHighlight)
+		if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1 && entsRemove.indexOf(ent) == -1)
 			entsRemove.push(ent);
 
 	_setHighlight(entsAdd, g_HighlightedAlpha, true);
@@ -945,33 +946,33 @@ function reportGame(extendedSimState)
 	let playerStatistics = {};
 
 	// Unit Stats
-	for each (var unitCounterType in unitsCountersTypes)
+	for (let unitCounterType of unitsCountersTypes)
 	{
 		if (!playerStatistics[unitCounterType])
 			playerStatistics[unitCounterType] = { };
-		for each (var unitsClass in unitsClasses)
+		for (let unitsClass of unitsClasses)
 			playerStatistics[unitCounterType][unitsClass] = "";
 	}
 
 	playerStatistics.unitsLostValue = "";
 	playerStatistics.unitsKilledValue = "";
 	// Building stats
-	for each (var buildingCounterType in buildingsCountersTypes)
+	for (let buildingCounterType of buildingsCountersTypes)
 	{
 		if (!playerStatistics[buildingCounterType])
 			playerStatistics[buildingCounterType] = { };
-		for each (var buildingsClass in buildingsClasses)
+		for (let buildingsClass of buildingsClasses)
 			playerStatistics[buildingCounterType][buildingsClass] = "";
 	}
 
 	playerStatistics.buildingsLostValue = "";
 	playerStatistics.enemyBuildingsDestroyedValue = "";
 	// Resources
-	for each (var resourcesCounterType in resourcesCounterTypes)
+	for (let resourcesCounterType of resourcesCounterTypes)
 	{
 		if (!playerStatistics[resourcesCounterType])
 			playerStatistics[resourcesCounterType] = { };
-		for each (var resourcesType in resourcesTypes)
+		for (let resourcesType of resourcesTypes)
 			playerStatistics[resourcesCounterType][resourcesType] = "";
 	}
 	playerStatistics.resourcesGathered.vegetarianFood = "";
@@ -1006,21 +1007,22 @@ function reportGame(extendedSimState)
 		playerCivs += player.civ + ",";
 		teams += player.team + ",";
 		teamsLocked = teamsLocked && player.teamsLocked;
-		for each (var resourcesCounterType in resourcesCounterTypes)
-			for each (var resourcesType in resourcesTypes)
+		for (let resourcesCounterType of resourcesCounterTypes)
+			for (let resourcesType of resourcesTypes)
 				playerStatistics[resourcesCounterType][resourcesType] += player.statistics[resourcesCounterType][resourcesType] + ",";
 		playerStatistics.resourcesGathered.vegetarianFood += player.statistics.resourcesGathered.vegetarianFood + ",";
 
-		for each (var unitCounterType in unitsCountersTypes)
-			for each (var unitsClass in unitsClasses)
+		for (let unitCounterType of unitsCountersTypes)
+			for (let unitsClass of unitsClasses)
 				playerStatistics[unitCounterType][unitsClass] += player.statistics[unitCounterType][unitsClass] + ",";
 
-		for each (var buildingCounterType in buildingsCountersTypes)
-			for each (var buildingsClass in buildingsClasses)
+		for (let buildingCounterType of buildingsCountersTypes)
+			for (let buildingsClass of buildingsClasses)
 				playerStatistics[buildingCounterType][buildingsClass] += player.statistics[buildingCounterType][buildingsClass] + ",";
-		var total = 0;
-		for each (var res in player.statistics.resourcesGathered)
+		let total = 0;
+		for (let res of player.statistics.resourcesGathered)
 			total += res;
+
 		playerStatistics.economyScore += total + ",";
 		playerStatistics.militaryScore += Math.round((player.statistics.enemyUnitsKilledValue +
 			player.statistics.enemyBuildingsDestroyedValue) / 10)  + ",";
@@ -1049,21 +1051,21 @@ function reportGame(extendedSimState)
 	reportObject.economyScore = playerStatistics.economyScore;
 	reportObject.militaryScore = playerStatistics.militaryScore;
 	reportObject.totalScore = playerStatistics.totalScore;
-	for each (var rct in resourcesCounterTypes)
+	for (let rct of resourcesCounterTypes)
 	{
-		for each (var rt in resourcesTypes)
+		for (let rt of resourcesTypes)
 			reportObject[rt+rct.substr(9)] = playerStatistics[rct][rt];
 			// eg. rt = food rct.substr = Gathered rct = resourcesGathered
 	}
 	reportObject.vegetarianFoodGathered = playerStatistics.resourcesGathered.vegetarianFood;
-	for each (var type in unitsClasses)
+	for (let type of unitsClasses)
 	{
 		// eg. type = Infantry (type.substr(0,1)).toLowerCase()+type.substr(1) = infantry
 		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"UnitsTrained"] = playerStatistics.unitsTrained[type];
 		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"UnitsLost"] = playerStatistics.unitsLost[type];
 		reportObject["enemy"+type+"UnitsKilled"] = playerStatistics.enemyUnitsKilled[type];
 	}
-	for each (var type in buildingsClasses)
+	for (let type of buildingsClasses)
 	{
 		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"BuildingsConstructed"] = playerStatistics.buildingsConstructed[type];
 		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"BuildingsLost"] = playerStatistics.buildingsLost[type];
