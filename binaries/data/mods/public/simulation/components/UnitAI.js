@@ -2350,6 +2350,16 @@ UnitAI.prototype.UnitFsmSpec = {
 					var herdPos = this.order.data.initPos;
 
 					// Give up on this order and try our next queued order
+					// but first check what is our next order and, if needed, insert a returnResource order
+					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+					if (cmpResourceGatherer.IsCarrying(resourceType.generic) &&
+						this.orderQueue.length > 1 && this.orderQueue[1] !== "ReturnResource" &&
+						(this.orderQueue[1].type !== "Gather" || this.orderQueue[1].data.type.generic !== resourceType.generic))
+					{
+						let nearby = this.FindNearestDropsite(resourceType.generic);
+						if (nearby)
+							this.orderQueue.splice(1, 0, { "type": "ReturnResource", "data": { "target": nearby, "force": false } });
+					}
 					if (this.FinishOrder())
 						return;
 
