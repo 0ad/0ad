@@ -315,7 +315,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 	// Make sure everything is properly freed.
 	if (allocatedUrls)
 		FreeUPNPUrls(&urls);
-    
+
 	freeUPNPDevlist(devlist);
 
 	return NULL;
@@ -366,7 +366,7 @@ void CNetServerWorker::Run()
 {
 	// The script runtime uses the profiler and therefore the thread must be registered before the runtime is created
 	g_Profiler2.RegisterCurrentThread("Net server");
-	
+
 	// To avoid the need for JS_SetContextThread, we create and use and destroy
 	// the script interface entirely within this network thread
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime(g_ScriptRuntime));
@@ -384,7 +384,7 @@ void CNetServerWorker::Run()
 		// Update profiler stats
 		m_Stats->LatchHostState(m_Host);
 	}
-	
+
 	// Clear roots before deleting their context
 	m_GameAttributes.clear();
 	m_SavedCommands.clear();
@@ -397,9 +397,9 @@ bool CNetServerWorker::RunStep()
 	// Check for messages from the game thread.
 	// (Do as little work as possible while the mutex is held open,
 	// to avoid performance problems and deadlocks.)
-	
+
 	m_ScriptInterface->GetRuntime()->MaybeIncrementalGC(0.5f);
-	
+
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
@@ -1029,7 +1029,7 @@ bool CNetServerWorker::OnJoinSyncingLoadedGame(void* context, CFsmEvent* event)
 	// The simulation may have progressed since then, so send any subsequent
 	// commands to them and set them as an active player so they can participate
 	// in all future turns.
-	// 
+	//
 	// (TODO: if it takes a long time for them to receive and execute all these
 	// commands, the other players will get frozen for that time and may be unhappy;
 	// we could try repeating this process a few times until the client converges

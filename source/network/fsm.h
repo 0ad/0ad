@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ typedef bool ( *CONDITION )	( void* pContext );
 typedef bool ( *ACTION )	( void* pContext, const CFsmEvent* pEvent );
 
 typedef struct
-{ 
+{
 	void*	pFunction;
 	void*	pContext;
 
@@ -79,11 +79,11 @@ public:
 	CFsmTransition( unsigned int state );
 	~CFsmTransition( void );
 
-	void				 RegisterAction		( 
+	void				 RegisterAction		(
 											 void* pAction,
 											 void* pContext );
-	void				 RegisterCondition	( 
-											 void* pCondition, 
+	void				 RegisterCondition	(
+											 void* pCondition,
 											 void* pContext );
 	void				 SetEvent			( CFsmEvent* pEvent );
 	CFsmEvent*			 GetEvent			( void ) const	{ return m_Event; }
@@ -91,7 +91,7 @@ public:
 	unsigned int		 GetNextState		( void ) const	{ return m_NextState; }
 	unsigned int		 GetCurrState		( void ) const	{ return m_CurrState; }
 	const CallbackList&	 GetActions			( void ) const	{ return m_Actions; }
-	const CallbackList&	 GetConditions		( void ) const	{ return m_Conditions; }	
+	const CallbackList&	 GetConditions		( void ) const	{ return m_Conditions; }
 	bool				 ApplyConditions	( void ) const;
 	bool				 RunActions			( void ) const;
 
@@ -135,7 +135,7 @@ public:
 
 	void			AddState			( unsigned int state );
 	CFsmEvent*		AddEvent			( unsigned int eventType );
-	CFsmTransition*	AddTransition		( 
+	CFsmTransition*	AddTransition		(
 										 unsigned int state,
 										 unsigned int eventType,
 										 unsigned int nextState );
@@ -145,7 +145,7 @@ public:
 										 unsigned int nextState,
 										 void* pAction,
 										 void* pContext );
-	CFsmTransition*	GetTransition		( 
+	CFsmTransition*	GetTransition		(
 										 unsigned int state,
 										 unsigned int eventType ) const;
 	CFsmTransition*	GetEventTransition	( unsigned int eventType ) const;

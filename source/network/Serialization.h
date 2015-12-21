@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,7 +83,7 @@ public:
 	virtual size_t GetSerializedLength() const = 0;
 	/**
 	 * Serialize the object into the passed buffer.
-	 * 
+	 *
 	 * @return a pointer to the location in the buffer right after the
 	 * serialized object
 	 */
@@ -95,7 +95,7 @@ public:
 	 *
 	 * @param buffer A pointer pointing to the start of the serialized data.
 	 * @param end A pointer to the end of the message.
-	 * 
+	 *
 	 * @returns a pointer to the location in the buffer right after the
 	 * serialized object, or NULL if there was a data format error
 	 */

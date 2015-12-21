@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -269,7 +269,7 @@ CFsmEvent* CFsm::AddEvent( unsigned int eventType )
 // Name: AddTransition()
 // Desc: Adds a new transistion to the state machine
 //-----------------------------------------------------------------------------
-CFsmTransition* CFsm::AddTransition( 
+CFsmTransition* CFsm::AddTransition(
 									unsigned int state,
 									unsigned int eventType,
 									unsigned int nextState )
@@ -306,7 +306,7 @@ CFsmTransition* CFsm::AddTransition(
 // Name: AddTransition()
 // Desc: Adds a new transition to the state machine
 //-----------------------------------------------------------------------------
-CFsmTransition* CFsm::AddTransition( 
+CFsmTransition* CFsm::AddTransition(
 									unsigned int state,
 									unsigned int eventType,
 									unsigned int nextState,
@@ -315,7 +315,7 @@ CFsmTransition* CFsm::AddTransition(
 {
 	CFsmTransition* pTransition = AddTransition( state, eventType, nextState );
 	if ( !pTransition ) return NULL;
-	
+
 	// If action specified, register it
 	if ( pAction )
 		pTransition->RegisterAction( pAction, pContext );
@@ -402,7 +402,7 @@ bool CFsm::Update( unsigned int eventType, void* pEventParam )
 
 	// Lookup transition
 	CFsmTransition* pTransition = GetTransition( m_CurrState, eventType );
-	if ( !pTransition ) 
+	if ( !pTransition )
 		return false;
 
 	// Setup event parameter
@@ -414,7 +414,7 @@ bool CFsm::Update( unsigned int eventType, void* pEventParam )
 	}
 
 	// Valid transition?
-	if ( !pTransition->ApplyConditions() ) 
+	if ( !pTransition->ApplyConditions() )
 		return false;
 
 	// Save the default state transition (actions might call SetNextState
@@ -422,7 +422,7 @@ bool CFsm::Update( unsigned int eventType, void* pEventParam )
 	SetNextState( pTransition->GetNextState() );
 
 	// Run transition actions
-	if ( !pTransition->RunActions() ) 
+	if ( !pTransition->RunActions() )
 		return false;
 
 	// Switch state
@@ -430,7 +430,7 @@ bool CFsm::Update( unsigned int eventType, void* pEventParam )
 
 	// Reset the next state since it's no longer valid
 	SetNextState( FSM_INVALID_STATE );
-	
+
 	return true;
 }
 

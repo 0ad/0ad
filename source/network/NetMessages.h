@@ -33,7 +33,7 @@
 
 // Defines the list of message types. The order of the list must not change.
 // The message types having a negative value are used internally and not sent
-// over the network. The message types used for network communication have 
+// over the network. The message types used for network communication have
 // positive values.
 enum NetMessageType
 {
