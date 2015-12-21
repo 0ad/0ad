@@ -11,9 +11,9 @@ function draw()
 	if (!Object.keys(g_DrawLimits).length)
 		predraw();
 
-	var defWidth = 96;
-	var defMargin = 4;
-	var phaseList = g_ParsedData.phaseList;
+	let defWidth = 96;
+	let defMargin = 4;
+	let phaseList = g_ParsedData.phaseList;
 
 	Engine.GetGUIObjectByName("civEmblem").sprite = "stretched:"+g_CivData[g_SelectedCiv].Emblem;
 	Engine.GetGUIObjectByName("civName").caption = g_CivData[g_SelectedCiv].Name;
@@ -84,7 +84,7 @@ function draw()
 
 			let size = thisEle.size;
 			size.left = y;
-			size.right = size.left + ((c*24 < defWidth)?defWidth:c*24)+4;
+			size.right = size.left + ((c*24 < defWidth) ? defWidth : c*24) + 4;
 			y = size.right + defMargin;
 			thisEle.size = size;
 
@@ -106,7 +106,7 @@ function draw()
 		++i;
 	}
 	
-	var t = 0;
+	let t = 0;
 	for (let trainer of g_CivData[g_SelectedCiv].trainList)
 	{
 		let thisEle = Engine.GetGUIObjectByName("trainer["+t+"]");
@@ -145,26 +145,17 @@ function draw()
 		++t;
 	}
 	hideRemaining("trainer[", t, "]");
-	
-	if (t > 0)
-	{
-		Engine.GetGUIObjectByName("display_trainers").hidden = false;
-		var size = Engine.GetGUIObjectByName("display_tree").size;
-		size.right = -124;
-		Engine.GetGUIObjectByName("display_tree").size = size;
-	}
-	else
-	{
-		Engine.GetGUIObjectByName("display_trainers").hidden = true;
-		var size = Engine.GetGUIObjectByName("display_tree").size;
-		size.right = -4;
-		Engine.GetGUIObjectByName("display_tree").size = size;
-	}
+
+	let size = Engine.GetGUIObjectByName("display_tree").size;
+	size.right = t > 0 ? -124 : -4;
+	Engine.GetGUIObjectByName("display_tree").size = size;
+
+	Engine.GetGUIObjectByName("display_trainers").hidden = t == 0;
 }
 
 function drawProdIcon(pha, s, r, p, prod)
 {
-	var prodEle = Engine.GetGUIObjectByName("phase["+pha+"]_struct["+s+"]_row["+r+"]_prod["+p+"]");
+	let prodEle = Engine.GetGUIObjectByName("phase["+pha+"]_struct["+s+"]_row["+r+"]_prod["+p+"]");
 	if (pha === null)
 		prodEle = Engine.GetGUIObjectByName("trainer["+s+"]_prod["+p+"]");
 
@@ -185,9 +176,9 @@ function drawProdIcon(pha, s, r, p, prod)
  */
 function getPositionOffset(idx)
 {
-	var phases = g_ParsedData.phaseList.length;
+	let phases = g_ParsedData.phaseList.length;
 
-	var size = 92*idx; // text, image and offset
+	let size = 92*idx; // text, image and offset
 	size += 24 * (phases*idx - (idx-1)*idx/2); // phase rows (phase-currphase+1 per row)
 
 	return size;
@@ -214,8 +205,8 @@ function hideRemaining(prefix, idx, suffix)
  */
 function predraw()
 {
-	var phaseList = g_ParsedData.phaseList;
-	var initIconSize = Engine.GetGUIObjectByName("phase[0]_struct[0]_row[0]_prod[0]").size;
+	let phaseList = g_ParsedData.phaseList;
+	let initIconSize = Engine.GetGUIObjectByName("phase[0]_struct[0]_row[0]_prod[0]").size;
 
 	let phaseCount = phaseList.length;
 	let i = 0;
@@ -246,8 +237,8 @@ function predraw()
 		let s = 0;
 		let ele = Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]");
 		g_DrawLimits[pha] = {
-			structQuant: 0,
-			prodQuant: []
+			"structQuant": 0,
+			"prodQuant": []
 		};
 
 		do
@@ -295,14 +286,14 @@ function predraw()
 	hideRemaining("phase[", i, "]");
 	hideRemaining("phase[", i, "]_bar");
 	
-	var t = 0;
-	var ele = Engine.GetGUIObjectByName("trainer["+t+"]");
+	let t = 0;
+	let ele = Engine.GetGUIObjectByName("trainer["+t+"]");
 	g_DrawLimits.trainer = {
-		trainerQuant: 0,
-		prodQuant: 0
+		"trainerQuant": 0,
+		"prodQuant": 0
 	};
 	
-	var x = 4;
+	let x = 4;
 	do
 	{
 		let p = 0;
@@ -343,19 +334,19 @@ function predraw()
  */
 function assembleTooltip(template)
 {
-	var txt = getEntityNamesFormatted(template);
+	let txt = getEntityNamesFormatted(template);
 	txt += '\n' + getEntityCostTooltip(template, 1);
 
 	if (template.tooltip)
-		txt += '\n' + txtFormats.body[0] +  translate(template.tooltip) + txtFormats.body[1];
+		txt += '\n' + g_TooltipTextFormats.body[0] +  translate(template.tooltip) + g_TooltipTextFormats.body[1];
 
 	if (template.auras)
 		txt += getAurasTooltip(template);
 
 	if (template.health)
 		txt += '\n' + sprintf(translate("%(label)s %(details)s"), {
-			label: txtFormats.header[0] + translate("Health:") + txtFormats.header[1],
-			details: template.health
+			"label": g_TooltipTextFormats.header[0] + translate("Health:") + g_TooltipTextFormats.header[1],
+			"details": template.health
 		});
 
 	if (template.healer)
@@ -371,16 +362,16 @@ function assembleTooltip(template)
 
 	if (template.gather)
 	{
-		var rates = [];
+		let rates = [];
 		for (let type in template.gather)
 			rates.push(sprintf(translate("%(resourceIcon)s %(rate)s"), {
-				resourceIcon: getCostComponentDisplayName(type),
-				rate: template.gather[type]
+				"resourceIcon": getCostComponentDisplayName(type),
+				"rate": template.gather[type]
 			}));
 
 		txt += '\n' + sprintf(translate("%(label)s %(details)s"), {
-			label: txtFormats.header[0] + translate("Gather Rates:") + txtFormats.header[1],
-			details: rates.join("  ")
+			"label": g_TooltipTextFormats.header[0] + translate("Gather Rates:") + g_TooltipTextFormats.header[1],
+			"details": rates.join("  ")
 		});
 	}
 

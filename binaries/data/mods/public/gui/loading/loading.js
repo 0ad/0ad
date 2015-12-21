@@ -1,5 +1,5 @@
-var g_Data;
-const END_PIECE_WIDTH = 16;
+let g_Data;
+const g_EndPieceWidth = 16;
 
 function init(data)
 {
@@ -9,27 +9,27 @@ function init(data)
 	Engine.SetCursor("cursor-wait");
 
 	// Get tip image and corresponding tip text
-	var tipTextLoadingArray = Engine.BuildDirEntList("gui/text/tips/", "*.txt", false);
+	let tipTextLoadingArray = Engine.BuildDirEntList("gui/text/tips/", "*.txt", false);
 
 	if (tipTextLoadingArray.length > 0)
 	{
 		// Set tip text
-		var tipTextFilePath = tipTextLoadingArray[getRandom (0, tipTextLoadingArray.length-1)];
-		var tipText = Engine.TranslateLines(Engine.ReadFile(tipTextFilePath));
+		let tipTextFilePath = tipTextLoadingArray[getRandom (0, tipTextLoadingArray.length-1)];
+		let tipText = Engine.TranslateLines(Engine.ReadFile(tipTextFilePath));
 
 		if (tipText)
 		{
-			var index = tipText.indexOf("\n");
-			var tipTextTitle = tipText.substring(0, index);
-			var tipTextMessage = tipText.substring(index);
+			let index = tipText.indexOf("\n");
+			let tipTextTitle = tipText.substring(0, index);
+			let tipTextMessage = tipText.substring(index);
 			Engine.GetGUIObjectByName("tipTitle").caption = tipTextTitle? tipTextTitle : "";
 			Engine.GetGUIObjectByName("tipText").caption = tipTextMessage? tipTextMessage : "";
 		}
 
 		// Set tip image
-		var fileName = tipTextFilePath.substring(tipTextFilePath.lastIndexOf("/")+1).replace(".txt", ".png");
-		var tipImageFilePath = "loading/tips/" + fileName;
-		var sprite = "stretched:" + tipImageFilePath;
+		let fileName = tipTextFilePath.substring(tipTextFilePath.lastIndexOf("/")+1).replace(".txt", ".png");
+		let tipImageFilePath = "loading/tips/" + fileName;
+		let sprite = "stretched:" + tipImageFilePath;
 		Engine.GetGUIObjectByName("tipImage").sprite = sprite? sprite : "";
 	}
 	else
@@ -37,11 +37,11 @@ function init(data)
 
 	// janwas: main loop now sets progress / description, but that won't
 	// happen until the first timeslice completes, so set initial values.
-	var loadingMapName = Engine.GetGUIObjectByName("loadingMapName");
+	let loadingMapName = Engine.GetGUIObjectByName("loadingMapName");
 
 	if (data)
 	{
-		var mapName = translate(data.attribs.settings.Name);
+		let mapName = translate(data.attribs.settings.Name);
 		switch (data.attribs.mapType)
 		{
 		case "skirmish":
@@ -62,7 +62,7 @@ function init(data)
 	Engine.GetGUIObjectByName("progressbar").caption = 0;
 
 	// Pick a random quote of the day (each line is a separate tip).
-	var quoteArray = Engine.ReadFileLines("gui/text/quotes.txt");
+	let quoteArray = Engine.ReadFileLines("gui/text/quotes.txt");
 	Engine.GetGUIObjectByName("quoteText").caption = translate(quoteArray[getRandom(0, quoteArray.length-1)]);
 }
 
@@ -73,7 +73,7 @@ function displayProgress()
 		return;
 
 	// Show 100 when it is really 99
-	var progress = g_Progress + 1;
+	let progress = g_Progress + 1;
 
 	Engine.GetGUIObjectByName("progressbar").caption = progress; // display current progress
 	Engine.GetGUIObjectByName("progressText").caption = progress + "%";
@@ -82,15 +82,15 @@ function displayProgress()
 	// Engine.GetGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
 
 	// Keep curved right edge of progress bar in sync with the rest of the progress bar
-	var middle = Engine.GetGUIObjectByName("progressbar");
-	var rightSide = Engine.GetGUIObjectByName("progressbar_right");
+	let middle = Engine.GetGUIObjectByName("progressbar");
+	let rightSide = Engine.GetGUIObjectByName("progressbar_right");
 
-	var middleLength = (middle.size.right - middle.size.left) - (END_PIECE_WIDTH / 2);
-	var increment = Math.round(progress * middleLength / 100);
+	let middleLength = (middle.size.right - middle.size.left) - (g_EndPieceWidth / 2);
+	let increment = Math.round(progress * middleLength / 100);
 
-	var size = rightSide.size;
+	let size = rightSide.size;
 	size.left = increment;
-	size.right = increment + END_PIECE_WIDTH;
+	size.right = increment + g_EndPieceWidth;
 	rightSide.size = size;
 }
 
@@ -105,7 +105,7 @@ function reallyStartGame()
 
 	// Restore default cursor.
 	Engine.SetCursor("arrow-default");
-	
+
 	// Notify the other clients that we have finished the loading screen
 	if (g_Data.isNetworked && g_Data.isRejoining)
 		Engine.SendNetworkRejoined();

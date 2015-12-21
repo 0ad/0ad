@@ -305,7 +305,14 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 ResourceGatherer.prototype.CanCarryMore = function(type)
 {
 	let amount = (this.carrying[type] || 0);
-	return (amount < this.GetCapacity(type));
+	return amount < this.GetCapacity(type);
+};
+
+
+ResourceGatherer.prototype.IsCarrying = function(type)
+{
+	let amount = (this.carrying[type] || 0);
+	return amount > 0;
 };
 
 /**

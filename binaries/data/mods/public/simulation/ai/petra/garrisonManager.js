@@ -37,9 +37,13 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 		}
 
 		// Update the list of garrisoned units
-		for (var j = 0; j < list.length; ++j)
+		for (let j = 0; j < list.length; ++j)
 		{
-			var ent = gameState.getEntityById(list[j]);
+			for (let evt of events.EntityRenamed)
+				if (evt.entity === list[j])
+					list[j] = evt.newentity;
+
+			let ent = gameState.getEntityById(list[j]);
 			if (!ent)	// unit must have been killed while garrisoning
 				list.splice(j--, 1);    
 			else if (holder.garrisoned().indexOf(list[j]) !== -1)   // unit is garrisoned
@@ -49,9 +53,8 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 			}
 			else
 			{
-				var ok = false;
-				var orders = ent.unitAIOrderData();
-				for (var order of orders)
+				let ok = false;
+				for (let order of ent.unitAIOrderData())
 				{
 					if (!order.target || order.target != id)
 						continue;
