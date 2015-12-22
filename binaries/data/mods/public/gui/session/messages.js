@@ -462,10 +462,6 @@ function addChatMessage(msg)
 			n = 0;
 		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
 		username = escapeText(g_PlayerAssignments[msg.guid].name);
-
-		// Parse in-line commands in regular messages.
-		if (msg.type == "message")
-			parseChatCommands(msg);
 	}
 	else if (msg.type == "defeat" && msg.player)
 	{
@@ -474,7 +470,6 @@ function addChatMessage(msg)
 	else if (msg.type == "message")
 	{
 		[username, playerColor] = getUsernameAndColor(msg.player);
-		parseChatCommands(msg);
 	}
 	else
 	{
@@ -581,14 +576,15 @@ function addChatMessage(msg)
 		formatted = sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 		break;
 	case "message":
+		parseChatCommands(msg);
 		// May have been hidden by the 'team' command.
 		if (msg.hide)
 			return;
 
-		if ("translate" in msg && msg.translate)
+		if (msg.translate)
 		{
 			message = translate(msg.text); // No need to escape, not a user message.
-			if ("translateParameters" in msg && msg.translateParameters)
+			if (msg.translateParameters)
 			{
 				let parameters = msg.parameters || {};
 				translateObjectKeys(parameters, msg.translateParameters);
@@ -598,9 +594,9 @@ function addChatMessage(msg)
 		else
 			message = escapeText(msg.text);
 
-		if (msg.action)
+		if (msg.me)
 		{
-			if (msg.context !== "")
+			if (msg.context)
 			{
 				formatted = sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
 					"context": msg.context,
@@ -618,9 +614,8 @@ function addChatMessage(msg)
 		}
 		else
 		{
-			let userTag = sprintf(translate("<%(user)s>"), { "user": username });
 			let formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-			if (msg.context !== "")
+			if (msg.context)
 			{
 				formatted = sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
 					"context": msg.context,
@@ -721,7 +716,7 @@ function parseChatCommands(msg)
 		recurse = true;
 		break;
 	case "/me":
-		msg.action = true;
+		msg.me = true;
 		break;
 	case "/msg":
 		let trimmed = msg.text.substr(split[0].length + 1);
