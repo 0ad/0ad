@@ -93,46 +93,41 @@ var g_NotificationsTypes =
 	{
 		let message = {
 			"type": "message",
+			"guid": findGuidForPlayerID(g_PlayerAssignments, player) || -1,
 			"text": notification.message
 		};
-		let guid = findGuidForPlayerID(g_PlayerAssignments, player);
-		if (guid == undefined)
-		{
-			message["guid"] = -1;
-			message["player"] = player;
-		} else {
-			message["guid"] = guid;
-		}
+
+		if (message.guid == -1)
+			message.player = player;
+
 		addChatMessage(message);
 	},
 	"aichat": function(notification, player)
 	{
 		let message = {
+			"guid": findGuidForPlayerID(g_PlayerAssignments, player) || -1,
 			"type": "message",
-			"text": notification.message
+			"text": notification.message,
+			"translate": true
 		};
-		message["translate"] = true;
-		if ("translateParameters" in notification)
+
+		if (message.guid == -1)
+			message.player = player;
+
+		if (notification.translateParameters)
 		{
-			message["translateParameters"] = notification["translateParameters"];
-			message["parameters"] = notification["parameters"];
+			message.translateParameters = notification.translateParameters;
+			message.parameters = notification.parameters;
 			// special case for formatting of player names which are transmitted as _player_num
-			for (let param in message["parameters"])
+			for (let param in message.parameters)
 			{
 				if (!param.startsWith("_player_"))
 					continue;
-				let colorName = getUsernameAndColor(+message["parameters"][param]);
-				message["parameters"][param] = "[color=\"" + colorName[1] + "\"]" + colorName[0] + "[/color]";
+				let colorName = getUsernameAndColor(+message.parameters[param]);
+				message.parameters[param] = "[color=\"" + colorName[1] + "\"]" + colorName[0] + "[/color]";
 			}
 		}
-		let guid = findGuidForPlayerID(g_PlayerAssignments, player);
-		if (guid == undefined)
-		{
-			message["guid"] = -1;
-			message["player"] = player;
-		} else {
-			message["guid"] = guid;
-		}
+
 		addChatMessage(message);
 	},
 	"defeat": function(notification, player)
@@ -574,11 +569,11 @@ function formatTributeMessage(msg)
 
 	// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
 	let amounts = Object.keys(msg.amounts)
-		.filter(function (type) { return msg.amounts[type] > 0; })
-		.map(function (type) { return sprintf(translate("%(amount)s %(resourceType)s"), {
+		.filter(type => msg.amounts[type] > 0)
+		.map(type => sprintf(translate("%(amount)s %(resourceType)s"), {
 			"amount": msg.amounts[type],
-			"resourceType": getLocalizedResourceName(type, "withinSentence")});
-		});
+			"resourceType": getLocalizedResourceName(type, "withinSentence")
+		}));
 
 	if (amounts.length > 1)
 	{
