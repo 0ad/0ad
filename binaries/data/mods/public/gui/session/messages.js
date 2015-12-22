@@ -497,30 +497,47 @@ function formatChatMessage(msg)
 		username = translate("Unknown player");
 	}
 
-	let message;
 	let colorizedPlayername = { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" };
 
 	switch (msg.type)
 	{
-	case "system":
-		return msg.text;
-	case "connect":
-		return sprintf(translate("%(player)s is starting to rejoin the game."), colorizedPlayername);
-	case "disconnect":
-		return sprintf(translate("%(player)s has left the game."), colorizedPlayername);
-	case "rejoined":
-		return sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
-	case "clientlist":
+	case "system":     return msg.text;
+	case "connect":    return sprintf(translate("%(player)s is starting to rejoin the game."), colorizedPlayername);
+	case "disconnect": return sprintf(translate("%(player)s has left the game."), colorizedPlayername);
+	case "rejoined":   return sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
+	case "clientlist": return formatClientList();
+	case "defeat":     return formatDefeatMessage(msg, username, playerColor);
+	case "diplomacy":  return formatDiplomacyMessage(msg);
+	case "tribute":    return formatTributeMessage(msg);
+	case "attack":     return formatAttackMessage(msg;
+	case "message":    return formatChatCommand(msg, username, playerColor);
+	}
+
+	error("Invalid chat message " + uneval(msg));
+	return "";
+}
+
+function formatClientList()
+{
 		return sprintf(translate("Users: %(users)s"),
 			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
 			{ "users": getUsernameList().join(translate(", ")) });
-	case "defeat":
+}
+
+function formatDefeatMessage(msg, username, playerColor)
+{
 		// In singleplayer, the local player is "You". "You has" is incorrect.
 		if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
 			return translate("You have been defeated.");
 		else
 			return sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-	case "diplomacy":
+}
+
+function formatDiplomacyMessage(msg)
+{
+	let message;
+	let username;
+	let playerColor;
 		if (msg.player == Engine.GetPlayerID())
 		{
 			[username, playerColor] = getUsernameAndColor(msg.player1);
@@ -545,11 +562,14 @@ function formatChatMessage(msg)
 			return "";
 
 		return sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
-	case "tribute":
+}
+
+function formatTributeMessage(msg)
+{
 		if (msg.player != Engine.GetPlayerID())
 			return "";
 
-		[username, playerColor] = getUsernameAndColor(msg.player1);
+		let [username, playerColor] = getUsernameAndColor(msg.player1);
 
 		// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
 		let amounts = Object.keys(msg.amounts)
@@ -573,24 +593,34 @@ function formatChatMessage(msg)
 			"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
 			"amounts": amounts
 		});
-	case "attack":
+}
+
+function formatAttackMessage(msg)
+{
 		if (msg.player != Engine.GetPlayerID())
 			return "";
 
-		[username, playerColor] = getUsernameAndColor(msg.attacker);
+		let [username, playerColor] = getUsernameAndColor(msg.attacker);
 		// Since livestock can be attacked/gathered by other players,
 		// we display a more specific notification in this case to not confuse the player
+		let message;
 		if (msg.targetIsDomesticAnimal)
 			message = translate("Your livestock has been attacked by %(attacker)s!");
 		else
 			message = translate("You have been attacked by %(attacker)s!");
 		return sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-	case "message":
+}
+
+function formatChatCommand(msg, playerColor, username)
+{
 		parseChatCommands(msg);
+
 		// May have been hidden by the 'team' command.
 		if (msg.hide)
 			return "";
 
+		// Translate or escape text
+		let message;
 		if (msg.translate)
 		{
 			message = translate(msg.text); // No need to escape, not a user message.
@@ -630,10 +660,6 @@ function formatChatMessage(msg)
 			else
 				return sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
 		}
-	default:
-		error("Invalid chat message " + uneval(msg));
-		return "";
-	}
 }
 
 /**
