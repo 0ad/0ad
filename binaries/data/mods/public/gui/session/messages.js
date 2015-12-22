@@ -71,7 +71,7 @@ function executeCheat(text)
 	if (cheat.DefaultParameter && (isNaN(parameter) || parameter <= 0))
 		parameter = cheat.DefaultParameter;
 
-	Engine.PostNetworkCommand({ 
+	Engine.PostNetworkCommand({
 		"type": "cheat",
 		"action": cheat.Action,
 		"text": cheat.Type,
@@ -209,20 +209,20 @@ function handleNotifications()
 			error("Notification without type found.\n"+uneval(notification));
 			continue;
 		}
-		
+
 		if (!notification.players)
 		{
 			error("Notification without players found.\n"+uneval(notification));
 			continue;
 		}
-		
+
 		let action = g_NotificationsTypes[notification.type];
 		if (!action)
 		{
 			error("Unknown notification type '" + notification.type + "' found.");
 			continue;
 		}
-		
+
 		for (let player of notification.players)
 			action(notification, player);
 	}
@@ -454,7 +454,7 @@ function addChatMessage(msg)
 	// No context by default. May be set by parseChatCommands().
 	msg.context = "";
 
-	if ("guid" in msg && g_PlayerAssignments[msg.guid])
+	if (msg.guid && g_PlayerAssignments[msg.guid])
 	{
 		let n = g_PlayerAssignments[msg.guid].player;
 		// Observers have an ID of -1 which is not a valid index.
@@ -484,25 +484,26 @@ function addChatMessage(msg)
 
 	let formatted;
 	let message;
+	let colorizedPlayername = { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" };
 
 	switch (msg.type)
 	{
+	case "system":
+		formatted = msg.text;
+		break;
 	case "connect":
-		formatted = sprintf(translate("%(player)s is starting to rejoin the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s is starting to rejoin the game."), colorizedPlayername);
 		break;
 	case "disconnect":
-		formatted = sprintf(translate("%(player)s has left the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s has left the game."), colorizedPlayername);
 		break;
 	case "rejoined":
-		formatted = sprintf(translate("%(player)s has rejoined the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+		formatted = sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
 		break;
 	case "clientlist":
 		formatted = sprintf(translate("Users: %(users)s"),
 			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
 			{ "users": getUsernameList().join(translate(", ")) });
-		break;
-	case "system":
-		formatted = msg.text;
 		break;
 	case "defeat":
 		// In singleplayer, the local player is "You". "You has" is incorrect.
@@ -538,7 +539,7 @@ function addChatMessage(msg)
 		formatted = sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
 		break;
 	case "tribute":
-		if (msg.player != Engine.GetPlayerID()) 
+		if (msg.player != Engine.GetPlayerID())
 			return;
 
 		[username, playerColor] = getUsernameAndColor(msg.player1);
@@ -567,7 +568,7 @@ function addChatMessage(msg)
 		});
 		break;
 	case "attack":
-		if (msg.player != Engine.GetPlayerID()) 
+		if (msg.player != Engine.GetPlayerID())
 			return;
 
 		[username, playerColor] = getUsernameAndColor(msg.attacker);
