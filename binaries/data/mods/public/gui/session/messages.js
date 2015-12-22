@@ -93,7 +93,7 @@ var g_NotificationsTypes =
 	{
 		let message = {
 			"type": "message",
-			"guid": findGuidForPlayerID(g_PlayerAssignments, player) || -1,
+			"guid": findGuidForPlayerID(player) || -1,
 			"text": notification.message
 		};
 
@@ -105,7 +105,7 @@ var g_NotificationsTypes =
 	"aichat": function(notification, player)
 	{
 		let message = {
-			"guid": findGuidForPlayerID(g_PlayerAssignments, player) || -1,
+			"guid": findGuidForPlayerID(player) || -1,
 			"type": "message",
 			"text": notification.message,
 			"translate": true
@@ -134,7 +134,7 @@ var g_NotificationsTypes =
 	{
 		addChatMessage({
 			"type": "defeat",
-			"guid": findGuidForPlayerID(g_PlayerAssignments, player),
+			"guid": findGuidForPlayerID(player),
 			"player": player
 		});
 
@@ -259,14 +259,18 @@ function updateTimeNotifications()
 /**
  * Returns [username, playercolor] for the given player.
  */
-function getUsernameAndColor(player)
+function getUsernameAndColor(playerID)
 {
 	// This case is hit for AIs, whose names don't exist in g_PlayerAssignments.
-	let color = g_Players[player].color;
 	return [
-		escapeText(g_Players[player].name),
-		color.r + " " + color.g + " " + color.b,
+		playerID > -1 ? escapeText(g_Players[playerID].name) : translate("Unknown Player"),
+		playerID > -1 ? rgbToGuiColor(g_Players[playerID].color) : "white"
 	];
+}
+
+function getUsernameAndColorByGUID(guid)
+{
+	return getUsernameAndColor(g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].player : -1);
 }
 
 /**
@@ -464,34 +468,10 @@ function addChatMessage(msg)
  */
 function formatChatMessage(msg)
 {
-	let playerColor, username;
-
 	// No context by default. May be set by parseChatCommands().
 	msg.context = "";
 
-	if (msg.guid && g_PlayerAssignments[msg.guid])
-	{
-		let n = g_PlayerAssignments[msg.guid].player;
-		// Observers have an ID of -1 which is not a valid index.
-		if (n < 0)
-			n = 0;
-		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
-		username = escapeText(g_PlayerAssignments[msg.guid].name);
-	}
-	else if (msg.type == "defeat" && msg.player)
-	{
-		[username, playerColor] = getUsernameAndColor(msg.player);
-	}
-	else if (msg.type == "message")
-	{
-		[username, playerColor] = getUsernameAndColor(msg.player);
-	}
-	else
-	{
-		playerColor = "255 255 255";
-		username = translate("Unknown player");
-	}
-
+	let [username, playerColor] = getUsernameAndColorByGUID(msg.guid || -1);
 	let colorizedPlayername = { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" };
 
 	switch (msg.type)
@@ -501,11 +481,11 @@ function formatChatMessage(msg)
 	case "disconnect": return sprintf(translate("%(player)s has left the game."), colorizedPlayername);
 	case "rejoined":   return sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
 	case "clientlist": return formatClientList();
-	case "defeat":     return formatDefeatMessage(msg, playerColor, username);
+	case "defeat":     return formatDefeatMessage(msg);
 	case "diplomacy":  return formatDiplomacyMessage(msg);
 	case "tribute":    return formatTributeMessage(msg);
 	case "attack":     return formatAttackMessage(msg);
-	case "message":    return formatChatCommand(msg, playerColor, username);
+	case "message":    return formatChatCommand(msg);
 	}
 
 	error("Invalid chat message " + uneval(msg));
@@ -519,13 +499,14 @@ function formatClientList()
 		{ "users": getUsernameList().join(translate(", ")) });
 }
 
-function formatDefeatMessage(msg, username, playerColor)
+function formatDefeatMessage(msg)
 {
 	// In singleplayer, the local player is "You". "You has" is incorrect.
 	if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
 		return translate("You have been defeated.");
-	else
-		return sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+
+	let [username, playerColor] = getUsernameAndColor(msg.player);
+	return sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 }
 
 function formatDiplomacyMessage(msg)
@@ -609,7 +590,7 @@ function formatAttackMessage(msg)
 	return sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 }
 
-function formatChatCommand(msg, playerColor, username)
+function formatChatCommand(msg)
 {
 	parseChatCommands(msg);
 
@@ -632,6 +613,7 @@ function formatChatCommand(msg, playerColor, username)
 	else
 		message = escapeText(msg.text);
 
+	let [username, playerColor] = getUsernameAndColorByGUID(msg.guid);
 	if (msg.me)
 	{
 		if (msg.context)
