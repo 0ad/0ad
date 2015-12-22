@@ -519,18 +519,18 @@ function formatChatMessage(msg)
 
 function formatClientList()
 {
-		return sprintf(translate("Users: %(users)s"),
-			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
-			{ "users": getUsernameList().join(translate(", ")) });
+	return sprintf(translate("Users: %(users)s"),
+		// Translation: This comma is used for separating first to penultimate elements in an enumeration.
+		{ "users": getUsernameList().join(translate(", ")) });
 }
 
 function formatDefeatMessage(msg, username, playerColor)
 {
-		// In singleplayer, the local player is "You". "You has" is incorrect.
-		if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
-			return translate("You have been defeated.");
-		else
-			return sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+	// In singleplayer, the local player is "You". "You has" is incorrect.
+	if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
+		return translate("You have been defeated.");
+	else
+		return sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 }
 
 function formatDiplomacyMessage(msg)
@@ -538,128 +538,129 @@ function formatDiplomacyMessage(msg)
 	let message;
 	let username;
 	let playerColor;
-		if (msg.player == Engine.GetPlayerID())
-		{
-			[username, playerColor] = getUsernameAndColor(msg.player1);
-			if (msg.status == "ally")
-				message = translate("You are now allied with %(player)s.");
-			else if (msg.status == "enemy")
-				message = translate("You are now at war with %(player)s.");
-			else // (msg.status == "neutral")
-				message = translate("You are now neutral with %(player)s.");
-		}
-		else if (msg.player1 == Engine.GetPlayerID())
-		{
-			[username, playerColor] = getUsernameAndColor(msg.player);
-			if (msg.status == "ally")
-				message = translate("%(player)s is now allied with you.");
-			else if (msg.status == "enemy")
-				message = translate("%(player)s is now at war with you.");
-			else // (msg.status == "neutral")
-				message = translate("%(player)s is now neutral with you.");
-		}
-		else // No need for other players to know of this.
-			return "";
 
-		return sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
+	if (msg.player == Engine.GetPlayerID())
+	{
+		[username, playerColor] = getUsernameAndColor(msg.player1);
+		if (msg.status == "ally")
+			message = translate("You are now allied with %(player)s.");
+		else if (msg.status == "enemy")
+			message = translate("You are now at war with %(player)s.");
+		else // (msg.status == "neutral")
+			message = translate("You are now neutral with %(player)s.");
+	}
+	else if (msg.player1 == Engine.GetPlayerID())
+	{
+		[username, playerColor] = getUsernameAndColor(msg.player);
+		if (msg.status == "ally")
+			message = translate("%(player)s is now allied with you.");
+		else if (msg.status == "enemy")
+			message = translate("%(player)s is now at war with you.");
+		else // (msg.status == "neutral")
+			message = translate("%(player)s is now neutral with you.");
+	}
+	else // No need for other players to know of this.
+		return "";
+
+	return sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
 }
 
 function formatTributeMessage(msg)
 {
-		if (msg.player != Engine.GetPlayerID())
-			return "";
+	if (msg.player != Engine.GetPlayerID())
+		return "";
 
-		let [username, playerColor] = getUsernameAndColor(msg.player1);
+	let [username, playerColor] = getUsernameAndColor(msg.player1);
 
-		// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
-		let amounts = Object.keys(msg.amounts)
-			.filter(function (type) { return msg.amounts[type] > 0; })
-			.map(function (type) { return sprintf(translate("%(amount)s %(resourceType)s"), {
-				"amount": msg.amounts[type],
-				"resourceType": getLocalizedResourceName(type, "withinSentence")});
-			});
-
-		if (amounts.length > 1)
-		{
-			let lastAmount = amounts.pop();
-			amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
-				// Translation: This comma is used for separating first to penultimate elements in an enumeration.
-				"previousAmounts": amounts.join(translate(", ")),
-				"lastAmount": lastAmount
-			});
-		}
-
-		return sprintf(translate("%(player)s has sent you %(amounts)s."), {
-			"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
-			"amounts": amounts
+	// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
+	let amounts = Object.keys(msg.amounts)
+		.filter(function (type) { return msg.amounts[type] > 0; })
+		.map(function (type) { return sprintf(translate("%(amount)s %(resourceType)s"), {
+			"amount": msg.amounts[type],
+			"resourceType": getLocalizedResourceName(type, "withinSentence")});
 		});
+
+	if (amounts.length > 1)
+	{
+		let lastAmount = amounts.pop();
+		amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
+			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
+			"previousAmounts": amounts.join(translate(", ")),
+			"lastAmount": lastAmount
+		});
+	}
+
+	return sprintf(translate("%(player)s has sent you %(amounts)s."), {
+		"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+		"amounts": amounts
+	});
 }
 
 function formatAttackMessage(msg)
 {
-		if (msg.player != Engine.GetPlayerID())
-			return "";
+	if (msg.player != Engine.GetPlayerID())
+		return "";
 
-		let [username, playerColor] = getUsernameAndColor(msg.attacker);
-		// Since livestock can be attacked/gathered by other players,
-		// we display a more specific notification in this case to not confuse the player
-		let message;
-		if (msg.targetIsDomesticAnimal)
-			message = translate("Your livestock has been attacked by %(attacker)s!");
-		else
-			message = translate("You have been attacked by %(attacker)s!");
-		return sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+	let [username, playerColor] = getUsernameAndColor(msg.attacker);
+
+	// Since livestock can be attacked/gathered by other players,
+	// we display a more specific notification in this case to not confuse the player
+	let message;
+	if (msg.targetIsDomesticAnimal)
+		message = translate("Your livestock has been attacked by %(attacker)s!");
+	else
+		message = translate("You have been attacked by %(attacker)s!");
+
+	return sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 }
 
 function formatChatCommand(msg, playerColor, username)
 {
-		parseChatCommands(msg);
+	parseChatCommands(msg);
 
-		// May have been hidden by the 'team' command.
-		if (msg.hide)
-			return "";
+	// May have been hidden by the 'team' command.
+	if (msg.hide)
+		return "";
 
-		// Translate or escape text
-		let message;
-		if (msg.translate)
+	// Translate or escape text
+	let message;
+	if (msg.translate)
+	{
+		message = translate(msg.text); // No need to escape, not a user message.
+		if (msg.translateParameters)
 		{
-			message = translate(msg.text); // No need to escape, not a user message.
-			if (msg.translateParameters)
-			{
-				let parameters = msg.parameters || {};
-				translateObjectKeys(parameters, msg.translateParameters);
-				message = sprintf(message, parameters);
-			}
+			let parameters = msg.parameters || {};
+			translateObjectKeys(parameters, msg.translateParameters);
+			message = sprintf(message, parameters);
 		}
+	}
+	else
+		message = escapeText(msg.text);
+
+	if (msg.me)
+	{
+		if (msg.context)
+			return sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
+				"context": msg.context,
+				"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+				"message": message
+			});
 		else
-			message = escapeText(msg.text);
+			return sprintf(translate("* %(user)s %(message)s"), {
+				"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+				"message": message
+			});
+	}
 
-		if (msg.me)
-		{
-			if (msg.context)
-				return sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
-					"context": msg.context,
-					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
-					"message": message
-				});
-			else
-				return sprintf(translate("* %(user)s %(message)s"), {
-					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
-					"message": message
-				});
-		}
-		else
-		{
-			let formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-			if (msg.context)
-				return sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
-					"context": msg.context,
-					"userTag": formattedUserTag,
-					"message": message
-				});
-			else
-				return sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
-		}
+	let formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+	if (msg.context)
+		return sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
+			"context": msg.context,
+			"userTag": formattedUserTag,
+			"message": message
+		});
+	else
+		return sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
 }
 
 /**
