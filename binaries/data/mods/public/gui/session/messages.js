@@ -449,6 +449,26 @@ function submitChatInput()
  */
 function addChatMessage(msg)
 {
+	let formatted = formatChatMessage(msg);
+	if (!formatted)
+		return;
+
+	g_ChatMessages.push(formatted);
+	g_ChatTimers.push(setTimeout(removeOldChatMessage, g_ChatTimeout * 1000));
+
+	if (g_ChatMessages.length > g_ChatLines)
+		removeOldChatMessage();
+	else
+		Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
+}
+
+/**
+ * Returns a formated or empty string.
+ *
+ * @param msg {string}
+ */
+function formatChatMessage(msg)
+{
 	let playerColor, username;
 
 	// No context by default. May be set by parseChatCommands().
@@ -477,36 +497,29 @@ function addChatMessage(msg)
 		username = translate("Unknown player");
 	}
 
-	let formatted;
 	let message;
 	let colorizedPlayername = { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" };
 
 	switch (msg.type)
 	{
 	case "system":
-		formatted = msg.text;
-		break;
+		return msg.text;
 	case "connect":
-		formatted = sprintf(translate("%(player)s is starting to rejoin the game."), colorizedPlayername);
-		break;
+		return sprintf(translate("%(player)s is starting to rejoin the game."), colorizedPlayername);
 	case "disconnect":
-		formatted = sprintf(translate("%(player)s has left the game."), colorizedPlayername);
-		break;
+		return sprintf(translate("%(player)s has left the game."), colorizedPlayername);
 	case "rejoined":
-		formatted = sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
-		break;
+		return sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
 	case "clientlist":
-		formatted = sprintf(translate("Users: %(users)s"),
+		return sprintf(translate("Users: %(users)s"),
 			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
 			{ "users": getUsernameList().join(translate(", ")) });
-		break;
 	case "defeat":
 		// In singleplayer, the local player is "You". "You has" is incorrect.
 		if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
-			formatted = translate("You have been defeated.");
+			return translate("You have been defeated.");
 		else
-			formatted = sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-		break;
+			return sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 	case "diplomacy":
 		if (msg.player == Engine.GetPlayerID())
 		{
@@ -529,13 +542,12 @@ function addChatMessage(msg)
 				message = translate("%(player)s is now neutral with you.");
 		}
 		else // No need for other players to know of this.
-			return;
+			return "";
 
-		formatted = sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
-		break;
+		return sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
 	case "tribute":
 		if (msg.player != Engine.GetPlayerID())
-			return;
+			return "";
 
 		[username, playerColor] = getUsernameAndColor(msg.player1);
 
@@ -557,14 +569,13 @@ function addChatMessage(msg)
 			});
 		}
 
-		formatted = sprintf(translate("%(player)s has sent you %(amounts)s."), {
+		return sprintf(translate("%(player)s has sent you %(amounts)s."), {
 			"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
 			"amounts": amounts
 		});
-		break;
 	case "attack":
 		if (msg.player != Engine.GetPlayerID())
-			return;
+			return "";
 
 		[username, playerColor] = getUsernameAndColor(msg.attacker);
 		// Since livestock can be attacked/gathered by other players,
@@ -573,13 +584,12 @@ function addChatMessage(msg)
 			message = translate("Your livestock has been attacked by %(attacker)s!");
 		else
 			message = translate("You have been attacked by %(attacker)s!");
-		formatted = sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-		break;
+		return sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 	case "message":
 		parseChatCommands(msg);
 		// May have been hidden by the 'team' command.
 		if (msg.hide)
-			return;
+			return "";
 
 		if (msg.translate)
 		{
@@ -597,48 +607,33 @@ function addChatMessage(msg)
 		if (msg.me)
 		{
 			if (msg.context)
-			{
-				formatted = sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
+				return sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
 					"context": msg.context,
 					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
 					"message": message
 				});
-			}
 			else
-			{
-				formatted = sprintf(translate("* %(user)s %(message)s"), {
+				return sprintf(translate("* %(user)s %(message)s"), {
 					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
 					"message": message
 				});
-			}
 		}
 		else
 		{
 			let formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
 			if (msg.context)
-			{
-				formatted = sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
+				return sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
 					"context": msg.context,
 					"userTag": formattedUserTag,
 					"message": message
 				});
-			}
 			else
-				formatted = sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
+				return sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
 		}
-		break;
 	default:
 		error("Invalid chat message " + uneval(msg));
-		return;
+		return "";
 	}
-
-	g_ChatMessages.push(formatted);
-	g_ChatTimers.push(setTimeout(removeOldChatMessage, g_ChatTimeout * 1000));
-
-	if (g_ChatMessages.length > g_ChatLines)
-		removeOldChatMessage();
-	else
-		Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
 /**
