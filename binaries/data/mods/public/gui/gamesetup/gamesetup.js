@@ -1319,7 +1319,7 @@ function updateGUIObjects()
 		let civ = getSetting(pData, pDefs, "Civ");
 
 		pAssignmentText.caption = pAssignment.list[0] ? pAssignment.list[Math.max(0, pAssignment.selected)] : translate("Loading...");
-		pCivText.caption = civ == "random" ? g_RandomCiv : g_CivData[civ].Name;
+		pCivText.caption = civ == "random" ? g_RandomCiv : (g_CivData[civ] ? g_CivData[civ].Name : "Unknown");
 		pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
 
 		pCiv.selected = civ ? pCiv.list_data.indexOf(civ) : 0;

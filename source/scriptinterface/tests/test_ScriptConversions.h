@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -101,23 +101,30 @@ public:
 
 		std::string s1 = "test";
 		s1[1] = '\0';
+		std::string s2 = "тест";
+		s2[2] = s2[3] = '\0';
 
 		std::wstring w1 = L"test";
 		w1[1] = '\0';
+		std::wstring w2 = L"тест";
+		w2[1] = '\0';
 
 		roundtrip<std::string>("", "\"\"");
 		roundtrip<std::string>("test", "\"test\"");
+		roundtrip<std::string>("тест", "\"\\xD1\\x82\\xD0\\xB5\\xD1\\x81\\xD1\\x82\"");
 		roundtrip<std::string>(s1, "\"t\\x00st\"");
-		// TODO: should test non-ASCII strings
+		roundtrip<std::string>(s2, "\"\\xD1\\x82\\x00\\x00\\xD1\\x81\\xD1\\x82\"");
 
 		roundtrip<std::wstring>(L"", "\"\"");
 		roundtrip<std::wstring>(L"test", "\"test\"");
+		roundtrip<std::wstring>(L"тест", "\"\\u0442\\u0435\\u0441\\u0442\"");
 		roundtrip<std::wstring>(w1, "\"t\\x00st\"");
-		// TODO: should test non-ASCII strings
+		roundtrip<std::wstring>(w2, "\"\\u0442\\x00\\u0441\\u0442\"");
 
 		convert_to<const char*>("", "\"\"");
 		convert_to<const char*>("test", "\"test\"");
 		convert_to<const char*>(s1.c_str(), "\"t\"");
+		convert_to<const char*>(s2.c_str(), "\"\\xD1\\x82\"");
 
 		roundtrip<fixed>(fixed::FromInt(0), "0");
 		roundtrip<fixed>(fixed::FromInt(123), "123");

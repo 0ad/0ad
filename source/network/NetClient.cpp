@@ -75,7 +75,7 @@ CNetClient::CNetClient(CGame* game) :
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
 	void* context = this;
-	
+
 	JS_AddExtraGCRootsTracer(GetScriptInterface().GetJSRuntime(), CNetClient::Trace, this);
 
 	// Set up transitions for session
@@ -193,7 +193,7 @@ void CNetClient::GuiPoll(JS::MutableHandleValue ret)
 }
 
 void CNetClient::PushGuiMessage(const JS::HandleValue message)
-{	
+{
 	ENSURE(!message.isUndefined());
 
 	m_GuiMessageQueue.push_back(JS::Heap<JS::Value>(message));
@@ -203,7 +203,7 @@ std::string CNetClient::TestReadGuiMessages()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	std::string r;
 	JS::RootedValue msg(cx);
 	while (true)
@@ -225,7 +225,7 @@ void CNetClient::PostPlayerAssignmentsToScript()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	JS::RootedValue msg(cx);
 	GetScriptInterface().Eval("({'type':'players', 'hosts':{}})", &msg);
 
@@ -262,7 +262,7 @@ void CNetClient::HandleDisconnect(u32 reason)
 {
 	JSContext* cx = GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	JS::RootedValue msg(cx);
 	GetScriptInterface().Eval("({'type':'netstatus','status':'disconnected'})", &msg);
 	GetScriptInterface().SetProperty(msg, "reason", (int)reason, false);
@@ -342,7 +342,7 @@ void CNetClient::LoadFinished()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	if (!m_JoinSyncBuffer.empty())
 	{
 		// We're rejoining a game, and just finished loading the initial map,
@@ -432,7 +432,7 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 	ENSURE(event->GetType() == (uint)NMT_AUTHENTICATE_RESULT);
 
 	CNetClient* client = (CNetClient*)context;
-	
+
 	JSContext* cx = client->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 

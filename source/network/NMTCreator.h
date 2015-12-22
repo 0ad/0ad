@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -91,7 +91,7 @@ public: \
  * @param _netsz The number of bytes that should be serialized. If the variable
  * has a value larger than the maximum value of the specified network size,
  * higher order bytes will be discarded.
- */		
+ */
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
 	_hosttp _nm;
 

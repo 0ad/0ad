@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,8 +46,8 @@ public:
 	NetMessageType GetType() const { return m_Type; }
 
 	/**
-	 * Serialize the message into the specified buffer parameter. The size 
-	 * required by the buffer parameter can be found by a call to 
+	 * Serialize the message into the specified buffer parameter. The size
+	 * required by the buffer parameter can be found by a call to
 	 * GetSerializedLength method. The information contained within the message
 	 * must be serialized before the message is sent. By default only the
 	 * message type and its size are serialized in the buffer parameter.
@@ -116,7 +116,7 @@ public:
 	CSimulationMessage(ScriptInterface& scriptInterface);
 	CSimulationMessage(ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, JS::HandleValue data);
 
-	/** The compiler can't create a copy constructor because of the PersistentRooted member, 
+	/** The compiler can't create a copy constructor because of the PersistentRooted member,
 	 * so we have to write it manually.
 	 * NOTE: It doesn't clone the m_Data member and the copy will reference the same JS::Value!
 	 */

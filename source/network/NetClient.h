@@ -68,10 +68,10 @@ public:
 	CNetClient(CGame* game);
 
 	virtual ~CNetClient();
-	
+
 	/**
 	 * We assume that adding a tracing function that's only called
-	 * during GC is better for performance than using a 
+	 * during GC is better for performance than using a
 	 * PersistentRooted<T> where each value needs to be added to
 	 * the root set.
 	 */
@@ -79,9 +79,9 @@ public:
 	{
 		reinterpret_cast<CNetClient*>(data)->TraceMember(trc);
 	}
-	
+
 	void TraceMember(JSTracer *trc);
-	
+
 	/**
 	 * Set the user's name that will be displayed to all players.
 	 * This must not be called after the connection setup.
@@ -177,7 +177,7 @@ public:
 	void LoadFinished();
 
 	void SendChatMessage(const std::wstring& text);
-	
+
 	void SendReadyMessage(const int status);
 
 	/**

@@ -74,7 +74,7 @@ public:
 	 * Advance the simulation by a certain time. If this brings us past the current
 	 * turn length, the next turns are processed and the function returns true.
 	 * Otherwise, nothing happens and it returns false.
-	 * 
+	 *
 	 * @param simFrameLength Length of the previous frame, in simulation seconds
 	 * @param maxTurns Maximum number of turns to simulate at once
 	 */
@@ -212,7 +212,7 @@ public:
 	virtual void OnSimulationMessage(CSimulationMessage* msg);
 
 	virtual void PostCommand(JS::HandleValue data);
-	
+
 	/**
 	 * Notifiy the server that all commands are sent to prepare the connection for termination.
 	 */

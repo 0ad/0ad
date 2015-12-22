@@ -162,7 +162,7 @@ public:
 	template<typename T0, typename T1, typename T2>
 	bool CallFunctionVoid(JS::HandleValue val, const char* name, const T0& a0, const T1& a1, const T2& a2);
 
-	JSObject* CreateCustomObject(const std::string & typeName);
+	JSObject* CreateCustomObject(const std::string & typeName) const;
 	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);
 
 	jsval GetGlobalObject();

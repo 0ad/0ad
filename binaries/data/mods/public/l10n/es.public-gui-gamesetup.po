@@ -40,9 +40,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-11-11 04:16+0100\n"
-"PO-Revision-Date: 2015-11-11 10:10+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2015-12-18 09:00+0100\n"
+"PO-Revision-Date: 2015-12-18 09:51+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,191 +59,172 @@ msgstr "Ninguno"
 msgid "AI will be disabled for this player."
 msgstr "La IA se desactivará para este jugador."
 
-#: gui/gamesetup/gamesetup.js:108
-msgid "Return to the main menu."
-msgstr "Volver al menú principal."
-
-#: gui/gamesetup/gamesetup.js:110
-msgid "Return to the lobby."
-msgstr "Volver a la Sala multijugador."
-
-#: gui/gamesetup/gamesetup.js:133 gui/gamesetup/gamesetup.js:1376
-#: gui/gamesetup/gamesetup.js:1440
+#: gui/gamesetup/gamesetup.js:32 gui/gamesetup/gamesetup.js:1263
 msgid "Default"
 msgstr "Por defecto"
 
-#: gui/gamesetup/gamesetup.js:134
+#: gui/gamesetup/gamesetup.js:37
 msgid "Naval Maps"
 msgstr "Mapas navales"
 
-#: gui/gamesetup/gamesetup.js:135
+#: gui/gamesetup/gamesetup.js:42
 msgid "Demo Maps"
 msgstr "Mapas de ejemplo"
 
-#: gui/gamesetup/gamesetup.js:136
+#: gui/gamesetup/gamesetup.js:47
 msgid "All Maps"
 msgstr "Todos los mapas"
 
-#: gui/gamesetup/gamesetup.js:364
-msgctxt "team"
-msgid "None"
-msgstr "Ninguno"
-
-#: gui/gamesetup/gamesetup.js:512
-#, javascript-format
-msgid "%(username)s has been kicked"
-msgstr "Han echado a %(username)s de la partida"
-
-#: gui/gamesetup/gamesetup.js:516
-#, javascript-format
-msgid "%(username)s has been banned"
-msgstr "A %(username)s se le ha prohibido la entrada"
-
-#: gui/gamesetup/gamesetup.js:591 gui/gamesetup/gamesetup.js:1525
-msgctxt "civilization"
-msgid "Random"
-msgstr "Aleatorio"
-
-#: gui/gamesetup/gamesetup.js:655 gui/gamesetup/gamesetup.js:1460
+#: gui/gamesetup/gamesetup.js:76 gui/gamesetup/gamesetup.js:1380
 msgctxt "map"
 msgid "Random"
 msgstr "Aleatorio"
 
-#: gui/gamesetup/gamesetup.js:916 gui/gamesetup/gamesetup.js:1086
+#: gui/gamesetup/gamesetup.js:81
+msgctxt "civilization"
+msgid "Random"
+msgstr "Aleatorio"
+
+#: gui/gamesetup/gamesetup.js:167
+msgid "Return to the lobby."
+msgstr "Volver a la Sala multijugador."
+
+#: gui/gamesetup/gamesetup.js:167
+msgid "Return to the main menu."
+msgstr "Volver al menú principal."
+
+#: gui/gamesetup/gamesetup.js:449
+msgid "Yes"
+msgstr "Sí"
+
+#: gui/gamesetup/gamesetup.js:449
+msgid "No"
+msgstr "No"
+
+#: gui/gamesetup/gamesetup.js:490
+msgctxt "team"
+msgid "None"
+msgstr "Ninguno"
+
+#: gui/gamesetup/gamesetup.js:550
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr "Han echado a %(username)s de la partida"
+
+#: gui/gamesetup/gamesetup.js:554
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr "A %(username)s se le ha prohibido la entrada"
+
+#: gui/gamesetup/gamesetup.js:1110
 msgid "You"
 msgstr "Tú"
 
-#: gui/gamesetup/gamesetup.js:1175
+#: gui/gamesetup/gamesetup.js:1186
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1295 gui/gamesetup/gamesetup.js:1303
-#: gui/gamesetup/gamesetup.js:1311 gui/gamesetup/gamesetup.js:1366
-#: gui/gamesetup/gamesetup.js:1367 gui/gamesetup/gamesetup.js:1368
-#: gui/gamesetup/gamesetup.js:1370 gui/gamesetup/gamesetup.js:1405
-#: gui/gamesetup/gamesetup.js:1406 gui/gamesetup/gamesetup.js:1407
-#: gui/gamesetup/gamesetup.js:1409 gui/gamesetup/gamesetup.js:1441
-#: gui/gamesetup/gamesetup.js:1442 gui/gamesetup/gamesetup.js:1445
-msgid "Yes"
-msgstr "Sí"
+#: gui/gamesetup/gamesetup.js:1329
+msgid "Loading..."
+msgstr "Cargando..."
 
-#: gui/gamesetup/gamesetup.js:1295 gui/gamesetup/gamesetup.js:1303
-#: gui/gamesetup/gamesetup.js:1311 gui/gamesetup/gamesetup.js:1366
-#: gui/gamesetup/gamesetup.js:1367 gui/gamesetup/gamesetup.js:1368
-#: gui/gamesetup/gamesetup.js:1370 gui/gamesetup/gamesetup.js:1405
-#: gui/gamesetup/gamesetup.js:1406 gui/gamesetup/gamesetup.js:1407
-#: gui/gamesetup/gamesetup.js:1409 gui/gamesetup/gamesetup.js:1441
-#: gui/gamesetup/gamesetup.js:1442 gui/gamesetup/gamesetup.js:1443
-#: gui/gamesetup/gamesetup.js:1445
-msgid "No"
-msgstr "No"
-
-#: gui/gamesetup/gamesetup.js:1447 gui/gamesetup/gamesetup.js:1448
-#: gui/gamesetup/gamesetup.js:1449
-msgid "Determined by scenario"
-msgstr "Depende del escenario"
-
-#: gui/gamesetup/gamesetup.js:1461
-msgid "Randomly selects a map from the list"
-msgstr "Elige un mapa al azar de la lista"
-
-#: gui/gamesetup/gamesetup.js:1468
+#: gui/gamesetup/gamesetup.js:1372
 msgid "Sorry, no description available."
 msgstr "No hay ninguna descripción disponible."
 
-#: gui/gamesetup/gamesetup.js:1471
+#: gui/gamesetup/gamesetup.js:1374
+msgid "Randomly selects a map from the list"
+msgstr "Elige un mapa al azar de la lista"
+
+#: gui/gamesetup/gamesetup.js:1376
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s jugador. "
 msgstr[1] "%(number)s jugadores. "
 
-#: gui/gamesetup/gamesetup.js:1475 gui/gamesetup/gamesetup.xml:(caption):296
+#: gui/gamesetup/gamesetup.js:1377 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
 msgstr "Condición de victoria:"
 
-#: gui/gamesetup/gamesetup.js:1511
-msgid "Loading..."
-msgstr "Cargando..."
-
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1449
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1641
+#: gui/gamesetup/gamesetup.js:1454
 msgid "Unassigned"
 msgstr "Sin asignar"
 
-#: gui/gamesetup/gamesetup.js:1819 gui/gamesetup/gamesetup.js:1824
-#: gui/gamesetup/gamesetup.js:1834 gui/gamesetup/gamesetup.js:1852
+#: gui/gamesetup/gamesetup.js:1643 gui/gamesetup/gamesetup.js:1648
+#: gui/gamesetup/gamesetup.js:1658 gui/gamesetup/gamesetup.js:1676
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1819
+#: gui/gamesetup/gamesetup.js:1643
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s se acaba de unir"
 
-#: gui/gamesetup/gamesetup.js:1824
+#: gui/gamesetup/gamesetup.js:1648
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s acaba de irse"
 
-#: gui/gamesetup/gamesetup.js:1828
+#: gui/gamesetup/gamesetup.js:1652
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Usuarios: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/gamesetup/gamesetup.js:1830
+#: gui/gamesetup/gamesetup.js:1654
 msgid ", "
 msgstr ", "
 
-#: gui/gamesetup/gamesetup.js:1839
+#: gui/gamesetup/gamesetup.js:1663
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1840
+#: gui/gamesetup/gamesetup.js:1664
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1670
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* ¡%(username)s está listo!"
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1672
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s no está listo."
 
-#: gui/gamesetup/gamesetup.js:1852
+#: gui/gamesetup/gamesetup.js:1676
 msgid "Game settings have been changed"
 msgstr "Los ajustes de la partida han cambiado"
 
-#: gui/gamesetup/gamesetup.js:1877
+#: gui/gamesetup/gamesetup.js:1701
 msgid "I'm not ready"
 msgstr "No estoy listo"
 
-#: gui/gamesetup/gamesetup.js:1878
+#: gui/gamesetup/gamesetup.js:1702
 msgid "State that you are not ready to play."
 msgstr "Indica que no estás listo para jugar."
 
-#: gui/gamesetup/gamesetup.js:1883 gui/gamesetup/gamesetup.js:1961
+#: gui/gamesetup/gamesetup.js:1707 gui/gamesetup/gamesetup.js:1785
 msgid "I'm ready!"
 msgstr "¡Estoy listo!"
 
-#: gui/gamesetup/gamesetup.js:1884
+#: gui/gamesetup/gamesetup.js:1708
 msgid "State that you are ready to play!"
 msgstr "¡Indica que estás listo para jugar!"
 
-#: gui/gamesetup/gamesetup.js:1962
+#: gui/gamesetup/gamesetup.js:1786
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "¡Indica que aceptas los ajustes de partida y que estás listo para jugar!"
 
@@ -288,174 +269,174 @@ msgstr "Cargando «%(map)s»"
 msgid "Generating “%(map)s”"
 msgstr "Generando «%(map)s»"
 
-#: gui/aiconfig/aiconfig.xml:(caption):14
+#: gui/aiconfig/aiconfig.xml:(caption):16
 msgid "AI Configuration"
 msgstr "Ajustes de IA"
 
-#: gui/aiconfig/aiconfig.xml:(caption):19
+#: gui/aiconfig/aiconfig.xml:(caption):21
 msgid "AI Player:"
 msgstr "Jugador de la IA:"
 
-#: gui/aiconfig/aiconfig.xml:(caption):27
+#: gui/aiconfig/aiconfig.xml:(caption):29
 msgid "AI Difficulty:"
 msgstr "Dificultad de la IA:"
 
-#: gui/aiconfig/aiconfig.xml:(caption):37
+#: gui/aiconfig/aiconfig.xml:(caption):39
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: gui/aiconfig/aiconfig.xml:(caption):42
-#: gui/gamesetup/gamesetup.xml:(caption):413
+#: gui/aiconfig/aiconfig.xml:(caption):44
+#: gui/gamesetup/gamesetup.xml:(caption):407
 msgid "OK"
 msgstr "Aceptar"
 
-#: gui/gamesetup/gamesetup.xml:(caption):18
+#: gui/gamesetup/gamesetup.xml:(caption):19
 msgid "Match Setup"
 msgstr "Ajustes de partida"
 
-#: gui/gamesetup/gamesetup.xml:(caption):24
+#: gui/gamesetup/gamesetup.xml:(caption):25
 msgid "Loading"
 msgstr "Cargando"
 
-#: gui/gamesetup/gamesetup.xml:(caption):28
+#: gui/gamesetup/gamesetup.xml:(caption):29
 msgid "Loading map data. Please wait..."
 msgstr "Cargando el mapa. Espera un momento..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):43
+#: gui/gamesetup/gamesetup.xml:(caption):44
 msgid "Player Name"
 msgstr "Nombre del jugador"
 
-#: gui/gamesetup/gamesetup.xml:(caption):46
+#: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Color"
 msgstr "Color"
 
-#: gui/gamesetup/gamesetup.xml:(caption):49
+#: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Player Placement"
 msgstr "Ubicación de los jugadores"
 
-#: gui/gamesetup/gamesetup.xml:(caption):52
+#: gui/gamesetup/gamesetup.xml:(caption):53
 msgid "Civilization"
 msgstr "Civilización"
 
-#: gui/gamesetup/gamesetup.xml:(caption):67
+#: gui/gamesetup/gamesetup.xml:(caption):68
 msgid "Team"
 msgstr "Equipo"
 
-#: gui/gamesetup/gamesetup.xml:(caption):108
+#: gui/gamesetup/gamesetup.xml:(caption):109
 msgid "Map Type:"
 msgstr "Tipo de mapa:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):111
+#: gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Filter:"
 msgstr "Filtro:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):114
+#: gui/gamesetup/gamesetup.xml:(caption):115
 msgid "Select Map:"
 msgstr "Mapa:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):117
+#: gui/gamesetup/gamesetup.xml:(caption):118
 msgid "Number of Players:"
 msgstr "Número de jugadores:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):120
+#: gui/gamesetup/gamesetup.xml:(caption):121
 msgid "Map Size:"
 msgstr "Tamaño de mapa:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):206
+#: gui/gamesetup/gamesetup.xml:(caption):200
 msgid "Send"
 msgstr "Enviar"
 
-#: gui/gamesetup/gamesetup.xml:(caption):224
+#: gui/gamesetup/gamesetup.xml:(caption):218
 msgid "Cheats enabled."
 msgstr "Los trucos están activados."
 
-#: gui/gamesetup/gamesetup.xml:(caption):237
+#: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Start game!"
 msgstr "Comenzar partida"
 
-#: gui/gamesetup/gamesetup.xml:(caption):255
+#: gui/gamesetup/gamesetup.xml:(caption):249
 msgid "Back"
 msgstr "Atrás"
 
-#: gui/gamesetup/gamesetup.xml:(caption):269
-#: gui/gamesetup/gamesetup.xml:(caption):281
+#: gui/gamesetup/gamesetup.xml:(caption):263
+#: gui/gamesetup/gamesetup.xml:(caption):275
 msgid "More Options"
 msgstr "Más opciones"
 
-#: gui/gamesetup/gamesetup.xml:(caption):286
+#: gui/gamesetup/gamesetup.xml:(caption):280
 msgid "Game Speed:"
 msgstr "Velocidad de juego:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):306
+#: gui/gamesetup/gamesetup.xml:(caption):300
 msgid "Population Cap:"
 msgstr "Población máxima:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):316
+#: gui/gamesetup/gamesetup.xml:(caption):310
 msgid "Starting Resources:"
 msgstr "Recursos iniciales:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):326
+#: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
 msgstr "Alto al fuego:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):336
+#: gui/gamesetup/gamesetup.xml:(caption):330
 msgid "Revealed Map:"
 msgstr "Revelar mapa:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):346
+#: gui/gamesetup/gamesetup.xml:(caption):340
 msgid "Explored Map:"
 msgstr "Explorar mapa:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):356
+#: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
 msgstr "Desactivar tesoros:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):366
+#: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
 msgstr "Bloquear equipos:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):376
+#: gui/gamesetup/gamesetup.xml:(caption):370
 msgid "Cheats:"
 msgstr "Trucos:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):386
+#: gui/gamesetup/gamesetup.xml:(caption):380
 msgid "Rated Game:"
 msgstr "Juego puntuable:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):396
+#: gui/gamesetup/gamesetup.xml:(caption):390
 msgid "Late Observer Joins:"
 msgstr "Espectadores tardíos:"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):61
+#: gui/gamesetup/gamesetup.xml:(tooltip):62
 msgid "View civilization info"
 msgstr "Saber más sobre la civilización"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):76
+#: gui/gamesetup/gamesetup.xml:(tooltip):77
 msgid "Pick a color."
 msgstr "Elige un color."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):79
+#: gui/gamesetup/gamesetup.xml:(tooltip):80
 msgid "Select player."
 msgstr "Elige un jugador."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):89
+#: gui/gamesetup/gamesetup.xml:(tooltip):90
 msgid "Configure AI settings."
 msgstr "Configura los ajustes de la IA."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):92
+#: gui/gamesetup/gamesetup.xml:(tooltip):93
 msgid "Select player's civilization."
 msgstr "Elige la civilización del jugador."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):96
+#: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Select player's team."
 msgstr "Elige el equipo del jugador."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):137
+#: gui/gamesetup/gamesetup.xml:(tooltip):138
 msgid "Select a map type."
 msgstr "Elige el tipo de mapa."
 
@@ -463,79 +444,79 @@ msgstr "Elige el tipo de mapa."
 msgid "Select a map filter."
 msgstr "Elige un filtro de mapa."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):156
+#: gui/gamesetup/gamesetup.xml:(tooltip):155
 msgid "Select a map to play on."
 msgstr "Elige un mapa en el que jugar."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):170
+#: gui/gamesetup/gamesetup.xml:(tooltip):165
 msgid "Select number of players."
 msgstr "Elige el número de jugadores."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):175
+#: gui/gamesetup/gamesetup.xml:(tooltip):169
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Elige un tamaño de mapa. (Los mapas más grandes pueden ralentizar el juego)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):238
+#: gui/gamesetup/gamesetup.xml:(tooltip):232
 msgid "Start a new game with the current settings."
 msgstr "Comenzar una nueva partida con los ajustes actuales."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):270
+#: gui/gamesetup/gamesetup.xml:(tooltip):264
 msgid "See more game options"
 msgstr "Ver más opciones de juego"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):290
+#: gui/gamesetup/gamesetup.xml:(tooltip):284
 msgid "Select game speed."
 msgstr "Elige la velocidad de juego."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):300
+#: gui/gamesetup/gamesetup.xml:(tooltip):294
 msgid "Select victory condition."
 msgstr "Elige una condición de victoria."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):310
+#: gui/gamesetup/gamesetup.xml:(tooltip):304
 msgid "Select population cap."
 msgstr "Especifica la población máxima."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):320
+#: gui/gamesetup/gamesetup.xml:(tooltip):314
 msgid "Select the game's starting resources."
 msgstr "Elige con cuantos recursos empieza la partida."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):330
+#: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
 msgstr "Establecer un tiempo límite en el que se prohíbe atacar."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):340
+#: gui/gamesetup/gamesetup.xml:(tooltip):334
 msgid "Toggle revealed map (see everything)."
 msgstr "Ver todo el mapa (o no)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):350
+#: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Toggle explored map (see initial map)."
 msgstr "Ver o no el mapa explorado (muestra el mapa inicial)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):360
+#: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
 msgstr "Desactiva todos los tesoros en el mapa."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):370
+#: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."
 msgstr "Bloquear o desbloquear equipos."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):380
+#: gui/gamesetup/gamesetup.xml:(tooltip):374
 msgid "Toggle the usability of cheats."
 msgstr "Activa o desactiva los trucos."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):390
+#: gui/gamesetup/gamesetup.xml:(tooltip):384
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Marca si esta partida debería contar para la clasificación general:"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):400
+#: gui/gamesetup/gamesetup.xml:(tooltip):394
 msgid "Allow observers to join after the game started."
 msgstr "Dejar que los espectadores se unan a la partida ya empezada."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):414
+#: gui/gamesetup/gamesetup.xml:(tooltip):408
 msgid "Close more game options window"
 msgstr "Cierra la ventana de opciones de juego adicionales"
 

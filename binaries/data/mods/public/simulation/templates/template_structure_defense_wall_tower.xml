@@ -29,6 +29,9 @@
     <Category>Wall</Category>
   </BuildRestrictions>
   <Capturable disable=""/>
+  <Repairable>
+    <RepairTimeRatio>4.5</RepairTimeRatio>
+  </Repairable>
   <Cost>
     <BuildTime>80</BuildTime>
     <Resources>

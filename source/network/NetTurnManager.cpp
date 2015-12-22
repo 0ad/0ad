@@ -351,7 +351,7 @@ void CNetTurnManager::RewindTimeWarp()
 void CNetTurnManager::QuickSave()
 {
 	TIMER(L"QuickSave");
-	
+
 	std::stringstream stream;
 	if (!m_Simulation2.SerializeState(stream))
 	{

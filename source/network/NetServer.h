@@ -122,7 +122,7 @@ public:
 	 * The changes will be asynchronously propagated to all clients.
 	 */
 	void AssignPlayer(int playerID, const CStr& guid);
-	
+
 	/**
 	 * Call from the GUI to update the player readiness.
 	 * The changes will be asynchronously propagated to all clients.
@@ -255,7 +255,7 @@ private:
 
 	void AddPlayer(const CStr& guid, const CStrW& name);
 	void RemovePlayer(const CStr& guid);
-	void SetPlayerReady(const CStr& guid, const int ready); 
+	void SetPlayerReady(const CStr& guid, const int ready);
 	void SendPlayerAssignments();
 	void ClearAllPlayerReady();
 

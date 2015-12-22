@@ -71,7 +71,7 @@ function executeCheat(text)
 	if (cheat.DefaultParameter && (isNaN(parameter) || parameter <= 0))
 		parameter = cheat.DefaultParameter;
 
-	Engine.PostNetworkCommand({ 
+	Engine.PostNetworkCommand({
 		"type": "cheat",
 		"action": cheat.Action,
 		"text": cheat.Type,
@@ -93,46 +93,41 @@ var g_NotificationsTypes =
 	{
 		let message = {
 			"type": "message",
+			"guid": findGuidForPlayerID(g_PlayerAssignments, player) || -1,
 			"text": notification.message
 		};
-		let guid = findGuidForPlayerID(g_PlayerAssignments, player);
-		if (guid == undefined)
-		{
-			message["guid"] = -1;
-			message["player"] = player;
-		} else {
-			message["guid"] = guid;
-		}
+
+		if (message.guid == -1)
+			message.player = player;
+
 		addChatMessage(message);
 	},
 	"aichat": function(notification, player)
 	{
 		let message = {
+			"guid": findGuidForPlayerID(g_PlayerAssignments, player) || -1,
 			"type": "message",
-			"text": notification.message
+			"text": notification.message,
+			"translate": true
 		};
-		message["translate"] = true;
-		if ("translateParameters" in notification)
+
+		if (message.guid == -1)
+			message.player = player;
+
+		if (notification.translateParameters)
 		{
-			message["translateParameters"] = notification["translateParameters"];
-			message["parameters"] = notification["parameters"];
+			message.translateParameters = notification.translateParameters;
+			message.parameters = notification.parameters;
 			// special case for formatting of player names which are transmitted as _player_num
-			for (let param in message["parameters"])
+			for (let param in message.parameters)
 			{
 				if (!param.startsWith("_player_"))
 					continue;
-				let colorName = getUsernameAndColor(+message["parameters"][param]);
-				message["parameters"][param] = "[color=\"" + colorName[1] + "\"]" + colorName[0] + "[/color]";
+				let colorName = getUsernameAndColor(+message.parameters[param]);
+				message.parameters[param] = "[color=\"" + colorName[1] + "\"]" + colorName[0] + "[/color]";
 			}
 		}
-		let guid = findGuidForPlayerID(g_PlayerAssignments, player);
-		if (guid == undefined)
-		{
-			message["guid"] = -1;
-			message["player"] = player;
-		} else {
-			message["guid"] = guid;
-		}
+
 		addChatMessage(message);
 	},
 	"defeat": function(notification, player)
@@ -209,20 +204,20 @@ function handleNotifications()
 			error("Notification without type found.\n"+uneval(notification));
 			continue;
 		}
-		
+
 		if (!notification.players)
 		{
 			error("Notification without players found.\n"+uneval(notification));
 			continue;
 		}
-		
+
 		let action = g_NotificationsTypes[notification.type];
 		if (!action)
 		{
 			error("Unknown notification type '" + notification.type + "' found.");
 			continue;
 		}
-		
+
 		for (let player of notification.players)
 			action(notification, player);
 	}
@@ -449,192 +444,9 @@ function submitChatInput()
  */
 function addChatMessage(msg)
 {
-	let playerColor, username;
-
-	// No context by default. May be set by parseChatCommands().
-	msg.context = "";
-
-	if ("guid" in msg && g_PlayerAssignments[msg.guid])
-	{
-		let n = g_PlayerAssignments[msg.guid].player;
-		// Observers have an ID of -1 which is not a valid index.
-		if (n < 0)
-			n = 0;
-		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
-		username = escapeText(g_PlayerAssignments[msg.guid].name);
-
-		// Parse in-line commands in regular messages.
-		if (msg.type == "message")
-			parseChatCommands(msg);
-	}
-	else if (msg.type == "defeat" && msg.player)
-	{
-		[username, playerColor] = getUsernameAndColor(msg.player);
-	}
-	else if (msg.type == "message")
-	{
-		[username, playerColor] = getUsernameAndColor(msg.player);
-		parseChatCommands(msg);
-	}
-	else
-	{
-		playerColor = "255 255 255";
-		username = translate("Unknown player");
-	}
-
-	let formatted;
-	let message;
-
-	switch (msg.type)
-	{
-	case "connect":
-		formatted = sprintf(translate("%(player)s is starting to rejoin the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-		break;
-	case "disconnect":
-		formatted = sprintf(translate("%(player)s has left the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-		break;
-	case "rejoined":
-		formatted = sprintf(translate("%(player)s has rejoined the game."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-		break;
-	case "clientlist":
-		formatted = sprintf(translate("Users: %(users)s"),
-			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
-			{ "users": getUsernameList().join(translate(", ")) });
-		break;
-	case "system":
-		formatted = msg.text;
-		break;
-	case "defeat":
-		// In singleplayer, the local player is "You". "You has" is incorrect.
-		if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
-			formatted = translate("You have been defeated.");
-		else
-			formatted = sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-		break;
-	case "diplomacy":
-		if (msg.player == Engine.GetPlayerID())
-		{
-			[username, playerColor] = getUsernameAndColor(msg.player1);
-			if (msg.status == "ally")
-				message = translate("You are now allied with %(player)s.");
-			else if (msg.status == "enemy")
-				message = translate("You are now at war with %(player)s.");
-			else // (msg.status == "neutral")
-				message = translate("You are now neutral with %(player)s.");
-		}
-		else if (msg.player1 == Engine.GetPlayerID())
-		{
-			[username, playerColor] = getUsernameAndColor(msg.player);
-			if (msg.status == "ally")
-				message = translate("%(player)s is now allied with you.");
-			else if (msg.status == "enemy")
-				message = translate("%(player)s is now at war with you.");
-			else // (msg.status == "neutral")
-				message = translate("%(player)s is now neutral with you.");
-		}
-		else // No need for other players to know of this.
-			return;
-
-		formatted = sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
-		break;
-	case "tribute":
-		if (msg.player != Engine.GetPlayerID()) 
-			return;
-
-		[username, playerColor] = getUsernameAndColor(msg.player1);
-
-		// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
-		let amounts = Object.keys(msg.amounts)
-			.filter(function (type) { return msg.amounts[type] > 0; })
-			.map(function (type) { return sprintf(translate("%(amount)s %(resourceType)s"), {
-				"amount": msg.amounts[type],
-				"resourceType": getLocalizedResourceName(type, "withinSentence")});
-			});
-
-		if (amounts.length > 1)
-		{
-			let lastAmount = amounts.pop();
-			amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
-				// Translation: This comma is used for separating first to penultimate elements in an enumeration.
-				"previousAmounts": amounts.join(translate(", ")),
-				"lastAmount": lastAmount
-			});
-		}
-
-		formatted = sprintf(translate("%(player)s has sent you %(amounts)s."), {
-			"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
-			"amounts": amounts
-		});
-		break;
-	case "attack":
-		if (msg.player != Engine.GetPlayerID()) 
-			return;
-
-		[username, playerColor] = getUsernameAndColor(msg.attacker);
-		// Since livestock can be attacked/gathered by other players,
-		// we display a more specific notification in this case to not confuse the player
-		if (msg.targetIsDomesticAnimal)
-			message = translate("Your livestock has been attacked by %(attacker)s!");
-		else
-			message = translate("You have been attacked by %(attacker)s!");
-		formatted = sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-		break;
-	case "message":
-		// May have been hidden by the 'team' command.
-		if (msg.hide)
-			return;
-
-		if ("translate" in msg && msg.translate)
-		{
-			message = translate(msg.text); // No need to escape, not a user message.
-			if ("translateParameters" in msg && msg.translateParameters)
-			{
-				let parameters = msg.parameters || {};
-				translateObjectKeys(parameters, msg.translateParameters);
-				message = sprintf(message, parameters);
-			}
-		}
-		else
-			message = escapeText(msg.text);
-
-		if (msg.action)
-		{
-			if (msg.context !== "")
-			{
-				formatted = sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
-					"context": msg.context,
-					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
-					"message": message
-				});
-			}
-			else
-			{
-				formatted = sprintf(translate("* %(user)s %(message)s"), {
-					"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
-					"message": message
-				});
-			}
-		}
-		else
-		{
-			let userTag = sprintf(translate("<%(user)s>"), { "user": username });
-			let formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-			if (msg.context !== "")
-			{
-				formatted = sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
-					"context": msg.context,
-					"userTag": formattedUserTag,
-					"message": message
-				});
-			}
-			else
-				formatted = sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
-		}
-		break;
-	default:
-		error("Invalid chat message " + uneval(msg));
+	let formatted = formatChatMessage(msg);
+	if (!formatted)
 		return;
-	}
 
 	g_ChatMessages.push(formatted);
 	g_ChatTimers.push(setTimeout(removeOldChatMessage, g_ChatTimeout * 1000));
@@ -643,6 +455,207 @@ function addChatMessage(msg)
 		removeOldChatMessage();
 	else
 		Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
+}
+
+/**
+ * Returns a formated or empty string.
+ *
+ * @param msg {string}
+ */
+function formatChatMessage(msg)
+{
+	let playerColor, username;
+
+	// No context by default. May be set by parseChatCommands().
+	msg.context = "";
+
+	if (msg.guid && g_PlayerAssignments[msg.guid])
+	{
+		let n = g_PlayerAssignments[msg.guid].player;
+		// Observers have an ID of -1 which is not a valid index.
+		if (n < 0)
+			n = 0;
+		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
+		username = escapeText(g_PlayerAssignments[msg.guid].name);
+	}
+	else if (msg.type == "defeat" && msg.player)
+	{
+		[username, playerColor] = getUsernameAndColor(msg.player);
+	}
+	else if (msg.type == "message")
+	{
+		[username, playerColor] = getUsernameAndColor(msg.player);
+	}
+	else
+	{
+		playerColor = "255 255 255";
+		username = translate("Unknown player");
+	}
+
+	let colorizedPlayername = { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" };
+
+	switch (msg.type)
+	{
+	case "system":     return msg.text;
+	case "connect":    return sprintf(translate("%(player)s is starting to rejoin the game."), colorizedPlayername);
+	case "disconnect": return sprintf(translate("%(player)s has left the game."), colorizedPlayername);
+	case "rejoined":   return sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
+	case "clientlist": return formatClientList();
+	case "defeat":     return formatDefeatMessage(msg, playerColor, username);
+	case "diplomacy":  return formatDiplomacyMessage(msg);
+	case "tribute":    return formatTributeMessage(msg);
+	case "attack":     return formatAttackMessage(msg);
+	case "message":    return formatChatCommand(msg, playerColor, username);
+	}
+
+	error("Invalid chat message " + uneval(msg));
+	return "";
+}
+
+function formatClientList()
+{
+	return sprintf(translate("Users: %(users)s"),
+		// Translation: This comma is used for separating first to penultimate elements in an enumeration.
+		{ "users": getUsernameList().join(translate(", ")) });
+}
+
+function formatDefeatMessage(msg, username, playerColor)
+{
+	// In singleplayer, the local player is "You". "You has" is incorrect.
+	if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
+		return translate("You have been defeated.");
+	else
+		return sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+}
+
+function formatDiplomacyMessage(msg)
+{
+	let message;
+	let username;
+	let playerColor;
+
+	if (msg.player == Engine.GetPlayerID())
+	{
+		[username, playerColor] = getUsernameAndColor(msg.player1);
+		if (msg.status == "ally")
+			message = translate("You are now allied with %(player)s.");
+		else if (msg.status == "enemy")
+			message = translate("You are now at war with %(player)s.");
+		else // (msg.status == "neutral")
+			message = translate("You are now neutral with %(player)s.");
+	}
+	else if (msg.player1 == Engine.GetPlayerID())
+	{
+		[username, playerColor] = getUsernameAndColor(msg.player);
+		if (msg.status == "ally")
+			message = translate("%(player)s is now allied with you.");
+		else if (msg.status == "enemy")
+			message = translate("%(player)s is now at war with you.");
+		else // (msg.status == "neutral")
+			message = translate("%(player)s is now neutral with you.");
+	}
+	else // No need for other players to know of this.
+		return "";
+
+	return sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
+}
+
+function formatTributeMessage(msg)
+{
+	if (msg.player != Engine.GetPlayerID())
+		return "";
+
+	let [username, playerColor] = getUsernameAndColor(msg.player1);
+
+	// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
+	let amounts = Object.keys(msg.amounts)
+		.filter(type => msg.amounts[type] > 0)
+		.map(type => sprintf(translate("%(amount)s %(resourceType)s"), {
+			"amount": msg.amounts[type],
+			"resourceType": getLocalizedResourceName(type, "withinSentence")
+		}));
+
+	if (amounts.length > 1)
+	{
+		let lastAmount = amounts.pop();
+		amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
+			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
+			"previousAmounts": amounts.join(translate(", ")),
+			"lastAmount": lastAmount
+		});
+	}
+
+	return sprintf(translate("%(player)s has sent you %(amounts)s."), {
+		"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+		"amounts": amounts
+	});
+}
+
+function formatAttackMessage(msg)
+{
+	if (msg.player != Engine.GetPlayerID())
+		return "";
+
+	let [username, playerColor] = getUsernameAndColor(msg.attacker);
+
+	// Since livestock can be attacked/gathered by other players,
+	// we display a more specific notification in this case to not confuse the player
+	let message;
+	if (msg.targetIsDomesticAnimal)
+		message = translate("Your livestock has been attacked by %(attacker)s!");
+	else
+		message = translate("You have been attacked by %(attacker)s!");
+
+	return sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+}
+
+function formatChatCommand(msg, playerColor, username)
+{
+	parseChatCommands(msg);
+
+	// May have been hidden by the 'team' command.
+	if (msg.hide)
+		return "";
+
+	// Translate or escape text
+	let message;
+	if (msg.translate)
+	{
+		message = translate(msg.text); // No need to escape, not a user message.
+		if (msg.translateParameters)
+		{
+			let parameters = msg.parameters || {};
+			translateObjectKeys(parameters, msg.translateParameters);
+			message = sprintf(message, parameters);
+		}
+	}
+	else
+		message = escapeText(msg.text);
+
+	if (msg.me)
+	{
+		if (msg.context)
+			return sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
+				"context": msg.context,
+				"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+				"message": message
+			});
+		else
+			return sprintf(translate("* %(user)s %(message)s"), {
+				"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+				"message": message
+			});
+	}
+
+	let formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+	if (msg.context)
+		return sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
+			"context": msg.context,
+			"userTag": formattedUserTag,
+			"message": message
+		});
+	else
+		return sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
 }
 
 /**
@@ -720,7 +733,7 @@ function parseChatCommands(msg)
 		recurse = true;
 		break;
 	case "/me":
-		msg.action = true;
+		msg.me = true;
 		break;
 	case "/msg":
 		let trimmed = msg.text.substr(split[0].length + 1);
