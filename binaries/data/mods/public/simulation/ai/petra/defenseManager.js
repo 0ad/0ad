@@ -387,9 +387,9 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 	for (let army of this.armies)
 		army.checkEvents(gameState, events);
 
-	for (var evt of events["Attacked"])
+	for (let evt of events.Attacked)
 	{
-		var target = gameState.getEntityById(evt.target);
+		let target = gameState.getEntityById(evt.target);
 		if (!target || !gameState.isEntityOwn(target) || !target.position())
 			continue;
 		// If attacked by one of our allies (he must trying to recover capture points), do not react
@@ -405,7 +405,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			let army = this.getArmy(target.getMetadata(PlayerID, "PartOfArmy"));
 			if (army.isCapturing(gameState))
 			{
-				var abort = false;
+				let abort = false;
 				// if one of the units trying to capture a structure is attacked,
 				// abort the army so that the unit can defend itself
 				if (army.ownEntities.indexOf(target.id()) != -1)
@@ -428,22 +428,27 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			}
 		}
 
+		// If inside a started attack plan, let the plan deal with this unit
+		let plan = target.getMetadata(PlayerID, "plan");
+		if (plan !== undefined && plan >= 0)
+		{
+			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
+			if (attack && attack.state !== "unexecuted")
+				continue;
+		}
+
+		// try to garrison any attacked support unit if low healthlevel
 		if (target.hasClass("Support") && target.healthLevel() < 0.55 && !target.getMetadata(PlayerID, "transport")
-			&& target.getMetadata(PlayerID, "plan") !== -2 && target.getMetadata(PlayerID, "plan") !== -3)
+			&& plan !== -2 && plan !== -3)
 		{
 			this.garrisonUnitForHealing(gameState, target);
 			continue;
 		}
 
+		// try to garrison any attacked range siege unit 
 		if (target.hasClass("Siege") && !target.hasClass("Melee") && !target.getMetadata(PlayerID, "transport")
-			&& target.getMetadata(PlayerID, "plan") !== -2 && target.getMetadata(PlayerID, "plan") !== -3)
+			&& plan !== -2 && plan !== -3)
 		{
-			if (target.getMetadata(PlayerID, "plan") !== undefined && target.getMetadata(PlayerID, "plan") !== -1)
-			{
-				var subrole = target.getMetadata(PlayerID, "subrole");
-				if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking")) 
-					continue;
-			}
 			this.garrisonSiegeUnit(gameState, target);
 			continue;
 		}
@@ -458,13 +463,6 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		// TODO treat ship attack
 		if (attacker.getMetadata(PlayerID, "PartOfArmy") !== undefined || attacker.hasClass("Structure") || attacker.hasClass("Ship"))
 			continue;
-		let plan = target.getMetadata(PlayerID, "plan");
-		if (plan !== undefined && plan >= 0)
-		{
-			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
-			if (attack && attack.state !== "unexecuted")
-				continue;
-		}
 		let territoryOwner = this.territoryMap.getOwner(attacker.position());
 		if (territoryOwner === 0 || gameState.isPlayerAlly(territoryOwner))
 			this.makeIntoArmy(gameState, attacker.id());
