@@ -411,6 +411,11 @@ public:
 		helper_script_roundtrip("Boolean with props", "var b=new Boolean('true'); b.foo='bar'; b", "(new Boolean(true))");
 	}
 
+	void test_script_objects_properties()
+	{
+		helper_script_roundtrip("Object with null in prop name", "({\"foo\\0bar\":1})", "({\'foo\\x00bar\':1})");
+	}
+
 	void test_script_typed_arrays_simple()
 	{
 		helper_script_roundtrip("Int8Array",
