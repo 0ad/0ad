@@ -506,11 +506,11 @@ function formatChatMessage(msg)
 	case "disconnect": return sprintf(translate("%(player)s has left the game."), colorizedPlayername);
 	case "rejoined":   return sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
 	case "clientlist": return formatClientList();
-	case "defeat":     return formatDefeatMessage(msg, username, playerColor);
+	case "defeat":     return formatDefeatMessage(msg, playerColor, username);
 	case "diplomacy":  return formatDiplomacyMessage(msg);
 	case "tribute":    return formatTributeMessage(msg);
-	case "attack":     return formatAttackMessage(msg;
-	case "message":    return formatChatCommand(msg, username, playerColor);
+	case "attack":     return formatAttackMessage(msg);
+	case "message":    return formatChatCommand(msg, playerColor, username);
 	}
 
 	error("Invalid chat message " + uneval(msg));
