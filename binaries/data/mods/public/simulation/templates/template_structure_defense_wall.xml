@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense">
   <BuildRestrictions>
-	<PlacementType>land-shore</PlacementType>
+    <PlacementType>land-shore</PlacementType>
     <Category>Wall</Category>
   </BuildRestrictions>
   <Capturable disable=""/>
+  <Repairable>
+    <RepairTimeRatio>4.5</RepairTimeRatio>
+  </Repairable>
   <Cost>
     <BuildTime>25</BuildTime>
     <Resources>
