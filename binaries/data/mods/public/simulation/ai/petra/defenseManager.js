@@ -59,10 +59,10 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	// and if yes, add this base in our target list
 	if (entity.unitAIState() && entity.unitAIState() == "INDIVIDUAL.REPAIR.REPAIRING")
 	{
-		var targetId = entity.unitAIOrderData()[0]["target"];
+		let targetId = entity.unitAIOrderData()[0]["target"];
 		if (this.targetList.indexOf(targetId) !== -1)
 			return true;
-		var target = gameState.getEntityById(targetId);
+		let target = gameState.getEntityById(targetId);
 		if (target && this.territoryMap.getOwner(entity.position()) === PlayerID)
 		{
 			this.targetList.push(targetId);
@@ -70,7 +70,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		}
 		else if (target && target.hasClass("CivCentre"))
 		{
-			var myBuildings = gameState.getOwnStructures();
+			let myBuildings = gameState.getOwnStructures();
 			for (let building of myBuildings.values())
 			{
 				if (API3.SquareVectorDistance(building.position(), entity.position()) > 30000)
@@ -88,9 +88,9 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	if (entity.attackTypes().indexOf("Ranged") !== -1)
 		dist2Min = (entity.attackRange("Ranged").max + 30) * (entity.attackRange("Ranged").max + 30);
     
-	for (var i = 0; i < this.targetList.length; ++i)
+	for (let i = 0; i < this.targetList.length; ++i)
 	{
-		var target = gameState.getEntityById(this.targetList[i]);
+		let target = gameState.getEntityById(this.targetList[i]);
 		if (!target || !target.position())   // the enemy base is either destroyed or built
 			this.targetList.splice(i--, 1);
 		else if (API3.SquareVectorDistance(target.position(), entity.position()) < dist2Min)
@@ -111,7 +111,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		}
 	}
 
-	var myBuildings = gameState.getOwnStructures();
+	let myBuildings = gameState.getOwnStructures();
 	for (let building of myBuildings.values())
 	{
 		if (building.foundationProgress() == 0)
@@ -238,11 +238,11 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 	if (gameState.ai.playedTurn % 5 !== 0)
 		return;
 	// Check if any army is no more dangerous (possibly because it has defeated us and destroyed our base)
-	for (var i = 0; i < this.armies.length; ++i)
+	for (let i = 0; i < this.armies.length; ++i)
 	{
-		var army = this.armies[i];
+		let army = this.armies[i];
 		army.recalculatePosition(gameState);
-		var owner = this.territoryMap.getOwner(army.foePosition);
+		let owner = this.territoryMap.getOwner(army.foePosition);
 		if (!gameState.isPlayerEnemy(owner))
 			continue;
 		else if (owner !== 0)   // enemy army back in its territory
@@ -254,7 +254,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 
 		// army in neutral territory
 		// TODO check smaller distance with all our buildings instead of only ccs with big distance
-		var stillDangerous = false;
+		let stillDangerous = false;
 		let bases = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
 	 	for (let base of bases.values())
 		{
@@ -323,16 +323,16 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		potentialDefenders.push(ent.id());
 	});
 	
-	for (var a = 0; a < armiesNeeding.length; ++a)
+	for (let a = 0; a < armiesNeeding.length; ++a)
 		armiesNeeding[a]["army"].recalculatePosition(gameState);
 
-	for (var i = 0; i < potentialDefenders.length; ++i)
+	for (let i = 0; i < potentialDefenders.length; ++i)
 	{
-		var ent = gameState.getEntityById(potentialDefenders[i]);
+		let ent = gameState.getEntityById(potentialDefenders[i]);
 		if (!ent.position())
 			continue;
-		var aMin = undefined;
-		var distMin = undefined;
+		let aMin;
+		let distMin;
 		for (let a = 0; a < armiesNeeding.length; ++a)
 		{
 			let dist = API3.SquareVectorDistance(ent.position(), armiesNeeding[a]["army"].foePosition);
@@ -346,8 +346,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		if (i < 12 && this.territoryMap.getOwner(armiesNeeding[aMin]["army"].foePosition) !== PlayerID)
 			continue;
 
-		var str = m.getMaxStrength(ent);
-		armiesNeeding[aMin]["need"] -= str;
+		armiesNeeding[aMin]["need"] -= m.getMaxStrength(ent);
 		armiesNeeding[aMin]["army"].addOwn(gameState, potentialDefenders[i]);
 		armiesNeeding[aMin]["army"].assignUnit(gameState, potentialDefenders[i]);
 
@@ -400,6 +399,25 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
 
+		// Signal this attacker to our defense manager, except if we are in enemy territory
+		// TODO treat ship attack
+		if (attacker && attacker.position() && attacker.getMetadata(PlayerID, "PartOfArmy") === undefined &&
+			!attacker.hasClass("Structure") && !attacker.hasClass("Ship"))
+		{
+			let territoryOwner = this.territoryMap.getOwner(attacker.position());
+			if (territoryOwner === 0 || gameState.isPlayerAlly(territoryOwner))
+				this.makeIntoArmy(gameState, attacker.id());
+		}
+
+		// If inside a started attack plan, let the plan deal with this unit
+		let plan = target.getMetadata(PlayerID, "plan");
+		if (plan !== undefined && plan >= 0)
+		{
+			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
+			if (attack && attack.state !== "unexecuted")
+				continue;
+		}
+
 		if (target.getMetadata(PlayerID, "PartOfArmy") !== undefined)
 		{
 			let army = this.getArmy(target.getMetadata(PlayerID, "PartOfArmy"));
@@ -408,9 +426,9 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 				let abort = false;
 				// if one of the units trying to capture a structure is attacked,
 				// abort the army so that the unit can defend itself
-				if (army.ownEntities.indexOf(target.id()) != -1)
+				if (army.ownEntities.indexOf(target.id()) !== -1)
 					abort = true;
-				else if (army.foeEntities[0] == target.id() && target.owner() == PlayerID)
+				else if (army.foeEntities[0] === target.id() && target.owner() === PlayerID)
 				{
 					// else we may be trying to regain some capture point from one of our structure
 					abort = true;
@@ -426,15 +444,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 				if (abort)
 					this.abortArmy(gameState, army);
 			}
-		}
-
-		// If inside a started attack plan, let the plan deal with this unit
-		let plan = target.getMetadata(PlayerID, "plan");
-		if (plan !== undefined && plan >= 0)
-		{
-			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
-			if (attack && attack.state !== "unexecuted")
-				continue;
+			continue;
 		}
 
 		// try to garrison any attacked support unit if low healthlevel
@@ -458,14 +468,6 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 
 		if (target.isGarrisonHolder() && target.getArrowMultiplier())
 			this.garrisonRangedUnitsInside(gameState, target, {"attacker": attacker});
-
-		// Finally signal this attacker to our defense manager, except if we are ourself performing an attack
-		// TODO treat ship attack
-		if (attacker.getMetadata(PlayerID, "PartOfArmy") !== undefined || attacker.hasClass("Structure") || attacker.hasClass("Ship"))
-			continue;
-		let territoryOwner = this.territoryMap.getOwner(attacker.position());
-		if (territoryOwner === 0 || gameState.isPlayerAlly(territoryOwner))
-			this.makeIntoArmy(gameState, attacker.id());
 	}
 };
 
@@ -535,7 +537,7 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 		}
 		if (entAccess !== unitAccess)
 			return;
-		var dist = API3.SquareVectorDistance(ent.position(), unit.position());
+		let dist = API3.SquareVectorDistance(ent.position(), unit.position());
 		if (dist > distmin)
 			return;
 		distmin = dist;
@@ -561,7 +563,7 @@ m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 			return;
 		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
 			return;
-		var entAccess = ent.getMetadata(PlayerID, "access");
+		let entAccess = ent.getMetadata(PlayerID, "access");
 		if (!entAccess)
 		{
 			entAccess = gameState.ai.accessibility.getAccessValue(ent.position());
@@ -569,7 +571,7 @@ m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 		}
 		if (entAccess !== unitAccess)
 			return;
-		var dist = API3.SquareVectorDistance(ent.position(), unit.position());
+		let dist = API3.SquareVectorDistance(ent.position(), unit.position());
 		if (dist > distmin)
 			return;
 		distmin = dist;
@@ -587,7 +589,7 @@ m.DefenseManager.prototype.Serialize = function()
 	};
 
 	let armies = [];
-	for (var army of this.armies)
+	for (let army of this.armies)
 		armies.push(army.Serialize());
 
 	return { "properties": properties, "armies": armies };
