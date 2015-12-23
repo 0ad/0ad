@@ -269,45 +269,7 @@ function handleNetMessage(message)
 	switch (message.type)
 	{
 	case "netstatus":
-		// If we lost connection, further netstatus messages are useless
-		if (g_Disconnected)
-			return;
-
-		let obj = Engine.GetGUIObjectByName("netStatus");
-		switch (message.status)
-		{
-		case "waiting_for_players":
-			obj.caption = translate("Waiting for other players to connect...");
-			obj.hidden = false;
-			break;
-		case "join_syncing":
-			obj.caption = translate("Synchronising gameplay with other players...");
-			obj.hidden = false;
-			break;
-		case "active":
-			obj.caption = "";
-			obj.hidden = true;
-			break;
-		case "connected":
-			obj.caption = translate("Connected to the server.");
-			obj.hidden = false;
-			break;
-		case "authenticated":
-			obj.caption = translate("Connection to the server has been authenticated.");
-			obj.hidden = false;
-			break;
-		case "disconnected":
-			g_Disconnected = true;
-			closeChat();
-			// Translation: States the reason why the client disconnected from the server.
-			let reason = sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(message.reason) });
-			obj.caption = translate("Connection to the server has been lost.") + "\n" + reason + "\n" + translate("The game has ended.");
-			obj.hidden = false;
-			break;
-		default:
-			error("Unrecognised netstatus type '" + message.status + "'");
-			break;
-		}
+		handleNetStatusMessage(message);
 		break;
 
 	case "players":
@@ -372,6 +334,44 @@ function handleNetMessage(message)
 
 	default:
 		error("Unrecognised net message type '" + message.type + "'");
+	}
+}
+
+/**
+ * @param {Object} message
+ */
+function handleNetStatusMessage(message)
+{
+	if (g_Disconnected)
+		return;
+
+	let statusMessageTypes = {
+		"authenticated":       message => translate("Connection to the server has been authenticated."),
+		"connected":           message => translate("Connected to the server."),
+		"disconnected":        message => translate("Connection to the server has been lost.") + "\n" +
+		                                  // Translation: States the reason why the client disconnected from the server.
+		                                  sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(message.reason) }) + "\n" +
+		                                  translate("The game has ended."),
+		"waiting_for_players": message => translate("Waiting for other players to connect..."),
+		"join_syncing":        message => translate("Synchronising gameplay with other players..."),
+		"active":              message => ""
+	};
+
+	if (!(message.status in statusMessageTypes))
+	{
+		error("Unrecognised netstatus type '" + message.status + "'");
+		return;
+	}
+
+	let label = Engine.GetGUIObjectByName("netStatus");
+	let statusMessage = statusMessageTypes[message.status](message);
+	label.caption = statusMessage;
+	label.hidden = !statusMessage;
+
+	if (message.status == "disconnected")
+	{
+		g_Disconnected = true;
+		closeChat();
 	}
 }
 
