@@ -502,51 +502,77 @@ function formatClientList()
 function formatDefeatMessage(msg)
 {
 	// In singleplayer, the local player is "You". "You has" is incorrect.
-	if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
-		return translate("You have been defeated.");
+	let defeatMessages = {
+		"regular": translate("%(player)s has been defeated."),
+		"you": translate("You have been defeated.")
+	};
+
+	let messageType = !g_IsNetworked && msg.player == Engine.GetPlayerID() ? "you" : "regular";
 
 	let [username, playerColor] = getUsernameAndColor(msg.player);
-	return sprintf(translate("%(player)s has been defeated."), { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+
+	return sprintf(defeatMessages[messageType], {
+		"player": "[color=\"" + playerColor + "\"]" + username + "[/color]"
+	});
 }
 
 function formatDiplomacyMessage(msg)
 {
-	let message;
-	let username;
-	let playerColor;
+	let diplomacyMessages = {
+		"active": {
+			"ally": translate("You are now allied with %(player)s."),
+			"enemy": translate("You are now at war with %(player)s."),
+			"neutral": translate("You are now neutral with %(player)s.")
+		},
+		"passive": {
+			"ally": translate("%(player)s is now allied with you."),
+			"enemy": translate("%(player)s is now at war with you."),
+			"neutral": translate("%(player)s is now neutral with you.")
+		},
+		"observer": {
+			"ally": translate("%(player)s is now allied with %(player2)s."),
+			"enemy": translate("%(player)s is now at war with %(player2)s."),
+			"neutral": translate("%(player)s is now neutral with %(player2)s.")
+		}
+	};
 
-	if (msg.player == Engine.GetPlayerID())
-	{
-		[username, playerColor] = getUsernameAndColor(msg.player1);
-		if (msg.status == "ally")
-			message = translate("You are now allied with %(player)s.");
-		else if (msg.status == "enemy")
-			message = translate("You are now at war with %(player)s.");
-		else // (msg.status == "neutral")
-			message = translate("You are now neutral with %(player)s.");
-	}
-	else if (msg.player1 == Engine.GetPlayerID())
-	{
-		[username, playerColor] = getUsernameAndColor(msg.player);
-		if (msg.status == "ally")
-			message = translate("%(player)s is now allied with you.");
-		else if (msg.status == "enemy")
-			message = translate("%(player)s is now at war with you.");
-		else // (msg.status == "neutral")
-			message = translate("%(player)s is now neutral with you.");
-	}
-	else // No need for other players to know of this.
+	let sourcePlayerID = msg.player;
+	let targetPlayerID = msg.player1;
+
+	// Check observer first
+	let use = {
+		"observer": g_IsObserver,
+		"active": Engine.GetPlayerID() == sourcePlayerID,
+		"passive": Engine.GetPlayerID() == targetPlayerID
+	};
+
+	let messageType = Object.keys(use).find(v => use[v]);
+	if (!messageType)
 		return "";
 
-	return sprintf(message, { "player": '[color="'+ playerColor + '"]' + username + '[/color]' });
+	let [username, playerColor] = getUsernameAndColor(messageType == "active" ? targetPlayerID : sourcePlayerID);
+	let [username2, playerColor2] = getUsernameAndColor(messageType == "active" ? sourcePlayerID : targetPlayerID);
+
+	return sprintf(diplomacyMessages[messageType][msg.status], {
+		"player": '[color="'+ playerColor + '"]' + username + '[/color]',
+		"player2": '[color="'+ playerColor2 + '"]' + username2 + '[/color]'
+	});
 }
 
 function formatTributeMessage(msg)
 {
-	if (msg.player != Engine.GetPlayerID())
-		return "";
+	let tributeMessages = {
+		"passive": translate("%(player)s has sent you %(amounts)s."),
+		"observer": translate("%(player)s has sent %(player2)s %(amounts)s.")
+	};
 
-	let [username, playerColor] = getUsernameAndColor(msg.player1);
+	let sourcePlayerID = msg.player1;
+	let targetPlayerID = msg.player;
+
+	// As observer we also want to see if the selected player in the developer-overlay has sent tributes
+	let messageType = g_IsObserver ? "observer" :  (targetPlayerID == Engine.GetPlayerID() ? "passive" : "");
+	if (!tributeMessages[messageType])
+		return "";
 
 	// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
 	let amounts = Object.keys(msg.amounts)
@@ -566,28 +592,34 @@ function formatTributeMessage(msg)
 		});
 	}
 
-	return sprintf(translate("%(player)s has sent you %(amounts)s."), {
+	let [username, playerColor] = getUsernameAndColor(sourcePlayerID);
+	let [username2, playerColor2] = getUsernameAndColor(targetPlayerID);
+
+	return sprintf(tributeMessages[messageType], {
 		"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
+		"player2": "[color=\"" + playerColor2 + "\"]" + username2 + "[/color]",
 		"amounts": amounts
 	});
 }
 
 function formatAttackMessage(msg)
 {
+	// TODO: Show this to observers?
 	if (msg.player != Engine.GetPlayerID())
 		return "";
 
-	let [username, playerColor] = getUsernameAndColor(msg.attacker);
-
 	// Since livestock can be attacked/gathered by other players,
 	// we display a more specific notification in this case to not confuse the player
-	let message;
-	if (msg.targetIsDomesticAnimal)
-		message = translate("Your livestock has been attacked by %(attacker)s!");
-	else
-		message = translate("You have been attacked by %(attacker)s!");
+	let attackMessageTypes = {
+		"regular": translate("You have been attacked by %(attacker)s!"),
+		"livestock": translate("Your livestock has been attacked by %(attacker)s!")
+	};
 
-	return sprintf(message, { "attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
+	let [username, playerColor] = getUsernameAndColor(msg.attacker);
+
+	return sprintf(attackMessageTypes[msg.targetIsDomesticAnimal ? "livestock" : "regular"], {
+		"attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]"
+	});
 }
 
 function formatChatCommand(msg)
@@ -598,46 +630,44 @@ function formatChatCommand(msg)
 	if (msg.hide)
 		return "";
 
+	// Context might be "team", "allies",...
+	let chatMessageTypes = {
+		"regular": {
+			"context": translate("(%(context)s) %(userTag)s %(message)s"),
+			"no-context": translate("%(userTag)s %(message)s")
+		},
+		"me": {
+			"context": translate("(%(context)s) * %(user)s %(message)s"),
+			"no-context": translate("* %(user)s %(message)s")
+		}
+	};
+
+	let message = chatMessageTypes[msg.me ? "me" : "regular"][msg.context ? "context" : "no-context"];
+
+	let [username, playerColor] = getUsernameAndColorByGUID(msg.guid);
+	let coloredUsername = "[color=\"" + playerColor + "\"]" + username + "[/color]";
+
 	// Translate or escape text
-	let message;
+	let text = msg.text;
 	if (msg.translate)
 	{
-		message = translate(msg.text); // No need to escape, not a user message.
+		text = translate(text);
 		if (msg.translateParameters)
 		{
 			let parameters = msg.parameters || {};
 			translateObjectKeys(parameters, msg.translateParameters);
-			message = sprintf(message, parameters);
+			text = sprintf(text, parameters);
 		}
 	}
 	else
-		message = escapeText(msg.text);
+		text = escapeText(text);
 
-	let [username, playerColor] = getUsernameAndColorByGUID(msg.guid);
-	if (msg.me)
-	{
-		if (msg.context)
-			return sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
-				"context": msg.context,
-				"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
-				"message": message
-			});
-		else
-			return sprintf(translate("* %(user)s %(message)s"), {
-				"user": "[color=\"" + playerColor + "\"]" + username + "[/color]",
-				"message": message
-			});
-	}
-
-	let formattedUserTag = sprintf(translate("<%(user)s>"), { "user": "[color=\"" + playerColor + "\"]" + username + "[/color]" });
-	if (msg.context)
-		return sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
-			"context": msg.context,
-			"userTag": formattedUserTag,
-			"message": message
-		});
-	else
-		return sprintf(translate("%(userTag)s %(message)s"), { "userTag": formattedUserTag, "message": message });
+	return sprintf(message, {
+		"message": text,
+		"context": msg.context || undefined,
+		"user": coloredUsername,
+		"userTag": sprintf(translate("<%(user)s>"), { "user": coloredUsername })
+	});
 }
 
 /**
