@@ -123,8 +123,8 @@ var g_NotificationsTypes =
 			{
 				if (!param.startsWith("_player_"))
 					continue;
-				let colorName = getUsernameAndColor(+message.parameters[param]);
-				message.parameters[param] = "[color=\"" + colorName[1] + "\"]" + colorName[0] + "[/color]";
+
+				message.parameters[param] = colorizePlayernameByID(message.parameters[param]);
 			}
 		}
 
@@ -254,23 +254,6 @@ function updateTimeNotifications()
 		notificationText += sprintf(message, parameters) + "\n";
 	}
 	Engine.GetGUIObjectByName("notificationText").caption = notificationText;
-}
-
-/**
- * Returns [username, playercolor] for the given player.
- */
-function getUsernameAndColor(playerID)
-{
-	// This case is hit for AIs, whose names don't exist in g_PlayerAssignments.
-	return [
-		playerID > -1 ? escapeText(g_Players[playerID].name) : translate("Unknown Player"),
-		playerID > -1 ? rgbToGuiColor(g_Players[playerID].color) : "white"
-	];
-}
-
-function getUsernameAndColorByGUID(guid)
-{
-	return getUsernameAndColor(g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].player : -1);
 }
 
 /**
@@ -471,8 +454,7 @@ function formatChatMessage(msg)
 	// No context by default. May be set by parseChatCommands().
 	msg.context = "";
 
-	let [username, playerColor] = getUsernameAndColorByGUID(msg.guid || -1);
-	let colorizedPlayername = { "player": "[color=\"" + playerColor + "\"]" + username + "[/color]" };
+	let colorizedPlayername = { "player": colorizePlayernameByGUID(msg.guid || -1) };
 
 	switch (msg.type)
 	{
@@ -492,6 +474,23 @@ function formatChatMessage(msg)
 	return "";
 }
 
+/**
+ * This function is used for AIs, whose names don't exist in g_PlayerAssignments.
+ */
+function colorizePlayernameByID(playerID)
+{
+	let username = playerID > -1 ? escapeText(g_Players[playerID].name) : translate("Unknown Player");
+	let playerColor = playerID > -1 ? rgbToGuiColor(g_Players[playerID].color) : "white";
+	return "[color=\"" + playerColor + "\"]" + username + "[/color]";
+}
+
+function colorizePlayernameByGUID(guid)
+{
+	let username = g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].name : translate("Unknown Player");
+	let playerColor = g_PlayerAssignments[guid] ? rgbToGuiColor(g_Players[g_PlayerAssignments[guid].player].color) : "white";
+	return "[color=\"" + playerColor + "\"]" + username + "[/color]";
+}
+
 function formatClientList()
 {
 	return sprintf(translate("Users: %(users)s"),
@@ -509,10 +508,8 @@ function formatDefeatMessage(msg)
 
 	let messageType = !g_IsNetworked && msg.player == Engine.GetPlayerID() ? "you" : "regular";
 
-	let [username, playerColor] = getUsernameAndColor(msg.player);
-
 	return sprintf(defeatMessages[messageType], {
-		"player": "[color=\"" + playerColor + "\"]" + username + "[/color]"
+		"player": colorizePlayernameByID(msg.player)
 	});
 }
 
@@ -550,12 +547,9 @@ function formatDiplomacyMessage(msg)
 	if (!messageType)
 		return "";
 
-	let [username, playerColor] = getUsernameAndColor(messageType == "active" ? targetPlayerID : sourcePlayerID);
-	let [username2, playerColor2] = getUsernameAndColor(messageType == "active" ? sourcePlayerID : targetPlayerID);
-
 	return sprintf(diplomacyMessages[messageType][msg.status], {
-		"player": '[color="'+ playerColor + '"]' + username + '[/color]',
-		"player2": '[color="'+ playerColor2 + '"]' + username2 + '[/color]'
+		"player": colorizePlayernameByID(messageType == "active" ? targetPlayerID : sourcePlayerID),
+		"player2": colorizePlayernameByID(messageType == "active" ? sourcePlayerID : targetPlayerID)
 	});
 }
 
@@ -592,12 +586,9 @@ function formatTributeMessage(msg)
 		});
 	}
 
-	let [username, playerColor] = getUsernameAndColor(sourcePlayerID);
-	let [username2, playerColor2] = getUsernameAndColor(targetPlayerID);
-
 	return sprintf(tributeMessages[messageType], {
-		"player": "[color=\"" + playerColor + "\"]" + username + "[/color]",
-		"player2": "[color=\"" + playerColor2 + "\"]" + username2 + "[/color]",
+		"player": colorizePlayernameByID(sourcePlayerID),
+		"player2": colorizePlayernameByID(targetPlayerID),
 		"amounts": amounts
 	});
 }
@@ -615,10 +606,8 @@ function formatAttackMessage(msg)
 		"livestock": translate("Your livestock has been attacked by %(attacker)s!")
 	};
 
-	let [username, playerColor] = getUsernameAndColor(msg.attacker);
-
 	return sprintf(attackMessageTypes[msg.targetIsDomesticAnimal ? "livestock" : "regular"], {
-		"attacker": "[color=\"" + playerColor + "\"]" + username + "[/color]"
+		"attacker": colorizePlayernameByID(msg.attacker)
 	});
 }
 
@@ -644,9 +633,6 @@ function formatChatCommand(msg)
 
 	let message = chatMessageTypes[msg.me ? "me" : "regular"][msg.context ? "context" : "no-context"];
 
-	let [username, playerColor] = getUsernameAndColorByGUID(msg.guid);
-	let coloredUsername = "[color=\"" + playerColor + "\"]" + username + "[/color]";
-
 	// Translate or escape text
 	let text = msg.text;
 	if (msg.translate)
@@ -662,6 +648,7 @@ function formatChatCommand(msg)
 	else
 		text = escapeText(text);
 
+	let coloredUsername = colorizePlayernameByGUID(msg.guid);
 	return sprintf(message, {
 		"message": text,
 		"context": msg.context || undefined,
