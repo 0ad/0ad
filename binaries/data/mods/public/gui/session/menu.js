@@ -1,10 +1,6 @@
 const PAUSE = translate("Pause");
 const RESUME = translate("Resume");
 
-/*
- * MENU POSITION CONSTANTS
-*/
-
 // Menu / panel border size
 const MARGIN = 4;
 
@@ -33,14 +29,14 @@ const MENU_SPEED = 1.2;
 const RESOURCES = ["food", "wood", "stone", "metal"];
 const STEP = 5;
 
-var isMenuOpen = false;
+var g_IsMenuOpen = false;
 var menu;
 
-var isDiplomacyOpen = false;
-var isTradeOpen = false;
+var g_IsDiplomacyOpen = false;
+var g_IsTradeOpen = false;
 
 // Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
-var flushTributing = function() {};
+var g_FlushTributing = function() {};
 
 // Ignore size defined in XML and set the actual menu size here
 function initMenuPosition()
@@ -49,21 +45,15 @@ function initMenuPosition()
 	menu.size = INITIAL_MENU_POSITION;
 }
 
-
-// =============================================================================
-// Overall Menu
-// =============================================================================
-//
-// Slide menu
 function updateMenuPosition(dt)
 {
-	if (isMenuOpen)
+	if (g_IsMenuOpen)
 	{
-		var maxOffset = END_MENU_POSITION - menu.size.bottom;
+		let maxOffset = END_MENU_POSITION - menu.size.bottom;
 		if (maxOffset > 0)
 		{
-			var offset = Math.min(MENU_SPEED * dt, maxOffset);
-			var size = menu.size;
+			let offset = Math.min(MENU_SPEED * dt, maxOffset);
+			let size = menu.size;
 			size.top += offset;
 			size.bottom += offset;
 			menu.size = size;
@@ -71,11 +61,11 @@ function updateMenuPosition(dt)
 	}
 	else
 	{
-		var maxOffset = menu.size.top - MENU_TOP;
+		let maxOffset = menu.size.top - MENU_TOP;
 		if (maxOffset > 0)
 		{
-			var offset = Math.min(MENU_SPEED * dt, maxOffset);
-			var size = menu.size;
+			let offset = Math.min(MENU_SPEED * dt, maxOffset);
+			let size = menu.size;
 			size.top -= offset;
 			size.bottom -= offset;
 			menu.size = size;
@@ -86,25 +76,23 @@ function updateMenuPosition(dt)
 // Opens the menu by revealing the screen which contains the menu
 function openMenu()
 {
-	isMenuOpen = true;
+	g_IsMenuOpen = true;
 }
 
 // Closes the menu and resets position
 function closeMenu()
 {
-	isMenuOpen = false;
+	g_IsMenuOpen = false;
 }
 
 function toggleMenu()
 {
-	if (isMenuOpen == true)
+	if (g_IsMenuOpen)
 		closeMenu();
 	else
 		openMenu();
 }
 
-// Menu buttons
-// =============================================================================
 function optionsMenuButton()
 {
 	closeMenu();
@@ -136,9 +124,15 @@ function resignMenuButton()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	var btCaptions = [translate("No"), translate("Yes")];
-	var btCode = [resumeGame, resignGame];
-	messageBox(400, 200, translate("Are you sure you want to resign?"), translate("Confirmation"), 0, btCaptions, btCode);
+
+	messageBox(
+		400, 200,
+		translate("Are you sure you want to resign?"),
+		translate("Confirmation"),
+		0,
+		[translate("No"), translate("Yes")],
+		[resumeGame, resignGame]
+	);
 }
 
 function exitMenuButton()
@@ -146,30 +140,46 @@ function exitMenuButton()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	if (g_IsNetworked && g_IsController)
-	{
-		var btCode = [resumeGame, leaveGame];
-		var message = translate("Are you sure you want to quit? Leaving will disconnect all other players.");
-	}
-	else if (g_IsNetworked && !g_GameEnded && !g_IsObserver)
-	{
-		var btCode = [resumeGame, networkReturnQuestion];
-		var message = translate("Are you sure you want to quit?");
-	}
-	else
-	{
-		var btCode = [resumeGame, leaveGame];
-		var message = translate("Are you sure you want to quit?");
-	}
-	messageBox(400, 200, message, translate("Confirmation"), 0, [translate("No"), translate("Yes")], btCode);
+
+	let messageTypes = {
+		"host": {
+			"caption": translate("Are you sure you want to quit? Leaving will disconnect all other players."),
+			"buttons": [resumeGame, leaveGame]
+		},
+		"client": {
+			"caption": translate("Are you sure you want to quit?"),
+			"buttons": [resumeGame, networkReturnQuestion]
+		},
+		"singleplayer": {
+			"caption": translate("Are you sure you want to quit?"),
+			"buttons": [resumeGame, leaveGame]
+		}
+	};
+
+	let messageType = g_IsNetworked && g_IsController ? "host" :
+		(g_IsNetworked && !g_GameEnded && !g_IsObserver ? "client" : "singleplayer");
+
+	messageBox(
+		400, 200,
+		messageTypes[messageType].caption,
+		translate("Confirmation"),
+		0,
+		[translate("No"), translate("Yes")],
+		messageTypes[messageType].buttons
+	);
 }
 
 function networkReturnQuestion()
 {
-	var btCaptions = [translate("I will return"), translate("I resign")];
-	var btCode = [leaveGame, resignGame];
-	var btArgs = [true, false];
-	messageBox(400, 200, translate("Do you want to resign or will you return soon?"), translate("Confirmation"), 0, btCaptions, btCode, btArgs);
+	messageBox(
+		400, 200,
+		translate("Do you want to resign or will you return soon?"),
+		translate("Confirmation"),
+		0,
+		[translate("I will return"), translate("I resign")],
+		[leaveGame, resignGame],
+		[true, false]
+	);
 }
 
 function openDeleteDialog(selection)
@@ -177,34 +187,35 @@ function openDeleteDialog(selection)
 	closeMenu();
 	closeOpenDialogs();
 
-	var deleteSelectedEntities = function (selectionArg)
+	let deleteSelectedEntities = function (selectionArg)
 	{
-		Engine.PostNetworkCommand({"type": "delete-entities", "entities": selectionArg});
+		Engine.PostNetworkCommand({ "type": "delete-entities", "entities": selectionArg });
 	};
 
-	var btCaptions = [translate("No"), translate("Yes")];
-	var btCode = [resumeGame, deleteSelectedEntities];
-	var btArgs = [null, selection];
-
-	messageBox(400, 200, translate("Destroy everything currently selected?"), translate("Delete"), 0, btCaptions, btCode, btArgs);
+	messageBox(
+		400, 200,
+		translate("Destroy everything currently selected?"),
+		translate("Delete"),
+		0,
+		[translate("No"), translate("Yes")],
+		[resumeGame, deleteSelectedEntities],
+		[null, selection]
+	);
 }
-
-// Menu functions
-// =============================================================================
 
 function openSave()
 {
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	var savedGameData = getSavedGameData();
-	Engine.PushGuiPage("page_savegame.xml", {"savedGameData":savedGameData, "callback":"resumeGame"});
+	let savedGameData = getSavedGameData();
+	Engine.PushGuiPage("page_savegame.xml", { "savedGameData":savedGameData, "callback":"resumeGame" });
 }
 
 function openOptions()
 {
 	pauseGame();
-	Engine.PushGuiPage("page_options.xml", {"callback":"resumeGame"});
+	Engine.PushGuiPage("page_options.xml", { "callback":"resumeGame" });
 }
 
 function openChat()
@@ -238,8 +249,8 @@ function toggleChatWindow(teamChat)
 	if (g_Disconnected)
 		return;
 
-	var chatWindow = Engine.GetGUIObjectByName("chatDialogPanel");
-	var chatInput = Engine.GetGUIObjectByName("chatInput");
+	let chatWindow = Engine.GetGUIObjectByName("chatDialogPanel");
+	let chatInput = Engine.GetGUIObjectByName("chatInput");
 
 	if (chatWindow.hidden)
 		chatInput.focus(); // Grant focus to the input area
@@ -269,9 +280,9 @@ function tributeResource(data)
 
 function openDiplomacy()
 {
-	if (isTradeOpen)
+	if (g_IsTradeOpen)
 		closeTrade();
-	isDiplomacyOpen = true;
+	g_IsDiplomacyOpen = true;
 
 	let we = Engine.GetPlayerID();
 
@@ -330,18 +341,18 @@ function openDiplomacy()
 						"food": (resource == "food" ? 100 : 0) * multiplier,
 						"wood": (resource == "wood" ? 100 : 0) * multiplier,
 						"stone": (resource == "stone" ? 100 : 0) * multiplier,
-						"metal": (resource == "metal" ? 100 : 0) * multiplier,
+						"metal": (resource == "metal" ? 100 : 0) * multiplier
 					};
 					button.tooltip = formatTributeTooltip(g_Players[player], resource, amounts[resource]);
 					// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
 					// evil global variable hackery.
-					flushTributing = function() {
-						tributeResource({"player": player, "amounts": amounts});
+					g_FlushTributing = function() {
+						tributeResource({ "player": player, "amounts": amounts });
 						multiplier = 1;
 						button.tooltip = formatTributeTooltip(g_Players[player], resource, 100);
 					};
 					if (!isBatchTrainPressed)
-						flushTributing();
+						g_FlushTributing();
 				};
 			})(i, resource, button);
 			button.hidden = false;
@@ -349,13 +360,13 @@ function openDiplomacy()
 		}
 
 		// Attack Request
-		var simState = GetSimState();
+		let simState = GetSimState();
 		let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
 		button.hidden = simState.ceasefireActive || !(g_Players[i].isEnemy[we]);
 		button.tooltip = translate("Request your allies to attack this enemy");
 		button.onpress = (function(i, we){ return function() {
-			Engine.PostNetworkCommand({"type": "attack-request", "source": we, "target": i});
-		} })(i, we);
+			Engine.PostNetworkCommand({ "type": "attack-request", "source": we, "target": i });
+		}; })(i, we);
 
 		// Skip our own teams on teams locked
 		if (g_Players[we].teamsLocked && g_Players[we].team != -1 && g_Players[we].team == g_Players[i].team)
@@ -368,7 +379,7 @@ function openDiplomacy()
 			let button = Engine.GetGUIObjectByName("diplomacyPlayer"+setting+"["+(i-1)+"]");
 
 			button.caption = g_Players[we]["is"+setting][i] ? translate("x") : "";
-			button.onpress = (function(e){ return function() { setDiplomacy(e); } })({"player": i, "to": setting.toLowerCase()});
+			button.onpress = (function(e){ return function() { setDiplomacy(e); }; })({ "player": i, "to": setting.toLowerCase() });
 			button.hidden = simState.ceasefireActive;
 		}
 	}
@@ -378,13 +389,13 @@ function openDiplomacy()
 
 function closeDiplomacy()
 {
-	isDiplomacyOpen = false;
+	g_IsDiplomacyOpen = false;
 	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = true;
 }
 
 function toggleDiplomacy()
 {
-	if (isDiplomacyOpen)
+	if (g_IsDiplomacyOpen)
 		closeDiplomacy();
 	else
 		openDiplomacy();
@@ -392,9 +403,9 @@ function toggleDiplomacy()
 
 function openTrade()
 {
-	if (isDiplomacyOpen)
+	if (g_IsDiplomacyOpen)
 		closeDiplomacy();
-	isTradeOpen = true;
+	g_IsTradeOpen = true;
 
 	var updateButtons = function()
 	{
@@ -605,13 +616,13 @@ function openTrade()
 
 function closeTrade()
 {
-	isTradeOpen = false;
+	g_IsTradeOpen = false;
 	Engine.GetGUIObjectByName("tradeDialogPanel").hidden = true;
 }
 
 function toggleTrade()
 {
-	if (isTradeOpen)
+	if (g_IsTradeOpen)
 		closeTrade();
 	else
 		openTrade();
@@ -619,7 +630,7 @@ function toggleTrade()
 
 function toggleGameSpeed()
 {
-	var gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
+	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.hidden = !gameSpeed.hidden;
 }
 
@@ -629,7 +640,7 @@ function openGameSummary()
 	closeOpenDialogs();
 	pauseGame();
 
-	var extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
+	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
 
 	Engine.PushGuiPage("page_summary.xml", {
 		"timeElapsed" : extendedSimState.timeElapsed,
@@ -683,7 +694,7 @@ function togglePause()
 	closeMenu();
 	closeOpenDialogs();
 
-	var pauseOverlay = Engine.GetGUIObjectByName("pauseOverlay");
+	let pauseOverlay = Engine.GetGUIObjectByName("pauseOverlay");
 
 	if (pauseOverlay.hidden)
 	{
@@ -704,7 +715,13 @@ function openManual()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	Engine.PushGuiPage("page_manual.xml", {"page": "manual/intro", "title":translate("Manual"), "url":"http://trac.wildfiregames.com/wiki/0adManual", "callback": "resumeGame"});
+
+	Engine.PushGuiPage("page_manual.xml", {
+		"page": "manual/intro",
+		"title": translate("Manual"),
+		"url": "http://trac.wildfiregames.com/wiki/0adManual",
+		"callback": "resumeGame"
+	});
 }
 
 function toggleDeveloperOverlay()
@@ -713,12 +730,12 @@ function toggleDeveloperOverlay()
 	if (Engine.HasXmppClient() && Engine.IsRankedGame())
 		return;
 
-	var devCommands = Engine.GetGUIObjectByName("devCommands");
+	let devCommands = Engine.GetGUIObjectByName("devCommands");
 	if (devCommands.hidden)
 		submitChatDirectly(translate("The Developer Overlay was opened."));
 	else
 		submitChatDirectly(translate("The Developer Overlay was closed."));
-	// Toggle the overlay
+
 	devCommands.hidden = !devCommands.hidden;
 }
 
@@ -732,11 +749,10 @@ function closeOpenDialogs()
 
 function formatTributeTooltip(player, resource, amount)
 {
-	let playerColor = rgbToGuiColor(player.color);
 	return sprintf(translate("Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click to tribute %(greaterAmount)s."), {
-		resourceAmount: amount,
-		resourceType: getLocalizedResourceName(resource, "withinSentence"),
-		playerName: "[color=\"" + playerColor + "\"]" + player.name + "[/color]",
-		greaterAmount: (amount < 500 ? 500 : amount + 500)
+		"resourceAmount": amount,
+		"resourceType": getLocalizedResourceName(resource, "withinSentence"),
+		"playerName": "[color=\"" + rgbToGuiColor(player.color) + "\"]" + player.name + "[/color]",
+		"greaterAmount": (amount < 500 ? 500 : amount + 500)
 	});
 }

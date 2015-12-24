@@ -9,51 +9,19 @@ m.getMaxStrength = function(ent, againstClass)
 	if (!attackTypes)
 		return strength;
 
-	var armourStrength = ent.armourStrengths();
-	var hp = ent.maxHitpoints() / 100.0;	// some normalization
 	for (let type of attackTypes)
 	{
 		if (type == "Slaughter" || type == "Charged")
 			continue;
 
-		var attackStrength = ent.attackStrengths(type);
-		var attackRange = ent.attackRange(type);
-		var attackTimes = ent.attackTimes(type);
-		for (var str in attackStrength) {
-			var val = parseFloat(attackStrength[str]);
+		let attackStrength = ent.attackStrengths(type);
+		for (let str in attackStrength)
+		{
+			let val = parseFloat(attackStrength[str]);
 			if (againstClass)
 				val *= ent.getMultiplierAgainst(type, againstClass);
-			switch (str) {
-				case "crush":
-					strength += (val * 0.085) / 3;
-					break;
-				case "hack":
-					strength += (val * 0.075) / 3;
-					break;
-				case "pierce":
-					strength += (val * 0.065) / 3;
-					break;
-			}
-		}
-		if (attackRange){
-			strength += (attackRange.max * 0.0125) ;
-		}
-		for (var str in attackTimes) {
-			var val = parseFloat(attackTimes[str]);
-			switch (str){
-				case "repeat":
-					strength += (val / 100000);
-					break;
-				case "prepare":
-					strength -= (val / 100000);
-					break;
-			}
-		}
-	}
-	for (var str in armourStrength)
-	{
-		var val = parseFloat(armourStrength[str]);
-		switch (str) {
+			switch (str)
+			{
 			case "crush":
 				strength += (val * 0.085) / 3;
 				break;
@@ -63,9 +31,55 @@ m.getMaxStrength = function(ent, againstClass)
 			case "pierce":
 				strength += (val * 0.065) / 3;
 				break;
+			}
+		}
+
+		let attackRange = ent.attackRange(type);
+		if (attackRange)
+			strength += (attackRange.max * 0.0125) ;
+
+		let attackTimes = ent.attackTimes(type);
+		for (let str in attackTimes)
+		{
+			let val = parseFloat(attackTimes[str]);
+			switch (str)
+			{
+			case "repeat":
+				strength += (val / 100000);
+				break;
+			case "prepare":
+				strength -= (val / 100000);
+				break;
+			}
 		}
 	}
-	return strength * hp;
+
+	var armourStrength = ent.armourStrengths();
+	for (let str in armourStrength)
+	{
+		let val = parseFloat(armourStrength[str]);
+		switch (str)
+		{
+		case "crush":
+			strength += (val * 0.085) / 3;
+			break;
+		case "hack":
+			strength += (val * 0.075) / 3;
+			break;
+		case "pierce":
+			strength += (val * 0.065) / 3;
+			break;
+		}
+	}
+
+	return strength * ent.maxHitpoints() / 100.0;
+};
+
+// Decide if we should try to capture or destroy
+m.allowCapture = function(ent, target)
+{
+	return (!target.hasClass("Siege") || !ent.hasClass("Melee") ||
+		!target.isGarrisonHolder() || !target.garrisoned().length);
 };
 
 // Makes the worker deposit the currently carried resources at the closest accessible dropsite
@@ -82,7 +96,7 @@ m.returnResources = function(gameState, ent)
 	gameState.getOwnDropsites(resource).forEach(function(dropsite) {
 		if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
 			return;
-		var dist = API3.SquareVectorDistance(ent.position(), dropsite.position());
+		let dist = API3.SquareVectorDistance(ent.position(), dropsite.position());
 		if (dist > distmin)
 			return;
 		distmin = dist;
@@ -117,7 +131,7 @@ m.getBestBase = function(gameState, ent)
 	var pos = ent.position();
 	if (!pos)
 	{
-		var holder = m.getHolder(gameState, ent);
+		let holder = m.getHolder(gameState, ent);
 		if (!holder || !holder.position())
 		{
 			API3.warn("Petra error: entity without position, but not garrisoned");

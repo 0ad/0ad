@@ -802,7 +802,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 	case INPUT_MASSTRIBUTING:
 		if (ev.type == "hotkeyup" && ev.hotkey == "session.masstribute")
 		{
-			flushTributing();
+			g_FlushTributing();
 			inputState = INPUT_NORMAL;
 		}
 		break;

@@ -55,31 +55,6 @@ function getPlayerData(playerAssignments)
 	return players;
 }
 
-function findGuidForPlayerID(playerID)
-{
-	return Object.keys(g_PlayerAssignments).find(guid => g_PlayerAssignments[guid].player == playerID);
-}
-
-// Update player data when a host has connected
-function updatePlayerDataAdd(players, hostGuid, playerAssignment)
-{
-	if (players[playerAssignment.player])
-	{
-		players[playerAssignment.player].guid = hostGuid;
-		players[playerAssignment.player].name = playerAssignment.name;
-		players[playerAssignment.player].offline = false;
-	}
-}
-
-// Update player data when a host has disconnected
-function updatePlayerDataRemove(players, hostGuid)
-{
-	for each (var player in players)
-		if (player.guid == hostGuid)
-			player.offline = true;
-}
-
-
 function hasClass(entState, className)
 {
 	// note: use the functions in globalscripts/Templates.js for more versatile matching
