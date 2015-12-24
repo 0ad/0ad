@@ -235,7 +235,7 @@ function updateDiplomacy()
 {
 	g_Players = getPlayerData(g_PlayerAssignments);
 
-	if (isDiplomacyOpen)
+	if (g_IsDiplomacyOpen)
 		openDiplomacy();
 }
 
@@ -246,7 +246,6 @@ function updateTimeNotifications()
 {
 	let notifications =  Engine.GuiInterfaceCall("GetTimeNotifications");
 	let notificationText = "";
-	let playerID = Engine.GetPlayerID();
 	for (let n of notifications)
 	{
 		let message = n.message;
