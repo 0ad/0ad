@@ -1,6 +1,3 @@
-const PAUSE = translate("Pause");
-const RESUME = translate("Resume");
-
 // Menu / panel border size
 const MARGIN = 4;
 
@@ -25,12 +22,13 @@ const INITIAL_MENU_POSITION = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 // Number of pixels per millisecond to move
 const MENU_SPEED = 1.2;
 
-// Trade menu: available resources and step for probability changes
+// Available resources in trade and tribute menu
 const RESOURCES = ["food", "wood", "stone", "metal"];
+
+// Trade menu: step for probability changes
 const STEP = 5;
 
 var g_IsMenuOpen = false;
-var menu;
 
 var g_IsDiplomacyOpen = false;
 var g_IsTradeOpen = false;
@@ -41,36 +39,23 @@ var g_FlushTributing = function() {};
 // Ignore size defined in XML and set the actual menu size here
 function initMenuPosition()
 {
-	menu = Engine.GetGUIObjectByName("menu");
-	menu.size = INITIAL_MENU_POSITION;
+	Engine.GetGUIObjectByName("menu").size = INITIAL_MENU_POSITION;
 }
 
 function updateMenuPosition(dt)
 {
-	if (g_IsMenuOpen)
-	{
-		let maxOffset = END_MENU_POSITION - menu.size.bottom;
-		if (maxOffset > 0)
-		{
-			let offset = Math.min(MENU_SPEED * dt, maxOffset);
-			let size = menu.size;
-			size.top += offset;
-			size.bottom += offset;
-			menu.size = size;
-		}
-	}
-	else
-	{
-		let maxOffset = menu.size.top - MENU_TOP;
-		if (maxOffset > 0)
-		{
-			let offset = Math.min(MENU_SPEED * dt, maxOffset);
-			let size = menu.size;
-			size.top -= offset;
-			size.bottom -= offset;
-			menu.size = size;
-		}
-	}
+	let menu = Engine.GetGUIObjectByName("menu");
+
+	let maxOffset = g_IsMenuOpen ? (END_MENU_POSITION - menu.size.bottom) : (menu.size.top - MENU_TOP);
+	if (maxOffset <= 0)
+		return;
+
+	let offset = Math.min(MENU_SPEED * dt, maxOffset) * (g_IsMenuOpen ? +1 : -1);
+
+	let size = menu.size;
+	size.top += offset;
+	size.bottom += offset;
+	menu.size = size;
 }
 
 // Opens the menu by revealing the screen which contains the menu
@@ -87,10 +72,7 @@ function closeMenu()
 
 function toggleMenu()
 {
-	if (g_IsMenuOpen)
-		closeMenu();
-	else
-		openMenu();
+	g_IsMenuOpen = !g_IsMenuOpen;
 }
 
 function optionsMenuButton()
@@ -208,14 +190,13 @@ function openSave()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	let savedGameData = getSavedGameData();
-	Engine.PushGuiPage("page_savegame.xml", { "savedGameData":savedGameData, "callback":"resumeGame" });
+	Engine.PushGuiPage("page_savegame.xml", { "savedGameData": getSavedGameData(), "callback": "resumeGame" });
 }
 
 function openOptions()
 {
 	pauseGame();
-	Engine.PushGuiPage("page_options.xml", { "callback":"resumeGame" });
+	Engine.PushGuiPage("page_options.xml", { "callback": "resumeGame" });
 }
 
 function openChat()
@@ -270,12 +251,12 @@ function toggleChatWindow(teamChat)
 
 function setDiplomacy(data)
 {
-	Engine.PostNetworkCommand({"type": "diplomacy", "to": data.to, "player": data.player});
+	Engine.PostNetworkCommand({ "type": "diplomacy", "to": data.to, "player": data.player });
 }
 
 function tributeResource(data)
 {
-	Engine.PostNetworkCommand({"type": "tribute", "player": data.player, "amounts":  data.amounts});
+	Engine.PostNetworkCommand({ "type": "tribute", "player": data.player, "amounts":  data.amounts });
 }
 
 function openDiplomacy()
@@ -316,14 +297,14 @@ function openDiplomacy()
 		if (i == we || g_Players[we].state != "active" || g_Players[i].state != "active")
 		{
 			// Hide the unused/unselectable options
-			for each (let a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
+			for (let a of ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
 				Engine.GetGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
 			Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]").hidden = true;
 			continue;
 		}
 
 		// Tribute
-		for each (let resource in ["food", "wood", "stone", "metal"])
+		for (let resource of RESOURCES)
 		{
 			let button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+resource[0].toUpperCase()+resource.substring(1)+"["+(i-1)+"]");
 			button.onpress = (function(player, resource, button){
@@ -374,7 +355,7 @@ function openDiplomacy()
 
 		// Diplomacy settings
 		// Set up the buttons
-		for each (let setting in ["Ally", "Neutral", "Enemy"])
+		for (let setting of ["Ally", "Neutral", "Enemy"])
 		{
 			let button = Engine.GetGUIObjectByName("diplomacyPlayer"+setting+"["+(i-1)+"]");
 
@@ -504,36 +485,28 @@ function openTrade()
 			{
 				var garrisonedString = sprintf(translatePlural("%(numberGarrisoned)s garrisoned on a trading merchant ship", "%(numberGarrisoned)s garrisoned on a trading merchant ship", traderNumber.landTrader.garrisoned), { numberGarrisoned: traderNumber.landTrader.garrisoned });
 				if (inactive > 0)
-				{
 					caption = sprintf(translate("%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."), {
 						openingTradingString: openingTradingString,
 						garrisonedString: garrisonedString,
 						inactiveString: inactiveString
 					});
-				}
 				else
-				{
 					caption = sprintf(translate("%(openingTradingString)s, and %(garrisonedString)s."), {
 						openingTradingString: openingTradingString,
 						garrisonedString: garrisonedString
 					});
-				}
 			}
 			else
 			{
 				if (inactive > 0)
-				{
 					caption = sprintf(translate("%(openingTradingString)s, and %(inactiveString)s."), {
 						openingTradingString: openingTradingString,
 						inactiveString: inactiveString
 					});
-				}
 				else
-				{
 					caption = sprintf(translate("%(openingTradingString)s."), {
 						openingTradingString: openingTradingString,
 					});
-				}
 			}
 		}
 		else
@@ -542,18 +515,14 @@ function openTrade()
 			{
 				var openingGarrisonedString = sprintf(translatePlural("There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship", "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant ship", traderNumber.landTrader.garrisoned), { numberGarrisoned: traderNumber.landTrader.garrisoned });
 				if (inactive > 0)
-				{
 					caption = sprintf(translate("%(openingGarrisonedString)s, and %(inactiveString)s."), {
 						openingGarrisonedString: openingGarrisonedString,
 						inactiveString: inactiveString
 					});
-				}
 				else
-				{
 					caption = sprintf(translate("%(openingGarrisonedString)s."), {
 						openingGarrisonedString: openingGarrisonedString
 					});
-				}
 			}
 			else
 			{
@@ -584,18 +553,14 @@ function openTrade()
 		{
 			var openingTradingString = sprintf(translatePlural("There is %(numberTrading)s merchant ship trading", "There are %(numberTrading)s merchant ships trading", traderNumber.shipTrader.trading), { numberTrading: traderNumber.shipTrader.trading });
 			if (inactive > 0)
-			{
 				caption = sprintf(translate("%(openingTradingString)s, and %(inactiveString)s."), {
 					openingTradingString: openingTradingString,
 					inactiveString: inactiveString
 				});
-			}
 			else
-			{
 				caption = sprintf(translate("%(openingTradingString)s."), {
 					openingTradingString: openingTradingString,
 				});
-			}
 		}
 		else
 		{
@@ -674,14 +639,14 @@ function pauseGame()
 	if (g_IsNetworked)
 		return;
 
-	Engine.GetGUIObjectByName("pauseButtonText").caption = RESUME;
+	Engine.GetGUIObjectByName("pauseButtonText").caption = translate("Resume");
 	Engine.GetGUIObjectByName("pauseOverlay").hidden = false;
 	Engine.SetPaused(true);
 }
 
 function resumeGame()
 {
-	Engine.GetGUIObjectByName("pauseButtonText").caption = PAUSE;
+	Engine.GetGUIObjectByName("pauseButtonText").caption = translate("Pause");
 	Engine.GetGUIObjectByName("pauseOverlay").hidden = true;
 	Engine.SetPaused(false);
 }

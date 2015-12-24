@@ -1,6 +1,6 @@
 
 var g_Descriptions;
-var savedGameData;
+var g_SavedGameData;
 
 function selectDescription()
 {
@@ -15,11 +15,8 @@ function selectDescription()
 
 function init(data)
 {
-	if (data)
-	{
-		if (data.savedGameData)
-			savedGameData = data.savedGameData;
-	}
+	if (data && data.savedGameData)
+		g_SavedGameData = data.savedGameData;
 
 	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
@@ -67,9 +64,9 @@ function saveGame()
 function reallySaveGame(name, desc, nameIsPrefix)
 {
 	if (nameIsPrefix)
-		Engine.SaveGamePrefix(name, desc, savedGameData);
+		Engine.SaveGamePrefix(name, desc, g_SavedGameData);
 	else
-		Engine.SaveGame(name, desc, savedGameData);
+		Engine.SaveGame(name, desc, g_SavedGameData);
 
 	closeSave();
 }
@@ -104,5 +101,5 @@ function reallyDeleteGame(gameID)
 // That's why we have to pass the data to this page even if we don't need it.
 function getSavedGameData()
 {
-	return savedGameData;
+	return g_SavedGameData;
 }
