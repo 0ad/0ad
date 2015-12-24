@@ -661,16 +661,8 @@ function togglePause()
 
 	let pauseOverlay = Engine.GetGUIObjectByName("pauseOverlay");
 
-	if (pauseOverlay.hidden)
-	{
-		Engine.GetGUIObjectByName("pauseButtonText").caption = RESUME;
-		Engine.SetPaused(true);
-	}
-	else
-	{
-		Engine.SetPaused(false);
-		Engine.GetGUIObjectByName("pauseButtonText").caption = PAUSE;
-	}
+	Engine.SetPaused(pauseOverlay.hidden);
+	Engine.GetGUIObjectByName("pauseButtonText").caption = pauseOverlay.hidden ? translate("Resume") : translate("Pause");
 
 	pauseOverlay.hidden = !pauseOverlay.hidden;
 }
