@@ -190,6 +190,11 @@ var g_NotificationsTypes =
 	}
 };
 
+function findGuidForPlayerID(playerID)
+{
+	return Object.keys(g_PlayerAssignments).find(guid => g_PlayerAssignments[guid].player == playerID);
+}
+
 /**
  * Processes all pending simulation messages.
  */
@@ -271,67 +276,28 @@ function handleNetMessage(message)
 	case "netstatus":
 		handleNetStatusMessage(message);
 		break;
-
 	case "players":
-		// Find and report all leavings
-		for (let guid in g_PlayerAssignments)
-		{
-			if (!message.hosts[guid])
-			{
-				// Tell the user about the disconnection
-				addChatMessage({ "type": "disconnect", "guid": guid });
-
-				// Update the cached player data, so we can display the disconnection status
-				updatePlayerDataRemove(g_Players, guid);
-			}
-		}
-
-		let joins = Object.keys(message.hosts).filter(guid => !g_PlayerAssignments[guid]);
-
-		g_PlayerAssignments = message.hosts;
-
-		// Report all joinings
-		joins.forEach(guid => {
-			// Update the cached player data, so we can display the correct name
-			updatePlayerDataAdd(g_Players, guid, g_PlayerAssignments[guid]);
-
-			// Tell the user about the connection
-			addChatMessage({ "type": "connect", "guid": guid });
-		});
-
-		if (g_IsController && Engine.HasXmppClient())
-		{
-			let players = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
-			Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
-		}
-
+		handlePlayerAssignmentsMessage(message);
 		break;
-
 	case "chat":
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
 		break;
-
 	case "aichat":
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text, "translate": true });
 		break;
-
 	case "rejoined":
 		addChatMessage({ "type": "rejoined", "guid": message.guid });
 		break;
-
 	case "kicked":
 		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": message.username })});
 		break;
-
 	case "banned":
 		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": message.username })});
 		break;
-
 	// To prevent errors, ignore these message types that occur during autostart
 	case "gamesetup":
 	case "start":
 		break;
-
 	default:
 		error("Unrecognised net message type '" + message.type + "'");
 	}
@@ -372,6 +338,47 @@ function handleNetStatusMessage(message)
 	{
 		g_Disconnected = true;
 		closeChat();
+	}
+}
+
+function handlePlayerAssignmentsMessage(message)
+{
+	// Find and report all leavings
+	for (let guid in g_PlayerAssignments)
+	{
+		if (message.hosts[guid])
+			continue;
+
+		addChatMessage({ "type": "disconnect", "guid": guid });
+
+		for (let id in g_Players)
+			if (g_Players[id].guid == guid)
+				g_Players[id].offline = true;
+	}
+
+	let joins = Object.keys(message.hosts).filter(guid => !g_PlayerAssignments[guid]);
+
+	g_PlayerAssignments = message.hosts;
+
+	// Report all joinings
+	joins.forEach(guid => {
+
+		let playerID = g_PlayerAssignments[guid].player;
+		if (g_Players[playerID])
+		{
+			g_Players[playerID].guid = guid;
+			g_Players[playerID].name = g_PlayerAssignments[guid].name;
+			g_Players[playerID].offline = false;
+		}
+
+		addChatMessage({ "type": "connect", "guid": guid });
+	});
+
+	// Update lobby gamestatus
+	if (g_IsController && Engine.HasXmppClient())
+	{
+		let players = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
+		Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
 	}
 }
 
