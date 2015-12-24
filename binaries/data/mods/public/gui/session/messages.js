@@ -265,42 +265,28 @@ function updateTimeNotifications()
  * Processes a CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
  * Saves the received object to mainlog.html.
  *
- * @param {Object} message
+ * @param {Object} msg
  */
-function handleNetMessage(message)
+function handleNetMessage(msg)
 {
-	log("Net message: " + uneval(message));
+	log("Net message: " + uneval(msg));
 
-	switch (message.type)
-	{
-	case "netstatus":
-		handleNetStatusMessage(message);
-		break;
-	case "players":
-		handlePlayerAssignmentsMessage(message);
-		break;
-	case "chat":
-		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
-		break;
-	case "aichat":
-		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text, "translate": true });
-		break;
-	case "rejoined":
-		addChatMessage({ "type": "rejoined", "guid": message.guid });
-		break;
-	case "kicked":
-		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": message.username })});
-		break;
-	case "banned":
-		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": message.username })});
-		break;
-	// To prevent errors, ignore these message types that occur during autostart
-	case "gamesetup":
-	case "start":
-		break;
-	default:
-		error("Unrecognised net message type '" + message.type + "'");
-	}
+	let messageTypes = {
+		"netstatus": message => handleNetStatusMessage(msg),
+		"players":   message => handlePlayerAssignmentsMessage(msg),
+		"rejoined":  message => addChatMessage({ "type": "rejoined", "guid": msg.guid }),
+		"kicked":    message => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": msg.username }) }),
+		"banned":    message => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": msg.username }) }),
+		"chat":      message => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text }),
+		"aichat":    message => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text, "translate": true }),
+		"gamesetup": message => "",
+		"start":     message => ""
+	};
+
+	if (messageTypes[msg.type])
+		messageTypes[msg.type](msg);
+	else
+		error("Unrecognised net message type '" + msg.type + "'");
 }
 
 /**
@@ -494,7 +480,8 @@ function colorizePlayernameByID(playerID)
 function colorizePlayernameByGUID(guid)
 {
 	let username = g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].name : translate("Unknown Player");
-	let playerColor = g_PlayerAssignments[guid] ? rgbToGuiColor(g_Players[g_PlayerAssignments[guid].player].color) : "white";
+	let playerID = g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].player : -1;
+	let playerColor = playerID > 0 ? rgbToGuiColor(g_Players[playerID].color) : "white";
 	return "[color=\"" + playerColor + "\"]" + username + "[/color]";
 }
 
