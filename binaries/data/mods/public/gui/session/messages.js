@@ -641,7 +641,9 @@ function formatChatCommand(msg)
 	else
 		text = escapeText(text);
 
-	let coloredUsername = colorizePlayernameByGUID(msg.guid);
+	// GUID for players, playerID for AIs
+	let coloredUsername = msg.guid != -1 ? colorizePlayernameByGUID(msg.guid) : colorizePlayernameByID(msg.player);
+
 	return sprintf(message, {
 		"message": text,
 		"context": msg.context || undefined,
