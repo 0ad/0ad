@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-14 09:01+0100\n"
-"PO-Revision-Date: 2015-12-17 15:21+0000\n"
-"Last-Translator: Pavel Šindelář <pavelsin123@gmail.com>\n"
+"PO-Revision-Date: 2015-12-21 20:49+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +51,7 @@ msgstr "Kámen"
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "Začínám masivní vojenskou kampaň proti %(_player_)s, přijď a přidej se ke mně."
+msgstr "Začínám obrovské vojenské tažení proti %(_player_)s, přijď a přidej se ke mně."
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
@@ -120,7 +120,7 @@ msgstr "Účastnil bych se účinněji na tvém běžném válečném úsilí, p
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr "Pokud máš přebytek %(resource)s, pomohlo by to posílit mou armádu."
+msgstr "Pokud máte přebytek %(resource)s, pomohlo by to posílit moji armádu."
 
 #: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
@@ -391,7 +391,7 @@ msgstr " - Nebojte se převést jednotky z jednoho zdroje k jinému, viz bod 2. 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr "Postav více domů, tvoje CC by mělo být zaměstnáváno jak to jen jde."
+msgstr " - Postavte dostatek domů. Vaše správní středisko by mělo vytvářet tolik jednotek, kolik je možné."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -633,7 +633,7 @@ msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
 msgstr[0] "%(name)s je moc daleko od %(category)s, může být maximálně vzdáleno %(distance)s metr."
 msgstr[1] "%(name)s je moc daleko od %(category)s, může být maximálně vzdáleno %(distance)s metry."
-msgstr[2] "%(name)s je moc daleko od %(category)s, může být maximálně vzdáleno %(distance)s metrů."
+msgstr[2] "%(name)s je moc daleko od %(category)s, může být vzdáleno nejvíce %(distance)s metrů."
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -737,7 +737,7 @@ msgstr "Výrobní řada je plná."
 #: simulation/helpers/Commands.js:681
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr "Vyžaduji útok proti %(_player_)s."
+msgstr "Požadován útok proti %(_player_)s."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -821,7 +821,7 @@ msgstr "Rychleji (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr "Poraz všechny protivníky."
+msgstr "Poražte všechny soupeře"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -829,23 +829,23 @@ msgstr "Dobytí"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr "Znič všechny budovy nepřátel"
+msgstr "Zničte všechny nepřátelské stavby"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr "Dobýjecí budovy."
+msgstr "Dobýt budovy"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr "Zabij všechny nepřátelské jednotky"
+msgstr "Zabijte všechny nepřátelské jednotky"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr "Dobýjecí jednotky."
+msgstr "Dobýt jednotky"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr "Postav a ochraň div pro výtězství"
+msgstr "Postavte a ochraňte div, abyste vyhrál"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -879,7 +879,7 @@ msgstr "Velmi vysoké"
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr "Zápas na smrt (Deathmatch)"
+msgstr "Zápas na život a na smrt"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 #: simulation/data/settings/map_sizes.jsonData[0].LongName

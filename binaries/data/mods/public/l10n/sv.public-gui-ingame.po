@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-14 09:00+0100\n"
-"PO-Revision-Date: 2015-12-17 17:30+0000\n"
+"PO-Revision-Date: 2015-12-24 12:03+0000\n"
 "Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -569,7 +569,7 @@ msgstr "Lasta av %(name)s"
 
 #: gui/session/selection_panels.js:441
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "Klicka för att lasta av 1. Skift+klicka för att lasta av alla av denna sort."
 
 #: gui/session/selection_panels.js:508
 msgid "Lock Gate"
@@ -649,12 +649,12 @@ msgstr "Aktuellt antal: %(count)s, Max: %(limit)s."
 #: gui/session/selection_panels_helpers.js:76
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s ökar begränsningen med %(change)s."
 
 #: gui/session/selection_panels_helpers.js:78
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s sänker begränsningen med %(change)s."
 
 #: gui/session/selection_panels_helpers.js:105
 #, javascript-format
@@ -692,7 +692,7 @@ msgstr "Gaia"
 #: gui/session/session.js:250
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Strukturträd"
 
 #: gui/session/session.js:325 gui/session/session.js:341
 msgid "You have left the game."
@@ -819,12 +819,12 @@ msgstr "Lasta av allt."
 
 #: gui/session/unit_actions.js:699
 msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr ""
+msgstr "Du kan inte förstöra denna enhet för att den är i krigsdimman"
 
 #: gui/session/unit_actions.js:705
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "Du kan inte förstöra denna enhet för att du äger mindre än hälften av enhetens erövringspoäng"
 
 #: gui/session/unit_actions.js:737
 msgid "Stop"
