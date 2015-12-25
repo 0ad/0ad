@@ -71,6 +71,26 @@ const g_SenderFont = "sans-bold-13";
 const g_ColorRandom = "orange";
 
 /**
+ * Highlight AIs in the player-dropdownlist.
+ */
+const g_AIColor = "70 150 70";
+
+/**
+ * Highlight unassigned players in the dropdownlist.
+ */
+const g_UnassignedColor = "140 140 140";
+
+/**
+ * Highlight ready players.
+ */
+const g_ReadyColor = "green";
+
+/**
+ * Highlights the victory condition in the game-description.
+ */
+const g_VictoryColor = "orange";
+
+/**
  * Placeholder item for the map-dropdownlist.
  */
 const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map", "Random") + "[/color]";
@@ -419,8 +439,7 @@ function hideControl(control, label, allowControl = g_IsController)
 {
 	Engine.GetGUIObjectByName(control).hidden = !allowControl;
 	Engine.GetGUIObjectByName(label).hidden = allowControl;
-};
-
+}
 
 /**
  * Checks a boolean checkbox for the host and sets the text of the label for the client.
@@ -541,7 +560,7 @@ function handleNetMessage(message)
 		break;
 
 	case "ready":
-		handleReadyMessage(message)
+		handleReadyMessage(message);
 		break;
 
 	default:
@@ -1359,7 +1378,7 @@ function setMapDescription()
 	let victoryIdx = Math.max(0, g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType || ""));
 	let victoryTitle = g_VictoryConditions.Title[victoryIdx];
 	if (victoryIdx != g_VictoryConditions.Default)
-		victoryTitle = "[color=\"orange\"]" + victoryTitle + "[/color]";
+		victoryTitle = "[color=\"" + g_VictoryColor + "\"]" + victoryTitle + "[/color]";
 
 	let mapDescription = g_GameAttributes.settings.Description ? translate(g_GameAttributes.settings.Description) : translate("Sorry, no description available.");
 	if (mapName == "random")
@@ -1436,14 +1455,13 @@ function updatePlayerList()
 		if (ai.data.hidden && g_GameAttributes.settings.PlayerData.every(pData => pData.AI != ai.id))
 			continue;
 
-		// Give AI a different color so it stands out
 		aiAssignments[ai.id] = hostNameList.length;
-		hostNameList.push("[color=\"70 150 70 255\"]" + sprintf(translate("AI: %(ai)s"), { "ai": translate(ai.data.name) }));
+		hostNameList.push("[color=\""+ g_AIColor + "\"]" + sprintf(translate("AI: %(ai)s"), { "ai": translate(ai.data.name) }));
 		hostGuidList.push("ai:" + ai.id);
 	}
 
 	noAssignment = hostNameList.length;
-	hostNameList.push("[color=\"140 140 140 255\"]" + translate("Unassigned"));
+	hostNameList.push("[color=\""+ g_UnassignedColor + "\"]" + translate("Unassigned"));
 	hostGuidList.push("");
 
 	for (let i = 0; i < g_MaxPlayers; ++i)
@@ -1597,25 +1615,17 @@ function submitChatInput()
 	Engine.SendNetworkChat(text);
 }
 
-function addChatMessage(msg)
+function colorizePlayernameByGUID(guid, username = "")
 {
-	let username = "";
-	if (msg.username)
-		username = escapeText(msg.username);
-	else if (msg.guid && g_PlayerAssignments[msg.guid])
-		username = escapeText(g_PlayerAssignments[msg.guid].name);
+	// TODO: Maybe the host should have the moderator-prefix?
+	if (!username)
+		username = g_PlayerAssignments[guid] ? escapeText(g_PlayerAssignments[guid].name) : translate("Unknown Player");
+	let playerID = g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].player : -1;
 
-	let message = "";
-	if ("text" in msg && msg.text)
-		message = escapeText(msg.text);
-
-	// TODO: Maybe host should have distinct font/color?
 	let color = "white";
-
-	// Valid player who has been assigned - get player color
-	if (msg.guid && g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != -1)
+	if (playerID > 0)
 	{
-		color = g_GameAttributes.settings.PlayerData[g_PlayerAssignments[msg.guid].player - 1].Color;
+		color = g_GameAttributes.settings.PlayerData[playerID - 1].Color;
 
 		// Enlighten playercolor to improve readability
 		let [h, s, l] = rgbToHsl(color.r, color.g, color.b);
@@ -1624,26 +1634,26 @@ function addChatMessage(msg)
 		color = rgbToGuiColor({ "r": r, "g": g, "b": b });
 	}
 
+	return '[color="'+ color +'"]' + username + '[/color]';
+}
+
+function addChatMessage(msg)
+{
 	let formatted;
-	let formattedUsername;
-	let formattedUsernamePrefix;
+	let formattedUsername = colorizePlayernameByGUID(msg.guid || -1, msg.username || "");
 
 	switch (msg.type)
 	{
 	case "connect":
-		formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
 		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has joined"), { "username": formattedUsername }) }) + '[/font]';
 		break;
 
 	case "disconnect":
-		formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
 		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has left"), { "username": formattedUsername }) }) + '[/font]';
 		break;
 
 	case "clientlist":
-		formatted = sprintf(translate("Users: %(users)s"),
-			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
-			{ "users": getUsernameList().join(translate(", ")) });
+		formatted = getUsernameList();
 		break;
 
 	case "system":
@@ -1651,13 +1661,14 @@ function addChatMessage(msg)
 		break;
 
 	case "message":
-		formattedUsername = '[color="'+ color +'"]' + username + '[/color]';
-		formattedUsernamePrefix = '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(username)s>"), { "username": formattedUsername }) + '[/font]';
-		formatted = sprintf(translate("%(username)s %(message)s"), { "username": formattedUsernamePrefix, "message": message });
+		formatted = sprintf(translate("%(username)s %(message)s"), {
+			"username": '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(username)s>"), { "username": formattedUsername }) + '[/font]',
+			"message": escapeText(msg.text || "")
+		});
 		break;
 
 	case "ready":
-		formattedUsername = '[font="' + g_SenderFont + '"][color="' + color + '"]' + username + '[/color][/font]';
+		formattedUsername = '[font="' + g_SenderFont + '"]' + formattedUsername + '[/font]';
 		if (msg.ready)
 			formatted = ' ' + sprintf(translate("* %(username)s is ready!"), { "username": formattedUsername });
 		else
@@ -1717,7 +1728,7 @@ function updateReadyUI()
 		let pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[g_PlayerAssignments[guid].player - 1] : {};
 		isAI[g_PlayerAssignments[guid].player] = false;
 		if (g_PlayerAssignments[guid].status || !g_IsNetworked)
-			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
+			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = '[color="' + g_ReadyColor + '"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 		else
 		{
 			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = translate(getSetting(pData, pDefs, "Name"));
@@ -1733,7 +1744,7 @@ function updateReadyUI()
 		let pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};
 		let pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[playerid] : {};
 		if (isAI[playerid + 1])
-			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="0 255 0"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
+			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="' + g_ReadyColor + '"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 	}
 
 	// The host is not allowed to start until everyone is ready.
