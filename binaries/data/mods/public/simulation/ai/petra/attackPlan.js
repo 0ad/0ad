@@ -767,7 +767,10 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 		}
 
 		if (rallySame)
+		{
 			this.rallyPoint = rallySame;
+			this.overseas = 0;
+		}
 		else if (rallyDiff)
 		{
 			rallyIndex = gameState.ai.accessibility.getAccessValue(rallyDiff);
@@ -779,9 +782,11 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 				return false;
 		}
 	}
+	else if (this.overseas)
+		this.overseas = 0;
+
 	return true;
 };
-
 // sameLand true means that we look for a target for which we do not need to take a transport
 m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand)
 {
