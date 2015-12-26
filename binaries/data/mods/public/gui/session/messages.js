@@ -25,64 +25,95 @@ var g_ChatMessages = [];
 var g_ChatTimers = [];
 
 /**
- * Loads all known cheat commands.
- *
- * @returns {Object}
+ * Handle all netmessage types that can occur.
  */
-function getCheatsData()
-{
-	let cheats = {};
-	for (let fileName of getJSONFileList("simulation/data/cheats/"))
-	{
-		let currentCheat = Engine.ReadJSONFile("simulation/data/cheats/"+fileName+".json");
-		if (!currentCheat)
-			continue;
-		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
-			warn("Cheat name '" + currentCheat.Name + "' is already present");
-		else
-			cheats[currentCheat.Name] = currentCheat.Data;
-	}
-	return cheats;
-}
+var g_NetMessageTypes = {
+	"netstatus": msg => handleNetStatusMessage(msg),
+	"players":   msg => handlePlayerAssignmentsMessage(msg),
+	"rejoined":  msg => addChatMessage({ "type": "rejoined", "guid": msg.guid }),
+	"kicked":    msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": msg.username }) }),
+	"banned":    msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": msg.username }) }),
+	"chat":      msg => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text }),
+	"aichat":    msg => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text, "translate": true }),
+	"gamesetup": msg => "", // Needed for autostart
+	"start":     msg => ""
+};
 
 /**
- * Reads userinput from the chat and sends a simulation command in case it is a known cheat.
- * Hence cheats won't be sent as chat over network.
- *
- * @param {string} text
- * @returns {boolean} - True if a cheat was executed.
+ * Show a label and grey overlay or hide both on connection change.
  */
-function executeCheat(text)
-{
-	if (g_IsObserver || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
-		return false;
+var g_StatusMessageTypes = {
+	"authenticated":       msg => translate("Connection to the server has been authenticated."),
+	"connected":           msg => translate("Connected to the server."),
+	"disconnected":        msg => translate("Connection to the server has been lost.") + "\n" +
+	                                  // Translation: States the reason why the client disconnected from the server.
+	                                  sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason) }) + "\n" +
+	                                  translate("The game has ended."),
+	"waiting_for_players": msg => translate("Waiting for other players to connect..."),
+	"join_syncing":        msg => translate("Synchronising gameplay with other players..."),
+	"active":              msg => ""
+};
 
-	// Find the cheat code that is a prefix of the user input
-	let cheatCode = Object.keys(g_Cheats).find(cheatCode => text.indexOf(cheatCode) == 0);
-	if (!cheatCode)
-		return false;
+/**
+ * Chatmessage shown after commands like /me or /enemies.
+ * Context might be "team", "allies",...
+ */
+var g_ChatCommands = {
+	"regular": {
+		"context": translate("(%(context)s) %(userTag)s %(message)s"),
+		"no-context": translate("%(userTag)s %(message)s")
+	},
+	"me": {
+		"context": translate("(%(context)s) * %(user)s %(message)s"),
+		"no-context": translate("* %(user)s %(message)s")
+	}
+};
 
-	let cheat = g_Cheats[cheatCode];
+/**
+ * Chatmessage shown on diplomacy change.
+ */
+var g_DiplomacyMessages = {
+	"active": {
+		"ally": translate("You are now allied with %(player)s."),
+		"enemy": translate("You are now at war with %(player)s."),
+		"neutral": translate("You are now neutral with %(player)s.")
+	},
+	"passive": {
+		"ally": translate("%(player)s is now allied with you."),
+		"enemy": translate("%(player)s is now at war with you."),
+		"neutral": translate("%(player)s is now neutral with you.")
+	},
+	"observer": {
+		"ally": translate("%(player)s is now allied with %(player2)s."),
+		"enemy": translate("%(player)s is now at war with %(player2)s."),
+		"neutral": translate("%(player)s is now neutral with %(player2)s.")
+	}
+};
 
-	let parameter = text.substr(cheatCode.length);
-	if (cheat.isNumeric)
-		parameter = +parameter;
+/**
+ * Chatmessage shown when a player sends resources to another.
+ */
+var g_TributeMessages = {
+	"passive": translate("%(player)s has sent you %(amounts)s."),
+	"observer": translate("%(player)s has sent %(player2)s %(amounts)s.")
+};
 
-	if (cheat.DefaultParameter && (isNaN(parameter) || parameter <= 0))
-		parameter = cheat.DefaultParameter;
+/**
+ * Chatmessage shown shown on attack.
+ */
+var g_AttackMessageTypes = {
+	"regular": translate("You have been attacked by %(attacker)s!"),
+	"livestock": translate("Your livestock has been attacked by %(attacker)s!")
+};
 
-	Engine.PostNetworkCommand({
-		"type": "cheat",
-		"action": cheat.Action,
-		"text": cheat.Type,
-		"player": Engine.GetPlayerID(),
-		"parameter": parameter,
-		"templates": cheat.Templates,
-		"selected": g_Selection.toList()
-	});
-
-	return true;
-}
+/**
+ * Chatmessage shown on player defeat.
+ * In singleplayer, the local player is "You". "You has" is incorrect.
+ */
+var g_DefeatMessages = {
+	"regular": translate("%(player)s has been defeated."),
+	"you": translate("You have been defeated.")
+};
 
 /**
  * Defines how the GUI reacts to notifications that are sent by the simulation.
@@ -190,6 +221,66 @@ var g_NotificationsTypes =
 	}
 };
 
+/**
+ * Loads all known cheat commands.
+ *
+ * @returns {Object}
+ */
+function getCheatsData()
+{
+	let cheats = {};
+	for (let fileName of getJSONFileList("simulation/data/cheats/"))
+	{
+		let currentCheat = Engine.ReadJSONFile("simulation/data/cheats/"+fileName+".json");
+		if (!currentCheat)
+			continue;
+		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
+			warn("Cheat name '" + currentCheat.Name + "' is already present");
+		else
+			cheats[currentCheat.Name] = currentCheat.Data;
+	}
+	return cheats;
+}
+
+/**
+ * Reads userinput from the chat and sends a simulation command in case it is a known cheat.
+ * Hence cheats won't be sent as chat over network.
+ *
+ * @param {string} text
+ * @returns {boolean} - True if a cheat was executed.
+ */
+function executeCheat(text)
+{
+	if (g_IsObserver || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
+		return false;
+
+	// Find the cheat code that is a prefix of the user input
+	let cheatCode = Object.keys(g_Cheats).find(cheatCode => text.indexOf(cheatCode) == 0);
+	if (!cheatCode)
+		return false;
+
+	let cheat = g_Cheats[cheatCode];
+
+	let parameter = text.substr(cheatCode.length);
+	if (cheat.isNumeric)
+		parameter = +parameter;
+
+	if (cheat.DefaultParameter && (isNaN(parameter) || parameter <= 0))
+		parameter = cheat.DefaultParameter;
+
+	Engine.PostNetworkCommand({
+		"type": "cheat",
+		"action": cheat.Action,
+		"text": cheat.Type,
+		"player": Engine.GetPlayerID(),
+		"parameter": parameter,
+		"templates": cheat.Templates,
+		"selected": g_Selection.toList()
+	});
+
+	return true;
+}
+
 function findGuidForPlayerID(playerID)
 {
 	return Object.keys(g_PlayerAssignments).find(guid => g_PlayerAssignments[guid].player == playerID);
@@ -270,20 +361,8 @@ function handleNetMessage(msg)
 {
 	log("Net message: " + uneval(msg));
 
-	let messageTypes = {
-		"netstatus": message => handleNetStatusMessage(msg),
-		"players":   message => handlePlayerAssignmentsMessage(msg),
-		"rejoined":  message => addChatMessage({ "type": "rejoined", "guid": msg.guid }),
-		"kicked":    message => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": msg.username }) }),
-		"banned":    message => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": msg.username }) }),
-		"chat":      message => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text }),
-		"aichat":    message => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text, "translate": true }),
-		"gamesetup": message => "",
-		"start":     message => ""
-	};
-
-	if (messageTypes[msg.type])
-		messageTypes[msg.type](msg);
+	if (g_NetMessageTypes[msg.type])
+		g_NetMessageTypes[msg.type](msg);
 	else
 		error("Unrecognised net message type '" + msg.type + "'");
 }
@@ -296,26 +375,14 @@ function handleNetStatusMessage(message)
 	if (g_Disconnected)
 		return;
 
-	let statusMessageTypes = {
-		"authenticated":       message => translate("Connection to the server has been authenticated."),
-		"connected":           message => translate("Connected to the server."),
-		"disconnected":        message => translate("Connection to the server has been lost.") + "\n" +
-		                                  // Translation: States the reason why the client disconnected from the server.
-		                                  sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(message.reason) }) + "\n" +
-		                                  translate("The game has ended."),
-		"waiting_for_players": message => translate("Waiting for other players to connect..."),
-		"join_syncing":        message => translate("Synchronising gameplay with other players..."),
-		"active":              message => ""
-	};
-
-	if (!(message.status in statusMessageTypes))
+	if (!g_StatusMessageTypes[message.status])
 	{
 		error("Unrecognised netstatus type '" + message.status + "'");
 		return;
 	}
 
 	let label = Engine.GetGUIObjectByName("netStatus");
-	let statusMessage = statusMessageTypes[message.status](message);
+	let statusMessage = g_StatusMessageTypes[message.status](message);
 	label.caption = statusMessage;
 	label.hidden = !statusMessage;
 
@@ -454,7 +521,7 @@ function formatChatMessage(msg)
 	case "connect":    return sprintf(translate("%(player)s is starting to rejoin the game."), colorizedPlayername);
 	case "disconnect": return sprintf(translate("%(player)s has left the game."), colorizedPlayername);
 	case "rejoined":   return sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
-	case "clientlist": return formatClientList();
+	case "clientlist": return getUsernameList();
 	case "defeat":     return formatDefeatMessage(msg);
 	case "diplomacy":  return formatDiplomacyMessage(msg);
 	case "tribute":    return formatTributeMessage(msg);
@@ -484,48 +551,15 @@ function colorizePlayernameByGUID(guid)
 	return "[color=\"" + playerColor + "\"]" + username + "[/color]";
 }
 
-function formatClientList()
-{
-	return sprintf(translate("Users: %(users)s"),
-		// Translation: This comma is used for separating first to penultimate elements in an enumeration.
-		{ "users": getUsernameList().join(translate(", ")) });
-}
-
 function formatDefeatMessage(msg)
 {
-	// In singleplayer, the local player is "You". "You has" is incorrect.
-	let defeatMessages = {
-		"regular": translate("%(player)s has been defeated."),
-		"you": translate("You have been defeated.")
-	};
-
-	let messageType = !g_IsNetworked && msg.player == Engine.GetPlayerID() ? "you" : "regular";
-
-	return sprintf(defeatMessages[messageType], {
+	return sprintf(g_DefeatMessages[!g_IsNetworked && msg.player == Engine.GetPlayerID() ? "you" : "regular"], {
 		"player": colorizePlayernameByID(msg.player)
 	});
 }
 
 function formatDiplomacyMessage(msg)
 {
-	let diplomacyMessages = {
-		"active": {
-			"ally": translate("You are now allied with %(player)s."),
-			"enemy": translate("You are now at war with %(player)s."),
-			"neutral": translate("You are now neutral with %(player)s.")
-		},
-		"passive": {
-			"ally": translate("%(player)s is now allied with you."),
-			"enemy": translate("%(player)s is now at war with you."),
-			"neutral": translate("%(player)s is now neutral with you.")
-		},
-		"observer": {
-			"ally": translate("%(player)s is now allied with %(player2)s."),
-			"enemy": translate("%(player)s is now at war with %(player2)s."),
-			"neutral": translate("%(player)s is now neutral with %(player2)s.")
-		}
-	};
-
 	let sourcePlayerID = msg.player;
 	let targetPlayerID = msg.player1;
 
@@ -540,7 +574,7 @@ function formatDiplomacyMessage(msg)
 	if (!messageType)
 		return "";
 
-	return sprintf(diplomacyMessages[messageType][msg.status], {
+	return sprintf(g_DiplomacyMessages[messageType][msg.status], {
 		"player": colorizePlayernameByID(messageType == "active" ? targetPlayerID : sourcePlayerID),
 		"player2": colorizePlayernameByID(messageType == "active" ? sourcePlayerID : targetPlayerID)
 	});
@@ -548,17 +582,12 @@ function formatDiplomacyMessage(msg)
 
 function formatTributeMessage(msg)
 {
-	let tributeMessages = {
-		"passive": translate("%(player)s has sent you %(amounts)s."),
-		"observer": translate("%(player)s has sent %(player2)s %(amounts)s.")
-	};
-
 	let sourcePlayerID = msg.player1;
 	let targetPlayerID = msg.player;
 
 	// As observer we also want to see if the selected player in the developer-overlay has sent tributes
 	let messageType = g_IsObserver ? "observer" :  (targetPlayerID == Engine.GetPlayerID() ? "passive" : "");
-	if (!tributeMessages[messageType])
+	if (!g_TributeMessages[messageType])
 		return "";
 
 	// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
@@ -579,7 +608,7 @@ function formatTributeMessage(msg)
 		});
 	}
 
-	return sprintf(tributeMessages[messageType], {
+	return sprintf(g_TributeMessages[messageType], {
 		"player": colorizePlayernameByID(sourcePlayerID),
 		"player2": colorizePlayernameByID(targetPlayerID),
 		"amounts": amounts
@@ -592,14 +621,7 @@ function formatAttackMessage(msg)
 	if (msg.player != Engine.GetPlayerID())
 		return "";
 
-	// Since livestock can be attacked/gathered by other players,
-	// we display a more specific notification in this case to not confuse the player
-	let attackMessageTypes = {
-		"regular": translate("You have been attacked by %(attacker)s!"),
-		"livestock": translate("Your livestock has been attacked by %(attacker)s!")
-	};
-
-	return sprintf(attackMessageTypes[msg.targetIsDomesticAnimal ? "livestock" : "regular"], {
+	return sprintf(g_AttackMessageTypes[msg.targetIsDomesticAnimal ? "livestock" : "regular"], {
 		"attacker": colorizePlayernameByID(msg.attacker)
 	});
 }
@@ -611,20 +633,6 @@ function formatChatCommand(msg)
 	// May have been hidden by the 'team' command.
 	if (msg.hide)
 		return "";
-
-	// Context might be "team", "allies",...
-	let chatMessageTypes = {
-		"regular": {
-			"context": translate("(%(context)s) %(userTag)s %(message)s"),
-			"no-context": translate("%(userTag)s %(message)s")
-		},
-		"me": {
-			"context": translate("(%(context)s) * %(user)s %(message)s"),
-			"no-context": translate("* %(user)s %(message)s")
-		}
-	};
-
-	let message = chatMessageTypes[msg.me ? "me" : "regular"][msg.context ? "context" : "no-context"];
 
 	// Translate or escape text
 	let text = msg.text;
@@ -644,7 +652,7 @@ function formatChatCommand(msg)
 	// GUID for players, playerID for AIs
 	let coloredUsername = msg.guid != -1 ? colorizePlayernameByGUID(msg.guid) : colorizePlayernameByID(msg.player);
 
-	return sprintf(message, {
+	return sprintf(g_ChatCommands[msg.me ? "me" : "regular"][msg.context ? "context" : "no-context"], {
 		"message": text,
 		"context": msg.context || undefined,
 		"user": coloredUsername,
