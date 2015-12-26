@@ -175,8 +175,8 @@ var g_NotificationsTypes =
 	{
 		addChatMessage({
 			"type": "diplomacy",
-			"player": player,
-			"player1": notification.player1,
+			"sourcePlayer": player,
+			"targetPlayer": notification.targetPlayer,
 			"status": notification.status
 		});
 
@@ -190,8 +190,8 @@ var g_NotificationsTypes =
 	{
 		addChatMessage({
 			"type": "tribute",
-			"player": player,
-			"player1": notification.donator,
+			"sourcePlayer": notification.donator,
+			"targetPlayer": player,
 			"amounts": notification.amounts
 		});
 	},
@@ -513,14 +513,12 @@ function formatChatMessage(msg)
 	// No context by default. May be set by parseChatCommands().
 	msg.context = "";
 
-	let colorizedPlayername = { "player": colorizePlayernameByGUID(msg.guid || -1) };
-
 	switch (msg.type)
 	{
 	case "system":     return msg.text;
-	case "connect":    return sprintf(translate("%(player)s is starting to rejoin the game."), colorizedPlayername);
-	case "disconnect": return sprintf(translate("%(player)s has left the game."), colorizedPlayername);
-	case "rejoined":   return sprintf(translate("%(player)s has rejoined the game."), colorizedPlayername);
+	case "connect":    return sprintf(translate("%(player)s is starting to rejoin the game."), { "player": colorizePlayernameByGUID(msg.guid) });
+	case "disconnect": return sprintf(translate("%(player)s has left the game."), { "player": colorizePlayernameByGUID(msg.guid) });
+	case "rejoined":   return sprintf(translate("%(player)s has rejoined the game."), { "player": colorizePlayernameByGUID(msg.guid) });
 	case "clientlist": return getUsernameList();
 	case "defeat":     return formatDefeatMessage(msg);
 	case "diplomacy":  return formatDiplomacyMessage(msg);
@@ -560,14 +558,11 @@ function formatDefeatMessage(msg)
 
 function formatDiplomacyMessage(msg)
 {
-	let sourcePlayerID = msg.player;
-	let targetPlayerID = msg.player1;
-
 	// Check observer first
 	let use = {
 		"observer": g_IsObserver,
-		"active": Engine.GetPlayerID() == sourcePlayerID,
-		"passive": Engine.GetPlayerID() == targetPlayerID
+		"active": Engine.GetPlayerID() == msg.sourcePlayer,
+		"passive": Engine.GetPlayerID() == msg.targetPlayer
 	};
 
 	let messageType = Object.keys(use).find(v => use[v]);
@@ -575,43 +570,22 @@ function formatDiplomacyMessage(msg)
 		return "";
 
 	return sprintf(g_DiplomacyMessages[messageType][msg.status], {
-		"player": colorizePlayernameByID(messageType == "active" ? targetPlayerID : sourcePlayerID),
-		"player2": colorizePlayernameByID(messageType == "active" ? sourcePlayerID : targetPlayerID)
+		"player": colorizePlayernameByID(messageType == "active" ? msg.targetPlayer : msg.sourcePlayer),
+		"player2": colorizePlayernameByID(messageType == "active" ? msg.sourcePlayer : msg.targetPlayer)
 	});
 }
 
 function formatTributeMessage(msg)
 {
-	let sourcePlayerID = msg.player1;
-	let targetPlayerID = msg.player;
-
 	// As observer we also want to see if the selected player in the developer-overlay has sent tributes
-	let messageType = g_IsObserver ? "observer" :  (targetPlayerID == Engine.GetPlayerID() ? "passive" : "");
+	let messageType = g_IsObserver ? "observer" : (msg.targetPlayer == Engine.GetPlayerID() ? "passive" : "");
 	if (!g_TributeMessages[messageType])
 		return "";
 
-	// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
-	let amounts = Object.keys(msg.amounts)
-		.filter(type => msg.amounts[type] > 0)
-		.map(type => sprintf(translate("%(amount)s %(resourceType)s"), {
-			"amount": msg.amounts[type],
-			"resourceType": getLocalizedResourceName(type, "withinSentence")
-		}));
-
-	if (amounts.length > 1)
-	{
-		let lastAmount = amounts.pop();
-		amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
-			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
-			"previousAmounts": amounts.join(translate(", ")),
-			"lastAmount": lastAmount
-		});
-	}
-
 	return sprintf(g_TributeMessages[messageType], {
-		"player": colorizePlayernameByID(sourcePlayerID),
-		"player2": colorizePlayernameByID(targetPlayerID),
-		"amounts": amounts
+		"player": colorizePlayernameByID(msg.sourcePlayer),
+		"player2": colorizePlayernameByID(msg.targetPlayer),
+		"amounts": getLocalizedResourceAmounts(msg.amounts)
 	});
 }
 
