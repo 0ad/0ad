@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:32+0100\n"
-"PO-Revision-Date: 2015-12-22 10:39+0000\n"
+"POT-Creation-Date: 2015-12-28 10:20+0100\n"
+"PO-Revision-Date: 2015-12-28 09:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -302,6 +302,25 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "ikan"
 
+#: gui/common/l10n.js:82
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/common/l10n.js:90
+#, javascript-format
+msgid "%(previousAmounts)s and %(lastAmount)s"
+msgstr ""
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an enumeration.
+#: gui/common/l10n.js:92 gui/common/network.js:59 gui/common/tooltips.js:49
+#: gui/common/tooltips.js:114 gui/common/tooltips.js:142
+#: gui/common/tooltips.js:435 gui/common/tooltips.js:462
+#: gui/common/tooltips.js:530
+msgid ", "
+msgstr ", "
+
 #: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "Alasan tak diketahui"
@@ -349,12 +368,17 @@ msgstr "Kehilangan koneksi dengan server."
 msgid "Disconnected"
 msgstr "Terputus"
 
-#: gui/common/network.js:80
+#: gui/common/network.js:57
+#, javascript-format
+msgid "Users: %(users)s"
+msgstr ""
+
+#: gui/common/network.js:84
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Tidak bisa mengeluarkan %(name)s."
 
-#: gui/common/network.js:85
+#: gui/common/network.js:89
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr ""
@@ -465,12 +489,6 @@ msgstr "Tusuk"
 #: gui/common/tooltips.js:139
 msgid "Crush"
 msgstr "Lindas"
-
-#: gui/common/tooltips.js:49 gui/common/tooltips.js:114
-#: gui/common/tooltips.js:142 gui/common/tooltips.js:435
-#: gui/common/tooltips.js:462 gui/common/tooltips.js:530
-msgid ", "
-msgstr ", "
 
 #: gui/common/tooltips.js:55
 #, javascript-format
@@ -718,15 +736,15 @@ msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Ya"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "No"
 msgstr "Tidak"
 
@@ -1238,7 +1256,7 @@ msgstr ""
 msgid "Team %(team)s"
 msgstr ""
 
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:27
 msgid "No saved games found"
 msgstr "Tidak ditemukan permainan tersimpan"
 
@@ -1289,25 +1307,25 @@ msgstr "Apa anda tetap ingin melanjutkan?"
 msgid "Warning"
 msgstr "Peringatan"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
-#: gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:58
+#: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Permainan tersimpan akan dibuang permanen, anda yakin?"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "DELETE"
 msgstr "HAPUS"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Permainan tersimpan akan ditimpa permanen, anda yakin?"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "OVERWRITE SAVE"
 msgstr "TIMPA SIMPANAN"
 

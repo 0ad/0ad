@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:32+0100\n"
-"PO-Revision-Date: 2015-12-25 17:38+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2015-12-28 10:20+0100\n"
+"PO-Revision-Date: 2015-12-28 09:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -310,6 +310,25 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Ryba"
 
+#: gui/common/l10n.js:82
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/common/l10n.js:90
+#, javascript-format
+msgid "%(previousAmounts)s and %(lastAmount)s"
+msgstr ""
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an enumeration.
+#: gui/common/l10n.js:92 gui/common/network.js:59 gui/common/tooltips.js:49
+#: gui/common/tooltips.js:114 gui/common/tooltips.js:142
+#: gui/common/tooltips.js:435 gui/common/tooltips.js:462
+#: gui/common/tooltips.js:530
+msgid ", "
+msgstr ", "
+
 #: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "Neznámý důvod"
@@ -357,12 +376,17 @@ msgstr "Spojení se serverem ztraceno."
 msgid "Disconnected"
 msgstr "Odpojeno"
 
-#: gui/common/network.js:80
+#: gui/common/network.js:57
+#, javascript-format
+msgid "Users: %(users)s"
+msgstr ""
+
+#: gui/common/network.js:84
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Nepodařilo se vykopnout %(name)s."
 
-#: gui/common/network.js:85
+#: gui/common/network.js:89
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Nepodařilo se zakázat %(name)s."
@@ -475,12 +499,6 @@ msgstr "Bodnutí"
 #: gui/common/tooltips.js:139
 msgid "Crush"
 msgstr "Úder"
-
-#: gui/common/tooltips.js:49 gui/common/tooltips.js:114
-#: gui/common/tooltips.js:142 gui/common/tooltips.js:435
-#: gui/common/tooltips.js:462 gui/common/tooltips.js:530
-msgid ", "
-msgstr ", "
 
 #: gui/common/tooltips.js:55
 #, javascript-format
@@ -744,15 +762,15 @@ msgstr "<neplatné>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Ano"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "No"
 msgstr "Ne"
 
@@ -1268,7 +1286,7 @@ msgstr "Žádný tým"
 msgid "Team %(team)s"
 msgstr "Tým %(team)s"
 
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:27
 msgid "No saved games found"
 msgstr "Nenalezeny žádné uložené hry"
 
@@ -1319,25 +1337,25 @@ msgstr "Chcete pokračovat?"
 msgid "Warning"
 msgstr "Varování"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
-#: gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:58
+#: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Uložená hra bude trvale smazána. Opravdu to chcete?"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "DELETE"
 msgstr "SMAZAT"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Uložená hra bude trvale přepsána. Opravdu to chcete?"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "OVERWRITE SAVE"
 msgstr "PŘEPSAT ULOŽENÍ"
 

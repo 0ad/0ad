@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-25 09:00+0100\n"
-"PO-Revision-Date: 2015-12-27 13:15+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2015-12-28 10:19+0100\n"
+"PO-Revision-Date: 2015-12-28 09:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,124 +39,146 @@ msgstr[0] "額外範圍：%(range)s 公尺"
 msgid "Cannot build wall here!"
 msgstr "無法在此建築城牆！"
 
-#: gui/session/menu.js:112
+#: gui/session/menu.js:115
 msgid "Are you sure you want to resign?"
 msgstr "您確定要放棄？"
 
-#: gui/session/menu.js:113 gui/session/menu.js:147 gui/session/menu.js:159
+#: gui/session/menu.js:116 gui/session/menu.js:150 gui/session/menu.js:162
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/session/menu.js:115 gui/session/menu.js:149 gui/session/menu.js:182
+#: gui/session/menu.js:118 gui/session/menu.js:152 gui/session/menu.js:185
 #: gui/session/session.js:498 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "否"
 
-#: gui/session/menu.js:115 gui/session/menu.js:149 gui/session/menu.js:182
+#: gui/session/menu.js:118 gui/session/menu.js:152 gui/session/menu.js:185
 #: gui/session/session.js:498 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "是"
 
-#: gui/session/menu.js:128
+#: gui/session/menu.js:131
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "您確定要離開嗎？這將會造成其他玩家斷線。"
 
-#: gui/session/menu.js:132 gui/session/menu.js:136
+#: gui/session/menu.js:135 gui/session/menu.js:139
 msgid "Are you sure you want to quit?"
 msgstr "您確定要退出？"
 
-#: gui/session/menu.js:158
+#: gui/session/menu.js:161
 msgid "Do you want to resign or will you return soon?"
 msgstr "您是想要退出？還是會很快回來？"
 
-#: gui/session/menu.js:161
+#: gui/session/menu.js:164
 msgid "I will return"
 msgstr "我會回來"
 
-#: gui/session/menu.js:161
+#: gui/session/menu.js:164
 msgid "I resign"
 msgstr "我要退出"
 
-#: gui/session/menu.js:179
+#: gui/session/menu.js:182
 msgid "Destroy everything currently selected?"
 msgstr "摧毀目前所選的任何事物？"
 
-#: gui/session/menu.js:180 gui/session/unit_actions.js:711
+#: gui/session/menu.js:183 gui/session/unit_actions.js:711
 msgid "Delete"
 msgstr "刪除"
 
-#: gui/session/menu.js:291
+#: gui/session/menu.js:294
 msgctxt "team"
 msgid "None"
 msgstr "無"
 
-#: gui/session/menu.js:294 gui/session/messages.js:711
+#: gui/session/menu.js:297 gui/session/messages.js:695
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "同盟"
 
-#: gui/session/menu.js:294 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:297 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "中立"
 
-#: gui/session/menu.js:294 gui/session/messages.js:721
+#: gui/session/menu.js:297 gui/session/messages.js:705
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "敵方"
 
-#: gui/session/menu.js:347
+#: gui/session/menu.js:350
 msgid "Request your allies to attack this enemy"
 msgstr "請求您的盟友來攻擊這個敵人"
 
-#: gui/session/menu.js:362
+#: gui/session/menu.js:365
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:473
-msgid "There are no land traders."
-msgstr "沒有陸地上的商人。"
-
-#: gui/session/menu.js:479
+#: gui/session/menu.js:489
 #, javascript-format
-msgid "%(numberOfLandTraders)s inactive"
-msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] "%(numberOfLandTraders)s 閒置"
+msgid "%(openingTradingString)s, and %(garrisonedString)s."
+msgstr "%(openingTradingString)s ，及 %(garrisonedString)s 。"
 
-#: gui/session/menu.js:483
-#, javascript-format
-msgid "There is %(numberTrading)s land trader trading"
-msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "有 %(numberTrading)s 個陸地商人正在進行貿易"
-
-#: gui/session/menu.js:486
-#, javascript-format
-msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] "商船共有 %(numberGarrisoned)s 個守衛"
-
-#: gui/session/menu.js:488
+#: gui/session/menu.js:490
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s ， %(garrisonedString)s ，及 %(inactiveString)s 。"
 
-#: gui/session/menu.js:494
-#, javascript-format
-msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s ，及 %(garrisonedString)s 。"
-
-#: gui/session/menu.js:502 gui/session/menu.js:556
-#, javascript-format
-msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s ，及 %(inactiveString)s 。"
-
-#: gui/session/menu.js:507 gui/session/menu.js:561
+#: gui/session/menu.js:493 gui/session/menu.js:564
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s 。"
 
-#: gui/session/menu.js:516
+#: gui/session/menu.js:494 gui/session/menu.js:563
+#, javascript-format
+msgid "%(openingTradingString)s, and %(inactiveString)s."
+msgstr "%(openingTradingString)s ，及 %(inactiveString)s 。"
+
+#: gui/session/menu.js:499
+#, javascript-format
+msgid "%(openingGarrisonedString)s."
+msgstr "%(openingGarrisonedString)s 。"
+
+#: gui/session/menu.js:500
+#, javascript-format
+msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s ，及 %(inactiveString)s 。"
+
+#: gui/session/menu.js:503 gui/session/menu.js:567
+#, javascript-format
+msgid "There is %(inactiveString)s."
+msgid_plural "There are %(inactiveString)s."
+msgstr[0] "有 %(inactiveString)s 。"
+
+#: gui/session/menu.js:504
+msgid "There are no land traders."
+msgstr "沒有陸地上的商人。"
+
+#: gui/session/menu.js:512
+#, javascript-format
+msgid "There is %(numberTrading)s land trader trading"
+msgid_plural "There are %(numberTrading)s land traders trading"
+msgstr[0] "有 %(numberTrading)s 個陸地商人正在進行貿易"
+
+#: gui/session/menu.js:521
+#, javascript-format
+msgid "%(numberOfLandTraders)s inactive"
+msgid_plural "%(numberOfLandTraders)s inactive"
+msgstr[0] "%(numberOfLandTraders)s 閒置"
+
+#: gui/session/menu.js:526
+#, javascript-format
+msgid "%(numberOfLandTraders)s land trader inactive"
+msgid_plural "%(numberOfLandTraders)s land traders inactive"
+msgstr[0] "%(numberOfLandTraders)s 個陸地商人閒置"
+
+#: gui/session/menu.js:535
+#, javascript-format
+msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
+msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
+msgstr[0] "商船共有 %(numberGarrisoned)s 個守衛"
+
+#: gui/session/menu.js:540
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -166,266 +188,223 @@ msgid_plural ""
 " ship"
 msgstr[0] "有 %(numberGarrisoned)s 個陸地商人駐守於商船"
 
-#: gui/session/menu.js:518
-#, javascript-format
-msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingGarrisonedString)s ，及 %(inactiveString)s 。"
-
-#: gui/session/menu.js:523
-#, javascript-format
-msgid "%(openingGarrisonedString)s."
-msgstr "%(openingGarrisonedString)s 。"
-
-#: gui/session/menu.js:531
-#, javascript-format
-msgid "%(numberOfLandTraders)s land trader inactive"
-msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] "%(numberOfLandTraders)s 個陸地商人閒置"
-
-#: gui/session/menu.js:532 gui/session/menu.js:570
-#, javascript-format
-msgid "There is %(inactiveString)s."
-msgid_plural "There are %(inactiveString)s."
-msgstr[0] "有 %(inactiveString)s 。"
-
-#: gui/session/menu.js:544
+#: gui/session/menu.js:568
 msgid "There are no merchant ships."
 msgstr "沒有商船。"
 
-#: gui/session/menu.js:550
-#, javascript-format
-msgid "%(numberOfShipTraders)s inactive"
-msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] "%(numberOfShipTraders)s 閒置"
-
-#: gui/session/menu.js:554
+#: gui/session/menu.js:575
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "有 %(numberTrading)s 艘商船正在貿易"
 
-#: gui/session/menu.js:569
+#: gui/session/menu.js:584
+#, javascript-format
+msgid "%(numberOfShipTraders)s inactive"
+msgid_plural "%(numberOfShipTraders)s inactive"
+msgstr[0] "%(numberOfShipTraders)s 閒置"
+
+#: gui/session/menu.js:589
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s 艘商船閒置"
 
-#: gui/session/menu.js:616
+#: gui/session/menu.js:637
 msgid "Current Scores"
 msgstr "目前分數"
 
-#: gui/session/menu.js:642 gui/session/menu.js:665
+#: gui/session/menu.js:663 gui/session/menu.js:686
 msgid "Resume"
 msgstr "繼續遊戲"
 
-#: gui/session/menu.js:649 gui/session/menu.js:665
+#: gui/session/menu.js:670 gui/session/menu.js:686
 #: gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "暫停"
 
-#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:699 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "手冊"
 
-#: gui/session/menu.js:692
+#: gui/session/menu.js:713
 msgid "The Developer Overlay was opened."
 msgstr "開發者覆蓋層已開啟。"
 
-#: gui/session/menu.js:694
+#: gui/session/menu.js:715
 msgid "The Developer Overlay was closed."
 msgstr "開發者覆蓋層已關閉。"
 
-#: gui/session/menu.js:709
+#: gui/session/menu.js:730
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "進貢 %(resourceAmount)s %(resourceType)s 給 %(playerName)s 。Shift 加上點擊以進貢 %(greaterAmount)s 。"
 
-#: gui/session/messages.js:277
+#: gui/session/messages.js:34
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s 已被踢出"
 
-#: gui/session/messages.js:278
+#: gui/session/messages.js:35
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s 已被封禁"
 
-#: gui/session/messages.js:300
+#: gui/session/messages.js:46
 msgid "Connection to the server has been authenticated."
 msgstr "已驗證與伺服器間的連線。"
 
-#: gui/session/messages.js:301
+#: gui/session/messages.js:47
 msgid "Connected to the server."
 msgstr "已連線至伺服器。"
 
-#: gui/session/messages.js:302
+#: gui/session/messages.js:48
 msgid "Connection to the server has been lost."
 msgstr "已失去與伺服器間的連線。"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:304
+#: gui/session/messages.js:50
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "原因：%(reason)s。"
 
-#: gui/session/messages.js:305
+#: gui/session/messages.js:51
 msgid "The game has ended."
 msgstr "遊戲結束。"
 
-#: gui/session/messages.js:306
+#: gui/session/messages.js:52
 msgid "Waiting for other players to connect..."
 msgstr "正等候其他玩家連接..."
 
-#: gui/session/messages.js:307
+#: gui/session/messages.js:53
 msgid "Synchronising gameplay with other players..."
 msgstr "正在與其他玩家同步遊戲..."
 
-#: gui/session/messages.js:454
-#, javascript-format
-msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s 正在開始重新加入遊戲。"
-
-#: gui/session/messages.js:455
-#, javascript-format
-msgid "%(player)s has left the game."
-msgstr "%(player)s 已離開遊戲。"
-
-#: gui/session/messages.js:456
-#, javascript-format
-msgid "%(player)s has rejoined the game."
-msgstr "%(player)s 已經重新加入遊戲。"
-
-#: gui/session/messages.js:474 gui/session/messages.js:481
-msgid "Unknown Player"
-msgstr "未知玩家"
-
-#: gui/session/messages.js:489
-#, javascript-format
-msgid "Users: %(users)s"
-msgstr "使用者：%(users)s"
-
-#. Translation: This comma is used for separating first to penultimate
-#. elements in an enumeration.
-#: gui/session/messages.js:491 gui/session/messages.js:577
-msgid ", "
-msgstr "，"
-
-#: gui/session/messages.js:498
-#, javascript-format
-msgid "%(player)s has been defeated."
-msgstr "%(player)s 已被擊敗。"
-
-#: gui/session/messages.js:499
-msgid "You have been defeated."
-msgstr "您被擊敗。"
-
-#: gui/session/messages.js:513
-#, javascript-format
-msgid "You are now allied with %(player)s."
-msgstr "您正與 %(player)s 同盟。"
-
-#: gui/session/messages.js:514
-#, javascript-format
-msgid "You are now at war with %(player)s."
-msgstr "您正與 %(player)s 交戰。"
-
-#: gui/session/messages.js:515
-#, javascript-format
-msgid "You are now neutral with %(player)s."
-msgstr "您與 %(player)s 關係為中立。"
-
-#: gui/session/messages.js:518
-#, javascript-format
-msgid "%(player)s is now allied with you."
-msgstr "%(player)s 現在與你同盟。"
-
-#: gui/session/messages.js:519
-#, javascript-format
-msgid "%(player)s is now at war with you."
-msgstr "%(player)s 現在與你作戰。"
-
-#: gui/session/messages.js:520
-#, javascript-format
-msgid "%(player)s is now neutral with you."
-msgstr "%(player)s 現與你處於中立。"
-
-#: gui/session/messages.js:523
-#, javascript-format
-msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s 現在與 %(player2)s 同盟。"
-
-#: gui/session/messages.js:524
-#, javascript-format
-msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s 現在與 %(player2)s 作戰。"
-
-#: gui/session/messages.js:525
-#, javascript-format
-msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s 現與 %(player2)s 處於中立。"
-
-#: gui/session/messages.js:552
-#, javascript-format
-msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s 已傳送給您 %(amounts)s。"
-
-#: gui/session/messages.js:553
-#, javascript-format
-msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)s 已傳送給 %(player2)s %(amounts)s。"
-
-#: gui/session/messages.js:567
-#, javascript-format
-msgid "%(amount)s %(resourceType)s"
-msgstr "%(amount)s %(resourceType)s"
-
-#: gui/session/messages.js:575
-#, javascript-format
-msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr "%(previousAmounts)s 和 %(lastAmount)s"
-
-#: gui/session/messages.js:598
-#, javascript-format
-msgid "You have been attacked by %(attacker)s!"
-msgstr "您正被 %(attacker)s 攻擊！"
-
-#: gui/session/messages.js:599
-#, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "您的家畜正被 %(attacker)s 攻擊！"
-
-#: gui/session/messages.js:618
+#: gui/session/messages.js:63
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:619
+#: gui/session/messages.js:64
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:622
+#: gui/session/messages.js:67
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:623
+#: gui/session/messages.js:68
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:649
+#: gui/session/messages.js:77
+#, javascript-format
+msgid "You are now allied with %(player)s."
+msgstr "您正與 %(player)s 同盟。"
+
+#: gui/session/messages.js:78
+#, javascript-format
+msgid "You are now at war with %(player)s."
+msgstr "您正與 %(player)s 交戰。"
+
+#: gui/session/messages.js:79
+#, javascript-format
+msgid "You are now neutral with %(player)s."
+msgstr "您與 %(player)s 關係為中立。"
+
+#: gui/session/messages.js:82
+#, javascript-format
+msgid "%(player)s is now allied with you."
+msgstr "%(player)s 現在與你同盟。"
+
+#: gui/session/messages.js:83
+#, javascript-format
+msgid "%(player)s is now at war with you."
+msgstr "%(player)s 現在與你作戰。"
+
+#: gui/session/messages.js:84
+#, javascript-format
+msgid "%(player)s is now neutral with you."
+msgstr "%(player)s 現與你處於中立。"
+
+#: gui/session/messages.js:87
+#, javascript-format
+msgid "%(player)s is now allied with %(player2)s."
+msgstr "%(player)s 現在與 %(player2)s 同盟。"
+
+#: gui/session/messages.js:88
+#, javascript-format
+msgid "%(player)s is now at war with %(player2)s."
+msgstr "%(player)s 現在與 %(player2)s 作戰。"
+
+#: gui/session/messages.js:89
+#, javascript-format
+msgid "%(player)s is now neutral with %(player2)s."
+msgstr "%(player)s 現與 %(player2)s 處於中立。"
+
+#: gui/session/messages.js:97
+#, javascript-format
+msgid "%(player)s has sent you %(amounts)s."
+msgstr "%(player)s 已傳送給您 %(amounts)s。"
+
+#: gui/session/messages.js:98
+#, javascript-format
+msgid "%(player)s has sent %(player2)s %(amounts)s."
+msgstr "%(player)s 已傳送給 %(player2)s %(amounts)s。"
+
+#: gui/session/messages.js:105
+#, javascript-format
+msgid "You have been attacked by %(attacker)s!"
+msgstr "您正被 %(attacker)s 攻擊！"
+
+#: gui/session/messages.js:106
+#, javascript-format
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "您的家畜正被 %(attacker)s 攻擊！"
+
+#: gui/session/messages.js:114
+#, javascript-format
+msgid "%(player)s has been defeated."
+msgstr "%(player)s 已被擊敗。"
+
+#: gui/session/messages.js:115
+msgid "You have been defeated."
+msgstr "您被擊敗。"
+
+#: gui/session/messages.js:519
+#, javascript-format
+msgid "%(player)s is starting to rejoin the game."
+msgstr "%(player)s 正在開始重新加入遊戲。"
+
+#: gui/session/messages.js:520
+#, javascript-format
+msgid "%(player)s has left the game."
+msgstr "%(player)s 已離開遊戲。"
+
+#: gui/session/messages.js:521
+#, javascript-format
+msgid "%(player)s has rejoined the game."
+msgstr "%(player)s 已經重新加入遊戲。"
+
+#: gui/session/messages.js:539 gui/session/messages.js:546
+msgid "Unknown Player"
+msgstr "未知玩家"
+
+#: gui/session/messages.js:633
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:701 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:685 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "團隊"
 
-#: gui/session/messages.js:746
+#: gui/session/messages.js:730
 msgid "Private"
 msgstr "私人"
 

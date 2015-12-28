@@ -43,9 +43,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-18 09:00+0100\n"
-"PO-Revision-Date: 2015-12-22 12:30+0000\n"
-"Last-Translator: Lukasz B <boberstarosta@gmail.com>\n"
+"POT-Creation-Date: 2015-12-28 10:20+0100\n"
+"PO-Revision-Date: 2015-12-28 09:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgstr "Żaden"
 msgid "AI will be disabled for this player."
 msgstr "AI będzie wyłączona dla tego gracza."
 
-#: gui/gamesetup/gamesetup.js:32 gui/gamesetup/gamesetup.js:1263
+#: gui/gamesetup/gamesetup.js:32 gui/gamesetup/gamesetup.js:1274
 msgid "Default"
 msgstr "Domyślny"
 
@@ -78,69 +78,69 @@ msgstr "Mapy demonstracyjne"
 msgid "All Maps"
 msgstr "Wszystkie mapy"
 
-#: gui/gamesetup/gamesetup.js:76 gui/gamesetup/gamesetup.js:1380
+#: gui/gamesetup/gamesetup.js:96 gui/gamesetup/gamesetup.js:1391
 msgctxt "map"
 msgid "Random"
 msgstr "Losowe"
 
-#: gui/gamesetup/gamesetup.js:81
+#: gui/gamesetup/gamesetup.js:101
 msgctxt "civilization"
 msgid "Random"
 msgstr "Losowe"
 
-#: gui/gamesetup/gamesetup.js:167
+#: gui/gamesetup/gamesetup.js:187
 msgid "Return to the lobby."
 msgstr "Powróć do menu głównego."
 
-#: gui/gamesetup/gamesetup.js:167
+#: gui/gamesetup/gamesetup.js:187
 msgid "Return to the main menu."
 msgstr "Powróć do menu głównego."
 
-#: gui/gamesetup/gamesetup.js:449
+#: gui/gamesetup/gamesetup.js:454
 msgid "Yes"
 msgstr "Tak"
 
-#: gui/gamesetup/gamesetup.js:449
+#: gui/gamesetup/gamesetup.js:454
 msgid "No"
 msgstr "Nie"
 
-#: gui/gamesetup/gamesetup.js:490
+#: gui/gamesetup/gamesetup.js:495
 msgctxt "team"
 msgid "None"
 msgstr "Żaden"
 
-#: gui/gamesetup/gamesetup.js:550
+#: gui/gamesetup/gamesetup.js:555
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s został wyrzucony"
 
-#: gui/gamesetup/gamesetup.js:554
+#: gui/gamesetup/gamesetup.js:559
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s został zbanowany"
 
-#: gui/gamesetup/gamesetup.js:1110
+#: gui/gamesetup/gamesetup.js:1115
 msgid "You"
 msgstr "Ty"
 
-#: gui/gamesetup/gamesetup.js:1186
+#: gui/gamesetup/gamesetup.js:1191
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1329
+#: gui/gamesetup/gamesetup.js:1340
 msgid "Loading..."
 msgstr "Wczytywanie..."
 
-#: gui/gamesetup/gamesetup.js:1372
+#: gui/gamesetup/gamesetup.js:1383
 msgid "Sorry, no description available."
 msgstr "Przepraszamy, opis niedostępny."
 
-#: gui/gamesetup/gamesetup.js:1374
+#: gui/gamesetup/gamesetup.js:1385
 msgid "Randomly selects a map from the list"
 msgstr "Losowo wybiera mapę z listy"
 
-#: gui/gamesetup/gamesetup.js:1376
+#: gui/gamesetup/gamesetup.js:1387
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -148,87 +148,80 @@ msgstr[0] "%(number)s gracz. "
 msgstr[1] "%(number)s graczy. "
 msgstr[2] "%(number)s graczy. "
 
-#: gui/gamesetup/gamesetup.js:1377 gui/gamesetup/gamesetup.xml:(caption):290
+#: gui/gamesetup/gamesetup.js:1388 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
 msgstr "Warunek zwycięstwa:"
 
-#: gui/gamesetup/gamesetup.js:1449
+#: gui/gamesetup/gamesetup.js:1459
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1454
+#: gui/gamesetup/gamesetup.js:1464
 msgid "Unassigned"
 msgstr "Nieprzypisane"
 
-#: gui/gamesetup/gamesetup.js:1643 gui/gamesetup/gamesetup.js:1648
-#: gui/gamesetup/gamesetup.js:1658 gui/gamesetup/gamesetup.js:1676
+#: gui/gamesetup/gamesetup.js:1622
+msgid "Unknown Player"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1648 gui/gamesetup/gamesetup.js:1652
+#: gui/gamesetup/gamesetup.js:1660 gui/gamesetup/gamesetup.js:1679
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1643
+#: gui/gamesetup/gamesetup.js:1648
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s dołączył do gry"
 
-#: gui/gamesetup/gamesetup.js:1648
+#: gui/gamesetup/gamesetup.js:1652
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s opuścił grę"
-
-#: gui/gamesetup/gamesetup.js:1652
-#, javascript-format
-msgid "Users: %(users)s"
-msgstr "Graczy: %(users)s"
-
-#. Translation: This comma is used for separating first to penultimate
-#. elements in an enumeration.
-#: gui/gamesetup/gamesetup.js:1654
-msgid ", "
-msgstr ","
-
-#: gui/gamesetup/gamesetup.js:1663
-#, javascript-format
-msgid "<%(username)s>"
-msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:1664
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1670
+#: gui/gamesetup/gamesetup.js:1665
+#, javascript-format
+msgid "<%(username)s>"
+msgstr "<%(username)s>"
+
+#: gui/gamesetup/gamesetup.js:1673
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s jest gotowy!"
 
-#: gui/gamesetup/gamesetup.js:1672
+#: gui/gamesetup/gamesetup.js:1675
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nie jest gotowy."
 
-#: gui/gamesetup/gamesetup.js:1676
+#: gui/gamesetup/gamesetup.js:1679
 msgid "Game settings have been changed"
 msgstr "Ustawienia gry zostały zmienione"
 
-#: gui/gamesetup/gamesetup.js:1701
+#: gui/gamesetup/gamesetup.js:1704
 msgid "I'm not ready"
 msgstr "Nie jestem gotowy"
 
-#: gui/gamesetup/gamesetup.js:1702
+#: gui/gamesetup/gamesetup.js:1705
 msgid "State that you are not ready to play."
 msgstr "Oświadcz, że nie jesteś gotowy do gry."
 
-#: gui/gamesetup/gamesetup.js:1707 gui/gamesetup/gamesetup.js:1785
+#: gui/gamesetup/gamesetup.js:1710 gui/gamesetup/gamesetup.js:1788
 msgid "I'm ready!"
 msgstr "Gotowy!"
 
-#: gui/gamesetup/gamesetup.js:1708
+#: gui/gamesetup/gamesetup.js:1711
 msgid "State that you are ready to play!"
 msgstr "Oświadcz, że jesteś gotowy do gry!"
 
-#: gui/gamesetup/gamesetup.js:1786
+#: gui/gamesetup/gamesetup.js:1789
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Oświadcz, że akceptujesz obecne ustawienia i jesteś gotowy do gry!"
 
