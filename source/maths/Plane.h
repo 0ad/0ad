@@ -38,46 +38,46 @@ enum PLANESIDE
 class CPlane
 {
 	public:
-		CPlane ();
-		CPlane (const CVector4D& coeffs) : m_Norm(coeffs.X, coeffs.Y, coeffs.Z), m_Dist(coeffs.W) { }
+		CPlane();
+		CPlane(const CVector4D& coeffs) : m_Norm(coeffs.X, coeffs.Y, coeffs.Z), m_Dist(coeffs.W) { }
 
 		//sets the plane equation from 3 points on that plane
-		void Set (const CVector3D &p1, const CVector3D &p2, const CVector3D &p3);
+		void Set(const CVector3D& p1, const CVector3D& p2, const CVector3D& p3);
 
 		//sets the plane equation from a normal and a point on 
 		//that plane
-		void Set (const CVector3D &norm, const CVector3D &point);
+		void Set(const CVector3D& norm, const CVector3D& point);
 
 		//normalizes the plane equation
-		void Normalize ();
+		void Normalize();
 
-		//returns the side of the plane on which this point
-		//lies.
-		PLANESIDE ClassifyPoint (const CVector3D &point) const;
+		//returns the side of the plane on which this point lies
+		PLANESIDE ClassifyPoint(const CVector3D& point) const;
+		//returns true if this point is on the back side
+		inline bool IsPointOnBackSide(const CVector3D& point) const;
 
 		//solves the plane equation for a particular point
-		inline float DistanceToPlane (const CVector3D &point) const;
+		inline float DistanceToPlane(const CVector3D& point) const;
 
 		//calculates the intersection point of a line with this
 		//plane. Returns false if there is no intersection
-		bool FindLineSegIntersection (const CVector3D &start, const CVector3D &end, CVector3D *intsect);
-		bool FindRayIntersection (const CVector3D &start, const CVector3D &direction, CVector3D *intsect);
+		bool FindLineSegIntersection(const CVector3D& start, const CVector3D& end, CVector3D* intsect) const;
+		bool FindRayIntersection(const CVector3D& start, const CVector3D& direction, CVector3D* intsect) const;
 
 	public:
 		CVector3D m_Norm;	//normal vector of the plane
 		float m_Dist;		//Plane distance (ie D in the plane eq.)
+		static const float m_EPS;
 };
 
-float CPlane::DistanceToPlane (const CVector3D &point) const
+float CPlane::DistanceToPlane(const CVector3D& point) const
 {
-	float Dist;
+	return m_Norm.X * point.X + m_Norm.Y * point.Y + m_Norm.Z * point.Z + m_Dist;
+}
 
-	Dist = m_Norm.X * point.X +
-		   m_Norm.Y * point.Y +
-		   m_Norm.Z * point.Z +
-		   m_Dist;
-
-	return Dist;
+bool CPlane::IsPointOnBackSide(const CVector3D& point) const
+{
+	return DistanceToPlane(point) < -m_EPS;
 }
 
 #endif

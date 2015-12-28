@@ -430,7 +430,7 @@ void CCmpUnitRenderer::RenderSubmit(SceneCollector& collector, const CFrustum& f
 			unit.lastTransformFrame = m_FrameNumber;
 		}
 
-		if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), unitModel.GetWorldBoundsRec()))
+		if (culling && !frustum.IsBoxVisible(unitModel.GetWorldBoundsRec()))
 			continue;
 
 		collector.SubmitRecursive(&unitModel);

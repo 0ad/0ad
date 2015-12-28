@@ -320,7 +320,7 @@ void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrust
 {
 	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 	int player = GetSimContext().GetCurrentDisplayedPlayer();
-	ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(player));
+	ICmpRangeManager::CLosQuerier los(cmpRangeManager->GetLosQuerier(player));
 	bool losRevealAll = cmpRangeManager->GetLosRevealAll(player);
 
 	for (size_t i = 0; i < m_Projectiles.size(); ++i)
@@ -335,7 +335,7 @@ void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrust
 
 		model.ValidatePosition();
 
-		if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetWorldBoundsRec()))
+		if (culling && !frustum.IsBoxVisible(model.GetWorldBoundsRec()))
 			continue;
 
 		// TODO: do something about LOS (copy from CCmpVisualActor)

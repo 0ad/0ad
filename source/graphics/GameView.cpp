@@ -498,23 +498,23 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	PROFILE3("submit terrain");
 
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
+	float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight + 0.001f;
 	const ssize_t patchesPerSide = pTerrain->GetPatchesPerSide();
 
 	// find out which patches will be drawn
-	for (ssize_t j=0; j<patchesPerSide; j++) {
-		for (ssize_t i=0; i<patchesPerSide; i++) {
+	for (ssize_t j=0; j<patchesPerSide; ++j)
+	{
+		for (ssize_t i=0; i<patchesPerSide; ++i)
+		{
 			CPatch* patch=pTerrain->GetPatch(i,j);	// can't fail
 
 			// If the patch is underwater, calculate a bounding box that also contains the water plane
 			CBoundingBoxAligned bounds = patch->GetWorldBounds();
-			float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight + 0.001f;
-			if(bounds[1].Y < waterHeight) {
+			if(bounds[1].Y < waterHeight)
 				bounds[1].Y = waterHeight;
-			}
 
-			if (!m->Culling || frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
+			if (!m->Culling || frustum.IsBoxVisible(bounds))
 				c->Submit(patch);
-			}
 		}
 	}
 	}
