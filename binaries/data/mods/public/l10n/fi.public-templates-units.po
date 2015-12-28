@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-11 09:01+0100\n"
-"PO-Revision-Date: 2015-12-23 22:08+0000\n"
+"PO-Revision-Date: 2015-12-27 22:49+0000\n"
 "Last-Translator: Max\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -296,7 +296,7 @@ msgstr "Sankariaura"
 msgid ""
 "When garrisoned in a structure, the hero gives it a bonus of +2 capture "
 "points recovery rate."
-msgstr ""
+msgstr "Kun miehitettynä rakennelmassa, sankari antaa sille +2 valloituspisteen palautumistahti bonuksen."
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -500,7 +500,7 @@ msgstr "Työntekijä"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "Keräilijä rajallisella aikavälillä. Puunhakkuu- ja louhimisbonus."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
@@ -941,7 +941,7 @@ msgstr "Mestariarmeija"
 #: simulation/templates/units/brit_hero_boudicca.xml:15
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:14
 msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
-msgstr ""
+msgstr "+5 hyökkäys, +2 valtaus ja +25% nopeus mestariyksiköille."
 
 #: simulation/templates/units/brit_hero_boudicca.xml:27
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:20
@@ -1107,7 +1107,7 @@ msgstr "Mašal"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:10
 msgid "Lightning Aura"
-msgstr ""
+msgstr "Salama-aura"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:16
 msgid "Ḥimelqart Baraq"
@@ -1123,7 +1123,7 @@ msgstr "Taktikon aura"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:15
 msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr ""
+msgstr "Kaikille liittoutuneille yksiköille +2 hyökkäys ja +1 valtaus hänen näkökantaman sisällä."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Hannibal Barca"
@@ -1146,7 +1146,7 @@ msgstr "Komentajan aura"
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid ""
 " +5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr ""
+msgstr "+5 ratsuväen rynnäkköhyökkäys hänen näkökantaman sisällä (tällä hetkellä hyödytön)."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:17
 msgid "Maharbal"
@@ -1303,7 +1303,7 @@ msgstr "Brennus"
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:11
 msgid "Gathering rates increased with +15% during his lifetime."
-msgstr ""
+msgstr "Keräystahti parantunut +15% hänen elämänsä aikana."
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:16
 msgid "Britomartus"
@@ -1311,7 +1311,7 @@ msgstr "Britomartus"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:14
 msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr ""
+msgstr "+2 hyökkäys ja +1 valtaus kaikille yksiköille hänen auransa sisällä."
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:20
 msgid "Vercingetorix"
@@ -1319,7 +1319,7 @@ msgstr "Vercingetorix"
 
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Lembus"
-msgstr ""
+msgstr "Illyyrialainen kaleeri"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -1335,7 +1335,7 @@ msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:21
 msgid "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Erityistaito: liekehtivät keihäät. Hyvä vs. rakennukset."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1349,7 +1349,7 @@ msgstr "Karos"
 #: simulation/templates/units/iber_hero_indibil.xml:7
 #: simulation/templates/units/iber_hero_viriato.xml:7
 msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
-msgstr ""
+msgstr "Sankariaura: \"Takninen sissi.\" TBD."
 
 #: simulation/templates/units/iber_hero_indibil.xml:5
 msgid "Indibil"
@@ -1417,7 +1417,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Odrysian Skirmish Cavalry"
-msgstr ""
+msgstr "Odryysialainen kahakoitsijaratsuväki"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 msgid "Hippakontistḕs Odrysós"
@@ -1425,7 +1425,7 @@ msgstr "Hippakontistḕs Odrysós"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:7
 msgid "Thessalian Lancer"
-msgstr ""
+msgstr "Thessalialainen peitsimies"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:8
 msgid "Xystophóros Thessalikós"
@@ -1434,7 +1434,7 @@ msgstr "Xystophóros Thessalikós"
 #: simulation/templates/units/mace_champion_cavalry.xml:6
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:7
 msgid "Companion Cavalry"
-msgstr ""
+msgstr "Toveriratsuväki"
 
 #: simulation/templates/units/mace_champion_cavalry.xml:7
 msgid "Hetaîros"
@@ -1442,7 +1442,7 @@ msgstr "Hetaîros"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:6
 msgid "Macedonian Shield Bearer"
-msgstr ""
+msgstr "Makedonialainen kilvenkantaja"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:7
 msgid "Hypaspistḗs"
@@ -1518,11 +1518,11 @@ msgstr "Pyrrhos ton Epeiros"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:8
 msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr ""
+msgstr "\"Pyrrhoksen voitto\" aura: TBD."
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
-msgstr ""
+msgstr "Agrianilainen peltasti"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:15
 msgid "Peltastḗs Agrías"
@@ -1538,7 +1538,7 @@ msgstr "Pezétairos"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:14
 msgid "Rhodian Slinger"
-msgstr ""
+msgstr "Rhodoslainen linkomies"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:15
 msgid "Sphendonḗtēs Rhódios"
@@ -1603,7 +1603,7 @@ msgstr "Ashwarohi"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr ""
+msgstr "Intialainen iskuratsuväki"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -1623,16 +1623,16 @@ msgstr "Sotavaunu"
 
 #: simulation/templates/units/maur_champion_chariot.xml:11
 msgid "Rath"
-msgstr ""
+msgstr "Rathilaiset"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
 msgid "Deals Trample Damage."
-msgstr ""
+msgstr "Tekee tallautumisvahinkoa."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
 msgid "Indian War Elephant"
-msgstr ""
+msgstr "Intialainen sotanorsu"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
@@ -1900,7 +1900,7 @@ msgstr "Kurush II"
 
 #: simulation/templates/units/pers_hero_darius.xml:11
 msgid "Leadership Aura"
-msgstr ""
+msgstr "Johtajuusaura"
 
 #: simulation/templates/units/pers_hero_darius.xml:12
 msgid "+15% Movement Speed of all units."
@@ -1923,7 +1923,7 @@ msgstr ""
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Administrator Aura"
-msgstr ""
+msgstr "Hallinnoija-aura"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:13
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
@@ -1958,7 +1958,7 @@ msgstr "Spardiya Takabara"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:13
 msgid "Shieldbearer"
-msgstr ""
+msgstr "Kilvenkantaja"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:14
 msgid "Sparabara"
@@ -2002,7 +2002,7 @@ msgstr "Masiyakara"
 
 #: simulation/templates/units/pers_ship_merchant.xml:9
 msgid "Ionian Trade Ship"
-msgstr ""
+msgstr "Ionialainen kauppalaiva"
 
 #: simulation/templates/units/pers_ship_merchant.xml:10
 msgid "Yaunash Nav"
@@ -2022,7 +2022,7 @@ msgstr "Banu Miyanrudani"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:6
 msgid "Mesopotamian Woman"
-msgstr ""
+msgstr "Mesopotamialainen nainen"
 
 #: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
@@ -2101,7 +2101,7 @@ msgstr "Tessarakonterēs"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:12
 msgid "Patriot Aura"
-msgstr ""
+msgstr "Patrioottiaura"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
 msgid "Egyptian units fight 20% faster in her vision range."
@@ -2113,7 +2113,7 @@ msgstr "Kleopatra VII"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:21
 msgid "Kleopatra H' Philopator"
-msgstr ""
+msgstr "Kleopatra VII"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:22
 msgid ""
@@ -2123,7 +2123,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
-msgstr ""
+msgstr "Rakentamisaura"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
 msgid "Buildings construct 10% faster within his vision."
@@ -2139,7 +2139,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:30
 msgid "Ptolemy I \"Savior\""
-msgstr ""
+msgstr "Ptolemaios I \"Pelastaja\""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:31
 msgid "Ptolemaios A' Soter"
@@ -2155,11 +2155,11 @@ msgstr ""
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:16
 msgid "Ptolemy IV \"Father Loving\""
-msgstr ""
+msgstr "Ptolemaios IV"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:17
 msgid "Ptolemaios D' Philopator"
-msgstr ""
+msgstr "Ptolemaios IV"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:25
 msgid "Nubian Mercenary Archer"
@@ -2187,7 +2187,7 @@ msgstr "Phalaggomákhimos"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:14
 msgid "Judean Slinger"
-msgstr ""
+msgstr "Juudealainen linkomies"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:15
 msgid "Hebraikós Sphendonḗtēs"
@@ -2272,7 +2272,7 @@ msgstr "Italian raskas jalkaväki"
 
 #: simulation/templates/units/rome_champion_infantry.xml:7
 msgid "Extraordinarius"
-msgstr ""
+msgstr "Epätavallinen"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:13
 msgid "Sword of Rome Aura"
@@ -2514,11 +2514,11 @@ msgstr "Antiochus III \"Suuri\""
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:20
 msgid "Antiokhos G' Mégās"
-msgstr ""
+msgstr "Antiokhos G' Mégās"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
 msgid "Conquest Aura"
-msgstr ""
+msgstr "Valloitusaura"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
@@ -2528,7 +2528,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:20
 msgid "Antiochus IV \"The Righteous\""
-msgstr ""
+msgstr "Antiokhos IV Epifanes"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:21
 msgid "Antiokhos D' Epiphanes"
@@ -2544,7 +2544,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:21
 msgid "Seleucus I \"The Victor\""
-msgstr ""
+msgstr "Seleukos I Nikator"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:22
 msgid "Seleukos A' Nikator"

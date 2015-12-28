@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-18 09:00+0100\n"
-"PO-Revision-Date: 2015-12-18 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-27 14:05+0000\n"
+"Last-Translator: Joshua Christo Randiny <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,7 +91,7 @@ msgstr "%(username)s telah dikeluarkan dari permainan"
 #: gui/gamesetup/gamesetup.js:554
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s telah dilarang untuk masuk"
 
 #: gui/gamesetup/gamesetup.js:1110
 msgid "You"
@@ -470,7 +470,7 @@ msgstr "Alih peta terungkap (lihat semuanya)."
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Aktifkan/nonaktifkan peta terjelajahi (bisa melihat peta awal)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
@@ -532,7 +532,7 @@ msgstr "Petikan Hari Ini:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "\"Orang bodoh yang sejahtera adalah beban yang pedih.\" - Aeschylus"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -542,7 +542,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "\"Menjadi diri sendiri daripada terlihat sempurna.\" - Aeschylus, \"Seven Against Thebes\""
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -590,7 +590,7 @@ msgstr "\"Alasan apapun akan melayani tirani.\" - Aesop"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr ""
+msgstr "\"Lebih baik menjadi bijak dari kemalangan orang lain daripada diri sendiri.\" - Aesop"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
@@ -841,7 +841,7 @@ msgstr "\"Manusia secara sukarela percaya akan hal yang mereka harapkan.\" - Gai
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Dadu sudah dilempar.\" - Gaius Julius Caesar"
 
 #: gui/text/quotes.txt:61
 msgid ""
@@ -868,11 +868,11 @@ msgstr ""
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Seluruh umat manusia menguasai wanitanya, dan kami menguasai seluruh umat manusia, tapi wanita kami menguasai kami.\" - Cato the Elder"
 
 #: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Jadilah keras atau lembut sesuai kebutuhan.\" - Cato the Elder"
 
 #: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
@@ -961,7 +961,7 @@ msgstr "\"Biarkan kemakmuran rakyat menjadi hukum yang utama.\" - Marcus Tullius
 
 #: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Uang berkelimpahan membentuk kekuatan perang.\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:84
 msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
@@ -1028,17 +1028,17 @@ msgstr ""
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric"
-msgstr ""
+msgstr "\"Hasil, hasil, hasil.\" - Demosthenes, saat ditanya 3 elemen retorik terpenting"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes"
-msgstr ""
+msgstr "\"Mustahil untuk menemukan kekuatan berkelanjutan dalam ketidakadilan, sumpah palsu, dan pengkhianatan.\" - Demosthenes"
 
 #: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
-msgstr ""
+msgstr "\"Kesempatan kecil biasanya merupakan pertanda dari usaha besar.\" - Demosthenes"
 
 #: gui/text/quotes.txt:98
 msgid ""
@@ -1085,7 +1085,7 @@ msgstr "\"Pengecut tidak dihitung dalam pertempuran; mereka disana, tetapi tidak
 
 #: gui/text/quotes.txt:106
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides"
-msgstr ""
+msgstr "\"Kesempatan selalu berperang di sisi yang bijaksana.\" - Euripides"
 
 #: gui/text/quotes.txt:107
 msgid ""
@@ -1120,7 +1120,7 @@ msgstr "\"Tak ada yang dapat bertahan selain perubahan\" - Herakleitos"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr ""
+msgstr "\"Anda tak bisa melangkah dua kali ke sungai yang sama.\" - Herakleitos"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
@@ -1141,7 +1141,7 @@ msgstr ""
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus"
-msgstr ""
+msgstr "\"Ini adalah penyakit paling pahit dari manusia, untuk mempunyai begitu banyak pengetahuan tapi tak punya kekuatan.\" - Herodotus"
 
 #: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
@@ -1179,7 +1179,7 @@ msgid ""
 "\"I never learned how to tune a harp, or play upon a lute; but I know how to"
 " raise a small and inconsiderable city to glory and greatness.\" - "
 "Themistocles"
-msgstr ""
+msgstr "\"Saya tak pernah bisa belajar memainkan harpa atau suling; tapi saya tahu cara mengubah kota kecil dan tak berarti menjadi besar dan makmur.\" - Themistocles"
 
 #: gui/text/quotes.txt:125
 msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
@@ -1256,13 +1256,13 @@ msgstr ""
 msgid ""
 "\"Make up your minds that happiness depends on being free, and freedom "
 "depends on being courageous.\" - Pericles"
-msgstr ""
+msgstr "\"Tetapkan pikiran anda bahwa kebahagiaan bergantung pada kebebasan dan kebebasan bergantung pada menjadi berani.\" - Pericles"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Your empire is now like a tyranny: it may have been wrong to take it; it "
 "is certainly dangerous to let it go.\" - Pericles"
-msgstr ""
+msgstr "\"Kerajaanmu sekarang adalah tirani: mungkin adalah salah untuk mengambilnya; tapi pasti berbahaya untuk dilepaskan.\" - Pericles"
 
 #: gui/text/quotes.txt:140
 msgid ""
@@ -1332,7 +1332,7 @@ msgstr "\"Seseorang dengan keberanian punya semua berkat.\" - Plautus"
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus"
-msgstr ""
+msgstr "\"Tak ada satu tamu pun yang begitu diterima di rumah temannya sehingga ia tidak menjadi gangguan setelah tiga hari.\" - Plautus"
 
 #: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
@@ -1340,17 +1340,17 @@ msgstr ""
 
 #: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
-msgstr ""
+msgstr "\"Latih dirimu sesuai ajaranmu.\" - Plautus"
 
 #: gui/text/quotes.txt:155
 msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
-msgstr ""
+msgstr "\"Minum, hidup seperti Yunani, makan, kenyang.\" - Plautus"
 
 #: gui/text/quotes.txt:156
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
 "the Great)"
-msgstr ""
+msgstr "\"Berhenti mengutip hukum, kami membawa senjata!\" - Gnaeus Pompeius Magnus (Pompey the Great)"
 
 #: gui/text/quotes.txt:157
 msgid ""
@@ -1370,7 +1370,7 @@ msgstr "\"Dalam kemarahan kita harus menahan diri untuk berbicara atau bertindak
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
-msgstr ""
+msgstr "\"Kekuasaan adalah tetangga dekat kebutuhan.\" - Pythagoras"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
@@ -1380,11 +1380,11 @@ msgstr "\"Angka memimpin Alam Semesta.\" - Pythagoras"
 msgid ""
 "\"Rest satisfied with doing well, and leave others to talk of you as they "
 "please.\" - Pythagoras"
-msgstr ""
+msgstr "\"Puaslah dengan berbuat baik, biarkan orang lain yang menyebarkan tentang dirimu\" - Pythagoras"
 
 #: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
-msgstr ""
+msgstr "\"Kemarahan dimulai dengan kebodohan dan berakhir dengan penyesalan.\" - Pythagoras"
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
@@ -1394,13 +1394,13 @@ msgstr "\"Tak ada kata atau perbuatan yang tak menggema untuk selamanya.\" - Pyt
 msgid ""
 "\"There is geometry in the humming of the strings, there is music in the "
 "spacing of the spheres.\" - Pythagoras"
-msgstr ""
+msgstr "\"Ada geometri dalam getaran senar, ada musik di ruang antar bidang.\" - Pythagoras"
 
 #: gui/text/quotes.txt:166
 msgid ""
 "\"Practice justice in word and deed, and do not get in the habit of acting "
 "thoughtlessly about anything.\" - Pythagoras"
-msgstr ""
+msgstr "\"Latih keadilan dalam perkataan dan perbuatan, janganlah terbiasa bertindak tanpa berpikir.\" - Pythagoras"
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"

@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-14 09:01+0100\n"
-"PO-Revision-Date: 2015-12-14 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-26 16:35+0000\n"
+"Last-Translator: Ellen Roels\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,35 +28,35 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:7
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Voedsel"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:9
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Hout"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:11
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metaal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:13
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Steen"
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Ik ga een grote militaire campagne tegen %(_player_)s beginnen, kom en doe mee."
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
@@ -107,7 +107,7 @@ msgstr "Ik zie dat je in een slechte situatie zit, %(_player_)s. Hopelijk zal di
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "%(_player_)s, ik kan je deze keer helpen, maar probeer in de toekomst meer grondstoffen te verzamelen."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
@@ -125,7 +125,7 @@ msgstr "Ik zou efficiënter zijn in ons gezamenlijk oorlogsplan als je me wat %(
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Als je wat %(resource)s over hebt, dat zou me helpen bij het uitbreiden van mijn leger."
 
 #: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
@@ -626,8 +626,8 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s staat te dicht bij een %(category)s, er moet minstens %(distance)s meter afstand zijn"
+msgstr[1] "%(name)s staat te dicht bij een %(category)s, er moet zeker %(distance)s meter afstand zijn"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -635,8 +635,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s staat te ver van een %(category)s, het moet binnen %(distance)s meter afstand staan"
+msgstr[1] "%(name)s staat te ver van een %(category)s, het moet binnen %(distance)s meter afstand staan"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -740,43 +740,43 @@ msgstr "De productierij is vol."
 #: simulation/helpers/Commands.js:681
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Aanvraag voor een aanval tegen %(_player_)s."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Speler 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Speler 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Speler 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Speler 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Speler 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Speler 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Speler 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Speler 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"

@@ -4,14 +4,15 @@
 # 
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014-2015
+# Joshua Christo Randiny <jrandiny2@gmail.com>, 2015
 # Joshua Christo Randiny <jrandiny2@gmail.com>, 2014
 # Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-14 09:01+0100\n"
-"PO-Revision-Date: 2015-12-14 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-27 14:29+0000\n"
+"Last-Translator: Joshua Christo Randiny <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,55 +25,55 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:7
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Makanan"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:9
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Kayu"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:11
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Logam"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:13
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Batu"
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Saya memulai operasi militer besar-besaran melawan %(_player_)s, ayo ikut saya."
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "Saya melancarkan serangan kepada %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "Saya baru saja mengirim pasukan kepada %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:44
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "Biarkan saya mengumpulkan pasukan untuk membantumu melawan %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:46
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "Saya sedang ada dalam persiapan terakhir untuk melawan %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
@@ -86,66 +87,66 @@ msgstr ""
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Maaf, saat ini saya sedang tidak punya cukup tentara, tapi saya akan menyerang %(_player_)s selanjutanya."
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "Ini hadiah untuk %(_player_)s, pergunakan dengan baik."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "Sepertinya kamu ada dalam situasi yang buruk %(_player_)s, saya harap ini bisa membantu."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "Saya bisa membantu kamu kali ini %(_player_)s, tapi berusahalah untuk mendapatakan lebih banyak sumber daya lain kali."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr ""
+msgstr "Saya sedang butuh %(resource)s, bisa tolong saya?  Saya akan menggantinya."
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "Saya akan berpartisipasi dengan lebih efisien dalam perang kita jika kamu membantu saya dengan memberi sedikit %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:101
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Jika kamu kelebihan %(resource)s, itu akan membantu memperkuatkan tentara saya."
 
 #: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "Saya sudah mengatur jalur dagang baru dengan %(_player_)s. Perdagangan ini akan menguntungkan kita semua."
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "Jalur dagang baru telah diatur dengan %(_player_)s. Ambil bagianmu dari keuntungannya"
 
 #: simulation/ai/petra/chatHelper.js:136
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "Saya sedang dalam proses ke %(phase)s."
 
 #: simulation/ai/petra/chatHelper.js:138
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "Saya telah mencapai %(phase)s."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -278,7 +279,7 @@ msgstr "Latih pengumban lagi, kirim mereka untuk mengumpulkan batu. Latih 5, mun
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
+msgstr "Latih 5 rakyat wanita untuk mengumpulkan kayu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -622,7 +623,7 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
+msgstr[0] "%(name)s terlalu dekat dengan %(category)s, harus berjarak setidaknya %(distance)s meter"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -630,7 +631,7 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
+msgstr[0] "%(name)s terlalu jauh dari %(category)s, harus berada dalam jarak %(distance)s meter"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -663,11 +664,11 @@ msgstr "musuh"
 #: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "Anda bisa menyerang dalam %(time)s"
 
 #: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
-msgstr ""
+msgstr "Anda bisa menyerang sekarang!"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -738,39 +739,39 @@ msgstr ""
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Pemain 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Pemain 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Pemain 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Pemain 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Pemain 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Pemain 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Pemain 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Pemain 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
@@ -806,57 +807,57 @@ msgstr "Gila (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Percepat (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Percepat (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Percepat (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Kalahkan seluruh musuh"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Menguasai"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Hancurkan semua struktur musuh"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Menguasai Struktur"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Bunuh semua unit musuh"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Menguasai Unit"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Bangun dan lindungi bangunan keajaiban untuk menang"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Bangunan Keajaiban"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Sangat Sedikit"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Sedikit"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
@@ -866,17 +867,17 @@ msgstr "Sedang"
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Banyak"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Sangat Banyak"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Peperangan Habis-habisan"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 #: simulation/data/settings/map_sizes.jsonData[0].LongName

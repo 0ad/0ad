@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-14 09:00+0100\n"
-"PO-Revision-Date: 2015-12-21 20:54+0000\n"
+"POT-Creation-Date: 2015-12-25 09:00+0100\n"
+"PO-Revision-Date: 2015-12-25 16:50+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -49,93 +49,85 @@ msgstr[2] "Průměrná přidaná vzdálenost dostřelu: %(range)s metrů"
 msgid "Cannot build wall here!"
 msgstr "Zde nelze hradbu postavit!"
 
-#: gui/session/menu.js:1 gui/session/menu.xml:(caption):76
-msgid "Pause"
-msgstr "Pozastavit"
-
-#: gui/session/menu.js:2
-msgid "Resume"
-msgstr "Pokračovat"
-
-#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:497 gui/session/dialogs/yes_no.xml:(caption):24
-msgid "No"
-msgstr "Ne"
-
-#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
-#: gui/session/session.js:497 gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Ano"
-
-#: gui/session/menu.js:141
+#: gui/session/menu.js:112
 msgid "Are you sure you want to resign?"
 msgstr "Opravdu si přejete se vzdát?"
 
-#: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
+#: gui/session/menu.js:113 gui/session/menu.js:147 gui/session/menu.js:159
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: gui/session/menu.js:152
+#: gui/session/menu.js:115 gui/session/menu.js:149 gui/session/menu.js:182
+#: gui/session/session.js:498 gui/session/dialogs/yes_no.xml:(caption):24
+msgid "No"
+msgstr "Ne"
+
+#: gui/session/menu.js:115 gui/session/menu.js:149 gui/session/menu.js:182
+#: gui/session/session.js:498 gui/session/dialogs/yes_no.xml:(caption):19
+msgid "Yes"
+msgstr "Ano"
+
+#: gui/session/menu.js:128
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "Opravdu si přejete skončit? Při opuštění hry jsou odpojení všichni ostatní hráči."
 
-#: gui/session/menu.js:157 gui/session/menu.js:162
+#: gui/session/menu.js:132 gui/session/menu.js:136
 msgid "Are you sure you want to quit?"
 msgstr "Opravdu si přejete skončit?"
 
-#: gui/session/menu.js:169
-msgid "I will return"
-msgstr "Vrátím se"
-
-#: gui/session/menu.js:169
-msgid "I resign"
-msgstr "Vzdávám se"
-
-#: gui/session/menu.js:172
+#: gui/session/menu.js:158
 msgid "Do you want to resign or will you return soon?"
 msgstr "Chcete se vzdát nebo se brzy vrátíte?"
 
-#: gui/session/menu.js:189
+#: gui/session/menu.js:161
+msgid "I will return"
+msgstr "Vrátím se"
+
+#: gui/session/menu.js:161
+msgid "I resign"
+msgstr "Vzdávám se"
+
+#: gui/session/menu.js:179
 msgid "Destroy everything currently selected?"
 msgstr "Zničit vše, co je nyní vybráno?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:711
+#: gui/session/menu.js:180 gui/session/unit_actions.js:711
 msgid "Delete"
 msgstr "Smazat"
 
-#: gui/session/menu.js:299
+#: gui/session/menu.js:291
 msgctxt "team"
 msgid "None"
 msgstr "Žádný"
 
-#: gui/session/menu.js:302 gui/session/messages.js:706
+#: gui/session/menu.js:294 gui/session/messages.js:711
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Spojenec"
 
-#: gui/session/menu.js:302 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:294 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "Neutrální"
 
-#: gui/session/menu.js:302 gui/session/messages.js:716
+#: gui/session/menu.js:294 gui/session/messages.js:721
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Nepřítel"
 
-#: gui/session/menu.js:355
+#: gui/session/menu.js:347
 msgid "Request your allies to attack this enemy"
 msgstr "Požádat své spojence k útoku na tohoto nepřítele"
 
-#: gui/session/menu.js:370
+#: gui/session/menu.js:362
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:481
+#: gui/session/menu.js:473
 msgid "There are no land traders."
 msgstr "Nejsou tu žádní obchodníci obchodující mezi zeměmi"
 
-#: gui/session/menu.js:487
+#: gui/session/menu.js:479
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
@@ -143,7 +135,7 @@ msgstr[0] "%(numberOfLandTraders)s je nečinný"
 msgstr[1] "%(numberOfLandTraders)s jsou nečinní"
 msgstr[2] "%(numberOfLandTraders)s je nečinných"
 
-#: gui/session/menu.js:491
+#: gui/session/menu.js:483
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
@@ -151,7 +143,7 @@ msgstr[0] "%(numberTrading)s obchodník mezi zeměmi obchoduje"
 msgstr[1] "%(numberTrading)s obchodníci mezi zeměmi obchoduje"
 msgstr[2] "%(numberTrading)s obchodníků mezi zeměmi obchoduje"
 
-#: gui/session/menu.js:494
+#: gui/session/menu.js:486
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
@@ -159,28 +151,28 @@ msgstr[0] "%(numberGarrisoned)s umístěn na obchodní lodi"
 msgstr[1] "%(numberGarrisoned)s umístěni na obchodní lodi"
 msgstr[2] "%(numberGarrisoned)s umístěno na obchodní lodi"
 
-#: gui/session/menu.js:497
+#: gui/session/menu.js:488
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, a %(inactiveString)s."
 
-#: gui/session/menu.js:505
+#: gui/session/menu.js:494
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, a %(garrisonedString)s."
 
-#: gui/session/menu.js:515 gui/session/menu.js:577
+#: gui/session/menu.js:502 gui/session/menu.js:556
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, a %(inactiveString)s."
 
-#: gui/session/menu.js:522 gui/session/menu.js:584
+#: gui/session/menu.js:507 gui/session/menu.js:561
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:532
+#: gui/session/menu.js:516
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -192,17 +184,17 @@ msgstr[0] "Na obchodní lodi je umístěn %(numberGarrisoned)s obchodník obchod
 msgstr[1] "Na obchodní lodi jsou umístěni %(numberGarrisoned)s obchodníci obchodující mezi zeměmi"
 msgstr[2] "Na obchodní lodi je umístěno %(numberGarrisoned)s obchodníků obchodujících mezi zeměmi"
 
-#: gui/session/menu.js:535
+#: gui/session/menu.js:518
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, a %(inactiveString)s."
 
-#: gui/session/menu.js:542
+#: gui/session/menu.js:523
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:551
+#: gui/session/menu.js:531
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
@@ -210,7 +202,7 @@ msgstr[0] "%(numberOfLandTraders)s obchodník obchodující mezi zeměmi je neč
 msgstr[1] "%(numberOfLandTraders)s obchodníci obchodující mezi zeměmi jsou nečinní"
 msgstr[2] "%(numberOfLandTraders)s obchodníků obchodující mezi zeměmi je nečinných"
 
-#: gui/session/menu.js:552 gui/session/menu.js:594
+#: gui/session/menu.js:532 gui/session/menu.js:570
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
@@ -218,11 +210,11 @@ msgstr[0] "Je %(inactiveString)s."
 msgstr[1] "Jsou %(inactiveString)s."
 msgstr[2] "Je %(inactiveString)s."
 
-#: gui/session/menu.js:564
+#: gui/session/menu.js:544
 msgid "There are no merchant ships."
 msgstr "Nejsou žádné obchodní lodě."
 
-#: gui/session/menu.js:570
+#: gui/session/menu.js:550
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
@@ -230,7 +222,7 @@ msgstr[0] "%(numberOfShipTraders)s nečinná"
 msgstr[1] "%(numberOfShipTraders)s nečinné"
 msgstr[2] "%(numberOfShipTraders)s nečinných"
 
-#: gui/session/menu.js:574
+#: gui/session/menu.js:554
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
@@ -238,7 +230,7 @@ msgstr[0] "%(numberTrading)s obchodní loď obchoduje"
 msgstr[1] "%(numberTrading)s obchodní lodě obchodují"
 msgstr[2] "%(numberTrading)s obchodních lodí obchoduje"
 
-#: gui/session/menu.js:593
+#: gui/session/menu.js:569
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
@@ -246,207 +238,236 @@ msgstr[0] "%(numberOfShipTraders)s obchodní loď nečinná"
 msgstr[1] "%(numberOfShipTraders)s obchodní lodě nečinné"
 msgstr[2] "%(numberOfShipTraders)s obchodních lodí nečinných"
 
-#: gui/session/menu.js:640
+#: gui/session/menu.js:616
 msgid "Current Scores"
 msgstr "Nynější bodový stav"
 
-#: gui/session/menu.js:707 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:642 gui/session/menu.js:665
+msgid "Resume"
+msgstr "Pokračovat"
+
+#: gui/session/menu.js:649 gui/session/menu.js:665
+#: gui/session/menu.xml:(caption):76
+msgid "Pause"
+msgstr "Pozastavit"
+
+#: gui/session/menu.js:678 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Příručka"
 
-#: gui/session/menu.js:718
+#: gui/session/menu.js:692
 msgid "The Developer Overlay was opened."
 msgstr "Byla otevřena vývojářská vrstva."
 
-#: gui/session/menu.js:720
+#: gui/session/menu.js:694
 msgid "The Developer Overlay was closed."
 msgstr "Byla zavřena vývojářská vrstva."
 
-#: gui/session/menu.js:736
+#: gui/session/menu.js:709
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "Poplatek %(resourceAmount)s %(resourceType)s %(playerName)s. Shift-klepnutí pro poplatek %(greaterAmount)s."
 
-#: gui/session/messages.js:298
-msgid "Waiting for other players to connect..."
-msgstr "Čeká se na připojení dalších hráčů..."
-
-#: gui/session/messages.js:302
-msgid "Synchronising gameplay with other players..."
-msgstr "Synchronizace hry s dalšími hráči..."
-
-#: gui/session/messages.js:310
-msgid "Connected to the server."
-msgstr "Připojen k serveru."
-
-#: gui/session/messages.js:314
-msgid "Connection to the server has been authenticated."
-msgstr "Spojení se serverem bylo ověřeno."
-
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:321
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "Důvod: %(reason)s."
-
-#: gui/session/messages.js:322
-msgid "Connection to the server has been lost."
-msgstr "Spojení se serverem bylo ztraceno."
-
-#: gui/session/messages.js:322
-msgid "The game has ended."
-msgstr "Hra skončila."
-
-#: gui/session/messages.js:379
+#: gui/session/messages.js:277
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s byl vykopnut (vyhozen)"
 
-#: gui/session/messages.js:383
+#: gui/session/messages.js:278
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s byl zakázán"
 
-#: gui/session/messages.js:482
-msgid "Unknown player"
-msgstr "Neznámý hráč"
+#: gui/session/messages.js:300
+msgid "Connection to the server has been authenticated."
+msgstr "Spojení se serverem bylo ověřeno."
 
-#: gui/session/messages.js:491
+#: gui/session/messages.js:301
+msgid "Connected to the server."
+msgstr "Připojen k serveru."
+
+#: gui/session/messages.js:302
+msgid "Connection to the server has been lost."
+msgstr "Spojení se serverem bylo ztraceno."
+
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/session/messages.js:304
+#, javascript-format
+msgid "Reason: %(reason)s."
+msgstr "Důvod: %(reason)s."
+
+#: gui/session/messages.js:305
+msgid "The game has ended."
+msgstr "Hra skončila."
+
+#: gui/session/messages.js:306
+msgid "Waiting for other players to connect..."
+msgstr "Čeká se na připojení dalších hráčů..."
+
+#: gui/session/messages.js:307
+msgid "Synchronising gameplay with other players..."
+msgstr "Synchronizace hry s dalšími hráči..."
+
+#: gui/session/messages.js:454
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s zahajuje návrat zpět ke hře."
 
-#: gui/session/messages.js:494
+#: gui/session/messages.js:455
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s opustil hru."
 
-#: gui/session/messages.js:497
+#: gui/session/messages.js:456
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s se znovu připojil ke hře."
 
-#: gui/session/messages.js:500
+#: gui/session/messages.js:474 gui/session/messages.js:481
+msgid "Unknown Player"
+msgstr "Neznámý hráč"
+
+#: gui/session/messages.js:489
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Uživatelé: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/session/messages.js:502 gui/session/messages.js:559
+#: gui/session/messages.js:491 gui/session/messages.js:577
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:510
-msgid "You have been defeated."
-msgstr "Byl jste poražen."
-
-#: gui/session/messages.js:512
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s byl poražen."
 
-#: gui/session/messages.js:519
+#: gui/session/messages.js:499
+msgid "You have been defeated."
+msgstr "Byl jste poražen."
+
+#: gui/session/messages.js:513
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Nyní jste spojencem %(player)s."
 
-#: gui/session/messages.js:521
+#: gui/session/messages.js:514
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Nyní jste ve válce s %(player)s."
 
-#: gui/session/messages.js:523
+#: gui/session/messages.js:515
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Nyní jste neutrální vůči %(player)s."
 
-#: gui/session/messages.js:529
+#: gui/session/messages.js:518
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s je nyní vaším spojencem."
 
-#: gui/session/messages.js:531
+#: gui/session/messages.js:519
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s je s vámi nyní ve válce."
 
-#: gui/session/messages.js:533
+#: gui/session/messages.js:520
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s je nyní vůči vám neutrální."
 
-#: gui/session/messages.js:549
+#: gui/session/messages.js:523
 #, javascript-format
-msgid "%(amount)s %(resourceType)s"
-msgstr "%(amount)s %(resourceType)s"
+msgid "%(player)s is now allied with %(player2)s."
+msgstr "%(player)s je nyní spojencem %(player2)s."
 
-#: gui/session/messages.js:557
+#: gui/session/messages.js:524
 #, javascript-format
-msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr "%(previousAmounts)s a %(lastAmount)s"
+msgid "%(player)s is now at war with %(player2)s."
+msgstr "%(player)s je nyní ve válce s %(player2)s."
 
-#: gui/session/messages.js:564
+#: gui/session/messages.js:525
+#, javascript-format
+msgid "%(player)s is now neutral with %(player2)s."
+msgstr "%(player)s je nyní neutrální vůči %(player2)s."
+
+#: gui/session/messages.js:552
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s vám poslal %(amounts)s."
 
-#: gui/session/messages.js:577
+#: gui/session/messages.js:553
 #, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "Tvůj dobytek byl napaden %(attacker)s!"
+msgid "%(player)s has sent %(player2)s %(amounts)s."
+msgstr "%(player)s poslal %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:579
+#: gui/session/messages.js:567
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr "%(amount)s %(resourceType)s"
+
+#: gui/session/messages.js:575
+#, javascript-format
+msgid "%(previousAmounts)s and %(lastAmount)s"
+msgstr "%(previousAmounts)s a %(lastAmount)s"
+
+#: gui/session/messages.js:598
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Byl jste napaden %(attacker)s!"
 
-#: gui/session/messages.js:604
+#: gui/session/messages.js:599
 #, javascript-format
-msgid "(%(context)s) * %(user)s %(message)s"
-msgstr "(%(context)s) * %(user)s %(message)s"
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "Tvůj dobytek byl napaden %(attacker)s!"
 
-#: gui/session/messages.js:612
-#, javascript-format
-msgid "* %(user)s %(message)s"
-msgstr "* %(user)s %(message)s"
-
-#: gui/session/messages.js:620 gui/session/messages.js:621
-#, javascript-format
-msgid "<%(user)s>"
-msgstr "<%(user)s>"
-
-#: gui/session/messages.js:624
+#: gui/session/messages.js:618
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:631
+#: gui/session/messages.js:619
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:696 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:622
+#, javascript-format
+msgid "(%(context)s) * %(user)s %(message)s"
+msgstr "(%(context)s) * %(user)s %(message)s"
+
+#: gui/session/messages.js:623
+#, javascript-format
+msgid "* %(user)s %(message)s"
+msgstr "* %(user)s %(message)s"
+
+#: gui/session/messages.js:649
+#, javascript-format
+msgid "<%(user)s>"
+msgstr "<%(user)s>"
+
+#: gui/session/messages.js:701 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Tým"
 
-#: gui/session/messages.js:741
+#: gui/session/messages.js:746
 msgid "Private"
 msgstr "Soukromý"
 
-#: gui/session/selection_details.js:33
+#: gui/session/selection_details.js:31
 #, javascript-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — Sbalen"
 
-#: gui/session/selection_details.js:44
+#: gui/session/selection_details.js:42
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[NEPŘIPOJENÝ] %(player)s"
 
-#: gui/session/selection_details.js:49
+#: gui/session/selection_details.js:47
 #, javascript-format
 msgid "%(rank)s Rank"
 msgstr "%(rank)s hodnost"
@@ -487,25 +508,25 @@ msgstr "%(experience)s %(current)s"
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:144 gui/session/selection_details.js:171
-#: gui/session/selection_details.js:218
+#: gui/session/selection_details.js:144 gui/session/selection_details.js:175
+#: gui/session/selection_details.js:222
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:153
+#: gui/session/selection_details.js:157
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:186 gui/session/unit_actions.js:323
+#: gui/session/selection_details.js:190 gui/session/unit_actions.js:323
 #: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
 #: gui/session/unit_actions.js:546
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Zisk: %(gain)s"
 
-#: gui/session/selection_details.js:200
+#: gui/session/selection_details.js:204
 #, javascript-format
 msgid ""
 "Number of builders.\n"
@@ -517,34 +538,34 @@ msgstr[0] "Počet budovatelů.\nPřidělení dalšího k tomuto úkolu stavbu zr
 msgstr[1] "Počet budovatelů.\nPřidělení dalšího k tomuto úkolu stavbu zrychlí o %(speedup)s sekundy."
 msgstr[2] "Počet budovatelů.\nPřidělení dalšího k tomuto úkolu stavbu zrychlí o %(speedup)s sekund."
 
-#: gui/session/selection_details.js:203 gui/session/selection_details.js:211
+#: gui/session/selection_details.js:207 gui/session/selection_details.js:215
 msgid "Number of builders."
 msgstr "Počet stavitelů."
 
-#: gui/session/selection_details.js:219
+#: gui/session/selection_details.js:226
 msgid "Current/max gatherers"
 msgstr "Nyní/maximum sběračů"
 
-#: gui/session/selection_details.js:233
+#: gui/session/selection_details.js:240
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:271
+#: gui/session/selection_details.js:276
 msgid "Classes:"
 msgstr "Třídy:"
 
-#: gui/session/selection_details.js:326
-msgid "Hitpoints:"
-msgstr "Životy:"
-
-#: gui/session/selection_details.js:327 gui/session/selection_details.js:357
-#: gui/session/session.js:654
+#: gui/session/selection_details.js:331 gui/session/selection_details.js:363
+#: gui/session/session.js:655
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:356
+#: gui/session/selection_details.js:332
+msgid "Hitpoints:"
+msgstr "Životy:"
+
+#: gui/session/selection_details.js:364
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Body za zajetí:"
@@ -626,7 +647,7 @@ msgstr[0] "Zbývá: %(number)s k postavení."
 msgstr[1] "Zbývá: %(number)s k postavení."
 msgstr[2] "Zbývá: %(number)s k postavení."
 
-#: gui/session/selection_panels.js:1086 gui/session/session.js:653
+#: gui/session/selection_panels.js:1086 gui/session/session.js:654
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Zdraví:"
@@ -695,102 +716,102 @@ msgstr "%(action)s pro vycvičení %(number)s (%(fullBatch)s)."
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s pro vycvičení %(number)s."
 
-#: gui/session/session.js:34 gui/session/utility_functions.js:130
-#: gui/session/utility_functions.js:136 gui/session/utility_functions.js:141
+#: gui/session/session.js:37 gui/session/utility_functions.js:99
+#: gui/session/utility_functions.js:105 gui/session/utility_functions.js:110
 msgid "You"
 msgstr "Vy"
 
-#: gui/session/session.js:180
+#: gui/session/session.js:181
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:250
+#: gui/session/session.js:251
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Strom staveb"
 
-#: gui/session/session.js:325 gui/session/session.js:341
+#: gui/session/session.js:326 gui/session/session.js:342
 msgid "You have left the game."
 msgstr "Opustil jste hru."
 
-#: gui/session/session.js:332
+#: gui/session/session.js:333
 msgid "You have been disconnected."
 msgstr "Byl jste odpojen."
 
-#: gui/session/session.js:334
+#: gui/session/session.js:335
 msgid "You have won the battle!"
 msgstr "Vyhrál bitvu!"
 
-#: gui/session/session.js:336
+#: gui/session/session.js:337
 msgid "You have been defeated..."
 msgstr "Byl jste poražen..."
 
-#: gui/session/session.js:344
+#: gui/session/session.js:345
 msgid "You have abandoned the game."
 msgstr "Opustil jste hru."
 
-#: gui/session/session.js:491
+#: gui/session/session.js:492
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:493
+#: gui/session/session.js:494
 msgid "Press OK to continue"
 msgstr "Stiskněte OK pro pokračování"
 
-#: gui/session/session.js:499
+#: gui/session/session.js:500
 msgid "Do you want to quit?"
 msgstr "Chcete skončit?"
 
-#: gui/session/session.js:504
+#: gui/session/session.js:505
 msgid "DEFEATED!"
 msgstr "PORÁŽKA!"
 
-#: gui/session/session.js:509
+#: gui/session/session.js:510
 msgid "VICTORIOUS!"
 msgstr "VÍTĚZSTVÍ!"
 
-#: gui/session/session.js:578
+#: gui/session/session.js:579
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Přehrávání skončilo. Chcete ukončit?"
 
-#: gui/session/session.js:579
+#: gui/session/session.js:580
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: gui/session/session.js:581
+#: gui/session/session.js:582
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Ne"
 
-#: gui/session/session.js:581
+#: gui/session/session.js:582
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ano"
 
-#: gui/session/session.js:739
+#: gui/session/session.js:740
 msgid "Population (current / limit)"
 msgstr "Obyvatelstvo (nyní / limit)"
 
-#: gui/session/session.js:740
+#: gui/session/session.js:741
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Nejvyšší počet obyvatel: %(popCap)s"
 
-#: gui/session/session.js:900
+#: gui/session/session.js:881
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Sestaveno: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:906
+#: gui/session/session.js:887
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Poznámka: Režim cestování časem je možnost pro vývojáře a není záměrem, aby se používala po dlouhou dobu. Její špatné užití může způsobit to, že hře dojde paměť nebo že spadne."
 
-#: gui/session/session.js:907
+#: gui/session/session.js:888
 msgid "Time warp mode"
 msgstr "Režim zrychlení času"
 
@@ -877,17 +898,17 @@ msgstr "Odstranit stráž"
 msgid "Select trading goods"
 msgstr "Vyberte obchodované zboží"
 
-#: gui/session/utility_functions.js:124 gui/session/utility_functions.js:126
+#: gui/session/utility_functions.js:93 gui/session/utility_functions.js:95
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:128 gui/session/utility_functions.js:134
-#: gui/session/utility_functions.js:139
+#: gui/session/utility_functions.js:97 gui/session/utility_functions.js:103
+#: gui/session/utility_functions.js:108
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:134 gui/session/utility_functions.js:139
+#: gui/session/utility_functions.js:103 gui/session/utility_functions.js:108
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "

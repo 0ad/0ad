@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-21 16:32+0100\n"
-"PO-Revision-Date: 2015-12-23 21:49+0000\n"
+"PO-Revision-Date: 2015-12-27 14:11+0000\n"
 "Last-Translator: Max\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -1803,7 +1803,7 @@ msgstr "Paina aloittaaksei uusi paikallinen peli"
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr ""
+msgstr "Elä uudelleen historia sotakampanjoissa. \\[Ei vielä lisätty]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
@@ -1851,7 +1851,7 @@ msgstr "Valitse käytettävät modit."
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr ""
+msgstr "Opi miten pelata, huomaa teknologiapuu ja historia kansakuntien takana"
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
@@ -1893,7 +1893,7 @@ msgstr "Uudelleenpelaa pelejäsi"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Järjestä yhteensopivat uusinnat"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
@@ -2069,7 +2069,7 @@ msgstr ""
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr ""
+msgstr "- Lahoamista alueen omistajalle, kun rakennus rakennetaan liittoutumattomalle alueelle"
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
@@ -2079,7 +2079,7 @@ msgstr "- Rakenna piirityskoneita ja kouluta kansalaissotilaita."
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "- Varusta jopa 40 yksikköä hitaasti parantaaksesi yksiköt ja suojele sotilasleiriä hyökkäyksiltä ja lahoamiselta."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -2093,13 +2093,13 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr ""
+msgstr "- Paljasta uniikit sotilasteknologiat jokaiselle ryhmälle."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- Rakenna yksi alussa värvätäksesi kansalaissotilaita, kun kehität siirtokuntasi kehitysastetta."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
@@ -2173,7 +2173,7 @@ msgstr "Kelttiläinen sotakaleeri"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
-msgstr ""
+msgstr "- Keskiraskas \"kaleeri\"-luokan sota-alus."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "- The only ship of its kind."
@@ -2181,7 +2181,7 @@ msgstr "- Alus ainoa laatuaan."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr ""
+msgstr "- Ei pysty törmäämään kuten muut kaleerit, mutta sillä on suuremmat elämäpisteet ja suurempi panssarointi."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
@@ -2205,7 +2205,7 @@ msgstr "- Voidaan rakentaa ystävälliselle tai neutraalille alueelle."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
-msgstr ""
+msgstr "- Värvää naiskansalaisia ja tavallisia kansalaissotilaita."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -2356,7 +2356,7 @@ msgstr "PERIKLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr ""
+msgstr "- Etummainen Ateenalainen poliitikko 5.vuosisadalla eKr."
 
 #: gui/text/tips/pericles.txt:4
 msgid "- Buildings construct faster within his range."
@@ -2380,7 +2380,7 @@ msgstr "- Kaikki Persialaiset rakennukset +25% vahvempia."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "- Rakennusaika pidentyy +20% tämän seurauksena."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
@@ -2413,11 +2413,11 @@ msgstr "RASKAS SOTALAIVA"
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "- Raskain standardi sotalaiva. Avoinna: Roomalle, Karthagolle, Ptolemaioksille ja Seleukideille."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Garrison ballistas to increase fire power."
-msgstr ""
+msgstr "- Miehitä ballistoja lisätäksesi niiden ampumavoimaa."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
@@ -2429,7 +2429,7 @@ msgstr "SAVANNI BIOMI"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "- Yleisesti littana muutamalla kasteluaukolla ja kivisellä hietikolla."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
@@ -2481,7 +2481,7 @@ msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr ""
+msgstr "- Käytä \"Falangi\" muodostelmaa lisäpanssarietuun."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -2505,7 +2505,7 @@ msgstr ""
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr ""
+msgstr "- Heitä vastustaa kantamayksiköt ja miekkamiehet, joten suojele peitsimiehiäsi linkomiehillä tai ratsuväellä."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -2598,13 +2598,13 @@ msgstr "Rappeutuminen tapahtuu, kun rakennukset eivät ole yhteydessä liittolai
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr ""
+msgstr "- Lahoamismuutosta voidaan pidentää tai kääntää vastapäivään linnoittamalla joitakin yksiköitä rakennelmaan."
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "- Kun lahoaminen on päättynyt, rakennus tulee annetuksi eniten vaikutusvaltaa hallitsevalle naapurille."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -2622,7 +2622,7 @@ msgstr "- Kaikki laivat rakentuu nopeammin kun hän elää."
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."
-msgstr ""
+msgstr "- Laiva, mitä hän miehittää liikkuu paljon nopeammin."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -2643,19 +2643,19 @@ msgstr "-Sopii kuljetukseen tai taisteluun."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- Miehitysjoukot mukana lisäävät tulivoimaa."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Miehitä katapultti mukaan pitkän matkan piirityshyökkäystä varten (Ei vielä toteutettu)."
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Pystyy tuhoavaan laiva-laiva törmäyshyökkäykseen, joka pitää ladata jokaisen käytön välissä (Ei vielä toteutettu)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -2679,7 +2679,7 @@ msgstr "- Nopeasti liikkuva. Voi vaihtaa miekan ja palavan keihään välillä."
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr ""
+msgstr "- Hänen \"aura\" on \"Takninen sissi\", joka mahdollistaa läheisten Iberialaisten yksiköiden väijyttää heidän vihollisensa."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -2717,7 +2717,7 @@ msgstr "- 2000 ruokaa"
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "- Kerättävissä kalastuslaivoilla valaan kuolemisen jälkeen."
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
