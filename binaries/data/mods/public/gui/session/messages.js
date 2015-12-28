@@ -56,7 +56,6 @@ var g_StatusMessageTypes = {
 
 /**
  * Chatmessage shown after commands like /me or /enemies.
- * Context might be "team", "allies",...
  */
 var g_ChatCommands = {
 	"regular": {
@@ -67,6 +66,37 @@ var g_ChatCommands = {
 		"context": translate("(%(context)s) * %(user)s %(message)s"),
 		"no-context": translate("* %(user)s %(message)s")
 	}
+};
+
+var g_ChatAddresseeContext = {
+	"/team": translate("Team"),
+	"/allies": translate("Ally"),
+	"/enemies": translate("Enemy"),
+	"/msg": translate("Private")
+};
+
+/**
+ * Returns true if the current player is an addressee, given the chat message type and sender.
+ */
+var g_IsChatAddressee = {
+	"/team": senderID =>
+		g_Players[senderID] &&
+		g_Players[Engine.GetPlayerID()] &&
+		g_Players[Engine.GetPlayerID()].team != -1 &&
+		g_Players[Engine.GetPlayerID()].team == g_Players[senderID].team,
+
+	"/allies": senderID =>
+		g_Players[senderID] &&
+		g_Players[senderID].isMutualAlly[Engine.GetPlayerID()],
+
+	"/enemies": senderID =>
+		g_Players[senderID] &&
+		g_Players[senderID].isEnemy[Engine.GetPlayerID()],
+
+	"/msg": (senderID, addresseeGUID) =>
+		g_Players[Engine.GetPlayerID()] &&
+		g_PlayerAssignments[addresseeGUID] &&
+		g_PlayerAssignments[addresseeGUID].name == g_Players[Engine.GetPlayerID()].name
 };
 
 /**
@@ -478,7 +508,7 @@ function submitChatInput()
 	if (g_IsObserver && text.indexOf("/") == 0 && text.indexOf("/me ") != 0)
 		return;
 
-	if (teamChat)
+	if (teamChat && text.indexOf("/team ") != 0)
 		text = "/team " + text;
 
 	submitChatDirectly(text);
@@ -511,9 +541,6 @@ function addChatMessage(msg)
  */
 function formatChatMessage(msg)
 {
-	// No context by default. May be set by parseChatCommands().
-	msg.context = "";
-
 	switch (msg.type)
 	{
 	case "system":     return msg.text;
@@ -603,32 +630,38 @@ function formatAttackMessage(msg)
 
 function formatChatCommand(msg)
 {
-	parseChatCommands(msg);
-
-	// May have been hidden by the 'team' command.
-	if (msg.hide)
+	if (!msg.text)
 		return "";
 
+	let isMe = msg.text.indexOf("/me ") == 0;
+	if (!isMe && !checkChatAddressee(msg))
+		return "";
+
+	isMe = msg.text.indexOf("/me ") == 0;
+	if (isMe)
+		msg.text = msg.text.substr("/me ".length);
+
 	// Translate or escape text
-	let text = msg.text;
+	if (!msg.text)
+		return "";
 	if (msg.translate)
 	{
-		text = translate(text);
+		msg.text = translate(msg.text);
 		if (msg.translateParameters)
 		{
 			let parameters = msg.parameters || {};
 			translateObjectKeys(parameters, msg.translateParameters);
-			text = sprintf(text, parameters);
+			msg.text = sprintf(msg.text, parameters);
 		}
 	}
 	else
-		text = escapeText(text);
+		msg.text = escapeText(msg.text);
 
 	// GUID for players, playerID for AIs
 	let coloredUsername = msg.guid != -1 ? colorizePlayernameByGUID(msg.guid) : colorizePlayernameByID(msg.player);
 
-	return sprintf(g_ChatCommands[msg.me ? "me" : "regular"][msg.context ? "context" : "no-context"], {
-		"message": text,
+	return sprintf(g_ChatCommands[isMe ? "me" : "regular"][msg.context ? "context" : "no-context"], {
+		"message": msg.text,
 		"context": msg.context || undefined,
 		"user": coloredUsername,
 		"userTag": sprintf(translate("<%(user)s>"), { "user": coloredUsername })
@@ -647,108 +680,71 @@ function removeOldChatMessage()
 }
 
 /**
- * Checks if the current player is a selected addressee of the received chatmessage.
- * Also formats the chatmessage. Parses recursively!
+ * Checks if the current user is an addressee of the chatmessage sent by another player.
  *
  * @param {Object} msg
  */
-function parseChatCommands(msg)
+function checkChatAddressee(msg)
 {
-	if (!msg.text || msg.text[0] != '/')
-		return;
+	if (msg.text[0] != '/')
+		return true;
 
-	let sender;
-	if (g_PlayerAssignments[msg.guid])
-		sender = g_PlayerAssignments[msg.guid].player;
-	else
-		sender = msg.player;
+	if (g_IsObserver)
+		return false;
 
-	// TODO: It would be nice to display multiple different contexts.
-	// It should be made clear that only players matching the union of those receive the message.
-	let recurse = false;
-	let split = msg.text.split(/\s/);
+	let cmd = msg.text.split(/\s/)[0];
+	msg.text = msg.text.substr(cmd.length + 1);
 
-	switch (split[0])
+	if (cmd == "/ally")
+		cmd = "/allies";
+
+	if (cmd == "/enemy")
+		cmd = "/enemies";
+
+	// GUID for players, ID for bots
+	let senderID = (g_PlayerAssignments[msg.guid] || msg).player;
+	let addresseeGUID;
+	if (cmd == "/msg")
 	{
-	case "/all":
-		// Resets values that 'team' or 'enemy' may have set.
-		msg.context = "";
-		msg.hide = false;
-		recurse = true;
-		break;
-	case "/team":
-		// Check if we are in a team.
-		if (g_Players[Engine.GetPlayerID()] && g_Players[Engine.GetPlayerID()].team != -1)
-		{
-			if (g_Players[Engine.GetPlayerID()].team != g_Players[sender].team)
-				msg.hide = true;
-			else
-				msg.context = translate("Team");
-		}
-		else
-			msg.hide = true;
-		recurse = true;
-		break;
-	case "/ally":
-	case "/allies":
-		// Check if we sent the message, or are the sender's (mutual) ally
-		if (Engine.GetPlayerID() == sender || (g_Players[sender] && g_Players[sender].isMutualAlly[Engine.GetPlayerID()]))
-			msg.context = translate("Ally");
-		else
-			msg.hide = true;
-
-		recurse = true;
-		break;
-	case "/enemy":
-	case "/enemies":
-		// Check if we sent the message, or are the sender's enemy
-		if (Engine.GetPlayerID() == sender || (g_Players[sender] && g_Players[sender].isEnemy[Engine.GetPlayerID()]))
-			msg.context = translate("Enemy");
-		else
-			msg.hide = true;
-
-		recurse = true;
-		break;
-	case "/me":
-		msg.me = true;
-		break;
-	case "/msg":
-		let trimmed = msg.text.substr(split[0].length + 1);
-		let matched = "";
-
-		// Reject names which don't match or are a superset of the intended name.
-		for (let guid in g_PlayerAssignments)
-		{
-			let pName = g_PlayerAssignments[guid].name;
-			if (trimmed.indexOf(pName + " ") == 0 && pName.length > matched.length)
-				matched = pName;
-		}
-
-		// If the local player's name was the longest one matched, show the message.
-		let playerName = g_Players[Engine.GetPlayerID()].name;
-		if (matched.length && (matched == playerName || sender == Engine.GetPlayerID()))
-		{
-			msg.context = translate("Private");
-			msg.text = trimmed.substr(matched.length + 1);
-			msg.hide = false; // Might override team message hiding.
-			return;
-		}
-		else
-			msg.hide = true;
-		break;
-	default:
-		return;
+		addresseeGUID = matchUsername(msg.text);
+		let addressee = g_PlayerAssignments[addresseeGUID];
+		if (!addressee || addressee.player == -1 || senderID == -1)
+			return false;
+		msg.text = msg.text.substr(addressee.name.length + 1);
 	}
 
-	msg.text = msg.text.substr(split[0].length + 1);
+	let isSender = senderID == Engine.GetPlayerID();
+	if (!g_ChatAddresseeContext[cmd])
+	{
+		if (isSender)
+			warn("Unknown chat command: " + cmd);
+		return false;
+	}
+	msg.context = g_ChatAddresseeContext[cmd];
 
-	// Hide the message if parsing commands left it empty.
-	if (!msg.text.length)
-		msg.hide = true;
+	return isSender || g_IsChatAddressee[cmd](senderID, addresseeGUID);
+}
 
-	// Attempt to parse more commands if the current command allows it.
-	if (recurse)
-		parseChatCommands(msg);
+/**
+ * Returns the guid of the user with the longest name that is a prefix of the given string.
+ */
+function matchUsername(text)
+{
+	if (!text)
+		return "";
+
+	let match = "";
+	let playerGUID = "";
+	for (let guid in g_PlayerAssignments)
+	{
+		let pName = g_PlayerAssignments[guid].name;
+		if (text.indexOf(pName + " ") == 0 && pName.length > match.length)
+		{
+			match = pName;
+			playerGUID = guid;
+		}
+	}
+	return playerGUID;
 }
 
 /**
