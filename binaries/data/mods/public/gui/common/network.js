@@ -1,24 +1,15 @@
 /**
- * Get a human readable version of the given disconnect reason.
- *
- * @param reason {number}
- * @returns {string}
+ * Must be kept in sync with source/network/NetHost.h
  */
-function getDisconnectReason(id)
-{
-	// Must be kept in sync with source/network/NetHost.h
-	switch (id)
-	{
-	case 0: return translate("Unknown reason");
-	case 1: return translate("Unexpected shutdown");
-	case 2: return translate("Incorrect network protocol version");
-	case 3: return translate("Game is loading, please try later");
-	case 4: return translate("Game has already started, no observers allowed");
-	case 5: return translate("You have been kicked");
-	case 6: return translate("You have been banned");
-	default: return sprintf(translate("\\[Invalid value %(id)s]"), { "id": id });
-	}
-}
+var g_DisconnectReason = {
+	0: translate("Unknown reason"),
+	1: translate("Unexpected shutdown"),
+	2: translate("Incorrect network protocol version"),
+	3: translate("Game is loading, please try later"),
+	4: translate("Game has already started, no observers allowed"),
+	5: translate("You have been kicked"),
+	6: translate("You have been banned")
+};
 
 /**
  * Show the disconnect reason in a message box.
@@ -28,7 +19,7 @@ function getDisconnectReason(id)
 function reportDisconnect(reason)
 {
 	// Translation: States the reason why the client disconnected from the server.
-	let reasonText = sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(reason) });
+	let reasonText = sprintf(translate("Reason: %(reason)s."), { "reason": g_DisconnectReason[reason] || g_DisconnectReason[0] });
 	messageBox(400, 200, translate("Lost connection to the server.") + "\n\n" + reasonText, translate("Disconnected"), 2);
 }
 

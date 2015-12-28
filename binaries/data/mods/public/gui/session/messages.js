@@ -39,6 +39,19 @@ var g_NetMessageTypes = {
 	"start":     msg => ""
 };
 
+var g_FormatChatMessage = {
+	"system":     msg => msg.text,
+	"connect":    msg => sprintf(translate("%(player)s is starting to rejoin the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
+	"disconnect": msg => sprintf(translate("%(player)s has left the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
+	"rejoined":   msg => sprintf(translate("%(player)s has rejoined the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
+	"clientlist": msg => getUsernameList(),
+	"message":    msg => formatChatCommand(msg),
+	"defeat":     msg => formatDefeatMessage(msg),
+	"diplomacy":  msg => formatDiplomacyMessage(msg),
+	"tribute":    msg => formatTributeMessage(msg),
+	"attack":     msg => formatAttackMessage(msg)
+};
+
 /**
  * Show a label and grey overlay or hide both on connection change.
  */
@@ -47,7 +60,7 @@ var g_StatusMessageTypes = {
 	"connected":           msg => translate("Connected to the server."),
 	"disconnected":        msg => translate("Connection to the server has been lost.") + "\n" +
 	                                  // Translation: States the reason why the client disconnected from the server.
-	                                  sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason) }) + "\n" +
+	                                  sprintf(translate("Reason: %(reason)s."), { "reason": g_DisconnectReason[msg.reason] || g_DisconnectReason[0] }) + "\n" +
 	                                  translate("The game has ended."),
 	"waiting_for_players": msg => translate("Waiting for other players to connect..."),
 	"join_syncing":        msg => translate("Synchronising gameplay with other players..."),
@@ -521,7 +534,10 @@ function submitChatInput()
  */
 function addChatMessage(msg)
 {
-	let formatted = formatChatMessage(msg);
+	if (!g_FormatChatMessage[msg.type])
+		return;
+
+	let formatted = g_FormatChatMessage[msg.type](msg);
 	if (!formatted)
 		return;
 
@@ -535,28 +551,14 @@ function addChatMessage(msg)
 }
 
 /**
- * Returns a formated or empty string.
- *
- * @param msg {string}
+ * Called when the timer has run out for the oldest chatmessage or when the message limit is reached.
  */
-function formatChatMessage(msg)
+function removeOldChatMessage()
 {
-	switch (msg.type)
-	{
-	case "system":     return msg.text;
-	case "connect":    return sprintf(translate("%(player)s is starting to rejoin the game."), { "player": colorizePlayernameByGUID(msg.guid) });
-	case "disconnect": return sprintf(translate("%(player)s has left the game."), { "player": colorizePlayernameByGUID(msg.guid) });
-	case "rejoined":   return sprintf(translate("%(player)s has rejoined the game."), { "player": colorizePlayernameByGUID(msg.guid) });
-	case "clientlist": return getUsernameList();
-	case "defeat":     return formatDefeatMessage(msg);
-	case "diplomacy":  return formatDiplomacyMessage(msg);
-	case "tribute":    return formatTributeMessage(msg);
-	case "attack":     return formatAttackMessage(msg);
-	case "message":    return formatChatCommand(msg);
-	}
-
-	error("Invalid chat message " + uneval(msg));
-	return "";
+	clearTimeout(g_ChatTimers[0]);
+	g_ChatTimers.shift();
+	g_ChatMessages.shift();
+	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
 /**
@@ -666,17 +668,6 @@ function formatChatCommand(msg)
 		"user": coloredUsername,
 		"userTag": sprintf(translate("<%(user)s>"), { "user": coloredUsername })
 	});
-}
-
-/**
- * Called when the timer has run out for the oldest chatmessage or when the message limit is reached.
- */
-function removeOldChatMessage()
-{
-	clearTimeout(g_ChatTimers[0]); // The timer only needs to be cleared when new messages bump old messages off
-	g_ChatTimers.shift();
-	g_ChatMessages.shift();
-	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
 /**
