@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-16 19:05+0000\n"
-"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
+"PO-Revision-Date: 2015-12-23 22:18+0000\n"
+"Last-Translator: Max\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr "Metallipanssari hevosen turvalle."
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr ""
+msgstr "Varusta ratsuväkesi panssareilla. Kaikki ratsuväet +1 hakkaustaso ja panssarinlävistystaso."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -556,7 +556,7 @@ msgstr "Pitkänkantamantaistelu-ratsuväkiharjoitus"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr ""
+msgstr "Varusta kantamaratsuväkesi paremmilla aseilla. +20% kantamaratsuväen hyökkäys."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -565,7 +565,7 @@ msgstr "Vartiayksiköt ovat harvinaisen rohkeita ja urheita taistelussa."
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr ""
+msgstr "Henkivartijayksiköillä on epätavallinen rohkeus ja urheus taistelussa. Mestari +2 hyökkäys."
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
@@ -638,7 +638,7 @@ msgstr "+20% kantamajalkaväen hyökkäystä."
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr ""
+msgstr "Puolisotilaallinen kantamajalkaväki"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
@@ -660,7 +660,7 @@ msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "Mestaritason kantamajalkaväki"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -718,7 +718,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_crenellations.jsongenericName
 msgid "Crenellations"
-msgstr ""
+msgstr "Muurin vetoketjuaukot"
 
 #: simulation/data/technologies/attack_tower_defense.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -738,7 +738,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
-msgstr ""
+msgstr "Poistaa puolustustornin minimikantaman."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -840,7 +840,7 @@ msgstr "Hevostenvetämät kärryt"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve the fishes longer."
-msgstr ""
+msgstr "Suolaus sallii kalojen säilymisen kauemmin."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -848,11 +848,11 @@ msgstr "Kalastusalukset kantavat +20 ruokaa."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr ""
+msgstr "Suolataan kalaa"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr ""
+msgstr "Avautuu Kaupunkivaiheessa. Vaatii Kalastusverkon."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -900,12 +900,12 @@ msgstr "Kerää harjoittaaksesi"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Using net improves the fishing productivity."
-msgstr ""
+msgstr "Verkkoa käyttäen parantuu kalojen tuottavuus."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
 "Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr ""
+msgstr "Käytä verkkoja kalastusveneissäsi. +30% kalastustahti. Avaa kalan suolauksen."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -1052,7 +1052,7 @@ msgstr ""
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in barracks."
-msgstr ""
+msgstr "Yksiköt saavat elämäpisteitä ajan myötä kun miehittävät kasarmia."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -2456,7 +2456,7 @@ msgstr "+25% näkökenttää kaikille yksiköille."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
-msgstr ""
+msgstr "Sibyllan kirjat"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
@@ -2521,7 +2521,7 @@ msgstr "Seleukidien armeijauudistus."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Romanized Heavy Swordsman and Seleucid Cataphract."
-msgstr ""
+msgstr "Avaa Roomalaistetun raskaan miekkamiehen ja Seleukidien katafraktin."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -2533,7 +2533,7 @@ msgstr "Seleukidien perinteinen armeija."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr ""
+msgstr "Avaa hopeakilpisen peitsimiehen ja skyyttalaistetun sotavaunun."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"

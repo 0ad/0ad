@@ -1,6 +1,3 @@
-const PAUSE = translate("Pause");
-const RESUME = translate("Resume");
-
 // Menu / panel border size
 const MARGIN = 4;
 
@@ -25,12 +22,16 @@ const INITIAL_MENU_POSITION = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 // Number of pixels per millisecond to move
 const MENU_SPEED = 1.2;
 
-// Trade menu: available resources and step for probability changes
+// Available resources in trade and tribute menu
 const RESOURCES = ["food", "wood", "stone", "metal"];
+
+// Trade menu: step for probability changes
 const STEP = 5;
 
+// Shown in the trade dialog.
+const g_IdleTraderTextColor = "orange";
+
 var g_IsMenuOpen = false;
-var menu;
 
 var g_IsDiplomacyOpen = false;
 var g_IsTradeOpen = false;
@@ -41,36 +42,23 @@ var g_FlushTributing = function() {};
 // Ignore size defined in XML and set the actual menu size here
 function initMenuPosition()
 {
-	menu = Engine.GetGUIObjectByName("menu");
-	menu.size = INITIAL_MENU_POSITION;
+	Engine.GetGUIObjectByName("menu").size = INITIAL_MENU_POSITION;
 }
 
 function updateMenuPosition(dt)
 {
-	if (g_IsMenuOpen)
-	{
-		let maxOffset = END_MENU_POSITION - menu.size.bottom;
-		if (maxOffset > 0)
-		{
-			let offset = Math.min(MENU_SPEED * dt, maxOffset);
-			let size = menu.size;
-			size.top += offset;
-			size.bottom += offset;
-			menu.size = size;
-		}
-	}
-	else
-	{
-		let maxOffset = menu.size.top - MENU_TOP;
-		if (maxOffset > 0)
-		{
-			let offset = Math.min(MENU_SPEED * dt, maxOffset);
-			let size = menu.size;
-			size.top -= offset;
-			size.bottom -= offset;
-			menu.size = size;
-		}
-	}
+	let menu = Engine.GetGUIObjectByName("menu");
+
+	let maxOffset = g_IsMenuOpen ? (END_MENU_POSITION - menu.size.bottom) : (menu.size.top - MENU_TOP);
+	if (maxOffset <= 0)
+		return;
+
+	let offset = Math.min(MENU_SPEED * dt, maxOffset) * (g_IsMenuOpen ? +1 : -1);
+
+	let size = menu.size;
+	size.top += offset;
+	size.bottom += offset;
+	menu.size = size;
 }
 
 // Opens the menu by revealing the screen which contains the menu
@@ -87,10 +75,7 @@ function closeMenu()
 
 function toggleMenu()
 {
-	if (g_IsMenuOpen)
-		closeMenu();
-	else
-		openMenu();
+	g_IsMenuOpen = !g_IsMenuOpen;
 }
 
 function optionsMenuButton()
@@ -208,14 +193,13 @@ function openSave()
 	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
-	let savedGameData = getSavedGameData();
-	Engine.PushGuiPage("page_savegame.xml", { "savedGameData":savedGameData, "callback":"resumeGame" });
+	Engine.PushGuiPage("page_savegame.xml", { "savedGameData": getSavedGameData(), "callback": "resumeGame" });
 }
 
 function openOptions()
 {
 	pauseGame();
-	Engine.PushGuiPage("page_options.xml", { "callback":"resumeGame" });
+	Engine.PushGuiPage("page_options.xml", { "callback": "resumeGame" });
 }
 
 function openChat()
@@ -270,12 +254,12 @@ function toggleChatWindow(teamChat)
 
 function setDiplomacy(data)
 {
-	Engine.PostNetworkCommand({"type": "diplomacy", "to": data.to, "player": data.player});
+	Engine.PostNetworkCommand({ "type": "diplomacy", "to": data.to, "player": data.player });
 }
 
 function tributeResource(data)
 {
-	Engine.PostNetworkCommand({"type": "tribute", "player": data.player, "amounts":  data.amounts});
+	Engine.PostNetworkCommand({ "type": "tribute", "player": data.player, "amounts":  data.amounts });
 }
 
 function openDiplomacy()
@@ -316,14 +300,14 @@ function openDiplomacy()
 		if (i == we || g_Players[we].state != "active" || g_Players[i].state != "active")
 		{
 			// Hide the unused/unselectable options
-			for each (let a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
+			for (let a of ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
 				Engine.GetGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
 			Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]").hidden = true;
 			continue;
 		}
 
 		// Tribute
-		for each (let resource in ["food", "wood", "stone", "metal"])
+		for (let resource of RESOURCES)
 		{
 			let button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+resource[0].toUpperCase()+resource.substring(1)+"["+(i-1)+"]");
 			button.onpress = (function(player, resource, button){
@@ -374,7 +358,7 @@ function openDiplomacy()
 
 		// Diplomacy settings
 		// Set up the buttons
-		for each (let setting in ["Ally", "Neutral", "Enemy"])
+		for (let setting of ["Ally", "Neutral", "Enemy"])
 		{
 			let button = Engine.GetGUIObjectByName("diplomacyPlayer"+setting+"["+(i-1)+"]");
 
@@ -486,132 +470,134 @@ function openTrade()
 	}
 	updateButtons();
 
-	var traderNumber = Engine.GuiInterfaceCall("GetTraderNumber");
-	var caption = "";
-	if (traderNumber.landTrader.total == 0)
-		caption = translate("There are no land traders.");
-	else
-	{
-		var inactive = traderNumber.landTrader.total - traderNumber.landTrader.trading - traderNumber.landTrader.garrisoned;
-		var inactiveString = "";
-		if (inactive > 0)
-			inactiveString = "[color=\"orange\"]" + sprintf(translatePlural("%(numberOfLandTraders)s inactive", "%(numberOfLandTraders)s inactive", inactive), { numberOfLandTraders: inactive }) + "[/color]";
-
-		if (traderNumber.landTrader.trading > 0)
-		{
-			var openingTradingString = sprintf(translatePlural("There is %(numberTrading)s land trader trading", "There are %(numberTrading)s land traders trading", traderNumber.landTrader.trading), { numberTrading: traderNumber.landTrader.trading });
-			if (traderNumber.landTrader.garrisoned > 0)
-			{
-				var garrisonedString = sprintf(translatePlural("%(numberGarrisoned)s garrisoned on a trading merchant ship", "%(numberGarrisoned)s garrisoned on a trading merchant ship", traderNumber.landTrader.garrisoned), { numberGarrisoned: traderNumber.landTrader.garrisoned });
-				if (inactive > 0)
-				{
-					caption = sprintf(translate("%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."), {
-						openingTradingString: openingTradingString,
-						garrisonedString: garrisonedString,
-						inactiveString: inactiveString
-					});
-				}
-				else
-				{
-					caption = sprintf(translate("%(openingTradingString)s, and %(garrisonedString)s."), {
-						openingTradingString: openingTradingString,
-						garrisonedString: garrisonedString
-					});
-				}
-			}
-			else
-			{
-				if (inactive > 0)
-				{
-					caption = sprintf(translate("%(openingTradingString)s, and %(inactiveString)s."), {
-						openingTradingString: openingTradingString,
-						inactiveString: inactiveString
-					});
-				}
-				else
-				{
-					caption = sprintf(translate("%(openingTradingString)s."), {
-						openingTradingString: openingTradingString,
-					});
-				}
-			}
-		}
-		else
-		{
-			if (traderNumber.landTrader.garrisoned > 0)
-			{
-				var openingGarrisonedString = sprintf(translatePlural("There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship", "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant ship", traderNumber.landTrader.garrisoned), { numberGarrisoned: traderNumber.landTrader.garrisoned });
-				if (inactive > 0)
-				{
-					caption = sprintf(translate("%(openingGarrisonedString)s, and %(inactiveString)s."), {
-						openingGarrisonedString: openingGarrisonedString,
-						inactiveString: inactiveString
-					});
-				}
-				else
-				{
-					caption = sprintf(translate("%(openingGarrisonedString)s."), {
-						openingGarrisonedString: openingGarrisonedString
-					});
-				}
-			}
-			else
-			{
-				if (inactive > 0)
-				{
-					inactiveString = "[color=\"orange\"]" + sprintf(translatePlural("%(numberOfLandTraders)s land trader inactive", "%(numberOfLandTraders)s land traders inactive", inactive), { numberOfLandTraders: inactive }) + "[/color]";
-					caption = sprintf(translatePlural("There is %(inactiveString)s.", "There are %(inactiveString)s.", inactive), {
-						inactiveString: inactiveString
-					});
-				}
-				// The “else” here is already handled by “if (traderNumber.landTrader.total == 0)” above.
-			}
-		}
-	}
-	Engine.GetGUIObjectByName("landTraders").caption = caption;
-
-	caption = "";
-	if (traderNumber.shipTrader.total == 0)
-		caption = translate("There are no merchant ships.");
-	else
-	{
-		var inactive = traderNumber.shipTrader.total - traderNumber.shipTrader.trading;
-		var inactiveString = "";
-		if (inactive > 0)
-			inactiveString = "[color=\"orange\"]" + sprintf(translatePlural("%(numberOfShipTraders)s inactive", "%(numberOfShipTraders)s inactive", inactive), { numberOfShipTraders: inactive }) + "[/color]";
-
-		if (traderNumber.shipTrader.trading > 0)
-		{
-			var openingTradingString = sprintf(translatePlural("There is %(numberTrading)s merchant ship trading", "There are %(numberTrading)s merchant ships trading", traderNumber.shipTrader.trading), { numberTrading: traderNumber.shipTrader.trading });
-			if (inactive > 0)
-			{
-				caption = sprintf(translate("%(openingTradingString)s, and %(inactiveString)s."), {
-					openingTradingString: openingTradingString,
-					inactiveString: inactiveString
-				});
-			}
-			else
-			{
-				caption = sprintf(translate("%(openingTradingString)s."), {
-					openingTradingString: openingTradingString,
-				});
-			}
-		}
-		else
-		{
-			if (inactive > 0)
-			{
-				inactiveString = "[color=\"orange\"]" + sprintf(translatePlural("%(numberOfShipTraders)s merchant ship inactive", "%(numberOfShipTraders)s merchant ships inactive", inactive), { numberOfShipTraders: inactive }) + "[/color]";
-				caption = sprintf(translatePlural("There is %(inactiveString)s.", "There are %(inactiveString)s.", inactive), {
-					inactiveString: inactiveString
-				});
-			}
-			// The “else” here is already handled by “if (traderNumber.shipTrader.total == 0)” above.
-		}
-	}
-	Engine.GetGUIObjectByName("shipTraders").caption = caption;
+	let traderNumber = Engine.GuiInterfaceCall("GetTraderNumber");
+	Engine.GetGUIObjectByName("landTraders").caption = getIdleLandTradersText(traderNumber);
+	Engine.GetGUIObjectByName("shipTraders").caption = getIdleShipTradersText(traderNumber);
 
 	Engine.GetGUIObjectByName("tradeDialogPanel").hidden = false;
+}
+
+function getIdleLandTradersText(traderNumber)
+{
+	let active = traderNumber.landTrader.trading;
+	let garrisoned = traderNumber.landTrader.garrisoned;
+	let inactive = traderNumber.landTrader.total - active - garrisoned;
+
+	let messageTypes = {
+		"active": {
+			"garrisoned": {
+				"no-inactive": translate("%(openingTradingString)s, and %(garrisonedString)s."),
+				"inactive":    translate("%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s.")
+			},
+			"no-garrisoned": {
+				"no-inactive": translate("%(openingTradingString)s."),
+				"inactive":    translate("%(openingTradingString)s, and %(inactiveString)s.")
+			}
+		},
+		"no-active": {
+			"garrisoned": {
+				"no-inactive": translate("%(openingGarrisonedString)s."),
+				"inactive": translate("%(openingGarrisonedString)s, and %(inactiveString)s.")
+			},
+			"no-garrisoned": {
+				"inactive": translatePlural("There is %(inactiveString)s.", "There are %(inactiveString)s.", inactive),
+				"no-inactive": translate("There are no land traders.")
+			}
+		}
+	};
+
+	let message = messageTypes[active ? "active" : "no-active"][garrisoned ? "garrisoned" : "no-garrisoned"][inactive ? "inactive" : "no-inactive"];
+
+	let activeString = sprintf(
+		translatePlural(
+			"There is %(numberTrading)s land trader trading",
+			"There are %(numberTrading)s land traders trading",
+			active
+		),
+		{ "numberTrading": active }
+	);
+
+	let inactiveString = sprintf(active || garrisoned ?
+		translatePlural(
+			"%(numberOfLandTraders)s inactive",
+			"%(numberOfLandTraders)s inactive",
+			inactive
+		) :
+		translatePlural(
+			"%(numberOfLandTraders)s land trader inactive",
+			"%(numberOfLandTraders)s land traders inactive",
+			inactive
+		),
+		{ "numberOfLandTraders": inactive }
+	);
+
+	let garrisonedString = sprintf(active || inactive ?
+		translatePlural(
+			"%(numberGarrisoned)s garrisoned on a trading merchant ship",
+			"%(numberGarrisoned)s garrisoned on a trading merchant ship",
+			garrisoned
+		) :
+		translatePlural(
+			"There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship",
+			"There are %(numberGarrisoned)s land traders garrisoned on a trading merchant ship",
+			garrisoned
+		),
+		{ "numberGarrisoned": garrisoned }
+	);
+
+	return sprintf(message, {
+		"openingTradingString": activeString,
+		"openingGarrisonedString": garrisonedString,
+		"garrisonedString": garrisonedString,
+		"inactiveString": "[color=\"" + g_IdleTraderTextColor + "\"]" + inactiveString + "[/color]"
+	});
+}
+
+function getIdleShipTradersText(traderNumber)
+{
+	let active = traderNumber.shipTrader.trading;
+	let inactive = traderNumber.shipTrader.total - active;
+
+	let messageTypes = {
+		"active": {
+			"inactive": translate("%(openingTradingString)s, and %(inactiveString)s."),
+			"no-inactive": translate("%(openingTradingString)s.")
+		},
+		"no-active": {
+			"inactive": translatePlural("There is %(inactiveString)s.", "There are %(inactiveString)s.", inactive),
+			"no-inactive": translate("There are no merchant ships.")
+		}
+	};
+
+	let message = messageTypes[active ? "active" : "no-active"][inactive ? "inactive" : "no-inactive"];
+
+	let activeString = sprintf(
+		translatePlural(
+			"There is %(numberTrading)s merchant ship trading",
+			"There are %(numberTrading)s merchant ships trading",
+			active
+		),
+		{ "numberTrading": active }
+	);
+
+	let inactiveString = sprintf(active ?
+		translatePlural(
+			"%(numberOfShipTraders)s inactive",
+			"%(numberOfShipTraders)s inactive",
+			inactive
+		) :
+		translatePlural(
+			"%(numberOfShipTraders)s merchant ship inactive",
+			"%(numberOfShipTraders)s merchant ships inactive",
+			inactive
+		),
+		{ "numberOfShipTraders": inactive }
+	);
+
+	return sprintf(message, {
+		"openingTradingString": activeString,
+		"inactiveString": "[color=\"" + g_IdleTraderTextColor + "\"]" + inactiveString + "[/color]"
+	});
 }
 
 function closeTrade()
@@ -674,14 +660,14 @@ function pauseGame()
 	if (g_IsNetworked)
 		return;
 
-	Engine.GetGUIObjectByName("pauseButtonText").caption = RESUME;
+	Engine.GetGUIObjectByName("pauseButtonText").caption = translate("Resume");
 	Engine.GetGUIObjectByName("pauseOverlay").hidden = false;
 	Engine.SetPaused(true);
 }
 
 function resumeGame()
 {
-	Engine.GetGUIObjectByName("pauseButtonText").caption = PAUSE;
+	Engine.GetGUIObjectByName("pauseButtonText").caption = translate("Pause");
 	Engine.GetGUIObjectByName("pauseOverlay").hidden = true;
 	Engine.SetPaused(false);
 }
@@ -696,16 +682,8 @@ function togglePause()
 
 	let pauseOverlay = Engine.GetGUIObjectByName("pauseOverlay");
 
-	if (pauseOverlay.hidden)
-	{
-		Engine.GetGUIObjectByName("pauseButtonText").caption = RESUME;
-		Engine.SetPaused(true);
-	}
-	else
-	{
-		Engine.SetPaused(false);
-		Engine.GetGUIObjectByName("pauseButtonText").caption = PAUSE;
-	}
+	Engine.SetPaused(pauseOverlay.hidden);
+	Engine.GetGUIObjectByName("pauseButtonText").caption = pauseOverlay.hidden ? translate("Resume") : translate("Pause");
 
 	pauseOverlay.hidden = !pauseOverlay.hidden;
 }

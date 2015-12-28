@@ -517,11 +517,14 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 	for (var dist = 0; dist < 4; ++dist)
 	{
 		var waterPoints = [];
-		for (var i = 0; i < numPoints; ++i)
+		for (let i = 0; i < numPoints; ++i)
 		{
 			let angle = (i/numPoints)*2*Math.PI;
 			pos = [x - (1+dist)*size*Math.sin(angle), z + (1+dist)*size*Math.cos(angle)];
 			pos = gameState.ai.accessibility.gamePosToMapPos(pos);
+			if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width || 
+			    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
+				continue;
 			let j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 			if (gameState.ai.accessibility.navalPassMap[j] == seaRef)
 				waterPoints.push(i);
@@ -595,14 +598,23 @@ m.ConstructionPlan.prototype.checkDockPlacement = function(gameState, x, z, half
 	for (let i = 1; i < 5; ++i)
 	{
 		pos = gameState.ai.accessibility.gamePosToMapPos([x + sz + i*(sp+sw), z + cz + i*(cp-cw)]);
+		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width || 
+		    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
+			break;
 		j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 		if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
 			break;
 		pos = gameState.ai.accessibility.gamePosToMapPos([x + sz + i*sp, z + cz + i*cp]);
+		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width || 
+		    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
+			break;
 		j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 		if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
 			break;
 		pos = gameState.ai.accessibility.gamePosToMapPos([x + sz + i*(sp-sw), z + cz + i*(cp+cw)]);
+		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width || 
+		    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
+			break;
 		j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 		if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
 			break;

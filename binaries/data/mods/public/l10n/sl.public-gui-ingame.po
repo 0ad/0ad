@@ -10,12 +10,13 @@
 # Nikolina Bursać <nikolinabursac@gmail.com>, 2013
 # Rok Kepa <rokkepa@gmail.com>, 2014
 # Tilen Nosan <tilenn@gmail.com>, 2015
+# Tim Bruneus <tim.bruneus@gmx.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-14 09:00+0100\n"
-"PO-Revision-Date: 2015-12-14 09:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-24 21:39+0000\n"
+"Last-Translator: Tim Bruneus <tim.bruneus@gmx.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,7 +122,7 @@ msgstr "Sovražnik"
 
 #: gui/session/menu.js:355
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Prosi ostale zaveznike, da napadejo tega sovražnika"
 
 #: gui/session/menu.js:370
 msgid "x"
@@ -294,7 +295,7 @@ msgstr "Povezava s strežnikom je potrjena."
 #: gui/session/messages.js:321
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Razlog: %(reason)s."
 
 #: gui/session/messages.js:322
 msgid "Connection to the server has been lost."
@@ -321,7 +322,7 @@ msgstr "Neznan igralec"
 #: gui/session/messages.js:491
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s se pripravlja, da se ponovno pridruži igri."
 
 #: gui/session/messages.js:494
 #, javascript-format
@@ -331,12 +332,12 @@ msgstr "%(player)s je zapustil igro."
 #: gui/session/messages.js:497
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s se je ponovno pridružil igri."
 
 #: gui/session/messages.js:500
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Uporabniki: %(users)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -401,7 +402,7 @@ msgstr "%(player)s vam je poslal %(amounts)s."
 #: gui/session/messages.js:577
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(attacker)s je napadel tvoje živali!"
 
 #: gui/session/messages.js:579
 #, javascript-format
@@ -439,7 +440,7 @@ msgstr "Ekipa"
 
 #: gui/session/messages.js:741
 msgid "Private"
-msgstr ""
+msgstr "Zasebmo"
 
 #: gui/session/selection_details.js:33
 #, javascript-format
@@ -526,7 +527,7 @@ msgstr[3] ""
 
 #: gui/session/selection_details.js:203 gui/session/selection_details.js:211
 msgid "Number of builders."
-msgstr ""
+msgstr "Število graditeljev."
 
 #: gui/session/selection_details.js:219
 msgid "Current/max gatherers"
@@ -566,7 +567,7 @@ msgstr "Razglasite preplah!"
 
 #: gui/session/selection_panels.js:76
 msgid "End of alert."
-msgstr "Konec preplaha-"
+msgstr "Konec preplaha."
 
 #: gui/session/selection_panels.js:141
 #, javascript-format
@@ -765,17 +766,17 @@ msgstr ""
 #: gui/session/session.js:579
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "Potrditev"
 
 #: gui/session/session.js:581
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: gui/session/session.js:581
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: gui/session/session.js:739
 msgid "Population (current / limit)"
@@ -784,7 +785,7 @@ msgstr "Populacija (trenutna / limit)"
 #: gui/session/session.js:740
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "Maksimalna populacija: %(popCap)s"
 
 #: gui/session/session.js:900
 #, javascript-format
@@ -898,7 +899,7 @@ msgstr "%(gain)s (%(player)s)"
 #: gui/session/utility_functions.js:134 gui/session/utility_functions.js:139
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -948,7 +949,7 @@ msgstr "Shrani"
 
 #: gui/session/menu.xml:(caption):53
 msgid "Summary"
-msgstr ""
+msgstr "Povzetek"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Options"

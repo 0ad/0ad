@@ -90,7 +90,12 @@ var g_Commands = {
 			warn("Invalid command: Could not set "+player+" diplomacy status of player "+cmd.player+" to "+cmd.to);
 		}
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({"type": "diplomacy", "players": [player], "player1": cmd.player, "status": cmd.to});
+		cmpGuiInterface.PushNotification({
+			"type": "diplomacy",
+			"players": [player],
+			"targetPlayer": cmd.player,
+			"status": cmd.to
+		});
 	},
 
 	"tribute": function(player, cmd, data)

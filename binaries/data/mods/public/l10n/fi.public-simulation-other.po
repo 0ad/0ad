@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-14 09:01+0100\n"
-"PO-Revision-Date: 2015-12-16 19:04+0000\n"
-"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
+"PO-Revision-Date: 2015-12-23 21:55+0000\n"
+"Last-Translator: Max\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -389,7 +389,7 @@ msgstr "- Käytä oikeita yksiköitä oikeisiin töihin, naiset keräämään ru
 msgid ""
 " - Don't be afraid to swap units from one resource to another, see point 2. "
 "Make sure they deposit what they are carrying first though."
-msgstr ""
+msgstr "- Älä pelkää vaihtaa yksiköitä yhdestä raaka-aineesta toiseen, katso kohta 2. Ole varma, että he sijoittavat mitä ovat kantaneet ensin kuitenkin."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
@@ -406,33 +406,33 @@ msgstr "- Naiskansalaiset ovat halpoja, joten voit rakentaa lisää niitä ja ke
 msgid ""
 " - Don't get carried away on the last point or you will get raided and have "
 "no defense."
-msgstr ""
+msgstr "- Älä harhaudu kauas viimeisestä kohdasta tai sinä tulet ryöstetyksi eikä sinulla ole puolustusta."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:273
 msgid ""
 "Each map is different, so you will need to play slightly differently on "
 "each. This should give an outline for a high resource map."
-msgstr ""
+msgstr "Jokainen kartta on erilainen, joten sinun pitää pelata lievästi erilailla jokaisessa. Tämän pitäisi antaa hahmotelma korkeiden raaka-aineiden karttoihin."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:4
 msgid ""
 "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
 "Right-click on a berry bush nearby to make the unit collect food. Female "
 "citizens gather food faster than other units."
-msgstr ""
+msgstr "Tervetuloa 0 A.D. kurssiin. Ensimmäiseksi paina vasenta hiirinäppäintä naispuoliseen kansalaiseen, sitten oikeata hiirinäppäintä läheiseen marjapensaaseen tehdäksesi yksikön keräämään ruokaaa. Naiskansalaiset keräävät ruokaa nopeammin kuin mikään muu yksikkö."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr ""
+msgstr "Valitse kansalaissotilas, paina oikeata hiirinäppäintä läheiseen puuhun kansalaiskeskuksesta aloittaaksesi puun keräämisen. Kansalaissotilaat keräävät puuta nopeammin kuin naispuoliset kansalaiset."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
 "Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
 "in the row) once to begin training 5 Hoplites."
-msgstr ""
+msgstr "Valitse kansalaiskeskus-rakennus ja shift-paina hopliitti ikonin päälle (2:n jonossa) kerran aloittaaksesi 5:n hopliitin kouluttamisen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:15
 msgid ""
@@ -624,8 +624,8 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s on liian lähellä %(category)s, tämän pitää olla ainakin %(distance)s metriä kauempana"
+msgstr[1] "%(name)s ovat liian lähellä %(category)s,niiden pitää olla ainakin %(distance)s metriä kauempana"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -633,8 +633,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s liian kaukana %(category)s, sen pitää olla %(distance)s metrin sisäpuolella"
+msgstr[1] "%(name)s liian kaukana %(category)s, niiden pitää olla %(distance)s metrin sisäpuolella"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -738,11 +738,11 @@ msgstr "Tuotantojono on täysi."
 #: simulation/helpers/Commands.js:681
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Hyökkäys pelaajaa %(_player_)s vastaan pyydetty."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
@@ -826,7 +826,7 @@ msgstr "Voita kaikki vastustajat"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Valloitus"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
@@ -834,7 +834,7 @@ msgstr "Tuhoa kaikki vihollisen rakennelmat"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Valloitusrakennelmat"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
@@ -842,7 +842,7 @@ msgstr "Tapa kaikki vihollisen yksiköt"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Valloitusyksiköt"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
