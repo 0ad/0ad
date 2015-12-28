@@ -307,15 +307,14 @@ function handleNotifications()
 			continue;
 		}
 
-		let action = g_NotificationsTypes[notification.type];
-		if (!action)
+		if (!g_NotificationsTypes[notification.type])
 		{
 			error("Unknown notification type '" + notification.type + "' found.");
 			continue;
 		}
 
 		for (let player of notification.players)
-			action(notification, player);
+			g_NotificationsTypes[notification.type](notification, player);
 	}
 }
 
@@ -390,6 +389,8 @@ function handleNetStatusMessage(message)
 	{
 		g_Disconnected = true;
 		closeChat();
+		closeMenu();
+		closeOpenDialogs();
 	}
 }
 
