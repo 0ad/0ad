@@ -655,9 +655,12 @@ void CCmpTerritoryManager::RenderSubmit(SceneCollector& collector)
 player_id_t CCmpTerritoryManager::GetOwner(entity_pos_t x, entity_pos_t z)
 {
 	u16 i, j;
-	CalculateTerritories();
 	if (!m_Territories)
-		return 0;
+	{
+		CalculateTerritories();
+		if (!m_Territories)
+			return 0;
+	}
 
 	NearestTerritoryTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
 	return m_Territories->get(i, j) & TERRITORY_PLAYER_MASK;
