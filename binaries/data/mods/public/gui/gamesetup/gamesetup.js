@@ -24,6 +24,52 @@ const g_MapPath = {
 };
 
 /**
+ * Processes a CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
+ */
+const g_NetMessageTypes = {
+	"netstatus": msg => handleNetStatusMessage(msg),
+	"gamesetup": msg => handleGamesetupMessage(msg),
+	"players": msg => handlePlayerAssignmentMessage(msg),
+	"ready": msg => handleReadyMessage(msg),
+	"start": msg => handleGamestartMessage(msg),
+	"kicked": msg => addChatMessage({ "type": "kicked", "username": msg.username }),
+	"banned": msg => addChatMessage({ "type": "banned", "username": msg.username }),
+	"chat": msg => addChatMessage({ "type": "chat", "guid": msg.guid, "text": msg.text })
+};
+
+const g_FormatChatMessage = {
+	"system": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
+		"message": msg.text
+	})),
+	"settings": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
+		"message": translate('Game settings have been changed')
+	})),
+	"connect": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
+		"message": sprintf(translate("%(username)s has joined"), { "username": user })
+	})),
+	"disconnect": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
+		"message": sprintf(translate("%(username)s has left"), { "username": user })
+	})),
+	"kicked": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
+		"message": sprintf(translate("%(username)s has been kicked"), { "username": user })
+	})),
+	"banned": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
+		"message": sprintf(translate("%(username)s has been banned"), { "username": user })
+	})),
+	"chat": (msg, user) => sprintf(translate("%(username)s %(message)s"), {
+		"username": senderFont(sprintf(translate("<%(username)s>"), { "username": user })),
+		"message": escapeText(msg.text || "")
+	}),
+	"ready": (msg, user) => sprintf(translate("* %(username)s is ready!"), {
+		"username": user
+	}),
+	"not-ready": (msg, user) => sprintf(translate("* %(username)s is not ready."), {
+		"username": user
+	}),
+	"clientlist": (msg, user) => getUsernameList()
+};
+
+/**
  * The dropdownlist items will appear in the order they are added.
  */
 const g_MapFilters = [
@@ -520,72 +566,20 @@ function initPlayerAssignments()
 }
 
 /**
- * Processes a CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
- * Saves the received object to mainlog.html.
- *
- * @param {Object} message
- */
-function handleNetMessage(message)
-{
-	log("Net message: " + uneval(message));
-
-	switch (message.type)
-	{
-	case "netstatus":
-		handleNetStatusMessage(message);
-		break;
-
-	case "gamesetup":
-		handleGamesetupMessage(message);
-		break;
-
-	case "players":
-		handlePlayerAssignmentMessage(message);
-		break;
-
-	case "start":
-		handleGamestartMessage(message);
-		break;
-
-	case "chat":
-		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
-		break;
-
-	case "kicked":
-		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": message.username })});
-		break;
-
-	case "banned":
-		addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": message.username })});
-		break;
-
-	case "ready":
-		handleReadyMessage(message);
-		break;
-
-	default:
-		error("Unrecognised net message type " + message.type);
-	}
-}
-
-/**
  * Called when the client disconnects.
  * The other cases from NetClient should never occur in the gamesetup.
  * @param {Object} message
  */
 function handleNetStatusMessage(message)
 {
-	switch (message.status)
+	if (message.status != "disconnected")
 	{
-	case "disconnected":
-		cancelSetup();
-		reportDisconnect(message.reason);
-		break;
-
-	default:
 		error("Unrecognised netstatus type " + message.status);
-		break;
+		return;
 	}
+
+	cancelSetup();
+	reportDisconnect(message.reason);
 }
 
 /**
@@ -597,7 +591,10 @@ function handleReadyMessage(message)
 	g_ReadyChanged -= 1;
 
 	if (g_ReadyChanged < 1 && g_PlayerAssignments[message.guid].player != -1)
-		addChatMessage({ "type": "ready", "guid": message.guid, "ready": +message.status == 1 });
+		addChatMessage({
+			"type": message.status == 1 ? "ready" : "not-ready",
+			"guid": message.guid
+		});
 
 	if (!g_IsController)
 		return;
@@ -664,7 +661,7 @@ function handlePlayerAssignmentMessage(message)
 		if (g_PlayerAssignments[guid])
 			continue;
 
-		addChatMessage({ "type": "connect", "username": message.hosts[guid].name });
+		addChatMessage({ "type": "connect", "guid": guid, "username": message.hosts[guid].name });
 		newGUID = guid;
 
 		// Assign the new player
@@ -953,7 +950,12 @@ function onTick()
 			if (!message)
 				break;
 
-			handleNetMessage(message);
+			log("Net message: " + uneval(message));
+
+			if (g_NetMessageTypes[message.type])
+				g_NetMessageTypes[message.type](message);
+			else
+				error("Unrecognised net message type " + message.type);
 		}
 	}
 }
@@ -1513,7 +1515,7 @@ function updatePlayerList()
 		}
 		// There was a human, so make sure we don't have any AI left
 		// over in their slot, if we're in charge of the attributes
-		else if (g_IsController && g_GameAttributes.settings.PlayerData[playerSlot].AI && g_GameAttributes.settings.PlayerData[playerSlot].AI != "")
+		else if (g_IsController && g_GameAttributes.settings.PlayerData[playerSlot].AI)
 		{
 			g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
 			if (g_IsNetworked)
@@ -1615,6 +1617,11 @@ function submitChatInput()
 	Engine.SendNetworkChat(text);
 }
 
+function senderFont(text)
+{
+	return '[font="' + g_SenderFont + '"]' + text + '[/font]';
+}
+
 function colorizePlayernameByGUID(guid, username = "")
 {
 	// TODO: Maybe the host should have the moderator-prefix?
@@ -1639,52 +1646,12 @@ function colorizePlayernameByGUID(guid, username = "")
 
 function addChatMessage(msg)
 {
-	let formatted;
-	let formattedUsername = colorizePlayernameByGUID(msg.guid || -1, msg.username || "");
-
-	switch (msg.type)
-	{
-	case "connect":
-		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has joined"), { "username": formattedUsername }) }) + '[/font]';
-		break;
-
-	case "disconnect":
-		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": sprintf(translate("%(username)s has left"), { "username": formattedUsername }) }) + '[/font]';
-		break;
-
-	case "clientlist":
-		formatted = getUsernameList();
-		break;
-
-	case "system":
-		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": msg.text }) + '[/font]';
-		break;
-
-	case "message":
-		formatted = sprintf(translate("%(username)s %(message)s"), {
-			"username": '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(username)s>"), { "username": formattedUsername }) + '[/font]',
-			"message": escapeText(msg.text || "")
-		});
-		break;
-
-	case "ready":
-		formattedUsername = '[font="' + g_SenderFont + '"]' + formattedUsername + '[/font]';
-		if (msg.ready)
-			formatted = ' ' + sprintf(translate("* %(username)s is ready!"), { "username": formattedUsername });
-		else
-			formatted = ' ' + sprintf(translate("* %(username)s is not ready."), { "username": formattedUsername });
-		break;
-
-	case "settings":
-		formatted = '[font="' + g_SenderFont + '"] ' + sprintf(translate("== %(message)s"), { "message": translate('Game settings have been changed') }) + '[/font]';
-		break;
-
-	default:
-		error("Invalid chat message " + uneval(msg));
+	if (!g_FormatChatMessage[msg.type])
 		return;
-	}
 
-	g_ChatMessages.push(formatted);
+	let user = colorizePlayernameByGUID(msg.guid || -1, msg.username || "");
+
+	g_ChatMessages.push(g_FormatChatMessage[msg.type](msg, user));
 
 	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }

@@ -27,7 +27,7 @@ function reportDisconnect(reason)
  * Get a colorized list of usernames sorted by player slot, observers last.
  * Requires g_PlayerAssignments and colorizePlayernameByGUID.
  *
- * @returns {string[]}
+ * @returns {string}
  */
 function getUsernameList()
 {
@@ -67,7 +67,7 @@ function executeNetworkCommand(input)
 	switch (command)
 	{
 	case "/list":
-		addChatMessage({ "type": "clientlist", "guid": "local" });
+		addChatMessage({ "type": "clientlist" });
 		return true;
 
 	case "/kick":
