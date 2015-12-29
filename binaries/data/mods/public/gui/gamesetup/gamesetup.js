@@ -38,24 +38,12 @@ const g_NetMessageTypes = {
 };
 
 const g_FormatChatMessage = {
-	"system": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
-		"message": msg.text
-	})),
-	"settings": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
-		"message": translate('Game settings have been changed')
-	})),
-	"connect": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
-		"message": sprintf(translate("%(username)s has joined"), { "username": user })
-	})),
-	"disconnect": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
-		"message": sprintf(translate("%(username)s has left"), { "username": user })
-	})),
-	"kicked": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
-		"message": sprintf(translate("%(username)s has been kicked"), { "username": user })
-	})),
-	"banned": (msg, user) => senderFont(sprintf(translate("== %(message)s"), {
-		"message": sprintf(translate("%(username)s has been banned"), { "username": user })
-	})),
+	"system": (msg, user) => systemMessage(msg.text),
+	"settings": (msg, user) => systemMessage(translate('Game settings have been changed')),
+	"connect": (msg, user) => systemMessage(sprintf(translate("%(username)s has joined"), { "username": user })),
+	"disconnect": (msg, user) => systemMessage(sprintf(translate("%(username)s has left"), { "username": user })),
+	"kicked": (msg, user) => systemMessage(sprintf(translate("%(username)s has been kicked"), { "username": user })),
+	"banned": (msg, user) => systemMessage(sprintf(translate("%(username)s has been banned"), { "username": user })),
 	"chat": (msg, user) => sprintf(translate("%(username)s %(message)s"), {
 		"username": senderFont(sprintf(translate("<%(username)s>"), { "username": user })),
 		"message": escapeText(msg.text || "")
@@ -1620,6 +1608,11 @@ function submitChatInput()
 function senderFont(text)
 {
 	return '[font="' + g_SenderFont + '"]' + text + '[/font]';
+}
+
+function systemMessage(message)
+{
+	return senderFont(sprintf(translate("== %(message)s"), { "message": message }));
 }
 
 function colorizePlayernameByGUID(guid, username = "")

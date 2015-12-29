@@ -1,3 +1,10 @@
+var g_NetworkCommands = {
+	"/kick": argument => kickPlayer(argument, false),
+	"/ban": argument => kickPlayer(argument, true),
+	"/list": argument => addChatMessage({ "type": "clientlist" }),
+	"/clear": argument => clearChatMessages()
+};
+
 /**
  * Must be kept in sync with source/network/NetHost.h
  */
@@ -21,6 +28,17 @@ function reportDisconnect(reason)
 	// Translation: States the reason why the client disconnected from the server.
 	let reasonText = sprintf(translate("Reason: %(reason)s."), { "reason": g_DisconnectReason[reason] || g_DisconnectReason[0] });
 	messageBox(400, 200, translate("Lost connection to the server.") + "\n\n" + reasonText, translate("Disconnected"), 2);
+}
+
+function kickPlayer(username, ban = false)
+{
+	if (!Engine.KickPlayer(username, false))
+		addChatMessage({
+			"type": "system",
+			"text": sprintf(ban ? translate("Could not ban %(name)s.") : translate("Could not kick %(name)s."), {
+				"name": username
+			})
+		});
 }
 
 /**
@@ -61,28 +79,11 @@ function executeNetworkCommand(input)
 	if (input.indexOf("/") != 0)
 		return false;
 
-	var command = input.split(" ", 1)[0];
-	var argument = input.substr(command.length + 1);
+	let command = input.split(" ", 1)[0];
+	let argument = input.substr(command.length + 1);
 
-	switch (command)
-	{
-	case "/list":
-		addChatMessage({ "type": "clientlist" });
-		return true;
+	if (g_NetworkCommands[command])
+		g_NetworkCommands[command](argument);
 
-	case "/kick":
-		if (!Engine.KickPlayer(argument, false))
-			addChatMessage({ "type": "system", "text": sprintf(translate("Could not kick %(name)s."), { "name": argument }) });
-		return true;
-
-	case "/ban":
-		if (!Engine.KickPlayer(argument, true))
-			addChatMessage({ "type": "system", "text": sprintf(translate("Could not ban %(name)s."), { "name": argument }) });
-		return true;
-
-	case "/clear":
-		clearChatMessages();
-		return true;
-	}
-	return false;
+	return !!g_NetworkCommands[command];
 }
