@@ -114,7 +114,11 @@ Health.prototype.GetRegenRate = function()
 
 Health.prototype.ExecuteRegeneration = function()
 {
-	var regen = this.GetRegenRate();
+	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	if (cmpUnitAI && !cmpUnitAI.IsIdle())
+		return;
+
+	let regen = this.GetRegenRate();
 	if (regen > 0)
 		this.Increase(regen);
 	else 
