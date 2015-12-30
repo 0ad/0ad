@@ -1087,6 +1087,7 @@ public:
 
 				r.push_back(it->first);
 			}
+			std::sort(r.begin(), r.end());
 		}
 		// check a regular range (i.e. not the entire world, and not parabolic)
 		else
@@ -1117,6 +1118,7 @@ public:
 
 				r.push_back(it->first);
 			}
+			std::sort(r.begin(), r.end());
 		}
 	}
 
