@@ -30,9 +30,9 @@ function reportDisconnect(reason)
 	messageBox(400, 200, translate("Lost connection to the server.") + "\n\n" + reasonText, translate("Disconnected"), 2);
 }
 
-function kickPlayer(username, ban = false)
+function kickPlayer(username, ban)
 {
-	if (!Engine.KickPlayer(username, false))
+	if (!Engine.KickPlayer(username, ban))
 		addChatMessage({
 			"type": "system",
 			"text": sprintf(ban ? translate("Could not ban %(name)s.") : translate("Could not kick %(name)s."), {
