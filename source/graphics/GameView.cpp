@@ -20,7 +20,7 @@
 #include "GameView.h"
 
 #include "graphics/Camera.h"
-#include "graphics/CinemaTrack.h"
+#include "graphics/CinemaManager.h"
 #include "graphics/ColladaManager.h"
 #include "graphics/HFTracer.h"
 #include "graphics/LOSTexture.h"
@@ -258,7 +258,7 @@ public:
 	 */
 	CLightEnv CachedLightEnv;
 
-	CCinemaManager TrackManager;
+	CCinemaManager CinemaManager;
 
 	/**
 	 * Entity for the camera to follow, or INVALID_ENTITY if none.
@@ -395,7 +395,7 @@ CCamera* CGameView::GetCamera()
 
 CCinemaManager* CGameView::GetCinema()
 {
-	return &m->TrackManager;
+	return &m->CinemaManager;
 };
 
 CLOSTexture& CGameView::GetLOSTexture()
@@ -626,9 +626,9 @@ void CGameView::Update(const float deltaRealTime)
 	if (!g_app_has_focus)
 		return;
 
-	if (m->TrackManager.IsActive() && m->TrackManager.IsPlaying())
+	if (m->CinemaManager.IsActive() && m->CinemaManager.IsPlaying())
 	{
-		if (! m->TrackManager.Update(deltaRealTime))
+		if (! m->CinemaManager.Update(deltaRealTime))
 		{
 //			ResetCamera();
 		}

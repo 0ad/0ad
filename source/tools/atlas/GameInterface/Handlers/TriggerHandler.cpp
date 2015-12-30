@@ -23,7 +23,7 @@
 
 #include "ps/Game.h"
 #include "graphics/GameView.h"
-#include "graphics/CinemaTrack.h"
+#include "graphics/CinemaManager.h"
 #include "simulation2/Simulation2.h"
 
 namespace AtlasMessage {

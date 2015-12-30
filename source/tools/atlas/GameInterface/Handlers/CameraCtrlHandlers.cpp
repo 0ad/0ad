@@ -27,7 +27,7 @@
 #include "ps/Game.h"
 #include "renderer/Renderer.h"
 #include "graphics/GameView.h"
-#include "graphics/CinemaTrack.h"
+#include "graphics/CinemaManager.h"
 
 #include "ps/World.h"
 #include "graphics/Terrain.h"

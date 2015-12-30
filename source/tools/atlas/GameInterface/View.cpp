@@ -24,7 +24,7 @@
 #include "Messages.h"
 #include "SimState.h"
 
-#include "graphics/CinemaTrack.h"
+#include "graphics/CinemaManager.h"
 #include "graphics/GameView.h"
 #include "graphics/ParticleManager.h"
 #include "graphics/SColor.h"

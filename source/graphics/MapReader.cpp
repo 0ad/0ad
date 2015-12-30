@@ -20,7 +20,7 @@
 #include "MapReader.h"
 
 #include "graphics/Camera.h"
-#include "graphics/CinemaTrack.h"
+#include "graphics/CinemaManager.h"
 #include "graphics/Entity.h"
 #include "graphics/GameView.h"
 #include "graphics/MapGenerator.h"

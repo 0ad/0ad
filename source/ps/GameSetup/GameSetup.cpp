@@ -35,7 +35,7 @@
 #include "lib/sysdep/os/win/wversion.h"
 #endif
 
-#include "graphics/CinemaTrack.h"
+#include "graphics/CinemaPath.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
