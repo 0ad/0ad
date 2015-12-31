@@ -38,7 +38,7 @@ void CCinemaManager::AddPath(CCinemaPath path, const CStrW& name)
 	m_Paths[name] = path;
 }
 
-void CCinemaManager::QueuePath(const CStrW& name, bool queue )
+void CCinemaManager::QueuePath(const CStrW& name, bool queue)
 {
 	if (!m_PathQueue.empty() && queue == false)
 	{
@@ -58,7 +58,7 @@ void CCinemaManager::OverridePath(const CStrW& name)
 	m_PathQueue.push_back( m_Paths[name] );
 }
 
-void CCinemaManager::SetAllPaths( const std::map<CStrW, CCinemaPath>& paths)
+void CCinemaManager::SetAllPaths(const std::map<CStrW, CCinemaPath>& paths)
 {
 	CStrW name;
 	m_Paths = paths;
@@ -96,12 +96,12 @@ void CCinemaManager::MoveToPointAt(float time)
 	StopPlaying();
 
 	m_CurrentPath->second.m_TimeElapsed = time;
-	if ( !m_CurrentPath->second.Validate() )
+	if (!m_CurrentPath->second.Validate())
 		return;
 
 	m_CurrentPath->second.MoveToPointAt(m_CurrentPath->second.m_TimeElapsed / 
 				m_CurrentPath->second.GetDuration(), m_CurrentPath->second.GetNodeFraction(), 
-				m_CurrentPath->second.m_PreviousRotation );
+				m_CurrentPath->second.m_PreviousRotation);
 }
 
 bool CCinemaManager::Update(const float deltaRealTime)

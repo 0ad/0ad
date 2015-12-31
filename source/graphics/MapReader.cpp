@@ -868,7 +868,7 @@ void CXMLReader::ReadCinema(XMBElement parent)
 	{
 		int elementName = element.GetNodeName();
 			
-		if ( elementName == el_path )
+		if (elementName == el_path)
 		{
 			XMBAttributeList attrs = element.GetAttributes();
 			CStrW name(attrs.GetNamedItem(at_name).FromUTF8());
@@ -883,7 +883,7 @@ void CXMLReader::ReadCinema(XMBElement parent)
 				attrs = pathChild.GetAttributes();
 
 				//Load distortion attributes
-				if ( elementName == el_distortion )
+				if (elementName == el_distortion)
 				{
 						pathData.m_Mode = attrs.GetNamedItem(at_mode).ToInt();
 						pathData.m_Style = attrs.GetNamedItem(at_style).ToInt();
@@ -892,7 +892,7 @@ void CXMLReader::ReadCinema(XMBElement parent)
 				}
 				
 				//Load node data used for spline
-				else if ( elementName == el_node )
+				else if (elementName == el_node)
 				{
 					SplineData data;
 					XERO_ITER_EL(pathChild, nodeChild)
@@ -901,21 +901,21 @@ void CXMLReader::ReadCinema(XMBElement parent)
 						attrs = nodeChild.GetAttributes();
 						
 						//Fix?:  assumes that time is last element
-						if ( elementName == el_position )
+						if (elementName == el_position)
 						{
 							data.Position.X = attrs.GetNamedItem(at_x).ToFloat();
 							data.Position.Y = attrs.GetNamedItem(at_y).ToFloat();
 							data.Position.Z = attrs.GetNamedItem(at_z).ToFloat();
 							continue;
 						}
-						else if ( elementName == el_rotation )
+						else if (elementName == el_rotation)
 						{
 							data.Rotation.X = attrs.GetNamedItem(at_x).ToFloat();
 							data.Rotation.Y = attrs.GetNamedItem(at_y).ToFloat();
 							data.Rotation.Z = attrs.GetNamedItem(at_z).ToFloat();
 							continue;
 						}
-						else if ( elementName == el_time )
+						else if (elementName == el_time)
 							data.Distance = nodeChild.GetText().ToFloat();
 						else 
 							debug_warn(L"Invalid cinematic element for node child");
@@ -932,14 +932,14 @@ void CXMLReader::ReadCinema(XMBElement parent)
 			//Construct cinema path with data gathered
 			CCinemaPath temp(pathData, backwardSpline);
 			const std::vector<SplineData>& nodes = temp.GetAllNodes();
-			if ( nodes.empty() )
+			if (nodes.empty())
 			{
 				debug_warn(L"Failure loading cinematics");
 				return;
 			}
 					
-			for ( std::vector<SplineData>::const_reverse_iterator it = nodes.rbegin(); 
-															it != nodes.rend(); ++it )
+			for (std::vector<SplineData>::const_reverse_iterator it = nodes.rbegin(); 
+				it != nodes.rend(); ++it)
 			{
 				spline.AddNode(it->Position, it->Rotation, it->Distance);
 			}
