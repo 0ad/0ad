@@ -23,8 +23,8 @@ Engine.LoadComponentScript("interfaces/Repairable.js");
 Engine.LoadComponentScript("interfaces/ResourceDropsite.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
-Engine.LoadComponentScript("interfaces/TechnologyManager.js")
-Engine.LoadComponentScript("interfaces/Trader.js")
+Engine.LoadComponentScript("interfaces/TechnologyManager.js");
+Engine.LoadComponentScript("interfaces/Trader.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
@@ -35,10 +35,12 @@ var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");
 
 
 AddMock(SYSTEM_ENTITY, IID_Barter, {
-	GetPrices: function() { return {
-		"buy": { "food": 150 },
-		"sell": { "food": 25 },
-	}},
+	GetPrices: function() {
+		return {
+			"buy": { "food": 150 },
+			"sell": { "food": 25 }
+		};
+	}
 });
 
 AddMock(SYSTEM_ENTITY, IID_EndGameManager, {
