@@ -1337,9 +1337,9 @@ function getEntityLimitAndCount(playerState, entType)
 		entCategory = template.trainingRestrictions.category;
 	else if (template.buildRestrictions)
 		entCategory = template.buildRestrictions.category;
-	if (entCategory && playerState.entityLimits[entCategory] != null)
+	if (entCategory && playerState.entityLimits[entCategory] !== undefined)
 	{
-		r.entLimit = playerState.entityLimits[entCategory] || Infinity;
+		r.entLimit = playerState.entityLimits[entCategory] || 0;
 		r.entCount = playerState.entityCounts[entCategory] || 0;
 		r.entLimitChangers = playerState.entityLimitChangers[entCategory];
 		r.canBeAddedCount = Math.max(r.entLimit - r.entCount, 0);
