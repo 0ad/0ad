@@ -262,8 +262,8 @@ function displaySingle(entState)
 	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = entState.attack ? (getAttackTooltip(entState) + "\n" + armorString) : armorString;
 
 	// Repair Rate
-	if (entState.repairRatio)
-		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip += getRepairRatioTooltip(entState.repairRatio);
+	if (entState.repairRate)
+		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip += getRepairRateTooltip(entState.repairRate);
 
 	// Icon Tooltip
 	let iconTooltip = "";

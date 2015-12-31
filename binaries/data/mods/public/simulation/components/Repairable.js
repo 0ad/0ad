@@ -61,11 +61,8 @@ Repairable.prototype.Repair = function(builderEnt, rate)
 	if (damage <= 0)
 		return;
 
-	// Calculate the amount of hitpoints that will be added (using diminushing rate when several builders)
-	let work = rate * this.buildMultiplier;
-	let repairTime = this.repairTimeRatio * cmpCost.GetBuildTime();
-	if (repairTime)
-		work *= (cmpHealth.GetMaxHitpoints() / repairTime);
+	// Calculate the amount of hitpoints that will be added (using diminishing rate when several builders)
+	let work = rate * this.buildMultiplier * this.GetRepairRate();
 	let amount = Math.min(damage, work);
 	cmpHealth.Increase(amount);
 
@@ -74,13 +71,12 @@ Repairable.prototype.Repair = function(builderEnt, rate)
 		Engine.PostMessage(this.entity, MT_ConstructionFinished, { "entity": this.entity, "newentity": this.entity });
 };
 
-Repairable.prototype.GetRepairRatio = function()
+Repairable.prototype.GetRepairRate = function()
 {
 	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	let cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
 	let repairTime = this.repairTimeRatio * cmpCost.GetBuildTime();
-	let repairRatio = (cmpHealth.GetMaxHitpoints() / repairTime);
-	return (Math.round(repairRatio * 10 ) / 10);
+	return repairTime ? cmpHealth.GetMaxHitpoints() / repairTime : 1;
 };
 
 Engine.RegisterComponentType(IID_Repairable, "Repairable", Repairable);
