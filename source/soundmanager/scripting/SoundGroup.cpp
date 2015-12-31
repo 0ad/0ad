@@ -19,8 +19,8 @@
 * =========================================================================
 * File		  : SoundGroup.cpp
 * Project	  : 0 A.D.
-* Description : Loads up a group of sound files with shared properties, 
-*				and provides a simple interface for playing them.		
+* Description : Loads up a group of sound files with shared properties,
+*				and provides a simple interface for playing them.
 * =========================================================================
 */
 
@@ -112,9 +112,9 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	float yBufferSize = 15;
 	const size_t audioWidth = screenWidth;
 	float radianCap = PI / 3;
-	
+
 	g_Game->GetView()->GetCamera()->GetScreenCoordinates(position, x, y);
-	
+
 	onScreen = true;
 
 	if (x < -bufferSize)
@@ -162,7 +162,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 	bool isOnscreen = false;
 	ALfloat	initialRolllOff = 0.1f;
 	ALfloat	itemRollOff = initialRolllOff;
-	
+
 
 	float offSet = RadiansOffCenter(position, isOnscreen, itemRollOff);
 	bool 	shouldBePlayed = isOnscreen || TestFlag(eDistanceless) || TestFlag(eOmnipresent);
@@ -195,7 +195,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 
 		if (TestFlag(eDistanceless))
 			itemRollOff = 0;
-		
+
 		if ( sndData->IsStereo() )
 			LOGWARNING("OpenAL: stereo sounds can't be positioned: %s", sndData->GetFileName().string8());
 
@@ -235,7 +235,7 @@ void CSoundGroup::PlayNext(const CVector3D& position, entity_id_t source)
 	// if no sounds, return
 	if (filenames.size() == 0)
 		return;
-	
+
 	m_index = rand(0, (size_t)filenames.size());
 	UploadPropertiesAndPlay(m_index, position, source);
 }
@@ -260,7 +260,7 @@ void CSoundGroup::Reload()
 		}
 
 		if (TestFlag(eRandOrder))
-			random_shuffle(snd_group.begin(), snd_group.end());	
+			random_shuffle(snd_group.begin(), snd_group.end());
 	}
 #endif // CONFIG2_AUDIO
 }
@@ -323,12 +323,11 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 		LOGERROR("Invalid SoundGroup format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
-	
+
 	XERO_ITER_EL(root, child)
 	{
-	
-		int child_name = child.GetNodeName();			
-		
+		int child_name = child.GetNodeName();
+
 		if(child_name == el_gain)
 		{
 			SetGain(child.GetText().ToFloat());
@@ -421,7 +420,6 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 			m_Decay = child.GetText().ToFloat();
 		}
 	}
-
 	return true;
 }
 
