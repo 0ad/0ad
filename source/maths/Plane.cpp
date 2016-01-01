@@ -27,13 +27,15 @@
 #include "Plane.h"
 #include "MathUtil.h"
 
-CPlane::CPlane ()
+const float CPlane::m_EPS = 0.001f;
+
+CPlane::CPlane()
 {
 	m_Dist = 0.0f;
 }
 
 //sets the plane equation from 3 points on that plane
-void CPlane::Set (const CVector3D &p1, const CVector3D &p2, const CVector3D &p3)
+void CPlane::Set(const CVector3D& p1, const CVector3D& p2, const CVector3D& p3)
 {
 	CVector3D D1, D2;
 	CVector3D Norm;
@@ -45,28 +47,24 @@ void CPlane::Set (const CVector3D &p1, const CVector3D &p2, const CVector3D &p3)
 	//cross multiply gives normal
 	Norm = D2.Cross(D1);
 
-	Set (Norm, p1);
+	Set(Norm, p1);
 }
 
 //sets the plane equation from a normal and a point on 
 //that plane
-void CPlane::Set (const CVector3D &norm, const CVector3D &point)
+void CPlane::Set(const CVector3D& norm, const CVector3D& point)
 {
 	m_Norm = norm;
 
-	m_Dist = - (norm.X * point.X +
-				norm.Y * point.Y +
-				norm.Z * point.Z);
+	m_Dist = - (norm.X * point.X + norm.Y * point.Y + norm.Z * point.Z);
 
 //	Normalize ();
 }
 
 //normalizes the plane equation
-void CPlane::Normalize ()
+void CPlane::Normalize()
 {
-	float Scale;
-
-	Scale = 1.0f/m_Norm.Length ();
+	float Scale = 1.0f/m_Norm.Length();
 
 	m_Norm.X *= Scale;
 	m_Norm.Y *= Scale;
@@ -76,20 +74,13 @@ void CPlane::Normalize ()
 
 //returns the side of the plane on which this point
 //lies.
-PLANESIDE CPlane::ClassifyPoint (const CVector3D &point) const
+PLANESIDE CPlane::ClassifyPoint(const CVector3D& point) const
 {
-	float Dist;
+	float Dist = DistanceToPlane(point);
 
-	Dist = m_Norm.X * point.X +
-		   m_Norm.Y * point.Y +
-		   m_Norm.Z * point.Z +
-		   m_Dist;
-
-	const float EPS = 0.001f;
-
-	if (Dist > EPS)
+	if (Dist > m_EPS)
 		return PS_FRONT;
-	else if (Dist < -EPS)
+	else if (Dist < -m_EPS)
 		return PS_BACK;
 
 	return PS_ON;
@@ -97,26 +88,26 @@ PLANESIDE CPlane::ClassifyPoint (const CVector3D &point) const
 
 //calculates the intersection point of a line with this
 //plane. Returns false if there is no intersection
-bool CPlane::FindLineSegIntersection (const CVector3D &start, const CVector3D &end, CVector3D *intsect)
+bool CPlane::FindLineSegIntersection(const CVector3D& start, const CVector3D& end, CVector3D* intsect) const
 {
-	float dist1 = DistanceToPlane( start );
-	float dist2 = DistanceToPlane( end );
+	float dist1 = DistanceToPlane(start);
+	float dist2 = DistanceToPlane(end);
 
 	if( (dist1 < 0 && dist2 < 0) || (dist1 >= 0 && dist2 >= 0) )
 		return false;
 
 	float t = (-dist1) / (dist2-dist1);
-	*intsect = Interpolate( start, end, t );
+	*intsect = Interpolate(start, end, t);
 
 	return true;
 }
 
-bool CPlane::FindRayIntersection (const CVector3D &start, const CVector3D &direction, CVector3D *intsect)
+bool CPlane::FindRayIntersection(const CVector3D& start, const CVector3D& direction, CVector3D* intsect) const
 {
-	float dot = m_Norm.Dot (direction);
+	float dot = m_Norm.Dot(direction);
 	if (dot == 0.0f)
 		return false;
 
-	*intsect = start - (direction * (DistanceToPlane (start)/dot));
+	*intsect = start - (direction * (DistanceToPlane(start)/dot));
 	return true;
 }

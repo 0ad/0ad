@@ -908,11 +908,11 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 
 	for (size_t a = 0; a < m_ShoreWaves.size(); ++a)
 	{
-		if (!frustrum.IsBoxVisible(CVector3D(0,0,0), m_ShoreWaves[a]->m_AABB))
+		if (!frustrum.IsBoxVisible(m_ShoreWaves[a]->m_AABB))
 			continue;
 		
 		CVertexBuffer::VBChunk* VBchunk = m_ShoreWaves[a]->m_VBvertices;
-		SWavesVertex *base=(SWavesVertex *)VBchunk->m_Owner->Bind();
+		SWavesVertex* base = (SWavesVertex*)VBchunk->m_Owner->Bind();
 		
 		// setup data pointers
 		GLsizei stride = sizeof(SWavesVertex);

@@ -144,7 +144,7 @@ public:
 	int GetMucMessageCount();
 	protected:
 	void PushGuiMessage(XmppClient::GUIMessage message);
-	void CreateSimpleMessage(const std::string& type, const std::string& text, const std::string& level = "standard", const std::string& data = "");
+	void CreateGUIMessage(const std::string& type, const std::string& level, const std::string& text = "", const std::string& data = "");
 
 private:
 	/// Map of players

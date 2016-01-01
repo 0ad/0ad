@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:32+0100\n"
-"PO-Revision-Date: 2015-12-24 11:56+0000\n"
-"Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
+"POT-Creation-Date: 2015-12-28 10:20+0100\n"
+"PO-Revision-Date: 2015-12-28 09:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -307,6 +307,25 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Fisk"
 
+#: gui/common/l10n.js:82
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/common/l10n.js:90
+#, javascript-format
+msgid "%(previousAmounts)s and %(lastAmount)s"
+msgstr ""
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an enumeration.
+#: gui/common/l10n.js:92 gui/common/network.js:59 gui/common/tooltips.js:49
+#: gui/common/tooltips.js:114 gui/common/tooltips.js:142
+#: gui/common/tooltips.js:435 gui/common/tooltips.js:462
+#: gui/common/tooltips.js:530
+msgid ", "
+msgstr ","
+
 #: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "Okänd anledning"
@@ -354,12 +373,17 @@ msgstr "Tappade anslutningen till servern."
 msgid "Disconnected"
 msgstr "Nedkopplad"
 
-#: gui/common/network.js:80
+#: gui/common/network.js:57
+#, javascript-format
+msgid "Users: %(users)s"
+msgstr ""
+
+#: gui/common/network.js:84
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Kunde ej sparka ut %(name)s."
 
-#: gui/common/network.js:85
+#: gui/common/network.js:89
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Kunde ej bannlysa %(name)s."
@@ -471,12 +495,6 @@ msgstr "Spetsa"
 #: gui/common/tooltips.js:139
 msgid "Crush"
 msgstr "Krossa"
-
-#: gui/common/tooltips.js:49 gui/common/tooltips.js:114
-#: gui/common/tooltips.js:142 gui/common/tooltips.js:435
-#: gui/common/tooltips.js:462 gui/common/tooltips.js:530
-msgid ", "
-msgstr ","
 
 #: gui/common/tooltips.js:55
 #, javascript-format
@@ -732,15 +750,15 @@ msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Ja"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "No"
 msgstr "Nej"
 
@@ -1123,70 +1141,70 @@ msgstr "Du"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "Du har inte aktiverat samma modifikationer som replayen."
 
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Erfordras: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:53
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Aktiv: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Denna replay är inte kompatibel med din version av spelet!"
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Inkompatibel replay"
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: gui/replaymenu/replay_actions.js:75
 msgid "No summary data available."
-msgstr ""
+msgstr "Ingen sammanfattningsinformation tillgänglig."
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Resultat vid slutet av spelet."
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
-msgstr ""
+msgstr "Ta bort replay"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure to delete this replay permanently?"
-msgstr ""
+msgstr "Är du säker att du vill ta bort denna replay permanent?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Alla"
 
 #: gui/replaymenu/replay_filters.js:56
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Alla"
 
 #: gui/replaymenu/replay_filters.js:69
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Alla"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Alla"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Alla"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:102
@@ -1194,8 +1212,8 @@ msgstr ""
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "< %(max)s min"
+msgstr[1] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
@@ -1203,58 +1221,58 @@ msgstr[1] ""
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "> %(min)s min"
+msgstr[1] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr ""
+msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_menu.js:235
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:265
 msgid "yyyy-MM"
-msgstr ""
+msgstr "yyyy-MM"
 
 #: gui/replaymenu/replay_menu.js:328
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #: gui/replaymenu/replay_menu.js:330
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, besegrad)"
 
 #: gui/replaymenu/replay_menu.js:332
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #: gui/replaymenu/replay_menu.js:334
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, besegrad)"
 
 #: gui/replaymenu/replay_menu.js:350
 msgid "No Team"
-msgstr ""
+msgstr "Inget lag"
 
 #: gui/replaymenu/replay_menu.js:350
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Lag %(team)s"
 
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:27
 msgid "No saved games found"
 msgstr "Inga sparade spel hittades"
 
@@ -1267,63 +1285,63 @@ msgstr "Det sparade spelet kan vara inkompatibelt: "
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "Det krävs 0 A.D. version %(requiredVersion)s, men du använder %(currentVersion)s."
 
 #: gui/savedgames/load.js:61
 msgid "It needs an older version of 0 A.D."
-msgstr ""
+msgstr "Det behövs en äldre version av 0 A.D."
 
 #: gui/savedgames/load.js:65
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr ""
+msgstr "Det krävs 0 A.D. savegame %(requiredVersion)s, men du använder savegame %(currentVersion)s."
 
 #: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr ""
+msgstr "Det krävs inga mods men du har \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr ""
+msgstr "De krävs modden \"%(requiredMod)s\" men du har inga mods."
 
 #: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr ""
+msgstr "Det krävs \"%(requiredMod)s\" men du har \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "Vill du fortsätta ändå?"
 
 #: gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Varning"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
-#: gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:58
+#: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Det sparade spelet kommer att tas bort permanent, är det säkert att du vill fortsätta?"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "DELETE"
 msgstr "DELETE (Ta bort)"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Det sparade spelet kommer att skrivas över permanent, är det säkert att du vill fortsätta?"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "OVERWRITE SAVE"
 msgstr "SKRIV ÖVER SPARNING"
 
@@ -1334,16 +1352,16 @@ msgstr "Hälsa:"
 #: gui/structree/draw.js:367
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:373
 msgid "Gather Rates:"
-msgstr ""
+msgstr "Samlingstakt:"
 
 #: gui/structree/load.js:158
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr ""
+msgstr "%(val1)s till %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
@@ -1381,7 +1399,7 @@ msgstr "Ekonomi"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
-msgstr ""
+msgstr "Utposter"
 
 #: gui/summary/layout.js:26
 msgid "Military"
@@ -1401,7 +1419,7 @@ msgstr "Underverk"
 
 #: gui/summary/layout.js:32
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr ""
+msgstr "Byggnadsstatistik (Konstruerade / Förlorade / Förstörda)"
 
 #: gui/summary/layout.js:50
 msgid "Infantry"
@@ -1425,11 +1443,11 @@ msgstr "Flotta"
 
 #: gui/summary/layout.js:56
 msgid "Traders"
-msgstr ""
+msgstr "Handelsmän"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr ""
+msgstr "Enhetsstatistik (Tränade / Förlorade / Dödade)"
 
 #: gui/summary/layout.js:76
 msgid "Food"
@@ -1457,7 +1475,7 @@ msgstr "Skatter insamlade"
 
 #: gui/summary/layout.js:83
 msgid "Loot"
-msgstr ""
+msgstr "Plundringsgods"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
@@ -1491,35 +1509,35 @@ msgstr "Handelsinkomst"
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr ""
+msgstr "Vegetarisk\nandel"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
-msgstr ""
+msgstr "Feminisering"
 
 #: gui/summary/layout.js:126
 msgid ""
 "Kill / Death\n"
 "ratio"
-msgstr ""
+msgstr "Dödade / Förlorade\nkvot"
 
 #: gui/summary/layout.js:127
 msgid ""
 "Map\n"
 "exploration"
-msgstr ""
+msgstr "Kart\nupptäckning"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr ""
+msgstr "Vid höjdpunkt"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr ""
+msgstr "Vid slutet"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
-msgstr ""
+msgstr "Kartkontroll"
 
 #: gui/summary/layout.js:277
 msgid "Team total"
@@ -1528,12 +1546,12 @@ msgstr "Lag total"
 #: gui/summary/summary.js:136
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr ""
+msgstr "Speltid: %(time)s"
 
 #: gui/summary/summary.js:138
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -1541,7 +1559,7 @@ msgstr "Civilisationer"
 
 #: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
-msgstr ""
+msgstr "Civilisationsval"
 
 #: gui/civinfo/civinfo.xml:(caption):119
 #: gui/structree/structree.xml:(caption):119
@@ -1565,7 +1583,7 @@ msgstr "Språk:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "Locale:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
@@ -1593,19 +1611,19 @@ msgstr "Script:"
 
 #: gui/locale/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
-msgstr ""
+msgstr "Variant (oanvänd):"
 
 #: gui/locale/locale_advanced.xml:(caption):48
 msgid "Keywords (unused):"
-msgstr ""
+msgstr "Nyckelord (oanvänd):"
 
 #: gui/locale/locale_advanced.xml:(caption):55
 msgid "Resulting locale:"
-msgstr ""
+msgstr "Resultatslocale:"
 
 #: gui/locale/locale_advanced.xml:(caption):60
 msgid "Dictionary files used:"
-msgstr ""
+msgstr "Ordboksfil som används:"
 
 #: gui/locale/locale_advanced.xml:(caption):70
 msgid "Auto detect"
@@ -1620,7 +1638,7 @@ msgstr ""
 #: gui/locale/locale_advanced.xml:(tooltip):44
 #: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Ej implementerad än."
 
 #: gui/options/options.xml:(caption):18
 msgid "Game Options"
@@ -1670,7 +1688,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr ""
+msgstr "Alpha XIX: Syllepsis"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1693,7 +1711,7 @@ msgstr "Inaktivera Feedback"
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
-msgstr ""
+msgstr "Strukturträd"
 
 #: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
@@ -1730,7 +1748,7 @@ msgstr "Inställningar"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Replays"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1742,7 +1760,7 @@ msgstr "Välkomstskärm"
 
 #: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
-msgstr ""
+msgstr "Modifikationsval"
 
 #: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
@@ -1790,7 +1808,7 @@ msgstr "Öppna spelmanualen för 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "Visa strukturträdet för civilisationerna som finns med i 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -1804,7 +1822,7 @@ msgstr "Klicka här för att starta ett nytt enspelarspel."
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr ""
+msgstr "Återupplev det förflutna genom historiska militära kampanjer. \\[INTE IMPLEMENTERAT ÄNNU]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
@@ -1832,7 +1850,7 @@ msgstr "Välj språk för spelet."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Återuppspela tidigare spel."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1846,13 +1864,13 @@ msgstr "Visa välkomstskärm. Användbar om du dolt den av misstag."
 
 #: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
-msgstr ""
+msgstr "Välj modifikationer som skall användas."
 
 #: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr ""
+msgstr "Lär dig spela, upptäck teknologiträden och historian bakom civilisationerna."
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
@@ -1886,39 +1904,39 @@ msgstr "Klicka här för att öppna 0 A.D. IRC-chatten i din webbläsare. (#0ad 
 
 #: gui/pregame/mainmenu.xml:(tooltip):586
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Klicka här för att gå till 0 A.D. Trac för att rapportera en bugg, en krasch eller ett fel."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
-msgstr ""
+msgstr "Spela upp tidigare spel"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Visa kompatibla replays"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
-msgstr ""
+msgstr "Karttyp:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):151
 msgid "Map Size:"
-msgstr ""
+msgstr "Kartstorlek:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):166
 msgid "Victory:"
-msgstr ""
+msgstr "Segervillkor:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):187
 msgid "Players:"
-msgstr ""
+msgstr "Spelare:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 msgid "Spoiler"
-msgstr ""
+msgstr "Spoiler"
 
 #: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Main Menu"
-msgstr ""
+msgstr "Huvudmeny"
 
 #: gui/replaymenu/replay_menu.xml:(caption):222
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
@@ -1932,37 +1950,37 @@ msgstr "Sammandrag"
 
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Start Replay"
-msgstr ""
+msgstr "Starta replayen"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Datum / Tid"
 
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Spelare"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Kartnamn"
 
 #: gui/replaymenu/replay_menu.xml:(heading):85
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Storlek"
 
 #: gui/replaymenu/replay_menu.xml:(heading):89
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Befolkningsgräns:"
 
 #: gui/replaymenu/replay_menu.xml:(heading):93
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Längd"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -1986,15 +2004,15 @@ msgstr "Visa detta meddelande i fortsättningen"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Kända fel (web)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr ""
+msgstr "Civilisation:"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
-msgstr ""
+msgstr "Tränareneheter"
 
 #: gui/summary/summary.xml:(caption):65
 msgid "Score"
@@ -2027,84 +2045,84 @@ msgstr "Fortsätt"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]  Tack för att du installerar 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Detta spel utvecklas fortfarande. Vissa funktioner saknas och det finns buggar."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Spelet kan ha prestandaproblem, framförallt med stora kartor och stora antal enheter."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Denna version innehåller en ny pathfinder med bättre prestanda, men det kan finnas nya buggar."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "[imgleft=\"iconFormation\"]Formationer är fortfarande under utveckling, men du kan forma och lösa upp formationer efter begär."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr ""
+msgstr "ROMERSKT MILITÄRLAGER"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
 "- Build anywhere on the map, even in enemy territory. Good for building a "
 "secret base behind enemy lines or to consolidate gains within enemy "
 "territory."
-msgstr ""
+msgstr "- Kan byggas var som helst på kartan, även i fientligt territorium. Bra för att bygga en hemlig bas bakom fiendens linjer eller för att befästa vinster inom fiendens territorium."
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr ""
+msgstr "- Förfaller till territorieägaren när den byggs i icke-neutralt territorium."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "- Bygg belägringsvapen och träna medborgarsoldater."
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "- Garnisonera upp till 40 enheter för att långsamt hela dem och för att skydda militärlagret från attacker och förfall."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr ""
+msgstr "BARACKER"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "- Träna alla medborgarsoldater. Vissa civilisationer kan även forska fram att träna mästare."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr ""
+msgstr "- Forska fram militära teknologier som är unika till varje civilisation."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- Bygg en tidigt för att träna medborgarsoldater medans du forskar fram nästa fas."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "- Bygg dem i en attackbas för att försörja ditt anfall med nya trupper."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -2112,17 +2130,17 @@ msgstr "SMEDJA"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr ""
+msgstr "- Forskningsstruktur för alla civilisationer."
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "- Forska fram vapen- och rustningsförbättringar för dina enheter."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Garnisonera en medborgarsoldat för att forska snabbar (EJ IMPLEMENTERAD ÄNNU)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -2130,47 +2148,47 @@ msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "- Mästarspjutmän och Mästarkavallerispjutmän för Kartago. "
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr ""
+msgstr "- Båda tränas i Templet istället för Fästningen där de flesta andra mästarna tränas."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "- Använd spjutmännen som tung infanteri mot kavalleri. Använd kavallerin som en tung chock mot belägringsvapen or skärmytslingare."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
-msgstr ""
+msgstr "KATAPULTER"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "- Distansbelägringsvapen som är bra mot strukturer."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "- May upgrade to flaming projectiles for extra effectiveness against "
 "buildings and units."
-msgstr ""
+msgstr "- Kan uppgraderas till brännande projektiler för mer effektivitet mot byggnader och enheter."
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
-msgstr ""
+msgstr "- Dyra och långsamma"
 
 #: gui/text/tips/catapults.txt:8
 msgid ""
 "- Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "- Packa ihop till vagnar för att förflytta dem, packa upp till stationära maskiner för attack!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr ""
+msgstr "KELTISKT KRIGSPRÅM"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
@@ -2190,75 +2208,75 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "SAMHÄLLSCENTER"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr ""
+msgstr "- \"Fundamentet\" av din nya koloni."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
-msgstr ""
+msgstr "- Erövrar stora andelar territorium."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "- Kan byggas i vänligt och neutralt territorium."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
-msgstr ""
+msgstr "- Träna kvinnliga medborgare och vissa medborgarsoldater."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
-msgstr ""
+msgstr "AMBASSADER"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr ""
+msgstr "- Speciella \"Baracker\" för Kartago-civilisationen."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "- Träna legosoldater från alla andra etniska ambassaderna."
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
 "- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
 "Metal cost."
-msgstr ""
+msgstr "- Medborgar-legosoldater får sin matkostnad konverterad till metallkostnad."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
-msgstr ""
+msgstr "FISKE"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "- Fiska i havet för en rik skörd."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr ""
+msgstr "- Fiskebåtar kan föra med sig stora mängder mat."
 
 #: gui/text/tips/fishing.txt:6
 msgid ""
 "- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
 "rate."
-msgstr ""
+msgstr "- Garnisonera en enhet ombord för att dubbla fiskebåtens samlingstakt."
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "- Försiktig! Fisk är inte en oändlig resurs!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr ""
+msgstr "FÄSTNING"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
-msgstr ""
+msgstr "- Fästningen är oftast civilisationens starkaste byggnad."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- Träna starka enheter som hjältar, mästare och belägringsvapen."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -2266,67 +2284,67 @@ msgstr "- Ger befolkningen en boost"
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "- Garnisonera enheter inuti för att öka eldkraften för försvaret."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr ""
+msgstr "RESURSINSAMLING"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr ""
+msgstr "- Använd medborgarsoldater och kvinnliga medborgare för att samla resurser."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr ""
+msgstr "- Kvinnliga medborgare får en bonus vid fältarbete och att leta efter mat."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
-msgstr ""
+msgstr "- Medborgarsoldater får en bonus vid gruvarbete."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
-msgstr ""
+msgstr "- Kavalleri medborgarsoldater får en bonus vid jakt."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr ""
+msgstr "- Ju högre level medborgarsoldater (Avancerad, Elit) når desto bättre krigar de, men de är även mindre effektiva vid resursinsamling."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
-msgstr ""
+msgstr "IFIKRATES"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
 "- The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "- Atenska generalen som reformerade Atenska armén så att den blev snabbare och mer manövrerbar."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "- Units in his formation are faster and stronger."
-msgstr ""
+msgstr "- Enheter i samma formation som honom är snabbare och starkare."
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr ""
+msgstr "- Skärmytslingare är snabbare medans han lever."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "UTPOSTAR"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "- Byggs i neutralt territorium för långt synhåll."
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr ""
+msgstr "- Billiga, kostar 80 trä."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr ""
+msgstr "- De byggs snabbt, men är svaga."
 
 #: gui/text/tips/outposts.txt:8
 msgid ""
@@ -2335,7 +2353,7 @@ msgstr ""
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr ""
+msgstr "PALISADVÄGG"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
@@ -2353,7 +2371,7 @@ msgstr ""
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "PERIKLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
@@ -2369,7 +2387,7 @@ msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr ""
+msgstr "PERSISK ARKITEKTUR"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
@@ -2408,7 +2426,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "TUNGT KRIGSSKEPP"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
@@ -2446,7 +2464,7 @@ msgstr "- Trä tenderar att vara glest, men består av högavkastande Baobab tr�
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr ""
+msgstr "FÖRSVARSTORN"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
@@ -2564,7 +2582,7 @@ msgstr ""
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
-msgstr ""
+msgstr "TEMPEL"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
@@ -2706,11 +2724,11 @@ msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "VALAR"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "- En oceanisk resurs"
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
@@ -2718,8 +2736,8 @@ msgstr "- 2000 Mat."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "- Kan samlas av fiskebåtar efter valen har dödats."
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "- Strövar omkring i kartans hav och flyr när de blir attackerade."

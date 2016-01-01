@@ -35,7 +35,7 @@ const g_GameColors = {
 	"init": "0 219 0",
 	"waiting": "255 127 0",
 	"running": "219 0 0"
-}
+};
 
 /**
  * The playerlist will be assembled using these values.
@@ -90,6 +90,81 @@ var g_SelectedPlayer = "";
  * Used to restore the selection after updating the gamelist.
  */
 var g_SelectedGameIP = "";
+
+/**
+ * Notifications sent by XmppClient.cpp
+ */
+var g_NetMessageTypes = {
+	"system": {
+		// Three cases are handled in prelobby.js
+		"registered": msg => {
+		},
+		"login-failed": msg => {
+		},
+		"connected": msg => {
+		},
+		"disconnected": msg => {
+			updateGameList();
+			updateLeaderboard();
+			updatePlayerList();
+			Engine.GetGUIObjectByName("hostButton").enabled = false;
+			addChatMessage({ "from": "system", "text": translate("Disconnected."), "color": g_SystemColor });
+		},
+		"error": msg => {
+			addChatMessage({ "from": "system", "text": escapeText(msg.text), "color": g_SystemColor });
+		}
+	},
+	"chat": {
+		"subject": msg => {
+			updateSubject(msg.text);
+		},
+		"join": msg => {
+			addChatMessage({
+				"text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": msg.text }),
+				"isSpecial": true
+			});
+			Engine.SendGetRatingList();
+		},
+		"leave": msg => {
+			addChatMessage({
+				"text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": msg.text }),
+				"isSpecial": true
+			});
+		},
+		"presence": msg => {
+		},
+		"nick": msg => {
+			addChatMessage({
+				"text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), {
+					"oldnick": msg.text,
+					"newnick": msg.data
+				}),
+				"isSpecial": true
+			});
+		},
+		"room-message": msg => {
+			addChatMessage({
+				"from": escapeText(msg.from),
+				"text": escapeText(msg.text),
+				"datetime": msg.datetime
+			});
+		},
+		"private-message": msg => {
+			if (Engine.LobbyGetPlayerRole(msg.from) == "moderator")
+				addChatMessage({
+					"from": "(Private) " + escapeText(msg.from), // TODO: placeholder
+					"text": escapeText(msg.text.trim()), // some XMPP clients send trailing whitespace
+					"datetime": msg.datetime
+				});
+		}
+	},
+	"game": {
+		"gamelist": msg => updateGameList(),
+		"profile": msg => updateProfile(),
+		"leaderboard": msg => updateLeaderboard(),
+		"ratinglist": msg => updatePlayerList()
+	}
+};
 
 /**
  * Called after the XmppConnection succeeded and when returning from a game.
@@ -276,7 +351,7 @@ function updatePlayerList()
 	playersBox.list_status = presenceList;
 	playersBox.list_rating = ratingList;
 	playersBox.list = nickList;
-	playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer)
+	playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
 }
 
 /**
@@ -566,80 +641,25 @@ function onTick()
 
 	while (true)
 	{
-		var message = Engine.LobbyGuiPollMessage();
-		if (!message)
+		let msg = Engine.LobbyGuiPollMessage();
+		if (!msg)
 			break;
-		switch (message.type)
+
+		if (!g_NetMessageTypes[msg.type])
 		{
-		case "mucmessage":
-			addChatMessage({ "from": escapeText(message.from), "text": escapeText(message.text), "datetime": message.datetime});
-			break;
-		case "muc":
-			switch(message.level)
-			{
-			case "join":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": message.text }), "isSpecial": true });
-				Engine.SendGetRatingList();
-				break;
-			case "leave":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": message.text }), "isSpecial": true });
-				break;
-			case "nick":
-				addChatMessage({ "text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), { "oldnick": message.text, "newnick": message.data }), "isSpecial": true });
-				break;
-			case "presence":
-				break;
-			case "subject":
-				updateSubject(message.text);
-				break;
-			default:
-				warn(sprintf("Unknown message.level '%(msglvl)s'", { "msglvl": message.level }));
-				break;
-			}
-			// To improve performance, only update the playerlist GUI when the last update in the current stack is processed
-			if (Engine.LobbyGetMucMessageCount() == 0)
-				updatePlayerList();
-			break;
-		case "system":
-			switch (message.level)
-			{
-			case "standard":
-				addChatMessage({ "from": "system", "text": escapeText(message.text), "color": g_SystemColor });
-				if (message.text == "disconnected")
-				{
-					updateGameList();
-					updateLeaderboard();
-					updatePlayerList();
-					Engine.GetGUIObjectByName("hostButton").enabled = false;
-				}
-				else if (message.text == "connected")
-					Engine.GetGUIObjectByName("hostButton").enabled = true;
-				break;
-			case "error":
-				addChatMessage({ "from": "system", "text": escapeText(message.text), "color": g_SystemColor });
-				break;
-			case "internal":
-				switch (message.text)
-				{
-				case "gamelist updated":
-					updateGameList();
-					break;
-				case "boardlist updated":
-					updateLeaderboard();
-					break;
-				case "ratinglist updated":
-					updatePlayerList();
-					break;
-				case "profile updated":
-					updateProfile();
-					break;
-				}
-				break;
-			}
-			break;
-		default:
-			error(sprintf("Unrecognised message type %(msgtype)s", { "msgtype": message.type }));
+			warn("Unrecognised message type: " + msg.type);
+			continue;
 		}
+		if (!g_NetMessageTypes[msg.type][msg.level])
+		{
+			warn("Unrecognised message level: " + msg.level);
+			continue;
+		}
+		g_NetMessageTypes[msg.type][msg.level](msg);
+
+		// To improve performance, only update the playerlist GUI when the last update in the current stack is processed
+		if (msg.type == "chat" && Engine.LobbyGetMucMessageCount() == 0)
+			updatePlayerList();
 	}
 }
 
@@ -888,7 +908,7 @@ function isSpam(text, from)
  */
 function checkSpamMonitor()
 {
-	var time = Math.floor(Date.now() / 1000)
+	var time = Math.floor(Date.now() / 1000);
 	for (let i in g_SpamMonitor)
 	{
 		let stats = g_SpamMonitor[i];

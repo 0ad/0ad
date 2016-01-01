@@ -5,6 +5,39 @@ var g_TermsOfServiceRead = false;
 var g_TermsOfUseRead = false;
 var g_HasSystemMessage = false;
 
+/**
+ * Notifications sent by XmppClient.cpp
+ * Other types are handled in lobby.js
+ */
+var g_SystemMessageTypes = {
+	"error": (message, username, password) => {
+		Engine.GetGUIObjectByName("feedback").caption = message.text;
+		Engine.StopXmppClient();
+	},
+	"login-failed": (message, username, password) => {
+		Engine.GetGUIObjectByName("feedback").caption = translate("Authentication failed");
+		Engine.StopXmppClient();
+	},
+	"registered": (message, username, password) => {
+		Engine.GetGUIObjectByName("feedback").caption = translate("Registered");
+		Engine.GetGUIObjectByName("connectUsername").caption = username;
+		Engine.GetGUIObjectByName("connectPassword").caption = password;
+		Engine.StopXmppClient();
+		switchPage("connect");
+	},
+	"connected": (message, username, password) => {
+		Engine.PopGuiPage();
+		Engine.SwitchGuiPage("page_lobby.xml");
+		
+		Engine.ConfigDB_CreateValue("user", "playername", sanitizePlayerName(username, true, true));
+		Engine.ConfigDB_CreateValue("user", "lobby.login", username);
+		if (password != g_EncrytedPassword.substring(0, 10))
+			g_EncrytedPassword = Engine.EncryptPassword(password, username);
+		Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncrytedPassword);
+		Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+	}
+};
+
 function init()
 {
 	g_EncrytedPassword = Engine.ConfigDB_GetValue("user", "lobby.password");
@@ -69,21 +102,13 @@ function lobbyStartRegister()
 function onTick()
 {
 	var pageRegisterHidden = Engine.GetGUIObjectByName("pageRegister").hidden;
-	if (pageRegisterHidden)
-	{
-		var username = Engine.GetGUIObjectByName("connectUsername").caption;
-		var password = Engine.GetGUIObjectByName("connectPassword").caption;
-	}
-	else
-	{
-		var username = Engine.GetGUIObjectByName("registerUsername").caption;
-		var password = Engine.GetGUIObjectByName("registerPassword").caption;
-	}
+	var username = Engine.GetGUIObjectByName(pageRegisterHidden ? "connectUsername" : "registerUsername").caption;
+	var password = Engine.GetGUIObjectByName(pageRegisterHidden ? "connectPassword" : "registerPassword").caption;
 	var passwordAgain = Engine.GetGUIObjectByName("registerPasswordAgain").caption;
+
 	var agreeTerms = Engine.GetGUIObjectByName("registerAgreeTerms");
 	var feedback = Engine.GetGUIObjectByName("feedback");
 	var continueButton = Engine.GetGUIObjectByName("continue");
-	var sanitizedName = sanitizePlayerName(username, true, true);
 
 	// Do not change feedback while connecting.
 	if (g_LobbyIsConnecting) {}
@@ -99,7 +124,7 @@ function onTick()
 		feedback.caption = translate("Please enter your username");
 	}
 	// Check that they are using a valid username.
-	else if (username != sanitizedName)
+	else if (username != sanitizePlayerName(username, true, true))
 	{
 		continueButton.enabled = false;
 		feedback.caption = translate("Usernames can't contain \\[, ], unicode, whitespace, or commas");
@@ -161,49 +186,20 @@ function onTick()
 
 	// The XmppClient has been created, we are waiting
 	// to be connected or to receive an error.
-
-	//Receive messages
 	while (true)
 	{
-		var message = Engine.LobbyGuiPollMessage();
+		let message = Engine.LobbyGuiPollMessage();
 		if (!message)
 			break;
 
-		if (message.type == "system" && message.text == "connected")
-		{
-			// We are connected, switch to the lobby page
-			Engine.PopGuiPage();
-			// Use username as nick.
-			var nick = sanitizePlayerName(username, true, true);
+		if (message.type != "system")
+			continue;
 
-			// Switch to lobby
-			Engine.SwitchGuiPage("page_lobby.xml");
-			// Store nick, login, and password
-			Engine.ConfigDB_CreateValue("user", "playername", nick);
-			Engine.ConfigDB_CreateValue("user", "lobby.login", username);
-			// We only store the encrypted password, so make sure to re-encrypt it if changed before saving.
-			if (password != g_EncrytedPassword.substring(0, 10))
-				g_EncrytedPassword = Engine.EncryptPassword(password, username);
-			Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncrytedPassword);
-			Engine.ConfigDB_WriteFile("user", "config/user.cfg");
-		}
-		else if (message.type == "system" && message.text == "registered")
-		{
-			// Great, we are registered. Switch to the connection window.
-			feedback.caption = translate("Registered");
-			Engine.StopXmppClient();
-			g_LobbyIsConnecting = false;
-			Engine.GetGUIObjectByName("connectUsername").caption = username;
-			Engine.GetGUIObjectByName("connectPassword").caption = password;
-			switchPage("connect");
-		}
-		else if(message.type == "system" && (message.level == "error" || message.text == "disconnected"))
-		{
-			g_HasSystemMessage = true;
-			feedback.caption = message.text == "disconnected" ? translate("Disconnected") : message.text;
-			Engine.StopXmppClient();
-			g_LobbyIsConnecting = false;
-		}
+		g_HasSystemMessage = true;
+		g_LobbyIsConnecting = false;
+
+		if (g_SystemMessageTypes[message.level])
+			g_SystemMessageTypes[message.level](message, username, password);
 	}
 }
 

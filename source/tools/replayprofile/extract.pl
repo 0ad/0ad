@@ -1,9 +1,11 @@
+#!/usr/bin/perl
+
 use strict;
 use warnings;
 
 # Run the game normally to generate a simulation command log.
 # Run the replay mode like:
-#  ./pyrogenesis -replay=$HOME/.config/0ad/logs/sim_log/99999/commands.txt
+#  ./pyrogenesis -mod=public -replay=$HOME/.config/0ad/logs/sim_log/99999/commands.txt
 # to generate profile.txt.
 # Then run:
 #  perl extract.pl > data.js

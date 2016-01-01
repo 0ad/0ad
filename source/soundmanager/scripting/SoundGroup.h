@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,15 +19,12 @@
 * =========================================================================
 * File		: SoundGroup.h
 * Project	 : 0 A.D.
-* Description : Loads up a group of sound files with shared properties, 
-*				and provides a simple interface for playing them.		
+* Description : Loads up a group of sound files with shared properties,
+*				and provides a simple interface for playing them.
 * =========================================================================
 */
 
 /*
-Example usage:
-
-
 Example SoundGroup.xml
 	<?xml version="1.0" encoding="utf-8"?>
 	<SoundGroup>
@@ -46,7 +43,6 @@ Example SoundGroup.xml
 		<Sound>audio/voice/hellenes/soldier/Attack_Engagex.ogg</Sound>
 		<Sound>audio/voice/hellenes/soldier/Attack_ForMyFamily.ogg</Sound>
 	</SoundGroup>
-
 */
 
 #ifndef INCLUDED_SOUNDGROUP_H
@@ -105,7 +101,7 @@ public:
 
 	// Test flag, returns true if flag is set.
 	inline bool TestFlag(int flag) { return (m_Flags & flag) != 0; }
-	
+
 private:
 	void SetGain(float gain);
 
@@ -114,7 +110,7 @@ private:
 	void SetDefaultValues();
 
 	size_t m_index;  // index of the next sound to play
-		
+
 #if CONFIG2_AUDIO
 	std::vector<CSoundData*> snd_group;  // we store the handles so we can load now and play later
 #endif
@@ -124,15 +120,15 @@ private:
 
 	float m_CurTime; // Time elapsed since soundgroup was created
 	float m_TimeWindow; // The Intensity Threshold Window
-	size_t m_IntensityThreshold; // the allowable intensity before a sound switch	
-	size_t m_Intensity;  // our current intensity(number of sounds played since m_CurTime - m_TimeWindow) 
-	float m_Decay; // 
+	size_t m_IntensityThreshold; // the allowable intensity before a sound switch
+	size_t m_Intensity;  // our current intensity (number of sounds played since m_CurTime - m_TimeWindow)
+	float m_Decay;
 	unsigned char m_Flags; // up to eight individual parameters, use with eSndGrpFlags.
-	
-	float m_Gain;  
+
+	float m_Gain;
 	float m_Pitch;
 	float m_Priority;
-	float m_ConeOuterGain; 
+	float m_ConeOuterGain;
 	float m_PitchUpper;
 	float m_PitchLower;
 	float m_GainUpper;

@@ -70,7 +70,7 @@ private:
 
 	// UnpackTerrain: unpack the terrain from the input stream
 	int UnpackTerrain();
-	//UnpackCinema: unpack the cinematic tracks from the input stream
+	// UnpackCinema: unpack the cinematic tracks from the input stream
 	int UnpackCinema();
 
 	// UnpackMap: unpack the given data from the raw data stream into local variables

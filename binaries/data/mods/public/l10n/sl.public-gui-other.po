@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Rok Kepa <rokkepa@gmail.com>, 2014
+# Tim Bruneus <tim.bruneus@gmx.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:32+0100\n"
-"PO-Revision-Date: 2015-12-24 21:29+0000\n"
+"POT-Creation-Date: 2015-12-28 10:20+0100\n"
+"PO-Revision-Date: 2015-12-28 09:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +53,7 @@ msgstr[3] "Posebne zgradbe"
 
 #: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
-msgstr ""
+msgstr "Junaki"
 
 #: gui/civinfo/civinfo.js:134
 #, javascript-format
@@ -64,11 +65,11 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "Odpiram %(url)s\nv privzetem brskalniku. Prosim, počakaj..."
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr ""
+msgstr "Uvodna stran"
 
 #: gui/common/functions_global_object.js:85
 #, javascript-format
@@ -80,7 +81,7 @@ msgstr ""
 #: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/common/functions_global_object.js:119
 #, javascript-format
@@ -90,19 +91,19 @@ msgstr ""
 
 #: gui/common/functions_utility.js:77
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Naključno izbran zemljevid."
 
 #: gui/common/functions_utility.js:84
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Žal opis ni na voljo."
 
 #: gui/common/functions_utility.js:109
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:111
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -110,22 +111,22 @@ msgstr ""
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
 msgid "\\[%(date)s]"
-msgstr ""
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -309,17 +310,36 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Ribe"
 
+#: gui/common/l10n.js:82
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/common/l10n.js:90
+#, javascript-format
+msgid "%(previousAmounts)s and %(lastAmount)s"
+msgstr ""
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an enumeration.
+#: gui/common/l10n.js:92 gui/common/network.js:59 gui/common/tooltips.js:49
+#: gui/common/tooltips.js:114 gui/common/tooltips.js:142
+#: gui/common/tooltips.js:435 gui/common/tooltips.js:462
+#: gui/common/tooltips.js:530
+msgid ", "
+msgstr ", "
+
 #: gui/common/network.js:12
 msgid "Unknown reason"
-msgstr ""
+msgstr "Neznan vzrok"
 
 #: gui/common/network.js:13
 msgid "Unexpected shutdown"
-msgstr ""
+msgstr "Nepričakovana zaustavitev"
 
 #: gui/common/network.js:14
 msgid "Incorrect network protocol version"
-msgstr ""
+msgstr "Nepravilna različica omrežnega protokola"
 
 #: gui/common/network.js:15
 msgid "Game is loading, please try later"
@@ -327,7 +347,7 @@ msgstr ""
 
 #: gui/common/network.js:16
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Igra se je že začela, opazovalci niso dovoljeni"
 
 #: gui/common/network.js:17
 msgid "You have been kicked"
@@ -356,12 +376,17 @@ msgstr ""
 msgid "Disconnected"
 msgstr ""
 
-#: gui/common/network.js:80
+#: gui/common/network.js:57
+#, javascript-format
+msgid "Users: %(users)s"
+msgstr ""
+
+#: gui/common/network.js:84
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr ""
 
-#: gui/common/network.js:85
+#: gui/common/network.js:89
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr ""
@@ -399,7 +424,7 @@ msgstr ""
 #: gui/common/settings.js:151
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Brez premirja"
 
 #: gui/common/settings.js:152
 #, javascript-format
@@ -432,7 +457,7 @@ msgstr ""
 
 #: gui/common/settings.js:207
 msgid "Endless Game"
-msgstr ""
+msgstr "Neskončna igra"
 
 #: gui/common/settings.js:248
 msgid "Unlimited"
@@ -459,7 +484,7 @@ msgstr ""
 #: gui/common/tooltips.js:131 gui/common/tooltips.js:137
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:34 gui/common/tooltips.js:94
 #: gui/common/tooltips.js:127
@@ -475,12 +500,6 @@ msgstr ""
 #: gui/common/tooltips.js:139
 msgid "Crush"
 msgstr ""
-
-#: gui/common/tooltips.js:49 gui/common/tooltips.js:114
-#: gui/common/tooltips.js:142 gui/common/tooltips.js:435
-#: gui/common/tooltips.js:462 gui/common/tooltips.js:530
-msgid ", "
-msgstr ", "
 
 #: gui/common/tooltips.js:55
 #, javascript-format
@@ -619,16 +638,16 @@ msgstr ""
 
 #: gui/common/tooltips.js:235
 msgid "health"
-msgstr ""
+msgstr "zdravje"
 
 #: gui/common/tooltips.js:237
 msgid "worker"
-msgstr ""
+msgstr "delavec"
 
 #: gui/common/tooltips.js:240
 #, javascript-format
 msgid "%(repairRateLabel)s %(detail)s %(unit)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(detail)s %(unit)s"
 
 #: gui/common/tooltips.js:241
 msgid "Repair Rate:"
@@ -640,29 +659,29 @@ msgstr ""
 #: gui/common/tooltips.js:405
 #, javascript-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
 #: gui/common/tooltips.js:343
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:374
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "Obzidje:  %(costs)s"
 
 #: gui/common/tooltips.js:375
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "Stolpi:  %(costs)s"
 
 #: gui/common/tooltips.js:391
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
-msgstr ""
+msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:392
 msgid "Population Bonus:"
@@ -674,12 +693,12 @@ msgstr "Nezadostni resursi:"
 
 #: gui/common/tooltips.js:418
 msgid "Speed:"
-msgstr ""
+msgstr "Hitrost:"
 
 #: gui/common/tooltips.js:422 gui/common/tooltips.js:428
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:424
 msgid "Walk"
@@ -692,7 +711,7 @@ msgstr "Teci"
 #: gui/common/tooltips.js:433
 #, javascript-format
 msgid "%(label)s %(speeds)s"
-msgstr ""
+msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:445 gui/common/tooltips.js:451
 #: gui/common/tooltips.js:456
@@ -735,7 +754,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:496
 msgid "???"
-msgstr ""
+msgstr "???"
 
 #: gui/common/tooltips.js:526
 msgid "Classes:"
@@ -752,15 +771,15 @@ msgstr ""
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Da"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "No"
 msgstr "Ne"
 
@@ -771,15 +790,15 @@ msgstr "V redu"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
-msgstr ""
+msgstr "Poskusi znova"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Ignore"
-msgstr ""
+msgstr "Prezri"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Abort"
-msgstr ""
+msgstr "Prekini"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
@@ -875,23 +894,23 @@ msgstr ""
 
 #: gui/options/options.js:23
 msgid "Shadows"
-msgstr ""
+msgstr "Sence"
 
 #: gui/options/options.js:23
 msgid "Enable shadows"
-msgstr ""
+msgstr "Omogoči sence"
 
 #: gui/options/options.js:24
 msgid "Particles"
-msgstr ""
+msgstr "Delci"
 
 #: gui/options/options.js:24
 msgid "Enable particles"
-msgstr ""
+msgstr "Omogoči delce"
 
 #: gui/options/options.js:25
 msgid "Show Sky"
-msgstr ""
+msgstr "Pokaži nebo"
 
 #: gui/options/options.js:25
 msgid "Render Sky"
@@ -907,11 +926,11 @@ msgstr ""
 
 #: gui/options/options.js:27
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "Obrisi enot"
 
 #: gui/options/options.js:27
 msgid "Show outlines of units behind buildings"
-msgstr ""
+msgstr "Prikaži obrise enot za stavbami"
 
 #: gui/options/options.js:28
 msgid "Shadow Filtering"
@@ -923,27 +942,27 @@ msgstr ""
 
 #: gui/options/options.js:29
 msgid "Fast & Ugly Water"
-msgstr ""
+msgstr "Hitra in grda voda"
 
 #: gui/options/options.js:29
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr ""
+msgstr "Uporabi najnižje nastavitve za prikaz vode. Če je izbrana ta možnost, so ostale nastavitve brezpredmetne."
 
 #: gui/options/options.js:30
 msgid "HQ Water Effects"
-msgstr ""
+msgstr "Visoka kakovost vodnih efektov"
 
 #: gui/options/options.js:30
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "Uporabi vodne efekte visoke kakovosti, kar prikaže obalne valove, peno in ladijske sledi."
 
 #: gui/options/options.js:31
 msgid "Real Water Depth"
-msgstr ""
+msgstr "Dejanska globina vode"
 
 #: gui/options/options.js:31
 msgid "Use actual water depth in rendering calculations"
@@ -951,43 +970,43 @@ msgstr ""
 
 #: gui/options/options.js:32
 msgid "Water Reflections"
-msgstr ""
+msgstr "Odsevi v vodi"
 
 #: gui/options/options.js:32
 msgid "Allow water to reflect a mirror image"
-msgstr ""
+msgstr "Omogoči, da voda odseva zrcalno podobo"
 
 #: gui/options/options.js:33
 msgid "Water Refraction"
-msgstr ""
+msgstr "Lom svetlobe v vodi"
 
 #: gui/options/options.js:33
 msgid "Use a real water refraction map and not transparency"
-msgstr ""
+msgstr "Prikaži dejanski lom svetlobe v vodi in ne le prosojno vodo"
 
 #: gui/options/options.js:34
 msgid "Shadows on Water"
-msgstr ""
+msgstr "Sence na vodi"
 
 #: gui/options/options.js:34
 msgid "Cast shadows on water"
-msgstr ""
+msgstr "Omogoči prikaz senc na vodi"
 
 #: gui/options/options.js:35
 msgid "VSync"
-msgstr ""
+msgstr "Vertikalna sinhronizacija"
 
 #: gui/options/options.js:35
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Uporabi vertikalno sinhronizacijo proti trganju zaslona. ZAHTEVA PONOVNI ZAGON"
 
 #: gui/options/options.js:36
 msgid "Limit FPS in Menus"
-msgstr ""
+msgstr "Omeji število sličic na sekundo v menijih"
 
 #: gui/options/options.js:36
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr ""
+msgstr "Omeji število sličic na sekundo v vseh menijih na 50 za zmanjšanje porabe energije."
 
 #: gui/options/options.js:40
 msgid "Master Gain"
@@ -1065,12 +1084,12 @@ msgstr "nalaganje uspešno"
 #: gui/pregame/mainmenu.js:102
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "nalaganje ni uspelo (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "nalaganje ni uspelo (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:112
 msgid "unknown"
@@ -1131,7 +1150,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
-msgstr ""
+msgstr "Tehnične podrobnosti"
 
 #: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
@@ -1165,7 +1184,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
-msgstr ""
+msgstr "V redu"
 
 #: gui/replaymenu/replay_actions.js:75
 msgid "No summary data available."
@@ -1278,7 +1297,7 @@ msgstr ""
 msgid "Team %(team)s"
 msgstr ""
 
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:27
 msgid "No saved games found"
 msgstr ""
 
@@ -1329,25 +1348,25 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
-#: gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:58
+#: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr ""
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr ""
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "DELETE"
 msgstr ""
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr ""
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "OVERWRITE SAVE"
 msgstr ""
 
@@ -1473,35 +1492,35 @@ msgstr "Kovina"
 
 #: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
-msgstr ""
+msgstr "Darila (poslana / prejeta)"
 
 #: gui/summary/layout.js:82
 msgid "Treasures collected"
-msgstr ""
+msgstr "Najdeni zakladi"
 
 #: gui/summary/layout.js:83
 msgid "Loot"
-msgstr ""
+msgstr "Plen"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
-msgstr ""
+msgstr "Surovine (zbrane / porabljene)"
 
 #: gui/summary/layout.js:103
 msgid "Food exchanged"
-msgstr ""
+msgstr "Izmenjana hrana"
 
 #: gui/summary/layout.js:104
 msgid "Wood exchanged"
-msgstr ""
+msgstr "Izmenjan les"
 
 #: gui/summary/layout.js:105
 msgid "Stone exchanged"
-msgstr ""
+msgstr "Izmenjan kamen"
 
 #: gui/summary/layout.js:106
 msgid "Metal exchanged"
-msgstr ""
+msgstr "Izmenjana kovina"
 
 #: gui/summary/layout.js:107
 msgid "Barter efficiency"
@@ -1509,17 +1528,17 @@ msgstr ""
 
 #: gui/summary/layout.js:108
 msgid "Trade income"
-msgstr ""
+msgstr "Prihodki od trgovine"
 
 #: gui/summary/layout.js:124
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr ""
+msgstr "Stopnja\nvegetarianstva"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
-msgstr ""
+msgstr "Delež žensk"
 
 #: gui/summary/layout.js:126
 msgid ""
@@ -1531,19 +1550,19 @@ msgstr ""
 msgid ""
 "Map\n"
 "exploration"
-msgstr ""
+msgstr "Raziskanost\nzemljevida"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr ""
+msgstr "Na vrhuncu"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr ""
+msgstr "Na koncu"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
-msgstr ""
+msgstr "Obvladovanje\nzemljevida"
 
 #: gui/summary/layout.js:277
 msgid "Team total"
@@ -1552,12 +1571,12 @@ msgstr ""
 #: gui/summary/summary.js:136
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr ""
+msgstr "Skupni čas igre: %(time)s"
 
 #: gui/summary/summary.js:138
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -1576,12 +1595,12 @@ msgstr "Zapri"
 #: gui/locale/locale_advanced.xml:(caption):14
 #: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #: gui/locale/locale.xml:(caption):17
 #: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr ""
+msgstr "Jezik:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special variant preferences that the user wants to see in their
@@ -1589,7 +1608,7 @@ msgstr ""
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "Področne nastavitve:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
@@ -1609,11 +1628,11 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "Država:"
 
 #: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr ""
+msgstr "Skripta:"
 
 #: gui/locale/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
@@ -1708,11 +1727,11 @@ msgstr "Vključite se na: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Omogoči povratne informacije"
 
 #: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Onemogoči povratne informacije"
 
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
@@ -1926,11 +1945,11 @@ msgstr "Tip zemljevida"
 
 #: gui/replaymenu/replay_menu.xml:(caption):151
 msgid "Map Size:"
-msgstr ""
+msgstr "Velikost zemljevida:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):166
 msgid "Victory:"
-msgstr ""
+msgstr "Zmaga:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):187
 msgid "Players:"
@@ -1961,7 +1980,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Datum / čas"
 
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"

@@ -22,7 +22,7 @@
 
 #include "../GameLoop.h"
 #include "../View.h"
-#include "graphics/CinemaTrack.h"
+#include "graphics/CinemaManager.h"
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
 #include "gui/GUI.h"

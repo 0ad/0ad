@@ -404,7 +404,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"obstruction": null,
 		"turretParent":null,
 		"promotion": null,
-		"repairTime": null,
+		"repairRate": null,
 		"resourceDropsite": null,
 		"resourceGatherRates": null,
 		"resourceSupply": null,
@@ -487,7 +487,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 
 	let cmpRepairable = Engine.QueryInterface(ent, IID_Repairable);
 	if (cmpRepairable)
-		ret.repairRatio = cmpRepairable.GetRepairRatio();
+		ret.repairRate = cmpRepairable.GetRepairRate();
 
 	let cmpResourceSupply = QueryMiragedInterface(ent, IID_ResourceSupply);
 	if (cmpResourceSupply)

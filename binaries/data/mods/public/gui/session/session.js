@@ -238,6 +238,12 @@ function selectViewPlayer(playerID)
 {
 	Engine.SetPlayerID(playerID);
 	updateTopPanel();
+
+	if (g_IsDiplomacyOpen)
+		openDiplomacy();
+
+	if (g_IsTradeOpen)
+		openTrade()
 }
 
 function updateTopPanel()

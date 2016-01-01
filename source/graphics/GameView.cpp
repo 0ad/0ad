@@ -20,7 +20,7 @@
 #include "GameView.h"
 
 #include "graphics/Camera.h"
-#include "graphics/CinemaTrack.h"
+#include "graphics/CinemaManager.h"
 #include "graphics/ColladaManager.h"
 #include "graphics/HFTracer.h"
 #include "graphics/LOSTexture.h"
@@ -258,7 +258,7 @@ public:
 	 */
 	CLightEnv CachedLightEnv;
 
-	CCinemaManager TrackManager;
+	CCinemaManager CinemaManager;
 
 	/**
 	 * Entity for the camera to follow, or INVALID_ENTITY if none.
@@ -395,7 +395,7 @@ CCamera* CGameView::GetCamera()
 
 CCinemaManager* CGameView::GetCinema()
 {
-	return &m->TrackManager;
+	return &m->CinemaManager;
 };
 
 CLOSTexture& CGameView::GetLOSTexture()
@@ -498,23 +498,23 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	PROFILE3("submit terrain");
 
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
+	float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight + 0.001f;
 	const ssize_t patchesPerSide = pTerrain->GetPatchesPerSide();
 
 	// find out which patches will be drawn
-	for (ssize_t j=0; j<patchesPerSide; j++) {
-		for (ssize_t i=0; i<patchesPerSide; i++) {
+	for (ssize_t j=0; j<patchesPerSide; ++j)
+	{
+		for (ssize_t i=0; i<patchesPerSide; ++i)
+		{
 			CPatch* patch=pTerrain->GetPatch(i,j);	// can't fail
 
 			// If the patch is underwater, calculate a bounding box that also contains the water plane
 			CBoundingBoxAligned bounds = patch->GetWorldBounds();
-			float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight + 0.001f;
-			if(bounds[1].Y < waterHeight) {
+			if(bounds[1].Y < waterHeight)
 				bounds[1].Y = waterHeight;
-			}
 
-			if (!m->Culling || frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
+			if (!m->Culling || frustum.IsBoxVisible(bounds))
 				c->Submit(patch);
-			}
 		}
 	}
 	}
@@ -626,9 +626,9 @@ void CGameView::Update(const float deltaRealTime)
 	if (!g_app_has_focus)
 		return;
 
-	if (m->TrackManager.IsActive() && m->TrackManager.IsPlaying())
+	if (m->CinemaManager.IsActive() && m->CinemaManager.IsPlaying())
 	{
-		if (! m->TrackManager.Update(deltaRealTime))
+		if (! m->CinemaManager.Update(deltaRealTime))
 		{
 //			ResetCamera();
 		}

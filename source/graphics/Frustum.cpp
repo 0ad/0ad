@@ -53,7 +53,7 @@ void CFrustum::SetNumPlanes (size_t num)
 	}
 }
 
-void CFrustum::AddPlane (const CPlane& plane)
+void CFrustum::AddPlane(const CPlane& plane)
 {
 	if (m_NumPlanes >= MAX_NUM_FRUSTUM_PLANES)
 	{
@@ -66,7 +66,7 @@ void CFrustum::AddPlane (const CPlane& plane)
 
 void CFrustum::Transform(CMatrix3D& m)
 {
-	for (size_t i = 0; i < m_NumPlanes; i++)
+	for (size_t i = 0; i < m_NumPlanes; ++i)
 	{
 		CVector3D n = m.Rotate(m_aPlanes[i].m_Norm);
 		CVector3D p = m.Transform(m_aPlanes[i].m_Norm * -m_aPlanes[i].m_Dist);
@@ -75,22 +75,18 @@ void CFrustum::Transform(CMatrix3D& m)
 	}
 }
 
-bool CFrustum::IsPointVisible (const CVector3D &point) const
+bool CFrustum::IsPointVisible(const CVector3D& point) const
 {
-	PLANESIDE Side;
-
-	for (size_t i=0; i<m_NumPlanes; i++)
+	for (size_t i=0; i<m_NumPlanes; ++i)
 	{
-		Side = m_aPlanes[i].ClassifyPoint (point);
-
-		if (Side == PS_BACK)
+		if (m_aPlanes[i].IsPointOnBackSide(point))
 			return false;
 	}
 
 	return true;
 }
 
-bool CFrustum::DoesSegmentIntersect(const CVector3D& startRef, const CVector3D &endRef)
+bool CFrustum::DoesSegmentIntersect(const CVector3D& startRef, const CVector3D& endRef) const
 {
 	CVector3D start = startRef;
 	CVector3D end = endRef;
@@ -99,97 +95,64 @@ bool CFrustum::DoesSegmentIntersect(const CVector3D& startRef, const CVector3D &
 		return true;
 
 	CVector3D intersect;
-	for ( size_t i = 0; i<m_NumPlanes; ++i )
+	for (size_t i = 0; i<m_NumPlanes; ++i)
 	{
-		if ( m_aPlanes[i].FindLineSegIntersection(start, end, &intersect) )
+		if (m_aPlanes[i].FindLineSegIntersection(start, end, &intersect))
 		{
-			if ( IsPointVisible( intersect ) )
+			if (IsPointVisible(intersect))
 				return true;
 		}
 	}
 	return false;
 }
 
-bool CFrustum::IsSphereVisible (const CVector3D &center, float radius) const
+bool CFrustum::IsSphereVisible(const CVector3D& center, float radius) const
 {
-	for (size_t i = 0; i < m_NumPlanes; i++)
+	for (size_t i = 0; i < m_NumPlanes; ++i)
 	{
-		float Dist = m_aPlanes[i].DistanceToPlane(center);
 		// If none of the sphere is in front of the plane, then
 		// it is outside the frustum
-		if (-Dist > radius)
+		if (-m_aPlanes[i].DistanceToPlane(center) > radius)
 			return false;
 	}
 
 	return true;
 }
 
-bool CFrustum::IsBoxVisible (const CVector3D &position,const CBoundingBoxAligned &bounds) const
+bool CFrustum::IsBoxVisible(const CVector3D& position, const CBoundingBoxAligned& bounds) const
 {
 	//basically for every plane we calculate the furthest point
 	//in the box to that plane. If that point is beyond the plane
 	//then the box is not visible
 	CVector3D FarPoint;
-	PLANESIDE Side;
 	CVector3D Min = position+bounds[0];
 	CVector3D Max = position+bounds[1];
 
-	for (size_t i=0; i<m_NumPlanes; i++)
+	for (size_t i=0; i<m_NumPlanes; ++i)
 	{
-		if (m_aPlanes[i].m_Norm.X > 0.0f)
-		{
-			if (m_aPlanes[i].m_Norm.Y > 0.0f)
-			{
-				if (m_aPlanes[i].m_Norm.Z > 0.0f)
-				{
-					FarPoint.X = Max.X; FarPoint.Y = Max.Y;	FarPoint.Z = Max.Z;
-				}
-				else
-				{
-					FarPoint.X = Max.X;	FarPoint.Y = Max.Y; FarPoint.Z = Min.Z;
-				}
-			}
-			else
-			{
-				if (m_aPlanes[i].m_Norm.Z > 0.0f)
-				{
-					FarPoint.X = Max.X; FarPoint.Y = Min.Y;	FarPoint.Z = Max.Z;
-				}
-				else
-				{
-					FarPoint.X = Max.X;	FarPoint.Y = Min.Y; FarPoint.Z = Min.Z;
-				}
-			}
-		}
-		else
-		{
-			if (m_aPlanes[i].m_Norm.Y > 0.0f)
-			{
-				if (m_aPlanes[i].m_Norm.Z > 0.0f)
-				{
-					FarPoint.X = Min.X; FarPoint.Y = Max.Y;	FarPoint.Z = Max.Z;
-				}
-				else
-				{
-					FarPoint.X = Min.X;	FarPoint.Y = Max.Y; FarPoint.Z = Min.Z;
-				}
-			}
-			else
-			{
-				if (m_aPlanes[i].m_Norm.Z > 0.0f)
-				{
-					FarPoint.X = Min.X; FarPoint.Y = Min.Y;	FarPoint.Z = Max.Z;
-				}
-				else
-				{
-					FarPoint.X = Min.X;	FarPoint.Y = Min.Y; FarPoint.Z = Min.Z;
-				}
-			}
-		}
+		FarPoint.X = m_aPlanes[i].m_Norm.X > 0.0f ? Max.X : Min.X;
+		FarPoint.Y = m_aPlanes[i].m_Norm.Y > 0.0f ? Max.Y : Min.Y;
+		FarPoint.Z = m_aPlanes[i].m_Norm.Z > 0.0f ? Max.Z : Min.Z;
 		
-		Side = m_aPlanes[i].ClassifyPoint (FarPoint);
+		if (m_aPlanes[i].IsPointOnBackSide(FarPoint))
+			return false;
+	}
 
-		if (Side == PS_BACK)
+	return true;
+}
+
+bool CFrustum::IsBoxVisible(const CBoundingBoxAligned& bounds) const
+{
+	//Same as the previous one, but with the position = (0, 0, 0)
+	CVector3D FarPoint;
+
+	for (size_t i=0; i<m_NumPlanes; ++i)
+	{
+		FarPoint.X = m_aPlanes[i].m_Norm.X > 0.0f ? bounds[1].X : bounds[0].X;
+		FarPoint.Y = m_aPlanes[i].m_Norm.Y > 0.0f ? bounds[1].Y : bounds[0].Y;
+		FarPoint.Z = m_aPlanes[i].m_Norm.Z > 0.0f ? bounds[1].Z : bounds[0].Z;
+		
+		if (m_aPlanes[i].IsPointOnBackSide(FarPoint))
 			return false;
 	}
 

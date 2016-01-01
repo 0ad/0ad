@@ -181,9 +181,15 @@ JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, OsPath&
 
 	// File must begin with "start"
 	CStr type;
-	if (!(*replayStream >> type).good() || type != "start")
+	if (!(*replayStream >> type).good())
 	{
 		LOGERROR("Couldn't open %s. Non-latin characters are not supported yet.", fileName.c_str());
+		SAFE_DELETE(replayStream);
+		return JSVAL_NULL;
+	}
+	if (type != "start")
+	{
+		LOGWARNING("The replay %s is broken!", fileName.c_str());
 		SAFE_DELETE(replayStream);
 		return JSVAL_NULL;
 	}

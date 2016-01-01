@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:32+0100\n"
-"PO-Revision-Date: 2015-12-23 07:54+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2015-12-28 10:20+0100\n"
+"PO-Revision-Date: 2015-12-28 09:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -303,6 +303,25 @@ msgctxt "withinSentence"
 msgid "Fish"
 msgstr "魚場"
 
+#: gui/common/l10n.js:82
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/common/l10n.js:90
+#, javascript-format
+msgid "%(previousAmounts)s and %(lastAmount)s"
+msgstr ""
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an enumeration.
+#: gui/common/l10n.js:92 gui/common/network.js:59 gui/common/tooltips.js:49
+#: gui/common/tooltips.js:114 gui/common/tooltips.js:142
+#: gui/common/tooltips.js:435 gui/common/tooltips.js:462
+#: gui/common/tooltips.js:530
+msgid ", "
+msgstr "，"
+
 #: gui/common/network.js:12
 msgid "Unknown reason"
 msgstr "未知原因"
@@ -350,12 +369,17 @@ msgstr "失去與伺服器的連線。"
 msgid "Disconnected"
 msgstr "已中斷連線"
 
-#: gui/common/network.js:80
+#: gui/common/network.js:57
+#, javascript-format
+msgid "Users: %(users)s"
+msgstr ""
+
+#: gui/common/network.js:84
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "無法踢出 %(name)s。"
 
-#: gui/common/network.js:85
+#: gui/common/network.js:89
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "無法封禁 %(name)s。"
@@ -466,12 +490,6 @@ msgstr "穿刺"
 #: gui/common/tooltips.js:139
 msgid "Crush"
 msgstr "壓碎"
-
-#: gui/common/tooltips.js:49 gui/common/tooltips.js:114
-#: gui/common/tooltips.js:142 gui/common/tooltips.js:435
-#: gui/common/tooltips.js:462 gui/common/tooltips.js:530
-msgid ", "
-msgstr "，"
 
 #: gui/common/tooltips.js:55
 #, javascript-format
@@ -719,15 +737,15 @@ msgstr "<無效>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "是"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
 #: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:59
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:86
 msgid "No"
 msgstr "否"
 
@@ -1239,7 +1257,7 @@ msgstr "無隊伍"
 msgid "Team %(team)s"
 msgstr "隊伍 %(team)s"
 
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:27
 msgid "No saved games found"
 msgstr "找不到遊戲存檔"
 
@@ -1290,25 +1308,25 @@ msgstr "您仍要繼續嗎？"
 msgid "Warning"
 msgstr "警告"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:61
-#: gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:58
+#: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "「%(label)s」"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "儲存的遊戲將永遠刪除，您是否確定？"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "DELETE"
 msgstr "刪除"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "儲存的遊戲將被永遠覆蓋，您是否確定？"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:58
 msgid "OVERWRITE SAVE"
 msgstr "覆蓋儲存"
 

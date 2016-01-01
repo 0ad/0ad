@@ -18,7 +18,7 @@
 #include "precompiled.h"
 
 #include "Camera.h"
-#include "CinemaTrack.h"
+#include "CinemaManager.h"
 #include "GameView.h"
 #include "LightEnv.h"
 #include "MapReader.h"

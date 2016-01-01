@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Guillermo Grunwaldt <guigrunwaldt@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-14 09:01+0100\n"
-"PO-Revision-Date: 2015-12-14 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-27 00:19+0000\n"
+"Last-Translator: Guillermo Grunwaldt <guigrunwaldt@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,207 +22,207 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:7
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Comida"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:9
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Madera"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:11
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:13
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Piedra"
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Estoy comenzando una campaña militar masiva contra %(_player_)s, vén y unete a mí."
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "Voy a lanzar un ataque contra %(_player_)s"
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "He lanzado un ejército contra %(_player_)s"
 
 #: simulation/ai/petra/chatHelper.js:44
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "Déjame reagrupar mi ejército y me uno a ti contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:46
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "Estoy haciendo las preparaciones final y atacaré a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "Por ahora no puedo ayudarte contra %(_player_)s, ya que voy a atacar a %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:53
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Perdón, no tengo suficientes soldados actualmente, pero mi próximo ataque sera contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "Aquí hay un regalo para %(_player_)s, dale buen uso."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "Te veo en una mala situación %(_player_)s, espero que esto te ayude."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "Puedo ayudarte esta vez %(_player_)s, pero trata de acumular más recursos en el futuro."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr ""
+msgstr "Necesito %(resource)s, puedes ayudarme? Te lo recompensaré."
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "Podré participar más activamente en nuestro objetivo de guerra si me pudieran dar algunos %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:101
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Si tienes exceso de %(resource)s, podría fortalecer mi ejército con ellos."
 
 #: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "He construido una nueva ruta con %(_player_)s. El comercio sera mejor para todos."
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "Una nueva ruta de comercio con %(_player_)s se ha construído."
 
 #: simulation/ai/petra/chatHelper.js:136
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "Voy a avanzar a %(phase)s."
 
 #: simulation/ai/petra/chatHelper.js:138
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "He alcanzado la %(phase)s."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr ""
+msgstr "Advertencia: Esto es un tutorial avanzado y es bastante rápido. Si no logras mantenerte a la altura solo intenta de nuevo.La práctica hace la perfección!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "Vamos a empezar, primero entrena un puñado (shift click) de 5 ciudadanas desde el CC (Centro Civil)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "Ahora, asigna tus ciudadanas a recoger bayas, tu caballero a cazar gallinas y los ciudadanos-soldado a talar arboles."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr ""
+msgstr "Ahora pon el punto de reunión de tu CC en las bayas."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr ""
+msgstr "Pon en la cola algunos honderos para entrenar después de las ciudadana, no tendrás suficientes recursos para un lote."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr ""
+msgstr "Cuando tus ciudadanas hayan terminado el entrenamiento, usa 4 para construir una casa cerca."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr ""
+msgstr "Pon el punto de encuentro del CC en los arboles cercanos, haz más honderos, querrás entrenar 6 ahora."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
-msgstr ""
+msgstr "Haz un puñado de 5 ciudadanas."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr ""
+msgstr "Usa shift-click para hacer otra casa con los 4 contructores."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr ""
+msgstr "Pon el punto de encuentro de vuelta en ls bayas una vez que los ciudadanos-soldado hayan terminado el entrenamiento."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
 "Send one citizen soldier to gather stone, send 2 others to build a "
 "storehouse near the southern trees."
-msgstr ""
+msgstr "Manda un ciudadano-soldado para recoger piedra, otros 2 para contruir un almacen cerca de los arboles del sur."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
 msgid "Queue another 5 female citizens."
-msgstr ""
+msgstr "Haz otras 5 ciudadanas."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
-msgstr ""
+msgstr "Usa una ciudadana para construir un campo cerca de tu CC."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
 "Your cavalryman has probably run out of chickens by now, there are some "
 "goats to the left of your base."
-msgstr ""
+msgstr "Tu caballero probablemente se haya quedado sin gallinas para este momento asi que hay algunas cabras a la izquierda de tu base."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
-msgstr ""
+msgstr "Usa 2-3 ciudadanas para construir el campo."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:83
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:128
@@ -229,29 +230,29 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:163
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:188
 msgid "Queue another house."
-msgstr ""
+msgstr "Haz otra casa."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:88
 msgid ""
 "The berry bushes are getting crowded, send some female citizens to work the "
 "field, set the rally point there."
-msgstr ""
+msgstr "Los arbustos de bayas estan quedando llenos de gente, manda algunas ciudadanas para trabajar en el campo, pon el punto de encuentro ahí."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
-msgstr ""
+msgstr "Haz otras 5 ciudadanas, estas deberían recoger piedra."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:98
 msgid ""
 "Move your woodcutters to the trees near the storehouse so they don’t have to"
 " walk as far."
-msgstr ""
+msgstr "Mueve tus leñadores hacia los arboles cerca de el almacen asi no tienen que camminar tan lejos."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:103
 msgid ""
 "Make sure the workers from the berry bushes are used to gather from the "
 "field rather than standing idle when they run out."
-msgstr ""
+msgstr "Asegurate de que los trabajadores de los arbustos son usados para recoger del campo y no se queden desocupados cuando se acaben."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
@@ -576,28 +577,28 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
-msgstr ""
+msgstr "aliado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "propio"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "neutral"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "enemigo"
 
 #: simulation/components/BuildRestrictions.js:199
 #, javascript-format
@@ -636,28 +637,28 @@ msgstr[1] ""
 #: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "propio"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:326
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "aliado"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:328
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "neutral"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:330
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "enemigo"
 
 #: simulation/components/CeasefireManager.js:103
 #, javascript-format
@@ -737,125 +738,125 @@ msgstr ""
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Jugador 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "jugador 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "jugador 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Jugador 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Jugador 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Jugador 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Jugador 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Jugador 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "Tortuga (0.1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "Lento (0.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "Sin prisa (0,5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "Relajado (0.75x)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1x)"
-msgstr ""
+msgstr "Normal (1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25x)"
-msgstr ""
+msgstr "Rapido (1.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5x)"
-msgstr ""
+msgstr "Muy rápido (1.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2x)"
-msgstr ""
+msgstr "Insano (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Avance rápido (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Avance rápido (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Avance rápido (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Vencer a todos los oponentes."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Conquista"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Destruir todas las estructuras enemigas"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Estructuras de conquista."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Matar a todas las unidades enemigas."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Unidades de conquista"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Construir y proteger una maravilla para ganar."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Maravilla."
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Muy bajo"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Bajo"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
@@ -865,30 +866,30 @@ msgstr "Medio"
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Alto"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Muy alto"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Lucha a muerte"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 #: simulation/data/settings/map_sizes.jsonData[0].LongName
 msgid "Tiny"
-msgstr ""
+msgstr "Muy pequeño"
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
-msgstr ""
+msgstr "Pequeño"
 
 #: simulation/data/settings/map_sizes.jsonData[1].LongName
 msgid "Small (2 players)"
-msgstr ""
+msgstr "Pequeño (2 jugadores)"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
@@ -896,51 +897,51 @@ msgstr "Medio"
 
 #: simulation/data/settings/map_sizes.jsonData[2].LongName
 msgid "Medium (3 players)"
-msgstr ""
+msgstr "Medio (3 jugadores)"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: simulation/data/settings/map_sizes.jsonData[3].LongName
 msgid "Normal (4 players)"
-msgstr ""
+msgstr "Normal (4 jugadores)"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #: simulation/data/settings/map_sizes.jsonData[4].LongName
 msgid "Large (6 players)"
-msgstr ""
+msgstr "Grande (6 jugadores)"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
-msgstr ""
+msgstr "Muy Grande"
 
 #: simulation/data/settings/map_sizes.jsonData[5].LongName
 msgid "Very Large (8 players)"
-msgstr ""
+msgstr "Muy Grande (8 jugadores)"
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 #: simulation/data/settings/map_sizes.jsonData[6].LongName
 msgid "Giant"
-msgstr ""
+msgstr "Gigante"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr ""
+msgstr "Bot Petra"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Started as a fork of Aegis bot, Petra is the most stable AI available. It "
 "supports naval maps and is generally more challenging. Please report issues "
 "to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Empezando como una extencion de Bot Aegis, Petra es la mas estable de las IA´s disponibles. Sostiene mapas navales y es en general mas desafiante. Por favor reporta errores a Wildfire Games (link en el menú principal)"
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
-msgstr ""
+msgstr "Tutorial de IA"
 
 #: simulation/ai/tutorial-ai/data.jsondescription
 msgid ""

@@ -6,12 +6,13 @@
 # Miha <miha.kosi@amis.net>, 2014
 # Rok Kepa <rokkepa@gmail.com>, 2014
 # Tilen Nosan <tilenn@gmail.com>, 2015
+# Tim Bruneus <tim.bruneus@gmx.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-19 09:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-26 20:30+0000\n"
+"Last-Translator: Tim Bruneus <tim.bruneus@gmx.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +63,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Igranje igre"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -70,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Krmiljenje in način igre za igralce tradicionalnih realnočasovnih strategij (RTS) zagotovo ne bosta nobena neznanka. Trenutno ima igra še veliko manjkajočih funkcij in slabo uravnoteženo statistiko, za dobro delovanje bo treba verjetno počakati na beta različico igre."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -94,11 +95,11 @@ msgstr "• Smerne tipke ali tipke WASD za premik kamere."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "• Ctrl + smerne tipke, ali shift + kolešček miške za rotacijo kamere."
+msgstr "• Ctrl + smerne tipke ali shift + kolešček miške za rotacijo kamere."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Kolešček miške, ali \"+\" in \"-\" tipke za približevanje."
+msgstr "• Kolešček miške ali tipki \"+\" in \"-\" za približevanje/oddaljevanje."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -222,25 +223,25 @@ msgstr ""
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Dvojni levi klik \\[na enoto]: Označi vse tvoje enote iste vrste zaslonu (tudi če imajo različne čine)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr ""
+msgstr "Trojni levi klik \\[na enoto]: Označi vse tvoje enote iste vrste in istega čina na zaslonu"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + dvojni levi klik \\[na enoto]: Označi vse tvoje enote iste vrste na celotnem zemljevidu (tudi če imajo različne čine)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + trojni levi klik \\[na enoto]: Označi vse tvoje enote iste vrste z istim činom na celotnem zemljevidu"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -260,7 +261,7 @@ msgstr "F12: Prikaži/skrij števec pretečenega časa"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Zapri vse okna (pomenki, meniji) ali odznači označene enote"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -272,7 +273,7 @@ msgstr "T: Pošlji skupinski pogovor"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pavza: Pavza/nadaljevanje igre"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
@@ -338,25 +339,25 @@ msgstr "Shift + Desni klik: Postavite ukaze za premik/izgradnjo/zbiranje/itd v �
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shif + Levi klik med usposabljanjem enot: Dodaj enote v paketih po pet"
+msgstr "Shift + levi klik med usposabljanjem enot: dodaj enote v skupinah po pet"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + Levi klik ali levi poteg miške čez enoto ali zemljevid: Dodaj enoto k izbiri"
+msgstr "Shift + levi klik ali levi poteg miške preko enote na zemljevidu: dodaj enoto v izbor"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + Levi klik ali levi poteg miške prek enote ali zemljevida: Odstrani enoto iz izbora"
+msgstr "Ctrl + levi klik ali levi poteg miške preko enote na zemljevidu: odstrani enoto iz izbora"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Alt + Levi poteg miške prek enote ali zemljevida: Samo izbrane vojne enote"
+msgstr "Alt + levi poteg miške preko enot na zemljevidu: izberi samo vojaške enote"
 
 #: gui/manual/intro.txt:79
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgstr "I + levi poteg miške preko enot na zemljevidu: izberi samo nedejavne enote"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -392,11 +393,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Pogledi"
 
 #: gui/manual/intro.txt:88
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Prikaži/skrij grafični vmesnik"
 
 #: gui/manual/intro.txt:89
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -497,15 +498,15 @@ msgstr "Alt + W: Preklopite med načini skeleta"
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "Srednji gumb miške ali / (poševnica): Drži pritisnjeno in premikaj miško za približanje/oddaljitev"
 
 #: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Med umeščanjem stavbe"
 
 #: gui/manual/intro.txt:115
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"]\\[: Obrni stavbo za 15 stopinj v nasprotni smeri urinega kazalca"
 
 #: gui/manual/intro.txt:116
 msgid "]: Rotate building 15 degrees clockwise"
@@ -519,16 +520,16 @@ msgstr "Levi poteg miške: Obračaj stavbo z miško (temelji bodo postavljeni, k
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Med nalaganjem shranjene igre"
 
 #: gui/manual/intro.txt:120
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Delete: zbriši označeno shranjeno igro, zahteva potrditev"
 
 #: gui/manual/intro.txt:121
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr ""
+msgstr "Shift: ne zahtevaj potrditve pred brisanjem shranjene igre"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -537,42 +538,42 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr ""
+msgstr "Ker gre za brezplačno odprtokodno igro, igre nimamo možnosti testirani na velikem številu različnih sistemov, se pa trudimo zagotavljati najboljšo uporabniško izkušnjo za največje možno število igralcev. Če omogočiš samodejno pošiljanje povratnih informacij, nam lahko pomagaš razumeti strojno opremo, na podporo katere se moramo osredotočiti, ter odkrivati težave z zmogljivostjo igre, ki jih moramo odpraviti."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr ""
+msgstr "Na naš strežnik bodo posredovani sledeči podatki:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "Naključna identifikacijska številka uporabnika (shranjena v %APPDATA%\\0ad\\config\\user.cfg na sistemih Windows in ~/.config/0ad/config/user.cfg na sistemih Unix), s pomočjo katere lahko odkrijemo večkratno poročanje od istega uporabnika."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "Različica igre in osnovne nastavitve izgradnje programa (način optimizacije, arhitektura procesorja, časovni žig, različica prevajalnika)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr ""
+msgstr "Podrobnosti o strojni opremi: različica operacijskega sistema, različica grafičnega gonilnika, podatki o vmesniku OpenGL, velikost zaslona, podrobnosti procesorja, velikost pomnilnika. "
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "Podrobnosti o zmogljivosti: posnetek časovnih podatkov nekaj sekund po začetku igre ali spremembi grafičnih nastavitev."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "Količina podatkov bo samo nekaj kilobajtov ob vsakem začetku igre, zato bo poraba pasovne širine minimalna."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -581,4 +582,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "Posredovane podatke bomo hranili na našem strežniku. Podrobnosti, na podlagi katerih ni mogoče prepoznati konkretnega uporabnika, bomo morda tudi objavili, da lahko te pomagajo razvijalcem s podobnimi vprašanji. Shranili bomo tudi IP-naslov pošiljatelja podatkov, kar nam bo pomagalo odkriti zlorabo storitev, a tega naslova ne bomo objavili. Objavljeni podatki so na voljo na naslovu http://feedback.wildfiregames.com/."

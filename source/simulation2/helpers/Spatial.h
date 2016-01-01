@@ -514,8 +514,8 @@ public:
 	}
 
 	/**
-	 * Returns a sorted list of items that are either in the square or close to it.
-	 * It's the responsibility of the querier to do proper distance checking.
+	 * Returns a (non sorted) list of items that are either in the square or close to it.
+	 * It's the responsibility of the querier to do proper distance checking and entity sorting.
 	 */
 	void GetInRange(std::vector<entity_id_t>& out, CFixedVector2D posMin, CFixedVector2D posMax)
 	{
@@ -545,13 +545,11 @@ public:
 					out.insert(out.end(), subdivision.begin(), subdivision.end());
 			}
 		}
-
-		std::sort(out.begin(), out.end());
 	}
 
 	/**
-	 * Returns a sorted list of items that are either in the circle or close to it.
-	 * It's the responsibility of the querier to do proper distance checking.
+	 * Returns a (non sorted) list of items that are either in the circle or close to it.
+	 * It's the responsibility of the querier to do proper distance checking and entity sorting.
 	 */
 	void GetNear(std::vector<entity_id_t>& out, CFixedVector2D pos, entity_pos_t range)
 	{
