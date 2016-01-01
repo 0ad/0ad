@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Balázs Meskó <meskobalazs@gmail.com>, 2015
 # Balázs Úr <urbalazs@gmail.com>, 2015
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2015
 # István Norbert Pétert <peter.norbert.istvan@gmail.com>, 2015
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-28 10:20+0100\n"
-"PO-Revision-Date: 2015-12-28 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-30 12:25+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -313,12 +314,12 @@ msgstr "Hal"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s és %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -379,7 +380,7 @@ msgstr "Lekapcsolódott"
 #: gui/common/network.js:57
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Felhasználók: %(users)s"
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -2048,7 +2049,7 @@ msgstr "Tovább"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"] Köszönjük, hogy telepítetted a 0 A.D. Empires Ascendant játékot!"
+msgstr "[font=\"sans-bold-20\"] Köszönjük, hogy telepítetted a 0 A.D. Felemelkedő birodalmak játékot!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -2691,7 +2692,7 @@ msgstr " - Ibériai hős a luzitán törzsből."
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr "- Legalább 7 kampány a Rómaiak ellen az Ibériai háborúk alatt Kr. e. 147-től 139-ig."
+msgstr "- Legalább 7 hadjárat a Rómaiak ellen az Ibériai háborúk alatt i. e. 147-től 139-ig."
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."

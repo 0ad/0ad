@@ -3,15 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Erik Johansson <erik@feneur.com>, 2015
 # Jacob Carlsson <yejcob@gmail.com>, 2015
+# Martin ‌ <mhilgendrf@aol.com>, 2015
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-11 09:01+0100\n"
-"PO-Revision-Date: 2015-12-17 17:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-29 18:59+0000\n"
+"Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,11 +104,11 @@ msgstr "Svärd"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:30
 msgid "Cavalry Swordsman"
-msgstr "Kavalleri Svärsdman"
+msgstr "Kavalleri Svärdsman"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:21
 msgid "Ranged Cavalry"
-msgstr ""
+msgstr "Distansattack kavalleri"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -120,7 +122,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_ranged.xml:26
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Ranged"
-msgstr ""
+msgstr "Distansattack"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -146,11 +148,11 @@ msgstr "Spjut"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
-msgstr ""
+msgstr "Kavalleri Skärmytsling"
 
 #: simulation/templates/template_unit_champion.xml:11
 msgid "Champion Unit"
-msgstr ""
+msgstr "Mästar Enhet"
 
 #: simulation/templates/template_unit_champion.xml:13
 msgid "Champion"
@@ -158,15 +160,15 @@ msgstr "Kämpe"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:26
 msgid "Champion Cavalry"
-msgstr ""
+msgstr "Mästar Kavalleri"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "Mästar Kavalleribågskytte"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 msgid "Champion Cavalry Skirmisher"
-msgstr ""
+msgstr "Mästar Kavalleriskämytsling"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
@@ -195,21 +197,21 @@ msgstr "Infanteri"
 
 #: simulation/templates/template_unit_champion_infantry.xml:22
 msgid "Champion Infantry"
-msgstr ""
+msgstr "Mästar Infanteri"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
-msgstr ""
+msgstr "Mästar Bågskytte"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:27
 msgid "Champion Skirmisher"
-msgstr ""
+msgstr "Mästar Skärmytsling"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
-msgstr ""
+msgstr "Pik"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:46
 msgid "Champion Pikeman"
@@ -222,11 +224,11 @@ msgstr "Pikenerarkämpe"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:38
 msgid "Counters: 3x vs. Cavalry."
-msgstr ""
+msgstr "Kontrar: 3x mot Kavalleri."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 msgid "Champion Spearman"
-msgstr ""
+msgstr "Mästar Spjutman"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:34
 msgid "Champion Swordsman"
@@ -234,11 +236,11 @@ msgstr "Svärdsmanskämpe"
 
 #: simulation/templates/template_unit_champion_ranged.xml:4
 msgid "Champion Ranged"
-msgstr ""
+msgstr "Mästar Distansattack"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
-msgstr ""
+msgstr "Super Belägringsvapen"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical.xml:16
@@ -274,7 +276,7 @@ msgstr "Fisk"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:15
 msgid "Cetacean"
-msgstr ""
+msgstr "Cetacean"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Kill, then collect food from this bountiful oceanic resource."
@@ -295,7 +297,7 @@ msgstr "Hjältesaura"
 msgid ""
 "When garrisoned in a structure, the hero gives it a bonus of +2 capture "
 "points recovery rate."
-msgstr ""
+msgstr "När hjälten är garnisonerad i en struktur ger han den en bonus av +2 erövringspoäng-återhämtningstakt."
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -314,7 +316,7 @@ msgstr "Kavalleri Hjälte Bågsskytt"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
 msgid "Hero Cavalry Skirmisher"
-msgstr ""
+msgstr "Hjälte Kavalleriskärmytsling"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
@@ -330,7 +332,7 @@ msgstr "Hjältebågskytt"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 msgid "Hero Skirmisher"
-msgstr ""
+msgstr "Hjälte Skärmytsling"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 msgid "Hero Pikeman"

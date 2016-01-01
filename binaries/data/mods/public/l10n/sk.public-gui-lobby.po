@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Levi Taule <levi.taule@gmail.com>, 2015
 # Marián Mižik <marian@mizik.sk>, 2015
 # Mário Bulejko, 2015
 # Martin Plávala <martinplavala@gmail.com>, 2014
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-04 09:00+0100\n"
-"PO-Revision-Date: 2015-12-04 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-31 13:56+0000\n"
+"Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "Nepripojený"
 #: gui/lobby/lobby.js:48
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr "Neznáma"
+msgstr "Neznámy"
 
 #: gui/lobby/lobby.js:130
 msgctxt "map size"
@@ -59,11 +60,11 @@ msgstr "Ľubovoľná"
 
 #: gui/lobby/lobby.js:323
 msgid "Moderator"
-msgstr ""
+msgstr "Moderátor"
 
 #: gui/lobby/lobby.js:323
 msgid "Player"
-msgstr ""
+msgstr "Hráč"
 
 #: gui/lobby/lobby.js:324 gui/lobby/lobby.js:325 gui/lobby/lobby.js:326
 #: gui/lobby/lobby.js:327 gui/lobby/lobby.js:328 gui/lobby/lobby.js:329
@@ -264,7 +265,7 @@ msgstr "Tabuľka najlepších hráčov"
 
 #: gui/lobby/lobby.xml:(caption):87 gui/lobby/lobby.xml:(caption):283
 msgid "User Profile Lookup"
-msgstr "Vyhľadávanie Užívateľského Profilu"
+msgstr "Vyhľadávanie užívateľského profilu"
 
 #: gui/lobby/lobby.xml:(caption):116
 msgid "Map Type:"
@@ -420,7 +421,7 @@ msgstr "* \"Moderovanie\" je proces vynucovania podmienok používania."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr "Používaním služby sa zaväzujete k:"
+msgstr "Používaním služby súhlasíte:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
@@ -430,11 +431,11 @@ msgstr "1. Dodržiavať všetky podmienky používania."
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr "2. Povoľujete zber vašich štatistík za účelom hodnotenia používateľa a komunity."
+msgstr "2. So zberom vašich štatistík za účelom hodnotenia používateľa a komunity."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr "Taktiež si vyhradzujeme právo k:"
+msgstr "Taktiež si vyhradzujeme právo:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
@@ -518,7 +519,7 @@ msgstr "Súhlasíte s tým, že:"
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr "1. Vytvorite len jeden účet pre jedného človeka, okrem prípadov, keď budete mať povolenie od člena tímu Wildfire Games (WFG)."
+msgstr "1. Vytvoríte si len jeden účet pre jedného človeka, okrem prípadov, keď budete mať povolenie od člena tímu Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""

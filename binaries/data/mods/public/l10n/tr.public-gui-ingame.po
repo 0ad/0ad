@@ -9,6 +9,7 @@
 # Emre AYTAÇ <eaytac@gmail.com>, 2013
 # faradundamarti <faradundamarti@yandex.com>, 2013
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
+# Hüseyin Cem ARAS <hcemaras@gmail.com>, 2015
 # mehmet akar <mehmettakar.35@gmail.com>, 2013
 # Merve BİÇKES <dark_angel_369_06@hotmail.com>, 2014
 # Mete Han <scorpion000000@hotmail.com>, 2013
@@ -29,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-28 10:19+0100\n"
-"PO-Revision-Date: 2015-12-28 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-28 20:35+0000\n"
+"Last-Translator: Hüseyin Cem ARAS <hcemaras@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,17 +362,17 @@ msgstr "%(player)s artık sizinle dost ya da düşman değil."
 #: gui/session/messages.js:87
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s %(player2)s ile dost oldu."
 
 #: gui/session/messages.js:88
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s %(player2)s ile düşman oldu."
 
 #: gui/session/messages.js:89
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s artık %(player2)s ile tarafsız oldu."
 
 #: gui/session/messages.js:97
 #, javascript-format
@@ -381,7 +382,7 @@ msgstr "%(player)s size gönderdi %(amounts)s."
 #: gui/session/messages.js:98
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)s %(player2)s e gönderdi %(amounts)s."
 
 #: gui/session/messages.js:105
 #, javascript-format
@@ -419,7 +420,7 @@ msgstr "%(player)s oyuna katıldı."
 
 #: gui/session/messages.js:539 gui/session/messages.js:546
 msgid "Unknown Player"
-msgstr ""
+msgstr "Bilinmeyen Oyuncu"
 
 #: gui/session/messages.js:633
 #, javascript-format
@@ -935,7 +936,7 @@ msgstr "Kaydet"
 
 #: gui/session/menu.xml:(caption):53
 msgid "Summary"
-msgstr ""
+msgstr "Özet"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Options"

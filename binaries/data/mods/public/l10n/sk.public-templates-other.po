@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Levi Taule <levi.taule@gmail.com>, 2015
 # Marián Mižik <marian@mizik.sk>, 2015
 # Mário Bulejko, 2015
 # Martin Plávala <martinplavala@gmail.com>, 2014
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-18 09:01+0100\n"
-"PO-Revision-Date: 2015-12-18 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-31 12:49+0000\n"
+"Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,11 +25,11 @@ msgstr ""
 
 #: simulation/templates/template_gaia.xml:6
 msgid "Gaia"
-msgstr "Príroda"
+msgstr "Gaia"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
-msgstr "Generické rastlinstvo"
+msgstr "Všeobecné rastlinstvo"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
@@ -53,7 +54,7 @@ msgstr "Zrúbaním možno nahromadiť drevo."
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
-msgstr "Generická geológia"
+msgstr "Všeobecná geológia"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
@@ -69,7 +70,7 @@ msgstr "Minerálne ložisko s prístupom k vzácnym formám drahých kovov."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
-msgstr "kameň"
+msgstr "Kameň"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Stone Mine"
@@ -81,7 +82,7 @@ msgstr "Ťažbou možno získať kameň, používaný ako stavebný materiál."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr "Generické ruiny"
+msgstr "Všeobecné ruiny"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
@@ -96,7 +97,7 @@ msgstr "Z týchto ruín možno ťažiť suroviny."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr "Generický poklad"
+msgstr "Všeobecný poklad"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -156,7 +157,7 @@ msgstr "Armáda Leónida I."
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
-msgstr "Armáda Leónida I."
+msgstr "Armáda Leónida I"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
@@ -245,11 +246,11 @@ msgstr "Povolené sú len jednotky na diaľku"
 
 #: simulation/templates/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "Rojnica"
+msgstr "Šarvátka"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "9 pike infantry units required"
-msgstr "Požaduje sa 9 pešiakov vyzbrojených pikami"
+msgstr "Požaduje sa 9 pešiakov vyzbrojených kopijami"
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
@@ -323,7 +324,7 @@ msgstr "Tuniak"
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
 msgid "Collect food from this bountiful oceanic resource."
-msgstr "Oceánsky zdroj bohatý na jedlo."
+msgstr "Zbieraj jedlo z tohto bohatého oceánskeho zdroja."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -331,7 +332,7 @@ msgstr "Tilapia"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
-msgstr "Pobrežný zdroj bohatý na jedlo."
+msgstr "Zbieraj jedlo z tohto bohatého pobrežného zdroja."
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
@@ -439,7 +440,7 @@ msgstr "Hrozno"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
-msgstr "Z týchto viničov možno pooberať hrozno."
+msgstr "Pozbierajte hrozno z týchto viničov pre jedlo."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
@@ -447,7 +448,7 @@ msgstr "Opadavý ker"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
-msgstr ""
+msgstr "Akácia"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
@@ -494,7 +495,7 @@ msgstr "Figovník"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:10
 msgid "Gather figs for Food."
-msgstr "Zbierajte figy pre jedlo."
+msgstr "Pozbierajte figy pre jedlo."
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -580,7 +581,7 @@ msgstr "Rímske sochy"
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
 msgid "Food Treasure"
-msgstr "Hromada jedla"
+msgstr "Poklad s potravinami"
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
@@ -602,7 +603,7 @@ msgstr "Zlaté rúno"
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
 msgid "Metal Treasure"
-msgstr "Hromada kovu"
+msgstr "Poklad s kovom"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:10
 msgid "Secret Box"
@@ -623,11 +624,11 @@ msgstr "Pegas"
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:9
 #: simulation/templates/gaia/special_treasure_stone.xml:10
 msgid "Stone Treasure"
-msgstr "Hromada kameňov"
+msgstr "Poklad s kameňmi"
 
 #: simulation/templates/gaia/special_treasure_wood.xml:10
 msgid "Wood Treasure"
-msgstr "Hromada dreva"
+msgstr "Poklad s drevom"
 
 #: simulation/templates/other/bench.xml:20
 msgid "Bench"
@@ -657,7 +658,7 @@ msgstr "Tofet"
 
 #: simulation/templates/other/cart_tophet.xml:25
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "Trénuje lekárov a jazdcov Svätého oddielu."
+msgstr "Trénuj lekárov a jazdcov Svätého oddielu."
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
@@ -724,7 +725,7 @@ msgstr "Naos Parthenos"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:32
 msgid "Garrison up to 30 units to heal them at a quick rate."
-msgstr "Ubytujte maximálne 30 jednotiek, aby sa zrýchlilo ich liečenie"
+msgstr "Ubytujte až 30 jednotiek pre zrýchlené liečenie"
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
@@ -957,7 +958,7 @@ msgstr "Nedostavaný grécky chrám"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr "Tento chrám nebol nikdy dostavaný a zostali po ňom len trosky."
+msgstr "Tento chrám je nedokončený a zostali po ňom len trosky."
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

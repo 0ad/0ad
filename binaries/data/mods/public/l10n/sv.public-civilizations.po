@@ -7,7 +7,7 @@
 # Amanda Ringqvist, 2014
 # Anders Persson <anders@utophia.se>, 2014
 # Daniel Sandman <revoltism@gmail.com>, 2013
-# Erik Johansson <erik@feneur.com>, 2013
+# Erik Johansson <erik@feneur.com>, 2013,2015
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-12-16 09:42+0000\n"
-"Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
+"PO-Revision-Date: 2015-12-29 14:12+0000\n"
+"Last-Translator: Erik Johansson <erik@feneur.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr ""
+msgstr "Konstruktionen av en Theatron ökar territorievidden av alla byggnader med +20%."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
@@ -178,7 +178,7 @@ msgstr ""
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "Spelaren får förmågan att beordra en Falangformation av spjutmän, vilken ger bättre attack och rustning."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
@@ -205,7 +205,7 @@ msgstr "Generalen som övertalade atenarna att investera sina inkomster från si
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Perikles var den främsta Atenska politikern under 5:e århundradet f. Kr."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
@@ -222,7 +222,7 @@ msgstr "."
 
 #: simulation/data/civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
-msgstr ""
+msgstr "En Hellenistisk grupp av Jonernas stam."
 
 #: simulation/data/civs/athen.jsonStructures[0].Name
 #: simulation/data/civs/mace.jsonStructures[0].Name
@@ -286,7 +286,7 @@ msgstr ""
 #: simulation/data/civs/brit.jsonName
 #: simulation/data/civs/brit.jsonFactions[0].Name
 msgid "Britons"
-msgstr "Briterna"
+msgstr "Britanner"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Description
@@ -296,7 +296,7 @@ msgstr ""
 #: simulation/data/civs/brit.jsonCivBonuses[0].Name
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
-msgstr ""
+msgstr "Ardiosmanae"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].History
 #: simulation/data/civs/gaul.jsonCivBonuses[0].History
@@ -321,7 +321,7 @@ msgstr ""
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
-msgstr ""
+msgstr "Bonus till teknologihastighet."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
@@ -388,7 +388,7 @@ msgstr "Ökad attackstyrka och rörelsehastighet för närstridssoldader."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
-msgstr ""
+msgstr "Sevili Dusios"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -399,11 +399,11 @@ msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Ökar höjdbonusen för enheter som är garnisonerade i ett torn."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "Turos Maros"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -519,7 +519,7 @@ msgstr "Kennel"
 
 #: simulation/data/civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr ""
+msgstr "Britannerna var kända för att utbilda krigshundar."
 
 #: simulation/data/civs/brit.jsonHistory
 msgid ""
@@ -1145,7 +1145,7 @@ msgstr ""
 
 #: simulation/data/civs/mace.jsonCivBonuses[1].Name
 msgid "Syntagma"
-msgstr ""
+msgstr "Syntagma"
 
 #: simulation/data/civs/mace.jsonCivBonuses[1].History
 msgid ""
@@ -1278,7 +1278,7 @@ msgstr ""
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Name
 msgid "Hellenistic Metropolises"
-msgstr ""
+msgstr "Hellenistiska Metropoler"
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[2].History
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].History
@@ -1427,7 +1427,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Evangelism."
-msgstr ""
+msgstr "Evangelism."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1802,7 +1802,7 @@ msgstr ""
 
 #: simulation/data/civs/ptol.jsonName
 msgid "Ptolemies"
-msgstr "Ptolemies"
+msgstr "Ptolemaier"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid ""
@@ -1812,7 +1812,7 @@ msgstr ""
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
-msgstr "legosoldats armén"
+msgstr "Legosoldatsarmé"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
 #: simulation/data/civs/ptol.jsonStructures[1].History
@@ -1834,7 +1834,7 @@ msgstr ""
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[2].Name
 msgid "Nile Delta"
-msgstr ""
+msgstr "Nildelta"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].History
 #: simulation/data/civs/ptol.jsonCivBonuses[2].History
@@ -1862,11 +1862,11 @@ msgstr ""
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
-msgstr "Ptolemy Soter"
+msgstr "Ptolemaios Soter"
 
 #: simulation/data/civs/ptol.jsonAINames[1]
 msgid "Ptolemy Philadelphus"
-msgstr "Ptolemy Philadelphus"
+msgstr "Ptolemaios Filadelfos"
 
 #: simulation/data/civs/ptol.jsonAINames[2]
 msgid "Ptolemy Epigone"
@@ -1874,39 +1874,39 @@ msgstr "Ptolemy Epigone"
 
 #: simulation/data/civs/ptol.jsonAINames[3]
 msgid "Ptolemy Eurgetes"
-msgstr "Ptolemy Eurgetes"
+msgstr "Ptolemaios Euergetes"
 
 #: simulation/data/civs/ptol.jsonAINames[4]
 msgid "Ptolemy Philopater"
-msgstr "Ptolemy Philopater"
+msgstr "Ptolemaios Filopator"
 
 #: simulation/data/civs/ptol.jsonAINames[5]
 msgid "Ptolemy Epiphanes"
-msgstr "Ptolemy Epiphanes"
+msgstr "Ptolemaios Epifanes"
 
 #: simulation/data/civs/ptol.jsonAINames[6]
 msgid "Ptolemy Philometor"
-msgstr "Ptolemy Philometor"
+msgstr "Ptolemaios Filometor"
 
 #: simulation/data/civs/ptol.jsonAINames[7]
 msgid "Ptolemy Eupator"
-msgstr "Ptolemy Eupator"
+msgstr "Ptolemaios Eupator"
 
 #: simulation/data/civs/ptol.jsonAINames[8]
 msgid "Ptolemy Alexander"
-msgstr "Ptolemy Alexander"
+msgstr "Ptolemaios Alexander"
 
 #: simulation/data/civs/ptol.jsonAINames[9]
 msgid "Ptolemy Neos Dionysos"
-msgstr "Ptolemy Neos Dionysos"
+msgstr "Ptolemaios Neos Dionysos"
 
 #: simulation/data/civs/ptol.jsonAINames[10]
 msgid "Ptolemy Neos Philopater"
-msgstr "Ptolemy Neos Philopater"
+msgstr "Ptolemaios Neos Filopater"
 
 #: simulation/data/civs/ptol.jsonAINames[11]
 msgid "Berenice Philopater"
-msgstr "Berenice Philopater"
+msgstr "Berenike Filopater"
 
 #: simulation/data/civs/ptol.jsonAINames[12]
 msgid "Cleopatra Tryphaena"
@@ -1938,7 +1938,7 @@ msgstr "Arsinoe II"
 
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Description
 msgid "Hero aura range boosted by 50%."
-msgstr "Hjälte aura område utökades med 50%"
+msgstr "Räckvidden för hjälteauran ökade med 50%."
 
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[1].Name
 msgid "Pharaonic Cult."
@@ -2038,7 +2038,7 @@ msgstr ""
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Name
 msgid "Testudo Formation"
-msgstr ""
+msgstr "Testudoformation"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].History
 msgid ""
@@ -2193,7 +2193,7 @@ msgstr "Scipio Africanus"
 
 #: simulation/data/civs/rome.jsonStructures[0].Name
 msgid "Entrenched Camp"
-msgstr ""
+msgstr "Befäst Läger"
 
 #: simulation/data/civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."

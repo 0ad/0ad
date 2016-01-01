@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-28 10:20+0100\n"
-"PO-Revision-Date: 2015-12-28 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-12-29 11:47+0000\n"
+"Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -310,12 +310,12 @@ msgstr "Fisk"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s och %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -376,7 +376,7 @@ msgstr "Nedkopplad"
 #: gui/common/network.js:57
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Användare: %(users)s"
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -977,7 +977,7 @@ msgstr "VSync"
 
 #: gui/options/options.js:35
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Använd VSync för att fixa screen tearing. KRÄVER OMSTART AV SPELET"
 
 #: gui/options/options.js:36
 msgid "Limit FPS in Menus"
@@ -1081,7 +1081,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)sVarning:%(endWarning)s Det verkar som om du använder non-shader (fixed function) grafik. Denna option kommer att tas bort inom en framtida 0 A.D. version för att tillåta mer avancerade grafikfunktioner. Vi rekommenderar att du uppgraderar ditt grafikkort till en nyare, shader-kompatibel modell."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1633,7 +1633,7 @@ msgstr "Upptäck automatiskt"
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr ""
+msgstr "Optional fyra-tecken skriptkod som följer språkkoden (som beskriven i ISO 15924)"
 
 #: gui/locale/locale_advanced.xml:(tooltip):44
 #: gui/locale/locale_advanced.xml:(tooltip):51
@@ -2144,7 +2144,7 @@ msgstr "- Garnisonera en medborgarsoldat för att forska snabbar (EJ IMPLEMENTER
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr ""
+msgstr "KARTAGISKA HELIGA SKARAN"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
@@ -2192,19 +2192,19 @@ msgstr "KELTISKT KRIGSPRÅM"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
-msgstr ""
+msgstr "- Ett mellanstort \"Trirem\"-krigsskepp."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "- The only ship of its kind."
-msgstr ""
+msgstr "- Enda skeppet av denna sort."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr ""
+msgstr "- Kan inte ramma som andra triremer, men har mer hälsa och rustning."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
-msgstr ""
+msgstr "- Kan transportera upp till 40 enheter över haven."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -2349,7 +2349,7 @@ msgstr "- De byggs snabbt, men är svaga."
 #: gui/text/tips/outposts.txt:8
 msgid ""
 "- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "- Garnisonera en enhet i den för att förhindra territorieförfall i neutralt territorium."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -2357,17 +2357,17 @@ msgstr "PALISADVÄGG"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "- En enkel, billig trävägg tillgängliga till alla fraktioner."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "- De flesta fraktioner har tillgång till dem i Byfasen."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
 "- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
 " by siege weapons."
-msgstr ""
+msgstr "- Kan attackeras av fientliga soldater, i jämförelse med stadsmur som bara kan attackeras av belägringsvapen."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -2375,15 +2375,15 @@ msgstr "PERIKLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr ""
+msgstr "- Främsta Atenska politikern under 5:e århundradet f. Kr."
 
 #: gui/text/tips/pericles.txt:4
 msgid "- Buildings construct faster within his range."
-msgstr ""
+msgstr "- Byggnaders konstrueras snabbare inom hans synhåll."
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr ""
+msgstr "- Tempel är billigare medans han lever."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -2391,38 +2391,38 @@ msgstr "PERSISK ARKITEKTUR"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr ""
+msgstr "- Unik teknologi för Perserna."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
-msgstr ""
+msgstr "- Alla Persiska byggnader är +25% starkare."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "- Byggnadstiden förlängs med +20% som konsekvens."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
 "- Persians also have access to a great number of structural & defensive "
 "technologies."
-msgstr ""
+msgstr "- Perser har även tillgång till ett stort antal struktur- och försvarsteknologier."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr ""
+msgstr "PIKENERARE"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "- Tungt rustade och långsamma. Låg attack."
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "- Används mot kavalleri eller mot andra närstridsenheter för att hålla fast dem."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr ""
+msgstr "- Tillgängliga till: Makedonierna, Seleukiderna och Ptolemaierna"
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
@@ -2432,31 +2432,31 @@ msgstr "TUNGT KRIGSSKEPP"
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "- Tyngsta standardkrigsskeppet. Tillgängligt till Romarna, Kartago, Ptolemaier och Seleukiderna."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Garrison ballistas to increase fire power."
-msgstr ""
+msgstr "- Garnisonera Ballista för att öka eldkraften."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Har en rammattack som sänker fientliga skepp (EJ IMPLEMENTERAD ÄN)."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "SAVANNBIOM "
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "- Oftast platt, med några vattenställen och stenig hällmark."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "- Fullt av flockdjur för rik jakt."
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
-msgstr ""
+msgstr "- Rik i alla sorters gruvarbeten."
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
@@ -2468,83 +2468,83 @@ msgstr "FÖRSVARSTORN"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "- Fristående torn som är bra för att försvara stora områden landsbygd."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr ""
+msgstr "- De brukar kosta 100 Trä och 100 Sten. Iberiska Försvarstorn kostar 300 Sten (för att de är starkare)."
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "- Har en distansattack som ökar med varje garnisonerad enhet."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr ""
+msgstr "SPARTANER"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
-msgstr ""
+msgstr "- Starkaste infanterienheten i spelet."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr ""
+msgstr "- Kämpeinfanteri tillgänglig för Spartanerna."
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "- Använd dem för att slakta fiendens kavalleri eller för att stödja din vanliga infanteri."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr ""
+msgstr "- Använd \"Falang\" formationen för extra rustningsbonusar."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr ""
+msgstr "SPJUTMÄN"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "- Enklaste närstridsinfantrin för alla fraktioner i spelet."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for a 2x attack bonus."
-msgstr ""
+msgstr "- Används mot kavalleri för en 2x attackbonus."
 
 #: gui/text/tips/spearmen.txt:6
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr ""
+msgstr "- Lagom hackattack och bra anfallsattack för dem till bra frontlinjetrupper."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr ""
+msgstr "- Kontras med distansenheter och svärdsmän, så stöd dina spjutmän med slungare eller kavalleri."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
-msgstr ""
+msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- En speciell startstruktur för de Grekiska fraktionerna."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr ""
+msgstr "- Ger +10 till befolkningsgränsen."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "- Finns bara på vissa kartor."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
-msgstr ""
+msgstr "- Finns i Atlas editoren för självgjorda scenariokartor."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -2552,33 +2552,33 @@ msgstr "LAGERHUS"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr ""
+msgstr "- En billig avlastningsplats för icke-mat resurser (trä, sten, metall)."
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "- Forska fram teknologier för att förbättra dina samlingsförmågan av dina medborgare."
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
-msgstr ""
+msgstr "SYNTAGMAFORMATION"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr ""
+msgstr "- En formation för pikenerare-infanterienheter."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
-msgstr ""
+msgstr "- Formationen är långsam och trög."
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
-msgstr ""
+msgstr "- Nästan osårbar framifrån."
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr ""
+msgstr "- Känslig för attacker bakifrån."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -2586,141 +2586,141 @@ msgstr "TEMPEL"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "- Stadsfas-struktur."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "- Rekrytera Helare för att hela dina trupper på slagfältet."
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr ""
+msgstr "- Forska fram helnings, religiösa och kulturella teknologier."
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."
-msgstr ""
+msgstr "- Dens \"aura\" helar enheter i närheten."
 
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
-msgstr ""
+msgstr "- Garnisonera skadade enheter för att hela dem snabbare."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr ""
+msgstr "TERRITORIEFÖRFALL"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "- Förfall sker när byggnader inte är anknytna till ett allierat Samhällscentrum."
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr ""
+msgstr "- Förfallsprocessen kan saktas ner eller omvändas genom att garnisonera några enheter i strukturen."
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "- När förfallen är komplett ges byggnaden till grannen med mest inflytande."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr ""
+msgstr "THEMISTOKLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "- Atensk hjälte som kommenderade Grekerna under de stora Sjökrigen om Artemision och Salamis."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr ""
+msgstr "- Alla skepp byggs snabbare under hans livstid."
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."
-msgstr ""
+msgstr "- Skeppet som han är garnisonerad i är mycket snabbare."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "TRIREM"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
-msgstr ""
+msgstr "- Mellanstora krigsskeppet."
 
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "- Tillgänglig för Romarna, Kartago, Hellenistiska fraktioner och Perserna."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "- Bra för transportering och stridande."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- Garnisonera trupper ombord för att öka eldkraften."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Garnisonera en katapult ombord för en långdistans belägringsattack (EJ IMPLEMENTERAD ÄN)."
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Kapabel till en förödande skepp-till-skepp rammattack som måste ladda om innan den används igen (EJ IMPLEMENTERAD ÄN)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
-msgstr ""
+msgstr "VIRIATUS"
 
 #: gui/text/tips/viriato.txt:2
 msgid "- Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "- Iberisk hjälte av Lusitanernas stam."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr ""
+msgstr "- Minst 7 kampanjer mot Romarna under Lusitaniska Krigen från 147 till 139 f.Kr."
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "- Snabb och kan byta mellan svärd och brinnande spjut."
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr ""
+msgstr "- Hans \"aura\" är \"Taktiska Gerillan\" som låter Iberiska enheter i närheten överfalla motståndare från bakhåll."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "KRIGSELEFANTER"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "- Stora bestar från Afrika och Indien, tränade för krig."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr ""
+msgstr "- Höga Mat och Metallkostnader, men väldigt starka. Starkast mot strukturer och kavalleri."
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr ""
+msgstr "- Sårbara för skärmytslingare."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr ""
+msgstr "- Tillgängliga för: Mauryarna, Ptolemaier, Seleukiderna och Kartago."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

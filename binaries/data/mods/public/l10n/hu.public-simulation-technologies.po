@@ -12,13 +12,14 @@
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
 # Mikola Péter <mikopet@gmail.com>, 2015
+# Nagy András <asd0707@freemail.hu>, 2015
 # Pista Joska <jojoskapi@freemail.hu>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-27 23:08+0000\n"
-"Last-Translator: Pista Joska <jojoskapi@freemail.hu>\n"
+"PO-Revision-Date: 2015-12-30 12:20+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2258,7 +2259,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 BC, whose purpose "
 "was to push the Persians out of the Aegean region. The allied states "
 "contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Nem sokkal a szalamiszi és mükaléi nagy tengeri győzelmek után, a görög városállamok létrehozták az úgynevezett Déloszi szövetséget i.e. 478-ban, amely célja a perzsák kiűzése volt az Égei-tenger vidékéről. A szövetséges államok hajókkal és pénzzel járultak hozzá, az athéniak pedig a teljes flottájukkal."
+msgstr "Nem sokkal a szalamiszi és mükaléi nagy tengeri győzelmek után, a görög városállamok létrehozták az úgynevezett Déloszi szövetséget i. e. 478-ban, amely célja a perzsák kiűzése volt az Égei-tenger vidékéről. A szövetséges államok hajókkal és pénzzel járultak hozzá, az athéniak pedig a teljes flottájukkal."
 
 #: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsongenericName
 msgid "Delian League"
@@ -2346,7 +2347,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr ""
+msgstr "A perzsák nagy számú gyalogságot tudtak besorozni háború idején, az Óperzsa birodalom puszta méretéből és a felépítéséből adódóan. Általánosságban a perzsa gyalogság jól képzett volt és nagy kitartással harcolt. Viszont a gyalogság gyenge volt a kézitusában és a közelharcban. Emellett az elit csapatokat leszámítva, a perzsa gyalogság nem egy állandó, hivatásos haderő volt."
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2368,7 +2369,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "A perzsák építették a csodálatos, 1677 mérföld hosszú Királyi utat Szardeisztől Szúzáig; Nagy Dárajavaus és Khsajársá emellett megépíttette a káprázatos Perszepoliszt; Nagy Kurus nagymértékben fejlesztette Ekbatana városát és lényegében „újjáépítette” a régi elámi fővárost, Szúzát."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid ""
@@ -2384,7 +2385,7 @@ msgstr "Perzsa építészet"
 msgid ""
 "The Persians had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "A Perzsáknak tradicionális volt az íjászatuk és előszeretettel használták fel őket tömegesen a csatában."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
@@ -2395,25 +2396,25 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr ""
+msgstr "A kórai óperzsa uralkodók az irányba tevékenykedtek, hogy Perzsia legyen az első nagy ázsiai birodalom, amely uralja a tengereket. A nagy király különböző tengeri népek kedvére tevékenykedett, hogy biztosítsa szolgálataikat, de különféle tengeri kezdeményezései is voltak. Nagy Dárajavaus uralma alatt például egy csatorna épült Egyiptomban ás a perzsa flottát az Indus folyó felfedezésére küldték. Hérodotosz szerint körülbelül 300 perzsa hadihajó lett átépítve, hogy lovakat és lovasaikat szállítsák."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
-msgstr ""
+msgstr "A föníciai triérészek képesek lovas egységek kiképzésére."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
-msgstr ""
+msgstr "Lószállító hajók"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr ""
+msgstr "Jelentősen növeli a lovasság kiképzési sebességét az istállókban azáltal, hogy nagy csoportokban vagy zászlóaljakban képzi ki őket."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr ""
+msgstr "Gyorsabb csoportos kiképzési sebesség az istállókban."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -2441,7 +2442,7 @@ msgstr "A rómaiak a háborús logisztika mesterei voltak."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr ""
+msgstr "Rögzített Táborok és Ostrom Falak pusztulása 50%-al lassabb."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
@@ -2453,7 +2454,7 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr ""
+msgstr "A Szibülla-könyvek, vagy „Libri Sibyllini”, görög nyelven, hexameterekben szerkesztett jóslat-gyűjtemények voltak. Róma utolsó királya, Tarquinius Superbus vásárolta meg egy Szibüllától és sokszor tanulmányozták ezeket a köztársaság és a birodalom történelmének jelentős válságaikor."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
@@ -2476,7 +2477,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr ""
+msgstr "Alexszandrosszal kezdve, a hellén uralkodók sok várost alapítottak birodalomszerte, ahol a görög kultúra és művészet keveredett a helyi szokásokkal, így létrehozva a sokszínű görög hellén civilizációt."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid ""
@@ -2491,11 +2492,11 @@ msgstr "Görög metropolisz"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr ""
+msgstr "Jelentősen növeli a bajnokok és az ostromgépek kiképzési sebességét az erődben azáltal, hogy nagy csoportokban vagy zászlóaljakban képzi ki őket."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr ""
+msgstr "Gyorsabb csoportos kiképzési sebesség az erődben."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -2506,7 +2507,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr ""
+msgstr "A mára kihalt niszaiai lófajta az ókor egyik legnagyobb és legerősebb fajtája volt. Nagyon keresett volt a szeleukidák és a perzsák körében, mivel mind a lovas, mind a hátasállat is egyre nehezebb páncél kapott az idők folyamán."
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
@@ -2548,13 +2549,13 @@ msgstr "Hagyományos hadsereg"
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr ""
+msgstr "Az Ezüst pajzsok, vagy más néven Argyraspides, volt a Makedón hadsereg elit nehéz gyalogsága."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "attack, health, and armor."
-msgstr ""
+msgstr "A bajnok pajzshordozókat Ezüst pajzsokká fejleszti, nagyobb támadással, életerővel és páncéllal."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
