@@ -126,6 +126,7 @@ protected:
 	void GetRoleString(const gloox::MUCRoomRole r, std::string& role) const;
 	std::string StanzaErrorToString(gloox::StanzaError err);
 	std::string ConnectionErrorToString(gloox::ConnectionError err);
+	std::string RegistrationResultToString(gloox::RegistrationResult res);
 
 public:
 	/* Messages */

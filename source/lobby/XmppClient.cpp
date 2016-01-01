@@ -444,24 +444,7 @@ void XmppClient::handleRegistrationResult(const glooxwrapper::JID&, gloox::Regis
 	if (result == gloox::RegistrationSuccess)
 		CreateGUIMessage("system", "registered");
 	else
-	{
-		std::string msg;
-#define CASE(X, Y) case gloox::X: msg = Y; break
-		switch(result)
-		{
-		CASE(RegistrationNotAcceptable, g_L10n.Translate("Registration not acceptable"));
-		CASE(RegistrationConflict, g_L10n.Translate("Registration conflict"));
-		CASE(RegistrationNotAuthorized, g_L10n.Translate("Registration not authorized"));
-		CASE(RegistrationBadRequest, g_L10n.Translate("Registration bad request"));
-		CASE(RegistrationForbidden, g_L10n.Translate("Registration forbidden"));
-		CASE(RegistrationRequired, g_L10n.Translate("Registration required"));
-		CASE(RegistrationUnexpectedRequest, g_L10n.Translate("Registration unexpected request"));
-		CASE(RegistrationNotAllowed, g_L10n.Translate("Registration not allowed"));
-		default: msg = g_L10n.Translate("Registration unknown error");
-		}
-#undef CASE
-		CreateGUIMessage("system", "error", msg);
-	}
+		CreateGUIMessage("system", "error", RegistrationResultToString(result));
 	disconnect();
 }
 
@@ -994,7 +977,7 @@ void XmppClient::GetRoleString(const gloox::MUCRoomRole r, std::string& role) co
 {
 	switch(r)
 	{
-#define CASE(x,y) case gloox::x: role = y; break
+#define CASE(X, Y) case gloox::X: role = Y; break
 	CASE(RoleNone, "none");
 	CASE(RoleVisitor, "visitor");
 	CASE(RoleParticipant, "participant");
@@ -1009,43 +992,45 @@ void XmppClient::GetRoleString(const gloox::MUCRoomRole r, std::string& role) co
 
 /**
  * Convert a gloox stanza error type to string.
+ * Keep in sync with Gloox documentation
  *
  * @param err Error to be converted
  * @return Converted error string
  */
 std::string XmppClient::StanzaErrorToString(gloox::StanzaError err)
 {
-	std::string msg;
 #define CASE(X, Y) case gloox::X: return Y
+#define DEBUG_CASE(X, Y) case gloox::X: return g_L10n.Translate("Error") + " (" + Y + ")"
 	switch (err)
 	{
-	CASE(StanzaErrorBadRequest, g_L10n.Translate("Bad request"));
-	CASE(StanzaErrorConflict, g_L10n.Translate("Player name already in use"));
-	CASE(StanzaErrorFeatureNotImplemented, g_L10n.Translate("Feature not implemented"));
+	CASE(StanzaErrorUndefined, g_L10n.Translate("No error"));
+	DEBUG_CASE(StanzaErrorBadRequest, "Server recieved malformed XML");
+	CASE(StanzaErrorConflict, g_L10n.Translate("Player already logged in"));
+	DEBUG_CASE(StanzaErrorFeatureNotImplemented, "Server does not implement requested feature");
 	CASE(StanzaErrorForbidden, g_L10n.Translate("Forbidden"));
-	CASE(StanzaErrorGone, g_L10n.Translate("Recipient or server gone"));
+	DEBUG_CASE(StanzaErrorGone, "Unable to find message receipiant");
 	CASE(StanzaErrorInternalServerError, g_L10n.Translate("Internal server error"));
-	CASE(StanzaErrorItemNotFound, g_L10n.Translate("Item not found"));
-	CASE(StanzaErrorJidMalformed, g_L10n.Translate("Jid malformed"));
-	CASE(StanzaErrorNotAcceptable, g_L10n.Translate("Not acceptable"));
+	DEBUG_CASE(StanzaErrorItemNotFound, "Message receipiant does not exist");
+	DEBUG_CASE(StanzaErrorJidMalformed, "JID (XMPP address) malformed");
+	DEBUG_CASE(StanzaErrorNotAcceptable, "Receipiant refused message. Possible policy issue");
 	CASE(StanzaErrorNotAllowed, g_L10n.Translate("Not allowed"));
 	CASE(StanzaErrorNotAuthorized, g_L10n.Translate("Not authorized"));
-	CASE(StanzaErrorNotModified, g_L10n.Translate("Not modified"));
-	CASE(StanzaErrorPaymentRequired, g_L10n.Translate("Payment required"));
-	CASE(StanzaErrorRecipientUnavailable, g_L10n.Translate("Recipient unavailable"));
-	CASE(StanzaErrorRedirect, g_L10n.Translate("Redirect"));
+	DEBUG_CASE(StanzaErrorNotModified, "Requested item has not changed since last request");
+	DEBUG_CASE(StanzaErrorPaymentRequired, "This server requires payment");
+	CASE(StanzaErrorRecipientUnavailable, g_L10n.Translate("Recipient temporarily unavailable"));
+	DEBUG_CASE(StanzaErrorRedirect, "Request redirected");
 	CASE(StanzaErrorRegistrationRequired, g_L10n.Translate("Registration required"));
-	CASE(StanzaErrorRemoteServerNotFound, g_L10n.Translate("Remote server not found"));
-	CASE(StanzaErrorRemoteServerTimeout, g_L10n.Translate("Remote server timeout"));
-	CASE(StanzaErrorResourceConstraint, g_L10n.Translate("Resource constraint"));
+	DEBUG_CASE(StanzaErrorRemoteServerNotFound, "Remote server not found");
+	DEBUG_CASE(StanzaErrorRemoteServerTimeout, "Remote server timed out");
+	DEBUG_CASE(StanzaErrorResourceConstraint, "The recipient is unable to process the message due to resource constraints");
 	CASE(StanzaErrorServiceUnavailable, g_L10n.Translate("Service unavailable"));
-	CASE(StanzaErrorSubscribtionRequired, g_L10n.Translate("Subscription Required"));
-	CASE(StanzaErrorUndefinedCondition, g_L10n.Translate("Undefined condition"));
-	CASE(StanzaErrorUnexpectedRequest, g_L10n.Translate("Unexpected request"));
-	CASE(StanzaErrorUnknownSender, g_L10n.Translate("Unknown sender"));
+	DEBUG_CASE(StanzaErrorSubscribtionRequired, "Service requires subscription");
+	DEBUG_CASE(StanzaErrorUnexpectedRequest, "Attempt to send from invalid stanza address");
+	DEBUG_CASE(StanzaErrorUnknownSender, "Invalid 'from' address");
 	default:
-		return g_L10n.Translate("Error undefined");
+		return g_L10n.Translate("Unknown error");
 	}
+#undef DEBUG_CASE
 #undef CASE
 }
 
@@ -1058,31 +1043,61 @@ std::string XmppClient::StanzaErrorToString(gloox::StanzaError err)
  */
 std::string XmppClient::ConnectionErrorToString(gloox::ConnectionError err)
 {
-	std::string msg;
 #define CASE(X, Y) case gloox::X: return Y
+#define DEBUG_CASE(X, Y) case gloox::X: return g_L10n.Translate("Error") + " (" + Y + ")"
 	switch (err)
 	{
 	CASE(ConnNoError, g_L10n.Translate("No error"));
 	CASE(ConnStreamError, g_L10n.Translate("Stream error"));
 	CASE(ConnStreamVersionError, g_L10n.Translate("The incoming stream version is unsupported"));
 	CASE(ConnStreamClosed, g_L10n.Translate("The stream has been closed by the server"));
-	CASE(ConnProxyAuthRequired, g_L10n.Translate("The HTTP/SOCKS5 proxy requires authentication"));
-	CASE(ConnProxyAuthFailed, g_L10n.Translate("HTTP/SOCKS5 proxy authentication failed"));
-	CASE(ConnProxyNoSupportedAuth, g_L10n.Translate("The HTTP/SOCKS5 proxy requires an unsupported authentication mechanism"));
+	DEBUG_CASE(ConnProxyAuthRequired, "The HTTP/SOCKS5 proxy requires authentication");
+	DEBUG_CASE(ConnProxyAuthFailed, "HTTP/SOCKS5 proxy authentication failed");
+	DEBUG_CASE(ConnProxyNoSupportedAuth, "The HTTP/SOCKS5 proxy requires an unsupported authentication mechanism");
 	CASE(ConnIoError, g_L10n.Translate("An I/O error occured"));
-	CASE(ConnParseError, g_L10n.Translate("An XML parse error occured"));
+	DEBUG_CASE(ConnParseError, "An XML parse error occured");
 	CASE(ConnConnectionRefused, g_L10n.Translate("The connection was refused by the server"));
 	CASE(ConnDnsError, g_L10n.Translate("Resolving the server's hostname failed"));
 	CASE(ConnOutOfMemory, g_L10n.Translate("This system is out of memory"));
-	CASE(ConnNoSupportedAuth, g_L10n.Translate("The authentication mechanisms the server offered are not supported or no authentication mechanisms were available"));
+	DEBUG_CASE(ConnNoSupportedAuth, "The authentication mechanisms the server offered are not supported or no authentication mechanisms were available");
 	CASE(ConnTlsFailed, g_L10n.Translate("The server's certificate could not be verified or the TLS handshake did not complete successfully"));
 	CASE(ConnTlsNotAvailable, g_L10n.Translate("The server did not offer required TLS encrytption"));
-	CASE(ConnCompressionFailed, g_L10n.Translate("Negotiation/initializing compression failed"));
+	DEBUG_CASE(ConnCompressionFailed, "Negotiation/initializing compression failed");
 	CASE(ConnAuthenticationFailed, g_L10n.Translate("Authentication failed. Incorrect password or account does not exist"));
 	CASE(ConnUserDisconnected, g_L10n.Translate("The user or system requested a disconnect"));
 	CASE(ConnNotConnected, g_L10n.Translate("There is no active connection"));
 	default:
-		return g_L10n.Translate("Error undefined");
+		return g_L10n.Translate("Unknown error");
 	}
+#undef DEBUG_CASE
+#undef CASE
+}
+
+/**
+ * Convert a gloox registration result enum to string
+ * Keep in sync with Gloox documentation
+ * 
+ * @param err Enum to be converted
+ * @return Converted string
+ */
+std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res)
+{
+#define CASE(X, Y) case gloox::X: return Y
+#define DEBUG_CASE(X, Y) case gloox::X: return g_L10n.Translate("Error") + " (" + Y + ")"
+	switch (res)
+	{
+		CASE(RegistrationSuccess, g_L10n.Translate("Success"));
+		CASE(RegistrationNotAcceptable, g_L10n.Translate("406: Not all necessary information provided"));
+		CASE(RegistrationConflict, g_L10n.Translate("409: Username already exists"));
+		DEBUG_CASE(RegistrationNotAuthorized, "Account removal timeout or insufficiently secure channel for password change");
+		DEBUG_CASE(RegistrationBadRequest, "Server recieved incomplete request");
+		DEBUG_CASE(RegistrationForbidden, "This client has insufficient permissions to remove an account");
+		DEBUG_CASE(RegistrationRequired, "Account cannot be removed as it does not exist");
+		DEBUG_CASE(RegistrationUnexpectedRequest, "This client is unregistered with the server");
+		DEBUG_CASE(RegistrationNotAllowed, "Server does not permit password changes");
+		default:
+			return g_L10n.Translate("Unknown error");
+	}
+#undef DEBUG_CASE
 #undef CASE
 }
