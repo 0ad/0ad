@@ -827,6 +827,7 @@ public:
 			}
 			else if (m_Territory != INVALID_PLAYER)
 			{
+				m_Territory = INVALID_PLAYER;
 				CMessageTerritoryPositionChanged msg(GetEntityId(), m_Territory);
 				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 			}
