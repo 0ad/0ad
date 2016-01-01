@@ -219,10 +219,7 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 	m_PlayerMap.clear();
 	m_Profile.clear();
 
-	if (error == gloox::ConnAuthenticationFailed)
-		CreateGUIMessage("system", "login-failed");
-	else
-		CreateGUIMessage("system", "disconnected");
+	CreateGUIMessage("system", "disconnected", ConnectionErrorToString(error));
 }
 
 /**
@@ -1046,6 +1043,44 @@ std::string XmppClient::StanzaErrorToString(gloox::StanzaError err)
 	CASE(StanzaErrorUndefinedCondition, g_L10n.Translate("Undefined condition"));
 	CASE(StanzaErrorUnexpectedRequest, g_L10n.Translate("Unexpected request"));
 	CASE(StanzaErrorUnknownSender, g_L10n.Translate("Unknown sender"));
+	default:
+		return g_L10n.Translate("Error undefined");
+	}
+#undef CASE
+}
+
+/**
+ * Convert a gloox connection error enum to string
+ * Keep in sync with Gloox documentation
+ * 
+ * @param err Error to be converted
+ * @return Converted error string
+ */
+std::string XmppClient::ConnectionErrorToString(gloox::ConnectionError err)
+{
+	std::string msg;
+#define CASE(X, Y) case gloox::X: return Y
+	switch (err)
+	{
+	CASE(ConnNoError, g_L10n.Translate("No error"));
+	CASE(ConnStreamError, g_L10n.Translate("Stream error"));
+	CASE(ConnStreamVersionError, g_L10n.Translate("The incoming stream version is unsupported"));
+	CASE(ConnStreamClosed, g_L10n.Translate("The stream has been closed by the server"));
+	CASE(ConnProxyAuthRequired, g_L10n.Translate("The HTTP/SOCKS5 proxy requires authentication"));
+	CASE(ConnProxyAuthFailed, g_L10n.Translate("HTTP/SOCKS5 proxy authentication failed"));
+	CASE(ConnProxyNoSupportedAuth, g_L10n.Translate("The HTTP/SOCKS5 proxy requires an unsupported authentication mechanism"));
+	CASE(ConnIoError, g_L10n.Translate("An I/O error occured"));
+	CASE(ConnParseError, g_L10n.Translate("An XML parse error occured"));
+	CASE(ConnConnectionRefused, g_L10n.Translate("The connection was refused by the server"));
+	CASE(ConnDnsError, g_L10n.Translate("Resolving the server's hostname failed"));
+	CASE(ConnOutOfMemory, g_L10n.Translate("This system is out of memory"));
+	CASE(ConnNoSupportedAuth, g_L10n.Translate("The authentication mechanisms the server offered are not supported or no authentication mechanisms were available"));
+	CASE(ConnTlsFailed, g_L10n.Translate("The server's certificate could not be verified or the TLS handshake did not complete successfully"));
+	CASE(ConnTlsNotAvailable, g_L10n.Translate("The server did not offer required TLS encrytption"));
+	CASE(ConnCompressionFailed, g_L10n.Translate("Negotiation/initializing compression failed"));
+	CASE(ConnAuthenticationFailed, g_L10n.Translate("Authentication failed. Incorrect password or account does not exist"));
+	CASE(ConnUserDisconnected, g_L10n.Translate("The user or system requested a disconnect"));
+	CASE(ConnNotConnected, g_L10n.Translate("There is no active connection"));
 	default:
 		return g_L10n.Translate("Error undefined");
 	}
