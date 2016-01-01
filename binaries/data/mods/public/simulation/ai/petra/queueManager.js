@@ -157,7 +157,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 	{
 		var qStr = "";
 		var q = this.queues[i];
-		if (q.queue.length > 0)
+		if (q.length() > 0)
 		{
 			API3.warn(i + ": ( with priority " + this.priorities[i] +" and accounts " + uneval(this.accounts[i]) +")");
 			API3.warn(" while maxAccountWanted(0.6) is " + uneval(q.maxAccountWanted(gameState, 0.6)));
