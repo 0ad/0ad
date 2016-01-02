@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ class CVector3D;
 class CVector4D;
 class CCamera;
 
-//For loading data
+// For loading data
 class CCinemaData
 {
 public:
@@ -43,20 +43,20 @@ public:
 	
 	const CCinemaData* GetData() const { return this; }
 	
-	//Distortion variables
+	// Distortion variables
 	mutable float m_GrowthCount;
 	float m_Growth;
 	float m_Switch;
 	int m_Mode;
 	int m_Style;
-	float m_Timescale;	//a negative timescale results in backwards play
+	float m_Timescale; // a negative timescale results in backwards play
 
 };
 
 
-//Once the data is part of the path, it shouldn't be changeable, so use private inheritance.
-//This class encompasses the spline and the information which determines how the path will operate
-//and also provides the functionality for doing so
+// Once the data is part of the path, it shouldn't be changeable, so use private inheritance.
+// This class encompasses the spline and the information which determines how the path will operate
+// and also provides the functionality for doing so
 
 class CCinemaPath : private CCinemaData, public TNSpline
 {
@@ -68,22 +68,22 @@ public:
 	enum { EM_IN, EM_OUT, EM_INOUT, EM_OUTIN };
 	enum { ES_DEFAULT, ES_GROWTH, ES_EXPO, ES_CIRCLE, ES_SINE };
 	
-	//sets camera position to calculated point on spline
-	void MoveToPointAt(float t, float nodet, const CVector3D& );
+	// Sets camera position to calculated point on spline
+	void MoveToPointAt(float t, float nodet, const CVector3D&);
 	
-	//Distortion mode functions-change how ratio is passed to distortion style functions
+	// Distortion mode functions-change how ratio is passed to distortion style functions
 	float EaseIn(float t) const;
 	float EaseOut(float t) const;
 	float EaseInOut(float t) const;
 	float EaseOutIn(float t) const;
 
-	//Distortion style functions
+	// Distortion style functions
 	float EaseDefault(float t) const;
 	float EaseGrowth(float t) const;
 	float EaseExpo(float t) const;
 	float EaseCircle(float t) const;
 	float EaseSine(float t) const;
-	
+
 	float (CCinemaPath::*DistStylePtr)(float ratio) const;
 	float (CCinemaPath::*DistModePtr)(float ratio) const;
 
@@ -96,15 +96,15 @@ public:
 	inline CVector3D GetNodePosition(const int index) const { return Node[index].Position; }
 	inline float GetNodeDuration(const int index) const { return Node[index].Distance; }
 	inline float GetDuration() const { return MaxDistance; }
-	
+
 	inline float GetNodeFraction() const { return (m_TimeElapsed - m_PreviousNodeTime) / Node[m_CurrentNode].Distance; }
 	inline float GetElapsedTime() const { return m_TimeElapsed; }
 
 	inline void SetTimescale(float scale) { m_Timescale = scale; }
-	
+
 	float m_TimeElapsed;
-	float m_PreviousNodeTime;	//How much time has passed before the current node
-	
+	float m_PreviousNodeTime; // How much time has passed before the current node
+
 	size_t m_CurrentNode;
 	CVector3D m_PreviousRotation;
 
