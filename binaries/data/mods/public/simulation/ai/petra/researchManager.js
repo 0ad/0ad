@@ -96,7 +96,7 @@ m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 {
 	var available = (gameState.currentPhase() == 1 ? gameState.ai.queueManager.getAvailableResources(gameState) : null);
 	var numWorkers = (gameState.currentPhase() == 1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0);
-	for (var tech of techs)
+	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)
 			continue;
@@ -112,12 +112,14 @@ m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 		}
 		for (let i in template.modifications)
 		{
-			if (template.modifications[i].value === "ResourceGatherer/Rates/food.fruit")
-				return tech[0];		
+			if (gameState.ai.HQ.navalMap && template.modifications[i].value === "ResourceGatherer/Rates/food.fish")
+				return tech[0];
+			else if (template.modifications[i].value === "ResourceGatherer/Rates/food.fruit")
+				return tech[0];
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/food.grain")
 				return tech[0];
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/wood.tree")
-			    return tech[0];
+				return tech[0];
 			else if (template.modifications[i].value.startsWith("ResourceGatherer/Capacities"))
 				return tech[0];
 			else if (template.modifications[i].value === "Attack/Ranged/MaxRange")
