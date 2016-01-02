@@ -158,6 +158,8 @@ m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 				return tech[0];
 			else if (template.modifications[i].value === "Health/RegenRate")
 				return tech[0];
+			else if (template.modifications[i].value === "Health/IdleRegenRate")
+				return tech[0];
 		}
 	}
 	return false;
