@@ -22,48 +22,121 @@
 #include <list>
 #include <map>
 
+#include "lib/input.h" // InReaction - can't forward-declare enum
+
 #include "graphics/CinemaPath.h"
 #include "ps/CStr.h"
 
-//Class for in game playing of cinematics. Should only be instantiated in CGameView. 
+/*
+	desc: contains various functions used for cinematic camera paths
+	See also: CinemaHandler.cpp, CinemaPath.cpp
+*/
+
+// Cinematic structure for data accessable from the simulation
+struct CinematicSimulationData
+{
+	bool m_Enabled;
+	bool m_Paused;
+	std::map<CStrW, CCinemaPath> m_Paths;
+	std::list<CCinemaPath> m_PathQueue;
+
+	// States before playing
+	bool m_MapRevealed;
+
+	fixed m_ElapsedTime, m_TotalTime, m_CurrentPathElapsedTime;
+
+	CinematicSimulationData()
+		:	m_Enabled(false),
+			m_Paused(true),
+			m_MapRevealed(false),
+			m_ElapsedTime(fixed::Zero()),
+			m_TotalTime(fixed::Zero()),
+			m_CurrentPathElapsedTime(fixed::Zero())
+	{}
+};
+
+/**
+ * Class for in game playing of cinematics. Should only be instantiated in CGameView. 
+ */
+
 class CCinemaManager
 {
 public:
 	CCinemaManager();
 	~CCinemaManager() {}
 
-	void AddPath(CCinemaPath path, const CStrW& name);
-
-	//Adds track to list of being played. 
-	void QueuePath(const CStrW& name, bool queue);
-	void OverridePath(const CStrW& name);	//clears track queue and replaces with 'name'
+	/**
+	 * Adds the path to the path list
+	 * @param name path name
+	 * @param CCinemaPath path data
+	 */
+	void AddPath(const CStrW& name, const CCinemaPath& path);
 
 	/**
+	 * Adds the path to the playlist 
+	 * @param name path name 
+	 */
+	void AddPathToQueue(const CStrW& name);
+
+	/**
+	 * Clears the playlist
+	 */
+	void ClearQueue();
+
+	/**
+	 * Checks the path name in the path list
+	 * @param name path name
+	 * @return true if path with that name exists, else false
+	 */
+	bool HasPath(const CStrW& name) const;
+	
+	const std::map<CStrW, CCinemaPath>& GetAllPaths();
+	void SetAllPaths( const std::map<CStrW, CCinemaPath>& tracks);
+
+	/**
+	 * Starts play paths
+	 */
+	void Play();
+	void Stop();
+	bool IsPlaying() const;
+
+	/**
+	 * Renders black bars and paths (if enabled)
+	 */
+	void Render();
+	void DrawBars() const;
+
+	/**
+	 * Get current enable state of the cinema manager
+	 */
+	bool GetEnabled() const;
+
+	/**
+	 * Sets enable state of the cinema manager (shows/hide gui, show/hide rings, etc)
+	 * @enable new state
+	 */
+	void SetEnabled(bool enabled);
+
+	/**
+	 * Updates CCinemManager and current path
 	 * @param deltaRealTime Elapsed real time since the last frame.
 	 */
-	bool Update(const float deltaRealTime);
-	
-	//These stop track play, and accept time, not ratio of time
-	void MoveToPointAt(float time);
+	void Update(const float deltaRealTime);
 
-	inline void StopPlaying() { m_PathQueue.clear(); }
-	void DrawSpline() const;
-	
-	inline bool IsPlaying() const { return !m_PathQueue.empty(); }
-	bool HasTrack(const CStrW& name) const; 
-	inline bool IsActive() const { return m_Active; }
-	inline void SetActive(bool active) { m_Active=active; }
+	InReaction HandleEvent(const SDL_Event_* ev);
 
-	inline const std::map<CStrW, CCinemaPath>& GetAllPaths() { return m_Paths; }
-	void SetAllPaths( const std::map<CStrW, CCinemaPath>& tracks);
-	void SetCurrentPath(const CStrW& name, bool current, bool lines);
+	CinematicSimulationData* GetCinematicSimulationData();
 
-private:
-	
-	bool m_Active, m_DrawCurrentSpline, m_DrawLines, m_ValidCurrent;
-	std::map<CStrW, CCinemaPath>::iterator m_CurrentPath;
-	std::map<CStrW, CCinemaPath> m_Paths;
-	std::list<CCinemaPath> m_PathQueue;
+	bool GetPathsDrawing() const;
+	void SetPathsDrawing(const bool drawPath);
+
+private:    
+	bool m_DrawPaths;
+
+	// Cinematic data is accessed from the simulation
+	CinematicSimulationData m_CinematicSimulationData;
 };
+
+extern InReaction cinema_manager_handler(const SDL_Event_* ev);
 
 #endif

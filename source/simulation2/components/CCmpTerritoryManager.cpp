@@ -123,6 +123,7 @@ public:
 		m_TriggerEvent = true;
 		m_EnableLineDebugOverlays = false;
 		m_DirtyID = 1;
+		m_Visible = true;
 
 		m_AnimTime = 0.0;
 
@@ -275,6 +276,15 @@ public:
 	void Interpolate(float frameTime, float frameOffset);
 
 	void RenderSubmit(SceneCollector& collector);
+
+	void SetVisibility(bool visible)
+	{
+		m_Visible = visible;
+	}
+
+private:
+
+	bool m_Visible;
 };
 
 REGISTER_COMPONENT_TYPE(TerritoryManager)
@@ -644,6 +654,9 @@ void CCmpTerritoryManager::Interpolate(float frameTime, float UNUSED(frameOffset
 
 void CCmpTerritoryManager::RenderSubmit(SceneCollector& collector)
 {
+	if (!m_Visible)
+		return;
+
 	for (size_t i = 0; i < m_BoundaryLines.size(); ++i)
 		collector.Submit(&m_BoundaryLines[i].overlay);
 	

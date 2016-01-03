@@ -38,10 +38,10 @@ sCinemaPath ConstructCinemaPath(const CCinemaPath* source)
 {
 	sCinemaPath path;
 	const CCinemaData* data = source->GetData();
-	path.mode = data->m_Mode;
-	path.style = data->m_Style;
+	//path.mode = data->m_Mode;
+	//path.style = data->m_Style;
 	path.growth = data->m_Growth;
-	path.timescale = data->m_Timescale;
+	path.timescale = data->m_Timescale.ToFloat();
 	path.change = data->m_Switch;
 
 	return path;
@@ -51,22 +51,22 @@ CCinemaData ConstructCinemaData(const sCinemaPath& path)
 	CCinemaData data;
 	data.m_Growth = data.m_GrowthCount = path.growth;
 	data.m_Switch = path.change;
-	data.m_Mode = path.mode;
-	data.m_Style = path.style;
+	//data.m_Mode = path.mode;
+	//data.m_Style = path.style;
 	
 	return data;
 }
 sCinemaSplineNode ConstructCinemaNode(const SplineData& data)
 {
 	sCinemaSplineNode node;
-	node.px = data.Position.X;
-	node.py = data.Position.Y;
-	node.pz = data.Position.Z;
+	node.px = data.Position.X.ToFloat();
+	node.py = data.Position.Y.ToFloat();
+	node.pz = data.Position.Z.ToFloat();
 	
-	node.rx = data.Rotation.X;
-	node.ry = data.Rotation.Y;
-	node.rz = data.Rotation.Z;
-	node.t = data.Distance;
+	node.rx = data.Rotation.X.ToFloat();
+	node.ry = data.Rotation.Y.ToFloat();
+	node.rz = data.Rotation.Z.ToFloat();
+	node.t = data.Distance.ToFloat();
 	
 	return node;
 }
@@ -112,7 +112,7 @@ void SetCurrentPaths(const std::vector<sCinemaPath>& atlasPaths)
 	{
 		CStrW pathName(*it->name);
 		paths[pathName] = CCinemaPath();
-		paths[pathName].SetTimescale(it->timescale);
+		paths[pathName].SetTimescale(fixed::FromFloat(it->timescale));
 
 		const sCinemaPath& atlasPath = *it;
 		const std::vector<sCinemaSplineNode> nodes = *atlasPath.nodes;
@@ -121,10 +121,10 @@ void SetCurrentPaths(const std::vector<sCinemaPath>& atlasPaths)
 	
  		for ( size_t j=0; j<nodes.size(); ++j )
 		{	
-			spline.AddNode( CVector3D(nodes[j].px, nodes[j].py, nodes[j].pz), 
-							CVector3D(nodes[j].rx, nodes[j].ry, nodes[j].rz), nodes[j].t );
+			spline.AddNode(CFixedVector3D(fixed::FromFloat(nodes[j].px), fixed::FromFloat(nodes[j].py), fixed::FromFloat(nodes[j].pz)), 
+				CFixedVector3D(fixed::FromFloat(nodes[j].rx), fixed::FromFloat(nodes[j].ry), fixed::FromFloat(nodes[j].rz)), fixed::FromFloat(nodes[j].t));
 		}
-		paths[pathName] = CCinemaPath(data, spline);
+		paths[pathName] = CCinemaPath(data, spline, TNSpline());
 	}
 
 	g_Game->GetView()->GetCinema()->SetAllPaths(paths);
@@ -155,16 +155,15 @@ MESSAGEHANDLER(CinemaEvent)
 {
 	CCinemaManager* manager = g_Game->GetView()->GetCinema();
 	
-	if ( msg->mode == eCinemaEventMode::SMOOTH )
-		manager->OverridePath(*msg->path);	
-	else if ( msg->mode == eCinemaEventMode::IMMEDIATE_PATH )
-		manager->MoveToPointAt(msg->t);
+	if (msg->mode == eCinemaEventMode::SMOOTH)
+	{
+		manager->ClearQueue();
+		manager->AddPathToQueue(*msg->path);
+	}
 	else if ( msg->mode == eCinemaEventMode::RESET )
 	{
 //		g_Game->GetView()->ResetCamera();
 	}
-	else if ( msg->mode == eCinemaEventMode::SELECT )
-		manager->SetCurrentPath(*msg->path, msg->drawCurrent, msg->lines);
 	else
 		ENSURE(false);
 }

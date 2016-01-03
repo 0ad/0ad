@@ -32,7 +32,7 @@
 
 #include "lib/external_libraries/libsdl.h"
 
-const size_t MAX_HANDLERS = 8;
+const size_t MAX_HANDLERS = 9;
 static InHandler handler_stack[MAX_HANDLERS];
 static size_t handler_stack_top = 0;
 

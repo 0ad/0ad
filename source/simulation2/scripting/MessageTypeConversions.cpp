@@ -470,6 +470,36 @@ CMessage* CMessageMinimapPing::FromJSVal(ScriptInterface& UNUSED(scriptInterface
 	return new CMessageMinimapPing();
 }
 
+////////////////////////////////
+
+JS::Value CMessageCinemaPathEnded::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(name);
+	return JS::ObjectValue(*obj);
+}
+
+CMessage* CMessageCinemaPathEnded::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
+{
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(CStrW, name);
+	return new CMessageCinemaPathEnded(name);
+}
+
+////////////////////////////////
+
+JS::Value CMessageCinemaQueueEnded::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	return JS::ObjectValue(*obj);
+}
+
+CMessage* CMessageCinemaQueueEnded::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
+{
+	FROMJSVAL_SETUP();
+	return new CMessageCinemaQueueEnded();
+}
+
 ////////////////////////////////////////////////////////////////
 
 CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, JS::HandleValue val)

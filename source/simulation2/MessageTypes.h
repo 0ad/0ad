@@ -29,6 +29,8 @@
 
 #include "maths/Vector3D.h"
 
+#include "ps/CStr.h"
+
 #define DEFAULT_MESSAGE_IMPL(name) \
 	virtual int GetType() const { return MT_##name; } \
 	virtual const char* GetScriptHandlerName() const { return "On" #name; } \
@@ -536,6 +538,29 @@ public:
 	CMessageMinimapPing() 
 	{
 	}
+};
+
+/**
+* Cinematics events
+*/
+
+class CMessageCinemaPathEnded : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(CinemaPathEnded)
+
+	CMessageCinemaPathEnded(CStrW name) :
+	name(name)
+	{
+	}
+
+	CStrW name;
+};
+
+class CMessageCinemaQueueEnded : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(CinemaQueueEnded)
 };
 
 #endif // INCLUDED_MESSAGETYPES

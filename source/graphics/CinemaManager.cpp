@@ -18,98 +18,280 @@
 
 #include "precompiled.h"
 
-#include <string>
 #include <sstream>
+#include <string>
 
-#include "CinemaManager.h"
-
-#include "CinemaPath.h"
-#include "ps/CStr.h"
+#include "graphics/Camera.h"
+#include "graphics/CinemaManager.h"
+#include "graphics/GameView.h"
+#include "gui/CGUI.h"
+#include "gui/GUIManager.h"
+#include "gui/IGUIObject.h"
+#include "lib/ogl.h"
+#include "maths/MathUtil.h"
+#include "maths/Quaternion.h"
+#include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
+#include "ps/Game.h"
+#include "ps/Hotkey.h"
+#include "simulation2/components/ICmpOverlayRenderer.h"
+#include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpSelectable.h"
+#include "simulation2/components/ICmpTerritoryManager.h"
+#include "simulation2/MessageTypes.h"
+#include "simulation2/system/ComponentManager.h"
+#include "simulation2/Simulation2.h"
+#include "renderer/Renderer.h"
 
-CCinemaManager::CCinemaManager() : m_DrawCurrentSpline(false), m_Active(true), m_ValidCurrent(false)
+
+CCinemaManager::CCinemaManager()
+	: m_DrawPaths(false)
 {
-	m_CurrentPath = m_Paths.end();
 }
 
-void CCinemaManager::AddPath(CCinemaPath path, const CStrW& name)
+void CCinemaManager::AddPath(const CStrW& name, const CCinemaPath& path)
 {
-	ENSURE( m_Paths.find( name ) == m_Paths.end() );
-	m_Paths[name] = path;
-}
-
-void CCinemaManager::QueuePath(const CStrW& name, bool queue)
-{
-	if (!m_PathQueue.empty() && queue == false)
+	if (m_CinematicSimulationData.m_Paths.find(name) != m_CinematicSimulationData.m_Paths.end())
 	{
+		LOGWARNING("Path with name '%s' already exists", name.ToUTF8());
 		return;
 	}
-	else
-	{
-		ENSURE(HasTrack(name));
-		m_PathQueue.push_back(m_Paths[name]);
-	}
+	m_CinematicSimulationData.m_Paths[name] = path;
 }
 
-void CCinemaManager::OverridePath(const CStrW& name)
+void CCinemaManager::AddPathToQueue(const CStrW& name)
 {
-	m_PathQueue.clear();
-	ENSURE(HasTrack(name));
-	m_PathQueue.push_back( m_Paths[name] );
+	if (!HasPath(name))
+	{
+		LOGWARNING("Path with name '%s' doesn't exist", name.ToUTF8());
+		return;
+	}
+	m_CinematicSimulationData.m_PathQueue.push_back(m_CinematicSimulationData.m_Paths[name]);
+}
+
+void CCinemaManager::ClearQueue()
+{
+	m_CinematicSimulationData.m_PathQueue.clear();
 }
 
 void CCinemaManager::SetAllPaths(const std::map<CStrW, CCinemaPath>& paths)
 {
-	CStrW name;
-	m_Paths = paths;
+	m_CinematicSimulationData.m_Paths = paths;
 }
-void CCinemaManager::SetCurrentPath(const CStrW& name, bool current, bool drawLines)
+
+bool CCinemaManager::HasPath(const CStrW& name) const
 {
-	if ( !HasTrack(name) )
-		m_ValidCurrent = false;
-	else
-		m_ValidCurrent = true;
-
-	m_CurrentPath = m_Paths.find(name);
-	m_DrawCurrentSpline = current;
-	m_DrawLines = drawLines;
-	DrawSpline();
+	return m_CinematicSimulationData.m_Paths.find(name) != m_CinematicSimulationData.m_Paths.end();
 }
 
-bool CCinemaManager::HasTrack(const CStrW& name) const
-{ 
-	return m_Paths.find(name) != m_Paths.end();
-}
-
-void CCinemaManager::DrawSpline() const
+void CCinemaManager::SetEnabled(bool enabled)
 {
-	if ( !(m_DrawCurrentSpline && m_ValidCurrent) )
-		return;
-	static const int smoothness = 200;
-
-	m_CurrentPath->second.DrawSpline(CVector4D(0.f, 0.f, 1.f, 1.f), smoothness, m_DrawLines);
-}
-
-void CCinemaManager::MoveToPointAt(float time)
-{
-	ENSURE(m_CurrentPath != m_Paths.end());
-	StopPlaying();
-
-	m_CurrentPath->second.m_TimeElapsed = time;
-	if (!m_CurrentPath->second.Validate())
-		return;
-
-	m_CurrentPath->second.MoveToPointAt(m_CurrentPath->second.m_TimeElapsed / 
-				m_CurrentPath->second.GetDuration(), m_CurrentPath->second.GetNodeFraction(), 
-				m_CurrentPath->second.m_PreviousRotation);
-}
-
-bool CCinemaManager::Update(const float deltaRealTime)
-{
-	if (!m_PathQueue.front().Play(deltaRealTime))
+	// TODO: maybe assert?
+	if (m_CinematicSimulationData.m_PathQueue.empty() && enabled)
 	{
-		m_PathQueue.pop_front();
-		return false;
+		enabled = false;
+		m_CinematicSimulationData.m_Paused = true;
 	}
-	return true;
+
+	if (m_CinematicSimulationData.m_Enabled == enabled)
+		return;
+
+	// TODO: Enabling/Disabling does not work if the session GUI page is not the top page.
+	// This can happen in various situations, for example when the player wins/looses the game
+	// while the cinematic is running (a message box is the top page in this case). 
+	// It might be better to disable the whole GUI during the cinematic instead of a specific 
+	// GUI object.
+	
+	// sn - session gui object
+	IGUIObject *sn = g_GUI->FindObjectByName("sn");
+	CmpPtr<ICmpRangeManager> cmpRangeManager(g_Game->GetSimulation2()->GetSimContext().GetSystemEntity());
+	CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(g_Game->GetSimulation2()->GetSimContext().GetSystemEntity());
+
+	// GUI visibility
+	if (sn)
+	{
+		if (enabled)
+			sn->SetSetting("hidden", L"true");
+		else
+			sn->SetSetting("hidden", L"false");
+	}
+
+	// Overlay visibility
+	g_Renderer.SetOptionBool(CRenderer::Option::OPT_SILHOUETTES, !enabled);
+	if (cmpRangeManager)
+	{
+		if (enabled)
+			m_CinematicSimulationData.m_MapRevealed = cmpRangeManager->GetLosRevealAll(-1);
+		// TODO: improve m_MapRevealed state and without fade in
+		cmpRangeManager->SetLosRevealAll(-1, enabled);
+	}
+	if (cmpTerritoryManager)
+		cmpTerritoryManager->SetVisibility(!enabled);
+	ICmpSelectable::SetOverrideVisibility(!enabled);
+	ICmpOverlayRenderer::SetOverrideVisibility(!enabled);
+
+	m_CinematicSimulationData.m_Enabled = enabled;
+}
+
+void CCinemaManager::Play()
+{
+	m_CinematicSimulationData.m_Paused = false;
+}
+
+void CCinemaManager::Stop()
+{
+	m_CinematicSimulationData.m_PathQueue.clear();
+}
+
+void CCinemaManager::Update(const float deltaRealTime)
+{
+	if (g_Game->m_Paused != m_CinematicSimulationData.m_Paused)
+	{
+		m_CinematicSimulationData.m_Paused = g_Game->m_Paused;
+
+		// sn - session gui object
+		IGUIObject *sn = g_GUI->FindObjectByName("sn");
+
+		// GUI visibility
+		if (sn)
+		{
+			if (m_CinematicSimulationData.m_Paused)
+				sn->SetSetting("hidden", L"false");
+			else
+				sn->SetSetting("hidden", L"true");
+		}
+	}
+
+	if (m_CinematicSimulationData.m_PathQueue.empty() || !m_CinematicSimulationData.m_Enabled || m_CinematicSimulationData.m_Paused)
+		return;
+	
+	if (HotkeyIsPressed("leave"))
+	{
+		// TODO: implement skip
+	}
+	
+	m_CinematicSimulationData.m_PathQueue.front().Play(deltaRealTime);
+}
+
+void CCinemaManager::Render()
+{
+	if (GetEnabled())
+	{
+		DrawBars();
+		return;
+	}
+	
+	if (!m_DrawPaths)
+		return;
+
+	// draw all paths
+	for (auto it : m_CinematicSimulationData.m_Paths)
+		it.second.Draw();
+}
+
+void CCinemaManager::DrawBars() const
+{
+	int height = (float)g_xres / 2.39f;
+	int shift = (g_yres - height) / 2;
+	if (shift <= 0)
+		return;
+
+#if CONFIG2_GLES
+	#warning TODO : implement bars for GLES
+#else
+	// Set up transform for GL bars
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	CMatrix3D transform;
+	transform.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+	glLoadMatrixf(&transform._11);
+
+	glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+
+	glEnable(GL_BLEND);
+	glDisable(GL_DEPTH_TEST);
+
+	glBegin(GL_QUADS);
+	glVertex2i(0, 0);
+	glVertex2i(g_xres, 0);
+	glVertex2i(g_xres, shift);
+	glVertex2i(0, shift);
+	glEnd();
+
+	glBegin(GL_QUADS);
+	glVertex2i(0, g_yres - shift);
+	glVertex2i(g_xres, g_yres - shift);
+	glVertex2i(g_xres, g_yres);
+	glVertex2i(0, g_yres);
+	glEnd();
+
+	glDisable(GL_BLEND);
+	glEnable(GL_DEPTH_TEST);
+
+	// Restore transform
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+#endif
+}
+
+InReaction cinema_manager_handler(const SDL_Event_* ev)
+{
+	// put any events that must be processed even if inactive here
+	if (!g_Game || !g_Game->IsGameStarted())
+		return IN_PASS;
+
+	CCinemaManager* pCinemaManager = g_Game->GetView()->GetCinema();
+
+	return pCinemaManager->HandleEvent(ev);
+}
+
+InReaction CCinemaManager::HandleEvent(const SDL_Event_* ev)
+{
+	switch (ev->ev.type)
+	{
+	case SDL_MOUSEBUTTONDOWN:
+	case SDL_MOUSEBUTTONUP:
+		if (GetEnabled() && !m_CinematicSimulationData.m_Paused)
+			return IN_HANDLED;
+	default:
+		return IN_PASS;
+	}
+}
+
+bool CCinemaManager::GetEnabled() const
+{
+	return m_CinematicSimulationData.m_Enabled;
+}
+
+bool CCinemaManager::IsPlaying() const
+{
+	return !m_CinematicSimulationData.m_Paused;
+}
+
+const std::map<CStrW, CCinemaPath>& CCinemaManager::GetAllPaths()
+{
+	return m_CinematicSimulationData.m_Paths;
+}
+
+CinematicSimulationData* CCinemaManager::GetCinematicSimulationData()
+{
+	return &m_CinematicSimulationData;
+}
+
+bool CCinemaManager::GetPathsDrawing() const
+{
+	return m_DrawPaths;
+}
+
+void CCinemaManager::SetPathsDrawing(const bool drawPath)
+{
+	m_DrawPaths = drawPath;
 }

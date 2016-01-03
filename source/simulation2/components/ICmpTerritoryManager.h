@@ -78,6 +78,11 @@ public:
 	 */
 	 virtual u8 GetTerritoryPercentage(player_id_t player) = 0;
 
+	/**
+	 * Enables or disables rendering of an territory borders.
+	 */
+	virtual void SetVisibility(bool visible) = 0;
+
 	DECLARE_INTERFACE_TYPE(TerritoryManager)
 };
 

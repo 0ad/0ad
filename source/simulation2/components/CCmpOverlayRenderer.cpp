@@ -166,7 +166,7 @@ public:
 
 	void RenderSubmit(SceneCollector& collector)
 	{
-		if (!m_Enabled)
+		if (!m_Enabled || !ICmpOverlayRenderer::m_OverrideVisible)
 			return;
 
 		for (size_t i = 0; i < m_Sprites.size(); ++i)

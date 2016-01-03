@@ -711,6 +711,7 @@ void CComponentManager::AddSystemComponents(bool skipScriptedComponents, bool sk
 {
 	CParamNode noParam;
 	AddComponent(m_SystemEntity, CID_TemplateManager, noParam);
+	AddComponent(m_SystemEntity, CID_CinemaManager, noParam);
 	AddComponent(m_SystemEntity, CID_CommandQueue, noParam);
 	AddComponent(m_SystemEntity, CID_ObstructionManager, noParam);
 	AddComponent(m_SystemEntity, CID_ParticleManager, noParam);

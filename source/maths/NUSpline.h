@@ -24,14 +24,18 @@
 
 #define MAX_SPLINE_NODES 40
 #include <stdlib.h>
+
+#include "FixedVector3D.h"
 #include "Vector3D.h"
 
 struct SplineData
 {
-	CVector3D Position;
+	// Should be fixed, because used in the simulation
+	CFixedVector3D Position;
 	CVector3D Velocity;
-	CVector3D Rotation;
-	float Distance/*, DistanceOffset*/;	//DistanceOffset is to keep track of how far into the spline this node is
+	// TODO: make rotation as other spline
+	CFixedVector3D Rotation;
+	fixed Distance/*, DistanceOffset*/;	//DistanceOffset is to keep track of how far into the spline this node is
 };
 
 class RNSpline
@@ -41,13 +45,13 @@ public:
 	RNSpline() { NodeCount = 0; }
 	virtual ~RNSpline() {}
 
-	void AddNode(const CVector3D& pos);
+	void AddNode(const CFixedVector3D& pos);
 	void BuildSpline();
 	CVector3D GetPosition(float time) const;
 	CVector3D GetRotation(float time) const;
 	const std::vector<SplineData>& GetAllNodes() const { return Node; }
 
-	float MaxDistance;
+	fixed MaxDistance;
 	int NodeCount;
 
 protected:
@@ -70,12 +74,12 @@ class TNSpline : public SNSpline
 public:
 	virtual ~TNSpline() {}
 
-	void AddNode(const CVector3D& pos, const CVector3D& rotation, float timePeriod);
+	void AddNode(const CFixedVector3D& pos, const CFixedVector3D& rotation, fixed timePeriod);
 	void PushNode() { Node.push_back( SplineData() ); }
-	void InsertNode(const int index, const CVector3D& pos, const CVector3D& rotation, float timePeriod);
+	void InsertNode(const int index, const CFixedVector3D& pos, const CFixedVector3D& rotation, fixed timePeriod);
 	void RemoveNode(const int index);
-	void UpdateNodeTime(const int index, float time);
-	void UpdateNodePos(const int index, const CVector3D& pos);
+	void UpdateNodeTime(const int index, fixed time);
+	void UpdateNodePos(const int index, const CFixedVector3D& pos);
 
 	void BuildSpline(){ RNSpline::BuildSpline();  Smooth(); Smooth(); Smooth(); }
 	void Smooth(){ for (int x = 0; x < 3; ++x) { SNSpline::Smooth(); Constrain(); } }
