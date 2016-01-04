@@ -1059,7 +1059,7 @@ std::string XmppClient::ConnectionErrorToString(gloox::ConnectionError err) cons
 	CASE(ConnOutOfMemory, g_L10n.Translate("This system is out of memory"));
 	DEBUG_CASE(ConnNoSupportedAuth, "The authentication mechanisms the server offered are not supported or no authentication mechanisms were available");
 	CASE(ConnTlsFailed, g_L10n.Translate("The server's certificate could not be verified or the TLS handshake did not complete successfully"));
-	CASE(ConnTlsNotAvailable, g_L10n.Translate("The server did not offer required TLS encrytption"));
+	CASE(ConnTlsNotAvailable, g_L10n.Translate("The server did not offer required TLS encryption"));
 	DEBUG_CASE(ConnCompressionFailed, "Negotiation/initializing compression failed");
 	CASE(ConnAuthenticationFailed, g_L10n.Translate("Authentication failed. Incorrect password or account does not exist"));
 	CASE(ConnUserDisconnected, g_L10n.Translate("The user or system requested a disconnect"));
