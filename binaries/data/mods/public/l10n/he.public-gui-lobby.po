@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:00+0100\n"
-"PO-Revision-Date: 2015-12-04 09:50+0000\n"
+"POT-Creation-Date: 2016-01-01 09:00+0100\n"
+"PO-Revision-Date: 2016-01-01 09:56+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -37,100 +37,104 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "לא ידוע "
 
-#: gui/lobby/lobby.js:130
-msgctxt "map size"
-msgid "Any"
-msgstr "כל"
-
-#: gui/lobby/lobby.js:135
-msgctxt "player number"
-msgid "Any"
-msgstr "כל"
-
-#: gui/lobby/lobby.js:139
-msgctxt "map"
-msgid "Any"
-msgstr "כל"
-
-#: gui/lobby/lobby.js:323
-msgid "Moderator"
+#: gui/lobby/lobby.js:111
+msgid "Disconnected."
 msgstr ""
 
-#: gui/lobby/lobby.js:323
-msgid "Player"
-msgstr ""
-
-#: gui/lobby/lobby.js:324 gui/lobby/lobby.js:325 gui/lobby/lobby.js:326
-#: gui/lobby/lobby.js:327 gui/lobby/lobby.js:328 gui/lobby/lobby.js:329
-msgid "N/A"
-msgstr ""
-
-#: gui/lobby/lobby.js:352 gui/lobby/lobby.js:382
-#, javascript-format
-msgid "%(nick)s (%(rating)s)"
-msgstr ""
-
-#: gui/lobby/lobby.js:363 gui/lobby/lobby.js:393
-#, javascript-format
-msgid "%(percentage)s%%"
-msgstr ""
-
-#: gui/lobby/lobby.js:365 gui/lobby/lobby.js:395
-msgctxt "Used for an undefined winning rate"
-msgid "-"
-msgstr ""
-
-#: gui/lobby/lobby.js:544
-#, javascript-format
-msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
-
-#: gui/lobby/lobby.js:581
+#: gui/lobby/lobby.js:123
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s הצטרף "
 
-#: gui/lobby/lobby.js:585
+#: gui/lobby/lobby.js:130
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s עזב"
 
-#: gui/lobby/lobby.js:588
+#: gui/lobby/lobby.js:138
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr ""
 
-#: gui/lobby/lobby.js:697
+#: gui/lobby/lobby.js:206
+msgctxt "map size"
+msgid "Any"
+msgstr "כל"
+
+#: gui/lobby/lobby.js:211
+msgctxt "player number"
+msgid "Any"
+msgstr "כל"
+
+#: gui/lobby/lobby.js:215
+msgctxt "map"
+msgid "Any"
+msgstr "כל"
+
+#: gui/lobby/lobby.js:387
+msgid "Moderator"
+msgstr ""
+
+#: gui/lobby/lobby.js:387
+msgid "Player"
+msgstr ""
+
+#: gui/lobby/lobby.js:388 gui/lobby/lobby.js:389 gui/lobby/lobby.js:390
+#: gui/lobby/lobby.js:391 gui/lobby/lobby.js:392 gui/lobby/lobby.js:393
+msgid "N/A"
+msgstr ""
+
+#: gui/lobby/lobby.js:416 gui/lobby/lobby.js:446
+#, javascript-format
+msgid "%(nick)s (%(rating)s)"
+msgstr ""
+
+#: gui/lobby/lobby.js:427 gui/lobby/lobby.js:457
+#, javascript-format
+msgid "%(percentage)s%%"
+msgstr ""
+
+#: gui/lobby/lobby.js:429 gui/lobby/lobby.js:459
+msgctxt "Used for an undefined winning rate"
+msgid "-"
+msgstr ""
+
+#: gui/lobby/lobby.js:619
+#, javascript-format
+msgid "This game's address '%(ip)s' does not appear to be valid."
+msgstr ""
+
+#: gui/lobby/lobby.js:720
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:771
+#: gui/lobby/lobby.js:794
 #, javascript-format
 msgid "* %(sender)s"
 msgstr ""
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:773
+#: gui/lobby/lobby.js:796
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr ""
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:777 gui/lobby/lobby.js:788 gui/lobby/lobby.js:798
+#: gui/lobby/lobby.js:800 gui/lobby/lobby.js:811 gui/lobby/lobby.js:821
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr ""
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:779 gui/lobby/lobby.js:790 gui/lobby/lobby.js:800
+#: gui/lobby/lobby.js:802 gui/lobby/lobby.js:813 gui/lobby/lobby.js:823
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr ""
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:784
+#: gui/lobby/lobby.js:807
 #, javascript-format
 msgid "== %(message)s"
 msgstr ""
@@ -140,208 +144,208 @@ msgstr ""
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:823
+#: gui/lobby/lobby.js:846
 msgid "HH:mm"
 msgstr ""
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:826
+#: gui/lobby/lobby.js:849
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:829
+#: gui/lobby/lobby.js:852
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:875
+#: gui/lobby/lobby.js:898
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr ""
 
-#: gui/lobby/prelobby.js:40
-msgid "Connecting..."
+#: gui/lobby/prelobby.js:18
+msgid "Authentication failed"
 msgstr ""
 
-#: gui/lobby/prelobby.js:62
-msgid "Registering..."
-msgstr ""
-
-#: gui/lobby/prelobby.js:99
-msgid "Please enter your username"
-msgstr ""
-
-#: gui/lobby/prelobby.js:105
-msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr ""
-
-#: gui/lobby/prelobby.js:111
-msgid "Please enter your password"
-msgstr ""
-
-#: gui/lobby/prelobby.js:124
-msgid "Please enter your password again"
-msgstr ""
-
-#: gui/lobby/prelobby.js:130
-msgid "Passwords do not match"
-msgstr ""
-
-#: gui/lobby/prelobby.js:136
-msgid "Please read the Terms of Service"
-msgstr ""
-
-#: gui/lobby/prelobby.js:142
-msgid "Please read the Terms of Use"
-msgstr ""
-
-#: gui/lobby/prelobby.js:148
-msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
-
-#: gui/lobby/prelobby.js:193
+#: gui/lobby/prelobby.js:22
 msgid "Registered"
 msgstr ""
 
-#: gui/lobby/prelobby.js:203
-msgid "Disconnected"
-msgstr "מנותק "
+#: gui/lobby/prelobby.js:73
+msgid "Connecting..."
+msgstr ""
 
-#: gui/lobby/prelobby.js:244
+#: gui/lobby/prelobby.js:95
+msgid "Registering..."
+msgstr ""
+
+#: gui/lobby/prelobby.js:124
+msgid "Please enter your username"
+msgstr ""
+
+#: gui/lobby/prelobby.js:130
+msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
+msgstr ""
+
+#: gui/lobby/prelobby.js:136
+msgid "Please enter your password"
+msgstr ""
+
+#: gui/lobby/prelobby.js:149
+msgid "Please enter your password again"
+msgstr ""
+
+#: gui/lobby/prelobby.js:155
+msgid "Passwords do not match"
+msgstr ""
+
+#: gui/lobby/prelobby.js:161
+msgid "Please read the Terms of Service"
+msgstr ""
+
+#: gui/lobby/prelobby.js:167
+msgid "Please read the Terms of Use"
+msgstr ""
+
+#: gui/lobby/prelobby.js:173
+msgid "Please agree to the Terms of Service and Terms of Use"
+msgstr ""
+
+#: gui/lobby/prelobby.js:240
 msgid "Register"
 msgstr "להירשם "
 
-#: gui/lobby/prelobby.js:249 gui/lobby/prelobby.xml:(caption):109
+#: gui/lobby/prelobby.js:245 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
 msgstr "להתחבר"
 
-#: gui/lobby/prelobby.js:259 gui/lobby/prelobby.xml:(caption):78
+#: gui/lobby/prelobby.js:255 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
 msgstr ""
 
-#: gui/lobby/prelobby.js:268 gui/lobby/prelobby.xml:(caption):83
+#: gui/lobby/prelobby.js:264 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):16 gui/lobby/prelobby.xml:(caption):18
+#: gui/lobby/lobby.xml:(caption):17 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):50 gui/lobby/lobby.xml:(caption):300
+#: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):301
 msgid "Current Rank:"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):54 gui/lobby/lobby.xml:(caption):304
+#: gui/lobby/lobby.xml:(caption):55 gui/lobby/lobby.xml:(caption):305
 msgid "Highest Rating:"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):58 gui/lobby/lobby.xml:(caption):308
+#: gui/lobby/lobby.xml:(caption):59 gui/lobby/lobby.xml:(caption):309
 msgid "Total Games:"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):62 gui/lobby/lobby.xml:(caption):312
+#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):313
 msgid "Wins:"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):66 gui/lobby/lobby.xml:(caption):316
+#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):317
 msgid "Losses:"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):70 gui/lobby/lobby.xml:(caption):320
+#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):321
 msgid "Win Rate:"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):79 gui/lobby/lobby.xml:(caption):248
+#: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):249
 msgid "Leaderboard"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):87 gui/lobby/lobby.xml:(caption):283
+#: gui/lobby/lobby.xml:(caption):88 gui/lobby/lobby.xml:(caption):284
 msgid "User Profile Lookup"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):116
+#: gui/lobby/lobby.xml:(caption):117
 msgid "Map Type:"
 msgstr "סוג מפה:"
 
-#: gui/lobby/lobby.xml:(caption):128
+#: gui/lobby/lobby.xml:(caption):129
 msgid "Map Size:"
 msgstr "גודל מפה:\n "
 
-#: gui/lobby/lobby.xml:(caption):145
+#: gui/lobby/lobby.xml:(caption):146
 msgid "Players:"
 msgstr "שחקנים: "
 
 #. Join the game currently selected in the list.
-#: gui/lobby/lobby.xml:(caption):154
+#: gui/lobby/lobby.xml:(caption):155
 msgid "Join Game"
 msgstr "הצטרף למשחק"
 
-#: gui/lobby/lobby.xml:(caption):160
+#: gui/lobby/lobby.xml:(caption):161
 msgid "Host Game"
 msgstr "לארח משחק\n "
 
-#: gui/lobby/lobby.xml:(caption):167
+#: gui/lobby/lobby.xml:(caption):168
 msgid "Main Menu"
 msgstr "תפריט ראשי "
 
-#: gui/lobby/lobby.xml:(caption):222
+#: gui/lobby/lobby.xml:(caption):223
 msgid "Show full games"
 msgstr "הצג משחקים מלאים "
 
-#: gui/lobby/lobby.xml:(caption):268 gui/lobby/lobby.xml:(caption):330
+#: gui/lobby/lobby.xml:(caption):269 gui/lobby/lobby.xml:(caption):331
 msgid "Back"
 msgstr "בחזרה "
 
-#: gui/lobby/lobby.xml:(caption):276
+#: gui/lobby/lobby.xml:(caption):277
 msgid "Update"
 msgstr "לעדכן "
 
-#: gui/lobby/lobby.xml:(caption):286
+#: gui/lobby/lobby.xml:(caption):287
 msgid "Enter username:"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):292
+#: gui/lobby/lobby.xml:(caption):293
 msgid "View Profile"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):325
+#: gui/lobby/lobby.xml:(caption):326
 msgid "Player not found."
 msgstr ""
 
-#: gui/lobby/lobby.xml:(heading):27
+#: gui/lobby/lobby.xml:(heading):28
 msgid "Status"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(heading):30 gui/lobby/lobby.xml:(heading):179
-#: gui/lobby/lobby.xml:(heading):258
+#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):180
+#: gui/lobby/lobby.xml:(heading):259
 msgid "Name"
 msgstr "שם"
 
-#: gui/lobby/lobby.xml:(heading):33 gui/lobby/lobby.xml:(heading):261
+#: gui/lobby/lobby.xml:(heading):34 gui/lobby/lobby.xml:(heading):262
 msgid "Rating"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(heading):183
+#: gui/lobby/lobby.xml:(heading):184
 msgid "Map Name"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(heading):186
+#: gui/lobby/lobby.xml:(heading):187
 msgctxt "map"
 msgid "Size"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(heading):189
+#: gui/lobby/lobby.xml:(heading):190
 msgctxt "map"
 msgid "Type"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(heading):192
+#: gui/lobby/lobby.xml:(heading):193
 msgid "Players"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(heading):255
+#: gui/lobby/lobby.xml:(heading):256
 msgid "Rank"
 msgstr "דרגה "
 

@@ -7,12 +7,12 @@
 # marinik_00 <tsiurik@gmail.com>, 2014
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Vladislav Trotsky <flyboooy17@gmail.com>, 2014
-# Андрій Бандура <andriykopanytsia@gmail.com>, 2015
+# Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-12-31 14:02+0000\n"
+"PO-Revision-Date: 2016-01-03 14:13+0000\n"
 "Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -345,31 +345,31 @@ msgstr "Shift + Лівий клік коли тренуєте юніта/ів: �
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
+msgstr "Shift + ліве клацання або виділення лівою кнопкою мишки, щоб додати підрозділ до вибраних"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
+msgstr "Shift + ліве клацання або виділення лівою кнопкою мишки, щоб видалити підрозділ із вибраних"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Alt + виділення підрозділів лівою кнопкою мишки: вибрати тільки бойові підрозділи"
 
 #: gui/manual/intro.txt:79
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgstr "I + виділення підрозділів лівою кнопкою мишки: вибрати тільки незайняті підрозділи"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr ""
+msgstr "Ctrl + ліва клацання на піктограмі підрозділу/групи при декількох обраних підрозділах: виключити підрозділ з обраного"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr ""
+msgstr "Натискання правої кнопки мишки при вибраній будівлі/ях: встановити точку збору для підрозділів, створених/звільнених будівлею."
 
 #: gui/manual/intro.txt:82
 msgid "Ctrl + Right Click with units selected:"
@@ -377,68 +377,68 @@ msgstr "Ctrl + Правий клік з виділеними юнітами:"
 
 #: gui/manual/intro.txt:83
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "- якщо курсор над союзною спорудою: відправити в гарнізон"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr ""
+msgstr " - якщо курсор над недружнім підрозділом або спорудою: атакувати (замість захоплення або збору)"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
+msgstr "- Інакше: атакувати в русі (усталено усі ворожі підрозділи і будівлі атакуються по шляху прямування; використовуйте Ctrl + Q + Права кнопка миші для атаки тільки підрозділів)."
 
 #: gui/manual/intro.txt:87
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Шари"
 
 #: gui/manual/intro.txt:88
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Показати/приховати інтерфейс"
 
 #: gui/manual/intro.txt:89
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "Alt + D: Показати/приховати шар розробника (із налаштуваннями розробниками)"
 
 #: gui/manual/intro.txt:90
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + W: Перемкнути відображення каркасу (одне натискання вмикає відображення каркасів над текстурованими моделями, подвійне — лише каркаси, пофарбовані текстурами, потрійне — повертає у звичайний текстурований режим)"
 
 #: gui/manual/intro.txt:91
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr ""
+msgstr "Alt + S Перемкнути режим відображення силуетів підрозділів (виключення може дати невеликий приріст продуктивності)"
 
 #: gui/manual/intro.txt:92
 msgid "Alt + Z: Toggle sky"
-msgstr ""
+msgstr "Alt + Z: Перемкнути небо"
 
 #: gui/manual/intro.txt:94
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Маніпуляції з камерою"
 
 #: gui/manual/intro.txt:95
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W або \\[up]:Панораму екрану вгору"
 
 #: gui/manual/intro.txt:96
 msgid "S or \\[down]: Pan screen down"
-msgstr ""
+msgstr "S або \\[донизу]: панораму екрана донизу"
 
 #: gui/manual/intro.txt:97
 msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgstr "A або \\[наліво]: повернути панораму екрану наліво"
 
 #: gui/manual/intro.txt:98
 msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgstr "A або \\[направо]: повернути панораму екрану направо"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"

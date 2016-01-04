@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-05-09 17:16+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"POT-Creation-Date: 2016-01-01 09:00+0100\n"
+"PO-Revision-Date: 2016-01-01 09:20+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,19 +21,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:779
+#: gui/scripting/ScriptFunctions.cpp:787
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (build по поръчка)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:784
+#: gui/scripting/ScriptFunctions.cpp:792
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:805
+#: gui/scripting/ScriptFunctions.cpp:813
 msgid "custom build"
 msgstr "build по поръчка"
 
@@ -41,143 +41,139 @@ msgstr "build по поръчка"
 msgid "Long strings"
 msgstr "Дълъг низ от символи"
 
-#: lobby/XmppClient.cpp:223
-msgid "Authentication failed"
-msgstr "неуспешно удостоверяване"
-
-#: lobby/XmppClient.cpp:457
+#: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
 msgstr "Регистрацията не приемлив"
 
-#: lobby/XmppClient.cpp:458
+#: lobby/XmppClient.cpp:456
 msgid "Registration conflict"
 msgstr "Регистрация на конфликти"
 
-#: lobby/XmppClient.cpp:459
+#: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
 msgstr "Регистрацията не упълномощена"
 
-#: lobby/XmppClient.cpp:460
+#: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
 msgstr "Регистрация лошо поискване"
 
-#: lobby/XmppClient.cpp:461
+#: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
 msgstr "Регистрация забранено"
 
-#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1043
+#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:1040
 msgid "Registration required"
 msgstr "изисква Регистрация"
 
-#: lobby/XmppClient.cpp:463
+#: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
 msgstr "Регистрация неочаквано поискване"
 
-#: lobby/XmppClient.cpp:464
+#: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
 msgstr "Регистрацията не е позволена"
 
-#: lobby/XmppClient.cpp:465
+#: lobby/XmppClient.cpp:463
 msgid "Registration unknown error"
 msgstr "Регистрация неизвестна грешка"
 
-#: lobby/XmppClient.cpp:773
+#: lobby/XmppClient.cpp:772
 msgid "unknown subtype (see logs)"
 msgstr "неизвестен подтип ( виж трупи )"
 
-#: lobby/XmppClient.cpp:1028
+#: lobby/XmppClient.cpp:1025
 msgid "Bad request"
 msgstr "Bad поискване"
 
-#: lobby/XmppClient.cpp:1029
+#: lobby/XmppClient.cpp:1026
 msgid "Player name already in use"
 msgstr "Името на играча е вече в употреба"
 
-#: lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1027
 msgid "Feature not implemented"
 msgstr "Функция не изпълнява"
 
-#: lobby/XmppClient.cpp:1031
+#: lobby/XmppClient.cpp:1028
 msgid "Forbidden"
 msgstr "забранен"
 
-#: lobby/XmppClient.cpp:1032
+#: lobby/XmppClient.cpp:1029
 msgid "Recipient or server gone"
 msgstr "Получател или сървър Gone"
 
-#: lobby/XmppClient.cpp:1033
+#: lobby/XmppClient.cpp:1030
 msgid "Internal server error"
 msgstr "Вътрешна грешка на сървъра"
 
-#: lobby/XmppClient.cpp:1034
+#: lobby/XmppClient.cpp:1031
 msgid "Item not found"
 msgstr "Обектът не е намерен"
 
-#: lobby/XmppClient.cpp:1035
+#: lobby/XmppClient.cpp:1032
 msgid "Jid malformed"
 msgstr "Jid не е образуван правилно"
 
-#: lobby/XmppClient.cpp:1036
+#: lobby/XmppClient.cpp:1033
 msgid "Not acceptable"
 msgstr "Не е приемливо"
 
-#: lobby/XmppClient.cpp:1037
+#: lobby/XmppClient.cpp:1034
 msgid "Not allowed"
 msgstr "Не е позволено"
 
-#: lobby/XmppClient.cpp:1038
+#: lobby/XmppClient.cpp:1035
 msgid "Not authorized"
 msgstr "Не е упълномощено"
 
-#: lobby/XmppClient.cpp:1039
+#: lobby/XmppClient.cpp:1036
 msgid "Not modified"
 msgstr "Не е модифицирано"
 
-#: lobby/XmppClient.cpp:1040
+#: lobby/XmppClient.cpp:1037
 msgid "Payment required"
 msgstr "Нужно е плащане"
 
-#: lobby/XmppClient.cpp:1041
+#: lobby/XmppClient.cpp:1038
 msgid "Recipient unavailable"
 msgstr "Получателят не е достъпен"
 
-#: lobby/XmppClient.cpp:1042
+#: lobby/XmppClient.cpp:1039
 msgid "Redirect"
 msgstr "Препращане"
 
-#: lobby/XmppClient.cpp:1044
+#: lobby/XmppClient.cpp:1041
 msgid "Remote server not found"
 msgstr "Външен сървър не е намерен"
 
-#: lobby/XmppClient.cpp:1045
+#: lobby/XmppClient.cpp:1042
 msgid "Remote server timeout"
 msgstr "Таймаут на външният сървър"
 
-#: lobby/XmppClient.cpp:1046
+#: lobby/XmppClient.cpp:1043
 msgid "Resource constraint"
 msgstr "Ограничение на ресурсите"
 
-#: lobby/XmppClient.cpp:1047
+#: lobby/XmppClient.cpp:1044
 msgid "Service unavailable"
 msgstr "Услугата е недостъпна"
 
-#: lobby/XmppClient.cpp:1048
+#: lobby/XmppClient.cpp:1045
 msgid "Subscription Required"
 msgstr "Нужно е абониране"
 
-#: lobby/XmppClient.cpp:1049
+#: lobby/XmppClient.cpp:1046
 msgid "Undefined condition"
 msgstr "Недефинирано състояние"
 
-#: lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1047
 msgid "Unexpected request"
 msgstr "Неочаквана заявка"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1048
 msgid "Unknown sender"
 msgstr "Неизвестен изпращач"
 
-#: lobby/XmppClient.cpp:1053
+#: lobby/XmppClient.cpp:1050
 msgid "Error undefined"
 msgstr "Недефинирана грешка"
 

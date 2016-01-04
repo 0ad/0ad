@@ -11,7 +11,7 @@
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
-# Martin ‌ <mhilgendrf@aol.com>, 2015
+# Martin ‌ <mhilgendrf@aol.com>, 2015-2016
 # Patrik Nilsson <asavartzeth@gmail.com>, 2014
 # theschitz <theodore@theschitz.se>, 2015
 # Ulrika <aurorauddeborg@gmail.com>, 2013
@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-28 10:19+0100\n"
-"PO-Revision-Date: 2015-12-29 13:02+0000\n"
+"PO-Revision-Date: 2016-01-03 21:47+0000\n"
 "Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -39,8 +39,8 @@ msgstr[1] "Grundräckvidd: %(range)s"
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] "Genomsnittlig bonusräckvidd: %(range)s"
-msgstr[1] "Genomsnittlig bonusräckvidd: %(range)s"
+msgstr[0] "Genomsnittlig bonusräckvidd: %(range)s meter"
+msgstr[1] "Genomsnittlig bonusräckvidd: %(range)s meter"
 
 #: gui/session/input.js:717
 msgid "Cannot build wall here!"
@@ -173,7 +173,7 @@ msgstr[1] "Det finns %(numberTrading)s aktiva handelsmän"
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] "%(numberOfLandTraders)s är inaktiva"
+msgstr[0] "%(numberOfLandTraders)s är inaktiv"
 msgstr[1] "%(numberOfLandTraders)s är inaktiva"
 
 #: gui/session/menu.js:526
@@ -223,8 +223,8 @@ msgstr[1] "%(numberOfShipTraders)s inaktiva"
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] "%(numberOfShipTraders)s aktivt handelsskepp"
-msgstr[1] "%(numberOfShipTraders)s aktiva handelsskepp"
+msgstr[0] "%(numberOfShipTraders)s inaktivt handelsskepp"
+msgstr[1] "%(numberOfShipTraders)s inaktiva handelsskepp"
 
 #: gui/session/menu.js:637
 msgid "Current Scores"
@@ -256,7 +256,7 @@ msgstr "Utvecklaröverlägget stängdes."
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "Betala %(resourceAmount)s %(resourceType)s i tribut till %(playerName)s. Shift-klicka för att betala %(greaterAmount)s."
+msgstr "Betala %(resourceAmount)s %(resourceType)s i tribut till %(playerName)s. Skift-klicka för att betala %(greaterAmount)s."
 
 #: gui/session/messages.js:34
 #, javascript-format
@@ -528,7 +528,7 @@ msgstr "%(label)s %(current)s / %(max)s"
 
 #: gui/session/selection_details.js:332
 msgid "Hitpoints:"
-msgstr "Hälsopoäng"
+msgstr "Hälsopoäng:"
 
 #: gui/session/selection_details.js:364
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
@@ -663,7 +663,7 @@ msgstr "%(buildings)s*%(batchSize)s"
 
 #: gui/session/selection_panels_helpers.js:114
 msgid "Shift-click"
-msgstr "Shift-klicka"
+msgstr "Skift-klicka"
 
 #: gui/session/selection_panels_helpers.js:123
 #, javascript-format
@@ -1037,7 +1037,7 @@ msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr "Välj en vara som ursprung av handeln, använd sedan pilarna vid andra varor för att göra förändringar (använd shift för att ändra den valda resursen till 100%)"
+msgstr "Välj en vara som ursprung av handeln, använd sedan pilarna vid andra varor för att göra förändringar (använd skift för att ändra den valda resursen till 100%)"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"

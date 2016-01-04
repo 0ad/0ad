@@ -8,7 +8,7 @@
 # guicho2.71828 <guicho2.71828@gmail.com>, 2014
 # jiroramo <billiken316@yahoo.co.jp>, 2013
 # Kanetaka Suto, 2013
-# Kanetaka Suto, 2014-2015
+# Kanetaka Suto, 2014-2016
 # llen_llen, 2013
 # llen_llen, 2014
 # Mephisto Books <martin.route66.blues+transifex@gmail.com>, 2014
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-28 10:19+0100\n"
-"PO-Revision-Date: 2015-12-28 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-01 09:27+0000\n"
+"Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -217,7 +217,7 @@ msgstr[0] "%(numberOfShipTraders)s隻の交易船が待機"
 
 #: gui/session/menu.js:637
 msgid "Current Scores"
-msgstr ""
+msgstr "現在の得点"
 
 #: gui/session/menu.js:663 gui/session/menu.js:686
 msgid "Resume"
@@ -340,17 +340,17 @@ msgstr "%(player)sはあなたと中立になりました。"
 #: gui/session/messages.js:87
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)sは%(player2)sと同盟しました。"
 
 #: gui/session/messages.js:88
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)sはあなたに%(player2)sしました。"
 
 #: gui/session/messages.js:89
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)sは%(player2)sと中立になりました。"
 
 #: gui/session/messages.js:97
 #, javascript-format
@@ -360,7 +360,7 @@ msgstr "%(player)sはあなたに%(amounts)sを贈りました。"
 #: gui/session/messages.js:98
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)sは%(player2)sに%(amounts)sを贈りました。"
 
 #: gui/session/messages.js:105
 #, javascript-format
@@ -398,7 +398,7 @@ msgstr "%(player)sがゲームに復帰しました。"
 
 #: gui/session/messages.js:539 gui/session/messages.js:546
 msgid "Unknown Player"
-msgstr ""
+msgstr "不明なプレイヤー"
 
 #: gui/session/messages.js:633
 #, javascript-format
