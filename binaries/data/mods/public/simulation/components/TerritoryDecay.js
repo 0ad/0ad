@@ -1,7 +1,7 @@
 function TerritoryDecay() {}
 
 TerritoryDecay.prototype.Schema =
-	"<element name='DecayRate' a:help='Decay rate in hitpoints per second'>" +
+	"<element name='DecayRate' a:help='Decay rate in capture points per second'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>";
 
