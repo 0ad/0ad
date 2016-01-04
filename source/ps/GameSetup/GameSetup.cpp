@@ -35,6 +35,7 @@
 #include "lib/sysdep/os/win/wversion.h"
 #endif
 
+#include "graphics/CinemaManager.h"
 #include "graphics/CinemaPath.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/GameView.h"
@@ -227,6 +228,11 @@ void Render()
 	ogl_WarnIfError();
 
 	g_Renderer.RenderTextOverlays();
+
+	if (g_Game && g_Game->IsGameStarted())
+		g_Game->GetView()->GetCinema()->Render();
+
+	ogl_WarnIfError();
 
 	if (g_DoRenderGui)
 		g_GUI->Draw();
@@ -568,6 +574,8 @@ static void InitInput()
 	in_add_handler(gui_handler);
 
 	in_add_handler(touch_input_handler);
+	
+	in_add_handler(cinema_manager_handler);
 
 	// must be registered after (called before) the GUI which relies on these globals
 	in_add_handler(GlobalsInputHandler);

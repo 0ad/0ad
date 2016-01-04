@@ -456,7 +456,7 @@ private:
 	void ReadTerrain(XMBElement parent);
 	void ReadEnvironment(XMBElement parent);
 	void ReadCamera(XMBElement parent);
-	void ReadCinema(XMBElement parent);
+	void ReadPaths(XMBElement parent);
 	void ReadTriggers(XMBElement parent);
 	int ReadEntities(XMBElement parent, double end_time);
 };
@@ -839,120 +839,115 @@ void CXMLReader::ReadCamera(XMBElement parent)
 	}
 }
 
-void CXMLReader::ReadCinema(XMBElement parent)
+void CXMLReader::ReadPaths(XMBElement parent)
 {
 	#define EL(x) int el_##x = xmb_file.GetElementID(#x)
 	#define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
 
 	EL(path);
 	EL(rotation);
-	EL(distortion);
 	EL(node);
 	EL(position);
-	EL(time);
+	EL(target);
 	AT(name);
 	AT(timescale);
+	AT(orientation);
 	AT(mode);
 	AT(style);
-	AT(growth);
-	AT(switch);
 	AT(x);
 	AT(y);
 	AT(z);
+	AT(deltatime);
 
 #undef EL
 #undef AT
-	
-	std::map<CStrW, CCinemaPath> pathList;
+
 	XERO_ITER_EL(parent, element)
 	{
 		int elementName = element.GetNodeName();
 			
 		if (elementName == el_path)
 		{
-			XMBAttributeList attrs = element.GetAttributes();
-			CStrW name(attrs.GetNamedItem(at_name).FromUTF8());
-			float timescale = attrs.GetNamedItem(at_timescale).ToFloat();
 			CCinemaData pathData;
-			pathData.m_Timescale = timescale;
-			TNSpline spline, backwardSpline;
+			XMBAttributeList attrs = element.GetAttributes();
+			CStrW pathName(attrs.GetNamedItem(at_name).FromUTF8());
+			pathData.m_Timescale = fixed::FromString(attrs.GetNamedItem(at_timescale));
+			TNSpline pathSpline, targetSpline;
+			fixed lastTargetTime = fixed::Zero();
+
+			pathData.m_Name = pathName;
+			pathData.m_Orientation = attrs.GetNamedItem(at_orientation).FromUTF8();
+			pathData.m_Mode = attrs.GetNamedItem(at_mode).FromUTF8();
+			pathData.m_Style = attrs.GetNamedItem(at_style).FromUTF8();
 
 			XERO_ITER_EL(element, pathChild)
 			{
 				elementName = pathChild.GetNodeName();
 				attrs = pathChild.GetAttributes();
 
-				//Load distortion attributes
-				if (elementName == el_distortion)
+				// Load node data used for spline
+				if (elementName == el_node)
 				{
-						pathData.m_Mode = attrs.GetNamedItem(at_mode).ToInt();
-						pathData.m_Style = attrs.GetNamedItem(at_style).ToInt();
-						pathData.m_Growth = attrs.GetNamedItem(at_growth).ToInt();
-						pathData.m_Switch = attrs.GetNamedItem(at_switch).ToInt();
-				}
-				
-				//Load node data used for spline
-				else if (elementName == el_node)
-				{
+					bool positionDeclared = false;
 					SplineData data;
+					data.Distance = fixed::FromString(attrs.GetNamedItem(at_deltatime));
+					lastTargetTime += fixed::FromString(attrs.GetNamedItem(at_deltatime));
 					XERO_ITER_EL(pathChild, nodeChild)
 					{
 						elementName = nodeChild.GetNodeName();
 						attrs = nodeChild.GetAttributes();
-						
-						//Fix?:  assumes that time is last element
+
 						if (elementName == el_position)
 						{
-							data.Position.X = attrs.GetNamedItem(at_x).ToFloat();
-							data.Position.Y = attrs.GetNamedItem(at_y).ToFloat();
-							data.Position.Z = attrs.GetNamedItem(at_z).ToFloat();
-							continue;
+							data.Position.X = fixed::FromString(attrs.GetNamedItem(at_x));
+							data.Position.Y = fixed::FromString(attrs.GetNamedItem(at_y));
+							data.Position.Z = fixed::FromString(attrs.GetNamedItem(at_z));
+							positionDeclared = true;
 						}
 						else if (elementName == el_rotation)
 						{
-							data.Rotation.X = attrs.GetNamedItem(at_x).ToFloat();
-							data.Rotation.Y = attrs.GetNamedItem(at_y).ToFloat();
-							data.Rotation.Z = attrs.GetNamedItem(at_z).ToFloat();
-							continue;
+							data.Rotation.X = fixed::FromString(attrs.GetNamedItem(at_x));
+							data.Rotation.Y = fixed::FromString(attrs.GetNamedItem(at_y));
+							data.Rotation.Z = fixed::FromString(attrs.GetNamedItem(at_z));
 						}
-						else if (elementName == el_time)
-							data.Distance = nodeChild.GetText().ToFloat();
+						else if (elementName == el_target)
+						{
+							CFixedVector3D targetPosition;
+							targetPosition.X = fixed::FromString(attrs.GetNamedItem(at_x));
+							targetPosition.Y = fixed::FromString(attrs.GetNamedItem(at_y));
+							targetPosition.Z = fixed::FromString(attrs.GetNamedItem(at_z));
+
+							targetSpline.AddNode(targetPosition, CFixedVector3D(), lastTargetTime);
+							lastTargetTime = fixed::Zero();
+						}
 						else 
-							debug_warn(L"Invalid cinematic element for node child");
-					
-						backwardSpline.AddNode(data.Position, data.Rotation, data.Distance);
+							LOGWARNING("Invalid cinematic element for node child");
 					}
+
+					// Skip the node if no position
+					if (positionDeclared)
+						pathSpline.AddNode(data.Position, data.Rotation, data.Distance);
 				}
 				else
-					debug_warn(L"Invalid cinematic element for path child");
-				
-				
+					LOGWARNING("Invalid cinematic element for path child");
 			}
 
-			//Construct cinema path with data gathered
-			CCinemaPath temp(pathData, backwardSpline);
-			const std::vector<SplineData>& nodes = temp.GetAllNodes();
-			if (nodes.empty())
+			// Construct cinema path with data gathered
+			CCinemaPath path(pathData, pathSpline, targetSpline);
+			if (path.Empty())
 			{
-				debug_warn(L"Failure loading cinematics");
+				LOGWARNING("Path with name '%s' is empty", pathName.ToUTF8());
 				return;
 			}
 					
-			for (std::vector<SplineData>::const_reverse_iterator it = nodes.rbegin(); 
-				it != nodes.rend(); ++it)
-			{
-				spline.AddNode(it->Position, it->Rotation, it->Distance);
-			}
-				
-			CCinemaPath path(pathData, spline);
-			pathList[name] = path;	
+			if (!m_MapReader.pCinema->HasPath(pathName))
+				m_MapReader.pCinema->AddPath(pathName, path);
+			else
+				LOGWARNING("Path with name '%s' already exists", pathName.ToUTF8());
 		}
 		else
-			ENSURE("Invalid cinema child");
+			LOGWARNING("Invalid path child with name '%s'", element.GetText());
 	}
-
-	if (m_MapReader.pCinema)
-		m_MapReader.pCinema->SetAllPaths(pathList);
 }
 
 void CXMLReader::ReadTriggers(XMBElement UNUSED(parent))
@@ -1125,7 +1120,7 @@ void CXMLReader::ReadXML()
 		}
 		else if (name == "Paths")
 		{
-			ReadCinema(node);
+			ReadPaths(node);
 		}
 		else if (name == "Triggers")
 		{

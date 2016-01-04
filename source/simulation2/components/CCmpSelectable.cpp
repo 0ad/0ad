@@ -587,6 +587,9 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 {
 	// don't render selection overlay if it's not gonna be visible
+	if (!ICmpSelectable::m_OverrideVisible)
+		return;
+
 	if (m_Visible && m_Color.a > 0)
 	{
 		if (!m_Cached)

@@ -29,42 +29,42 @@ var g_ChatTimers = [];
  */
 var g_NetMessageTypes = {
 	"netstatus": msg => handleNetStatusMessage(msg),
-	"players":   msg => handlePlayerAssignmentsMessage(msg),
-	"rejoined":  msg => addChatMessage({ "type": "rejoined", "guid": msg.guid }),
-	"kicked":    msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": msg.username }) }),
-	"banned":    msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": msg.username }) }),
-	"chat":      msg => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text }),
-	"aichat":    msg => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text, "translate": true }),
+	"players": msg => handlePlayerAssignmentsMessage(msg),
+	"rejoined": msg => addChatMessage({ "type": "rejoined", "guid": msg.guid }),
+	"kicked": msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": msg.username }) }),
+	"banned": msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": msg.username }) }),
+	"chat": msg => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text }),
+	"aichat": msg => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text, "translate": true }),
 	"gamesetup": msg => "", // Needed for autostart
-	"start":     msg => ""
+	"start": msg => ""
 };
 
 var g_FormatChatMessage = {
-	"system":     msg => msg.text,
-	"connect":    msg => sprintf(translate("%(player)s is starting to rejoin the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
+	"system": msg => msg.text,
+	"connect": msg => sprintf(translate("%(player)s is starting to rejoin the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
 	"disconnect": msg => sprintf(translate("%(player)s has left the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
-	"rejoined":   msg => sprintf(translate("%(player)s has rejoined the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
+	"rejoined": msg => sprintf(translate("%(player)s has rejoined the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
 	"clientlist": msg => getUsernameList(),
-	"message":    msg => formatChatCommand(msg),
-	"defeat":     msg => formatDefeatMessage(msg),
-	"diplomacy":  msg => formatDiplomacyMessage(msg),
-	"tribute":    msg => formatTributeMessage(msg),
-	"attack":     msg => formatAttackMessage(msg)
+	"message": msg => formatChatCommand(msg),
+	"defeat": msg => formatDefeatMessage(msg),
+	"diplomacy": msg => formatDiplomacyMessage(msg),
+	"tribute": msg => formatTributeMessage(msg),
+	"attack": msg => formatAttackMessage(msg)
 };
 
 /**
  * Show a label and grey overlay or hide both on connection change.
  */
 var g_StatusMessageTypes = {
-	"authenticated":       msg => translate("Connection to the server has been authenticated."),
-	"connected":           msg => translate("Connected to the server."),
-	"disconnected":        msg => translate("Connection to the server has been lost.") + "\n" +
-	                                  // Translation: States the reason why the client disconnected from the server.
-	                                  sprintf(translate("Reason: %(reason)s."), { "reason": g_DisconnectReason[msg.reason] || g_DisconnectReason[0] }) + "\n" +
-	                                  translate("The game has ended."),
+	"authenticated": msg => translate("Connection to the server has been authenticated."),
+	"connected": msg => translate("Connected to the server."),
+	"disconnected": msg => translate("Connection to the server has been lost.") + "\n" +
+	                // Translation: States the reason why the client disconnected from the server.
+	                sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason) }) + "\n" +
+	                translate("The game has ended."),
 	"waiting_for_players": msg => translate("Waiting for other players to connect..."),
-	"join_syncing":        msg => translate("Synchronising gameplay with other players..."),
-	"active":              msg => ""
+	"join_syncing": msg => translate("Synchronising gameplay with other players..."),
+	"active": msg => ""
 };
 
 /**
@@ -131,31 +131,6 @@ var g_DiplomacyMessages = {
 		"enemy": translate("%(player)s is now at war with %(player2)s."),
 		"neutral": translate("%(player)s is now neutral with %(player2)s.")
 	}
-};
-
-/**
- * Chatmessage shown when a player sends resources to another.
- */
-var g_TributeMessages = {
-	"passive": translate("%(player)s has sent you %(amounts)s."),
-	"observer": translate("%(player)s has sent %(player2)s %(amounts)s.")
-};
-
-/**
- * Chatmessage shown shown on attack.
- */
-var g_AttackMessageTypes = {
-	"regular": translate("You have been attacked by %(attacker)s!"),
-	"livestock": translate("Your livestock has been attacked by %(attacker)s!")
-};
-
-/**
- * Chatmessage shown on player defeat.
- * In singleplayer, the local player is "You". "You has" is incorrect.
- */
-var g_DefeatMessages = {
-	"regular": translate("%(player)s has been defeated."),
-	"you": translate("You have been defeated.")
 };
 
 /**
@@ -581,7 +556,12 @@ function colorizePlayernameByGUID(guid)
 
 function formatDefeatMessage(msg)
 {
-	return sprintf(g_DefeatMessages[!g_IsNetworked && msg.player == Engine.GetPlayerID() ? "you" : "regular"], {
+	// In singleplayer, the local player is "You". "You has" is incorrect.
+	let message = !g_IsNetworked && msg.player == Engine.GetPlayerID() ?
+			translate("You have been defeated.") :
+			translate("%(player)s has been defeated.");
+
+	return sprintf(message, {
 		"player": colorizePlayernameByID(msg.player)
 	});
 }
@@ -607,12 +587,14 @@ function formatDiplomacyMessage(msg)
 
 function formatTributeMessage(msg)
 {
-	// As observer we also want to see if the selected player in the developer-overlay has sent tributes
-	let messageType = g_IsObserver ? "observer" : (msg.targetPlayer == Engine.GetPlayerID() ? "passive" : "");
-	if (!g_TributeMessages[messageType])
-		return "";
+	// Check observer first, since we also want to see if the selected player in the developer-overlay has sent tributes
+	let message = "";
+	if (g_IsObserver)
+		message = translate("%(player)s has sent %(player2)s %(amounts)s.");
+	else if (msg.targetPlayer == Engine.GetPlayerID())
+		message = translate("%(player)s has sent you %(amounts)s.");
 
-	return sprintf(g_TributeMessages[messageType], {
+	return sprintf(message, {
 		"player": colorizePlayernameByID(msg.sourcePlayer),
 		"player2": colorizePlayernameByID(msg.targetPlayer),
 		"amounts": getLocalizedResourceAmounts(msg.amounts)
@@ -625,7 +607,11 @@ function formatAttackMessage(msg)
 	if (msg.player != Engine.GetPlayerID())
 		return "";
 
-	return sprintf(g_AttackMessageTypes[msg.targetIsDomesticAnimal ? "livestock" : "regular"], {
+	let message = msg.targetIsDomesticAnimal ?
+			translate("Your livestock has been attacked by %(attacker)s!") :
+			translate("You have been attacked by %(attacker)s!");
+
+	return sprintf(message, {
 		"attacker": colorizePlayernameByID(msg.attacker)
 	});
 }

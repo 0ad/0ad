@@ -3,40 +3,7 @@ var g_EncrytedPassword = "";
 var g_PasswordInputIsHidden = false;
 var g_TermsOfServiceRead = false;
 var g_TermsOfUseRead = false;
-var g_HasSystemMessage = false;
-
-/**
- * Notifications sent by XmppClient.cpp
- * Other types are handled in lobby.js
- */
-var g_SystemMessageTypes = {
-	"error": (message, username, password) => {
-		Engine.GetGUIObjectByName("feedback").caption = message.text;
-		Engine.StopXmppClient();
-	},
-	"login-failed": (message, username, password) => {
-		Engine.GetGUIObjectByName("feedback").caption = translate("Authentication failed");
-		Engine.StopXmppClient();
-	},
-	"registered": (message, username, password) => {
-		Engine.GetGUIObjectByName("feedback").caption = translate("Registered");
-		Engine.GetGUIObjectByName("connectUsername").caption = username;
-		Engine.GetGUIObjectByName("connectPassword").caption = password;
-		Engine.StopXmppClient();
-		switchPage("connect");
-	},
-	"connected": (message, username, password) => {
-		Engine.PopGuiPage();
-		Engine.SwitchGuiPage("page_lobby.xml");
-		
-		Engine.ConfigDB_CreateValue("user", "playername", sanitizePlayerName(username, true, true));
-		Engine.ConfigDB_CreateValue("user", "lobby.login", username);
-		if (password != g_EncrytedPassword.substring(0, 10))
-			g_EncrytedPassword = Engine.EncryptPassword(password, username);
-		Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncrytedPassword);
-		Engine.ConfigDB_WriteFile("user", "config/user.cfg");
-	}
-};
+var g_DisplayingSystemMessage = false;
 
 function init()
 {
@@ -49,7 +16,7 @@ function lobbyStop()
 {
 	Engine.GetGUIObjectByName("feedback").caption = "";
 
-	if (g_LobbyIsConnecting == false)
+	if (!g_LobbyIsConnecting)
 		return;
 
 	g_LobbyIsConnecting = false;
@@ -116,6 +83,7 @@ function onTick()
 	else if (!Engine.GetGUIObjectByName("pageWelcome").hidden)
 	{
 		feedback.caption = "";
+		g_DisplayingSystemMessage = false;
 	}
 	// Check that they entered a username.
 	else if (!username)
@@ -138,7 +106,7 @@ function onTick()
 	// Allow them to connect if tests pass up to this point.
 	else if (pageRegisterHidden)
 	{
-		if (!g_HasSystemMessage)
+		if (!g_DisplayingSystemMessage)
 			feedback.caption = "";
 		continueButton.enabled = true;
 	}
@@ -175,31 +143,52 @@ function onTick()
 	// Allow them to register.
 	else
 	{
-		if (!g_HasSystemMessage)
+		if (!g_DisplayingSystemMessage)
 			feedback.caption = "";
 		continueButton.enabled = true;
 	}
 
-	if (!g_LobbyIsConnecting)
-		// The Xmpp Client has not been created
-		return;
-
-	// The XmppClient has been created, we are waiting
-	// to be connected or to receive an error.
-	while (true)
+	// Handle queued messages from the XMPP client (if running and if any)
+	var message;
+	while ((message = Engine.LobbyGuiPollMessage()) != undefined)
 	{
-		let message = Engine.LobbyGuiPollMessage();
-		if (!message)
-			break;
-
-		if (message.type != "system")
+		// TODO: Properly deal with unrecognized messages
+		if (message.type != "system" || !message.level)
 			continue;
 
-		g_HasSystemMessage = true;
 		g_LobbyIsConnecting = false;
 
-		if (g_SystemMessageTypes[message.level])
-			g_SystemMessageTypes[message.level](message, username, password);
+		switch(message.level) {
+		case "error":
+		case "disconnected":
+		{
+			Engine.GetGUIObjectByName("feedback").caption = message.text;
+			g_DisplayingSystemMessage = true;
+			Engine.StopXmppClient();
+			break;
+		}
+		case "registered":
+			Engine.GetGUIObjectByName("feedback").caption = translate("Registered");
+			g_DisplayingSystemMessage = true;
+			Engine.GetGUIObjectByName("connectUsername").caption = username;
+			Engine.GetGUIObjectByName("connectPassword").caption = password;
+			Engine.StopXmppClient();
+			switchPage("connect");
+			break;
+		case "connected":
+		{
+			Engine.PopGuiPage();
+			Engine.SwitchGuiPage("page_lobby.xml");
+			Engine.ConfigDB_CreateValue("user", "playername", sanitizePlayerName(username, true, true));
+			Engine.ConfigDB_CreateValue("user", "lobby.login", username);
+			// We only store the encrypted password, so make sure to re-encrypt it if changed before saving.
+			if (password != g_EncrytedPassword.substring(0, 10))
+				g_EncrytedPassword = Engine.EncryptPassword(password, username);
+			Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncrytedPassword);
+			Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+			break;
+		}
+		}
 	}
 }
 

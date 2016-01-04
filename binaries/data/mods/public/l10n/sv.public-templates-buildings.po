@@ -8,7 +8,7 @@
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 # leper <leper@wildfiregames.com>, 2015
 # Marco tom Suden, 2014
-# Martin ‌ <mhilgendrf@aol.com>, 2015
+# Martin ‌ <mhilgendrf@aol.com>, 2015-2016
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # Simon Österberg <simon.osterberg@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-22 15:12+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2016-01-03 21:36+0000\n"
+"Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +148,7 @@ msgstr "Stadsport"
 #: simulation/templates/template_structure_defense_wall_gate.xml:31
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Låter enheter komma igenom stadsmur. Kan låsas för att förhindra åtkomst."
+msgstr "Låter enheter komma igenom en stadsmur. Kan låsas för att förhindra åtkomst."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:18
 #: simulation/templates/template_structure_defense_wall_medium.xml:18
@@ -166,7 +166,7 @@ msgstr "Långa murdelar kan göras om till portar."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:59
 msgid "Convert Stone Wall into City Gate"
-msgstr "Konvertera Stenmur till Stadsport"
+msgstr "Bygg om Stenmur till Stadsport"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
@@ -796,7 +796,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr "Träna prästinnor för att hela dina trupper. Träna Heliga Band pikenerare. Garnisonera upp till 20 enheter för att hela dem snabbt."
+msgstr "Träna prästinnor för att hela dina trupper. Träna Pikenerare av Heliga Skaran. Garnisonera upp till 20 enheter för att hela dem snabbt."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -1048,7 +1048,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:26
 msgid "Edict Pillar of Ashoka"
-msgstr ""
+msgstr "Edikt Pelare av Ashoka"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:27
 msgid "Śāsana Stambha Aśokā"
@@ -1320,7 +1320,7 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Billig baracker-liknande struktur som är byggbar i neutralt territorium, men som intehar något territorieinflytande.\n- Utbilda legosoldater.\n- Min. avstånd från andra militära byggnader: 100 meter."
+msgstr "Billig baracker-liknande struktur som är byggbar i neutralt territorium, men som inte har något territorieinflytande.\n- Utbilda legosoldater.\n- Min. avstånd från andra militära byggnader: 100 meter."
 
 #: simulation/templates/structures/ptol_military_colony.xml:24
 #: simulation/templates/structures/sele_military_colony.xml:24
@@ -1341,7 +1341,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Detta är den Ptolemaiska expansionsbyggnaden, liknande samhällsbyggnaden för andra fraktioner. Det är svagare och har mindre territorieinflytande, men är billigare och byggs snabbare.\n- Utbilda medborgarsoldater av olika nationaliteter.\n- Min. avstånd från andra militära kolonier: 120 meter."
+msgstr "Detta är den Ptolemeiska expansionsbyggnaden, liknande samhällsbyggnaden för andra fraktioner. Den är svagare och har mindre territorieinflytande, men är billigare och byggs snabbare.\n- Utbilda medborgarsoldater av olika nationaliteter.\n- Min. avstånd från andra militära kolonier: 120 meter."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1466,7 +1466,7 @@ msgstr "En palissad av trä och grästorvor som kan byggas i fientliga och neutr
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:58
 msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Konvertera belägringsvägg till belägringsväggsport."
+msgstr "Bygg om Belägringsvägg till Belägringsväggsport."
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
@@ -1597,7 +1597,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Detta är den Seleukidiska expansionsbyggnaden, liknande samhällsbyggnaden för andra fraktioner. Det är svagare och har mindre territorieinflytande, men är billigare och byggs snabbare.\n- Utbilda medborgarsoldater av olika nationaliteter.\n- Min. avstånd från andra militära kolonier: 120 meter."
+msgstr "Detta är den Seleukidiska expansionsbyggnaden, liknande samhällsbyggnaden för andra fraktioner. Den är svagare och har mindre territorieinflytande, men är billigare och byggs snabbare.\n- Utbilda medborgarsoldater av olika nationaliteter.\n- Min. avstånd från andra militära kolonier: 120 meter."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1609,7 +1609,7 @@ msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Paradise of Daphne"
-msgstr ""
+msgstr "Daphnes Paradis"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"

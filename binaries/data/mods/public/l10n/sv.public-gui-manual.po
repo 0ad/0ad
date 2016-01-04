@@ -5,13 +5,13 @@
 # Translators:
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
-# Martin ‌ <mhilgendrf@aol.com>, 2015
+# Martin ‌ <mhilgendrf@aol.com>, 2015-2016
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-12-16 17:59+0000\n"
+"PO-Revision-Date: 2016-01-03 21:47+0000\n"
 "Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Du kan växla mellan fullskärm och fönsterläge genom att trycka Alt + Enter. I fönsterläge kan du ändra fönstrets storlek. Om spelet är för slött, kan du ändra några inställningar i konfigurationsfilen: kolla i binaries/data/config/default.cfg där du installerade spelet, vilket ger instruktioner för ändringar, och testa att avaktivera \"fancywater\" samt \"shadows\" inställningarna."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -71,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Kontrollen och spelupplevelsen känns igen från liknande RTS-spel. Just nu fattas många detaljer och det är ojämnt fördelade poäng - du måste förmodligen vänta på en beta-version för att det ska fungera bättre."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -95,7 +95,7 @@ msgstr "• Piltangenterna eller WASD-tangenterna flyttar kameran."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "• Ctrl + piltangenterna, eller Shift + mushjulet, roterar kameran."
+msgstr "• Ctrl + piltangenterna, eller Skift + mushjulet, roterar kameran."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
@@ -116,7 +116,7 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Singelspelare[font=\"sans-14\"] — spela ett sandlåde-spel eller mot en eller flera AI motståndare. AI är under utveckling och är kanske inte uppdaterade med nya detaljer, men du kan testa att spela spelet mot en verklig motspelare om du inte kan spela med en människa."
 
 #: gui/manual/intro.txt:24
 msgid ""
@@ -199,7 +199,7 @@ msgstr "F11: Aktivera/avaktivera realtids profilerare (växlar igenom visningen 
 
 #: gui/manual/intro.txt:44
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11: Spara nuvarande profildata till \"logs/profile.txt\""
+msgstr "Skift + F11: Spara nuvarande profildata till \"logs/profile.txt\""
 
 #: gui/manual/intro.txt:45
 msgid ""
@@ -213,7 +213,7 @@ msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2: Ta stor skärmdump (6400px*4800px, i .bmp-format, platsen  visas i uppe till vänster av GUI efter att filen har sparats, och kan också ses i console/logs om du saknar den där)"
+msgstr "Skift + F2: Ta stor skärmdump (6400px*4800px, i .bmp-format, platsen  visas i hörnet uppe till vänster av GUI efter att filen har sparats, och kan också ses i console/logs om du saknar den där)"
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -245,11 +245,11 @@ msgstr "Alt + Trippel Vänsterklick [på enhet]: Välj alla enheter av samma typ
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
-msgstr "Shift + F5: Snabbspara"
+msgstr "Skift + F5: Snabbspara"
 
 #: gui/manual/intro.txt:54
 msgid "Shift + F8: Quickload"
-msgstr "Shift + F8: Snabbladda"
+msgstr "Skift + F8: Snabbladda"
 
 #: gui/manual/intro.txt:55
 msgid "F10: Open/close menu"
@@ -305,7 +305,7 @@ msgstr "1 (osv upp till 0): Välj enheterna/byggnaderna i kontrollgrupp 1 (till 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Skift 1 (till 0): Lägg till kontrollgrupp 1 (till 0) till de utvalda enheter/byggnader"
+msgstr "Skift + 1 (till 0): Lägg till kontrollgrupp 1 (till 0) till de utvalda enheter/byggnader"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -327,7 +327,7 @@ msgstr "Z, X, C, V, B, N, M: Med utvald träningsbyggnad. Lägg till den 1:a, 2:
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr "[font=\"sans-bold-14\"]Ändra muskänsligheten"
+msgstr "[font=\"sans-bold-14\"]Ändra Mus aktion"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
@@ -335,16 +335,16 @@ msgstr "[font=\"sans-14\"]Ctrl + Högerklick på byggnad: Garnison"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Shift + Högerklick: Köa flytta/bygg/samla/osv-ordern"
+msgstr "Skift + Högerklick: Köa flytta/bygg/samla/osv-ordern"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shift + Vänsterklick när man tränar enhet/er: Lägg till enheter i en sats om fem"
+msgstr "Skift + Vänsterklick när man tränar enhet/er: Lägg till enheter i en sats om fem"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + Vänsterklick eller Vänsterdrag över enhet på karta: Lägg till enhet till valet"
+msgstr "Skift + Vänsterklick eller Vänsterdrag över enhet på karta: Lägg till enhet till valet"
 
 #: gui/manual/intro.txt:77
 msgid ""
@@ -433,7 +433,7 @@ msgstr "S eller \\[down]: Panorera skärmen neråt"
 
 #: gui/manual/intro.txt:97
 msgid "A or \\[left]: Pan screen left"
-msgstr "A eller \\[left]: Panorera skärmen åt vänter"
+msgstr "A eller \\[left]: Panorera skärmen åt vänster"
 
 #: gui/manual/intro.txt:98
 msgid "D or \\[right]: Pan screen right"
@@ -465,12 +465,12 @@ msgstr "E: Rotera kameran moturs runt terrängen"
 
 #: gui/manual/intro.txt:105
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr "Shift + Scrolla Upåt: Rotera kameran medurs runt terräng"
+msgstr "Skift + Scrolla Upåt: Rotera kameran medurs runt terräng"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr "Shift + Scrolla Nedåt: Rotera kameran moturs runt terräng"
+msgstr "Skift + Scrolla Nedåt: Rotera kameran moturs runt terräng"
 
 #: gui/manual/intro.txt:107
 msgid ""
@@ -498,7 +498,7 @@ msgstr "Alt + W: Växla genom trådmodellslägen"
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "Mitt-klick eller / (Snedstreck): Håll tryckt och rör musen för att panorera."
 
 #: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]During Building Placement"

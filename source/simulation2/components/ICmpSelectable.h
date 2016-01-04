@@ -67,6 +67,15 @@ public:
 	virtual void SetVisibility(bool visible) = 0;
 
 	/**
+	* Enables or disables rendering of all entities selectable.
+	* @param visible Whether the selectable should be visible.
+	*/
+	static void SetOverrideVisibility(bool visible)
+	{
+		ICmpSelectable::m_OverrideVisible = visible;
+	}
+
+	/**
 	 * Set the alpha of the selection highlight. Set to 0 to hide the highlight.
 	 */
 	virtual void SetSelectionHighlightAlpha(float alpha) = 0;
@@ -77,6 +86,9 @@ public:
 	// and methods, where we can keep settings like these. Note that any such data store would need to be per-component-manager
 	// and not entirely global, to support multiple simulation instances.
 	static bool ms_EnableDebugOverlays; // ms for member static
+
+protected:
+	static bool m_OverrideVisible;
 };
 
 #endif // INCLUDED_ICMPSELECTABLE

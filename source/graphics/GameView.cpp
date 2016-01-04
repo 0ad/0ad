@@ -626,12 +626,9 @@ void CGameView::Update(const float deltaRealTime)
 	if (!g_app_has_focus)
 		return;
 
-	if (m->CinemaManager.IsActive() && m->CinemaManager.IsPlaying())
+	if (m->CinemaManager.GetEnabled())
 	{
-		if (! m->CinemaManager.Update(deltaRealTime))
-		{
-//			ResetCamera();
-		}
+		m->CinemaManager.Update(deltaRealTime);
 		return;
 	}
 

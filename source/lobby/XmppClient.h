@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,7 +124,9 @@ protected:
 	// Helpers
 	void GetPresenceString(const gloox::Presence::PresenceType p, std::string& presence) const;
 	void GetRoleString(const gloox::MUCRoomRole r, std::string& role) const;
-	std::string StanzaErrorToString(gloox::StanzaError err);
+	std::string StanzaErrorToString(gloox::StanzaError err) const;
+	std::string ConnectionErrorToString(gloox::ConnectionError err) const;
+	std::string RegistrationResultToString(gloox::RegistrationResult res) const;
 
 public:
 	/* Messages */

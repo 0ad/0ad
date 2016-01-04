@@ -243,7 +243,7 @@ function selectViewPlayer(playerID)
 		openDiplomacy();
 
 	if (g_IsTradeOpen)
-		openTrade()
+		openTrade();
 }
 
 function updateTopPanel()
@@ -359,7 +359,7 @@ function leaveGame(willRejoin)
 		"playerStates": extendedSimState.players,
 		"players": g_Players,
 		"mapSettings": Engine.GetMapSettings(),
-	}
+	};
 
 	if (!g_IsReplay)
 		Engine.SaveReplayMetadata(JSON.stringify(summary));
@@ -692,9 +692,9 @@ function updateGroups()
 		let button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		let label = Engine.GetGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
 		button.hidden = g_Groups.groups[i].getTotalCount() == 0;
-		button.onpress = (function(i) { return function() { performGroup((Engine.HotkeyIsPressed("selection.add") ? "add" : "select"), i); } })(i);
-		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); } })(i);
-		button.onpressright = (function(i) { return function() { performGroup("breakUp", i); } })(i);
+		button.onpress = (function(i) { return function() { performGroup((Engine.HotkeyIsPressed("selection.add") ? "add" : "select"), i); }; })(i);
+		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); }; })(i);
+		button.onpressright = (function(i) { return function() { performGroup("breakUp", i); }; })(i);
 		setPanelObjectPosition(button, i, 1);
 	}
 }
@@ -790,7 +790,7 @@ function updateResearchDisplay()
 		let button = Engine.GetGUIObjectByName("researchStartedButton[" + numButtons + "]");
 		button.hidden = false;
 		button.tooltip = getEntityNames(template);
-		button.onpress = (function(e) { return function() { selectAndMoveTo(e); } })(researchStarted[tech].researcher);
+		button.onpress = (function(e) { return function() { selectAndMoveTo(e); }; })(researchStarted[tech].researcher);
 
 		let icon = "stretched:session/portraits/" + template.icon;
 		Engine.GetGUIObjectByName("researchStartedIcon[" + numButtons + "]").sprite = icon;

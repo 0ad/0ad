@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ public:
 		//
 		// TODO: It might be a good idea to test the behaviour when only a minor
 		// GC runs, but there's no API for calling a minor GC yet.
-		JS_ASSERT(plainObj != obj);
+		TS_ASSERT(plainObj != obj);
 		TS_ASSERT(!map.has(plainObj));
 		TS_ASSERT(map.has(obj));
 

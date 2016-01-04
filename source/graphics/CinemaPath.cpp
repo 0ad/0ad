@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,102 +15,108 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "precompiled.h"
 
 #include "CinemaPath.h"
 
-#include <string>
 #include <sstream>
+#include <string>
 
-#include "lib/ogl.h"
-#include "ps/Game.h"
-#include "GameView.h"
-#include "maths/MathUtil.h"
 #include "Camera.h"
-#include "ps/CStr.h"
+#include "CinemaManager.h"
+#include "GameView.h"
+#include "gui/CGUI.h"
+#include "gui/GUIManager.h"
+#include "gui/IGUIObject.h"
+#include "lib/ogl.h"
+#include "maths/MathUtil.h"
+#include "maths/Quaternion.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
-#include "maths/Quaternion.h"
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
+#include "ps/Game.h"
+#include "renderer/Renderer.h"
 
-CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline)
-	: CCinemaData(data), TNSpline(spline), m_TimeElapsed(0.f)
-{ 
+
+CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline, const TNSpline& targetSpline)
+	: CCinemaData(data), TNSpline(spline), m_TargetSpline(targetSpline), m_TimeElapsed(0.f)
+{
 	m_TimeElapsed = 0;
 	BuildSpline();
 
-	//Set distortion mode and style
-	switch(data.m_Mode)
+	if (m_Orientation == L"target")
 	{
-	case CCinemaPath::EM_IN:
+		m_LookAtTarget = true;
+		ENSURE(!m_TargetSpline.GetAllNodes().empty());
+	}
+
+	// Set distortion mode and style
+	if (data.m_Mode == L"ease_in")
 		DistModePtr = &CCinemaPath::EaseIn;
-		break;
-	case CCinemaPath::EM_OUT:
+	else if (data.m_Mode == L"ease_out")
 		DistModePtr = &CCinemaPath::EaseOut;
-		break;
-	case CCinemaPath::EM_INOUT:
+	else if (data.m_Mode == L"ease_inout")
 		DistModePtr = &CCinemaPath::EaseInOut;
-		break;
-	case CCinemaPath::EM_OUTIN:
+	else if (data.m_Mode == L"ease_outin")
 		DistModePtr = &CCinemaPath::EaseOutIn;
-		break;
-	default:
-		debug_printf("Cinematic mode not found for %d\n", data.m_Mode);
-		break;
-	}
-
-	switch (data.m_Style)
+	else
 	{
-	case CCinemaPath::ES_DEFAULT:
-		DistStylePtr = &CCinemaPath::EaseDefault;
-		break;
-	case CCinemaPath::ES_GROWTH:
-		DistStylePtr = &CCinemaPath::EaseGrowth;
-		break;
-	case CCinemaPath::ES_EXPO:
-		DistStylePtr = &CCinemaPath::EaseExpo;
-		break;
-	case CCinemaPath::ES_CIRCLE:
-		DistStylePtr = &CCinemaPath::EaseCircle;
-		break;
-	case CCinemaPath::ES_SINE:
-		DistStylePtr = &CCinemaPath::EaseSine;
-		break;
-	default:
-		debug_printf("Cinematic mode not found for %d\n", data.m_Style);
-		break;
+		LOGWARNING("Cinematic mode not found for '%s'", data.m_Mode.ToUTF8().c_str());
+		DistModePtr = &CCinemaPath::EaseInOut;
 	}
-	//UpdateDuration();
 
+	if (data.m_Style == L"default")
+		DistStylePtr = &CCinemaPath::EaseDefault;
+	else if (data.m_Style == L"growth")
+		DistStylePtr = &CCinemaPath::EaseGrowth;
+	else if (data.m_Style == L"expo")
+		DistStylePtr = &CCinemaPath::EaseExpo;
+	else if (data.m_Style == L"circle")
+		DistStylePtr = &CCinemaPath::EaseCircle;
+	else if (data.m_Style == L"sine")
+		DistStylePtr = &CCinemaPath::EaseSine;
+	else
+	{
+		LOGWARNING("Cinematic style not found for '%s'", data.m_Style.ToUTF8().c_str());
+		DistStylePtr = &CCinemaPath::EaseDefault;
+	}
 }
 
-void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) const
+void CCinemaPath::Draw() const
 {
-	if (NodeCount < 2 || DistModePtr == NULL)
+	DrawSpline(*this, CVector4D(0.2f, 0.2f, 1.f, 0.5f), 100, true);
+	DrawSpline(m_TargetSpline, CVector4D(1.0f, 0.2f, 0.2f, 0.5f), 100, true);
+	DrawNodes(CVector4D(0.5f, 1.0f, 0.f, 0.5f));
+}
+
+void CCinemaPath::DrawSpline(const RNSpline& spline, const CVector4D& RGBA, int smoothness, bool lines) const
+{
+	if (spline.NodeCount < 2 || DistModePtr == NULL)
 		return;
-	if ( NodeCount == 2 && lines )
+	if (spline.NodeCount == 2 && lines)
 		smoothness = 2;
 
-	float start = MaxDistance / smoothness;
-	float time=0;
-	
+	float start = spline.MaxDistance.ToFloat() / smoothness;
+	float time = 0;
+
 #if CONFIG2_GLES
-#warning TODO: do something about CCinemaPath on GLES
+	#warning TODO: do something about CCinemaPath on GLES
 #else
 
-	glColor4f( RGBA.X, RGBA.Y, RGBA.Z, RGBA.W );
-	if ( lines )
-	{	
+	glColor4f(RGBA.X, RGBA.Y, RGBA.Z, RGBA.W);
+	if (lines)
+	{
 		glLineWidth(1.8f);
 		glEnable(GL_LINE_SMOOTH);
 		glBegin(GL_LINE_STRIP);
 
-		for (int i=0; i<=smoothness; ++i)
+		for (int i = 0; i <= smoothness; ++i)
 		{
-			//Find distorted time
-			time = start*i / MaxDistance;
-			CVector3D tmp = GetPosition(time);
-			glVertex3f( tmp.X, tmp.Y, tmp.Z );
+			// Find distorted time
+			time = start*i / spline.MaxDistance.ToFloat();
+			CVector3D tmp = spline.GetPosition(time);
+			glVertex3f(tmp.X, tmp.Y, tmp.Z);
 		}
 		glEnd();
 		glDisable(GL_LINE_SMOOTH);
@@ -119,22 +125,26 @@ void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) 
 	else
 	{
 		smoothness /= 2;
-		start = MaxDistance / smoothness;
+		start = spline.MaxDistance.ToFloat() / smoothness;
 		glEnable(GL_POINT_SMOOTH);
 		glPointSize(3.0f);
 		glBegin(GL_POINTS);
 
-		for (int i=0; i<=smoothness; ++i)
+		for (int i = 0; i <= smoothness; ++i)
 		{
-			//Find distorted time
-			time = (this->*DistModePtr)(start*i / MaxDistance);
-			CVector3D tmp = GetPosition(time);
-			glVertex3f( tmp.X, tmp.Y, tmp.Z );
+			// Find distorted time
+			time = (this->*DistModePtr)(start*i / spline.MaxDistance.ToFloat());
+			CVector3D tmp = spline.GetPosition(time);
+			glVertex3f(tmp.X, tmp.Y, tmp.Z);
 		}
-		glColor3f(1.0f, 1.0f, 0.0f);	//yellow
+		glColor3f(1.0f, 1.0f, 0.0f); // yellow
 
-		for ( size_t i=0; i<Node.size(); ++i )
-			glVertex3f(Node[i].Position.X, Node[i].Position.Y, Node[i].Position.Z);
+		for (size_t i = 0; i < spline.GetAllNodes().size(); ++i)
+			glVertex3f(
+				spline.GetAllNodes()[i].Position.X.ToFloat(),
+				spline.GetAllNodes()[i].Position.Y.ToFloat(),
+				spline.GetAllNodes()[i].Position.Z.ToFloat()
+			);
 
 		glEnd();
 		glPointSize(1.0f);
@@ -144,40 +154,90 @@ void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) 
 #endif
 }
 
-void CCinemaPath::MoveToPointAt(float t, float nodet, const CVector3D& startRotation)
+void CCinemaPath::DrawNodes(const CVector4D& RGBA) const
 {
-	CCamera *Cam = g_Game->GetView()->GetCamera();
-	t = (this->*DistModePtr)(t);
-	
-	CVector3D nodeRotation = Node[m_CurrentNode + 1].Rotation;
-	CQuaternion start, end;
-	start.FromEulerAngles(DEGTORAD(startRotation.X), DEGTORAD(startRotation.Y), DEGTORAD(startRotation.Z));
-	end.FromEulerAngles(DEGTORAD(nodeRotation.X), DEGTORAD(nodeRotation.Y), DEGTORAD(nodeRotation.Z));
-	start.Slerp(start, end, nodet);
-	CVector3D pos = GetPosition(t);
-	CQuaternion quat;
-	
-	Cam->m_Orientation.SetIdentity();
-	Cam->m_Orientation.Rotate(start);
-	Cam->m_Orientation.Translate(pos);
-	Cam->UpdateFrustum();
+#if CONFIG2_GLES
+	#warning TODO : do something about CCinemaPath on GLES
+#else
+	glEnable(GL_POINT_SMOOTH);
+	glPointSize(5.0f);
+
+	glColor4f(RGBA.X, RGBA.Y, RGBA.Z, RGBA.W);
+	glBegin(GL_POINTS);
+	for (size_t i = 0; i < Node.size(); ++i)
+		glVertex3f(Node[i].Position.X.ToFloat(), Node[i].Position.Y.ToFloat(), Node[i].Position.Z.ToFloat());
+	glEnd();
+
+	if (!m_LookAtTarget)
+	{
+		glPointSize(1.0f);
+		glDisable(GL_POINT_SMOOTH);
+		return;
+	}
+
+	// draw target nodes
+	glColor4f(RGBA.Y, RGBA.X, RGBA.Z, RGBA.W);
+	glBegin(GL_POINTS);
+	for (size_t i = 0; i < m_TargetSpline.GetAllNodes().size(); ++i)
+		glVertex3f(
+			m_TargetSpline.GetAllNodes()[i].Position.X.ToFloat(),
+			m_TargetSpline.GetAllNodes()[i].Position.Y.ToFloat(),
+			m_TargetSpline.GetAllNodes()[i].Position.Z.ToFloat()
+		);
+	glEnd();
+
+	glPointSize(1.0f);
+	glDisable(GL_POINT_SMOOTH);
+#endif
 }
 
-//Distortion mode functions
+void CCinemaPath::MoveToPointAt(float t, float nodet, const CVector3D& startRotation)
+{
+	CCamera *camera = g_Game->GetView()->GetCamera();
+	t = (this->*DistModePtr)(t);
+
+	CVector3D pos = GetPosition(t);
+
+	if (m_LookAtTarget)
+	{
+		if (m_TimeElapsed <= m_TargetSpline.MaxDistance.ToFloat())
+			camera->LookAt(pos, m_TargetSpline.GetPosition(m_TimeElapsed / m_TargetSpline.MaxDistance.ToFloat()), CVector3D(0, 1, 0));
+		else
+			camera->LookAt(pos, m_TargetSpline.GetAllNodes().back().Position, CVector3D(0, 1, 0));
+	}
+	else
+	{
+		CVector3D nodeRotation = Node[m_CurrentNode + 1].Rotation;
+		CQuaternion start, end;
+		start.FromEulerAngles(DEGTORAD(startRotation.X), DEGTORAD(startRotation.Y), DEGTORAD(startRotation.Z));
+		end.FromEulerAngles(DEGTORAD(nodeRotation.X), DEGTORAD(nodeRotation.Y), DEGTORAD(nodeRotation.Z));
+		start.Slerp(start, end, nodet);
+
+		camera->m_Orientation.SetIdentity();
+		camera->m_Orientation.Rotate(start);
+		camera->m_Orientation.Translate(pos);
+	}
+	camera->UpdateFrustum();
+}
+
+// Distortion mode functions
 float CCinemaPath::EaseIn(float t) const
 {
 	return (this->*DistStylePtr)(t);
 }
+
 float CCinemaPath::EaseOut(float t) const
 {
 	return 1.0f - EaseIn(1.0f-t);
 }
+
 float CCinemaPath::EaseInOut(float t) const
 {
 	if (t < m_Switch)
 		return EaseIn(1.0f/m_Switch * t) * m_Switch;
 	return EaseOut(1.0f/m_Switch * (t-m_Switch)) * m_Switch + m_Switch;
 }
+
 float CCinemaPath::EaseOutIn(float t) const
 {
 	if (t < m_Switch)
@@ -185,12 +245,12 @@ float CCinemaPath::EaseOutIn(float t) const
 	return EaseIn(1.0f/m_Switch * (t-m_Switch)) * m_Switch + m_Switch;
 }
 
-
-//Distortion style functions
+// Distortion style functions
 float CCinemaPath::EaseDefault(float t) const
 {
 	return t;
 }
+
 float CCinemaPath::EaseGrowth(float t) const
 {
 	return pow(t, m_Growth);
@@ -198,66 +258,67 @@ float CCinemaPath::EaseGrowth(float t) const
 
 float CCinemaPath::EaseExpo(float t) const
 {
-	if(t == 0)
+	if (t == 0)
 		return t;
-    return powf(m_Growth, 10*(t-1.0f));
+	return powf(m_Growth, 10*(t-1.0f));
 }
+
 float CCinemaPath::EaseCircle(float t) const
 {
-	 t = -(sqrt(1.0f - t*t) - 1.0f);
-     if(m_GrowthCount > 1.0f)
-	 {
-		 m_GrowthCount--;
-		 return (this->*DistStylePtr)(t);
-	 }
-	 return t;
+	t = -(sqrt(1.0f - t*t) - 1.0f);
+	if (m_GrowthCount > 1.0f)
+	{
+		--m_GrowthCount;
+		return (this->*DistStylePtr)(t);
+	}
+	return t;
 }
 
 float CCinemaPath::EaseSine(float t) const
 {
-     t = 1.0f - cos(t * (float)M_PI/2);
-     if(m_GrowthCount > 1.0f)
-	 {
-		 m_GrowthCount--;
-		 return (this->*DistStylePtr)(t);
-	 }
-	 return t;
+	t = 1.0f - cos(t * (float)M_PI/2);
+	if (m_GrowthCount > 1.0f)
+	{
+		--m_GrowthCount;
+		return (this->*DistStylePtr)(t);
+	}
+	return t;
 }
 
 bool CCinemaPath::Validate()
 {
-	if ( m_TimeElapsed <= GetDuration() && m_TimeElapsed >= 0.0f )
+	if (m_TimeElapsed > GetDuration().ToFloat() || m_TimeElapsed < 0.0f)
+		return false;
+
+	// Find current node and past "node time"
+	float previousTime = 0.0f, cumulation = 0.0f;
+
+	// Ignore the last node, since it is a blank (node time values are shifted down one from interface)
+	for (size_t i = 0; i < Node.size() - 1; ++i)
 	{
-		//Find current node and past "node time"
-		float previousTime = 0.0f, cumulation = 0.0f;
-		//Ignore the last node, since it is a blank (node time values are shifted down one from interface)
-		for ( size_t i = 0; i < Node.size() - 1; ++i )
+		cumulation += Node[i].Distance.ToFloat();
+		if (m_TimeElapsed <= cumulation)
 		{
-			cumulation += Node[i].Distance;
-			if ( m_TimeElapsed <= cumulation )
-			{
-				m_PreviousNodeTime = previousTime;
-				m_PreviousRotation = Node[i].Rotation;
-				m_CurrentNode = i;	//We're moving toward this next node, so use its rotation
-				return true;
-			}
-			else
-				previousTime += Node[i].Distance;
+			m_PreviousNodeTime = previousTime;
+			m_PreviousRotation = Node[i].Rotation;
+			m_CurrentNode = i; // We're moving toward this next node, so use its rotation
+			return true;
 		}
+		previousTime += Node[i].Distance.ToFloat();
 	}
+	debug_warn("validation of cinema path is wrong\n");
 	return false;
 }
 
 bool CCinemaPath::Play(const float deltaRealTime)
 {
-	m_TimeElapsed += m_Timescale * deltaRealTime;
-
+	m_TimeElapsed += m_Timescale.ToFloat() * deltaRealTime;
 	if (!Validate())
 	{
 		m_TimeElapsed = 0.0f;
 		return false;
 	}
-	
-	MoveToPointAt( m_TimeElapsed / GetDuration(), GetNodeFraction(), m_PreviousRotation );
+
+	MoveToPointAt(m_TimeElapsed / GetDuration().ToFloat(), GetNodeFraction(), m_PreviousRotation);
 	return true;
 }

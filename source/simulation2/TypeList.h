@@ -57,6 +57,8 @@ MESSAGE(ValueModification)
 MESSAGE(TemplateModification)
 MESSAGE(VisionRangeChanged)
 MESSAGE(MinimapPing)
+MESSAGE(CinemaPathEnded)
+MESSAGE(CinemaQueueEnded)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized
@@ -74,6 +76,9 @@ COMPONENT(AIInterfaceScripted)
 
 INTERFACE(AIManager)
 COMPONENT(AIManager)
+
+INTERFACE(CinemaManager)
+COMPONENT(CinemaManager)
 
 INTERFACE(CommandQueue)
 COMPONENT(CommandQueue)

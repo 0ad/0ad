@@ -56,9 +56,6 @@ MESSAGEHANDLER(Screenshot)
 
 QUERYHANDLER(CinemaRecord)
 {
-	CCinemaManager* manager = g_Game->GetView()->GetCinema();
-	manager->SetCurrentPath(*msg->path, false, false);
-
 	const int w = msg->width, h = msg->height;
 
 	{
@@ -82,7 +79,6 @@ QUERYHANDLER(CinemaRecord)
 	{
 		AtlasView::GetView_Game()->Update(1.f / msg->framerate);
 
-		manager->MoveToPointAt((float)frame/msg->framerate);
 		Render();
 		Atlas_GLSwapBuffers((void*)g_AtlasGameLoop->glCanvas);
 

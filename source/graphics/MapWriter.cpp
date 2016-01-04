@@ -408,27 +408,25 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 			for ( ; it != paths.end(); ++it )
 			{
-				CStrW name = it->first;
-				float timescale = it->second.GetTimescale();
-				
-				XML_Element("Path");
-				XML_Attribute("name", name);
-				XML_Attribute("timescale", timescale);
-
+				fixed timescale = it->second.GetTimescale();
 				const std::vector<SplineData>& nodes = it->second.GetAllNodes();
 				const CCinemaData* data = it->second.GetData();
 				
-				{
-					XML_Element("Distortion");
-					XML_Attribute("mode", data->m_Mode);
-					XML_Attribute("style", data->m_Style);
-					XML_Attribute("growth", data->m_Growth);
-					XML_Attribute("switch", data->m_Switch);
-				}
+				XML_Element("Path");
+				XML_Attribute("name", data->m_Name);
+				XML_Attribute("timescale", timescale);
+				XML_Attribute("orientation", data->m_Orientation);
+				XML_Attribute("mode", data->m_Mode);
+				XML_Attribute("style", data->m_Style);
 
-				for ( ssize_t j=nodes.size()-1; j >= 0; --j )
+				// TODO: write target nodes
+				for (size_t j = 0; j < nodes.size(); ++j)
 				{
 					XML_Element("Node");
+					if (j > 0)
+						XML_Attribute("deltatime", nodes[j - 1].Distance);
+					else
+						XML_Attribute("deltatime", 0.0f);
 					
 					{
 						XML_Element("Position");
@@ -443,8 +441,6 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						XML_Attribute("y", nodes[j].Rotation.Y);
 						XML_Attribute("z", nodes[j].Rotation.Z);
 					}
-
-					XML_Setting("Time", nodes[j].Distance);
 				}
 			}
 		}

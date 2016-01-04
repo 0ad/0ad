@@ -7,7 +7,7 @@
 	"icon": "bandage.png",
 	"researchTime": 40,
 	"tooltip": "Organic units will slowly regenerate health over time when idle.",
-	"modifications": [{"value": "Health/RegenRate", "add": 0.5}],
+	"modifications": [{"value": "Health/IdleRegenRate", "add": 0.5}],
 	"affects": ["Unit Organic"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

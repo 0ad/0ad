@@ -99,8 +99,6 @@ var g_NetMessageTypes = {
 		// Three cases are handled in prelobby.js
 		"registered": msg => {
 		},
-		"login-failed": msg => {
-		},
 		"connected": msg => {
 		},
 		"disconnected": msg => {
@@ -108,10 +106,10 @@ var g_NetMessageTypes = {
 			updateLeaderboard();
 			updatePlayerList();
 			Engine.GetGUIObjectByName("hostButton").enabled = false;
-			addChatMessage({ "from": "system", "text": translate("Disconnected."), "color": g_SystemColor });
+			addChatMessage({ "from": "system", "text": translate("Disconnected.") + msg.text, "color": g_SystemColor });
 		},
 		"error": msg => {
-			addChatMessage({ "from": "system", "text": escapeText(msg.text), "color": g_SystemColor });
+			addChatMessage({ "from": "system", "text": msg.text, "color": g_SystemColor });
 		}
 	},
 	"chat": {

@@ -54,8 +54,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-12-09 18:21+0000\n"
-"Last-Translator: David Lucks\n"
+"PO-Revision-Date: 2015-12-29 20:36+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -321,7 +321,7 @@ msgstr "Als Wiege der westlichen Zivilisation und als Geburtsort der Demokratie 
 #: simulation/data/civs/brit.jsonName
 #: simulation/data/civs/brit.jsonFactions[0].Name
 msgid "Britons"
-msgstr "Britannier"
+msgstr "Briten"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Description
@@ -434,7 +434,7 @@ msgstr "Die Briten fingen an, Gesicht und Körper zu tätowieren oder blau zu be
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Verstärkt den Höhenbonus von Truppen in Türmen."
+msgstr "Verstärkt den Höhenbonus von Einheiten in Türmen."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
@@ -580,14 +580,14 @@ msgstr "Dreifache Mauer"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
-msgstr "Die Karthager bauten eine dreifache Stadtmauer. "
+msgstr "Die Karthager bauten dreifache Stadtmauern. "
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "Die Rohstoffkosten für die Ausbildung von Einheiten, die auf Elefanten (Kriegselefanten) oder Pferden (Kavallerie) reiten, werden pro eingefangenem Tier um 5% reduziert (gegebenenfalls)."
+msgstr "Die Rohstoffkosten für die Ausbildung von Einheiten, die auf Elefanten (Kriegselefanten) oder Pferden (Kavallerie) reiten, werden pro eingefangenem Tier um 5% reduziert (dementsprechend)."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Name
@@ -599,7 +599,7 @@ msgid ""
 "Not unlike the Iberian Peninsula, North Africa was known as horse country, "
 "capable of producing up to 100,000 new mounts each year. It was also the "
 "home of the North African Forest Elephant."
-msgstr "Der iberischen Halbinsel nicht unähnlich, war Nordafrika als Pferdeland bekannt, in der Lage jährlich bis zu 100.000 Reittiere zu produzieren. Außerdem war es Heimat des nordafrikanischen Waldelefanten."
+msgstr "Der iberischen Halbinsel nicht unähnlich, war Nordafrika als Pferdeland bekannt, in der Lage, jährlich bis zu 100.000 Reittiere zu produzieren. Außerdem war es Heimat des nordafrikanischen Waldelefanten."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "+33% trade profit international routes."
@@ -850,7 +850,7 @@ msgstr "Valetiacos"
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
-msgstr "Eine bestimmte Menge an Metall und Nahrung von jedem zerstörten oder eingenommenen Gebäude"
+msgstr "Eine bestimmte Menge an Metall und Nahrung von jedem zerstörten oder eingenommenen Gebäude."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Uae Uictos"
@@ -929,7 +929,7 @@ msgid ""
 "was. Because we only know of him from Roman sources we don't know much about"
 " Vercingetorix as a child or young man, except that perhaps he was probably "
 "very high spirited and probably gained some renown in deeds."
-msgstr "Vercingetorix (Gallisch: Ver-Cingeto-Rix) war der Stammesfürst der Arverner in Gallien (heute Frankreich). Von 52 v. Chr. an führte er den Aufstand gegen die einfallenden Römer unter Julius Cäsar an. Seine Taten während der Revolte sind bis heute in Erinnerung. Vercingetorix wurde vermutlich 72 v. Chr. in der Nähe der Hauptstadt seines Stammes (Gergovia) geboren. Sein Vater war Celtillius und wir wissen nicht, wer seine Mutter war. Da er nur aus römischen Quellen bekannt ist, ist kaum etwas aus seiner Jugend bekannt, außer dass er vermutlich sowohl übermütig war als auch durch seine Taten zu etwas Ruhm gelangte."
+msgstr "Vercingetorix (Gallisch: Ver-Rix Cingetos) war der Stammesfürst der Arverner in Gallien (heute Frankreich). Von 52 v. Chr. an führte er den Aufstand gegen die einfallenden Römer unter Julius Cäsar an. Seine Taten während der Revolte sind bis heute in Erinnerung. Vercingetorix wurde vermutlich 72 v. Chr. in der Nähe der Hauptstadt seines Stammes (Gergovia) geboren. Sein Vater war Celtillius und wir wissen nicht, wer seine Mutter war. Da er nur aus römischen Quellen bekannt ist, ist kaum etwas aus seiner Jugend bekannt, außer dass er vermutlich sowohl übermütig war als auch durch seine Taten zu etwas Ruhm gelangte."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
@@ -941,7 +941,7 @@ msgstr "Melonas"
 
 #: simulation/data/civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
-msgstr "Die Kelten erfanden die erste Drehmühlen für Mehl."
+msgstr "Die Kelten erfanden die ersten Drehmühlen für Mehl."
 
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""

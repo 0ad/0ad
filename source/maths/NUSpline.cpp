@@ -45,13 +45,12 @@ CVector3D GetPositionOnCubic(const CVector3D& startPos, const CVector3D& startVe
 /*********************************** R N S **************************************************/
 
 // adds node and updates segment length
-void RNSpline::AddNode(const CVector3D& pos)
+void RNSpline::AddNode(const CFixedVector3D& pos)
 {
 	if (NodeCount >= MAX_SPLINE_NODES)
 		return;
-
 	if (NodeCount == 0)
-		MaxDistance = 0.f;
+		MaxDistance = fixed::Zero();
 	else
 	{
 		Node[NodeCount-1].Distance = (Node[NodeCount-1].Position - pos).Length();
@@ -97,25 +96,32 @@ CVector3D RNSpline::GetPosition(float time) const
 {
 	if (NodeCount < 2)
 		return CVector3D(0.0f, 0.0f, 0.0f);
-
+	if (time < 0.0f)
+		time = 0.0f;
 	if (time > 1.0f)
 		time = 1.0f;
-	float Distance = time * MaxDistance;
+	float Distance = time * MaxDistance.ToFloat();
 	float CurrentDistance = 0.f;
 	int i = 0;
 
-	//Find which node we're on
-	while (CurrentDistance + Node[i].Distance < Distance && i < NodeCount - 2)
+	// Find which node we're on
+	while (CurrentDistance + Node[i].Distance.ToFloat() < Distance && i < NodeCount - 2)
 	{
-		CurrentDistance += Node[i].Distance;
+		CurrentDistance += Node[i].Distance.ToFloat();
 		++i;
 	}
 	ENSURE(i < NodeCount - 1);
 	float t = Distance - CurrentDistance;
-	t /= Node[i].Distance; // scale t in range 0 - 1
-	CVector3D startVel = Node[i].Velocity * Node[i].Distance;
-	CVector3D endVel = Node[i+1].Velocity * Node[i].Distance;  
-	return GetPositionOnCubic(Node[i].Position, startVel, Node[i+1].Position, endVel, t);
+	// TODO: reimplement CVector3D comparator (float comparing is bad without EPS)
+	if (Node[i].Position == Node[i+1].Position || Node[i].Distance.ToFloat() < 1e-7) // distance too small or zero
+	{
+		return Node[i+1].Position;
+	}
+	t /= Node[i].Distance.ToFloat(); // scale t in range 0 - 1
+	CVector3D startVel = Node[i].Velocity * Node[i].Distance.ToFloat();
+	CVector3D endVel = Node[i+1].Velocity * Node[i].Distance.ToFloat();
+	return GetPositionOnCubic(Node[i].Position, startVel,
+		Node[i+1].Position, endVel, t);
 }
 
 // internal. Based on Equation 14 
@@ -123,8 +129,7 @@ CVector3D RNSpline::GetStartVelocity(int index)
 {
 	if (index >= NodeCount - 1 || index < 0)
 		return CVector3D(0.0f, 0.0f, 0.0f);
-
-	CVector3D temp = (Node[index+1].Position - Node[index].Position) * 3.0f * (1.0f / Node[index].Distance);
+	CVector3D temp = CVector3D(Node[index+1].Position - Node[index].Position) * 3.0f * (1.0f / Node[index].Distance.ToFloat());
 	return (temp - Node[index+1].Velocity)*0.5f;
 }
 
@@ -133,8 +138,7 @@ CVector3D RNSpline::GetEndVelocity(int index)
 {
 	if (index >= NodeCount || index < 1)
 		return CVector3D(0.0f, 0.0f, 0.0f);
-
-	CVector3D temp = (Node[index].Position - Node[index-1].Position) * 3.0f * (1.0f / Node[index-1].Distance);
+	CVector3D temp = CVector3D(Node[index].Position - Node[index-1].Position) * 3.0f * (1.0f / Node[index-1].Distance.ToFloat());
 	return (temp - Node[index-1].Velocity) * 0.5f;
 }
 
@@ -151,8 +155,8 @@ void SNSpline::Smooth()
 	for (int i = 1; i < NodeCount-1; ++i)
 	{
 		// Equation 12
-		newVel = GetEndVelocity(i) * Node[i].Distance + GetStartVelocity(i) * Node[i-1].Distance;
-		newVel = newVel * ( 1 / (Node[i-1].Distance + Node[i].Distance) );
+		newVel = GetEndVelocity(i) * Node[i].Distance.ToFloat() + GetStartVelocity(i) * Node[i-1].Distance.ToFloat();
+		newVel = newVel * (1 / (Node[i-1].Distance + Node[i].Distance).ToFloat());
 		Node[i-1].Velocity = oldVel;
 		oldVel = newVel;
 	}
@@ -164,13 +168,13 @@ void SNSpline::Smooth()
 
 // as with RNSpline but use timePeriod in place of actual node spacing
 // ie time period is time from last node to this node
-void TNSpline::AddNode(const CVector3D& pos, const CVector3D& rotation, float timePeriod)
+void TNSpline::AddNode(const CFixedVector3D& pos, const CFixedVector3D& rotation, fixed timePeriod)
 {
 	if (NodeCount >= MAX_SPLINE_NODES)
 		return;
 
 	if (NodeCount == 0)
-		MaxDistance = 0.f;
+		MaxDistance = fixed::Zero();
 	else
 	{
 		Node[NodeCount-1].Distance = timePeriod;
@@ -181,7 +185,7 @@ void TNSpline::AddNode(const CVector3D& pos, const CVector3D& rotation, float ti
 	temp.Position = pos;
 
 	//make sure we don't end up using undefined numbers...
-	temp.Distance = 0.0f;
+	temp.Distance = fixed::Zero();
 	temp.Velocity = CVector3D(0.0f, 0.0f, 0.0f);
 	temp.Rotation = rotation;
 	Node.push_back(temp);
@@ -189,13 +193,12 @@ void TNSpline::AddNode(const CVector3D& pos, const CVector3D& rotation, float ti
 }
 
 //Inserts node before position
-void TNSpline::InsertNode(const int index, const CVector3D& pos, const CVector3D& rotation, float timePeriod)
+void TNSpline::InsertNode(const int index, const CFixedVector3D& pos, const CFixedVector3D& rotation, fixed timePeriod)
 {
 	if (NodeCount >= MAX_SPLINE_NODES || index < NodeCount - 1)
 		return;
-
 	if (NodeCount == 0)
-		MaxDistance = 0.f;
+		MaxDistance = fixed::Zero();
 	else
 	{
 		Node[NodeCount-1].Distance = timePeriod;
@@ -216,20 +219,18 @@ void TNSpline::RemoveNode(const int index)
 
 	MaxDistance -= Node[index].Distance;
 	MaxDistance -= Node[index-1].Distance;
-	Node[index-1].Distance = 0.0f;
+	Node[index-1].Distance = fixed::Zero();
 	Node.erase(Node.begin() + index, Node.begin() + index + 1);
 	--NodeCount;
 }
-
-void TNSpline::UpdateNodeTime(const int index, float time)
+void TNSpline::UpdateNodeTime(const int index, fixed time)
 {
 	if (NodeCount == 0 || index > NodeCount - 1)
 		return;
 
 	Node[index].Distance = time;
 }
-
-void TNSpline::UpdateNodePos(const int index, const CVector3D& pos)
+void TNSpline::UpdateNodePos(const int index, const CFixedVector3D& pos)
 {
 	if (NodeCount == 0 || index > NodeCount - 1)
 		return;
@@ -245,9 +246,9 @@ void TNSpline::Constrain()
 	for (int i = 1; i < NodeCount-1; ++i)
 	{
 		// Equation 13
-		float r0 = (Node[i].Position-Node[i-1].Position).Length() / Node[i-1].Distance;
-		float r1 = (Node[i+1].Position - Node[i].Position).Length() / Node[i].Distance;
-		Node[i].Velocity *= 4.0f*r0*r1/((r0+r1)*(r0+r1));
+		float r0 = (Node[i].Position - Node[i - 1].Position).Length().ToFloat() / Node[i-1].Distance.ToFloat();
+		float r1 = (Node[i+1].Position - Node[i].Position).Length().ToFloat() / Node[i].Distance.ToFloat();
+		Node[i].Velocity *= 4.0f*r0*r1 / ((r0 + r1)*(r0 + r1));
 	}
 }
 

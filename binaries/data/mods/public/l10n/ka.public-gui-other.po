@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-28 10:20+0100\n"
-"PO-Revision-Date: 2015-12-28 09:54+0000\n"
+"POT-Creation-Date: 2016-01-01 09:00+0100\n"
+"PO-Revision-Date: 2016-01-01 09:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/wildfire-games/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -312,10 +312,10 @@ msgstr ""
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:59 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:68 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:114 gui/common/tooltips.js:142
-#: gui/common/tooltips.js:435 gui/common/tooltips.js:462
-#: gui/common/tooltips.js:530
+#: gui/common/tooltips.js:431 gui/common/tooltips.js:458
+#: gui/common/tooltips.js:526
 msgid ", "
 msgstr ","
 
@@ -347,38 +347,33 @@ msgstr ""
 msgid "You have been banned"
 msgstr ""
 
-#: gui/common/network.js:19
-#, javascript-format
-msgid "\\[Invalid value %(id)s]"
-msgstr ""
-
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:31
+#: gui/common/network.js:29
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "მიზეზი: %(reason)s."
 
-#: gui/common/network.js:32
+#: gui/common/network.js:30
 msgid "Lost connection to the server."
 msgstr "მომსახურესთან კავშირი დაიკარგა."
 
-#: gui/common/network.js:32
+#: gui/common/network.js:30
 msgid "Disconnected"
 msgstr "გამოერთებულია"
 
-#: gui/common/network.js:57
+#: gui/common/network.js:38
 #, javascript-format
-msgid "Users: %(users)s"
+msgid "Could not ban %(name)s."
 msgstr ""
 
-#: gui/common/network.js:84
+#: gui/common/network.js:38
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr ""
 
-#: gui/common/network.js:89
+#: gui/common/network.js:66
 #, javascript-format
-msgid "Could not ban %(name)s."
+msgid "Users: %(users)s"
 msgstr ""
 
 #: gui/common/settings.js:107
@@ -494,8 +489,8 @@ msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:57 gui/common/tooltips.js:236
-#: gui/common/tooltips.js:459
+#: gui/common/tooltips.js:57 gui/common/tooltips.js:238
+#: gui/common/tooltips.js:455
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] ""
@@ -563,7 +558,7 @@ msgstr "თავდასხმა:"
 msgid "Interval:"
 msgstr "შუალედი:"
 
-#: gui/common/tooltips.js:162 gui/common/tooltips.js:457
+#: gui/common/tooltips.js:162 gui/common/tooltips.js:453
 msgid "Rate:"
 msgstr "განაკვეთი:"
 
@@ -572,11 +567,11 @@ msgstr "განაკვეთი:"
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr ""
 
-#: gui/common/tooltips.js:198 gui/common/tooltips.js:452
+#: gui/common/tooltips.js:198 gui/common/tooltips.js:448
 msgid "Range:"
 msgstr "მანძილი:"
 
-#: gui/common/tooltips.js:200 gui/common/tooltips.js:454
+#: gui/common/tooltips.js:200 gui/common/tooltips.js:450
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -602,124 +597,119 @@ msgstr ""
 
 #: gui/common/tooltips.js:234
 #, javascript-format
-msgid "%(health)s / %(second)s / %(worker)s"
+msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgstr ""
 
 #: gui/common/tooltips.js:235
-msgid "health"
-msgstr ""
-
-#: gui/common/tooltips.js:237
-msgid "worker"
-msgstr ""
-
-#: gui/common/tooltips.js:240
-#, javascript-format
-msgid "%(repairRateLabel)s %(detail)s %(unit)s"
-msgstr ""
-
-#: gui/common/tooltips.js:241
 msgid "Repair Rate:"
 msgstr ""
 
+#: gui/common/tooltips.js:237
+msgid "health"
+msgstr ""
+
+#: gui/common/tooltips.js:239
+msgid "worker"
+msgstr ""
+
+#: gui/common/tooltips.js:280 gui/common/tooltips.js:281
+#: gui/common/tooltips.js:282 gui/common/tooltips.js:283
 #: gui/common/tooltips.js:284 gui/common/tooltips.js:285
-#: gui/common/tooltips.js:286 gui/common/tooltips.js:287
-#: gui/common/tooltips.js:288 gui/common/tooltips.js:289
-#: gui/common/tooltips.js:405
+#: gui/common/tooltips.js:401
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:343
+#: gui/common/tooltips.js:339
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s-დან %(resourceIcon)s %(maximum)s-მდე"
 
-#: gui/common/tooltips.js:374
+#: gui/common/tooltips.js:370
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "კედლები: %(costs)s"
 
-#: gui/common/tooltips.js:375
+#: gui/common/tooltips.js:371
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "კოშკები: %(costs)s"
 
-#: gui/common/tooltips.js:391
+#: gui/common/tooltips.js:387
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:392
+#: gui/common/tooltips.js:388
 msgid "Population Bonus:"
 msgstr "მოსახლეობის ჯილდო:"
 
-#: gui/common/tooltips.js:410
+#: gui/common/tooltips.js:406
 msgid "Insufficient resources:"
 msgstr "არასაკმარისი სახსრები:"
 
-#: gui/common/tooltips.js:418
+#: gui/common/tooltips.js:414
 msgid "Speed:"
 msgstr "სიჩქარე:"
 
-#: gui/common/tooltips.js:422 gui/common/tooltips.js:428
+#: gui/common/tooltips.js:418 gui/common/tooltips.js:424
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:424
+#: gui/common/tooltips.js:420
 msgid "Walk"
 msgstr "სიარული"
 
-#: gui/common/tooltips.js:430
+#: gui/common/tooltips.js:426
 msgid "Run"
 msgstr "სირბილი"
 
-#: gui/common/tooltips.js:433
+#: gui/common/tooltips.js:429
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:445 gui/common/tooltips.js:451
-#: gui/common/tooltips.js:456
+#: gui/common/tooltips.js:441 gui/common/tooltips.js:447
+#: gui/common/tooltips.js:452
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:446
+#: gui/common/tooltips.js:442
 msgid "Heal:"
 msgstr ""
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
-#: gui/common/tooltips.js:449
+#: gui/common/tooltips.js:445
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:472
+#: gui/common/tooltips.js:468
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr ""
 
-#: gui/common/tooltips.js:473
+#: gui/common/tooltips.js:469
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr ""
 
-#: gui/common/tooltips.js:486
+#: gui/common/tooltips.js:482
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:496
+#: gui/common/tooltips.js:492
 msgid "???"
 msgstr "???"
 
-#: gui/common/tooltips.js:526
+#: gui/common/tooltips.js:522
 msgid "Classes:"
 msgstr "კლასები:"
 

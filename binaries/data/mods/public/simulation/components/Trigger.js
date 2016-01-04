@@ -19,6 +19,8 @@ Trigger.prototype.eventNames =
 	"Interval",
 	"Range",
 	"TreasureCollected",
+	"CinemaPathEnded",
+	"CinemaQueueEnded"
 ]; 
 
 Trigger.prototype.Init = function()
@@ -241,6 +243,18 @@ Trigger.prototype.OnGlobalResearchFinished = function(msg)
 	// The data for this one is {"player": playerID,
 	//							 "tech": tech}
 };
+
+// Handles "OnCinemaPathEnded" event.
+Trigger.prototype.OnGlobalCinemaPathEnded = function(msg)
+{
+	this.CallEvent("CinemaPathEnded", msg);
+}
+
+// Handles "OnCinemaQueueEnded" event.
+Trigger.prototype.OnGlobalCinemaQueueEnded = function(msg)
+{
+	this.CallEvent("CinemaQueueEnded", msg);
+}
 
 Trigger.prototype.OnGlobalOwnershipChanged = function(msg)
 {

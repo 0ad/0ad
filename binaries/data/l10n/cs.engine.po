@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-05-09 17:16+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"POT-Creation-Date: 2016-01-01 09:00+0100\n"
+"PO-Revision-Date: 2016-01-01 09:20+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,19 +20,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:779
+#: gui/scripting/ScriptFunctions.cpp:787
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (vlastní sestavení)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:784
+#: gui/scripting/ScriptFunctions.cpp:792
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:805
+#: gui/scripting/ScriptFunctions.cpp:813
 msgid "custom build"
 msgstr "vlastní sestavení"
 
@@ -40,143 +40,139 @@ msgstr "vlastní sestavení"
 msgid "Long strings"
 msgstr "Dlouhé řetězce"
 
-#: lobby/XmppClient.cpp:223
-msgid "Authentication failed"
-msgstr "Ověření se nezdařilo"
-
-#: lobby/XmppClient.cpp:457
+#: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
 msgstr "Registrace nepřijatelná"
 
-#: lobby/XmppClient.cpp:458
+#: lobby/XmppClient.cpp:456
 msgid "Registration conflict"
 msgstr "Konflikt při registraci"
 
-#: lobby/XmppClient.cpp:459
+#: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
 msgstr "Registrace neautorizována"
 
-#: lobby/XmppClient.cpp:460
+#: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
 msgstr "Špatný požadavek na registraci"
 
-#: lobby/XmppClient.cpp:461
+#: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
 msgstr "Registrace zakázána"
 
-#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1043
+#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:1040
 msgid "Registration required"
 msgstr "Registrace vyžadována"
 
-#: lobby/XmppClient.cpp:463
+#: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
 msgstr "Neočekávaný požadavek při registraci"
 
-#: lobby/XmppClient.cpp:464
+#: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
 msgstr "Registrace nepovolena"
 
-#: lobby/XmppClient.cpp:465
+#: lobby/XmppClient.cpp:463
 msgid "Registration unknown error"
 msgstr "Neznámá chyba při registraci"
 
-#: lobby/XmppClient.cpp:773
+#: lobby/XmppClient.cpp:772
 msgid "unknown subtype (see logs)"
 msgstr "Neznámý podtyp (podívejte se na záznamy)"
 
-#: lobby/XmppClient.cpp:1028
+#: lobby/XmppClient.cpp:1025
 msgid "Bad request"
 msgstr "Neplatný požadavek"
 
-#: lobby/XmppClient.cpp:1029
+#: lobby/XmppClient.cpp:1026
 msgid "Player name already in use"
 msgstr "Jméno hráče je již používáno"
 
-#: lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1027
 msgid "Feature not implemented"
 msgstr "Funkce neudělána"
 
-#: lobby/XmppClient.cpp:1031
+#: lobby/XmppClient.cpp:1028
 msgid "Forbidden"
 msgstr "Zakázáno"
 
-#: lobby/XmppClient.cpp:1032
+#: lobby/XmppClient.cpp:1029
 msgid "Recipient or server gone"
 msgstr "Příjemce nebo server je pryč"
 
-#: lobby/XmppClient.cpp:1033
+#: lobby/XmppClient.cpp:1030
 msgid "Internal server error"
 msgstr "Vnitřní chyba serveru"
 
-#: lobby/XmppClient.cpp:1034
+#: lobby/XmppClient.cpp:1031
 msgid "Item not found"
 msgstr "Položka nenalezena"
 
-#: lobby/XmppClient.cpp:1035
+#: lobby/XmppClient.cpp:1032
 msgid "Jid malformed"
 msgstr "Jid poškozen"
 
-#: lobby/XmppClient.cpp:1036
+#: lobby/XmppClient.cpp:1033
 msgid "Not acceptable"
 msgstr "Nepřípustné"
 
-#: lobby/XmppClient.cpp:1037
+#: lobby/XmppClient.cpp:1034
 msgid "Not allowed"
 msgstr "Nepovoleno"
 
-#: lobby/XmppClient.cpp:1038
+#: lobby/XmppClient.cpp:1035
 msgid "Not authorized"
 msgstr "Neschváleno"
 
-#: lobby/XmppClient.cpp:1039
+#: lobby/XmppClient.cpp:1036
 msgid "Not modified"
 msgstr "Nezměněno"
 
-#: lobby/XmppClient.cpp:1040
+#: lobby/XmppClient.cpp:1037
 msgid "Payment required"
 msgstr "Požadována platba"
 
-#: lobby/XmppClient.cpp:1041
+#: lobby/XmppClient.cpp:1038
 msgid "Recipient unavailable"
 msgstr "Příjemce nedostupný"
 
-#: lobby/XmppClient.cpp:1042
+#: lobby/XmppClient.cpp:1039
 msgid "Redirect"
 msgstr "Přesměrování"
 
-#: lobby/XmppClient.cpp:1044
+#: lobby/XmppClient.cpp:1041
 msgid "Remote server not found"
 msgstr "Vzdálený server nenalezen"
 
-#: lobby/XmppClient.cpp:1045
+#: lobby/XmppClient.cpp:1042
 msgid "Remote server timeout"
 msgstr "Vzdálenému serveru vypršel čas"
 
-#: lobby/XmppClient.cpp:1046
+#: lobby/XmppClient.cpp:1043
 msgid "Resource constraint"
 msgstr "Omezení zdroje"
 
-#: lobby/XmppClient.cpp:1047
+#: lobby/XmppClient.cpp:1044
 msgid "Service unavailable"
 msgstr "Služba nedostupná"
 
-#: lobby/XmppClient.cpp:1048
+#: lobby/XmppClient.cpp:1045
 msgid "Subscription Required"
 msgstr "Vyžadováno předplatné"
 
-#: lobby/XmppClient.cpp:1049
+#: lobby/XmppClient.cpp:1046
 msgid "Undefined condition"
 msgstr "Nestanovená podmínka"
 
-#: lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1047
 msgid "Unexpected request"
 msgstr "Neočekávaný požadavek"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1048
 msgid "Unknown sender"
 msgstr "Neznámý odesílatel"
 
-#: lobby/XmppClient.cpp:1053
+#: lobby/XmppClient.cpp:1050
 msgid "Error undefined"
 msgstr "Chyba nestanovena"
 

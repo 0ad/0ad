@@ -223,7 +223,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 						placement.addInfluence(x, z, 60/cellSize, 40);    // houses are close to other houses
 						alreadyHasHouses = true;
 					}
-					else
+					else if (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))
 						placement.addInfluence(x, z, 60/cellSize, -40);   // and further away from other stuffs
 				}
 				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field")

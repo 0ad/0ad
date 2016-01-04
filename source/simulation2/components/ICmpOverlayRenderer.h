@@ -52,7 +52,19 @@ public:
 	 */
 	virtual void AddSprite(VfsPath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D offset, std::string color = "255 255 255 255") = 0;
 
+	/**
+	* Enables or disables rendering of all sprites.
+	* @param visible Whether the selectable should be visible.
+	*/
+	static void SetOverrideVisibility(bool visible)
+	{
+		ICmpOverlayRenderer::m_OverrideVisible = visible;
+	}
+
 	DECLARE_INTERFACE_TYPE(OverlayRenderer)
+
+protected:
+	static bool m_OverrideVisible;
 };
 
 #endif // INCLUDED_ICMPOVERLAYRENDERER

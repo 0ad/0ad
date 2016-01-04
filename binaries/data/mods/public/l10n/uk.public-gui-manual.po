@@ -7,12 +7,13 @@
 # marinik_00 <tsiurik@gmail.com>, 2014
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Vladislav Trotsky <flyboooy17@gmail.com>, 2014
+# Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-19 09:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-03 14:13+0000\n"
+"Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "[font=\"sans-bold-18\"]посібник для гри 0 A.D."
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -59,11 +60,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Натискання Alt + Enter дозволяє перемикатися між повноекранним і віконним режимами. Віконний режим дозволяє змінювати розміри вікна. Якщо гра працює надто повільно, може допомогти зміна параметрів у конфігураційному файлі, зокрема вимкнення ефектів водних поверхонь і тіней. Файл binaries/data/config/default.cfg у теці зі встановленою грою містить вказівки із редагування цих налаштувань."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Гра"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -71,7 +72,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Гравцям традиційних RTS ігор, швидше за все, знайомі управління та ігровий процес. Наразі є відсутніми багато можливостей і погано збалансована статистика. Можливо, ви захочете дочекатися виходу бета-версії, щоб якісно пограти."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -151,7 +152,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr ""
+msgstr "Спочатку виберіть, чи хочете ви грати на випадковій карті (створюється автоматично скриптом випадкової карти) або на карті сценарію (створеній дизайнерами карт). Сценарії можуть бути відфільтровані. Усталені карти показуються відразу. Щоб побачити всі інші карти, виберіть «Всі карти». «Демонстраційні карти» створені для тестування окремих ігрових можливостей і не призначені для звичайного ігрового процесу."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -173,7 +174,7 @@ msgstr "[font=\"sans-bold-16\"]Гарячі клавіші:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Глобально"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -223,25 +224,25 @@ msgstr "[font=\"sans-bold-14\"]У грі"
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Подвійний клацання\\[по підрозділу]: Вибрати усі підрозділи цього ж типу на екрані (навіть якщо вони різного рангу)."
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr ""
+msgstr "Потрійне ліве клацання \\[на підрозділі]: Виділяє всі ваші підрозділи того самого типу і рангу на екрані"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + Подвійне ліве клацання \\[на підрозділі]: Вибирає усі ваші підрозділи одного типу на всій карті (навіть різних рангів)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Потрійне ліве клацання \\[на підрозділі]: вибирає всі підрозділи цього ж типу і рангу на всій карті"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -273,7 +274,7 @@ msgstr "T: Відіслати в командний чат"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pause: Зупинити/відновити гру"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
@@ -305,7 +306,7 @@ msgstr "1 (і так далі до 0): Вибирає юнітів/будівл�
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Shift + 1 (до 0): Додати контрольну групу 1 (до 0) до вибраних одиниць / будівель"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -323,15 +324,15 @@ msgstr "F5, F6, F7, і F8: Двигає камеру до поміченої п�
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: При вибраних будівлях додасть 1-ий, 2-ий, ... показаний підрозділ у чергу тренування у всіх вибраних будівлях."
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"serif-bold-14\"]Змінити дію мишки"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"serif-14\"]Ctrl + Праве клацання на будівлі: Гарнізон"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -344,31 +345,31 @@ msgstr "Shift + Лівий клік коли тренуєте юніта/ів: �
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
+msgstr "Shift + ліве клацання або виділення лівою кнопкою мишки, щоб додати підрозділ до вибраних"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
+msgstr "Shift + ліве клацання або виділення лівою кнопкою мишки, щоб видалити підрозділ із вибраних"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Alt + виділення підрозділів лівою кнопкою мишки: вибрати тільки бойові підрозділи"
 
 #: gui/manual/intro.txt:79
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgstr "I + виділення підрозділів лівою кнопкою мишки: вибрати тільки незайняті підрозділи"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr ""
+msgstr "Ctrl + ліва клацання на піктограмі підрозділу/групи при декількох обраних підрозділах: виключити підрозділ з обраного"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr ""
+msgstr "Натискання правої кнопки мишки при вибраній будівлі/ях: встановити точку збору для підрозділів, створених/звільнених будівлею."
 
 #: gui/manual/intro.txt:82
 msgid "Ctrl + Right Click with units selected:"
@@ -376,68 +377,68 @@ msgstr "Ctrl + Правий клік з виділеними юнітами:"
 
 #: gui/manual/intro.txt:83
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "- якщо курсор над союзною спорудою: відправити в гарнізон"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr ""
+msgstr " - якщо курсор над недружнім підрозділом або спорудою: атакувати (замість захоплення або збору)"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
+msgstr "- Інакше: атакувати в русі (усталено усі ворожі підрозділи і будівлі атакуються по шляху прямування; використовуйте Ctrl + Q + Права кнопка миші для атаки тільки підрозділів)."
 
 #: gui/manual/intro.txt:87
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Шари"
 
 #: gui/manual/intro.txt:88
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Показати/приховати інтерфейс"
 
 #: gui/manual/intro.txt:89
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "Alt + D: Показати/приховати шар розробника (із налаштуваннями розробниками)"
 
 #: gui/manual/intro.txt:90
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + W: Перемкнути відображення каркасу (одне натискання вмикає відображення каркасів над текстурованими моделями, подвійне — лише каркаси, пофарбовані текстурами, потрійне — повертає у звичайний текстурований режим)"
 
 #: gui/manual/intro.txt:91
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr ""
+msgstr "Alt + S Перемкнути режим відображення силуетів підрозділів (виключення може дати невеликий приріст продуктивності)"
 
 #: gui/manual/intro.txt:92
 msgid "Alt + Z: Toggle sky"
-msgstr ""
+msgstr "Alt + Z: Перемкнути небо"
 
 #: gui/manual/intro.txt:94
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Маніпуляції з камерою"
 
 #: gui/manual/intro.txt:95
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W або \\[up]:Панораму екрану вгору"
 
 #: gui/manual/intro.txt:96
 msgid "S or \\[down]: Pan screen down"
-msgstr ""
+msgstr "S або \\[донизу]: панораму екрана донизу"
 
 #: gui/manual/intro.txt:97
 msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgstr "A або \\[наліво]: повернути панораму екрану наліво"
 
 #: gui/manual/intro.txt:98
 msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgstr "A або \\[направо]: повернути панораму екрану направо"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
