@@ -245,8 +245,7 @@ bool XmppClient::onTLSConnect(const glooxwrapper::CertInfo& info)
  */
 void XmppClient::handleMUCError(glooxwrapper::MUCRoom*, gloox::StanzaError err)
 {
-	std::string msg = StanzaErrorToString(err);
-	CreateGUIMessage("system", "error", msg);
+	CreateGUIMessage("system", "error", StanzaErrorToString(err));
 }
 
 /*****************************************************
@@ -744,8 +743,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 	else if (iq.subtype() == gloox::IQ::Error)
 	{
 		gloox::StanzaError err = iq.error_error();
-		std::string msg = StanzaErrorToString(err);
-		CreateGUIMessage("system", "error", msg);
+		CreateGUIMessage("system", "error", StanzaErrorToString(err));
 	}
 	else
 	{
@@ -997,7 +995,7 @@ void XmppClient::GetRoleString(const gloox::MUCRoomRole r, std::string& role) co
  * @param err Error to be converted
  * @return Converted error string
  */
-std::string XmppClient::StanzaErrorToString(gloox::StanzaError err)
+std::string XmppClient::StanzaErrorToString(gloox::StanzaError err) const
 {
 #define CASE(X, Y) case gloox::X: return Y
 #define DEBUG_CASE(X, Y) case gloox::X: return g_L10n.Translate("Error") + " (" + Y + ")"
@@ -1041,7 +1039,7 @@ std::string XmppClient::StanzaErrorToString(gloox::StanzaError err)
  * @param err Error to be converted
  * @return Converted error string
  */
-std::string XmppClient::ConnectionErrorToString(gloox::ConnectionError err)
+std::string XmppClient::ConnectionErrorToString(gloox::ConnectionError err) const
 {
 #define CASE(X, Y) case gloox::X: return Y
 #define DEBUG_CASE(X, Y) case gloox::X: return g_L10n.Translate("Error") + " (" + Y + ")"
@@ -1080,23 +1078,23 @@ std::string XmppClient::ConnectionErrorToString(gloox::ConnectionError err)
  * @param err Enum to be converted
  * @return Converted string
  */
-std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res)
+std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res) const
 {
 #define CASE(X, Y) case gloox::X: return Y
 #define DEBUG_CASE(X, Y) case gloox::X: return g_L10n.Translate("Error") + " (" + Y + ")"
 	switch (res)
 	{
-		CASE(RegistrationSuccess, g_L10n.Translate("Success"));
-		CASE(RegistrationNotAcceptable, g_L10n.Translate("406: Not all necessary information provided"));
-		CASE(RegistrationConflict, g_L10n.Translate("409: Username already exists"));
-		DEBUG_CASE(RegistrationNotAuthorized, "Account removal timeout or insufficiently secure channel for password change");
-		DEBUG_CASE(RegistrationBadRequest, "Server recieved incomplete request");
-		DEBUG_CASE(RegistrationForbidden, "This client has insufficient permissions to remove an account");
-		DEBUG_CASE(RegistrationRequired, "Account cannot be removed as it does not exist");
-		DEBUG_CASE(RegistrationUnexpectedRequest, "This client is unregistered with the server");
-		DEBUG_CASE(RegistrationNotAllowed, "Server does not permit password changes");
-		default:
-			return g_L10n.Translate("Unknown error");
+	CASE(RegistrationSuccess, g_L10n.Translate("Success"));
+	CASE(RegistrationNotAcceptable, g_L10n.Translate("406: Not all necessary information provided"));
+	CASE(RegistrationConflict, g_L10n.Translate("409: Username already exists"));
+	DEBUG_CASE(RegistrationNotAuthorized, "Account removal timeout or insufficiently secure channel for password change");
+	DEBUG_CASE(RegistrationBadRequest, "Server recieved incomplete request");
+	DEBUG_CASE(RegistrationForbidden, "This client has insufficient permissions to remove an account");
+	DEBUG_CASE(RegistrationRequired, "Account cannot be removed as it does not exist");
+	DEBUG_CASE(RegistrationUnexpectedRequest, "This client is unregistered with the server");
+	DEBUG_CASE(RegistrationNotAllowed, "Server does not permit password changes");
+	default:
+		return g_L10n.Translate("Unknown error");
 	}
 #undef DEBUG_CASE
 #undef CASE
