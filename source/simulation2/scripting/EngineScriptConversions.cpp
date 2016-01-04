@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -291,7 +291,7 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 	ret.setObject(*obj);
 }
 
-// TODO: This is copy-pasted from scriptinterface/ScriptConversions.h (#define VECTOR stuff), would be nice to remove the duplication
+// TODO: This is copy-pasted from scriptinterface/ScriptConversions.cpp (#define VECTOR stuff), would be nice to remove the duplication
 template<> void ScriptInterface::ToJSVal<std::vector<CFixedVector2D> >(JSContext* cx, JS::MutableHandleValue ret, const std::vector<CFixedVector2D>& val)
 {
 	JSAutoRequest rq(cx);

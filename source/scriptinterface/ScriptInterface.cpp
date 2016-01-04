@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -449,7 +449,9 @@ ScriptInterface::CxPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSConte
 
 JS::Value ScriptInterface::GetCachedValue(CACHED_VAL valueIdentifier)
 {
-	return m->m_ScriptValCache[valueIdentifier].get();
+	std::map<ScriptInterface::CACHED_VAL, DefPersistentRooted<JS::Value>>::iterator it = m->m_ScriptValCache.find(valueIdentifier);
+	ENSURE(it != m->m_ScriptValCache.end());
+	return it->second.get();
 }
 
 

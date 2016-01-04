@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,8 +20,11 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include "maths/Fixed.h"
+#include "maths/FixedVector2D.h"
+#include "maths/FixedVector3D.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "ps/Filesystem.h"
 
 #include "jsapi.h"
 
@@ -31,6 +34,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	void convert_to(const T& value, const std::string& expected)
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		TS_ASSERT(script.LoadGlobalScripts());
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
 
@@ -50,6 +54,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	void roundtrip(const T& value, const char* expected)
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		TS_ASSERT(script.LoadGlobalScripts());
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
 
@@ -68,7 +73,44 @@ class TestScriptConversions : public CxxTest::TestSuite
 		TS_ASSERT_EQUALS(value, v2);
 	}
 
+	template <typename T>
+	void call_prototype_function(const T& u, const T& v, const std::string& func, const std::string& expected)
+	{
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+		TS_ASSERT(script.LoadGlobalScripts());
+		JSContext* cx = script.GetContext();
+		JSAutoRequest rq(cx);
+
+		JS::RootedValue v1(cx);
+		ScriptInterface::ToJSVal(cx, &v1, v);
+		JS::RootedValue u1(cx);
+		ScriptInterface::ToJSVal(cx, &u1, u);
+
+		T r;
+		JS::RootedValue r1(cx);
+
+		TS_ASSERT(script.CallFunction(u1, func.c_str(), v1, r));
+		ScriptInterface::ToJSVal(cx, &r1, r);
+
+		std::string source;
+		JS::RootedValue global(cx, script.GetGlobalObject());
+		TS_ASSERT(script.CallFunction(global, "uneval", r1, source));
+
+		TS_ASSERT_STR_EQUALS(source, expected);
+	}
+
 public:
+	void setUp()
+	{
+		g_VFS = CreateVfs(20 * MiB);
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"_test.sim", VFS_MOUNT_MUST_EXIST));
+	}
+
+	void tearDown()
+	{
+		g_VFS.reset();
+	}
+
 	void test_roundtrip()
 	{
 		roundtrip<bool>(true, "true");
@@ -178,12 +220,10 @@ public:
 		TS_ASSERT(isnan(f));
 	}
 
-	// TODO: test vectors
+	// NOTE: fixed and vector conversions are defined in simulation2/scripting/EngineScriptConversions.cpp
 
 	void test_fixed()
 	{
-		// NOTE: fixed conversions are defined in simulation2/scripting/EngineScriptConversions.cpp
-
 		fixed f;
 
 		f.SetInternalValue(10590283);
@@ -197,5 +237,23 @@ public:
 
 		f.SetInternalValue(2000000001);
 		roundtrip<fixed>(f, "30517.57814025879");
+	}
+
+	void test_vector2d()
+	{
+		CFixedVector2D v(fixed::Zero(), fixed::Pi());
+		roundtrip<CFixedVector2D>(v, "({x:0, y:3.1415863037109375})");
+
+		CFixedVector2D u(fixed::FromInt(1), fixed::Zero());
+		call_prototype_function<CFixedVector2D>(u, v, "add", "({x:1, y:3.1415863037109375})");
+	}
+
+	void test_vector3d()
+	{
+		CFixedVector3D v(fixed::Zero(), fixed::Pi(), fixed::FromInt(1));
+		roundtrip<CFixedVector3D>(v, "({x:0, y:3.1415863037109375, z:1})");
+
+		CFixedVector3D u(fixed::Pi(), fixed::Zero(), fixed::FromInt(2));
+		call_prototype_function<CFixedVector3D>(u, v, "add", "({x:3.1415863037109375, y:3.1415863037109375, z:3})");
 	}
 };
