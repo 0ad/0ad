@@ -1085,8 +1085,8 @@ std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res
 	switch (res)
 	{
 	CASE(RegistrationSuccess, g_L10n.Translate("Success"));
-	CASE(RegistrationNotAcceptable, g_L10n.Translate("406: Not all necessary information provided"));
-	CASE(RegistrationConflict, g_L10n.Translate("409: Username already exists"));
+	CASE(RegistrationNotAcceptable, g_L10n.Translate("Not all necessary information provided"));
+	CASE(RegistrationConflict, g_L10n.Translate("Username already exists"));
 	DEBUG_CASE(RegistrationNotAuthorized, "Account removal timeout or insufficiently secure channel for password change");
 	DEBUG_CASE(RegistrationBadRequest, "Server recieved incomplete request");
 	DEBUG_CASE(RegistrationForbidden, "This client has insufficient permissions to remove an account");
