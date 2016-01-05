@@ -92,7 +92,7 @@ EndGameManager.prototype.OnGlobalPlayerDefeated = function(msg)
 	if (!allies.length || !onlyAlliesLeft || !this.alliedVictory)
 		return; 
 
-	for each (var p in allies)
+	for (var p of allies)
 		cmpPlayers[p].SetState("won");
 
 	// Reveal the map to all players

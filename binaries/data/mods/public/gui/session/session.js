@@ -54,7 +54,9 @@ var g_SimState;
 // Cache EntityStates
 var g_EntityStates = {}; // {id:entState}
 
-// Whether the player has lost/won and reached the end of their game
+/**
+ * Whether the current player has lost/won and reached the end of their game.
+ */
 var g_GameEnded = false;
 
 var g_Disconnected = false; // Lost connection to server
@@ -457,7 +459,6 @@ function onTick()
 
 function checkPlayerState()
 {
-	// Once the game ends, we're done here.
 	if (g_GameEnded || g_IsObserver)
 		return;
 
@@ -471,14 +472,13 @@ function checkPlayerState()
 	if (g_CachedLastStates != tempStates)
 	{
 		g_CachedLastStates = tempStates;
-		reportGame(Engine.GuiInterfaceCall("GetExtendedSimulationState"));
+		reportGame();
 	}
 
-	// If the local player hasn't finished playing, we return here to avoid the victory/defeat messages.
 	if (playerState.state == "active")
 		return;
 
-	// Disable resign and pause buttons (we can't resign once the game is over)
+	// Disable the resign- and pausebutton
 	updateTopPanel();
 	
 	// Make sure nothing is open to avoid stacking.
@@ -894,11 +894,15 @@ function showTimeWarpMessageBox()
 			translate("Time warp mode"), 2);
 }
 
-// Send a report on the game status to the lobby
-function reportGame(extendedSimState)
+/**
+ * Send a report on the gamestatus to the lobby.
+ */
+function reportGame()
 {
 	if (!Engine.HasXmppClient() || !Engine.IsRankedGame())
 		return;
+
+	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
 
 	let unitsClasses = [
 		"total",
