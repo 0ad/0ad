@@ -180,6 +180,9 @@ public:
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
+		if (!g_Game || !g_Game->GetView())
+			return;
+
 		switch (msg.GetType())
 		{
 		case MT_Update:
