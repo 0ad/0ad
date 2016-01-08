@@ -39,6 +39,7 @@ Configuration:
 -yres=N				set screen Y resolution to 'N'
 
 Advanced / diagnostic:
+-version			print the version of the engine and exit
 -dumpSchema			creates a file entity.rng in the working directory, containing
 					  complete entity XML schema, used by various analysis tools
 -entgraph			(disabled)
