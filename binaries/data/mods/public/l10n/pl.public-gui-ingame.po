@@ -19,6 +19,7 @@
 # LenaPL <polandlena@gmail.com>, 2014
 # Leszek S, 2014
 # Leszek S, 2014-2015
+# Lukasz B <boberstarosta@gmail.com>, 2016
 # Mar321 <grobelskimarcin@gmail.com>, 2013
 # Marcin Kozłowski <martinkoaz@gmail.com>, 2015
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
@@ -47,8 +48,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-28 10:19+0100\n"
-"PO-Revision-Date: 2015-12-29 21:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-07 10:59+0000\n"
+"Last-Translator: Lukasz B <boberstarosta@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -267,7 +268,7 @@ msgstr[2] "Liczba nieaktywnych statków handlowych wynosi %(numberOfShipTraders)
 
 #: gui/session/menu.js:637
 msgid "Current Scores"
-msgstr ""
+msgstr "Bieżąca Punktacja"
 
 #: gui/session/menu.js:663 gui/session/menu.js:686
 msgid "Resume"
@@ -390,17 +391,17 @@ msgstr "%(player)s jest teraz neutralny wobec Ciebie."
 #: gui/session/messages.js:87
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s jest teraz w sojuszu z %(player2)s."
 
 #: gui/session/messages.js:88
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s jest teraz w stanie wojny z %(player2)s."
 
 #: gui/session/messages.js:89
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s jest teraz neutralny wobec %(player2)s."
 
 #: gui/session/messages.js:97
 #, javascript-format
@@ -410,7 +411,7 @@ msgstr "%(player)s wysłał Ci %(amounts)s."
 #: gui/session/messages.js:98
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)s wysłał %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:105
 #, javascript-format
@@ -967,7 +968,7 @@ msgstr "Zapisz"
 
 #: gui/session/menu.xml:(caption):53
 msgid "Summary"
-msgstr ""
+msgstr "Podsumowanie"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Options"

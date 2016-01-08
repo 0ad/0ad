@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 09:20+0000\n"
+"POT-Creation-Date: 2016-01-04 09:00+0100\n"
+"PO-Revision-Date: 2016-01-04 09:19+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -40,141 +40,117 @@ msgstr "personalizada"
 msgid "Long strings"
 msgstr "Cadeas longas"
 
-#: lobby/XmppClient.cpp:455
-msgid "Registration not acceptable"
-msgstr "O rexistro non é correcto"
-
-#: lobby/XmppClient.cpp:456
-msgid "Registration conflict"
-msgstr "Hai un conflito no rexistro"
-
-#: lobby/XmppClient.cpp:457
-msgid "Registration not authorized"
-msgstr "O rexistro non está autorizado"
-
-#: lobby/XmppClient.cpp:458
-msgid "Registration bad request"
-msgstr "Erro no envío de datos do rexistro"
-
-#: lobby/XmppClient.cpp:459
-msgid "Registration forbidden"
-msgstr "Rexistro prohibido"
-
-#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:1040
-msgid "Registration required"
-msgstr "Rexistro obrigatorio"
-
-#: lobby/XmppClient.cpp:461
-msgid "Registration unexpected request"
-msgstr "Erro no envío de datos do rexistro"
-
-#: lobby/XmppClient.cpp:462
-msgid "Registration not allowed"
-msgstr "Non se permite o rexistro"
-
-#: lobby/XmppClient.cpp:463
-msgid "Registration unknown error"
-msgstr "Erro descoñecido no rexistro"
-
-#: lobby/XmppClient.cpp:772
+#: lobby/XmppClient.cpp:752
 msgid "unknown subtype (see logs)"
 msgstr "Subtipo descoñecido (vexa o historial)"
 
-#: lobby/XmppClient.cpp:1025
-msgid "Bad request"
-msgstr "Solicitude incorrecta"
+#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
+#: lobby/XmppClient.cpp:1086
+msgid "Error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1026
-msgid "Player name already in use"
-msgstr "Xa hai un xogador con ese nome."
+#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
+msgid "No error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1027
-msgid "Feature not implemented"
-msgstr "Funcionalidade inacabada"
+#: lobby/XmppClient.cpp:1008
+msgid "Player already logged in"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1028
+#: lobby/XmppClient.cpp:1010
 msgid "Forbidden"
 msgstr "Prohibido"
 
-#: lobby/XmppClient.cpp:1029
-msgid "Recipient or server gone"
-msgstr "Non se atoparon o destinatario ou o servidor"
-
-#: lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1012
 msgid "Internal server error"
 msgstr "Erro interno do servidor"
 
-#: lobby/XmppClient.cpp:1031
-msgid "Item not found"
-msgstr "Non se atopou o elemento"
-
-#: lobby/XmppClient.cpp:1032
-msgid "Jid malformed"
-msgstr "Identificador incorrecto"
-
-#: lobby/XmppClient.cpp:1033
-msgid "Not acceptable"
-msgstr "Non aceptábel"
-
-#: lobby/XmppClient.cpp:1034
+#: lobby/XmppClient.cpp:1016
 msgid "Not allowed"
 msgstr "Non permitido"
 
-#: lobby/XmppClient.cpp:1035
+#: lobby/XmppClient.cpp:1017
 msgid "Not authorized"
 msgstr "Non autorizado"
 
-#: lobby/XmppClient.cpp:1036
-msgid "Not modified"
-msgstr "Non modificado"
+#: lobby/XmppClient.cpp:1020
+msgid "Recipient temporarily unavailable"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1037
-msgid "Payment required"
-msgstr "Requírese un pagamento"
+#: lobby/XmppClient.cpp:1022
+msgid "Registration required"
+msgstr "Rexistro obrigatorio"
 
-#: lobby/XmppClient.cpp:1038
-msgid "Recipient unavailable"
-msgstr "O destinatario non está dispoñíbel"
-
-#: lobby/XmppClient.cpp:1039
-msgid "Redirect"
-msgstr "Encamiñar"
-
-#: lobby/XmppClient.cpp:1041
-msgid "Remote server not found"
-msgstr "Non se atopou o servidor remoto"
-
-#: lobby/XmppClient.cpp:1042
-msgid "Remote server timeout"
-msgstr "O servidor remoto excedeu o tempo de espera máximo"
-
-#: lobby/XmppClient.cpp:1043
-msgid "Resource constraint"
-msgstr "Restrición do recurso"
-
-#: lobby/XmppClient.cpp:1044
+#: lobby/XmppClient.cpp:1026
 msgid "Service unavailable"
 msgstr "O servizo non está dispoñíbel"
 
-#: lobby/XmppClient.cpp:1045
-msgid "Subscription Required"
-msgstr "É necesario subscribirse"
+#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1099
+msgid "Unknown error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1046
-msgid "Undefined condition"
-msgstr "Condición non definida"
+#: lobby/XmppClient.cpp:1051
+msgid "Stream error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1047
-msgid "Unexpected request"
-msgstr "Solicitude inesperada"
+#: lobby/XmppClient.cpp:1052
+msgid "The incoming stream version is unsupported"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1048
-msgid "Unknown sender"
-msgstr "Remitente descoñecido"
+#: lobby/XmppClient.cpp:1053
+msgid "The stream has been closed by the server"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1050
-msgid "Error undefined"
-msgstr "Erro indefinido"
+#: lobby/XmppClient.cpp:1057
+msgid "An I/O error occured"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1059
+msgid "The connection was refused by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1060
+msgid "Resolving the server's hostname failed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1061
+msgid "This system is out of memory"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1063
+msgid ""
+"The server's certificate could not be verified or the TLS handshake did not "
+"complete successfully"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1064
+msgid "The server did not offer required TLS encrytption"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1066
+msgid "Authentication failed. Incorrect password or account does not exist"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1067
+msgid "The user or system requested a disconnect"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1068
+msgid "There is no active connection"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1089
+msgid "Success"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1090
+msgid "406: Not all necessary information provided"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1091
+msgid "409: Username already exists"
+msgstr ""
 
 #: ps/SavedGame.cpp:133
 #, c-format

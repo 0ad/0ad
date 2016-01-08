@@ -10,7 +10,7 @@
 # Jacek <jacek15klb@gmail.com>, 2015
 # Krzysztof Grabania, 2015
 # Leszek S, 2014-2015
-# Lukasz B <boberstarosta@gmail.com>, 2015
+# Lukasz B <boberstarosta@gmail.com>, 2015-2016
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Michał Karol <michal.p.karol+transifex@gmail.com>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-07 11:09+0000\n"
+"Last-Translator: Lukasz B <boberstarosta@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -325,12 +325,12 @@ msgstr "Ryba"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s oraz %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -396,7 +396,7 @@ msgstr "Nie można wyrzucić %(name)s."
 #: gui/common/network.js:66
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Gracze: %(users)s"
 
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
@@ -638,15 +638,15 @@ msgstr ""
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
-msgstr ""
+msgstr "Tempo naprawiania:"
 
 #: gui/common/tooltips.js:237
 msgid "health"
-msgstr ""
+msgstr "zdrowie"
 
 #: gui/common/tooltips.js:239
 msgid "worker"
-msgstr ""
+msgstr "pracownik"
 
 #: gui/common/tooltips.js:280 gui/common/tooltips.js:281
 #: gui/common/tooltips.js:282 gui/common/tooltips.js:283

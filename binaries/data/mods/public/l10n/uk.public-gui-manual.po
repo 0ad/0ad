@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2016-01-03 14:13+0000\n"
+"PO-Revision-Date: 2016-01-05 19:14+0000\n"
 "Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -442,19 +442,19 @@ msgstr "A або \\[направо]: повернути панораму екр�
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W або \\[up]: Подивитися вище"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S або \\[down]: Подивитися нижче"
 
 #: gui/manual/intro.txt:101
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A або \\[left]: Повернути камеру за годинниковою стрілкою"
 
 #: gui/manual/intro.txt:102
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D або \\[right]: Повернути камеру проти годинникової стрілки"
 
 #: gui/manual/intro.txt:103
 msgid "Q: Rotate camera clockwise around terrain"
@@ -466,12 +466,12 @@ msgstr "E: Обертати камеру проти годинникової с�
 
 #: gui/manual/intro.txt:105
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + колесо мишки вгору: поворот камери за годинниковою стрілкою навколо місцевості"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Shift + колесо мишки вниз: поворот камери проти годинникової стрілки навколо місцевості"
 
 #: gui/manual/intro.txt:107
 msgid ""
@@ -493,44 +493,44 @@ msgstr "-: Віддалити (тримайте кнопку для руху к�
 
 #: gui/manual/intro.txt:111
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "Alt + W Перемикання режимів відображення каркасу"
 
 #: gui/manual/intro.txt:112
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "Середня кнопка мишки або / (коса риска): тримайте натиснутою і переміщайте мишку для панорамування"
 
 #: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Розміщення під час будівництва"
 
 #: gui/manual/intro.txt:115
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"]\\[: Повернути будівлю на 15 градусів за годинниковою стрілкою"
 
 #: gui/manual/intro.txt:116
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "]:  Повернути будівлю на 15 градусів за годинниковою стрілкою"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "Переміщення мишки при натиснутій лівій кнопці: обертати споруду (основа буде розміщена, як тільки кнопка відпуститься)"
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Під час завантаження збереженої гри"
 
 #: gui/manual/intro.txt:120
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Delete: видалити виділену збережену гру із запитом підтвердження"
 
 #: gui/manual/intro.txt:121
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr ""
+msgstr "Shift: не запитувати підтвердження при видаленні збереженої гри"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -539,42 +539,42 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr ""
+msgstr "Як вільна гра з відкритими вихідними кодами, ми не маємо можливості протестувати на широкому колі систем, але ми хочемо забезпечити найкращу якість максимальному числу гравців. Коли ви увімкнете автоматичний зворотний зв'язок, ми зможемо приймати дані, які допоможуть нам зрозуміти, на якому апаратному забезпеченні необхідно сфокусувати підтримку, а також виявити проблеми продуктивності та виправити їх."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr ""
+msgstr "Такі дані будуть відправлені на сервер:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• Випадковий ідентифікатор користувача (збережений в %APPDATA%\\0ad\\config\\user.cfg в Windows, ~/.config/0ad/config/user.cfg в Unix), який дозволяє визначити повторні звіти від даного користувача."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "• Версія гри та базові параметри збірки (метод оптимізації, архітектура ЦП, часова мітка, версія компілятора). "
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr ""
+msgstr "• Апаратні засоби: версія ОС, версія графічного драйвера, можливості OpenGL, розмір екрана, особливості ЦП, обсяг ОП."
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "• Деталі продуктивності: знімок часових даних кілька секунд після початку гри або зміни налаштувань графіки."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "Дані, розміром кілька кілобайт, будуть передаватися щоразу під час запуску гри, тому використання інтернет каналу буде мінімальним."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -583,4 +583,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "Ми збережемо передані дані на сервері і зможемо публікувати статистику або анонімні деталі на допомогу іншим розробникам ігор з подібними питаннями. Ми збережемо вашу IP-адресу для виявлення скарг, але не будемо публікувати її. Опубліковану інформацію можна побачити за адресою http://feedback.wildfiregames.com/"

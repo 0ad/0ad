@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 09:20+0000\n"
+"POT-Creation-Date: 2016-01-04 09:00+0100\n"
+"PO-Revision-Date: 2016-01-04 09:19+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
@@ -41,141 +41,117 @@ msgstr "தனிக்கட்டமைப்பு"
 msgid "Long strings"
 msgstr "நீண்ட சொற்றொடர்கள்"
 
-#: lobby/XmppClient.cpp:455
-msgid "Registration not acceptable"
-msgstr " பதிவு ஏற்கத்தக்கது அல்ல"
-
-#: lobby/XmppClient.cpp:456
-msgid "Registration conflict"
-msgstr "பதிவில்  முரண்பாடு"
-
-#: lobby/XmppClient.cpp:457
-msgid "Registration not authorized"
-msgstr "பதிவு அங்கீகரிக்கப்படவில்லை "
-
-#: lobby/XmppClient.cpp:458
-msgid "Registration bad request"
-msgstr "பதிவு - தவறான வேண்டுகோள் "
-
-#: lobby/XmppClient.cpp:459
-msgid "Registration forbidden"
-msgstr "பதிவு தடைசெய்யபட்டுளது"
-
-#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:1040
-msgid "Registration required"
-msgstr "பதிவு அவசியம்"
-
-#: lobby/XmppClient.cpp:461
-msgid "Registration unexpected request"
-msgstr "பதிவு எதிர்பாரத வேண்டுகோள் "
-
-#: lobby/XmppClient.cpp:462
-msgid "Registration not allowed"
-msgstr "பதிவு அனுமதிக்கபடாது "
-
-#: lobby/XmppClient.cpp:463
-msgid "Registration unknown error"
-msgstr "பதிவில் அறியப்படாத பிழை"
-
-#: lobby/XmppClient.cpp:772
+#: lobby/XmppClient.cpp:752
 msgid "unknown subtype (see logs)"
 msgstr "அறியப்படாத உட்பிரிவு (பதிவுகள் பார்க்க)"
 
-#: lobby/XmppClient.cpp:1025
-msgid "Bad request"
-msgstr "தவறான வேண்டுகோள்"
+#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
+#: lobby/XmppClient.cpp:1086
+msgid "Error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1026
-msgid "Player name already in use"
-msgstr "போட்டியாளர் பெயர் ஏற்கனவே எடுக்கப்பட்டது "
+#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
+msgid "No error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1027
-msgid "Feature not implemented"
-msgstr "அம்சம் சேர்க்கப்படவில்லை "
+#: lobby/XmppClient.cpp:1008
+msgid "Player already logged in"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1028
+#: lobby/XmppClient.cpp:1010
 msgid "Forbidden"
 msgstr " தடைசெய்யபட்டுளது "
 
-#: lobby/XmppClient.cpp:1029
-msgid "Recipient or server gone"
-msgstr "பெறுநர் அல்லது சர்வர்  இல்லை "
-
-#: lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1012
 msgid "Internal server error"
 msgstr "உட்புற சர்வர் பிழை"
 
-#: lobby/XmppClient.cpp:1031
-msgid "Item not found"
-msgstr "பொருள் காணப்படவில்லை"
-
-#: lobby/XmppClient.cpp:1032
-msgid "Jid malformed"
-msgstr " ஜிட் தவறானவடிவமைப்பு"
-
-#: lobby/XmppClient.cpp:1033
-msgid "Not acceptable"
-msgstr "ஒற்றுகொள்ளபடாது "
-
-#: lobby/XmppClient.cpp:1034
+#: lobby/XmppClient.cpp:1016
 msgid "Not allowed"
 msgstr " அனுமதியில்லை "
 
-#: lobby/XmppClient.cpp:1035
+#: lobby/XmppClient.cpp:1017
 msgid "Not authorized"
 msgstr "அங்கீகரிக்கப்படவில்லை "
 
-#: lobby/XmppClient.cpp:1036
-msgid "Not modified"
-msgstr "மாற்றமில்லை "
-
-#: lobby/XmppClient.cpp:1037
-msgid "Payment required"
-msgstr "கட்டணம் தேவைப்படுகிறது"
-
-#: lobby/XmppClient.cpp:1038
-msgid "Recipient unavailable"
-msgstr "பெறுநர் தர்சமயமில்லை "
-
-#: lobby/XmppClient.cpp:1039
-msgid "Redirect"
-msgstr "திருப்பி அனுப்படுகிறது "
-
-#: lobby/XmppClient.cpp:1041
-msgid "Remote server not found"
-msgstr "தொலை சர்வர் இல்லை"
-
-#: lobby/XmppClient.cpp:1042
-msgid "Remote server timeout"
-msgstr "தொலைசர்வர்  நேரமுடிதல் "
-
-#: lobby/XmppClient.cpp:1043
-msgid "Resource constraint"
+#: lobby/XmppClient.cpp:1020
+msgid "Recipient temporarily unavailable"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1044
+#: lobby/XmppClient.cpp:1022
+msgid "Registration required"
+msgstr "பதிவு அவசியம்"
+
+#: lobby/XmppClient.cpp:1026
 msgid "Service unavailable"
 msgstr "சேவை இல்லை"
 
-#: lobby/XmppClient.cpp:1045
-msgid "Subscription Required"
-msgstr "சந்தா அவசியம் "
-
-#: lobby/XmppClient.cpp:1046
-msgid "Undefined condition"
+#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1099
+msgid "Unknown error"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1047
-msgid "Unexpected request"
-msgstr "எதிர்பார்க்காத வேண்டுகோள் "
+#: lobby/XmppClient.cpp:1051
+msgid "Stream error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1048
-msgid "Unknown sender"
-msgstr "தெரியாத அனுப்புநர்"
+#: lobby/XmppClient.cpp:1052
+msgid "The incoming stream version is unsupported"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1050
-msgid "Error undefined"
-msgstr "தெரியாத சிக்கல்"
+#: lobby/XmppClient.cpp:1053
+msgid "The stream has been closed by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1057
+msgid "An I/O error occured"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1059
+msgid "The connection was refused by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1060
+msgid "Resolving the server's hostname failed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1061
+msgid "This system is out of memory"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1063
+msgid ""
+"The server's certificate could not be verified or the TLS handshake did not "
+"complete successfully"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1064
+msgid "The server did not offer required TLS encrytption"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1066
+msgid "Authentication failed. Incorrect password or account does not exist"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1067
+msgid "The user or system requested a disconnect"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1068
+msgid "There is no active connection"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1089
+msgid "Success"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1090
+msgid "406: Not all necessary information provided"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1091
+msgid "409: Username already exists"
+msgstr ""
 
 #: ps/SavedGame.cpp:133
 #, c-format

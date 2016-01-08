@@ -5,13 +5,13 @@
 # Translators:
 # Guillem Poy <guplem@gmail.com>, 2015
 # Peredelgrau, 2014
-# Haommin <tfs.msimangu@gmail.com>, 2014-2015
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 09:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-01-04 09:00+0100\n"
+"PO-Revision-Date: 2016-01-06 16:14+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,104 +40,104 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: gui/lobby/lobby.js:111
+#: gui/lobby/lobby.js:109
 msgid "Disconnected."
-msgstr ""
+msgstr "Desconnectat."
 
-#: gui/lobby/lobby.js:123
+#: gui/lobby/lobby.js:121
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s ha arribat."
 
-#: gui/lobby/lobby.js:130
+#: gui/lobby/lobby.js:128
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s ha marxat."
 
-#: gui/lobby/lobby.js:138
+#: gui/lobby/lobby.js:136
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s ara es diu %(newnick)s."
 
-#: gui/lobby/lobby.js:206
+#: gui/lobby/lobby.js:204
 msgctxt "map size"
 msgid "Any"
 msgstr "Qualsevol"
 
-#: gui/lobby/lobby.js:211
+#: gui/lobby/lobby.js:209
 msgctxt "player number"
 msgid "Any"
 msgstr "Qualsevol"
 
-#: gui/lobby/lobby.js:215
+#: gui/lobby/lobby.js:213
 msgctxt "map"
 msgid "Any"
 msgstr "Qualsevol"
 
-#: gui/lobby/lobby.js:387
+#: gui/lobby/lobby.js:385
 msgid "Moderator"
 msgstr "Moderador"
 
-#: gui/lobby/lobby.js:387
+#: gui/lobby/lobby.js:385
 msgid "Player"
 msgstr "Jugador"
 
-#: gui/lobby/lobby.js:388 gui/lobby/lobby.js:389 gui/lobby/lobby.js:390
-#: gui/lobby/lobby.js:391 gui/lobby/lobby.js:392 gui/lobby/lobby.js:393
+#: gui/lobby/lobby.js:386 gui/lobby/lobby.js:387 gui/lobby/lobby.js:388
+#: gui/lobby/lobby.js:389 gui/lobby/lobby.js:390 gui/lobby/lobby.js:391
 msgid "N/A"
 msgstr "No disponible"
 
-#: gui/lobby/lobby.js:416 gui/lobby/lobby.js:446
+#: gui/lobby/lobby.js:414 gui/lobby/lobby.js:444
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:427 gui/lobby/lobby.js:457
+#: gui/lobby/lobby.js:425 gui/lobby/lobby.js:455
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/lobby/lobby.js:429 gui/lobby/lobby.js:459
+#: gui/lobby/lobby.js:427 gui/lobby/lobby.js:457
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:619
+#: gui/lobby/lobby.js:617
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "L'adreça d'aquesta partida '%(ip)s' no sembla ser vàlida."
 
-#: gui/lobby/lobby.js:720
+#: gui/lobby/lobby.js:718
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "L'ordre '%(cmd)s' no té suport."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:794
+#: gui/lobby/lobby.js:792
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:796
+#: gui/lobby/lobby.js:794
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:800 gui/lobby/lobby.js:811 gui/lobby/lobby.js:821
+#: gui/lobby/lobby.js:798 gui/lobby/lobby.js:809 gui/lobby/lobby.js:819
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:802 gui/lobby/lobby.js:813 gui/lobby/lobby.js:823
+#: gui/lobby/lobby.js:800 gui/lobby/lobby.js:811 gui/lobby/lobby.js:821
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:807
+#: gui/lobby/lobby.js:805
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -147,88 +147,84 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:846
+#: gui/lobby/lobby.js:844
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:849
+#: gui/lobby/lobby.js:847
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:852
+#: gui/lobby/lobby.js:850
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:898
+#: gui/lobby/lobby.js:896
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Si us plau, no feu spam. Heu estat bloquejat trenta segons."
 
-#: gui/lobby/prelobby.js:18
-msgid "Authentication failed"
-msgstr ""
-
-#: gui/lobby/prelobby.js:22
-msgid "Registered"
-msgstr "Registrat"
-
-#: gui/lobby/prelobby.js:73
+#: gui/lobby/prelobby.js:40
 msgid "Connecting..."
 msgstr "S'està connectant..."
 
-#: gui/lobby/prelobby.js:95
+#: gui/lobby/prelobby.js:62
 msgid "Registering..."
 msgstr "S'està registrant..."
 
-#: gui/lobby/prelobby.js:124
+#: gui/lobby/prelobby.js:92
 msgid "Please enter your username"
 msgstr "Escriviu el nom d'usuari"
 
-#: gui/lobby/prelobby.js:130
+#: gui/lobby/prelobby.js:98
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
 msgstr "Els noms d'usuari no poden contenir \\[, ], unicode, espais en blanc ni comes"
 
-#: gui/lobby/prelobby.js:136
+#: gui/lobby/prelobby.js:104
 msgid "Please enter your password"
 msgstr "Escriviu la contrasenya"
 
-#: gui/lobby/prelobby.js:149
+#: gui/lobby/prelobby.js:117
 msgid "Please enter your password again"
 msgstr "Torneu a escriure la contrasenya"
 
-#: gui/lobby/prelobby.js:155
+#: gui/lobby/prelobby.js:123
 msgid "Passwords do not match"
 msgstr "Les contrasenyes no coincideixen"
 
-#: gui/lobby/prelobby.js:161
+#: gui/lobby/prelobby.js:129
 msgid "Please read the Terms of Service"
 msgstr "Llegiu els termes del servei"
 
-#: gui/lobby/prelobby.js:167
+#: gui/lobby/prelobby.js:135
 msgid "Please read the Terms of Use"
 msgstr "Llegiu els termes d'ús"
 
-#: gui/lobby/prelobby.js:173
+#: gui/lobby/prelobby.js:141
 msgid "Please agree to the Terms of Service and Terms of Use"
 msgstr "Accepteu els termes del servei i els termes d'ús"
 
-#: gui/lobby/prelobby.js:240
+#: gui/lobby/prelobby.js:171
+msgid "Registered"
+msgstr "Registrat"
+
+#: gui/lobby/prelobby.js:229
 msgid "Register"
 msgstr "Registre"
 
-#: gui/lobby/prelobby.js:245 gui/lobby/prelobby.xml:(caption):109
+#: gui/lobby/prelobby.js:234 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
 msgstr "Connecta"
 
-#: gui/lobby/prelobby.js:255 gui/lobby/prelobby.xml:(caption):78
+#: gui/lobby/prelobby.js:244 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
 msgstr "Termes del servei"
 
-#: gui/lobby/prelobby.js:264 gui/lobby/prelobby.xml:(caption):83
+#: gui/lobby/prelobby.js:253 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
 msgstr "Termes d'ús"
 

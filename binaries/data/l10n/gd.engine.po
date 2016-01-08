@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
-# GunChleoc, 2013-2014
+# GunChleoc, 2013-2014,2016
 # GunChleoc, 2015
 # GunChleoc, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-01-04 09:00+0100\n"
+"PO-Revision-Date: 2016-01-04 09:59+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,141 +41,117 @@ msgstr "togail ghnàthaichte"
 msgid "Long strings"
 msgstr "Sreangan fada"
 
-#: lobby/XmppClient.cpp:455
-msgid "Registration not acceptable"
-msgstr "Cha ghabhar ris an clàradh seo"
-
-#: lobby/XmppClient.cpp:456
-msgid "Registration conflict"
-msgstr "Còmhstri leis a’ chlàradh"
-
-#: lobby/XmppClient.cpp:457
-msgid "Registration not authorized"
-msgstr "Clàradh gun dearbhadh"
-
-#: lobby/XmppClient.cpp:458
-msgid "Registration bad request"
-msgstr "Droch iarrtas air clàradh"
-
-#: lobby/XmppClient.cpp:459
-msgid "Registration forbidden"
-msgstr "Clàradh toirmisgte"
-
-#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:1040
-msgid "Registration required"
-msgstr "Tha clàradh riatanach"
-
-#: lobby/XmppClient.cpp:461
-msgid "Registration unexpected request"
-msgstr "Iarrtas clàraidh air nach robh dùil"
-
-#: lobby/XmppClient.cpp:462
-msgid "Registration not allowed"
-msgstr "Chan eil clàradh ceadaichte"
-
-#: lobby/XmppClient.cpp:463
-msgid "Registration unknown error"
-msgstr "Mearachd nach aithne dhuinn leis a’ chlàradh"
-
-#: lobby/XmppClient.cpp:772
+#: lobby/XmppClient.cpp:752
 msgid "unknown subtype (see logs)"
 msgstr "fo-sheòrsa nach aithne duinn (thoir sùil air na logaichean)"
 
-#: lobby/XmppClient.cpp:1025
-msgid "Bad request"
-msgstr "Droch iarrtas"
+#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
+#: lobby/XmppClient.cpp:1086
+msgid "Error"
+msgstr "Mearachd"
 
-#: lobby/XmppClient.cpp:1026
-msgid "Player name already in use"
-msgstr "Tha an t-ainm cluicheadair ’ga chleachdadh mar-thà"
+#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
+msgid "No error"
+msgstr "Gun mhearachd"
 
-#: lobby/XmppClient.cpp:1027
-msgid "Feature not implemented"
-msgstr "Cha deach am feart seo a phrògramachadh fhathast"
+#: lobby/XmppClient.cpp:1008
+msgid "Player already logged in"
+msgstr "Tha an cluicheadair air a chlàradh a-steach mar-thà"
 
-#: lobby/XmppClient.cpp:1028
+#: lobby/XmppClient.cpp:1010
 msgid "Forbidden"
 msgstr "Toirmisgte"
 
-#: lobby/XmppClient.cpp:1029
-msgid "Recipient or server gone"
-msgstr "Dh’fhalbh am faightear no am frithealaiche"
-
-#: lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1012
 msgid "Internal server error"
 msgstr "Mearachd taobh a-staigh an fhrithealaiche"
 
-#: lobby/XmppClient.cpp:1031
-msgid "Item not found"
-msgstr "Cha deach an nì a lorg"
-
-#: lobby/XmppClient.cpp:1032
-msgid "Jid malformed"
-msgstr "Droch chumadh air Jid"
-
-#: lobby/XmppClient.cpp:1033
-msgid "Not acceptable"
-msgstr "Cha ghabhar ris"
-
-#: lobby/XmppClient.cpp:1034
+#: lobby/XmppClient.cpp:1016
 msgid "Not allowed"
 msgstr "Chan eil seo ceadaichte"
 
-#: lobby/XmppClient.cpp:1035
+#: lobby/XmppClient.cpp:1017
 msgid "Not authorized"
 msgstr "Tha cead a dhìth"
 
-#: lobby/XmppClient.cpp:1036
-msgid "Not modified"
-msgstr "Gun atharrachadh"
+#: lobby/XmppClient.cpp:1020
+msgid "Recipient temporarily unavailable"
+msgstr "Chan eil am faighteir ann rè seal"
 
-#: lobby/XmppClient.cpp:1037
-msgid "Payment required"
-msgstr "Tha pàigheadh riatanach"
+#: lobby/XmppClient.cpp:1022
+msgid "Registration required"
+msgstr "Tha clàradh riatanach"
 
-#: lobby/XmppClient.cpp:1038
-msgid "Recipient unavailable"
-msgstr "Chan eil am faightear ri làimh"
-
-#: lobby/XmppClient.cpp:1039
-msgid "Redirect"
-msgstr "Ath-sheòladh"
-
-#: lobby/XmppClient.cpp:1041
-msgid "Remote server not found"
-msgstr "Cha deach am frithealaiche cèin a lorg"
-
-#: lobby/XmppClient.cpp:1042
-msgid "Remote server timeout"
-msgstr "Dh’fhalbh an ùine air an fhrithealaiche chèin"
-
-#: lobby/XmppClient.cpp:1043
-msgid "Resource constraint"
-msgstr "Cuingeachadh ghoireasan"
-
-#: lobby/XmppClient.cpp:1044
+#: lobby/XmppClient.cpp:1026
 msgid "Service unavailable"
 msgstr "Chan eil an t-seirbheis seo ri làimh"
 
-#: lobby/XmppClient.cpp:1045
-msgid "Subscription Required"
-msgstr "Tha fo-sgrìobhadh riatanach"
+#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
+#: lobby/XmppClient.cpp:1099
+msgid "Unknown error"
+msgstr "Mearachd nach aithne dhuinn"
 
-#: lobby/XmppClient.cpp:1046
-msgid "Undefined condition"
-msgstr "Cumha nach deach a mhìneachadh"
+#: lobby/XmppClient.cpp:1051
+msgid "Stream error"
+msgstr "Mearachd sruthaidh"
 
-#: lobby/XmppClient.cpp:1047
-msgid "Unexpected request"
-msgstr "Iarrtas air nach robh dùil"
+#: lobby/XmppClient.cpp:1052
+msgid "The incoming stream version is unsupported"
+msgstr "Cha chuirear taic ris an tionndadh dhen t-sruth a-steach"
 
-#: lobby/XmppClient.cpp:1048
-msgid "Unknown sender"
-msgstr "Seòladair neo-aithnichte"
+#: lobby/XmppClient.cpp:1053
+msgid "The stream has been closed by the server"
+msgstr "Chaidh an sruth a dhùnadh leis an fhrithealaiche"
 
-#: lobby/XmppClient.cpp:1050
-msgid "Error undefined"
-msgstr "Mearachd gun mhìneachadh"
+#: lobby/XmppClient.cpp:1057
+msgid "An I/O error occured"
+msgstr "Thachair mearachd ion/às-chuir"
+
+#: lobby/XmppClient.cpp:1059
+msgid "The connection was refused by the server"
+msgstr "Chaidh an ceangal a dhiùltadh leis an fhrithealaiche"
+
+#: lobby/XmppClient.cpp:1060
+msgid "Resolving the server's hostname failed"
+msgstr "Cha deach leinn ainm-òstair an fhrithealaiche fhuasgladh"
+
+#: lobby/XmppClient.cpp:1061
+msgid "This system is out of memory"
+msgstr "Chan eil cuimhne air fhàgail air an t-siostam"
+
+#: lobby/XmppClient.cpp:1063
+msgid ""
+"The server's certificate could not be verified or the TLS handshake did not "
+"complete successfully"
+msgstr "Cha deach leinn teisteanas an fhrithealaiche a dhearbhadh no cha deach an crathadh-làimhe TLS a choileanadh"
+
+#: lobby/XmppClient.cpp:1064
+msgid "The server did not offer required TLS encrytption"
+msgstr "Cha do thairg am frithealaiche an crioptachadh TLS riatanach"
+
+#: lobby/XmppClient.cpp:1066
+msgid "Authentication failed. Incorrect password or account does not exist"
+msgstr "Dh'fhàillig leis an dearbhadh. Chan eil am facal-faire mar bu chòir no chan eil an cunntas ann"
+
+#: lobby/XmppClient.cpp:1067
+msgid "The user or system requested a disconnect"
+msgstr "Dh'iarr an cleachdaiche no an siostam briseadh a' cheangail"
+
+#: lobby/XmppClient.cpp:1068
+msgid "There is no active connection"
+msgstr "Chan eil ceangal gnìomhach ann"
+
+#: lobby/XmppClient.cpp:1089
+msgid "Success"
+msgstr "Soirbheas"
+
+#: lobby/XmppClient.cpp:1090
+msgid "406: Not all necessary information provided"
+msgstr "406: Cha deach gach fiosrachadh riatanach a sholar"
+
+#: lobby/XmppClient.cpp:1091
+msgid "409: Username already exists"
+msgstr "409: Tha an t-ainm-cleachdaiche ann mar-thà"
 
 #: ps/SavedGame.cpp:133
 #, c-format
