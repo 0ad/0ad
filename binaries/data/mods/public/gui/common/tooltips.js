@@ -233,7 +233,18 @@ function getRepairRateTooltip(rate)
 {
 	return "\n" + sprintf(translate("%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
 		"repairRateLabel": g_TooltipTextFormats.header[0] + translate("Repair Rate:") + g_TooltipTextFormats.header[1],
-		"value": Math.round(rate * 10 ) / 10,
+		"value": Math.round(rate * 10) / 10,
+		"health": g_TooltipTextFormats.unit[0] + translate("health") + g_TooltipTextFormats.unit[1],
+		"second": g_TooltipTextFormats.unit[0] + translate("second") + g_TooltipTextFormats.unit[1],
+		"worker": g_TooltipTextFormats.unit[0] + translate("worker") + g_TooltipTextFormats.unit[1]
+	});
+}
+
+function getBuildRateTooltip(rate)
+{
+	return "\n" + sprintf(translate("%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
+		"buildRateLabel": g_TooltipTextFormats.header[0] + translate("Build Rate:") + g_TooltipTextFormats.header[1],
+		"value": Math.round(rate * 10) / 10,
 		"health": g_TooltipTextFormats.unit[0] + translate("health") + g_TooltipTextFormats.unit[1],
 		"second": g_TooltipTextFormats.unit[0] + translate("second") + g_TooltipTextFormats.unit[1],
 		"worker": g_TooltipTextFormats.unit[0] + translate("worker") + g_TooltipTextFormats.unit[1]
