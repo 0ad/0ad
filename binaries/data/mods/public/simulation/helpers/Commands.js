@@ -498,20 +498,9 @@ var g_Commands = {
 		}
 	},
 
-	"unload-all-own": function(player, cmd, data)
-	{
-		var entities = FilterEntityList(cmd.garrisonHolders, player, data.controlAllUnits);
-		for each (var garrisonHolder in entities)
-		{
-			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
-			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAllOwn())
-				notifyUnloadFailure(player, garrisonHolder);
-		}
-	},
-	
 	"unload-all-by-owner": function(player, cmd, data)
 	{
-		var entities = cmd.garrisonHolders;
+		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, data.controlAllUnits);
 		for (var garrisonHolder of entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
@@ -519,11 +508,11 @@ var g_Commands = {
 				notifyUnloadFailure(player, garrisonHolder);
 		}
 	},
-	
+
 	"unload-all": function(player, cmd, data)
 	{
 		var entities = FilterEntityList(cmd.garrisonHolders, player, data.controlAllUnits);
-		for each (var garrisonHolder in entities)
+		for (var garrisonHolder of entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAll())

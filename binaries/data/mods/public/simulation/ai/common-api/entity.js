@@ -791,7 +791,7 @@ m.Entity = m.Class({
 	unloadAll: function() {
 		if (!this.get("GarrisonHolder"))
 			return undefined;
-		Engine.PostCommand(PlayerID,{"type": "unload-all-own", "garrisonHolders": [this.id()]});
+		Engine.PostCommand(PlayerID,{"type": "unload-all-by-owner", "garrisonHolders": [this.id()]});
 		return this;
 	},
 
