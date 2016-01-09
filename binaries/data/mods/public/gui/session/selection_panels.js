@@ -90,7 +90,7 @@ g_SelectionPanels.Alert = {
 			data.button.hidden = !data.unitEntState.alertRaiser.hasRaisedAlert;
 			data.icon.sprite = "stretched:session/icons/bell_level0.png";
 		}
-		data.button.enabled = !data.button.hidden;
+		data.button.enabled = !data.button.hidden && controlsPlayer(data.unitEntState.player);
 	},
 };
 
@@ -158,16 +158,24 @@ g_SelectionPanels.Barter = {
 		// do we have enough of this resource to sell?
 		var neededRes = {};
 		neededRes[data.item] = data.amountToSell;
-		var canSellCurrent = Engine.GuiInterfaceCall("GetNeededResources", neededRes) != undefined ? "color:255 0 0 80:" : "";
+		var canSellCurrent = Engine.GuiInterfaceCall("GetNeededResources", {
+			"cost": neededRes,
+			"player": data.unitEntState.player
+		}) ? "color:255 0 0 80:" : "";
+
 		// Let's see if we have enough resources to barter.
 		neededRes = {};
 		neededRes[g_barterSell] = data.amountToSell;
-		var canBuyAny = Engine.GuiInterfaceCall("GetNeededResources", neededRes) != undefined ? "color:255 0 0 80:" : "";
+		var canBuyAny = Engine.GuiInterfaceCall("GetNeededResources", {
+			"cost": neededRes,
+			"player": data.unitEntState.player
+		}) ? "color:255 0 0 80:" : "";
 
 		data.icon.Sell.sprite = canSellCurrent + "stretched:"+grayscale+"session/icons/resources/" + data.item + ".png";
 		data.icon.Buy.sprite = canBuyAny + "stretched:"+grayscale+"session/icons/resources/" + data.item + ".png";
 
 		data.button.Buy.hidden = data.isSelected;
+		data.button.Buy.enabled = controlsPlayer(data.unitEntState.player);
 		data.button.Sell.hidden = false;
 		data.selectionIcon.hidden = !data.isSelected;
 	},
@@ -212,6 +220,7 @@ g_SelectionPanels.Command = {
 	"setGraphics": function(data)
 	{
 		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
+		data.button.enabled = controlsPlayer(data.unitEntState.player);
 	},
 	"setPosition": function(data)
 	{
@@ -262,6 +271,7 @@ g_SelectionPanels.AllyCommand = {
 	"setGraphics": function(data)
 	{
 		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
+		data.button.enabled = data.item.count > 0;
 	},
 	"setPosition": function(data)
 	{
@@ -293,12 +303,18 @@ g_SelectionPanels.Construction = {
 		data.template = GetTemplateData(data.entType);
 		if (!data.template) // abort if no template
 			return false;
-		data.technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", data.template.requiredTechnology);
+
+		data.technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
+			"tech": data.template.requiredTechnology,
+			"player": data.unitEntState.player
+		});
+
 		if (data.template.cost)
-		{
-			var totalCost = multiplyEntityCosts(data.template, 1);
-			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", totalCost);
-		}
+			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
+				"cost": multiplyEntityCosts(data.template, 1),
+				"player": data.unitEntState.player
+			});
+
 		data.limits = getEntityLimitAndCount(data.playerState, data.entType);
 		return true;
 	},
@@ -342,6 +358,8 @@ g_SelectionPanels.Construction = {
 			data.button.enabled = false;
 			modifier += resourcesToAlphaMask(data.neededResources) +":";
 		}
+		else
+			data.button.enabled = controlsPlayer(data.unitEntState.player);
 
 		if (data.template.icon)
 			data.icon.sprite = modifier + "stretched:session/portraits/" + data.template.icon;
@@ -394,7 +412,7 @@ g_SelectionPanels.Formation = {
 	},
 	"setGraphics": function(data)
 	{
-		data.button.enabled = data.formationOk;
+		data.button.enabled = data.formationOk && controlsPlayer(data.unitEntState.player);
 		var grayscale = data.formationOk ? "" : "grayscale:";
 		data.guiSelection.hidden = !data.formationSelected;
 		data.icon.sprite = "stretched:"+grayscale+"session/icons/"+data.formationInfo.icon;
@@ -452,15 +470,12 @@ g_SelectionPanels.Garrison = {
 		var entplayer = GetEntityState(ents[0]).player;
 		data.button.sprite = "color:" + rgbToGuiColor(g_Players[entplayer].color) +":";
 
-		var player = Engine.GetPlayerID();
-		if(player != data.unitEntState.player && !g_DevSettings.controlAll)
+		if (!controlsPlayer(data.unitEntState.player) && !controlsPlayer(entplayer))
 		{
-			if (entplayer != player)
-			{
-				data.button.enabled = false;
-				grayscale = "grayscale:";
-			}
+			data.button.enabled = false;
+			grayscale = "grayscale:";
 		}
+
 		data.icon.sprite = "stretched:" + grayscale + "session/portraits/" + data.template.icon;
 	},
 };
@@ -545,8 +560,9 @@ g_SelectionPanels.Gate = {
 
 			tooltip += "\n" + getEntityCostTooltip(data.template, data.wallCount);
 
+			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", { "cost":
+				multiplyEntityCosts(data.template, data.wallCount) });
 
-			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", multiplyEntityCosts(data.template, data.wallCount));
 			if (data.neededResources)
 				tooltip += getNeededResourcesTooltip(data.neededResources);
 		}
@@ -554,6 +570,7 @@ g_SelectionPanels.Gate = {
 	},
 	"setGraphics": function(data)
 	{
+		data.button.enabled = controlsPlayer(data.unitEntState.player);
 		var gateIcon;
 		if (data.item.gate)
 		{
@@ -640,6 +657,8 @@ g_SelectionPanels.Pack = {
 			data.icon.sprite = "stretched:session/icons/unpack.png";
 		else
 			data.icon.sprite = "stretched:session/icons/pack.png";
+
+		data.button.enabled = controlsPlayer(data.unitEntState.player);
 	},
 	"setPosition": function(data)
 	{
@@ -720,6 +739,8 @@ g_SelectionPanels.Queue = {
 	{
 		if (data.template.icon)
 			data.icon.sprite = "stretched:session/portraits/" + data.template.icon;
+
+		data.button.enabled = controlsPlayer(data.unitEntState.player);
 	},
 };
 
@@ -779,11 +800,17 @@ g_SelectionPanels.Research = {
 		});
 
 		data.neededResources = data.template.map(function(t) { 
-			return Engine.GuiInterfaceCall("GetNeededResources", t.cost);
+			return Engine.GuiInterfaceCall("GetNeededResources", {
+				"cost": t.cost,
+				"player": data.unitEntState.player
+			});
 		});
 
 		data.requirementsPassed = data.entType.map(function(e) { 
-			return Engine.GuiInterfaceCall("CheckTechnologyRequirements",e); 
+			return Engine.GuiInterfaceCall("CheckTechnologyRequirements", {
+				"tech": e,
+				"player": data.unitEntState.player
+			});
 		});
 
 		data.pair = Engine.GetGUIObjectByName("unitResearchPair["+data.i+"]");
@@ -806,7 +833,7 @@ g_SelectionPanels.Research = {
 				tooltip += "\n" + template.requirementsTooltip;
 				if (template.classRequirements)
 				{
-					var player = Engine.GetPlayerID();
+					var player = data.unitEntState.player;
 					var current = GetSimState().players[player].classCounts[template.classRequirements.class] || 0;
 					var remaining = template.classRequirements.number - current;
 					tooltip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), { number: remaining});
@@ -862,7 +889,7 @@ g_SelectionPanels.Research = {
 				modifier += resourcesToAlphaMask(data.neededResources[i]) + ":";
 			}
 			else
-				button.enabled = true; 
+				button.enabled = controlsPlayer(data.unitEntState.player);
 
 			if (data.template[i].icon)
 				data.icon[i].sprite = modifier + "stretched:session/portraits/" + data.template[i].icon;
@@ -970,6 +997,8 @@ g_SelectionPanels.Selection = {
 	{
 		if (data.template.icon)
 			data.icon.sprite = "stretched:session/portraits/" + data.template.icon;
+
+		data.button.enabled = controlsPlayer(data.unitEntState.player);
 	},
 };
 
@@ -1005,6 +1034,7 @@ g_SelectionPanels.Stance = {
 	{
 		data.guiSelection.hidden = !data.stanceSelected;
 		data.icon.sprite = "stretched:session/icons/stances/"+data.item+".png";
+		data.button.enabled = controlsPlayer(data.unitEntState.player);
 	},
 };
 
@@ -1024,7 +1054,11 @@ g_SelectionPanels.Training = {
 		data.template = GetTemplateData(data.entType);
 		if (!data.template)
 			return false;
-		data.technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", data.template.requiredTechnology);
+
+		data.technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
+			"tech": data.template.requiredTechnology,
+			"player": data.unitEntState.player
+		});
 
 		var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
 			getTrainingBatchStatus(data.playerState, data.unitEntState.id, data.entType, data.selection);
@@ -1038,7 +1072,10 @@ g_SelectionPanels.Training = {
 		if (data.template.cost)
 		{
 			var totalCosts = multiplyEntityCosts(data.template, data.trainNum);
-			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", totalCosts);
+			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
+				"cost": totalCosts,
+				"player": data.unitEntState.player
+			});
 		}
 
 		return true;

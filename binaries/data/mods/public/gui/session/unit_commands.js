@@ -168,7 +168,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	var simState = GetSimState();
 	var playerState = simState.players[player];
 
-	if (entState.player == player || g_DevSettings.controlAll)
+	if (controlsPlayer(entState.player) || player == -1)
 	{
 		for (var guiName of g_PanelsOrder)
 		{
@@ -178,7 +178,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			)
 				continue;
 
-			setupUnitPanel(guiName, entState, playerState);
+			setupUnitPanel(guiName, entState, simState.players[entState.player]);
 		}
 
 		supplementalDetailsPanel.hidden = false;

@@ -248,6 +248,14 @@ function selectViewPlayer(playerID)
 		openTrade();
 }
 
+/**
+ * Returns true if the current user can issue commands for that player.
+ */
+function controlsPlayer(playerID)
+{
+	return Engine.GetPlayerID() == playerID || g_DevSettings.controlAll;
+}
+
 function updateTopPanel()
 {
 	let playerID = Engine.GetPlayerID();

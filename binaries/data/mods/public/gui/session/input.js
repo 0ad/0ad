@@ -685,7 +685,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				if (result && result.cost)
 				{
 					placementSupport.tooltipMessage = getEntityCostTooltip(result);
-					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", result.cost);
+					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", { "cost": result.cost });
 					if (neededResources)
 						placementSupport.tooltipMessage += getNeededResourcesTooltip(neededResources);
 				}
@@ -1081,7 +1081,7 @@ function handleInputAfterGui(ev)
 			else
 			{
 				// cancel if not enough resources
-				if (placementSupport.template && Engine.GuiInterfaceCall("GetNeededResources", GetTemplateData(placementSupport.template).cost))
+				if (placementSupport.template && Engine.GuiInterfaceCall("GetNeededResources", { "cost": GetTemplateData(placementSupport.template).cost }))
 				{
 					placementSupport.Reset();
 					inputState = INPUT_NORMAL;
@@ -1414,8 +1414,8 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 				else if (limits.canBeAddedCount == undefined ||
 					limits.canBeAddedCount > batchTrainingCount * appropriateBuildings.length)
 				{
-					if (Engine.GuiInterfaceCall("GetNeededResources", multiplyEntityCosts(
-						template, batchTrainingCount + batchIncrementSize)))
+					if (Engine.GuiInterfaceCall("GetNeededResources", { "cost":
+						multiplyEntityCosts(template, batchTrainingCount + batchIncrementSize) }))
 						return;
 
 					batchTrainingCount += batchIncrementSize;
@@ -1432,8 +1432,8 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 		}
 
 		// Don't start a new batch if decrementing or unable to afford it.
-		if (decrement || Engine.GuiInterfaceCall("GetNeededResources",
-			multiplyEntityCosts(template, batchIncrementSize)))
+		if (decrement || Engine.GuiInterfaceCall("GetNeededResources", { "cost":
+			multiplyEntityCosts(template, batchIncrementSize) }))
 			return;
 
 		inputState = INPUT_BATCHTRAINING;

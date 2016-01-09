@@ -418,15 +418,6 @@ function updateSelectionDetails()
 	// Show basic details.
 	detailsPanel.hidden = false;
 
-	if (g_IsObserver)
-	{
-		// Observers don't need these displayed.
-		supplementalDetailsPanel.hidden = true;
-		commandsPanel.hidden = true;
-	}
-	else
-	{
-		// Fill out commands panel for specific unit selected (or first unit of primary group)
-		updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
-	}
+	// Fill out commands panel for specific unit selected (or first unit of primary group)
+	updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
 }
