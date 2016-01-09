@@ -53,16 +53,13 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 	if (maxNumberOfItems < numberOfItems)
 		numberOfItems = maxNumberOfItems;
 
-	if (g_SelectionPanels[guiName].rowLength)
-		var rowLength = g_SelectionPanels[guiName].rowLength;
-	else
-		var rowLength = 8;
+	var rowLength = g_SelectionPanels[guiName].rowLength || 8;
 
 	if (g_SelectionPanels[guiName].resizePanel)
 		g_SelectionPanels[guiName].resizePanel(numberOfItems, rowLength);
 
 	// Make buttons
-	for (var i = 0; i < numberOfItems; i++)
+	for (let i = 0; i < numberOfItems; ++i)
 	{
 		var item = items[i];
 
@@ -75,7 +72,7 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 		}
 
 		// STANDARD DATA
-		// add standard data 
+		// add standard data
 		var data = {
 			"i": i,
 			"item": item,
@@ -127,11 +124,11 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 		// TODO: we should require all entities to have icons, so this case never occurs
 		if (data.icon && !data.icon.sprite)
 			data.icon.sprite = "bkFillBlack";
-		
+
 	}
 
 	// Hide any buttons we're no longer using
-	for (var i = numberOfItems; i < g_unitPanelButtons[guiName]; ++i)
+	for (let i = numberOfItems; i < g_unitPanelButtons[guiName]; ++i)
 		if (g_SelectionPanels[guiName].hideItem)
 			g_SelectionPanels[guiName].hideItem(i, rowLength);
 		else
@@ -143,22 +140,22 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 }
 
 /**
- * Updates the selection panels where buttons are supposed to 
+ * Updates the selection panels where buttons are supposed to
  * depend on the context.
  * Runs in the main session loop via updateSelectionDetails().
  * Delegates to setupUnitPanel to set up individual subpanels,
  * appropriately activated depending on the selected unit's state.
  *
  * @param entState Entity state of the (first) selected unit.
- * @param supplementalDetailsPanel Reference to the 
+ * @param supplementalDetailsPanel Reference to the
  *        "supplementalSelectionDetails" GUI Object
  * @param commandsPanel Reference to the "commandsPanel" GUI Object
  * @param selection Array of currently selected entity IDs.
  */
 function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection)
 {
-	for each (var panel in g_SelectionPanels)
-		panel.used = false;
+	for (let panel in g_SelectionPanels)
+		g_SelectionPanels[panel].used = false;
 
 	// If the selection is friendly units, add the command panels
 	var player = Engine.GetPlayerID();
@@ -173,8 +170,8 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		for (var guiName of g_PanelsOrder)
 		{
 			if (
-				g_SelectionPanels[guiName].conflictsWith && 
-				g_SelectionPanels[guiName].conflictsWith.some(function (p) { return g_SelectionPanels[p].used; })
+				g_SelectionPanels[guiName].conflictsWith &&
+				g_SelectionPanels[guiName].conflictsWith.some(p => g_SelectionPanels[p].used)
 			)
 				continue;
 
@@ -190,10 +187,8 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		// we should consider adding the players list to g_SelectionPanels
 		setupUnitPanel("Garrison", entState, playerState);
 		setupUnitPanel("AllyCommand", entState, playerState);
-		if (g_SelectionPanels["Garrison"].used)
-			supplementalDetailsPanel.hidden = false;
-		else
-			supplementalDetailsPanel.hidden = true;
+
+		supplementalDetailsPanel.hidden = !g_SelectionPanels.Garrison.used;
 
 		commandsPanel.hidden = true;
 	}
@@ -257,13 +252,10 @@ function getAllBuildableEntitiesFromSelection()
 function getNumberOfRightPanelButtons()
 {
 	var sum = 0;
-	if (g_SelectionPanels["Construction"].used)
-		sum += g_unitPanelButtons["Construction"];
-	if (g_SelectionPanels["Training"].used)
-		sum += g_unitPanelButtons["Training"];
-	if (g_SelectionPanels["Pack"].used)
-		sum += g_unitPanelButtons["Pack"];
-	if (g_SelectionPanels["Gate"].used)
-		sum += g_unitPanelButtons["Gate"];
+
+	for (let prop of ["Construction", "Training", "Pack", "Gate"])
+		if (g_SelectionPanels[prop].used)
+			sum += g_unitPanelButtons[prop];
+
 	return sum;
 }

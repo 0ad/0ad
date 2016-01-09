@@ -4,11 +4,11 @@
  * getItems returns a list of basic items used to fill the panel.
  * This method is obligated. If the items list is empty, the panel
  * won't be rendered.
- * 
- * Then there's a loop over all items provided. In the loop, 
+ *
+ * Then there's a loop over all items provided. In the loop,
  * the item and some other standard data is added to a data object.
  *
- * The standard data is 
+ * The standard data is
  * var data = {
  *   "i":              index
  *   "item":           item coming from the getItems function
@@ -23,16 +23,16 @@
  *   "countDisplay":   gui caption space
  * };
  *
- * Then, addData is called, and can be used to abort the processing 
- * of the current item by returning false. 
+ * Then, addData is called, and can be used to abort the processing
+ * of the current item by returning false.
  * It should return true if you want the panel to be filled.
  *
- * addData is used to add data to the data object on top 
+ * addData is used to add data to the data object on top
  * (or instead of) the standard data.
  * addData is not obligated, the function will just continue
  * with the content setters if no addData is present.
- * 
- * After the addData, all functions starting with "set" are called. 
+ *
+ * After the addData, all functions starting with "set" are called.
  * These are used to set various parts of content.
  */
 
@@ -56,7 +56,7 @@ g_SelectionPanels.Alert = {
 	},
 	"setAction": function(data)
 	{
-		data.button.onPress = function() { 
+		data.button.onPress = function() {
 			if (data.item == "increase")
 				increaseAlertLevel();
 			else if (data.item == "end")
@@ -91,7 +91,7 @@ g_SelectionPanels.Alert = {
 			data.icon.sprite = "stretched:session/icons/bell_level0.png";
 		}
 		data.button.enabled = !data.button.hidden && controlsPlayer(data.unitEntState.player);
-	},
+	}
 };
 
 // BARTER
@@ -131,15 +131,15 @@ g_SelectionPanels.Barter = {
 	"setCountDisplay": function(data)
 	{
 		data.amount.Sell.caption = "-" + data.amountToSell;
-		var sellPrice = data.unitEntState.barterMarket.prices["sell"][g_barterSell];
-		var buyPrice = data.unitEntState.barterMarket.prices["buy"][data.item];
+		var sellPrice = data.unitEntState.barterMarket.prices.sell[g_barterSell];
+		var buyPrice = data.unitEntState.barterMarket.prices.buy[data.item];
 		data.amount.Buy.caption = "+" + Math.round(sellPrice / buyPrice * data.amountToSell);
 	},
 	"setTooltip": function(data)
 	{
 		var resource = getLocalizedResourceName(data.item, "withinSentence");
-		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), {"resource": resource});
-		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), {"resource": resource});
+		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), { "resource": resource });
+		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), { "resource": resource });
 	},
 	"setAction": function(data)
 	{
@@ -183,8 +183,8 @@ g_SelectionPanels.Barter = {
 	{
 		setPanelObjectPosition(data.button.Sell, data.i, data.rowLength);
 		setPanelObjectPosition(data.button.Buy, data.i + data.rowLength, data.rowLength);
-	},
-},
+	}
+};
 
 // COMMAND
 g_SelectionPanels.Command = {
@@ -211,7 +211,12 @@ g_SelectionPanels.Command = {
 	},
 	"setAction": function(data)
 	{
-		data.button.onPress = function() { data.item.callback ? data.item.callback(data.item) : performCommand(data.unitEntState.id, data.item.name); };
+		data.button.onPress = function() {
+			if (data.item.callback)
+				data.item.callback(data.item);
+			else
+				performCommand(data.unitEntState.id, data.item.name);
+		};
 	},
 	"setCountDisplay": function(data)
 	{
@@ -233,7 +238,7 @@ g_SelectionPanels.Command = {
 		size.left = (data.i - data.numberOfItems/2) * spacer;
 		size.right = size.left + size.bottom;
 		data.button.size = size;
-	},
+	}
 };
 
 //ALLY COMMAND
@@ -261,7 +266,12 @@ g_SelectionPanels.AllyCommand = {
 	},
 	"setAction": function(data)
 	{
-		data.button.onPress = function() { data.item.callback ? data.item.callback(data.item) : performAllyCommand(data.unitEntState.id, data.item.name); };
+		data.button.onPress = function() {
+			if (data.item.callback)
+				data.item.callback(data.item);
+			else
+				performAllyCommand(data.unitEntState.id, data.item.name);
+		};
 	},
 	"conflictsWith": ["Command"],
 	"setCountDisplay": function(data)
@@ -284,7 +294,7 @@ g_SelectionPanels.AllyCommand = {
 		size.left = (data.i - data.numberOfItems/2) * spacer;
 		size.right = size.left + size.bottom;
 		data.button.size = size;
-	},
+	}
 };
 
 // CONSTRUCTION
@@ -334,13 +344,15 @@ g_SelectionPanels.Construction = {
 		tooltip += getPopulationBonusTooltip(data.template);
 
 		tooltip += formatLimitString(data.limits.entLimit, data.limits.entCount, data.limits.entLimitChangers);
+
 		if (!data.technologyEnabled)
-		{
-			var techName = getEntityNames(GetTechnologyData(data.template.requiredTechnology));
-			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), { technology: techName });
-		}
+			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), {
+				"technology": getEntityNames(GetTechnologyData(data.template.requiredTechnology))
+			});
+
 		if (data.neededResources)
 			tooltip += getNeededResourcesTooltip(data.neededResources);
+
 		data.button.tooltip = tooltip;
 		return true;
 	},
@@ -368,7 +380,7 @@ g_SelectionPanels.Construction = {
 	{
 		var index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
-	},
+	}
 };
 
 // FORMATION
@@ -390,7 +402,7 @@ g_SelectionPanels.Formation = {
 	"addData": function(data)
 	{
 		if (!g_formationsInfo.has(data.item))
-			g_formationsInfo.set(data.item, Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", {"templateName": data.item}));
+			g_formationsInfo.set(data.item, Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", { "templateName": data.item }));
 		data.formationInfo = g_formationsInfo.get(data.item);
 		data.formationOk = canMoveSelectionIntoFormation(data.item);
 		data.formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
@@ -416,7 +428,7 @@ g_SelectionPanels.Formation = {
 		var grayscale = data.formationOk ? "" : "grayscale:";
 		data.guiSelection.hidden = !data.formationSelected;
 		data.icon.sprite = "stretched:"+grayscale+"session/icons/"+data.formationInfo.icon;
-	},
+	}
 };
 
 // GARRISON
@@ -455,7 +467,7 @@ g_SelectionPanels.Garrison = {
 	},
 	"setTooltip": function(data)
 	{
-		var tooltip = sprintf(translate("Unload %(name)s"), { name: data.name }) + "\n";
+		var tooltip = sprintf(translate("Unload %(name)s"), { "name": data.name }) + "\n";
 		tooltip += translate("Single-click to unload 1. Shift-click to unload all of this type.");
 		data.button.tooltip = tooltip;
 	},
@@ -477,7 +489,7 @@ g_SelectionPanels.Garrison = {
 		}
 
 		data.icon.sprite = "stretched:" + grayscale + "session/portraits/" + data.template.icon;
-	},
+	}
 };
 
 // GATE
@@ -554,14 +566,15 @@ g_SelectionPanels.Gate = {
 			data.wallCount = data.selection.reduce(function (count, ent) {
 					var state = GetEntityState(ent);
 					if (hasClass(state, "LongWall") && !state.gate)
-						count++;
+						++count;
 					return count;
 				}, 0);
 
 			tooltip += "\n" + getEntityCostTooltip(data.template, data.wallCount);
 
-			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", { "cost":
-				multiplyEntityCosts(data.template, data.wallCount) });
+			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
+				"cost": multiplyEntityCosts(data.template, data.wallCount)
+			});
 
 			if (data.neededResources)
 				tooltip += getNeededResourcesTooltip(data.neededResources);
@@ -597,7 +610,7 @@ g_SelectionPanels.Gate = {
 	{
 		var index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
-	},
+	}
 };
 
 // PACK
@@ -664,7 +677,7 @@ g_SelectionPanels.Pack = {
 	{
 		var index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
-	},
+	}
 };
 
 // QUEUE
@@ -714,7 +727,10 @@ g_SelectionPanels.Queue = {
 		if (data.item.neededSlots)
 		{
 			tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]";
-			tooltip += sprintf(translate("%(population)s %(neededSlots)s"), { population: getCostComponentDisplayName("population"), neededSlots: data.item.neededSlots });
+			tooltip += sprintf(translate("%(population)s %(neededSlots)s"), {
+				"population": getCostComponentDisplayName("population"),
+				"neededSlots": data.item.neededSlots
+			});
 		}
 		data.button.tooltip = tooltip;
 	},
@@ -741,7 +757,7 @@ g_SelectionPanels.Queue = {
 			data.icon.sprite = "stretched:session/portraits/" + data.template.icon;
 
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
-	},
+	}
 };
 
 // RESEARCH
@@ -775,7 +791,7 @@ g_SelectionPanels.Research = {
 		data.entType = data.item.pair ? [data.item.top, data.item.bottom] : [data.item];
 		data.template = data.entType.map(GetTechnologyData);
 		// abort if no template found for any of the techs
-		if (!data.template.every(function(v) { return v; }))
+		if (data.template.some(v => !v))
 			return false;
 		// index one row below
 		var shiftedIndex = data.i + data.rowLength;
@@ -783,35 +799,21 @@ g_SelectionPanels.Research = {
 		data.positionsToHide = data.item.pair ? [] : [data.i];
 
 		// add top buttons to the data
-		data.button = data.positions.map(function(p) { 
-			return Engine.GetGUIObjectByName("unitResearchButton["+p+"]"); 
-		});
+		data.button = data.positions.map(p => Engine.GetGUIObjectByName("unitResearchButton["+p+"]"));
+		data.buttonsToHide = data.positionsToHide.map(p => Engine.GetGUIObjectByName("unitResearchButton["+p+"]"));
 
-		data.buttonsToHide = data.positionsToHide.map(function(p) { 
-			return Engine.GetGUIObjectByName("unitResearchButton["+p+"]"); 
-		});
+		data.icon = data.positions.map(p => Engine.GetGUIObjectByName("unitResearchIcon["+p+"]"));
+		data.unchosenIcon = data.positions.map(p => Engine.GetGUIObjectByName("unitResearchUnchosenIcon["+p+"]"));
 
-		data.icon = data.positions.map(function(p) { 
-			return Engine.GetGUIObjectByName("unitResearchIcon["+p+"]");
-		});
+		data.neededResources = data.template.map(t => Engine.GuiInterfaceCall("GetNeededResources", {
+			"cost": t.cost,
+			"player": data.unitEntState.player
+		}));
 
-		data.unchosenIcon = data.positions.map(function(p) { 
-			return Engine.GetGUIObjectByName("unitResearchUnchosenIcon["+p+"]");
-		});
-
-		data.neededResources = data.template.map(function(t) { 
-			return Engine.GuiInterfaceCall("GetNeededResources", {
-				"cost": t.cost,
-				"player": data.unitEntState.player
-			});
-		});
-
-		data.requirementsPassed = data.entType.map(function(e) { 
-			return Engine.GuiInterfaceCall("CheckTechnologyRequirements", {
-				"tech": e,
-				"player": data.unitEntState.player
-			});
-		});
+		data.requirementsPassed = data.entType.map(e => Engine.GuiInterfaceCall("CheckTechnologyRequirements", {
+			"tech": e,
+			"player": data.unitEntState.player
+		}));
 
 		data.pair = Engine.GetGUIObjectByName("unitResearchPair["+data.i+"]");
 
@@ -836,7 +838,7 @@ g_SelectionPanels.Research = {
 					var player = data.unitEntState.player;
 					var current = GetSimState().players[player].classCounts[template.classRequirements.class] || 0;
 					var remaining = template.classRequirements.number - current;
-					tooltip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), { number: remaining});
+					tooltip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), { "number": remaining });
 				}
 			}
 			if (data.neededResources[i])
@@ -874,7 +876,7 @@ g_SelectionPanels.Research = {
 	{
 		for (var i in data.entType)
 		{
-			var button = data.button[i];
+			let button = data.button[i];
 			button.hidden = false;
 			var modifier = "";
 			if (!data.requirementsPassed[i])
@@ -894,7 +896,7 @@ g_SelectionPanels.Research = {
 			if (data.template[i].icon)
 				data.icon[i].sprite = modifier + "stretched:session/portraits/" + data.template[i].icon;
 		}
-		for (var button of data.buttonsToHide)
+		for (let button of data.buttonsToHide)
 			button.hidden = true;
 		// show the tech connector
 		data.pair.hidden = data.item.pair == null;
@@ -904,7 +906,7 @@ g_SelectionPanels.Research = {
 		for (var i in data.button)
 			setPanelObjectPosition(data.button[i], data.positions[i], data.rowLength);
 		setPanelObjectPosition(data.pair, data.i, data.rowLength);
-	},
+	}
 };
 
 // SELECTION
@@ -999,7 +1001,7 @@ g_SelectionPanels.Selection = {
 			data.icon.sprite = "stretched:session/portraits/" + data.template.icon;
 
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
-	},
+	}
 };
 
 // STANCE
@@ -1035,7 +1037,7 @@ g_SelectionPanels.Stance = {
 		data.guiSelection.hidden = !data.stanceSelected;
 		data.icon.sprite = "stretched:session/icons/stances/"+data.item+".png";
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
-	},
+	}
 };
 
 // TRAINING
@@ -1062,21 +1064,20 @@ g_SelectionPanels.Training = {
 
 		var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
 			getTrainingBatchStatus(data.playerState, data.unitEntState.id, data.entType, data.selection);
+
 		data.buildingsCountToTrainFullBatch = buildingsCountToTrainFullBatch;
 		data.fullBatchSize = fullBatchSize;
 		data.remainderBatch = remainderBatch;
+
 		data.trainNum = buildingsCountToTrainFullBatch || 1; // train at least one unit
 		if (Engine.HotkeyIsPressed("session.batchtrain"))
 			data.trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 
 		if (data.template.cost)
-		{
-			var totalCosts = multiplyEntityCosts(data.template, data.trainNum);
 			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
-				"cost": totalCosts,
+				"cost": multiplyEntityCosts(data.template, data.trainNum),
 				"player": data.unitEntState.player
 			});
-		}
 
 		return true;
 	},
@@ -1086,8 +1087,7 @@ g_SelectionPanels.Training = {
 	},
 	"setCountDisplay": function(data)
 	{
-		var count = data.trainNum > 1 ? data.trainNum : "";
-		data.countDisplay.caption = count;
+		data.countDisplay.caption = data.trainNum > 1 ? data.trainNum : "";
 	},
 	"setTooltip": function(data)
 	{
@@ -1132,7 +1132,7 @@ g_SelectionPanels.Training = {
 		if (!data.technologyEnabled)
 		{
 			var techName = getEntityNames(GetTechnologyData(data.template.requiredTechnology));
-			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), { technology: techName });
+			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), { "technology": techName });
 		}
 		if (data.neededResources)
 			tooltip += getNeededResourcesTooltip(data.neededResources);
@@ -1145,7 +1145,7 @@ g_SelectionPanels.Training = {
 	{
 		var index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
-	},
+	}
 };
 
 
