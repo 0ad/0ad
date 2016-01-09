@@ -242,7 +242,7 @@ bool HierarchicalPathfinder::Chunk::RegionNearestNavcellInGoal(u16 r, u16 i0, u1
 		int jmin = std::max(0, gj-m_ChunkJ*CHUNK_SIZE-radius);
 		int jmax = std::min((int)CHUNK_SIZE, gj-m_ChunkJ*CHUNK_SIZE+radius+1);
 		bool found = false;
-		u32 dist2;
+		u32 dist2 = std::numeric_limits<u32>::max();
 		for (u16 j = jmin; j < jmax; ++j)
 		{
 			for (u16 i = imin; i < imax; ++i)
@@ -278,7 +278,7 @@ bool HierarchicalPathfinder::Chunk::RegionNearestNavcellInGoal(u16 r, u16 i0, u1
 	case PathGoal::INVERTED_SQUARE:
 	{
 		bool found = false;
-		u32 dist2;
+		u32 dist2 = std::numeric_limits<u32>::max();
 		// loop over all navcells.
 		for (u16 j = 0; j < CHUNK_SIZE; ++j)
 		{
