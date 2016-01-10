@@ -147,7 +147,7 @@ function setupControl(option, i, prefix, reload)
 						eval("Engine.Renderer_Set" + key + "Enabled(" + this.checked + ")");
 						if (keyConfig)
 							Engine.ConfigDB_CreateValue("user", keyConfig, String(this.checked));
-					}
+					};
 				}(option[2][action], option[2].config);
 				// Merge the new callback with any existing callbacks.
 				onPress = mergeFunctions(callback, onPress);
@@ -185,14 +185,14 @@ function setupControl(option, i, prefix, reload)
 							return;
 						Engine.ConfigDB_CreateValue("user", key, String(this.caption));
 						g_hasChanges = true;
-					}
+					};
 				}(option[2][action]);
 				// Merge the new callback with any existing callbacks.
 				onPress = mergeFunctions(callback, onPress);
 				break;
 			case "function":
 				// This allows for doing low-level actions, like hiding/showing UI elements.
-				onPress = mergeFunctions(function(){eval(option[2][action])}, onPress);
+				onPress = mergeFunctions(function(){eval(option[2][action]);}, onPress);
 				break;
 			default:
 				warn("Unknown option source type '" + action + "'");

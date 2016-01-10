@@ -47,19 +47,18 @@ function CalculateTraderGain(firstMarket, secondMarket, template, trader)
 	}
 
 	// Add potential trade multipliers and roundings
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(gain.traderOwner), IID_Player);
+	var cmpPlayer = trader ? QueryOwnerInterface(trader) : QueryOwnerInterface(firstMarket);
 	if (cmpPlayer)
 		gain.traderGain *= cmpPlayer.GetTradeRateMultiplier();
 	gain.traderGain = Math.round(gain.traderGain);
 
 	if (ownerFirstMarket != ownerSecondMarket)
 	{
-		if ((cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(gain.market1Owner), IID_Player)))
+		if ((cmpPlayer = QueryOwnerInterface(firstMarket)))
 			gain.market1Gain *= cmpPlayer.GetTradeRateMultiplier();
 		gain.market1Gain = Math.round(gain.market1Gain);
 
-		if ((cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(gain.market2Owner), IID_Player)))
+		if ((cmpPlayer = QueryOwnerInterface(secondMarket)))
 			gain.market2Gain *= cmpPlayer.GetTradeRateMultiplier();
 		gain.market2Gain = Math.round(gain.market2Gain);
 	}
