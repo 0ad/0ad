@@ -21,28 +21,27 @@
 # --------------------------------------------------------------
 # Library versions for ease of updating:
 ZLIB_VERSION="zlib-1.2.8"
-CURL_VERSION="curl-7.32.0"
+CURL_VERSION="curl-7.46.0"
 ICONV_VERSION="libiconv-1.14"
-XML2_VERSION="libxml2-2.9.1"
-SDL2_VERSION="SDL-2.0.4-9134"
-BOOST_VERSION="boost_1_52_0"
-# * wxWidgets 2.9+ is necessary for 64-bit OS X build w/ OpenGL support
+XML2_VERSION="libxml2-2.9.3"
+SDL2_VERSION="SDL2-2.0.4"
+BOOST_VERSION="boost_1_60_0"
 WXWIDGETS_VERSION="wxWidgets-3.0.2"
 JPEG_VERSION="jpegsrc.v8d"
 JPEG_DIR="jpeg-8d" # Must match directory name inside source tarball
 # * libpng was included as part of X11 but that's removed from Mountain Lion
 #   (also the Snow Leopard version was ancient 1.2)
-PNG_VERSION="libpng-1.6.19"
-OGG_VERSION="libogg-1.3.0"
-VORBIS_VERSION="libvorbis-1.3.3"
+PNG_VERSION="libpng-1.6.20"
+OGG_VERSION="libogg-1.3.2"
+VORBIS_VERSION="libvorbis-1.3.5"
 # gloox is necessary for multiplayer lobby
-GLOOX_VERSION="gloox-1.0.9"
+GLOOX_VERSION="gloox-1.0.14"
 # NSPR is necessary for threadsafe Spidermonkey
-NSPR_VERSION="4.10.3"
+NSPR_VERSION="4.11"
 # OS X only includes part of ICU, and only the dylib
-ICU_VERSION="icu4c-52_1"
-ENET_VERSION="enet-1.3.12"
-MINIUPNPC_VERSION="miniupnpc-1.9.20151008"
+ICU_VERSION="icu4c-56_1"
+ENET_VERSION="enet-1.3.13"
+MINIUPNPC_VERSION="miniupnpc-1.9.20151026"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 31
@@ -271,7 +270,7 @@ echo -e "Building SDL2..."
 LIB_VERSION="${SDL2_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
 LIB_DIRECTORY=$LIB_VERSION
-LIB_URL="https://www.libsdl.org/tmp/"
+LIB_URL="https://libsdl.org/release/"
 
 mkdir -p sdl2
 pushd sdl2 > /dev/null
@@ -355,7 +354,7 @@ then
   mkdir -p build-release
   pushd build-release
 
-  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-macosx_arch=$ARCH --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --with-expat=builtin --with-libjpeg=builtin --with-png=builtin --without-libtiff --without-sdl --without-x"
+  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-macosx_arch=$ARCH --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --with-expat=builtin --with-libjpeg=builtin --with-png=builtin --without-libtiff --without-sdl --without-x --disable-webview --disable-webkit --disable-webviewwebkit --disable-webviewie"
   # wxWidgets configure now defaults to targeting 10.5, if not specified,
   # but that conflicts with our flags
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
@@ -516,10 +515,9 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  # patch gloox to fix build error (fixed upstream in r4529)
   # TODO: pulls in libresolv dependency from /usr/lib
   # TODO: if we ever use SSL/TLS, that will add yet another dependency...
-  (patch -p0 -i ../../patches/gloox-r4529.diff && ./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-zlib="${ZLIB_DIR}" --without-libidn --without-gnutls --without-openssl --without-tests --without-examples && make ${JOBS} && make install) || die "gloox build failed"
+  (./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --enable-shared=no --with-zlib="${ZLIB_DIR}" --without-libidn --without-gnutls --without-openssl --without-tests --without-examples && make ${JOBS} && make install) || die "gloox build failed"
   popd
   touch .already-built
 else
@@ -565,7 +563,7 @@ echo -e "Building ICU..."
 LIB_VERSION="${ICU_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION-src.tgz"
 LIB_DIRECTORY="icu"
-LIB_URL="http://download.icu-project.org/files/icu4c/52.1/"
+LIB_URL="http://download.icu-project.org/files/icu4c/56.1/"
 
 mkdir -p icu
 pushd icu > /dev/null
