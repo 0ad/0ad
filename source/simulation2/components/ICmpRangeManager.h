@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -185,7 +185,7 @@ public:
 	virtual std::vector<entity_id_t> ResetActiveQuery(tag_t tag) = 0;
 
 	/**
-	 * Returns list of all entities for specific player.
+	 * Returns a list of all entities for a specific player.
 	 * (This is on this interface because it shares a lot of the implementation.
 	 * Maybe it should be extended to be more like ExecuteQuery without
 	 * the range parameter.)

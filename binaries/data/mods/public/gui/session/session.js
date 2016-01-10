@@ -837,7 +837,7 @@ function recalculateStatusBarDisplay()
 {
 	let entities;
 	if (g_ShowAllStatusBars)
-		entities = Engine.PickFriendlyEntitiesOnScreen(Engine.GetPlayerID());
+		entities = Engine.PickPlayerEntitiesOnScreen(Engine.GetPlayerID());
 	else
 	{
 		let selected = g_Selection.toList();

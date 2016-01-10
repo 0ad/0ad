@@ -153,7 +153,7 @@ function updateBuildingPlacementPreview()
 		if (placementSupport.wallSet && placementSupport.position)
 		{
 			// Fetch an updated list of snapping candidate entities
-			placementSupport.wallSnapEntities = Engine.PickSimilarFriendlyEntities(
+			placementSupport.wallSnapEntities = Engine.PickSimilarPlayerEntities(
 				placementSupport.wallSet.templates.tower,
 				placementSupport.wallSnapEntitiesIncludeOffscreen,
 				true, // require exact template match
@@ -535,7 +535,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 		case "mousemotion":
 			var rect = updateBandbox(bandbox, ev, false);
 
-			var ents = Engine.PickFriendlyEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID());
+			var ents = Engine.PickPlayerEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID());
 			var preferredEntities = getPreferredEntities(ents);
 			g_Selection.setHighlightList(preferredEntities);
 
@@ -547,7 +547,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				var rect = updateBandbox(bandbox, ev, true);
 
 				// Get list of entities limited to preferred entities
-				var ents = getPreferredEntities(Engine.PickFriendlyEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID()));
+				var ents = getPreferredEntities(Engine.PickPlayerEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID()));
 
 				// Remove the bandbox hover highlighting
 				g_Selection.setHighlightList([]);
@@ -1029,7 +1029,7 @@ function handleInputAfterGui(ev)
 					}
 
 					// TODO: Should we handle "control all units" here as well?
-					ents = Engine.PickSimilarFriendlyEntities(templateToMatch, showOffscreen, matchRank, false);
+					ents = Engine.PickSimilarPlayerEntities(templateToMatch, showOffscreen, matchRank, false);
 				}
 				else
 				{
