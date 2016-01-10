@@ -1052,8 +1052,8 @@ function reportGame()
 			for (let buildingsClass of buildingsClasses)
 				playerStatistics[buildingCounterType][buildingsClass] += player.statistics[buildingCounterType][buildingsClass] + ",";
 		let total = 0;
-		for (let res of player.statistics.resourcesGathered)
-			total += res;
+		for (let type in player.statistics.resourcesGathered)
+			total += player.statistics.resourcesGathered[type];
 
 		playerStatistics.economyScore += total + ",";
 		playerStatistics.militaryScore += Math.round((player.statistics.enemyUnitsKilledValue +
