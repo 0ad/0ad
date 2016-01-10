@@ -63,8 +63,7 @@
 		</object>
 		<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="ModernTickBox">
 			<action on="Press">
-				g_DevSettings.controlAll = this.checked;
-				Engine.PostNetworkCommand( {"type": "control-all", "flag": this.checked} );
+				Engine.PostNetworkCommand({ "type": "control-all", "flag": this.checked });
 			</action>
 		</object>
 

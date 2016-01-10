@@ -91,6 +91,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"name": cmpPlayer.GetName(),
 			"civ": cmpPlayer.GetCiv(),
 			"color": cmpPlayer.GetColor(),
+			"controlsAll": cmpPlayer.CanControlAllUnits(),
 			"popCount": cmpPlayer.GetPopulationCount(),
 			"popLimit": cmpPlayer.GetPopulationLimit(),
 			"popMax": cmpPlayer.GetMaxPopulation(),

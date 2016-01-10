@@ -246,6 +246,13 @@ function selectViewPlayer(playerID)
 
 	if (g_IsTradeOpen)
 		openTrade();
+
+	let playerState = GetSimState().players[playerID];
+	g_DevSettings.controlAll = playerState && playerState.controlsAll;
+
+	let control = Engine.GetGUIObjectByName("devControlAll");
+	control.checked = g_DevSettings.controlAll;
+	control.enabled = playerID > 0;
 }
 
 /**
@@ -570,6 +577,13 @@ function onSimulationUpdate()
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
+
+	if (Engine.GetPlayerID() > 0)
+	{
+		let playerState = GetSimState().players[Engine.GetPlayerID()];
+		g_DevSettings.controlAll = playerState && playerState.controlsAll;
+		Engine.GetGUIObjectByName("devControlAll").checked = g_DevSettings.controlAll;
+	}
 
 	if (!g_IsObserver)
 		updateResearchDisplay();
