@@ -11,14 +11,15 @@ function CalculateTraderGain(firstMarket, secondMarket, template, trader)
 
 	var cmpFirstMarketPosition = Engine.QueryInterface(firstMarket, IID_Position);
 	var cmpSecondMarketPosition = Engine.QueryInterface(secondMarket, IID_Position);
-	if (!cmpFirstMarketPosition || !cmpFirstMarketPosition.IsInWorld() || !cmpSecondMarketPosition || !cmpSecondMarketPosition.IsInWorld())
+	if (!cmpFirstMarketPosition || !cmpFirstMarketPosition.IsInWorld() ||
+	    !cmpSecondMarketPosition || !cmpSecondMarketPosition.IsInWorld())
 		return null;
 	var firstMarketPosition = cmpFirstMarketPosition.GetPosition2D();
 	var secondMarketPosition = cmpSecondMarketPosition.GetPosition2D();
 
 	// Calculate ordinary Euclidean distance between markets.
 	// We don't use pathfinder, because ordinary distance looks more fair.
-	var distance = Math.sqrt(Math.pow(firstMarketPosition.x - secondMarketPosition.x, 2) + Math.pow(firstMarketPosition.y - secondMarketPosition.y, 2));
+	var distance = firstMarketPosition.distanceTo(secondMarketPosition);
 	// We calculate gain as square of distance to encourage trading between remote markets
 	gain.traderGain = Math.pow(distance * DISTANCE_FACTOR, 2);
 	if (template && template.GainMultiplier)
@@ -28,12 +29,10 @@ function CalculateTraderGain(firstMarket, secondMarket, template, trader)
 		else	// called from the gui with modifications already applied
 			gain.traderGain *= template.GainMultiplier;
 	}
-	gain.traderGain = Math.round(gain.traderGain);
 	// If trader undefined, the trader owner is supposed to be the same as the first market
-	if (trader)
-		var cmpOwnership = Engine.QueryInterface(trader, IID_Ownership);
-	else
-		var cmpOwnership = Engine.QueryInterface(firstMarket, IID_Ownership);
+	var cmpOwnership = trader ? Engine.QueryInterface(trader, IID_Ownership) : Engine.QueryInterface(firstMarket, IID_Ownership);
+	if (!cmpOwnership)
+		return null;
 	gain.traderOwner = cmpOwnership.GetOwner();
 
 	// If markets belong to different players, add gain from international trading
@@ -41,13 +40,28 @@ function CalculateTraderGain(firstMarket, secondMarket, template, trader)
 	var ownerSecondMarket = Engine.QueryInterface(secondMarket, IID_Ownership).GetOwner();
 	if (ownerFirstMarket != ownerSecondMarket)
 	{
-		var internationalGain1 = ApplyValueModificationsToEntity("Trade/International", INTERNATIONAL_TRADING_ADDITION, firstMarket);
-		gain.market1Gain = Math.round(gain.traderGain * internationalGain1 / 100);
+		gain.market1Gain = gain.traderGain * ApplyValueModificationsToEntity("Trade/International", INTERNATIONAL_TRADING_ADDITION, firstMarket) / 100;
 		gain.market1Owner = ownerFirstMarket;
-		var internationalGain2 = ApplyValueModificationsToEntity("Trade/International", INTERNATIONAL_TRADING_ADDITION, secondMarket);
-		gain.market2Gain = Math.round(gain.traderGain * internationalGain2 / 100);
+		gain.market2Gain = gain.traderGain * ApplyValueModificationsToEntity("Trade/International", INTERNATIONAL_TRADING_ADDITION, secondMarket) / 100;
 		gain.market2Owner = ownerSecondMarket;
+	}
 
+	// Add potential trade multipliers and roundings
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(gain.traderOwner), IID_Player);
+	if (cmpPlayer)
+		gain.traderGain *= cmpPlayer.GetTradeRateMultiplier();
+	gain.traderGain = Math.round(gain.traderGain);
+
+	if (ownerFirstMarket != ownerSecondMarket)
+	{
+		if ((cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(gain.market1Owner), IID_Player)))
+			gain.market1Gain *= cmpPlayer.GetTradeRateMultiplier();
+		gain.market1Gain = Math.round(gain.market1Gain);
+
+		if ((cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(gain.market2Owner), IID_Player)))
+			gain.market2Gain *= cmpPlayer.GetTradeRateMultiplier();
+		gain.market2Gain = Math.round(gain.market2Gain);
 	}
 
 	return gain;

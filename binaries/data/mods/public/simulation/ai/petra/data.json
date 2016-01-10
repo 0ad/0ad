@@ -1,6 +1,6 @@
 {
   "name": "Petra Bot",
-  "description": "Started as a fork of Aegis bot, Petra is the most stable AI available. It supports naval maps and is generally more challenging. Please report issues to Wildfire Games (see the link in the main menu).",
+  "description": "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n\nThe AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack.",
   "moduleName" : "PETRA",
   "constructor": "PetraBot",
   "useShared": true
