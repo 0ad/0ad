@@ -1,4 +1,5 @@
 var g_hasCallback = false;
+var g_hasChanges = false;
 /**
  * This array holds the data to populate the general section with.
  * Data is in the form [Title, Tooltip, {ActionType:Action}, InputType].
@@ -54,24 +55,25 @@ function init(data)
 {
 	if (data && data.callback)
 		g_hasCallback = true;
+	let reload = data && data.reload;
 
 	// WARNING: We assume a strict formatting of the XML and do minimal checking.
-	for each (var prefix in Object.keys(options))
+	for (let prefix of Object.keys(options))
 	{
-		var lastSize;
-		for (var i = 0; i < options[prefix].length; i++)
+		let lastSize;
+		for (let i = 0; i < options[prefix].length; i++)
 		{
-			var body = Engine.GetGUIObjectByName(prefix + "[" + i + "]");
-			var label = Engine.GetGUIObjectByName(prefix + "Label[" + i + "]");
+			let body = Engine.GetGUIObjectByName(prefix + "[" + i + "]");
+			let label = Engine.GetGUIObjectByName(prefix + "Label[" + i + "]");
 			// Setup control.
-			setupControl(options[prefix][i], i, prefix);
+			setupControl(options[prefix][i], i, prefix, reload);
 			// Setup label.
 			label.caption = options[prefix][i][0];
 			label.tooltip = options[prefix][i][1];
 			// Move each element to the correct place.
 			if (i > 0)
 			{
-				var newSize = new GUISize();
+				let newSize = new GUISize();
 				newSize.left = lastSize.left;
 				newSize.rright = lastSize.rright;
 				newSize.top = lastSize.bottom;
@@ -80,9 +82,7 @@ function init(data)
 				lastSize = newSize;
 			}
 			else
-			{
 				lastSize = body.size;
-			}
 			// Show element.
 			body.hidden = false;
 		}
@@ -95,100 +95,117 @@ function init(data)
  * @param option Structure containing the data to setup an option.
  * @param prefix Prefix to use when accessing control, for example "generalSetting" when the tickbox name is generalSettingTickbox[i].
  */
-function setupControl(option, i, prefix)
+function setupControl(option, i, prefix, reload)
 {
+	var control;
+	var onPress = function(){ g_hasChanges = true; };
+
 	switch (option[3])
 	{
-		case "boolean":
-			// More space for the label
-			let text = Engine.GetGUIObjectByName(prefix + "Label[" + i + "]");
-			let size = text.size;
-			size.rright = 87;
-			text.size = size;
-			var control = Engine.GetGUIObjectByName(prefix + "Tickbox[" + i + "]");
-			var checked;
-			var onPress = function(){};
-			// Different option action load and save differently, so this switch is needed.
-			for each (var action in Object.keys(option[2]))
+	case "boolean":
+		// More space for the label
+		let text = Engine.GetGUIObjectByName(prefix + "Label[" + i + "]");
+		let size = text.size;
+		size.rright = 87;
+		text.size = size;
+		control = Engine.GetGUIObjectByName(prefix + "Tickbox[" + i + "]");
+		var checked;
+		// Different option action load and save differently, so this switch is needed.
+		for (let action of Object.keys(option[2]))
+		{
+			switch (action)
 			{
-				switch (action)
+			case "config":
+				// Load initial value if not yet loaded.
+				if (!checked || typeof checked != "boolean")
+					checked = Engine.ConfigDB_GetValue("user", option[2][action]) === "true";
+				// Hacky macro to create the callback.
+				var callback = function(key)
 				{
-					case "config":
-						// Load initial value if not yet loaded.
-						if (!checked || typeof checked != "boolean")
-							checked = Engine.ConfigDB_GetValue("user", option[2][action]) === "true" ? true : false;
-						// Hacky macro to create the callback.
-						var callback = function(key)
-						{
-							return function()
-								Engine.ConfigDB_CreateValue("user", key, String(this.checked));
-						}(option[2][action]);
-						// Merge the new callback with any existing callbacks.
-						onPress = mergeFunctions(callback, onPress);
-						break;
-					case "renderer":
-						// Load initial value if not yet loaded.
-						if (!checked || typeof checked != "boolean")
-							checked = eval("Engine.Renderer_Get" + option[2][action] + "Enabled()");
-						// Hacky macro to create the callback.
-						var callback = function(key)
-						{
-							return function()
-								eval("Engine.Renderer_Set" + key + "Enabled(" + this.checked + ")");
-						}(option[2][action]);
-						// Merge the new callback with any existing callbacks.
-						onPress = mergeFunctions(callback, onPress);
-						break;
-					case "function":
-						// This allows for doing low-level actions, like hiding/showing UI elements.
-						onPress = mergeFunctions(eval("function(){" + option[2][action] + "}"), onPress);
-						break;
-					default:
-						warn("Unknown option source type '" + action + "'");
+					return function()
+						Engine.ConfigDB_CreateValue("user", key, String(this.checked));
+				}(option[2][action]);
+				// Merge the new callback with any existing callbacks.
+				onPress = mergeFunctions(callback, onPress);
+				break;
+			case "renderer":
+				// If reloading, config values have priority, otherwise load initial value if not yet loaded
+				if (reload && option[2].config)
+				{
+					checked = Engine.ConfigDB_GetValue("user", option[2].config) === "true";
+					let rendererChecked = eval("Engine.Renderer_Get" + option[2].renderer + "Enabled()");
+					if (rendererChecked != checked)
+						eval("Engine.Renderer_Set" + option[2].renderer + "Enabled(" + checked + ")");
 				}
+				else if (!checked || typeof checked != "boolean")
+					checked = eval("Engine.Renderer_Get" + option[2][action] + "Enabled()");
+				// Hacky macro to create the callback (updating also the config value if any).
+				var callback = function(key, keyConfig)
+				{
+					return function()
+					{
+						eval("Engine.Renderer_Set" + key + "Enabled(" + this.checked + ")");
+						if (keyConfig)
+							Engine.ConfigDB_CreateValue("user", keyConfig, String(this.checked));
+					}
+				}(option[2][action], option[2].config);
+				// Merge the new callback with any existing callbacks.
+				onPress = mergeFunctions(callback, onPress);
+				break;
+			case "function":
+				// This allows for doing low-level actions, like hiding/showing UI elements.
+				onPress = mergeFunctions(eval("function(){" + option[2][action] + "}"), onPress);
+				break;
+			default:
+				warn("Unknown option source type '" + action + "'");
 			}
-			// Load final data to the control element.
-			control.checked = checked;
-			control.onPress = onPress;
-			break;
-		case "number":
-			// TODO: Slider
-		case "string":
-			var control = Engine.GetGUIObjectByName(prefix + "Input[" + i + "]");
-			var caption;
-			var onPress = function(){};
-			for each (var action in Object.keys(option[2]))
+		}
+		// Load final data to the control element.
+		control.checked = checked;
+		control.onPress = onPress;
+		break;
+	case "number":
+		// TODO: Slider
+	case "string":
+		control = Engine.GetGUIObjectByName(prefix + "Input[" + i + "]");
+		var caption;
+		for (let action of Object.keys(option[2]))
+		{
+			switch (action)
 			{
-				switch (action)
+			case "config":
+				onPress = function(){};
+				caption = Engine.ConfigDB_GetValue("user", option[2][action]);
+				// Hacky macro to create the callback.
+				var callback = function(key)
 				{
-					case "config":
-						// Load initial value if not yet loaded.
-						if (!checked || typeof checked != boolean)
-							caption = Engine.ConfigDB_GetValue("user", option[2][action]);
-						// Hacky macro to create the callback.
-						var callback = function(key)
-						{
-							return function()
-								Engine.ConfigDB_CreateValue("user", key, String(this.caption));
-						}(option[2][action]);
-						// Merge the new callback with any existing callbacks.
-						onPress = mergeFunctions(callback, onPress);
-						break;
-					case "function":
-						// This allows for doing low-level actions, like hiding/showing UI elements.
-						onPress = mergeFunctions(function(){eval(option[2][action])}, onPress);
-						break;
-					default:
-						warn("Unknown option source type '" + action + "'");
-				}
+					return function()
+					{
+						if (Engine.ConfigDB_GetValue("user", key) == this.caption)
+							return;
+						Engine.ConfigDB_CreateValue("user", key, String(this.caption));
+						g_hasChanges = true;
+					}
+				}(option[2][action]);
+				// Merge the new callback with any existing callbacks.
+				onPress = mergeFunctions(callback, onPress);
+				break;
+			case "function":
+				// This allows for doing low-level actions, like hiding/showing UI elements.
+				onPress = mergeFunctions(function(){eval(option[2][action])}, onPress);
+				break;
+			default:
+				warn("Unknown option source type '" + action + "'");
 			}
-			control.caption = caption;
-			control.onPress = onPress;
-			break;
-		default:
-			warn("Unknown option type '" + options[3] + "', assuming string. Valid types are 'number', 'string', or 'bool'.");
-			var control = Engine.GetGUIObjectByName(prefix + "Input[" + i + "]");
-			break;
+		}
+		control.caption = caption;
+		control.onPress = onPress;
+		control.onMouseLeave = onPress;
+		break;
+	default:
+		warn("Unknown option type '" + options[3] + "', assuming string. Valid types are 'number', 'string', or 'bool'.");
+		control = Engine.GetGUIObjectByName(prefix + "Input[" + i + "]");
+		break;
 	}
 	control.hidden = false;
 	control.tooltip = option[1];
@@ -209,14 +226,37 @@ function mergeFunctions(function1, function2)
 	};
 }
 
+function reloadDefaults()
+{
+	Engine.ConfigDB_Reload("user");
+	init({ "reload": true });
+	g_hasChanges = false;
+}
+
+function saveDefaults()
+{
+	g_hasChanges = false;
+	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+}
+
 /**
  * Close GUI page and call callbacks if they exist.
  **/
 function closePage()
 {
-	// Revert all changes if they were not saved on the disk
-	Engine.ConfigDB_Reload("user");
+	if (g_hasChanges)
+	{
+		let btCaptions = [translate("No"), translate("Yes")];
+		let btCode = [null, function(){ closePageWithoutConfirmation(); }];
+		messageBox(500, 200, translate("You have unsaved changes, are you sure you want to quit ?"),
+			translate("Warning"), 0, btCaptions, btCode);
+	}
+	else
+		closePageWithoutConfirmation();
+}
 
+function closePageWithoutConfirmation()
+{
 	if (g_hasCallback)
 		Engine.PopGuiPageCB();
 	else

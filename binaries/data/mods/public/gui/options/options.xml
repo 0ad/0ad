@@ -17,7 +17,7 @@
 		<object style="ModernLabelText" type="text" size="50%-128 -16 50%+128 16">
 			<translatableAttribute id="caption">Game Options</translatableAttribute>
 		</object>
-		<object name="GeneralSettings" type="image" sprite="ModernDarkBoxGold" size="16 16 312 100%-16">
+		<object name="GeneralSettings" type="image" sprite="ModernDarkBoxGold" size="16 16 312 100%-52">
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">General</translatableAttribute>
 			</object>
@@ -53,7 +53,7 @@
 				</object>
 			</repeat>
 		</object>
-		<object name="LobbySettings" type="image" sprite="ModernDarkBoxGold" size="620 50%+4 916 100%-16">
+		<object name="LobbySettings" type="image" sprite="ModernDarkBoxGold" size="620 50%+4 916 100%-52">
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Lobby Settings</translatableAttribute>
 			</object>
@@ -65,13 +65,20 @@
 				</object>
 			</repeat>
 		</object>
-		<object type="button" style="ModernButtonRed" size="320 100%-44 50%-4 100%-16" hotkey="cancel">
-			<translatableAttribute id="caption">Cancel</translatableAttribute>
-			<action on="Press">closePage();</action>
+		<object type="button" style="ModernButtonRed" size="50%-170 100%-44 50%-70 100%-16" hotkey="cancel">
+			<translatableAttribute id="caption">Reload</translatableAttribute>
+			<translatableAttribute id="tooltip">Reload default values from file</translatableAttribute>
+			<action on="Press">reloadDefaults();</action>
 		</object>
-		<object type="button" style="ModernButtonRed" size="50%+4 100%-44 612 100%-16">
+		<object type="button" style="ModernButtonRed" size="50%-62 100%-44 50%+38 100%-16">
 			<translatableAttribute id="caption">Save</translatableAttribute>
-			<action on="Press">Engine.ConfigDB_WriteFile("user", "config/user.cfg");closePage();</action>
+			<translatableAttribute id="tooltip">Save changes to file</translatableAttribute>
+			<action on="Press">saveDefaults();</action>
+		</object>
+		<object type="button" style="ModernButtonRed" size="50%+70 100%-44 50%+170 100%-16">
+			<translatableAttribute id="caption">Quit</translatableAttribute>
+			<translatableAttribute id="tooltip">Unsaved changes affect this session only</translatableAttribute>
+			<action on="Press">closePage();</action>
 		</object>
 	</object>
 </objects>
