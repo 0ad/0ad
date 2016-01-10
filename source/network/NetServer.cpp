@@ -41,7 +41,7 @@
 
 #define	DEFAULT_SERVER_NAME			L"Unnamed Server"
 #define DEFAULT_WELCOME_MESSAGE		L"Welcome"
-#define MAX_CLIENTS					8
+#define MAX_CLIENTS					10
 
 static const int CHANNEL_COUNT = 1;
 
