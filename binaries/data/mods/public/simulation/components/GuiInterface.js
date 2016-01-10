@@ -860,6 +860,11 @@ GuiInterface.prototype.GetPlayerEntities = function(player)
 	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(player);
 };
 
+GuiInterface.prototype.GetNonGaiaEntities = function()
+{
+    return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities();
+};
+
 /**
  * Displays the rally points of a given list of entities (carried in cmd.entities).
  *
@@ -1854,6 +1859,7 @@ let exposedFunctions = {
 	"GetAllBuildableEntities": 1,
 	"SetStatusBars": 1,
 	"GetPlayerEntities": 1,
+	"GetNonGaiaEntities": 1,
 	"DisplayRallyPoint": 1,
 	"SetBuildingPlacementPreview": 1,
 	"SetWallPlacementPreview": 1,

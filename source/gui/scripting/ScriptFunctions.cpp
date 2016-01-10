@@ -62,6 +62,7 @@
 #include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
+#include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTemplateManager.h"
@@ -162,6 +163,24 @@ std::vector<entity_id_t> PickPlayerEntitiesInRect(ScriptInterface::CxPrivate* UN
 std::vector<entity_id_t> PickPlayerEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate, int player)
 {
 	return PickPlayerEntitiesInRect(pCxPrivate, 0, 0, g_xres, g_yres, player);
+}
+
+std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	std::vector<entity_id_t> entities;
+
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (!cmpPlayerManager)
+		return entities;
+
+	i32 numPlayers = cmpPlayerManager->GetNumPlayers();
+	for (i32 player = 1; player < numPlayers; ++player)
+	{
+		std::vector<entity_id_t> ents = PickPlayerEntitiesOnScreen(pCxPrivate, player);
+		entities.insert(entities.end(), ents.begin(), ents.end());
+	}
+
+	return entities;
 }
 
 std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
@@ -967,6 +986,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<entity_id_t, int, int, &PickEntityAtPoint>("PickEntityAtPoint");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, int, int, &PickPlayerEntitiesInRect>("PickPlayerEntitiesInRect");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, &PickPlayerEntitiesOnScreen>("PickPlayerEntitiesOnScreen");
+	scriptInterface.RegisterFunction<std::vector<entity_id_t>, &PickNonGaiaEntitiesOnScreen>("PickNonGaiaEntitiesOnScreen");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, bool, &PickSimilarPlayerEntities>("PickSimilarPlayerEntities");
 	scriptInterface.RegisterFunction<CFixedVector3D, int, int, &GetTerrainAtScreenPoint>("GetTerrainAtScreenPoint");
 

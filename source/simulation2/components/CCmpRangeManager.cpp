@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -922,9 +922,17 @@ public:
 
 	virtual std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player)
 	{
-		std::vector<entity_id_t> entities;
+		return GetEntitiesByMask(CalcOwnerMask(player));
+	}
 
-		u32 ownerMask = CalcOwnerMask(player);
+	virtual std::vector<entity_id_t> GetNonGaiaEntities()
+	{
+		return GetEntitiesByMask(((1 << MAX_LOS_PLAYER_ID) - 1) << 1);
+	}
+
+	virtual std::vector<entity_id_t> GetEntitiesByMask(u32 ownerMask)
+	{
+		std::vector<entity_id_t> entities;
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{

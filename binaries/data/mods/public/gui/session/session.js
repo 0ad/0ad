@@ -837,7 +837,7 @@ function recalculateStatusBarDisplay()
 {
 	let entities;
 	if (g_ShowAllStatusBars)
-		entities = Engine.PickPlayerEntitiesOnScreen(Engine.GetPlayerID());
+		entities = Engine.GetPlayerID() == -1 ? Engine.PickNonGaiaEntitiesOnScreen() : Engine.PickPlayerEntitiesOnScreen(Engine.GetPlayerID());
 	else
 	{
 		let selected = g_Selection.toList();
@@ -845,7 +845,7 @@ function recalculateStatusBarDisplay()
 			selected.push(g_Selection.highlighted[ent]);
 
 		// Remove selected entities from the 'all entities' array, to avoid disabling their status bars.
-		entities = Engine.GuiInterfaceCall("GetPlayerEntities").filter(idx => selected.indexOf(idx) == -1);
+		entities = Engine.GuiInterfaceCall(Engine.GetPlayerID() == -1 ? "GetNonGaiaEntities" : "GetPlayerEntities").filter(idx => selected.indexOf(idx) == -1);
 	}
 
 	Engine.GuiInterfaceCall("SetStatusBars", { "entities": entities, "enabled": g_ShowAllStatusBars });

@@ -193,6 +193,11 @@ public:
 	virtual std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player) = 0;
 
 	/**
+	 * Returns a list of all entities of all players except gaia.
+	 */
+	virtual std::vector<entity_id_t> GetNonGaiaEntities() = 0;
+
+	/**
 	 * Toggle the rendering of debug info.
 	 */
 	virtual void SetDebugOverlay(bool enabled) = 0;
