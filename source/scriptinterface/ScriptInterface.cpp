@@ -319,7 +319,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS_SetParallelIonCompilationEnabled(m_runtime->m_rt, true);
 
 	// For GC debugging:
-	// JS_SetGCZeal(m_cx, 2);
+	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
 
 	JS_SetContextPrivate(m_cx, NULL);
 
