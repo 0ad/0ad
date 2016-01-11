@@ -42,6 +42,8 @@ function InitGame(settings)
 			cmpRangeManager.ExploreAllTiles(i);
 	}
 
+	// Sandbox, Very Easy, Easy, Medium, Hard, Very Hard
+	let rate = [ 0.50, 0.64, 0.80, 1.00, 1.25, 1.56 ];
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
 	for (let i = 1; i < settings.PlayerData.length; ++i)
@@ -50,10 +52,12 @@ function InitGame(settings)
 		cmpPlayer.SetCheatsEnabled(!!settings.CheatsEnabled);
 		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
 		{
-			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i, +settings.PlayerData[i].AIDiff);
+			let AIDiff = +settings.PlayerData[i].AIDiff;
+			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i, AIDiff);
 			cmpPlayer.SetAI(true);
-			// Sandbox: 50%, very easy: 50%, easy: 66%, Medium: 100%, hard: 133%, very hard: 166%
-			cmpPlayer.SetGatherRateMultiplier(Math.max(0.5,(+settings.PlayerData[i].AIDiff)/3.0));
+			AIDiff = Math.min(AIDiff, rate.length - 1);
+			cmpPlayer.SetGatherRateMultiplier(rate[AIDiff]);
+			cmpPlayer.SetTradeRateMultiplier(rate[AIDiff]);
 		}
 		if (settings.PopulationCap)
 			cmpPlayer.SetMaxPopulation(settings.PopulationCap);

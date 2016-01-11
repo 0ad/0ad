@@ -91,6 +91,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"name": cmpPlayer.GetName(),
 			"civ": cmpPlayer.GetCiv(),
 			"color": cmpPlayer.GetColor(),
+			"controlsAll": cmpPlayer.CanControlAllUnits(),
 			"popCount": cmpPlayer.GetPopulationCount(),
 			"popLimit": cmpPlayer.GetPopulationLimit(),
 			"popMax": cmpPlayer.GetMaxPopulation(),
@@ -405,6 +406,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"turretParent":null,
 		"promotion": null,
 		"repairRate": null,
+		"buildRate": null,
 		"resourceDropsite": null,
 		"resourceGatherRates": null,
 		"resourceSupply": null,
@@ -488,6 +490,10 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 	let cmpRepairable = Engine.QueryInterface(ent, IID_Repairable);
 	if (cmpRepairable)
 		ret.repairRate = cmpRepairable.GetRepairRate();
+
+	let cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
+	if (cmpFoundation)
+		ret.buildRate = cmpFoundation.GetBuildRate();
 
 	let cmpResourceSupply = QueryMiragedInterface(ent, IID_ResourceSupply);
 	if (cmpResourceSupply)
@@ -584,28 +590,28 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 	return GetTechnologyDataHelper(template, cmpPlayer.GetCiv());
 };
 
-GuiInterface.prototype.IsTechnologyResearched = function(player, tech)
+GuiInterface.prototype.IsTechnologyResearched = function(player, data)
 {
-	if (!tech)
+	if (!data.tech)
 		return true;
 
-	let cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	let cmpTechnologyManager = QueryPlayerIDInterface(data.player || player, IID_TechnologyManager);
 
 	if (!cmpTechnologyManager)
 		return false;
 
-	return cmpTechnologyManager.IsTechnologyResearched(tech);
+	return cmpTechnologyManager.IsTechnologyResearched(data.tech);
 };
 
 // Checks whether the requirements for this technology have been met
-GuiInterface.prototype.CheckTechnologyRequirements = function(player, tech)
+GuiInterface.prototype.CheckTechnologyRequirements = function(player, data)
 {
-	let cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	let cmpTechnologyManager = QueryPlayerIDInterface(data.player || player, IID_TechnologyManager);
 
 	if (!cmpTechnologyManager)
 		return false;
 
-	return cmpTechnologyManager.CanResearch(tech);
+	return cmpTechnologyManager.CanResearch(data.tech);
 };
 
 // Returns technologies that are being actively researched, along with
@@ -647,9 +653,9 @@ GuiInterface.prototype.GetIncomingAttacks = function(player)
 };
 
 // Used to show a red square over GUI elements you can't yet afford.
-GuiInterface.prototype.GetNeededResources = function(player, amounts)
+GuiInterface.prototype.GetNeededResources = function(player, data)
 {
-	return QueryPlayerIDInterface(player).GetNeededResources(amounts);
+	return QueryPlayerIDInterface(data.player || player).GetNeededResources(data.cost);
 };
 
 /**
@@ -852,6 +858,11 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 GuiInterface.prototype.GetPlayerEntities = function(player)
 {
 	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(player);
+};
+
+GuiInterface.prototype.GetNonGaiaEntities = function()
+{
+    return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities();
 };
 
 /**
@@ -1848,6 +1859,7 @@ let exposedFunctions = {
 	"GetAllBuildableEntities": 1,
 	"SetStatusBars": 1,
 	"GetPlayerEntities": 1,
+	"GetNonGaiaEntities": 1,
 	"DisplayRallyPoint": 1,
 	"SetBuildingPlacementPreview": 1,
 	"SetWallPlacementPreview": 1,

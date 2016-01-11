@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -789,7 +789,7 @@ entities:\n\
 		man.AddComponent(hnd1, man.LookupCID("TestScript1_getter"), noParam);
 
 		std::stringstream stateStream;
-		TS_ASSERT(man.SerializeState(stateStream));
+		TS_ASSERT_THROWS_PSERROR(man.SerializeState(stateStream), PSERROR_Serialize_ScriptError, "Cannot serialize property getters");
 		// (The script will die if the getter is executed)
 	}
 

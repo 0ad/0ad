@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 19:45+0000\n"
+"POT-Creation-Date: 2016-01-08 09:00+0100\n"
+"PO-Revision-Date: 2016-01-08 18:21+0000\n"
 "Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -325,66 +325,71 @@ msgstr "%(previousAmounts)s a %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:68 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:75 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:114 gui/common/tooltips.js:142
 #: gui/common/tooltips.js:431 gui/common/tooltips.js:458
 #: gui/common/tooltips.js:526
 msgid ", "
 msgstr ", "
 
-#: gui/common/network.js:12
+#: gui/common/network.js:15
 msgid "Unknown reason"
 msgstr "Neznámy dôvod"
 
-#: gui/common/network.js:13
+#: gui/common/network.js:16
 msgid "Unexpected shutdown"
 msgstr "Hra sa neočakávane ukončila"
 
-#: gui/common/network.js:14
+#: gui/common/network.js:17
 msgid "Incorrect network protocol version"
 msgstr "Nesprávna verzia sieťového protokolu"
 
-#: gui/common/network.js:15
+#: gui/common/network.js:18
 msgid "Game is loading, please try later"
 msgstr "Hra sa načítava, prosím skúste to neskôr."
 
-#: gui/common/network.js:16
+#: gui/common/network.js:19
 msgid "Game has already started, no observers allowed"
 msgstr "Hra sa už začala, pozorovateľom nie je prístupná."
 
-#: gui/common/network.js:17
+#: gui/common/network.js:20
 msgid "You have been kicked"
 msgstr "Bol si vyhodený"
 
-#: gui/common/network.js:18
+#: gui/common/network.js:21
 msgid "You have been banned"
 msgstr "Bol ti udelený ban"
 
+#: gui/common/network.js:24
+#, javascript-format
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Nesprávna hodnota %(id)s]"
+
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:29
+#: gui/common/network.js:36
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Dôvod: %(reason)s."
 
-#: gui/common/network.js:30
+#: gui/common/network.js:37
 msgid "Lost connection to the server."
 msgstr "Spojenie so serverom bolo prerušené."
 
-#: gui/common/network.js:30
+#: gui/common/network.js:37
 msgid "Disconnected"
 msgstr "Odpojený"
 
-#: gui/common/network.js:38
+#: gui/common/network.js:45
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Nebolo možné udeliť ban %(name)s."
 
-#: gui/common/network.js:38
+#: gui/common/network.js:45
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Nebolo možné vyhodiť %(name)s."
 
-#: gui/common/network.js:66
+#: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Uživatelia: %(users)s"

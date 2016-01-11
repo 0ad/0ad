@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -319,7 +319,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS_SetParallelIonCompilationEnabled(m_runtime->m_rt, true);
 
 	// For GC debugging:
-	// JS_SetGCZeal(m_cx, 2);
+	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
 
 	JS_SetContextPrivate(m_cx, NULL);
 
@@ -449,7 +449,9 @@ ScriptInterface::CxPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSConte
 
 JS::Value ScriptInterface::GetCachedValue(CACHED_VAL valueIdentifier)
 {
-	return m->m_ScriptValCache[valueIdentifier].get();
+	std::map<ScriptInterface::CACHED_VAL, DefPersistentRooted<JS::Value>>::iterator it = m->m_ScriptValCache.find(valueIdentifier);
+	ENSURE(it != m->m_ScriptValCache.end());
+	return it->second.get();
 }
 
 
@@ -1098,16 +1100,6 @@ void* ScriptInterface::GetPrivate(JS::HandleObject obj)
 {
 	// TODO: use JS_GetInstancePrivate
 	return JS_GetPrivate(obj);
-}
-
-void ScriptInterface::DumpHeap()
-{
-#if MOZJS_DEBUG_ABI
-	JS_DumpHeap(GetJSRuntime(), stderr, NULL, JSTRACE_OBJECT, NULL, (size_t)-1, NULL);
-#endif
-	fprintf(stderr, "# Bytes allocated: %u\n", JS_GetGCParameter(GetJSRuntime(), JSGC_BYTES));
-	JS_GC(GetJSRuntime());
-	fprintf(stderr, "# Bytes allocated after GC: %u\n", JS_GetGCParameter(GetJSRuntime(), JSGC_BYTES));
 }
 
 void ScriptInterface::MaybeGC()

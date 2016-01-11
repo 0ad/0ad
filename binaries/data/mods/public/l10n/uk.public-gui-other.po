@@ -5,12 +5,13 @@
 # Translators:
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
+# Андрій Бандура <andriykopanytsia@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-01-08 09:00+0100\n"
+"PO-Revision-Date: 2016-01-11 06:33+0000\n"
+"Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,24 +72,24 @@ msgstr "Початкова сторінка"
 #: gui/common/functions_global_object.js:85
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/common/functions_global_object.js:102
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/common/functions_global_object.js:119
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Часу до відновлення бойових дій: %(time)s."
 
 #: gui/common/functions_utility.js:77
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Випадково обрана мапа."
 
 #: gui/common/functions_utility.js:84
 msgid "Sorry, no description available."
@@ -310,83 +311,88 @@ msgstr "Риба"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s і %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:68 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:75 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:114 gui/common/tooltips.js:142
 #: gui/common/tooltips.js:431 gui/common/tooltips.js:458
 #: gui/common/tooltips.js:526
 msgid ", "
 msgstr ","
 
-#: gui/common/network.js:12
+#: gui/common/network.js:15
 msgid "Unknown reason"
 msgstr "Невідома причина"
 
-#: gui/common/network.js:13
+#: gui/common/network.js:16
 msgid "Unexpected shutdown"
 msgstr "Неочікуване завершення роботи"
 
-#: gui/common/network.js:14
+#: gui/common/network.js:17
 msgid "Incorrect network protocol version"
 msgstr "Неправильна версія мережевого протоколу"
 
-#: gui/common/network.js:15
+#: gui/common/network.js:18
 msgid "Game is loading, please try later"
-msgstr ""
+msgstr "Гра завантажується, будь-ласка, спробуйте пізніше"
 
-#: gui/common/network.js:16
+#: gui/common/network.js:19
 msgid "Game has already started, no observers allowed"
 msgstr "Гра вже почалася. Глядачі не дозволені."
 
-#: gui/common/network.js:17
+#: gui/common/network.js:20
 msgid "You have been kicked"
-msgstr ""
+msgstr "Вас вигнали"
 
-#: gui/common/network.js:18
+#: gui/common/network.js:21
 msgid "You have been banned"
-msgstr ""
+msgstr "Вас заблокували"
+
+#: gui/common/network.js:24
+#, javascript-format
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Неправильне значення %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:29
+#: gui/common/network.js:36
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Причини: %(reason)s."
 
-#: gui/common/network.js:30
+#: gui/common/network.js:37
 msgid "Lost connection to the server."
 msgstr "Втрачено підключення до серверу."
 
-#: gui/common/network.js:30
+#: gui/common/network.js:37
 msgid "Disconnected"
 msgstr "Відключено"
 
-#: gui/common/network.js:38
+#: gui/common/network.js:45
 #, javascript-format
 msgid "Could not ban %(name)s."
-msgstr ""
+msgstr "Неможливо заблокувати %(name)s."
 
-#: gui/common/network.js:38
+#: gui/common/network.js:45
 #, javascript-format
 msgid "Could not kick %(name)s."
-msgstr ""
+msgstr "Неможливо вигнати %(name)s."
 
-#: gui/common/network.js:66
+#: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Користувачі: %(users)s"
 
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Пісочниця"
 
 #: gui/common/settings.js:111
 msgctxt "aiDiff"
@@ -423,28 +429,28 @@ msgstr "Без перемир'я"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(minutes)s хвилина"
+msgstr[1] "%(minutes)s хвилини"
+msgstr[2] "%(minutes)s хвилин"
 
 #: gui/common/settings.js:166
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Сутичка"
 
 #: gui/common/settings.js:171
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Навгад"
 
 #: gui/common/settings.js:175
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Сценарій"
 
 #: gui/common/settings.js:206
 msgid "None"
-msgstr ""
+msgstr "Пусто"
 
 #: gui/common/settings.js:207
 msgid "Endless Game"
@@ -463,7 +469,7 @@ msgstr "Невідомо"
 #: gui/common/settings.js:331
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Усталено"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:87
 #: gui/common/tooltips.js:121
@@ -496,32 +502,32 @@ msgstr "Трощити"
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
+msgstr[2] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:57 gui/common/tooltips.js:238
 #: gui/common/tooltips.js:455
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "секунда"
+msgstr[1] "секунди"
+msgstr[2] "секунд"
 
 #: gui/common/tooltips.js:64
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
 msgid_plural "%(arrowcount)s %(arrow)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(arrowcount)s %(arrow)s"
+msgstr[1] "%(arrowcount)s %(arrow)s"
+msgstr[2] "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:66
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "стріла"
+msgstr[1] "стріли"
+msgstr[2] "стріл"
 
 #: gui/common/tooltips.js:68
 #, javascript-format
@@ -565,7 +571,7 @@ msgstr "Урон дальнього радіусу:"
 
 #: gui/common/tooltips.js:150
 msgid "Capture Attack:"
-msgstr ""
+msgstr "Атака захоплення:"
 
 #: gui/common/tooltips.js:153
 msgid "Attack:"
@@ -582,7 +588,7 @@ msgstr "Коефіцієнт:"
 #: gui/common/tooltips.js:179 gui/common/tooltips.js:188
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
 #: gui/common/tooltips.js:198 gui/common/tooltips.js:448
 msgid "Range:"
@@ -591,47 +597,47 @@ msgstr "Радіус:"
 #: gui/common/tooltips.js:200 gui/common/tooltips.js:450
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "метр"
+msgstr[1] "метри"
+msgstr[2] "метрів"
 
 #: gui/common/tooltips.js:203
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:208 gui/common/tooltips.js:221
 #, javascript-format
 msgid "%(range)s %(meters)s"
 msgid_plural "%(range)s %(meters)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(range)s %(meters)s"
+msgstr[1] "%(range)s %(meters)s"
+msgstr[2] "%(range)s %(meters)s"
 
 #: gui/common/tooltips.js:216
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
 
 #: gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
-msgstr ""
+msgstr "Швидкість ремонту:"
 
 #: gui/common/tooltips.js:237
 msgid "health"
-msgstr ""
+msgstr "здоров'я"
 
 #: gui/common/tooltips.js:239
 msgid "worker"
-msgstr ""
+msgstr "працівник"
 
 #: gui/common/tooltips.js:280 gui/common/tooltips.js:281
 #: gui/common/tooltips.js:282 gui/common/tooltips.js:283
@@ -698,9 +704,9 @@ msgstr "%(label)s %(speeds)s"
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
+msgstr[2] "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:442
 msgid "Heal:"

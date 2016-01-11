@@ -24,7 +24,11 @@ Trigger.prototype.TreasureCollected = function(data)
 	if ( (count == this.treasureCount.maximum / 2) && 
 		(this.treasureCount.players[otherPlayer] == this.treasureCount.maximum / 2) )
 	{
-		cmpGUIInterface.PushNotification({"players": [1,2], "message": "No winner yet, prepare for battle!"});
+		cmpGUIInterface.PushNotification({
+			"players": [1,2],
+			"message": markForTranslation("No winner yet, prepare for battle!"),
+			"translateMessage": true
+		});
 		
 		// keep notifying the player that the victory condition has changed.
 		var timerData = {"enabled": true, "delay": 10000, "interval": 12000}

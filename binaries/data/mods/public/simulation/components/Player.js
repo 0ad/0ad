@@ -36,6 +36,7 @@ Player.prototype.Init = function()
 	this.controlAllUnits = false;
 	this.isAI = false;
 	this.gatherRateMultiplier = 1;
+	this.tradeRateMultiplier = 1;
 	this.cheatsEnabled = false;
 	this.cheatTimeMultiplier = 1;
 	this.heroes = [];
@@ -154,6 +155,16 @@ Player.prototype.SetGatherRateMultiplier = function(value)
 Player.prototype.GetGatherRateMultiplier = function()
 {
 	return this.gatherRateMultiplier;
+};
+
+Player.prototype.SetTradeRateMultiplier = function(value)
+{
+	this.tradeRateMultiplier = value;
+};
+
+Player.prototype.GetTradeRateMultiplier = function()
+{
+	return this.tradeRateMultiplier;
 };
 
 Player.prototype.GetHeroes = function()

@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2016-01-04 00:22+0000\n"
-"Last-Translator: Pista Joska <jojoskapi@freemail.hu>\n"
+"PO-Revision-Date: 2016-01-10 23:44+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -571,7 +571,7 @@ msgid ""
 "Not unlike the Iberian Peninsula, North Africa was known as horse country, "
 "capable of producing up to 100,000 new mounts each year. It was also the "
 "home of the North African Forest Elephant."
-msgstr "Mint az ibériai félsziget, észak-Afrika is a lovasságáról volt ismert, a maga évi 100.000 új lovával.  Ezenkívül itt volt őshonos az észak-Afrikai erdei elefánt is."
+msgstr "Mint az Ibériai-félsziget, Észak-Afrika is a lovasságáról volt ismert, a maga évi 100.000 új lovával.  Ezenkívül itt volt őshonos az észak-afrikai erdei elefánt is."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "+33% trade profit international routes."
@@ -1356,7 +1356,7 @@ msgstr "Könyvtár"
 msgid ""
 "All Special Technologies are researched here. Building one reduces the cost "
 "of all other remaining technologies by 10%. Build limit: 1."
-msgstr ""
+msgstr "Minden speciális technológiát itt kutatnak. Egyet építve 10%-al csökken a költsége az összes fennmaradt technológiának. Építési korlát: 1."
 
 #: simulation/data/civs/mace.jsonStructures[1].History
 #: simulation/data/civs/ptol.jsonStructures[0].History
@@ -1386,7 +1386,7 @@ msgid ""
 "Macedonian forces and allies took over most of the world they knew, "
 "including Egypt, Persia and parts of the Indian subcontinent, allowing a "
 "diffusion of Hellenic and eastern cultures for years to come."
-msgstr "Makedónia egy ókori hellén királyság volt, a görög félszigettől északkeletre. Nagy Sándor uralkodása alatt a makedón erők és szövetségeseik az akkor ismert világ majdnem egészét meghódították, Egyiptomtól Perzsián át az indiai szubkontinensig. Ez később a hellén és indiai kultúra keveredéséhez vezetett a határos régiókban."
+msgstr "Makedónia egy ókori görög királyság volt, a Görög-félszigettől északkeletre. Nagy Sándor uralkodása alatt a makedón erők és szövetségeseik az akkor ismert világ majdnem egészét meghódították, Egyiptomtól Perzsián át az indiai szubkontinensig. Ez később a hellén és indiai kultúra keveredéséhez vezetett a határos régiókban."
 
 #: simulation/data/civs/maur.jsonName
 msgid "Mauryans"
@@ -2497,11 +2497,11 @@ msgstr "Antiokhosz Epiphanész"
 msgid ""
 "The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's "
 "former empire."
-msgstr ""
+msgstr "A makedón-görög dinasztia amely Nagy Sándor egykori birodalmának keleti fele fölött uralkodott."
 
 #: simulation/data/civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr ""
+msgstr "Minden lovassági egységet ki tud képezni, kivéve a polgár-milícia lovasokat."
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
@@ -2512,7 +2512,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster."
-msgstr ""
+msgstr "Ez a szelukidai terjeszkedési épület, hasonló más népek városházájához. Gyengébb és kisebb területhatása van, de olcsóbb és gyorsabban épül fel."
 
 #: simulation/data/civs/sele.jsonStructures[2].History
 msgid ""
@@ -2526,12 +2526,12 @@ msgid ""
 "manpower for the imperial Seleucid army. A side effect of this system was "
 "that it drained the Greek homeland of military-aged men, a contributing "
 "factor to Greece's eventual conquest by Rome."
-msgstr ""
+msgstr "A szeleukida királyok behívták a görögöket, makedónokat, gallokat, krétaikait és a thrákokat is, hogy telepedjenek le a birodalom hatalmas területén. Katonai kolóniákon telepedtek le, melyeket klérukhiáknak neveztek. Ebben az elrendezésben a telepesek földet kaptak, vagy kléroszt, és cserében a nagykirály hadseregében szolgáltak ha hadba hívták őket. Ez létrehozta a katonai telepesek felső-középosztályát, akik a vagyonukat a szír királynak köszönhették és segített növelni a szeleukida birodalmi hadsereget létszámát. A rendszer mellékhatásként elszívta a görög anyaföldről a katonakorú férfiakat, amely hozzájárult Görögország római meghódításához."
 
 #: simulation/data/civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr ""
+msgstr "A makedón-görög dinasztia amely Nagy Sándor egykori  birodalmának nagy része felett uralkodott."
 
 #: simulation/data/civs/spart.jsonName
 #: simulation/data/civs/spart.jsonFactions[0].Name
@@ -2549,27 +2549,27 @@ msgid ""
 "and run away before a single shield clashed. 'Othismos' refers to the point "
 "in a phalanx battle where both sides try to shove each other out of "
 "formation, attempting to breaking up the enemy lines and routing them."
-msgstr ""
+msgstr "A spártaiak voltak a phalanxharc vitathatatlan mesterei. A spártaiaktól úgy féltek a fegyelmük miatt, hogy néha az ellenséges hadsereg szétesett és elfutott mielőtt egyetlen pajzs is összeütközött volna. Az „othiszmosz” a phalanxcsata azon pontjára utal, amikor mindkét fél próbálja kiütni a másikat az alakzatból, megpróbálva széttörni az ellenség sorait és terelni őket."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
 msgid ""
 "The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr ""
+msgstr "A spárati rangfejlesztések a laktanyákban nem kerülnek nyersanyagba, csak időbe."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
-msgstr ""
+msgstr "Lükurgosz törvényei"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History
 msgid ""
 "Under the Constitution written by the mythical law-giver Lycurgus, the "
 "institution of The Agoge was established, where Spartans were trained from "
 "the age of 6 to be superior warriors in defense of the Spartan state."
-msgstr ""
+msgstr "A mitikus törvényhozó, Lükurgosz alkotmánya alapította meg az agógé rendszerét, amelyben a spártaiakat 6 éves koruktól kezdve kiváló harcosoknak nevelték a spártai állam védelmében."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allies can train Spartiates."
-msgstr ""
+msgstr "A szövetségesek kiképezhetnek homoioszokat."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2581,7 +2581,7 @@ msgid ""
 "loose confederation, with Sparta as its leader, was later dubbed the "
 "Peloponnesian League by historians, but in ancient times was called 'The "
 "Lacedaemonians and their allies.'"
-msgstr ""
+msgstr "A Peloponésszosz nagy része Spárta uralma alatt volt valamilyen módon. Ez a laza szövetség, amit Spárta vezetett, később a peloponésszoszi szövetség nevet kapta a történészektől, de az ókorban úgy volt ismert, hogy „a lakedaimóniak és a szövetségeseik”."
 
 #: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
@@ -2633,7 +2633,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr ""
+msgstr "A spártai női polgárokat nem lehet elfogni és harcolnak a támadókkal. Képesek védelmi tornyok és palánkok építésére is."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2648,7 +2648,7 @@ msgid ""
 "lost battle against Pyrrhus of Epirus they overnight built an earthen "
 "rampart to protect the city while their men slept in preparation for the "
 "next day's siege."
-msgstr ""
+msgstr "A spártai nők voltak a legszabadabbak egyike az ókori világban. Lehetett saját földjük és rabszolgáik és meztelenül edzhettek, mint a férfiak. Azt mondták, hogy csak spártai asszonyok szülnek igazi férfiakat. Az ilyen kőkemény nők többször mentették meg a várost a katasztrófától, például egy Pürrhosz elleni vesztes csata után, az éjszaka alatt földsáncokat építettek hogy megvédjék a várost, míg a férfiak aludtak, felkészülve a másnapi ostromra."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
@@ -2656,14 +2656,14 @@ msgstr "Az egységek falanx hadrendben gyorsabban mozognak."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"
-msgstr ""
+msgstr "Türtaiosz paeanjai"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].History
 msgid ""
 "Paeans were battle hymns that were sung by the hoplites when they charged "
 "the enemy lines. One of the first known Paeans were composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
-msgstr ""
+msgstr "A paeanok harci himnuszok voltak, amelyeket a hopliták énekeltek, amikor megrohamozták az ellenség vonalait. Az egyik első ismert paeanok egyikét Türtaiosz szerezte, Spárta harcos költője, az első messinai háború alatt."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "+25% health for spear infantry, but also +10% train time."

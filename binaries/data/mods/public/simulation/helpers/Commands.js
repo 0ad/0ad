@@ -498,20 +498,9 @@ var g_Commands = {
 		}
 	},
 
-	"unload-all-own": function(player, cmd, data)
-	{
-		var entities = FilterEntityList(cmd.garrisonHolders, player, data.controlAllUnits);
-		for each (var garrisonHolder in entities)
-		{
-			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
-			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAllOwn())
-				notifyUnloadFailure(player, garrisonHolder);
-		}
-	},
-	
 	"unload-all-by-owner": function(player, cmd, data)
 	{
-		var entities = cmd.garrisonHolders;
+		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, data.controlAllUnits);
 		for (var garrisonHolder of entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
@@ -519,11 +508,11 @@ var g_Commands = {
 				notifyUnloadFailure(player, garrisonHolder);
 		}
 	},
-	
+
 	"unload-all": function(player, cmd, data)
 	{
 		var entities = FilterEntityList(cmd.garrisonHolders, player, data.controlAllUnits);
-		for each (var garrisonHolder in entities)
+		for (var garrisonHolder of entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAll())
@@ -932,9 +921,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		if (!ret.success)
 		{
 			if (g_DebugCommands)
-			{
 				warn("Invalid command: build restrictions check failed with '"+ret.message+"' for player "+player+": "+uneval(cmd));
-			}
 
 			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 			ret.players = [player];
@@ -975,7 +962,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		}
 		
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({ "players": [player], "message": "Building's technology requirements are not met." }); 
+		cmpGuiInterface.PushNotification({ "players": [player], "message": markForTranslation("The building's technology requirements are not met."), "translateMessage": true });
 		
 		// Remove the foundation because the construction was aborted 
 		cmpPosition.MoveOutOfWorld();
@@ -1538,7 +1525,7 @@ function CanMoveEntsIntoFormation(ents, formationTemplate)
  */
 function CanControlUnit(entity, player, controlAll)
 {
-	return (IsOwnedByPlayer(player, entity) || controlAll);
+	return IsOwnedByPlayer(player, entity) || controlAll;
 }
 
 /**
@@ -1549,7 +1536,7 @@ function CanControlUnit(entity, player, controlAll)
  */
 function CanControlUnitOrIsAlly(entity, player, controlAll)
 {
-	return (IsOwnedByPlayer(player, entity) || IsOwnedByMutualAllyOfPlayer(player, entity) || controlAll);
+	return IsOwnedByPlayer(player, entity) || IsOwnedByMutualAllyOfPlayer(player, entity) || controlAll;
 }
 
 /**
@@ -1557,7 +1544,7 @@ function CanControlUnitOrIsAlly(entity, player, controlAll)
  */
 function FilterEntityList(entities, player, controlAll)
 {
-	return entities.filter(function(ent) { return CanControlUnit(ent, player, controlAll);} );
+	return entities.filter(ent => CanControlUnit(ent, player, controlAll));
 }
 
 /**
@@ -1565,7 +1552,7 @@ function FilterEntityList(entities, player, controlAll)
  */
 function FilterEntityListWithAllies(entities, player, controlAll)
 {
-	return entities.filter(function(ent) { return CanControlUnitOrIsAlly(ent, player, controlAll);} );
+	return entities.filter(ent => CanControlUnitOrIsAlly(ent, player, controlAll));
 }
 
 /**

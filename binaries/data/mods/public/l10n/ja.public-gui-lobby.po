@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-04 01:24+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"POT-Creation-Date: 2016-01-04 09:00+0100\n"
+"PO-Revision-Date: 2016-01-04 09:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,104 +39,104 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "未定"
 
-#: gui/lobby/lobby.js:111
+#: gui/lobby/lobby.js:109
 msgid "Disconnected."
 msgstr "通信が切れました。"
 
-#: gui/lobby/lobby.js:123
+#: gui/lobby/lobby.js:121
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)sが参加しました。"
 
-#: gui/lobby/lobby.js:130
+#: gui/lobby/lobby.js:128
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)sが退出しました。"
 
-#: gui/lobby/lobby.js:138
+#: gui/lobby/lobby.js:136
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)sは名前を%(newnick)sに変更しました。"
 
-#: gui/lobby/lobby.js:206
+#: gui/lobby/lobby.js:204
 msgctxt "map size"
 msgid "Any"
 msgstr "不問"
 
-#: gui/lobby/lobby.js:211
+#: gui/lobby/lobby.js:209
 msgctxt "player number"
 msgid "Any"
 msgstr "不問"
 
-#: gui/lobby/lobby.js:215
+#: gui/lobby/lobby.js:213
 msgctxt "map"
 msgid "Any"
 msgstr "不問"
 
-#: gui/lobby/lobby.js:387
+#: gui/lobby/lobby.js:385
 msgid "Moderator"
 msgstr ""
 
-#: gui/lobby/lobby.js:387
+#: gui/lobby/lobby.js:385
 msgid "Player"
 msgstr "プレイヤー"
 
-#: gui/lobby/lobby.js:388 gui/lobby/lobby.js:389 gui/lobby/lobby.js:390
-#: gui/lobby/lobby.js:391 gui/lobby/lobby.js:392 gui/lobby/lobby.js:393
+#: gui/lobby/lobby.js:386 gui/lobby/lobby.js:387 gui/lobby/lobby.js:388
+#: gui/lobby/lobby.js:389 gui/lobby/lobby.js:390 gui/lobby/lobby.js:391
 msgid "N/A"
 msgstr "N/A"
 
-#: gui/lobby/lobby.js:416 gui/lobby/lobby.js:446
+#: gui/lobby/lobby.js:414 gui/lobby/lobby.js:444
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:427 gui/lobby/lobby.js:457
+#: gui/lobby/lobby.js:425 gui/lobby/lobby.js:455
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/lobby/lobby.js:429 gui/lobby/lobby.js:459
+#: gui/lobby/lobby.js:427 gui/lobby/lobby.js:457
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:619
+#: gui/lobby/lobby.js:617
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "このゲームのアドレス「%(ip)s」は正しくない形式です。"
 
-#: gui/lobby/lobby.js:720
+#: gui/lobby/lobby.js:718
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "相済みません。「%(cmd)s」コマンドはサポートされていません。"
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:794
+#: gui/lobby/lobby.js:792
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:796
+#: gui/lobby/lobby.js:794
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:800 gui/lobby/lobby.js:811 gui/lobby/lobby.js:821
+#: gui/lobby/lobby.js:798 gui/lobby/lobby.js:809 gui/lobby/lobby.js:819
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:802 gui/lobby/lobby.js:813 gui/lobby/lobby.js:823
+#: gui/lobby/lobby.js:800 gui/lobby/lobby.js:811 gui/lobby/lobby.js:821
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:807
+#: gui/lobby/lobby.js:805
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -146,88 +146,84 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:846
+#: gui/lobby/lobby.js:844
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:849
+#: gui/lobby/lobby.js:847
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:852
+#: gui/lobby/lobby.js:850
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:898
+#: gui/lobby/lobby.js:896
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "スパム行為をしないでください。あなたは30秒間ブロックされました。"
 
-#: gui/lobby/prelobby.js:18
-msgid "Authentication failed"
-msgstr "認証の失敗"
-
-#: gui/lobby/prelobby.js:22
-msgid "Registered"
-msgstr "登録完了"
-
-#: gui/lobby/prelobby.js:73
+#: gui/lobby/prelobby.js:40
 msgid "Connecting..."
 msgstr "接続しています…"
 
-#: gui/lobby/prelobby.js:95
+#: gui/lobby/prelobby.js:62
 msgid "Registering..."
 msgstr "登録しています…"
 
-#: gui/lobby/prelobby.js:124
+#: gui/lobby/prelobby.js:92
 msgid "Please enter your username"
 msgstr "ユーザー名を入力してください"
 
-#: gui/lobby/prelobby.js:130
+#: gui/lobby/prelobby.js:98
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
 msgstr "ユーザー名には、[・]・ユニコード文字・空白文字・コンマは使用できません"
 
-#: gui/lobby/prelobby.js:136
+#: gui/lobby/prelobby.js:104
 msgid "Please enter your password"
 msgstr "パスワードを入力してください"
 
-#: gui/lobby/prelobby.js:149
+#: gui/lobby/prelobby.js:117
 msgid "Please enter your password again"
 msgstr "パスワードをもう一度入力してください"
 
-#: gui/lobby/prelobby.js:155
+#: gui/lobby/prelobby.js:123
 msgid "Passwords do not match"
 msgstr "パスワードが一致しません"
 
-#: gui/lobby/prelobby.js:161
+#: gui/lobby/prelobby.js:129
 msgid "Please read the Terms of Service"
 msgstr "サービス規約をお読みください"
 
-#: gui/lobby/prelobby.js:167
+#: gui/lobby/prelobby.js:135
 msgid "Please read the Terms of Use"
 msgstr "利用規約をお読みください"
 
-#: gui/lobby/prelobby.js:173
+#: gui/lobby/prelobby.js:141
 msgid "Please agree to the Terms of Service and Terms of Use"
 msgstr "サービス規約および利用規約をご承諾ください"
 
-#: gui/lobby/prelobby.js:240
+#: gui/lobby/prelobby.js:171
+msgid "Registered"
+msgstr "登録完了"
+
+#: gui/lobby/prelobby.js:229
 msgid "Register"
 msgstr "登録"
 
-#: gui/lobby/prelobby.js:245 gui/lobby/prelobby.xml:(caption):109
+#: gui/lobby/prelobby.js:234 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
 msgstr "接続"
 
-#: gui/lobby/prelobby.js:255 gui/lobby/prelobby.xml:(caption):78
+#: gui/lobby/prelobby.js:244 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
 msgstr "サービス規約"
 
-#: gui/lobby/prelobby.js:264 gui/lobby/prelobby.xml:(caption):83
+#: gui/lobby/prelobby.js:253 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
 msgstr "利用規約"
 

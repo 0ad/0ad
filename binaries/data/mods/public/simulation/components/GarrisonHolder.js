@@ -198,7 +198,7 @@ GarrisonHolder.prototype.GetGarrisonedArcherCount = function(garrisonArrowClasse
 	{
 		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
 		var classes = cmpIdentity.GetClassesList();
-		if (classes.some(function(c){return garrisonArrowClasses.indexOf(c) > -1;}))
+		if (classes.some(c => garrisonArrowClasses.indexOf(c) > -1))
 			count++;
 	}
 	return count;
@@ -504,42 +504,16 @@ GarrisonHolder.prototype.UnloadTemplate = function(extendedTemplate, all, forced
 };
 
 /**
-* Unload all units, that belong to certain player.
-*/
-GarrisonHolder.prototype.UnloadAllByOwner = function(owner, forced)
-{
-	var entities = [];
-	for (var entity of this.entities)
-	{
-		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-		if (cmpOwnership && cmpOwnership.GetOwner() == owner)
-			entities.push(entity);
-	}
-
-	return this.PerformEject(entities, forced);
-};
-
-/**
- * Unload all units with same owner as the entity
- * and order them to move to the Rally Point
+ * Unload all units, that belong to certain player
+ * and order all own units to move to the Rally Point
  * Returns true if all successful, false if not
  */
-GarrisonHolder.prototype.UnloadAllOwn = function(forced)
+GarrisonHolder.prototype.UnloadAllByOwner = function(owner, forced)
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership)
-		return false;
-	var owner = cmpOwnership.GetOwner();
-
-	// Make copy of entity list
-	var entities = [];
-	for each (var entity in this.entities)
-	{
-		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-		if (cmpOwnership && cmpOwnership.GetOwner() == owner)
-			entities.push(entity);
-	}
-
+	var entities = this.entities.filter(ent => {
+		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		return cmpOwnership && cmpOwnership.GetOwner() == owner;
+	});
 	return this.PerformEject(entities, forced);
 };
 
@@ -719,12 +693,7 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
  */
 GarrisonHolder.prototype.OnDiplomacyChanged = function()
 {
-	var entities = [];
-	for each (var entity in this.entities)
-	{
-		if (!IsOwnedByMutualAllyOfEntity(this.entity, entity))
-			entities.push(entity);
-	}
+	var entities = this.entities.filter(ent => !IsOwnedByMutualAllyOfEntity(this.entity, ent));
 	this.EjectOrKill(entities);
 };
 
@@ -787,9 +756,8 @@ GarrisonHolder.prototype.OnGlobalInitGame = function(msg)
 	for (let ent of this.initGarrison)
 	{
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (!cmpUnitAI || !cmpUnitAI.CanGarrison(this.entity))
-			continue;
-		this.Garrison(ent);
+		if (cmpUnitAI && cmpUnitAI.CanGarrison(this.entity))
+			this.Garrison(ent);
 	}
 	this.initGarrison = undefined;
 };

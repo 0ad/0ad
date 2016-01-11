@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,7 +88,8 @@ entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const C
 }
 
 /**
- * Used by EntitySelection::PickEntitiesInRect.
+ * Returns true if the given entity is visible to the given player and visible in the given screen area.
+ * If the entity is a decorative, the function will only return true if allowEditorSelectables.
  */
 static bool CheckEntityVisibleAndInRect(CEntityHandle handle, CmpPtr<ICmpRangeManager> cmpRangeManager, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, player_id_t owner, bool allowEditorSelectables)
 {

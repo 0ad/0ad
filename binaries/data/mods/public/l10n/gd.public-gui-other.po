@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 22:23+0000\n"
+"POT-Creation-Date: 2016-01-08 09:00+0100\n"
+"PO-Revision-Date: 2016-01-08 20:36+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -323,66 +323,71 @@ msgstr "%(previousAmounts)s 's %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:68 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:75 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:114 gui/common/tooltips.js:142
 #: gui/common/tooltips.js:431 gui/common/tooltips.js:458
 #: gui/common/tooltips.js:526
 msgid ", "
 msgstr ", "
 
-#: gui/common/network.js:12
+#: gui/common/network.js:15
 msgid "Unknown reason"
 msgstr "Chan eil fhios dè as adhbhar"
 
-#: gui/common/network.js:13
+#: gui/common/network.js:16
 msgid "Unexpected shutdown"
 msgstr "Dùnadh sìos gun dùil"
 
-#: gui/common/network.js:14
+#: gui/common/network.js:17
 msgid "Incorrect network protocol version"
 msgstr "Chan eil tionndadh a’ phròtacail lìonraidh mar bu chòir"
 
-#: gui/common/network.js:15
+#: gui/common/network.js:18
 msgid "Game is loading, please try later"
 msgstr "Tha an geama ’ga luchdadh, feuch ris a-rithist an ceann greis"
 
-#: gui/common/network.js:16
+#: gui/common/network.js:19
 msgid "Game has already started, no observers allowed"
 msgstr "Tha an geama air a thòiseachadh mar-thà is chan eil amhairc ceadaichte"
 
-#: gui/common/network.js:17
+#: gui/common/network.js:20
 msgid "You have been kicked"
 msgstr "Fhuair thu a’ bhròg"
 
-#: gui/common/network.js:18
+#: gui/common/network.js:21
 msgid "You have been banned"
 msgstr "Chaidh do thoirmeasg"
 
+#: gui/common/network.js:24
+#, javascript-format
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[Luach mì-dhligheach %(id)s]"
+
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:29
+#: gui/common/network.js:36
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Adhbhar: %(reason)s."
 
-#: gui/common/network.js:30
+#: gui/common/network.js:37
 msgid "Lost connection to the server."
 msgstr "Chaidh an ceangal dhan fhrithealaiche a bhriseadh."
 
-#: gui/common/network.js:30
+#: gui/common/network.js:37
 msgid "Disconnected"
 msgstr "Air a dhì-cheangal"
 
-#: gui/common/network.js:38
+#: gui/common/network.js:45
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Cha b’ urrainn dhuinn %(name)s a thoirmeasg."
 
-#: gui/common/network.js:38
+#: gui/common/network.js:45
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Cha b’ urrainn dhuinn a’ bhròg a thoirt dha %(name)s."
 
-#: gui/common/network.js:66
+#: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Cleachdaichean: %(users)s"

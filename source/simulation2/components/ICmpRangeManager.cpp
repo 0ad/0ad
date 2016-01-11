@@ -46,6 +46,7 @@ DEFINE_INTERFACE_METHOD_1("ResetActiveQuery", std::vector<entity_id_t>, ICmpRang
 DEFINE_INTERFACE_METHOD_3("SetEntityFlag", void, ICmpRangeManager, SetEntityFlag, entity_id_t, std::string, bool)
 DEFINE_INTERFACE_METHOD_1("GetEntityFlagMask", u8, ICmpRangeManager, GetEntityFlagMask, std::string)
 DEFINE_INTERFACE_METHOD_1("GetEntitiesByPlayer", std::vector<entity_id_t>, ICmpRangeManager, GetEntitiesByPlayer, player_id_t)
+DEFINE_INTERFACE_METHOD_0("GetNonGaiaEntities", std::vector<entity_id_t>, ICmpRangeManager, GetNonGaiaEntities)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpRangeManager, SetDebugOverlay, bool)
 DEFINE_INTERFACE_METHOD_1("ExploreAllTiles", void, ICmpRangeManager, ExploreAllTiles, player_id_t)
 DEFINE_INTERFACE_METHOD_0("ExploreTerritories", void, ICmpRangeManager, ExploreTerritories)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,6 +62,7 @@
 #include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
+#include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTemplateManager.h"
@@ -154,17 +155,35 @@ entity_id_t PickEntityAtPoint(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), in
 	return EntitySelection::PickEntityAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, g_Game->GetPlayerID(), false);
 }
 
-std::vector<entity_id_t> PickFriendlyEntitiesInRect(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x0, int y0, int x1, int y1, int player)
+std::vector<entity_id_t> PickPlayerEntitiesInRect(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x0, int y0, int x1, int y1, int player)
 {
 	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x0, y0, x1, y1, player, false);
 }
 
-std::vector<entity_id_t> PickFriendlyEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate, int player)
+std::vector<entity_id_t> PickPlayerEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate, int player)
 {
-	return PickFriendlyEntitiesInRect(pCxPrivate, 0, 0, g_xres, g_yres, player);
+	return PickPlayerEntitiesInRect(pCxPrivate, 0, 0, g_xres, g_yres, player);
 }
 
-std::vector<entity_id_t> PickSimilarFriendlyEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
+std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	std::vector<entity_id_t> entities;
+
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (!cmpPlayerManager)
+		return entities;
+
+	i32 numPlayers = cmpPlayerManager->GetNumPlayers();
+	for (i32 player = 1; player < numPlayers; ++player)
+	{
+		std::vector<entity_id_t> ents = PickPlayerEntitiesOnScreen(pCxPrivate, player);
+		entities.insert(entities.end(), ents.begin(), ents.end());
+	}
+
+	return entities;
+}
+
+std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
 {
 	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetPlayerID(), includeOffScreen, matchRank, false, allowFoundations);
 }
@@ -965,9 +984,10 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 
 	// Entity picking
 	scriptInterface.RegisterFunction<entity_id_t, int, int, &PickEntityAtPoint>("PickEntityAtPoint");
-	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, int, int, &PickFriendlyEntitiesInRect>("PickFriendlyEntitiesInRect");
-	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, &PickFriendlyEntitiesOnScreen>("PickFriendlyEntitiesOnScreen");
-	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, bool, &PickSimilarFriendlyEntities>("PickSimilarFriendlyEntities");
+	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, int, int, &PickPlayerEntitiesInRect>("PickPlayerEntitiesInRect");
+	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, &PickPlayerEntitiesOnScreen>("PickPlayerEntitiesOnScreen");
+	scriptInterface.RegisterFunction<std::vector<entity_id_t>, &PickNonGaiaEntitiesOnScreen>("PickNonGaiaEntitiesOnScreen");
+	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, bool, &PickSimilarPlayerEntities>("PickSimilarPlayerEntities");
 	scriptInterface.RegisterFunction<CFixedVector3D, int, int, &GetTerrainAtScreenPoint>("GetTerrainAtScreenPoint");
 
 	// Network / game setup functions

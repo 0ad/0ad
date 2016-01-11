@@ -34,7 +34,6 @@ TechnologyManager.prototype.Init = function()
 	                             // e.g. { "Attack/Melee/Hack" : {5: {"origValue": 8, "newValue": 10}, 7: {"origValue": 9, "newValue": 12}, ...}, ...}
 	                             // where 5 and 7 are entity id's
 
-	this.typeCounts = {}; // stores the number of entities of each type 
 	this.classCounts = {}; // stores the number of entities of each Class
 	this.typeCountsByClass = {}; // stores the number of entities of each type for each class i.e.
 	                             // {"someClass": {"unit/spearman": 2, "unit/cav": 5} "someOtherClass":...}
@@ -187,15 +186,12 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function(reqs)
 
 TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 {
-	// This automatically updates typeCounts, classCounts and typeCountsByClass
+	// This automatically updates classCounts and typeCountsByClass
 	var playerID = (Engine.QueryInterface(this.entity, IID_Player)).GetPlayerID();
 	if (msg.to == playerID)
 	{
 		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var template = cmpTemplateManager.GetCurrentTemplateName(msg.entity);
-
-		this.typeCounts[template] = this.typeCounts[template] || 0;
-		this.typeCounts[template] += 1;
 
 		var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 		if (!cmpIdentity)
@@ -245,10 +241,6 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 	{
 		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var template = cmpTemplateManager.GetCurrentTemplateName(msg.entity);
-		
-		this.typeCounts[template] -= 1;
-		if (this.typeCounts[template] <= 0)
-			delete this.typeCounts[template];
 
 		// don't use foundations for the class counts
 		if (!Engine.QueryInterface(msg.entity, IID_Foundation))

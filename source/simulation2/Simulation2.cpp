@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -443,9 +443,6 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			ReportSerializationFailure(&primaryStateBefore, &primaryStateAfter, &secondaryStateBefore, &secondaryStateAfter);
 		}
 	}
-
-//	if (m_TurnNumber == 0)
-//		m_ComponentManager.GetScriptInterface().DumpHeap();
 
 	// Run the GC occasionally
 	// No delay because a lot of garbage accumulates in one turn and in non-visual replays there are

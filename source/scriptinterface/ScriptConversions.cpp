@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -154,7 +154,7 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, JS::Hand
 	const char16_t* ch = JS_GetStringCharsAndLength(cx, str, &length);
 	if (!ch)
 		FAIL("JS_GetStringsCharsAndLength failed"); // out of memory
-	out = std::wstring(ch, ch + length);
+	out.assign(ch, ch + length);
 	return true;
 }
 

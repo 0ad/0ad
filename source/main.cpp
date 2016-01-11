@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -415,6 +415,12 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	CmdLineArgs args(argc, argv);
 
 	g_args = args;
+
+	if (args.Has("version") || args.Has("-version"))
+	{
+		debug_printf("Pyrogenesis %s\n", engine_version);
+		return;
+	}
 
 	// We need to initialise libxml2 in the main thread before
 	// any thread uses it. So initialise it here before we

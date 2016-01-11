@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 09:20+0000\n"
+"POT-Creation-Date: 2016-01-08 09:00+0100\n"
+"PO-Revision-Date: 2016-01-08 09:20+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -42,141 +42,117 @@ msgstr "compilare personalizată"
 msgid "Long strings"
 msgstr "Șiruri lungi de caractere"
 
-#: lobby/XmppClient.cpp:455
-msgid "Registration not acceptable"
-msgstr "Înregistrarea nu este acceptabilă"
-
-#: lobby/XmppClient.cpp:456
-msgid "Registration conflict"
-msgstr "Conflict la înregistrare"
-
-#: lobby/XmppClient.cpp:457
-msgid "Registration not authorized"
-msgstr "Înregistrare neautorizată"
-
-#: lobby/XmppClient.cpp:458
-msgid "Registration bad request"
-msgstr "Solicitare înregistrare incorectă"
-
-#: lobby/XmppClient.cpp:459
-msgid "Registration forbidden"
-msgstr "Înregistrare interzisă"
-
-#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:1040
-msgid "Registration required"
-msgstr "Înregistrare necesară"
-
-#: lobby/XmppClient.cpp:461
-msgid "Registration unexpected request"
-msgstr "Cerere înregistrare neașteptată"
-
-#: lobby/XmppClient.cpp:462
-msgid "Registration not allowed"
-msgstr "Înregistrare nepermisă"
-
-#: lobby/XmppClient.cpp:463
-msgid "Registration unknown error"
-msgstr "Eroare necunoscută la înregistrare"
-
-#: lobby/XmppClient.cpp:772
+#: lobby/XmppClient.cpp:750
 msgid "unknown subtype (see logs)"
 msgstr "subtip necunoscut (vezi jurnal)"
 
-#: lobby/XmppClient.cpp:1025
-msgid "Bad request"
-msgstr "Solicitare incorectă"
+#: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
+#: lobby/XmppClient.cpp:1084
+msgid "Error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1026
-msgid "Player name already in use"
-msgstr "Numele de jucător este deja folosit"
+#: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
+msgid "No error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1027
-msgid "Feature not implemented"
-msgstr "Funcție neimplementată"
+#: lobby/XmppClient.cpp:1006
+msgid "Player already logged in"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1028
+#: lobby/XmppClient.cpp:1008
 msgid "Forbidden"
 msgstr "Interzis"
 
-#: lobby/XmppClient.cpp:1029
-msgid "Recipient or server gone"
-msgstr "Destinatar sau server dispărut"
-
-#: lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1010
 msgid "Internal server error"
 msgstr "Eroare internă server"
 
-#: lobby/XmppClient.cpp:1031
-msgid "Item not found"
-msgstr "Obiect negăsit"
-
-#: lobby/XmppClient.cpp:1032
-msgid "Jid malformed"
-msgstr "Jid malformat"
-
-#: lobby/XmppClient.cpp:1033
-msgid "Not acceptable"
-msgstr "Neacceptabil"
-
-#: lobby/XmppClient.cpp:1034
+#: lobby/XmppClient.cpp:1014
 msgid "Not allowed"
 msgstr "Nepermis"
 
-#: lobby/XmppClient.cpp:1035
+#: lobby/XmppClient.cpp:1015
 msgid "Not authorized"
 msgstr "Neautorizat"
 
-#: lobby/XmppClient.cpp:1036
-msgid "Not modified"
-msgstr "Nemodificat"
+#: lobby/XmppClient.cpp:1018
+msgid "Recipient temporarily unavailable"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1037
-msgid "Payment required"
-msgstr "Plată necesară"
+#: lobby/XmppClient.cpp:1020
+msgid "Registration required"
+msgstr "Înregistrare necesară"
 
-#: lobby/XmppClient.cpp:1038
-msgid "Recipient unavailable"
-msgstr "Recipient indisponibil"
-
-#: lobby/XmppClient.cpp:1039
-msgid "Redirect"
-msgstr "Redirecționează"
-
-#: lobby/XmppClient.cpp:1041
-msgid "Remote server not found"
-msgstr "Server remote negăsit"
-
-#: lobby/XmppClient.cpp:1042
-msgid "Remote server timeout"
-msgstr "Server remote expirat"
-
-#: lobby/XmppClient.cpp:1043
-msgid "Resource constraint"
-msgstr "Constrângere resursă"
-
-#: lobby/XmppClient.cpp:1044
+#: lobby/XmppClient.cpp:1024
 msgid "Service unavailable"
 msgstr "Serviciu indisponibil"
 
-#: lobby/XmppClient.cpp:1045
-msgid "Subscription Required"
-msgstr "Abonament Obligatoriu"
+#: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1097
+msgid "Unknown error"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1046
-msgid "Undefined condition"
-msgstr "Condiție nedefinită"
-
-#: lobby/XmppClient.cpp:1047
-msgid "Unexpected request"
-msgstr "Cerere neașteptată"
-
-#: lobby/XmppClient.cpp:1048
-msgid "Unknown sender"
-msgstr "Expeditor necunoscut"
+#: lobby/XmppClient.cpp:1049
+msgid "Stream error"
+msgstr ""
 
 #: lobby/XmppClient.cpp:1050
-msgid "Error undefined"
-msgstr "Eroare nedefinită"
+msgid "The incoming stream version is unsupported"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1051
+msgid "The stream has been closed by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1055
+msgid "An I/O error occured"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1057
+msgid "The connection was refused by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1058
+msgid "Resolving the server's hostname failed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1059
+msgid "This system is out of memory"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1061
+msgid ""
+"The server's certificate could not be verified or the TLS handshake did not "
+"complete successfully"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1062
+msgid "The server did not offer required TLS encryption"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1064
+msgid "Authentication failed. Incorrect password or account does not exist"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1065
+msgid "The user or system requested a disconnect"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1066
+msgid "There is no active connection"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1087
+msgid "Success"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1088
+msgid "Not all necessary information provided"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1089
+msgid "Username already exists"
+msgstr ""
 
 #: ps/SavedGame.cpp:133
 #, c-format

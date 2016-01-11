@@ -54,7 +54,9 @@ var g_SimState;
 // Cache EntityStates
 var g_EntityStates = {}; // {id:entState}
 
-// Whether the player has lost/won and reached the end of their game
+/**
+ * Whether the current player has lost/won and reached the end of their game.
+ */
 var g_GameEnded = false;
 
 var g_Disconnected = false; // Lost connection to server
@@ -244,6 +246,21 @@ function selectViewPlayer(playerID)
 
 	if (g_IsTradeOpen)
 		openTrade();
+
+	let playerState = GetSimState().players[playerID];
+	g_DevSettings.controlAll = playerState && playerState.controlsAll;
+
+	let control = Engine.GetGUIObjectByName("devControlAll");
+	control.checked = g_DevSettings.controlAll;
+	control.enabled = playerID > 0;
+}
+
+/**
+ * Returns true if the current user can issue commands for that player.
+ */
+function controlsPlayer(playerID)
+{
+	return Engine.GetPlayerID() == playerID || g_DevSettings.controlAll;
 }
 
 function updateTopPanel()
@@ -457,7 +474,6 @@ function onTick()
 
 function checkPlayerState()
 {
-	// Once the game ends, we're done here.
 	if (g_GameEnded || g_IsObserver)
 		return;
 
@@ -471,14 +487,13 @@ function checkPlayerState()
 	if (g_CachedLastStates != tempStates)
 	{
 		g_CachedLastStates = tempStates;
-		reportGame(Engine.GuiInterfaceCall("GetExtendedSimulationState"));
+		reportGame();
 	}
 
-	// If the local player hasn't finished playing, we return here to avoid the victory/defeat messages.
 	if (playerState.state == "active")
 		return;
 
-	// Disable resign and pause buttons (we can't resign once the game is over)
+	// Disable the resign- and pausebutton
 	updateTopPanel();
 	
 	// Make sure nothing is open to avoid stacking.
@@ -562,6 +577,13 @@ function onSimulationUpdate()
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
+
+	if (Engine.GetPlayerID() > 0)
+	{
+		let playerState = GetSimState().players[Engine.GetPlayerID()];
+		g_DevSettings.controlAll = playerState && playerState.controlsAll;
+		Engine.GetGUIObjectByName("devControlAll").checked = g_DevSettings.controlAll;
+	}
 
 	if (!g_IsObserver)
 		updateResearchDisplay();
@@ -815,7 +837,7 @@ function recalculateStatusBarDisplay()
 {
 	let entities;
 	if (g_ShowAllStatusBars)
-		entities = Engine.PickFriendlyEntitiesOnScreen(Engine.GetPlayerID());
+		entities = Engine.GetPlayerID() == -1 ? Engine.PickNonGaiaEntitiesOnScreen() : Engine.PickPlayerEntitiesOnScreen(Engine.GetPlayerID());
 	else
 	{
 		let selected = g_Selection.toList();
@@ -823,7 +845,7 @@ function recalculateStatusBarDisplay()
 			selected.push(g_Selection.highlighted[ent]);
 
 		// Remove selected entities from the 'all entities' array, to avoid disabling their status bars.
-		entities = Engine.GuiInterfaceCall("GetPlayerEntities").filter(idx => selected.indexOf(idx) == -1);
+		entities = Engine.GuiInterfaceCall(Engine.GetPlayerID() == -1 ? "GetNonGaiaEntities" : "GetPlayerEntities").filter(idx => selected.indexOf(idx) == -1);
 	}
 
 	Engine.GuiInterfaceCall("SetStatusBars", { "entities": entities, "enabled": g_ShowAllStatusBars });
@@ -894,11 +916,15 @@ function showTimeWarpMessageBox()
 			translate("Time warp mode"), 2);
 }
 
-// Send a report on the game status to the lobby
-function reportGame(extendedSimState)
+/**
+ * Send a report on the gamestatus to the lobby.
+ */
+function reportGame()
 {
 	if (!Engine.HasXmppClient() || !Engine.IsRankedGame())
 		return;
+
+	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
 
 	let unitsClasses = [
 		"total",
@@ -1026,8 +1052,8 @@ function reportGame(extendedSimState)
 			for (let buildingsClass of buildingsClasses)
 				playerStatistics[buildingCounterType][buildingsClass] += player.statistics[buildingCounterType][buildingsClass] + ",";
 		let total = 0;
-		for (let res of player.statistics.resourcesGathered)
-			total += res;
+		for (let type in player.statistics.resourcesGathered)
+			total += player.statistics.resourcesGathered[type];
 
 		playerStatistics.economyScore += total + ",";
 		playerStatistics.militaryScore += Math.round((player.statistics.enemyUnitsKilledValue +

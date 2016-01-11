@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -221,7 +221,6 @@ public:
 
 		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
 		m_ScriptInterface->RegisterFunction<void, std::wstring, CAIWorker::IncludeModule>("IncludeModule");
-		m_ScriptInterface->RegisterFunction<void, CAIWorker::DumpHeap>("DumpHeap");
 		m_ScriptInterface->RegisterFunction<void, CAIWorker::ForceGC>("ForceGC");
 
 		m_ScriptInterface->RegisterFunction<JS::Value, JS::HandleValue, JS::HandleValue, pass_class_t, CAIWorker::ComputePath>("ComputePath");
@@ -333,11 +332,6 @@ public:
 		return retVal;
 	}
 
-	// The next two ought to be implmeneted someday but for now as it returns "null" it can't
-	static void DumpHeap(ScriptInterface::CxPrivate* pCxPrivate)
-	{
-		pCxPrivate->pScriptInterface->DumpHeap();
-	}
 	static void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
 	{
 		PROFILE3("AI compute GC");

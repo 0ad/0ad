@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
-# Jeff Huang <s8321414@gmail.com>, 2014-2015
+# Jeff Huang <s8321414@gmail.com>, 2014-2016
 # Jeff Huang <s8321414@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-01 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-01-08 09:00+0100\n"
+"PO-Revision-Date: 2016-01-10 14:32+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,141 +41,117 @@ msgstr "自訂組建"
 msgid "Long strings"
 msgstr "長字串"
 
-#: lobby/XmppClient.cpp:455
-msgid "Registration not acceptable"
-msgstr "註冊不被接受"
-
-#: lobby/XmppClient.cpp:456
-msgid "Registration conflict"
-msgstr "註冊衝突"
-
-#: lobby/XmppClient.cpp:457
-msgid "Registration not authorized"
-msgstr "註冊未認證"
-
-#: lobby/XmppClient.cpp:458
-msgid "Registration bad request"
-msgstr "不好的註冊請求"
-
-#: lobby/XmppClient.cpp:459
-msgid "Registration forbidden"
-msgstr "註冊被拒"
-
-#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:1040
-msgid "Registration required"
-msgstr "需要註冊"
-
-#: lobby/XmppClient.cpp:461
-msgid "Registration unexpected request"
-msgstr "未預期的註冊請求"
-
-#: lobby/XmppClient.cpp:462
-msgid "Registration not allowed"
-msgstr "註冊不被允許"
-
-#: lobby/XmppClient.cpp:463
-msgid "Registration unknown error"
-msgstr "未知的註冊錯誤"
-
-#: lobby/XmppClient.cpp:772
+#: lobby/XmppClient.cpp:750
 msgid "unknown subtype (see logs)"
 msgstr "未知的子類型（見記錄檔）"
 
-#: lobby/XmppClient.cpp:1025
-msgid "Bad request"
-msgstr "不佳的請求"
+#: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
+#: lobby/XmppClient.cpp:1084
+msgid "Error"
+msgstr "錯誤"
 
-#: lobby/XmppClient.cpp:1026
-msgid "Player name already in use"
-msgstr "玩家名稱已被使用"
+#: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
+msgid "No error"
+msgstr "沒有錯誤"
 
-#: lobby/XmppClient.cpp:1027
-msgid "Feature not implemented"
-msgstr "未實現的功能"
+#: lobby/XmppClient.cpp:1006
+msgid "Player already logged in"
+msgstr "玩家已登入"
 
-#: lobby/XmppClient.cpp:1028
+#: lobby/XmppClient.cpp:1008
 msgid "Forbidden"
 msgstr "被拒絕"
 
-#: lobby/XmppClient.cpp:1029
-msgid "Recipient or server gone"
-msgstr "接收者或伺服器消失"
-
-#: lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1010
 msgid "Internal server error"
 msgstr "內部伺服器錯誤"
 
-#: lobby/XmppClient.cpp:1031
-msgid "Item not found"
-msgstr "找不到項目"
-
-#: lobby/XmppClient.cpp:1032
-msgid "Jid malformed"
-msgstr "畸形的 Jid"
-
-#: lobby/XmppClient.cpp:1033
-msgid "Not acceptable"
-msgstr "不被接受"
-
-#: lobby/XmppClient.cpp:1034
+#: lobby/XmppClient.cpp:1014
 msgid "Not allowed"
 msgstr "不被允許"
 
-#: lobby/XmppClient.cpp:1035
+#: lobby/XmppClient.cpp:1015
 msgid "Not authorized"
 msgstr "未授權"
 
-#: lobby/XmppClient.cpp:1036
-msgid "Not modified"
-msgstr "未修改"
+#: lobby/XmppClient.cpp:1018
+msgid "Recipient temporarily unavailable"
+msgstr "暫時找不到接收者"
 
-#: lobby/XmppClient.cpp:1037
-msgid "Payment required"
-msgstr "需要付款"
+#: lobby/XmppClient.cpp:1020
+msgid "Registration required"
+msgstr "需要註冊"
 
-#: lobby/XmppClient.cpp:1038
-msgid "Recipient unavailable"
-msgstr "找不到接收者"
-
-#: lobby/XmppClient.cpp:1039
-msgid "Redirect"
-msgstr "重新導向"
-
-#: lobby/XmppClient.cpp:1041
-msgid "Remote server not found"
-msgstr "找不到遠端伺服器"
-
-#: lobby/XmppClient.cpp:1042
-msgid "Remote server timeout"
-msgstr "遠端伺服器逾時"
-
-#: lobby/XmppClient.cpp:1043
-msgid "Resource constraint"
-msgstr "資源限制"
-
-#: lobby/XmppClient.cpp:1044
+#: lobby/XmppClient.cpp:1024
 msgid "Service unavailable"
 msgstr "服務不可用"
 
-#: lobby/XmppClient.cpp:1045
-msgid "Subscription Required"
-msgstr "需要訂閱"
+#: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1097
+msgid "Unknown error"
+msgstr "未知的錯誤"
 
-#: lobby/XmppClient.cpp:1046
-msgid "Undefined condition"
-msgstr "未定義的條件"
-
-#: lobby/XmppClient.cpp:1047
-msgid "Unexpected request"
-msgstr "未預期的請求"
-
-#: lobby/XmppClient.cpp:1048
-msgid "Unknown sender"
-msgstr "未知的傳送者"
+#: lobby/XmppClient.cpp:1049
+msgid "Stream error"
+msgstr "串流錯誤"
 
 #: lobby/XmppClient.cpp:1050
-msgid "Error undefined"
-msgstr "未定義的錯誤"
+msgid "The incoming stream version is unsupported"
+msgstr "不支援傳入的串流版本"
+
+#: lobby/XmppClient.cpp:1051
+msgid "The stream has been closed by the server"
+msgstr "串流已由伺服器關閉"
+
+#: lobby/XmppClient.cpp:1055
+msgid "An I/O error occured"
+msgstr "遇到 I/O 錯誤"
+
+#: lobby/XmppClient.cpp:1057
+msgid "The connection was refused by the server"
+msgstr "連線被伺服器拒絕"
+
+#: lobby/XmppClient.cpp:1058
+msgid "Resolving the server's hostname failed"
+msgstr "解析伺服器主機名稱失敗"
+
+#: lobby/XmppClient.cpp:1059
+msgid "This system is out of memory"
+msgstr "這個系統的記憶體已耗盡"
+
+#: lobby/XmppClient.cpp:1061
+msgid ""
+"The server's certificate could not be verified or the TLS handshake did not "
+"complete successfully"
+msgstr "伺服器的憑證無法被驗證或是 TLS 交握並未成功完成"
+
+#: lobby/XmppClient.cpp:1062
+msgid "The server did not offer required TLS encryption"
+msgstr "伺服器並未提供必須的 TLS 加密"
+
+#: lobby/XmppClient.cpp:1064
+msgid "Authentication failed. Incorrect password or account does not exist"
+msgstr "認證失敗。不正確的密碼或是帳號不存在"
+
+#: lobby/XmppClient.cpp:1065
+msgid "The user or system requested a disconnect"
+msgstr "使用者或系統請求斷線"
+
+#: lobby/XmppClient.cpp:1066
+msgid "There is no active connection"
+msgstr "沒有活躍中的連線"
+
+#: lobby/XmppClient.cpp:1087
+msgid "Success"
+msgstr "成功"
+
+#: lobby/XmppClient.cpp:1088
+msgid "Not all necessary information provided"
+msgstr "未提供所有必須的資訊"
+
+#: lobby/XmppClient.cpp:1089
+msgid "Username already exists"
+msgstr "使用者名稱已存在"
 
 #: ps/SavedGame.cpp:133
 #, c-format

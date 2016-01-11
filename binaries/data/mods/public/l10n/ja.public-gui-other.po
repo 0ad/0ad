@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-01 09:00+0100\n"
-"PO-Revision-Date: 2016-01-04 01:24+0000\n"
+"POT-Creation-Date: 2016-01-08 09:00+0100\n"
+"PO-Revision-Date: 2016-01-10 09:36+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -312,70 +312,75 @@ msgstr "%(amount)s %(resourceType)s"
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)sと%(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:68 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:75 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:114 gui/common/tooltips.js:142
 #: gui/common/tooltips.js:431 gui/common/tooltips.js:458
 #: gui/common/tooltips.js:526
 msgid ", "
 msgstr "、"
 
-#: gui/common/network.js:12
+#: gui/common/network.js:15
 msgid "Unknown reason"
 msgstr "原因不明"
 
-#: gui/common/network.js:13
+#: gui/common/network.js:16
 msgid "Unexpected shutdown"
 msgstr "予期しないシャットダウン"
 
-#: gui/common/network.js:14
+#: gui/common/network.js:17
 msgid "Incorrect network protocol version"
 msgstr "ネットワークプロトコルのバージョン不適合"
 
-#: gui/common/network.js:15
+#: gui/common/network.js:18
 msgid "Game is loading, please try later"
 msgstr "ゲーム読込み中です。後ほどやり直してください"
 
-#: gui/common/network.js:16
+#: gui/common/network.js:19
 msgid "Game has already started, no observers allowed"
 msgstr "ゲームはすでに始まっています。観戦はできません"
 
-#: gui/common/network.js:17
+#: gui/common/network.js:20
 msgid "You have been kicked"
 msgstr "あなたは跳ね除けられました (kick)"
 
-#: gui/common/network.js:18
+#: gui/common/network.js:21
 msgid "You have been banned"
 msgstr "あなたは締め出されました (ban)"
 
+#: gui/common/network.js:24
+#, javascript-format
+msgid "\\[Invalid value %(id)s]"
+msgstr "\\[無効な値 %(id)s]"
+
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:29
+#: gui/common/network.js:36
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "理由： %(reason)s."
 
-#: gui/common/network.js:30
+#: gui/common/network.js:37
 msgid "Lost connection to the server."
 msgstr "サーバーとの接続が切れました。"
 
-#: gui/common/network.js:30
+#: gui/common/network.js:37
 msgid "Disconnected"
 msgstr "通信遮断"
 
-#: gui/common/network.js:38
+#: gui/common/network.js:45
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "%(name)s. を締め出すことが出来ませんでした (banできません)"
 
-#: gui/common/network.js:38
+#: gui/common/network.js:45
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "%(name)s を跳ね除けられませんでした。(kickできません)"
 
-#: gui/common/network.js:66
+#: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "ユーザー名: %(users)s"
@@ -585,7 +590,7 @@ msgstr[0] "メートル"
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:208 gui/common/tooltips.js:221
 #, javascript-format
@@ -602,11 +607,11 @@ msgstr "%(attackLabel)s %(damageTypes)s、%(rangeLabel)s %(rangeString)s、%(rat
 #: gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
-msgstr ""
+msgstr "修復速度："
 
 #: gui/common/tooltips.js:237
 msgid "health"
@@ -1119,25 +1124,25 @@ msgstr "あなた"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "リプレイと同じmodが有効にされていません。"
 
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "必要：%(mods)s"
 
 #: gui/replaymenu/replay_actions.js:53
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "有効：%(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "このリプレイはゲームのバージョンが適合していません。"
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
-msgstr ""
+msgstr "適合しないリプレイ"
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
@@ -1157,7 +1162,7 @@ msgstr "リプレイの削除"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure to delete this replay permanently?"
-msgstr ""
+msgstr "このリプレイを永久に削除しますか？"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
@@ -1241,7 +1246,7 @@ msgstr "%(playerName)s (%(civ)s、%(AIdifficulty)s %(AIname)s、敗退)"
 
 #: gui/replaymenu/replay_menu.js:350
 msgid "No Team"
-msgstr ""
+msgstr "チームなし"
 
 #: gui/replaymenu/replay_menu.js:350
 #, javascript-format
@@ -1888,7 +1893,7 @@ msgstr "ゲームのリプレイ"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "適合するリプレイに絞り込む"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
@@ -1900,7 +1905,7 @@ msgstr "マップの大きさ："
 
 #: gui/replaymenu/replay_menu.xml:(caption):166
 msgid "Victory:"
-msgstr ""
+msgstr "勝利："
 
 #: gui/replaymenu/replay_menu.xml:(caption):187
 msgid "Players:"
@@ -1956,7 +1961,7 @@ msgstr "人口"
 #: gui/replaymenu/replay_menu.xml:(heading):93
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "期間"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"

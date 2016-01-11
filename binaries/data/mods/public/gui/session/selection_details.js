@@ -265,6 +265,10 @@ function displaySingle(entState)
 	if (entState.repairRate)
 		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip += getRepairRateTooltip(entState.repairRate);
 
+	// Build Rate
+	if (entState.buildRate)
+		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip += getBuildRateTooltip(entState.buildRate);
+
 	// Icon Tooltip
 	let iconTooltip = "";
 
@@ -414,15 +418,6 @@ function updateSelectionDetails()
 	// Show basic details.
 	detailsPanel.hidden = false;
 
-	if (g_IsObserver)
-	{
-		// Observers don't need these displayed.
-		supplementalDetailsPanel.hidden = true;
-		commandsPanel.hidden = true;
-	}
-	else
-	{
-		// Fill out commands panel for specific unit selected (or first unit of primary group)
-		updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
-	}
+	// Fill out commands panel for specific unit selected (or first unit of primary group)
+	updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
 }

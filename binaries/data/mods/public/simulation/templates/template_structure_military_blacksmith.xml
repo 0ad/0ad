@@ -28,6 +28,7 @@
   <Identity>
     <GenericName>Blacksmith</GenericName>
     <Tooltip>Research weapons and armor improvements.</Tooltip>
+    <Classes datatype="tokens">-ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Town Blacksmith</VisibleClasses>
     <Icon>structures/blacksmith.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>

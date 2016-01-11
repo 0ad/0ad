@@ -611,7 +611,6 @@ extern_lib_defs = {
 				if not _OPTIONS["android"] then
 					pkgconfig_cflags("mozjs-31")
 				end
-				defines { "WITH_SYSTEM_MOZJS31" }
 			else
 				if os.is("windows") then
 					include_dir = "include-win32"

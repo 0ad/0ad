@@ -247,18 +247,12 @@ Foundation.prototype.Build = function(builderEnt, work)
 		this.committed = true;
 	}
 
-	// Calculate the amount of progress that will be added (where 1.0 = completion)
-	var cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
-	var amount = work / cmpCost.GetBuildTime();
-
 	// Add an appropriate proportion of hitpoints
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	var maxHealth = cmpHealth.GetMaxHitpoints();
-	var deltaHP = Math.max(work, Math.min(maxHealth, Math.floor(maxHealth * (amount * this.buildMultiplier))));
+	var deltaHP = Math.max(work, Math.min(maxHealth, Math.floor(work * this.GetBuildRate() * this.buildMultiplier)));
 	if (deltaHP > 0)
-	{
 		cmpHealth.Increase(deltaHP);
-	}
 
 	var progress = this.GetBuildProgress();
 
@@ -342,6 +336,14 @@ Foundation.prototype.Build = function(builderEnt, work)
 
 		Engine.DestroyEntity(this.entity);
 	}
+};
+
+Foundation.prototype.GetBuildRate = function()
+{
+	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	let cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
+	// Return infinity for instant structure conversion
+	return cmpHealth.GetMaxHitpoints() / cmpCost.GetBuildTime();
 };
 
 Engine.RegisterComponentType(IID_Foundation, "Foundation", Foundation);
