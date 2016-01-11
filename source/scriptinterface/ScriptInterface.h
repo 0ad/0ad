@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -312,11 +312,6 @@ public:
 	 * Details here: http://www.wildfiregames.com/forum/index.php?showtopic=17289&p=285921
 	 */
 	template<typename T> static void ToJSVal(JSContext* cx, JS::MutableHandleValue ret, T const& val);
-
-	/**
-	 * Dump some memory heap debugging information to stderr.
-	 */
-	void DumpHeap();
 
 	/**
 	 * MaybeGC tries to determine whether garbage collection in cx's runtime would free up enough memory to be worth the amount of time it would take.

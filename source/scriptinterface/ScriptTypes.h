@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,14 +26,6 @@
 # ifndef WIN32
 #  define WIN32 // SpiderMonkey expects this
 # endif
-#endif
-
-// Guess whether the library was compiled with the release-mode or debug-mode ABI
-// (for JS_DumpHeap etc)
-#if defined(DEBUG) && !defined(WITH_SYSTEM_MOZJS31)
-# define MOZJS_DEBUG_ABI 1
-#else
-# define MOZJS_DEBUG_ABI 0
 #endif
 
 // Ignore some harmless warnings

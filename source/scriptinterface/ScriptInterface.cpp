@@ -1102,16 +1102,6 @@ void* ScriptInterface::GetPrivate(JS::HandleObject obj)
 	return JS_GetPrivate(obj);
 }
 
-void ScriptInterface::DumpHeap()
-{
-#if MOZJS_DEBUG_ABI
-	JS_DumpHeap(GetJSRuntime(), stderr, NULL, JSTRACE_OBJECT, NULL, (size_t)-1, NULL);
-#endif
-	fprintf(stderr, "# Bytes allocated: %u\n", JS_GetGCParameter(GetJSRuntime(), JSGC_BYTES));
-	JS_GC(GetJSRuntime());
-	fprintf(stderr, "# Bytes allocated after GC: %u\n", JS_GetGCParameter(GetJSRuntime(), JSGC_BYTES));
-}
-
 void ScriptInterface::MaybeGC()
 {
 	JS_MaybeGC(m->m_cx);
