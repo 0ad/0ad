@@ -40,9 +40,9 @@ var options = {
 	[
 		[translate("Master Gain"), translate("Master audio gain"), {"config":"sound.mastergain", "function":"Engine.SetMasterGain(Number(this.caption));"}, "number"],
 		[translate("Music Gain"), translate("In game music gain"), {"config":"sound.musicgain", "function":"Engine.SetMusicGain(Number(this.caption));"}, "number"],
-		[translate("Ambient Gain"), translate("In game ambient sound gain"), {"config":"sound.ambientgain", "function":"Engine.SetMusicGain(Number(this.caption));"}, "number"],
-		[translate("Action Gain"), translate("In game unit action sound gain"), {"config":"sound.actiongain", "function":"Engine.SetMusicGain(Number(this.caption));"}, "number"],
-		[translate("UI Gain"), translate("UI sound gain"), {"config":"sound.uigain", "function":"Engine.SetMusicGain(Number(this.caption));"}, "number"],
+		[translate("Ambient Gain"), translate("In game ambient sound gain"), {"config":"sound.ambientgain", "function":"Engine.SetAmbientGain(Number(this.caption));"}, "number"],
+		[translate("Action Gain"), translate("In game unit action sound gain"), {"config":"sound.actiongain", "function":"Engine.SetActionGain(Number(this.caption));"}, "number"],
+		[translate("UI Gain"), translate("UI sound gain"), {"config":"sound.uigain", "function":"Engine.SetUIGain(Number(this.caption));"}, "number"],
 	],
 	"lobbySetting":
 	[
