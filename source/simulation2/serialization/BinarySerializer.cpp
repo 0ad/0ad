@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -345,7 +345,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				size_t length;
 				const char16_t* ch = JS_GetStringCharsAndLength(cx, string, &length);
 				if (ch && length > 0)
-					funcname = std::wstring(ch, ch + length);
+					funcname.assign(ch, ch + length);
 			}
 		}
 
