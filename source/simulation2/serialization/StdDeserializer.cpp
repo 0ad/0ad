@@ -202,8 +202,8 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 			if (hasCustomDeserialize)
 			{
 				JS::RootedValue serialize(cx);
-				if (!JS_LookupProperty(cx, obj, "Serialize", &serialize))
-					throw PSERROR_Serialize_ScriptError("JS_LookupProperty failed");
+				if (!JS_GetProperty(cx, obj, "Serialize", &serialize))
+					throw PSERROR_Serialize_ScriptError("JS_GetProperty failed");
 				bool hasNullSerialize = hasCustomSerialize && serialize.isNull();
 
 				// If Serialize is null, we'll still call Deserialize but with undefined argument

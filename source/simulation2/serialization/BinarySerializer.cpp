@@ -179,8 +179,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 					if (hasCustomSerialize)
 					{
 						JS::RootedValue serialize(cx);
-						if (!JS_LookupProperty(cx, obj, "Serialize", &serialize))
-							throw PSERROR_Serialize_ScriptError("JS_LookupProperty failed");
+						if (!JS_GetProperty(cx, obj, "Serialize", &serialize))
+							throw PSERROR_Serialize_ScriptError("JS_GetProperty failed");
 
 						// If serialize is null, so don't serialize anything more
 						if (!serialize.isNull())
@@ -312,7 +312,14 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			JS::RootedValue idval(cx);
 			JS::RootedValue propval(cx);
-			
+
+			// Forbid getters, which might delete values and mess things up.
+			JS::Rooted<JSPropertyDescriptor> desc(cx);
+			if (!JS_GetPropertyDescriptorById(cx, obj, id, &desc))
+				throw PSERROR_Serialize_ScriptError("JS_GetPropertyDescriptorById failed");
+			if (desc.hasGetterObject())
+				throw PSERROR_Serialize_ScriptError("Cannot serialize property getters");
+
 			// Get the property name as a string
 			if (!JS_IdToValue(cx, id, &idval))
 				throw PSERROR_Serialize_ScriptError("JS_IdToValue failed");
@@ -322,10 +329,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			ScriptString("prop name", idstr);
 
-			// Use LookupProperty instead of GetProperty to avoid the danger of getters
-			// (they might delete values and trigger GC)
-			if (!JS_LookupPropertyById(cx, obj, id, &propval))
-				throw PSERROR_Serialize_ScriptError("JS_LookupPropertyById failed");
+			if (!JS_GetPropertyById(cx, obj, id, &propval))
+				throw PSERROR_Serialize_ScriptError("JS_GetPropertyById failed");
 
 			HandleScriptVal(propval);
 		}
