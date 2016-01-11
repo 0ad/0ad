@@ -159,9 +159,10 @@ public:
 
 		roundtrip<std::wstring>(L"", "\"\"");
 		roundtrip<std::wstring>(L"test", "\"test\"");
-		roundtrip<std::wstring>(L"тест", "\"\\u0442\\u0435\\u0441\\u0442\"");
+		// Windows has two byte wchar_t. We test for this explicitly since we can catch more possible issues this way.
+		roundtrip<std::wstring>(L"тест", sizeof(wchar_t) == 2 ? "\"\\xD1\\u201A\\xD0\\xB5\\xD1\\x81\\xD1\\u201A\"" : "\"\\u0442\\u0435\\u0441\\u0442\"");
 		roundtrip<std::wstring>(w1, "\"t\\x00st\"");
-		roundtrip<std::wstring>(w2, "\"\\u0442\\x00\\u0441\\u0442\"");
+		roundtrip<std::wstring>(w2, sizeof(wchar_t) == 2 ? "\"\\xD1\\x00\\xD0\\xB5\\xD1\\x81\\xD1\\u201A\"" : "\"\\u0442\\x00\\u0441\\u0442\"");
 
 		convert_to<const char*>("", "\"\"");
 		convert_to<const char*>("test", "\"test\"");
