@@ -177,7 +177,7 @@ template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, JS::Handl
 	char* ch = JS_EncodeString(cx, str); // chops off high byte of each char16_t
 	if (!ch)
 		FAIL("JS_EncodeString failed"); // out of memory
-	out = std::string(ch, ch + JS_GetStringLength(str));
+	out.assign(ch, ch + JS_GetStringLength(str));
 	JS_free(cx, ch);
 	return true;
 }
