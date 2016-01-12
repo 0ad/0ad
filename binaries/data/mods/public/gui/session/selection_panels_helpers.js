@@ -59,7 +59,7 @@ function getStanceTooltip(name)
 	case "aggressive":
 		return translateWithContext("stance", "Attack nearby opponents");
 	case "defensive":
-		return translateWithContext("stance", "Attack nearby opponents, only chase a short distance");
+		return translateWithContext("stance", "Attack nearby opponents, chase a short distance and return to the original location");
 	case "passive":
 		return translateWithContext("stance", "Flee if attacked");
 	case "standground":
@@ -78,15 +78,18 @@ function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 {
 	if (trainEntLimit == undefined)
 		return "";
-	var text = "\n\n" + sprintf(translate("Current Count: %(count)s, Limit: %(limit)s."), { count: trainEntCount, limit: trainEntLimit });
+
+	var text = "\n\n" + sprintf(translate("Current Count: %(count)s, Limit: %(limit)s."), { "count": trainEntCount, "limit": trainEntLimit });
+
 	if (trainEntCount >= trainEntLimit)
 		text = "[color=\"red\"]" + text + "[/color]";
+
 	for (var c in trainEntLimitChangers)
 	{
 		if (trainEntLimitChangers[c] > 0)
-			text += "\n" + sprintf(translate("%(changer)s enlarges the limit with %(change)s."), { changer: translate(c), change: trainEntLimitChangers[c] });
+			text += "\n" + sprintf(translate("%(changer)s enlarges the limit with %(change)s."), { "changer": translate(c), "change": trainEntLimitChangers[c] });
 		else if (trainEntLimitChangers[c] < 0)
-			text += "\n" + sprintf(translate("%(changer)s lessens the limit with %(change)s."), { changer: translate(c), change: (-trainEntLimitChangers[c]) });
+			text += "\n" + sprintf(translate("%(changer)s lessens the limit with %(change)s."), { "changer": translate(c), "change": (-trainEntLimitChangers[c]) });
 	}
 	return text;
 }
@@ -104,22 +107,25 @@ function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
 {
 	var totalBatchTrainingCount = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
+
 	// Don't show the batch training tooltip if either units of this type can't be trained at all
 	// or only one unit can be trained
 	if (totalBatchTrainingCount < 2)
 		return "";
+
 	var batchTrainingString = "";
 	var fullBatchesString = "";
 	if (buildingsCountToTrainFullBatch > 0)
 	{
 		if (buildingsCountToTrainFullBatch > 1)
 			fullBatchesString = sprintf(translate("%(buildings)s*%(batchSize)s"), {
-				buildings: buildingsCountToTrainFullBatch,
-				batchSize: fullBatchSize
+				"buildings": buildingsCountToTrainFullBatch,
+				"batchSize": fullBatchSize
 			});
 		else
 			fullBatchesString = fullBatchSize;
 	}
+
 	var remainderBatchString = remainderBatch > 0 ? remainderBatch : "";
 	var batchDetailsString = "";
 	var action = "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font]";
@@ -132,22 +138,22 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 	{
 		if (remainderBatch > 0)
 			return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."), {
-				action: action,
-				number: totalBatchTrainingCount,
-				fullBatch: fullBatchesString,
-				remainderBatch: remainderBatch
+				"action": action,
+				"number": totalBatchTrainingCount,
+				"fullBatch": fullBatchesString,
+				"remainderBatch": remainderBatch
 			}) + "[/font]";
 
 		return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s)."), {
-			action: action,
-			number: totalBatchTrainingCount,
-			fullBatch: fullBatchesString
+			"action": action,
+			"number": totalBatchTrainingCount,
+			"fullBatch": fullBatchesString
 		}) + "[/font]";
 	}
 
 	return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s."), {
-		action: action,
-		number: totalBatchTrainingCount
+		"action": action,
+		"number": totalBatchTrainingCount
 	}) + "[/font]";
 }
 
