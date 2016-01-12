@@ -32,30 +32,41 @@ function canMoveSelectionIntoFormation(formationTemplate)
 
 function getStanceDisplayName(name)
 {
-	var displayName;
-	switch(name)
+	switch (name)
 	{
-		case "violent":
-			displayName = translateWithContext("stance", "Violent");
-			break;
-		case "aggressive":
-			displayName = translateWithContext("stance", "Aggressive");
-			break;
-		case "passive":
-			displayName = translateWithContext("stance", "Passive");
-			break;
-		case "defensive":
-			displayName = translateWithContext("stance", "Defensive");
-			break;
-		case "standground":
-			displayName = translateWithContext("stance", "Standground");
-			break;
-		default:
-			warn(sprintf("Internationalization: Unexpected stance found with code ‘%(stance)s’. This stance must be internationalized.", { stance: name }));
-			displayName = name;
-			break;
+	case "violent":
+		return translateWithContext("stance", "Violent");
+	case "aggressive":
+		return translateWithContext("stance", "Aggressive");
+	case "defensive":
+		return translateWithContext("stance", "Defensive");
+	case "passive":
+		return translateWithContext("stance", "Passive");
+	case "standground":
+		return translateWithContext("stance", "Standground");
+	default:
+		warn("Internationalization: Unexpected stance found: " + name);
+		return name;
 	}
-	return displayName;
+}
+
+function getStanceTooltip(name)
+{
+	switch (name)
+	{
+	case "violent":
+		return translateWithContext("stance", "Attack nearby opponents, focus on attackers and chase while visible");
+	case "aggressive":
+		return translateWithContext("stance", "Attack nearby opponents");
+	case "defensive":
+		return translateWithContext("stance", "Attack nearby opponents, only chase a short distance");
+	case "passive":
+		return translateWithContext("stance", "Flee if attacked");
+	case "standground":
+		return translateWithContext("stance", "Attack opponents in range, but don't move");
+	default:
+		return "";
+	}
 }
 
 // ==============================================

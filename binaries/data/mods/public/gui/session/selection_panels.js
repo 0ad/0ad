@@ -1030,7 +1030,7 @@ g_SelectionPanels.Stance = {
 	},
 	"setTooltip": function(data)
 	{
-		data.button.tooltip = getStanceDisplayName(data.item);
+		data.button.tooltip = getStanceDisplayName(data.item) + "\n[font=\"sans-13\"]" + getStanceTooltip(data.item) + "[/font]";
 	},
 	"setGraphics": function(data)
 	{
