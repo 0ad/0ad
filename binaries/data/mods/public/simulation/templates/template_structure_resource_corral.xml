@@ -10,14 +10,6 @@
     <Square width="12.0" depth="22.0"/>
     <Height>5.0</Height>
   </Footprint>
-  <GarrisonHolder>
-    <Max>10</Max>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
-    <List datatype="tokens">Animal</List>
-    <BuffHeal>1</BuffHeal>
-    <LoadingRange>2</LoadingRange>
-  </GarrisonHolder>
   <Health>
     <Max>500</Max>
     <SpawnEntityOnDeath>rubble/rubble_2x4</SpawnEntityOnDeath>
