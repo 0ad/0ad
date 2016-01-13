@@ -358,7 +358,8 @@ function assembleTooltip(template)
 	if (template.armour)
 		txt += '\n' + getArmorTooltip(template.armour);
 
-	txt += '\n' + getSpeedTooltip(template);
+	if (template.speed)
+		txt += '\n' + getSpeedTooltip(template);
 
 	if (template.gather)
 	{
@@ -374,6 +375,8 @@ function assembleTooltip(template)
 			"details": rates.join("  ")
 		});
 	}
+
+	txt += getPopulationBonusTooltip(template);
 
 	return txt;
 }
