@@ -396,7 +396,7 @@ function SimpleObject(type, minCount, maxCount, minDistance, maxDistance, minAng
 		warn("SimpleObject: minAngle should be less than or equal to maxAngle");
 }
 
-SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint)
+SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, maxFailCount = 20)
 {
 	var failCount = 0;
 	var count = randInt(this.minCount, this.maxCount);
@@ -452,7 +452,7 @@ SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint)
 			if (fail)
 			{
 				failCount++;
-				if (failCount > 20)	// TODO: Make this adjustable
+				if (failCount > maxFailCount)
 				{
 					return undefined;
 				}
@@ -495,7 +495,7 @@ function RandomObject(types, minCount, maxCount, minDistance, maxDistance, minAn
 		warn("RandomObject: minAngle should be less than or equal to maxAngle");
 }
 
-RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint)
+RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, maxFailCount = 20)
 {
 	var failCount = 0;
 	var count = randInt(this.minCount, this.maxCount);
@@ -554,7 +554,7 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint)
 			if (fail)
 			{
 				failCount++;
-				if (failCount > 20)	// TODO: Make this adjustable
+				if (failCount > maxFailCount)
 				{
 					return undefined;
 				}
