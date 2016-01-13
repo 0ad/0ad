@@ -56,7 +56,7 @@ function init(data)
 {
 	if (data && data.callback)
 		g_hasCallback = true;
-	let reload = data && data.reload;
+	let revert = data && data.revert;
 	g_controls = [];
 
 	// WARNING: We assume a strict formatting of the XML and do minimal checking.
@@ -68,7 +68,7 @@ function init(data)
 			let body = Engine.GetGUIObjectByName(prefix + "[" + i + "]");
 			let label = Engine.GetGUIObjectByName(prefix + "Label[" + i + "]");
 			// Setup control.
-			setupControl(options[prefix][i], i, prefix, reload);
+			setupControl(options[prefix][i], i, prefix, revert);
 			// Setup label.
 			label.caption = options[prefix][i][0];
 			label.tooltip = options[prefix][i][1];
@@ -90,7 +90,7 @@ function init(data)
 		}
 	}
 
-	if (!reload)
+	if (!revert)
 		updateStatus();
 }
 
@@ -100,7 +100,7 @@ function init(data)
  * @param option Structure containing the data to setup an option.
  * @param prefix Prefix to use when accessing control, for example "generalSetting" when the tickbox name is generalSettingTickbox[i].
  */
-function setupControl(option, i, prefix, reload)
+function setupControl(option, i, prefix, revert)
 {
 	var control;
 	var onPress;
@@ -125,7 +125,7 @@ function setupControl(option, i, prefix, reload)
 			{
 			case "config":
 				keyConfig = option[2].config;
-				if (checked === undefined || reload)
+				if (checked === undefined || revert)
 					checked = Engine.ConfigDB_GetValue("user", keyConfig) === "true";
 				else if ((Engine.ConfigDB_GetValue("user", keyConfig) === "true") !== checked)
 					Engine.ConfigDB_CreateValue("user", keyConfig, String(checked));
@@ -253,14 +253,14 @@ function registerChanges()
 		control.onPress();
 }
 
-function reloadDefaults()
+function revertChanges()
 {
 	Engine.ConfigDB_Reload("user");
 	updateStatus(false);
-	init({ "reload": true });
+	init({ "revert": true });
 }
 
-function saveDefaults()
+function saveChanges()
 {
 	registerChanges();
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
