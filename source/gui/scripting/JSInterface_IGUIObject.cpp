@@ -89,7 +89,7 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 	if (propName.substr(0, 2) == "on")
 	{
 		CStr eventName(CStr(propName.substr(2)).LowerCase());
-		auto it = e->m_ScriptHandlers.find(eventName);
+		std::map<CStr, JS::Heap<JSObject*>>::iterator it = e->m_ScriptHandlers.find(eventName);
 		if (it == e->m_ScriptHandlers.end())
 			vp.setNull();
 		else

@@ -453,7 +453,7 @@ InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
 
 void IGUIObject::ScriptEvent(const CStr& Action)
 {
-	auto it = m_ScriptHandlers.find(Action);
+	std::map<CStr, JS::Heap<JSObject*>>::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
@@ -482,7 +482,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValue Argument)
 {
-	auto it = m_ScriptHandlers.find(Action);
+	std::map<CStr, JS::Heap<JSObject*>>::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
@@ -540,18 +540,17 @@ bool IGUIObject::IsFocused() const
 
 bool IGUIObject::IsRootObject() const
 {
-	return (GetGUI() != 0 && m_pParent == GetGUI()->m_BaseObject);
+	return GetGUI() != 0 && m_pParent == GetGUI()->m_BaseObject;
 }
 
 void IGUIObject::TraceMember(JSTracer* trc)
 {
-	for (auto& handler : m_ScriptHandlers)
+	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
 		JS_CallHeapObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
 PSRETURN IGUIObject::LogInvalidSettings(const CStr8& Setting) const
 {
-	LOGWARNING("IGUIObject: setting %s was not found on an object",
-		Setting.c_str());
+	LOGWARNING("IGUIObject: setting %s was not found on an object", Setting.c_str());
 	return PSRETURN_GUI_InvalidSetting;
 }

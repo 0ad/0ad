@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,10 +55,10 @@ void CStdDeserializer::Trace(JSTracer *trc, void *data)
 
 void CStdDeserializer::TraceMember(JSTracer *trc)
 {
-	for (size_t i=0; i<m_ScriptBackrefs.size(); i++)
+	for (size_t i=0; i<m_ScriptBackrefs.size(); ++i)
 		JS_CallHeapObjectTracer(trc, &m_ScriptBackrefs[i], "StdDeserializer::m_ScriptBackrefs");
 
-	for (auto& proto : m_SerializablePrototypes)
+	for (std::pair<const std::wstring, JS::Heap<JSObject*>>& proto : m_SerializablePrototypes)
 		JS_CallHeapObjectTracer(trc, &proto.second, "StdDeserializer::m_SerializablePrototypes");
 }
 

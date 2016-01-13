@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,15 +81,14 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		CMaterial material = g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material);
 		
-		std::vector<CObjectBase::Samp>::iterator samp;
-		for (samp = m_Samplers.begin(); samp != m_Samplers.end(); ++samp)
+		for (const CObjectBase::Samp& samp : m_Samplers)
 		{
-			CTextureProperties textureProps(samp->m_SamplerFile);
+			CTextureProperties textureProps(samp.m_SamplerFile);
 			textureProps.SetWrap(GL_CLAMP_TO_BORDER);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			// TODO: Should check which renderpath is selected and only preload the necessary textures.
 			texture->Prefetch(); 
-			material.AddSampler(CMaterial::TextureSampler(samp->m_SamplerName, texture));
+			material.AddSampler(CMaterial::TextureSampler(samp.m_SamplerName, texture));
 		}
 
 		SDecal decal(material,
@@ -133,7 +132,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	if (m_Samplers.empty())
 		LOGERROR("Actor '%s' has no textures.", utf8_from_wstring(m_Base->m_ShortName));
 	
-	for (const auto& samp : m_Samplers)
+	for (const CObjectBase::Samp& samp : m_Samplers)
 	{
 		CTextureProperties textureProps(samp.m_SamplerFile);
 		textureProps.SetWrap(GL_CLAMP_TO_EDGE);
@@ -145,11 +144,10 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		model->GetMaterial().AddSampler(CMaterial::TextureSampler(samp.m_SamplerName, texture));
 	}
 
-	const std::vector<CStrIntern>& requiredSamplers = model->GetMaterial().GetRequiredSampler();
-	for (const auto& requSampName : requiredSamplers)
+	for (const CStrIntern& requSampName : model->GetMaterial().GetRequiredSampler())
 	{
 		if (std::find_if(m_Samplers.begin(), m_Samplers.end(),
-						 [&](CObjectBase::Samp sampler) { return sampler.m_SamplerName == requSampName; }) == m_Samplers.end())
+		                 [&](const CObjectBase::Samp& sampler) { return sampler.m_SamplerName == requSampName; }) == m_Samplers.end())
 			LOGERROR("Actor %s: required texture sampler %s not found (material %s)", utf8_from_wstring(m_Base->m_ShortName), requSampName.string().c_str(), m_Base->m_Material.string8().c_str());
 	}
 	
@@ -193,10 +191,8 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 	// build props - TODO, RC - need to fix up bounds here
 	// TODO: Make sure random variations get handled correctly when a prop fails
-	for (size_t p = 0; p < props.size(); p++)
+	for (const CObjectBase::Prop& prop : props)
 	{
-		const CObjectBase::Prop& prop = props[p];
-
 		// Pluck out the special attachpoint 'projectile'
 		if (prop.m_PropPointName == "projectile")
 		{

@@ -781,9 +781,9 @@ private:
 
 	void TraceMember(JSTracer *trc)
 	{
-		for (auto& prototypes : m_DeserializablePrototypes)
-			JS_CallHeapObjectTracer(trc, &prototypes.second, "CAIWorker::m_DeserializablePrototypes");
-		for (auto& metadata : m_PlayerMetadata)
+		for (std::pair<const std::wstring, JS::Heap<JSObject*>>& prototype : m_DeserializablePrototypes)
+			JS_CallHeapObjectTracer(trc, &prototype.second, "CAIWorker::m_DeserializablePrototypes");
+		for (std::pair<const VfsPath, JS::Heap<JS::Value>>& metadata : m_PlayerMetadata)
 			JS_CallHeapValueTracer(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
 	}
 

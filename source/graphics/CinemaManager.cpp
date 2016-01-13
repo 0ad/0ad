@@ -187,8 +187,8 @@ void CCinemaManager::Render()
 		return;
 
 	// draw all paths
-	for (auto it : m_CinematicSimulationData.m_Paths)
-		it.second.Draw();
+	for (const std::pair<CStrW, CCinemaPath>& p : m_CinematicSimulationData.m_Paths)
+		p.second.Draw();
 }
 
 void CCinemaManager::DrawBars() const

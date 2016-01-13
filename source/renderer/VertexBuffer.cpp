@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -237,7 +237,7 @@ u8* CVertexBuffer::Bind()
 		// If any chunks are out of sync with the current VBO, and are
 		// needed for rendering this frame, we'll need to re-upload the VBO
 		bool needUpload = false;
-		for (auto& chunk : m_AllocList)
+		for (VBChunk* const& chunk : m_AllocList)
 		{
 			if (chunk->m_Dirty && chunk->m_Needed)
 			{
@@ -277,7 +277,7 @@ u8* CVertexBuffer::Bind()
 				// the VBO contains data for every unit in the world, but only a
 				// handful are visible on screen and we don't need to bother copying
 				// the rest.)
-				for (auto& chunk : m_AllocList)
+				for (VBChunk* const& chunk : m_AllocList)
 					if (chunk->m_Needed)
 						memcpy((u8 *)p + chunk->m_Index * m_VertexSize, chunk->m_BackingStore, chunk->m_Count * m_VertexSize);
 
@@ -291,7 +291,7 @@ u8* CVertexBuffer::Bind()
 
 			// Anything we just uploaded is clean; anything else is dirty
 			// since the rest of the VBO content is now undefined
-			for (auto& chunk : m_AllocList)
+			for (VBChunk* const& chunk : m_AllocList)
 			{
 				if (chunk->m_Needed)
 					chunk->m_Dirty = false;
@@ -301,7 +301,7 @@ u8* CVertexBuffer::Bind()
 		}
 
 		// Reset the flags for the next phase
-		for (auto& chunk : m_AllocList)
+		for (VBChunk* const& chunk : m_AllocList)
 			chunk->m_Needed = false;
 	}
 

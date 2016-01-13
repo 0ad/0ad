@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -91,7 +91,7 @@ CTerrainTextureEntry* CTerrainTextureManager::AddTexture(const CTerrainPropertie
 
 void CTerrainTextureManager::DeleteTexture(CTerrainTextureEntry* entry)
 {
-	auto it = std::find(m_TextureEntries.begin(), m_TextureEntries.end(), entry);
+	std::vector<CTerrainTextureEntry*>::iterator it = std::find(m_TextureEntries.begin(), m_TextureEntries.end(), entry);
 	if (it != m_TextureEntries.end())
 		m_TextureEntries.erase(it);
 
@@ -148,7 +148,7 @@ void CTerrainGroup::AddTerrain(CTerrainTextureEntry* pTerrain)
 
 void CTerrainGroup::RemoveTerrain(CTerrainTextureEntry* pTerrain)
 {
-	auto it = find(m_Terrains.begin(), m_Terrains.end(), pTerrain);
+	std::vector<CTerrainTextureEntry*>::iterator it = find(m_Terrains.begin(), m_Terrains.end(), pTerrain);
 	if (it != m_Terrains.end())
 		m_Terrains.erase(it);
 }
