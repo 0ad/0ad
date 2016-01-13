@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
 #ifndef INCLUDED_SPATIAL
 #define INCLUDED_SPATIAL
 
-#include "simulation2/system/Component.h"
 #include "simulation2/serialization/SerializeTemplates.h"
 
 /**
@@ -52,7 +51,7 @@ class SpatialSubdivision
 			items.pop_back();
 		}
 
-		void copy_items_at_end(std::vector<uint32_t>& out)
+		void copy_items_at_end(std::vector<uint32_t>& out) const
 		{
 			out.insert(out.end(), items.begin(), items.end());
 		}
@@ -107,14 +106,14 @@ public:
 
 	void Create(size_t count)
 	{
-		if (m_Divisions) delete[] m_Divisions;
+		delete[] m_Divisions;
 		m_Divisions = new SubDivisionGrid[count];
 	}
 
 	/**
 	 * Equivalence test (ignoring order of items within each subdivision)
 	 */
-	bool operator==(const SpatialSubdivision& rhs)
+	bool operator==(const SpatialSubdivision& rhs) const
 	{
 		if (m_DivisionSize != rhs.m_DivisionSize || m_DivisionsW != rhs.m_DivisionsW || m_DivisionsH != rhs.m_DivisionsH)
 			return false;
@@ -136,7 +135,7 @@ public:
 		return true;
 	}
 
-	inline bool operator!=(const SpatialSubdivision& rhs)
+	inline bool operator!=(const SpatialSubdivision& rhs) const
 	{
 		return !(*this == rhs);
 	}
@@ -245,7 +244,7 @@ public:
 	 * Returns a sorted list of unique items that includes all items
 	 * within the given axis-aligned square range.
 	 */
-	void GetInRange(std::vector<uint32_t>& out, CFixedVector2D posMin, CFixedVector2D posMax)
+	void GetInRange(std::vector<uint32_t>& out, CFixedVector2D posMin, CFixedVector2D posMax) const
 	{
 		out.clear();
 		ENSURE(posMin.X <= posMax.X && posMin.Y <= posMax.Y);
@@ -270,7 +269,7 @@ public:
 	 * Returns a sorted list of unique items that includes all items
 	 * within the given circular distance of the given point.
 	 */
-	void GetNear(std::vector<uint32_t>& out, CFixedVector2D pos, entity_pos_t range)
+	void GetNear(std::vector<uint32_t>& out, CFixedVector2D pos, entity_pos_t range) const
 	{
 		// TODO: be cleverer and return a circular pattern of divisions,
 		// not this square over-approximation
@@ -283,32 +282,32 @@ private:
 	// (avoiding out-of-bounds accesses, and rounding correctly so that
 	// points precisely between divisions are counted in both):
 
-	uint32_t GetI0(entity_pos_t x)
+	uint32_t GetI0(entity_pos_t x) const
 	{
 		return Clamp((x / m_DivisionSize).ToInt_RoundToInfinity()-1, 0, (int)m_DivisionsW-1);
 	}
 
-	uint32_t GetJ0(entity_pos_t z)
+	uint32_t GetJ0(entity_pos_t z) const
 	{
 		return Clamp((z / m_DivisionSize).ToInt_RoundToInfinity()-1, 0, (int)m_DivisionsH-1);
 	}
 
-	uint32_t GetI1(entity_pos_t x)
+	uint32_t GetI1(entity_pos_t x) const
 	{
 		return Clamp((x / m_DivisionSize).ToInt_RoundToNegInfinity(), 0, (int)m_DivisionsW-1);
 	}
 
-	uint32_t GetJ1(entity_pos_t z)
+	uint32_t GetJ1(entity_pos_t z) const
 	{
 		return Clamp((z / m_DivisionSize).ToInt_RoundToNegInfinity(), 0, (int)m_DivisionsH-1);
 	}
 
-	uint32_t GetIndex0(CFixedVector2D pos)
+	uint32_t GetIndex0(CFixedVector2D pos) const
 	{
 		return GetI0(pos.X) + GetJ0(pos.Y)*m_DivisionsW;
 	}
 
-	uint32_t GetIndex1(CFixedVector2D pos)
+	uint32_t GetIndex1(CFixedVector2D pos) const
 	{
 		return GetI1(pos.X) + GetJ1(pos.Y)*m_DivisionsW;
 	}
@@ -372,12 +371,12 @@ private:
 	std::vector<entity_id_t>* m_SpatialDivisionsData;	// fixed size array of subdivisions
 	size_t m_ArrayWidth; // number of columns in m_SpatialDivisionsData
 
-	inline size_t Index(fixed position)
+	inline size_t Index(fixed position) const
 	{
 		return Clamp((position / SUBDIVISION_SIZE).ToInt_RoundToZero(), 0, (int)m_ArrayWidth-1);
 	}
 
-	inline size_t SubdivisionIdx(CFixedVector2D position)
+	inline size_t SubdivisionIdx(CFixedVector2D position) const
 	{
 		return Index(position.X) + Index(position.Y)*m_ArrayWidth;
 	}
@@ -388,12 +387,11 @@ private:
 	 */
 	bool EraseFrom(std::vector<entity_id_t>& vector, entity_id_t item)
 	{
-		auto it = std::find(vector.begin(), vector.end(), item);
+		std::vector<entity_id_t>::iterator it = std::find(vector.begin(), vector.end(), item);
 		if (it == vector.end())
 			return false;
 
-		if ((int)vector.size() > 1)
-			*it = vector.back();
+		*it = vector.back();
 		vector.pop_back();
 		return true;
 	}
@@ -413,14 +411,12 @@ public:
 
 	~FastSpatialSubdivision()
 	{
-		if (m_SpatialDivisionsData)
-			delete[] m_SpatialDivisionsData;
+		delete[] m_SpatialDivisionsData;
 	}
 
 	void Reset(size_t arrayWidth)
 	{
-		if (m_SpatialDivisionsData)
-			SAFE_ARRAY_DELETE(m_SpatialDivisionsData);
+		delete[] m_SpatialDivisionsData;
 
 		m_ArrayWidth = arrayWidth;
 		m_SpatialDivisionsData = new std::vector<entity_id_t>[m_ArrayWidth*m_ArrayWidth];
@@ -444,7 +440,7 @@ public:
 		return *this;
 	}
 
-	bool operator==(const FastSpatialSubdivision& other)
+	bool operator==(const FastSpatialSubdivision& other) const
 	{
 		if (m_ArrayWidth != other.m_ArrayWidth)
 			return false;
@@ -456,7 +452,7 @@ public:
 		return true;
 	}
 
-	inline bool operator!=(const FastSpatialSubdivision& rhs)
+	inline bool operator!=(const FastSpatialSubdivision& rhs) const
 	{
 		return !(*this == rhs);
 	}
@@ -517,7 +513,7 @@ public:
 	 * Returns a (non sorted) list of items that are either in the square or close to it.
 	 * It's the responsibility of the querier to do proper distance checking and entity sorting.
 	 */
-	void GetInRange(std::vector<entity_id_t>& out, CFixedVector2D posMin, CFixedVector2D posMax)
+	void GetInRange(std::vector<entity_id_t>& out, CFixedVector2D posMin, CFixedVector2D posMax) const
 	{
 		size_t minX = Index(posMin.X);
 		size_t minY = Index(posMin.Y);
@@ -551,7 +547,7 @@ public:
 	 * Returns a (non sorted) list of items that are either in the circle or close to it.
 	 * It's the responsibility of the querier to do proper distance checking and entity sorting.
 	 */
-	void GetNear(std::vector<entity_id_t>& out, CFixedVector2D pos, entity_pos_t range)
+	void GetNear(std::vector<entity_id_t>& out, CFixedVector2D pos, entity_pos_t range) const
 	{
 		// Because the subdivision size is rather big wrt typical ranges, 
 		// this square over-approximation is hopefully not too bad.

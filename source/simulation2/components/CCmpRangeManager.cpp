@@ -33,6 +33,7 @@
 #include "simulation2/components/ICmpVision.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/helpers/Render.h"
+#include "simulation2/helpers/Spatial.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
