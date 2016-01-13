@@ -65,14 +65,14 @@
 				</object>
 			</repeat>
 		</object>
-		<object type="button" style="ModernButtonRed" size="50%-170 100%-44 50%-70 100%-16" hotkey="cancel">
+		<object name="loadOptions" type="button" style="ModernButtonRed" size="50%-170 100%-44 50%-70 100%-16" hotkey="cancel">
 			<translatableAttribute id="caption">Reload</translatableAttribute>
-			<translatableAttribute id="tooltip">Reload default values from file</translatableAttribute>
+			<translatableAttribute id="tooltip">Reload previous saved settings</translatableAttribute>
 			<action on="Press">reloadDefaults();</action>
 		</object>
-		<object type="button" style="ModernButtonRed" size="50%-62 100%-44 50%+38 100%-16">
+		<object name="saveOptions" type="button" style="ModernButtonRed" size="50%-62 100%-44 50%+38 100%-16">
 			<translatableAttribute id="caption">Save</translatableAttribute>
-			<translatableAttribute id="tooltip">Save changes to file</translatableAttribute>
+			<translatableAttribute id="tooltip">Save changes</translatableAttribute>
 			<action on="Press">saveDefaults();</action>
 		</object>
 		<object type="button" style="ModernButtonRed" size="50%+70 100%-44 50%+170 100%-16">
