@@ -35,6 +35,7 @@
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "ps/ConfigDB.h"
+#include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"

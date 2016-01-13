@@ -7,7 +7,7 @@ of an 8-bit greyscale PNG image and a descriptor .fnt file that describes and lo
 
 See the wiki page for more information:
 
-    http://trac.wildfiregames.com/wiki/Font_Builder
+    http://trac.wildfiregames.com/wiki/Font_Builder2
 
 Prerequisites
 -------------

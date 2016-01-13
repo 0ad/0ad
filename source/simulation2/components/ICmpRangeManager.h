@@ -24,9 +24,10 @@
 #include "simulation2/system/Interface.h"
 #include "simulation2/helpers/Position.h"
 #include "simulation2/helpers/Player.h"
-#include "simulation2/helpers/Spatial.h"
 
 #include "graphics/Terrain.h" // for TERRAIN_TILE_SIZE
+
+class FastSpatialSubdivision;
 
 /**
  * Provides efficient range-based queries of the game world,

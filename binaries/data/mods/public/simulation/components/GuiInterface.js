@@ -524,7 +524,6 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			"req": cmpPromotion.GetRequiredXp()
 		};
 
-	let cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
 	if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("BarterMarket"))
 	{
 		let cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
