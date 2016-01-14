@@ -575,7 +575,7 @@ var g_Commands = {
 	{
 		for each (var ent in data.entities)
 		{
-			TryTransformWallToGate(ent, data.cmpPlayer, cmd.template);
+			TryTransformWallToGate(ent, data.cmpPlayer, cmd);
 		}
 	},
 
@@ -1558,7 +1558,7 @@ function FilterEntityListWithAllies(entities, player, controlAll)
 /**
  * Try to transform a wall to a gate 
  */
-function TryTransformWallToGate(ent, cmpPlayer, template)
+function TryTransformWallToGate(ent, cmpPlayer, cmd)
 {
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 	if (!cmpIdentity)
@@ -1573,7 +1573,7 @@ function TryTransformWallToGate(ent, cmpPlayer, template)
 	}
 
 	var civ = cmpIdentity.GetCiv();
-	var gate = Engine.AddEntity(template);
+	var gate = Engine.AddEntity(cmd.template);
 
 	var cmpCost = Engine.QueryInterface(gate, IID_Cost);
 	if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
