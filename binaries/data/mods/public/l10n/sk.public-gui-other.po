@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# kecer <adam@kecer.net>, 2016
 # Levi Taule <levi.taule@gmail.com>, 2015-2016
 # Marián Mižik <marian@mizik.sk>, 2015
 # Mário Bulejko, 2015
@@ -14,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-08 18:21+0000\n"
-"Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
+"POT-Creation-Date: 2016-01-11 09:00+0100\n"
+"PO-Revision-Date: 2016-01-14 18:21+0000\n"
+"Last-Translator: kecer <adam@kecer.net>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -327,8 +328,8 @@ msgstr "%(previousAmounts)s a %(lastAmount)s"
 #. elements in an enumeration.
 #: gui/common/l10n.js:92 gui/common/network.js:75 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:114 gui/common/tooltips.js:142
-#: gui/common/tooltips.js:431 gui/common/tooltips.js:458
-#: gui/common/tooltips.js:526
+#: gui/common/tooltips.js:442 gui/common/tooltips.js:469
+#: gui/common/tooltips.js:537
 msgid ", "
 msgstr ", "
 
@@ -512,7 +513,7 @@ msgstr[1] "%(time)s %(second)s"
 msgstr[2] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:57 gui/common/tooltips.js:238
-#: gui/common/tooltips.js:455
+#: gui/common/tooltips.js:249 gui/common/tooltips.js:466
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekundu"
@@ -586,7 +587,7 @@ msgstr "Útok:"
 msgid "Interval:"
 msgstr "Interval:"
 
-#: gui/common/tooltips.js:162 gui/common/tooltips.js:453
+#: gui/common/tooltips.js:162 gui/common/tooltips.js:464
 msgid "Rate:"
 msgstr "Miera:"
 
@@ -595,11 +596,11 @@ msgstr "Miera:"
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:198 gui/common/tooltips.js:448
+#: gui/common/tooltips.js:198 gui/common/tooltips.js:459
 msgid "Range:"
 msgstr "Dosah:"
 
-#: gui/common/tooltips.js:200 gui/common/tooltips.js:450
+#: gui/common/tooltips.js:200 gui/common/tooltips.js:461
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "meter"
@@ -636,76 +637,85 @@ msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgid "Repair Rate:"
 msgstr "Rýchlosť opravy:"
 
-#: gui/common/tooltips.js:237
+#: gui/common/tooltips.js:237 gui/common/tooltips.js:248
 msgid "health"
 msgstr "život:"
 
-#: gui/common/tooltips.js:239
+#: gui/common/tooltips.js:239 gui/common/tooltips.js:250
 msgid "worker"
 msgstr "robotník"
 
-#: gui/common/tooltips.js:280 gui/common/tooltips.js:281
-#: gui/common/tooltips.js:282 gui/common/tooltips.js:283
-#: gui/common/tooltips.js:284 gui/common/tooltips.js:285
-#: gui/common/tooltips.js:401
+#: gui/common/tooltips.js:245
+#, javascript-format
+msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
+msgstr ""
+
+#: gui/common/tooltips.js:246
+msgid "Build Rate:"
+msgstr "Rýchlosť stavby"
+
+#: gui/common/tooltips.js:291 gui/common/tooltips.js:292
+#: gui/common/tooltips.js:293 gui/common/tooltips.js:294
+#: gui/common/tooltips.js:295 gui/common/tooltips.js:296
+#: gui/common/tooltips.js:412
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:339
+#: gui/common/tooltips.js:350
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:370
+#: gui/common/tooltips.js:381
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Múry:  %(costs)s"
 
-#: gui/common/tooltips.js:371
+#: gui/common/tooltips.js:382
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Veže:  %(costs)s"
 
-#: gui/common/tooltips.js:387
+#: gui/common/tooltips.js:398
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:388
+#: gui/common/tooltips.js:399
 msgid "Population Bonus:"
 msgstr "Populačný bonus:"
 
-#: gui/common/tooltips.js:406
+#: gui/common/tooltips.js:417
 msgid "Insufficient resources:"
 msgstr "Nedostatkové suroviny:"
 
-#: gui/common/tooltips.js:414
+#: gui/common/tooltips.js:425
 msgid "Speed:"
 msgstr "Rýchlosť:"
 
-#: gui/common/tooltips.js:418 gui/common/tooltips.js:424
+#: gui/common/tooltips.js:429 gui/common/tooltips.js:435
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:420
+#: gui/common/tooltips.js:431
 msgid "Walk"
 msgstr "Chôdza"
 
-#: gui/common/tooltips.js:426
+#: gui/common/tooltips.js:437
 msgid "Run"
 msgstr "Beh"
 
-#: gui/common/tooltips.js:429
+#: gui/common/tooltips.js:440
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:441 gui/common/tooltips.js:447
-#: gui/common/tooltips.js:452
+#: gui/common/tooltips.js:452 gui/common/tooltips.js:458
+#: gui/common/tooltips.js:463
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -713,39 +723,39 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:442
+#: gui/common/tooltips.js:453
 msgid "Heal:"
 msgstr "Liečenie:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
-#: gui/common/tooltips.js:445
+#: gui/common/tooltips.js:456
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "HP"
 msgstr[1] "HP"
 msgstr[2] "HP"
 
-#: gui/common/tooltips.js:468
+#: gui/common/tooltips.js:479
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:469
+#: gui/common/tooltips.js:480
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:482
+#: gui/common/tooltips.js:493
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:492
+#: gui/common/tooltips.js:503
 msgid "???"
 msgstr "???"
 
-#: gui/common/tooltips.js:522
+#: gui/common/tooltips.js:533
 msgid "Classes:"
 msgstr "Triedy:"
 
@@ -758,17 +768,17 @@ msgstr "Žiadny"
 msgid "<invalid>"
 msgstr "<neplatný>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Áno"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "No"
 msgstr "Nie"
 
@@ -789,269 +799,277 @@ msgstr "Ignorovať"
 msgid "Abort"
 msgstr "Zrušiť"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Windowed Mode"
 msgstr "Režim okna"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Start 0 A.D. in a window"
 msgstr "Spustiť 0 A.D. v okne"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
 msgid "Background Pause"
 msgstr "Pauza na pozadí"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
 msgid "Pause single player games when window loses focus"
 msgstr "Zastaví hru pre jedného hráča, ak okno s hrou nebude aktívne"
 
-#: gui/options/options.js:11
+#: gui/options/options.js:12
 msgid "Disable Welcome Screen"
 msgstr "Zakázať uvítaciu obrazovku"
 
-#: gui/options/options.js:11
+#: gui/options/options.js:12
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
 msgstr "Ak zakážete uvítaciu obrazovku, môžete prísť o dôležité oznamy.\nUvítaciu obrazovku môžete znovu spustiť z hlavnej ponuky."
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid "Detailed Tooltips"
 msgstr "Podrobné popisy"
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Zobrazovať podrobné popisy pri trénovateľných jednotkách v budovách, kde sa tieto jednotky trénujú."
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "FPS Overlay"
 msgstr "Vrstva FPS"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "Show frames per second in top right corner."
 msgstr "Zobrazovať počet snímok za sekundu v pravom hornom rohu obrazovky."
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Realtime Overlay"
 msgstr "Vrstva reálneho času"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Show current system time in top right corner."
 msgstr "Zobrazovať aktuálny systémový čas v pravom hornom rohu obrazovky."
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Gametime Overlay"
 msgstr "Vrstva herného času"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Show current simulation time in top right corner."
 msgstr "Zobrazovať aktuálny čas simulácie v pravom hornom rohu obrazovky."
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Ceasefire Time Overlay"
 msgstr "Vrstva času prímeria"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Always show the remaining ceasefire time."
 msgstr "Vždy ukázať zostávajúci čas do ukončenia prímeria."
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Persist Match Settings"
 msgstr "Ponechať nastavenia zápasu"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Uloženie a obnova nastavenia zápasu pre rýchle opätovné použitie pri tvorbe ďalšej hry"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Prefer GLSL"
 msgstr "Uprednostniť GLSL"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Používať OpenGL 2.0 shaders (odporúčané)"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Post Processing"
 msgstr "Post-processing"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Aplikovať na obrazovku post-processing filtre (HDR, Bloom, DOF atď.)"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Shadows"
 msgstr "Tiene"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Enable shadows"
 msgstr "Povoliť tiene"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Particles"
 msgstr "Čiastočky"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Enable particles"
 msgstr "Povoliť čiastočky"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Show Sky"
 msgstr "Zobrazovať oblohu"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Render Sky"
 msgstr "Vykresľovať oblohu"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Smooth LOS"
 msgstr "Vyhladená oblasť dohľadu"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "Plynulé odkrývanie tmy a vojnovej hmly"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Unit Silhouettes"
 msgstr "Obrysy jednotiek"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Show outlines of units behind buildings"
 msgstr "Zobrazovať obrysy jednotiek za budovami"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Shadow Filtering"
 msgstr "Filtrovanie tieňov"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Smooth shadows"
 msgstr "Vyhladzovať tiene"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Fast & Ugly Water"
 msgstr "Rýchla a škaredá voda"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
 msgstr "Na vykresľovanie vody používať najnižšie možné nastavenia. Ostatné nastavenia nebudú mať žiaden vplyv."
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "HQ Water Effects"
 msgstr "Vysokokvalitné vodné efekty"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Použi efekty vyššej kvality pre vodu, renderovanie pobrežných vĺn, penu na brehu a vlny za loďami."
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Real Water Depth"
 msgstr "Skutočná hĺbka vody"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Use actual water depth in rendering calculations"
 msgstr "Do vykresľovacích výpočtov zahŕňať skutočnú hĺbku vody"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Water Reflections"
 msgstr "Odrazy na vode"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Allow water to reflect a mirror image"
 msgstr "Povoliť zrkadlové obrazy sveta na vodnej hladine"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Water Refraction"
 msgstr "Lom svetla vo vode"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Use a real water refraction map and not transparency"
 msgstr "Použi reálny lom svetla vo vode a nie priehľadnosť"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Shadows on Water"
 msgstr "Tiene na vode"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Cast shadows on water"
 msgstr "Vrhať tiene na vodnú hladinu"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Spustiť vertikálnu synchronizáciu na zamedzenie trhania obrazovky. VYŽADUJE REŠTART HRY"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Limit FPS in Menus"
 msgstr "Obmedziť FPS v menu"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr "Obmedziť FPS na 50 vo všetkých menu kvôli šetreniu energie."
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Master Gain"
 msgstr "Hlavné zosilnenie"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Master audio gain"
 msgstr "Zosilnenie hlavných zvukov"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Music Gain"
 msgstr "Zosilnenie hudby"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game music gain"
 msgstr "Zosilnenie hudby počas hry"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Ambient Gain"
 msgstr "Zosilnenie prírodných zvukov"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game ambient sound gain"
 msgstr "Zosilnenie prírodných zvukov počas hry"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Action Gain"
 msgstr "Zosilnenie akcií"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game unit action sound gain"
 msgstr "Zosilnenie zvukov činností jednotiek počas hry"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "UI Gain"
 msgstr "Zosilnenie UI"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "UI sound gain"
 msgstr "Zosilnenie zvukov používateľského rozhrania"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Backlog"
 msgstr "Spätné záznamy rozhovoru"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Počet spätných správ ktorý sa majú načítať pri pripájaní sa do predsiene"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Timestamp"
 msgstr "Časová pečiatka rozhovoru"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Zobrazovať čas odoslania správ rozhovoru v predsieni"
+
+#: gui/options/options.js:251
+msgid "You have unsaved changes, are you sure you want to quit ?"
+msgstr "Máte neuložené zmeny, naozaj chcete opustiť hru?"
+
+#: gui/options/options.js:252 gui/savedgames/load.js:89
+msgid "Warning"
+msgstr "Upozornenie"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -1331,10 +1349,6 @@ msgstr "Vyžaduje modifikáciu „%(requiredMod)s“, no aktuálne spustené sú
 msgid "Do you still want to proceed?"
 msgstr "Chcete aj tak pokračovať?"
 
-#: gui/savedgames/load.js:89
-msgid "Warning"
-msgstr "Upozornenie"
-
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:58
 #: gui/savedgames/save.js:88
 #, javascript-format
@@ -1599,8 +1613,7 @@ msgstr "Miestne nastavenia:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
-#: gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):25 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -1672,9 +1685,29 @@ msgstr "Nastavenia zvuku"
 msgid "Lobby Settings"
 msgstr "Nastavenia predsiene"
 
-#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
+#: gui/options/options.xml:(caption):69
+msgid "Reload"
+msgstr "Obnoviť"
+
+#: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
 msgstr "Uložiť"
+
+#: gui/options/options.xml:(caption):79
+msgid "Quit"
+msgstr "Ukončiť"
+
+#: gui/options/options.xml:(tooltip):70
+msgid "Reload default values from file"
+msgstr "Nastaviť na pôvodné hodnoty"
+
+#: gui/options/options.xml:(tooltip):75
+msgid "Save changes to file"
+msgstr "Uložiť zmeny do súboru"
+
+#: gui/options/options.xml:(tooltip):80
+msgid "Unsaved changes affect this session only"
+msgstr "Neuložené zmeny ovplyvnia len súčasnú reláciu"
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"

@@ -4,18 +4,18 @@
 # 
 # Translators:
 # Aldicek <aldicek@ewt-net.de>, 2015
-# Wuzzy <almikes@aol.com>, 2015
+# Wuzzy <almikes@aol.com>, 2015-2016
 # Leonard König <leonard.r.koenig@gmail.com>, 2015
-# leper <leper@wildfiregames.com>, 2014-2015
+# leper <leper@wildfiregames.com>, 2014-2016
 # qwertz, 2014-2015
 # Raymond Vetter, 2014-2015
 # Xaver, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:33+0100\n"
-"PO-Revision-Date: 2015-12-23 14:14+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"POT-Creation-Date: 2016-01-11 09:01+0100\n"
+"PO-Revision-Date: 2016-01-12 19:10+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -533,28 +533,32 @@ msgstr "Sage eher nicht"
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Sammele Schätze bevor es deine Gegner tun! Möge der Bessere gewinnen!"
 
-#: maps/scenarios/treasure_islands.js:37
+#: maps/scenarios/treasure_islands.js:29
+msgid "No winner yet, prepare for battle!"
+msgstr "Bisher kein Sieger, bereite dich auf den Kampf vor!"
+
+#: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "Die Schatzkammer deines Feindes ist randvoll, du verlierst!"
 
-#: maps/scenarios/treasure_islands.js:42
+#: maps/scenarios/treasure_islands.js:46
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "Deine Schatzkammer ist randvoll, du bist siegreich!"
 
-#: maps/scenarios/treasure_islands.js:54
+#: maps/scenarios/treasure_islands.js:58
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Beeile dich! Dein Feind ist dem Sieg nah!"
 
-#: maps/scenarios/treasure_islands.js:65
+#: maps/scenarios/treasure_islands.js:69
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Schätze zum sammeln übrig für den Sieg: %(remainingTreasures)s!"
 
-#: maps/scenarios/treasure_islands.js:73
+#: maps/scenarios/treasure_islands.js:77
 msgid "You have collected a treasure!"
 msgstr "Du hast einen Schatz gesammelt!"
 
-#: maps/scenarios/treasure_islands.js:85
+#: maps/scenarios/treasure_islands.js:89
 msgid "Defeat your enemy to win!"
 msgstr "Besiege deinen Gegner, um zu gewinnen!"
 

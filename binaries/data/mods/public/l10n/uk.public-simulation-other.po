@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Victor Butko <victor.butko@gmail.com>, 2014
-# Yaroslav Yenkala <hyper-news@yandex.ru>, 2015
-# Андрій Бандура <andriykopanytsia@gmail.com>, 2015
+# Yaroslav Yenkala <hyper-news@yandex.ru>, 2015-2016
+# Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-14 09:01+0100\n"
-"PO-Revision-Date: 2015-12-28 14:47+0000\n"
+"POT-Creation-Date: 2016-01-11 09:01+0100\n"
+"PO-Revision-Date: 2016-01-12 00:21+0000\n"
 "Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -688,42 +688,42 @@ msgstr "%(category)s ліміт тренувань %(limit)s досягнуто"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s ліміт %(limit)s досягнуто"
 
-#: simulation/components/Player.js:43
+#: simulation/components/Player.js:44
 msgid "Food"
 msgstr "Їжа"
 
-#: simulation/components/Player.js:44
+#: simulation/components/Player.js:45
 msgid "Wood"
 msgstr "Деревина"
 
-#: simulation/components/Player.js:45
+#: simulation/components/Player.js:46
 msgid "Metal"
 msgstr "Метал"
 
-#: simulation/components/Player.js:46
+#: simulation/components/Player.js:47
 msgid "Stone"
 msgstr "Каміння"
 
-#: simulation/components/Player.js:252
+#: simulation/components/Player.js:263
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Не вистачає ресурсів - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:254
+#: simulation/components/Player.js:265
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Не вистачає ресурсів - %(resourceAmount1)s %(resourceType1)s, та %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:256
+#: simulation/components/Player.js:267
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Не вистачає ресурсів - %(resourceAmount1)s %(resourceType1)s, та %(resourceAmount2)s %(resourceType2)s, та %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:258
+#: simulation/components/Player.js:269
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -735,10 +735,18 @@ msgstr "Не вистачає ресурсів - %(resourceAmount1)s %(resourceT
 msgid "The production queue is full."
 msgstr "Черга виробництва заповнена."
 
-#: simulation/helpers/Commands.js:681
+#: simulation/components/ProductionQueue.js:743
+msgid "Can't find free space to spawn trained units"
+msgstr "Немає вільного місця, щоб готувати натреновані підрозділи"
+
+#: simulation/helpers/Commands.js:675
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Запропонували атаку проти %(_player_)s."
+
+#: simulation/helpers/Commands.js:965
+msgid "The building's technology requirements are not met."
+msgstr "Технологічні вимоги до будівлі не дотримані."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -938,10 +946,10 @@ msgstr "Петра бот"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Started as a fork of Aegis bot, Petra is the most stable AI available. It "
-"supports naval maps and is generally more challenging. Please report issues "
-"to Wildfire Games (see the link in the main menu)."
-msgstr "Спочатку будучи форком бота Аегіс, Петра стала найстабільнішим Штучним Інтелектом. Вона підтримує морські мапи та ,як правило, більш складні. Будь ласка звітуйте про проблеми в Wildfire Games (шукайте посилання в головному меню)."
+"Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"\n"
+"The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
+msgstr "Петра - основний бот зі штучним інтелектом гри 0AD. Будь-ласка надсилайте свої пропозиції до Wildfire Games (дивіться посилання в головному меню).\n\nШтучний Інтелект має malus-bonus зі збору ресурсів (або рейтинг збору або з торгівлі припасами), що коливається у межах від 0.5 для рівня Пісочниця до 1.6 для Дуже важкого (Середній = 1.0). Крім того, рівень Пісочниця не впливає на атаку."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

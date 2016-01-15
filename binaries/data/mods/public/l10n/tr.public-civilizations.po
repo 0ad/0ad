@@ -8,12 +8,13 @@
 # AMG <alimuratgok@yahoo.com>, 2015
 # Aathonaeax <ardawarcraft@gmail.com>, 2015
 # ArmanH <armanhatamkhani@gmail.com>, 2014
+# Doğu Kan, 2016
 # Ebubekir Tabak <tec.1905@windowslive.com>, 2013
 # Emre AYTAÇ <eaytac@gmail.com>, 2013
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # faradundamarti <faradundamarti@yandex.com>, 2013
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
-# Kudret Emre <kudretemre@hotmail.com.tr>, 2014
+# Kudret <kudretemre@hotmail.com.tr>, 2014
 # mehmet akar <mehmettakar.35@gmail.com>, 2013
 # Merve BİÇKES <dark_angel_369_06@hotmail.com>, 2014
 # Mete Han <scorpion000000@hotmail.com>, 2013
@@ -35,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-11-17 18:00+0000\n"
-"Last-Translator: utkugun <utkugundogan@gmail.com>\n"
+"POT-Creation-Date: 2016-01-11 09:00+0100\n"
+"PO-Revision-Date: 2016-01-13 00:28+0000\n"
+"Last-Translator: Doğu Kan\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -719,7 +720,7 @@ msgid ""
 "significant contributions to the winning of many other battles during the "
 "2nd Punic War. He is known for having said, after the battle of Cannae, "
 "'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr ""
+msgstr "Maharbal, Hannibal Barca'nın 2'nci Pör Savaşı boyunca 'atılgan genç süvari kumandanıydı'."
 
 #: simulation/data/civs/cart.jsonStructures[0].Name
 msgid "Naval Shipyard"
@@ -801,25 +802,25 @@ msgid "Brennos"
 msgstr "Brennos"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
+msgid "Cativolcus"
+msgstr "Cativolcus"
+
+#: simulation/data/civs/gaul.jsonAINames[3]
+msgid "Cingetorix"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Uerkingetorix"
 msgstr "Yuerkingetoriks"
 
-#: simulation/data/civs/gaul.jsonAINames[3]
+#: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
 msgstr "Diviko"
 
-#: simulation/data/civs/gaul.jsonAINames[4]
+#: simulation/data/civs/gaul.jsonAINames[6]
 msgid "Ambiorix"
 msgstr "Ambioriks"
-
-#: simulation/data/civs/gaul.jsonAINames[5]
-msgid "Ariovistus"
-msgstr "Ariovistus"
-
-#: simulation/data/civs/gaul.jsonAINames[6]
-msgid "Cassivellaunus"
-msgstr "Kassivellaunus"
 
 #: simulation/data/civs/gaul.jsonAINames[7]
 msgid "Liscus"
@@ -828,6 +829,10 @@ msgstr "Liscus"
 #: simulation/data/civs/gaul.jsonAINames[8]
 msgid "Valetiacos"
 msgstr "Valetiakos"
+
+#: simulation/data/civs/gaul.jsonAINames[9]
+msgid "Viridovix"
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
