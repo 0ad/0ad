@@ -478,9 +478,9 @@ function getAurasTooltip(template)
 	for (let aura in template.auras)
 		txt += '\n' + sprintf(translate("%(auralabel)s %(aurainfo)s"), {
 			"auralabel": g_TooltipTextFormats.header[0] + sprintf(translate("%(auraname)s:"), {
-				"auraname": translate(aura)
+				"auraname": translate(template.auras[aura].name)
 			}) + g_TooltipTextFormats.header[1],
-			"aurainfo": g_TooltipTextFormats.body[0] + translate(template.auras[aura]) + g_TooltipTextFormats.body[1]
+			"aurainfo": g_TooltipTextFormats.body[0] + translate(template.auras[aura].description) + g_TooltipTextFormats.body[1]
 		});
 	return txt;
 }

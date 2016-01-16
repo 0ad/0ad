@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:33+0100\n"
-"PO-Revision-Date: 2015-12-22 10:41+0000\n"
+"POT-Creation-Date: 2016-01-11 09:01+0100\n"
+"PO-Revision-Date: 2016-01-11 09:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -534,28 +534,32 @@ msgstr "Оказаться"
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Собери сокровища раньше противника! Может помочь выиграть!"
 
-#: maps/scenarios/treasure_islands.js:37
+#: maps/scenarios/treasure_islands.js:29
+msgid "No winner yet, prepare for battle!"
+msgstr ""
+
+#: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "Сокровищница противника заполнена — ты проиграл!"
 
-#: maps/scenarios/treasure_islands.js:42
+#: maps/scenarios/treasure_islands.js:46
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "Ваша сокровищница заполнена — ты победитель!"
 
-#: maps/scenarios/treasure_islands.js:54
+#: maps/scenarios/treasure_islands.js:58
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Поспешите! Враг близок к победе!"
 
-#: maps/scenarios/treasure_islands.js:65
+#: maps/scenarios/treasure_islands.js:69
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Сокровищ необходимо для победы: %(remainingTreasures)s!"
 
-#: maps/scenarios/treasure_islands.js:73
+#: maps/scenarios/treasure_islands.js:77
 msgid "You have collected a treasure!"
 msgstr "Вы собрали сокровище!"
 
-#: maps/scenarios/treasure_islands.js:85
+#: maps/scenarios/treasure_islands.js:89
 msgid "Defeat your enemy to win!"
 msgstr "Уничтожь врага для победы!"
 

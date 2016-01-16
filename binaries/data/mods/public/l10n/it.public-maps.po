@@ -6,14 +6,14 @@
 # Claudio <claudiudurneac97@yahoo.it>, 2015
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # Fabio Pedretti <fabio.ped@libero.it>, 2015
-# Me Lazzi, 2014-2015
+# Me Lazzi, 2014-2016
 # Nicola Jelmorini, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:33+0100\n"
-"PO-Revision-Date: 2015-12-22 17:35+0000\n"
-"Last-Translator: Fabio Pedretti <fabio.ped@libero.it>\n"
+"POT-Creation-Date: 2016-01-11 09:01+0100\n"
+"PO-Revision-Date: 2016-01-13 01:09+0000\n"
+"Last-Translator: Me Lazzi\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -531,28 +531,32 @@ msgstr "Di oppure no"
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Raccogli i tesori prima del tuo nemico! Possa vincere il migliore!"
 
-#: maps/scenarios/treasure_islands.js:37
+#: maps/scenarios/treasure_islands.js:29
+msgid "No winner yet, prepare for battle!"
+msgstr "Ancora nessun vincitore, preparati alla battaglia!"
+
+#: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "Il tesoro del tuo nemico è pieno fino all'orlo, hai perso!"
 
-#: maps/scenarios/treasure_islands.js:42
+#: maps/scenarios/treasure_islands.js:46
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "Il tuo Tesoro è pieno fino all'orlo, sei il vincitore!"
 
-#: maps/scenarios/treasure_islands.js:54
+#: maps/scenarios/treasure_islands.js:58
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Sbrigati! Il nemico è vicino alla vittoria!"
 
-#: maps/scenarios/treasure_islands.js:65
+#: maps/scenarios/treasure_islands.js:69
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Tesori rimanenti per raggiungere la vittoria: %(remainingTreasures)s!"
 
-#: maps/scenarios/treasure_islands.js:73
+#: maps/scenarios/treasure_islands.js:77
 msgid "You have collected a treasure!"
 msgstr "Hai raccolto un tesoro!"
 
-#: maps/scenarios/treasure_islands.js:85
+#: maps/scenarios/treasure_islands.js:89
 msgid "Defeat your enemy to win!"
 msgstr "Sconfiggi il tuo nemico per vincere!"
 

@@ -296,10 +296,21 @@ Foundation.prototype.Build = function(builderEnt, work)
 		}
 
 		// ----------------------------------------------------------------------
-		
-		var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+
+		var owner;
+		var cmpTerritoryDecay = Engine.QueryInterface(building, IID_TerritoryDecay);
+		if (cmpTerritoryDecay && cmpTerritoryDecay.HasTerritoryOwnership())
+		{
+			let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+			owner = cmpTerritoryManager.GetOwner(pos.x, pos.z);
+		}
+		else
+		{
+			let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+			owner = cmpOwnership.GetOwner();
+		}
 		var cmpBuildingOwnership = Engine.QueryInterface(building, IID_Ownership);
-		cmpBuildingOwnership.SetOwner(cmpOwnership.GetOwner());
+		cmpBuildingOwnership.SetOwner(owner);
 		
 		// ----------------------------------------------------------------------
 		

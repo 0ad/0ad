@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:33+0100\n"
-"PO-Revision-Date: 2015-12-22 10:41+0000\n"
+"POT-Creation-Date: 2016-01-11 09:01+0100\n"
+"PO-Revision-Date: 2016-01-11 09:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -534,28 +534,32 @@ msgstr "Zeg liever niet"
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Verzamel de schatten voor de vijand! Moge de beste winnen!"
 
-#: maps/scenarios/treasure_islands.js:37
+#: maps/scenarios/treasure_islands.js:29
+msgid "No winner yet, prepare for battle!"
+msgstr ""
+
+#: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "De schatkist van de vijand is tot de nok gevuld, je hebt verloren!"
 
-#: maps/scenarios/treasure_islands.js:42
+#: maps/scenarios/treasure_islands.js:46
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "Jouw schatkist is tot aan de rand gevuld, jij wint!"
 
-#: maps/scenarios/treasure_islands.js:54
+#: maps/scenarios/treasure_islands.js:58
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Schiet op! Je vijand is dicht bij de overwinning!"
 
-#: maps/scenarios/treasure_islands.js:65
+#: maps/scenarios/treasure_islands.js:69
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Nog benodigde schatten voor de overwinning: %(remainingTreasures)s!"
 
-#: maps/scenarios/treasure_islands.js:73
+#: maps/scenarios/treasure_islands.js:77
 msgid "You have collected a treasure!"
 msgstr "Je hebt een schat gevonden!"
 
-#: maps/scenarios/treasure_islands.js:85
+#: maps/scenarios/treasure_islands.js:89
 msgid "Defeat your enemy to win!"
 msgstr "Versla je vijand om te winnen!"
 

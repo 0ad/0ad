@@ -75,7 +75,7 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 					{
 						API3.warn("Petra garrison error: unit " + ent.id() + " (" + ent.genericName()
 							+ ") is expected to garrison in " + id + " (" + holder.genericName()
-							+ "), but has no such garrison order " + uneval(orders));
+							+ "), but has no such garrison order " + uneval(ent.unitAIOrderData()));
 						m.dumpEntity(ent);
 					}
 					list.splice(j--, 1);

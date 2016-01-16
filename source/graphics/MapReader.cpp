@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ CMapReader::CMapReader()
 	// Maps that don't override the default probably want the old lighting model
 	//m_LightEnv.SetLightingModel("old");
 	//pPostproc->SetPostEffect(L"default");
-	
+
 }
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
@@ -112,7 +112,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValu
 	// delete all existing entities
 	if (pSimulation2)
 		pSimulation2->ResetState();
-	
+
 	// reset post effects
 	if (pPostproc)
 		pPostproc->SetPostEffect(L"default");
@@ -296,7 +296,7 @@ int CMapReader::ApplyTerrainData()
 
 						mp.Tex = m_TerrainTextures[tileptr->m_Tex1Index];
 						mp.Priority = tileptr->m_Priority;
-	
+
 						tileptr++;
 					}
 				}
@@ -324,7 +324,7 @@ int CMapReader::ApplyData()
 	{
 		// Default to global camera (with constraints)
 		pGameView->ResetCameraTarget(pGameView->GetCamera()->GetFocus());
-	
+
 		// TODO: Starting rotation?
 		CmpPtr<ICmpPlayer> cmpPlayer(*pSimContext, cmpPlayerManager->GetPlayerByID(m_PlayerID));
 		if (cmpPlayer && cmpPlayer->HasStartingCamera())
@@ -388,7 +388,7 @@ void CMapSummaryReader::GetMapSettings(ScriptInterface& scriptInterface, JS::Mut
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	scriptInterface.Eval("({})", ret);
 	if (m_ScriptSettings.empty())
 		return;
@@ -739,7 +739,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					// graphics are disabled
 					if (!m_MapReader.pWaterMan)
 						continue;
-					
+
 					if (element_name == el_type)
 					{
 						if (waterelement.GetText() == "default")
@@ -865,7 +865,7 @@ void CXMLReader::ReadPaths(XMBElement parent)
 	XERO_ITER_EL(parent, element)
 	{
 		int elementName = element.GetNodeName();
-			
+
 		if (elementName == el_path)
 		{
 			CCinemaData pathData;
@@ -920,7 +920,7 @@ void CXMLReader::ReadPaths(XMBElement parent)
 							targetSpline.AddNode(targetPosition, CFixedVector3D(), lastTargetTime);
 							lastTargetTime = fixed::Zero();
 						}
-						else 
+						else
 							LOGWARNING("Invalid cinematic element for node child");
 					}
 
@@ -939,7 +939,7 @@ void CXMLReader::ReadPaths(XMBElement parent)
 				LOGWARNING("Path with name '%s' is empty", pathName.ToUTF8());
 				return;
 			}
-					
+
 			if (!m_MapReader.pCinema->HasPath(pathName))
 				m_MapReader.pCinema->AddPath(pathName, path);
 			else
@@ -1253,20 +1253,20 @@ int CMapReader::GenerateMap()
 {
 	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	if (!m_MapGen)
 	{
 		// Initialize map generator
 		m_MapGen = new CMapGenerator();
 
 		VfsPath scriptPath;
-		
+
 		if (m_ScriptFile.length())
 			scriptPath = L"maps/random/"+m_ScriptFile;
 
 		// Stringify settings to pass across threads
 		std::string scriptSettings = pSimulation2->GetScriptInterface().StringifyJSON(&m_ScriptSettings.get());
-		
+
 		// Try to generate map
 		m_MapGen->GenerateMap(scriptPath, scriptSettings);
 	}
@@ -1284,9 +1284,9 @@ int CMapReader::GenerateMap()
 		shared_ptr<ScriptInterface::StructuredClone> results = m_MapGen->GetResults();
 
 		// Parse data into simulation context
-		JS::RootedValue data(cx); 
+		JS::RootedValue data(cx);
 		pSimulation2->GetScriptInterface().ReadStructuredClone(results, &data);
-		
+
 		if (data.isUndefined())
 		{
 			// RMS failed - return to main menu
@@ -1305,7 +1305,7 @@ int CMapReader::GenerateMap()
 		// to allow more CPU for the map generator thread
 		SDL_Delay(100);
 	}
-	
+
 	// return progress
 	return progress;
 };
@@ -1316,7 +1316,7 @@ int CMapReader::ParseTerrain()
 	TIMER(L"ParseTerrain");
 	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	// parse terrain from map data
 	//	an error here should stop the loading process
 #define GET_TERRAIN_PROPERTY(val, prop, out)\
@@ -1369,7 +1369,7 @@ int CMapReader::ParseTerrain()
 		{
 			size_t patchY = y / PATCH_SIZE;
 			size_t offY = y % PATCH_SIZE;
-			
+
 			STileDesc tile;
 			tile.m_Tex1Index = tileIndex[y*size + x];
 			tile.m_Tex2Index = 0xFFFF;
@@ -1404,7 +1404,7 @@ int CMapReader::ParseEntities()
 
 	size_t entity_idx = 0;
 	size_t num_entities = entities.size();
-	
+
 	Entity currEnt;
 
 	while (entity_idx < num_entities)
@@ -1486,7 +1486,7 @@ int CMapReader::ParseEnvironment()
 
 	GET_ENVIRONMENT_PROPERTY(envObj, SunElevation, m_LightEnv.m_Elevation)
 	GET_ENVIRONMENT_PROPERTY(envObj, SunRotation, m_LightEnv.m_Rotation)
-	
+
 	CColor terrainAmbientColor;
 	GET_ENVIRONMENT_PROPERTY(envObj, TerrainAmbientColor, terrainAmbientColor)
 	m_LightEnv.m_TerrainAmbientColor = RGBColor(terrainAmbientColor.r, terrainAmbientColor.g, terrainAmbientColor.b);

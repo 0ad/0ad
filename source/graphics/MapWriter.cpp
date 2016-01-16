@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,7 +95,7 @@ static u16 GetEntryIndex(const CTerrainTextureEntry* entry, const std::vector<CT
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// EnumTerrainTextures: build lists of textures used by map, and tile descriptions for 
+// EnumTerrainTextures: build lists of textures used by map, and tile descriptions for
 // each tile on the terrain
 void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 									 std::vector<CStr>& textures,
@@ -103,7 +103,7 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 {
 	// the list of all handles in use
 	std::vector<CTerrainTextureEntry*> entries;
-	
+
 	// resize tile array to required size
 	tiles.resize(SQR(pTerrain->GetVerticesPerSide()-1));
 	STileDesc* tileptr=&tiles[0];
@@ -160,24 +160,24 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 	// pack map size
 	const ssize_t mapsize = pTerrain->GetPatchesPerSide();
 	packer.PackSize(mapsize);
-	
+
 	// pack heightmap
-	packer.PackRaw(pTerrain->GetHeightMap(),sizeof(u16)*SQR(pTerrain->GetVerticesPerSide()));	
+	packer.PackRaw(pTerrain->GetHeightMap(),sizeof(u16)*SQR(pTerrain->GetVerticesPerSide()));
 
 	// the list of textures used by map
 	std::vector<CStr> terrainTextures;
 	// descriptions of each tile
 	std::vector<STileDesc> tiles;
-	
+
 	// build lists by scanning through the terrain
 	EnumTerrainTextures(pTerrain, terrainTextures, tiles);
-	
+
 	// pack texture names
 	const size_t numTextures = terrainTextures.size();
 	packer.PackSize(numTextures);
 	for (size_t i=0;i<numTextures;i++)
 		packer.PackString(terrainTextures[i]);
-	
+
 	// pack tile data
 	packer.PackRaw(&tiles[0],sizeof(STileDesc)*tiles.size());
 }
@@ -270,7 +270,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 					XML_Setting("WindAngle", pWaterMan->m_WindAngle);
 				}
 			}
-			
+
 			{
 				XML_Element("Postproc");
 				{
@@ -402,7 +402,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 		const std::map<CStrW, CCinemaPath>& paths = pCinema->GetAllPaths();
 		std::map<CStrW, CCinemaPath>::const_iterator it = paths.begin();
-		
+
 		{
 			XML_Element("Paths");
 
@@ -411,7 +411,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				fixed timescale = it->second.GetTimescale();
 				const std::vector<SplineData>& nodes = it->second.GetAllNodes();
 				const CCinemaData* data = it->second.GetData();
-				
+
 				XML_Element("Path");
 				XML_Attribute("name", data->m_Name);
 				XML_Attribute("timescale", timescale);
@@ -427,7 +427,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						XML_Attribute("deltatime", nodes[j - 1].Distance);
 					else
 						XML_Attribute("deltatime", 0.0f);
-					
+
 					{
 						XML_Element("Position");
 						XML_Attribute("x", nodes[j].Position.X);

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-08 10:07+0000\n"
+"POT-Creation-Date: 2016-01-11 09:00+0100\n"
+"PO-Revision-Date: 2016-01-14 14:32+0000\n"
 "Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -321,8 +321,8 @@ msgstr "%(previousAmounts)s och %(lastAmount)s"
 #. elements in an enumeration.
 #: gui/common/l10n.js:92 gui/common/network.js:75 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:114 gui/common/tooltips.js:142
-#: gui/common/tooltips.js:431 gui/common/tooltips.js:458
-#: gui/common/tooltips.js:526
+#: gui/common/tooltips.js:442 gui/common/tooltips.js:469
+#: gui/common/tooltips.js:537
 msgid ", "
 msgstr ","
 
@@ -504,7 +504,7 @@ msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:57 gui/common/tooltips.js:238
-#: gui/common/tooltips.js:455
+#: gui/common/tooltips.js:249 gui/common/tooltips.js:466
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekund"
@@ -575,7 +575,7 @@ msgstr "Attack:"
 msgid "Interval:"
 msgstr "Intervall:"
 
-#: gui/common/tooltips.js:162 gui/common/tooltips.js:453
+#: gui/common/tooltips.js:162 gui/common/tooltips.js:464
 msgid "Rate:"
 msgstr "Takt:"
 
@@ -584,11 +584,11 @@ msgstr "Takt:"
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:198 gui/common/tooltips.js:448
+#: gui/common/tooltips.js:198 gui/common/tooltips.js:459
 msgid "Range:"
 msgstr "Räckvidd:"
 
-#: gui/common/tooltips.js:200 gui/common/tooltips.js:450
+#: gui/common/tooltips.js:200 gui/common/tooltips.js:461
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "meter"
@@ -623,114 +623,123 @@ msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgid "Repair Rate:"
 msgstr "Repareringstakt:"
 
-#: gui/common/tooltips.js:237
+#: gui/common/tooltips.js:237 gui/common/tooltips.js:248
 msgid "health"
 msgstr "Hälsa"
 
-#: gui/common/tooltips.js:239
+#: gui/common/tooltips.js:239 gui/common/tooltips.js:250
 msgid "worker"
 msgstr "Arbetare"
 
-#: gui/common/tooltips.js:280 gui/common/tooltips.js:281
-#: gui/common/tooltips.js:282 gui/common/tooltips.js:283
-#: gui/common/tooltips.js:284 gui/common/tooltips.js:285
-#: gui/common/tooltips.js:401
+#: gui/common/tooltips.js:245
+#, javascript-format
+msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
+
+#: gui/common/tooltips.js:246
+msgid "Build Rate:"
+msgstr "Bygg Takt:"
+
+#: gui/common/tooltips.js:291 gui/common/tooltips.js:292
+#: gui/common/tooltips.js:293 gui/common/tooltips.js:294
+#: gui/common/tooltips.js:295 gui/common/tooltips.js:296
+#: gui/common/tooltips.js:412
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:339
+#: gui/common/tooltips.js:350
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s till %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:370
+#: gui/common/tooltips.js:381
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Murar: %(costs)s"
 
-#: gui/common/tooltips.js:371
+#: gui/common/tooltips.js:382
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Torn: %(costs)s"
 
-#: gui/common/tooltips.js:387
+#: gui/common/tooltips.js:398
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:388
+#: gui/common/tooltips.js:399
 msgid "Population Bonus:"
 msgstr "Befolkningsbonus:"
 
-#: gui/common/tooltips.js:406
+#: gui/common/tooltips.js:417
 msgid "Insufficient resources:"
 msgstr "Otillräckliga resurser:"
 
-#: gui/common/tooltips.js:414
+#: gui/common/tooltips.js:425
 msgid "Speed:"
 msgstr "Hastighet: "
 
-#: gui/common/tooltips.js:418 gui/common/tooltips.js:424
+#: gui/common/tooltips.js:429 gui/common/tooltips.js:435
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:420
+#: gui/common/tooltips.js:431
 msgid "Walk"
 msgstr "Gå"
 
-#: gui/common/tooltips.js:426
+#: gui/common/tooltips.js:437
 msgid "Run"
 msgstr "Spring"
 
-#: gui/common/tooltips.js:429
+#: gui/common/tooltips.js:440
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:441 gui/common/tooltips.js:447
-#: gui/common/tooltips.js:452
+#: gui/common/tooltips.js:452 gui/common/tooltips.js:458
+#: gui/common/tooltips.js:463
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:442
+#: gui/common/tooltips.js:453
 msgid "Heal:"
 msgstr "Läka:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
-#: gui/common/tooltips.js:445
+#: gui/common/tooltips.js:456
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "Hälsopoäng"
 msgstr[1] "Hälsopoäng"
 
-#: gui/common/tooltips.js:468
+#: gui/common/tooltips.js:479
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:469
+#: gui/common/tooltips.js:480
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:482
+#: gui/common/tooltips.js:493
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:492
+#: gui/common/tooltips.js:503
 msgid "???"
 msgstr "???"
 
-#: gui/common/tooltips.js:522
+#: gui/common/tooltips.js:533
 msgid "Classes:"
 msgstr "Klasser:"
 
@@ -743,17 +752,17 @@ msgstr "Inga"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "No"
 msgstr "Nej"
 
@@ -774,269 +783,277 @@ msgstr "Ignorera"
 msgid "Abort"
 msgstr "Avbryt"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Windowed Mode"
 msgstr "Fönsterläge"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Start 0 A.D. in a window"
 msgstr "Starta 0 A.D i ett fönster"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
 msgid "Background Pause"
 msgstr "Bakgrundspaus"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
 msgid "Pause single player games when window loses focus"
 msgstr "Pausa enspelarspel när fönstret förlorar fokus"
 
-#: gui/options/options.js:11
+#: gui/options/options.js:12
 msgid "Disable Welcome Screen"
 msgstr "Inaktivera välkomstskärm"
 
-#: gui/options/options.js:11
+#: gui/options/options.js:12
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
 msgstr "Om du inaktiverar denna skärm kan du missa viktiga informationer.\nDu kan fortfarande starta den från huvudmenyn."
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid "Detailed Tooltips"
 msgstr "Detaljerade Inforutor"
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Visa detaljerade inforutor för enheter som kan tränas i träningsbyggnader."
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "FPS Overlay"
 msgstr "FPS Överlägg"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "Show frames per second in top right corner."
 msgstr "Visa FPS i hörnet uppe till höger."
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Realtime Overlay"
 msgstr "Realtidsöverlägg"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Show current system time in top right corner."
 msgstr "Visa aktuella systemtiden i hörnet uppe till höger."
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Gametime Overlay"
 msgstr "Speltidsöverlägg"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Show current simulation time in top right corner."
 msgstr "Visa aktuella simulationstiden uppe till höger."
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Ceasefire Time Overlay"
 msgstr "Vapenvila Tidsöverlägg"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Always show the remaining ceasefire time."
 msgstr "Visa alltid kvarstående tid av vapenvila."
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Persist Match Settings"
 msgstr "Spara matchinställningar"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Spara och ladda matchinställningar för snabb återanvändning vid nästa spel."
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Prefer GLSL"
 msgstr "Föredra GLSL"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Använd OpenGL 2.0 shaders (rekommenderas)"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Post Processing"
 msgstr "Efterbehandling"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Använd efterbehandlingsfilter (HDR, Bloom, DOF, etc.)"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Shadows"
 msgstr "Skuggor"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Enable shadows"
 msgstr "Aktivera skuggor"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Particles"
 msgstr "Partiklar"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Enable particles"
 msgstr "Aktivera partiklar"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Show Sky"
 msgstr "Visa himmel"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Render Sky"
 msgstr "Rendera himmel"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Smooth LOS"
 msgstr "Mjukt LOS"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "Ta bort mörker och krigsdimma mjukt"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Unit Silhouettes"
 msgstr "Enhetssiluetter"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Show outlines of units behind buildings"
 msgstr "Visa konturer av enheter bakom byggnader"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Shadow Filtering"
 msgstr "Skuggfiltrering"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Smooth shadows"
 msgstr "Mjuka skuggor"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Fast & Ugly Water"
 msgstr "Snabbt och fult vatten"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
 msgstr "Använd de lägsta möjliga inställningarna för att visa vatten. Detta gör andra inställningar irrelevanta."
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "HQ Water Effects"
 msgstr "HQ vatteneffekter"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Använd bättre effekter för vatten, kustvågar, strandskum och båtspår."
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Real Water Depth"
 msgstr "Äkta Vattendjupa"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Use actual water depth in rendering calculations"
 msgstr "Använd riktiga vattendjupet i renderingsberäkningar."
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Water Reflections"
 msgstr "Vattenreflektioner"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Allow water to reflect a mirror image"
 msgstr "Tillåt vatten att visa en spegelbild."
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Water Refraction"
 msgstr "Vattenrefraktion"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Use a real water refraction map and not transparency"
 msgstr "Använd en riktig vattenrefraktionskarta istället för transparens."
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Shadows on Water"
 msgstr "Skuggor på vatten"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Cast shadows on water"
 msgstr "Kasta skuggor på vatten"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Använd VSync för att fixa screen tearing. KRÄVER OMSTART AV SPELET"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Limit FPS in Menus"
 msgstr "Begränsa FPS i menyer"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr "Begränsa FPS till 50 i alla menyer, för att spara energi."
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Master Gain"
 msgstr "Volym"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Master audio gain"
 msgstr "Huvudvolym"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Music Gain"
 msgstr "Musikvolym"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game music gain"
 msgstr "In-game musikvolym"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Ambient Gain"
 msgstr "Omgivningsvolym"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game ambient sound gain"
 msgstr "In-game omgivningsvolym"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Action Gain"
 msgstr "Aktionsvolym"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game unit action sound gain"
 msgstr "In-game enhetsaktionsljud volym"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "UI Gain"
 msgstr "Användargränssnittvolym"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "UI sound gain"
 msgstr "Användargränssnitt ljudvolym"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Backlog"
 msgstr "Chatt baklogg"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Antal loggade meddelanden som skall visas när du ansluter dig till lobbyn"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Timestamp"
 msgstr "Tidsstämpel i chatt"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Visa tiden som meddelanden skickades i lobbychatten"
+
+#: gui/options/options.js:251
+msgid "You have unsaved changes, are you sure you want to quit ?"
+msgstr "Du har osparade ändringar, är du säker på att du vill avsluta?"
+
+#: gui/options/options.js:252 gui/savedgames/load.js:89
+msgid "Warning"
+msgstr "Varning"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -1314,10 +1331,6 @@ msgstr "Det krävs \"%(requiredMod)s\" men du har \"%(currentMod)s\"."
 msgid "Do you still want to proceed?"
 msgstr "Vill du fortsätta ändå?"
 
-#: gui/savedgames/load.js:89
-msgid "Warning"
-msgstr "Varning"
-
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:58
 #: gui/savedgames/save.js:88
 #, javascript-format
@@ -1582,8 +1595,7 @@ msgstr "Locale:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
-#: gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):25 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1655,9 +1667,29 @@ msgstr "Ljudinställningar"
 msgid "Lobby Settings"
 msgstr "Lobbyinställningar"
 
-#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
+#: gui/options/options.xml:(caption):69
+msgid "Reload"
+msgstr "Ladda om"
+
+#: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
 msgstr "Spara"
+
+#: gui/options/options.xml:(caption):79
+msgid "Quit"
+msgstr "Avsluta"
+
+#: gui/options/options.xml:(tooltip):70
+msgid "Reload default values from file"
+msgstr "Ladda standardvärden från fil"
+
+#: gui/options/options.xml:(tooltip):75
+msgid "Save changes to file"
+msgstr "Spara Inställningar"
+
+#: gui/options/options.xml:(tooltip):80
+msgid "Unsaved changes affect this session only"
+msgstr "Osparade ändringar påverkar bara denna session"
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"

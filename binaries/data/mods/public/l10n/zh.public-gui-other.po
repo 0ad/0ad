@@ -5,14 +5,15 @@
 # Translators:
 # helinb <1696060289@qq.com>, 2015
 # loms126 <loms126@126.com>, 2014
+# Tianran Yao <yaotianran@gmail.com>, 2016
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-08 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-01-11 09:00+0100\n"
+"PO-Revision-Date: 2016-01-11 19:00+0000\n"
+"Last-Translator: Tianran Yao <yaotianran@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -306,19 +307,19 @@ msgstr "鱼场"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s 至 %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
 #: gui/common/l10n.js:92 gui/common/network.js:75 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:114 gui/common/tooltips.js:142
-#: gui/common/tooltips.js:431 gui/common/tooltips.js:458
-#: gui/common/tooltips.js:526
+#: gui/common/tooltips.js:442 gui/common/tooltips.js:469
+#: gui/common/tooltips.js:537
 msgid ", "
 msgstr "，"
 
@@ -353,7 +354,7 @@ msgstr "您已经被禁止"
 #: gui/common/network.js:24
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "[无效的数值 %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:36
@@ -382,7 +383,7 @@ msgstr "不能踢出 %(name)s 。"
 #: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "用户: %(users)s"
 
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
@@ -439,7 +440,7 @@ msgstr "随机"
 #: gui/common/settings.js:175
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "场景"
 
 #: gui/common/settings.js:206
 msgid "None"
@@ -498,7 +499,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] ""
 
 #: gui/common/tooltips.js:57 gui/common/tooltips.js:238
-#: gui/common/tooltips.js:455
+#: gui/common/tooltips.js:249 gui/common/tooltips.js:466
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "秒"
@@ -566,7 +567,7 @@ msgstr "攻击:"
 msgid "Interval:"
 msgstr "间隔："
 
-#: gui/common/tooltips.js:162 gui/common/tooltips.js:453
+#: gui/common/tooltips.js:162 gui/common/tooltips.js:464
 msgid "Rate:"
 msgstr "频率："
 
@@ -575,11 +576,11 @@ msgstr "频率："
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:198 gui/common/tooltips.js:448
+#: gui/common/tooltips.js:198 gui/common/tooltips.js:459
 msgid "Range:"
 msgstr "范围："
 
-#: gui/common/tooltips.js:200 gui/common/tooltips.js:450
+#: gui/common/tooltips.js:200 gui/common/tooltips.js:461
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -612,112 +613,121 @@ msgstr ""
 msgid "Repair Rate:"
 msgstr ""
 
-#: gui/common/tooltips.js:237
+#: gui/common/tooltips.js:237 gui/common/tooltips.js:248
 msgid "health"
-msgstr ""
+msgstr "生命值："
 
-#: gui/common/tooltips.js:239
+#: gui/common/tooltips.js:239 gui/common/tooltips.js:250
 msgid "worker"
 msgstr ""
 
-#: gui/common/tooltips.js:280 gui/common/tooltips.js:281
-#: gui/common/tooltips.js:282 gui/common/tooltips.js:283
-#: gui/common/tooltips.js:284 gui/common/tooltips.js:285
-#: gui/common/tooltips.js:401
+#: gui/common/tooltips.js:245
+#, javascript-format
+msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
+msgstr ""
+
+#: gui/common/tooltips.js:246
+msgid "Build Rate:"
+msgstr ""
+
+#: gui/common/tooltips.js:291 gui/common/tooltips.js:292
+#: gui/common/tooltips.js:293 gui/common/tooltips.js:294
+#: gui/common/tooltips.js:295 gui/common/tooltips.js:296
+#: gui/common/tooltips.js:412
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:339
+#: gui/common/tooltips.js:350
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s 到 %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:370
+#: gui/common/tooltips.js:381
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "城墙:  %(costs)s"
 
-#: gui/common/tooltips.js:371
+#: gui/common/tooltips.js:382
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "塔楼:  %(costs)s"
 
-#: gui/common/tooltips.js:387
+#: gui/common/tooltips.js:398
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:388
+#: gui/common/tooltips.js:399
 msgid "Population Bonus:"
 msgstr "人口奖励"
 
-#: gui/common/tooltips.js:406
+#: gui/common/tooltips.js:417
 msgid "Insufficient resources:"
 msgstr "缺乏资源:"
 
-#: gui/common/tooltips.js:414
+#: gui/common/tooltips.js:425
 msgid "Speed:"
 msgstr "速度:"
 
-#: gui/common/tooltips.js:418 gui/common/tooltips.js:424
+#: gui/common/tooltips.js:429 gui/common/tooltips.js:435
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:420
+#: gui/common/tooltips.js:431
 msgid "Walk"
 msgstr "走"
 
-#: gui/common/tooltips.js:426
+#: gui/common/tooltips.js:437
 msgid "Run"
 msgstr "跑"
 
-#: gui/common/tooltips.js:429
+#: gui/common/tooltips.js:440
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:441 gui/common/tooltips.js:447
-#: gui/common/tooltips.js:452
+#: gui/common/tooltips.js:452 gui/common/tooltips.js:458
+#: gui/common/tooltips.js:463
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:442
+#: gui/common/tooltips.js:453
 msgid "Heal:"
 msgstr "治疗："
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
-#: gui/common/tooltips.js:445
+#: gui/common/tooltips.js:456
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:468
+#: gui/common/tooltips.js:479
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:469
+#: gui/common/tooltips.js:480
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:482
+#: gui/common/tooltips.js:493
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:492
+#: gui/common/tooltips.js:503
 msgid "???"
 msgstr "？？？"
 
-#: gui/common/tooltips.js:522
+#: gui/common/tooltips.js:533
 msgid "Classes:"
 msgstr "类型："
 
@@ -730,17 +740,17 @@ msgstr "无"
 msgid "<invalid>"
 msgstr "<无效>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "是"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "No"
 msgstr "否"
 
@@ -761,269 +771,277 @@ msgstr "忽略"
 msgid "Abort"
 msgstr "退出"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Windowed Mode"
 msgstr "窗口模式"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Start 0 A.D. in a window"
 msgstr "启动0 A.D. 在新窗口"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
 msgid "Background Pause"
 msgstr "窗口失去焦点时暂停"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
 msgid "Pause single player games when window loses focus"
 msgstr "离开游戏窗口时暂停单人游戏"
 
-#: gui/options/options.js:11
+#: gui/options/options.js:12
 msgid "Disable Welcome Screen"
 msgstr "禁用欢迎屏幕"
 
-#: gui/options/options.js:11
+#: gui/options/options.js:12
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
 msgstr "如果您完全禁用此屏幕，可能或错过重要声明。\n您仍然可以在主菜单中访问此屏幕。"
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid "Detailed Tooltips"
 msgstr "详细工具提示"
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "在可生产单位的建筑物中显示详细的单位提示信息。"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "FPS Overlay"
 msgstr "每秒帧数覆盖层"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "Show frames per second in top right corner."
 msgstr "在右上角显示帧率。"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Realtime Overlay"
 msgstr "实际时间覆盖层"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Show current system time in top right corner."
 msgstr "在右上角显示目前的系统时间。"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Gametime Overlay"
 msgstr "游戏时间覆盖层"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Show current simulation time in top right corner."
 msgstr "在右上角显示目前的模拟时间。"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Ceasefire Time Overlay"
 msgstr "停火时间覆盖层"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Always show the remaining ceasefire time."
 msgstr "总是显示剩余的停火时间。"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Persist Match Settings"
 msgstr "保持遭遇战设定"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "储存及复原遭遇战设定以供另一场游戏快速利用"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Prefer GLSL"
 msgstr "偏好高级渲染"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "使用 OpenGL 2.0 着色器（推荐）"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Post Processing"
 msgstr "后处理"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "使用萤幕空间后处理过滤器(HDR、Bloom、DOF 等)"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Shadows"
 msgstr "阴影效果"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Enable shadows"
 msgstr "开启阴影效果"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Particles"
 msgstr "粒子效果"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Enable particles"
 msgstr "开启粒子效果"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Show Sky"
 msgstr "显示天空"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Render Sky"
 msgstr "渲染天空"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Smooth LOS"
 msgstr "LOS平滑 "
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "平滑移除黑色区域及战争迷雾"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Unit Silhouettes"
 msgstr "单位剪影"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Show outlines of units behind buildings"
 msgstr "显示被建筑物遮挡的物体的轮廓"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Shadow Filtering"
 msgstr "阴影过滤"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Smooth shadows"
 msgstr "平滑阴影"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Fast & Ugly Water"
 msgstr "快速且粗糙的水面效果"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
 msgstr "尽可能使用最低的设定值来算绘水面。这与其他设定值无关。"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "HQ Water Effects"
 msgstr "高质量水面效果"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "使用较高品质的水面效果，算绘靠近岸边的波浪，海岸波浪，以及船迹。"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Real Water Depth"
 msgstr "真实水深"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Use actual water depth in rendering calculations"
 msgstr "使用真实水深进行渲染"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Water Reflections"
 msgstr "水面反射效果"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Allow water to reflect a mirror image"
 msgstr "使水面反射镜像"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Water Refraction"
 msgstr "水面折射效果"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Use a real water refraction map and not transparency"
 msgstr "使用不透明的有真实水面折射效果的地图"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Shadows on Water"
 msgstr "水中倒影"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Cast shadows on water"
 msgstr "显示水中倒影"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "VSync"
 msgstr "垂直同步"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "使用垂直同步以修复屏幕撕裂。需要重启游戏"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Limit FPS in Menus"
 msgstr "在选单中限制FPS"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr "在所有选单中限制FPS为50，以节约电力。"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Master Gain"
 msgstr "主音量"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Master audio gain"
 msgstr "音频主控制"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Music Gain"
 msgstr "音乐音量"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game music gain"
 msgstr "游戏音乐控制"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Ambient Gain"
 msgstr "环境音效控制"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game ambient sound gain"
 msgstr "游戏环境音效控制"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Action Gain"
 msgstr "动作控制"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game unit action sound gain"
 msgstr "游戏单位动作声音控制"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "UI Gain"
 msgstr "UI控制"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "UI sound gain"
 msgstr "UI声音控制"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Backlog"
 msgstr "聊天记录"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "加入大厅时，要载入的聊天记录数。"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Timestamp"
 msgstr "聊天时间戳"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "消息将被提交到大厅聊天室"
+
+#: gui/options/options.js:251
+msgid "You have unsaved changes, are you sure you want to quit ?"
+msgstr ""
+
+#: gui/options/options.js:252 gui/savedgames/load.js:89
+msgid "Warning"
+msgstr "警告"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -1299,10 +1317,6 @@ msgstr "需要mod \"%(requiredMod)s\" ，但您正在使用mod \"%(currentMod)s\
 msgid "Do you still want to proceed?"
 msgstr "您仍要继续吗？"
 
-#: gui/savedgames/load.js:89
-msgid "Warning"
-msgstr "警告"
-
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:58
 #: gui/savedgames/save.js:88
 #, javascript-format
@@ -1567,8 +1581,7 @@ msgstr "所在区域:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
-#: gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):25 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "取消"
 
@@ -1640,9 +1653,29 @@ msgstr "声音设置"
 msgid "Lobby Settings"
 msgstr "大厅设置"
 
-#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
+#: gui/options/options.xml:(caption):69
+msgid "Reload"
+msgstr ""
+
+#: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
 msgstr "保存"
+
+#: gui/options/options.xml:(caption):79
+msgid "Quit"
+msgstr ""
+
+#: gui/options/options.xml:(tooltip):70
+msgid "Reload default values from file"
+msgstr ""
+
+#: gui/options/options.xml:(tooltip):75
+msgid "Save changes to file"
+msgstr ""
+
+#: gui/options/options.xml:(tooltip):80
+msgid "Unsaved changes affect this session only"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"

@@ -378,6 +378,8 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path) const
 	char* pos = (char*)buf.get();
 	for (const std::pair<CStr, CConfigValueSet>& p : m_Map[ns])
 	{
+		if (boost::algorithm::starts_with(p.first, "nosave."))
+			continue;
 		size_t i;
 		pos += sprintf(pos, "%s = ", p.first.c_str());
 		for (i = 0; i < p.second.size() - 1; ++i)

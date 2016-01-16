@@ -336,6 +336,7 @@ g_SelectionPanels.Construction = {
 	{
 		var tooltip = getEntityNamesFormatted(data.template);
 		tooltip += getVisibleEntityClassesFormatted(data.template);
+		tooltip += getAurasTooltip(data.template);
 
 		if (data.template.tooltip)
 			tooltip += "\n[font=\"sans-13\"]" + data.template.tooltip + "[/font]";
@@ -1098,16 +1099,7 @@ g_SelectionPanels.Training = {
 
 		tooltip += getEntityNamesFormatted(data.template);
 		tooltip += getVisibleEntityClassesFormatted(data.template);
-
-		if (data.template.auras)
-		{
-			for (var auraName in data.template.auras)
-			{
-				tooltip += "\n[font=\"sans-bold-13\"]" + translate(auraName) + "[/font]";
-				if (data.template.auras[auraName])
-					tooltip += ": " + translate(data.template.auras[auraName]);
-			}
-		}
+		tooltip += getAurasTooltip(data.template);
 
 		if (data.template.tooltip)
 			tooltip += "\n[font=\"sans-13\"]" + data.template.tooltip + "[/font]";

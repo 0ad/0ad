@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:33+0100\n"
-"PO-Revision-Date: 2015-12-22 10:41+0000\n"
+"POT-Creation-Date: 2016-01-11 09:01+0100\n"
+"PO-Revision-Date: 2016-01-11 09:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -530,28 +530,32 @@ msgstr "表示不是"
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "赶在您的敌人前收集宝藏！可以让您更轻鬆的获胜！"
 
-#: maps/scenarios/treasure_islands.js:37
+#: maps/scenarios/treasure_islands.js:29
+msgid "No winner yet, prepare for battle!"
+msgstr ""
+
+#: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "您敌人的金库被填的满满的，您输了！"
 
-#: maps/scenarios/treasure_islands.js:42
+#: maps/scenarios/treasure_islands.js:46
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "您的金库被填的满满的，您获胜了！"
 
-#: maps/scenarios/treasure_islands.js:54
+#: maps/scenarios/treasure_islands.js:58
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "不给力啊，快一点！您的敌人就要获胜了！"
 
-#: maps/scenarios/treasure_islands.js:65
+#: maps/scenarios/treasure_islands.js:69
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "要取得胜利所要收集的剩余宝藏：  %(remainingTreasures)s!"
 
-#: maps/scenarios/treasure_islands.js:73
+#: maps/scenarios/treasure_islands.js:77
 msgid "You have collected a treasure!"
 msgstr "您收集了一份宝藏！"
 
-#: maps/scenarios/treasure_islands.js:85
+#: maps/scenarios/treasure_islands.js:89
 msgid "Defeat your enemy to win!"
 msgstr "打败您的敌人以获得胜利！"
 

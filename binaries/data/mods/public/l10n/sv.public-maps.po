@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-21 16:33+0100\n"
-"PO-Revision-Date: 2016-01-03 22:24+0000\n"
+"POT-Creation-Date: 2016-01-11 09:01+0100\n"
+"PO-Revision-Date: 2016-01-14 14:35+0000\n"
 "Last-Translator: Martin ‌ <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -530,28 +530,32 @@ msgstr "Säg helst inte"
 msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Samla skatter innan din fiende gör det! Må den bättre vinna!"
 
-#: maps/scenarios/treasure_islands.js:37
+#: maps/scenarios/treasure_islands.js:29
+msgid "No winner yet, prepare for battle!"
+msgstr "Ingen vinnare än, förbered dig för strid!"
+
+#: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "Fiendens skattkammare är fylld till brädden, du förlorar!"
 
-#: maps/scenarios/treasure_islands.js:42
+#: maps/scenarios/treasure_islands.js:46
 msgid "Your treasury is filled to the brim, you are victorious!"
 msgstr "Din skattkammare är fylld till brädden, du segrar!"
 
-#: maps/scenarios/treasure_islands.js:54
+#: maps/scenarios/treasure_islands.js:58
 msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Skynda! Dina fiender håller på att vinna!"
 
-#: maps/scenarios/treasure_islands.js:65
+#: maps/scenarios/treasure_islands.js:69
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Skatter som återstår att samla för seger: %(remainingTreasures)s!"
 
-#: maps/scenarios/treasure_islands.js:73
+#: maps/scenarios/treasure_islands.js:77
 msgid "You have collected a treasure!"
 msgstr "Du har hittat en skatt!"
 
-#: maps/scenarios/treasure_islands.js:85
+#: maps/scenarios/treasure_islands.js:89
 msgid "Defeat your enemy to win!"
 msgstr "Besegra dina fiender för att vinna!"
 
@@ -781,7 +785,7 @@ msgstr "Azurblå Kust 1"
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
-msgstr "Rom strider mot den etruskiska staden Veii om kontrollen över floden Tiberns bassäng."
+msgstr "Rom strider mot den etruskiska staden Veii om kontrollen över Tiberflodens bassäng."
 
 #: maps/scenarios/Battle for the Tiber.xml:PlayerData[0].Name:31
 msgid "Rome"

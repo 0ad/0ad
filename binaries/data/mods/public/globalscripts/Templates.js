@@ -120,9 +120,15 @@ function GetTemplateDataHelper(template, player)
 	if (template.Auras)
 	{
 		ret.auras = {};
-		for each (var aura in template.Auras)
+		for (let auraID in template.Auras)
+		{
+			let aura = template.Auras[auraID];
 			if (aura.AuraName)
-				ret.auras[aura.AuraName] = aura.AuraDescription || null;
+				ret.auras[auraID] = {
+					"name": aura.AuraName,
+					"description": aura.AuraDescription || null
+				};
+		}
 	}
 
 	if (template.BuildRestrictions)

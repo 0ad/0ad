@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-08 09:54+0000\n"
+"POT-Creation-Date: 2016-01-11 09:00+0100\n"
+"PO-Revision-Date: 2016-01-11 09:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -316,8 +316,8 @@ msgstr ""
 #. elements in an enumeration.
 #: gui/common/l10n.js:92 gui/common/network.js:75 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:114 gui/common/tooltips.js:142
-#: gui/common/tooltips.js:431 gui/common/tooltips.js:458
-#: gui/common/tooltips.js:526
+#: gui/common/tooltips.js:442 gui/common/tooltips.js:469
+#: gui/common/tooltips.js:537
 msgid ", "
 msgstr ", "
 
@@ -497,7 +497,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] ""
 
 #: gui/common/tooltips.js:57 gui/common/tooltips.js:238
-#: gui/common/tooltips.js:455
+#: gui/common/tooltips.js:249 gui/common/tooltips.js:466
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "detik"
@@ -565,7 +565,7 @@ msgstr "Serangan:"
 msgid "Interval:"
 msgstr "Interval:"
 
-#: gui/common/tooltips.js:162 gui/common/tooltips.js:453
+#: gui/common/tooltips.js:162 gui/common/tooltips.js:464
 msgid "Rate:"
 msgstr "Peringkat:"
 
@@ -574,11 +574,11 @@ msgstr "Peringkat:"
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:198 gui/common/tooltips.js:448
+#: gui/common/tooltips.js:198 gui/common/tooltips.js:459
 msgid "Range:"
 msgstr "Jarak:"
 
-#: gui/common/tooltips.js:200 gui/common/tooltips.js:450
+#: gui/common/tooltips.js:200 gui/common/tooltips.js:461
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -611,112 +611,121 @@ msgstr ""
 msgid "Repair Rate:"
 msgstr ""
 
-#: gui/common/tooltips.js:237
+#: gui/common/tooltips.js:237 gui/common/tooltips.js:248
 msgid "health"
 msgstr ""
 
-#: gui/common/tooltips.js:239
+#: gui/common/tooltips.js:239 gui/common/tooltips.js:250
 msgid "worker"
 msgstr ""
 
-#: gui/common/tooltips.js:280 gui/common/tooltips.js:281
-#: gui/common/tooltips.js:282 gui/common/tooltips.js:283
-#: gui/common/tooltips.js:284 gui/common/tooltips.js:285
-#: gui/common/tooltips.js:401
+#: gui/common/tooltips.js:245
+#, javascript-format
+msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
+msgstr ""
+
+#: gui/common/tooltips.js:246
+msgid "Build Rate:"
+msgstr ""
+
+#: gui/common/tooltips.js:291 gui/common/tooltips.js:292
+#: gui/common/tooltips.js:293 gui/common/tooltips.js:294
+#: gui/common/tooltips.js:295 gui/common/tooltips.js:296
+#: gui/common/tooltips.js:412
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:339
+#: gui/common/tooltips.js:350
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s hingga %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:370
+#: gui/common/tooltips.js:381
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Dinding: %(costs)s"
 
-#: gui/common/tooltips.js:371
+#: gui/common/tooltips.js:382
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Menara:  %(costs)s"
 
-#: gui/common/tooltips.js:387
+#: gui/common/tooltips.js:398
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:388
+#: gui/common/tooltips.js:399
 msgid "Population Bonus:"
 msgstr "Bonus Populasi:"
 
-#: gui/common/tooltips.js:406
+#: gui/common/tooltips.js:417
 msgid "Insufficient resources:"
 msgstr "Sumberdaya tidak cukup:"
 
-#: gui/common/tooltips.js:414
+#: gui/common/tooltips.js:425
 msgid "Speed:"
 msgstr "Kecepatan:"
 
-#: gui/common/tooltips.js:418 gui/common/tooltips.js:424
+#: gui/common/tooltips.js:429 gui/common/tooltips.js:435
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:420
+#: gui/common/tooltips.js:431
 msgid "Walk"
 msgstr "Jalan"
 
-#: gui/common/tooltips.js:426
+#: gui/common/tooltips.js:437
 msgid "Run"
 msgstr "Lari"
 
-#: gui/common/tooltips.js:429
+#: gui/common/tooltips.js:440
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:441 gui/common/tooltips.js:447
-#: gui/common/tooltips.js:452
+#: gui/common/tooltips.js:452 gui/common/tooltips.js:458
+#: gui/common/tooltips.js:463
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:442
+#: gui/common/tooltips.js:453
 msgid "Heal:"
 msgstr "Pemulihan:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
-#: gui/common/tooltips.js:445
+#: gui/common/tooltips.js:456
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:468
+#: gui/common/tooltips.js:479
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:469
+#: gui/common/tooltips.js:480
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:482
+#: gui/common/tooltips.js:493
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:492
+#: gui/common/tooltips.js:503
 msgid "???"
 msgstr "???"
 
-#: gui/common/tooltips.js:522
+#: gui/common/tooltips.js:533
 msgid "Classes:"
 msgstr "Kelas:"
 
@@ -729,17 +738,17 @@ msgstr "Tidak ada"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Ya"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
+#: gui/savedgames/load.js:49 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "No"
 msgstr "Tidak"
 
@@ -760,269 +769,277 @@ msgstr "Biarkan"
 msgid "Abort"
 msgstr "Batalkan"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Windowed Mode"
 msgstr "Mode Jendela"
 
-#: gui/options/options.js:9
+#: gui/options/options.js:10
 msgid "Start 0 A.D. in a window"
 msgstr "Mulai 0 A.D. pada jendela"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
 msgid "Background Pause"
 msgstr "Jeda Latar Belakang"
 
-#: gui/options/options.js:10
+#: gui/options/options.js:11
 msgid "Pause single player games when window loses focus"
 msgstr "Jeda permainan sendiri ketika jendela kehilangan fokus"
 
-#: gui/options/options.js:11
+#: gui/options/options.js:12
 msgid "Disable Welcome Screen"
 msgstr "Matikan Jendela Sambutan"
 
-#: gui/options/options.js:11
+#: gui/options/options.js:12
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
 msgstr "Jika anda mematikan jendela ini, anda dapat kehilangan pengumuman penting.\nAnda masih dapat meluncurkannya menggunakan menu utama."
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid "Detailed Tooltips"
 msgstr "Tooltip Rinci"
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Tampilkan tooltip rinci untuk unit yang dapat dilatih pada bangunan pelatih unit"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "FPS Overlay"
 msgstr "Lapisan FPS"
 
-#: gui/options/options.js:13
+#: gui/options/options.js:14
 msgid "Show frames per second in top right corner."
 msgstr "Tampilkan bingkai per detik di sudut kanan atas."
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Realtime Overlay"
 msgstr "Lapisan Waktu-nyata"
 
-#: gui/options/options.js:14
+#: gui/options/options.js:15
 msgid "Show current system time in top right corner."
 msgstr "Tampilkan waktu sistem sekarang di sudut kanan atas."
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Gametime Overlay"
 msgstr "Lapisan Waktu-main"
 
-#: gui/options/options.js:15
+#: gui/options/options.js:16
 msgid "Show current simulation time in top right corner."
 msgstr "Tampilkan waktu simulasi sekarang di sudut kanan atas."
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Ceasefire Time Overlay"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Always show the remaining ceasefire time."
 msgstr "Selalu perlihatkan sisa waktu gencata senjata."
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Persist Match Settings"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Simpan dan muat pengaturan pertandingan untuk digunakan di permainan lain"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Prefer GLSL"
 msgstr "Utamakan GLSL"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Gunakan shader OpenGL 2.0 (disarankan)"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Post Processing"
 msgstr "Post Processing"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Gunakan efek filter postprocessing (HDR, Bloom, DOF, dll)"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Shadows"
 msgstr "Bayangan"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Enable shadows"
 msgstr "Aktifkan bayangan"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Particles"
 msgstr "Partikel"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Enable particles"
 msgstr "Aktifkan partikel"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Show Sky"
 msgstr "Perlihatkan Langit"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Render Sky"
 msgstr "Render Langit"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Smooth LOS"
 msgstr "LOS Lembut"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "Hilangkan kabut perang secara halus"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Unit Silhouettes"
 msgstr "Siluet Unit"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Show outlines of units behind buildings"
 msgstr "Tampilkan garis pinggir unit di belakang bangunan"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Shadow Filtering"
 msgstr "Penyaringan Bayangan"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Smooth shadows"
 msgstr "Bayangan Lembut"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Fast & Ugly Water"
 msgstr "Air Cepat & Buruk"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
 msgstr "Gunakan pengaturan terendah untuk merender air. Ini membatalkan pengaturan lainnya."
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "HQ Water Effects"
 msgstr "Efek Air HQ"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Gunakan efek kualitas tinggi untuk air, merender gelombang pantai, busa tepi laut, dan jejak kapal."
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Real Water Depth"
 msgstr "Kedalaman Nyata Air"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Use actual water depth in rendering calculations"
 msgstr "Gunakan kedalaman air sebenarnya dalam kalkulasi render."
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Water Reflections"
 msgstr "Pantulan Air"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Allow water to reflect a mirror image"
 msgstr "Air dapat memantulkan cerminan"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Water Refraction"
 msgstr "Refraksi Air"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Use a real water refraction map and not transparency"
 msgstr "Gunakan peta refraksi air sebenarnya dan bukan transparansi"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Shadows on Water"
 msgstr "Bayangan di Air"
 
-#: gui/options/options.js:34
+#: gui/options/options.js:35
 msgid "Cast shadows on water"
 msgstr "Ada bayangan di air"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Jalankan sinkronisasi vertikal untuk memperbaiki gambar patah. PERLU MULAI ULANG PERMAINAN"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Limit FPS in Menus"
 msgstr ""
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr ""
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Master Gain"
 msgstr "Volume Master"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Master audio gain"
 msgstr "Volume audio master"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Music Gain"
 msgstr "Volume Musik"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "In game music gain"
 msgstr "Volume musik dalam permainan"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Ambient Gain"
 msgstr "Volume Sekitar"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game ambient sound gain"
 msgstr "Volume suara sekitar dalam permainan"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Action Gain"
 msgstr "Volume Unit"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game unit action sound gain"
 msgstr "Volume suara unit dalam permainan"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "UI Gain"
 msgstr "Volume UI"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "UI sound gain"
 msgstr "Volume suara UI"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Chat Backlog"
 msgstr "Catatan Percakapan"
 
-#: gui/options/options.js:48
+#: gui/options/options.js:49
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Jumlah percakapan tersimpan yang dimuat saat bergabung dengan lobi"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Timestamp"
 msgstr "Waktu Percakapan"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Tampilkan waktu pesan dikirim pada percakapan lobi"
+
+#: gui/options/options.js:251
+msgid "You have unsaved changes, are you sure you want to quit ?"
+msgstr ""
+
+#: gui/options/options.js:252 gui/savedgames/load.js:89
+msgid "Warning"
+msgstr "Peringatan"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -1298,10 +1315,6 @@ msgstr "Membutuhkan mod \"%(requiredMod)s\" sementara anda menjalankan mod \"%(c
 msgid "Do you still want to proceed?"
 msgstr "Apa anda tetap ingin melanjutkan?"
 
-#: gui/savedgames/load.js:89
-msgid "Warning"
-msgstr "Peringatan"
-
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:58
 #: gui/savedgames/save.js:88
 #, javascript-format
@@ -1566,8 +1579,7 @@ msgstr "Kode Lokal:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
-#: gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):25 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Batal"
 
@@ -1639,9 +1651,29 @@ msgstr "Pengaturan Suara"
 msgid "Lobby Settings"
 msgstr "Pengaturan Lobi"
 
-#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
+#: gui/options/options.xml:(caption):69
+msgid "Reload"
+msgstr ""
+
+#: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
 msgstr "Simpan"
+
+#: gui/options/options.xml:(caption):79
+msgid "Quit"
+msgstr ""
+
+#: gui/options/options.xml:(tooltip):70
+msgid "Reload default values from file"
+msgstr ""
+
+#: gui/options/options.xml:(tooltip):75
+msgid "Save changes to file"
+msgstr ""
+
+#: gui/options/options.xml:(tooltip):80
+msgid "Unsaved changes affect this session only"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"

@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-14 09:01+0100\n"
-"PO-Revision-Date: 2015-12-23 21:55+0000\n"
-"Last-Translator: Max\n"
+"POT-Creation-Date: 2016-01-11 09:01+0100\n"
+"PO-Revision-Date: 2016-01-11 09:36+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -688,42 +688,42 @@ msgstr "%(limit)s koulutuskatto on saavutettu %(category)s "
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(limit)s katto on saavutettu %(category)s"
 
-#: simulation/components/Player.js:43
+#: simulation/components/Player.js:44
 msgid "Food"
 msgstr "Ruokaa"
 
-#: simulation/components/Player.js:44
+#: simulation/components/Player.js:45
 msgid "Wood"
 msgstr "Puuta"
 
-#: simulation/components/Player.js:45
+#: simulation/components/Player.js:46
 msgid "Metal"
 msgstr "Metallia"
 
-#: simulation/components/Player.js:46
+#: simulation/components/Player.js:47
 msgid "Stone"
 msgstr "Kiveä"
 
-#: simulation/components/Player.js:252
+#: simulation/components/Player.js:263
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Liian vähän resursseja - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:254
+#: simulation/components/Player.js:265
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Liian vähän resursseja - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:256
+#: simulation/components/Player.js:267
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Liian vähän resursseja - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:258
+#: simulation/components/Player.js:269
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -735,10 +735,18 @@ msgstr "Liian vähän resursseja - %(resourceAmount1)s %(resourceType1)s, %(reso
 msgid "The production queue is full."
 msgstr "Tuotantojono on täysi."
 
-#: simulation/helpers/Commands.js:681
+#: simulation/components/ProductionQueue.js:743
+msgid "Can't find free space to spawn trained units"
+msgstr ""
+
+#: simulation/helpers/Commands.js:675
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Hyökkäys pelaajaa %(_player_)s vastaan pyydetty."
+
+#: simulation/helpers/Commands.js:965
+msgid "The building's technology requirements are not met."
+msgstr ""
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -938,9 +946,9 @@ msgstr "Petra Bot"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Started as a fork of Aegis bot, Petra is the most stable AI available. It "
-"supports naval maps and is generally more challenging. Please report issues "
-"to Wildfire Games (see the link in the main menu)."
+"Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"\n"
+"The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
