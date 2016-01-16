@@ -2,13 +2,14 @@ function TerritoryDecay() {}
 
 TerritoryDecay.prototype.Schema =
 	"<element name='DecayRate' a:help='Decay rate in capture points per second'>" +
-		"<ref name='positiveDecimal'/>" +
+		"<choice><ref name='positiveDecimal'/><value>Infinity</value></choice>" +
 	"</element>";
 
 TerritoryDecay.prototype.Init = function()
 {
 	this.decaying = false;
 	this.connectedNeighbours = [];
+	this.territoryOwnership = !isFinite(+this.template.DecayRate);
 };
 
 TerritoryDecay.prototype.IsConnected = function()
@@ -84,21 +85,45 @@ TerritoryDecay.prototype.UpdateDecayState = function()
 	Engine.PostMessage(this.entity, MT_TerritoryDecayChanged, { "entity": this.entity, "to": decaying, "rate": this.GetDecayRate() });
 };
 
+TerritoryDecay.prototype.UpdateOwner = function()
+{
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpOwnership || !cmpPosition || !cmpPosition.IsInWorld())
+		return;
+	let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+	let pos = cmpPosition.GetPosition2D();
+	let tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
+	if (tileOwner != cmpOwnership.GetOwner())
+		cmpOwnership.SetOwner(tileOwner);
+};
+
 TerritoryDecay.prototype.OnTerritoriesChanged = function(msg)
 {
-	this.UpdateDecayState();
+	if (this.territoryOwnership)
+		this.UpdateOwner();
+	else
+		this.UpdateDecayState();
 };
 
 TerritoryDecay.prototype.OnTerritoryPositionChanged = function(msg)
 {
-	this.UpdateDecayState();
+	if (this.territoryOwnership)
+		this.UpdateOwner();
+	else
+		this.UpdateDecayState();
 };
 
 TerritoryDecay.prototype.OnOwnershipChanged = function(msg)
 {
 	// if it influences the territory, wait until we get a TerritoriesChanged message
-	if (!Engine.QueryInterface(this.entity, IID_TerritoryInfluence))
+	if (!this.territoryOwnership && !Engine.QueryInterface(this.entity, IID_TerritoryInfluence))
 		this.UpdateDecayState();
+};
+
+TerritoryDecay.prototype.HasTerritoryOwnership = function()
+{
+	return this.territoryOwnership;
 };
 
 Engine.RegisterComponentType(IID_TerritoryDecay, "TerritoryDecay", TerritoryDecay);
