@@ -66,7 +66,6 @@ bool g_VSync = false;
 bool g_Quickstart = false;
 bool g_DisableAudio = false;
 
-bool g_JSDebuggerEnabled = false;
 bool g_ScriptProfilingEnabled = false;
 
 // flag to switch on drawing terrain overlays
@@ -113,15 +112,7 @@ static void LoadGlobals()
 	CFG_GET_VAL("smoothlos", g_SmoothLOS);
 	CFG_GET_VAL("gui.scale", g_GuiScale);
 
-	CFG_GET_VAL("jsdebugger.enable", g_JSDebuggerEnabled);
 	CFG_GET_VAL("profiler2.script.enable", g_ScriptProfilingEnabled);
-
-	if (g_JSDebuggerEnabled)
-		LOGERROR("JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)");
-	// Script Debugging and profiling does not make sense together because of the hooks
-	// that reduce performance a lot - and it wasn't tested if it even works together.
-	if (g_JSDebuggerEnabled && g_ScriptProfilingEnabled)
-		LOGERROR("Enabling both script profiling and script debugging is not supported!");
 }
 
 

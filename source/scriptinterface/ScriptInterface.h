@@ -60,7 +60,6 @@ class ScriptRuntime;
 
 extern shared_ptr<ScriptRuntime> g_ScriptRuntime;
 
-class CDebuggingServer;
 
 /**
  * Abstraction around a SpiderMonkey JSContext.

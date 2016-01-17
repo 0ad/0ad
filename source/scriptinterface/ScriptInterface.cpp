@@ -19,7 +19,6 @@
 
 #include "ScriptInterface.h"
 #include "ScriptRuntime.h"
-// #include "DebuggingServer.h" // JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
 #include "ScriptStats.h"
 
 #include "lib/debug.h"
@@ -403,16 +402,6 @@ ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugN
 			g_ScriptStatsTable->Add(this, debugName);
 	}
 	
-	// JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
-	/*
-	if (g_JSDebuggerEnabled && g_DebuggingServer != NULL)
-	{
-		if(!JS_SetDebugMode(GetContext(), true))
-			LOGERROR("Failed to set Spidermonkey to debug mode!");
-		else
-			g_DebuggingServer->RegisterScriptinterface(debugName, this);
-	} */
-
 	m_CxPrivate.pScriptInterface = this;
 	JS_SetContextPrivate(m->m_cx, (void*)&m_CxPrivate);
 }
@@ -424,11 +413,6 @@ ScriptInterface::~ScriptInterface()
 		if (g_ScriptStatsTable)
 			g_ScriptStatsTable->Remove(this);
 	}
-	
-	// Unregister from the Debugger class
-	// JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
-	//if (g_JSDebuggerEnabled && g_DebuggingServer != NULL)
-	//	g_DebuggingServer->UnRegisterScriptinterface(this);
 }
 
 void ScriptInterface::ShutDown()

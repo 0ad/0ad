@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,7 +81,6 @@
 #include "renderer/Renderer.h"
 #include "renderer/VertexBufferManager.h"
 #include "renderer/ModelRenderer.h"
-#include "scriptinterface/DebuggingServer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
 #include "simulation2/Simulation2.h"
@@ -735,12 +734,6 @@ void Shutdown(int flags)
 	g_UserReporter.Deinitialize();
 	TIMER_END(L"shutdown UserReporter");
 
-
-	// JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
-	//TIMER_BEGIN(L"shutdown DebuggingServer (if active)");
-	//delete g_DebuggingServer;
-	//TIMER_END(L"shutdown DebuggingServer (if active)");
-
 	delete &g_L10n;
 
 from_config:
@@ -963,11 +956,6 @@ bool Init(const CmdLineArgs& args, int flags)
 	}
 
 	new L10n;
-
-	// before scripting 
-	// JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
-	//if (g_JSDebuggerEnabled)
-	//	g_DebuggingServer = new CDebuggingServer();
 
 	// Optionally start profiler HTTP output automatically
 	// (By default it's only enabled by a hotkey, for security/performance)
