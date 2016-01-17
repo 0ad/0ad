@@ -26,6 +26,7 @@
 					<object name="generalSettingLabel[n]" size="0 0 65% 100%" type="text" style="ModernLabelText" text_align="left"/>
 					<object name="generalSettingTickbox[n]" size="90% 5 100% 100%+5" type="checkbox" style="ModernTickBox" hidden="true"/>
 					<object name="generalSettingInput[n]" size="70% 0 100%-8 100%" type="input" style="ModernInput" hidden="true"/>
+					<object name="generalSettingDropdown[n]" size="70% 0 100%-8 100%" type="dropdown" style="ModernDropDown" hidden="true"/>
 				</object>
 			</repeat>
 		</object>
@@ -38,6 +39,7 @@
 					<object name="graphicsSettingLabel[n]" size="0 0 65% 100%" type="text" style="ModernLabelText" text_align="left"/>
 					<object name="graphicsSettingTickbox[n]" size="90% 5 100% 100%+5" type="checkbox" style="ModernTickBox" hidden="true"/>
 					<object name="graphicsSettingInput[n]" size="70% 0 100%-8 100%" type="input" style="ModernInput" hidden="true"/>
+					<object name="graphicsSettingDropdown[n]" size="70% 0 100%-8 100%" type="dropdown" style="ModernDropDown" hidden="true"/>
 				</object>
 			</repeat>
 		</object>
@@ -50,6 +52,7 @@
 					<object name="soundSettingLabel[n]" size="0 0 65% 100%" type="text" style="ModernLabelText" text_align="left"/>
 					<object name="soundSettingTickbox[n]" size="90% 5 100% 100%+5" type="checkbox" style="ModernTickBox" hidden="true"/>
 					<object name="soundSettingInput[n]" size="70% 0 100%-8 100%" type="input" style="ModernInput" hidden="true"/>
+					<object name="soundSettingDropdown[n]" size="70% 0 100%-8 100%" type="dropdown" style="ModernDropDown" hidden="true"/>
 				</object>
 			</repeat>
 		</object>
@@ -62,6 +65,7 @@
 					<object name="lobbySettingLabel[n]" size="0 0 65% 100%" type="text" style="ModernLabelText" text_align="left"/>
 					<object name="lobbySettingTickbox[n]" size="90% 5 100% 100%+5" type="checkbox" style="ModernTickBox" hidden="true"/>
 					<object name="lobbySettingInput[n]" size="70% 0 100%-8 100%" type="input" style="ModernInput" hidden="true"/>
+					<object name="lobbySettingDropdown[n]" size="70% 0 100%-8 100%" type="dropdown" style="ModernDropDown" hidden="true"/>
 				</object>
 			</repeat>
 		</object>

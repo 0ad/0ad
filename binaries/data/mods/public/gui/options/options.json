@@ -1,0 +1,213 @@
+{
+	"generalSetting":
+	[
+		{
+			"type": "boolean",
+			"label": "Windowed Mode",
+			"tooltip": "Start 0 A.D. in a window",
+			"parameters": { "config": "windowed" }
+		},
+		{
+			"type": "boolean",
+			"label": "Background Pause",
+			"tooltip": "Pause single player games when window loses focus",
+			"parameters": { "config": "pauseonfocusloss" }
+		},
+		{
+			"type": "boolean",
+			"label": "Disable Welcome Screen",
+			"tooltip": "If you disable this screen completely, you may miss important announcements.\nYou can still launch it using the main menu.",
+			"parameters": { "config": "splashscreendisable" }
+		},
+		{
+			"type": "boolean",
+			"label": "Detailed Tooltips",
+			"tooltip": "Show detailed tooltips for trainable units in unit-producing buildings.",
+			"parameters": { "config": "showdetailedtooltips" }
+		},
+		{
+			"type": "boolean",
+			"label": "FPS Overlay",
+			"tooltip": "Show frames per second in top right corner.",
+			"parameters": { "config": "overlay.fps" }
+		},
+		{
+			"type": "boolean",
+			"label": "Realtime Overlay",
+			"tooltip": "Show current system time in top right corner.",
+			"parameters": { "config": "overlay.realtime" }
+		},
+		{
+			"type": "boolean",
+			"label": "Gametime Overlay",
+			"tooltip": "Show current simulation time in top right corner.",
+			"parameters": { "config": "gui.session.timeelapsedcounter" }
+		},
+		{
+			"type": "boolean",
+			"label": "Ceasefire Time Overlay",
+			"tooltip": "Always show the remaining ceasefire time.",
+			"parameters": { "config": "gui.session.ceasefirecounter" }
+		},
+		{
+			"type": "boolean",
+			"label": "Persist Match Settings",
+			"tooltip": "Save and restore match settings for quick reuse when hosting another game",
+			"parameters": { "config": "persistmatchsettings" }
+		}
+	],
+	"graphicsSetting":
+	[
+		{
+			"type": "boolean",
+			"label": "Prefer GLSL",
+			"tooltip": "Use OpenGL 2.0 shaders (recommended)",
+			"parameters": { "renderer": "PreferGLSL", "config": "preferglsl" }
+		},
+		{
+			"type": "boolean",
+			"label": "Post Processing",
+			"tooltip": "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)",
+			"parameters": { "renderer": "Postproc", "config": "postproc" }
+		},
+		{
+			"type": "boolean",
+			"label": "Shadows",
+			"tooltip": "Enable shadows",
+			"parameters": { "renderer": "Shadows", "config": "shadows"}
+		},
+		{
+			"type": "boolean",
+			"label": "Particles",
+			"tooltip": "Enable particles",
+			"parameters": { "renderer": "Particles", "config": "particles" }
+		},
+		{
+			"type": "boolean",
+			"label": "Show Sky",
+			"tooltip": "Render Sky",
+			"parameters": { "renderer": "ShowSky", "config": "showsky" }
+		},
+		{
+			"type": "boolean",
+			"label": "Smooth LOS",
+			"tooltip": "Lift darkness and fog-of-war smoothly",
+			"parameters": { "renderer": "SmoothLOS", "config": "smoothlos" }
+		},
+		{
+			"type": "boolean",
+			"label": "Unit Silhouettes",
+			"tooltip": "Show outlines of units behind buildings",
+			"parameters": { "renderer": "Silhouettes", "config": "silhouettes" }
+		},
+		{
+			"type": "boolean",
+			"label": "Shadow Filtering",
+			"tooltip": "Smooth shadows",
+			"parameters": { "renderer": "ShadowPCF", "config": "shadowpcf" }
+		},
+		{
+			"type": "boolean",
+			"label": "Fast & Ugly Water",
+			"tooltip": "Use the lowest settings possible to render water. This makes other settings irrelevant.",
+			"parameters": { "renderer": "WaterUgly", "config": "waterugly" }
+		},
+		{
+			"type": "boolean",
+			"label": "HQ Water Effects",
+			"tooltip": "Use higher-quality effects for water, rendering coastal waves, shore foam, and ships trails.",
+			"parameters": { "renderer": "WaterFancyEffects", "config": "waterfancyeffects" }
+		},
+		{
+			"type": "boolean",
+			"label": "Real Water Depth",
+			"tooltip": "Use actual water depth in rendering calculations",
+			"parameters": { "renderer": "WaterRealDepth", "config": "waterrealdepth" }
+		},
+		{
+			"type": "boolean",
+			"label": "Water Reflections",
+			"tooltip": "Allow water to reflect a mirror image",
+			"parameters": { "renderer": "WaterReflection", "config": "waterreflection" }
+		},
+		{
+			"type": "boolean",
+			"label": "Water Refraction",
+			"tooltip": "Use a real water refraction map and not transparency", 
+			"parameters": { "renderer": "WaterRefraction", "config": "waterrefraction" }
+		},
+		{
+			"type": "boolean",
+			"label": "Shadows on Water",
+			"tooltip": "Cast shadows on water",
+			"parameters": { "renderer": "WaterShadows", "config": "watershadows" }
+		},
+		{
+			"type": "boolean",
+			"label": "VSync",
+			"tooltip": "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART",
+			"parameters": { "config": "vsync" }
+		},
+		{
+			"type": "boolean",
+			"label": "Limit FPS in Menus",
+			"tooltip": "Limit FPS to 50 in all menus, to save power.",
+			"parameters": { "config": "gui.menu.limitfps" }
+		},
+		{
+			"type": "dropdown",
+			"label": "Graphics quality",
+			"tooltip": "Graphics quality. REQUIRES GAME RESTART",
+			"parameters": { "list": [ "Low", "Medium", "High" ], "config": "materialmgr.quality" }
+
+		}
+	],
+	"soundSetting":
+	[
+		{
+			"type": "number",
+			"label": "Master Gain",
+			"tooltip": "Master audio gain",
+			"parameters": { "config": "sound.mastergain", "function": "SetMasterGain", "min": "0" }
+		},
+		{
+			"type": "number",
+			"label": "Music Gain",
+			"tooltip": "In game music gain",
+			"parameters": { "config": "sound.musicgain", "function": "SetMusicGain", "min": "0" }
+		},
+		{
+			"type": "number",
+			"label": "Ambient Gain",
+			"tooltip": "In game ambient sound gain",
+			"parameters": { "config": "sound.ambientgain", "function": "SetAmbientGain", "min": "0" }
+		},
+		{
+			"type": "number",
+			"label": "Action Gain",
+			"tooltip": "In game unit action sound gain",
+			"parameters": { "config": "sound.actiongain", "function": "SetActionGain", "min": "0" }
+		},
+		{
+			"type": "number",
+			"label": "UI Gain",
+			"tooltip": "UI sound gain",
+			"parameters": { "config": "sound.uigain", "function": "SetUIGain", "min": "0" }
+		}
+	],
+	"lobbySetting":
+	[
+		{
+			"type": "number",
+			"label": "Chat Backlog", 
+			"tooltip": "Number of backlogged messages to load when joining the lobby", 
+			"parameters": { "config": "lobby.history", "min": "0" }
+		},
+		{
+			"type": "boolean",
+			"label": "Chat Timestamp",
+			"tooltip": "Show time that messages are posted in the lobby chat", 
+			"parameters": { "config": "lobby.chattimestamp" }
+		}
+	]
+}

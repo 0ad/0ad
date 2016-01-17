@@ -1,56 +1,5 @@
 var g_hasCallback = false;
 var g_controls;
-/**
- * This array holds the data to populate the general section with.
- * Data is in the form [Title, Tooltip, {ActionType:Action}, InputType].
- */
-var options = {
-	"generalSetting":
-	[
-		[translate("Windowed Mode"), translate("Start 0 A.D. in a window"), {"config":"windowed"}, "boolean"],
-		[translate("Background Pause"), translate("Pause single player games when window loses focus"), {"config":"pauseonfocusloss"}, "boolean"],
-		[translate("Disable Welcome Screen"), translate("If you disable this screen completely, you may miss important announcements.\nYou can still launch it using the main menu."), {"config":"splashscreendisable"}, "boolean"],
-		[translate("Detailed Tooltips"), translate("Show detailed tooltips for trainable units in unit-producing buildings."), {"config":"showdetailedtooltips"}, "boolean"],
-		[translate("FPS Overlay"), translate("Show frames per second in top right corner."), {"config":"overlay.fps"}, "boolean"],
-		[translate("Realtime Overlay"), translate("Show current system time in top right corner."), {"config":"overlay.realtime"}, "boolean"],
-		[translate("Gametime Overlay"), translate("Show current simulation time in top right corner."), {"config":"gui.session.timeelapsedcounter"}, "boolean"],
-		[translate("Ceasefire Time Overlay"), translate("Always show the remaining ceasefire time."), {"config":"gui.session.ceasefirecounter"}, "boolean"],
-		[translate("Persist Match Settings"), translate("Save and restore match settings for quick reuse when hosting another game"), {"config":"persistmatchsettings"}, "boolean"],
-	],
-	"graphicsSetting":
-	[
-		[translate("Prefer GLSL"), translate("Use OpenGL 2.0 shaders (recommended)"), {"renderer":"PreferGLSL", "config":"preferglsl"}, "boolean"],
-		[translate("Post Processing"), translate("Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"), {"renderer":"Postproc", "config":"postproc"}, "boolean"],
-		[translate("Shadows"), translate("Enable shadows"), {"renderer":"Shadows", "config":"shadows"}, "boolean"],
-		[translate("Particles"), translate("Enable particles"), {"renderer":"Particles", "config":"particles"}, "boolean"],
-		[translate("Show Sky"), translate("Render Sky"), {"renderer":"ShowSky", "config":"showsky"}, "boolean"],
-		[translate("Smooth LOS"), translate("Lift darkness and fog-of-war smoothly"), {"renderer":"SmoothLOS", "config":"smoothlos"}, "boolean"],
-		[translate("Unit Silhouettes"), translate("Show outlines of units behind buildings"), {"renderer":"Silhouettes", "config":"silhouettes"}, "boolean"],
-		[translate("Shadow Filtering"), translate("Smooth shadows"), {"renderer":"ShadowPCF", "config":"shadowpcf"}, "boolean"],
-		[translate("Fast & Ugly Water"), translate("Use the lowest settings possible to render water. This makes other settings irrelevant."), {"renderer":"WaterUgly", "config":"waterugly"}, "boolean"],
-		[translate("HQ Water Effects"), translate("Use higher-quality effects for water, rendering coastal waves, shore foam, and ships trails."), {"renderer":"WaterFancyEffects", "config":"waterfancyeffects"}, "boolean"],
-		[translate("Real Water Depth"), translate("Use actual water depth in rendering calculations"), {"renderer":"WaterRealDepth", "config":"waterrealdepth"}, "boolean"],
-		[translate("Water Reflections"), translate("Allow water to reflect a mirror image"), {"renderer":"WaterReflection", "config":"waterreflection"}, "boolean"],
-		[translate("Water Refraction"), translate("Use a real water refraction map and not transparency"), {"renderer":"WaterRefraction", "config":"waterrefraction"}, "boolean"],
-		[translate("Shadows on Water"), translate("Cast shadows on water"), {"renderer":"WaterShadows", "config":"watershadows"}, "boolean"],
-		[translate("VSync"), translate("Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"), {"config":"vsync"}, "boolean"],
-		[translate("Limit FPS in Menus"), translate("Limit FPS to 50 in all menus, to save power."), {"config":"gui.menu.limitfps"}, "boolean"],
-		[translate("Graphics quality"), translate("Graphics quality. REQUIRES GAME RESTART"), {"config":"materialmgr.quality", "min": "0", "max": "10"}, "number"],
-	],
-	"soundSetting":
-	[
-		[translate("Master Gain"), translate("Master audio gain"), {"config":"sound.mastergain", "function":"Engine.SetMasterGain(Number(this.caption));", "min": "0"}, "number"],
-		[translate("Music Gain"), translate("In game music gain"), {"config":"sound.musicgain", "function":"Engine.SetMusicGain(Number(this.caption));", "min": "0"}, "number"],
-		[translate("Ambient Gain"), translate("In game ambient sound gain"), {"config":"sound.ambientgain", "function":"Engine.SetAmbientGain(Number(this.caption));", "min": "0"}, "number"],
-		[translate("Action Gain"), translate("In game unit action sound gain"), {"config":"sound.actiongain", "function":"Engine.SetActionGain(Number(this.caption));", "min": "0"}, "number"],
-		[translate("UI Gain"), translate("UI sound gain"), {"config":"sound.uigain", "function":"Engine.SetUIGain(Number(this.caption));", "min": "0"}, "number"],
-	],
-	"lobbySetting":
-	[
-		[translate("Chat Backlog"), translate("Number of backlogged messages to load when joining the lobby"), {"config":"lobby.history", "min": "0"}, "number"],
-		[translate("Chat Timestamp"), translate("Show time that messages are posted in the lobby chat"), {"config":"lobby.chattimestamp"}, "boolean"],
-	],
-};
 
 function init(data)
 {
@@ -59,19 +8,20 @@ function init(data)
 	let revert = data && data.revert;
 	g_controls = [];
 
-	// WARNING: We assume a strict formatting of the XML and do minimal checking.
-	for (let prefix of Object.keys(options))
+	var options = Engine.ReadJSONFile("gui/options/options.json");
+	for (let category of Object.keys(options))
 	{
 		let lastSize;
-		for (let i = 0; i < options[prefix].length; i++)
+		for (let i = 0; i < options[category].length; ++i)
 		{
-			let body = Engine.GetGUIObjectByName(prefix + "[" + i + "]");
-			let label = Engine.GetGUIObjectByName(prefix + "Label[" + i + "]");
-			// Setup control.
-			setupControl(options[prefix][i], i, prefix, revert);
-			// Setup label.
-			label.caption = options[prefix][i][0];
-			label.tooltip = options[prefix][i][1];
+			let option = options[category][i];
+			if (!option.label)
+				continue;
+			let body = Engine.GetGUIObjectByName(category + "[" + i + "]");
+			let label = Engine.GetGUIObjectByName(category + "Label[" + i + "]");
+			setupControl(option, i, category, revert);
+			label.caption = translate(option.label);
+			label.tooltip = option.tooltip ? translate(option.tooltip) : "";
 			// Move each element to the correct place.
 			if (i > 0)
 			{
@@ -100,97 +50,97 @@ function init(data)
  * @param option Structure containing the data to setup an option.
  * @param prefix Prefix to use when accessing control, for example "generalSetting" when the tickbox name is generalSettingTickbox[i].
  */
-function setupControl(option, i, prefix, revert)
+function setupControl(option, i, category, revert)
 {
 	var control;
-	var onPress;
+	var onUpdate;
 
-	switch (option[3])
+	switch (option.type)
 	{
 	case "boolean":
 		// More space for the label
-		let text = Engine.GetGUIObjectByName(prefix + "Label[" + i + "]");
+		let text = Engine.GetGUIObjectByName(category + "Label[" + i + "]");
 		let size = text.size;
 		size.rright = 87;
 		text.size = size;
-		control = Engine.GetGUIObjectByName(prefix + "Tickbox[" + i + "]");
+		control = Engine.GetGUIObjectByName(category + "Tickbox[" + i + "]");
 		var checked;
 		var keyRenderer;
 		var keyConfig;
 		var functionBody;
 
-		for (let action of Object.keys(option[2]))
+		for (let param of Object.keys(option.parameters))
 		{
-			switch (action)
+			switch (param)
 			{
 			case "config":
-				keyConfig = option[2].config;
+				keyConfig = option.parameters.config;
 				if (checked === undefined || revert)
 					checked = Engine.ConfigDB_GetValue("user", keyConfig) === "true";
 				else if ((Engine.ConfigDB_GetValue("user", keyConfig) === "true") !== checked)
 					Engine.ConfigDB_CreateValue("user", keyConfig, String(checked));
 				break;
 			case "renderer":
-				keyRenderer = option[2].renderer;
+				keyRenderer = option.parameters.renderer;
+				if (!Engine["Renderer_Get" + keyRenderer + "Enabled"])
+				{
+					warn(" invalid renderer key " + keyRenderer);
+					keyRenderer = undefined;
+					break;
+				}
 				if (checked === undefined)
-					checked = eval("Engine.Renderer_Get" + keyRenderer + "Enabled()");
-				else if (eval("Engine.Renderer_Get" + keyRenderer + "Enabled()") !== checked)
-					eval("Engine.Renderer_Set" + keyRenderer + "Enabled(" + checked + ")");
-				break;
-			case "function":
-				// This allows for doing low-level actions, like hiding/showing UI elements.
-				functionBody = option[2].function;
+					checked = Engine["Renderer_Get" + keyRenderer + "Enabled"]();
+				else if (Engine["Renderer_Get" + keyRenderer + "Enabled"]() !== checked)
+					Engine["Renderer_Set" + keyRenderer + "Enabled"](checked);
 				break;
 			default:
-				warn("Unknown option source type '" + action + "'");
+				warn("Unknown option source type '" + param + "'");
 			}
 		}
 
-		onPress = function(keyRenderer, keyConfig, functionBody)
+		onUpdate = function(keyRenderer, keyConfig)
 		{
 			return function()
 			{
 				if (keyRenderer)
-					eval("Engine.Renderer_Set" + keyRenderer + "Enabled(" + this.checked + ")");
+					Engine["Renderer_Set" + keyRenderer + "Enabled"](this.checked);
 				if (keyConfig)
 					Engine.ConfigDB_CreateValue("user", keyConfig, String(this.checked));
-				if (functionBody)
-					eval(functionBody);
 				updateStatus(true);
 			};
-		}(keyRenderer, keyConfig, functionBody);
+		}(keyRenderer, keyConfig);
 
 		// Load final data to the control element.
 		control.checked = checked;
-		control.onPress = onPress;
+		control.onPress = onUpdate;
 		break;
 	case "number":
 		// TODO: Slider
 	case "string":
-		control = Engine.GetGUIObjectByName(prefix + "Input[" + i + "]");
+		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
 		var caption;
 		var key;
 		var functionBody;
 		var minval;
 		var maxval;
 
-		for (let action of Object.keys(option[2]))
+		for (let param of Object.keys(option.parameters))
 		{
-			switch (action)
+			switch (param)
 			{
 			case "config":
-				key = option[2].config;
+				key = option.parameters.config;
 				caption = Engine.ConfigDB_GetValue("user", key);
 				break;
 			case "function":
-				// This allows for doing low-level actions, like hiding/showing UI elements.
-				functionBody = option[2].function;
+				if (Engine[option.parameters.function])
+					functionBody = option.parameters.function;
 				break;
 			case "min":
-				minval = option[2].min;
+				minval = option.parameters.min;
 				break;
 			case "max":
-				maxval = option[2].max;
+				maxval = option.parameters.max;
 				break;
 			default:
 				warn("Unknown option source type '" + action + "'");
@@ -201,7 +151,7 @@ function setupControl(option, i, prefix, revert)
 		// - when the mouse leave the control (MouseLeave event)
 		// - or when saving or closing the window (registerChanges function)
 		// so we must ensure that something has indeed been modified
-		onPress = function(key, functionBody, minval, maxval)
+		onUpdate = function(key, functionBody, minval, maxval)
 		{
 			return function()
 			{
@@ -213,23 +163,67 @@ function setupControl(option, i, prefix, revert)
 					return;
 				Engine.ConfigDB_CreateValue("user", key, this.caption);
 				if (functionBody)
-					eval(functionBody);
+					Engine[functionBody](+this.caption);
 				updateStatus(true);
 			};
 		}(key, functionBody, minval, maxval);
 
 		control.caption = caption;
-		control.onPress = onPress;
-		control.onMouseLeave = onPress;
+		control.onPress = onUpdate;
+		control.onMouseLeave = onUpdate;
 		g_controls.push(control);
 		break;
+	case "dropdown":
+		control = Engine.GetGUIObjectByName(category + "Dropdown[" + i + "]");
+		var caption;
+		var key;
+		var functionBody;
+		var minval;
+		var maxval;
+
+		for (let param of Object.keys(option.parameters))
+		{
+			switch (param)
+			{
+			case "config":
+				key = option.parameters.config;
+				let val = Engine.ConfigDB_GetValue("user", key);
+				if (key === "materialmgr.quality")
+					val = val > 5 ? 2 : val > 2 ? 1 : 0;
+				control.selected = val;
+				break;
+			case "list":
+				control.list = option.parameters.list.map(e => translate(e));
+				break;
+			case "list_data":
+				control.list_data = option.parameters.list_data;
+				break;
+			default:
+				warn("Unknown option source type '" + action + "'");
+			}
+		}
+
+		onUpdate = function(key)
+		{
+			return function()
+			{
+				let val = this.selected;
+				if (key === "materialmgr.quality")
+					val = val == 0 ? 2 : val == 1 ? 5 : 8;
+				Engine.ConfigDB_CreateValue("user", key, val);
+				updateStatus(true);
+			};
+		}(key);
+
+		control.onSelectionChange = onUpdate;
+		break;
 	default:
-		warn("Unknown option type '" + option[3] + "', assuming string. Valid types are 'number', 'string', or 'bool'.");
-		control = Engine.GetGUIObjectByName(prefix + "Input[" + i + "]");
+		warn("Unknown option type '" + option.type + "', assuming string. Valid types are 'number', 'string', or 'bool'.");
+		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
 		break;
 	}
 	control.hidden = false;
-	control.tooltip = option[1];
+	control.tooltip = option.tooltip ? translate(option.tooltip) : "";
 	return control;
 }
 
