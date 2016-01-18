@@ -38,6 +38,11 @@ const g_GameColors = {
 };
 
 /**
+ * Initial sorting order of the gamelist.
+ */
+const g_GameStatusOrder = ["init", "waiting", "running"];
+
+/**
  * The playerlist will be assembled using these values.
  */
 const g_PlayerStatuses = {
@@ -520,8 +525,8 @@ function updateGameList()
 			break;
 		case 'status':
 		default:
-			sortA = gameStatuses.indexOf(a.state);
-			sortB = gameStatuses.indexOf(b.state);
+			sortA = g_GameStatusOrder.indexOf(a.state);
+			sortB = g_GameStatusOrder.indexOf(b.state);
 			break;
 		}
 		if (sortA < sortB) return -sortOrder;
