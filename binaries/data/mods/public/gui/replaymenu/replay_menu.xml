@@ -61,7 +61,7 @@
 			</object>
 
 			<!-- Replay List in that left panel -->
-			<object name="replaySelection" size="0 35 100% 100%" style="ModernList" type="olist" sortable="true" default_column="name" sprite_asc="ModernArrowDown" sprite_desc="ModernArrowUp" sprite_not_sorted="ModernNotSorted" font="sans-stroke-13">
+			<object name="replaySelection" size="0 35 100% 100%" style="ModernList" type="olist" sortable="true" default_column="name" default_column_order="-1" sprite_asc="ModernArrowDown" sprite_desc="ModernArrowUp" sprite_not_sorted="ModernNotSorted" font="sans-stroke-13">
 
 				<action on="SelectionChange">displayReplayDetails();</action>
 				<action on="SelectionColumnChange">displayReplayList();</action>

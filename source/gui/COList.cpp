@@ -24,21 +24,21 @@
 #include "soundmanager/ISoundManager.h"
 
 COList::COList()
-	: CList(), m_HeadingHeight(30.f), m_SelectedDef(-1), m_SelectedColumnOrder(1)
+	: CList(), m_HeadingHeight(30.f), m_SelectedDef(-1), m_SelectedColumnOrder(0)
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_heading");
 	AddSetting(GUIST_bool,					"sortable"); // The actual sorting is done in JS for more versatility
 	AddSetting(GUIST_CStr,					"selected_column");
 	AddSetting(GUIST_int,					"selected_column_order");
 	AddSetting(GUIST_CStr,					"default_column");
+	AddSetting(GUIST_int,					"default_column_order");
 	AddSetting(GUIST_int,					"selected_def");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_asc");  // Show the order of sorting
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_desc");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_not_sorted");
 
-	// Nothing is selected by default.
 	GUI<CStr>::SetSetting(this, "selected_column", "");
-	GUI<int>::SetSetting(this, "selected_column_order", 1);
+	GUI<int>::SetSetting(this, "selected_column_order", 0);
 	GUI<int>::SetSetting(this, "selected_def", -1);
 }
 
@@ -97,6 +97,12 @@ void COList::SetupText()
 
 	if (m_SelectedDef != (size_t)-1)
 		GUI<CStr>::SetSetting(this, "selected_column", m_ObjectsDefs[m_SelectedDef].m_Id.substr(5));
+
+	if (m_SelectedColumnOrder == 0)
+	{
+		GUI<int>::GetSetting(this, "default_column_order", m_SelectedColumnOrder);
+		GUI<int>::SetSetting(this, "selected_column_order", m_SelectedColumnOrder);
+	}
 
 	// Generate texts
 	float buffered_y = 0.f;

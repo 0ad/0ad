@@ -49,9 +49,6 @@ function init()
 		return;
 	}
 
-	// By default, sort replays by date in descending order
-	Engine.GetGUIObjectByName("replaySelection").selected_column_order = -1;
-
 	loadReplays();
 	displayReplayList();
 }

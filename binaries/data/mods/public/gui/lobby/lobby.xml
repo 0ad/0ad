@@ -23,7 +23,7 @@
 
 		<!-- Left panel: Player list. -->
 		<object name="leftPanel" size="20 30 20% 100%-280">
-			<object name="playersBox" style="ModernList" sprite_asc="ModernArrowDown" default_column="name" sprite_desc="ModernArrowUp" sprite_not_sorted="ModernNotSorted" type="olist" sortable="true" size="0 0 100% 100%" font="sans-bold-stroke-13">
+			<object name="playersBox" style="ModernList" sprite_asc="ModernArrowDown" default_column="name" default_column_order="1" sprite_desc="ModernArrowUp" sprite_not_sorted="ModernNotSorted" type="olist" sortable="true" size="0 0 100% 100%" font="sans-bold-stroke-13">
 				<def id="status" width="26%">
 					<translatableAttribute id="heading">Status</translatableAttribute>
 				</def>
@@ -172,7 +172,7 @@
 
 		<!-- Middle panel: Filters, game list, chat box. -->
 		<object name="middlePanel" size="20%+5 5% 100%-255 97.2%">
-			<object name="gamesBox" style="ModernList" sprite_asc="ModernArrowDown" default_column="status" sprite_desc="ModernArrowUp" sprite_not_sorted="ModernNotSorted" type="olist" sortable="true" size="0 25 100% 48%" font="sans-stroke-13">
+			<object name="gamesBox" style="ModernList" sprite_asc="ModernArrowDown" default_column="status" default_column_order="1" sprite_desc="ModernArrowUp" sprite_not_sorted="ModernNotSorted" type="olist" sortable="true" size="0 25 100% 48%" font="sans-stroke-13">
 				<action on="SelectionChange">updateGameSelection();</action>
 				<action on="SelectionColumnChange">applyFilters();</action>
 				<action on="mouseleftdoubleclickitem">joinSelectedGame();</action>
