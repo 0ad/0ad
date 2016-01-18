@@ -320,7 +320,7 @@ then
   pushd $LIB_DIRECTORY
 
   # Can't use macosx-version, see above comment.
-(./bootstrap.sh --with-libraries=filesystem,system,signals --prefix=$INSTALL_DIR && ./b2 cflags="$CFLAGS" toolset=clang cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" ${JOBS} -d2 --layout=tagged --debug-configuration link=static threading=multi variant=release,debug install) || die "Boost build failed"
+(./bootstrap.sh --with-libraries=filesystem,system --prefix=$INSTALL_DIR && ./b2 cflags="$CFLAGS" toolset=clang cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" ${JOBS} -d2 --layout=tagged --debug-configuration link=static threading=multi variant=release,debug install) || die "Boost build failed"
 
   popd
   touch .already-built
