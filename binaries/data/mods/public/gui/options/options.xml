@@ -80,7 +80,7 @@
 			<action on="Press">saveChanges();</action>
 		</object>
 		<object type="button" style="ModernButtonRed" size="50%+70 100%-44 50%+170 100%-16">
-			<translatableAttribute id="caption">Quit</translatableAttribute>
+			<translatableAttribute id="caption">Close</translatableAttribute>
 			<translatableAttribute id="tooltip">Unsaved changes affect this session only</translatableAttribute>
 			<action on="Press">closePage();</action>
 		</object>

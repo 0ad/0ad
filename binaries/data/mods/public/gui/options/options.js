@@ -271,7 +271,7 @@ function closePage()
 	{
 		let btCaptions = [translate("No"), translate("Yes")];
 		let btCode = [null, function(){ closePageWithoutConfirmation(); }];
-		messageBox(500, 200, translate("You have unsaved changes, are you sure you want to quit ?"),
+		messageBox(500, 200, translate("You have unsaved changes, do you want to close this window ?"),
 			translate("Warning"), 0, btCaptions, btCode);
 	}
 	else
