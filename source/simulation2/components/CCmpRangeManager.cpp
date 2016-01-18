@@ -931,7 +931,7 @@ public:
 		return GetEntitiesByMask(((1 << MAX_LOS_PLAYER_ID) - 1) << 1);
 	}
 
-	virtual std::vector<entity_id_t> GetEntitiesByMask(u32 ownerMask)
+	std::vector<entity_id_t> GetEntitiesByMask(u32 ownerMask)
 	{
 		std::vector<entity_id_t> entities;
 
