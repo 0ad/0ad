@@ -164,6 +164,7 @@ public:
 			JSContext* cxNew = newScript.GetContext();
 			JSAutoRequest rqNew(cxNew);
 			JS::RootedValue tmpCommand(cxNew, newScript.CloneValueFromOtherContext(oldScript, command.data));
+			newScript.FreezeObject(tmpCommand, true);
 			SimulationCommand cmd(command.player, cxNew, tmpCommand);
 			newCommands.emplace_back(std::move(cmd));
 		}

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -298,6 +298,7 @@ void CNetTurnManager::AddCommand(int client, int player, JS::HandleValue data, u
 		return;
 	}
 
+	m_Simulation2.GetScriptInterface().FreezeObject(data, true);
 	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].emplace_back(player, m_Simulation2.GetScriptInterface().GetContext(), data);
 }
 
