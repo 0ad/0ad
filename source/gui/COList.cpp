@@ -95,6 +95,8 @@ void COList::SetupText()
 			m_SelectedDef = c;
 	}
 
+	if (m_SelectedDef != (size_t)-1)
+		GUI<CStr>::SetSetting(this, "selected_column", m_ObjectsDefs[m_SelectedDef].m_Id.substr(5));
 
 	// Generate texts
 	float buffered_y = 0.f;
