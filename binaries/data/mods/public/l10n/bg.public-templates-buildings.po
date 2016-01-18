@@ -5,6 +5,7 @@
 # Translators:
 # George Gbr <gbrgames2@gmail.com>, 2015
 # Ivailo Monev <xakepa10@gmail.com>, 2014
+# Lyubomir Vasilev, 2016
 # AccountKiller, 2015
 # yoreei <yoreei.grigorov@gmail.com>, 2014-2015
 # Симон Болоканов <sbolokanov@abv.bg>, 2014-2015
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-08 12:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-17 21:30+0000\n"
+"Last-Translator: Lyubomir Vasilev\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,29 +24,29 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr "Гражданска Структура"
+msgstr "Гражданска сграда"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr "Цивилен"
+msgstr "Гражданска"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Civic Center"
-msgstr "Цивилен Център"
+msgstr "Градски център"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:70
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Построй, за да получиш големи територии. Тренира граждани. Гарнизон: 20."
+msgstr "При построяване усвоява голяма територия. Обучава граждани. Гарнизон: 20."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:75
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
-msgstr "Цивилен Център"
+msgstr "Градски център"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
-msgstr "Увеличи популационната граница."
+msgstr "Увеличава ограничението за населението."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
@@ -65,17 +66,17 @@ msgstr "Къща"
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr "Лечебна Аура"
+msgstr "Лечебна аура"
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Лекува околните единици с 1 ХП на секунда"
+msgstr "Лекува околните единици с 1 ЖТ в секунда"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr "Тренира лечители. Гарнизира до 20 единици, които лекува бързо (3 ХП в секунда). Проучавава лечителни и религиозни подобрения."
+msgstr "Обучава лечители. Поддържа до 20 единици, които лекува бързо (3 ЖТ в секунда). Проучва лечителски и религиозни подобрения."
 
 #: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -94,28 +95,28 @@ msgstr "Храм"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr "Защитна Сграда"
+msgstr "Защитна сграда"
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:61
 msgid "Defensive"
-msgstr "Предпазва"
+msgstr "Защитава"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
-msgstr "Предпазваща Кула"
+msgstr "Защитна кула"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid ""
 "Shoots arrows. Garrison to provide extra defense. Needs the murder holes "
 "tech to protect its foot."
-msgstr ""
+msgstr "Изстрелва стрели. Поставете гарнизон за допълнителна защита. Изисква технологията „убийствени дупки“, за да защитава основата си."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
 #: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
-msgstr "Защитна Кула"
+msgstr "Защитна кула"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
@@ -130,51 +131,51 @@ msgstr "Наблюдателница"
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 msgid "Stone Wall"
-msgstr "Каменна Стена"
+msgstr "Каменна стена"
 
 #: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Заогради града си за здрава защита."
+msgstr "Загради града си със стабилна стена."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:30
 msgid "City Gate"
-msgstr "Градски Порти"
+msgstr "Градска порта"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:31
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Позволява на единиците да преминават през градски стени. Може да бъде заключена, за да се забрани достъпа."
+msgstr "Позволява на единиците да преминават през градските стени. Може да бъде заключена, за да се забрани достъпа."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:18
 #: simulation/templates/template_structure_defense_wall_medium.xml:18
 msgid "Wall Protection"
-msgstr "Защита със стени."
+msgstr "Защитна стена"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:19
 #: simulation/templates/template_structure_defense_wall_medium.xml:19
 msgid "Units on walls have 3 extra Armor levels"
-msgstr "Единици в стени имат 3 допълнителни точки за броня"
+msgstr "Единиците на стените получават 3 допълнителни точки броня"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:58
 msgid "Long wall segments can be converted to gates."
-msgstr "Големи части стена могат да се превърнат в порта."
+msgstr "Големите части стени могат да бъдат превърнати в порта."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:59
 msgid "Convert Stone Wall into City Gate"
-msgstr "Конвертирай Каменна стена към Градска Порта"
+msgstr "Превръщане на каменна стена в градска порта"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
-msgstr "Стенна Оръдейна Кула"
+msgstr "Стенна оръдейна кула"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Стреля стрели. Гарнизирай, за да защитиш градската стена срещу нападатели."
+msgstr "Изстрелва стрели. Поставете гарнизон за защита на градската стена от нападатели."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
-msgstr "Градска Стена"
+msgstr "Градска стена"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:46
 #: simulation/templates/template_structure_defense_wooden_tower.xml:45
@@ -183,16 +184,16 @@ msgstr "Дървена Кула"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
-msgstr "Економична Структура"
+msgstr "Икономическа сграда"
 
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr "Економично"
+msgstr "Икономическа"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Място за оставяне на храна. Проучава подобрения по събиране на храна."
+msgstr "Място за събиране на храна. Проучва подобрения за събирането на храна."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
@@ -203,7 +204,7 @@ msgstr "Ферма"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr "Прави търгуващи единици, които да търгуват с други пазари. Разменяй ресурси. Проучвай подобрения в търговията и бартера"
+msgstr "Създава търговски единици, които да търгуват с други пазари и да обменят ресурси. Проучва подобрения за търговията и обмена."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -215,7 +216,7 @@ msgstr "Пазар"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Място за оставяне на дърво, камък и метал. Проучва подобрения по събирането на тези ресурси."
+msgstr "Място за събиране на дърва, камъни и метал. Проучва подобрения за събирането на тези ресурси."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:32
 #: simulation/templates/template_structure_economic_storehouse.xml:24
@@ -229,28 +230,28 @@ msgstr "Селище"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr "Построй Цивилен Център на това място, за да разшириш територията си."
+msgstr "Постройте градски център на това място, за да разширите територията си."
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
-msgstr "Военна Структура"
+msgstr "Военна сграда"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr "Военно"
+msgstr "Военна"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Тренирай граждани-войни. Проучвай тренировъчни подобрения. Гарнизон: 10."
+msgstr "Обучава граждани-воини. Проучва тренировъчни подобрения. Гарнизон: 10."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
 msgid "Barracks"
-msgstr "Бараки"
+msgstr "Казарма"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr "Проучвай подобрения по оръжията и бронята."
+msgstr "Проучва подобрения за оръжията и броните."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -261,12 +262,12 @@ msgstr "Ковачница"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Строи се на брега. Конструира кораби и търгува по море. Проучва плавателни подобрения."
+msgstr "Може да се строи на брега. Конструира кораби и обслужва търговията по море. Проучва плавателни подобрения."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
 msgid "Dock"
-msgstr "Пристан"
+msgstr "Пристанище"
 
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_embassy.xml:25
@@ -279,7 +280,7 @@ msgstr "Посолство"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr "Тренирай герои, шампиони и обсадни оръжия. Проучвай подобрения по обсадни оръжия. Гарнизон: 20."
+msgstr "Тренира герои, шампиони и строи обсадни оръжия. Проучва подобрения за обсадните оръжия. Гарнизон: 20."
 
 #: simulation/templates/template_structure_military_fortress.xml:61
 msgid "City"
@@ -289,11 +290,11 @@ msgstr "Град"
 #: simulation/templates/template_structure_military_fortress.xml:25
 #: simulation/templates/template_structure_military_fortress.xml:58
 msgid "Fortress"
-msgstr "Замък"
+msgstr "Крепост"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
-msgstr "Ресурсна Структура"
+msgstr "Сграда за ресурси"
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
@@ -303,7 +304,7 @@ msgstr "Ресурси"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Отглеждай стадни животни за храна. Прати домашни животни тук, за да получиш малко храна или друг бонус (Все още не е имплементирано)."
+msgstr "Отглежда стадни животни за храна. Изпратете домашните животни тук, за да получите малко храна или друга награда (все още не е разработено)."
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
@@ -317,16 +318,16 @@ msgstr "Поле"
 
 #: simulation/templates/template_structure_resource_field.xml:29
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Бери зеленчуци за храна. Максимален брой събирачи: 5."
+msgstr "Произвежда зеленчуци за храна. Максимален брой събирачи: 5."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
 msgid "Special Building"
-msgstr "Специална Постройка"
+msgstr "Специална сграда"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr "Това е специална постройка, която е уникална за всяка цивилизация."
+msgstr "Това е специална постройка, която е различна за всяка цивилизация."
 
 #: simulation/templates/template_structure_wonder.xml:39
 msgid "Wonder"
@@ -336,140 +337,140 @@ msgstr "Чудо"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Донеси слава на своята цивилизация и добави големи площи към своята империя."
+msgstr "Прославя цивилизацията Ви приобщава големи територии към империята Ви."
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/mace_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 msgid "Stratēgeîon"
-msgstr "Stratēgeîon"
+msgstr "Стратегейон"
 
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
 msgid "Khalkeṓn"
-msgstr "Khalkeṓn"
+msgstr "Калкео̀н"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
 #: simulation/templates/structures/spart_civil_centre.xml:8
 msgid "Agorá"
-msgstr "Agorá"
+msgstr "Агора̀"
 
 #: simulation/templates/structures/athen_corral.xml:12
 #: simulation/templates/structures/mace_corral.xml:12
 #: simulation/templates/structures/sele_corral.xml:12
 #: simulation/templates/structures/spart_corral.xml:12
 msgid "Épaulos"
-msgstr "Épaulos"
+msgstr "Ѐпаулос"
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
 #: simulation/templates/structures/mace_defense_tower.xml:9
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgíon"
-msgstr "Pyrgíon"
+msgstr "Пиргѝон"
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
 #: simulation/templates/structures/spart_dock.xml:12
 msgid "Limḗn"
-msgstr "Limḗn"
+msgstr "Лимѐн"
 
 #: simulation/templates/structures/athen_farmstead.xml:12
 #: simulation/templates/structures/mace_farmstead.xml:12
 #: simulation/templates/structures/spart_farmstead.xml:12
 msgid "Sitobólion"
-msgstr "Sitobólion"
+msgstr "Ситобо̀лион"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
 msgid "Agroí"
-msgstr "Agroí"
+msgstr "Агроѝ"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
-msgstr "Epiteíkhisma"
+msgstr "Епитеѝкхисма"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Строй обсадни оръжия. Гарнизирай до 20 войника в тях за по-здрава защита."
+msgstr "Строи обсадни оръжия. Поддържа до 20 войници за по-сериозна защита."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
-msgstr "Гимназиум"
+msgstr "Гимназия"
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
 msgid "Gymnásion"
-msgstr "Gymnásion"
+msgstr "Гимна̀зион"
 
 #: simulation/templates/structures/athen_gymnasion.xml:22
 msgid "Train champion units."
-msgstr "Тренира елитни единици"
+msgstr "Тренира шампиони."
 
 #: simulation/templates/structures/athen_house.xml:18
 #: simulation/templates/structures/mace_house.xml:18
 #: simulation/templates/structures/sele_house.xml:18
 #: simulation/templates/structures/spart_house.xml:18
 msgid "Oîkos"
-msgstr "Oîkos"
+msgstr "Ойкос"
 
 #: simulation/templates/structures/athen_market.xml:5
 #: simulation/templates/structures/mace_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
 msgid "Empórios"
-msgstr "Empórios"
+msgstr "Емпо̀риос"
 
 #: simulation/templates/structures/athen_outpost.xml:5
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr "Гръцка Наблюдателница"
+msgstr "Гръцка наблюдателница"
 
 #: simulation/templates/structures/athen_outpost.xml:6
 #: simulation/templates/structures/mace_outpost.xml:6
 #: simulation/templates/structures/spart_outpost.xml:6
 msgid "Prophylakḗ"
-msgstr "Prophylakḗ"
+msgstr "Профилакѐ"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 msgid "Council Chamber"
-msgstr "Съветническа Камара"
+msgstr "Съветническа палата"
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 msgid "Prytaneîon"
-msgstr "Prytaneîon"
+msgstr "Пританейон"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
-msgstr "Тренирай герои. Проучвай специални технологии."
+msgstr "Тренира герои. Проучва специални технологии."
 
 #: simulation/templates/structures/athen_storehouse.xml:5
 #: simulation/templates/structures/mace_storehouse.xml:5
 #: simulation/templates/structures/sele_storehouse.xml:5
 #: simulation/templates/structures/spart_storehouse.xml:5
 msgid "Apothḗkē"
-msgstr "Apothḗkē"
+msgstr "Апотѐке"
 
 #: simulation/templates/structures/athen_temple.xml:9
 msgid "Neṓs"
-msgstr "Neṓs"
+msgstr "Нео̀с"
 
 #: simulation/templates/structures/athen_theatron.xml:32
 #: simulation/templates/structures/mace_theatron.xml:32
 #: simulation/templates/structures/spart_theatron.xml:32
 #: simulation/templates/structures/theb_theatron.xml:32
 msgid "Greek Theater"
-msgstr "Гръцки Театър"
+msgstr "Гръцки театър"
 
 #: simulation/templates/structures/athen_theatron.xml:33
 #: simulation/templates/structures/mace_theatron.xml:33
 #: simulation/templates/structures/spart_theatron.xml:33
 #: simulation/templates/structures/theb_theatron.xml:33
 msgid "Théātron"
-msgstr "Théātron"
+msgstr "Тѐатрон"
 
 #: simulation/templates/structures/athen_theatron.xml:35
 #: simulation/templates/structures/mace_theatron.xml:35
@@ -478,14 +479,14 @@ msgstr "Théātron"
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr ""
+msgstr "Еленѝзен (Елинизация): +20% териториално влияние за всички сгради докато съществува тѐатрона."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
 #: simulation/templates/structures/sele_wall_gate.xml:9
 #: simulation/templates/structures/spart_wall_gate.xml:9
 msgid "Pýlai"
-msgstr "Pýlai"
+msgstr "Пѝлаи"
 
 #: simulation/templates/structures/athen_wall_long.xml:10
 #: simulation/templates/structures/athen_wall_medium.xml:10
@@ -504,20 +505,20 @@ msgstr "Pýlai"
 #: simulation/templates/structures/spart_wall_short.xml:13
 #: simulation/templates/structures/spart_wallset_stone.xml:5
 msgid "Teîkhos"
-msgstr "Teîkhos"
+msgstr "Тейкос"
 
 #: simulation/templates/structures/athen_wall_tower.xml:9
 #: simulation/templates/structures/mace_wall_tower.xml:9
 #: simulation/templates/structures/sele_wall_tower.xml:9
 #: simulation/templates/structures/spart_wall_tower.xml:9
 msgid "Pýrgos"
-msgstr "Pýrgos"
+msgstr "Пѝргос"
 
 #: simulation/templates/structures/athen_wonder.xml:17
 #: simulation/templates/structures/mace_wonder.xml:17
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid "Naós Parthenṓn"
-msgstr "Партенон"
+msgstr "Нао̀с партено̀н"
 
 #: simulation/templates/structures/athen_wonder.xml:19
 #: simulation/templates/structures/mace_wonder.xml:19
@@ -525,88 +526,88 @@ msgstr "Партенон"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Донеси слава на своята цивилизация и добави големи площи към своята империя. Гарнизирай до 30 единици, за да ги излекуваш много бързо."
+msgstr "Прославя цивилизацията Ви и добави приобщава големи територии към империята Ви. Поставете до 30 единици на гарнизон, за да ги излекувате бързо."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
-msgstr "Gwersyllty"
+msgstr "Гуерсилти"
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/gaul_blacksmith.xml:8
 msgid "Amoridas"
-msgstr "Amoridas"
+msgstr "Аморидас"
 
 #: simulation/templates/structures/brit_civil_centre.xml:9
 #: simulation/templates/structures/gaul_civil_centre.xml:9
 msgid "Caer"
-msgstr "Caer"
+msgstr "Каер"
 
 #: simulation/templates/structures/brit_corral.xml:9
 #: simulation/templates/structures/gaul_corral.xml:9
 msgid "Cavalidos"
-msgstr "Cavalidos"
+msgstr "Кавалидос"
 
 #: simulation/templates/structures/brit_crannog.xml:21
 msgid "Island Settlement"
-msgstr "Островно Селище"
+msgstr "Островно селище"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways."
-msgstr ""
+msgstr "Увеличава ограничението за населението и защитава водните пътища."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
-msgstr "Crannóc"
+msgstr "Кранно̀к"
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_wall_tower.xml:11
 #: simulation/templates/structures/gaul_defense_tower.xml:9
 #: simulation/templates/structures/gaul_wall_tower.xml:11
 msgid "Tyrau"
-msgstr "Tyrau"
+msgstr "Тирау"
 
 #: simulation/templates/structures/brit_farmstead.xml:8
 #: simulation/templates/structures/gaul_farmstead.xml:12
 msgid "Ffermdy"
-msgstr "Ffermdy"
+msgstr "Ффермди"
 
 #: simulation/templates/structures/brit_field.xml:5
 #: simulation/templates/structures/gaul_field.xml:5
 msgid "Varmo"
-msgstr "Varmo"
+msgstr "Вармо"
 
 #: simulation/templates/structures/brit_fortress.xml:21
 msgid "Brythonic Broch"
-msgstr "Британски Брох"
+msgstr "Британски брох"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Тренирай Британски герои и елитни единици. Конструирай обсадни тарани."
+msgstr "Тренира британски герои и шампиони. Строи обсадни тарани."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
 msgid "Annedd"
-msgstr "Аннедд"
+msgstr "Аннед"
 
 #: simulation/templates/structures/brit_kennel.xml:33
 msgid "Kennel"
-msgstr "Кучешка колиба"
+msgstr "Развъдник"
 
 #: simulation/templates/structures/brit_kennel.xml:35
 msgid "Train Celtic war dogs."
-msgstr "Тренирай Келтски военни кучета."
+msgstr "Обучава келтски военни кучета."
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
 msgid "Marchnaty"
-msgstr "Marchnaty"
+msgstr "Марчнати"
 
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
-msgstr "Британска Наблюдателница"
+msgstr "Британска наблюдателница"
 
 #: simulation/templates/structures/brit_rotarymill.xml:21
 #: simulation/templates/structures/gaul_rotarymill.xml:21
@@ -616,27 +617,27 @@ msgstr "Земеделски бонус"
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
 msgid "Boosts nearby farming with +25%."
-msgstr "Увеличава околното земеделство  с +25%."
+msgstr "Увеличава земеделието наоколо с +25%."
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
 msgid "Rotary Mill"
-msgstr "Въртяща се Мелница"
+msgstr "Въртяща мелница"
 
 #: simulation/templates/structures/brit_rotarymill.xml:34
 #: simulation/templates/structures/gaul_rotarymill.xml:34
 msgid "Melonas"
-msgstr "Melonas"
+msgstr "Мелонас"
 
 #: simulation/templates/structures/brit_rotarymill.xml:35
 #: simulation/templates/structures/gaul_rotarymill.xml:35
 msgid "Increase nearby farming output +25%."
-msgstr "Увеличава продукцията на околното земеделство с +25%."
+msgstr "Увеличава земеделската продукцията наоколо с +25%."
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
 msgid "Ystordy"
-msgstr "Ystordy"
+msgstr "Исторди"
 
 #: simulation/templates/structures/brit_temple.xml:19
 #: simulation/templates/structures/gaul_temple.xml:19
@@ -645,7 +646,7 @@ msgstr "Адолди"
 
 #: simulation/templates/structures/brit_wall_gate.xml:16
 msgid "Dor"
-msgstr "Dor"
+msgstr "Дор"
 
 #: simulation/templates/structures/brit_wall_long.xml:29
 #: simulation/templates/structures/brit_wall_medium.xml:26
@@ -656,12 +657,12 @@ msgstr "Dor"
 #: simulation/templates/structures/gaul_wall_short.xml:13
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
 msgid "Gwarchglawdd"
-msgstr "Gwarchglawdd"
+msgstr "Гларчглалд"
 
 #: simulation/templates/structures/brit_wall_tower.xml:13
 #: simulation/templates/structures/gaul_wall_tower.xml:13
 msgid "Does not shoot or garrison."
-msgstr "Не стреля и не поема гарнизон"
+msgstr "Не стреля и не приема гарнизон."
 
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
@@ -670,13 +671,13 @@ msgstr "Стоунхендж"
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
-msgstr "Maḥanēt"
+msgstr "Маханет"
 
 #: simulation/templates/structures/cart_barracks.xml:20
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Тренирай Северно Африкански граждани-войни. Проучавай подобрения за Северно Африканските единици."
+msgstr "Тренира северноафрикански граждани-войни. Проучва подобрения за северноафриканските единици."
 
 #: simulation/templates/structures/cart_blacksmith.xml:5
 #: simulation/templates/structures/ptol_blacksmith.xml:5
@@ -687,34 +688,34 @@ msgstr "?"
 
 #: simulation/templates/structures/cart_civil_centre.xml:5
 msgid "Merkāz"
-msgstr "Merkāz"
+msgstr "Мерказ"
 
 #: simulation/templates/structures/cart_corral.xml:12
 msgid "Rēfet"
-msgstr "Rēfet"
+msgstr "Рефет"
 
 #: simulation/templates/structures/cart_defense_tower.xml:9
 #: simulation/templates/structures/cart_wall_tower.xml:12
 msgid "Mijdil"
-msgstr "Mijdil"
+msgstr "Мийдил"
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
-msgstr "Комерсиален Пристан"
+msgstr "Търговско пристанище"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
-msgstr "Namel"
+msgstr "Намел"
 
 #: simulation/templates/structures/cart_dock.xml:20
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Конструирай рибарски лодки, които да събират храна и търговски кораби, които да търгуват с други пристанища"
+msgstr "Строи рибарски лодки за събиране на храна и търговски кораби за търговия с други пристанища."
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
-msgstr "Наеми наемници"
+msgstr "Предлага наемници."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
@@ -722,92 +723,92 @@ msgstr "Келтско посолство"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "Наеми Келтски наемници. Проучвай подобрения за тези наемници."
+msgstr "Предлага келтски наемници. Проучва подобрения за тези наемници."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
-msgstr "Иберийско Посолство."
+msgstr "Иберийско посолство."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Наемай Иберийски наемници. Проучвай подобрения за тези наемници."
+msgstr "Предлага иберийски наемници. Проучва подобрения за тези наемници."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italiote Embassy"
-msgstr "Италиотски наемници"
+msgstr "Италианско посолство"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Наемай Италиански наемници. Проучвай подобрения за тези наемници"
+msgstr "Предлага италиански наемници. Проучва подобрения за тези наемници."
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
-msgstr "Aḥuzāh"
+msgstr "Ахузах"
 
 #: simulation/templates/structures/cart_field.xml:5
 msgid "Šadd"
-msgstr "Šadd"
+msgstr "Сад"
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
-msgstr "Укрепен Форт"
+msgstr "Блокпост"
 
 #: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
-msgstr "Ḥamet"
+msgstr "Хамет"
 
 #: simulation/templates/structures/cart_house.xml:22
 msgid "Bet"
-msgstr "Bet"
+msgstr "Бет"
 
 #: simulation/templates/structures/cart_market.xml:12
 msgid "Šūq"
-msgstr "Šūq"
+msgstr "Шук"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr "Картагенска Наблюдателница"
+msgstr "Картагенска наблюдателница"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
-msgstr "Maḥṣabah"
+msgstr "Махсабах"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Naval Shipyard"
-msgstr "Морска Корабостроителница"
+msgstr "Корабостроителница"
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Cothon"
-msgstr "Cothon"
+msgstr "Котхон"
 
 #: simulation/templates/structures/cart_super_dock.xml:14
 msgid "Construct and repair mighty warships."
-msgstr "Конструирай и поправяй могъщи кораби"
+msgstr "Строи и поправя могъщи военни кораби."
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
-msgstr "Maqdaš"
+msgstr "Макдас"
 
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr "Тренирай жрици, които лекуват твоите воини. Тренирай Компиеносци на Свещената Лента. Гарнизирай до 20 единици и ги лекувай бързо."
+msgstr "Тренира жрици, които да лекуват воините. Тренира копиеносци на свещената лента. Поставете до 20 единици на гарнизон, за да ги излекувате бързо."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
 msgid "Jdar"
-msgstr "Jdar"
+msgstr "Ждар"
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
-msgstr "Mijdil-šaʿar"
+msgstr "Мийдил-ша-ар"
 
 #: simulation/templates/structures/cart_wall_long.xml:29
 #: simulation/templates/structures/cart_wall_medium.xml:23
 #: simulation/templates/structures/cart_wall_short.xml:10
 msgid "Homah"
-msgstr "Homah"
+msgstr "Хомах"
 
 #: simulation/templates/structures/cart_wonder.xml:17
 msgid "Temple of Ba'al Hammon"
@@ -815,15 +816,15 @@ msgstr "Храм на Ба'ал Хамон"
 
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
-msgstr "Gallic Dun"
+msgstr "Галски дун"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Тренирай галски герои и елитни войски. Конструирай обсадни тарани"
+msgstr "Тренира галски герои и шампиони. Строи обсадни тарани."
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
-msgstr "Галски Пост"
+msgstr "Галска наблюдателница"
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
@@ -831,31 +832,31 @@ msgstr "Таверна"
 
 #: simulation/templates/structures/gaul_tavern.xml:24
 msgid "Taberna"
-msgstr "Taberna"
+msgstr "Таберна"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Добави +10 към популационната граница. Наемай Голи Фанатици."
+msgstr "Добавя +10 към ограничението на населението. Предлага голи фанатици за наемане."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
-msgstr "Duro"
+msgstr "Дуро"
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
-msgstr "Kaserna"
+msgstr "Касерна"
 
 #: simulation/templates/structures/iber_blacksmith.xml:5
 msgid "Harotz"
-msgstr "Harotz"
+msgstr "Харотз"
 
 #: simulation/templates/structures/iber_civil_centre.xml:5
 msgid "Oppidum"
-msgstr "Oppidum"
+msgstr "Опидум"
 
 #: simulation/templates/structures/iber_corral.xml:12
 msgid "Saroe"
-msgstr "Saroe"
+msgstr "Сарое"
 
 #: simulation/templates/structures/iber_defense_tower.xml:32
 #: simulation/templates/structures/iber_wall_tower.xml:9
@@ -864,45 +865,45 @@ msgstr "Доре"
 
 #: simulation/templates/structures/iber_dock.xml:12
 msgid "Kai"
-msgstr "Kai"
+msgstr "Каи"
 
 #: simulation/templates/structures/iber_farmstead.xml:5
 msgid "Baserri"
-msgstr "Baserri"
+msgstr "Басерри"
 
 #: simulation/templates/structures/iber_field.xml:5
 msgid "Soro"
-msgstr "Soro"
+msgstr "Соро"
 
 #: simulation/templates/structures/iber_fortress.xml:16
 msgid "Castro"
-msgstr "Castro"
+msgstr "Кастро"
 
 #: simulation/templates/structures/iber_house.xml:12
 msgid "Etxe"
-msgstr "Etxe"
+msgstr "Етксе"
 
 #: simulation/templates/structures/iber_market.xml:12
 msgid "Arruga"
-msgstr "Arruga"
+msgstr "Арруга"
 
 #: simulation/templates/structures/iber_monument.xml:38
 msgid "Revered Monument"
-msgstr "Почитан Монумент"
+msgstr "Почитаем паметник"
 
 #: simulation/templates/structures/iber_monument.xml:39
 msgid "Gur Oroigarri"
-msgstr "Gur Oroigarri"
+msgstr "Гур Ороигарри"
 
 #: simulation/templates/structures/iber_monument.xml:41
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
-msgstr "Всички единици в околностите на този монумент ще се бият по-силно. Дължина на ефекта: 50 метра."
+msgstr "Всички единици в околностите на този паметник ще се бият по-усилено. Радиус на ефекта: 50 метра."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
-msgstr "Иберийска Наблюдателница"
+msgstr "Иберийска наблюдателница"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
@@ -910,7 +911,7 @@ msgstr "Ола"
 
 #: simulation/templates/structures/iber_temple.xml:12
 msgid "Loki"
-msgstr "Loki"
+msgstr "Локи"
 
 #: simulation/templates/structures/iber_wall.xml:9
 #: simulation/templates/structures/iber_wall_long.xml:29
@@ -918,29 +919,29 @@ msgstr "Loki"
 #: simulation/templates/structures/iber_wall_short.xml:13
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
-msgstr "Zabal Horma"
+msgstr "Забал хорма"
 
 #: simulation/templates/structures/iber_wall_gate.xml:9
 msgid "Biko Sarbide"
-msgstr "Бико Сарбиде"
+msgstr "Бико сарбиде"
 
 #: simulation/templates/structures/iber_wonder.xml:17
 msgid "Cancho Roano"
-msgstr "Cancho Roano"
+msgstr "Канчо роано"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
-msgstr ""
+msgstr "Сидероургейон"
 
 #: simulation/templates/structures/mace_fortress.xml:15
 msgid "Teíchisma"
-msgstr "Teíchisma"
+msgstr "Теѝчисма"
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
 "defense."
-msgstr "Тренирай Елитни войски и Герои. Гарнизирай до 20 войника за по-здрава защита."
+msgstr "Тренира шампиони и герои. Поддържа до 20 войници за по-сериозна защита."
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
@@ -951,7 +952,7 @@ msgstr "Библиотека"
 #: simulation/templates/structures/mace_library.xml:16
 #: simulation/templates/structures/ptol_library.xml:16
 msgid "Bibliothḗkē"
-msgstr ""
+msgstr "Библиотѐке"
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -959,108 +960,108 @@ msgstr ""
 msgid ""
 "Research special technologies and reduce the research time of all remaining "
 "technologies."
-msgstr "Проучавай специални технологии и намали времето за проучване на всички останали технологии"
+msgstr "Проучва специални технологии и намалява времето за проучване на всички останали технологии."
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
-msgstr ""
+msgstr "Синергейон полиоркето̀н"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
-msgstr "Обсадна Работилница"
+msgstr "Обсадна работилница"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr "Строй обсадни оръжия. Проучвай обсадни технологии."
+msgstr "Строи обсадни оръжия. Проучва обсадни технологии."
 
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
-msgstr "Asklēpieîon"
+msgstr "Асклепиейон"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
-msgstr "Sainyavasa"
+msgstr "Саиняваса"
 
 #: simulation/templates/structures/maur_blacksmith.xml:5
 msgid "Lohakāra"
-msgstr "Lohakāra"
+msgstr "Лохакара"
 
 #: simulation/templates/structures/maur_civil_centre.xml:9
 msgid "Rajadhanika"
-msgstr "Rajadhanika"
+msgstr "Раджадханика"
 
 #: simulation/templates/structures/maur_corral.xml:12
 msgid "Gotra"
-msgstr ""
+msgstr "Готра"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
 msgid "Udarka"
-msgstr "Udarka"
+msgstr "Ударка"
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
-msgstr "Naukasthanaka"
+msgstr "Наукастханака"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:21
 msgid "Elephant Stables"
-msgstr "Слонски Конюшни"
+msgstr "Слонска ясла"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:22
 msgid "Vāraṇaśālā"
-msgstr "Vāraṇaśālā"
+msgstr "Варанашала"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:26
 msgid "Train elephant units."
-msgstr "Тренира слонски единици"
+msgstr "Тренира слонски единици."
 
 #: simulation/templates/structures/maur_farmstead.xml:12
 msgid "Kantu"
-msgstr "Kantu"
+msgstr "Канту"
 
 #: simulation/templates/structures/maur_field.xml:5
 msgid "Kshetra"
-msgstr "Kshetra"
+msgstr "Кшетра"
 
 #: simulation/templates/structures/maur_fortress.xml:5
 msgid "Durg"
-msgstr "Durg"
+msgstr "Дург"
 
 #: simulation/templates/structures/maur_fortress.xml:7
 msgid "Train heroes and champion units."
-msgstr "Тренирай герои и елитни единици"
+msgstr "Тренира герои и шампиони."
 
 #: simulation/templates/structures/maur_house.xml:9
 msgid "Griham"
-msgstr "Griham"
+msgstr "Грихам"
 
 #: simulation/templates/structures/maur_market.xml:12
 msgid "Vipana"
-msgstr "Vipana"
+msgstr "Випана"
 
 #: simulation/templates/structures/maur_outpost.xml:5
 msgid "Uparaksana"
-msgstr "Uparaksana"
+msgstr "Упараксана"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:26
 msgid "Edict Pillar of Ashoka"
-msgstr "Едиктов зъбер на Ашока"
+msgstr "Декретен стълб на Ашока"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:27
 msgid "Śāsana Stambha Aśokā"
-msgstr "Śāsana Stambha Aśokā"
+msgstr "Шасана стамбха Ашока"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:29
 msgid "The famous pillar of Ashoka. Currently a useless structure."
-msgstr "Известният стълб на Ашока. За момента е безполезна структура."
+msgstr "Известният стълб на Ашока. За сега е безполезна структура."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
-msgstr "Khalla"
+msgstr "Кхала"
 
 #: simulation/templates/structures/maur_temple.xml:12
 msgid "Devalaya"
-msgstr "Девалайа"
+msgstr "Девалая"
 
 #: simulation/templates/structures/maur_wall.xml:9
 #: simulation/templates/structures/maur_wall_long.xml:35
@@ -1068,41 +1069,41 @@ msgstr "Девалайа"
 #: simulation/templates/structures/maur_wall_short.xml:16
 #: simulation/templates/structures/maur_wallset_stone.xml:5
 msgid "Shilabanda"
-msgstr "Shilabanda"
+msgstr "Шилабанда"
 
 #: simulation/templates/structures/maur_wall_gate.xml:9
 msgid "Dwara"
-msgstr "Dwara"
+msgstr "Длара"
 
 #: simulation/templates/structures/maur_wall_tower.xml:18
 msgid "Puratta"
-msgstr "Puratta"
+msgstr "Пурата"
 
 #: simulation/templates/structures/maur_wonder.xml:9
 msgid "Great Stupa"
-msgstr "Велика Ступа"
+msgstr "Велика ступа"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr "НаеменЛагер"
+msgstr "Наемнически лагер"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
-msgstr "Наемен Лагер (Египетски)"
+msgstr "Наемнически лагер (египетски)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
-msgstr "Stratópedo Misthophóron Aigyptiakós"
+msgstr "Страто̀педо мистофо̀рон айгиптиако̀с"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Завладей тази структура, за да тренираш наемници от Елински Египет."
+msgstr "Завладейте това, за да обучавате наемници от Елинистически Египет."
 
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
 msgid "Persian Palace"
-msgstr "Персийски Палас"
+msgstr "Персийски палат"
 
 #: simulation/templates/structures/pers_apadana.xml:27
 msgid "Apadana"
@@ -1113,107 +1114,107 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr "\"Сатрапен Данък\": Получавай малко храна, дърво, камък и метал. Тренира Персийски герои и техните \"Безсмъртни\" бодигарди. Строежен лимит: 1."
+msgstr "„Сатрапен данък“: Получавате малко храна, дърва, камъни и метал. Можете да обучавате персийски герои и техните „безсмъртни“ телохранители. Ограничение за построяване: 1."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
-msgstr "Padgan"
+msgstr "Падган"
 
 #: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
-msgstr "Мобилизирай граждани-войни"
+msgstr "Мобилизира граждани-пехотинци."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
-msgstr "Arštišta"
+msgstr "Арщища"
 
 #: simulation/templates/structures/pers_civil_centre.xml:5
 msgid "Provincial Governor"
-msgstr "Управител на Провинция"
+msgstr "Управител на провинция"
 
 #: simulation/templates/structures/pers_civil_centre.xml:6
 msgid "Xšaçapāvan"
-msgstr "Xšaçapāvan"
+msgstr "Кшатрапаван"
 
 #: simulation/templates/structures/pers_corral.xml:12
 msgid "Gaiāšta"
-msgstr "Gaiāšta"
+msgstr "Галаща"
 
 #: simulation/templates/structures/pers_defense_tower.xml:5
 #: simulation/templates/structures/pers_wall_tower.xml:9
 msgid "Pāyaud"
-msgstr "Pāyaud"
+msgstr "Паяуд"
 
 #: simulation/templates/structures/pers_dock.xml:12
 msgid "Nāvašta"
-msgstr "Nāvašta"
+msgstr "Наваща"
 
 #: simulation/templates/structures/pers_farmstead.xml:12
 msgid "Kaštašta"
-msgstr "Kaštašta"
+msgstr "Кащаща"
 
 #: simulation/templates/structures/pers_field.xml:5
 msgid "Kaštrya"
-msgstr "Kaštrya"
+msgstr "Кащрия"
 
 #: simulation/templates/structures/pers_fortress.xml:5
 msgid "Didā"
-msgstr "Didā"
+msgstr "Дида"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Тренирай Елитна Кавалерия и Конструирай Обсадни Тарани"
+msgstr "Обучава шампиони конници и строи обсадни тарани."
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
-msgstr "Huvādā"
+msgstr "Хувада"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:20
 msgid "Ishtar Gate of Babylon"
-msgstr "Ищар Врата на Вавилон"
+msgstr "Портата на Ищар на Вавилон"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:21
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Special Imperial Roman building."
-msgstr "Специална Империална Римска Крепост"
+msgstr "Специална имперска римска крепост."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
-msgstr "Ardatašta"
+msgstr "Ардатаща"
 
 #: simulation/templates/structures/pers_outpost.xml:5
 msgid "Didebani"
-msgstr "Didebani"
+msgstr "Дидебани"
 
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Palace"
-msgstr "Палас"
+msgstr "Палат"
 
 #: simulation/templates/structures/pers_palace.xml:30
 msgid "Build Limit: 1."
-msgstr "Лимит за строене: 1."
+msgstr "Ограничение за строене: 1."
 
 #: simulation/templates/structures/pers_sb2.xml:22
 msgid "Persian Special Building"
-msgstr "Персийска Специална Постройка"
+msgstr "Специална персийска сграда"
 
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
-msgstr "Parihuvādā"
+msgstr "Парихувада"
 
 #: simulation/templates/structures/pers_sb2.xml:26
 msgid ""
 "Special Building.\n"
 "Train War Elephants and Kardakes mercenaries."
-msgstr "Специална Постройка.\nТренира Военни Слонове и наемници от Каркадес"
+msgstr "Специална сграда.\nОбучава военни слонове и наемници Каркадес."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
-msgstr "Кавалерски Конюшни"
+msgstr "Конюшни на конницата"
 
 #: simulation/templates/structures/pers_stables.xml:19
 msgid "Paraspa"
-msgstr "Paraspa"
+msgstr "Параспа"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
@@ -1221,15 +1222,15 @@ msgstr "Конюшни"
 
 #: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
-msgstr "Тренира граждано-кавалерииски единици"
+msgstr "Обучава граждани-конници."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
-msgstr "Asiyah"
+msgstr "Асиях"
 
 #: simulation/templates/structures/pers_temple.xml:12
 msgid "Ayadana"
-msgstr "Ayadana"
+msgstr "Аядана"
 
 #: simulation/templates/structures/pers_wall.xml:9
 #: simulation/templates/structures/pers_wall_long.xml:29
@@ -1237,53 +1238,53 @@ msgstr "Ayadana"
 #: simulation/templates/structures/pers_wall_short.xml:10
 #: simulation/templates/structures/pers_wallset_stone.xml:5
 msgid "Para"
-msgstr "Para"
+msgstr "Пара"
 
 #: simulation/templates/structures/pers_wall_gate.xml:9
 msgid "Duvitaparnam"
-msgstr "Duvitaparnam"
+msgstr "Дувитапарнам"
 
 #: simulation/templates/structures/pers_wonder.xml:12
 msgid "Hanging Gardens of Babylon"
-msgstr "Висящите Градини на Вавилон"
+msgstr "Висящите градини на Вавилон"
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
-msgstr "ḥwt-n-mš'"
+msgstr "хлт-н-мш'"
 
 #: simulation/templates/structures/ptol_barracks.xml:19
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements. Garrison: 10."
-msgstr "Тренирай Египетски и Средно-Източни цивилни войници. Проучвай тренировъчни подобрения. Гарнизон: 10."
+msgstr "Обучава египетски и средноизточни граждани-войници. Проучва тренировъчни подобрения. Гарнизон: 10."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
-msgstr "pr-'a"
+msgstr "пр-'а"
 
 #: simulation/templates/structures/ptol_corral.xml:19
 msgid "h-n-ssmt.w"
-msgstr "h-n-ssmt.w"
+msgstr "х-н-ссмт.л"
 
 #: simulation/templates/structures/ptol_defense_tower.xml:9
 msgid "mktr-n-ḏw"
-msgstr "mktr-n-ḏw"
+msgstr "мктр-н-дл"
 
 #: simulation/templates/structures/ptol_dock.xml:12
 msgid "ḥwt-n-dpt.w"
-msgstr "ḥwt-n-dpt.w"
+msgstr "хлт-н-дпт.л"
 
 #: simulation/templates/structures/ptol_farmstead.xml:19
 msgid "pr-n-t"
-msgstr "pr-n-t"
+msgstr "пр-н-т"
 
 #: simulation/templates/structures/ptol_fortress.xml:9
 msgid "mktr-'a"
-msgstr "mktr-'a"
+msgstr "мктр-'а"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid "ḥwt"
-msgstr "ḥwt"
+msgstr "хлт"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1291,32 +1292,32 @@ msgstr "Фар"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pháros"
-msgstr "Pháros"
+msgstr "Фа̀рос"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
-msgstr "Построй по брега, за да разкриеш бреговите ивици по цялата карта. Много голям обсег на виждане: 180 метра."
+msgstr "Може да се строи по брега. Разкрива бреговите ивици по цялата карта. Много голям обсег на видимост: 180 метра."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
-msgstr "ḥwt-n-ḫt.w-wḫa.w"
+msgstr "хлт-н-хт.л-лха.л"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
-msgstr "Наемен Лагер"
+msgstr "Наемнически лагер"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
-msgstr ""
+msgstr "Стратопедеѝя мистофо̀рон "
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Евтини структури подобни на бараки, които могат да се строят в Неутрална територия, но не правят промяна по територията.\n-Тренирай Наемници.\n-Минимална дистанция от други Военни Постройки: 100 метра."
+msgstr "Евтина казармоподобна сграда, която може да се строи на неутрална територия, но не влияе на териториите.\n— Обучава наемници;\n— Минимално отстояние от други военни постройки: 100 метра."
 
 #: simulation/templates/structures/ptol_military_colony.xml:24
 #: simulation/templates/structures/sele_military_colony.xml:24
@@ -1326,159 +1327,159 @@ msgstr "Колония"
 #: simulation/templates/structures/ptol_military_colony.xml:46
 #: simulation/templates/structures/sele_military_colony.xml:46
 msgid "Military Colony"
-msgstr "Военна Колония"
+msgstr "Военна колония"
 
 #: simulation/templates/structures/ptol_military_colony.xml:47
 msgid "Klēroukhía"
-msgstr "Klēroukhía"
+msgstr "Клероукхѝя"
 
 #: simulation/templates/structures/ptol_military_colony.xml:50
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Това е Птоломейската разширителна постройка, подобна на Цивилните Центрове от другите фракции. Тя е по-слаба и носи по-малко територия, но е по-евтина и се строи по-бързо.\n-Тренира войници-заселници от други националности.\n-Минимална дистанция от други Военни Колонии: 120 метра."
+msgstr "Това е птолемейската разширителна постройка, подобна на градските центрове в другите фракции. Тя е по-слаба и завзема по-малко територия, но е по-евтина и се строи по-бързо.\n— Обучава войници-заселници от различни националности;\n— Минимално отстояние от други военни колонии: 120 метра."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
-msgstr "mktr-n-ḫt"
+msgstr "мктр-н-хт"
 
 #: simulation/templates/structures/ptol_storehouse.xml:18
 msgid "h-n-ḫt.w"
-msgstr "h-n-ḫt.w"
+msgstr "х-н-хтл"
 
 #: simulation/templates/structures/ptol_wall_gate.xml:9
 msgid "sba-n-njwt"
-msgstr "sba-n-njwt"
+msgstr "сба-н.нйлт"
 
 #: simulation/templates/structures/ptol_wall_long.xml:29
 #: simulation/templates/structures/ptol_wall_medium.xml:23
 #: simulation/templates/structures/ptol_wall_short.xml:10
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
-msgstr "h-n-njwt"
+msgstr "х-н-нйлт"
 
 #: simulation/templates/structures/ptol_wall_tower.xml:9
 msgid "mktr"
-msgstr "mktr"
+msgstr "мктр"
 
 #: simulation/templates/structures/ptol_wonder.xml:17
 msgid "Temple of Edfu"
-msgstr "Хран на Едфу"
+msgstr "Храм на Едфу"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
-msgstr "Триумфална Арка"
+msgstr "Триумфална арка"
 
 #: simulation/templates/structures/rome_army_camp.xml:58
 msgid "Entrenched Army Camp"
-msgstr "Укрепен Военен Лагер"
+msgstr "Укрепен военен лагер"
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Castrum Vallum"
-msgstr "Castrum Vallum"
+msgstr "Каструм валум"
 
 #: simulation/templates/structures/rome_army_camp.xml:64
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Строй навсякъде из картата, дори на вражеска територия. Конструира обсадни оръжия и тренира граждани-воини. Лекува гарнизираните единици бавно."
+msgstr "Може да бъде построен навсякъде из картата, дори на вражеска територия. Строи обсадни оръжия и обучава граждани-войници. Лекува единиците на гарнизон бавно."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
-msgstr "Castrum"
+msgstr "Каструм"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armamentarium"
-msgstr "Armamentarium"
+msgstr "Армаментариум"
 
 #: simulation/templates/structures/rome_civil_centre.xml:9
 msgid "Forum"
-msgstr "Forum"
+msgstr "Форум"
 
 #: simulation/templates/structures/rome_corral.xml:12
 msgid "Saeptum"
-msgstr "Saeptum"
+msgstr "Саептум"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 msgid "Turris Lignea"
-msgstr "Turris Lignea"
+msgstr "Туррис лигнеа"
 
 #: simulation/templates/structures/rome_dock.xml:12
 msgid "Portus"
-msgstr "Portus"
+msgstr "Портус"
 
 #: simulation/templates/structures/rome_farmstead.xml:12
 msgid "Villa"
-msgstr "Villa"
+msgstr "Вила"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
-msgstr "Ager"
+msgstr "Агер"
 
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
-msgstr "Castellum"
+msgstr "Кастелум"
 
 #: simulation/templates/structures/rome_house.xml:18
 msgid "Domus"
-msgstr "Domus"
+msgstr "Домус"
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercatus"
-msgstr "Mercatus"
+msgstr "Меркатус"
 
 #: simulation/templates/structures/rome_outpost.xml:5
 msgid "Vigilarium"
-msgstr "Vigilarium"
+msgstr "Вигилариум"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:31
 msgid "Siege Wall Gate"
-msgstr "Врата на Обсадна Стена"
+msgstr "Порта на обсадна стена"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:32
 msgid "Porta Circummunitionis"
-msgstr "Porta Circummunitionis"
+msgstr "Порта циркуммунитионис"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:51
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr "Обсадна Стена"
+msgstr "Обсадна стена"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:52
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 msgid "Murus Circummunitionis"
-msgstr "Murus Circummunitionis"
+msgstr "Мурус циркуммунитионис"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:57
 #: simulation/templates/structures/rome_siege_wall_medium.xml:51
 #: simulation/templates/structures/rome_siege_wall_short.xml:38
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr "Дървена и торфена палисада, която може да се строи на вражеска и неутрална територия."
+msgstr "Ограда от дърво и торф, която може да се строи както на вражеска, така и на неутрална територия."
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:58
 msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Конвертирай Обсадна Стена към Порта  в Обсадна Стена"
+msgstr "Превръщане на обсадна стена в порта на обсадна стена"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
-msgstr "Кула на Обсадна Стена"
+msgstr "Кула на обсадна стена"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
-msgstr "Turris Circummunitionis"
+msgstr "Туррис циркуммунитионис"
 
 #: simulation/templates/structures/rome_storehouse.xml:5
 msgid "Receptaculum"
-msgstr "Receptaculum"
+msgstr "Рецептакулум"
 
 #: simulation/templates/structures/rome_temple.xml:9
 msgid "Aedes"
-msgstr "Aedes"
+msgstr "Аедес"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
@@ -1486,11 +1487,11 @@ msgstr "Храм на Марс"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedes Martis"
-msgstr "Aedes Martis"
+msgstr "Аедес Мартис"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Тренирай лечители. Гарнизирай до 30 единици и ги лекувай с голяма бързина"
+msgstr "Обучава лечители. Поставете до 30 единици на гарнизон, за да ги излекувате бързо."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:12
 msgid "Temple of Vesta"
@@ -1498,13 +1499,13 @@ msgstr "Храм на Веста"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
-msgstr "Aedes Vestae"
+msgstr "Аедес Вестае"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid ""
 "Build this temple to greatly increase the loyalty of your buildings and "
 "female-citizens (helps prevent their capture)."
-msgstr "Постой този храм, за да увеличиш многократно лойалността на твоите крепости и жени-граждани (помага в предотвратяването на тяхното залавяне)"
+msgstr "Този храм увеличава многократно верността на сградите и на жените-граждани (помага в предотвратяването на залавянето им)."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1512,11 +1513,11 @@ msgstr "Палатка"
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"
-msgstr "Tabernāculum"
+msgstr "Табернакулум"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "Временно убежище за войници. +5 популационен бонус"
+msgstr "Временно убежище за войници. +5 допълнително население."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
@@ -1524,57 +1525,57 @@ msgstr "Временно убежище за войници. +5 популаци
 #: simulation/templates/structures/rome_wall_short.xml:13
 #: simulation/templates/structures/rome_wallset_stone.xml:5
 msgid "Moenia"
-msgstr "Moenia"
+msgstr "Моениа"
 
 #: simulation/templates/structures/rome_wall_gate.xml:9
 msgid "Porta"
-msgstr "Porta"
+msgstr "Порта"
 
 #: simulation/templates/structures/rome_wall_tower.xml:9
 msgid "Turris Lapidea"
-msgstr "Turris Lapidea"
+msgstr "Туррис Лапидеа"
 
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Murus Latericius"
-msgstr "Murus Latericius"
+msgstr "Мурус Латерициус"
 
 #: simulation/templates/structures/rome_wonder.xml:17
 msgid "Aedes Iovis Optimi Maximi"
-msgstr "Aedes Iovis Optimi Maximi"
+msgstr "Аедес ловис оптими максими"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
-msgstr "Stratones"
+msgstr "Стратонес"
 
 #: simulation/templates/structures/sele_blacksmith.xml:5
 msgid "Sidirourgeíon"
-msgstr "Sidirourgeíon"
+msgstr "Сидироургеѝон"
 
 #: simulation/templates/structures/sele_civil_centre.xml:8
 msgid "Agorā́"
-msgstr "Agorā́"
+msgstr "Агора̀"
 
 #: simulation/templates/structures/sele_dock.xml:12
 msgid "Liménas"
-msgstr "Liménas"
+msgstr "Лимѐнас"
 
 #: simulation/templates/structures/sele_farmstead.xml:12
 msgid "Sītobólion"
-msgstr "Sītobólion"
+msgstr "Ситобо̀лион"
 
 #: simulation/templates/structures/sele_field.xml:5
 msgid "Agrós"
-msgstr "Agrós"
+msgstr "Агро̀с"
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
-msgstr "Phrourion"
+msgstr "Фроурион"
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr "Строй обсадни оръция и тренирай Елитни единици. Гарнизирай до 20 войника за по-добра зашита."
+msgstr "Строи обсадни оръжия и обучава шампиони. Поддържа до 20 войници за по-сериозна защита."
 
 #: simulation/templates/structures/sele_library.xml:16
 msgid "Bibliothikon"
@@ -1582,26 +1583,26 @@ msgstr "Библиотикон"
 
 #: simulation/templates/structures/sele_market.xml:5
 msgid "Empórion"
-msgstr "Empórion"
+msgstr "Емпо̀рион"
 
 #: simulation/templates/structures/sele_military_colony.xml:47
 msgid "Klēroukhia"
-msgstr "Klēroukhia"
+msgstr "Клероукхия"
 
 #: simulation/templates/structures/sele_military_colony.xml:50
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Това е Селевкидската разширителна постройка, подобна на Цивилните Центрове от другите факции. Тя е по-слаба и носи по-малко територия, но е по-евтина и се строи по-бързо.\n-Тренира войници-заселници от дриго националности.\n-Минимална дистанция от други Военни Колонии: 120 метра."
+msgstr "Това е селевкидската разширителна постройка, подобна на градските центрове в другите факции. Тя е по-слаба и завзема по-малко територия, но е по-евтина и се строи по-бързо.\n— Обучава войници-заселници от различни националности;\n— Минимално отстояние от други военни колонии: 120 метра."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
-msgstr "Prophylax"
+msgstr "Профилакс"
 
 #: simulation/templates/structures/sele_temple.xml:9
 msgid "Naós"
-msgstr "Naós"
+msgstr "Нао̀с"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Paradise of Daphne"
@@ -1609,28 +1610,28 @@ msgstr "Раят на Дафне"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
-msgstr "Teíkhisma"
+msgstr "Теѝкхисма"
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
-msgstr "Спартански Сенат"
+msgstr "Спартански сенат"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerontía"
-msgstr "Gerontía"
+msgstr "Геронтѝя"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr "Тренирай герои."
+msgstr "Обучава герои."
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"
-msgstr "Палата на Военната Бъркотия"
+msgstr "Палат на военната бъркотия"
 
 #: simulation/templates/structures/spart_syssiton.xml:22
 msgid "Syssítion"
-msgstr "Syssítion"
+msgstr "Сиссѝтион"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Тренирай Спартански герои и Спартиатски елитни хоплити."
+msgstr "Обучава спартански герои и спартиатски хоплити шампиони."

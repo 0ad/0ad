@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:00+0100\n"
-"PO-Revision-Date: 2016-01-11 10:27+0000\n"
+"POT-Creation-Date: 2016-01-15 09:00+0100\n"
+"PO-Revision-Date: 2016-01-16 14:08+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -548,7 +548,7 @@ msgstr "Armachd:"
 
 #: gui/common/tooltips.js:85 gui/common/tooltips.js:112
 #: gui/common/tooltips.js:171 gui/structree/draw.js:347
-#: gui/structree/draw.js:372
+#: gui/structree/draw.js:373
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -774,14 +774,14 @@ msgstr "—"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
@@ -1013,67 +1013,75 @@ msgstr "Cuingich FPS sna clàran-taice"
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr "Cha dèid FPs thar 50 sna h-uile clàr-taice gus cumhachd a shàbhaladh."
 
-#: gui/options/options.js:41
+#: gui/options/options.js:38
+msgid "Graphics quality"
+msgstr "Càileachd na grafaigeachd"
+
+#: gui/options/options.js:38
+msgid "Graphics quality. REQUIRES GAME RESTART"
+msgstr "Càileachd na grafaigeachd. BI AN GEAMA FEUMACH AIR ATH-THÒISEACHADH"
+
+#: gui/options/options.js:42
 msgid "Master Gain"
 msgstr "Prìomh àirde"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Master audio gain"
 msgstr "Prìomh àirde na fuaime"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Music Gain"
 msgstr "Àirde a’ chiùil"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game music gain"
 msgstr "Àirde a’ chiùil sa gheama"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Ambient Gain"
 msgstr "Àirde na h-àrainneachd"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game ambient sound gain"
 msgstr "Àirde aig fuaimean na h-àrainneachd sa gheama"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Action Gain"
 msgstr "Àirde na gnìomhachd"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "In game unit action sound gain"
 msgstr "Àirde aig fuaimean gnìomhachd nan aonadan sa gheama"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI Gain"
 msgstr "Àirde na h-eadar-aghaidh"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI sound gain"
 msgstr "Àirde aig fuaimean na h-eadar-aghaidh"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Backlog"
 msgstr "Ro-loga na cabadaich"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "An àireamh de theachdaireachdan roimhe a thèid a luchdadh on loga nuair thig thu a-seach dhan lobaidh"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Chat Timestamp"
 msgstr "Stampaichean-tìde na cabadaich"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Seall an t-àm a thèid teachdaireachd a phostadh gu cabadaich na lobaidh"
 
-#: gui/options/options.js:251
+#: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
 msgstr "Tha atharraichean gun sàbhaladh agad, a bheil thu airson falbh co-dhiù?"
 
-#: gui/options/options.js:252 gui/savedgames/load.js:89
+#: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Rabhadh"
 
@@ -1383,12 +1391,12 @@ msgstr "SGRÌOBH THAIRIS AIR AN T‑SÀBHALADH"
 msgid "Health:"
 msgstr "Slàinte:"
 
-#: gui/structree/draw.js:367
+#: gui/structree/draw.js:368
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:373
+#: gui/structree/draw.js:374
 msgid "Gather Rates:"
 msgstr "Reat a’ chruinneachaidh:"
 
@@ -1694,8 +1702,8 @@ msgid "Lobby Settings"
 msgstr "Roghainnean na lobaidh"
 
 #: gui/options/options.xml:(caption):69
-msgid "Reload"
-msgstr "Ath-luchdaich"
+msgid "Revert"
+msgstr "Till"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1706,12 +1714,12 @@ msgid "Quit"
 msgstr "Fàg an-seo"
 
 #: gui/options/options.xml:(tooltip):70
-msgid "Reload default values from file"
-msgstr "Ath-luchdaich na luachan tùsail o fhaidhle"
+msgid "Revert to previous saved settings"
+msgstr "Till dha na roghainnean a shàbhail thu roimhe"
 
 #: gui/options/options.xml:(tooltip):75
-msgid "Save changes to file"
-msgstr "Sàbhail na dh'atharraich thu gu faidhle"
+msgid "Save changes"
+msgstr "Sàbhail na dh'atharraich thu"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"

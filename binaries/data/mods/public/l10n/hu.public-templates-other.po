@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Balázs Úr <urbalazs@gmail.com>, 2015
+# Balázs Úr <urbalazs@gmail.com>, 2015-2016
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014-2015
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Stew Den <stewden55@hotmail.com>, 2014
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-18 09:01+0100\n"
-"PO-Revision-Date: 2015-12-18 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-17 19:50+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr "Gaia"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
-msgstr "Átlalános növényzet"
+msgstr "Általános növényzet"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
@@ -39,7 +39,7 @@ msgstr "Bogyók"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:10
 msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Szedj gyümölcsöt ezekről a bokrokról, hogy élelmet szerezz!"
+msgstr "Gyümölcsök szedése ezekről a bokrokról élelem szerzéséhez."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
@@ -47,7 +47,7 @@ msgstr "Fa"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
-msgstr "Vágd ki faanyag gyűjtéséhez!"
+msgstr "Kivágásával fát gyűjthetsz."
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -59,11 +59,11 @@ msgstr "Ásvány"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Metal Mine"
-msgstr "Ércbánya"
+msgstr "Fémbánya"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "Ásványlelőhely, mely ritka és értékes érchez biztosít hozzáférést."
+msgstr "Ásványlelőhely, amely ritka és értékes fémhez biztosít hozzáférést."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -75,7 +75,7 @@ msgstr "Kőbánya"
 
 #: simulation/templates/template_gaia_geo_rock.xml:6
 msgid "Mine these to provide Stone building material."
-msgstr "Bányássz ezekből, hogy építőanyag követ szerezz!"
+msgstr "Ebből bányászva kő építőanyag szerezhető."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
@@ -116,11 +116,11 @@ msgstr "Kincs"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
-msgstr "A kincs gyorsan begyűjthető."
+msgstr "Egy kincs, amely gyorsan begyűjthető."
 
 #: simulation/templates/template_structure.xml:57
 msgid "Structure"
-msgstr "Szerkezet"
+msgstr "Épület"
 
 #: simulation/templates/template_unit.xml:38
 msgid "Unit"
@@ -142,11 +142,11 @@ msgstr "Ez az, ahogy egy seregnek ki kellene néznie a stratégiai térképen."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
-msgstr "Macedónia serege"
+msgstr "Makedónia serege"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
-msgstr "Macedónia serege"
+msgstr "Makedónia serege"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
 msgid "Army of Leonidas I."
@@ -203,7 +203,7 @@ msgstr "Zárt oszlop"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
-msgstr "Nyitott oszlop"
+msgstr "Nyílt oszlop"
 
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
@@ -211,7 +211,7 @@ msgstr "8 egység szükséges"
 
 #: simulation/templates/formations/flank.xml:7
 msgid "Flank"
-msgstr "Oldalsánc"
+msgstr "Szárny"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
@@ -219,7 +219,7 @@ msgstr "Zárt vonal"
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
-msgstr "Nyitott vonal"
+msgstr "Nyílt vonal"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
@@ -243,7 +243,7 @@ msgstr "Csak távolsági egységek engedélyezettek"
 
 #: simulation/templates/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "Csata"
+msgstr "Csatározás"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "9 pike infantry units required"
@@ -259,7 +259,7 @@ msgstr "9 közelharci gyalogos egység szükséges"
 
 #: simulation/templates/formations/testudo.xml:7
 msgid "Testudo"
-msgstr "Pajzsfedezék"
+msgstr "Teknős"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "3 cavalry units required"
@@ -303,7 +303,7 @@ msgstr "Afrikai bokor elefánt"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
-msgstr "Afrikai elefánt (csecsemő)"
+msgstr "Afrikai elefánt (újszülött)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:46
 msgid "Asian Elephant"
@@ -321,7 +321,7 @@ msgstr "Tonhal"
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
 msgid "Collect food from this bountiful oceanic resource."
-msgstr "Gyűjts élelmet ebből a bőséges óceáni nyersanyagforrásból."
+msgstr "Élelem gyűjtése ebből a bőséges óceáni nyersanyagból."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -329,7 +329,7 @@ msgstr "Tilápia hal"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
-msgstr "Gyűjts élelmet ebből a bőséges folyó-melletti nyersanyagforrásból."
+msgstr "Élelem gyűjtése ebből a bőséges part menti nyersanyagból."
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
@@ -437,7 +437,7 @@ msgstr "Szőlő"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
-msgstr "Szüretelj szőlőt ezekről a tőkékről élelemért."
+msgstr "Szőlő szüretelése ezekről a tőkékről élelemért."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
@@ -492,7 +492,7 @@ msgstr "Füge"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:10
 msgid "Gather figs for Food."
-msgstr "Szüretelj fügét több élelemért."
+msgstr "Füge szüretelése élelemért."
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -537,7 +537,7 @@ msgstr "Jegenyenyárfa"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
-msgstr "Szenegál datolyapálma"
+msgstr "Szenegáli datolyapálma"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
@@ -582,7 +582,7 @@ msgstr "Élelemkincs"
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
-msgstr "Félig eltemetett hordók"
+msgstr "Félig elásott hordók"
 
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
 msgid "Persian Food Stores"
@@ -655,7 +655,7 @@ msgstr "Tophet"
 
 #: simulation/templates/other/cart_tophet.xml:25
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "Orvosok és „Szent Csapat” lovasok kiképzése"
+msgstr "Orvosok és a Szent csapat lovasainak kiképzése."
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
@@ -663,7 +663,7 @@ msgstr "Kunyhó"
 
 #: simulation/templates/other/celt_hut.xml:23
 msgid "Add +2 to Population Cap."
-msgstr "+2 fő hozzáadása a maximális népességhez"
+msgstr "+2 hozzáadása a népességkorláthoz."
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
@@ -673,7 +673,7 @@ msgstr "Hosszúház"
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
-msgstr "+10 fő hozzáadása a maximális népességhez"
+msgstr "+10 hozzáadása a népességkorláthoz."
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
@@ -722,11 +722,11 @@ msgstr "Naos Parthenos"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:32
 msgid "Garrison up to 30 units to heal them at a quick rate."
-msgstr "Maximum 30 egység elszállásolása és gyors gyógyítása."
+msgstr "Legfeljebb 30 egység beszállásolása a gyors gyógyításukhoz."
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
-msgstr "Oszlopcsarnok"
+msgstr "Oszlopsor"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
@@ -735,7 +735,7 @@ msgstr "Propülaia"
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
-msgstr "Stoa"
+msgstr "Oszlopcsarnok"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:31
 msgid "Hellenic Royal Stoa"
@@ -743,7 +743,7 @@ msgstr "Görög királyi oszlopcsarnok"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:33
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Népességi limit növelése +10-zel. Speciális egységek toborzása."
+msgstr "+10 hozzáadása a népességkorláthoz. Különleges egységek toborzása."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -755,7 +755,7 @@ msgstr "Harmya"
 
 #: simulation/templates/other/maur_palace.xml:14
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr "Népességi limit növelése +15-tel. További egységek és hősök toborzása."
+msgstr "+15 hozzáadása a népességkorláthoz. További egységek és hősök toborzása."
 
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
@@ -779,15 +779,15 @@ msgstr "Palánk kanyarulat"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:16
 msgid "Wooden Wall Corner"
-msgstr "Fafal sarka"
+msgstr "Fafal sarok"
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
-msgstr "Palánk végződés"
+msgstr "Palánkvég"
 
 #: simulation/templates/other/palisades_rocks_end.xml:16
 msgid "Wooden Wall End"
-msgstr "Fafal végződés"
+msgstr "Fafalvég"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:5
 msgid "Palisade Fort"
@@ -829,7 +829,7 @@ msgstr "Fafal átalakítása fakapuvá"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
-msgstr "Előörs"
+msgstr "Előőrs"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
@@ -871,7 +871,7 @@ msgstr "Fogadó"
 
 #: simulation/templates/other/pers_warehouse.xml:12
 msgid "Warehouse"
-msgstr "Áruház"
+msgstr "Raktár"
 
 #: simulation/templates/other/plane.xml:37
 msgid "P-51 Mustang"
@@ -912,7 +912,7 @@ msgstr "Hajóroncs rakomány"
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
 "A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "Egy hajóroncs sok életveszéllyel. Jó lehetőség bármely üzletembernek."
+msgstr "Egy hajóroncs sok elveszett élettel. Jó lehetőség bármely üzletembernek."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
@@ -921,7 +921,7 @@ msgstr "Egy kis teherhajó roncsa. Jó lehetőség bármely üzletembernek."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "Egy félig döngölt teherhajó. Jó lehetőség bármely üzletembernek."
+msgstr "Egy kettétört teherhajó. Jó lehetőség bármely üzletembernek."
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
@@ -961,13 +961,13 @@ msgstr "Ez a templom befejezetlen és romokban hever."
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "Változások a 10 lakosú házakban az adott civilizációtól függően. Eltérő civilizációkban törlődik."
+msgstr "Átváltozik egy 10 személyes házzá azoknál a civilizációknál, ahol van ilyen ház. Más civilizációknál törlődik."
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:5
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr "Változások az 5 lakosú házakban az adott civilizációtól függően. Eltérő civilizációkban törlődik."
+msgstr "Átváltozik egy 5 személyes házzá azoknál a civilizációknál, ahol van ilyen ház. Más civilizációknál törlődik."
 
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
@@ -991,7 +991,7 @@ msgstr "Oxybelḗs"
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:29
 msgid "Ballista"
-msgstr "Ballisztikus"
+msgstr "Nyílvető"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
@@ -999,4 +999,4 @@ msgstr "Polybolos"
 
 #: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:23
 msgid "Scorpio"
-msgstr "Scorpio"
+msgstr "Skorpió"

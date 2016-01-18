@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Balázs Úr <urbalazs@gmail.com>, 2015
+# Balázs Úr <urbalazs@gmail.com>, 2015-2016
 # Boross Péter <borosspet@web.de>, 2015
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
 # István Norbert Pétert <peter.norbert.istvan@gmail.com>, 2015
@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-11 09:01+0100\n"
-"PO-Revision-Date: 2015-12-13 15:25+0000\n"
+"POT-Creation-Date: 2016-01-15 09:01+0100\n"
+"PO-Revision-Date: 2016-01-15 17:20+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -288,15 +288,8 @@ msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Öld meg, majd gyűjts élelmet ebből a bőséges óceáni nyersanyagforrásból."
 
 #: simulation/templates/template_unit_hero.xml:10
-#: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cunobelin.xml:11
-#: simulation/templates/units/gaul_hero_brennus.xml:10
-#: simulation/templates/units/gaul_hero_britomartus.xml:10
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
-#: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:13
-msgid "Hero Aura"
-msgstr "Hős aura"
+msgid "Garrisoned Capture Aura"
+msgstr "Beszállásolt elfoglalás aura"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
@@ -957,6 +950,16 @@ msgstr "Boudicca"
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:21
 msgid "Heroine"
 msgstr "Hősnő"
+
+#: simulation/templates/units/brit_hero_caratacos.xml:10
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
+#: simulation/templates/units/gaul_hero_brennus.xml:10
+#: simulation/templates/units/gaul_hero_britomartus.xml:10
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
+#: simulation/templates/units/mace_hero_demetrius.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:13
+msgid "Hero Aura"
+msgstr "Hős aura"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11

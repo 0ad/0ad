@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:00+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
+"POT-Creation-Date: 2016-01-15 09:00+0100\n"
+"PO-Revision-Date: 2016-01-15 09:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -554,7 +554,7 @@ msgstr "Pancerz:"
 
 #: gui/common/tooltips.js:85 gui/common/tooltips.js:112
 #: gui/common/tooltips.js:171 gui/structree/draw.js:347
-#: gui/structree/draw.js:372
+#: gui/structree/draw.js:373
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -776,14 +776,14 @@ msgstr "Żaden"
 msgid "<invalid>"
 msgstr "<niepoprawny>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Tak"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
@@ -1015,67 +1015,75 @@ msgstr "Ogranicz FPS w menu"
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr "Ogranicz FPS do 50 we wszystkich menu, aby zaoszczędzić moc."
 
-#: gui/options/options.js:41
+#: gui/options/options.js:38
+msgid "Graphics quality"
+msgstr ""
+
+#: gui/options/options.js:38
+msgid "Graphics quality. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.js:42
 msgid "Master Gain"
 msgstr "Głośność całkowita"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Master audio gain"
 msgstr "Całkowita głośność dźwięków w grze"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Music Gain"
 msgstr "Głośność muzyki"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game music gain"
 msgstr "Głośność muzyki w trakcie gry"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Ambient Gain"
 msgstr "Głośność otoczenia"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game ambient sound gain"
 msgstr "Głośność otoczenia w trakcie gry"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Action Gain"
 msgstr "Głośność akcji"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "In game unit action sound gain"
 msgstr "Głośność akcji jednostek w trakcie gry"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI Gain"
 msgstr "Głośność UI"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI sound gain"
 msgstr "Głośność interfejsu użytkownika"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Backlog"
 msgstr "Historia czatu"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Ilość przechowywanych wiadomości w historii czatu"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Chat Timestamp"
 msgstr "Czas wiadomości"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Pokaż czas otrzymania wiadomości na czacie"
 
-#: gui/options/options.js:251
+#: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
 msgstr ""
 
-#: gui/options/options.js:252 gui/savedgames/load.js:89
+#: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Uwaga"
 
@@ -1383,12 +1391,12 @@ msgstr "NADPISANIE GRY"
 msgid "Health:"
 msgstr "Zdrowie:"
 
-#: gui/structree/draw.js:367
+#: gui/structree/draw.js:368
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:373
+#: gui/structree/draw.js:374
 msgid "Gather Rates:"
 msgstr "Częstość zbiorów:"
 
@@ -1694,7 +1702,7 @@ msgid "Lobby Settings"
 msgstr "Ustawienia poczekalni"
 
 #: gui/options/options.xml:(caption):69
-msgid "Reload"
+msgid "Revert"
 msgstr ""
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
@@ -1706,11 +1714,11 @@ msgid "Quit"
 msgstr ""
 
 #: gui/options/options.xml:(tooltip):70
-msgid "Reload default values from file"
+msgid "Revert to previous saved settings"
 msgstr ""
 
 #: gui/options/options.xml:(tooltip):75
-msgid "Save changes to file"
+msgid "Save changes"
 msgstr ""
 
 #: gui/options/options.xml:(tooltip):80

@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-28 10:19+0100\n"
-"PO-Revision-Date: 2016-01-01 09:27+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"POT-Creation-Date: 2016-01-15 09:00+0100\n"
+"PO-Revision-Date: 2016-01-15 08:57+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,12 +53,12 @@ msgid "Confirmation"
 msgstr "確認"
 
 #: gui/session/menu.js:118 gui/session/menu.js:152 gui/session/menu.js:185
-#: gui/session/session.js:498 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:519 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "いいえ"
 
 #: gui/session/menu.js:118 gui/session/menu.js:152 gui/session/menu.js:185
-#: gui/session/session.js:498 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:519 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "はい"
 
@@ -96,7 +96,7 @@ msgctxt "team"
 msgid "None"
 msgstr "なし"
 
-#: gui/session/menu.js:297 gui/session/messages.js:695
+#: gui/session/menu.js:297 gui/session/messages.js:86
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "同盟"
@@ -105,7 +105,7 @@ msgstr "同盟"
 msgid "Neutral"
 msgstr "中立"
 
-#: gui/session/menu.js:297 gui/session/messages.js:705
+#: gui/session/menu.js:297 gui/session/messages.js:87
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "敵対"
@@ -257,161 +257,161 @@ msgstr "%(username)s ははねられました (kick)"
 msgid "%(username)s has been banned"
 msgstr "%(username)s は締め出されました (ban)"
 
-#: gui/session/messages.js:46
-msgid "Connection to the server has been authenticated."
-msgstr "サーバーへの接続が認証されました。"
-
-#: gui/session/messages.js:47
-msgid "Connected to the server."
-msgstr "サーバーに接続しました。"
-
-#: gui/session/messages.js:48
-msgid "Connection to the server has been lost."
-msgstr "サーバーとの接続が失われました。"
-
-#. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:50
-#, javascript-format
-msgid "Reason: %(reason)s."
-msgstr "理由: %(reason)s."
-
-#: gui/session/messages.js:51
-msgid "The game has ended."
-msgstr "ゲームはすでに終了しました。"
-
-#: gui/session/messages.js:52
-msgid "Waiting for other players to connect..."
-msgstr "他のプレイヤーの接続を待っています…"
-
-#: gui/session/messages.js:53
-msgid "Synchronising gameplay with other players..."
-msgstr "他のプレイヤーと進行を同期しています…"
-
-#: gui/session/messages.js:63
-#, javascript-format
-msgid "(%(context)s) %(userTag)s %(message)s"
-msgstr "(%(context)s) %(userTag)s %(message)s"
-
-#: gui/session/messages.js:64
-#, javascript-format
-msgid "%(userTag)s %(message)s"
-msgstr "%(userTag)s %(message)s"
-
-#: gui/session/messages.js:67
-#, javascript-format
-msgid "(%(context)s) * %(user)s %(message)s"
-msgstr "(%(context)s) * %(user)s %(message)s"
-
-#: gui/session/messages.js:68
-#, javascript-format
-msgid "* %(user)s %(message)s"
-msgstr "* %(user)s %(message)s"
-
-#: gui/session/messages.js:77
-#, javascript-format
-msgid "You are now allied with %(player)s."
-msgstr "あなたは%(player)sと同盟しました。"
-
-#: gui/session/messages.js:78
-#, javascript-format
-msgid "You are now at war with %(player)s."
-msgstr "あなたは%(player)sに宣戦しました。"
-
-#: gui/session/messages.js:79
-#, javascript-format
-msgid "You are now neutral with %(player)s."
-msgstr "あなたは%(player)sと中立になりました。"
-
-#: gui/session/messages.js:82
-#, javascript-format
-msgid "%(player)s is now allied with you."
-msgstr "%(player)sはあなたと同盟しました。"
-
-#: gui/session/messages.js:83
-#, javascript-format
-msgid "%(player)s is now at war with you."
-msgstr "%(player)sはあなたに宣戦しました。"
-
-#: gui/session/messages.js:84
-#, javascript-format
-msgid "%(player)s is now neutral with you."
-msgstr "%(player)sはあなたと中立になりました。"
-
-#: gui/session/messages.js:87
-#, javascript-format
-msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)sは%(player2)sと同盟しました。"
-
-#: gui/session/messages.js:88
-#, javascript-format
-msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)sはあなたに%(player2)sしました。"
-
-#: gui/session/messages.js:89
-#, javascript-format
-msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)sは%(player2)sと中立になりました。"
-
-#: gui/session/messages.js:97
-#, javascript-format
-msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)sはあなたに%(amounts)sを贈りました。"
-
-#: gui/session/messages.js:98
-#, javascript-format
-msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)sは%(player2)sに%(amounts)sを贈りました。"
-
-#: gui/session/messages.js:105
-#, javascript-format
-msgid "You have been attacked by %(attacker)s!"
-msgstr "%(attacker)sが攻撃してきました！"
-
-#: gui/session/messages.js:106
-#, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "家畜が%(attacker)sに攻撃されました！"
-
-#: gui/session/messages.js:114
-#, javascript-format
-msgid "%(player)s has been defeated."
-msgstr "%(player)sは敗北しました。"
-
-#: gui/session/messages.js:115
-msgid "You have been defeated."
-msgstr "あなたは敗北しました。"
-
-#: gui/session/messages.js:519
+#: gui/session/messages.js:44
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)sがゲームに復帰中です。"
 
-#: gui/session/messages.js:520
+#: gui/session/messages.js:45
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)sがゲームを離れました。"
 
-#: gui/session/messages.js:521
+#: gui/session/messages.js:46
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)sがゲームに復帰しました。"
 
-#: gui/session/messages.js:539 gui/session/messages.js:546
-msgid "Unknown Player"
-msgstr "不明なプレイヤー"
+#: gui/session/messages.js:59
+msgid "Connection to the server has been authenticated."
+msgstr "サーバーへの接続が認証されました。"
 
-#: gui/session/messages.js:633
+#: gui/session/messages.js:60
+msgid "Connected to the server."
+msgstr "サーバーに接続しました。"
+
+#: gui/session/messages.js:61
+msgid "Connection to the server has been lost."
+msgstr "サーバーとの接続が失われました。"
+
+#. Translation: States the reason why the client disconnected from the server.
+#: gui/session/messages.js:63
 #, javascript-format
-msgid "<%(user)s>"
-msgstr "<%(user)s>"
+msgid "Reason: %(reason)s."
+msgstr "理由: %(reason)s."
 
-#: gui/session/messages.js:685 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:64
+msgid "The game has ended."
+msgstr "ゲームはすでに終了しました。"
+
+#: gui/session/messages.js:65
+msgid "Waiting for other players to connect..."
+msgstr "他のプレイヤーの接続を待っています…"
+
+#: gui/session/messages.js:66
+msgid "Synchronising gameplay with other players..."
+msgstr "他のプレイヤーと進行を同期しています…"
+
+#: gui/session/messages.js:75
+#, javascript-format
+msgid "(%(context)s) %(userTag)s %(message)s"
+msgstr "(%(context)s) %(userTag)s %(message)s"
+
+#: gui/session/messages.js:76
+#, javascript-format
+msgid "%(userTag)s %(message)s"
+msgstr "%(userTag)s %(message)s"
+
+#: gui/session/messages.js:79
+#, javascript-format
+msgid "(%(context)s) * %(user)s %(message)s"
+msgstr "(%(context)s) * %(user)s %(message)s"
+
+#: gui/session/messages.js:80
+#, javascript-format
+msgid "* %(user)s %(message)s"
+msgstr "* %(user)s %(message)s"
+
+#: gui/session/messages.js:85 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "チーム"
 
-#: gui/session/messages.js:730
+#: gui/session/messages.js:88
 msgid "Private"
 msgstr "プライベート"
+
+#: gui/session/messages.js:120
+#, javascript-format
+msgid "You are now allied with %(player)s."
+msgstr "あなたは%(player)sと同盟しました。"
+
+#: gui/session/messages.js:121
+#, javascript-format
+msgid "You are now at war with %(player)s."
+msgstr "あなたは%(player)sに宣戦しました。"
+
+#: gui/session/messages.js:122
+#, javascript-format
+msgid "You are now neutral with %(player)s."
+msgstr "あなたは%(player)sと中立になりました。"
+
+#: gui/session/messages.js:125
+#, javascript-format
+msgid "%(player)s is now allied with you."
+msgstr "%(player)sはあなたと同盟しました。"
+
+#: gui/session/messages.js:126
+#, javascript-format
+msgid "%(player)s is now at war with you."
+msgstr "%(player)sはあなたに宣戦しました。"
+
+#: gui/session/messages.js:127
+#, javascript-format
+msgid "%(player)s is now neutral with you."
+msgstr "%(player)sはあなたと中立になりました。"
+
+#: gui/session/messages.js:130
+#, javascript-format
+msgid "%(player)s is now allied with %(player2)s."
+msgstr "%(player)sは%(player2)sと同盟しました。"
+
+#: gui/session/messages.js:131
+#, javascript-format
+msgid "%(player)s is now at war with %(player2)s."
+msgstr "%(player)sはあなたに%(player2)sしました。"
+
+#: gui/session/messages.js:132
+#, javascript-format
+msgid "%(player)s is now neutral with %(player2)s."
+msgstr "%(player)sは%(player2)sと中立になりました。"
+
+#: gui/session/messages.js:544 gui/session/messages.js:551
+msgid "Unknown Player"
+msgstr "不明なプレイヤー"
+
+#: gui/session/messages.js:561
+msgid "You have been defeated."
+msgstr "あなたは敗北しました。"
+
+#: gui/session/messages.js:562
+#, javascript-format
+msgid "%(player)s has been defeated."
+msgstr "%(player)sは敗北しました。"
+
+#: gui/session/messages.js:593
+#, javascript-format
+msgid "%(player)s has sent %(player2)s %(amounts)s."
+msgstr "%(player)sは%(player2)sに%(amounts)sを贈りました。"
+
+#: gui/session/messages.js:595
+#, javascript-format
+msgid "%(player)s has sent you %(amounts)s."
+msgstr "%(player)sはあなたに%(amounts)sを贈りました。"
+
+#: gui/session/messages.js:611
+#, javascript-format
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "家畜が%(attacker)sに攻撃されました！"
+
+#: gui/session/messages.js:612
+#, javascript-format
+msgid "You have been attacked by %(attacker)s!"
+msgstr "%(attacker)sが攻撃してきました！"
+
+#: gui/session/messages.js:655
+#, javascript-format
+msgid "<%(user)s>"
+msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:31
 #, javascript-format
@@ -503,21 +503,21 @@ msgstr "現在の/最大の収集者数"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:276
+#: gui/session/selection_details.js:280
 msgid "Classes:"
 msgstr "分類："
 
-#: gui/session/selection_details.js:331 gui/session/selection_details.js:363
-#: gui/session/session.js:655
+#: gui/session/selection_details.js:335 gui/session/selection_details.js:367
+#: gui/session/session.js:683
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:332
+#: gui/session/selection_details.js:336
 msgid "Hitpoints:"
 msgstr "耐久力："
 
-#: gui/session/selection_details.js:364
+#: gui/session/selection_details.js:368
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "占領ポイント:"
@@ -544,124 +544,151 @@ msgstr "%(resource)sを購入"
 msgid "Sell %(resource)s"
 msgstr "%(resource)sを売却"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1098
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1127
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)sが必要"
 
-#: gui/session/selection_panels.js:440
+#: gui/session/selection_panels.js:471
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)sを外に出す"
 
-#: gui/session/selection_panels.js:441
+#: gui/session/selection_panels.js:472
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "シングルクリックで1体を外に出します。Shift+クリックで同種のユニットをすべて外に出します。"
 
-#: gui/session/selection_panels.js:508
+#: gui/session/selection_panels.js:536
 msgid "Lock Gate"
 msgstr "門を閉ざす"
 
-#: gui/session/selection_panels.js:514
+#: gui/session/selection_panels.js:542
 msgid "Unlock Gate"
 msgstr "門を開く"
 
-#: gui/session/selection_panels.js:618
+#: gui/session/selection_panels.js:649
 msgid "Pack"
 msgstr "梱包"
 
-#: gui/session/selection_panels.js:620
+#: gui/session/selection_panels.js:651
 msgid "Unpack"
 msgstr "展開"
 
-#: gui/session/selection_panels.js:622
+#: gui/session/selection_panels.js:653
 msgid "Cancel Packing"
 msgstr "梱包をキャンセル"
 
-#: gui/session/selection_panels.js:624
+#: gui/session/selection_panels.js:655
 msgid "Cancel Unpacking"
 msgstr "展開をキャンセル"
 
-#: gui/session/selection_panels.js:697
+#: gui/session/selection_panels.js:730
 msgid "Insufficient population capacity:"
 msgstr "人口上限の不足:"
 
-#: gui/session/selection_panels.js:698
+#: gui/session/selection_panels.js:731
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:812
+#: gui/session/selection_panels.js:842
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "不足：%(number)s棟"
 
-#: gui/session/selection_panels.js:1086 gui/session/session.js:654
+#: gui/session/selection_panels.js:1115 gui/session/session.js:682
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "耐久力："
 
-#: gui/session/selection_panels_helpers.js:39
+#: gui/session/selection_panels_helpers.js:38
 msgctxt "stance"
 msgid "Violent"
 msgstr "絶対攻勢"
 
-#: gui/session/selection_panels_helpers.js:42
+#: gui/session/selection_panels_helpers.js:40
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "攻撃優先"
 
-#: gui/session/selection_panels_helpers.js:45
-msgctxt "stance"
-msgid "Passive"
-msgstr "戦闘回避"
-
-#: gui/session/selection_panels_helpers.js:48
+#: gui/session/selection_panels_helpers.js:42
 msgctxt "stance"
 msgid "Defensive"
 msgstr "防衛優先"
 
-#: gui/session/selection_panels_helpers.js:51
+#: gui/session/selection_panels_helpers.js:44
+msgctxt "stance"
+msgid "Passive"
+msgstr "戦闘回避"
+
+#: gui/session/selection_panels_helpers.js:46
 msgctxt "stance"
 msgid "Standground"
 msgstr "専守防衛"
 
-#: gui/session/selection_panels_helpers.js:70
+#: gui/session/selection_panels_helpers.js:58
+msgctxt "stance"
+msgid "Attack nearby opponents, focus on attackers and chase while visible"
+msgstr ""
+
+#: gui/session/selection_panels_helpers.js:60
+msgctxt "stance"
+msgid "Attack nearby opponents"
+msgstr ""
+
+#: gui/session/selection_panels_helpers.js:62
+msgctxt "stance"
+msgid ""
+"Attack nearby opponents, chase a short distance and return to the original "
+"location"
+msgstr ""
+
+#: gui/session/selection_panels_helpers.js:64
+msgctxt "stance"
+msgid "Flee if attacked"
+msgstr ""
+
+#: gui/session/selection_panels_helpers.js:66
+msgctxt "stance"
+msgid "Attack opponents in range, but don't move"
+msgstr ""
+
+#: gui/session/selection_panels_helpers.js:82
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "現在の数：%(count)s、最大数：%(limit)s。"
 
-#: gui/session/selection_panels_helpers.js:76
+#: gui/session/selection_panels_helpers.js:90
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)sが上限を %(change)s拡大しました。"
 
-#: gui/session/selection_panels_helpers.js:78
+#: gui/session/selection_panels_helpers.js:92
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)sが上限を %(change)s縮小しました。"
 
-#: gui/session/selection_panels_helpers.js:105
+#: gui/session/selection_panels_helpers.js:121
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:114
+#: gui/session/selection_panels_helpers.js:131
 msgid "Shift-click"
 msgstr "Shift+クリック"
 
-#: gui/session/selection_panels_helpers.js:123
+#: gui/session/selection_panels_helpers.js:140
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)sで %(number)s (%(fullBatch)s + %(remainderBatch)s) 体養成します。"
 
-#: gui/session/selection_panels_helpers.js:130
+#: gui/session/selection_panels_helpers.js:147
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)sで %(number)s (%(fullBatch)s) 体養成します。"
 
-#: gui/session/selection_panels_helpers.js:137
+#: gui/session/selection_panels_helpers.js:154
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)sで%(number)s体養成します。"
@@ -671,97 +698,97 @@ msgstr "%(action)sで%(number)s体養成します。"
 msgid "You"
 msgstr "あなた"
 
-#: gui/session/session.js:181
+#: gui/session/session.js:183
 msgid "Gaia"
 msgstr "自然"
 
-#: gui/session/session.js:251
+#: gui/session/session.js:274
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - 建設早見表"
 
-#: gui/session/session.js:326 gui/session/session.js:342
+#: gui/session/session.js:349 gui/session/session.js:365
 msgid "You have left the game."
 msgstr "ゲームを離れました。"
 
-#: gui/session/session.js:333
+#: gui/session/session.js:356
 msgid "You have been disconnected."
 msgstr "接続が切れました。"
 
-#: gui/session/session.js:335
+#: gui/session/session.js:358
 msgid "You have won the battle!"
 msgstr "戦いに勝利しました！"
 
-#: gui/session/session.js:337
+#: gui/session/session.js:360
 msgid "You have been defeated..."
 msgstr "負けてしまいました…"
 
-#: gui/session/session.js:345
+#: gui/session/session.js:368
 msgid "You have abandoned the game."
 msgstr "ゲームを放棄しました。"
 
-#: gui/session/session.js:492
+#: gui/session/session.js:513
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:494
+#: gui/session/session.js:515
 msgid "Press OK to continue"
 msgstr "OKで続行"
 
-#: gui/session/session.js:500
+#: gui/session/session.js:521
 msgid "Do you want to quit?"
 msgstr "終了しますか？"
 
-#: gui/session/session.js:505
+#: gui/session/session.js:526
 msgid "DEFEATED!"
 msgstr "敗北！"
 
-#: gui/session/session.js:510
+#: gui/session/session.js:531
 msgid "VICTORIOUS!"
 msgstr "勝利！"
 
-#: gui/session/session.js:579
+#: gui/session/session.js:607
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "リプレイが終わりました。終了しますか？"
 
-#: gui/session/session.js:580
+#: gui/session/session.js:608
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/session/session.js:582
+#: gui/session/session.js:610
 msgctxt "replayFinished"
 msgid "No"
 msgstr "いいえ"
 
-#: gui/session/session.js:582
+#: gui/session/session.js:610
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "はい"
 
-#: gui/session/session.js:740
+#: gui/session/session.js:768
 msgid "Population (current / limit)"
 msgstr "人口 (現在 / 上限)"
 
-#: gui/session/session.js:741
+#: gui/session/session.js:769
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "人口上限：%(popCap)s"
 
-#: gui/session/session.js:881
+#: gui/session/session.js:909
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:887
+#: gui/session/session.js:915
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "注：タイムワープモードは開発者用オプションであり、長時間を超えての使用を想定していません。不適切な使用は、ゲームがメモリーを使い果たす、すなわち異常終了する原因となる場合があります。"
 
-#: gui/session/session.js:888
+#: gui/session/session.js:916
 msgid "Time warp mode"
 msgstr "タイムワープモード"
 
@@ -921,7 +948,7 @@ msgstr "オプション"
 msgid "Resign"
 msgstr "降伏"
 
-#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):352
+#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):351
 msgid "Exit"
 msgstr "終了"
 
@@ -933,71 +960,71 @@ msgstr "手の空いた労働者を探す"
 msgid "Control all units"
 msgstr "すべてのユニットのコントロール"
 
-#: gui/session/session.xml:(caption):72
+#: gui/session/session.xml:(caption):71
 msgid "Change perspective"
 msgstr "視点の変更"
 
-#: gui/session/session.xml:(caption):79
+#: gui/session/session.xml:(caption):78
 msgid "Display selection state"
 msgstr "選択済み状態の表示"
 
-#: gui/session/session.xml:(caption):84
+#: gui/session/session.xml:(caption):83
 msgid "Pathfinder overlay"
 msgstr "パスファインダー・オーバーレイ"
 
-#: gui/session/session.xml:(caption):91
+#: gui/session/session.xml:(caption):90
 msgid "Obstruction overlay"
 msgstr "障害物のオーバーレイ"
 
-#: gui/session/session.xml:(caption):98
+#: gui/session/session.xml:(caption):97
 msgid "Unit motion overlay"
 msgstr "ユニットの動きのオーバーレイ"
 
-#: gui/session/session.xml:(caption):105
+#: gui/session/session.xml:(caption):104
 msgid "Range overlay"
 msgstr "範囲のオーバーレイ"
 
-#: gui/session/session.xml:(caption):112
+#: gui/session/session.xml:(caption):111
 msgid "Bounding box overlay"
 msgstr "バウンディングボックスの表示"
 
-#: gui/session/session.xml:(caption):119
+#: gui/session/session.xml:(caption):118
 msgid "Restrict camera"
 msgstr "カメラを制限する"
 
-#: gui/session/session.xml:(caption):128
+#: gui/session/session.xml:(caption):127
 msgid "Reveal map"
 msgstr "マップを隠さない"
 
-#: gui/session/session.xml:(caption):136
+#: gui/session/session.xml:(caption):135
 msgid "Enable time warp"
 msgstr "タイムワープを許可する"
 
-#: gui/session/session.xml:(caption):146
+#: gui/session/session.xml:(caption):145
 msgid "Promote selected units"
 msgstr "選択したユニットを昇進"
 
-#: gui/session/session.xml:(caption):153
+#: gui/session/session.xml:(caption):152
 msgid "Hierarchical pathfinder overlay"
 msgstr "大域パスファインダー・オーバーレイ"
 
-#: gui/session/session.xml:(caption):187
+#: gui/session/session.xml:(caption):186
 msgid "Game Paused"
 msgstr "ゲーム休止"
 
-#: gui/session/session.xml:(caption):190
+#: gui/session/session.xml:(caption):189
 msgid "Click to Resume Game"
 msgstr "クリックしてゲームを再開"
 
-#: gui/session/session.xml:(caption):225
+#: gui/session/session.xml:(caption):224
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: gui/session/session.xml:(caption):231
+#: gui/session/session.xml:(caption):230
 msgid "Team Only"
 msgstr "チームのみ"
 
-#: gui/session/session.xml:(caption):235
+#: gui/session/session.xml:(caption):234
 msgid "Send"
 msgstr "送信"
 
