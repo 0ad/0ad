@@ -1,6 +1,6 @@
 /*
  **********************************************************************
- *   Copyright (C) 2002-2011, International Business Machines
+ *   Copyright (C) 2002-2014, International Business Machines
  *   Corporation and others.  All Rights Reserved.
  **********************************************************************
  */
@@ -40,6 +40,13 @@ U_NAMESPACE_BEGIN
  *
  * Clients can use this to break a paragraph into lines, and to display the glyphs in each line.
  *
+ * Note that {@link icu::LayoutEngine} is deprecated, but this class is not.
+ * You may use this class with the HarfBuzz icu-le-hb wrapper,
+ *  see http://www.freedesktop.org/wiki/Software/HarfBuzz/
+ *
+ *  See http://userguide.icu-project.org/layoutengine for special build instructions.
+ *
+ * @see icu::LayoutEngine
  */
 class U_LAYOUTEX_API ParagraphLayout : public UObject
 {

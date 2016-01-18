@@ -1,11 +1,11 @@
 /*
  *
- * (C) Copyright IBM Corp. 1998-2010. All Rights Reserved.
+ * (C) Copyright IBM Corp. 1998-2015. All Rights Reserved.
  *
  * WARNING: THIS FILE IS MACHINE GENERATED. DO NOT HAND EDIT IT UNLESS
  * YOU REALLY KNOW WHAT YOU'RE DOING.
  *
- * Generated on: 10/26/2010 02:53:33 PM PDT
+ * Generated on: 04/27/2015 10:39:37 AM PDT
  */
 
 #ifndef __LELANGUAGES_H
@@ -25,7 +25,7 @@ U_NAMESPACE_BEGIN
  * this is just a list of languages which the LayoutEngine
  * supports.
  *
- * @stable ICU 2.6
+ * @deprecated ICU 54. See {@link icu::LayoutEngine}
  */
 
 enum LanguageCodes {
@@ -59,8 +59,6 @@ enum LanguageCodes {
     zhpLanguageCode = 27,
     zhsLanguageCode = 28,
     zhtLanguageCode = 29,
-
-    /** New language codes added 03/13/2008 @stable ICU 4.0 */
     afkLanguageCode = 30,
     belLanguageCode = 31,
     bgrLanguageCode = 32,
