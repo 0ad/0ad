@@ -96,7 +96,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 
 m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 {
-	for (let evt of events["Destroy"])
+	for (let evt of events.Destroy)
 	{
 		// let's check we haven't lost an important building here.
 		if (evt && !evt.SuccessfulFoundation && evt.entityObj && evt.metadata && evt.metadata[PlayerID] &&
@@ -110,7 +110,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 		}
 	}
 
-	for (let evt of events["OwnershipChanged"])	// capture event
+	for (let evt of events.OwnershipChanged)	// capture event
 	{
 		if (evt.from !== PlayerID)
 			continue;
@@ -123,7 +123,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			this.anchorLost(gameState, ent);
 	}
 
-	for (var evt of events["ConstructionFinished"])
+	for (let evt of events.ConstructionFinished)
 	{
 		if (!evt || !evt.newentity)
 			continue;
@@ -138,7 +138,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 				this.assignResourceToDropsite(gameState, ent);
 	}
 
-	for (let evt of events["Create"])
+	for (let evt of events.Create)
 	{
 		if (!evt || !evt.entity)
 			continue;
@@ -148,7 +148,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 		// do necessary stuff here
 	}
 
-	for (let evt of events["EntityRenamed"])
+	for (let evt of events.EntityRenamed)
 	{
 		if (!this.anchorId || this.anchorId !== evt.entity)
 			continue;

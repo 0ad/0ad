@@ -244,7 +244,7 @@ m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
 
 m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 {
-	for (let evt of events["ConstructionFinished"])
+	for (let evt of events.ConstructionFinished)
 	{
 		if (!evt || !evt.newentity)
 			continue;
@@ -253,7 +253,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			this.setDockIndex(gameState, entity);
 	}
 
-	for (let evt of events["TrainingFinished"])
+	for (let evt of events.TrainingFinished)
 	{
 		if (!evt || !evt.entities)
 			continue;
@@ -266,13 +266,13 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		}
 	}
 
-	for (let evt of events["Destroy"])
+	for (let evt of events.Destroy)
 	{
 		if (!evt.entityObj || evt.entityObj.owner() !== PlayerID || !evt.metadata || !evt.metadata[PlayerID])
 			continue;
-		if (!evt.entityObj.hasClass("Ship") || !evt.metadata[PlayerID]["transporter"])
+		if (!evt.entityObj.hasClass("Ship") || !evt.metadata[PlayerID].transporter)
 			continue;
-		var plan = this.getPlan(evt.metadata[PlayerID]["transporter"]);
+		var plan = this.getPlan(evt.metadata[PlayerID].transporter);
 		if (!plan)
 			continue;
 
@@ -283,8 +283,8 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		{
 			// just reset the units onBoard metadata and wait for a new ship to be assigned to this plan
 			plan.units.forEach(function (ent) {
-				if ((ent.getMetadata(PlayerID, "onBoard") === "onBoard" && ent.position())
-					|| ent.getMetadata(PlayerID, "onBoard") === shipId)
+				if ((ent.getMetadata(PlayerID, "onBoard") === "onBoard" && ent.position()) ||
+					ent.getMetadata(PlayerID, "onBoard") === shipId)
 					ent.setMetadata(PlayerID, "onBoard", undefined);
 			});
 			plan.needTransportShips = (plan.transportShips.length === 0);
@@ -311,7 +311,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		}
 	}
 
-	for (let evt of events["OwnershipChanged"])	// capture events
+	for (let evt of events.OwnershipChanged)	// capture events
 	{
 		if (evt.to === PlayerID)
 		{
@@ -450,8 +450,8 @@ m.NavalManager.prototype.checkLevels = function(gameState, queues)
 		if (!plan.needTransportShips || plan.units.length < 2)
 			continue;
 		let sea = plan.sea;
-		if (gameState.countOwnQueuedEntitiesWithMetadata("sea", sea) > 0
-			|| this.seaTransportShips[sea].length < this.wantedTransportShips[sea])
+		if (gameState.countOwnQueuedEntitiesWithMetadata("sea", sea) > 0 ||
+			this.seaTransportShips[sea].length < this.wantedTransportShips[sea])
 			continue;
 		++this.neededTransportShips[sea];
 		if (this.wantedTransportShips[sea] === 0 || this.seaTransportShips[sea].length < plan.transportShips.length + 2)
@@ -572,19 +572,19 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 
 	if (gameState.getPopulation() > this.Config.Economy.popForDock)
 	{
-		if (queues.dock.countQueuedUnitsWithClass("NavalMarket") === 0
-			&& gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("NavalMarket"), API3.Filters.isFoundation())).length === 0
-			&& gameState.ai.HQ.canBuild(gameState, "structures/{civ}_dock"))
+		if (queues.dock.countQueuedUnitsWithClass("NavalMarket") === 0 &&
+			gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("NavalMarket"), API3.Filters.isFoundation())).length === 0 &&
+			gameState.ai.HQ.canBuild(gameState, "structures/{civ}_dock"))
 		{
-			var dockStarted = false;
-			for (var base of gameState.ai.HQ.baseManagers)
+			let dockStarted = false;
+			for (let base of gameState.ai.HQ.baseManagers)
 			{
 				if (dockStarted)
 					break;
 				if (!base.anchor || base.constructing)
 					continue;
-				var remaining = this.getUnconnectedSeas(gameState, base.accessIndex);
-				for (var sea of remaining)
+				let remaining = this.getUnconnectedSeas(gameState, base.accessIndex);
+				for (let sea of remaining)
 				{
 					if (!gameState.ai.HQ.navalRegions[sea])
 						continue;
@@ -596,14 +596,14 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 		}
 	}
 
-	if (gameState.currentPhase() < 2 || gameState.getPopulation() < this.Config.Economy.popForTown + 15
-		|| queues.militaryBuilding.length() !== 0 || this.bNaval.length === 0)
+	if (gameState.currentPhase() < 2 || gameState.getPopulation() < this.Config.Economy.popForTown + 15 ||
+		queues.militaryBuilding.length() !== 0 || this.bNaval.length === 0)
 		return;
 	var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
 	if (!docks.length)
 		return;
 	var nNaval = 0;
-	for (var naval of this.bNaval)
+	for (let naval of this.bNaval)
 		nNaval += gameState.countEntitiesAndQueuedByType(naval, true);
 
 	if (nNaval === 0 || (nNaval < this.bNaval.length && gameState.getPopulation() > 120))

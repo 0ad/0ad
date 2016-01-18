@@ -1064,7 +1064,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		else
 		{
 			// if we are attacked while waiting the rest of the army, retaliate
-			for (let evt of events["Attacked"])
+			for (let evt of events.Attacked)
 			{
 				if (IDs.indexOf(evt.target) == -1)
 					continue;
@@ -1094,7 +1094,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		// or if we reached the enemy base. Different plans may react differently.		
 		var attackedNB = 0;
 		var attackedUnitNB = 0;
-		for (let evt of events["Attacked"])
+		for (let evt of events.Attacked)
 		{
 			if (IDs.indexOf(evt.target) == -1)
 				continue;
@@ -1301,7 +1301,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		}
 
 		var time = gameState.ai.elapsedTime;
-		for (var evt of events["Attacked"])
+		for (let evt of events.Attacked)
 		{
 			if (IDs.indexOf(evt.target) == -1)
 				continue;
@@ -1718,7 +1718,7 @@ m.AttackPlan.prototype.removeUnit = function(ent, update)
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)
 {
-	for (let evt of events["EntityRenamed"])
+	for (let evt of events.EntityRenamed)
 	{
 		if (!this.target || this.target.id() != evt.entity)
 			continue;
@@ -1727,11 +1727,11 @@ m.AttackPlan.prototype.checkEvents = function(gameState, events)
 			this.targetPos = this.target.position();
 	}
 
-	for (let evt of events["OwnershipChanged"])	// capture event
+	for (let evt of events.OwnershipChanged)	// capture event
 		if (this.target && this.target.id() == evt.entity && gameState.isPlayerAlly(evt.to))
 		    this.target = undefined;
 
-	for (let evt of events["PlayerDefeated"])
+	for (let evt of events.PlayerDefeated)
 	{
 		if (this.targetPlayer !== evt.playerId)
 			continue;
@@ -1742,7 +1742,7 @@ m.AttackPlan.prototype.checkEvents = function(gameState, events)
 	if (!this.overseas || this.state !== "unexecuted")
 		return;
 	// let's check if an enemy has built a structure at our access
-	for (let evt of events["Create"])
+	for (let evt of events.Create)
 	{
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || !ent.position() || !ent.hasClass("Structure"))

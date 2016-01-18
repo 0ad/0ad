@@ -96,7 +96,7 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 	if (this.gameFinished)
 		return;
 
-	for (var i in this.events)
+	for (let i in this.events)
 	{
 		if (i == "AIMetadata")   // not used inside petra
 			continue;
@@ -124,7 +124,7 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 
 		this.queueManager.update(this.gameState);
 		
-		for (var i in this.savedEvents)
+		for (let i in this.savedEvents)
 			this.savedEvents[i] = [];
 
 		Engine.ProfileStop();

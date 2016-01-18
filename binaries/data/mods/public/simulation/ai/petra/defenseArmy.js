@@ -35,15 +35,15 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 			continue;
 
 		if (eEnt.hasClass("Unit") && eEnt.unitAIOrderData() && eEnt.unitAIOrderData().length && 
-			eEnt.unitAIOrderData()[0]["target"] && eEnt.unitAIOrderData()[0]["target"] == entID)
+			eEnt.unitAIOrderData()[0].target && eEnt.unitAIOrderData()[0].target == entID)
 		{   // being attacked  >>> target the unit
 			idMin = id;
 			break;
 		}
 
 		// already enough units against it
-		if (this.assignedAgainst[id].length > 8
-			|| (this.assignedAgainst[id].length > 5 && !eEnt.hasClass("Hero") && !eEnt.hasClass("Siege")))
+		if (this.assignedAgainst[id].length > 8 ||
+			(this.assignedAgainst[id].length > 5 && !eEnt.hasClass("Hero") && !eEnt.hasClass("Siege")))
 			continue;
 
 		let dist = API3.SquareVectorDistance(ent.position(), eEnt.position());
@@ -61,10 +61,11 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 		}
 	}
 
+	let idFoe;
 	if (idMin !== undefined)
-		var idFoe = idMin;
+		idFoe = idMin;
 	else if (idMinAll !== undefined)
-		var idFoe = idMinAll;
+		idFoe = idMinAll;
 	else
 		return false;
 
@@ -97,7 +98,7 @@ m.DefenseArmy.prototype.needsDefenders = function (gameState)
 
 m.DefenseArmy.prototype.getState = function ()
 {
-	if (this.foeEntities.length == 0)
+	if (!this.foeEntities.length)
 		return 0;
 	return 1;
 };

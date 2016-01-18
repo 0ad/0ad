@@ -253,7 +253,7 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 	var template = gameState.applyCiv("structures/{civ}_civil_centre");
 	if (gameState.isDisabledTemplates(template))
 		return;
-	var template = gameState.getTemplate(template);
+	template = gameState.getTemplate(template);
 	var goal = "civil_centre";
 	var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
 	if (!total.canAfford(new API3.Resources(template.cost())) && !docks.length)
@@ -436,13 +436,13 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	}
 
 	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
-	var startingWood = gameState.getResources()["wood"];
+	var startingWood = gameState.getResources().wood;
 	var check = {};
 	for (let proxim of ["nearby", "medium", "faraway"])
 	{
 		for (let base of this.baseManagers)
 		{
-			for (let supply of base.dropsiteSupplies["wood"][proxim])
+			for (let supply of base.dropsiteSupplies.wood[proxim])
 			{
 				if (check[supply.id])    // avoid double counting as same resource can appear several time
 					continue;
@@ -471,8 +471,8 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			// if we start with enough workers, put our available resources in this first dropsite
 			// same thing if our pop exceed the allowed one, as we will need several houses
 			let numWorkers = gameState.getOwnUnits().filter(API3.Filters.byClass("Worker")).length;
-			if ((numWorkers > 12 && newDP.quality > 60)
-				|| (gameState.getPopulation() > gameState.getPopulationLimit() + 20))
+			if ((numWorkers > 12 && newDP.quality > 60) ||
+				(gameState.getPopulation() > gameState.getPopulationLimit() + 20))
 			{
 				let cost = new API3.Resources(gameState.getTemplate(template).cost());
 				gameState.ai.queueManager.setAccounts(gameState, cost, "dropsites");
