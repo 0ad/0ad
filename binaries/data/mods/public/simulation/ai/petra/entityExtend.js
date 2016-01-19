@@ -31,6 +31,8 @@ m.getMaxStrength = function(ent, againstClass)
 			case "pierce":
 				strength += (val * 0.065) / 3;
 				break;
+			default:
+				API3.warn("Petra: " + str + " unknown attackStrength in getMaxStrength");
 			}
 		}
 
@@ -50,6 +52,8 @@ m.getMaxStrength = function(ent, againstClass)
 			case "prepare":
 				strength -= (val / 100000);
 				break;
+			default:
+				API3.warn("Petra: " + str + " unknown attackTimes in getMaxStrength");
 			}
 		}
 	}
@@ -69,6 +73,8 @@ m.getMaxStrength = function(ent, againstClass)
 		case "pierce":
 			strength += (val * 0.065) / 3;
 			break;
+		default:
+			API3.warn("Petra: " + str + " unknown armourStrength in getMaxStrength");
 		}
 	}
 

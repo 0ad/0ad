@@ -230,7 +230,7 @@ m.QueueManager.prototype.distributeResources = function(gameState)
 			var total = gameState.getResources()[res];
 			var scale = total / (total - availableRes[res]);
 			availableRes[res] = total;
-			for (var j in this.queues)
+			for (let j in this.queues)
 			{
 				this.accounts[j][res] = Math.floor(scale * this.accounts[j][res]);
 				availableRes[res] -= this.accounts[j][res];
@@ -255,7 +255,7 @@ m.QueueManager.prototype.distributeResources = function(gameState)
 		//	-queues accounts are capped at "resources for the first + 60% of the next"
 		// This avoids getting a high priority queue with many elements hogging all of one resource
 		// uselessly while it awaits for other resources.
-		for (var j in this.queues)
+		for (let j in this.queues)
 		{
 			// returns exactly the correct amount, ie 0 if we're not go.
 			var queueCost = this.queues[j].maxAccountWanted(gameState, 0.6);
@@ -281,10 +281,10 @@ m.QueueManager.prototype.distributeResources = function(gameState)
 		// But we'll sometimes allow less if that would overflow.
 		var available = availableRes[res];
 		var missing = false;
-		for (var j in tempPrio)
+		for (let j in tempPrio)
 		{
 			// we'll add at much what can be allowed to this queue.
-			var toAdd = Math.floor(availableRes[res] * tempPrio[j]/totalPriority);
+			let toAdd = Math.floor(availableRes[res] * tempPrio[j]/totalPriority);
 			if (toAdd >= maxNeed[j])
 				toAdd = maxNeed[j];
 			else
@@ -295,9 +295,9 @@ m.QueueManager.prototype.distributeResources = function(gameState)
 		}
 		if (missing && available > 0)   // distribute the rest (due to floor) in any queue
 		{
-			for (var j in tempPrio)
+			for (let j in tempPrio)
 			{
-				var toAdd = Math.min(maxNeed[j], available);
+				let toAdd = Math.min(maxNeed[j], available);
 				this.accounts[j][res] += toAdd;
 				available -= toAdd;
 				if (available <= 0)
@@ -423,12 +423,12 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 		else if (numWorkers < workersMin / 3)
 			toBePaused = (q !== "citizenSoldier" && q !== "villager" && q !== "emergency");
 		else if (numWorkers < workersMin * 2 / 3)
-			toBePaused = (q === "civilCentre" || q === "economicBuilding"
-				|| q === "militaryBuilding" || q === "defenseBuilding"
-				|| q === "majorTech" || q === "minorTech" || q.indexOf("plan_") !== -1);
+			toBePaused = (q === "civilCentre" || q === "economicBuilding" ||
+				q === "militaryBuilding" || q === "defenseBuilding" ||
+				q === "majorTech" || q === "minorTech" || q.indexOf("plan_") !== -1);
 		else if (numWorkers < workersMin)
-			toBePaused = (q === "civilCentre" || q === "defenseBuilding"
-				|| q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1);
+			toBePaused = (q === "civilCentre" || q === "defenseBuilding" ||
+				q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1);
 
 		let queue = this.queues[q];
 		if (!queue.paused && toBePaused)
@@ -547,8 +547,8 @@ m.QueueManager.prototype.Serialize = function()
 		queues[q] = this.queues[q].Serialize();
 		accounts[q] = this.accounts[q].Serialize();
 		if (this.Config.debug == -100)
-			API3.warn("queueManager serialization: queue " + q + " >>> " + uneval(queues[q])
-				+ " with accounts " + uneval(accounts[q]));
+			API3.warn("queueManager serialization: queue " + q + " >>> " +
+				uneval(queues[q]) + " with accounts " + uneval(accounts[q]));
 	}
 
 	return {

@@ -54,7 +54,7 @@ m.BaseManager.prototype.init = function(gameState, state)
 	this.dropsites = {};
 	this.dropsiteSupplies = {};
 	this.gatherers = {};
-	for (var type of this.Config.resources)
+	for (let type of this.Config.resources)
 	{
 		this.dropsiteSupplies[type] = {"nearby": [], "medium": [], "faraway": []};
 		this.gatherers[type] = {"nextCheck": 0, "used": 0, "lost": 0};
@@ -85,7 +85,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 	this.buildings.updateEnt(this.anchor);
 	this.accessIndex = gameState.ai.accessibility.getAccessValue(this.anchor.position());
 	// in case some of our other bases were destroyed, reaffect these destroyed bases to this base
-	for (var base of gameState.ai.HQ.baseManagers)
+	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.anchor || base.newbaseID)
 			continue;
@@ -100,12 +100,12 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 	{
 		// let's check we haven't lost an important building here.
 		if (evt && !evt.SuccessfulFoundation && evt.entityObj && evt.metadata && evt.metadata[PlayerID] &&
-			evt.metadata[PlayerID]["base"] && evt.metadata[PlayerID]["base"] == this.ID)
+			evt.metadata[PlayerID].base && evt.metadata[PlayerID].base == this.ID)
 		{
 			let ent = evt.entityObj;
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				this.removeDropsite(gameState, ent);
-			if (evt.metadata[PlayerID]["baseAnchor"] && evt.metadata[PlayerID]["baseAnchor"] === true)
+			if (evt.metadata[PlayerID].baseAnchor && evt.metadata[PlayerID].baseAnchor === true)
 				this.anchorLost(gameState, ent);
 		}
 	}
@@ -202,12 +202,12 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 	for (var type of dropsite.resourceDropsiteTypes())
 	{
 		var resources = gameState.getResourceSupplies(type);
-		if (resources.length == 0)
+		if (!resources.length)
 			continue;
 
-		var nearby = this.dropsiteSupplies[type]["nearby"];
-		var medium = this.dropsiteSupplies[type]["medium"];
-		var faraway = this.dropsiteSupplies[type]["faraway"];
+		var nearby = this.dropsiteSupplies[type].nearby;
+		var medium = this.dropsiteSupplies[type].medium;
+		var faraway = this.dropsiteSupplies[type].faraway;
 
 		resources.forEach(function(supply)
 		{
@@ -217,7 +217,7 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 				return;
 			if (supply.hasClass("Field"))     // fields are treated separately
 				return;
-			if (supply.resourceSupplyType()["generic"] === "treasure")  // treasures are treated separately
+			if (supply.resourceSupplyType().generic === "treasure")  // treasures are treated separately
 				return;
 			// quick accessibility check
 			let access = supply.getMetadata(PlayerID, "access");
@@ -268,7 +268,7 @@ m.BaseManager.prototype.removeDropsite = function (gameState, ent)
 		return;
 
 	var removeSupply = function(entId, supply){
-		for (var i = 0; i < supply.length; ++i)
+		for (let i = 0; i < supply.length; ++i)
 		{
 			// exhausted resource, remove it from this list
 			if (!supply[i].ent || !gameState.getEntityById(supply[i].id))
@@ -279,11 +279,11 @@ m.BaseManager.prototype.removeDropsite = function (gameState, ent)
 		}
 	};
 
-	for (var type in this.dropsiteSupplies)
+	for (let type in this.dropsiteSupplies)
 	{
-		removeSupply(ent.id(), this.dropsiteSupplies[type]["nearby"]);
-		removeSupply(ent.id(), this.dropsiteSupplies[type]["medium"]);
-		removeSupply(ent.id(), this.dropsiteSupplies[type]["faraway"]);
+		removeSupply(ent.id(), this.dropsiteSupplies[type].nearby);
+		removeSupply(ent.id(), this.dropsiteSupplies[type].medium);
+		removeSupply(ent.id(), this.dropsiteSupplies[type].faraway);
 	}
 
 	this.dropsites[ent.id()] = undefined;
@@ -558,7 +558,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
 	var sumWanted = 0;
 	var sumCurrent = 0;
-	for (var need of mostNeeded)
+	for (let need of mostNeeded)
 	{
 		sumWanted += need.wanted;
 		sumCurrent += need.current;
@@ -611,7 +611,7 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorkers)
 	// Search for idle workers, and tell them to gather resources based on demand
 	if (!idleWorkers)
 	{
-		var filter = API3.Filters.byMetadata(PlayerID, "subrole", "idle");
+		let filter = API3.Filters.byMetadata(PlayerID, "subrole", "idle");
 		idleWorkers = gameState.updatingCollection("idle-workers-base-" + this.ID, filter, this.workers).values();
 	}
 	

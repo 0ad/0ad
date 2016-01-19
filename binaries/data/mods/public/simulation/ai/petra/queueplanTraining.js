@@ -25,48 +25,45 @@ m.TrainingPlan.prototype.canStart = function(gameState)
 	if (this.invalidTemplate)
 		return false;
 
-	// TODO: we should probably check pop caps
-
+	let trainers = gameState.findTrainers(this.type);
 	if (this.metadata && this.metadata.sea)
-		var trainers = gameState.findTrainers(this.type).filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea));
-	else
-		var trainers = gameState.findTrainers(this.type);
+		trainers = trainers.filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea));
 
-	return (trainers.length != 0);
+	return (trainers.length !== 0);
 };
 
 m.TrainingPlan.prototype.start = function(gameState)
 {
 	if (this.metadata && this.metadata.trainer)
 	{
-		var metadata = {};
-		for (var key in this.metadata)
+		let metadata = {};
+		for (let key in this.metadata)
 			if (key !== "trainer")
 				metadata[key] = this.metadata[key];
-		var trainer = gameState.getEntityById(this.metadata.trainer);
+		let trainer = gameState.getEntityById(this.metadata.trainer);
 		if (trainer)
 			trainer.train(gameState.civ(), this.type, this.number, metadata, this.promotedTypes(gameState));
 		this.onStart(gameState);
 		return;
 	}
 
+	let trainersColl = gameState.findTrainers(this.type);
 	if (this.metadata && this.metadata.sea)
-		var trainers = gameState.findTrainers(this.type).filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea)).toEntityArray();
+		trainersColl = trainersColl.filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea));
 	else if (this.metadata && this.metadata.base)
-		var trainers = gameState.findTrainers(this.type).filter(API3.Filters.byMetadata(PlayerID, "base", this.metadata.base)).toEntityArray();
-	else
-		var trainers = gameState.findTrainers(this.type).toEntityArray();
+		trainersColl = trainersColl.filter(API3.Filters.byMetadata(PlayerID, "base", this.metadata.base));
 
 	// Prefer training buildings with short queues
 	// (TODO: this should also account for units added to the queue by
 	// plans that have already been executed this turn)
-	if (trainers.length > 0)
+	if (trainersColl.length > 0)
 	{
-		var wantedIndex = undefined;
+		let trainers = trainersColl.toEntityArray();
+		let wantedIndex;
 		if (this.metadata && this.metadata.index)
 			wantedIndex = this.metadata.index;
-		var workerUnit = (this.metadata && this.metadata.role && this.metadata.role == "worker");
-		var supportUnit = this.template.hasClass("Support");
+		let workerUnit = (this.metadata && this.metadata.role && this.metadata.role == "worker");
+		let supportUnit = this.template.hasClass("Support");
 		trainers.sort(function(a, b) {
 			let aa = a.trainingQueueTime();
 			let bb = b.trainingQueueTime();
@@ -102,7 +99,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 			}
 			return (aa - bb);
 		});
-		if (this.metadata && this.metadata.base !== undefined && this.metadata.base == 0)
+		if (this.metadata && this.metadata.base !== undefined && this.metadata.base === 0)
 			this.metadata.base = trainers[0].getMetadata(PlayerID, "base");
 		trainers[0].train(gameState.civ(), this.type, this.number, this.metadata, this.promotedTypes(gameState));
 	}

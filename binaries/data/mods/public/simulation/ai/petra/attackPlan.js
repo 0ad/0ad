@@ -105,9 +105,9 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	if (type === "Rush")
 	{
 		priority = 250;
-		this.unitStat["Infantry"] = { "priority": 1, "minSize": 10, "targetSize": 20, "batchSize": 2, "classes": ["Infantry"],
+		this.unitStat.Infantry = { "priority": 1, "minSize": 10, "targetSize": 20, "batchSize": 2, "classes": ["Infantry"],
 			"interests": [ ["strength",1], ["cost",1], ["costsResource", 0.5, "stone"], ["costsResource", 0.6, "metal"] ] };
-		this.unitStat["Cavalry"] = { "priority": 1, "minSize": 2, "targetSize": 4, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
+		this.unitStat.Cavalry = { "priority": 1, "minSize": 2, "targetSize": 4, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
 			"interests": [ ["strength",1], ["cost",1] ] };
 		if (data && data.targetSize)
 			this.unitStat["Infantry"]["targetSize"] = data.targetSize;
@@ -116,7 +116,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	else if (type === "Raid")
 	{
 		priority = 150;
-		this.unitStat["Cavalry"] = { "priority": 1, "minSize": 3, "targetSize": 4, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
+		this.unitStat.Cavalry = { "priority": 1, "minSize": 3, "targetSize": 4, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
 			"interests": [ ["strength",1], ["cost",1] ] };
 		this.neededShips = 1;
 	}
@@ -124,34 +124,34 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	{
 		priority = 90;
 		// basically we want a mix of citizen soldiers so our barracks have a purpose, and champion units.
-		this.unitStat["RangedInfantry"]    = { "priority": 0.7, "minSize": 5, "targetSize": 15, "batchSize": 5, "classes": ["Infantry","Ranged", "CitizenSoldier"],
+		this.unitStat.RangedInfantry    = { "priority": 0.7, "minSize": 5, "targetSize": 15, "batchSize": 5, "classes": ["Infantry","Ranged", "CitizenSoldier"],
 			"interests": [["strength",3], ["cost",1] ] };
-		this.unitStat["MeleeInfantry"]     = { "priority": 0.7, "minSize": 5, "targetSize": 15, "batchSize": 5, "classes": ["Infantry","Melee", "CitizenSoldier"],
+		this.unitStat.MeleeInfantry     = { "priority": 0.7, "minSize": 5, "targetSize": 15, "batchSize": 5, "classes": ["Infantry","Melee", "CitizenSoldier"],
 			"interests": [ ["strength",3], ["cost",1] ] };
-		this.unitStat["ChampRangedInfantry"] = { "priority": 1, "minSize": 5, "targetSize": 25, "batchSize": 5, "classes": ["Infantry","Ranged", "Champion"],
+		this.unitStat.ChampRangedInfantry = { "priority": 1, "minSize": 5, "targetSize": 25, "batchSize": 5, "classes": ["Infantry","Ranged", "Champion"],
 			"interests": [["strength",3], ["cost",1] ] };
-		this.unitStat["ChampMeleeInfantry"]  = { "priority": 1, "minSize": 5, "targetSize": 20, "batchSize": 5, "classes": ["Infantry","Melee", "Champion"],
+		this.unitStat.ChampMeleeInfantry  = { "priority": 1, "minSize": 5, "targetSize": 20, "batchSize": 5, "classes": ["Infantry","Melee", "Champion"],
 			"interests": [ ["strength",3], ["cost",1] ] };
-		this.unitStat["MeleeCavalry"]      = { "priority": 0.7, "minSize": 3, "targetSize": 15, "batchSize": 3, "classes": ["Cavalry","Melee", "CitizenSoldier"],
+		this.unitStat.MeleeCavalry      = { "priority": 0.7, "minSize": 3, "targetSize": 15, "batchSize": 3, "classes": ["Cavalry","Melee", "CitizenSoldier"],
 			"interests": [ ["strength",2], ["cost",1] ] };
-		this.unitStat["RangedCavalry"]     = { "priority": 0.7, "minSize": 3, "targetSize": 15, "batchSize": 3, "classes": ["Cavalry","Ranged", "CitizenSoldier"],
+		this.unitStat.RangedCavalry     = { "priority": 0.7, "minSize": 3, "targetSize": 15, "batchSize": 3, "classes": ["Cavalry","Ranged", "CitizenSoldier"],
 			"interests": [ ["strength",2], ["cost",1] ] };
-		this.unitStat["ChampMeleeInfantry"]  = { "priority": 1, "minSize": 3, "targetSize": 18, "batchSize": 3, "classes": ["Infantry","Melee", "Champion"],
+		this.unitStat.ChampMeleeInfantry  = { "priority": 1, "minSize": 3, "targetSize": 18, "batchSize": 3, "classes": ["Infantry","Melee", "Champion"],
 			"interests": [ ["strength",3], ["cost",1] ] };
-		this.unitStat["ChampMeleeCavalry"]   = { "priority": 1, "minSize": 3, "targetSize": 18, "batchSize": 3, "classes": ["Cavalry","Melee", "Champion"],
+		this.unitStat.ChampMeleeCavalry   = { "priority": 1, "minSize": 3, "targetSize": 18, "batchSize": 3, "classes": ["Cavalry","Melee", "Champion"],
 			"interests": [ ["strength",2], ["cost",1] ] };
-		this.unitStat["Hero"]                = { "priority": 1, "minSize": 0, "targetSize":  1, "batchSize": 1, "classes": ["Hero"],
+		this.unitStat.Hero                = { "priority": 1, "minSize": 0, "targetSize":  1, "batchSize": 1, "classes": ["Hero"],
 			"interests": [ ["strength",2], ["cost",1] ] };
 		this.neededShips = 5;
 	}
 	else
 	{
 		priority = 70;
-		this.unitStat["RangedInfantry"] = { "priority": 1, "minSize": 6, "targetSize": 16, "batchSize": 3, "classes": ["Infantry","Ranged"],
+		this.unitStat.RangedInfantry = { "priority": 1, "minSize": 6, "targetSize": 16, "batchSize": 3, "classes": ["Infantry","Ranged"],
 			"interests": [ ["canGather", 1], ["strength",1.6], ["cost",1.5], ["costsResource", 0.3, "stone"], ["costsResource", 0.3, "metal"] ] };
-		this.unitStat["MeleeInfantry"]  = { "priority": 1, "minSize": 6, "targetSize": 16, "batchSize": 3, "classes": ["Infantry","Melee"],
+		this.unitStat.MeleeInfantry  = { "priority": 1, "minSize": 6, "targetSize": 16, "batchSize": 3, "classes": ["Infantry","Melee"],
 			"interests": [ ["canGather", 1], ["strength",1.6], ["cost",1.5], ["costsResource", 0.3, "stone"], ["costsResource", 0.3, "metal"] ] };
-	    	this.unitStat["Cavalry"] = { "priority": 1, "minSize": 2, "targetSize": 6, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
+	    	this.unitStat.Cavalry = { "priority": 1, "minSize": 2, "targetSize": 6, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
 			"interests": [ ["strength",1], ["cost",1] ] };
 		this.neededShips = 3;
 	}
@@ -171,16 +171,16 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	}
 	for (let cat in this.unitStat)
 	{
-		this.unitStat[cat]["targetSize"] = Math.round(variation * this.unitStat[cat]["targetSize"]);
-		this.unitStat[cat]["minSize"] = Math.min(this.unitStat[cat]["minSize"], this.unitStat[cat]["targetSize"]);
+		this.unitStat[cat].targetSize = Math.round(variation * this.unitStat[cat].targetSize);
+		this.unitStat[cat].minSize = Math.min(this.unitStat[cat].minSize, this.unitStat[cat].targetSize);
 	}
 
 	// change the sizes according to max population
 	this.neededShips = Math.ceil(this.Config.popScaling * this.neededShips);
 	for (let cat in this.unitStat)
 	{
-		this.unitStat[cat]["targetSize"] = Math.round(this.Config.popScaling * this.unitStat[cat]["targetSize"]);
-		this.unitStat[cat]["minSize"] = Math.floor(this.Config.popScaling * this.unitStat[cat]["minSize"]);
+		this.unitStat[cat].targetSize = Math.round(this.Config.popScaling * this.unitStat[cat].targetSize);
+		this.unitStat[cat].minSize = Math.floor(this.Config.popScaling * this.unitStat[cat].minSize);
 	}
 
 	// TODO: there should probably be one queue per type of training building
@@ -219,10 +219,10 @@ m.AttackPlan.prototype.init = function(gameState)
 	for (let cat in this.unitStat)
 	{
 		let Unit = this.unitStat[cat];
-		this.unit[cat] = this.unitCollection.filter(API3.Filters.byClassesAnd(Unit["classes"]));
+		this.unit[cat] = this.unitCollection.filter(API3.Filters.byClassesAnd(Unit.classes));
 		this.unit[cat].registerUpdates();
 		if (this.canBuildUnits)
-			this.buildOrder.push([0, Unit["classes"], this.unit[cat], Unit, cat]);
+			this.buildOrder.push([0, Unit.classes, this.unit[cat], Unit, cat]);
 	}
 };
 
@@ -259,11 +259,9 @@ m.AttackPlan.prototype.canStart = function()
 		return true;
 
 	for (let unitCat in this.unitStat)
-	{
-		let Unit = this.unitStat[unitCat];
-		if (this.unit[unitCat].length < Unit["minSize"])
+		if (this.unit[unitCat].length < this.unitStat[unitCat].minSize)
 			return false;
-	}
+
 	return true;
 };
 
@@ -280,9 +278,9 @@ m.AttackPlan.prototype.mustStart = function()
 	for (let unitCat in this.unitStat)
 	{
 		let Unit = this.unitStat[unitCat];
-		if (this.unit[unitCat].length < Unit["targetSize"])
+		if (this.unit[unitCat].length < Unit.targetSize)
 			MaxReachedEverywhere = false;
-		if (this.unit[unitCat].length < Unit["minSize"])
+		if (this.unit[unitCat].length < Unit.minSize)
 		{
 			MinReachedEverywhere = false;
 			break;
@@ -304,8 +302,8 @@ m.AttackPlan.prototype.forceStart = function()
 	for (let unitCat in this.unitStat)
 	{
 		let Unit = this.unitStat[unitCat];
-		Unit["targetSize"] = 0;
-		Unit["minSize"] = 0;
+		Unit.targetSize = 0;
+		Unit.minSize = 0;
 	}
 };
 
@@ -317,9 +315,9 @@ m.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, rese
 		// no minsize as we don't want the plan to fail at the last minute though.
 		this.unitStat[name] = unitStats;
 		let Unit = this.unitStat[name];
-		this.unit[name] = this.unitCollection.filter(API3.Filters.byClassesAnd(Unit["classes"]));
+		this.unit[name] = this.unitCollection.filter(API3.Filters.byClassesAnd(Unit.classes));
 		this.unit[name].registerUpdates();
-		this.buildOrder.push([0, Unit["classes"], this.unit[name], Unit, name]);
+		this.buildOrder.push([0, Unit.classes, this.unit[name], Unit, name]);
 		if (resetQueue)
 		{
 			this.queue.empty();
@@ -331,18 +329,18 @@ m.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, rese
 
 m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 {
-	if (this.unitStat["Siege"] || this.state !== "unexecuted")
+	if (this.unitStat.Siege || this.state !== "unexecuted")
 		return false;
 	// no minsize as we don't want the plan to fail at the last minute though.
-	var stat = { "priority": 1., "minSize": 0, "targetSize": 4, "batchSize": 2, "classes": ["Siege"],
+	var stat = { "priority": 1, "minSize": 0, "targetSize": 4, "batchSize": 2, "classes": ["Siege"],
 		"interests": [ ["siegeStrength", 3], ["cost",1] ] };
 	if (gameState.civ() === "maur")
-		stat["classes"] = ["Elephant", "Champion"];
+		stat.classes = ["Elephant", "Champion"];
 	if (this.Config.difficulty < 2)
-		stat["targetSize"] = 1;
+		stat.targetSize = 1;
 	else if (this.Config.difficulty < 3)
-		stat["targetSize"] = 2;
-        stat["targetSize"] = Math.round(this.Config.popScaling * stat["targetSize"]);
+		stat.targetSize = 2;
+        stat.targetSize = Math.round(this.Config.popScaling * stat.targetSize);
 	this.addBuildOrder(gameState, "Siege", stat, true);
 	return true;
 };
@@ -372,7 +370,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		}
 	}
 
-	if (this.Config.debug > 3 && gameState.ai.playedTurn % 50 == 0)
+	if (this.Config.debug > 3 && gameState.ai.playedTurn % 50 === 0)
 		this.debugAttack();
 
 	// if we need a transport, wait for some transport ships
@@ -400,14 +398,14 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			if (this.Config.debug > 1)
 			{
 				var am = gameState.ai.HQ.attackManager;
-				API3.warn(" attacks upcoming: raid " + am.upcomingAttacks["Raid"].length
-					+ " rush " + am.upcomingAttacks["Rush"].length
-					+ " attack " + am.upcomingAttacks["Attack"].length
-					+ " huge " + am.upcomingAttacks["HugeAttack"].length);
-				API3.warn(" attacks started: raid " + am.startedAttacks["Raid"].length
-					+ " rush " + am.startedAttacks["Rush"].length
-					+ " attack " + am.startedAttacks["Attack"].length
-					+ " huge " + am.startedAttacks["HugeAttack"].length);
+				API3.warn(" attacks upcoming: raid " + am.upcomingAttacks.Raid.length +
+					  " rush " + am.upcomingAttacks.Rush.length +
+					  " attack " + am.upcomingAttacks.Attack.length +
+					  " huge " + am.upcomingAttacks.HugeAttack.length);
+				API3.warn(" attacks started: raid " + am.startedAttacks.Raid.length +
+					  " rush " + am.startedAttacks.Rush.length +
+					  " attack " + am.startedAttacks.Attack.length +
+					  " huge " + am.startedAttacks.HugeAttack.length);
 			}
 			return 0;
 	    }
@@ -425,7 +423,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		if (this.canBuildUnits)
 		{
 			// We still have time left to recruit units and do stuffs.
-			if (!this.unitStat["Siege"])
+			if (!this.unitStat.Siege)
 			{
 				var numSiegeBuilder = 0;
 				if (gameState.civ() !== "mace" && gameState.civ() !== "maur")
@@ -510,16 +508,16 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 		this.buildOrder[i][0] = this.buildOrder[i][2].length + aQueued;
 	}
 	this.buildOrder.sort(function (a,b) {
-		let va = a[0]/a[3]["targetSize"] - a[3]["priority"];
-		if (a[0] >= a[3]["targetSize"])
+		let va = a[0]/a[3].targetSize - a[3].priority;
+		if (a[0] >= a[3].targetSize)
 			va += 1000;
-		let vb = b[0]/b[3]["targetSize"] - b[3]["priority"];
-		if (b[0] >= b[3]["targetSize"])
+		let vb = b[0]/b[3].targetSize - b[3].priority;
+		if (b[0] >= b[3].targetSize)
 			vb += 1000;
 		return va - vb;
 	});
 
-	if (this.Config.debug > 1 && gameState.ai.playedTurn%50 == 0)
+	if (this.Config.debug > 1 && gameState.ai.playedTurn%50 === 0)
 	{
 		API3.warn("====================================");
 		API3.warn("======== build order for plan " + this.name);
@@ -530,51 +528,51 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 			let queue1 = this.queue.countQueuedUnitsWithMetadata("special", specialData);
 			let queue2 = this.queueChamp.countQueuedUnitsWithMetadata("special", specialData);
 			let queue3 = this.queueSiege.countQueuedUnitsWithMetadata("special", specialData);
-			API3.warn(" >>> " + order[4] + " done " + order[2].length + " training " + inTraining
-				+ " queue " + queue1 + " champ " + queue2 + " siege " + queue3 + " >> need " + order[3].targetSize); 
+			API3.warn(" >>> " + order[4] + " done " + order[2].length + " training " + inTraining +
+				  " queue " + queue1 + " champ " + queue2 + " siege " + queue3 + " >> need " + order[3].targetSize); 
 		}
 		API3.warn("====================================");
 	}
 
-	if (this.buildOrder[0][0] < this.buildOrder[0][3]["targetSize"])
+	let firstOrder = this.buildOrder[0];
+	if (firstOrder[0] < firstOrder[3].targetSize)
 	{
 		// find the actual queue we want
-		var queue = this.queue;
-		if (this.buildOrder[0][3]["classes"].indexOf("Siege") !== -1 ||
-			(gameState.civ() == "maur" && this.buildOrder[0][3]["classes"].indexOf("Elephant") !== -1 && this.buildOrder[0][3]["classes"].indexOf("Champion")))
+		let queue = this.queue;
+		if (firstOrder[3].classes.indexOf("Siege") !== -1 ||
+			(gameState.civ() == "maur" && firstOrder[3].classes.indexOf("Elephant") !== -1 && firstOrder[3].classes.indexOf("Champion")))
 			queue = this.queueSiege;
-		else if (this.buildOrder[0][3]["classes"].indexOf("Hero") !== -1)
+		else if (firstOrder[3].classes.indexOf("Hero") !== -1)
 			queue = this.queueSiege;
-		else if (this.buildOrder[0][3]["classes"].indexOf("Champion") !== -1)
+		else if (firstOrder[3].classes.indexOf("Champion") !== -1)
 			queue = this.queueChamp;
 
 		if (queue.length() <= 5)
 		{
-			var template = gameState.ai.HQ.findBestTrainableUnit(gameState, this.buildOrder[0][1], this.buildOrder[0][3]["interests"]);
+			let template = gameState.ai.HQ.findBestTrainableUnit(gameState, firstOrder[1], firstOrder[3].interests);
 			// HACK (TODO replace) : if we have no trainable template... Then we'll simply remove the buildOrder,
 			// effectively removing the unit from the plan.
 			if (template === undefined)
 			{
 				if (this.Config.debug > 1)
-					API3.warn("attack no template found " + this.buildOrder[0][1]);
-				delete this.unitStat[this.buildOrder[0][4]];	// deleting the associated unitstat.
+					API3.warn("attack no template found " + firstOrder[1]);
+				delete this.unitStat[firstOrder[4]];	// deleting the associated unitstat.
 				this.buildOrder.splice(0,1);
 			}
 			else
 			{
 				if (this.Config.debug > 2)
 					API3.warn("attack template " + template + " added for plan " + this.name);
-				var max = this.buildOrder[0][3]["batchSize"];
-				var specialData = "Plan_" + this.name + "_" + this.buildOrder[0][4];
-				if (gameState.getTemplate(template).hasClass("CitizenSoldier"))
-					var trainingPlan = new m.TrainingPlan(gameState, template, { "role": "worker", "plan": this.name, "special": specialData, "base": 0 }, max, max);
-				else
-					var trainingPlan = new m.TrainingPlan(gameState, template, { "role": "attack", "plan": this.name, "special": specialData, "base": 0 }, max, max);
+				let max = firstOrder[3].batchSize;
+				let specialData = "Plan_" + this.name + "_" + firstOrder[4];
+				let data = { "plan": this.name, "special": specialData, "base": 0 };
+				data.role = gameState.getTemplate(template).hasClass("CitizenSoldier") ? "worker" : "attack";
+				let trainingPlan = new m.TrainingPlan(gameState, template, data, max, max);
 				if (trainingPlan.template)
 					queue.addPlan(trainingPlan);
 				else if (this.Config.debug > 1)
-					API3.warn("training plan canceled because no template for " + template + "   build1 " + uneval(this.buildOrder[0][1])
-						+ " build3 " + uneval(this.buildOrder[0][3]["interests"]));
+					API3.warn("training plan canceled because no template for " + template + "   build1 " + uneval(firstOrder[1]) +
+						  " build3 " + uneval(firstOrder[3].interests));
 			}
 		}
 	}
@@ -1068,9 +1066,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			{
 				if (IDs.indexOf(evt.target) == -1)
 					continue;
-				var attacker = gameState.getEntityById(evt.attacker);
-				var ourUnit = gameState.getEntityById(evt.target);
-				if (!attacker || !ourUnit)
+				let attacker = gameState.getEntityById(evt.attacker);
+				if (!attacker || !gameState.getEntityById(evt.target))
 					continue;
 				for (let ent of this.unitCollection.values())
 				{
@@ -1096,11 +1093,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		var attackedUnitNB = 0;
 		for (let evt of events.Attacked)
 		{
-			if (IDs.indexOf(evt.target) == -1)
+			if (IDs.indexOf(evt.target) === -1)
 				continue;
-			var attacker = gameState.getEntityById(evt.attacker);
-			var ourUnit = gameState.getEntityById(evt.target);
-
+			let attacker = gameState.getEntityById(evt.attacker);
 			if (attacker && (attacker.owner() !== 0 || this.targetPlayer === 0))
 			{
 				attackedNB++;
@@ -1112,7 +1107,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		var maybe = true;
 		if (attackedUnitNB == 0)
 		{
-			var siegeNB = 0;
+			let siegeNB = 0;
 			for (let ent of this.unitCollection.values())
 				if (this.isSiegeUnit(gameState, ent))
 					siegeNB++;
@@ -1341,11 +1336,11 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				{	// if units are attacked, abandon their target (if it was a structure or a support) and retaliate
 					// also if our unit is attacking a range unit and the attacker is a melee unit, retaliate
 					var orderData = ourUnit.unitAIOrderData();
-					if (orderData && orderData.length && orderData[0]["target"])
+					if (orderData && orderData.length && orderData[0].target)
 					{
-						if (orderData[0]["target"] === attacker.id())
+						if (orderData[0].target === attacker.id())
 							continue;
-						let target = gameState.getEntityById(orderData[0]["target"]);
+						let target = gameState.getEntityById(orderData[0].target);
 						if (target && !target.hasClass("Structure") && !target.hasClass("Support"))
 						{
 							if (!target.hasClass("Ranged") || !attacker.hasClass("Melee"))
@@ -1368,9 +1363,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (ent.hasClass("Ship"))	// TODO What to do with ships
 				continue;
 			let orderData = ent.unitAIOrderData();
-			if (!orderData || !orderData.length || !orderData[0]["target"])
+			if (!orderData || !orderData.length || !orderData[0].target)
 				continue;
-			let targetId = orderData[0]["target"];
+			let targetId = orderData[0].target;
 			let target = gameState.getEntityById(targetId);
 			if (!target || target.hasClass("Structure"))
 				continue;
@@ -1419,10 +1414,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			this.unitCollUpdateArray = this.unitCollection.toIdArray();
 
 		// Let's check a few units each time we update (currently 10) except when attack starts
-		if (this.unitCollUpdateArray.length < 15 || this.startingAttack)
-			var lgth = this.unitCollUpdateArray.length;
-		else
-			var lgth = 10;
+		var lgth = (this.unitCollUpdateArray.length < 15 || this.startingAttack) ? this.unitCollUpdateArray.length : 10;
 		for (var check = 0; check < lgth; check++)
 		{
 			var ent = gameState.getEntityById(this.unitCollUpdateArray[check]);
@@ -1431,8 +1423,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 
 			let targetId = undefined;
 			let orderData = ent.unitAIOrderData();
-			if (orderData && orderData.length && orderData[0]["target"])
-				targetId = orderData[0]["target"];
+			if (orderData && orderData.length && orderData[0].target)
+				targetId = orderData[0].target;
 	
 			// update the order if needed
 			var needsUpdate = false;
@@ -1569,14 +1561,14 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				if (mUnit.length !== 0)
 				{
 					mUnit.sort(function (unitA,unitB) {
-						var vala = unitA.hasClass("Support") ? 50 : 0;
+						let vala = unitA.hasClass("Support") ? 50 : 0;
 						if (ent.countersClasses(unitA.classes()))
 							vala += 100;
-						var valb = unitB.hasClass("Support") ? 50 : 0;
+						let valb = unitB.hasClass("Support") ? 50 : 0;
 						if (ent.countersClasses(unitB.classes()))
 							valb += 100;
-						var distA = unitA.getMetadata(PlayerID, "distance");
-						var distB = unitB.getMetadata(PlayerID, "distance");
+						let distA = unitA.getMetadata(PlayerID, "distance");
+						let distB = unitB.getMetadata(PlayerID, "distance");
 						if( distA && distB)
 						{
 							vala -= distA;
@@ -1620,12 +1612,12 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					if (mStruct.length !== 0)
 					{
 						mStruct.sort(function (structa,structb) {
-							var vala = structa.costSum();
+							let vala = structa.costSum();
 							if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))
 								vala += 10000;
 							else if (structa.hasClass("ConquestCritical"))
 								vala += 100;
-							var valb = structb.costSum();
+							let valb = structb.costSum();
 							if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))
 								valb += 10000;
 							else if (structb.hasClass("ConquestCritical"))
@@ -1643,19 +1635,19 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					}
 					else if (needsUpdate)  // really nothing   let's try to help our nearest unit
 					{
-						var distmin = Math.min();
-						var attackerId = undefined;
+						let distmin = Math.min();
+						let attackerId;
 						this.unitCollection.forEach( function (unit) {
 							if (!unit.position())
 								return;
-							if (unit.unitAIState().split(".")[1] !== "COMBAT" || !unit.unitAIOrderData().length
-								|| !unit.unitAIOrderData()[0]["target"])
+							if (unit.unitAIState().split(".")[1] !== "COMBAT" || !unit.unitAIOrderData().length ||
+								!unit.unitAIOrderData()[0].target)
 								return;
-							var dist = API3.SquareVectorDistance(unit.position(), ent.position());
+							let dist = API3.SquareVectorDistance(unit.position(), ent.position());
 							if (dist > distmin)
 								return;
 							distmin = dist;
-							attackerId = unit.unitAIOrderData()[0]["target"];
+							attackerId = unit.unitAIOrderData()[0].target;
 
 						});
 						if (attackerId)
@@ -1795,7 +1787,7 @@ m.AttackPlan.prototype.debugAttack = function()
 	for (var unitCat in this.unitStat)
 	{
 		var Unit = this.unitStat[unitCat];
-		API3.warn(unitCat + " num=" + this.unit[unitCat].length + " min=" + Unit["minSize"] + " need=" + Unit["targetSize"]);
+		API3.warn(unitCat + " num=" + this.unit[unitCat].length + " min=" + Unit.minSize + " need=" + Unit.targetSize);
 	}
 	API3.warn("------------------------------");
 };
@@ -1822,8 +1814,8 @@ m.AttackPlan.prototype.CheckCapture = function(gameState, ent)
 	if (!state || !state.split(".")[1] || state.split(".")[1] !== "COMBAT")
 		return true;
 	let orderData = ent.unitAIOrderData();
-	if (!orderData || !orderData.length || !orderData[0].target
-		|| !orderData[0].attackType || orderData[0].attackType !== "Capture")
+	if (!orderData || !orderData.length || !orderData[0].target ||
+		!orderData[0].attackType || orderData[0].attackType !== "Capture")
 		return true;
 
 	let targetId = orderData[0].target;
