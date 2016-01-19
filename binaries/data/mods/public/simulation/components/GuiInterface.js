@@ -615,11 +615,11 @@ GuiInterface.prototype.CheckTechnologyRequirements = function(player, data)
 
 // Returns technologies that are being actively researched, along with
 // which entity is researching them and how far along the research is.
-GuiInterface.prototype.GetStartedResearch = function(player)
+GuiInterface.prototype.GetStartedResearch = function(player, viewedPlayer)
 {
-	let cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	let cmpTechnologyManager = QueryPlayerIDInterface(viewedPlayer, IID_TechnologyManager);
 	if (!cmpTechnologyManager)
-		return false;
+		return {};
 
 	let ret = {};
 	for (let tech in cmpTechnologyManager.GetTechsStarted())
@@ -635,9 +635,9 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 };
 
 // Returns the battle state of the player.
-GuiInterface.prototype.GetBattleState = function(player)
+GuiInterface.prototype.GetBattleState = function(player, viewedPlayer)
 {
-	let cmpBattleDetection = QueryPlayerIDInterface(player, IID_BattleDetection);
+	let cmpBattleDetection = QueryPlayerIDInterface(viewedPlayer, IID_BattleDetection);
 
 	if (!cmpBattleDetection)
 		return false;
@@ -1614,13 +1614,13 @@ GuiInterface.prototype.PlaySound = function(player, data)
 GuiInterface.prototype.FindIdleUnits = function(player, data)
 {
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let playerEntities = cmpRangeManager.GetEntitiesByPlayer(player).filter(function(e) {
+	let playerEntities = cmpRangeManager.GetEntitiesByPlayer(data.viewedPlayer).filter(entity => {
 
-		let cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
+		let cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 		if (!cmpUnitAI || !cmpUnitAI.IsIdle() || cmpUnitAI.IsGarrisoned())
 			return false;
 
-		let cmpIdentity = Engine.QueryInterface(e, IID_Identity);
+		let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
 		if (!cmpIdentity || !cmpIdentity.HasClass(data.idleClass))
 			return false;
 
@@ -1773,10 +1773,10 @@ GuiInterface.prototype.SetRangeDebugOverlay = function(player, enabled)
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).SetDebugOverlay(enabled);
 };
 
-GuiInterface.prototype.GetTraderNumber = function(player)
+GuiInterface.prototype.GetTraderNumber = function(player, viewedPlayer)
 {
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let traders = cmpRangeManager.GetEntitiesByPlayer(player).filter(e => Engine.QueryInterface(e, IID_Trader));
+	let traders = cmpRangeManager.GetEntitiesByPlayer(viewedPlayer).filter(e => Engine.QueryInterface(e, IID_Trader));
 
 	let landTrader = { "total": 0, "trading": 0, "garrisoned": 0 };
 	let shipTrader = { "total": 0, "trading": 0 };
@@ -1812,9 +1812,9 @@ GuiInterface.prototype.GetTraderNumber = function(player)
 	return { "landTrader": landTrader, "shipTrader": shipTrader };
 };
 
-GuiInterface.prototype.GetTradingGoods = function(player)
+GuiInterface.prototype.GetTradingGoods = function(player, viewedPlayer)
 {
-	return QueryPlayerIDInterface(player).GetTradingGoods();
+	return QueryPlayerIDInterface(viewedPlayer).GetTradingGoods();
 };
 
 GuiInterface.prototype.OnGlobalEntityRenamed = function(msg)

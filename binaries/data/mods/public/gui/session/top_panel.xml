@@ -14,16 +14,16 @@
 	<!-- ================================  ================================ -->
 	<!-- Switch the view perspective to another player's (largely for AI development) -->
 	<!-- ================================  ================================ -->
-	<object size="50%+50 5 50%+150 100%-5" name="viewPlayer" type="dropdown" hidden="true" style="ModernDropDown" tooltip_style="sessionToolTipBold">
+	<object size="100%-415 5 100%-265 100%-5" name="viewPlayer" type="dropdown" hidden="true" style="ModernDropDown" tooltip_style="sessionToolTipBold">
 		<translatableAttribute id="tooltip">Choose player to view</translatableAttribute>
-		<action on="SelectionChange">selectViewPlayer(this.selected);</action>
+		<action on="SelectionChange">selectViewPlayer(this.selected - 1);</action>
 	</object>
 
 	<!-- ================================  ================================ -->
-	<!-- Observer Mode Warning -->
+	<!-- Observer Mode Label -->
 	<!-- ================================  ================================ -->
 	<object size="50 4 50% 100%-2" name="observerText" type="text" style="ModernLabelText" text_align="left" hidden="true">
-		<translatableAttribute id="caption">Observer Mode (experimental)</translatableAttribute>
+		<translatableAttribute id="caption">Observer Mode</translatableAttribute>
 	</object>
 
 </object>
