@@ -81,6 +81,16 @@ var g_TemplateData = {}; // {id:template}
 var g_TemplateDataWithoutLocalization = {};
 var g_TechnologyData = {}; // {id:template}
 
+/**
+ * Unit classes to be checked for the idle-worker-hotkey.
+ */
+var g_WorkerTypes = ["Female", "Trader", "FishingBoat", "CitizenSoldier", "Healer"];
+
+/**
+ * Cache the idle worker status
+ */
+var g_HasIdleWorker = false;
+
 function GetSimState()
 {
 	if (!g_SimState)
@@ -544,6 +554,36 @@ function changeGameSpeed(speed)
 		Engine.SetSimRate(speed);
 }
 
+function hasIdleWorker()
+{
+	for (let workerType of g_WorkerTypes)
+	{
+		let idleUnits = Engine.GuiInterfaceCall("FindIdleUnits", {
+			"idleClass": workerType,
+			"prevUnit": undefined,
+			"limit": 1,
+			"excludeUnits": []
+		});
+
+		if (idleUnits.length > 0)
+			return true;
+	}
+	return false;
+}
+
+function updateIdleWorkerButton()
+{
+	g_HasIdleWorker = hasIdleWorker();
+
+	let idleWorkerButton = Engine.GetGUIObjectByName("idleOverlay");
+	let prefix = "stretched:session/";
+
+	if (!g_HasIdleWorker)
+		idleWorkerButton.sprite = prefix + "minimap-idle-disabled.png";
+	else if (idleWorkerButton.sprite != prefix + "minimap-idle-highlight.png")
+		idleWorkerButton.sprite = prefix + "minimap-idle.png";
+}
+
 /**
  * Recomputes GUI state that depends on simulation state or selection state. Called directly every simulation
  * update (see session.xml), or from onTick when the selection has changed.
@@ -577,6 +617,7 @@ function onSimulationUpdate()
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
+	updateIdleWorkerButton();
 
 	if (Engine.GetPlayerID() > 0)
 	{
