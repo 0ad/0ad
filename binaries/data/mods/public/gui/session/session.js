@@ -12,15 +12,20 @@ const g_PopulationAlertColor = "orange";
  */
 const g_Ambient = [ "audio/ambient/dayscape/day_temperate_gen_03.ogg" ];
 
-var g_IsNetworked = false;
-
-// Is this user in control of game settings (i.e. is a network server, or offline player)
+/**
+ * Is this user in control of game settings (i.e. is a network server, or offline player).
+ */
 var g_IsController;
 
 /**
- * Unique ID for lobby reports
+ * True if this is a multiplayer game.
  */
-var g_MatchID;
+var g_IsNetworked = false;
+
+/**
+ * True if the connection to the server has been lost.
+ */
+var g_Disconnected = false;
 
 /**
  * True if the current user has observer capabilities.
@@ -32,9 +37,20 @@ var g_IsObserver = false;
  */
 var g_ViewedPlayer = Engine.GetPlayerID();
 
-// Cache the basic player data (name, civ, color)
+/**
+ * Unique ID for lobby reports.
+ */
+var g_MatchID;
+
+/**
+ * Cache the basic player data (name, civ, color).
+ */
 var g_Players = [];
 
+/**
+ * Last time when onTick was called().
+ * Used for animating the main menu.
+ */
 var lastTickTime = new Date();
 
 /**
@@ -44,51 +60,61 @@ var g_CivData = {};
 
 var g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1 } };
 
-// Cache dev-mode settings that are frequently or widely used
+/**
+ * Cache dev-mode settings that are frequently or widely used.
+ */
 var g_DevSettings = {
 	"changePerspective": false,
 	"controlAll": false
 };
 
-// Whether status bars should be shown for all of the player's units.
+/**
+ * Whether status bars should be shown for all of the player's units.
+ */
 var g_ShowAllStatusBars = false;
 
-// Indicate when one of the current player's training queues is blocked
-// (this is used to support population counter blinking)
+/**
+ * Blink the population counter if the player can't train more units.
+ */
 var g_IsTrainingBlocked = false;
 
-// Cache simulation state (updated on every simulation update)
+/**
+ * Cache simulation state (updated on every simulation update).
+ */
 var g_SimState;
+var g_EntityStates = {};
+var g_TemplateData = {};
+var g_TemplateDataWithoutLocalization = {};
+var g_TechnologyData = {};
 
-// Cache EntityStates
-var g_EntityStates = {}; // {id:entState}
+/**
+ * Cache concatenated list of player states ("active", "defeated" or "won").
+ */
+var g_CachedLastStates = "";
 
 /**
  * Whether the current player has lost/won and reached the end of their game.
+ * Used for reporting the gamestate and showing the game-end message only once.
  */
 var g_GameEnded = false;
 
-var g_Disconnected = false; // Lost connection to server
-
-// Holds player states from the last tick
-var g_CachedLastStates = "";
-
-// Top coordinate of the research list
+/**
+ * Top coordinate of the research list.
+ * Changes depending on the number of displayed counters.
+ */
 var g_ResearchListTop = 4;
 
-// List of additional entities to highlight
+/**
+ * List of additional entities to highlight.
+ */
 var g_ShowGuarding = false;
 var g_ShowGuarded = false;
 var g_AdditionalHighlight = [];
 
-// for saving the hitpoins of the hero (is there a better way to do that?) 
-// Should be possible with AttackDetection but might be an overkill because it would have to loop
-// always through the list of all ongoing attacks...
-var g_PreviousHeroHitPoints = undefined;
-
-var g_TemplateData = {}; // {id:template}
-var g_TemplateDataWithoutLocalization = {};
-var g_TechnologyData = {}; // {id:template}
+/**
+ * Blink the hero selection if that entity has lost health since the last turn.
+ */
+var g_PreviousHeroHitPoints;
 
 /**
  * Unit classes to be checked for the idle-worker-hotkey.
@@ -96,7 +122,7 @@ var g_TechnologyData = {}; // {id:template}
 var g_WorkerTypes = ["Female", "Trader", "FishingBoat", "CitizenSoldier", "Healer"];
 
 /**
- * Cache the idle worker status
+ * Cache the idle worker status.
  */
 var g_HasIdleWorker = false;
 
@@ -369,11 +395,11 @@ function resignGame(leaveGameAfterResign)
 		"type": "defeat-player",
 		"playerId": Engine.GetPlayerID()
 	});
-	
+
 	updateTopPanel();
-	
+
 	global.music.setState(global.music.states.DEFEAT);
-	
+
 	// Resume the game if not resigning.
 	if (!leaveGameAfterResign)
 		resumeGame();
@@ -541,7 +567,7 @@ function checkPlayerState()
 
 	// Disable the resign- and pausebutton
 	updateTopPanel();
-	
+
 	// Make sure nothing is open to avoid stacking.
 	closeMenu();
 	closeOpenDialogs();
@@ -692,10 +718,10 @@ function onReplayFinished()
 * updates a status bar on the GUI
 * nameOfBar: name of the bar
 * points: points to show
-* maxPoints: max points 
+* maxPoints: max points
 * direction: gets less from (right to left) 0; (top to bottom) 1; (left to right) 2; (bottom to top) 3;
 */
-function updateGUIStatusBar(nameOfBar, points, maxPoints, direction) 
+function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 {
 	// check, if optional direction parameter is valid.
 	if (!direction || !(direction >= 0 && direction < 4))
@@ -703,14 +729,14 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 
 	// get the bar and update it
 	let statusBar = Engine.GetGUIObjectByName(nameOfBar);
-	if (!statusBar) 
+	if (!statusBar)
 		return;
-		
+
 	let healthSize = statusBar.size;
 	let value = 100*Math.max(0, Math.min(1, points / maxPoints));
-	
+
 	// inverse bar
-	if(direction == 2 || direction == 3) 
+	if (direction == 2 || direction == 3)
 		value = 100 - value;
 
 	if (direction == 0)
@@ -721,7 +747,7 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 		healthSize.rleft = value;
 	else if (direction == 3)
 		healthSize.rtop = value;
-	
+
 	statusBar.size = healthSize;
 }
 
@@ -766,10 +792,10 @@ function updateHero()
 		tooltip += "\n" + template.tooltip;
 
 	heroButton.tooltip = tooltip;
-	
+
 	// update heros health bar
 	updateGUIStatusBar("heroHealthBar", heroState.hitpoints, heroState.maxHitpoints);
-	
+
 	let heroHP = {
 		"hitpoints": heroState.hitpoints,
 		"player": g_ViewedPlayer
