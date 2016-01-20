@@ -186,9 +186,7 @@ m.Template = m.Class({
 
 	isRepairable: function()
 	{
-		if (this.get("Health") !== undefined)
-			return this.get("Health/Repairable") === "true";
-		return false;
+		return this.get("Repairable") !== undefined;
 	},
 
 	getPopulationBonus: function() {
