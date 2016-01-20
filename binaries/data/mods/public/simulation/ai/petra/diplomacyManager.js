@@ -43,7 +43,7 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 				tribute[res] = 100;
 				toSend = true;
 			}
-			else if (this.Config.chat && availableResources[res] == 0 && allyResources[res] > totalResources[res] + 600)
+			else if (this.Config.chat && availableResources[res] === 0 && allyResources[res] > totalResources[res] + 600)
 			{
 				if (gameState.ai.elapsedTime < this.nextTributeRequest.get("all"))
 					continue;
@@ -97,9 +97,9 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 	for (let evt of events.Attacked)
 	{
 		let target = gameState.getEntityById(evt.target);
-		if (!target || !target.position()
-			|| gameState.ai.HQ.territoryMap.getOwner(target.position()) !== PlayerID
-			|| !gameState.isPlayerEnemy(target.owner()))
+		if (!target || !target.position() ||
+			gameState.ai.HQ.territoryMap.getOwner(target.position()) !== PlayerID ||
+			!gameState.isPlayerEnemy(target.owner()))
 			continue;
 		let attacker = gameState.getEntityById(evt.attacker);
 		if (!attacker || attacker.owner() === PlayerID || !gameState.isPlayerAlly(attacker.owner()))

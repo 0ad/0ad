@@ -397,7 +397,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly
 {
 	var count = 0;
 	var check = {};
-	var nearby = this.dropsiteSupplies[type]["nearby"];
+	var nearby = this.dropsiteSupplies[type].nearby;
 	for (let supply of nearby)
 	{
 		if (check[supply.id])    // avoid double counting as same resource can appear several time
@@ -407,7 +407,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly
 	}
 	if (nearbyOnly)
 		return count;
-	var medium = this.dropsiteSupplies[type]["medium"];
+	var medium = this.dropsiteSupplies[type].medium;
 	for (let supply of medium)
 	{
 		if (check[supply.id])
@@ -448,7 +448,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				}
 			}
 		}
-		else if (queues.dropsites.length() == 0 && gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).length == 0)
+		else if (!queues.dropsites.length() && !gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).length)
 		{
 			if (gameState.ai.playedTurn > this.gatherers[type].nextCheck)
 			{
@@ -469,7 +469,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 						var newDP = this.findBestDropsiteLocation(gameState, type);
 						if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
 							queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
-						else if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length == 0 && queues.civilCentre.length() == 0)
+						else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length && !queues.civilCentre.length())
 						{
 							// No good dropsite, try to build a new base if no base already planned,
 							// and if not possible, be less strict on dropsite quality
@@ -482,7 +482,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 					this.gatherers[type].used = 0;
 					this.gatherers[type].lost = 0;
 				}
-				else if (total == 0)
+				else if (total === 0)
 					this.gatherers[type].nextCheck = gameState.ai.playedTurn + 10;
 			}
 		}

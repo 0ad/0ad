@@ -296,7 +296,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	{
 		barterers[0].barter(bestToBuy, "food", 100);
 		if (this.Config.debug > 2)
-			API3.warn("Contingency bartering: sold food for " + bestToBuy + " available sell " + available["food"] +
+			API3.warn("Contingency bartering: sold food for " + bestToBuy + " available sell " + available.food +
 				  " available buy " + available[bestToBuy] + " barterRate " + getBarterRate(prices, bestToBuy, "food"));
 		return true;
 	}

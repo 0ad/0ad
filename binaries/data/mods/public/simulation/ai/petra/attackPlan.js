@@ -110,7 +110,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		this.unitStat.Cavalry = { "priority": 1, "minSize": 2, "targetSize": 4, "batchSize": 2, "classes": ["Cavalry", "CitizenSoldier"],
 			"interests": [ ["strength",1], ["cost",1] ] };
 		if (data && data.targetSize)
-			this.unitStat["Infantry"]["targetSize"] = data.targetSize;
+			this.unitStat.Infantry.targetSize = data.targetSize;
 		this.neededShips = 1;
 	}
 	else if (type === "Raid")
@@ -435,7 +435,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			}
 			this.trainMoreUnits(gameState);
 			// may happen if we have no more training facilities and build orders are canceled
-			if (this.buildOrder.length == 0)
+			if (!this.buildOrder.length)
 				return 0;	// will abort the plan
 		}
 		return 1;
@@ -788,13 +788,14 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 // sameLand true means that we look for a target for which we do not need to take a transport
 m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand)
 {
+	var targets;
 	if (this.type === "Raid")
-		var targets = this.raidTargetFinder(gameState);
+		targets = this.raidTargetFinder(gameState);
 	else if (this.type === "Rush" || this.type === "Attack")
-		var targets = this.rushTargetFinder(gameState, this.targetPlayer);
+		targets = this.rushTargetFinder(gameState, this.targetPlayer);
 	else
-		var targets = this.defaultTargetFinder(gameState, this.targetPlayer);
-	if (targets.length == 0)
+		targets = this.defaultTargetFinder(gameState, this.targetPlayer);
+	if (!targets.length)
 		return undefined;
 
 	var land = gameState.ai.accessibility.getAccessValue(position);
@@ -854,11 +855,12 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 {
 	var targets = new API3.EntityCollection(gameState.sharedScript);
+	var buildings;
 	if (playerEnemy !== undefined)
-		var buildings = gameState.getEnemyStructures(playerEnemy).toEntityArray();
+		buildings = gameState.getEnemyStructures(playerEnemy).toEntityArray();
 	else
-		var buildings = gameState.getEnemyStructures().toEntityArray();
-	if (buildings.length == 0)
+		buildings = gameState.getEnemyStructures().toEntityArray();
+	if (!buildings.length)
 		return targets;
 
 	this.position = this.unitCollection.getCentrePosition();
@@ -897,7 +899,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 	if (target)
 		targets.addEnt(target);
 
-	if (targets.length == 0)
+	if (!targets.length)
 	{
 		if (this.type === "Attack")
 			targets = this.defaultTargetFinder(gameState, playerEnemy);
@@ -1030,7 +1032,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 // Runs every turn after the attack is executed
 m.AttackPlan.prototype.update = function(gameState, events)
 {
-	if (this.unitCollection.length == 0)
+	if (!this.unitCollection.length)
 		return 0;
 
 	Engine.ProfileStart("Update Attack");
@@ -1105,13 +1107,13 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		}
 		// Are we arrived at destination ?
 		var maybe = true;
-		if (attackedUnitNB == 0)
+		if (!attackedUnitNB)
 		{
 			let siegeNB = 0;
 			for (let ent of this.unitCollection.values())
 				if (this.isSiegeUnit(gameState, ent))
 					siegeNB++;
-			if (siegeNB == 0)
+			if (!siegeNB)
 				maybe = false;
 		}
 		if (maybe && ((gameState.ai.HQ.territoryMap.getOwner(this.position) === this.targetPlayer && attackedNB > 1) || attackedNB > 3))
@@ -1306,7 +1308,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var ourUnit = gameState.getEntityById(evt.target);
 			if (this.isSiegeUnit(gameState, ourUnit))
 			{	// if our siege units are attacked, we'll send some units to deal with enemies.
-				var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);
+				let collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);
 				for (let ent of collec.values())
 				{
 					if (this.isSiegeUnit(gameState, ent))	// needed as mauryan elephants are not filtered out
@@ -1325,7 +1327,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			{
 				if (this.isSiegeUnit(gameState, attacker))
 				{	// if our unit is attacked by a siege unit, we'll send some melee units to help it.
-					var collec = this.unitCollection.filter(API3.Filters.byClass("Melee")).filterNearest(ourUnit.position(), 5);
+					let collec = this.unitCollection.filter(API3.Filters.byClass("Melee")).filterNearest(ourUnit.position(), 5);
 					for (var ent of collec.values())
 					{
 						ent.attack(attacker.id(), false);

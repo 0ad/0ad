@@ -285,7 +285,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			if (!ent.position())
 			{
 				// we are autogarrisoned, check that the holder is registered in the garrisonManager
-				let holderId = ent.unitAIOrderData()[0]["target"];
+				let holderId = ent.unitAIOrderData()[0].target;
 				let holder = gameState.getEntityById(holderId);
 				if (holder)
 					this.garrisonManager.registerHolder(gameState, holder);
@@ -361,7 +361,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			if (decayToGaia)
 				continue;
 			let ratioMax = 0.70;
-			for (let evt of events["Attacked"])
+			for (let evt of events.Attacked)
 			{
 				if (ent.id() != evt.target)
 					continue;
@@ -426,10 +426,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	// and adapt the batch size of the first and second queued workers and females to the present population
 	// to ease a possible recovery if our population was drastically reduced by an attack
 	// (need to go up to second queued as it is accounted in queueManager)
-	if (numWorkers < 12)
-		var size = 1;
-	else
-		var size =  Math.min(5, Math.ceil(numWorkers / 10));
+	var size = numWorkers < 12 ? 1 : Math.min(5, Math.ceil(numWorkers / 10));
 	if (queues.villager.plans[0])
 	{
 		queues.villager.plans[0].number = Math.min(queues.villager.plans[0].number, size);
@@ -624,7 +621,7 @@ m.HQ.prototype.getTotalResourceLevel = function(gameState)
 // This is not per-se exact, it performs a few adjustments ad-hoc to account for travel distance, stuffs like that.
 m.HQ.prototype.GetCurrentGatherRates = function(gameState)
 {
-	if (!this.turnCache["gatherRates"])
+	if (!this.turnCache.gatherRates)
 	{
 		for (let res in this.currentRates)
 			this.currentRates[res] = 0.5 * this.GetTCResGatherer(res);
@@ -641,7 +638,7 @@ m.HQ.prototype.GetCurrentGatherRates = function(gameState)
 				this.currentRates[res] = 0;
 			}
 		}
-		this.turnCache["gatherRates"] = true;
+		this.turnCache.gatherRates = true;
 	}
 	    
 	return this.currentRates;
@@ -812,10 +809,10 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		if (this.borderMap.map[j] > 0)	// disfavor the borders of the map
 			norm *= 0.5;
 		
-		var val = 2*gameState.sharedScript.CCResourceMaps[resource].map[j]
-			+ gameState.sharedScript.CCResourceMaps["wood"].map[j]
-			+ gameState.sharedScript.CCResourceMaps["stone"].map[j]
-			+ gameState.sharedScript.CCResourceMaps["metal"].map[j];
+		var val = 2*gameState.sharedScript.CCResourceMaps[resource].map[j] +
+			    gameState.sharedScript.CCResourceMaps.wood.map[j] +
+			    gameState.sharedScript.CCResourceMaps.stone.map[j] +
+			    gameState.sharedScript.CCResourceMaps.metal.map[j];
 		val *= norm;
 
 		if (bestVal !== undefined && val < bestVal)
@@ -1312,7 +1309,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	{
 		let requirements = gameState.getPhaseRequirements(2);
 		let count = gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length;
-		if (requirements && count < requirements["number"] && this.stopBuilding.has(gameState.applyCiv("structures/{civ}_house")))
+		if (requirements && count < requirements.number && this.stopBuilding.has(gameState.applyCiv("structures/{civ}_house")))
 		{
 			if (this.Config.debug > 1)
 				API3.warn("no room to place a house ... try to be less restrictive");
@@ -1324,7 +1321,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		{
 			if (houseQueue[i].isGo(gameState))
 				++count;
-			else if (count < requirements["number"])
+			else if (count < requirements.number)
 			{
 				houseQueue[i].isGo = function () { return true; };
 				++count;
@@ -1335,7 +1332,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	if (this.requireHouses)
 	{
 		let requirements = gameState.getPhaseRequirements(2);
-		if (gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length >= requirements["number"])
+		if (gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length >= requirements.number)
 			this.requireHouses = undefined;
 	}
     
@@ -1634,7 +1631,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	{
 		for (var item of nearestAnchor._entity.trainingQueue)
 		{
-			if (item.metadata && item.metadata["garrisonType"])
+			if (item.metadata && item.metadata.garrisonType)
 				numGarrisoned += item.count;
 			else if (!item.progress && (!item.metadata || !item.metadata.trainer))
 				nearestAnchor.stopProduction(item.id);
@@ -1892,9 +1889,9 @@ m.HQ.prototype.isNearInvadingArmy = function(pos)
 
 m.HQ.prototype.isUnderEnemyFire = function(gameState, pos, radius = 0)
 {
-	if (!this.turnCache["firingStructures"])
-		this.turnCache["firingStructures"] = gameState.updatingCollection("FiringStructures", API3.Filters.hasDefensiveFire(), gameState.getEnemyStructures());
-	for (let ent of this.turnCache["firingStructures"].values())
+	if (!this.turnCache.firingStructures)
+		this.turnCache.firingStructures = gameState.updatingCollection("FiringStructures", API3.Filters.hasDefensiveFire(), gameState.getEnemyStructures());
+	for (let ent of this.turnCache.firingStructures.values())
 	{
 		let range = radius + ent.attackRange("Ranged").max;
 		if (API3.SquareVectorDistance(ent.position(), pos) < range*range)
@@ -1908,33 +1905,33 @@ m.HQ.prototype.isUnderEnemyFire = function(gameState, pos, radius = 0)
 // add a gatherer to the turn cache for this supply.
 m.HQ.prototype.AddTCGatherer = function(supplyID)
 {
-	if (this.turnCache["resourceGatherer"] && this.turnCache["resourceGatherer"][supplyID] !== undefined)
-		++this.turnCache["resourceGatherer"][supplyID];
+	if (this.turnCache.resourceGatherer && this.turnCache.resourceGatherer[supplyID] !== undefined)
+		++this.turnCache.resourceGatherer[supplyID];
 	else
 	{ 
-		if (!this.turnCache["resourceGatherer"])
-			this.turnCache["resourceGatherer"] = {};
-		this.turnCache["resourceGatherer"][supplyID] = 1;
+		if (!this.turnCache.resourceGatherer)
+			this.turnCache.resourceGatherer = {};
+		this.turnCache.resourceGatherer[supplyID] = 1;
 	}
 };
 
 // remove a gatherer to the turn cache for this supply.
 m.HQ.prototype.RemoveTCGatherer = function(supplyID)
 {
-	if (this.turnCache["resourceGatherer"] && this.turnCache["resourceGatherer"][supplyID])
-		--this.turnCache["resourceGatherer"][supplyID];
+	if (this.turnCache.resourceGatherer && this.turnCache.resourceGatherer[supplyID])
+		--this.turnCache.resourceGatherer[supplyID];
 	else
 	{
-		if (!this.turnCache["resourceGatherer"])
-			this.turnCache["resourceGatherer"] = {};
-		this.turnCache["resourceGatherer"][supplyID] = -1;
+		if (!this.turnCache.resourceGatherer)
+			this.turnCache.resourceGatherer = {};
+		this.turnCache.resourceGatherer[supplyID] = -1;
 	}
 };
 
 m.HQ.prototype.GetTCGatherer = function(supplyID)
 {
-	if (this.turnCache["resourceGatherer"] && this.turnCache["resourceGatherer"][supplyID])
-		return this.turnCache["resourceGatherer"][supplyID];
+	if (this.turnCache.resourceGatherer && this.turnCache.resourceGatherer[supplyID])
+		return this.turnCache.resourceGatherer[supplyID];
 	else
 		return 0;
 };
@@ -1946,7 +1943,7 @@ m.HQ.prototype.AddTCResGatherer = function(resource)
 		++this.turnCache["resourceGatherer-" + resource];
 	else
 		this.turnCache["resourceGatherer-" + resource] = 1;
-	this.turnCache["gatherRates"] = false;
+	this.turnCache.gatherRates = false;
 };
 
 m.HQ.prototype.GetTCResGatherer = function(resource)

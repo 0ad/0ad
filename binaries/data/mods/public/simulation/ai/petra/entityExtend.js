@@ -91,7 +91,7 @@ m.allowCapture = function(ent, target)
 // Makes the worker deposit the currently carried resources at the closest accessible dropsite
 m.returnResources = function(gameState, ent)
 {
-	if (!ent.resourceCarrying() || ent.resourceCarrying().length == 0 || !ent.position())
+	if (!ent.resourceCarrying() || !ent.resourceCarrying().length || !ent.position())
 		return false;
 
 	var resource = ent.resourceCarrying()[0].type;
@@ -122,8 +122,8 @@ m.IsSupplyFull = function(gameState, ent)
 	    return true;
 	var turnCache = gameState.ai.HQ.turnCache;
 	var count = ent.resourceSupplyNumGatherers();
-	if (turnCache["resourceGatherer"] && turnCache["resourceGatherer"][ent.id()])
-		count += turnCache["resourceGatherer"][ent.id()];
+	if (turnCache.resourceGatherer && turnCache.resourceGatherer[ent.id()])
+		count += turnCache.resourceGatherer[ent.id()];
 	if (count >= ent.maxGatherers())
 		return true;
 	return false;
@@ -197,15 +197,15 @@ m.dumpEntity = function(ent)
 {
 	if (!ent)
 		return;
-	API3.warn(" >>> id " + ent.id() + " name " + ent.genericName() + " pos " + ent.position()
-		+ " state " + ent.unitAIState());
-	API3.warn(" base " + ent.getMetadata(PlayerID, "base") + " >>> role " + ent.getMetadata(PlayerID, "role")
-		+ " subrole " + ent.getMetadata(PlayerID, "subrole"));
+	API3.warn(" >>> id " + ent.id() + " name " + ent.genericName() + " pos " + ent.position() +
+		  " state " + ent.unitAIState());
+	API3.warn(" base " + ent.getMetadata(PlayerID, "base") + " >>> role " + ent.getMetadata(PlayerID, "role") +
+		  " subrole " + ent.getMetadata(PlayerID, "subrole"));
 	API3.warn("owner " + ent.owner() + " health " + ent.hitpoints() + " healthMax " + ent.maxHitpoints());
-	API3.warn(" garrisoning " + ent.getMetadata(PlayerID, "garrisoning") + " garrisonHolder " + ent.getMetadata(PlayerID, "garrisonHolder")
-		+ " plan " + ent.getMetadata(PlayerID, "plan")	+ " transport " + ent.getMetadata(PlayerID, "transport")
-		+ " gather-type " + ent.getMetadata(PlayerID, "gather-type") + " target-foundation " + ent.getMetadata(PlayerID, "target-foundation")
-		+ " PartOfArmy " + ent.getMetadata(PlayerID, "PartOfArmy"));
+	API3.warn(" garrisoning " + ent.getMetadata(PlayerID, "garrisoning") + " garrisonHolder " + ent.getMetadata(PlayerID, "garrisonHolder") +
+		  " plan " + ent.getMetadata(PlayerID, "plan")	+ " transport " + ent.getMetadata(PlayerID, "transport") +
+		  " gather-type " + ent.getMetadata(PlayerID, "gather-type") + " target-foundation " + ent.getMetadata(PlayerID, "target-foundation") +
+		  " PartOfArmy " + ent.getMetadata(PlayerID, "PartOfArmy"));
 };
 
 return m;
