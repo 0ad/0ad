@@ -90,10 +90,10 @@ m.SharedScript.prototype.GetTemplate = function(name)
 	// If this is a foundation template, construct it automatically
 	if (name.indexOf("foundation|") !== -1)
 	{
-		var base = this.GetTemplate(name.substr(11));
+		let base = this.GetTemplate(name.substr(11));
 		
-		var foundation = {};
-		for (var key in base)
+		let foundation = {};
+		for (let key in base)
 			if (!m.g_FoundationForbiddenComponents[key])
 				foundation[key] = base[key];
 		
@@ -102,10 +102,10 @@ m.SharedScript.prototype.GetTemplate = function(name)
 	}
 	else if (name.indexOf("resource|") !== -1)
 	{
-		var base = this.GetTemplate(name.substr(9));
+		let base = this.GetTemplate(name.substr(9));
 		
-		var resource = {};
-		for (var key in base)
+		let resource = {};
+		for (let key in base)
 			if (!m.g_ResourceForbiddenComponents[key])
 				resource[key] = base[key];
 		
@@ -230,7 +230,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	// by order of updating:
 	// we "Destroy" last because we want to be able to switch Metadata first.
 
-	var CreateEvents = state.events["Create"];
+	var CreateEvents = state.events.Create;
 	for (let i = 0; i < CreateEvents.length; ++i)
 	{
 		let evt = CreateEvents[i];
@@ -246,7 +246,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			entCol.updateEnt(entity);
 	}
 
-	for (let evt of state.events["EntityRenamed"])
+	for (let evt of state.events.EntityRenamed)
 	{	// Switch the metadata: TODO entityCollections are updated only because of the owner change. Should be done properly
 		for (let p in this._players)
 		{
@@ -255,14 +255,14 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		}
 	}
 
-	for (let evt of state.events["TrainingFinished"])
+	for (let evt of state.events.TrainingFinished)
 	{	// Apply metadata stored in training queues
 		for (let entId of evt.entities)
 			for (let key in evt.metadata)
 				this.setMetadata(evt.owner, this._entities.get(entId), key, evt.metadata[key]);
 	}
 
-	for (let evt of state.events["ConstructionFinished"])
+	for (let evt of state.events.ConstructionFinished)
 	{	// we'll move metadata.
 		if (!this._entities.has(evt.entity))
 			continue;
@@ -274,7 +274,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		foundationFinished[evt.entity] = true;
 	}
 
-	for (let evt of state.events["AIMetadata"])
+	for (let evt of state.events.AIMetadata)
 	{
 		if (!this._entities.has(evt.id))
 			continue;	// might happen in some rare cases of foundations getting destroyed, perhaps.
@@ -283,10 +283,10 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key]);
 	}
 	
-	var DestroyEvents = state.events["Destroy"];
-	for (var i = 0; i < DestroyEvents.length; ++i)
+	var DestroyEvents = state.events.Destroy;
+	for (let i = 0; i < DestroyEvents.length; ++i)
 	{
-		var evt = DestroyEvents[i];
+		let evt = DestroyEvents[i];
 		// A small warning: javascript "delete" does not actually delete, it only removes the reference in this object.
 		// the "deleted" object remains in memory, and any older reference to it will still reference it as if it were not "deleted".
 		// Worse, they might prevent it from being garbage collected, thus making it stay alive and consuming ram needlessly.
@@ -301,7 +301,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		// remember the entity and this AI's metadata concerning it
 		evt.metadata = {};
 		evt.entityObj = this._entities.get(evt.entity);
-		for (var j in this._players)
+		for (let j in this._players)
 			evt.metadata[this._players[j]] = this._entityMetadata[this._players[j]][evt.entity];
 		
 		let entity = this._entities.get(evt.entity);
@@ -310,7 +310,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		this.entities.removeEnt(entity);
 		
 		this._entities.delete(evt.entity);
-		for (var j in this._players)
+		for (let j in this._players)
 			delete this._entityMetadata[this._players[j]][evt.entity];
 	}
 
@@ -327,11 +327,11 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 
 	// apply per-entity aura-related changes.
 	// this supersedes tech-related changes.
-	for (var id in state.changedEntityTemplateInfo)
+	for (let id in state.changedEntityTemplateInfo)
 	{
 		if (!this._entities.has(+id))
 			continue;	// dead, presumably.
-		var changes = state.changedEntityTemplateInfo[id];
+		let changes = state.changedEntityTemplateInfo[id];
 		let entity = this._entities.get(+id);
 		for (let change of changes)
 			entity._auraTemplateModif.set(change.variable, change.value);
@@ -343,12 +343,12 @@ m.SharedScript.prototype.ApplyTemplatesDelta = function(state)
 {
 	Engine.ProfileStart("Shared ApplyTemplatesDelta");
 
-	for (var player in state.changedTemplateInfo)
+	for (let player in state.changedTemplateInfo)
 	{
-		var playerDiff = state.changedTemplateInfo[player];
-		for (var template in playerDiff)
+		let playerDiff = state.changedTemplateInfo[player];
+		for (let template in playerDiff)
 		{
-			var changes = playerDiff[template];
+			let changes = playerDiff[template];
 			if (!this._techModifications[player][template])
 				this._techModifications[player][template] = new Map();
 			for (let change of changes)

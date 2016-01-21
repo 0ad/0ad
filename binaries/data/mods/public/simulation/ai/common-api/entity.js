@@ -277,15 +277,15 @@ m.Template = m.Class({
 		if (!this.get("Attack"))
 			return false;
 		var mcounter = [];
-		for (var i in this.get("Attack"))
+		for (let i in this.get("Attack"))
 		{
 			if (!this.get("Attack/" + i + "/Bonuses"))
 				continue;
-			for (var o in this.get("Attack/" + i + "/Bonuses"))
+			for (let o in this.get("Attack/" + i + "/Bonuses"))
 				if (this.get("Attack/" + i + "/Bonuses/" + o + "/Classes"))
 					mcounter.concat(this.get("Attack/" + i + "/Bonuses/" + o + "/Classes").split(" "));
 		}
-		for (var i in classes)
+		for (let i in classes)
 		{
 			if (mcounter.indexOf(classes[i]) !== -1)
 				return true;
@@ -722,10 +722,10 @@ m.Entity = m.Class({
 		{
 			let res;
 			// this is an abuse of "_ai" but it works.
-			if (this.unitAIState().split(".")[1] === "GATHER" && this.unitAIOrderData()[0]["target"] !== undefined)
-				res = this._ai._entities.get(this.unitAIOrderData()[0]["target"]);
-			else if (this.unitAIOrderData()[1] !== undefined && this.unitAIOrderData()[1]["target"] !== undefined)
-				res = this._ai._entities.get(this.unitAIOrderData()[1]["target"]);
+			if (this.unitAIState().split(".")[1] === "GATHER" && this.unitAIOrderData()[0].target !== undefined)
+				res = this._ai._entities.get(this.unitAIOrderData()[0].target);
+			else if (this.unitAIOrderData()[1] !== undefined && this.unitAIOrderData()[1].target !== undefined)
+				res = this._ai._entities.get(this.unitAIOrderData()[1].target);
 			if (!res)
 				return 0;
 			let type = res.resourceSupplyType();
