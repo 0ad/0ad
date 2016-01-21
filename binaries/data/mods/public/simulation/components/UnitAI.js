@@ -1395,14 +1395,14 @@ UnitAI.prototype.UnitFsmSpec = {
 			{
 				if (this.CanHeal(this.isGuardOf))
 					this.PushOrderFront("Heal", { "target": this.isGuardOf, "force": false });
-				else if (this.CanRepair(this.isGuardOf) && cmpHealth.IsRepairable())
+				else if (this.CanRepair(this.isGuardOf))
 					this.PushOrderFront("Repair", { "target": this.isGuardOf, "autocontinue": false, "force": false });
 				return;
 			}
 
 			// if the attacker is a building and we can repair the guarded, repair it rather than attacking
 			var cmpBuildingAI = Engine.QueryInterface(msg.data.attacker, IID_BuildingAI);
-			if (cmpBuildingAI && this.CanRepair(this.isGuardOf) && cmpHealth.IsRepairable())
+			if (cmpBuildingAI && this.CanRepair(this.isGuardOf))
 			{
 				this.PushOrderFront("Repair", { "target": this.isGuardOf, "autocontinue": false, "force": false });
 				return;
@@ -1642,7 +1642,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						{
 							if (this.CanHeal(this.isGuardOf))
 								this.PushOrderFront("Heal", { "target": this.isGuardOf, "force": false });
-							else if (this.CanRepair(this.isGuardOf) && cmpHealth.IsRepairable())
+							else if (this.CanRepair(this.isGuardOf))
 								this.PushOrderFront("Repair", { "target": this.isGuardOf, "autocontinue": false, "force": false });
 						}
 					}
@@ -5781,6 +5781,12 @@ UnitAI.prototype.CanRepair = function(target)
 	// Verify that we're able to respond to Repair (Builder) commands
 	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 	if (!cmpBuilder)
+		return false;
+
+	// Verify that the target can be either built or repaired
+	var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
+	var cmpRepairable = Engine.QueryInterface(target, IID_Repairable);
+	if (!cmpFoundation && !cmpRepairable)
 		return false;
 
 	// Verify that the target is owned by an ally of this entity's player
