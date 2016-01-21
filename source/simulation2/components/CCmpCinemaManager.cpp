@@ -58,10 +58,8 @@ public:
 	virtual void Serialize(ISerializer& serialize)
 	{
 		if (!g_Game || !g_Game->GetView())
-		{
-			LOGERROR("Trying to serialize cinematics when GameView isn't initialized!");
 			return;
-		}
+
 		CinematicSimulationData* p_CinematicSimulationData = g_Game->GetView()->GetCinema()->GetCinematicSimulationData();
 		serialize.Bool("MapRevealed", p_CinematicSimulationData->m_MapRevealed);
 		serialize.NumberU32_Unbounded("NumberOfPaths", p_CinematicSimulationData->m_Paths.size());
@@ -116,10 +114,8 @@ public:
 	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
 		if (!g_Game || !g_Game->GetView())
-		{
-			LOGERROR("Trying to deserialize cinematics when GameView isn't initialized!");
 			return;
-		}
+
 		CinematicSimulationData* p_CinematicSimulationData = g_Game->GetView()->GetCinema()->GetCinematicSimulationData();
 		deserialize.Bool("MapRevealed", p_CinematicSimulationData->m_MapRevealed);
 		uint32_t numberOfPaths = 0;
@@ -220,10 +216,7 @@ public:
 	virtual void AddCinemaPathToQueue(CStrW name)
 	{
 		if (!g_Game || !g_Game->GetView())
-		{
-			LOGERROR("Trying to add cinema path when GameView isn't initialized!");
 			return;
-		}
 		g_Game->GetView()->GetCinema()->AddPathToQueue(name);
 		CinematicSimulationData* pGetCinematicSimulationData = g_Game->GetView()->GetCinema()->GetCinematicSimulationData();
 		pGetCinematicSimulationData->m_TotalTime += pGetCinematicSimulationData->m_Paths[name].GetDuration();
@@ -232,10 +225,7 @@ public:
 	virtual void Play()
 	{
 		if (!g_Game || !g_Game->GetView())
-		{
-			LOGERROR("Trying to play cinematics when GameView isn't initialized!");
 			return;
-		}
 		g_Game->GetView()->GetCinema()->Play();
 		g_Game->GetView()->GetCinema()->SetEnabled(true);
 	}
@@ -243,10 +233,7 @@ public:
 	virtual void Stop()
 	{
 		if (!g_Game || !g_Game->GetView())
-		{
-			LOGERROR("Trying to stop cinematics when GameView isn't initialized!");
 			return;
-		}
 		g_Game->GetView()->GetCinema()->Stop();
 		g_Game->GetView()->GetCinema()->SetEnabled(false);
 	}
