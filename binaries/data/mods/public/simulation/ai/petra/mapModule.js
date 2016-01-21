@@ -27,18 +27,20 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 	}
 	var obstructionTiles = new Uint8Array(passabilityMap.data.length);
 	
+	var passMap;
+	var obstructionMask;
 	if (placementType == "shore")
 	{
-		var passMap = gameState.ai.accessibility.navalPassMap;
-		var obstructionMask = gameState.getPassabilityClassMask("building-shore");
+		passMap = gameState.ai.accessibility.navalPassMap;
+		obstructionMask = gameState.getPassabilityClassMask("building-shore");
 	}
 	else
 	{
-		var passMap = gameState.ai.accessibility.landPassMap;
-		var obstructionMask = gameState.getPassabilityClassMask("building-land");
+		passMap = gameState.ai.accessibility.landPassMap;
+		obstructionMask = gameState.getPassabilityClassMask("building-land");
 	}
 
-	for (var k = 0; k < territoryMap.data.length; ++k)
+	for (let k = 0; k < territoryMap.data.length; ++k)
 	{
 		let tilePlayer = (territoryMap.data[k] & m.TERRITORY_PLAYER_MASK);
 		if ((!buildNeutral && tilePlayer == 0) ||

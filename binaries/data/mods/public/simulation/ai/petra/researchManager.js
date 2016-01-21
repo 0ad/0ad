@@ -21,14 +21,14 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 	var townPhase = gameState.townPhase();
 	var cityPhase = gameState.cityPhase();
 		
-	if (gameState.canResearch(townPhase,true) && gameState.getPopulation() >= this.Config.Economy.popForTown - 10
-		&& gameState.findResearchers(townPhase,true).length != 0)
+	if (gameState.canResearch(townPhase,true) && gameState.getPopulation() >= this.Config.Economy.popForTown - 10 &&
+		gameState.findResearchers(townPhase,true).length)
 	{
-		var plan = new m.ResearchPlan(gameState, townPhase, true);
+		let plan = new m.ResearchPlan(gameState, townPhase, true);
 		plan.lastIsGo = false;
 		plan.onStart = function (gameState) { gameState.ai.HQ.econState = "growth"; gameState.ai.HQ.OnTownPhase(gameState); };
 		plan.isGo = function (gameState) {
-			var ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
+			let ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
 			if (ret && !this.lastIsGo)
 				this.onGo(gameState);
 			else if (!ret && this.lastIsGo)
@@ -41,12 +41,11 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 
 		queues.majorTech.addPlan(plan);
 	}
-	else if (gameState.canResearch(cityPhase,true) && gameState.ai.elapsedTime > this.Config.Economy.cityPhase
-			&& gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workForCity
-			&& gameState.findResearchers(cityPhase, true).length != 0
-			&& queues.civilCentre.length() === 0)
+	else if (gameState.canResearch(cityPhase,true) && gameState.ai.elapsedTime > this.Config.Economy.cityPhase &&
+			gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workForCity &&
+			gameState.findResearchers(cityPhase, true).length && !queues.civilCentre.length())
 	{
-		var plan = new m.ResearchPlan(gameState, cityPhase, true);
+		let plan = new m.ResearchPlan(gameState, cityPhase, true);
 		plan.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState); };
 		queues.majorTech.addPlan(plan);
 	}
@@ -167,7 +166,7 @@ m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 
 m.ResearchManager.prototype.update = function(gameState, queues)
 {
-	if (queues.minorTech.length() > 0 || queues.majorTech.length() > 0)
+	if (queues.minorTech.length() || queues.majorTech.length())
 		return;
 
 	var techs = gameState.findAvailableTech();
@@ -182,7 +181,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	if (gameState.currentPhase() < 2)
 		return;
 
-	var techName = this.researchPreferredTechs(gameState, techs);
+	techName = this.researchPreferredTechs(gameState, techs);
 	if (techName)
 	{
 		queues.minorTech.addPlan(new m.ResearchPlan(gameState, techName));
@@ -197,21 +196,21 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	for (let i = 0; i < techs.length; ++i)
 	{
 		let template = techs[i][1]._template;
-		if (template.affects && template.affects.length === 1
-			&& (template.affects[0] === "Healer" || template.affects[0] === "Outpost" || template.affects[0] === "StoneWall"))
+		if (template.affects && template.affects.length === 1 &&
+			(template.affects[0] === "Healer" || template.affects[0] === "Outpost" || template.affects[0] === "StoneWall"))
 		{
 			techs.splice(i--, 1);
 			continue;
 		}
-		if (template.modifications && template.modifications.length === 1
-			&& template.modifications[0].value === "Player/sharedLos"
-			&& !gameState.hasAllies())
+		if (template.modifications && template.modifications.length === 1 &&
+			template.modifications[0].value === "Player/sharedLos" &&
+			!gameState.hasAllies())
 		{
 			techs.splice(i--, 1);
 			continue;
 		}
 	}
-	if (techs.length === 0)
+	if (!techs.length)
 		return;
 	// randomly pick one. No worries about pairs in that case.
 	var p = Math.floor((Math.random()*techs.length));

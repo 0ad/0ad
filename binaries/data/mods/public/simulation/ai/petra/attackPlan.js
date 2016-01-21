@@ -871,7 +871,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 	var target;
 	for (let building of buildings)
 	{
-		if (building.owner() == 0)
+		if (building.owner() === 0)
 			continue;
 		if (building.hasDefensiveFire())
 			continue;
@@ -955,7 +955,7 @@ m.AttackPlan.prototype.setRallyPoint = function(gameState)
 		if (gameState.ai.HQ.territoryMap.getOwner(this.path[i]) === PlayerID)
 			continue;
 
-		if (i == 0)
+		if (i === 0)
 			this.rallyPoint = this.path[0];
 		else if (i > 1 && gameState.ai.HQ.isDangerousLocation(gameState, this.path[i-1], 20))
 		{
@@ -1123,7 +1123,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	if (this.state === "walking")
 	{
 		// basically haven't moved an inch: very likely stuck)
-		if (API3.SquareVectorDistance(this.position, this.position5TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 5 == 0)
+		if (API3.SquareVectorDistance(this.position, this.position5TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 5 === 0)
 		{
 			// check for stuck siege units
 			var farthest = 0;
@@ -1138,7 +1138,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (farthestEnt)
 				farthestEnt.destroy();
 		}
-		if (gameState.ai.playedTurn % 5 == 0)
+		if (gameState.ai.playedTurn % 5 === 0)
 			this.position5TurnsAgo = this.position;
 		
 		if (this.lastPosition && API3.SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0)
@@ -1328,7 +1328,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				if (this.isSiegeUnit(gameState, attacker))
 				{	// if our unit is attacked by a siege unit, we'll send some melee units to help it.
 					let collec = this.unitCollection.filter(API3.Filters.byClass("Melee")).filterNearest(ourUnit.position(), 5);
-					for (var ent of collec.values())
+					for (let ent of collec.values())
 					{
 						ent.attack(attacker.id(), false);
 						ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
@@ -1412,31 +1412,31 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			targetClassesSiege.avoid = targetClassesSiege.avoid.concat("House", "Storehouse", "Farmstead", "Field", "Blacksmith");
 		}
 
-		if (this.unitCollUpdateArray === undefined || this.unitCollUpdateArray.length == 0)
+		if (this.unitCollUpdateArray === undefined || !this.unitCollUpdateArray.length)
 			this.unitCollUpdateArray = this.unitCollection.toIdArray();
 
 		// Let's check a few units each time we update (currently 10) except when attack starts
 		var lgth = (this.unitCollUpdateArray.length < 15 || this.startingAttack) ? this.unitCollUpdateArray.length : 10;
-		for (var check = 0; check < lgth; check++)
+		for (let check = 0; check < lgth; check++)
 		{
-			var ent = gameState.getEntityById(this.unitCollUpdateArray[check]);
+			let ent = gameState.getEntityById(this.unitCollUpdateArray[check]);
 			if (!ent || !ent.position())
 				continue;
 
-			let targetId = undefined;
+			let targetId;
 			let orderData = ent.unitAIOrderData();
 			if (orderData && orderData.length && orderData[0].target)
 				targetId = orderData[0].target;
 	
 			// update the order if needed
-			var needsUpdate = false;
-			var maybeUpdate = false;
-			var siegeUnit = this.isSiegeUnit(gameState, ent);
+			let needsUpdate = false;
+			let maybeUpdate = false;
+			let siegeUnit = this.isSiegeUnit(gameState, ent);
 			if (ent.isIdle())
 				needsUpdate = true;
 			else if (siegeUnit && targetId)
 			{
-				var target = gameState.getEntityById(targetId);
+				let target = gameState.getEntityById(targetId);
 				if (!target || gameState.isPlayerAlly(target.owner()))
 					needsUpdate = true;
 				else if (unitTargets[targetId] && unitTargets[targetId] > 0)
@@ -1449,7 +1449,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 			else if (targetId)
 			{
-				var target = gameState.getEntityById(targetId);
+				let target = gameState.getEntityById(targetId);
 				if (!target || gameState.isPlayerAlly(target.owner()))
 					needsUpdate = true;
 				else if (unitTargets[targetId] && unitTargets[targetId] > 0)
@@ -1459,8 +1459,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				}
 				else if (target.hasClass("Structure") || (target.hasClass("Ship") && !ent.hasClass("Ship")))
 					maybeUpdate = true;
-				else if (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged")
-					&& target.hasClass("Female") && target.unitAIState().split(".")[1] == "FLEEING")
+				else if (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged") &&
+					 target.hasClass("Female") && target.unitAIState().split(".")[1] == "FLEEING")
 					maybeUpdate = true;
 			}
 
@@ -1472,45 +1472,45 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					continue;
 				let deltat = (ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING") ? 10 : 5;
 				let lastAttackPlanUpdateTime = ent.getMetadata(PlayerID, "lastAttackPlanUpdateTime");
-				if (lastAttackPlanUpdateTime && (time - lastAttackPlanUpdateTime) < deltat
-					&& this.CheckCapture(gameState, ent))
+				if (lastAttackPlanUpdateTime && (time - lastAttackPlanUpdateTime) < deltat &&
+					this.CheckCapture(gameState, ent))
 					continue;
 			}
 			ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
-			var range = 60;
-			var attackTypes = ent.attackTypes();
+			let range = 60;
+			let attackTypes = ent.attackTypes();
 			if (attackTypes && attackTypes.indexOf("Ranged") !== -1)
 				range = 30 + ent.attackRange("Ranged").max;
 			else if (ent.hasClass("Cavalry"))
 				range += 30;
 			range = range * range;
-			var entIndex = gameState.ai.accessibility.getAccessValue(ent.position());
+			let entIndex = gameState.ai.accessibility.getAccessValue(ent.position());
 			// Checking for gates if we're a siege unit.
 			if (siegeUnit)
 			{
-				var mStruct = enemyStructures.filter(function (enemy) {
+				let mStruct = enemyStructures.filter(function (enemy) {
 					if (!enemy.position() || (enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall")))
 						return false;
 					if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
 						return false;
-					if (enemy.foundationProgress() == 0)
+					if (enemy.foundationProgress() === 0)
 						return false;
 					if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
 						return false;
 					return true;
 				}).toEntityArray();
-				if (mStruct.length !== 0)
+				if (mStruct.length)
 				{
-					mStruct.sort(function (structa,structb)
+					mStruct.sort(function (structa, structb)
 					{
-						var vala = structa.costSum();
+						let vala = structa.costSum();
 						if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))
 							vala += 10000;
 						else if (structa.hasDefensiveFire())
 							vala += 1000;
 						else if (structa.hasClass("ConquestCritical"))
 							vala += 200;
-						var valb = structb.costSum();
+						let valb = structb.costSum();
 						if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))
 							valb += 10000;
 						else if (structb.hasDefensiveFire())
@@ -1541,15 +1541,15 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 			else
 			{
-				var nearby = (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged"));
-				var mUnit = enemyUnits.filter(function (enemy) {
+				let nearby = (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged"));
+				let mUnit = enemyUnits.filter(function (enemy) {
 					if (!enemy.position())
 						return false;
 					if (enemy.hasClass("Animal"))
 						return false;
 					if (nearby && enemy.hasClass("Female") && enemy.unitAIState().split(".")[1] == "FLEEING")
 						return false;
-					var dist = API3.SquareVectorDistance(enemy.position(), ent.position());
+					let dist = API3.SquareVectorDistance(enemy.position(), ent.position());
 					if (dist > range)
 						return false;
 					if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
@@ -1602,7 +1602,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				}
 				else
 				{
-					var mStruct = enemyStructures.filter(function (enemy) {
+					let mStruct = enemyStructures.filter(function (enemy) {
 						if (!enemy.position() || (enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall")))
 							return false;
 						if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
@@ -1861,8 +1861,8 @@ m.AttackPlan.prototype.CheckCapture = function(gameState, ent)
 	}
 
 	// If the structure has defensive fire, require a minimal army size
-	if (target.hasDefensiveFire() && target.isGarrisonHolder() && target.garrisoned()
-		&& this.unitCollection.length < 2*target.garrisoned().length)
+	if (target.hasDefensiveFire() && target.isGarrisonHolder() && target.garrisoned() &&
+		this.unitCollection.length < 2*target.garrisoned().length)
 	{
 		this.noCapture.add(targetId);
 		ent.attack(targetId, false);

@@ -41,8 +41,8 @@ m.Worker.prototype.update = function(gameState, ent)
 	var unitAIState = ent.unitAIState();
 	if (unitAIState === "INDIVIDUAL.GATHER.GATHERING" || unitAIState === "INDIVIDUAL.GATHER.APPROACHING" || unitAIState === "INDIVIDUAL.COMBAT.APPROACHING")
 	{
-		if (this.isInaccessibleSupply(gameState) && ((subrole === "hunter" && !this.startHunting(gameState))
-			|| (subrole === "gatherer" && !this.startGathering(gameState))))
+		if (this.isInaccessibleSupply(gameState) && ((subrole === "hunter" && !this.startHunting(gameState)) ||
+			(subrole === "gatherer" && !this.startGathering(gameState))))
 			ent.stopMoving();
 	}
 	else if (ent.getMetadata(PlayerID, "approachingTarget"))
@@ -64,7 +64,7 @@ m.Worker.prototype.update = function(gameState, ent)
 			// if we aren't storing resources or it's the same type as what we're about to gather,
 			// let's just pick a new resource.
 			// TODO if we already carry the max we can ->  returnresources
-			if (!ent.resourceCarrying() || ent.resourceCarrying().length === 0 ||
+			if (!ent.resourceCarrying() || !ent.resourceCarrying().length ||
 				ent.resourceCarrying()[0].type === ent.getMetadata(PlayerID, "gather-type"))
 			{
 				this.startGathering(gameState);
@@ -81,10 +81,10 @@ m.Worker.prototype.update = function(gameState, ent)
 			// in case UnitAI did something bad
 			if (ent.unitAIOrderData().length)
 			{
-				var supplyId = ent.unitAIOrderData()[0]["target"];
+				var supplyId = ent.unitAIOrderData()[0].target;
 				var supply = gameState.getEntityById(supplyId);
-				if (supply && !supply.hasClass("Field") && !supply.hasClass("Animal")
-					&& supplyId !== ent.getMetadata(PlayerID, "supply"))
+				if (supply && !supply.hasClass("Field") && !supply.hasClass("Animal") &&
+					supplyId !== ent.getMetadata(PlayerID, "supply"))
 				{
 					var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplyId);
 					if (nbGatherers > 1 && supply.resourceSupplyAmount()/nbGatherers < 30)
@@ -94,9 +94,9 @@ m.Worker.prototype.update = function(gameState, ent)
 					}
 					else
 					{
-						var gatherType = ent.getMetadata(PlayerID, "gather-type");
-						var nearby = this.base.dropsiteSupplies[gatherType]["nearby"];
-						var isNearby = nearby.some(sup => sup.id === supplyId);
+						let gatherType = ent.getMetadata(PlayerID, "gather-type");
+						let nearby = this.base.dropsiteSupplies[gatherType].nearby;
+						let isNearby = nearby.some(sup => sup.id === supplyId);
 						if (nearby.length === 0 || isNearby)
 							ent.setMetadata(PlayerID, "supply", supplyId);
 						else
@@ -111,11 +111,11 @@ m.Worker.prototype.update = function(gameState, ent)
 		else if (unitAIState === "INDIVIDUAL.RETURNRESOURCE.APPROACHING" && gameState.ai.playedTurn % 10 === 0)
 		{
 			// Check from time to time that UnitAI does not send us to an inaccessible dropsite
-			var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0]["target"]);
+			var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
 			if (dropsite && dropsite.position())
 			{
-				var access = gameState.ai.accessibility.getAccessValue(ent.position());
-				var goalAccess = dropsite.getMetadata(PlayerID, "access");
+				let access = gameState.ai.accessibility.getAccessValue(ent.position());
+				let goalAccess = dropsite.getMetadata(PlayerID, "access");
 				if (!goalAccess || dropsite.hasClass("Elephant"))
 				{
 					goalAccess = gameState.ai.accessibility.getAccessValue(dropsite.position());
@@ -156,8 +156,8 @@ m.Worker.prototype.update = function(gameState, ent)
 		}
 		else
 		{
-			var access = gameState.ai.accessibility.getAccessValue(ent.position());
-			var goalAccess = target.getMetadata(PlayerID, "access");
+			let access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let goalAccess = target.getMetadata(PlayerID, "access");
 			if (!goalAccess)
 			{
 				goalAccess = gameState.ai.accessibility.getAccessValue(target.position());
@@ -171,22 +171,22 @@ m.Worker.prototype.update = function(gameState, ent)
 	}
 	else if (subrole === "hunter")
 	{
-		var lastHuntSearch = ent.getMetadata(PlayerID, "lastHuntSearch");
+		let lastHuntSearch = ent.getMetadata(PlayerID, "lastHuntSearch");
 		if (ent.isIdle() && (!lastHuntSearch || (gameState.ai.elapsedTime - lastHuntSearch) > 20))
 		{
 			if (!this.startHunting(gameState))
 			{
 				// nothing to hunt around. Try another region if any
-				var nowhereToHunt = true;
-				for (var base of gameState.ai.HQ.baseManagers)
+				let nowhereToHunt = true;
+				for (let base of gameState.ai.HQ.baseManagers)
 				{
 					if (!base.anchor || !base.anchor.position())
 						continue;
-					var basePos = base.anchor.position();
+					let basePos = base.anchor.position();
 					if (this.startHunting(gameState, basePos))
 					{
 						ent.setMetadata(PlayerID, "base", base.ID);
-						var access = gameState.ai.accessibility.getAccessValue(ent.position());
+						let access = gameState.ai.accessibility.getAccessValue(ent.position());
 						if (base.accessIndex === access)
 							ent.move(basePos[0], basePos[1]);
 						else
@@ -205,12 +205,12 @@ m.Worker.prototype.update = function(gameState, ent)
 			{
 				// we may have drifted towards ennemy territory during the hunt, if yes go home
 				let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(ent.position());
-				if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
+				if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 					this.startHunting(gameState);
 				else if (unitAIState === "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
 				{
 					// Check that UnitAI does not send us to an inaccessible dropsite
-					var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0]["target"]);
+					var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
 					if (dropsite && dropsite.position())
 					{
 						var access = gameState.ai.accessibility.getAccessValue(ent.position());
@@ -234,7 +234,7 @@ m.Worker.prototype.update = function(gameState, ent)
 		else	// if we have drifted towards ennemy territory during the fishing, go home
 		{
 			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(ent.position());
-			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
+			if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				this.startFishing(gameState);
 		}
 	}
@@ -272,7 +272,7 @@ m.Worker.prototype.startGathering = function(gameState)
 				continue;
 			// check if available resource is worth one additionnal gatherer (except for farms)
 			var nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplies[i].id);
-			if (supplies[i].ent.resourceSupplyType()["specific"] !== "grain"
+			if (supplies[i].ent.resourceSupplyType().specific !== "grain"
 				&& nbGatherers > 0 && supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 30)
 				continue;
 			// not in ennemy territory
@@ -293,7 +293,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	// first look in our own base if accessible from our present position
 	if (this.accessIndex === access)
 	{
-		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource]["nearby"])))
+		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].nearby)))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -312,7 +312,7 @@ m.Worker.prototype.startGathering = function(gameState)
 				return true;
 			}
 		}
-		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource]["medium"])))
+		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].medium)))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -320,13 +320,13 @@ m.Worker.prototype.startGathering = function(gameState)
 	}
 	// So if we're here we have checked our whole base for a proper resource (or it was not accessible)
 	// --> check other bases directly accessible
-	for (var base of gameState.ai.HQ.baseManagers)
+	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.ID === this.baseID)
 			continue;
 		if (base.accessIndex !== access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["nearby"])))
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].nearby)))
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
 			this.ent.gather(supply);
@@ -335,7 +335,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	}
 	if (resource === "food")	// --> for food, try to gather from fields if any, otherwise build one if any
 	{
-		for (var base of gameState.ai.HQ.baseManagers)
+		for (let base of gameState.ai.HQ.baseManagers)
 		{
 			if (base.ID === this.baseID)
 				continue;
@@ -355,13 +355,13 @@ m.Worker.prototype.startGathering = function(gameState)
 			}
 		}
 	}
-	for (var base of gameState.ai.HQ.baseManagers)
+	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.ID === this.baseID)
 			continue;
 		if (base.accessIndex !== access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["medium"])))
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].medium)))
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
 			this.ent.gather(supply);
@@ -389,11 +389,11 @@ m.Worker.prototype.startGathering = function(gameState)
 		return true;
 
 	// Still nothing ... try bases which need a transport
-	for (var base of gameState.ai.HQ.baseManagers)
+	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.accessIndex === access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["nearby"])))
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].nearby)))
 		{
 			if (base.ID !== this.baseID)
 				this.ent.setMetadata(PlayerID, "base", base.ID);
@@ -403,7 +403,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	}
 	if (resource === "food")	// --> for food, try to gather from fields if any, otherwise build one if any
 	{
-		for (var base of gameState.ai.HQ.baseManagers)
+		for (let base of gameState.ai.HQ.baseManagers)
 		{
 			if (base.accessIndex === access)
 				continue;
@@ -423,7 +423,7 @@ m.Worker.prototype.startGathering = function(gameState)
 			}
 		}
 	}
-	for (var base of gameState.ai.HQ.baseManagers)
+	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.accessIndex === access)
 			continue;
@@ -456,30 +456,30 @@ m.Worker.prototype.startGathering = function(gameState)
 	// Still nothing, we look now for faraway resources, first in the accessible ones, then in the others
 	if (this.accessIndex === access)
 	{
-		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource]["faraway"])))
+		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].faraway)))
 		{
 			this.ent.gather(supply);
 			return true;
 		}
 	}
-	for (var base of gameState.ai.HQ.baseManagers)
+	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.ID === this.baseID)
 			continue;
 		if (base.accessIndex !== access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["faraway"])))
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway)))
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
 			this.ent.gather(supply);
 			return true;
 		}
 	}
-	for (var base of gameState.ai.HQ.baseManagers)
+	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.accessIndex === access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["faraway"])))
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway)))
 		{
 			if (base.ID !== this.baseID)
 				this.ent.setMetadata(PlayerID, "base", base.ID);
@@ -529,7 +529,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		foodDropsites.forEach(function (dropsite) {
 			if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
 				return;
-			var dist = API3.SquareVectorDistance(pos, dropsite.position());
+			let dist = API3.SquareVectorDistance(pos, dropsite.position());
 			if (dist < distMin)
 				distMin = dist;
 		});
@@ -627,7 +627,7 @@ m.Worker.prototype.startFishing = function(gameState)
 		docks.forEach(function (dock) {
 			if (!dock.position() || dock.getMetadata(PlayerID, "sea") !== fisherSea)
 				return;
-			var dist = API3.SquareVectorDistance(pos, dock.position());
+			let dist = API3.SquareVectorDistance(pos, dock.position());
 			if (dist < distMin)
 				distMin = dist;
 		});
@@ -725,14 +725,14 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 	var bestFarmEnt = false;
 	var bestFarmDist = 10000000;
 	var pos = this.ent.position();
-	for (var found of baseFoundations.values())
+	for (let found of baseFoundations.values())
 	{
 		if (!found.hasClass("Field"))
 			continue;
-		var current = found.getBuildersNb();
+		let current = found.getBuildersNb();
 		if (current === undefined || current >= maxGatherers)
 			continue;
-		var dist = API3.SquareVectorDistance(found.position(), pos);
+		let dist = API3.SquareVectorDistance(found.position(), pos);
 		if (dist > bestFarmDist)
 			continue;
 		bestFarmEnt = found;
@@ -747,7 +747,7 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 m.Worker.prototype.gatherTreasure = function(gameState)
 {
 	var rates = this.ent.resourceGatherRates();
-	if (!rates || !rates["treasure"] || rates["treasure"] <= 0)
+	if (!rates || !rates.treasure || rates.treasure <= 0)
 		return false;
 	var treasureFound;
 	var distmin = Math.min();

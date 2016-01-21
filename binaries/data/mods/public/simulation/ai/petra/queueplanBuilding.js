@@ -23,7 +23,7 @@ m.ConstructionPlan.prototype = Object.create(m.QueuePlan.prototype);
 // TODO: if there are specific requirements here, maybe try to do them?
 m.ConstructionPlan.prototype.canStart = function(gameState)
 {
-	if (gameState.ai.HQ.turnCache["buildingBuilt"])   // do not start another building if already one this turn
+	if (gameState.ai.HQ.turnCache.buildingBuilt)   // do not start another building if already one this turn
 		return false;
 
 	if (!this.isGo(gameState))
@@ -63,7 +63,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 			return;
 		}
 	}
-	gameState.ai.HQ.turnCache["buildingBuilt"] = true;
+	gameState.ai.HQ.turnCache.buildingBuilt = true;
 
 	if (this.metadata === undefined)
 		this.metadata = { "base": pos.base };
@@ -131,13 +131,14 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	{
 		if (template.hasClass("CivCentre"))
 		{
+			let pos;
 			if (this.metadata && this.metadata.resource)
 			{
-				var proximity = this.metadata.proximity ? this.metadata.proximity : undefined;
-				var pos = gameState.ai.HQ.findEconomicCCLocation(gameState, template, this.metadata.resource, proximity);
+				let proximity = this.metadata.proximity ? this.metadata.proximity : undefined;
+				pos = gameState.ai.HQ.findEconomicCCLocation(gameState, template, this.metadata.resource, proximity);
 			}
 			else
-				var pos = gameState.ai.HQ.findStrategicCCLocation(gameState, template);
+				pos = gameState.ai.HQ.findStrategicCCLocation(gameState, template);
 
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": 0 };
@@ -146,7 +147,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		}
 		else if (template.hasClass("DefenseTower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
 		{
-			var pos = gameState.ai.HQ.findDefensiveLocation(gameState, template);
+			let pos = gameState.ai.HQ.findDefensiveLocation(gameState, template);
 
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": pos[2] };
@@ -158,7 +159,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		}
 		else if (template.hasClass("Market"))	// Docks (i.e. NavalMarket) are done before
 		{
-			var pos = gameState.ai.HQ.findMarketLocation(gameState, template);
+			let pos = gameState.ai.HQ.findMarketLocation(gameState, template);
 			if (pos && pos[2] > 0)
 			{
 				if (!this.metadata)
@@ -205,9 +206,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		if (!gameState.ai.HQ.requireHouses || !template.hasClass("House"))
 		{
 			gameState.getOwnStructures().forEach(function(ent) {
-				var pos = ent.position();
-				var x = Math.round(pos[0] / cellSize);
-				var z = Math.round(pos[1] / cellSize);
+				let pos = ent.position();
+				let x = Math.round(pos[0] / cellSize);
+				let z = Math.round(pos[1] / cellSize);
 
 				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
 				{
@@ -240,7 +241,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		{
 			for (let j = 0; j < placement.map.length; ++j)
 			{
-				var value = placement.map[j] - (gameState.sharedScript.resourceMaps["wood"].map[j])/3;
+				let value = placement.map[j] - (gameState.sharedScript.resourceMaps.wood.map[j])/3;
 				placement.map[j] = value >= 0 ? value : 0;
 				if (gameState.ai.HQ.borderMap.map[j] > 0)
 					placement.map[j] /= 2;	// we need space around farmstead, so disfavor map border
@@ -324,7 +325,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		var bestVal = bestTile[1];
 	}
 	
-	if (bestVal === undefined || bestVal == -1)
+	if (bestVal === undefined || bestVal === -1)
 	{
 		var bestTile = placement.findBestTile(radius, obstructions);
 		var bestIdx = bestTile[0];
@@ -509,12 +510,12 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 {
 	var pos = gameState.ai.accessibility.gamePosToMapPos([x, z]);
-	var j = pos[0] + pos[1]*gameState.ai.accessibility.width;
-	var seaRef = gameState.ai.accessibility.navalPassMap[j];
+	var k = pos[0] + pos[1]*gameState.ai.accessibility.width;
+	var seaRef = gameState.ai.accessibility.navalPassMap[k];
 	if (seaRef < 2)
 		return false;
 	const numPoints = 16;
-	for (var dist = 0; dist < 4; ++dist)
+	for (let dist = 0; dist < 4; ++dist)
 	{
 		var waterPoints = [];
 		for (let i = 0; i < numPoints; ++i)
@@ -526,17 +527,17 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 			    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
 				continue;
 			let j = pos[0] + pos[1]*gameState.ai.accessibility.width;
-			if (gameState.ai.accessibility.navalPassMap[j] == seaRef)
+			if (gameState.ai.accessibility.navalPassMap[j] === seaRef)
 				waterPoints.push(i);
 		}
-		var length = waterPoints.length;
+		let length = waterPoints.length;
 		if (!length)
 			continue;
-		var consec = [];
-		for (var i = 0; i < length; ++i)
+		let consec = [];
+		for (let i = 0; i < length; ++i)
 		{
-			var count = 0;
-			for (var j = 0; j < (length-1); ++j)
+			let count = 0;
+			for (let j = 0; j < (length-1); ++j)
 			{
 				if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
 					++count;
@@ -545,9 +546,9 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 			}
 			consec[i] = count;
 		}
-		var start = 0;
-		var count = 0;
-		for (var c in consec)
+		let start = 0;
+		let count = 0;
+		for (let c in consec)
 		{
 			if (consec[c] > count)
 			{
@@ -662,8 +663,8 @@ m.ConstructionPlan.prototype.getLandAccess = function(gameState, i, radius, w)
 m.ConstructionPlan.prototype.getResourcesAround = function(gameState, i, radius)
 {
 	let resourceMaps = gameState.sharedScript.resourceMaps;
-	let w = resourceMaps["wood"].width;
-	let cellSize = resourceMaps["wood"].cellSize;
+	let w = resourceMaps.wood.width;
+	let cellSize = resourceMaps.wood.cellSize;
 	let size = Math.floor(radius / cellSize);
 	let ix = i % w;
 	let iy = Math.floor(i / w);
