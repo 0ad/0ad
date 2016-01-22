@@ -108,10 +108,7 @@ m.Queue.prototype.countQueuedUnits = function()
 
 m.Queue.prototype.hasQueuedUnitsWithClass = function(classe)
 {
-	for (let plan of this.plans)
-		if (plan.template && plan.template.hasClass(classe))
-			return true;
-	return false;
+	return this.plans.some(plan => plan.template && plan.template.hasClass(classe));
 };
 
 m.Queue.prototype.countQueuedUnitsWithClass = function(classe)
@@ -128,15 +125,6 @@ m.Queue.prototype.countQueuedUnitsWithMetadata = function(data, value)
 	var count = 0;
 	for (let plan of this.plans)
 		if (plan.metadata[data] && plan.metadata[data] == value)
-			count += plan.number;
-	return count;
-};
-
-m.Queue.prototype.countAllByType = function(t)
-{
-	var count = 0;
-	for (let plan of this.plans)
-		if (plan.type === t)
 			count += plan.number;
 	return count;
 };

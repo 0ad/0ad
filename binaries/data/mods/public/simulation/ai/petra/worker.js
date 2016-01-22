@@ -445,7 +445,13 @@ m.Worker.prototype.startGathering = function(gameState)
 			if (foundation.getMetadata(PlayerID, "base") !== self.baseID)
 				self.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
 			self.ent.setMetadata(PlayerID, "target-foundation", foundation.id());
-			navalManager.requireTransport(gameState, self.ent, access, base.accessIndex, foundation.position());
+			let foundationAccess = foundation.getMetadata(PlayerID, "access");
+			if (!foundationAccess)
+			{
+				foundationAccess = gameState.ai.accessibility.getAccessValue(foundation.position());
+				foundation.setMetadata(PlayerID, "access", foundationAccess);
+			}
+			navalManager.requireTransport(gameState, self.ent, access, foundationAccess, foundation.position());
 			return true;
 		}
 		return false;

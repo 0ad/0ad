@@ -81,7 +81,7 @@ m.EntityCollection.prototype.toString = function()
 
 m.EntityCollection.prototype.filter = function(filter, thisp)
 {
-	if (typeof(filter) == "function")
+	if (typeof filter === "function")
 		filter = {"func": filter, "dynamicProperties": []};
 	
 	var ret = new Map();
@@ -174,11 +174,7 @@ m.EntityCollection.prototype.destroy = function()
 
 m.EntityCollection.prototype.attack = function(unit)
 {
-	var unitId;
-	if (typeof(unit) === "Entity")
-		unitId = unit.id();
-	else
-		unitId = unit;
+	var unitId = unit;
 	Engine.PostCommand(PlayerID,{"type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false});
 	return this;
 };
