@@ -36,7 +36,7 @@ m.TradeManager.prototype.assignTrader = function(ent)
 // TODO take trader ships into account
 m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 {
-	if (!this.tradeRoute || queues.trader.countQueuedUnits())
+	if (!this.tradeRoute || queues.trader.hasQueuedUnits())
 		return;
 
 	var numTraders = this.traders.length;
@@ -520,7 +520,7 @@ m.TradeManager.prototype.checkTrader = function(gameState, ent)
 
 m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 {
-	if (queues.economicBuilding.countQueuedUnitsWithClass("Market") + queues.dock.countQueuedUnitsWithClass("Market") > 0)
+	if (queues.economicBuilding.hasQueuedUnitsWithClass("Market") || queues.dock.hasQueuedUnitsWithClass("Market"))
 		return;
 	if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
 		return;

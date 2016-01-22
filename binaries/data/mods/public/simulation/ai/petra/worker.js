@@ -81,12 +81,12 @@ m.Worker.prototype.update = function(gameState, ent)
 			// in case UnitAI did something bad
 			if (ent.unitAIOrderData().length)
 			{
-				var supplyId = ent.unitAIOrderData()[0].target;
-				var supply = gameState.getEntityById(supplyId);
+				let supplyId = ent.unitAIOrderData()[0].target;
+				let supply = gameState.getEntityById(supplyId);
 				if (supply && !supply.hasClass("Field") && !supply.hasClass("Animal") &&
 					supplyId !== ent.getMetadata(PlayerID, "supply"))
 				{
-					var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplyId);
+					let nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplyId);
 					if (nbGatherers > 1 && supply.resourceSupplyAmount()/nbGatherers < 30)
 					{
 						gameState.ai.HQ.RemoveTCGatherer(supplyId);
@@ -111,7 +111,7 @@ m.Worker.prototype.update = function(gameState, ent)
 		else if (unitAIState === "INDIVIDUAL.RETURNRESOURCE.APPROACHING" && gameState.ai.playedTurn % 10 === 0)
 		{
 			// Check from time to time that UnitAI does not send us to an inaccessible dropsite
-			var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
+			let dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
 			if (dropsite && dropsite.position())
 			{
 				let access = gameState.ai.accessibility.getAccessValue(ent.position());
@@ -131,8 +131,8 @@ m.Worker.prototype.update = function(gameState, ent)
 		if (unitAIStateOrder === "REPAIR")
 		{
 			// update our target in case UnitAI sent us to a different foundation because of autocontinue	
-			if (ent.unitAIOrderData()[0] && ent.unitAIOrderData()[0].target
-				&& ent.getMetadata(PlayerID, "target-foundation") !== ent.unitAIOrderData()[0].target)
+			if (ent.unitAIOrderData()[0] && ent.unitAIOrderData()[0].target &&
+				ent.getMetadata(PlayerID, "target-foundation") !== ent.unitAIOrderData()[0].target)
 				ent.setMetadata(PlayerID, "target-foundation", ent.unitAIOrderData()[0].target);
 			return;
 		}
@@ -210,11 +210,11 @@ m.Worker.prototype.update = function(gameState, ent)
 				else if (unitAIState === "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
 				{
 					// Check that UnitAI does not send us to an inaccessible dropsite
-					var dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
+					let dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
 					if (dropsite && dropsite.position())
 					{
-						var access = gameState.ai.accessibility.getAccessValue(ent.position());
-						var goalAccess = dropsite.getMetadata(PlayerID, "access");
+						let access = gameState.ai.accessibility.getAccessValue(ent.position());
+						let goalAccess = dropsite.getMetadata(PlayerID, "access");
 						if (!goalAccess || dropsite.hasClass("Elephant"))
 						{
 							goalAccess = gameState.ai.accessibility.getAccessValue(dropsite.position());
@@ -272,8 +272,8 @@ m.Worker.prototype.startGathering = function(gameState)
 				continue;
 			// check if available resource is worth one additionnal gatherer (except for farms)
 			var nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplies[i].id);
-			if (supplies[i].ent.resourceSupplyType().specific !== "grain"
-				&& nbGatherers > 0 && supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 30)
+			if (supplies[i].ent.resourceSupplyType().specific !== "grain" &&
+				nbGatherers > 0 && supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 30)
 				continue;
 			// not in ennemy territory
 			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supplies[i].ent.position());
@@ -427,7 +427,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	{
 		if (base.accessIndex === access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["medium"])))
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].medium)))
 		{
 			if (base.ID !== this.baseID)
 				this.ent.setMetadata(PlayerID, "base", base.ID);
@@ -437,7 +437,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	}
 	// Okay so we haven't found any appropriate dropsite anywhere.
 	// Try to help building one if any non-accessible foundation available
-	var shouldBuild = foundations.some(function(foundation) {
+	shouldBuild = foundations.some(function(foundation) {
 		if (!foundation || foundation.getMetadata(PlayerID, "access") === access)
 			return false;
 		if (foundation.resourceDropsiteTypes() && foundation.resourceDropsiteTypes().indexOf(resource) !== -1)
@@ -510,22 +510,18 @@ m.Worker.prototype.startHunting = function(gameState, position)
 	if (resources.length === 0)
 		return false;
 
-	if (position)
-		var entPosition = position;
-	else
-		var entPosition = this.ent.position();
-
 	var nearestSupplyDist = Math.min();
 	var nearestSupply;
 
 	var isCavalry = this.ent.hasClass("Cavalry");
 	var isRanged = this.ent.hasClass("Ranged");
 	var foodDropsites = gameState.getOwnDropsites("food");
+	var entPosition = position ? position : this.ent.position();
 	var access = gameState.ai.accessibility.getAccessValue(entPosition);
 
 	var nearestDropsiteDist = function(supply) {
-		var distMin = 1000000;
-		var pos = supply.position();
+		let distMin = 1000000;
+		let pos = supply.position();
 		foodDropsites.forEach(function (dropsite) {
 			if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
 				return;
@@ -816,12 +812,12 @@ m.Worker.prototype.moveAway = function(gameState)
 // it will be cleared later).
 m.Worker.prototype.isInaccessibleSupply = function(gameState)
 {
-	if (!this.ent.unitAIOrderData()[0] || !this.ent.unitAIOrderData()[0]["target"])
+	if (!this.ent.unitAIOrderData()[0] || !this.ent.unitAIOrderData()[0].target)
 		return false;
 	let approachingTarget = this.ent.getMetadata(PlayerID, "approachingTarget");
-	if (!approachingTarget || approachingTarget !== this.ent.unitAIOrderData()[0]["target"])
+	if (!approachingTarget || approachingTarget !== this.ent.unitAIOrderData()[0].target)
 	{
-		this.ent.setMetadata(PlayerID, "approachingTarget", this.ent.unitAIOrderData()[0]["target"]);
+		this.ent.setMetadata(PlayerID, "approachingTarget", this.ent.unitAIOrderData()[0].target);
 		this.ent.setMetadata(PlayerID, "approachingTime", undefined);
 		this.ent.setMetadata(PlayerID, "approachingPos", undefined);
 		this.ent.setMetadata(PlayerID, "carriedAmount", undefined);
@@ -849,7 +845,7 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 		}
 		else if (gameState.ai.elapsedTime - approachingTime > 15)
 		{
-			let targetId = this.ent.unitAIOrderData()[0]["target"];
+			let targetId = this.ent.unitAIOrderData()[0].target;
 			let target = gameState.getEntityById(targetId);
 			if (target)
 				target.setMetadata(PlayerID, "inaccessibleTime", gameState.ai.elapsedTime + 600);

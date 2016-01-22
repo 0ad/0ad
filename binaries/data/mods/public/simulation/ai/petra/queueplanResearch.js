@@ -21,7 +21,7 @@ m.ResearchPlan.prototype = Object.create(m.QueuePlan.prototype);
 m.ResearchPlan.prototype.canStart = function(gameState)
 {
 	// also checks canResearch
-	return (gameState.findResearchers(this.type).length !== 0);
+	return gameState.hasResearchers(this.type);
 };
 
 m.ResearchPlan.prototype.isInvalid = function(gameState)

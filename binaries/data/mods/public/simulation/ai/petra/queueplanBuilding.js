@@ -152,8 +152,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": pos[2] };
 			else if (template.hasClass("DefenseTower") || gameState.civ() === "mace" || gameState.civ() === "maur" ||
-				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true)
-				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_army_camp"), true) > 0)
+				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true)  > 0 ||
+				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_army_camp"), true) > 0)
 				return false;
 			// if this fortress is our first siege unit builder, just try the standard placement as we want siege units		    
 		}
@@ -181,8 +181,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 	if (this.position)	// If a position was specified then place the building as close to it as possible
 	{
-		var x = Math.floor(this.position[0] / cellSize);
-		var z = Math.floor(this.position[1] / cellSize);
+		let x = Math.floor(this.position[0] / cellSize);
+		let z = Math.floor(this.position[1] / cellSize);
 		placement.addInfluence(x, z, 255);
 	}
 	else	// No position was specified so try and find a sensible place to build
@@ -191,7 +191,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		// if we really need houses (i.e. townPhasing without enough village building), do not apply these constraints
 		if (this.metadata && this.metadata.base !== undefined)
 		{
-			var base = this.metadata.base;
+			let base = this.metadata.base;
 			for (let j = 0; j < placement.map.length; ++j)
 				if (gameState.ai.HQ.basesMap.map[j] == base)
 					placement.map[j] = 45;
@@ -227,8 +227,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 					else if (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))
 						placement.addInfluence(x, z, 60/cellSize, -40);   // and further away from other stuffs
 				}
-				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field")
-					&& (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
+				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field") &&
+					(!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
 					placement.addInfluence(x, z, 100/cellSize, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
 				else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
 					placement.addInfluence(x, z, 120/cellSize, -50);
@@ -256,7 +256,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	var preferredBase = (this.metadata && this.metadata.preferredBase);
 	if (this.metadata && this.metadata.base !== undefined)
 	{
-		var base = this.metadata.base;
+		let base = this.metadata.base;
 		for (let j = 0; j < placement.map.length; ++j)
 		{
 			if (gameState.ai.HQ.basesMap.map[j] != base)
@@ -309,34 +309,35 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	//obstructions.dumpIm(template.buildCategory() + "_obstructions.png");
 
 	var radius = 0;
-	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_siege_workshop")
-		|| this.type === gameState.applyCiv("structures/{civ}_elephant_stables"))
+	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_siege_workshop") ||
+		this.type === gameState.applyCiv("structures/{civ}_elephant_stables"))
 		radius = Math.floor((template.obstructionRadius() + 12) / obstructions.cellSize);
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
 		radius = Math.ceil((template.obstructionRadius() + 4) / obstructions.cellSize);
 	else
 		radius = Math.ceil((template.obstructionRadius() + 0.5) / obstructions.cellSize);
 
+	var bestTile;
+	var bestVal;
 	if (template.hasClass("House") && !alreadyHasHouses)
 	{
 		// try to get some space to place several houses first
-		var bestTile = placement.findBestTile(3*radius, obstructions);
-		var bestIdx = bestTile[0];
-		var bestVal = bestTile[1];
+		bestTile = placement.findBestTile(3*radius, obstructions);
+		bestVal = bestTile[1];
 	}
 	
 	if (bestVal === undefined || bestVal === -1)
 	{
-		var bestTile = placement.findBestTile(radius, obstructions);
-		var bestIdx = bestTile[0];
-		var bestVal = bestTile[1];
+		bestTile = placement.findBestTile(radius, obstructions);
+		bestVal = bestTile[1];
 	}
+	var bestIdx = bestTile[0];
 
 	if (bestVal <= 0)
 		return false;
 
-	var x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
-	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
+	let x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
+	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 
 	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
 	{

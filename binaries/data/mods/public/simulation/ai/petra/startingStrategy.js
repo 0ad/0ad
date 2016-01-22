@@ -259,7 +259,7 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 	if (!total.canAfford(new API3.Resources(template.cost())) && !docks.length)
 	{
 		// not enough resource to build a cc, try with a dock to accumulate resources if none yet
-		if (gameState.ai.queues.dock.countQueuedUnits())
+		if (gameState.ai.queues.dock.hasQueuedUnits())
 			return;
 		template = gameState.applyCiv("structures/{civ}_dock");
 		if (gameState.isDisabledTemplates(template))

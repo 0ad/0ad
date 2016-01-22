@@ -84,6 +84,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 	this.anchor.setMetadata(PlayerID, "baseAnchor", true);
 	this.buildings.updateEnt(this.anchor);
 	this.accessIndex = gameState.ai.accessibility.getAccessValue(this.anchor.position());
+	gameState.ai.HQ.resetActiveBase();
 	// in case some of our other bases were destroyed, reaffect these destroyed bases to this base
 	for (let base of gameState.ai.HQ.baseManagers)
 	{
@@ -154,6 +155,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			continue;
 		this.anchorId = evt.newentity;
 		this.anchor = gameState.getEntityById(evt.newentity);
+		gameState.ai.HQ.resetActiveBase();
 	}
 };
 
@@ -169,6 +171,7 @@ m.BaseManager.prototype.anchorLost = function (gameState, ent)
 		bestbase.assignEntity(gameState, entity);
 	for (let entity of this.buildings.values())
 		bestbase.assignEntity(gameState, entity);
+	gameState.ai.HQ.resetActiveBase();
 	gameState.ai.HQ.updateTerritories(gameState);
 };
 
@@ -992,6 +995,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 				if (API3.SquareVectorDistance(cc.position(), this.anchor.position()) > 8000)
 					continue;
 				this.anchor.destroy();
+				gameState.ai.HQ.resetActiveBase();
 				break;
 			}
 		}

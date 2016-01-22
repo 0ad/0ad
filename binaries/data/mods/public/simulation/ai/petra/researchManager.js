@@ -22,7 +22,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 	var cityPhase = gameState.cityPhase();
 		
 	if (gameState.canResearch(townPhase,true) && gameState.getPopulation() >= this.Config.Economy.popForTown - 10 &&
-		gameState.findResearchers(townPhase,true).length)
+		gameState.hasResearchers(townPhase, true))
 	{
 		let plan = new m.ResearchPlan(gameState, townPhase, true);
 		plan.lastIsGo = false;
@@ -43,7 +43,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 	}
 	else if (gameState.canResearch(cityPhase,true) && gameState.ai.elapsedTime > this.Config.Economy.cityPhase &&
 			gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workForCity &&
-			gameState.findResearchers(cityPhase, true).length && !queues.civilCentre.length())
+			gameState.hasResearchers(cityPhase, true) && !queues.civilCentre.hasQueuedUnits())
 	{
 		let plan = new m.ResearchPlan(gameState, cityPhase, true);
 		plan.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState); };

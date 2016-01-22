@@ -1205,7 +1205,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 m.HQ.prototype.buildTemple = function(gameState, queues)
 {
 	// at least one market (which have the same queue) should be build before any temple
-	if (gameState.currentPhase() < 3 || queues.economicBuilding.countQueuedUnits() ||
+	if (gameState.currentPhase() < 3 || queues.economicBuilding.hasQueuedUnits() ||
 		gameState.getOwnEntitiesByClass("Temple", true).length ||
 		!gameState.getOwnEntitiesByClass("BarterMarket", true).length)
 		return;
@@ -1220,7 +1220,7 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 		!this.canBuild(gameState, "structures/{civ}_market"))
 		return;
 
-	if (queues.economicBuilding.countQueuedUnitsWithClass("BarterMarket") > 0)
+	if (queues.economicBuilding.hasQueuedUnitsWithClass("BarterMarket"))
 	{
 		if (!this.navalMap && !queues.economicBuilding.paused)
 		{
@@ -1262,7 +1262,7 @@ m.HQ.prototype.buildFarmstead = function(gameState, queues)
 		return;
 	if (gameState.getOwnEntitiesByClass("House", true).length == 0)
 		return;
-	if (queues.economicBuilding.countQueuedUnitsWithClass("DropsiteFood") > 0)
+	if (queues.economicBuilding.hasQueuedUnitsWithClass("DropsiteFood"))
 		return;
 	if (!this.canBuild(gameState, "structures/{civ}_farmstead"))
 		return;
@@ -1582,7 +1582,7 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
  */  
 m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 {
-	if (gameState.ai.queues.emergency.countQueuedUnits() !== 0)
+	if (gameState.ai.queues.emergency.hasQueuedUnits())
 		return false;
 
 	var civ = gameState.civ();
@@ -1759,7 +1759,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 	var width = this.territoryMap.width;
 	var cellSize = this.territoryMap.cellSize;
 	var expansion = 0;
-	for (var j = 0; j < this.territoryMap.length; ++j)
+	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
 		if (this.borderMap.map[j] > 1)
 			continue;
@@ -1767,8 +1767,8 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		{
 			if (this.basesMap.map[j] == 0)
 				continue;
-			var base = this.getBaseByID(this.basesMap.map[j]);
-			var index = base.territoryIndices.indexOf(j);
+			let base = this.getBaseByID(this.basesMap.map[j]);
+			let index = base.territoryIndices.indexOf(j);
 			if (index == -1)
 			{
 				API3.warn(" problem in headquarters::updateTerritories for base " + this.basesMap.map[j]);
@@ -1779,10 +1779,10 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		}
 		else if (this.basesMap.map[j] == 0)
 		{
-			var landPassable = false;
-			var ind = API3.getMapIndices(j, this.territoryMap, passabilityMap);
-			var access;
-			for (var k of ind)
+			let landPassable = false;
+			let ind = API3.getMapIndices(j, this.territoryMap, passabilityMap);
+			let access;
+			for (let k of ind)
 			{
 				if (!this.landRegions[gameState.ai.accessibility.landPassMap[k]])
 					continue;
@@ -1792,16 +1792,16 @@ m.HQ.prototype.updateTerritories = function(gameState)
 			}
 			if (!landPassable)
 				continue;
-			var distmin = Math.min();
-			var baseID = undefined;
-			var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
-			for (var base of this.baseManagers)
+			let distmin = Math.min();
+			let baseID = undefined;
+			let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+			for (let base of this.baseManagers)
 			{
 				if (!base.anchor || !base.anchor.position())
 					continue;
 				if (base.accessIndex != access)
 					continue;
-				var dist = API3.SquareVectorDistance(base.anchor.position(), pos);
+				let dist = API3.SquareVectorDistance(base.anchor.position(), pos);
 				if (dist >= distmin)
 					continue;
 				distmin = dist;
@@ -1842,15 +1842,23 @@ m.HQ.prototype.getBaseByID = function(baseID)
 
 /**
  * returns the number of active (i.e. with one cc) bases
- * TODO should be cached
  */
 m.HQ.prototype.numActiveBase = function()
 {
-	let num = 0;
-	for (let base of this.baseManagers)
-		if (base.anchor)
-			++num;
-	return num;
+	if (!this.turnCache.activeBase)
+	{
+		let num = 0;
+		for (let base of this.baseManagers)
+			if (base.anchor)
+				++num;
+		this.turnCache.activeBase = num;
+	}
+	return this.turnCache.activeBase;
+};
+
+m.HQ.prototype.resetActiveBase = function()
+{
+	this.turnCache.activeBase = undefined;
 };
 
 // Count gatherers returning resources in the number of gatherers of resourceSupplies
@@ -1930,8 +1938,8 @@ m.HQ.prototype.GetTCGatherer = function(supplyID)
 {
 	if (this.turnCache.resourceGatherer && this.turnCache.resourceGatherer[supplyID])
 		return this.turnCache.resourceGatherer[supplyID];
-	else
-		return 0;
+
+	return 0;
 };
 
 // The next two are to register that we assigned a gatherer to a resource this turn.
@@ -1948,8 +1956,8 @@ m.HQ.prototype.GetTCResGatherer = function(resource)
 {
 	if (this.turnCache["resourceGatherer-" + resource])
 		return this.turnCache["resourceGatherer-" + resource];
-	else
-		return 0;
+
+	return 0;
 };
 
 // Some functions are run every turn

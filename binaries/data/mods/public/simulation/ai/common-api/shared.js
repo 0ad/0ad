@@ -295,7 +295,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			continue;// probably should remove the event.
 
 		if (foundationFinished[evt.entity])
-			evt["SuccessfulFoundation"] = true;
+			evt.SuccessfulFoundation = true;
 		
 		// The entity was destroyed but its data may still be useful, so
 		// remember the entity and this AI's metadata concerning it
