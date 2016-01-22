@@ -15,6 +15,7 @@
 # Nick Zhivotenko <niko.zvt@gmail.com>, 2015
 # sad2shade <sad.2.shade@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # webslavic <webslavic@yahoo.com>, 2014-2015
 # Woratiklis, 2015
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-20 22:55+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,7 +105,7 @@ msgstr "Времени до возобновления военных дейст
 
 #: gui/common/functions_utility.js:77
 msgid "A randomly selected map."
-msgstr "Случайная карта."
+msgstr "Случайно выбранная карта."
 
 #: gui/common/functions_utility.js:84
 msgid "Sorry, no description available."
@@ -124,7 +125,7 @@ msgstr "Загрузка прервана"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "dd-MM-yyyy HH:mm:ss"
+msgstr "dd.MM.yyyy HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
@@ -326,12 +327,12 @@ msgstr "Рыба"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(resourceType)s: %(amount)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s и %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -373,7 +374,7 @@ msgstr "Вас заблокировали"
 #: gui/common/network.js:24
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Неверное значение %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:36
@@ -402,7 +403,7 @@ msgstr "Невозможно отключить %(name)s."
 #: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Пользователи: %(users)s"
 
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
@@ -651,15 +652,15 @@ msgstr ""
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
-msgstr ""
+msgstr "Скорость Ремонта:"
 
 #: gui/common/tooltips.js:237 gui/common/tooltips.js:248
 msgid "health"
-msgstr ""
+msgstr "здоровье"
 
 #: gui/common/tooltips.js:239 gui/common/tooltips.js:250
 msgid "worker"
-msgstr ""
+msgstr "рабочий"
 
 #: gui/common/tooltips.js:245
 #, javascript-format
@@ -668,7 +669,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:246
 msgid "Build Rate:"
-msgstr ""
+msgstr "Скорость постройки:"
 
 #: gui/common/tooltips.js:291 gui/common/tooltips.js:292
 #: gui/common/tooltips.js:293 gui/common/tooltips.js:294
@@ -823,7 +824,7 @@ msgstr " Оконный режим"
 
 #: gui/options/options.js:10
 msgid "Start 0 A.D. in a window"
-msgstr "Запуск 0 A.D. в окне"
+msgstr "Запускать 0 A.D. в окне"
 
 #: gui/options/options.js:11
 msgid "Background Pause"
@@ -874,11 +875,11 @@ msgstr "Продолжительность игры"
 
 #: gui/options/options.js:16
 msgid "Show current simulation time in top right corner."
-msgstr "Показать время игры в правом верхнем углу."
+msgstr "Показать продолжительность игры в правом верхнем углу."
 
 #: gui/options/options.js:17
 msgid "Ceasefire Time Overlay"
-msgstr "Продолжительность прекращения военных действий"
+msgstr "Продолжительность перемирия"
 
 #: gui/options/options.js:17
 msgid "Always show the remaining ceasefire time."
@@ -886,7 +887,7 @@ msgstr "Всегда показывать время, оставшееся до 
 
 #: gui/options/options.js:18
 msgid "Persist Match Settings"
-msgstr "Сохранить настройки состязания"
+msgstr "Сохранять настройки матча"
 
 #: gui/options/options.js:18
 msgid ""
@@ -947,7 +948,7 @@ msgstr "Силуэты юнитов"
 
 #: gui/options/options.js:28
 msgid "Show outlines of units behind buildings"
-msgstr "Отображать контур юнитов, находящихся за зданиями."
+msgstr "Отображать очертания юнитов, находящихся за зданиями."
 
 #: gui/options/options.js:29
 msgid "Shadow Filtering"
@@ -955,7 +956,7 @@ msgstr "Фильтрация теней"
 
 #: gui/options/options.js:29
 msgid "Smooth shadows"
-msgstr "Гладкие тени"
+msgstr "Мягкие тени"
 
 #: gui/options/options.js:30
 msgid "Fast & Ugly Water"
@@ -975,7 +976,7 @@ msgstr "Реалистичная вода"
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr "Используются наилучшие эффекты для воды, прибрежных волн, пенных бурунов и кильватерных струй."
+msgstr "Использовать наилучшие эффекты для воды, прибрежных волн, пенных бурунов и кильватерных струй."
 
 #: gui/options/options.js:32
 msgid "Real Water Depth"
@@ -987,7 +988,7 @@ msgstr "Использовать реальную глубину воды в в�
 
 #: gui/options/options.js:33
 msgid "Water Reflections"
-msgstr "Отражения воды"
+msgstr "Водные отражения"
 
 #: gui/options/options.js:33
 msgid "Allow water to reflect a mirror image"
@@ -1027,11 +1028,11 @@ msgstr "Ограничить до 50 FPS во всех меню для энер�
 
 #: gui/options/options.js:38
 msgid "Graphics quality"
-msgstr ""
+msgstr "Качество графики"
 
 #: gui/options/options.js:38
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Качество графики. ТРЕБУЕТСЯ ПЕРЕЗАПУСК ИГРЫ"
 
 #: gui/options/options.js:42
 msgid "Master Gain"
@@ -1083,7 +1084,7 @@ msgstr "Количество сообщений, которые загружаю
 
 #: gui/options/options.js:51
 msgid "Chat Timestamp"
-msgstr "Отметка времени чата"
+msgstr "Отметка времени в чате"
 
 #: gui/options/options.js:51
 msgid "Show time that messages are posted in the lobby chat"
@@ -1091,7 +1092,7 @@ msgstr "Показывать время сообщений в общем чат�
 
 #: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
-msgstr ""
+msgstr "У вас есть несохраненные изменения, вы уверены, что хотите выйти?"
 
 #: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
@@ -1195,17 +1196,17 @@ msgstr "Вы"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "У вас нет активных модов, которые есть в повторе"
 
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Требуются: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:53
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Активны: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
@@ -1213,19 +1214,19 @@ msgstr "Этот повтор несовместим с вашей версие�
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Несовместимый повтор"
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
-msgstr ""
+msgstr "Ок"
 
 #: gui/replaymenu/replay_actions.js:75
 msgid "No summary data available."
-msgstr ""
+msgstr "Нет итоговых данных."
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Счет в конце игры."
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
@@ -1291,17 +1292,17 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.js:235
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "dd.MM.yyyy HH:mm"
 
 #: gui/replaymenu/replay_menu.js:265
 msgid "yyyy-MM"
-msgstr ""
+msgstr "yyyy-MM"
 
 #: gui/replaymenu/replay_menu.js:328
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #: gui/replaymenu/replay_menu.js:330
 #, javascript-format
@@ -1313,7 +1314,7 @@ msgstr ""
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #: gui/replaymenu/replay_menu.js:334
 #, javascript-format
@@ -1323,12 +1324,12 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.js:350
 msgid "No Team"
-msgstr ""
+msgstr "Нет Команды"
 
 #: gui/replaymenu/replay_menu.js:350
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Команда %(team)s"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:27
 msgid "No saved games found"
@@ -1723,7 +1724,7 @@ msgstr "Сохранить"
 
 #: gui/options/options.xml:(caption):79
 msgid "Quit"
-msgstr ""
+msgstr "Выйти"
 
 #: gui/options/options.xml:(tooltip):70
 msgid "Revert to previous saved settings"
@@ -1731,7 +1732,7 @@ msgstr ""
 
 #: gui/options/options.xml:(tooltip):75
 msgid "Save changes"
-msgstr ""
+msgstr "Сохранить изменения"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"
@@ -1985,7 +1986,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Скрыть несовместимые повторы"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
@@ -1997,7 +1998,7 @@ msgstr "Размер карты:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):166
 msgid "Victory:"
-msgstr ""
+msgstr "Победа:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):187
 msgid "Players:"
@@ -2005,7 +2006,7 @@ msgstr "Игроки:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 msgid "Spoiler"
-msgstr ""
+msgstr "Спойлер"
 
 #: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Main Menu"
@@ -2023,12 +2024,12 @@ msgstr "Итог"
 
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Start Replay"
-msgstr ""
+msgstr "Начать Повтор"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Дата / Время"
 
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
@@ -2048,12 +2049,12 @@ msgstr "Размер"
 #: gui/replaymenu/replay_menu.xml:(heading):89
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Население"
 
 #: gui/replaymenu/replay_menu.xml:(heading):93
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Продолжительность"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"

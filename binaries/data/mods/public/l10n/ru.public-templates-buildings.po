@@ -13,13 +13,14 @@
 # Konstantin, 2014
 # Peter Seregin <peter01@myself.com>, 2015
 # vadim s. sabinich <vadim@sabini.ch>, 2015
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-08 12:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-20 21:29+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,7 +128,7 @@ msgstr "Оборонительная башня"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Постройте в нейтральной и собственной территории для скаутских областей карты. Медленно преобразует Gaia на нейтральной территории."
+msgstr "Постройте в нейтральной или собственной территории для разведки карты. Медленно переходит к Gaia на нейтральной территории."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -622,7 +623,7 @@ msgstr "Фермерский бонус"
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
 msgid "Boosts nearby farming with +25%."
-msgstr "Ускорение на +25% производства близлежащих хозяйств."
+msgstr "Ускорение производства близлежащих хозяйств на +25%."
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -637,7 +638,7 @@ msgstr "Мелонас"
 #: simulation/templates/structures/brit_rotarymill.xml:35
 #: simulation/templates/structures/gaul_rotarymill.xml:35
 msgid "Increase nearby farming output +25%."
-msgstr "Увеличивает на +25% производство близлежащих хозяйств."
+msgstr "Увеличивает производство близлежащих хозяйств на +25%."
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -716,7 +717,7 @@ msgstr "Намель"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Позволяет строить рыбацкие лодки для ловли рыбы и торговые суда для торговли с другими причалами."
+msgstr "Позволяет строить рыбацкие лодки для добычи еды и торговые суда для обмена товарами с другими портами."
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
@@ -904,7 +905,7 @@ msgstr "Гур Ороигарри"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
-msgstr "Все юниты в пределах видимости этого монумента будут сражаться храбрее. Эффективность: 50 метров."
+msgstr "Все юниты в пределах видимости этого монумента будут сражаться жестче. Радиус действия: 50 метров."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -965,7 +966,7 @@ msgstr "Библиотеке"
 msgid ""
 "Research special technologies and reduce the research time of all remaining "
 "technologies."
-msgstr "Позволяет исследовать особую технологию для сокращения времени исследования остальных технологий."
+msgstr "Позволяет исследовать особую технологию и сократить время исследования остальных технологий."
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
@@ -1322,7 +1323,7 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Недорогие строения типа бараков которые строят на нейтральных территориях не расширяющие зону влияния.\n- Тренирует наёмников.\n- Минимальное расстояние от военных построек: 100 метров."
+msgstr "Недорогие, не расширяющие зону влияния строения, типа бараков, которые строят на нейтральных территориях.\n- Тренирует наёмников.\n- Минимальное расстояние от военных построек: 100 метров."
 
 #: simulation/templates/structures/ptol_military_colony.xml:24
 #: simulation/templates/structures/sele_military_colony.xml:24
@@ -1343,7 +1344,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Это селевкидское строение похожее на городские центры других цивилизаций. Оно слабее и влияет на меньшую территорию, но дешевле и быстрее возводится. \n- Обучает поселенцев-солдат любой национальности. \n- Минимальное расстояние от других военных поселений: 120 метров."
+msgstr "Это селевкидское строение, похожее на городские центры других цивилизаций. Оно слабее и влияет на меньшую территорию, но дешевле и быстрее возводится. \n- Обучает поселенцев-солдат любой национальности. \n- Минимальное расстояние от других военных поселений: 120 метров."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1599,7 +1600,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Это селевкидское строение похожее на городские центры других цивилизаций. Оно слабее и влияет на меньшую территорию, но дешевле и быстрее возводится.\n- Обучает поселенцев-солдат любой национальности.\n- Минимальное расстояние от других военных поселений: 120 метров."
+msgstr "Это селевкидское строение, похожее на городские центры других цивилизаций. Оно слабее и влияет на меньшую территорию, но дешевле и быстрее возводится.\n- Обучает поселенцев-солдат любой национальности.\n- Минимальное расстояние от других военных поселений: 120 метров."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"

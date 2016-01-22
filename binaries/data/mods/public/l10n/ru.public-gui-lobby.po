@@ -12,15 +12,16 @@
 # Igor Kustov, 2014
 # Ivan, 2014
 # v00d00911 <agroworker@mail.ru>, 2014
-# Vladislav Belov <thebvog@gmail.com>, 2015
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2015
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-04 09:00+0100\n"
-"PO-Revision-Date: 2016-01-04 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-18 15:59+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr "В сети"
 
 #: gui/lobby/lobby.js:45
 msgid "Away"
-msgstr "Далеко"
+msgstr "Отошел"
 
 #: gui/lobby/lobby.js:46
 msgid "Busy"
@@ -51,7 +52,7 @@ msgstr "Неизвестно"
 
 #: gui/lobby/lobby.js:109
 msgid "Disconnected."
-msgstr ""
+msgstr "Отключен."
 
 #: gui/lobby/lobby.js:121
 #, javascript-format
@@ -119,7 +120,7 @@ msgstr "Адрес игры '%(ip)s' не является действител�
 #: gui/lobby/lobby.js:718
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr "К сожалению команда '%(cmd)s' не поддерживается."
+msgstr "К сожалению, команда '%(cmd)s' не поддерживается."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:792
@@ -519,7 +520,7 @@ msgstr "* \"Ранжированные игры\" - игры, в которых 
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr "Вы соглашаетесь с:"
+msgstr "Вы соглашаетесь:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""

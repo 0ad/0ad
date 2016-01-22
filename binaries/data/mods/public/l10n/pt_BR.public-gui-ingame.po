@@ -16,6 +16,7 @@
 # Filipe Oliveira <contato@fmoliveira.com.br>, 2013
 # Sturm <gravador202@yahoo.com.br>, 2014
 # gsoster <guilhermesosters@gmail.com>, 2014
+# gsoster <guilhermesosters@gmail.com>, 2016
 # Hunteros <jorgebosch@ymail.com>, 2013
 # JulioBianor <mr.logan1@yahoo.com.br>, 2014
 # Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2014
@@ -43,8 +44,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-20 19:36+0000\n"
+"Last-Translator: gsoster <guilhermesosters@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -398,21 +399,21 @@ msgstr "%(player)s agora está neutro com você."
 #: gui/session/messages.js:130
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s agora é aliado de %(player2)s."
 
 #: gui/session/messages.js:131
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s agora está em guerra contra %(player2)s."
 
 #: gui/session/messages.js:132
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s está em neutralidade com %(player2)s."
 
 #: gui/session/messages.js:544 gui/session/messages.js:551
 msgid "Unknown Player"
-msgstr ""
+msgstr "Jogador desconhecido"
 
 #: gui/session/messages.js:561
 msgid "You have been defeated."
@@ -668,29 +669,29 @@ msgstr "Manter posição"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "Ataque oponentes próximos, foque nos atacantes e os persiga enquanto visíveis"
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "Ataque oponentes próximos"
 
 #: gui/session/selection_panels_helpers.js:62
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "Ataque oponentes próximos, persiga por uma curta distância e então retorne a posição original"
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr ""
+msgstr "Fuja se atacado"
 
 #: gui/session/selection_panels_helpers.js:66
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "Ataque oponentes dentro do campo, mas não se mova"
 
 #: gui/session/selection_panels_helpers.js:82
 #, javascript-format
