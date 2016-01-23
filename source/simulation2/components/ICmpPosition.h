@@ -63,7 +63,7 @@ public:
 	/**
 	 * Set this as a turret of an other entity
 	 */
-	virtual void SetTurretParent(entity_id_t parent, CFixedVector3D offset) = 0;
+	virtual void SetTurretParent(entity_id_t parent, const CFixedVector3D& offset) = 0;
 
 	/**
 	 * Get the turret parent of this entity

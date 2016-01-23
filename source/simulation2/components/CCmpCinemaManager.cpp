@@ -213,7 +213,7 @@ public:
 		}
 	}
 
-	virtual void AddCinemaPathToQueue(CStrW name)
+	virtual void AddCinemaPathToQueue(const CStrW& name)
 	{
 		if (!g_Game || !g_Game->GetView())
 			return;

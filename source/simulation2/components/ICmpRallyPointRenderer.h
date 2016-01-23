@@ -35,14 +35,14 @@ public:
 
 	/// Sets the position at which the rally point marker should be displayed.
 	/// Discards all previous positions
-	virtual void SetPosition(CFixedVector2D position) = 0;
+	virtual void SetPosition(const CFixedVector2D& position) = 0;
 
 	/// Updates the position of one given rally point marker.
-	virtual void UpdatePosition(u32 rallyPointId, CFixedVector2D position) = 0;
+	virtual void UpdatePosition(u32 rallyPointId, const CFixedVector2D& position) = 0;
 
 	/// Add another position at which a marker should be displayed, connected
 	/// to the previous one.
-	virtual void AddPosition_wrapper(CFixedVector2D position) = 0;
+	virtual void AddPosition_wrapper(const CFixedVector2D& position) = 0;
 
 	/// Reset the positions of this rally point marker
 	virtual void Reset() = 0;

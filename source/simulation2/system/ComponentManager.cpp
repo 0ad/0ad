@@ -148,7 +148,7 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 	return ok;
 }
 
-void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, JS::HandleValue ctor, bool reRegister, bool systemComponent)
+void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 	JSContext* cx = componentManager->m_ScriptInterface.GetContext();
@@ -318,26 +318,26 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 	}
 }
 
-void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, JS::HandleValue ctor)
+void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 	componentManager->Script_RegisterComponentType_Common(pCxPrivate, iid, cname, ctor, false, false);
 	componentManager->m_ScriptInterface.SetGlobal(cname.c_str(), ctor, componentManager->m_CurrentlyHotloading);
 }
 
-void CComponentManager::Script_RegisterSystemComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, JS::HandleValue ctor)
+void CComponentManager::Script_RegisterSystemComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 	componentManager->Script_RegisterComponentType_Common(pCxPrivate, iid, cname, ctor, false, true);
 	componentManager->m_ScriptInterface.SetGlobal(cname.c_str(), ctor, componentManager->m_CurrentlyHotloading);
 }
 
-void CComponentManager::Script_ReRegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, JS::HandleValue ctor)
+void CComponentManager::Script_ReRegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
 {
 	Script_RegisterComponentType_Common(pCxPrivate, iid, cname, ctor, true, false);
 }
 
-void CComponentManager::Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, std::string name)
+void CComponentManager::Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
@@ -361,7 +361,7 @@ void CComponentManager::Script_RegisterInterface(ScriptInterface::CxPrivate* pCx
 	componentManager->m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int)id);
 }
 
-void CComponentManager::Script_RegisterMessageType(ScriptInterface::CxPrivate* pCxPrivate, std::string name)
+void CComponentManager::Script_RegisterMessageType(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
@@ -384,7 +384,7 @@ void CComponentManager::Script_RegisterMessageType(ScriptInterface::CxPrivate* p
 	componentManager->m_ScriptInterface.SetGlobal(("MT_" + name).c_str(), (int)id);
 }
 
-void CComponentManager::Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, std::string name, JS::HandleValue value)
+void CComponentManager::Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name, JS::HandleValue value)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
@@ -465,7 +465,7 @@ void CComponentManager::Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxP
 	delete msg;
 }
 
-int CComponentManager::Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName)
+int CComponentManager::Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
@@ -477,7 +477,7 @@ int CComponentManager::Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, 
 	return (int)ent;
 }
 
-int CComponentManager::Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName)
+int CComponentManager::Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 
@@ -1176,12 +1176,12 @@ std::string CComponentManager::GenerateSchema()
 	return schema;
 }
 
-JS::Value CComponentManager::Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName)
+JS::Value CComponentManager::Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& fileName)
 {
 	return ReadJSONFile(pCxPrivate, L"simulation/data", fileName);
 }
 
-JS::Value CComponentManager::Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName)
+JS::Value CComponentManager::Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& fileName)
 {
 	return ReadJSONFile(pCxPrivate, L"simulation/data/civs", fileName);
 }
@@ -1211,7 +1211,7 @@ Status CComponentManager::FindJSONFilesCallback(const VfsPath& pathname, const C
 	return INFO::OK;
 }
 
-std::vector<std::string> CComponentManager::Script_FindJSONFiles(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring subPath, bool recursive)
+std::vector<std::string> CComponentManager::Script_FindJSONFiles(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& subPath, bool recursive)
 {
 	FindJSONFilesCallbackData cbData;
 	cbData.path = VfsPath(L"simulation/data/" + subPath + L"/");

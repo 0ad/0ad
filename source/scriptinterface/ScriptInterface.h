@@ -22,6 +22,7 @@
 
 #include "lib/file/vfs/vfs_path.h"
 
+#include "maths/Fixed.h"
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
 #include "ps/Errors.h"

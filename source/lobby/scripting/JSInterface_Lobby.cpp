@@ -83,7 +83,7 @@ void JSI_Lobby::SetRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bo
 
 #if CONFIG2_LOBBY
 
-void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring username, std::wstring password, std::wstring room, std::wstring nick, int historyRequestSize)
+void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& username, const std::wstring& password, const std::wstring& room, const std::wstring& nick, int historyRequestSize)
 {
 	ENSURE(!g_XmppClient);
 
@@ -92,7 +92,7 @@ void JSI_Lobby::StartXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), 
 	g_rankedGame = true;
 }
 
-void JSI_Lobby::StartRegisterXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring username, std::wstring password)
+void JSI_Lobby::StartRegisterXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& username, const std::wstring& password)
 {
 	ENSURE(!g_XmppClient);
 
@@ -140,7 +140,7 @@ void JSI_Lobby::SendGetRatingList(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)
 	g_XmppClient->SendIqGetRatingList();
 }
 
-void JSI_Lobby::SendGetProfile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring player)
+void JSI_Lobby::SendGetProfile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& player)
 {
 	if (!g_XmppClient)
 		return;
@@ -170,7 +170,7 @@ void JSI_Lobby::SendUnregisterGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate
 	g_XmppClient->SendIqUnregisterGame();
 }
 
-void JSI_Lobby::SendChangeStateGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring nbp, std::wstring players)
+void JSI_Lobby::SendChangeStateGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nbp, const std::wstring& players)
 {
 	if (!g_XmppClient)
 		return;
@@ -260,7 +260,7 @@ JS::Value JSI_Lobby::LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate)
 	return poll;
 }
 
-void JSI_Lobby::LobbySendMessage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring message)
+void JSI_Lobby::LobbySendMessage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& message)
 {
 	if (!g_XmppClient)
 		return;
@@ -268,7 +268,7 @@ void JSI_Lobby::LobbySendMessage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate),
 	g_XmppClient->SendMUCMessage(utf8_from_wstring(message));
 }
 
-void JSI_Lobby::LobbySetPlayerPresence(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring presence)
+void JSI_Lobby::LobbySetPlayerPresence(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& presence)
 {
 	if (!g_XmppClient)
 		return;
@@ -276,7 +276,7 @@ void JSI_Lobby::LobbySetPlayerPresence(ScriptInterface::CxPrivate* UNUSED(pCxPri
 	g_XmppClient->SetPresence(utf8_from_wstring(presence));
 }
 
-void JSI_Lobby::LobbySetNick(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring nick)
+void JSI_Lobby::LobbySetNick(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nick)
 {
 	if (!g_XmppClient)
 		return;
@@ -294,7 +294,7 @@ std::wstring JSI_Lobby::LobbyGetNick(ScriptInterface::CxPrivate* UNUSED(pCxPriva
 	return wstring_from_utf8(nick);
 }
 
-void JSI_Lobby::LobbyKick(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring nick, std::wstring reason)
+void JSI_Lobby::LobbyKick(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nick, const std::wstring& reason)
 {
 	if (!g_XmppClient)
 		return;
@@ -302,7 +302,7 @@ void JSI_Lobby::LobbyKick(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::w
 	g_XmppClient->kick(utf8_from_wstring(nick), utf8_from_wstring(reason));
 }
 
-void JSI_Lobby::LobbyBan(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring nick, std::wstring reason)
+void JSI_Lobby::LobbyBan(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nick, const std::wstring& reason)
 {
 	if (!g_XmppClient)
 		return;
@@ -310,7 +310,7 @@ void JSI_Lobby::LobbyBan(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::ws
 	g_XmppClient->ban(utf8_from_wstring(nick), utf8_from_wstring(reason));
 }
 
-std::wstring JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring nickname)
+std::wstring JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nickname)
 {
 	if (!g_XmppClient)
 		return L"";
@@ -320,7 +320,7 @@ std::wstring JSI_Lobby::LobbyGetPlayerPresence(ScriptInterface::CxPrivate* UNUSE
 	return wstring_from_utf8(presence);
 }
 
-std::wstring JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring nickname)
+std::wstring JSI_Lobby::LobbyGetPlayerRole(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& nickname)
 {
 	if (!g_XmppClient)
 		return L"";
@@ -361,7 +361,7 @@ std::string JSI_Lobby::EncryptPassword(const std::string& password, const std::s
 	return std::string(hex, sizeof(hex));
 }
 
-std::wstring JSI_Lobby::EncryptPassword(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring pass, std::wstring user)
+std::wstring JSI_Lobby::EncryptPassword(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& pass, const std::wstring& user)
 {
 	return wstring_from_utf8(JSI_Lobby::EncryptPassword(utf8_from_wstring(pass), utf8_from_wstring(user)));
 }

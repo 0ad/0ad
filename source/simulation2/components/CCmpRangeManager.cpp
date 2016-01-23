@@ -778,7 +778,7 @@ public:
 
 	virtual tag_t CreateActiveQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		std::vector<int> owners, int requiredInterface, u8 flags)
+		const std::vector<int>& owners, int requiredInterface, u8 flags)
 	{
 		tag_t id = m_QueryNext++;
 		m_Queries[id] = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, flags);
@@ -788,7 +788,7 @@ public:
 
 	virtual tag_t CreateActiveParabolicQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus,
-		std::vector<int> owners, int requiredInterface, u8 flags)
+		const std::vector<int>& owners, int requiredInterface, u8 flags)
 	{
 		tag_t id = m_QueryNext++;
 		m_Queries[id] = ConstructParabolicQuery(source, minRange, maxRange, elevationBonus, owners, requiredInterface, flags);
@@ -846,9 +846,9 @@ public:
 		return q.enabled;
 	}
 
-	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(CFixedVector2D pos,
+	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(const CFixedVector2D& pos,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		std::vector<int> owners, int requiredInterface)
+		const std::vector<int>& owners, int requiredInterface)
 	{
 		Query q = ConstructQuery(INVALID_ENTITY, minRange, maxRange, owners, requiredInterface, GetEntityFlagMask("normal"));
 		std::vector<entity_id_t> r;
@@ -862,7 +862,7 @@ public:
 
 	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		std::vector<int> owners, int requiredInterface)
+		const std::vector<int>& owners, int requiredInterface)
 	{
 		PROFILE("ExecuteQuery");
 
@@ -1131,8 +1131,9 @@ public:
 		}
 	}
 
-	virtual entity_pos_t GetElevationAdaptedRange(CFixedVector3D pos, CFixedVector3D rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle)
+	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos1, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle)
 	{
+		CFixedVector3D pos(pos1);
 		entity_pos_t r = entity_pos_t::Zero() ;
 
 		pos.Y += elevationBonus;
@@ -1417,7 +1418,7 @@ public:
 			collector.Submit(&m_DebugOverlayLines[i]);
 	}
 
-	virtual u8 GetEntityFlagMask(std::string identifier)
+	virtual u8 GetEntityFlagMask(const std::string& identifier)
 	{
 		if (identifier == "normal")
 			return 1;
@@ -1428,7 +1429,7 @@ public:
 		return 0;
 	}
 
-	virtual void SetEntityFlag(entity_id_t ent, std::string identifier, bool value)
+	virtual void SetEntityFlag(entity_id_t ent, const std::string& identifier, bool value)
 	{
 		EntityMap<EntityData>::iterator it = m_EntityData.find(ent);
 
@@ -1747,7 +1748,7 @@ public:
 		return m_LosCircular;
 	}
 
-	virtual void SetSharedLos(player_id_t player, std::vector<player_id_t> players)
+	virtual void SetSharedLos(player_id_t player, const std::vector<player_id_t>& players)
 	{
 		m_SharedLosMasks[player] = CalcSharedLosMask(players);
 
@@ -2283,10 +2284,10 @@ public:
 		return m_ExploredVertices.at((u8)player) * 100 / m_TotalInworldVertices;
 	}
 
-	virtual u8 GetUnionPercentMapExplored(std::vector<player_id_t> players)
+	virtual u8 GetUnionPercentMapExplored(const std::vector<player_id_t>& players)
 	{
 		u32 exploredVertices = 0;
-		std::vector<player_id_t>::iterator playerIt;
+		std::vector<player_id_t>::const_iterator playerIt;
 
 		for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
 		{

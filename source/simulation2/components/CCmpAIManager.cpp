@@ -263,7 +263,7 @@ public:
 		return true;
 	}
 
-	static void IncludeModule(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name)
+	static void IncludeModule(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name)
 	{
 		ENSURE(pCxPrivate->pCBData);
 		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
@@ -341,7 +341,7 @@ public:
 	/**
 	 * Debug function for AI scripts to dump 2D array data (e.g. terrain tile weights).
 	 */
-	static void DumpImage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring name, std::vector<u32> data, u32 w, u32 h, u32 max)
+	static void DumpImage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name, const std::vector<u32>& data, u32 w, u32 h, u32 max)
 	{
 		// TODO: this is totally not threadsafe.
 		VfsPath filename = L"screenshots/aidump/" + name;
@@ -955,7 +955,7 @@ public:
 		}
 	}
 
-	virtual void AddPlayer(std::wstring id, player_id_t player, u8 difficulty)
+	virtual void AddPlayer(const std::wstring& id, player_id_t player, u8 difficulty)
 	{
 		m_Worker.AddPlayer(id, player, difficulty);
 

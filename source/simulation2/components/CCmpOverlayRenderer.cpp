@@ -114,7 +114,7 @@ public:
 		UpdateMessageSubscriptions();
 	}
 
-	virtual void AddSprite(VfsPath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D position, std::string color)
+	virtual void AddSprite(const VfsPath& textureName, const CFixedVector2D& corner0, const CFixedVector2D& corner1, const CFixedVector3D& position, const std::string& color)
 	{
 		CColor colorObj(1.0f, 1.0f, 1.0f, 1.0f);
 		if (!colorObj.ParseString(color, 1))

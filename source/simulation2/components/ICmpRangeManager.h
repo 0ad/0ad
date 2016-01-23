@@ -98,7 +98,7 @@ public:
 	 * @return list of entities matching the query, ordered by increasing distance from the source entity.
 	 */
 	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source,
-		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface) = 0;
+		entity_pos_t minRange, entity_pos_t maxRange, const std::vector<int>& owners, int requiredInterface) = 0;
 
 	/**
 	 * Execute a passive query.
@@ -109,8 +109,8 @@ public:
 	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
 	 * @return list of entities matching the query, ordered by increasing distance from the source entity.
 	 */
-	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(CFixedVector2D pos,
-		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface) = 0;
+	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(const CFixedVector2D& pos,
+		entity_pos_t minRange, entity_pos_t maxRange, const std::vector<int>& owners, int requiredInterface) = 0;
 
 	/**
 	 * Construct an active query. The query will be disabled by default.
@@ -123,7 +123,7 @@ public:
 	 * @return unique non-zero identifier of query.
 	 */
 	virtual tag_t CreateActiveQuery(entity_id_t source,
-		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface, u8 flags) = 0;
+		entity_pos_t minRange, entity_pos_t maxRange, const std::vector<int>& owners, int requiredInterface, u8 flags) = 0;
 
     /**
 	 * Construct an active query of a paraboloic form around the unit.
@@ -140,7 +140,7 @@ public:
 	 * @return unique non-zero identifier of query.
 	 */
 	virtual tag_t CreateActiveParabolicQuery(entity_id_t source,
-		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus, std::vector<int> owners, int requiredInterface, u8 flags) = 0;
+		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus, const std::vector<int>& owners, int requiredInterface, u8 flags) = 0;
 
 
 	/**
@@ -149,7 +149,7 @@ public:
 	 * @param range the distance to compare terrain height with
 	 * @return a fixed number representing the average difference. It's positive when the entity is on average higher than the terrain surrounding it.
 	 */
-	virtual entity_pos_t GetElevationAdaptedRange(CFixedVector3D pos, CFixedVector3D rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle) = 0;
+	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle) = 0;
 
 	/**
 	 * Destroy a query and clean up resources. This must be called when an entity no longer needs its
@@ -206,7 +206,7 @@ public:
 	/**
 	 * Returns the mask for the specified identifier.
 	 */
-	virtual u8 GetEntityFlagMask(std::string identifier) = 0;
+	virtual u8 GetEntityFlagMask(const std::string& identifier) = 0;
 
 	/**
 	 * Set the flag specified by the identifier to the supplied value for the entity
@@ -214,7 +214,7 @@ public:
 	 * @param identifier the flag to be modified.
 	 * @param value to which the flag will be set.
 	 */
-	virtual void SetEntityFlag(entity_id_t ent, std::string identifier, bool value) = 0;
+	virtual void SetEntityFlag(entity_id_t ent, const std::string& identifier, bool value) = 0;
 
 	// LOS interface:
 
@@ -396,7 +396,7 @@ public:
 	/**
 	 * Sets shared LOS data for player to the given list of players.
 	 */
-	virtual void SetSharedLos(player_id_t player, std::vector<player_id_t> players) = 0;
+	virtual void SetSharedLos(player_id_t player, const std::vector<player_id_t>& players) = 0;
 
 	/**
 	 * Returns shared LOS mask for player.
@@ -412,7 +412,7 @@ public:
 	 * Get percent map explored statistics for specified set of players.
 	 * Note: this function computes statistics from scratch and should not be called too often.
 	 */
-	virtual u8 GetUnionPercentMapExplored(std::vector<player_id_t> players) = 0;
+	virtual u8 GetUnionPercentMapExplored(const std::vector<player_id_t>& players) = 0;
 
 
 	/**

@@ -20,12 +20,12 @@
 #include "ps/VisualReplay.h"
 #include "ps/scripting/JSInterface_VisualReplay.h"
 
-void JSI_VisualReplay::StartVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW directory)
+void JSI_VisualReplay::StartVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& directory)
 {
 	VisualReplay::StartVisualReplay(directory);
 }
 
-bool JSI_VisualReplay::DeleteReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW replayFile)
+bool JSI_VisualReplay::DeleteReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& replayFile)
 {
 	return VisualReplay::DeleteReplay(replayFile);
 }
@@ -35,22 +35,22 @@ JS::Value JSI_VisualReplay::GetReplays(ScriptInterface::CxPrivate* pCxPrivate)
 	return VisualReplay::GetReplays(*(pCxPrivate->pScriptInterface));
 }
 
-JS::Value JSI_VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, CStrW directoryName)
+JS::Value JSI_VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName)
 {
 	return VisualReplay::GetReplayAttributes(pCxPrivate, directoryName);
 }
 
-bool JSI_VisualReplay::HasReplayMetadata(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW directoryName)
+bool JSI_VisualReplay::HasReplayMetadata(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& directoryName)
 {
 	return VisualReplay::HasReplayMetadata(directoryName);
 }
 
-JS::Value JSI_VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, CStrW directoryName)
+JS::Value JSI_VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName)
 {
 	return VisualReplay::GetReplayMetadata(pCxPrivate, directoryName);
 }
 
-void JSI_VisualReplay::SaveReplayMetadata(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW data)
+void JSI_VisualReplay::SaveReplayMetadata(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& data)
 {
 	VisualReplay::SaveReplayMetadata(data);
 }

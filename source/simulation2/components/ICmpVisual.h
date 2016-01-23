@@ -89,7 +89,7 @@ public:
 	 * @param speed animation speed multiplier (typically 1.0 for the default speed)
 	 * @param soundgroup VFS path of sound group .xml, relative to audio/, or empty string for none
 	 */
-	virtual void SelectAnimation(std::string name, bool once, fixed speed, std::wstring soundgroup) = 0;
+	virtual void SelectAnimation(const std::string& name, bool once, fixed speed, const std::wstring& soundgroup) = 0;
 
 	/**
 	 * Replaces a specified animation with another. Only affects the special speed-based
@@ -97,14 +97,14 @@ public:
 	 * @param name Animation to match.
 	 * @param replace Animation that should replace the matched animation.
 	 */
-	virtual void ReplaceMoveAnimation(std::string name, std::string replace) = 0;
+	virtual void ReplaceMoveAnimation(const std::string& name, const std::string& replace) = 0;
 
 	/**
 	 * Ensures that the given animation will be used when it normally would be,
 	 * removing reference to any animation that might replace it.
 	 * @param name Animation name to remove from the replacement map.
 	 */
-	virtual void ResetMoveAnimation(std::string name) = 0;
+	virtual void ResetMoveAnimation(const std::string& name) = 0;
 
 	/**
 	 * Sets the specified entity selection on the underlying unit.
@@ -144,7 +144,7 @@ public:
 	 * Set an arbitrarily-named variable that the model may use to alter its appearance
 	 * (e.g. in particle emitter parameter computations).
 	 */
-	virtual void SetVariable(std::string name, float value) = 0;
+	virtual void SetVariable(const std::string& name, float value) = 0;
 
 	/**
 	 * Get actor seed used for random variations

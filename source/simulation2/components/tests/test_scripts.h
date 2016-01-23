@@ -44,13 +44,13 @@ public:
 		TSM_ASSERT(L"Running script "+pathname.string(), scriptInterface.LoadScript(pathname, content));
 	}
 
-	static void Script_LoadComponentScript(ScriptInterface::CxPrivate* pCxPrivate, VfsPath pathname)
+	static void Script_LoadComponentScript(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& pathname)
 	{
 		CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 		TS_ASSERT(componentManager->LoadScript(VfsPath(L"simulation/components") / pathname));
 	}
 
-	static void Script_LoadHelperScript(ScriptInterface::CxPrivate* pCxPrivate, VfsPath pathname)
+	static void Script_LoadHelperScript(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& pathname)
 	{
 		CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 		TS_ASSERT(componentManager->LoadScript(VfsPath(L"simulation/helpers") / pathname));

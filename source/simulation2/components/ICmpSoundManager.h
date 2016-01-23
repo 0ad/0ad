@@ -31,7 +31,7 @@ public:
 	 * @param name VFS path of sound group .xml, relative to audio/
 	 * @param source entity emitting the sound (used for positioning)
 	 */
-	virtual void PlaySoundGroup(std::wstring name, entity_id_t source) = 0;
+	virtual void PlaySoundGroup(const std::wstring& name, entity_id_t source) = 0;
 
 	virtual void StopMusic() = 0;
 

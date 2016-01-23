@@ -18,6 +18,10 @@
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 
+private:
+
+	template <typename T> struct MaybeRef;
+
 public:
 
 // Define lots of useful macros:
@@ -25,9 +29,12 @@ public:
 // Varieties of comma-separated list to fit on the head/tail/whole of another comma-separated list
 #define NUMBERED_LIST_HEAD(z, i, data) data##i,
 #define NUMBERED_LIST_TAIL(z, i, data) ,data##i
+#define NUMBERED_LIST_TAIL_MAYBE_REF(z, i, data) , typename MaybeRef<data##i>::Type
 #define NUMBERED_LIST_BALANCED(z, i, data) BOOST_PP_COMMA_IF(i) data##i
+#define NUMBERED_LIST_BALANCED_MAYBE_REF(z, i, data) BOOST_PP_COMMA_IF(i) typename MaybeRef<data##i>::Type
 // Some other things
 #define TYPED_ARGS(z, i, data) , T##i a##i
+#define TYPED_ARGS_MAYBE_REF(z, i, data) , typename MaybeRef<T##i>::Type a##i
 #define TYPED_ARGS_CONST_REF(z, i, data) const T##i& a##i,
 
 // TODO: We allow optional parameters when the C++ type can be converted from JS::UndefinedValue.
@@ -51,16 +58,19 @@ public:
 #define TYPENAME_T0_HEAD(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_HEAD, typename T) // "typename T0, typename T1, "
 #define TYPENAME_T0_TAIL(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_TAIL, typename T) // ", typename T0, typename T1"
 #define T0(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_BALANCED, T) // "T0, T1"
+#define T0_MAYBE_REF(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_BALANCED_MAYBE_REF, T) // "const T0&, T1"
 #define T0_HEAD(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_HEAD, T) // "T0, T1, "
 #define T0_TAIL(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_TAIL, T) // ", T0, T1"
+#define T0_TAIL_MAYBE_REF(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_TAIL_MAYBE_REF, T) // ", const T0&, T1"
 #define T0_A0(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS, ~) // ",T0 a0, T1 a1"
-#define T0_A0_CONST_REF(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS_CONST_REF, ~) // ", const T0 a0, const T1 a1, "
+#define T0_A0_MAYBE_REF(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS_MAYBE_REF, ~) // ",const T0& a0, T1 a1"
+#define T0_A0_CONST_REF(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS_CONST_REF, ~) // ", const T0& a0, const T1& a1, "
 #define A0(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_BALANCED, a) // "a0, a1"
 #define A0_TAIL(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_TAIL, a) // ", a0, a1"
 
 // Define RegisterFunction<TR, T0..., f>
 #define OVERLOADS(z, i, data) \
-	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL(z,i) )> \
+	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i) )> \
 	void RegisterFunction(const char* name) { \
 		Register(name, call<R, T0_HEAD(z,i)  fptr>, nargs<0 T0_TAIL(z,i)>()); \
 	}
@@ -70,14 +80,14 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // JSFastNative-compatible function that wraps the function identified in the template argument list
 // (Definition comes later, since it depends on some things we haven't defined yet)
 #define OVERLOADS(z, i, data) \
-	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL(z,i) )> \
+	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i) )> \
 	static bool call(JSContext* cx, uint argc, jsval* vp);
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
 // Similar, for class methods
 #define OVERLOADS(z, i, data) \
-	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0(z,i) )> \
+	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0_MAYBE_REF(z,i) )> \
 	static bool callMethod(JSContext* cx, uint argc, jsval* vp);
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS

@@ -58,7 +58,7 @@ public:
 	 * @param color color and alpha of the selection highlight. Set color.a = 0 to hide the highlight.
 	 * @param selected whether the entity is selected; affects desaturation for always visible highlights.
 	 */
-	virtual void SetSelectionHighlight(CColor color, bool selected) = 0;
+	virtual void SetSelectionHighlight(const CColor& color, bool selected) = 0;
 
 	/**
 	 * Enables or disables rendering of an entity's selectable.

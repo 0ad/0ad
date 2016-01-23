@@ -28,7 +28,7 @@
 namespace JSI_Renderer
 {
 	std::string GetRenderPath(ScriptInterface::CxPrivate* pCxPrivate);
-	void SetRenderPath(ScriptInterface::CxPrivate* pCxPrivate, std::string name);
+	void SetRenderPath(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name);
 
 	DECLARE_BOOLEAN_SCRIPT_SETTING(Shadows);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(ShadowPCF);

@@ -107,7 +107,7 @@ public:
 		}
 	}
 
-	virtual uint32_t LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, fixed speed, fixed gravity)
+	virtual uint32_t LaunchProjectileAtPoint(entity_id_t source, const CFixedVector3D& target, fixed speed, fixed gravity)
 	{
 		return LaunchProjectile(source, target, speed, gravity);
 	}

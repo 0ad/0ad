@@ -40,7 +40,7 @@ public:
 	 * @param gravity gravitational acceleration in m/s^2 (determines the height of the ballistic curve)
 	 * @return id of the created projectile 
 	 */
-	virtual uint32_t LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, fixed speed, fixed gravity) = 0;
+	virtual uint32_t LaunchProjectileAtPoint(entity_id_t source, const CFixedVector3D& target, fixed speed, fixed gravity) = 0;
 	
 	/**
      * Removes a projectile, used when the projectile has hit a target

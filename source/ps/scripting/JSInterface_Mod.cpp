@@ -117,7 +117,7 @@ void JSI_Mod::RestartEngine(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	restart_engine();
 }
 
-void JSI_Mod::SetMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::vector<CStr> mods)
+void JSI_Mod::SetMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::vector<CStr>& mods)
 {
 	g_modsLoaded = mods;
 }

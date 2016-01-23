@@ -23,7 +23,7 @@
 
 #include "simulation2/system/SimContext.h"
 
-std::string ICmpObstruction::CheckFoundation_wrapper(std::string className, bool onlyCenterPoint)
+std::string ICmpObstruction::CheckFoundation_wrapper(const std::string& className, bool onlyCenterPoint)
 {
 	EFoundationCheck check = CheckFoundation(className, onlyCenterPoint);
 
