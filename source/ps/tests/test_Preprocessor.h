@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,10 @@ public:
 		size_t len = 0;
 		char* out = preproc.Parse(in, strlen(in), len);
 		TS_ASSERT_EQUALS(std::string(out, len), "\n1+1=2\n");
+
+		// Free output if it's not inside the source string
+		if (!(out >= in && out < in + strlen(in)))
+			free(out);
 	}
 
 	void test_error()
@@ -42,5 +46,9 @@ public:
 		TS_ASSERT_EQUALS(std::string(out, len), "");
 
 		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "ERROR: Preprocessor error: line 2: Unclosed parenthesis in #if expression\n");
+
+		// Free output if it's not inside the source string
+		if (!(out >= in && out < in + strlen(in)))
+			free(out);
 	}
 };
