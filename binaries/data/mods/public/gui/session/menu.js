@@ -80,21 +80,18 @@ function toggleMenu()
 
 function optionsMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	openOptions();
 }
 
 function chatMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	openChat();
 }
 
 function diplomacyMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	openDiplomacy();
 }
@@ -106,7 +103,6 @@ function pauseMenuButton()
 
 function resignMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
@@ -122,7 +118,6 @@ function resignMenuButton()
 
 function exitMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
@@ -169,7 +164,6 @@ function networkReturnQuestion()
 
 function openDeleteDialog(selection)
 {
-	closeMenu();
 	closeOpenDialogs();
 
 	let deleteSelectedEntities = function (selectionArg)
@@ -190,7 +184,6 @@ function openDeleteDialog(selection)
 
 function openSave()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 	Engine.PushGuiPage("page_savegame.xml", { "savedGameData": getSavedGameData(), "callback": "resumeGame" });
@@ -198,6 +191,7 @@ function openSave()
 
 function openOptions()
 {
+	closeOpenDialogs();
 	pauseGame();
 	Engine.PushGuiPage("page_options.xml", { "callback": "resumeGame" });
 }
@@ -206,6 +200,8 @@ function openChat()
 {
 	if (g_Disconnected)
 		return;
+
+	closeOpenDialogs();
 
 	updateTeamCheckbox(false);
 
@@ -238,8 +234,11 @@ function toggleChatWindow(teamChat)
 
 	let chatWindow = Engine.GetGUIObjectByName("chatDialogPanel");
 	let chatInput = Engine.GetGUIObjectByName("chatInput");
+	let hidden = chatWindow.hidden;
 
-	if (chatWindow.hidden)
+	closeOpenDialogs();
+
+	if (hidden)
 		chatInput.focus(); // Grant focus to the input area
 	else
 	{
@@ -252,7 +251,7 @@ function toggleChatWindow(teamChat)
 	}
 
 	updateTeamCheckbox(teamChat);
-	chatWindow.hidden = !chatWindow.hidden;
+	chatWindow.hidden = !hidden;
 }
 
 function setDiplomacy(data)
@@ -267,14 +266,10 @@ function tributeResource(data)
 
 function openDiplomacy()
 {
-	if (g_IsTradeOpen)
-		closeTrade();
+	closeOpenDialogs();
 
 	if (g_ViewedPlayer < 1)
-	{
-		closeDiplomacy();
 		return;
-	}
 
 	g_IsDiplomacyOpen = true;
 
@@ -387,22 +382,19 @@ function closeDiplomacy()
 
 function toggleDiplomacy()
 {
-	if (g_IsDiplomacyOpen)
-		closeDiplomacy();
-	else
+	let open = g_IsDiplomacyOpen;
+	closeOpenDialogs();
+
+	if (!open)
 		openDiplomacy();
 }
 
 function openTrade()
 {
-	if (g_IsDiplomacyOpen)
-		closeDiplomacy();
+	closeOpenDialogs();
 
 	if (g_ViewedPlayer < 1)
-	{
-		closeTrade();
 		return;
-	}
 
 	g_IsTradeOpen = true;
 
@@ -618,9 +610,10 @@ function closeTrade()
 
 function toggleTrade()
 {
-	if (g_IsTradeOpen)
-		closeTrade();
-	else
+	let open = g_IsTradeOpen;
+	closeOpenDialogs();
+
+	if (!open)
 		openTrade();
 }
 
@@ -632,7 +625,6 @@ function toggleGameSpeed()
 
 function openGameSummary()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
@@ -651,7 +643,6 @@ function openGameSummary()
 
 function openStrucTree()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
@@ -687,7 +678,6 @@ function togglePause()
 	if (!Engine.GetGUIObjectByName("pauseButton").enabled)
 		return;
 
-	closeMenu();
 	closeOpenDialogs();
 
 	let pauseOverlay = Engine.GetGUIObjectByName("pauseOverlay");
@@ -700,7 +690,6 @@ function togglePause()
 
 function openManual()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 

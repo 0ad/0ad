@@ -406,8 +406,6 @@ function handleNetStatusMessage(message)
 	if (message.status == "disconnected")
 	{
 		g_Disconnected = true;
-		closeChat();
-		closeMenu();
 		closeOpenDialogs();
 	}
 }

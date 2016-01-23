@@ -569,7 +569,6 @@ function checkPlayerState()
 	updateTopPanel();
 
 	// Make sure nothing is open to avoid stacking.
-	closeMenu();
 	closeOpenDialogs();
 
 	// Make sure this doesn't run again.
@@ -702,7 +701,6 @@ function onSimulationUpdate()
 
 function onReplayFinished()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
