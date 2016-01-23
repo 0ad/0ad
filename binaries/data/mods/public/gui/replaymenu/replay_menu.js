@@ -310,13 +310,14 @@ function getReplayTeamText(replay)
 		++playerIdx;
 		let teamIdx = playerData.Team;
 		let playerColor = playerData.Color ? playerData.Color : g_Settings.PlayerDefaults[playerIdx].Color;
+		let playerCiv = !playerData.Civ ? translate("Unknown Civilization") : (g_CivData[playerData.Civ] && g_CivData[playerData.Civ].Name ? translate(g_CivData[playerData.Civ].Name) : playerData.Civ);
 		let showDefeated = spoiler && metadata && metadata.playerStates && metadata.playerStates[playerIdx].state == "defeated";
 		let isAI = playerData.AI;
 
 		// Create human-readable player description
 		let playerDetails = {
 			"playerName": '[color="' + rgbToGuiColor(playerColor) + '"]' + escapeText(playerData.Name) + "[/color]",
-			"civ": translate(g_CivData[playerData.Civ].Name),
+			"civ": playerCiv,
 			"AIname": isAI ? translateAIName(playerData.AI) : "",
 			"AIdifficulty": isAI ? translateAIDifficulty(playerData.AIDiff) : ""
 		};
