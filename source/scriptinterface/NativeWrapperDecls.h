@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,37 +17,6 @@
 
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
-
-private:
-
-/**
- * In our interface code (the CONVERT_ARG macro specifically) we require types to be default-constructible.
- * This is a workaround to make the current design work with JS::HandleValue types, which have a private constructor.
- * JS::HandleValue objects are meant to be implicitly created only from JS::RootedValue objects.
- * Generally handles should not be used this way, but in this case we can be sure that the handle will not live longer than its root,
- * so it should be OK.
- * This solution involves some overhead, but it should be quite small and shouldn't affect performance in practice.
- * HandleValue types are just structs with one pointer and fit into a single register.
- */
-class HandleWrapper
-{
-public:
-	HandleWrapper() : m_Handle(JS::NullHandleValue) {};
-	void set(JS::HandleValue handle) { m_Handle.repoint(handle); }
-	operator JS::HandleValue()
-	{
-		return m_Handle;
-	}
-
-private:
-	JS::HandleValue m_Handle;
-};
-
-// WrapperIfHandle<T>::Type has the type HandleWrapper for T == JS::HandleValue and
-// T for all other types.
-// Allows to use default-constructible HandleWrapper types in templates instead of the
-// HandleValue type that isn't default-constructible without code duplication.
-template <typename T> struct WrapperIfHandle;
 
 public:
 
@@ -71,8 +40,12 @@ public:
 // 1. On the conceptual side: How to consistently work with optional parameters (or drop them completely?)
 // 2. On the technical side: Improve error handling, find a better way to ensure parameters are initialized
 #define CONVERT_ARG(z, i, data) \
-	typename WrapperIfHandle<T##i>::Type a##i; \
-	if (! ScriptInterface::FromJSVal<typename WrapperIfHandle<T##i>::Type>(cx, i < args.length() ? args[i] : JS::UndefinedHandleValue, a##i)) return false;
+	bool typeConvRet##i; \
+	T##i a##i = ScriptInterface::AssignOrFromJSVal<T##i>( \
+		cx, \
+		i < args.length() ? args[i] : JS::UndefinedHandleValue, \
+		typeConvRet##i); \
+	if (!typeConvRet##i) return false;
 
 // List-generating macros, named roughly after their first list item
 #define TYPENAME_T0_HEAD(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_HEAD, typename T) // "typename T0, typename T1, "

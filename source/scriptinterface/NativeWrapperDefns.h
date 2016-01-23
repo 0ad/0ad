@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,16 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "ps/GameSetup/Config.h"
-
-template <typename T> struct ScriptInterface::WrapperIfHandle
-{
-	typedef T Type;
-};
-
-template <> struct ScriptInterface::WrapperIfHandle<JS::HandleValue>
-{
-	typedef HandleWrapper Type;
-};
 
 // (NativeWrapperDecls.h set up a lot of the macros we use here)
 

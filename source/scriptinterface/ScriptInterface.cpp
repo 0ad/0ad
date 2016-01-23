@@ -378,13 +378,6 @@ ScriptInterface_impl::~ScriptInterface_impl()
 	JS_DestroyContext(m_cx);
 }
 
-// Inside ScriptInterface.cpp directly to emphasize that it should only be used/needed internally and not from other code.
-template<> bool ScriptInterface::FromJSVal<ScriptInterface::HandleWrapper>(JSContext* UNUSED(cx), JS::HandleValue v, ScriptInterface::HandleWrapper& out)
-{
-	out.set(v);
-	return true;
-}
-
 void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs)
 {
 	JSAutoRequest rq(m_cx);
