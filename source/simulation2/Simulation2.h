@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -82,7 +82,7 @@ public:
 	 * Loads the map settings script (called after map is loaded)
 	 */
 	void LoadMapSettings();
-	
+
 	/**
 	 * Set a startup script, which will get executed before the first turn.
 	 */

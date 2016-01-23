@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -96,7 +96,7 @@ void CReplayLogger::Turn(u32 n, u32 turnLength, std::vector<SimulationCommand>& 
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	*m_Stream << "turn " << n << " " << turnLength << "\n";
 	for (size_t i = 0; i < commands.size(); ++i)
 	{
@@ -147,12 +147,12 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	new CProfileManager;
 	g_ScriptStatsTable = new CScriptStatsTable;
 	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
-	
+
 	const int runtimeSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
 	g_ScriptRuntime = ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime>(), runtimeSize, heapGrowthBytesGCTrigger);
 
-	g_Game = new CGame(true);
+	g_Game = new CGame(true, false);
 	if (serializationtest)
 		g_Game->GetSimulation2()->EnableSerializationTest();
 	if (ooslog)
@@ -266,7 +266,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	// Must be explicitly destructed here to avoid callbacks from the JSAPI trying to use g_Profiler2 when
 	// it's already destructed.
 	g_ScriptRuntime.reset();
-	
+
 	// Clean up
 	delete &g_TexMan;
 
