@@ -395,10 +395,12 @@ m.Worker.prototype.startGathering = function(gameState)
 			continue;
 		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].nearby)))
 		{
-			if (base.ID !== this.baseID)
-				this.ent.setMetadata(PlayerID, "base", base.ID);
-			navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position());
-			return true;
+			if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
+			{
+				if (base.ID !== this.baseID)
+					this.ent.setMetadata(PlayerID, "base", base.ID);
+				return true;
+			}
 		}
 	}
 	if (resource === "food")	// --> for food, try to gather from fields if any, otherwise build one if any
@@ -409,17 +411,21 @@ m.Worker.prototype.startGathering = function(gameState)
 				continue;
 			if ((supply = this.gatherNearestField(gameState, base.ID)))
 			{
-				if (base.ID !== this.baseID)
-					this.ent.setMetadata(PlayerID, "base", base.ID);
-				navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position());
-				return true;
+				if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
+				{
+					if (base.ID !== this.baseID)
+						this.ent.setMetadata(PlayerID, "base", base.ID);
+					return true;
+				}
 			}
 			if ((supply = this.buildAnyField(gameState, base.ID)))
 			{
-				if (base.ID !== this.baseID)
-					this.ent.setMetadata(PlayerID, "base", base.ID);
-				navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position());
-				return true;
+				if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
+				{
+					if (base.ID !== this.baseID)
+						this.ent.setMetadata(PlayerID, "base", base.ID);
+					return true;
+				}
 			}
 		}
 	}
@@ -429,10 +435,12 @@ m.Worker.prototype.startGathering = function(gameState)
 			continue;
 		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].medium)))
 		{
-			if (base.ID !== this.baseID)
-				this.ent.setMetadata(PlayerID, "base", base.ID);
-			navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position());
-			return true;
+			if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
+			{
+				if (base.ID !== this.baseID)
+					this.ent.setMetadata(PlayerID, "base", base.ID);
+				return true;
+			}
 		}
 	}
 	// Okay so we haven't found any appropriate dropsite anywhere.
@@ -442,17 +450,19 @@ m.Worker.prototype.startGathering = function(gameState)
 			return false;
 		if (foundation.resourceDropsiteTypes() && foundation.resourceDropsiteTypes().indexOf(resource) !== -1)
 		{
-			if (foundation.getMetadata(PlayerID, "base") !== self.baseID)
-				self.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
-			self.ent.setMetadata(PlayerID, "target-foundation", foundation.id());
 			let foundationAccess = foundation.getMetadata(PlayerID, "access");
 			if (!foundationAccess)
 			{
 				foundationAccess = gameState.ai.accessibility.getAccessValue(foundation.position());
 				foundation.setMetadata(PlayerID, "access", foundationAccess);
 			}
-			navalManager.requireTransport(gameState, self.ent, access, foundationAccess, foundation.position());
-			return true;
+			if (navalManager.requireTransport(gameState, self.ent, access, foundationAccess, foundation.position()))
+			{
+				if (foundation.getMetadata(PlayerID, "base") !== self.baseID)
+					self.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
+				self.ent.setMetadata(PlayerID, "target-foundation", foundation.id());
+				return true;
+			}
 		}
 		return false;
 	});
@@ -487,10 +497,12 @@ m.Worker.prototype.startGathering = function(gameState)
 			continue;
 		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway)))
 		{
-			if (base.ID !== this.baseID)
-				this.ent.setMetadata(PlayerID, "base", base.ID);
-			navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position());
-			return true;
+			if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
+			{
+				if (base.ID !== this.baseID)
+					this.ent.setMetadata(PlayerID, "base", base.ID);
+				return true;
+			}
 		}
 	}
 

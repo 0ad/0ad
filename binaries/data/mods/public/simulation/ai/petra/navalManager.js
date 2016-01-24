@@ -588,7 +588,9 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 				{
 					if (!gameState.ai.HQ.navalRegions[sea])
 						continue;
-					queues.dock.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": [base.accessIndex], "sea": sea }));
+					let wantedLand = {};
+					wantedLand[base.accessIndex] = true;
+					queues.dock.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": wantedLand, "sea": sea }));
 					dockStarted = true;
 					break;
 				}
@@ -612,16 +614,12 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 		{
 			if (gameState.countEntitiesAndQueuedByType(naval, true) < 1 && gameState.ai.HQ.canBuild(gameState, naval))
 			{
-				let land = [];
+				let wantedLand = {};
 				for (let base of gameState.ai.HQ.baseManagers)
-				{
-					if (!base.anchor)
-						continue;
-					if (land.indexOf(base.accessIndex) === -1)
-						land.push(base.accessIndex);
-				}
+					if (base.anchor)
+						wantedLand[base.accessIndex] = true;
 				let sea = docks.toEntityArray()[0].getMetadata(PlayerID, "sea");
-				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, naval, { "land": land, "sea": sea }));
+				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, naval, { "land": wantedLand, "sea": sea }));
 				break;
 			}
 		}

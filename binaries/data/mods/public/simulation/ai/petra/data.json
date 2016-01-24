@@ -1,6 +1,6 @@
 {
   "name": "Petra Bot",
-  "description": "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n\nThe AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack.",
+  "description": "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n\nThe AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack.",
   "moduleName" : "PETRA",
   "constructor": "PetraBot",
   "useShared": true
