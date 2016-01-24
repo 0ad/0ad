@@ -18,11 +18,9 @@
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 
-private:
-
-	template <typename T> struct MaybeRef;
-
-public:
+// MaybeRef should be private, but has to be public due to a compiler bug in clang.
+// TODO: Make this private when the bug is fixed in all supported versions of clang.
+template <typename T> struct MaybeRef;
 
 // Define lots of useful macros:
 
