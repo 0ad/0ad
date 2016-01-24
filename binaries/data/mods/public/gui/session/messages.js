@@ -607,7 +607,6 @@ function formatTributeMessage(msg)
 
 function formatAttackMessage(msg)
 {
-	// TODO: Show this to observers?
 	if (msg.player != Engine.GetPlayerID())
 		return "";
 

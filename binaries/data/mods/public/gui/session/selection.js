@@ -227,10 +227,11 @@ EntitySelection.prototype.getTemplateNames = function()
  */
 EntitySelection.prototype.update = function()
 {
-	var changed = false;
 	this.checkRenamedEntities();
-	var removeOwnerChanges = !g_DevSettings.controlAll && this.toList().length > 1;
-	var playerID = Engine.GetPlayerID();
+
+	let changed = false;
+	let removeOwnerChanges = g_ViewedPlayer != -1 && !g_DevSettings.controlAll && this.toList().length > 1;
+
 	for each (var ent in this.selected)
 	{
 		var entState = GetEntityState(ent);
@@ -248,8 +249,8 @@ EntitySelection.prototype.update = function()
 		// At the next update, mirages will be renamed to the real 
 		// entity they replace, so just ignore them now
 		// Futhermore, when multiple selection, remove units which have changed ownership
-		if ((entState.visibility == "hidden" && !entState.mirage)
-			|| (removeOwnerChanges && entState.player != playerID))
+		if (entState.visibility == "hidden" && !entState.mirage ||
+			removeOwnerChanges && entState.player != g_ViewedPlayer)
 		{
 			// Disable any highlighting of the disappeared unit
 			_setHighlight([ent], 0, false);
@@ -297,13 +298,12 @@ EntitySelection.prototype.checkRenamedEntities = function()
 EntitySelection.prototype.addList = function(ents, quiet)
 {
 	var selection = this.toList();
-	var playerID = Engine.GetPlayerID();
 
 	// If someone else's player is the sole selected unit, don't allow adding to the selection
-	if (!g_DevSettings.controlAll && selection.length == 1)
+	if (g_ViewedPlayer != -1 && !g_DevSettings.controlAll && selection.length == 1)
 	{
 		var firstEntState = GetEntityState(selection[0]);
-		if (firstEntState && firstEntState.player != playerID)
+		if (firstEntState && firstEntState.player != g_ViewedPlayer)
 			return;
 	}
 
@@ -315,14 +315,27 @@ EntitySelection.prototype.addList = function(ents, quiet)
 
 	for each (var ent in ents)
 	{
-		// Only add entities we own to our selection
+		if (selection.length + i > g_MaxSelectionSize)
+			break;
+
+		if (this.selected[ent])
+			continue;
+
 		var entState = GetEntityState(ent);
-		if (!this.selected[ent] && (selection.length + i) <= g_MaxSelectionSize && entState && (allowUnownedSelect || entState.player == playerID))
-		{
-			added.push(ent);
-			this.selected[ent] = ent;
-			i++;
-		}
+		if (!entState)
+			continue;
+
+		// For players, only add entities we own to our selection
+		if (g_ViewedPlayer != -1 && entState.player != g_ViewedPlayer && !allowUnownedSelect)
+			continue;
+
+		// For observers, select units owned by players except gaia
+		if (g_ViewedPlayer == -1 && entState.player == 0)
+			continue;
+
+		added.push(ent);
+		this.selected[ent] = ent;
+		++i;
 	}
 
 	_setHighlight(added, 1, true);
@@ -332,7 +345,7 @@ EntitySelection.prototype.addList = function(ents, quiet)
 	{
 		// Play the sound if the entity is controllable by us or Gaia-owned.
 		var owner = GetEntityState(added[0]).player;
-		if (!quiet && (owner == playerID || owner == 0 || g_DevSettings.controlAll))
+		if (!quiet && (owner == g_ViewedPlayer || owner == 0 || g_DevSettings.controlAll))
 			_playSound(added[0]);
 	}
 
