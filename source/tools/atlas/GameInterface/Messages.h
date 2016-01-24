@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,11 @@
 #include <string>
 
 // TODO: organisation, documentation, etc
+
+#ifdef _MSC_VER // (can't use MSC_VERSION here since this file is included by Atlas too)
+#pragma warning(push)
+#pragma warning(disable: 4003)
+#endif
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -705,6 +710,11 @@ QUERY(GetSelectedObjectsTemplateNames,
 		,
 		((std::vector<std::string>, names))
 		);
+
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 
 #ifndef MESSAGES_SKIP_SETUP
