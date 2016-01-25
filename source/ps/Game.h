@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ public:
 	 * @return bool false if it can't keep up with the desired simulation rate
 	 *	indicating that you might want to render less frequently.
 	 */
-	bool Update(const double deltaRealTime, bool doInterpolate = true);
+	void Update(const double deltaRealTime, bool doInterpolate = true);
 
 	void Interpolate(float simFrameLength, float realFrameLength);
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -359,17 +359,13 @@ void CGame::StartGame(JS::MutableHandleValue attribs, const std::string& savedSt
 // so that it has more control over the update rate. The game might want to
 // do the same, and then doInterpolate should be redundant and removed.
 
-bool CGame::Update(const double deltaRealTime, bool doInterpolate)
+void CGame::Update(const double deltaRealTime, bool doInterpolate)
 {
-	if (m_Paused)
-		return true;
-
-	if (!m_TurnManager)
-		return true;
+	if (m_Paused || !m_TurnManager)
+		return;
 
 	const double deltaSimTime = deltaRealTime * m_SimRate;
 	
-	bool ok = true;
 	if (deltaSimTime)
 	{
 		// To avoid confusing the profiler, we need to trigger the new turn
@@ -404,8 +400,6 @@ bool CGame::Update(const double deltaRealTime, bool doInterpolate)
 		if ( g_SoundManager )
 			g_SoundManager->IdleTask();
 	}
-
-	return ok;
 }
 
 void CGame::Interpolate(float simFrameLength, float realFrameLength)
