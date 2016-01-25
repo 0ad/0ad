@@ -205,7 +205,7 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 			std::getline(*m_Stream, line);
 			JS::RootedValue data(cx);
 			g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &data);
-
+			g_Game->GetSimulation2()->GetScriptInterface().FreezeObject(data, true);
 			commands.emplace_back(SimulationCommand(player, cx, data));
 		}
 		else if (type == "hash" || type == "hash-quick")
