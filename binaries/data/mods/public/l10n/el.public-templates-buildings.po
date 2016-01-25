@@ -12,6 +12,7 @@
 # George Charoupas <labaxp@gmail.com>, 2015
 # jason <manitarious@gmail.com>, 2015
 # malvanos <malvanos@gmail.com>, 2014
+# Markos G. <marx-kolaiti@hotmail.gr>, 2016
 # Menelaos Vergis <menelaosvergis@gmail.com>, 2014-2015
 # Nick Mantas <inactive+nickthegreek@transifex.com>, 2014
 # ridergr <ridergr@gmail.com>, 2015
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-08 12:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-23 10:23+0000\n"
+"Last-Translator: Markos G. <marx-kolaiti@hotmail.gr>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -125,7 +126,7 @@ msgstr ""
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
 #: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
-msgstr "Αμυντικός Πύργος"
+msgstr "Αμυντικός πύργος"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
@@ -145,7 +146,7 @@ msgstr "Πέτρινο τείχος"
 #: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Οχύρωσε την πόλη για μια θαραλλέα υπεράσπιση."
+msgstr "Οχύρωσε την πόλη για μια  στιβαρή άμυνα."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:30
 msgid "City Gate"
@@ -1319,7 +1320,7 @@ msgstr "Μισθοφορικό Στρατόπεδο"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
-msgstr "Στρατόπεδο μυστοφόρων"
+msgstr "Στρατοπεδεία Μισθοφόρων"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
@@ -1340,7 +1341,7 @@ msgstr "Στρατιωτική Αποικία"
 
 #: simulation/templates/structures/ptol_military_colony.xml:47
 msgid "Klēroukhía"
-msgstr "Κληρουχία."
+msgstr "Κληρουχία"
 
 #: simulation/templates/structures/ptol_military_colony.xml:50
 msgid ""
@@ -1386,7 +1387,7 @@ msgstr "Οχυρωμένο Στρατόπεδο"
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Castrum Vallum"
-msgstr "Κάστρο Τείχους"
+msgstr "Castrum Vallum"
 
 #: simulation/templates/structures/rome_army_camp.xml:64
 msgid ""
@@ -1396,31 +1397,31 @@ msgstr "Χτίστε οπουδήποτε στον χάρτη, ακόμη και
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
-msgstr "Κάστρο"
+msgstr "Castrum"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armamentarium"
-msgstr "Οπλοστάσιο"
+msgstr "Armamentarium"
 
 #: simulation/templates/structures/rome_civil_centre.xml:9
 msgid "Forum"
-msgstr "Αγορά"
+msgstr "Forum"
 
 #: simulation/templates/structures/rome_corral.xml:12
 msgid "Saeptum"
-msgstr "Περίφραξη"
+msgstr "Saeptum"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 msgid "Turris Lignea"
-msgstr "Πύργοι"
+msgstr "Turris Lignea"
 
 #: simulation/templates/structures/rome_dock.xml:12
 msgid "Portus"
-msgstr "Λιμάνια."
+msgstr "Portus"
 
 #: simulation/templates/structures/rome_farmstead.xml:12
 msgid "Villa"
-msgstr "Βίλα"
+msgstr "Villa"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -1428,15 +1429,15 @@ msgstr "Ager"
 
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
-msgstr "Καστέλι"
+msgstr "Castellum"
 
 #: simulation/templates/structures/rome_house.xml:18
 msgid "Domus"
-msgstr "Δόμος"
+msgstr "Domus"
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercatus"
-msgstr "Η αγορά"
+msgstr "Mercatus"
 
 #: simulation/templates/structures/rome_outpost.xml:5
 msgid "Vigilarium"
@@ -1488,7 +1489,7 @@ msgstr "Receptaculum"
 
 #: simulation/templates/structures/rome_temple.xml:9
 msgid "Aedes"
-msgstr "Τέμενος"
+msgstr "Aedes"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
@@ -1496,7 +1497,7 @@ msgstr "Ναός του Άρη"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedes Martis"
-msgstr "Τέμενος Άρη"
+msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
@@ -1508,13 +1509,13 @@ msgstr "Ναός της Εστίας"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
-msgstr "Τέμενος Εστίας"
+msgstr "Aedes Vestae"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid ""
 "Build this temple to greatly increase the loyalty of your buildings and "
 "female-citizens (helps prevent their capture)."
-msgstr "Χτίσε αυτόν το ναό για να αυξήσεις κατά πολύ την πίστη των κτιρίων σας και των θηλυκών-πολιτών σας (βοηθά στην αποφυγή της αιχμαλώτησής τους)."
+msgstr "Χτίστε αυτόν το ναό για να αυξήσετε κατά πολύ την αφοσίωση των κτιρίων σας και των πολιτισσών σας (βοηθά στην αποφυγή της αιχμαλώτησής τους)."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1522,11 +1523,11 @@ msgstr "Σκηνή"
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"
-msgstr "Tabernāculum (μικρή ταβέρνα)"
+msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "Ένα προσωρινό καταφύγιο για στρατιώτες. +5 πληθυσμός δώρο."
+msgstr "Ένα προσωρινό καταφύγιο για στρατιώτες. +5 μπόνους πληθυσμού."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
@@ -1538,15 +1539,15 @@ msgstr "Moenia"
 
 #: simulation/templates/structures/rome_wall_gate.xml:9
 msgid "Porta"
-msgstr "Πύλη"
+msgstr "Porta"
 
 #: simulation/templates/structures/rome_wall_tower.xml:9
 msgid "Turris Lapidea"
-msgstr "Πύργος Λαπά"
+msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Murus Latericius"
-msgstr "Τοίχοισμα Λατρέσιου"
+msgstr "Murus Latericius"
 
 #: simulation/templates/structures/rome_wonder.xml:17
 msgid "Aedes Iovis Optimi Maximi"
@@ -1558,7 +1559,7 @@ msgstr "Στρατώνες"
 
 #: simulation/templates/structures/sele_blacksmith.xml:5
 msgid "Sidirourgeíon"
-msgstr "Σιδηρουργείο"
+msgstr "Σιδηρουργείον"
 
 #: simulation/templates/structures/sele_civil_centre.xml:8
 msgid "Agorā́"
@@ -1566,7 +1567,7 @@ msgstr "Αγορά"
 
 #: simulation/templates/structures/sele_dock.xml:12
 msgid "Liménas"
-msgstr "Λιμένας"
+msgstr "Λιμήν"
 
 #: simulation/templates/structures/sele_farmstead.xml:12
 msgid "Sītobólion"
@@ -1578,7 +1579,7 @@ msgstr "Αγρός"
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
-msgstr "Φρούριο"
+msgstr "Φρούριον"
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
@@ -1592,7 +1593,7 @@ msgstr "Βιβλιοθήκη"
 
 #: simulation/templates/structures/sele_market.xml:5
 msgid "Empórion"
-msgstr "Εμπόριο"
+msgstr "Εμπόριον"
 
 #: simulation/templates/structures/sele_military_colony.xml:47
 msgid "Klēroukhia"
@@ -1607,7 +1608,7 @@ msgstr "Αυτό είναι το κτίριο επέκτασης των Σελε
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
-msgstr "Εμποροσθοφυλακή"
+msgstr "Προφύλαξ"
 
 #: simulation/templates/structures/sele_temple.xml:9
 msgid "Naós"
@@ -1631,7 +1632,7 @@ msgstr "Γεροντία"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr "Εκπαίδεύστε Ήρωες."
+msgstr "Εκπαιδεύστε ήρωες."
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"
