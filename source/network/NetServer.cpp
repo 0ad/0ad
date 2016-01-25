@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -151,7 +151,7 @@ CNetServerWorker::~CNetServerWorker()
 
 	for (size_t i = 0; i < m_Sessions.size(); ++i)
 	{
-		m_Sessions[i]->DisconnectNow(NDR_UNEXPECTED_SHUTDOWN);
+		m_Sessions[i]->DisconnectNow(NDR_SERVER_SHUTDOWN);
 		delete m_Sessions[i];
 	}
 

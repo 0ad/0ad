@@ -60,8 +60,7 @@ var g_StatusMessageTypes = {
 	"connected": msg => translate("Connected to the server."),
 	"disconnected": msg => translate("Connection to the server has been lost.") + "\n" +
 	                // Translation: States the reason why the client disconnected from the server.
-	                sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason) }) + "\n" +
-	                translate("The game has ended."),
+	                sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason) }),
 	"waiting_for_players": msg => translate("Waiting for other players to connect..."),
 	"join_syncing": msg => translate("Synchronising gameplay with other players..."),
 	"active": msg => ""

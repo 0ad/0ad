@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@ CNetClientSession::~CNetClientSession()
 	if (m_Host && m_Server)
 	{
 		// Disconnect immediately (we can't wait for acks)
-		enet_peer_disconnect_now(m_Server, NDR_UNEXPECTED_SHUTDOWN);
+		enet_peer_disconnect_now(m_Server, NDR_SERVER_SHUTDOWN);
 		enet_host_destroy(m_Host);
 
 		m_Host = NULL;
