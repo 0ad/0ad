@@ -285,6 +285,10 @@ void CNetTurnManager::Interpolate(float simFrameLength, float realFrameLength)
 	// we need to save the previous turn length?
 
 	float offset = clamp(m_DeltaSimTime / (m_TurnLength / 1000.f) + 1.0, 0.0, 1.0);
+
+	if (m_FinalTurn > 0 && m_CurrentTurn > m_FinalTurn)
+		simFrameLength = 0;
+
 	m_Simulation2.Interpolate(simFrameLength, offset, realFrameLength);
 }
 
