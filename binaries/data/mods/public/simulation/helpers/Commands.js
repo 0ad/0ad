@@ -1114,9 +1114,10 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 	
 	var i = 0;
 	var queued = cmd.queued;
-	for (; i < cmd.pieces.length; ++i)
+	var pieces = clone(cmd.pieces);
+	for (; i < pieces.length; ++i)
 	{
-		var piece = cmd.pieces[i];
+		var piece = pieces[i];
 
 		// All wall pieces after the first must be queued.
 		if (i > 0 && !queued)
@@ -1151,7 +1152,7 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 		// If we're building the last piece and we're attaching to a snapped entity, we need to add in the snapped entity's
 		// control group directly at construction time (instead of setting it in the second pass) to allow it to be built
 		// while overlapping the snapped entity.
-		if (i == cmd.pieces.length - 1 && cmd.endSnappedEntity)
+		if (i == pieces.length - 1 && cmd.endSnappedEntity)
 		{
 			var cmpEndSnappedObstruction = Engine.QueryInterface(cmd.endSnappedEntity, IID_Obstruction);
 			if (cmpEndSnappedObstruction)
@@ -1173,7 +1174,7 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 				if (i > 0)
 				{
 					//warn("   updating previous wall piece's secondary control group to " + newTowerControlGroup);
-					var cmpPreviousObstruction = Engine.QueryInterface(cmd.pieces[i-1].ent, IID_Obstruction);
+					var cmpPreviousObstruction = Engine.QueryInterface(pieces[i-1].ent, IID_Obstruction);
 					// TODO: ensure that cmpPreviousObstruction exists
 					// TODO: ensure that the previous obstruction does not yet have a secondary control group set
 					cmpPreviousObstruction.SetControlGroup2(newTowerControlGroup);
@@ -1195,7 +1196,7 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 	}
 	
 	var lastBuiltPieceIndex = i - 1;
-	var wallComplete = (lastBuiltPieceIndex == cmd.pieces.length - 1);
+	var wallComplete = (lastBuiltPieceIndex == pieces.length - 1);
 	
 	// At this point, 'i' is the index of the last wall piece that was successfully constructed (which may or may not be a tower).
 	// Now do the second pass going right-to-left, registering the control groups of the towers to the right of each piece (if any)
@@ -1218,7 +1219,7 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 	
 	for (var j = lastBuiltPieceIndex; j >= 0; --j)
 	{
-		var piece = cmd.pieces[j];
+		var piece = pieces[j];
 		
 		if (!piece.ent)
 		{
