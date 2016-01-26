@@ -85,20 +85,20 @@ function Cheat(input)
 			return;
 
 		// store the phase we want in the next input parameter
-		input.parameter = "phase_";
+		var parameter;
 		if (!cmpTechnologyManager.IsTechnologyResearched("phase_town"))
-			input.parameter += "town";
+			parameter = "phase_town";
 		else if (!cmpTechnologyManager.IsTechnologyResearched("phase_city"))
-			input.parameter += "city";
+			parameter = "phase_city";
 		else
 			return;
 
 		// check if specialised tech exists (like phase_town_athen)
 		var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
-		if (cmpTechnologyTemplateManager.ListAllTechs().indexOf(input.parameter + "_" + cmpPlayer.civ) > -1)
-			input.parameter += "_" + cmpPlayer.civ;
+		if (cmpTechnologyTemplateManager.ListAllTechs().indexOf(parameter + "_" + cmpPlayer.civ) > -1)
+			parameter += "_" + cmpPlayer.civ;
 
-		Cheat({ "player": input.player, "action": "researchTechnology", "parameter": input.parameter, "selected": input.selected });
+		Cheat({ "player": input.player, "action": "researchTechnology", "parameter": parameter, "selected": input.selected });
 		return;
 	case "researchTechnology":
 		// check, if name of technology is given
