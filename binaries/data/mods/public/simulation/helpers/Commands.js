@@ -392,7 +392,7 @@ var g_Commands = {
 					cmpRallyPoint.Unset();
 
 				cmpRallyPoint.AddPosition(cmd.x, cmd.z);
-				cmpRallyPoint.AddData(cmd.data);
+				cmpRallyPoint.AddData(clone(cmd.data));
 			}
 		}
 	},
