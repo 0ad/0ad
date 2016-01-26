@@ -1189,7 +1189,7 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 		else
 		{
 			// failed to build wall piece, abort
-			i = j + 1; // compensate for the -1 subtracted by lastBuiltPieceIndex below
+			i = i + 1; // compensate for the -1 subtracted by lastBuiltPieceIndex below
 			break;
 		}
 	}
