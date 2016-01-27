@@ -116,7 +116,10 @@ m.Config.prototype.setConfig = function(gameState)
 		this.personality.defensive = Math.random();
 	}
 	else
+	{
 		this.personality.aggressive = 0.1;
+		this.personality.cooperative = 0.9;
+	}
 
 	// changing settings based on difficulty or personality
 	if (this.difficulty < 2)

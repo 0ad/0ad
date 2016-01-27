@@ -1388,9 +1388,10 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 		this.buildNewBase(gameState, queues);
 		return;
 	}
-	// then expand if we have lots of units
+	// then expand if we have lots of units (threshold depending on the aggressivity value)
 	let numUnits = gameState.getOwnUnits().length;
-	if (numUnits > activeBases * (70 + 15*(activeBases-1)) || (this.saveResources && numUnits > 50))
+	let numvar = 10 * (1 - this.Config.personality.aggressive);
+	if (numUnits > activeBases * (65 + numvar + (10 + numvar)*(activeBases-1)) || (this.saveResources && numUnits > 50))
 	{
 		if (this.Config.debug > 2)
 			API3.warn("try to build a new base because of population " + numUnits + " for " + activeBases + " CCs");
