@@ -1287,11 +1287,9 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 				return false;
 			if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 				return false;
-			let HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
-			// TODO popBonus may have different values if we can ever capture foundations from another civ
-			// and take into account other structures than houses
-			let popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
-			let freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
+			let freeSlots = gameState.getPopulationLimit() - gameState.getPopulation();
+			for (let ent of gameState.getOwnFoundations().values())
+				freeSlots += ent.getPopulationBonus();
 			if (gameState.ai.HQ.saveResources)
 				return (freeSlots <= 10);
 			else if (gameState.getPopulation() > 55)

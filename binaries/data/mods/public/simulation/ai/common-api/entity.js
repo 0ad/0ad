@@ -190,7 +190,7 @@ m.Template = m.Class({
 	},
 
 	getPopulationBonus: function() {
-		return this.get("Cost/PopulationBonus");
+		return +this.get("Cost/PopulationBonus");
 	},
 
 	armourStrengths: function() {
