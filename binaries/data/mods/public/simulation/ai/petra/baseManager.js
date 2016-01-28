@@ -424,15 +424,15 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly
 // check our resource levels and react accordingly
 m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 {
-	for (var type of this.Config.resources)
+	for (let type of this.Config.resources)
 	{
 		if (type == "food")
 		{
 			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{
-				var count = this.getResourceLevel(gameState, type, (gameState.currentPhase() > 1));  // animals are not accounted
-				var numFarms = gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length;  // including foundations
-				var numQueue = queues.field.countQueuedUnits();
+				let count = this.getResourceLevel(gameState, type, (gameState.currentPhase() > 1));  // animals are not accounted
+				let numFarms = gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length;  // including foundations
+				let numQueue = queues.field.countQueuedUnits();
 
 				// TODO  if not yet farms, add a check on time used/lost and build farmstead if needed
 				if (numFarms + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
@@ -463,13 +463,13 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 						++self.gatherers[type].lost;
 				});
 				// TODO  add also a test on remaining resources
-				var total = this.gatherers[type].used + this.gatherers[type].lost;
+				let total = this.gatherers[type].used + this.gatherers[type].lost;
 				if (total > 150 || (total > 60 && type !== "wood"))
 				{
-					var ratio = this.gatherers[type].lost / total;
+					let ratio = this.gatherers[type].lost / total;
 					if (ratio > 0.15)
 					{
-						var newDP = this.findBestDropsiteLocation(gameState, type);
+						let newDP = this.findBestDropsiteLocation(gameState, type);
 						if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
 							queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
 						else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length && !queues.civilCentre.length())
@@ -570,13 +570,13 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 	if (sumWanted > 0)
 		scale = sumCurrent / sumWanted;
 
-	for (var i = mostNeeded.length-1; i > 0; --i)
+	for (let i = mostNeeded.length-1; i > 0; --i)
 	{
-		var lessNeed = mostNeeded[i];
-		for (var j = 0; j < i; ++j) 
+		let lessNeed = mostNeeded[i];
+		for (let j = 0; j < i; ++j) 
 		{
-			var moreNeed = mostNeeded[j];
-			var lastFailed = gameState.ai.HQ.lastFailedGather[moreNeed.type];
+			let moreNeed = mostNeeded[j];
+			let lastFailed = gameState.ai.HQ.lastFailedGather[moreNeed.type];
 			if (lastFailed && gameState.ai.elapsedTime - lastFailed < 20)
 				continue;
 			// If we assume a mean rate of 0.5 per gatherer, this diff should be > 1
@@ -685,7 +685,8 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 		return true;
 	}).toEntityArray();
 	availableWorkers.sort(function (a,b) {
-		var vala = 0, valb = 0;
+		let vala = 0;
+		let valb = 0;
 		if (a.getMetadata(PlayerID, "subrole") == "builder")
 			vala = 100;
 		if (b.getMetadata(PlayerID, "subrole") == "builder")
@@ -701,7 +702,7 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 		return (vala - valb);
 	});
 	var needed = Math.min(number, availableWorkers.length - 3);
-	for (var i = 0; i < needed; ++i)
+	for (let i = 0; i < needed; ++i)
 	{
 		availableWorkers[i].stopMoving();
 		availableWorkers[i].setMetadata(PlayerID, "subrole", "idle");
@@ -716,21 +717,15 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	// try reassigning some other workers who are nearby	
 	// AI tries to use builders sensibly, not completely stopping its econ.
 	
-	var self = this;
-	
 	// TODO: this is not perfect performance-wise.
 	var foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(),API3.Filters.not(API3.Filters.byClass("Field")))).toEntityArray();
 	
-	var damagedBuildings = this.buildings.filter(function (ent) {
-		if (ent.foundationProgress() === undefined && ent.needsRepair())
-			return true;
-		return false;
-	});
+	var damagedBuildings = this.buildings.filter(ent => ent.foundationProgress() === undefined && ent.needsRepair());
 	
 	// Check if nothing to build
-	if (!foundations.length && !damagedBuildings.length){
+	if (!foundations.length && !damagedBuildings.length)
 		return;
-	}
+
 	var workers = this.workers.filter(API3.Filters.not(API3.Filters.or(API3.Filters.byClass("Cavalry"), API3.Filters.byClass("Ship"))));
 	var builderWorkers = this.workersBySubrole(gameState, "builder");
 	var idleBuilderWorkers = builderWorkers.filter(API3.Filters.isIdle());
@@ -739,7 +734,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	if (this.constructing == true && this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(), API3.Filters.byMetadata(PlayerID, "baseAnchor", true))).length != 0)
 	{
 		foundations = this.buildings.filter(API3.Filters.byMetadata(PlayerID, "baseAnchor", true)).toEntityArray();
-		var tID = foundations[0].id();
+		let tID = foundations[0].id();
 		workers.forEach(function (ent) {
 			let target = ent.getMetadata(PlayerID, "target-foundation");
 			if (target && target != tID)
@@ -755,8 +750,9 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		let noobs = gameState.ai.HQ.bulkPickWorkers(gameState, this, 2);
 		if(noobs)
 		{
+			let baseID = this.ID;
 			noobs.forEach(function (worker) {
-				worker.setMetadata(PlayerID, "base", self.ID);
+				worker.setMetadata(PlayerID, "base", baseID);
 				worker.setMetadata(PlayerID, "subrole", "builder");
 				workers.updateEnt(worker);
 				builderWorkers.updateEnt(worker);
