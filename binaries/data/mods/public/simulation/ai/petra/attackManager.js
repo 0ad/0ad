@@ -49,13 +49,13 @@ m.AttackManager.prototype.setRushes = function(allowed)
 
 m.AttackManager.prototype.checkEvents = function(gameState, events)
 {
-	for (let evt of events["PlayerDefeated"])
+	for (let evt of events.PlayerDefeated)
 		this.defeated[evt.playerId] = true;
 
 	let answer = false;
 	let other;
 	let targetPlayer;
-	for (let evt of events["AttackRequest"])
+	for (let evt of events.AttackRequest)
 	{
 		if (evt.source === PlayerID || !gameState.isPlayerAlly(evt.source) || !gameState.isPlayerEnemy(evt.target))
 			continue;
@@ -87,9 +87,9 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 			{
 				for (let attack of this.upcomingAttacks[attackType])
 				{
-					if (attack.state === "completing"
-						|| attack.targetPlayer !== targetPlayer
-						|| attack.unitCollection.length < 3)
+					if (attack.state === "completing" ||
+						attack.targetPlayer !== targetPlayer ||
+						attack.unitCollection.length < 3)
 						continue;
 					attack.forceStart();
 					attack.requested = true;
@@ -191,34 +191,30 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 	var barracksNb = gameState.getOwnEntitiesByClass("Barracks", true).filter(API3.Filters.isBuilt()).length;
 	if (this.rushNumber < this.maxRushes && barracksNb >= 1)
 	{
-		if (unexecutedAttacks["Rush"] === 0)
+		if (unexecutedAttacks.Rush === 0)
 		{
 			// we have a barracks and we want to rush, rush.
-			var data = { "targetSize": this.rushSize[this.rushNumber] };
-			var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Rush", data);
+			let data = { "targetSize": this.rushSize[this.rushNumber] };
+			let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Rush", data);
 			if (!attackPlan.failed)
 			{
 				if (this.Config.debug > 1)
 					API3.warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
 				this.totalNumber++;
 				attackPlan.init(gameState);
-				this.upcomingAttacks["Rush"].push(attackPlan);
+				this.upcomingAttacks.Rush.push(attackPlan);
 			}
 			this.rushNumber++;
 		}
 	}
-	else if (unexecutedAttacks["Attack"] === 0 && unexecutedAttacks["HugeAttack"] === 0
-		&& (this.startedAttacks["Attack"].length + this.startedAttacks["HugeAttack"].length < Math.min(2, 1 + Math.round(gameState.getPopulationMax()/100))))
+	else if (unexecutedAttacks.Attack === 0 && unexecutedAttacks.HugeAttack === 0 &&
+		(this.startedAttacks.Attack.length + this.startedAttacks.HugeAttack.length < Math.min(2, 1 + Math.round(gameState.getPopulationMax()/100))))
 	{
-		if ((barracksNb >= 1 && (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase())))
-			|| !gameState.ai.HQ.baseManagers[1])	// if we have no base ... nothing else to do than attack
+		if ((barracksNb >= 1 && (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase()))) ||
+			!gameState.ai.HQ.baseManagers[1])	// if we have no base ... nothing else to do than attack
 		{
-			if (this.attackNumber < 2 || this.startedAttacks["HugeAttack"].length > 0)
-				var type = "Attack";
-			else
-				var type = "HugeAttack";
-
-			var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, type);
+			let type = (this.attackNumber < 2 || this.startedAttacks.HugeAttack.length > 0) ? "Attack" : "HugeAttack";
+			let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, type);
 			if (attackPlan.failed)
 				this.attackPlansEncounteredWater = true; // hack
 			else
@@ -233,10 +229,10 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		}
 	}
 
-	if (unexecutedAttacks["Raid"] === 0 && gameState.ai.HQ.defenseManager.targetList.length)
+	if (unexecutedAttacks.Raid === 0 && gameState.ai.HQ.defenseManager.targetList.length)
 	{
-		var target = undefined;
-		for (var targetId of gameState.ai.HQ.defenseManager.targetList)
+		let target;
+		for (let targetId of gameState.ai.HQ.defenseManager.targetList)
 		{
 			target = gameState.getEntityById(targetId);
 			if (target)
@@ -245,15 +241,15 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		if (target)
 		{
 			// prepare a raid against this target
-			var data = { "target": target };
-			var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", data);
+			let data = { "target": target };
+			let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", data);
 			if (!attackPlan.failed)
 			{
 				if (this.Config.debug > 1)
 					API3.warn("Headquarters: Raiding plan " + this.totalNumber);
 				this.totalNumber++;
 				attackPlan.init(gameState);
-				this.upcomingAttacks["Raid"].push(attackPlan);
+				this.upcomingAttacks.Raid.push(attackPlan);
 			}
 			this.raidNumber++;
 		}
@@ -262,15 +258,15 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 
 m.AttackManager.prototype.getPlan = function(planName)
 {
-	for (var attackType in this.upcomingAttacks)
+	for (let attackType in this.upcomingAttacks)
 	{
-		for (var attack of this.upcomingAttacks[attackType])
+		for (let attack of this.upcomingAttacks[attackType])
 			if (attack.getName() == planName)
 				return attack;
 	}
-	for (var attackType in this.startedAttacks)
+	for (let attackType in this.startedAttacks)
 	{
-		for (var attack of this.startedAttacks[attackType])
+		for (let attack of this.startedAttacks[attackType])
 			if (attack.getName() == planName)
 				return attack;
 	}
@@ -293,23 +289,23 @@ m.AttackManager.prototype.unpausePlan = function(planName)
 
 m.AttackManager.prototype.pauseAllPlans = function()
 {
-	for (var attackType in this.upcomingAttacks)
-		for (var attack of this.upcomingAttacks[attackType])
+	for (let attackType in this.upcomingAttacks)
+		for (let attack of this.upcomingAttacks[attackType])
 			attack.setPaused(true);
 
-	for (var attackType in this.startedAttacks)
-		for (var attack of this.startedAttacks[attackType])
+	for (let attackType in this.startedAttacks)
+		for (let attack of this.startedAttacks[attackType])
 			attack.setPaused(true);
 };
 
 m.AttackManager.prototype.unpauseAllPlans = function()
 {
-	for (var attackType in this.upcomingAttacks)
-		for (var attack of this.upcomingAttacks[attackType])
+	for (let attackType in this.upcomingAttacks)
+		for (let attack of this.upcomingAttacks[attackType])
 			attack.setPaused(false);
 
-	for (var attackType in this.startedAttacks)
-		for (var attack of this.startedAttacks[attackType])
+	for (let attackType in this.startedAttacks)
+		for (let attack of this.startedAttacks[attackType])
 			attack.setPaused(false);
 };
 
@@ -384,9 +380,9 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	// otherwise target the most accessible one
 	if (attack.type !== "HugeAttack")
 	{
-		if (attack.targetPlayer === undefined && this.currentEnemyPlayer !== undefined
-			&& !this.defeated[this.currentEnemyPlayer]
-			&& gameState.getEnemyEntities(this.currentEnemyPlayer) > 0)
+		if (attack.targetPlayer === undefined && this.currentEnemyPlayer !== undefined &&
+			!this.defeated[this.currentEnemyPlayer] &&
+			gameState.getEnemyEntities(this.currentEnemyPlayer) > 0)
 			return this.currentEnemyPlayer;
 
 		let distmin;

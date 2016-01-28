@@ -40,7 +40,7 @@ class MockPosition : public ICmpPosition
 public:
 	DEFAULT_MOCK_COMPONENT()
 
-	virtual void SetTurretParent(entity_id_t UNUSED(id), CFixedVector3D UNUSED(pos)) {}
+	virtual void SetTurretParent(entity_id_t UNUSED(id), const CFixedVector3D& UNUSED(pos)) {}
 	virtual entity_id_t GetTurretParent() {return INVALID_ENTITY;}
 	virtual void UpdateTurretPosition() {}
 	virtual std::set<entity_id_t>* GetTurrets() { return NULL; }

@@ -203,6 +203,9 @@
         <attribute name="default_column"/>
       </optional>
       <optional>
+        <attribute name="default_column_order"/>
+      </optional>
+      <optional>
         <attribute name="dropdown_size">
           <data type="decimal"/>
         </attribute>

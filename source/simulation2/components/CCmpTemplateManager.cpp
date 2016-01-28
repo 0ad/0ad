@@ -120,11 +120,11 @@ public:
 
 	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName, int playerID);
 
-	virtual const CParamNode* GetTemplate(std::string templateName);
+	virtual const CParamNode* GetTemplate(const std::string& templateName);
 
-	virtual const CParamNode* GetTemplateWithoutValidation(std::string templateName);
+	virtual const CParamNode* GetTemplateWithoutValidation(const std::string& templateName);
 
-	virtual bool TemplateExists(std::string templateName);
+	virtual bool TemplateExists(const std::string& templateName);
 
 	virtual const CParamNode* LoadLatestTemplate(entity_id_t ent);
 
@@ -134,7 +134,7 @@ public:
 
 	virtual std::vector<std::string> FindAllPlaceableTemplates(bool includeActors);
 
-	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(std::string templateName);
+	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(const std::string& templateName);
 
 private:
 	// Template loader
@@ -172,7 +172,7 @@ const CParamNode* CCmpTemplateManager::LoadTemplate(entity_id_t ent, const std::
 	return templateRoot;
 }
 
-const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
+const CParamNode* CCmpTemplateManager::GetTemplate(const std::string& templateName)
 {
 	const CParamNode& fileData = m_templateLoader.GetTemplateFileData(templateName);
 	if (!fileData.IsOk())
@@ -205,7 +205,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 	return &templateRoot;
 }
 
-const CParamNode* CCmpTemplateManager::GetTemplateWithoutValidation(std::string templateName)
+const CParamNode* CCmpTemplateManager::GetTemplateWithoutValidation(const std::string& templateName)
 {
 	const CParamNode& templateRoot = m_templateLoader.GetTemplateFileData(templateName).GetChild("Entity");
 	if (!templateRoot.IsOk())
@@ -214,7 +214,7 @@ const CParamNode* CCmpTemplateManager::GetTemplateWithoutValidation(std::string 
 	return &templateRoot;
 }
 
-bool CCmpTemplateManager::TemplateExists(std::string templateName)
+bool CCmpTemplateManager::TemplateExists(const std::string& templateName)
 {
 	return m_templateLoader.TemplateExists(templateName);
 }
@@ -252,7 +252,7 @@ std::vector<std::string> CCmpTemplateManager::FindAllPlaceableTemplates(bool inc
 /**
  * Get the list of entities using the specified template
  */
-std::vector<entity_id_t> CCmpTemplateManager::GetEntitiesUsingTemplate(std::string templateName)
+std::vector<entity_id_t> CCmpTemplateManager::GetEntitiesUsingTemplate(const std::string& templateName)
 {
 	std::vector<entity_id_t> entities;
 	for (std::map<entity_id_t, std::string>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)

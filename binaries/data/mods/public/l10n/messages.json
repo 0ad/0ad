@@ -288,6 +288,19 @@
                 }
             },
             {
+                "extractor": "json",
+                "filemasks": [
+                    "gui/options/**.json",
+                ],
+                "options": {
+                    "keywords": [
+                        "label",
+                        "tooltip",
+                        "list"
+                    ]
+                }
+            },
+            {
                 "extractor": "txt",
                 "filemasks": [
                     "gui/splashscreen/splashscreen.txt",

@@ -1321,6 +1321,8 @@ function configure_cxxtestgen()
 	-- note that the header isn't actually precompiled here, only #included
 	-- so that the build stage can use it as a precompiled header.
 	local include = " --include=precompiled.h"
+	-- This is required to build against SDL 2.0.4 on Windows
+	include = include .. " --include=lib/external_libraries/libsdl.h"
 	lcxxtestrootoptions = lcxxtestrootoptions .. include
 	lcxxtestoptions = lcxxtestoptions .. include
 

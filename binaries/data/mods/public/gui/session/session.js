@@ -12,21 +12,45 @@ const g_PopulationAlertColor = "orange";
  */
 const g_Ambient = [ "audio/ambient/dayscape/day_temperate_gen_03.ogg" ];
 
-var g_IsNetworked = false;
-
-// Is this user in control of game settings (i.e. is a network server, or offline player)
+/**
+ * Is this user in control of game settings (i.e. is a network server, or offline player).
+ */
 var g_IsController;
 
 /**
- * Unique ID for lobby reports
+ * True if this is a multiplayer game.
+ */
+var g_IsNetworked = false;
+
+/**
+ * True if the connection to the server has been lost.
+ */
+var g_Disconnected = false;
+
+/**
+ * True if the current user has observer capabilities.
+ */
+var g_IsObserver = false;
+
+/**
+ * The playerID selected in the change perspective tool.
+ */
+var g_ViewedPlayer = Engine.GetPlayerID();
+
+/**
+ * Unique ID for lobby reports.
  */
 var g_MatchID;
 
-var g_IsObserver = false;
-
-// Cache the basic player data (name, civ, color)
+/**
+ * Cache the basic player data (name, civ, color).
+ */
 var g_Players = [];
 
+/**
+ * Last time when onTick was called().
+ * Used for animating the main menu.
+ */
 var lastTickTime = new Date();
 
 /**
@@ -36,50 +60,71 @@ var g_CivData = {};
 
 var g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1 } };
 
-// Cache dev-mode settings that are frequently or widely used
+/**
+ * Cache dev-mode settings that are frequently or widely used.
+ */
 var g_DevSettings = {
+	"changePerspective": false,
 	"controlAll": false
 };
 
-// Whether status bars should be shown for all of the player's units.
+/**
+ * Whether status bars should be shown for all of the player's units.
+ */
 var g_ShowAllStatusBars = false;
 
-// Indicate when one of the current player's training queues is blocked
-// (this is used to support population counter blinking)
+/**
+ * Blink the population counter if the player can't train more units.
+ */
 var g_IsTrainingBlocked = false;
 
-// Cache simulation state (updated on every simulation update)
+/**
+ * Cache simulation state (updated on every simulation update).
+ */
 var g_SimState;
+var g_EntityStates = {};
+var g_TemplateData = {};
+var g_TemplateDataWithoutLocalization = {};
+var g_TechnologyData = {};
 
-// Cache EntityStates
-var g_EntityStates = {}; // {id:entState}
+/**
+ * Cache concatenated list of player states ("active", "defeated" or "won").
+ */
+var g_CachedLastStates = "";
 
 /**
  * Whether the current player has lost/won and reached the end of their game.
+ * Used for reporting the gamestate and showing the game-end message only once.
  */
 var g_GameEnded = false;
 
-var g_Disconnected = false; // Lost connection to server
-
-// Holds player states from the last tick
-var g_CachedLastStates = "";
-
-// Top coordinate of the research list
+/**
+ * Top coordinate of the research list.
+ * Changes depending on the number of displayed counters.
+ */
 var g_ResearchListTop = 4;
 
-// List of additional entities to highlight
+/**
+ * List of additional entities to highlight.
+ */
 var g_ShowGuarding = false;
 var g_ShowGuarded = false;
 var g_AdditionalHighlight = [];
 
-// for saving the hitpoins of the hero (is there a better way to do that?) 
-// Should be possible with AttackDetection but might be an overkill because it would have to loop
-// always through the list of all ongoing attacks...
-var g_PreviousHeroHitPoints = undefined;
+/**
+ * Blink the hero selection if that entity has lost health since the last turn.
+ */
+var g_PreviousHeroHitPoints;
 
-var g_TemplateData = {}; // {id:template}
-var g_TemplateDataWithoutLocalization = {};
-var g_TechnologyData = {}; // {id:template}
+/**
+ * Unit classes to be checked for the idle-worker-hotkey.
+ */
+var g_WorkerTypes = ["Female", "Trader", "FishingBoat", "CitizenSoldier", "Healer"];
+
+/**
+ * Cache the idle worker status.
+ */
+var g_HasIdleWorker = false;
 
 function GetSimState()
 {
@@ -182,8 +227,7 @@ function init(initData, hotloadData)
 	g_CivData = loadCivData();
 	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
-	if (Engine.GetPlayerID() <= 0)
-		g_IsObserver = true;
+	setObserverMode(Engine.GetPlayerID() == -1);
 
 	updateTopPanel();
 
@@ -196,8 +240,8 @@ function init(initData, hotloadData)
 	initMenuPosition();
 
 	// Populate player selection dropdown
-	let playerNames = [];
-	let playerIDs = [];
+	let playerNames = ["Observer"];
+	let playerIDs = [-1];
 	for (let player in g_Players)
 	{
 		playerNames.push(g_Players[player].name);
@@ -207,7 +251,7 @@ function init(initData, hotloadData)
 	let viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
 	viewPlayerDropdown.list = playerNames;
 	viewPlayerDropdown.list_data = playerIDs;
-	viewPlayerDropdown.selected = Engine.GetPlayerID();
+	viewPlayerDropdown.selected = Engine.GetPlayerID() + 1;
 
 	// If in Atlas editor, disable the exit button
 	if (Engine.IsAtlasRunning())
@@ -218,7 +262,7 @@ function init(initData, hotloadData)
 
 	// Starting for the first time:
 	initMusic();
-	if (!g_IsObserver)
+	if (Engine.GetPlayerID() != -1)
 		global.music.storeTracks(g_CivData[g_Players[Engine.GetPlayerID()].civ].Music);
 	global.music.setState(global.music.states.PEACE);
 	playAmbient();
@@ -236,23 +280,52 @@ function init(initData, hotloadData)
 	//setTimeout(function() { reportPerformance(60); }, 60000);
 }
 
+function toggleChangePerspective(enabled)
+{
+	g_DevSettings.changePerspective = enabled;
+	Engine.GetGUIObjectByName("viewPlayer").hidden = !enabled && !g_IsObserver;
+	selectViewPlayer(g_ViewedPlayer);
+}
+
+/**
+ * Change perspective tool.
+ * Shown to observers or when enabling the developers option.
+ */
 function selectViewPlayer(playerID)
 {
-	Engine.SetPlayerID(playerID);
+	if (playerID < -1 || playerID > g_Players.length - 1 ||
+			!g_DevSettings.changePerspective && !g_IsObserver)
+		return;
+
+	g_ViewedPlayer = playerID;
+	Engine.SetPlayerID(g_DevSettings.changePerspective ? playerID : -1);
+
 	updateTopPanel();
+	onSimulationUpdate();
+
+	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
+	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
+	alphaLabel.hidden = g_ViewedPlayer > 0 && !viewPlayer.hidden;
+	alphaLabel.size = g_ViewedPlayer > 0 ? "50%+20 0 100%-226 100%" : "200 0 100%-475 100%";
 
 	if (g_IsDiplomacyOpen)
 		openDiplomacy();
 
 	if (g_IsTradeOpen)
 		openTrade();
+}
 
-	let playerState = GetSimState().players[playerID];
-	g_DevSettings.controlAll = playerState && playerState.controlsAll;
+function setObserverMode(enabled)
+{
+	g_IsObserver = enabled;
 
-	let control = Engine.GetGUIObjectByName("devControlAll");
-	control.checked = g_DevSettings.controlAll;
-	control.enabled = playerID > 0;
+	let viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
+
+	viewPlayerDropdown.hidden = !enabled;
+	if (enabled)
+		viewPlayerDropdown.selected = 0;
+
+	Engine.GetGUIObjectByName("alphaLabel").hidden = enabled;
 }
 
 /**
@@ -265,15 +338,14 @@ function controlsPlayer(playerID)
 
 function updateTopPanel()
 {
-	let playerID = Engine.GetPlayerID();
-	let isPlayer =  playerID > 0;
+	let isPlayer = g_ViewedPlayer > 0;
 	if (isPlayer)
 	{
-		let civName = g_CivData[g_Players[playerID].civ].Name;
-		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
+		let civName = g_CivData[g_Players[g_ViewedPlayer].civ].Name;
+		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[g_ViewedPlayer].civ].Emblem;
 		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), { "civ": civName });
 	}
-	
+
 	// Hide stuff gaia/observers don't use.
 	Engine.GetGUIObjectByName("food").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("wood").hidden = !isPlayer;
@@ -283,15 +355,15 @@ function updateTopPanel()
 	Engine.GetGUIObjectByName("civIcon").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("diplomacyButton1").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("tradeButton1").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("observerText").hidden = playerID >= 0;
+	Engine.GetGUIObjectByName("observerText").hidden = isPlayer;
 
 	// Disable stuff observers shouldn't use
-	let isActive = isPlayer && GetSimState().players[playerID].state == "active";
+	let isActive = isPlayer && GetSimState().players[g_ViewedPlayer].state == "active" && controlsPlayer(g_ViewedPlayer);
 	Engine.GetGUIObjectByName("pauseButton").enabled = isActive || !g_IsNetworked;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = isActive;
 
 	// Enable observer-only "summary" button.
-	Engine.GetGUIObjectByName("summaryButton").enabled = !isActive;
+	Engine.GetGUIObjectByName("summaryButton").enabled = Engine.GetPlayerID() == -1;
 }
 
 function reportPerformance(time)
@@ -323,11 +395,11 @@ function resignGame(leaveGameAfterResign)
 		"type": "defeat-player",
 		"playerId": Engine.GetPlayerID()
 	});
-	
+
 	updateTopPanel();
-	
+
 	global.music.setState(global.music.states.DEFEAT);
-	
+
 	// Resume the game if not resigning.
 	if (!leaveGameAfterResign)
 		resumeGame();
@@ -343,7 +415,7 @@ function leaveGame(willRejoin)
 	let mapSettings = Engine.GetMapSettings();
 	let gameResult;
 
-	if (g_IsObserver)
+	if (Engine.GetPlayerID() == -1)
 	{
 		// Observers don't win/lose.
 		gameResult = translate("You have left the game.");
@@ -458,7 +530,7 @@ function onTick()
 		onSimulationUpdate();
 
 		// Display rally points for selected buildings
-		if (!g_IsObserver)
+		if (Engine.GetPlayerID() != -1)
 			Engine.GuiInterfaceCall("DisplayRallyPoint", { "entities": g_Selection.toList() });
 	}
 
@@ -474,7 +546,7 @@ function onTick()
 
 function checkPlayerState()
 {
-	if (g_GameEnded || g_IsObserver)
+	if (g_GameEnded || Engine.GetPlayerID() < 1)
 		return;
 
 	// Send a game report for each player in this game.
@@ -495,9 +567,8 @@ function checkPlayerState()
 
 	// Disable the resign- and pausebutton
 	updateTopPanel();
-	
+
 	// Make sure nothing is open to avoid stacking.
-	closeMenu();
 	closeOpenDialogs();
 
 	// Make sure this doesn't run again.
@@ -525,6 +596,7 @@ function checkPlayerState()
 	{
 		title = translate("DEFEATED!");
 		global.music.setState(global.music.states.DEFEAT);
+		setObserverMode(true);
 	}
 	else if (playerState.state == "won")
 	{
@@ -542,6 +614,37 @@ function changeGameSpeed(speed)
 {
 	if (!g_IsNetworked)
 		Engine.SetSimRate(speed);
+}
+
+function hasIdleWorker()
+{
+	for (let workerType of g_WorkerTypes)
+	{
+		let idleUnits = Engine.GuiInterfaceCall("FindIdleUnits", {
+			"viewedPlayer": g_ViewedPlayer,
+			"idleClass": workerType,
+			"prevUnit": undefined,
+			"limit": 1,
+			"excludeUnits": []
+		});
+
+		if (idleUnits.length > 0)
+			return true;
+	}
+	return false;
+}
+
+function updateIdleWorkerButton()
+{
+	g_HasIdleWorker = hasIdleWorker();
+
+	let idleWorkerButton = Engine.GetGUIObjectByName("idleOverlay");
+	let prefix = "stretched:session/";
+
+	if (!g_HasIdleWorker)
+		idleWorkerButton.sprite = prefix + "minimap-idle-disabled.png";
+	else if (idleWorkerButton.sprite != prefix + "minimap-idle-highlight.png")
+		idleWorkerButton.sprite = prefix + "minimap-idle.png";
 }
 
 /**
@@ -574,24 +677,23 @@ function onSimulationUpdate()
 	updateGroups();
 	updateDebug();
 	updatePlayerDisplay();
+	updateResearchDisplay();
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
+	updateIdleWorkerButton();
 
-	if (Engine.GetPlayerID() > 0)
+	if (g_ViewedPlayer > 0)
 	{
-		let playerState = GetSimState().players[Engine.GetPlayerID()];
+		let playerState = GetSimState().players[g_ViewedPlayer];
 		g_DevSettings.controlAll = playerState && playerState.controlsAll;
 		Engine.GetGUIObjectByName("devControlAll").checked = g_DevSettings.controlAll;
 	}
 
-	if (!g_IsObserver)
-		updateResearchDisplay();
-
-	if (!g_IsObserver && !g_GameEnded)
+	if (g_ViewedPlayer != -1 && !g_GameEnded)
 	{
 		// Update music state on basis of battle state.
-		let battleState = Engine.GuiInterfaceCall("GetBattleState", Engine.GetPlayerID());
+		let battleState = Engine.GuiInterfaceCall("GetBattleState", g_ViewedPlayer);
 		if (battleState)
 			global.music.setState(global.music.states[battleState]);
 	}
@@ -599,7 +701,6 @@ function onSimulationUpdate()
 
 function onReplayFinished()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
@@ -615,10 +716,10 @@ function onReplayFinished()
 * updates a status bar on the GUI
 * nameOfBar: name of the bar
 * points: points to show
-* maxPoints: max points 
+* maxPoints: max points
 * direction: gets less from (right to left) 0; (top to bottom) 1; (left to right) 2; (bottom to top) 3;
 */
-function updateGUIStatusBar(nameOfBar, points, maxPoints, direction) 
+function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 {
 	// check, if optional direction parameter is valid.
 	if (!direction || !(direction >= 0 && direction < 4))
@@ -626,14 +727,14 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 
 	// get the bar and update it
 	let statusBar = Engine.GetGUIObjectByName(nameOfBar);
-	if (!statusBar) 
+	if (!statusBar)
 		return;
-		
+
 	let healthSize = statusBar.size;
 	let value = 100*Math.max(0, Math.min(1, points / maxPoints));
-	
+
 	// inverse bar
-	if(direction == 2 || direction == 3) 
+	if (direction == 2 || direction == 3)
 		value = 100 - value;
 
 	if (direction == 0)
@@ -644,17 +745,17 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 		healthSize.rleft = value;
 	else if (direction == 3)
 		healthSize.rtop = value;
-	
+
 	statusBar.size = healthSize;
 }
 
 
 function updateHero()
 {
-	let playerState = GetSimState().players[Engine.GetPlayerID()];
 	let unitHeroPanel = Engine.GetGUIObjectByName("unitHeroPanel");
 	let heroButton = Engine.GetGUIObjectByName("unitHeroButton");
 
+	let playerState = GetSimState().players[g_ViewedPlayer];
 	if (!playerState || playerState.heroes.length <= 0)
 	{
 		g_PreviousHeroHitPoints = undefined;
@@ -689,21 +790,24 @@ function updateHero()
 		tooltip += "\n" + template.tooltip;
 
 	heroButton.tooltip = tooltip;
-	
+
 	// update heros health bar
 	updateGUIStatusBar("heroHealthBar", heroState.hitpoints, heroState.maxHitpoints);
-	
-	// define the hit points if not defined
+
+	let heroHP = {
+		"hitpoints": heroState.hitpoints,
+		"player": g_ViewedPlayer
+	};
+
 	if (!g_PreviousHeroHitPoints)
-		g_PreviousHeroHitPoints = heroState.hitpoints;
-	
+		g_PreviousHeroHitPoints = heroHP;
+
 	// if the health of the hero changed since the last update, trigger the animation
-	if (heroState.hitpoints < g_PreviousHeroHitPoints)
+	if (g_PreviousHeroHitPoints.player == heroHP.player && g_PreviousHeroHitPoints.hitpoints > heroHP.hitpoints)
 		startColorFade("heroHitOverlay", 100, 0, colorFade_attackUnit, true, smoothColorFadeRestart_attackUnit);
 
-	g_PreviousHeroHitPoints = heroState.hitpoints;
+	g_PreviousHeroHitPoints = heroHP;
 }
-
 
 function updateGroups()
 {
@@ -756,7 +860,7 @@ function updateDebug()
 
 function updatePlayerDisplay()
 {
-	let playerState = GetSimState().players[Engine.GetPlayerID()];
+	let playerState = GetSimState().players[g_ViewedPlayer];
 	if (!playerState)
 		return;
 
@@ -786,9 +890,7 @@ function selectAndMoveTo(ent)
 
 function updateResearchDisplay()
 {
-	let researchStarted = Engine.GuiInterfaceCall("GetStartedResearch", Engine.GetPlayerID());
-	if (!researchStarted)
-		return;
+	let researchStarted = Engine.GuiInterfaceCall("GetStartedResearch", g_ViewedPlayer);
 
 	// Set up initial positioning.
 	let buttonSideLength = Engine.GetGUIObjectByName("researchStartedButton[0]").size.right;

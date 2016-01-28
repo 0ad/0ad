@@ -55,7 +55,7 @@ namespace JSI_L10n
 	 * @return Translation of @p sourceString to the current locale, or
 	 *         @p sourceString if there is no translation available.
 	 */
-	std::wstring Translate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring sourceString);
+	std::wstring Translate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& sourceString);
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -72,7 +72,7 @@ namespace JSI_L10n
 	 *         specified @p context, or @p sourceString if there is no
 	 *         translation available.
 	 */
-	std::wstring TranslateWithContext(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string context, std::wstring sourceString);
+	std::wstring TranslateWithContext(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& context, const std::wstring& sourceString);
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -93,7 +93,7 @@ namespace JSI_L10n
 	 *         @p number is 1) or @p pluralSourceString (if @p number is not 1)
 	 *         if there is no translation available.
 	 */
-	std::wstring TranslatePlural(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring singularSourceString, std::wstring pluralSourceString, int number);
+	std::wstring TranslatePlural(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number);
 
 	/**
 	 * Returns the translation of the specified string to the
@@ -117,7 +117,7 @@ namespace JSI_L10n
 	 *         @p pluralSourceString (if @p number is not 1) if there is no
 	 *         translation available.
 	 */
-	std::wstring TranslatePluralWithContext(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string context, std::wstring singularSourceString, std::wstring pluralSourceString, int number);
+	std::wstring TranslatePluralWithContext(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& context, const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number);
 
 	/**
 	 * Translates a text line by line to the
@@ -134,7 +134,7 @@ namespace JSI_L10n
 	 *         locale. Some of the lines in the returned text may be in English
 	 *         because there was not translation available for them.
 	 */
-	std::wstring TranslateLines(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring sourceString);
+	std::wstring TranslateLines(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& sourceString);
 
 	/**
 	 * Translate each of the strings of a JavaScript array to the
@@ -150,7 +150,7 @@ namespace JSI_L10n
 	 *         Some of the items in the returned array may be in English because
 	 *         there was not translation available for them.
 	 */
-	std::vector<std::wstring> TranslateArray(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::vector<std::wstring> sourceArray);
+	std::vector<std::wstring> TranslateArray(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::vector<std::wstring>& sourceArray);
 
 	/**
 	 * Returns the specified date using the specified date format.
@@ -172,7 +172,7 @@ namespace JSI_L10n
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
 	 */
-	std::wstring FormatMillisecondsIntoDateString(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, std::wstring formatString);
+	std::wstring FormatMillisecondsIntoDateString(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString);
 
 	/**
 	 * Returns the specified floating-point number as a string, with the number
@@ -286,7 +286,7 @@ namespace JSI_L10n
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	std::string GetDictionaryLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string configLocale);
+	std::string GetDictionaryLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& configLocale);
 
 	/**
 	 * Returns an array of paths to files in the virtual filesystem that provide
@@ -299,7 +299,7 @@ namespace JSI_L10n
 	 * @return Array of paths to files in the virtual filesystem that provide
 	 * translations for @p locale.
 	 */
-	std::vector<std::wstring> GetDictionariesForLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	std::vector<std::wstring> GetDictionariesForLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
 	/**
 	 * Returns the ISO-639 language code of the specified locale code.
@@ -314,7 +314,7 @@ namespace JSI_L10n
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#af36d821adced72a870d921ebadd0ca93
 	 */
-	std::string GetLocaleLanguage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	std::string GetLocaleLanguage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
 	/**
 	 * Returns the programmatic code of the entire locale without keywords.
@@ -327,7 +327,7 @@ namespace JSI_L10n
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#a4c1acbbdf95dc15599db5f322fa4c4d0
 	 */
-	std::string GetLocaleBaseName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	std::string GetLocaleBaseName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
 	/**
 	 * Returns the ISO-3166 country code of the specified locale code.
@@ -342,7 +342,7 @@ namespace JSI_L10n
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#ae3f1fc415c00d4f0ab33288ceadccbf9
 	 */
-	std::string GetLocaleCountry(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	std::string GetLocaleCountry(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
 	/**
 	 * Returns the ISO-15924 abbreviation script code of the specified locale code.
@@ -355,10 +355,10 @@ namespace JSI_L10n
 	 *
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#a5e0145a339d30794178a1412dcc55abe
 	 */
-	std::string GetLocaleScript(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	std::string GetLocaleScript(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
 	
-	std::wstring GetFallbackToAvailableDictLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	std::wstring GetFallbackToAvailableDictLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
 	/**
 	 * Returns @c true if the current locale is the special “Long Strings”
@@ -389,7 +389,7 @@ namespace JSI_L10n
 	 * @return Whether @p locale is supported by both ICU and the game (@c true)
 	 *         or not (@c false).
 	 */
-	bool ValidateLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	bool ValidateLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
 	/**
 	 * Saves the specified locale in the game configuration file.
@@ -408,7 +408,7 @@ namespace JSI_L10n
 	 * @return Whether the specified locale is valid (@c true) or not
 	 *         (@c false).
 	 */
-	bool SaveLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	bool SaveLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
 	/**
 	 * Determines the best, supported locale for the current user, makes it the

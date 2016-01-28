@@ -20,8 +20,8 @@
 // The invoker code is based on the one from libcxx.
 //===----------------------------------------------------------------------===//
 
-#ifndef BOOST_THREAD_DETAIL_ASYNC_FUNCT_HPP
-#define BOOST_THREAD_DETAIL_ASYNC_FUNCT_HPP
+#ifndef BOOST_THREAD_DETAIL_INVOKER_HPP
+#define BOOST_THREAD_DETAIL_INVOKER_HPP
 
 #include <boost/config.hpp>
 
@@ -51,7 +51,7 @@ namespace boost
       csbl::tuple<Fp, Args...> f_;
 
     public:
-      BOOST_THREAD_MOVABLE_ONLY( invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE( invoker)
       //typedef typename invoke_of<_Fp, _Args...>::type Rp;
       typedef typename result_of<Fp(Args...)>::type result_type;
 
@@ -65,6 +65,30 @@ namespace boost
       invoker(BOOST_THREAD_RV_REF(invoker) f) : f_(boost::move(BOOST_THREAD_RV(f).f_))
       {}
 
+      BOOST_SYMBOL_VISIBLE
+      invoker( const invoker& f) : f_(f.f_)
+      {}
+
+      BOOST_SYMBOL_VISIBLE
+      invoker& operator=(BOOST_THREAD_RV_REF(invoker) f)
+      {
+        if (this != &f)
+        {
+          f_ = boost::move(BOOST_THREAD_RV(f).f_);
+        }
+        return *this;
+      }
+
+      BOOST_SYMBOL_VISIBLE
+      invoker& operator=( BOOST_THREAD_COPY_ASSIGN_REF(invoker) f)
+      {
+        if (this != &f)
+        {
+          f_ = f.f_;
+        }
+        return *this;
+      }
+
       result_type operator()()
       {
         typedef typename make_tuple_indices<1+sizeof...(Args), 1>::type Index;
@@ -75,7 +99,7 @@ namespace boost
       result_type
       execute(tuple_indices<Indices...>)
       {
-        return invoke(boost::move(csbl::get<0>(f_)), boost::move(csbl::get<Indices>(f_))...);
+        return detail::invoke(boost::move(csbl::get<0>(f_)), boost::move(csbl::get<Indices>(f_))...);
       }
     };
 
@@ -89,7 +113,7 @@ namespace boost
       csbl::tuple<Fp, Args...> f_;
 
     public:
-      BOOST_THREAD_MOVABLE_ONLY( invoker_ret)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE( invoker_ret)
       typedef R result_type;
 
       template <class F, class ... As>
@@ -112,13 +136,13 @@ namespace boost
       result_type
       execute(tuple_indices<Indices...>)
       {
-        return invoke<R>(boost::move(csbl::get<0>(f_)), boost::move(csbl::get<Indices>(f_))...);
+        return detail::invoke<R>(boost::move(csbl::get<0>(f_)), boost::move(csbl::get<Indices>(f_))...);
       }
     };
   //BOOST_THREAD_DCL_MOVABLE_BEG(X) invoker<Fp> BOOST_THREAD_DCL_MOVABLE_END
 #else
 
-#if ! defined BOOST_MSVC
+#if ! defined BOOST_MSVC && defined(BOOST_THREAD_PROVIDES_INVOKE)
 
 #define BOOST_THREAD_RV_REF_ARG_T(z, n, unused) BOOST_PP_COMMA_IF(n) BOOST_THREAD_RV_REF(Arg##n)
 #define BOOST_THREAD_RV_REF_A_T(z, n, unused) BOOST_PP_COMMA_IF(n) BOOST_THREAD_RV_REF(A##n)
@@ -147,7 +171,7 @@ namespace boost
       Fp fp_; \
       BOOST_PP_REPEAT(n, BOOST_THREAD_DCL, ~) \
     public: \
-      BOOST_THREAD_MOVABLE_ONLY(invoker) \
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker) \
       typedef typename result_of<Fp(BOOST_PP_ENUM_PARAMS(n, Arg))>::type result_type; \
       \
       template <class F BOOST_PP_COMMA_IF(n) BOOST_PP_ENUM_PARAMS(n, class A) > \
@@ -160,13 +184,13 @@ namespace boost
       {} \
       \
       BOOST_SYMBOL_VISIBLE \
-      invoker(BOOST_THREAD_FWD_REF(invoker) x) \
+      invoker(BOOST_THREAD_RV_REF(invoker) x) \
       : fp_(boost::move(x.fp_)) \
       BOOST_PP_REPEAT(n, BOOST_THREAD_MOVE_RHS_PARAM, ~) \
       {} \
       \
       result_type operator()() { \
-        return invoke(boost::move(fp_) \
+        return detail::invoke(boost::move(fp_) \
             BOOST_PP_REPEAT(n, BOOST_THREAD_MOVE_DCL, ~) \
         ); \
       } \
@@ -179,7 +203,7 @@ namespace boost
       Fp fp_; \
       BOOST_PP_REPEAT(n, BOOST_THREAD_DCL, ~) \
     public: \
-      BOOST_THREAD_MOVABLE_ONLY(invoker) \
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker) \
       typedef typename result_of<Fp(BOOST_PP_ENUM_PARAMS(n, Arg))>::type result_type; \
       \
       template <class R2 BOOST_PP_COMMA_IF(n) BOOST_PP_ENUM_PARAMS(n, class A) > \
@@ -192,7 +216,7 @@ namespace boost
       {} \
       \
       BOOST_SYMBOL_VISIBLE \
-      invoker(BOOST_THREAD_FWD_REF(invoker) x) \
+      invoker(BOOST_THREAD_RV_REF(invoker) x) \
       : fp_(x.fp_) \
       BOOST_PP_REPEAT(n, BOOST_THREAD_MOVE_RHS_PARAM, ~) \
       {} \
@@ -248,7 +272,7 @@ namespace boost
       //::boost::tuple<Fp, T0, T1, T2, T3, T4, T5, T6, T7, T8> f_;
 
     public:
-      BOOST_THREAD_MOVABLE_ONLY(invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker)
       typedef typename result_of<Fp(T0, T1, T2, T3, T4, T5, T6, T7, T8)>::type result_type;
 
       BOOST_SYMBOL_VISIBLE
@@ -276,7 +300,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(BOOST_THREAD_RV(f).fp))
       , v0_(boost::move(BOOST_THREAD_RV(f).v0_))
       , v1_(boost::move(BOOST_THREAD_RV(f).v1_))
@@ -291,7 +315,7 @@ namespace boost
 
       result_type operator()()
       {
-        return invoke(boost::move(fp_)
+        return detail::invoke(boost::move(fp_)
             , boost::move(v0_)
             , boost::move(v1_)
             , boost::move(v2_)
@@ -317,7 +341,7 @@ namespace boost
       T6 v6_;
       T7 v7_;
     public:
-      BOOST_THREAD_MOVABLE_ONLY(invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker)
       typedef typename result_of<Fp(T0, T1, T2, T3, T4, T5, T6, T7)>::type result_type;
 
       BOOST_SYMBOL_VISIBLE
@@ -343,7 +367,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(BOOST_THREAD_RV(f).fp))
       , v0_(boost::move(BOOST_THREAD_RV(f).v0_))
       , v1_(boost::move(BOOST_THREAD_RV(f).v1_))
@@ -357,7 +381,7 @@ namespace boost
 
       result_type operator()()
       {
-        return invoke(boost::move(fp_)
+        return detail::invoke(boost::move(fp_)
             , boost::move(v0_)
             , boost::move(v1_)
             , boost::move(v2_)
@@ -381,7 +405,7 @@ namespace boost
       T5 v5_;
       T6 v6_;
     public:
-      BOOST_THREAD_MOVABLE_ONLY(invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker)
       typedef typename result_of<Fp(T0, T1, T2, T3, T4, T5, T6)>::type result_type;
 
       BOOST_SYMBOL_VISIBLE
@@ -405,7 +429,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(BOOST_THREAD_RV(f).fp))
       , v0_(boost::move(BOOST_THREAD_RV(f).v0_))
       , v1_(boost::move(BOOST_THREAD_RV(f).v1_))
@@ -418,7 +442,7 @@ namespace boost
 
       result_type operator()()
       {
-        return invoke(boost::move(fp_)
+        return detail::invoke(boost::move(fp_)
             , boost::move(v0_)
             , boost::move(v1_)
             , boost::move(v2_)
@@ -440,7 +464,7 @@ namespace boost
       T4 v4_;
       T5 v5_;
     public:
-      BOOST_THREAD_MOVABLE_ONLY(invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker)
       typedef typename result_of<Fp(T0, T1, T2, T3, T4, T5)>::type result_type;
 
       BOOST_SYMBOL_VISIBLE
@@ -462,7 +486,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(BOOST_THREAD_RV(f).fp))
       , v0_(boost::move(BOOST_THREAD_RV(f).v0_))
       , v1_(boost::move(BOOST_THREAD_RV(f).v1_))
@@ -474,7 +498,7 @@ namespace boost
 
       result_type operator()()
       {
-        return invoke(boost::move(fp_)
+        return detail::invoke(boost::move(fp_)
             , boost::move(v0_)
             , boost::move(v1_)
             , boost::move(v2_)
@@ -494,7 +518,7 @@ namespace boost
       T3 v3_;
       T4 v4_;
     public:
-      BOOST_THREAD_MOVABLE_ONLY(invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker)
       typedef typename result_of<Fp(T0, T1, T2, T3, T4)>::type result_type;
 
       BOOST_SYMBOL_VISIBLE
@@ -514,7 +538,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(BOOST_THREAD_RV(f).fp))
       , v0_(boost::move(BOOST_THREAD_RV(f).v0_))
       , v1_(boost::move(BOOST_THREAD_RV(f).v1_))
@@ -525,7 +549,7 @@ namespace boost
 
       result_type operator()()
       {
-        return invoke(boost::move(fp_)
+        return detail::invoke(boost::move(fp_)
             , boost::move(v0_)
             , boost::move(v1_)
             , boost::move(v2_)
@@ -543,7 +567,7 @@ namespace boost
       T2 v2_;
       T3 v3_;
     public:
-      BOOST_THREAD_MOVABLE_ONLY(invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker)
       typedef typename result_of<Fp(T0, T1, T2, T3)>::type result_type;
 
       BOOST_SYMBOL_VISIBLE
@@ -561,7 +585,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(BOOST_THREAD_RV(f).fp))
       , v0_(boost::move(BOOST_THREAD_RV(f).v0_))
       , v1_(boost::move(BOOST_THREAD_RV(f).v1_))
@@ -571,7 +595,7 @@ namespace boost
 
       result_type operator()()
       {
-        return invoke(boost::move(fp_)
+        return detail::invoke(boost::move(fp_)
             , boost::move(v0_)
             , boost::move(v1_)
             , boost::move(v2_)
@@ -587,7 +611,7 @@ namespace boost
       T1 v1_;
       T2 v2_;
     public:
-      BOOST_THREAD_MOVABLE_ONLY(invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker)
       typedef typename result_of<Fp(T0, T1, T2)>::type result_type;
 
       BOOST_SYMBOL_VISIBLE
@@ -603,7 +627,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(BOOST_THREAD_RV(f).fp))
       , v0_(boost::move(BOOST_THREAD_RV(f).v0_))
       , v1_(boost::move(BOOST_THREAD_RV(f).v1_))
@@ -612,7 +636,7 @@ namespace boost
 
       result_type operator()()
       {
-        return invoke(boost::move(fp_)
+        return detail::invoke(boost::move(fp_)
             , boost::move(v0_)
             , boost::move(v1_)
             , boost::move(v2_)
@@ -626,7 +650,7 @@ namespace boost
       T0 v0_;
       T1 v1_;
     public:
-      BOOST_THREAD_MOVABLE_ONLY(invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker)
       typedef typename result_of<Fp(T0, T1)>::type result_type;
 
       BOOST_SYMBOL_VISIBLE
@@ -640,7 +664,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(BOOST_THREAD_RV(f).fp))
       , v0_(boost::move(BOOST_THREAD_RV(f).v0_))
       , v1_(boost::move(BOOST_THREAD_RV(f).v1_))
@@ -648,7 +672,7 @@ namespace boost
 
       result_type operator()()
       {
-        return invoke(boost::move(fp_)
+        return detail::invoke(boost::move(fp_)
             , boost::move(v0_)
             , boost::move(v1_)
         );
@@ -660,7 +684,7 @@ namespace boost
       Fp fp_;
       T0 v0_;
     public:
-      BOOST_THREAD_MOVABLE_ONLY(invoker)
+      BOOST_THREAD_COPYABLE_AND_MOVABLE(invoker)
       typedef typename result_of<Fp(T0)>::type result_type;
 
       BOOST_SYMBOL_VISIBLE
@@ -672,14 +696,14 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(BOOST_THREAD_RV(f).fp))
       , v0_(boost::move(BOOST_THREAD_RV(f).v0_))
       {}
 
       result_type operator()()
       {
-        return invoke(boost::move(fp_)
+        return detail::invoke(boost::move(fp_)
             , boost::move(v0_)
         );
       }
@@ -697,7 +721,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(boost::move(f.fp_))
       {}
       result_type operator()()
@@ -719,7 +743,7 @@ namespace boost
       {}
 
       BOOST_SYMBOL_VISIBLE
-      invoker(BOOST_THREAD_FWD_REF(invoker) f)
+      invoker(BOOST_THREAD_RV_REF(invoker) f)
       : fp_(f.fp_)
       {}
       result_type operator()()

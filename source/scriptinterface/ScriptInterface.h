@@ -22,6 +22,7 @@
 
 #include "lib/file/vfs/vfs_path.h"
 
+#include "maths/Fixed.h"
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
 #include "ps/Errors.h"
@@ -60,7 +61,6 @@ class ScriptRuntime;
 
 extern shared_ptr<ScriptRuntime> g_ScriptRuntime;
 
-class CDebuggingServer;
 
 /**
  * Abstraction around a SpiderMonkey JSContext.
@@ -376,6 +376,14 @@ public:
 	{
 		AssignOrToJSVal(cx, handle, a);
 	}
+	
+	/**
+	 * Converts |val| to T if needed or just returns it if it's a handle.
+	 * This is meant for use in other templates where we want to use the same code for JS::HandleValue and
+	 * other types.
+	 */
+	template <typename T>
+	static T AssignOrFromJSVal(JSContext* cx, const JS::HandleValue& val, bool& ret);
 
 private:
 	
@@ -475,6 +483,21 @@ template <>
 inline void ScriptInterface::AssignOrToJSValUnrooted<JS::Value>(JSContext* UNUSED(cx), JS::MutableHandleValue handle, const JS::Value& a)
 {
 	handle.set(a);
+}
+
+template<typename T>
+inline T ScriptInterface::AssignOrFromJSVal(JSContext* cx, const JS::HandleValue& val, bool& ret)
+{
+	T retVal;
+	ret = FromJSVal(cx, val, retVal);
+	return retVal;
+}
+
+template<>
+inline JS::HandleValue ScriptInterface::AssignOrFromJSVal<JS::HandleValue>(JSContext* UNUSED(cx), const JS::HandleValue& val, bool& ret)
+{
+	ret = true;
+	return val;
 }
 
 template<typename T0>

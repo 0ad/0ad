@@ -71,7 +71,7 @@
 			<translatableAttribute id="caption">Change perspective</translatableAttribute>
 		</object>
 		<object size="100%-16 16 100% 32" type="checkbox" style="ModernTickBox">
-			<action on="Press">Engine.GetGUIObjectByName("viewPlayer").hidden = !this.checked;</action>
+			<action on="Press">toggleChangePerspective(this.checked);</action>
 		</object>
 
 		<object size="0 32 100%-18 48" type="text" style="devCommandsText">
@@ -204,7 +204,7 @@
 	<!-- ================================  ================================ -->
 
 	<!-- Chat panel -->
-	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true">
+	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" z="0" absolute="true">
 	    <object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanel" ghost="true"/>
 	</object>
 

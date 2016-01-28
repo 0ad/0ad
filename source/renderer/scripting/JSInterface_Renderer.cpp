@@ -54,7 +54,7 @@ std::string JSI_Renderer::GetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPr
 	return CRenderer::GetRenderPathName(g_Renderer.GetRenderPath());
 }
 
-void JSI_Renderer::SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string name)
+void JSI_Renderer::SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& name)
 {
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(name));
 }

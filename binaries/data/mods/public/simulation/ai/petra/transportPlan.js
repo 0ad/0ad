@@ -66,8 +66,8 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, ship)
 	}
 
 	if (this.debug > 1)
-		API3.warn("Starting a new transport plan with ID " +  this.ID + " to index " + endIndex
-			+ " with units length " + units.length);
+		API3.warn("Starting a new transport plan with ID " +  this.ID +
+			" to index " + endIndex + " with units length " + units.length);
 
 	this.state = "boarding";
 	this.boardingPos = {};
@@ -102,8 +102,8 @@ m.TransportPlan.prototype.countFreeSlotsOnShip = function(ship)
 {
 	if (ship.hitpoints() < ship.garrisonEjectHealth() * ship.maxHitpoints())
 		return 0;
-	let occupied = ship.garrisoned().length
-		+ this.units.filter(API3.Filters.byMetadata(PlayerID, "onBoard", ship.id())).length;
+	let occupied = ship.garrisoned().length +
+		this.units.filter(API3.Filters.byMetadata(PlayerID, "onBoard", ship.id())).length;
 	return Math.max(ship.garrisonMax() - occupied, 0);
 };
 
@@ -114,7 +114,7 @@ m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 
 	for (let ship of this.transportShips.values())
 	{
-		if (this.countFreeSlotsOnShip(ship) == 0)
+		if (this.countFreeSlotsOnShip(ship) === 0)
 			continue;
 		ent.setMetadata(PlayerID, "onBoard", ship.id());
 		if (this.debug > 1)
@@ -386,7 +386,7 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 		if (avoidEnnemy)
 		{
 			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(pos);
-			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))
+			if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
 				dist += 100000000;
 		}
 		// require a small distance between all ships of the transport plan to avoid path finder problems

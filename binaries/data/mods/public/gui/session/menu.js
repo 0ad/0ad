@@ -80,21 +80,18 @@ function toggleMenu()
 
 function optionsMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	openOptions();
 }
 
 function chatMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	openChat();
 }
 
 function diplomacyMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	openDiplomacy();
 }
@@ -106,7 +103,6 @@ function pauseMenuButton()
 
 function resignMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
@@ -122,7 +118,6 @@ function resignMenuButton()
 
 function exitMenuButton()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
@@ -142,7 +137,7 @@ function exitMenuButton()
 	};
 
 	let messageType = g_IsNetworked && g_IsController ? "host" :
-		(g_IsNetworked && !g_GameEnded && !g_IsObserver ? "client" : "singleplayer");
+		(g_IsNetworked && !g_GameEnded && Engine.GetPlayerID() != -1 ? "client" : "singleplayer");
 
 	messageBox(
 		400, 200,
@@ -169,7 +164,6 @@ function networkReturnQuestion()
 
 function openDeleteDialog(selection)
 {
-	closeMenu();
 	closeOpenDialogs();
 
 	let deleteSelectedEntities = function (selectionArg)
@@ -190,7 +184,6 @@ function openDeleteDialog(selection)
 
 function openSave()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 	Engine.PushGuiPage("page_savegame.xml", { "savedGameData": getSavedGameData(), "callback": "resumeGame" });
@@ -198,6 +191,7 @@ function openSave()
 
 function openOptions()
 {
+	closeOpenDialogs();
 	pauseGame();
 	Engine.PushGuiPage("page_options.xml", { "callback": "resumeGame" });
 }
@@ -206,6 +200,8 @@ function openChat()
 {
 	if (g_Disconnected)
 		return;
+
+	closeOpenDialogs();
 
 	updateTeamCheckbox(false);
 
@@ -220,6 +216,9 @@ function closeChat()
 	Engine.GetGUIObjectByName("chatDialogPanel").hidden = true;
 }
 
+/**
+ * Chat is sent via GUID, not playerID.
+ */
 function updateTeamCheckbox(check)
 {
 	Engine.GetGUIObjectByName("toggleTeamChatLabel").hidden = g_IsObserver;
@@ -235,8 +234,11 @@ function toggleChatWindow(teamChat)
 
 	let chatWindow = Engine.GetGUIObjectByName("chatDialogPanel");
 	let chatInput = Engine.GetGUIObjectByName("chatInput");
+	let hidden = chatWindow.hidden;
 
-	if (chatWindow.hidden)
+	closeOpenDialogs();
+
+	if (hidden)
 		chatInput.focus(); // Grant focus to the input area
 	else
 	{
@@ -249,7 +251,7 @@ function toggleChatWindow(teamChat)
 	}
 
 	updateTeamCheckbox(teamChat);
-	chatWindow.hidden = !chatWindow.hidden;
+	chatWindow.hidden = !hidden;
 }
 
 function setDiplomacy(data)
@@ -264,11 +266,12 @@ function tributeResource(data)
 
 function openDiplomacy()
 {
-	if (g_IsTradeOpen)
-		closeTrade();
-	g_IsDiplomacyOpen = true;
+	closeOpenDialogs();
 
-	let we = Engine.GetPlayerID();
+	if (g_ViewedPlayer < 1)
+		return;
+
+	g_IsDiplomacyOpen = true;
 
 	// Get offset for one line
 	let onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
@@ -290,14 +293,11 @@ function openDiplomacy()
 
 		Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + g_Players[i].name + "[/color]";
 		Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[g_Players[i].civ].Name;
-
 		Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (g_Players[i].team < 0) ? translateWithContext("team", "None") : g_Players[i].team+1;
-
-		if (i != we)
-			Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (g_Players[i].isAlly[we] ? translate("Ally") : (g_Players[i].isNeutral[we] ? translate("Neutral") : translate("Enemy")));
+		Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (i == g_ViewedPlayer) ? "" : (g_Players[i].isAlly[g_ViewedPlayer] ? translate("Ally") : (g_Players[i].isNeutral[g_ViewedPlayer] ? translate("Neutral") : translate("Enemy")));
 
 		// Don't display the options for ourself, or if we or the other player aren't active anymore
-		if (i == we || g_Players[we].state != "active" || g_Players[i].state != "active")
+		if (i == g_ViewedPlayer || g_Players[i].state != "active")
 		{
 			// Hide the unused/unselectable options
 			for (let a of ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
@@ -339,6 +339,7 @@ function openDiplomacy()
 						g_FlushTributing();
 				};
 			})(i, resource, button);
+			button.enabled = controlsPlayer(g_ViewedPlayer);
 			button.hidden = false;
 			button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
 		}
@@ -346,14 +347,15 @@ function openDiplomacy()
 		// Attack Request
 		let simState = GetSimState();
 		let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
-		button.hidden = simState.ceasefireActive || !(g_Players[i].isEnemy[we]);
+		button.hidden = simState.ceasefireActive || !g_Players[i].isEnemy[g_ViewedPlayer];
+		button.enabled = controlsPlayer(g_ViewedPlayer);
 		button.tooltip = translate("Request your allies to attack this enemy");
-		button.onpress = (function(i, we){ return function() {
-			Engine.PostNetworkCommand({ "type": "attack-request", "source": we, "target": i });
-		}; })(i, we);
+		button.onpress = (function(i) { return function() {
+			Engine.PostNetworkCommand({ "type": "attack-request", "source": g_ViewedPlayer, "target": i });
+		}; })(i);
 
 		// Skip our own teams on teams locked
-		if (g_Players[we].teamsLocked && g_Players[we].team != -1 && g_Players[we].team == g_Players[i].team)
+		if (g_Players[g_ViewedPlayer].teamsLocked && g_Players[g_ViewedPlayer].team != -1 && g_Players[g_ViewedPlayer].team == g_Players[i].team)
 			continue;
 
 		// Diplomacy settings
@@ -362,8 +364,9 @@ function openDiplomacy()
 		{
 			let button = Engine.GetGUIObjectByName("diplomacyPlayer"+setting+"["+(i-1)+"]");
 
-			button.caption = g_Players[we]["is"+setting][i] ? translate("x") : "";
+			button.caption = g_Players[g_ViewedPlayer]["is" + setting][i] ? translate("x") : "";
 			button.onpress = (function(e){ return function() { setDiplomacy(e); }; })({ "player": i, "to": setting.toLowerCase() });
+			button.enabled = controlsPlayer(g_ViewedPlayer);
 			button.hidden = simState.ceasefireActive;
 		}
 	}
@@ -379,16 +382,20 @@ function closeDiplomacy()
 
 function toggleDiplomacy()
 {
-	if (g_IsDiplomacyOpen)
-		closeDiplomacy();
-	else
+	let open = g_IsDiplomacyOpen;
+	closeOpenDialogs();
+
+	if (!open)
 		openDiplomacy();
 }
 
 function openTrade()
 {
-	if (g_IsDiplomacyOpen)
-		closeDiplomacy();
+	closeOpenDialogs();
+
+	if (g_ViewedPlayer < 1)
+		return;
+
 	g_IsTradeOpen = true;
 
 	var updateButtons = function()
@@ -396,22 +403,14 @@ function openTrade()
 		for (var res in button)
 		{
 			button[res].label.caption = proba[res] + "%";
-			if (res == selec)
-			{
-				button[res].sel.hidden = false;
-				button[res].up.hidden = true;
-				button[res].dn.hidden = true;
-			}
-			else
-			{
-				button[res].sel.hidden = true;
-				button[res].up.hidden = (proba[res] == 100 || proba[selec] == 0);
-				button[res].dn.hidden = (proba[res] == 0 || proba[selec] == 100);
-			}
+
+			button[res].sel.hidden = !controlsPlayer(g_ViewedPlayer) || res != selec;
+			button[res].up.hidden = !controlsPlayer(g_ViewedPlayer) || res == selec || proba[res] == 100 || proba[selec] == 0;
+			button[res].dn.hidden = !controlsPlayer(g_ViewedPlayer) || res == selec || proba[res] == 0 || proba[selec] == 100;
 		}
 	};
 
-	var proba = Engine.GuiInterfaceCall("GetTradingGoods");
+	var proba = Engine.GuiInterfaceCall("GetTradingGoods", g_ViewedPlayer);
 	var button = {};
 	var selec = RESOURCES[0];
 	for (var i = 0; i < RESOURCES.length; ++i)
@@ -436,6 +435,7 @@ function openTrade()
 		var iconSel = Engine.GetGUIObjectByName("tradeResourceSelection["+i+"]");
 		button[resource] = { "up": buttonUp, "dn": buttonDn, "label": label, "sel": iconSel };
 
+		buttonResource.enabled = controlsPlayer(g_ViewedPlayer);
 		buttonResource.onpress = (function(resource){
 			return function() {
 				if (Engine.HotkeyIsPressed("session.fulltradeswap"))
@@ -450,6 +450,7 @@ function openTrade()
 			};
 		})(resource);
 
+		buttonUp.enabled = controlsPlayer(g_ViewedPlayer);
 		buttonUp.onpress = (function(resource){
 			return function() {
 				proba[resource] += Math.min(STEP, proba[selec]);
@@ -459,6 +460,7 @@ function openTrade()
 			};
 		})(resource);
 
+		buttonDn.enabled = controlsPlayer(g_ViewedPlayer);
 		buttonDn.onpress = (function(resource){
 			return function() {
 				proba[selec]    += Math.min(STEP, proba[resource]);
@@ -470,7 +472,7 @@ function openTrade()
 	}
 	updateButtons();
 
-	let traderNumber = Engine.GuiInterfaceCall("GetTraderNumber");
+	let traderNumber = Engine.GuiInterfaceCall("GetTraderNumber", g_ViewedPlayer);
 	Engine.GetGUIObjectByName("landTraders").caption = getIdleLandTradersText(traderNumber);
 	Engine.GetGUIObjectByName("shipTraders").caption = getIdleShipTradersText(traderNumber);
 
@@ -608,9 +610,10 @@ function closeTrade()
 
 function toggleTrade()
 {
-	if (g_IsTradeOpen)
-		closeTrade();
-	else
+	let open = g_IsTradeOpen;
+	closeOpenDialogs();
+
+	if (!open)
 		openTrade();
 }
 
@@ -622,7 +625,6 @@ function toggleGameSpeed()
 
 function openGameSummary()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
@@ -641,13 +643,12 @@ function openGameSummary()
 
 function openStrucTree()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 
 	// TODO add info about researched techs and unlocked entities
 	Engine.PushGuiPage("page_structree.xml", {
-		"civ" : g_Players[Engine.GetPlayerID()].civ,
+		"civ" : g_Players[g_ViewedPlayer].civ,
 		"callback": "resumeGame",
 	});
 }
@@ -677,7 +678,6 @@ function togglePause()
 	if (!Engine.GetGUIObjectByName("pauseButton").enabled)
 		return;
 
-	closeMenu();
 	closeOpenDialogs();
 
 	let pauseOverlay = Engine.GetGUIObjectByName("pauseOverlay");
@@ -690,7 +690,6 @@ function togglePause()
 
 function openManual()
 {
-	closeMenu();
 	closeOpenDialogs();
 	pauseGame();
 

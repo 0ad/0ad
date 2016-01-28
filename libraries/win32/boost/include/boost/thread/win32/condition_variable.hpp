@@ -96,7 +96,7 @@ namespace boost
 
             bool woken()
             {
-                unsigned long const woken_result=detail::win32::WaitForSingleObject(wake_sem,0);
+                unsigned long const woken_result=detail::win32::WaitForSingleObjectEx(wake_sem,0,0);
                 BOOST_ASSERT((woken_result==detail::win32::timeout) || (woken_result==0));
                 return woken_result==0;
             }
@@ -339,8 +339,8 @@ namespace boost
         {
           if (wait_duration.is_pos_infinity())
           {
-              wait(m); // or do_wait(m,detail::timeout::sentinel());
-              return true;
+            wait(m); // or do_wait(m,detail::timeout::sentinel());
+            return true;
           }
           if (wait_duration.is_special())
           {
@@ -362,6 +362,18 @@ namespace boost
         template<typename duration_type,typename predicate_type>
         bool timed_wait(unique_lock<mutex>& m,duration_type const& wait_duration,predicate_type pred)
         {
+            if (wait_duration.is_pos_infinity())
+            {
+              while (!pred())
+              {
+                wait(m); // or do_wait(m,detail::timeout::sentinel());
+              }
+              return true;
+            }
+            if (wait_duration.is_special())
+            {
+              return pred();
+            }
             return do_wait(m,wait_duration.total_milliseconds(),pred);
         }
 #endif

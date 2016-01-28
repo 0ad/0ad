@@ -27,18 +27,20 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 	}
 	var obstructionTiles = new Uint8Array(passabilityMap.data.length);
 	
+	var passMap;
+	var obstructionMask;
 	if (placementType == "shore")
 	{
-		var passMap = gameState.ai.accessibility.navalPassMap;
-		var obstructionMask = gameState.getPassabilityClassMask("building-shore");
+		passMap = gameState.ai.accessibility.navalPassMap;
+		obstructionMask = gameState.getPassabilityClassMask("building-shore");
 	}
 	else
 	{
-		var passMap = gameState.ai.accessibility.landPassMap;
-		var obstructionMask = gameState.getPassabilityClassMask("building-land");
+		passMap = gameState.ai.accessibility.landPassMap;
+		obstructionMask = gameState.getPassabilityClassMask("building-land");
 	}
 
-	for (var k = 0; k < territoryMap.data.length; ++k)
+	for (let k = 0; k < territoryMap.data.length; ++k)
 	{
 		let tilePlayer = (territoryMap.data[k] & m.TERRITORY_PLAYER_MASK);
 		if ((!buildNeutral && tilePlayer == 0) ||
@@ -203,48 +205,6 @@ m.createFrontierMap = function(gameState)
 
 //    m.debugMap(gameState, map);
 	return map;
-};
-
-// return a measure of the proximity to our frontier (including our allies)
-// 0=inside, 1=less than 24m, 2= less than 48m, 3= less than 64m, 4=less than 96m, 5=above 96m
-m.getFrontierProximity = function(gameState, j)
-{
-	var territoryMap = gameState.ai.HQ.territoryMap;
-	var borderMap = gameState.ai.HQ.borderMap;
-	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
-
-	var width = territoryMap.width;
-	var step = Math.round(24 / territoryMap.cellSize);
-
-	if (gameState.isPlayerAlly(territoryMap.getOwnerIndex(j)))
-		return 0;
-
-	var ix = j%width;
-	var iz = Math.floor(j/width);
-	var best = 5;
-	for (let a of around)
-	{
-		for (let i = 1; i < 5; ++i)
-		{
-			let jx = ix + Math.round(i*step*a[0]);
-			if (jx < 0 || jx >= width)
-				continue;
-			var jz = iz + Math.round(i*step*a[1]);
-			if (jz < 0 || jz >= width)
-				continue;
-			if (borderMap.map[jx+width*jz] > 1)
-				continue;
-			if (gameState.isPlayerAlly(territoryMap.getOwnerIndex(jx+width*jz)))
-			{
-				best = Math.min(best, i);
-				break;
-			}
-		}
-		if (best === 1)
-			break;
-	}
-
-	return best;
 };
 
 m.debugMap = function(gameState, map)

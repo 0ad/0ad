@@ -123,7 +123,7 @@ m.Filters = {
 	},
 	byTargetedEntity: function(targetID){
 		return {"func": function(ent) {
-			return (ent.unitAIOrderData().length && ent.unitAIOrderData()[0]["target"] && ent.unitAIOrderData()[0]["target"] == targetID);
+			return (ent.unitAIOrderData().length && ent.unitAIOrderData()[0].target && ent.unitAIOrderData()[0].target == targetID);
 		},
 		"dynamicProperties": ['unitAIOrderData']};
 	},

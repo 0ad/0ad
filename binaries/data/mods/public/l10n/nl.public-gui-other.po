@@ -12,6 +12,7 @@
 # Mark Lemmens <the_white_eagle@telenet.be>, 2015
 # Max Klaversma <maxklaversma@gmail.com>, 2014
 # niektb <niektb95@gmail.com>, 2015
+# Reginas - <reginas@hotmail.nl>, 2016
 # Ruben De Smet <ruben.de.smet@telenet.be>, 2015
 # Sander Deryckere, 2014-2015
 # Thomas den Hollander <denhollander.thomas@gmail.com>, 2015
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:00+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-01-15 09:00+0100\n"
+"PO-Revision-Date: 2016-01-17 13:57+0000\n"
+"Last-Translator: Reginas - <reginas@hotmail.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -318,12 +319,12 @@ msgstr "Vis"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s en %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -365,7 +366,7 @@ msgstr "Je kreeg een ban"
 #: gui/common/network.js:24
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Ongeldige waarde %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:36
@@ -394,7 +395,7 @@ msgstr "%(name)s uitsluiten niet gelukt."
 #: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Gebruikers: %(users)s"
 
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
@@ -542,7 +543,7 @@ msgstr "Bewapening:"
 
 #: gui/common/tooltips.js:85 gui/common/tooltips.js:112
 #: gui/common/tooltips.js:171 gui/structree/draw.js:347
-#: gui/structree/draw.js:372
+#: gui/structree/draw.js:373
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -625,7 +626,7 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)
 #: gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
@@ -642,7 +643,7 @@ msgstr "arbeider"
 #: gui/common/tooltips.js:245
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:246
 msgid "Build Rate:"
@@ -760,14 +761,14 @@ msgstr "Geen"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
@@ -999,67 +1000,75 @@ msgstr "FPS in menus begrenzen"
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr "Beperk FPS tot 50 in alle menus om stroom te besparen."
 
-#: gui/options/options.js:41
+#: gui/options/options.js:38
+msgid "Graphics quality"
+msgstr "Grafische kwaliteit"
+
+#: gui/options/options.js:38
+msgid "Graphics quality. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.js:42
 msgid "Master Gain"
 msgstr "Master volume"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Master audio gain"
 msgstr "Mastervolume"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Music Gain"
 msgstr "Muziek volume"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game music gain"
 msgstr "Volume van de muziek"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Ambient Gain"
 msgstr "Achtergrondvolume"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game ambient sound gain"
 msgstr "Volume van het achtergrondgeluid"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Action Gain"
 msgstr "Actievolume"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "In game unit action sound gain"
 msgstr "Volume van de spelelementen"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI Gain"
 msgstr "UI volume"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI sound gain"
 msgstr "Volume van de klikken"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Backlog"
 msgstr "Chat log"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Aantal berichten die geladen worden wanneer je in de lobby binnen komt."
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Chat Timestamp"
 msgstr "Chat tijdsweergave"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Toon de tijd waarop chatberichten in de lobby verstuurd zijn."
 
-#: gui/options/options.js:251
+#: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
 msgstr ""
 
-#: gui/options/options.js:252 gui/savedgames/load.js:89
+#: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Waarschuwing"
 
@@ -1191,11 +1200,11 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Score aan het einde van de game"
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
-msgstr ""
+msgstr "Verwijder herhaling"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure to delete this replay permanently?"
@@ -1365,12 +1374,12 @@ msgstr "OVERSCHRIJF OPGESLAGEN SPEL"
 msgid "Health:"
 msgstr "Gezondheid:"
 
-#: gui/structree/draw.js:367
+#: gui/structree/draw.js:368
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:373
+#: gui/structree/draw.js:374
 msgid "Gather Rates:"
 msgstr "Verzamel ratios:"
 
@@ -1676,7 +1685,7 @@ msgid "Lobby Settings"
 msgstr "Lobby instellingen"
 
 #: gui/options/options.xml:(caption):69
-msgid "Reload"
+msgid "Revert"
 msgstr ""
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
@@ -1685,15 +1694,15 @@ msgstr "Opslaan"
 
 #: gui/options/options.xml:(caption):79
 msgid "Quit"
-msgstr ""
+msgstr "Afsluiten"
 
 #: gui/options/options.xml:(tooltip):70
-msgid "Reload default values from file"
-msgstr ""
+msgid "Revert to previous saved settings"
+msgstr "Terugkeren naar de vorige opgeslagen instellingen"
 
 #: gui/options/options.xml:(tooltip):75
-msgid "Save changes to file"
-msgstr ""
+msgid "Save changes"
+msgstr "Opslaan wijzigingen"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"

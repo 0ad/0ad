@@ -125,8 +125,11 @@ function loadStructure(templateName)
 	if (structure.wallSet)
 	{
 		structure.wallset = {};
-		// Note: Assume wall segments of all lengths have the same armor
-		structure.armour = loadStructure(structure.wallSet.templates.long).armour;
+
+		// Note: Assume wall segments of all lengths have the same armor and auras
+		let struct = loadStructure(structure.wallSet.templates.long);
+		structure.armour = struct.armour;
+		structure.auras = struct.auras;
 
 		let health;
 

@@ -53,6 +53,7 @@ ex_settings =
   attribute checked { bool }?&
   attribute clip { bool }?&
   attribute default_column { text }?&
+  attribute default_column_order { text }?&
   attribute dropdown_size { xsd:decimal }?&
   attribute dropdown_buffer { xsd:decimal }?&
   attribute enabled { bool }?&

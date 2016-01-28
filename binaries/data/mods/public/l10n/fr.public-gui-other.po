@@ -3,8 +3,10 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adge Nodux <tempo.data@gmail.com>, 2016
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2014-2015
 # Buggi <buggi@filzmail.com>, 2014
+# foufy much <foufy68@hotmail.com>, 2016
 # Moul <ma.azimi@laposte.net>, 2015
 # Marco tom Suden, 2014
 # Marwan <Skyplay33@gmail.com>, 2015
@@ -20,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:00+0100\n"
-"PO-Revision-Date: 2016-01-14 18:30+0000\n"
-"Last-Translator: Nexus nexus <neocrysis@gmail.com>\n"
+"POT-Creation-Date: 2016-01-15 09:00+0100\n"
+"PO-Revision-Date: 2016-01-16 17:26+0000\n"
+"Last-Translator: Adge Nodux <tempo.data@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -543,7 +545,7 @@ msgstr "Armure :"
 
 #: gui/common/tooltips.js:85 gui/common/tooltips.js:112
 #: gui/common/tooltips.js:171 gui/structree/draw.js:347
-#: gui/structree/draw.js:372
+#: gui/structree/draw.js:373
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -761,14 +763,14 @@ msgstr "Aucun"
 msgid "<invalid>"
 msgstr "<invalide>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Oui"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
@@ -1000,67 +1002,75 @@ msgstr "Limiter le taux de rafraîchissement dans les menus"
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr "Limiter le taux de rafraîchissement à 50 FPS dans tous les menus, pour économiser l'énergie."
 
-#: gui/options/options.js:41
+#: gui/options/options.js:38
+msgid "Graphics quality"
+msgstr "Qualité graphique"
+
+#: gui/options/options.js:38
+msgid "Graphics quality. REQUIRES GAME RESTART"
+msgstr "Qualité graphique. NECESSITE UN REDEMARRAGE DU JEU"
+
+#: gui/options/options.js:42
 msgid "Master Gain"
 msgstr "Principal"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Master audio gain"
 msgstr "Gain audio principal"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Music Gain"
 msgstr "Musique"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game music gain"
 msgstr "Gain sonore de la musique dans le jeu"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Ambient Gain"
 msgstr "Ambiance"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game ambient sound gain"
 msgstr "Gain sonore de l'ambiance dans le jeu"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Action Gain"
 msgstr "Action"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "In game unit action sound gain"
 msgstr "Gain sonore des actions des unités dans le jeu"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI Gain"
 msgstr "Interface utilisateur"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI sound gain"
 msgstr "Gain sonore de l'interface utilisateur"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Backlog"
 msgstr "Historique de la discussion"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Nombre de messages d'historique à charger en rejoignant le hall"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Chat Timestamp"
 msgstr "Horodatage du chat"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Montrer l'heure à laquelle sont postés les messages dans le chat du hall"
 
-#: gui/options/options.js:251
+#: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
 msgstr "Vous avez des modifications non enregistrées, êtes-vous sûr de vouloir quitter ?"
 
-#: gui/options/options.js:252 gui/savedgames/load.js:89
+#: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -1366,12 +1376,12 @@ msgstr "REMPLACER"
 msgid "Health:"
 msgstr "Santé :"
 
-#: gui/structree/draw.js:367
+#: gui/structree/draw.js:368
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:373
+#: gui/structree/draw.js:374
 msgid "Gather Rates:"
 msgstr "Taux de collecte :"
 
@@ -1677,8 +1687,8 @@ msgid "Lobby Settings"
 msgstr "Paramètres du hall"
 
 #: gui/options/options.xml:(caption):69
-msgid "Reload"
-msgstr "Recharger"
+msgid "Revert"
+msgstr "Revenir"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1689,12 +1699,12 @@ msgid "Quit"
 msgstr "Quitter"
 
 #: gui/options/options.xml:(tooltip):70
-msgid "Reload default values from file"
-msgstr "Recharger les valeurs par défaut à partir d'un fichier"
+msgid "Revert to previous saved settings"
+msgstr "Utiliser les paramètres sauvegardés"
 
 #: gui/options/options.xml:(tooltip):75
-msgid "Save changes to file"
-msgstr "Sauvegarder les changements"
+msgid "Save changes"
+msgstr "Enregistrer les modifications"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"

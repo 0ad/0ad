@@ -721,6 +721,35 @@ m.GameState.prototype.findBuilders = function(template)
 	});
 };
 
+// Return true if one of the buildings is capable of researching the given tech
+m.GameState.prototype.hasResearchers = function(templateName, noRequirementCheck)
+{
+	// let's check we can research the tech.
+	if (!this.canResearch(templateName, noRequirementCheck))
+		return false;
+
+	var template = this.getTemplate(templateName);
+	var civ = this.playerData.civ;
+	
+	for (let ent of this.getOwnResearchFacilities().values())
+	{
+		let techs = ent.researchableTechs(civ);
+		for (let tech of techs)
+		{
+			let temp = this.getTemplate(tech);
+			if (temp.pairDef())
+			{
+				let pairedTechs = temp.getPairedTechs();
+				if (pairedTechs[0]._templateName == templateName || pairedTechs[1]._templateName == templateName)
+					return true;
+			}
+			else if (tech == templateName)
+				return true;
+		}
+	}
+	return false;
+};
+
 // Find buildings that are capable of researching the given tech
 m.GameState.prototype.findResearchers = function(templateName, noRequirementCheck)
 {
@@ -733,7 +762,7 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 	var civ = this.playerData.civ;
 	
 	return this.getOwnResearchFacilities().filter(function(ent) {
-		var techs = ent.researchableTechs(civ);
+		let techs = ent.researchableTechs(civ);
 		for (let tech of techs)
 		{
 			let thisTemp = self.getTemplate(tech);
@@ -743,9 +772,8 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 				if (pairedTechs[0]._templateName == templateName || pairedTechs[1]._templateName == templateName)
 					return true;
 			}
-			else
-				if (tech == templateName)
-					return true;
+			else if (tech == templateName)
+				return true;
 		}
 		return false;
 	});

@@ -410,7 +410,7 @@ public:
 		return CVector3D();
 	}
 
-	virtual void SelectAnimation(std::string name, bool once, fixed speed, std::wstring soundgroup)
+	virtual void SelectAnimation(const std::string& name, bool once, fixed speed, const std::wstring& soundgroup)
 	{
 		m_AnimRunThreshold = fixed::Zero();
 		m_AnimName = name;
@@ -428,12 +428,12 @@ public:
 		}
 	}
 
-	virtual void ReplaceMoveAnimation(std::string name, std::string replace)
+	virtual void ReplaceMoveAnimation(const std::string& name, const std::string& replace)
 	{
 		m_AnimOverride[name] = replace;
 	}
 
-	virtual void ResetMoveAnimation(std::string name)
+	virtual void ResetMoveAnimation(const std::string& name)
 	{
 		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
 		if (it != m_AnimOverride.end())
@@ -494,7 +494,7 @@ public:
 		}
 	}
 
-	virtual void SetVariable(std::string name, float value)
+	virtual void SetVariable(const std::string& name, float value)
 	{
 		if (m_Unit)
 		{

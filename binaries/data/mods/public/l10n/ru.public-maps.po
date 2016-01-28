@@ -9,14 +9,15 @@
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014-2015
 # grin.sv <grin.sv@gmail.com>, 2015
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # webslavic <webslavic@yahoo.com>, 2014
 # Woratiklis, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-20 20:48+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -512,11 +513,11 @@ msgstr "Первая волна начнётся через 15 минут!"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
-msgstr "Тестирование да-нет. Уверен или пока нет?"
+msgstr "Тестирование да/нет диалога. Вы хотите согласиться или пока нет?"
 
 #: maps/scenarios/Triggers_demo.js:79
 msgid "Sure"
-msgstr "Уверен"
+msgstr "Конечно"
 
 #: maps/scenarios/Triggers_demo.js:83
 msgid "Say sure"
@@ -528,23 +529,23 @@ msgstr "Скорее нет"
 
 #: maps/scenarios/Triggers_demo.js:93
 msgid "Say rather not"
-msgstr "Оказаться"
+msgstr "Отказаться"
 
 #: maps/scenarios/treasure_islands.js:10
 msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr "Собери сокровища раньше противника! Может помочь выиграть!"
+msgstr "Соберите сокровища раньше противника! И пусть победит сильнейший!"
 
 #: maps/scenarios/treasure_islands.js:29
 msgid "No winner yet, prepare for battle!"
-msgstr ""
+msgstr "Победителя еще нет, готовьтесь к бою!"
 
 #: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr "Сокровищница противника заполнена — ты проиграл!"
+msgstr "Сокровищница противника заполнена — вы проиграли!"
 
 #: maps/scenarios/treasure_islands.js:46
 msgid "Your treasury is filled to the brim, you are victorious!"
-msgstr "Ваша сокровищница заполнена — ты победитель!"
+msgstr "Ваша сокровищница заполнена — вы выиграли!"
 
 #: maps/scenarios/treasure_islands.js:58
 msgid "Hurry up! Your enemy is close to victory!"
@@ -561,14 +562,14 @@ msgstr "Вы собрали сокровище!"
 
 #: maps/scenarios/treasure_islands.js:89
 msgid "Defeat your enemy to win!"
-msgstr "Уничтожь врага для победы!"
+msgstr "Уничтожьте врага для победы!"
 
 #: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
-msgstr "Весна в Аркадии, в Греции. Весенние дожди напитали обычно сухие русла ручьёв в остальное время года, разделив земли между двумя враждующими племенами. \n \nИгроки начинают по обе стороны гористой местности, богатой ресурсами. Дополнительные стартовые здания помогут игрокам начать строить новые колонии."
+msgstr "Весна в Аркадии, в Греции. Дожди напитали обычно сухие в остальное время года русла ручьёв, разделив земли между двумя враждующими племенами. \n \nИгроки начинают по обе стороны гористой местности, богатой ресурсами. Дополнительные стартовые здания помогут игрокам начать строить новые колонии."
 
 #: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
@@ -715,7 +716,7 @@ msgstr "Аркадия"
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
-msgstr "Помоги молодой Массалии добиться мира или изгнать греков из Галлии."
+msgstr "Помогите молодой Массалии добиться мира или изгнать греков из Галлии."
 
 #: maps/scenarios/Azure Coast(2).xml:PlayerData[0].Name:31
 msgid "Greeks"
@@ -1405,7 +1406,7 @@ msgstr "Песочница  - Селевкиды"
 #: maps/scenarios/Sandbox - Spartans.xml:Description:41
 msgid ""
 "Play with the Spartans faction in a non-threatening sandbox environment."
-msgstr "Играй с фракцией Спартанцев в безопасной песочнице."
+msgstr "Сыграйте с фракцией Спартанцев в безопасной песочнице."
 
 #: maps/scenarios/Sandbox - Spartans.xml:Name:41
 msgid "Sandbox - The Spartans"
@@ -1730,7 +1731,7 @@ msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
-msgstr "Игроки начинают с двух противоположных островов с очень неровным рельефом, что сделает высадку трудной.\n \nПервоначально принадлежали торрейцам, а впоследствии этрускам, фокецам и сиракузцам. Рим отвоевал эти два острова у Карфагена во время Первой Пунической войны и в 238 году до н.э., создал провинцию \"Корсика и Сардиния\". Корсиканцы регулярно восставали, и в течение века остров потерял две трети своего корсиканского населения."
+msgstr "Игроки начинают с двух противоположных островов с очень неровным рельефом, что делает высадку трудной.\n \nИзначально принадлежали торрейцам, а впоследствии этрускам, фокецам и сиракузцам. Рим отвоевал эти острова у Карфагена во время Первой Пунической войны и в 238 году до н.э., создал провинцию \"Корсика и Сардиния\". Корсиканцы регулярно восставали, и в течение века остров потерял две трети своего корсиканского населения."
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:Name:42
 msgid "Corsica and Sardinia (4)"
@@ -1795,11 +1796,11 @@ msgstr "Деканское плоскогорье (2)"
 msgid ""
 "A forest battle map where all players fight for supremacy and control over "
 "the middle."
-msgstr ""
+msgstr "Карта лесного сражения, где все игроки сражаются за превосходство и контроль над центром."
 
 #: maps/skirmishes/Forest Battle (4).xml:Name:40
 msgid "Forest Battle (4)"
-msgstr ""
+msgstr "Лесное сражение (4)"
 
 #: maps/skirmishes/Gallic Fields (3).xml:Description:41
 msgid ""

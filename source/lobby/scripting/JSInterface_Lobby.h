@@ -31,19 +31,19 @@ namespace JSI_Lobby
 	void SetRankedGame(ScriptInterface::CxPrivate* pCxPrivate, bool isRanked);
 
 #if CONFIG2_LOBBY
-	void StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password, std::wstring room, std::wstring nick, int historyRequestSize);
-	void StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, std::wstring username, std::wstring password);
+	void StartXmppClient(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& username, const std::wstring& password, const std::wstring& room, const std::wstring& nick, int historyRequestSize);
+	void StartRegisterXmppClient(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& username, const std::wstring& password);
 	void StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void ConnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void DisconnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendGetGameList(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendGetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendGetRatingList(ScriptInterface::CxPrivate* pCxPrivate);
-	void SendGetProfile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring player);
+	void SendGetProfile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& player);
 	void SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
 	void SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
 	void SendUnregisterGame(ScriptInterface::CxPrivate* pCxPrivate);
-	void SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nbp, std::wstring players);
+	void SendChangeStateGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nbp, const std::wstring& players);
 	JS::Value GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate);
 	void LobbyClearPresenceUpdates(ScriptInterface::CxPrivate* pCxPrivate);
 	int LobbyGetMucMessageCount(ScriptInterface::CxPrivate* pCxPrivate);
@@ -51,21 +51,21 @@ namespace JSI_Lobby
 	JS::Value GetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value GetProfile(ScriptInterface::CxPrivate* pCxPrivate);
 	JS::Value LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate);
-	void LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring message);
-	void LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, std::wstring presence);
-	void LobbySetNick(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick);
+	void LobbySendMessage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& message);
+	void LobbySetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& presence);
+	void LobbySetNick(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick);
 	std::wstring LobbyGetNick(ScriptInterface::CxPrivate* pCxPrivate);
-	void LobbyKick(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick, std::wstring reason);
-	void LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nick, std::wstring reason);
-	std::wstring LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nickname);
-	std::wstring LobbyGetPlayerRole(ScriptInterface::CxPrivate* pCxPrivate, std::wstring nickname);
+	void LobbyKick(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick, const std::wstring& reason);
+	void LobbyBan(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nick, const std::wstring& reason);
+	std::wstring LobbyGetPlayerPresence(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname);
+	std::wstring LobbyGetPlayerRole(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& nickname);
 	std::wstring LobbyGetRoomSubject(ScriptInterface::CxPrivate* pCxPrivate);
 
 	// Non-public secure PBKDF2 hash function with salting and 1,337 iterations
 	std::string EncryptPassword(const std::string& password, const std::string& username);
 
 	// Public hash interface.
-	std::wstring EncryptPassword(ScriptInterface::CxPrivate* pCxPrivate, std::wstring pass, std::wstring user);
+	std::wstring EncryptPassword(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& pass, const std::wstring& user);
 #endif // CONFIG2_LOBBY
 }
 

@@ -134,9 +134,14 @@ function deleteReplayWithoutConfirmation()
  */
 function reallyDeleteReplay(replayDirectory)
 {
+	var replaySelection = Engine.GetGUIObjectByName("replaySelection");
+	var selectedIndex = replaySelection.selected;
+
 	if (!Engine.DeleteReplay(replayDirectory))
 		error(sprintf("Could not delete replay '%(id)s'", { "id": replayDirectory }));
 
 	// Refresh replay list
 	init();
+
+	replaySelection.selected = Math.min(selectedIndex, g_ReplaysFiltered.length - 1);
 }

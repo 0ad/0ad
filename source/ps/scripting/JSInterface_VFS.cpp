@@ -81,7 +81,7 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 //
 // note: full pathnames of each file/subdirectory are returned,
 // ready for use as a "filename" for the other functions.
-JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::wstring path, std::wstring filterStr, bool recurse)
+JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& path, const std::wstring& filterStr, bool recurse)
 {
 	// convert to const wchar_t*; if there's no filter, pass 0 for speed
 	// (interpreted as: "accept all files without comparing").
@@ -102,7 +102,7 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::
 //
 // if (fileExists(filename)) { ... }
 //   filename: VFS filename (may include path)
-bool JSI_VFS::FileExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW filename)
+bool JSI_VFS::FileExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& filename)
 {
 	return (g_VFS->GetFileInfo(filename, 0) == INFO::OK);
 }
@@ -112,7 +112,7 @@ bool JSI_VFS::FileExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW f
 //
 // mtime = getFileMTime(filename);
 //   filename: VFS filename (may include path)
-double JSI_VFS::GetFileMTime(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring filename)
+double JSI_VFS::GetFileMTime(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
 {
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
@@ -126,7 +126,7 @@ double JSI_VFS::GetFileMTime(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std
 //
 // size = getFileSize(filename);
 //   filename: VFS filename (may include path)
-unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring filename)
+unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
 {
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
@@ -140,7 +140,7 @@ unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)
 //
 // contents = readFile(filename);
 //   filename: VFS filename (may include path)
-JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
+JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
@@ -165,7 +165,7 @@ JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring
 //
 // lines = readFileLines(filename);
 //   filename: VFS filename (may include path)
-JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
+JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);

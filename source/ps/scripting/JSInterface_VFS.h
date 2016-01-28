@@ -38,37 +38,37 @@ namespace JSI_VFS
 	//
 	// note: full pathnames of each file/subdirectory are returned,
 	// ready for use as a "filename" for the other functions.
-	JS::Value BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::wstring path, std::wstring filterStr, bool recurse);
+	JS::Value BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& path, const std::wstring& filterStr, bool recurse);
 
 	// Return true iff the file exists
 	//
 	// if (fileExists(filename) { ... }
 	//   filename: VFS filename (may include path)
-	bool FileExists(ScriptInterface::CxPrivate* pCxPrivate, CStrW filename);
+	bool FileExists(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& filename);
 
 	// Return time [seconds since 1970] of the last modification to the specified file.
 	//
 	// mtime = getFileMTime(filename);
 	//   filename: VFS filename (may include path)
-	double GetFileMTime(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
+	double GetFileMTime(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 
 	// Return current size of file.
 	//
 	// size = getFileSize(filename);
 	//   filename: VFS filename (may include path)
-	unsigned int GetFileSize(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
+	unsigned int GetFileSize(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 
 	// Return file contents in a string.
 	//
 	// contents = readFile(filename);
 	//   filename: VFS filename (may include path)
-	JS::Value ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
+	JS::Value ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 
 	// Return file contents as an array of lines.
 	//
 	// lines = readFileLines(filename);
 	//   filename: VFS filename (may include path)
-	JS::Value ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
+	JS::Value ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 }
 
 #endif

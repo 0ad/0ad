@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -34,10 +34,8 @@
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/wdbg_sym.h"			// wdbg_sym_WriteMinidump
 
-#if MSC_VERSION >= 1400
-# include <process.h>			// __security_init_cookie
-# define NEED_COOKIE_INIT
-#endif
+#include <process.h>			// __security_init_cookie
+#define NEED_COOKIE_INIT
 
 // note: several excellent references are pointed to by comments below.
 
@@ -355,45 +353,14 @@ C++ classes. this way is more reliable/documented, but has several drawbacks:
 
 #include "lib/utf8.h"
 
-// disable argument conversion on ICC because it says "nonstandard second parameter "__wchar_t *[]" of "main"" and
-// "unresolved external symbol _wmain referenced in function ___tmainCRTStartup" (extern "C" { and __cdecl don't help) 
-#if ICC_VERSION
-#define MAIN_STARTUP mainCRTStartup
-
-#else
-#define MAIN_STARTUP wmainCRTStartup
-
-EXTERN_C int main(int argc, char* argv[]);
-
-// required because main's argv is in a non-UTF8 encoding
-int wmain(int argc, wchar_t* argv[])
-{
-	if(argc == 0)
-		return EXIT_FAILURE;	// ensure &utf8_argv[0] is safe
-	std::vector<char*> utf8_argv(argc);
-	for(int i = 0; i < argc; i++)
-	{
-		std::string utf8 = utf8_from_wstring(argv[i]);
-		utf8_argv[i] = strdup(utf8.c_str());
-	}
-
-	const int ret = main(argc, &utf8_argv[0]);
-
-	for(int i = 0; i < argc; i++)
-		free(utf8_argv[i]);
-	return ret;
-}
-
-#endif
-
-EXTERN_C int MAIN_STARTUP();
+EXTERN_C int wmainCRTStartup();
 
 static int CallStartupWithinTryBlock()
 {
 	int ret;
 	__try
 	{
-		ret = MAIN_STARTUP();
+		ret = wmainCRTStartup();
 	}
 	__except(wseh_ExceptionFilter(GetExceptionInformation()))
 	{

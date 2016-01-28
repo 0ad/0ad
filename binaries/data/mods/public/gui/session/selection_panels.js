@@ -1000,8 +1000,6 @@ g_SelectionPanels.Selection = {
 	{
 		if (data.template.icon)
 			data.icon.sprite = "stretched:session/portraits/" + data.template.icon;
-
-		data.button.enabled = controlsPlayer(data.unitEntState.player);
 	}
 };
 

@@ -60,8 +60,7 @@ var g_StatusMessageTypes = {
 	"connected": msg => translate("Connected to the server."),
 	"disconnected": msg => translate("Connection to the server has been lost.") + "\n" +
 	                // Translation: States the reason why the client disconnected from the server.
-	                sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason) }) + "\n" +
-	                translate("The game has ended."),
+	                sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason) }),
 	"waiting_for_players": msg => translate("Waiting for other players to connect..."),
 	"join_syncing": msg => translate("Synchronising gameplay with other players..."),
 	"active": msg => ""
@@ -269,7 +268,7 @@ function getCheatsData()
  */
 function executeCheat(text)
 {
-	if (g_IsObserver || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
+	if (Engine.GetPlayerID() == -1 || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
 		return false;
 
 	// Find the cheat code that is a prefix of the user input
@@ -406,8 +405,6 @@ function handleNetStatusMessage(message)
 	if (message.status == "disconnected")
 	{
 		g_Disconnected = true;
-		closeChat();
-		closeMenu();
 		closeOpenDialogs();
 	}
 }
@@ -568,16 +565,22 @@ function formatDefeatMessage(msg)
 
 function formatDiplomacyMessage(msg)
 {
-	// Check observer first
-	let use = {
-		"observer": g_IsObserver,
-		"active": Engine.GetPlayerID() == msg.sourcePlayer,
-		"passive": Engine.GetPlayerID() == msg.targetPlayer
-	};
-
-	let messageType = Object.keys(use).find(v => use[v]);
-	if (!messageType)
+	let messageType;
+	switch (Engine.GetPlayerID())
+	{
+	// Check observer first, since we also want to see if the selected player in the developer-overlay has changed the diplomacy
+	case -1:
+		messageType = "observer";
+		break;
+	case msg.sourcePlayer:
+		messageType = "active";
+		break;
+	case msg.targetPlayer:
+		messageType = "passive";
+		break;
+	default:
 		return "";
+	}
 
 	return sprintf(g_DiplomacyMessages[messageType][msg.status], {
 		"player": colorizePlayernameByID(messageType == "active" ? msg.targetPlayer : msg.sourcePlayer),
@@ -589,7 +592,7 @@ function formatTributeMessage(msg)
 {
 	// Check observer first, since we also want to see if the selected player in the developer-overlay has sent tributes
 	let message = "";
-	if (g_IsObserver)
+	if (Engine.GetPlayerID() == -1)
 		message = translate("%(player)s has sent %(player2)s %(amounts)s.");
 	else if (msg.targetPlayer == Engine.GetPlayerID())
 		message = translate("%(player)s has sent you %(amounts)s.");
@@ -603,7 +606,6 @@ function formatTributeMessage(msg)
 
 function formatAttackMessage(msg)
 {
-	// TODO: Show this to observers?
 	if (msg.player != Engine.GetPlayerID())
 		return "";
 
@@ -666,7 +668,7 @@ function checkChatAddressee(msg)
 	if (msg.text[0] != '/')
 		return true;
 
-	if (g_IsObserver)
+	if (Engine.GetPlayerID() == -1)
 		return false;
 
 	let cmd = msg.text.split(/\s/)[0];

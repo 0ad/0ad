@@ -59,7 +59,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	// and if yes, add this base in our target list
 	if (entity.unitAIState() && entity.unitAIState() == "INDIVIDUAL.REPAIR.REPAIRING")
 	{
-		let targetId = entity.unitAIOrderData()[0]["target"];
+		let targetId = entity.unitAIOrderData()[0].target;
 		if (this.targetList.indexOf(targetId) !== -1)
 			return true;
 		let target = gameState.getEntityById(targetId);
@@ -114,7 +114,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	let myBuildings = gameState.getOwnStructures();
 	for (let building of myBuildings.values())
 	{
-		if (building.foundationProgress() == 0)
+		if (building.foundationProgress() === 0)
 			continue;
 		if (API3.SquareVectorDistance(building.position(), entity.position()) < dist2Min)
 			return true;
@@ -131,7 +131,7 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 
 	if (i === PlayerID)
 	{
-		if (this.armies.length == 0)
+		if (!this.armies.length)
 		{
 			// check if we can recover capture points from any of our notdecaying structures		
 			for (let ent of gameState.getOwnStructures().values())
@@ -168,9 +168,9 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 			if (!ent.unitAIState() || ent.unitAIState().split(".")[1] !== "COMBAT")
 				continue;
 			let orders = ent.unitAIOrderData();
-			if (!orders || !orders.length || !orders[0]["target"])
+			if (!orders || !orders.length || !orders[0].target)
 				continue;
-			let target = gameState.getEntityById(orders[0]["target"]);
+			let target = gameState.getEntityById(orders[0].target);
 			if (!target || !gameState.isPlayerAlly(target.owner()))
 				continue;
 		}
@@ -324,7 +324,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 	});
 	
 	for (let a = 0; a < armiesNeeding.length; ++a)
-		armiesNeeding[a]["army"].recalculatePosition(gameState);
+		armiesNeeding[a].army.recalculatePosition(gameState);
 
 	for (let i = 0; i < potentialDefenders.length; ++i)
 	{
@@ -335,7 +335,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		let distMin;
 		for (let a = 0; a < armiesNeeding.length; ++a)
 		{
-			let dist = API3.SquareVectorDistance(ent.position(), armiesNeeding[a]["army"].foePosition);
+			let dist = API3.SquareVectorDistance(ent.position(), armiesNeeding[a].army.foePosition);
 			if (aMin !== undefined && dist > distMin)
 				continue;
 			aMin = a;
@@ -343,25 +343,25 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		}
 
 		// if outside our territory (helping an ally or attacking a cc foundation), keep some troops in backup
-		if (i < 12 && this.territoryMap.getOwner(armiesNeeding[aMin]["army"].foePosition) !== PlayerID)
+		if (i < 12 && this.territoryMap.getOwner(armiesNeeding[aMin].army.foePosition) !== PlayerID)
 			continue;
 
-		armiesNeeding[aMin]["need"] -= m.getMaxStrength(ent);
-		armiesNeeding[aMin]["army"].addOwn(gameState, potentialDefenders[i]);
-		armiesNeeding[aMin]["army"].assignUnit(gameState, potentialDefenders[i]);
+		armiesNeeding[aMin].need -= m.getMaxStrength(ent);
+		armiesNeeding[aMin].army.addOwn(gameState, potentialDefenders[i]);
+		armiesNeeding[aMin].army.assignUnit(gameState, potentialDefenders[i]);
 
-		if (armiesNeeding[aMin]["need"] <= 0)
+		if (armiesNeeding[aMin].need <= 0)
 			armiesNeeding.splice(aMin, 1);
-		if (armiesNeeding.length === 0)
+		if (!armiesNeeding.length)
 			break;
 	}
 
-	if (armiesNeeding.length === 0)
+	if (!armiesNeeding.length)
 		return;
 	// If shortage of defenders, produce infantry garrisoned in nearest civil centre
 	var armiesPos = [];
 	for (let a = 0; a < armiesNeeding.length; ++a)
-		armiesPos.push(armiesNeeding[a]["army"].foePosition);
+		armiesPos.push(armiesNeeding[a].army.foePosition);
 	gameState.ai.HQ.trainEmergencyUnits(gameState, armiesPos);
 };
 
@@ -435,7 +435,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 					let capture = target.capturePoints();
 					for (let j = 0; j < capture.length; ++j)
 					{
-						if (!gameState.isPlayerEnemy(j) || capture[j] == 0)
+						if (!gameState.isPlayerEnemy(j) || capture[j] === 0)
 							continue;
 						abort = false;
 						break;
@@ -448,16 +448,16 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		}
 
 		// try to garrison any attacked support unit if low healthlevel
-		if (target.hasClass("Support") && target.healthLevel() < 0.55 && !target.getMetadata(PlayerID, "transport")
-			&& plan !== -2 && plan !== -3)
+		if (target.hasClass("Support") && target.healthLevel() < 0.55 &&
+			!target.getMetadata(PlayerID, "transport") && plan !== -2 && plan !== -3)
 		{
 			this.garrisonUnitForHealing(gameState, target);
 			continue;
 		}
 
 		// try to garrison any attacked range siege unit 
-		if (target.hasClass("Siege") && !target.hasClass("Melee") && !target.getMetadata(PlayerID, "transport")
-			&& plan !== -2 && plan !== -3)
+		if (target.hasClass("Siege") && !target.hasClass("Melee") &&
+			!target.getMetadata(PlayerID, "transport") && plan !== -2 && plan !== -3)
 		{
 			this.garrisonSiegeUnit(gameState, target);
 			continue;
@@ -473,8 +473,8 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 
 m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, target, data)
 {
-	let minGarrison = (data.min ? data.min : target.garrisonMax());
-	let typeGarrison = (data.type ? data.type : "protection");
+	let minGarrison = data.min ? data.min : target.garrisonMax();
+	let typeGarrison = data.type ? data.type : "protection";
 	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
 		return;
 	if (target.hitpoints() < target.garrisonEjectHealth() * target.maxHitpoints())

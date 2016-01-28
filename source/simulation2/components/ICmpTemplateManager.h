@@ -63,7 +63,7 @@ public:
 	 *
 	 * @return NULL on error
 	 */
-	virtual const CParamNode* GetTemplate(std::string templateName) = 0;
+	virtual const CParamNode* GetTemplate(const std::string& templateName) = 0;
 
 	/**
 	 * Like GetTemplate, except without doing the XML validation (so it's faster but
@@ -71,12 +71,12 @@ public:
 	 *
 	 * @return NULL on error
 	 */
-	virtual const CParamNode* GetTemplateWithoutValidation(std::string templateName) = 0;
+	virtual const CParamNode* GetTemplateWithoutValidation(const std::string& templateName) = 0;
 
 	/**
 	 * Check if the template XML file exists, without trying to load it.
 	 */
-	virtual bool TemplateExists(std::string templateName) = 0;
+	virtual bool TemplateExists(const std::string& templateName) = 0;
 
 	/**
 	 * Returns the template most recently specified for the entity 'ent'.
@@ -94,7 +94,7 @@ public:
 	/**
 	 * Returns the list of entities having the specified template.
 	 */
-	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(std::string templateName) = 0;
+	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(const std::string& templateName) = 0;
 
 	/**
 	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplate.

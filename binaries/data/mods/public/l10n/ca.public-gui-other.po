@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Catalanoic <catalanoic@gmail.com>, 2016
 # Francesc <kiski97@gmail.com>, 2015
 # Francesc Saló <whitrix@hotmail.es>, 2015
 # Gerard Trias <gtriasg@gmail.com>, 2015
@@ -12,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:00+0100\n"
-"PO-Revision-Date: 2016-01-12 20:07+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"POT-Creation-Date: 2016-01-15 09:00+0100\n"
+"PO-Revision-Date: 2016-01-24 13:52+0000\n"
+"Last-Translator: Catalanoic <catalanoic@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -535,7 +536,7 @@ msgstr "Armadura:"
 
 #: gui/common/tooltips.js:85 gui/common/tooltips.js:112
 #: gui/common/tooltips.js:171 gui/structree/draw.js:347
-#: gui/structree/draw.js:372
+#: gui/structree/draw.js:373
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -753,14 +754,14 @@ msgstr "Cap"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Si"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
@@ -992,67 +993,75 @@ msgstr "Limita els FPS als menús"
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr "Limita els FPS a 50 a tots els menús per estalviar energia."
 
-#: gui/options/options.js:41
+#: gui/options/options.js:38
+msgid "Graphics quality"
+msgstr "Qualitat dels gràfics"
+
+#: gui/options/options.js:38
+msgid "Graphics quality. REQUIRES GAME RESTART"
+msgstr "Qualitat dels gràfics. CAL REINICIAR EL JOC"
+
+#: gui/options/options.js:42
 msgid "Master Gain"
 msgstr "Volum general"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Master audio gain"
 msgstr "Volum general"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Music Gain"
 msgstr "Volum de la música"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game music gain"
 msgstr "Volum de la música del joc"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Ambient Gain"
 msgstr "Volum ambiental"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game ambient sound gain"
 msgstr "Volum dels sons ambientals"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Action Gain"
 msgstr "Volum de les unitats"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "In game unit action sound gain"
 msgstr "Volum del so de les unitats"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI Gain"
 msgstr "Volum de la interfície d'usuari"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI sound gain"
 msgstr "Volum dels sons de la interfície d'usuari"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Backlog"
 msgstr "Historial del xat"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Nombre de missatges desats que cal carregar en entrar a la sala multijugador"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Chat Timestamp"
 msgstr "Data i hora del xat"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Mostra l'hora quan s'han publicat els missatges al xat del multijugador"
 
-#: gui/options/options.js:251
+#: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
 msgstr "Hi ha canvis sense desar, segur que voleu sortir?"
 
-#: gui/options/options.js:252 gui/savedgames/load.js:89
+#: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Advertència"
 
@@ -1358,12 +1367,12 @@ msgstr "SOBREESCRIU LA PARTIDA DESADA"
 msgid "Health:"
 msgstr "Salut:"
 
-#: gui/structree/draw.js:367
+#: gui/structree/draw.js:368
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:373
+#: gui/structree/draw.js:374
 msgid "Gather Rates:"
 msgstr "Velocitat de recollida:"
 
@@ -1669,8 +1678,8 @@ msgid "Lobby Settings"
 msgstr "Configuració de la sala multijugador"
 
 #: gui/options/options.xml:(caption):69
-msgid "Reload"
-msgstr "Torna a carregar"
+msgid "Revert"
+msgstr "Reverteix"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1681,12 +1690,12 @@ msgid "Quit"
 msgstr "Surt"
 
 #: gui/options/options.xml:(tooltip):70
-msgid "Reload default values from file"
-msgstr "Carrega els valors per defecte del fitxer"
+msgid "Revert to previous saved settings"
+msgstr "Reverteix a una configuració desada"
 
 #: gui/options/options.xml:(tooltip):75
-msgid "Save changes to file"
-msgstr "Desa els canvis a un fitxer"
+msgid "Save changes"
+msgstr "Desa els canvis"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"
@@ -1960,7 +1969,7 @@ msgstr "Jugadors:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 msgid "Spoiler"
-msgstr ""
+msgstr "Spoiler"
 
 #: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Main Menu"
@@ -2040,7 +2049,7 @@ msgstr "Civilització:"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
-msgstr ""
+msgstr "Unitats d'entrenament"
 
 #: gui/summary/summary.xml:(caption):65
 msgid "Score"

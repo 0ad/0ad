@@ -166,7 +166,7 @@ public:
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global));
 
-	virtual void SetSelectionHighlight(CColor color, bool selected)
+	virtual void SetSelectionHighlight(const CColor& color, bool selected)
 	{
 		m_Selected = selected;
 		m_Color.r = color.r;

@@ -31,7 +31,7 @@ class ICmpCinemaManager : public IComponent
 {
 public:
 	// TODO: add path name and description
-	virtual void AddCinemaPathToQueue(CStrW name) = 0;
+	virtual void AddCinemaPathToQueue(const CStrW& name) = 0;
 	
 	virtual void Play() = 0;
 	virtual void Stop() = 0;

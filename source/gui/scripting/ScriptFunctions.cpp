@@ -87,12 +87,12 @@ namespace {
 // Note that the initData argument may only contain clonable data.
 // Functions aren't supported for example!
 // TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
-void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, JS::HandleValue initData)
+void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData)
 {
 	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData));
 }
 
-void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, JS::HandleValue initData)
+void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData)
 {
 	g_GUI->SwitchPage(name, pCxPrivate->pScriptInterface, initData);
 }
@@ -110,7 +110,7 @@ void PopGuiPageCB(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args)
 	g_GUI->PopPageCB(pCxPrivate->pScriptInterface->WriteStructuredClone(args));
 }
 
-JS::Value GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, JS::HandleValue data)
+JS::Value GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue data)
 {
 	if (!g_Game)
 		return JS::UndefinedValue();
@@ -183,7 +183,7 @@ std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate*
 	return entities;
 }
 
-std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
+std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
 {
 	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetPlayerID(), includeOffScreen, matchRank, false, allowFoundations);
 }
@@ -194,7 +194,7 @@ CFixedVector3D GetTerrainAtScreenPoint(ScriptInterface::CxPrivate* UNUSED(pCxPri
 	return CFixedVector3D(fixed::FromFloat(pos.X), fixed::FromFloat(pos.Y), fixed::FromFloat(pos.Z));
 }
 
-std::wstring SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring name)
+std::wstring SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
 {
 	std::wstring old = g_CursorName;
 	g_CursorName = name;
@@ -250,7 +250,7 @@ void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, 
 	g_Game->StartGame(&gameAttribs, "");
 }
 
-JS::Value StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name)
+JS::Value StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name)
 {
 	// We need to be careful with different compartments and contexts.
 	// The GUI calls this function from the GUI context and expects the return value in the same context.
@@ -294,14 +294,14 @@ JS::Value StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring na
 	return guiContextMetadata;
 }
 
-void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename, std::wstring description, JS::HandleValue GUIMetadata)
+void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata)
 {
 	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
 	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), GUIMetadataClone, g_Game->GetPlayerID()) < 0)
 		LOGERROR("Failed to save game");
 }
 
-void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, std::wstring prefix, std::wstring description, JS::HandleValue GUIMetadata)
+void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata)
 {
 	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
 	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), GUIMetadataClone, g_Game->GetPlayerID()) < 0)
@@ -320,7 +320,7 @@ void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::Handle
 	g_NetServer->UpdateGameAttributes(&attribs, *(pCxPrivate->pScriptInterface));
 }
 
-void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, std::wstring playerName)
+void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& playerName)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -346,7 +346,7 @@ void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, std::wstring playe
 	}
 }
 
-void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, std::wstring playerName, std::string serverAddress)
+void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& playerName, const std::string& serverAddress)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -372,7 +372,7 @@ void DisconnectNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	SAFE_DELETE(g_Game);
 }
 
-bool KickPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStrW playerName, bool ban)
+bool KickPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& playerName, bool ban)
 {
 	if (!g_NetServer)
 		return false;
@@ -393,14 +393,14 @@ JS::Value PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
 	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
 }
 
-void AssignNetworkPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int playerID, std::string guid)
+void AssignNetworkPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int playerID, const std::string& guid)
 {
 	ENSURE(g_NetServer);
 
 	g_NetServer->AssignPlayer(playerID, guid);
 }
 
-void SetNetworkPlayerStatus(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string guid, int ready)
+void SetNetworkPlayerStatus(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& guid, int ready)
 {
 	ENSURE(g_NetServer);
 
@@ -414,7 +414,7 @@ void ClearAllPlayerReady (ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_NetServer->ClearAllPlayerReady();
 }
 
-void SendNetworkChat(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring message)
+void SendNetworkChat(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& message)
 {
 	ENSURE(g_NetClient);
 
@@ -445,12 +445,12 @@ JS::Value GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate)
 	return SavedGames::GetSavedGames(*(pCxPrivate->pScriptInterface));
 }
 
-bool DeleteSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring name)
+bool DeleteSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
 {
 	return SavedGames::DeleteSavedGame(name);
 }
 
-void OpenURL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string url)
+void OpenURL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& url)
 {
 	sys_open_url(url);
 }
@@ -475,7 +475,7 @@ bool IsAtlasRunning(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return (g_AtlasGameLoop && g_AtlasGameLoop->running);
 }
 
-JS::Value LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, VfsPath pathname)
+JS::Value LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& pathname)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
@@ -587,12 +587,12 @@ entity_id_t GetFollowedEntity(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return INVALID_ENTITY;
 }
 
-bool HotkeyIsPressed_(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string hotkeyName)
+bool HotkeyIsPressed_(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& hotkeyName)
 {
 	return HotkeyIsPressed(hotkeyName);
 }
 
-void DisplayErrorDialog(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring msg)
+void DisplayErrorDialog(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& msg)
 {
 	debug_DisplayError(msg.c_str(), DE_NO_DEBUG_INFO, NULL, NULL, NULL, 0, NULL, NULL);
 }
@@ -617,7 +617,7 @@ std::string GetUserReportStatus(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return g_UserReporter.GetStatus();
 }
 
-void SubmitUserReport(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string type, int version, std::wstring data)
+void SubmitUserReport(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& type, int version, const std::wstring& data)
 {
 	g_UserReporter.SubmitReport(type.c_str(), version, utf8_from_wstring(data));
 }
@@ -768,7 +768,7 @@ int GetFps(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return freq;
 }
 
-JS::Value GetGUIObjectByName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStr name)
+JS::Value GetGUIObjectByName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStr& name)
 {
 	IGUIObject* guiObj = g_GUI->FindObjectByName(name);
 	if (guiObj)
@@ -840,7 +840,7 @@ std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), i
 	return wstring_from_utf8(buf);
 }
 
-JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath)
+JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
@@ -849,7 +849,7 @@ JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring file
 	return out;
 }
 
-void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, JS::HandleValue val1)
+void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, JS::HandleValue val1)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
@@ -865,12 +865,12 @@ void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath
 	g_VFS->CreateFile(path, buf.Data(), buf.Size());
 }
 
-bool TemplateExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName)
+bool TemplateExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName)
 {
 	return g_GUI->TemplateExists(templateName);
 }
 
-CParamNode GetTemplate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName)
+CParamNode GetTemplate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName)
 {
 	return g_GUI->GetTemplate(templateName);
 }

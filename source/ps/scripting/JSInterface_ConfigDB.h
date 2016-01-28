@@ -23,12 +23,12 @@
 
 namespace JSI_ConfigDB
 {
-	bool GetConfigNamespace(std::wstring cfgNsString, EConfigNamespace& cfgNs);
-	std::string GetValue(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString, std::string name);
-	bool CreateValue(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString, std::string name, std::string value);
-	bool WriteFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString, Path path);
-	bool Reload(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString);
-	bool SetFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring cfgNsString, Path path);
+	bool GetConfigNamespace(const std::wstring& cfgNsString, EConfigNamespace& cfgNs);
+	std::string GetValue(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name);
+	bool CreateValue(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value);
+	bool WriteFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const Path& path);
+	bool Reload(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString);
+	bool SetFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const Path& path);
 	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
 }
 

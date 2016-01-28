@@ -29,9 +29,9 @@ BOOST_VERSION="boost_1_60_0"
 WXWIDGETS_VERSION="wxWidgets-3.0.2"
 JPEG_VERSION="jpegsrc.v8d"
 JPEG_DIR="jpeg-8d" # Must match directory name inside source tarball
-# * libpng was included as part of X11 but that's removed from Mountain Lion
-#   (also the Snow Leopard version was ancient 1.2)
-PNG_VERSION="libpng-1.6.20"
+# libpng was included as part of X11 but that's removed from Mountain Lion
+# (also the Snow Leopard version was ancient 1.2)
+PNG_VERSION="libpng-1.6.21"
 OGG_VERSION="libogg-1.3.2"
 VORBIS_VERSION="libvorbis-1.3.5"
 # gloox is necessary for multiplayer lobby
@@ -39,6 +39,7 @@ GLOOX_VERSION="gloox-1.0.14"
 # NSPR is necessary for threadsafe Spidermonkey
 NSPR_VERSION="4.11"
 # OS X only includes part of ICU, and only the dylib
+# NOTE: remember to also update LIB_URL below when changing version
 ICU_VERSION="icu4c-56_1"
 ENET_VERSION="enet-1.3.13"
 MINIUPNPC_VERSION="miniupnpc-1.9.20151026"
@@ -319,7 +320,7 @@ then
   pushd $LIB_DIRECTORY
 
   # Can't use macosx-version, see above comment.
-(./bootstrap.sh --with-libraries=filesystem,system,signals --prefix=$INSTALL_DIR && ./b2 cflags="$CFLAGS" toolset=clang cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" ${JOBS} -d2 --layout=tagged --debug-configuration link=static threading=multi variant=release,debug install) || die "Boost build failed"
+(./bootstrap.sh --with-libraries=filesystem,system --prefix=$INSTALL_DIR && ./b2 cflags="$CFLAGS" toolset=clang cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" ${JOBS} -d2 --layout=tagged --debug-configuration link=static threading=multi variant=release,debug install) || die "Boost build failed"
 
   popd
   touch .already-built

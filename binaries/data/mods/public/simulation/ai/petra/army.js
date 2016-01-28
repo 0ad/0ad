@@ -312,14 +312,14 @@ m.Army.prototype.checkEvents = function (gameState, events)
 	// Warning the metadata is already cloned in shared.js. Futhermore, changes should be done before destroyEvents
 	// otherwise it would remove the old entity from this army list
 	// TODO we should may-be reevaluate the strength
-	for (let evt of events["EntityRenamed"])	// take care of promoted and packed units
+	for (let evt of events.EntityRenamed)	// take care of promoted and packed units
 	{
 		if (this.foeEntities.indexOf(evt.entity) !== -1)
 		{
 			let ent = gameState.getEntityById(evt.newentity);
 			if (ent && ent.templateName().indexOf("resource|") !== -1)  // corpse of animal killed
 				continue;
-			var idx = this.foeEntities.indexOf(evt.entity);
+			let idx = this.foeEntities.indexOf(evt.entity);
 			this.foeEntities[idx] = evt.newentity;
 			this.assignedAgainst[evt.newentity] = this.assignedAgainst[evt.entity];
 			this.assignedAgainst[evt.entity] = undefined;
@@ -329,7 +329,7 @@ m.Army.prototype.checkEvents = function (gameState, events)
 		}
 		else if (this.ownEntities.indexOf(evt.entity) !== -1)
 		{
-			var idx = this.ownEntities.indexOf(evt.entity);
+			let idx = this.ownEntities.indexOf(evt.entity);
 			this.ownEntities[idx] = evt.newentity;
 			this.assignedTo[evt.newentity] = this.assignedTo[evt.entity];
 			this.assignedTo[evt.entity] = undefined;
@@ -343,10 +343,10 @@ m.Army.prototype.checkEvents = function (gameState, events)
 		}
 	}
 
-	for (let evt of events["Garrison"])
+	for (let evt of events.Garrison)
 		this.removeFoe(gameState, evt.entity);
 
-	for (let evt of events["OwnershipChanged"])	// captured
+	for (let evt of events.OwnershipChanged)	// captured
 	{
 		if (!gameState.isPlayerEnemy(evt.to))
 			this.removeFoe(gameState, evt.entity);
@@ -354,7 +354,7 @@ m.Army.prototype.checkEvents = function (gameState, events)
 			this.removeOwn(gameState, evt.entity);
 	}
 
-	for (let evt of events["Destroy"])
+	for (let evt of events.Destroy)
 	{
 		let entityObj = evt.entityObj || undefined;
 		// we may have capture+destroy, so do not trust owner and check all possibilities

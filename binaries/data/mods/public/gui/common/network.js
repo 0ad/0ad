@@ -13,7 +13,7 @@ function getDisconnectReason(id)
 	switch (id)
 	{
 	case 0: return translate("Unknown reason");
-	case 1: return translate("Unexpected shutdown");
+	case 1: return translate("The host has ended the game");
 	case 2: return translate("Incorrect network protocol version");
 	case 3: return translate("Game is loading, please try later");
 	case 4: return translate("Game has already started, no observers allowed");

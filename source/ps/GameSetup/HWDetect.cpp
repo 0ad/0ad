@@ -190,7 +190,7 @@ void SetEnableSmoothLOS(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool ena
 		g_SmoothLOS = enabled;
 }
 
-void SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string renderpath)
+void SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& renderpath)
 {
 	g_RenderPath = renderpath;
 }

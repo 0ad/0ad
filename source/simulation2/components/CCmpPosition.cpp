@@ -297,7 +297,7 @@ public:
 		return &m_Turrets;
 	}
 
-	virtual void SetTurretParent(entity_id_t id, CFixedVector3D offset)
+	virtual void SetTurretParent(entity_id_t id, const CFixedVector3D& offset)
 	{
 		if (m_TurretParent != INVALID_ENTITY)
 		{

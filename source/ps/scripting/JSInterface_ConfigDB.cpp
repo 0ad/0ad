@@ -23,7 +23,7 @@
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
 
-bool JSI_ConfigDB::GetConfigNamespace(std::wstring cfgNsString, EConfigNamespace& cfgNs)
+bool JSI_ConfigDB::GetConfigNamespace(const std::wstring& cfgNsString, EConfigNamespace& cfgNs)
 {
 	if (cfgNsString == L"default")
 		cfgNs = CFG_DEFAULT;
@@ -42,7 +42,7 @@ bool JSI_ConfigDB::GetConfigNamespace(std::wstring cfgNsString, EConfigNamespace
 	return true;
 }
 
-std::string JSI_ConfigDB::GetValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString, std::string name)
+std::string JSI_ConfigDB::GetValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, const std::string& name)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -53,7 +53,7 @@ std::string JSI_ConfigDB::GetValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate
 	return value;
 }
 
-bool JSI_ConfigDB::CreateValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString, std::string name, std::string value)
+bool JSI_ConfigDB::CreateValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, const std::string& name, const std::string& value)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -63,7 +63,7 @@ bool JSI_ConfigDB::CreateValue(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), s
 	return true;
 }
 
-bool JSI_ConfigDB::WriteFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString, Path path)
+bool JSI_ConfigDB::WriteFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, const Path& path)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -73,7 +73,7 @@ bool JSI_ConfigDB::WriteFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std
 	return ret;
 }
 
-bool JSI_ConfigDB::Reload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString)
+bool JSI_ConfigDB::Reload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -83,7 +83,7 @@ bool JSI_ConfigDB::Reload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::w
 	return ret;
 }
 
-bool JSI_ConfigDB::SetFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring cfgNsString, Path path)
+bool JSI_ConfigDB::SetFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString, const Path& path)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))

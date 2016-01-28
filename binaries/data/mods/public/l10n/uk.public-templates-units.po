@@ -7,13 +7,14 @@
 # Victor Ptah, 2015
 # Victor Ptah, 2015
 # Vladislav Trotsky <flyboooy17@gmail.com>, 2014-2015
-# Андрій Бандура <andriykopanytsia@gmail.com>, 2015
+# Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
+# Тарас Коржик <ordinarystory@i.ua>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-11 09:01+0100\n"
-"PO-Revision-Date: 2015-12-28 13:59+0000\n"
-"Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
+"POT-Creation-Date: 2016-01-15 09:01+0100\n"
+"PO-Revision-Date: 2016-01-21 00:58+0000\n"
+"Last-Translator: Тарас Коржик <ordinarystory@i.ua>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -283,15 +284,8 @@ msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Вбийте, а потім зберіть їжу з цього щедрого океанічного ресурсу."
 
 #: simulation/templates/template_unit_hero.xml:10
-#: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cunobelin.xml:11
-#: simulation/templates/units/gaul_hero_brennus.xml:10
-#: simulation/templates/units/gaul_hero_britomartus.xml:10
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
-#: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:13
-msgid "Hero Aura"
-msgstr "Геройська аура"
+msgid "Garrisoned Capture Aura"
+msgstr "Аура гарнізонного захоплення"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
@@ -475,7 +469,7 @@ msgstr "Аура натхнення"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
 msgid "Nearby males work 10% faster"
-msgstr "Місцеві чоловіки працюють на 10% швидше"
+msgstr "Чоловіки поблизу працюють на 10% швидше"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
@@ -703,7 +697,7 @@ msgstr "Продромос"
 #: simulation/templates/units/spart_support_healer_e.xml:4
 msgctxt "Rank"
 msgid "Elite"
-msgstr "Елітний"
+msgstr "Еліта"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 msgid "Greek Cavalry"
@@ -711,7 +705,7 @@ msgstr "Грецький кавалерист"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:8
 msgid "Hippeús"
-msgstr "Гипеі"
+msgstr "Гіпеї"
 
 #: simulation/templates/units/athen_champion_infantry.xml:6
 msgid "City Guard"
@@ -731,7 +725,7 @@ msgstr "Епібатес Атенайос"
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
 msgid "Scythian Archer"
-msgstr "Скіфський стрілець"
+msgstr "Скіфський лучник"
 
 #: simulation/templates/units/athen_champion_ranged.xml:7
 msgid "Toxótēs Skythikós"
@@ -763,7 +757,7 @@ msgstr "Іфікартес"
 
 #: simulation/templates/units/athen_hero_pericles.xml:11
 msgid "Builder Aura"
-msgstr "Будівельн аура"
+msgstr "Аура будівельника"
 
 #: simulation/templates/units/athen_hero_pericles.xml:12
 msgid "Buildings construct 15% faster within his vision."
@@ -771,7 +765,7 @@ msgstr "Будівлі зводяться на 15% швидше під його 
 
 #: simulation/templates/units/athen_hero_pericles.xml:21
 msgid "Acropolis Aura"
-msgstr "Акропольська аура"
+msgstr "Аура акрополя"
 
 #: simulation/templates/units/athen_hero_pericles.xml:22
 msgid "Temples are 50 stone cheaper during his lifetime."
@@ -791,7 +785,7 @@ msgstr "Аура флотоводця"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:12
 msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr "Коли розміщені на кораблі, цей корабель на +50% швидше."
+msgstr "Коли розміщені на кораблі, цей корабель на +50% швидший."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:20
 msgid "Naval Architect Aura"
@@ -820,7 +814,7 @@ msgstr "Пельтастес Фракс"
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:22
 #: simulation/templates/units/mace_infantry_archer_b.xml:20
 msgid "Cretan Mercenary Archer"
-msgstr "Критський найманець-стрілець"
+msgstr "Критський найманець-лучник"
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:21
@@ -829,7 +823,7 @@ msgstr "Токсетес Кретікос"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:15
 msgid "Athenian Slinger Militia"
-msgstr "Афінський пращник міліціянт"
+msgstr "Афінський військовий пращник"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:16
 msgid "Psilòs Athēnaîos"
@@ -952,6 +946,16 @@ msgstr "Боудіка"
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:21
 msgid "Heroine"
 msgstr "Героїня"
+
+#: simulation/templates/units/brit_hero_caratacos.xml:10
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
+#: simulation/templates/units/gaul_hero_brennus.xml:10
+#: simulation/templates/units/gaul_hero_britomartus.xml:10
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
+#: simulation/templates/units/mace_hero_demetrius.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:13
+msgid "Hero Aura"
+msgstr "Геройська аура"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11

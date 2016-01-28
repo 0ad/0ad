@@ -60,7 +60,7 @@ public:
 		Init(paramNode);
 	}
 
-	virtual void PlaySoundGroup(std::wstring name, entity_id_t source)
+	virtual void PlaySoundGroup(const std::wstring& name, entity_id_t source)
 	{
 		if ( ! g_SoundManager || (source == INVALID_ENTITY) )
 			return;

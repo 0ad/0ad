@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -199,18 +199,7 @@ void AtlasViewGame::Update(float realFrameLength)
 		// Update the whole world
 		// (Tell the game update not to interpolate graphics - we'll do that
 		// ourselves)
-		bool ok = g_Game->Update(actualFrameLength, false);
-		if (! ok)
-		{
-			// Whoops, we're trying to go faster than the simulation can manage.
-			// It's probably better to run at the right sim rate, at the expense
-			// of framerate, so let's try simulating a few more times.
-			double t = timer_Time();
-			while (!ok && timer_Time() < t + 0.1) // don't go much worse than 10fps
-			{
-				ok = g_Game->Update(0.0, false); // don't add on any extra sim time
-			}
-		}
+		g_Game->Update(actualFrameLength, false);
 
 		// Interpolate the graphics - we only want to do this once per visual frame,
 		// not in every call to g_Game->Update

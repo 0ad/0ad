@@ -73,9 +73,9 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 				{
 					if (gameState.ai.Config.debug > 0)
 					{
-						API3.warn("Petra garrison error: unit " + ent.id() + " (" + ent.genericName()
-							+ ") is expected to garrison in " + id + " (" + holder.genericName()
-							+ "), but has no such garrison order " + uneval(ent.unitAIOrderData()));
+						API3.warn("Petra garrison error: unit " + ent.id() + " (" + ent.genericName() +
+							  ") is expected to garrison in " + id + " (" + holder.genericName() +
+							  "), but has no such garrison order " + uneval(ent.unitAIOrderData()));
 						m.dumpEntity(ent);
 					}
 					list.splice(j--, 1);
@@ -89,11 +89,8 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 
 		if (gameState.ai.elapsedTime - holder.getMetadata(PlayerID, "holderTimeUpdate") > 3)
 		{
-			if (holder.attackRange("Ranged"))
-				var range = holder.attackRange("Ranged").max;
-			else
-				var range = 80;
-			var enemiesAround = false;
+			let range = holder.attackRange("Ranged") ? holder.attackRange("Ranged").max : 80;
+			let enemiesAround = false;
 			for (let ent of gameState.getEnemyEntities().values())
 			{
 				if (!ent.position())
@@ -165,8 +162,8 @@ m.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 	if (gameState.ai.Config.debug > 2)
 	{
 		warn("garrison unit " + ent.genericName() + " in " + holder.genericName() + " with type " + type);
-		warn(" we try to garrison a unit with plan " + ent.getMetadata(PlayerID, "plan") + " and role " + ent.getMetadata(PlayerID, "role")
-			+ " and subrole " +  ent.getMetadata(PlayerID, "subrole") + " and transport " +  ent.getMetadata(PlayerID, "transport"));
+		warn(" we try to garrison a unit with plan " + ent.getMetadata(PlayerID, "plan") + " and role " + ent.getMetadata(PlayerID, "role") +
+		     " and subrole " +  ent.getMetadata(PlayerID, "subrole") + " and transport " +  ent.getMetadata(PlayerID, "transport"));
 	}
 
 	if (ent.getMetadata(PlayerID, "plan") !== undefined)
@@ -195,26 +192,23 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 {
 	switch (ent.getMetadata(PlayerID, "garrisonType"))
 	{
-		case 'force':           // force the ungarrisoning
-			return false;
-		case 'trade':		// trader garrisoned in ship
+	case 'force':           // force the ungarrisoning
+		return false;
+	case 'trade':		// trader garrisoned in ship
+		return true;
+	case 'protection':	// hurt unit for healing or infantry for defense
+		if (ent.needsHeal() && holder.buffHeal())
 			return true;
-		case 'protection':	// hurt unit for healing or infantry for defense
-			if (ent.needsHeal() && holder.buffHeal())
-				return true;
-			if (enemiesAround && (ent.hasClass("Support") || MatchesClassList(holder.getGarrisonArrowClasses(), ent.classes())))
-				return true;
-			return false;
-		case 'decay':
-			if (this.decayingStructures.has(holder.id()))
-				return true;
-			else
-				return false;
-		default:
-			if (ent.getMetadata(PlayerID, "onBoard") === "onBoard")  // transport is not (yet ?) managed by garrisonManager 
-				return true;
-			warn("unknown type in garrisonManager " + ent.getMetadata(PlayerID, "garrisonType"));
+		if (enemiesAround && (ent.hasClass("Support") || MatchesClassList(holder.getGarrisonArrowClasses(), ent.classes())))
 			return true;
+		return false;
+	case 'decay':
+		return this.decayingStructures.has(holder.id());
+	default:
+		if (ent.getMetadata(PlayerID, "onBoard") === "onBoard")  // transport is not (yet ?) managed by garrisonManager 
+			return true;
+		warn("unknown type in garrisonManager " + ent.getMetadata(PlayerID, "garrisonType"));
+		return true;
 	}
 };
 

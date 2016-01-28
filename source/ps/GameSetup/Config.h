@@ -91,7 +91,6 @@ extern bool g_VSync;
 extern bool g_Quickstart;
 extern bool g_DisableAudio;
 
-extern bool g_JSDebuggerEnabled;
 extern bool g_ScriptProfilingEnabled;
 
 extern CStrW g_CursorName;

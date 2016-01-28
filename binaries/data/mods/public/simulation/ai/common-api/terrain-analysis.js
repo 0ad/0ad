@@ -172,24 +172,20 @@ m.Accessibility.prototype.getTrajectTo = function(start, end)
 	var istart = pstart[0] + pstart[1]*this.width;
 	var pend = this.gamePosToMapPos(end);
 	var iend = pend[0] + pend[1]*this.width;
-	
+
 	var onLand = true;
 	if (this.landPassMap[istart] <= 1 && this.navalPassMap[istart] > 1)
 		onLand = false;
 	if (this.landPassMap[istart] <= 1 && this.navalPassMap[istart] <= 1)
 		return false;
-	
+
 	var endRegion = this.landPassMap[iend];
 	if (endRegion <= 1 && this.navalPassMap[iend] > 1)
 		endRegion = this.navalPassMap[iend];
 	else if (endRegion <= 1)
 		return false;
-	
-	if (onLand)
-		var startRegion = this.landPassMap[istart];
-	else
-		var startRegion = this.navalPassMap[istart];
 
+	var startRegion = onLand ? this.landPassMap[istart] : this.navalPassMap[istart];
 	return this.getTrajectToIndex(startRegion, endRegion);
 };
 
@@ -280,7 +276,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 	}
 	
 	// here we'll be able to start.
-	for (var i = this.regionSize.length; i <= value; ++i)
+	for (let i = this.regionSize.length; i <= value; ++i)
 	{
 		this.regionLinks.push([]);
 		this.regionSize.push(0);
@@ -298,12 +294,12 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		newIndex = IndexArray.pop();
 
 		y = 0;
-		var loop = false;
+		let loop = false;
 		// vertical iteration
 		do {
 			--y;
 			loop = false;
-			var index = newIndex + w*y;
+			let index = newIndex + w*y;
 			if (index < 0)
 				break;
 			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200)
@@ -314,10 +310,11 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 				break;
 		} while (loop === true);	// should actually break
 		++y;
-		var reachLeft = false;
-		var reachRight = false;
+		let reachLeft = false;
+		let reachRight = false;
+		let index;
 		do {
-			var index = newIndex + w*y;
+			index = newIndex + w*y;
 			
 			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200)
 			{
@@ -395,16 +392,16 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript)
 			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
 		}
 	}
-	var cellSize = this.resourceMaps["wood"].cellSize;
+	let cellSize = this.resourceMaps.wood.cellSize;
 	for (let ent of sharedScript._entities.values())
 	{
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
-			var resource = ent.resourceSupplyType().generic;
+			let resource = ent.resourceSupplyType().generic;
 			if (!this.resourceMaps[resource])
 				continue;
-			var x = Math.floor(ent.position()[0] / cellSize);
-			var z = Math.floor(ent.position()[1] / cellSize);
-			var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
+			let x = Math.floor(ent.position()[0] / cellSize);
+			let z = Math.floor(ent.position()[1] / cellSize);
+			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
 			if (resource === "wood")
 			{
 				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, strength, "constant");
@@ -439,11 +436,11 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
 		}
 	}
-	var cellSize = this.resourceMaps["wood"].cellSize;
+	let cellSize = this.resourceMaps.wood.cellSize;
 	// Look for destroy events and subtract the entities original influence from the resourceMap
 	// TODO: perhaps do something when dropsites appear/disappear.
-	let destEvents = events["Destroy"];
-	let createEvents = events["Create"];
+	let destEvents = events.Destroy;
+	let createEvents = events.Create;
 	
 	for (let e of destEvents)
 	{

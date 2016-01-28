@@ -93,12 +93,22 @@ m.Queue.prototype.length = function()
 	return this.plans.length;
 };
 
+m.Queue.prototype.hasQueuedUnits = function()
+{
+	return this.plans.length > 0;
+};
+
 m.Queue.prototype.countQueuedUnits = function()
 {
 	var count = 0;
 	for (let plan of this.plans)
 		count += plan.number;
 	return count;
+};
+
+m.Queue.prototype.hasQueuedUnitsWithClass = function(classe)
+{
+	return this.plans.some(plan => plan.template && plan.template.hasClass(classe));
 };
 
 m.Queue.prototype.countQueuedUnitsWithClass = function(classe)
@@ -109,20 +119,12 @@ m.Queue.prototype.countQueuedUnitsWithClass = function(classe)
 			count += plan.number;
 	return count;
 };
+
 m.Queue.prototype.countQueuedUnitsWithMetadata = function(data, value)
 {
 	var count = 0;
 	for (let plan of this.plans)
 		if (plan.metadata[data] && plan.metadata[data] == value)
-			count += plan.number;
-	return count;
-};
-
-m.Queue.prototype.countAllByType = function(t)
-{
-	var count = 0;
-	for (let plan of this.plans)
-		if (plan.type === t)
 			count += plan.number;
 	return count;
 };

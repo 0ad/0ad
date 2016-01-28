@@ -9,9 +9,6 @@
     <Category>Field</Category>
   </BuildRestrictions>
   <Capturable disable=""/>
-  <TerritoryDecay>
-    <DecayRate>Infinity</DecayRate>
-  </TerritoryDecay>
   <Cost>
     <BuildTime>50</BuildTime>
     <Resources>
@@ -68,6 +65,9 @@
   <StatusBars>
     <HeightOffset>8.0</HeightOffset>
   </StatusBars>
+  <TerritoryDecay>
+    <DecayRate>Infinity</DecayRate>
+  </TerritoryDecay>
   <Vision>
     <Range>0</Range>
   </Vision>

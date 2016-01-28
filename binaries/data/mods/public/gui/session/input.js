@@ -255,7 +255,7 @@ function determineAction(x, y, fromMinimap)
 		return undefined;
 
 	// If the selection isn't friendly units, no action
-	var playerID = Engine.GetPlayerID();
+	var playerID = g_ViewedPlayer;
 	var allOwnedByPlayer = selection.every(function(ent) {
 		var entState = GetEntityState(ent);
 		return entState && entState.player == playerID;
@@ -1717,11 +1717,14 @@ function findIdleUnit(classes)
 			"limit": 1,
 			"excludeUnits": []
 		};
+
 		if (append)
 			data.excludeUnits = g_Selection.toList();
 
 		if (selectall)
-			data = { idleClass: classes[currIdleClass] };
+			data = { "idleClass": classes[currIdleClass] };
+
+		data.viewedPlayer = g_ViewedPlayer;
 
 		// Check if we have new valid entity
 		var idleUnits = Engine.GuiInterfaceCall("FindIdleUnits", data);

@@ -9,7 +9,8 @@
 # Leonard König <leonard.r.koenig@gmail.com>, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
 # Marco tom Suden, 2015
-# Martin ‌ <mhilgendrf@aol.com>, 2015-2016
+# Martin <mhilgendrf@aol.com>, 2015-2016
+# Matthias Meger <JSoko@online.de>, 2016
 # Maximilian <camellion@gmx.de>, 2014
 # nautilusx, 2016
 # Thelxinoe, 2015
@@ -20,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:00+0100\n"
-"PO-Revision-Date: 2016-01-14 15:41+0000\n"
+"POT-Creation-Date: 2016-01-15 09:00+0100\n"
+"PO-Revision-Date: 2016-01-15 21:20+0000\n"
 "Last-Translator: nautilusx\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -543,7 +544,7 @@ msgstr "Rüstung:"
 
 #: gui/common/tooltips.js:85 gui/common/tooltips.js:112
 #: gui/common/tooltips.js:171 gui/structree/draw.js:347
-#: gui/structree/draw.js:372
+#: gui/structree/draw.js:373
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -761,14 +762,14 @@ msgstr "Keine"
 msgid "<invalid>"
 msgstr "<ungültig>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:249
+#: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
 #: gui/savedgames/load.js:49 gui/savedgames/load.js:123
 #: gui/savedgames/save.js:56 gui/savedgames/save.js:86
@@ -1000,67 +1001,75 @@ msgstr "Limitiere FPS in Menüs"
 msgid "Limit FPS to 50 in all menus, to save power."
 msgstr "Limitiere auf 50 FPS in allen Menüs, um Strom zu sparen."
 
-#: gui/options/options.js:41
+#: gui/options/options.js:38
+msgid "Graphics quality"
+msgstr "Grafikqualität"
+
+#: gui/options/options.js:38
+msgid "Graphics quality. REQUIRES GAME RESTART"
+msgstr "Grafikqualität. ERFORDERT EINEN NEUSTART"
+
+#: gui/options/options.js:42
 msgid "Master Gain"
 msgstr "Masterverstärkung"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "Master audio gain"
 msgstr "Allgemeine Lautstärke"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "Music Gain"
 msgstr "Musikverstärkung"
 
-#: gui/options/options.js:42
+#: gui/options/options.js:43
 msgid "In game music gain"
 msgstr "Hintergrundmusik"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Ambient Gain"
 msgstr "Umgebungsgeräusche"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "In game ambient sound gain"
 msgstr "Lautstärke der Umgebungsgeräusche"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Action Gain"
 msgstr "Geräusche von Einheiten"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "In game unit action sound gain"
 msgstr "Lautstärke der Geräusche von Einheiten"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI Gain"
 msgstr "Bedienoberfläche"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "UI sound gain"
 msgstr "Lautstärke der Bedienoberfläche"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Chat Backlog"
 msgstr "Chat-Backlog"
 
-#: gui/options/options.js:49
+#: gui/options/options.js:50
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Anzahl der letzten Meldungen beim Eintritt in die Lobby"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Chat Timestamp"
 msgstr "Zeitstempel im Chat"
 
-#: gui/options/options.js:50
+#: gui/options/options.js:51
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Zeitpunkt der Nachrichten, die in dem Lobby-Chat gepostet werden, anzeigen"
 
-#: gui/options/options.js:251
+#: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
 msgstr "Du hast ungespeicherte Änderungen, bist du sicher, dass du das Spiel beenden möchtest?"
 
-#: gui/options/options.js:252 gui/savedgames/load.js:89
+#: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Warnung"
 
@@ -1366,12 +1375,12 @@ msgstr "SPIELSTAND ÜBERSCHREIBEN"
 msgid "Health:"
 msgstr "Gesundheit:"
 
-#: gui/structree/draw.js:367
+#: gui/structree/draw.js:368
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:373
+#: gui/structree/draw.js:374
 msgid "Gather Rates:"
 msgstr "Sammelraten:"
 
@@ -1677,7 +1686,7 @@ msgid "Lobby Settings"
 msgstr "Lobbyeinstellungen"
 
 #: gui/options/options.xml:(caption):69
-msgid "Reload"
+msgid "Revert"
 msgstr "Zurücksetzen"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
@@ -1689,11 +1698,11 @@ msgid "Quit"
 msgstr "Beenden"
 
 #: gui/options/options.xml:(tooltip):70
-msgid "Reload default values from file"
-msgstr "Standardwerte erneut aus Datei lesen"
+msgid "Revert to previous saved settings"
+msgstr "Zurücksetzen auf letzte gespeicherte Einstellungen"
 
 #: gui/options/options.xml:(tooltip):75
-msgid "Save changes to file"
+msgid "Save changes"
 msgstr "Änderungen speichern"
 
 #: gui/options/options.xml:(tooltip):80

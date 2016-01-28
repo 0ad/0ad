@@ -267,12 +267,12 @@ public:
 		GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, needRender);
 	}
 
-	virtual void AddPosition_wrapper(CFixedVector2D pos)
+	virtual void AddPosition_wrapper(const CFixedVector2D& pos)
 	{
 		AddPosition(pos, false);
 	}
 
-	virtual void SetPosition(CFixedVector2D pos)
+	virtual void SetPosition(const CFixedVector2D& pos)
 	{
 		if (!(m_RallyPoints.size() == 1 && m_RallyPoints.front() == pos))
 		{
@@ -282,7 +282,7 @@ public:
 		}
 	}
 
-	virtual void UpdatePosition(u32 rallyPointId, CFixedVector2D pos)
+	virtual void UpdatePosition(u32 rallyPointId, const CFixedVector2D& pos)
 	{
 		if (rallyPointId >= m_RallyPoints.size())
 			return;

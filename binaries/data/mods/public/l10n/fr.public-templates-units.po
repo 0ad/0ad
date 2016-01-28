@@ -10,6 +10,7 @@
 # gZen <gzen.tb@free.fr>, 2015
 # Moul <ma.azimi@laposte.net>, 2015
 # Marco tom Suden, 2014
+# Nexus nexus <neocrysis@gmail.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2015
 # Polakrity <sxk-fr@live.fr>, 2014
 # Vincent Pouliquen <vins_om@hotmail.fr>, 2014
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-11 09:01+0100\n"
-"PO-Revision-Date: 2015-12-22 14:55+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2016-01-15 09:01+0100\n"
+"PO-Revision-Date: 2016-01-19 09:43+0000\n"
+"Last-Translator: Nexus nexus <neocrysis@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -289,15 +290,8 @@ msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Tuer, puis collecter de la nourriture à partir de cette ressource océanique abondante."
 
 #: simulation/templates/template_unit_hero.xml:10
-#: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cunobelin.xml:11
-#: simulation/templates/units/gaul_hero_brennus.xml:10
-#: simulation/templates/units/gaul_hero_britomartus.xml:10
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
-#: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:13
-msgid "Hero Aura"
-msgstr "Aura héroïque"
+msgid "Garrisoned Capture Aura"
+msgstr "Aura de capture de garnison"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
@@ -958,6 +952,16 @@ msgstr "Boadicée"
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:21
 msgid "Heroine"
 msgstr "Héroïne"
+
+#: simulation/templates/units/brit_hero_caratacos.xml:10
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
+#: simulation/templates/units/gaul_hero_brennus.xml:10
+#: simulation/templates/units/gaul_hero_britomartus.xml:10
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
+#: simulation/templates/units/mace_hero_demetrius.xml:12
+#: simulation/templates/units/mace_hero_philip.xml:13
+msgid "Hero Aura"
+msgstr "Aura héroïque"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11

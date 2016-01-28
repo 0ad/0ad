@@ -6,14 +6,15 @@
 # Daniel Ignatov <sa3ana3a@abv.bg>, 2014
 # iron4o <ironsmile@gmail.com>, 2014
 # Ivailo Monev <xakepa10@gmail.com>, 2014
-# yoreei <yoreei.grigorov@gmail.com>, 2014
+# Lyubomir Vasilev, 2016
+# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2014
 # Симон Болоканов <sbolokanov@abv.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-28 10:20+0100\n"
-"PO-Revision-Date: 2015-12-28 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-24 20:38+0000\n"
+"Last-Translator: Lyubomir Vasilev\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr "Без"
 
 #: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
-msgstr "Бота ще бъде изключен за този играч."
+msgstr "ИИ ще бъде изключен за този играч."
 
 #: gui/gamesetup/gamesetup.js:32 gui/gamesetup/gamesetup.js:1274
 msgid "Default"
@@ -36,33 +37,33 @@ msgstr "По подразбиране"
 
 #: gui/gamesetup/gamesetup.js:37
 msgid "Naval Maps"
-msgstr "Морски Карти"
+msgstr "Морски карти"
 
 #: gui/gamesetup/gamesetup.js:42
 msgid "Demo Maps"
-msgstr "Демо Карти"
+msgstr "Демо карти"
 
 #: gui/gamesetup/gamesetup.js:47
 msgid "All Maps"
-msgstr "Всички Карти"
+msgstr "Всички карти"
 
 #: gui/gamesetup/gamesetup.js:96 gui/gamesetup/gamesetup.js:1391
 msgctxt "map"
 msgid "Random"
-msgstr "Случаен"
+msgstr "Случайна"
 
 #: gui/gamesetup/gamesetup.js:101
 msgctxt "civilization"
 msgid "Random"
-msgstr "Случаен"
+msgstr "Случайна"
 
 #: gui/gamesetup/gamesetup.js:187
 msgid "Return to the lobby."
-msgstr "Върни се към лобито."
+msgstr "Назад към стаята."
 
 #: gui/gamesetup/gamesetup.js:187
 msgid "Return to the main menu."
-msgstr "Върни се към основното меню."
+msgstr "Назад към основното меню."
 
 #: gui/gamesetup/gamesetup.js:454
 msgid "Yes"
@@ -80,16 +81,16 @@ msgstr "Без"
 #: gui/gamesetup/gamesetup.js:555
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s беше изритан"
 
 #: gui/gamesetup/gamesetup.js:559
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s беше блокиран"
 
 #: gui/gamesetup/gamesetup.js:1115
 msgid "You"
-msgstr "Ти"
+msgstr "Вие"
 
 #: gui/gamesetup/gamesetup.js:1191
 #, javascript-format
@@ -98,39 +99,39 @@ msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1340
 msgid "Loading..."
-msgstr "Зареждане..."
+msgstr "Зареждане…"
 
 #: gui/gamesetup/gamesetup.js:1383
 msgid "Sorry, no description available."
-msgstr "Съжаляваме, няма наличие на описание"
+msgstr "Съжаляваме, но няма описание"
 
 #: gui/gamesetup/gamesetup.js:1385
 msgid "Randomly selects a map from the list"
-msgstr "Случайно исбира карта от листа"
+msgstr "Избира произволна карта от списъка."
 
 #: gui/gamesetup/gamesetup.js:1387
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s играч. "
+msgstr[1] "%(number)s играчи. "
 
 #: gui/gamesetup/gamesetup.js:1388 gui/gamesetup/gamesetup.xml:(caption):290
 msgid "Victory Condition:"
-msgstr "Условия за победа:"
+msgstr "Условие за победа:"
 
 #: gui/gamesetup/gamesetup.js:1459
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "Бот: %(ai)s"
+msgstr "ИИ: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1464
 msgid "Unassigned"
-msgstr "Никой"
+msgstr "Неопределен"
 
 #: gui/gamesetup/gamesetup.js:1622
 msgid "Unknown Player"
-msgstr ""
+msgstr "Неизвестен играч"
 
 #: gui/gamesetup/gamesetup.js:1648 gui/gamesetup/gamesetup.js:1652
 #: gui/gamesetup/gamesetup.js:1660 gui/gamesetup/gamesetup.js:1679
@@ -161,12 +162,12 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:1673
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "%(username)s е готов!"
+msgstr "* %(username)s е готов!"
 
 #: gui/gamesetup/gamesetup.js:1675
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr "%(username)s не е готов."
+msgstr "* %(username)s не е готов."
 
 #: gui/gamesetup/gamesetup.js:1679
 msgid "Game settings have been changed"
@@ -178,7 +179,7 @@ msgstr "Не съм готов"
 
 #: gui/gamesetup/gamesetup.js:1705
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Обявете, че не сте готов за игра."
 
 #: gui/gamesetup/gamesetup.js:1710 gui/gamesetup/gamesetup.js:1788
 msgid "I'm ready!"
@@ -186,11 +187,11 @@ msgstr "Готов съм!"
 
 #: gui/gamesetup/gamesetup.js:1711
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Обявете, че сте готов за игра!"
 
 #: gui/gamesetup/gamesetup.js:1789
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Обявете, че приемате текущите настройки и сте готов за игра!"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
@@ -199,7 +200,7 @@ msgstr "Играта на %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr "Свързване към сървъра..."
+msgstr "Свързване към сървъра…"
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, javascript-format
@@ -208,15 +209,15 @@ msgstr "Мрежово съобщение: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:146
 msgid "Registering with server..."
-msgstr "Регистриране със сървър..."
+msgstr "Регистриране в сървъра…"
 
 #: gui/gamesetup/gamesetup_mp.js:152
 msgid "Game has already started, rejoining..."
-msgstr "Играта вече е започнала, преустановено присъединяването"
+msgstr "Играта вече е започнала, повторно присъединяване…"
 
 #: gui/gamesetup/gamesetup_mp.js:198
 msgid "Game name already in use."
-msgstr "Името на играта вече се използва"
+msgstr "Името на играта вече е заето."
 
 #: gui/gamesetup/gamesetup_mp.js:261
 #, javascript-format
@@ -226,16 +227,16 @@ msgstr "Играта на %(playername)s"
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "Зареждане на “%(map)s”"
+msgstr "Зареждане на „%(map)s“"
 
 #: gui/loading/loading.js:53
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr "Генериране на “%(map)s”"
+msgstr "Създаване на „%(map)s“"
 
 #: gui/aiconfig/aiconfig.xml:(caption):16
 msgid "AI Configuration"
-msgstr "Настройки за бота"
+msgstr "Настройки на ИИ"
 
 #: gui/aiconfig/aiconfig.xml:(caption):21
 msgid "AI Player:"
@@ -265,7 +266,7 @@ msgstr "Зареждане"
 
 #: gui/gamesetup/gamesetup.xml:(caption):29
 msgid "Loading map data. Please wait..."
-msgstr "Зареждане на данни за карта. Моля, изчакайте..."
+msgstr "Зареждане на данни за карта. Моля, изчакайте…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):44
 msgid "Player Name"
@@ -273,7 +274,7 @@ msgstr "Име на играча"
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Color"
-msgstr ""
+msgstr "Цвят"
 
 #: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Player Placement"
@@ -289,15 +290,15 @@ msgstr "Отбор"
 
 #: gui/gamesetup/gamesetup.xml:(caption):109
 msgid "Map Type:"
-msgstr "Тип на картата:"
+msgstr "Вид на картата:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Filter:"
-msgstr "Картов филтър:"
+msgstr "Категория:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):115
 msgid "Select Map:"
-msgstr "Избери карта:"
+msgstr "Карта:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):118
 msgid "Number of Players:"
@@ -305,19 +306,19 @@ msgstr "Брой играчи:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):121
 msgid "Map Size:"
-msgstr "Големина на картата:"
+msgstr "Размер на картата:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):200
 msgid "Send"
-msgstr "Изпрати"
+msgstr "Изпращане"
 
 #: gui/gamesetup/gamesetup.xml:(caption):218
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Измамите са включени."
 
 #: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Start game!"
-msgstr "Започни играта!"
+msgstr "Начало на играта!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):249
 msgid "Back"
@@ -330,35 +331,35 @@ msgstr "Още настройки"
 
 #: gui/gamesetup/gamesetup.xml:(caption):280
 msgid "Game Speed:"
-msgstr "Бързина на играта:"
+msgstr "Скорост на играта:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):300
 msgid "Population Cap:"
-msgstr "Граница на популацията:"
+msgstr "Ограничение на населението:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):310
 msgid "Starting Resources:"
-msgstr "Начални Ресурси:"
+msgstr "Начални ресурси:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Примирие:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):330
 msgid "Revealed Map:"
-msgstr "Разкрита карта:"
+msgstr "Открита карта:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):340
 msgid "Explored Map:"
-msgstr "Открита карта:"
+msgstr "Проучена карта:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Изключени съкровища:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Teams Locked:"
@@ -370,119 +371,119 @@ msgstr "Измами:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):380
 msgid "Rated Game:"
-msgstr "Оценена Игра:"
+msgstr "Игра за класация:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):390
 msgid "Late Observer Joins:"
-msgstr ""
+msgstr "Закъснели наблюдатели:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):62
 msgid "View civilization info"
-msgstr "Покажи информация за цивилизацията"
+msgstr "Показва информация за цивилизацията"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):77
 msgid "Pick a color."
-msgstr ""
+msgstr "Изберете цвят."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):80
 msgid "Select player."
-msgstr "Избери играч"
+msgstr "Изберете играч."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):90
 msgid "Configure AI settings."
-msgstr "Промени настройките на бота"
+msgstr "Промяна на настройките на изкуствения интелект."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):93
 msgid "Select player's civilization."
-msgstr "Избери цивилизацията на играча"
+msgstr "Изберете цивилизацията на играча."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Select player's team."
-msgstr "Избери отбора на играча"
+msgstr "Изберете отбора на играча."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):138
 msgid "Select a map type."
-msgstr "Избери тип карта."
+msgstr "Избери вида на картата."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):146
 msgid "Select a map filter."
-msgstr "Избери филтър на картата."
+msgstr "Избери категорията на картата."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):155
 msgid "Select a map to play on."
-msgstr "Избери карта, на която да играеш."
+msgstr "Изберете картата за игра."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):165
 msgid "Select number of players."
-msgstr "Избери брой играчи."
+msgstr "Изберете броя на играчите."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):169
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "ИЗбери големина на картата. (Голямите карти могат да намалят производителността)"
+msgstr "Изберете размера на картата. (Големите карти може да влошат производителността.)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):232
 msgid "Start a new game with the current settings."
-msgstr "Започни нова игра със сегашните настройки"
+msgstr "Започване на нова игра с текущите настройки."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):264
 msgid "See more game options"
-msgstr "Виж допълнителни настройки на играта"
+msgstr "Преглед на допълнителните настройки за играта."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):284
 msgid "Select game speed."
-msgstr "Изберете скорост на играта."
+msgstr "Изберете скоростта на играта."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):294
 msgid "Select victory condition."
-msgstr "Изберете условия за победа."
+msgstr "Изберете условието за победа."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):304
 msgid "Select population cap."
-msgstr "Изберете граница на популацията:"
+msgstr "Изберете ограничението на населението."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):314
 msgid "Select the game's starting resources."
-msgstr "Изберете начални ресурси за играта."
+msgstr "Изберете началните ресурси в играта."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Изберете време, през което нападенията са забранени."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):334
 msgid "Toggle revealed map (see everything)."
-msgstr "Превключване на разкритост на карта (вижда се всичко)."
+msgstr "Определя дали картата да е открита (да се вижда всичко)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Определя дали картата да е проучена (да се вижда цялата от начало)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Изключва всички съкровища на картата."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Toggle locked teams."
-msgstr "Превключване на заключени отбори."
+msgstr "Определя дали отборите да са заключени."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):374
 msgid "Toggle the usability of cheats."
-msgstr "Превключване на използваемостта на измами."
+msgstr "Определя дали да може да се използват измами."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):384
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Определя дали резултатът от тази игра ще влияе на класирането на играчите."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):394
 msgid "Allow observers to join after the game started."
-msgstr ""
+msgstr "Позволява на наблюдателите да се присъединяват след като играта вече е започнала."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):408
 msgid "Close more game options window"
-msgstr "Затвори прозореца с допълнителни настройки на играта"
+msgstr "Затваря прозореца с допълнителните настройки на играта."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):19
 msgid "Multiplayer"
@@ -490,7 +491,7 @@ msgstr "Мрежова игра"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):25
 msgid "Joining an existing game."
-msgstr "Присъедини се към съществуваща игра."
+msgstr "Присъединяване към съществуваща игра."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):29
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
@@ -499,16 +500,16 @@ msgstr "Име на играча:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):39
 msgid "Server Hostname or IP:"
-msgstr "Име на сървъра или IP:"
+msgstr "Име или IP адрес на сървъра:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):49
 #: gui/gamesetup/gamesetup_mp.xml:(caption):91
 msgid "Continue"
-msgstr "Продължи"
+msgstr "Продължаване"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):62
 msgid "Set up your server to host."
-msgstr "Конфигурирай сървъра, който ще хостваш."
+msgstr "Настройте сървъра, който създавате."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
@@ -516,7 +517,7 @@ msgstr "Име на съвъра:"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
-msgstr "Цитат на Деня:"
+msgstr "Цитат на деня:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
@@ -1306,7 +1307,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
-msgstr "\"Само мъртвите са видели края на войната\" - Незнаен"
+msgstr "„Само мъртвите са видели края на войната“ — Неизвестен"
 
 #: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
