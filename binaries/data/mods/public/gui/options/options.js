@@ -187,7 +187,7 @@ function setupControl(option, i, category, revert)
 			{
 			case "config":
 				key = option.parameters.config;
-				let val = Engine.ConfigDB_GetValue("user", key);
+				let val = +Engine.ConfigDB_GetValue("user", key);
 				if (key === "materialmgr.quality")
 					val = val > 5 ? 2 : val > 2 ? 1 : 0;
 				control.selected = val;
