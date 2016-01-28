@@ -21,7 +21,6 @@ m.QueuePlan = function(gameState, type, metadata)
 	this.number = 1;
 
 	this.category = "";
-	this.lastIsGo = undefined;
 
 	return true;
 };
@@ -64,16 +63,6 @@ m.QueuePlan.prototype.getCost = function()
 // Need to be updated to actually do something if you want them to.
 // this is called by "Start" if it succeeds.
 m.QueuePlan.prototype.onStart = function(gameState)
-{
-};
-
-// This is called by "isGo()" if it becomes true while it was false.
-m.QueuePlan.prototype.onGo = function(gameState)
-{
-};
-
-// This is called by "isGo()" if it becomes false while it was true.
-m.QueuePlan.prototype.onNotGo = function(gameState)
 {
 };
 

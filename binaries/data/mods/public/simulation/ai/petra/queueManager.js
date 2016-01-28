@@ -89,7 +89,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	var current = gameState.getResources();
 	// short queue is the first item of a queue, assumed to be ready in 30s
 	// medium queue is the second item of a queue, assumed to be ready in 60s
-	// long queue contains the is the isGo=false items, assumed to be ready in 300s
+	// long queue contains the isGo=false items, assumed to be ready in 300s
 	var totalShort = { "food": 200, "wood": 200, "stone": 100, "metal": 100 };
 	var totalMedium = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	var totalLong = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };

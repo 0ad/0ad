@@ -25,20 +25,15 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 		gameState.hasResearchers(townPhase, true))
 	{
 		let plan = new m.ResearchPlan(gameState, townPhase, true);
-		plan.lastIsGo = false;
 		plan.onStart = function (gameState) { gameState.ai.HQ.econState = "growth"; gameState.ai.HQ.OnTownPhase(gameState); };
 		plan.isGo = function (gameState) {
 			let ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
-			if (ret && !this.lastIsGo)
-				this.onGo(gameState);
-			else if (!ret && this.lastIsGo)
-				this.onNotGo(gameState);
-			this.lastIsGo = ret;
+			if (ret && gameState.ai.HQ.econState !== "growth")
+				gameState.ai.HQ.econState = "growth";
+			else if (!ret && gameState.ai.HQ.econState !== "townPhasing")
+				gameState.ai.HQ.econState = "townPhasing";
 			return ret;
 		};
-		plan.onGo = function (gameState) { gameState.ai.HQ.econState = "townPhasing"; };
-		plan.onNotGo = function (gameState) { gameState.ai.HQ.econState = "growth"; };
-
 		queues.majorTech.addPlan(plan);
 	}
 	else if (gameState.canResearch(cityPhase,true) && gameState.ai.elapsedTime > this.Config.Economy.cityPhase &&

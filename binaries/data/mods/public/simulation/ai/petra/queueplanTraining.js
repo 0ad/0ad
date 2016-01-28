@@ -152,8 +152,7 @@ m.TrainingPlan.prototype.Serialize = function()
 		"metadata": this.metadata,
 		"cost": this.cost.Serialize(),
 		"number": this.number,
-		"maxMerge": this.maxMerge,
-		"lastIsGo": this.lastIsGo
+		"maxMerge": this.maxMerge
 	};
 
 	return { "prop": prop };
