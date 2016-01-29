@@ -5,6 +5,7 @@
 # Translators:
 # alfalb.as, 2015
 # André Rodrigues, 2013
+# G N <nunes.guilherme@gmail.com>, 2016
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2014
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2013-2014
 # Pedro matias <pmsm1100@gmail.com>, 2015
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-08 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-28 20:20+0000\n"
+"Last-Translator: G N <nunes.guilherme@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +81,7 @@ msgstr "Não autorizado"
 
 #: lobby/XmppClient.cpp:1018
 msgid "Recipient temporarily unavailable"
-msgstr "Recipiente temporariamente indisponível "
+msgstr "Destinatário temporariamente indisponível "
 
 #: lobby/XmppClient.cpp:1020
 msgid "Registration required"
@@ -121,25 +122,25 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr ""
+msgstr "Este sistema não tem mais memória disponível"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "Ou o certificado do servidor não pode ser verificado ou o handshake TLS não foi completado"
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "O servidor não forneceu encriptação TLS necessária"
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "Autenticação falhou. Password incorrecta ou conta inexistente"
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "O utilizador ou o sistema requisitou disconexão"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
@@ -151,11 +152,11 @@ msgstr "Sucesso "
 
 #: lobby/XmppClient.cpp:1088
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "A Informação fornecida é insuficiente"
 
 #: lobby/XmppClient.cpp:1089
 msgid "Username already exists"
-msgstr ""
+msgstr "Nome de utilizador já existe"
 
 #: ps/SavedGame.cpp:133
 #, c-format

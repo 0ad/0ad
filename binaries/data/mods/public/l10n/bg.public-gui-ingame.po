@@ -7,6 +7,7 @@
 # iron4o <ironsmile@gmail.com>, 2014
 # Ivailo Monev <xakepa10@gmail.com>, 2014
 # Jordan Grigorov <yoreei.grigorov@gmail.com>, 2016
+# Lyubomir Vasilev, 2016
 # Jordan Grigorov <yoreei.grigorov@gmail.com>, 2014-2015
 # Jordan Grigorov <yoreei.grigorov@gmail.com>, 2014
 # Симон Болоканов <sbolokanov@abv.bg>, 2014
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-20 20:33+0000\n"
-"Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
+"PO-Revision-Date: 2016-01-28 11:12+0000\n"
+"Last-Translator: Lyubomir Vasilev\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,23 +28,23 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] "Основен обхват:  %(range)s метър"
-msgstr[1] "Основен обхват:  %(range)s метъра"
+msgstr[0] "Основен обхват: %(range)s метър"
+msgstr[1] "Основен обхват: %(range)s метра"
 
 #: gui/session/input.js:146
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] "Среден бонус на обхвата: %(range)s метър"
-msgstr[1] "Среден бонус на обхвата: %(range)s метъра"
+msgstr[0] "Среден допълнителен обхват: %(range)s метър"
+msgstr[1] "Среден допълнителен обхват: %(range)s метра"
 
 #: gui/session/input.js:717
 msgid "Cannot build wall here!"
-msgstr "Не може да се строи тук!"
+msgstr "Тук не може да се строи стена!"
 
 #: gui/session/menu.js:115
 msgid "Are you sure you want to resign?"
-msgstr "Сигурен ли сте, че искате да се предадете?"
+msgstr "Наистина ли искате да се предадете?"
 
 #: gui/session/menu.js:116 gui/session/menu.js:150 gui/session/menu.js:162
 msgid "Confirmation"
@@ -62,11 +63,11 @@ msgstr "Да"
 #: gui/session/menu.js:131
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Сигурен ли сте, че искате да спрете? Напускането ви ще иключи всички останли играчи."
+msgstr "Наистина или искате да излезете? Напускането ви ще разкачи всички останали играчи."
 
 #: gui/session/menu.js:135 gui/session/menu.js:139
 msgid "Are you sure you want to quit?"
-msgstr "Сигурен ли сте, че искате да спрете?"
+msgstr "Наистина ли искате да излезете?"
 
 #: gui/session/menu.js:161
 msgid "Do you want to resign or will you return soon?"
@@ -86,7 +87,7 @@ msgstr "Унищожи всичко което е избрано в момент
 
 #: gui/session/menu.js:183 gui/session/unit_actions.js:711
 msgid "Delete"
-msgstr "Изтрий"
+msgstr "Изтриване"
 
 #: gui/session/menu.js:294
 msgctxt "team"
@@ -109,7 +110,7 @@ msgstr "Враг"
 
 #: gui/session/menu.js:350
 msgid "Request your allies to attack this enemy"
-msgstr "Поискване съюзниците да атакуват този враг"
+msgstr "Помолете съюзниците си да атакуват този враг"
 
 #: gui/session/menu.js:365
 msgid "x"
@@ -118,13 +119,13 @@ msgstr "х"
 #: gui/session/menu.js:489
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s, и %(garrisonedString)s."
+msgstr "%(openingTradingString)s и %(garrisonedString)s."
 
 #: gui/session/menu.js:490
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, %(garrisonedString)s, и %(inactiveString)s."
+msgstr "%(openingTradingString)s, %(garrisonedString)s и %(inactiveString)s."
 
 #: gui/session/menu.js:493 gui/session/menu.js:564
 #, javascript-format
@@ -134,7 +135,7 @@ msgstr "%(openingTradingString)s."
 #: gui/session/menu.js:494 gui/session/menu.js:563
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, и %(inactiveString)s."
+msgstr "%(openingTradingString)s и %(inactiveString)s."
 
 #: gui/session/menu.js:499
 #, javascript-format
@@ -144,7 +145,7 @@ msgstr "%(openingGarrisonedString)s."
 #: gui/session/menu.js:500
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingGarrisonedString)s, и %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s и %(inactiveString)s."
 
 #: gui/session/menu.js:503 gui/session/menu.js:567
 #, javascript-format
@@ -155,28 +156,28 @@ msgstr[1] "Има %(inactiveString)s."
 
 #: gui/session/menu.js:504
 msgid "There are no land traders."
-msgstr "Няма наземни продавачи."
+msgstr "Няма сухопътни търговци."
 
 #: gui/session/menu.js:512
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "%(numberTrading)s наземен продавач продава."
-msgstr[1] "%(numberTrading)s наземни продавачи продават."
+msgstr[0] "Има %(numberTrading)s търгуващ сухопътен търговец."
+msgstr[1] "Има %(numberTrading)s търгуващи сухопътни търговци."
 
 #: gui/session/menu.js:521
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] "%(numberOfLandTraders)s неактивен"
-msgstr[1] "%(numberOfLandTraders)s неактивни"
+msgstr[0] "%(numberOfLandTraders)s бездействащ"
+msgstr[1] "%(numberOfLandTraders)s бездействащи"
 
 #: gui/session/menu.js:526
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] "%(numberOfLandTraders)s неактивен наземен продавач"
-msgstr[1] "%(numberOfLandTraders)s неактивни наземени продавачи"
+msgstr[0] "%(numberOfLandTraders)s бездействащ сухопътен търговец"
+msgstr[1] "%(numberOfLandTraders)s бездействащи сухопътни търговци"
 
 #: gui/session/menu.js:535
 #, javascript-format
@@ -204,30 +205,30 @@ msgstr "Няма повече търговски кораби."
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] "%(numberTrading)s търговски кораб търгува"
-msgstr[1] "%(numberTrading)s търговски кораби търгуват"
+msgstr[0] "Има %(numberTrading)s търгуващ търговски кораб"
+msgstr[1] "Има %(numberTrading)s търгуващи търговски кораба"
 
 #: gui/session/menu.js:584
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] "%(numberOfShipTraders)s е неактивен"
-msgstr[1] "%(numberOfShipTraders)s са неактивни"
+msgstr[0] "%(numberOfShipTraders)s бездействащ"
+msgstr[1] "%(numberOfShipTraders)s бездействащи"
 
 #: gui/session/menu.js:589
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] "%(numberOfShipTraders)s неактивен търговски кораб"
-msgstr[1] "%(numberOfShipTraders)s неактивни търговски кораби"
+msgstr[0] "%(numberOfShipTraders)s бездействащ търговски кораб"
+msgstr[1] "%(numberOfShipTraders)s бездействащи търговски кораби"
 
 #: gui/session/menu.js:637
 msgid "Current Scores"
-msgstr "Текущи точки"
+msgstr "Текущи резултати"
 
 #: gui/session/menu.js:663 gui/session/menu.js:686
 msgid "Resume"
-msgstr "Продължи"
+msgstr "Продължаване"
 
 #: gui/session/menu.js:670 gui/session/menu.js:686
 #: gui/session/menu.xml:(caption):76
@@ -240,33 +241,33 @@ msgstr "Наръчник"
 
 #: gui/session/menu.js:713
 msgid "The Developer Overlay was opened."
-msgstr "Подложка за Разработчици беше отворена."
+msgstr "Слоят за разработчици беше отворен."
 
 #: gui/session/menu.js:715
 msgid "The Developer Overlay was closed."
-msgstr "Подложка за Разработчици беше затворена."
+msgstr "Слоят за разработчици беше затворен."
 
 #: gui/session/menu.js:730
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "Дай %(resourceAmount)s %(resourceType)s на %(playerName)s.  Натисни със Shift, за да дадеш %(greaterAmount)s."
+msgstr "Дайте %(resourceAmount)s %(resourceType)s на %(playerName)s. Натиснете Шифт + ляв бутон, за да дадете %(greaterAmount)s."
 
 #: gui/session/messages.js:34
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s беше изхвърлен от играта"
+msgstr "%(username)s беше изритан"
 
 #: gui/session/messages.js:35
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s му беше забранен достъп до играта"
+msgstr "%(username)s беше блокиран"
 
 #: gui/session/messages.js:44
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s започва да се включва отново в играта."
+msgstr "%(player)s започва повторно присъединяване към играта."
 
 #: gui/session/messages.js:45
 #, javascript-format
@@ -280,15 +281,15 @@ msgstr "%(player)s се присъедини отново към играта."
 
 #: gui/session/messages.js:59
 msgid "Connection to the server has been authenticated."
-msgstr "Връзката към сървъра беше ауторизирана."
+msgstr "Връзката към сървъра беше удостоверена."
 
 #: gui/session/messages.js:60
 msgid "Connected to the server."
-msgstr "Свързан към сървъра."
+msgstr "Има връзка със сървъра."
 
 #: gui/session/messages.js:61
 msgid "Connection to the server has been lost."
-msgstr "Връзката към сървъра беше загубена."
+msgstr "Връзката към сървъра се разпадна."
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/session/messages.js:63
@@ -298,15 +299,15 @@ msgstr "Причина: %(reason)s."
 
 #: gui/session/messages.js:64
 msgid "The game has ended."
-msgstr "Играта свърши."
+msgstr "Играта приключи."
 
 #: gui/session/messages.js:65
 msgid "Waiting for other players to connect..."
-msgstr "Изчакване на другите играчи да се свържат..."
+msgstr "Изчакване на другите играчи да се свържат…"
 
 #: gui/session/messages.js:66
 msgid "Synchronising gameplay with other players..."
-msgstr "Синхронизиране режим на играта с другите играчи..."
+msgstr "Синхронизиране на играта с другите играчи…"
 
 #: gui/session/messages.js:75
 #, javascript-format
@@ -334,37 +335,37 @@ msgstr "Отбор"
 
 #: gui/session/messages.js:88
 msgid "Private"
-msgstr "Частен"
+msgstr "Частно"
 
 #: gui/session/messages.js:120
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Вече сте съюзник със %(player)s."
+msgstr "Вече сте съюзник с %(player)s."
 
 #: gui/session/messages.js:121
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr "Вече сте във война със %(player)s."
+msgstr "Вече сте във война с %(player)s."
 
 #: gui/session/messages.js:122
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "Вече сте неутрален със %(player)s."
+msgstr "Вече сте в неутрални отношения с %(player)s."
 
 #: gui/session/messages.js:125
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s вече е съюзник с вас."
+msgstr "%(player)s вече е Ваш съюзник."
 
 #: gui/session/messages.js:126
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "%(player)s вече във война с вас."
+msgstr "%(player)s вече във война с Вас."
 
 #: gui/session/messages.js:127
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s вече е неутрален с вас."
+msgstr "%(player)s вече е в неутрални отношения с Вас."
 
 #: gui/session/messages.js:130
 #, javascript-format
@@ -379,7 +380,7 @@ msgstr "%(player)s е вече във война с %(player2)s."
 #: gui/session/messages.js:132
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s е вече в неутрални взаимоотношения с %(player2)s."
+msgstr "%(player)s вече е в неутрални отношения с %(player2)s."
 
 #: gui/session/messages.js:544 gui/session/messages.js:551
 msgid "Unknown Player"
@@ -387,22 +388,22 @@ msgstr "Неизвестен играч"
 
 #: gui/session/messages.js:561
 msgid "You have been defeated."
-msgstr "Ти беше победен."
+msgstr "Вие бяхте победен(а)."
 
 #: gui/session/messages.js:562
 #, javascript-format
 msgid "%(player)s has been defeated."
-msgstr "%(player)s беше победен."
+msgstr "%(player)s беше победен(а)."
 
 #: gui/session/messages.js:593
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)s прати на %(player2)s %(amounts)s."
+msgstr "%(player)s изпрати %(amounts)s на %(player2)s."
 
 #: gui/session/messages.js:595
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s ви изпрати %(amounts)s."
+msgstr "%(player)s Ви изпрати %(amounts)s."
 
 #: gui/session/messages.js:611
 #, javascript-format
@@ -412,7 +413,7 @@ msgstr "Добитъкът Ви бе нападнат от %(attacker)s!"
 #: gui/session/messages.js:612
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr "Вие бяхте атакуван от %(attacker)s!"
+msgstr "Вие бяхте нападнат(а) от %(attacker)s!"
 
 #: gui/session/messages.js:655
 #, javascript-format
@@ -422,17 +423,17 @@ msgstr "<%(user)s>"
 #: gui/session/selection_details.js:31
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr "%(genericName)s — Paketiran"
+msgstr "%(genericName)s — В пакет"
 
 #: gui/session/selection_details.js:42
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr "\\[ОФЛАЙН] %(player)s"
+msgstr "\\[ИЗВЪН ЛИНИЯ] %(player)s"
 
 #: gui/session/selection_details.js:47
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr "%(rank)s Ранк"
+msgstr "%(rank)s Ранг"
 
 #: gui/session/selection_details.js:74
 #, javascript-format
@@ -485,7 +486,7 @@ msgstr "%(resource)s:"
 #: gui/session/unit_actions.js:546
 #, javascript-format
 msgid "Gain: %(gain)s"
-msgstr "Получен: %(gain)s"
+msgstr "Печалба: %(gain)s"
 
 #: gui/session/selection_details.js:204
 #, javascript-format
@@ -504,7 +505,7 @@ msgstr "Брой строители."
 
 #: gui/session/selection_details.js:226
 msgid "Current/max gatherers"
-msgstr "Настоящи/максимум събирачи"
+msgstr "Текущи/максимум събирачи"
 
 #: gui/session/selection_details.js:240
 #, javascript-format
@@ -532,25 +533,25 @@ msgstr "Пленителни точки:"
 
 #: gui/session/selection_panels.js:71
 msgid "Increase the alert level to protect more units"
-msgstr "Увеличи нивото на внимание, за да запазиш повече единици"
+msgstr "Увеличава нивото на тревога, за да бъдат защитени повече единици"
 
 #: gui/session/selection_panels.js:73
 msgid "Raise an alert!"
-msgstr "Вдигни тревога!"
+msgstr "Тревога!"
 
 #: gui/session/selection_panels.js:76
 msgid "End of alert."
-msgstr "Приключи тревога."
+msgstr "Край на тревогата."
 
 #: gui/session/selection_panels.js:141
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr "Купи %(resource)s"
+msgstr "Купуване на %(resource)s"
 
 #: gui/session/selection_panels.js:142
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr "Продай %(resource)s"
+msgstr "Продаване на %(resource)s"
 
 #: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1127
 #, javascript-format
@@ -560,39 +561,39 @@ msgstr "Изисква %(technology)s"
 #: gui/session/selection_panels.js:471
 #, javascript-format
 msgid "Unload %(name)s"
-msgstr "Разтовари %(name)s"
+msgstr "Премахване на %(name)s"
 
 #: gui/session/selection_panels.js:472
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Натисни един път, за да разтовариш 1. Shift-клик, за да разтовариш всички от този тип."
+msgstr "Натиснете веднъж за премахване на 1. Шифт + щракване за премахване на всички от този вид."
 
 #: gui/session/selection_panels.js:536
 msgid "Lock Gate"
-msgstr "Заключи Портата"
+msgstr "Заключване на портата"
 
 #: gui/session/selection_panels.js:542
 msgid "Unlock Gate"
-msgstr "Отключи Портата"
+msgstr "Отключване на портата"
 
 #: gui/session/selection_panels.js:649
 msgid "Pack"
-msgstr "Пакетирай"
+msgstr ""
 
 #: gui/session/selection_panels.js:651
 msgid "Unpack"
-msgstr "Разпакетирай"
+msgstr ""
 
 #: gui/session/selection_panels.js:653
 msgid "Cancel Packing"
-msgstr "Отнмени опаковането"
+msgstr ""
 
 #: gui/session/selection_panels.js:655
 msgid "Cancel Unpacking"
-msgstr "Отнмени разопаковането"
+msgstr ""
 
 #: gui/session/selection_panels.js:730
 msgid "Insufficient population capacity:"
-msgstr "Недостатъчен капацитет на популацията:"
+msgstr "Недостатъчен капацитет за население:"
 
 #: gui/session/selection_panels.js:731
 #, javascript-format
@@ -603,8 +604,8 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] "Остава: %(number)s до построяването."
-msgstr[1] "Остава: %(number)s до построяването."
+msgstr[0] "Остава: %(number)s за построяване."
+msgstr[1] "Остават: %(number)s за построяване."
 
 #: gui/session/selection_panels.js:1115 gui/session/session.js:682
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
@@ -614,7 +615,7 @@ msgstr "Здраве:"
 #: gui/session/selection_panels_helpers.js:38
 msgctxt "stance"
 msgid "Violent"
-msgstr "Наилствен"
+msgstr "Насилствен"
 
 #: gui/session/selection_panels_helpers.js:40
 msgctxt "stance"
@@ -624,7 +625,7 @@ msgstr "Агресивен"
 #: gui/session/selection_panels_helpers.js:42
 msgctxt "stance"
 msgid "Defensive"
-msgstr "Предпазва"
+msgstr "Отбранителен"
 
 #: gui/session/selection_panels_helpers.js:44
 msgctxt "stance"
@@ -639,44 +640,44 @@ msgstr "Отстояващ"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Атакуване на близкостоящи противници, фокусиране на нападатели и преследване до изгубване от полезрението "
+msgstr "Нападане на близкостоящите противници, концентриране върху нападателите и преследване до изгубване от полезрение"
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr "Атакуване на близкостоящи противници"
+msgstr "Нападане на близкостоящите противници"
 
 #: gui/session/selection_panels_helpers.js:62
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Атакуване на близкостоящи противници, преследване до малка дистанция от началното място и връщане"
+msgstr "Нападане на близкостоящите противници, преследване на малко разстояние и връщане обратно на началното място"
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr "Бягане при атакуване"
+msgstr "Бягане при нападение"
 
 #: gui/session/selection_panels_helpers.js:66
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Атакуване на противници в обхват, но без смяна на позицията "
+msgstr "Нападане на противниците в обхват, но без придвижване"
 
 #: gui/session/selection_panels_helpers.js:82
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr "Текуща бройка: %(count)s, Лимит: %(limit)s."
+msgstr "Текущ брой: %(count)s, Ограничение: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:90
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr "%(changer)s увеличава лимита със %(change)s."
+msgstr "%(changer)s увеличава ограничението с %(change)s."
 
 #: gui/session/selection_panels_helpers.js:92
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr "%(changer)s намалява лимита със %(change)s."
+msgstr "%(changer)s намалява ограничението с %(change)s."
 
 #: gui/session/selection_panels_helpers.js:121
 #, javascript-format
@@ -685,27 +686,27 @@ msgstr "%(buildings)s*%(batchSize)s"
 
 #: gui/session/selection_panels_helpers.js:131
 msgid "Shift-click"
-msgstr "Shift-click"
+msgstr "Шифт + ляв бутон"
 
 #: gui/session/selection_panels_helpers.js:140
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr "%(action)s за да тренираш %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s за обучение на %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:147
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr "%(action)s за да тренираш %(number)s (%(fullBatch)s)."
+msgstr "%(action)s за обучение на %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:154
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr "%(action)s за да тренираш %(number)s."
+msgstr "%(action)s за обучение на %(number)s."
 
 #: gui/session/session.js:37 gui/session/utility_functions.js:99
 #: gui/session/utility_functions.js:105 gui/session/utility_functions.js:110
 msgid "You"
-msgstr "Ти"
+msgstr "Вие"
 
 #: gui/session/session.js:183
 msgid "Gaia"
@@ -714,7 +715,7 @@ msgstr "Природа"
 #: gui/session/session.js:274
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr "%(civ)s - Структурно дърво"
+msgstr "%(civ)s — Дърво на сградите"
 
 #: gui/session/session.js:349 gui/session/session.js:365
 msgid "You have left the game."
@@ -726,15 +727,15 @@ msgstr "Връзката беше прекъсната."
 
 #: gui/session/session.js:358
 msgid "You have won the battle!"
-msgstr "Ти победи!"
+msgstr "Вие спечелихте битката!"
 
 #: gui/session/session.js:360
 msgid "You have been defeated..."
-msgstr "Ти беше победен..."
+msgstr "Вие бяхте победен(а)…"
 
 #: gui/session/session.js:368
 msgid "You have abandoned the game."
-msgstr "Ти напусна играта."
+msgstr "Вие напуснахте играта."
 
 #: gui/session/session.js:513
 msgid "OK"
@@ -742,11 +743,11 @@ msgstr "Добре"
 
 #: gui/session/session.js:515
 msgid "Press OK to continue"
-msgstr "Натисни ОК, за да продължиш"
+msgstr "Натиснете „Добре“, за да продължите"
 
 #: gui/session/session.js:521
 msgid "Do you want to quit?"
-msgstr "Искаш ли да излезеш?"
+msgstr "Искате ли да излезете?"
 
 #: gui/session/session.js:526
 msgid "DEFEATED!"
@@ -759,7 +760,7 @@ msgstr "ПОБЕДИТЕЛ!"
 #: gui/session/session.js:607
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "Възпроизвеждането приключи. Искате ли да излезете?"
+msgstr "Записът свърши. Искате ли да излезете?"
 
 #: gui/session/session.js:608
 msgctxt "replayFinished"
@@ -778,12 +779,12 @@ msgstr "Да"
 
 #: gui/session/session.js:768
 msgid "Population (current / limit)"
-msgstr "Популация (сегашна / граница)"
+msgstr "Население (текущо / ограничение)"
 
 #: gui/session/session.js:769
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr "Максимална популация: %(popCap)s"
+msgstr "Максимално население: %(popCap)s"
 
 #: gui/session/session.js:909
 #, javascript-format
@@ -795,31 +796,31 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Бележка: Деформиране на времето е опция за разработчици и не е предназначена за изпозлване за дълъг период от време. Неправилното й използване може да изчерпи паметта на играта или да я накара да крашне."
+msgstr "Бележка: Изкривяването на времето е предназначено за разработчици и не може да се използва твърде продължително. Неправилната употреба може да изчерпа паметта или да предизвика срив."
 
 #: gui/session/session.js:916
 msgid "Time warp mode"
-msgstr "Извиване на времето"
+msgstr "Изкривяване на времето"
 
 #: gui/session/unit_actions.js:321
 msgid "Origin trade market."
-msgstr "Начален пазар"
+msgstr "Начален пазар."
 
 #: gui/session/unit_actions.js:327
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr "Натисни с десен бутон върху друг пазар, за да го маркираш като пазар дестинация."
+msgstr "Натиснете с десен бутон върху друг пазар, за да го зададете като целеви."
 
 #: gui/session/unit_actions.js:330
 msgid "Destination trade market."
-msgstr "Пазар дестинация."
+msgstr "Целеви пазар."
 
 #: gui/session/unit_actions.js:335
 msgid "Right-click to set as origin trade market"
-msgstr "Натисни с десен бутон, за да го маркираш като начален пазар"
+msgstr "Натиснете с десен бутон, за да го зададете като начален пазар."
 
 #: gui/session/unit_actions.js:340
 msgid "Right-click to set as destination trade market."
-msgstr "Натисни с десен бутон за да го маркираш като пазар дестинация."
+msgstr "Натиснете с десен бутон, за да го отбележите като целеви пазар."
 
 #: gui/session/unit_actions.js:372 gui/session/unit_actions.js:508
 #, javascript-format
@@ -828,7 +829,7 @@ msgstr "Текущ гарнизон: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:544
 msgid "Right-click to establish a default route for new traders."
-msgstr "Натисни с десен бутон, за да установиш път по подразбиране за нови търговци."
+msgstr "Натиснете с десен бутон, за да установите път по подразбиране за новите търговци."
 
 #: gui/session/unit_actions.js:548
 #, javascript-format
@@ -837,7 +838,7 @@ msgstr "Очаквана печалба: %(gain)s"
 
 #: gui/session/unit_actions.js:680 gui/session/unit_actions.js:916
 msgid "Unload All"
-msgstr "Разтовари Всички"
+msgstr "Премахване на всички"
 
 #: gui/session/unit_actions.js:699
 msgid "You cannot destroy this entity because it is in the fog-of-war"
@@ -850,7 +851,7 @@ msgstr "Този обект не може да бъде унищожен, защ
 
 #: gui/session/unit_actions.js:737
 msgid "Stop"
-msgstr "Спри"
+msgstr "Спиране"
 
 #: gui/session/unit_actions.js:755
 msgid "Garrison"
@@ -858,31 +859,31 @@ msgstr "Гарнизон"
 
 #: gui/session/unit_actions.js:776
 msgid "Unload"
-msgstr "Разтовари"
+msgstr "Премахване"
 
 #: gui/session/unit_actions.js:792
 msgid "Repair"
-msgstr "Поправи"
+msgstr "Поправяне"
 
 #: gui/session/unit_actions.js:809
 msgid "Focus on Rally Point"
-msgstr "Фокус на Рали Точка"
+msgstr "Центриране върху сборната точка"
 
 #: gui/session/unit_actions.js:832
 msgid "Back to Work"
-msgstr "Обратно на Работа"
+msgstr "Обратно на работа"
 
 #: gui/session/unit_actions.js:848
 msgid "Guard"
-msgstr "Пази"
+msgstr "Пазене"
 
 #: gui/session/unit_actions.js:865
 msgid "Remove guard"
-msgstr "Премахни пазач"
+msgstr "Спиране на пазенето"
 
 #: gui/session/unit_actions.js:881
 msgid "Select trading goods"
-msgstr "Избери стока за търгуване"
+msgstr "Изберете стока за търгуване"
 
 #: gui/session/utility_functions.js:93 gui/session/utility_functions.js:95
 msgid "+"
@@ -918,7 +919,7 @@ msgstr "Тяхно"
 
 #: gui/session/diplomacy_window.xml:(caption):27
 msgid "A"
-msgstr "А"
+msgstr "С"
 
 #: gui/session/diplomacy_window.xml:(caption):31
 msgid "N"
@@ -926,24 +927,24 @@ msgstr "Н"
 
 #: gui/session/diplomacy_window.xml:(caption):35
 msgid "E"
-msgstr "Е"
+msgstr "В"
 
 #: gui/session/diplomacy_window.xml:(caption):39
 msgid "Tribute"
-msgstr "Данък"
+msgstr "Дар"
 
 #: gui/session/diplomacy_window.xml:(caption):79
 #: gui/session/trade_window.xml:(caption):47
 msgid "Close"
-msgstr "Затвори"
+msgstr "Затваряне"
 
 #: gui/session/menu.xml:(caption):28
 msgid "Chat"
-msgstr "Чат"
+msgstr "Съобщение"
 
 #: gui/session/menu.xml:(caption):39
 msgid "Save"
-msgstr "Запис"
+msgstr "Запазване"
 
 #: gui/session/menu.xml:(caption):53
 msgid "Summary"
@@ -951,11 +952,11 @@ msgstr "Обобщение"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Options"
-msgstr "Опции"
+msgstr "Настройки"
 
 #: gui/session/menu.xml:(caption):88
 msgid "Resign"
-msgstr "Предай се"
+msgstr "Предаване"
 
 #: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):351
 msgid "Exit"
@@ -963,67 +964,67 @@ msgstr "Изход"
 
 #: gui/session/minimap_panel.xml:(tooltip):15
 msgid "Find idle worker"
-msgstr "Намери безделен работник"
+msgstr "Търсене на бездействащ работник"
 
 #: gui/session/session.xml:(caption):62
 msgid "Control all units"
-msgstr "Контролирай всички единици"
+msgstr "Управляване на всички единици"
 
 #: gui/session/session.xml:(caption):71
 msgid "Change perspective"
-msgstr "Промени перспективата"
+msgstr "Промяна на перспективата"
 
 #: gui/session/session.xml:(caption):78
 msgid "Display selection state"
-msgstr "Покажи статуса на селекцията"
+msgstr "Показване на състоянието на избраното"
 
 #: gui/session/session.xml:(caption):83
 msgid "Pathfinder overlay"
-msgstr "Pathfinder пласт"
+msgstr "Слой на търсенето на път"
 
 #: gui/session/session.xml:(caption):90
 msgid "Obstruction overlay"
-msgstr "Obstruction пласт"
+msgstr "Слой на препятствията"
 
 #: gui/session/session.xml:(caption):97
 msgid "Unit motion overlay"
-msgstr "пласт на движението на единиците"
+msgstr "Слой на движението на единиците"
 
 #: gui/session/session.xml:(caption):104
 msgid "Range overlay"
-msgstr "Обхватен пласт"
+msgstr "Слой на обхватите"
 
 #: gui/session/session.xml:(caption):111
 msgid "Bounding box overlay"
-msgstr "Пласт на очертаващата кутия"
+msgstr "Слой на обграждащите кутии"
 
 #: gui/session/session.xml:(caption):118
 msgid "Restrict camera"
-msgstr "Ограничи камера"
+msgstr "Ограничаване на камерата"
 
 #: gui/session/session.xml:(caption):127
 msgid "Reveal map"
-msgstr "Разкрии карта"
+msgstr "Разкриване на картата"
 
 #: gui/session/session.xml:(caption):135
 msgid "Enable time warp"
-msgstr "Включи превъртане на времето"
+msgstr "Включване на изкривяването на времето"
 
 #: gui/session/session.xml:(caption):145
 msgid "Promote selected units"
-msgstr "Повиши селектираните единици"
+msgstr "Повишаване на избраните единици"
 
 #: gui/session/session.xml:(caption):152
 msgid "Hierarchical pathfinder overlay"
-msgstr "Пласт на йерархичния алгоритъм за намиране на път"
+msgstr "Слой на йерархичния алгоритъм за търсене на път"
 
 #: gui/session/session.xml:(caption):186
 msgid "Game Paused"
-msgstr "Пауза"
+msgstr "Играта е спряна на пауза"
 
 #: gui/session/session.xml:(caption):189
 msgid "Click to Resume Game"
-msgstr "Кликни, за да Продължиш Играта"
+msgstr "Щракнете където и да е, за да продължи играта"
 
 #: gui/session/session.xml:(caption):224
 msgid "Cancel"
@@ -1031,15 +1032,15 @@ msgstr "Отказ"
 
 #: gui/session/session.xml:(caption):230
 msgid "Team Only"
-msgstr "Само за Отбора"
+msgstr "Само отбора"
 
 #: gui/session/session.xml:(caption):234
 msgid "Send"
-msgstr "Изпрати"
+msgstr "Изпращане"
 
 #: gui/session/top_panel.xml:(tooltip):18
 msgid "Choose player to view"
-msgstr "Избери кой играч да видиш"
+msgstr "Изберете кой играч да наблюдавате"
 
 #: gui/session/top_panel.xml:(caption):26
 msgid "Observer Mode (experimental)"
@@ -1048,18 +1049,18 @@ msgstr "Наблюдателен режим (пробен)"
 #: gui/session/trade_window.xml:(caption):9
 #: gui/session/top_panel/button_trade.xml:(tooltip):10
 msgid "Trade"
-msgstr "Търгувай"
+msgstr "Търговия"
 
 #: gui/session/trade_window.xml:(caption):15
 msgid "Trading goods selection:"
-msgstr "Селекция за търгуваните стоки:"
+msgstr "Стока за търгуване:"
 
 #: gui/session/trade_window.xml:(tooltip):35
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr "Избери една стока като източник на промените. После използвай стрелките на целевата стока, за да направиш промените (натискайки Шифт ще сложи селектирания ресурс на 100%)."
+msgstr "Изберете една от стоките като източник на промените. След това използвайте стрелките на целевата стока, за да направите промените (ако натиснете Шифт докато избирате, стоката ще получи 100%)."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1071,7 +1072,7 @@ msgstr "Да или не?"
 
 #: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
 msgid "Exchange resources:"
-msgstr "Разменяй ресурси"
+msgstr "Разменяйте ресурси:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
 msgid "Hitpoints"
@@ -1083,7 +1084,7 @@ msgstr "Пленителни точки"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"
-msgstr "Атака и Броня"
+msgstr "Атака и броня"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):69
 msgid "Experience"
@@ -1091,25 +1092,25 @@ msgstr "Опит"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Rank"
-msgstr "Ранк"
+msgstr "Ранг"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr "Продукционна опашка"
+msgstr "Производствена опашка"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):8
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Натисни, за да селектираш групираните единици, натисни двойно, за да фокусираш групираните единици и натисни с десен клавиш, за да разпуснеш групата."
+msgstr "Натиснете за избиране на групираните единици. Натиснете два пъти за центриране върху тях. Натиснете с десен бутон за разпускане на групата."
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):9
 msgid "Game speed"
-msgstr "Бързина на играта"
+msgstr "Скорост на играта"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):17
 msgid "Choose game speed"
-msgstr "Избери бързина на играта"
+msgstr "Изберете скоростта на играта"
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
@@ -1117,7 +1118,7 @@ msgstr "Меню"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XIX : Syllepsis"
-msgstr "АЛФА XIX : Силепсис"
+msgstr "АЛФА XIX : Силепс"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"
@@ -1133,4 +1134,4 @@ msgstr "Камък"
 
 #: gui/session/top_panel/resource_wood.xml:(tooltip):3
 msgid "Wood"
-msgstr "Дърво"
+msgstr "Дърва"
