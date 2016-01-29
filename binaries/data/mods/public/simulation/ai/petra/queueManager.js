@@ -426,6 +426,19 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 			toBePaused = (q === "civilCentre" || q === "defenseBuilding" ||
 				q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1);
 
+		if (toBePaused)
+		{
+			if (q === "field" && gameState.ai.HQ.needFarm &&
+				gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length === 0)
+				toBePaused = false;
+			if (q === "dock" && gameState.ai.HQ.needFish &&
+				gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).length === 0)
+				toBePaused = false;
+			if (q === "ships" && gameState.ai.HQ.needFish &&
+				gameState.ai.HQ.navalManager.ships.filter(API3.Filters.byClass("FishingBoat")).length === 0)
+				toBePaused = false;
+		}
+
 		let queue = this.queues[q];
 		if (!queue.paused && toBePaused)
 		{

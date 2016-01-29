@@ -414,6 +414,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 		return;
 
 	var startingSize = 0;
+	var startingLand = [];
 	for (let region in this.landRegions)
 	{
 		for (let base of this.baseManagers)
@@ -421,6 +422,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			if (!base.anchor || base.accessIndex != +region)
 				continue;
 			startingSize += gameState.ai.accessibility.regionSize[region];
+			startingLand.push(base.accessIndex);
 			break;
 		}
 	}
@@ -432,12 +434,46 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	{
 		this.saveSpace = true;
 		this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
-		this.Config.Economy.targetNumFishers = Math.max(this.Config.Economy.targetNumFishers, 2);
+		let num = Math.max(this.Config.Economy.targetNumFishers, 2);
+		for (let land of startingLand)
+		{
+			for (let sea of gameState.ai.accessibility.regionLinks[land])
+			{
+				if (gameState.ai.HQ.navalRegions[sea])
+					this.navalManager.updateFishingBoats(sea, num);
+			}
+		}
 	}
 
+	// - count the available wood resource, and react accordingly
+	var startingFood = gameState.getResources().food;
+	var check = {};
+	for (let proxim of ["nearby", "medium", "faraway"])
+	{
+		for (let base of this.baseManagers)
+		{
+			for (let supply of base.dropsiteSupplies.food[proxim])
+			{
+				if (check[supply.id])    // avoid double counting as same resource can appear several time
+					continue;
+				check[supply.id] = true;
+				startingFood += supply.ent.resourceSupplyAmount();
+			}
+		}
+	}
+	if (startingFood < 800)
+	{
+		if (startingSize < 24000)
+		{
+			this.needFish = true;
+			this.Config.Economy.popForDock = 1;
+		}
+		else
+			this.needFarm = true;
+	}
 	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
 	var startingWood = gameState.getResources().wood;
-	var check = {};
+	check = {};
 	for (let proxim of ["nearby", "medium", "faraway"])
 	{
 		for (let base of this.baseManagers)
@@ -454,7 +490,10 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	if (this.Config.debug > 1)
 		API3.warn("startingWood: " + startingWood + " (cut at 8500 for no rush and 6000 for saveResources)");
 	if (startingWood < 6000)
+	{
 		this.saveResources = true;
+		this.Config.Economy.popForTown = 40; // Switch to town phase as soon as possible to be able to expand
+	}
 	if (startingWood > 8500 && this.canBuildUnits)
 	{
 		let allowed = Math.ceil((startingWood - 8500) / 3000);
