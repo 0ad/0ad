@@ -50,8 +50,13 @@ m.Worker.prototype.update = function(gameState, ent)
 
 	var unitAIStateOrder = unitAIState.split(".")[1];
 	// If we're fighting or hunting, let's not start gathering
+	// but for fishers where UnitAI must have made us target a moving whale.
 	if (unitAIStateOrder === "COMBAT")
+	{
+		if (subrole === "fisher")
+			this.startFishing(gameState);
 		return;
+	}
 
 	// Okay so we have a few tasks.
 	// If we're gathering, we'll check that we haven't run idle.
@@ -648,22 +653,25 @@ m.Worker.prototype.startFishing = function(gameState)
 		return distMin;
 	};
 	
+	var exhausted = true;
 	resources.forEach(function(supply)
 	{
 		if (!supply.position())
-			return;
-
-		if (m.IsSupplyFull(gameState, supply))
-			return;
-		// check if available resource is worth one additionnal gatherer (except for farms)
-		var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
-		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
 		// check that it is accessible
 		if (!supply.getMetadata(PlayerID, "sea"))
 			supply.setMetadata(PlayerID, "sea", gameState.ai.accessibility.getAccessValue(supply.position(), true));
 		if (supply.getMetadata(PlayerID, "sea") !== fisherSea)
+			return;
+
+		exhausted = false;
+
+		if (m.IsSupplyFull(gameState, supply))
+			return;
+		// check if available resource is worth one additionnal gatherer (except for farms)
+		var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
+		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
 		// measure the distance to the resource
@@ -686,6 +694,13 @@ m.Worker.prototype.startFishing = function(gameState)
 			nearestSupply = supply;
 		}
 	});
+
+	if (exhausted)
+	{
+		gameState.ai.HQ.navalManager.resetFishingBoats(gameState, fisherSea);
+		this.ent.destroy();
+		return false;
+	}
 	
 	if (nearestSupply)
 	{

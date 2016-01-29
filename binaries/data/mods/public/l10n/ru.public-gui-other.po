@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-23 17:27+0000\n"
-"Last-Translator: Виталий Орехов <7opex0@mail.ru>\n"
+"PO-Revision-Date: 2016-01-28 14:10+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -520,10 +520,10 @@ msgstr "Крушащий"
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
+msgstr[2] "%(time)s %(second)s"
+msgstr[3] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:57 gui/common/tooltips.js:238
 #: gui/common/tooltips.js:249 gui/common/tooltips.js:466
@@ -538,10 +538,10 @@ msgstr[3] "секунды"
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
 msgid_plural "%(arrowcount)s %(arrow)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(arrowcount)s %(arrow)s"
+msgstr[1] "%(arrowcount)s %(arrow)s"
+msgstr[2] "%(arrowcount)s %(arrow)s"
+msgstr[3] "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:66
 msgid "arrow"
@@ -619,10 +619,10 @@ msgstr "Дальность:"
 #: gui/common/tooltips.js:200 gui/common/tooltips.js:461
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "метр"
+msgstr[1] "метров"
+msgstr[2] "метров"
+msgstr[3] "метра"
 
 #: gui/common/tooltips.js:203
 #, javascript-format
@@ -635,10 +635,10 @@ msgstr ""
 #, javascript-format
 msgid "%(range)s %(meters)s"
 msgid_plural "%(range)s %(meters)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(range)s %(meters)s"
+msgstr[1] "%(range)s %(meters)s"
+msgstr[2] "%(range)s %(meters)s"
+msgstr[3] "%(range)s %(meters)s"
 
 #: gui/common/tooltips.js:216
 #, javascript-format
@@ -751,10 +751,10 @@ msgstr "Лечение:"
 #: gui/common/tooltips.js:456
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "ОЗ"
+msgstr[1] "ОЗ"
+msgstr[2] "ОЗ"
+msgstr[3] "ОЗ"
 
 #: gui/common/tooltips.js:479
 #, javascript-format
@@ -1240,27 +1240,27 @@ msgstr "Вы уверенны что хотите удалить этот пов
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Любая"
 
 #: gui/replaymenu/replay_filters.js:56
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Любой"
 
 #: gui/replaymenu/replay_filters.js:69
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Любое"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Любое"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Любая"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:102
@@ -2163,7 +2163,7 @@ msgstr "- Постройте где-нибудь на карте, даже на 
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr ""
+msgstr "- Переходит к владельцу территории, если построено на не союзной территории "
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
@@ -2173,7 +2173,7 @@ msgstr "- Стройте осадные орудия и обучайте гор�
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "- Разместите до 40 юнитов для медленного восстановления их здоровья и защиты постройки от атак и разрушения."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -2351,7 +2351,7 @@ msgstr "- Крепость, обычно, самое крепкое здание
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- Позволяет тренировать Чемпионов, Героев и Осадные орудия."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -2379,7 +2379,7 @@ msgstr "- Горожане-солдаты имеют бонус в горных 
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
-msgstr ""
+msgstr "- У гражданской кавалерии есть бонус с охоты."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
@@ -2424,7 +2424,7 @@ msgstr "- Они строятся быстро, но они шаткие."
 #: gui/text/tips/outposts.txt:8
 msgid ""
 "- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "- Разместите юнита для предотвращения разрушения на нейтральной территории."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -2511,7 +2511,7 @@ msgstr "- Самый тяжёлый военный корабль. Доступ�
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Garrison ballistas to increase fire power."
-msgstr ""
+msgstr "- Разместите баллисты для увеличения огневой мощи."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
@@ -2607,7 +2607,7 @@ msgstr "СТОА"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- Специальная стартовая постройка для Греческой цивилизации."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2615,7 +2615,7 @@ msgstr "- Повышает предел населения на +10 ."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "- Присутствует только на некоторых картах."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
@@ -2661,7 +2661,7 @@ msgstr "ХРАМЫ"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "- Постройка этапа небольшого города."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2686,19 +2686,19 @@ msgstr "РАСПАД ТЕРРИТОРИИ"
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "- Разрушается, если не присоединено к союзному Городскому центру."
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr ""
+msgstr "- Процесс перехода может быть замедлен или приостановлен, если разместить внутри несколько юнитов."
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "- Когда распад завершается, здание переходит к наиболее влиятельному соседу."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -2743,13 +2743,13 @@ msgstr "Поместите бойцов на корабль, чтобы увел
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Разместите катапульту на борту для атаки большего радиуса действия (ЕЩЕ НЕ РЕАЛИЗОВАНО)."
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Возможность разрушительной таранной атаки на корабли, которая перезаряжается после каждого использования (ЕЩЕ НЕ РЕАЛИЗОВАНО)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

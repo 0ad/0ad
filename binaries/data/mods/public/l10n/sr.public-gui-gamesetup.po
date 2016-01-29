@@ -6,13 +6,14 @@
 # acac97 <aleksandar.cvetic97@gmail.com>, 2015
 # MIlosSD <pirisd@gmail.com>, 2014
 # MIlosSD <pirisd@gmail.com>, 2014-2015
+# Stefan Vukanovic <lisacvukhome@gmail.com>, 2016
 # Tpe3op <tre-zor@live.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-28 10:20+0100\n"
-"PO-Revision-Date: 2015-12-28 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-28 21:59+0000\n"
+"Last-Translator: Stefan Vukanovic <lisacvukhome@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr "AI ће бити онемогућена за овог играча"
 
 #: gui/gamesetup/gamesetup.js:32 gui/gamesetup/gamesetup.js:1274
 msgid "Default"
-msgstr ""
+msgstr "Подразумевано"
 
 #: gui/gamesetup/gamesetup.js:37
 msgid "Naval Maps"
@@ -79,12 +80,12 @@ msgstr "Ништа"
 #: gui/gamesetup/gamesetup.js:555
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s је био избачен"
 
 #: gui/gamesetup/gamesetup.js:559
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s је био банован"
 
 #: gui/gamesetup/gamesetup.js:1115
 msgid "You"
@@ -130,7 +131,7 @@ msgstr "Нераспоређени"
 
 #: gui/gamesetup/gamesetup.js:1622
 msgid "Unknown Player"
-msgstr ""
+msgstr "Непознат играч"
 
 #: gui/gamesetup/gamesetup.js:1648 gui/gamesetup/gamesetup.js:1652
 #: gui/gamesetup/gamesetup.js:1660 gui/gamesetup/gamesetup.js:1679
@@ -273,7 +274,7 @@ msgstr "Име играча"
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Color"
-msgstr ""
+msgstr "Боја"
 
 #: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Player Placement"
@@ -313,7 +314,7 @@ msgstr "Пошаљи"
 
 #: gui/gamesetup/gamesetup.xml:(caption):218
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Варања активирана."
 
 #: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Start game!"
@@ -374,7 +375,7 @@ msgstr "Бодована партија:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):390
 msgid "Late Observer Joins:"
-msgstr ""
+msgstr "Касни посматрач се прикључио:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):62
 msgid "View civilization info"
@@ -382,7 +383,7 @@ msgstr "Погледај информације о цивилизацији"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):77
 msgid "Pick a color."
-msgstr ""
+msgstr "Изаберите боју."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):80
 msgid "Select player."
@@ -478,7 +479,7 @@ msgstr "Омогућити да ли ће се ова партија бодов�
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):394
 msgid "Allow observers to join after the game started."
-msgstr ""
+msgstr "Дозволи посматрачима да се прикључе после почетка игре."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):408
 msgid "Close more game options window"

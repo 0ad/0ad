@@ -175,10 +175,19 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 		this.setDockIndex(gameState, dock);
 };
 
-m.NavalManager.prototype.resetFishingBoats = function(gameState)
+m.NavalManager.prototype.updateFishingBoats = function(sea, num)
 {
-	for (let i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
-		this.wantedFishShips[i] = 0;
+	if (this.wantedFishShips[sea])
+		this.wantedFishShips[sea] = num;
+};
+
+m.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
+{
+	if (sea !== undefined)
+		this.wantedFishShips[sea] = 0;
+	else
+		for (let i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
+			this.wantedFishShips[i] = 0;
 };
 
 m.NavalManager.prototype.setShipIndex = function(gameState, ship)
@@ -227,7 +236,7 @@ m.NavalManager.prototype.getDockIndex = function(gameState, dock, onWater)
 	return index;
 };
 
-// get the list of seas around this region not connected by a dock
+// get the list of seas (or lands) around this region not connected by a dock
 m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
 {
 	var seas = gameState.ai.accessibility.regionLinks[region].slice();

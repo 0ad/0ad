@@ -58,14 +58,11 @@ m.ResearchPlan.prototype.Serialize = function()
 		"metadata": this.metadata,
 		"cost": this.cost.Serialize(),
 		"number": this.number,
-		"rush": this.rush,
-		"lastIsGo": this.lastIsGo,
+		"rush": this.rush
 	};
 
 	let func = {
 		"isGo": uneval(this.isGo),
-		"onGo": uneval(this.onGo),
-		"onNotGo": uneval(this.onNotGo),
 		"onStart": uneval(this.onStart)
 	};
 

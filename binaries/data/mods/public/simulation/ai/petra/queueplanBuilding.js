@@ -772,8 +772,7 @@ m.ConstructionPlan.prototype.Serialize = function()
 		"metadata": this.metadata,
 		"cost": this.cost.Serialize(),
 		"number": this.number,
-		"position": this.position,
-		"lastIsGo": this.lastIsGo,
+		"position": this.position
 	};
 
 	let func = {
