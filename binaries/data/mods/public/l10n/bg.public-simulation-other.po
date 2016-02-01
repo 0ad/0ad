@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2016
 # Jordan Grigorov <yoreei.grigorov@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-27 15:17+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-30 19:30+0000\n"
+"Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +23,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:7
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Храна"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -36,7 +37,7 @@ msgstr "Дърва"
 #: simulation/ai/petra/chatHelper.js:11
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Метал"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -50,58 +51,58 @@ msgstr "Камъни"
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Започвам масивна военна кампания срещу  %(_player_)s, присъедини се."
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "Започвам атака срещу  %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "Току-що изпратих армия срещу %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:44
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "След като прегрупирам армията си, ще бъда с теб срещу %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:46
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "Правя последни подготовки и ще атакувам %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "Не мога да помогна срещу %(_player_)s за сега, тъй като предвиждам друга атака срещу %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:53
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Съжалявам, нямам достатъчно войници в момента, то следващата ми атака ще е насочена към %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "Ето дар за %(_player_)s, оползотвори го добре."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "Виждам, че си в лоша ситуация %(_player_)s, Надявам се това да помогне."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "Мога да ти помогна сега %(_player_)s, Но се пробвай да събираш повече ресурси в бъдеще."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
@@ -113,37 +114,37 @@ msgstr "Имам нужда от %(resource)s, можеш ли да помогн
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "Бих участвал по-пълноценно в нашите общи военни усилия, ако ме снабдиш с %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:101
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Ако имаш %(resource)s в излишък, това би ми помогнало да заздравя армията си."
 
 #: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "Уредих нов търговски път с %(_player_)s. Търгуването ще бъде печелившо за всички нас."
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "Нов търговски път е започнат с %(_player_)s. Вземи твоя дял от печалбата"
 
 #: simulation/ai/petra/chatHelper.js:136
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "Напредвам в %(phase)s."
 
 #: simulation/ai/petra/chatHelper.js:138
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "Достигнах %(phase)s."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -276,7 +277,7 @@ msgstr "Направи още малко прашкари и ги прати д�
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
+msgstr "Тренирай още 5 жени. Тези ще събират дърва."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -390,7 +391,7 @@ msgstr "- Не се страхувай да преместваш единици 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
+msgstr "- Построй достатъчно къщи. Твоят Градски Център трябва да бъде колкото се може по-зает."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -620,8 +621,8 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s е прекалено близо до %(category)s, трябва да е поне на %(distance)s метър"
+msgstr[1] "%(name)s е прекалено близо до %(category)s, трябва да е поне на %(distance)s метра"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -629,8 +630,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s прекалено далече от %(category)s, трябва да бъде в рамките на %(distance)s метър"
+msgstr[1] "%(name)s прекалено далече от %(category)s, трябва да бъде в рамките на %(distance)s метра"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -663,11 +664,11 @@ msgstr "вражеска"
 #: simulation/components/CeasefireManager.js:103
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "Можеш да атакуваш след %(time)s"
 
 #: simulation/components/CeasefireManager.js:118
 msgid "You can attack now!"
-msgstr ""
+msgstr "Можеш да атакуваш сега!"
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -733,52 +734,52 @@ msgstr "Опашката за производство е пълна."
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "Не може да се намери свободно място за тренираните единици"
 
 #: simulation/helpers/Commands.js:675
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Иска се атака срещу %(_player_)s ."
 
 #: simulation/helpers/Commands.js:965
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Не са изпълнени изискванията за технологията на сградата."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Гея"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Играч 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Играч 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Играч 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Играч 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Играч 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Играч 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Играч 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Играч 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
@@ -814,77 +815,77 @@ msgstr "Лудо (2х)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Превъртане напред (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Превъртане напред (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Превъртане напред (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Побеждаване на всички опоненти"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Завладяване"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Унищожаване на всички противникови структури"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Завладяване на структури"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Убиване на всички вражески единици"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Завладяване на единици"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Победа чрез построяване и опазване на чудо"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Чудо"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Много малко"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Малко"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Средно"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Повече"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Много повече"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Смъртоносна битка"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 #: simulation/data/settings/map_sizes.jsonData[0].LongName
@@ -945,7 +946,7 @@ msgid ""
 "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Петра е изкуственият интелект на 0AD по подразбиране. Моля, докладвайте проблеми на Wildfire Games (вижте връзката в главното меню)\n\nИзкуственият интелект има ощетяване/бонус при трупането на ресурси (при събирането или търговията), които варират от 0,5 за трудност „пясъчна кутия“ до 1,6 за много голяма трудност (Средна - 1,0). Също така, „пясъчната кутия“ няма да се разширява или атакува."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

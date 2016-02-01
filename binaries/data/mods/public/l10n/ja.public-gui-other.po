@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-01-30 04:06+0000\n"
+"Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -981,7 +981,7 @@ msgstr "すべてのメニューで毎秒50フレームに制限して、節電�
 
 #: gui/options/options.js:38
 msgid "Graphics quality"
-msgstr ""
+msgstr "グラフィックス品質"
 
 #: gui/options/options.js:38
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -1045,7 +1045,7 @@ msgstr "ロビーチャットに投稿されたメッセージの時刻を表示
 
 #: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
-msgstr ""
+msgstr "保存していない変更があります。本当に終了しますか？"
 
 #: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
@@ -1663,7 +1663,7 @@ msgstr "ロビー設定"
 
 #: gui/options/options.xml:(caption):69
 msgid "Revert"
-msgstr ""
+msgstr "回復"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1675,15 +1675,15 @@ msgstr ""
 
 #: gui/options/options.xml:(tooltip):70
 msgid "Revert to previous saved settings"
-msgstr ""
+msgstr "前回保存した設定を回復"
 
 #: gui/options/options.xml:(tooltip):75
 msgid "Save changes"
-msgstr ""
+msgstr "変更を保存"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"
-msgstr ""
+msgstr "保存していない変更は今回に限り有効"
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
