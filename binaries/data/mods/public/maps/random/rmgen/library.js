@@ -1,8 +1,3 @@
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-//	Constant definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
-
 const PI = Math.PI;
 const TWO_PI = 2 * Math.PI;
 const TERRAIN_SEPARATOR = "|";
@@ -12,10 +7,6 @@ const HEIGHT_UNITS_PER_METRE = 92;
 const MIN_MAP_SIZE = 128;
 const MAX_MAP_SIZE = 512;
 const FALLBACK_CIV = "athen";
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-//	Utility functions
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 function fractionToTiles(f)
 {
@@ -346,12 +337,8 @@ function placeTerrain(x, z, terrain)
 
 function isCircularMap()
 {
-	return (g_MapSettings.CircularMap ? true : false);
+	return !!g_MapSettings.CircularMap;
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-//	Access global map variable
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 function createTileClass()
 {
@@ -360,12 +347,9 @@ function createTileClass()
 
 function getTileClass(id)
 {
-	// Check for valid class id
 	if (!g_Map.validClass(id))
-	{
 		return undefined;
-	}
-	
+
 	return g_Map.tileClasses[id];
 }
 
@@ -386,7 +370,7 @@ function getMapSize()
 
 function getMapArea()
 {
-	return g_Map.size*g_Map.size;
+	return g_Map.size * g_Map.size;
 }
 
 function getNumPlayers()
@@ -405,80 +389,57 @@ function getCivCode(player)
 
 function areAllies(player1, player2)
 {
-	if ((g_MapSettings.PlayerData[player1+1].Team === undefined) || (g_MapSettings.PlayerData[player2+1].Team === undefined) || (g_MapSettings.PlayerData[player2+1].Team == -1) || (g_MapSettings.PlayerData[player1+1].Team == -1))
-	{
+	if (g_MapSettings.PlayerData[player1+1].Team === undefined ||
+		g_MapSettings.PlayerData[player2+1].Team === undefined ||
+		g_MapSettings.PlayerData[player2+1].Team == -1 ||
+		g_MapSettings.PlayerData[player1+1].Team == -1)
 		return false;
-	}
-	else
-	{
-		return (g_MapSettings.PlayerData[player1+1].Team === g_MapSettings.PlayerData[player2+1].Team);
-	}
+
+	return g_MapSettings.PlayerData[player1+1].Team === g_MapSettings.PlayerData[player2+1].Team;
 }
 
 function getPlayerTeam(player)
 {
 	if (g_MapSettings.PlayerData[player+1].Team === undefined)
-	{
 		return -1;
-	}
-	else
-	{
-		return g_MapSettings.PlayerData[player+1].Team;
-	}
+
+	return g_MapSettings.PlayerData[player+1].Team;
 }
 
-function sortPlayers(source)
+/**
+ * Sorts an array of player IDs by team index. Players without teams come first.
+ * Randomize order for players of the same team.
+ */
+function sortPlayers(playerIndices)
 {
-	if (!source.length)
-		return [];
-
-	var result = new Array(0);
-	var team = new Array(5);
-	for (var q = 0; q < 5; q++)
-	{
-		team[q] = new Array(1);
-	}
-
-	for (var i = -1; i < 4; i++)
-	{
-		for (var j = 0; j < source.length; j++)
-		{
-			if (getPlayerTeam(j) == i)
-			{
-				team[i+1].unshift(j+1);
-			}
-		}
-		team[i+1].pop();
-		result=result.concat(shuffleArray(team[i+1]))
-	}
-	return result;
+	return shuffleArray(playerIndices).sort((p1, p2) => getPlayerTeam(p1 - 1) - getPlayerTeam(p2 - 1));
 }
 
-function primeSortPlayers(source)
+function primeSortPlayers(playerIndices)
 {
-	if (!source.length)
+	if (!playerIndices.length)
 		return [];
 
-	var prime = new Array(source.length);
-
-	for (var i = 0; i < round(source.length/2); i++)
+	let prime = []
+	for (let i = 0; i < Math.ceil(playerIndices.length / 2); ++i)
 	{
-		prime[2*i]=source[i];
-		prime[2*i+1]=source[source.length-1-i];
+		prime.push(playerIndices[i]);
+		prime.push(playerIndices[playerIndices.length - 1 - i]);
 	}
 
 	return prime;
 }
 
 function getStartingEntities(player)
-{	
-	var civ = getCivCode(player);
+{
+	let civ = getCivCode(player);
+
 	if (!g_CivData[civ] || !g_CivData[civ].StartEntities || !g_CivData[civ].StartEntities.length)
 	{
 		warn("Invalid or unimplemented civ '"+civ+"' specified, falling back to '" + FALLBACK_CIV + "'");
 		civ = FALLBACK_CIV;
 	}
-	
+
 	return g_CivData[civ].StartEntities;
 }
 
@@ -492,154 +453,141 @@ function setHeight(x, z, height)
 	g_Map.setHeight(x, z, height);
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-//	Utility functions for classes
-/////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ *	Utility functions for classes
+ */
 
-// Add point to given class by id
+/**
+ * Add point to given class by id
+ */
 function addToClass(x, z, id)
 {
-	var tileClass = getTileClass(id);
-	
+	let tileClass = getTileClass(id);
+
 	if (tileClass !== null)
-	{
 		tileClass.add(x, z);
-	}
 }
 
-// Remove point from the given class by id
+/**
+ * Remove point from the given class by id
+ */
 function removeFromClass(x, z, id)
 {
-	var tileClass = getTileClass(id);
-	
+	let tileClass = getTileClass(id);
+
 	if (tileClass !== null)
-	{
 		tileClass.remove(x, z);
-	}
 }
 
-// Create a painter for the given class
+/**
+ * Create a painter for the given class
+ */
 function paintClass(id)
 {
 	return new TileClassPainter(getTileClass(id));
 }
 
-// Create a painter for the given class
+/**
+ * Create a painter for the given class
+ */
 function unPaintClass(id)
 {
 	return new TileClassUnPainter(getTileClass(id));
 }
 
-// Create an avoid constraint for the given classes by the given distances
+/**
+ * Create an avoid constraint for the given classes by the given distances
+ */
 function avoidClasses(/*class1, dist1, class2, dist2, etc*/)
 {
-	var ar = new Array(arguments.length/2);
-	for (var i = 0; i < arguments.length/2; i++)
-	{
-		ar[i] = new AvoidTileClassConstraint(arguments[2*i], arguments[2*i+1]);
-	}
-	
+	let ar = [];
+	for (let i = 0; i < arguments.length/2; ++i)
+		ar.push(new AvoidTileClassConstraint(arguments[2*i], arguments[2*i+1]));
+
 	// Return single constraint
 	if (ar.length == 1)
-	{
 		return ar[0];
-	}
-	else
-	{
-		return new AndConstraint(ar);
-	}
+
+	return new AndConstraint(ar);
 }
 
-// Create a stay constraint for the given classes by the given distances
+/**
+ * Create a stay constraint for the given classes by the given distances
+ */
 function stayClasses(/*class1, dist1, class2, dist2, etc*/)
 {
-	var ar = new Array(arguments.length/2);
-	for (var i = 0; i < arguments.length/2; i++)
-	{
-		ar[i] = new StayInTileClassConstraint(arguments[2*i], arguments[2*i+1]);
-	}
-	
+	let ar = [];
+	for (let i = 0; i < arguments.length/2; ++i)
+		ar.push(new StayInTileClassConstraint(arguments[2*i], arguments[2*i+1]));
+
 	// Return single constraint
 	if (ar.length == 1)
-	{
 		return ar[0];
-	}
-	else
-	{
-		return new AndConstraint(ar);
-	}
+
+	return new AndConstraint(ar);
 }
 
-// Create a border constraint for the given classes by the given distances
+/**
+ * Create a border constraint for the given classes by the given distances
+ */
 function borderClasses(/*class1, idist1, odist1, class2, idist2, odist2, etc*/)
 {
-	var ar = new Array(arguments.length/3);
-	for (var i = 0; i < arguments.length/3; i++)
-	{
-		ar[i] = new BorderTileClassConstraint(arguments[3*i], arguments[3*i+1], arguments[3*i+2]);
-	}
-	
+	let ar = [];
+	for (let i = 0; i < arguments.length/3; ++i)
+		ar.push(new BorderTileClassConstraint(arguments[3*i], arguments[3*i+1], arguments[3*i+2]));
+
 	// Return single constraint
 	if (ar.length == 1)
-	{
 		return ar[0];
-	}
-	else
-	{
-		return new AndConstraint(ar);
-	}
+
+	return new AndConstraint(ar);
 }
 
-// Checks if the given tile is in class "id"
+/**
+ * Checks if the given tile is in class "id"
+ */
 function checkIfInClass(x, z, id)
 {
-	var tileClass = getTileClass(id);
-	if (tileClass !== null)
-	{
-		if (tileClass.countMembersInRadius(x, z, 1) !== null)
-		{
-			return tileClass.countMembersInRadius(x, z, 1);
-		}
-		else
-		{
-			return 0;
-		}
-	}
-	else
-	{
+	let tileClass = getTileClass(id);
+	if (tileClass === null)
 		return 0;
-	}
+
+	let members = tileClass.countMembersInRadius(x, z, 1);
+	if (members === null)
+		return 0;
+
+	return members;
 }
 
-
-// Returns the distance between 2 points
+/**
+ * Returns the distance between 2 points
+ */
 function getDistance(x1, z1, x2, z2)
 {
 	return Math.pow(Math.pow(x1 - x2, 2) + Math.pow(z1 - z2, 2), 1/2);
 }
 
-// Returns the angle of the vector between point 1 and point 2.  The angle is anticlockwise from the positive x axis.
+/**
+ * Returns the angle of the vector between point 1 and point 2.  The angle is anticlockwise from the positive x axis.
+ */
 function getAngle(x1, z1, x2, z2)
 {
 	return Math.atan2(z2 - z1, x2 - x1);
 }
 
-// Returns the gradient of the line between point 1 and 2 in the form dz/dx
+/**
+ * Returns the gradient of the line between point 1 and 2 in the form dz/dx
+ */
 function getGradient(x1, z1, x2, z2)
 {
 	if (x1 == x2 && z1 == z2)
-	{
 		return 0;
-	}
-	else
-	{
-		return (z1-z2)/(x1-x2);
-	}
+
+	return (z1-z2)/(x1-x2);
 }
 
 function getTerrainTexture(x, y)
 {
 	return g_Map.getTexture(x, y);
 }
-
