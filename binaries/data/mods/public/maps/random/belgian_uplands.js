@@ -143,20 +143,20 @@ var textueByHeight = [];
 // Deep water
 textueByHeight.push({"upperHeightLimit": heightRange.min + 1/3 * (waterHeightAdjusted - heightRange.min), "terrain": "temp_sea_rocks"});
 // Medium deep water (with fish)
-var terreins = ["temp_sea_weed"];
-terreins = terreins.concat(terreins, terreins, terreins, terreins);
-terreins = terreins.concat(terreins, terreins, terreins, terreins);
-terreins.push("temp_sea_weed|gaia/fauna_fish");
-textueByHeight.push({"upperHeightLimit": heightRange.min + 2/3 * (waterHeightAdjusted - heightRange.min), "terrain": terreins});
+var terrains = ["temp_sea_weed"];
+terrains = terrains.concat(terrains, terrains, terrains, terrains);
+terrains = terrains.concat(terrains, terrains, terrains, terrains);
+terrains.push("temp_sea_weed|gaia/fauna_fish");
+textueByHeight.push({"upperHeightLimit": heightRange.min + 2/3 * (waterHeightAdjusted - heightRange.min), "terrain": terrains});
 // Flat Water
 textueByHeight.push({"upperHeightLimit": heightRange.min + 3/3 * (waterHeightAdjusted - heightRange.min), "terrain": "temp_mud_a"});
 // Water surroundings/bog (with stone/metal some rabits and bushes)
-var terreins = ["temp_plants_bog", "temp_plants_bog_aut", "temp_dirt_gravel_plants", "temp_grass_d"];
-terreins = terreins.concat(terreins, terreins, terreins, terreins, terreins);
-terreins = ["temp_plants_bog|gaia/flora_bush_temperate"].concat(terreins, terreins);
-terreins = ["temp_dirt_gravel_plants|gaia/geology_metal_temperate", "temp_dirt_gravel_plants|gaia/geology_stone_temperate", "temp_plants_bog|gaia/fauna_rabbit"].concat(terreins, terreins);
-terreins = ["temp_plants_bog_aut|gaia/flora_tree_dead"].concat(terreins, terreins);
-textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 1/6 * (heightRange.max - waterHeightAdjusted), "terrain": terreins});
+var terrains = ["temp_plants_bog", "temp_plants_bog_aut", "temp_dirt_gravel_plants", "temp_grass_d"];
+terrains = terrains.concat(terrains, terrains, terrains, terrains, terrains);
+terrains = ["temp_plants_bog|gaia/flora_bush_temperate"].concat(terrains, terrains);
+terrains = ["temp_dirt_gravel_plants|gaia/geology_metal_temperate", "temp_dirt_gravel_plants|gaia/geology_stone_temperate", "temp_plants_bog|gaia/fauna_rabbit"].concat(terrains, terrains);
+terrains = ["temp_plants_bog_aut|gaia/flora_tree_dead"].concat(terrains, terrains);
+textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 1/6 * (heightRange.max - waterHeightAdjusted), "terrain": terrains});
 // Juicy grass near bog
 textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 2/6 * (heightRange.max - waterHeightAdjusted),
 	"terrain": ["temp_grass", "temp_grass_d", "temp_grass_long_b", "temp_grass_plants"]});
@@ -168,14 +168,14 @@ textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 3/6 * (heightRang
 textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 4/6 * (heightRange.max - waterHeightAdjusted),
 	"terrain": ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d", "temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"]});
 // Forest border (With wood/food plants/deer/rabits)
-var terreins = ["temp_grass_plants|gaia/flora_tree_euro_beech", "temp_grass_mossy|gaia/flora_tree_poplar", "temp_grass_mossy|gaia/flora_tree_poplar_lombardy",
+var terrains = ["temp_grass_plants|gaia/flora_tree_euro_beech", "temp_grass_mossy|gaia/flora_tree_poplar", "temp_grass_mossy|gaia/flora_tree_poplar_lombardy",
 	"temp_grass_long|gaia/flora_bush_temperate", "temp_mud_plants|gaia/flora_bush_temperate", "temp_mud_plants|gaia/flora_bush_badlands",
 	"temp_grass_long|gaia/flora_tree_apple", "temp_grass_clovers|gaia/flora_bush_berry", "temp_grass_clovers_2|gaia/flora_bush_grapes",
 	"temp_grass_plants|gaia/fauna_deer", "temp_grass_long_b|gaia/fauna_rabbit"];
-var numTerreins = terreins.length;
-for (var i = 0; i < numTerreins; i++)
-	terreins.push("temp_grass_plants");
-textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 5/6 * (heightRange.max - waterHeightAdjusted), "terrain": terreins});
+var numTerrains = terrains.length;
+for (var i = 0; i < numTerrains; i++)
+	terrains.push("temp_grass_plants");
+textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 5/6 * (heightRange.max - waterHeightAdjusted), "terrain": terrains});
 // Unpassable woods
 textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 6/6 * (heightRange.max - waterHeightAdjusted),
 	"terrain": ["temp_grass_mossy|gaia/flora_tree_oak", "temp_forestfloor_pine|gaia/flora_tree_pine",
