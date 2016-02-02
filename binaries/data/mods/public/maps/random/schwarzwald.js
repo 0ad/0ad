@@ -67,9 +67,11 @@ var oFish = "gaia/fauna_fish";
 
 // Setup terrain
 var terrainWood = ['alpine_forrestfloor|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine']; 
+
 var terrainWoodBorder = ['new_alpine_grass_mossy|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine',
 	'temp_grass_long|gaia/flora_bush_temperate', 'temp_grass_clovers|gaia/flora_bush_berry', 'temp_grass_clovers_2|gaia/flora_bush_grapes',
 	'temp_grass_plants|gaia/fauna_deer', 'temp_grass_plants|gaia/fauna_rabbit', 'new_alpine_grass_dirt_a'];
+
 var terrainBase = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
@@ -82,6 +84,7 @@ var terrainBase = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants', 'temp_grass_plants|gaia/fauna_sheep'];
+
 var terrainBaseBorder = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
@@ -94,15 +97,21 @@ var terrainBaseBorder = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants'];
+
 var terrainBaseCenter = ['temp_dirt_gravel_b'];
+
 var baseTex = ['temp_road', 'temp_road_overgrown'];
+
 var terrainPath = ['temp_road', 'temp_road_overgrown'];
+
 var terrainHill = ['temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_grass_plants_b', 'temp_cliff_a'];
+
 var terrainHillBorder = ['temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_grass_plants_b', 'temp_grass_plants_plants',
 	'temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_grass_plants_b', 'temp_grass_plants_plants',
 	'temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_cliff_b', 'temp_grass_plants_plants',
 	'temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_cliff_b', 'temp_grass_plants_plants',
 	'temp_highlands|gaia/fauna_goat'];
+
 var tWater = ['dirt_brown_d'];
 var tWaterBorder = ['dirt_brown_d'];
 
@@ -177,6 +186,7 @@ function getOrderOfPointsForShortestClosePath(points)
 {
 	var order = [];
 	var distances = [];
+
 	if (points.length <= 3)
 	{
 		for (var i = 0; i < points.length; i++)
@@ -204,11 +214,13 @@ function getOrderOfPointsForShortestClosePath(points)
 		var minEnlengthen = Infinity;
 		var minDist1 = 0;
 		var minDist2 = 0;
+
 		for (var k = 0; k < order.length; k++)
 		{
 			var dist1 = getDistance(pointsToAdd[0][0], pointsToAdd[0][1], points[order[k]][0], points[order[k]][1]);
 			var dist2 = getDistance(pointsToAdd[0][0], pointsToAdd[0][1], points[order[(k + 1) % order.length]][0], points[order[(k + 1) % order.length]][1]);
 			var enlengthen = dist1 + dist2 - distances[k];
+
 			if (enlengthen < minEnlengthen)
 			{
 				indexToAddTo = k;
@@ -217,6 +229,7 @@ function getOrderOfPointsForShortestClosePath(points)
 				minDist2 = dist2;
 			}
 		}
+
 		order.splice(indexToAddTo + 1, 0, i + 3);
 		distances.splice(indexToAddTo, 1, minDist1, minDist2);
 		pointsToAdd.shift();
@@ -242,8 +255,8 @@ function getMinAndMaxHeight(reliefmap)
 	var height = {};
 	height.min = Infinity;
 	height.max = - Infinity;
+
 	for (var x = 0; x < reliefmap.length; x++)
-	{
 		for (var y = 0; y < reliefmap[x].length; y++)
 		{
 			if (reliefmap[x][y] < height.min)
@@ -251,7 +264,7 @@ function getMinAndMaxHeight(reliefmap)
 			else if (reliefmap[x][y] > height.max)
 				height.max = reliefmap[x][y];
 		}
-	}
+
 	return height;
 }
 
@@ -264,6 +277,7 @@ function rescaleHeightmap(minHeight, maxHeight, heightmap)
 	var oldHeightRange = getMinAndMaxHeight(heightmap);
 	var max_x = heightmap.length;
 	var max_y = heightmap[0].length;
+
 	for (var x = 0; x < max_x; x++)
 		for (var y = 0; y < max_y; y++)
 			heightmap[x][y] = minHeight + (heightmap[x][y] - oldHeightRange.min) / (oldHeightRange.max - oldHeightRange.min) * (maxHeight - minHeight);
@@ -288,8 +302,10 @@ function getStartLocationsByHeightmap(hightRange, maxTries, minDistToBorder, num
 	heightmap = (heightmap || g_Map.height);
 	
 	var validStartLocTiles = [];
+
 	for (var x = minDistToBorder; x < heightmap.length - minDistToBorder; x++)
 		for (var y = minDistToBorder; y < heightmap[0].length - minDistToBorder; y++)
+
 			if (heightmap[x][y] > hightRange.min && heightmap[x][y] < hightRange.max) // Has the right hight
 				validStartLocTiles.push([x, y]);
 	
@@ -298,17 +314,18 @@ function getStartLocationsByHeightmap(hightRange, maxTries, minDistToBorder, num
 	{
 		var startLoc = [];
 		var minDist = heightmap.length;
+
 		for (var p = 0; p < numberOfPlayers; p++)
 			startLoc.push(validStartLocTiles[randInt(validStartLocTiles.length)]);
+
 		for (var p1 = 0; p1 < numberOfPlayers - 1; p1++)
-		{
 			for (var p2 = p1 + 1; p2 < numberOfPlayers; p2++)
 			{
 				var dist = getDistance(startLoc[p1][0], startLoc[p1][1], startLoc[p2][0], startLoc[p2][1]);
 				if (dist < minDist)
 					minDist = dist;
 			}
-		}
+
 		if (minDist > maxMinDist)
 		{
 			maxMinDist = minDist;
@@ -340,6 +357,7 @@ function derivateEntitiesByHeight(hightRange, startLoc, entityList, maxTries, mi
 	
 	var placements = deepcopy(startLoc);
 	var validTiles = [];
+
 	for (var x = minDistance; x < heightmap.length - minDistance; x++)
 		for (var y = minDistance; y < heightmap[0].length - minDistance; y++)
 			if (heightmap[x][y] > hightRange.min && heightmap[x][y] < hightRange.max) // Has the right hight
@@ -352,14 +370,14 @@ function derivateEntitiesByHeight(hightRange, startLoc, entityList, maxTries, mi
 	{
 		var tile = validTiles[randInt(validTiles.length)];
 		var isValid = true;
+
 		for (var p = 0; p < placements.length; p++)
-		{
 			if (getDistance(placements[p][0], placements[p][1], tile[0], tile[1]) < minDistance)
 			{
 				isValid = false;
 				break;
 			}
-		}
+
 		if (isValid)
 		{
 			placeObject(tile[0], tile[1], entityList[randInt(entityList.length)], 0, randFloat(0, 2*PI));
@@ -381,9 +399,11 @@ function setBaseTerrainDiamondSquare(minHeight, maxHeight, smoothness, initialHe
 	// Make some arguments optional
 	minHeight = (minHeight || 0);
 	maxHeight = (maxHeight || 1);
+
 	var heightRange = maxHeight - minHeight;
 	if (heightRange <= 0)
 		warn('setBaseTerrainDiamondSquare: heightRange < 0');
+
 	smoothness = (smoothness || 1);
 	
 	var offset = heightRange / 2;
@@ -394,6 +414,7 @@ function setBaseTerrainDiamondSquare(minHeight, maxHeight, smoothness, initialHe
 	{
 		var newHeightmap = [];
 		var oldWidth = initialHeightmap.length;
+
 		// Square
 		for (var x = 0; x < 2 * oldWidth - 1; x++)
 		{
@@ -411,9 +432,9 @@ function setBaseTerrainDiamondSquare(minHeight, maxHeight, smoothness, initialHe
 					newHeightmap[x].push(undefined); // Define later
 			}
 		}
+
 		// Diamond
 		for (var x = 0; x < 2 * oldWidth - 1; x++)
-		{
 			for (var y = 0; y < 2 * oldWidth - 1; y++)
 			{
 				if (newHeightmap[x][y] === undefined)
@@ -445,7 +466,7 @@ function setBaseTerrainDiamondSquare(minHeight, maxHeight, smoothness, initialHe
 					}
 				}
 			}
-		}
+
 		initialHeightmap = deepcopy(newHeightmap);
 		offset /= Math.pow(2, smoothness);
 	}
@@ -474,6 +495,7 @@ function decayErrodeHeightmap(strength, heightmap)
 	var map = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]]; // smoother
 	var max_x = heightmap.length;
 	var max_y = heightmap[0].length;
+
 	for (var x = 0; x < max_x; x++)
 		for (var y = 0; y < max_y; y++)
 			for (var i = 0; i < map.length; i++)
@@ -497,18 +519,20 @@ function rectangularSmoothToHeight(center, dx, dy, targetHeight, strength, heigh
 		{
 			var actualX = x - dx + wx;
 			var actualY = y - dy + wy;
+
 			if (actualX >= 0 && actualX < heightmap.length - 1 && actualY >= 0 && actualY < heightmap[0].length - 1) // Is in map
 				heightmapWin[wx].push(heightmap[actualX][actualY]);
 			else
 				heightmapWin[wx].push(targetHeight);
 		}
 	}
+
 	for (var wx = 0; wx < 2 * dx + 1; wx++)
-	{
 		for (var wy = 0; wy < 2 * dy + 1; wy++)
 		{
 			var actualX = x - dx + wx;
 			var actualY = y - dy + wy;
+
 			if (actualX >= 0 && actualX < heightmap.length - 1 && actualY >= 0 && actualY < heightmap[0].length - 1) // Is in map
 			{
 				// Window function polynomial 2nd degree
@@ -518,7 +542,6 @@ function rectangularSmoothToHeight(center, dx, dy, targetHeight, strength, heigh
 				heightmap[actualX][actualY] = heightmapWin[wx][wy] + strength * scaleX * scaleY * (targetHeight - heightmapWin[wx][wy]);
 			}
 		}
-	}
 }
 
 
@@ -580,15 +603,19 @@ var heighLimits = [
 
 // Get start locations
 var startLocations = getStartLocationsByHeightmap({'min': heighLimits[4], 'max': heighLimits[5]});
+
 var playerHeight = (heighLimits[4] + heighLimits[5]) / 2;
 
 for (var i=0; i < numPlayers; i++)
 {
 	playerAngle[i] = (playerAngleStart + i*playerAngleAddAvrg + randFloat(0, playerAngleMaxOff))%(2*PI);
+
 	var x = round(mapCenterX + randFloat(minPlayerRadius, maxPlayerRadius)*cos(playerAngle[i]));
 	var z = round(mapCenterZ + randFloat(minPlayerRadius, maxPlayerRadius)*sin(playerAngle[i]));
+
 	playerStartLocX[i] = x;
 	playerStartLocZ[i] = z;
+
 	// Place starting entities
 
 	rectangularSmoothToHeight([x,z] , 20, 20, playerHeight, 0.8);
@@ -636,20 +663,24 @@ RMS.SetProgress(60);
 
 // Place paths
 log("Placing paths...");
+
 var doublePaths = true;
 if (numPlayers > 4)
 	doublePaths = false;
+
 var doublePathMayPlayers = 4;
 if (doublePaths === true)
 	var maxI = numPlayers+1;
 else
 	var maxI = numPlayers;
+
 for (var i = 0; i < maxI; i++)
 {
 	if (doublePaths === true)
 		var minJ = 0;
 	else
 		var minJ = i+1;
+
 	for (var j = minJ; j < numPlayers+1; j++)
 	{
 		// Setup start and target coordinates
@@ -663,6 +694,7 @@ for (var i = 0; i < maxI; i++)
 			var x = mapCenterX;
 			var z = mapCenterZ;
 		}
+
 		if (j < numPlayers)
 		{
 			var targetX = playerStartLocX[j];
@@ -673,18 +705,22 @@ for (var i = 0; i < maxI; i++)
 			var targetX = mapCenterX;
 			var targetZ = mapCenterZ;
 		}
+
 		// Prepare path placement
 		var angle = getAngle(x, z, targetX, targetZ);
 		x += round(pathSucsessRadius*cos(angle));
 		z += round(pathSucsessRadius*sin(angle));
+
 		var targetReached = false;
 		var tries = 0;
+
 		// Placing paths
 		while (targetReached === false && tries < 2*mapSize)
 		{
 			var placer = new ClumpPlacer(pathWidth, 1, 1, 1, x, z);
 			var painter = [new TerrainPainter(terrainPath), new SmoothElevationPainter(ELEVATION_MODIFY, -0.1, 1.0), paintClass(clPath)];
 			createArea(placer, painter, avoidClasses(clPath, 0, clOpen, 0 ,clWater, 4, clBaseResource, 4));
+
 			// addToClass(x, z, clPath); // Not needed...
 			// Set vars for next loop
 			angle = getAngle(x, z, targetX, targetZ);
@@ -698,10 +734,11 @@ for (var i = 0; i < maxI; i++)
 				x += round(cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
 				z += round(sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
 			}
+
 			if (getDistance(x, z, targetX, targetZ) < pathSucsessRadius)
 				targetReached = true;
-			tries++;
 
+			tries++;
 		}
 	}
 }
@@ -765,15 +802,16 @@ for (var x = 0; x < mapSize; x++)
 {
 	for (var z = 0;z < mapSize;z++)
 	{
-		// Some variables
 		var radius = Math.pow(Math.pow(mapCenterX - x - 0.5, 2) + Math.pow(mapCenterZ - z - 0.5, 2), 1/2); // The 0.5 is a correction for the entities placed on the center of tiles
 		var minDistToSL = mapSize;
 		for (var i=0; i < numPlayers; i++)
 			minDistToSL = min(minDistToSL, getDistance(playerStartLocX[i], playerStartLocZ[i], x, z));
+
 		// Woods tile based
 		var tDensFactSL = max(min((minDistToSL - baseRadius) / baseRadius, 1), 0);
 		var tDensFactRad = abs((resourceRadius - radius) / resourceRadius);
 		var tDensActual = (maxTreeDensity * tDensFactSL * tDensFactRad)*0.75;
+
 		if (randFloat() < tDensActual && radius < playableMapRadius)
 		{
 			if (tDensActual < bushChance*randFloat()*maxTreeDensity)
@@ -793,5 +831,4 @@ for (var x = 0; x < mapSize; x++)
 
 RMS.SetProgress(100);
 
-// Export map data
 ExportMap();
