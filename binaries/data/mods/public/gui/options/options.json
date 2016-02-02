@@ -71,34 +71,17 @@
 			"parameters": { "renderer": "Postproc", "config": "postproc" }
 		},
 		{
+			"type": "dropdown",
+			"label": "Graphics quality",
+			"tooltip": "Graphics quality. REQUIRES GAME RESTART",
+			"parameters": { "list": [ "Low", "Medium", "High" ], "config": "materialmgr.quality" }
+		},
+		{
 			"type": "boolean",
 			"label": "Shadows",
 			"tooltip": "Enable shadows",
-			"parameters": { "renderer": "Shadows", "config": "shadows"}
-		},
-		{
-			"type": "boolean",
-			"label": "Particles",
-			"tooltip": "Enable particles",
-			"parameters": { "renderer": "Particles", "config": "particles" }
-		},
-		{
-			"type": "boolean",
-			"label": "Show Sky",
-			"tooltip": "Render Sky",
-			"parameters": { "renderer": "ShowSky", "config": "showsky" }
-		},
-		{
-			"type": "boolean",
-			"label": "Smooth LOS",
-			"tooltip": "Lift darkness and fog-of-war smoothly",
-			"parameters": { "renderer": "SmoothLOS", "config": "smoothlos" }
-		},
-		{
-			"type": "boolean",
-			"label": "Unit Silhouettes",
-			"tooltip": "Show outlines of units behind buildings",
-			"parameters": { "renderer": "Silhouettes", "config": "silhouettes" }
+			"parameters": { "renderer": "Shadows", "config": "shadows"},
+			"dependencies": [ "shadowpcf" ]
 		},
 		{
 			"type": "boolean",
@@ -108,9 +91,22 @@
 		},
 		{
 			"type": "boolean",
-			"label": "Fast & Ugly Water",
-			"tooltip": "Use the lowest settings possible to render water. This makes other settings irrelevant.",
-			"parameters": { "renderer": "WaterUgly", "config": "waterugly" }
+			"label": "Unit Silhouettes",
+			"tooltip": "Show outlines of units behind buildings",
+			"parameters": { "renderer": "Silhouettes", "config": "silhouettes" }
+		},
+		{
+			"type": "boolean",
+			"label": "Particles",
+			"tooltip": "Enable particles",
+			"parameters": { "renderer": "Particles", "config": "particles" }
+		},
+		{
+			"type": "invertedboolean",
+			"label": "Activate water effects",
+			"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
+			"parameters": { "renderer": "WaterUgly", "config": "waterugly" },
+			"dependencies": [ "waterfancyeffects", "waterrealdepth", "waterreflection", "waterrefraction", "watershadows" ]
 		},
 		{
 			"type": "boolean",
@@ -144,6 +140,18 @@
 		},
 		{
 			"type": "boolean",
+			"label": "Smooth LOS",
+			"tooltip": "Lift darkness and fog-of-war smoothly",
+			"parameters": { "renderer": "SmoothLOS", "config": "smoothlos" }
+		},
+		{
+			"type": "boolean",
+			"label": "Show Sky",
+			"tooltip": "Render Sky",
+			"parameters": { "renderer": "ShowSky", "config": "showsky" }
+		},
+		{
+			"type": "boolean",
 			"label": "VSync",
 			"tooltip": "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART",
 			"parameters": { "config": "vsync" }
@@ -153,13 +161,6 @@
 			"label": "Limit FPS in Menus",
 			"tooltip": "Limit FPS to 50 in all menus, to save power.",
 			"parameters": { "config": "gui.menu.limitfps" }
-		},
-		{
-			"type": "dropdown",
-			"label": "Graphics quality",
-			"tooltip": "Graphics quality. REQUIRES GAME RESTART",
-			"parameters": { "list": [ "Low", "Medium", "High" ], "config": "materialmgr.quality" }
-
 		}
 	],
 	"soundSetting":
