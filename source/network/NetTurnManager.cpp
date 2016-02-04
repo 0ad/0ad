@@ -38,8 +38,8 @@
 #include <fstream>
 #include <iomanip>
 
-static const int DEFAULT_TURN_LENGTH_MP = 500;
-static const int DEFAULT_TURN_LENGTH_SP = 200;
+const u32 DEFAULT_TURN_LENGTH_MP = 500;
+const u32 DEFAULT_TURN_LENGTH_SP = 200;
 
 static const int COMMAND_DELAY = 2;
 

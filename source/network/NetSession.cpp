@@ -25,6 +25,8 @@
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
 
+const u32 NETWORK_WARNING_TIMEOUT = 4000;
+
 static const int CHANNEL_COUNT = 1;
 
 CNetClientSession::CNetClientSession(CNetClient& client) :
@@ -168,6 +170,22 @@ bool CNetClientSession::SendMessage(const CNetMessage* message)
 	return CNetHost::SendMessage(message, m_Server, "server");
 }
 
+u32 CNetClientSession::GetLastReceivedTime() const
+{
+	if (!m_Server)
+		return 0;
+
+	return enet_time_get() - m_Server->lastReceiveTime;
+}
+
+u32 CNetClientSession::GetMeanRTT() const
+{
+	if (!m_Server)
+		return 0;
+
+	return m_Server->roundTripTime;
+}
+
 
 
 CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
@@ -182,6 +200,22 @@ CStr CNetServerSession::GetIPAddress() const
 		LOGMESSAGE("Could not get IP address of a client!");
 
 	return ipAddress;
+}
+
+u32 CNetServerSession::GetLastReceivedTime() const
+{
+	if (!m_Peer)
+		return 0;
+
+	return enet_time_get() - m_Peer->lastReceiveTime;
+}
+
+u32 CNetServerSession::GetMeanRTT() const
+{
+	if (!m_Peer)
+		return 0;
+
+	return m_Peer->roundTripTime;
 }
 
 void CNetServerSession::Disconnect(u32 reason)

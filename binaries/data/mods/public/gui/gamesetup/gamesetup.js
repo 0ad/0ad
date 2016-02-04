@@ -28,6 +28,7 @@ const g_MapPath = {
  */
 const g_NetMessageTypes = {
 	"netstatus": msg => handleNetStatusMessage(msg),
+	"netwarn": msg => addNetworkWarning(msg),
 	"gamesetup": msg => handleGamesetupMessage(msg),
 	"players": msg => handlePlayerAssignmentMessage(msg),
 	"ready": msg => handleReadyMessage(msg),
@@ -211,6 +212,8 @@ function init(attribs)
 	g_DefaultPlayerData.shift();
 	for (let i in g_DefaultPlayerData)
 		g_DefaultPlayerData[i].Civ = "random";
+
+	setTimeout(displayGamestateNotifications, 1000);
 }
 
 /**
@@ -946,6 +949,8 @@ function onTick()
 				error("Unrecognised net message type " + message.type);
 		}
 	}
+
+	updateTimers();
 }
 
 /**

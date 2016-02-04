@@ -126,7 +126,9 @@ function pollAndHandleNetworkClient()
 				break;
 
 			case "chat":
-				// Ignore, since we have nowhere to display chat messages
+				break;
+
+			case "netwarn":
 				break;
 
 			default:
@@ -169,6 +171,10 @@ function pollAndHandleNetworkClient()
 					break;
 				}
 				break;
+
+			case "netwarn":
+				break;
+
 			default:
 				error(sprintf("Unrecognised net message type %(messageType)s", { messageType: message.type }));
 				break;

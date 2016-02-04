@@ -269,6 +269,8 @@ function init(initData, hotloadData)
 
 	onSimulationUpdate();
 
+	setTimeout(displayGamestateNotifications, 1000);
+
 	// Report the performance after 5 seconds (when we're still near
 	// the initial camera view) and a minute (when the profiler will
 	// have settled down if framerates as very low), to give some

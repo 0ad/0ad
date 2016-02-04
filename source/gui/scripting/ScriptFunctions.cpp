@@ -20,6 +20,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include "graphics/Camera.h"
+#include "graphics/FontMetrics.h"
 #include "graphics/GameView.h"
 #include "graphics/MapReader.h"
 #include "graphics/scripting/JSInterface_GameView.h"
@@ -875,6 +876,16 @@ CParamNode GetTemplate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std
 	return g_GUI->GetTemplate(templateName);
 }
 
+int GetTextWidth(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStr& fontName, const CStrW& text)
+{
+	int width = 0;
+	int height = 0;
+	CStrIntern _fontName(fontName);
+	CFontMetrics fontMetrics(_fontName);
+	fontMetrics.CalculateStringSize(text.c_str(), width, height);
+	return width;
+}
+
 //-----------------------------------------------------------------------------
 // Timer
 //-----------------------------------------------------------------------------
@@ -1049,6 +1060,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &WriteJSONFile>("WriteJSONFile");
 	scriptInterface.RegisterFunction<bool, std::string, &TemplateExists>("TemplateExists");
 	scriptInterface.RegisterFunction<CParamNode, std::string, &GetTemplate>("GetTemplate");
+	scriptInterface.RegisterFunction<int, CStr, CStrW, &GetTextWidth>("GetTextWidth");
 
 	// User report functions
 	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");

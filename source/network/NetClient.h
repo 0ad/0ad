@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -109,6 +109,11 @@ public:
 	void Poll();
 
 	/**
+	 * Locally triggers a GUI message if the connection to the server is being lost or has bad latency.
+	 */
+	void CheckServerConnection();
+
+	/**
 	 * Flush any queued outgoing network messages.
 	 * This should be called soon after sending a group of messages that may be batched together.
 	 */
@@ -202,6 +207,8 @@ private:
 	static bool OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event);
 	static bool OnRejoined(void* context, CFsmEvent* event);
 	static bool OnKicked(void* context, CFsmEvent* event);
+	static bool OnClientTimeout(void* context, CFsmEvent* event);
+	static bool OnClientPerformance(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 
 	/**
@@ -240,6 +247,9 @@ private:
 
 	/// Serialized game state received when joining an in-progress game
 	std::string m_JoinSyncBuffer;
+
+	/// Time when the server was last checked for timeouts and bad latency
+	std::time_t m_LastConnectionCheck;
 };
 
 /// Global network client for the standard game

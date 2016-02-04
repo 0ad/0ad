@@ -14,6 +14,24 @@
 
 		<!--
 		==========================================
+		- GAMESTATE NOTIFICATIONS
+		==========================================
+		-->
+		<object name="gameStateNotifications"
+			type="text"
+			ghost="true"
+			z="199"
+			size="100%-110 40 100%-110 40"
+			font="mono-stroke-10"
+			textcolor="255 219 77"
+			text_align="center"
+			text_valign="top"
+			sprite="color: 0 0 0 100"
+			>
+		</object>
+
+		<!--
+		==========================================
 		- FPS & REAL TIME & GAME TIME COUNTER
 		==========================================
 		-->

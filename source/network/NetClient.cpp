@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,7 +70,8 @@ CNetClient::CNetClient(CGame* game) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
 	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
-	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext())
+	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext()),
+	m_LastConnectionCheck(0)
 {
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
@@ -94,12 +95,16 @@ CNetClient::CNetClient(CGame* game) :
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, (void*)&OnPlayerAssignment, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_KICKED, NCS_PREGAME, (void*)&OnKicked, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_PREGAME, (void*)&OnClientTimeout, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_PREGAME, (void*)&OnClientPerformance, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, (void*)&OnGameStart, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_JOIN_SYNC_START, NCS_JOIN_SYNCING, (void*)&OnJoinSyncStart, context);
 
 	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CHAT, NCS_JOIN_SYNCING, (void*)&OnChat, context);
 	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_SETUP, NCS_JOIN_SYNCING, (void*)&OnGameSetup, context);
 	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_JOIN_SYNCING, (void*)&OnPlayerAssignment, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_TIMEOUT, NCS_JOIN_SYNCING, (void*)&OnClientTimeout, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_PERFORMANCE, NCS_JOIN_SYNCING, (void*)&OnClientPerformance, context);
 	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_START, NCS_JOIN_SYNCING, (void*)&OnGameStart, context);
 	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_SIMULATION_COMMAND, NCS_JOIN_SYNCING, (void*)&OnInGame, context);
 	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_END_COMMAND_BATCH, NCS_JOIN_SYNCING, (void*)&OnJoinSyncEndCommandBatch, context);
@@ -108,10 +113,14 @@ CNetClient::CNetClient(CGame* game) :
 	AddTransition(NCS_LOADING, (uint)NMT_CHAT, NCS_LOADING, (void*)&OnChat, context);
 	AddTransition(NCS_LOADING, (uint)NMT_GAME_SETUP, NCS_LOADING, (void*)&OnGameSetup, context);
 	AddTransition(NCS_LOADING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_LOADING, (void*)&OnPlayerAssignment, context);
+	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_TIMEOUT, NCS_LOADING, (void*)&OnClientTimeout, context);
+	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_PERFORMANCE, NCS_LOADING, (void*)&OnClientPerformance, context);
 	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, (void*)&OnLoadedGame, context);
 
 	AddTransition(NCS_INGAME, (uint)NMT_REJOINED, NCS_INGAME, (void*)&OnRejoined, context);
 	AddTransition(NCS_INGAME, (uint)NMT_KICKED, NCS_INGAME, (void*)&OnKicked, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_INGAME, (void*)&OnClientTimeout, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_INGAME, (void*)&OnClientPerformance, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, (void*)&OnChat, context);
 	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, (void*)&OnPlayerAssignment, context);
@@ -170,8 +179,45 @@ void CNetClient::DestroyConnection()
 
 void CNetClient::Poll()
 {
-	if (m_Session)
-		m_Session->Poll();
+	if (!m_Session)
+		return;
+
+	CheckServerConnection();
+	m_Session->Poll();
+}
+
+void CNetClient::CheckServerConnection()
+{
+	// Trigger local warnings if the connection to the server is bad.
+	// At most once per second.
+	std::time_t now = std::time(nullptr);
+	if (now <= m_LastConnectionCheck)
+		return;
+
+	m_LastConnectionCheck = now;
+
+	JSContext* cx = GetScriptInterface().GetContext();
+
+	// Report if we are losing the connection to the server
+	u32 lastReceived = m_Session->GetLastReceivedTime();
+	if (lastReceived > NETWORK_WARNING_TIMEOUT)
+	{
+		JS::RootedValue msg(cx);
+		GetScriptInterface().Eval("({ 'type':'netwarn', 'warntype': 'server-timeout' })", &msg);
+		GetScriptInterface().SetProperty(msg, "lastReceivedTime", lastReceived);
+		PushGuiMessage(msg);
+		return;
+	}
+
+	// Report if we have a bad ping to the server
+	u32 meanRTT = m_Session->GetMeanRTT();
+	if (meanRTT > DEFAULT_TURN_LENGTH_MP)
+	{
+		JS::RootedValue msg(cx);
+		GetScriptInterface().Eval("({ 'type':'netwarn', 'warntype': 'server-latency' })", &msg);
+		GetScriptInterface().SetProperty(msg, "meanRTT", meanRTT);
+		PushGuiMessage(msg);
+	}
 }
 
 void CNetClient::Flush()
@@ -623,6 +669,60 @@ bool CNetClient::OnKicked(void *context, CFsmEvent* event)
 	client->GetScriptInterface().SetProperty(msg, "username", message->m_Name);
 	client->GetScriptInterface().SetProperty(msg, "type", message->m_Ban ? std::string("banned") : std::string("kicked"));
 	client->PushGuiMessage(msg);
+
+	return true;
+}
+
+bool CNetClient::OnClientTimeout(void *context, CFsmEvent* event)
+{
+	// Report the timeout of some other client
+
+	ENSURE(event->GetType() == (uint)NMT_CLIENT_TIMEOUT);
+
+	CNetClient* client = (CNetClient*)context;
+	JSContext* cx = client->GetScriptInterface().GetContext();
+
+	if (client->GetCurrState() == NCS_LOADING)
+		return true;
+
+	CClientTimeoutMessage* message = (CClientTimeoutMessage*)event->GetParamRef();
+	JS::RootedValue msg(cx);
+
+	client->GetScriptInterface().Eval("({ 'type':'netwarn', 'warntype': 'client-timeout' })", &msg);
+	client->GetScriptInterface().SetProperty(msg, "guid", std::string(message->m_GUID));
+	client->GetScriptInterface().SetProperty(msg, "lastReceivedTime", message->m_LastReceivedTime);
+	client->PushGuiMessage(msg);
+
+	return true;
+}
+
+bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
+{
+	// Performance statistics for one or multiple clients
+
+	ENSURE(event->GetType() == (uint)NMT_CLIENT_PERFORMANCE);
+
+	CNetClient* client = (CNetClient*)context;
+	JSContext* cx = client->GetScriptInterface().GetContext();
+
+	if (client->GetCurrState() == NCS_LOADING)
+		return true;
+
+	CClientPerformanceMessage* message = (CClientPerformanceMessage*)event->GetParamRef();
+	std::vector<CClientPerformanceMessage::S_m_Clients> &clients = message->m_Clients;
+
+	// Display warnings for other clients with bad ping
+	for (size_t i = 0; i < clients.size(); ++i)
+	{
+		if (clients[i].m_MeanRTT < DEFAULT_TURN_LENGTH_MP || clients[i].m_GUID == client->m_GUID)
+			continue;
+
+		JS::RootedValue msg(cx);
+		client->GetScriptInterface().Eval("({ 'type':'netwarn', 'warntype': 'client-latency' })", &msg);
+		client->GetScriptInterface().SetProperty(msg, "guid", clients[i].m_GUID);
+		client->GetScriptInterface().SetProperty(msg, "meanRTT", clients[i].m_MeanRTT);
+		client->PushGuiMessage(msg);
+	}
 
 	return true;
 }

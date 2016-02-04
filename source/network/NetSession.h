@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,11 @@
 #include "network/NetHost.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptVal.h"
+
+/**
+ * Report the peer if we didn't receive a packet after this time (milliseconds).
+ */
+extern const u32 NETWORK_WARNING_TIMEOUT;
 
 class CNetClient;
 class CNetServerWorker;
@@ -83,6 +88,16 @@ public:
 	 */
 	virtual bool SendMessage(const CNetMessage* message);
 
+	/**
+	 * Number of milliseconds since the most recent packet of the server was received.
+	 */
+	u32 GetLastReceivedTime() const;
+
+	/**
+	 * Average round trip time to the server.
+	 */
+	u32 GetMeanRTT() const;
+
 	CNetFileTransferer& GetFileTransferer() { return m_FileTransferer; }
 
 private:
@@ -123,6 +138,16 @@ public:
 	void SetHostID(u32 id) { m_HostID = id; }
 
 	CStr GetIPAddress() const;
+
+	/**
+	 * Number of milliseconds since the latest packet of that client was received.
+	 */
+	u32 GetLastReceivedTime() const;
+
+	/**
+	 * Average round trip time to the client.
+	 */
+	u32 GetMeanRTT() const;
 
 	/**
 	 * Sends a disconnection notification to the client,

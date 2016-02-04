@@ -27,6 +27,12 @@
 		},
 		{
 			"type": "boolean",
+			"label": "Network Warnings",
+			"tooltip": "Show which player has a bad connection in multiplayer games.",
+			"parameters": { "config": "overlay.netwarnings" }
+		},
+		{
+			"type": "boolean",
 			"label": "FPS Overlay",
 			"tooltip": "Show frames per second in top right corner.",
 			"parameters": { "config": "overlay.fps" }

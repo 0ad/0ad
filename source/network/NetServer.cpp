@@ -121,7 +121,8 @@ CNetServerWorker::CNetServerWorker(int autostartPlayers) :
 	m_AutostartPlayers(autostartPlayers),
 	m_Shutdown(false),
 	m_ScriptInterface(NULL),
-	m_NextHostID(1), m_Host(NULL), m_HostGUID(), m_Stats(NULL)
+	m_NextHostID(1), m_Host(NULL), m_HostGUID(), m_Stats(NULL),
+	m_LastConnectionCheck(0)
 {
 	m_State = SERVER_STATE_UNCONNECTED;
 
@@ -451,6 +452,8 @@ bool CNetServerWorker::RunStep()
 	for (size_t i = 0; i < m_Sessions.size(); ++i)
 		m_Sessions[i]->GetFileTransferer().Poll();
 
+	CheckClientConnections();
+
 	// Process network events:
 
 	ENetEvent event;
@@ -547,6 +550,55 @@ bool CNetServerWorker::RunStep()
 	}
 
 	return true;
+}
+
+void CNetServerWorker::CheckClientConnections()
+{
+	if (m_State == SERVER_STATE_LOADING)
+		return;
+
+	// Send messages at most once per second
+	std::time_t now = std::time(nullptr);
+	if (now <= m_LastConnectionCheck)
+		return;
+
+	m_LastConnectionCheck = now;
+
+	for (size_t i = 0; i < m_Sessions.size(); ++i)
+	{
+		u32 lastReceived = m_Sessions[i]->GetLastReceivedTime();
+		u32 meanRTT = m_Sessions[i]->GetMeanRTT();
+
+		CNetMessage* message = nullptr;
+
+		// Report if we didn't hear from the client since few seconds
+		if (lastReceived > NETWORK_WARNING_TIMEOUT)
+		{
+			CClientTimeoutMessage* msg = new CClientTimeoutMessage();
+			msg->m_GUID = m_Sessions[i]->GetGUID();
+			msg->m_LastReceivedTime = lastReceived;
+			message = msg;
+		}
+		// Report if the client has bad ping
+		else if (meanRTT > DEFAULT_TURN_LENGTH_MP)
+		{
+			CClientPerformanceMessage* msg = new CClientPerformanceMessage();
+			CClientPerformanceMessage::S_m_Clients client;
+			client.m_GUID = m_Sessions[i]->GetGUID();
+			client.m_MeanRTT = meanRTT;
+			msg->m_Clients.push_back(client);
+			message = msg;
+		}
+
+		// Send to all clients except the affected one
+		// (since that will show the locally triggered warning instead)
+		if (message)
+			for (size_t j = 0; j < m_Sessions.size(); ++j)
+				if (i != j)
+					m_Sessions[j]->SendMessage(message);
+
+		SAFE_DELETE(message);
+	}
 }
 
 void CNetServerWorker::HandleMessageReceive(const CNetMessage* message, CNetServerSession* session)
