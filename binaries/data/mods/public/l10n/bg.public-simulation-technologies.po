@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2016-01-31 21:27+0000\n"
+"PO-Revision-Date: 2016-02-04 23:52+0000\n"
 "Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Метална броня за лице на кон."
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "Оборудване на кавалерията с броня. Всичката кавалерия +1 защита срещу Насичане и Пробождане."
+msgstr "Оборудване на ездитните животни с броня. Всичката конница +1 защита срещу Насичане и Пробождане."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -185,7 +185,7 @@ msgstr "Отключен във фаза \"Голям Град\"."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Екипиране на ездитните животни с броня. Всичката кавалерия +1 защита срещу Насичане."
+msgstr "Екипиране на ездитните животни с броня. Всичката конница +1 защита срещу Насичане."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -462,16 +462,16 @@ msgstr "Отключва се във Селищната Фаза."
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr "Дълго копие, направено специално за кавалерията"
+msgstr "Дълго копие, направено специално за конницата."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Оборудване на меле кавалерията с по-добри оръжия. Меле кавалерията +2 Насичаща атака."
+msgstr "Оборудване на близкобойната Конница с по-добри оръжия. Близкобойната конница +2 Насичаща атака."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
-msgstr "Копие за кавалерията"
+msgstr "Копие за конницата"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.spart
@@ -495,11 +495,11 @@ msgstr "Тренирането увеличава меле атаката"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr "+20% меле атака за кавалерията."
+msgstr "+20% меле атака за конницата."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
-msgstr "Трениране на кавалерията за близък бой"
+msgstr "Трениране на конницата за близък бой"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
@@ -532,7 +532,7 @@ msgstr "Замества бронзовите оръжия със железни
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "Оборудване на меле кавалерията с по-добри оръжия. +20% атака за меле кавалерията."
+msgstr "Оборудване на близкобойната конница с по-добри оръжия. +20% атака за близкобойната кавалерия."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -546,16 +546,16 @@ msgstr "Тренирането увеличава силата на стрелб
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr "+20% атака за далекобойната кавалерията."
+msgstr "+20% атака за далекобойната конница."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr "Трениране на кавалерията за стрелба"
+msgstr "Трениране на конницата за стрелба"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "Оборудване на далекобойната кавалерия с по-добри оръжия. +20% атака на далекобойната кавалерия."
+msgstr "Оборудване на далекобойната конница с по-добри оръжия. +20% атака на далекобойната конница."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -1260,7 +1260,7 @@ msgstr "Защита на пехотата срещу Насичане срещ�
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
-msgstr "Мобилизиране на пехотата срещу Мобилизиране на кавалерията"
+msgstr "Мобилизиране на пехотата срещу Мобилизиране на конницата"
 
 #: simulation/data/technologies/pair_siege_attack_cost.jsongenericName
 msgid "Attack vs. Cost"
@@ -1577,7 +1577,7 @@ msgstr "Размножаване на най-бързите коне"
 #: simulation/data/technologies/speed_cavalry_01.jsontooltip
 #: simulation/data/technologies/speed_cavalry_02.jsontooltip
 msgid "+10% cavalry walk speed."
-msgstr "+10% бързина на предвижване на кавалерията."
+msgstr "+10% бързина на предвижване на конницата."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
@@ -1589,7 +1589,7 @@ msgstr "Трениране на конете за по-бързо предвиж
 
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
-msgstr "Трениране на кавалерията за бързина"
+msgstr "Трениране на конницата за бързина"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
@@ -1655,17 +1655,17 @@ msgstr "Военна повинност"
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr "Извикването на мобилизирана кавалерия по време война помага да се уплътнят редиците на кралската армия."
+msgstr "Извикването на мобилизирана конница по време война помага да се уплътнят редиците на кралската армия."
 
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr "Всичката кавалерия -20% време за трениране, но също така -10 здраве. Отключва Военна повинност."
+msgstr "Всичката конница -20% време за трениране, но също така -10 здраве. Отключва Военна повинност."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
 msgid "Levy Cavalry"
-msgstr "Мобилизиране на кавалерията"
+msgstr "Мобилизиране на конницата"
 
 #: simulation/data/technologies/training_levy_infantry.jsondescription
 #: simulation/data/technologies/persians/training_levy_infantry.jsondescription
@@ -1760,18 +1760,18 @@ msgstr "Картография"
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr "Повишаване на всички граждани-войни кавалеристи в Напреднал ранг."
+msgstr "Повишаване на всичката гражданска-конница в Напреднал ранг."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Повишаване на всички граждани-кавалеристи в Напреднал ранг. Това увеличава военната им сила, но намалява скоростта им на събиране на месо -25%. Отключва технологията Елитна гражданска-кавалерия."
+msgstr "Повишаване на всички граждани-конници в Напреднал ранг. Това увеличава военната им сила, но намалява скоростта им на събиране на месо -25%. Отключва технологията Елитна гражданска-конница."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
-msgstr "Напреднала гражданска-кавалерия"
+msgstr "Напреднала гражданска-конница"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
@@ -1799,11 +1799,11 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr "Повишаване на всички граждани-кавалеристи в Напреднал ранг. Това увеличава военната им сила, но намалява скоростта им на събиране на месо -25%."
+msgstr "Повишаване на всичката гражданска-конница в Напреднал ранг. Това увеличава военната ѝ сила, но намалява скоростта ѝ на събиране на месо -25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
-msgstr "Елитна гражданска-кавалерия"
+msgstr "Елитна гражданска-конница"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
@@ -2289,7 +2289,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "Империята Маурия обединила множество независими дотогава царства на територия от над 5 милиона кв. км, с почти 60 милиона население. Маурските регенти носели званието Император на императорите и управлявали армия от 600 000 пехотинеца, 9000 слона, 8000 колесника и 30 000 кавалериста, което почти сигурно е била най-голямата армия за времето си."
+msgstr "Империята Маурия обединила множество независими дотогава царства на територия от над 5 милиона кв. км, с почти 60 милиона население. Маурските регенти носели званието Император на императорите и управлявали армия от 600 000 пехотинеца, 9000 слона, 8000 колесника и 30 000 конника, което почти сигурно е била най-голямата армия за времето си."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2393,7 +2393,7 @@ msgstr "Ранните владетели на Ахеменидското се �
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
-msgstr "Финикийските триреми получават способността да тренират кавалерийни единици."
+msgstr "Финикийските триреми получават способността да тренират конни единици."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -2403,7 +2403,7 @@ msgstr ""
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr "Драстично се увеличава бързината на трениране на кавалерия в конюшните, когато се тренират в големи партиди или батальони."
+msgstr "Драстично се увеличава бързината на трениране на конницата в конюшните, когато се тренират в големи партиди или батальони."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
@@ -2411,7 +2411,7 @@ msgstr ""
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
-msgstr "Военна повинност на кавалерията"
+msgstr "Военна повинност на конницата"
 
 #: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
 msgid "Infantry Conscription"
@@ -2421,7 +2421,7 @@ msgstr "Военна повинност на пехотата"
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr "Всичката кавалерия -20% време за трениране, но също така -10 здраве. Отключва Военна повинност на кавалерията."
+msgstr "Всичката конница -20% време за трениране, но също така -10 здраве. Отключва Военна повинност на конницата."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
@@ -2504,7 +2504,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
-msgstr "Всичката кавалерия +20% здраве."
+msgstr "Всичката конница +20% здраве."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"

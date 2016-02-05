@@ -5,6 +5,7 @@
 # Translators:
 # Adriano Ramos <adriano157@gmail.com>, 2015
 # Ernan, 2014
+# Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
 # Mihailov Vasilievic Filho <mihailov.vf@gmail.com>, 2015
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-01 15:32+0000\n"
+"Last-Translator: Gustavo Moitinho <gustavo.moitinho@outlook.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -743,7 +744,7 @@ msgstr "A fila de produção está cheia."
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "Não é possível encontrar espaço livre para gerar unidades treinadas"
 
 #: simulation/helpers/Commands.js:675
 #, javascript-format
@@ -752,7 +753,7 @@ msgstr "Ataque contra %(_player_)s solicitado."
 
 #: simulation/helpers/Commands.js:965
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Os requisitos tecnológicos da construção não foram atingidos."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -955,7 +956,7 @@ msgid ""
 "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra é a IA padrão do 0AD. Por favor reporte problemas para Wildfire Games (veja o link no menu principal).\n\nA IA tem um malus-bônus na arrecadação de recursos (tanto na coleta quanto no comércio) variando de 0,5 para o Sandbox até 1,6 para o Muito difícil (Médio = 1,0). Em adição, o nível Sandbox não expande ou ataca."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

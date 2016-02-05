@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-30 13:09+0000\n"
+"PO-Revision-Date: 2016-02-05 01:42+0000\n"
 "Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,7 @@ msgstr "Съжаляваме, но няма описание"
 
 #: gui/common/functions_utility.js:109
 msgid "mm:ss"
-msgstr "мм:сс"
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:111
 msgid "HH:mm:ss"
@@ -105,7 +105,7 @@ msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
-msgstr "Зареждането Отменено"
+msgstr "Зареждането отменено"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -341,7 +341,7 @@ msgstr "Неправилна версия на мрежовия протокол
 
 #: gui/common/network.js:18
 msgid "Game is loading, please try later"
-msgstr "Играта зарежда, моля опитайте по късно."
+msgstr "Играта зарежда, моля опитайте по-късно."
 
 #: gui/common/network.js:19
 msgid "Game has already started, no observers allowed"
@@ -353,7 +353,7 @@ msgstr "Ти беше изритан от играта."
 
 #: gui/common/network.js:21
 msgid "You have been banned"
-msgstr ""
+msgstr "Достъпът Ви бе забранен"
 
 #: gui/common/network.js:24
 #, javascript-format
@@ -435,7 +435,7 @@ msgstr[1] "%(minutes)s минути"
 #: gui/common/settings.js:166
 msgctxt "map"
 msgid "Skirmish"
-msgstr "Схватка"
+msgstr "Дизайнерска"
 
 #: gui/common/settings.js:171
 msgctxt "map"
@@ -562,7 +562,7 @@ msgstr "Меле Атака:"
 
 #: gui/common/tooltips.js:149
 msgid "Ranged Attack:"
-msgstr "Стреляща атака:"
+msgstr "Далекобойна атака:"
 
 #: gui/common/tooltips.js:150
 msgid "Capture Attack:"
@@ -718,8 +718,8 @@ msgstr "Лекечение:"
 #: gui/common/tooltips.js:456
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] "ЖТ"
-msgstr[1] "ЖТ"
+msgstr[0] "Здраве"
+msgstr[1] "Здраве"
 
 #: gui/common/tooltips.js:479
 #, javascript-format
@@ -774,15 +774,15 @@ msgstr "Добре"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
-msgstr "Опитай отново"
+msgstr "Повторен опит"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Ignore"
-msgstr "Игнорирай"
+msgstr "Игнориране"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Abort"
-msgstr "Прекъсни"
+msgstr "Прекъсване"
 
 #: gui/options/options.js:10
 msgid "Windowed Mode"
@@ -790,19 +790,19 @@ msgstr "Режим Прозорец"
 
 #: gui/options/options.js:10
 msgid "Start 0 A.D. in a window"
-msgstr "Стартирай 0 A.D. в режим прозорец"
+msgstr "Стартиране на 0 A.D. в режим прозорец"
 
 #: gui/options/options.js:11
 msgid "Background Pause"
-msgstr "Паузирай на Заден Екран"
+msgstr "Пауза в режим на заден план"
 
 #: gui/options/options.js:11
 msgid "Pause single player games when window loses focus"
-msgstr "Паузирай игри на идиничен играч когато прозорецът загуби фокус"
+msgstr "Пауза на самостоятелните игри, когато прозорецът загуби фокус"
 
 #: gui/options/options.js:12
 msgid "Disable Welcome Screen"
-msgstr "Изключи Екрана за Добре Дошъл"
+msgstr "Изключване на приветстващия прозорец"
 
 #: gui/options/options.js:12
 msgid ""
@@ -825,7 +825,7 @@ msgstr "FPS пласт"
 
 #: gui/options/options.js:14
 msgid "Show frames per second in top right corner."
-msgstr "Покажи кадри в секунда в горният десен ъгъл."
+msgstr "Показване на кадри в секунда в горния десен ъгъл."
 
 #: gui/options/options.js:15
 msgid "Realtime Overlay"
@@ -833,7 +833,7 @@ msgstr "Слой „реално време“"
 
 #: gui/options/options.js:15
 msgid "Show current system time in top right corner."
-msgstr "Покажи системното време в горният десен ъгъл."
+msgstr "Показване на системното време в горния десен ъгъл."
 
 #: gui/options/options.js:16
 msgid "Gametime Overlay"
@@ -862,7 +862,7 @@ msgstr "Запазване и възстановяване на настройк
 
 #: gui/options/options.js:22
 msgid "Prefer GLSL"
-msgstr "Предпочети GLSL"
+msgstr "Предпочитане на GLSL"
 
 #: gui/options/options.js:22
 msgid "Use OpenGL 2.0 shaders (recommended)"
@@ -882,7 +882,7 @@ msgstr "Сенки"
 
 #: gui/options/options.js:24
 msgid "Enable shadows"
-msgstr "Включи Сенките"
+msgstr "Сенки"
 
 #: gui/options/options.js:25
 msgid "Particles"
@@ -890,11 +890,11 @@ msgstr "Частици"
 
 #: gui/options/options.js:25
 msgid "Enable particles"
-msgstr "Включи частиците"
+msgstr "Включване на частиците"
 
 #: gui/options/options.js:26
 msgid "Show Sky"
-msgstr "Покажи Небе"
+msgstr "Показване на небе"
 
 #: gui/options/options.js:26
 msgid "Render Sky"
@@ -918,7 +918,7 @@ msgstr "Показване на очертания на единиците за�
 
 #: gui/options/options.js:29
 msgid "Shadow Filtering"
-msgstr "Филтриране на Сенки"
+msgstr "Филтриране на сенките"
 
 #: gui/options/options.js:29
 msgid "Smooth shadows"
@@ -926,17 +926,17 @@ msgstr "Гладки сенки"
 
 #: gui/options/options.js:30
 msgid "Fast & Ugly Water"
-msgstr "Бърза и Грозна Вода"
+msgstr "Бърза и грозна вода"
 
 #: gui/options/options.js:30
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr "Използвай най-ниските възмозжни настройки за рендериране на вода. Това прави другите настройки без значение."
+msgstr "Използване на най-ниските възможни настройки за рисуване на вода. Това прави другите настройки без значение."
 
 #: gui/options/options.js:31
 msgid "HQ Water Effects"
-msgstr "ВК Ефекти на Вода"
+msgstr "Висококачествени водни ефекти"
 
 #: gui/options/options.js:31
 msgid ""
@@ -946,7 +946,7 @@ msgstr "Използване на по-качествени ефекти за в
 
 #: gui/options/options.js:32
 msgid "Real Water Depth"
-msgstr "Истинска Дълбочина на Вода"
+msgstr "Истинска дълбочина на водата"
 
 #: gui/options/options.js:32
 msgid "Use actual water depth in rendering calculations"
@@ -954,11 +954,11 @@ msgstr "Да се използва реалната дълбочина на во
 
 #: gui/options/options.js:33
 msgid "Water Reflections"
-msgstr "Отражение на Вода"
+msgstr "Отражение на водата"
 
 #: gui/options/options.js:33
 msgid "Allow water to reflect a mirror image"
-msgstr "Позволи водата да отразява огледално изображение"
+msgstr "Позволяване на водата да отразява огледално изображение"
 
 #: gui/options/options.js:34
 msgid "Water Refraction"
@@ -970,11 +970,11 @@ msgstr "Използване на истинска рефракционна ка
 
 #: gui/options/options.js:35
 msgid "Shadows on Water"
-msgstr "Сенки на Вода"
+msgstr "Сенки върху водата"
 
 #: gui/options/options.js:35
 msgid "Cast shadows on water"
-msgstr "Създавай сянки на водата"
+msgstr "Хвърляне на сенки върху водата"
 
 #: gui/options/options.js:36
 msgid "VSync"
@@ -1062,7 +1062,7 @@ msgstr "Съществуват незапазени промени, сигурн
 
 #: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
-msgstr "Предупреждение"
+msgstr "Внимание"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -1102,7 +1102,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr "%(startWarning)sВнимание:%(endWarning)s Изглежда използвате non-shader (fixed function) графика. Тази опция ще бъде премахната от 0 A.D. в бъдещи версии, за да се създаде възможност за нова по - напредничава графика. Съвета ни е да замените графичната си карта с по-скорошна, подържащ shader-и модел."
+msgstr "%(startWarning)sВнимание:%(endWarning)s Изглежда използвате графика без шейдър (fixed function). Тази опция ще бъде премахната от 0 A.D. в бъдещи версии, за да се създаде възможност за нова по-съвременна графика. Съвета ни е да замените графичната си карта с по-скорошна, поддържаща шейдър модел."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1118,7 +1118,7 @@ msgstr "ВНИМАНИЕ!"
 
 #: gui/pregame/mainmenu.js:165
 msgid "Read More"
-msgstr "Прочети повече"
+msgstr "Вижте повече"
 
 #: gui/pregame/mainmenu.js:258
 #, javascript-format
@@ -1150,7 +1150,7 @@ msgstr "Пускане на мултиплейър лобито. \\[ЗАБРАН
 #: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
-msgstr "Технически Детайли"
+msgstr "Технически детайли"
 
 #: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
@@ -1254,11 +1254,11 @@ msgstr "%(min)s - %(max)s минути"
 
 #: gui/replaymenu/replay_menu.js:235
 msgid "yyyy-MM-dd HH:mm"
-msgstr "гггг-ММ-дд чч-мм"
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:265
 msgid "yyyy-MM"
-msgstr "гггг-ММ"
+msgstr "yyyy-MM"
 
 #: gui/replaymenu/replay_menu.js:328
 #, javascript-format
@@ -1352,7 +1352,7 @@ msgstr "Запазената игра ще бъде изтрита завина�
 
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "DELETE"
-msgstr "ИЗТРИЙ"
+msgstr "ИЗТРИВАНЕ"
 
 #: gui/savedgames/save.js:58
 msgid "Saved game will be permanently overwritten, are you sure?"
@@ -1360,7 +1360,7 @@ msgstr "Запазената игра ще бъде презаписана за�
 
 #: gui/savedgames/save.js:58
 msgid "OVERWRITE SAVE"
-msgstr "ПРЕЗАПИШИ ЗАПИС"
+msgstr "ПРЕЗАПИСВАНЕ"
 
 #: gui/structree/draw.js:348
 msgid "Health:"
@@ -1388,7 +1388,7 @@ msgstr "Име на играч"
 
 #: gui/summary/layout.js:5
 msgid "Economy score"
-msgstr "Економични точки"
+msgstr "Икономични точки"
 
 #: gui/summary/layout.js:6
 msgid "Military score"
@@ -1412,7 +1412,7 @@ msgstr "Къщи"
 
 #: gui/summary/layout.js:24
 msgid "Economic"
-msgstr "Економично"
+msgstr "Икономично"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
@@ -1436,7 +1436,7 @@ msgstr "Чудота"
 
 #: gui/summary/layout.js:32
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "Статистика на Постройки (Изградени / Изгубени / Унищожени)"
+msgstr "Статистика за постройки (изградени / изгубени / унищожени)"
 
 #: gui/summary/layout.js:50
 msgid "Infantry"
@@ -1448,11 +1448,11 @@ msgstr "Работник"
 
 #: gui/summary/layout.js:52
 msgid "Cavalry"
-msgstr "Кавалерия"
+msgstr "Конница"
 
 #: gui/summary/layout.js:53
 msgid "Champion"
-msgstr "Елит"
+msgstr "Професионалист"
 
 #: gui/summary/layout.js:55
 msgid "Navy"
@@ -1581,7 +1581,7 @@ msgstr "Избор на Цивилизации"
 #: gui/civinfo/civinfo.xml:(caption):119
 #: gui/structree/structree.xml:(caption):119
 msgid "Close"
-msgstr "Затвори"
+msgstr "Затваряне"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1610,12 +1610,12 @@ msgstr "Отказ"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "Напредничави"
+msgstr "Подробни"
 
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
-msgstr "Приеми"
+msgstr "Приемане"
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -1658,7 +1658,7 @@ msgstr "Все още не е имплементирано."
 
 #: gui/options/options.xml:(caption):18
 msgid "Game Options"
-msgstr "Игрални опции"
+msgstr "Настройки на играта"
 
 #: gui/options/options.xml:(caption):22
 msgid "General"
@@ -1708,15 +1708,15 @@ msgstr "Помогнете да подобрим 0 A.D.!"
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "Можете автоматично да ни изпратите анонимна обратна връзка, която ще ни помогне да оправим бъгове и да подобрим производителноста и свместимоста."
+msgstr "Можете автоматично да ни изпратите анонимна обратна връзка, която ще ни помогне да оправим грешки и да подобрим производителността и съвместимостта."
 
 #: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr "Благодаря Ви, че помагате за подобряването на 0 A.D.!"
+msgstr "Благодарим Ви, че помагате за подобряването на 0 A.D.!"
 
 #: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
-msgstr "Анонимната обратна връзка в момента е включена"
+msgstr "Анонимната обратна връзка е включена."
 
 #: gui/pregame/mainmenu.xml:94
 msgid "Status: $status."
@@ -1724,13 +1724,13 @@ msgstr "Статус: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr "Alpha XIX: Syllepsis"
+msgstr "Алфа XIX: Силепс"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "ВНИМАНИЕ: Това е ранна версия на играта, намираща се в разработка. Много неща не са взе още добавен."
+msgstr "ВНИМАНИЕ: Това е версия на играта, която се намира в разработка. Много функционалности липсват."
 
 #: gui/pregame/mainmenu.xml:539
 msgid "Get involved at: play0ad.com"
@@ -1738,11 +1738,11 @@ msgstr "Включете се на: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
-msgstr "Включи обратната връзка"
+msgstr "Включете обратната връзка"
 
 #: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
-msgstr "Изключи обратната връзка"
+msgstr "Изключете обратната връзка"
 
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
@@ -1751,7 +1751,7 @@ msgstr "Структурно дърво"
 
 #: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
-msgstr "Истрия"
+msgstr "История"
 
 #: gui/pregame/mainmenu.xml:(caption):208
 msgid "Matches"
@@ -1763,7 +1763,7 @@ msgstr "Кампании"
 
 #: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):15
 msgid "Load Game"
-msgstr "Зареди игра"
+msgstr "Зареждане на игра"
 
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:(caption):262
@@ -1792,15 +1792,15 @@ msgstr "Редактор на сценарии"
 
 #: gui/pregame/mainmenu.xml:(caption):382
 msgid "Welcome Screen"
-msgstr "Екран за Добре дошъл"
+msgstr "Приветстващ екран"
 
 #: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
-msgstr "Избор на Мод"
+msgstr "Избор на модове"
 
 #: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
-msgstr "Научи се да играеш"
+msgstr "Как се играе"
 
 #: gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
@@ -1820,7 +1820,7 @@ msgstr "Изход"
 
 #: gui/pregame/mainmenu.xml:(caption):549
 msgid "Help with the Translation!"
-msgstr "Помогни с превеждането!"
+msgstr "Помогнете с превеждането!"
 
 #: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"
@@ -1832,7 +1832,7 @@ msgstr "Чат"
 
 #: gui/pregame/mainmenu.xml:(caption):585
 msgid "Report a Bug"
-msgstr "Съобщете за бъг"
+msgstr "Съобщете за грешка"
 
 #: gui/pregame/mainmenu.xml:(caption):614
 msgid "WILDFIRE GAMES"
@@ -1870,11 +1870,11 @@ msgstr "Присъединяване към съществуваща мрежо�
 
 #: gui/pregame/mainmenu.xml:(tooltip):278
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "Създай мрежова игра.\\n\\nИзисква UDP порт 20595 да е отворен."
+msgstr "Създаване на мрежова игра.\\n\\nИзисква отворен UDP порт 20595."
 
 #: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
-msgstr "Стартирай мултиплейърното лоби."
+msgstr "Стартиране на мултиплейърното лоби."
 
 #: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
@@ -1882,7 +1882,7 @@ msgstr "Промяна на настройките на играта."
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
-msgstr "Избери език за играта."
+msgstr "Избор на език за играта."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
@@ -1892,15 +1892,15 @@ msgstr "Преизпълнение на предишни игри."
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Отвори редактора за сценарии Atlas в нов прозорец. Можете да го пуснете по - надеждно като пуснете играта с командния параметър \"-editor\"."
+msgstr "Отваряне на редактора за сценарии Atlas в нов прозорец. Можете да го пуснете по - надеждно, като стартирате играта с командния параметър \"-editor\"."
 
 #: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "Покажи екрана за Добре дошъл. Полезно, ако е скрит по погрешка."
+msgstr "Показване на приветстващия прозорец. Полезно, ако е скрит по погрешка."
 
 #: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
-msgstr "Избери модове за използване."
+msgstr "Избор на модове."
 
 #: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
@@ -1910,15 +1910,15 @@ msgstr "Научете се да играете, открийте техноло
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
-msgstr "Предизвикай компютъра на самостоятелна игра."
+msgstr "Предизвикайте компютъра на самостоятелна игра."
 
 #: gui/pregame/mainmenu.xml:(tooltip):483
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "Сражавай се с един или повече хора в мрежова игра."
+msgstr "Сражавайте се с един или повече хора в мрежова игра."
 
 #: gui/pregame/mainmenu.xml:(tooltip):498
 msgid "Game options and scenario design tools."
-msgstr "Игрални настройки и инструменти за дизайн на сценарии."
+msgstr "Настройки на играта и инструменти за дизайн на сценарии."
 
 #: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
@@ -1926,21 +1926,21 @@ msgstr "Излиза от играта."
 
 #: gui/pregame/mainmenu.xml:(tooltip):550
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Натисни, за да се отвoри страницата за превеждане на 0 A.D. в твоя браузър."
+msgstr "Натиснете, за да се отвoри страницата за превеждане на 0 A.D. във Вашия браузър."
 
 #: gui/pregame/mainmenu.xml:(tooltip):562
 msgid "Click to open play0ad.com in your web browser."
-msgstr "Натиснете за да отворите play0ad.com в своя браузър."
+msgstr "Натиснете за да отворите play0ad.com във Вашия браузър."
 
 #: gui/pregame/mainmenu.xml:(tooltip):574
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr "Натиснете за да отворите 0 A.D. IRC чата в своя браузър (#0ad в webchat.quakenet.org)"
+msgstr "Натиснете за да отворите 0 A.D. IRC чата във Вашия браузър (#0ad в webchat.quakenet.org)"
 
 #: gui/pregame/mainmenu.xml:(tooltip):586
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Натиснете, за да посетите 0 A.D. Trac, за да съобщите за бъг, краш или грешка."
+msgstr "Натиснете, за да посетите 0 A.D. Trac, за да съобщите за краш или грешка."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1977,7 +1977,7 @@ msgstr "Главно меню"
 #: gui/replaymenu/replay_menu.xml:(caption):222
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
-msgstr "Изтрий"
+msgstr "Изтриване"
 
 #: gui/replaymenu/replay_menu.xml:(caption):228
 #: gui/summary/summary.xml:(caption):25
@@ -2020,11 +2020,11 @@ msgstr "Времетраене"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
-msgstr "Зареди"
+msgstr "Зареждане"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
-msgstr "Запиши игра"
+msgstr "Запис на игра"
 
 #: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
@@ -2032,11 +2032,11 @@ msgstr "Описание:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr "Добре дошъл!"
+msgstr "Добре дошли!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
-msgstr "Покажи това съобщение в бъдеще"
+msgstr "Показване на това съобщение в бъдеще"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
@@ -2076,7 +2076,7 @@ msgstr "Разни"
 
 #: gui/summary/summary.xml:(caption):161
 msgid "Continue"
-msgstr "Продължи"
+msgstr "Нататък"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -2097,19 +2097,19 @@ msgstr "[imgleft=\"constructionIcon\"]Тази игра е все още в ра
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]Играта може да има проблеми с производителността, особено при големи карти и много единици."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Тази версия съдържа нов алгоритъм за изчисляване на пътя, който увеличава производителността, но може да въведе нови грешки."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "[imgleft=\"iconFormation\"]Формациите все още се разработват, но можете по желание да ги включвате или изключвате."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -2204,7 +2204,7 @@ msgstr "КАТАПУЛТИ"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr "- Стрелящи обсадни оръжия, който са добри срещу постройки"
+msgstr "- Далекобойни обсадни оръжия, който са добри срещу постройки."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
@@ -2514,7 +2514,7 @@ msgstr ""
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "- Притежава далекобойна атака, която се увеличава за всяка гарнизирана единица."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -2548,7 +2548,7 @@ msgstr ""
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for a 2x attack bonus."
-msgstr "- Използван срещу кавалерия за 2x бонус атака."
+msgstr "- Използван срещу конница за 2x бонус атака."
 
 #: gui/text/tips/spearmen.txt:6
 msgid ""
@@ -2560,7 +2560,7 @@ msgstr ""
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr ""
+msgstr "- Контрирани са от далекобойни единици и мечоносци, така че е хубаво да бъдат придружавани от прашкари или конница."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:01+0100\n"
-"PO-Revision-Date: 2016-01-31 17:56+0000\n"
+"PO-Revision-Date: 2016-02-05 00:13+0000\n"
 "Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "Ръкопашен бой"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:27
 msgid "Melee Cavalry"
-msgstr "Ръкопашна конница"
+msgstr "Близкобойна конница"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:20
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
@@ -109,7 +109,7 @@ msgstr "Конник мечоносец"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:21
 msgid "Ranged Cavalry"
-msgstr "Конник Стрелец"
+msgstr "Далекобойна конница"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -123,7 +123,7 @@ msgstr "Конник Стрелец"
 #: simulation/templates/template_unit_infantry_ranged.xml:26
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Ranged"
-msgstr "Стрелящ"
+msgstr "Далекобоен"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -149,7 +149,7 @@ msgstr "Метателно копие"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
-msgstr "Кавалерийски стрелец с копие"
+msgstr "Конник стрелец с копие"
 
 #: simulation/templates/template_unit_champion.xml:11
 msgid "Champion Unit"
@@ -161,23 +161,23 @@ msgstr "Професионалист"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:26
 msgid "Champion Cavalry"
-msgstr "Професионална кавалерия"
+msgstr "Професионална конница"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer."
-msgstr "Елитен Кавалерийски Стрелец"
+msgstr "Професионален конник стрелец."
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 msgid "Champion Cavalry Skirmisher"
-msgstr "Професионален кавалерийски стрелец с копие"
+msgstr "Професионален конник стрелец с копие"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
-msgstr "Професионален кавалерийски копиеносец"
+msgstr "Професионален конник копиеносец"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:37
 msgid "Champion Cavalry Swordsman"
-msgstr "Професионален кавалерийски мечоносец"
+msgstr "Професионален конник мечоносец"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
@@ -225,7 +225,7 @@ msgstr "Професионален пиконосец"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:38
 msgid "Counters: 3x vs. Cavalry."
-msgstr "Противодейства: 3х срещу Конница."
+msgstr "Контрира: 3х с-у конница."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 msgid "Champion Spearman"
@@ -285,7 +285,7 @@ msgstr "Убии, а после събирай храна от този бога
 
 #: simulation/templates/template_unit_hero.xml:10
 msgid "Garrisoned Capture Aura"
-msgstr ""
+msgstr "Аурата на гарнизирания плен"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
@@ -302,23 +302,23 @@ msgstr "Герой"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Hero Cavalry"
-msgstr "Геройски Кавалерист"
+msgstr "Геройски конник"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:26
 msgid "Hero Cavalry Archer"
-msgstr "Геройски Кавалерийски Стрелец"
+msgstr "Геройски конник стрелец"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
 msgid "Hero Cavalry Skirmisher"
-msgstr "Геройски кавалерийски стрелец с копие"
+msgstr "Геройски конник стрелец с копие"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
-msgstr "Геройски Кавалерийски Копиеносец"
+msgstr "Геройски конник копиеносец"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
 msgid "Hero Cavalry Swordsman"
-msgstr "Геройски Кавалерийски Мечоносец"
+msgstr "Геройски конник мечоносец"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:23
 msgid "Hero Archer"
@@ -419,7 +419,7 @@ msgstr "Тежък Боен Кораб"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
-msgstr "Гарнизон с катапулти за увеличена огнева мощ"
+msgstr "Гарнизирайте катапулти, за да увеличите далекобойната сила."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -701,7 +701,7 @@ msgstr "Елит"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 msgid "Greek Cavalry"
-msgstr "Гръцка Кавалерия"
+msgstr "Гръцка конница"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:8
 msgid "Hippeús"
@@ -745,7 +745,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:23
 msgid "All Peltasts +15% speed."
-msgstr ""
+msgstr "Всички Пелтасти +15% бързина."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:29
 msgid "Iphicrates"
@@ -901,7 +901,7 @@ msgstr "Gaisaredos"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
-msgstr "Нахлуваща Кавалерия"
+msgstr "Нахлуваща конница"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
@@ -910,7 +910,7 @@ msgstr "Epos"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
-msgstr "Келтска Кавалерия"
+msgstr "Келтска конница"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:10
 msgid "Celtic Chariot"
@@ -1049,7 +1049,7 @@ msgstr "Коун"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
-msgstr "Нумидийска Кавалерия"
+msgstr "Нумидийска конница"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:7
 msgid "Ḥayyāl Raḫūv Masili"
@@ -1057,7 +1057,7 @@ msgstr "Ḥayyāl Raḫūv Masili"
 
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:13
 msgid "Italic Cavalry"
-msgstr "Италииска Кавалерия"
+msgstr "Италийска конница"
 
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
@@ -1065,7 +1065,7 @@ msgstr "Ḥayyāl Romaḥ Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
 msgid "Gallic Mercenary Cavalry"
-msgstr "Калска Наемническа Кавалерия"
+msgstr "Галска наемническа конница"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:13
 #: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:13
@@ -1074,12 +1074,12 @@ msgstr "Ḥayyāl Ḥerev Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:12
 msgid "Iberian Heavy Cavalry"
-msgstr "Пиренейска Тежка Кавалерия"
+msgstr "Пиренейска тежка конница"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:5
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:5
 msgid "Sacred Band Cavalry"
-msgstr "Кавалерия на Свещената Лента"
+msgstr "Конница на Свещения отряд"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:6
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:6
@@ -1096,11 +1096,11 @@ msgstr "Пил Маихамит"
 
 #: simulation/templates/units/cart_champion_infantry.xml:5
 msgid "Sacred Band Infantry"
-msgstr ""
+msgstr "Пехота от Свещения отряд"
 
 #: simulation/templates/units/cart_champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
-msgstr ""
+msgstr "Свещен отряд на Ба'ал"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
@@ -1213,7 +1213,7 @@ msgstr "Seḫīr Romaḥ"
 
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:7
 msgid "Bonused vs. Ranged Units."
-msgstr "Единици с бонус с-у стрелящи единици"
+msgstr "С бонус с-у далекобойни единици."
 
 #: simulation/templates/units/cart_ship_bireme.xml:9
 #: simulation/templates/units/ptol_ship_bireme.xml:5
@@ -1276,7 +1276,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
-msgstr "Галска Кралска Кавалерия"
+msgstr "Галска знатна конница"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:6
 msgid "Gallic Brihent"
@@ -1422,7 +1422,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Odrysian Skirmish Cavalry"
-msgstr "Одриска далекобойна кавалерия с копие"
+msgstr "Одриска далекобойна конница с копие"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 msgid "Hippakontistḕs Odrysós"
@@ -1439,7 +1439,7 @@ msgstr "Xystophóros Thessalikós"
 #: simulation/templates/units/mace_champion_cavalry.xml:6
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:7
 msgid "Companion Cavalry"
-msgstr "Придружаваща Кавалерия"
+msgstr "Придружаваща конница"
 
 #: simulation/templates/units/mace_champion_cavalry.xml:7
 msgid "Hetaîros"
@@ -1600,7 +1600,7 @@ msgstr "Thyreophóros"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
-msgstr "Индийска Лека Кавалерия"
+msgstr "Индийска лека конница"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:7
 msgid "Ashwarohi"
@@ -1608,7 +1608,7 @@ msgstr "Ashwarohi"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr "Индийска грабеща кавалерия"
+msgstr "Индийска нахлуваща конница"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -1712,7 +1712,7 @@ msgstr "Чандрагупта Мауриа"
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
 msgid "Hero Aura: TBD."
-msgstr ""
+msgstr "Аурата на героя: Не е разработена"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1837,7 +1837,7 @@ msgstr ""
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
 #: simulation/templates/units/sele_cavalry_javelinist_b.xml:7
 msgid "Median Light Cavalry"
-msgstr "Средно Лека Кавалерия"
+msgstr "Средно лека конница"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:10
@@ -1846,7 +1846,7 @@ msgstr "Mada Asabara"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:6
 msgid "Cappadocian Cavalry"
-msgstr "Кападокийска Кавалерия"
+msgstr "Кападокска конница"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:7
 msgid "Katpaduka Asabara"
@@ -1855,7 +1855,7 @@ msgstr "Katpaduka Asabara"
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:12
 msgid "Hyrcanian Cavalry"
-msgstr "Хириканска Кавалерия"
+msgstr "Хирканска конница"
 
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:13
@@ -1873,7 +1873,7 @@ msgstr "Bakhtrish Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:5
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr "Бактрииски Тежък Кавалерииски Стрелец"
+msgstr "Бактрийски тежък конник стрелец"
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"
@@ -1893,7 +1893,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_hero_cyrus.xml:14
 msgid "+2 Attack and +1 Capture for nearby cavalry units."
-msgstr "+2 атака и +1 пленяване за всичката близка кавалерия."
+msgstr "+2 атака и +1 пленяване за всичката близка конница."
 
 #: simulation/templates/units/pers_hero_cyrus.xml:20
 msgid "Cyrus II The Great"
@@ -2241,7 +2241,7 @@ msgstr "Hiereús Aigýptios"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
-msgstr "Италианска съюзническа кавалерия"
+msgstr "Италианска съюзническа конница"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:8
 msgid "Eques Socius"
@@ -2249,7 +2249,7 @@ msgstr "Eques Socius"
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:7
 msgid "Roman Cavalry"
-msgstr "Римска Кавалерия"
+msgstr "Римска конница"
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:8
 msgid "Eques Romanus"
@@ -2451,7 +2451,7 @@ msgstr "Hippotoxotès Dahae"
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:7
 msgid "Militia Cavalry"
-msgstr "Кавалерийска милиция"
+msgstr "Конна милиция"
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:8
 msgid "Hippakontistès Politès"
@@ -2511,7 +2511,7 @@ msgstr "Аурата на Ilarchès"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:13
 msgid "All cavalry gains +2 levels of all armour types."
-msgstr "Всичката кавалерия получава +2 ниво на защита към всичко."
+msgstr "Всичката конница получава +2 ниво на защита към всичко."
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:19
 msgid "Antiochus III \"The Great\""
@@ -2557,7 +2557,7 @@ msgstr "Seleukos A' Nikator"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:14
 msgid "Syrian Archer"
-msgstr ""
+msgstr "Сирийски стрелец"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:15
 msgid "Toxótēs Syrías"
@@ -2609,7 +2609,7 @@ msgstr "Сирийска жена"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Perioikoi Cavalryman"
-msgstr "Периекски Кавалериец"
+msgstr "Периекски конник"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:8
 msgid "Pródromos Perioïkós"
@@ -2617,7 +2617,7 @@ msgstr "Pródromos Perioïkós"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:7
 msgid "Allied Greek Cavalry"
-msgstr "Съюзническа гръцка кавалерия"
+msgstr "Съюзническа гръцка конница"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:8
 msgid "Hippeús Symmakhikós"
