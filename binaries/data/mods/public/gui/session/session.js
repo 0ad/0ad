@@ -244,8 +244,8 @@ function init(initData, hotloadData)
 	let playerIDs = [-1];
 	for (let player in g_Players)
 	{
-		playerNames.push(g_Players[player].name);
 		playerIDs.push(player);
+		playerNames.push('[color="' + rgbToGuiColor(g_Players[player].color) + '"]■ [/color]' + g_Players[player].name);
 	}
 
 	let viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
