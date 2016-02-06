@@ -646,7 +646,7 @@ const CSimulation2::InterfaceListUnordered& CSimulation2::GetEntitiesWithInterfa
 	return m->m_ComponentManager.GetEntitiesWithInterfaceUnordered(iid);
 }
 
-const CSimContext& CSimulation2::GetSimContext() const
+CSimContext& CSimulation2::GetSimContext() const
 {
 	return m->m_SimContext;
 }

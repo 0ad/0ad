@@ -200,6 +200,8 @@ function init(initData, hotloadData)
 		return;
 	}
 
+	Engine.SetViewedPlayer(g_ViewedPlayer);
+
 	if (initData)
 	{
 		g_IsNetworked = initData.isNetworked;
@@ -300,6 +302,7 @@ function selectViewPlayer(playerID)
 		return;
 
 	g_ViewedPlayer = playerID;
+	Engine.SetViewedPlayer(playerID);
 	Engine.SetPlayerID(g_DevSettings.changePerspective ? playerID : -1);
 
 	updateTopPanel();

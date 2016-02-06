@@ -217,7 +217,7 @@ public:
 	 */
 	const InterfaceListUnordered& GetEntitiesWithInterfaceUnordered(int iid);
 
-	const CSimContext& GetSimContext() const;
+	CSimContext& GetSimContext() const;
 	ScriptInterface& GetScriptInterface() const;
 
 	bool ComputeStateHash(std::string& outHash, bool quick);

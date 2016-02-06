@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,6 +53,7 @@ public:
 	 * Currently relies on g_Game being initialised (evil globals...)
 	 */
 	int GetCurrentDisplayedPlayer() const;
+	void SetCurrentDisplayedPlayer(int player);
 
 private:
 	CComponentManager* m_ComponentManager;
@@ -60,6 +61,8 @@ private:
 	CTerrain* m_Terrain;
 
 	CEntityHandle m_SystemEntity;
+
+	int currentDisplayedPlayer = 0;
 
 	friend class CSimulation2Impl;
 };

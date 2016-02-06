@@ -220,6 +220,14 @@ void SetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 		g_Game->SetPlayerID(id);
 }
 
+void SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
+{
+	if (!g_Game)
+		return;
+
+	g_Game->GetSimulation2()->GetSimContext().SetCurrentDisplayedPlayer(id);
+}
+
 JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	return SavedGames::GetEngineInfo(*(pCxPrivate->pScriptInterface));
@@ -1034,6 +1042,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, &IsVisualReplay>("IsVisualReplay");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
 	scriptInterface.RegisterFunction<void, int, &SetPlayerID>("SetPlayerID");
+	scriptInterface.RegisterFunction<void, int, &SetViewedPlayer>("SetViewedPlayer");
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<std::wstring, &GetMatchID>("GetMatchID");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");

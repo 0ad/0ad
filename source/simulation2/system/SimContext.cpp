@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -67,7 +67,10 @@ ScriptInterface& CSimContext::GetScriptInterface() const
 
 int CSimContext::GetCurrentDisplayedPlayer() const
 {
-	if (!g_Game)
-		return -1;
-	return g_Game->GetPlayerID();
+	return g_Game ? currentDisplayedPlayer : -1;
+}
+
+void CSimContext::SetCurrentDisplayedPlayer(int player)
+{
+	currentDisplayedPlayer = player;
 }
