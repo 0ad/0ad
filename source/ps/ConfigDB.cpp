@@ -29,6 +29,7 @@
 typedef std::map<CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
 VfsPath CConfigDB::m_ConfigFile[CFG_LAST];
+bool CConfigDB::m_HasChanges[CFG_LAST];
 
 static pthread_mutex_t cfgdb_mutex = PTHREAD_MUTEX_INITIALIZER;
 
@@ -114,6 +115,22 @@ GETVAL(double)
 GETVAL(std::string)
 #undef GETVAL
 
+bool CConfigDB::HasChanges(EConfigNamespace ns) const
+{
+	CHECK_NS(false);
+
+	CScopeLock s(&cfgdb_mutex);
+	return m_HasChanges[ns];
+}
+
+void CConfigDB::SetChanges(EConfigNamespace ns, bool& value)
+{
+	CHECK_NS(;);
+
+	CScopeLock s(&cfgdb_mutex);
+	m_HasChanges[ns] = value;
+}
+
 void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet& values) const
 {
 	CHECK_NS(;);
@@ -193,6 +210,17 @@ void CConfigDB::SetValueBool(EConfigNamespace ns, const CStr& name, const bool v
 {
 	CStr valueString = value ? "true" : "false";
 	SetValueString(ns, name, valueString);
+}
+
+void CConfigDB::RemoveValue(EConfigNamespace ns, const CStr& name)
+{
+	CHECK_NS(;);
+
+	CScopeLock s(&cfgdb_mutex);
+	TConfigMap::iterator it = m_Map[ns].find(name);
+	if (it == m_Map[ns].end())
+		return;
+	m_Map[ns].erase(it);
 }
 
 void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
@@ -384,8 +412,6 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path) const
 	char* pos = (char*)buf.get();
 	for (const std::pair<CStr, CConfigValueSet>& p : m_Map[ns])
 	{
-		if (boost::algorithm::starts_with(p.first, "nosave."))
-			continue;
 		size_t i;
 		pos += sprintf(pos, "%s = ", p.first.c_str());
 		for (i = 0; i < p.second.size() - 1; ++i)

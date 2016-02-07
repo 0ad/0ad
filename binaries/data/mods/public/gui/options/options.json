@@ -68,13 +68,13 @@
 			"type": "boolean",
 			"label": "Prefer GLSL",
 			"tooltip": "Use OpenGL 2.0 shaders (recommended)",
-			"parameters": { "renderer": "PreferGLSL", "config": "preferglsl" }
+			"parameters": { "config": "preferglsl", "renderer": "PreferGLSL" }
 		},
 		{
 			"type": "boolean",
 			"label": "Post Processing",
 			"tooltip": "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)",
-			"parameters": { "renderer": "Postproc", "config": "postproc" }
+			"parameters": { "config": "postproc", "renderer": "Postproc" }
 		},
 		{
 			"type": "dropdown",
@@ -86,75 +86,75 @@
 			"type": "boolean",
 			"label": "Shadows",
 			"tooltip": "Enable shadows",
-			"parameters": { "renderer": "Shadows", "config": "shadows"},
+			"parameters": {  "config": "shadows", "renderer": "Shadows" },
 			"dependencies": [ "shadowpcf" ]
 		},
 		{
 			"type": "boolean",
 			"label": "Shadow Filtering",
 			"tooltip": "Smooth shadows",
-			"parameters": { "renderer": "ShadowPCF", "config": "shadowpcf" }
+			"parameters": { "config": "shadowpcf", "renderer": "ShadowPCF" }
 		},
 		{
 			"type": "boolean",
 			"label": "Unit Silhouettes",
 			"tooltip": "Show outlines of units behind buildings",
-			"parameters": { "renderer": "Silhouettes", "config": "silhouettes" }
+			"parameters": { "config": "silhouettes", "renderer": "Silhouettes" }
 		},
 		{
 			"type": "boolean",
 			"label": "Particles",
 			"tooltip": "Enable particles",
-			"parameters": { "renderer": "Particles", "config": "particles" }
+			"parameters": { "config": "particles", "renderer": "Particles" }
 		},
 		{
 			"type": "invertedboolean",
 			"label": "Activate water effects",
 			"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
-			"parameters": { "renderer": "WaterUgly", "config": "waterugly" },
+			"parameters": { "config": "waterugly", "renderer": "WaterUgly" },
 			"dependencies": [ "waterfancyeffects", "waterrealdepth", "waterreflection", "waterrefraction", "watershadows" ]
 		},
 		{
 			"type": "boolean",
 			"label": "HQ Water Effects",
 			"tooltip": "Use higher-quality effects for water, rendering coastal waves, shore foam, and ships trails.",
-			"parameters": { "renderer": "WaterFancyEffects", "config": "waterfancyeffects" }
+			"parameters": { "config": "waterfancyeffects", "renderer": "WaterFancyEffects" }
 		},
 		{
 			"type": "boolean",
 			"label": "Real Water Depth",
 			"tooltip": "Use actual water depth in rendering calculations",
-			"parameters": { "renderer": "WaterRealDepth", "config": "waterrealdepth" }
+			"parameters": { "config": "waterrealdepth", "renderer": "WaterRealDepth" }
 		},
 		{
 			"type": "boolean",
 			"label": "Water Reflections",
 			"tooltip": "Allow water to reflect a mirror image",
-			"parameters": { "renderer": "WaterReflection", "config": "waterreflection" }
+			"parameters": { "config": "waterreflection", "renderer": "WaterReflection" }
 		},
 		{
 			"type": "boolean",
 			"label": "Water Refraction",
 			"tooltip": "Use a real water refraction map and not transparency", 
-			"parameters": { "renderer": "WaterRefraction", "config": "waterrefraction" }
+			"parameters": { "config": "waterrefraction", "renderer": "WaterRefraction" }
 		},
 		{
 			"type": "boolean",
 			"label": "Shadows on Water",
 			"tooltip": "Cast shadows on water",
-			"parameters": { "renderer": "WaterShadows", "config": "watershadows" }
+			"parameters": { "config": "watershadows", "renderer": "WaterShadows" }
 		},
 		{
 			"type": "boolean",
 			"label": "Smooth LOS",
 			"tooltip": "Lift darkness and fog-of-war smoothly",
-			"parameters": { "renderer": "SmoothLOS", "config": "smoothlos" }
+			"parameters": { "config": "smoothlos", "renderer": "SmoothLOS" }
 		},
 		{
 			"type": "boolean",
 			"label": "Show Sky",
 			"tooltip": "Render Sky",
-			"parameters": { "renderer": "ShowSky", "config": "showsky" }
+			"parameters": { "config": "showsky", "renderer": "ShowSky" }
 		},
 		{
 			"type": "boolean",

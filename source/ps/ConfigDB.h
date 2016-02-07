@@ -52,6 +52,7 @@ class CConfigDB: public Singleton<CConfigDB>
 {
 	static std::map<CStr, CConfigValueSet> m_Map[];
 	static VfsPath m_ConfigFile[];
+	static bool m_HasChanges[];
 
 public:
 	CConfigDB();
@@ -70,6 +71,13 @@ public:
 	void GetValue(EConfigNamespace ns, const CStr& name, double& value);
 	///@copydoc CConfigDB::GetValue
 	void GetValue(EConfigNamespace ns, const CStr& name, std::string& value);
+
+	/**
+	 * Returns true if changed with respect to last write on file
+	 */
+	bool HasChanges(EConfigNamespace ns) const;
+
+	void SetChanges(EConfigNamespace ns, bool& value);
 
 	/**
 	 * Attempt to retrieve a vector of values corresponding to the given setting;
@@ -98,6 +106,11 @@ public:
 	void SetValueString(EConfigNamespace ns, const CStr& name, const CStr& value);
 
 	void SetValueBool(EConfigNamespace ns, const CStr& name, const bool value);
+
+	/**
+	 * Remove a config value in the specified namespace.
+	 */
+	void RemoveValue(EConfigNamespace ns, const CStr& name);
 	
 	/**
 	 * Set the path to the config file used to populate the specified namespace

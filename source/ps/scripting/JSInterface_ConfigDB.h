@@ -24,8 +24,11 @@
 namespace JSI_ConfigDB
 {
 	bool GetConfigNamespace(const std::wstring& cfgNsString, EConfigNamespace& cfgNs);
+	bool HasChanges(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString);
+	bool SetChanges(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, bool value);
 	std::string GetValue(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name);
 	bool CreateValue(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value);
+	bool RemoveValue(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name);
 	bool WriteFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const Path& path);
 	bool WriteValueToFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value, const Path& path);
 	bool Reload(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString);
