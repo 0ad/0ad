@@ -123,7 +123,7 @@ bool CConfigDB::HasChanges(EConfigNamespace ns) const
 	return m_HasChanges[ns];
 }
 
-void CConfigDB::SetChanges(EConfigNamespace ns, bool& value)
+void CConfigDB::SetChanges(EConfigNamespace ns, bool value)
 {
 	CHECK_NS(;);
 

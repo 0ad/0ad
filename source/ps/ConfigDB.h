@@ -77,7 +77,7 @@ public:
 	 */
 	bool HasChanges(EConfigNamespace ns) const;
 
-	void SetChanges(EConfigNamespace ns, bool& value);
+	void SetChanges(EConfigNamespace ns, bool value);
 
 	/**
 	 * Attempt to retrieve a vector of values corresponding to the given setting;
