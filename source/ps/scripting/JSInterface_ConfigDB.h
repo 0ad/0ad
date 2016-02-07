@@ -27,6 +27,7 @@ namespace JSI_ConfigDB
 	std::string GetValue(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name);
 	bool CreateValue(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value);
 	bool WriteFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const Path& path);
+	bool WriteValueToFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value, const Path& path);
 	bool Reload(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString);
 	bool SetFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const Path& path);
 	void RegisterScriptFunctions(ScriptInterface& scriptInterface);

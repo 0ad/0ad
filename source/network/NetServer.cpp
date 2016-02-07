@@ -310,7 +310,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 
 	// Cache root descriptor URL to try to avoid discovery next time.
 	g_ConfigDB.SetValueString(CFG_USER, "network.upnprootdescurl", urls.controlURL);
-	g_ConfigDB.WriteFile(CFG_USER);
+	g_ConfigDB.WriteValueToFile(CFG_USER, "network.upnprootdescurl", urls.controlURL);
 	LOGMESSAGE("Net server: cached UPnP root descriptor URL as %s", urls.controlURL);
 
 	// Make sure everything is properly freed.

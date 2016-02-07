@@ -73,6 +73,16 @@ bool JSI_ConfigDB::WriteFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), con
 	return ret;
 }
 
+bool JSI_ConfigDB::WriteValueToFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
+{
+	EConfigNamespace cfgNs;
+	if (!GetConfigNamespace(cfgNsString, cfgNs))
+		return false;
+
+	bool ret = g_ConfigDB.WriteValueToFile(cfgNs, name, value, path);
+	return ret;
+}
+
 bool JSI_ConfigDB::Reload(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& cfgNsString)
 {
 	EConfigNamespace cfgNs;
@@ -98,7 +108,7 @@ void JSI_ConfigDB::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::string, std::wstring, std::string, &JSI_ConfigDB::GetValue>("ConfigDB_GetValue");
 	scriptInterface.RegisterFunction<bool, std::wstring, std::string, std::string, &JSI_ConfigDB::CreateValue>("ConfigDB_CreateValue");
 	scriptInterface.RegisterFunction<bool, std::wstring, Path, &JSI_ConfigDB::WriteFile>("ConfigDB_WriteFile");
+	scriptInterface.RegisterFunction<bool, std::wstring, std::string, std::string, Path, &JSI_ConfigDB::WriteValueToFile>("ConfigDB_WriteValueToFile");
 	scriptInterface.RegisterFunction<bool, std::wstring, Path, &JSI_ConfigDB::SetFile>("ConfigDB_SetFile");
 	scriptInterface.RegisterFunction<bool, std::wstring, &JSI_ConfigDB::Reload>("ConfigDB_Reload");
-	
 }

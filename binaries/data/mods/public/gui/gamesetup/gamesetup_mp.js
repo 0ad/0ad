@@ -193,7 +193,7 @@ function startHost(playername, servername)
 {
 	// Save player name
 	Engine.ConfigDB_CreateValue("user", "playername", playername);
-	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+	Engine.ConfigDB_WriteValueToFile("user", "playername", playername, "config/user.cfg");
 	// Disallow identically named games in the multiplayer lobby
 	if (Engine.HasXmppClient())
 	{
@@ -253,11 +253,13 @@ function startJoin(playername, ip)
 	if (Engine.HasXmppClient())
 		// Set player lobby presence
 		Engine.LobbySetPlayerPresence("playing");
-	else {
+	else
+	{
 		// Only save the player name and host address if they're valid and we're not in the lobby
 		Engine.ConfigDB_CreateValue("user", "playername", playername);
+		Engine.ConfigDB_WriteValueToFile("user", "playername", playername, "config/user.cfg");
 		Engine.ConfigDB_CreateValue("user", "multiplayerserver", ip);
-		Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+		Engine.ConfigDB_WriteValueToFile("user", "multiplayerserver", ip, "config/user.cfg");
 	}
 	return true;
 }

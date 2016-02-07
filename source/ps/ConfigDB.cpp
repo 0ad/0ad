@@ -404,4 +404,29 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path) const
 	return true;
 }
 
+bool CConfigDB::WriteValueToFile(EConfigNamespace ns, const CStr& name, const CStr& value)
+{
+	CHECK_NS(false);
+
+	CScopeLock s(&cfgdb_mutex);
+	return WriteValueToFile(ns, name, value, m_ConfigFile[ns]);
+}
+
+bool CConfigDB::WriteValueToFile(EConfigNamespace ns, const CStr& name, const CStr& value, const VfsPath& path)
+{
+	CHECK_NS(false);
+
+	CScopeLock s(&cfgdb_mutex);
+
+	TConfigMap newMap;
+	m_Map[ns].swap(newMap);
+	if (!Reload(ns))
+		return false;
+
+	SetValueString(ns, name, value);
+	bool ret = WriteFile(ns, path);
+	m_Map[ns].swap(newMap);
+	return ret;
+}
+
 #undef CHECK_NS

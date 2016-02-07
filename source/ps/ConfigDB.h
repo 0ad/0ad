@@ -137,6 +137,17 @@ public:
 	 *	false:	if an error occurred
 	 */
 	bool WriteFile(EConfigNamespace ns) const;
+
+	/**
+	 * Write a config value to the file specified by 'path'
+	 *
+	 * Returns:
+	 *	true:	if the config value was successfully saved and written to the file
+	 *	false:	if an error occurred
+	 */
+	bool WriteValueToFile(EConfigNamespace ns, const CStr& name, const CStr& value, const VfsPath& path);
+
+	bool WriteValueToFile(EConfigNamespace ns, const CStr& name, const CStr& value);
 };
 
 
