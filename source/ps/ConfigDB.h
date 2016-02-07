@@ -96,6 +96,8 @@ public:
 	 * existed the value is replaced.
 	 */
 	void SetValueString(EConfigNamespace ns, const CStr& name, const CStr& value);
+
+	void SetValueBool(EConfigNamespace ns, const CStr& name, const bool value);
 	
 	/**
 	 * Set the path to the config file used to populate the specified namespace

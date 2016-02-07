@@ -189,6 +189,12 @@ void CConfigDB::SetValueString(EConfigNamespace ns, const CStr& name, const CStr
 	it->second[0] = value;
 }
 
+void CConfigDB::SetValueBool(EConfigNamespace ns, const CStr& name, const bool value)
+{
+	CStr valueString = value ? "true" : "false";
+	SetValueString(ns, name, valueString);
+}
+
 void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
 {
 	CHECK_NS(;);
