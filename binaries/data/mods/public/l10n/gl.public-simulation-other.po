@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
+"PO-Revision-Date: 2016-02-06 18:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -22,35 +23,35 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:7
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Comida"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:9
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Madeira"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:11
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:13
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Pedra"
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Estou comezando unha campaña militar masiva contra %(_player_)s. Únete a min."
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
@@ -101,7 +102,7 @@ msgstr "Vexo que as cousas non te van ben, %(_player_)s. Espero que isto te axud
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "Desta vez podo axudarte, %(_player_)s, pero procura dispoñer de máis recursos no futuro."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
@@ -119,7 +120,7 @@ msgstr "Podería contribuír de maneira máis eficiente á guerra contra o noso 
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Se podes prescindir de algo de %(resource)s, sería unha gran axuda para reforzar o meu exército."
 
 #: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
@@ -620,8 +621,8 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s demasiado próximo unha unidade de %(category)s, debe estar polo menos a %(distance)s metro de distancia."
+msgstr[1] "%(name)s demasiado próximo unha unidade de %(category)s, debe estar polo menos a %(distance)s metros de distancia."
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -629,8 +630,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s demasiado afastado dunha unidade de %(category)s, debe estar a %(distance)s metro de distancia ou menos."
+msgstr[1] "%(name)s demasiado afastado dunha unidade de %(category)s, debe estar a %(distance)s metros de distancia ou menos."
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -733,52 +734,52 @@ msgstr "A cola de produción está completa."
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "Non é posíbel atopar espazo libre no que facer aparecer as unidades adestradas."
 
 #: simulation/helpers/Commands.js:675
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Ataque contra %(_player_)s solicitado."
 
 #: simulation/helpers/Commands.js:965
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Non conta cos requisitos tecnolóxicos necesarios para a estrutura."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Xogador 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Xogador 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Xogador 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Xogador 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Xogador 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Xogador 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Xogador 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Xogador 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
@@ -945,7 +946,7 @@ msgid ""
 "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra é a intelixencia artificial predeterminada. Informa a Wildfire Games de calquera problema que lle atopes (consulta a ligazón correspondente do menú principal).\n\nA intelixencia artificial ten un modificador na obtención de recursos (por recollida ou comercio) que vai de 0,5 para dificultate nula a 1,6 para dificultade moi alta. O modificador é nulo (1,0) na dificultade media. Ademais, na dificultade nula a intelixencia artificial nin ataca nin se expande."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

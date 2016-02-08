@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 09:36+0000\n"
+"PO-Revision-Date: 2016-02-06 18:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -306,12 +307,12 @@ msgstr "Peixe"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s de %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s e %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -344,16 +345,16 @@ msgstr "A partida xa comezou, non se permiten observadores."
 
 #: gui/common/network.js:20
 msgid "You have been kicked"
-msgstr ""
+msgstr "Fuches expulsado."
 
 #: gui/common/network.js:21
 msgid "You have been banned"
-msgstr ""
+msgstr "Fuches vedado."
 
 #: gui/common/network.js:24
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Valor incorrecto %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:36
@@ -372,17 +373,17 @@ msgstr "Desconectado"
 #: gui/common/network.js:45
 #, javascript-format
 msgid "Could not ban %(name)s."
-msgstr ""
+msgstr "Non foi posíbel vedar a %(name)s."
 
 #: gui/common/network.js:45
 #, javascript-format
 msgid "Could not kick %(name)s."
-msgstr ""
+msgstr "Non foi posíbel expulsar a %(name)s."
 
 #: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Usuarios: %(users)s"
 
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
@@ -392,12 +393,12 @@ msgstr "Nula"
 #: gui/common/settings.js:111
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr "Moi fácil"
+msgstr "Moi baixa"
 
 #: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr "Fácil"
+msgstr "Baixa"
 
 #: gui/common/settings.js:119
 msgctxt "aiDiff"
@@ -407,12 +408,12 @@ msgstr "Media"
 #: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr "Difícil"
+msgstr "Alta"
 
 #: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr "Moi difícil"
+msgstr "Moi alta"
 
 #: gui/common/settings.js:151
 msgctxt "ceasefire"
@@ -440,7 +441,7 @@ msgstr "Aleatorio"
 #: gui/common/settings.js:175
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Escenario"
 
 #: gui/common/settings.js:206
 msgid "None"
@@ -496,8 +497,8 @@ msgstr "impacto"
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:57 gui/common/tooltips.js:238
 #: gui/common/tooltips.js:249 gui/common/tooltips.js:466
@@ -510,8 +511,8 @@ msgstr[1] "segundos"
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
 msgid_plural "%(arrowcount)s %(arrow)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(arrowcount)s %(arrow)s"
+msgstr[1] "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:66
 msgid "arrow"
@@ -587,54 +588,54 @@ msgstr "alcance:"
 #: gui/common/tooltips.js:200 gui/common/tooltips.js:461
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "metro"
+msgstr[1] "metros"
 
 #: gui/common/tooltips.js:203
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:208 gui/common/tooltips.js:221
 #, javascript-format
 msgid "%(range)s %(meters)s"
 msgid_plural "%(range)s %(meters)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(range)s %(meters)s"
+msgstr[1] "%(range)s %(meters)s"
 
 #: gui/common/tooltips.js:216
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
 
 #: gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
-msgstr ""
+msgstr "Velocidade de reparación:"
 
 #: gui/common/tooltips.js:237 gui/common/tooltips.js:248
 msgid "health"
-msgstr ""
+msgstr "saúde"
 
 #: gui/common/tooltips.js:239 gui/common/tooltips.js:250
 msgid "worker"
-msgstr ""
+msgstr "traballador"
 
 #: gui/common/tooltips.js:245
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:246
 msgid "Build Rate:"
-msgstr ""
+msgstr "Velocidade de construción:"
 
 #: gui/common/tooltips.js:291 gui/common/tooltips.js:292
 #: gui/common/tooltips.js:293 gui/common/tooltips.js:294
@@ -701,8 +702,8 @@ msgstr "%(label)s %(speeds)s."
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:453
 msgid "Heal:"
@@ -713,8 +714,8 @@ msgstr "Sandación:"
 #: gui/common/tooltips.js:456
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vida"
+msgstr[1] "Vida"
 
 #: gui/common/tooltips.js:479
 #, javascript-format
@@ -989,11 +990,11 @@ msgstr "Limitar os FPS a 50 en todos os menús, para aforrar enerxía."
 
 #: gui/options/options.js:38
 msgid "Graphics quality"
-msgstr ""
+msgstr "Calidade dos gráficos"
 
 #: gui/options/options.js:38
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Calidade dos gráficos. REQUIRE REINICIAR O XOGO."
 
 #: gui/options/options.js:42
 msgid "Master Gain"
@@ -1053,7 +1054,7 @@ msgstr "Mostrar a hora das mensaxes que se envían e reciben no panel de convers
 
 #: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
-msgstr ""
+msgstr "Tes cambios sen gardar, estás seguro de que queres saír?"
 
 #: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
@@ -1153,74 +1154,74 @@ msgstr "Manual"
 
 #: gui/replaymenu/replay_actions.js:31
 msgid "You"
-msgstr ""
+msgstr "Ti"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "Non tes as mesmas modificacións activas que ten a repetición."
 
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Necesarias: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:53
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Activas: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Esta repetición non é compatíbel coa túa versión do xogo!"
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Repetición incompatíbel"
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
-msgstr ""
+msgstr "Aceptar"
 
 #: gui/replaymenu/replay_actions.js:75
 msgid "No summary data available."
-msgstr ""
+msgstr "Non hai datos de resumo dispoñíbeis."
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Puntuacións ao final da partida."
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
-msgstr ""
+msgstr "Eliminar a repetición"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure to delete this replay permanently?"
-msgstr ""
+msgstr "Está seguro de que quere eliminar esta repetición de maneira permanente?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Calquera"
 
 #: gui/replaymenu/replay_filters.js:56
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Calquera"
 
 #: gui/replaymenu/replay_filters.js:69
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Calquera"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Calquera"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Calquera"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:102
@@ -1228,8 +1229,8 @@ msgstr ""
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "< %(max)s min"
+msgstr[1] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
@@ -1237,56 +1238,56 @@ msgstr[1] ""
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "> %(min)s min"
+msgstr[1] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr ""
+msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_menu.js:235
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:265
 msgid "yyyy-MM"
-msgstr ""
+msgstr "yyyy-MM"
 
 #: gui/replaymenu/replay_menu.js:328
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #: gui/replaymenu/replay_menu.js:330
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, derrotado)"
 
 #: gui/replaymenu/replay_menu.js:332
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIname)s con dificultade %(AIdifficulty)s)"
 
 #: gui/replaymenu/replay_menu.js:334
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIname)s con dificultade %(AIdifficulty)s, derrotado)"
 
 #: gui/replaymenu/replay_menu.js:350
 msgid "No Team"
-msgstr ""
+msgstr "Sen equipo"
 
 #: gui/replaymenu/replay_menu.js:350
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Equipo %(team)s"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:27
 msgid "No saved games found"
@@ -1673,7 +1674,7 @@ msgstr "Sala de espera"
 
 #: gui/options/options.xml:(caption):69
 msgid "Revert"
-msgstr ""
+msgstr "Reverter"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1681,19 +1682,19 @@ msgstr "Gardar"
 
 #: gui/options/options.xml:(caption):79
 msgid "Quit"
-msgstr ""
+msgstr "Saír"
 
 #: gui/options/options.xml:(tooltip):70
 msgid "Revert to previous saved settings"
-msgstr ""
+msgstr "Restaurar a configuración anterior gardada"
 
 #: gui/options/options.xml:(tooltip):75
 msgid "Save changes"
-msgstr ""
+msgstr "Gardar os cambios"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"
-msgstr ""
+msgstr "Os cambios sen gardar afectan unicamente a esta sesión"
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
@@ -1939,35 +1940,35 @@ msgstr "Visitar o sitio Trac de 0 A.D., no que poderás informar dun erro, fallo
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
-msgstr ""
+msgstr "Repeticións"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Mostrar só as repeticións compatíbeis"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
-msgstr ""
+msgstr "Tipo de mapa:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):151
 msgid "Map Size:"
-msgstr ""
+msgstr "Tamaño do mapa:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):166
 msgid "Victory:"
-msgstr ""
+msgstr "Victoria:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):187
 msgid "Players:"
-msgstr ""
+msgstr "Xogadores:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 msgid "Spoiler"
-msgstr ""
+msgstr "Resultado final"
 
 #: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Main Menu"
-msgstr ""
+msgstr "Menú principal"
 
 #: gui/replaymenu/replay_menu.xml:(caption):222
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
@@ -1981,37 +1982,37 @@ msgstr "Resumo"
 
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Start Replay"
-msgstr ""
+msgstr "Comezar a repetición"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Data ou hora"
 
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Xogadores"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Nome do mapa"
 
 #: gui/replaymenu/replay_menu.xml:(heading):85
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Tamaño"
 
 #: gui/replaymenu/replay_menu.xml:(heading):89
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Poboación"
 
 #: gui/replaymenu/replay_menu.xml:(heading):93
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Duración"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -2043,7 +2044,7 @@ msgstr "Civilización:"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
-msgstr ""
+msgstr "Unidades de adestramento"
 
 #: gui/summary/summary.xml:(caption):65
 msgid "Score"

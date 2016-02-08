@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-28 10:20+0100\n"
-"PO-Revision-Date: 2015-12-28 09:54+0000\n"
+"PO-Revision-Date: 2016-02-06 18:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -76,12 +77,12 @@ msgstr "Ningún"
 #: gui/gamesetup/gamesetup.js:555
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s foi expulsado."
 
 #: gui/gamesetup/gamesetup.js:559
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s foi vedado."
 
 #: gui/gamesetup/gamesetup.js:1115
 msgid "You"
@@ -126,7 +127,7 @@ msgstr "Non asignado"
 
 #: gui/gamesetup/gamesetup.js:1622
 msgid "Unknown Player"
-msgstr ""
+msgstr "Xogador descoñecido"
 
 #: gui/gamesetup/gamesetup.js:1648 gui/gamesetup/gamesetup.js:1652
 #: gui/gamesetup/gamesetup.js:1660 gui/gamesetup/gamesetup.js:1679
@@ -309,7 +310,7 @@ msgstr "Enviar"
 
 #: gui/gamesetup/gamesetup.xml:(caption):218
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Trucos activados."
 
 #: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Start game!"
