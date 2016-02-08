@@ -62,7 +62,7 @@ private:
 
 	CEntityHandle m_SystemEntity;
 
-	int currentDisplayedPlayer = 0;
+	int currentDisplayedPlayer;
 
 	friend class CSimulation2Impl;
 };

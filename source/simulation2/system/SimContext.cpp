@@ -24,7 +24,7 @@
 #include "ps/Game.h"
 
 CSimContext::CSimContext() :
-	m_ComponentManager(NULL), m_UnitManager(NULL), m_Terrain(NULL)
+	m_ComponentManager(NULL), m_UnitManager(NULL), m_Terrain(NULL), currentDisplayedPlayer(0)
 {
 }
 
