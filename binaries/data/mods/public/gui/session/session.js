@@ -306,6 +306,8 @@ function selectViewPlayer(playerID)
 	Engine.SetPlayerID(g_DevSettings.changePerspective ? playerID : -1);
 
 	updateTopPanel();
+
+	// Update GUI and clear player-dependent cache
 	onSimulationUpdate();
 
 	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
@@ -341,6 +343,10 @@ function controlsPlayer(playerID)
 	return Engine.GetPlayerID() == playerID || g_DevSettings.controlAll;
 }
 
+/**
+ * Sets civ icon for the currently viewed player.
+ * Hides most gui objects for observers.
+ */
 function updateTopPanel()
 {
 	let isPlayer = g_ViewedPlayer > 0;
@@ -526,13 +532,11 @@ function onTick()
 
 	updateCursorAndTooltip();
 
-	// If the selection changed, we need to regenerate the sim display (the display depends on both the
-	// simulation state and the current selection).
 	if (g_Selection.dirty)
 	{
 		g_Selection.dirty = false;
 
-		onSimulationUpdate();
+		updateGUIObjects();
 
 		// Display rally points for selected buildings
 		if (Engine.GetPlayerID() != -1)
@@ -652,10 +656,6 @@ function updateIdleWorkerButton()
 		idleWorkerButton.sprite = prefix + "minimap-idle.png";
 }
 
-/**
- * Recomputes GUI state that depends on simulation state or selection state. Called directly every simulation
- * update (see session.xml), or from onTick when the selection has changed.
- */
 function onSimulationUpdate()
 {
 	g_EntityStates = {};
@@ -664,12 +664,16 @@ function onSimulationUpdate()
 
 	g_SimState = Engine.GuiInterfaceCall("GetSimulationState");
 
-	// If we're called during init when the game is first loading, there will be no simulation yet, so do nothing
 	if (!g_SimState)
 		return;
 
 	handleNotifications();
 
+	updateGUIObjects();
+}
+
+function updateGUIObjects()
+{
 	g_Selection.update();
 
 	if (g_ShowAllStatusBars)
