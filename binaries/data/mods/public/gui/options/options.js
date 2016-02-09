@@ -68,6 +68,7 @@ function setupControl(option, i, category)
 {
 	var control;
 	var onUpdate;
+	var key = option.parameters.config;
 
 	switch (option.type)
 	{
@@ -79,18 +80,15 @@ function setupControl(option, i, category)
 		size.rright = 87;
 		text.size = size;
 		control = Engine.GetGUIObjectByName(category + "Tickbox[" + i + "]");
-		var checked;
-		var keyRenderer;
-		var keyConfig;
-		var functionBody;
+		let checked;
+		let keyRenderer;
 
 		for (let param of Object.keys(option.parameters))
 		{
 			switch (param)
 			{
 			case "config":
-				keyConfig = option.parameters.config;
-				checked = Engine.ConfigDB_GetValue("user", keyConfig) === "true";
+				checked = Engine.ConfigDB_GetValue("user", key) === "true";
 				break;
 			case "renderer":
 				keyRenderer = option.parameters.renderer;
@@ -115,21 +113,18 @@ function setupControl(option, i, category)
 		if (inverted)
 			checked = !checked;
 
-		onUpdate = function(keyRenderer, keyConfig, inverted)
+		onUpdate = function(key, keyRenderer, inverted)
 		{
 			return function()
 			{
 				let val = inverted ? !this.checked : this.checked;
 				if (keyRenderer)
 					Engine["Renderer_Set" + keyRenderer + "Enabled"](val);
-				if (keyConfig)
-				{
-					Engine.ConfigDB_CreateValue("user", keyConfig, String(val));
-					Engine.ConfigDB_SetChanges("user", true);
-				}
+				Engine.ConfigDB_CreateValue("user", key, String(val));
+				Engine.ConfigDB_SetChanges("user", true);
 				updateOptionPanel();
 			};
-		}(keyRenderer, keyConfig, inverted);
+		}(key, keyRenderer, inverted);
 
 		// Load final data to the control element.
 		control.checked = checked;
@@ -139,18 +134,16 @@ function setupControl(option, i, category)
 		// TODO: Slider
 	case "string":
 		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
-		var caption;
-		var key;
-		var functionBody;
-		var minval;
-		var maxval;
+		let caption;
+		let functionBody;
+		let minval;
+		let maxval;
 
 		for (let param of Object.keys(option.parameters))
 		{
 			switch (param)
 			{
 			case "config":
-				key = option.parameters.config;
 				caption = Engine.ConfigDB_GetValue("user", key);
 				break;
 			case "function":
@@ -197,18 +190,12 @@ function setupControl(option, i, category)
 	case "dropdown":
 		control = Engine.GetGUIObjectByName(category + "Dropdown[" + i + "]");
 		control.onSelectionChange = function(){};  // just the time to setup the value
-		var caption;
-		var key;
-		var functionBody;
-		var minval;
-		var maxval;
 
 		for (let param of Object.keys(option.parameters))
 		{
 			switch (param)
 			{
 			case "config":
-				key = option.parameters.config;
 				let val = +Engine.ConfigDB_GetValue("user", key);
 				if (key === "materialmgr.quality")
 					val = val > 5 ? 2 : val > 2 ? 1 : 0;
@@ -241,7 +228,7 @@ function setupControl(option, i, category)
 		control.onSelectionChange = onUpdate;
 		break;
 	default:
-		warn("Unknown option type '" + option.type + "', assuming string. Valid types are 'number', 'string', or 'bool'.");
+		warn("Unknown option type " + option.type + ", assuming string.");
 		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
 		break;
 	}
@@ -299,19 +286,31 @@ function reallySetDefaults()
 function revertChanges()
 {
 	Engine.ConfigDB_Reload("user");
-	// needs to update renderer values (which are all of boolean type)
 	for (let item in g_Controls)
 	{
 		let control = g_Controls[item];
-		if (!control.parameters.renderer)
-			continue;
-		if (control.type !== "boolean" && control.type !== "invertedboolean")
+		// needs to update renderer values (which are all of boolean type)
+		if (control.parameters.renderer)
 		{
-			warn("Invalid type option defined in renderer '" + control.type + "': will not be reverted");
-			continue;
+			if (control.type !== "boolean" && control.type !== "invertedboolean")
+			{
+				warn("Invalid type option " + control.type + " defined in renderer for " + item + ": will not be reverted");
+				continue;
+			}
+			let checked = Engine.ConfigDB_GetValue("user", item) === "true";
+			Engine["Renderer_Set" + control.parameters.renderer + "Enabled"](checked);
 		}
-		let checked = Engine.ConfigDB_GetValue("user", item) === "true";
-		Engine["Renderer_Set" + control.parameters.renderer + "Enabled"](checked);
+		// and the possible function calls (which are of number or string types)
+		if (control.parameters.function)
+		{
+			if (control.type !== "string" && control.type !== "number")
+			{
+				warn("Invalid type option " + control.type + " defined with function for " + item + ": will not be reverted");
+				continue;
+			}
+			let caption = Engine.ConfigDB_GetValue("user", item);
+			Engine[control.parameters.function](+caption);
+		}
 	}
 	Engine.ConfigDB_SetChanges("user", false);
 	init();
