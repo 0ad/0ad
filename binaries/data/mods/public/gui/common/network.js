@@ -1,3 +1,41 @@
+/**
+ * Number of milliseconds to display network warnings.
+ */
+const g_NetworkWarningTimeout = 3000;
+
+/**
+ * Currently displayed network warnings. At most one message per user.
+ */
+var g_NetworkWarnings = {};
+
+/**
+ * Message-types to be displayed.
+ */
+var g_NetworkWarningTexts = {
+
+	"server-timeout": (msg, username) =>
+		sprintf(translate("Losing connection to server (%(seconds)s)"), {
+			"seconds": Math.ceil(msg.lastReceivedTime / 1000)
+		}),
+
+	"client-timeout": (msg, username) =>
+		sprintf(translate("%(player)s losing connection (%(seconds)s)"), {
+			"player": username,
+			"seconds": Math.ceil(msg.lastReceivedTime / 1000)
+		}),
+
+	"server-latency": (msg, username) =>
+		sprintf(translate("Bad connection to server (%(milliseconds)sms)"), {
+			"milliseconds": msg.meanRTT
+		}),
+
+	"client-latency": (msg, username) =>
+		sprintf(translate("Bad connection to %(player)s (%(milliseconds)sms)"), {
+			"player": username,
+			"milliseconds": msg.meanRTT
+		})
+};
+
 var g_NetworkCommands = {
 	"/kick": argument => kickPlayer(argument, false),
 	"/ban": argument => kickPlayer(argument, true),
@@ -93,4 +131,70 @@ function executeNetworkCommand(input)
 		g_NetworkCommands[command](argument);
 
 	return !!g_NetworkCommands[command];
+}
+
+/**
+ * Remember this warning for a few seconds.
+ * Overwrite previous warnings for this user.
+ *
+ * @param msg - GUI message sent by NetServer or NetClient
+ */
+function addNetworkWarning(msg)
+{
+	if (!g_NetworkWarningTexts[msg.warntype])
+	{
+		warn("Unknown network warning type received: " + uneval(msg));
+		return;
+	}
+
+	if (Engine.ConfigDB_GetValue("user", "overlay.netwarnings") != "true")
+		return;
+
+	g_NetworkWarnings[msg.guid || "server"] = {
+		"added": Date.now(),
+		"msg": msg
+	};
+}
+
+/**
+ * Colorizes and concatenates all network warnings.
+ * Returns text and textWidth.
+ */
+function getNetworkWarnings()
+{
+	// Remove outdated messages
+	for (let guid in g_NetworkWarnings)
+	{
+		if (Date.now() > g_NetworkWarnings[guid].added + g_NetworkWarningTimeout)
+			delete g_NetworkWarnings[guid];
+
+		if (guid != "server" && !g_PlayerAssignments[guid])
+			delete g_NetworkWarnings[guid];
+	}
+
+	// Show local messages first
+	let guids = Object.keys(g_NetworkWarnings).sort(guid => guid != "server");
+
+	let font = Engine.GetGUIObjectByName("gameStateNotifications").font;
+
+	let messages = [];
+	let maxTextWidth = 0;
+
+	for (let guid of guids)
+	{
+		let msg = g_NetworkWarnings[guid].msg;
+
+		// Add formatted text
+		messages.push(g_NetworkWarningTexts[msg.warntype](msg, colorizePlayernameByGUID(guid)));
+
+		// Add width of unformatted text
+		let username = guid != "server" && g_PlayerAssignments[guid].name;
+		let textWidth = Engine.GetTextWidth(font, g_NetworkWarningTexts[msg.warntype](msg, username));
+		maxTextWidth = Math.max(textWidth, maxTextWidth);
+	}
+
+	return {
+		"messages": messages,
+		"maxTextWidth": maxTextWidth
+	};
 }

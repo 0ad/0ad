@@ -342,7 +342,7 @@ void CLOSTexture::RecomputeTexture(int unit)
 	if (!cmpRangeManager)
 		return;
 
-	ICmpRangeManager::CLosQuerier los(cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
+	ICmpRangeManager::CLosQuerier los(cmpRangeManager->GetLosQuerier(g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer()));
 
 	GenerateBitmap(los, &losData[0], m_MapSize, m_MapSize, pitch);
 

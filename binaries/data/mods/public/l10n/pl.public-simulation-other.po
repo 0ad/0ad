@@ -12,6 +12,7 @@
 # Leszek S, 2014-2015
 # Lukasz B <boberstarosta@gmail.com>, 2015-2016
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
+# Marcin S <dzidek1003@o2.pl>, 2016
 # Michał Koźlarek <m.kozlarek@vp.pl>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-06 12:46+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -631,9 +632,9 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(name)s za blisko %(category)s, musi być przynajmniej w odległości %(distance)s metrów"
+msgstr[1] "%(name)s za blisko %(category)s, musi być przynajmniej w odległości %(distance)s metrów"
+msgstr[2] "%(name)s za blisko %(category)s, musi być przynajmniej w odległości %(distance)s metrów"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -641,9 +642,9 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(name)s za daleko od %(category)s, musi być w promieniu %(distance)s metrów"
+msgstr[1] "%(name)s za daleko od %(category)s, musi być w promieniu %(distance)s metrów"
+msgstr[2] "%(name)s za daleko od %(category)s, musi być w promieniu %(distance)s metrów"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -746,7 +747,7 @@ msgstr "Kolejka produkcji jest pełna."
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "Nie można znaleźć wolnego miejsca na  zbiórkę wyszkolonych jednostek "
 
 #: simulation/helpers/Commands.js:675
 #, javascript-format
@@ -755,7 +756,7 @@ msgstr "Zażądano ataku przeciwko %(_player_)s"
 
 #: simulation/helpers/Commands.js:965
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Wymagania technologiczne budynku nie zostały spełnione."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"

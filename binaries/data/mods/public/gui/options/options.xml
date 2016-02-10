@@ -69,17 +69,22 @@
 				</object>
 			</repeat>
 		</object>
-		<object name="loadOptions" type="button" style="ModernButtonRed" size="50%-170 100%-44 50%-70 100%-16" hotkey="cancel">
+		<object type="button" style="ModernButtonRed" size="50%-236 100%-44 50%-136 100%-16">
+			<translatableAttribute id="caption">Reset</translatableAttribute>
+			<translatableAttribute id="tooltip">Resets user settings to their game default</translatableAttribute>
+			<action on="Press">setDefaults();</action>
+		</object>
+		<object name="revertChanges" type="button" style="ModernButtonRed" size="50%-104 100%-44 50%-4 100%-16">
 			<translatableAttribute id="caption">Revert</translatableAttribute>
-			<translatableAttribute id="tooltip">Revert to previous saved settings</translatableAttribute>
+			<translatableAttribute id="tooltip">Reverts to previous saved settings</translatableAttribute>
 			<action on="Press">revertChanges();</action>
 		</object>
-		<object name="saveOptions" type="button" style="ModernButtonRed" size="50%-62 100%-44 50%+38 100%-16">
+		<object name="saveChanges" type="button" style="ModernButtonRed" size="50%+4 100%-44 50%+104 100%-16">
 			<translatableAttribute id="caption">Save</translatableAttribute>
-			<translatableAttribute id="tooltip">Save changes</translatableAttribute>
+			<translatableAttribute id="tooltip">Saves changes</translatableAttribute>
 			<action on="Press">saveChanges();</action>
 		</object>
-		<object type="button" style="ModernButtonRed" size="50%+70 100%-44 50%+170 100%-16">
+		<object type="button" style="ModernButtonRed" size="50%+136 100%-44 50%+236 100%-16">
 			<translatableAttribute id="caption">Close</translatableAttribute>
 			<translatableAttribute id="tooltip">Unsaved changes affect this session only</translatableAttribute>
 			<action on="Press">closePage();</action>

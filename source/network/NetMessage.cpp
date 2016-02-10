@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -137,6 +137,14 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 
 	case NMT_KICKED:
 		pNewMessage = new CKickedMessage;
+		break;
+
+	case NMT_CLIENT_TIMEOUT:
+		pNewMessage = new CClientTimeoutMessage;
+		break;
+
+	case NMT_CLIENT_PERFORMANCE:
+		pNewMessage = new CClientPerformanceMessage;
 		break;
 
 	case NMT_LOADED_GAME:

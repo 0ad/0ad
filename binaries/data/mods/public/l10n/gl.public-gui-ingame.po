@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 08:57+0000\n"
+"PO-Revision-Date: 2016-02-06 18:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -217,7 +218,7 @@ msgstr[1] "%(numberOfShipTraders)s barcos mercantes inactivos"
 
 #: gui/session/menu.js:637
 msgid "Current Scores"
-msgstr ""
+msgstr "Puntuacións actuais"
 
 #: gui/session/menu.js:663 gui/session/menu.js:686
 msgid "Resume"
@@ -250,12 +251,12 @@ msgstr "Tributar %(resourceAmount)s unidades de %(resourceType)s a %(playerName)
 #: gui/session/messages.js:34
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s foi expulsado."
 
 #: gui/session/messages.js:35
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s foi vedado."
 
 #: gui/session/messages.js:44
 #, javascript-format
@@ -288,7 +289,7 @@ msgstr "Perdeuse a conexión co servidor."
 #: gui/session/messages.js:63
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Motivo: %(reason)s."
 
 #: gui/session/messages.js:64
 msgid "The game has ended."
@@ -363,21 +364,21 @@ msgstr "%(player)s pasou a ser neutral contigo."
 #: gui/session/messages.js:130
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s aliouse con %(player2)s."
 
 #: gui/session/messages.js:131
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s entrou en guerra con %(player2)s."
 
 #: gui/session/messages.js:132
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s ten unha relación neutral con %(player2)s."
 
 #: gui/session/messages.js:544 gui/session/messages.js:551
 msgid "Unknown Player"
-msgstr ""
+msgstr "Xogador descoñecido"
 
 #: gui/session/messages.js:561
 msgid "You have been defeated."
@@ -391,7 +392,7 @@ msgstr "%(player)s foi derrotado."
 #: gui/session/messages.js:593
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)s enviou %(amounts)s a %(player2)s."
 
 #: gui/session/messages.js:595
 #, javascript-format
@@ -633,29 +634,29 @@ msgstr "Manter a posición"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "Atacar rivais próximos, dar prioridade aos atacantes, e perseguir dentro do raio de visión."
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "Atacar rivais próximos"
 
 #: gui/session/selection_panels_helpers.js:62
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "Atacar rivais próximos, perseguir un treito limitado antes de regresar á posición orixinal."
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr ""
+msgstr "Fuxir ante un ataque"
 
 #: gui/session/selection_panels_helpers.js:66
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "Atacar rivais próximos mantendo a posición"
 
 #: gui/session/selection_panels_helpers.js:82
 #, javascript-format
@@ -941,7 +942,7 @@ msgstr "Gardar"
 
 #: gui/session/menu.xml:(caption):53
 msgid "Summary"
-msgstr ""
+msgstr "Resumo"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Options"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -281,6 +281,10 @@ private:
 
 	void HandleMessageReceive(const CNetMessage* message, CNetServerSession* session);
 
+	/**
+	 * Send a network warning if the connection to a client is being lost or has bad latency.
+	 */
+	void CheckClientConnections();
 
 	/**
 	 * Internal script context for (de)serializing script messages,
@@ -330,6 +334,11 @@ private:
 	 * client when a new client has asked to rejoin the game.
 	 */
 	std::string m_JoinSyncFile;
+
+	/**
+	 *  Time when the clients connections were last checked for timeouts and latency.
+	 */
+	std::time_t m_LastConnectionCheck;
 
 private:
 	// Thread-related stuff:

@@ -158,7 +158,7 @@ void SetDisableAllWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool dis
 		g_WaterRefraction = !disabled;
 	if (!IsOverridden("waterreflection"))
 		g_WaterReflection = !disabled;
-	if (!IsOverridden("shadowsonwater"))
+	if (!IsOverridden("watershadows"))
 		g_WaterShadows = !disabled;
 }
 
@@ -168,7 +168,7 @@ void SetDisableFancyWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool d
 		g_WaterFancyEffects = !disabled;
 	if (!IsOverridden("waterrealdepth"))
 		g_WaterRealDepth = !disabled;
-	if (!IsOverridden("shadowsonwater"))
+	if (!IsOverridden("watershadows"))
 		g_WaterShadows = !disabled;
 }
 

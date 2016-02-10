@@ -1,12 +1,11 @@
-var g_hasCallback = false;
-var g_controls;
+var g_HasCallback = false;
+var g_Controls;
 
 function init(data)
 {
 	if (data && data.callback)
-		g_hasCallback = true;
-	let revert = data && data.revert;
-	g_controls = [];
+		g_HasCallback = true;
+	g_Controls = {};
 
 	var options = Engine.ReadJSONFile("gui/options/options.json");
 	for (let category of Object.keys(options))
@@ -15,33 +14,48 @@ function init(data)
 		for (let i = 0; i < options[category].length; ++i)
 		{
 			let option = options[category][i];
-			if (!option.label)
+			if (!option.label || !option.parameters || !option.parameters.config)
 				continue;
 			let body = Engine.GetGUIObjectByName(category + "[" + i + "]");
 			let label = Engine.GetGUIObjectByName(category + "Label[" + i + "]");
-			setupControl(option, i, category, revert);
+			let config = option.parameters.config;
+			g_Controls[config] = {
+				"control": setupControl(option, i, category),
+				"type": option.type,
+				"dependencies": option.dependencies || undefined,
+				"parameters": option.parameters
+			};
 			label.caption = translate(option.label);
 			label.tooltip = option.tooltip ? translate(option.tooltip) : "";
 			// Move each element to the correct place.
-			if (i > 0)
+			if (lastSize)
 			{
 				let newSize = new GUISize();
 				newSize.left = lastSize.left;
 				newSize.rright = lastSize.rright;
 				newSize.top = lastSize.bottom;
-				newSize.bottom = newSize.top + 25;
+				newSize.bottom = newSize.top + 26;
 				body.size = newSize;
 				lastSize = newSize;
 			}
 			else
 				lastSize = body.size;
+			// small right shift of options which depends on another one
+			for (let opt of options[category])
+			{
+				if (!opt.label || !opt.parameters || !opt.parameters.config)
+					continue;
+				if (!opt.dependencies || opt.dependencies.indexOf(config) === -1)
+					continue;
+				label.caption = "      " + label.caption;
+				break;
+			}
 			// Show element.
 			body.hidden = false;
 		}
 	}
 
-	if (!revert)
-		updateStatus();
+	updateOptionPanel();
 }
 
 /**
@@ -50,65 +64,67 @@ function init(data)
  * @param option Structure containing the data to setup an option.
  * @param prefix Prefix to use when accessing control, for example "generalSetting" when the tickbox name is generalSettingTickbox[i].
  */
-function setupControl(option, i, category, revert)
+function setupControl(option, i, category)
 {
 	var control;
 	var onUpdate;
+	var key = option.parameters.config;
 
 	switch (option.type)
 	{
 	case "boolean":
+	case "invertedboolean":
 		// More space for the label
 		let text = Engine.GetGUIObjectByName(category + "Label[" + i + "]");
 		let size = text.size;
 		size.rright = 87;
 		text.size = size;
 		control = Engine.GetGUIObjectByName(category + "Tickbox[" + i + "]");
-		var checked;
-		var keyRenderer;
-		var keyConfig;
-		var functionBody;
+		let checked;
+		let keyRenderer;
 
 		for (let param of Object.keys(option.parameters))
 		{
 			switch (param)
 			{
 			case "config":
-				keyConfig = option.parameters.config;
-				if (checked === undefined || revert)
-					checked = Engine.ConfigDB_GetValue("user", keyConfig) === "true";
-				else if ((Engine.ConfigDB_GetValue("user", keyConfig) === "true") !== checked)
-					Engine.ConfigDB_CreateValue("user", keyConfig, String(checked));
+				checked = Engine.ConfigDB_GetValue("user", key) === "true";
 				break;
 			case "renderer":
 				keyRenderer = option.parameters.renderer;
 				if (!Engine["Renderer_Get" + keyRenderer + "Enabled"])
 				{
-					warn(" invalid renderer key " + keyRenderer);
+					warn("Invalid renderer key " + keyRenderer);
 					keyRenderer = undefined;
 					break;
 				}
-				if (checked === undefined)
-					checked = Engine["Renderer_Get" + keyRenderer + "Enabled"]();
-				else if (Engine["Renderer_Get" + keyRenderer + "Enabled"]() !== checked)
+				if (Engine["Renderer_Get" + keyRenderer + "Enabled"]() !== checked)
+				{
+					warn("Incompatible renderer option value for " + keyRenderer);
 					Engine["Renderer_Set" + keyRenderer + "Enabled"](checked);
+				}
 				break;
 			default:
 				warn("Unknown option source type '" + param + "'");
 			}
 		}
+		// invertedboolean when we want to display the opposite of the flag value
+		var inverted = option.type === "invertedboolean";
+		if (inverted)
+			checked = !checked;
 
-		onUpdate = function(keyRenderer, keyConfig)
+		onUpdate = function(key, keyRenderer, inverted)
 		{
 			return function()
 			{
+				let val = inverted ? !this.checked : this.checked;
 				if (keyRenderer)
-					Engine["Renderer_Set" + keyRenderer + "Enabled"](this.checked);
-				if (keyConfig)
-					Engine.ConfigDB_CreateValue("user", keyConfig, String(this.checked));
-				updateStatus(true);
+					Engine["Renderer_Set" + keyRenderer + "Enabled"](val);
+				Engine.ConfigDB_CreateValue("user", key, String(val));
+				Engine.ConfigDB_SetChanges("user", true);
+				updateOptionPanel();
 			};
-		}(keyRenderer, keyConfig);
+		}(key, keyRenderer, inverted);
 
 		// Load final data to the control element.
 		control.checked = checked;
@@ -118,18 +134,16 @@ function setupControl(option, i, category, revert)
 		// TODO: Slider
 	case "string":
 		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
-		var caption;
-		var key;
-		var functionBody;
-		var minval;
-		var maxval;
+		let caption;
+		let functionBody;
+		let minval;
+		let maxval;
 
 		for (let param of Object.keys(option.parameters))
 		{
 			switch (param)
 			{
 			case "config":
-				key = option.parameters.config;
 				caption = Engine.ConfigDB_GetValue("user", key);
 				break;
 			case "function":
@@ -143,7 +157,7 @@ function setupControl(option, i, category, revert)
 				maxval = option.parameters.max;
 				break;
 			default:
-				warn("Unknown option source type '" + action + "'");
+				warn("Unknown option source type '" + param + "'");
 			}
 		}
 
@@ -162,31 +176,26 @@ function setupControl(option, i, category, revert)
 				if (Engine.ConfigDB_GetValue("user", key) === this.caption)
 					return;
 				Engine.ConfigDB_CreateValue("user", key, this.caption);
+				Engine.ConfigDB_SetChanges("user", true);
 				if (functionBody)
 					Engine[functionBody](+this.caption);
-				updateStatus(true);
+				updateOptionPanel();
 			};
 		}(key, functionBody, minval, maxval);
 
 		control.caption = caption;
 		control.onPress = onUpdate;
 		control.onMouseLeave = onUpdate;
-		g_controls.push(control);
 		break;
 	case "dropdown":
 		control = Engine.GetGUIObjectByName(category + "Dropdown[" + i + "]");
-		var caption;
-		var key;
-		var functionBody;
-		var minval;
-		var maxval;
+		control.onSelectionChange = function(){};  // just the time to setup the value
 
 		for (let param of Object.keys(option.parameters))
 		{
 			switch (param)
 			{
 			case "config":
-				key = option.parameters.config;
 				let val = +Engine.ConfigDB_GetValue("user", key);
 				if (key === "materialmgr.quality")
 					val = val > 5 ? 2 : val > 2 ? 1 : 0;
@@ -199,7 +208,7 @@ function setupControl(option, i, category, revert)
 				control.list_data = option.parameters.list_data;
 				break;
 			default:
-				warn("Unknown option source type '" + action + "'");
+				warn("Unknown option source type '" + param + "'");
 			}
 		}
 
@@ -211,14 +220,15 @@ function setupControl(option, i, category, revert)
 				if (key === "materialmgr.quality")
 					val = val == 0 ? 2 : val == 1 ? 5 : 8;
 				Engine.ConfigDB_CreateValue("user", key, val);
-				updateStatus(true);
+				Engine.ConfigDB_SetChanges("user", true);
+				updateOptionPanel();
 			};
 		}(key);
 
 		control.onSelectionChange = onUpdate;
 		break;
 	default:
-		warn("Unknown option type '" + option.type + "', assuming string. Valid types are 'number', 'string', or 'bool'.");
+		warn("Unknown option type " + option.type + ", assuming string.");
 		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
 		break;
 	}
@@ -227,15 +237,23 @@ function setupControl(option, i, category, revert)
 	return control;
 }
 
-function updateStatus(val)
+function updateOptionPanel()
 {
-	if (typeof val == "boolean")
-		Engine.ConfigDB_CreateValue("user", "nosave.haschanges", String(val));
-	else
-		val = Engine.ConfigDB_GetValue("user", "nosave.haschanges") === "true";
+	// Update dependencies
+	for (let item in g_Controls)
+	{
+		let control = g_Controls[item];
+		if (control.type !== "boolean" && control.type !== "invertedboolean" || !control.dependencies)
+			continue;
 
-	Engine.GetGUIObjectByName("loadOptions").enabled = val;
-	Engine.GetGUIObjectByName("saveOptions").enabled = val;
+		for (let dependency of control.dependencies)
+			g_Controls[dependency].control.enabled = control.control.checked;
+	}
+
+	// And main buttons
+	let hasChanges = Engine.ConfigDB_HasChanges("user");
+	Engine.GetGUIObjectByName("revertChanges").enabled = hasChanges;
+	Engine.GetGUIObjectByName("saveChanges").enabled = hasChanges;
 }
 
 /**
@@ -243,22 +261,67 @@ function updateStatus(val)
  */
 function registerChanges()
 {
-	for (let control of g_controls)
-		control.onPress();
+	for (let item in g_Controls)
+		if (g_Controls[item].type === "number" || g_Controls[item].type === "string")
+			g_Controls[item].control.onPress();
+}
+
+function setDefaults()
+{
+	let btCaptions = [translate("No"), translate("Yes")];
+	let btCode = [null, function(){ reallySetDefaults(); }];
+	messageBox(500, 200, translate("Resetting the options will erase your saved settings. Do you want to continue ?"),
+		translate("Warning"), 0, btCaptions, btCode);
+}
+
+function reallySetDefaults()
+{
+	for (let item in g_Controls)
+		Engine.ConfigDB_RemoveValue("user", item);
+
+	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+	revertChanges();
 }
 
 function revertChanges()
 {
 	Engine.ConfigDB_Reload("user");
-	updateStatus(false);
-	init({ "revert": true });
+	for (let item in g_Controls)
+	{
+		let control = g_Controls[item];
+		// needs to update renderer values (which are all of boolean type)
+		if (control.parameters.renderer)
+		{
+			if (control.type !== "boolean" && control.type !== "invertedboolean")
+			{
+				warn("Invalid type option " + control.type + " defined in renderer for " + item + ": will not be reverted");
+				continue;
+			}
+			let checked = Engine.ConfigDB_GetValue("user", item) === "true";
+			Engine["Renderer_Set" + control.parameters.renderer + "Enabled"](checked);
+		}
+		// and the possible function calls (which are of number or string types)
+		if (control.parameters.function)
+		{
+			if (control.type !== "string" && control.type !== "number")
+			{
+				warn("Invalid type option " + control.type + " defined with function for " + item + ": will not be reverted");
+				continue;
+			}
+			let caption = Engine.ConfigDB_GetValue("user", item);
+			Engine[control.parameters.function](+caption);
+		}
+	}
+	Engine.ConfigDB_SetChanges("user", false);
+	init();
 }
 
 function saveChanges()
 {
 	registerChanges();
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
-	updateStatus(false);
+	Engine.ConfigDB_SetChanges("user", false);
+	updateOptionPanel();
 }
 
 /**
@@ -267,7 +330,7 @@ function saveChanges()
 function closePage()
 {
 	registerChanges();
-	if (Engine.ConfigDB_GetValue("user", "nosave.haschanges") === "true")
+	if (Engine.ConfigDB_HasChanges("user"))
 	{
 		let btCaptions = [translate("No"), translate("Yes")];
 		let btCode = [null, function(){ closePageWithoutConfirmation(); }];
@@ -280,7 +343,7 @@ function closePage()
 
 function closePageWithoutConfirmation()
 {
-	if (g_hasCallback)
+	if (g_HasCallback)
 		Engine.PopGuiPageCB();
 	else
 		Engine.PopGuiPage();

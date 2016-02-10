@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 
 #define PS_PROTOCOL_MAGIC				0x5073013f		// 'P', 's', 0x01, '?'
 #define PS_PROTOCOL_MAGIC_RESPONSE		0x50630121		// 'P', 'c', 0x01, '!'
-#define PS_PROTOCOL_VERSION				0x01010008		// Arbitrary protocol
+#define PS_PROTOCOL_VERSION				0x01010009		// Arbitrary protocol
 #define PS_DEFAULT_PORT					0x5073			// 'P', 's'
 
 // Defines the list of message types. The order of the list must not change.
@@ -59,6 +59,9 @@ enum NetMessageType
 
 	NMT_REJOINED,
 	NMT_KICKED,
+
+	NMT_CLIENT_TIMEOUT,
+	NMT_CLIENT_PERFORMANCE,
 
 	NMT_LOADED_GAME,
 	NMT_GAME_START,
@@ -165,6 +168,18 @@ END_NMT_CLASS()
 START_NMT_CLASS_(Kicked, NMT_KICKED)
 	NMT_FIELD(CStrW, m_Name)
 	NMT_FIELD_INT(m_Ban, u8, 1)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(ClientTimeout, NMT_CLIENT_TIMEOUT)
+	NMT_FIELD(CStr8, m_GUID)
+	NMT_FIELD_INT(m_LastReceivedTime, u32, 4)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(ClientPerformance, NMT_CLIENT_PERFORMANCE)
+	NMT_START_ARRAY(m_Clients)
+		NMT_FIELD(CStr8, m_GUID)
+		NMT_FIELD_INT(m_MeanRTT, u32, 4)
+	NMT_END_ARRAY()
 END_NMT_CLASS()
 
 START_NMT_CLASS_(LoadedGame, NMT_LOADED_GAME)

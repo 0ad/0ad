@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -530,7 +530,7 @@ void CMiniMap::Draw()
 			ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
 			if (cmpMinimap->GetRenderData(v.r, v.g, v.b, posX, posZ))
 			{
-				ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, g_Game->GetPlayerID());
+				ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer());
 				if (vis != ICmpRangeManager::VIS_HIDDEN)
 				{
 					v.a = 255;

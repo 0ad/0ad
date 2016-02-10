@@ -101,7 +101,7 @@ static void LoadGlobals()
 	CFG_GET_VAL("waterrealdepth", g_WaterRealDepth);
 	CFG_GET_VAL("waterrefraction", g_WaterRefraction);
 	CFG_GET_VAL("waterreflection", g_WaterReflection);
-	CFG_GET_VAL("shadowsonwater", g_WaterShadows);
+	CFG_GET_VAL("watershadows", g_WaterShadows);
 
 	CFG_GET_VAL("renderpath", g_RenderPath);
 	CFG_GET_VAL("particles", g_Particles);

@@ -538,7 +538,7 @@ std::string CUserReporter::LoadUserID()
 		}
 
 		g_ConfigDB.SetValueString(CFG_USER, "userreport.id", userID);
-		g_ConfigDB.WriteFile(CFG_USER);
+		g_ConfigDB.WriteValueToFile(CFG_USER, "userreport.id", userID);
 	}
 
 	return userID;
@@ -555,7 +555,7 @@ void CUserReporter::SetReportingEnabled(bool enabled)
 {
 	CStr val = CStr::FromInt(enabled ? REPORTER_VERSION : 0);
 	g_ConfigDB.SetValueString(CFG_USER, "userreport.enabledversion", val);
-	g_ConfigDB.WriteFile(CFG_USER);
+	g_ConfigDB.WriteValueToFile(CFG_USER, "userreport.enabledversion", val);
 
 	if (m_Worker)
 		m_Worker->SetEnabled(enabled);

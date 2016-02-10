@@ -29,6 +29,7 @@ var g_ChatTimers = [];
  */
 var g_NetMessageTypes = {
 	"netstatus": msg => handleNetStatusMessage(msg),
+	"netwarn": msg => addNetworkWarning(msg),
 	"players": msg => handlePlayerAssignmentsMessage(msg),
 	"rejoined": msg => addChatMessage({ "type": "rejoined", "guid": msg.guid }),
 	"kicked": msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": msg.username }) }),

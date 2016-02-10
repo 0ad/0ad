@@ -27,11 +27,9 @@
 		<object name="btnOK" type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17" hotkey="cancel">
 			<translatableAttribute id="caption">OK</translatableAttribute>
 			<action on="Press"><![CDATA[
-			if (Engine.GetGUIObjectByName("displaySplashScreen").checked)
-				Engine.ConfigDB_CreateValue("user", "splashscreenversion", 0);
-			else
-				Engine.ConfigDB_CreateValue("user", "splashscreenversion", Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"));
-			Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+			let version = Engine.GetGUIObjectByName("displaySplashScreen").checked ? 0 : Engine.GetFileMTime("gui/splashscreen/splashscreen.txt");
+			Engine.ConfigDB_CreateValue("user", "splashscreenversion", version);
+			Engine.ConfigDB_WriteValueToFile("user", "splashscreenversion", version, "config/user.cfg");
 			Engine.PopGuiPageCB();
 			]]></action>
 		</object>

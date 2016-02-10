@@ -12,6 +12,7 @@
 # Leszek S, 2014-2015
 # Lukasz B <boberstarosta@gmail.com>, 2015-2016
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
+# Marcin S <dzidek1003@o2.pl>, 2016
 # Michał Karol <michal.p.karol+transifex@gmail.com>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
 # Paweł Goca <siwers17@gmail.com>, 2015
@@ -24,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-06 12:55+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -372,7 +373,7 @@ msgstr "Zostałeś zbanowany"
 #: gui/common/network.js:24
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Błędna wartość %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:36
@@ -660,7 +661,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:246
 msgid "Build Rate:"
-msgstr ""
+msgstr "Tempo budowy:"
 
 #: gui/common/tooltips.js:291 gui/common/tooltips.js:292
 #: gui/common/tooltips.js:293 gui/common/tooltips.js:294
@@ -1017,11 +1018,11 @@ msgstr "Ogranicz FPS do 50 we wszystkich menu, aby zaoszczędzić moc."
 
 #: gui/options/options.js:38
 msgid "Graphics quality"
-msgstr ""
+msgstr "Ustawienia jakości"
 
 #: gui/options/options.js:38
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Ustawienia jakości. WYMAGA PONOWNEGO URUCHOMIENIA GRY."
 
 #: gui/options/options.js:42
 msgid "Master Gain"
@@ -1081,7 +1082,7 @@ msgstr "Pokaż czas otrzymania wiadomości na czacie"
 
 #: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
-msgstr ""
+msgstr "Masz niezapisane zmiany, to na pewno chcesz zakończyć?"
 
 #: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
@@ -1703,7 +1704,7 @@ msgstr "Ustawienia poczekalni"
 
 #: gui/options/options.xml:(caption):69
 msgid "Revert"
-msgstr ""
+msgstr "Powrót"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1711,19 +1712,19 @@ msgstr "Zapisz"
 
 #: gui/options/options.xml:(caption):79
 msgid "Quit"
-msgstr ""
+msgstr "Wyjdź"
 
 #: gui/options/options.xml:(tooltip):70
 msgid "Revert to previous saved settings"
-msgstr ""
+msgstr "Wczytaj poprzednie zapisane ustawienia "
 
 #: gui/options/options.xml:(tooltip):75
 msgid "Save changes"
-msgstr ""
+msgstr "Zachowaj zmiany"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"
-msgstr ""
+msgstr "Niezapisane zmiany dotyczą tylko tej sesji."
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"

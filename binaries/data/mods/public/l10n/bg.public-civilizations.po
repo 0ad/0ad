@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:00+0100\n"
-"PO-Revision-Date: 2016-01-26 23:37+0000\n"
+"PO-Revision-Date: 2016-02-05 00:21+0000\n"
 "Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -547,7 +547,7 @@ msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "Цената за обучаване на единици на слон (боен слон) или на кон (кавалерия) се намалява с 5% за всяко животно, вкарано в обор (ако е уместно)."
+msgstr "Цената за обучаване на единици на слон (боен слон) или на кон (конница) се намалява с 5% за всяко животно, вкарано в обор (ако е уместно)."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Name
@@ -1759,7 +1759,7 @@ msgstr "Ксеркс (управлявал 485-465г. пр.н.е.). Син на 
 #: simulation/data/civs/pers.jsonStructures[0].Name
 #: simulation/data/civs/sele.jsonStructures[1].Name
 msgid "Cavalry Stables"
-msgstr "Конюшни на конницата"
+msgstr "Конюшни"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
@@ -2493,7 +2493,7 @@ msgstr "Македоно-гръцката династия, управлявал
 
 #: simulation/data/civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr "Обучава всички конници, освен конници опълченци."
+msgstr "Обучава всички конници, освен Конна милиция."
 
 #: simulation/data/civs/sele.jsonStructures[2].Name
 msgid "Military Colony"

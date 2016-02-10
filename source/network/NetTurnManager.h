@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,9 @@
 #include <list>
 #include <map>
 #include <vector>
+
+extern const u32 DEFAULT_TURN_LENGTH_MP;
+extern const u32 DEFAULT_TURN_LENGTH_SP;
 
 class CNetServerWorker;
 class CNetClient;
