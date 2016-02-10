@@ -135,11 +135,9 @@ void main()
 	float t;				// Temporary variable
 	vec2 reflCoords, refrCoords;
 	vec3 reflColor, refrColor, specular;
-	float losMod;
+	float losMod, reflMod;
 	
-	vec3 l = -sunDir;
 	vec3 v = normalize(cameraPos - worldPos);
-	vec3 h = normalize(l + v);
 	
 	// Calculate water normals.
 
@@ -189,16 +187,19 @@ void main()
 		n = mix(vec3(0.0,1.0,0.0), n,0.5 + waterInfo.r/2.0);
 	#endif
 
-	n = vec3(-n.x,n.y,-n.z);
-	
-	// simulates how parallel the "point->sun", "view->point" vectors are.
-	float ndoth = dot(n , h);
+	n = vec3(-n.x,n.y,-n.z); // the final wave normal vector
 	
 	// how perpendicular to the normal our view is. Used for fresnel.
 	float ndotv = clamp(dot(n, v),0.0,1.0);
 	
-	// diffuse lighting-like. used for shadows?
-	float ndotl = (dot(n, l) + 1.0)/2.0;
+	// Fresnel for "how much reflection vs how much refraction".
+	fresnel = clamp((pow(1.1 - ndotv, 3.0)) * 1.5,0.0,1.0); // approximation. I'm using 1.1 and not 1.0 because it causes artifacts, see #1714
+	
+	// Specular lighting vectors
+	vec3 specVector = normalize(reflect(sunDir, n));
+	float specIntensity = pow(abs(dot(specVector, v)), 200.0);
+
+	specular = specIntensity * sunColor;
 	
 	float depth;
 #if USE_REAL_DEPTH
@@ -238,52 +239,29 @@ void main()
 	depth = max(depth,fancyeffects.a);
 #endif
 	
-	// Fresnel for "how much reflection vs how much refraction".
-	// Since we're not trying to simulate a realistic ocean 100%, aim for something that gives a little too much reflection
-	// because we're not used to seeing the see from above.
-	fresnel = clamp(pow(1.05 - ndotv, 1.1),0.0,0.8); // approximation. I'm using 1.05 and not 1.0 because it causes artifacts, see #1714
-	// multiply by v.y so that in the distance refraction wins.
-	// TODO: this is a hack because reflections don't work in the distance.
-	fresnel = clamp(fresnel*1.5,0.0,0.9);
-	fresnel *= min(1.0,log(1.0 + v.y*5.0));
-	
-	//gl_FragColor = vec4(fresnel,fresnel,fresnel,1.0);
-	//return;
-	
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
 	float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
 #endif
 	
 	// for refraction, we want to adjust the value by v.y slightly otherwise it gets too different between "from above" and "from the sides".
 	// And it looks weird (again, we are not used to seeing water from above).
-	float fixedVy = max(v.y,0.1);
+	float fixedVy = max(v.y,0.01);
 	
 	float distoFactor = clamp(depth/2.0,0.0,7.0);
 	
 	float murky = mix(200.0,0.1,pow(murkiness,0.25));
 	
 #if USE_REFRACTION
-	refrCoords = clamp( (0.5*refractionCoords.xy - n.xz * distoFactor*7.0) / refractionCoords.z + 0.5,0.0,1.0);	// Unbias texture coords
+	// distort the texture coords under where the water is to simulate refraction.
+	refrCoords = (0.5 * refractionCoords.xy - n.xz * distoFactor * 3.5) / refractionCoords.z + 0.5;
 	vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
-	if (refColor.r > refColor.g + refColor.b + 0.25)
-	{
-		refrCoords = clamp( (0.5*refractionCoords.xy + n.xz) / refractionCoords.z + 0.5,0.0,1.0);	// Unbias texture coords
-		refColor = texture2D(refractionMap, refrCoords).rgb;
-	}
 	
-	// TODO: make murkiness (both types rematter on that.
-	// linearly extinct the water. This is how quickly we see nothing but the pure water color
+	// Apply water tint and murk color.
 	float extFact = max(0.0,1.0 - (depth*fixedVy/murky));
-	// This is how tinted the water is, ie how quickly the refracted floor takes the tint of the water
 	float ColextFact = max(0.0,1.0 - (depth*fixedVy/murky));
 	vec3 colll = mix(refColor*tint,refColor,ColextFact);
 	
-#if USE_SHADOWS_ON_WATER && USE_SHADOW
-	// TODO:
 	refrColor = mix(color, colll, extFact);
-#else
-	refrColor = mix(color, colll, extFact);
-#endif
 #else
 	// linearly extinct the water. This is how quickly we see nothing but the pure water color
 	float extFact = max(0.0,1.0 - (depth*fixedVy/20.0));
@@ -311,12 +289,16 @@ void main()
 	reflColor = textureCube(skyCube, newpos.rgb).rgb;
 	
 	// Reflections appear more distorted when viewed from a lower angle. Simulate this.
-	float angleEffect = clamp(1.3 - dot(vec3(0.0,1.0,0.0), v),0.0,1.0);
+	//float angleEffect = clamp(1.6 - dot(vec3(0.0,1.0,0.0), v),0.0,1.0);
 
-	reflCoords = clamp( (0.5*reflectionCoords.xy - 40.0 * n.zx * angleEffect) / reflectionCoords.z + 0.5,0.0,1.0);	// Unbias texture coords
+	// Distort the reflection coords based on waves.
+	reflCoords = (0.5*reflectionCoords.xy - 15.0 * n.zx) / reflectionCoords.z + 0.5;
 	vec4 refTex = texture2D(reflectionMap, reflCoords);
-	fresnel = clamp(fresnel+refTex.a/3.0,0.0,1.0);
-	reflColor = refTex.rgb * refTex.a + reflColor*(1.0-refTex.a);
+	
+	// interpolate between the sky color and nearby objects.
+	reflColor = mix(reflColor.rgb, refTex.rgb, refTex.a);
+	// reflMod is used to reduce the intensity of sky reflections, which otherwise are too extreme.
+	reflMod = max(refTex.a, 0.55);
 	
 #else
 	// Temp fix for some ATI cards (see irc logs on th 1st of august betwee, fexor and wraitii)
@@ -326,26 +308,13 @@ void main()
 	reflColor = vec3(0.15, 0.7, 0.82);
 #endif
 	
-	// TODO: At very low angles the reflection stuff doesn't really work any more:
-	// IRL you would get a blur of the sky, but we don't have that precision (would require mad oversampling)
-	// So tend towards a predefined color (per-map) which looks like what the skybox would look like if you really blurred it.
-	// The TODO here would be to precompute a band (1x32?) that represents the average color around the map.
-	// TODO: another issue is that at high distances (half map) the texture blurs into flatness. Using better mipmaps won't really solve it
-	// So we'll need to stop showing reflections and default to sky color there too.
-	// Unless maybe waviness is so low that you would see like in a mirror anyways.
-	//float disttt = distance(worldPos,cameraPos);
-	//reflColor = mix(vec3(0.5,0.5,0.55), reflColor, clamp(1.0-disttt/600.0*disttt/600.0,0.0,1.0));//clamp(-0.05 + v.y*20.0,0.0,1.0));
-	
-	// Specular.
-	specular = pow(ndoth, mix(5.0,2000.0, clamp(v.y*v.y*2.0,0.0,1.0)))*sunColor * 1.5;// * sunColor * 1.5 * ww.r;
-	
 	losMod = texture2D(losMap, losCoords.st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	
 	float wavesFresnel = 1.0;
 	
 #if USE_FANCY_EFFECTS
-	wavesFresnel = mix(1.0-fancyeffects.a,1.0,clamp(depth,0.0,1.0));
+	//wavesFresnel = mix(1.0-fancyeffects.a,1.0,clamp(depth,0.0,1.0));
 #endif
 	
 	vec3 color;
@@ -353,7 +322,7 @@ void main()
 	float fresShadow = mix(fresnel, fresnel*shadow, 0.05 + murkiness*0.2);
 	color = mix(refrColor, reflColor, fresShadow * wavesFresnel);
 #else
-	color = mix(refrColor, reflColor, fresnel * wavesFresnel);
+	color = mix(refrColor, reflColor, fresnel * reflMod);
 #endif
 	
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
@@ -373,12 +342,10 @@ void main()
 	foaminterp *= mix(foam3, foam4, moddedTime);
 	
 	foam1.x = foaminterp.x * WindCosSin.x - foaminterp.z * WindCosSin.y;
-	//foam1.z = foaminterp.x * WindCosSin.y + foaminterp.z * WindCosSin.x;
-	//foam1.y = foaminterp.y;
-	float foam = FoamEffects.r * FoamEffects.a*0.4 + pow(foam1.x*(5.0+waviness),(2.6 - waviness/5.5));
-	foam *= ndotl;
 	
-	gl_FragColor.rgb = get_fog(color) * losMod + foam * losMod;// + fancyeffects.a * losMod;
+	float foam = FoamEffects.r * FoamEffects.a*0.4 + pow(foam1.x*(5.0+waviness),(2.6 - waviness/5.5));
+	
+	gl_FragColor.rgb = get_fog(color) * losMod + foam * losMod;
 #else
 	gl_FragColor.rgb = get_fog(color) * losMod;
 #endif

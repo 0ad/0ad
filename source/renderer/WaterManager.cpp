@@ -91,8 +91,7 @@ WaterManager::WaterManager()
 	
 	m_ReflectionTexture = 0;
 	m_RefractionTexture = 0;
-	m_ReflectionTextureSize = 0;
-	m_RefractionTextureSize = 0;
+	m_RefTextureSize = 0;
 	
 	m_ReflectionFbo = 0;
 	m_RefractionFbo = 0;
@@ -236,18 +235,10 @@ int WaterManager::LoadWaterTextures()
 		m_FoamTex = texture;
 	}
 	
-	m_ReflectionTextureSize = g_Renderer.GetHeight() * 0.66;	// Higher settings give a better result
-	m_RefractionTextureSize = g_Renderer.GetHeight() * 0.33;	// Lower settings actually sorta look better since it blurs.
+	// Use screen-sized textures for minimum artifacts.
+	m_RefTextureSize = g_Renderer.GetHeight();
 	
-	if (round_down_to_pow2(m_ReflectionTextureSize)/m_ReflectionTextureSize < 0.65)
-		m_ReflectionTextureSize = round_up_to_pow2(m_ReflectionTextureSize);
-	else
-		m_ReflectionTextureSize = round_down_to_pow2(m_ReflectionTextureSize);
-	
-	if (round_down_to_pow2(m_RefractionTextureSize)/m_RefractionTextureSize < 0.7)
-		m_RefractionTextureSize = round_up_to_pow2(m_RefractionTextureSize);
-	else
-		m_RefractionTextureSize = round_down_to_pow2(m_RefractionTextureSize);
+	m_RefTextureSize = round_up_to_pow2(m_RefTextureSize);
 	
 	// Create reflection texture
 	glGenTextures(1, &m_ReflectionTexture);
@@ -256,7 +247,7 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize, 0,  GL_RGBA, GL_UNSIGNED_BYTE, 0);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_RGBA, GL_UNSIGNED_BYTE, 0);
 	
 	// Create refraction texture
 	glGenTextures(1, &m_RefractionTexture);
@@ -265,7 +256,7 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB8, (GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize, 0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB8, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
 
 	// Create depth textures
 	glGenTextures(1, &m_ReflFboDepthTexture);
@@ -274,7 +265,7 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 	
 	glGenTextures(1, &m_RefrFboDepthTexture);
 	glBindTexture(GL_TEXTURE_2D, m_RefrFboDepthTexture);
@@ -282,7 +273,7 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 
 	// Create the Fancy Effects texture
 	glGenTextures(1, &m_FancyTextureNormal);
