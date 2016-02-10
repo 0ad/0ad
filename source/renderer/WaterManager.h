@@ -103,8 +103,7 @@ public:
 	// Reflection and refraction textures for fancy water
 	GLuint m_ReflectionTexture;
 	GLuint m_RefractionTexture;
-	size_t m_ReflectionTextureSize;
-	size_t m_RefractionTextureSize;
+	size_t m_RefTextureSize;
 
 	// framebuffer objects
 	GLuint m_RefractionFbo;

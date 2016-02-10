@@ -5,6 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* Implements a UTF-16 character type. */
+#include <stdint.h>
 
 #ifndef mozilla_Char16_h
 #define mozilla_Char16_h
@@ -32,8 +33,8 @@
     */
 #  define MOZ_UTF16_HELPER(s) L##s
 #  define _CHAR16T
-   typedef wchar_t char16_t;
-   typedef unsigned int char32_t;
+typedef wchar_t char16_t;
+typedef unsigned int char32_t;
 #else
    /* C++11 has a builtin char16_t type. */
 #  define MOZ_UTF16_HELPER(s) u##s

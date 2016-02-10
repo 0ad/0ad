@@ -26,7 +26,7 @@ float linearizeDepth(float depth)
 }
 
 
-void main(void)
+void main()
 {
 	vec3 color = texture2D(renderedTex, v_tex).rgb;
 
