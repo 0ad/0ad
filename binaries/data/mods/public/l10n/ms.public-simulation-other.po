@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# abuyop <abuyop@gmail.com>, 2014-2015
+# abuyop <abuyop@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-10 09:20+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,35 +22,35 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:7
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Makanan"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:9
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Kayu"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:11
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Logam"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:13
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Batu"
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Saya baru memulakan kempen ketenteraan besar-besaran terhadap %(_player_)s, marilah sertai saya."
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
@@ -101,7 +101,7 @@ msgstr "Saya lihat anda dalam situasi yang teruk, %(_player_)s, Saya harap ini d
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "Saya boleh membantu anda %(_player_)s buat masa ini, tetapi cuba himpun lagi banyak sumber pada masa hadapan."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
@@ -119,7 +119,7 @@ msgstr "Saya boleh menyertai perang anda tetapi dengan sedikit %(resource)s."
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Jika anda mempunyai lebihan %(resource)s, ia dapat membantu saya memperkukuhkan tentera saya."
 
 #: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
@@ -620,7 +620,7 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
+msgstr[0] "%(name)s terlalu hampir dengan %(category)s, mesti sekurang-kurangnya %(distance)s meter jauhnya"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -628,7 +628,7 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
+msgstr[0] "%(name)s terlalu jauh dari %(category)s, mesti dalam lingkungan %(distance)s meter jauhnya"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -731,52 +731,52 @@ msgstr "Baris gilir pengeluaran telah penuh."
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "Tidak dapat cari ruang kosong untuk jelmakan unit terlatih"
 
 #: simulation/helpers/Commands.js:675
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Serangan terhadap %(_player_)s dipinta."
 
 #: simulation/helpers/Commands.js:965
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Keperluan tekonologi bangunan tidak dipenuhi."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Pemain 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Pemain 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Pemain 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Pemain 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Pemain 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Pemain 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Pemain 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Pemain 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
@@ -943,7 +943,7 @@ msgid ""
 "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra ialah bot AI 0AD lalai. Sila laporkan masalah jika ada kepada Wildfire Games (lihat pautan di dalam menu utama).\n\nAI memiliki bonus-malus terhadap pengumpulan sumber (sama ada kadar pengumpulan atau pemerolehan dagangan) berbeza dari 0.5 untuk Kotak Pasir sehinggalah 1.6 untuk Sangat Sukar (Sederhana = 1.0). Selain itu, Aras Kotak Pasir tidak membangunkan tamadunnya atau membuat serangan."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
