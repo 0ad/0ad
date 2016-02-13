@@ -84,8 +84,8 @@ m.getMaxStrength = function(ent, againstClass)
 // Decide if we should try to capture or destroy
 m.allowCapture = function(ent, target)
 {
-	return (!target.hasClass("Siege") || !ent.hasClass("Melee") ||
-		!target.isGarrisonHolder() || !target.garrisoned().length);
+	return !target.hasClass("Siege") || !ent.hasClass("Melee") ||
+		!target.isGarrisonHolder() || !target.garrisoned().length;
 };
 
 // Makes the worker deposit the currently carried resources at the closest accessible dropsite
@@ -168,14 +168,12 @@ m.getBestBase = function(gameState, ent)
 
 m.getHolder = function(gameState, ent)
 {
-	var found;
-	gameState.getEntities().forEach(function (holder) {
-		if (found || !holder.isGarrisonHolder())
-			return;
-		if (holder.garrisoned().indexOf(ent.id()) !== -1)
-			found = holder;
-	});
-	return found;
+	for (let holder of gameState.getEntities().values())
+	{
+		if (holder.isGarrisonHolder() && holder.garrisoned().indexOf(ent.id()) !== -1)
+			return holder;
+	}
+	return undefined;
 };
 
 /**
@@ -188,7 +186,7 @@ m.isNotWorthBuilding = function(gameState, ent)
 	{
 		let buildTerritories = ent.buildTerritories();
 		if (buildTerritories && (!buildTerritories.length || (buildTerritories.length === 1 && buildTerritories[0] === "own")))
-		return true;
+			return true;
 	}
 	return false;
 };
