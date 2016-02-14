@@ -46,7 +46,7 @@ EntityGroups.prototype.reset = function()
 
 EntityGroups.prototype.add = function(ents)
 {
-	for each (var ent in ents)
+	for (let ent of ents)
 	{
 		if (!this.ents[ent])
 		{
@@ -80,11 +80,11 @@ EntityGroups.prototype.add = function(ents)
 EntityGroups.prototype.removeEnt = function(ent)
 {
 	var templateName = this.ents[ent];
-	
+
 	// Remove the entity
 	delete this.ents[ent];
-	this.groups[templateName]--;
-	
+	--this.groups[templateName];
+
 	// Remove the entire group
 	if (this.groups[templateName] == 0)
 		delete this.groups[templateName];
@@ -109,22 +109,17 @@ EntityGroups.prototype.getCount = function(templateName)
 
 EntityGroups.prototype.getTotalCount = function()
 {
-	var totalCount = 0;
-	for each (var group in this.groups)
-		totalCount += group;
-
+	let totalCount = 0;
+	for (let templateName in this.groups)
+		totalCount += this.groups[templateName];
 	return totalCount;
 };
 
 EntityGroups.prototype.getTemplateNames = function()
 {
-	var templateNames = [];
-	for (var templateName in this.groups)
-		templateNames.push(templateName);
 	//Preserve order even when shuffling units around
 	//Can be optimized by moving the sorting elsewhere
-	templateNames.sort();
-	return templateNames;
+	return Object.keys(this.groups).sort();
 };
 
 EntityGroups.prototype.getEntsByName = function(templateName)
@@ -149,7 +144,7 @@ EntityGroups.prototype.getEntsGrouped = function()
 		list.push({
 			"ents": this.getEntsByName(t),
 			"template": t,
-		});	
+		});
 	}
 	return list;
 };
@@ -173,17 +168,15 @@ EntityGroups.prototype.getEntsByNameInverse = function(templateName)
 function EntitySelection()
 {
 	// Private properties:
-	//--------------------------------
 	this.selected = {}; // { id:id, id:id, ... } for each selected entity ID 'id'
 
-	// { id:id, ... } for mouseover-highlighted entity IDs in these, the key is a string and the value is an int; 
+	// { id:id, ... } for mouseover-highlighted entity IDs in these, the key is a string and the value is an int;
 	//	we want to use the int form wherever possible since it's more efficient to send to the simulation code)
-	this.highlighted = {}; 
+	this.highlighted = {};
 
 	this.motionDebugOverlay = false;
 
 	// Public properties:
-	//--------------------------------
 	this.dirty = false; // set whenever the selection has changed
 	this.groups = new EntityGroups();
 }
@@ -212,10 +205,10 @@ EntitySelection.prototype.makePrimarySelection = function(templateName, modifier
 EntitySelection.prototype.getTemplateNames = function()
 {
 	var templateNames = [];
-	
-	for each (var ent in this.selected)
+
+	for (let ent in this.selected)
 	{
-		var entState = GetEntityState(ent);
+		let entState = GetEntityState(+ent);
 		if (entState)
 			templateNames.push(entState.template);
 	}
@@ -232,33 +225,33 @@ EntitySelection.prototype.update = function()
 	let changed = false;
 	let removeOwnerChanges = g_ViewedPlayer != -1 && !g_DevSettings.controlAll && this.toList().length > 1;
 
-	for each (var ent in this.selected)
+	for (let ent in this.selected)
 	{
-		var entState = GetEntityState(ent);
+		let entState = GetEntityState(+ent);
 
 		// Remove deleted units
 		if (!entState)
 		{
 			delete this.selected[ent];
-			this.groups.removeEnt(ent);
+			this.groups.removeEnt(+ent);
 			changed = true;
 			continue;
 		}
 
 		// Remove non-visible units (e.g. moved back into fog-of-war)
-		// At the next update, mirages will be renamed to the real 
+		// At the next update, mirages will be renamed to the real
 		// entity they replace, so just ignore them now
 		// Futhermore, when multiple selection, remove units which have changed ownership
 		if (entState.visibility == "hidden" && !entState.mirage ||
 			removeOwnerChanges && entState.player != g_ViewedPlayer)
 		{
 			// Disable any highlighting of the disappeared unit
-			_setHighlight([ent], 0, false);
-			_setStatusBars([ent], false);
-			_setMotionOverlay([ent], false);
+			_setHighlight([+ent], 0, false);
+			_setStatusBars([+ent], false);
+			_setMotionOverlay([+ent], false);
 
 			delete this.selected[ent];
-			this.groups.removeEnt(ent);
+			this.groups.removeEnt(+ent);
 			changed = true;
 			continue;
 		}
@@ -277,11 +270,11 @@ EntitySelection.prototype.checkRenamedEntities = function()
 	if (renamedEntities.length > 0)
 	{
 		var renamedLookup = {};
-		for each (var renamedEntity in renamedEntities)
+		for (let renamedEntity of renamedEntities)
 			renamedLookup[renamedEntity.entity] = renamedEntity.newentity;
 
 		// Reconstruct the selection if at least one entity has been renamed.
-		for each (var renamedEntity in renamedEntities)
+		for (let renamedEntity of renamedEntities)
 		{
 			if (this.selected[renamedEntity.entity])
 			{
@@ -313,7 +306,7 @@ EntitySelection.prototype.addList = function(ents, quiet)
 	var i = 1;
 	var added = [];
 
-	for each (var ent in ents)
+	for (let ent of ents)
 	{
 		if (selection.length + i > g_MaxSelectionSize)
 			break;
@@ -357,7 +350,7 @@ EntitySelection.prototype.removeList = function(ents)
 {
 	var removed = [];
 
-	for each (var ent in ents)
+	for (let ent of ents)
 	{
 		if (this.selected[ent])
 		{
@@ -390,31 +383,31 @@ EntitySelection.prototype.rebuildSelection = function(renamed)
 	this.reset();
 
 	var toAdd = [];
-	for each (var ent in oldSelection)
-		toAdd.push(renamed[ent] ? renamed[ent] : ent);
+	for (let ent in oldSelection)
+		toAdd.push(renamed[ent] || +ent);
 
 	this.addList(toAdd, true); // don't play selection sounds
 };
 
 EntitySelection.prototype.getFirstSelected = function()
 {
-	for each (var ent in this.selected)
-		return ent;
+	for (let ent in this.selected)
+		return +ent;
 	return undefined;
 };
 
 EntitySelection.prototype.toList = function()
 {
-	var ents = [];
-	for each (var ent in this.selected)
-		ents.push(ent);
+	let ents = [];
+	for (let ent in this.selected)
+		ents.push(+ent);
 	return ents;
 };
 
 EntitySelection.prototype.setHighlightList = function(ents)
 {
 	var highlighted = {};
-	for each (var ent in ents)
+	for (let ent of ents)
 		highlighted[ent] = ent;
 
 	var removed = [];
@@ -422,12 +415,12 @@ EntitySelection.prototype.setHighlightList = function(ents)
 
 	// Remove highlighting for the old units that are no longer highlighted
 	// (excluding ones that are actively selected too)
-	for each (var ent in this.highlighted)
+	for (let ent in this.highlighted)
 		if (!highlighted[ent] && !this.selected[ent])
 			removed.push(+ent);
-	
+
 	// Add new highlighting for units that aren't already highlighted
-	for each (var ent in ents)
+	for (let ent of ents)
 		if (!this.highlighted[ent] && !this.selected[ent])
 			added.push(+ent);
 
@@ -436,7 +429,7 @@ EntitySelection.prototype.setHighlightList = function(ents)
 
 	_setHighlight(added, g_HighlightedAlpha, true);
 	_setStatusBars(added, true);
-	
+
 	// Store the new highlight list
 	this.highlighted = highlighted;
 };
@@ -486,8 +479,8 @@ function EntityGroupsContainer()
 
 EntityGroupsContainer.prototype.addEntities = function(groupName, ents)
 {
-	for each (var ent in ents)
-		for each (var group in this.groups)
+	for (let ent of ents)
+		for (let group of this.groups)
 			if (ent in group.ents)
 				group.removeEnt(ent);
 
@@ -497,8 +490,7 @@ EntityGroupsContainer.prototype.addEntities = function(groupName, ents)
 EntityGroupsContainer.prototype.update = function()
 {
 	this.checkRenamedEntities();
-	for each (var group in this.groups)
-	{
+	for (let group of this.groups)
 		for (var ent in group.ents)
 		{
 			var entState = GetEntityState(+ent);
@@ -506,7 +498,6 @@ EntityGroupsContainer.prototype.update = function()
 			if (!entState)
 				group.removeEnt(ent);
 		}
-	}
 };
 
 /**
@@ -519,12 +510,11 @@ EntityGroupsContainer.prototype.checkRenamedEntities = function()
 	if (renamedEntities.length > 0)
 	{
 		var renamedLookup = {};
-		for each (var renamedEntity in renamedEntities)
+		for (let renamedEntity of renamedEntities)
 			renamedLookup[renamedEntity.entity] = renamedEntity.newentity;
 
-		for each (var group in this.groups)
-		{
-			for each (var renamedEntity in renamedEntities)
+		for (let group of this.groups)
+			for (let renamedEntity of renamedEntities)
 			{
 				// Reconstruct the group if at least one entity has been renamed.
 				if (renamedEntity.entity in group.ents)
@@ -533,7 +523,6 @@ EntityGroupsContainer.prototype.checkRenamedEntities = function()
 					break;
 				}
 			}
-		}
 	}
 };
 
