@@ -666,6 +666,11 @@ private:
 	bool CheckTargetMovement(const CFixedVector2D& from, entity_pos_t minDelta);
 
 	/**
+	 * Update goal position if moving target
+	 */
+	bool UpdateFinalGoal();
+
+	/**
 	 * Returns whether we are close enough to the target to assume it's a good enough
 	 * position to stop.
 	 */
@@ -811,6 +816,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 			if (ShouldConsiderOurselvesAtDestination(pos))
 				return;
 
+			UpdateFinalGoal();
 			RequestLongPath(pos, m_FinalGoal);
 			m_PathState = PATHSTATE_WAITING_REQUESTING_LONG;
 			return;
@@ -1034,6 +1040,7 @@ void CCmpUnitMotion::Move(fixed dt)
 				}
 			}
 			// Else, just entirely recompute
+			UpdateFinalGoal();
 			BeginPathing(pos, m_FinalGoal);
 
 			// potential TODO: We could switch the short-range pathfinder for something else entirely.
@@ -1256,6 +1263,23 @@ bool CCmpUnitMotion::CheckTargetMovement(const CFixedVector2D& from, entity_pos_
 	RequestLongPath(from, m_FinalGoal);
 	m_PathState = PATHSTATE_FOLLOWING_REQUESTING_LONG;
 
+	return true;
+}
+
+bool CCmpUnitMotion::UpdateFinalGoal()
+{
+	if (m_TargetEntity == INVALID_ENTITY)
+		return false;
+	CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
+	if (!cmpUnitMotion)
+		return false;
+	if (IsFormationMember())
+		return false;
+	CFixedVector2D targetPos;
+	if (!ComputeTargetPosition(targetPos))
+		return false;
+	m_FinalGoal.x = targetPos.X;
+	m_FinalGoal.z = targetPos.Y;
 	return true;
 }
 
@@ -1827,6 +1851,10 @@ void CCmpUnitMotion::RenderPath(const WaypointPath& path, std::vector<SOverlayLi
 		lines.back().m_Color = color;
 		SimRender::ConstructSquareOnGround(GetSimContext(), x, z, 1.0f, 1.0f, 0.0f, lines.back(), floating);
 	}
+	float x = cmpPosition->GetPosition2D().X.ToFloat();
+	float z = cmpPosition->GetPosition2D().Y.ToFloat();
+	waypointCoords.push_back(x);
+	waypointCoords.push_back(z);
 	lines.push_back(SOverlayLine());
 	lines.back().m_Color = color;
 	SimRender::ConstructLineOnGround(GetSimContext(), waypointCoords, lines.back(), floating);
