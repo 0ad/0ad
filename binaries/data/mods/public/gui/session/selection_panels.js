@@ -326,6 +326,10 @@ g_SelectionPanels.Construction = {
 			});
 
 		data.limits = getEntityLimitAndCount(data.playerState, data.entType);
+
+		if (data.template.wallSet)
+			data.template.auras = GetTemplateData(data.template.wallSet.templates.long).auras;
+
 		return true;
 	},
 	"setAction": function(data)
