@@ -33,7 +33,7 @@ function getPlayerData(playerAssignments)
 		    "isNeutral": playerState.isNeutral,
 		    "isEnemy": playerState.isEnemy,
 		    "guid": undefined, // network guid for players controlled by hosts
-		    "disconnected": false // flag for host-controlled players who have left the game
+		    "offline": true
 		};
 		players.push(player);
 	}
@@ -48,6 +48,7 @@ function getPlayerData(playerAssignments)
 			{
 				players[playerAssignment.player].guid = playerGuid;
 				players[playerAssignment.player].name = playerAssignment.name;
+				players[playerAssignment.player].offline = false;
 			}
 		}
 	}
