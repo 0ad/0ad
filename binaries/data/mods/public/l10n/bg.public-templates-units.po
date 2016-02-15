@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:01+0100\n"
-"PO-Revision-Date: 2016-02-11 21:54+0000\n"
-"Last-Translator: Lyubomir Vasilev\n"
+"PO-Revision-Date: 2016-02-13 11:02+0000\n"
+"Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -291,7 +291,7 @@ msgstr "Аурата на гарнизирания плен"
 msgid ""
 "When garrisoned in a structure, the hero gives it a bonus of +2 capture "
 "points recovery rate."
-msgstr ""
+msgstr "Когато е гарнизиран в сграда, героят ѝ дава +2 бързина на възстановяването на пленителните точки."
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -385,7 +385,7 @@ msgstr "Огнен Кораб"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr ""
+msgstr "Бързо намалява здравето на вражеските кораби. Постепенно губи здраве, защото гори, така че ползвайте Огнения кораб бързо."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
@@ -395,7 +395,7 @@ msgstr "Рибарска Лодка"
 msgid ""
 "Fish the waters for Food. Garrison a support or infantry unit inside to "
 "boost fishing rate."
-msgstr ""
+msgstr "Риболувайте, за да си набавите Храна. Гарнизирайте помощна или пехотна единица, за да увеличите бързината на риболуване."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -405,7 +405,7 @@ msgstr "Търговец"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr ""
+msgstr "Търгувайте с пристанища. Гарнизирайте Търговец за допълнителна печалба (+20% за всеки в гарнизон). Събирайте доходоносни морски съкровища."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -456,7 +456,7 @@ msgstr "Обсадна Кула"
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:59
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr ""
+msgstr "Гарнизирайте до 20 пехотинци, за да увеличите броят на стрелите от 0 до 10."
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
@@ -741,7 +741,7 @@ msgstr "Всички единици в неговата формация +15% б
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:22
 msgid "Peltast Reforms"
-msgstr ""
+msgstr "Пелтастски реформи"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:23
 msgid "All Peltasts +15% speed."
@@ -1142,7 +1142,7 @@ msgstr "Ḥannibaʿal Baraq"
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
-msgstr ""
+msgstr "Способност „Стратег“ (Все още не е разработена): Играчът вижда промени в мъглата на войната, докато Ханибал е жив.\nМоже да полудява."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:11
 msgid "Commander Aura"
@@ -1151,7 +1151,7 @@ msgstr "Аурата на командира"
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid ""
 " +5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr ""
+msgstr "+5 щурмуваща атака за Конницата, в чието полезрение се намира (за момента безполезно)."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:17
 msgid "Maharbal"
@@ -1340,7 +1340,7 @@ msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:21
 msgid "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Специално: Горящи леки копия. Добро срещу сгради."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1475,7 +1475,7 @@ msgstr "Mégās Aléxandros"
 
 #: simulation/templates/units/mace_hero_alexander.xml:34
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr ""
+msgstr "Бонус „Хероцид“: +20% атака с-у вражески Герои."
 
 #: simulation/templates/units/mace_hero_craterus.xml:6
 msgid "Crateros"
@@ -1523,11 +1523,11 @@ msgstr "Pyrrhos ton Epeiros"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:8
 msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr ""
+msgstr "Аура на „Пировата победа“: Все още не е разработено."
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
-msgstr ""
+msgstr "Агриански пелтаст"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:15
 msgid "Peltastḗs Agrías"
@@ -1632,7 +1632,7 @@ msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
 msgid "Deals Trample Damage."
-msgstr ""
+msgstr "Нанася погазващи щети."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1688,7 +1688,7 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr ""
+msgstr "Геройска аура: Все още не е разработено.\nСпециалитет на героя: „Указите на Ашока“ - Могат да се строят Указни стълбове на Ашока, докато той е жив."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
@@ -1703,7 +1703,7 @@ msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr ""
+msgstr "Специалитет на героя: „Лечител“ - Лекува единиците бързо.\nСпециалитет на героя: „Учител“ - Упълномощава сграда да проучва и тренира +50% по-бързо.\nСпециалитет на героя: „Филисоф“ - Проучва 4 специални технологии, които достъпни единствено за Чанакя."
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1815,7 +1815,7 @@ msgstr "Mankar Cirya"
 
 #: simulation/templates/units/pers_arstibara.xml:12
 msgid "Persian Apple Bearer"
-msgstr ""
+msgstr "Персийски носач на ябълки"
 
 #: simulation/templates/units/pers_arstibara.xml:13
 msgid "Arštibara"
@@ -1831,7 +1831,7 @@ msgstr "Babiruviya Ratha"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:15
 msgid "Causes trample damage to enemy units."
-msgstr ""
+msgstr "Нанася погазващи щети на вражеските единици."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -1889,7 +1889,7 @@ msgstr "Anusiya"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "Lead from the Front Aura"
-msgstr ""
+msgstr "Аурата на воденето от фронта"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:14
 msgid "+2 Attack and +1 Capture for nearby cavalry units."
@@ -1923,7 +1923,7 @@ msgstr "Darayavahush I"
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
-msgstr ""
+msgstr "Аура на героя: „Търговецът на империята“. Увеличава доходността от търговия, докато е жив (Все още не е разработено)."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -1947,7 +1947,7 @@ msgstr "Ксайарса I"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:13
 msgid "Sogdian Archer"
-msgstr ""
+msgstr "Согдиански стрелец"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:14
 msgid "Sugda Vaçabara"
@@ -1995,7 +1995,7 @@ msgstr "Athuriya Hamaranakuba"
 
 #: simulation/templates/units/pers_ship_bireme.xml:9
 msgid "Cypriot Galley"
-msgstr ""
+msgstr "Кипърска галера"
 
 #: simulation/templates/units/pers_ship_bireme.xml:10
 msgid "Hamaraniyanava"
@@ -2058,7 +2058,7 @@ msgstr "Камила"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
-msgstr ""
+msgstr "Набатейски стрелец на камила"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
@@ -2066,7 +2066,7 @@ msgstr "Mutsābiq Gamal Nabatu"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:13
 msgid "Tarantine Settler Cavalry"
-msgstr ""
+msgstr "Тарантски колониален конник"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:14
 msgid "Hippeús Tarantînos"
@@ -2074,7 +2074,7 @@ msgstr "Hippeús Tarantînos"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:6
 msgid "Macedonian Settler Cavalry"
-msgstr ""
+msgstr "Македонски колониален конник"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:7
 msgid "Hippeús Makedonikós"
@@ -2082,7 +2082,7 @@ msgstr "Hippeús Makedonikós"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
-msgstr ""
+msgstr "Кралска стражарска конница"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
 msgid "Ágēma Basiléōs"
@@ -2118,13 +2118,13 @@ msgstr "Клеопатра VII"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:21
 msgid "Kleopatra H' Philopator"
-msgstr ""
+msgstr "Клеопатра Х' Филопатор"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:22
 msgid ""
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
 "vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "„Съпружеска“ аура (все още не е разработена): Увеличава ефективността на съюзническите герои в нейното полезрение. Намалява ефективността на вражеските герои."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
@@ -2152,7 +2152,7 @@ msgstr "Ptolemaios A' Soter"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
 msgid "Raphia Aura"
-msgstr ""
+msgstr "Аурата на Рафия"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
 msgid "Egyptian Pikemen have 40% greater health during his lifetime."
