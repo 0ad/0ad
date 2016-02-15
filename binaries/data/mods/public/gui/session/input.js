@@ -1536,9 +1536,8 @@ function performAllyCommand(entity, commandName)
 	if (!entity)
 		return;
 	var entState = GetExtendedEntityState(entity);
-	var playerID = Engine.GetPlayerID();
 
-	if (!entState.player == playerID && !g_DevSettings.controlAll)
+	if (!controlsPlayer(entState.player))
 		return;
 
 	if (g_AllyEntityCommands[commandName])

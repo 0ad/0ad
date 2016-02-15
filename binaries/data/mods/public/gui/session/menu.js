@@ -273,6 +273,8 @@ function openDiplomacy()
 
 	g_IsDiplomacyOpen = true;
 
+	let isCeasefireActive = GetSimState().ceasefireActive;
+
 	// Get offset for one line
 	let onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
 	let rowsize = onesize.bottom - onesize.top;
@@ -345,9 +347,8 @@ function openDiplomacy()
 		}
 
 		// Attack Request
-		let simState = GetSimState();
 		let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
-		button.hidden = simState.ceasefireActive || !g_Players[i].isEnemy[g_ViewedPlayer];
+		button.hidden = isCeasefireActive || !g_Players[i].isEnemy[g_ViewedPlayer];
 		button.enabled = controlsPlayer(g_ViewedPlayer);
 		button.tooltip = translate("Request your allies to attack this enemy");
 		button.onpress = (function(i) { return function() {
@@ -367,7 +368,7 @@ function openDiplomacy()
 			button.caption = g_Players[g_ViewedPlayer]["is" + setting][i] ? translate("x") : "";
 			button.onpress = (function(e){ return function() { setDiplomacy(e); }; })({ "player": i, "to": setting.toLowerCase() });
 			button.enabled = controlsPlayer(g_ViewedPlayer);
-			button.hidden = simState.ceasefireActive;
+			button.hidden = isCeasefireActive;
 		}
 	}
 

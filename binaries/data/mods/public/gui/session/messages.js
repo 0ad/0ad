@@ -539,17 +539,21 @@ function removeOldChatMessage()
  */
 function colorizePlayernameByID(playerID)
 {
-	let username = playerID > -1 ? escapeText(g_Players[playerID].name) : translate("Unknown Player");
-	let playerColor = playerID > -1 ? rgbToGuiColor(g_Players[playerID].color) : "white";
-	return "[color=\"" + playerColor + "\"]" + username + "[/color]";
+	let username = g_Players[playerID] && escapeText(g_Players[playerID].name);
+	return colorizePlayernameHelper(username, playerID);
 }
 
 function colorizePlayernameByGUID(guid)
 {
-	let username = g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].name : translate("Unknown Player");
+	let username = g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].name : "";
 	let playerID = g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].player : -1;
-	let playerColor = playerID > 0 ? rgbToGuiColor(g_Players[playerID].color) : "white";
-	return "[color=\"" + playerColor + "\"]" + username + "[/color]";
+	return colorizePlayernameHelper(username, playerID);
+}
+
+function colorizePlayernameHelper(username, playerID)
+{
+	let playerColor = playerID > -1 ? rgbToGuiColor(g_Players[playerID].color) : "white";
+	return '[color="' + playerColor + '"]' + (username || translate("Unknown Player")) + "[/color]";
 }
 
 function formatDefeatMessage(msg)
