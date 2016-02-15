@@ -30,19 +30,17 @@
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/Util.h"
+#include "ps/VisualReplay.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/helpers/SimulationCommand.h"
 
+#include <ctime>
 #include <sstream>
 #include <fstream>
 #include <iomanip>
-
-#if MSC_VERSION
-#include <process.h>
-#define getpid _getpid // use the non-deprecated function name
-#endif
 
 static std::string Hexify(const std::string& s)
 {
@@ -72,20 +70,8 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	m_ScriptInterface.SetProperty(attribs, "engine_version", CStr(engine_version));
 	m_ScriptInterface.SetProperty(attribs, "mods", g_modsLoaded);
 
-	// Construct the directory name based on the PID, to be relatively unique.
-	// Append "-1", "-2" etc if we run multiple matches in a single session,
-	// to avoid accidentally overwriting earlier logs.
-	static int run = -1;
-	do
-	{
-		std::wstringstream name;
-		name << getpid();
-		if (++run)
-			name << "-" << run;
-
-		m_Directory = psLogDir() / L"sim_log" / name.str();
-	} while (DirectoryExists(m_Directory));
-
+	m_Directory = getDateIndexSubdirectory(VisualReplay::GetDirectoryName());
+	debug_printf("Writing replay to %s\n", m_Directory.string8().c_str());
 	CreateDirectories(m_Directory, 0700);
 
 	m_Stream = new std::ofstream(OsString(m_Directory / L"commands.txt").c_str(), std::ofstream::out | std::ofstream::trunc);

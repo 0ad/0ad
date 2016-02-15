@@ -41,14 +41,10 @@
 #include "ps/Loader.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/Util.h"
 #include "ps/XML/Xeromyces.h"
 
 #include <iomanip>
-
-#if MSC_VERSION
-#include <process.h>
-#define getpid _getpid // use the non-deprecated function name
-#endif
 
 static std::string Hexify(const std::string& s) // TODO: shouldn't duplicate this function in so many places
 {
@@ -79,6 +75,11 @@ public:
 			CFG_GET_VAL("ooslog", m_EnableOOSLog);
 			CFG_GET_VAL("serializationtest", m_EnableSerializationTest);
 		}
+
+		m_OOSLogPath = getDateIndexSubdirectory(psLogDir() / "oos_logs");
+
+		if (m_EnableOOSLog)
+			debug_printf("Writing ooslogs to %s\n", m_OOSLogPath.string8().c_str());
 	}
 
 	~CSimulation2Impl()
@@ -132,7 +133,7 @@ public:
 	uint32_t m_TurnNumber;
 
 	bool m_EnableOOSLog;
-
+	OsPath m_OOSLogPath;
 
 	// Functions and data for the serialization test mode: (see Update() for relevant comments)
 
@@ -295,7 +296,8 @@ void CSimulation2Impl::ReportSerializationFailure(
 	SerializationTestState* primaryStateBefore, SerializationTestState* primaryStateAfter,
 	SerializationTestState* secondaryStateBefore, SerializationTestState* secondaryStateAfter)
 {
-	OsPath path = psLogDir() / "oos_log";
+	const OsPath path = getDateIndexSubdirectory(psLogDir() / "serializationtest");
+	debug_printf("Writing serializationtest-data to %s\n", path.string8().c_str());
 	CreateDirectories(path, 0700);
 
 	// Clean up obsolete files from previous runs
@@ -549,11 +551,9 @@ void CSimulation2Impl::DumpState()
 {
 	PROFILE("DumpState");
 
-	std::stringstream pid;
-	pid << getpid();
 	std::stringstream name;\
 	name << std::setw(5) << std::setfill('0') << m_TurnNumber << ".txt";
-	OsPath path = psLogDir() / "sim_log" / pid.str() / name.str();
+	const OsPath path = m_OOSLogPath / name.str();
 	CreateDirectories(path.Parent(), 0700);
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 
@@ -589,6 +589,7 @@ CSimulation2::~CSimulation2()
 void CSimulation2::EnableOOSLog()
 {
 	m->m_EnableOOSLog = true;
+	debug_printf("Writing ooslogs to %s\n", m->m_OOSLogPath.string8().c_str());
 }
 
 void CSimulation2::EnableSerializationTest()

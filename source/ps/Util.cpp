@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -193,6 +193,26 @@ Status tex_write(Tex* t, const VfsPath& filename)
 	return ret;
 }
 
+/**
+ * Return an unused directory, based on date and index (for example 2016-02-09_0001)
+ */
+OsPath getDateIndexSubdirectory(const OsPath& parentDir)
+{
+    const std::time_t timestamp = std::time(nullptr);
+    const struct std::tm* now = std::localtime(&timestamp);
+
+	int i = 0;
+	OsPath path;
+	char directory[256];
+
+	do
+	{
+		sprintf(directory, "%04d-%02d-%02d_%04d", now->tm_year+1900, now->tm_mon+1, now->tm_mday, ++i);
+		path = parentDir / CStr(directory);
+	} while (DirectoryExists(path) || FileExists(path));
+
+	return path;
+}
 
 static size_t s_nextScreenshotNumber;
 
