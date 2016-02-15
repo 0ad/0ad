@@ -126,7 +126,7 @@ public:
 
 	fixed GetTimescale() const { return m_Timescale; }
 
-	TNSpline* getTargetSpline() { return &m_TargetSpline; }
+	const TNSpline& getTargetSpline() const { return m_TargetSpline; }
 
 private:
 

@@ -96,7 +96,7 @@ public:
 			if (!data->m_LookAtTarget)
 				continue;
 
-			const std::vector<SplineData>& targetNodes = path.getTargetSpline()->GetAllNodes();
+			const std::vector<SplineData>& targetNodes = path.getTargetSpline().GetAllNodes();
 			serialize.NumberU32("NumberOfTargetNodes", targetNodes.size(), 1, MAX_SPLINE_NODES);
 			for (size_t i = 0; i < targetNodes.size(); ++i)
 			{
