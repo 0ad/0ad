@@ -223,7 +223,7 @@ EntitySelection.prototype.update = function()
 	this.checkRenamedEntities();
 
 	let changed = false;
-	let removeOwnerChanges = g_ViewedPlayer != -1 && !g_DevSettings.controlAll && this.toList().length > 1;
+	let removeOwnerChanges = !g_IsObserver && !g_DevSettings.controlAll && this.toList().length > 1;
 
 	for (let ent in this.selected)
 	{
@@ -290,21 +290,15 @@ EntitySelection.prototype.checkRenamedEntities = function()
  */
 EntitySelection.prototype.addList = function(ents, quiet)
 {
-	var selection = this.toList();
+	let selection = this.toList();
 
 	// If someone else's player is the sole selected unit, don't allow adding to the selection
-	if (g_ViewedPlayer != -1 && !g_DevSettings.controlAll && selection.length == 1)
-	{
-		var firstEntState = GetEntityState(selection[0]);
-		if (firstEntState && firstEntState.player != g_ViewedPlayer)
-			return;
-	}
+	let firstEntState = selection.length == 1 && GetEntityState(selection[0]);
+	if (firstEntState && !controlsPlayer(firstEntState.player))
+		return;
 
-	// Allow selecting things not belong to this player (enemy, ally, gaia)
-	var allowUnownedSelect = g_DevSettings.controlAll || (ents.length == 1 && selection.length == 0);
-
-	var i = 1;
-	var added = [];
+	let i = 1;
+	let added = [];
 
 	for (let ent of ents)
 	{
@@ -318,12 +312,11 @@ EntitySelection.prototype.addList = function(ents, quiet)
 		if (!entState)
 			continue;
 
-		// For players, only add entities we own to our selection
-		if (g_ViewedPlayer != -1 && entState.player != g_ViewedPlayer && !allowUnownedSelect)
-			continue;
+		let isUnowned = g_ViewedPlayer != -1 && entState.player != g_ViewedPlayer ||
+		                g_ViewedPlayer == -1 && entState.player == 0;
 
-		// For observers, select units owned by players except gaia
-		if (g_ViewedPlayer == -1 && entState.player == 0)
+		// Don't add unowned entities to the list, unless a single entity was selected
+		if (isUnowned && (ents.length > 1 || selection.length))
 			continue;
 
 		added.push(ent);
@@ -338,7 +331,7 @@ EntitySelection.prototype.addList = function(ents, quiet)
 	{
 		// Play the sound if the entity is controllable by us or Gaia-owned.
 		var owner = GetEntityState(added[0]).player;
-		if (!quiet && (owner == g_ViewedPlayer || owner == 0 || g_DevSettings.controlAll))
+		if (!quiet && (controlsPlayer(owner) || g_IsObserver || owner == 0))
 			_playSound(added[0]);
 	}
 

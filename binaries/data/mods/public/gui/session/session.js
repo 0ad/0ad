@@ -200,8 +200,6 @@ function init(initData, hotloadData)
 		return;
 	}
 
-	Engine.SetViewedPlayer(g_ViewedPlayer);
-
 	if (initData)
 	{
 		g_IsNetworked = initData.isNetworked;
@@ -229,9 +227,8 @@ function init(initData, hotloadData)
 	g_CivData = loadCivData();
 	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
-	setObserverMode(Engine.GetPlayerID() == -1);
-
-	updateTopPanel();
+	initializeMusic(); // before changing the perspective
+	selectViewPlayer(g_ViewedPlayer);
 
 	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.list = g_GameSpeeds.Title;
@@ -262,13 +259,6 @@ function init(initData, hotloadData)
 	if (hotloadData)
 		g_Selection.selected = hotloadData.selection;
 
-	// Starting for the first time:
-	initMusic();
-	if (Engine.GetPlayerID() != -1)
-		global.music.storeTracks(g_CivData[g_Players[Engine.GetPlayerID()].civ].Music);
-	global.music.setState(global.music.states.PEACE);
-	playAmbient();
-
 	onSimulationUpdate();
 
 	setTimeout(displayGamestateNotifications, 1000);
@@ -284,10 +274,18 @@ function init(initData, hotloadData)
 	//setTimeout(function() { reportPerformance(60); }, 60000);
 }
 
+function initializeMusic()
+{
+	initMusic();
+	if (g_ViewedPlayer != -1)
+		global.music.storeTracks(g_CivData[g_Players[g_ViewedPlayer].civ].Music);
+	global.music.setState(global.music.states.PEACE);
+	playAmbient();
+}
+
 function toggleChangePerspective(enabled)
 {
 	g_DevSettings.changePerspective = enabled;
-	Engine.GetGUIObjectByName("viewPlayer").hidden = !enabled && !g_IsObserver;
 	selectViewPlayer(g_ViewedPlayer);
 }
 
@@ -297,13 +295,24 @@ function toggleChangePerspective(enabled)
  */
 function selectViewPlayer(playerID)
 {
-	if (playerID < -1 || playerID > g_Players.length - 1 ||
-			!g_DevSettings.changePerspective && !g_IsObserver)
+	if (playerID < -1 || playerID > g_Players.length - 1)
 		return;
 
-	g_ViewedPlayer = playerID;
-	Engine.SetViewedPlayer(playerID);
-	Engine.SetPlayerID(g_DevSettings.changePerspective ? playerID : -1);
+	g_IsObserver = isPlayerObserver(Engine.GetPlayerID());
+
+	let changeView = g_IsObserver || g_DevSettings.changePerspective;
+	if (changeView)
+	{
+		g_ViewedPlayer = playerID;
+
+		if (g_DevSettings.changePerspective)
+		{
+			Engine.SetPlayerID(g_ViewedPlayer);
+			g_IsObserver = isPlayerObserver(g_ViewedPlayer);
+		}
+	}
+
+	Engine.SetViewedPlayer(g_ViewedPlayer);
 
 	updateTopPanel();
 
@@ -311,6 +320,8 @@ function selectViewPlayer(playerID)
 	onSimulationUpdate();
 
 	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
+	viewPlayer.hidden = !changeView;
+
 	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
 	alphaLabel.hidden = g_ViewedPlayer > 0 && !viewPlayer.hidden;
 	alphaLabel.size = g_ViewedPlayer > 0 ? "50%+20 0 100%-226 100%" : "200 0 100%-475 100%";
@@ -322,17 +333,13 @@ function selectViewPlayer(playerID)
 		openTrade();
 }
 
-function setObserverMode(enabled)
+/**
+ * Returns true if the player with that ID is in observermode.
+ */
+function isPlayerObserver(playerID)
 {
-	g_IsObserver = enabled;
-
-	let viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
-
-	viewPlayerDropdown.hidden = !enabled;
-	if (enabled)
-		viewPlayerDropdown.selected = 0;
-
-	Engine.GetGUIObjectByName("alphaLabel").hidden = enabled;
+	let playerStates = GetSimState().players;
+	return !playerStates[playerID] || playerStates[playerID].state != "active";
 }
 
 /**
@@ -340,7 +347,7 @@ function setObserverMode(enabled)
  */
 function controlsPlayer(playerID)
 {
-	return Engine.GetPlayerID() == playerID || g_DevSettings.controlAll;
+	return Engine.GetPlayerID() == playerID && !g_IsObserver || g_DevSettings.controlAll;
 }
 
 /**
@@ -369,12 +376,9 @@ function updateTopPanel()
 	Engine.GetGUIObjectByName("observerText").hidden = isPlayer;
 
 	// Disable stuff observers shouldn't use
-	let isActive = isPlayer && GetSimState().players[g_ViewedPlayer].state == "active" && controlsPlayer(g_ViewedPlayer);
-	Engine.GetGUIObjectByName("pauseButton").enabled = isActive || !g_IsNetworked;
-	Engine.GetGUIObjectByName("menuResignButton").enabled = isActive;
-
-	// Enable observer-only "summary" button.
-	Engine.GetGUIObjectByName("summaryButton").enabled = Engine.GetPlayerID() == -1;
+	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked;
+	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
+	Engine.GetGUIObjectByName("summaryButton").enabled = g_IsObserver;
 }
 
 function reportPerformance(time)
@@ -395,13 +399,9 @@ function reportPerformance(time)
  */
 function resignGame(leaveGameAfterResign)
 {
-	let simState = GetSimState();
-
-	// Players can't resign if they've already won or lost.
-	if (simState.players[Engine.GetPlayerID()].state != "active" || g_Disconnected)
+	if (g_IsObserver || g_Disconnected)
 		return;
 
-	// Tell other players that we have given up and been defeated
 	Engine.PostNetworkCommand({
 		"type": "defeat-player",
 		"playerId": Engine.GetPlayerID()
@@ -411,7 +411,6 @@ function resignGame(leaveGameAfterResign)
 
 	global.music.setState(global.music.states.DEFEAT);
 
-	// Resume the game if not resigning.
 	if (!leaveGameAfterResign)
 		resumeGame();
 }
@@ -428,7 +427,6 @@ function leaveGame(willRejoin)
 
 	if (Engine.GetPlayerID() == -1)
 	{
-		// Observers don't win/lose.
 		gameResult = translate("You have left the game.");
 		global.music.setState(global.music.states.VICTORY);
 	}
@@ -574,14 +572,14 @@ function checkPlayerState()
 	if (playerState.state == "active")
 		return;
 
-	// Disable the resign- and pausebutton
-	updateTopPanel();
-
 	// Make sure nothing is open to avoid stacking.
 	closeOpenDialogs();
 
 	// Make sure this doesn't run again.
 	g_GameEnded = true;
+
+	// Select observermode
+	Engine.GetGUIObjectByName("viewPlayer").selected = 0;
 
 	let btCaptions;
 	let btCode;
@@ -605,7 +603,6 @@ function checkPlayerState()
 	{
 		title = translate("DEFEATED!");
 		global.music.setState(global.music.states.DEFEAT);
-		setObserverMode(true);
 	}
 	else if (playerState.state == "won")
 	{
@@ -943,12 +940,14 @@ function updateResearchDisplay()
 		Engine.GetGUIObjectByName("researchStartedButton[" + i + "]").hidden = true;
 }
 
-// Toggles the display of status bars for all of the player's entities.
+/**
+ * Toggles the display of status bars for all of the player's entities.
+ */
 function recalculateStatusBarDisplay()
 {
 	let entities;
 	if (g_ShowAllStatusBars)
-		entities = Engine.GetPlayerID() == -1 ? Engine.PickNonGaiaEntitiesOnScreen() : Engine.PickPlayerEntitiesOnScreen(Engine.GetPlayerID());
+		entities = g_IsObserver ? Engine.PickNonGaiaEntitiesOnScreen() : Engine.PickPlayerEntitiesOnScreen(Engine.GetPlayerID());
 	else
 	{
 		let selected = g_Selection.toList();
@@ -956,7 +955,7 @@ function recalculateStatusBarDisplay()
 			selected.push(g_Selection.highlighted[ent]);
 
 		// Remove selected entities from the 'all entities' array, to avoid disabling their status bars.
-		entities = Engine.GuiInterfaceCall(Engine.GetPlayerID() == -1 ? "GetNonGaiaEntities" : "GetPlayerEntities").filter(idx => selected.indexOf(idx) == -1);
+		entities = Engine.GuiInterfaceCall(g_IsObserver ? "GetNonGaiaEntities" : "GetPlayerEntities").filter(idx => selected.indexOf(idx) == -1);
 	}
 
 	Engine.GuiInterfaceCall("SetStatusBars", { "entities": entities, "enabled": g_ShowAllStatusBars });

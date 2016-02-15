@@ -255,10 +255,9 @@ function determineAction(x, y, fromMinimap)
 		return undefined;
 
 	// If the selection isn't friendly units, no action
-	var playerID = g_ViewedPlayer;
 	var allOwnedByPlayer = selection.every(function(ent) {
 		var entState = GetEntityState(ent);
-		return entState && entState.player == playerID;
+		return entState && entState.player == g_ViewedPlayer;
 	});
 
 	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
@@ -535,7 +534,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 		case "mousemotion":
 			var rect = updateBandbox(bandbox, ev, false);
 
-			var ents = Engine.PickPlayerEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID());
+			var ents = Engine.PickPlayerEntitiesInRect(rect[0], rect[1], rect[2], rect[3], g_IsObserver ? -1 : Engine.GetPlayerID());
 			var preferredEntities = getPreferredEntities(ents);
 			g_Selection.setHighlightList(preferredEntities);
 
@@ -547,7 +546,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				var rect = updateBandbox(bandbox, ev, true);
 
 				// Get list of entities limited to preferred entities
-				var ents = getPreferredEntities(Engine.PickPlayerEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID()));
+				var ents = getPreferredEntities(Engine.PickPlayerEntitiesInRect(rect[0], rect[1], rect[2], rect[3], g_IsObserver ? -1 : Engine.GetPlayerID()));
 
 				// Remove the bandbox hover highlighting
 				g_Selection.setHighlightList([]);

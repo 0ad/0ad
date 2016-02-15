@@ -158,14 +158,13 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		g_SelectionPanels[panel].used = false;
 
 	// If the selection is friendly units, add the command panels
-	var player = Engine.GetPlayerID();
 
 	// Get player state to check some constraints
 	// e.g. presence of a hero or build limits
-	var simState = GetSimState();
-	var playerState = simState.players[player];
+	let playerStates = GetSimState().players;
+	let playerState = playerStates[Engine.GetPlayerID()];
 
-	if (controlsPlayer(entState.player) || player == -1)
+	if (controlsPlayer(entState.player) || g_IsObserver)
 	{
 		for (var guiName of g_PanelsOrder)
 		{
@@ -175,7 +174,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			)
 				continue;
 
-			setupUnitPanel(guiName, entState, simState.players[entState.player]);
+			setupUnitPanel(guiName, entState, playerStates[entState.player]);
 		}
 
 		supplementalDetailsPanel.hidden = false;

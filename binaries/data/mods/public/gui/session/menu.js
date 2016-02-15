@@ -128,7 +128,7 @@ function exitMenuButton()
 		},
 		"client": {
 			"caption": translate("Are you sure you want to quit?"),
-			"buttons": [resumeGame, networkReturnQuestion]
+			"buttons": [resumeGame, resignQuestion]
 		},
 		"singleplayer": {
 			"caption": translate("Are you sure you want to quit?"),
@@ -137,7 +137,7 @@ function exitMenuButton()
 	};
 
 	let messageType = g_IsNetworked && g_IsController ? "host" :
-		(g_IsNetworked && !g_GameEnded && Engine.GetPlayerID() != -1 ? "client" : "singleplayer");
+		(g_IsNetworked && !g_IsObserver ? "client" : "singleplayer");
 
 	messageBox(
 		400, 200,
@@ -149,7 +149,7 @@ function exitMenuButton()
 	);
 }
 
-function networkReturnQuestion()
+function resignQuestion()
 {
 	messageBox(
 		400, 200,

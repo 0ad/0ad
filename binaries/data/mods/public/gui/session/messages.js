@@ -269,7 +269,7 @@ function getCheatsData()
  */
 function executeCheat(text)
 {
-	if (Engine.GetPlayerID() == -1 || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
+	if (g_IsObserver || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
 		return false;
 
 	// Find the cheat code that is a prefix of the user input
@@ -571,21 +571,15 @@ function formatDefeatMessage(msg)
 function formatDiplomacyMessage(msg)
 {
 	let messageType;
-	switch (Engine.GetPlayerID())
-	{
-	// Check observer first, since we also want to see if the selected player in the developer-overlay has changed the diplomacy
-	case -1:
+
+	if (g_IsObserver)
 		messageType = "observer";
-		break;
-	case msg.sourcePlayer:
+	else if (Engine.GetPlayerID() == msg.sourcePlayer)
 		messageType = "active";
-		break;
-	case msg.targetPlayer:
+	else if (Engine.GetPlayerID() == msg.targetPlayer)
 		messageType = "passive";
-		break;
-	default:
+	else
 		return "";
-	}
 
 	return sprintf(g_DiplomacyMessages[messageType][msg.status], {
 		"player": colorizePlayernameByID(messageType == "active" ? msg.targetPlayer : msg.sourcePlayer),
@@ -597,7 +591,7 @@ function formatTributeMessage(msg)
 {
 	// Check observer first, since we also want to see if the selected player in the developer-overlay has sent tributes
 	let message = "";
-	if (Engine.GetPlayerID() == -1)
+	if (g_IsObserver)
 		message = translate("%(player)s has sent %(player2)s %(amounts)s.");
 	else if (msg.targetPlayer == Engine.GetPlayerID())
 		message = translate("%(player)s has sent you %(amounts)s.");
