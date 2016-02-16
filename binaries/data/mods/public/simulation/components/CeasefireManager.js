@@ -6,10 +6,10 @@ CeasefireManager.prototype.Init = function()
 {
 	// Weather or not ceasefire is active currently.
 	this.ceasefireIsActive = false;
-	
+
 	// Ceasefire timeout in milliseconds
 	this.ceasefireTime = 0;
-	
+
 	// Time elapsed when the ceasefire was started
 	this.ceasefireStartedTime = 0;
 
@@ -50,7 +50,7 @@ CeasefireManager.prototype.StartCeasefire = function(ceasefireTime)
 		return;
 
 	// Remove existing timers
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	if (this.ceasefireCountdownMessageTimer)
 		cmpTimer.CancelTimer(this.ceasefireCountdownMessageTimer);
 
@@ -58,36 +58,33 @@ CeasefireManager.prototype.StartCeasefire = function(ceasefireTime)
 		cmpTimer.CancelTimer(this.stopCeasefireTimer);
 
 	// Remove existing messages
-	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (this.ceasefireCountdownMessage)
 		cmpGuiInterface.DeleteTimeNotification(this.ceasefireCountdownMessage);
 
 	if (this.ceasefireEndedMessage)
 		cmpGuiInterface.DeleteTimeNotification(this.ceasefireEndedMessage);
 
-
 	// Save diplomacy and set everyone neutral
 	if (!this.ceasefireIsActive)
 	{
 		// Save diplomacy
-		var playerEntities = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayerEntities();
-		for (var i = 1; i < playerEntities.length; ++i)
+		let playerEntities = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayerEntities();
+		for (let i = 1; i < playerEntities.length; ++i)
 			// Copy array with slice(), otherwise it will change
 			this.diplomacyBeforeCeasefire.push(Engine.QueryInterface(playerEntities[i], IID_Player).GetDiplomacy().slice());
 
 		// Set every enemy (except gaia) to neutral
-		for (var i = 1; i < playerEntities.length; ++i)
-			for (var j = 1; j < playerEntities.length; ++j)
+		for (let i = 1; i < playerEntities.length; ++i)
+			for (let j = 1; j < playerEntities.length; ++j)
 				if (this.diplomacyBeforeCeasefire[i-1][j] < 0)
 					Engine.QueryInterface(playerEntities[i], IID_Player).SetNeutral(j);
 	}
-	
-	// Save other data
+
 	this.ceasefireIsActive = true;
 	this.ceasefireTime = ceasefireTime;
 	this.ceasefireStartedTime = cmpTimer.GetTime();
 
-	// Send message
 	Engine.PostMessage(SYSTEM_ENTITY, MT_CeasefireStarted);
 
 	// Add timers for countdown message and reseting diplomacy
@@ -98,7 +95,7 @@ CeasefireManager.prototype.StartCeasefire = function(ceasefireTime)
 
 CeasefireManager.prototype.ShowCeasefireCountdownMessage = function()
 {
-	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	this.ceasefireCountdownMessage = cmpGuiInterface.AddTimeNotification({
 			"message": markForTranslation("You can attack in %(time)s"),
 			"translateMessage": true
@@ -107,30 +104,26 @@ CeasefireManager.prototype.ShowCeasefireCountdownMessage = function()
 
 CeasefireManager.prototype.StopCeasefire = function()
 {
-	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 
-	// Remove previous message
 	if (this.ceasefireCountdownMessage)
 		cmpGuiInterface.DeleteTimeNotification(this.ceasefireCountdownMessage);
-	
-	// Show new message
+
 	this.ceasefireEndedMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("You can attack now!"),
 		"translateMessage": true
 	}, this.postCountdownMessageDuration);
-	
+
 	// Reset diplomacies to original settings
-	var playerEntities = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayerEntities();
-	for (var i = 1; i < playerEntities.length; ++i)
+	let playerEntities = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayerEntities();
+	for (let i = 1; i < playerEntities.length; ++i)
 		Engine.QueryInterface(playerEntities[i], IID_Player).SetDiplomacy(this.diplomacyBeforeCeasefire[i-1]);
-	
-	// Reset values
+
 	this.ceasefireIsActive = false;
 	this.ceasefireTime = 0;
 	this.ceasefireStartedTime = 0;
 	this.diplomacyBeforeCeasefire = [];
 
-	// Send message
 	Engine.PostMessage(SYSTEM_ENTITY, MT_CeasefireEnded);
 };
 
