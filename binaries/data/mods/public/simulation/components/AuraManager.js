@@ -174,25 +174,22 @@ AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, pl
 	var usedKeys = new Set();
 	var add = 0;
 	var multiply = 1;
-	for (let c in cache)
+	for (let [className, mods] of cache)
 	{
-		if (!MatchesClassList(classes, c))
+		if (!MatchesClassList(classes, className))
 			continue;
 
-		for (let key in cache.get(c))
+		for (let [key, mod] of mods)
 		{
 			// don't add an aura with the same key twice
 			if (usedKeys.has(key))
 				continue;
-
-			add += cache.get(c).get(key).add;
-			multiply *= cache.get(c).get(key).multiply;
+			add += mod.add;
+			multiply *= mod.multiply;
 			usedKeys.add(key);
 		}
 	}
-	value *= multiply;
-	value += add;
-	return value;
+	return value * multiply + add;
 };
 
 Engine.RegisterSystemComponentType(IID_AuraManager, "AuraManager", AuraManager);

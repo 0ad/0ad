@@ -968,18 +968,11 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		cmpPosition.MoveOutOfWorld();
 		Engine.DestroyEntity(ent); 
 	}
-	
-	// We need the cost after tech modifications
+
+	// We need the cost after tech and aura modifications
 	// To calculate this with an entity requires ownership, so use the template instead
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var template = cmpTemplateManager.GetTemplate(foundationTemplate);
-	var costs = {};
-	for (var r in template.Cost.Resources)
-	{
-		costs[r] = +template.Cost.Resources[r];
-		if (cmpTechnologyManager)
-			costs[r] = cmpTechnologyManager.ApplyModificationsTemplate("Cost/Resources/"+r, costs[r], template);
-	}
+	let cmpCost = Engine.QueryInterface(ent, IID_Cost);
+	let costs = cmpCost.GetResourceCosts(player);
 	
 	if (!cmpPlayer.TrySubtractResources(costs))
 	{
