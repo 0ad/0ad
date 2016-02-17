@@ -58,6 +58,11 @@ static const entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(TE
 static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*9);
 
 /**
+ * Minimum distance to goal for a long path request
+ */
+static const entity_pos_t LONG_PATH_MIN_DIST = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
+
+/**
  * When short-pathing, and the short-range pathfinder failed to return a path,
  * Assume we are at destination if we are closer than this distance to the target
  * And we have no target entity.
@@ -1033,7 +1038,17 @@ void CCmpUnitMotion::Move(fixed dt)
 				}
 				if (!m_LongPath.m_Waypoints.empty())
 				{
-					PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+					PathGoal goal;
+					if (m_LongPath.m_Waypoints.size() > 1 || m_FinalGoal.DistanceToPoint(pos) > LONG_PATH_MIN_DIST)
+						goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+					else
+					{
+						UpdateFinalGoal();
+						goal = m_FinalGoal;
+						m_LongPath.m_Waypoints.clear();
+						CFixedVector2D target = goal.NearestPointOnGoal(pos);
+						m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
+					}
 					RequestShortPath(pos, goal, true);
 					m_PathState = PATHSTATE_WAITING_REQUESTING_SHORT;
 					return;
@@ -1124,7 +1139,17 @@ void CCmpUnitMotion::PlanNextStep(const CFixedVector2D& pos, const CFixedVector2
 		return;
 	
 	// we will run into a static unit obstruction. Try to shortpath around it.
-	PathGoal goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+	PathGoal goal;
+	if (m_LongPath.m_Waypoints.size() > 1 || m_FinalGoal.DistanceToPoint(pos) > LONG_PATH_MIN_DIST)
+		goal = { PathGoal::POINT, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z };
+	else
+	{
+		UpdateFinalGoal();
+		goal = m_FinalGoal;
+		m_LongPath.m_Waypoints.clear();
+		CFixedVector2D target = goal.NearestPointOnGoal(pos);
+		m_LongPath.m_Waypoints.emplace_back(Waypoint{ target.X, target.Y });
+	}
 	RequestShortPath(pos, goal, false);
 	m_PathState = PATHSTATE_FOLLOWING_REQUESTING_SHORT;
 }
@@ -1249,11 +1274,8 @@ bool CCmpUnitMotion::CheckTargetMovement(const CFixedVector2D& from, entity_pos_
 	if (cmpOwnership)
 	{
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
-		if (cmpRangeManager)
-		{
-			if (cmpRangeManager->GetLosVisibility(m_TargetEntity, cmpOwnership->GetOwner()) == ICmpRangeManager::VIS_HIDDEN)
-				return false;
-		}
+		if (cmpRangeManager && cmpRangeManager->GetLosVisibility(m_TargetEntity, cmpOwnership->GetOwner()) == ICmpRangeManager::VIS_HIDDEN)
+			return false;
 	}
 
 	// The target moved and we need to update our current path;
@@ -1402,7 +1424,7 @@ void CCmpUnitMotion::BeginPathing(const CFixedVector2D& from, const PathGoal& go
 	// TODO: If it's close on the opposite side of a river then we really
 	// need a long path, so we shouldn't simply check linear distance
 	// the check is arbitrary but should be a reasonably small distance.
-	if (goal.DistanceToPoint(from) < SHORT_PATH_MIN_SEARCH_RANGE*2)
+	if (goal.DistanceToPoint(from) < LONG_PATH_MIN_DIST)
 	{
 		// add our final goal as a long range waypoint so we don't forget
 		// where we are going if the short-range pathfinder returns
@@ -1444,6 +1466,8 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 
 	// wrapping around on m_Tries isn't really a problem so don't check for overflow.
 	fixed searchRange = std::max(SHORT_PATH_MIN_SEARCH_RANGE * ++m_Tries, goal.DistanceToPoint(from));
+	if (goal.type != PathGoal::POINT && searchRange < goal.hw && searchRange < SHORT_PATH_MIN_SEARCH_RANGE * 2)
+		searchRange = std::min(goal.hw, SHORT_PATH_MIN_SEARCH_RANGE * 2);
 	if (searchRange > SHORT_PATH_MAX_SEARCH_RANGE)
 		searchRange = SHORT_PATH_MAX_SEARCH_RANGE;
 	
