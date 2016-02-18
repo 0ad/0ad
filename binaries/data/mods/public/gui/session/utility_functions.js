@@ -28,6 +28,7 @@ function getPlayerData(playerAssignments)
 		    "teamsLocked": playerState.teamsLocked,
 		    "cheatsEnabled": playerState.cheatsEnabled,
 		    "state": playerState.state,
+		    "isAI": playerState.isAI,
 		    "isAlly": playerState.isAlly,
 		    "isMutualAlly": playerState.isMutualAlly,
 		    "isNeutral": playerState.isNeutral,

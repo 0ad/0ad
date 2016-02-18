@@ -38,7 +38,7 @@ function displaySingle(entState)
 	let playerColor = playerState.color.r + " " + playerState.color.g + " " + playerState.color.b + " 128";
 
 	// Indicate disconnected players by prefixing their name
-	if (g_Players[entState.player].offline)
+	if (g_Players[entState.player].offline && !g_Players[entState.player].isAI)
 		playerName = sprintf(translate("\\[OFFLINE] %(player)s"), { "player": playerName });
 
 	// Rank

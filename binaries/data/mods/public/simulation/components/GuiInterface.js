@@ -56,6 +56,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let numPlayers = cmpPlayerManager.GetNumPlayers();
+	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
 	for (let i = 0; i < numPlayers; ++i)
 	{
 		let playerEnt = cmpPlayerManager.GetPlayerByID(i);
@@ -104,6 +105,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"cheatsEnabled": cmpPlayer.GetCheatsEnabled(),
 			"disabledTemplates": cmpPlayer.GetDisabledTemplates(),
 			"phase": phase,
+			"isAI": cmpPlayer.IsAI(),
 			"isAlly": allies,
 			"isMutualAlly": mutualAllies,
 			"isNeutral": neutrals,
