@@ -85,6 +85,7 @@ var g_ChatAddresseeContext = {
 	"/team": translate("Team"),
 	"/allies": translate("Ally"),
 	"/enemies": translate("Enemy"),
+	"/observers": translate("Observer"),
 	"/msg": translate("Private")
 };
 
@@ -100,16 +101,19 @@ var g_IsChatAddressee = {
 
 	"/allies": senderID =>
 		g_Players[senderID] &&
+		g_Players[Engine.GetPlayerID()] &&
 		g_Players[senderID].isMutualAlly[Engine.GetPlayerID()],
 
 	"/enemies": senderID =>
 		g_Players[senderID] &&
+		g_Players[Engine.GetPlayerID()] &&
 		g_Players[senderID].isEnemy[Engine.GetPlayerID()],
 
+	"/observers": senderID =>
+		g_IsObserver,
+
 	"/msg": (senderID, addresseeGUID) =>
-		g_Players[Engine.GetPlayerID()] &&
-		g_PlayerAssignments[addresseeGUID] &&
-		g_PlayerAssignments[addresseeGUID].name == g_Players[Engine.GetPlayerID()].name
+		addresseeGUID == Engine.GetPlayerGUID()
 };
 
 /**
@@ -188,6 +192,7 @@ var g_NotificationsTypes =
 		});
 
 		updateDiplomacy();
+		updateChatAddressees();
 	},
 	"diplomacy": function(notification, player)
 	{
@@ -443,12 +448,67 @@ function handlePlayerAssignmentsMessage(message)
 		addChatMessage({ "type": "connect", "guid": guid });
 	});
 
+	updateChatAddressees();
+
 	// Update lobby gamestatus
 	if (g_IsController && Engine.HasXmppClient())
 	{
 		let players = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
 		Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
 	}
+}
+
+function updateChatAddressees()
+{
+	let addressees = [
+		{
+			"label": translateWithContext("chat addressee", "Everyone"),
+			"cmd": ""
+		}
+	];
+
+	if (!g_IsObserver)
+	{
+		addressees.push({
+			"label": translateWithContext("chat addressee", "Allies"),
+			"cmd": "/allies"
+		});
+		addressees.push({
+			"label": translateWithContext("chat addressee", "Enemies"),
+			"cmd": "/enemies"
+		});
+	}
+
+	addressees.push({
+		"label": translateWithContext("chat addressee", "Observers"),
+		"cmd": "/observers"
+	});
+
+	// Add playernames for private messages
+	for (let guid of sortGUIDsByPlayerID())
+	{
+		let username = g_PlayerAssignments[guid].name;
+		let playerIndex = g_PlayerAssignments[guid].player;
+
+		if (playerIndex == Engine.GetPlayerID())
+			continue;
+
+		// Don't provide option for PM from observer to player
+		if (g_IsObserver && !isPlayerObserver(playerIndex))
+			continue;
+
+		let colorBox = isPlayerObserver(playerIndex) ? "" : '[color="' + rgbToGuiColor(g_Players[playerIndex].color) + '"]■ [/color]';
+
+		addressees.push({
+			"cmd": "/msg " + username,
+			"label": colorBox + username
+		});
+	}
+
+	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
+	chatAddressee.list = addressees.map(adressee => adressee.label);
+	chatAddressee.list_data = addressees.map(adressee => adressee.cmd);
+	chatAddressee.selected = 0;
 }
 
 /**
@@ -473,7 +533,6 @@ function submitChatDirectly(text)
  */
 function submitChatInput()
 {
-	let teamChat = Engine.GetGUIObjectByName("toggleTeamChat").checked;
 	let input = Engine.GetGUIObjectByName("chatInput");
 	let text = input.caption;
 
@@ -490,12 +549,9 @@ function submitChatInput()
 	if (executeCheat(text))
 		return;
 
-	// Observers should only be able to chat with everyone.
-	if (g_IsObserver && text.indexOf("/") == 0 && text.indexOf("/me ") != 0)
-		return;
-
-	if (teamChat && text.indexOf("/team ") != 0)
-		text = "/team " + text;
+	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
+	if (chatAddressee.selected > 0 && (text.indexOf("/") != 0 || text.indexOf("/me ") == 0))
+		text = chatAddressee.list_data[chatAddressee.selected] + " " + text;
 
 	submitChatDirectly(text);
 }
@@ -623,7 +679,7 @@ function formatChatCommand(msg)
 		return "";
 
 	let isMe = msg.text.indexOf("/me ") == 0;
-	if (!isMe && !checkChatAddressee(msg))
+	if (!isMe && !isChatAddressee(msg))
 		return "";
 
 	isMe = msg.text.indexOf("/me ") == 0;
@@ -659,17 +715,17 @@ function formatChatCommand(msg)
 
 /**
  * Checks if the current user is an addressee of the chatmessage sent by another player.
+ * Sets the context of that message.
+ * Returns true if the message should be displayed.
  *
  * @param {Object} msg
  */
-function checkChatAddressee(msg)
+function isChatAddressee(msg)
 {
 	if (msg.text[0] != '/')
 		return true;
 
-	if (Engine.GetPlayerID() == -1)
-		return false;
-
+	// Split addressee command and message-text
 	let cmd = msg.text.split(/\s/)[0];
 	msg.text = msg.text.substr(cmd.length + 1);
 
@@ -679,19 +735,37 @@ function checkChatAddressee(msg)
 	if (cmd == "/enemy")
 		cmd = "/enemies";
 
-	// GUID for players, ID for bots
+	if (cmd == "/observer")
+		cmd = "/observers";
+
+	// GUID for players and observers, ID for bots
 	let senderID = (g_PlayerAssignments[msg.guid] || msg).player;
+	let isSender = msg.guid ? msg.guid == Engine.GetPlayerGUID() : senderID == Engine.GetPlayerID();
+
+	// Parse private message
+	let isPM = cmd == "/msg";
 	let addresseeGUID;
-	if (cmd == "/msg")
+	let addresseeIndex;
+	if (isPM)
 	{
 		addresseeGUID = matchUsername(msg.text);
 		let addressee = g_PlayerAssignments[addresseeGUID];
-		if (!addressee || addressee.player == -1 || senderID == -1)
+		if (!addressee)
+		{
+			if (isSender)
+				warn("Couldn't match username: " + msg.text);
 			return false;
+		}
+
+		// Prohibit PM if addressee and sender are identical
+		if (isSender && addresseeGUID == Engine.GetPlayerGUID())
+			return false;
+
 		msg.text = msg.text.substr(addressee.name.length + 1);
+		addresseeIndex = addressee.player;
 	}
 
-	let isSender = senderID == Engine.GetPlayerID();
+	// Set context string
 	if (!g_ChatAddresseeContext[cmd])
 	{
 		if (isSender)
@@ -699,6 +773,11 @@ function checkChatAddressee(msg)
 		return false;
 	}
 	msg.context = g_ChatAddresseeContext[cmd];
+
+	// For observers only permit public- and observer-chat and PM to observers
+	if (isPlayerObserver(senderID) &&
+			(isPM && !isPlayerObserver(addresseeIndex) || !isPM && cmd != "/observers"))
+		return false;
 
 	return isSender || g_IsChatAddressee[cmd](senderID, addresseeGUID);
 }

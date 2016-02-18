@@ -316,6 +316,8 @@ function selectViewPlayer(playerID)
 
 	updateTopPanel();
 
+	updateChatAddressees();
+
 	// Update GUI and clear player-dependent cache
 	onSimulationUpdate();
 

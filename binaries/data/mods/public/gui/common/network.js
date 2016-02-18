@@ -87,6 +87,24 @@ function kickPlayer(username, ban)
 }
 
 /**
+ * Sort GUIDs of connected users sorted by playerindex, observers last.
+ * Requires g_PlayerAssignments.
+ */
+function sortGUIDsByPlayerID()
+{
+	return Object.keys(g_PlayerAssignments).sort((guidA, guidB) => {
+
+		let playerIdA = g_PlayerAssignments[guidA].player;
+		let playerIdB = g_PlayerAssignments[guidB].player;
+
+		if (playerIdA == -1) return +1;
+		if (playerIdB == -1) return -1;
+
+		return playerIdA - playerIdB;
+	});
+}
+
+/**
  * Get a colorized list of usernames sorted by player slot, observers last.
  * Requires g_PlayerAssignments and colorizePlayernameByGUID.
  *
@@ -94,19 +112,7 @@ function kickPlayer(username, ban)
  */
 function getUsernameList()
 {
-	let usernames = Object.keys(g_PlayerAssignments).sort((guidA, guidB) => {
-
-		let playerIdA = g_PlayerAssignments[guidA].player;
-		let playerIdB = g_PlayerAssignments[guidB].player;
-
-		// Sort observers last
-		if (playerIdA == -1) return +1;
-		if (playerIdB == -1) return -1;
-
-		// Sort players
-		return playerIdA - playerIdB;
-
-	}).map(guid => colorizePlayernameByGUID(guid));
+	let usernames = sortGUIDsByPlayerID().map(guid => colorizePlayernameByGUID(guid));
 
 	return sprintf(translate("Users: %(users)s"),
 		// Translation: This comma is used for separating first to penultimate elements in an enumeration.

@@ -203,7 +203,7 @@ function openChat()
 
 	closeOpenDialogs();
 
-	updateTeamCheckbox(false);
+	setTeamChat(false);
 
 	Engine.GetGUIObjectByName("chatInput").focus(); // Grant focus to the input area
 	Engine.GetGUIObjectByName("chatDialogPanel").hidden = false;
@@ -217,16 +217,18 @@ function closeChat()
 }
 
 /**
- * Chat is sent via GUID, not playerID.
+ * If the teamchat hotkey was pressed, set allies or observers as addressees,
+ * otherwise send to everyone.
  */
-function updateTeamCheckbox(check)
+function setTeamChat(teamChat = false)
 {
-	Engine.GetGUIObjectByName("toggleTeamChatLabel").hidden = g_IsObserver;
-	let toggleTeamChat = Engine.GetGUIObjectByName("toggleTeamChat");
-	toggleTeamChat.hidden = g_IsObserver;
-	toggleTeamChat.checked = !g_IsObserver && check;
+	let command = teamChat ? (g_IsObserver ? "/observers" : "/allies") : "";
+	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
+	chatAddressee.selected = chatAddressee.list_data.indexOf(command);
 }
-
+/**
+ * Opens chat-window or closes it and sends the userinput.
+ */
 function toggleChatWindow(teamChat)
 {
 	if (g_Disconnected)
@@ -239,7 +241,10 @@ function toggleChatWindow(teamChat)
 	closeOpenDialogs();
 
 	if (hidden)
-		chatInput.focus(); // Grant focus to the input area
+	{
+		setTeamChat(teamChat);
+		chatInput.focus();
+	}
 	else
 	{
 		if (chatInput.caption.length)
@@ -247,10 +252,9 @@ function toggleChatWindow(teamChat)
 			submitChatInput();
 			return;
 		}
-		chatInput.caption = ""; // Clear chat input
+		chatInput.caption = "";
 	}
 
-	updateTeamCheckbox(teamChat);
 	chatWindow.hidden = !hidden;
 }
 

@@ -89,6 +89,12 @@ public:
 	void SetUserName(const CStrW& username);
 
 	/**
+	 * Returns the GUID of the local client.
+	 * Used for distinguishing observers.
+	 */
+	CStr GetGUID() const { return m_GUID; }
+
+	/**
 	 * Set up a connection to the remote networked server.
 	 * @param server IP address or host name to connect to
 	 * @return true on success, false on connection failure

@@ -209,8 +209,22 @@
 	</object>
 
 	<!-- Chat window -->
-	<object name="chatDialogPanel" size="50%-180 50%-48 50%+180 50%+36" type="image" hidden="true" sprite="genericPanel">
-		<object name="chatInput" size="16 12 100%-16 36" type="input" style="ModernInput" max_length="80">
+	<object name="chatDialogPanel" size="50%-180 50%-66 50%+180 50%+54" type="image" hidden="true" sprite="genericPanel">
+
+		<!-- Message addressee -->
+		<object size="16 14 50 38" type="text" style="chatPanel">
+			<translatableAttribute id="caption" context="chat input">To:</translatableAttribute>
+		</object>
+		<object size="75 12 100%-16 36" name="chatAddressee" type="dropdown" style="ModernDropDown" tooltip_style="sessionToolTipBold">
+			<translatableAttribute id="tooltip" context="chat input">Select chatmessage addresse</translatableAttribute>
+		</object>
+
+		<!-- Message text -->
+		<object size="16 46 50 70" type="text" style="chatPanel">
+			<translatableAttribute id="caption" context="chat input">Text:</translatableAttribute>
+		</object>
+		<object name="chatInput" size="75 44 100%-16 68" type="input" style="ModernInput" max_length="80">
+			<translatableAttribute id="tooltip" context="chat input">Type the message to send.</translatableAttribute>
 			<action on="Press">submitChatInput();</action>
 			<action on="Tab">
 				var players = [];
@@ -220,16 +234,13 @@
 			</action>
 		</object>
 
+		<!-- Cancel -->
 		<object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">closeChat();</action>
 		</object>
 
-		<object name="toggleTeamChat" size="30%+22 100%-36 30%+40 100%-6" type="checkbox" style="ModernTickBox"/>
-		<object name="toggleTeamChatLabel" size="30%+40 100%-40 60%+16 100%-12" type="text" style="ModernLeftLabelText">
-			<translatableAttribute id="caption">Team Only</translatableAttribute>
-		</object>
-
+		<!-- Send -->
 		<object size="60%+16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
 			<translatableAttribute id="caption">Send</translatableAttribute>
 			<action on="Press">submitChatInput();</action>
