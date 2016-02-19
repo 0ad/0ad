@@ -1,29 +1,24 @@
 // Get the basic player data
 function getPlayerData(playerAssignments)
 {
-	var players = [];
+	let players = [];
 
-	var simState = GetSimState();
+	let simState = GetSimState();
 	if (!simState)
 		return players;
 
-	for (var i = 0; i < simState.players.length; i++)
+	for (let i = 0; i < simState.players.length; ++i)
 	{
-		var playerState = simState.players[i];
-
-		var name = playerState.name;
-		var civ = playerState.civ;
-		var color = {
-		    "r": playerState.color.r*255,
-		    "g": playerState.color.g*255,
-		    "b": playerState.color.b*255,
-		    "a": playerState.color.a*255
-		};
-
-		var player = {
-		    "name": name,
-		    "civ": civ,
-		    "color": color,
+		let playerState = simState.players[i];
+		players.push({
+		    "name": playerState.name,
+		    "civ": playerState.civ,
+		    "color": {
+			    "r": playerState.color.r*255,
+			    "g": playerState.color.g*255,
+			    "b": playerState.color.b*255,
+			    "a": playerState.color.a*255
+			},
 		    "team": playerState.team,
 		    "teamsLocked": playerState.teamsLocked,
 		    "cheatsEnabled": playerState.cheatsEnabled,
@@ -34,25 +29,20 @@ function getPlayerData(playerAssignments)
 		    "isNeutral": playerState.isNeutral,
 		    "isEnemy": playerState.isEnemy,
 		    "guid": undefined, // network guid for players controlled by hosts
-		    "offline": true
-		};
-		players.push(player);
+		    "offline": i != 0 && !playerState.isAI
+		});
 	}
 
-	// Overwrite default player names with multiplayer names
 	if (playerAssignments)
-	{
-		for (var playerGuid in playerAssignments)
+		for (let playerGuid in playerAssignments)
 		{
-			var playerAssignment = playerAssignments[playerGuid];
-			if (players[playerAssignment.player])
-			{
-				players[playerAssignment.player].guid = playerGuid;
-				players[playerAssignment.player].name = playerAssignment.name;
-				players[playerAssignment.player].offline = false;
-			}
+			let playerAssignment = playerAssignments[playerGuid];
+			if (!players[playerAssignment.player])
+				continue;
+			players[playerAssignment.player].guid = playerGuid;
+			players[playerAssignment.player].name = playerAssignment.name;
+			players[playerAssignment.player].offline = false;
 		}
-	}
 
 	return players;
 }
