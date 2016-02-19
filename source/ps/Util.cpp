@@ -201,6 +201,10 @@ OsPath getDateIndexSubdirectory(const OsPath& parentDir)
     const std::time_t timestamp = std::time(nullptr);
     const struct std::tm* now = std::localtime(&timestamp);
 
+	// Two processes executing this simultaneously might attempt to create the same directory.
+	int tries = 0;
+	const int maxTries = 10;
+
 	int i = 0;
 	OsPath path;
 	char directory[256];
@@ -209,7 +213,14 @@ OsPath getDateIndexSubdirectory(const OsPath& parentDir)
 	{
 		sprintf(directory, "%04d-%02d-%02d_%04d", now->tm_year+1900, now->tm_mon+1, now->tm_mday, ++i);
 		path = parentDir / CStr(directory);
-	} while (DirectoryExists(path) || FileExists(path));
+
+		if (DirectoryExists(path) || FileExists(path))
+			continue;
+
+		if (CreateDirectories(path, 0700, ++tries > maxTries) == INFO::OK)
+			break;
+
+	} while(tries <= maxTries);
 
 	return path;
 }

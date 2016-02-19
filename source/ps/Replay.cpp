@@ -72,7 +72,6 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 
 	m_Directory = getDateIndexSubdirectory(VisualReplay::GetDirectoryName());
 	debug_printf("Writing replay to %s\n", m_Directory.string8().c_str());
-	CreateDirectories(m_Directory, 0700);
 
 	m_Stream = new std::ofstream(OsString(m_Directory / L"commands.txt").c_str(), std::ofstream::out | std::ofstream::trunc);
 	*m_Stream << "start " << m_ScriptInterface.StringifyJSON(attribs, false) << "\n";

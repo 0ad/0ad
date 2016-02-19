@@ -298,7 +298,6 @@ void CSimulation2Impl::ReportSerializationFailure(
 {
 	const OsPath path = getDateIndexSubdirectory(psLogDir() / "serializationtest");
 	debug_printf("Writing serializationtest-data to %s\n", path.string8().c_str());
-	CreateDirectories(path, 0700);
 
 	// Clean up obsolete files from previous runs
 	wunlink(path / "hash.before.a");
@@ -554,7 +553,6 @@ void CSimulation2Impl::DumpState()
 	std::stringstream name;\
 	name << std::setw(5) << std::setfill('0') << m_TurnNumber << ".txt";
 	const OsPath path = m_OOSLogPath / name.str();
-	CreateDirectories(path.Parent(), 0700);
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	file << "State hash: " << std::hex;
