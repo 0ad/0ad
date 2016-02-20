@@ -1536,7 +1536,8 @@ function performAllyCommand(entity, commandName)
 		return;
 	var entState = GetExtendedEntityState(entity);
 
-	if (!controlsPlayer(entState.player))
+	var playerState = GetSimState().players[Engine.GetPlayerID()];
+	if (!playerState.isMutualAlly[entState.player] || g_IsObserver)
 		return;
 
 	if (g_AllyEntityCommands[commandName])
