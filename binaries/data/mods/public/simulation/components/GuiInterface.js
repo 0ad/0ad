@@ -56,7 +56,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let numPlayers = cmpPlayerManager.GetNumPlayers();
-	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
+
 	for (let i = 0; i < numPlayers; ++i)
 	{
 		let playerEnt = cmpPlayerManager.GetPlayerByID(i);
@@ -81,6 +81,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		let mutualAllies = [];
 		let neutrals = [];
 		let enemies = [];
+
 		for (let j = 0; j < numPlayers; ++j)
 		{
 			allies[j] = cmpPlayer.IsAlly(j);
@@ -88,7 +89,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			neutrals[j] = cmpPlayer.IsNeutral(j);
 			enemies[j] = cmpPlayer.IsEnemy(j);
 		}
-		let playerData = {
+
+		ret.players.push({
 			"name": cmpPlayer.GetName(),
 			"civ": cmpPlayer.GetCiv(),
 			"color": cmpPlayer.GetColor(),
@@ -105,7 +107,6 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"cheatsEnabled": cmpPlayer.GetCheatsEnabled(),
 			"disabledTemplates": cmpPlayer.GetDisabledTemplates(),
 			"phase": phase,
-			"isAI": cmpPlayer.IsAI(),
 			"isAlly": allies,
 			"isMutualAlly": mutualAllies,
 			"isNeutral": neutrals,
@@ -118,8 +119,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"researchedTechs": cmpTechnologyManager ? cmpTechnologyManager.GetResearchedTechs() : null,
 			"classCounts": cmpTechnologyManager ? cmpTechnologyManager.GetClassCounts() : null,
 			"typeCountsByClass": cmpTechnologyManager ? cmpTechnologyManager.GetTypeCountsByClass() : null
-		};
-		ret.players.push(playerData);
+		});
 	}
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);

@@ -1,5 +1,5 @@
 // Get the basic player data
-function getPlayerData(playerAssignments)
+function getPlayerData(playerAssignments, previousData = undefined)
 {
 	let players = [];
 
@@ -23,13 +23,12 @@ function getPlayerData(playerAssignments)
 		    "teamsLocked": playerState.teamsLocked,
 		    "cheatsEnabled": playerState.cheatsEnabled,
 		    "state": playerState.state,
-		    "isAI": playerState.isAI,
 		    "isAlly": playerState.isAlly,
 		    "isMutualAlly": playerState.isMutualAlly,
 		    "isNeutral": playerState.isNeutral,
 		    "isEnemy": playerState.isEnemy,
 		    "guid": undefined, // network guid for players controlled by hosts
-		    "offline": i != 0 && !playerState.isAI
+		    "offline": previousData && !!previousData[i].offline
 		});
 	}
 
@@ -41,7 +40,6 @@ function getPlayerData(playerAssignments)
 				continue;
 			players[playerAssignment.player].guid = playerGuid;
 			players[playerAssignment.player].name = playerAssignment.name;
-			players[playerAssignment.player].offline = false;
 		}
 
 	return players;

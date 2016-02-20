@@ -346,7 +346,7 @@ function handleNotifications()
  */
 function updateDiplomacy()
 {
-	g_Players = getPlayerData(g_PlayerAssignments);
+	g_Players = getPlayerData(g_PlayerAssignments, g_Players);
 
 	if (g_IsDiplomacyOpen)
 		openDiplomacy();
