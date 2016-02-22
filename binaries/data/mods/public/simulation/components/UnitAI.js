@@ -1893,8 +1893,14 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
 
 						this.FaceTowardsTarget(target);
-						var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-						cmpAttack.PerformAttack(this.order.data.attackType, target);
+
+						// BuildingAI has it's own attack-routine
+						var cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
+						if (!cmpBuildingAI)
+						{
+							let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+							cmpAttack.PerformAttack(this.order.data.attackType, target);
+						}
 
 						// Check we can still reach the target for the next attack
 						if (this.CheckTargetAttackRange(target, this.order.data.attackType))
