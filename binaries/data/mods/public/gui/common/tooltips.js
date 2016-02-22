@@ -51,20 +51,23 @@ function damageTypeDetails(dmg)
 
 function attackRateDetails(entState, type)
 {
+	// Either one arrow shot by UnitAI,
 	let time = entState.attack[type].repeatTime / 1000;
 	let timeString = sprintf(translatePlural("%(time)s %(second)s", "%(time)s %(second)s", time), {
 		"time": time,
 		"second": g_TooltipTextFormats.unit[0] + translatePlural("second", "seconds", time) + g_TooltipTextFormats.unit[1]
 	});
 
+	// or multiple arrows shot by BuildingAI
 	if (!entState.buildingAI)
 		return timeString;
 
-	let arrows = Math.max(entState.buildingAI.arrowCount, entState.buildingAI.defaultArrowCount);
+	let arrows = entState.buildingAI.arrowCount;
 	let arrowString = sprintf(translatePlural("%(arrowcount)s %(arrow)s", "%(arrowcount)s %(arrow)s", arrows), {
 		"arrowcount": arrows,
 		"arrow": g_TooltipTextFormats.unit[0] + translatePlural("arrow", "arrows", arrows) + g_TooltipTextFormats.unit[1]
 	});
+
 	return sprintf(translate("%(arrowString)s / %(timeString)s"), {
 		"arrowString": arrowString,
 		"timeString": timeString
