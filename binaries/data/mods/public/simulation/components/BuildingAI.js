@@ -279,13 +279,14 @@ BuildingAI.prototype.FireArrows = function()
 
 	// Add targets to a weighted list, to allow preferences
 	let targets = new WeightedList();
+	let maxPreference = this.MAX_PREFERENCE_BONUS;
 	let addTarget = function(target)
 	{
 		let preference = cmpAttack.GetPreference(target);
 		let weight = 1;
 
 		if (preference !== null && preference !== undefined)
-			weight += this.MAX_PREFERENCE_BONUS / (1 + preference);
+			weight += maxPreference / (1 + preference);
 
 		targets.push(target, weight);
 	};
