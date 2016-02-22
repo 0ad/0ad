@@ -357,17 +357,20 @@ function updateDiplomacy()
  */
 function updateTimeNotifications()
 {
-	let notifications =  Engine.GuiInterfaceCall("GetTimeNotifications");
+	let notifications =  Engine.GuiInterfaceCall("GetTimeNotifications", g_ViewedPlayer);
 	let notificationText = "";
 	for (let n of notifications)
 	{
 		let message = n.message;
 		if (n.translateMessage)
 			message = translate(message);
+
 		let parameters = n.parameters || {};
 		if (n.translateParameters)
 			translateObjectKeys(parameters, n.translateParameters);
+
 		parameters.time = timeToString(n.endTime - g_SimState.timeElapsed);
+
 		notificationText += sprintf(message, parameters) + "\n";
 	}
 	Engine.GetGUIObjectByName("notificationText").caption = notificationText;

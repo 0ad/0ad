@@ -693,11 +693,11 @@ GuiInterface.prototype.DeleteTimeNotification = function(notificationID)
 	this.timeNotifications = this.timeNotifications.filter(n => n.id != notificationID);
 };
 
-GuiInterface.prototype.GetTimeNotifications = function(playerID)
+GuiInterface.prototype.GetTimeNotifications = function(playerID, viewedPlayer)
 {
 	let time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
 	// filter on players and time, since the delete timer might be executed with a delay
-	return this.timeNotifications.filter(n => n.players.indexOf(playerID) != -1 && n.endTime > time);
+	return this.timeNotifications.filter(n => n.players.indexOf(viewedPlayer) != -1 && n.endTime > time);
 };
 
 GuiInterface.prototype.PushNotification = function(notification)

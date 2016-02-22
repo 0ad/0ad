@@ -270,7 +270,9 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 		else
 			warn("Localisation: Strings are not localised for more than 4 resources");
 
-		var notification = {
+		// Send as time-notification
+		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification({
 			"players": [this.playerID],
 			"message": msg,
 			"parameters": parameters,
@@ -281,9 +283,7 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 				"resourceType3": "withinSentence",
 				"resourceType4": "withinSentence",
 			},
-		};
-		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGUIInterface.PushNotification(notification);
+		});
 		return false;
 	}
 
