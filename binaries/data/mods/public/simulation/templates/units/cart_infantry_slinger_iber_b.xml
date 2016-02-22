@@ -12,8 +12,8 @@
   <Cost>
     <Resources>
       <food>25</food>
-	  <stone>50</stone>
-	  <metal>25</metal>
+      <stone>50</stone>
+      <metal>25</metal>
     </Resources>
   </Cost>
   <Identity>
@@ -21,7 +21,8 @@
     <SelectionGroupName>units/cart_infantry_slinger_iber_b</SelectionGroupName>
     <GenericName>Balearic Slinger</GenericName>
     <SpecificName>Qallāʿ Ibušimi</SpecificName>
-    <Classes datatype="tokens">Iberian Mercenary</Classes>
+    <Classes datatype="tokens">Iberian</Classes>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <History>Levied from the Balearic Islands off Spain, these slingers proved to be the greatest the world ever produced, capable of hurling jagged rocks over distances that archers could not match. It was a Balearic slinger that heavily wounded the Roman consul Paullus at the beginning of the bloody battle at Cannae. Stones flung from slings were able to crush and puncture through armor at long ranges, be it iron or bronze.</History>
     <Icon>units/cart_infantry_slinger.png</Icon>
   </Identity>

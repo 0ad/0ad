@@ -12,7 +12,7 @@
   <Cost>
     <Resources>
       <food>25</food>
-	  <metal>50</metal>
+      <metal>50</metal>
     </Resources>
   </Cost>
   <Identity>
@@ -20,7 +20,8 @@
     <SelectionGroupName>units/cart_infantry_swordsman_ital_b</SelectionGroupName>
     <GenericName>Samnite Swordsman</GenericName>
     <SpecificName>Seḫīr Romaḥ</SpecificName>
-    <Classes datatype="tokens">Italian Mercenary</Classes>
+    <Classes datatype="tokens">Italian</Classes>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <History>TBD.</History>
     <Icon>units/cart_infantry_swordsman_2.png</Icon>
   </Identity>
