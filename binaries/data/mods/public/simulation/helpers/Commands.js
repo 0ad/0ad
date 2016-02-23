@@ -144,10 +144,7 @@ var g_Commands = {
 	"attack": function(player, cmd, data)
 	{
 		if (g_DebugCommands && !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
-		{
-			// This check is for debugging only!
 			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
-		}
 
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
 		// See UnitAI.CanAttack for target checks
@@ -159,10 +156,7 @@ var g_Commands = {
 	"heal": function(player, cmd, data)
 	{
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByAllyOfPlayer(player, cmd.target)))
-		{
-			// This check is for debugging only!
 			warn("Invalid command: heal target is not owned by player "+player+" or their ally: "+uneval(cmd));
-		}
 
 		// See UnitAI.CanHeal for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
@@ -174,10 +168,7 @@ var g_Commands = {
 	{
 		// This covers both repairing damaged buildings, and constructing unfinished foundations
 		if (g_DebugCommands && !IsOwnedByAllyOfPlayer(player, cmd.target))
-		{
-			// This check is for debugging only!
 			warn("Invalid command: repair target is not owned by ally of player "+player+": "+uneval(cmd));
-		}
 
 		// See UnitAI.CanRepair for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
@@ -188,10 +179,7 @@ var g_Commands = {
 	"gather": function(player, cmd, data)
 	{
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByGaia(cmd.target)))
-		{
-			// This check is for debugging only!
 			warn("Invalid command: resource is not owned by gaia or player "+player+": "+uneval(cmd));
-		}
 
 		// See UnitAI.CanGather for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
@@ -208,12 +196,8 @@ var g_Commands = {
 
 	"returnresource": function(player, cmd, data)
 	{
-		// Check dropsite is owned by player
 		if (g_DebugCommands && !IsOwnedByPlayer(player, cmd.target))
-		{
-			// This check is for debugging only!
 			warn("Invalid command: dropsite is not owned by player "+player+": "+uneval(cmd));
-		}
 
 		// See UnitAI.CanReturnResource for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
@@ -307,7 +291,6 @@ var g_Commands = {
 
 	"research": function(player, cmd, data)
 	{
-		// Verify that the building can be controlled by the player
 		if (!CanControlUnit(cmd.entity, player, data.controlAllUnits))
 		{
 			if (g_DebugCommands)
@@ -330,7 +313,6 @@ var g_Commands = {
 
 	"stop-production": function(player, cmd, data)
 	{
-		// Verify that the building can be controlled by the player
 		if (!CanControlUnit(cmd.entity, player, data.controlAllUnits))
 		{
 			if (g_DebugCommands)
@@ -574,9 +556,7 @@ var g_Commands = {
 	"wall-to-gate": function(player, cmd, data)
 	{
 		for (let ent of data.entities)
-		{
 			TryTransformWallToGate(ent, data.cmpPlayer, cmd);
-		}
 	},
 
 	"lock-gate": function(player, cmd, data)
@@ -584,13 +564,13 @@ var g_Commands = {
 		for (let ent of data.entities)
 		{
 			var cmpGate = Engine.QueryInterface(ent, IID_Gate);
-			if (cmpGate)
-			{
-				if (cmd.lock)
-					cmpGate.LockGate();
-				else
-					cmpGate.UnlockGate();
-			}
+			if (!cmpGate)
+				continue;
+
+			if (cmd.lock)
+				cmpGate.LockGate();
+			else
+				cmpGate.UnlockGate();
 		}
 	},
 
@@ -638,13 +618,13 @@ var g_Commands = {
 		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if (cmpUnitAI)
-			{
-				if (cmd.pack)
-					cmpUnitAI.Pack(cmd.queued);
-				else
-					cmpUnitAI.Unpack(cmd.queued);
-			}
+			if (!cmpUnitAI)
+				continue;
+
+			if (cmd.pack)
+				cmpUnitAI.Pack(cmd.queued);
+			else
+				cmpUnitAI.Unpack(cmd.queued);
 		}
 	},
 
@@ -653,13 +633,13 @@ var g_Commands = {
 		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if (cmpUnitAI)
-			{
-				if (cmd.pack)
-					cmpUnitAI.CancelPack(cmd.queued);
-				else
-					cmpUnitAI.CancelUnpack(cmd.queued);
-			}
+			if (!cmpUnitAI)
+				continue;
+
+			if (cmd.pack)
+				cmpUnitAI.CancelPack(cmd.queued);
+			else
+				cmpUnitAI.CancelUnpack(cmd.queued);
 		}
 	},
 
@@ -667,17 +647,14 @@ var g_Commands = {
 	{
 		// Send a chat message to human players
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		if (cmpGuiInterface)
-		{
-			var notification = {
-				"type": "aichat",
-				"players": [player],
-				"message": "/allies " + markForTranslation("Attack against %(_player_)s requested."),
-				"translateParameters": ["_player_"],
-				"parameters": {"_player_": cmd.target}
-			};
-			cmpGuiInterface.PushNotification(notification);
-		}
+		cmpGuiInterface.PushNotification({
+			"type": "aichat",
+			"players": [player],
+			"message": "/allies " + markForTranslation("Attack against %(_player_)s requested."),
+			"translateParameters": ["_player_"],
+			"parameters": { "_player_": cmd.target }
+		});
+
 		// And send an attackRequest event to the AIs
 		let cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
 		if (cmpAIInterface)
@@ -800,7 +777,7 @@ function GetDockAngle(template, x, z)
 			var count = 0;
 			for (let j = 0; j < length - 1; ++j)
 			{
-				if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
+				if ((waterPoints[(i + j) % length] + 1) % numPoints == waterPoints[(i + j + 1) % length])
 					++count;
 				else
 					break;
@@ -820,7 +797,7 @@ function GetDockAngle(template, x, z)
 
 		// If we've found a shoreline, stop searching
 		if (count != numPoints-1)
-			return -(((waterPoints[start] + consec[start]/2) % numPoints)/numPoints*2*Math.PI);
+			return -((waterPoints[start] + consec[start]/2) % numPoints) / numPoints * 2 * Math.PI;
 	}
 	return undefined;
 }
