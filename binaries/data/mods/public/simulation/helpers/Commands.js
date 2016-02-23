@@ -129,7 +129,7 @@ var g_Commands = {
 		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if(cmpUnitAI)
+			if (cmpUnitAI)
 				cmpUnitAI.WalkToPointRange(cmd.x, cmd.z, cmd.min, cmd.max, cmd.queued);
 		}
 	},
@@ -220,7 +220,7 @@ var g_Commands = {
 		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if(cmpUnitAI)
+			if (cmpUnitAI)
 				cmpUnitAI.RemoveGuard();
 		}
 	},
@@ -919,9 +919,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	if (!cmpEntityLimits || !cmpEntityLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
 	{
 		if (g_DebugCommands)
-		{
 			warn("Invalid command: build limits check failed for player "+player+": "+uneval(cmd));
-		}
 
 		// Remove the foundation because the construction was aborted
 		cmpPosition.MoveOutOfWorld();
@@ -934,9 +932,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	if (!cmpTechnologyManager.CanProduce(cmd.template))
 	{
 		if (g_DebugCommands)
-		{
 			warn("Invalid command: required technology check failed for player "+player+": "+uneval(cmd));
-		}
 
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({ "players": [player], "message": markForTranslation("The building's technology requirements are not met."), "translateMessage": true });
@@ -1535,7 +1531,6 @@ function TryTransformWallToGate(ent, cmpPlayer, cmd)
 	if (!cmpIdentity)
 		return;
 
-	// Check if this is a valid long wall segment
 	if (!cmpIdentity.HasClass("LongWall"))
 	{
 		if (g_DebugCommands)
