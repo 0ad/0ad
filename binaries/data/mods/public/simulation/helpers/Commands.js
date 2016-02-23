@@ -105,6 +105,13 @@ var g_Commands = {
 
 	"control-all": function(player, cmd, data)
 	{
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({
+			"type": "aichat",
+			"players": [player],
+			"message": markForTranslation("(Cheat - control all units)")
+		});
+
 		data.cmpPlayer.SetControlAllUnits(cmd.flag);
 	},
 
@@ -531,9 +538,13 @@ var g_Commands = {
 
 	"promote": function(player, cmd, data)
 	{
-		// No need to do checks here since this is a cheat anyway
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({"type": "chat", "players": [player], "message": "(Cheat - promoted units)"});
+		cmpGuiInterface.PushNotification({
+			"type": "aichat",
+			"players": [player],
+			"message": markForTranslation("(Cheat - promoted units)"),
+			"translateMessage": true
+		});
 
 		for (let ent of cmd.entities)
 		{
@@ -673,10 +684,13 @@ var g_Commands = {
  */
 function notifyUnloadFailure(player, garrisonHolder)
 {
-	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	var notification = {"players": [cmpPlayer.GetPlayerID()], "message": "Unable to ungarrison unit(s)" };
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGUIInterface.PushNotification(notification);
+	cmpGUIInterface.PushNotification({
+		"type": "text",
+		"players": [player],
+		"message": markForTranslation("Unable to ungarrison unit(s)"),
+		"translateMessage": true
+	});
 }
 
 /**
@@ -684,10 +698,13 @@ function notifyUnloadFailure(player, garrisonHolder)
  */
 function notifyBackToWorkFailure(player)
 {
-	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	var notification = {"players": [cmpPlayer.GetPlayerID()], "message": "Some unit(s) can't go back to work" };
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGUIInterface.PushNotification(notification);
+	cmpGUIInterface.PushNotification({
+		"type": "text",
+		"players": [player],
+		"message": markForTranslation("Some unit(s) can't go back to work"),
+		"translateMessage": true
+	});
 }
 
 /**
@@ -695,10 +712,13 @@ function notifyBackToWorkFailure(player)
  */
 function notifyAlertFailure(player)
 {
-	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	var notification = {"players": [cmpPlayer.GetPlayerID()], "message": "You can't raise the alert to a higher level !" };
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGUIInterface.PushNotification(notification);
+	cmpGUIInterface.PushNotification({
+		"type": "text",
+		"players": [player],
+		"message": "You can't raise the alert to a higher level !",
+		"translateMessage": true
+	});
 }
 
 /**
@@ -935,7 +955,12 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			warn("Invalid command: required technology check failed for player "+player+": "+uneval(cmd));
 
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({ "players": [player], "message": markForTranslation("The building's technology requirements are not met."), "translateMessage": true });
+		cmpGuiInterface.PushNotification({
+			"type": "text",
+			"players": [player],
+			"message": markForTranslation("The building's technology requirements are not met."),
+			"translateMessage": true
+		});
 
 		// Remove the foundation because the construction was aborted
 		cmpPosition.MoveOutOfWorld();

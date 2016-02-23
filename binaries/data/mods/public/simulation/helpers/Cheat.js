@@ -12,10 +12,7 @@ function Cheat(input)
 
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (!cmpPlayer.GetCheatsEnabled())
-	{
-		cmpGuiInterface.PushNotification({ "type": "chat", "players": [input.player], "message": "Cheats are disabled in this match" });
 		return;
-	}
 
 	switch(input.action)
 	{
@@ -57,16 +54,15 @@ function Cheat(input)
 		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": input.parameter });
 		return;
 	case "createunits":
-		if (!input.selected[0])
-		{
-			cmpGuiInterface.PushNotification({ "type": "chat", "players": [input.player], "message": "You need to select a building that trains units." });
-			return;
-		}
-
-		var cmpProductionQueue = Engine.QueryInterface(input.selected[0], IID_ProductionQueue);
+		var cmpProductionQueue = inputt.selected.length && Engine.QueryInterface(input.selected[0], IID_ProductionQueue);
 		if (!cmpProductionQueue)
 		{
-			cmpGuiInterface.PushNotification({ "type": "chat", "players": [input.player], "message": "You need to select a building that trains units." });
+			cmpGuiInterface.PushNotification({
+				"type": "text",
+				"players": [input.player],
+				"message": markForTranslation("You need to select a building that trains units."),
+				"translateMessage": true
+			});
 			return;
 		}
 
@@ -101,12 +97,9 @@ function Cheat(input)
 		Cheat({ "player": input.player, "action": "researchTechnology", "parameter": parameter, "selected": input.selected });
 		return;
 	case "researchTechnology":
-		// check, if name of technology is given
-		if (input.parameter.length == 0)
-		{
-			cmpGuiInterface.PushNotification({ "type": "chat", "players": [input.player], "message": "You have to enter the name of a technology or select a building and enter the number of the technology (brainiac number [top|paired].)" });
+		if (!input.parameter.length)
 			return;
-		}
+
 		var techname = input.parameter;
 		var cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 		if (!cmpTechnologyManager)
@@ -132,10 +125,8 @@ function Cheat(input)
 					{
 						var tech = techs[number-1];
 						if (!tech)
-						{
-							cmpGuiInterface.PushNotification({ "type": "chat", "players": [input.player], "message": "You have already researched this technology." });
 							return;
-						}
+
 						// get name of tech
 						if (tech.pair)
 							techname = tech[pair];
@@ -143,10 +134,7 @@ function Cheat(input)
 							techname = tech;
 					}
 					else
-					{
-						cmpGuiInterface.PushNotification({ "type": "chat", "players": [input.player], "message": "This building only has " + techs.length + " technologies." });
 						return;
-					}
 				}
 			}
 		}
@@ -154,10 +142,7 @@ function Cheat(input)
 		// check, if technology exists
 		var template = cmpTechnologyManager.GetTechnologyTemplate(techname);
 		if (!template)
-		{
-			cmpGuiInterface.PushNotification({ "type": "chat", "players": [input.player], "message": "Technology \"" + techname + "\" does not exist" });
 			return;
-		}
 
 		// check, if technology is already researched
 		if (!cmpTechnologyManager.IsTechnologyResearched(techname))
