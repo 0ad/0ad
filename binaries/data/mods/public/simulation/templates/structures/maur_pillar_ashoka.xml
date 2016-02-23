@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Auras>
+    <Aura1>
+      <Type>range</Type>
+      <Radius>75</Radius>
+      <Affects>Trader</Affects>
+      <Modifications>
+        <UnitMotion.WalkSpeed> <Multiply>1.20</Multiply> </UnitMotion.WalkSpeed>
+      </Modifications>
+      <AuraDescription>All traders in range +20% walk speed.</AuraDescription>
+      <OverlayIcon>art/textures/ui/session/auras/build_bonus.png</OverlayIcon>
+    </Aura1>
+  </Auras>
   <BuildRestrictions>
     <Category>Pillar</Category>
   </BuildRestrictions>
@@ -23,11 +35,11 @@
   </Health>
   <Identity>
     <Civ>maur</Civ>
-	<GenericName>Edict Pillar of Ashoka</GenericName>
+    <GenericName>Edict Pillar of Ashoka</GenericName>
     <SpecificName>Śāsana Stambha Aśokā</SpecificName>
     <Classes datatype="tokens">-ConquestCritical</Classes>
     <Icon>structures/monument.png</Icon>
-    <Tooltip>The famous pillar of Ashoka. Currently a useless structure.</Tooltip>
+    <Tooltip>The famous pillar of Ashoka. Increases the walk speed of traders. Buildings in the territory of the monument do not decay.</Tooltip>
     <History>.</History>
   </Identity>
   <Obstruction>
