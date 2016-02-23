@@ -118,7 +118,7 @@ var g_Commands = {
 
 	"walk": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
 		});
 	},
@@ -136,7 +136,7 @@ var g_Commands = {
 
 	"attack-walk": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, cmd.queued);
 		});
 	},
@@ -151,7 +151,7 @@ var g_Commands = {
 
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
 		// See UnitAI.CanAttack for target checks
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Attack(cmd.target, cmd.queued, allowCapture);
 		});
 	},
@@ -165,7 +165,7 @@ var g_Commands = {
 		}
 
 		// See UnitAI.CanHeal for target checks
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Heal(cmd.target, cmd.queued);
 		});
 	},
@@ -180,7 +180,7 @@ var g_Commands = {
 		}
 
 		// See UnitAI.CanRepair for target checks
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
 		});
 	},
@@ -194,14 +194,14 @@ var g_Commands = {
 		}
 
 		// See UnitAI.CanGather for target checks
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		});
 	},
 
 	"gather-near-position": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.resourceTemplate, cmd.queued);
 		});
 	},
@@ -216,7 +216,7 @@ var g_Commands = {
 		}
 
 		// See UnitAI.CanReturnResource for target checks
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
 		});
 	},
@@ -423,7 +423,7 @@ var g_Commands = {
 			return;
 		}
 
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Garrison(cmd.target, cmd.queued);
 		});
 	},
@@ -438,14 +438,14 @@ var g_Commands = {
 			return;
 		}
 
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Guard(cmd.target, cmd.queued);
 		});
 	},
 
 	"stop": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Stop(cmd.queued);
 		});
 	},
@@ -542,7 +542,7 @@ var g_Commands = {
 
 	"formation": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player, cmd.name).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player, cmd.name).forEach(cmpUnitAI => {
 			cmpUnitAI.MoveIntoFormation(cmd);
 		});
 	},
@@ -596,7 +596,7 @@ var g_Commands = {
 
 	"setup-trade-route": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.SetupTradeRoute(cmd.target, cmd.source, cmd.route, cmd.queued);
 		});
 	},
