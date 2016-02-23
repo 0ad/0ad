@@ -595,7 +595,7 @@ createObjectGroups(group, 0,
 );
 
 paintTerrainBasedOnHeight(1, 2, 0, tShore);
-paintTerrainBasedOnHeight(-8, 1, 2, tWater);
+paintTerrainBasedOnHeight(getMapBaseHeight(), 1, 3, tWater);
 
 setSkySet(shuffleArray(["cloudless", "cumulus", "overcast"])[0]);
 

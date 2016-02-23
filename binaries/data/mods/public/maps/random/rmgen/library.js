@@ -290,6 +290,11 @@ function isCircularMap()
 	return !!g_MapSettings.CircularMap;
 }
 
+function getMapBaseHeight()
+{
+	return g_MapSettings.BaseHeight || 0;
+}
+
 function createTileClass()
 {
 	return g_Map.createTileClass();
