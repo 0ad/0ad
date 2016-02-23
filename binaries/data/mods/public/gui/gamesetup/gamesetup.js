@@ -111,9 +111,14 @@ const g_ColorRandom = "orange";
 const g_AIColor = "70 150 70";
 
 /**
- * Highlight unassigned players in the dropdownlist.
+ * Color for "Unassigned"-placeholder item in the dropdownlist.
  */
 const g_UnassignedColor = "140 140 140";
+
+/**
+ * Highlight observer players in the dropdownlist.
+ */
+const g_UnassignedPlayerColor = "170 170 250";
 
 /**
  * Highlight ready players.
@@ -924,14 +929,14 @@ function onTick()
 	// First tick happens before first render, so don't load yet
 	if (g_LoadingState == 0)
 	{
-		g_LoadingState++;
+		++g_LoadingState;
 	}
 	else if (g_LoadingState == 1)
 	{
 		Engine.GetGUIObjectByName("loadingWindow").hidden = true;
 		Engine.GetGUIObjectByName("setupWindow").hidden = false;
 		initGUIObjects();
-		g_LoadingState++;
+		++g_LoadingState;
 	}
 	else if (g_LoadingState == 2)
 	{
@@ -1427,17 +1432,20 @@ function updatePlayerList()
 	let aiAssignments = {};
 	let noAssignment;
 	let assignedCount = 0;
-
-	for (let guid in g_PlayerAssignments)
+	for (let guid of sortGUIDsByPlayerID())
 	{
 		let player = g_PlayerAssignments[guid].player;
 
-		hostNameList.push(g_PlayerAssignments[guid].name);
+		if (player != -1)
+			hostNameList.push(g_PlayerAssignments[guid].name);
+		else
+			hostNameList.push("[color=\""+ g_UnassignedPlayerColor + "\"]" + g_PlayerAssignments[guid].name + "[/color]");
+
 		hostGuidList.push(guid);
 		assignments[player] = hostNameList.length-1;
 
 		if (player != -1)
-			assignedCount++;
+			++assignedCount;
 	}
 
 	// Only enable start button if we have enough assigned players
