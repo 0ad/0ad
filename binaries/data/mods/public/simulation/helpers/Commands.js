@@ -126,7 +126,7 @@ var g_Commands = {
 	"walk-to-range": function(player, cmd, data)
 	{
 		// Only used by the AI
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if(cmpUnitAI)
@@ -223,7 +223,7 @@ var g_Commands = {
 
 	"back-to-work": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if(!cmpUnitAI || !cmpUnitAI.BackToWork())
@@ -233,7 +233,7 @@ var g_Commands = {
 
 	"remove-guard": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if(cmpUnitAI)
@@ -258,7 +258,7 @@ var g_Commands = {
 			return;
 		}
 
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			if (unitCategory)
 			{
@@ -383,7 +383,7 @@ var g_Commands = {
 
 	"set-rallypoint": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 			if (cmpRallyPoint)
@@ -399,7 +399,7 @@ var g_Commands = {
 
 	"unset-rallypoint": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 			if (cmpRallyPoint)
@@ -467,7 +467,7 @@ var g_Commands = {
 		if (IsOwnedByPlayer(player, cmd.garrisonHolder))
 			data.entities = cmd.entities;
 
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(ent))
 				notUngarrisoned++;
 
@@ -501,7 +501,7 @@ var g_Commands = {
 	"unload-all-by-owner": function(player, cmd, data)
 	{
 		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, data.controlAllUnits);
-		for (var garrisonHolder of entities)
+		for (let garrisonHolder of entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAllByOwner(player))
@@ -512,7 +512,7 @@ var g_Commands = {
 	"unload-all": function(player, cmd, data)
 	{
 		var entities = FilterEntityList(cmd.garrisonHolders, player, data.controlAllUnits);
-		for (var garrisonHolder of entities)
+		for (let garrisonHolder of entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAll())
@@ -522,7 +522,7 @@ var g_Commands = {
 
 	"increase-alert-level": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
 			if (!cmpAlertRaiser || !cmpAlertRaiser.IncreaseAlertLevel())
@@ -532,7 +532,7 @@ var g_Commands = {
 
 	"alert-end": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
 			if (cmpAlertRaiser)
@@ -563,7 +563,7 @@ var g_Commands = {
 
 	"stance": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if (cmpUnitAI && !cmpUnitAI.IsTurret())
@@ -573,7 +573,7 @@ var g_Commands = {
 
 	"wall-to-gate": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			TryTransformWallToGate(ent, data.cmpPlayer, cmd);
 		}
@@ -581,7 +581,7 @@ var g_Commands = {
 
 	"lock-gate": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpGate = Engine.QueryInterface(ent, IID_Gate);
 			if (cmpGate)
@@ -603,7 +603,7 @@ var g_Commands = {
 
 	"select-required-goods": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
 			if (cmpTrader)
@@ -635,7 +635,7 @@ var g_Commands = {
 
 	"pack": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if (cmpUnitAI)
@@ -650,7 +650,7 @@ var g_Commands = {
 
 	"cancel-pack": function(player, cmd, data)
 	{
-		for each (var ent in data.entities)
+		for (let ent of data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if (cmpUnitAI)
@@ -732,7 +732,7 @@ function ExtractFormations(ents)
 {
 	var entities = []; // subset of ents that have UnitAI
 	var members = {}; // { formationentity: [ent, ent, ...], ... }
-	for each (var ent in ents)
+	for (let ent of ents)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		var fid = cmpUnitAI.GetFormationController();
@@ -1292,7 +1292,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 	// Separate out the units that don't support the chosen formation
 	var formedEnts = [];
 	var nonformedUnitAIs = [];
-	for each (var ent in ents)
+	for (let ent of ents)
 	{
 		// Skip units with no UnitAI or no position
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
@@ -1500,7 +1500,7 @@ function CanMoveEntsIntoFormation(ents, formationTemplate)
 
 	var count = 0;
 	var reqClasses = requirements.classesRequired || [];
-	for each (var ent in ents)
+	for (let ent of ents)
 	{
 		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 		if (!cmpIdentity || !cmpIdentity.CanUseFormation(formationTemplate))
