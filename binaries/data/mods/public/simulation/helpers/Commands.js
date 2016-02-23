@@ -469,7 +469,7 @@ var g_Commands = {
 
 		for (let ent of data.entities)
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(ent))
-				notUngarrisoned++;
+				++notUngarrisoned;
 
 		if (notUngarrisoned != 0)
 			notifyUnloadFailure(player, cmd.garrisonHolder);
@@ -482,7 +482,7 @@ var g_Commands = {
 			return;
 
 		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, data.controlAllUnits);
-		for each (var garrisonHolder in entities)
+		for (let garrisonHolder of entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
 			if (cmpGarrisonHolder)
@@ -553,7 +553,7 @@ var g_Commands = {
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "chat", "players": [player], "message": "(Cheat - promoted units)"});
 
-		for each (var ent in cmd.entities)
+		for (let ent of cmd.entities)
 		{
 			var cmpPromotion = Engine.QueryInterface(ent, IID_Promotion);
 			if (cmpPromotion)
@@ -625,7 +625,7 @@ var g_Commands = {
 	"set-shading-color": function(player, cmd, data)
 	{
 		// Debug command to make an entity brightly colored
-		for each (var ent in cmd.entities)
+		for (let ent in cmd.entities)
 		{
 			var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
 			if (cmpVisual)
@@ -798,7 +798,7 @@ function GetDockAngle(template, x, z)
 		for (var i = 0; i < length; ++i)
 		{
 			var count = 0;
-			for (var j = 0; j < (length-1); ++j)
+			for (let j = 0; j < length - 1; ++j)
 			{
 				if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
 					++count;
@@ -1358,13 +1358,13 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 		var formationSeparation = 60;
 		var clusters = ClusterEntities(formation.entities, formationSeparation);
 		var formationEnts = [];
-		for each (var cluster in clusters)
+		for (let cluster of clusters)
 		{
 			if (!formationTemplate || !CanMoveEntsIntoFormation(cluster, formationTemplate))
 			{
 				// get the most recently used formation, or default to line closed
 				var lastFormationTemplate = undefined;
-				for each (var ent in cluster)
+				for (let ent of cluster)
 				{
 					var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 					if (cmpUnitAI)
@@ -1394,7 +1394,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 			cmpFormation.SetFormationSeparation(formationSeparation);
 			cmpFormation.SetMembers(cluster);
 
-			for each (var ent in formationEnts)
+			for (let ent of formationEnts)
 				cmpFormation.RegisterTwinFormation(ent);
 
 			formationEnts.push(formationEnt);
@@ -1420,13 +1420,13 @@ function ClusterEntities(ents, separationDistance)
 	// triangular matrix with the (squared) distances between the different clusters
 	// the other half is not initialised
 	var matrix = [];
-	for (var i = 0; i < ents.length; i++)
+	for (let i = 0; i < ents.length; ++i)
 	{
 		matrix[i] = [];
 		clusters.push([ents[i]]);
 		var cmpPosition = Engine.QueryInterface(ents[i], IID_Position);
 		positions.push(cmpPosition.GetPosition2D());
-		for (var j = 0; j < i; j++)
+		for (let j = 0; j < i; ++j)
 			matrix[i][j] = positions[i].distanceToSquared(positions[j]);
 	}
 	while (clusters.length > 1)
@@ -1450,7 +1450,7 @@ function ClusterEntities(ents, separationDistance)
 		// calculate the minimum distance between the new cluster and all other remaining
 		// clusters by taking the minimum of the two distances.
 		var distances = [];
-		for (var i = 0; i < clusters.length; i++)
+		for (let i = 0; i < clusters.length; ++i)
 		{
 			if (i == closeClusters[1] || i == closeClusters[0])
 				continue;
@@ -1464,7 +1464,7 @@ function ClusterEntities(ents, separationDistance)
 		clusters.splice(closeClusters[1],1);
 		matrix.splice(closeClusters[0],1);
 		matrix.splice(closeClusters[1],1);
-		for (var i = 0; i < matrix.length; i++)
+		for (let i = 0; i < matrix.length; ++i)
 		{
 			if (matrix[i].length > closeClusters[0])
 				matrix[i].splice(closeClusters[0],1);
@@ -1506,7 +1506,7 @@ function CanMoveEntsIntoFormation(ents, formationTemplate)
 		if (!cmpIdentity || !cmpIdentity.CanUseFormation(formationTemplate))
 			continue;
 
-		count++;
+		++count;
 	}
 
 	return count >= requirements.minCount;
