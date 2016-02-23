@@ -713,12 +713,19 @@ function toggleDeveloperOverlay()
 		return;
 
 	let devCommands = Engine.GetGUIObjectByName("devCommands");
-	if (devCommands.hidden)
-		submitChatDirectly(translate("The Developer Overlay was opened."));
-	else
-		submitChatDirectly(translate("The Developer Overlay was closed."));
-
 	devCommands.hidden = !devCommands.hidden;
+
+	let message = devCommands.hidden ?
+		markForTranslation("The Developer Overlay was closed.") :
+		markForTranslation("The Developer Overlay was opened.");
+
+	Engine.PostNetworkCommand({
+		"type": "aichat",
+		"message": message,
+		"translateMessage": true,
+		"translateParameters": [],
+		"parameters": {}
+	});
 }
 
 function closeOpenDialogs()
