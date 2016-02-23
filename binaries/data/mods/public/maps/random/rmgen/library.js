@@ -256,12 +256,7 @@ function createTerrain(terrain)
 	if (!(terrain instanceof Array))
 		return createSimpleTerrain(terrain);
 
-	let terrainList = [];
-
-	for (let i = 0; i < terrain.length; ++i)
-		terrainList.push(createTerrain(terrain[i]));
-
-	return new RandomTerrain(terrainList);
+	return new RandomTerrain(terrain.map(t => createTerrain(t)));
 }
 
 function createSimpleTerrain(terrain)
