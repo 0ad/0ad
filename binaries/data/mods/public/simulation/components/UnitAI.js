@@ -620,6 +620,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				var dropsiteTypes = cmpResourceDropsite.GetTypes();
 
 				Engine.QueryInterface(this.entity, IID_ResourceGatherer).CommitResources(dropsiteTypes);
+				// Stop showing the carried resource animation.
+				this.SetGathererAnimationOverride();
 
 				// Our next order should always be a Gather,
 				// so just switch back to that order
@@ -2752,7 +2754,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					if (this.CanReturnResource(msg.data.newentity, true))
 					{
-						this.SetGathererAnimationOverride(true);
+						this.SetGathererAnimationOverride();
 						this.PushOrderFront("ReturnResource", { "target": msg.data.newentity, "force": false });
 					}
 					return;
@@ -2771,7 +2773,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					if (this.CanReturnResource(msg.data.newentity, true))
 					{
-						this.SetGathererAnimationOverride(true);
+						this.SetGathererAnimationOverride();
 						this.PushOrder("ReturnResource", { "target": msg.data.newentity, "force": false });
 					}
 					this.PerformGather(msg.data.newentity, true, false);
