@@ -2898,7 +2898,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 								// Check if we are garrisoned in a dropsite
 								var cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
-								if (cmpResourceDropsite)
+								if (cmpResourceDropsite && this.CanReturnResource(target, true))
 								{
 									// Dump any resources we can
 									var dropsiteTypes = cmpResourceDropsite.GetTypes();
