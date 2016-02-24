@@ -2735,6 +2735,17 @@ UnitAI.prototype.UnitFsmSpec = {
 				// Idle animation while moving towards finished construction looks weird (ghosty).
 				var oldState = this.GetCurrentState();
 
+				// Drop any resource we can if we are in range when the construction finishes
+				var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+				var cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
+				if (cmpResourceGatherer && cmpResourceDropsite && this.CheckTargetRange(msg.data.newentity, IID_Builder) &&
+					this.CanReturnResource(msg.data.newentity, true))
+				{
+					let dropsiteTypes = cmpResourceDropsite.GetTypes();
+					cmpResourceGatherer.CommitResources(dropsiteTypes);
+					this.SetGathererAnimationOverride();
+				} 
+
 				// We finished building it.
 				// Switch to the next order (if any)
 				if (this.FinishOrder())
