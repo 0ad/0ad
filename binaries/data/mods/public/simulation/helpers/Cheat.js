@@ -54,7 +54,7 @@ function Cheat(input)
 		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": input.parameter });
 		return;
 	case "createunits":
-		var cmpProductionQueue = inputt.selected.length && Engine.QueryInterface(input.selected[0], IID_ProductionQueue);
+		var cmpProductionQueue = input.selected.length && Engine.QueryInterface(input.selected[0], IID_ProductionQueue);
 		if (!cmpProductionQueue)
 		{
 			cmpGuiInterface.PushNotification({
