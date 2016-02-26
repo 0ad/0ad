@@ -5,14 +5,15 @@
 # Translators:
 # Joshua Christo Randiny <jrandiny2@gmail.com>, 2014-2015
 # Joshua Christo Randiny <jrandiny2@gmail.com>, 2014
+# Samuel Christo Randiny <srandiny@gmail.com>, 2016
 # Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 # Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-08 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-23 13:50+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,15 +50,15 @@ msgstr "Subtype tak dikenali (lihat logs)"
 #: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
 #: lobby/XmppClient.cpp:1084
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
 msgid "No error"
-msgstr ""
+msgstr "Tidak ada error"
 
 #: lobby/XmppClient.cpp:1006
 msgid "Player already logged in"
-msgstr ""
+msgstr "Pemain sudah masuk"
 
 #: lobby/XmppClient.cpp:1008
 msgid "Forbidden"
@@ -90,7 +91,7 @@ msgstr "Servis tidak tersedia"
 #: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
 #: lobby/XmppClient.cpp:1097
 msgid "Unknown error"
-msgstr ""
+msgstr "Error tidak diketahui"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Stream error"
@@ -118,7 +119,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr ""
+msgstr "Sistem ini kehabisan memori"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
@@ -140,11 +141,11 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
-msgstr ""
+msgstr "Tidak ada koneksi aktif"
 
 #: lobby/XmppClient.cpp:1087
 msgid "Success"
-msgstr ""
+msgstr "Berhasil"
 
 #: lobby/XmppClient.cpp:1088
 msgid "Not all necessary information provided"
@@ -152,7 +153,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1089
 msgid "Username already exists"
-msgstr ""
+msgstr "Nama pengguna sudah ada"
 
 #: ps/SavedGame.cpp:133
 #, c-format
