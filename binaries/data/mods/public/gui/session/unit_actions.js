@@ -367,7 +367,7 @@ var unitActions =
 		{
 			if (!hasClass(entState, "Unit") || !targetState.garrisonHolder)
 				return false;
-			if (!playerCheck(entState, targetState, ["Player", "Ally"]))
+			if (!playerCheck(entState, targetState, ["Player", "MutualAlly"]))
 				return false;
 			var tooltip = sprintf(translate("Current garrison: %(garrisoned)s/%(capacity)s"), {
 				garrisoned: targetState.garrisonHolder.garrisonedEntitiesCount,
@@ -500,7 +500,7 @@ var unitActions =
 				cursor = "action-attack-move";
 			}
 
-			if (targetState.garrisonHolder && playerCheck(entState, targetState, ["Player", "Ally"]))
+			if (targetState.garrisonHolder && playerCheck(entState, targetState, ["Player", "MutualAlly"]))
 			{
 				data.command = "garrison";
 				data.target = targetState.id;
