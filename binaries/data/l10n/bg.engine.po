@@ -5,14 +5,15 @@
 # Translators:
 # EMMANUEL HOLDBROOK <cvvsell20@gmail.com>, 2015
 # iron4o <ironsmile@gmail.com>, 2013
+# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2016
 # Lyubomir Vasilev, 2016
 # Jordan Grigorov <yoreei.grigorov@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-24 12:48+0000\n"
-"Last-Translator: Lyubomir Vasilev\n"
+"PO-Revision-Date: 2016-02-22 19:42+0000\n"
+"Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "персонализирана версия"
 
 #: i18n/L10n.cpp:252
 msgid "Long strings"
-msgstr "Дълги текстове"
+msgstr "Дълги низове"
 
 #: lobby/XmppClient.cpp:750
 msgid "unknown subtype (see logs)"
@@ -65,7 +66,7 @@ msgstr "Забранено"
 
 #: lobby/XmppClient.cpp:1010
 msgid "Internal server error"
-msgstr "Вътрешна грешка на сървъра"
+msgstr "Вътрешна сървърна грешка"
 
 #: lobby/XmppClient.cpp:1014
 msgid "Not allowed"
@@ -81,7 +82,7 @@ msgstr "Получателят е временно недостъпен"
 
 #: lobby/XmppClient.cpp:1020
 msgid "Registration required"
-msgstr "Изисква регистрация"
+msgstr "Нужна е регистрация"
 
 #: lobby/XmppClient.cpp:1024
 msgid "Service unavailable"
@@ -114,11 +115,11 @@ msgstr "Връзката беше отхвърлена от сървъра"
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
-msgstr "Неуспешно установяване на името на сървъра"
+msgstr "Неуспешно установяване на сървърното име"
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr "Тази система няма достатъчно свободна памет"
+msgstr "Тази система няма достатъчно памет"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""

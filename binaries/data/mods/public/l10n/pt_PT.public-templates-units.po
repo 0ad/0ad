@@ -4,6 +4,7 @@
 # 
 # Translators:
 # crolidge, 2015
+# Danny Reese <danny@angolateam.org>, 2016
 # Luis Neves <luisjneves@gmail.com>, 2015
 # Luis Neves <luisjneves@gmail.com>, 2015
 # mogafi, 2014-2015
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:01+0100\n"
-"PO-Revision-Date: 2016-01-15 08:47+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-27 16:57+0000\n"
+"Last-Translator: Danny Reese <danny@angolateam.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -283,13 +284,13 @@ msgstr "Mate e recolha a comida destas águas."
 
 #: simulation/templates/template_unit_hero.xml:10
 msgid "Garrisoned Capture Aura"
-msgstr ""
+msgstr "Aura de Captura da Guarnição"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
 "When garrisoned in a structure, the hero gives it a bonus of +2 capture "
 "points recovery rate."
-msgstr ""
+msgstr "Quando guarnecido numa estrutura, o herói dá-lhe um bónus de +2 velocidade de recuperar pontos de captura."
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -493,11 +494,11 @@ msgstr "Trabalhador"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "Recolector de recursos com um tempo de vida finito. Bónus na mineração e no corte de madeira."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr ""
+msgstr "Comercializa recursos entre os seus mercados e dos aliados."
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -934,7 +935,7 @@ msgstr "Exército Campeão"
 #: simulation/templates/units/brit_hero_boudicca.xml:15
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:14
 msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
-msgstr ""
+msgstr "+5 Ataque, +2 Pontos de Captura e +25% Velocidade para Unidades Campeãs."
 
 #: simulation/templates/units/brit_hero_boudicca.xml:27
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:20
@@ -1019,7 +1020,7 @@ msgstr "Venetic Ponti"
 #: simulation/templates/units/gaul_ship_trireme.xml:19
 #: simulation/templates/units/iber_ship_trireme.xml:19
 msgid "Transport many soldiers across the sea."
-msgstr ""
+msgstr "Transporta muitos soldados através do mar."
 
 #: simulation/templates/units/brit_support_female_citizen.xml:18
 #: simulation/templates/units/gaul_support_female_citizen.xml:18
@@ -1126,7 +1127,7 @@ msgstr "Aura táctica"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:15
 msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr ""
+msgstr "Todas as unidades aliadas +2 Ataque e +1 Captura dentro do seu campo de visão."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:21
 msgid "Hannibal Barca"
@@ -1314,7 +1315,7 @@ msgstr "Britomartus"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:14
 msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr ""
+msgstr "+2 Ataque e +1 Captura para todas as unidades dentro da sua aura."
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:20
 msgid "Vercingetorix"
@@ -1338,7 +1339,7 @@ msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:21
 msgid "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Especial: Azagaia em chamas. Bom contra edifícios."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1501,7 +1502,7 @@ msgstr "Dēmḗtrios Poliorkḗtēs"
 
 #: simulation/templates/units/mace_hero_philip.xml:14
 msgid "+5 Attack and +2 Capture for Champion Units."
-msgstr ""
+msgstr "+5 Ataque e +2 Pontos de Captura para Unidades Campeãs."
 
 #: simulation/templates/units/mace_hero_philip.xml:21
 msgid "Philip II of Macedon"
@@ -1618,7 +1619,7 @@ msgstr "Aśvārohagaṇaḥ"
 #: simulation/templates/units/pers_hero_darius.xml:21
 #: simulation/templates/units/sele_champion_chariot.xml:10
 msgid "Chariot"
-msgstr ""
+msgstr "Carro de Guerra"
 
 #: simulation/templates/units/maur_champion_chariot.xml:10
 msgid "War Chariot"
@@ -1630,7 +1631,7 @@ msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
 msgid "Deals Trample Damage."
-msgstr ""
+msgstr "Causa Danos de Atropelamento."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1686,7 +1687,7 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Aura: TBD.\n"
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr ""
+msgstr "Aura de Herói: (a definir).\nCapacidade Especial: \"Éditos de Asoka\" - podem construir-se Pilares de Asoka enquanto Asoka for vivo."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
@@ -1701,7 +1702,7 @@ msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr ""
+msgstr "Habilidade especial de herói: \"Médico\" - Cura todas as unidades rapidamente.\nHabilidade especial de herói: \"Professor\" - Guarneça num edifício para investigar e recrutar 50% mais rápido.\nHabilidade especial de herói: \"Filósofo\" - Investiga 4 tecnologias especiais só disponíveis para Kautilya."
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1710,7 +1711,7 @@ msgstr "Chandragupta Mauria"
 
 #: simulation/templates/units/maur_hero_maurya.xml:7
 msgid "Hero Aura: TBD."
-msgstr ""
+msgstr "Aura de herói: Ainda não funciona."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1829,7 +1830,7 @@ msgstr "Babiruviya Ratha"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:15
 msgid "Causes trample damage to enemy units."
-msgstr ""
+msgstr "Causa danos de atropelamento a unidades inimigas."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -1891,7 +1892,7 @@ msgstr "Aura de liderança da Frente"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:14
 msgid "+2 Attack and +1 Capture for nearby cavalry units."
-msgstr ""
+msgstr "+2 Ataque e +1 Captura para Cavalaria próxima."
 
 #: simulation/templates/units/pers_hero_cyrus.xml:20
 msgid "Cyrus II The Great"
@@ -1921,7 +1922,7 @@ msgstr "Dario I"
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
-msgstr ""
+msgstr "Aura de Herói: \"Mercador do Império\". Aumenta os lucros do comércio durante a sua vida (ainda não implementado)."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2122,7 +2123,7 @@ msgstr "Kleopatra H' Philopater"
 msgid ""
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
 "vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "Aura de \"Consorte\" (não implementado): Aumenta a eficácia de heróis aliados no seu campo de visão. Diminui a eficácia dos heróis inimigos."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
@@ -2283,7 +2284,7 @@ msgstr "Aura da Espada de Roma"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:14
 msgid "+5 Attack and +2 Capture for Roman units within his vision range."
-msgstr ""
+msgstr "+5 Ataque e +2 Captura para as unidades Romanas dentro do seu campo de visão."
 
 #: simulation/templates/units/rome_hero_marcellus.xml:21
 msgid "Marcus Claudius Marcellus"
@@ -2679,7 +2680,7 @@ msgstr "Aura de Derradeira Defesa"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:15
 msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
-msgstr ""
+msgstr "+20% Ataque e +1 Captura para Hoplitas e Esparciatas próximos."
 
 #: simulation/templates/units/spart_hero_leonidas.xml:22
 msgid "Leonidas I"

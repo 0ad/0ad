@@ -4,13 +4,14 @@
 # 
 # Translators:
 # dalrae jin <greenpolidol@gmail.com>, 2014
+# Hong Won Gi <timmy0807@naver.com>, 2016
 # Kevin Min <gr326887@graded.br>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-04 09:00+0100\n"
-"PO-Revision-Date: 2016-01-04 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-28 09:23+0000\n"
+"Last-Translator: Hong Won Gi <timmy0807@naver.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +42,7 @@ msgstr "모르는"
 
 #: gui/lobby/lobby.js:109
 msgid "Disconnected."
-msgstr ""
+msgstr "접속종료."
 
 #: gui/lobby/lobby.js:121
 #, javascript-format
@@ -79,7 +80,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:385
 msgid "Player"
-msgstr ""
+msgstr "플레이어"
 
 #: gui/lobby/lobby.js:386 gui/lobby/lobby.js:387 gui/lobby/lobby.js:388
 #: gui/lobby/lobby.js:389 gui/lobby/lobby.js:390 gui/lobby/lobby.js:391
@@ -99,7 +100,7 @@ msgstr "%(percentage)s%%"
 #: gui/lobby/lobby.js:427 gui/lobby/lobby.js:457
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:617
 #, javascript-format
@@ -155,7 +156,7 @@ msgstr "시간:분"
 #: gui/lobby/lobby.js:847
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:850

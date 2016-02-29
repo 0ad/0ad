@@ -4,14 +4,14 @@
 # 
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014-2015
-# Samuel Christo Randiny <srandiny@gmail.com>, 2014-2015
+# Samuel Christo Randiny <srandiny@gmail.com>, 2014-2016
 # Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-08 12:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-27 16:58+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr "Sipil"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Civic Center"
-msgstr "Balai Kota"
+msgstr "Pusat Peradaban"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:70
 msgid ""
@@ -39,11 +39,11 @@ msgstr "Bangun untuk memperoleh daerah teritorial yang luas. Melatih rakyat. Men
 #: simulation/templates/template_structure_civic_civil_centre.xml:75
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
-msgstr "BalaiKota"
+msgstr "PusatPeradaban"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
-msgstr "Menambah batas populasi"
+msgstr "Menambah batas populasi."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
@@ -101,7 +101,7 @@ msgstr "Defensif"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
-msgstr "Menara"
+msgstr "Menara Defensif"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid ""
@@ -113,13 +113,13 @@ msgstr ""
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
 #: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
-msgstr "Menara"
+msgstr "MenaraDefensif"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Dibangun di wilayah netral dan wilayah sendiri untuk mengintai suatu daerah. Perlahan akan berubah menjadi milik Gaia saat di wilayah netral."
+msgstr "Dibangun di wilayah netral dan wilayah sendiri untuk mengintai suatu area di peta. Perlahan akan berubah menjadi milik Gaia saat di wilayah netral."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -133,7 +133,7 @@ msgstr "Tembok Batu"
 #: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Mendindingi kota  anda untuk pertahanan yang kukuh"
+msgstr "Mendindingi kota anda untuk pertahanan yang kukuh."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:30
 msgid "City Gate"
@@ -147,7 +147,7 @@ msgstr "Memperbolehkan unit melewati dinding kota. Dapat dikunci untuk mencegah 
 #: simulation/templates/template_structure_defense_wall_long.xml:18
 #: simulation/templates/template_structure_defense_wall_medium.xml:18
 msgid "Wall Protection"
-msgstr "Perlindungan dinding"
+msgstr "Perlindungan Dinding"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:19
 #: simulation/templates/template_structure_defense_wall_medium.xml:19
@@ -181,7 +181,7 @@ msgstr "Menara Kayu"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
-msgstr "Struktur Ekonomi"
+msgstr "Bangunan Ekonomi"
 
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -201,7 +201,7 @@ msgstr "Persawahan"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr "Melatih unit pedagang untuk berdagang antar pasar. Dapat bertukar sumberdaya. Meneliti peningkatan perdagangan dan tukar-menukar."
+msgstr "Melatih unit pedagang untuk berdagang dengan pasar lain. Dapat bertukar sumberdaya. Meneliti peningkatan perdagangan dan tukar-menukar."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -231,7 +231,7 @@ msgstr "Buat Pusat Peradaban di lokasi ini untuk memperbesar teritori anda."
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
-msgstr "Struktur Militer"
+msgstr "Bangunan Militer"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
@@ -239,7 +239,7 @@ msgstr "Militer"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Melatih prajurit rakyat. Meneliti peningkatan pelatihan. Dapat menyimpan: 10."
+msgstr "Melatih prajurit-rakyat. Meneliti peningkatan pelatihan. Dapat menyimpan: 10."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29

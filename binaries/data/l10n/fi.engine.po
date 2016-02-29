@@ -3,17 +3,18 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
-# linux_eki <ekiuusi@gmail.com>, 2013-2014
+# linux_eki <ekiuusi@gmail.com>, 2013-2014,2016
 # Max, 2016
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
+# Pauli Kaikkonen <p.kaikkon@gmail.com>, 2016
 # Petri, 2014
 # Riku Viitanen <riisseli4@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-08 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-28 20:59+0000\n"
+"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,7 +79,7 @@ msgstr "Ei luvallinen"
 
 #: lobby/XmppClient.cpp:1018
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "Vastaanottaja ei ole väliaikaisesti saatavilla."
 
 #: lobby/XmppClient.cpp:1020
 msgid "Registration required"
@@ -107,15 +108,15 @@ msgstr "Striimi on lopetettu serverin toimesta"
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
-msgstr "I/O virhe tapahtui"
+msgstr "Tapahtui I/O -virhe"
 
 #: lobby/XmppClient.cpp:1057
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "Palvelin hylkäsi yhteyden"
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "Palvelimen isäntänimen selvitys epäonnistui"
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
@@ -125,23 +126,23 @@ msgstr "Tällä systeemillä ei ole tarpeeksi muistia"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "Palvelimen sertifikaattia ei voitu todentaa tai TLS-kättely epäonnistui"
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "Palvelin ei tarjonnut vaadittavaa TLS-salausta"
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "Tunnistautuminen epäonnistui. Salasana on väärä tai käyttäjätunnusta ei ole olemassa"
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "Käyttäjä tai järjestelmä pyysi yhteyskatkaisua"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
-msgstr ""
+msgstr "Ei aktiivista yhteyttä"
 
 #: lobby/XmppClient.cpp:1087
 msgid "Success"
@@ -149,11 +150,11 @@ msgstr "Onnistuminen"
 
 #: lobby/XmppClient.cpp:1088
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "Pakollisia tietoja puuttuu"
 
 #: lobby/XmppClient.cpp:1089
 msgid "Username already exists"
-msgstr ""
+msgstr "Käyttäjänimi on jo olemassa"
 
 #: ps/SavedGame.cpp:133
 #, c-format

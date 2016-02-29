@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Dalrae Jin <lovely.serotonin@gmail.com>, 2014
+# Hong Won Gi <timmy0807@naver.com>, 2016
 # jasonkimik <jasonkim@linux.com>, 2014
 # Kevin Min <gr326887@graded.br>, 2015
 # TJ Kim <manowar72@gmail.com>, 2015
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-28 03:14+0000\n"
+"Last-Translator: Hong Won Gi <timmy0807@naver.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +108,7 @@ msgstr "적"
 
 #: gui/session/menu.js:350
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "동맹에게 적을 공격해달라고 요청합니다."
 
 #: gui/session/menu.js:365
 msgid "x"
@@ -245,17 +246,17 @@ msgstr "%(resourceAmount)s 개의 %(resourceType)s 를 %(playerName)s 에게 줍
 #: gui/session/messages.js:34
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s 가 쫓겨났습니다."
 
 #: gui/session/messages.js:35
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s 가 추방당했습니다."
 
 #: gui/session/messages.js:44
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s 가 게임에 다시 들어오려고 하고 있습니다."
 
 #: gui/session/messages.js:45
 #, javascript-format
@@ -265,7 +266,7 @@ msgstr "%(player)s 가 게임을 떠났습니다."
 #: gui/session/messages.js:46
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s 가 다시 게임에 들어왔습니다."
 
 #: gui/session/messages.js:59
 msgid "Connection to the server has been authenticated."
@@ -283,7 +284,7 @@ msgstr "서버 연결이 끊겼습니다."
 #: gui/session/messages.js:63
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "이유 : %(reason)s."
 
 #: gui/session/messages.js:64
 msgid "The game has ended."
@@ -305,7 +306,7 @@ msgstr "(%(context)s) %(userTag)s %(message)s"
 #: gui/session/messages.js:76
 #, javascript-format
 msgid "%(userTag)s %(message)s"
-msgstr ""
+msgstr "%(userTag)s %(message)s"
 
 #: gui/session/messages.js:79
 #, javascript-format
@@ -358,21 +359,21 @@ msgstr "%(player)s 와 중립이 되었습니다."
 #: gui/session/messages.js:130
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s 는 이제 %(player2)s 와 동맹입니다."
 
 #: gui/session/messages.js:131
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s 는 이제 %(player2)s 와 전쟁입니다."
 
 #: gui/session/messages.js:132
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s 는 이제 %(player2)s 와 중립 상태입니다."
 
 #: gui/session/messages.js:544 gui/session/messages.js:551
 msgid "Unknown Player"
-msgstr ""
+msgstr "모르는 플레이어"
 
 #: gui/session/messages.js:561
 msgid "You have been defeated."
@@ -386,7 +387,7 @@ msgstr "%(player)s 가 졌습니다."
 #: gui/session/messages.js:593
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)s 가 %(player2)s 에게 %(amounts)s 를 보냈습니다."
 
 #: gui/session/messages.js:595
 #, javascript-format
@@ -416,7 +417,7 @@ msgstr "%(genericName)s — 함께"
 #: gui/session/selection_details.js:42
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[비접속] %(player)s"
 
 #: gui/session/selection_details.js:47
 #, javascript-format
@@ -427,7 +428,7 @@ msgstr "%(rank)s 순위"
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
+msgstr[0] "이 건축물은 %(seconds)s 초 후에 완성될 것 입니다."
 
 #: gui/session/selection_details.js:79
 #, javascript-format
@@ -466,7 +467,7 @@ msgstr ""
 #: gui/session/selection_details.js:157
 #, javascript-format
 msgid "%(resource)s:"
-msgstr ""
+msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:190 gui/session/unit_actions.js:323
 #: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
@@ -755,12 +756,12 @@ msgstr ""
 #: gui/session/session.js:610
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "아니요"
 
 #: gui/session/session.js:610
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "예"
 
 #: gui/session/session.js:768
 msgid "Population (current / limit)"
@@ -769,7 +770,7 @@ msgstr "인구 (현재 / 제한)"
 #: gui/session/session.js:769
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "꽉찬 인구수 : %(popCap)s"
 
 #: gui/session/session.js:909
 #, javascript-format
@@ -883,7 +884,7 @@ msgstr "%(gain)s (%(player)s)"
 #: gui/session/utility_functions.js:103 gui/session/utility_functions.js:108
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -1065,7 +1066,7 @@ msgstr "체력"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Capture points"
-msgstr ""
+msgstr "점령 장소"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"

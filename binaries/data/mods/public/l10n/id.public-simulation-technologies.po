@@ -7,14 +7,14 @@
 # constantius damar wicaksono <constantiusdamar@gmail.com>, 2015
 # Ibnu Daru Aji, 2014
 # Joshua Christo Randiny <jrandiny2@gmail.com>, 2014
-# Samuel Christo Randiny <srandiny@gmail.com>, 2015
+# Samuel Christo Randiny <srandiny@gmail.com>, 2015-2016
 # Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-27 16:58+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -464,7 +464,7 @@ msgstr "Terbuka pada Fase Desa."
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr "Tombak panjang dibuat khusus untuk pasukan kuda."
+msgstr "Tombak panjang dibuat khusus untuk kavaleri."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
@@ -841,7 +841,7 @@ msgstr "Gerobak Tarikan Kuda"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve the fishes longer."
-msgstr ""
+msgstr "Menggarami ikan dapat menjaga keawetan ikan lebih lama."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -849,11 +849,11 @@ msgstr ""
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr ""
+msgstr "Menggarami Ikan"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr ""
+msgstr "Terbuka di Fase Kota Kecil. Membutuhkan Jala Ikan."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -906,17 +906,17 @@ msgstr ""
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
 "Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr ""
+msgstr "Menggunakan jala pada Perahu Nelayan Anda. +30% tingkat pemancingan. Membuka Penggaraman Ikan."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
-msgstr ""
+msgstr "Jala Ikan"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
 msgid "Increases wood gathering rates for trees."
-msgstr "Menambah tingkat pengumpulan kayu dari pohon."
+msgstr "Menambah angka pengumpulan kayu dari pohon."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
@@ -943,7 +943,7 @@ msgstr "Kapak Lebih Kuat"
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 #: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid "Increases stone gathering rates."
-msgstr "Menambah tingkat pengumpulan batu."
+msgstr "Menambah angka pengumpulan batu."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
@@ -962,7 +962,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "+15% stone gathering rate."
-msgstr "+15% tingkat pengumpulan batu."
+msgstr "+15% angka pengumpulan batu."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -982,11 +982,11 @@ msgstr "Doûloi"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid "Increases metal gathering rates."
-msgstr "Menambah tingkat pengumpulan logam."
+msgstr "Menambah angka pengumpulan logam."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr ""
+msgstr "Bangun terowongan tambang. +15% angka pengumpulan logam."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -1011,7 +1011,7 @@ msgstr "Penambangan Laureion"
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
 "Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr "Beli budak untuk membantu pekerja menambang batu. +50% tingkat pengumpulan batu."
+msgstr "Beli budak untuk membantu pekerja menambang batu. +50% angka pengumpulan batu."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1025,7 +1025,7 @@ msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "+15% metal gathering rate."
-msgstr "+15% tingkat pengumpulan logam."
+msgstr "+15% angka pengumpulan logam."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1041,7 +1041,7 @@ msgstr "Keranjang untuk membawa makanan yang dipetik."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr "Lengkapi pemetik dengan keranjang anyam. +50% tingkat pemetikan buah."
+msgstr "Lengkapi pemetik Anda dengan keranjang anyam. +50% angka pemetikan buah."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1067,7 +1067,7 @@ msgstr "Menambah jarak penyembuhan semua tabib."
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +8 Healing Range."
-msgstr ""
+msgstr "Tabib +8 Jarak Penyembuhan."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1092,7 +1092,7 @@ msgstr "Akadḗmeia"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr "Menambah Tingkat Penyembuhan semua tabib."
+msgstr "Menambah Angka Penyembuhan semua tabib."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
@@ -1583,7 +1583,7 @@ msgstr "Kecepatan berjalan pasukan kavaleri +10%."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr ""
+msgstr "Pembiakkan Kuda"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
@@ -1622,15 +1622,15 @@ msgstr ""
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
-msgstr ""
+msgstr "Pedagang +10% pendapatan."
 
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
-msgstr ""
+msgstr "Keterampilan Tangan"
 
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% gain."
-msgstr ""
+msgstr "Pedagang +15% pendapatan."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
@@ -1753,11 +1753,11 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid "Player sees what his allies see."
-msgstr ""
+msgstr "Pemain dapat melihat apa yang sekutunya lihat."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
-msgstr ""
+msgstr "Pemetaan"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -2168,7 +2168,7 @@ msgstr "Pembangunan Kayu"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr ""
+msgstr "Latihan tombak menambahkan serangan infanteri penombak."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
@@ -2506,7 +2506,7 @@ msgstr "Kuda peranakan Nisioi yang telah punah adalah salah satu kuda yang palin
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
-msgstr ""
+msgstr "Semua kavaleri +20% nyawa."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"
@@ -2534,7 +2534,7 @@ msgstr "Pasukan tradisional Seleukia"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr "Membuka Penggalah Perisai Perak dan Kereta Bersabit."
+msgstr "Membuka Pasukan Tembiang Perisai Perak dan Kereta Bersabit."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"

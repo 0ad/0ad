@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-02-11 21:59+0000\n"
-"Last-Translator: Lyubomir Vasilev\n"
+"PO-Revision-Date: 2016-02-28 19:34+0000\n"
+"Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)s"
+msgstr "%(civilization)s начин на игра"
 
 #: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
@@ -495,7 +495,7 @@ msgstr "Пробождане"
 #: gui/common/tooltips.js:46 gui/common/tooltips.js:108
 #: gui/common/tooltips.js:139
 msgid "Crush"
-msgstr "Смазване"
+msgstr "Разбиване"
 
 #: gui/common/tooltips.js:55
 #, javascript-format
@@ -798,7 +798,7 @@ msgstr "Пауза при преминаване на заден план"
 
 #: gui/options/options.js:11
 msgid "Pause single player games when window loses focus"
-msgstr "Самостоятелните игри ще бъдат спрени на пауза когато прозорецът загуби фокус."
+msgstr "Самостоятелните игри ще бъдат спрени на пауза, когато прозорецът загуби фокус."
 
 #: gui/options/options.js:12
 msgid "Disable Welcome Screen"
@@ -821,7 +821,7 @@ msgstr "Показване на подробни подсказки при по�
 
 #: gui/options/options.js:14
 msgid "FPS Overlay"
-msgstr "Слой за кадрите в секунда"
+msgstr "Слой за кадри/с"
 
 #: gui/options/options.js:14
 msgid "Show frames per second in top right corner."
@@ -845,7 +845,7 @@ msgstr "Показване на текущото симулирано време
 
 #: gui/options/options.js:17
 msgid "Ceasefire Time Overlay"
-msgstr "Слой за времето на примирието"
+msgstr "Слой за времето на примирие"
 
 #: gui/options/options.js:17
 msgid "Always show the remaining ceasefire time."
@@ -882,7 +882,7 @@ msgstr "Сенки"
 
 #: gui/options/options.js:24
 msgid "Enable shadows"
-msgstr "Включване на сенките."
+msgstr "Включване на сенките"
 
 #: gui/options/options.js:25
 msgid "Particles"
@@ -890,7 +890,7 @@ msgstr "Частици"
 
 #: gui/options/options.js:25
 msgid "Enable particles"
-msgstr "Включване на частиците."
+msgstr "Включване на частиците"
 
 #: gui/options/options.js:26
 msgid "Show Sky"
@@ -906,7 +906,7 @@ msgstr "Плавна граница на видимост"
 
 #: gui/options/options.js:27
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr "Плавно преливане на тъмнината и мъглата на войната."
+msgstr "Плавно повдигане на тъмнината и мъглата на войната"
 
 #: gui/options/options.js:28
 msgid "Unit Silhouettes"
@@ -932,7 +932,7 @@ msgstr "Бърза и грозна вода"
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr "Използване на най-ниските възможни настройки за изчертаване на водата. Ако включите това, следващите настройки нямат значение."
+msgstr "Използване на най-ниските възможни настройки за изчертаване на водата. Ако включите това, другите настройки биват пренебрегнати."
 
 #: gui/options/options.js:31
 msgid "HQ Water Effects"
@@ -954,15 +954,15 @@ msgstr "Използване на истинската дълбочина на �
 
 #: gui/options/options.js:33
 msgid "Water Reflections"
-msgstr "Отражения във водата"
+msgstr "Водни отражения"
 
 #: gui/options/options.js:33
 msgid "Allow water to reflect a mirror image"
-msgstr "Позволяване на водата да отразява огледално изображение."
+msgstr "Позволяване на водата да отразява огледално изображение"
 
 #: gui/options/options.js:34
 msgid "Water Refraction"
-msgstr "Пречупване на светлината във водата"
+msgstr "Водна рефракция"
 
 #: gui/options/options.js:34
 msgid "Use a real water refraction map and not transparency"
@@ -974,7 +974,7 @@ msgstr "Сенки върху водата"
 
 #: gui/options/options.js:35
 msgid "Cast shadows on water"
-msgstr "Хвърляне на сенки върху водата."
+msgstr "Хвърляне на сенки върху водата"
 
 #: gui/options/options.js:36
 msgid "VSync"
@@ -982,11 +982,11 @@ msgstr "Вертикална синхронизация"
 
 #: gui/options/options.js:36
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Използване на вертикална синхронизация за предотвратяване на разкъсванията на картината. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА."
+msgstr "Използване на вертикална синхронизация за предотвратяване на разкъсваща се картина. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
 #: gui/options/options.js:37
 msgid "Limit FPS in Menus"
-msgstr "Ограничаване на кадрите в секунда в менютата"
+msgstr "Ограничаване на кадрите/с в менютата"
 
 #: gui/options/options.js:37
 msgid "Limit FPS to 50 in all menus, to save power."
@@ -998,7 +998,7 @@ msgstr "Качество на графиката"
 
 #: gui/options/options.js:38
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr "Качество на графиката. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА."
+msgstr "Качество на графиката. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
 #: gui/options/options.js:42
 msgid "Master Gain"
@@ -1006,7 +1006,7 @@ msgstr "Основна сила на звука"
 
 #: gui/options/options.js:42
 msgid "Master audio gain"
-msgstr "Основна сила на звука."
+msgstr "Основна сила на звука"
 
 #: gui/options/options.js:43
 msgid "Music Gain"
@@ -1014,7 +1014,7 @@ msgstr "Сила на музиката"
 
 #: gui/options/options.js:43
 msgid "In game music gain"
-msgstr "Сила на музиката по време на игра."
+msgstr "Сила на музиката по време на игра"
 
 #: gui/options/options.js:44
 msgid "Ambient Gain"
@@ -1022,7 +1022,7 @@ msgstr "Сила на околните звуци"
 
 #: gui/options/options.js:44
 msgid "In game ambient sound gain"
-msgstr "Сила на околните звуци по време на игра."
+msgstr "Сила на околните звуци по време на игра"
 
 #: gui/options/options.js:45
 msgid "Action Gain"
@@ -1030,7 +1030,7 @@ msgstr "Сила на звука на действията"
 
 #: gui/options/options.js:45
 msgid "In game unit action sound gain"
-msgstr "Сила на звука на действията, извършвани от единиците."
+msgstr "Сила на звука на действията, извършвани от единиците"
 
 #: gui/options/options.js:46
 msgid "UI Gain"
@@ -1038,7 +1038,7 @@ msgstr "Сила на звука на потр. интерфейс"
 
 #: gui/options/options.js:46
 msgid "UI sound gain"
-msgstr "Сила на звука на потребителския интерфейс."
+msgstr "Сила на звука на потребителския интерфейс"
 
 #: gui/options/options.js:50
 msgid "Chat Backlog"
@@ -1046,7 +1046,7 @@ msgstr "История на съобщенията"
 
 #: gui/options/options.js:50
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "Брой запазени съобщения, които да бъдат заредени при влизане в мрежовата стая."
+msgstr "Брой запазени съобщения, които да бъдат заредени при влизане в чакалнята"
 
 #: gui/options/options.js:51
 msgid "Chat Timestamp"
