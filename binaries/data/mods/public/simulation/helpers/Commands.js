@@ -616,7 +616,7 @@ var g_Commands = {
 	"set-shading-color": function(player, cmd, data)
 	{
 		// Debug command to make an entity brightly colored
-		for (let ent in cmd.entities)
+		for (let ent of cmd.entities)
 		{
 			var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
 			if (cmpVisual)
