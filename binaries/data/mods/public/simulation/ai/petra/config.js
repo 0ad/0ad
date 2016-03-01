@@ -45,9 +45,9 @@ m.Config = function(difficulty)
 		"armyBreakawaySize" : 3500,  // squared.
 		"armyMergeSize" : 1400	// squared.
 	};
-	
+
 	// military
-	this.buildings = 
+	this.buildings =
 	{
 		"base" : {
 			"default" : [ "structures/{civ}_civil_centre" ],
@@ -77,7 +77,7 @@ m.Config = function(difficulty)
 		}
 	};
 
-	this.priorities = 
+	this.priorities =
 	{
 		"villager" : 30,      // should be slightly lower than the citizen soldier one to not get all the food
 		"citizenSoldier" : 60,
@@ -93,7 +93,7 @@ m.Config = function(difficulty)
 		"civilCentre" : 950,
 		"majorTech" : 700,
 		"minorTech" : 40,
-		"emergency" : 1000    // used only in emergency situations, should be the highest one 
+		"emergency" : 1000    // used only in emergency situations, should be the highest one
 	};
 
 	this.personality =
