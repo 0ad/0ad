@@ -1,4 +1,4 @@
-// Little helper functions to make applying technology more convenient
+// Little helper functions to make applying technology and auras more convenient
 
 function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 {
@@ -13,14 +13,12 @@ function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 	return cmpAuraManager.ApplyModifications(tech_type, value, entity);
 }
 
-function ApplyValueModificationsToPlayer(tech_type, current_value, player_entity)
+function ApplyValueModificationsToPlayer(tech_type, current_value, playerEntity, playerID)
 {
-	let cmpTechnologyManager = Engine.QueryInterface(player_entity, IID_TechnologyManager);
-
-	if (!cmpTechnologyManager)
-		return current_value;
-
-	return cmpTechnologyManager.ApplyModifications(tech_type, current_value, player_entity);
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	let entityTemplateName = cmpTemplateManager.GetCurrentTemplateName(playerEntity);
+	let entityTemplate = cmpTemplateManager.GetTemplate(entityTemplateName);
+	return ApplyValueModificationsToTemplate(tech_type, current_value, playerID, entityTemplate);
 }
 
 function ApplyValueModificationsToTemplate(tech_type, current_value, playerID, template)
