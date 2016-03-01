@@ -3,12 +3,12 @@
   <Auras>
     <AuraA>
       <Type>garrison</Type>
-      <Affects>GarrisonHolder</Affects>
+      <Affects>Structure Mechanical</Affects>
       <Modifications>
         <Capturable.GarrisonRegenRate> <Add>2</Add> </Capturable.GarrisonRegenRate>
       </Modifications>
       <AuraName>Garrisoned Capture Aura</AuraName>
-      <AuraDescription>When garrisoned in a structure, the hero gives it a bonus of +2 capture points recovery rate.</AuraDescription>
+      <AuraDescription>When garrisoned in a structure or a siege, the hero gives it a bonus of +2 capture points recovery rate.</AuraDescription>
     </AuraA>    
   </Auras>
   <Attack> 
