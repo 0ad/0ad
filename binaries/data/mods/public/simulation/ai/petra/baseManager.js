@@ -244,9 +244,9 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 			}
 		});
 
-		nearby.sort(function(r1, r2) { return (r1.dist - r2.dist);});
-		medium.sort(function(r1, r2) { return (r1.dist - r2.dist);});
-		faraway.sort(function(r1, r2) { return (r1.dist - r2.dist);});
+		nearby.sort((r1, r2) => r1.dist - r2.dist);
+		medium.sort((r1, r2) => r1.dist - r2.dist);
+		faraway.sort((r1, r2) => r1.dist - r2.dist);
 
 /*		var debug = false;
 		if (debug)
