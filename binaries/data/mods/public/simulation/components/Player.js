@@ -363,27 +363,25 @@ Player.prototype.GetTeam = function()
 
 Player.prototype.SetTeam = function(team)
 {
-	if (!this.teamsLocked)
-	{
-		this.team = team;
+	if (this.teamsLocked)
+		return;
 
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		if (cmpPlayerManager && this.team != -1)
+	this.team = team;
+
+	// Set all team members as allies
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (cmpPlayerManager && this.team != -1)
+		for (let i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
 		{
-			// Set all team members as allies
-			for (var i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
-			{
-				var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
-				if (this.team == cmpPlayer.GetTeam())
-				{
-					this.SetAlly(i);
-					cmpPlayer.SetAlly(this.playerID);
-				}
-			}
+			let cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+			if (this.team != cmpPlayer.GetTeam())
+				continue;
+
+			this.SetAlly(i);
+			cmpPlayer.SetAlly(this.playerID);
 		}
 
-		Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
-	}
+	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID });
 };
 
 Player.prototype.SetLockTeams = function(value)
