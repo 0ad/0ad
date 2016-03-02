@@ -281,26 +281,11 @@ function openDiplomacy()
 	// We don't include gaia
 	for (let i = 1; i < g_Players.length; ++i)
 	{
-		// Apply offset
-		let row = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
-		let size = row.size;
-		size.top = rowsize*(i-1);
-		size.bottom = rowsize*i;
-		row.size = size;
-
-		// Set background color
-		let playerColor = rgbToGuiColor(g_Players[i].color);
-		row.sprite = "color: "+playerColor + " 32";
-
-		Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + g_Players[i].name + "[/color]";
-		Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[g_Players[i].civ].Name;
-		Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (g_Players[i].team < 0) ? translateWithContext("team", "None") : g_Players[i].team+1;
-		Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (i == g_ViewedPlayer) ? "" : (g_Players[i].isAlly[g_ViewedPlayer] ? translate("Ally") : (g_Players[i].isNeutral[g_ViewedPlayer] ? translate("Neutral") : translate("Enemy")));
-
 		let myself = i == g_ViewedPlayer;
 		let playerInactive = isPlayerObserver(g_ViewedPlayer) || isPlayerObserver(i);
 		let hasAllies = g_Players.filter(player => player.isMutualAlly[g_ViewedPlayer]).length > 1;
 
+		diplomacySetupTexts(i, rowsize);
 		diplomacyFormatStanceButtons(i, myself || playerInactive || isCeasefireActive || g_Players[g_ViewedPlayer].teamsLocked);
 		diplomacyFormatAttackRequestButton(i, myself || playerInactive || isCeasefireActive || !hasAllies || !g_Players[i].isEnemy[g_ViewedPlayer]);
 
@@ -353,6 +338,30 @@ function openDiplomacy()
 	}
 
 	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
+}
+
+function diplomacySetupTexts(i, rowsize)
+{
+	// Apply offset
+	let row = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
+	let size = row.size;
+	size.top = rowsize * (i-1);
+	size.bottom = rowsize * i;
+	row.size = size;
+
+	// Set background color
+	row.sprite = "color: " + rgbToGuiColor(g_Players[i].color) + " 32";
+
+	Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = colorizePlayernameByID(i);
+	Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[g_Players[i].civ].Name;
+
+	Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption =
+		g_Players[i].team < 0 ? translateWithContext("team", "None") : g_Players[i].team+1;
+
+	Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption =
+		i == g_ViewedPlayer ? "" :
+		g_Players[i].isAlly[g_ViewedPlayer] ? translate("Ally") :
+		g_Players[i].isNeutral[g_ViewedPlayer] ? translate("Neutral") : translate("Enemy");
 }
 
 function diplomacyFormatStanceButtons(i, hidden)
