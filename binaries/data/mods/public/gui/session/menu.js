@@ -302,13 +302,18 @@ function openDiplomacy()
 		Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (g_Players[i].team < 0) ? translateWithContext("team", "None") : g_Players[i].team+1;
 		Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (i == g_ViewedPlayer) ? "" : (g_Players[i].isAlly[g_ViewedPlayer] ? translate("Ally") : (g_Players[i].isNeutral[g_ViewedPlayer] ? translate("Neutral") : translate("Enemy")));
 
+		let myself = i == g_ViewedPlayer;
+		let playerInactive = isPlayerObserver(g_ViewedPlayer) || isPlayerObserver(i);
+		let hasAllies = g_Players.filter(player => player.isMutualAlly[g_ViewedPlayer]).length > 1;
+
+		diplomacyFormatAttackRequestButton(i, myself || playerInactive || isCeasefireActive || !hasAllies || !g_Players[i].isEnemy[g_ViewedPlayer]);
+
 		// Don't display the options for ourself, or if we or the other player aren't active anymore
 		if (i == g_ViewedPlayer || g_Players[i].state != "active")
 		{
 			// Hide the unused/unselectable options
 			for (let a of ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
 				Engine.GetGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
-			Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]").hidden = true;
 			continue;
 		}
 
@@ -350,15 +355,6 @@ function openDiplomacy()
 			button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
 		}
 
-		// Attack Request
-		let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
-		button.hidden = isCeasefireActive || !g_Players[i].isEnemy[g_ViewedPlayer];
-		button.enabled = controlsPlayer(g_ViewedPlayer);
-		button.tooltip = translate("Request your allies to attack this enemy");
-		button.onpress = (function(i) { return function() {
-			Engine.PostNetworkCommand({ "type": "attack-request", "source": g_ViewedPlayer, "target": i });
-		}; })(i);
-
 		// Skip our own teams on teams locked
 		if (g_Players[g_ViewedPlayer].teamsLocked && g_Players[g_ViewedPlayer].team != -1 && g_Players[g_ViewedPlayer].team == g_Players[i].team)
 			continue;
@@ -377,6 +373,20 @@ function openDiplomacy()
 	}
 
 	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
+}
+
+function diplomacyFormatAttackRequestButton(i, hidden)
+{
+	let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
+	button.hidden = hidden;
+	if (hidden)
+		return;
+
+	button.enabled = controlsPlayer(g_ViewedPlayer);
+	button.tooltip = translate("Request your allies to attack this enemy");
+	button.onpress = (function(i) { return function() {
+		Engine.PostNetworkCommand({ "type": "attack-request", "source": g_ViewedPlayer, "target": i });
+	}; })(i);
 }
 
 function closeDiplomacy()
