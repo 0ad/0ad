@@ -633,10 +633,10 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorkers)
 		if (ent.hasClass("Worker"))
 		{
 			// Just emergency repairing here. It is better managed in assignToFoundations
-			if (this.anchor && this.anchor.needsRepair() &&
+			if (ent.isBuilder() && this.anchor && this.anchor.needsRepair() &&
 				gameState.getOwnEntitiesByMetadata("target-foundation", this.anchor.id()).length < 2)
 				ent.repair(this.anchor);
-			else
+			else if (ent.isGatherer())
 			{
 				let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
 				for (let needed of mostNeeded)
@@ -674,13 +674,11 @@ m.BaseManager.prototype.gatherersByType = function(gameState, type)
 m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 {
 	var availableWorkers = this.workers.filter(function (ent) {
-		if (!ent.position())
+		if (!ent.position() || !ent.isBuilder())
 			return false;
 		if (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
 			return false;
 		if (ent.getMetadata(PlayerID, "transport"))
-			return false;
-		if (ent.hasClass("Cavalry") || ent.hasClass("Ship"))
 			return false;
 		return true;
 	}).toEntityArray();

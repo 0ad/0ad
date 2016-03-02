@@ -745,13 +745,12 @@ m.Entity = m.Class({
 		return undefined;
 	},
 
-	isGarrisonHolder: function() { return this.get("GarrisonHolder"); },
+	isBuilder: function() { return this.get("Builder") !== undefined; },
+	isGatherer: function() { return this.get("ResourceGatherer") !== undefined; },
 
+	isGarrisonHolder: function() { return this.get("GarrisonHolder") !== undefined; },
 	garrisoned: function() { return this._entity.garrisoned; },
-
 	canGarrisonInside: function() { return this._entity.garrisoned.length < this.garrisonMax(); },
-
-	// TODO: visibility
 
 	move: function(x, z, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
