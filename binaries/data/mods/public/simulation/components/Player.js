@@ -324,7 +324,7 @@ Player.prototype.GetNextTradingGoods = function()
 Player.prototype.GetTradingGoods = function()
 {
 	var tradingGoods = {};
-	for each (var resource in this.tradingGoods)
+	for (let resource of this.tradingGoods)
 		tradingGoods[resource.goods] = resource.proba;
 
 	return tradingGoods;
@@ -653,24 +653,29 @@ Player.prototype.OnPlayerDefeated = function(msg)
 	// The ownership change is done in two steps so that entities don't hit idle
 	// (and thus possibly look for "enemies" to attack) before nearby allies get
 	// converted to Gaia as well.
-	for each (var entity in entities)
+	for (var entity of entities)
 	{
 		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
 		cmpOwnership.SetOwnerQuiet(0);
 	}
 
 	// With the real ownership change complete, send OwnershipChanged messages.
-	for each (var entity in entities)
-		Engine.PostMessage(entity, MT_OwnershipChanged, { "entity": entity,
-			"from": this.playerID, "to": 0 });
+	for (var entity of entities)
+		Engine.PostMessage(entity, MT_OwnershipChanged, {
+			"entity": entity,
+			"from": this.playerID,
+			"to": 0
+		});
 
 	// Reveal the map for this player.
 	cmpRangeManager.SetLosRevealAll(this.playerID, true);
 
 	// Send a chat message notifying of the player's defeat.
-	var notification = {"type": "defeat", "players": [this.playerID]};
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGUIInterface.PushNotification(notification);
+	cmpGUIInterface.PushNotification({
+		"type": "defeat",
+		"players": [this.playerID]
+	});
 };
 
 Player.prototype.OnResearchFinished = function(msg)
