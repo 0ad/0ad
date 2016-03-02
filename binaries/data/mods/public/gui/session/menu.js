@@ -258,11 +258,6 @@ function toggleChatWindow(teamChat)
 	chatWindow.hidden = !hidden;
 }
 
-function tributeResource(data)
-{
-	Engine.PostNetworkCommand({ "type": "tribute", "player": data.player, "amounts":  data.amounts });
-}
-
 function openDiplomacy()
 {
 	closeOpenDialogs();
@@ -287,54 +282,8 @@ function openDiplomacy()
 
 		diplomacySetupTexts(i, rowsize);
 		diplomacyFormatStanceButtons(i, myself || playerInactive || isCeasefireActive || g_Players[g_ViewedPlayer].teamsLocked);
+		diplomacyFormatTributeButtons(i, myself || playerInactive);
 		diplomacyFormatAttackRequestButton(i, myself || playerInactive || isCeasefireActive || !hasAllies || !g_Players[i].isEnemy[g_ViewedPlayer]);
-
-		// Don't display the options for ourself, or if we or the other player aren't active anymore
-		if (i == g_ViewedPlayer || g_Players[i].state != "active")
-		{
-			// Hide the unused/unselectable options
-			for (let a of ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
-				Engine.GetGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
-			continue;
-		}
-
-		// Tribute
-		for (let resource of RESOURCES)
-		{
-			let button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+resource[0].toUpperCase()+resource.substring(1)+"["+(i-1)+"]");
-			button.onpress = (function(player, resource, button){
-				// Implement something like how unit batch training works. Shift+click to send 500, shift+click+click to send 1000, etc.
-				// Also see input.js (searching for "INPUT_MASSTRIBUTING" should get all the relevant parts).
-				let multiplier = 1;
-				return function() {
-					let isBatchTrainPressed = Engine.HotkeyIsPressed("session.masstribute");
-					if (isBatchTrainPressed)
-					{
-						inputState = INPUT_MASSTRIBUTING;
-						multiplier += multiplier == 1 ? 4 : 5;
-					}
-					let amounts = {
-						"food": (resource == "food" ? 100 : 0) * multiplier,
-						"wood": (resource == "wood" ? 100 : 0) * multiplier,
-						"stone": (resource == "stone" ? 100 : 0) * multiplier,
-						"metal": (resource == "metal" ? 100 : 0) * multiplier
-					};
-					button.tooltip = formatTributeTooltip(g_Players[player], resource, amounts[resource]);
-					// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
-					// evil global variable hackery.
-					g_FlushTributing = function() {
-						tributeResource({ "player": player, "amounts": amounts });
-						multiplier = 1;
-						button.tooltip = formatTributeTooltip(g_Players[player], resource, 100);
-					};
-					if (!isBatchTrainPressed)
-						g_FlushTributing();
-				};
-			})(i, resource, button);
-			button.enabled = controlsPlayer(g_ViewedPlayer);
-			button.hidden = false;
-			button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
-		}
 	}
 
 	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
@@ -378,6 +327,51 @@ function diplomacyFormatStanceButtons(i, hidden)
 		button.onpress = (function(player, stance) { return function() {
 			Engine.PostNetworkCommand({ "type": "diplomacy", "player": i, "to": stance.toLowerCase() });
 		}; })(i, stance);
+	}
+}
+
+function diplomacyFormatTributeButtons(i, hidden)
+{
+	for (let resource of RESOURCES)
+	{
+		let button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+resource[0].toUpperCase()+resource.substring(1)+"["+(i-1)+"]");
+		button.hidden = hidden;
+		if (hidden)
+			continue;
+
+		button.enabled = controlsPlayer(g_ViewedPlayer);
+		button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
+		button.onpress = (function(i, resource, button) {
+			// Shift+click to send 500, shift+click+click to send 1000, etc.
+			// See INPUT_MASSTRIBUTING in input.js
+			let multiplier = 1;
+			return function() {
+				let isBatchTrainPressed = Engine.HotkeyIsPressed("session.masstribute");
+				if (isBatchTrainPressed)
+				{
+					inputState = INPUT_MASSTRIBUTING;
+					multiplier += multiplier == 1 ? 4 : 5;
+				}
+
+				let amounts = {};
+				for (let type of RESOURCES)
+					amounts[type] = 0;
+				amounts[resource] = 100 * multiplier,
+
+				button.tooltip = formatTributeTooltip(g_Players[i], resource, amounts[resource]);
+
+				// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
+				// evil global variable hackery.
+				g_FlushTributing = function() {
+					Engine.PostNetworkCommand({ "type": "tribute", "player": i, "amounts":  amounts });
+					multiplier = 1;
+					button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
+				};
+
+				if (!isBatchTrainPressed)
+					g_FlushTributing();
+			};
+		})(i, resource, button);
 	}
 }
 
