@@ -258,11 +258,6 @@ function toggleChatWindow(teamChat)
 	chatWindow.hidden = !hidden;
 }
 
-function setDiplomacy(data)
-{
-	Engine.PostNetworkCommand({ "type": "diplomacy", "to": data.to, "player": data.player });
-}
-
 function tributeResource(data)
 {
 	Engine.PostNetworkCommand({ "type": "tribute", "player": data.player, "amounts":  data.amounts });
@@ -306,6 +301,7 @@ function openDiplomacy()
 		let playerInactive = isPlayerObserver(g_ViewedPlayer) || isPlayerObserver(i);
 		let hasAllies = g_Players.filter(player => player.isMutualAlly[g_ViewedPlayer]).length > 1;
 
+		diplomacyFormatStanceButtons(i, myself || playerInactive || isCeasefireActive || g_Players[g_ViewedPlayer].teamsLocked);
 		diplomacyFormatAttackRequestButton(i, myself || playerInactive || isCeasefireActive || !hasAllies || !g_Players[i].isEnemy[g_ViewedPlayer]);
 
 		// Don't display the options for ourself, or if we or the other player aren't active anymore
@@ -354,25 +350,26 @@ function openDiplomacy()
 			button.hidden = false;
 			button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
 		}
-
-		// Skip our own teams on teams locked
-		if (g_Players[g_ViewedPlayer].teamsLocked && g_Players[g_ViewedPlayer].team != -1 && g_Players[g_ViewedPlayer].team == g_Players[i].team)
-			continue;
-
-		// Diplomacy settings
-		// Set up the buttons
-		for (let setting of ["Ally", "Neutral", "Enemy"])
-		{
-			let button = Engine.GetGUIObjectByName("diplomacyPlayer"+setting+"["+(i-1)+"]");
-
-			button.caption = g_Players[g_ViewedPlayer]["is" + setting][i] ? translate("x") : "";
-			button.onpress = (function(e){ return function() { setDiplomacy(e); }; })({ "player": i, "to": setting.toLowerCase() });
-			button.enabled = controlsPlayer(g_ViewedPlayer);
-			button.hidden = isCeasefireActive;
-		}
 	}
 
 	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
+}
+
+function diplomacyFormatStanceButtons(i, hidden)
+{
+	for (let stance of ["Ally", "Neutral", "Enemy"])
+	{
+		let button = Engine.GetGUIObjectByName("diplomacyPlayer"+stance+"["+(i-1)+"]");
+		button.hidden = hidden;
+		if (hidden)
+			continue;
+
+		button.caption = g_Players[g_ViewedPlayer]["is" + stance][i] ? translate("x") : "";
+		button.enabled = controlsPlayer(g_ViewedPlayer);
+		button.onpress = (function(player, stance) { return function() {
+			Engine.PostNetworkCommand({ "type": "diplomacy", "player": i, "to": stance.toLowerCase() });
+		}; })(i, stance);
+	}
 }
 
 function diplomacyFormatAttackRequestButton(i, hidden)
