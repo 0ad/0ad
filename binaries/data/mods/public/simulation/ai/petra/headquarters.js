@@ -39,6 +39,8 @@ m.HQ = function(Config)
 	this.towerLapseTime = this.Config.Military.towerLapseTime;
 	this.fortressStartTime = 0;	// will start as soon as available
 	this.fortressLapseTime = this.Config.Military.fortressLapseTime;
+	this.extraTowers = Math.round(Math.min(this.Config.difficulty, 3) * this.Config.personality.defensive);
+	this.extraFortresses = Math.round(Math.max(Math.min(this.Config.difficulty - 1, 2), 0) * this.Config.personality.defensive);
 
 	this.baseManagers = [];
 	this.attackManager = new m.AttackManager(this.Config);
@@ -1427,6 +1429,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		{
 			let numFortresses = gameState.getOwnEntitiesByClass("Fortress", true).length;
 			if ((!numFortresses || gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime) &&
+				numFortresses < this.numActiveBase() + 1 + this.extraFortresses &&
 				gameState.getOwnFoundationsByClass("Fortress").length < 2)
 			{
 				this.fortressStartTime = gameState.ai.elapsedTime;
@@ -1435,6 +1438,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 				let plan = new m.ConstructionPlan(gameState, "structures/{civ}_fortress");
 				plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("defenseBuilding", gameState.ai.Config.priorities.defenseBuilding); };
 				queues.defenseBuilding.addPlan(plan);
+				return;
 			}
 		}
 	}
@@ -1455,12 +1459,12 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 
 	let numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).filter(API3.Filters.byClass("Town")).length;
 	if ((!numTowers || gameState.ai.elapsedTime > (1 + 0.10*numTowers)*this.towerLapseTime + this.towerStartTime) &&
+		numTowers < 2 * this.numActiveBase() + 3 + this.extraTowers &&
 		gameState.getOwnFoundationsByClass("DefenseTower").length < 3)
 	{
 		this.towerStartTime = gameState.ai.elapsedTime;
 		queues.defenseBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower"));
 	}
-	// TODO  otherwise protect markets and civilcentres
 };
 
 m.HQ.prototype.buildBlacksmith = function(gameState, queues)
