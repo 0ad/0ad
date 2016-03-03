@@ -43,7 +43,7 @@ m.BaseManager.prototype.init = function(gameState, state)
 	this.workerObject = new m.Worker(this);
 	// entitycollections
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
-	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID,"role","worker"));
+	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID, "role", "worker"));
 	this.buildings = gameState.getOwnStructures().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));	
 
 	this.units.registerUpdates();
@@ -593,6 +593,8 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 					only = "Female";
 
 				gatherers.forEach( function (ent) {
+					if (!ent.canGather(moreNeed.type))
+						return;
 					if (nb == 0)
 						return;
 					if (only && !ent.hasClass(only))
@@ -641,6 +643,8 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorkers)
 				let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
 				for (let needed of mostNeeded)
 				{
+					if (!ent.canGather(needed.type))
+						continue;
 					let lastFailed = gameState.ai.HQ.lastFailedGather[needed.type];
 					if (lastFailed && gameState.ai.elapsedTime - lastFailed < 20)
 						continue;
@@ -724,7 +728,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	if (!foundations.length && !damagedBuildings.length)
 		return;
 
-	var workers = this.workers.filter(API3.Filters.not(API3.Filters.or(API3.Filters.byClass("Cavalry"), API3.Filters.byClass("Ship"))));
+	var workers = this.workers.filter(ent => ent.isBuilder());
 	var builderWorkers = this.workersBySubrole(gameState, "builder");
 	var idleBuilderWorkers = builderWorkers.filter(API3.Filters.isIdle());
 
@@ -745,11 +749,11 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 	if (workers.length < 2)
 	{
-		let noobs = gameState.ai.HQ.bulkPickWorkers(gameState, this, 2);
-		if(noobs)
+		let fromOtherBase = gameState.ai.HQ.bulkPickWorkers(gameState, this, 2);
+		if(fromOtherBase)
 		{
 			let baseID = this.ID;
-			noobs.forEach(function (worker) {
+			fromOtherBase.forEach(function (worker) {
 				worker.setMetadata(PlayerID, "base", baseID);
 				worker.setMetadata(PlayerID, "subrole", "builder");
 				workers.updateEnt(worker);
