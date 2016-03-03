@@ -56,6 +56,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let numPlayers = cmpPlayerManager.GetNumPlayers();
+
 	for (let i = 0; i < numPlayers; ++i)
 	{
 		let playerEnt = cmpPlayerManager.GetPlayerByID(i);
@@ -80,6 +81,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		let mutualAllies = [];
 		let neutrals = [];
 		let enemies = [];
+
 		for (let j = 0; j < numPlayers; ++j)
 		{
 			allies[j] = cmpPlayer.IsAlly(j);
@@ -87,7 +89,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			neutrals[j] = cmpPlayer.IsNeutral(j);
 			enemies[j] = cmpPlayer.IsEnemy(j);
 		}
-		let playerData = {
+
+		ret.players.push({
 			"name": cmpPlayer.GetName(),
 			"civ": cmpPlayer.GetCiv(),
 			"color": cmpPlayer.GetColor(),
@@ -116,8 +119,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"researchedTechs": cmpTechnologyManager ? cmpTechnologyManager.GetResearchedTechs() : null,
 			"classCounts": cmpTechnologyManager ? cmpTechnologyManager.GetClassCounts() : null,
 			"typeCountsByClass": cmpTechnologyManager ? cmpTechnologyManager.GetTypeCountsByClass() : null
-		};
-		ret.players.push(playerData);
+		});
 	}
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -691,11 +693,11 @@ GuiInterface.prototype.DeleteTimeNotification = function(notificationID)
 	this.timeNotifications = this.timeNotifications.filter(n => n.id != notificationID);
 };
 
-GuiInterface.prototype.GetTimeNotifications = function(playerID)
+GuiInterface.prototype.GetTimeNotifications = function(playerID, viewedPlayer)
 {
 	let time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
 	// filter on players and time, since the delete timer might be executed with a delay
-	return this.timeNotifications.filter(n => n.players.indexOf(playerID) != -1 && n.endTime > time);
+	return this.timeNotifications.filter(n => n.players.indexOf(viewedPlayer) != -1 && n.endTime > time);
 };
 
 GuiInterface.prototype.PushNotification = function(notification)

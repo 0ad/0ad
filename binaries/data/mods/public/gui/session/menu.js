@@ -128,7 +128,7 @@ function exitMenuButton()
 		},
 		"client": {
 			"caption": translate("Are you sure you want to quit?"),
-			"buttons": [resumeGame, networkReturnQuestion]
+			"buttons": [resumeGame, resignQuestion]
 		},
 		"singleplayer": {
 			"caption": translate("Are you sure you want to quit?"),
@@ -137,7 +137,7 @@ function exitMenuButton()
 	};
 
 	let messageType = g_IsNetworked && g_IsController ? "host" :
-		(g_IsNetworked && !g_GameEnded && Engine.GetPlayerID() != -1 ? "client" : "singleplayer");
+		(g_IsNetworked && !g_IsObserver ? "client" : "singleplayer");
 
 	messageBox(
 		400, 200,
@@ -149,7 +149,7 @@ function exitMenuButton()
 	);
 }
 
-function networkReturnQuestion()
+function resignQuestion()
 {
 	messageBox(
 		400, 200,
@@ -203,7 +203,7 @@ function openChat()
 
 	closeOpenDialogs();
 
-	updateTeamCheckbox(false);
+	setTeamChat(false);
 
 	Engine.GetGUIObjectByName("chatInput").focus(); // Grant focus to the input area
 	Engine.GetGUIObjectByName("chatDialogPanel").hidden = false;
@@ -217,16 +217,18 @@ function closeChat()
 }
 
 /**
- * Chat is sent via GUID, not playerID.
+ * If the teamchat hotkey was pressed, set allies or observers as addressees,
+ * otherwise send to everyone.
  */
-function updateTeamCheckbox(check)
+function setTeamChat(teamChat = false)
 {
-	Engine.GetGUIObjectByName("toggleTeamChatLabel").hidden = g_IsObserver;
-	let toggleTeamChat = Engine.GetGUIObjectByName("toggleTeamChat");
-	toggleTeamChat.hidden = g_IsObserver;
-	toggleTeamChat.checked = !g_IsObserver && check;
+	let command = teamChat ? (g_IsObserver ? "/observers" : "/allies") : "";
+	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
+	chatAddressee.selected = chatAddressee.list_data.indexOf(command);
 }
-
+/**
+ * Opens chat-window or closes it and sends the userinput.
+ */
 function toggleChatWindow(teamChat)
 {
 	if (g_Disconnected)
@@ -239,7 +241,10 @@ function toggleChatWindow(teamChat)
 	closeOpenDialogs();
 
 	if (hidden)
-		chatInput.focus(); // Grant focus to the input area
+	{
+		setTeamChat(teamChat);
+		chatInput.focus();
+	}
 	else
 	{
 		if (chatInput.caption.length)
@@ -247,21 +252,10 @@ function toggleChatWindow(teamChat)
 			submitChatInput();
 			return;
 		}
-		chatInput.caption = ""; // Clear chat input
+		chatInput.caption = "";
 	}
 
-	updateTeamCheckbox(teamChat);
 	chatWindow.hidden = !hidden;
-}
-
-function setDiplomacy(data)
-{
-	Engine.PostNetworkCommand({ "type": "diplomacy", "to": data.to, "player": data.player });
-}
-
-function tributeResource(data)
-{
-	Engine.PostNetworkCommand({ "type": "tribute", "player": data.player, "amounts":  data.amounts });
 }
 
 function openDiplomacy()
@@ -273,6 +267,8 @@ function openDiplomacy()
 
 	g_IsDiplomacyOpen = true;
 
+	let isCeasefireActive = GetSimState().ceasefireActive;
+
 	// Get offset for one line
 	let onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
 	let rowsize = onesize.bottom - onesize.top;
@@ -280,98 +276,117 @@ function openDiplomacy()
 	// We don't include gaia
 	for (let i = 1; i < g_Players.length; ++i)
 	{
-		// Apply offset
-		let row = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
-		let size = row.size;
-		size.top = rowsize*(i-1);
-		size.bottom = rowsize*i;
-		row.size = size;
+		let myself = i == g_ViewedPlayer;
+		let playerInactive = isPlayerObserver(g_ViewedPlayer) || isPlayerObserver(i);
+		let hasAllies = g_Players.filter(player => player.isMutualAlly[g_ViewedPlayer]).length > 1;
 
-		// Set background color
-		let playerColor = rgbToGuiColor(g_Players[i].color);
-		row.sprite = "color: "+playerColor + " 32";
-
-		Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + g_Players[i].name + "[/color]";
-		Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[g_Players[i].civ].Name;
-		Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (g_Players[i].team < 0) ? translateWithContext("team", "None") : g_Players[i].team+1;
-		Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (i == g_ViewedPlayer) ? "" : (g_Players[i].isAlly[g_ViewedPlayer] ? translate("Ally") : (g_Players[i].isNeutral[g_ViewedPlayer] ? translate("Neutral") : translate("Enemy")));
-
-		// Don't display the options for ourself, or if we or the other player aren't active anymore
-		if (i == g_ViewedPlayer || g_Players[i].state != "active")
-		{
-			// Hide the unused/unselectable options
-			for (let a of ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
-				Engine.GetGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
-			Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]").hidden = true;
-			continue;
-		}
-
-		// Tribute
-		for (let resource of RESOURCES)
-		{
-			let button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+resource[0].toUpperCase()+resource.substring(1)+"["+(i-1)+"]");
-			button.onpress = (function(player, resource, button){
-				// Implement something like how unit batch training works. Shift+click to send 500, shift+click+click to send 1000, etc.
-				// Also see input.js (searching for "INPUT_MASSTRIBUTING" should get all the relevant parts).
-				let multiplier = 1;
-				return function() {
-					let isBatchTrainPressed = Engine.HotkeyIsPressed("session.masstribute");
-					if (isBatchTrainPressed)
-					{
-						inputState = INPUT_MASSTRIBUTING;
-						multiplier += multiplier == 1 ? 4 : 5;
-					}
-					let amounts = {
-						"food": (resource == "food" ? 100 : 0) * multiplier,
-						"wood": (resource == "wood" ? 100 : 0) * multiplier,
-						"stone": (resource == "stone" ? 100 : 0) * multiplier,
-						"metal": (resource == "metal" ? 100 : 0) * multiplier
-					};
-					button.tooltip = formatTributeTooltip(g_Players[player], resource, amounts[resource]);
-					// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
-					// evil global variable hackery.
-					g_FlushTributing = function() {
-						tributeResource({ "player": player, "amounts": amounts });
-						multiplier = 1;
-						button.tooltip = formatTributeTooltip(g_Players[player], resource, 100);
-					};
-					if (!isBatchTrainPressed)
-						g_FlushTributing();
-				};
-			})(i, resource, button);
-			button.enabled = controlsPlayer(g_ViewedPlayer);
-			button.hidden = false;
-			button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
-		}
-
-		// Attack Request
-		let simState = GetSimState();
-		let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
-		button.hidden = simState.ceasefireActive || !g_Players[i].isEnemy[g_ViewedPlayer];
-		button.enabled = controlsPlayer(g_ViewedPlayer);
-		button.tooltip = translate("Request your allies to attack this enemy");
-		button.onpress = (function(i) { return function() {
-			Engine.PostNetworkCommand({ "type": "attack-request", "source": g_ViewedPlayer, "target": i });
-		}; })(i);
-
-		// Skip our own teams on teams locked
-		if (g_Players[g_ViewedPlayer].teamsLocked && g_Players[g_ViewedPlayer].team != -1 && g_Players[g_ViewedPlayer].team == g_Players[i].team)
-			continue;
-
-		// Diplomacy settings
-		// Set up the buttons
-		for (let setting of ["Ally", "Neutral", "Enemy"])
-		{
-			let button = Engine.GetGUIObjectByName("diplomacyPlayer"+setting+"["+(i-1)+"]");
-
-			button.caption = g_Players[g_ViewedPlayer]["is" + setting][i] ? translate("x") : "";
-			button.onpress = (function(e){ return function() { setDiplomacy(e); }; })({ "player": i, "to": setting.toLowerCase() });
-			button.enabled = controlsPlayer(g_ViewedPlayer);
-			button.hidden = simState.ceasefireActive;
-		}
+		diplomacySetupTexts(i, rowsize);
+		diplomacyFormatStanceButtons(i, myself || playerInactive || isCeasefireActive || g_Players[g_ViewedPlayer].teamsLocked);
+		diplomacyFormatTributeButtons(i, myself || playerInactive);
+		diplomacyFormatAttackRequestButton(i, myself || playerInactive || isCeasefireActive || !hasAllies || !g_Players[i].isEnemy[g_ViewedPlayer]);
 	}
 
 	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
+}
+
+function diplomacySetupTexts(i, rowsize)
+{
+	// Apply offset
+	let row = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
+	let size = row.size;
+	size.top = rowsize * (i-1);
+	size.bottom = rowsize * i;
+	row.size = size;
+
+	// Set background color
+	row.sprite = "color: " + rgbToGuiColor(g_Players[i].color) + " 32";
+
+	Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = colorizePlayernameByID(i);
+	Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[g_Players[i].civ].Name;
+
+	Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption =
+		g_Players[i].team < 0 ? translateWithContext("team", "None") : g_Players[i].team+1;
+
+	Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption =
+		i == g_ViewedPlayer ? "" :
+		g_Players[i].isAlly[g_ViewedPlayer] ? translate("Ally") :
+		g_Players[i].isNeutral[g_ViewedPlayer] ? translate("Neutral") : translate("Enemy");
+}
+
+function diplomacyFormatStanceButtons(i, hidden)
+{
+	for (let stance of ["Ally", "Neutral", "Enemy"])
+	{
+		let button = Engine.GetGUIObjectByName("diplomacyPlayer"+stance+"["+(i-1)+"]");
+		button.hidden = hidden;
+		if (hidden)
+			continue;
+
+		button.caption = g_Players[g_ViewedPlayer]["is" + stance][i] ? translate("x") : "";
+		button.enabled = controlsPlayer(g_ViewedPlayer);
+		button.onpress = (function(player, stance) { return function() {
+			Engine.PostNetworkCommand({ "type": "diplomacy", "player": i, "to": stance.toLowerCase() });
+		}; })(i, stance);
+	}
+}
+
+function diplomacyFormatTributeButtons(i, hidden)
+{
+	for (let resource of RESOURCES)
+	{
+		let button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+resource[0].toUpperCase()+resource.substring(1)+"["+(i-1)+"]");
+		button.hidden = hidden;
+		if (hidden)
+			continue;
+
+		button.enabled = controlsPlayer(g_ViewedPlayer);
+		button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
+		button.onpress = (function(i, resource, button) {
+			// Shift+click to send 500, shift+click+click to send 1000, etc.
+			// See INPUT_MASSTRIBUTING in input.js
+			let multiplier = 1;
+			return function() {
+				let isBatchTrainPressed = Engine.HotkeyIsPressed("session.masstribute");
+				if (isBatchTrainPressed)
+				{
+					inputState = INPUT_MASSTRIBUTING;
+					multiplier += multiplier == 1 ? 4 : 5;
+				}
+
+				let amounts = {};
+				for (let type of RESOURCES)
+					amounts[type] = 0;
+				amounts[resource] = 100 * multiplier,
+
+				button.tooltip = formatTributeTooltip(g_Players[i], resource, amounts[resource]);
+
+				// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
+				// evil global variable hackery.
+				g_FlushTributing = function() {
+					Engine.PostNetworkCommand({ "type": "tribute", "player": i, "amounts":  amounts });
+					multiplier = 1;
+					button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
+				};
+
+				if (!isBatchTrainPressed)
+					g_FlushTributing();
+			};
+		})(i, resource, button);
+	}
+}
+
+function diplomacyFormatAttackRequestButton(i, hidden)
+{
+	let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
+	button.hidden = hidden;
+	if (hidden)
+		return;
+
+	button.enabled = controlsPlayer(g_ViewedPlayer);
+	button.tooltip = translate("Request your allies to attack this enemy");
+	button.onpress = (function(i) { return function() {
+		Engine.PostNetworkCommand({ "type": "attack-request", "source": g_ViewedPlayer, "target": i });
+	}; })(i);
 }
 
 function closeDiplomacy()
@@ -708,12 +723,19 @@ function toggleDeveloperOverlay()
 		return;
 
 	let devCommands = Engine.GetGUIObjectByName("devCommands");
-	if (devCommands.hidden)
-		submitChatDirectly(translate("The Developer Overlay was opened."));
-	else
-		submitChatDirectly(translate("The Developer Overlay was closed."));
-
 	devCommands.hidden = !devCommands.hidden;
+
+	let message = devCommands.hidden ?
+		markForTranslation("The Developer Overlay was closed.") :
+		markForTranslation("The Developer Overlay was opened.");
+
+	Engine.PostNetworkCommand({
+		"type": "aichat",
+		"message": message,
+		"translateMessage": true,
+		"translateParameters": [],
+		"parameters": {}
+	});
 }
 
 function closeOpenDialogs()

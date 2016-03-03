@@ -54,14 +54,27 @@ Cost.prototype.GetBuildTime = function()
 	return ApplyValueModificationsToEntity("Cost/BuildTime", buildTime, this.entity);
 };
 
-Cost.prototype.GetResourceCosts = function()
+Cost.prototype.GetResourceCosts = function(owner)
 {
-	var costs = {};
-	for (var r in this.template.Resources)
+	if (owner == undefined)
 	{
-		costs[r] = +this.template.Resources[r];
-		costs[r] = ApplyValueModificationsToEntity("Cost/Resources/"+r, costs[r], this.entity);
+		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+		if (!cmpOwnership)
+		{
+			warn("GetResourceCost called without valid ownership");
+			owner = 0;
+		}
+		else
+			owner = cmpOwnership.GetOwner();
 	}
+
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	let entityTemplateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
+	let entityTemplate = cmpTemplateManager.GetTemplate(entityTemplateName);
+
+	let costs = {};
+	for (let r in this.template.Resources)
+		costs[r] = ApplyValueModificationsToTemplate("Cost/Resources/"+r, +this.template.Resources[r], owner, entityTemplate);
 	return costs;
 };
 

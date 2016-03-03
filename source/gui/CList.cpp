@@ -331,10 +331,8 @@ void CList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spri
 		if (scrollbar)
 			scroll = GetScrollBar(0).GetPos();
 
-		if (selected != -1)
+		if (selected >= 0 && selected+1 < (int)m_ItemsYPositions.size())
 		{
-			ENSURE(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
-
 			// Get rectangle of selection:
 			CRect rect_sel(rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
 					       rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);

@@ -10,17 +10,28 @@
       <Crush>2</Crush>
     </Foundation>
   </Armour>
+  <Auras>
+    <Aura1>
+      <Type>global</Type>
+      <Affects>Player</Affects>
+      <Modifications>
+        <Player.MaxPopulation> <Add>10</Add> </Player.MaxPopulation>
+      </Modifications>
+      <AuraName>Wonder Aura</AuraName>
+      <AuraDescription>+10 maximum population cap.</AuraDescription>
+     </Aura1>
+  </Auras>
   <BuildRestrictions>
     <Category>Wonder</Category>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>1500</CapturePoints>
+    <CapturePoints>2000</CapturePoints>
     <RegenRate>5.0</RegenRate>
   </Capturable>
   <Cost>
     <BuildTime>1000</BuildTime>
     <Resources>
-      <food>0</food>
+      <food>1000</food>
       <wood>1000</wood>
       <stone>1000</stone>
       <metal>1000</metal>
@@ -30,7 +41,14 @@
     <Square width="34.0" depth="34.0"/>
     <Height>10.0</Height>
   </Footprint>
-  <GarrisonHolder disable=""/>
+  <GarrisonHolder>
+    <Max>30</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <List datatype="tokens">Support Infantry Cavalry</List>
+    <BuffHeal>3</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
   <Health>
     <Max>5000</Max>
     <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
@@ -38,10 +56,7 @@
   <Identity>
     <GenericName>Wonder</GenericName>
     <Tooltip>Bring glory to your civilization and add large tracts of land to your empire.</Tooltip>
-    <Classes datatype="tokens">
-	  City
-	  Wonder
-	</Classes>
+    <Classes datatype="tokens">City Wonder</Classes>
     <Icon>structures/wonder.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>

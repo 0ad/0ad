@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-02-05 01:42+0000\n"
+"PO-Revision-Date: 2016-02-28 19:34+0000\n"
 "Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -25,19 +25,19 @@ msgstr ""
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)s геймплей"
+msgstr "%(civilization)s начин на игра"
 
 #: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] "Цивилизационен Бонус"
-msgstr[1] "Цивилизационни Бонуси"
+msgstr[0] "Предимство на цивилизацията"
+msgstr[1] "Предимства на цивилизацията"
 
 #: gui/civinfo/civinfo.js:104
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Отборен Бонус"
-msgstr[1] "Отборни Бонуси"
+msgstr[0] "Отборно предимство"
+msgstr[1] "Отборни предимства"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Special Technologies"
@@ -46,8 +46,8 @@ msgstr "Специални технологии"
 #: gui/civinfo/civinfo.js:117
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] "Специална Постройка"
-msgstr[1] "Специални Постройки"
+msgstr[0] "Специална сграда"
+msgstr[1] "Специални сгради"
 
 #: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
@@ -56,23 +56,23 @@ msgstr "Герои"
 #: gui/civinfo/civinfo.js:134
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr "История на %(civilization)s"
+msgstr "%(civilization)s — малко история"
 
 #: gui/common/functions_global_object.js:74
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr "Отваря %(url)s\nв вашият интернет браузър по подразбиране. Моля изчакайте..."
+msgstr "Отваряне на %(url)s\nвъв Вашия браузър по подразбиране. Моля, изчакайте…"
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr "Отваря страница"
+msgstr "Отваряне на страницата"
 
 #: gui/common/functions_global_object.js:85
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr "FPS: %(fps)4s"
+msgstr "Кадри/с: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
@@ -85,7 +85,7 @@ msgstr "%(time)s (%(speed)sx)"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Оставащо време до края на примирието: %(time)s."
 
 #: gui/common/functions_utility.js:77
 msgid "A randomly selected map."
@@ -93,7 +93,7 @@ msgstr "Случайно избрана карта."
 
 #: gui/common/functions_utility.js:84
 msgid "Sorry, no description available."
-msgstr "Съжаляваме, но няма описание"
+msgstr "Съжаляваме, но няма описание."
 
 #: gui/common/functions_utility.js:109
 msgid "mm:ss"
@@ -119,7 +119,7 @@ msgstr "\\[%(date)s]"
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr "%(dateString)s %(map)s - %(description)s"
+msgstr "%(dateString)s %(map)s — %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, javascript-format
@@ -159,14 +159,14 @@ msgstr "Руда"
 #: gui/common/l10n.js:12
 msgctxt "firstWord"
 msgid "Rock"
-msgstr "Камък"
+msgstr "Скала"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:14
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr "Руини"
+msgstr "Останки"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -194,7 +194,7 @@ msgstr "Дърво"
 #: gui/common/l10n.js:22
 msgctxt "firstWord"
 msgid "Wood"
-msgstr "Дърво"
+msgstr "Дървесина"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -222,21 +222,21 @@ msgstr "Риба"
 #: gui/common/l10n.js:32
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "Храна"
+msgstr "храна"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:34
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr "Месо"
+msgstr "месо"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:36
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr "Метал"
+msgstr "метал"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -250,49 +250,49 @@ msgstr "руда"
 #: gui/common/l10n.js:40
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr "Камък"
+msgstr "скала"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:42
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr "Руини"
+msgstr "останки"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:44
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr "Камък"
+msgstr "камък"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:46
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr "Съкровище"
+msgstr "съкровище"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:48
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr "Дърво"
+msgstr "дърво"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:50
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr "Дърво"
+msgstr "дървесина"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:52
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr "Плод"
+msgstr "плод"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -306,7 +306,7 @@ msgstr "зърно"
 #: gui/common/l10n.js:56
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr "Риба"
+msgstr "риба"
 
 #: gui/common/l10n.js:82
 #, javascript-format
@@ -325,15 +325,15 @@ msgstr "%(previousAmounts)s и %(lastAmount)s"
 #: gui/common/tooltips.js:442 gui/common/tooltips.js:469
 #: gui/common/tooltips.js:537
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/common/network.js:15
 msgid "Unknown reason"
-msgstr "Непозната причина"
+msgstr "Неясна причина"
 
 #: gui/common/network.js:16
 msgid "Unexpected shutdown"
-msgstr "Неочаквано изключване"
+msgstr "Неочаквано прекъсване на връзката"
 
 #: gui/common/network.js:17
 msgid "Incorrect network protocol version"
@@ -341,19 +341,19 @@ msgstr "Неправилна версия на мрежовия протокол
 
 #: gui/common/network.js:18
 msgid "Game is loading, please try later"
-msgstr "Играта зарежда, моля опитайте по-късно."
+msgstr "Играта зарежда. Моля, опитайте по-късно."
 
 #: gui/common/network.js:19
 msgid "Game has already started, no observers allowed"
-msgstr "Играта вече е започнала, наблюдатели не са позволени."
+msgstr "Играта вече е започнала. Наблюдатели не са позволени."
 
 #: gui/common/network.js:20
 msgid "You have been kicked"
-msgstr "Ти беше изритан от играта."
+msgstr "Вие бяхте изритан(а) от играта."
 
 #: gui/common/network.js:21
 msgid "You have been banned"
-msgstr "Достъпът Ви бе забранен"
+msgstr "Вие получихте забрана за достъп"
 
 #: gui/common/network.js:24
 #, javascript-format
@@ -372,17 +372,17 @@ msgstr "Изгубена връзка към сървъра."
 
 #: gui/common/network.js:37
 msgid "Disconnected"
-msgstr "Изключен"
+msgstr "Разкачен"
 
 #: gui/common/network.js:45
 #, javascript-format
 msgid "Could not ban %(name)s."
-msgstr "%(name)s не може да бъде забранен достъп."
+msgstr "Неуспешно забраняване на достъпа на %(name)s."
 
 #: gui/common/network.js:45
 #, javascript-format
 msgid "Could not kick %(name)s."
-msgstr "%(name)s не може да бъде изхвърлен."
+msgstr "Неуспешно изритване на %(name)s."
 
 #: gui/common/network.js:73
 #, javascript-format
@@ -392,7 +392,7 @@ msgstr "Потребители: %(users)s"
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "Среда за тестване"
+msgstr "Пясъчник"
 
 #: gui/common/settings.js:111
 msgctxt "aiDiff"
@@ -435,7 +435,7 @@ msgstr[1] "%(minutes)s минути"
 #: gui/common/settings.js:166
 msgctxt "map"
 msgid "Skirmish"
-msgstr "Дизайнерска"
+msgstr "Схватка"
 
 #: gui/common/settings.js:171
 msgctxt "map"
@@ -449,7 +449,7 @@ msgstr "Сценарий"
 
 #: gui/common/settings.js:206
 msgid "None"
-msgstr "Никой"
+msgstr "Няма"
 
 #: gui/common/settings.js:207
 msgid "Endless Game"
@@ -457,7 +457,7 @@ msgstr "Безкрайна игра."
 
 #: gui/common/settings.js:248
 msgid "Unlimited"
-msgstr "Безкрайна"
+msgstr "Без"
 
 #: gui/common/settings.js:296 gui/common/settings.js:307
 #: gui/common/settings.js:319 gui/common/settings.js:343
@@ -480,22 +480,22 @@ msgstr "(Без)"
 #: gui/common/tooltips.js:131 gui/common/tooltips.js:137
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr "%(damage)s %(damageType)s"
+msgstr "%(damageType)s: %(damage)s"
 
 #: gui/common/tooltips.js:34 gui/common/tooltips.js:94
 #: gui/common/tooltips.js:127
 msgid "Hack"
-msgstr "Пробив"
+msgstr "Разсичане"
 
 #: gui/common/tooltips.js:40 gui/common/tooltips.js:101
 #: gui/common/tooltips.js:133
 msgid "Pierce"
-msgstr "Проникни"
+msgstr "Пробождане"
 
 #: gui/common/tooltips.js:46 gui/common/tooltips.js:108
 #: gui/common/tooltips.js:139
 msgid "Crush"
-msgstr "Размажи"
+msgstr "Разбиване"
 
 #: gui/common/tooltips.js:55
 #, javascript-format
@@ -544,7 +544,7 @@ msgstr "%(label)s %(details)s"
 #: gui/common/tooltips.js:106
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
-msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
+msgstr "%(damageType)s: %(damage)s %(armorPercentage)s"
 
 #: gui/common/tooltips.js:95 gui/common/tooltips.js:102
 #: gui/common/tooltips.js:109
@@ -558,7 +558,7 @@ msgstr "Щурмуваща атака:"
 
 #: gui/common/tooltips.js:148
 msgid "Melee Attack:"
-msgstr "Меле Атака:"
+msgstr "Близка атака:"
 
 #: gui/common/tooltips.js:149
 msgid "Ranged Attack:"
@@ -574,11 +574,11 @@ msgstr "Атака:"
 
 #: gui/common/tooltips.js:162
 msgid "Interval:"
-msgstr "Интервал:"
+msgstr "Период:"
 
 #: gui/common/tooltips.js:162 gui/common/tooltips.js:464
 msgid "Rate:"
-msgstr "Степен:"
+msgstr "Скорост:"
 
 #: gui/common/tooltips.js:179 gui/common/tooltips.js:188
 #, javascript-format
@@ -622,7 +622,7 @@ msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
-msgstr "Бързина на поправката:"
+msgstr "Бързина на поправяне:"
 
 #: gui/common/tooltips.js:237 gui/common/tooltips.js:248
 msgid "health"
@@ -654,7 +654,7 @@ msgstr "%(component)s %(cost)s"
 #: gui/common/tooltips.js:350
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr "%(resourceIcon)s %(minimum)s към %(resourceIcon)s %(maximum)s"
+msgstr "%(resourceIcon)s %(minimum)s до %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:381
 #, javascript-format
@@ -673,7 +673,7 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:399
 msgid "Population Bonus:"
-msgstr "Бонус популация:"
+msgstr "Допълнително население:"
 
 #: gui/common/tooltips.js:417
 msgid "Insufficient resources:"
@@ -690,11 +690,11 @@ msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:431
 msgid "Walk"
-msgstr "Ходи"
+msgstr "Ходене"
 
 #: gui/common/tooltips.js:437
 msgid "Run"
-msgstr "Бягай"
+msgstr "Бягане"
 
 #: gui/common/tooltips.js:440
 #, javascript-format
@@ -711,15 +711,15 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:453
 msgid "Heal:"
-msgstr "Лекечение:"
+msgstr "Лечение:"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
 #: gui/common/tooltips.js:456
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] "Здраве"
-msgstr[1] "Здраве"
+msgstr[0] "ЖТ"
+msgstr[1] "ЖТ"
 
 #: gui/common/tooltips.js:479
 #, javascript-format
@@ -751,7 +751,7 @@ msgstr "Без"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr "<невалиден>"
+msgstr "<непревилен>"
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
@@ -786,19 +786,19 @@ msgstr "Прекъсване"
 
 #: gui/options/options.js:10
 msgid "Windowed Mode"
-msgstr "Режим Прозорец"
+msgstr "Режим в прозорец"
 
 #: gui/options/options.js:10
 msgid "Start 0 A.D. in a window"
-msgstr "Стартиране на 0 A.D. в режим прозорец"
+msgstr "Стартиране на 0 A.D. в прозорец."
 
 #: gui/options/options.js:11
 msgid "Background Pause"
-msgstr "Пауза в режим на заден план"
+msgstr "Пауза при преминаване на заден план"
 
 #: gui/options/options.js:11
 msgid "Pause single player games when window loses focus"
-msgstr "Пауза на самостоятелните игри, когато прозорецът загуби фокус"
+msgstr "Самостоятелните игри ще бъдат спрени на пауза, когато прозорецът загуби фокус."
 
 #: gui/options/options.js:12
 msgid "Disable Welcome Screen"
@@ -808,7 +808,7 @@ msgstr "Изключване на приветстващия прозорец"
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr "Ако изключите този екран изцяло, може да пропуснете важни известия.\nВъпреки това, може да го стартирате изоползвайки основното меню."
+msgstr "Ако изключите този екран, може да пропуснете някои важни обявления.\nДори и изключен, винаги може да го стартирате от главното меню."
 
 #: gui/options/options.js:13
 msgid "Detailed Tooltips"
@@ -817,19 +817,19 @@ msgstr "Подробни подсказки"
 #: gui/options/options.js:13
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr "Показване на подробни подсказки за годни за трениране единици в сградите за тренировка."
+msgstr "Показване на подробни подсказки при посочване на единиците в сградите за обучаване."
 
 #: gui/options/options.js:14
 msgid "FPS Overlay"
-msgstr "FPS пласт"
+msgstr "Слой за кадри/с"
 
 #: gui/options/options.js:14
 msgid "Show frames per second in top right corner."
-msgstr "Показване на кадри в секунда в горния десен ъгъл."
+msgstr "Показване на брояч за кадрите в секунда в горния десен ъгъл."
 
 #: gui/options/options.js:15
 msgid "Realtime Overlay"
-msgstr "Слой „реално време“"
+msgstr "Слой за реалното време"
 
 #: gui/options/options.js:15
 msgid "Show current system time in top right corner."
@@ -837,7 +837,7 @@ msgstr "Показване на системното време в горния 
 
 #: gui/options/options.js:16
 msgid "Gametime Overlay"
-msgstr "Времеви пласт"
+msgstr "Слой за игралното време"
 
 #: gui/options/options.js:16
 msgid "Show current simulation time in top right corner."
@@ -845,7 +845,7 @@ msgstr "Показване на текущото симулирано време
 
 #: gui/options/options.js:17
 msgid "Ceasefire Time Overlay"
-msgstr "Пласт с времето за временно примирие"
+msgstr "Слой за времето на примирие"
 
 #: gui/options/options.js:17
 msgid "Always show the remaining ceasefire time."
@@ -858,7 +858,7 @@ msgstr "Запазване на настройките на срещата"
 #: gui/options/options.js:18
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr "Запазване и възстановяване на настройките за срещата за бързо преизползване при създаване на игра"
+msgstr "Запазване и възстановяване на настройките за срещата с цел лесно преизползване при създаване на игра."
 
 #: gui/options/options.js:22
 msgid "Prefer GLSL"
@@ -866,15 +866,15 @@ msgstr "Предпочитане на GLSL"
 
 #: gui/options/options.js:22
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr "Използвай OpenGL 2.0 shaders (препоръчително)"
+msgstr "Използване на шейдъри за OpenGL 2.0 (препоръчително)"
 
 #: gui/options/options.js:23
 msgid "Post Processing"
-msgstr "Пост обработване"
+msgstr "Последваща обработка"
 
 #: gui/options/options.js:23
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "Използване на филтри за последваща обработка на екранното изображение (висок динамичен обхват, проникване на светлината, дълбочина на полето и т.н.)"
 
 #: gui/options/options.js:24
 msgid "Shadows"
@@ -882,7 +882,7 @@ msgstr "Сенки"
 
 #: gui/options/options.js:24
 msgid "Enable shadows"
-msgstr "Сенки"
+msgstr "Включване на сенките"
 
 #: gui/options/options.js:25
 msgid "Particles"
@@ -894,19 +894,19 @@ msgstr "Включване на частиците"
 
 #: gui/options/options.js:26
 msgid "Show Sky"
-msgstr "Показване на небе"
+msgstr "Небе"
 
 #: gui/options/options.js:26
 msgid "Render Sky"
-msgstr "Рисуване на небе"
+msgstr "Изчертаване на небето."
 
 #: gui/options/options.js:27
 msgid "Smooth LOS"
-msgstr "Плавна линия на очите"
+msgstr "Плавна граница на видимост"
 
 #: gui/options/options.js:27
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr "Плавно повдигане на тъмнината и  мъглата на войната"
+msgstr "Плавно повдигане на тъмнината и мъглата на войната"
 
 #: gui/options/options.js:28
 msgid "Unit Silhouettes"
@@ -914,7 +914,7 @@ msgstr "Силуети на единиците"
 
 #: gui/options/options.js:28
 msgid "Show outlines of units behind buildings"
-msgstr "Показване на очертания на единиците зад постройки"
+msgstr "Показване на очертания на единиците когато се намират зад сграда."
 
 #: gui/options/options.js:29
 msgid "Shadow Filtering"
@@ -932,7 +932,7 @@ msgstr "Бърза и грозна вода"
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr "Използване на най-ниските възможни настройки за рисуване на вода. Това прави другите настройки без значение."
+msgstr "Използване на най-ниските възможни настройки за изчертаване на водата. Ако включите това, другите настройки биват пренебрегнати."
 
 #: gui/options/options.js:31
 msgid "HQ Water Effects"
@@ -950,11 +950,11 @@ msgstr "Истинска дълбочина на водата"
 
 #: gui/options/options.js:32
 msgid "Use actual water depth in rendering calculations"
-msgstr "Да се използва реалната дълбочина на водата при рисунъчните сметки"
+msgstr "Използване на истинската дълбочина на водата по време на изчисленията за изчертаването."
 
 #: gui/options/options.js:33
 msgid "Water Reflections"
-msgstr "Отражение на водата"
+msgstr "Водни отражения"
 
 #: gui/options/options.js:33
 msgid "Allow water to reflect a mirror image"
@@ -966,7 +966,7 @@ msgstr "Водна рефракция"
 
 #: gui/options/options.js:34
 msgid "Use a real water refraction map and not transparency"
-msgstr "Използване на истинска рефракционна карта за водата, а не прозрачност"
+msgstr "Използване на истинска карта на пречупване на светлината във водата, а не само прозрачност."
 
 #: gui/options/options.js:35
 msgid "Shadows on Water"
@@ -978,27 +978,27 @@ msgstr "Хвърляне на сенки върху водата"
 
 #: gui/options/options.js:36
 msgid "VSync"
-msgstr "VSync"
+msgstr "Вертикална синхронизация"
 
 #: gui/options/options.js:36
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Използване на вертикална синхронизация за поправка на разкъсваща се картина. ИЗИСКВА РЕСТАРТ НА ИГРАТА"
+msgstr "Използване на вертикална синхронизация за предотвратяване на разкъсваща се картина. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
 #: gui/options/options.js:37
 msgid "Limit FPS in Menus"
-msgstr "Лимитиране на FPS в менютата"
+msgstr "Ограничаване на кадрите/с в менютата"
 
 #: gui/options/options.js:37
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr "Лимитиране на FPS до 50 във всички менюта, за да се пести енергия."
+msgstr "Ограничаване на кадрите в секунда до 50 във всички менюта с цел пестене на енергия."
 
 #: gui/options/options.js:38
 msgid "Graphics quality"
-msgstr "Качество на графиките"
+msgstr "Качество на графиката"
 
 #: gui/options/options.js:38
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr "Качество на графиките. ИЗИСКВА РЕСТАРТ НА ИГРАТА"
+msgstr "Качество на графиката. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
 #: gui/options/options.js:42
 msgid "Master Gain"
@@ -1018,7 +1018,7 @@ msgstr "Сила на музиката по време на игра"
 
 #: gui/options/options.js:44
 msgid "Ambient Gain"
-msgstr "Сила на околни звуци"
+msgstr "Сила на околните звуци"
 
 #: gui/options/options.js:44
 msgid "In game ambient sound gain"
@@ -1034,7 +1034,7 @@ msgstr "Сила на звука на действията, извършвани
 
 #: gui/options/options.js:46
 msgid "UI Gain"
-msgstr "Сила на потребителския интерфейс"
+msgstr "Сила на звука на потр. интерфейс"
 
 #: gui/options/options.js:46
 msgid "UI sound gain"
@@ -1042,23 +1042,23 @@ msgstr "Сила на звука на потребителския интерф�
 
 #: gui/options/options.js:50
 msgid "Chat Backlog"
-msgstr "Запас на чата"
+msgstr "История на съобщенията"
 
 #: gui/options/options.js:50
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "Брой запазени съобщения, които да бъдат заредени при влизане в лобито"
+msgstr "Брой запазени съобщения, които да бъдат заредени при влизане в чакалнята"
 
 #: gui/options/options.js:51
 msgid "Chat Timestamp"
-msgstr "Времето на съобщенията в чата"
+msgstr "Време на съобщенията в чата"
 
 #: gui/options/options.js:51
 msgid "Show time that messages are posted in the lobby chat"
-msgstr "Показване на времето, в което са публикувани съобщенията в лоби чата"
+msgstr "Показване на времето на публикуване на съобщенията в мрежовата стая."
 
 #: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
-msgstr "Съществуват незапазени промени, сигурни ли сте, че искате да излезете?"
+msgstr "Има незапазени промени. Наистина ли искате да излезете?"
 
 #: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
@@ -1079,21 +1079,21 @@ msgstr "качване (%f%%)"
 
 #: gui/pregame/mainmenu.js:100
 msgid "upload succeeded"
-msgstr "качването успешно"
+msgstr "качването завърши успешно"
 
 #: gui/pregame/mainmenu.js:102
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr "качването се провали (%(errorCode)s)"
+msgstr "качването не беше успешно (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr "качването се провали (%(errorMessage)s)"
+msgstr "качването не беше успешно (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:112
 msgid "unknown"
-msgstr "непознат"
+msgstr "неизвестно"
 
 #: gui/pregame/mainmenu.js:156
 #, javascript-format
@@ -1102,7 +1102,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr "%(startWarning)sВнимание:%(endWarning)s Изглежда използвате графика без шейдър (fixed function). Тази опция ще бъде премахната от 0 A.D. в бъдещи версии, за да се създаде възможност за нова по-съвременна графика. Съвета ни е да замените графичната си карта с по-скорошна, поддържаща шейдър модел."
+msgstr "%(startWarning)sВнимание:%(endWarning)s Изглежда използвате графична карта без поддръжка на шейдъри (с фиксирана функция). Тази възможност ще бъде премахната от 0 A.D. в някоя бъдеща версия, за да се даде възможност за използване на по-съвременни графични функционалности. Съветът ни е да се сдобиете с по-съвременна графична карта, поддържаща шейдъри."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1110,7 +1110,7 @@ msgstr "%(startWarning)sВнимание:%(endWarning)s Изглежда изп�
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:162
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Моля, натиснете \"Прочети повече\" за повече информация или \"Добре\" за да продължите."
+msgstr "Моля, натиснете „Вижте повече“ за повече информация или „Добре“, за да продължите."
 
 #: gui/pregame/mainmenu.js:163
 msgid "WARNING!"
@@ -1127,17 +1127,17 @@ msgstr "Версия: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:289
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Сигурен ли сте, че искате да спрете 0 A.D.?"
+msgstr "Наистина ли искате да излезете от 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:289
 msgid "Confirmation"
-msgstr "Одобрение"
+msgstr "Потвърждаване"
 
 #: gui/pregame/mainmenu.js:299
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr "Редактора на сценарии не е намерен или не успя да се зареди. Вижте логовете за допълнителна информация."
+msgstr "Редакторът на сценарии не е намерен или не успя да зареди. Вижте журналите на играта за повече информация."
 
 #: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:75
 msgid "Error"
@@ -1145,12 +1145,12 @@ msgstr "Грешка"
 
 #: gui/pregame/mainmenu.js:304
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "Пускане на мултиплейър лобито. \\[ЗАБРАНЕНО ПРИ КОМПИЛАЦИЯ]"
+msgstr "Влизане в мрежовата стая. \\[ЗАБРАНЕНО ПРИ КОМПИЛИРАНЕТО]"
 
 #: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
-msgstr "Технически детайли"
+msgstr "Технически подробности"
 
 #: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
@@ -1162,17 +1162,17 @@ msgstr "Вие"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
-msgstr "Нямате същите модове, които има това повторение."
+msgstr "Вие нямате същите модификации, които това повторение използва."
 
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr "Изисква се: %(mods)s"
+msgstr "Изисква(т) се: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:53
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr "Активни: %(mods)s"
+msgstr "Включен(и): %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
@@ -1188,19 +1188,19 @@ msgstr "Добре"
 
 #: gui/replaymenu/replay_actions.js:75
 msgid "No summary data available."
-msgstr "Няма налична обобщителна информация."
+msgstr "Няма налично обобщение."
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr "Точки в края на играта."
+msgstr "Резултати в края на играта."
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
-msgstr "Изтриване на повторение"
+msgstr "Изтриване на повторението"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure to delete this replay permanently?"
-msgstr "Сигурни ли сте, че искате да изтриете това повторение завинаги?"
+msgstr "Наистина ли искате да изтриете това повторение завинаги?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
@@ -1250,7 +1250,7 @@ msgstr[1] "> %(min)s минути"
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr "%(min)s - %(max)s минути"
+msgstr "%(min)s – %(max)s минути"
 
 #: gui/replaymenu/replay_menu.js:235
 msgid "yyyy-MM-dd HH:mm"
@@ -1291,7 +1291,7 @@ msgstr "Няма отбор"
 #: gui/replaymenu/replay_menu.js:350
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "Екип %(team)s"
+msgstr "Отбор %(team)s"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:27
 msgid "No saved games found"
@@ -1306,35 +1306,35 @@ msgstr "Запазената игра може да не е съвместима
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr "Нуждае се от версия %(requiredVersion)s на 0 A.D., докато Вие сте с %(currentVersion)s."
+msgstr "Изисква версия %(requiredVersion)s на 0 A.D., а Вашата е %(currentVersion)s."
 
 #: gui/savedgames/load.js:61
 msgid "It needs an older version of 0 A.D."
-msgstr "Това изисква по-стара версия на 0 A.D."
+msgstr "Изисква по-стара версия на 0 A.D."
 
 #: gui/savedgames/load.js:65
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr "Това изисква 0 A.D savegame версия %(requiredVersion)s, докато вие имате savegame le,irs %(currentVersion)s."
+msgstr "Изисква версия на запазената игра %(requiredVersion)s, а Вашата е %(currentVersion)s."
 
 #: gui/savedgames/load.js:75
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr "Не се нуждае от никакви модове, докато Вие сте с \"%(currentMod)s\"."
+msgstr "Не изисква никакви модификации, а Вие използвате „%(currentMod)s“."
 
 #: gui/savedgames/load.js:79
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr "Нуждае се от мод \"%(requiredMod)s\", докато Вие сте без модове."
+msgstr "Изисква модификацията „%(requiredMod)s“, а Вие нямате включени модификации."
 
 #: gui/savedgames/load.js:83
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr "Нуждае се от мод \"%(requiredMod)s\", докато Вие сте с \"%(currentMod)s\"."
+msgstr "Изисква модификацията „%(requiredMod)s“, а Вие  използвате „%(currentMod)s“."
 
 #: gui/savedgames/load.js:88
 msgid "Do you still want to proceed?"
@@ -1344,11 +1344,11 @@ msgstr "Все още ли желаете да продължите?"
 #: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr "\"%(label)s\""
+msgstr "„%(label)s“"
 
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "Запазената игра ще бъде изтрита завинаги, сигурни ли сте?"
+msgstr "Запазената игра ще бъде изтрита завинаги, сигурен/на ли сте?"
 
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "DELETE"
@@ -1356,7 +1356,7 @@ msgstr "ИЗТРИВАНЕ"
 
 #: gui/savedgames/save.js:58
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "Запазената игра ще бъде презаписана завинаги, сигурни ли сте?"
+msgstr "Запазената игра ще бъде презаписана, сигурен/на ли сте?"
 
 #: gui/savedgames/save.js:58
 msgid "OVERWRITE SAVE"
@@ -1378,7 +1378,7 @@ msgstr "Бързина на събиране:"
 #: gui/structree/load.js:158
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr "%(val1)s към %(val2)s"
+msgstr "%(val1)s до %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
@@ -1388,7 +1388,7 @@ msgstr "Име на играч"
 
 #: gui/summary/layout.js:5
 msgid "Economy score"
-msgstr "Икономични точки"
+msgstr "Точки за икономика"
 
 #: gui/summary/layout.js:6
 msgid "Military score"
@@ -1396,11 +1396,11 @@ msgstr "Военни точки"
 
 #: gui/summary/layout.js:7
 msgid "Exploration score"
-msgstr "Разузнавателни точки"
+msgstr "Точки за разузнаване"
 
 #: gui/summary/layout.js:8
 msgid "Total score"
-msgstr "Общи точки"
+msgstr "Общ резултат"
 
 #: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
 msgid "Total"
@@ -1412,15 +1412,15 @@ msgstr "Къщи"
 
 #: gui/summary/layout.js:24
 msgid "Economic"
-msgstr "Икономично"
+msgstr "Икономически"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
-msgstr "Аванпостове"
+msgstr "Наблюдателници"
 
 #: gui/summary/layout.js:26
 msgid "Military"
-msgstr "Военно"
+msgstr "Военни"
 
 #: gui/summary/layout.js:27
 msgid "Fortresses"
@@ -1432,11 +1432,11 @@ msgstr "Градски центрове"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
-msgstr "Чудота"
+msgstr "Чудеса"
 
 #: gui/summary/layout.js:32
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "Статистика за постройки (изградени / изгубени / унищожени)"
+msgstr "Статистика за сградите (построени / загубени / унищожени)"
 
 #: gui/summary/layout.js:50
 msgid "Infantry"
@@ -1464,7 +1464,7 @@ msgstr "Търговци"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "Статистика на Единици (Обучени / Изгубени / Убити)"
+msgstr "Статистика за единиците (обучени / загубени / убити)"
 
 #: gui/summary/layout.js:76
 msgid "Food"
@@ -1472,11 +1472,11 @@ msgstr "Храна"
 
 #: gui/summary/layout.js:77
 msgid "Wood"
-msgstr "Дърво"
+msgstr "Дърва"
 
 #: gui/summary/layout.js:78
 msgid "Stone"
-msgstr "Камък"
+msgstr "Камъни"
 
 #: gui/summary/layout.js:79
 msgid "Metal"
@@ -1484,7 +1484,7 @@ msgstr "Метал"
 
 #: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
-msgstr "Дарове (Дадени / Взети)"
+msgstr "Дарове (изпратени / получени)"
 
 #: gui/summary/layout.js:82
 msgid "Treasures collected"
@@ -1496,7 +1496,7 @@ msgstr "Плячка"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
-msgstr "Статистика на Ресурси (Събрани / Изчерпани)"
+msgstr "Статистика за ресурсите (събрани / изразходени)"
 
 #: gui/summary/layout.js:103
 msgid "Food exchanged"
@@ -1504,11 +1504,11 @@ msgstr "Разменена храна"
 
 #: gui/summary/layout.js:104
 msgid "Wood exchanged"
-msgstr "Разменено дърво"
+msgstr "Разменена дървесина"
 
 #: gui/summary/layout.js:105
 msgid "Stone exchanged"
-msgstr "Разменен камък"
+msgstr "Разменени камъни"
 
 #: gui/summary/layout.js:106
 msgid "Metal exchanged"
@@ -1516,17 +1516,17 @@ msgstr "Разменен метал"
 
 #: gui/summary/layout.js:107
 msgid "Barter efficiency"
-msgstr "Ефикасност на бартера"
+msgstr "Полза от размените"
 
 #: gui/summary/layout.js:108
 msgid "Trade income"
-msgstr "Печалба от търговията"
+msgstr "Приход от търговия"
 
 #: gui/summary/layout.js:124
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr "Съотношение на\nвегетарианството"
+msgstr "Съотношение на\nвегетарианците"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
@@ -1546,11 +1546,11 @@ msgstr "Разузнаване на\nкартата"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr "Апогей"
+msgstr "На върха"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr "На финала"
+msgstr "Накрая"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
@@ -1563,12 +1563,12 @@ msgstr "Общо за отбора"
 #: gui/summary/summary.js:136
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr "Изминало време: %(time)s"
+msgstr "Игрално време: %(time)s"
 
 #: gui/summary/summary.js:138
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr "%(mapName)s - %(mapType)s"
+msgstr "%(mapName)s — %(mapType)s"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -1576,7 +1576,7 @@ msgstr "Цивилизации"
 
 #: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
-msgstr "Избор на Цивилизации"
+msgstr "Избор на цивилизация"
 
 #: gui/civinfo/civinfo.xml:(caption):119
 #: gui/structree/structree.xml:(caption):119
@@ -1600,7 +1600,7 @@ msgstr "Език:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr "Локализация:"
+msgstr "Идентификатор:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
@@ -1610,7 +1610,7 @@ msgstr "Отказ"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "Подробни"
+msgstr "Разширени"
 
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
@@ -1623,19 +1623,19 @@ msgstr "Страна:"
 
 #: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr "Скрипт:"
+msgstr "Писменост:"
 
 #: gui/locale/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
-msgstr "Вариант (неизползвано):"
+msgstr "Вариант (не се ползва):"
 
 #: gui/locale/locale_advanced.xml:(caption):48
 msgid "Keywords (unused):"
-msgstr "Ключови думи (неизползвано):"
+msgstr "Ключови думи (не се ползват):"
 
 #: gui/locale/locale_advanced.xml:(caption):55
 msgid "Resulting locale:"
-msgstr "Изведена локализация:"
+msgstr "Краен идентификатор:"
 
 #: gui/locale/locale_advanced.xml:(caption):60
 msgid "Dictionary files used:"
@@ -1643,18 +1643,18 @@ msgstr "Използвани речникови файлове:"
 
 #: gui/locale/locale_advanced.xml:(caption):70
 msgid "Auto detect"
-msgstr "Автоматично разпознаване"
+msgstr "Авт. разпознаване"
 
 #: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr ""
+msgstr "Незадължителен четирибуквен код на писмеността, следващ езиковия код (според ISO 15924)."
 
 #: gui/locale/locale_advanced.xml:(tooltip):44
 #: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
-msgstr "Все още не е имплементирано."
+msgstr "Все още не е реализирано."
 
 #: gui/options/options.xml:(caption):18
 msgid "Game Options"
@@ -1662,7 +1662,7 @@ msgstr "Настройки на играта"
 
 #: gui/options/options.xml:(caption):22
 msgid "General"
-msgstr "Главни"
+msgstr "Основни"
 
 #: gui/options/options.xml:(caption):34
 msgid "Graphics Settings"
@@ -1674,7 +1674,7 @@ msgstr "Звукови настройки"
 
 #: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
-msgstr "Лоби настройки"
+msgstr "Настройки на мрежовата стая"
 
 #: gui/options/options.xml:(caption):69
 msgid "Revert"
@@ -1682,7 +1682,7 @@ msgstr "Връщане"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
-msgstr "Запис"
+msgstr "Запазване"
 
 #: gui/options/options.xml:(caption):79
 msgid "Quit"
@@ -1690,25 +1690,25 @@ msgstr "Изход"
 
 #: gui/options/options.xml:(tooltip):70
 msgid "Revert to previous saved settings"
-msgstr "Връщане на предишни запаметени настройки"
+msgstr "Връщане на предишните запазени настройки."
 
 #: gui/options/options.xml:(tooltip):75
 msgid "Save changes"
-msgstr "Запаметяване на промени"
+msgstr "Запазване на промените."
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"
-msgstr "Незапаметените настройки афектират само тази сесия"
+msgstr "Незапазените настройки ще са в сила само за това пускане на играта."
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
-msgstr "Помогнете да подобрим 0 A.D.!"
+msgstr "Помогнете ни да подобрим 0 A.D.!"
 
 #: gui/pregame/mainmenu.xml:64
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "Можете автоматично да ни изпратите анонимна обратна връзка, която ще ни помогне да оправим грешки и да подобрим производителността и съвместимостта."
+msgstr "Можете да ни изпращате автоматична анонимна информация, която ще ни помогне в поправянето на грешки и подобряването на производителността и съвместимостта."
 
 #: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
@@ -1716,21 +1716,21 @@ msgstr "Благодарим Ви, че помагате за подобрява
 
 #: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
-msgstr "Анонимната обратна връзка е включена."
+msgstr "Изпращането на анонимна информация е включено."
 
 #: gui/pregame/mainmenu.xml:94
 msgid "Status: $status."
-msgstr "Статус: $status."
+msgstr "Състояние: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr "Алфа XIX: Силепс"
+msgstr "Алфа XIX: Зевгма"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "ВНИМАНИЕ: Това е версия на играта, която се намира в разработка. Много функционалности липсват."
+msgstr "ВНИМАНИЕ: Това е версия на играта, която е в състояние на разработка. Много от функционалностите липсват."
 
 #: gui/pregame/mainmenu.xml:539
 msgid "Get involved at: play0ad.com"
@@ -1738,11 +1738,11 @@ msgstr "Включете се на: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
-msgstr "Включете обратната връзка"
+msgstr "Включване"
 
 #: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
-msgstr "Изключете обратната връзка"
+msgstr "Изключване"
 
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
@@ -1776,7 +1776,7 @@ msgstr "Създаване на игра"
 
 #: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
-msgstr "Игрално лоби"
+msgstr "Мрежова стая"
 
 #: gui/pregame/mainmenu.xml:(caption):322
 msgid "Options"
@@ -1796,7 +1796,7 @@ msgstr "Приветстващ екран"
 
 #: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
-msgstr "Избор на модове"
+msgstr "Избор на модификации"
 
 #: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
@@ -1820,15 +1820,15 @@ msgstr "Изход"
 
 #: gui/pregame/mainmenu.xml:(caption):549
 msgid "Help with the Translation!"
-msgstr "Помогнете с превеждането!"
+msgstr "Помогнете с превода!"
 
 #: gui/pregame/mainmenu.xml:(caption):561
 msgid "Website"
-msgstr "Уебсайт"
+msgstr "Уеб сайт"
 
 #: gui/pregame/mainmenu.xml:(caption):573
 msgid "Chat"
-msgstr "Чат"
+msgstr "Разговор"
 
 #: gui/pregame/mainmenu.xml:(caption):585
 msgid "Report a Bug"
@@ -1840,7 +1840,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/mainmenu.xml:(tooltip):150
 msgid "Open the 0 A.D. Game Manual."
-msgstr "Отвори игралния наръчник на 0 A.D."
+msgstr "Отваряне на игралния наръчник на 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -1848,7 +1848,7 @@ msgstr "Показване на структурното дърво на цив�
 
 #: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr "Научете за многото цивилизации срещащи се в 0 A.D."
+msgstr "Научете за различните цивилизации в 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):209
 msgid "Click here to start a new single player game."
@@ -1858,11 +1858,11 @@ msgstr "Натиснете тук за нова самостоятелна иг�
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr "Преживейте историята през исторически военни кампании. \\[ВСЕ ОЩЕ НЕ Е ИМПЛЕМЕНТИРАНО]"
+msgstr "Преживейте историята чрез историческите военни кампании. \\[ВСЕ ОЩЕ НЕ Е РЕАЛИЗИРАНО]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
-msgstr "Натиснете тук за да заредите запазена игра."
+msgstr "Натиснете тук, за да заредите запазена игра."
 
 #: gui/pregame/mainmenu.xml:(tooltip):263
 msgid "Joining an existing multiplayer game."
@@ -1874,7 +1874,7 @@ msgstr "Създаване на мрежова игра.\\n\\nИзисква о�
 
 #: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
-msgstr "Стартиране на мултиплейърното лоби."
+msgstr "Влизане в мрежовата стая."
 
 #: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
@@ -1882,17 +1882,17 @@ msgstr "Промяна на настройките на играта."
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
-msgstr "Избор на език за играта."
+msgstr "Избор на езика за играта."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr "Преизпълнение на предишни игри."
+msgstr "Гледане на записи от изиграните игри."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Отваряне на редактора за сценарии Atlas в нов прозорец. Можете да го пуснете по - надеждно, като стартирате играта с командния параметър \"-editor\"."
+msgstr "Отваряне на редактора за сценарии Atlas в нов прозорец. Можете да го пуснете по-надеждно, като стартирате играта с командния параметър „-editor“."
 
 #: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -1900,13 +1900,13 @@ msgstr "Показване на приветстващия прозорец. П�
 
 #: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
-msgstr "Избор на модове."
+msgstr "Изберете кои модификации да използвате."
 
 #: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr "Научете се да играете, открийте технологичните дървета и историята зад цивилизациите"
+msgstr "Научете се да играете, разучете технологичните дървета и разберете историята на цивилизациите."
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
@@ -1918,33 +1918,33 @@ msgstr "Сражавайте се с един или повече хора в м
 
 #: gui/pregame/mainmenu.xml:(tooltip):498
 msgid "Game options and scenario design tools."
-msgstr "Настройки на играта и инструменти за дизайн на сценарии."
+msgstr "Настройки на играта и инструменти за създаване на сценарии."
 
 #: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
-msgstr "Излиза от играта."
+msgstr "Изход от играта."
 
 #: gui/pregame/mainmenu.xml:(tooltip):550
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Натиснете, за да се отвoри страницата за превеждане на 0 A.D. във Вашия браузър."
+msgstr "Натиснете, за да отворите страницата за превод на 0 A.D. в браузъра си."
 
 #: gui/pregame/mainmenu.xml:(tooltip):562
 msgid "Click to open play0ad.com in your web browser."
-msgstr "Натиснете за да отворите play0ad.com във Вашия браузър."
+msgstr "Натиснете, за да отворите play0ad.com в браузъра си."
 
 #: gui/pregame/mainmenu.xml:(tooltip):574
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr "Натиснете за да отворите 0 A.D. IRC чата във Вашия браузър (#0ad в webchat.quakenet.org)"
+msgstr "Натиснете, за да отворите IRC чата на 0 A.D. в браузъра си. (#0ad в webchat.quakenet.org)"
 
 #: gui/pregame/mainmenu.xml:(tooltip):586
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Натиснете, за да посетите 0 A.D. Trac, за да съобщите за краш или грешка."
+msgstr "Натиснете, за да посетите страницата Trac на 0 A.D., където можете да докладвате за проблем, срив или грешка."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
-msgstr "Повтаряне на игри"
+msgstr "Гледане на записи"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
@@ -1982,11 +1982,11 @@ msgstr "Изтриване"
 #: gui/replaymenu/replay_menu.xml:(caption):228
 #: gui/summary/summary.xml:(caption):25
 msgid "Summary"
-msgstr "Резултат"
+msgstr "Обобщение"
 
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Start Replay"
-msgstr "Стартиране на повторението"
+msgstr "Пускане на повторението"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
@@ -2024,7 +2024,7 @@ msgstr "Зареждане"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
-msgstr "Запис на игра"
+msgstr "Запазване на игра"
 
 #: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
@@ -2040,7 +2040,7 @@ msgstr "Показване на това съобщение в бъдеще"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
-msgstr "Познати проблеми (Интернет)"
+msgstr "Известни проблеми (в Интернет)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
@@ -2052,11 +2052,11 @@ msgstr "Тренировъчни единици"
 
 #: gui/summary/summary.xml:(caption):65
 msgid "Score"
-msgstr "Точки"
+msgstr "Резултат"
 
 #: gui/summary/summary.xml:(caption):72
 msgid "Buildings"
-msgstr "Постройки"
+msgstr "Сгради"
 
 #: gui/summary/summary.xml:(caption):79
 msgid "Units"
@@ -2076,7 +2076,7 @@ msgstr "Разни"
 
 #: gui/summary/summary.xml:(caption):161
 msgid "Continue"
-msgstr "Нататък"
+msgstr "Напред"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -2091,25 +2091,25 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]Тази игра е все още в разработка. Съдържа липсващи функции и бъгове."
+msgstr "[imgleft=\"constructionIcon\"]Тази игра е все още в разработка. Някои функционалности липсват и има някои проблеми."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]Играта може да има проблеми с производителността, особено при големи карти и много единици."
+msgstr "[imgleft=\"iconLag\"]Играта може да няма добра производителност, особено при големи карти и много единици."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr "[imgleft=\"iconMap\"]Тази версия съдържа нов алгоритъм за изчисляване на пътя, който увеличава производителността, но може да въведе нови грешки."
+msgstr "[imgleft=\"iconMap\"]Тази версия съдържа нов алгоритъм за търсене на път, който подобрява производителността, но може да предизвика нови грешки."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Формациите все още се разработват, но можете по желание да ги включвате или изключвате."
+msgstr "[imgleft=\"iconFormation\"]Формациите все още се разработват, но можете да ги включвате или изключвате когато пожелаете."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -2120,45 +2120,45 @@ msgid ""
 "- Build anywhere on the map, even in enemy territory. Good for building a "
 "secret base behind enemy lines or to consolidate gains within enemy "
 "territory."
-msgstr ""
+msgstr "— Може да бъде построен навсякъде по картата, дори и на вражеска територия. Подходящ за изграждане на тайна база зад гърба на врага или за затвърждаване на напредъка във вражеската територия."
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr ""
+msgstr "— Преминава под влиянието на владетеля на територията, ако е построен в не-съюзническа такава."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "— Строи обсадни оръжия и обучава граждани-воини."
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "— Поставете до 40 единици на гарнизон, за да се лекуват бавно и да защитават военния лагер от нападения и преминаване под чуждо влияние."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr "КАЗАРМИ"
+msgstr "КАЗАРМА"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "— Обучава граждани-воини. Някои фракции могат да отключат и обучаването на шампиони."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr ""
+msgstr "— Проучва различни военни технологии според фракцията."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Построй една рано, за да тренираш граждани-воини докато надграждаш селището си."
+msgstr "— Постройте казарма по-рано, за да обучавате граждани-воини докато изграждате селището си."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "— Постройте я в по-предна база, за да подкрепяте нападението си със свежи войници."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -2166,37 +2166,37 @@ msgstr "КОВАЧНИЦА"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr "- Проучвай структури за всички фракции."
+msgstr "— Сграда за проучвания за всички фракции."
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr "- Проучвай оръжия и броня за своите единици."
+msgstr "— Проучва подобрения на оръжията и броните на единиците Ви."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "— Поставете гражданин-воин на гарнизон за по-бързо проучване (ВСЕ ОЩЕ НЕ Е РЕАЛИЗИРАНО)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr ""
+msgstr "СВЕЩЕН ОТРЯД НА КАРТАГЕН"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "— Копиеносци шампиони и конни копиеносци шампиони на Картаген."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr ""
+msgstr "— И двата вида единици могат да бъдат обучавани в храма, вместо в крепостта, както повечето професионалисти."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "— Използвайте копиеносците като тежка артилерия срещу конници. Използвайте конницата като ударна сила срещу обсадни оръжия и стрелци."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -2204,63 +2204,63 @@ msgstr "КАТАПУЛТИ"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr "- Далекобойни обсадни оръжия, който са добри срещу постройки."
+msgstr "— Далекобойни обсадни оръжия, който са подходящи за нападение на сгради."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "- May upgrade to flaming projectiles for extra effectiveness against "
 "buildings and units."
-msgstr "- Може да се надгради към горящи снаряди за допълнителна ефективност срещу постройки и единици."
+msgstr "— Могат да се подобряват с горящи снаряди за повече ефикасност срещу сгради и единици."
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
-msgstr "- Скъп и бавен."
+msgstr "— Скъпи и бавни."
 
 #: gui/text/tips/catapults.txt:8
 msgid ""
 "- Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr "- Пакетирай в колички за движение и разпакетирай в стационарни машини за атака!"
+msgstr "— Могат да бъдат събрани като каруци за придвижване и след това да бъдат разпънати в неподвижни машини за нападение!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr "КЕЛТСКА ВОЕННА ЛОДКА"
+msgstr "КЕЛТСКА ВОЕННА БАРЖА"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
-msgstr "- Среден клас \"тиремов\" военен кораб."
+msgstr "— Среден клас триера."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "- The only ship of its kind."
-msgstr "- Кораб единствен по рода си."
+msgstr "— Единствен по рода си кораб."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- Не може да блъска както другите тиреми, но има повече здраве и броня."
+msgstr "— Не може да блъска с нос како другите триери, но има повече здраве и броня."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
-msgstr "- Може да транспортира до 40 единици по вода."
+msgstr "— Може да транспортира до 40 единици по вода."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "ГРАДСКИ ЦЕНТРОВЕ"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr "- \"Основата\" на новата ти колония. "
+msgstr "— „Основата“ на новата Ви колония."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
-msgstr "- Вземай големи териториални площи."
+msgstr "— Завземат голяма територия."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr "- Може да бъде строен в приятелска и неутрална територия."
+msgstr "— Може да бъдат строени в приятелска и неутрална територия."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
-msgstr ""
+msgstr "— Обучават жени и основни граждани-воини."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -2268,17 +2268,17 @@ msgstr "ПОСОЛСТВА"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr "- Специални \"Бараки\" достъпни за картагенската фракция."
+msgstr "— Специални „казарми“ на картагенската фракция."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr "- Тренирай наемници от всички етично-базирани посолства."
+msgstr "— Обучават наемници от всички етнически-ориентирани посолства."
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
 "- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
 "Metal cost."
-msgstr "- В цената на наемниците \"граждани-воини\" Храната е конвертирана в Метал."
+msgstr "— В цената на наемниците „граждани-воини“, храната е заменена от метал."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -2286,21 +2286,21 @@ msgstr "РИБОЛОВ"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "— Ловете риба в изобилните морета."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr ""
+msgstr "— Рибарските лодки доставят голямо количество храна при всяко завръщане."
 
 #: gui/text/tips/fishing.txt:6
 msgid ""
 "- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
 "rate."
-msgstr ""
+msgstr "— Поставете помощна единица на гарнизон на борда, за да удвоите бързината на улавянето на риба на рибарската лодка."
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- Внимателно! Рибата не е безкраен ресурс!"
+msgstr "— Внимавайте! Рибата не е безкраен ресурс!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -2308,118 +2308,118 @@ msgstr "КРЕПОСТ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
-msgstr "- Крепостта обикновено е най-силната сграда на всяка фракция."
+msgstr "— Крепостта обикновено е най-силната сграда на всяка фракция."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "— Обучава силни единици, като шампиони и герои, както и строи обсадни оръжия."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
-msgstr "- Дава популационен бонус"
+msgstr "— Дава допълнение към населението."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "— Поставете войници на гарнизон вътре, за да добавите повече огнева мощ към защитата ѝ."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr "РЕСУРСНО СЪБИРАНЕ"
+msgstr "СЪБИРАНЕ НА РЕСУРСИ"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr ""
+msgstr "— Използвайте граждани-воини и жени, за да събирате ресурси."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr ""
+msgstr "— Жените са по-добри в земеделието и събирането на храна."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
-msgstr ""
+msgstr "— Гражданите-воини са по-добри миньори."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
-msgstr ""
+msgstr "— Конните граждани-воини са по-добри в лова."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr ""
+msgstr "— Колкото по-високо е нивото на един гражданин-воин (напреднал, елитен), толкова по-добре се бие, но и става по-неефективен в събирането на ресурси."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
-msgstr ""
+msgstr "ИФИКРАТ"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
 "- The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "— Атинският генерал, който реформирал атинската войска, така че да бъде по-бърза и маневрена."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "- Units in his formation are faster and stronger."
-msgstr ""
+msgstr "— Единиците са по-бързи и силни, когато са в тази формация."
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr ""
+msgstr "— Стрелците се движат по-бързо, докато той е жив"
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "НАБЛЮДАТЕЛНИЦИ"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "— Могат да бъдат построени на неутрална територия и имат голям обхват на видимост."
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr ""
+msgstr "— Евтини, по 80 дървесина."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr ""
+msgstr "— Строят се бързо, но са слаби."
 
 #: gui/text/tips/outposts.txt:8
 msgid ""
 "- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "— Поставете единица на гарнизон вътре, за да не преминат в неутрално владение."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr "ПАЛИСАДНИ СТЕНИ"
+msgstr "ПАЛИСАДИ"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
-msgstr "- Бърза и евтина дървена стена, достъпна от всички фракции."
+msgstr "— Бърза строящи се, евтини дървени стени, налични за всички фракции."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr "- Повечето фрактции имат достъп до тях във Селищната Фаза."
+msgstr "— Повечето фракции могат да ги строят още в селищната фаза."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
 "- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
 " by siege weapons."
-msgstr "- Може да бъдат атакувани от вражески воини, за разлика от Градски Стени, които могат да бъдат атакувани само от обсадни оръжия."
+msgstr "— Може да бъдат нападани от вражески воини, за разлика от градските стени, които могат да бъдат нападани само от обсадни оръжия."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "ПЕРИКЪЛ"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr ""
+msgstr "— Най-важният атински политик на 5 век пр.н.е."
 
 #: gui/text/tips/pericles.txt:4
 msgid "- Buildings construct faster within his range."
-msgstr ""
+msgstr "— Сградите в обхвата му се строят по-бързо."
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr ""
+msgstr "— Храмовете са по-евтини докато той е жив."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -2427,194 +2427,194 @@ msgstr "ПЕРСИЙСКА АРХИТЕКТУРА"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr "- Специални Технологии за Персийците."
+msgstr "— Специална технология за персийците."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
-msgstr "- Всички Персийски постройки са +25% по-здрави."
+msgstr "— Всички персийски сгради са +25% по-здрави."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "— В следствие на това, времето за строеж се увеличава +20%."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
 "- Persians also have access to a great number of structural & defensive "
 "technologies."
-msgstr ""
+msgstr "— Персийците също имат достъп до голям брой сградни и защитни технологии."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr ""
+msgstr "ПИКОНОСЦИ"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "— С тежки брони, бавни. Слаба атака."
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "— Използвайте ги срещу конници или други пехотинци, за да ги задържите на едно място"
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr ""
+msgstr "— Налични за: македонци, селевкиди и птолемеи."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "ГОЛЯМ ВОЕНЕН КОРАБ"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "— Най-големият стандартен военен кораб. Наличен за: римляни, картагенци, птолемеи и селевкиди."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Garrison ballistas to increase fire power."
-msgstr ""
+msgstr "— Качете балисти на борда за допълнителна огнева мощ."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "— Може да атакува вражеските кораби с нос като таран, което може да ги потопи (ВСЕ ОЩЕ НЕ Е РЕАЛИЗИРАНО)."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "БИОМ НА САВАНА"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "— Предимно равнинен, с малко водопои и оголени скали. "
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "— Изобилие на стадни животни за лов."
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
-msgstr ""
+msgstr "— Големи залежи на всички видове изкопаеми ресурси."
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "— Дърветата са малко, но са от вида баобаб, от който се добива много дървесина."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr "ОТБРАНИТЕЛНИ КУЛИ"
+msgstr "ЗАЩИТНИ КУЛИ"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "— Самостоятелни кули, подходящи за защита на големи пространства."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr ""
+msgstr "— Обикновено струват 100 дървесина и 100 камък. Иберийските защитни кули, обаче, струват 300 камък (тъй като са по-здрави)."
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr "- Притежава далекобойна атака, която се увеличава за всяка гарнизирана единица."
+msgstr "— Могат да стрелят, като атаката се увеличава с всяка единица, поставена на гарнизон вътре."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr "SPARTIATES"
+msgstr "СПАРТИАТИ"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
-msgstr "- Най-силната пехота в играта."
+msgstr "— Най-силната пехотна единица в играта."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr ""
+msgstr "— Пехотните шампиони са налични за спартанската фракция."
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "— Използвайте ги за посичане на вражеската конница или като ударна сила, която да подкрепя обикновената Ви пехота."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr ""
+msgstr "— Използвайте формацията „фаланга“ за допълнителна защита."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr ""
+msgstr "КОПИЕНОСЦИ"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "— Основната пехотна близкобойна единица за всички фракции в играта."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for a 2x attack bonus."
-msgstr "- Използван срещу конница за 2x бонус атака."
+msgstr "— Има удвоена атака срещу конница."
 
 #: gui/text/tips/spearmen.txt:6
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr ""
+msgstr "— Сносната разсичаща атака и добрата щурмуваща такава ги правят добри войници за първа линия."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr "- Контрирани са от далекобойни единици и мечоносци, така че е хубаво да бъдат придружавани от прашкари или конница."
+msgstr "— Контрирани са от далекобойните единици и единиците с мечове, така че е добре да бъдат придружавани от прашкари или конница."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
-msgstr ""
+msgstr "СТОА"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "— Специална начална сграда за гръцките фракции."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr "- Дава +10 население."
+msgstr "— Дава +10 население."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "— Налична е само на някои карти."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
-msgstr ""
+msgstr "— Може да бъде открита в редактора за персонализирани сценарии Atlas."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr ""
+msgstr "СКЛАДОВЕ"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr ""
+msgstr "— Евтино място за събиране на нехранителни ресурси (дървесина, камък и метал)."
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "— Проучва технологии за подобряване на събираческите възможности на гражданите Ви"
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
-msgstr ""
+msgstr "ФОРМАЦИЯ СИНТАГМА"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr ""
+msgstr "— Формация за пехотна войска от пиконосци."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
-msgstr ""
+msgstr "— Формацията е бавна и тромава."
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
-msgstr ""
+msgstr "— Почти непробиваема отпред."
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr ""
+msgstr "— Податлива на нападение в гръб."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -2622,119 +2622,119 @@ msgstr "ХРАМОВЕ"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "— Сграда от фазата „малък град“."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "-Наеми Лечители, който да лекуват войните на бойното поле."
+msgstr "— Обучава лечители, които да лекуват войниците на бойното поле."
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- Проучи лечителство, религиозна отдаденост и културни телхнологии."
+msgstr "— Проучва лечение, религиозна отдаденост и различни културни технологии."
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."
-msgstr "- Неговата \"аура\" лекува единиците в близост."
+msgstr "— „Аурата“ им лекува околните единици."
 
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- Сложи наранените единици в гарнизон за по-бързо лечение."
+msgstr "— Поставете ранените единици на гарнизон вътре за по-бързо лечение."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr ""
+msgstr "СВИВАНЕ НА ТЕРИТОРИЯТА"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "— Това се случва когато сградите не са свързани със съюзнически градски център."
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr ""
+msgstr "— Процесът може да бъде забавен или обърнат чрез поставяне на гарнизон в сградата."
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "— Когато свиването приключи, сградата ще премине във владение на най-влиятелния ѝ съсед."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr ""
+msgstr "ТЕМИСТОКЪЛ"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "— Атински герой, който водел гърците във най-великите морски битки при Артемизия и Саламин."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr ""
+msgstr "— Всички кораби се строят по-бързо докато е жив."
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."
-msgstr ""
+msgstr "— Корабът, на който се намира той, се движи много по-бързо."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "ТРИЕРА"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
-msgstr "- Средният военен кораб"
+msgstr "— Средният военен кораб."
 
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "— Наличен за римляните, картагенците, елинските фракции и персийците."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "— Подходящ за транспорт и битки."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "— Качете войници на борда, за да увеличите огневата мощ."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "— Качете катапулт на борда за далекобойна обсадна атака (ВСЕ ОЩЕ НЕ Е РЕАЛИЗИРАНО)."
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "— Способен на опустошително челно сблъскване с друг кораб, което трябва да се презареди след всяко използване (ВСЕ ОЩЕ НЕ Е РЕАЛИЗИРАНО)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
-msgstr ""
+msgstr "ВИРИАТ"
 
 #: gui/text/tips/viriato.txt:2
 msgid "- Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "— Иберийски герой от племето Лузитани."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr ""
+msgstr "— Поне 7 похода срещу римляните по време на „Лузитанските войни“ от 147 до 139г. пр.н.е. "
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "— Движи се бързо и може да сменя меча си с огнено копие за хвърляне."
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr ""
+msgstr "— Неговата „аура“ е „партизанска тактика“, която позволява на близките иберийски единици да нападат противниците си от засада."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -2742,21 +2742,21 @@ msgstr "БОЙНИ СЛОНОВЕ"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "— Огромни животни от Африка и Индия, обучени за война."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr ""
+msgstr "— Струват много храна и метал, но са много силни. Най-силни са срещу сгради и конница."
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr ""
+msgstr "— Податливи на пехотни стрелци."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr ""
+msgstr "— Налични за: маури, птолемеи, селевкиди и картагенци."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -2764,16 +2764,16 @@ msgstr "КИТОВЕ"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "— Океански ресурс."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr "- 2000 храна."
+msgstr "— 2000 храна."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "— Месото може да бъде събрано от рибарските лодки, след като китът е бил убит."
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "— Обикалят из океаните на играта и бягат, когато бъдат нападнати."

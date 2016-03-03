@@ -4,14 +4,6 @@
     <Square width="24.0" depth="44.0"/>
     <Height>12.0</Height>
   </Footprint>
-  <GarrisonHolder>
-    <Max>30</Max>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
-    <List datatype="tokens">Support Infantry Cavalry</List>
-    <BuffHeal>3</BuffHeal>
-    <LoadingRange>2</LoadingRange>
-  </GarrisonHolder>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Aedes Iovis Optimi Maximi</SpecificName>

@@ -80,7 +80,7 @@ LIB_API Status GetDirectoryEntries(const OsPath& path, CFileInfos* files, Direct
 
 // same as boost::filesystem::create_directories, except that mkdir is invoked with
 // <mode> instead of 0755.
-LIB_API Status CreateDirectories(const OsPath& path, mode_t mode);
+LIB_API Status CreateDirectories(const OsPath& path, mode_t mode, bool breakpoint = true);
 
 LIB_API Status DeleteDirectory(const OsPath& dirPath);
 

@@ -130,7 +130,7 @@ Status GetDirectoryEntries(const OsPath& path, CFileInfos* files, DirectoryNames
 }
 
 
-Status CreateDirectories(const OsPath& path, mode_t mode)
+Status CreateDirectories(const OsPath& path, mode_t mode, bool breakpoint)
 {
 	if(path.empty())
 		return INFO::OK;
@@ -146,7 +146,7 @@ Status CreateDirectories(const OsPath& path, mode_t mode)
 	// If we were passed a path ending with '/', strip the '/' now so that
 	// we can consistently use Parent to find parent directory names
 	if(path.IsDirectory())
-		return CreateDirectories(path.Parent(), mode);
+		return CreateDirectories(path.Parent(), mode, breakpoint);
 
 	RETURN_STATUS_IF_ERR(CreateDirectories(path.Parent(), mode));
 
@@ -154,7 +154,10 @@ Status CreateDirectories(const OsPath& path, mode_t mode)
 	if(wmkdir(path, mode) != 0)
 	{
 		debug_printf("CreateDirectories: failed to mkdir %s (mode %d)\n", path.string8().c_str(), mode);
-		WARN_RETURN(StatusFromErrno());
+		if (breakpoint)
+			WARN_RETURN(StatusFromErrno());
+		else
+			return StatusFromErrno();
 	}
 
 	return INFO::OK;

@@ -7,6 +7,7 @@
 # Ivailo Monev <xakepa10@gmail.com>, 2014
 # Jordan Grigorov <yoreei.grigorov@gmail.com>, 2016
 # Lyubomir Vasilev, 2016
+# Stefan Blue <stefan7202@abv.bg>, 2016
 # AccountKiller, 2015
 # Jordan Grigorov <yoreei.grigorov@gmail.com>, 2014-2015
 # Симон Болоканов <sbolokanov@abv.bg>, 2014-2015
@@ -14,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2016-02-05 01:26+0000\n"
+"PO-Revision-Date: 2016-02-28 22:48+0000\n"
 "Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +34,7 @@ msgstr "Гражданска"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Civic Center"
-msgstr "Градски център"
+msgstr "Цивилен център"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:70
 msgid ""
@@ -43,11 +44,11 @@ msgstr "При построяване усвоява голяма територ
 #: simulation/templates/template_structure_civic_civil_centre.xml:75
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
-msgstr "Градски център"
+msgstr "ЦивиленЦентър"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
-msgstr "Увеличава ограничението за населението."
+msgstr "Увеличава максималното население."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
@@ -117,13 +118,13 @@ msgstr "Изстрелва стрели. Поставете гарнизон з�
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
 #: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
-msgstr "Защитна кула"
+msgstr "ЗащитнаКула"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Строи се в неутрални и собствени територии, за да разузнава части от картата. Постепенно се конвертира в притежание на Гея докато е в неутрална територия."
+msgstr "Постройте в неутрална или собствена територия за разузнаване на карта. Постепенно преминава към Гея на неутрална територия."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -137,7 +138,7 @@ msgstr "Каменна стена"
 #: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Загради града си със стабилна стена."
+msgstr "Обградете града си със стени за надеждни защити."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:30
 msgid "City Gate"
@@ -305,7 +306,7 @@ msgstr "Ресурси"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Отглежда стадни животни за храна. Изпратете домашните животни тук, за да получите малко храна или друга награда (все още не е разработено)."
+msgstr "Позволява ви да развъждате стадо животни за храна. Изберете домашни животни за попълване на запасите от храна или други бонуси (все още не е разработено)."
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
@@ -328,7 +329,7 @@ msgstr "Специална сграда"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr "Това е специална постройка, която е различна за всяка цивилизация."
+msgstr "Това е специална постройка, уникална за всяка цивилизация."
 
 #: simulation/templates/template_structure_wonder.xml:39
 msgid "Wonder"
@@ -338,7 +339,7 @@ msgstr "Чудо"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Прославя цивилизацията Ви приобщава големи територии към империята Ви."
+msgstr "Носи слава на цивилизацията ти и значително разширява територията на вашата империята."
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/mace_barracks.xml:18
@@ -555,7 +556,7 @@ msgstr "Островно селище"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways."
-msgstr "Увеличава ограничението за населението и защитава водните пътища."
+msgstr "Увеличава максималното население и защитава водните пътища."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -794,7 +795,7 @@ msgstr "Макдас"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr "Тренира жрици, които да лекуват воините. Тренира копиеносци на свещената лента. Поставете до 20 единици на гарнизон, за да ги излекувате бързо."
+msgstr "Тренира жрици, които да лекуват воините. Тренира пиконосци на свещената лента. Поставете до 20 единици на гарнизон, за да ги излекувате бързо."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -837,7 +838,7 @@ msgstr "Таберна"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Добавя +10 към ограничението на населението. Предлага голи фанатици за наемане."
+msgstr "Добавя +10 към максималното население. Предлага голи фанатици за наемане."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -1115,7 +1116,7 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr "„Сатрапен данък“: Получавате малко храна, дърва, камъни и метал. Можете да обучавате персийски герои и техните „безсмъртни“ телохранители. Ограничение за построяване: 1."
+msgstr "„Сатрапен данък“: Получавате малко храна, дърва, камъни и метал. Можете да обучавате персийски герои и техните „безсмъртни“ телохранители. Ограничение за строеж: 1."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1193,7 +1194,7 @@ msgstr "Палат"
 
 #: simulation/templates/structures/pers_palace.xml:30
 msgid "Build Limit: 1."
-msgstr "Ограничение за строене: 1."
+msgstr "Ограничение за строеж: 1."
 
 #: simulation/templates/structures/pers_sb2.xml:22
 msgid "Persian Special Building"

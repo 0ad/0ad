@@ -5,16 +5,18 @@
 # Translators:
 # LOUKAS SKOUROLIAKOS, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
+# crippledmoon <domas392@in.gr>, 2016
 # LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2014
 # Marinus Savoritias <savoritias@gmail.com>, 2015
+# TitanJack <titanjack.com@gmail.com>, 2016
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:01+0100\n"
-"PO-Revision-Date: 2016-01-15 08:47+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-23 16:17+0000\n"
+"Last-Translator: TitanJack <titanjack.com@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,7 +243,7 @@ msgstr "Πρωταθλητής μ' επίθεση εξ' αποστάσεως"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
-msgstr ""
+msgstr "Υπέρ Πολιορκία"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical.xml:16
@@ -285,7 +287,7 @@ msgstr "Σκότωσε και μετά σύλλεξε τροφή από αυτό
 
 #: simulation/templates/template_unit_hero.xml:10
 msgid "Garrisoned Capture Aura"
-msgstr ""
+msgstr "Αύρα Κατάληψης"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
@@ -342,7 +344,7 @@ msgstr "Ήρωας Ξιφομάχος"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
-msgstr ""
+msgstr "Σώμα με σώμα πεζικό"
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
@@ -362,7 +364,7 @@ msgstr "Ακροβολιστής"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:27
 msgid "Sling"
-msgstr ""
+msgstr "Εκσφενδονιστής"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:28
 msgid "Slinger"
@@ -395,7 +397,7 @@ msgstr "Αλιευτικό"
 msgid ""
 "Fish the waters for Food. Garrison a support or infantry unit inside to "
 "boost fishing rate."
-msgstr ""
+msgstr "Ψάρεψε για φαγητό. Τοποθέτησε μία μονάδα μέσα για αύξηση της ταχύτητας ψαρέματος  "
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -419,7 +421,7 @@ msgstr "Βαρύ πολεμικό πλοίο"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
-msgstr ""
+msgstr "Τοποθετώντας άτομα μέσα στους καταπέλτες αυξάνετε η δύναμη πυρός τους "
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -427,7 +429,7 @@ msgstr "Μεσαίο Πολεμικό Πλοίο"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Warship"
-msgstr ""
+msgstr "Πολεμικό πλοίο "
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium"
@@ -697,7 +699,7 @@ msgstr "Πρόδρομος"
 #: simulation/templates/units/spart_support_healer_e.xml:4
 msgctxt "Rank"
 msgid "Elite"
-msgstr ""
+msgstr "Επίλεκτοι "
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 msgid "Greek Cavalry"
@@ -885,7 +887,7 @@ msgstr "Ιατρός"
 
 #: simulation/templates/units/athen_support_slave.xml:5
 msgid "Doûlos"
-msgstr ""
+msgstr "Δούλος "
 
 #: simulation/templates/units/athen_support_trader.xml:10
 #: simulation/templates/units/mace_support_trader.xml:10
@@ -987,7 +989,7 @@ msgstr "Κέλτης Σφεντονιστής"
 #: simulation/templates/units/brit_infantry_slinger_b.xml:14
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:16
 msgid "Iaosae"
-msgstr ""
+msgstr "Ιάσονας "
 
 #: simulation/templates/units/brit_infantry_spearman_b.xml:13
 #: simulation/templates/units/gaul_infantry_spearman_b.xml:15
@@ -1300,7 +1302,7 @@ msgstr "Σολδούρος"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:11
 msgid "+10 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "+10 Μέταλλο για κάθε εξόντωση εχθρικής μονάδας  "
 
 #: simulation/templates/units/gaul_hero_brennus.xml:16
 msgid "Brennus"
@@ -1316,7 +1318,7 @@ msgstr "Βριτομάρτυς"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:14
 msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr ""
+msgstr "+2 Επίθεση και +1 Κατάληψη στης κοντινές μονάδες."
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:20
 msgid "Vercingetorix"
@@ -1543,7 +1545,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:14
 msgid "Rhodian Slinger"
-msgstr ""
+msgstr "Ροδίτης Εκσφενδονιστής"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:15
 msgid "Sphendonḗtēs Rhódios"

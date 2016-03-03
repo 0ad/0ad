@@ -29,6 +29,11 @@
  */
 extern const u32 NETWORK_WARNING_TIMEOUT;
 
+/**
+ *  Maximum timeout of the local client of the host (milliseconds).
+ */
+extern const u32 MAXIMUM_HOST_TIMEOUT;
+
 class CNetClient;
 class CNetServerWorker;
 
@@ -87,6 +92,8 @@ public:
 	 * Send a message to the server.
 	 */
 	virtual bool SendMessage(const CNetMessage* message);
+
+	CStr GetIPAddress() const;
 
 	/**
 	 * Number of milliseconds since the most recent packet of the server was received.

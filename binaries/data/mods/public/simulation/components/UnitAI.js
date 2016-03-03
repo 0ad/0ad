@@ -620,6 +620,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				var dropsiteTypes = cmpResourceDropsite.GetTypes();
 
 				Engine.QueryInterface(this.entity, IID_ResourceGatherer).CommitResources(dropsiteTypes);
+				// Stop showing the carried resource animation.
+				this.SetGathererAnimationOverride();
 
 				// Our next order should always be a Gather,
 				// so just switch back to that order
@@ -1893,8 +1895,14 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
 
 						this.FaceTowardsTarget(target);
-						var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-						cmpAttack.PerformAttack(this.order.data.attackType, target);
+
+						// BuildingAI has it's own attack-routine
+						var cmpBuildingAI = Engine.QueryInterface(this.entity, IID_BuildingAI);
+						if (!cmpBuildingAI)
+						{
+							let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+							cmpAttack.PerformAttack(this.order.data.attackType, target);
+						}
 
 						// Check we can still reach the target for the next attack
 						if (this.CheckTargetAttackRange(target, this.order.data.attackType))
@@ -2729,13 +2737,24 @@ UnitAI.prototype.UnitFsmSpec = {
 				// Idle animation while moving towards finished construction looks weird (ghosty).
 				var oldState = this.GetCurrentState();
 
+				// Drop any resource we can if we are in range when the construction finishes
+				var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+				var cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
+				if (cmpResourceGatherer && cmpResourceDropsite && this.CheckTargetRange(msg.data.newentity, IID_Builder) &&
+					this.CanReturnResource(msg.data.newentity, true))
+				{
+					let dropsiteTypes = cmpResourceDropsite.GetTypes();
+					cmpResourceGatherer.CommitResources(dropsiteTypes);
+					this.SetGathererAnimationOverride();
+				} 
+
 				// We finished building it.
 				// Switch to the next order (if any)
 				if (this.FinishOrder())
 				{
 					if (this.CanReturnResource(msg.data.newentity, true))
 					{
-						this.SetGathererAnimationOverride(true);
+						this.SetGathererAnimationOverride();
 						this.PushOrderFront("ReturnResource", { "target": msg.data.newentity, "force": false });
 					}
 					return;
@@ -2754,7 +2773,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					if (this.CanReturnResource(msg.data.newentity, true))
 					{
-						this.SetGathererAnimationOverride(true);
+						this.SetGathererAnimationOverride();
 						this.PushOrder("ReturnResource", { "target": msg.data.newentity, "force": false });
 					}
 					this.PerformGather(msg.data.newentity, true, false);
@@ -2892,7 +2911,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 								// Check if we are garrisoned in a dropsite
 								var cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
-								if (cmpResourceDropsite)
+								if (cmpResourceDropsite && this.CanReturnResource(target, true))
 								{
 									// Dump any resources we can
 									var dropsiteTypes = cmpResourceDropsite.GetTypes();

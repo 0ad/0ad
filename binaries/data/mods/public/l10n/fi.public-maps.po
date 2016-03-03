@@ -6,15 +6,15 @@
 # linux_eki <ekiuusi@gmail.com>, 2015
 # Max, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
-# Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015
+# Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015-2016
 # Petri, 2014
-# Riku Viitanen <riisseli4@gmail.com>, 2015
+# Riku Viitanen <riisseli4@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-25 21:13+0000\n"
+"Last-Translator: Pauli Kaikkonen <p.kaikkon@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -365,7 +365,7 @@ msgstr "Pyreneiden sierra"
 msgid ""
 "Shallow, passable wetlands with little room for building. Represents the "
 "lowlands of the Rhine basin in Europe."
-msgstr ""
+msgstr "Matalia, kulkukelpoisia kosteikkoja ja vähän rakennustilaa. Muistuttaa Rein-joen valuma-alueen alankoja Euroopassa."
 
 #: maps/random/rhine_marshlands.jsonsettings.Name
 msgid "Rhine Marshlands"
@@ -534,7 +534,7 @@ msgstr "Kerää aarteet ennen vihollistasi! Paras voittakoon!"
 
 #: maps/scenarios/treasure_islands.js:29
 msgid "No winner yet, prepare for battle!"
-msgstr ""
+msgstr "Ei voittajaa vielä, valmistaudu taisteluun!"
 
 #: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
@@ -808,7 +808,7 @@ msgstr "Tiberin taistelu"
 
 #: maps/scenarios/Belgian_Bog_night.xml:Description:42
 msgid "Two Celtic tribes face off across a large bog at night."
-msgstr ""
+msgstr "Kaksi kelttiheimoa ottavat yhteen suurella suolla yöaikaan."
 
 #: maps/scenarios/Belgian_Bog_night.xml:Name:42
 msgid "Belgian Bog Night"
@@ -1038,11 +1038,11 @@ msgstr "Gorge"
 
 #: maps/scenarios/Height Map Import - Demo (Fractal).xml:Description:31
 msgid "Importation of a height map created with fractals."
-msgstr ""
+msgstr "Fraktaaleilla luodun korkeuskartan tuonti."
 
 #: maps/scenarios/Height Map Import - Demo (Fractal).xml:Name:31
 msgid "Height Map Import Demo - Fractal"
-msgstr ""
+msgstr "Korkeuskartan tuontidemo - Fraktaali"
 
 #: maps/scenarios/Height Map Import - Demo (Greece).xml:Description:31
 msgid ""
@@ -1053,17 +1053,17 @@ msgstr ""
 
 #: maps/scenarios/Height Map Import - Demo (Greece).xml:Name:31
 msgid "Height Map Import Demo - Greece"
-msgstr ""
+msgstr "Korkeuskartan tuontidemo - Kreikka"
 
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Description:31
 msgid ""
 "An example of height map importation. Image was 512x512 grayscale PNG. This "
 "image can be found in the scenarios folder, but can be placed anywhere."
-msgstr ""
+msgstr "Esimerkki korkeuskartan tuonnista. Kuva oli 512x512 mustavalkoinen PNG. Tämä kuva löytyy skenaariokansiosta, mutta sen voi sijoittaa minne vain."
 
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Name:31
 msgid "Height Map Import Demo - Greece (small)"
-msgstr ""
+msgstr "Korkeuskartan tuontidemo - Kreikka (pieni)"
 
 #: maps/scenarios/Introductory Tutorial.xml:Description:42
 msgid "This is a basic tutorial to get you started playing 0 A.D."
@@ -1128,7 +1128,7 @@ msgstr "Nekropolis"
 
 #: maps/scenarios/Pathfinding_demo.xml:Description:41
 msgid "A map for testing unit movement algorithms."
-msgstr ""
+msgstr "Kartta yksiköiden liikkumisalgoritmien testaamiseen."
 
 #: maps/scenarios/Pathfinding_demo.xml:Name:41
 msgid "Pathfinding Demo"
@@ -1324,11 +1324,11 @@ msgstr "Vihollinen"
 
 #: maps/scenarios/Sandbox - Mauryans.xml:Name:42
 msgid "Sandbox - The Mauryans"
-msgstr ""
+msgstr "Hiekkalaatikko - Mauryalaiset"
 
 #: maps/scenarios/Sandbox - Persians.xml:Description:41
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
-msgstr ""
+msgstr "Demokartta. Pelaa persialaisilla hiekkalaatikkoasetuksella."
 
 #: maps/scenarios/Sandbox - Persians.xml:PlayerData[0].Name:41
 msgid "Achaemenids"
@@ -1345,7 +1345,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[0].Name:41
 msgid "Ptolemy \"Savior\""
-msgstr ""
+msgstr "Ptolemaios \"Pelastaja\""
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[2].Name:41
 msgid "Seleucids"
@@ -1357,7 +1357,7 @@ msgstr "Libyalaiset"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:Name:41
 msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr ""
+msgstr "Hiekkalaatikko - Ptolemaioksen egyptiläiset 2"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:Description:41
 #: maps/skirmishes/Sporades Islands (2).xml:Description:42
@@ -1374,7 +1374,7 @@ msgstr "Kautilya"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:Name:41
 msgid "Sandbox - The Ptolemaic Egyptians"
-msgstr ""
+msgstr "Hiekkalaatikko - Ptolemaioksen egyptiläiset"
 
 #: maps/scenarios/Sandbox - Romans.xml:Description:42
 msgid "A sandbox scenario for players to try out the Roman civilisation."
@@ -1398,7 +1398,7 @@ msgstr "Ptolemies"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:Name:41
 msgid "Sandbox - The Seleucids"
-msgstr ""
+msgstr "Hiekkalaatikko - Seleukidit"
 
 #: maps/scenarios/Sandbox - Spartans.xml:Description:41
 msgid ""
@@ -1411,7 +1411,7 @@ msgstr "Hiekkalaatikko - Spartalaiset"
 
 #: maps/scenarios/Savanna Ravine.xml:Name:42
 msgid "Savanna Ravine"
-msgstr ""
+msgstr "Savannirotko"
 
 #: maps/scenarios/Savanna Ravine.xml:Description:42
 msgid ""
@@ -1469,13 +1469,13 @@ msgstr ""
 
 #: maps/scenarios/Territory Demo.xml:Name:31
 msgid "Territory Demo"
-msgstr ""
+msgstr "Aluedemo"
 
 #: maps/scenarios/The Massacre of Delphi.xml:Description:41
 msgid ""
 "The Celts invade Greece. Fight through the central valley or cut through the"
 " rich highlands in order to secure the lands around Delphi!"
-msgstr ""
+msgstr "Keltit valloittavat Kreikan. Taistele tiesi keskuslaakson läpi tai koukkaa vauraiden ylänköjen kautta turvataksesi Delfoin ympärysalueet!"
 
 #: maps/scenarios/The Massacre of Delphi.xml:Name:41
 msgid "Massacre of Delphi"
@@ -1514,7 +1514,7 @@ msgstr "Persian portit"
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
-msgstr ""
+msgstr "Roomalaiset tunkeutuvat Makedonian maille kolmannen ja viimeisen kerran. Kykenevätkö ennen niin uljaat makedonialaiset peittoamaan roomalaisten tuhovoiman?"
 
 #: maps/scenarios/Third Macedonian War.xml:PlayerData[0].Name:31
 msgid "Lucius Aemilius Paullus"
@@ -1536,7 +1536,7 @@ msgstr "Kolmas Makedonian sota"
 msgid ""
 "Search treasures on small islands and on the water. Collect more treasures "
 "than your opponent to win."
-msgstr ""
+msgstr "Etsi aarteita pieniltä saarilta ja vedestä. Kerää enemmän aarteita kuin vastustaja voittaaksesi pelin."
 
 #: maps/scenarios/Treasure Islands.xml:Name:41
 msgid "Treasure Islands"
@@ -1550,7 +1550,7 @@ msgstr ""
 
 #: maps/scenarios/Triggers_demo.xml:Name:41
 msgid "Triggers Demo"
-msgstr "Triggeri demo"
+msgstr "Triggeridemo"
 
 #: maps/scenarios/Tropical Island.xml:Description:41
 msgid "Multiplayer map. A tropical paradise."
@@ -1562,18 +1562,18 @@ msgstr "Trooppinen saari"
 
 #: maps/scenarios/Units_demo.xml:Name:92
 msgid "Units Demo"
-msgstr "Yksikkö demo"
+msgstr "Yksikködemo"
 
 #: maps/scenarios/Units_demo.xml:Description:92
 msgid "Every unit in the game."
-msgstr "Jokainen yksikkö pelissä"
+msgstr "Jokainen yksikkö pelissä."
 
 #: maps/scenarios/WallTest.xml:Description:31
 #: maps/scenarios/_default.xml:Description:32 maps/scenarios/temperate
 #: map.xml:Description:31 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:Description:41
 msgid "Give an interesting description of your map."
-msgstr ""
+msgstr "Anna kartastasi mielenkiintoinen kuvaus."
 
 #: maps/scenarios/WallTest.xml:Name:31
 msgid "WallTest"
@@ -1593,7 +1593,7 @@ msgstr "Me olemme Legioona"
 
 #: maps/scenarios/We are Legion.xml:Description:31
 msgid "A quick battle demo map using Roman legionnaires."
-msgstr "Nopea taistelun demoaminen, jossa käytetään Rooman legioonalaisia."
+msgstr "Nopea taisteludemonstraatio, jossa käytetään Rooman legioonalaisia."
 
 #: maps/scenarios/_default.xml:Name:32
 msgid "Unnamed map"
@@ -1601,11 +1601,11 @@ msgstr "Nimeämätön kartta"
 
 #: maps/scenarios/reservoir.xml:Description:31
 msgid "A demo showing water planes."
-msgstr ""
+msgstr "Vesitasodemo"
 
 #: maps/scenarios/reservoir.xml:Name:31
 msgid "Reservoir"
-msgstr ""
+msgstr "Tekojärvi"
 
 #: maps/scenarios/road demo.xml:Description:31
 msgid "Demo map showcasing Temperate Road decals."
@@ -1617,7 +1617,7 @@ msgstr ""
 
 #: maps/scenarios/shipattacks.xml:Description:31
 msgid "Move ships around. Attack other ships."
-msgstr "Liikuta laivoja. Hyökkää toisiin laivoihin"
+msgstr "Liikuta laivoja. Hyökkää toisia laivoja vastaan."
 
 #: maps/scenarios/shipattacks.xml:Name:31
 msgid "Ships Demo"
@@ -1653,18 +1653,18 @@ msgstr "Akropolislahti (2)"
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
 "resources."
-msgstr ""
+msgstr "Kartta täynnä ylitsepääsemättömiä vuoria ja paljon luonnonvaroja."
 
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Name:40
 msgid "Alpine Mountains (3)"
-msgstr ""
+msgstr "Alpit (3)"
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
 msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
-msgstr ""
+msgstr "Alppien korkeat huiput ja laaksot.\n\nJokainen pelaaja aloittaa turvallisesta vihreästä laaksosta. Välissä on petollinen Alppien vuoristo."
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
 msgid "Alpine Valleys (2)"
@@ -1740,7 +1740,7 @@ msgstr ""
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:Name:42
 msgid "Cycladic Archipelago (2)"
-msgstr ""
+msgstr "Kykladien saaristo (2)"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:Description:41
 msgid ""
@@ -1763,7 +1763,7 @@ msgstr "Delos"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:Name:41
 msgid "Cycladic Archipelago (3)"
-msgstr ""
+msgstr "Kykladien saaristo (3)"
 
 #: maps/skirmishes/Death Canyon (2).xml:Description:42
 msgid ""
@@ -1787,17 +1787,17 @@ msgstr ""
 
 #: maps/skirmishes/Deccan Plateau (2).xml:Name:41
 msgid "Deccan Plateau (2)"
-msgstr ""
+msgstr "Deccanin ylänkö (2)"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
 "A forest battle map where all players fight for supremacy and control over "
 "the middle."
-msgstr "Metsätaistelukartta, missä kaikki pelaajat taistelevat yliherruudesta ja keskuksen hallinnasta."
+msgstr "Metsätaistelukartta, jossa kaikki pelaajat taistelevat yliherruudesta ja keskuksen hallinnasta."
 
 #: maps/skirmishes/Forest Battle (4).xml:Name:40
 msgid "Forest Battle (4)"
-msgstr ""
+msgstr "Metsätaistelu (4)"
 
 #: maps/skirmishes/Gallic Fields (3).xml:Description:41
 msgid ""
@@ -1806,7 +1806,7 @@ msgid ""
 "Each player begins the match with a wooden palisade and some guard towers atop a low embankment.\n"
 "\n"
 "Watch out for Romans passing by!"
-msgstr ""
+msgstr "Puolusta Gallialaista etuvartiotasi petollisten naapureidesi hyökkäyksiltä!\n\nJokainen pelaaja aloittaa pelin puisella paaluaidalla ja muutamalla vartiotornilla, jotka sijaitsevat matalan penkereen päällä.\n\nVaro ohikulkevia roomalaisia!"
 
 #: maps/skirmishes/Gallic Fields (3).xml:Name:41
 msgid "Gallic Fields (3)"
@@ -1921,7 +1921,7 @@ msgstr ""
 
 #: maps/skirmishes/Mediterranean Cove (2).xml:Name:41
 msgid "Mediterranean Coves (2)"
-msgstr ""
+msgstr "Välimeren poukamat (2)"
 
 #: maps/skirmishes/Neareastern Badlands (2).xml:Description:42
 #: maps/skirmishes/Neareastern Badlands (4).xml:Description:41
@@ -2053,7 +2053,7 @@ msgstr ""
 
 #: maps/skirmishes/Sporades Islands (2).xml:Name:42
 msgid "Sporades Islands (2)"
-msgstr ""
+msgstr "Sporadit (2)"
 
 #: maps/skirmishes/Syria (2).xml:Description:41
 msgid ""
@@ -2086,7 +2086,7 @@ msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Name:41
 msgid "Thessalian Plains (4)"
-msgstr ""
+msgstr "Thessalian tasangot (4)"
 
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Description:40
 msgid ""

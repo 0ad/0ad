@@ -3,16 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# linux_eki <ekiuusi@gmail.com>, 2015
+# linux_eki <ekiuusi@gmail.com>, 2015-2016
 # Max, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
+# Pauli Kaikkonen <p.kaikkon@gmail.com>, 2016
 # Riku Viitanen <riisseli4@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-28 21:05+0000\n"
+"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -309,12 +310,12 @@ msgstr "Kala"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s ja %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -385,7 +386,7 @@ msgstr "Ei voi heittää ulos %(name)s."
 #: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Käyttäjät: %(users)s"
 
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
@@ -616,7 +617,7 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)
 #: gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
@@ -633,11 +634,11 @@ msgstr "Työläinen"
 #: gui/common/tooltips.js:245
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:246
 msgid "Build Rate:"
-msgstr ""
+msgstr "Rakennusnopeus:"
 
 #: gui/common/tooltips.js:291 gui/common/tooltips.js:292
 #: gui/common/tooltips.js:293 gui/common/tooltips.js:294
@@ -992,11 +993,11 @@ msgstr "Rajoita FPS 50:een kuvaan valikoissa."
 
 #: gui/options/options.js:38
 msgid "Graphics quality"
-msgstr ""
+msgstr "Grafiikoiden laatu"
 
 #: gui/options/options.js:38
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Grafiikoiden laatu. VAATII PELIN UUDELLEENKÄYNNISTYKSEN"
 
 #: gui/options/options.js:42
 msgid "Master Gain"
@@ -1056,7 +1057,7 @@ msgstr "Näytä lähetysaika aulan viesteissä"
 
 #: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
-msgstr ""
+msgstr "Sinulla on tallentamattomia muutoksia, haluatko varmasti poistua?"
 
 #: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
@@ -1684,15 +1685,15 @@ msgstr "Tallenna"
 
 #: gui/options/options.xml:(caption):79
 msgid "Quit"
-msgstr ""
+msgstr "Poistu"
 
 #: gui/options/options.xml:(tooltip):70
 msgid "Revert to previous saved settings"
-msgstr ""
+msgstr "Palauta aiemmin tallennettuihin asetuksiin"
 
 #: gui/options/options.xml:(tooltip):75
 msgid "Save changes"
-msgstr ""
+msgstr "Tallenna muutokset"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"
@@ -2318,7 +2319,7 @@ msgstr "- Antaa väkilukuun boonuksen."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "Miehitä rakennus sotilailla lisätäksesi sen puolustusvoimaa."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"

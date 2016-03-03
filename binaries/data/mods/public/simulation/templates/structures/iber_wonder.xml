@@ -4,14 +4,6 @@
     <Square width="43.0" depth="43.0"/>
     <Height>14.0</Height>
   </Footprint>
-  <GarrisonHolder>
-    <Max>30</Max>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
-    <List datatype="tokens">Support Infantry Cavalry</List>
-    <BuffHeal>3</BuffHeal>
-    <LoadingRange>2</LoadingRange>
-  </GarrisonHolder>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Cancho Roano</SpecificName>

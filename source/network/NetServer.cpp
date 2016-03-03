@@ -486,6 +486,10 @@ bool CNetServerWorker::RunStep()
 
 		CNetServerSession* session = new CNetServerSession(*this, event.peer);
 
+		// Prevent the local client of the host from timing out too quickly
+		if (session->GetIPAddress() == "127.0.0.1")
+			enet_peer_timeout(event.peer, 0, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
+
 		m_Sessions.push_back(session);
 
 		SetupSession(session);
@@ -679,8 +683,7 @@ void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 {
 	AddPlayer(session->GetGUID(), session->GetUserName());
 
-	// Host is the first to join
-	if (m_HostGUID.empty())
+	if (m_HostGUID.empty() && session->GetIPAddress() == "127.0.0.1")
 		m_HostGUID = session->GetGUID();
 
 	CGameSetupMessage gameSetupMessage(GetScriptInterface());

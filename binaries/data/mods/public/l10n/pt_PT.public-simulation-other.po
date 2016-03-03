@@ -5,6 +5,7 @@
 # Translators:
 # alfalb.as, 2015
 # crolidge, 2015
+# Danny Reese <danny@angolateam.org>, 2016
 # Luis Neves <luisjneves@gmail.com>, 2014
 # Luis Neves <luisjneves@gmail.com>, 2015
 # mogafi, 2014-2015
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-27 16:57+0000\n"
+"Last-Translator: Danny Reese <danny@angolateam.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,7 +92,7 @@ msgstr "Eu não posso ajudá-lo contra %(_player_)s no momento, porque tenho um 
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Desculpe, eu não tenho soldados suficientes neste momento, mas o meu próximo ataque será contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
@@ -108,7 +109,7 @@ msgstr "Estou a ver que você está em uma situação ruim %(_player_)s, Espero 
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "Consigo ajudar-se desta vez, %(_player_)s, mas futuramente tente colher mais recursos."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
@@ -120,27 +121,27 @@ msgstr "Eu estou a precisar de %(resource)s, pode ajudar? Eu irei agradecer-lhe.
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "Eu poderia participar de modo mais eficaz no nosso esforço de guerra comum, se pudesse disponibilizar-me alguns %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:101
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Se tiver excesso de %(resource)s, vai ajudar-me a fortalecer o exército."
 
 #: simulation/ai/petra/chatHelper.js:118
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "Estabeleci uma nova rota com %(_player_)s. O comércio será lucrativo para todos nós."
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "Uma nova rota foi estabelecida com %(_player_)s. Toma a tua parte dos lucros"
 
 #: simulation/ai/petra/chatHelper.js:136
 #, javascript-format
@@ -283,7 +284,7 @@ msgstr "Recrute mais alguns fundeiros e ordene-lhes que obtenham pedra. Deve rec
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
+msgstr "Recrute mais 5 cidadãs, estas para obterem madeira."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -397,7 +398,7 @@ msgstr "- Não se coíba de deslocar unidades de um recurso para outro. Não se 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
+msgstr "- Construa casas em número suficiente. O seu CC deve permanecer o mais activo possível."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -740,7 +741,7 @@ msgstr "A fila de produção está lotada."
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "Não há espaço livre para as unidades recrutadas aparecerem"
 
 #: simulation/helpers/Commands.js:675
 #, javascript-format
@@ -749,7 +750,7 @@ msgstr "Ataque contra %(_player_)s solicitado."
 
 #: simulation/helpers/Commands.js:965
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Os requisitos de tecnologia deste edifício não estão satisfeitos."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -952,7 +953,7 @@ msgid ""
 "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra é o bot de padrão de IA de 0 A.D. Por favor comunique os problemas para Wildfire Games (veja o link no menu principal).\n\nA IA tem um sistema de aumento/decréscimo na taxa de acumular recursos (ou de colheita ou de comércio) que varia de 0,5 para Sandbox até 1,6 para Muito Difícil (Médio = 1,0). Além disso, o nivel Sandbox não constrói nem ataca."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

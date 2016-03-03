@@ -144,7 +144,7 @@ Player.prototype.SetMaxPopulation = function(max)
 
 Player.prototype.GetMaxPopulation = function()
 {
-	return Math.round(ApplyValueModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity));
+	return Math.round(ApplyValueModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity, this.playerID));
 };
 
 Player.prototype.SetGatherRateMultiplier = function(value)
@@ -270,7 +270,9 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 		else
 			warn("Localisation: Strings are not localised for more than 4 resources");
 
-		var notification = {
+		// Send as time-notification
+		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification({
 			"players": [this.playerID],
 			"message": msg,
 			"parameters": parameters,
@@ -281,9 +283,7 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 				"resourceType3": "withinSentence",
 				"resourceType4": "withinSentence",
 			},
-		};
-		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGUIInterface.PushNotification(notification);
+		});
 		return false;
 	}
 
@@ -324,7 +324,7 @@ Player.prototype.GetNextTradingGoods = function()
 Player.prototype.GetTradingGoods = function()
 {
 	var tradingGoods = {};
-	for each (var resource in this.tradingGoods)
+	for (let resource of this.tradingGoods)
 		tradingGoods[resource.goods] = resource.proba;
 
 	return tradingGoods;
@@ -363,27 +363,25 @@ Player.prototype.GetTeam = function()
 
 Player.prototype.SetTeam = function(team)
 {
-	if (!this.teamsLocked)
-	{
-		this.team = team;
+	if (this.teamsLocked)
+		return;
 
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		if (cmpPlayerManager && this.team != -1)
+	this.team = team;
+
+	// Set all team members as allies
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (cmpPlayerManager && this.team != -1)
+		for (let i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
 		{
-			// Set all team members as allies
-			for (var i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
-			{
-				var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
-				if (this.team == cmpPlayer.GetTeam())
-				{
-					this.SetAlly(i);
-					cmpPlayer.SetAlly(this.playerID);
-				}
-			}
+			let cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+			if (this.team != cmpPlayer.GetTeam())
+				continue;
+
+			this.SetAlly(i);
+			cmpPlayer.SetAlly(this.playerID);
 		}
 
-		Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
-	}
+	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID });
 };
 
 Player.prototype.SetLockTeams = function(value)
@@ -655,24 +653,29 @@ Player.prototype.OnPlayerDefeated = function(msg)
 	// The ownership change is done in two steps so that entities don't hit idle
 	// (and thus possibly look for "enemies" to attack) before nearby allies get
 	// converted to Gaia as well.
-	for each (var entity in entities)
+	for (var entity of entities)
 	{
 		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
 		cmpOwnership.SetOwnerQuiet(0);
 	}
 
 	// With the real ownership change complete, send OwnershipChanged messages.
-	for each (var entity in entities)
-		Engine.PostMessage(entity, MT_OwnershipChanged, { "entity": entity,
-			"from": this.playerID, "to": 0 });
+	for (var entity of entities)
+		Engine.PostMessage(entity, MT_OwnershipChanged, {
+			"entity": entity,
+			"from": this.playerID,
+			"to": 0
+		});
 
 	// Reveal the map for this player.
 	cmpRangeManager.SetLosRevealAll(this.playerID, true);
 
 	// Send a chat message notifying of the player's defeat.
-	var notification = {"type": "defeat", "players": [this.playerID]};
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGUIInterface.PushNotification(notification);
+	cmpGUIInterface.PushNotification({
+		"type": "defeat",
+		"players": [this.playerID]
+	});
 };
 
 Player.prototype.OnResearchFinished = function(msg)

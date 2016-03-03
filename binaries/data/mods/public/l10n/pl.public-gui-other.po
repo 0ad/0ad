@@ -16,6 +16,7 @@
 # Michał Karol <michal.p.karol+transifex@gmail.com>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
 # Paweł Goca <siwers17@gmail.com>, 2015
+# Pawel Jarczak <keven204@o2.pl>, 2016
 # q <q@qq.qq>, 2015
 # rabusek <rabusek@gmail.com>, 2014
 # Rafał <rafix1989@interia.pl>, 2015
@@ -25,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-02-06 12:55+0000\n"
+"PO-Revision-Date: 2016-02-21 20:13+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -146,7 +147,7 @@ msgstr "%(dateString)s %(map)s"
 #: gui/common/l10n.js:4
 msgctxt "firstWord"
 msgid "Food"
-msgstr "Jedzenie"
+msgstr "Żywność"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -237,7 +238,7 @@ msgstr "Ryba"
 #: gui/common/l10n.js:32
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "Jedzenie"
+msgstr "Żywność"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -517,9 +518,9 @@ msgstr "Obuchowe"
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
+msgstr[2] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:57 gui/common/tooltips.js:238
 #: gui/common/tooltips.js:249 gui/common/tooltips.js:466
@@ -533,9 +534,9 @@ msgstr[2] "sekund"
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
 msgid_plural "%(arrowcount)s %(arrow)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(arrowcount)s %(arrow)s"
+msgstr[1] "%(arrowcount)s %(arrow)s"
+msgstr[2] "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:66
 msgid "arrow"
@@ -621,26 +622,26 @@ msgstr[2] "metrów"
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:208 gui/common/tooltips.js:221
 #, javascript-format
 msgid "%(range)s %(meters)s"
 msgid_plural "%(range)s %(meters)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(range)s %(meters)s"
+msgstr[1] "%(range)s %(meters)s"
+msgstr[2] "%(range)s %(meters)s"
 
 #: gui/common/tooltips.js:216
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
 
 #: gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
@@ -657,7 +658,7 @@ msgstr "pracownik"
 #: gui/common/tooltips.js:245
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:246
 msgid "Build Rate:"
@@ -728,9 +729,9 @@ msgstr "%(label)s %(speeds)s"
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
+msgstr[2] "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:453
 msgid "Heal:"
@@ -741,9 +742,9 @@ msgstr "Ulecz:"
 #: gui/common/tooltips.js:456
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "PZ"
+msgstr[1] "PZ"
+msgstr[2] "PZ"
 
 #: gui/common/tooltips.js:479
 #, javascript-format
@@ -1257,9 +1258,9 @@ msgstr "Dowolny"
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "< %(max)s min"
+msgstr[1] "< %(max)s min"
+msgstr[2] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
@@ -1267,9 +1268,9 @@ msgstr[2] ""
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "> %(min)s min"
+msgstr[1] "> %(min)s min"
+msgstr[2] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
@@ -1494,7 +1495,7 @@ msgstr "Statystyki jednostek (wyszktałconych / utraconych / zabitych)."
 
 #: gui/summary/layout.js:76
 msgid "Food"
-msgstr "Jedzenie"
+msgstr "Żywność"
 
 #: gui/summary/layout.js:77
 msgid "Wood"
@@ -1526,7 +1527,7 @@ msgstr "Statystyki zasobów (zdobyte / wykorzystane)"
 
 #: gui/summary/layout.js:103
 msgid "Food exchanged"
-msgstr "Wymiana jedzenia"
+msgstr "Wymiana żywności"
 
 #: gui/summary/layout.js:104
 msgid "Wood exchanged"
@@ -2794,7 +2795,7 @@ msgstr "- Zasób oceaniczny."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr "- 2000 jedzenia"
+msgstr "- 2000 żywności"
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."

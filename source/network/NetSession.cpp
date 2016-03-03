@@ -27,6 +27,8 @@
 
 const u32 NETWORK_WARNING_TIMEOUT = 4000;
 
+const u32 MAXIMUM_HOST_TIMEOUT = std::numeric_limits<u32>::max();
+
 static const int CHANNEL_COUNT = 1;
 
 CNetClientSession::CNetClientSession(CNetClient& client) :
@@ -72,6 +74,10 @@ bool CNetClientSession::Connect(u16 port, const CStr& server)
 
 	m_Host = host;
 	m_Server = peer;
+
+	// Prevent the local client of the host from timing out too quickly.
+	if (GetIPAddress() == "127.0.0.1")
+		enet_peer_timeout(peer, 1, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
 
 	m_Stats = new CNetStatsTable(m_Server);
 	if (CProfileViewer::IsInitialised())
@@ -168,6 +174,15 @@ bool CNetClientSession::SendMessage(const CNetMessage* message)
 	ENSURE(m_Host && m_Server);
 
 	return CNetHost::SendMessage(message, m_Server, "server");
+}
+
+CStr CNetClientSession::GetIPAddress() const
+{
+	char ipAddress[256] = "";
+	if (enet_address_get_host_ip(&m_Server->address, ipAddress, ARRAY_SIZE(ipAddress)) < 0)
+		LOGMESSAGE("Could not get IP address of the server!");
+
+	return ipAddress;
 }
 
 u32 CNetClientSession::GetLastReceivedTime() const

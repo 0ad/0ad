@@ -4,15 +4,16 @@
 # 
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014-2015
-# Joshua Christo Randiny <jrandiny2@gmail.com>, 2015
+# Joshua Christo Randiny <jrandiny2@gmail.com>, 2015-2016
 # Joshua Christo Randiny <jrandiny2@gmail.com>, 2014
+# Samuel Christo Randiny <srandiny@gmail.com>, 2016
 # Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-27 16:58+0000\n"
+"Last-Translator: Joshua Christo Randiny <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +81,7 @@ msgstr "Saya sedang ada dalam persiapan terakhir untuk melawan %(_player_)s."
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "Saya tak dapat membantumu melawan %(_player_)s sekarang karena saya sedang merencanakan serangan terhadap %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:53
 #, javascript-format
@@ -308,7 +309,7 @@ msgstr "Pengumban yang diantrikan tadi harus mengumpulkan batu setelah dilatih."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
-msgstr "Antrikan sekumpulan penombak, mereka harus mengumpulkan kayu."
+msgstr "Antrikan sekumpulan penombak, mereka sebaiknya mengumpulkan kayu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:178
 msgid "Next queue a batch of slingers."
@@ -393,7 +394,7 @@ msgstr "- Jangan takut menukar unit dari satu sumberdaya ke sumberdaya lain, lih
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
+msgstr " - Bangan cukup rumah, PP anda harus terus dibuat sibuk."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -734,16 +735,16 @@ msgstr "Antrian produksi penuh."
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "Tidak dapat menemukan area kosong untuk tempat unit yang dilatih"
 
 #: simulation/helpers/Commands.js:675
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Penyerangan melawan %(_player_)s diminta."
 
 #: simulation/helpers/Commands.js:965
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Kebutuhan teknologi bangunan ini belum terpenuhi."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -946,7 +947,7 @@ msgid ""
 "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra adalah musuh komputer standar di 0AD. Tolong melaporkan masalah yang ada ke Wildfire Games (lihat tautan di menu utama).\n\nKomputer ini bonus dalam pengumpulan sumber daya (baik melalui pengumpulan atau perdagangan) yang bervariasi antara 0.5 untuk sandbox hingga 1.6 untuk sangat susah (sedang = 1.0). Ditambah lagi, di tingkat kesulitan sandbox komputer ini tidak melakukan ekspansi atau penyerangan."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

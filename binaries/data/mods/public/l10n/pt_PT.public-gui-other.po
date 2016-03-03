@@ -5,6 +5,7 @@
 # Translators:
 # alfalb.as, 2015
 # crolidge, 2015
+# Danny Reese <danny@angolateam.org>, 2016
 # Luis Neves <luisjneves@gmail.com>, 2015
 # mogafi, 2014
 # Pedro matias <pmsm1100@gmail.com>, 2015
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-02-27 16:57+0000\n"
+"Last-Translator: Danny Reese <danny@angolateam.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "Características das %(civilization)s"
+msgstr "Características dos %(civilization)s"
 
 #: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
@@ -311,12 +312,12 @@ msgstr "Peixe"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s e %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -358,7 +359,7 @@ msgstr "Você foi banido"
 #: gui/common/network.js:24
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Valor inválido %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:36
@@ -377,17 +378,17 @@ msgstr "Desligado"
 #: gui/common/network.js:45
 #, javascript-format
 msgid "Could not ban %(name)s."
-msgstr ""
+msgstr "Não pôde banir %(name)s."
 
 #: gui/common/network.js:45
 #, javascript-format
 msgid "Could not kick %(name)s."
-msgstr ""
+msgstr "Não pôde expulsar %(name)s."
 
 #: gui/common/network.js:73
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Utilizadores: %(users)s"
 
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
@@ -618,28 +619,28 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)
 #: gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:235
 msgid "Repair Rate:"
-msgstr ""
+msgstr "Velocidade de Reparação"
 
 #: gui/common/tooltips.js:237 gui/common/tooltips.js:248
 msgid "health"
-msgstr ""
+msgstr "saúde"
 
 #: gui/common/tooltips.js:239 gui/common/tooltips.js:250
 msgid "worker"
-msgstr ""
+msgstr "trabalhador"
 
 #: gui/common/tooltips.js:245
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:246
 msgid "Build Rate:"
-msgstr ""
+msgstr "Velocidade de Construção"
 
 #: gui/common/tooltips.js:291 gui/common/tooltips.js:292
 #: gui/common/tooltips.js:293 gui/common/tooltips.js:294
@@ -845,11 +846,11 @@ msgstr "Mostrar hora actual da simulação no canto superior direito."
 
 #: gui/options/options.js:17
 msgid "Ceasefire Time Overlay"
-msgstr ""
+msgstr "Mostrador de tempo do cessar fogo"
 
 #: gui/options/options.js:17
 msgid "Always show the remaining ceasefire time."
-msgstr ""
+msgstr "Mostrar sempre o tempo restante do cessar fogo."
 
 #: gui/options/options.js:18
 msgid "Persist Match Settings"
@@ -990,15 +991,15 @@ msgstr "Limitar FPS nos Menus"
 
 #: gui/options/options.js:37
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr ""
+msgstr "Limitar FPS a 50 em todos os menus para poupar energia."
 
 #: gui/options/options.js:38
 msgid "Graphics quality"
-msgstr ""
+msgstr "Qualidade gráfica"
 
 #: gui/options/options.js:38
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Qualidade gráfica. REQUER REINÍCIO DO JOGO"
 
 #: gui/options/options.js:42
 msgid "Master Gain"
@@ -1058,7 +1059,7 @@ msgstr "Mostrar a data e hora a que as mensagens são publicadas no chat do lobb
 
 #: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
-msgstr ""
+msgstr "Você tem alterações não guardadas, tem a certeza de que quer sair?"
 
 #: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
@@ -1162,7 +1163,7 @@ msgstr "Você"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "Você não tem os mesmos mods ativos que a repetição tem."
 
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
@@ -1176,7 +1177,7 @@ msgstr "Ativo: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Esta repetição não é compatível com a sua versão do jogo!"
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
@@ -1317,7 +1318,7 @@ msgstr "Necessita de uma versão anterior do 0 A.D."
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr ""
+msgstr "Este requer a versão %(requiredVersion)s do jogo guardado do 0 A.D., ao passo que a sua é a versão %(currentVersion)s."
 
 #: gui/savedgames/load.js:75
 #, javascript-format
@@ -1460,7 +1461,7 @@ msgstr "Marinha"
 
 #: gui/summary/layout.js:56
 msgid "Traders"
-msgstr ""
+msgstr "Comerciantes"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
@@ -1492,7 +1493,7 @@ msgstr "Tesouros recolhidos"
 
 #: gui/summary/layout.js:83
 msgid "Loot"
-msgstr ""
+msgstr "Espólio"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
@@ -1530,7 +1531,7 @@ msgstr "Rácio\nvegetariano"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
-msgstr ""
+msgstr "Feminização"
 
 #: gui/summary/layout.js:126
 msgid ""
@@ -1546,11 +1547,11 @@ msgstr "Exploração\ndo mapa"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr ""
+msgstr "No auge"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr ""
+msgstr "No fim"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
@@ -1563,7 +1564,7 @@ msgstr "Total da equipa"
 #: gui/summary/summary.js:136
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr ""
+msgstr "Tempo do jogo decorrido: %(time)s"
 
 #: gui/summary/summary.js:138
 #, javascript-format
@@ -1678,7 +1679,7 @@ msgstr "Definições do Lobby"
 
 #: gui/options/options.xml:(caption):69
 msgid "Revert"
-msgstr ""
+msgstr "Reverter"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1686,19 +1687,19 @@ msgstr "Guardar"
 
 #: gui/options/options.xml:(caption):79
 msgid "Quit"
-msgstr ""
+msgstr "Sair"
 
 #: gui/options/options.xml:(tooltip):70
 msgid "Revert to previous saved settings"
-msgstr ""
+msgstr "Reverter às definições previamente guardadas"
 
 #: gui/options/options.xml:(tooltip):75
 msgid "Save changes"
-msgstr ""
+msgstr "Guardar alterações"
 
 #: gui/options/options.xml:(tooltip):80
 msgid "Unsaved changes affect this session only"
-msgstr ""
+msgstr "Alterações não guardadas afectam somente esta sessão"
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
@@ -1724,7 +1725,7 @@ msgstr "Progresso: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XIX: Syllepsis"
-msgstr ""
+msgstr "ALPHA XIX : Syllepsis"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1886,7 +1887,7 @@ msgstr "Escolha o idioma do jogo."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Repetir jogos prévios."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1944,11 +1945,11 @@ msgstr "Clique para visitar o 0 A.D. Trac para comunicar um bug, uma falha ou um
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
-msgstr ""
+msgstr "Repetir Jogos"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Filtrar repetições compatíveis"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
@@ -1968,7 +1969,7 @@ msgstr "Jogadores:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 msgid "Spoiler"
-msgstr ""
+msgstr "Spoiler"
 
 #: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Main Menu"
@@ -1986,7 +1987,7 @@ msgstr "Sumário"
 
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Start Replay"
-msgstr ""
+msgstr "Iniciar Repetição"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
@@ -2048,7 +2049,7 @@ msgstr "Civilização"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
-msgstr ""
+msgstr "Unidades de Trainamento"
 
 #: gui/summary/summary.xml:(caption):65
 msgid "Score"
@@ -2097,13 +2098,13 @@ msgstr "[imgleft=\"constructionIcon\"]Este jogo ainda está em desenvolvimento. 
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]O jogo pode ter problemas de desempenho, especialmente com mapas vastos e grandes quantidades de unidades."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]Esta versão destaca um novo pathfinder com desempenho acelerado, mas pode sofrer de novos bugs."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
@@ -2124,7 +2125,7 @@ msgstr "- Pode ser construído em qualquer lugar no mapa e até em território i
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr ""
+msgstr "- Deteriora-se ao dono do território quando construido em território não aliado"
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
@@ -2134,7 +2135,7 @@ msgstr "- Constrói maquinaria de cerco e recruta cidadãos-soldados."
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "- Guarneça até 40 unidades para as curar a uma taxa lenta e para proteger o acampamento militar de ataques e de deterioração."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -2176,7 +2177,7 @@ msgstr "- Desenvolve melhoramentos de armas e armaduras para todas as unidades."
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Guarnece um cidadão-soldado para acelerar as investigações technológicas (AINDA NÃO IMPLEMENTADO)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -2190,7 +2191,7 @@ msgstr "- Infantaria campeã e cavaleiro lanceiro campeão para Cartago."
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr ""
+msgstr "- Ambos são recrutados a partir do Templo em vez da Fortaleza como a maioria dos outros campeões."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -2312,7 +2313,7 @@ msgstr "- A fortaleza é normalmente o edifício mais forte de cada civilizaçã
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- Recruta unidades fortes como Campeões, Heróis e Maquinaria de Cerco."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -2340,7 +2341,7 @@ msgstr "- Os Cidadãos-Soldados são melhores em Mineração."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
-msgstr ""
+msgstr "- Os Cidadãos-Soldados de Cavalaria são melhores em Caça."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
@@ -2385,7 +2386,7 @@ msgstr "- São construídas rapidamente, mas são pouco resistentes."
 #: gui/text/tips/outposts.txt:8
 msgid ""
 "- Garrison a unit in it to stop them from decaying in neutral territory."
-msgstr ""
+msgstr "- Guarneça uma unidade dentro para prevenir a deterioração em território neutro."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -2454,7 +2455,7 @@ msgstr "- Com boa armadura e lento. Pouco ataque."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "- Usado contra cavalaria ou contra outra infantaria de peleja para os encurralar."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2472,11 +2473,11 @@ msgstr "- O navio de guerra comum mais pesado. Disponível para: Roma, Cartago, 
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Garrison ballistas to increase fire power."
-msgstr ""
+msgstr "- Guarneça balistas para aumentar o poder de fogo."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Pode bater com o esporão para afundar embarcações inimigas (AINDA NÃO IMPLEMENTADO)."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -2568,7 +2569,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr ""
+msgstr "- Um edifício inicial especial para civilizações gregas."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2622,7 +2623,7 @@ msgstr "TEMPLOS"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "- Estrutura da Fase de Vila"
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -2642,24 +2643,24 @@ msgstr "- Guarneça o edifício com unidades feridas para que estas sejam curada
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr ""
+msgstr "DETERIORAÇÃO TERRITORIAL"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr ""
+msgstr "- Deterioração acontece quando estruturas não são ligadas a uma Centro Cívico aliado."
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
 "- The decay process can be slowed down or reversed by garrisoning some units"
 " in the structure."
-msgstr ""
+msgstr "- O processo de deterioração pode ser abrandado ou invertido guarnecendo algumas unidades na estrutura."
 
 #: gui/text/tips/territory_decay.txt:7
 msgid ""
 "- When the decay is completed, the building will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "- Quando a deterioração estiver completo, a estrutura será entregue ao vizinho mais influencial."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -2698,19 +2699,19 @@ msgstr "- Indicada tanto para transporte como para batalhas."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- Guarneça soldados a bordo para aumentar o poder de fogo."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Garrison a catapult aboard for a long-range siege attack (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Guarneça uma catapulta a bordo para fornecer ataque de cerco de grande alcance (AINDA NÃO IMPLEMENTADO)."
 
 #: gui/text/tips/triremes.txt:12
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Dispõem de um ataque de embate devastador contra outras embarcações, que tem de ser recarregado depois de usado (AINDA NÃO IMPLEMENTADO)."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

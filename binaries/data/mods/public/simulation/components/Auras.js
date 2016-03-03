@@ -78,19 +78,13 @@ Auras.prototype.Init = function()
 		aura.affects = this.template[name].Affects;
 		if (this.template[name].AffectedPlayers)
 			aura.affectedPlayers = this.template[name].AffectedPlayers.split(/\s+/);
-		aura.modifications = [];
-		for (var value in this.template[name].Modifications)
-		{
-			var mod = {};
-			mod.value = value.replace(/\./g, "/").replace(/\/\//g, ".");
-			if (this.template[name].Modifications[value].Add)
-				mod.add = +this.template[name].Modifications[value].Add;
-			else if (this.template[name].Modifications[value].Multiply)
-				mod.multiply = +this.template[name].Modifications[value].Multiply;
-			aura.modifications.push(mod);
-		}
 		this.auras[name] = aura;
 	}
+};
+
+Auras.prototype.GetModifierIdentifier = function(name, mod)
+{
+		return this.templateName + "/" + name + "/" + mod.value;
 };
 
 Auras.prototype.GetDescriptions = function()
@@ -238,6 +232,25 @@ Auras.prototype.Clean = function()
 			cmpRangeManager.DestroyActiveQuery(this[name].rangeQuery);
 	}
 
+	for (let name in this.template)
+	{
+		let modifications = [];
+		for (let value in this.template[name].Modifications)
+		{
+			let mod = {};
+			mod.value = value.replace(/\./g, "/").replace(/\/\//g, ".");
+			let templateModifications = this.template[name].Modifications[value];
+			if (templateModifications.Add)
+				mod.add = ApplyValueModificationsToEntity("Auras/"+name+"/Modifications/"+mod.value+"/Add",
+					+templateModifications.Add, this.entity);
+			else if (templateModifications.Multiply)
+				mod.multiply = ApplyValueModificationsToEntity("Auras/"+name+"/Modifications/"+mod.value+"/Multiply",
+					+templateModifications.Multiply, this.entity);
+			modifications.push(mod);
+		}
+		this.auras[name].modifications = modifications;
+	}
+
 	for (let name of auraNames)
 	{
 		// only calculate the affected players on re-applying the bonuses
@@ -331,7 +344,7 @@ Auras.prototype.ApplyTemplateBonus = function(name, players)
 
 	for (let mod of modifications)
 		for (let player of players)
-			cmpAuraManager.ApplyTemplateBonus(mod.value, player, classes, mod, this.templateName + "/" + name + "/" + mod.value);
+			cmpAuraManager.ApplyTemplateBonus(mod.value, player, classes, mod, this.GetModifierIdentifier(name, mod));
 };
 
 Auras.prototype.RemoveFormationBonus = function(memberList)
@@ -360,7 +373,7 @@ Auras.prototype.RemoveTemplateBonus = function(name)
 
 	for each (var mod in modifications)
 		for each (var player in players)
-			cmpAuraManager.RemoveTemplateBonus(mod.value, player, classes, this.templateName + "/" + name + "/" + mod.value);
+			cmpAuraManager.RemoveTemplateBonus(mod.value, player, classes, this.GetModifierIdentifier(name, mod));
 };
 
 Auras.prototype.ApplyBonus = function(name, ents)
@@ -372,7 +385,7 @@ Auras.prototype.ApplyBonus = function(name, ents)
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 	for each (let mod in modifications)
-		cmpAuraManager.ApplyBonus(mod.value, validEnts, mod, this.templateName + "/" + name + "/" + mod.value);
+		cmpAuraManager.ApplyBonus(mod.value, validEnts, mod, this.GetModifierIdentifier(name, mod));
 	// update status bars if this has an icon
 	if (!this.GetOverlayIcon(name))
 		return;
@@ -393,7 +406,7 @@ Auras.prototype.RemoveBonus = function(name, ents)
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 	for each (let mod in modifications)
-		cmpAuraManager.RemoveBonus(mod.value, validEnts, this.templateName + "/" + name + "/" + mod.value);
+		cmpAuraManager.RemoveBonus(mod.value, validEnts, this.GetModifierIdentifier(name, mod));
 	// update status bars if this has an icon
 	if (!this.GetOverlayIcon(name))
 		return;

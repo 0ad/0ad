@@ -17,15 +17,15 @@ var PETRA = function(m)
 m.HQ = function(Config)
 {
 	this.Config = Config;
-	
+
 	this.econState = "growth";	// existing values: growth, townPhasing.
 	this.currentPhase = undefined;
 
 	// cache the rates.
-	this.turnCache = {};    
+	this.turnCache = {};
 	this.wantedRates = { "food": 0, "wood": 0, "stone":0, "metal": 0 };
 	this.currentRates = { "food": 0, "wood": 0, "stone":0, "metal": 0 };
-	this.lastFailedGather = { "wood": undefined, "stone": undefined, "metal": undefined }; 
+	this.lastFailedGather = { "wood": undefined, "stone": undefined, "metal": undefined };
 
 	// workers configuration
 	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
@@ -123,7 +123,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || !ent.isOwn(PlayerID))
 			continue;
-			
+
 		if (ent.getMetadata(PlayerID, "base") == -1)
 		{
 			// Okay so let's try to create a new base around this.
@@ -211,7 +211,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			ent.setMetadata(PlayerID, "role", undefined);
 			ent.setMetadata(PlayerID, "subrole", undefined);
 			ent.setMetadata(PlayerID, "plan", undefined);
-			ent.setMetadata(PlayerID, "PartOfArmy", undefined);		    
+			ent.setMetadata(PlayerID, "PartOfArmy", undefined);		
 			if (ent.hasClass("Trader"))
 			{
 				ent.setMetadata(PlayerID, "role", "trader");
@@ -335,7 +335,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				this.decayingStructures.add(evt.entity);
 		}
 		else if (ent.isGarrisonHolder())
-			this.garrisonManager.removeDecayingStructure(evt.entity);		
+			this.garrisonManager.removeDecayingStructure(evt.entity);
 	}
 
 	// then deals with decaying structures
@@ -381,9 +381,9 @@ m.HQ.prototype.OnTownPhase = function(gameState)
 {
 	if (this.Config.difficulty > 2 && this.femaleRatio > 0.4)
 		this.femaleRatio = 0.4;
-		
-	var phaseName = gameState.getTemplate(gameState.townPhase()).name(); 
-	m.chatNewPhase(gameState, phaseName, true); 
+
+	var phaseName = gameState.getTemplate(gameState.townPhase()).name();
+	m.chatNewPhase(gameState, phaseName, true);
 };
 
 // Called by the "city phase" research plan once it's started
@@ -394,9 +394,9 @@ m.HQ.prototype.OnCityPhase = function(gameState)
 
 	// increase the priority of defense buildings to free this queue for our first fortress
 	gameState.ai.queueManager.changePriority("defenseBuilding", 2*this.Config.priorities.defenseBuilding);
-	
-	var phaseName = gameState.getTemplate(gameState.cityPhase()).name();   
-	m.chatNewPhase(gameState, phaseName, true); 
+
+	var phaseName = gameState.getTemplate(gameState.cityPhase()).name();
+	m.chatNewPhase(gameState, phaseName, true);
 };
 
 // This code trains females and citizen workers, trying to keep close to a ratio of females/CS
@@ -495,7 +495,7 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 		units = gameState.findTrainableUnits(classes, ["SiegeTower"]);
 	else						// We do not want hero when not explicitely specified
 		units = gameState.findTrainableUnits(classes, ["Hero"]);
-	
+
 	if (units.length == 0)
 		return undefined;
 
@@ -515,7 +515,7 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 		for (let param of parameters)
 		{
 			if (param[0] !== "costsResource" || param[2] !== type)
-				continue; 			
+				continue;
 			param[1] = Math.min( param[1], costsResource );
 			toAdd = false;
 			break;
@@ -547,7 +547,7 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 				aTopParam += a[1].walkSpeed() * param[1];
 				bTopParam += b[1].walkSpeed() * param[1];
 			}
-			
+
 			if (param[0] == "cost") {
 				aDivParam += a[1].costSum() * param[1];
 				bDivParam += b[1].costSum() * param[1];
@@ -638,7 +638,7 @@ m.HQ.prototype.GetCurrentGatherRates = function(gameState)
 		}
 		this.turnCache.gatherRates = true;
 	}
-	    
+	
 	return this.currentRates;
 };
 
@@ -662,7 +662,7 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 	needed.sort(function(a, b) {
 		var va = (Math.max(0, a.wanted - a.current))/ (a.current+1);
 		var vb = (Math.max(0, b.wanted - b.current))/ (b.current+1);
-		
+
 		// If they happen to be equal (generally this means "0" aka no need), make it fair.
 		if (va === vb)
 			return (a.current - b.current);
@@ -674,7 +674,7 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 // Returns the best position to build a new Civil Centre
 // Whose primary function would be to reach new resources of type "resource".
 m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, proximity, fromStrategic)
-{	
+{
 	// This builds a map. The procedure is fairly simple. It adds the resource maps
 	//	(which are dynamically updated and are made so that they will facilitate DP placement)
 	// Then checks for a good spot in the territory. If none, and town/city phase, checks outside
@@ -721,7 +721,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	var cellSize = this.territoryMap.cellSize;
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
-	{	
+	{
 		if (this.territoryMap.getOwnerIndex(j) != 0)
 			continue;
 		// with enough room around to build the cc
@@ -739,7 +739,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		// checking distance to other cc
 		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 
-		if (proximity)	// this is our first cc, let's do it near our units 
+		if (proximity)	// this is our first cc, let's do it near our units
 		{
 			let dist = API3.SquareVectorDistance(proximity, pos);
 			norm /= (1 + dist/scale);
@@ -806,7 +806,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 		if (this.borderMap.map[j] > 0)	// disfavor the borders of the map
 			norm *= 0.5;
-		
+
 		let val = 2*gameState.sharedScript.CCResourceMaps[resource].map[j] +
 			    gameState.sharedScript.CCResourceMaps.wood.map[j] +
 			    gameState.sharedScript.CCResourceMaps.stone.map[j] +
@@ -852,7 +852,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 // Returns the best position to build a new Civil Centre
 // Whose primary function would be to assure territorial continuity with our allies
 m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
-{	
+{
 	// This builds a map. The procedure is fairly simple.
 	// We minimize the Sum((dist-300)**2) where the sum is on the three nearest allied CC
 	// with the constraints that all CC have dist > 200 and at least one have dist < 400
@@ -954,7 +954,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 		}
 		// disfavor border of the map
 		if (this.borderMap.map[j] > 0)
-			currentVal += 10000;		
+			currentVal += 10000;
 
 		if (bestVal !== undefined && currentVal > bestVal)
 			continue;
@@ -965,7 +965,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	}
 
 	if (this.Config.debug > 1)
-		API3.warn("We've found a strategic base with bestVal = " + bestVal);	
+		API3.warn("We've found a strategic base with bestVal = " + bestVal);
 
 	Engine.ProfileStop();
 
@@ -1061,7 +1061,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	}
 
 	if (this.Config.debug > 1)
-		API3.warn("We found a market position with bestVal = " + bestVal);	
+		API3.warn("We found a market position with bestVal = " + bestVal);
 
 	if (bestVal === undefined)  // no constraints. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1, 0];
@@ -1069,7 +1069,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	var expectedGain = Math.round(bestVal / this.Config.distUnitGain);
 	if (this.Config.debug > 1)
 		API3.warn("this would give a trading gain of " + expectedGain);
-	// do not keep it if gain is too small, except if this is our first BarterMarket 
+	// do not keep it if gain is too small, except if this is our first BarterMarket
 	if (expectedGain < this.tradeManager.minimalGain ||
 		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).length > 0)))
 		return false;
@@ -1082,7 +1082,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 // Returns the best position to build defensive buildings (fortress and towers)
 // Whose primary function is to defend our borders
 m.HQ.prototype.findDefensiveLocation = function(gameState, template)
-{	
+{
 	// We take the point in our territory which is the nearest to any enemy cc
 	// but requiring a minimal distance with our other defensive structures
 	// and not in range of any enemy defensive structure to avoid building under fire.
@@ -1160,7 +1160,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 			if (!strPos)
 				continue;
 			let dist = API3.SquareVectorDistance(strPos, pos);
-			if (dist < 6400) //  TODO check on true attack range instead of this 80*80 
+			if (dist < 6400) //  TODO check on true attack range instead of this 80*80
 			{
 				minDist = -1;
 				break;
@@ -1332,7 +1332,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		if (gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length >= requirements.number)
 			this.requireHouses = undefined;
 	}
-    
+
 	// When population limit too tight
 	//    - if no room to build, try to improve with technology
 	//    - otherwise increase temporarily the priority of houses
@@ -1451,7 +1451,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 	}
 
 	if (gameState.currentPhase() < 2 || !this.canBuild(gameState, "structures/{civ}_defense_tower"))
-		return;	
+		return;
 
 	let numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).filter(API3.Filters.byClass("Town")).length;
 	if ((!numTowers || gameState.ai.elapsedTime > (1 + 0.10*numTowers)*this.towerLapseTime + this.towerStartTime) &&
@@ -1578,7 +1578,7 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 /**
  * train with highest priority ranged infantry in the nearest civil centre from a given set of positions
  * and garrison them there for defense
- */  
+ */
 m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 {
 	if (gameState.ai.queues.emergency.hasQueuedUnits())
@@ -1685,7 +1685,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 
 m.HQ.prototype.canBuild = function(gameState, structure)
 {
-	var type = gameState.applyCiv(structure); 
+	var type = gameState.applyCiv(structure);
 	// available room to build it
 	if (this.stopBuilding.has(type))
 	{
@@ -1913,7 +1913,7 @@ m.HQ.prototype.AddTCGatherer = function(supplyID)
 	if (this.turnCache.resourceGatherer && this.turnCache.resourceGatherer[supplyID] !== undefined)
 		++this.turnCache.resourceGatherer[supplyID];
 	else
-	{ 
+	{
 		if (!this.turnCache.resourceGatherer)
 			this.turnCache.resourceGatherer = {};
 		this.turnCache.resourceGatherer[supplyID] = 1;
@@ -1986,11 +1986,11 @@ m.HQ.prototype.update = function(gameState, queues, events)
 		this.currentPhase = gameState.currentPhase();
 		let phaseName = "Unknown Phase";
 		if (this.currentPhase == 2)
-			phaseName = gameState.getTemplate(gameState.townPhase()).name(); 
+			phaseName = gameState.getTemplate(gameState.townPhase()).name();
 		else if (this.currentPhase == 3)
 			phaseName = gameState.getTemplate(gameState.cityPhase()).name();
-			
-		m.chatNewPhase(gameState, phaseName, false); 
+
+		m.chatNewPhase(gameState, phaseName, false);
 		this.updateTerritories(gameState);
 	}
 	else if (gameState.ai.playedTurn - this.lastTerritoryUpdate > 100)

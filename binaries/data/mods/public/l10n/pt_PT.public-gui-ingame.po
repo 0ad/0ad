@@ -6,6 +6,7 @@
 # alfalb.as, 2015
 # André Rodrigues, 2013
 # crolidge, 2015
+# Danny Reese <danny@angolateam.org>, 2016
 # Ernan, 2014
 # G N <nunes.guilherme@gmail.com>, 2016
 # Grim Kriegor <grimkriegor@opmbx.org>, 2014
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-28 20:24+0000\n"
-"Last-Translator: G N <nunes.guilherme@gmail.com>\n"
+"PO-Revision-Date: 2016-02-25 22:03+0000\n"
+"Last-Translator: Danny Reese <danny@angolateam.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,8 +42,8 @@ msgstr[1] "Distância básica: %(range)s metros"
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bónus de alcance médio: %(range)s meter"
+msgstr[1] "Bónus de alcance médio: %(range)s meters"
 
 #: gui/session/input.js:717
 msgid "Cannot build wall here!"
@@ -273,7 +274,7 @@ msgstr "%(username)s foi banido"
 #: gui/session/messages.js:44
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s começou a reentrar no jogo."
 
 #: gui/session/messages.js:45
 #, javascript-format
@@ -283,7 +284,7 @@ msgstr "%(player)s saiu do jogo."
 #: gui/session/messages.js:46
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s reentrou no jogo."
 
 #: gui/session/messages.js:59
 msgid "Connection to the server has been authenticated."
@@ -445,8 +446,8 @@ msgstr "Posto %(rank)s "
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Esta fundação estará concluída em %(seconds)s segundo."
+msgstr[1] "Esta fundação estará concluída em %(seconds)s segundos."
 
 #: gui/session/selection_details.js:79
 #, javascript-format
@@ -502,8 +503,8 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Número de construtores.\nAgendar outro construtor a esta fundação vai acelerar a construção em %(speedup)s segundo."
+msgstr[1] "Número de construtores.\nAgendar outro construtor a esta fundação vai acelerar a construção em %(speedup)s segundos."
 
 #: gui/session/selection_details.js:207 gui/session/selection_details.js:215
 msgid "Number of builders."
@@ -646,29 +647,29 @@ msgstr "Manter a posição"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "Atacar oponentes ao redor, focar nos agressores e perseguir enquanto visíveis"
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "Atacar oponentes ao redor"
 
 #: gui/session/selection_panels_helpers.js:62
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "Atacar oponentes ao redor, perseguir uma curta distáncia e voltar à origem"
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr ""
+msgstr "Fugir se for atacado"
 
 #: gui/session/selection_panels_helpers.js:66
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "Atacar oponentes no alcance, mas não se mover"
 
 #: gui/session/selection_panels_helpers.js:82
 #, javascript-format
@@ -766,7 +767,7 @@ msgstr "VENCEDOR!"
 #: gui/session/session.js:607
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "A repetição acabou. Pretende sair?"
 
 #: gui/session/session.js:608
 msgctxt "replayFinished"
@@ -853,7 +854,7 @@ msgstr "Não pode destruir esta entidade porque está na névoa da guerra"
 #: gui/session/unit_actions.js:705
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "Não pode destruir esta entidade porque controla menos que uma metade dos pontos de captura"
 
 #: gui/session/unit_actions.js:737
 msgid "Stop"
@@ -954,7 +955,7 @@ msgstr "Guardar"
 
 #: gui/session/menu.xml:(caption):53
 msgid "Summary"
-msgstr ""
+msgstr "Sumário"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Options"
@@ -1022,7 +1023,7 @@ msgstr "Promover unidades seleccionadas"
 
 #: gui/session/session.xml:(caption):152
 msgid "Hierarchical pathfinder overlay"
-msgstr ""
+msgstr "Mostrador hierárquico de pathfinding"
 
 #: gui/session/session.xml:(caption):186
 msgid "Game Paused"

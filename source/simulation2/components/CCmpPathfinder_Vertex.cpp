@@ -656,7 +656,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 		if (i >= staticShapesNb)
 			pathfindClearance = clearance - entity_pos_t::FromInt(1)/2;
-		
+
 		// Expand the vertexes by the moving unit's collision radius, to find the
 		// closest we can get to it
 
@@ -836,9 +836,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 				npos.Y = clamp(npos.Y, rangeZMin, rangeZMax);
 			}
 			else
-			{
 				npos = vertexes[n].p;
-			}
 
 			// Work out which quadrant(s) we're approaching the new vertex from
 			u8 quad = 0;
@@ -853,12 +851,22 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 				// Hack: Always head towards the goal if possible, to avoid missing it if it's
 				// inside another unit
 				if (n != GOAL_VERTEX_ID)
-				{
 					continue;
-				}
 			}
 
-			bool visible =
+			bool visible = true;
+			u16 i, j;
+			Pathfinding::NearestNavcell(vertexes[curr.id].p.X, vertexes[curr.id].p.Y, i, j, m_Grid->m_W, m_Grid->m_H);
+	       		if (!IS_PASSABLE(m_Grid->get(i, j), passClass))
+			{
+				Pathfinding::NearestNavcell(npos.X, npos.Y, i, j, m_Grid->m_W, m_Grid->m_H);
+				// Do not allow path between two impassable vertexes to prevent cases
+				// where a path along an obstruction will end up in an impassable region
+		       		if (!IS_PASSABLE(m_Grid->get(i, j), passClass))
+					visible = false;
+			}
+
+			visible = visible &&
 				CheckVisibilityLeft(vertexes[curr.id].p, npos, edgesLeft) &&
 				CheckVisibilityRight(vertexes[curr.id].p, npos, edgesRight) &&
 				CheckVisibilityBottom(vertexes[curr.id].p, npos, edgesBottom) &&
