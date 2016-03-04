@@ -29,7 +29,7 @@ m.HQ = function(Config)
 
 	// workers configuration
 	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
-	this.femaleRatio = this.Config.Economy.femaleRatio;
+	this.supportRatio = this.Config.Economy.supportRatio;
 
 	this.lastTerritoryUpdate = -1;
 	this.stopBuilding = new Map(); // list of buildings to stop (temporarily) production because no room
@@ -213,13 +213,13 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			ent.setMetadata(PlayerID, "role", undefined);
 			ent.setMetadata(PlayerID, "subrole", undefined);
 			ent.setMetadata(PlayerID, "plan", undefined);
-			ent.setMetadata(PlayerID, "PartOfArmy", undefined);		
+			ent.setMetadata(PlayerID, "PartOfArmy", undefined);
 			if (ent.hasClass("Trader"))
 			{
 				ent.setMetadata(PlayerID, "role", "trader");
 				ent.setMetadata(PlayerID, "route", undefined);
 			}
-			if (ent.hasClass("Female") || ent.hasClass("CitizenSoldier"))
+			if (ent.hasClass("Worker"))
 			{
 				ent.setMetadata(PlayerID, "role", "worker");
 				ent.setMetadata(PlayerID, "subrole", "idle");
@@ -381,8 +381,8 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 // Called by the "town phase" research plan once it's started
 m.HQ.prototype.OnTownPhase = function(gameState)
 {
-	if (this.Config.difficulty > 2 && this.femaleRatio > 0.4)
-		this.femaleRatio = 0.4;
+	if (this.Config.difficulty > 2 && this.supportRatio > 0.4)
+		this.supportRatio = 0.4;
 
 	var phaseName = gameState.getTemplate(gameState.townPhase()).name();
 	m.chatNewPhase(gameState, phaseName, true);
@@ -391,8 +391,8 @@ m.HQ.prototype.OnTownPhase = function(gameState)
 // Called by the "city phase" research plan once it's started
 m.HQ.prototype.OnCityPhase = function(gameState)
 {
-	if (this.Config.difficulty > 2 && this.femaleRatio > 0.3)
-		this.femaleRatio = 0.3;
+	if (this.Config.difficulty > 2 && this.supportRatio > 0.3)
+		this.supportRatio = 0.3;
 
 	// increase the priority of defense buildings to free this queue for our first fortress
 	gameState.ai.queueManager.changePriority("defenseBuilding", 2*this.Config.priorities.defenseBuilding);
@@ -401,34 +401,43 @@ m.HQ.prototype.OnCityPhase = function(gameState)
 	m.chatNewPhase(gameState, phaseName, true);
 };
 
-// This code trains females and citizen workers, trying to keep close to a ratio of females/CS
-// TODO: this should choose a base depending on which base need workers
-// TODO: also there are several things that could be greatly improved here.
+// This code trains citizen workers, trying to keep close to a ratio of worker/soldiers
 m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 {
-	// Count the workers in the world and in progress
-	var numFemales = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("units/{civ}_support_female_citizen"), true);
+	// default template
+	var requirementsDef = [["cost", 1], ["costsResource", 1, "food"]];
+	var classesDef = ["Support", "Worker"];
+	var templateDef = this.findBestTrainableUnit(gameState, classesDef, requirementsDef);
 
 	// counting the workers that aren't part of a plan
-	var numWorkers = 0;
+	var numberOfWorkers = 0;   // all workers
+	var numberOfSupports = 0;  // only support workers (i.e. non fighting)
 	gameState.getOwnUnits().forEach (function (ent) {
 		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") == undefined)
-			++numWorkers;
+		{
+			++numberOfWorkers;
+			if (ent.hasClass("Support"))
+				++numberOfSupports;
+		}
 	});
-	var numInTraining = 0;
+	var numberInTraining = 0;
 	gameState.getOwnTrainingFacilities().forEach(function(ent) {
 		ent.trainingQueue().forEach(function(item) {
+			numberInTraining += item.count;
 			if (item.metadata && item.metadata.role && item.metadata.role == "worker" && item.metadata.plan == undefined)
-				numWorkers += item.count;
-			numInTraining += item.count;
+			{
+				numberOfWorkers += item.count;
+				if (ent.hasClass("Support"))
+					numberOfSupports += item.count;
+			}
 		});
 	});
 
 	// Anticipate the optimal batch size when this queue will start
-	// and adapt the batch size of the first and second queued workers and females to the present population
+	// and adapt the batch size of the first and second queued workers to the present population
 	// to ease a possible recovery if our population was drastically reduced by an attack
 	// (need to go up to second queued as it is accounted in queueManager)
-	var size = numWorkers < 12 ? 1 : Math.min(5, Math.ceil(numWorkers / 10));
+	var size = numberOfWorkers < 12 ? 1 : Math.min(5, Math.ceil(numberOfWorkers / 10));
 	if (queues.villager.plans[0])
 	{
 		queues.villager.plans[0].number = Math.min(queues.villager.plans[0].number, size);
@@ -442,47 +451,45 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 			queues.citizenSoldier.plans[1].number = Math.min(queues.citizenSoldier.plans[1].number, size);
 	}
 
-	var numQueuedF = queues.villager.countQueuedUnits();
-	var numQueuedS = queues.citizenSoldier.countQueuedUnits();
-	var numQueued = numQueuedS + numQueuedF;
-	var numTotal = numWorkers + numQueued;
+	var numberOfQueuedSupports = queues.villager.countQueuedUnits();
+	var numberOfQueuedSoldiers = queues.citizenSoldier.countQueuedUnits();
+	var numberQueued = numberOfQueuedSupports + numberOfQueuedSoldiers;
+	var numberTotal = numberOfWorkers + numberQueued;
 
-	if (this.saveResources && numTotal > this.Config.Economy.popForTown + 10)
+	if (this.saveResources && numberTotal > this.Config.Economy.popForTown + 10)
 		return;
-	if (numTotal > this.targetNumWorkers || (numTotal >= this.Config.Economy.popForTown &&
+	if (numberTotal > this.targetNumWorkers || (numberTotal >= this.Config.Economy.popForTown &&
 		gameState.currentPhase() == 1 && !gameState.isResearching(gameState.townPhase())))
 		return;
-	if (numQueued > 50 || (numQueuedF > 20 && numQueuedS > 20) || numInTraining > 15)
+	if (numberQueued > 50 || (numberOfQueuedSupports > 20 && numberOfQueuedSoldiers > 20) || numberInTraining > 15)
 		return;
 
-	// default template
-	var templateDef = gameState.applyCiv("units/{civ}_support_female_citizen");
 	// Choose whether we want soldiers instead.
-	let femaleRatio = (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.femaleRatio, 0.2) : this.femaleRatio);
+	let supportRatio = (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.2) : this.supportRatio);
 	let template;
-	if (!gameState.templates[templateDef] || ((numFemales+numQueuedF) > 8 && (numFemales+numQueuedF)/numTotal > femaleRatio))
+	if ((numberOfSupports + numberOfQueuedSupports) > 8 && (numberOfSupports + numberOfQueuedSupports)/numberTotal > supportRatio)
 	{
 		let requirements;
-		if (numTotal < 45)
+		if (numberTotal < 45)
 			requirements = [ ["cost", 1], ["speed", 0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]];
 		else
 			requirements = [ ["strength", 1] ];
 
+		let classes = ["CitizenSoldier", "Infantry"];
 		let proba = Math.random();
-		if (proba < 0.6)
-		{	// we require at least 30% ranged and 30% melee
-			let classes = proba < 0.3 ? ["CitizenSoldier", "Infantry", "Ranged"] : ["CitizenSoldier", "Infantry", "Melee"];
-			template = this.findBestTrainableUnit(gameState, classes, requirements);
-		}
-		if (!template)
-			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], requirements);
-	}
-	if (!template && gameState.templates[templateDef])
-		template = templateDef;
+		//  we require at least 30% ranged and 30% melee
+		if ( proba < 0.3 )
+			classes.push("Ranged");
+		else if ( proba < 0.6 )
+			classes.push("Melee");
 
-	// base "0" means "auto"
-	if (template === gameState.applyCiv("units/{civ}_support_female_citizen"))
-		queues.villager.addPlan(new m.TrainingPlan(gameState, template, { "role": "worker", "base": 0 }, size, size));
+		template = this.findBestTrainableUnit(gameState, classes, requirements);
+	}
+
+	// If the template variable is empty, the default unit (Support unit) will be used
+	// base "0" means automatic choice of base
+	if (!template && templateDef)
+		queues.villager.addPlan(new m.TrainingPlan(gameState, templateDef, { "role": "worker", "base": 0 }, size, size));
 	else if (template)
 		queues.citizenSoldier.addPlan(new m.TrainingPlan(gameState, template, { "role": "worker", "base": 0 }, size, size));
 };
@@ -506,8 +513,6 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 	var availableResources = gameState.ai.queueManager.getAvailableResources(gameState); // available (gathered) resources
 	for (let type in remainingResources)
 	{
-		if (type === "food")
-			continue;
 		if (availableResources[type] > 800)
 			continue;
 		if (remainingResources[type] > 800)
@@ -640,7 +645,7 @@ m.HQ.prototype.GetCurrentGatherRates = function(gameState)
 		}
 		this.turnCache.gatherRates = true;
 	}
-	
+
 	return this.currentRates;
 };
 
@@ -2069,7 +2074,7 @@ m.HQ.prototype.Serialize = function()
 		"wantedRates": this.wantedRates,
 		"currentRates": this.currentRates,
 		"lastFailedGather": this.lastFailedGather,
-		"femaleRatio": this.femaleRatio,
+		"supportRatio": this.supportRatio,
 		"targetNumWorkers": this.targetNumWorkers,
 		"lastTerritoryUpdate": this.lastTerritoryUpdate,
 		"stopBuilding": this.stopBuilding,

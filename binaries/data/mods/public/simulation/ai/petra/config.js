@@ -30,7 +30,7 @@ m.Config = function(difficulty)
 		"targetNumWorkers" : 40, // dummy, will be changed later
 		"targetNumTraders" : 5, // Target number of traders
 		"targetNumFishers" : 1, // Target number of fishers per sea
-		"femaleRatio" : 0.5, // fraction of females among the workforce
+		"supportRatio" : 0.5, // fraction of support workers among the workforce
 		"provisionFields" : 2
 	};
 
@@ -125,14 +125,14 @@ m.Config.prototype.setConfig = function(gameState)
 	if (this.difficulty < 2)
 	{
 		this.Economy.cityPhase = 240000;
-		this.Economy.femaleRatio = 0.7;
+		this.Economy.supportRatio = 0.7;
 		this.Economy.provisionFields = 1;
 		this.Military.numWoodenTowers = (this.personality.defensive > 0.66) ? 1 : 0;
 	}
 	else if (this.difficulty < 3)
 	{
 		this.Economy.cityPhase = 1800;
-		this.Economy.femaleRatio = 0.6;
+		this.Economy.supportRatio = 0.6;
 		this.Economy.provisionFields = 1;
 		this.Military.numWoodenTowers = (this.personality.defensive > 0.66) ? 1 : 0;
 	}
@@ -154,7 +154,7 @@ m.Config.prototype.setConfig = function(gameState)
 			this.Military.popForBarracks1 = 12;
 			this.Economy.popForTown = 55;
 			this.Economy.popForMarket = 60;
-			this.Economy.femaleRatio = 0.3;
+			this.Economy.supportRatio = 0.3;
 			this.priorities.defenseBuilding = 60;
 		}
 	}
