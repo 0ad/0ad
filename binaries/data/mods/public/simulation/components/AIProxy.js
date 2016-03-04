@@ -146,11 +146,9 @@ AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
 
 	// Send a message telling a unit garrisoned or ungarrisoned.
 	// I won't check if the unit is still alive so it'll be up to the AI.
-	var added = msg.added;
-	var removed = msg.removed;
-	for each (var ent in added)
+	for (let ent of msg.added)
 		this.cmpAIInterface.PushEvent("Garrison", {"entity" : ent, "holder": this.entity});
-	for each (var ent in removed)
+	for (let ent of msg.removed)
 		this.cmpAIInterface.PushEvent("UnGarrison", {"entity" : ent, "holder": this.entity});
 };
 

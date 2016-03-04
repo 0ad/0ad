@@ -94,11 +94,11 @@ Gate.prototype.OnRangeUpdate = function(msg)
 		return;
 
 	if (msg.added.length > 0)
-		for each (var entity in msg.added)
+		for (let entity of msg.added)
 			this.allies.push(entity);
 
 	if (msg.removed.length > 0)
-		for each (var entity in msg.removed)
+		for (let entity of msg.removed)
 			this.allies.splice(this.allies.indexOf(entity), 1);
 
 	this.OperateGate();
