@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:01+0100\n"
-"PO-Revision-Date: 2016-02-17 22:01+0000\n"
+"PO-Revision-Date: 2016-03-03 18:11+0000\n"
 "Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Конница"
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Citizen"
-msgstr "Поданик"
+msgstr "Гражданин"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_champion.xml:13
@@ -72,7 +72,7 @@ msgstr "Начален"
 #: simulation/templates/template_unit_infantry_melee.xml:26
 #: simulation/templates/units/maur_ship_trireme.xml:20
 msgid "Melee"
-msgstr "Ръкопашен бой"
+msgstr "Близкобоен"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:27
 msgid "Melee Cavalry"
@@ -149,7 +149,7 @@ msgstr "Метателно копие"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
-msgstr "Конник стрелец с копие"
+msgstr "Конник копиехвъргач"
 
 #: simulation/templates/template_unit_champion.xml:11
 msgid "Champion Unit"
@@ -169,7 +169,7 @@ msgstr "Професионален конник стрелец."
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 msgid "Champion Cavalry Skirmisher"
-msgstr "Професионален конник стрелец с копие"
+msgstr "Шампионски конник копиехвъргач"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
@@ -212,7 +212,7 @@ msgstr "Професионален стрелец с копие"
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
-msgstr "Копиеносец"
+msgstr "Пиконосец"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:46
 msgid "Champion Pikeman"
@@ -241,7 +241,7 @@ msgstr "Професионален стрелец"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
-msgstr "Супер Сага"
+msgstr "Супер обсада"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical.xml:16
@@ -253,7 +253,7 @@ msgstr "Механичен"
 #: simulation/templates/template_unit_mechanical_siege.xml:17
 #: simulation/templates/template_unit_mechanical_siege.xml:18
 msgid "Siege"
-msgstr "Обсада"
+msgstr "Обсаден"
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
@@ -261,11 +261,11 @@ msgstr "Куче"
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
-msgstr "Военно Куче"
+msgstr "Бойно куче"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
-msgstr "Не може да атакува зграда."
+msgstr "Не може да напада сгради."
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
@@ -595,7 +595,7 @@ msgstr "Търгувайте ресурси между Вашите пазари
 #: simulation/templates/units/spart_support_healer_a.xml:4
 msgctxt "Rank"
 msgid "Advanced"
-msgstr "Напредничави"
+msgstr "Напреднал"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
@@ -697,7 +697,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/spart_support_healer_e.xml:4
 msgctxt "Rank"
 msgid "Elite"
-msgstr "Елит"
+msgstr "Елитeн"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 msgid "Greek Cavalry"
@@ -709,7 +709,7 @@ msgstr "Hippeús"
 
 #: simulation/templates/units/athen_champion_infantry.xml:6
 msgid "City Guard"
-msgstr "Градска Охрана"
+msgstr "Градска стража"
 
 #: simulation/templates/units/athen_champion_infantry.xml:7
 msgid "Epílektos"
@@ -1447,7 +1447,7 @@ msgstr "Hetaîros"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:6
 msgid "Macedonian Shield Bearer"
-msgstr "Македонски Щитоносец"
+msgstr "Македонски щитоносец"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:7
 msgid "Hypaspistḗs"
@@ -1463,7 +1463,7 @@ msgstr "Аурата на империализма"
 
 #: simulation/templates/units/mace_hero_alexander.xml:11
 msgid "+10% territory effect for all buildings while he lives."
-msgstr "+10% териториален ефект за всички сгради, докато той е жив."
+msgstr "+10% териториален обхват за всички сгради, докато той е жив."
 
 #: simulation/templates/units/mace_hero_alexander.xml:32
 msgid "Alexander The Great"
@@ -1963,7 +1963,7 @@ msgstr "Spardiya Takabara"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:13
 msgid "Shieldbearer"
-msgstr "Щитоносач"
+msgstr "Щитоносец"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:14
 msgid "Sparabara"

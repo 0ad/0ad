@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-02-28 19:34+0000\n"
+"PO-Revision-Date: 2016-03-03 18:10+0000\n"
 "Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
-msgstr "Зареждането отменено"
+msgstr "Зареждането прекратено"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -453,7 +453,7 @@ msgstr "Няма"
 
 #: gui/common/settings.js:207
 msgid "Endless Game"
-msgstr "Безкрайна игра."
+msgstr "Безкрайна игра"
 
 #: gui/common/settings.js:248
 msgid "Unlimited"
@@ -719,7 +719,7 @@ msgstr "Лечение:"
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "ЖТ"
-msgstr[1] "ЖТ"
+msgstr[1] "Здраве"
 
 #: gui/common/tooltips.js:479
 #, javascript-format
@@ -751,7 +751,7 @@ msgstr "Без"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr "<непревилен>"
+msgstr "<неправилен>"
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:278
 #: gui/pregame/mainmenu.js:287 gui/replaymenu/replay_actions.js:111
@@ -790,7 +790,7 @@ msgstr "Режим в прозорец"
 
 #: gui/options/options.js:10
 msgid "Start 0 A.D. in a window"
-msgstr "Стартиране на 0 A.D. в прозорец."
+msgstr "Стартиране на 0 A.D. в прозорец"
 
 #: gui/options/options.js:11
 msgid "Background Pause"
@@ -798,7 +798,7 @@ msgstr "Пауза при преминаване на заден план"
 
 #: gui/options/options.js:11
 msgid "Pause single player games when window loses focus"
-msgstr "Самостоятелните игри ще бъдат спрени на пауза, когато прозорецът загуби фокус."
+msgstr "Самостоятелните игри ще бъдат спрени на пауза, когато прозорецът загуби фокус"
 
 #: gui/options/options.js:12
 msgid "Disable Welcome Screen"
@@ -817,7 +817,7 @@ msgstr "Подробни подсказки"
 #: gui/options/options.js:13
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr "Показване на подробни подсказки при посочване на единиците в сградите за обучаване."
+msgstr "Показване на подробни подсказки при посочване на единиците в сградите за обучаване"
 
 #: gui/options/options.js:14
 msgid "FPS Overlay"
@@ -825,7 +825,7 @@ msgstr "Слой за кадри/с"
 
 #: gui/options/options.js:14
 msgid "Show frames per second in top right corner."
-msgstr "Показване на брояч за кадрите в секунда в горния десен ъгъл."
+msgstr "Показване на броя на кадрите в секунда в горния десен ъгъл."
 
 #: gui/options/options.js:15
 msgid "Realtime Overlay"
@@ -898,7 +898,7 @@ msgstr "Небе"
 
 #: gui/options/options.js:26
 msgid "Render Sky"
-msgstr "Изчертаване на небето."
+msgstr "Изчертаване на небето"
 
 #: gui/options/options.js:27
 msgid "Smooth LOS"
@@ -914,7 +914,7 @@ msgstr "Силуети на единиците"
 
 #: gui/options/options.js:28
 msgid "Show outlines of units behind buildings"
-msgstr "Показване на очертания на единиците когато се намират зад сграда."
+msgstr "Показване на очертания на единиците когато се намират зад сграда"
 
 #: gui/options/options.js:29
 msgid "Shadow Filtering"
@@ -932,7 +932,7 @@ msgstr "Бърза и грозна вода"
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr "Използване на най-ниските възможни настройки за изчертаване на водата. Ако включите това, другите настройки биват пренебрегнати."
+msgstr "Използване на най-ниските възможни настройки за изчертаване на водата. Ако това бъде включено, другите настройки за водата ще бъдат пренебрегнати."
 
 #: gui/options/options.js:31
 msgid "HQ Water Effects"
@@ -950,7 +950,7 @@ msgstr "Истинска дълбочина на водата"
 
 #: gui/options/options.js:32
 msgid "Use actual water depth in rendering calculations"
-msgstr "Използване на истинската дълбочина на водата по време на изчисленията за изчертаването."
+msgstr "Използване на истинската дълбочина на водата по време на изчисленията за изчертаването"
 
 #: gui/options/options.js:33
 msgid "Water Reflections"
@@ -962,7 +962,7 @@ msgstr "Позволяване на водата да отразява огле�
 
 #: gui/options/options.js:34
 msgid "Water Refraction"
-msgstr "Водна рефракция"
+msgstr "Лъчево пречупване във водата"
 
 #: gui/options/options.js:34
 msgid "Use a real water refraction map and not transparency"
@@ -982,7 +982,7 @@ msgstr "Вертикална синхронизация"
 
 #: gui/options/options.js:36
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Използване на вертикална синхронизация за предотвратяване на разкъсваща се картина. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
+msgstr "Вертикалната синхронизация предотвратява разкъсването на картината. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
 #: gui/options/options.js:37
 msgid "Limit FPS in Menus"
@@ -1054,7 +1054,7 @@ msgstr "Време на съобщенията в чата"
 
 #: gui/options/options.js:51
 msgid "Show time that messages are posted in the lobby chat"
-msgstr "Показване на времето на публикуване на съобщенията в мрежовата стая."
+msgstr "Показване на времето на публикуване на съобщенията в чакалнята."
 
 #: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
@@ -1145,7 +1145,7 @@ msgstr "Грешка"
 
 #: gui/pregame/mainmenu.js:304
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "Влизане в мрежовата стая. \\[ЗАБРАНЕНО ПРИ КОМПИЛИРАНЕТО]"
+msgstr "Влизане в чакалнята. \\[ЗАБРАНЕНО ПРИ КОМПИЛИРАНЕТО]"
 
 #: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
@@ -1674,7 +1674,7 @@ msgstr "Звукови настройки"
 
 #: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
-msgstr "Настройки на мрежовата стая"
+msgstr "Настройки на чакалнята"
 
 #: gui/options/options.xml:(caption):69
 msgid "Revert"
@@ -1776,7 +1776,7 @@ msgstr "Създаване на игра"
 
 #: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
-msgstr "Мрежова стая"
+msgstr "Чакалня"
 
 #: gui/pregame/mainmenu.xml:(caption):322
 msgid "Options"
@@ -1874,7 +1874,7 @@ msgstr "Създаване на мрежова игра.\\n\\nИзисква о�
 
 #: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
-msgstr "Влизане в мрежовата стая."
+msgstr "Влизане в чакалнята."
 
 #: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
@@ -2048,7 +2048,7 @@ msgstr "Цивилизация:"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
-msgstr "Тренировъчни единици"
+msgstr "Обучаващи единици"
 
 #: gui/summary/summary.xml:(caption):65
 msgid "Score"
@@ -2397,7 +2397,7 @@ msgstr "— Бърза строящи се, евтини дървени стен
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr "— Повечето фракции могат да ги строят още в селищната фаза."
+msgstr "— Повечето фракции могат да ги строят още в Селска фаза."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
@@ -2554,7 +2554,7 @@ msgstr "— Има удвоена атака срещу конница."
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr "— Сносната разсичаща атака и добрата щурмуваща такава ги правят добри войници за първа линия."
+msgstr "— Сносната разсичаща атака и добрата щурмуваща такава ги правят добри в̀оини за фронта."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
@@ -2622,7 +2622,7 @@ msgstr "ХРАМОВЕ"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr "— Сграда от фазата „малък град“."
+msgstr "— Сграда от Градска фаза."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."

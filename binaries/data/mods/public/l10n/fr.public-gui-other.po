@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-02-15 21:24+0000\n"
+"PO-Revision-Date: 2016-03-02 17:54+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -368,7 +368,7 @@ msgstr "Vous avez été banni(e)"
 #: gui/common/network.js:24
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr "\\[Invalid value %(id)s]"
+msgstr "\\[Valeur invalide %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:36
@@ -649,7 +649,7 @@ msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:246
 msgid "Build Rate:"
-msgstr "Taux de Construction:"
+msgstr "Vitesse de construction :"
 
 #: gui/common/tooltips.js:291 gui/common/tooltips.js:292
 #: gui/common/tooltips.js:293 gui/common/tooltips.js:294
@@ -855,7 +855,7 @@ msgstr "Affiche le temps de jeu actuel en haut à droite."
 
 #: gui/options/options.js:17
 msgid "Ceasefire Time Overlay"
-msgstr "Sourcouche du temps de cesse-feu"
+msgstr "Décompte du cessez-le-feu"
 
 #: gui/options/options.js:17
 msgid "Always show the remaining ceasefire time."
@@ -1000,7 +1000,7 @@ msgstr "Limiter le taux de rafraîchissement dans les menus"
 
 #: gui/options/options.js:37
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr "Limiter le taux de rafraîchissement à 50 FPS dans tous les menus, pour économiser l'énergie."
+msgstr "Limiter le taux de rafraîchissement à 50 images par seconde dans tous les menus, pour économiser l'énergie."
 
 #: gui/options/options.js:38
 msgid "Graphics quality"
@@ -1008,7 +1008,7 @@ msgstr "Qualité graphique"
 
 #: gui/options/options.js:38
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr "Qualité graphique. NECESSITE UN REDEMARRAGE DU JEU"
+msgstr "Qualité graphique. NÉCESSITE UN REDÉMARRAGE DU JEU"
 
 #: gui/options/options.js:42
 msgid "Master Gain"
@@ -1068,7 +1068,7 @@ msgstr "Montrer l'heure à laquelle sont postés les messages dans le chat du ha
 
 #: gui/options/options.js:280
 msgid "You have unsaved changes, are you sure you want to quit ?"
-msgstr "Vous avez des modifications non enregistrées, êtes-vous sûr de vouloir quitter ?"
+msgstr "Vous avez des modifications non enregistrées, êtes-vous sûr(e) de vouloir quitter ?"
 
 #: gui/options/options.js:281 gui/savedgames/load.js:89
 msgid "Warning"
@@ -1177,12 +1177,12 @@ msgstr "Vous n'avez pas activé les mêmes mods que ceux de cette vidéo."
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr "Requis: %(mods)s"
+msgstr "Requis : %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:53
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr "Actifs: %(mods)s"
+msgstr "Actifs : %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
@@ -1202,7 +1202,7 @@ msgstr "Pas de résumé disponible."
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr "Scores en fin de jeux"
+msgstr "Scores à la fin du jeu."
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
@@ -1210,7 +1210,7 @@ msgstr "Supprimer la vidéo"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure to delete this replay permanently?"
-msgstr "Êtes-vous sur de vouloir supprimer cette partie sauvegardée ?"
+msgstr "Êtes-vous sûr(e) de vouloir supprimer cette vidéo définitivement ?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
@@ -1264,11 +1264,11 @@ msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_menu.js:235
 msgid "yyyy-MM-dd HH:mm"
-msgstr "yyyy-MM-dd HH:mm"
+msgstr "dd-MM-yyyy HH:mm"
 
 #: gui/replaymenu/replay_menu.js:265
 msgid "yyyy-MM"
-msgstr "yyyy-MM"
+msgstr "MM-yyyy"
 
 #: gui/replaymenu/replay_menu.js:328
 #, javascript-format
@@ -1688,7 +1688,7 @@ msgstr "Paramètres du hall"
 
 #: gui/options/options.xml:(caption):69
 msgid "Revert"
-msgstr "Revenir"
+msgstr "Défaire"
 
 #: gui/options/options.xml:(caption):74 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1700,7 +1700,7 @@ msgstr "Quitter"
 
 #: gui/options/options.xml:(tooltip):70
 msgid "Revert to previous saved settings"
-msgstr "Utiliser les paramètres sauvegardés"
+msgstr "Revenir aux paramètres sauvegardés"
 
 #: gui/options/options.xml:(tooltip):75
 msgid "Save changes"
@@ -1962,19 +1962,19 @@ msgstr "Filtrer les vidéos compatibles"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
-msgstr "Type de carte"
+msgstr "Type de carte :"
 
 #: gui/replaymenu/replay_menu.xml:(caption):151
 msgid "Map Size:"
-msgstr "Taille de carte"
+msgstr "Taille de carte :"
 
 #: gui/replaymenu/replay_menu.xml:(caption):166
 msgid "Victory:"
-msgstr "Victoire:"
+msgstr "Victoire :"
 
 #: gui/replaymenu/replay_menu.xml:(caption):187
 msgid "Players:"
-msgstr "Joueurs:"
+msgstr "Joueurs :"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 msgid "Spoiler"
@@ -2011,7 +2011,7 @@ msgstr "Joueurs"
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
 msgid "Map Name"
-msgstr "Nom de carte"
+msgstr "Nom de la carte"
 
 #: gui/replaymenu/replay_menu.xml:(heading):85
 msgctxt "replay"

@@ -5,13 +5,14 @@
 # Translators:
 # Asakura, 2015
 # Kanetaka Suto, 2014-2016
+# llen_llen, 2016
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-30 03:58+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"PO-Revision-Date: 2016-03-02 04:43+0000\n"
+"Last-Translator: llen_llen\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +104,7 @@ msgstr "%(_player_)sと険悪な状況とお見受けします。これがお役
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "今回は %(_player_)s を援助しますが、今後はもっと資源を集めるよう努めてください。"
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
@@ -733,16 +734,16 @@ msgstr "生産キューが満杯です。"
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "養成したユニットを配置する場所がありません"
 
 #: simulation/helpers/Commands.js:675
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "%(_player_)s への攻撃要求です。"
 
 #: simulation/helpers/Commands.js:965
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "この建物に必要な技術を満たしていません。"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
