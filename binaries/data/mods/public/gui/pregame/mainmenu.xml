@@ -535,28 +535,14 @@
 						<translate>Alpha XIX: Syllepsis</translate>
 						<keep>[/font]\n\n</keep>
 						<translate>WARNING: This is an early development version of the game. Many features have not been added yet.</translate>
-						<keep>\n\n</keep>
-						<translate>Get involved at: play0ad.com</translate>
 					</attribute>
 				</object>
 
-				<!-- CONTACT METHODS -->
+				<!-- GET INVOLVED -->
 				<object type="button"
 					style="StoneButton"
 					tooltip_style="pgToolTip"
-					size="8 100%-108 100%-8 100%-80"
-				>
-					<translatableAttribute id="caption">Help with the Translation!</translatableAttribute>
-					<translatableAttribute id="tooltip">Click to open the 0 A.D. translate page in your browser.</translatableAttribute>
-					<action on="Press"><![CDATA[
-						openURL("http://trac.wildfiregames.com/wiki/Localization");
-					]]></action>
-				</object>
-
-				<object type="button"
-					style="StoneButton"
-					tooltip_style="pgToolTip"
-					size="8 100%-72 50%-4 100%-44"
+					size="8 100%-144 50%-4 100%-116"
 				>
 					<translatableAttribute id="caption">Website</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open play0ad.com in your web browser.</translatableAttribute>
@@ -568,7 +554,7 @@
 				<object type="button"
 					style="StoneButton"
 					tooltip_style="pgToolTip"
-					size="50%+4 100%-72 100%-8 100%-44"
+					size="50%+4 100%-144 100%-8 100%-116"
 				>
 					<translatableAttribute id="caption">Chat</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open the 0 A.D. IRC chat in your browser. (#0ad on webchat.quakenet.org)</translatableAttribute>
@@ -580,13 +566,37 @@
 				<object type="button"
 					style="StoneButton"
 					tooltip_style="pgToolTip"
-					size="8 100%-36 100%-8 100%-8"
+					size="8 100%-108 100%-8 100%-80"
 				>
 					<translatableAttribute id="caption">Report a Bug</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to visit 0 A.D. Trac to report a bug, crash, or error.</translatableAttribute>
 					<action on="Press"><![CDATA[
 						openURL("http://trac.wildfiregames.com/wiki/ReportingErrors/");
 					]]></action>
+				</object>
+
+				<object type="button"
+					style="StoneButton"
+					tooltip_style="pgToolTip"
+					size="8 100%-72 100%-8 100%-44"
+				>
+					<translatableAttribute id="caption">Translate the game</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to open the 0 A.D. translate page in your browser.</translatableAttribute>
+					<action on="Press"><![CDATA[
+						openURL("http://trac.wildfiregames.com/wiki/Localization");
+					]]></action>
+				</object>
+
+				<object type="button"
+					style="StoneButton"
+					tooltip_style="pgToolTip"
+					size="8 100%-36 100%-8 100%-8"
+				>
+					<translatableAttribute id="caption">Credits</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to see the 0 A.D. credits.</translatableAttribute>
+					<action on="Press">
+						Engine.PushGuiPage("page_credits.xml", {});
+					</action>
 				</object>
 
 			</object>

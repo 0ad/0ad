@@ -236,6 +236,7 @@
                     "globalscripts/**.js",
                     "gui/civinfo/**.js",
                     "gui/common/**.js",
+                    "gui/credits/**.js",
                     "gui/locale/**.js",
                     "gui/msgbox/**.js",
                     "gui/options/**.js",
@@ -268,6 +269,7 @@
                     "globalscripts/**.xml",
                     "gui/civinfo/**.xml",
                     "gui/common/**.xml",
+                    "gui/credits/**.xml",
                     "gui/locale/**.xml",
                     "gui/msgbox/**.xml",
                     "gui/options/**.xml",
@@ -285,6 +287,18 @@
                         },
                         "translate": {}
                     }
+                }
+            },
+			{
+                "extractor": "json",
+                "filemasks": [
+                    "gui/credits/texts/**.json"
+                ],
+                "options": {
+                    "keywords": [
+                        "Title",
+                        "Subtitle",
+                    ]
                 }
             },
             {

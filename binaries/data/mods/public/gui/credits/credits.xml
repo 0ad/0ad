@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+==========================================
+- CREDITS PAGE -
+==========================================
+-->
+
+<objects>
+	<script file="gui/common/functions_global_object.js"/>
+	<script file="gui/credits/credits.js"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" z="0" sprite="ModernFade"/>
+
+	<object type="image" style="ModernDialog" size="50%-473 24 50%+473 100%-24">
+		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">0 A.D. Credits</translatableAttribute>
+		</object>
+
+		<object name="specialPanelButton" type="button" sprite="BackgroundBox" size="20 50 150 80">
+			<action on="Press">selectPanel(0);</action>
+			<object type="text" style="ModernLabelText" ghost="true">
+				<translatableAttribute id="caption">Special Credits</translatableAttribute>
+			</object>
+		</object>
+
+		<object name="programmingPanelButton" type="button" sprite="BackgroundBox" size="155 50 305 80">
+			<action on="Press">selectPanel(1);</action>
+			<object type="text" style="ModernLabelText" ghost="true">
+				<translatableAttribute id="caption">Programming</translatableAttribute>
+			</object>
+		</object>
+
+		<object name="artPanelButton" type="button" sprite="BackgroundBox" size="310 50 460 80">
+			<action on="Press">selectPanel(2);</action>
+			<object type="text" style="ModernLabelText" ghost="true">
+				<translatableAttribute id="caption">Art</translatableAttribute>
+			</object>
+		</object>
+
+		<object name="translatorsPanelButton" type="button" sprite="BackgroundBox" size="465 50 615 80">
+			<action on="Press">selectPanel(3);</action>
+			<object type="text" style="ModernLabelText" ghost="true">
+				<translatableAttribute id="caption">Translators</translatableAttribute>
+			</object>
+		</object>
+
+		<object name="miscPanelButton" type="button" sprite="BackgroundBox" size="620 50 770 80">
+			<action on="Press">selectPanel(4);</action>
+			<object type="text" style="ModernLabelText" ghost="true">
+				<translatableAttribute id="caption">Miscellaneous</translatableAttribute>
+			</object>
+		</object>
+
+		<object name="donatorsPanelButton" type="button" sprite="BackgroundBox" size="775 50 925 80">
+			<action on="Press">selectPanel(5);</action>
+			<object type="text" style="ModernLabelText" ghost="true">
+				<translatableAttribute id="caption">Donators</translatableAttribute>
+			</object>
+		</object>
+
+		<object type="image" sprite="ModernFade" size="20 85 100%-20 100%-54">
+			<object name="creditsText" type="text" style="textPanel"/>
+		</object>
+
+		<!-- Close dialog -->
+		<object type="button" style="ModernButtonRed" size="100%-200 100%-45 100%-17 100%-17" hotkey="cancel">
+			<translatableAttribute id="caption">Close</translatableAttribute>
+			<action on="Press">
+				Engine.SwitchGuiPage("page_pregame.xml");
+			</action>
+		</object>
+	</object>
+</objects>
