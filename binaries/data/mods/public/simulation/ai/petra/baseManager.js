@@ -187,11 +187,12 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 			warn("assignResourceToDropsite: dropsite already in the list. Should never happen");
 		return;
 	}
-	this.dropsites[dropsite.id()] = true;
 
-	var self = this;
-	let dropsitePos = dropsite.position();
 	let accessIndex = this.accessIndex;
+	let dropsitePos = dropsite.position();
+	let dropsiteId = dropsite.id();
+	this.dropsites[dropsiteId] = true;
+
 	if (this.ID === gameState.ai.HQ.baseManagers[0].ID)
 	{
 		accessIndex = dropsite.getMetadata(PlayerID, "access");
@@ -202,15 +203,16 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 		}
 	}
 
-	for (var type of dropsite.resourceDropsiteTypes())
+	let maxDistResourceSquare = this.maxDistResourceSquare;
+	for (let type of dropsite.resourceDropsiteTypes())
 	{
-		var resources = gameState.getResourceSupplies(type);
+		let resources = gameState.getResourceSupplies(type);
 		if (!resources.length)
 			continue;
 
-		var nearby = this.dropsiteSupplies[type].nearby;
-		var medium = this.dropsiteSupplies[type].medium;
-		var faraway = this.dropsiteSupplies[type].faraway;
+		let nearby = this.dropsiteSupplies[type].nearby;
+		let medium = this.dropsiteSupplies[type].medium;
+		let faraway = this.dropsiteSupplies[type].faraway;
 
 		resources.forEach(function(supply)
 		{
@@ -233,14 +235,14 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 				return;
 
 			let dist = API3.SquareVectorDistance(supply.position(), dropsitePos);
-			if (dist < self.maxDistResourceSquare)
+			if (dist < maxDistResourceSquare)
 			{
-				if (dist < self.maxDistResourceSquare/16)        // distmax/4
-				    nearby.push({ "dropsite": dropsite.id(), "id": supply.id(), "ent": supply, "dist": dist }); 
-				else if (dist < self.maxDistResourceSquare/4)    // distmax/2
-					medium.push({ "dropsite": dropsite.id(), "id": supply.id(), "ent": supply, "dist": dist });
+				if (dist < maxDistResourceSquare/16)        // distmax/4
+					nearby.push({ "dropsite": dropsiteId, "id": supply.id(), "ent": supply, "dist": dist }); 
+				else if (dist < maxDistResourceSquare/4)    // distmax/2
+					medium.push({ "dropsite": dropsiteId, "id": supply.id(), "ent": supply, "dist": dist });
 				else
-					faraway.push({ "dropsite": dropsite.id(), "id": supply.id(), "ent": supply, "dist": dist });
+					faraway.push({ "dropsite": dropsiteId, "id": supply.id(), "ent": supply, "dist": dist });
 			}
 		});
 
@@ -325,12 +327,12 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
     
 	for (let j of this.territoryIndices)
 	{
-		var i = territoryMap.getNonObstructedTile(j, radius, obstructions);
+		let i = territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)  // no room around
 			continue;
 
 		// we add 3 times the needed resource and once the other two (not food)
-		var total = 0;
+		let total = 0;
 		for (let res in gameState.sharedScript.resourceMaps)
 		{
 			if (res === "food")
@@ -344,7 +346,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		if (total <= bestVal)
 			continue;
 
-		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 
 		for (let dp of dpEnts)
 		{
@@ -400,8 +402,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly
 {
 	var count = 0;
 	var check = {};
-	var nearby = this.dropsiteSupplies[type].nearby;
-	for (let supply of nearby)
+	for (let supply of this.dropsiteSupplies[type].nearby)
 	{
 		if (check[supply.id])    // avoid double counting as same resource can appear several time
 			continue;
@@ -410,8 +411,8 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly
 	}
 	if (nearbyOnly)
 		return count;
-	var medium = this.dropsiteSupplies[type].medium;
-	for (let supply of medium)
+
+	for (let supply of this.dropsiteSupplies[type].medium)
 	{
 		if (check[supply.id])
 			continue;
@@ -512,7 +513,7 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 
 		this.gatherersByType(gameState, res).forEach(function (ent) {
 			if (ent.isIdle() || !ent.position())
-					return;		
+				return;		
 			let gRate = ent.currentGatherRate();
 			if (gRate)
 				currentRates[res] += Math.log(1+gRate)/1.1;
