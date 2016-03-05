@@ -112,7 +112,7 @@ function deleteReplay()
 	var btCode = [null, function() { reallyDeleteReplay(replay.directory); }];
 
 	var title = translate("Delete replay");
-	var question = translate("Are you sure to delete this replay permanently?") + "\n" + escapeText(replay.file);
+	var question = translate("Are you sure you want to delete this replay permanently?") + "\n" + escapeText(replay.file);
 
 	messageBox(500, 200, question, title, 0, btCaptions, btCode);
 }
