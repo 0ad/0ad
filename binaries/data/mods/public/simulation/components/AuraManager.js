@@ -43,7 +43,7 @@ AuraManager.prototype.ApplyBonus = function(value, ents, data, key)
 {
 	for (let ent of ents)
 	{
-		var dataList = this.ensureExists("modifications", value, ent, key, {"add":0, "multiply":1});
+		var dataList = this.ensureExists("modifications", value, ent, key, { "add":0, "multiply":1 });
 
 		// Clone the data object to prevent references and serialization issues
 		dataList.push(clone(data));
@@ -58,7 +58,11 @@ AuraManager.prototype.ApplyBonus = function(value, ents, data, key)
 			this.modificationsCache.get(value).get(ent).multiply *= data.multiply;
 
 		// post message to the entity to notify it about the change
-		Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
+		Engine.PostMessage(ent, MT_ValueModification, {
+			"entities": [ent],
+			"component": value.split("/")[0],
+			"valueNames": [value]
+		});
 	}
 };
 
@@ -78,14 +82,18 @@ AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data
 		cache.set(classes, new Map());
 
 	if (!cache.get(classes).get(key))
-		cache.get(classes).set(key, {"add": 0, "multiply": 1});
+		cache.get(classes).set(key, { "add": 0, "multiply": 1 });
 
 	if (data.add)
 		cache.get(classes).get(key).add += data.add;
 	if (data.multiply)
 		cache.get(classes).get(key).multiply *= data.multiply;
 
-	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": player, "component": value.split("/")[0], "valueNames": [value] });
+	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, {
+		"player": player,
+		"component": value.split("/")[0],
+		"valueNames": [value]
+	});
 };
 
 AuraManager.prototype.RemoveBonus = function(value, ents, key)
@@ -117,7 +125,11 @@ AuraManager.prototype.RemoveBonus = function(value, ents, key)
 			this.modificationsCache.get(value).get(ent).multiply /= data.multiply;
 
 		// post message to the entity to notify it about the change
-		Engine.PostMessage(ent, MT_ValueModification, { "entities": [ent], "component": value.split("/")[0], "valueNames": [value] });
+		Engine.PostMessage(ent, MT_ValueModification, {
+			"entities": [ent],
+			"component": value.split("/")[0],
+			"valueNames": [value]
+		});
 	}
 };
 
@@ -141,7 +153,11 @@ AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key
 	this.templateModificationsCache.get(value).get(player).get(classes).get(key).add = 0;
 	this.templateModificationsCache.get(value).get(player).get(classes).get(key).multiply = 1;
 
-	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": player, "component": value.split("/")[0], "valueNames": [value] });
+	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, {
+		"player": player,
+		"component": value.split("/")[0],
+		"valueNames": [value]
+	});
 };
 
 AuraManager.prototype.ApplyModifications = function(valueName, value, ent)

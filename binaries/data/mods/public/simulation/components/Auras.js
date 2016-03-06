@@ -1,6 +1,6 @@
 function Auras() {}
 
-var modificationSchema = 
+var modificationSchema =
 	"<element name='Modifications' a:help='Modification list'>" +
 		"<oneOrMore>" +
 			"<element a:help='Name of the value to modify'>" +
@@ -68,7 +68,6 @@ Auras.prototype.Init = function()
 {
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	this.templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
-	var auraNames = this.GetAuraNames();
 	this.auras = {};
 	this.affectedPlayers = {};
 	for (var name in this.template)
@@ -90,9 +89,12 @@ Auras.prototype.GetModifierIdentifier = function(name, mod)
 Auras.prototype.GetDescriptions = function()
 {
 	var ret = {};
-	for each (var aura in this.template)
+	for (let name in this.template)
+	{
+		let aura = this.template[name];
 		if (aura.AuraName)
 			ret[aura.AuraName] = aura.AuraDescription || null;
+	}
 	return ret;
 };
 
@@ -137,20 +139,14 @@ Auras.prototype.GetAffectedPlayers = function(name)
 
 Auras.prototype.CalculateAffectedPlayers = function(name)
 {
-	if (this.auras[name].affectedPlayers)
-		var affectedPlayers = this.auras[name].affectedPlayers;
-	else
-		var affectedPlayers = ["Player"];
-
+	var affectedPlayers = this.auras[name].affectedPlayers || ["Player"];
 	this.affectedPlayers[name] = [];
 
 	var cmpPlayer = QueryOwnerInterface(this.entity);
-
 	if (!cmpPlayer)
 		return;
 
 	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-
 	for (var i = 0; i < numPlayers; ++i)
 	{
 		for (let p of affectedPlayers)
@@ -279,10 +275,14 @@ Auras.prototype.Clean = function()
 
 		if (this.IsGlobalAura(name))
 		{
-			// update stats in for all templates 
 			this.ApplyTemplateBonus(name, affectedPlayers);
+
 			// Add self to your own query for consistency with templates.
-			this.OnRangeUpdate({"tag":this[name].rangeQuery, "added":[this.entity], "removed":[]});
+			this.OnRangeUpdate({
+				"tag": this[name].rangeQuery,
+				"added": [this.entity],
+				"removed": []
+			});
 		}
 	}
 };
@@ -290,14 +290,10 @@ Auras.prototype.Clean = function()
 Auras.prototype.GiveMembersWithValidClass = function(auraName, entityList)
 {
 	var match = this.GetClasses(auraName);
-	var r = [];
-	for (var ent of entityList)
-	{
-		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		if (cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), match))
-			r.push(ent);
-	}
-	return r;
+	return entityList.filter(ent => {
+		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), match);
+	});
 };
 
 Auras.prototype.OnRangeUpdate = function(msg)
@@ -369,10 +365,10 @@ Auras.prototype.RemoveTemplateBonus = function(name)
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 	var classes = this.GetClasses(name);
-	var players =  this.GetAffectedPlayers(name);
+	var players = this.GetAffectedPlayers(name);
 
-	for each (var mod in modifications)
-		for each (var player in players)
+	for (let mod of modifications)
+		for (let player of players)
 			cmpAuraManager.RemoveTemplateBonus(mod.value, player, classes, this.GetModifierIdentifier(name, mod));
 };
 
@@ -381,14 +377,18 @@ Auras.prototype.ApplyBonus = function(name, ents)
 	var validEnts = this.GiveMembersWithValidClass(name, ents);
 	if (!validEnts.length)
 		return;
+
 	this[name].targetUnits = this[name].targetUnits.concat(validEnts);
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
-	for each (let mod in modifications)
+
+	for (let mod of modifications)
 		cmpAuraManager.ApplyBonus(mod.value, validEnts, mod, this.GetModifierIdentifier(name, mod));
+
 	// update status bars if this has an icon
 	if (!this.GetOverlayIcon(name))
 		return;
+
 	for (let ent of validEnts)
 	{
 		var cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
@@ -402,14 +402,18 @@ Auras.prototype.RemoveBonus = function(name, ents)
 	var validEnts = this.GiveMembersWithValidClass(name, ents);
 	if (!validEnts.length)
 		return;
+
 	this[name].targetUnits = this[name].targetUnits.filter(v => validEnts.indexOf(v) == -1);
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
-	for each (let mod in modifications)
+
+	for (let mod of modifications)
 		cmpAuraManager.RemoveBonus(mod.value, validEnts, this.GetModifierIdentifier(name, mod));
+
 	// update status bars if this has an icon
 	if (!this.GetOverlayIcon(name))
 		return;
+
 	for (let ent of validEnts)
 	{
 		var cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
