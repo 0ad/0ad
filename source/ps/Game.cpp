@@ -345,6 +345,8 @@ void CGame::SetPlayerID(player_id_t playerID)
 	m_PlayerID = playerID;
 	if (m_TurnManager)
 		m_TurnManager->SetPlayerID(m_PlayerID);
+
+	m_Simulation2->SetCurrentDisplayedPlayer(g_Game->GetPlayerID());
 }
 
 void CGame::StartGame(JS::MutableHandleValue attribs, const std::string& savedState)

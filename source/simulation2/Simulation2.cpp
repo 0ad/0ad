@@ -595,6 +595,11 @@ void CSimulation2::EnableSerializationTest()
 	m->m_EnableSerializationTest = true;
 }
 
+void CSimulation2::SetCurrentDisplayedPlayer(int playerID)
+{
+	m->m_SimContext.SetCurrentDisplayedPlayer(playerID);
+}
+
 entity_id_t CSimulation2::AddEntity(const std::wstring& templateName)
 {
 	return m->m_ComponentManager.AddEntity(templateName, m->m_ComponentManager.AllocateNewEntity());
