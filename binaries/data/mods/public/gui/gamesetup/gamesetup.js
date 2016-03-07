@@ -208,9 +208,7 @@ function init(attribs)
 
 	g_IsNetworked = attribs.type != "offline";
 	g_IsController = attribs.type != "client";
-
-	if (attribs.serverName)
-		g_ServerName = attribs.serverName;
+	g_ServerName = attribs.serverName || undefined;
 
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = g_Settings.PlayerDefaults;

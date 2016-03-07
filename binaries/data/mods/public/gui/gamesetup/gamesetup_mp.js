@@ -38,7 +38,7 @@ function init(attribs)
 			Engine.GetGUIObjectByName("hostPlayerNameWrapper").hidden = false;
 		break;
 	default:
-		error("Unrecognised multiplayer game type: " + multiplayerGameType);
+		error("Unrecognised multiplayer game type: " + attribs.multiplayerGameType);
 		break;
 	}
 }
