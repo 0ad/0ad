@@ -1,0 +1,13 @@
+{
+	"settings" : {
+		"Name" : "Flood",
+		"Script" : "flood.js",
+		"Description" : "A great flood has moved across the valley enabling ships and troops to battle in chest deep waters.",
+		"BaseTerrain" : ["medit_sand_wet"],
+		"BaseHeight" : -2,
+		"Keywords": ["naval"],
+		"Preview" : "flood.png",
+		"CircularMap" : true,
+		"XXXXXX" : "Optionally define other things here, like we would for a scenario"
+	}
+}
