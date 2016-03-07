@@ -5,7 +5,7 @@ var g_ServerName = "";
 var g_IsRejoining = false;
 var g_GameAttributes; // used when rejoining
 var g_PlayerAssignments; // used when rejoining
-var g_UserRating; // player rating
+var g_UserRating;
 
 function init(attribs)
 {
@@ -31,13 +31,14 @@ function init(attribs)
 		{
 			Engine.GetGUIObjectByName("hostServerNameWrapper").hidden = false;
 			Engine.GetGUIObjectByName("hostPlayerName").caption = attribs.name;
-			Engine.GetGUIObjectByName("hostServerName").caption = sprintf(translate("%(name)s's game"), { name: attribs.name });
+			Engine.GetGUIObjectByName("hostServerName").caption =
+				sprintf(translate("%(name)s's game"), { "name": attribs.name });
 		}
 		else
 			Engine.GetGUIObjectByName("hostPlayerNameWrapper").hidden = false;
 		break;
 	default:
-		error(sprintf("Unrecognised multiplayer game type: %(gameType)s", { gameType: multiplayerGameType }));
+		error("Unrecognised multiplayer game type: " + multiplayerGameType);
 		break;
 	}
 }
@@ -46,9 +47,10 @@ function cancelSetup()
 {
 	if (g_IsConnecting)
 		Engine.DisconnectNetworkGame();
-	// Set player lobby presence
+
 	if (Engine.HasXmppClient())
 		Engine.LobbySetPlayerPresence("available");
+
 	Engine.PopGuiPage();
 }
 
@@ -76,7 +78,7 @@ function pollAndHandleNetworkClient()
 		if (!message)
 			break;
 
-		log(sprintf(translate("Net message: %(message)s"), { message: uneval(message) }));
+		log(sprintf(translate("Net message: %(message)s"), { "message": uneval(message) }));
 
 		// If we're rejoining an active game, we don't want to actually display
 		// the game setup screen, so perform similar processing to gamesetup.js
@@ -94,7 +96,7 @@ function pollAndHandleNetworkClient()
 					return;
 
 				default:
-					error(sprintf("Unrecognised netstatus type %(netType)s", { netType: message.status }));
+					error("Unrecognised netstatus type: " + message.status);
 					break;
 				}
 				break;
@@ -132,7 +134,7 @@ function pollAndHandleNetworkClient()
 				break;
 
 			default:
-				error(sprintf("Unrecognised net message type %(messageType)s", { messageType: message.type }));
+				error("Unrecognised net message type: " + message.type);
 			}
 		}
 		else
@@ -167,7 +169,7 @@ function pollAndHandleNetworkClient()
 					return;
 
 				default:
-					error(sprintf("Unrecognised netstatus type %(netType)s", { netType: message.status }));
+					error("Unrecognised netstatus type: " + message.status);
 					break;
 				}
 				break;
@@ -176,7 +178,7 @@ function pollAndHandleNetworkClient()
 				break;
 
 			default:
-				error(sprintf("Unrecognised net message type %(messageType)s", { messageType: message.type }));
+				error("Unrecognised net message type: " + message.type);
 				break;
 			}
 		}
@@ -194,10 +196,11 @@ function startHost(playername, servername)
 	// Save player name
 	Engine.ConfigDB_CreateValue("user", "playername", playername);
 	Engine.ConfigDB_WriteValueToFile("user", "playername", playername, "config/user.cfg");
+
 	// Disallow identically named games in the multiplayer lobby
 	if (Engine.HasXmppClient())
 	{
-		for each (var g in Engine.GetGameList())
+		for (let g of Engine.GetGameList())
 		{
 			if (g.name === servername)
 			{
@@ -217,16 +220,17 @@ function startHost(playername, servername)
 	{
 		cancelSetup();
 		messageBox(400, 200,
-			sprintf("Cannot host game: %(message)s.", { message: e.message }),
+			sprintf("Cannot host game: %(message)s.", { "message": e.message }),
 			"Error", 2);
 		return false;
 	}
 
 	startConnectionStatus("server");
 	g_ServerName = servername;
-	// Set player lobby presence
+
 	if (Engine.HasXmppClient())
 		Engine.LobbySetPlayerPresence("playing");
+
 	return true;
 }
 
@@ -243,7 +247,7 @@ function startJoin(playername, ip)
 	{
 		cancelSetup();
 		messageBox(400, 200,
-			sprintf("Cannot join game: %(message)s.", { message: e.message }),
+			sprintf("Cannot join game: %(message)s.", { "message": e.message }),
 			"Error", 2);
 		return false;
 	}
@@ -251,7 +255,6 @@ function startJoin(playername, ip)
 	startConnectionStatus("client");
 
 	if (Engine.HasXmppClient())
-		// Set player lobby presence
 		Engine.LobbySetPlayerPresence("playing");
 	else
 	{
@@ -266,5 +269,7 @@ function startJoin(playername, ip)
 
 function getDefaultGameName()
 {
-	return sprintf(translate("%(playername)s's game"), { playername: Engine.ConfigDB_GetValue("user", "playername")});
+	return sprintf(translate("%(playername)s's game"), {
+		"playername": Engine.ConfigDB_GetValue("user", "playername")
+	});
 }
