@@ -11,12 +11,13 @@
 # jjj <triplej03@nate.com>, 2014
 # Valtiel <shinhs6291@naver.com>, 2014
 # VictoriaKim <sis2468@hotmail.co.kr>, 2014
+# YongNam Kim <darkgem11@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-02-28 03:14+0000\n"
-"Last-Translator: Hong Won Gi <timmy0807@naver.com>\n"
+"PO-Revision-Date: 2016-03-07 05:48+0000\n"
+"Last-Translator: YongNam Kim <darkgem11@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,13 +29,13 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
+msgstr[0] "기본 사정 거리: %(range)s 미터"
 
 #: gui/session/input.js:146
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
+msgstr[0] "추가 사정 거리: %(range)s 미터"
 
 #: gui/session/input.js:717
 msgid "Cannot build wall here!"
@@ -213,7 +214,7 @@ msgstr[0] "%(numberOfShipTraders)s 채의 무역선이 쉬고 있음."
 
 #: gui/session/menu.js:637
 msgid "Current Scores"
-msgstr ""
+msgstr "현재 점수"
 
 #: gui/session/menu.js:663 gui/session/menu.js:686
 msgid "Resume"
@@ -397,7 +398,7 @@ msgstr "%(player)s 가 %(amounts)s 를 보냈습니다."
 #: gui/session/messages.js:611
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "여러분의 가축이 %(attacker)s 에게 공격받고 있습니다!"
 
 #: gui/session/messages.js:612
 #, javascript-format
@@ -433,17 +434,17 @@ msgstr[0] "이 건축물은 %(seconds)s 초 후에 완성될 것 입니다."
 #: gui/session/selection_details.js:79
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
-msgstr ""
+msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
 #: gui/session/selection_details.js:109
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:127
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
-msgstr ""
+msgstr "%(experience)s %(current)s / %(required)s"
 
 #: gui/session/selection_details.js:128 gui/session/selection_details.js:134
 msgid "Experience:"
@@ -452,7 +453,7 @@ msgstr "전적:"
 #: gui/session/selection_details.js:133
 #, javascript-format
 msgid "%(experience)s %(current)s"
-msgstr ""
+msgstr "%(experience)s %(current)s"
 
 #: gui/session/selection_details.js:143
 msgid "∞"
@@ -462,7 +463,7 @@ msgstr "∞"
 #: gui/session/selection_details.js:222
 #, javascript-format
 msgid "%(amount)s / %(max)s"
-msgstr ""
+msgstr "%(amount)s / %(max)s"
 
 #: gui/session/selection_details.js:157
 #, javascript-format
@@ -484,11 +485,11 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
+msgstr[0] "만드는 유닛의 숫자\n이 건축물을 만드는데 다른 유닛을 추가시키면 %(speedup)s 초 만큼 제작 속도가 빨라집니다."
 
 #: gui/session/selection_details.js:207 gui/session/selection_details.js:215
 msgid "Number of builders."
-msgstr ""
+msgstr "만드는 유닛의 숫자"
 
 #: gui/session/selection_details.js:226
 msgid "Current/max gatherers"
@@ -497,7 +498,7 @@ msgstr "현재/최대 채취자수"
 #: gui/session/selection_details.js:240
 #, javascript-format
 msgid "(%(genericName)s)"
-msgstr ""
+msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:280
 msgid "Classes:"
@@ -507,7 +508,7 @@ msgstr "계급:"
 #: gui/session/session.js:683
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(label)s %(current)s / %(max)s"
 
 #: gui/session/selection_details.js:336
 msgid "Hitpoints:"
@@ -516,7 +517,7 @@ msgstr "체력:"
 #: gui/session/selection_details.js:368
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr ""
+msgstr "캡쳐 점수"
 
 #: gui/session/selection_panels.js:71
 msgid "Increase the alert level to protect more units"
@@ -626,29 +627,29 @@ msgstr "서있기"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "근처의 적을 공격하고, 공격자에 주목하며, 보이는 한도 내에서 추적하라."
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "근처의 적을 공격하라."
 
 #: gui/session/selection_panels_helpers.js:62
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "근처의 적을 공격하고, 짧은 거리를 추적하다가 원래의 위치로 돌아오라."
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr ""
+msgstr "공격받으면 도망가라."
 
 #: gui/session/selection_panels_helpers.js:66
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "범위 내의 적을 공격하되, 움직이지는 마라."
 
 #: gui/session/selection_panels_helpers.js:82
 #, javascript-format
@@ -701,7 +702,7 @@ msgstr "가이아"
 #: gui/session/session.js:274
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - 트리형 구조"
 
 #: gui/session/session.js:349 gui/session/session.js:365
 msgid "You have left the game."
@@ -746,12 +747,12 @@ msgstr "이겼습니다!!"
 #: gui/session/session.js:607
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "리플레이가 끝났습니다. 종료하시겠습니까?"
 
 #: gui/session/session.js:608
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "확인"
 
 #: gui/session/session.js:610
 msgctxt "replayFinished"
@@ -833,7 +834,7 @@ msgstr "전장의 안개 속에 있기 때문에 이 것을 부술 수 없습니
 #: gui/session/unit_actions.js:705
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "캡쳐 포인트의 절반 이하 값을 가지고 있으므로, 이 개체를 파괴할 수 없습니다."
 
 #: gui/session/unit_actions.js:737
 msgid "Stop"
@@ -934,7 +935,7 @@ msgstr "저장"
 
 #: gui/session/menu.xml:(caption):53
 msgid "Summary"
-msgstr ""
+msgstr "요약"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Options"
@@ -1002,7 +1003,7 @@ msgstr "선택 유닛 승진"
 
 #: gui/session/session.xml:(caption):152
 msgid "Hierarchical pathfinder overlay"
-msgstr ""
+msgstr "계층형 경로탐색 오버레이"
 
 #: gui/session/session.xml:(caption):186
 msgid "Game Paused"
@@ -1104,7 +1105,7 @@ msgstr "메뉴"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XIX : Syllepsis"
-msgstr ""
+msgstr "알파 XIX : 설렙시스"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

@@ -6,12 +6,13 @@
 # dalrae jin <greenpolidol@gmail.com>, 2014
 # Hong Won Gi <timmy0807@naver.com>, 2016
 # Kevin Min <gr326887@graded.br>, 2015
+# YongNam Kim <darkgem11@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-04 09:00+0100\n"
-"PO-Revision-Date: 2016-02-28 09:23+0000\n"
-"Last-Translator: Hong Won Gi <timmy0807@naver.com>\n"
+"PO-Revision-Date: 2016-03-07 06:35+0000\n"
+"Last-Translator: YongNam Kim <darkgem11@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,7 @@ msgstr "아무거나"
 
 #: gui/lobby/lobby.js:385
 msgid "Moderator"
-msgstr ""
+msgstr "중재자"
 
 #: gui/lobby/lobby.js:385
 msgid "Player"
@@ -182,7 +183,7 @@ msgstr "사용자 별명을 입력하세요."
 
 #: gui/lobby/prelobby.js:98
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "사용자 이름은 \\[, ], 유니코드, 공백, 콤마를 사용할 수 없습니다."
 
 #: gui/lobby/prelobby.js:104
 msgid "Please enter your password"
@@ -396,83 +397,83 @@ msgstr "정의:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "이 \"서비스\"는 Wildfire Games(WFG)에 의해 만들어진 0 A.D. 엠파이어 어센던츠 멀티플레이어 로비를 뜻합니다."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "\"당신\"은 서비스의 유저를 말합니다."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "\"우리\"라 함은 모든 Wildfire Games (WFG) 팀 멤버를 뜻합니다."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "\"레이팅\"이라는 것은 다양한 플레이어의 통계를 분석하여 플레이어의 종합점수를 산출하는 과정을 나타냅니다."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "\"중재\"라는 것은 사용 정책을 집행하는 행위를 말합니다."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "이 서비스를 이용하는 것을 통해 여러분은 다음 사항을 동의하게 됩니다:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. 모든 사용 약관을 따릅니다."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. 사용자 점수, 유저 정보, 커뮤니티 통계를 위해 회사에서 사용자 자료를 수집하는 것을 허락합니다."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "우리는 다음과 같은 권리가 있습니다:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. 서비스를 중재합니다."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. 다른 사람으로 하여금 서비스를 중재하도록 지명합니다."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. 사전 공지를 하거나, 사전 공지하지 않은 상태에서 서비스를 중단하거나 서비스에 개입합니다."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. 사전 공지를 하거나, 혹은 사전 공지 없이 서비스를 변경합니다."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. 사전 공지를 하거나, 혹은 사전 공지 없이 서비스 데이터의 일부 혹은 전체를 삭제합니다."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. 다음의 동의를 얻지 않고도 사용자의 자료의 일부나 전부를 수집합니다:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. Wildfire Games (WFG)의 팀 혹은 제휴사에 의한 개별적 분석."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "b. Wildfire Games (WFG) 팀 멤버에 의한 익명의 공개 발표."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -480,66 +481,66 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. 이 문서를 어떤 방식으로든; 언제든; 서비스의 유저가 적절한 변경 공지를 받는 하에서 (적절한 변경 공지라함은  Wildfire Games (WFG)의 팀 멤버들의 패널에 의해 결정될 것입니다.) 변경하세요."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "0 A.D. 엠파이어 어센던츠 멀티플레이어 로비 사용약관"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "\"도용\"이라는 것은 다른 사람의 명의를 당신의 목적을 위해서 사용하려는 것을 말합니다."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "\"스팸\"은 관련이 없거나 부적절한 메시지를 많은 사람들에게 발송하는 것을 말합니다."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "\"레이팅\"이라는 것은 유저들의 종합적인 점수를 말합니다."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "\"랭크 게임\"이라는 것은 레이팅 변화 자료가 추적되는 게임을 말합니다."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "여러분은 다음의 사항을 동의한 것입니다:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Wildfire Games (WFG)의 팀 멤버에서 허가된 사람이 아닌 경우 사람 당 하나의 계정만을 가집니다."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. 욕설을 하거나, 무례한 농담을 하거나, 포르노가 있는 자료를 올리거나, 각종 차별을 하는 말을 해서는 안됩니다."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. 고의적으로 다른 사람들을 깔보는 말을 해서는 안됩니다."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. 특정한 상품이나, 서비스나, 제품을 광고하기 위한 목적으로 서비스를 써서는 안됩니다."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. 서비스의 다른 사용자들을 깔보는 말을 해서는 안됩니다."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. 서비스에서 스팸 문자를 적어서는 안됩니다."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -547,13 +548,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. 인위적으로 서비스 사용자의 레이팅 점수를 조작하려고 하거나, 그것에 영향을 줄수 있는 행위를 해서는 안됩니다. (예를 들어 다음과 같은 행위를 해서는 안되며, 나쁜 행위는 다음과 같은 것에만 국한하는 것은 아닙니다.: 랭크 게임에서 사기치기, 서비스를 리버스 엔지니어링하기, 서비스에서 다른 사람 이용해먹기)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. 여러분이 이러한 규칙을 따르지 않을 경우 이 서비스에서 언제든 삭제될 수 있음을 허락합니다."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -561,4 +562,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. 이 문서를 어떤 방식으로든; 언제든; 서비스의 유저가 적절한 변경 공지를 받는 하에서 (적절한 변경 공지라함은 Wildfire Games (WFG)의 팀 멤버들의 패널에 의해 결정될 것입니다.) 변경하세요."
