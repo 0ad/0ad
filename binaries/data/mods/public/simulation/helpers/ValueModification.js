@@ -17,7 +17,7 @@ function ApplyValueModificationsToPlayer(tech_type, current_value, playerEntity,
 {
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	if (!cmpTemplateManager)
-			return current_value;
+		return current_value;
 	let entityTemplateName = cmpTemplateManager.GetCurrentTemplateName(playerEntity);
 	let entityTemplate = cmpTemplateManager.GetTemplate(entityTemplateName);
 	return ApplyValueModificationsToTemplate(tech_type, current_value, playerID, entityTemplate);
