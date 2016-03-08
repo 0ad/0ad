@@ -356,7 +356,7 @@ function diplomacyFormatTributeButtons(i, hidden)
 				let amounts = {};
 				for (let type of RESOURCES)
 					amounts[type] = 0;
-				amounts[resource] = 100 * multiplier,
+				amounts[resource] = 100 * multiplier;
 
 				button.tooltip = formatTributeTooltip(g_Players[i], resource, amounts[resource]);
 
