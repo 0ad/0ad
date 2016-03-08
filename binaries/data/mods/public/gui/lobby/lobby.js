@@ -579,8 +579,8 @@ function updateGameList()
  */
 function updateGameSelection()
 {
-	var selected = Engine.GetGUIObjectByName("gamesBox").selected;
-	if (selected == -1)
+	let game = selectedGame();
+	if (!game)
 	{
 		Engine.GetGUIObjectByName("gameInfo").hidden = true;
 		Engine.GetGUIObjectByName("joinGameButton").hidden = true;
@@ -594,7 +594,6 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = true;
 
 	// Display the map name, number of players, the names of the players, the map size and the map type.
-	var game = g_GameList[selected];
 	Engine.GetGUIObjectByName("sgMapName").caption = translate(game.niceMapName);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = game.nbp + "/" + game.tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = game.players;
@@ -607,23 +606,67 @@ function updateGameSelection()
 	setMapPreviewImage("sgMapPreview", mapData.preview);
 }
 
+function selectedGame()
+{
+	let gamesBox = Engine.GetGUIObjectByName("gamesBox");
+	if (gamesBox.selected < 0)
+		return undefined;
+
+	return g_GameList[gamesBox.list_data[gamesBox.selected]];
+}
+
 /**
- * Start the joining process on the currectly selected game.
+ * Immediately rejoin and join gamesetups. Otherwise confirm late-observer join attempt.
+ */
+function joinButton()
+{
+	let game = selectedGame();
+	if (!game)
+		return;
+
+	let username = g_UserRating ? g_Username + " (" + g_UserRating + ")" : g_Username;
+
+	if (game.state == "init" || game.players.split(", ").indexOf(username) > -1)
+		joinSelectedGame();
+	else
+		messageBox(
+			400, 200,
+			translate("The game has already started.") + "\n" +
+				translate("Do you want to join as observer?"),
+			translate("Confirmation"),
+			0,
+			[translate("No"), translate("Yes")],
+			[null, joinSelectedGame]
+		);
+}
+
+/**
+ * Attempt to join the selected game without asking for confirmation.
  */
 function joinSelectedGame()
 {
-	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
-	if (gamesBox.selected < 0)
+	let game = selectedGame();
+	if (!game)
 		return;
 
-	var ipAddress = g_GameList[gamesBox.list_data[gamesBox.selected]].ip;
-	if (ipAddress.split('.').length != 4)
+	if (game.ip.split('.').length != 4)
 	{
-		addChatMessage({ "from": "system", "text": sprintf(translate("This game's address '%(ip)s' does not appear to be valid."), { "ip": ipAddress }) });
+		addChatMessage({
+			"from": "system",
+			"text": sprintf(
+				translate("This game's address '%(ip)s' does not appear to be valid."),
+				{ "ip": game.ip }
+			)
+		});
 		return;
 	}
 
-	Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "join", "name": g_Username, "ip": ipAddress, "rating": g_UserRating });
+	Engine.PushGuiPage("page_gamesetup_mp.xml", {
+		"multiplayerGameType": "join",
+		"ip": game.ip,
+		"name": g_Username,
+		"rating": g_UserRating
+	});
 }
 
 /**
@@ -631,7 +674,11 @@ function joinSelectedGame()
  */
 function hostGame()
 {
-	Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "host", "name": g_Username, "rating": g_UserRating });
+	Engine.PushGuiPage("page_gamesetup_mp.xml", {
+		"multiplayerGameType": "host",
+		"name": g_Username,
+		"rating": g_UserRating
+	});
 }
 
 /**

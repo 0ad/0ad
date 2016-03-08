@@ -154,7 +154,7 @@
 			<object name="joinGameButton" type="button" style="ModernButtonRed" size="0 100%-85 100% 100%-60" hidden="true">
 				<translatableAttribute id="caption" comment="Join the game currently selected in the list.">Join Game</translatableAttribute>
 				<action on="Press">
-					joinSelectedGame();
+					joinButton();
 				</action>
 			</object>
 			<object name="hostButton" type="button" style="ModernButtonRed" size="0 100%-55 100% 100%-30">
@@ -175,7 +175,7 @@
 			<object name="gamesBox" style="ModernList" sprite_asc="ModernArrowDown" default_column="status" default_column_order="1" sprite_desc="ModernArrowUp" sprite_not_sorted="ModernNotSorted" type="olist" sortable="true" size="0 25 100% 48%" font="sans-stroke-13">
 				<action on="SelectionChange">updateGameSelection();</action>
 				<action on="SelectionColumnChange">applyFilters();</action>
-				<action on="mouseleftdoubleclickitem">joinSelectedGame();</action>
+				<action on="mouseleftdoubleclickitem">joinButton();</action>
 				<def id="name" color="0 60 0" width="27%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</def>
