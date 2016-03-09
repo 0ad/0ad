@@ -644,8 +644,6 @@ Player.prototype.OnPlayerDefeated = function(msg)
 {
 	this.state = "defeated";
 
-	// TODO: Tribute all resources to this player's active allies (if any)
-
 	// Reassign all player's entities to Gaia
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
