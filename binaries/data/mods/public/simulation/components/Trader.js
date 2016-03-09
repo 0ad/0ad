@@ -179,42 +179,43 @@ Trader.prototype.CanTrade = function(target)
 Trader.prototype.PerformTrade = function(currentMarket)
 {
 	let previousMarket = this.markets[(this.index+this.markets.length) % this.markets.length];
+	if (previousMarket != currentMarket)  // Inconsistent markets
+	{
+		this.goods.amount = null;
+		return;
+	}
 
 	this.index = ++this.index % this.markets.length;
-
 	let nextMarket = this.markets[(this.index+this.markets.length) % this.markets.length];
-
-	if (previousMarket != currentMarket)
-		warn("Markets are not matching.");
 
 	if (this.goods.amount && this.goods.amount.traderGain)
 	{
-		var cmpPlayer = QueryOwnerInterface(this.entity);
+		let cmpPlayer = QueryOwnerInterface(this.entity);
 		if (cmpPlayer)
 			cmpPlayer.AddResource(this.goods.type, this.goods.amount.traderGain);
 
-		var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+		let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		if (cmpStatisticsTracker)
 			cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.traderGain);
 
 		if (this.goods.amount.market1Gain)
 		{
-			let cmpPlayer = QueryOwnerInterface(previousMarket);
+			cmpPlayer = QueryOwnerInterface(previousMarket);
 			if (cmpPlayer)
 				cmpPlayer.AddResource(this.goods.type, this.goods.amount.market1Gain);
 
-			let cmpStatisticsTracker = QueryOwnerInterface(previousMarket, IID_StatisticsTracker);
+			cmpStatisticsTracker = QueryOwnerInterface(previousMarket, IID_StatisticsTracker);
 			if (cmpStatisticsTracker)
 				cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.market1Gain);
 		}
 
 		if (this.goods.amount.market2Gain)
 		{
-			let cmpPlayer = QueryOwnerInterface(nextMarket);
+			cmpPlayer = QueryOwnerInterface(nextMarket);
 			if (cmpPlayer)
 				cmpPlayer.AddResource(this.goods.type, this.goods.amount.market2Gain);
 
-			let cmpStatisticsTracker = QueryOwnerInterface(nextMarket, IID_StatisticsTracker);
+			cmpStatisticsTracker = QueryOwnerInterface(nextMarket, IID_StatisticsTracker);
 			if (cmpStatisticsTracker)
 				cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.market2Gain);
 		}
@@ -227,7 +228,7 @@ Trader.prototype.PerformTrade = function(currentMarket)
 	var nextGoods = this.GetRequiredGoods();
 	if (!nextGoods || RESOURCES.indexOf(nextGoods) == -1)
 	{
-		var cmpPlayer = QueryOwnerInterface(this.entity);
+		let cmpPlayer = QueryOwnerInterface(this.entity);
 		if (cmpPlayer)
 			nextGoods = cmpPlayer.GetNextTradingGoods();
 

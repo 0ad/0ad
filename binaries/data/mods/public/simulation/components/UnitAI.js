@@ -5150,8 +5150,6 @@ UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued)
 	{
 		let data = {
 			"target": cmpTrader.GetFirstMarket(),
-			"firstMarket": cmpTrader.GetFirstMarket(),
-			"secondMarket": cmpTrader.GetSecondMarket(),
 			"route": route,
 			"force": false
 		};
@@ -5231,13 +5229,13 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)
 
 	let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 	cmpTrader.PerformTrade(currentMarket);
-	let nextMarket = cmpTrader.markets[cmpTrader.index];
 	if (!cmpTrader.GetGoods().amount.traderGain)
 	{
 		this.StopTrading();
 		return;
 	}
 
+	let nextMarket = cmpTrader.markets[cmpTrader.index];
 	this.order.data.target = nextMarket;
 
 	if (this.order.data.route && this.order.data.route.length)
