@@ -21,6 +21,7 @@
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
 #include "lib/allocators/shared_ptr.h"
+#include "lib/external_libraries/libsdl.h"
 #include "lib/utf8.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
@@ -60,6 +61,12 @@ void VisualReplay::StartVisualReplay(const CStrW& directory)
 	g_Game->StartVisualReplay(replayFile.string8());
 }
 
+/**
+ * Load all replays found in the directory.
+ *
+ * Since files are spread across the harddisk,
+ * loading hundreds of them can consume a lot of time.
+ */
 JS::Value VisualReplay::GetReplays(ScriptInterface& scriptInterface)
 {
 	TIMER(L"GetReplays");
@@ -69,9 +76,13 @@ JS::Value VisualReplay::GetReplays(ScriptInterface& scriptInterface)
 	u32 i = 0;
 	DirectoryNames directories;
 	JS::RootedObject replays(cx, JS_NewArrayObject(cx, 0));
+
 	if (GetDirectoryEntries(GetDirectoryName(), NULL, &directories) == INFO::OK)
 		for (OsPath& directory : directories)
 		{
+			if (SDL_QuitRequested())
+				return JSVAL_NULL;
+
 			JS::RootedValue replayData(cx, LoadReplayData(scriptInterface, directory));
 			if (!replayData.isNull())
 				JS_SetElement(cx, replays, i++, replayData);

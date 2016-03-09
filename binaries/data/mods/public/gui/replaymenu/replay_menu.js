@@ -50,6 +50,13 @@ function init()
 	}
 
 	loadReplays();
+
+	if (!g_Replays)
+	{
+		Engine.SwitchGuiPage("page_pregame.xml");
+		return;
+	}
+
 	displayReplayList();
 }
 
@@ -60,6 +67,9 @@ function init()
 function loadReplays()
 {
 	g_Replays = Engine.GetReplays();
+
+	if (!g_Replays)
+		return;
 
 	g_Playernames = [];
 	for (let replay of g_Replays)
