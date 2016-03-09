@@ -901,7 +901,22 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	}
 
 	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
-	CStrW username = server.DeduplicatePlayerName(SanitisePlayerName(message->m_Name));
+	CStrW username = SanitisePlayerName(message->m_Name);
+
+	// Either deduplicate or prohibit join if name is in use
+	bool duplicatePlayernames = false;
+	CFG_GET_VAL("network.duplicatePlayernames", duplicatePlayernames);
+	if (duplicatePlayernames)
+		username = server.DeduplicatePlayerName(username);
+	else if (std::find_if(
+			server.m_Sessions.begin(), server.m_Sessions.end(),
+			[&username] (const CNetServerSession* session)
+			{ return session->GetUserName() == username; })
+		!= server.m_Sessions.end())
+	{
+		session->Disconnect(NDR_PLAYERNAME_IN_USE);
+		return true;
+	}
 
 	// Disconnect banned usernames
 	if (std::find(server.m_BannedPlayers.begin(), server.m_BannedPlayers.end(), username) != server.m_BannedPlayers.end())

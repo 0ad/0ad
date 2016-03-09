@@ -28,7 +28,7 @@
 
 #define PS_PROTOCOL_MAGIC				0x5073013f		// 'P', 's', 0x01, '?'
 #define PS_PROTOCOL_MAGIC_RESPONSE		0x50630121		// 'P', 'c', 0x01, '!'
-#define PS_PROTOCOL_VERSION				0x01010009		// Arbitrary protocol
+#define PS_PROTOCOL_VERSION				0x01010010		// Arbitrary protocol
 #define PS_DEFAULT_PORT					0x5073			// 'P', 's'
 
 // Defines the list of message types. The order of the list must not change.
