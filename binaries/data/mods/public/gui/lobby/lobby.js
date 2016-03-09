@@ -595,7 +595,7 @@ function updateGameSelection()
 
 	// Display the map name, number of players, the names of the players, the map size and the map type.
 	Engine.GetGUIObjectByName("sgMapName").caption = translate(game.niceMapName);
-	Engine.GetGUIObjectByName("sgNbPlayers").caption = game.nbp + "/" + game.tnbp;
+	Engine.GetGUIObjectByName("sgNbPlayers").caption = translate("Players:") + " " + game.nbp + "/" + game.tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = game.players;
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(game.mapSize);
 	let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);

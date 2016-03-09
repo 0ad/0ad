@@ -142,10 +142,7 @@
 
 				<object type="image" sprite="ModernDarkBoxWhite" size="3% 75%+5 97% 99%">
 					<!-- Number of Players -->
-					<object size="0% 3% 57% 12%" type="text" style="ModernRightLabelText">
-						<translatableAttribute id="caption">Players:</translatableAttribute>
-					</object>
-					<object name="sgNbPlayers" size="58% 3% 70% 12%" type="text" style="ModernLeftLabelText" text_align="left"/>
+					<object name="sgNbPlayers" size="3% 3% 97% 12%" type="text" style="ModernLeftLabelText" text_align="center"/>
 
 					<!-- Player Names -->
 					<object name="sgPlayersNames" size="0 15% 100% 100%" type="text" style="MapPlayerList"/>
