@@ -74,6 +74,8 @@ function getRankIconSprite(entState)
  */
 function getTradingTooltip(gain)
 {
+	if (!gain)
+		return "";
 
 	var playerID = Engine.GetPlayerID();
 	var simState = GetSimState();

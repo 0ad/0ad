@@ -1667,13 +1667,13 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 			"hasBothMarkets": cmpEntityTrader.HasBothMarkets()
 		};
 		if (cmpEntityTrader.HasBothMarkets())
-			result.gain = cmpEntityTrader.GetGain();
+			result.gain = cmpEntityTrader.GetGoods().amount;
 	}
 	else if (data.target === secondMarket)
 	{
 		result = {
 			"type": "is second",
-			"gain": cmpEntityTrader.GetGain(),
+			"gain": cmpEntityTrader.GetGoods().amount,
 		};
 	}
 	else if (!firstMarket)
