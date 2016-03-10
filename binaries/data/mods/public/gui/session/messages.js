@@ -310,29 +310,16 @@ function findGuidForPlayerID(playerID)
 }
 
 /**
- * Processes all pending simulation messages.
+ * Processes all pending notifications sent from the GUIInterface simulation component.
  */
 function handleNotifications()
 {
 	let notifications = Engine.GuiInterfaceCall("GetNotifications");
-
 	for (let notification of notifications)
 	{
-		if (!notification.type)
+		if (!notification.players || !notification.type || !g_NotificationsTypes[notification.type])
 		{
-			error("Notification without type found.\n"+uneval(notification));
-			continue;
-		}
-
-		if (!notification.players)
-		{
-			error("Notification without players found.\n"+uneval(notification));
-			continue;
-		}
-
-		if (!g_NotificationsTypes[notification.type])
-		{
-			error("Unknown notification type '" + notification.type + "' found.");
+			error("Invalid GUI notification: " + uneval(notification));
 			continue;
 		}
 
