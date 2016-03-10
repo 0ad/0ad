@@ -213,11 +213,16 @@ Auras.prototype.Clean = function()
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var auraNames = this.GetAuraNames();
+	let targetUnitsClone = {};
 	// remove all bonuses
 	for (let name of auraNames)
 	{
+		targetUnitsClone[name] = [];
 		if (!this[name])
 			continue;
+
+		if (this[name].targetUnits)
+			targetUnitsClone[name] = this[name].targetUnits.slice();
 
 		if (this.IsGlobalAura(name))
 			this.RemoveTemplateBonus(name);
@@ -261,7 +266,10 @@ Auras.prototype.Clean = function()
 			continue;
 
 		if (!this.IsRangeAura(name))
+		{
+			this.ApplyBonus(name, targetUnitsClone[name]);
 			continue;
+		}
 
 		this[name].rangeQuery = cmpRangeManager.CreateActiveQuery(
 		    this.entity,
