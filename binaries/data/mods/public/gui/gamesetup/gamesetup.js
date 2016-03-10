@@ -299,7 +299,7 @@ function initMapFilters()
  */
 function resizeMoreOptionsWindow()
 {
-	// For singleplayer reduce the size of more options dialog by three options (cheats, rated game = 60px)
+	// For singleplayer reduce the size of more options dialog by two options (cheats, rated game = 60px)
 	if (!g_IsNetworked)
 	{
 		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+160";
