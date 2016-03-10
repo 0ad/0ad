@@ -271,7 +271,7 @@
 
 			<!-- More Options -->
 			<object hidden="true" name="moreOptionsFade" type="image" z="60" sprite="ModernFade"/>
-			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-195 50%+200 50%+250" z="70" hidden="true">
+			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-195 50%+200 50%+220" z="70" hidden="true">
 				<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 					<translatableAttribute id="caption">More Options</translatableAttribute>
 				</object>
@@ -386,22 +386,12 @@
 					</object>
 				</object>
 
-				<object name="optionObserverLateJoin" size="14 368 94% 396" hidden="true">
-					<object size="0 0 40% 28" type="text" hidden="false" style="ModernRightLabelText">
-						<translatableAttribute id="caption">Late Observer Joins:</translatableAttribute>
-					</object>
-					<object name="observerLateJoinText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
-					<object name="observerLateJoin" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip">
-						<translatableAttribute id="tooltip">Allow observers to join after the game started.</translatableAttribute>
-					</object>
-				</object>
-
 				<!-- Hide More Options Button -->
 				<object
 					name="hideMoreOptions"
 					type="button"
 					style="StoneButton"
-					size="50%-70 400 50%+70 426"
+					size="50%-70 370 50%+70 396"
 					tooltip_style="onscreenToolTip"
 					hotkey="cancel"
 				>

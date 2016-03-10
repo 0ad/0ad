@@ -927,13 +927,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	// Optionally allow observers to join after the game has started
 	bool observerLateJoin = false;
-	ScriptInterface& scriptInterface = server.GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue settings(cx);
-	scriptInterface.GetProperty(server.m_GameAttributes.get(), "settings", &settings);
-	if (scriptInterface.HasProperty(settings, "ObserverLateJoin"))
-		scriptInterface.GetProperty(settings, "ObserverLateJoin", observerLateJoin);
+	CFG_GET_VAL("network.lateobserverjoins", observerLateJoin);
 
 	// If the game has already started, only allow rejoins
 	bool isRejoining = false;

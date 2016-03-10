@@ -60,6 +60,12 @@
 			"label": "Persist Match Settings",
 			"tooltip": "Save and restore match settings for quick reuse when hosting another game",
 			"parameters": { "config": "persistmatchsettings" }
+		},
+		{
+			"type": "boolean",
+			"label": "Late Observer Joins",
+			"tooltip": "Allow observers to join the game after it started",
+			"parameters": { "config": "network.lateobserverjoins" }
 		}
 	],
 	"graphicsSetting":
