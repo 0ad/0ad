@@ -905,7 +905,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	// Either deduplicate or prohibit join if name is in use
 	bool duplicatePlayernames = false;
-	CFG_GET_VAL("network.duplicatePlayernames", duplicatePlayernames);
+	CFG_GET_VAL("network.duplicateplayernames", duplicatePlayernames);
 	if (duplicatePlayernames)
 		username = server.DeduplicatePlayerName(username);
 	else if (std::find_if(
