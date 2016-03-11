@@ -5,12 +5,13 @@
 # Translators:
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
+# Ole Sannes Riiser <OLE-SR@online.no>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-12-18 09:01+0100\n"
-"PO-Revision-Date: 2015-12-18 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-10 13:39+0000\n"
+"Last-Translator: Ole Sannes Riiser <OLE-SR@online.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -161,27 +162,27 @@ msgstr "Boplass"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr ""
+msgstr "Mindre gresk polis"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "Dette er en mindre gresk by. "
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr ""
+msgstr "Gresk polis"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "Dette er en større gresk by. "
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr ""
+msgstr "Hellig sted"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr ""
+msgstr "Gresk hellig sted"
 
 #: simulation/templates/formations/battle_line.xml:5
 msgid "Battle Line"
@@ -209,7 +210,7 @@ msgstr "8 enheter kreves"
 
 #: simulation/templates/formations/flank.xml:7
 msgid "Flank"
-msgstr ""
+msgstr "Flanke"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
@@ -285,7 +286,7 @@ msgstr "Kylling"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
-msgstr ""
+msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
@@ -323,11 +324,11 @@ msgstr "Sank mat fra denne bugnende hav-ressursen."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
-msgstr ""
+msgstr "Tilapiafisk"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
-msgstr ""
+msgstr "Sank mat fra denne bugnende elvebreddressursen."
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
@@ -375,7 +376,7 @@ msgstr "Kanin"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr ""
+msgstr "Neshorn"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
@@ -423,7 +424,7 @@ msgstr "Sebra"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr ""
+msgstr "Hardfør busk"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
@@ -439,15 +440,15 @@ msgstr "Sank druer fra disse rankene som Mat."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
-msgstr ""
+msgstr "Løvfellende busk"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
-msgstr ""
+msgstr "Akasiatre"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
-msgstr ""
+msgstr "Aleppograntre"
 
 #: simulation/templates/gaia/flora_tree_apple.xml:8
 msgid "Apple Tree"
@@ -455,17 +456,17 @@ msgstr "Epletre"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 msgid "Baobab"
-msgstr ""
+msgstr "Baobabtre"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
-msgstr ""
+msgstr "Johannesbrødtre"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
 msgid "Cretan Date Palm"
-msgstr ""
+msgstr "Kretisk daddelpalme"
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 msgid "Cypress Tree"
@@ -523,32 +524,32 @@ msgstr "Tropisk palme"
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
 msgid "Pine Tree"
-msgstr ""
+msgstr "Grantre"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
-msgstr ""
+msgstr "Poppeltre"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Lombardy Poplar Tree"
-msgstr ""
+msgstr "Lombardisk poppeltre"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
-msgstr ""
+msgstr "Senegalesisk daddelpalme"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
-msgstr ""
+msgstr "Tamarisktre"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
-msgstr ""
+msgstr "Toonatre"
 
 #: simulation/templates/gaia/special_ruins.xml:10
 #: simulation/templates/gaia/special_ruins_column_doric.xml:10
 msgid "Ancient Ruins"
-msgstr ""
+msgstr "Oldtidsruiner"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
@@ -563,7 +564,7 @@ msgstr "Keltisk stående stein"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
-msgstr ""
+msgstr "Ptolemaiske egyptiske statuer"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
 msgid "Roman Statues"
@@ -592,7 +593,7 @@ msgstr "Persisk matskatt"
 
 #: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
 msgid "Golden Fleece"
-msgstr ""
+msgstr "Gyldent skinn"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
@@ -649,11 +650,11 @@ msgstr "Ofringstempel"
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
-msgstr ""
+msgstr "Tophet"
 
 #: simulation/templates/other/cart_tophet.xml:25
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
+msgstr "Tren leger og Hellig Bånd-kavaleri."
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
@@ -716,28 +717,28 @@ msgstr "Storslått tempel"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Naos Parthenos"
-msgstr ""
+msgstr "Naos Parthenos"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:32
 msgid "Garrison up to 30 units to heal them at a quick rate."
-msgstr ""
+msgstr "Stasjoner opptil 30 enheter for å helbrede dem raskt."
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
-msgstr ""
+msgstr "Portiko"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
-msgstr ""
+msgstr "Propylaea"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "Stoa"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:31
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "Hellensk kongelig stoa"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:33
 msgid "Add +10 to Population Cap. Recruit special units."
@@ -745,11 +746,11 @@ msgstr "Legg +10 til befolkningstaket. Rekrutter spesialenheter."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr ""
+msgstr "Hellensk stoa"
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
-msgstr ""
+msgstr "Harmya"
 
 #: simulation/templates/other/maur_palace.xml:14
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
@@ -765,7 +766,7 @@ msgstr "Egyptisk obelisk"
 
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
-msgstr ""
+msgstr "Palisadevinkelspiss"
 
 #: simulation/templates/other/palisades_angle_spike.xml:17
 msgid "Big Spike"
@@ -848,11 +849,11 @@ msgstr "Små pigger"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Spikes Tall"
-msgstr ""
+msgstr "Pigger høye"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:17
 msgid "Tall Spikes"
-msgstr ""
+msgstr "Høye pigger"
 
 #: simulation/templates/other/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -873,7 +874,7 @@ msgstr "Forretning"
 
 #: simulation/templates/other/plane.xml:37
 msgid "P-51 Mustang"
-msgstr ""
+msgstr "P-51 Mustang"
 
 #: simulation/templates/other/plane.xml:39
 msgid "A World War 2 American fighter plane."
@@ -923,16 +924,16 @@ msgstr "Et lasteskip delt i to. En god mulighet for alle forretningsmenn."
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr ""
+msgstr "Stor bås"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr ""
+msgstr "Middels bås"
 
 #: simulation/templates/other/stall_small_a.xml:12
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall"
-msgstr ""
+msgstr "Liten bås"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
@@ -959,42 +960,42 @@ msgstr "Dette tempelet er uferdig og har falt i ruiner."
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr ""
+msgstr "Endringer i et 10-innbyggershus for sivilisasjoner med disse husene slettes for andre sivilisasjoner"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:5
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr ""
+msgstr "Endringer i et 5-innbyggershus for sivilisasjoner med disse husene slettes for andre sivilisasjoner"
 
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
-msgstr ""
+msgstr "Markør"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
 msgid "Lithobólos"
-msgstr ""
+msgstr "Lithobólos"
 
 #: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
 msgid "Oxybelḗs"
-msgstr ""
+msgstr "Oxybelḗs"
 
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:29
 msgid "Ballista"
-msgstr ""
+msgstr "Ballista"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
-msgstr ""
+msgstr "Polybolos"
 
 #: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:23
 msgid "Scorpio"
-msgstr ""
+msgstr "Scorpio"

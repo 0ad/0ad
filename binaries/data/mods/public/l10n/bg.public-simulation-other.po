@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2016
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2016
 # Lyubomir Vasilev, 2016
-# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2015
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-03-05 23:51+0000\n"
-"Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
+"PO-Revision-Date: 2016-03-10 21:56+0000\n"
+"Last-Translator: Lyubomir Vasilev\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,7 +86,7 @@ msgstr "Не мога да помогна срещу %(_player_)s засега, 
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr "Съжалявам, но в момента нямам достатъчно войници, но следващото ми нападение ще е насочено към %(_player_)s."
+msgstr "Съжалявам, в момента нямам достатъчно во̀йни, но следващото ми нападение ще е насочено към %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
@@ -103,7 +103,7 @@ msgstr "Виждам, че си в лошо положение, %(_player_)s, Н
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr "Мога да ти помогна този път, %(_player_)s, Но се опитай да събираш повече ресурси в бъдеще."
+msgstr "Мога да ти помогна този път, %(_player_)s, но се опитай да събираш повече ресурси в бъдеще."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
@@ -157,7 +157,7 @@ msgstr "Внимание: Това е урок за напреднали, кой
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr "Да започваме! Първо обучете партида (щракване с натиснат Шифт) от 5 жени в градския център."
+msgstr "Да започваме! Първо, обучете партида (щракване с натиснат Shift) от 5 жени в СЦ (селищния център)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
@@ -483,13 +483,13 @@ msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
-msgstr "Наредете на бездействащите копиехвъргачи да построят наблюдателница на североизточния край на територията Ви. Това ще е петата сграда от Селска фаза, която ще сте построили, така че ще можете да преминете към Градска фаза."
+msgstr "Наредете на бездействащите копиехвъргачи да построят наблюдателница на североизточния край на територията Ви. Това ще е петата сграда от Селската фаза, която ще сте построили, така че ще можете да преминете към Градската фаза."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:63
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr "Изберете селищния център отново и преминете към Градска фаза, като щракнете върху иконата „II“. Това ще Ви позволи да строите сгради от тази фаза."
+msgstr "Изберете селищния център отново и преминете към Градската фаза, като щракнете върху иконката „II“. Това ще Ви позволи да строите сгради от тази фаза."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
@@ -529,13 +529,13 @@ msgstr "Врагът беше отблъснат. Сега постройте п
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr "След като вече всички изисквания за Мегаполисна фаза са изпълнени, изберете селищния център и преминете към новата фаза."
+msgstr "След като вече всички изисквания за Мегаполисната фаза са изпълнени, изберете селищния център и преминете към новата фаза."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr "Вече сте в Мегаполисна фаза. Постройте крепост наблизо и я използвайте, за да построите 2 тарана."
+msgstr "Вече сте в Мегаполисната фаза. Постройте крепост наблизо и я използвайте, за да построите 2 тарана."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
@@ -931,7 +931,7 @@ msgstr "Много голяма"
 
 #: simulation/data/settings/map_sizes.jsonData[5].LongName
 msgid "Very Large (8 players)"
-msgstr "Много голяма (8 играчи)"
+msgstr "Много голяма (8-на играчи)"
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 #: simulation/data/settings/map_sizes.jsonData[6].LongName
