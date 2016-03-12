@@ -297,14 +297,14 @@
                 "options": {
                     "keywords": [
                         "Title",
-                        "Subtitle",
+                        "Subtitle"
                     ]
                 }
             },
             {
                 "extractor": "json",
                 "filemasks": [
-                    "gui/options/**.json",
+                    "gui/options/**.json"
                 ],
                 "options": {
                     "keywords": [
