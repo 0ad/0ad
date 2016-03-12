@@ -7,7 +7,7 @@
 	"icon": "metalworker.png",
 	"researchTime": 40,
 	"tooltip": "Siege weapons cost 20% less metal",
-	"modifications": [{"value": "Cost/Resources/metal", "multiply": 0.80}],
+	"modifications": [{"value": "Cost/Resources/metal", "multiply": 0.8}],
 	"affects": ["Siege"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

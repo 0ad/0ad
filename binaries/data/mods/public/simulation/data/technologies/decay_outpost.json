@@ -6,7 +6,7 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "blocks_three.png",
 	"researchTime": 40,
-	"tooltip": "Territory decay -50% for Outposts.",
+	"tooltip": "Territory decay rate -50% for outposts.",
 	"modifications": [{"value": "TerritoryDecay/DecayRate", "multiply": 0.5}],
 	"affects": ["Outpost"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

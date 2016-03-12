@@ -11,7 +11,7 @@
 	"icon": "population.png",
 	"researchTime": 40,
 	"tooltip": "Civic Centers +5 population cap bonus.",
-	"modifications": [{"value": "Cost/PopulationBonus", "add": 5.0}],
+	"modifications": [{"value": "Cost/PopulationBonus", "add": 5}],
 	"affects": ["CivCentre"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
