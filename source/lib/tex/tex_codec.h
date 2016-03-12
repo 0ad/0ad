@@ -131,20 +131,6 @@ public:
 	};
 };
 
-class TexCodecJpg:ITexCodec {
-public:
-	virtual Status decode(u8* data, size_t size, Tex* RESTRICT t) const;
-	virtual Status encode(Tex* RESTRICT t, DynArray* RESTRICT da) const;
-	virtual Status transform(Tex* t, size_t transforms) const;
-	virtual bool is_hdr(const u8* file) const;
-	virtual bool is_ext(const OsPath& extension) const;
-	virtual size_t hdr_size(const u8* file) const;
-	virtual const wchar_t* get_name() const {
-		static const wchar_t *name = L"jpg";
-		return name;
-	};
-};
-
 class TexCodecDds:ITexCodec {
 public:
 	virtual Status decode(u8* data, size_t size, Tex* RESTRICT t) const;
