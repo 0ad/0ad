@@ -28,18 +28,17 @@ function setPanelObjectPosition(object, index, rowLength, vMargin = 1, hMargin =
  * (i.e. panels with rows of icons) for the currently selected unit.
  *
  * @param guiName Short identifier string of this panel. See g_SelectionPanels.
- * @param unitEntState Entity state of the (first) selected unit.
+ * @param unitEntState Entity state of the selected unit with the lowest id.
  * @param payerState Player state
+ * @param selectedEntries All selected units
  */
-function setupUnitPanel(guiName, unitEntState, playerState)
+function setupUnitPanel(guiName, unitEntState, playerState, selection)
 {
 	if (!g_SelectionPanels[guiName])
 	{
 		error("unknown guiName used '" + guiName + "'");
 		return;
 	}
-	var selection = g_Selection.toList();
-
 	var items = g_SelectionPanels[guiName].getItems(unitEntState, selection);
 
 	if (!items || !items.length)
@@ -146,7 +145,7 @@ function setupUnitPanel(guiName, unitEntState, playerState)
  * Delegates to setupUnitPanel to set up individual subpanels,
  * appropriately activated depending on the selected unit's state.
  *
- * @param entState Entity state of the (first) selected unit.
+ * @param entState Entity state of the selected unit with the lowest id.
  * @param supplementalDetailsPanel Reference to the
  *        "supplementalSelectionDetails" GUI Object
  * @param commandsPanel Reference to the "commandsPanel" GUI Object
@@ -174,7 +173,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			)
 				continue;
 
-			setupUnitPanel(guiName, entState, playerStates[entState.player]);
+			setupUnitPanel(guiName, entState, playerStates[entState.player], selection);
 		}
 
 		supplementalDetailsPanel.hidden = false;
@@ -184,8 +183,8 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	{
 		// TODO if there's a second panel needed for a different player
 		// we should consider adding the players list to g_SelectionPanels
-		setupUnitPanel("Garrison", entState, playerState);
-		setupUnitPanel("AllyCommand", entState, playerState);
+		setupUnitPanel("Garrison", entState, playerState, selection);
+		setupUnitPanel("AllyCommand", entState, playerState, selection);
 
 		supplementalDetailsPanel.hidden = !g_SelectionPanels.Garrison.used;
 

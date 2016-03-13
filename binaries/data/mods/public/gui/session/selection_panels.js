@@ -192,17 +192,38 @@ g_SelectionPanels.Command = {
 	{
 		return 6;
 	},
-	"getItems": function(unitEntState)
+	"getItems": function(unitEntState, selection)
 	{
-		var commands = [];
-		for (var c in g_EntityCommands)
+		let commands = [];
+
+		for (let c in g_EntityCommands)
 		{
 			var info = g_EntityCommands[c].getInfo(unitEntState);
 			if (!info)
 				continue;
+
 			info.name = c;
 			commands.push(info);
 		}
+
+		// if the given unit state has no back-to-work entry, we need to check the other units as well
+		// otherwise the command back-to-work is not shown
+		if (!commands["back-to-work"])
+		{
+			for (let id of selection)
+			{
+				let uEntState = GetExtendedEntityState(id);
+
+				let info = g_EntityCommands["back-to-work"].getInfo(uEntState);
+				if (!info)
+					continue;
+
+				info.name = "back-to-work";
+				commands.push(info);
+				break;
+			}
+		}
+
 		return commands;
 	},
 	"setTooltip": function(data)
