@@ -1,9 +1,7 @@
 RMS.LoadLibrary("rmgen");
 
-let random_terrain;
-do
-	random_terrain = randomizeBiome();
-while (random_terrain == 6);
+//Random terrain textures, exclude african biome
+let random_terrain = randomizeBiome([6]);
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();

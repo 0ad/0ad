@@ -1,7 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////////////////////
-//	definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
-
 var biomeID = 1;
 var rbt1 = ["temp_grass_long_b"];
 var rbt2 = "temp_forestfloor_pine";
@@ -45,31 +41,42 @@ var rba7 = "actor|props/flora/bush_medit_me.xml";
 var rba8 = "actor|props/flora/bush_medit_sm.xml";
 var rba9 = "actor|flora/trees/oak.xml";
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-//	randomizeBiome: randomizes the biomeID and returns the value
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-function randomizeBiome()
+/**
+ * Randomizes environment, optionally excluding some biome IDs.
+ */
+function randomizeBiome(avoid = [])
 {
+	let biomeIndex;
+	do
+		biomeIndex = randInt(1, 8);
+	while (avoid.indexOf(biomeIndex) != -1);
 
-	var random_sky = randInt(1,3)
+	setBiome(biomeIndex);
+
+	return biomeIndex;
+}
+
+function setBiome(biomeIndex)
+{
+	var random_sky = randInt(1,3);
 	if (random_sky==1)
 		setSkySet("cirrus");
 	else if (random_sky ==2)
 		setSkySet("cumulus");
 	else if (random_sky ==3)
 		setSkySet("sunny");
+
 	setSunRotation(randFloat(0, TWO_PI));
 	setSunElevation(randFloat(PI/ 6, PI / 3));
 
 	setUnitsAmbientColor(0.57, 0.58, 0.55);
 	setTerrainAmbientColor(0.447059, 0.509804, 0.54902);
-	
-	biomeID = randInt(1,8);
+
+	biomeID = biomeIndex;
+
 	//temperate
-	if (biomeID == 1){
-		
+	if (biomeID == 1)
+	{
 		// temperate ocean blue, a bit too deep and saturated perhaps but it looks nicer.
 		// this assumes ocean settings, maps that aren't oceans should reset.
 		setWaterColor(0.114, 0.192, 0.463);
@@ -504,22 +511,17 @@ function randomizeBiome()
 		rbe5 = "gaia/flora_tree_baobab";
 		rbe6 = "gaia/flora_bush_grapes";
 		rbe7 = "gaia/fauna_chicken";
+
 		var rts = randInt(1,4);
-		if (rts==1){
+		if (rts == 1)
 			rbe8 = "gaia/fauna_wildebeest";
-		}
-		else if (rts==2)
-		{
+		else if (rts == 2)
 			rbe8 = "gaia/fauna_zebra";
-		}
-		else if (rts==3)
-		{
+		else if (rts == 3)
 			rbe8 = "gaia/fauna_giraffe";
-		}
-		else if (rts==4)
-		{
+		else if (rts == 4)
 			rbe8 = "gaia/fauna_elephant_african_bush";
-		}
+
 		rbe9 = "gaia/fauna_fish";
 		rbe10 = "gaia/fauna_gazelle";
 		rbe11 = "gaia/geology_stonemine_desert_quarry";
@@ -601,7 +603,6 @@ function randomizeBiome()
 	//autumn
 	else if (biomeID == 8)
 	{
-			
 		// basically temperate with a reddish twist in the reflection and the tint. Also less wavy.
 		// this assumes ocean settings, maps that aren't oceans should reset.
 		setWaterColor(0.157, 0.149, 0.443);
@@ -659,12 +660,7 @@ function randomizeBiome()
 		rba8 = "actor|props/flora/bush_desert_dry_a.xml";
 		rba9 = "actor|flora/trees/european_beech_aut.xml";
 	}
-	return biomeID;
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-//	These functions return the values needed for a randomized biome
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 function rBiomeT1()
 {

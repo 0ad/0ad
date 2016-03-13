@@ -34,10 +34,7 @@ const g_InitialMineDistance = 14;
 const g_InitialTrees = 50;
 
 // Random terrain textures, exclude african biome
-let random_terrain;
-do
-	random_terrain = randomizeBiome();
-while (random_terrain == 6);
+let random_terrain = randomizeBiome([6]);
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();
