@@ -212,7 +212,7 @@ g_SelectionPanels.Command = {
 		{
 			for (let id of selection)
 			{
-				let uEntState = GetExtendedEntityState(id);
+				let uEntState = GetEntityState(id);
 
 				let info = g_EntityCommands["back-to-work"].getInfo(uEntState);
 				if (!info)
