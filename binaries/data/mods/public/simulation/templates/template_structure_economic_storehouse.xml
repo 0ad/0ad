@@ -23,12 +23,7 @@
   <Identity>
     <GenericName>Storehouse</GenericName>
     <Tooltip>Dropsite for wood, stone, and metal resources. Research gathering improvements for these resources.</Tooltip>
-    <Classes datatype="tokens">
-	  DropsiteWood
-	  DropsiteMetal
-	  DropsiteStone
-	  -ConquestCritical
-	</Classes>
+    <Classes datatype="tokens">DropsiteWood DropsiteMetal DropsiteStone -ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Village Storehouse</VisibleClasses>
     <Icon>structures/storehouse.png</Icon>
   </Identity>
@@ -62,6 +57,7 @@
   <RallyPoint disable=""/>
   <ResourceDropsite>
     <Types>wood stone metal</Types>
+    <Sharable>true</Sharable>
   </ResourceDropsite>
   <Sound>
     <SoundGroups>

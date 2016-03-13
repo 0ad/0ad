@@ -264,6 +264,14 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 			});
 		} */
 	}
+
+	// Allows all allies to use this dropsite except if base anchor to be sure to keep
+	// a minimum of resources for this base
+	Engine.PostCommand(PlayerID, {
+		"type": "set-dropsite-sharing",
+		"entities": [dropsiteId],
+		"shared": dropsiteId !== this.anchorId
+	});
 };
 
 // completely remove the dropsite resources from our list.

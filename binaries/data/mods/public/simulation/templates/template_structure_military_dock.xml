@@ -45,6 +45,7 @@
   </RallyPointRenderer>
   <ResourceDropsite>
     <Types>food wood stone metal</Types>
+    <Sharable>true</Sharable>
   </ResourceDropsite>
   <Sound>
     <SoundGroups>
@@ -71,7 +72,7 @@
       armor_ship_hullsheathing
     </Technologies>
   </ProductionQueue>
-  <Vision>
+   <Vision>
     <Range>40</Range>
   </Vision>
   <VisualActor>

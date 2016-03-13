@@ -12,9 +12,16 @@ ResourceDropsite.prototype.Schema =
 				"</choice>" +
 			"</zeroOrMore>" +
 		"</list>" +
+	"</element>" +
+	"<element name='Sharable' a:help='Allows allies to use this entity.'>" +
+		"<data type='boolean'/>" +
 	"</element>";
 
-ResourceDropsite.prototype.Serialize = null;
+ResourceDropsite.prototype.Init = function()
+{
+	this.sharable = this.template.Sharable == "true";
+	this.shared = false;
+};
 
 /**
  * Returns the list of resource types accepted by this dropsite.
@@ -31,6 +38,22 @@ ResourceDropsite.prototype.GetTypes = function()
 ResourceDropsite.prototype.AcceptsType = function(type)
 {
 	return this.GetTypes().indexOf(type) != -1;
+};
+
+ResourceDropsite.prototype.IsSharable = function()
+{
+	return this.sharable;
+};
+
+ResourceDropsite.prototype.IsShared = function()
+{
+	return this.shared;
+};
+
+ResourceDropsite.prototype.SetSharing = function(value)
+{
+	if (this.sharable)
+		this.shared = value;
 };
 
 Engine.RegisterComponentType(IID_ResourceDropsite, "ResourceDropsite", ResourceDropsite);

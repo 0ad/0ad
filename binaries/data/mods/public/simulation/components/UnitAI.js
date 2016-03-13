@@ -4061,8 +4061,17 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
 		return undefined;
 
-	// Find dropsites owned by this unit's player
-	var players = [cmpOwnership.GetOwner()];
+	// Find dropsites owned by this unit's player or allied ones if allowed
+	var owner = cmpOwnership.GetOwner();
+	var players = [owner];
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	if (cmpPlayer && cmpPlayer.HasSharedDropsites())
+	{
+		let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		for (let i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
+			if (i != owner && cmpPlayer.IsMutualAlly(i))
+				players.push(i);
+	}
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
@@ -4072,7 +4081,13 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	if (excludeLand)
 		nearby = nearby.filter(e => Engine.QueryInterface(e, IID_Identity).HasClass("Naval"));
 
-	return nearby.find(ent => Engine.QueryInterface(ent, IID_ResourceDropsite).AcceptsType(genericType));
+	return nearby.find(ent => {
+		let cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
+		if (!cmpResourceDropsite.AcceptsType(genericType))
+			return false;
+		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		return cmpOwnership.GetOwner() == owner || cmpResourceDropsite.IsShared();
+	});
 };
 
 /**
@@ -5753,9 +5768,13 @@ UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
 			return false;
 	}
 
-	// Verify that the dropsite is owned by this entity's player
+	// Verify that the dropsite is owned by this entity's player (or an a mutual allied if allowed)
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	return cmpOwnership && IsOwnedByPlayer(cmpOwnership.GetOwner(), target);
+	var cmpPlayer = QueryOwnerInterface(this.entity);
+	if (cmpOwnership && IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
+		return true;
+	return cmpPlayer && cmpPlayer.HasSharedDropsites() && cmpResourceDropsite.IsShared() &&
+	       cmpOwnership && IsOwnedByMutualAllyOfPlayer(cmpOwnership.GetOwner(), target);
 };
 
 UnitAI.prototype.CanTrade = function(target)

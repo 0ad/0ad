@@ -224,8 +224,9 @@ g_SelectionPanels.Command = {
 	},
 	"setGraphics": function(data)
 	{
-		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
+		let grayscale = data.button.enabled ? "" : "grayscale:";
+		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
 	},
 	"setPosition": function(data)
 	{
@@ -280,8 +281,9 @@ g_SelectionPanels.AllyCommand = {
 	},
 	"setGraphics": function(data)
 	{
-		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
-		data.button.enabled = data.item.count > 0;
+		data.button.enabled = data.item.count != undefined && data.item.count > 0;
+		let grayscale = data.button.enabled ? "" : "grayscale:";
+		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
 	},
 	"setPosition": function(data)
 	{

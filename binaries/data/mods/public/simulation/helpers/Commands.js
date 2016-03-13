@@ -685,6 +685,16 @@ var g_Commands = {
 		// Currently nothing. Triggers can read it anyway, and send this
 		// message to any component you like.
 	},
+
+	"set-dropsite-sharing": function(player, cmd, data)
+	{
+		for (let ent of data.entities)
+		{
+			let cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
+			if (cmpResourceDropsite && cmpResourceDropsite.IsSharable())
+				cmpResourceDropsite.SetSharing(cmd.shared);
+		}
+	},
 };
 
 /**

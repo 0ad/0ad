@@ -270,9 +270,15 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!targetState.resourceDropsite)
+			if (!targetState.resourceDropsite || !targetState.resourceDropsite.sharable)
 				return false;
-			if (!playerCheck(entState, targetState, ["Player"]))
+			var playerState = GetSimState().players[entState.player];
+			if (playerState.hasSharedDropsites && targetState.resourceDropsite.shared)
+			{
+				if (!playerCheck(entState, targetState, ["Player", "MutualAlly"]))
+					return false;
+			}
+			else if (!playerCheck(entState, targetState, ["Player"]))
 				return false;
 			if (!entState.resourceCarrying || !entState.resourceCarrying.length)
 				return false;
@@ -872,7 +878,7 @@ var g_EntityCommands =
 		},
 	},
 	// Trading
-	 "select-trading-goods": {
+	"select-trading-goods": {
 		"getInfo": function(entState)
 		{
 			if (!hasClass(entState, "Market"))
@@ -887,6 +893,34 @@ var g_EntityCommands =
 			toggleTrade();
 		},
 	},
+	// Dropsite sharing
+	"share-dropsite": {
+		"getInfo": function(entState)
+		{
+			if (!entState.resourceDropsite || !entState.resourceDropsite.sharable)
+				return false;
+			let playerState = GetSimState().players[entState.player];
+			if (!playerState.isMutualAlly.some((e, i) => e && i != entState.player))
+				return false;
+			if (entState.resourceDropsite.shared)
+				return {
+					"tooltip": translate("Press to prevent allies from using this dropsite"),
+					"icon": "lock_unlocked.png"
+				};
+			return {
+				"tooltip": translate("Press to allow allies to use this dropsite"),
+				"icon": "lock_locked.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			Engine.PostNetworkCommand({
+				"type": "set-dropsite-sharing",
+				"entities": [entState.id],
+				"shared": !entState.resourceDropsite.shared
+			});
+		},
+	}
 };
 
 var g_AllyEntityCommands =
@@ -923,6 +957,29 @@ var g_AllyEntityCommands =
 			unloadAllByOwner();
 		},
 	},
+	// Dropsite sharing
+	"share-dropsite": {
+		"getInfo": function(entState)
+		{
+			if (!GetSimState().players[Engine.GetPlayerID()].hasSharedDropsites)
+				return false;
+			if (!entState.resourceDropsite || !entState.resourceDropsite.sharable)
+				return false;
+			if (entState.resourceDropsite.shared)
+				return {
+					"tooltip": translate("You are allowed to use this dropsite"),
+					"icon": "lock_unlocked.png"
+				};
+			return {
+				"tooltip": translate("The use of this dropsite is prohibited"),
+				"icon": "lock_locked.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			// This command button is always disabled
+		},
+	}
 };
 
 function playerCheck(entState, targetState, validPlayers)

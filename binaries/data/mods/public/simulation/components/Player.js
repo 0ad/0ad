@@ -3,6 +3,9 @@ function Player() {}
 Player.prototype.Schema =
 	"<element name='SharedLosTech' a:help='Allies will share los when this technology is researched. Leave empty to never share LOS.'>" +
 		"<text/>" +
+	"</element>" +
+	"<element name='SharedDropsitesTech' a:help='Allies will share dropsites when this technology is researched. Leave empty to never share dropsites.'>" +
+		"<text/>" +
 	"</element>";
 
 Player.prototype.Init = function()
@@ -31,6 +34,7 @@ Player.prototype.Init = function()
 	this.teamsLocked = false;
 	this.state = "active"; // game state - one of "active", "defeated", "won"
 	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including gaia and self)
+	this.sharedDropsites = false;
 	this.formations = [];
 	this.startCam = undefined;
 	this.controlAllUnits = false;
@@ -507,6 +511,11 @@ Player.prototype.HasStartingCamera = function()
 	return (this.startCam !== undefined);
 };
 
+Player.prototype.HasSharedDropsites = function()
+{
+	return this.sharedDropsites;
+};
+
 Player.prototype.SetControlAllUnits = function(c)
 {
 	this.controlAllUnits = c;
@@ -680,6 +689,8 @@ Player.prototype.OnResearchFinished = function(msg)
 {
 	if (msg.tech == this.template.SharedLosTech)
 		this.UpdateSharedLos();
+	else if (msg.tech == this.template.SharedDropsitesTech)
+		this.sharedDropsites = true;
 };
 
 Player.prototype.OnDiplomacyChanged = function()
