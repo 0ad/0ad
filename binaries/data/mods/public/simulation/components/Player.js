@@ -83,7 +83,11 @@ Player.prototype.SetCiv = function(civcode)
 	// But in Atlas, the map designers can change civs at any time
 	var playerID = this.GetPlayerID();
 	if (oldCiv && playerID && oldCiv != civcode)
-		Engine.BroadcastMessage(MT_CivChanged, {"player": playerID, "from": oldCiv, "to": civcode});
+		Engine.BroadcastMessage(MT_CivChanged, {
+			"player": playerID,
+			"from": oldCiv,
+			"to": civcode
+		});
 };
 
 Player.prototype.GetCiv = function()
@@ -215,7 +219,7 @@ Player.prototype.GetResourceCounts = function()
  */
 Player.prototype.AddResource = function(type, amount)
 {
-	this.resourceCount[type] += (+amount);
+	this.resourceCount[type] += +amount;
 };
 
 /**
@@ -225,7 +229,7 @@ Player.prototype.AddResources = function(amounts)
 {
 	for (var type in amounts)
 	{
-		this.resourceCount[type] += (+amounts[type]);
+		this.resourceCount[type] += +amounts[type];
 	}
 };
 
@@ -253,7 +257,7 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 		var i = 0;
 		for (var type in amountsNeeded)
 		{
-			i++;
+			++i;
 			parameters["resourceType"+i] = this.resourceNames[type];
 			parameters["resourceAmount"+i] = amountsNeeded[type];
 		}
@@ -503,12 +507,12 @@ Player.prototype.GetStartingCameraRot = function()
 
 Player.prototype.SetStartingCamera = function(pos, rot)
 {
-	this.startCam = {"position": pos, "rotation": rot};
+	this.startCam = { "position": pos, "rotation": rot };
 };
 
 Player.prototype.HasStartingCamera = function()
 {
-	return (this.startCam !== undefined);
+	return this.startCam !== undefined;
 };
 
 Player.prototype.HasSharedDropsites = function()
@@ -732,7 +736,7 @@ Player.prototype.TributeResource = function(player, amounts)
 
 	cmpPlayer.AddResources(amounts);
 
-	var total = Object.keys(amounts).reduce(function (sum, type){ return sum + amounts[type]; }, 0);
+	var total = Object.keys(amounts).reduce((sum, type) => sum + amounts[type], 0);
 	var cmpOurStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
 	if (cmpOurStatisticsTracker)
 		cmpOurStatisticsTracker.IncreaseTributesSentCounter(total);
@@ -740,12 +744,20 @@ Player.prototype.TributeResource = function(player, amounts)
 	if (cmpTheirStatisticsTracker)
 		cmpTheirStatisticsTracker.IncreaseTributesReceivedCounter(total);
 
-	var notification = {"type": "tribute", "players": [player], "donator": this.playerID, "amounts": amounts};
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (cmpGUIInterface)
-		cmpGUIInterface.PushNotification(notification);
+		cmpGUIInterface.PushNotification({
+			"type": "tribute",
+			"players": [player],
+			"donator": this.playerID,
+			"amounts": amounts
+		});
 
-	Engine.BroadcastMessage(MT_TributeExchanged, {"to": player, "from": this.playerID, "amounts": amounts});
+	Engine.BroadcastMessage(MT_TributeExchanged, {
+		"to": player,
+		"from": this.playerID,
+		"amounts": amounts
+	});
 };
 
 Player.prototype.AddDisabledTemplate = function(template)
@@ -753,15 +765,22 @@ Player.prototype.AddDisabledTemplate = function(template)
 	this.disabledTemplates[template] = true;
 	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
+	cmpGuiInterface.PushNotification({
+		"type": "resetselectionpannel",
+		"players": [this.GetPlayerID()]
+	});
 };
 
 Player.prototype.RemoveDisabledTemplate = function(template)
 {
 	this.disabledTemplates[template] = false;
 	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
+	cmpGuiInterface.PushNotification({
+		"type": "resetselectionpannel",
+		"players": [this.GetPlayerID()]
+	});
 };
 
 Player.prototype.SetDisabledTemplates = function(templates)
@@ -770,8 +789,12 @@ Player.prototype.SetDisabledTemplates = function(templates)
 	for (let template of templates)
 		this.disabledTemplates[template] = true;
 	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
+	cmpGuiInterface.PushNotification({
+		"type": "resetselectionpannel",
+		"players": [this.GetPlayerID()]
+	});
 };
 
 Player.prototype.GetDisabledTemplates = function()
