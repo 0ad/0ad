@@ -188,23 +188,6 @@ GarrisonHolder.prototype.GetGarrisonedEntitiesCount = function()
 };
 
 /**
- * Get number of garrisoned units capable of shooting arrows
- * Not necessarily archers
- */
-GarrisonHolder.prototype.GetGarrisonedArcherCount = function(garrisonArrowClasses)
-{
-	var count = 0;
-	for each (var entity in this.entities)
-	{
-		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-		var classes = cmpIdentity.GetClassesList();
-		if (classes.some(c => garrisonArrowClasses.indexOf(c) > -1))
-			count++;
-	}
-	return count;
-};
-
-/**
  * Checks if an entity can be allowed to garrison in the building
  * based on its class
  */

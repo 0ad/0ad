@@ -8,10 +8,15 @@ BuildingAI.prototype.Schema =
 	"<element name='DefaultArrowCount'>" +
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
+	"<optional>" +
+		"<element name='MaxArrowCount' a:help='Limit the number of arrows to a certain amount'>" +
+			"<data type='nonNegativeInteger'/>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='GarrisonArrowMultiplier'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='GarrisonArrowClasses'>" +
+	"<element name='GarrisonArrowClasses' a:help='Add extra arrows for this class list'>" +
 		"<text/>" +
 	"</element>";
 
@@ -20,8 +25,32 @@ BuildingAI.prototype.MAX_PREFERENCE_BONUS = 2;
 BuildingAI.prototype.Init = function()
 {
 	this.currentRound = 0;
+	this.archersGarrisoned = 0;
 	this.arrowsLeft = 0;
 	this.targetUnits = [];
+};
+
+BuildingAI.prototype.OnGarrisonedUnitsChanged = function(msg)
+{
+	let classes = this.template.GarrisonArrowClasses;
+
+	for (let ent of msg.added)
+	{
+		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		if (!cmpIdentity)
+			continue;
+		if (MatchesClassList(cmpIdentity.GetClassesList(), classes))
+			++this.archersGarrisoned;
+	}
+
+	for (let ent of msg.removed)
+	{
+		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		if (!cmpIdentity)
+			continue;
+		if (MatchesClassList(cmpIdentity.GetClassesList(), classes))
+			--this.archersGarrisoned;
+	}
 };
 
 BuildingAI.prototype.OnOwnershipChanged = function(msg)
@@ -198,6 +227,15 @@ BuildingAI.prototype.GetDefaultArrowCount = function()
 	return ApplyValueModificationsToEntity("BuildingAI/DefaultArrowCount", arrowCount, this.entity);
 };
 
+BuildingAI.prototype.GetMaxArrowCount = function()
+{
+	if (!this.template.MaxArrowCount)
+		return undefined;
+
+	let maxArrowCount = +this.template.MaxArrowCount;
+	return Math.round(ApplyValueModificationsToEntity("BuildingAI/MaxArrowCount", maxArrowCount, this.entity));
+};
+
 BuildingAI.prototype.GetGarrisonArrowMultiplier = function()
 {
 	var arrowMult = +this.template.GarrisonArrowMultiplier;
@@ -223,8 +261,10 @@ BuildingAI.prototype.GetArrowCount = function()
 
 	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	if (cmpGarrisonHolder)
-		count += Math.round(cmpGarrisonHolder.GetGarrisonedArcherCount(this.GetGarrisonArrowClasses()) * this.GetGarrisonArrowMultiplier());
+		count += Math.round(this.archersGarrisoned * this.GetGarrisonArrowMultiplier());
 
+	if (this.GetMaxArrowCount() < count)
+		return this.GetMaxArrowCount();
 	return count;
 };
 
