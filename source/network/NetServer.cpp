@@ -39,9 +39,16 @@
 #include <miniupnpc/upnperrors.h>
 #endif
 
+/**
+ * Number of peers to allocate for the enet host.
+ * Limited by ENET_PROTOCOL_MAXIMUM_PEER_ID (4096).
+ *
+ * At most 8 players, 16 observers and 1 temporary connection to send the "server full" disconnect-reason.
+ */
+#define MAX_CLIENTS 25
+
 #define	DEFAULT_SERVER_NAME			L"Unnamed Server"
 #define DEFAULT_WELCOME_MESSAGE		L"Welcome"
-#define MAX_CLIENTS					10
 
 static const int CHANNEL_COUNT = 1;
 
@@ -929,19 +936,39 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	bool observerLateJoin = false;
 	CFG_GET_VAL("network.lateobserverjoins", observerLateJoin);
 
-	// If the game has already started, only allow rejoins
+	int maxObservers = 0;
+	CFG_GET_VAL("network.observerlimit", maxObservers);
+
 	bool isRejoining = false;
-	if (server.m_State != SERVER_STATE_PREGAME)
+	bool serverFull = false;
+	if (server.m_State == SERVER_STATE_PREGAME)
 	{
-		// Search for an old disconnected player of the same name
+		// Don't check for maxObservers in the gamesetup, as we don't know yet who will be assigned
+		serverFull = server.m_Sessions.size() >= MAX_CLIENTS;
+	}
+	else
+	{
+		isRejoining = observerLateJoin;
+		bool isObserver = true;
+		int disconnectedPlayers = 0;
+		int connectedPlayers = 0;
 		// (TODO: if GUIDs were stable, we should use them instead)
-		isRejoining =
-			observerLateJoin ||
-			std::find_if(
-				server.m_PlayerAssignments.begin(), server.m_PlayerAssignments.end(),
-				[&username] (const std::pair<CStr, PlayerAssignment>& pair)
-				{ return !pair.second.m_Enabled && pair.second.m_Name == username; })
-			!= server.m_PlayerAssignments.end();
+		for (PlayerAssignmentMap::iterator it = server.m_PlayerAssignments.begin(); it != server.m_PlayerAssignments.end(); ++it)
+		{
+			if (!it->second.m_Enabled && it->second.m_Name == username)
+			{
+				isObserver = it->second.m_PlayerID == -1;
+				isRejoining = true;
+			}
+
+			if (it->second.m_PlayerID == -1)
+				continue;
+
+			if (it->second.m_Enabled)
+				++connectedPlayers;
+			else
+				++disconnectedPlayers;
+		}
 
 		// Players who weren't already in the game are not allowed to join now that it's started
 		if (!isRejoining)
@@ -950,6 +977,17 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 			session->Disconnect(NDR_SERVER_ALREADY_IN_GAME);
 			return true;
 		}
+
+		// Ensure all players will be able to rejoin
+		serverFull = isObserver && (
+			(int) server.m_Sessions.size() - connectedPlayers > maxObservers ||
+			(int) server.m_Sessions.size() + disconnectedPlayers >= MAX_CLIENTS);
+	}
+
+	if (serverFull)
+	{
+		session->Disconnect(NDR_SERVER_FULL);
+		return true;
 	}
 
 	// TODO: check server password etc?

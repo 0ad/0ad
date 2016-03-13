@@ -66,6 +66,12 @@
 			"label": "Late Observer Joins",
 			"tooltip": "Allow observers to join the game after it started",
 			"parameters": { "config": "network.lateobserverjoins" }
+		},
+		{
+			"type": "number",
+			"label": "Observer Limit",
+			"tooltip": "Prevent further observer from joining if the limit is reached",
+			"parameters": { "config": "network.observerlimit", "min": 0, "max": 16 }
 		}
 	],
 	"graphicsSetting":

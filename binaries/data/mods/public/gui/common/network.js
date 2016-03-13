@@ -58,6 +58,7 @@ function getDisconnectReason(id)
 	case 5: return translate("You have been kicked");
 	case 6: return translate("You have been banned");
 	case 7: return translate("Playername in use. If you were disconnected, retry in few seconds");
+	case 8: return translate("Server full");
 	default:
 		warn("Unknown disconnect-reason ID received: " + id);
 		return sprintf(translate("\\[Invalid value %(id)s]"), { "id": id });
