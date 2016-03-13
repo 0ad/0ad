@@ -30,15 +30,16 @@ function setPanelObjectPosition(object, index, rowLength, vMargin = 1, hMargin =
  * @param guiName Short identifier string of this panel. See g_SelectionPanels.
  * @param unitEntState Entity state of the selected unit with the lowest id.
  * @param payerState Player state
- * @param selectedEntries All selected units
  */
-function setupUnitPanel(guiName, unitEntState, playerState, selection)
+function setupUnitPanel(guiName, unitEntState, playerState)
 {
 	if (!g_SelectionPanels[guiName])
 	{
 		error("unknown guiName used '" + guiName + "'");
 		return;
 	}
+	let selection = g_Selection.toList();
+
 	var items = g_SelectionPanels[guiName].getItems(unitEntState, selection);
 
 	if (!items || !items.length)
@@ -173,7 +174,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			)
 				continue;
 
-			setupUnitPanel(guiName, entState, playerStates[entState.player], selection);
+			setupUnitPanel(guiName, entState, playerStates[entState.player]);
 		}
 
 		supplementalDetailsPanel.hidden = false;
@@ -183,8 +184,8 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	{
 		// TODO if there's a second panel needed for a different player
 		// we should consider adding the players list to g_SelectionPanels
-		setupUnitPanel("Garrison", entState, playerState, selection);
-		setupUnitPanel("AllyCommand", entState, playerState, selection);
+		setupUnitPanel("Garrison", entState, playerState);
+		setupUnitPanel("AllyCommand", entState, playerState);
 
 		supplementalDetailsPanel.hidden = !g_SelectionPanels.Garrison.used;
 
