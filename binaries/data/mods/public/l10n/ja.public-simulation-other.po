@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-03-02 04:43+0000\n"
-"Last-Translator: llen_llen\n"
+"POT-Creation-Date: 2016-03-12 18:53+0100\n"
+"PO-Revision-Date: 2016-03-13 09:01+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,85 +65,85 @@ msgstr "%(_player_)sに対して攻撃を開始しています。"
 msgid "I have just sent an army against %(_player_)s."
 msgstr "%(_player_)sに対して軍を派遣しました。"
 
-#: simulation/ai/petra/chatHelper.js:44
+#: simulation/ai/petra/chatHelper.js:43
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "我が軍を再編成した上で、貴殿と共に%(_player_)sへ対抗します。"
 
-#: simulation/ai/petra/chatHelper.js:46
+#: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "私は%(_player_)sへの攻撃の最終準備中です。"
 
-#: simulation/ai/petra/chatHelper.js:51
+#: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "貴殿の対%(_player_)s戦への支援は当分できません。当方は%(_player_2)sへの別の攻撃を予定しているからです。"
 
-#: simulation/ai/petra/chatHelper.js:53
+#: simulation/ai/petra/chatHelper.js:52
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "残念ながら今のところ我が兵が足りていないのですが、次の攻撃では%(_player_)sを狙っています。"
 
-#: simulation/ai/petra/chatHelper.js:76
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "%(_player_)sへの贈り物です。お役立てください。"
 
-#: simulation/ai/petra/chatHelper.js:78
+#: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "%(_player_)sと険悪な状況とお見受けします。これがお役に立てば幸いです。"
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "今回は %(_player_)s を援助しますが、今後はもっと資源を集めるよう努めてください。"
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "%(resource)sが必要なのですが、援助して頂けませんか。後ほど埋め合わせしますので。"
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr " %(resource)sをいくらか供与していただければ、我らが共に戦う上での効率を高められます。"
 
-#: simulation/ai/petra/chatHelper.js:101
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "%(resource)sが余っておいでなら、我が軍の強化に役立つことでしょう。"
 
-#: simulation/ai/petra/chatHelper.js:118
+#: simulation/ai/petra/chatHelper.js:115
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "新たな交易路を%(_player_)sとの間に設けました。交易は我々すべてに利益をもたらすことでしょう。"
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:117
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "新たな交易路が%(_player_)sとの間に設けられました。あなたの分け前をお受け取りください。"
 
-#: simulation/ai/petra/chatHelper.js:136
+#: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "%(phase)s へ移行中です。"
 
-#: simulation/ai/petra/chatHelper.js:138
+#: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "%(phase)s に移行完了しました。"
@@ -661,12 +661,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "敵領"
 
-#: simulation/components/CeasefireManager.js:103
+#: simulation/components/CeasefireManager.js:100
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "%(time)sで攻撃可能です"
 
-#: simulation/components/CeasefireManager.js:118
+#: simulation/components/CeasefireManager.js:113
 msgid "You can attack now!"
 msgstr "現在攻撃可能です！"
 
@@ -736,12 +736,32 @@ msgstr "生産キューが満杯です。"
 msgid "Can't find free space to spawn trained units"
 msgstr "養成したユニットを配置する場所がありません"
 
-#: simulation/helpers/Commands.js:675
+#: simulation/helpers/Cheat.js:63
+msgid "You need to select a building that trains units."
+msgstr ""
+
+#: simulation/helpers/Commands.js:120
+msgid "(Cheat - control all units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:553
+msgid "(Cheat - promoted units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:672
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s への攻撃要求です。"
 
-#: simulation/helpers/Commands.js:965
+#: simulation/helpers/Commands.js:699
+msgid "Unable to ungarrison unit(s)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:713
+msgid "Some unit(s) can't go back to work"
+msgstr ""
+
+#: simulation/helpers/Commands.js:969
 msgid "The building's technology requirements are not met."
 msgstr "この建物に必要な技術を満たしていません。"
 
@@ -945,8 +965,8 @@ msgstr "Petra Bot"
 msgid ""
 "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petraは0 A.D.の既定のAIボットです。問題点はWildfire Gamesまでご報告ください（メインメニューのリンクを参照）。\n\nこのAIは資源獲得（採集速度および貿易収入の双方）において不正なボーナスを有します。ボーナス値は、「練習」の0.5から「とても難しい」の1.6までの変動幅があります（「中」＝1.0）。また、「練習」レベルは拡張や攻撃を行いません。"
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

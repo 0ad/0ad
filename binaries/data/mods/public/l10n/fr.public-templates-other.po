@@ -5,13 +5,13 @@
 # Translators:
 # gorius <gorius05@gmail.com>, 2014
 # tavariz <guipoi@yahoo.fr>, 2015
-# Nicolas Auvray <na.itms76@gmail.com>, 2014-2015
+# Nicolas Auvray <na.itms76@gmail.com>, 2014-2016
 # Polakrity <sxk-fr@live.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-18 09:01+0100\n"
-"PO-Revision-Date: 2015-12-22 16:27+0000\n"
+"POT-Creation-Date: 2016-03-12 18:53+0100\n"
+"PO-Revision-Date: 2016-03-13 13:49+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -118,11 +118,11 @@ msgstr "Trésor"
 msgid "A treasure that can be quickly gathered."
 msgstr "Un trésor qui peut être collecté rapidement."
 
-#: simulation/templates/template_structure.xml:57
+#: simulation/templates/template_structure.xml:58
 msgid "Structure"
 msgstr "Structure"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:39
 msgid "Unit"
 msgstr "Unité"
 
@@ -973,6 +973,10 @@ msgstr "Devient une maison à 5 de population pour les civilisations qui ont ces
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
 msgstr "Marqueur"
+
+#: simulation/templates/special/player.xml:53
+msgid "Player"
+msgstr "Joueur"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5

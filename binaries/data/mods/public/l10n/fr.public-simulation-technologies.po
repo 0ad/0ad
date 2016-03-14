@@ -7,15 +7,15 @@
 # gorius <gorius05@gmail.com>, 2014
 # Moul <ma.azimi@laposte.net>, 2015
 # Mortimer <doug.mortimer@netcourrier.com>, 2015
-# Nicolas Auvray <na.itms76@gmail.com>, 2014-2015
+# Nicolas Auvray <na.itms76@gmail.com>, 2014-2016
 # Polakrity <sxk-fr@live.fr>, 2014
 # Yannick Heintz, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-12 00:42+0000\n"
-"Last-Translator: Mortimer <doug.mortimer@netcourrier.com>\n"
+"POT-Creation-Date: 2016-03-12 18:53+0100\n"
+"PO-Revision-Date: 2016-03-13 13:51+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -841,8 +841,8 @@ msgid "Horse-drawn Carts"
 msgstr "Charrettes tirées par des chevaux"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve the fishes longer."
-msgstr "Salage permet de conserver le poisson plus longtemps"
+msgid "Salting allows to preserve fish longer."
+msgstr "Le salage permet de conserver le poisson plus longtemps."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1467,12 +1467,16 @@ msgid "The wonder attracts many more people to your civilization."
 msgstr "La merveille attire beaucoup plus de personnes vers votre civilisation."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
-msgid "+50 maximum population cap."
-msgstr "+50 de population à la limite maximale."
+msgid "Increase the population bonus of the wonder by 40."
+msgstr "Augmenter le bonus de population de la merveille de 40."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Expansion glorieuse"
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""

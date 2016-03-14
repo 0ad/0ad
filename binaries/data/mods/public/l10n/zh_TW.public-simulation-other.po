@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-12 03:16+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2016-03-12 18:53+0100\n"
+"PO-Revision-Date: 2016-03-13 09:01+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,85 +62,85 @@ msgstr "我正在攻擊 %(_player_)s 。"
 msgid "I have just sent an army against %(_player_)s."
 msgstr "我已經命令軍隊對抗 %(_player_)s 。"
 
-#: simulation/ai/petra/chatHelper.js:44
+#: simulation/ai/petra/chatHelper.js:43
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "讓我重新組織我的軍隊，然後我會和你一起對抗 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:46
+#: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "我正在做最後的準備，然後我將會攻擊 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:51
+#: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "我無法在這個時間點幫助你對抗 %(_player_)s，因為我已經有對 %(_player_2)s 的攻擊計畫了。"
 
-#: simulation/ai/petra/chatHelper.js:53
+#: simulation/ai/petra/chatHelper.js:52
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "抱歉，目前我沒有足夠的士兵，但我的下一個攻擊目標是 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:76
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "這是給 %(_player_)s 的一份禮物，請好好的利用它。"
 
-#: simulation/ai/petra/chatHelper.js:78
+#: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "我發現您正處於一個不太好的狀況 %(_player_)s，希望這個能有所幫助。"
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "我這次可以協助您 %(_player_)s，但請在未來收集更多的資源。"
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "我需要 %(resource)s，您可以幫忙嗎？ 我會歸功於您的。"
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "如果您能提供給我一些 %(resource)s，我將會更積極參與我們的共同戰爭行動。"
 
-#: simulation/ai/petra/chatHelper.js:101
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "若您有多出一些 %(resource)s，這可以幫忙我加強我的軍力。"
 
-#: simulation/ai/petra/chatHelper.js:118
+#: simulation/ai/petra/chatHelper.js:115
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "我已經與 %(_player_)s 設定了一條新的路線。這交易對我們來說都有利可圖。"
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:117
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "與 %(_player_)s 成立一條新的貿易路線。獲取您的那一份利潤吧"
 
-#: simulation/ai/petra/chatHelper.js:136
+#: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "我正在進階到 %(phase)s。"
 
-#: simulation/ai/petra/chatHelper.js:138
+#: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "我已經到達 %(phase)s 了。"
@@ -658,12 +658,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "敵方的"
 
-#: simulation/components/CeasefireManager.js:103
+#: simulation/components/CeasefireManager.js:100
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "您可以在 %(time)s 內攻擊"
 
-#: simulation/components/CeasefireManager.js:118
+#: simulation/components/CeasefireManager.js:113
 msgid "You can attack now!"
 msgstr "您現在可以攻擊了！"
 
@@ -733,12 +733,32 @@ msgstr "生產佇列已滿。"
 msgid "Can't find free space to spawn trained units"
 msgstr "找不到空間產出已訓練的單位"
 
-#: simulation/helpers/Commands.js:675
+#: simulation/helpers/Cheat.js:63
+msgid "You need to select a building that trains units."
+msgstr ""
+
+#: simulation/helpers/Commands.js:120
+msgid "(Cheat - control all units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:553
+msgid "(Cheat - promoted units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:672
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "請攻擊 %(_player_)s。"
 
-#: simulation/helpers/Commands.js:965
+#: simulation/helpers/Commands.js:699
+msgid "Unable to ungarrison unit(s)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:713
+msgid "Some unit(s) can't go back to work"
+msgstr ""
+
+#: simulation/helpers/Commands.js:969
 msgid "The building's technology requirements are not met."
 msgstr "建築物的科技需求不符合。"
 
@@ -942,8 +962,8 @@ msgstr "電腦玩家 Petra"
 msgid ""
 "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra 是預設的 0AD AI 機器人。請回報問題給 Wildfire Games （見在主選單中的連結）。\n\nAI 在資源儲備上有獎勵（不論是採集速率或是貿易收入），從測試區用的 0.5 到非常難的 1.6（中等 = 1.0）。另外，測試區等級不會拓展也不會攻擊。"
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

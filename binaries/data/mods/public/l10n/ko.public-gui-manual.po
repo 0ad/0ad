@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# gahyeon son <sgh991002@gmail.com>, 2016
 # Kevin Min <gr326887@graded.br>, 2015
 # SungJin Cho <csjin0823@gmail.com>, 2016
 # yong-seok choi <yongseog74@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2016-03-10 11:18+0000\n"
-"Last-Translator: yong-seok choi <yongseog74@gmail.com>\n"
+"POT-Creation-Date: 2016-03-12 18:52+0100\n"
+"PO-Revision-Date: 2016-03-13 08:36+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]컨트롤과 게임플레이는 전통적인 RTS게임 플레이어들에게 아주 익숙해야 합니다. 현재로서는 부족한 요소가 많이 있을 것이고, 균형이 잘 맞지 않는 속성값들이 있을 것이며, 여러분들은 아마도 베타버전을 기다리셔야 합니다."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -546,8 +547,8 @@ msgstr ""
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
-"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
-"from the same user."
+"$HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
+"reports from the same user."
 msgstr ""
 
 #: gui/manual/userreport.txt:6

@@ -4,13 +4,13 @@
 # 
 # Translators:
 # LOUKAS SKOUROLIAKOS, 2015
-# Marinus Savoritias <savoritias@gmail.com>, 2015
+# Marinus Savoritias <savoritias@gmail.com>, 2015-2016
 # TitanJack <titanjack.com@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-18 09:01+0100\n"
-"PO-Revision-Date: 2015-12-18 09:51+0000\n"
+"POT-Creation-Date: 2016-03-12 18:53+0100\n"
+"PO-Revision-Date: 2016-03-13 09:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "Ορυχείο Μετάλλου"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr ""
+msgstr "Ένα κοίτασμα ορυκτού που παρέχει πρόσβαση σε σπάνιες μορφές απο πολύτιμα μέταλλα."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -117,11 +117,11 @@ msgstr "Θησαυρός"
 msgid "A treasure that can be quickly gathered."
 msgstr "Ενας θησαυρός που μπορεί να μαζευτεί γρήγορα."
 
-#: simulation/templates/template_structure.xml:57
+#: simulation/templates/template_structure.xml:58
 msgid "Structure"
 msgstr "Κατασκευή"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:39
 msgid "Unit"
 msgstr "Μονάδα"
 
@@ -971,6 +971,10 @@ msgstr ""
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
+msgstr ""
+
+#: simulation/templates/special/player.xml:53
+msgid "Player"
 msgstr ""
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5

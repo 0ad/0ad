@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-15 09:01+0100\n"
-"PO-Revision-Date: 2016-01-15 08:47+0000\n"
+"POT-Creation-Date: 2016-03-12 18:53+0100\n"
+"PO-Revision-Date: 2016-03-13 09:48+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -283,8 +283,8 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
-"When garrisoned in a structure, the hero gives it a bonus of +2 capture "
-"points recovery rate."
+"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
+"capture points recovery rate."
 msgstr ""
 
 #: simulation/templates/template_unit_hero.xml:40
@@ -1057,6 +1057,31 @@ msgstr ""
 msgid "Ḥayyāl Romaḥ Raḫūv"
 msgstr ""
 
+#: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:16
+#: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:15
+#: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:15
+#: simulation/templates/units/cart_infantry_archer_b.xml:17
+#: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:25
+#: simulation/templates/units/cart_infantry_slinger_iber_b.xml:25
+#: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:24
+#: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
+#: simulation/templates/units/mace_infantry_archer_b.xml:22
+#: simulation/templates/units/merc_thrace_swordsman.xml:26
+#: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:15
+#: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:8
+#: simulation/templates/units/ptol_infantry_archer_b.xml:23
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:23
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:23
+#: simulation/templates/units/samnite_skirmisher.xml:9
+#: simulation/templates/units/samnite_spearman.xml:10
+#: simulation/templates/units/samnite_swordsman.xml:8
+#: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:9
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:16
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
+#: simulation/templates/units/thrace_black_cloak.xml:23
+msgid "Mercenary"
+msgstr ""
+
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
 msgid "Gallic Mercenary Cavalry"
 msgstr ""
@@ -1793,14 +1818,6 @@ msgstr ""
 #: simulation/templates/units/merc_thrace_swordsman.xml:22
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:15
 msgid "Rhomphaiaphoros Thrakikós"
-msgstr ""
-
-#: simulation/templates/units/merc_thrace_swordsman.xml:26
-#: simulation/templates/units/ptol_infantry_archer_b.xml:23
-#: simulation/templates/units/samnite_swordsman.xml:8
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
-#: simulation/templates/units/thrace_black_cloak.xml:23
-msgid "Mercenary"
 msgstr ""
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9

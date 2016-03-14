@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-13 17:20+0000\n"
-"Last-Translator: Xaver\n"
+"POT-Creation-Date: 2016-03-12 18:53+0100\n"
+"PO-Revision-Date: 2016-03-13 09:01+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,85 +69,85 @@ msgstr "Ich beginne einen Angriff gegen %(_player_)s."
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Ich habe gerade eine Armee gegen %(_player_)s entsandt."
 
-#: simulation/ai/petra/chatHelper.js:44
+#: simulation/ai/petra/chatHelper.js:43
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Lass mich meine Armee umstellen und ich helfe dir gegen %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:46
+#: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Ich treffe die letzten Vorbereitungen und werde %(_player_)s angreifen."
 
-#: simulation/ai/petra/chatHelper.js:51
+#: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Ich kann dir momentan leider nicht gegen %(_player_)s zur Seite stehen, da ich einen Angriff gegen %(_player_2)s geplant habe."
 
-#: simulation/ai/petra/chatHelper.js:53
+#: simulation/ai/petra/chatHelper.js:52
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Ich habe momentan nicht genügend Soldaten, aber mein nächster Angriff wird sich gegen %(_player_)s richten."
 
-#: simulation/ai/petra/chatHelper.js:76
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Hier ist ein Geschenk für %(_player_)s, gebrauche es weise."
 
-#: simulation/ai/petra/chatHelper.js:78
+#: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Ich sehe, dass du in einer schlechten Situation bist, %(_player_)s, und hoffe, dass dies helfen wird."
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "Ich kann dir dieses mal helfen %(_player_)s, versuche nächstes mal aber mehr Ressourcen zu sammeln."
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Ich benötige %(resource)s, kannst du mir helfen? Ich werde mich revanchieren."
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Ich würde unsere gemeinsamen Kriegsanstrengungen intensivieren, wenn du mir ein wenig %(resource)s überlässt."
 
-#: simulation/ai/petra/chatHelper.js:101
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Falls du einen Überschuss an %(resource)s hast, würde mir das helfen meine Armee zu verstärken."
 
-#: simulation/ai/petra/chatHelper.js:118
+#: simulation/ai/petra/chatHelper.js:115
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Ich habe eine neue Route mit %(_player_)s etabliert. Der Handel wird profitabel für uns alle sein."
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:117
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Eine neue Handelsroute ist mit %(_player_)s etabliert. Nimm deinen Anteil an den Gewinnen."
 
-#: simulation/ai/petra/chatHelper.js:136
+#: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Ich schreite zur %(phase)s voran."
 
-#: simulation/ai/petra/chatHelper.js:138
+#: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Ich habe die %(phase)s erreicht."
@@ -667,12 +667,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "Feindliches"
 
-#: simulation/components/CeasefireManager.js:103
+#: simulation/components/CeasefireManager.js:100
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "Du kannst in %(time)s angreifen"
 
-#: simulation/components/CeasefireManager.js:118
+#: simulation/components/CeasefireManager.js:113
 msgid "You can attack now!"
 msgstr "Du kannst jetzt angreifen!"
 
@@ -742,12 +742,32 @@ msgstr "Die Produktionswarteschlange ist voll."
 msgid "Can't find free space to spawn trained units"
 msgstr "Es konnte kein freier Platz gefunden werden, um ausgebildete Einheiten zu platzieren."
 
-#: simulation/helpers/Commands.js:675
+#: simulation/helpers/Cheat.js:63
+msgid "You need to select a building that trains units."
+msgstr ""
+
+#: simulation/helpers/Commands.js:120
+msgid "(Cheat - control all units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:553
+msgid "(Cheat - promoted units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:672
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Angriff gegen %(_player_)s erbeten."
 
-#: simulation/helpers/Commands.js:965
+#: simulation/helpers/Commands.js:699
+msgid "Unable to ungarrison unit(s)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:713
+msgid "Some unit(s) can't go back to work"
+msgstr ""
+
+#: simulation/helpers/Commands.js:969
 msgid "The building's technology requirements are not met."
 msgstr "Erforderliche Technologien für das Gebäude fehlen."
 
@@ -951,8 +971,8 @@ msgstr "Petra Bot"
 msgid ""
 "Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ist der Standardbot für 0 A.D. Bitte melde Probleme an Wildfire Games (siehe den Link im Hauptmenü).\n\nDie KI hat einen Malus-/Bonus-Wert für die Ressourcenanhäufung (entweder Sammelquote oder Handelsgewinne). Er reicht von 0,5 für Sandkasten bis zu 1,6 für Sehr Schwer (Mittel = 1,0). Zusätzlich wird im Sandkasten-Level weder expandiert noch angegriffen."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

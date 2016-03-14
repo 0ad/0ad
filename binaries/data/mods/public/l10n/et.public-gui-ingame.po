@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-15 09:00+0100\n"
-"PO-Revision-Date: 2016-01-15 08:57+0000\n"
+"POT-Creation-Date: 2016-03-12 18:52+0100\n"
+"PO-Revision-Date: 2016-03-13 10:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/wildfire-games/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -36,155 +36,155 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/input.js:717
+#: gui/session/input.js:716
 msgid "Cannot build wall here!"
 msgstr "Siia ei saa müüri ehitada!"
 
-#: gui/session/menu.js:115
+#: gui/session/menu.js:111
 msgid "Are you sure you want to resign?"
 msgstr "Kindel, et soovite alistuda?"
 
-#: gui/session/menu.js:116 gui/session/menu.js:150 gui/session/menu.js:162
+#: gui/session/menu.js:112 gui/session/menu.js:145 gui/session/menu.js:157
 msgid "Confirmation"
 msgstr "Kinnitus"
 
-#: gui/session/menu.js:118 gui/session/menu.js:152 gui/session/menu.js:185
-#: gui/session/session.js:519 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/menu.js:114 gui/session/menu.js:147 gui/session/menu.js:179
+#: gui/session/session.js:599 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ei"
 
-#: gui/session/menu.js:118 gui/session/menu.js:152 gui/session/menu.js:185
-#: gui/session/session.js:519 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/menu.js:114 gui/session/menu.js:147 gui/session/menu.js:179
+#: gui/session/session.js:599 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Jah"
 
-#: gui/session/menu.js:131
+#: gui/session/menu.js:126
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "Kindel, et soovite lõpetada? Lahkumine katkestab ka teiste mängijate ühendused."
 
-#: gui/session/menu.js:135 gui/session/menu.js:139
+#: gui/session/menu.js:130 gui/session/menu.js:134
 msgid "Are you sure you want to quit?"
 msgstr "Kindel, et soovite lõpetada?"
 
-#: gui/session/menu.js:161
+#: gui/session/menu.js:156
 msgid "Do you want to resign or will you return soon?"
 msgstr "Soovite alistuda või olete varsti naasemas?"
 
-#: gui/session/menu.js:164
+#: gui/session/menu.js:159
 msgid "I will return"
 msgstr "Naasen"
 
-#: gui/session/menu.js:164
+#: gui/session/menu.js:159
 msgid "I resign"
 msgstr "Alistun"
 
-#: gui/session/menu.js:182
+#: gui/session/menu.js:176
 msgid "Destroy everything currently selected?"
 msgstr "Hävitada kõik hetkel valitu?"
 
-#: gui/session/menu.js:183 gui/session/unit_actions.js:711
+#: gui/session/menu.js:177 gui/session/unit_actions.js:711
 msgid "Delete"
 msgstr "Kustuta"
 
-#: gui/session/menu.js:294
+#: gui/session/menu.js:308
 msgctxt "team"
 msgid "None"
 msgstr "Puudub"
 
-#: gui/session/menu.js:297 gui/session/messages.js:86
+#: gui/session/menu.js:312 gui/session/messages.js:86
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Liitlane"
 
-#: gui/session/menu.js:297 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:313 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "Neutraalne"
 
-#: gui/session/menu.js:297 gui/session/messages.js:87
+#: gui/session/menu.js:313 gui/session/messages.js:87
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Vastane"
 
-#: gui/session/menu.js:350
-msgid "Request your allies to attack this enemy"
-msgstr ""
-
-#: gui/session/menu.js:365
+#: gui/session/menu.js:325
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:489
+#: gui/session/menu.js:386
+msgid "Request your allies to attack this enemy"
+msgstr ""
+
+#: gui/session/menu.js:506
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s ja %(garrisonedString)s."
 
-#: gui/session/menu.js:490
+#: gui/session/menu.js:507
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s ja %(inactiveString)s."
 
-#: gui/session/menu.js:493 gui/session/menu.js:564
+#: gui/session/menu.js:510 gui/session/menu.js:581
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:494 gui/session/menu.js:563
+#: gui/session/menu.js:511 gui/session/menu.js:580
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s ja %(inactiveString)s."
 
-#: gui/session/menu.js:499
+#: gui/session/menu.js:516
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:500
+#: gui/session/menu.js:517
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s ja %(inactiveString)s."
 
-#: gui/session/menu.js:503 gui/session/menu.js:567
+#: gui/session/menu.js:520 gui/session/menu.js:584
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:504
+#: gui/session/menu.js:521
 msgid "There are no land traders."
 msgstr "Maismaakaubavedajaid ei ole."
 
-#: gui/session/menu.js:512
+#: gui/session/menu.js:529
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s maismaakaubavedaja."
 msgstr[1] "%(numberTrading)s maismaakaubavedajat."
 
-#: gui/session/menu.js:521
+#: gui/session/menu.js:538
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s inaktiivne"
 msgstr[1] "%(numberOfLandTraders)s inaktiivsed"
 
-#: gui/session/menu.js:526
+#: gui/session/menu.js:543
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s maismaakaubavedaja inaktiivne"
 msgstr[1] "%(numberOfLandTraders)s maismaakaubavedajat inaktiivsed"
 
-#: gui/session/menu.js:535
+#: gui/session/menu.js:552
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:540
+#: gui/session/menu.js:557
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -195,109 +195,105 @@ msgid_plural ""
 msgstr[0] "%(numberGarrisoned)s maismaakaukaupleja on varjendatud kaubalaeva."
 msgstr[1] "%(numberGarrisoned)s maismaakaukauplejat on varjendatud kaubalaeva."
 
-#: gui/session/menu.js:568
+#: gui/session/menu.js:585
 msgid "There are no merchant ships."
 msgstr "Kaubalaevu ei ole."
 
-#: gui/session/menu.js:575
+#: gui/session/menu.js:592
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "Tegutseb %(numberTrading)s kaubalaev"
 msgstr[1] "Tegutseb %(numberTrading)s kaubalaeva"
 
-#: gui/session/menu.js:584
+#: gui/session/menu.js:601
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s inaktiivne"
 msgstr[1] "%(numberOfShipTraders)s inaktiivset"
 
-#: gui/session/menu.js:589
+#: gui/session/menu.js:606
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s inaktiivne kaubalaev"
 msgstr[1] "%(numberOfShipTraders)s inaktiivset kaubalaeva"
 
-#: gui/session/menu.js:637
+#: gui/session/menu.js:654
 msgid "Current Scores"
 msgstr ""
 
-#: gui/session/menu.js:663 gui/session/menu.js:686
+#: gui/session/menu.js:679 gui/session/menu.js:701
 msgid "Resume"
 msgstr "Jätka"
 
-#: gui/session/menu.js:670 gui/session/menu.js:686
+#: gui/session/menu.js:686 gui/session/menu.js:701
 #: gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "Paus"
 
-#: gui/session/menu.js:699 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:713 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Juhend"
 
-#: gui/session/menu.js:713
-msgid "The Developer Overlay was opened."
-msgstr "Arendaja lisakiht avati."
-
-#: gui/session/menu.js:715
+#: gui/session/menu.js:729
 msgid "The Developer Overlay was closed."
 msgstr "Arendaja lisakiht sulgeti."
 
 #: gui/session/menu.js:730
+msgid "The Developer Overlay was opened."
+msgstr "Arendaja lisakiht avati."
+
+#: gui/session/menu.js:751
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "%(resourceAmount)s %(resourceType)s andam %(playerName)s'le. Shift+vasakklikk annetamaks %(greaterAmount)s."
 
-#: gui/session/messages.js:34
+#: gui/session/messages.js:35
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr ""
 
-#: gui/session/messages.js:35
+#: gui/session/messages.js:36
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr ""
 
-#: gui/session/messages.js:44
+#: gui/session/messages.js:45
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr ""
 
-#: gui/session/messages.js:45
+#: gui/session/messages.js:46
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s lahkus mängust."
 
-#: gui/session/messages.js:46
+#: gui/session/messages.js:47
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr ""
 
-#: gui/session/messages.js:59
+#: gui/session/messages.js:60
 msgid "Connection to the server has been authenticated."
 msgstr "Autenditi ühendus serveriga."
 
-#: gui/session/messages.js:60
+#: gui/session/messages.js:61
 msgid "Connected to the server."
 msgstr "Serveriga ühendatud."
 
-#: gui/session/messages.js:61
+#: gui/session/messages.js:62
 msgid "Connection to the server has been lost."
 msgstr "Kaotati ühendus serveriga."
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:63
+#: gui/session/messages.js:64
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr ""
-
-#: gui/session/messages.js:64
-msgid "The game has ended."
-msgstr "Mäng lõppes."
 
 #: gui/session/messages.js:65
 msgid "Waiting for other players to connect..."
@@ -332,88 +328,112 @@ msgid "Team"
 msgstr "Liitlased"
 
 #: gui/session/messages.js:88
+msgid "Observer"
+msgstr ""
+
+#: gui/session/messages.js:89
 msgid "Private"
 msgstr "Privaatne"
 
-#: gui/session/messages.js:120
+#: gui/session/messages.js:124
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Oled nüüd liidus %(player)s."
 
-#: gui/session/messages.js:121
+#: gui/session/messages.js:125
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Oled nüüd sõjas %(player)s."
 
-#: gui/session/messages.js:122
+#: gui/session/messages.js:126
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Oled nüüd neutraalne %(player)s."
 
-#: gui/session/messages.js:125
+#: gui/session/messages.js:129
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s on nüüd liitlane."
 
-#: gui/session/messages.js:126
+#: gui/session/messages.js:130
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s on nüüd teiega sõjajalal."
 
-#: gui/session/messages.js:127
+#: gui/session/messages.js:131
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s on nüüd teie suhtes neutraalne."
 
-#: gui/session/messages.js:130
+#: gui/session/messages.js:134
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr ""
 
-#: gui/session/messages.js:131
+#: gui/session/messages.js:135
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr ""
 
-#: gui/session/messages.js:132
+#: gui/session/messages.js:136
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr ""
 
-#: gui/session/messages.js:544 gui/session/messages.js:551
+#: gui/session/messages.js:455
+msgctxt "chat addressee"
+msgid "Everyone"
+msgstr ""
+
+#: gui/session/messages.js:463
+msgctxt "chat addressee"
+msgid "Allies"
+msgstr ""
+
+#: gui/session/messages.js:467
+msgctxt "chat addressee"
+msgid "Enemies"
+msgstr ""
+
+#: gui/session/messages.js:473
+msgctxt "chat addressee"
+msgid "Observers"
+msgstr ""
+
+#: gui/session/messages.js:602
 msgid "Unknown Player"
 msgstr ""
 
-#: gui/session/messages.js:561
+#: gui/session/messages.js:609
 msgid "You have been defeated."
 msgstr "Teid alistati."
 
-#: gui/session/messages.js:562
+#: gui/session/messages.js:610
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s alistati."
 
-#: gui/session/messages.js:593
+#: gui/session/messages.js:641
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:595
+#: gui/session/messages.js:643
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s saatis teile %(amounts)s."
 
-#: gui/session/messages.js:611
+#: gui/session/messages.js:658
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:612
+#: gui/session/messages.js:659
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Teid ründasid %(attacker)s!"
 
-#: gui/session/messages.js:655
+#: gui/session/messages.js:702
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -515,7 +535,7 @@ msgid "Classes:"
 msgstr "Klassid:"
 
 #: gui/session/selection_details.js:335 gui/session/selection_details.js:367
-#: gui/session/session.js:683
+#: gui/session/session.js:792
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -551,61 +571,61 @@ msgstr "Osta %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Müü %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1127
+#: gui/session/selection_panels.js:354 gui/session/selection_panels.js:1129
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Vajab %(technology)s"
 
-#: gui/session/selection_panels.js:471
+#: gui/session/selection_panels.js:475
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:472
+#: gui/session/selection_panels.js:476
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr ""
 
-#: gui/session/selection_panels.js:536
+#: gui/session/selection_panels.js:540
 msgid "Lock Gate"
 msgstr "Lukusta värav"
 
-#: gui/session/selection_panels.js:542
+#: gui/session/selection_panels.js:546
 msgid "Unlock Gate"
 msgstr "Ava värav"
 
-#: gui/session/selection_panels.js:649
+#: gui/session/selection_panels.js:653
 msgid "Pack"
 msgstr ""
 
-#: gui/session/selection_panels.js:651
+#: gui/session/selection_panels.js:655
 msgid "Unpack"
 msgstr ""
 
-#: gui/session/selection_panels.js:653
+#: gui/session/selection_panels.js:657
 msgid "Cancel Packing"
 msgstr ""
 
-#: gui/session/selection_panels.js:655
+#: gui/session/selection_panels.js:659
 msgid "Cancel Unpacking"
 msgstr ""
 
-#: gui/session/selection_panels.js:730
+#: gui/session/selection_panels.js:734
 msgid "Insufficient population capacity:"
 msgstr "Ebapiisav rahvastikulimiit:"
 
-#: gui/session/selection_panels.js:731
+#: gui/session/selection_panels.js:735
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:842
+#: gui/session/selection_panels.js:846
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Veel ehitada: %(number)s."
 msgstr[1] "Veel ehitada: %(number)s."
 
-#: gui/session/selection_panels.js:1115 gui/session/session.js:682
+#: gui/session/selection_panels.js:1117 gui/session/session.js:791
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Tervis:"
@@ -701,102 +721,102 @@ msgstr ""
 msgid "%(action)s to train %(number)s."
 msgstr ""
 
-#: gui/session/session.js:37 gui/session/utility_functions.js:99
-#: gui/session/utility_functions.js:105 gui/session/utility_functions.js:110
+#: gui/session/session.js:61 gui/session/utility_functions.js:91
+#: gui/session/utility_functions.js:97 gui/session/utility_functions.js:102
 msgid "You"
 msgstr "Sina"
 
-#: gui/session/session.js:183
+#: gui/session/session.js:228
 msgid "Gaia"
 msgstr "Metsik"
 
-#: gui/session/session.js:274
+#: gui/session/session.js:366
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr ""
 
-#: gui/session/session.js:349 gui/session/session.js:365
+#: gui/session/session.js:432 gui/session/session.js:448
 msgid "You have left the game."
 msgstr "Lahkusite mängust."
 
-#: gui/session/session.js:356
+#: gui/session/session.js:439
 msgid "You have been disconnected."
 msgstr "Kadus võrguühendus."
 
-#: gui/session/session.js:358
+#: gui/session/session.js:441
 msgid "You have won the battle!"
 msgstr "Võitsite lahingu!"
 
-#: gui/session/session.js:360
+#: gui/session/session.js:443
 msgid "You have been defeated..."
 msgstr "Teid on alistatud..."
 
-#: gui/session/session.js:368
+#: gui/session/session.js:451
 msgid "You have abandoned the game."
 msgstr "Loobusite mängimisest."
 
-#: gui/session/session.js:513
+#: gui/session/session.js:593
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:515
+#: gui/session/session.js:595
 msgid "Press OK to continue"
 msgstr "Jätkamiseks vajuta OK"
 
-#: gui/session/session.js:521
+#: gui/session/session.js:601
 msgid "Do you want to quit?"
 msgstr "Soovite lõpetada?"
 
-#: gui/session/session.js:526
+#: gui/session/session.js:606
 msgid "DEFEATED!"
 msgstr "LÜÜASAAMINE!"
 
-#: gui/session/session.js:531
+#: gui/session/session.js:611
 msgid "VICTORIOUS!"
 msgstr "VÕIT!"
 
-#: gui/session/session.js:607
+#: gui/session/session.js:716
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr ""
 
-#: gui/session/session.js:608
+#: gui/session/session.js:717
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr ""
 
-#: gui/session/session.js:610
+#: gui/session/session.js:719
 msgctxt "replayFinished"
 msgid "No"
 msgstr ""
 
-#: gui/session/session.js:610
+#: gui/session/session.js:719
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr ""
 
-#: gui/session/session.js:768
+#: gui/session/session.js:880
 msgid "Population (current / limit)"
 msgstr "Rahvaarv (praegune / ülempiir)"
 
-#: gui/session/session.js:769
+#: gui/session/session.js:881
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr ""
 
-#: gui/session/session.js:909
+#: gui/session/session.js:1021
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Kompilatsioon: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:915
+#: gui/session/session.js:1027
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Märkus: ajanihe on arenduse ja testimise lisavõimalus, mis pole mõeldud pikaajaliseks kasutamiseks. Ebakorrektne kasutus võib põhjustada mängu kokkujooksmise või mälu lõppemise."
 
-#: gui/session/session.js:916
+#: gui/session/session.js:1028
 msgid "Time warp mode"
 msgstr "Ajanihkerežiim"
 
@@ -883,17 +903,17 @@ msgstr ""
 msgid "Select trading goods"
 msgstr ""
 
-#: gui/session/utility_functions.js:93 gui/session/utility_functions.js:95
+#: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:97 gui/session/utility_functions.js:103
-#: gui/session/utility_functions.js:108
+#: gui/session/utility_functions.js:89 gui/session/utility_functions.js:95
+#: gui/session/utility_functions.js:100
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:103 gui/session/utility_functions.js:108
+#: gui/session/utility_functions.js:95 gui/session/utility_functions.js:100
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ""
@@ -956,11 +976,11 @@ msgstr ""
 msgid "Resign"
 msgstr "Alistu"
 
-#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):351
+#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):362
 msgid "Exit"
 msgstr "Välju"
 
-#: gui/session/minimap_panel.xml:(tooltip):15
+#: gui/session/minimap_panel.xml:(tooltip):14
 msgid "Find idle worker"
 msgstr "Leia jõudeolev tööline."
 
@@ -1024,24 +1044,40 @@ msgstr "Mäng peatatud"
 msgid "Click to Resume Game"
 msgstr "Kliki mängu jätkamiseks"
 
+#: gui/session/session.xml:(caption):216
+msgctxt "chat input"
+msgid "To:"
+msgstr ""
+
 #: gui/session/session.xml:(caption):224
+msgctxt "chat input"
+msgid "Text:"
+msgstr ""
+
+#: gui/session/session.xml:(caption):239
 msgid "Cancel"
 msgstr "Tühista"
 
-#: gui/session/session.xml:(caption):230
-msgid "Team Only"
-msgstr "Ainult liitlastele"
-
-#: gui/session/session.xml:(caption):234
+#: gui/session/session.xml:(caption):245
 msgid "Send"
 msgstr "Saada"
+
+#: gui/session/session.xml:(tooltip):219
+msgctxt "chat input"
+msgid "Select chatmessage addresse"
+msgstr ""
+
+#: gui/session/session.xml:(tooltip):227
+msgctxt "chat input"
+msgid "Type the message to send."
+msgstr ""
 
 #: gui/session/top_panel.xml:(tooltip):18
 msgid "Choose player to view"
 msgstr ""
 
 #: gui/session/top_panel.xml:(caption):26
-msgid "Observer Mode (experimental)"
+msgid "Observer Mode"
 msgstr ""
 
 #: gui/session/trade_window.xml:(caption):9
