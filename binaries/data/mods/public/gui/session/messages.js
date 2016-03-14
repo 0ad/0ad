@@ -220,10 +220,12 @@ var g_NotificationsTypes =
 	},
 	"attack": function(notification, player)
 	{
-		if (player != Engine.GetPlayerID())
+		if (player != g_ViewedPlayer)
 			return;
+
 		if (Engine.ConfigDB_GetValue("user", "gui.session.attacknotificationmessage") !== "true")
 			return;
+
 		addChatMessage({
 			"type": "attack",
 			"player": player,
@@ -651,7 +653,7 @@ function formatTributeMessage(msg)
 
 function formatAttackMessage(msg)
 {
-	if (msg.player != Engine.GetPlayerID())
+	if (msg.player != g_ViewedPlayer)
 		return "";
 
 	let message = msg.targetIsDomesticAnimal ?

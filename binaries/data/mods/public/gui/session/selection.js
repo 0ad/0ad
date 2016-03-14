@@ -294,7 +294,7 @@ EntitySelection.prototype.addList = function(ents, quiet)
 
 	// If someone else's player is the sole selected unit, don't allow adding to the selection
 	let firstEntState = selection.length == 1 && GetEntityState(selection[0]);
-	if (firstEntState && !controlsPlayer(firstEntState.player))
+	if (firstEntState && firstEntState.player != g_ViewedPlayer)
 		return;
 
 	let i = 1;
