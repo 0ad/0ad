@@ -961,7 +961,7 @@ var g_AllyEntityCommands =
 	"share-dropsite": {
 		"getInfo": function(entState)
 		{
-			if (!GetSimState().players[Engine.GetPlayerID()].hasSharedDropsites)
+			if (Engine.GetPlayerID() == -1 || !GetSimState().players[Engine.GetPlayerID()].hasSharedDropsites)
 				return false;
 			if (!entState.resourceDropsite || !entState.resourceDropsite.sharable)
 				return false;
