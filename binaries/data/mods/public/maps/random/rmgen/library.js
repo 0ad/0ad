@@ -524,7 +524,8 @@ function getDistance(x1, z1, x2, z2)
 }
 
 /**
- * Returns the angle of the vector between point 1 and point 2.  The angle is anticlockwise from the positive x axis.
+ * Returns the angle of the vector between point 1 and point 2.
+ * The angle is counterclockwise from the positive x axis.
  */
 function getAngle(x1, z1, x2, z2)
 {
