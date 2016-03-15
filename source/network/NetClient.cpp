@@ -639,7 +639,7 @@ bool CNetClient::OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnRejoined(void *context, CFsmEvent* event)
+bool CNetClient::OnRejoined(void* context, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_REJOINED);
 

@@ -226,6 +226,7 @@ function setTeamChat(teamChat = false)
 	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
 	chatAddressee.selected = chatAddressee.list_data.indexOf(command);
 }
+
 /**
  * Opens chat-window or closes it and sends the userinput.
  */

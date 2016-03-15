@@ -14,12 +14,12 @@ var g_NetworkWarnings = {};
 var g_NetworkWarningTexts = {
 
 	"server-timeout": (msg, username) =>
-		sprintf(translate("Losing connection to server (%(seconds)s)"), {
+		sprintf(translate("Losing connection to server (%(seconds)ss)"), {
 			"seconds": Math.ceil(msg.lastReceivedTime / 1000)
 		}),
 
 	"client-timeout": (msg, username) =>
-		sprintf(translate("%(player)s losing connection (%(seconds)s)"), {
+		sprintf(translate("%(player)s losing connection (%(seconds)ss)"), {
 			"player": username,
 			"seconds": Math.ceil(msg.lastReceivedTime / 1000)
 		}),

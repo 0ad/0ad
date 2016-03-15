@@ -717,7 +717,7 @@ function formatChatCommand(msg)
 		return "";
 
 	let isMe = msg.text.indexOf("/me ") == 0;
-	if (!isMe && !isChatAddressee(msg))
+	if (!isMe && !parseChatAddressee(msg))
 		return "";
 
 	isMe = msg.text.indexOf("/me ") == 0;
@@ -758,7 +758,7 @@ function formatChatCommand(msg)
  *
  * @param {Object} msg
  */
-function isChatAddressee(msg)
+function parseChatAddressee(msg)
 {
 	if (msg.text[0] != '/')
 		return true;

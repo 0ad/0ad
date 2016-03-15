@@ -586,6 +586,9 @@ CSimulation2::~CSimulation2()
 
 void CSimulation2::EnableOOSLog()
 {
+	if (m->m_EnableOOSLog)
+		return;
+
 	m->m_EnableOOSLog = true;
 	debug_printf("Writing ooslogs to %s\n", m->m_OOSLogPath.string8().c_str());
 }
