@@ -639,7 +639,7 @@ private:
 	/**
 	 * Update goal position if moving target
 	 */
-	bool UpdateFinalGoal();
+	void UpdateFinalGoal();
 
 	/**
 	 * Returns whether we are close enough to the target to assume it's a good enough
@@ -1201,21 +1201,20 @@ bool CCmpUnitMotion::CheckTargetMovement(const CFixedVector2D& from, entity_pos_
 	return true;
 }
 
-bool CCmpUnitMotion::UpdateFinalGoal()
+void CCmpUnitMotion::UpdateFinalGoal()
 {
 	if (m_TargetEntity == INVALID_ENTITY)
-		return false;
+		return;
 	CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
 	if (!cmpUnitMotion)
-		return false;
+		return;
 	if (IsFormationMember())
-		return false;
+		return;
 	CFixedVector2D targetPos;
 	if (!ComputeTargetPosition(targetPos))
-		return false;
+		return;
 	m_FinalGoal.x = targetPos.X;
 	m_FinalGoal.z = targetPos.Y;
-	return true;
 }
 
 bool CCmpUnitMotion::ShouldConsiderOurselvesAtDestination(const CFixedVector2D& from)
