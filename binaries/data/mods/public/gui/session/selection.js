@@ -288,13 +288,13 @@ EntitySelection.prototype.checkRenamedEntities = function()
 /**
  * Add entities to selection. Play selection sound unless quiet is true
  */
-EntitySelection.prototype.addList = function(ents, quiet)
+EntitySelection.prototype.addList = function(ents, quiet, force = false)
 {
 	let selection = this.toList();
 
 	// If someone else's player is the sole selected unit, don't allow adding to the selection
 	let firstEntState = selection.length == 1 && GetEntityState(selection[0]);
-	if (firstEntState && firstEntState.player != g_ViewedPlayer)
+	if (firstEntState && firstEntState.player != g_ViewedPlayer && !force)
 		return;
 
 	let i = 1;
@@ -316,7 +316,7 @@ EntitySelection.prototype.addList = function(ents, quiet)
 		                g_ViewedPlayer == -1 && entState.player == 0;
 
 		// Don't add unowned entities to the list, unless a single entity was selected
-		if (isUnowned && (ents.length > 1 || selection.length))
+		if (isUnowned && (ents.length > 1 || selection.length) && !force)
 			continue;
 
 		added.push(ent);
