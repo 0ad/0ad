@@ -84,11 +84,9 @@ var g_Commands = {
 	"diplomacy": function(player, cmd, data)
 	{
 		let cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);
-		if (cmpCeasefireManager && cmpCeasefireManager.IsCeasefireActive())
-		{
-			warn("Can't change diplomacy of player " + player + " while ceasefire is active.");
+		if (data.cmpPlayer.GetLockTeams() ||
+		        cmpCeasefireManager && cmpCeasefireManager.IsCeasefireActive())
 			return;
-		}
 
 		switch(cmd.to)
 		{
