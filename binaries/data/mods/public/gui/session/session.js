@@ -38,6 +38,12 @@ var g_IsObserver = false;
 var g_ViewedPlayer = Engine.GetPlayerID();
 
 /**
+ * True if the camera should focus on attacks and player commands
+ * and select the affected units.
+ */
+var g_FollowPlayer = false;
+
+/**
  * Unique ID for lobby reports.
  */
 var g_MatchID;
@@ -327,6 +333,8 @@ function selectViewPlayer(playerID)
 	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
 	alphaLabel.hidden = g_ViewedPlayer > 0 && !viewPlayer.hidden;
 	alphaLabel.size = g_ViewedPlayer > 0 ? "50%+20 0 100%-226 100%" : "200 0 100%-475 100%";
+
+	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver || g_ViewedPlayer < 1;
 
 	if (g_IsDiplomacyOpen)
 		openDiplomacy();

@@ -120,6 +120,7 @@ AttackDetection.prototype.AttackAlert = function(target, attacker)
 	Engine.PostMessage(this.entity, MT_AttackDetected, { "player": cmpPlayer.GetPlayerID(), "event": event });
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
 		"type": "attack",
+		"target": target,
 		"players": [cmpPlayer.GetPlayerID()],
 		"attacker": cmpAttackerOwnership.GetOwner(),
 		"targetIsDomesticAnimal": targetIsDomesticAnimal

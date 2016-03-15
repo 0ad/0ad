@@ -23,6 +23,14 @@ function ProcessCommand(player, cmd)
 	if (cmd.entities)
 		data.entities = FilterEntityList(cmd.entities, player, data.controlAllUnits);
 
+	// Allow focusing the camera on recent commands
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGuiInterface.PushNotification({
+		"type": "playercommand",
+		"players": [player],
+		"cmd": cmd
+	});
+
 	// Note: checks of UnitAI targets are not robust enough here, as ownership
 	//	can change after the order is issued, they should be checked by UnitAI
 	//	when the specific behavior (e.g. attack, garrison) is performed.
