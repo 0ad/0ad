@@ -93,21 +93,21 @@ function getArmorTooltip(dmg)
 	let dmgArray = [];
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			"damage": dmg.hack,
+			"damage": dmg.hack.toFixed(1),
 			"damageType": g_TooltipTextFormats.unit[0] + translate("Hack") + g_TooltipTextFormats.unit[1],
 			"armorPercentage": '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { "armorPercentage": armorLevelToPercentageString(dmg.hack) }) + '[/font]'
 		}));
 
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			"damage": dmg.pierce,
+			"damage": dmg.pierce.toFixed(1),
 			"damageType": g_TooltipTextFormats.unit[0] + translate("Pierce") + g_TooltipTextFormats.unit[1],
 			"armorPercentage": '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { "armorPercentage": armorLevelToPercentageString(dmg.pierce) }) + '[/font]'
 		}));
 
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			"damage": dmg.crush,
+			"damage": dmg.crush.toFixed(1),
 			"damageType": g_TooltipTextFormats.unit[0] + translate("Crush") + g_TooltipTextFormats.unit[1],
 			"armorPercentage": '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { "armorPercentage": armorLevelToPercentageString(dmg.crush) }) + '[/font]'
 		}));
