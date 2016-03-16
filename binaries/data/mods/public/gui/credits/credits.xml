@@ -56,7 +56,7 @@
 		<object name="donatorsPanelButton" type="button" sprite="BackgroundBox" size="775 50 925 80">
 			<action on="Press">selectPanel(5);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Donators</translatableAttribute>
+				<translatableAttribute id="caption">Donors</translatableAttribute>
 			</object>
 		</object>
 
