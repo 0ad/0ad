@@ -168,7 +168,7 @@ void CLogger::WriteError(const char* message)
 
 	++m_NumberOfErrors;
 	if (m_UseDebugPrintf)
-		debug_printf("ERROR: %s\n", message);
+		debug_printf("ERROR: %.16000s\n", message);
 
 	if (g_Console) g_Console->InsertMessage(std::string("ERROR: ") + message);
 	*m_InterestingLog << "<p class=\"error\">ERROR: " << cmessage << "</p>\n";
