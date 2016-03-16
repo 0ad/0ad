@@ -270,7 +270,7 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!targetState.resourceDropsite || !targetState.resourceDropsite.sharable)
+			if (!targetState.resourceDropsite)
 				return false;
 			var playerState = GetSimState().players[entState.player];
 			if (playerState.hasSharedDropsites && targetState.resourceDropsite.shared)
