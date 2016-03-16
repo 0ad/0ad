@@ -33,22 +33,22 @@ import json, os, glob, re
 
 # Credited languages - Keep in sync with source/tools/dist/remove-incomplete-translations.sh
 langs = {
-    'cs': 'Czech',
-    'de': 'German',
+    'cs': 'Ceština',
+    'de': 'Deutsch',
     'en_GB': 'English (UK)',
-    'es': 'Spanish',
-    'fr': 'French',
-    'gd': 'Gaelic',
-    'gl': 'Galician',
-    'id': 'Indonesian',
-    'it': 'Italian',
-    'nl': 'Dutch',
-    'pl': 'Polish',
-    'pt_PT': 'Portuguese (Portugal)',
-    'pt_BR': 'Portuguese (Brazil)',
-    'ru': 'Russian',
-    'sk': 'Slovak',
-    'tr': 'Turkish'}
+    'es': 'Español',
+    'fr': 'Français',
+    'gd': 'Gàidhlig',
+    'gl': 'Galego',
+    'id': 'Bahasa Indonesia',
+    'it': 'Italiano',
+    'nl': 'Nederlands',
+    'pl': 'Polski',
+    'pt_PT': 'Português (Portugal)',
+    'pt_BR': 'Português (Brasil)',
+    'ru': 'Русский',
+    'sk': 'Slovenčina',
+    'tr': 'Türkçe'}
 
 root = '../../../'
 
@@ -74,12 +74,12 @@ newJSONData = {'Content': []}
 # add them to the new data after processing, else add them immediately.
 # NB: All of this is quite inefficient
 for element in JSONData['Content']:
-    if 'Title' not in element or element['Title'] not in langs.values():
+    if 'LangName' not in element or element['LangName'] not in langs.values():
         newJSONData['Content'].append(element)
         continue
 
     for (langCode, langName) in langs.items():
-        if element['Title'] == langName:
+        if element['LangName'] == langName:
             langsLists[langCode] = element['List']
             break
 
@@ -117,7 +117,7 @@ for lang in langs.keys():
 
 # Now insert the new data into the new JSON file
 for (langCode, langList) in sorted(langsLists.items()):
-    newJSONData['Content'].append({'Title': langs[langCode], 'List': []})
+    newJSONData['Content'].append({'LangName': langs[langCode], 'List': []})
     for name in langList:
         newJSONData['Content'][-1]['List'].append({'name': name})
 

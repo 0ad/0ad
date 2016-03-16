@@ -18,6 +18,9 @@ function parseHelper(list)
 
 	for (let object of list)
 	{
+		if (object.LangName)
+			result += "[font=\"sans-bold-stroke-14\"]" + object.LangName + "\n";
+
 		if (object.Title)
 			result += "[font=\"sans-bold-stroke-14\"]" + translate(object.Title) + "\n";
 
