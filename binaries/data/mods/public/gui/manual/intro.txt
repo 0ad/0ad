@@ -28,9 +28,14 @@ To set up a multiplayer game, one player must select the "Host game" option. The
 [font="sans-bold-16"]Game setup
 [font="sans-14"]In a multiplayer game, only the host can alter the game setup options.
 
-First, select whether you want to play on a random map (created automatically from a random map script) or a scenario (created by a map designer). Scenarios can be filtered to show only some maps. The default maps are shown immediately, but custom maps are often not so select "All maps" to see a list of all available maps. Then select a map to play on. The "Demo Maps" are designed for testing particular gameplay features and are probably not generally useful.
+First, select what type of map you want to play:
+• [font="sans-bold-14"]Random map[font="sans-14"] — A map created automatically from a script
+• [font="sans-bold-14"]Scenario map[font="sans-14"] — A map created by map designers and with fixed civilisations
+• [font="sans-bold-14"]Skirmish map[font="sans-14"] — A map created by map designers but where the civilisations can be chosen
 
-Finally change the settings. For random maps this includes the number of players, the size of a map, etc. For scenarios you can only select who controls which player (decides where you start on the map etc). The options are either a human player, an AI or no player at all (existing units will attack enemies that come into sight, but no new units will be created, nor will the units be sent to attack anyone).
+Then the maps can be futher filtered. The default maps are generally playable maps. Naval maps are maps where not all opponents can be reached over land and demo maps are maps used for testing purposes (generally not useful to play on). The "All Maps" filter shows all maps together in one list.
+
+Finally change the settings. For random maps this includes the number of players, the size of a map, etc. For scenarios you can only select who controls which player (decides where you start on the map etc). The options are either a human player, an AI or no player at all (the opponent will just be idle).
 
 When you are ready to start, click the "Start game" button.
 
