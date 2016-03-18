@@ -4,8 +4,6 @@ const g_Props = {
 	"cart": "actor|props/special/eyecandy/handcart_1_broken.xml",
 	"well": "actor|props/special/eyecandy/well_1_c.xml",
 	"skeleton": "actor|props/special/eyecandy/skeleton.xml",
-	"blood": "actor|props/units/blood_01.xml",
-	"bigBlood": "actor|props/units/blood_whale.xml"
 };
 
 const g_DefaultDeviation = 0.1;
@@ -648,8 +646,6 @@ function addProps(constraint, size, deviation, fill)
 	var props = [
 		[
 			new SimpleObject(g_Props.skeleton, 1 * offset, 5 * offset, 0, 3 * offset + 2),
-			new SimpleObject(g_Props.blood, 1 * offset, 2 * offset, 0, 1 * offset + 3),
-			new SimpleObject(g_Props.bigBlood, 1 * offset, 3 * offset, 0, 2 * offset + 3)
 		],
 		[
 			new SimpleObject(g_Props.barrels, 1 * offset, 2 * offset, 2, 3 * offset + 2),
